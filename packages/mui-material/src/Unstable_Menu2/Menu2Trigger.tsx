@@ -14,8 +14,8 @@ import {
   getMenu2RootRender,
   isMenu2RootNativeButton,
   Menu2RootSlotProps,
-} from '../Unstable_Menu2/menu2Utils';
-import { getMenu2TriggerUtilityClass, Menu2TriggerClasses } from '../Unstable_Menu2/menu2Classes';
+} from './menu2Utils';
+import { getMenu2TriggerUtilityClass, Menu2TriggerClasses } from './menu2Classes';
 
 export interface Menu2TriggerSlots {
   /**

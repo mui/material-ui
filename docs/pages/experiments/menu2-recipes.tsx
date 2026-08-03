@@ -17,14 +17,10 @@ import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
-import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
-import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
-import Menu2SubmenuRoot from '@mui/material/Unstable_Menu2SubmenuRoot';
-import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
-import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
 interface MenuSettings {
@@ -273,41 +269,49 @@ function Menu2WithPreviewCardsDemo({ submenusOpenOnHover }: { submenusOpenOnHove
           setAnchorEl(null);
         }
       }}
+      trigger="Help cards"
+      slotProps={{
+        trigger: {
+          variant: 'contained',
+          endIcon: <KeyboardArrowDownRoundedIcon fontSize="small" />,
+        },
+      }}
+      sideOffset={8}
     >
-      <Menu2Trigger variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
-        Help cards
-      </Menu2Trigger>
-      <Menu2Popup sideOffset={8}>
-        <Menu2Item
-          label={rootPreviewCardItems[0].label}
-          {...getPreviewCardProps(rootPreviewCardItems[0])}
-        >
-          {rootPreviewCardItems[0].label}
-        </Menu2Item>
-        <Menu2SubmenuRoot>
-          <Menu2SubmenuTrigger
-            openOnHover={submenusOpenOnHover}
-            onFocus={clearActiveItem}
-            onMouseEnter={clearActiveItem}
-          >
+      <Menu2Item
+        label={rootPreviewCardItems[0].label}
+        {...getPreviewCardProps(rootPreviewCardItems[0])}
+      >
+        {rootPreviewCardItems[0].label}
+      </Menu2Item>
+      <Menu2Submenu
+        trigger={
+          <React.Fragment>
             Version history
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </Menu2SubmenuTrigger>
-          <Menu2SubmenuPopup sideOffset={8}>
-            {versionHistoryPreviewCardItems.map((item) => (
-              <Menu2Item key={item.id} label={item.label} {...getPreviewCardProps(item)}>
-                {item.label}
-              </Menu2Item>
-            ))}
-          </Menu2SubmenuPopup>
-        </Menu2SubmenuRoot>
-        <Menu2Item
-          label={rootPreviewCardItems[1].label}
-          {...getPreviewCardProps(rootPreviewCardItems[1])}
-        >
-          {rootPreviewCardItems[1].label}
-        </Menu2Item>
-      </Menu2Popup>
+          </React.Fragment>
+        }
+        slotProps={{
+          trigger: {
+            openOnHover: submenusOpenOnHover,
+            onFocus: clearActiveItem,
+            onMouseEnter: clearActiveItem,
+          },
+        }}
+        sideOffset={8}
+      >
+        {versionHistoryPreviewCardItems.map((item) => (
+          <Menu2Item key={item.id} label={item.label} {...getPreviewCardProps(item)}>
+            {item.label}
+          </Menu2Item>
+        ))}
+      </Menu2Submenu>
+      <Menu2Item
+        label={rootPreviewCardItems[1].label}
+        {...getPreviewCardProps(rootPreviewCardItems[1])}
+      >
+        {rootPreviewCardItems[1].label}
+      </Menu2Item>
       <MaterialPreviewCard id={activePreviewCardId} item={activeItem} anchorEl={anchorEl} />
     </Menu2>
   );
@@ -320,92 +324,111 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
   }, []);
 
   return (
-    <Menu2 modal={settings.modal} disabled={settings.disabled}>
-      <Menu2Trigger variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
-        File
-      </Menu2Trigger>
-      <Menu2Popup sideOffset={8}>
-        <Menu2Item onClick={handleItemClick}>New document</Menu2Item>
-        <Menu2Item onClick={handleItemClick}>Open…</Menu2Item>
-        <Menu2LinkItem href="/docs/templates">Template gallery</Menu2LinkItem>
-        <Menu2LinkItem href="/docs/recent">Recent documents</Menu2LinkItem>
-        <Menu2LinkItem href="/help/docs">Docs help center</Menu2LinkItem>
-        <Menu2Item onClick={handleItemClick}>Make a copy</Menu2Item>
-        <Menu2Separator />
-        <Menu2Item closeOnClick={false} onClick={handleItemClick}>
-          Rename document
-        </Menu2Item>
-        <Menu2Item disabled onClick={handleItemClick}>
-          Offline editing unavailable
-        </Menu2Item>
-        <Menu2Separator />
+    <Menu2
+      modal={settings.modal}
+      disabled={settings.disabled}
+      trigger="File"
+      slotProps={{
+        trigger: {
+          variant: 'contained',
+          endIcon: <KeyboardArrowDownRoundedIcon fontSize="small" />,
+        },
+      }}
+      sideOffset={8}
+    >
+      <Menu2Item onClick={handleItemClick}>New document</Menu2Item>
+      <Menu2Item onClick={handleItemClick}>Open…</Menu2Item>
+      <Menu2LinkItem href="/docs/templates">Template gallery</Menu2LinkItem>
+      <Menu2LinkItem href="/docs/recent">Recent documents</Menu2LinkItem>
+      <Menu2LinkItem href="/help/docs">Docs help center</Menu2LinkItem>
+      <Menu2Item onClick={handleItemClick}>Make a copy</Menu2Item>
+      <Menu2Separator />
+      <Menu2Item closeOnClick={false} onClick={handleItemClick}>
+        Rename document
+      </Menu2Item>
+      <Menu2Item disabled onClick={handleItemClick}>
+        Offline editing unavailable
+      </Menu2Item>
+      <Menu2Separator />
 
-        <Menu2SubmenuRoot>
-          <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
+      <Menu2Submenu
+        trigger={
+          <React.Fragment>
             View options
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </Menu2SubmenuTrigger>
-          <Menu2SubmenuPopup sideOffset={8}>
-            <Menu2Group>
-              <Menu2GroupLabel>Document display</Menu2GroupLabel>
-              <Menu2RadioGroup defaultValue="100">
-                <Menu2RadioItem value="100">100%</Menu2RadioItem>
-                <Menu2RadioItem value="fit">Fit</Menu2RadioItem>
-                <Menu2RadioItem value="page-width">Page width</Menu2RadioItem>
-                <Menu2RadioItem value="custom" disabled>
-                  Custom zoom unavailable
-                </Menu2RadioItem>
-              </Menu2RadioGroup>
-            </Menu2Group>
+          </React.Fragment>
+        }
+        slotProps={{ trigger: { openOnHover: settings.submenusOpenOnHover } }}
+        sideOffset={8}
+      >
+        <Menu2Group>
+          <Menu2GroupLabel>Document display</Menu2GroupLabel>
+          <Menu2RadioGroup defaultValue="100">
+            <Menu2RadioItem value="100">100%</Menu2RadioItem>
+            <Menu2RadioItem value="fit">Fit</Menu2RadioItem>
+            <Menu2RadioItem value="page-width">Page width</Menu2RadioItem>
+            <Menu2RadioItem value="custom" disabled>
+              Custom zoom unavailable
+            </Menu2RadioItem>
+          </Menu2RadioGroup>
+        </Menu2Group>
 
-            <Menu2Separator />
+        <Menu2Separator />
 
-            <Menu2Group>
-              <Menu2GroupLabel>Show</Menu2GroupLabel>
-              <Menu2CheckboxItem defaultChecked>Ruler</Menu2CheckboxItem>
-              <Menu2CheckboxItem defaultChecked>Document outline</Menu2CheckboxItem>
-              <Menu2CheckboxItem>Line numbers</Menu2CheckboxItem>
-              <Menu2CheckboxItem disabled>Page breaks unavailable</Menu2CheckboxItem>
-            </Menu2Group>
+        <Menu2Group>
+          <Menu2GroupLabel>Show</Menu2GroupLabel>
+          <Menu2CheckboxItem defaultChecked>Ruler</Menu2CheckboxItem>
+          <Menu2CheckboxItem defaultChecked>Document outline</Menu2CheckboxItem>
+          <Menu2CheckboxItem>Line numbers</Menu2CheckboxItem>
+          <Menu2CheckboxItem disabled>Page breaks unavailable</Menu2CheckboxItem>
+        </Menu2Group>
 
-            <Menu2Separator />
+        <Menu2Separator />
 
-            <Menu2SubmenuRoot>
-              <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
-                More tools
-                <KeyboardArrowRightRoundedIcon fontSize="small" />
-              </Menu2SubmenuTrigger>
-              <Menu2SubmenuPopup sideOffset={8}>
-                <Menu2Item onClick={handleItemClick}>Word count</Menu2Item>
-                <Menu2Item onClick={handleItemClick}>Dictionary</Menu2Item>
-                <Menu2Item onClick={handleItemClick}>Accessibility settings</Menu2Item>
-              </Menu2SubmenuPopup>
-            </Menu2SubmenuRoot>
-          </Menu2SubmenuPopup>
-        </Menu2SubmenuRoot>
+        <Menu2Submenu
+          trigger={
+            <React.Fragment>
+              More tools
+              <KeyboardArrowRightRoundedIcon fontSize="small" />
+            </React.Fragment>
+          }
+          slotProps={{ trigger: { openOnHover: settings.submenusOpenOnHover } }}
+          sideOffset={8}
+        >
+          <Menu2Item onClick={handleItemClick}>Word count</Menu2Item>
+          <Menu2Item onClick={handleItemClick}>Dictionary</Menu2Item>
+          <Menu2Item onClick={handleItemClick}>Accessibility settings</Menu2Item>
+        </Menu2Submenu>
+      </Menu2Submenu>
 
-        <Menu2SubmenuRoot>
-          <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
+      <Menu2Submenu
+        trigger={
+          <React.Fragment>
             Download
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </Menu2SubmenuTrigger>
-          <Menu2SubmenuPopup sideOffset={8}>
-            <Menu2Item>Microsoft Word (.docx)</Menu2Item>
-            <Menu2Item>PDF document (.pdf)</Menu2Item>
-            <Menu2Item>Plain text (.txt)</Menu2Item>
-          </Menu2SubmenuPopup>
-        </Menu2SubmenuRoot>
+          </React.Fragment>
+        }
+        slotProps={{ trigger: { openOnHover: settings.submenusOpenOnHover } }}
+        sideOffset={8}
+      >
+        <Menu2Item>Microsoft Word (.docx)</Menu2Item>
+        <Menu2Item>PDF document (.pdf)</Menu2Item>
+        <Menu2Item>Plain text (.txt)</Menu2Item>
+      </Menu2Submenu>
 
-        <Menu2SubmenuRoot disabled>
-          <Menu2SubmenuTrigger disabled openOnHover={settings.submenusOpenOnHover}>
+      <Menu2Submenu
+        disabled
+        trigger={
+          <React.Fragment>
             Add-ons unavailable
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </Menu2SubmenuTrigger>
-          <Menu2SubmenuPopup sideOffset={8}>
-            <Menu2Item>Marketplace</Menu2Item>
-          </Menu2SubmenuPopup>
-        </Menu2SubmenuRoot>
-      </Menu2Popup>
+          </React.Fragment>
+        }
+        slotProps={{ trigger: { disabled: true, openOnHover: settings.submenusOpenOnHover } }}
+        sideOffset={8}
+      >
+        <Menu2Item>Marketplace</Menu2Item>
+      </Menu2Submenu>
     </Menu2>
   );
 }
@@ -433,65 +456,89 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
     [direction],
   );
 
+  // The trigger is a prop now, so the tooltip around it has to move into the
+  // trigger's root slot. This is the one composition the collapse made harder.
+  const TooltipSubmenuTriggerRoot = React.useMemo(
+    () =>
+      React.forwardRef<
+        HTMLDivElement,
+        React.ComponentPropsWithoutRef<'div'> & { ownerState?: unknown }
+      >(function TooltipSubmenuTriggerRoot({ ownerState: _ownerState, ...rootProps }, ref) {
+        return (
+          <MenuTooltip title="Open view settings" tooltipProps={submenuTriggerTooltipProps}>
+            <div ref={ref} {...rootProps} />
+          </MenuTooltip>
+        );
+      }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+
   return (
-    <Menu2>
-      <Menu2Trigger variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
-        Tools
-      </Menu2Trigger>
-      <Menu2Popup sideOffset={8}>
-        <MenuTooltip title="Create a blank document">
-          <Menu2Item>New document</Menu2Item>
-        </MenuTooltip>
-        <MenuTooltip title="Open recently edited documents">
-          <Menu2Item>Open recent</Menu2Item>
-        </MenuTooltip>
-        <MenuTooltip title="Copy this document to your Drive">
-          <Menu2Item>Make a copy</Menu2Item>
-        </MenuTooltip>
-        <DisabledTooltip title="Import is disabled while offline">
-          <Menu2Item disabled>Import from Drive</Menu2Item>
-        </DisabledTooltip>
-        <DisabledTooltip title="Sharing is unavailable in preview">
-          <Menu2Item disabled>Share with people</Menu2Item>
-        </DisabledTooltip>
+    <Menu2
+      trigger="Tools"
+      slotProps={{
+        trigger: {
+          variant: 'contained',
+          endIcon: <KeyboardArrowDownRoundedIcon fontSize="small" />,
+        },
+      }}
+      sideOffset={8}
+    >
+      <MenuTooltip title="Create a blank document">
+        <Menu2Item>New document</Menu2Item>
+      </MenuTooltip>
+      <MenuTooltip title="Open recently edited documents">
+        <Menu2Item>Open recent</Menu2Item>
+      </MenuTooltip>
+      <MenuTooltip title="Copy this document to your Drive">
+        <Menu2Item>Make a copy</Menu2Item>
+      </MenuTooltip>
+      <DisabledTooltip title="Import is disabled while offline">
+        <Menu2Item disabled>Import from Drive</Menu2Item>
+      </DisabledTooltip>
+      <DisabledTooltip title="Sharing is unavailable in preview">
+        <Menu2Item disabled>Share with people</Menu2Item>
+      </DisabledTooltip>
+      <Menu2Separator />
+
+      <Menu2Submenu
+        trigger={
+          <React.Fragment>
+            View options
+            <KeyboardArrowRightRoundedIcon fontSize="small" />
+          </React.Fragment>
+        }
+        slots={{ trigger: TooltipSubmenuTriggerRoot }}
+        slotProps={{ trigger: { openOnHover: submenusOpenOnHover } }}
+        sideOffset={8}
+      >
+        <Menu2Group>
+          <Menu2GroupLabel>Show</Menu2GroupLabel>
+          <MenuTooltip title="Display comments in the document">
+            <Menu2CheckboxItem defaultChecked>Comments</Menu2CheckboxItem>
+          </MenuTooltip>
+          <DisabledTooltip title="Page breaks are locked in published view">
+            <Menu2CheckboxItem disabled>Page breaks</Menu2CheckboxItem>
+          </DisabledTooltip>
+        </Menu2Group>
+
         <Menu2Separator />
 
-        <Menu2SubmenuRoot>
-          <MenuTooltip title="Open view settings" tooltipProps={submenuTriggerTooltipProps}>
-            <Menu2SubmenuTrigger openOnHover={submenusOpenOnHover}>
-              View options
-              <KeyboardArrowRightRoundedIcon fontSize="small" />
-            </Menu2SubmenuTrigger>
-          </MenuTooltip>
-          <Menu2SubmenuPopup sideOffset={8}>
-            <Menu2Group>
-              <Menu2GroupLabel>Show</Menu2GroupLabel>
-              <MenuTooltip title="Display comments in the document">
-                <Menu2CheckboxItem defaultChecked>Comments</Menu2CheckboxItem>
-              </MenuTooltip>
-              <DisabledTooltip title="Page breaks are locked in published view">
-                <Menu2CheckboxItem disabled>Page breaks</Menu2CheckboxItem>
-              </DisabledTooltip>
-            </Menu2Group>
-
-            <Menu2Separator />
-
-            <Menu2Group>
-              <Menu2GroupLabel>Zoom</Menu2GroupLabel>
-              <Menu2RadioGroup defaultValue="fit">
-                <MenuTooltip title="Use the available viewport width">
-                  <Menu2RadioItem value="fit">Fit</Menu2RadioItem>
-                </MenuTooltip>
-                <DisabledTooltip title="Custom zoom is unavailable in preview">
-                  <Menu2RadioItem value="custom" disabled>
-                    Custom
-                  </Menu2RadioItem>
-                </DisabledTooltip>
-              </Menu2RadioGroup>
-            </Menu2Group>
-          </Menu2SubmenuPopup>
-        </Menu2SubmenuRoot>
-      </Menu2Popup>
+        <Menu2Group>
+          <Menu2GroupLabel>Zoom</Menu2GroupLabel>
+          <Menu2RadioGroup defaultValue="fit">
+            <MenuTooltip title="Use the available viewport width">
+              <Menu2RadioItem value="fit">Fit</Menu2RadioItem>
+            </MenuTooltip>
+            <DisabledTooltip title="Custom zoom is unavailable in preview">
+              <Menu2RadioItem value="custom" disabled>
+                Custom
+              </Menu2RadioItem>
+            </DisabledTooltip>
+          </Menu2RadioGroup>
+        </Menu2Group>
+      </Menu2Submenu>
     </Menu2>
   );
 }
@@ -567,13 +614,17 @@ function Menu2ContextMenuRecipe() {
         facilisis neque enim sed neque. Quisque accumsan metus vel maximus consequat. Suspendisse
         lacinia tellus a libero volutpat maximus.
       </Typography>
-      <Menu2 open={open} onOpenChange={handleOpenChange}>
-        <Menu2Popup anchor={anchor ?? undefined} positionMethod="fixed" finalFocus={contextAreaRef}>
-          <Menu2Item onClick={handleClose}>Copy</Menu2Item>
-          <Menu2Item onClick={handleClose}>Print</Menu2Item>
-          <Menu2Item onClick={handleClose}>Highlight</Menu2Item>
-          <Menu2Item onClick={handleClose}>Email</Menu2Item>
-        </Menu2Popup>
+      <Menu2
+        open={open}
+        onOpenChange={handleOpenChange}
+        anchor={anchor ?? undefined}
+        positionMethod="fixed"
+        finalFocus={contextAreaRef}
+      >
+        <Menu2Item onClick={handleClose}>Copy</Menu2Item>
+        <Menu2Item onClick={handleClose}>Print</Menu2Item>
+        <Menu2Item onClick={handleClose}>Highlight</Menu2Item>
+        <Menu2Item onClick={handleClose}>Email</Menu2Item>
       </Menu2>
     </div>
   );

@@ -7,7 +7,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { paperClasses } from '@mui/material/Paper';
 import Tooltip from '@mui/material/Tooltip';
-import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2, { menu2PopupClasses, menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem, {
   menu2CheckboxItemClasses,
 } from '@mui/material/Unstable_Menu2CheckboxItem';
@@ -15,16 +15,10 @@ import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
 import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
-import Menu2Popup, { menu2PopupClasses } from '@mui/material/Unstable_Menu2Popup';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
-import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
-import Menu2SubmenuRoot from '@mui/material/Unstable_Menu2SubmenuRoot';
-import Menu2SubmenuTrigger, {
-  menu2SubmenuTriggerClasses,
-} from '@mui/material/Unstable_Menu2SubmenuTrigger';
-import Menu2Trigger, { menu2TriggerClasses } from '@mui/material/Unstable_Menu2Trigger';
+import Menu2Submenu, { menu2SubmenuTriggerClasses } from '@mui/material/Unstable_Menu2Submenu';
 import { createTheme, enhanceHighContrast, ThemeProvider } from '@mui/material/styles';
 
 describe('<Menu2 />', () => {
@@ -45,11 +39,8 @@ describe('<Menu2 />', () => {
 
   it('opens from the trigger and keeps Menu.Popup as the semantic menu root', async () => {
     const { user } = render(
-      <Menu2>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup slotProps={{ paper: { 'data-testid': 'paper' } }}>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
+      <Menu2 slotProps={{ paper: { 'data-testid': 'paper' } }} trigger="Options">
+        <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
@@ -72,11 +63,8 @@ describe('<Menu2 />', () => {
 
   it('does not render the trigger as a link when href is passed by a JS caller', async () => {
     const { user } = render(
-      <Menu2>
-        <Menu2Trigger {...({ href: '/profile' } as any)}>Options</Menu2Trigger>
-        <Menu2Popup>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
+      <Menu2 trigger="Options" slotProps={{ trigger: { href: '/profile' } as any }}>
+        <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
@@ -95,11 +83,12 @@ describe('<Menu2 />', () => {
 
   it('does not pass ownerState to host popup slots', async () => {
     const { user } = render(
-      <Menu2>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup slots={{ popup: 'div' }} slotProps={{ popup: { 'data-testid': 'popup' } }}>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
+      <Menu2
+        slots={{ popup: 'div' }}
+        slotProps={{ popup: { 'data-testid': 'popup' } }}
+        trigger="Options"
+      >
+        <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
@@ -113,29 +102,21 @@ describe('<Menu2 />', () => {
 
     try {
       const { user } = render(
-        <Menu2>
-          <Menu2Trigger slots={{ root: 'div' }}>Options</Menu2Trigger>
-          <Menu2Popup>
-            <Menu2Item closeOnClick={false} slots={{ root: 'button' }}>
-              Native item
-            </Menu2Item>
-            <Menu2CheckboxItem closeOnClick={false} slots={{ root: 'button' }}>
-              Native checkbox
-            </Menu2CheckboxItem>
-            <Menu2RadioGroup defaultValue="small">
-              <Menu2RadioItem closeOnClick={false} slots={{ root: 'button' }} value="large">
-                Native radio
-              </Menu2RadioItem>
-            </Menu2RadioGroup>
-            <Menu2SubmenuRoot>
-              <Menu2SubmenuTrigger slots={{ root: 'button' }}>
-                Native submenu trigger
-              </Menu2SubmenuTrigger>
-              <Menu2SubmenuPopup>
-                <Menu2Item>Nested</Menu2Item>
-              </Menu2SubmenuPopup>
-            </Menu2SubmenuRoot>
-          </Menu2Popup>
+        <Menu2 trigger="Options" slots={{ trigger: 'div' }}>
+          <Menu2Item closeOnClick={false} slots={{ root: 'button' }}>
+            Native item
+          </Menu2Item>
+          <Menu2CheckboxItem closeOnClick={false} slots={{ root: 'button' }}>
+            Native checkbox
+          </Menu2CheckboxItem>
+          <Menu2RadioGroup defaultValue="small">
+            <Menu2RadioItem closeOnClick={false} slots={{ root: 'button' }} value="large">
+              Native radio
+            </Menu2RadioItem>
+          </Menu2RadioGroup>
+          <Menu2Submenu trigger="Native submenu trigger" slots={{ trigger: 'button' }}>
+            <Menu2Item>Nested</Menu2Item>
+          </Menu2Submenu>
         </Menu2>,
       );
 
@@ -186,23 +167,21 @@ describe('<Menu2 />', () => {
 
     try {
       const { user } = render(
-        <Menu2>
-          <Menu2Trigger nativeButton={false} slots={{ root: CustomDivRoot }}>
-            Options
-          </Menu2Trigger>
-          <Menu2Popup>
-            <Menu2Item closeOnClick={false} nativeButton slots={{ root: CustomButtonRoot }}>
-              Custom native item
-            </Menu2Item>
-            <Menu2SubmenuRoot>
-              <Menu2SubmenuTrigger nativeButton slots={{ root: CustomButtonRoot }}>
-                Custom native submenu trigger
-              </Menu2SubmenuTrigger>
-              <Menu2SubmenuPopup>
-                <Menu2Item>Nested</Menu2Item>
-              </Menu2SubmenuPopup>
-            </Menu2SubmenuRoot>
-          </Menu2Popup>
+        <Menu2
+          trigger="Options"
+          slots={{ trigger: CustomDivRoot }}
+          slotProps={{ trigger: { nativeButton: false } }}
+        >
+          <Menu2Item closeOnClick={false} nativeButton slots={{ root: CustomButtonRoot }}>
+            Custom native item
+          </Menu2Item>
+          <Menu2Submenu
+            trigger="Custom native submenu trigger"
+            slots={{ trigger: CustomButtonRoot }}
+            slotProps={{ trigger: { nativeButton: true } }}
+          >
+            <Menu2Item>Nested</Menu2Item>
+          </Menu2Submenu>
         </Menu2>,
       );
 
@@ -229,29 +208,27 @@ describe('<Menu2 />', () => {
 
   it('does not pass internal props to host paper and list slots', async () => {
     const { user } = render(
-      <Menu2>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup
-          sx={{ minWidth: 120 }}
-          slots={{ paper: 'div', list: 'div' }}
-          slotProps={{
-            paper: {
-              'data-testid': 'paper',
-              classes: { root: 'paper-root' },
-              component: 'section',
-              elevation: 4,
-            },
-            list: {
-              'data-testid': 'list',
-              classes: { root: 'list-root' },
-              component: 'ul',
-              disablePadding: false,
-              sx: { color: 'red' },
-            },
-          }}
-        >
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
+      <Menu2
+        sx={{ minWidth: 120 }}
+        slots={{ paper: 'div', list: 'div' }}
+        slotProps={{
+          paper: {
+            'data-testid': 'paper',
+            classes: { root: 'paper-root' },
+            component: 'section',
+            elevation: 4,
+          },
+          list: {
+            'data-testid': 'list',
+            classes: { root: 'list-root' },
+            component: 'ul',
+            disablePadding: false,
+            sx: { color: 'red' },
+          },
+        }}
+        trigger="Options"
+      >
+        <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
@@ -273,11 +250,8 @@ describe('<Menu2 />', () => {
 
   it('defaults the popup surface elevation to 8', async () => {
     const { user } = render(
-      <Menu2>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup slotProps={{ paper: { 'data-testid': 'paper' } }}>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
+      <Menu2 slotProps={{ paper: { 'data-testid': 'paper' } }} trigger="Options">
+        <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
@@ -288,11 +262,8 @@ describe('<Menu2 />', () => {
 
   it('forwards a custom elevation to the popup surface', async () => {
     const { user } = render(
-      <Menu2>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup elevation={4} slotProps={{ paper: { 'data-testid': 'paper' } }}>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
+      <Menu2 elevation={4} slotProps={{ paper: { 'data-testid': 'paper' } }} trigger="Options">
+        <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
@@ -303,11 +274,8 @@ describe('<Menu2 />', () => {
 
   it.skipIf(isJsdom())('animates the popup surface by default', async () => {
     const { user } = render(
-      <Menu2>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
+      <Menu2 trigger="Options">
+        <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
@@ -349,21 +317,15 @@ describe('<Menu2 />', () => {
     async () => {
       const { user } = render(
         <ThemeProvider theme={enhanceHighContrast(createTheme())}>
-          <Menu2>
-            <Menu2Trigger>Options</Menu2Trigger>
-            <Menu2Popup>
-              <Menu2Item>Profile</Menu2Item>
-              <Menu2CheckboxItem defaultChecked>
-                {/* The indicator only mounts while checked. */}
-                Bookmarks
-              </Menu2CheckboxItem>
-              <Menu2SubmenuRoot>
-                <Menu2SubmenuTrigger>View</Menu2SubmenuTrigger>
-                <Menu2SubmenuPopup>
-                  <Menu2Item>Zoom in</Menu2Item>
-                </Menu2SubmenuPopup>
-              </Menu2SubmenuRoot>
-            </Menu2Popup>
+          <Menu2 trigger="Options">
+            <Menu2Item>Profile</Menu2Item>
+            <Menu2CheckboxItem defaultChecked>
+              {/* The indicator only mounts while checked. */}
+              Bookmarks
+            </Menu2CheckboxItem>
+            <Menu2Submenu trigger="View">
+              <Menu2Item>Zoom in</Menu2Item>
+            </Menu2Submenu>
           </Menu2>
         </ThemeProvider>,
       );
@@ -402,11 +364,8 @@ describe('<Menu2 />', () => {
 
   it.skipIf(isJsdom())('lets the default animation be overridden', async () => {
     const { user } = render(
-      <Menu2>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup slotProps={{ popup: { sx: { transition: 'none' } } }}>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
+      <Menu2 slotProps={{ popup: { sx: { transition: 'none' } } }} trigger="Options">
+        <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
@@ -418,11 +377,8 @@ describe('<Menu2 />', () => {
 
   it('renders an invisible backdrop that does not swallow clicks', async () => {
     const { user } = render(
-      <Menu2>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup slotProps={{ backdrop: { 'data-testid': 'backdrop' } }}>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
+      <Menu2 slotProps={{ backdrop: { 'data-testid': 'backdrop' } }} trigger="Options">
+        <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
@@ -439,15 +395,13 @@ describe('<Menu2 />', () => {
 
   it('supports dimming through the backdrop slot', async () => {
     const { user } = render(
-      <Menu2>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup
-          slotProps={{
-            backdrop: { 'data-testid': 'backdrop', sx: { backgroundColor: 'rgb(0, 0, 0)' } },
-          }}
-        >
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
+      <Menu2
+        slotProps={{
+          backdrop: { 'data-testid': 'backdrop', sx: { backgroundColor: 'rgb(0, 0, 0)' } },
+        }}
+        trigger="Options"
+      >
+        <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
@@ -459,11 +413,8 @@ describe('<Menu2 />', () => {
 
   it.skipIf(isJsdom())('constrains the popup surface to the collision-aware height', async () => {
     const { user } = render(
-      <Menu2>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup slotProps={{ paper: { 'data-testid': 'paper' } }}>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
+      <Menu2 slotProps={{ paper: { 'data-testid': 'paper' } }} trigger="Options">
+        <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
@@ -488,11 +439,8 @@ describe('<Menu2 />', () => {
     });
 
     const { user } = render(
-      <Menu2 onOpenChange={handleOpenChange}>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
+      <Menu2 onOpenChange={handleOpenChange} trigger="Options">
+        <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
@@ -506,11 +454,8 @@ describe('<Menu2 />', () => {
 
   it('does not open when the root is disabled', async () => {
     render(
-      <Menu2 disabled>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
+      <Menu2 disabled trigger="Options">
+        <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
@@ -520,11 +465,8 @@ describe('<Menu2 />', () => {
 
   it('supports defaultOpen', () => {
     render(
-      <Menu2 defaultOpen>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
+      <Menu2 defaultOpen trigger="Options">
+        <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
@@ -533,11 +475,8 @@ describe('<Menu2 />', () => {
 
   it('supports keepMounted', () => {
     render(
-      <Menu2>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup keepMounted>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
+      <Menu2 keepMounted trigger="Options">
+        <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
@@ -555,11 +494,8 @@ describe('<Menu2 />', () => {
         <button ref={finalFocusRef} type="button">
           Final target
         </button>
-        <Menu2>
-          <Menu2Trigger>Options</Menu2Trigger>
-          <Menu2Popup finalFocus={finalFocusRef}>
-            <Menu2Item>Profile</Menu2Item>
-          </Menu2Popup>
+        <Menu2 finalFocus={finalFocusRef} trigger="Options">
+          <Menu2Item>Profile</Menu2Item>
         </Menu2>
       </React.Fragment>,
     );
@@ -576,11 +512,8 @@ describe('<Menu2 />', () => {
     const { user } = render(
       <React.Fragment>
         <button type="button">Outside</button>
-        <Menu2>
-          <Menu2Trigger>Options</Menu2Trigger>
-          <Menu2Popup>
-            <Menu2Item>Profile</Menu2Item>
-          </Menu2Popup>
+        <Menu2 trigger="Options">
+          <Menu2Item>Profile</Menu2Item>
         </Menu2>
       </React.Fragment>,
     );
@@ -606,11 +539,8 @@ describe('<Menu2 />', () => {
 
   it('supports touch trigger interactions', async () => {
     const { user } = render(
-      <Menu2>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
+      <Menu2 trigger="Options">
+        <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
@@ -625,17 +555,19 @@ describe('<Menu2 />', () => {
   it('supports modal backdrop behavior', async () => {
     const { user } = render(
       <React.Fragment>
-        <Menu2 modal>
-          <Menu2Trigger>Modal menu</Menu2Trigger>
-          <Menu2Popup slotProps={{ positioner: { 'data-testid': 'modal-positioner' } }}>
-            <Menu2Item>Profile</Menu2Item>
-          </Menu2Popup>
+        <Menu2
+          modal
+          slotProps={{ positioner: { 'data-testid': 'modal-positioner' } }}
+          trigger="Modal menu"
+        >
+          <Menu2Item>Profile</Menu2Item>
         </Menu2>
-        <Menu2 modal={false}>
-          <Menu2Trigger>Non-modal menu</Menu2Trigger>
-          <Menu2Popup slotProps={{ positioner: { 'data-testid': 'non-modal-positioner' } }}>
-            <Menu2Item>Settings</Menu2Item>
-          </Menu2Popup>
+        <Menu2
+          modal={false}
+          slotProps={{ positioner: { 'data-testid': 'non-modal-positioner' } }}
+          trigger="Non-modal menu"
+        >
+          <Menu2Item>Settings</Menu2Item>
         </Menu2>
       </React.Fragment>,
     );
@@ -660,11 +592,8 @@ describe('<Menu2 />', () => {
   it('opens in an RTL tree', async () => {
     const { user } = render(
       <div dir="rtl">
-        <Menu2>
-          <Menu2Trigger>Options</Menu2Trigger>
-          <Menu2Popup>
-            <Menu2Item>Profile</Menu2Item>
-          </Menu2Popup>
+        <Menu2 trigger="Options">
+          <Menu2Item>Profile</Menu2Item>
         </Menu2>
       </div>,
     );
@@ -677,16 +606,14 @@ describe('<Menu2 />', () => {
   it.skipIf(isJsdom())('applies Base UI positioning attributes in the browser', async () => {
     const { user } = render(
       <div style={{ padding: 96 }}>
-        <Menu2>
-          <Menu2Trigger>Options</Menu2Trigger>
-          <Menu2Popup
-            side="bottom"
-            align="start"
-            sideOffset={4}
-            slotProps={{ positioner: { 'data-testid': 'positioner' } }}
-          >
-            <Menu2Item>Profile</Menu2Item>
-          </Menu2Popup>
+        <Menu2
+          side="bottom"
+          align="start"
+          sideOffset={4}
+          slotProps={{ positioner: { 'data-testid': 'positioner' } }}
+          trigger="Options"
+        >
+          <Menu2Item>Profile</Menu2Item>
         </Menu2>
       </div>,
     );
@@ -712,15 +639,12 @@ describe('<Menu2 />', () => {
     });
 
     const { user } = render(
-      <Menu2>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup>
-          <Menu2CheckboxItem onChange={handleCheckboxChange}>Show hidden files</Menu2CheckboxItem>
-          <Menu2RadioGroup defaultValue="small" onChange={handleRadioChange}>
-            <Menu2RadioItem value="small">Small</Menu2RadioItem>
-            <Menu2RadioItem value="large">Large</Menu2RadioItem>
-          </Menu2RadioGroup>
-        </Menu2Popup>
+      <Menu2 trigger="Options">
+        <Menu2CheckboxItem onChange={handleCheckboxChange}>Show hidden files</Menu2CheckboxItem>
+        <Menu2RadioGroup defaultValue="small" onChange={handleRadioChange}>
+          <Menu2RadioItem value="small">Small</Menu2RadioItem>
+          <Menu2RadioItem value="large">Large</Menu2RadioItem>
+        </Menu2RadioGroup>
       </Menu2>,
     );
 
@@ -755,27 +679,24 @@ describe('<Menu2 />', () => {
 
   it('keeps mounted unchecked indicator marks hidden', () => {
     render(
-      <Menu2 open>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup>
-          <Menu2CheckboxItem slotProps={{ indicator: { 'data-testid': 'checkbox-indicator' } }}>
-            Show hidden files
-          </Menu2CheckboxItem>
-          <Menu2RadioGroup defaultValue="small">
-            <Menu2RadioItem
-              value="small"
-              slotProps={{ indicator: { 'data-testid': 'checked-radio-indicator' } }}
-            >
-              Small
-            </Menu2RadioItem>
-            <Menu2RadioItem
-              value="large"
-              slotProps={{ indicator: { 'data-testid': 'unchecked-radio-indicator' } }}
-            >
-              Large
-            </Menu2RadioItem>
-          </Menu2RadioGroup>
-        </Menu2Popup>
+      <Menu2 open trigger="Options">
+        <Menu2CheckboxItem slotProps={{ indicator: { 'data-testid': 'checkbox-indicator' } }}>
+          Show hidden files
+        </Menu2CheckboxItem>
+        <Menu2RadioGroup defaultValue="small">
+          <Menu2RadioItem
+            value="small"
+            slotProps={{ indicator: { 'data-testid': 'checked-radio-indicator' } }}
+          >
+            Small
+          </Menu2RadioItem>
+          <Menu2RadioItem
+            value="large"
+            slotProps={{ indicator: { 'data-testid': 'unchecked-radio-indicator' } }}
+          >
+            Large
+          </Menu2RadioItem>
+        </Menu2RadioGroup>
       </Menu2>,
     );
 
@@ -815,21 +736,15 @@ describe('<Menu2 />', () => {
 
   it('supports groups, labels, separators, link items, and submenus', async () => {
     const { user } = render(
-      <Menu2>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup>
-          <Menu2Group>
-            <Menu2GroupLabel>Account</Menu2GroupLabel>
-            <Menu2LinkItem href="/profile">Profile</Menu2LinkItem>
-          </Menu2Group>
-          <Menu2Separator />
-          <Menu2SubmenuRoot defaultOpen>
-            <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
-            <Menu2SubmenuPopup>
-              <Menu2Item>Archive</Menu2Item>
-            </Menu2SubmenuPopup>
-          </Menu2SubmenuRoot>
-        </Menu2Popup>
+      <Menu2 trigger="Options">
+        <Menu2Group>
+          <Menu2GroupLabel>Account</Menu2GroupLabel>
+          <Menu2LinkItem href="/profile">Profile</Menu2LinkItem>
+        </Menu2Group>
+        <Menu2Separator />
+        <Menu2Submenu defaultOpen trigger="More">
+          <Menu2Item>Archive</Menu2Item>
+        </Menu2Submenu>
       </Menu2>,
     );
 
@@ -873,10 +788,11 @@ describe('<Menu2 />', () => {
                   setAnchor(null);
                 }
               }}
+              anchor={anchor ?? undefined}
+              positionMethod="fixed"
+              finalFocus={areaRef}
             >
-              <Menu2Popup anchor={anchor ?? undefined} positionMethod="fixed" finalFocus={areaRef}>
-                <Menu2Item>Copy</Menu2Item>
-              </Menu2Popup>
+              <Menu2Item>Copy</Menu2Item>
             </Menu2>
           </div>
         );
@@ -884,11 +800,8 @@ describe('<Menu2 />', () => {
 
       const { user } = render(
         <React.Fragment>
-          <Menu2>
-            <Menu2Trigger>Other menu</Menu2Trigger>
-            <Menu2Popup>
-              <Menu2Item>Other item</Menu2Item>
-            </Menu2Popup>
+          <Menu2 trigger="Other menu">
+            <Menu2Item>Other item</Menu2Item>
           </Menu2>
           <ContextMenuHarness />
         </React.Fragment>,
@@ -920,19 +833,16 @@ describe('<Menu2 />', () => {
 
   it.skipIf(isJsdom())('supports inset list text composed inside items', async () => {
     const { user } = render(
-      <Menu2>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup>
-          <Menu2Item>
-            <ListItemIcon data-testid="icon">i</ListItemIcon>
-            <ListItemText>Cut</ListItemText>
-          </Menu2Item>
-          <Menu2Item>
-            <ListItemText inset data-testid="inset-text">
-              Paste
-            </ListItemText>
-          </Menu2Item>
-        </Menu2Popup>
+      <Menu2 trigger="Options">
+        <Menu2Item>
+          <ListItemIcon data-testid="icon">i</ListItemIcon>
+          <ListItemText>Cut</ListItemText>
+        </Menu2Item>
+        <Menu2Item>
+          <ListItemText inset data-testid="inset-text">
+            Paste
+          </ListItemText>
+        </Menu2Item>
       </Menu2>,
     );
 
@@ -947,18 +857,12 @@ describe('<Menu2 />', () => {
 
   it.skipIf(isJsdom())('keeps separator spacing stable while a submenu is open', async () => {
     const { user } = render(
-      <Menu2>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup>
-          <Menu2SubmenuRoot defaultOpen>
-            <Menu2SubmenuTrigger>View</Menu2SubmenuTrigger>
-            <Menu2SubmenuPopup>
-              <Menu2Item>Zoom</Menu2Item>
-            </Menu2SubmenuPopup>
-          </Menu2SubmenuRoot>
-          <Menu2Separator />
-          <Menu2Item>After</Menu2Item>
-        </Menu2Popup>
+      <Menu2 trigger="Options">
+        <Menu2Submenu defaultOpen trigger="View">
+          <Menu2Item>Zoom</Menu2Item>
+        </Menu2Submenu>
+        <Menu2Separator />
+        <Menu2Item>After</Menu2Item>
       </Menu2>,
     );
 
@@ -975,21 +879,18 @@ describe('<Menu2 />', () => {
 
   it('supports Material UI Tooltip on enabled item flavors', async () => {
     const { user } = render(
-      <Menu2 open>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup>
-          <Tooltip title="Create a blank document" describeChild enterDelay={0} leaveDelay={0}>
-            <Menu2Item>New document</Menu2Item>
+      <Menu2 open trigger="Options">
+        <Tooltip title="Create a blank document" describeChild enterDelay={0} leaveDelay={0}>
+          <Menu2Item>New document</Menu2Item>
+        </Tooltip>
+        <Tooltip title="Toggle comments" describeChild enterDelay={0} leaveDelay={0}>
+          <Menu2CheckboxItem>Comments</Menu2CheckboxItem>
+        </Tooltip>
+        <Menu2RadioGroup defaultValue="fit">
+          <Tooltip title="Fit to viewport" describeChild enterDelay={0} leaveDelay={0}>
+            <Menu2RadioItem value="fit">Fit</Menu2RadioItem>
           </Tooltip>
-          <Tooltip title="Toggle comments" describeChild enterDelay={0} leaveDelay={0}>
-            <Menu2CheckboxItem>Comments</Menu2CheckboxItem>
-          </Tooltip>
-          <Menu2RadioGroup defaultValue="fit">
-            <Tooltip title="Fit to viewport" describeChild enterDelay={0} leaveDelay={0}>
-              <Menu2RadioItem value="fit">Fit</Menu2RadioItem>
-            </Tooltip>
-          </Menu2RadioGroup>
-        </Menu2Popup>
+        </Menu2RadioGroup>
       </Menu2>,
     );
 
@@ -1044,19 +945,29 @@ describe('<Menu2 />', () => {
       );
     }
 
+    // The compound shape wrapped the trigger element directly. With the trigger
+    // as a prop the wrapper has to move into the trigger's root slot, which is
+    // the one composition the collapse made harder.
+    const TooltipSubmenuTriggerRoot = React.forwardRef<
+      HTMLDivElement,
+      React.ComponentPropsWithoutRef<'div'> & { ownerState?: unknown }
+    >(function TooltipSubmenuTriggerRoot({ ownerState: _ownerState, ...rootProps }, ref) {
+      return (
+        <ClickClosingTooltip title="Open view settings">
+          <div ref={ref} {...rootProps} />
+        </ClickClosingTooltip>
+      );
+    });
+
     const { user } = render(
-      <Menu2 open>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup>
-          <Menu2SubmenuRoot>
-            <ClickClosingTooltip title="Open view settings">
-              <Menu2SubmenuTrigger openOnHover={false}>View options</Menu2SubmenuTrigger>
-            </ClickClosingTooltip>
-            <Menu2SubmenuPopup>
-              <Menu2Item>Comments</Menu2Item>
-            </Menu2SubmenuPopup>
-          </Menu2SubmenuRoot>
-        </Menu2Popup>
+      <Menu2 open trigger="Options">
+        <Menu2Submenu
+          trigger="View options"
+          slots={{ trigger: TooltipSubmenuTriggerRoot }}
+          slotProps={{ trigger: { openOnHover: false } }}
+        >
+          <Menu2Item>Comments</Menu2Item>
+        </Menu2Submenu>
       </Menu2>,
     );
 
@@ -1075,15 +986,12 @@ describe('<Menu2 />', () => {
 
   it('supports Material UI Tooltip on disabled items through a non-disabled wrapper', async () => {
     const { user } = render(
-      <Menu2 defaultOpen>
-        <Menu2Trigger>Options</Menu2Trigger>
-        <Menu2Popup>
-          <Tooltip title="Unavailable while offline" describeChild enterDelay={0} leaveDelay={0}>
-            <span data-testid="disabled-item-tooltip-target">
-              <Menu2Item disabled>Import from Drive</Menu2Item>
-            </span>
-          </Tooltip>
-        </Menu2Popup>
+      <Menu2 defaultOpen trigger="Options">
+        <Tooltip title="Unavailable while offline" describeChild enterDelay={0} leaveDelay={0}>
+          <span data-testid="disabled-item-tooltip-target">
+            <Menu2Item disabled>Import from Drive</Menu2Item>
+          </span>
+        </Tooltip>
       </Menu2>,
     );
 
@@ -1103,16 +1011,10 @@ describe('<Menu2 />', () => {
 
     try {
       const { user } = render(
-        <Menu2>
-          <Menu2Trigger>Options</Menu2Trigger>
-          <Menu2Popup>
-            <Menu2SubmenuRoot disabled>
-              <Menu2SubmenuTrigger disabled>Add-ons unavailable</Menu2SubmenuTrigger>
-              <Menu2SubmenuPopup>
-                <Menu2Item>Marketplace</Menu2Item>
-              </Menu2SubmenuPopup>
-            </Menu2SubmenuRoot>
-          </Menu2Popup>
+        <Menu2 trigger="Options">
+          <Menu2Submenu disabled trigger="Add-ons unavailable">
+            <Menu2Item>Marketplace</Menu2Item>
+          </Menu2Submenu>
         </Menu2>,
       );
 

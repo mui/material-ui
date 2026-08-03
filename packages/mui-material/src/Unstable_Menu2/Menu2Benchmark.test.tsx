@@ -5,10 +5,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
-import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
-import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 
 /**
  * Behavior benchmark: the classic `Menu` against the Base UI-backed successor,
@@ -50,13 +48,10 @@ function Menu2Harness(props: { withSelected?: boolean }) {
 
   return (
     <div>
-      <Menu2>
-        <Menu2Trigger slots={{ root: 'button' }}>Options</Menu2Trigger>
-        <Menu2Popup>
-          <Menu2Item>Alpha</Menu2Item>
-          <Menu2Item disabled>Beta</Menu2Item>
-          <Menu2Item selected={withSelected}>Gamma</Menu2Item>
-        </Menu2Popup>
+      <Menu2 trigger="Options" slots={{ trigger: 'button' }}>
+        <Menu2Item>Alpha</Menu2Item>
+        <Menu2Item disabled>Beta</Menu2Item>
+        <Menu2Item selected={withSelected}>Gamma</Menu2Item>
       </Menu2>
       <p data-testid="sibling">sibling content</p>
     </div>
@@ -140,14 +135,11 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
 
     it('the successor highlights the first item, not the checked one', async () => {
       const { user } = render(
-        <Menu2>
-          <Menu2Trigger slots={{ root: 'button' }}>Options</Menu2Trigger>
-          <Menu2Popup>
-            <Menu2RadioGroup defaultValue="200">
-              <Menu2RadioItem value="100">100%</Menu2RadioItem>
-              <Menu2RadioItem value="200">200%</Menu2RadioItem>
-            </Menu2RadioGroup>
-          </Menu2Popup>
+        <Menu2 trigger="Options" slots={{ trigger: 'button' }}>
+          <Menu2RadioGroup defaultValue="200">
+            <Menu2RadioItem value="100">100%</Menu2RadioItem>
+            <Menu2RadioItem value="200">200%</Menu2RadioItem>
+          </Menu2RadioGroup>
         </Menu2>,
       );
       openTrigger().focus();

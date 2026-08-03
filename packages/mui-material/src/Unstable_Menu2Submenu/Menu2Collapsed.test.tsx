@@ -2,11 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
-import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2, { menu2PopupClasses, menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
-import { menu2PopupClasses } from '@mui/material/Unstable_Menu2Popup';
-import { menu2TriggerClasses } from '@mui/material/Unstable_Menu2Trigger';
 
 // The collapsed shape: one component per menu at both levels, trigger as a
 // prop, children as the popup.

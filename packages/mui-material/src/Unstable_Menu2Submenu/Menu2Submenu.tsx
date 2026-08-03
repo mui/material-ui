@@ -3,8 +3,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
-import Menu2SubmenuPopup, { Menu2SubmenuPopupProps } from '../Unstable_Menu2SubmenuPopup';
-import Menu2SubmenuTrigger from '../Unstable_Menu2SubmenuTrigger';
+import Menu2SubmenuPopup, { Menu2SubmenuPopupProps } from '../Unstable_Menu2/Menu2SubmenuPopup';
+import Menu2SubmenuTrigger from '../Unstable_Menu2/Menu2SubmenuTrigger';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { SlotProps } from '../Unstable_Menu2/menu2Utils';
 

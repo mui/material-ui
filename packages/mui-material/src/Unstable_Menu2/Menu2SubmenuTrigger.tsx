@@ -8,12 +8,12 @@ import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { getMenu2ItemStyles } from '../Unstable_Menu2/menu2SharedStyles';
+import { getMenu2ItemStyles } from './menu2SharedStyles';
 import {
   getMenu2RootRender,
   isMenu2RootNativeButton,
   Menu2RootSlotProps,
-} from '../Unstable_Menu2/menu2Utils';
+} from './menu2Utils';
 import {
   getMenu2ItemClassName,
   getMenu2ItemOwnerState,
@@ -22,12 +22,12 @@ import {
   Menu2SubmenuTriggerBaseProps,
   menu2ItemOverridesResolver,
   useMenu2ItemUtilityClasses,
-} from '../Unstable_Menu2/menu2ItemShared';
+} from './menu2ItemShared';
 import {
   getMenu2SubmenuTriggerUtilityClass,
   menu2SubmenuTriggerClasses,
   Menu2SubmenuTriggerClasses,
-} from '../Unstable_Menu2/menu2Classes';
+} from './menu2Classes';
 
 export interface Menu2SubmenuTriggerSlots {
   /**

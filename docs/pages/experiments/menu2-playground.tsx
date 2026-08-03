@@ -27,18 +27,14 @@ import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
-import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
-import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
-import Menu2SubmenuRoot from '@mui/material/Unstable_Menu2SubmenuRoot';
-import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
-import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
 type MenuProps = React.ComponentProps<typeof Menu2>;
-type PopupProps = React.ComponentProps<typeof Menu2Popup>;
+type PopupProps = MenuProps;
 type PopupSide = NonNullable<PopupProps['side']>;
 type PopupAlign = NonNullable<PopupProps['align']>;
 
@@ -158,91 +154,101 @@ function PlaygroundDemo({
       highlightItemOnHover={settings.highlightItemOnHover}
       onOpenChange={handleOpenChange}
       onOpenChangeComplete={handleOpenChangeComplete}
+      trigger="Project"
+      slotProps={{
+        trigger: {
+          variant: 'contained',
+          openOnHover: settings.triggerOpenOnHover,
+          endIcon: <KeyboardArrowDownRoundedIcon fontSize="small" />,
+        },
+      }}
+      side={settings.side}
+      align={settings.align}
+      sideOffset={settings.sideOffset}
+      alignOffset={settings.alignOffset}
+      keepMounted={settings.keepMounted}
+      {...popupKnobProps}
     >
-      <Menu2Trigger
-        variant="contained"
-        openOnHover={settings.triggerOpenOnHover}
-        endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}
-      >
-        Project
-      </Menu2Trigger>
-      <Menu2Popup
-        side={settings.side}
-        align={settings.align}
-        sideOffset={settings.sideOffset}
-        alignOffset={settings.alignOffset}
-        keepMounted={settings.keepMounted}
-        {...popupKnobProps}
-      >
-        <Menu2Group>
-          <Menu2GroupLabel>Actions</Menu2GroupLabel>
-          <Menu2Item {...itemProps} onClick={handleItemClick}>
-            New file
-          </Menu2Item>
-          <Menu2Item {...itemProps} onClick={handleItemClick}>
-            Duplicate
-          </Menu2Item>
-          <Menu2Item {...itemProps} disabled onClick={handleItemClick}>
-            Archive (disabled)
-          </Menu2Item>
-        </Menu2Group>
-        <Menu2Separator />
+      <Menu2Group>
+        <Menu2GroupLabel>Actions</Menu2GroupLabel>
+        <Menu2Item {...itemProps} onClick={handleItemClick}>
+          New file
+        </Menu2Item>
+        <Menu2Item {...itemProps} onClick={handleItemClick}>
+          Duplicate
+        </Menu2Item>
+        <Menu2Item {...itemProps} disabled onClick={handleItemClick}>
+          Archive (disabled)
+        </Menu2Item>
+      </Menu2Group>
+      <Menu2Separator />
 
-        <Menu2SubmenuRoot closeParentOnEsc={settings.closeParentOnEsc}>
-          <Menu2SubmenuTrigger {...submenuTriggerProps}>
+      <Menu2Submenu
+        closeParentOnEsc={settings.closeParentOnEsc}
+        trigger={
+          <React.Fragment>
             Share
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </Menu2SubmenuTrigger>
-          <Menu2SubmenuPopup {...submenuPopupProps}>
-            <Menu2Item {...itemProps} onClick={handleItemClick}>
-              Email
-            </Menu2Item>
-            <Menu2Item {...itemProps} onClick={handleItemClick}>
-              Copy link
-            </Menu2Item>
-            <Menu2SubmenuRoot closeParentOnEsc={settings.closeParentOnEsc}>
-              <Menu2SubmenuTrigger {...submenuTriggerProps}>
-                Export as
-                <KeyboardArrowRightRoundedIcon fontSize="small" />
-              </Menu2SubmenuTrigger>
-              <Menu2SubmenuPopup {...submenuPopupProps}>
-                <Menu2RadioGroup defaultValue="pdf">
-                  <Menu2RadioItem {...itemProps} value="pdf">
-                    PDF document
-                  </Menu2RadioItem>
-                  <Menu2RadioItem {...itemProps} value="epub">
-                    EPUB publication
-                  </Menu2RadioItem>
-                  <Menu2RadioItem {...itemProps} value="markdown">
-                    Markdown
-                  </Menu2RadioItem>
-                </Menu2RadioGroup>
-              </Menu2SubmenuPopup>
-            </Menu2SubmenuRoot>
-          </Menu2SubmenuPopup>
-        </Menu2SubmenuRoot>
+          </React.Fragment>
+        }
+        slotProps={{ trigger: submenuTriggerProps }}
+        {...submenuPopupProps}
+      >
+        <Menu2Item {...itemProps} onClick={handleItemClick}>
+          Email
+        </Menu2Item>
+        <Menu2Item {...itemProps} onClick={handleItemClick}>
+          Copy link
+        </Menu2Item>
+        <Menu2Submenu
+          closeParentOnEsc={settings.closeParentOnEsc}
+          trigger={
+            <React.Fragment>
+              Export as
+              <KeyboardArrowRightRoundedIcon fontSize="small" />
+            </React.Fragment>
+          }
+          slotProps={{ trigger: submenuTriggerProps }}
+          {...submenuPopupProps}
+        >
+          <Menu2RadioGroup defaultValue="pdf">
+            <Menu2RadioItem {...itemProps} value="pdf">
+              PDF document
+            </Menu2RadioItem>
+            <Menu2RadioItem {...itemProps} value="epub">
+              EPUB publication
+            </Menu2RadioItem>
+            <Menu2RadioItem {...itemProps} value="markdown">
+              Markdown
+            </Menu2RadioItem>
+          </Menu2RadioGroup>
+        </Menu2Submenu>
+      </Menu2Submenu>
 
-        <Menu2SubmenuRoot closeParentOnEsc={settings.closeParentOnEsc}>
-          <Menu2SubmenuTrigger {...submenuTriggerProps}>
+      <Menu2Submenu
+        closeParentOnEsc={settings.closeParentOnEsc}
+        trigger={
+          <React.Fragment>
             View
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </Menu2SubmenuTrigger>
-          <Menu2SubmenuPopup {...submenuPopupProps}>
-            <Menu2CheckboxItem {...itemProps} defaultChecked>
-              Show ruler
-            </Menu2CheckboxItem>
-            <Menu2CheckboxItem {...itemProps}>Show outline</Menu2CheckboxItem>
-          </Menu2SubmenuPopup>
-        </Menu2SubmenuRoot>
-        <Menu2Separator />
+          </React.Fragment>
+        }
+        slotProps={{ trigger: submenuTriggerProps }}
+        {...submenuPopupProps}
+      >
+        <Menu2CheckboxItem {...itemProps} defaultChecked>
+          Show ruler
+        </Menu2CheckboxItem>
+        <Menu2CheckboxItem {...itemProps}>Show outline</Menu2CheckboxItem>
+      </Menu2Submenu>
+      <Menu2Separator />
 
-        <Menu2Item {...itemProps} selected onClick={handleItemClick}>
-          Selected item (visual-only)
-        </Menu2Item>
-        <Menu2LinkItem {...itemProps} href="https://mui.com/material-ui/react-menu/">
-          Menu documentation
-        </Menu2LinkItem>
-      </Menu2Popup>
+      <Menu2Item {...itemProps} selected onClick={handleItemClick}>
+        Selected item (visual-only)
+      </Menu2Item>
+      <Menu2LinkItem {...itemProps} href="https://mui.com/material-ui/react-menu/">
+        Menu documentation
+      </Menu2LinkItem>
     </Menu2>
   );
 }
@@ -289,25 +295,26 @@ function ClassicVersusSuccessorDemo({ settings }: { settings: PlaygroundSettings
           ))}
         </ClassicMenu>
       </div>
-      <Menu2>
-        <Menu2Trigger
-          variant="outlined"
-          endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}
-        >
-          Successor
-        </Menu2Trigger>
-        <Menu2Popup {...popupKnobProps}>
-          {parityItems.map((item) => (
-            <Menu2Item
-              key={item.label}
-              {...itemProps}
-              selected={'selected' in item && item.selected}
-              disabled={'disabled' in item && item.disabled}
-            >
-              {item.label}
-            </Menu2Item>
-          ))}
-        </Menu2Popup>
+      <Menu2
+        trigger="Successor"
+        slotProps={{
+          trigger: {
+            variant: 'outlined',
+            endIcon: <KeyboardArrowDownRoundedIcon fontSize="small" />,
+          },
+        }}
+        {...popupKnobProps}
+      >
+        {parityItems.map((item) => (
+          <Menu2Item
+            key={item.label}
+            {...itemProps}
+            selected={'selected' in item && item.selected}
+            disabled={'disabled' in item && item.disabled}
+          >
+            {item.label}
+          </Menu2Item>
+        ))}
       </Menu2>
     </Stack>
   );
@@ -332,12 +339,15 @@ function ControlledAnchorDemo() {
       >
         Open (controlled)
       </Button>
-      <Menu2 open={open} onOpenChange={handleOpenChange}>
-        <Menu2Popup anchor={anchorEl ?? undefined} sideOffset={4}>
-          <Menu2Item onClick={() => setAnchorEl(null)}>Profile</Menu2Item>
-          <Menu2Item onClick={() => setAnchorEl(null)}>My account</Menu2Item>
-          <Menu2Item onClick={() => setAnchorEl(null)}>Logout</Menu2Item>
-        </Menu2Popup>
+      <Menu2
+        open={open}
+        onOpenChange={handleOpenChange}
+        anchor={anchorEl ?? undefined}
+        sideOffset={4}
+      >
+        <Menu2Item onClick={() => setAnchorEl(null)}>Profile</Menu2Item>
+        <Menu2Item onClick={() => setAnchorEl(null)}>My account</Menu2Item>
+        <Menu2Item onClick={() => setAnchorEl(null)}>Logout</Menu2Item>
       </Menu2>
     </div>
   );
@@ -380,20 +390,22 @@ const typeaheadEntries = [
 
 function TypeaheadScrollDemo() {
   return (
-    <Menu2>
-      <Menu2Trigger variant="outlined" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
-        Country
-      </Menu2Trigger>
-      <Menu2Popup
-        sideOffset={4}
-        slotProps={{ paper: { sx: { maxHeight: 320, overflow: 'auto' } } }}
-      >
-        {typeaheadEntries.map((entry) => (
-          <Menu2Item key={entry} dense>
-            {entry}
-          </Menu2Item>
-        ))}
-      </Menu2Popup>
+    <Menu2
+      trigger="Country"
+      slotProps={{
+        trigger: {
+          variant: 'outlined',
+          endIcon: <KeyboardArrowDownRoundedIcon fontSize="small" />,
+        },
+        paper: { sx: { maxHeight: 320, overflow: 'auto' } },
+      }}
+      sideOffset={4}
+    >
+      {typeaheadEntries.map((entry) => (
+        <Menu2Item key={entry} dense>
+          {entry}
+        </Menu2Item>
+      ))}
     </Menu2>
   );
 }

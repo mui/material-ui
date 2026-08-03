@@ -2,7 +2,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
-import { Menu as BaseMenu } from '@base-ui/react/menu';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import { SxProps } from '@mui/system';
 import Paper from '../Paper';
@@ -15,20 +14,23 @@ import {
   Menu2PopupPublicProps,
   Menu2PopupSharedProps,
   Menu2PopupSharedSlotProps,
-} from '../Unstable_Menu2/menu2PopupShared';
+} from './menu2PopupShared';
 import {
   menu2PopupListStyles,
   menu2PopupPaperStyles,
   menu2PopupTransitionStyles,
-} from '../Unstable_Menu2/menu2SharedStyles';
-import { getMenu2PopupUtilityClass, Menu2PopupClasses } from '../Unstable_Menu2/menu2Classes';
+} from './menu2SharedStyles';
+import {
+  getMenu2SubmenuPopupUtilityClass,
+  Menu2SubmenuPopupClasses,
+} from './menu2Classes';
 
-export interface Menu2PopupProps extends Omit<
-  Menu2PopupSharedProps<Menu2PopupOwnerState>,
+export interface Menu2SubmenuPopupProps extends Omit<
+  Menu2PopupSharedProps<Menu2SubmenuPopupOwnerState>,
   'classes' | 'defaultPositionerProps' | 'defaultSlots' | 'ownerState' | keyof Menu2PopupPublicProps
 > {
   /**
-   * The menu items.
+   * The submenu items.
    */
   children?: React.ReactNode;
   /**
@@ -42,7 +44,7 @@ export interface Menu2PopupProps extends Omit<
   /**
    * An element to position the popup against.
    *
-   * By default, the popup is positioned against the trigger.
+   * By default, the popup is positioned against the submenu trigger.
    */
   anchor?: Menu2PopupPublicProps['anchor'] | undefined;
   /**
@@ -52,7 +54,7 @@ export interface Menu2PopupProps extends Omit<
   positionMethod?: Menu2PopupPublicProps['positionMethod'] | undefined;
   /**
    * Which side of the anchor element to align the popup against.
-   * @default 'bottom'
+   * @default 'inline-end'
    */
   side?: Menu2PopupPublicProps['side'] | undefined;
   /**
@@ -120,7 +122,7 @@ export interface Menu2PopupProps extends Omit<
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<Menu2PopupClasses> | undefined;
+  classes?: Partial<Menu2SubmenuPopupClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -128,16 +130,16 @@ export interface Menu2PopupProps extends Omit<
   /**
    * The props used for each slot inside.
    */
-  slotProps?: Menu2PopupSlotProps | undefined;
+  slotProps?: Menu2SubmenuPopupSlotProps | undefined;
   /**
    * The components used for each slot inside.
    */
-  slots?: Menu2PopupSlots | undefined;
+  slots?: Menu2SubmenuPopupSlots | undefined;
 }
 
-export interface Menu2PopupOwnerState extends Menu2PopupProps {}
+export interface Menu2SubmenuPopupOwnerState extends Menu2SubmenuPopupProps {}
 
-export interface Menu2PopupSlots {
+export interface Menu2SubmenuPopupSlots {
   /**
    * The component used for the portal.
    * @default BaseMenu.Portal
@@ -165,51 +167,34 @@ export interface Menu2PopupSlots {
   list?: React.ElementType | undefined;
 }
 
-export interface Menu2PopupSlotProps extends Menu2PopupSharedSlotProps<Menu2PopupOwnerState> {}
+export interface Menu2SubmenuPopupSlotProps extends Menu2PopupSharedSlotProps<Menu2SubmenuPopupOwnerState> {}
 
-const useUtilityClasses = (ownerState: Menu2PopupOwnerState) => {
+const useUtilityClasses = (ownerState: Menu2SubmenuPopupOwnerState) => {
   const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
-    backdrop: ['backdrop'],
     paper: ['paper'],
     list: ['list'],
   };
 
-  return composeClasses(slots, getMenu2PopupUtilityClass, classes);
+  return composeClasses(slots, getMenu2SubmenuPopupUtilityClass, classes);
 };
 
-const Menu2PopupRoot = styled('div', {
-  name: 'MuiMenu2Popup',
+const Menu2SubmenuPopupRoot = styled('div', {
+  name: 'MuiMenu2SubmenuPopup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({ outline: 0 }, menu2PopupTransitionStyles);
 
-const Menu2PopupBackdrop = styled(BaseMenu.Backdrop, {
-  name: 'MuiMenu2Popup',
-  slot: 'Backdrop',
-  overridesResolver: (props, styles) => styles.backdrop,
-})({
-  position: 'fixed',
-  inset: 0,
-  // Invisible and inert by default, matching the classic Menu's backdrop.
-  // Dismissal is handled by Base UI's outside-press listener, so the backdrop
-  // does not need to capture clicks; set `pointerEvents` in `slotProps` to
-  // change that when dimming.
-  backgroundColor: 'transparent',
-  pointerEvents: 'none',
-  WebkitTapHighlightColor: 'transparent',
-}) as any;
-
-const Menu2PopupPaper = styled(Paper, {
-  name: 'MuiMenu2Popup',
+const Menu2SubmenuPopupPaper = styled(Paper, {
+  name: 'MuiMenu2SubmenuPopup',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
 })(menu2PopupPaperStyles);
 
-const Menu2PopupList = styled(List, {
-  name: 'MuiMenu2Popup',
+const Menu2SubmenuPopupList = styled(List, {
+  name: 'MuiMenu2SubmenuPopup',
   slot: 'List',
   overridesResolver: (props, styles) => styles.list,
 })(menu2PopupListStyles);
@@ -220,17 +205,17 @@ const Menu2PopupList = styled(List, {
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
  */
-const Menu2Popup = React.forwardRef(function Menu2Popup(
-  inProps: Menu2PopupProps,
+const Menu2SubmenuPopup = React.forwardRef(function Menu2SubmenuPopup(
+  inProps: Menu2SubmenuPopupProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const props = useDefaultProps({
     props: inProps,
-    name: 'MuiMenu2Popup',
+    name: 'MuiMenu2SubmenuPopup',
   });
 
-  const ownerState: Menu2PopupOwnerState = {
-    side: 'bottom',
+  const ownerState: Menu2SubmenuPopupOwnerState = {
+    side: 'inline-end',
     align: 'start',
     ...props,
   };
@@ -243,20 +228,19 @@ const Menu2Popup = React.forwardRef(function Menu2Popup(
       ownerState={ownerState}
       classes={classes}
       defaultSlots={{
-        popup: Menu2PopupRoot,
-        paper: Menu2PopupPaper,
-        list: Menu2PopupList,
-        backdrop: Menu2PopupBackdrop,
+        popup: Menu2SubmenuPopupRoot,
+        paper: Menu2SubmenuPopupPaper,
+        list: Menu2SubmenuPopupList,
       }}
       defaultPositionerProps={{
-        side: 'bottom',
+        side: 'inline-end',
         align: 'start',
       }}
     />
   );
 });
 
-Menu2Popup.propTypes /* remove-proptypes */ = {
+Menu2SubmenuPopup.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
@@ -274,7 +258,7 @@ Menu2Popup.propTypes /* remove-proptypes */ = {
   /**
    * An element to position the popup against.
    *
-   * By default, the popup is positioned against the trigger.
+   * By default, the popup is positioned against the submenu trigger.
    */
   anchor: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     HTMLElementType,
@@ -287,7 +271,7 @@ Menu2Popup.propTypes /* remove-proptypes */ = {
    */
   arrowPadding: PropTypes.number,
   /**
-   * The menu items.
+   * The submenu items.
    */
   children: PropTypes.node,
   /**
@@ -381,7 +365,7 @@ Menu2Popup.propTypes /* remove-proptypes */ = {
   positionMethod: PropTypes.oneOf(['absolute', 'fixed']),
   /**
    * Which side of the anchor element to align the popup against.
-   * @default 'bottom'
+   * @default 'inline-end'
    */
   side: PropTypes.oneOf(['bottom', 'inline-end', 'inline-start', 'left', 'right', 'top']),
   /**
@@ -429,4 +413,4 @@ Menu2Popup.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
-export default Menu2Popup;
+export default Menu2SubmenuPopup;
