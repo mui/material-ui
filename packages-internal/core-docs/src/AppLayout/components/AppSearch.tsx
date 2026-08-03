@@ -444,6 +444,10 @@ export function AppSearch(props: AppSearchProps) {
               '--docsearch-searchbox-focus-background': 'unset',
               '--docsearch-footer-background': 'unset',
               '--docsearch-modal-background': (theme.vars || theme).palette.background.paper,
+              // Slightly tighter rows than the 56px default. Set through the variable rather than
+              // a height on .DocSearch-Hit-Container, so v4.7 can still grow a row to fit wrapped
+              // text on small screens (it keeps this as the min-height there).
+              '--docsearch-hit-height': '52px',
               // Height left for the scrollable area between the search bar and the footer. v4
               // dropped the search box from its own budget, which makes the modal overshoot
               // --docsearch-modal-height; subtract it again so the modal stays 600px.
@@ -640,14 +644,6 @@ export function AppSearch(props: AppSearchProps) {
               paddingBottom: 8,
               '&:not(:first-of-type)': {
                 marginTop: -1,
-              },
-              '& .DocSearch-Hit-Container': {
-                height: '52px',
-                // v4.7 wraps long hits below this width and grows the row to fit them, but our
-                // height sits outside the docsearch layer and would win, so drop it here.
-                '@media (max-width: 768px)': {
-                  height: 'auto',
-                },
               },
             },
             '& .DocSearch-Hit a': {
