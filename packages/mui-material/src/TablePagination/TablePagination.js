@@ -101,11 +101,13 @@ const TablePaginationSelect = styled(Select, {
   },
 });
 
-const TablePaginationInputBase = styled(InputBase)(({ theme }) => ({
-  [`& .${tablePaginationClasses.select}:focus`]: {
-    backgroundColor: (theme.vars || theme).palette.action.focus,
-  },
-}));
+const TablePaginationInputBase = styled(InputBase)(
+  memoTheme(({ theme }) => ({
+    [`& .${tablePaginationClasses.select}:focus`]: {
+      backgroundColor: (theme.vars || theme).palette.action.focus,
+    },
+  })),
+);
 
 const TablePaginationMenuItem = styled(MenuItem, {
   name: 'MuiTablePagination',

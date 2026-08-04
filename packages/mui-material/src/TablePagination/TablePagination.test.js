@@ -754,6 +754,7 @@ describe('<TablePagination />', () => {
           expect(defaultSelect).toHaveComputedStyle({ backgroundColor: 'rgb(1, 2, 3)' });
 
           await user.tab();
+          expect(outlinedSelect).toHaveFocus();
           expect(outlinedSelect).not.toHaveComputedStyle({ backgroundColor: 'rgb(1, 2, 3)' });
         },
       );
