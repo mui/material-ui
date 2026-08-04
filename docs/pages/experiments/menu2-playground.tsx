@@ -133,7 +133,8 @@ function PlaygroundDemo({
     delay: settings.submenuDelay,
     closeDelay: settings.submenuCloseDelay,
   };
-  const submenuPopupProps = { sideOffset: 8, ...popupKnobProps };
+  // No sideOffset here: submenus use their own default, which overlaps the parent.
+  const submenuPopupProps = { ...popupKnobProps };
 
   const handleOpenChange: MenuProps['onOpenChange'] = (nextOpen, eventDetails) => {
     onLog(`onOpenChange -> ${nextOpen ? 'open' : 'close'} (reason: ${eventDetails.reason})`);

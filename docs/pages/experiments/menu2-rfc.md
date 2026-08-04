@@ -203,6 +203,7 @@ For the classic controlled pattern, omit `trigger` and control the menu with `op
 These behaviors are true for each shape that we select:
 
 - The submenus open on hover by default, with a delay of 100ms and hover intent on close. This behavior is new when you compare it to the classic Menu. It matches native menus, and you can configure it.
+- A submenu overlaps its parent menu by 4px, and it starts 8px higher than its trigger. The offset of 8px cancels the top padding of the list. Thus the first item of the submenu lines up with the trigger row. Base UI positions a submenu in the same way.
 - Escape closes the innermost submenu and moves focus back to its trigger. To close the full tree, you must select that option.
 - If the user opens the menu with the pointer, the menu highlights no item. If the user opens the menu with the keyboard, the menu highlights the first item.
 - When a submenu is open, Base UI puts focus-guard elements next to its trigger. See open question 7.

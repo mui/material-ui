@@ -298,7 +298,6 @@ function Menu2WithPreviewCardsDemo({ submenusOpenOnHover }: { submenusOpenOnHove
             onMouseEnter: clearActiveItem,
           },
         }}
-        sideOffset={8}
       >
         {versionHistoryPreviewCardItems.map((item) => (
           <Menu2Item key={item.id} label={item.label} {...getPreviewCardProps(item)}>
@@ -359,7 +358,6 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
           </React.Fragment>
         }
         slotProps={{ trigger: { openOnHover: settings.submenusOpenOnHover } }}
-        sideOffset={8}
       >
         <Menu2Group>
           <Menu2GroupLabel>Document display</Menu2GroupLabel>
@@ -393,7 +391,6 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
             </React.Fragment>
           }
           slotProps={{ trigger: { openOnHover: settings.submenusOpenOnHover } }}
-          sideOffset={8}
         >
           <Menu2Item onClick={handleItemClick}>Word count</Menu2Item>
           <Menu2Item onClick={handleItemClick}>Dictionary</Menu2Item>
@@ -409,7 +406,6 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
           </React.Fragment>
         }
         slotProps={{ trigger: { openOnHover: settings.submenusOpenOnHover } }}
-        sideOffset={8}
       >
         <Menu2Item>Microsoft Word (.docx)</Menu2Item>
         <Menu2Item>PDF document (.pdf)</Menu2Item>
@@ -425,7 +421,6 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
           </React.Fragment>
         }
         slotProps={{ trigger: { disabled: true, openOnHover: settings.submenusOpenOnHover } }}
-        sideOffset={8}
       >
         <Menu2Item>Marketplace</Menu2Item>
       </Menu2Submenu>
@@ -511,7 +506,6 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
         }
         slots={{ trigger: TooltipSubmenuTriggerRoot }}
         slotProps={{ trigger: { openOnHover: submenusOpenOnHover } }}
-        sideOffset={8}
       >
         <Menu2Group>
           <Menu2GroupLabel>Show</Menu2GroupLabel>

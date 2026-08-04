@@ -229,6 +229,11 @@ const Menu2SubmenuPopup = React.forwardRef(function Menu2SubmenuPopup(
       defaultPositionerProps={{
         side: 'inline-end',
         align: 'start',
+        // A submenu overlaps its parent by a small amount, the way Base UI
+        // positions one. `alignOffset` cancels the list's 8px top padding, so
+        // the first item lines up with the trigger row.
+        sideOffset: -4,
+        alignOffset: -8,
       }}
     />
   );

@@ -130,6 +130,49 @@ describe('<Menu2 /> collapsed API', () => {
     );
   });
 
+  it('overlaps the parent menu by default', async () => {
+    // The popup animates, so geometry has to be read after the transition ends.
+    async function settle(element: HTMLElement) {
+      await Promise.all(
+        element.getAnimations().map((animation) => animation.finished.catch(() => {})),
+      );
+      await waitFor(() => {
+        const { transform, opacity } = window.getComputedStyle(element);
+        expect(transform === 'none' || transform === 'matrix(1, 0, 0, 1, 0, 0)').to.equal(true);
+        expect(Number(opacity)).to.equal(1);
+      });
+    }
+
+    // `defaultOpen` avoids clicking the trigger Button, whose ripple animates
+    // past the end of the test and trips the act() check.
+    const { user } = render(
+      <Menu2 defaultOpen trigger="Options" slotProps={{ paper: { 'data-testid': 'paper' } }}>
+        <Menu2Submenu trigger="More" slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}>
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2Submenu>
+      </Menu2>,
+    );
+
+    const menu = await screen.findByRole('menu');
+    await settle(menu);
+    const parent = screen.getByTestId('paper').getBoundingClientRect();
+    const triggerRect = screen.getByRole('menuitem', { name: 'More' }).getBoundingClientRect();
+
+    await user.click(screen.getByRole('menuitem', { name: 'More' }));
+    await waitFor(() => {
+      expect(screen.queryByTestId('submenu-paper')).not.to.equal(null);
+    });
+    await settle(document.querySelectorAll('[role="menu"]')[1] as HTMLElement);
+    const submenu = screen.getByTestId('submenu-paper').getBoundingClientRect();
+
+    // The submenu starts before the parent's right edge, so the two overlap.
+    expect(submenu.left).to.be.lessThan(parent.right);
+    // The overlap stays small, so the parent stays readable.
+    expect(parent.right - submenu.left).to.be.lessThan(12);
+    // The list's top padding is cancelled, so the first item meets the trigger.
+    expect(Math.round(submenu.top)).to.equal(Math.round(triggerRect.top) - 8);
+  });
+
   it('falls back to the default trigger for a non-element', async () => {
     const { user } = render(
       <Menu2 trigger="Options">
