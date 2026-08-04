@@ -52,8 +52,9 @@ jobs:
             exit 0
           fi
 
-          # The repository ruleset exempts `docs-*` branches from creation restrictions.
-          BRANCH=docs-gha-sync-team-members
+          # `cherry-pick-*` is exempt from branch creation restrictions and required
+          # status checks. `docs-*` is only exempt from the former.
+          BRANCH=cherry-pick-sync-team-members
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git switch -C "$BRANCH"
