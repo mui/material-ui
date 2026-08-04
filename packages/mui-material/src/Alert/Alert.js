@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { focusVisibleShadowVar } from '../styles/focusVisible';
 import useSlot from '../utils/useSlot';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
@@ -88,6 +89,7 @@ const AlertRoot = styled(Paper, {
           .map(([color]) => ({
             props: { colorSeverity: color, variant: 'filled' },
             style: {
+              [focusVisibleShadowVar]: `0 0 0 4px ${(theme.vars || theme).palette.background.default}`,
               fontWeight: theme.typography.fontWeightMedium,
               ...(theme.vars
                 ? {

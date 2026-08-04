@@ -2,6 +2,7 @@ import type * as React from 'react';
 
 const focusVisibleOffsetVar = '--_focusVisible-offset';
 const focusVisibleBehaviorVar = '--_focusVisible-behavior';
+export const focusVisibleShadowVar = '--_focusVisible-shadow';
 
 const offsetValue = `var(${focusVisibleOffsetVar}, 1)`;
 const behaviorValue = `var(${focusVisibleBehaviorVar}, )`;
@@ -46,6 +47,8 @@ export function resolveFocusVisible(
     outlineColor,
     outlineWidth: 2,
     outlineOffset: 2,
+    // invisible shadow for parent component with solid background (AppBar, Snackbar, Alert) can control the ring color.
+    boxShadow: `var(${focusVisibleShadowVar}, 0 0)`,
     ...(input === true ? null : input),
   });
 }

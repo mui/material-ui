@@ -325,10 +325,11 @@ export const SliderThumb = styled('span', {
             [`&.${sliderClasses.active}`]: {
               boxShadow: `0px 0px 0px 14px ${theme.alpha((theme.vars || theme).palette[color].main, 0.16)}`,
             },
-            // Re-assert in the same block: a customized `theme.focusVisible` box-shadow must win
-            // over the color focus halo, which is declared after the root ring.
             ...(theme.focusVisible && {
-              [`&.${sliderClasses.focusVisible}`]: theme.focusVisible,
+              [`&.${sliderClasses.focusVisible}`]: {
+                ...theme.focusVisible,
+                boxShadow: `0px 0px 0px 8px ${theme.alpha((theme.vars || theme).palette[color].main, 0.16)}, ${theme.focusVisible.boxShadow || '0 0'}`,
+              },
             }),
           },
         })),
