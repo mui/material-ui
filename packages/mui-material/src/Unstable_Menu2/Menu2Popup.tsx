@@ -9,7 +9,6 @@ import Paper from '../Paper';
 import List from '../List';
 import { styled } from '../zero-styled';
 import { Theme } from '../styles';
-import { useDefaultProps } from '../DefaultPropsProvider';
 import {
   Menu2PopupBase,
   Menu2PopupPublicProps,
@@ -186,13 +185,13 @@ const useUtilityClasses = (ownerState: Menu2PopupOwnerState) => {
 };
 
 const Menu2PopupRoot = styled('div', {
-  name: 'MuiMenu2Popup',
+  name: 'MuiMenu2',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({ outline: 0 }, menu2PopupTransitionStyles);
 
 const Menu2PopupBackdrop = styled(BaseMenu.Backdrop, {
-  name: 'MuiMenu2Popup',
+  name: 'MuiMenu2',
   slot: 'Backdrop',
   overridesResolver: (props, styles) => styles.backdrop,
 })({
@@ -208,13 +207,13 @@ const Menu2PopupBackdrop = styled(BaseMenu.Backdrop, {
 }) as any;
 
 const Menu2PopupPaper = styled(Paper, {
-  name: 'MuiMenu2Popup',
+  name: 'MuiMenu2',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
 })(menu2PopupPaperStyles);
 
 const Menu2PopupList = styled(List, {
-  name: 'MuiMenu2Popup',
+  name: 'MuiMenu2',
   slot: 'List',
   overridesResolver: (props, styles) => styles.list,
 })(menu2PopupListStyles);
@@ -229,10 +228,8 @@ const Menu2Popup = React.forwardRef(function Menu2Popup(
   inProps: Menu2PopupProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  const props = useDefaultProps({
-    props: inProps,
-    name: 'MuiMenu2Popup',
-  });
+  // Internal: the collapsed component has already applied `MuiMenu2` defaults.
+  const props = inProps;
 
   const ownerState: Menu2PopupOwnerState = {
     side: 'bottom',

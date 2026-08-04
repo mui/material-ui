@@ -7,7 +7,6 @@ import { Menu as BaseMenu } from '@base-ui/react/menu';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenu2ItemStyles } from './menu2SharedStyles';
 import { getMenu2RootRender, isMenu2RootNativeButton, Menu2RootSlotProps } from './menu2Utils';
 import {
@@ -16,7 +15,6 @@ import {
   Menu2ItemOwnerState,
   Menu2ItemVisualProps,
   Menu2SubmenuTriggerBaseProps,
-  menu2ItemOverridesResolver,
   useMenu2ItemUtilityClasses,
 } from './menu2ItemShared';
 import {
@@ -86,9 +84,9 @@ export interface Menu2SubmenuTriggerProps
 }
 
 const Menu2SubmenuTriggerRoot = styled('div', {
-  name: 'MuiMenu2SubmenuTrigger',
-  slot: 'Root',
-  overridesResolver: menu2ItemOverridesResolver,
+  name: 'MuiMenu2Submenu',
+  slot: 'Trigger',
+  overridesResolver: (props, styles) => styles.trigger,
 })<{ ownerState: Menu2ItemOwnerState }>(
   memoTheme(({ theme }) => getMenu2ItemStyles(theme, menu2SubmenuTriggerClasses)),
 );
@@ -103,10 +101,8 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
   inProps: Menu2SubmenuTriggerProps,
   ref: React.ForwardedRef<HTMLElement>,
 ) {
-  const props = useDefaultProps({
-    props: inProps,
-    name: 'MuiMenu2SubmenuTrigger',
-  });
+  // Internal: `MuiMenu2Submenu` defaults are applied by Menu2Submenu.
+  const props = inProps;
 
   const {
     className,

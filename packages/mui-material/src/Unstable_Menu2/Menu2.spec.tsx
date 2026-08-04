@@ -99,11 +99,33 @@ createTheme({
     MuiMenu2: {
       defaultProps: {
         modal: false,
+        align: 'start',
       },
+      // The trigger and popup are rendered internally, so their overrides live
+      // on the collapsed component's slots.
+      styleOverrides: {
+        root: {},
+        trigger: {},
+        backdrop: {},
+        paper: {},
+        list: {},
+      },
+      variants: [
+        {
+          props: { align: 'start' },
+          style: {},
+        },
+      ],
     },
     MuiMenu2Submenu: {
       defaultProps: {
         defaultOpen: false,
+      },
+      styleOverrides: {
+        root: {},
+        trigger: {},
+        paper: {},
+        list: {},
       },
     },
     MuiMenu2Item: {
@@ -121,22 +143,7 @@ createTheme({
         },
       ],
     },
-    MuiMenu2Popup: {
-      defaultProps: {
-        align: 'start',
-      },
-      styleOverrides: {
-        root: {},
-        paper: {},
-        list: {},
-      },
-      variants: [
-        {
-          props: { align: 'start' },
-          style: {},
-        },
-      ],
-    },
+
     MuiMenu2RadioItem: {
       variants: [
         {

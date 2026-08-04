@@ -9,7 +9,6 @@ import { SxProps } from '@mui/system';
 import Button, { ButtonProps } from '../Button';
 import { Theme } from '../styles';
 import { styled } from '../zero-styled';
-import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenu2RootRender, isMenu2RootNativeButton, Menu2RootSlotProps } from './menu2Utils';
 import { getMenu2TriggerUtilityClass, Menu2TriggerClasses } from './menu2Classes';
 
@@ -112,9 +111,9 @@ const useUtilityClasses = (ownerState: Menu2TriggerOwnerState) => {
 };
 
 const Menu2TriggerRoot = styled(Button, {
-  name: 'MuiMenu2Trigger',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
+  name: 'MuiMenu2',
+  slot: 'Trigger',
+  overridesResolver: (props, styles) => styles.trigger,
 })({}) as any;
 
 const BaseMenuTrigger = BaseMenu.Trigger as any;
@@ -128,10 +127,8 @@ const Menu2Trigger = React.forwardRef(function Menu2Trigger(
   inProps: Menu2TriggerProps,
   ref: React.ForwardedRef<HTMLElement>,
 ) {
-  const props = useDefaultProps({
-    props: inProps,
-    name: 'MuiMenu2Trigger',
-  });
+  // Internal: the collapsed component has already applied `MuiMenu2` defaults.
+  const props = inProps;
 
   const { href: ignoredHref, ...propsWithoutHref } = props as Menu2TriggerProps & {
     href?: unknown;

@@ -67,18 +67,13 @@ import { ListSubheaderClassKey } from '../ListSubheader';
 import { MenuClassKey } from '../Menu';
 import { MenuItemClassKey } from '../MenuItem';
 import { MenuListClassKey } from '../MenuList';
+import { Menu2ClassKey, Menu2SubmenuClassKey } from '../Unstable_Menu2/menu2Classes';
 import { Menu2CheckboxItemClassKey } from '../Unstable_Menu2CheckboxItem';
 import { Menu2CheckboxItemIndicatorClassKey } from '../Unstable_Menu2CheckboxItemIndicator';
 import { Menu2GroupClassKey } from '../Unstable_Menu2Group';
 import { Menu2GroupLabelClassKey } from '../Unstable_Menu2GroupLabel';
 import { Menu2ItemClassKey } from '../Unstable_Menu2Item';
 import { Menu2LinkItemClassKey } from '../Unstable_Menu2LinkItem';
-import {
-  Menu2PopupClassKey,
-  Menu2SubmenuPopupClassKey,
-  Menu2SubmenuTriggerClassKey,
-  Menu2TriggerClassKey,
-} from '../Unstable_Menu2/menu2Classes';
 import { Menu2RadioGroupClassKey } from '../Unstable_Menu2RadioGroup';
 import { Menu2RadioItemClassKey } from '../Unstable_Menu2RadioItem';
 import { Menu2RadioItemIndicatorClassKey } from '../Unstable_Menu2RadioItemIndicator';
@@ -227,20 +222,18 @@ export interface ComponentNameToClassKey {
   MuiMenu: MenuClassKey;
   MuiMenuItem: MenuItemClassKey;
   MuiMenuList: MenuListClassKey;
+  MuiMenu2: Menu2ClassKey;
+  MuiMenu2Submenu: Menu2SubmenuClassKey;
   MuiMenu2CheckboxItem: Menu2CheckboxItemClassKey;
   MuiMenu2CheckboxItemIndicator: Menu2CheckboxItemIndicatorClassKey;
   MuiMenu2Group: Menu2GroupClassKey;
   MuiMenu2GroupLabel: Menu2GroupLabelClassKey;
   MuiMenu2Item: Menu2ItemClassKey;
   MuiMenu2LinkItem: Menu2LinkItemClassKey;
-  MuiMenu2Popup: Menu2PopupClassKey;
   MuiMenu2RadioGroup: Menu2RadioGroupClassKey;
   MuiMenu2RadioItem: Menu2RadioItemClassKey;
   MuiMenu2RadioItemIndicator: Menu2RadioItemIndicatorClassKey;
   MuiMenu2Separator: Menu2SeparatorClassKey;
-  MuiMenu2SubmenuPopup: Menu2SubmenuPopupClassKey;
-  MuiMenu2SubmenuTrigger: Menu2SubmenuTriggerClassKey;
-  MuiMenu2Trigger: Menu2TriggerClassKey;
   MuiMobileStepper: MobileStepperClassKey;
   MuiModal: ModalClassKey;
   MuiNativeSelect: NativeSelectClassKey;

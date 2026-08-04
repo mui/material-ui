@@ -511,12 +511,14 @@ export default function enhanceHighContrast<
         ],
       },
     },
-    MuiMenu2SubmenuTrigger: {
-      ...c?.MuiMenu2SubmenuTrigger,
+    // The submenu trigger is rendered by Menu2Submenu, so its overrides live
+    // under that component's `trigger` slot.
+    MuiMenu2Submenu: {
+      ...c?.MuiMenu2Submenu,
       styleOverrides: {
-        ...c?.MuiMenu2SubmenuTrigger?.styleOverrides,
-        root: [
-          c?.MuiMenu2SubmenuTrigger?.styleOverrides?.root,
+        ...c?.MuiMenu2Submenu?.styleOverrides,
+        trigger: [
+          c?.MuiMenu2Submenu?.styleOverrides?.trigger,
           {
             ...menu2ItemOverrides(menu2SubmenuTriggerClasses, hcTokens),
             // A trigger whose submenu is open carries the focus background.

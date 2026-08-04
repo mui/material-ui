@@ -2,7 +2,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
-import { useDefaultProps } from '../DefaultPropsProvider';
 
 /**
  * Inherits the full Base UI `Menu.SubmenuRoot` prop surface (open/close
@@ -24,12 +23,7 @@ export interface Menu2SubmenuRootProps extends Omit<BaseMenu.SubmenuRoot.Props, 
  * - [Menu](https://mui.com/material-ui/react-menu/)
  */
 function Menu2SubmenuRoot(props: Menu2SubmenuRootProps): React.JSX.Element {
-  const themedProps = useDefaultProps({
-    props,
-    name: 'MuiMenu2SubmenuRoot',
-  });
-
-  return <BaseMenu.SubmenuRoot {...themedProps} />;
+  return <BaseMenu.SubmenuRoot {...props} />;
 }
 
 Menu2SubmenuRoot.propTypes /* remove-proptypes */ = {

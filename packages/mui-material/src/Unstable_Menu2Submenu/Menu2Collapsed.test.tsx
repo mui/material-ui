@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Menu2, { menu2PopupClasses, menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
 import Menu2Submenu, { menu2SubmenuPopupClasses } from '@mui/material/Unstable_Menu2Submenu';
@@ -76,6 +77,57 @@ describe('<Menu2 /> collapsed API', () => {
       expect(submenuRef.current).not.to.equal(null);
     });
     expect(submenuRef.current).to.have.class(menu2SubmenuPopupClasses.root);
+  });
+
+  // The parts are internal, so their theme overrides have to resolve through the
+  // collapsed component's slots rather than their own component keys.
+  it('applies styleOverrides from the collapsed theme slots', async () => {
+    const theme = createTheme({
+      components: {
+        MuiMenu2: {
+          styleOverrides: {
+            trigger: { letterSpacing: '3px' },
+            paper: { paddingTop: '9px' },
+            list: { paddingBottom: '7px' },
+          },
+        },
+        MuiMenu2Submenu: {
+          styleOverrides: {
+            trigger: { letterSpacing: '5px' },
+            paper: { paddingTop: '11px' },
+          },
+        },
+      },
+    });
+    const { user } = render(
+      <ThemeProvider theme={theme}>
+        <Menu2 trigger="Options" slotProps={{ paper: { 'data-testid': 'paper' } }}>
+          <Menu2Submenu trigger="More" slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}>
+            <Menu2Item>Nested</Menu2Item>
+          </Menu2Submenu>
+        </Menu2>
+      </ThemeProvider>,
+    );
+
+    const trigger = screen.getByRole('button', { name: 'Options' });
+    expect(window.getComputedStyle(trigger).letterSpacing).to.equal('3px');
+
+    await user.click(trigger);
+    const menu = await screen.findByRole('menu');
+    expect(window.getComputedStyle(screen.getByTestId('paper')).paddingTop).to.equal('9px');
+    const list = menu.querySelector(`.${menu2PopupClasses.list}`)!;
+    expect(window.getComputedStyle(list).paddingBottom).to.equal('7px');
+
+    const submenuTrigger = screen.getByRole('menuitem', { name: 'More' });
+    expect(window.getComputedStyle(submenuTrigger).letterSpacing).to.equal('5px');
+
+    await user.click(submenuTrigger);
+    await waitFor(() => {
+      expect(screen.queryByTestId('submenu-paper')).not.to.equal(null);
+    });
+    expect(window.getComputedStyle(screen.getByTestId('submenu-paper')).paddingTop).to.equal(
+      '11px',
+    );
   });
 
   it('falls back to the default trigger for a non-element', async () => {

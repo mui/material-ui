@@ -8,7 +8,6 @@ import Paper from '../Paper';
 import List from '../List';
 import { styled } from '../zero-styled';
 import { Theme } from '../styles';
-import { useDefaultProps } from '../DefaultPropsProvider';
 import {
   Menu2PopupBase,
   Menu2PopupPublicProps,
@@ -179,19 +178,19 @@ const useUtilityClasses = (ownerState: Menu2SubmenuPopupOwnerState) => {
 };
 
 const Menu2SubmenuPopupRoot = styled('div', {
-  name: 'MuiMenu2SubmenuPopup',
+  name: 'MuiMenu2Submenu',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({ outline: 0 }, menu2PopupTransitionStyles);
 
 const Menu2SubmenuPopupPaper = styled(Paper, {
-  name: 'MuiMenu2SubmenuPopup',
+  name: 'MuiMenu2Submenu',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
 })(menu2PopupPaperStyles);
 
 const Menu2SubmenuPopupList = styled(List, {
-  name: 'MuiMenu2SubmenuPopup',
+  name: 'MuiMenu2Submenu',
   slot: 'List',
   overridesResolver: (props, styles) => styles.list,
 })(menu2PopupListStyles);
@@ -206,10 +205,8 @@ const Menu2SubmenuPopup = React.forwardRef(function Menu2SubmenuPopup(
   inProps: Menu2SubmenuPopupProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  const props = useDefaultProps({
-    props: inProps,
-    name: 'MuiMenu2SubmenuPopup',
-  });
+  // Internal: `MuiMenu2Submenu` defaults are applied by Menu2Submenu.
+  const props = inProps;
 
   const ownerState: Menu2SubmenuPopupOwnerState = {
     side: 'inline-end',

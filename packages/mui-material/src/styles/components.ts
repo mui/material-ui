@@ -480,6 +480,8 @@ export interface Components<Theme = unknown> {
   MuiMenu2?:
     | {
         defaultProps?: ComponentsProps['MuiMenu2'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenu2'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenu2'] | undefined;
       }
     | undefined;
   MuiMenu2CheckboxItem?:
@@ -524,13 +526,6 @@ export interface Components<Theme = unknown> {
         variants?: ComponentsVariants<Theme>['MuiMenu2LinkItem'] | undefined;
       }
     | undefined;
-  MuiMenu2Popup?:
-    | {
-        defaultProps?: ComponentsProps['MuiMenu2Popup'] | undefined;
-        styleOverrides?: ComponentsOverrides<Theme>['MuiMenu2Popup'] | undefined;
-        variants?: ComponentsVariants<Theme>['MuiMenu2Popup'] | undefined;
-      }
-    | undefined;
   MuiMenu2RadioGroup?:
     | {
         defaultProps?: ComponentsProps['MuiMenu2RadioGroup'] | undefined;
@@ -559,35 +554,11 @@ export interface Components<Theme = unknown> {
         variants?: ComponentsVariants<Theme>['MuiMenu2Separator'] | undefined;
       }
     | undefined;
-  MuiMenu2SubmenuPopup?:
-    | {
-        defaultProps?: ComponentsProps['MuiMenu2SubmenuPopup'] | undefined;
-        styleOverrides?: ComponentsOverrides<Theme>['MuiMenu2SubmenuPopup'] | undefined;
-        variants?: ComponentsVariants<Theme>['MuiMenu2SubmenuPopup'] | undefined;
-      }
-    | undefined;
   MuiMenu2Submenu?:
     | {
         defaultProps?: ComponentsProps['MuiMenu2Submenu'] | undefined;
-      }
-    | undefined;
-  MuiMenu2SubmenuRoot?:
-    | {
-        defaultProps?: ComponentsProps['MuiMenu2SubmenuRoot'] | undefined;
-      }
-    | undefined;
-  MuiMenu2SubmenuTrigger?:
-    | {
-        defaultProps?: ComponentsProps['MuiMenu2SubmenuTrigger'] | undefined;
-        styleOverrides?: ComponentsOverrides<Theme>['MuiMenu2SubmenuTrigger'] | undefined;
-        variants?: ComponentsVariants<Theme>['MuiMenu2SubmenuTrigger'] | undefined;
-      }
-    | undefined;
-  MuiMenu2Trigger?:
-    | {
-        defaultProps?: ComponentsProps['MuiMenu2Trigger'] | undefined;
-        styleOverrides?: ComponentsOverrides<Theme>['MuiMenu2Trigger'] | undefined;
-        variants?: ComponentsVariants<Theme>['MuiMenu2Trigger'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenu2Submenu'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenu2Submenu'] | undefined;
       }
     | undefined;
   MuiMobileStepper?:
