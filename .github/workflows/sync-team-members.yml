@@ -52,7 +52,8 @@ jobs:
             exit 0
           fi
 
-          BRANCH=website/sync-team-members
+          # The repository ruleset exempts `docs-*` branches from creation restrictions.
+          BRANCH=docs-gha-sync-team-members
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git switch -C "$BRANCH"
