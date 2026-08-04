@@ -26,7 +26,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 ### `@mui/system@9.3.0`
 
-- [system] Prevent prototype pollution in cssVarsParser (#48822) @Janpot
+- Prevent prototype pollution in cssVarsParser (#48822) @Janpot
 
 ### `@mui/codemod@9.3.0`
 
