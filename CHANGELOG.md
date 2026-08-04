@@ -1,5 +1,68 @@
 # [Versions](https://mui.com/material-ui/getting-started/versions/)
 
+## 9.3.0
+
+<!-- generated comparing v9.2.0..master -->
+
+_Aug 4, 2026_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- ♿️ Keyboard navigation in the [Toggle Button Group](https://mui.com/material-ui/react-toggle-button/) now follows the roving tabindex pattern.
+- ♿️ The [Autocomplete](https://mui.com/material-ui/react-autocomplete/) announces its loading and no options messages through a new `status` slot.
+
+### `@mui/material@9.3.0`
+
+- [autocomplete] Wrap the no results and loading messages in an aria live region (#48690) @silviuaavram
+- [buttongroup] Respect global disableRipple / disableFocusRipple in grouped buttons (#48762) @siriwatknp
+- [checkbox][radio] Respect global disableRipple from MuiButtonBase defaultProps (#48795) @siriwatknp
+- [formcontrollabel] Add missing `labelPlacementEnd` class (#48843) @siriwatknp
+- [listitembutton] Fix typos in component code (#48868) @ZeeshanTamboli
+- [menuitem] Add `aria-checked` for checkbox and radio menu items (#48651) @siriwatknp
+- [modal] Replace custom findIndexOf with findIndex (#48827) @ZeeshanTamboli
+- [modal][dialog] Fix scrollbar compensation in Shadow DOM (#48826) @ZeeshanTamboli
+- [select] Fix endAdornment overlapping the open indicator (#48723) @siriwatknp
+- [togglebuttongroup] Add roving tabindex keyboard navigation (#48849) @silviuaavram
+
+### `@mui/system@9.3.0`
+
+- [system] Prevent prototype pollution in cssVarsParser (#48822) @Janpot
+
+### `@mui/codemod@9.3.0`
+
+- Don't leak state between files in v5.0.0/path-imports (#48797) @manbearwiz
+- Remove use of eval() (#48701) @oliviertassinari
+- Transform all style exports in `v5.0.0/path-imports` codemod (#48800) @manbearwiz
+
+### Docs
+
+- Clarify `container` prop inheritance for Shadow DOM (#48670) @Juan-C-Ceballos
+- Clarify third-party script risk in CSP unsafe-inline note (#48787) @Janpot
+- Document `box-sx-prop` codemod (#48888) @SR0725
+- Document Grid direction column removal in v9 upgrade guide (#48880) @kalayciburak
+- Fix color contrast in Github labels example (#48844) @silviuaavram
+- Fix per-page canonical URL and stale SEO link (#48789) @brijeshb42
+- Fix redirect loop on the Design Kits page (#48869) @Janpot
+- Fix typo 'overriden' -> 'overridden' in CHANGELOG (#48785) @ZhouYinLong-lab
+- Improve TransferList examples (#48845) @silviuaavram
+- Link a new theme generator tool (#48847) @mansourcodes
+- Remove broken learning resource links (#48598) @morning-verlu
+- Update the 9.2.0 changelog (#48763) @silviuaavram
+- [autocomplete] Clarify how to render custom start and end adornments (#48883) @DebadityaHait
+- [menu] Fix stale `selected` prop reference in Selected menu section (#48879) @LukasTy
+- [skeleton] Document preserving typography sizing with custom border radius (#48596) @meaqua9420
+
+### Core
+
+- [blog] Fix caret annotation broken by Prettier wrapping (#48884) @bernardobelchior
+- [code-infra] Automate team sync on about page (#48794) @brijeshb42
+- [code-infra] Bump @mui/internal-code-infra to 0.0.4-canary.101 (#48878) @Janpot
+- [code-infra] Fix Dependabot alerts (#48756) @Janpot
+- [code-infra] Pin node version in publish CI (#48799) @brijeshb42
+- [core-docs] Tighten service worker host check (#48581) @Janpot
+
+All contributors of this release in alphabetical order: @bernardobelchior, @brijeshb42, @DebadityaHait, @Janpot, @Juan-C-Ceballos, @kalayciburak, @LukasTy, @manbearwiz, @mansourcodes, @meaqua9420, @morning-verlu, @oliviertassinari, @silviuaavram, @siriwatknp, @SR0725, @ZeeshanTamboli, @ZhouYinLong-lab
+
 ## 9.2.0
 
 <!-- generated comparing v9.1.2..master -->
