@@ -40,7 +40,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - Clarify third-party script risk in CSP unsafe-inline note (#48787) @Janpot
 - Document `box-sx-prop` codemod (#48888) @SR0725
 - Document Grid direction column removal in v9 upgrade guide (#48880) @kalayciburak
-- Fix color contrast in Github labels example (#48844) @silviuaavram
+- Fix color contrast in GitHub labels example (#48844) @silviuaavram
 - Fix per-page canonical URL and stale SEO link (#48789) @brijeshb42
 - Fix redirect loop on the Design Kits page (#48869) @Janpot
 - Fix typo 'overriden' -> 'overridden' in CHANGELOG (#48785) @ZhouYinLong-lab
