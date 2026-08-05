@@ -6,7 +6,7 @@
 
 _Aug 4, 2026_
 
-A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - ♿️ Keyboard navigation in the [Toggle Button Group](https://mui.com/material-ui/react-toggle-button/) now follows the roving tabindex pattern.
 - ♿️ The [Autocomplete](https://mui.com/material-ui/react-autocomplete/) announces its loading and no options messages through a new `status` slot.
@@ -22,6 +22,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [modal] Replace custom findIndexOf with findIndex (#48827) @ZeeshanTamboli
 - [modal][dialog] Fix scrollbar compensation in Shadow DOM (#48826) @ZeeshanTamboli
 - [select] Fix endAdornment overlapping the open indicator (#48723) @siriwatknp
+- [tablepagination] Add focus style to default InputBase used in Select (#48871) @silviuaavram
 - [togglebuttongroup] Add roving tabindex keyboard navigation (#48849) @silviuaavram
 
 ### `@mui/system@9.3.0`
@@ -49,6 +50,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - Remove broken learning resource links (#48598) @morning-verlu
 - Update the 9.2.0 changelog (#48763) @silviuaavram
 - [autocomplete] Clarify how to render custom start and end adornments (#48883) @DebadityaHait
+- [drawer] Clarify clipped AppBar spacing (#48887) @rushijagani-dev
 - [menu] Fix stale `selected` prop reference in Selected menu section (#48879) @LukasTy
 - [skeleton] Document preserving typography sizing with custom border radius (#48596) @meaqua9420
 
@@ -58,10 +60,12 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [code-infra] Automate team sync on about page (#48794) @brijeshb42
 - [code-infra] Bump @mui/internal-code-infra to 0.0.4-canary.101 (#48878) @Janpot
 - [code-infra] Fix Dependabot alerts (#48756) @Janpot
+- [code-infra] Fix team sync PR creation (#48911) @brijeshb42
 - [code-infra] Pin node version in publish CI (#48799) @brijeshb42
 - [core-docs] Tighten service worker host check (#48581) @Janpot
+- [docs-infra] Change branch name to the allowed one (#48910) @brijeshb42
 
-All contributors of this release in alphabetical order: @bernardobelchior, @brijeshb42, @DebadityaHait, @Janpot, @Juan-C-Ceballos, @kalayciburak, @LukasTy, @manbearwiz, @mansourcodes, @meaqua9420, @morning-verlu, @oliviertassinari, @silviuaavram, @siriwatknp, @SR0725, @ZeeshanTamboli, @ZhouYinLong-lab
+All contributors of this release in alphabetical order: @bernardobelchior, @brijeshb42, @DebadityaHait, @Janpot, @Juan-C-Ceballos, @kalayciburak, @LukasTy, @manbearwiz, @mansourcodes, @meaqua9420, @morning-verlu, @oliviertassinari, @rushijagani-dev, @silviuaavram, @siriwatknp, @SR0725, @ZeeshanTamboli, @ZhouYinLong-lab
 
 ## 9.2.0
 
