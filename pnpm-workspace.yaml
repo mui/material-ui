@@ -20,6 +20,8 @@ minimumReleaseAgeExclude:
   - react-router@8.3.0
   # Renovate security update: next@16.2.11
   - next@16.2.11
+  # Renovate security update: postcss@8.5.23
+  - postcss@8.5.23
 trustPolicy: no-downgrade
 # Skip trust-policy checks for packages published more than 365 days ago.
 # Some widely-used legacy packages (notably semver@6.x — pulled in by @babel/core@7.x — plus
@@ -34,7 +36,7 @@ catalogs:
   docs:
     stylis: '4.2.0'
     '@base-ui/react': '^1.6.0'
-    '@docsearch/react': '^3.9.0'
+    '@docsearch/react': '^4.6.3'
     '@emotion/cache': '^11.14.0'
     '@emotion/react': '^11.14.0'
     '@emotion/server': '^11.11.0'

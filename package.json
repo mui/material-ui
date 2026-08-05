@@ -78,8 +78,8 @@
   "dependencies": {
     "@netlify/functions": "^5.3.0",
     "@slack/bolt": "^5.0.0",
-    "@vitest/eslint-plugin": "^1.6.23",
-    "execa": "^9.6.1"
+    "@vitest/eslint-plugin": "^1.6.24",
+    "execa": "^10.0.0"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",
@@ -96,7 +96,7 @@
     "@mui/internal-test-utils": "2.0.18-canary.23",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "16.2.11",
+    "@next/eslint-plugin-next": "16.2.12",
     "@octokit/rest": "22.0.1",
     "@pigment-css/react": "0.0.31",
     "@playwright/test": "1.61.1",
@@ -113,22 +113,22 @@
     "@vitest/coverage-v8": "^4.1.0",
     "axe-core": "4.12.1",
     "babel-plugin-module-resolver": "5.0.3",
-    "chalk": "5.6.2",
-    "concurrently": "10.0.3",
+    "chalk": "6.0.0",
+    "concurrently": "10.0.4",
     "cpy-cli": "7.0.0",
     "cross-env": "10.1.0",
     "dotenv": "17.4.2",
-    "es-toolkit": "1.49.0",
-    "eslint": "10.7.0",
+    "es-toolkit": "1.50.0",
+    "eslint": "10.8.0",
     "eslint-plugin-consistent-default-export-name": "0.0.15",
     "fast-glob": "3.3.3",
     "git-url-parse": "16.1.0",
     "globby": "16.2.2",
     "jsdom": "26.1.0",
     "lerna": "9.0.7",
-    "minimatch": "10.2.5",
+    "minimatch": "10.2.6",
     "nx": "22.7.6",
-    "pkg-pr-new": "0.0.79",
+    "pkg-pr-new": "0.0.86",
     "playwright": "1.61.1",
     "prettier": "3.9.6",
     "pretty-quick": "4.2.2",
@@ -143,14 +143,14 @@
     "vite": "^8.0.0",
     "vitest": "^4.1.0",
     "vitest-fail-on-console": "0.10.1",
-    "yargs": "18.0.0"
+    "yargs": "18.1.0"
   },
   "config": {
-    "valeVersion": "3.15.2"
+    "valeVersion": "3.17.0"
   },
-  "packageManager": "pnpm@11.17.0",
+  "packageManager": "pnpm@11.19.0",
   "engines": {
-    "pnpm": "11.17.0",
+    "pnpm": "11.19.0",
     "node": ">=22.23.1"
   }
 }
