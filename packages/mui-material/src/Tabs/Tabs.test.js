@@ -49,6 +49,7 @@ function hasRightScrollButton(container) {
 }
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+const isFirefox = /firefox/i.test(navigator.userAgent);
 
 describe.skipIf(isSafari)('<Tabs />', () => {
   const { clock, render, renderToString } = createRenderer();
@@ -803,7 +804,10 @@ describe.skipIf(isSafari)('<Tabs />', () => {
     });
   });
 
-  describe('scroll button behavior', () => {
+  // Firefox reports fractional `scrollLeft`/`scrollTop` in Vitest browser mode, so the
+  // exact integer assertions in these scroll tests fail.
+  // See https://github.com/vitest-dev/vitest/issues/9223
+  describe.skipIf(isFirefox)('scroll button behavior', () => {
     clock.withFakeTimers();
 
     it.skipIf(isJSDOM)('should scroll visible items', async function test() {

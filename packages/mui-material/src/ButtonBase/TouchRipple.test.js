@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { act, createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
+import touchRippleClasses from './touchRippleClasses';
 import describeConformance from '../../test/describeConformance';
 
 const cb = () => {};
@@ -205,6 +206,37 @@ describe('<TouchRipple />', () => {
       });
 
       expect(queryAllRipples()).to.have.lengthOf(0);
+    });
+  });
+
+  describe('focus ripple exit', () => {
+    clock.withFakeTimers();
+
+    it('hides the leaving focus ripple immediately, then removes it', () => {
+      const ref = React.createRef();
+      const { container } = render(<TouchRipple ref={ref} />);
+
+      act(() => {
+        ref.current.start({}, { pulsate: true, fakeElement: true }, cb);
+      });
+
+      const child = container.querySelector(`.${touchRippleClasses.child}`);
+      expect(window.getComputedStyle(child).opacity).to.equal('1');
+
+      act(() => {
+        ref.current.stop({ type: 'blur' });
+      });
+
+      // `.childLeaving { opacity: 0 }` must win over `.child { opacity: 1 }`, else
+      // a focus (pulsate) ripple lingers until removal instead of hiding on blur.
+      expect(child).to.have.class(touchRippleClasses.childLeaving);
+      expect(window.getComputedStyle(child).opacity).to.equal('0');
+
+      act(() => {
+        clock.runAll();
+      });
+
+      expect(container.querySelector(`.${touchRippleClasses.child}`)).to.equal(null);
     });
   });
 

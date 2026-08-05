@@ -35,6 +35,7 @@ function NoSsr(props: NoSsrProps): React.JSX.Element {
 
   React.useEffect(() => {
     if (defer) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setMountedState(true);
     }
   }, [defer]);

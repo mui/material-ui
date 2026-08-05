@@ -409,7 +409,7 @@ It can strain your eyes and disrupt your experience, particularly if you interac
 
 To better understand this issue, take a look at the animated image below:
 
-<img src="/static/joy-ui/dark-mode/dark-mode-flicker.gif" style="width: 814px; border-radius: 8px;" alt="An example video that shows a page that initially loads correctly in dark mode but quickly flickers to light mode." width="1628" height="400" />
+<img src="/static/material-ui/dark-mode/dark-mode-flicker.gif" style="width: 814px; border-radius: 8px;" alt="An example video that shows a page that initially loads correctly in dark mode but quickly flickers to light mode." width="1628" height="400" />
 
 ### The solution: CSS variables
 

@@ -8,6 +8,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Fade from '@mui/material/Fade';
 import describeConformance from '../../test/describeConformance';
 
+const isFirefox = /firefox/i.test(navigator.userAgent);
+
 /**
  * more comprehensive simulation of a user click (mousedown + click)
  * @param {HTMLElement} element
@@ -375,7 +377,9 @@ describe('<Dialog />', () => {
       expect(screen.getByTestId('paper')).not.to.have.class(classes.paperFullScreen);
     });
 
-    it.skipIf(isJsdom())('scrolls if overflown on the Y axis', function test() {
+    // Firefox reports a fractional `scrollTop` in Vitest browser mode, failing the exact
+    // assertion below. See https://github.com/vitest-dev/vitest/issues/9223
+    it.skipIf(isJsdom() || isFirefox)('scrolls if overflown on the Y axis', function test() {
       const ITEM_HEIGHT = 100;
       const ITEM_COUNT = 10;
 

@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import { TransitionGroup } from 'react-transition-group';
 import TransitionGroupContext from 'react-transition-group/TransitionGroupContext';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import Transition from './Transition';
@@ -177,6 +178,45 @@ describe('<Transition />', () => {
       setProps({ in: false });
       clock.tick(100);
       expect(screen.queryByTestId('target')).to.equal(null);
+    });
+
+    it('attaches the child ref in the same commit `in` turns true with unmountOnExit', () => {
+      // Regression for opening from unmounted: a parent passive effect that reads
+      // the child ref right after `in` flips must find it mounted, otherwise focus
+      // management like the vertical stepper demo crashes. See issue #48637.
+      let refWhenEffectRan: HTMLDivElement | null | undefined;
+      const onExited = spy();
+      function Wrapper() {
+        const [open, setOpen] = React.useState(false);
+        const nodeRef = React.useRef<HTMLDivElement>(null);
+        React.useEffect(() => {
+          if (open) {
+            refWhenEffectRan = nodeRef.current;
+          }
+        }, [open]);
+        return (
+          <React.Fragment>
+            <button type="button" onClick={() => setOpen(true)}>
+              open
+            </button>
+            <Transition in={open} unmountOnExit timeout={100} nodeRef={nodeRef} onExited={onExited}>
+              {(status) => (
+                <div ref={nodeRef} data-testid="target" data-status={status}>
+                  content
+                </div>
+              )}
+            </Transition>
+          </React.Fragment>
+        );
+      }
+      render(<Wrapper />);
+      expect(screen.queryByTestId('target')).to.equal(null);
+      act(() => {
+        screen.getByText('open').click();
+      });
+      expect(refWhenEffectRan).to.equal(screen.getByTestId('target'));
+      // The intermediate `exited` status during open must not fire `onExited`.
+      expect(onExited.callCount).to.equal(0);
     });
   });
 
@@ -530,6 +570,91 @@ describe('<Transition />', () => {
 
   describe('interrupted transitions', () => {
     clock.withFakeTimers();
+
+    it.skipIf(!('Activity' in React))(
+      'restarts completion when effects reconnect while exiting',
+      () => {
+        const handlers = {
+          onExit: spy(),
+          onExiting: spy(),
+          onExited: spy(),
+        };
+
+        function ActivityHarness(props: { in: boolean; mode: 'hidden' | 'visible' }) {
+          return (
+            <React.Activity mode={props.mode}>
+              <TestHarness
+                in={props.in}
+                appear={false}
+                unmountOnExit
+                timeout={100}
+                handlers={handlers}
+              />
+            </React.Activity>
+          );
+        }
+
+        const { setProps } = render(<ActivityHarness in mode="visible" />);
+        setProps({ in: false, mode: 'visible' });
+        expect(screen.getByTestId('target')).to.have.attribute('data-status', 'exiting');
+        expect(handlers.onExit.callCount).to.equal(1);
+        expect(handlers.onExiting.callCount).to.equal(1);
+
+        // Activity disconnects effects while preserving state. This cancels the pending completion
+        setProps({ in: false, mode: 'hidden' });
+        clock.tick(100);
+        expect(screen.getByTestId('target')).to.have.attribute('data-status', 'exiting');
+        expect(handlers.onExited.callCount).to.equal(0);
+
+        setProps({ in: false, mode: 'visible' });
+        expect(handlers.onExit.callCount).to.equal(1);
+        expect(handlers.onExiting.callCount).to.equal(1);
+        clock.tick(100);
+
+        expect(screen.queryByTestId('target')).to.equal(null);
+        expect(handlers.onExited.callCount).to.equal(1);
+      },
+    );
+
+    it.skipIf(!('Activity' in React))(
+      'does not complete the superseded phase when in flips on reconnect',
+      () => {
+        const handlers = {
+          onEnter: spy(),
+          onEntering: spy(),
+          onEntered: spy(),
+          onExit: spy(),
+          onExiting: spy(),
+          onExited: spy(),
+        };
+
+        function ActivityHarness(props: { in: boolean; mode: 'hidden' | 'visible' }) {
+          return (
+            <React.Activity mode={props.mode}>
+              <TestHarness in={props.in} appear={false} timeout={100} handlers={handlers} />
+            </React.Activity>
+          );
+        }
+
+        const { setProps } = render(<ActivityHarness in mode="visible" />);
+        setProps({ in: false, mode: 'visible' });
+        expect(screen.getByTestId('target')).to.have.attribute('data-status', 'exiting');
+
+        // Effects disconnect mid-exit, then reconnect in the same commit that `in` flips back.
+        // The reconciliation effect starts entering before the lifecycle effect runs, so the
+        // lifecycle effect must not schedule completion for the superseded exit.
+        setProps({ in: false, mode: 'hidden' });
+        clock.tick(50);
+        setProps({ in: true, mode: 'visible' });
+        clock.tick(100);
+
+        expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entered');
+        expect(handlers.onEnter.callCount).to.equal(1);
+        expect(handlers.onEntering.callCount).to.equal(1);
+        expect(handlers.onEntered.callCount).to.equal(1);
+        expect(handlers.onExited.callCount).to.equal(0);
+      },
+    );
 
     it('cancels entering when in flips to false mid-transition', () => {
       const handlers = {
@@ -948,6 +1073,53 @@ describe('<Transition />', () => {
       expect(handlers.onEnter!.callCount).to.equal(0);
       // The child moves straight to entered.
       expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entered');
+    });
+  });
+
+  describe('react-transition-group public TransitionGroup interop', () => {
+    it('child added to an already-mounted TransitionGroup enters with isAppearing=false', async () => {
+      const handlers = { onEnter: spy(), onEntered: spy() };
+      let done: (() => void) | null = null;
+      const addEndListener = (_node: HTMLElement, next: () => void) => {
+        done = next;
+      };
+
+      function ChildWrapper() {
+        const [shouldRender, setShouldRender] = React.useState(false);
+        return (
+          <React.Fragment>
+            <button type="button" onClick={() => setShouldRender(true)}>
+              add
+            </button>
+            <TransitionGroup component={null}>
+              {shouldRender ? (
+                <TestHarness
+                  key="item"
+                  appear={false}
+                  timeout={null}
+                  addEndListener={addEndListener}
+                  handlers={handlers}
+                />
+              ) : null}
+            </TransitionGroup>
+          </React.Fragment>
+        );
+      }
+
+      const { user } = render(<ChildWrapper />);
+      await user.click(screen.getByRole('button', { name: 'add' }));
+
+      expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entering');
+      expect(handlers.onEnter.callCount).to.equal(1);
+      expect(handlers.onEnter.args[0][0]).to.equal(false);
+
+      act(() => {
+        done!();
+      });
+
+      expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entered');
+      expect(handlers.onEntered.callCount).to.equal(1);
+      expect(handlers.onEntered.args[0][0]).to.equal(false);
     });
   });
 

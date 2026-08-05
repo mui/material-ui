@@ -138,6 +138,24 @@ describe('<Select />', () => {
       expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
     });
 
+    it('does not throw when the display ref is unavailable during mouse down', () => {
+      const handleMouseDown = spy();
+
+      render(
+        <Select value="one" onMouseDown={handleMouseDown} SelectDisplayProps={{ ref: () => {} }}>
+          <MenuItem value="one">One</MenuItem>
+          <MenuItem value="two">Two</MenuItem>
+        </Select>,
+      );
+
+      expect(() => {
+        fireEvent.mouseDown(screen.getByRole('combobox'));
+      }).not.to.throw();
+
+      expect(handleMouseDown.callCount).to.equal(1);
+      expect(screen.queryByRole('listbox')).to.equal(null);
+    });
+
     it('keeps the menu open when releasing the opening mouse gesture inside the trigger bounds', async () => {
       const { user } = render(
         <Select

@@ -42,12 +42,14 @@ jobs:
       name: npm-publish-internal
     steps:
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.event_name == 'push' && github.sha || inputs.sha }}
           fetch-depth: 0 # Fetch full history for proper git operations
       - name: Prepare for publishing
-        uses: mui/mui-public/.github/actions/publish-prepare@fb2e995849648cc3f6e43ed4ad10b7bad0750d7c # master
+        uses: mui/mui-public/.github/actions/publish-prepare@3aff78882d5ed7d5d6a22d13ffa91a75f1374ab1 # master
+        with:
+          node-version: '22.23.1'
       - name: Publish packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -63,12 +65,14 @@ jobs:
       name: npm-publish
     steps:
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           ref: ${{ inputs.sha }}
           fetch-depth: 0 # Fetch full history for proper git operations
       - name: Prepare for publishing
-        uses: mui/mui-public/.github/actions/publish-prepare@fb2e995849648cc3f6e43ed4ad10b7bad0750d7c # master
+        uses: mui/mui-public/.github/actions/publish-prepare@3aff78882d5ed7d5d6a22d13ffa91a75f1374ab1 # master
+        with:
+          node-version: '22.23.1'
       - name: Publish packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

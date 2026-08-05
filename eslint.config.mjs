@@ -60,7 +60,6 @@ export default defineConfig(
     enableReactCompiler: ENABLE_REACT_COMPILER_PLUGIN,
     baseDirectory: dirname,
     materialUi: true,
-    markdown: true,
   }),
   // eslint-plugin-mdx loads `.remarkrc.mjs` itself, but ESLint doesn't know
   // that file is a config dependency, so `--cache` doesn't invalidate when
@@ -90,6 +89,7 @@ export default defineConfig(
         },
       ],
       'react/react-in-jsx-scope': 'off',
+      '@typescript-eslint/no-shadow': 'off',
       'react/sort-prop-types': 'off', // 228
       '@typescript-eslint/ban-ts-comment': 'off', // 117
       '@typescript-eslint/no-require-imports': 'off', // 133
@@ -227,6 +227,12 @@ export default defineConfig(
     },
   },
   // Docs end
+  {
+    files: [`test/**/*${EXTENSION_TS}`, `docs/**/*${EXTENSION_TS}`],
+    rules: {
+      'react-hooks/set-state-in-effect': 'off',
+    },
+  },
   {
     files: [`**/*${EXTENSION_DTS}`],
     rules: {

@@ -195,6 +195,9 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       disabled,
       name,
       checked,
+      // Forward the raw prop so an unset value stays `undefined` and ButtonBase resolves its
+      // own default — letting a global `MuiButtonBase.defaultProps.disableRipple` apply here.
+      disableRipple: props.disableRipple,
       slots,
       slotProps: {
         // Do not forward `slotProps.root` again because it's already handled by the `RootSlot` in this file.

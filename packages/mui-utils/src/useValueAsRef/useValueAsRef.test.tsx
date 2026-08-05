@@ -33,25 +33,27 @@ describe('useValueAsRef', () => {
   });
 
   it('returns the same ref object across renders', () => {
-    let firstRef: object | undefined;
-    let nextRef: object | undefined;
+    let capturedRef: object | undefined;
 
     function Test(props: { value: number }) {
-      const valueRef = useValueAsRef(props.value);
-
-      if (firstRef === undefined) {
-        firstRef = valueRef;
-      } else {
-        nextRef = valueRef;
-      }
-
+      capturedRef = useValueAsRef(props.value);
       return null;
     }
 
+    // Collect the committed ref after each render settles. Reading inside the render body
+    // instead would capture React 18 StrictMode's discarded initial-mount object (a distinct
+    // transient `ValueRef`), which is never the one the component ends up using.
+    const refs: Array<object | undefined> = [];
     const { setProps } = render(<Test value={1} />);
-
+    refs.push(capturedRef);
     setProps({ value: 2 });
+    refs.push(capturedRef);
+    setProps({ value: 3 });
+    refs.push(capturedRef);
 
-    expect(nextRef).to.equal(firstRef);
+    expect(refs.length).to.be.at.least(2);
+    refs.forEach((ref) => {
+      expect(ref).to.equal(refs[0]);
+    });
   });
 });
