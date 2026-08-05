@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { fireEvent, createRenderer, screen } from '@mui/internal-test-utils';
+import { fireEvent, createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import TableFooter from '@mui/material/TableFooter';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
@@ -10,6 +10,7 @@ import TablePagination, { tablePaginationClasses as classes } from '@mui/materia
 import { inputClasses } from '@mui/material/Input';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { filledInputClasses } from '@mui/material/FilledInput';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import IconButton, { iconButtonClasses } from '@mui/material/IconButton';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { createSvgIcon } from '@mui/material/utils';
@@ -709,6 +710,54 @@ describe('<TablePagination />', () => {
         const combobox = screen.getByRole('combobox');
         expect(combobox.parentElement).to.have.class(inputClasses.disabled);
       });
+
+      it.skipIf(isJsdom())(
+        'should apply a focus background only to the default InputBase-backed select',
+        async () => {
+          const theme = createTheme({
+            palette: {
+              action: {
+                focus: 'rgb(1, 2, 3)',
+              },
+            },
+          });
+
+          const { user } = render(
+            <ThemeProvider theme={theme}>
+              <table>
+                <TableFooter>
+                  <TableRow>
+                    <TablePagination
+                      count={1}
+                      page={0}
+                      onPageChange={noop}
+                      onRowsPerPageChange={noop}
+                      rowsPerPage={10}
+                    />
+                    <TablePagination
+                      count={1}
+                      page={0}
+                      onPageChange={noop}
+                      onRowsPerPageChange={noop}
+                      rowsPerPage={10}
+                      slotProps={{ select: { variant: 'outlined' } }}
+                    />
+                  </TableRow>
+                </TableFooter>
+              </table>
+            </ThemeProvider>,
+          );
+
+          const [defaultSelect, outlinedSelect] = screen.getAllByRole('combobox');
+
+          await user.tab();
+          expect(defaultSelect).toHaveComputedStyle({ backgroundColor: 'rgb(1, 2, 3)' });
+
+          await user.tab();
+          expect(outlinedSelect).toHaveFocus();
+          expect(outlinedSelect).not.toHaveComputedStyle({ backgroundColor: 'rgb(1, 2, 3)' });
+        },
+      );
     });
   });
 
