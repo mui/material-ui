@@ -779,6 +779,8 @@ describe('<Modal />', () => {
   });
 
   describe('prop: container', () => {
+    clock.withFakeTimers();
+
     it('should be able to change the container', () => {
       function TestCase(props) {
         const { anchorEl } = props;
@@ -795,6 +797,99 @@ describe('<Modal />', () => {
       setProps({ anchorEl: document.body });
       setProps({ anchorEl: null });
       setProps({ anchorEl: document.body });
+    });
+
+    it('should finish closing when the container changes during the exit transition', () => {
+      function TestCase(props) {
+        const firstContainerRef = React.useRef(null);
+        const secondContainerRef = React.useRef(null);
+        const getContainer = React.useCallback(
+          () =>
+            props.containerIndex === 0 ? firstContainerRef.current : secondContainerRef.current,
+          [props.containerIndex],
+        );
+
+        return (
+          <React.Fragment>
+            <div data-testid="first-container" ref={firstContainerRef} />
+            <div data-testid="second-container" ref={secondContainerRef} />
+            <Modal
+              data-testid="modal"
+              open={props.open}
+              container={getContainer}
+              closeAfterTransition
+              onTransitionExited={props.onTransitionExited}
+            >
+              <Fade
+                in={props.open}
+                timeout={100}
+                onExit={props.onExit}
+                onExiting={props.onExiting}
+                onExited={props.onExited}
+              >
+                <div>Content</div>
+              </Fade>
+            </Modal>
+          </React.Fragment>
+        );
+      }
+
+      const handleExit = spy();
+      const handleExiting = spy();
+      const handleExited = spy();
+      const handleTransitionExited = spy();
+      const { setProps } = render(
+        <TestCase
+          open
+          containerIndex={0}
+          onExit={handleExit}
+          onExiting={handleExiting}
+          onExited={handleExited}
+          onTransitionExited={handleTransitionExited}
+        />,
+      );
+
+      act(() => {
+        clock.runToLast();
+      });
+      const firstContainer = screen.getByTestId('first-container');
+      const secondContainer = screen.getByTestId('second-container');
+      expect(within(firstContainer).getByTestId('modal')).not.to.equal(null);
+
+      setProps({ open: false, containerIndex: 0 });
+      expect(handleExit.callCount).to.equal(1);
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExited.callCount).to.equal(0);
+      expect(handleTransitionExited.callCount).to.equal(0);
+
+      act(() => {
+        clock.tick(50);
+      });
+      setProps({ open: false, containerIndex: 1 });
+
+      expect(within(firstContainer).getByTestId('modal')).not.to.equal(null);
+      expect(within(secondContainer).queryByTestId('modal')).to.equal(null);
+      expect(handleExit.callCount).to.equal(1);
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExited.callCount).to.equal(0);
+      expect(handleTransitionExited.callCount).to.equal(0);
+
+      act(() => {
+        clock.tick(50);
+      });
+      expect(screen.queryByTestId('modal')).to.equal(null);
+      expect(handleExit.callCount).to.equal(1);
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExited.callCount).to.equal(1);
+      expect(handleTransitionExited.callCount).to.equal(1);
+      expect(firstContainer.style).to.have.property('overflow', '');
+
+      setProps({ open: true, containerIndex: 1 });
+      act(() => {
+        clock.runToLast();
+      });
+      expect(within(firstContainer).queryByTestId('modal')).to.equal(null);
+      expect(within(secondContainer).getByTestId('modal')).not.to.equal(null);
     });
   });
 
