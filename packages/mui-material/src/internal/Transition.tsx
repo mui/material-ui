@@ -410,14 +410,14 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
       if (statusChanged) {
         current.onEntering?.(isAppearingRef.current);
       }
-      if (nextCallbackRef.current === null) {
+      if (nextCallbackRef.current === null && statusRef.current === status) {
         scheduleTransitionEnd('entered', 'entering');
       }
     } else if (status === 'exiting') {
       if (statusChanged) {
         current.onExiting?.();
       }
-      if (nextCallbackRef.current === null) {
+      if (nextCallbackRef.current === null && statusRef.current === status) {
         scheduleTransitionEnd('exited', 'exiting');
       }
     } else if (status === 'entered' && statusChanged) {
