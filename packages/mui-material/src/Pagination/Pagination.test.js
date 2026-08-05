@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';
@@ -121,5 +122,160 @@ describe('<Pagination />', () => {
     render(<Pagination count={3} showLastButton={false} />);
 
     expect(screen.queryByRole('button', { name: /go to last page/i })).to.equal(null);
+  });
+
+  it('manages focus when buttons become disabled', async () => {
+    const { user } = render(
+      <Pagination count={3} defaultPage={2} showFirstButton showLastButton />,
+    );
+
+    const goToPreviousButton = screen.getByRole('button', { name: /go to previous page/i });
+    const goToFirstButton = screen.getByRole('button', { name: /go to first page/i });
+
+    await user.click(goToPreviousButton);
+
+    expect(goToPreviousButton).to.have.attribute('disabled', '');
+    expect(goToFirstButton).to.have.attribute('disabled', '');
+    expect(screen.getByRole('button', { name: /page 1/i })).toHaveFocus();
+
+    const goToNextButton = screen.getByRole('button', { name: /go to next page/i });
+    const goToLastButton = screen.getByRole('button', { name: /go to last page/i });
+
+    await user.click(goToNextButton);
+    await user.click(goToNextButton);
+
+    expect(goToNextButton).to.have.attribute('disabled', '');
+    expect(goToLastButton).to.have.attribute('disabled', '');
+    expect(screen.getByRole('button', { name: /page 3/i })).toHaveFocus();
+
+    await user.click(goToFirstButton);
+
+    expect(goToPreviousButton).to.have.attribute('disabled', '');
+    expect(goToFirstButton).to.have.attribute('disabled', '');
+    expect(screen.getByRole('button', { name: /page 1/i })).toHaveFocus();
+
+    await user.click(goToLastButton);
+
+    expect(goToNextButton).to.have.attribute('disabled', '');
+    expect(goToLastButton).to.have.attribute('disabled', '');
+    expect(screen.getByRole('button', { name: /page 3/i })).toHaveFocus();
+  });
+
+  [
+    {
+      type: 'previous',
+      props: { count: 3, defaultPage: 2 },
+      targetPage: 1,
+    },
+    {
+      type: 'first',
+      props: { count: 3, defaultPage: 2, showFirstButton: true },
+      targetPage: 1,
+    },
+    {
+      type: 'next',
+      props: { count: 3, defaultPage: 2 },
+      targetPage: 3,
+    },
+    {
+      type: 'last',
+      props: { count: 3, defaultPage: 2, showLastButton: true },
+      targetPage: 3,
+    },
+  ].forEach(({ type, props, targetPage }) => {
+    it(`moves focus to page ${targetPage} when the ${type} button becomes disabled`, async () => {
+      const { user } = render(<Pagination {...props} />);
+
+      const navigationButton = screen.getByRole('button', {
+        name: `Go to ${type} page`,
+      });
+
+      React.act(() => {
+        navigationButton.focus();
+      });
+
+      await user.keyboard('{Enter}');
+
+      expect(navigationButton).to.have.attribute('disabled', '');
+      expect(screen.getByRole('button', { name: `page ${targetPage}` })).toHaveFocus();
+    });
+  });
+
+  it('moves focus after a controlled page update commits', async () => {
+    function TestCase() {
+      const [page, setPage] = React.useState(2);
+
+      return <Pagination count={3} page={page} onChange={(_, newPage) => setPage(newPage)} />;
+    }
+
+    const { user } = render(<TestCase />);
+
+    const previousButton = screen.getByRole('button', {
+      name: 'Go to previous page',
+    });
+
+    React.act(() => {
+      previousButton.focus();
+    });
+    await user.keyboard('{Enter}');
+
+    expect(screen.getByRole('button', { name: 'page 1' })).toHaveFocus();
+  });
+
+  it('moves focus when the boundary page is rendered after navigation', async () => {
+    const { user } = render(
+      <Pagination count={10} defaultPage={5} boundaryCount={0} showFirstButton />,
+    );
+
+    expect(screen.queryByRole('button', { name: 'Go to page 1' })).to.equal(null);
+
+    const firstButton = screen.getByRole('button', {
+      name: 'Go to first page',
+    });
+
+    React.act(() => {
+      firstButton.focus();
+    });
+    await user.keyboard('{Enter}');
+
+    expect(screen.getByRole('button', { name: 'page 1' })).toHaveFocus();
+  });
+
+  it('does not override focus moved by onChange', async () => {
+    const resultsRef = React.createRef();
+
+    function TestCase() {
+      const [page, setPage] = React.useState(2);
+
+      return (
+        <React.Fragment>
+          <h2 ref={resultsRef} tabIndex={-1}>
+            Results
+          </h2>
+
+          <Pagination
+            count={3}
+            page={page}
+            onChange={(_, newPage) => {
+              setPage(newPage);
+              resultsRef.current.focus();
+            }}
+          />
+        </React.Fragment>
+      );
+    }
+
+    const { user } = render(<TestCase />);
+
+    const previousButton = screen.getByRole('button', {
+      name: 'Go to previous page',
+    });
+
+    React.act(() => {
+      previousButton.focus();
+    });
+    await user.keyboard('{Enter}');
+
+    expect(resultsRef.current).toHaveFocus();
   });
 });
