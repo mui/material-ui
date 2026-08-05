@@ -103,23 +103,9 @@ export const densityExtraRows: DensityExtraRow[] = [
   },
   // Control↔label gap (root is inline-flex). Shown in Checkbox/Radio/Switch families.
   slotRow('MuiFormControlLabel', 'root', 'gap', 'FormControlLabel · gap'),
-  {
-    id: 'MuiListItemIcon|root|base||minWidth',
-    label: 'ListItemIcon · minWidth',
-    isDensity: false,
-    densityKey: null,
-    // Redundant in Menu — MenuItem's own nested `icon min width` knob owns this
-    // seam there (Menu is currently ListItemIcon's only family).
-    hiddenIn: ['Menu'],
-    target: {
-      component: 'MuiListItemIcon',
-      slot: 'root',
-      props: null,
-      nested: '',
-      cssProp: 'minWidth',
-    },
-    values: {},
-  },
+  // ListItemText text-block margin (master 4px base / 6px primary+secondary) —
+  // override-only until a value is set.
+  slotRow('MuiListItemText', 'root', 'marginBlock', 'ListItemText · marginBlock'),
   {
     id: 'MuiAccordion|root|base|&.Mui-expanded|margin',
     label: 'Accordion · expanded margin',
@@ -230,8 +216,9 @@ const allRows: DensityEmitRow[] = [...densityEmitTable, ...densityExtraRows];
 export const componentFamily: Record<string, string | string[]> = {
   MuiButton: ['Button', 'ButtonGroup'],
   MuiIconButton: 'Button',
-  MuiList: 'Menu',
-  MuiListItemIcon: 'Menu',
+  MuiList: ['Menu', 'List'],
+  MuiListItemIcon: ['Menu', 'List'],
+  MuiListItemText: 'List',
   MuiMenuItem: 'Menu',
   MuiAccordion: 'Accordion',
   MuiTab: 'Tabs',
@@ -263,8 +250,9 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiDialogTitle: 'Dialog',
   MuiDialogContent: 'Dialog',
   MuiDialogActions: 'Dialog',
-  MuiListItem: 'ListItemButton',
-  MuiListItemButton: 'ListItemButton',
+  MuiListItem: 'List',
+  MuiListItemButton: 'List',
+  MuiListItemAvatar: 'List',
   MuiButtonGroup: 'ButtonGroup',
   MuiTableCell: 'Table',
   MuiTableSortLabel: 'Table',
@@ -295,13 +283,19 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiTreeItem: 'TreeView',
   MuiDateCalendar: 'DatePicker',
   MuiDayCalendar: 'DatePicker',
+  MuiDayCalendarSkeleton: 'DatePicker',
   MuiPickerDay: 'DatePicker',
+  MuiDateRangePickerDay: 'DatePicker',
+  MuiPickersInputBase: 'DatePicker',
+  MuiPickersOutlinedInput: 'DatePicker',
+  MuiPickersFilledInput: 'DatePicker',
   MuiPickersCalendarHeader: 'DatePicker',
   MuiYearCalendar: 'DatePicker',
   MuiMonthCalendar: 'DatePicker',
   MuiDigitalClock: 'DatePicker',
   MuiMultiSectionDigitalClockSection: 'DatePicker',
   MuiPickersToolbar: 'DatePicker',
+  MuiDateRangeCalendar: 'DatePicker',
 };
 
 /**
@@ -320,6 +314,7 @@ export const familyComponentOrder: Record<string, string[]> = {
   ButtonGroup: ['ButtonGroup', 'Button'],
   ToggleButton: ['ToggleButton', 'SvgIcon'],
   Stepper: ['Stepper', 'Step', 'StepLabel', 'StepIcon', 'StepConnector', 'StepContent'],
+  List: ['List', 'ListItemButton', 'ListItem', 'ListItemIcon', 'ListItemAvatar', 'ListItemText'],
   Table: ['TableCell', 'TableSortLabel', 'TablePagination'],
   Select: ['InputBase', 'Select'],
   TextField: [
@@ -457,7 +452,7 @@ const WEAVE_FAMILY_ORDER = [
   'Dialog',
   'Fab',
   'Pagination',
-  'ListItemButton',
+  'List',
   'SnackbarContent',
   'BottomNavigation',
   // Pinned after the core (out of usage-rank position) — minor single-knob families.
@@ -510,7 +505,7 @@ export const shownFamilies = new Set<string>([
   'Dialog',
   'Fab',
   'Pagination',
-  'ListItemButton',
+  'List',
   'SnackbarContent',
   'BottomNavigation',
   'TreeView',
@@ -665,6 +660,34 @@ export const densityLinkedWrites: Record<string, DensityLinkedWrite[]> = {
       wrap: (v) => `calc(50% + 20px + ${v})`,
     },
   ],
+  // PickerDay size (the "PickerDay · size" virtual knob's key member) -> the
+  // transformed day-size consumers: skeleton day (!important beats inline props),
+  // 6-week + loading container heights (calc). Plain-value members ride the
+  // virtual knob directly.
+  'MuiPickerDay|root|base||--PickerDay-size': [
+    { id: 'MuiDayCalendarSkeleton|daySkeleton|base||width', wrap: (v) => `${v} !important` },
+    { id: 'MuiDayCalendarSkeleton|daySkeleton|base||height', wrap: (v) => `${v} !important` },
+    { id: 'MuiDayCalendar|slideTransition|base||minHeight', wrap: (v) => `calc((${v} + 4px) * 6)` },
+    {
+      id: 'MuiDayCalendar|loadingContainer|base||minHeight',
+      wrap: (v) => `calc((${v} + 4px) * 6)`,
+    },
+    // [Pro] Range calendar slideTransition minHeight (scoped under MuiDateRangeCalendar
+    // root to beat Pro's hardcoded InnerDayCalendarForRange) mirrors the single one.
+    {
+      id: 'MuiDateRangeCalendar|root|base|& .MuiDayCalendar-slideTransition|minHeight',
+      wrap: (v) => `calc((${v} + 4px) * 6)`,
+    },
+  ],
+  // DateCalendar root width -> the 6-week grid floor width (they're the same box).
+  'MuiDateCalendar|root|base||width': [
+    { id: 'MuiDayCalendar|slideTransition|base||minWidth', wrap: (v) => v },
+    // [Pro] Range calendar slideTransition minWidth mirrors the single calendar width.
+    {
+      id: 'MuiDateRangeCalendar|root|base|& .MuiDayCalendar-slideTransition|minWidth',
+      wrap: (v) => v,
+    },
+  ],
   // Node touch target -> connector + StepContent offsets (touchTarget/2 = icon
   // center). minWidth drives every horizontal offset: connector margins, and the
   // StepContent border margin + its equal padding (margin+padding = touchTarget,
@@ -701,6 +724,20 @@ export const densityLinkedWrites: Record<string, DensityLinkedWrite[]> = {
     { id: 'MuiOutlinedInput|input|multiline=true||paddingInline', wrap: () => '0px' },
     { id: 'MuiOutlinedInput|input|fn:4q8gcu||paddingLeft', wrap: () => '0px' },
     { id: 'MuiOutlinedInput|input|fn:ho424h||paddingRight', wrap: () => '0px' },
+  ],
+  // Picker outlined inline pad -> the InputLabel X broadcast (mirrors OutlinedInput).
+  'MuiPickersOutlinedInput|root|base||paddingInline': [
+    {
+      id: 'MuiPickersOutlinedInput|root|base|.MuiInputLabel-root:has(~ &)|--_inlinePad',
+      wrap: (v) => v,
+    },
+  ],
+  // Picker filled inline pad (on the sectionsContainer) -> the InputLabel X broadcast.
+  'MuiPickersFilledInput|sectionsContainer|base||paddingInline': [
+    {
+      id: 'MuiPickersFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_inlinePad',
+      wrap: (v) => v,
+    },
   ],
   'MuiFilledInput|input|base||paddingInline': [
     { id: 'MuiFilledInput|root|multiline=true||paddingInline', wrap: (v) => v },
@@ -835,6 +872,22 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
     members: [
       'MuiStepLabel|iconContainer|base||minWidth',
       'MuiStepLabel|iconContainer|base||minHeight',
+    ],
+  },
+  // Day-cell size — one knob drives PickerDay + DateRangePickerDay --PickerDay-size
+  // and the weekday/week-number box widths (members); the skeleton (!important) and
+  // 6-week/loading heights (calc) follow via linked writes off --PickerDay-size.
+  {
+    id: 'virtual:MuiPickerDay:size',
+    label: 'PickerDay · size',
+    group: 'DatePicker',
+    members: [
+      'MuiPickerDay|root|base||--PickerDay-size',
+      'MuiDateRangePickerDay|root|base||--PickerDay-size',
+      'MuiDayCalendar|weekDayLabel|base||width',
+      'MuiDayCalendar|weekNumberLabel|base||width',
+      'MuiDayCalendar|weekNumber|base||width',
+      'MuiDayCalendar|weekNumber|base||height',
     ],
   },
   // Select caret machinery — one value writes both master hooks (--_caret and

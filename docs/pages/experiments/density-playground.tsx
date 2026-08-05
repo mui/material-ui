@@ -78,6 +78,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CloseIcon from '@mui/icons-material/Close';
+import FolderIcon from '@mui/icons-material/Folder';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -128,7 +130,9 @@ import { MonthCalendar } from '@mui/x-date-pickers/MonthCalendar';
 import { DigitalClock } from '@mui/x-date-pickers/DigitalClock';
 import { MultiSectionDigitalClock } from '@mui/x-date-pickers/MultiSectionDigitalClock';
 import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import dayjs from 'dayjs';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 import {
@@ -326,6 +330,7 @@ const PADDING_RING_SLOTS = [
   '.MuiDialogTitle-root',
   '.MuiDialogContent-root',
   '.MuiDialogActions-root',
+  '.MuiList-root',
   '.MuiTableCell-root',
   '.MuiSnackbarContent-root',
   '.MuiSnackbarContent-message',
@@ -427,6 +432,7 @@ const MARGIN_MARKER_SELECTORS = [
   '.MuiFormControlLabel-labelPlacementEnd',
   '.MuiFormControlLabel-labelPlacementStart',
   '.MuiAutocomplete-tag',
+  '[data-canvas-component="List"] .MuiListItemText-root',
 ];
 
 // Height-measure targets: the box whose height each demo is about — mostly
@@ -479,6 +485,8 @@ const MEASURE_SLOTS = [
   '[data-canvas-component="DataGrid"] .MuiDataGrid-aiAssistantPanelHeader',
   '[data-canvas-component="BottomNavigation"] .MuiBottomNavigation-root',
   '[data-canvas-component="Dialog"] .MuiDialog-paper',
+  // Plain ListItem minHeight floor (interactive rows measure via ButtonBase).
+  '[data-canvas-component="List"] [data-plain-list] .MuiListItem-root',
   // Step node circle = the StepIcon root fontSize seam (22px, w/h = 1em).
   '[data-canvas-component="Stepper"] .MuiStepIcon-root',
   '[data-canvas-component="TreeView"] .MuiTreeItem-content',
@@ -486,8 +494,6 @@ const MEASURE_SLOTS = [
   '[data-canvas-component="DatePicker"] .MuiDayCalendar-weekDayLabel:first-of-type',
   '[data-canvas-component="DatePicker"] .MuiDayCalendar-weekContainer:first-of-type .MuiPickerDay-root:first-of-type',
   '[data-canvas-component="DatePicker"] .MuiPickersCalendarHeader-root',
-  '[data-canvas-component="DatePicker"] .MuiYearCalendar-button:first-of-type',
-  '[data-canvas-component="DatePicker"] .MuiMonthCalendar-button:first-of-type',
   '[data-canvas-component="DatePicker"] .MuiDigitalClock-item:first-of-type',
   '[data-canvas-component="DatePicker"] .MuiMultiSectionDigitalClockSection-item:first-of-type',
 ];
@@ -2641,6 +2647,20 @@ function DatePickerMatrix() {
       >
         <div>
           <Typography variant="caption" color="text.secondary">
+            basic pickers — field inputs; calendar / range popovers open on click
+          </Typography>
+          <Stack direction="row" spacing={4} useFlexGap sx={{ flexWrap: 'wrap', mt: 1 }}>
+            <DatePicker label="Basic date picker" defaultValue={PICKER_DATE} />
+            <DatePicker
+              label="Filled"
+              defaultValue={PICKER_DATE}
+              slotProps={{ textField: { variant: 'filled' } }}
+            />
+            <DateRangePicker defaultValue={[PICKER_DATE, PICKER_DATE.add(7, 'day')]} />
+          </Stack>
+        </div>
+        <div>
+          <Typography variant="caption" color="text.secondary">
             day calendar (+ week numbers) — day size var drives cells/labels/6-week container ·
             header spacing · root box raw per preset
           </Typography>
@@ -3252,41 +3272,103 @@ function DialogStaticComposition() {
   );
 }
 
-// `dense` toggles the whole nav list — dense and default rows don't mix in a
-// real sidebar, so density is two separate lists.
-function NavListDemo({ dense = false }: { dense?: boolean }) {
-  const items = ['Inbox', 'Starred', 'Sent', 'Drafts'];
+// Leading-slot variants (image): none, letter avatar, checkered avatar, dashed
+// placeholder. Thunks so each render gets a fresh element.
+const LIST_LEADING: Array<() => React.ReactNode> = [
+  () => null,
+  () => <Avatar sx={{ width: 24, height: 24, fontSize: 12 }}>F</Avatar>,
+  () => (
+    <Avatar
+      variant="rounded"
+      sx={{
+        width: 24,
+        height: 24,
+        background: 'repeating-conic-gradient(#000 0% 25%, #fff 0% 50%) 50% / 8px 8px',
+      }}
+    >
+      {' '}
+    </Avatar>
+  ),
+  () => (
+    <Avatar
+      sx={{
+        width: 24,
+        height: 24,
+        bgcolor: 'transparent',
+        border: '1px dashed',
+        borderColor: 'text.disabled',
+      }}
+    >
+      {' '}
+    </Avatar>
+  ),
+];
+
+// One list row — official structure: ListItem (secondaryAction, disablePadding)
+// > ListItemButton > [checkbox in ListItemIcon] [avatar in ListItemAvatar] text.
+// Official structure: ListItem (disablePadding) with an actionable IconButton in
+// `secondaryAction` > ListItemButton > [checkbox in ListItemIcon] [icon in
+// ListItemIcon | avatar in ListItemAvatar] ListItemText (primary + optional secondary).
+function ListItemRow({
+  leading,
+  icon = false,
+  withCheckbox = false,
+  secondary = false,
+  dense = false,
+}: {
+  leading?: React.ReactNode;
+  icon?: boolean;
+  withCheckbox?: boolean;
+  secondary?: boolean;
+  dense?: boolean;
+}) {
   return (
-    <div>
-      <Typography variant="caption" color="text.secondary">
-        {dense ? 'dense' : 'default'}
-      </Typography>
-      <List sx={{ width: 220, border: '1px solid', borderColor: 'divider' }}>
-        {items.map((label, i) => (
-          <ListItemButton key={label} dense={dense} selected={i === 1}>
-            <ListItemIcon>
-              <InboxIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary={<span className="density-debug-text">{label}</span>} />
-          </ListItemButton>
-        ))}
-      </List>
-    </div>
+    <ListItem
+      disablePadding
+      secondaryAction={
+        <IconButton edge="end" aria-label="more">
+          <MoreVertIcon />
+        </IconButton>
+      }
+    >
+      <ListItemButton dense={dense}>
+        {withCheckbox && (
+          <ListItemIcon>
+            {/* Non-interactive indicator — the ListItemButton is the actionable
+                element; a real Checkbox here would nest interactive controls. */}
+            <CheckBoxOutlineBlankIcon />
+          </ListItemIcon>
+        )}
+        {icon && (
+          <ListItemIcon>
+            <FolderIcon />
+          </ListItemIcon>
+        )}
+        {leading && <ListItemAvatar>{leading}</ListItemAvatar>}
+        <ListItemText
+          primary={<span className="density-debug-text">Item name</span>}
+          secondary={secondary ? <span className="density-debug-text">Secondary text</span> : null}
+        />
+      </ListItemButton>
+    </ListItem>
   );
 }
 
-// Plain (non-interactive) rows — MuiListItem's own minHeight floor target.
+// Plain (non-interactive) rows — MuiListItem's own minHeight + padding target.
 function PlainListDemo() {
   const items = ['Inbox', 'Starred', 'Sent'];
   return (
     <div>
-      <Typography variant="caption" color="text.secondary">
-        plain
+      <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+        plain (no ListItemButton)
       </Typography>
-      <List sx={{ width: 220, border: '1px solid', borderColor: 'divider' }}>
+      <List data-plain-list sx={{ width: 240, border: '1px solid', borderColor: 'divider' }}>
         {items.map((label) => (
           <ListItem key={label}>
-            <ListItemText primary={<span className="density-debug-text">{label}</span>} />
+            <ListItemText
+              primary={<span className="density-debug-text">{label}</span>}
+              secondary={<span className="density-debug-text">Secondary text</span>}
+            />
           </ListItem>
         ))}
       </List>
@@ -3294,7 +3376,7 @@ function PlainListDemo() {
   );
 }
 
-function ListItemButtonMatrix() {
+function ListMatrix() {
   return (
     <Stack
       direction="row"
@@ -3302,8 +3384,41 @@ function ListItemButtonMatrix() {
       useFlexGap
       sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
     >
-      <NavListDemo />
-      <NavListDemo dense />
+      <div>
+        <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+          default
+        </Typography>
+        <List sx={{ width: 340 }}>
+          {LIST_LEADING.map((leading, i) => (
+            <ListItemRow key={`a${i}`} leading={leading()} />
+          ))}
+          <Divider component="li" sx={{ my: 1 }} />
+          {LIST_LEADING.map((leading, i) => (
+            <ListItemRow key={`b${i}`} leading={leading()} withCheckbox />
+          ))}
+        </List>
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+          two-line (secondary text) + icon
+        </Typography>
+        <List sx={{ width: 340 }}>
+          <ListItemRow icon secondary />
+          <ListItemRow leading={LIST_LEADING[1]()} secondary />
+          <ListItemRow withCheckbox leading={LIST_LEADING[2]()} secondary />
+          <ListItemRow secondary />
+        </List>
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+          dense
+        </Typography>
+        <List sx={{ width: 340 }}>
+          {LIST_LEADING.map((leading, i) => (
+            <ListItemRow key={`d${i}`} leading={leading()} dense />
+          ))}
+        </List>
+      </div>
       <PlainListDemo />
     </Stack>
   );
@@ -3514,9 +3629,10 @@ const COMPONENT_DEFS = {
     canvasLabel: 'Dialog — title / content / actions padding',
     Matrix: React.memo(DialogMatrix),
   },
-  ListItemButton: {
-    canvasLabel: 'ListItemButton — block padding (+ dense) + gutters',
-    Matrix: React.memo(ListItemButtonMatrix),
+  List: {
+    canvasLabel:
+      'List — item block padding (+ dense) + gutters, ListItemIcon minWidth, ListItemText margin, plain ListItem minHeight',
+    Matrix: React.memo(ListMatrix),
   },
   ButtonGroup: {
     canvasLabel: 'ButtonGroup — min-width floor + Button padding (small/medium/large)',

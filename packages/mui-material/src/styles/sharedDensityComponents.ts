@@ -19,6 +19,38 @@ import { inputAdornmentClasses } from '../InputAdornment';
 import { listItemIconClasses } from '../ListItemIcon';
 
 /**
+ * Day-cell size fan-out — called from each `enhance*Density` with that preset's
+ * day size. No shared var: PickerDay/DateRangePickerDay each redeclare
+ * `--PickerDay-size` on their own root (shadowing any ancestor), so every consumer
+ * takes the concrete size. The playground groups these under one "PickerDay · size"
+ * virtual knob (members) + linked writes (the !important skeleton, the calc heights).
+ */
+export function applyPickerDaySize(
+  components: NonNullable<EnhanceableTheme['components']>,
+  size: string,
+): void {
+  const sixWeeks = `calc((${size} + 4px) * 6)`;
+  // Day cells — override each component's own --PickerDay-size.
+  addRootOverride(components, 'MuiPickerDay', { '--PickerDay-size': size });
+  addRootOverride(components, 'MuiDateRangePickerDay', { '--PickerDay-size': size });
+  // Weekday / week-number box widths follow the day column (heights are separate,
+  // emitted per preset).
+  addRootOverride(components, 'MuiDayCalendar', { width: size }, 'weekDayLabel');
+  addRootOverride(components, 'MuiDayCalendar', { width: size }, 'weekNumberLabel');
+  addRootOverride(components, 'MuiDayCalendar', { width: size, height: size }, 'weekNumber');
+  // 6-week grid + loading container heights (master (DAY_SIZE + 2·DAY_MARGIN) * 6).
+  addRootOverride(components, 'MuiDayCalendar', { minHeight: sixWeeks }, 'slideTransition');
+  addRootOverride(components, 'MuiDayCalendar', { minHeight: sixWeeks }, 'loadingContainer');
+  // Loading skeleton day — !important beats Skeleton's inline width/height props.
+  addRootOverride(
+    components,
+    'MuiDayCalendarSkeleton',
+    { width: `${size} !important`, height: `${size} !important` },
+    'daySkeleton',
+  );
+}
+
+/**
  * PRIVATE shared component mapping used by the three `enhance*Density` presets
  * (not re-exported from the styles barrel — presets are the public surface).
  *
@@ -68,15 +100,17 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addRootOverride(enhanced.components, 'MuiIconButton', {
     // Uniform padding per size = density steps (master: 5/8/12 for
     // small/medium/large — same shape as Button's own per-size padding).
-    // fontSize (the 1em-child sizing seam, 18/24/28) and the edge start/end
-    // negative margins (flush-alignment offsets, not padding-derived) stay
-    // frozen at master — icon visual size is owned by SvgIcon's own fontSize
-    // prop knob elsewhere, and the edge offsets aren't a clean step ratio.
+    // fontSize (the 1em-child sizing seam, 18/24/28) stays frozen — icon visual
+    // size is owned by SvgIcon's own fontSize prop knob elsewhere.
+    // edge start/end: -4px flush-margins (override master's -12/-3; one knob per
+    // side, wins all sizes as the last-applied variant).
     variants: [
       { props: { size: 'small' }, style: { padding: d['xx-small'] } },
       // semantic/spacing/fixed/xs (4px) — contentWrapper uniform padding
       { props: { size: 'medium' }, style: { padding: 4 } },
       { props: { size: 'large' }, style: { padding: d.large } },
+      { props: { edge: 'start' }, style: { marginLeft: '-4px' } },
+      { props: { edge: 'end' }, style: { marginRight: '-4px' } },
     ],
   });
   // Master resets MenuItem min-height to `auto` at sm-up (non-dense only);
@@ -252,6 +286,119 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'input',
   );
+  // MUI X picker line box — every PickersInputBase slot that hardcodes 1.4375em
+  // (sectionsContainer, section, sectionContent→`content` key) follows body1 instead,
+  // matching InputBase. On the base, so standard/outlined/filled all inherit it.
+  addRootOverride(
+    enhanced.components,
+    'MuiPickersInputBase',
+    { lineHeight: enhanced.typography?.body1?.lineHeight },
+    'sectionsContainer',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiPickersInputBase',
+    { lineHeight: enhanced.typography?.body1?.lineHeight },
+    'section',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiPickersInputBase',
+    { lineHeight: enhanced.typography?.body1?.lineHeight },
+    'content',
+  );
+  // MUI X picker outlined field — mirror OutlinedInput's density box (X uses
+  // PickersOutlinedInput, not OutlinedInput, and ships no private vars of its own).
+  // Root: inline pad (master 14px) + broadcasts — --_outlinedInputPadBlock to the
+  // FormControl and --_inlinePad/--_restY to the shared Material InputLabel (label
+  // sibling, input direct child of the styled(FormControl) root). SectionsContainer:
+  // line box + block pad. Box = body1 line + 2·padBlock + outline = OutlinedInput's.
+  addRootOverride(enhanced.components, 'MuiPickersOutlinedInput', {
+    paddingInline: d.small,
+    [`.${formControlClasses.root}:has(> &)`]: {
+      '--_outlinedInputPadBlock': `calc(${d['xx-small']} + 2px)`,
+    },
+    [`.${inputLabelClasses.root}:has(~ &)`]: {
+      '--_restY': 'var(--_outlinedInputPadBlock)',
+      '--_inlinePad': d.small,
+    },
+    variants: [
+      {
+        props: { inputSize: 'small' },
+        style: {
+          [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d['xx-small'] },
+        },
+      },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiPickersOutlinedInput',
+    {
+      // Line box comes from the base MuiPickersInputBase override (body1); block pad
+      // then lands the box on OutlinedInput's height 1:1.
+      paddingBlock: `var(--_outlinedInputPadBlock, calc(${d['xx-small']} + 2px))`,
+      paddingInline: 0,
+      variants: [
+        {
+          props: { inputSize: 'small' },
+          style: { paddingBlock: `var(--_outlinedInputPadBlock, ${d['xx-small']})` },
+        },
+      ],
+    },
+    'sectionsContainer',
+  );
+  // MUI X picker filled field — mirror FilledInput's asymmetric density box (both
+  // pads on the sectionsContainer for filled). Root broadcasts --_filledInputPadTop/
+  // Bottom to the FormControl and --_inlinePad/--_restY/--_shrinkY to the InputLabel.
+  addRootOverride(enhanced.components, 'MuiPickersFilledInput', {
+    [`.${formControlClasses.root}:has(> &)`]: {
+      '--_filledInputPadTop': d.large,
+      '--_filledInputPadBottom': d['x-small'],
+    },
+    [`.${inputLabelClasses.root}:has(~ &)`]: {
+      '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
+      '--_shrinkY': '7px',
+      '--_inlinePad': d.small,
+    },
+    variants: [
+      {
+        props: { inputSize: 'small' },
+        style: {
+          [`.${formControlClasses.root}:has(> &)`]: {
+            '--_filledInputPadTop': `calc(${d.medium} + 2px)`,
+            '--_filledInputPadBottom': d['xx-small'],
+          },
+          [`.${inputLabelClasses.root}:has(~ &)`]: {
+            '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
+            '--_shrinkY': '4px',
+          },
+        },
+      },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiPickersFilledInput',
+    {
+      // Line box from the base MuiPickersInputBase override (body1); block pad rides the
+      // top/bottom vars, inline pad (master 12px) direct. hiddenLabel: symmetric block pad.
+      paddingTop: `var(--_filledInputPadTop, ${d.large})`,
+      paddingBottom: `var(--_filledInputPadBottom, ${d.small})`,
+      paddingInline: d.small,
+      variants: [
+        {
+          props: { hiddenLabel: true },
+          style: { paddingBlock: `calc(${d['xx-small']} + 2px)` },
+        },
+        {
+          props: { hiddenLabel: true, inputSize: 'small' },
+          style: { paddingBlock: d['xx-small'] },
+        },
+      ],
+    },
+    'sectionsContainer',
+  );
   addRootOverride(
     enhanced.components,
     'MuiFilledInput',
@@ -384,6 +531,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           },
         },
       },
+      // edge start/end: -4px flush-margins (override master's -12/-3; all sizes).
+      { props: { edge: 'start' }, style: { marginLeft: '-4px' } },
+      { props: { edge: 'end' }, style: { marginRight: '-4px' } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiRadio', {
@@ -414,6 +564,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           },
         },
       },
+      // edge start/end: -4px flush-margins (override master's -12/-3; all sizes).
+      { props: { edge: 'start' }, style: { marginLeft: '-4px' } },
+      { props: { edge: 'end' }, style: { marginRight: '-4px' } },
     ],
   });
   // Separator inline margins (spacing step) on the separator slot.
@@ -700,12 +853,29 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'paper',
   );
+  // Mirror MenuItem (design): same touch-target floors + spacing steps. No sm-up
+  // re-assert (ListItemButton has no master minHeight media reset, unlike MenuItem).
   addRootOverride(enhanced.components, 'MuiListItemButton', {
-    // Density axis is the `dense` boolean; inline pad only when gutters are on.
     variants: [
-      { props: { dense: false }, style: { paddingBlock: d.small } },
+      { props: { dense: false }, style: { minHeight: '32px', paddingBlock: d['xx-small'] } },
+      { props: { dense: true }, style: { minHeight: '28px', paddingBlock: d['xx-small'] } },
+      { props: { dense: false, disableGutters: false }, style: { paddingInline: d['x-small'] } },
+      { props: { dense: true, disableGutters: false }, style: { paddingInline: d.medium } },
+    ],
+  });
+  // Match MenuItem's icon column (24px). MuiListItemIcon global — hidden in Menu
+  // (MenuItem's nested seam owns it there); surfaces as its own knob in List.
+  addRootOverride(enhanced.components, 'MuiListItemIcon', { minWidth: 24 });
+  // ListItemAvatar column floor (32px, raw px sizing).
+  addRootOverride(enhanced.components, 'MuiListItemAvatar', { minWidth: 32 });
+  // Plain ListItem (no ListItemButton) mirrors MenuItem spacing; disablePadding
+  // zeroes it when a ListItemButton owns the row. minHeight stays medium-only.
+  addRootOverride(enhanced.components, 'MuiListItem', {
+    variants: [
+      { props: { dense: false }, style: { paddingBlock: d['xx-small'] } },
       { props: { dense: true }, style: { paddingBlock: d['xx-small'] } },
-      { props: { disableGutters: false }, style: { paddingInline: d.large } },
+      { props: { dense: false, disableGutters: false }, style: { paddingInline: d['x-small'] } },
+      { props: { dense: true, disableGutters: false }, style: { paddingInline: d.medium } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
@@ -948,51 +1118,27 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'content',
   );
-  addRootOverride(enhanced.components, 'MuiPickerDay', {
-    '--PickerDay-size': 'var(--_daySize)',
-  });
-  addRootOverride(
-    enhanced.components,
-    'MuiDayCalendar',
-    { width: 'var(--_daySize)', height: 'var(--_daySize)' },
-    'weekNumber',
-  );
-  // 6-week container: master minHeight = (DAY_SIZE + 2*DAY_MARGIN) * 6 = 240.
-  addRootOverride(
-    enhanced.components,
-    'MuiDayCalendar',
-    { minHeight: 'calc((var(--_daySize) + 4px) * 6)' },
-    'slideTransition',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiDayCalendar',
-    { minHeight: 'calc((var(--_daySize) + 4px) * 6)' },
-    'loadingContainer',
-  );
   addRootOverride(
     enhanced.components,
     'MuiPickersCalendarHeader',
     { marginRight: d['x-small'] },
     'label',
   );
-  addRootOverride(enhanced.components, 'MuiYearCalendar', {
-    rowGap: d.medium,
-    variants: [
-      { props: { yearsPerRow: 3 }, style: { paddingBlock: d['x-small'], columnGap: d['x-large'] } },
-    ],
-  });
+  addRootOverride(enhanced.components, 'MuiYearCalendar', { rowGap: '4px', width: '284px' });
+  addRootOverride(enhanced.components, 'MuiYearCalendar', { width: '56.5px' }, 'button');
   addRootOverride(enhanced.components, 'MuiMonthCalendar', {
-    rowGap: d.large,
-    paddingBlock: d.small,
-    variants: [{ props: { monthsPerRow: 3 }, style: { columnGap: d['x-large'] } }],
+    rowGap: d['xx-small'],
+    width: '284px',
   });
+  // Day-cell sizing (PickerDay/DateRangePickerDay --PickerDay-size, weekday/
+  // week-number box widths, 6-week + loading heights, skeleton) is a per-preset
+  // concrete fan-out — see applyPickerDaySize, called from each enhance*Density.
   // Digital clocks: item padding steps (master 8 16 / 8); the 2px 4px item margin is
   // frozen — the scroll positioning math subtracts the first item's 4px in JS.
   addRootOverride(
     enhanced.components,
     'MuiDigitalClock',
-    { padding: `${d.small} ${d.large}` },
+    { padding: `${d['xx-small']} ${d.medium}` },
     'item',
   );
   // Pickers toolbar (master su(2,3)); scoped to portrait — landscape has its own
@@ -1356,6 +1502,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           },
         },
       },
+      // edge start/end: -4px flush-margins (override master's -8; on the Switch root).
+      { props: { edge: 'start' }, style: { marginLeft: '-4px' } },
+      { props: { edge: 'end' }, style: { marginRight: '-4px' } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiButtonGroup', {
@@ -1688,14 +1837,14 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // Pickers calendar-header spacing (min/max heights stay per-preset inline).
   addRootOverride(enhanced.components, 'MuiPickersCalendarHeader', {
     marginTop: d.medium,
-    marginBottom: d['xx-small'],
-    paddingLeft: d['x-large'],
+    marginBottom: d.medium,
+    paddingLeft: d.medium,
     paddingRight: d.medium,
   });
   addRootOverride(
     enhanced.components,
     'MuiMultiSectionDigitalClockSection',
-    { padding: d.small },
+    { padding: `${d['xx-small']} ${d.medium}` },
     'item',
   );
 }

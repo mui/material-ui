@@ -6,7 +6,7 @@ import {
   DensityScale,
   EnhanceableTheme,
 } from './densityScale';
-import applySharedDensity from './sharedDensityComponents';
+import applySharedDensity, { applyPickerDaySize } from './sharedDensityComponents';
 
 // Explicit px (self-contained, not spacing-derived).
 const scale: DensityScale = {
@@ -78,14 +78,15 @@ export default function enhanceMediumDensity<T extends EnhanceableTheme>(theme: 
   addRootOverride(enhanced.components, 'MuiIconButton', {
     variants: [{ props: { size: 'medium' }, style: { minWidth: '32px', minHeight: '32px' } }],
   });
-  // List-row floor: semantic/size/navigation/list-item/min-height (32px) — the
-  // capture's MenuItem 3.0 Min height. MenuItem already carries it (shared,
-  // dense 28); ListItem/ListItemButton get the same floor here. Raw px (sizing
-  // policy); medium-only; dense keeps master (no captured dense value).
-  addRootOverride(enhanced.components, 'MuiListItem', {
-    variants: [{ props: { dense: false }, style: { minHeight: '32px' } }],
+  // Icon glyph size inside a medium IconButton (sizing raw px; medium-only).
+  addRootOverride(enhanced.components, 'MuiIconButton', {
+    variants: [{ props: { size: 'medium' }, style: { fontSize: '16px' } }],
   });
-  addRootOverride(enhanced.components, 'MuiListItemButton', {
+  // List-row floor: semantic/size/navigation/list-item/min-height (32px) — the
+  // capture's MenuItem 3.0 Min height — plain ListItem gets the floor here only
+  // (medium-only, dense keeps master). ListItemButton now carries it in shared
+  // (mirrors MenuItem across presets, both dense states).
+  addRootOverride(enhanced.components, 'MuiListItem', {
     variants: [{ props: { dense: false }, style: { minHeight: '32px' } }],
   });
   // Medium-only: global icon size per fontSize variant (master: 20/24/35px).
@@ -209,67 +210,41 @@ export default function enhanceMediumDensity<T extends EnhanceableTheme>(theme: 
   // Row height rides upstream's own hook (content height: var(--TreeView-itemHeight,
   // unset)); sizing raw px. Master is unset (content-sized, about 32) — normal keeps it.
   addRootOverride(enhanced.components, 'MuiTreeItem', { '--TreeView-itemHeight': '32px' });
-  // MUI X Date/Time Pickers. Day geometry is JS constants (DAY_SIZE 36 / DAY_MARGIN 2)
-  // baked into PickerDay's own vars AND raw into the weekday/week-number boxes and the
-  // 6-week container math — one private var (on the DayCalendar root, which owns
-  // every consumer; a DateCalendar copy would shadow it for descendants and break
-  // the knob) drives them all (Dialog-margin pattern). Day margin (2px) stays
-  // frozen — sub-step, and the scroll/positioning math reuses it.
-  addRootOverride(enhanced.components, 'MuiDayCalendar', { '--_daySize': '36px' });
-  // Weekday/week-number boxes: widths follow the day var; label heights raw.
-  addRootOverride(
-    enhanced.components,
-    'MuiDayCalendar',
-    { width: 'var(--_daySize)', height: '40px' },
-    'weekDayLabel',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiDayCalendar',
-    { width: 'var(--_daySize)', height: '40px' },
-    'weekNumberLabel',
-  );
+  // MUI X Date/Time Pickers — day-cell size fan-out (PickerDay/DateRangePickerDay
+  // --PickerDay-size, weekday/week-number box widths, 6-week + loading heights,
+  // skeleton) at this preset's day size.
+  applyPickerDaySize(enhanced.components, '32px');
+  // Weekday / week-number label heights (independent of day size; widths in the fan-out).
+  addRootOverride(enhanced.components, 'MuiDayCalendar', { height: '18px' }, 'weekDayLabel');
+  addRootOverride(enhanced.components, 'MuiDayCalendar', { height: '18px' }, 'weekNumberLabel');
   // Calendar root: master 336×320 = header block + weekday row + 6 weeks / 7 day
   // columns + 40 slack. Raw per-preset (matches this preset's day/header math) — the
   // day var can't reach here (it lives on the DayCalendar DESCENDANT; an ancestor
   // copy would shadow the knob), so day-size knob edits don't reflow the root box.
   addRootOverride(enhanced.components, 'MuiDateCalendar', {
-    height: '336px',
+    height: '298px',
     // The PickerViewRoot base pins maxHeight at 336 — without moving it the comfort
     // height is clamped and the last weeks clip (overflow hidden).
-    maxHeight: '336px',
-    width: '320px',
+    maxHeight: '298px',
+    width: '284px',
+  });
+  // 6-week grid floor width = the calendar content width (matches DateCalendar root).
+  addRootOverride(enhanced.components, 'MuiDayCalendar', { minWidth: '284px' }, 'slideTransition');
+  // [Pro] Range calendar: Pro's unnamed `InnerDayCalendarForRange` styled hardcodes
+  // minWidth 312 / minHeight (DAY_RANGE_SIZE) and forwards its class onto the
+  // slideTransition, beating the community DayCalendar slot override. Reach it via a
+  // descendant selector under the themeable MuiDateRangeCalendar root — (0,2,0)
+  // specificity wins over the inner styled's single class. Mirrors the single
+  // calendar (linked writes off DateCalendar width + PickerDay size keep it in sync).
+  addRootOverride(enhanced.components, 'MuiDateRangeCalendar', {
+    '& .MuiDayCalendar-slideTransition': { minWidth: '284px', minHeight: 'calc((32px + 4px) * 6)' },
   });
   // Calendar header: min/max pinned together (upstream pins both against a Safari
   // jump); height raw — spacing steps shared across presets.
   addRootOverride(enhanced.components, 'MuiPickersCalendarHeader', {
-    minHeight: '40px',
-    maxHeight: '40px',
+    minHeight: '32px',
+    maxHeight: '32px',
   });
-  // Year/month grid buttons (master 72×36) — sizing raw; the Year filler (last-row
-  // spacer) mirrors the button box. Grid spacing: row gaps + block padding + the
-  // 3-per-row columnGap ride steps (master 12/6/24 year, 16/8/24 month). Year's
-  // paddingBlock and both columnGaps scope to the default 3-per-row variant — the
-  // 4-per-row variant redefines those properties (padding '0 2px', columnGap 0) and
-  // an unconditional emission would clobber it.
-  addRootOverride(
-    enhanced.components,
-    'MuiYearCalendar',
-    { width: '72px', height: '36px' },
-    'button',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiYearCalendar',
-    { width: '72px', height: '36px' },
-    'buttonFiller',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiMonthCalendar',
-    { width: '72px', height: '36px' },
-    'button',
-  );
   addRootOverride(enhanced.components, 'MuiMultiSectionDigitalClockSection', {
     width: '56px',
   });

@@ -6,7 +6,7 @@ import {
   DensityScale,
   EnhanceableTheme,
 } from './densityScale';
-import applySharedDensity from './sharedDensityComponents';
+import applySharedDensity, { applyPickerDaySize } from './sharedDensityComponents';
 
 const scale: DensityScale = {
   'xx-small': '8px',
@@ -136,26 +136,11 @@ export default function enhanceLowDensity<T extends EnhanceableTheme>(theme: T) 
   // Row height rides upstream's own hook (content height: var(--TreeView-itemHeight,
   // unset)); sizing raw px. Master is unset (content-sized, about 32) — normal keeps it.
   addRootOverride(enhanced.components, 'MuiTreeItem', { '--TreeView-itemHeight': '40px' });
-  // MUI X Date/Time Pickers. Day geometry is JS constants (DAY_SIZE 36 / DAY_MARGIN 2)
-  // baked into PickerDay's own vars AND raw into the weekday/week-number boxes and the
-  // 6-week container math — one private var (on the DayCalendar root, which owns
-  // every consumer; a DateCalendar copy would shadow it for descendants and break
-  // the knob) drives them all (Dialog-margin pattern). Day margin (2px) stays
-  // frozen — sub-step, and the scroll/positioning math reuses it.
-  addRootOverride(enhanced.components, 'MuiDayCalendar', { '--_daySize': '44px' });
-  // Weekday/week-number boxes: widths follow the day var; label heights raw.
-  addRootOverride(
-    enhanced.components,
-    'MuiDayCalendar',
-    { width: 'var(--_daySize)', height: '48px' },
-    'weekDayLabel',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiDayCalendar',
-    { width: 'var(--_daySize)', height: '48px' },
-    'weekNumberLabel',
-  );
+  // MUI X Date/Time Pickers — day-cell size fan-out (see applyPickerDaySize).
+  applyPickerDaySize(enhanced.components, '44px');
+  // Weekday / week-number label heights (independent of day size; widths in the fan-out).
+  addRootOverride(enhanced.components, 'MuiDayCalendar', { height: '48px' }, 'weekDayLabel');
+  addRootOverride(enhanced.components, 'MuiDayCalendar', { height: '48px' }, 'weekNumberLabel');
   // Calendar root: master 336×320 = header block + weekday row + 6 weeks / 7 day
   // columns + 40 slack. Raw per-preset (matches this preset's day/header math) — the
   // day var can't reach here (it lives on the DayCalendar DESCENDANT; an ancestor
@@ -167,36 +152,19 @@ export default function enhanceLowDensity<T extends EnhanceableTheme>(theme: T) 
     maxHeight: '406px',
     width: '376px',
   });
+  // [Pro] Range calendar: reach Pro's unnamed InnerDayCalendarForRange (hardcoded
+  // minWidth 312 / minHeight) via a descendant selector under the themeable
+  // MuiDateRangeCalendar root — (0,2,0) specificity wins. Mirrors the single
+  // calendar (linked writes off DateCalendar width + PickerDay size keep it synced).
+  addRootOverride(enhanced.components, 'MuiDateRangeCalendar', {
+    '& .MuiDayCalendar-slideTransition': { minWidth: '376px', minHeight: 'calc((44px + 4px) * 6)' },
+  });
   // Calendar header: min/max pinned together (upstream pins both against a Safari
   // jump); height raw — spacing steps shared across presets.
   addRootOverride(enhanced.components, 'MuiPickersCalendarHeader', {
     minHeight: '48px',
     maxHeight: '48px',
   });
-  // Year/month grid buttons (master 72×36) — sizing raw; the Year filler (last-row
-  // spacer) mirrors the button box. Grid spacing: row gaps + block padding + the
-  // 3-per-row columnGap ride steps (master 12/6/24 year, 16/8/24 month). Year's
-  // paddingBlock and both columnGaps scope to the default 3-per-row variant — the
-  // 4-per-row variant redefines those properties (padding '0 2px', columnGap 0) and
-  // an unconditional emission would clobber it.
-  addRootOverride(
-    enhanced.components,
-    'MuiYearCalendar',
-    { width: '84px', height: '44px' },
-    'button',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiYearCalendar',
-    { width: '84px', height: '44px' },
-    'buttonFiller',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiMonthCalendar',
-    { width: '84px', height: '44px' },
-    'button',
-  );
   addRootOverride(enhanced.components, 'MuiMultiSectionDigitalClockSection', {
     width: '64px',
   });

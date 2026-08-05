@@ -147,6 +147,22 @@ const high = {
                   padding: 'var(--mui-density-large)',
                 },
               },
+              {
+                props: {
+                  edge: 'start',
+                },
+                style: {
+                  marginLeft: '-4px',
+                },
+              },
+              {
+                props: {
+                  edge: 'end',
+                },
+                style: {
+                  marginRight: '-4px',
+                },
+              },
             ],
           },
         ],
@@ -424,6 +440,129 @@ const high = {
         ],
       },
     },
+    MuiPickersInputBase: {
+      styleOverrides: {
+        sectionsContainer: [
+          {
+            lineHeight: 1.5,
+          },
+        ],
+        section: [
+          {
+            lineHeight: 1.5,
+          },
+        ],
+        content: [
+          {
+            lineHeight: 1.5,
+          },
+        ],
+      },
+    },
+    MuiPickersOutlinedInput: {
+      styleOverrides: {
+        root: [
+          {
+            paddingInline: 'var(--mui-density-small)',
+            '.MuiFormControl-root:has(> &)': {
+              '--_outlinedInputPadBlock': 'calc(var(--mui-density-xx-small) + 2px)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'var(--_outlinedInputPadBlock)',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
+            paddingInline: 0,
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiPickersFilledInput: {
+      styleOverrides: {
+        root: [
+          {
+            '.MuiFormControl-root:has(> &)': {
+              '--_filledInputPadTop': 'var(--mui-density-large)',
+              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+              '--_shrinkY': '7px',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
+                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
+                  },
+                  '.MuiInputLabel-root:has(~ &)': {
+                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+                    '--_shrinkY': '4px',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
+            paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
+            paddingInline: 'var(--mui-density-small)',
+            variants: [
+              {
+                props: {
+                  hiddenLabel: true,
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
+                },
+              },
+              {
+                props: {
+                  hiddenLabel: true,
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
     MuiFilledInput: {
       styleOverrides: {
         input: [
@@ -670,6 +809,22 @@ const high = {
                   },
                 },
               },
+              {
+                props: {
+                  edge: 'start',
+                },
+                style: {
+                  marginLeft: '-4px',
+                },
+              },
+              {
+                props: {
+                  edge: 'end',
+                },
+                style: {
+                  marginRight: '-4px',
+                },
+              },
             ],
           },
         ],
@@ -706,6 +861,22 @@ const high = {
                   '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
                     marginRight: 'calc(-2px - var(--mui-density-x-small))',
                   },
+                },
+              },
+              {
+                props: {
+                  edge: 'start',
+                },
+                style: {
+                  marginLeft: '-4px',
+                },
+              },
+              {
+                props: {
+                  edge: 'end',
+                },
+                style: {
+                  marginRight: '-4px',
                 },
               },
             ],
@@ -919,6 +1090,22 @@ const high = {
                       transform: 'translateX(calc(var(--_width) - var(--_touchSize)))',
                     },
                   },
+                },
+              },
+              {
+                props: {
+                  edge: 'start',
+                },
+                style: {
+                  marginLeft: '-4px',
+                },
+              },
+              {
+                props: {
+                  edge: 'end',
+                },
+                style: {
+                  marginRight: '-4px',
                 },
               },
             ],
@@ -1310,7 +1497,71 @@ const high = {
                   dense: false,
                 },
                 style: {
-                  paddingBlock: 'var(--mui-density-small)',
+                  minHeight: '32px',
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  dense: true,
+                },
+                style: {
+                  minHeight: '28px',
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  dense: false,
+                  disableGutters: false,
+                },
+                style: {
+                  paddingInline: 'var(--mui-density-x-small)',
+                },
+              },
+              {
+                props: {
+                  dense: true,
+                  disableGutters: false,
+                },
+                style: {
+                  paddingInline: 'var(--mui-density-medium)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiListItemIcon: {
+      styleOverrides: {
+        root: [
+          {
+            minWidth: 24,
+          },
+        ],
+      },
+    },
+    MuiListItemAvatar: {
+      styleOverrides: {
+        root: [
+          {
+            minWidth: 32,
+          },
+        ],
+      },
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  dense: false,
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
                 },
               },
               {
@@ -1323,10 +1574,20 @@ const high = {
               },
               {
                 props: {
+                  dense: false,
                   disableGutters: false,
                 },
                 style: {
-                  paddingInline: 'var(--mui-density-large)',
+                  paddingInline: 'var(--mui-density-x-small)',
+                },
+              },
+              {
+                props: {
+                  dense: true,
+                  disableGutters: false,
+                },
+                style: {
+                  paddingInline: 'var(--mui-density-medium)',
                 },
               },
             ],
@@ -1882,52 +2143,6 @@ const high = {
         ],
       },
     },
-    MuiPickerDay: {
-      styleOverrides: {
-        root: [
-          {
-            '--PickerDay-size': 'var(--_daySize)',
-          },
-        ],
-      },
-    },
-    MuiDayCalendar: {
-      styleOverrides: {
-        weekNumber: [
-          {
-            width: 'var(--_daySize)',
-            height: 'var(--_daySize)',
-          },
-        ],
-        slideTransition: [
-          {
-            minHeight: 'calc((var(--_daySize) + 4px) * 6)',
-          },
-        ],
-        loadingContainer: [
-          {
-            minHeight: 'calc((var(--_daySize) + 4px) * 6)',
-          },
-        ],
-        root: [
-          {
-            '--_daySize': '30px',
-          },
-        ],
-        weekDayLabel: [
-          {
-            width: 'var(--_daySize)',
-            height: '36px',
-          },
-        ],
-        weekNumberLabel: [
-          {
-            width: 'var(--_daySize)',
-            height: '36px',
-          },
-        ],
-      },
-    },
     MuiPickersCalendarHeader: {
       styleOverrides: {
         label: [
@@ -1938,8 +2153,8 @@ const high = {
         root: [
           {
             marginTop: 'var(--mui-density-medium)',
-            marginBottom: 'var(--mui-density-xx-small)',
-            paddingLeft: 'var(--mui-density-x-large)',
+            marginBottom: 'var(--mui-density-medium)',
+            paddingLeft: 'var(--mui-density-medium)',
             paddingRight: 'var(--mui-density-medium)',
           },
           {
@@ -1953,30 +2168,13 @@ const high = {
       styleOverrides: {
         root: [
           {
-            rowGap: 'var(--mui-density-medium)',
-            variants: [
-              {
-                props: {
-                  yearsPerRow: 3,
-                },
-                style: {
-                  paddingBlock: 'var(--mui-density-x-small)',
-                  columnGap: 'var(--mui-density-x-large)',
-                },
-              },
-            ],
+            rowGap: '4px',
+            width: '284px',
           },
         ],
         button: [
           {
-            width: '64px',
-            height: '32px',
-          },
-        ],
-        buttonFiller: [
-          {
-            width: '64px',
-            height: '32px',
+            width: '56.5px',
           },
         ],
       },
@@ -1985,24 +2183,8 @@ const high = {
       styleOverrides: {
         root: [
           {
-            rowGap: 'var(--mui-density-large)',
-            paddingBlock: 'var(--mui-density-small)',
-            variants: [
-              {
-                props: {
-                  monthsPerRow: 3,
-                },
-                style: {
-                  columnGap: 'var(--mui-density-x-large)',
-                },
-              },
-            ],
-          },
-        ],
-        button: [
-          {
-            width: '64px',
-            height: '32px',
+            rowGap: 'var(--mui-density-xx-small)',
+            width: '284px',
           },
         ],
       },
@@ -2011,7 +2193,7 @@ const high = {
       styleOverrides: {
         item: [
           {
-            padding: 'var(--mui-density-small) var(--mui-density-large)',
+            padding: 'var(--mui-density-xx-small) var(--mui-density-medium)',
           },
         ],
       },
@@ -2562,7 +2744,7 @@ const high = {
       styleOverrides: {
         item: [
           {
-            padding: 'var(--mui-density-small)',
+            padding: 'var(--mui-density-xx-small) var(--mui-density-medium)',
           },
           {
             width: '40px',
@@ -2575,6 +2757,70 @@ const high = {
         ],
       },
     },
+    MuiPickerDay: {
+      styleOverrides: {
+        root: [
+          {
+            '--PickerDay-size': '30px',
+          },
+        ],
+      },
+    },
+    MuiDateRangePickerDay: {
+      styleOverrides: {
+        root: [
+          {
+            '--PickerDay-size': '30px',
+          },
+        ],
+      },
+    },
+    MuiDayCalendar: {
+      styleOverrides: {
+        weekDayLabel: [
+          {
+            width: '30px',
+          },
+          {
+            height: '36px',
+          },
+        ],
+        weekNumberLabel: [
+          {
+            width: '30px',
+          },
+          {
+            height: '36px',
+          },
+        ],
+        weekNumber: [
+          {
+            width: '30px',
+            height: '30px',
+          },
+        ],
+        slideTransition: [
+          {
+            minHeight: 'calc((30px + 4px) * 6)',
+          },
+        ],
+        loadingContainer: [
+          {
+            minHeight: 'calc((30px + 4px) * 6)',
+          },
+        ],
+      },
+    },
+    MuiDayCalendarSkeleton: {
+      styleOverrides: {
+        daySkeleton: [
+          {
+            width: '30px !important',
+            height: '30px !important',
+          },
+        ],
+      },
+    },
     MuiDateCalendar: {
       styleOverrides: {
         root: [
@@ -2582,6 +2828,18 @@ const high = {
             height: '286px',
             maxHeight: '286px',
             width: '278px',
+          },
+        ],
+      },
+    },
+    MuiDateRangeCalendar: {
+      styleOverrides: {
+        root: [
+          {
+            '& .MuiDayCalendar-slideTransition': {
+              minWidth: '278px',
+              minHeight: 'calc((30px + 4px) * 6)',
+            },
           },
         ],
       },
@@ -2785,6 +3043,22 @@ const medium = {
                   padding: 'var(--mui-density-large)',
                 },
               },
+              {
+                props: {
+                  edge: 'start',
+                },
+                style: {
+                  marginLeft: '-4px',
+                },
+              },
+              {
+                props: {
+                  edge: 'end',
+                },
+                style: {
+                  marginRight: '-4px',
+                },
+              },
             ],
           },
           {
@@ -2796,6 +3070,18 @@ const medium = {
                 style: {
                   minWidth: '32px',
                   minHeight: '32px',
+                },
+              },
+            ],
+          },
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  fontSize: '16px',
                 },
               },
             ],
@@ -3075,6 +3361,129 @@ const medium = {
         ],
       },
     },
+    MuiPickersInputBase: {
+      styleOverrides: {
+        sectionsContainer: [
+          {
+            lineHeight: 1.428571429,
+          },
+        ],
+        section: [
+          {
+            lineHeight: 1.428571429,
+          },
+        ],
+        content: [
+          {
+            lineHeight: 1.428571429,
+          },
+        ],
+      },
+    },
+    MuiPickersOutlinedInput: {
+      styleOverrides: {
+        root: [
+          {
+            paddingInline: 'var(--mui-density-small)',
+            '.MuiFormControl-root:has(> &)': {
+              '--_outlinedInputPadBlock': 'calc(var(--mui-density-xx-small) + 2px)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'var(--_outlinedInputPadBlock)',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
+            paddingInline: 0,
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiPickersFilledInput: {
+      styleOverrides: {
+        root: [
+          {
+            '.MuiFormControl-root:has(> &)': {
+              '--_filledInputPadTop': 'var(--mui-density-large)',
+              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+              '--_shrinkY': '7px',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
+                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
+                  },
+                  '.MuiInputLabel-root:has(~ &)': {
+                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+                    '--_shrinkY': '4px',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
+            paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
+            paddingInline: 'var(--mui-density-small)',
+            variants: [
+              {
+                props: {
+                  hiddenLabel: true,
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
+                },
+              },
+              {
+                props: {
+                  hiddenLabel: true,
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
     MuiFilledInput: {
       styleOverrides: {
         input: [
@@ -3321,6 +3730,22 @@ const medium = {
                   },
                 },
               },
+              {
+                props: {
+                  edge: 'start',
+                },
+                style: {
+                  marginLeft: '-4px',
+                },
+              },
+              {
+                props: {
+                  edge: 'end',
+                },
+                style: {
+                  marginRight: '-4px',
+                },
+              },
             ],
           },
         ],
@@ -3357,6 +3782,22 @@ const medium = {
                   '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
                     marginRight: 'calc(-2px - var(--mui-density-x-small))',
                   },
+                },
+              },
+              {
+                props: {
+                  edge: 'start',
+                },
+                style: {
+                  marginLeft: '-4px',
+                },
+              },
+              {
+                props: {
+                  edge: 'end',
+                },
+                style: {
+                  marginRight: '-4px',
                 },
               },
             ],
@@ -3570,6 +4011,22 @@ const medium = {
                       transform: 'translateX(calc(var(--_width) - var(--_touchSize)))',
                     },
                   },
+                },
+              },
+              {
+                props: {
+                  edge: 'start',
+                },
+                style: {
+                  marginLeft: '-4px',
+                },
+              },
+              {
+                props: {
+                  edge: 'end',
+                },
+                style: {
+                  marginRight: '-4px',
                 },
               },
             ],
@@ -3961,7 +4418,71 @@ const medium = {
                   dense: false,
                 },
                 style: {
-                  paddingBlock: 'var(--mui-density-small)',
+                  minHeight: '32px',
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  dense: true,
+                },
+                style: {
+                  minHeight: '28px',
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  dense: false,
+                  disableGutters: false,
+                },
+                style: {
+                  paddingInline: 'var(--mui-density-x-small)',
+                },
+              },
+              {
+                props: {
+                  dense: true,
+                  disableGutters: false,
+                },
+                style: {
+                  paddingInline: 'var(--mui-density-medium)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiListItemIcon: {
+      styleOverrides: {
+        root: [
+          {
+            minWidth: 24,
+          },
+        ],
+      },
+    },
+    MuiListItemAvatar: {
+      styleOverrides: {
+        root: [
+          {
+            minWidth: 32,
+          },
+        ],
+      },
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  dense: false,
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
                 },
               },
               {
@@ -3974,10 +4495,20 @@ const medium = {
               },
               {
                 props: {
+                  dense: false,
                   disableGutters: false,
                 },
                 style: {
-                  paddingInline: 'var(--mui-density-large)',
+                  paddingInline: 'var(--mui-density-x-small)',
+                },
+              },
+              {
+                props: {
+                  dense: true,
+                  disableGutters: false,
+                },
+                style: {
+                  paddingInline: 'var(--mui-density-medium)',
                 },
               },
             ],
@@ -4545,52 +5076,6 @@ const medium = {
         ],
       },
     },
-    MuiPickerDay: {
-      styleOverrides: {
-        root: [
-          {
-            '--PickerDay-size': 'var(--_daySize)',
-          },
-        ],
-      },
-    },
-    MuiDayCalendar: {
-      styleOverrides: {
-        weekNumber: [
-          {
-            width: 'var(--_daySize)',
-            height: 'var(--_daySize)',
-          },
-        ],
-        slideTransition: [
-          {
-            minHeight: 'calc((var(--_daySize) + 4px) * 6)',
-          },
-        ],
-        loadingContainer: [
-          {
-            minHeight: 'calc((var(--_daySize) + 4px) * 6)',
-          },
-        ],
-        root: [
-          {
-            '--_daySize': '36px',
-          },
-        ],
-        weekDayLabel: [
-          {
-            width: 'var(--_daySize)',
-            height: '40px',
-          },
-        ],
-        weekNumberLabel: [
-          {
-            width: 'var(--_daySize)',
-            height: '40px',
-          },
-        ],
-      },
-    },
     MuiPickersCalendarHeader: {
       styleOverrides: {
         label: [
@@ -4601,13 +5086,13 @@ const medium = {
         root: [
           {
             marginTop: 'var(--mui-density-medium)',
-            marginBottom: 'var(--mui-density-xx-small)',
-            paddingLeft: 'var(--mui-density-x-large)',
+            marginBottom: 'var(--mui-density-medium)',
+            paddingLeft: 'var(--mui-density-medium)',
             paddingRight: 'var(--mui-density-medium)',
           },
           {
-            minHeight: '40px',
-            maxHeight: '40px',
+            minHeight: '32px',
+            maxHeight: '32px',
           },
         ],
       },
@@ -4616,30 +5101,13 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            rowGap: 'var(--mui-density-medium)',
-            variants: [
-              {
-                props: {
-                  yearsPerRow: 3,
-                },
-                style: {
-                  paddingBlock: 'var(--mui-density-x-small)',
-                  columnGap: 'var(--mui-density-x-large)',
-                },
-              },
-            ],
+            rowGap: '4px',
+            width: '284px',
           },
         ],
         button: [
           {
-            width: '72px',
-            height: '36px',
-          },
-        ],
-        buttonFiller: [
-          {
-            width: '72px',
-            height: '36px',
+            width: '56.5px',
           },
         ],
       },
@@ -4648,24 +5116,8 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            rowGap: 'var(--mui-density-large)',
-            paddingBlock: 'var(--mui-density-small)',
-            variants: [
-              {
-                props: {
-                  monthsPerRow: 3,
-                },
-                style: {
-                  columnGap: 'var(--mui-density-x-large)',
-                },
-              },
-            ],
-          },
-        ],
-        button: [
-          {
-            width: '72px',
-            height: '36px',
+            rowGap: 'var(--mui-density-xx-small)',
+            width: '284px',
           },
         ],
       },
@@ -4674,7 +5126,7 @@ const medium = {
       styleOverrides: {
         item: [
           {
-            padding: 'var(--mui-density-small) var(--mui-density-large)',
+            padding: 'var(--mui-density-xx-small) var(--mui-density-medium)',
           },
         ],
       },
@@ -5225,7 +5677,7 @@ const medium = {
       styleOverrides: {
         item: [
           {
-            padding: 'var(--mui-density-small)',
+            padding: 'var(--mui-density-xx-small) var(--mui-density-medium)',
           },
           {
             width: '48px',
@@ -5234,24 +5686,6 @@ const medium = {
         root: [
           {
             width: '56px',
-          },
-        ],
-      },
-    },
-    MuiListItem: {
-      styleOverrides: {
-        root: [
-          {
-            variants: [
-              {
-                props: {
-                  dense: false,
-                },
-                style: {
-                  minHeight: '32px',
-                },
-              },
-            ],
           },
         ],
       },
@@ -5290,13 +5724,92 @@ const medium = {
         ],
       },
     },
+    MuiPickerDay: {
+      styleOverrides: {
+        root: [
+          {
+            '--PickerDay-size': '32px',
+          },
+        ],
+      },
+    },
+    MuiDateRangePickerDay: {
+      styleOverrides: {
+        root: [
+          {
+            '--PickerDay-size': '32px',
+          },
+        ],
+      },
+    },
+    MuiDayCalendar: {
+      styleOverrides: {
+        weekDayLabel: [
+          {
+            width: '32px',
+          },
+          {
+            height: '18px',
+          },
+        ],
+        weekNumberLabel: [
+          {
+            width: '32px',
+          },
+          {
+            height: '18px',
+          },
+        ],
+        weekNumber: [
+          {
+            width: '32px',
+            height: '32px',
+          },
+        ],
+        slideTransition: [
+          {
+            minHeight: 'calc((32px + 4px) * 6)',
+          },
+          {
+            minWidth: '284px',
+          },
+        ],
+        loadingContainer: [
+          {
+            minHeight: 'calc((32px + 4px) * 6)',
+          },
+        ],
+      },
+    },
+    MuiDayCalendarSkeleton: {
+      styleOverrides: {
+        daySkeleton: [
+          {
+            width: '32px !important',
+            height: '32px !important',
+          },
+        ],
+      },
+    },
     MuiDateCalendar: {
       styleOverrides: {
         root: [
           {
-            height: '336px',
-            maxHeight: '336px',
-            width: '320px',
+            height: '298px',
+            maxHeight: '298px',
+            width: '284px',
+          },
+        ],
+      },
+    },
+    MuiDateRangeCalendar: {
+      styleOverrides: {
+        root: [
+          {
+            '& .MuiDayCalendar-slideTransition': {
+              minWidth: '284px',
+              minHeight: 'calc((32px + 4px) * 6)',
+            },
           },
         ],
       },
@@ -5437,6 +5950,22 @@ const low = {
                 },
                 style: {
                   padding: 'var(--mui-density-large)',
+                },
+              },
+              {
+                props: {
+                  edge: 'start',
+                },
+                style: {
+                  marginLeft: '-4px',
+                },
+              },
+              {
+                props: {
+                  edge: 'end',
+                },
+                style: {
+                  marginRight: '-4px',
                 },
               },
             ],
@@ -5716,6 +6245,129 @@ const low = {
         ],
       },
     },
+    MuiPickersInputBase: {
+      styleOverrides: {
+        sectionsContainer: [
+          {
+            lineHeight: 1.5,
+          },
+        ],
+        section: [
+          {
+            lineHeight: 1.5,
+          },
+        ],
+        content: [
+          {
+            lineHeight: 1.5,
+          },
+        ],
+      },
+    },
+    MuiPickersOutlinedInput: {
+      styleOverrides: {
+        root: [
+          {
+            paddingInline: 'var(--mui-density-small)',
+            '.MuiFormControl-root:has(> &)': {
+              '--_outlinedInputPadBlock': 'calc(var(--mui-density-xx-small) + 2px)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'var(--_outlinedInputPadBlock)',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
+            paddingInline: 0,
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiPickersFilledInput: {
+      styleOverrides: {
+        root: [
+          {
+            '.MuiFormControl-root:has(> &)': {
+              '--_filledInputPadTop': 'var(--mui-density-large)',
+              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+              '--_shrinkY': '7px',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
+                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
+                  },
+                  '.MuiInputLabel-root:has(~ &)': {
+                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+                    '--_shrinkY': '4px',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
+            paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
+            paddingInline: 'var(--mui-density-small)',
+            variants: [
+              {
+                props: {
+                  hiddenLabel: true,
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
+                },
+              },
+              {
+                props: {
+                  hiddenLabel: true,
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
     MuiFilledInput: {
       styleOverrides: {
         input: [
@@ -5962,6 +6614,22 @@ const low = {
                   },
                 },
               },
+              {
+                props: {
+                  edge: 'start',
+                },
+                style: {
+                  marginLeft: '-4px',
+                },
+              },
+              {
+                props: {
+                  edge: 'end',
+                },
+                style: {
+                  marginRight: '-4px',
+                },
+              },
             ],
           },
         ],
@@ -5998,6 +6666,22 @@ const low = {
                   '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
                     marginRight: 'calc(-2px - var(--mui-density-x-small))',
                   },
+                },
+              },
+              {
+                props: {
+                  edge: 'start',
+                },
+                style: {
+                  marginLeft: '-4px',
+                },
+              },
+              {
+                props: {
+                  edge: 'end',
+                },
+                style: {
+                  marginRight: '-4px',
                 },
               },
             ],
@@ -6211,6 +6895,22 @@ const low = {
                       transform: 'translateX(calc(var(--_width) - var(--_touchSize)))',
                     },
                   },
+                },
+              },
+              {
+                props: {
+                  edge: 'start',
+                },
+                style: {
+                  marginLeft: '-4px',
+                },
+              },
+              {
+                props: {
+                  edge: 'end',
+                },
+                style: {
+                  marginRight: '-4px',
                 },
               },
             ],
@@ -6602,7 +7302,71 @@ const low = {
                   dense: false,
                 },
                 style: {
-                  paddingBlock: 'var(--mui-density-small)',
+                  minHeight: '32px',
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  dense: true,
+                },
+                style: {
+                  minHeight: '28px',
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  dense: false,
+                  disableGutters: false,
+                },
+                style: {
+                  paddingInline: 'var(--mui-density-x-small)',
+                },
+              },
+              {
+                props: {
+                  dense: true,
+                  disableGutters: false,
+                },
+                style: {
+                  paddingInline: 'var(--mui-density-medium)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiListItemIcon: {
+      styleOverrides: {
+        root: [
+          {
+            minWidth: 24,
+          },
+        ],
+      },
+    },
+    MuiListItemAvatar: {
+      styleOverrides: {
+        root: [
+          {
+            minWidth: 32,
+          },
+        ],
+      },
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  dense: false,
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
                 },
               },
               {
@@ -6615,10 +7379,20 @@ const low = {
               },
               {
                 props: {
+                  dense: false,
                   disableGutters: false,
                 },
                 style: {
-                  paddingInline: 'var(--mui-density-large)',
+                  paddingInline: 'var(--mui-density-x-small)',
+                },
+              },
+              {
+                props: {
+                  dense: true,
+                  disableGutters: false,
+                },
+                style: {
+                  paddingInline: 'var(--mui-density-medium)',
                 },
               },
             ],
@@ -7174,52 +7948,6 @@ const low = {
         ],
       },
     },
-    MuiPickerDay: {
-      styleOverrides: {
-        root: [
-          {
-            '--PickerDay-size': 'var(--_daySize)',
-          },
-        ],
-      },
-    },
-    MuiDayCalendar: {
-      styleOverrides: {
-        weekNumber: [
-          {
-            width: 'var(--_daySize)',
-            height: 'var(--_daySize)',
-          },
-        ],
-        slideTransition: [
-          {
-            minHeight: 'calc((var(--_daySize) + 4px) * 6)',
-          },
-        ],
-        loadingContainer: [
-          {
-            minHeight: 'calc((var(--_daySize) + 4px) * 6)',
-          },
-        ],
-        root: [
-          {
-            '--_daySize': '44px',
-          },
-        ],
-        weekDayLabel: [
-          {
-            width: 'var(--_daySize)',
-            height: '48px',
-          },
-        ],
-        weekNumberLabel: [
-          {
-            width: 'var(--_daySize)',
-            height: '48px',
-          },
-        ],
-      },
-    },
     MuiPickersCalendarHeader: {
       styleOverrides: {
         label: [
@@ -7230,8 +7958,8 @@ const low = {
         root: [
           {
             marginTop: 'var(--mui-density-medium)',
-            marginBottom: 'var(--mui-density-xx-small)',
-            paddingLeft: 'var(--mui-density-x-large)',
+            marginBottom: 'var(--mui-density-medium)',
+            paddingLeft: 'var(--mui-density-medium)',
             paddingRight: 'var(--mui-density-medium)',
           },
           {
@@ -7245,30 +7973,13 @@ const low = {
       styleOverrides: {
         root: [
           {
-            rowGap: 'var(--mui-density-medium)',
-            variants: [
-              {
-                props: {
-                  yearsPerRow: 3,
-                },
-                style: {
-                  paddingBlock: 'var(--mui-density-x-small)',
-                  columnGap: 'var(--mui-density-x-large)',
-                },
-              },
-            ],
+            rowGap: '4px',
+            width: '284px',
           },
         ],
         button: [
           {
-            width: '84px',
-            height: '44px',
-          },
-        ],
-        buttonFiller: [
-          {
-            width: '84px',
-            height: '44px',
+            width: '56.5px',
           },
         ],
       },
@@ -7277,24 +7988,8 @@ const low = {
       styleOverrides: {
         root: [
           {
-            rowGap: 'var(--mui-density-large)',
-            paddingBlock: 'var(--mui-density-small)',
-            variants: [
-              {
-                props: {
-                  monthsPerRow: 3,
-                },
-                style: {
-                  columnGap: 'var(--mui-density-x-large)',
-                },
-              },
-            ],
-          },
-        ],
-        button: [
-          {
-            width: '84px',
-            height: '44px',
+            rowGap: 'var(--mui-density-xx-small)',
+            width: '284px',
           },
         ],
       },
@@ -7303,7 +7998,7 @@ const low = {
       styleOverrides: {
         item: [
           {
-            padding: 'var(--mui-density-small) var(--mui-density-large)',
+            padding: 'var(--mui-density-xx-small) var(--mui-density-medium)',
           },
         ],
       },
@@ -7854,7 +8549,7 @@ const low = {
       styleOverrides: {
         item: [
           {
-            padding: 'var(--mui-density-small)',
+            padding: 'var(--mui-density-xx-small) var(--mui-density-medium)',
           },
           {
             width: '56px',
@@ -7867,6 +8562,70 @@ const low = {
         ],
       },
     },
+    MuiPickerDay: {
+      styleOverrides: {
+        root: [
+          {
+            '--PickerDay-size': '44px',
+          },
+        ],
+      },
+    },
+    MuiDateRangePickerDay: {
+      styleOverrides: {
+        root: [
+          {
+            '--PickerDay-size': '44px',
+          },
+        ],
+      },
+    },
+    MuiDayCalendar: {
+      styleOverrides: {
+        weekDayLabel: [
+          {
+            width: '44px',
+          },
+          {
+            height: '48px',
+          },
+        ],
+        weekNumberLabel: [
+          {
+            width: '44px',
+          },
+          {
+            height: '48px',
+          },
+        ],
+        weekNumber: [
+          {
+            width: '44px',
+            height: '44px',
+          },
+        ],
+        slideTransition: [
+          {
+            minHeight: 'calc((44px + 4px) * 6)',
+          },
+        ],
+        loadingContainer: [
+          {
+            minHeight: 'calc((44px + 4px) * 6)',
+          },
+        ],
+      },
+    },
+    MuiDayCalendarSkeleton: {
+      styleOverrides: {
+        daySkeleton: [
+          {
+            width: '44px !important',
+            height: '44px !important',
+          },
+        ],
+      },
+    },
     MuiDateCalendar: {
       styleOverrides: {
         root: [
@@ -7874,6 +8633,18 @@ const low = {
             height: '406px',
             maxHeight: '406px',
             width: '376px',
+          },
+        ],
+      },
+    },
+    MuiDateRangeCalendar: {
+      styleOverrides: {
+        root: [
+          {
+            '& .MuiDayCalendar-slideTransition': {
+              minWidth: '376px',
+              minHeight: 'calc((44px + 4px) * 6)',
+            },
           },
         ],
       },

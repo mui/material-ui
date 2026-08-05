@@ -184,10 +184,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Sibling-label margin = calc(-2px - padding), re-emitted by the padding knob (selectionControlPadding).',
   },
-  'MuiCheckbox|root|size=small||padding': {
-    label: 'Checkbox · padding [size=small]',
-    done: ['medium'],
-  },
+  'MuiCheckbox|root|size=small||padding': 'Checkbox · padding [size=small]',
   'MuiCheckbox|root|size=small|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft': {
     label: 'Checkbox · marginLeft [size=small]',
     hidden: true,
@@ -197,6 +194,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'Checkbox · marginRight [size=small]',
     hidden: true,
     note: 'Sibling-label margin = calc(-2px - padding), re-emitted by the padding knob (selectionControlPadding).',
+  },
+  'MuiCheckbox|root|edge=start||marginLeft': {
+    label: 'Checkbox · marginLeft [edge=start]',
+    done: ['medium'],
+  },
+  'MuiCheckbox|root|edge=end||marginRight': {
+    label: 'Checkbox · marginRight [edge=end]',
+    done: ['medium'],
   },
   'MuiChip|avatar|size=medium||--_avatarSize': 'Chip · avatar · size [size=medium]',
   'MuiChip|avatar|size=medium||width': {
@@ -434,54 +439,75 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiDateCalendar|root|base||height': {
     label: 'DateCalendar · height',
+    done: ['medium'],
     note: "Raw per-preset (folds header + weekday + 6-week math at this preset's values); day-size knob edits do not reflow it — adjust to match.",
   },
   'MuiDateCalendar|root|base||maxHeight': {
     label: 'DateCalendar · maxHeight',
+    done: ['medium'],
     note: 'Pinned pair with height — the PickerViewRoot base clamps maxHeight at 336, which would clip taller presets. Edit both.',
   },
   'MuiDateCalendar|root|base||width': {
     label: 'DateCalendar · width',
+    done: ['medium'],
     note: "Raw per-preset (7 day columns + 40 slack at this preset's values); see height note.",
+  },
+  'MuiDateRangeCalendar|root|base|& .MuiDayCalendar-slideTransition|minWidth':
+    'DateRangeCalendar · minWidth',
+  'MuiDateRangeCalendar|root|base|& .MuiDayCalendar-slideTransition|minHeight':
+    'DateRangeCalendar · minHeight',
+  'MuiDateRangePickerDay|root|base||--PickerDay-size': {
+    label: 'DateRangePickerDay · --PickerDay-size',
+    done: ['medium'],
   },
   'MuiDayCalendar|loadingContainer|base||minHeight': {
     label: 'DayCalendar · loadingContainer · minHeight',
-    hidden: true,
-    note: 'Derived — same 6-week calc as slideTransition, off --_daySize.',
-  },
-  'MuiDayCalendar|root|base||--_daySize': {
-    label: 'DayCalendar · day size (--_daySize)',
-    note: 'THE day-size knob — drives PickerDay --PickerDay-size, weekday/week-number boxes, and the 6-week container minHeight. The DateCalendar root box is raw px and does NOT follow edits (the var lives on the DayCalendar descendant; an ancestor copy would shadow it) — retype root height/width to match.',
+    note: 'Linked target of the PickerDay size knob — 6-week calc off --PickerDay-size.',
   },
   'MuiDayCalendar|slideTransition|base||minHeight': {
     label: 'DayCalendar · slideTransition · minHeight',
-    hidden: true,
-    note: 'Derived — master (DAY_SIZE + 2×DAY_MARGIN) × 6 re-emitted off --_daySize.',
+    note: 'Linked target of the PickerDay size knob — 6-week calc off --PickerDay-size.',
+  },
+  'MuiDayCalendar|slideTransition|base||minWidth': {
+    label: 'DayCalendar · slideTransition · minWidth',
+    note: 'Linked target of the DateCalendar width knob — follows the root width.',
   },
   'MuiDayCalendar|weekDayLabel|base||width': {
     label: 'DayCalendar · weekDayLabel · width',
-    hidden: true,
-    note: 'Derived from --_daySize (upstream hardcodes DAY_SIZE here, not the PickerDay var).',
+    done: ['medium'],
+    note: 'Member of the PickerDay size knob — day column width.',
   },
-  'MuiDayCalendar|weekDayLabel|base||height': 'DayCalendar · weekDayLabel · height',
+  'MuiDayCalendar|weekDayLabel|base||height': {
+    label: 'DayCalendar · weekDayLabel · height',
+    done: ['medium'],
+  },
   'MuiDayCalendar|weekNumber|base||width': {
     label: 'DayCalendar · weekNumber · width',
-    hidden: true,
-    note: '[Pro] derived from --_daySize; renders only with displayWeekNumber.',
+    done: ['medium'],
+    note: '[Pro] member of the PickerDay size knob; renders only with displayWeekNumber.',
   },
   'MuiDayCalendar|weekNumber|base||height': {
     label: 'DayCalendar · weekNumber · height',
-    hidden: true,
-    note: '[Pro] derived from --_daySize; renders only with displayWeekNumber.',
+    done: ['medium'],
+    note: '[Pro] member of the PickerDay size knob; renders only with displayWeekNumber.',
   },
   'MuiDayCalendar|weekNumberLabel|base||width': {
     label: 'DayCalendar · weekNumberLabel · width',
-    hidden: true,
-    note: '[Pro] derived from --_daySize; renders only with displayWeekNumber.',
+    done: ['medium'],
+    note: '[Pro] member of the PickerDay size knob; renders only with displayWeekNumber.',
   },
   'MuiDayCalendar|weekNumberLabel|base||height': {
     label: 'DayCalendar · weekNumberLabel · height',
+    done: ['medium'],
     note: '[Pro] renders only with displayWeekNumber (raw trio, pairs with weekDayLabel height).',
+  },
+  'MuiDayCalendarSkeleton|daySkeleton|base||width': {
+    label: 'DayCalendarSkeleton · daySkeleton · width',
+    note: 'Linked target of the PickerDay size knob — !important beats Skeleton inline width.',
+  },
+  'MuiDayCalendarSkeleton|daySkeleton|base||height': {
+    label: 'DayCalendarSkeleton · daySkeleton · height',
+    note: 'Linked target of the PickerDay size knob — !important beats Skeleton inline height.',
   },
   'MuiDialog|paper|base||--_dialogMargin': {
     label: 'Dialog · paper margin',
@@ -688,12 +714,24 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     done: ['medium'],
   },
   'MuiIconButton|root|size=large||padding': 'IconButton · padding [size=large]',
+  'MuiIconButton|root|edge=start||marginLeft': {
+    label: 'IconButton · marginLeft [edge=start]',
+    done: ['medium'],
+  },
+  'MuiIconButton|root|edge=end||marginRight': {
+    label: 'IconButton · marginRight [edge=end]',
+    done: ['medium'],
+  },
   'MuiIconButton|root|size=medium||minWidth': {
     label: 'IconButton · minWidth [size=medium]',
     done: ['medium'],
   },
   'MuiIconButton|root|size=medium||minHeight': {
     label: 'IconButton · minHeight [size=medium]',
+    done: ['medium'],
+  },
+  'MuiIconButton|root|size=medium||fontSize': {
+    label: 'IconButton · fontSize [size=medium]',
     done: ['medium'],
   },
   'MuiInput|input|base||paddingTop': {
@@ -858,17 +896,43 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'List block padding',
     done: ['medium'],
   },
+  'MuiListItem|root|dense=false||paddingBlock': {
+    label: 'ListItem · paddingBlock [dense=false]',
+    done: ['medium'],
+  },
+  'MuiListItem|root|dense=true||paddingBlock': 'ListItem · paddingBlock [dense=true]',
+  'MuiListItem|root|dense=false,disableGutters=false||paddingInline': {
+    label: 'ListItem · paddingInline [dense=false]',
+    done: ['medium'],
+  },
+  'MuiListItem|root|dense=true,disableGutters=false||paddingInline':
+    'ListItem · paddingInline [dense=true]',
   'MuiListItem|root|dense=false||minHeight': {
     label: 'ListItem · minHeight [dense=false]',
     done: ['medium'],
   },
-  'MuiListItemButton|root|dense=false||paddingBlock': 'ListItemButton · paddingBlock [dense=false]',
-  'MuiListItemButton|root|dense=true||paddingBlock': 'ListItemButton · paddingBlock [dense=true]',
-  'MuiListItemButton|root|disableGutters=false||paddingInline':
-    'ListItemButton · paddingInline [disableGutters=false]',
+  'MuiListItemAvatar|root|base||minWidth': { label: 'ListItemAvatar · minWidth', done: ['medium'] },
   'MuiListItemButton|root|dense=false||minHeight': {
     label: 'ListItemButton · minHeight [dense=false]',
     done: ['medium'],
+  },
+  'MuiListItemButton|root|dense=false||paddingBlock': {
+    label: 'ListItemButton · paddingBlock [dense=false]',
+    done: ['medium'],
+  },
+  'MuiListItemButton|root|dense=true||minHeight': 'ListItemButton · minHeight [dense=true]',
+  'MuiListItemButton|root|dense=true||paddingBlock': 'ListItemButton · paddingBlock [dense=true]',
+  'MuiListItemButton|root|dense=false,disableGutters=false||paddingInline': {
+    label: 'ListItemButton · paddingInline [dense=false]',
+    done: ['medium'],
+  },
+  'MuiListItemButton|root|dense=true,disableGutters=false||paddingInline':
+    'ListItemButton · paddingInline [dense=true]',
+  'MuiListItemIcon|root|base||minWidth': {
+    label: 'ListItemIcon · minWidth',
+    done: ['medium'],
+    hiddenIn: ['Menu'],
+    note: "Menu owns the icon column via MenuItem's nested seam — this standalone knob is the List family surface.",
   },
   'MuiMenuItem|root|base|& .MuiListItemIcon-root|minWidth': {
     label: 'MenuItem · icon min width',
@@ -884,11 +948,8 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     'inline padding [disableGutters]',
   'MuiMenuItem|root|dense=true,disableGutters=false||paddingInline':
     'inline padding [dense][disableGutters]',
-  'MuiMonthCalendar|button|base||width': 'MonthCalendar · button · width',
-  'MuiMonthCalendar|button|base||height': 'MonthCalendar · button · height',
-  'MuiMonthCalendar|root|base||rowGap': 'MonthCalendar · rowGap',
-  'MuiMonthCalendar|root|base||paddingBlock': 'MonthCalendar · paddingBlock',
-  'MuiMonthCalendar|root|monthsPerRow=3||columnGap': 'MonthCalendar · columnGap [monthsPerRow=3]',
+  'MuiMonthCalendar|root|base||rowGap': { label: 'MonthCalendar · rowGap', done: ['medium'] },
+  'MuiMonthCalendar|root|base||width': 'MonthCalendar · width',
   'MuiMultiSectionDigitalClockSection|item|base||padding': {
     label: 'MultiSectionDigitalClockSection · item · padding',
     note: 'Item = styled(MenuItem); margin frozen (same JS scroll math as DigitalClock).',
@@ -1004,21 +1065,140 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiPickerDay|root|base||--PickerDay-size': {
     label: 'PickerDay · --PickerDay-size',
-    hidden: true,
-    note: "Derived — re-points upstream's own var at --_daySize; the DayCalendar day-size row is the knob.",
+    done: ['medium'],
+    note: 'Key member of the PickerDay size knob — overrides upstream --PickerDay-size; drives the skeleton + 6-week heights via linked writes.',
   },
   'MuiPickersCalendarHeader|label|base||marginRight': 'PickersCalendarHeader · label · marginRight',
-  'MuiPickersCalendarHeader|root|base||marginTop': 'PickersCalendarHeader · marginTop',
-  'MuiPickersCalendarHeader|root|base||marginBottom': 'PickersCalendarHeader · marginBottom',
-  'MuiPickersCalendarHeader|root|base||paddingLeft': 'PickersCalendarHeader · paddingLeft',
-  'MuiPickersCalendarHeader|root|base||paddingRight': 'PickersCalendarHeader · paddingRight',
+  'MuiPickersCalendarHeader|root|base||marginTop': {
+    label: 'PickersCalendarHeader · marginTop',
+    done: ['medium'],
+  },
+  'MuiPickersCalendarHeader|root|base||marginBottom': {
+    label: 'PickersCalendarHeader · marginBottom',
+    done: ['medium'],
+  },
+  'MuiPickersCalendarHeader|root|base||paddingLeft': {
+    label: 'PickersCalendarHeader · paddingLeft',
+    done: ['medium'],
+  },
+  'MuiPickersCalendarHeader|root|base||paddingRight': {
+    label: 'PickersCalendarHeader · paddingRight',
+    done: ['medium'],
+  },
   'MuiPickersCalendarHeader|root|base||minHeight': {
     label: 'PickersCalendarHeader · minHeight',
+    done: ['medium'],
     note: 'Pinned pair with maxHeight (upstream pins both against a Safari jump) — edit both.',
   },
   'MuiPickersCalendarHeader|root|base||maxHeight': {
     label: 'PickersCalendarHeader · maxHeight',
+    done: ['medium'],
     note: 'Pinned pair with minHeight — edit both.',
+  },
+  'MuiPickersFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadTop': {
+    label: 'PickersFilledInput · padding top',
+    done: ['medium'],
+  },
+  'MuiPickersFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadBottom': {
+    label: 'PickersFilledInput · padding bottom',
+    done: ['medium'],
+  },
+  'MuiPickersFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': {
+    label: 'PickersFilledInput · --_restY',
+    hidden: true,
+    note: 'Floating-label rest-Y = (padTop + padBottom) / 2 — follows the pad knobs; consumed by the InputLabel transform.',
+  },
+  'MuiPickersFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_shrinkY': {
+    label: 'PickersFilledInput · --_shrinkY',
+    hidden: true,
+    note: 'Floating-label shrink-Y (tuned raw px) — consumed by the InputLabel transform.',
+  },
+  'MuiPickersFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_inlinePad':
+    'PickersFilledInput · --_inlinePad',
+  'MuiPickersFilledInput|root|inputSize=small|.MuiFormControl-root:has(> &)|--_filledInputPadTop': {
+    label: 'PickersFilledInput · padding top [inputSize=small]',
+    done: ['medium'],
+  },
+  'MuiPickersFilledInput|root|inputSize=small|.MuiFormControl-root:has(> &)|--_filledInputPadBottom':
+    { label: 'PickersFilledInput · padding bottom [inputSize=small]', done: ['medium'] },
+  'MuiPickersFilledInput|root|inputSize=small|.MuiInputLabel-root:has(~ &)|--_restY': {
+    label: 'PickersFilledInput · --_restY [inputSize=small]',
+    hidden: true,
+    note: 'Follows the [small] pad knobs; consumed by the InputLabel transform.',
+  },
+  'MuiPickersFilledInput|root|inputSize=small|.MuiInputLabel-root:has(~ &)|--_shrinkY': {
+    label: 'PickersFilledInput · --_shrinkY [inputSize=small]',
+    hidden: true,
+    note: 'Floating-label shrink-Y [small] (tuned raw px).',
+  },
+  'MuiPickersFilledInput|sectionsContainer|base||paddingTop': {
+    label: 'PickersFilledInput · sectionsContainer · paddingTop',
+    hidden: true,
+    note: 'Consumes --_filledInputPadTop — the padding-top knob is the writer var.',
+  },
+  'MuiPickersFilledInput|sectionsContainer|base||paddingBottom': {
+    label: 'PickersFilledInput · sectionsContainer · paddingBottom',
+    hidden: true,
+    note: 'Consumes --_filledInputPadBottom — the padding-bottom knob is the writer var.',
+  },
+  'MuiPickersFilledInput|sectionsContainer|base||paddingInline': {
+    label: 'PickersFilledInput · inline padding',
+    done: ['medium'],
+  },
+  'MuiPickersFilledInput|sectionsContainer|hiddenLabel=true||paddingBlock': {
+    label: 'PickersFilledInput · sectionsContainer · paddingBlock [hiddenLabel]',
+    done: ['medium'],
+  },
+  'MuiPickersFilledInput|sectionsContainer|hiddenLabel=true,inputSize=small||paddingBlock': {
+    label: 'PickersFilledInput · sectionsContainer · paddingBlock [hiddenLabel, small]',
+    done: ['medium'],
+  },
+  'MuiPickersInputBase|content|base||lineHeight': {
+    label: 'PickersInputBase · content · lineHeight',
+    hidden: true,
+    note: 'Rides theme.typography.body1.lineHeight (was 1.4375em) — edit via the Typography tab.',
+  },
+  'MuiPickersInputBase|section|base||lineHeight': {
+    label: 'PickersInputBase · section · lineHeight',
+    hidden: true,
+    note: 'Rides theme.typography.body1.lineHeight (was 1.4375em) — edit via the Typography tab.',
+  },
+  'MuiPickersInputBase|sectionsContainer|base||lineHeight': {
+    label: 'PickersInputBase · sectionsContainer · lineHeight',
+    hidden: true,
+    note: 'Rides theme.typography.body1.lineHeight (was 1.4375em) — edit via the Typography tab.',
+  },
+  'MuiPickersOutlinedInput|root|base||paddingInline': {
+    label: 'PickersOutlinedInput · inline padding',
+    done: ['medium'],
+  },
+  'MuiPickersOutlinedInput|root|base|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock': {
+    label: 'PickersOutlinedInput · padding block',
+    done: ['medium'],
+  },
+  'MuiPickersOutlinedInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': {
+    label: 'PickersOutlinedInput · --_restY',
+    hidden: true,
+    note: 'Floating-label rest-Y = --_outlinedInputPadBlock — follows the pad-block knob; consumed by the InputLabel transform.',
+  },
+  'MuiPickersOutlinedInput|root|base|.MuiInputLabel-root:has(~ &)|--_inlinePad':
+    'PickersOutlinedInput · --_inlinePad',
+  'MuiPickersOutlinedInput|root|inputSize=small|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock':
+    { label: 'PickersOutlinedInput · padding block [inputSize=small]', done: ['medium'] },
+  'MuiPickersOutlinedInput|sectionsContainer|base||paddingBlock': {
+    label: 'PickersOutlinedInput · sectionsContainer · paddingBlock',
+    hidden: true,
+    note: 'Consumes --_outlinedInputPadBlock — the padding-block knob (FormControl writer var) is the control.',
+  },
+  'MuiPickersOutlinedInput|sectionsContainer|base||paddingInline': {
+    label: 'PickersOutlinedInput · sectionsContainer · paddingInline',
+    hidden: true,
+    note: 'Inline pad lives on the root; 0 re-assert here (matches master).',
+  },
+  'MuiPickersOutlinedInput|sectionsContainer|inputSize=small||paddingBlock': {
+    label: 'PickersOutlinedInput · sectionsContainer · paddingBlock [inputSize=small]',
+    hidden: true,
+    note: 'Consumes --_outlinedInputPadBlock — the padding-block [small] knob is the writer var.',
   },
   'MuiPickersToolbar|root|pickerOrientation=portrait||padding': {
     label: 'PickersToolbar · padding (portrait)',
@@ -1038,7 +1218,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Sibling-label margin = calc(-2px - padding), re-emitted by the padding knob (selectionControlPadding).',
   },
-  'MuiRadio|root|size=small||padding': { label: 'Radio · padding [size=small]', done: ['medium'] },
+  'MuiRadio|root|size=small||padding': 'Radio · padding [size=small]',
   'MuiRadio|root|size=small|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft': {
     label: 'Radio · marginLeft [size=small]',
     hidden: true,
@@ -1048,6 +1228,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'Radio · marginRight [size=small]',
     hidden: true,
     note: 'Sibling-label margin = calc(-2px - padding), re-emitted by the padding knob (selectionControlPadding).',
+  },
+  'MuiRadio|root|edge=start||marginLeft': {
+    label: 'Radio · marginLeft [edge=start]',
+    done: ['medium'],
+  },
+  'MuiRadio|root|edge=end||marginRight': {
+    label: 'Radio · marginRight [edge=end]',
+    done: ['medium'],
   },
   'MuiRichTreeView|defaultProps|base||itemChildrenIndentation': {
     label: 'RichTreeView · itemChildrenIndentation (defaultProps)',
@@ -1238,6 +1426,8 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
   },
+  'MuiSwitch|root|edge=start||marginLeft': 'Switch · marginLeft [edge=start]',
+  'MuiSwitch|root|edge=end||marginRight': 'Switch · marginRight [edge=end]',
   'MuiSwitch|switchBase|base||top': {
     label: 'Switch · switchBase · top',
     hidden: true,
@@ -1444,19 +1634,6 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     note: 'Upstream hook: content height = var(--TreeView-itemHeight, unset); master is unset (content-sized ≈32) — the unset preset stays zero-diff.',
   },
   'MuiYearCalendar|button|base||width': 'YearCalendar · button · width',
-  'MuiYearCalendar|button|base||height': 'YearCalendar · button · height',
-  'MuiYearCalendar|buttonFiller|base||width': {
-    label: 'YearCalendar · buttonFiller · width',
-    note: 'Last-row spacer — mirrors the button box; edit with the button dims.',
-  },
-  'MuiYearCalendar|buttonFiller|base||height': {
-    label: 'YearCalendar · buttonFiller · height',
-    note: 'Last-row spacer — mirrors the button box; edit with the button dims.',
-  },
-  'MuiYearCalendar|root|base||rowGap': 'YearCalendar · rowGap',
-  'MuiYearCalendar|root|yearsPerRow=3||paddingBlock': {
-    label: 'YearCalendar · paddingBlock [yearsPerRow=3]',
-    note: 'Scoped to the default 3-per-row layout — the 4-per-row variant redefines padding (0 2px) and stays master.',
-  },
-  'MuiYearCalendar|root|yearsPerRow=3||columnGap': 'YearCalendar · columnGap [yearsPerRow=3]',
+  'MuiYearCalendar|root|base||rowGap': { label: 'YearCalendar · rowGap', done: ['medium'] },
+  'MuiYearCalendar|root|base||width': 'YearCalendar · width',
 };
