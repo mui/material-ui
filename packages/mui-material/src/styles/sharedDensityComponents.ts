@@ -1105,10 +1105,10 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // lever, and a string/number value passes through verbatim. `d.medium` keeps it
   // dual-mode: a var ref under cssVariables (any prefix), raw px on static themes.
   addDefaultProps(enhanced.components, 'MuiRichTreeView', {
-    itemChildrenIndentation: d.medium,
+    itemChildrenIndentation: d['x-large'],
   });
   addDefaultProps(enhanced.components, 'MuiSimpleTreeView', {
-    itemChildrenIndentation: d.medium,
+    itemChildrenIndentation: d['x-large'],
   });
   // Longhands only — a padding shorthand would clobber upstream's paddingLeft depth
   // calc, so the calc is re-emitted with the step base instead.
@@ -1116,12 +1116,22 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiTreeItem',
     {
-      paddingBlock: d['xx-small'],
+      paddingBlock: `calc(${d['xx-small']} + 2px)`,
       paddingRight: d.small,
-      paddingLeft: `calc(${d.small} + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))`,
-      gap: d.small,
+      paddingLeft: `calc(${d['x-small']} + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))`,
+      gap: d['x-small'],
     },
     'content',
+  );
+  // Selection checkbox breathing room (leading side).
+  addRootOverride(enhanced.components, 'MuiTreeItem', { marginLeft: '8px' }, 'checkbox');
+  // Expand/collapse icon glyph (master 18px). Nested `& svg` under iconContainer
+  // matches upstream's `.MuiTreeItem-iconContainer svg` rule; sizing raw px.
+  addRootOverride(
+    enhanced.components,
+    'MuiTreeItem',
+    { '& svg': { fontSize: '16px' } },
+    'iconContainer',
   );
   addRootOverride(
     enhanced.components,
@@ -1550,22 +1560,21 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     // rules (incl. master's duplicated minHeight media re-asserts).
     // Bar min-height = raw px (sizing); trailing pad + actions gap = steps.
     [`& .${tablePaginationClasses.toolbar}`]: {
-      minHeight: '52px',
-      paddingRight: d['xx-small'],
+      minHeight: '48px',
+      paddingRight: d['x-small'],
     },
     [`& .${tablePaginationClasses.toolbar} .${tablePaginationClasses.actions}`]: {
-      marginLeft: d.large,
+      marginLeft: d['x-large'],
     },
-    // Rows-per-page select: outer gaps + inner pad (right side = the dropdown
-    // icon lane); normal maps master (8/32, 8/24) exactly. Inner pad nests past
-    // the toolbar so it outranks master's own 2-class `& .select` rule.
+    // Rows-per-page select: outer left gap + inner pad (right side = the dropdown
+    // icon lane). Inner pad nests past the toolbar so it outranks master's own
+    // 2-class `& .select` rule.
     [`& .${tablePaginationClasses.selectRoot}`]: {
       marginLeft: d.small,
-      marginRight: d['xx-large'],
     },
     [`& .${tablePaginationClasses.toolbar} .${tablePaginationClasses.select}`]: {
       paddingLeft: d.small,
-      paddingRight: d['x-large'],
+      paddingRight: '22px',
     },
   });
   addRootOverride(

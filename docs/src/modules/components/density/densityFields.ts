@@ -256,7 +256,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiButtonGroup: 'ButtonGroup',
   MuiTableCell: 'Table',
   MuiTableSortLabel: 'Table',
-  MuiTablePagination: 'Table',
+  MuiTablePagination: 'Pagination',
   MuiDataGrid: 'DataGrid',
   MuiStep: 'Stepper',
   MuiStepper: 'Stepper',
@@ -315,7 +315,8 @@ export const familyComponentOrder: Record<string, string[]> = {
   ToggleButton: ['ToggleButton', 'SvgIcon'],
   Stepper: ['Stepper', 'Step', 'StepLabel', 'StepIcon', 'StepConnector', 'StepContent'],
   List: ['List', 'ListItemButton', 'ListItem', 'ListItemIcon', 'ListItemAvatar', 'ListItemText'],
-  Table: ['TableCell', 'TableSortLabel', 'TablePagination'],
+  Table: ['TableCell', 'TableSortLabel'],
+  Pagination: ['PaginationItem', 'TablePagination'],
   Select: ['InputBase', 'Select'],
   TextField: [
     'FormHelperText',

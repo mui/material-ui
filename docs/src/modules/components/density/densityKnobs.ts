@@ -1252,6 +1252,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiRichTreeView|defaultProps|base||itemChildrenIndentation': {
     label: 'RichTreeView · itemChildrenIndentation (defaultProps)',
+    done: ['medium'],
     note: 'The indentation var is INLINE STYLE on the tree root — styleOverrides cannot reach it; the defaultProp is the lever. A string passes verbatim, so var(--mui-density-md) keeps step semantics (type a key like md, or raw px).',
   },
   'MuiSelect|select|base||minHeight': {
@@ -1269,6 +1270,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiSimpleTreeView|defaultProps|base||itemChildrenIndentation': {
     label: 'SimpleTreeView · itemChildrenIndentation (defaultProps)',
+    done: ['medium'],
     note: 'Same lever as RichTreeView — inline-style var, defaultProp only.',
   },
   'MuiSlider|root|orientation=horizontal||height': {
@@ -1513,20 +1515,24 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Frozen 0 re-assert so the size padding never leaks into padding="none" cells — not tunable.',
   },
-  'MuiTablePagination|root|base|& .MuiTablePagination-toolbar|minHeight':
-    'TablePagination · toolbar minHeight',
-  'MuiTablePagination|root|base|& .MuiTablePagination-toolbar|paddingRight':
-    'TablePagination · toolbar paddingRight',
+  'MuiTablePagination|root|base|& .MuiTablePagination-toolbar|minHeight': {
+    label: 'TablePagination · toolbar minHeight',
+    done: ['medium'],
+  },
+  'MuiTablePagination|root|base|& .MuiTablePagination-toolbar|paddingRight': {
+    label: 'TablePagination · toolbar paddingRight',
+    done: ['medium'],
+  },
   'MuiTablePagination|root|base|& .MuiTablePagination-toolbar .MuiTablePagination-actions|marginLeft':
-    'TablePagination · actions marginLeft',
-  'MuiTablePagination|root|base|& .MuiTablePagination-selectRoot|marginLeft':
-    'TablePagination · select marginLeft',
-  'MuiTablePagination|root|base|& .MuiTablePagination-selectRoot|marginRight':
-    'TablePagination · select marginRight',
+    { label: 'TablePagination · actions marginLeft', done: ['medium'] },
+  'MuiTablePagination|root|base|& .MuiTablePagination-selectRoot|marginLeft': {
+    label: 'TablePagination · select marginLeft',
+    done: ['medium'],
+  },
   'MuiTablePagination|root|base|& .MuiTablePagination-toolbar .MuiTablePagination-select|paddingLeft':
-    'TablePagination · select paddingLeft',
+    { label: 'TablePagination · select paddingLeft', done: ['medium'] },
   'MuiTablePagination|root|base|& .MuiTablePagination-toolbar .MuiTablePagination-select|paddingRight':
-    'TablePagination · select paddingRight',
+    { label: 'TablePagination · select paddingRight', done: ['medium'] },
   'MuiTableSortLabel|icon|base||fontSize': 'TableSortLabel · icon · fontSize',
   'MuiTableSortLabel|icon|base||marginInline': 'TableSortLabel · icon · marginInline',
   'MuiTabs|root|base||minHeight': { label: 'Tabs min height', done: ['medium'] },
@@ -1635,15 +1641,31 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'Tooltip · tooltip · marginTop',
     done: ['medium'],
   },
-  'MuiTreeItem|content|base||paddingBlock': 'TreeItem · content · paddingBlock',
-  'MuiTreeItem|content|base||paddingRight': 'TreeItem · content · paddingRight',
+  'MuiTreeItem|checkbox|base||marginLeft': {
+    label: 'TreeItem · checkbox · marginLeft',
+    done: ['medium'],
+  },
+  'MuiTreeItem|content|base||paddingBlock': {
+    label: 'TreeItem · content · paddingBlock',
+    done: ['medium'],
+  },
+  'MuiTreeItem|content|base||paddingRight': {
+    label: 'TreeItem · content · paddingRight',
+    done: ['medium'],
+  },
   'MuiTreeItem|content|base||paddingLeft': {
     label: 'TreeItem · content · paddingLeft',
+    done: ['medium'],
     note: 'Master depth calc re-emitted with a step base — a padding shorthand would clobber it.',
   },
-  'MuiTreeItem|content|base||gap': 'TreeItem · content · gap',
+  'MuiTreeItem|content|base||gap': { label: 'TreeItem · content · gap', done: ['medium'] },
+  'MuiTreeItem|iconContainer|base|& svg|fontSize': {
+    label: 'TreeItem · iconContainer · fontSize',
+    done: ['medium'],
+  },
   'MuiTreeItem|root|base||--TreeView-itemHeight': {
     label: 'TreeItem · row height (--TreeView-itemHeight)',
+    done: ['medium'],
     note: 'Upstream hook: content height = var(--TreeView-itemHeight, unset); master is unset (content-sized ≈32) — the unset preset stays zero-diff.',
   },
   'MuiYearCalendar|button|base||width': 'YearCalendar · button · width',

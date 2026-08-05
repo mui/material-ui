@@ -433,6 +433,7 @@ const MARGIN_MARKER_SELECTORS = [
   '.MuiFormControlLabel-labelPlacementStart',
   '.MuiAutocomplete-tag',
   '[data-canvas-component="List"] .MuiListItemText-root',
+  '[data-canvas-component="TreeView"] .MuiTreeItem-checkbox',
 ];
 
 // Height-measure targets: the box whose height each demo is about — mostly
@@ -2102,14 +2103,6 @@ function TableCellMatrix() {
               </TableRow>
             </TableFooter>
           </Table>
-          <TablePagination
-            component="div"
-            count={64}
-            page={1}
-            onPageChange={() => {}}
-            rowsPerPage={10}
-            rowsPerPageOptions={[10, 25]}
-          />
         </div>
       ))}
     </Stack>
@@ -3151,6 +3144,16 @@ function PaginationMatrix() {
       <Pagination count={10} defaultPage={6} size="small" />
       <Pagination count={10} defaultPage={6} />
       <Pagination count={10} defaultPage={6} size="large" />
+      {/* TablePagination chrome — toolbar/select/actions insets ride the knobs
+          (internal labels are component-rendered, so no density-debug-text wrap). */}
+      <TablePagination
+        component="div"
+        count={64}
+        page={1}
+        onPageChange={() => {}}
+        rowsPerPage={10}
+        rowsPerPageOptions={[10, 25]}
+      />
     </Stack>
   );
 }
@@ -3614,7 +3617,8 @@ const COMPONENT_DEFS = {
     Matrix: React.memo(FabMatrix),
   },
   Pagination: {
-    canvasLabel: 'Pagination — item box size (small / medium / large)',
+    canvasLabel:
+      'Pagination — item box size (small / medium / large); TablePagination toolbar/select/actions insets',
     Matrix: React.memo(PaginationMatrix),
   },
   SnackbarContent: {

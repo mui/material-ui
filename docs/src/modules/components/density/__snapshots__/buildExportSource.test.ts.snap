@@ -2116,13 +2116,13 @@ const high = {
     },
     MuiRichTreeView: {
       defaultProps: {
-        itemChildrenIndentation: 'var(--mui-density-medium)',
+        itemChildrenIndentation: 'var(--mui-density-x-large)',
       },
       styleOverrides: {},
     },
     MuiSimpleTreeView: {
       defaultProps: {
-        itemChildrenIndentation: 'var(--mui-density-medium)',
+        itemChildrenIndentation: 'var(--mui-density-x-large)',
       },
       styleOverrides: {},
     },
@@ -2130,10 +2130,22 @@ const high = {
       styleOverrides: {
         content: [
           {
-            paddingBlock: 'var(--mui-density-xx-small)',
+            paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
             paddingRight: 'var(--mui-density-small)',
-            paddingLeft: 'calc(var(--mui-density-small) + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))',
-            gap: 'var(--mui-density-small)',
+            paddingLeft: 'calc(var(--mui-density-x-small) + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))',
+            gap: 'var(--mui-density-x-small)',
+          },
+        ],
+        checkbox: [
+          {
+            marginLeft: '8px',
+          },
+        ],
+        iconContainer: [
+          {
+            '& svg': {
+              fontSize: '16px',
+            },
           },
         ],
         root: [
@@ -2537,19 +2549,18 @@ const high = {
         root: [
           {
             '& .MuiTablePagination-toolbar': {
-              minHeight: '52px',
-              paddingRight: 'var(--mui-density-xx-small)',
+              minHeight: '48px',
+              paddingRight: 'var(--mui-density-x-small)',
             },
             '& .MuiTablePagination-toolbar .MuiTablePagination-actions': {
-              marginLeft: 'var(--mui-density-large)',
+              marginLeft: 'var(--mui-density-x-large)',
             },
             '& .MuiTablePagination-selectRoot': {
               marginLeft: 'var(--mui-density-small)',
-              marginRight: 'var(--mui-density-xx-large)',
             },
             '& .MuiTablePagination-toolbar .MuiTablePagination-select': {
               paddingLeft: 'var(--mui-density-small)',
-              paddingRight: 'var(--mui-density-x-large)',
+              paddingRight: '22px',
             },
           },
         ],
@@ -5049,13 +5060,13 @@ const medium = {
     },
     MuiRichTreeView: {
       defaultProps: {
-        itemChildrenIndentation: 'var(--mui-density-medium)',
+        itemChildrenIndentation: 'var(--mui-density-x-large)',
       },
       styleOverrides: {},
     },
     MuiSimpleTreeView: {
       defaultProps: {
-        itemChildrenIndentation: 'var(--mui-density-medium)',
+        itemChildrenIndentation: 'var(--mui-density-x-large)',
       },
       styleOverrides: {},
     },
@@ -5063,10 +5074,22 @@ const medium = {
       styleOverrides: {
         content: [
           {
-            paddingBlock: 'var(--mui-density-xx-small)',
+            paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
             paddingRight: 'var(--mui-density-small)',
-            paddingLeft: 'calc(var(--mui-density-small) + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))',
-            gap: 'var(--mui-density-small)',
+            paddingLeft: 'calc(var(--mui-density-x-small) + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))',
+            gap: 'var(--mui-density-x-small)',
+          },
+        ],
+        checkbox: [
+          {
+            marginLeft: '8px',
+          },
+        ],
+        iconContainer: [
+          {
+            '& svg': {
+              fontSize: '16px',
+            },
           },
         ],
         root: [
@@ -5470,19 +5493,18 @@ const medium = {
         root: [
           {
             '& .MuiTablePagination-toolbar': {
-              minHeight: '52px',
-              paddingRight: 'var(--mui-density-xx-small)',
+              minHeight: '48px',
+              paddingRight: 'var(--mui-density-x-small)',
             },
             '& .MuiTablePagination-toolbar .MuiTablePagination-actions': {
-              marginLeft: 'var(--mui-density-large)',
+              marginLeft: 'var(--mui-density-x-large)',
             },
             '& .MuiTablePagination-selectRoot': {
               marginLeft: 'var(--mui-density-small)',
-              marginRight: 'var(--mui-density-xx-large)',
             },
             '& .MuiTablePagination-toolbar .MuiTablePagination-select': {
               paddingLeft: 'var(--mui-density-small)',
-              paddingRight: 'var(--mui-density-x-large)',
+              paddingRight: '22px',
             },
           },
         ],
@@ -7921,13 +7943,13 @@ const low = {
     },
     MuiRichTreeView: {
       defaultProps: {
-        itemChildrenIndentation: 'var(--mui-density-medium)',
+        itemChildrenIndentation: 'var(--mui-density-x-large)',
       },
       styleOverrides: {},
     },
     MuiSimpleTreeView: {
       defaultProps: {
-        itemChildrenIndentation: 'var(--mui-density-medium)',
+        itemChildrenIndentation: 'var(--mui-density-x-large)',
       },
       styleOverrides: {},
     },
@@ -7935,10 +7957,22 @@ const low = {
       styleOverrides: {
         content: [
           {
-            paddingBlock: 'var(--mui-density-xx-small)',
+            paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
             paddingRight: 'var(--mui-density-small)',
-            paddingLeft: 'calc(var(--mui-density-small) + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))',
-            gap: 'var(--mui-density-small)',
+            paddingLeft: 'calc(var(--mui-density-x-small) + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))',
+            gap: 'var(--mui-density-x-small)',
+          },
+        ],
+        checkbox: [
+          {
+            marginLeft: '8px',
+          },
+        ],
+        iconContainer: [
+          {
+            '& svg': {
+              fontSize: '16px',
+            },
           },
         ],
         root: [
@@ -8342,19 +8376,18 @@ const low = {
         root: [
           {
             '& .MuiTablePagination-toolbar': {
-              minHeight: '52px',
-              paddingRight: 'var(--mui-density-xx-small)',
+              minHeight: '48px',
+              paddingRight: 'var(--mui-density-x-small)',
             },
             '& .MuiTablePagination-toolbar .MuiTablePagination-actions': {
-              marginLeft: 'var(--mui-density-large)',
+              marginLeft: 'var(--mui-density-x-large)',
             },
             '& .MuiTablePagination-selectRoot': {
               marginLeft: 'var(--mui-density-small)',
-              marginRight: 'var(--mui-density-xx-large)',
             },
             '& .MuiTablePagination-toolbar .MuiTablePagination-select': {
               paddingLeft: 'var(--mui-density-small)',
-              paddingRight: 'var(--mui-density-x-large)',
+              paddingRight: '22px',
             },
           },
         ],
