@@ -1542,7 +1542,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiDataGrid|cell|base||paddingInline',
     label: 'DataGrid · cell · paddingInline',
     isDensity: true,
-    densityKey: 'medium',
+    densityKey: 'x-small',
     target: {
       component: 'MuiDataGrid',
       slot: 'cell',
@@ -1551,9 +1551,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingInline',
     },
     values: {
-      high: 'var(--mui-density-medium)',
-      medium: 'var(--mui-density-medium)',
-      low: 'var(--mui-density-medium)',
+      high: 'var(--mui-density-x-small)',
+      medium: 'var(--mui-density-x-small)',
+      low: 'var(--mui-density-x-small)',
     },
   },
   {
@@ -1652,7 +1652,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiDataGrid|columnHeader|base||paddingInline',
     label: 'DataGrid · columnHeader · paddingInline',
     isDensity: true,
-    densityKey: 'medium',
+    densityKey: 'x-small',
     target: {
       component: 'MuiDataGrid',
       slot: 'columnHeader',
@@ -1661,9 +1661,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingInline',
     },
     values: {
-      high: 'var(--mui-density-medium)',
-      medium: 'var(--mui-density-medium)',
-      low: 'var(--mui-density-medium)',
+      high: 'var(--mui-density-x-small)',
+      medium: 'var(--mui-density-x-small)',
+      low: 'var(--mui-density-x-small)',
     },
   },
   {
@@ -2034,17 +2034,17 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-x-large) var(--mui-density-medium) var(--mui-density-large) var(--mui-density-small)',
+      high: 'var(--mui-density-medium) var(--mui-density-small) var(--mui-density-large) var(--mui-density-large)',
       medium:
-        'var(--mui-density-x-large) var(--mui-density-medium) var(--mui-density-large) var(--mui-density-small)',
-      low: 'var(--mui-density-x-large) var(--mui-density-medium) var(--mui-density-large) var(--mui-density-small)',
+        'var(--mui-density-medium) var(--mui-density-small) var(--mui-density-large) var(--mui-density-large)',
+      low: 'var(--mui-density-medium) var(--mui-density-small) var(--mui-density-large) var(--mui-density-large)',
     },
   },
   {
     id: 'MuiDataGrid|panel|base|& .MuiDataGrid-panelContent|gap',
     label: 'DataGrid · panel · gap',
     isDensity: true,
-    densityKey: 'x-large',
+    densityKey: 'medium',
     target: {
       component: 'MuiDataGrid',
       slot: 'panel',
@@ -2053,16 +2053,16 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'gap',
     },
     values: {
-      high: 'var(--mui-density-x-large)',
-      medium: 'var(--mui-density-x-large)',
-      low: 'var(--mui-density-x-large)',
+      high: 'var(--mui-density-medium)',
+      medium: 'var(--mui-density-medium)',
+      low: 'var(--mui-density-medium)',
     },
   },
   {
     id: 'MuiDataGrid|panelFooter|base||padding',
     label: 'DataGrid · panelFooter · padding',
     isDensity: true,
-    densityKey: 'small',
+    densityKey: 'medium',
     target: {
       component: 'MuiDataGrid',
       slot: 'panelFooter',
@@ -2071,9 +2071,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
+      high: 'var(--mui-density-medium)',
+      medium: 'var(--mui-density-medium)',
+      low: 'var(--mui-density-medium)',
     },
   },
   {

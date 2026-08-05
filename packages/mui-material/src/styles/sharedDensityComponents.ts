@@ -966,8 +966,13 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   );
   // Cell/header inline inset (master 0 10px) + edit input aligned to the same
   // step (master 0 16px — upstream mismatch makes the value jump on edit entry).
-  addRootOverride(enhanced.components, 'MuiDataGrid', { paddingInline: d.medium }, 'cell');
-  addRootOverride(enhanced.components, 'MuiDataGrid', { paddingInline: d.medium }, 'columnHeader');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { paddingInline: d['x-small'] }, 'cell');
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { paddingInline: d['x-small'] },
+    'columnHeader',
+  );
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
@@ -1011,13 +1016,13 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'MuiDataGrid',
     {
       '& .MuiDataGrid-panelContent': {
-        padding: `${d['x-large']} ${d.medium} ${d.large} ${d.small}`,
-        gap: d['x-large'],
+        padding: `${d.medium} ${d.small} ${d.large} ${d.large}`,
+        gap: d.medium,
       },
     },
     'panel',
   );
-  addRootOverride(enhanced.components, 'MuiDataGrid', { padding: d.small }, 'panelFooter');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { padding: d.medium }, 'panelFooter');
   // Gap between the filter form's column/operator/value inputs (master su(1.5)).
   addRootOverride(enhanced.components, 'MuiDataGrid', { gap: d.medium }, 'filterForm');
   // Columns management panel paddings (master su(0.5,1.5) / su(1.5,2) /

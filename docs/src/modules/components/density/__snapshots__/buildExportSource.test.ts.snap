@@ -1843,7 +1843,7 @@ const high = {
       styleOverrides: {
         cell: [
           {
-            paddingInline: 'var(--mui-density-medium)',
+            paddingInline: 'var(--mui-density-x-small)',
           },
           {
             '&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell': {
@@ -1853,7 +1853,7 @@ const high = {
         ],
         columnHeader: [
           {
-            paddingInline: 'var(--mui-density-medium)',
+            paddingInline: 'var(--mui-density-x-small)',
           },
         ],
         editInputCell: [
@@ -1896,14 +1896,14 @@ const high = {
         panel: [
           {
             '& .MuiDataGrid-panelContent': {
-              padding: 'var(--mui-density-x-large) var(--mui-density-medium) var(--mui-density-large) var(--mui-density-small)',
-              gap: 'var(--mui-density-x-large)',
+              padding: 'var(--mui-density-medium) var(--mui-density-small) var(--mui-density-large) var(--mui-density-large)',
+              gap: 'var(--mui-density-medium)',
             },
           },
         ],
         panelFooter: [
           {
-            padding: 'var(--mui-density-small)',
+            padding: 'var(--mui-density-medium)',
           },
         ],
         filterForm: [
@@ -4776,7 +4776,7 @@ const medium = {
       styleOverrides: {
         cell: [
           {
-            paddingInline: 'var(--mui-density-medium)',
+            paddingInline: 'var(--mui-density-x-small)',
           },
           {
             '&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell': {
@@ -4786,7 +4786,7 @@ const medium = {
         ],
         columnHeader: [
           {
-            paddingInline: 'var(--mui-density-medium)',
+            paddingInline: 'var(--mui-density-x-small)',
           },
         ],
         editInputCell: [
@@ -4829,14 +4829,14 @@ const medium = {
         panel: [
           {
             '& .MuiDataGrid-panelContent': {
-              padding: 'var(--mui-density-x-large) var(--mui-density-medium) var(--mui-density-large) var(--mui-density-small)',
-              gap: 'var(--mui-density-x-large)',
+              padding: 'var(--mui-density-medium) var(--mui-density-small) var(--mui-density-large) var(--mui-density-large)',
+              gap: 'var(--mui-density-medium)',
             },
           },
         ],
         panelFooter: [
           {
-            padding: 'var(--mui-density-small)',
+            padding: 'var(--mui-density-medium)',
           },
         ],
         filterForm: [
@@ -7648,7 +7648,7 @@ const low = {
       styleOverrides: {
         cell: [
           {
-            paddingInline: 'var(--mui-density-medium)',
+            paddingInline: 'var(--mui-density-x-small)',
           },
           {
             '&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell': {
@@ -7658,7 +7658,7 @@ const low = {
         ],
         columnHeader: [
           {
-            paddingInline: 'var(--mui-density-medium)',
+            paddingInline: 'var(--mui-density-x-small)',
           },
         ],
         editInputCell: [
@@ -7701,14 +7701,14 @@ const low = {
         panel: [
           {
             '& .MuiDataGrid-panelContent': {
-              padding: 'var(--mui-density-x-large) var(--mui-density-medium) var(--mui-density-large) var(--mui-density-small)',
-              gap: 'var(--mui-density-x-large)',
+              padding: 'var(--mui-density-medium) var(--mui-density-small) var(--mui-density-large) var(--mui-density-large)',
+              gap: 'var(--mui-density-medium)',
             },
           },
         ],
         panelFooter: [
           {
-            padding: 'var(--mui-density-small)',
+            padding: 'var(--mui-density-medium)',
           },
         ],
         filterForm: [

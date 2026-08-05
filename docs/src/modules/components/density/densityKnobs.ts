@@ -288,7 +288,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'DataGrid · aiAssistantPanelHeader · height',
     note: '[Premium] same 44/52/60 rhythm as toolbar/footer (master 52). Demo: AI panel opens via initialState.preferencePanel (empty state, no service needed).',
   },
-  'MuiDataGrid|cell|base||paddingInline': 'DataGrid · cell · paddingInline',
+  'MuiDataGrid|cell|base||paddingInline': {
+    label: 'DataGrid · cell · paddingInline',
+    done: ['medium'],
+  },
   'MuiDataGrid|cell|base|&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell|paddingTop':
     {
       label: 'DataGrid · cell · rowspan multiSelect paddingTop',
@@ -314,7 +317,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'DataGrid · chartsPanelDataSections · minHeight',
     note: '[Premium] mirrors pivotPanelSections — values never fork.',
   },
-  'MuiDataGrid|columnHeader|base||paddingInline': 'DataGrid · columnHeader · paddingInline',
+  'MuiDataGrid|columnHeader|base||paddingInline': {
+    label: 'DataGrid · columnHeader · paddingInline',
+    done: ['medium'],
+  },
   'MuiDataGrid|columnHeader--dragging|base||paddingInline': {
     label: 'DataGrid · columnHeader--dragging · paddingInline',
     note: '⚑ transient drag-ghost inset (master 0 12px) — not visible in static demos.',
@@ -341,10 +347,12 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     'DataGrid · columnsManagementHeader · padding',
   'MuiDataGrid|defaultProps|base||rowHeight': {
     label: 'DataGrid · row height (defaultProps, px)',
+    done: ['medium'],
     note: 'JS-gated: applies through the rowHeight prop, not CSS — the virtualizer computes row positions from it.',
   },
   'MuiDataGrid|defaultProps|base||columnHeaderHeight': {
     label: 'DataGrid · header height (defaultProps, px)',
+    done: ['medium'],
     note: 'JS-gated: applies through the columnHeaderHeight prop, not CSS.',
   },
   'MuiDataGrid|editInputCell|base|& input|paddingInline':
@@ -369,13 +377,18 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiDataGrid|overlay|base||gap': 'DataGrid · overlay · gap',
   'MuiDataGrid|panel|base|& .MuiDataGrid-panelContent|padding': {
     label: 'DataGrid · panelContent · padding',
+    done: ['medium'],
     note: 'Nested under panel — upstream resolves the panelContent key on the popup shell too.',
   },
   'MuiDataGrid|panel|base|& .MuiDataGrid-panelContent|gap': {
     label: 'DataGrid · panelContent · gap',
+    done: ['medium'],
     note: 'Gap between stacked filter forms (master su(2.5)).',
   },
-  'MuiDataGrid|panelFooter|base||padding': 'DataGrid · panelFooter · padding',
+  'MuiDataGrid|panelFooter|base||padding': {
+    label: 'DataGrid · panelFooter · padding',
+    done: ['medium'],
+  },
   'MuiDataGrid|pivotPanelAvailableFields|base||minHeight': {
     label: 'DataGrid · pivotPanelAvailableFields · minHeight',
     note: '⚑ [Premium] drop zone — straw-man, coupled to the field-row height (master 84).',
