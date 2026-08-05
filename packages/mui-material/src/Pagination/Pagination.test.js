@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';
@@ -26,7 +25,7 @@ describe('<Pagination />', () => {
     const { container } = render(<Pagination />);
 
     expect(container.firstChild).to.have.class(classes.root);
-    expect(screen.getByRole('navigation', { name: /pagination navigation/i })).not.to.equal(null);
+    expect(screen.getByRole('navigation')).to.have.attribute('aria-label', 'pagination navigation');
   });
 
   it('moves aria-current to the specified page', () => {
