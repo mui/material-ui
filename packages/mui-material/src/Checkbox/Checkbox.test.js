@@ -11,7 +11,7 @@ import {
 } from '@mui/internal-test-utils';
 import Checkbox, { checkboxClasses as classes } from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
-import ButtonBase from '@mui/material/ButtonBase';
+import ButtonBase, { buttonBaseClasses } from '@mui/material/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
@@ -313,7 +313,7 @@ describe('<Checkbox />', () => {
           const input = screen.getByRole('checkbox');
           simulatePointerDevice();
           focusVisible(input);
-          expect(input.parentElement).to.have.class('Mui-focusVisible');
+          expect(input.parentElement).to.have.class(buttonBaseClasses.focusVisible);
           expect(input.parentElement.querySelector('svg')).toHaveComputedStyle({
             outlineStyle: 'solid',
             outlineWidth: '2px',

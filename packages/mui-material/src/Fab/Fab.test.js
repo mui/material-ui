@@ -245,7 +245,7 @@ describe('<Fab />', () => {
       const fab = screen.getByRole('button');
       simulatePointerDevice();
       focusVisible(fab);
-      expect(fab).to.have.class('Mui-focusVisible');
+      expect(fab).to.have.class(classes.focusVisible);
       expect(effectiveBoxShadow(fab)).to.contain('rgb(255, 0, 0)');
     });
   });
