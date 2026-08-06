@@ -457,7 +457,7 @@ function InnerRing() {
   return (
     <Bucket
       title="inner-ring"
-      hint="Likely inside a scrollable / overflow-clipped container — the ring is INSET (outlineOffset −2) so it can't be clipped."
+      hint="Likely inside a scrollable / overflow-clipped container — the ring is INSET (outlineOffset −2) so it can't be clipped. Tab insets deeper (−6) so the ring does not overlap the selected-tab underline indicator."
     >
       <Row label="Tab">
         <Tabs value={0} sx={{ minHeight: 0 }}>
