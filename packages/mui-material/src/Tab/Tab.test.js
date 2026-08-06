@@ -324,7 +324,8 @@ describe('<Tab />', () => {
       const tab = screen.getByRole('tab');
       simulatePointerDevice();
       focusVisible(tab);
-      expect(tab).toHaveComputedStyle({ outlineOffset: '-2px' });
+      // Tab insets deeper than the default mirror (offset 3 → −3 × the 2px outlineOffset).
+      expect(tab).toHaveComputedStyle({ outlineOffset: '-6px' });
     });
 
     it.skipIf(isJsdom())('insets a user box-shadow automatically on clip-prone components', () => {
