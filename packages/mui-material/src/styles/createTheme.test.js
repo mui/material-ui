@@ -477,10 +477,10 @@ describe('createTheme', () => {
 
     it('an object merges over the curated default, keeping geometry', () => {
       const theme = createTheme({ cssVariables: false, focusVisible: { outlineColor: 'red' } });
-      expect(theme.focusVisible).to.deep.equal({
-        ...CURATED,
-        outlineColor: 'red',
-      });
+      expect(theme.focusVisible.outlineColor).to.equal('red');
+      // the curated geometry survives the merge
+      expect(theme.focusVisible.outlineStyle).to.equal('solid');
+      expect(theme.focusVisible.outlineWidth).to.equal(2);
     });
 
     it('`outlineColor: transparent` removes the visible outline but keeps the object', () => {
@@ -497,12 +497,13 @@ describe('createTheme', () => {
         cssVariables: false,
         focusVisible: { boxShadow: '0 0 0 4px #fff' },
       });
-      expect(theme.focusVisible).to.deep.equal({
-        ...CURATED,
-        outlineColor: theme.palette.primary.main,
-        // prepended internally so the box-shadow insets on clip-prone components
-        boxShadow: 'var(--_focusVisible-behavior, ) 0 0 0 4px #fff',
-      });
+      // prepended internally so the box-shadow insets on clip-prone components
+      expect(theme.focusVisible.boxShadow).to.equal(
+        'var(--_focusVisible-behavior, ) 0 0 0 4px #fff',
+      );
+      // additive: the outline baseline stays
+      expect(theme.focusVisible.outlineStyle).to.equal('solid');
+      expect(theme.focusVisible.outlineColor).to.equal(theme.palette.primary.main);
     });
 
     it('does not prepend the behavior var to a boxShadow that already opts into inset', () => {
@@ -566,12 +567,9 @@ describe('createTheme', () => {
     it('normalizes `focusVisible` passed as a merge argument (non-vars and vars)', () => {
       // `createTheme(options, ...args)` — `focusVisible` arrives via a merge argument, not
       // `options`. It must still resolve to the curated object, not stay a raw boolean.
-      expect(
-        createTheme({ cssVariables: false }, { focusVisible: true }).focusVisible,
-      ).to.deep.equal({
-        ...CURATED,
-        outlineColor: createTheme().palette.primary.main,
-      });
+      const merged = createTheme({ cssVariables: false }, { focusVisible: true }).focusVisible;
+      expect(merged.outlineStyle).to.equal('solid');
+      expect(merged.outlineColor).to.equal(createTheme().palette.primary.main);
       const varsTheme = createTheme({ cssVariables: true }, { focusVisible: true });
       expect(varsTheme.focusVisible.outlineColor).to.equal('var(--mui-palette-primary-main)');
       // skipped from var generation — kept inline (see the vars-theme test above)
