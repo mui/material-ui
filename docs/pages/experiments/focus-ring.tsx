@@ -585,8 +585,8 @@ function OwnFocus() {
 function OnAppBar() {
   return (
     <Bucket
-      title="on a colored surface (AppBar · Alert · Snackbar) — out of scope"
-      hint="color=inherit Buttons/IconButtons on saturated containers (primary AppBar, severity-filled Alert, inverted SnackbarContent). The curated ring is primary.main, so it can lack contrast here. OUT OF SCOPE for v1 — one global ring color can't contrast every surface; the consumer overrides outlineColor on the surface (e.g. currentColor). See the RFC."
+      title="on a colored surface (AppBar · Alert · Snackbar)"
+      hint="color=inherit Buttons/IconButtons on saturated containers (primary AppBar, severity-filled Alert, inverted SnackbarContent). These surfaces set a private --_focusVisible-shadow var (0 0 0 4px background.default) that the curated ring's box-shadow slot consumes — a background-colored halo behind the outline keeps the indicator visible where primary.main alone would lack contrast. A custom theme.focusVisible boxShadow replaces that slot, so contrast there becomes the author's call."
     >
       <Row label="AppBar">
         <AppBar position="static" sx={{ borderRadius: 1 }}>
@@ -657,7 +657,7 @@ export default function FocusVisible() {
   const [preset, setPreset] = React.useState<Preset>('true');
   const [mode, setMode] = React.useState<'light' | 'dark'>('light');
   const [vars, setVars] = React.useState(false); // N3
-  const [disableRipple, setDisableRipple] = React.useState(false); // N6
+  const [disableRipple, setDisableRipple] = React.useState(true); // N6
   const [customJson, setCustomJson] = React.useState(''); // N2
   const [focused, setFocused] = React.useState<string | null>(null);
   const [ringIdx, setRingIdx] = React.useState(-1); // N1
