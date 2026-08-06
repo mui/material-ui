@@ -22,7 +22,7 @@ const theme = createTheme({
 export default function FocusVisibleColoredSurface() {
   return (
     <ThemeProvider theme={theme}>
-      <Stack spacing={2} sx={{ width: '100%' }}>
+      <Stack spacing={3} sx={{ alignItems: 'center' }}>
         <Typography
           variant="body2"
           color="text.secondary"
