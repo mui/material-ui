@@ -804,6 +804,36 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
       'MuiButton|endIcon|size=medium|& > *:nth-of-type(1)|fontSize',
     ],
   },
+  // Chip icon margins ride the root as `& .MuiChip-icon` (to beat master's 0,2,0
+  // rule) but display under the icon slot via these single-member remaps.
+  {
+    id: 'virtual:MuiChip:iconMarginLeftMedium',
+    label: 'Chip · icon · marginLeft [size=medium]',
+    group: 'Chip',
+    slot: 'icon',
+    members: ['MuiChip|root|size=medium|& .MuiChip-icon|marginLeft'],
+  },
+  {
+    id: 'virtual:MuiChip:iconMarginRightMedium',
+    label: 'Chip · icon · marginRight [size=medium]',
+    group: 'Chip',
+    slot: 'icon',
+    members: ['MuiChip|root|size=medium|& .MuiChip-icon|marginRight'],
+  },
+  {
+    id: 'virtual:MuiChip:iconMarginLeftSmall',
+    label: 'Chip · icon · marginLeft [size=small]',
+    group: 'Chip',
+    slot: 'icon',
+    members: ['MuiChip|root|size=small|& .MuiChip-icon|marginLeft'],
+  },
+  {
+    id: 'virtual:MuiChip:iconMarginRightSmall',
+    label: 'Chip · icon · marginRight [size=small]',
+    group: 'Chip',
+    slot: 'icon',
+    members: ['MuiChip|root|size=small|& .MuiChip-icon|marginRight'],
+  },
   {
     id: 'virtual:MuiStepper:gap',
     label: 'Stepper · column gap',

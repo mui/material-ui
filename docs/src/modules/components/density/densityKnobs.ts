@@ -203,7 +203,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'Checkbox · marginRight [edge=end]',
     done: ['medium'],
   },
-  'MuiChip|avatar|size=medium||--_avatarSize': 'Chip · avatar · size [size=medium]',
+  'MuiChip|avatar|size=medium||--_avatarSize': {
+    label: 'Chip · avatar · size [size=medium]',
+    done: ['medium'],
+  },
   'MuiChip|avatar|size=medium||width': {
     label: 'Chip · avatar · width [size=medium]',
     hidden: true,
@@ -219,7 +222,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Derived from the per-size --_height/--_avatarSize/--_deleteIconSize vars — the var rows are the knobs.',
   },
-  'MuiChip|avatar|size=small||--_avatarSize': 'Chip · avatar · size [size=small]',
+  'MuiChip|avatar|size=small||--_avatarSize': {
+    label: 'Chip · avatar · size [size=small]',
+    done: ['medium'],
+  },
   'MuiChip|avatar|size=small||width': {
     label: 'Chip · avatar · width [size=small]',
     hidden: true,
@@ -257,8 +263,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Derived from the per-size --_height/--_avatarSize/--_deleteIconSize vars — the var rows are the knobs.',
   },
-  'MuiChip|icon|size=medium||fontSize': 'Chip · icon · fontSize [size=medium]',
-  'MuiChip|icon|size=small||fontSize': 'Chip · icon · fontSize [size=small]',
+  'MuiChip|icon|size=medium||fontSize': {
+    label: 'Chip · icon · fontSize [size=medium]',
+    done: ['medium'],
+  },
+  'MuiChip|icon|size=small||fontSize': {
+    label: 'Chip · icon · fontSize [size=small]',
+    done: ['medium'],
+  },
   'MuiChip|label|size=medium||paddingInline': {
     label: 'Chip · label · paddingInline [size=medium]',
     done: ['medium'],
@@ -267,17 +279,33 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'Chip · label · paddingInline [size=small]',
     done: ['medium'],
   },
-  'MuiChip|root|size=medium||--_height': 'Chip · height [size=medium]',
+  'MuiChip|root|size=medium||--_height': { label: 'Chip · height [size=medium]', done: ['medium'] },
   'MuiChip|root|size=medium||height': {
     label: 'Chip · height [size=medium]',
     hidden: true,
     note: 'Derived from the per-size --_height/--_avatarSize/--_deleteIconSize vars — the var rows are the knobs.',
   },
-  'MuiChip|root|size=small||--_height': 'Chip · height [size=small]',
+  'MuiChip|root|size=small||--_height': { label: 'Chip · height [size=small]', done: ['medium'] },
   'MuiChip|root|size=small||height': {
     label: 'Chip · height [size=small]',
     hidden: true,
     note: 'Derived from the per-size --_height/--_avatarSize/--_deleteIconSize vars — the var rows are the knobs.',
+  },
+  'MuiChip|root|size=medium|& .MuiChip-icon|marginLeft': {
+    label: 'Chip · marginLeft [size=medium]',
+    done: ['medium'],
+  },
+  'MuiChip|root|size=medium|& .MuiChip-icon|marginRight': {
+    label: 'Chip · marginRight [size=medium]',
+    done: ['medium'],
+  },
+  'MuiChip|root|size=small|& .MuiChip-icon|marginLeft': {
+    label: 'Chip · marginLeft [size=small]',
+    done: ['medium'],
+  },
+  'MuiChip|root|size=small|& .MuiChip-icon|marginRight': {
+    label: 'Chip · marginRight [size=small]',
+    done: ['medium'],
   },
   'MuiDataGrid|actionsCell|base||gridGap': 'DataGrid · actionsCell · gridGap',
   'MuiDataGrid|aiAssistantPanel|base||width': {
@@ -605,17 +633,12 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
   },
-  'MuiFilledInput|input|base||paddingInline': {
-    label: 'FilledInput · input · inline padding',
-    done: ['medium'],
-  },
+  'MuiFilledInput|input|base||paddingInline': { label: 'FilledInput · input · inline padding' },
   'MuiFilledInput|input|hiddenLabel=true||paddingBlock': {
     label: 'FilledInput · input · paddingBlock [hiddenLabel=true]',
-    done: ['medium'],
   },
   'MuiFilledInput|input|hiddenLabel=true,size=small||paddingBlock': {
     label: 'FilledInput · input · paddingBlock [hiddenLabel=true,size=small]',
-    done: ['medium'],
   },
   'MuiFilledInput|input|multiline=true||paddingBlock': {
     label: 'FilledInput · input · paddingBlock [multiline=true]',
@@ -628,11 +651,9 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiFilledInput|input|fn:ho424h||paddingRight': 'FilledInput · input · paddingRight [fn]',
   'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadTop': {
     label: 'FilledInput · padding top',
-    done: ['medium'],
   },
   'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadBottom': {
     label: 'FilledInput · padding bottom',
-    done: ['medium'],
   },
   'MuiFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': {
     label: 'FilledInput · --_restY',
@@ -648,11 +669,9 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     'FilledInput · --_inlinePad',
   'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadTop': {
     label: 'FilledInput · padding top [size=small]',
-    done: ['medium'],
   },
   'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadBottom': {
     label: 'FilledInput · padding bottom [size=small]',
-    done: ['medium'],
   },
   'MuiFilledInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY': {
     label: 'FilledInput · --_restY [size=small]',
@@ -774,15 +793,12 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputPadTop': {
     label: 'Input · padding top',
-    done: ['medium'],
   },
   'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputPadBottom': {
     label: 'Input · padding bottom',
-    done: ['medium'],
   },
   'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputMarginTop': {
     label: 'Input · margin top',
-    done: ['medium'],
   },
   'MuiInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': {
     label: 'Input · --_restY',
@@ -796,11 +812,9 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiInput|root|size=small|.MuiFormControl-root:has(> &)|--_inputPadTop': {
     label: 'Input · padding top [size=small]',
-    done: ['medium'],
   },
   'MuiInput|root|size=small|.MuiFormControl-root:has(> &)|--_inputPadBottom': {
     label: 'Input · padding bottom [size=small]',
-    done: ['medium'],
   },
   'MuiInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY': {
     label: 'Input · --_restY [size=small]',
@@ -837,11 +851,9 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiInputAdornment|root|position=start,size=small||marginRight': {
     label: 'InputAdornment · marginRight [position=start,size=small]',
-    done: ['medium'],
   },
   'MuiInputAdornment|root|position=end,size=small||marginLeft': {
     label: 'InputAdornment · marginLeft [position=end,size=small]',
-    done: ['medium'],
   },
   'MuiInputAdornment|root|variant=filled|&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)|marginTop':
     {
@@ -1006,7 +1018,6 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     'OutlinedInput · --_inlinePad',
   'MuiOutlinedInput|root|size=small|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock': {
     label: 'OutlinedInput · padding block [size=small]',
-    done: ['medium'],
   },
   'MuiOutlinedInput|root|multiline=true||paddingBlock': {
     label: 'OutlinedInput · paddingBlock [multiline=true]',

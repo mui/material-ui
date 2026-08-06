@@ -1724,7 +1724,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addRootOverride(enhanced.components, 'MuiChip', {
     variants: [
       { props: { size: 'medium' }, style: { '--_height': '32px', height: 'var(--_height)' } },
-      { props: { size: 'small' }, style: { '--_height': '24px', height: 'var(--_height)' } },
+      { props: { size: 'small' }, style: { '--_height': '28px', height: 'var(--_height)' } },
     ],
   });
   addRootOverride(
@@ -1745,7 +1745,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         {
           props: { size: 'small' },
           style: {
-            '--_avatarSize': '18px',
+            '--_avatarSize': '16px',
             width: 'var(--_avatarSize)',
             height: 'var(--_avatarSize)',
             marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
@@ -1760,12 +1760,29 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'MuiChip',
     {
       variants: [
-        { props: { size: 'medium' }, style: { fontSize: '24px' } },
-        { props: { size: 'small' }, style: { fontSize: '18px' } },
+        { props: { size: 'medium' }, style: { fontSize: '16px' } },
+        { props: { size: 'small' }, style: { fontSize: '16px' } },
       ],
     },
     'icon',
   );
+  // Icon side margins — master styles these as root-descendant `& .MuiChip-icon`
+  // (base 5/-6, small 4/-4) at (0,2,0), so a plain icon-slot rule can't win. Emit
+  // the same root-descendant selector per size — applied after master's own
+  // variants, it overrides each size. Surfaced under the icon slot via the
+  // `virtual:MuiChip:iconMargin*` knobs (display-slot remap).
+  addRootOverride(enhanced.components, 'MuiChip', {
+    variants: [
+      {
+        props: { size: 'medium' },
+        style: { '& .MuiChip-icon': { marginLeft: '12px', marginRight: '-4px' } },
+      },
+      {
+        props: { size: 'small' },
+        style: { '& .MuiChip-icon': { marginLeft: '8px', marginRight: '0px' } },
+      },
+    ],
+  });
   addRootOverride(
     enhanced.components,
     'MuiChip',

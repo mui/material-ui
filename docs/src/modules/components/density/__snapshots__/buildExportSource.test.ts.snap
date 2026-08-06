@@ -1719,8 +1719,34 @@ const high = {
                   size: 'small',
                 },
                 style: {
-                  '--_height': '24px',
+                  '--_height': '28px',
                   height: 'var(--_height)',
+                },
+              },
+            ],
+          },
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  '& .MuiChip-icon': {
+                    marginLeft: '12px',
+                    marginRight: '-4px',
+                  },
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  '& .MuiChip-icon': {
+                    marginLeft: '8px',
+                    marginRight: '0px',
+                  },
                 },
               },
             ],
@@ -1745,7 +1771,7 @@ const high = {
                   size: 'small',
                 },
                 style: {
-                  '--_avatarSize': '18px',
+                  '--_avatarSize': '16px',
                   width: 'var(--_avatarSize)',
                   height: 'var(--_avatarSize)',
                   marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
@@ -1762,7 +1788,7 @@ const high = {
                   size: 'medium',
                 },
                 style: {
-                  fontSize: '24px',
+                  fontSize: '16px',
                 },
               },
               {
@@ -1770,7 +1796,7 @@ const high = {
                   size: 'small',
                 },
                 style: {
-                  fontSize: '18px',
+                  fontSize: '16px',
                 },
               },
             ],
@@ -4663,8 +4689,34 @@ const medium = {
                   size: 'small',
                 },
                 style: {
-                  '--_height': '24px',
+                  '--_height': '28px',
                   height: 'var(--_height)',
+                },
+              },
+            ],
+          },
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  '& .MuiChip-icon': {
+                    marginLeft: '12px',
+                    marginRight: '-4px',
+                  },
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  '& .MuiChip-icon': {
+                    marginLeft: '8px',
+                    marginRight: '0px',
+                  },
                 },
               },
             ],
@@ -4689,7 +4741,7 @@ const medium = {
                   size: 'small',
                 },
                 style: {
-                  '--_avatarSize': '18px',
+                  '--_avatarSize': '16px',
                   width: 'var(--_avatarSize)',
                   height: 'var(--_avatarSize)',
                   marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
@@ -4706,7 +4758,7 @@ const medium = {
                   size: 'medium',
                 },
                 style: {
-                  fontSize: '24px',
+                  fontSize: '16px',
                 },
               },
               {
@@ -4714,7 +4766,7 @@ const medium = {
                   size: 'small',
                 },
                 style: {
-                  fontSize: '18px',
+                  fontSize: '16px',
                 },
               },
             ],
@@ -7546,8 +7598,34 @@ const low = {
                   size: 'small',
                 },
                 style: {
-                  '--_height': '24px',
+                  '--_height': '28px',
                   height: 'var(--_height)',
+                },
+              },
+            ],
+          },
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  '& .MuiChip-icon': {
+                    marginLeft: '12px',
+                    marginRight: '-4px',
+                  },
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  '& .MuiChip-icon': {
+                    marginLeft: '8px',
+                    marginRight: '0px',
+                  },
                 },
               },
             ],
@@ -7572,7 +7650,7 @@ const low = {
                   size: 'small',
                 },
                 style: {
-                  '--_avatarSize': '18px',
+                  '--_avatarSize': '16px',
                   width: 'var(--_avatarSize)',
                   height: 'var(--_avatarSize)',
                   marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
@@ -7589,7 +7667,7 @@ const low = {
                   size: 'medium',
                 },
                 style: {
-                  fontSize: '24px',
+                  fontSize: '16px',
                 },
               },
               {
@@ -7597,7 +7675,7 @@ const low = {
                   size: 'small',
                 },
                 style: {
-                  fontSize: '18px',
+                  fontSize: '16px',
                 },
               },
             ],

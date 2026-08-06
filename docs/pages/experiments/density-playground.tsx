@@ -420,6 +420,7 @@ const MARGIN_MARKER_SELECTORS = [
   '.MuiAlert-icon',
   '.MuiAlert-action',
   '.MuiChip-avatar',
+  '.MuiChip-icon',
   '.MuiChip-deleteIcon',
   '.MuiBreadcrumbs-separator',
   '.MuiStepConnector-vertical',
@@ -1603,45 +1604,43 @@ function AlertMatrix() {
 
 function ChipMatrix() {
   return (
-    <Stack
-      direction="row"
-      spacing={10}
-      useFlexGap
-      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
-    >
-      <Chip
-        avatar={<Avatar>N</Avatar>}
-        label={<span className="density-debug-text">Natacha</span>}
-        onDelete={() => {}}
-      />
-      <Chip icon={<InboxIcon />} label={<span className="density-debug-text">Archived</span>} />
-      <Chip
-        label={<span className="density-debug-text">In review</span>}
-        variant="outlined"
-        onDelete={() => {}}
-      />
-      <Chip
-        avatar={<Avatar>N</Avatar>}
-        label={<span className="density-debug-text">Natacha</span>}
-        size="small"
-        onDelete={() => {}}
-      />
-      <Chip
-        icon={<InboxIcon />}
-        label={<span className="density-debug-text">Archived</span>}
-        size="small"
-      />
-      <Chip
-        label={<span className="density-debug-text">Bug</span>}
-        color="error"
-        size="small"
-        onDelete={() => {}}
-      />
-      <Chip
-        label={<span className="density-debug-text">Draft</span>}
-        size="small"
-        variant="outlined"
-      />
+    <Stack spacing={4} sx={{ mt: 1 }}>
+      {(['medium', 'small'] as const).map((size) => (
+        <div key={size}>
+          <Typography variant="caption" color="text.secondary">
+            {size}
+          </Typography>
+          <Stack
+            direction="row"
+            spacing={10}
+            useFlexGap
+            sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+          >
+            <Chip
+              avatar={<Avatar>N</Avatar>}
+              label={<span className="density-debug-text">Natacha</span>}
+              size={size}
+              onDelete={() => {}}
+            />
+            <Chip
+              icon={<InboxIcon />}
+              label={<span className="density-debug-text">Archived</span>}
+              size={size}
+            />
+            <Chip
+              label={<span className="density-debug-text">Bug</span>}
+              color="error"
+              size={size}
+              onDelete={() => {}}
+            />
+            <Chip
+              label={<span className="density-debug-text">Draft</span>}
+              size={size}
+              variant="outlined"
+            />
+          </Stack>
+        </div>
+      ))}
     </Stack>
   );
 }
