@@ -35,13 +35,9 @@ To see the full list of components that show inner focus indicator, check out th
 
 ### Colored surface container
 
-Containers with a colored background — an `AppBar` using a palette color, a filled `Alert`, and `SnackbarContent` — render an extra `box-shadow` layer behind the outline, colored with the theme's default background, so the focus indicator keeps contrast on the colored surface:
+Components that support keyboard focus visible will show another layer of box-shadow indicator when they render within `AppBar`, `Alert`, and `SnackbarContent`. This comes by default when the focus visible feature is enabled, unless a custom box-shadow is provided.
 
 {{"demo": "FocusVisibleColoredSurface.js"}}
-
-:::info
-Passing a custom `boxShadow` to `focusVisible` replaces this layer — ring contrast on colored surfaces then becomes your responsibility.
-:::
 
 ## Customization
 
