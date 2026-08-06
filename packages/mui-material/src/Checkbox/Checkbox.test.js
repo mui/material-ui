@@ -313,6 +313,7 @@ describe('<Checkbox />', () => {
           const input = screen.getByRole('checkbox');
           simulatePointerDevice();
           focusVisible(input);
+          expect(input.parentElement).to.have.class('Mui-focusVisible');
           expect(input.parentElement.querySelector('svg')).toHaveComputedStyle({
             outlineStyle: 'solid',
             outlineWidth: '2px',

@@ -53,52 +53,51 @@ const SwitchRoot = styled('span', {
       styles[`size${capitalize(ownerState.size)}`],
     ];
   },
-})(
-  memoTheme(({ theme }) => ({
-    display: 'inline-flex',
-    width: 34 + 12 * 2,
-    height: 14 + 12 * 2,
-    // The ring renders on the track slot; the default `hidden` would clip it.
-    overflow: theme.focusVisible ? 'visible' : 'hidden',
-    padding: 12,
-    boxSizing: 'border-box',
-    position: 'relative',
-    flexShrink: 0,
-    zIndex: 0, // Reset the stacking context.
-    verticalAlign: 'middle', // For correct alignment with the text.
-    '@media print': {
-      colorAdjust: 'exact',
+})({
+  display: 'inline-flex',
+  width: 34 + 12 * 2,
+  height: 14 + 12 * 2,
+  // The track ring (outline offset + width = 4px) stays inside the 12px root padding,
+  // so `hidden` never clips it — and it keeps the 300%-wide input's hit area at the root box.
+  overflow: 'hidden',
+  padding: 12,
+  boxSizing: 'border-box',
+  position: 'relative',
+  flexShrink: 0,
+  zIndex: 0, // Reset the stacking context.
+  verticalAlign: 'middle', // For correct alignment with the text.
+  '@media print': {
+    colorAdjust: 'exact',
+  },
+  variants: [
+    {
+      props: { edge: 'start' },
+      style: { marginLeft: -8 },
     },
-    variants: [
-      {
-        props: { edge: 'start' },
-        style: { marginLeft: -8 },
-      },
-      {
-        props: { edge: 'end' },
-        style: { marginRight: -8 },
-      },
-      {
-        props: { size: 'small' },
-        style: {
-          width: 40,
-          height: 24,
-          padding: 7,
-          [`& .${switchClasses.thumb}`]: {
-            width: 16,
-            height: 16,
-          },
-          [`& .${switchClasses.switchBase}`]: {
-            padding: 4,
-            [`&.${switchClasses.checked}`]: {
-              transform: 'translateX(16px)',
-            },
+    {
+      props: { edge: 'end' },
+      style: { marginRight: -8 },
+    },
+    {
+      props: { size: 'small' },
+      style: {
+        width: 40,
+        height: 24,
+        padding: 7,
+        [`& .${switchClasses.thumb}`]: {
+          width: 16,
+          height: 16,
+        },
+        [`& .${switchClasses.switchBase}`]: {
+          padding: 4,
+          [`&.${switchClasses.checked}`]: {
+            transform: 'translateX(16px)',
           },
         },
       },
-    ],
-  })),
-);
+    },
+  ],
+});
 
 const SwitchSwitchBase = styled(SwitchBase, {
   name: 'MuiSwitch',
@@ -118,9 +117,6 @@ const SwitchSwitchBase = styled(SwitchBase, {
     top: 0,
     left: 0,
     zIndex: 1, // Render above the focus ripple.
-    // When `focusVisible` is enabled, overflow hidden must move from the root to the switchBase
-    // so that the ring is visible on the track slot and input does not overflow.
-    overflow: theme.focusVisible ? 'hidden' : 'visible',
     color: theme.vars
       ? theme.vars.palette.Switch.defaultColor
       : `${theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.grey[300]}`,

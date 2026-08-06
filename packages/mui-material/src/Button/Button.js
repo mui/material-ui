@@ -131,7 +131,7 @@ const ButtonRoot = styled(ButtonBase, {
               boxShadow: (theme.vars || theme).shadows[8],
             },
             [`&.${buttonClasses.focusVisible}`]: {
-              ...(theme.focusVisible && theme.focusVisible),
+              ...theme.focusVisible,
               boxShadow: theme.focusVisible?.boxShadow
                 ? `${theme.shadows[6]}, ${theme.focusVisible.boxShadow}`
                 : (theme.vars || theme).shadows[6],

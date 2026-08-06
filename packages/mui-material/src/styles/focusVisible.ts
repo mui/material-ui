@@ -79,8 +79,19 @@ export function wireFocusVisibleVars(resolved: React.CSSProperties): React.CSSPr
     resolved.outlineOffset = `calc(${offsetValue} * ${offsetPx})`;
   }
   // Prefix a box-shadow with the behavior var so it insets there too, unless it already opts in.
+  // Standalone keywords are complete values — prefixing would make the declaration invalid
+  // (`inset none`) on clip-prone components.
+  const standaloneBoxShadows = new Set([
+    'none',
+    'initial',
+    'inherit',
+    'unset',
+    'revert',
+    'revert-layer',
+  ]);
   if (
     typeof resolved.boxShadow === 'string' &&
+    !standaloneBoxShadows.has(resolved.boxShadow.trim().toLowerCase()) &&
     !/\binset\b/.test(resolved.boxShadow) &&
     !resolved.boxShadow.includes(focusVisibleBehaviorVar)
   ) {

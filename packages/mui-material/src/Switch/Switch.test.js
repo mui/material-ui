@@ -219,31 +219,35 @@ describe('<Switch />', () => {
   });
 
   describe('theme.focusVisible', () => {
-    it.skipIf(isJsdom())(
-      'root overflow is visible so the focus ring is not clipped when focusVisible is set',
-      () => {
+    // The track ring fits inside the root's 12px padding, so the root keeps `overflow: hidden`
+    // in both modes — flipping it (or clipping at the switchBase) shrinks the 300%-wide
+    // input's hit area and makes the far track edge unclickable on a bare Switch.
+    [undefined, true].forEach((focusVisible) => {
+      it.skipIf(isJsdom())(`root overflow stays hidden (focusVisible: ${focusVisible})`, () => {
         const { container } = render(
-          <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <ThemeProvider theme={createTheme(focusVisible ? { focusVisible } : {})}>
             <Switch />
           </ThemeProvider>,
         );
         expect(container.firstChild).toHaveComputedStyle({
-          overflowX: 'visible',
-          overflowY: 'visible',
+          overflowX: 'hidden',
+          overflowY: 'hidden',
         });
-      },
-    );
+      });
+    });
 
-    it.skipIf(isJsdom())('root overflow stays hidden when focusVisible is unset', () => {
+    it.skipIf(isJsdom())('keeps the whole track clickable on a bare Switch', () => {
       const { container } = render(
-        <ThemeProvider theme={createTheme()}>
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
           <Switch />
         </ThemeProvider>,
       );
-      expect(container.firstChild).toHaveComputedStyle({
-        overflowX: 'hidden',
-        overflowY: 'hidden',
-      });
+      const input = screen.getByRole('switch');
+      const rect = container.querySelector(`.${classes.track}`).getBoundingClientRect();
+      const midY = rect.top + rect.height / 2;
+      // the far edges are outside the switchBase box — a clipped input misses them
+      expect(document.elementFromPoint(rect.right - 2, midY)).to.equal(input);
+      expect(document.elementFromPoint(rect.left + 2, midY)).to.equal(input);
     });
   });
 });

@@ -513,6 +513,17 @@ describe('createTheme', () => {
       expect(theme.focusVisible.boxShadow).to.equal('inset 0 0 0 4px #fff');
     });
 
+    it('does not prepend the behavior var to standalone box-shadow keywords', () => {
+      ['none', 'inherit', 'unset'].forEach((keyword) => {
+        const theme = createTheme({
+          cssVariables: false,
+          focusVisible: { boxShadow: keyword },
+        });
+        // prefixing would produce e.g. `inset none` — an invalid declaration on clip-prone components
+        expect(theme.focusVisible.boxShadow).to.equal(keyword);
+      });
+    });
+
     it('`false` and `undefined` leave focusVisible off (non-breaking)', () => {
       expect(createTheme({ cssVariables: false, focusVisible: false }).focusVisible).to.equal(
         false,
