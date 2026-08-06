@@ -57,8 +57,6 @@ const SwitchRoot = styled('span', {
   display: 'inline-flex',
   width: 34 + 12 * 2,
   height: 14 + 12 * 2,
-  // The track ring (outline offset + width = 4px) stays inside the 12px root padding,
-  // so `hidden` never clips it — and it keeps the 300%-wide input's hit area at the root box.
   overflow: 'hidden',
   padding: 12,
   boxSizing: 'border-box',
