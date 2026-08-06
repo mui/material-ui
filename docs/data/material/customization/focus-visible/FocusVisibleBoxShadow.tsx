@@ -49,7 +49,12 @@ export default function FocusVisibleBoxShadow() {
           (#F9F9F9) — one of the two keeps contrast on any background.
         </Typography>
         <div>
-          <Typography variant="caption" color="text.secondary" gutterBottom>
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            gutterBottom
+            sx={{ display: 'block' }}
+          >
             On the default background
           </Typography>
           <DemoRow />
