@@ -5,7 +5,7 @@
     "typescript": "tsgo -p tsconfig.json"
   },
   "devDependencies": {
-    "@babel/runtime": "7.29.7",
+    "@babel/runtime": "8.0.0",
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
     "@mui/icons-material": "workspace:^",
