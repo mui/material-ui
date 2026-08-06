@@ -1,15 +1,11 @@
-<ThemeProvider theme={theme}>
-  <Stack
-    direction="row"
-    spacing={3}
-    sx={{ alignItems: 'center', flexWrap: 'wrap', gap: 3 }}
+<Stack spacing={2} sx={{ width: '100%' }}>
+  {/* On the default background */}
+  <DemoRow />
+  {/* On a colored background */}
+  <Paper
+    elevation={0}
+    sx={{ bgcolor: 'primary.main', color: 'primary.contrastText', p: 2 }}
   >
-    {/* Outer ring: the box-shadow renders outside the Button. */}
-    <Button variant="outlined">Tab to me</Button>
-    {/* Inner ring: the box-shadow insets automatically so the Tabs scroller cannot clip it. */}
-    <Tabs value={0}>
-      <Tab label="Tab one" />
-      <Tab label="Tab two" />
-    </Tabs>
-  </Stack>
-</ThemeProvider>
+    <DemoRow />
+  </Paper>
+</Stack>
