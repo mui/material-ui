@@ -2,7 +2,7 @@ import type * as React from 'react';
 
 const focusVisibleOffsetVar = '--_focusVisible-offset';
 const focusVisibleBehaviorVar = '--_focusVisible-behavior';
-export const focusVisibleShadowVar = '--_focusVisible-shadow';
+const focusVisibleShadowVar = '--_focusVisible-shadow';
 
 const offsetValue = `var(${focusVisibleOffsetVar}, 1)`;
 const behaviorValue = `var(${focusVisibleBehaviorVar}, )`;
@@ -11,6 +11,13 @@ export const outsetFocusRing = {
   [focusVisibleOffsetVar]: 1,
   [focusVisibleBehaviorVar]: 'var(--__,)', // workaround because Emotion strips out empty space. empty space must be used for box-shadow, there is no explicit `outset` keyword.
 };
+
+// Used by the colored-background surfaces (AppBar, Alert, SnackbarContent) to make the focus visible appear through box-shadow
+export function applyChildrenFocusVisible(color: string) {
+  return {
+    [focusVisibleShadowVar]: color,
+  };
+}
 
 // Clip-prone components (Tab, MenuItem, …) spread this on their root to inset the ring, so an
 // `overflow: hidden` ancestor cannot clip it — without the component knowing the ring width.
