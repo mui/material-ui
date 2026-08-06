@@ -1,5 +1,26 @@
 # [Versions](https://mui.com/material-ui/getting-started/versions/)
 
+## 9.3.1
+
+<!-- generated comparing v9.3.0..master -->
+
+_Aug 6, 2026_
+
+A big thanks to the 3 contributors who made this release possible. Here are some highlights ✨:
+
+- 🐛 Fixed a regression where exit transitions could get stuck.
+
+### `@mui/material@9.3.1`
+
+- [transitions] Prevent exit transitions from getting stuck (#48881) @ZeeshanTamboli
+
+### Core
+
+- [blog] Clarify early bird renewal discount scope (#48906) @DanailH
+- [test][pagination] Add more unit tests (#48927) @silviuaavram
+
+All contributors of this release in alphabetical order: @DanailH, @silviuaavram, @ZeeshanTamboli
+
 ## 9.3.0
 
 <!-- generated comparing v9.2.0..master -->
