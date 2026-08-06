@@ -1,5 +1,28 @@
 # [Versions](https://mui.com/material-ui/getting-started/versions/)
 
+## 9.3.1
+
+<!-- generated comparing v9.3.0..master -->
+
+_Aug 6, 2026_
+
+A big thanks to the 4 contributors who made this release possible.
+
+### `@mui/material@9.3.1`
+
+- [transitions] Prevent exit transitions from getting stuck (#48881) @ZeeshanTamboli
+
+### `@mui/codemod@9.3.1`
+
+- Include transforms in published package (#48934) @brijeshb42
+
+### Core
+
+- [blog] Clarify early bird renewal discount scope (#48906) @DanailH
+- [test][pagination] Add more unit tests (#48927) @silviuaavram
+
+All contributors of this release in alphabetical order: @brijeshb42, @DanailH, @silviuaavram, @ZeeshanTamboli
+
 ## 9.3.0
 
 <!-- generated comparing v9.2.0..master -->

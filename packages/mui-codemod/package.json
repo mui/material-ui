@@ -1,6 +1,6 @@
 {
   "name": "@mui/codemod",
-  "version": "9.3.0",
+  "version": "9.3.1",
   "author": "MUI Team",
   "description": "Codemod scripts for Material UI.",
   "license": "MIT",
@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/codemod\"",
-    "build": "code-infra build --flat --bundle cjs --buildTypes false",
+    "build": "code-infra build --flat --bundle cjs --buildTypes false --ignore \"**/*.test/**\" --ignore \"**/actual.js\" --ignore \"**/expected.js\" --ignore \"**/test-cases/**\"",
     "release": "pnpm build && pnpm publish"
   },
   "repository": {
