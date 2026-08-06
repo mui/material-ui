@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Pagination, { paginationClasses as classes } from '@mui/material/Pagination';
 import { paginationItemClasses } from '@mui/material/PaginationItem';
@@ -190,7 +190,7 @@ describe('<Pagination />', () => {
         name: `Go to ${type} page`,
       });
 
-      React.act(() => {
+      act(() => {
         navigationButton.focus();
       });
 
@@ -214,7 +214,7 @@ describe('<Pagination />', () => {
       name: 'Go to previous page',
     });
 
-    React.act(() => {
+    act(() => {
       previousButton.focus();
     });
     await user.keyboard('{Enter}');
@@ -233,7 +233,7 @@ describe('<Pagination />', () => {
       name: 'Go to first page',
     });
 
-    React.act(() => {
+    act(() => {
       firstButton.focus();
     });
     await user.keyboard('{Enter}');
@@ -271,7 +271,7 @@ describe('<Pagination />', () => {
       name: 'Go to previous page',
     });
 
-    React.act(() => {
+    act(() => {
       previousButton.focus();
     });
     await user.keyboard('{Enter}');
