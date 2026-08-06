@@ -5,9 +5,11 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import getValidReactChildren from '@mui/utils/getValidReactChildren';
+import { useRtl } from '@mui/system/RtlProvider';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { useRovingTabIndexRoot, RovingTabIndexContext } from '../utils/useRovingTabIndex';
 import toggleButtonGroupClasses, {
   getToggleButtonGroupUtilityClass,
 } from './toggleButtonGroupClasses';
@@ -140,6 +142,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
   } = props;
   const ownerState = { ...props, disabled, fullWidth, orientation, size };
   const classes = useUtilityClasses(ownerState);
+  const isRtl = useRtl();
 
   const handleChange = React.useCallback(
     (event, buttonValue) => {
@@ -182,6 +185,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
       fullWidth,
       color,
       disabled,
+      isRovingTabIndex: true,
     }),
     [
       classes.grouped,
@@ -215,37 +219,50 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
     return classes.middleButton;
   };
 
+  const rovingTabIndexRoot = useRovingTabIndexRoot({
+    orientation,
+    isRtl,
+  });
+
+  const rovingContainerProps = rovingTabIndexRoot.getContainerProps(
+    ref,
+    other.onFocus,
+    other.onKeyDown,
+  );
+
   return (
     <ToggleButtonGroupRoot
       role="group"
       className={clsx(classes.root, className)}
-      ref={ref}
       ownerState={ownerState}
       {...other}
+      {...rovingContainerProps}
     >
-      <ToggleButtonGroupContext.Provider value={context}>
-        {validChildren.map((child, index) => {
-          if (process.env.NODE_ENV !== 'production') {
-            if (isFragment(child)) {
-              console.error(
-                [
-                  "MUI: The ToggleButtonGroup component doesn't accept a Fragment as a child.",
-                  'Consider providing an array instead.',
-                ].join('\n'),
-              );
+      <RovingTabIndexContext.Provider value={rovingTabIndexRoot}>
+        <ToggleButtonGroupContext.Provider value={context}>
+          {validChildren.map((child, index) => {
+            if (process.env.NODE_ENV !== 'production') {
+              if (isFragment(child)) {
+                console.error(
+                  [
+                    "MUI: The ToggleButtonGroup component doesn't accept a Fragment as a child.",
+                    'Consider providing an array instead.',
+                  ].join('\n'),
+                );
+              }
             }
-          }
 
-          return (
-            <ToggleButtonGroupButtonContext.Provider
-              key={index}
-              value={getButtonPositionClassName(index)}
-            >
-              {child}
-            </ToggleButtonGroupButtonContext.Provider>
-          );
-        })}
-      </ToggleButtonGroupContext.Provider>
+            return (
+              <ToggleButtonGroupButtonContext.Provider
+                key={index}
+                value={getButtonPositionClassName(index)}
+              >
+                {child}
+              </ToggleButtonGroupButtonContext.Provider>
+            );
+          })}
+        </ToggleButtonGroupContext.Provider>
+      </RovingTabIndexContext.Provider>
     </ToggleButtonGroupRoot>
   );
 });
@@ -301,6 +318,14 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    * is selected and `exclusive` is true the value is null; when false an empty array.
    */
   onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
   /**
    * The component orientation (layout flow direction).
    * @default 'horizontal'

@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-api-docs-builder",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "scripts": {
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/internal-api-docs-builder\"",
     "typescript": "tsgo -p tsconfig.json",
@@ -21,7 +21,7 @@
     "doctrine": "^3.0.0",
     "es-toolkit": "^1.49.0",
     "fast-glob": "^3.3.3",
-    "prettier": "^3.9.5",
+    "prettier": "^3.9.6",
     "react-docgen": "^8.0.3",
     "recast": "^0.23.12",
     "remark": "^15.0.1",
@@ -35,9 +35,9 @@
     "@types/doctrine": "0.0.9",
     "@types/mdast": "4.0.4",
     "@types/node": "20.19.43",
-    "@types/sinon": "21.0.1",
+    "@types/sinon": "22.0.0",
     "chai": "6.2.2",
-    "sinon": "22.0.0"
+    "sinon": "22.1.0"
   },
   "exports": {
     ".": "./src/index.ts"
@@ -47,6 +47,6 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.23.1"
   }
 }

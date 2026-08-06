@@ -25,6 +25,7 @@ describe('<Pagination />', () => {
     const { container } = render(<Pagination />);
 
     expect(container.firstChild).to.have.class(classes.root);
+    expect(screen.getByRole('navigation')).to.have.attribute('aria-label', 'pagination navigation');
   });
 
   it('moves aria-current to the specified page', () => {
@@ -96,5 +97,29 @@ describe('<Pagination />', () => {
     expect(buttons[2].textContent).to.equal('6');
     expect(buttons[3].textContent).to.equal('7');
     expect(buttons[0].querySelector('svg')).to.have.attribute('data-testid', 'NavigateNextIcon');
+  });
+
+  it('hides the next button when hideNextButton is true', () => {
+    render(<Pagination count={3} hideNextButton />);
+
+    expect(screen.queryByRole('button', { name: /go to next page/i })).to.equal(null);
+  });
+
+  it('hides the previous button when hidePrevButton is true', () => {
+    render(<Pagination count={3} hidePrevButton />);
+
+    expect(screen.queryByRole('button', { name: /go to previous page/i })).to.equal(null);
+  });
+
+  it('hides the first button when showFirstButton is false', () => {
+    render(<Pagination count={3} showFirstButton={false} />);
+
+    expect(screen.queryByRole('button', { name: /go to first page/i })).to.equal(null);
+  });
+
+  it('hides the last button when showLastButton is false', () => {
+    render(<Pagination count={3} showLastButton={false} />);
+
+    expect(screen.queryByRole('button', { name: /go to last page/i })).to.equal(null);
   });
 });
