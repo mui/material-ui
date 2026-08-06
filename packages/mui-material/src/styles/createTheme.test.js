@@ -456,22 +456,18 @@ describe('createTheme', () => {
   });
 
   describe('focusVisible', () => {
-    const CURATED = {
-      outlineStyle: 'solid',
-      outlineWidth: 2,
-      // Offset is a fixed curated 2px, wrapped in a per-component sign flip
-      // (`--_focusVisible-offset`: 1 outset / -1 inset) so a clip-prone component insets it.
-      outlineOffset: 'calc(var(--_focusVisible-offset, 1) * 2px)',
-      // Invisible by default (`0 0` is clipped away); a solid-background parent (AppBar, Alert,
-      // SnackbarContent) sets `--_focusVisible-shadow` to draw a contrasting ring behind the outline.
-      boxShadow: 'var(--_focusVisible-behavior, ) var(--_focusVisible-shadow, 0 0)',
-    };
-
     it('`true` resolves to the curated ring using the palette primary color', () => {
       const theme = createTheme({ cssVariables: false, focusVisible: true });
       expect(theme.focusVisible).to.deep.equal({
-        ...CURATED,
+        outlineStyle: 'solid',
+        outlineWidth: 2,
         outlineColor: theme.palette.primary.main,
+        // Offset is a fixed curated 2px, wrapped in a per-component sign flip
+        // (`--_focusVisible-offset`: 1 outset / -1 inset) so a clip-prone component insets it.
+        outlineOffset: 'calc(var(--_focusVisible-offset, 1) * 2px)',
+        // Invisible by default (`0 0` is clipped away); a solid-background parent (AppBar, Alert,
+        // SnackbarContent) sets `--_focusVisible-shadow` to draw a contrasting ring behind the outline.
+        boxShadow: 'var(--_focusVisible-behavior, ) var(--_focusVisible-shadow, 0 0)',
       });
     });
 
