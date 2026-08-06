@@ -33,6 +33,16 @@ Some components, for example `Tab`, render the focus indicator from the inside t
 
 To see the full list of components that show inner focus indicator, check out the [full demo](#full-focus-visible-demo) below.
 
+### Colored surface container
+
+Containers with a colored background — an `AppBar` using a palette color, a filled `Alert`, and `SnackbarContent` — render an extra `box-shadow` layer behind the outline, colored with the theme's default background, so the focus indicator keeps contrast on the colored surface:
+
+{{"demo": "FocusVisibleColoredSurface.js"}}
+
+:::info
+Passing a custom `boxShadow` to `focusVisible` replaces this layer — ring contrast on colored surfaces then becomes your responsibility.
+:::
+
 ## Customization
 
 The `focusVisible` can be customized by passing a CSS object to merge with the default styles.
