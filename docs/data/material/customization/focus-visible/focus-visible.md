@@ -61,7 +61,11 @@ A `boxShadow` can be **additive** on top of the outline. This is useful for a tw
 ```js
 createTheme({
   focusVisible: {
-    boxShadow: '0 0 0 4px rgba(0, 0, 0, 0.4)',
+    /* inner indicator */
+    outlineColor: '#F9F9F9',
+    outlineOffset: 0,
+    /* outer indicator */
+    boxShadow: '0 0 0 4px #193146',
   },
 });
 ```

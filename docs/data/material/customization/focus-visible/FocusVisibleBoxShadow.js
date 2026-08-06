@@ -5,11 +5,15 @@ import Button from '@mui/material/Button';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-// Two-color ring (WCAG C40): the curated outline plus an additive box-shadow in a contrasting
-// color. Material UI insets the box-shadow on clip-prone components (Tabs), so a plain value works.
+// Two-color ring (WCAG C40): a light inner outline flush with the edge plus a dark outer
+// box-shadow. Material UI insets the box-shadow on clip-prone components (Tabs), so a plain value works.
 const theme = createTheme({
   focusVisible: {
-    boxShadow: '0 0 0 4px rgba(0, 0, 0, 0.4)',
+    /* inner indicator */
+    outlineColor: '#F9F9F9',
+    outlineOffset: 0,
+    /* outer indicator */
+    boxShadow: '0 0 0 4px #193146',
   },
   colorSchemes: { light: true, dark: true },
   // These demos opt out of the ripple, so the focus ring is the only keyboard indicator.
