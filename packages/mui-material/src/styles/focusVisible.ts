@@ -14,10 +14,13 @@ export const outsetFocusRing = {
 
 // Clip-prone components (Tab, MenuItem, …) spread this on their root to inset the ring, so an
 // `overflow: hidden` ancestor cannot clip it — without the component knowing the ring width.
-export const insetFocusRing = {
-  [focusVisibleOffsetVar]: -1,
-  [focusVisibleBehaviorVar]: 'inset',
-};
+// `offset` multiplies the ring's own outlineOffset, so 1 = mirror it inward.
+export function applyInsetFocusVisible(offset: number) {
+  return {
+    [focusVisibleOffsetVar]: -offset,
+    [focusVisibleBehaviorVar]: 'inset',
+  };
+}
 
 // Read the raw `focusVisible` from `createTheme(options, ...args)`. A later merge arg wins (like the
 // theme's own deep-merge), so scan from the last; fall through to options when none set it.
