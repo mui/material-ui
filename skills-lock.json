@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "mui-release": {
+      "source": "mui/mui-public",
+      "sourceType": "github",
+      "skillPath": "skills/mui-release/SKILL.md",
+      "computedHash": "0c668797d08b5d7bc91ede6323a22eaa61f53964c0dde12a9bc6b82e1729ba67"
+    }
+  }
+}
