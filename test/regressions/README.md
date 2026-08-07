@@ -51,6 +51,7 @@ Each test tests only a single fixture.
 A fixture can be loaded with `await renderFixture(fixturePath)`, for example `renderFixture('FocusTrap/OpenFocusTrap')`.
 
 Accessibility checks are opt-in.
+These checks are one half of the WCAG conformance effort — see [How it works](../../packages/mui-material/src/accessibility.md#how-it-works) for how axe results, the unit tests, the layout suite, and the per-component reports fit together.
 Add rules in `./demoMeta.ts` under `A11Y_RULES`.
 By default, only CSS-dependent visual axe rules are asserted.
 Set `assertions: 'all'` when a fixture is expected to pass every axe rule it exercises.
