@@ -12,7 +12,13 @@ import * as ripple from '../../test/ripple';
 describe('<SwitchBase />', () => {
   const { render } = createRenderer();
 
-  function CustomRoot({ centerRipple, focusRipple, ownerState, ...props }) {
+  function CustomRoot({
+    centerRipple,
+    focusRipple,
+    ownerState,
+    internalDisabledThemeFocusVisible,
+    ...props
+  }) {
     return <div {...props} />;
   }
 

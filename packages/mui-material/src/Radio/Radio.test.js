@@ -1,5 +1,11 @@
 import { expect } from 'chai';
-import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
+import {
+  createRenderer,
+  screen,
+  isJsdom,
+  simulatePointerDevice,
+  focusVisible,
+} from '@mui/internal-test-utils';
 import Radio, { radioClasses as classes } from '@mui/material/Radio';
 import FormControl from '@mui/material/FormControl';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -193,6 +199,39 @@ describe('<Radio />', () => {
       const radio = screen.getByRole('radio').parentElement;
       await ripple.startTouch(radio);
       expect(radio.querySelector('.touch-ripple')).not.to.equal(null);
+    });
+  });
+
+  describe('theme.focusVisible', () => {
+    // Radio is an outer-ring exception to the shared ButtonBase rule: it opts the root out of the
+    // theme ring and draws it on the icon svg instead, so the ring renders fully. Running both var
+    // modes guards the shouldSkipGeneratingVar fix — the recipe stays inline on the svg.
+    [false, true].forEach((cssVariables) => {
+      it.skipIf(isJsdom())(
+        `draws the focus ring on the icon svg, not the ButtonBase root (cssVariables: ${cssVariables})`,
+        () => {
+          const theme = createTheme({
+            cssVariables,
+            focusVisible: true,
+            components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+          });
+          render(
+            <ThemeProvider theme={theme}>
+              <Radio />
+            </ThemeProvider>,
+          );
+          const input = screen.getByRole('radio');
+          simulatePointerDevice();
+          focusVisible(input);
+          expect(input.parentElement.querySelector('svg')).toHaveComputedStyle({
+            outlineStyle: 'solid',
+            outlineWidth: '2px',
+            outlineOffset: '2px',
+          });
+          // the shared ButtonBase root ring is off, so there is no double ring
+          expect(input.parentElement).toHaveComputedStyle({ outlineStyle: 'none' });
+        },
+      );
     });
   });
 });

@@ -13,6 +13,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import getTextDecoration from './getTextDecoration';
+import { outsetFocusRing } from '../styles/focusVisible';
 
 const v6Colors = {
   primary: true,
@@ -56,6 +57,13 @@ const LinkRoot = styled(Typography, {
 })(
   memoTheme(({ theme }) => {
     return {
+      // Opt-in curated ring, same object-spread as the other components. For
+      // `component="button"` it replaces the variant's `outline: auto` (gated there),
+      // so it does not rely on variant source order.
+      ...(theme.focusVisible && {
+        // Reset the inset vars so the ring stays outset even inside a clip-prone ancestor.
+        [`&.${linkClasses.focusVisible}`]: { ...outsetFocusRing, ...theme.focusVisible },
+      }),
       variants: [
         {
           props: {
@@ -151,9 +159,12 @@ const LinkRoot = styled(Typography, {
             '&::-moz-focus-inner': {
               borderStyle: 'none', // Remove Firefox dotted outline.
             },
-            [`&.${linkClasses.focusVisible}`]: {
-              outline: 'auto',
-            },
+            // Browser default focus ring, unless the curated ring is opted in (spread at the root).
+            ...(!theme.focusVisible && {
+              [`&.${linkClasses.focusVisible}`]: {
+                outline: 'auto',
+              },
+            }),
           },
         },
       ],

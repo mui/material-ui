@@ -16,6 +16,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
+import { outsetFocusRing } from '../styles/focusVisible';
 import useSlot from '../utils/useSlot';
 import { getTransitionStyles } from '../transitions/utils';
 
@@ -88,7 +89,13 @@ const RatingRoot = styled('span', {
       pointerEvents: 'none',
     },
     [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
-      outline: '1px solid #999',
+      // Legacy default, superseded when the curated ring is opted in. The class lands on the
+      // root (keyboard highlight state), but the indicator belongs on the active star only.
+      ...(!theme.focusVisible && {
+        outline: '1px solid #999',
+      }),
+      // Reset the inset vars so the star ring stays outset even inside a clip-prone ancestor.
+      ...(theme.focusVisible && { ...outsetFocusRing, ...theme.focusVisible }),
     },
     [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
     variants: [
@@ -126,21 +133,28 @@ const RatingLabel = styled('label', {
     styles.label,
     ownerState.emptyValueFocused && styles.labelEmptyValueActive,
   ],
-})({
-  cursor: 'inherit',
-  variants: [
-    {
-      props: ({ ownerState }) => ownerState.emptyValueFocused,
-      style: {
-        top: 0,
-        bottom: 0,
-        position: 'absolute',
-        outline: '1px solid #999',
-        width: '100%',
+})(
+  memoTheme(({ theme }) => ({
+    cursor: 'inherit',
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.emptyValueFocused,
+        style: {
+          top: 0,
+          bottom: 0,
+          position: 'absolute',
+          width: '100%',
+          // Legacy default, superseded when the curated ring is opted in.
+          ...(!theme.focusVisible && {
+            outline: '1px solid #999',
+          }),
+          // Reset the inset vars so the ring stays outset even inside a clip-prone ancestor.
+          ...(theme.focusVisible && { ...outsetFocusRing, ...theme.focusVisible }),
+        },
       },
-    },
-  ],
-});
+    ],
+  })),
+);
 
 const RatingIcon = styled('span', {
   name: 'MuiRating',

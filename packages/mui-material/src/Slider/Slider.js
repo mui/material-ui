@@ -17,6 +17,7 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import BaseSliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { getTransitionStyles } from '../transitions/utils';
+import { outsetFocusRing } from '../styles/focusVisible';
 
 function Identity(x) {
   return x;
@@ -281,6 +282,10 @@ export const SliderThumb = styled('span', {
         boxShadow: 'none',
       },
     },
+    ...(theme.focusVisible && {
+      // Reset the inset vars so the thumb ring stays outset even inside a clip-prone ancestor.
+      [`&.${sliderClasses.focusVisible}`]: { ...outsetFocusRing, ...theme.focusVisible },
+    }),
     variants: [
       {
         props: { size: 'small' },
@@ -320,6 +325,12 @@ export const SliderThumb = styled('span', {
             [`&.${sliderClasses.active}`]: {
               boxShadow: `0px 0px 0px 14px ${theme.alpha((theme.vars || theme).palette[color].main, 0.16)}`,
             },
+            ...(theme.focusVisible && {
+              [`&.${sliderClasses.focusVisible}`]: {
+                ...theme.focusVisible,
+                boxShadow: `0px 0px 0px 8px ${theme.alpha((theme.vars || theme).palette[color].main, 0.16)}, ${theme.focusVisible.boxShadow || '0 0'}`,
+              },
+            }),
           },
         })),
     ],

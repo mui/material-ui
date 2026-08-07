@@ -5320,4 +5320,26 @@ describe('<Autocomplete />', () => {
       }
     });
   });
+
+  describe('theme.focusVisible', () => {
+    it.skipIf(isJsdom())('insets the curated ring on the keyboard-highlighted option', () => {
+      render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Autocomplete
+            open
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />
+        </ThemeProvider>,
+      );
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
+      const option = screen.getAllByRole('option')[0];
+      expect(option).to.have.class(classes.focusVisible);
+      expect(option).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '-2px',
+      });
+    });
+  });
 });
