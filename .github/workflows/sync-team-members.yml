@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       reviewers:
-        description: 'Comma-separated reviewers (users, or org/team-slug for teams)'
+        description: 'Comma-separated team slugs or usernames'
         required: false
-        default: 'mui/admins'
+        default: 'admins'
   schedule:
     # Every Monday at 06:00 UTC
     - cron: '0 6 * * 1'
@@ -44,7 +44,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SYNC_SUMMARY: ${{ steps.sync.outputs.summary }}
           # Empty on scheduled runs, so fall back to the default reviewers.
-          REVIEWERS: ${{ inputs.reviewers || 'mui/admins' }}
+          REVIEWERS: ${{ inputs.reviewers || 'admins' }}
         run: |
           set -euo pipefail
           if [ -z "$(git status --porcelain)" ]; then
@@ -63,14 +63,25 @@ jobs:
 
           BODY="$(printf 'Automated sync of the About page team members from the [mui-about API](https://frontend-public.mui.com/api/mui-about).\n\n%s' "$SYNC_SUMMARY")"
 
-          if [ -n "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
-            gh pr edit "$BRANCH" --body "$BODY"
+          PR_NUMBER="$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number')"
+          if [ -n "$PR_NUMBER" ]; then
+            gh pr edit "$PR_NUMBER" --body "$BODY"
           else
             gh pr create \
               --base master \
               --head "$BRANCH" \
               --title '[website] Sync about page team members' \
               --body "$BODY" \
-              --label website \
-              --reviewer "$REVIEWERS"
+              --label website
+            PR_NUMBER="$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number')"
           fi
+
+          REVIEWS_URL="repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/requested_reviewers"
+          IFS=',' read -ra REQUESTED_REVIEWERS <<< "$REVIEWERS"
+          for reviewer in "${REQUESTED_REVIEWERS[@]}"; do
+            reviewer="${reviewer//[[:space:]]/}"
+            [ -z "$reviewer" ] && continue
+            if ! gh api --method POST "$REVIEWS_URL" -f "team_reviewers[]=$reviewer" >/dev/null 2>&1; then
+              gh api --method POST "$REVIEWS_URL" -f "reviewers[]=$reviewer" >/dev/null
+            fi
+          done
