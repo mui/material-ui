@@ -334,13 +334,26 @@ function toTitleCase(kebabCaseStr: string): string {
 }
 
 /**
- * Generate llms.txt content for a specific directory
+ * Wrap inline HTML tags (e.g. `<button>`) in backticks so they render as code
+ * in markdown instead of being interpreted as HTML.
+ */
+function inlineCodeHtmlTags(text: string): string {
+  return text.replace(/<\/?[a-zA-Z][^>]*>/g, '`$&`');
+}
+
+/**
+ * Generate llms.txt content for a specific directory.
+ *
+ * When `relative` is true, links are emitted as relative paths (e.g.
+ * `./react-button.md`) instead of absolute URLs, so the file can be shipped
+ * inside the package and browsed offline. This is used to generate `index.md`.
  */
 function generateLlmsTxt(
   generatedFiles: GeneratedFile[],
   projectName: string,
   baseDir: string,
   origin?: string,
+  relative = false,
 ): string {
   // Group files by category
   const groupedByCategory: Record<string, GeneratedFile[]> = {};
@@ -397,14 +410,25 @@ function generateLlmsTxt(
     // Non-component files are already in the order they were discovered
 
     for (const file of files) {
-      // Calculate relative path from the baseDir to the file
-      const relativePath = file.outputPath.startsWith(`${baseDir}/`)
-        ? `/${baseDir}/${file.outputPath.substring(baseDir.length + 1)}`
-        : `/${file.outputPath}`;
-      const url = origin ? new URL(relativePath, origin).href : relativePath;
+      // Path of the file relative to baseDir, e.g. `react-button.md` or
+      // `customization/color.md`.
+      const pathWithinBaseDir = file.outputPath.startsWith(`${baseDir}/`)
+        ? file.outputPath.substring(baseDir.length + 1)
+        : file.outputPath;
+      let url;
+      if (relative) {
+        // Relative link to a sibling file, so the index can be browsed from
+        // within the shipped `docs/` folder.
+        url = `./${pathWithinBaseDir}`;
+      } else {
+        const absolutePath = file.outputPath.startsWith(`${baseDir}/`)
+          ? `/${baseDir}/${pathWithinBaseDir}`
+          : `/${pathWithinBaseDir}`;
+        url = origin ? new URL(absolutePath, origin).href : absolutePath;
+      }
       content += `- [${file.title}](${url})`;
       if (file.description) {
-        content += `: ${file.description}`;
+        content += `: ${inlineCodeHtmlTags(file.description)}`;
       }
       content += '\n';
     }
@@ -582,6 +606,17 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
 
       fs.writeFileSync(llmsPath, llmsContent, 'utf-8');
       // ✓ Generated: ${dirName}/llms.txt
+      processedCount += 1;
+
+      // Generate an `index.md` with relative links so the generated docs can be
+      // shipped inside the package and browsed offline (llms.txt uses absolute
+      // website URLs and is a .txt, so it isn't shipped).
+      const indexContent = generateLlmsTxt(files, projectName, dirName, undefined, true)
+        .replace(/Ui/g, 'UI')
+        .replace(/Api/g, 'API');
+      const indexPath = path.join(outputDir, dirName, 'index.md');
+      fs.writeFileSync(indexPath, indexContent, 'utf-8');
+      // ✓ Generated: ${dirName}/index.md
       processedCount += 1;
     }
   }
