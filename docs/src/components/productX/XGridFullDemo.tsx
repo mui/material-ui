@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { red, green, yellow, blue } from '@mui/material/colors';
 import { alpha } from '@mui/material/styles';
-import { DataGridPro, GridPaginationModel } from '@mui/x-data-grid-pro';
+import { DataGridPro, type GridPaginationModel } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select, { type SelectChangeEvent } from '@mui/material/Select';
 import { Frame } from '@mui/internal-core-docs/AppLayout';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 

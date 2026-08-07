@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box, { BoxProps } from '@mui/material/Box';
+import Box, { type BoxProps } from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import NoSsr from '@mui/material/NoSsr';
 import { Frame } from '@mui/internal-core-docs/AppLayout';

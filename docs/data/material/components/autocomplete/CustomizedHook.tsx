@@ -1,6 +1,6 @@
 import useAutocomplete, {
-  AutocompleteGetItemProps,
-  UseAutocompleteProps,
+  type AutocompleteGetItemProps,
+  type UseAutocompleteProps,
 } from '@mui/material/useAutocomplete';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';

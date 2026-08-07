@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { styled, Theme } from '@mui/material/styles';
-import { SxProps } from '@mui/system';
+import { styled, type Theme } from '@mui/material/styles';
+import { type SxProps } from '@mui/system';
 import Typography from '../components/Typography';
 
 interface FormFeedbackProps extends React.HTMLAttributes<HTMLDivElement> {

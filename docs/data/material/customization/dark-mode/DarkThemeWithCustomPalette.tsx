@@ -3,7 +3,7 @@ import {
   ThemeProvider,
   useTheme,
   createTheme,
-  PaletteMode,
+  type PaletteMode,
 } from '@mui/material/styles';
 import { amber, deepOrange, grey } from '@mui/material/colors';
 

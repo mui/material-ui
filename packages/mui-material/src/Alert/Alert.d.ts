@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { OverridableStringUnion } from '@mui/types';
-import { SxProps } from '@mui/system';
-import { SvgIconProps } from '../SvgIcon';
-import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '../internal';
-import { IconButtonProps } from '../IconButton';
-import { PaperProps } from '../Paper';
-import { AlertClasses } from './alertClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import type * as React from 'react';
+import { type OverridableStringUnion } from '@mui/types';
+import { type SxProps } from '@mui/system';
+import { type SvgIconProps } from '../SvgIcon';
+import { type Theme } from '../styles';
+import { type InternalStandardProps as StandardProps } from '../internal';
+import { type IconButtonProps } from '../IconButton';
+import { type PaperProps } from '../Paper';
+import { type AlertClasses } from './alertClasses';
+import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
 
 export type AlertColor = 'success' | 'info' | 'warning' | 'error';
 

@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import { DrawerProps, DrawerOwnerState, DrawerSlotsAndSlotProps } from '../Drawer';
+import type * as React from 'react';
+import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
+import { type DrawerProps, type DrawerOwnerState, type DrawerSlotsAndSlotProps } from '../Drawer';
 
 export interface SwipeableDrawerSwipeAreaSlotPropsOverrides {}
 

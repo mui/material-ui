@@ -15,7 +15,7 @@ import {
   RULESET,
   serialize,
   strlen,
-  Middleware,
+  type Middleware,
   KEYFRAMES,
   MEDIA,
   SUPPORTS,

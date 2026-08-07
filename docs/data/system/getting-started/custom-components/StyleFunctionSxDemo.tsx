@@ -1,5 +1,5 @@
-import styled, { ThemeProvider, StyleFunction } from 'styled-components';
-import { unstable_styleFunctionSx, SxProps } from '@mui/system';
+import styled, { ThemeProvider, type StyleFunction } from 'styled-components';
+import { unstable_styleFunctionSx, type SxProps } from '@mui/system';
 import { createTheme } from '@mui/material/styles';
 
 interface DivProps {

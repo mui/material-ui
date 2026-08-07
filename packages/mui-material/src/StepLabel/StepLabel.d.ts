@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '../internal';
-import { StepIconProps } from '../StepIcon';
-import { StepLabelClasses } from './stepLabelClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import type * as React from 'react';
+import { type SxProps } from '@mui/system';
+import { type Theme } from '../styles';
+import { type InternalStandardProps as StandardProps } from '../internal';
+import { type StepIconProps } from '../StepIcon';
+import { type StepLabelClasses } from './stepLabelClasses';
+import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
 
 export interface StepLabelSlots {
   /**

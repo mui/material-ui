@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '../internal';
-import { InputBaseProps } from '../InputBase';
-import { OutlinedInputClasses } from './outlinedInputClasses';
+import type * as React from 'react';
+import { type SxProps } from '@mui/system';
+import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
+import { type Theme } from '../styles';
+import { type InternalStandardProps as StandardProps } from '../internal';
+import { type InputBaseProps } from '../InputBase';
+import { type OutlinedInputClasses } from './outlinedInputClasses';
 
 interface OutlinedInputSlots {
   /**

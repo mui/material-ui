@@ -8,11 +8,11 @@ import Tooltip from '@mui/material/Tooltip';
 import {
   DataGrid,
   GridActionsCellItem,
-  GridColDef,
-  GridFilterModel,
-  GridPaginationModel,
-  GridSortModel,
-  GridEventListener,
+  type GridColDef,
+  type GridFilterModel,
+  type GridPaginationModel,
+  type GridSortModel,
+  type GridEventListener,
   gridClasses,
 } from '@mui/x-data-grid';
 import AddIcon from '@mui/icons-material/Add';

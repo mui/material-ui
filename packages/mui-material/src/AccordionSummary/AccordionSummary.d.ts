@@ -1,10 +1,14 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { ButtonBaseProps, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import { OverrideProps } from '../OverridableComponent';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import { Theme } from '../styles';
-import { AccordionSummaryClasses } from './accordionSummaryClasses';
+import type * as React from 'react';
+import { type SxProps } from '@mui/system';
+import {
+  type ButtonBaseProps,
+  type ExtendButtonBase,
+  type ExtendButtonBaseTypeMap,
+} from '../ButtonBase';
+import { type OverrideProps } from '../OverridableComponent';
+import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
+import { type Theme } from '../styles';
+import { type AccordionSummaryClasses } from './accordionSummaryClasses';
 
 export interface AccordionSummarySlots {
   /**

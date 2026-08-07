@@ -1,9 +1,9 @@
 import ts from 'typescript';
 import * as doctrine from 'doctrine';
 import {
-  GetPropsFromComponentDeclarationOptions,
+  type GetPropsFromComponentDeclarationOptions,
   getPropsFromComponentNode,
-  TypeScriptProject,
+  type TypeScriptProject,
 } from '@mui/internal-docs-utils';
 import {
   createUnionType,
@@ -20,7 +20,7 @@ import {
   createObjectType,
   createStringType,
 } from './createType';
-import { PropTypeDefinition, PropTypesComponent, PropType } from './models';
+import { type PropTypeDefinition, type PropTypesComponent, type PropType } from './models';
 
 function getSymbolFileNames(symbol: ts.Symbol): Set<string> {
   const declarations = symbol.getDeclarations() || [];

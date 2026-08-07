@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import Checkbox, { CheckboxProps } from '@mui/material/Checkbox';
+import Checkbox, { type CheckboxProps } from '@mui/material/Checkbox';
 
 const BpIcon = styled('span')(({ theme }) => ({
   borderRadius: 3,

@@ -2,8 +2,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { OverridableComponent, OverrideProps } from '@mui/types';
-import { SxProps } from '@mui/system';
+import { type OverridableComponent, type OverrideProps } from '@mui/types';
+import { type SxProps } from '@mui/system';
 // @ts-ignore
 import Grid from '@mui/material-pigment-css/Grid';
 import composeClasses from '@mui/utils/composeClasses';
@@ -13,7 +13,7 @@ import {
   unstable_generateSizeClassNames as generateSizeClassNames,
   unstable_generateSpacingClassNames as generateSpacingClassNames,
 } from '@mui/system/Grid';
-import { Breakpoint, Theme } from '../styles';
+import { type Breakpoint, type Theme } from '../styles';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 

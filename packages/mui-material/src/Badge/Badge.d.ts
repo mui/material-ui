@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { OverridableStringUnion, Simplify } from '@mui/types';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import { Theme } from '../styles';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { BadgeClasses } from './badgeClasses';
+import type * as React from 'react';
+import { type SxProps } from '@mui/system';
+import { type OverridableStringUnion, type Simplify } from '@mui/types';
+import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
+import { type Theme } from '../styles';
+import { type OverridableComponent, type OverrideProps } from '../OverridableComponent';
+import { type BadgeClasses } from './badgeClasses';
 
 export interface BadgePropsVariantOverrides {}
 export interface BadgePropsColorOverrides {}

@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '../internal';
-import { AccordionDetailsClasses } from './accordionDetailsClasses';
+import type * as React from 'react';
+import { type SxProps } from '@mui/system';
+import { type Theme } from '../styles';
+import { type InternalStandardProps as StandardProps } from '../internal';
+import { type AccordionDetailsClasses } from './accordionDetailsClasses';
 
 export interface AccordionDetailsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**

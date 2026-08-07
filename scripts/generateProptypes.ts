@@ -6,18 +6,21 @@ import glob from 'fast-glob';
 import { flatten } from 'es-toolkit/array';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import type { LiteralType } from '@mui/internal-scripts/typescript-to-proptypes';
+import {
+  type LiteralType,
+  getPropTypesFromFile,
+  injectPropTypesInFile,
+  type InjectPropTypesInFileOptions,
+} from '@mui/internal-scripts/typescript-to-proptypes';
 import {
   fixBabelGeneratorIssues,
   fixLineEndings,
   getUnstyledFilename,
 } from '@mui/internal-docs-utils';
 import {
-  getPropTypesFromFile,
-  injectPropTypesInFile,
-  InjectPropTypesInFileOptions,
-} from '@mui/internal-scripts/typescript-to-proptypes';
-import { createTypeScriptProjectBuilder, TypeScriptProject } from '@mui/internal-api-docs-builder';
+  createTypeScriptProjectBuilder,
+  type TypeScriptProject,
+} from '@mui/internal-api-docs-builder';
 
 // eslint-disable-next-line import/extensions -- explicit .mjs extension required for tsx to resolve the ESM module
 import CORE_TYPESCRIPT_PROJECTS from './coreTypeScriptProjects.mjs';

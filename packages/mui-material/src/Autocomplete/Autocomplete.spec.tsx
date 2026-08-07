@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
 import Autocomplete, {
-  AutocompleteOwnerState,
-  AutocompleteProps,
-  AutocompleteRenderGetTagProps,
+  type AutocompleteOwnerState,
+  type AutocompleteProps,
+  type AutocompleteRenderGetTagProps,
 } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import { ChipTypeMap } from '@mui/material/Chip';
-import { AutocompleteValueOrFreeSoloValueMapping } from '../useAutocomplete';
+import { type ChipTypeMap } from '@mui/material/Chip';
+import { type AutocompleteValueOrFreeSoloValueMapping } from '../useAutocomplete';
 
 interface MyAutocompleteProps<
   T,

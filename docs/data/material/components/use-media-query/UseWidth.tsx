@@ -1,6 +1,6 @@
 import {
-  Breakpoint,
-  Theme,
+  type Breakpoint,
+  type Theme,
   ThemeProvider,
   useTheme,
   createTheme,

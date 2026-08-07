@@ -1,5 +1,5 @@
 import Stack from '@mui/material/Stack';
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
+import SvgIcon, { type SvgIconProps } from '@mui/material/SvgIcon';
 
 function HomeIcon(props: SvgIconProps) {
   return (

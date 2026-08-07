@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   Link as RouterLink,
-  LinkProps as RouterLinkProps,
+  type LinkProps as RouterLinkProps,
   MemoryRouter,
   StaticRouter,
 } from 'react-router';

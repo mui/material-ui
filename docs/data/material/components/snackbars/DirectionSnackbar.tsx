@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
-import Slide, { SlideProps } from '@mui/material/Slide';
+import Slide, { type SlideProps } from '@mui/material/Slide';
 
 type TransitionProps = Omit<SlideProps, 'direction'>;
 

@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '.';
-import { ButtonBaseProps } from '../ButtonBase';
-import { SwitchBaseClasses } from './switchBaseClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import type * as React from 'react';
+import { type InternalStandardProps as StandardProps } from '.';
+import { type ButtonBaseProps } from '../ButtonBase';
+import { type SwitchBaseClasses } from './switchBaseClasses';
+import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
 
 interface SwitchBaseSlots {
   /**

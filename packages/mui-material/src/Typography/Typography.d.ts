@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { OverridableStringUnion } from '@mui/types';
-import { SxProps } from '@mui/system';
-import { Theme, TypeText } from '../styles';
-import { OverrideProps, OverridableComponent } from '../OverridableComponent';
-import { TypographyVariant } from '../styles/createTypography';
-import { TypographyClasses } from './typographyClasses';
+import type * as React from 'react';
+import { type OverridableStringUnion } from '@mui/types';
+import { type SxProps } from '@mui/system';
+import { type Theme, type TypeText } from '../styles';
+import { type OverrideProps, type OverridableComponent } from '../OverridableComponent';
+import { type TypographyVariant } from '../styles/createTypography';
+import { type TypographyClasses } from './typographyClasses';
 
 export interface TypographyPropsVariantOverrides {}
 
