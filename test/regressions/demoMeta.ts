@@ -148,6 +148,8 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     viewportWidth: 1440,
     waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
   },
+  { test: 'docs/data/material/components/accordion/AccordionA11y*', enabled: false }, // A11y-only coverage fixtures
+  { test: 'docs/data/material/components/accordion/AccordionA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
   { test: 'docs/data/material/components/buttons/ButtonA11y*', enabled: false }, // A11y-only coverage fixtures
   { test: 'docs/data/material/components/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
   { test: 'docs/data/material/components/progress/*', enabled: false }, // Animated progress bars make screenshots flaky; axe still runs on the enrolled LinearProgress demos
@@ -156,6 +158,20 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     test: 'docs/data/material/components/toggle-button/ToggleButtonA11yTextSpacing',
     enabled: true,
   }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+];
+
+// Accordion docs demos + a11y fixtures enrolled for axe assertions (the cluster:
+// root Accordion + AccordionSummary header + AccordionDetails/Actions).
+const ACCORDION_A11Y_DEMOS = [
+  'AccordionUsage',
+  'AccordionExpandDefault',
+  'AccordionExpandIcon',
+  'ControlledAccordions',
+  'CustomizedAccordions',
+  'DisabledAccordion',
+  'AccordionTransition',
+  'AccordionA11yNonNative',
+  'AccordionA11yTextSpacing',
 ];
 
 // Button docs demos enrolled for axe assertions; IconButton/ButtonBase demos are excluded.
@@ -260,6 +276,16 @@ const TOGGLE_BUTTON_A11Y_DEMOS = [
  * incrementally.
  */
 export const A11Y_RULES: A11yRule[] = [
+  {
+    // `color-contrast` is recorded but not asserted: the Accordion root's
+    // divider `::before` pseudo-element blocks axe's background resolution for
+    // the summary label, so the rule returns `incomplete` on some demos.
+    // No demo records a contrast failure; the label clears 4.5:1 on `paper`.
+    test: `docs/data/material/components/accordion/{${ACCORDION_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
   {
     test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars,AvatarA11yImage}',
     enabled: true,
