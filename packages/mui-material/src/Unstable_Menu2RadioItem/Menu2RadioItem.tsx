@@ -7,6 +7,7 @@ import { Menu as BaseMenu } from '@base-ui/react/menu';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import ButtonBase from '../ButtonBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenu2ItemStyles } from '../Unstable_Menu2/menu2SharedStyles';
 import Menu2RadioItemIndicator, {
@@ -84,12 +85,17 @@ export interface Menu2RadioItemProps
    */
   className?: string | undefined;
   /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple?: boolean | undefined;
+  /**
    * Styles applied to the root element.
    */
   style?: React.CSSProperties | undefined;
 }
 
-const Menu2RadioItemRoot = styled('div', {
+const Menu2RadioItemRoot = styled(ButtonBase, {
   name: 'MuiMenu2RadioItem',
   slot: 'Root',
   overridesResolver: menu2ItemOverridesResolver,
@@ -120,6 +126,7 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     dense = false,
     disabled = false,
     disableGutters = false,
+    disableRipple = false,
     divider = false,
     nativeButton: nativeButtonProp,
     selected = false,
@@ -155,7 +162,9 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
         ref={ref}
         render={getMenu2RootRender(RootSlot, ownerState, {
           ...resolveComponentProps(slotProps?.root, ownerState),
-          as: component,
+          // ButtonBase renders a <button> by default; the items keep their element.
+          component: component ?? 'div',
+          disableRipple,
           ownerState,
           sx,
         })}
@@ -220,6 +229,11 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableGutters: PropTypes.bool,
+  /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple: PropTypes.bool,
   /**
    * If `true`, a 1px light border is added to the bottom of the menu item.
    * @default false

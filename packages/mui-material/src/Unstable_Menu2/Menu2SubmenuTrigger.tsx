@@ -4,6 +4,7 @@ import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
+import ButtonBase from '../ButtonBase';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -78,12 +79,17 @@ export interface Menu2SubmenuTriggerProps
    */
   className?: string | undefined;
   /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple?: boolean | undefined;
+  /**
    * Styles applied to the root element.
    */
   style?: React.CSSProperties | undefined;
 }
 
-const Menu2SubmenuTriggerRoot = styled('div', {
+const Menu2SubmenuTriggerRoot = styled(ButtonBase, {
   name: 'MuiMenu2Submenu',
   slot: 'Trigger',
   overridesResolver: (props, styles) => styles.trigger,
@@ -111,6 +117,7 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
     dense = false,
     disabled = false,
     disableGutters = false,
+    disableRipple = false,
     divider = false,
     nativeButton: nativeButtonProp,
     selected = false,
@@ -144,7 +151,9 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
         ref={ref}
         render={getMenu2RootRender(RootSlot, ownerState, {
           ...resolveComponentProps(slotProps?.root, ownerState),
-          as: component,
+          // ButtonBase renders a <button> by default; the item keeps its element.
+          component: component ?? 'div',
+          disableRipple,
           ownerState,
           sx,
         })}

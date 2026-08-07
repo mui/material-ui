@@ -6,6 +6,7 @@ import { Menu as BaseMenu } from '@base-ui/react/menu';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import ButtonBase from '../ButtonBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenu2ItemStyles } from '../Unstable_Menu2/menu2SharedStyles';
 import { getMenu2RootRender, Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
@@ -61,12 +62,17 @@ export interface Menu2LinkItemProps
    */
   className?: string | undefined;
   /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple?: boolean | undefined;
+  /**
    * Styles applied to the root element.
    */
   style?: React.CSSProperties | undefined;
 }
 
-const Menu2LinkItemRoot = styled('a', {
+const Menu2LinkItemRoot = styled(ButtonBase, {
   name: 'MuiMenu2LinkItem',
   slot: 'Root',
   overridesResolver: menu2ItemOverridesResolver,
@@ -95,6 +101,7 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
     component,
     dense = false,
     disableGutters = false,
+    disableRipple = false,
     divider = false,
     selected = false,
     slotProps,
@@ -132,7 +139,9 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
         ref={ref}
         render={getMenu2RootRender(slots?.root ?? Menu2LinkItemRoot, ownerState, {
           ...resolveComponentProps(slotProps?.root, ownerState),
-          as: component,
+          // ButtonBase renders a <button> by default; the items keep their element.
+          component: component ?? 'a',
+          disableRipple,
           ownerState,
           sx,
         })}
@@ -180,6 +189,11 @@ Menu2LinkItem.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableGutters: PropTypes.bool,
+  /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple: PropTypes.bool,
   /**
    * If `true`, a 1px light border is added to the bottom of the menu item.
    * @default false

@@ -677,6 +677,34 @@ describe('<Menu2 />', () => {
     expect(handleRadioChange.callCount).to.equal(1);
   });
 
+  it.skipIf(isJsdom())('gives the items a ripple, and disableRipple turns it off', async () => {
+    const { user } = render(
+      <Menu2 defaultOpen trigger="Options">
+        <Menu2Item closeOnClick={false}>Profile</Menu2Item>
+        <Menu2Item closeOnClick={false} disableRipple>
+          No ripple
+        </Menu2Item>
+      </Menu2>,
+    );
+
+    const withRipple = await screen.findByRole('menuitem', { name: 'Profile' });
+    const withoutRipple = screen.getByRole('menuitem', { name: 'No ripple' });
+
+    // The items keep their element; ButtonBase renders a <button> by default.
+    expect(withRipple.tagName).to.equal('DIV');
+
+    // ButtonBase mounts the ripple lazily, on the first interaction.
+    await user.pointer({ keys: '[MouseLeft>]', target: withRipple });
+    await waitFor(() => {
+      expect(withRipple.querySelectorAll('.MuiTouchRipple-ripple').length).to.be.greaterThan(0);
+    });
+    await user.pointer({ keys: '[/MouseLeft]', target: withRipple });
+
+    await user.pointer({ keys: '[MouseLeft>]', target: withoutRipple });
+    expect(withoutRipple.querySelector('.MuiTouchRipple-root')).to.equal(null);
+    await user.pointer({ keys: '[/MouseLeft]', target: withoutRipple });
+  });
+
   it('keeps mounted unchecked indicator marks hidden', () => {
     render(
       <Menu2 open trigger="Options">

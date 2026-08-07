@@ -130,7 +130,8 @@ describe('<Menu2 /> collapsed API', () => {
     );
   });
 
-  it('overlaps the parent menu by default', async () => {
+  // Geometry only: jsdom has no layout, so this runs in the browser project.
+  it.skipIf(isJsdom())('overlaps the parent menu by default', async () => {
     // The popup animates, so geometry has to be read after the transition ends.
     async function settle(element: HTMLElement) {
       await Promise.all(
