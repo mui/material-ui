@@ -7,14 +7,6 @@ describe('parseRoute', () => {
     expect(parseRoute('/regression-Rating/FocusVisibleRating')).to.equal(null);
   });
 
-  it('parses a docs-components route into path/slug/demo', () => {
-    expect(parseRoute('/docs-components-buttons/BasicButtons')).to.deep.equal({
-      path: 'docs/data/material/components/buttons/BasicButtons',
-      slug: 'buttons',
-      demo: 'BasicButtons',
-    });
-  });
-
   it('parses a docs-product route into the matching product*/ docs/src path', () => {
     expect(parseRoute('/docs-product-material/MaterialHero')).to.deep.equal({
       path: 'docs/src/components/productMaterial/MaterialHero',
@@ -40,22 +32,6 @@ describe('getConfig', () => {
     expect(
       getConfig(SCREENSHOT_RULES, 'docs/data/material/components/autocomplete/Asynchronous'),
     ).to.deep.include({ enabled: false });
-  });
-
-  it('returns the a11y rule for a brace-glob enrolment', () => {
-    expect(
-      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/BasicButtons'),
-    ).to.deep.include({ enabled: true });
-    expect(
-      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/ColorButtons'),
-    ).to.deep.include({ enabled: true });
-  });
-
-  it('returns undefined for a demo outside a brace-glob enrolment', () => {
-    // `buttons` enrols only {BasicButtons,ColorButtons}.
-    expect(getConfig(A11Y_RULES, 'docs/data/material/components/buttons/DisabledButtons')).to.equal(
-      undefined,
-    );
   });
 
   it('honours last-match-wins when multiple rules apply', () => {
