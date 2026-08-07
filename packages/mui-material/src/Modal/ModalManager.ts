@@ -66,7 +66,11 @@ function ariaHiddenSiblings(
   [].forEach.call(container.children, (element: Element) => {
     const isNotExcludedElement = !blacklist.includes(element);
     const isNotForbiddenElement = !isAriaHiddenForbiddenOnElement(element);
-    if (isNotExcludedElement && isNotForbiddenElement) {
+    // Never hide an element that contains the modal, otherwise the modal itself
+    // becomes inaccessible. This happens when the modal is not portaled into the
+    // container, for example when `disablePortal` is used.
+    const isNotModalAncestor = currentElement ? !element.contains(currentElement) : true;
+    if (isNotExcludedElement && isNotForbiddenElement && isNotModalAncestor) {
       ariaHidden(element, hide);
     }
   });

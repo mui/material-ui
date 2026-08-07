@@ -350,6 +350,20 @@ describe('ModalManager', () => {
       expect(modal2).not.toBeInaccessible();
     });
 
+    it('should not add aria-hidden to container siblings that contain the modal', () => {
+      // Simulates a non-portaled modal (disablePortal) whose DOM node is nested
+      // inside one of the container's children. Hiding that child would make the
+      // modal itself inaccessible.
+      const nestedParent = document.createElement('div');
+      const nestedModalRef = document.createElement('div');
+      nestedParent.appendChild(nestedModalRef);
+      container2.appendChild(nestedParent);
+
+      modalManager.add({ ...getDummyModal(), modalRef: nestedModalRef }, container2);
+
+      expect(nestedParent).not.toBeInaccessible();
+    });
+
     it('should add aria-hidden to container siblings', () => {
       const secondSibling = document.createElement('input');
       container2.appendChild(secondSibling);
