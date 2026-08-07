@@ -18,7 +18,7 @@ Material UI uses Emotion for styles. On Next.js you must wire an Emotion cache 
 
 1. [App Router (recommended)](#app-router-recommended)
 2. [Pages Router](#pages-router)
-3. [Fonts (`next/font`)](#fonts-nextfont)
+3. [Fonts (`next/font`)](#fonts-nextfont) — Roboto vs custom fonts
 4. [CSS theme variables and SSR](#css-theme-variables-and-ssr)
 5. [Other styling stacks (CSS layers)](#other-styling-stacks-css-layers)
 6. [Next.js Link and `component` prop](#nextjs-link-and-component-prop)
@@ -94,11 +94,17 @@ Extend `Document` props with `DocumentHeadTagsProps` from the same import path. 
 
 ## Fonts (`next/font`)
 
-App Router: theme modules that call `createTheme` need `'use client'` when they are consumed from server components. Use `next/font/google` (or local fonts), set `variable: '--font-…'`, put `className={font.variable}` on `<html>` (or as in docs), and set `typography.fontFamily` to `'var(--font-…)'`. Wrap with `ThemeProvider` inside `AppRouterCacheProvider` as needed.
+### Roboto (default MUI font)
 
-Pages Router: similar pattern in `pages/_app.tsx` with `AppCacheProvider` and `ThemeProvider`.
+Apply the font via `className`, not a CSS variable. Load Roboto from `next/font/google` and set `className={roboto.className}` on the `<html>` element (App Router) or a wrapper `<main>` (Pages Router). Do **not** set `typography.fontFamily` in the theme.
 
-Details: [Next.js integration—Font optimization](https://mui.com/material-ui/integrations/nextjs.md#font-optimization) (App) and [Next.js integration—Font optimization](https://mui.com/material-ui/integrations/nextjs.md#font-optimization-1) (Pages).
+Why: `createTypography` applies Roboto-specific letter-spacing only when `fontFamily` exactly equals the default font stack string `'"Roboto", "Helvetica", "Arial", sans-serif'`. A CSS variable never matches that string, silently removing letter-spacing from all typography variants.
+
+### Custom fonts (non-Roboto)
+
+Use `next/font/google` (or local fonts), set `variable: '--font-…'`, put `className={font.variable}` on `<html>` (App Router) or a wrapper element (Pages Router), and set `typography.fontFamily: 'var(--font-…)'` in a `'use client'` theme file. Wrap with `ThemeProvider` inside `AppRouterCacheProvider` as needed.
+
+Details: [Next.js integration—Font optimization](https://mui.com/material-ui/integrations/nextjs.md#font-optimization) and [Next.js integration—Custom font](https://mui.com/material-ui/integrations/nextjs.md#custom-font) (App Router); same sections under the Pages Router heading for `pages/_app.tsx`.
 
 ---
 
