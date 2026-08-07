@@ -1,11 +1,15 @@
 {
-  "BasicButtons": {
+  "ColorRadioButtons": {
     "rules": {
       "aria-allowed-attr": {
         "status": "pass",
         "tags": ["wcag2a"]
       },
       "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-hidden-focus": {
         "status": "pass",
         "tags": ["wcag2a"]
       },
@@ -21,13 +25,13 @@
         "status": "pass",
         "tags": ["wcag2a"]
       },
-      "button-name": {
+      "form-field-multiple-labels": {
         "status": "pass",
         "tags": ["wcag2a"]
       },
-      "color-contrast": {
+      "label": {
         "status": "pass",
-        "tags": ["wcag2aa"]
+        "tags": ["wcag2a"]
       },
       "nested-interactive": {
         "status": "pass",
@@ -39,99 +43,7 @@
       }
     }
   },
-  "ButtonA11yColorMatrix": {
-    "rules": {
-      "aria-allowed-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-conditional-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-prohibited-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr-value": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "button-name": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "color-contrast": {
-        "status": "fail",
-        "tags": ["wcag2aa"]
-      },
-      "nested-interactive": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "target-size": {
-        "status": "pass",
-        "tags": ["wcag22aa"]
-      }
-    }
-  },
-  "ButtonA11yNonNative": {
-    "rules": {
-      "aria-allowed-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-command-name": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-conditional-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-deprecated-role": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-prohibited-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-required-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-roles": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr-value": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "color-contrast": {
-        "status": "pass",
-        "tags": ["wcag2aa"]
-      },
-      "nested-interactive": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "target-size": {
-        "status": "pass",
-        "tags": ["wcag22aa"]
-      }
-    }
-  },
-  "ButtonA11ySemanticStates": {
+  "ControlledRadioButtonsGroup": {
     "rules": {
       "aria-allowed-attr": {
         "status": "pass",
@@ -149,7 +61,63 @@
         "status": "pass",
         "tags": ["wcag2a"]
       },
-      "aria-progressbar-name": {
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-required-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-roles": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "color-contrast": {
+        "status": "pass",
+        "tags": ["wcag2aa"]
+      },
+      "duplicate-id-aria": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "form-field-multiple-labels": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "label": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "nested-interactive": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "target-size": {
+        "status": "pass",
+        "tags": ["wcag22aa"]
+      }
+    }
+  },
+  "CustomizedRadios": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-deprecated-role": {
         "status": "pass",
         "tags": ["wcag2a"]
       },
@@ -173,9 +141,69 @@
         "status": "pass",
         "tags": ["wcag2a"]
       },
-      "avoid-inline-spacing": {
+      "color-contrast": {
         "status": "pass",
-        "tags": ["wcag21aa"]
+        "tags": ["wcag2aa"]
+      },
+      "duplicate-id-aria": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "form-field-multiple-labels": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "label": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "nested-interactive": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "target-size": {
+        "status": "pass",
+        "tags": ["wcag22aa"]
+      }
+    }
+  },
+  "ErrorRadios": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-deprecated-role": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-hidden-focus": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-required-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-roles": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
       },
       "button-name": {
         "status": "pass",
@@ -197,10 +225,6 @@
         "status": "pass",
         "tags": ["wcag2a"]
       },
-      "link-name": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
       "nested-interactive": {
         "status": "pass",
         "tags": ["wcag2a"]
@@ -211,7 +235,7 @@
       }
     }
   },
-  "ButtonA11yTextSpacing": {
+  "RadioButtons": {
     "rules": {
       "aria-allowed-attr": {
         "status": "pass",
@@ -236,302 +260,6 @@
       "aria-valid-attr-value": {
         "status": "pass",
         "tags": ["wcag2a"]
-      },
-      "button-name": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "color-contrast": {
-        "status": "pass",
-        "tags": ["wcag2aa"]
-      },
-      "nested-interactive": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "target-size": {
-        "status": "pass",
-        "tags": ["wcag22aa"]
-      }
-    }
-  },
-  "ButtonSizes": {
-    "rules": {
-      "aria-allowed-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-conditional-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-prohibited-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr-value": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "button-name": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "color-contrast": {
-        "status": "pass",
-        "tags": ["wcag2aa"]
-      },
-      "nested-interactive": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "target-size": {
-        "status": "pass",
-        "tags": ["wcag22aa"]
-      }
-    }
-  },
-  "ColorButtons": {
-    "rules": {
-      "aria-allowed-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-conditional-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-prohibited-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr-value": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "button-name": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "color-contrast": {
-        "status": "pass",
-        "tags": ["wcag2aa"]
-      },
-      "nested-interactive": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "target-size": {
-        "status": "pass",
-        "tags": ["wcag22aa"]
-      }
-    }
-  },
-  "ContainedButtons": {
-    "rules": {
-      "aria-allowed-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-conditional-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-prohibited-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr-value": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "button-name": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "color-contrast": {
-        "status": "pass",
-        "tags": ["wcag2aa"]
-      },
-      "link-name": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "nested-interactive": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "target-size": {
-        "status": "pass",
-        "tags": ["wcag22aa"]
-      }
-    }
-  },
-  "CustomizedButtons": {
-    "rules": {
-      "aria-allowed-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-conditional-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-prohibited-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr-value": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "button-name": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "color-contrast": {
-        "status": "pass",
-        "tags": ["wcag2aa"]
-      },
-      "nested-interactive": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "target-size": {
-        "status": "pass",
-        "tags": ["wcag22aa"]
-      }
-    }
-  },
-  "DisableElevation": {
-    "rules": {
-      "aria-allowed-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-conditional-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-prohibited-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr-value": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "button-name": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "color-contrast": {
-        "status": "pass",
-        "tags": ["wcag2aa"]
-      },
-      "nested-interactive": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "target-size": {
-        "status": "pass",
-        "tags": ["wcag22aa"]
-      }
-    }
-  },
-  "IconLabelButtons": {
-    "rules": {
-      "aria-allowed-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-conditional-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-hidden-focus": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-prohibited-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr-value": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "button-name": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "color-contrast": {
-        "status": "pass",
-        "tags": ["wcag2aa"]
-      },
-      "nested-interactive": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "target-size": {
-        "status": "pass",
-        "tags": ["wcag22aa"]
-      }
-    }
-  },
-  "InputFileUpload": {
-    "rules": {
-      "aria-allowed-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-conditional-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-hidden-focus": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-prohibited-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr-value": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "color-contrast": {
-        "status": "pass",
-        "tags": ["wcag2aa"]
       },
       "form-field-multiple-labels": {
         "status": "pass",
@@ -541,13 +269,17 @@
         "status": "pass",
         "tags": ["wcag2a"]
       },
+      "nested-interactive": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
       "target-size": {
         "status": "pass",
         "tags": ["wcag22aa"]
       }
     }
   },
-  "LoadingButtons": {
+  "RadioButtonsGroup": {
     "rules": {
       "aria-allowed-attr": {
         "status": "pass",
@@ -562,10 +294,6 @@
         "tags": ["wcag2a"]
       },
       "aria-hidden-focus": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-progressbar-name": {
         "status": "pass",
         "tags": ["wcag2a"]
       },
@@ -589,55 +317,19 @@
         "status": "pass",
         "tags": ["wcag2a"]
       },
-      "avoid-inline-spacing": {
+      "color-contrast": {
         "status": "pass",
-        "tags": ["wcag21aa"]
-      },
-      "button-name": {
-        "status": "pass",
-        "tags": ["wcag2a"]
+        "tags": ["wcag2aa"]
       },
       "duplicate-id-aria": {
         "status": "pass",
         "tags": ["wcag2a"]
       },
-      "nested-interactive": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      }
-    }
-  },
-  "OutlinedButtons": {
-    "rules": {
-      "aria-allowed-attr": {
+      "form-field-multiple-labels": {
         "status": "pass",
         "tags": ["wcag2a"]
       },
-      "aria-conditional-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-prohibited-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr-value": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "button-name": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "color-contrast": {
-        "status": "pass",
-        "tags": ["wcag2aa"]
-      },
-      "link-name": {
+      "label": {
         "status": "pass",
         "tags": ["wcag2a"]
       },
@@ -651,13 +343,81 @@
       }
     }
   },
-  "TextButtons": {
+  "RowRadioButtonsGroup": {
     "rules": {
       "aria-allowed-attr": {
         "status": "pass",
         "tags": ["wcag2a"]
       },
       "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-deprecated-role": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-hidden-focus": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-required-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-roles": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "color-contrast": {
+        "status": "pass",
+        "tags": ["wcag2aa"]
+      },
+      "duplicate-id-aria": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "form-field-multiple-labels": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "label": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "nested-interactive": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "target-size": {
+        "status": "pass",
+        "tags": ["wcag22aa"]
+      }
+    }
+  },
+  "SizeRadioButtons": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-hidden-focus": {
         "status": "pass",
         "tags": ["wcag2a"]
       },
@@ -673,7 +433,59 @@
         "status": "pass",
         "tags": ["wcag2a"]
       },
-      "button-name": {
+      "form-field-multiple-labels": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "label": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "nested-interactive": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "target-size": {
+        "status": "pass",
+        "tags": ["wcag22aa"]
+      }
+    }
+  },
+  "UseRadioGroup": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-deprecated-role": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-hidden-focus": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-required-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-roles": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
         "status": "pass",
         "tags": ["wcag2a"]
       },
@@ -681,7 +493,11 @@
         "status": "pass",
         "tags": ["wcag2aa"]
       },
-      "link-name": {
+      "form-field-multiple-labels": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "label": {
         "status": "pass",
         "tags": ["wcag2a"]
       },
