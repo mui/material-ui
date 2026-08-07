@@ -194,9 +194,15 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         // of the menu.
         const noExplicitWidth = !listRef.current.style.width;
         if (containerElement.clientHeight < listRef.current.clientHeight && noExplicitWidth) {
-          const scrollbarSize = `${getScrollbarSize(ownerWindow(containerElement))}px`;
-          listRef.current.style[direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] =
-            scrollbarSize;
+          const win = ownerWindow(containerElement);
+          const scrollbarSizePx = getScrollbarSize(win);
+          const scrollbarSize = `${scrollbarSizePx}px`;
+          const paddingKey = direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
+          // Preserve any existing padding (e.g. set via theme/CSS) by adding to it
+          // rather than replacing it with the scrollbar width alone.
+          const existingPaddingPx =
+            parseFloat(win.getComputedStyle(listRef.current)[paddingKey]) || 0;
+          listRef.current.style[paddingKey] = `${existingPaddingPx + scrollbarSizePx}px`;
           listRef.current.style.width = `calc(100% + ${scrollbarSize})`;
         }
         return listRef.current;
