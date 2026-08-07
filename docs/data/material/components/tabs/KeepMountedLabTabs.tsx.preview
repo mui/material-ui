@@ -1,0 +1,14 @@
+<TabContext value={value}>
+  <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+    <TabList onChange={handleChange} aria-label="keep mounted tabs example">
+      <Tab label="Item One" value="1" />
+      <Tab label="Item Two" value="2" />
+    </TabList>
+  </Box>
+  <TabPanel value="1" keepMounted>
+    <TextField label="Item One input" />
+  </TabPanel>
+  <TabPanel value="2" keepMounted>
+    <TextField label="Item Two input" />
+  </TabPanel>
+</TabContext>
