@@ -92,9 +92,11 @@ export function toggleDemoExpanded(
   expand: () => void,
   setExpanded: (expanded: boolean) => void,
   remountPreview: () => void,
+  onCollapse?: () => void,
 ) {
   if (expanded) {
     setExpanded(false);
+    onCollapse?.();
   } else {
     expandDemo(expand, remountPreview);
   }
