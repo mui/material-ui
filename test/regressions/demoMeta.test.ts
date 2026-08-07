@@ -45,15 +45,28 @@ describe('getConfig', () => {
   it('returns the a11y rule for a brace-glob enrolment', () => {
     expect(
       getConfig(A11Y_RULES, 'docs/data/material/components/buttons/BasicButtons'),
-    ).to.deep.include({ enabled: true });
+    ).to.deep.include({ enabled: true, assertions: 'all' });
     expect(
-      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/ColorButtons'),
-    ).to.deep.include({ enabled: true });
+      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/ButtonA11yNonNative'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('allows a known Button color-contrast fixture to record failures without asserting them', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/ButtonA11yColorMatrix'),
+    ).to.deep.include({
+      enabled: true,
+      assertions: 'all',
+      skipAssertions: ['color-contrast'],
+    });
   });
 
   it('returns undefined for a demo outside a brace-glob enrolment', () => {
-    // `buttons` enrols only {BasicButtons,ColorButtons}.
+    // Button a11y enrolment covers @mui/material/Button, not IconButton.
     expect(getConfig(A11Y_RULES, 'docs/data/material/components/buttons/DisabledButtons')).to.equal(
+      undefined,
+    );
+    expect(getConfig(A11Y_RULES, 'docs/data/material/components/buttons/IconButtons')).to.equal(
       undefined,
     );
   });
