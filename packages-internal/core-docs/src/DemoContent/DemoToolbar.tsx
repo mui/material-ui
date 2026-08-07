@@ -97,6 +97,15 @@ function DemoTooltip(props: React.ComponentProps<typeof Tooltip>) {
 // Toolbar keyboard navigation
 // ---------------------------------------------------------------------------
 
+// The toolbar owns the single roving tab stop, so suppress ToggleButtonGroup's
+// built-in roving navigation before it moves focus within the group.
+const GROUP_NAV_KEYS = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
+function suppressGroupRovingNav(event: React.KeyboardEvent<HTMLElement>) {
+  if (GROUP_NAV_KEYS.includes(event.key)) {
+    event.preventDefault();
+  }
+}
+
 /** ARIA toolbar keyboard navigation with one RTL-aware roving tab stop. */
 function isFocusableToolbarButton(button: HTMLElement): boolean {
   if (
@@ -399,9 +408,11 @@ export function DemoToolbar(props: DemoToolbarProps) {
           aria-hidden={!expanded || !hasJsTransform}
           value={isJsSelected ? 'js' : 'ts'}
           onChange={onLanguageClick}
+          onKeyDown={suppressGroupRovingNav}
         >
           <ToggleButton
             value="js"
+            tabIndex={-1}
             aria-label={t('showJSSource')}
             data-ga-event-category="demo"
             data-ga-event-label={gaLabel}
@@ -411,6 +422,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
           </ToggleButton>
           <ToggleButton
             value="ts"
+            tabIndex={-1}
             aria-label={t('showTSSource')}
             data-ga-event-category="demo"
             data-ga-event-label={gaLabel}
