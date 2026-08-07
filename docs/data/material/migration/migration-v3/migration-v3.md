@@ -72,7 +72,7 @@ yarn add @material-ui/styles
 
 ## Handling breaking changes
 
-### Core
+### All components
 
 - Every component forward their ref.
   This is implemented by using `React.forwardRef()`.
