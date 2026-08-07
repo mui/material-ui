@@ -286,14 +286,26 @@ export default function DemoContent(props: DemoContentProps) {
   const handleExpand = React.useCallback(() => {
     expandDemo(expandWithEditingPreload, remountPreview);
   }, [expandWithEditingPreload]);
+  // The collapsed preview only projects the main file's default-language
+  // source, so restore both when the code viewer closes.
+  const resetSourceSelection = React.useCallback(() => {
+    const mainFileName = demo.files[0]?.name;
+    if (mainFileName && demo.selectedFileName !== mainFileName) {
+      demo.selectFileName(mainFileName);
+    }
+    if (demo.selectedTransform === 'js') {
+      demo.selectTransform(null);
+    }
+  }, [demo]);
   const handleToggleFrames = React.useCallback(() => {
     toggleDemoExpanded(
       expandedRef.current,
       expandWithEditingPreload,
       demo.setExpanded,
       remountPreview,
+      resetSourceSelection,
     );
-  }, [expandWithEditingPreload, demo.setExpanded]);
+  }, [expandWithEditingPreload, demo.setExpanded, resetSourceSelection]);
 
   // GA event label — the canonical demo slug is used since it uniquely
   // identifies a demo within a page and is stable across renders.

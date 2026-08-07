@@ -87,6 +87,7 @@ describe('DemoContent behavior', () => {
   it('routes expansion through expand and collapse through setExpanded', () => {
     let expandCount = 0;
     let remountCount = 0;
+    let collapseCount = 0;
     const expandedValues: boolean[] = [];
 
     toggleDemoExpanded(
@@ -98,7 +99,12 @@ describe('DemoContent behavior', () => {
       () => {
         remountCount += 1;
       },
+      () => {
+        collapseCount += 1;
+      },
     );
+    expect(collapseCount).to.equal(0);
+
     toggleDemoExpanded(
       true,
       () => {
@@ -108,10 +114,14 @@ describe('DemoContent behavior', () => {
       () => {
         remountCount += 1;
       },
+      () => {
+        collapseCount += 1;
+      },
     );
 
     expect(expandCount).to.equal(1);
     expect(remountCount).to.equal(1);
+    expect(collapseCount).to.equal(1);
     expect(expandedValues).to.deep.equal([false]);
   });
 
