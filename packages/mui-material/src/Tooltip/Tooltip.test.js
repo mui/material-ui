@@ -451,6 +451,38 @@ describe('<Tooltip />', () => {
     expect(eventLog).to.deep.equal(['mouseover', 'open', 'mouseleave', 'close']);
   });
 
+  it('should call onClose when controlled close follows a delayed open before rerender', () => {
+    const eventLog = [];
+    render(
+      <Tooltip
+        enterDelay={100}
+        title="Hello World"
+        onOpen={() => eventLog.push('open')}
+        onClose={() => eventLog.push('close')}
+        open={false}
+      >
+        <button
+          id="testChild"
+          onMouseLeave={() => eventLog.push('mouseleave')}
+          onMouseOver={() => eventLog.push('mouseover')}
+          type="submit"
+        >
+          Hello World
+        </button>
+      </Tooltip>,
+    );
+
+    fireEvent.mouseOver(screen.getByRole('button'));
+    clock.tick(100);
+
+    expect(eventLog).to.deep.equal(['mouseover', 'open']);
+
+    fireEvent.mouseLeave(screen.getByRole('button'));
+    clock.tick(0);
+
+    expect(eventLog).to.deep.equal(['mouseover', 'open', 'mouseleave', 'close']);
+  });
+
   it('should not call onOpen again if already open', () => {
     const eventLog = [];
     render(
