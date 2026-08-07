@@ -7,14 +7,18 @@ import TextField from '@mui/material/TextField';
 
 declare module '@mui/material/Autocomplete' {
   interface AutocompletePaperSlotPropsOverrides {
-    value: Option[];
+    value: readonly Option[];
   }
   interface AutocompletePopperSlotPropsOverrides {
-    value: Option[];
+    value: readonly Option[];
   }
 }
 
-function CustomPaper({ children, value, ...paperProps }: PaperProps & { value: Option[] }) {
+function CustomPaper({
+  children,
+  value,
+  ...paperProps
+}: PaperProps & { value: readonly Option[] }) {
   return (
     <Paper {...paperProps} onMouseDown={(event) => event.preventDefault()}>
       {children}
@@ -23,7 +27,11 @@ function CustomPaper({ children, value, ...paperProps }: PaperProps & { value: O
   );
 }
 
-function CustomPopper({ children, value, ...popperProps }: PopperProps & { value: Option[] }) {
+function CustomPopper({
+  children,
+  value,
+  ...popperProps
+}: PopperProps & { value: readonly Option[] }) {
   return (
     <Popper {...popperProps}>
       {children as React.ReactNode}
@@ -38,7 +46,7 @@ interface Option {
 }
 
 function App() {
-  const [value, setValue] = React.useState<Option[]>([]);
+  const [value, setValue] = React.useState<readonly Option[]>([]);
 
   return (
     <React.Fragment>
