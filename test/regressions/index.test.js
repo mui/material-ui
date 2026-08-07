@@ -385,6 +385,176 @@ async function main() {
         }
       });
     });
+
+    registerCssLayoutSuites({ test, renderFixture, routes });
+  });
+}
+
+/**
+ * Registers the CSS-dependent WCAG criteria that axe cannot cover: they need a
+ * real layout at a real viewport. Kept out of `main` so the suite can be
+ * introduced independently of the harness it runs on.
+ */
+function registerCssLayoutSuites({ test, renderFixture, routes }) {
+  // CSS-dependent criteria that axe cannot cover: they need a real layout at a
+  // real viewport. Each component is exercised through one representative demo;
+  // the criteria a component is rated against are listed alongside it.
+  const CSS_LAYOUT_SUITES = [
+    { component: 'Accordion', route: '/docs-components-accordion/AccordionUsage' },
+    // The same demo renders the summary header, which is rated separately.
+    { component: 'AccordionSummary', route: '/docs-components-accordion/AccordionUsage' },
+    {
+      component: 'Avatar',
+      route: '/docs-components-avatars/LetterAvatars',
+      // 1.4.4 is asserted here as *text-only* resize, which the Avatar report
+      // explicitly treats as out of scope: its fixed 40px box scales under
+      // full-page zoom (the mechanism the criterion assumes) but not under
+      // text-only zoom, which the report calls an author concern. Left rated
+      // Manual rather than silently downgraded — see Avatar/accessibility.md.
+      skipCriteria: ['1.4.4'],
+    },
+    { component: 'Button', route: '/docs-components-buttons/BasicButtons' },
+    { component: 'Checkbox', route: '/docs-components-checkboxes/Checkboxes' },
+    { component: 'LinearProgress', route: '/docs-components-progress/LinearDeterminate' },
+    { component: 'Radio', route: '/docs-components-radio-buttons/RadioButtonsGroup' },
+    { component: 'Switch', route: '/docs-components-switches/BasicSwitches' },
+    { component: 'TextField', route: '/docs-components-text-fields/BasicTextFields' },
+    { component: 'ToggleButton', route: '/docs-components-toggle-button/ToggleButtons' },
+    // The same demo renders the group wrapper, which is rated separately.
+    { component: 'ToggleButtonGroup', route: '/docs-components-toggle-button/ToggleButtons' },
+  ];
+
+  /**
+   * Reports the document's horizontal overflow after applying `css`, plus any
+   * element whose own content escapes its box. Both are the failure modes the
+   * reflow, resize-text, and text-spacing criteria care about.
+   */
+  async function measureOverflow(page, css) {
+    return page.evaluate((styleText) => {
+      const style = document.createElement('style');
+      style.textContent = styleText;
+      document.head.appendChild(style);
+
+      // Force layout before measuring.
+      void document.documentElement.offsetHeight;
+
+      const root = document.documentElement;
+      const horizontalOverflow = root.scrollWidth - root.clientWidth;
+
+      // These criteria are about losing *text*, so only elements that hide
+      // overflow and actually render text count. Measuring the text range
+      // rather than scrollWidth avoids flagging boxes that deliberately clip
+      // decoration — a Switch root clipping its ripple loses no content.
+      const clipped = Array.from(document.querySelectorAll('[class*="Mui"]'))
+        .filter((node) => {
+          const { overflowX, overflowY, visibility, display } = window.getComputedStyle(node);
+          if (overflowX !== 'hidden' && overflowY !== 'hidden') {
+            return false;
+          }
+          // Deliberately hidden content — a collapsed Accordion panel — is not
+          // clipped content: these criteria are about what is on screen.
+          if (visibility === 'hidden' || display === 'none') {
+            return false;
+          }
+          const box = node.getBoundingClientRect();
+          if (box.width === 0 || box.height === 0) {
+            return false;
+          }
+          return node.textContent.trim() !== '';
+        })
+        .filter((node) => {
+          const range = document.createRange();
+          range.selectNodeContents(node);
+          const text = range.getBoundingClientRect();
+          const box = node.getBoundingClientRect();
+          return (
+            text.left < box.left - 0.5 ||
+            text.right > box.right + 0.5 ||
+            text.top < box.top - 0.5 ||
+            text.bottom > box.bottom + 0.5
+          );
+        })
+        .map((node) => node.className);
+
+      style.remove();
+      return { horizontalOverflow, clipped: clipped.slice(0, 3) };
+    }, css);
+  }
+
+  const TEXT_SPACING_CSS =
+    '* { line-height: 1.5 !important; letter-spacing: 0.12em !important;' +
+    ' word-spacing: 0.16em !important; } p { margin-bottom: 2em !important; }';
+
+  CSS_LAYOUT_SUITES.forEach(({ component, route, skipCriteria = [] }) => {
+    // A slug only enters the demo bundle once its component is enrolled, so skip
+    // entries this build doesn't contain rather than waiting for a fixture that
+    // was never bundled.
+    if (!routes.includes(route)) {
+      return;
+    }
+    const covers = (criterion) => !skipCriteria.includes(criterion);
+
+    describe(`${component} layout criteria`, () => {
+      test.runIf(covers('1.4.10'))(
+        '1.4.10 Reflow: no horizontal scrolling at 320 CSS pixels',
+        async ({ pooled }) => {
+          const { page } = pooled;
+          await page.setViewportSize({ width: 320, height: 512 });
+          try {
+            await renderFixture(page, route);
+            const { horizontalOverflow } = await measureOverflow(page, '');
+            if (horizontalOverflow > 1) {
+              throw new Error(
+                `${component} overflows horizontally by ${horizontalOverflow}px at 320px wide`,
+              );
+            }
+          } finally {
+            await page.setViewportSize(DEFAULT_VIEWPORT);
+          }
+        },
+      );
+
+      test.runIf(covers('1.4.4'))(
+        '1.4.4 Resize Text: content survives a 200% text size',
+        async ({ pooled }) => {
+          const { page } = pooled;
+          await renderFixture(page, route);
+          const { horizontalOverflow, clipped } = await measureOverflow(
+            page,
+            'html { font-size: 200% !important; }',
+          );
+          if (horizontalOverflow > 1) {
+            throw new Error(
+              `${component} overflows horizontally by ${horizontalOverflow}px at 200% text size`,
+            );
+          }
+          if (clipped.length > 0) {
+            throw new Error(`${component} clips its own content at 200%: ${clipped.join(', ')}`);
+          }
+        },
+      );
+
+      test.runIf(covers('1.4.12'))(
+        '1.4.12 Text Spacing: content survives the WCAG spacing overrides',
+        async ({ pooled }) => {
+          const { page } = pooled;
+          await renderFixture(page, route);
+          const { horizontalOverflow, clipped } = await measureOverflow(page, TEXT_SPACING_CSS);
+          if (horizontalOverflow > 1) {
+            throw new Error(
+              `${component} overflows horizontally by ${horizontalOverflow}px under the` +
+                ' WCAG text-spacing overrides',
+            );
+          }
+          if (clipped.length > 0) {
+            throw new Error(
+              `${component} clips its own content under the WCAG text-spacing overrides:` +
+                ` ${clipped.join(', ')}`,
+            );
+          }
+        },
+      );
+    });
   });
 }
 
