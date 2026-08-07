@@ -10,8 +10,8 @@ catalogs:
       specifier: ^1.6.0
       version: 1.6.0
     '@docsearch/react':
-      specifier: ^4.6.3
-      version: 4.6.3
+      specifier: ^4.7.0
+      version: 4.7.0
     '@emotion/cache':
       specifier: ^11.14.0
       version: 11.14.0
@@ -255,8 +255,8 @@ importers:
         specifier: catalog:docs
         version: 1.6.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@docsearch/react':
-        specifier: ^4.6.3
-        version: 4.6.3(@algolia/client-search@5.18.0)(@types/react@19.2.17)(algoliasearch@5.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(search-insights@2.13.0)
+        specifier: catalog:docs
+        version: 4.7.0(@algolia/client-search@5.18.0)(@types/react@19.2.17)(algoliasearch@5.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(search-insights@2.13.0)
       '@emotion/cache':
         specifier: catalog:docs
         version: 11.14.0
@@ -698,7 +698,7 @@ importers:
         version: 1.6.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@docsearch/react':
         specifier: catalog:docs
-        version: 4.6.3(@algolia/client-search@5.18.0)(@types/react@19.2.17)(algoliasearch@5.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(search-insights@2.13.0)
+        version: 4.7.0(@algolia/client-search@5.18.0)(@types/react@19.2.17)(algoliasearch@5.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(search-insights@2.13.0)
       '@emotion/cache':
         specifier: catalog:docs
         version: 11.14.0
@@ -2502,8 +2502,8 @@ packages:
     resolution: {integrity: sha512-4B4OijXeVNOPZlYA2oEwWOTkzyltLao+xbotHQeqN++Rv27Y6s818+n2Qkp8q+Fxhn0t/5lA5X1Mxktud8eayQ==}
     engines: {node: '>=14.17.0'}
 
-  '@docsearch/core@4.6.3':
-    resolution: {integrity: sha512-rUOujwIpxJRgD7+kicVsI3D5sqBvdiRTquzWBpTEXZs8ZXfGbfzpus5HqumaNYTppN2HvH8E2yNuRwYdHJeOlA==}
+  '@docsearch/core@4.7.0':
+    resolution: {integrity: sha512-p/9xVKmPDj3FPvMfPf5naVO3Ej8SCbcUugGvx1+8GgkuBNbqxqN2Irx3WLBv8VY0jH7XpRwKWdlmjXLZsmTLsg==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 20.0.0'
       react: '>= 16.8.0 < 20.0.0'
@@ -2516,11 +2516,11 @@ packages:
       react-dom:
         optional: true
 
-  '@docsearch/css@4.6.3':
-    resolution: {integrity: sha512-nlOwcXcsNAptQl4vlL4MA78qNJKO0Qlds5GuBjCoePgkebTXLSf8Qt1oyZ3YBshYupKXG9VRGEsk1zr23d+bzQ==}
+  '@docsearch/css@4.7.0':
+    resolution: {integrity: sha512-Sk5xkdRFeE7PeWjG9l4AfTwdvMfr9wHiwNNCpHXT4v4SNyNMKdHGvEILc31BgaVFGDDNbv5u/a73tofRiwbEZw==}
 
-  '@docsearch/react@4.6.3':
-    resolution: {integrity: sha512-Bg2wdDsoQVlNCcEKuEJAU04tvHCqgx8rIu+uIoM4pRtcx3TBKJuXutJik3LTA8LRc9YEyHkrYUrmcC0D7BYf+g==}
+  '@docsearch/react@4.7.0':
+    resolution: {integrity: sha512-x6oedjJ8O8/pIDBsMo5Orca3/6cQCz616/CwthVe68l43mqnj2lrJ9kFQITBqy8hMsS3nWeBWFoVO5dJ1DCFKA==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 20.0.0'
       react: '>= 16.8.0 < 20.0.0'
@@ -12741,19 +12741,19 @@ snapshots:
 
   '@discoveryjs/json-ext@0.6.3': {}
 
-  '@docsearch/core@4.6.3(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
+  '@docsearch/core@4.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     optionalDependencies:
       '@types/react': 19.2.17
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
 
-  '@docsearch/css@4.6.3': {}
+  '@docsearch/css@4.7.0': {}
 
-  '@docsearch/react@4.6.3(@algolia/client-search@5.18.0)(@types/react@19.2.17)(algoliasearch@5.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(search-insights@2.13.0)':
+  '@docsearch/react@4.7.0(@algolia/client-search@5.18.0)(@types/react@19.2.17)(algoliasearch@5.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(search-insights@2.13.0)':
     dependencies:
       '@algolia/autocomplete-core': 1.19.2(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)(search-insights@2.13.0)
-      '@docsearch/core': 4.6.3(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@docsearch/css': 4.6.3
+      '@docsearch/core': 4.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@docsearch/css': 4.7.0
     optionalDependencies:
       '@types/react': 19.2.17
       react: 19.2.8
