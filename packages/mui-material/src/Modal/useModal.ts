@@ -46,6 +46,7 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const mountNodeRef = React.useRef<HTMLElement>(null);
   const lastMountNodeRef = React.useRef<HTMLElement>(null);
   const modalRef = React.useRef<HTMLDivElement>(null);
+  const registeredContainerRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(modalRef, rootRef);
   const [exited, setExited] = React.useState(!open);
   const hasTransition = getHasTransition(children);
@@ -74,7 +75,16 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const handleOpen = useEventCallback(() => {
     const resolvedContainer = getContainer(container) || getDoc().body;
 
+    // When the container changes while the modal stays open, the previous container
+    // keeps the `aria-hidden` state computed for the previous sibling set.
+    // Unregister the modal first so the new container is evaluated against its own siblings.
+    if (registeredContainerRef.current && registeredContainerRef.current !== resolvedContainer) {
+      manager.remove(getModal(), ariaHiddenProp);
+      registeredContainerRef.current = null;
+    }
+
     manager.add(getModal(), resolvedContainer as HTMLElement);
+    registeredContainerRef.current = resolvedContainer as HTMLElement;
 
     // The element was already mounted.
     if (modalRef.current) {
@@ -101,6 +111,7 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
   });
 
   const handleClose = React.useCallback(() => {
+    registeredContainerRef.current = null;
     manager.remove(getModal(), ariaHiddenProp);
   }, [ariaHiddenProp]);
 
@@ -116,7 +127,7 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     } else if (!hasTransition || !closeAfterTransition) {
       handleClose();
     }
-  }, [open, handleClose, hasTransition, closeAfterTransition, handleOpen]);
+  }, [open, handleClose, hasTransition, closeAfterTransition, handleOpen, container]);
 
   const createHandleKeyDown = (otherHandlers: EventHandlers) => (event: React.KeyboardEvent) => {
     otherHandlers.onKeyDown?.(event);
