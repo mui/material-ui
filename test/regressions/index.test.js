@@ -219,6 +219,7 @@ async function main() {
               recordA11y({ task }, results, {
                 slug: parsed.slug,
                 demo: parsed.demo,
+                assertions: a11yRule.assertions,
                 skipAssertions: a11yRule.skipAssertions,
               });
             }
