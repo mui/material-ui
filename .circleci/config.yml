@@ -123,6 +123,12 @@ jobs:
           name: '`pnpm proptypes` changes committed?'
           command: git add -A && git diff --exit-code --staged
       - run:
+          # Fails when a conformance report changes without its rollup being
+          # regenerated, and when a report rates a criterion ⚙️ Automated
+          # without citing the test or axe rule that proves it.
+          name: Accessibility scorecard up to date?
+          command: pnpm a11y:scorecard:check
+      - run:
           name: Generate the documentation
           command: pnpm docs:api
       - run:
