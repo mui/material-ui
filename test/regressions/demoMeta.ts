@@ -37,6 +37,11 @@ export interface A11yRule {
   /** Minimatch glob against `docs/data/material/components/{slug}/{Demo}`. */
   test: string;
   enabled?: boolean;
+  /**
+   * `visual` asserts rules that depend on rendered CSS. `all` asserts every
+   * axe violation/incomplete that is not listed in `skipAssertions`.
+   */
+  assertions?: 'visual' | 'all';
   /** Axe rule IDs recorded into results JSON but not asserted on. */
   skipAssertions?: string[];
 }
@@ -143,6 +148,26 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     viewportWidth: 1440,
     waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
   },
+  { test: 'docs/data/material/components/buttons/ButtonA11y*', enabled: false }, // A11y-only coverage fixtures
+  { test: 'docs/data/material/components/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+];
+
+// Button docs demos enrolled for axe assertions; IconButton/ButtonBase demos are excluded.
+const BUTTON_A11Y_DEMOS = [
+  'BasicButtons',
+  'TextButtons',
+  'ContainedButtons',
+  'DisableElevation',
+  'OutlinedButtons',
+  'ColorButtons',
+  'ButtonSizes',
+  'IconLabelButtons',
+  'InputFileUpload',
+  'LoadingButtons',
+  'CustomizedButtons',
+  'ButtonA11yNonNative',
+  'ButtonA11ySemanticStates',
+  'ButtonA11yTextSpacing',
 ];
 
 /**
@@ -150,10 +175,36 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
  * Slug-wide rules use `*`; brace-globs narrow enrolment to specific demos;
  * later opt-out rules disable individual demos.
  *
- * Initial PR scope: `buttons` only. Other components onboard incrementally.
+ * Scope: the components with a conformance report under
+ * `packages/mui-material/src/<Component>/accessibility.md`. Others onboard
+ * incrementally.
  */
 export const A11Y_RULES: A11yRule[] = [
-  { test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
+  {
+    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars,AvatarA11yImage}',
+    enabled: true,
+  },
+  // Avatar's default `colorDefault` styling is white text on grey[400] (~1.9:1),
+  // and the documented letter/background examples use low-contrast author
+  // colors, so color-contrast genuinely fails (WCAG 1.4.3). Record the
+  // violations in the JSON without failing the build. IconAvatars (icons only,
+  // aria-hidden, no text) is excluded here so it still asserts a clean pass.
+  {
+    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,VariantAvatars,AvatarA11yImage}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: `docs/data/material/components/buttons/{${BUTTON_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: 'docs/data/material/components/buttons/ButtonA11yColorMatrix',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
 ];
 
 export interface ParsedRoute {
