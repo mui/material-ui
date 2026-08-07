@@ -7,6 +7,14 @@ describe('parseRoute', () => {
     expect(parseRoute('/regression-Rating/FocusVisibleRating')).to.equal(null);
   });
 
+  it('parses a docs-components route into path/slug/demo', () => {
+    expect(parseRoute('/docs-components-buttons/BasicButtons')).to.deep.equal({
+      path: 'docs/data/material/components/buttons/BasicButtons',
+      slug: 'buttons',
+      demo: 'BasicButtons',
+    });
+  });
+
   it('parses a docs-product route into the matching product*/ docs/src path', () => {
     expect(parseRoute('/docs-product-material/MaterialHero')).to.deep.equal({
       path: 'docs/src/components/productMaterial/MaterialHero',
@@ -32,6 +40,35 @@ describe('getConfig', () => {
     expect(
       getConfig(SCREENSHOT_RULES, 'docs/data/material/components/autocomplete/Asynchronous'),
     ).to.deep.include({ enabled: false });
+  });
+
+  it('returns the a11y rule for a brace-glob enrolment', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/BasicButtons'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/ButtonA11yNonNative'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('allows a known Button color-contrast fixture to record failures without asserting them', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/ButtonA11yColorMatrix'),
+    ).to.deep.include({
+      enabled: true,
+      assertions: 'all',
+      skipAssertions: ['color-contrast'],
+    });
+  });
+
+  it('returns undefined for a demo outside a brace-glob enrolment', () => {
+    // Button a11y enrolment covers @mui/material/Button, not IconButton.
+    expect(getConfig(A11Y_RULES, 'docs/data/material/components/buttons/DisabledButtons')).to.equal(
+      undefined,
+    );
+    expect(getConfig(A11Y_RULES, 'docs/data/material/components/buttons/IconButtons')).to.equal(
+      undefined,
+    );
   });
 
   it('honours last-match-wins when multiple rules apply', () => {
