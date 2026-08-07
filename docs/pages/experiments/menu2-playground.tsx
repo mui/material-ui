@@ -1,0 +1,660 @@
+import * as React from 'react';
+import NextLink from 'next/link';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import ClassicMenu from '@mui/material/Menu';
+import ClassicMenuItem from '@mui/material/MenuItem';
+import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
+import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
+import {
+  ThemeProvider,
+  createTheme,
+  enhanceHighContrast,
+  type SxProps,
+  type Theme,
+} from '@mui/material/styles';
+import { DirectionProvider } from '@base-ui/react/direction-provider';
+// The Unstable_ subpaths use default exports, so the local bindings drop the
+// prefix and the JSX mirrors the future stable names.
+import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
+import Menu2Group from '@mui/material/Unstable_Menu2Group';
+import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
+import Menu2Item from '@mui/material/Unstable_Menu2Item';
+import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
+import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
+import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
+import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
+import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
+import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
+
+type MenuProps = React.ComponentProps<typeof Menu2>;
+type PopupProps = MenuProps;
+type PopupSide = NonNullable<PopupProps['side']>;
+type PopupAlign = NonNullable<PopupProps['align']>;
+
+interface PlaygroundSettings {
+  // Root behavior
+  modal: boolean;
+  triggerOpenOnHover: boolean;
+  loopFocus: boolean;
+  highlightItemOnHover: boolean;
+  // Submenu behavior
+  submenusOpenOnHover: boolean;
+  submenuDelay: number;
+  submenuCloseDelay: number;
+  closeParentOnEsc: boolean;
+  // Positioning
+  side: PopupSide;
+  align: PopupAlign;
+  sideOffset: number;
+  alignOffset: number;
+  keepMounted: boolean;
+  // Appearance
+  elevation: number;
+  backdrop: 'none' | 'dimmed';
+  animation: 'default' | 'off';
+  dense: boolean;
+  dividers: boolean;
+  rtl: boolean;
+  highContrast: boolean;
+}
+
+const defaultSettings: PlaygroundSettings = {
+  modal: true,
+  triggerOpenOnHover: false,
+  loopFocus: true,
+  highlightItemOnHover: true,
+  submenusOpenOnHover: true,
+  submenuDelay: 100,
+  submenuCloseDelay: 0,
+  closeParentOnEsc: false,
+  side: 'bottom',
+  align: 'start',
+  sideOffset: 8,
+  alignOffset: 0,
+  keepMounted: false,
+  elevation: 8,
+  backdrop: 'none',
+  animation: 'default',
+  dense: false,
+  dividers: false,
+  rtl: false,
+  highContrast: true,
+};
+
+const SIDES: PopupSide[] = ['bottom', 'top', 'left', 'right', 'inline-start', 'inline-end'];
+const ALIGNS: PopupAlign[] = ['start', 'center', 'end'];
+const ELEVATIONS = [0, 1, 4, 8, 16, 24];
+
+const theme = createTheme({});
+const rtlTheme = createTheme({ direction: 'rtl' });
+// Docs demos always run through the enhancer (see `DemoInstanceThemeProvider`);
+// the toggle is here so the forced-colors rules can be compared against their
+// absence while emulating high contrast in the browser.
+const highContrastTheme = enhanceHighContrast(createTheme({}));
+const rtlHighContrastTheme = enhanceHighContrast(createTheme({ direction: 'rtl' }));
+
+// The successor animates by default (a CSS match for the classic Grow); this
+// demonstrates overriding that default away through the popup slot.
+const noAnimationSx: SxProps<Theme> = { transition: 'none' };
+
+function usePopupKnobProps(settings: PlaygroundSettings) {
+  return React.useMemo(
+    () => ({
+      // Top-level convenience prop (forwards to the Paper slot).
+      elevation: settings.elevation,
+      ...(settings.backdrop === 'dimmed'
+        ? { slotProps: { backdrop: { sx: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } } } }
+        : null),
+      ...(settings.animation === 'off' ? { slotProps: { popup: { sx: noAnimationSx } } } : null),
+    }),
+    [settings.elevation, settings.animation, settings.backdrop],
+  );
+}
+
+function PlaygroundDemo({
+  settings,
+  onLog,
+}: {
+  settings: PlaygroundSettings;
+  onLog: (entry: string) => void;
+}) {
+  const popupKnobProps = usePopupKnobProps(settings);
+  const itemProps = { dense: settings.dense, divider: settings.dividers };
+  const submenuTriggerProps = {
+    ...itemProps,
+    openOnHover: settings.submenusOpenOnHover,
+    delay: settings.submenuDelay,
+    closeDelay: settings.submenuCloseDelay,
+  };
+  // No sideOffset here: submenus use their own default, which overlaps the parent.
+  const submenuPopupProps = { ...popupKnobProps };
+
+  const handleOpenChange: MenuProps['onOpenChange'] = (nextOpen, eventDetails) => {
+    onLog(`onOpenChange -> ${nextOpen ? 'open' : 'close'} (reason: ${eventDetails.reason})`);
+  };
+
+  const handleOpenChangeComplete: MenuProps['onOpenChangeComplete'] = (nextOpen) => {
+    onLog(`onOpenChangeComplete -> ${nextOpen ? 'opened' : 'closed'}`);
+  };
+
+  const handleItemClick = (event: React.MouseEvent<HTMLElement>) => {
+    onLog(`item click: ${event.currentTarget.textContent}`);
+  };
+
+  return (
+    <Menu2
+      modal={settings.modal}
+      loopFocus={settings.loopFocus}
+      highlightItemOnHover={settings.highlightItemOnHover}
+      onOpenChange={handleOpenChange}
+      onOpenChangeComplete={handleOpenChangeComplete}
+      trigger="Project"
+      slotProps={{
+        trigger: {
+          variant: 'contained',
+          openOnHover: settings.triggerOpenOnHover,
+          endIcon: <KeyboardArrowDownRoundedIcon fontSize="small" />,
+        },
+      }}
+      side={settings.side}
+      align={settings.align}
+      sideOffset={settings.sideOffset}
+      alignOffset={settings.alignOffset}
+      keepMounted={settings.keepMounted}
+      {...popupKnobProps}
+    >
+      <Menu2Group>
+        <Menu2GroupLabel>Actions</Menu2GroupLabel>
+        <Menu2Item {...itemProps} onClick={handleItemClick}>
+          New file
+        </Menu2Item>
+        <Menu2Item {...itemProps} onClick={handleItemClick}>
+          Duplicate
+        </Menu2Item>
+        <Menu2Item {...itemProps} disabled onClick={handleItemClick}>
+          Archive (disabled)
+        </Menu2Item>
+      </Menu2Group>
+      <Menu2Separator />
+
+      <Menu2Submenu
+        closeParentOnEsc={settings.closeParentOnEsc}
+        trigger={
+          <React.Fragment>
+            Share
+            <KeyboardArrowRightRoundedIcon fontSize="small" />
+          </React.Fragment>
+        }
+        slotProps={{ trigger: submenuTriggerProps }}
+        {...submenuPopupProps}
+      >
+        <Menu2Item {...itemProps} onClick={handleItemClick}>
+          Email
+        </Menu2Item>
+        <Menu2Item {...itemProps} onClick={handleItemClick}>
+          Copy link
+        </Menu2Item>
+        <Menu2Submenu
+          closeParentOnEsc={settings.closeParentOnEsc}
+          trigger={
+            <React.Fragment>
+              Export as
+              <KeyboardArrowRightRoundedIcon fontSize="small" />
+            </React.Fragment>
+          }
+          slotProps={{ trigger: submenuTriggerProps }}
+          {...submenuPopupProps}
+        >
+          <Menu2RadioGroup defaultValue="pdf">
+            <Menu2RadioItem {...itemProps} value="pdf">
+              PDF document
+            </Menu2RadioItem>
+            <Menu2RadioItem {...itemProps} value="epub">
+              EPUB publication
+            </Menu2RadioItem>
+            <Menu2RadioItem {...itemProps} value="markdown">
+              Markdown
+            </Menu2RadioItem>
+          </Menu2RadioGroup>
+        </Menu2Submenu>
+      </Menu2Submenu>
+
+      <Menu2Submenu
+        closeParentOnEsc={settings.closeParentOnEsc}
+        trigger={
+          <React.Fragment>
+            View
+            <KeyboardArrowRightRoundedIcon fontSize="small" />
+          </React.Fragment>
+        }
+        slotProps={{ trigger: submenuTriggerProps }}
+        {...submenuPopupProps}
+      >
+        <Menu2CheckboxItem {...itemProps} defaultChecked>
+          Show ruler
+        </Menu2CheckboxItem>
+        <Menu2CheckboxItem {...itemProps}>Show outline</Menu2CheckboxItem>
+      </Menu2Submenu>
+      <Menu2Separator />
+
+      <Menu2Item {...itemProps} selected onClick={handleItemClick}>
+        Selected item (visual-only)
+      </Menu2Item>
+      <Menu2LinkItem {...itemProps} href="https://mui.com/material-ui/react-menu/">
+        Menu documentation
+      </Menu2LinkItem>
+    </Menu2>
+  );
+}
+
+const parityItems = [
+  { label: 'Profile' },
+  { label: 'My account', selected: true },
+  { label: 'Settings' },
+  { label: 'Read-only mode', disabled: true },
+  { label: 'Logout' },
+] as const;
+
+function ClassicVersusSuccessorDemo({ settings }: { settings: PlaygroundSettings }) {
+  const [classicAnchorEl, setClassicAnchorEl] = React.useState<null | HTMLElement>(null);
+  const popupKnobProps = usePopupKnobProps(settings);
+  const itemProps = { dense: settings.dense, divider: settings.dividers };
+
+  return (
+    <Stack direction="row" spacing={2}>
+      <div>
+        <Button
+          variant="outlined"
+          endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}
+          onClick={(event) => setClassicAnchorEl(event.currentTarget)}
+        >
+          Classic Menu
+        </Button>
+        <ClassicMenu
+          open={Boolean(classicAnchorEl)}
+          anchorEl={classicAnchorEl}
+          onClose={() => setClassicAnchorEl(null)}
+          elevation={settings.elevation}
+        >
+          {parityItems.map((item) => (
+            <ClassicMenuItem
+              key={item.label}
+              {...itemProps}
+              selected={'selected' in item && item.selected}
+              disabled={'disabled' in item && item.disabled}
+              onClick={() => setClassicAnchorEl(null)}
+            >
+              {item.label}
+            </ClassicMenuItem>
+          ))}
+        </ClassicMenu>
+      </div>
+      <Menu2
+        trigger="Successor"
+        slotProps={{
+          trigger: {
+            variant: 'outlined',
+            endIcon: <KeyboardArrowDownRoundedIcon fontSize="small" />,
+          },
+        }}
+        {...popupKnobProps}
+      >
+        {parityItems.map((item) => (
+          <Menu2Item
+            key={item.label}
+            {...itemProps}
+            selected={'selected' in item && item.selected}
+            disabled={'disabled' in item && item.disabled}
+          >
+            {item.label}
+          </Menu2Item>
+        ))}
+      </Menu2>
+    </Stack>
+  );
+}
+
+function ControlledAnchorDemo() {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleOpenChange: MenuProps['onOpenChange'] = (nextOpen) => {
+    if (!nextOpen) {
+      setAnchorEl(null);
+    }
+  };
+
+  return (
+    <div>
+      <Button
+        variant="outlined"
+        startIcon={<MoreVertRoundedIcon fontSize="small" />}
+        onClick={(event) => setAnchorEl(event.currentTarget)}
+      >
+        Open (controlled)
+      </Button>
+      <Menu2
+        open={open}
+        onOpenChange={handleOpenChange}
+        anchor={anchorEl ?? undefined}
+        sideOffset={4}
+      >
+        <Menu2Item onClick={() => setAnchorEl(null)}>Profile</Menu2Item>
+        <Menu2Item onClick={() => setAnchorEl(null)}>My account</Menu2Item>
+        <Menu2Item onClick={() => setAnchorEl(null)}>Logout</Menu2Item>
+      </Menu2>
+    </div>
+  );
+}
+
+const typeaheadEntries = [
+  'Argentina',
+  'Australia',
+  'Austria',
+  'Belgium',
+  'Brazil',
+  'Canada',
+  'Chile',
+  'Colombia',
+  'Czechia',
+  'Denmark',
+  'Estonia',
+  'Finland',
+  'France',
+  'Germany',
+  'Greece',
+  'Hungary',
+  'Iceland',
+  'India',
+  'Ireland',
+  'Italy',
+  'Japan',
+  'Lithuania',
+  'Mexico',
+  'Netherlands',
+  'New Zealand',
+  'Norway',
+  'Poland',
+  'Portugal',
+  'Spain',
+  'Sweden',
+  'Switzerland',
+  'United Kingdom',
+];
+
+function TypeaheadScrollDemo() {
+  return (
+    <Menu2
+      trigger="Country"
+      slotProps={{
+        trigger: {
+          variant: 'outlined',
+          endIcon: <KeyboardArrowDownRoundedIcon fontSize="small" />,
+        },
+        paper: { sx: { maxHeight: 320, overflow: 'auto' } },
+      }}
+      sideOffset={4}
+    >
+      {typeaheadEntries.map((entry) => (
+        <Menu2Item key={entry} dense>
+          {entry}
+        </Menu2Item>
+      ))}
+    </Menu2>
+  );
+}
+
+function SettingsPanel({
+  settings,
+  onChange,
+}: {
+  settings: PlaygroundSettings;
+  onChange: React.Dispatch<React.SetStateAction<PlaygroundSettings>>;
+}) {
+  const setSetting = <Key extends keyof PlaygroundSettings>(
+    key: Key,
+    value: PlaygroundSettings[Key],
+  ) => {
+    onChange((currentSettings) => ({ ...currentSettings, [key]: value }));
+  };
+
+  const renderCheckbox = (key: keyof PlaygroundSettings, label: string) => (
+    <label style={{ display: 'block' }}>
+      <input
+        type="checkbox"
+        checked={settings[key] as boolean}
+        onChange={(event) => setSetting(key, event.target.checked as never)}
+      />{' '}
+      {label}
+    </label>
+  );
+
+  const renderNumber = (key: keyof PlaygroundSettings, label: string, step = 50) => (
+    <label style={{ display: 'block' }}>
+      {label}{' '}
+      <input
+        type="number"
+        min={0}
+        step={step}
+        value={settings[key] as number}
+        style={{ width: 64 }}
+        onChange={(event) => setSetting(key, Number(event.target.value) as never)}
+      />
+    </label>
+  );
+
+  return (
+    <Box
+      component="fieldset"
+      sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, '& legend + *': { minWidth: 160 } }}
+    >
+      <legend>Playground knobs</legend>
+      <div>
+        <strong>Root behavior</strong>
+        {renderCheckbox('modal', 'modal')}
+        {renderCheckbox('triggerOpenOnHover', 'openOnHover (trigger)')}
+        {renderCheckbox('loopFocus', 'loopFocus')}
+        {renderCheckbox('highlightItemOnHover', 'highlightItemOnHover')}
+      </div>
+      <div>
+        <strong>Submenus</strong>
+        {renderCheckbox('submenusOpenOnHover', 'openOnHover')}
+        {renderNumber('submenuDelay', 'delay (ms)')}
+        {renderNumber('submenuCloseDelay', 'closeDelay (ms)')}
+        {renderCheckbox('closeParentOnEsc', 'closeParentOnEsc')}
+      </div>
+      <div>
+        <strong>Positioning</strong>
+        <label style={{ display: 'block' }}>
+          side{' '}
+          <select
+            value={settings.side}
+            onChange={(event) => setSetting('side', event.target.value as PopupSide)}
+          >
+            {SIDES.map((side) => (
+              <option key={side} value={side}>
+                {side}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label style={{ display: 'block' }}>
+          align{' '}
+          <select
+            value={settings.align}
+            onChange={(event) => setSetting('align', event.target.value as PopupAlign)}
+          >
+            {ALIGNS.map((align) => (
+              <option key={align} value={align}>
+                {align}
+              </option>
+            ))}
+          </select>
+        </label>
+        {renderNumber('sideOffset', 'sideOffset', 4)}
+        {renderNumber('alignOffset', 'alignOffset', 4)}
+        {renderCheckbox('keepMounted', 'keepMounted')}
+      </div>
+      <div>
+        <strong>Appearance</strong>
+        <label style={{ display: 'block' }}>
+          elevation{' '}
+          <select
+            value={settings.elevation}
+            onChange={(event) => setSetting('elevation', Number(event.target.value))}
+          >
+            {ELEVATIONS.map((elevation) => (
+              <option key={elevation} value={elevation}>
+                {elevation}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label style={{ display: 'block' }}>
+          animation{' '}
+          <select
+            value={settings.animation}
+            onChange={(event) => setSetting('animation', event.target.value as 'default' | 'off')}
+          >
+            <option value="default">default (Grow-like)</option>
+            <option value="off">off (overridden via slotProps.popup)</option>
+          </select>
+        </label>
+        <label style={{ display: 'block' }}>
+          backdrop{' '}
+          <select
+            value={settings.backdrop}
+            onChange={(event) => setSetting('backdrop', event.target.value as 'none' | 'dimmed')}
+          >
+            <option value="none">none (default)</option>
+            <option value="dimmed">dimmed via slotProps.backdrop</option>
+          </select>
+        </label>
+        {renderCheckbox('dense', 'dense items')}
+        {renderCheckbox('dividers', 'item dividers')}
+        {renderCheckbox('rtl', 'RTL direction')}
+        {renderCheckbox('highContrast', 'enhanceHighContrast theme')}
+      </div>
+    </Box>
+  );
+}
+
+export default function MenuRfcExperiment() {
+  const [settings, setSettings] = React.useState<PlaygroundSettings>(defaultSettings);
+  const [log, setLog] = React.useState<string[]>([]);
+
+  const pushLog = React.useCallback((entry: string) => {
+    setLog((currentLog) => [...currentLog.slice(-11), entry]);
+  }, []);
+
+  const playgroundTheme = (() => {
+    if (settings.rtl) {
+      return settings.highContrast ? rtlHighContrastTheme : rtlTheme;
+    }
+    return settings.highContrast ? highContrastTheme : theme;
+  })();
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Head
+        title="Menu2 playground"
+        description="Menu2 knobs playground for the Menu successor RFC"
+      />
+      <Container maxWidth="md" sx={{ pt: 4, pb: 8 }}>
+        <Stack spacing={4}>
+          <Typography component="h2" variant="h4">
+            Menu2 playground
+          </Typography>
+          <Typography>
+            Companion experiment for the{' '}
+            <NextLink href="/experiments/menu2-rfc/">Menu2 RFC draft</NextLink>. Every knob maps to
+            a prop or an RFC open question. See also{' '}
+            <NextLink href="/experiments/menu2-recipes/">Menu2 recipes</NextLink> for Tooltip,
+            PreviewCard, and ContextMenu integrations.
+          </Typography>
+
+          <SettingsPanel settings={settings} onChange={setSettings} />
+
+          <section>
+            <h3 id="playground">Kitchen sink</h3>
+            <p>
+              Nested submenus (three levels), groups with labels, checkbox and radio items, a
+              disabled item, a visual-only selected item, and a link item. All knobs apply.
+            </p>
+            <p>
+              To check the forced-colors rules, emulate high contrast in the browser (in Chrome
+              DevTools: Rendering &gt; Emulate CSS media feature forced-colors) and toggle the
+              <code>enhanceHighContrast theme</code> knob.
+            </p>
+            <ThemeProvider theme={playgroundTheme}>
+              <DirectionProvider direction={settings.rtl ? 'rtl' : 'ltr'}>
+                <Box dir={settings.rtl ? 'rtl' : 'ltr'}>
+                  <PlaygroundDemo settings={settings} onLog={pushLog} />
+                </Box>
+              </DirectionProvider>
+            </ThemeProvider>
+            <Box
+              component="pre"
+              sx={{
+                mt: 2,
+                p: 1.5,
+                minHeight: 96,
+                maxHeight: 200,
+                overflow: 'auto',
+                bgcolor: 'action.hover',
+                borderRadius: 1,
+                fontSize: 12,
+              }}
+            >
+              {log.length === 0
+                ? 'Event log: interact with the menu to see onOpenChange reasons.'
+                : log.join('\n')}
+            </Box>
+            <Button size="small" onClick={() => setLog([])}>
+              Clear log
+            </Button>
+          </section>
+
+          <section>
+            <h3 id="classic-parity">Classic vs successor</h3>
+            <p>
+              The same item set rendered by the classic Menu and the successor, for visual parity
+              checks (dense, dividers, selected, disabled, elevation knobs apply to both). Both
+              expose a top-level <code>elevation</code> prop; the successor forwards it to the Paper
+              slot.
+            </p>
+            <ClassicVersusSuccessorDemo settings={settings} />
+          </section>
+
+          <section>
+            <h3 id="controlled-anchor">Classic-style controlled usage</h3>
+            <p>
+              No Menu2Trigger part: external anchor element plus controlled <code>open</code> /{' '}
+              <code>onOpenChange</code>, approximating the classic <code>anchorEl</code> pattern.
+            </p>
+            <ControlledAnchorDemo />
+          </section>
+
+          <section>
+            <h3 id="typeahead">Typeahead and scrolling</h3>
+            <p>
+              Open the menu and type to jump between items (for example type &quot;sw&quot;). The
+              popup constrains height via <code>slotProps.paper</code>.
+            </p>
+            <TypeaheadScrollDemo />
+          </section>
+
+          <a href="https://base-ui.com/react/components/menu">Base UI Menu API</a>
+        </Stack>
+      </Container>
+    </ThemeProvider>
+  );
+}

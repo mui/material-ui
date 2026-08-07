@@ -8,6 +8,14 @@ import formLabelClasses from '../FormLabel/formLabelClasses';
 import inputClasses from '../Input/inputClasses';
 import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
 import menuItemClasses from '../MenuItem/menuItemClasses';
+import {
+  menu2CheckboxItemClasses,
+  menu2CheckboxItemIndicatorClasses,
+  menu2ItemClasses,
+  menu2LinkItemClasses,
+  menu2RadioItemClasses,
+  menu2SubmenuTriggerClasses,
+} from '../Unstable_Menu2/menu2Classes';
 import nativeSelectClasses from '../NativeSelect/nativeSelectClasses';
 import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import radioClasses from '../Radio/radioClasses';
@@ -77,6 +85,56 @@ const defaultHcTokens: Required<HighContrastTokens> = {
 };
 
 const HCM = '@media (forced-colors: active)';
+
+// The Menu2 parts reuse the classic item styles, but Base UI marks the active
+// item with `data-highlighted` for keyboard and pointer alike, so the state
+// class is `highlighted` where the classic item has `focusVisible`.
+function menu2ItemOverrides(
+  classes: { disabled: string; highlighted: string; selected: string },
+  hcTokens: Required<HighContrastTokens>,
+) {
+  return {
+    [`&.${classes.highlighted}, &:hover`]: {
+      [HCM]: {
+        forcedColorAdjust: 'none',
+        color: hcTokens.activeText,
+        backgroundColor: hcTokens.activeBackground,
+        outline: 'none',
+      },
+    },
+    [`&.${classes.selected}`]: {
+      [HCM]: {
+        forcedColorAdjust: 'none',
+        color: hcTokens.selectedText,
+        backgroundColor: hcTokens.selectedBackground,
+      },
+    },
+    [`&.${classes.selected}.${classes.highlighted}, &.${classes.selected}:hover`]: {
+      [HCM]: {
+        color: hcTokens.activeText,
+        backgroundColor: hcTokens.activeBackground,
+      },
+    },
+    // Base UI keeps disabled items focusable, so unlike the classic item a
+    // disabled one can be highlighted. The disabled cue has to outrank the
+    // highlight, so it comes last, and the combination gets its own rule to
+    // keep the cue off the highlight background while still showing focus.
+    [`&.${classes.disabled}`]: {
+      [HCM]: {
+        color: hcTokens.disabled,
+        opacity: 1,
+      },
+    },
+    [`&.${classes.disabled}.${classes.highlighted}`]: {
+      [HCM]: {
+        forcedColorAdjust: 'none',
+        color: hcTokens.disabled,
+        backgroundColor: hcTokens.canvas,
+        outline: `1px solid ${hcTokens.buttonBorder}`,
+      },
+    },
+  };
+}
 
 /**
  * Enhances a theme with styles for Windows High Contrast Mode (forced-colors).
@@ -392,6 +450,131 @@ export default function enhanceHighContrast<
                   backgroundColor: hcTokens.activeBackground,
                 },
               },
+          },
+        ],
+      },
+    },
+    MuiMenu2Item: {
+      ...c?.MuiMenu2Item,
+      styleOverrides: {
+        ...c?.MuiMenu2Item?.styleOverrides,
+        root: [
+          c?.MuiMenu2Item?.styleOverrides?.root,
+          menu2ItemOverrides(menu2ItemClasses, hcTokens),
+        ],
+      },
+    },
+    MuiMenu2LinkItem: {
+      ...c?.MuiMenu2LinkItem,
+      styleOverrides: {
+        ...c?.MuiMenu2LinkItem?.styleOverrides,
+        root: [
+          c?.MuiMenu2LinkItem?.styleOverrides?.root,
+          menu2ItemOverrides(menu2LinkItemClasses, hcTokens),
+        ],
+      },
+    },
+    MuiMenu2CheckboxItem: {
+      ...c?.MuiMenu2CheckboxItem,
+      styleOverrides: {
+        ...c?.MuiMenu2CheckboxItem?.styleOverrides,
+        root: [
+          c?.MuiMenu2CheckboxItem?.styleOverrides?.root,
+          {
+            ...menu2ItemOverrides(menu2CheckboxItemClasses, hcTokens),
+            // The indicator has no `selected` class of its own, so the
+            // knocked-out checkmark has to follow the item background from
+            // here; left alone it stays Canvas and merges into the box.
+            [`&.${menu2CheckboxItemClasses.selected} [data-mui-menu2-checkbox-checkmark]`]: {
+              [HCM]: {
+                forcedColorAdjust: 'none',
+                fill: hcTokens.selectedBackground,
+              },
+            },
+            [`&.${menu2CheckboxItemClasses.selected}.${menu2CheckboxItemClasses.highlighted} [data-mui-menu2-checkbox-checkmark]`]:
+              {
+                [HCM]: {
+                  fill: hcTokens.activeBackground,
+                },
+              },
+          },
+        ],
+      },
+    },
+    MuiMenu2RadioItem: {
+      ...c?.MuiMenu2RadioItem,
+      styleOverrides: {
+        ...c?.MuiMenu2RadioItem?.styleOverrides,
+        root: [
+          c?.MuiMenu2RadioItem?.styleOverrides?.root,
+          menu2ItemOverrides(menu2RadioItemClasses, hcTokens),
+        ],
+      },
+    },
+    // The submenu trigger is rendered by Menu2Submenu, so its overrides live
+    // under that component's `trigger` slot.
+    MuiMenu2Submenu: {
+      ...c?.MuiMenu2Submenu,
+      styleOverrides: {
+        ...c?.MuiMenu2Submenu?.styleOverrides,
+        trigger: [
+          c?.MuiMenu2Submenu?.styleOverrides?.trigger,
+          {
+            ...menu2ItemOverrides(menu2SubmenuTriggerClasses, hcTokens),
+            // A trigger whose submenu is open carries the focus background.
+            // The selected variant needs spelling out: the base style pairs
+            // `selected` with `open`, which outranks a lone `open` selector.
+            [`&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.open}`]:
+              {
+                [HCM]: {
+                  forcedColorAdjust: 'none',
+                  color: hcTokens.activeText,
+                  backgroundColor: hcTokens.activeBackground,
+                },
+              },
+          },
+        ],
+      },
+    },
+    // `forced-color-adjust` inherits, so the item rules above stop the browser
+    // from forcing colors on the indicator too. Inherit the item's color the way
+    // ListItemIcon does, and repaint the knocked-out checkmark in whatever the
+    // item's background now is, otherwise it merges into the box.
+    MuiMenu2CheckboxItemIndicator: {
+      ...c?.MuiMenu2CheckboxItemIndicator,
+      styleOverrides: {
+        ...c?.MuiMenu2CheckboxItemIndicator?.styleOverrides,
+        root: [
+          c?.MuiMenu2CheckboxItemIndicator?.styleOverrides?.root,
+          {
+            [HCM]: {
+              color: 'inherit',
+              '& [data-mui-menu2-checkbox-checkmark]': {
+                forcedColorAdjust: 'none',
+                fill: hcTokens.canvas,
+              },
+            },
+            [`&.${menu2CheckboxItemIndicatorClasses.highlighted}`]: {
+              [HCM]: {
+                '& [data-mui-menu2-checkbox-checkmark]': {
+                  fill: hcTokens.activeBackground,
+                },
+              },
+            },
+          },
+        ],
+      },
+    },
+    MuiMenu2RadioItemIndicator: {
+      ...c?.MuiMenu2RadioItemIndicator,
+      styleOverrides: {
+        ...c?.MuiMenu2RadioItemIndicator?.styleOverrides,
+        root: [
+          c?.MuiMenu2RadioItemIndicator?.styleOverrides?.root,
+          {
+            [HCM]: {
+              color: 'inherit',
+            },
           },
         ],
       },
