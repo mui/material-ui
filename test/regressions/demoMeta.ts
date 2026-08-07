@@ -37,6 +37,11 @@ export interface A11yRule {
   /** Minimatch glob against `docs/data/material/components/{slug}/{Demo}`. */
   test: string;
   enabled?: boolean;
+  /**
+   * `visual` asserts rules that depend on rendered CSS. `all` asserts every
+   * axe violation/incomplete that is not listed in `skipAssertions`.
+   */
+  assertions?: 'visual' | 'all';
   /** Axe rule IDs recorded into results JSON but not asserted on. */
   skipAssertions?: string[];
 }
@@ -150,7 +155,9 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
  * Slug-wide rules use `*`; brace-globs narrow enrolment to specific demos;
  * later opt-out rules disable individual demos.
  *
- * Initial PR scope: `buttons` only. Other components onboard incrementally.
+ * Scope: the components with a conformance report under
+ * `packages/mui-material/src/<Component>/accessibility.md`. Others onboard
+ * incrementally.
  */
 export const A11Y_RULES: A11yRule[] = [
   { test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
