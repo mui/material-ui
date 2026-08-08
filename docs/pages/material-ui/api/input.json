@@ -58,6 +58,18 @@
   "imports": ["import Input from '@mui/material/Input';", "import { Input } from '@mui/material';"],
   "classes": [
     {
+      "key": "adornedEnd",
+      "className": "MuiInput-adornedEnd",
+      "description": "Styles applied to the root element if `endAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "adornedStart",
+      "className": "MuiInput-adornedStart",
+      "description": "Styles applied to the root element if `startAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
       "key": "colorSecondary",
       "className": "MuiInput-colorSecondary",
       "description": "Styles applied to the root element if color secondary.",
@@ -94,6 +106,12 @@
       "isGlobal": false
     },
     {
+      "key": "hiddenLabel",
+      "className": "MuiInput-hiddenLabel",
+      "description": "Styles applied to the root element if `hiddenLabel={true}`.",
+      "isGlobal": false
+    },
+    {
       "key": "input",
       "className": "MuiInput-input",
       "description": "Styles applied to the input element.",
@@ -110,6 +128,12 @@
       "className": "MuiInput-multiline",
       "description": "Styles applied to the root element if `multiline={true}`.",
       "isGlobal": false
+    },
+    {
+      "key": "readOnly",
+      "className": "Mui-readOnly",
+      "description": "State class applied to the root element if `readOnly={true}`.",
+      "isGlobal": true
     },
     {
       "key": "root",

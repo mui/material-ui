@@ -11,6 +11,10 @@ export interface InputClasses {
   focused: string;
   /** Styles applied to the root element if `disabled={true}`. */
   disabled: string;
+  /** Styles applied to the root element if `startAdornment` is provided. */
+  adornedStart: string;
+  /** Styles applied to the root element if `endAdornment` is provided. */
+  adornedEnd: string;
   /** Styles applied to the root element if color secondary. */
   colorSecondary: string;
   /** Styles applied to the root element unless `disableUnderline={true}`. */
@@ -23,6 +27,10 @@ export interface InputClasses {
   multiline: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
+  /** Styles applied to the root element if `hiddenLabel={true}`. */
+  hiddenLabel: string;
+  /** State class applied to the root element if `readOnly={true}`. */
+  readOnly: string;
   /** Styles applied to the input element. */
   input: string;
   /** Styles applied to the input element if `type="search"`. */
