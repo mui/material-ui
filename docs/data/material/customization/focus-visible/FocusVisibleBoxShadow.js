@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
-import Paper from '@mui/material/Paper';
+import Card from '@mui/material/Card';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-// Two-color ring (WCAG C40): a light inner outline flush with the edge plus a dark outer
-// box-shadow. Material UI insets the box-shadow on clip-prone components (Tabs), so a plain value works.
 const theme = createTheme({
   focusVisible: {
     /* inner indicator */
@@ -22,52 +22,40 @@ const theme = createTheme({
   components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
 });
 
-function DemoRow() {
-  return (
-    <Stack
-      direction="row"
-      spacing={3}
-      sx={{ alignItems: 'center', flexWrap: 'wrap', gap: 3 }}
-    >
-      {/* Outer ring: the box-shadow renders outside the Button. */}
-      <Button variant="outlined">Tab to me</Button>
-      {/* Inner ring: the box-shadow insets automatically so the Tabs scroller cannot clip it. */}
-      <Tabs value={0}>
-        <Tab label="Tab one" />
-        <Tab label="Tab two" />
-      </Tabs>
-    </Stack>
-  );
-}
-
 export default function FocusVisibleBoxShadow() {
   return (
     <ThemeProvider theme={theme}>
       <Stack spacing={2} sx={{ width: '100%' }}>
-        <Typography variant="caption" color="text.secondary">
-          Outer indicator: dark box-shadow (#193146) · Inner indicator: light outline
-          (#F9F9F9) — one of the two keeps contrast on any background.
+        <Typography variant="body2" color="text.secondary">
+          Press <kbd>Tab</kbd> — the light outline or the dark box-shadow keeps
+          contrast on either background.
         </Typography>
-        <div>
-          <Typography
-            variant="caption"
-            color="text.secondary"
-            gutterBottom
-            sx={{ display: 'block' }}
-          >
-            On the default background
-          </Typography>
-          <DemoRow />
-        </div>
-        <Paper
-          elevation={0}
-          sx={{ bgcolor: 'primary.main', color: 'primary.contrastText', p: 2 }}
+        <Card
+          sx={{
+            px: 3,
+            minHeight: 64,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 3,
+          }}
         >
-          <Typography variant="caption" gutterBottom sx={{ display: 'block' }}>
-            On a colored background (primary.main)
-          </Typography>
-          <DemoRow />
-        </Paper>
+          <Button variant="outlined">Tab to me</Button>
+          <Tabs value={0}>
+            <Tab label="Tab one" />
+            <Tab label="Tab two" />
+          </Tabs>
+        </Card>
+        <AppBar position="static" sx={{ borderRadius: 1 }}>
+          <Toolbar sx={{ gap: 3 }}>
+            <Button variant="outlined" color="inherit">
+              Tab to me
+            </Button>
+            <Tabs value={0} textColor="inherit" indicatorColor="secondary">
+              <Tab label="Tab one" />
+              <Tab label="Tab two" />
+            </Tabs>
+          </Toolbar>
+        </AppBar>
       </Stack>
     </ThemeProvider>
   );
