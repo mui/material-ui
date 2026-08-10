@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "9.2.0",
+  "version": "9.3.1",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -79,7 +79,7 @@
     "@netlify/functions": "^5.3.0",
     "@slack/bolt": "^5.0.0",
     "@vitest/eslint-plugin": "^1.6.24",
-    "execa": "^10.0.0"
+    "execa": "^10.0.1"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",
@@ -96,10 +96,10 @@
     "@mui/internal-test-utils": "2.0.18-canary.23",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "16.2.11",
+    "@next/eslint-plugin-next": "16.2.12",
     "@octokit/rest": "22.0.1",
     "@pigment-css/react": "0.0.31",
-    "@playwright/test": "1.61.1",
+    "@playwright/test": "1.62.1",
     "@pnpm/find-workspace-dir": "1000.1.5",
     "@types/babel__core": "7.20.5",
     "@types/babel__register": "7.17.3",
@@ -129,7 +129,7 @@
     "minimatch": "10.2.6",
     "nx": "22.7.6",
     "pkg-pr-new": "0.0.86",
-    "playwright": "1.61.1",
+    "playwright": "1.62.1",
     "prettier": "3.9.6",
     "pretty-quick": "4.2.2",
     "process": "0.11.10",
@@ -146,7 +146,7 @@
     "yargs": "18.1.0"
   },
   "config": {
-    "valeVersion": "3.17.0"
+    "valeVersion": "3.17.1"
   },
   "packageManager": "pnpm@11.19.0",
   "engines": {
