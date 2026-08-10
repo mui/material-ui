@@ -56,7 +56,8 @@
   --color-docs-infra-syntax-html-tag: #fc929e;
   --color-docs-infra-syntax-jsx-tag: #fc929e;
   --color-docs-infra-syntax-property-string: #fc929e;
-  --color-docs-infra-syntax-object-property: #f8f8f2;
+  /* Matches prism-okaidia `.token.property` so object keys keep their shipped color. */
+  --color-docs-infra-syntax-object-property: #fc929e;
   --color-docs-infra-syntax-punctuation: #f8f8f2;
 
   /* Rendered line height used to reserve space for off-screen code blocks. */
