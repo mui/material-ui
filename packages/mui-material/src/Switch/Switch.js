@@ -136,6 +136,16 @@ const SwitchSwitchBase = styled(SwitchBase, {
             ...outsetFocusRing,
             ...theme.focusVisible,
           },
+          // mirrors the non-focusVisible `opacity: 0.5`; must stay BEFORE the disabled rule so
+          // disabled wins the checked+disabled combination at equal specificity.
+          [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
+            backgroundColor: theme.alpha(
+              theme.vars
+                ? theme.vars.palette.common.onBackground
+                : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
+              0.5,
+            ),
+          },
           [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
             backgroundColor: theme.alpha(
               theme.vars
@@ -213,7 +223,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
                     ? theme.vars.palette.common.onBackground
                     : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
                   theme.vars
-                    ? theme.vars.opacity.switchTrack
+                    ? theme.vars.opacity.switchTrackDisabled
                     : `${theme.palette.mode === 'light' ? 0.12 : 0.2}`,
                 ),
               },
@@ -221,7 +231,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
                 backgroundColor: theme.alpha(
                   (theme.vars || theme).palette[color].main,
                   theme.vars
-                    ? theme.vars.opacity.switchTrack
+                    ? theme.vars.opacity.switchTrackDisabled
                     : `${theme.palette.mode === 'light' ? 0.12 : 0.2}`,
                 ),
               },
