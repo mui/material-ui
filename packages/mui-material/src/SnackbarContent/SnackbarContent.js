@@ -31,7 +31,8 @@ const SnackbarContentRoot = styled(Paper, {
     const emphasis = theme.palette.mode === 'light' ? 0.8 : 0.98;
 
     return {
-      ...applyChildrenFocusVisible(`0 0 0 4px ${(theme.vars || theme).palette.background.default}`),
+      ...(theme.focusVisible &&
+        applyChildrenFocusVisible(`0 0 0 4px ${(theme.vars || theme).palette.background.default}`)),
       ...theme.typography.body2,
       color: theme.vars
         ? theme.vars.palette.SnackbarContent.color

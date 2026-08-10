@@ -125,9 +125,10 @@ const AppBarRoot = styled(Paper, {
           style: {
             '--AppBar-background': (theme.vars ?? theme).palette[color].main,
             '--AppBar-color': (theme.vars ?? theme).palette[color].contrastText,
-            ...applyChildrenFocusVisible(
-              `0 0 0 4px ${(theme.vars || theme).palette.background.default}`,
-            ),
+            ...(theme.focusVisible &&
+              applyChildrenFocusVisible(
+                `0 0 0 4px ${(theme.vars || theme).palette.background.default}`,
+              )),
           },
         })),
       {

@@ -81,7 +81,7 @@ const FabRoot = styled(ButtonBase, {
     [`&.${fabClasses.focusVisible}`]: {
       ...theme.focusVisible,
       boxShadow: theme.focusVisible?.boxShadow
-        ? `${theme.shadows[6]}, ${theme.focusVisible.boxShadow}`
+        ? `${(theme.vars || theme).shadows[6]}, ${theme.focusVisible.boxShadow}`
         : (theme.vars || theme).shadows[6],
     },
     variants: [

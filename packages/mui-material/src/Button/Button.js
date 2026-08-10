@@ -133,7 +133,7 @@ const ButtonRoot = styled(ButtonBase, {
             [`&.${buttonClasses.focusVisible}`]: {
               ...theme.focusVisible,
               boxShadow: theme.focusVisible?.boxShadow
-                ? `${theme.shadows[6]}, ${theme.focusVisible.boxShadow}`
+                ? `${(theme.vars || theme).shadows[6]}, ${theme.focusVisible.boxShadow}`
                 : (theme.vars || theme).shadows[6],
             },
             [`&.${buttonClasses.disabled}`]: {
@@ -290,7 +290,7 @@ const ButtonRoot = styled(ButtonBase, {
               boxShadow: 'none',
             },
             [`&.${buttonClasses.focusVisible}`]: {
-              boxShadow: 'none',
+              boxShadow: theme.focusVisible?.boxShadow ?? 'none',
             },
             '&:active': {
               boxShadow: 'none',

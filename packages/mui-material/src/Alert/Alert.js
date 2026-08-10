@@ -89,9 +89,10 @@ const AlertRoot = styled(Paper, {
           .map(([color]) => ({
             props: { colorSeverity: color, variant: 'filled' },
             style: {
-              ...applyChildrenFocusVisible(
-                `0 0 0 4px ${(theme.vars || theme).palette.background.default}`,
-              ),
+              ...(theme.focusVisible &&
+                applyChildrenFocusVisible(
+                  `0 0 0 4px ${(theme.vars || theme).palette.background.default}`,
+                )),
               fontWeight: theme.typography.fontWeightMedium,
               ...(theme.vars
                 ? {

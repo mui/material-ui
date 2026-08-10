@@ -71,7 +71,7 @@ createTheme({
 ```
 
 :::info
-The `focusVisible` node will override the component's default focus visible styles, for example, the Button elevation when focus visible will be replaced by the box-shadow specified above.
+Components with their own focus box-shadow compose both layers — for example, the Button and Fab keep their focus elevation and render the box-shadow above together with it.
 :::
 
 {{"demo": "FocusVisibleBoxShadow.js"}}

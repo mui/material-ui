@@ -10,7 +10,7 @@ const behaviorValue = `var(${focusVisibleBehaviorVar}, )`;
 
 export const outsetFocusRing = {
   [focusVisibleOffsetVar]: 1,
-  [focusVisibleBehaviorVar]: 'var(--__,)', // workaround because Emotion strips out empty space. empty space must be used for box-shadow, there is no explicit `outset` keyword.
+  [focusVisibleBehaviorVar]: 'initial', // reverts the var to guaranteed-invalid so `var(--_focusVisible-behavior, )` falls back to empty — there is no explicit `outset` keyword.
 };
 
 // Used by the colored-background surfaces (AppBar, Alert, SnackbarContent) to make the focus visible appear through box-shadow
