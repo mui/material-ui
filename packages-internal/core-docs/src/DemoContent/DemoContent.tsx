@@ -409,7 +409,9 @@ export default function DemoContent(props: DemoContentProps) {
           pullRequestId: process.env.PULL_REQUEST_ID,
         },
         router.asPath,
-        anchorName ?? demo.slug,
+        // Deep-link to the kebab-case demo slug (e.g. `#combo-box`) — the
+        // canonical anchor users see in the TOC — not the `#ComboBox` file anchor.
+        demo.slug ?? anchorName ?? undefined,
       ),
     [router.asPath, anchorName, demo.slug],
   );

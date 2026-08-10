@@ -374,7 +374,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
           demoData={demoData as unknown as SandboxDemoData}
         />
         <Fade in={codeOpen}>
-          <Box sx={{ display: 'flex' }}>
+          <Box sx={{ display: 'flex', ml: 1 }}>
             {hasNonSystemDemos && (
               <Divider orientation="vertical" variant="middle" sx={{ mx: 1, height: '24px' }} />
             )}
