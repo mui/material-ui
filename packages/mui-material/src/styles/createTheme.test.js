@@ -616,6 +616,70 @@ describe('createTheme', () => {
       expect(theme.colorSchemes.light.focusVisible.outlineColor).to.equal('rgb(255, 0, 0)');
       expect(theme.colorSchemes.dark.focusVisible.outlineColor).to.equal('rgb(255, 0, 0)');
     });
+
+    it('resolves the ring color against the merged palette, not the options palette', () => {
+      const theme = createTheme(
+        { cssVariables: false, focusVisible: true },
+        { palette: { primary: { main: '#e91e63' } } },
+      );
+      expect(theme.palette.primary.main).to.equal('#e91e63');
+      expect(theme.focusVisible.outlineColor).to.equal('#e91e63');
+    });
+
+    it('deep-merges focusVisible across options and merge arguments (both var modes)', () => {
+      [false, true].forEach((cssVariables) => {
+        const theme = createTheme(
+          { cssVariables, focusVisible: { outlineStyle: 'dashed' } },
+          { focusVisible: { outlineWidth: 4 } },
+        );
+        expect(theme.focusVisible.outlineStyle).to.equal('dashed');
+        expect(theme.focusVisible.outlineWidth).to.equal(4);
+      });
+    });
+
+    it('no-vars colorSchemes: scheme copies use the same merged input as the root', () => {
+      const theme = createTheme(
+        {
+          cssVariables: false,
+          colorSchemes: { light: true, dark: true },
+          focusVisible: { outlineStyle: 'dashed' },
+        },
+        { focusVisible: { outlineWidth: 4 } },
+      );
+      expect(theme.focusVisible.outlineStyle).to.equal('dashed');
+      expect(theme.focusVisible.outlineWidth).to.equal(4);
+      expect(theme.colorSchemes.light.focusVisible.outlineStyle).to.equal('dashed');
+      expect(theme.colorSchemes.light.focusVisible.outlineWidth).to.equal(4);
+      expect(theme.colorSchemes.dark.focusVisible.outlineStyle).to.equal('dashed');
+      expect(theme.colorSchemes.dark.focusVisible.outlineWidth).to.equal(4);
+    });
+
+    it('recomposing a no-vars colorSchemes theme keeps the ring scheme-reactive', () => {
+      const base = createTheme({
+        cssVariables: false,
+        colorSchemes: { light: true, dark: true },
+        focusVisible: true,
+      });
+      const recomposed = createTheme(base, {});
+      // the baked light hex must not leak into the dark scheme through re-resolution
+      expect(recomposed.colorSchemes.dark.focusVisible.outlineColor).to.equal(
+        base.colorSchemes.dark.palette.primary.main,
+      );
+      expect(recomposed.colorSchemes.light.focusVisible.outlineColor).to.equal(
+        base.colorSchemes.light.palette.primary.main,
+      );
+    });
+
+    it('recomposing keeps an explicit custom outlineColor on every scheme', () => {
+      const base = createTheme({
+        cssVariables: false,
+        colorSchemes: { light: true, dark: true },
+        focusVisible: { outlineColor: 'rgb(255, 0, 0)' },
+      });
+      const recomposed = createTheme(base, {});
+      expect(recomposed.colorSchemes.light.focusVisible.outlineColor).to.equal('rgb(255, 0, 0)');
+      expect(recomposed.colorSchemes.dark.focusVisible.outlineColor).to.equal('rgb(255, 0, 0)');
+    });
   });
 
   it('shallow merges multiple arguments', () => {

@@ -1,4 +1,5 @@
 import type * as React from 'react';
+import deepmerge from '@mui/utils/deepmerge';
 
 const focusVisibleOffsetVar = '--_focusVisible-offset';
 const focusVisibleBehaviorVar = '--_focusVisible-behavior';
@@ -29,18 +30,22 @@ export function applyInsetFocusVisible(offset: number) {
   };
 }
 
-// Read the raw `focusVisible` from `createTheme(options, ...args)`. A later merge arg wins (like the
-// theme's own deep-merge), so scan from the last; fall through to options when none set it.
-export function extractFocusVisibleInput(
-  optionsFocusVisible: unknown,
+export type FocusVisibleInput = boolean | React.CSSProperties | null | undefined;
+
+// Assemble the raw `focusVisible` input from `createTheme(options, ...args)` with the theme's own
+// deep-merge semantics: two objects merge key-by-key, a non-object (`true`/`false`) replaces
+// wholesale. The single-key wrapper is load-bearing — raw values hit deepmerge's top-level
+// plain-object guard (`deepmerge(true, obj)` drops the object); wrapped, they take the per-key
+// branch that has the required semantics.
+export function mergeFocusVisibleInput(
+  optionsFocusVisible: FocusVisibleInput,
   args: readonly any[],
-): unknown {
-  for (let i = args.length - 1; i >= 0; i -= 1) {
-    if (args[i] && 'focusVisible' in args[i]) {
-      return args[i].focusVisible;
-    }
-  }
-  return optionsFocusVisible;
+): FocusVisibleInput {
+  return args.reduce(
+    (acc, arg) =>
+      arg && 'focusVisible' in arg ? deepmerge(acc, { focusVisible: arg.focusVisible }) : acc,
+    { focusVisible: optionsFocusVisible },
+  ).focusVisible;
 }
 
 /**

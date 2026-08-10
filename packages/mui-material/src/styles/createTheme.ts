@@ -1,6 +1,5 @@
-import type * as React from 'react';
 import createPalette, { PaletteOptions } from './createPalette';
-import { resolveFocusVisible, extractFocusVisibleInput } from './focusVisible';
+import { resolveFocusVisible } from './focusVisible';
 import { ColorSystemOptions } from './createThemeFoundation';
 import createThemeWithVars, {
   CssVarsThemeOptions,
@@ -129,16 +128,17 @@ export default function createTheme(
       attachColorScheme(theme, 'light', colorSchemesInput.light);
     }
 
-    // No-vars mode switches schemes by re-resolving colors on render: the provider shallow-merges
-    // the active `colorSchemes[mode]` onto the theme (see `createCssVarsProvider`). Give each scheme
-    // its own `focusVisible` so that merge swaps the outline color per mode, as it does the palette.
-    const focusVisibleInput = extractFocusVisibleInput(options.focusVisible, args);
-    if (focusVisibleInput != null && focusVisibleInput !== false) {
+    if (theme.focusVisible != null && theme.focusVisible !== false) {
+      let focusVisibleInput = theme.focusVisible;
+      if (focusVisibleInput.outlineColor === theme.palette.primary.main) {
+        const { outlineColor, ...rest } = focusVisibleInput;
+        focusVisibleInput = rest;
+      }
       Object.keys(theme.colorSchemes).forEach((scheme) => {
         const schemePalette = theme.colorSchemes?.[scheme]?.palette;
         if (schemePalette?.primary) {
           theme.colorSchemes![scheme].focusVisible = resolveFocusVisible(
-            focusVisibleInput as true | React.CSSProperties,
+            focusVisibleInput,
             schemePalette.primary.main,
           );
         }
