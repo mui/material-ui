@@ -170,6 +170,20 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   },
 ];
 
+// Radio docs demos enrolled for axe assertions. FormControlLabelPlacement is left out: its axe
+// output duplicates RowRadioButtonsGroup (a row RadioGroup with a FormLabel), adding no new rules.
+const RADIO_A11Y_DEMOS = [
+  'RadioButtons',
+  'RadioButtonsGroup',
+  'ControlledRadioButtonsGroup',
+  'ColorRadioButtons',
+  'CustomizedRadios',
+  'SizeRadioButtons',
+  'RowRadioButtonsGroup',
+  'ErrorRadios',
+  'UseRadioGroup',
+];
+
 /**
  * A11y defaults to off — only matched-and-enabled rules produce results.
  * Slug-wide rules use `*`; brace-globs narrow enrolment to specific demos;
@@ -178,6 +192,11 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
  * Initial PR scope: `buttons` only. Other components onboard incrementally.
  */
 export const A11Y_RULES: A11yRule[] = [
+  {
+    test: `docs/data/material/components/radio-buttons/{${RADIO_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
   {
     test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}',
     enabled: true,
