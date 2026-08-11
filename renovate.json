@@ -17,6 +17,16 @@
       "datasourceTemplate": "node-version",
       "versioningTemplate": "node",
       "autoReplaceStringTemplate": "curl -fsSL https://nodejs.org/dist/v{{{newValue}}}/node-v{{{newValue}}}-linux-x64.tar.gz"
+    },
+    {
+      "description": "Track the @docsearch/css version pinned in the jsDelivr CDN URL as an npm dependency so Renovate bumps it (grouped with @docsearch/react).",
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^packages-internal\\/core-docs\\/src\\/AppLayout\\/components\\/AppSearch\\.tsx$/"
+      ],
+      "matchStrings": ["@docsearch/css@(?<currentValue>[\\d.]+)/dist/"],
+      "depNameTemplate": "@docsearch/css",
+      "datasourceTemplate": "npm"
     }
   ],
   "packageRules": [
@@ -28,6 +38,11 @@
       "groupName": "Emotion",
       "description": "Keep stylis in sync with emotion to avoid duplicated stylis versions in the bundle.",
       "matchPackageNames": ["@emotion/*", "stylis", "@types/stylis"]
+    },
+    {
+      "groupName": "DocSearch",
+      "description": "Keep the pinned @docsearch/css CDN link (AppSearch.tsx, tracked via customManagers) in lockstep with the @docsearch/react package.",
+      "matchPackageNames": ["@docsearch/react", "@docsearch/css"]
     },
     {
       "groupName": "Font awesome SVG icons",
