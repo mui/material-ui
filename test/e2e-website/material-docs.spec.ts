@@ -19,6 +19,15 @@ test.describe('Material docs', () => {
     );
   });
 
+  test('should move the focus to the main content with the skip link', async ({ page }) => {
+    await page.goto('/material-ui/getting-started/installation/');
+
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Enter');
+
+    await expect(page.locator('#main-content')).toBeFocused();
+  });
+
   test('[zh] should have correct link with hash in the TOC', async ({ page }) => {
     test.skip(
       (process.env.CIRCLE_BRANCH || '').startsWith('pull'),
