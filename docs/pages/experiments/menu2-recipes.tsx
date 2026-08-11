@@ -1,5 +1,6 @@
 import * as React from 'react';
 import NextLink from 'next/link';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Popover from '@mui/material/Popover';
@@ -269,7 +270,7 @@ function Menu2WithPreviewCardsDemo({ submenusOpenOnHover }: { submenusOpenOnHove
           setAnchorEl(null);
         }
       }}
-      trigger="Help cards"
+      trigger={<Button>Help cards</Button>}
       slotProps={{
         trigger: {
           variant: 'contained',
@@ -326,7 +327,7 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
     <Menu2
       modal={settings.modal}
       disabled={settings.disabled}
-      trigger="File"
+      trigger={<Button>File</Button>}
       slotProps={{
         trigger: {
           variant: 'contained',
@@ -451,27 +452,9 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
     [direction],
   );
 
-  // The trigger is a prop now, so the tooltip around it has to move into the
-  // trigger's root slot. This is the one composition the collapse made harder.
-  const TooltipSubmenuTriggerRoot = React.useMemo(
-    () =>
-      React.forwardRef<
-        HTMLDivElement,
-        React.ComponentPropsWithoutRef<'div'> & { ownerState?: unknown }
-      >(function TooltipSubmenuTriggerRoot({ ownerState: _ownerState, ...rootProps }, ref) {
-        return (
-          <MenuTooltip title="Open view settings" tooltipProps={submenuTriggerTooltipProps}>
-            <div ref={ref} {...rootProps} />
-          </MenuTooltip>
-        );
-      }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
-
   return (
     <Menu2
-      trigger="Tools"
+      trigger={<Button>Tools</Button>}
       slotProps={{
         trigger: {
           variant: 'contained',
@@ -499,12 +482,13 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
 
       <Menu2Submenu
         trigger={
-          <React.Fragment>
-            View options
-            <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </React.Fragment>
+          <MenuTooltip title="Open view settings" tooltipProps={submenuTriggerTooltipProps}>
+            <Menu2Item>
+              View options
+              <KeyboardArrowRightRoundedIcon fontSize="small" />
+            </Menu2Item>
+          </MenuTooltip>
         }
-        slots={{ trigger: TooltipSubmenuTriggerRoot }}
         slotProps={{ trigger: { openOnHover: submenusOpenOnHover } }}
       >
         <Menu2Group>

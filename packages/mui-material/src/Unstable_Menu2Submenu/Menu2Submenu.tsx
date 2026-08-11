@@ -1,20 +1,15 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import Menu2SubmenuPopup, { Menu2SubmenuPopupProps } from '../Unstable_Menu2/Menu2SubmenuPopup';
-import Menu2SubmenuTrigger from '../Unstable_Menu2/Menu2SubmenuTrigger';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { SlotProps } from '../Unstable_Menu2/menu2Utils';
+import { menu2SubmenuTriggerClasses } from '../Unstable_Menu2/menu2Classes';
 
-export interface Menu2SubmenuSlots extends NonNullable<Menu2SubmenuPopupProps['slots']> {
-  /**
-   * The component that renders the trigger, when `trigger` is not an element.
-   * @default Menu2SubmenuTrigger
-   */
-  trigger?: React.ElementType | undefined;
-}
+export interface Menu2SubmenuSlots extends NonNullable<Menu2SubmenuPopupProps['slots']> {}
 
 export interface Menu2SubmenuSlotProps extends NonNullable<Menu2SubmenuPopupProps['slotProps']> {
   trigger?: SlotProps<Record<string, any>, Menu2SubmenuProps> | undefined;
@@ -33,13 +28,12 @@ export interface Menu2SubmenuProps
    */
   children?: React.ReactNode;
   /**
-   * The content of the item that opens the submenu.
+   * The element that opens the submenu, for example a `Menu2Item`.
    *
-   * Unlike the root menu, this is the label rather than the element: a submenu
-   * trigger is always a menu item, so passing one would nest an item inside an
-   * item. Swap the component through `slots.trigger` instead.
+   * The trigger behavior merges into this element, the same as the root menu.
+   * A submenu trigger is a menu item, so pass an item rather than a button.
    */
-  trigger?: React.ReactNode;
+  trigger?: React.ReactElement | undefined;
   /**
    * The components used for each slot inside.
    */
@@ -94,18 +88,27 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
     ...rootProps
   } = themedProps;
 
-  const { trigger: triggerSlot, ...popupSlots } = slots ?? {};
+  const popupSlots = slots;
   const { trigger: triggerSlotProps, ...popupSlotProps } = slotProps ?? {};
   const resolvedTriggerProps = resolveComponentProps(triggerSlotProps, themedProps);
 
   const triggerNode =
     trigger == null ? null : (
-      <Menu2SubmenuTrigger
-        slots={triggerSlot ? { root: triggerSlot } : undefined}
+      <BaseMenu.SubmenuTrigger
+        render={trigger}
+        // A submenu trigger must never close the menu. The caller usually passes
+        // a `Menu2Item`, which closes on click by default. `SubmenuTrigger` does
+        // not declare this prop; Base UI forwards it to the rendered element.
+        {...({ closeOnClick: false } as Record<string, unknown>)}
         {...resolvedTriggerProps}
-      >
-        {trigger}
-      </Menu2SubmenuTrigger>
+        className={(state) =>
+          clsx(
+            menu2SubmenuTriggerClasses.root,
+            state.open && menu2SubmenuTriggerClasses.open,
+            resolvedTriggerProps?.className,
+          )
+        }
+      />
     );
 
   return (
@@ -172,16 +175,14 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
     popup: PropTypes.elementType,
     portal: PropTypes.elementType,
     positioner: PropTypes.elementType,
-    trigger: PropTypes.elementType,
   }),
   /**
-   * The content of the item that opens the submenu.
+   * The element that opens the submenu, for example a `Menu2Item`.
    *
-   * Unlike the root menu, this is the label rather than the element: a submenu
-   * trigger is always a menu item, so passing one would nest an item inside an
-   * item. Swap the component through `slots.trigger` instead.
+   * The trigger behavior merges into this element, the same as the root menu.
+   * A submenu trigger is a menu item, so pass an item rather than a button.
    */
-  trigger: PropTypes.node,
+  trigger: PropTypes.element,
 } as any;
 
 export default Menu2Submenu;

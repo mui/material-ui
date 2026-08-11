@@ -35,7 +35,6 @@ function Menu2Composition() {
       keepMounted
       finalFocus
       slots={{
-        trigger: 'button',
         portal: 'div',
         positioner: 'div',
         popup: 'div',
@@ -83,7 +82,7 @@ function Menu2Composition() {
             expectType<boolean, typeof open>(open);
             eventDetails.cancel();
           }}
-          trigger="More"
+          trigger={<Menu2Item>More</Menu2Item>}
           sideOffset={2}
           slotProps={{ trigger: { openOnHover: true, nativeButton: false } }}
         >
@@ -101,11 +100,11 @@ createTheme({
         modal: false,
         align: 'start',
       },
-      // The trigger and popup are rendered internally, so their overrides live
-      // on the collapsed component's slots.
+      // The popup parts are rendered internally, so their overrides live on the
+      // collapsed component's slots. The trigger is the caller's element, so it
+      // has no slot here.
       styleOverrides: {
         root: {},
-        trigger: {},
         backdrop: {},
         paper: {},
         list: {},
@@ -123,7 +122,6 @@ createTheme({
       },
       styleOverrides: {
         root: {},
-        trigger: {},
         paper: {},
         list: {},
       },

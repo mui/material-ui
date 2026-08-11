@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
+import Button from '@mui/material/Button';
 import { listClasses } from '@mui/material/List';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -39,7 +40,10 @@ describe('<Menu2 />', () => {
 
   it('opens from the trigger and keeps Menu.Popup as the semantic menu root', async () => {
     const { user } = render(
-      <Menu2 slotProps={{ paper: { 'data-testid': 'paper' } }} trigger="Options">
+      <Menu2
+        slotProps={{ paper: { 'data-testid': 'paper' } }}
+        trigger={<Button disableRipple>Options</Button>}
+      >
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -61,22 +65,6 @@ describe('<Menu2 />', () => {
     expect(screen.getByRole('menuitem', { name: 'Profile' })).to.have.class(menu2ItemClasses.root);
   });
 
-  it('does not render the trigger as a link when href is passed by a JS caller', async () => {
-    const { user } = render(
-      <Menu2 trigger="Options" slotProps={{ trigger: { href: '/profile' } as any }}>
-        <Menu2Item>Profile</Menu2Item>
-      </Menu2>,
-    );
-
-    const trigger = screen.getByRole('button', { name: 'Options' });
-    expect(trigger.tagName).to.equal('BUTTON');
-    expect(trigger).not.to.have.attribute('href');
-
-    await user.click(trigger);
-
-    expect(await screen.findByRole('menu')).not.to.equal(null);
-  });
-
   // Theming, classes, slots and the `component` prop are covered per part by
   // the describeConformance suites next to each component; what stays here is
   // Base UI-specific behavior and Material integration.
@@ -86,7 +74,7 @@ describe('<Menu2 />', () => {
       <Menu2
         slots={{ popup: 'div' }}
         slotProps={{ popup: { 'data-testid': 'popup' } }}
-        trigger="Options"
+        trigger={<Button disableRipple>Options</Button>}
       >
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
@@ -102,7 +90,14 @@ describe('<Menu2 />', () => {
 
     try {
       const { user } = render(
-        <Menu2 trigger="Options" slots={{ trigger: 'div' }}>
+        <Menu2
+          trigger={
+            <div role="button" tabIndex={0}>
+              Options
+            </div>
+          }
+          slotProps={{ trigger: { nativeButton: false } }}
+        >
           <Menu2Item closeOnClick={false} slots={{ root: 'button' }}>
             Native item
           </Menu2Item>
@@ -114,7 +109,10 @@ describe('<Menu2 />', () => {
               Native radio
             </Menu2RadioItem>
           </Menu2RadioGroup>
-          <Menu2Submenu trigger="Native submenu trigger" slots={{ trigger: 'button' }}>
+          <Menu2Submenu
+            trigger={<Menu2Item slots={{ root: 'button' }}>Native submenu trigger</Menu2Item>}
+            slotProps={{ trigger: { nativeButton: true } }}
+          >
             <Menu2Item>Nested</Menu2Item>
           </Menu2Submenu>
         </Menu2>,
@@ -168,16 +166,22 @@ describe('<Menu2 />', () => {
     try {
       const { user } = render(
         <Menu2
-          trigger="Options"
-          slots={{ trigger: CustomDivRoot }}
+          trigger={
+            <CustomDivRoot role="button" tabIndex={0}>
+              Options
+            </CustomDivRoot>
+          }
           slotProps={{ trigger: { nativeButton: false } }}
         >
           <Menu2Item closeOnClick={false} nativeButton slots={{ root: CustomButtonRoot }}>
             Custom native item
           </Menu2Item>
           <Menu2Submenu
-            trigger="Custom native submenu trigger"
-            slots={{ trigger: CustomButtonRoot }}
+            trigger={
+              <Menu2Item nativeButton slots={{ root: CustomButtonRoot }}>
+                Custom native submenu trigger
+              </Menu2Item>
+            }
             slotProps={{ trigger: { nativeButton: true } }}
           >
             <Menu2Item>Nested</Menu2Item>
@@ -226,7 +230,7 @@ describe('<Menu2 />', () => {
             sx: { color: 'red' },
           },
         }}
-        trigger="Options"
+        trigger={<Button disableRipple>Options</Button>}
       >
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
@@ -250,7 +254,10 @@ describe('<Menu2 />', () => {
 
   it('defaults the popup surface elevation to 8', async () => {
     const { user } = render(
-      <Menu2 slotProps={{ paper: { 'data-testid': 'paper' } }} trigger="Options">
+      <Menu2
+        slotProps={{ paper: { 'data-testid': 'paper' } }}
+        trigger={<Button disableRipple>Options</Button>}
+      >
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -262,7 +269,11 @@ describe('<Menu2 />', () => {
 
   it('forwards a custom elevation to the popup surface', async () => {
     const { user } = render(
-      <Menu2 elevation={4} slotProps={{ paper: { 'data-testid': 'paper' } }} trigger="Options">
+      <Menu2
+        elevation={4}
+        slotProps={{ paper: { 'data-testid': 'paper' } }}
+        trigger={<Button disableRipple>Options</Button>}
+      >
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -274,7 +285,7 @@ describe('<Menu2 />', () => {
 
   it.skipIf(isJsdom())('animates the popup surface by default', async () => {
     const { user } = render(
-      <Menu2 trigger="Options">
+      <Menu2 trigger={<Button disableRipple>Options</Button>}>
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -317,13 +328,13 @@ describe('<Menu2 />', () => {
     async () => {
       const { user } = render(
         <ThemeProvider theme={enhanceHighContrast(createTheme())}>
-          <Menu2 trigger="Options">
+          <Menu2 trigger={<Button disableRipple>Options</Button>}>
             <Menu2Item>Profile</Menu2Item>
             <Menu2CheckboxItem defaultChecked>
               {/* The indicator only mounts while checked. */}
               Bookmarks
             </Menu2CheckboxItem>
-            <Menu2Submenu trigger="View">
+            <Menu2Submenu trigger={<Menu2Item>View</Menu2Item>}>
               <Menu2Item>Zoom in</Menu2Item>
             </Menu2Submenu>
           </Menu2>
@@ -364,7 +375,10 @@ describe('<Menu2 />', () => {
 
   it.skipIf(isJsdom())('lets the default animation be overridden', async () => {
     const { user } = render(
-      <Menu2 slotProps={{ popup: { sx: { transition: 'none' } } }} trigger="Options">
+      <Menu2
+        slotProps={{ popup: { sx: { transition: 'none' } } }}
+        trigger={<Button disableRipple>Options</Button>}
+      >
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -377,7 +391,10 @@ describe('<Menu2 />', () => {
 
   it('renders an invisible backdrop that does not swallow clicks', async () => {
     const { user } = render(
-      <Menu2 slotProps={{ backdrop: { 'data-testid': 'backdrop' } }} trigger="Options">
+      <Menu2
+        slotProps={{ backdrop: { 'data-testid': 'backdrop' } }}
+        trigger={<Button disableRipple>Options</Button>}
+      >
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -399,7 +416,7 @@ describe('<Menu2 />', () => {
         slotProps={{
           backdrop: { 'data-testid': 'backdrop', sx: { backgroundColor: 'rgb(0, 0, 0)' } },
         }}
-        trigger="Options"
+        trigger={<Button disableRipple>Options</Button>}
       >
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
@@ -413,7 +430,10 @@ describe('<Menu2 />', () => {
 
   it.skipIf(isJsdom())('constrains the popup surface to the collision-aware height', async () => {
     const { user } = render(
-      <Menu2 slotProps={{ paper: { 'data-testid': 'paper' } }} trigger="Options">
+      <Menu2
+        slotProps={{ paper: { 'data-testid': 'paper' } }}
+        trigger={<Button disableRipple>Options</Button>}
+      >
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -439,7 +459,7 @@ describe('<Menu2 />', () => {
     });
 
     const { user } = render(
-      <Menu2 onOpenChange={handleOpenChange} trigger="Options">
+      <Menu2 onOpenChange={handleOpenChange} trigger={<Button disableRipple>Options</Button>}>
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -454,7 +474,7 @@ describe('<Menu2 />', () => {
 
   it('does not open when the root is disabled', async () => {
     render(
-      <Menu2 disabled trigger="Options">
+      <Menu2 disabled trigger={<Button disableRipple>Options</Button>}>
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -465,7 +485,7 @@ describe('<Menu2 />', () => {
 
   it('supports defaultOpen', () => {
     render(
-      <Menu2 defaultOpen trigger="Options">
+      <Menu2 defaultOpen trigger={<Button disableRipple>Options</Button>}>
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -475,7 +495,7 @@ describe('<Menu2 />', () => {
 
   it('supports keepMounted', () => {
     render(
-      <Menu2 keepMounted trigger="Options">
+      <Menu2 keepMounted trigger={<Button disableRipple>Options</Button>}>
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -494,7 +514,7 @@ describe('<Menu2 />', () => {
         <button ref={finalFocusRef} type="button">
           Final target
         </button>
-        <Menu2 finalFocus={finalFocusRef} trigger="Options">
+        <Menu2 finalFocus={finalFocusRef} trigger={<Button disableRipple>Options</Button>}>
           <Menu2Item>Profile</Menu2Item>
         </Menu2>
       </React.Fragment>,
@@ -512,7 +532,7 @@ describe('<Menu2 />', () => {
     const { user } = render(
       <React.Fragment>
         <button type="button">Outside</button>
-        <Menu2 trigger="Options">
+        <Menu2 trigger={<Button disableRipple>Options</Button>}>
           <Menu2Item>Profile</Menu2Item>
         </Menu2>
       </React.Fragment>,
@@ -539,7 +559,7 @@ describe('<Menu2 />', () => {
 
   it('supports touch trigger interactions', async () => {
     const { user } = render(
-      <Menu2 trigger="Options">
+      <Menu2 trigger={<Button disableRipple>Options</Button>}>
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -558,14 +578,14 @@ describe('<Menu2 />', () => {
         <Menu2
           modal
           slotProps={{ positioner: { 'data-testid': 'modal-positioner' } }}
-          trigger="Modal menu"
+          trigger={<Button disableRipple>Modal menu</Button>}
         >
           <Menu2Item>Profile</Menu2Item>
         </Menu2>
         <Menu2
           modal={false}
           slotProps={{ positioner: { 'data-testid': 'non-modal-positioner' } }}
-          trigger="Non-modal menu"
+          trigger={<Button disableRipple>Non-modal menu</Button>}
         >
           <Menu2Item>Settings</Menu2Item>
         </Menu2>
@@ -592,7 +612,7 @@ describe('<Menu2 />', () => {
   it('opens in an RTL tree', async () => {
     const { user } = render(
       <div dir="rtl">
-        <Menu2 trigger="Options">
+        <Menu2 trigger={<Button disableRipple>Options</Button>}>
           <Menu2Item>Profile</Menu2Item>
         </Menu2>
       </div>,
@@ -611,7 +631,7 @@ describe('<Menu2 />', () => {
           align="start"
           sideOffset={4}
           slotProps={{ positioner: { 'data-testid': 'positioner' } }}
-          trigger="Options"
+          trigger={<Button disableRipple>Options</Button>}
         >
           <Menu2Item>Profile</Menu2Item>
         </Menu2>
@@ -639,7 +659,7 @@ describe('<Menu2 />', () => {
     });
 
     const { user } = render(
-      <Menu2 trigger="Options">
+      <Menu2 trigger={<Button disableRipple>Options</Button>}>
         <Menu2CheckboxItem onChange={handleCheckboxChange}>Show hidden files</Menu2CheckboxItem>
         <Menu2RadioGroup defaultValue="small" onChange={handleRadioChange}>
           <Menu2RadioItem value="small">Small</Menu2RadioItem>
@@ -679,7 +699,7 @@ describe('<Menu2 />', () => {
 
   it.skipIf(isJsdom())('gives the items a ripple, and disableRipple turns it off', async () => {
     const { user } = render(
-      <Menu2 defaultOpen trigger="Options">
+      <Menu2 defaultOpen trigger={<Button disableRipple>Options</Button>}>
         <Menu2Item closeOnClick={false}>Profile</Menu2Item>
         <Menu2Item closeOnClick={false} disableRipple>
           No ripple
@@ -707,7 +727,7 @@ describe('<Menu2 />', () => {
 
   it('keeps mounted unchecked indicator marks hidden', () => {
     render(
-      <Menu2 open trigger="Options">
+      <Menu2 open trigger={<Button disableRipple>Options</Button>}>
         <Menu2CheckboxItem slotProps={{ indicator: { 'data-testid': 'checkbox-indicator' } }}>
           Show hidden files
         </Menu2CheckboxItem>
@@ -764,13 +784,13 @@ describe('<Menu2 />', () => {
 
   it('supports groups, labels, separators, link items, and submenus', async () => {
     const { user } = render(
-      <Menu2 trigger="Options">
+      <Menu2 trigger={<Button disableRipple>Options</Button>}>
         <Menu2Group>
           <Menu2GroupLabel>Account</Menu2GroupLabel>
           <Menu2LinkItem href="/profile">Profile</Menu2LinkItem>
         </Menu2Group>
         <Menu2Separator />
-        <Menu2Submenu defaultOpen trigger="More">
+        <Menu2Submenu defaultOpen trigger={<Menu2Item>More</Menu2Item>}>
           <Menu2Item>Archive</Menu2Item>
         </Menu2Submenu>
       </Menu2>,
@@ -828,7 +848,7 @@ describe('<Menu2 />', () => {
 
       const { user } = render(
         <React.Fragment>
-          <Menu2 trigger="Other menu">
+          <Menu2 trigger={<Button disableRipple>Other menu</Button>}>
             <Menu2Item>Other item</Menu2Item>
           </Menu2>
           <ContextMenuHarness />
@@ -861,7 +881,7 @@ describe('<Menu2 />', () => {
 
   it.skipIf(isJsdom())('supports inset list text composed inside items', async () => {
     const { user } = render(
-      <Menu2 trigger="Options">
+      <Menu2 trigger={<Button disableRipple>Options</Button>}>
         <Menu2Item>
           <ListItemIcon data-testid="icon">i</ListItemIcon>
           <ListItemText>Cut</ListItemText>
@@ -885,8 +905,8 @@ describe('<Menu2 />', () => {
 
   it.skipIf(isJsdom())('keeps separator spacing stable while a submenu is open', async () => {
     const { user } = render(
-      <Menu2 trigger="Options">
-        <Menu2Submenu defaultOpen trigger="View">
+      <Menu2 trigger={<Button disableRipple>Options</Button>}>
+        <Menu2Submenu defaultOpen trigger={<Menu2Item>View</Menu2Item>}>
           <Menu2Item>Zoom</Menu2Item>
         </Menu2Submenu>
         <Menu2Separator />
@@ -907,7 +927,7 @@ describe('<Menu2 />', () => {
 
   it('supports Material UI Tooltip on enabled item flavors', async () => {
     const { user } = render(
-      <Menu2 open trigger="Options">
+      <Menu2 open trigger={<Button disableRipple>Options</Button>}>
         <Tooltip title="Create a blank document" describeChild enterDelay={0} leaveDelay={0}>
           <Menu2Item>New document</Menu2Item>
         </Tooltip>
@@ -944,14 +964,18 @@ describe('<Menu2 />', () => {
       onClickCapture?: React.MouseEventHandler<HTMLElement>;
     }
 
-    function ClickClosingTooltip(props: {
-      title: string;
-      children: React.ReactElement<TooltipChildProps>;
-    }) {
-      const { title, children } = props;
+    // A wrapper used as a trigger must forward the trigger's props and ref to
+    // its child, the way Material UI's own Tooltip does.
+    const ClickClosingTooltip = React.forwardRef<
+      HTMLElement,
+      { title: string; children: React.ReactElement<TooltipChildProps> } & Record<string, any>
+    >(function ClickClosingTooltip(props, ref) {
+      const { title, children, ...forwarded } = props;
       const [open, setOpen] = React.useState(false);
 
       const child = React.cloneElement(children, {
+        ...forwarded,
+        ref,
         onClickCapture: (event: React.MouseEvent<HTMLElement>) => {
           setOpen(false);
           children.props.onClickCapture?.(event);
@@ -971,27 +995,16 @@ describe('<Menu2 />', () => {
           {child}
         </Tooltip>
       );
-    }
-
-    // The compound shape wrapped the trigger element directly. With the trigger
-    // as a prop the wrapper has to move into the trigger's root slot, which is
-    // the one composition the collapse made harder.
-    const TooltipSubmenuTriggerRoot = React.forwardRef<
-      HTMLDivElement,
-      React.ComponentPropsWithoutRef<'div'> & { ownerState?: unknown }
-    >(function TooltipSubmenuTriggerRoot({ ownerState: _ownerState, ...rootProps }, ref) {
-      return (
-        <ClickClosingTooltip title="Open view settings">
-          <div ref={ref} {...rootProps} />
-        </ClickClosingTooltip>
-      );
     });
 
     const { user } = render(
-      <Menu2 open trigger="Options">
+      <Menu2 open trigger={<Button disableRipple>Options</Button>}>
         <Menu2Submenu
-          trigger="View options"
-          slots={{ trigger: TooltipSubmenuTriggerRoot }}
+          trigger={
+            <ClickClosingTooltip title="Open view settings">
+              <Menu2Item>View options</Menu2Item>
+            </ClickClosingTooltip>
+          }
           slotProps={{ trigger: { openOnHover: false } }}
         >
           <Menu2Item>Comments</Menu2Item>
@@ -1014,7 +1027,7 @@ describe('<Menu2 />', () => {
 
   it('supports Material UI Tooltip on disabled items through a non-disabled wrapper', async () => {
     const { user } = render(
-      <Menu2 defaultOpen trigger="Options">
+      <Menu2 defaultOpen trigger={<Button disableRipple>Options</Button>}>
         <Tooltip title="Unavailable while offline" describeChild enterDelay={0} leaveDelay={0}>
           <span data-testid="disabled-item-tooltip-target">
             <Menu2Item disabled>Import from Drive</Menu2Item>
@@ -1039,8 +1052,8 @@ describe('<Menu2 />', () => {
 
     try {
       const { user } = render(
-        <Menu2 trigger="Options">
-          <Menu2Submenu disabled trigger="Add-ons unavailable">
+        <Menu2 trigger={<Button disableRipple>Options</Button>}>
+          <Menu2Submenu disabled trigger={<Menu2Item>Add-ons unavailable</Menu2Item>}>
             <Menu2Item>Marketplace</Menu2Item>
           </Menu2Submenu>
         </Menu2>,

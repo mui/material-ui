@@ -280,7 +280,7 @@ export const menu2SubmenuTriggerClasses: Menu2SubmenuTriggerClasses = generateUt
  * are rendered internally, so their overrides live here rather than under their
  * own component keys.
  */
-export type Menu2ClassKey = 'root' | 'trigger' | 'backdrop' | 'paper' | 'list';
+export type Menu2ClassKey = 'root' | 'backdrop' | 'paper' | 'list';
 
 /** Theme `styleOverrides` slots for the collapsed `Menu2Submenu`. */
-export type Menu2SubmenuClassKey = 'root' | 'trigger' | 'paper' | 'list';
+export type Menu2SubmenuClassKey = 'root' | 'paper' | 'list';

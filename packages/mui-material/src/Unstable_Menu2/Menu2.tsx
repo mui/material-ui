@@ -5,18 +5,11 @@ import clsx from 'clsx';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import Menu2Popup, { Menu2PopupProps } from './Menu2Popup';
-import Menu2Trigger from './Menu2Trigger';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { menu2TriggerClasses } from './menu2Classes';
 import { SlotProps } from './menu2Utils';
 
-export interface Menu2Slots extends NonNullable<Menu2PopupProps['slots']> {
-  /**
-   * The component that renders the trigger, when `trigger` is not an element.
-   * @default Menu2Trigger
-   */
-  trigger?: React.ElementType | undefined;
-}
+export interface Menu2Slots extends NonNullable<Menu2PopupProps['slots']> {}
 
 export interface Menu2SlotProps extends NonNullable<Menu2PopupProps['slotProps']> {
   trigger?: SlotProps<Record<string, any>, Menu2Props> | undefined;
@@ -37,15 +30,13 @@ export interface Menu2Props
    */
   children?: React.ReactNode;
   /**
-   * The content that opens the menu.
+   * The element that opens the menu, for example a `Button`.
    *
-   * A single element becomes the trigger itself: the trigger behavior merges
-   * into it, so it keeps whatever component you passed. Any other node, such as
-   * text, a fragment, or several nodes, renders inside the default trigger.
-   * Omit it and drive the menu with `open` and `anchor` instead, which is the
-   * classic controlled pattern.
+   * The trigger behavior merges into this element, so it keeps the component
+   * that you passed. Omit it and drive the menu with `open` and `anchor`
+   * instead, which is the classic controlled pattern.
    */
-  trigger?: React.ReactNode;
+  trigger?: React.ReactElement | undefined;
   /**
    * The components used for each slot inside.
    */
@@ -102,17 +93,12 @@ const Menu2 = React.forwardRef(function Menu2(
     ...rootProps
   } = themedProps;
 
-  const { trigger: triggerSlot, ...popupSlots } = slots ?? {};
+  const popupSlots = slots;
   const { trigger: triggerSlotProps, ...popupSlotProps } = slotProps ?? {};
   const resolvedTriggerProps = resolveComponentProps(triggerSlotProps, themedProps);
 
-  // A fragment is a valid element but cannot take the trigger's props or ref,
-  // so it counts as content and goes inside the default trigger.
-  const triggerIsElement = React.isValidElement(trigger) && trigger.type !== React.Fragment;
-
-  let triggerNode: React.ReactNode = null;
-  if (trigger != null) {
-    triggerNode = triggerIsElement ? (
+  const triggerNode =
+    trigger == null ? null : (
       // Base UI's `render` merges the trigger behavior into the element, so the
       // caller keeps whatever component they passed.
       <BaseMenu.Trigger
@@ -126,15 +112,7 @@ const Menu2 = React.forwardRef(function Menu2(
           )
         }
       />
-    ) : (
-      <Menu2Trigger
-        slots={triggerSlot ? { root: triggerSlot } : undefined}
-        {...resolvedTriggerProps}
-      >
-        {trigger}
-      </Menu2Trigger>
     );
-  }
 
   return (
     <BaseMenu.Root {...rootProps}>
@@ -201,18 +179,15 @@ Menu2.propTypes /* remove-proptypes */ = {
     popup: PropTypes.elementType,
     portal: PropTypes.elementType,
     positioner: PropTypes.elementType,
-    trigger: PropTypes.elementType,
   }),
   /**
-   * The content that opens the menu.
+   * The element that opens the menu, for example a `Button`.
    *
-   * A single element becomes the trigger itself: the trigger behavior merges
-   * into it, so it keeps whatever component you passed. Any other node, such as
-   * text, a fragment, or several nodes, renders inside the default trigger.
-   * Omit it and drive the menu with `open` and `anchor` instead, which is the
-   * classic controlled pattern.
+   * The trigger behavior merges into this element, so it keeps the component
+   * that you passed. Omit it and drive the menu with `open` and `anchor`
+   * instead, which is the classic controlled pattern.
    */
-  trigger: PropTypes.node,
+  trigger: PropTypes.element,
 } as any;
 
 export default Menu2;

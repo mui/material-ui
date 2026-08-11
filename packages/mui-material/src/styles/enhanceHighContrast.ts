@@ -511,35 +511,44 @@ export default function enhanceHighContrast<
         ],
       },
     },
-    // The submenu trigger is rendered by Menu2Submenu, so its overrides live
-    // under that component's `trigger` slot.
+    // The submenu trigger is whatever element the caller passes, so its open
+    // state is styled from the list that contains it.
     MuiMenu2Submenu: {
       ...c?.MuiMenu2Submenu,
       styleOverrides: {
         ...c?.MuiMenu2Submenu?.styleOverrides,
-        trigger: [
-          c?.MuiMenu2Submenu?.styleOverrides?.trigger,
+        list: [
+          c?.MuiMenu2Submenu?.styleOverrides?.list,
           {
-            ...menu2ItemOverrides(menu2SubmenuTriggerClasses, hcTokens),
-            // A trigger whose submenu is open carries the focus background.
-            // The selected variant needs spelling out: the base style pairs
-            // `selected` with `open`, which outranks a lone `open` selector.
-            [`&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.open}`]:
-              {
-                [HCM]: {
-                  forcedColorAdjust: 'none',
-                  color: hcTokens.activeText,
-                  backgroundColor: hcTokens.activeBackground,
-                },
+            [`& .${menu2SubmenuTriggerClasses.open}`]: {
+              [HCM]: {
+                forcedColorAdjust: 'none',
+                color: hcTokens.activeText,
+                backgroundColor: hcTokens.activeBackground,
               },
+            },
           },
         ],
       },
     },
-    // `forced-color-adjust` inherits, so the item rules above stop the browser
-    // from forcing colors on the indicator too. Inherit the item's color the way
-    // ListItemIcon does, and repaint the knocked-out checkmark in whatever the
-    // item's background now is, otherwise it merges into the box.
+    MuiMenu2: {
+      ...c?.MuiMenu2,
+      styleOverrides: {
+        ...c?.MuiMenu2?.styleOverrides,
+        list: [
+          c?.MuiMenu2?.styleOverrides?.list,
+          {
+            [`& .${menu2SubmenuTriggerClasses.open}`]: {
+              [HCM]: {
+                forcedColorAdjust: 'none',
+                color: hcTokens.activeText,
+                backgroundColor: hcTokens.activeBackground,
+              },
+            },
+          },
+        ],
+      },
+    },
     MuiMenu2CheckboxItemIndicator: {
       ...c?.MuiMenu2CheckboxItemIndicator,
       styleOverrides: {

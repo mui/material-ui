@@ -3,6 +3,7 @@ import memoTheme from '../utils/memoTheme';
 import { Theme } from '../styles';
 import { menuListStyles, menuPaperStyles } from '../Menu/menuStyles';
 import { getMenuItemRootStyles } from '../MenuItem/menuItemStyles';
+import { menu2SubmenuTriggerClasses } from './menu2Classes';
 
 export interface SharedMenu2ItemClasses {
   highlighted: string;
@@ -69,7 +70,22 @@ export const menu2PopupPaperStyles: CSSInterpolation = {
   overflowY: 'auto',
 };
 
-export const menu2PopupListStyles: CSSInterpolation = menuListStyles;
+export const menu2PopupListStyles = memoTheme(({ theme }) => ({
+  ...(menuListStyles as CSSObject),
+  // A submenu trigger is whatever element the caller passes, so its open state
+  // is styled from the list that contains it, not from a component we render.
+  [`& .${menu2SubmenuTriggerClasses.open}`]: {
+    backgroundColor: (theme.vars || theme).palette.action.focus,
+  },
+  [`& .${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.open}`]: {
+    backgroundColor: theme.alpha(
+      (theme.vars || theme).palette.primary.main,
+      `${(theme.vars || theme).palette.action.selectedOpacity} + ${
+        (theme.vars || theme).palette.action.focusOpacity
+      }`,
+    ),
+  },
+}));
 
 /**
  * Default open/close animation for the menu surface, matching the classic

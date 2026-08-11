@@ -5,7 +5,10 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Menu2, { menu2PopupClasses, menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
-import Menu2Submenu, { menu2SubmenuPopupClasses } from '@mui/material/Unstable_Menu2Submenu';
+import Menu2Submenu, {
+  menu2SubmenuPopupClasses,
+  menu2SubmenuTriggerClasses,
+} from '@mui/material/Unstable_Menu2Submenu';
 
 // The collapsed shape: one component per menu at both levels, trigger as a
 // prop, children as the popup.
@@ -14,7 +17,7 @@ describe('<Menu2 /> collapsed API', () => {
 
   it('renders the trigger element as-is and opens the menu', async () => {
     const { user } = render(
-      <Menu2 trigger={<Button>Options</Button>}>
+      <Menu2 trigger={<Button disableRipple>Options</Button>}>
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -38,7 +41,7 @@ describe('<Menu2 /> collapsed API', () => {
   it('renders with the portal and positioner slots swapped', async () => {
     const { user } = render(
       <Menu2
-        trigger="Options"
+        trigger={<Button disableRipple>Options</Button>}
         slots={{ portal: 'div', positioner: 'div' }}
         slotProps={{
           portal: { 'data-testid': 'portal' },
@@ -61,8 +64,8 @@ describe('<Menu2 /> collapsed API', () => {
     const menuRef = React.createRef<HTMLDivElement>();
     const submenuRef = React.createRef<HTMLDivElement>();
     const { user } = render(
-      <Menu2 ref={menuRef} trigger="Options">
-        <Menu2Submenu ref={submenuRef} trigger="More">
+      <Menu2 ref={menuRef} trigger={<Button disableRipple>Options</Button>}>
+        <Menu2Submenu ref={submenuRef} trigger={<Menu2Item>More</Menu2Item>}>
           <Menu2Item>Nested</Menu2Item>
         </Menu2Submenu>
       </Menu2>,
@@ -86,14 +89,12 @@ describe('<Menu2 /> collapsed API', () => {
       components: {
         MuiMenu2: {
           styleOverrides: {
-            trigger: { letterSpacing: '3px' },
             paper: { paddingTop: '9px' },
             list: { paddingBottom: '7px' },
           },
         },
         MuiMenu2Submenu: {
           styleOverrides: {
-            trigger: { letterSpacing: '5px' },
             paper: { paddingTop: '11px' },
           },
         },
@@ -101,8 +102,14 @@ describe('<Menu2 /> collapsed API', () => {
     });
     const { user } = render(
       <ThemeProvider theme={theme}>
-        <Menu2 trigger="Options" slotProps={{ paper: { 'data-testid': 'paper' } }}>
-          <Menu2Submenu trigger="More" slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}>
+        <Menu2
+          trigger={<Button disableRipple>Options</Button>}
+          slotProps={{ paper: { 'data-testid': 'paper' } }}
+        >
+          <Menu2Submenu
+            trigger={<Menu2Item>More</Menu2Item>}
+            slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}
+          >
             <Menu2Item>Nested</Menu2Item>
           </Menu2Submenu>
         </Menu2>
@@ -110,7 +117,6 @@ describe('<Menu2 /> collapsed API', () => {
     );
 
     const trigger = screen.getByRole('button', { name: 'Options' });
-    expect(window.getComputedStyle(trigger).letterSpacing).to.equal('3px');
 
     await user.click(trigger);
     const menu = await screen.findByRole('menu');
@@ -119,7 +125,6 @@ describe('<Menu2 /> collapsed API', () => {
     expect(window.getComputedStyle(list).paddingBottom).to.equal('7px');
 
     const submenuTrigger = screen.getByRole('menuitem', { name: 'More' });
-    expect(window.getComputedStyle(submenuTrigger).letterSpacing).to.equal('5px');
 
     await user.click(submenuTrigger);
     await waitFor(() => {
@@ -147,8 +152,15 @@ describe('<Menu2 /> collapsed API', () => {
     // `defaultOpen` avoids clicking the trigger Button, whose ripple animates
     // past the end of the test and trips the act() check.
     const { user } = render(
-      <Menu2 defaultOpen trigger="Options" slotProps={{ paper: { 'data-testid': 'paper' } }}>
-        <Menu2Submenu trigger="More" slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}>
+      <Menu2
+        defaultOpen
+        trigger={<Button disableRipple>Options</Button>}
+        slotProps={{ paper: { 'data-testid': 'paper' } }}
+      >
+        <Menu2Submenu
+          trigger={<Menu2Item>More</Menu2Item>}
+          slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}
+        >
           <Menu2Item>Nested</Menu2Item>
         </Menu2Submenu>
       </Menu2>,
@@ -174,29 +186,30 @@ describe('<Menu2 /> collapsed API', () => {
     expect(Math.round(submenu.top)).to.equal(Math.round(triggerRect.top) - 8);
   });
 
-  // `trigger` is typed as a node, so every node kind has to work. A fragment is
-  // a valid element but cannot take props or a ref, so it must count as content.
-  it.each([
-    ['text', 'Options'],
-    ['a fragment', <React.Fragment key="f">Options</React.Fragment>],
-    ['several nodes', ['Options', <span key="s" />]],
-  ])('accepts %s as the trigger', async (_name, triggerValue) => {
+  // `trigger` takes an element at both levels, and the element the caller passes
+  // becomes the trigger itself.
+  it('renders the caller element as the trigger at both levels', async () => {
     const { user } = render(
-      <Menu2 trigger={triggerValue as React.ReactNode}>
-        <Menu2Item>Profile</Menu2Item>
+      <Menu2 trigger={<Button disableRipple>Options</Button>}>
+        <Menu2Submenu trigger={<Menu2Item>More</Menu2Item>}>
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2Submenu>
       </Menu2>,
     );
 
-    const trigger = screen.getByRole('button');
+    const trigger = screen.getByRole('button', { name: 'Options' });
+    expect(trigger).to.have.class('MuiButton-root');
     expect(trigger).to.have.class(menu2TriggerClasses.root);
 
     await user.click(trigger);
-    expect(await screen.findByRole('menu')).not.to.equal(null);
+    const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
+    expect(submenuTrigger).to.have.class(menu2ItemClasses.root);
+    expect(submenuTrigger).to.have.class(menu2SubmenuTriggerClasses.root);
   });
 
   it('falls back to the default trigger for a non-element', async () => {
     const { user } = render(
-      <Menu2 trigger="Options">
+      <Menu2 trigger={<Button disableRipple>Options</Button>}>
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -211,7 +224,7 @@ describe('<Menu2 /> collapsed API', () => {
 
   it('marks the trigger open while the menu is open', async () => {
     const { user } = render(
-      <Menu2 trigger={<Button>Options</Button>}>
+      <Menu2 trigger={<Button disableRipple>Options</Button>}>
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -228,7 +241,7 @@ describe('<Menu2 /> collapsed API', () => {
   it('accepts the hoisted popup props', async () => {
     const { user } = render(
       <Menu2
-        trigger={<Button>Options</Button>}
+        trigger={<Button disableRipple>Options</Button>}
         side="top"
         elevation={16}
         slotProps={{ paper: { 'data-testid': 'paper' } }}
@@ -267,9 +280,9 @@ describe('<Menu2 /> collapsed API', () => {
   // The nested popup needs real layout to mount.
   it.skipIf(isJsdom())('uses the same shape for submenus', async () => {
     const { user } = render(
-      <Menu2 trigger={<Button>Options</Button>}>
+      <Menu2 trigger={<Button disableRipple>Options</Button>}>
         <Menu2Item>Cut</Menu2Item>
-        <Menu2Submenu trigger="View">
+        <Menu2Submenu trigger={<Menu2Item>View</Menu2Item>}>
           <Menu2Item>Zoom in</Menu2Item>
         </Menu2Submenu>
       </Menu2>,

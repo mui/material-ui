@@ -155,7 +155,7 @@ function PlaygroundDemo({
       highlightItemOnHover={settings.highlightItemOnHover}
       onOpenChange={handleOpenChange}
       onOpenChangeComplete={handleOpenChangeComplete}
-      trigger="Project"
+      trigger={<Button>Project</Button>}
       slotProps={{
         trigger: {
           variant: 'contained',
@@ -297,7 +297,7 @@ function ClassicVersusSuccessorDemo({ settings }: { settings: PlaygroundSettings
         </ClassicMenu>
       </div>
       <Menu2
-        trigger="Successor"
+        trigger={<Button>Successor</Button>}
         slotProps={{
           trigger: {
             variant: 'outlined',
@@ -392,7 +392,7 @@ const typeaheadEntries = [
 function TypeaheadScrollDemo() {
   return (
     <Menu2
-      trigger="Country"
+      trigger={<Button>Country</Button>}
       slotProps={{
         trigger: {
           variant: 'outlined',
