@@ -136,6 +136,35 @@ describe('<Menu2 /> collapsed API', () => {
   });
 
   // Geometry only: jsdom has no layout, so this runs in the browser project.
+  // The open state is styled from the list, and the selected state from the item.
+  // Both selectors are (0,2,0), so the winner depends on style insertion order.
+  // A selected trigger that is open must keep the selected blend, not the plain
+  // neutral open colour.
+  it.skipIf(isJsdom())('keeps the selected blend on a trigger whose submenu is open', async () => {
+    const { user } = render(
+      <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
+        <Menu2Submenu trigger={<Menu2Item selected>More</Menu2Item>}>
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2Submenu>
+      </Menu2>,
+    );
+
+    const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
+    const selectedOnly = window.getComputedStyle(submenuTrigger).backgroundColor;
+    // The selected item tints with the primary colour.
+    expect(selectedOnly).to.contain('25, 118, 210');
+
+    await user.click(submenuTrigger);
+    await screen.findByRole('menuitem', { name: 'Nested' });
+
+    const selectedAndOpen = window.getComputedStyle(submenuTrigger).backgroundColor;
+    // Still the primary tint, not the neutral `action.focus` that the list sets
+    // for a plain open trigger.
+    expect(selectedAndOpen).to.contain('25, 118, 210');
+    // And stronger than selected alone, because the open state adds focus opacity.
+    expect(selectedAndOpen).not.to.equal(selectedOnly);
+  });
+
   it.skipIf(isJsdom())('overlaps the parent menu by default', async () => {
     // The popup animates, so geometry has to be read after the transition ends.
     async function settle(element: HTMLElement) {

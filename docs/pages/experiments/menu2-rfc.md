@@ -205,26 +205,35 @@ The review settled the shape. The experiment started with a fully compound API, 
 ```jsx
 <Menu2 trigger={<Button>Options</Button>} slotProps={{ paper: { elevation: 4 } }}>
   <Menu2Item onClick={handleCut}>Cut</Menu2Item>
-  <Menu2Submenu trigger="Share">
+  <Menu2Submenu trigger={<Menu2Item>Share</Menu2Item>}>
     <Menu2Item>Email</Menu2Item>
     <Menu2Item>Copy link</Menu2Item>
   </Menu2Submenu>
 </Menu2>
 ```
 
-The trigger part and the popup part still exist, but they are internal. We export only their class hooks. Thus `styleOverrides` and `sx` do not change.
+The popup part still exists, but it is internal. We export only its class hooks. Thus `styleOverrides` and `sx` do not change.
 
-Three results come from this work:
+Four results come from this work:
 
-- **Both `trigger` props take a node.** For the root, a single element becomes the trigger itself, and Base UI's `render` merges the behavior into it, so the caller keeps their own component. Any other node, such as text, a fragment, or several nodes, renders inside the default trigger. A fragment is a valid element, but it cannot take props or a ref, so the root treats it as content.
-- **The submenu `trigger` is always content.** This is the one place where the two levels cannot match. A submenu trigger is already a menu item, so an element in the `trigger` does not replace it. A `<Menu2Item>` there puts an item inside an item, and the submenu does not open. Use `slots.trigger` to change the component.
-- **A `Tooltip` around a submenu trigger is now more difficult.** The root `trigger` accepts an element, so `trigger={<Tooltip><Button /></Tooltip>}` still works. The submenu `trigger` is content, so the wrapper must move into the root slot of the trigger, and that needs a `forwardRef` component. The test suite and the recipes page both show this.
+- **`trigger` takes an element at both levels.** Base{NB}UI's `render` merges the trigger behavior into that element, so the caller keeps their own component. A string is not valid. The two levels match, and a `Tooltip` wraps the trigger at either level:
+
+  ```jsx
+  <Menu2Submenu trigger={
+    <Tooltip title="Open view settings"><Menu2Item>View</Menu2Item></Tooltip>
+  }>
+  ```
+
+- **A wrapper must forward the props and the ref to its child.** The `Tooltip` of Material{NB}UI does this. A wrapper that you write must do the same, or the trigger behavior does not reach the element.
+- **A submenu trigger must not close the menu.** The caller usually passes a `Menu2Item`, which closes the menu on click. The submenu sets `closeOnClick` to false for the element that it renders.
+- **We no longer infer `nativeButton`.** The caller declares it through `slotProps.trigger` when the element is not a native button.
 
 For the classic controlled pattern, omit `trigger` and control the menu with `open` and `anchor`. The context-menu recipe uses this pattern.
 
 These behaviors are true for each shape that we select:
 
 - **Hover open.** The submenus open on hover by default, with a delay of 100ms and hover intent on close. This behavior is new when you compare it to the classic Menu. It matches native menus, and you can configure it.
+- **Open state.** The list that contains a submenu trigger styles its open state, because the trigger is the caller's element. A test pins the order: a selected trigger keeps its selected blend when its submenu opens.
 - **Offset.** A submenu overlaps its parent menu by 4px, and it starts 8px higher than its trigger. The offset of 8px cancels the top padding of the list. Thus the first item of the submenu lines up with the trigger row. Base UI positions a submenu in the same way.
 - **Escape.** Escape closes the innermost submenu and moves focus back to its trigger. To close the full tree, you must select that option.
 - **Initial highlight.** A pointer open highlights no item. A keyboard open highlights the first item.
@@ -288,7 +297,7 @@ These are settled. The detail stays here, because the caveats matter.
 | Backdrop                        | Show it                          | `slots.backdrop` and `slotProps.backdrop` match the classic Menu. The default element is transparent and lets clicks through. Base UI's outside-press behavior still closes the menu. For a dark background use `slotProps={{ backdrop: { sx: { bgcolor: ... } } }}`. One difference: the backdrop renders only when you opt in. An unconditional backdrop gives non-modal menus a full-screen layer that they did not have, and modal menus already get Base UI's inert backdrop.                                                                                                                                                                                                                                       |
 | Imperative actions              | Use Base UI's `actionsRef` as-is | It arrives with the inherited types and gives `close()` and `unmount()`. We do not rename it, and we do not build our own `action` ref. A new name moves our API away from Base UI for no benefit, and a new implementation repeats work. The classic `action.updatePosition()` has no equivalent, because the position updates automatically.                                                                                                                                                                                                                                                                                                                                                                           |
 | Styling around submenu triggers | Do both                          | When a submenu is open, Base UI keeps focus-guard elements next to the trigger, because the tab order needs them. CSS that uses sibling selectors (`+`, `~`, `:last-child`) near a trigger then fails. We found this bug ourselves, so each part now controls its own spacing. We will document the rule, and the guards carry `data-base-ui-focus-guard`. We will also ask the Base UI team to move the guards outside the item list, which helps every Base UI user.                                                                                                                                                                                                                                                   |
-| Theme API                       | Collapse it too                  | `MuiMenu2` and `MuiMenu2Submenu` are the only theme keys. `MuiMenu2` has the slots `root`, `trigger`, `backdrop`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `trigger`, `paper`, and `list`. We removed `MuiMenu2Popup`, `MuiMenu2Trigger`, `MuiMenu2SubmenuPopup`, `MuiMenu2SubmenuTrigger`, and `MuiMenu2SubmenuRoot`. Each element keeps its own class hook, because CSS must still select the different nodes and their states. Autocomplete has the same division.                                                                                                                                                                                                                                          |
+| Theme API                       | Collapse it too                  | `MuiMenu2` and `MuiMenu2Submenu` are the only theme keys. `MuiMenu2` has the slots `root`, `backdrop`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `paper`, and `list`. Neither has a `trigger` slot, because the caller supplies the trigger element and themes that component. We removed `MuiMenu2Popup`, `MuiMenu2Trigger`, `MuiMenu2SubmenuPopup`, `MuiMenu2SubmenuTrigger`, and `MuiMenu2SubmenuRoot`. Each element keeps its own class hook, because CSS must still select the different nodes and their states. Autocomplete has the same division.                                                                                                                                                       |
 
 ### Open questions
 
