@@ -148,6 +148,26 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     viewportWidth: 1440,
     waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
   },
+  { test: 'docs/data/material/components/buttons/ButtonA11y*', enabled: false }, // A11y-only coverage fixtures
+  { test: 'docs/data/material/components/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+];
+
+// Button docs demos enrolled for axe assertions; IconButton/ButtonBase demos are excluded.
+const BUTTON_A11Y_DEMOS = [
+  'BasicButtons',
+  'TextButtons',
+  'ContainedButtons',
+  'DisableElevation',
+  'OutlinedButtons',
+  'ColorButtons',
+  'ButtonSizes',
+  'IconLabelButtons',
+  'InputFileUpload',
+  'LoadingButtons',
+  'CustomizedButtons',
+  'ButtonA11yNonNative',
+  'ButtonA11ySemanticStates',
+  'ButtonA11yTextSpacing',
 ];
 
 /**
@@ -155,13 +175,21 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
  * Slug-wide rules use `*`; brace-globs narrow enrolment to specific demos;
  * later opt-out rules disable individual demos.
  *
- * Initial PR scope: `buttons` only. Other components onboard incrementally.
+ * Scope: the components with a conformance report under
+ * `packages/mui-material/src/<Component>/accessibility.md`. Others onboard
+ * incrementally.
  */
 export const A11Y_RULES: A11yRule[] = [
   {
-    test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}',
+    test: `docs/data/material/components/buttons/{${BUTTON_A11Y_DEMOS.join(',')}}`,
     enabled: true,
     assertions: 'all',
+  },
+  {
+    test: 'docs/data/material/components/buttons/ButtonA11yColorMatrix',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
   },
 ];
 
