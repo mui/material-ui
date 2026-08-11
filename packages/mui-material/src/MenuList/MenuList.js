@@ -204,9 +204,9 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
             const paddingKey = direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
             // Preserve any existing padding (e.g. set via theme/CSS) by adding to it
             // rather than replacing it with the scrollbar width alone.
-            const existingPaddingPx =
+            const existingPadding =
               parseFloat(win.getComputedStyle(listRef.current)[paddingKey]) || 0;
-            listRef.current.style[paddingKey] = `${existingPaddingPx + scrollbarSize}px`;
+            listRef.current.style[paddingKey] = `${existingPadding + scrollbarSize}px`;
             listRef.current.style.width = `calc(100% + ${scrollbarSizePx})`;
           }
         }
