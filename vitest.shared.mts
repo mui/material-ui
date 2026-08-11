@@ -104,7 +104,11 @@ export default async function create(
       exclude: ['**/node_modules/**', '**/build/**', '**/*.spec.*', '**/.next/**', ...excludes],
       globals: true,
       disableConsoleIntercept: true,
-      setupFiles: [path.resolve(MONOREPO_ROOT, './test/setupVitest.ts')],
+      setupFiles: [
+        // Must load before `react-dom`, which `setupVitest.ts` pulls in.
+        path.resolve(MONOREPO_ROOT, './test/setupAnimationEvent.ts'),
+        path.resolve(MONOREPO_ROOT, './test/setupVitest.ts'),
+      ],
       server: {
         deps: {
           inline: ['@mui/internal-test-utils'],
