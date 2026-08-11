@@ -98,7 +98,7 @@ jobs:
       - name: Prepare for publishing
         uses: mui/mui-public/.github/actions/publish-prepare@3aff78882d5ed7d5d6a22d13ffa91a75f1374ab1 # master
         with:
-          node-version: '22.23.1'
+          node-version: '22.23.2'
       - name: Dry run npm publishing
         env:
           IS_PUBLISH_TEST: 'true'
