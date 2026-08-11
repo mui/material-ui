@@ -170,6 +170,17 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   },
 ];
 
+const CHECKBOX_A11Y_DEMOS = [
+  'Checkboxes',
+  'CheckboxLabels',
+  'ColorCheckboxes',
+  'ControlledCheckbox',
+  'CustomizedCheckbox',
+  'IconCheckboxes',
+  'SizeCheckboxes',
+  'CheckboxesGroup',
+];
+
 /**
  * A11y defaults to off — only matched-and-enabled rules produce results.
  * Slug-wide rules use `*`; brace-globs narrow enrolment to specific demos;
@@ -182,6 +193,19 @@ export const A11Y_RULES: A11yRule[] = [
     test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}',
     enabled: true,
     assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/checkboxes/{${CHECKBOX_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    // `indeterminate` sets aria-checked="mixed" on the native <input type="checkbox">; axe's
+    // aria-conditional-attr flags it because the native .checked is false. Recorded, not asserted.
+    test: 'docs/data/material/components/checkboxes/IndeterminateCheckbox',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['aria-conditional-attr'],
   },
 ];
 
