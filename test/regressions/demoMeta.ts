@@ -168,6 +168,21 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     viewportWidth: 1440,
     waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
   },
+  { test: 'docs/data/material/components/progress/*', enabled: false }, // Animated progress bars make screenshots flaky; axe still runs on the enrolled LinearProgress demos
+];
+
+// LinearProgress docs demos enrolled for axe assertions; CircularProgress and
+// the mixed/customized demos (CustomizedProgressBars, DelayingAppearance) are excluded.
+const LINEARPROGRESS_A11Y_DEMOS = [
+  'LinearIndeterminate',
+  'LinearDeterminate',
+  'LinearBuffer',
+  'LinearQuery',
+  'LinearColor',
+  'LinearWithValueLabel',
+  'LinearWithAriaValueText',
+  'LinearProgressA11ySemanticStates',
+  'LinearProgressA11yColorMatrix',
 ];
 
 /**
@@ -180,6 +195,11 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
 export const A11Y_RULES: A11yRule[] = [
   {
     test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}',
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/progress/{${LINEARPROGRESS_A11Y_DEMOS.join(',')}}`,
     enabled: true,
     assertions: 'all',
   },
