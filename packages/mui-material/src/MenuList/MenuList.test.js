@@ -6,7 +6,6 @@ import Divider from '@mui/material/Divider';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import List from '@mui/material/List';
-import getScrollbarSize from '../utils/getScrollbarSize';
 import describeConformance from '../../test/describeConformance';
 
 function setStyleWidthForJsdomOrBrowser(style, width) {
@@ -105,7 +104,23 @@ describe('<MenuList />', () => {
   });
 
   describe('actions: adjustStyleForScrollbar', () => {
-    const expectedPadding = `${getScrollbarSize(window)}px`;
+    const defaultScrollbarSize = 15;
+    const expectedPadding = `${defaultScrollbarSize}px`;
+    // Headless Chromium runs with `--hide-scrollbars`, so the real scrollbar width is 0 there.
+    // Force a width through `window.innerWidth` to keep the assertions environment independent.
+    let scrollbarSize;
+    let innerWidthStub;
+
+    beforeEach(() => {
+      scrollbarSize = defaultScrollbarSize;
+      innerWidthStub = stub(window, 'innerWidth').get(
+        () => document.documentElement.clientWidth + scrollbarSize,
+      );
+    });
+
+    afterEach(() => {
+      innerWidthStub.restore();
+    });
 
     it('should not adjust style when container element height is greater', () => {
       const menuListActionsRef = React.createRef();
@@ -189,10 +204,9 @@ describe('<MenuList />', () => {
       );
 
       // The scrollbar width should be added on top of the existing 8px, not replace it
-      const scrollbarSizePx = getScrollbarSize(window);
-      expect(list.style).to.have.property('paddingRight', `${8 + scrollbarSizePx}px`);
+      expect(list.style).to.have.property('paddingRight', `${8 + defaultScrollbarSize}px`);
       expect(list.style).to.have.property('paddingLeft', '');
-      expect(list.style).to.have.property('width', `calc(100% + ${scrollbarSizePx}px)`);
+      expect(list.style).to.have.property('width', `calc(100% + ${expectedPadding})`);
     });
 
     it('should add scrollbar width to existing padding-left rather than replacing it (RTL)', () => {
@@ -211,10 +225,32 @@ describe('<MenuList />', () => {
         { direction: 'rtl' },
       );
 
-      const scrollbarSizePx = getScrollbarSize(window);
       expect(list.style).to.have.property('paddingRight', '');
-      expect(list.style).to.have.property('paddingLeft', `${8 + scrollbarSizePx}px`);
-      expect(list.style).to.have.property('width', `calc(100% + ${scrollbarSizePx}px)`);
+      expect(list.style).to.have.property('paddingLeft', `${8 + defaultScrollbarSize}px`);
+      expect(list.style).to.have.property('width', `calc(100% + ${expectedPadding})`);
+    });
+
+    it('should not adjust styles when the scrollbar has zero width (overlay scrollbars)', () => {
+      const menuListActionsRef = React.createRef();
+      const listRef = React.createRef();
+      render(<MenuList ref={listRef} actions={menuListActionsRef} />);
+      const list = listRef.current;
+      setStyleWidthForJsdomOrBrowser(list.style, '');
+      Object.defineProperty(list, 'clientHeight', { value: 11, configurable: true });
+
+      // Overlay scrollbars (macOS, Windows 11) take up no space
+      scrollbarSize = 0;
+
+      menuListActionsRef.current.adjustStyleForScrollbar(
+        { clientHeight: 10 },
+        { direction: 'ltr' },
+      );
+
+      // There is no scrollbar width to compensate for, so inline styles must not be
+      // written at all — writing them would override theme/CSS padding.
+      expect(list.style).to.have.property('paddingRight', '');
+      expect(list.style).to.have.property('paddingLeft', '');
+      expect(list.style).to.have.property('width', '');
     });
 
     it('should not adjust styles when width already specified', () => {
