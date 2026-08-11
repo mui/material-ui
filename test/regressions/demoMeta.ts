@@ -150,6 +150,7 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   },
   { test: 'docs/data/material/components/buttons/ButtonA11y*', enabled: false }, // A11y-only coverage fixtures
   { test: 'docs/data/material/components/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+  { test: 'docs/data/material/components/progress/*', enabled: false }, // Animated progress bars make screenshots flaky; axe still runs on the enrolled LinearProgress demos
   { test: 'docs/data/material/components/toggle-button/ToggleButtonA11y*', enabled: false }, // A11y-only coverage fixtures
   {
     test: 'docs/data/material/components/toggle-button/ToggleButtonA11yTextSpacing',
@@ -184,6 +185,20 @@ const CHECKBOX_A11Y_DEMOS = [
   'IconCheckboxes',
   'SizeCheckboxes',
   'CheckboxesGroup',
+];
+
+// LinearProgress docs demos enrolled for axe assertions; CircularProgress and
+// the mixed/customized demos (CustomizedProgressBars, DelayingAppearance) are excluded.
+const LINEARPROGRESS_A11Y_DEMOS = [
+  'LinearIndeterminate',
+  'LinearDeterminate',
+  'LinearBuffer',
+  'LinearQuery',
+  'LinearColor',
+  'LinearWithValueLabel',
+  'LinearWithAriaValueText',
+  'LinearProgressA11ySemanticStates',
+  'LinearProgressA11yColorMatrix',
 ];
 
 // Radio docs demos enrolled for axe assertions. FormControlLabelPlacement is left out: its axe
@@ -271,6 +286,13 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
     skipAssertions: ['aria-conditional-attr'],
+  },
+  // FormControlLabelPosition is not enrolled: its only axe finding is an aria-label on a
+  // role-less FormGroup div (aria-prohibited-attr), a demo quirk unrelated to Checkbox.
+  {
+    test: `docs/data/material/components/progress/{${LINEARPROGRESS_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
   },
   {
     test: `docs/data/material/components/radio-buttons/{${RADIO_A11Y_DEMOS.join(',')}}`,
