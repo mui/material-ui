@@ -1225,6 +1225,53 @@ describe('<Tooltip />', () => {
       expect(handleClose.callCount).to.equal(1);
     });
 
+    it('stays closed when a stray mouseover lands after the disabled trigger closed', async () => {
+      // The layout shift from disabling the trigger makes the browser dispatch a
+      // `mouseover` under a pointer that never moved. It can arrive after the close
+      // committed, and a disabled trigger must not reopen its tooltip from it.
+      clock.restore();
+      const handleClose = spy();
+
+      function TestCase() {
+        const [disabled, setDisabled] = React.useState(false);
+        return (
+          <Tooltip
+            enterDelay={0}
+            leaveDelay={0}
+            onClose={handleClose}
+            title="Some information"
+            slotProps={{ transition: { timeout: 0 } }}
+          >
+            <button disabled={disabled} onClick={() => setDisabled(true)}>
+              Disable
+            </button>
+          </Tooltip>
+        );
+      }
+
+      const { user } = render(<TestCase />);
+
+      await user.tab();
+      await waitFor(() => {
+        expect(screen.getByRole('tooltip')).toBeVisible();
+      });
+
+      await user.keyboard('{Enter}');
+
+      await waitFor(() => {
+        expect(screen.queryByRole('tooltip')).to.equal(null);
+      });
+      expect(handleClose.callCount).to.equal(1);
+
+      // `fireEvent` keeps the pointer still, unlike `user.hover`.
+      fireEvent.mouseOver(screen.getByRole('button'));
+
+      await waitFor(() => {
+        expect(screen.queryByRole('tooltip')).to.equal(null);
+      });
+      expect(handleClose.callCount).to.equal(1);
+    });
+
     it('closes on blur', async () => {
       const eventLog = [];
       const transitionTimeout = 0;

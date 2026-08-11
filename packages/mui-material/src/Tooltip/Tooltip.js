@@ -265,6 +265,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const [arrowRef, setArrowRef] = React.useState(null);
   const ignoreNonTouchEvents = React.useRef(false);
   const openedByDisabledTriggerRef = React.useRef(false);
+  const closedByDisabledTriggerRef = React.useRef(false);
 
   const disableInteractive = disableInteractiveProp || followCursor;
 
@@ -358,14 +359,17 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     if (childNode?.disabled && !isControlled) {
       // A disabled trigger can open the tooltip if it receives pointer events.
       // However, if the trigger became disabled while the tooltip was already open,
-      // stray mouseover events must not cancel the pending close.
-      if (open && !openedByDisabledTriggerRef.current) {
+      // stray mouseover events must neither cancel the pending close nor re-open the
+      // tooltip afterwards. Disabling the trigger shifts the layout, so the browser
+      // dispatches a `mouseover` under a pointer that never moved.
+      if (closedByDisabledTriggerRef.current || (open && !openedByDisabledTriggerRef.current)) {
         return;
       }
 
       openedByDisabledTriggerRef.current = true;
     } else {
       openedByDisabledTriggerRef.current = false;
+      closedByDisabledTriggerRef.current = false;
     }
 
     handleMouseOver(event);
@@ -386,6 +390,12 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     });
   };
 
+  const handleTriggerMouseLeave = (event) => {
+    // The pointer really left the trigger, so a later `mouseover` is a genuine hover.
+    closedByDisabledTriggerRef.current = false;
+    handleMouseLeave(event);
+  };
+
   const [, setChildIsFocusVisible] = React.useState(false);
   const handleBlur = (event) => {
     // Needed for https://github.com/mui/material-ui/issues/45373
@@ -404,6 +414,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         Object.defineProperty(closeEvent, 'currentTarget', { value: target });
       }
       handleMouseLeave(closeEvent);
+
+      if (target?.disabled) {
+        closedByDisabledTriggerRef.current = true;
+      }
     }
   };
 
@@ -416,6 +430,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
 
     openedByDisabledTriggerRef.current = false;
+    closedByDisabledTriggerRef.current = false;
 
     if (isFocusVisible(event.target)) {
       // Workaround for https://github.com/react/react/issues/9142.
@@ -562,7 +577,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       handleTriggerMouseOver,
       childrenProps.onMouseOver,
     );
-    childrenProps.onMouseLeave = composeEventHandler(handleMouseLeave, childrenProps.onMouseLeave);
+    childrenProps.onMouseLeave = composeEventHandler(
+      handleTriggerMouseLeave,
+      childrenProps.onMouseLeave,
+    );
 
     if (!disableInteractive) {
       interactiveWrapperListeners.onMouseOver = handleInteractiveWrapperMouseOver;
