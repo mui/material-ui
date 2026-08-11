@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 3     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 27    |
-| 🚩 Flagged            | 5/28  |
+| 🚩 Flagged            | 4/28  |
 
 ## Known gaps
 
@@ -78,10 +78,10 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.7 Focus Visible · AA
 
-`🚩` · `✅ Supports` · `● Component`
+`✅ Supports` · `● Component`
 
 - Keyboard focus thickens the `outlined` notched outline to a 2px `color.main` border and grows the `filled` underline to a 2px `color.main` line, a clear change from the resting state.
-- Unlike the `ButtonBase` controls, no documented prop removes this indicator; an author would have to override the `.Mui-focused` styles to lose it.
+- Unlike the `ButtonBase` controls, no documented prop removes this indicator; an author would have to override the `.Mui-focused` styles to lose it. Covered by a Playwright test that compares the control focused and unfocused.
 
 **Manual testing steps**
 

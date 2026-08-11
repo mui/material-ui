@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 4     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 28    |
-| 🚩 Flagged            | 8/27  |
+| 🚩 Flagged            | 7/27  |
 
 ## Known gaps
 
@@ -212,10 +212,10 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.7 Focus Visible · AA
 
-`🚩` · `⚠️ Partially Supports` · `● Component`
+`⚠️ Partially Supports` · `● Component`
 
 - Keyboard focus shows the `.Mui-focusVisible` indicator (suppressed for mouse); `contained` adds a box-shadow on focus.
-- `disableRipple`/`disableFocusRipple` remove the ripple and `disableElevation` the `contained` box-shadow, so `text`/`outlined` lose the indicator with either ripple prop, and `contained` only when a ripple prop and `disableElevation` are both set.
+- `disableRipple`/`disableFocusRipple` remove the ripple and `disableElevation` the `contained` box-shadow, so `text`/`outlined` lose the indicator with either ripple prop, and `contained` only when a ripple prop and `disableElevation` are both set. Covered by a Playwright test that compares the control focused and unfocused.
 
 **Manual testing steps**
 
