@@ -42,16 +42,15 @@ export default function KeepMountedStandardTabs() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="keep mounted tabs example"
-        >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-        </Tabs>
-      </Box>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="keep mounted tabs example"
+        sx={{ borderBottom: 1, borderColor: 'divider' }}
+      >
+        <Tab label="Item One" {...a11yProps(0)} />
+        <Tab label="Item Two" {...a11yProps(1)} />
+      </Tabs>
       <CustomTabPanel value={value} index={0}>
         <TextField label="Item One input" />
       </CustomTabPanel>
