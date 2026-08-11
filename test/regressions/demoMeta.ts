@@ -170,6 +170,19 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   },
 ];
 
+// Switch docs demos enrolled for axe assertions. FormControlLabelPosition is
+// excluded: its `aria-label` on a role-less FormGroup div trips
+// `aria-prohibited-attr`, a demo quirk unrelated to Switch.
+const SWITCH_A11Y_DEMOS = [
+  'BasicSwitches',
+  'SwitchLabels',
+  'ColorSwitches',
+  'ControlledSwitches',
+  'CustomizedSwitches',
+  'SwitchesSize',
+  'SwitchesGroup',
+];
+
 /**
  * A11y defaults to off — only matched-and-enabled rules produce results.
  * Slug-wide rules use `*`; brace-globs narrow enrolment to specific demos;
@@ -180,6 +193,11 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
 export const A11Y_RULES: A11yRule[] = [
   {
     test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}',
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/switches/{${SWITCH_A11Y_DEMOS.join(',')}}`,
     enabled: true,
     assertions: 'all',
   },
