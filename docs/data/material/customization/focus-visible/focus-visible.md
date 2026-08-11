@@ -98,3 +98,9 @@ Hide the outline with `outlineColor: 'transparent'`, not `outline: 'none'`. In [
 The complete set of components that render the focus indicator when `focusVisible` is enabled. Use the keyboard (<kbd>Tab</kbd> and arrow keys) to move focus and reveal the ring.
 
 {{"demo": "FullFocusVisibleDemo.js"}}
+
+## Caveats
+
+### Checkbox and Radio custom icons must be SVG
+
+The Checkbox and Radio attach the focus indicator to the first `<svg>` element inside the component. When customizing them with the `icon` and `checkedIcon` props, the custom icon must render an `<svg>` element — for example an [`SvgIcon`](/material-ui/icons/#svgicon) or a plain inline `<svg>`. Icons rendered as other elements, such as font icons or `<img>`, do not receive the focus indicator.
