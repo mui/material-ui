@@ -37,12 +37,13 @@ export interface Menu2Props
    */
   children?: React.ReactNode;
   /**
-   * The element that opens the menu.
+   * The content that opens the menu.
    *
-   * An element is rendered as-is with the trigger behavior merged into it, so
-   * it keeps whatever component you passed. Anything else renders inside the
-   * default trigger. Omit it and drive the menu with `open` and `anchor`
-   * instead, which is the classic controlled pattern.
+   * A single element becomes the trigger itself: the trigger behavior merges
+   * into it, so it keeps whatever component you passed. Any other node, such as
+   * text, a fragment, or several nodes, renders inside the default trigger.
+   * Omit it and drive the menu with `open` and `anchor` instead, which is the
+   * classic controlled pattern.
    */
   trigger?: React.ReactNode;
   /**
@@ -105,9 +106,13 @@ const Menu2 = React.forwardRef(function Menu2(
   const { trigger: triggerSlotProps, ...popupSlotProps } = slotProps ?? {};
   const resolvedTriggerProps = resolveComponentProps(triggerSlotProps, themedProps);
 
+  // A fragment is a valid element but cannot take the trigger's props or ref,
+  // so it counts as content and goes inside the default trigger.
+  const triggerIsElement = React.isValidElement(trigger) && trigger.type !== React.Fragment;
+
   let triggerNode: React.ReactNode = null;
   if (trigger != null) {
-    triggerNode = React.isValidElement(trigger) ? (
+    triggerNode = triggerIsElement ? (
       // Base UI's `render` merges the trigger behavior into the element, so the
       // caller keeps whatever component they passed.
       <BaseMenu.Trigger
@@ -199,12 +204,13 @@ Menu2.propTypes /* remove-proptypes */ = {
     trigger: PropTypes.elementType,
   }),
   /**
-   * The element that opens the menu.
+   * The content that opens the menu.
    *
-   * An element is rendered as-is with the trigger behavior merged into it, so
-   * it keeps whatever component you passed. Anything else renders inside the
-   * default trigger. Omit it and drive the menu with `open` and `anchor`
-   * instead, which is the classic controlled pattern.
+   * A single element becomes the trigger itself: the trigger behavior merges
+   * into it, so it keeps whatever component you passed. Any other node, such as
+   * text, a fragment, or several nodes, renders inside the default trigger.
+   * Omit it and drive the menu with `open` and `anchor` instead, which is the
+   * classic controlled pattern.
    */
   trigger: PropTypes.node,
 } as any;

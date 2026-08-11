@@ -174,6 +174,26 @@ describe('<Menu2 /> collapsed API', () => {
     expect(Math.round(submenu.top)).to.equal(Math.round(triggerRect.top) - 8);
   });
 
+  // `trigger` is typed as a node, so every node kind has to work. A fragment is
+  // a valid element but cannot take props or a ref, so it must count as content.
+  it.each([
+    ['text', 'Options'],
+    ['a fragment', <React.Fragment key="f">Options</React.Fragment>],
+    ['several nodes', ['Options', <span key="s" />]],
+  ])('accepts %s as the trigger', async (_name, triggerValue) => {
+    const { user } = render(
+      <Menu2 trigger={triggerValue as React.ReactNode}>
+        <Menu2Item>Profile</Menu2Item>
+      </Menu2>,
+    );
+
+    const trigger = screen.getByRole('button');
+    expect(trigger).to.have.class(menu2TriggerClasses.root);
+
+    await user.click(trigger);
+    expect(await screen.findByRole('menu')).not.to.equal(null);
+  });
+
   it('falls back to the default trigger for a non-element', async () => {
     const { user } = render(
       <Menu2 trigger="Options">

@@ -216,9 +216,9 @@ The trigger part and the popup part still exist, but they are internal. We expor
 
 Three results come from this work:
 
-- **The root `trigger` takes an element.** Base UI's `render` merges the behavior into that element. Thus the caller keeps their own component. Other content renders inside the default trigger.
-- **The submenu `trigger` takes content, not an element.** This is the one place where the two levels cannot match. A submenu trigger is already a menu item. A `<Menu2Item>` in the `trigger` puts an item inside an item, and the submenu does not open.
-- **A `Tooltip` around a submenu trigger is now more difficult.** The root `trigger` takes an element, so `trigger={<Tooltip><Button /></Tooltip>}` still works. The submenu `trigger` takes content, so the wrapper must move into the root slot of the trigger, and that needs a `forwardRef` component. The test suite and the recipes page both show this.
+- **Both `trigger` props take a node.** For the root, a single element becomes the trigger itself, and Base UI's `render` merges the behavior into it, so the caller keeps their own component. Any other node, such as text, a fragment, or several nodes, renders inside the default trigger. A fragment is a valid element, but it cannot take props or a ref, so the root treats it as content.
+- **The submenu `trigger` is always content.** This is the one place where the two levels cannot match. A submenu trigger is already a menu item, so an element in the `trigger` does not replace it. A `<Menu2Item>` there puts an item inside an item, and the submenu does not open. Use `slots.trigger` to change the component.
+- **A `Tooltip` around a submenu trigger is now more difficult.** The root `trigger` accepts an element, so `trigger={<Tooltip><Button /></Tooltip>}` still works. The submenu `trigger` is content, so the wrapper must move into the root slot of the trigger, and that needs a `forwardRef` component. The test suite and the recipes page both show this.
 
 For the classic controlled pattern, omit `trigger` and control the menu with `open` and `anchor`. The context-menu recipe uses this pattern.
 
