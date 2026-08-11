@@ -196,14 +196,19 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         if (containerElement.clientHeight < listRef.current.clientHeight && noExplicitWidth) {
           const win = ownerWindow(containerElement);
           const scrollbarSizePx = getScrollbarSize(win);
-          const scrollbarSize = `${scrollbarSizePx}px`;
-          const paddingKey = direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
-          // Preserve any existing padding (e.g. set via theme/CSS) by adding to it
-          // rather than replacing it with the scrollbar width alone.
-          const existingPaddingPx =
-            parseFloat(win.getComputedStyle(listRef.current)[paddingKey]) || 0;
-          listRef.current.style[paddingKey] = `${existingPaddingPx + scrollbarSizePx}px`;
-          listRef.current.style.width = `calc(100% + ${scrollbarSize})`;
+          // Overlay scrollbars (e.g. macOS, Windows 11) have zero width — there is
+          // nothing to compensate for, and writing the inline styles anyway would
+          // freeze the current padding, overriding later theme/CSS changes.
+          if (scrollbarSizePx > 0) {
+            const scrollbarSize = `${scrollbarSizePx}px`;
+            const paddingKey = direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
+            // Preserve any existing padding (e.g. set via theme/CSS) by adding to it
+            // rather than replacing it with the scrollbar width alone.
+            const existingPaddingPx =
+              parseFloat(win.getComputedStyle(listRef.current)[paddingKey]) || 0;
+            listRef.current.style[paddingKey] = `${existingPaddingPx + scrollbarSizePx}px`;
+            listRef.current.style.width = `calc(100% + ${scrollbarSize})`;
+          }
         }
         return listRef.current;
       },
