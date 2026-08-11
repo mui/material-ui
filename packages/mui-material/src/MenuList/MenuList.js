@@ -224,7 +224,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     [focusInitialTarget],
   );
 
-  const rovingContainerProps = getContainerProps();
+  const rovingContainerProps = getContainerProps(undefined, other.onFocus);
   const handleRef = useForkRef(listRef, rovingContainerProps.ref, ref);
   const menuListContextValue = React.useMemo(
     () => ({
@@ -295,9 +295,9 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       ref={handleRef}
       className={className}
       onKeyDown={handleKeyDown}
-      onFocus={rovingContainerProps.onFocus}
       tabIndex={-1}
       {...other}
+      onFocus={rovingContainerProps.onFocus}
     >
       <MenuListContext.Provider value={menuListContextValue}>
         <RovingTabIndexContext.Provider value={rovingContainer}>
@@ -342,6 +342,10 @@ MenuList.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableListWrap: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
   /**
    * @ignore
    */
