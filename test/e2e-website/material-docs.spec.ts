@@ -23,6 +23,9 @@ test.describe('Material docs', () => {
     await page.goto('/material-ui/getting-started/installation/');
 
     await page.keyboard.press('Tab');
+
+    await expect(page.locator('a[href="#main-content"]')).toBeFocused();
+
     await page.keyboard.press('Enter');
 
     await expect(page.locator('#main-content')).toBeFocused();
