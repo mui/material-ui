@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import * as React from 'react';
+import { spy } from 'sinon';
 import {
   createRenderer,
   screen,
@@ -1029,6 +1030,167 @@ describe('<Button />', () => {
         </Button>,
       );
       expect(screen.getByRole('button')).to.have.class(classes.loadingPositionEnd);
+    });
+  });
+
+  describe('WCAG 2.2 conformance', () => {
+    it('2.1.2 No Keyboard Trap: keyboard focus can enter and leave the button', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <button type="button">Before</button>
+          <Button>Middle</Button>
+          <button type="button">After</button>
+        </React.Fragment>,
+      );
+
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
+
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'Middle' })).toHaveFocus();
+
+      // Tab moves focus back out of the button — it is never captured.
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+
+      // Shift+Tab moves back onto it.
+      await user.tab({ shift: true });
+      expect(screen.getByRole('button', { name: 'Middle' })).toHaveFocus();
+    });
+
+    describe('2.4.3 Focus Order', () => {
+      it('is a single tab stop in natural DOM order with no positive tabIndex', async () => {
+        const { user } = render(
+          <React.Fragment>
+            <button type="button">Before</button>
+            <Button>Middle</Button>
+            <button type="button">After</button>
+          </React.Fragment>,
+        );
+        expect(screen.getByRole('button', { name: 'Middle' })).to.have.property('tabIndex', 0);
+
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'Middle' })).toHaveFocus();
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+      });
+
+      it('removes a disabled button from the tab order', async () => {
+        const { user } = render(
+          <React.Fragment>
+            <Button disabled>Disabled</Button>
+            <button type="button">After</button>
+          </React.Fragment>,
+        );
+
+        // Tab skips the disabled button and lands on the next control.
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+      });
+
+      it('removes a loading button from the tab order', async () => {
+        const { user } = render(
+          <React.Fragment>
+            <Button loading>Loading</Button>
+            <button type="button">After</button>
+          </React.Fragment>,
+        );
+
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+      });
+    });
+
+    it('2.5.2 Pointer Cancellation: activates on click, but not when released off the target', async () => {
+      const handleClick = spy();
+      const { user } = render(
+        <React.Fragment>
+          <Button onClick={handleClick}>Pointer cancellation</Button>
+          <div data-testid="outside" />
+        </React.Fragment>,
+      );
+      const button = screen.getByRole('button', { name: 'Pointer cancellation' });
+
+      // Press on the button, move away, then release: nothing runs on the down
+      // event, and releasing off the target cancels the activation.
+      await user.pointer([
+        { keys: '[MouseLeft>]', target: button },
+        { target: screen.getByTestId('outside') },
+        { keys: '[/MouseLeft]' },
+      ]);
+      expect(handleClick.callCount).to.equal(0);
+
+      // A full click — press and release over the target — activates.
+      await user.click(button);
+      expect(handleClick.callCount).to.equal(1);
+    });
+
+    it('3.2.1 On Focus: moving keyboard focus to the button does not activate it', async () => {
+      const handleClick = spy();
+      const { user } = render(<Button onClick={handleClick}>On focus</Button>);
+
+      await user.tab();
+      expect(screen.getByRole('button')).toHaveFocus();
+      // Focus alone changes no context.
+      expect(handleClick.callCount).to.equal(0);
+    });
+
+    it('3.2.2 On Input: state changes only from explicit activation, never on its own', async () => {
+      const handleClick = spy();
+      const { user } = render(
+        <React.Fragment>
+          <Button onClick={handleClick} aria-pressed>
+            Pressed
+          </Button>
+          <Button onClick={handleClick} loading>
+            Loading
+          </Button>
+        </React.Fragment>,
+      );
+
+      // Neither the pressed state nor the loading state activates a button on its own.
+      expect(handleClick.callCount).to.equal(0);
+
+      // The pressed toggle changes context only when the user explicitly activates it.
+      await user.click(screen.getByRole('button', { name: 'Pressed' }));
+      expect(handleClick.callCount).to.equal(1);
+    });
+
+    describe('2.5.3 Label in Name', () => {
+      it('uses the visible text as the accessible name', () => {
+        render(<Button>Save changes</Button>);
+
+        // getByRole with `name` only resolves if the accessible name matches the label.
+        expect(screen.getByRole('button', { name: 'Save changes' })).not.to.equal(null);
+      });
+
+      it('keeps the visible words in the name when a decorative icon is present', () => {
+        render(<Button startIcon={<span data-testid="icon" />}>Delete</Button>);
+
+        expect(screen.getByRole('button', { name: 'Delete' })).not.to.equal(null);
+      });
+    });
+
+    describe('4.1.2 Name, Role, Value', () => {
+      it('renders a native button with the correct role', () => {
+        render(<Button>Submit</Button>);
+
+        expect(screen.getByRole('button', { name: 'Submit' })).to.have.tagName('button');
+      });
+
+      it('exposes the link role when rendered as an anchor', () => {
+        render(<Button href="/pricing">Pricing</Button>);
+
+        expect(screen.getByRole('link', { name: 'Pricing' })).to.have.tagName('a');
+      });
+
+      it('reflects the disabled state', () => {
+        render(<Button disabled>Submit</Button>);
+
+        expect(screen.getByRole('button')).to.have.property('disabled', true);
+      });
     });
   });
 });
