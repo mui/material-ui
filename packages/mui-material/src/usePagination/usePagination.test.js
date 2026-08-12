@@ -170,6 +170,43 @@ describe('usePagination', () => {
     expect(items[1]).to.have.property('disabled', true);
   });
 
+  it('does not render a stale uncontrolled page when count decreases', () => {
+    const result = React.createRef();
+
+    function TestCase({ count }) {
+      const hookResult = usePagination({
+        count,
+        defaultPage: 11,
+        boundaryCount: 0,
+        siblingCount: 0,
+      });
+      React.useEffect(() => {
+        result.current = hookResult;
+      }, [hookResult]);
+      return null;
+    }
+
+    const { rerender } = render(<TestCase count={11} />);
+    expect(serialize(result.current.items)).to.deep.equal(['previous', 11, 'next']);
+
+    rerender(<TestCase count={5} />);
+    expect(serialize(result.current.items)).to.deep.equal([
+      'previous',
+      'start-ellipsis',
+      4,
+      5,
+      'next',
+    ]);
+  });
+
+  it('does not render an out-of-range controlled page', () => {
+    const items = renderHook(() =>
+      usePagination({ count: 5, page: 0, boundaryCount: 0, siblingCount: 0 }),
+    ).result.current.items;
+
+    expect(serialize(items)).to.deep.equal(['previous', 1, 2, 'end-ellipsis', 'next']);
+  });
+
   it('should support boundaryCount={0}', () => {
     const items = renderHook(() =>
       usePagination({ count: 11, page: 6, boundaryCount: 0, siblingCount: 1 }),
