@@ -275,6 +275,11 @@ test.describe('Demo docs', () => {
         syncDemo.getByRole('button', { name: 'Show TypeScript source' }),
       ).toHaveAttribute('aria-pressed', 'true');
 
+      await focusedDemo.getByRole('button', { name: 'Show JavaScript source' }).click();
+      const editor = await getSelectedFileEditor(syncDemo);
+      await expect(editor).toHaveValue(/function LanguageSync\(\{ label = 'Language sync' \}\)/);
+      await expect(editor).not.toHaveValue(/LanguageSyncProps/);
+
       await page.evaluate(() => {
         document.cookie = 'codeVariant=JS;path=/';
       });
