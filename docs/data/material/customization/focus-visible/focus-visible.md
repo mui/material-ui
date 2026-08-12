@@ -112,3 +112,7 @@ The indicator hugs whatever box the svg renders at, so smaller replacement icons
 :::
 
 {{"demo": "FocusVisibleCustomIcons.js"}}
+
+### Slider skips its focus overlay
+
+When `focusVisible` is enabled, the Slider thumb does not render its translucent focus overlay — the ring is the only focus indicator. The hover and drag overlays are unchanged.
