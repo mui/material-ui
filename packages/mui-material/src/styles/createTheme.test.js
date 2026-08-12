@@ -680,6 +680,48 @@ describe('createTheme', () => {
       expect(recomposed.colorSchemes.light.focusVisible.outlineColor).to.equal('rgb(255, 0, 0)');
       expect(recomposed.colorSchemes.dark.focusVisible.outlineColor).to.equal('rgb(255, 0, 0)');
     });
+
+    it('recompose + palette change: re-passing focusVisible re-derives the ring color (the documented workaround)', () => {
+      // Without re-passing, the baked color from the old palette is kept (accepted limitation).
+      const base = createTheme({ cssVariables: false, focusVisible: true });
+      const recomposed = createTheme({
+        ...base,
+        palette: { primary: { main: '#2e7d32' } },
+        focusVisible: true,
+      });
+      expect(recomposed.palette.primary.main).to.equal('#2e7d32');
+      expect(recomposed.focusVisible.outlineColor).to.equal('#2e7d32');
+    });
+
+    it('recompose + palette change on a colorSchemes theme: re-passing focusVisible keeps every scheme reactive', () => {
+      const base = createTheme({
+        cssVariables: false,
+        colorSchemes: { light: true, dark: true },
+        focusVisible: true,
+      });
+      // The root `palette` key feeds the default (light) scheme — overriding via
+      // `colorSchemes.light.palette` is a no-op here because the spread root palette wins.
+      const recomposed = createTheme({
+        ...base,
+        palette: { primary: { main: '#2e7d32' } },
+        focusVisible: true,
+      });
+      expect(recomposed.colorSchemes.light.focusVisible.outlineColor).to.equal('#2e7d32');
+      expect(recomposed.colorSchemes.dark.focusVisible.outlineColor).to.equal(
+        recomposed.colorSchemes.dark.palette.primary.main,
+      );
+      expect(recomposed.colorSchemes.dark.focusVisible.outlineColor).not.to.equal('#2e7d32');
+    });
+
+    it('recompose + palette change via the merge-argument path: re-passing focusVisible re-derives', () => {
+      const base = createTheme({ cssVariables: false, focusVisible: true });
+      const recomposed = createTheme(base, {
+        palette: { primary: { main: '#2e7d32' } },
+        focusVisible: true,
+      });
+      expect(recomposed.palette.primary.main).to.equal('#2e7d32');
+      expect(recomposed.focusVisible.outlineColor).to.equal('#2e7d32');
+    });
   });
 
   it('shallow merges multiple arguments', () => {

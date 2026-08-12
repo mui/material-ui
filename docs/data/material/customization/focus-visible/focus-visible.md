@@ -116,3 +116,21 @@ The indicator hugs whatever box the svg renders at, so smaller replacement icons
 ### Component focus-visible styles are replaced by the theme
 
 Some components indicate keyboard focus with a translucent background or overlay by default — the Chip, MenuItem, ListItemButton, AccordionSummary, PaginationItem, CardActionArea, Autocomplete options, and the Slider thumb. When `focusVisible` is enabled, these component focus-visible styles are removed so that the theme's indicator is the only one, consistent across all components — hover, selected, and active styles are unchanged.
+
+### Recomposing a theme with a palette change
+
+Spreading a created theme into `createTheme()` while changing the palette keeps the indicator color resolved from the original palette. Re-pass `focusVisible` in the same call so the color re-derives from the new palette:
+
+```js
+const base = createTheme({ focusVisible: true });
+
+// keeps the indicator color from base's palette
+createTheme({ ...base, palette: { primary: { main: '#2e7d32' } } });
+
+// re-pass focusVisible to re-derive the color from the new palette
+createTheme({
+  ...base,
+  palette: { primary: { main: '#2e7d32' } },
+  focusVisible: true,
+});
+```
