@@ -10,6 +10,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { useFormControlState } from '../FormControl/useFormControl';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import { getTransitionStyles } from '../transitions/utils';
@@ -21,10 +22,16 @@ import {
 } from '../InputBase/InputBase';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disableUnderline } = ownerState;
+  const { classes, disableUnderline, startAdornment, endAdornment, hiddenLabel } = ownerState;
 
   const slots = {
-    root: ['root', !disableUnderline && 'underline'],
+    root: [
+      'root',
+      !disableUnderline && 'underline',
+      startAdornment && 'adornedStart',
+      endAdornment && 'adornedEnd',
+      hiddenLabel && 'hiddenLabel',
+    ],
     input: ['input'],
   };
 
@@ -154,7 +161,8 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     ...other
   } = props;
 
-  const classes = useUtilityClasses(props);
+  const [fcs] = useFormControlState({ props, states: ['hiddenLabel'] });
+  const classes = useUtilityClasses({ ...props, hiddenLabel: fcs.hiddenLabel });
 
   const ownerState = { disableUnderline };
   const inputComponentsProps = { root: { ownerState } };
