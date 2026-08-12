@@ -39,6 +39,12 @@ function focusVisibleSync(element) {
   });
 }
 
+// The real browser pointer rests at the viewport origin, where the test container starts.
+// Offset the trigger so the pointer is not inside it. https://github.com/mui/material-ui/pull/47669
+function AwayFromRealPointer({ children }) {
+  return <div style={{ margin: 50 }}>{children}</div>;
+}
+
 const fixedRightPlacementPopperProps = {
   popperOptions: {
     modifiers: [
@@ -736,23 +742,20 @@ describe('<Tooltip />', () => {
       const enterDelay = 0;
       const transitionTimeout = 10;
       render(
-        <Tooltip
-          leaveDelay={leaveDelay}
-          enterDelay={enterDelay}
-          title="tooltip"
-          slotProps={{
-            transition: { timeout: transitionTimeout },
-          }}
-        >
-          <button
-            id="testChild"
-            type="submit"
-            // Moving the button away from 0,0 to avoid interference with initial mouse position
-            style={{ margin: 1 }}
+        <AwayFromRealPointer>
+          <Tooltip
+            leaveDelay={leaveDelay}
+            enterDelay={enterDelay}
+            title="tooltip"
+            slotProps={{
+              transition: { timeout: transitionTimeout },
+            }}
           >
-            Hello World
-          </button>
-        </Tooltip>,
+            <button id="testChild" type="submit">
+              Hello World
+            </button>
+          </Tooltip>
+        </AwayFromRealPointer>,
       );
       simulatePointerDevice();
 
@@ -1148,17 +1151,19 @@ describe('<Tooltip />', () => {
         const [disabled, setDisabled] = React.useState(false);
 
         return (
-          <Tooltip
-            enterDelay={0}
-            leaveDelay={0}
-            onClose={handleClose}
-            title="Some information"
-            slotProps={{ transition: { timeout: 0 } }}
-          >
-            <button disabled={disabled} onClick={() => setDisabled(true)}>
-              Disable
-            </button>
-          </Tooltip>
+          <AwayFromRealPointer>
+            <Tooltip
+              enterDelay={0}
+              leaveDelay={0}
+              onClose={handleClose}
+              title="Some information"
+              slotProps={{ transition: { timeout: 0 } }}
+            >
+              <button disabled={disabled} onClick={() => setDisabled(true)}>
+                Disable
+              </button>
+            </Tooltip>
+          </AwayFromRealPointer>
         );
       }
 
@@ -1191,17 +1196,19 @@ describe('<Tooltip />', () => {
       function TestCase() {
         const [disabled, setDisabled] = React.useState(false);
         return (
-          <Tooltip
-            enterDelay={0}
-            leaveDelay={100}
-            onClose={handleClose}
-            title="Some information"
-            slotProps={{ transition: { timeout: 0 } }}
-          >
-            <button disabled={disabled} onClick={() => setDisabled(true)}>
-              Disable
-            </button>
-          </Tooltip>
+          <AwayFromRealPointer>
+            <Tooltip
+              enterDelay={0}
+              leaveDelay={100}
+              onClose={handleClose}
+              title="Some information"
+              slotProps={{ transition: { timeout: 0 } }}
+            >
+              <button disabled={disabled} onClick={() => setDisabled(true)}>
+                Disable
+              </button>
+            </Tooltip>
+          </AwayFromRealPointer>
         );
       }
 
