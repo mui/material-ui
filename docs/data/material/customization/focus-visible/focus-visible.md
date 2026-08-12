@@ -115,6 +115,4 @@ The indicator hugs whatever box the svg renders at, so smaller replacement icons
 
 ### Built-in focus-visible styles are replaced by the theme
 
-Some components indicate keyboard focus with a translucent background or overlay by default — the Chip, MenuItem, ListItemButton, AccordionSummary, PaginationItem, CardActionArea, Autocomplete options, and the Slider thumb. When `focusVisible` is enabled, these built-in focus-visible styles are removed so that the theme's indicator is the only one, consistent across all components.
-
-Hover, selected, and active styles are unchanged.
+Some components indicate keyboard focus with a translucent background or overlay by default — the Chip, MenuItem, ListItemButton, AccordionSummary, PaginationItem, CardActionArea, Autocomplete options, and the Slider thumb. When `focusVisible` is enabled, these built-in focus-visible styles are removed so that the theme's indicator is the only one, consistent across all components — hover, selected, and active styles are unchanged.
