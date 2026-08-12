@@ -21,7 +21,6 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
       {overline && (
         <Typography
           id={id}
-          component="h2"
           variant="body2"
           sx={{
             fontWeight: 'bold',
