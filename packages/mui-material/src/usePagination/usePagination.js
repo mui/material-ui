@@ -83,7 +83,7 @@ export default function usePagination(props = {}) {
   }
 
   const body =
-    boundaryCount === 0 && siblingCount === 0
+    count > 0 && boundaryCount === 0 && siblingCount === 0
       ? [page]
       : [
           ...startPages,

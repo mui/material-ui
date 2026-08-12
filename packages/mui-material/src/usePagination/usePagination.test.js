@@ -161,6 +161,15 @@ describe('usePagination', () => {
     });
   });
 
+  it('does not render a page when count is zero', () => {
+    const items = renderHook(() => usePagination({ count: 0, boundaryCount: 0, siblingCount: 0 }))
+      .result.current.items;
+
+    expect(serialize(items)).to.deep.equal(['previous', 'next']);
+    expect(items[0]).to.have.property('disabled', true);
+    expect(items[1]).to.have.property('disabled', true);
+  });
+
   it('should support boundaryCount={0}', () => {
     const items = renderHook(() =>
       usePagination({ count: 11, page: 6, boundaryCount: 0, siblingCount: 1 }),
