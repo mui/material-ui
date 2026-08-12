@@ -84,12 +84,14 @@ const ListItemButtonRoot = styled(ButtonBase, {
         (theme.vars || theme).palette.primary.main,
         (theme.vars || theme).palette.action.selectedOpacity,
       ),
-      [`&.${listItemButtonClasses.focusVisible}`]: {
-        backgroundColor: theme.alpha(
-          (theme.vars || theme).palette.primary.main,
-          `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
-        ),
-      },
+      ...(!theme.focusVisible && {
+        [`&.${listItemButtonClasses.focusVisible}`]: {
+          backgroundColor: theme.alpha(
+            (theme.vars || theme).palette.primary.main,
+            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+          ),
+        },
+      }),
     },
     [`&.${listItemButtonClasses.selected}:hover`]: {
       backgroundColor: theme.alpha(
@@ -104,11 +106,14 @@ const ListItemButtonRoot = styled(ButtonBase, {
         ),
       },
     },
-    [`&.${listItemButtonClasses.focusVisible}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.focus,
-    },
-    // Inset the ring: a scrolling List (drawers, long lists) clips an outset ring.
-    ...(theme.focusVisible && applyInsetFocusVisible(1)),
+    ...(theme.focusVisible
+      ? // Inset the ring: a scrolling List (drawers, long lists) clips an outset ring.
+        applyInsetFocusVisible(1)
+      : {
+          [`&.${listItemButtonClasses.focusVisible}`]: {
+            backgroundColor: (theme.vars || theme).palette.action.focus,
+          },
+        }),
     [`&.${listItemButtonClasses.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },

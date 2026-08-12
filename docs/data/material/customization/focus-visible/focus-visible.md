@@ -113,6 +113,8 @@ The indicator hugs whatever box the svg renders at, so smaller replacement icons
 
 {{"demo": "FocusVisibleCustomIcons.js"}}
 
-### Slider skips its focus overlay
+### Built-in focus-visible styles are replaced by the theme
 
-When `focusVisible` is enabled, the Slider thumb does not render its translucent focus overlay — the ring is the only focus indicator. The hover and drag overlays are unchanged.
+Some components indicate keyboard focus with a translucent background or overlay by default — the Chip, MenuItem, ListItemButton, AccordionSummary, PaginationItem, CardActionArea, Autocomplete options, and the Slider thumb. When `focusVisible` is enabled, these built-in focus-visible styles are removed so that the theme's indicator is the only one, consistent across all components.
+
+Hover, selected, and active styles are unchanged.

@@ -38,11 +38,14 @@ const CardActionAreaRoot = styled(ButtonBase, {
         opacity: 0,
       },
     },
-    [`&.${cardActionAreaClasses.focusVisible} .${cardActionAreaClasses.focusHighlight}`]: {
-      opacity: (theme.vars || theme).palette.action.focusOpacity,
-    },
-    // Inset the ring: Card sets overflow:hidden, which clips an outset ring.
-    ...(theme.focusVisible && applyInsetFocusVisible(1)),
+    ...(theme.focusVisible
+      ? // Inset the ring: Card sets overflow:hidden, which clips an outset ring.
+        applyInsetFocusVisible(1)
+      : {
+          [`&.${cardActionAreaClasses.focusVisible} .${cardActionAreaClasses.focusHighlight}`]: {
+            opacity: (theme.vars || theme).palette.action.focusOpacity,
+          },
+        }),
   })),
 );
 

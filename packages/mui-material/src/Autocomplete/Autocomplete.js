@@ -369,16 +369,17 @@ const AutocompleteListbox = styled('ul', {
         opacity: (theme.vars || theme).palette.action.disabledOpacity,
         pointerEvents: 'none',
       },
-      [`&.${autocompleteClasses.focusVisible}`]: {
-        backgroundColor: (theme.vars || theme).palette.action.focus,
-        // Options are plain <li> (not ButtonBase), so add the curated ring here — keyed to the
-        // keyboard-navigation state. `applyInsetFocusVisible` sets the private vars the ring reads so it
-        // insets: the listbox scrolls and would clip an outset ring.
-        ...(theme.focusVisible && {
-          ...applyInsetFocusVisible(1),
-          ...theme.focusVisible,
-        }),
-      },
+      [`&.${autocompleteClasses.focusVisible}`]: theme.focusVisible
+        ? {
+            // Options are plain <li> (not ButtonBase), so add the curated ring here — keyed to the
+            // keyboard-navigation state. `applyInsetFocusVisible` sets the private vars the ring reads so it
+            // insets: the listbox scrolls and would clip an outset ring.
+            ...applyInsetFocusVisible(1),
+            ...theme.focusVisible,
+          }
+        : {
+            backgroundColor: (theme.vars || theme).palette.action.focus,
+          },
       '&[aria-selected="true"]': {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,

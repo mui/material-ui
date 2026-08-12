@@ -85,12 +85,14 @@ const MenuItemRoot = styled(ButtonBase, {
         (theme.vars || theme).palette.primary.main,
         (theme.vars || theme).palette.action.selectedOpacity,
       ),
-      [`&.${menuItemClasses.focusVisible}`]: {
-        backgroundColor: theme.alpha(
-          (theme.vars || theme).palette.primary.main,
-          `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
-        ),
-      },
+      ...(!theme.focusVisible && {
+        [`&.${menuItemClasses.focusVisible}`]: {
+          backgroundColor: theme.alpha(
+            (theme.vars || theme).palette.primary.main,
+            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+          ),
+        },
+      }),
     },
     [`&.${menuItemClasses.selected}:hover`]: {
       backgroundColor: theme.alpha(
@@ -105,11 +107,14 @@ const MenuItemRoot = styled(ButtonBase, {
         ),
       },
     },
-    [`&.${menuItemClasses.focusVisible}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.focus,
-    },
-    // Inset the ring: a scrolling Menu/MenuList clips an outset ring.
-    ...(theme.focusVisible && applyInsetFocusVisible(1)),
+    ...(theme.focusVisible
+      ? // Inset the ring: a scrolling Menu/MenuList clips an outset ring.
+        applyInsetFocusVisible(1)
+      : {
+          [`&.${menuItemClasses.focusVisible}`]: {
+            backgroundColor: (theme.vars || theme).palette.action.focus,
+          },
+        }),
     [`&.${menuItemClasses.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },
