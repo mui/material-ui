@@ -103,4 +103,12 @@ The complete set of components that render the focus indicator when `focusVisibl
 
 ### Checkbox and Radio custom icons must be SVG
 
-The Checkbox and Radio attach the focus indicator to the first `<svg>` element inside the component. When customizing them with the `icon` and `checkedIcon` props, the custom icon must render an `<svg>` element — for example an [`SvgIcon`](/material-ui/icons/#svgicon) or a plain inline `<svg>`. Icons rendered as other elements, such as font icons or `<img>`, do not receive the focus indicator.
+The Checkbox and Radio attach the focus indicator to the first `<svg>` element inside the component. When customizing them with the `icon` and `checkedIcon` props, the custom icon must render an `<svg>` element — icons rendered as other elements, such as font icons or `<img>`, do not receive the focus indicator.
+
+The indicator hugs whatever box the svg renders at, so smaller replacement icons get a proportionally tighter ring with no extra tuning.
+
+:::success
+[`SvgIcon`](/material-ui/icons/#svgicon) is recommended to wrap custom svgs to get consistent styles.
+:::
+
+{{"demo": "FocusVisibleCustomIcons.js"}}
