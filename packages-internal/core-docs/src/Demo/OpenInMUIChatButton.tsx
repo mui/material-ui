@@ -1,4 +1,6 @@
 import * as React from 'react';
+import useForkRef from '@mui/utils/useForkRef';
+import { getActiveElement, ownerDocument } from '@mui/material/utils';
 import { styled, keyframes, alpha } from '@mui/material/styles';
 import Button, { type ButtonProps } from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -98,6 +100,27 @@ export const OpenInMUIChatButton = React.forwardRef<HTMLButtonElement, OpenInMUI
     const baseUrl = process.env.MUI_CHAT_API_BASE_URL;
     const scopes = process.env.MUI_CHAT_SCOPES;
 
+    const rainbowButtonRef = React.useRef<HTMLButtonElement | null>(null);
+    const handleRef = useForkRef<HTMLButtonElement>(ref, rainbowButtonRef);
+    const wasLoadingRef = React.useRef(false);
+
+    React.useEffect(() => {
+      if (wasLoadingRef.current && !loading) {
+        const rainbowButton = rainbowButtonRef.current;
+        const document = ownerDocument(rainbowButton);
+        const activeElement = getActiveElement(document);
+
+        if (
+          activeElement === document.body ||
+          activeElement === null ||
+          activeElement === document.documentElement
+        ) {
+          rainbowButtonRef.current?.focus();
+        }
+      }
+      wasLoadingRef.current = loading;
+    }, [loading]);
+
     const handleClick = async () => {
       setLoading(true);
       setError(null);
@@ -120,9 +143,8 @@ export const OpenInMUIChatButton = React.forwardRef<HTMLButtonElement, OpenInMUI
       <React.Fragment>
         <RainbowButton
           data-mui-color-scheme="dark"
-          ref={ref}
+          ref={handleRef}
           loading={loading}
-          disabled={!!error}
           loadingIndicator={<CircularProgress color="inherit" size={12} />}
           onClick={handleClick}
           {...props}

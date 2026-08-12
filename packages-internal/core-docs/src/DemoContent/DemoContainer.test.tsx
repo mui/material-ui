@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/material/styles';
 import { brandingLightTheme } from '../branding';
 import { UserLanguageProvider } from '../i18n';
@@ -72,6 +72,26 @@ describe('DemoContainer', () => {
     );
 
     expect(document.getElementById('demo-source')).to.have.text('source');
+  });
+
+  it.skipIf(isJsdom())('separates an inline preview from its toolbar', () => {
+    render(
+      <UserLanguageProvider defaultUserLanguage="en">
+        <ThemeProvider theme={brandingLightTheme}>
+          <DemoContainer
+            preview={<div />}
+            toolbar={<div />}
+            toolbarLabel="Demo actions"
+            bg="inline"
+          />
+        </ThemeProvider>
+      </UserLanguageProvider>,
+    );
+
+    expect(screen.getByRole('toolbar', { hidden: true })).toHaveComputedStyle({
+      marginTop: '8px',
+      borderTopWidth: '1px',
+    });
   });
 
   it('reserves the full file tab bar height while loading', () => {

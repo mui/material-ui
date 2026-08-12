@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { deepmerge, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { ThemeProvider as SystemThemeProvider } from '@mui/system';
-import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useTheme, enhanceHighContrast } from '@mui/material/styles';
 import { ThemeOptionsContext, highDensity } from '../ThemeContext';
 import { BrandingCssVarsProvider } from '../branding';
 import { DemoIframe, IsolatedDemo } from '../DemoContent/DemoSandbox';
@@ -221,11 +221,13 @@ export function DemoComponentTheme({
   children,
   isolated,
   iframe,
+  iframeStyle,
   name,
 }: {
   children: React.ReactNode;
   isolated?: boolean;
   iframe?: boolean;
+  iframeStyle?: React.CSSProperties;
   name: string;
 }) {
   const [colorSchemeNode, setColorSchemeNode] = React.useState<HTMLDivElement | null>(null);
@@ -239,7 +241,7 @@ export function DemoComponentTheme({
         })}
       >
         {iframe ? (
-          <DemoIframe name={name} isolated>
+          <DemoIframe name={name} isolated style={iframeStyle}>
             {/* `IsolatedDemo` receives the iframe `window` via `FramedDemo`'s
                 `cloneElement`, so its `CssVarsProvider` attaches to the iframe. */}
             <IsolatedDemo cssVarPrefix={name}>{children as React.ReactElement}</IsolatedDemo>
@@ -258,7 +260,9 @@ export function DemoComponentTheme({
   return (
     <DemoRuntimeThemeProvider>
       {iframe && React.isValidElement(children) ? (
-        <DemoIframe name={name}>{children}</DemoIframe>
+        <DemoIframe name={name} style={iframeStyle}>
+          {children}
+        </DemoIframe>
       ) : (
         children
       )}
