@@ -155,7 +155,25 @@ export default function DemoContent(props: DemoContentProps) {
   const codeVariant = useCodeVariant();
   const noSsrCodeVariant = useNoSsrCodeVariant();
   const setCodeVariant = useSetCodeVariant();
-  const selectedTransform = (noSsrCodeVariant ?? codeVariant) === CODE_VARIANTS.JS ? 'js' : null;
+  const requestedTransform = (noSsrCodeVariant ?? codeVariant) === CODE_VARIANTS.JS ? 'js' : null;
+  const hasControlledCode = codeController?.code != null;
+  const [transformActivation, setTransformActivation] = React.useState({
+    hasControlledCode,
+    suspended: false,
+  });
+  if (transformActivation.hasControlledCode !== hasControlledCode) {
+    setTransformActivation({
+      hasControlledCode,
+      suspended: hasControlledCode && requestedTransform === 'js',
+    });
+  }
+  React.useLayoutEffect(() => {
+    if (transformActivation.suspended) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- apply the transform after the seeded source commits
+      setTransformActivation((current) => ({ ...current, suspended: false }));
+    }
+  }, [transformActivation.suspended]);
+  const selectedTransform = transformActivation.suspended ? null : requestedTransform;
   const handleSelectedTransformChange = React.useCallback(
     (transform: string | null) => {
       setCodeVariant(transform === 'js' ? CODE_VARIANTS.JS : CODE_VARIANTS.TS);
