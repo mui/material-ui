@@ -12,6 +12,9 @@ const List = styled('ul')({
 });
 
 export default function UsePagination() {
+  const firstPageRef = React.useRef<HTMLButtonElement>(null);
+  const lastPageRef = React.useRef<HTMLButtonElement>(null);
+
   // @focus-start @padding 1
   const { items } = usePagination({
     count,
