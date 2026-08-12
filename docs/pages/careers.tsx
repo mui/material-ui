@@ -137,7 +137,7 @@ export default function Careers() {
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <Section cozy bg="gradient">
           <SectionHeadline
             alwaysCenter
