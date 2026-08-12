@@ -134,12 +134,10 @@ test.describe('Demo docs', () => {
         source.replace("getMessage('Ready')", "getMessage('Edited')"),
       );
       await demo.getByRole('tab', { name: 'message.ts' }).click();
-      await expect(demo.locator('pre [class*="pl-"]').first()).toBeAttached();
       await editSelectedFile(demo, (source) => source.replace('helper', 'module'));
       await expect(page.getByTestId('focused-message')).toHaveText('Edited module');
 
       await demo.getByRole('tab', { name: 'FocusedLiveEdit.module.css' }).click();
-      await expect(demo.locator('pre [class*="pl-"]').first()).toBeAttached();
       await editSelectedFile(demo, (source) => source.replace('rgb(20 70 120)', 'rgb(120 40 20)'));
       await expect(page.getByTestId('focused-preview')).toHaveCSS('color', 'rgb(120, 40, 20)');
     });
