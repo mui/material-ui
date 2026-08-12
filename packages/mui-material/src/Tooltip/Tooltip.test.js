@@ -40,7 +40,7 @@ function focusVisibleSync(element) {
 }
 
 // The real browser pointer rests at the viewport origin, where the test container starts.
-// Offset the trigger so a layout shift cannot dispatch a stray `mouseover` on it.
+// Offset the trigger so the pointer is not inside it. https://github.com/mui/material-ui/pull/47669
 function AwayFromRealPointer({ children }) {
   return <div style={{ margin: 50 }}>{children}</div>;
 }
@@ -742,23 +742,20 @@ describe('<Tooltip />', () => {
       const enterDelay = 0;
       const transitionTimeout = 10;
       render(
-        <Tooltip
-          leaveDelay={leaveDelay}
-          enterDelay={enterDelay}
-          title="tooltip"
-          slotProps={{
-            transition: { timeout: transitionTimeout },
-          }}
-        >
-          <button
-            id="testChild"
-            type="submit"
-            // Moving the button away from 0,0 to avoid interference with initial mouse position
-            style={{ margin: 1 }}
+        <AwayFromRealPointer>
+          <Tooltip
+            leaveDelay={leaveDelay}
+            enterDelay={enterDelay}
+            title="tooltip"
+            slotProps={{
+              transition: { timeout: transitionTimeout },
+            }}
           >
-            Hello World
-          </button>
-        </Tooltip>,
+            <button id="testChild" type="submit">
+              Hello World
+            </button>
+          </Tooltip>
+        </AwayFromRealPointer>,
       );
       simulatePointerDevice();
 
