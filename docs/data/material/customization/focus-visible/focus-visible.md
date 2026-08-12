@@ -124,10 +124,7 @@ Spreading a created theme into `createTheme()` while changing the palette keeps 
 ```js
 const base = createTheme({ focusVisible: true });
 
-// keeps the indicator color from base's palette
-createTheme({ ...base, palette: { primary: { main: '#2e7d32' } } });
-
-// re-pass focusVisible to re-derive the color from the new palette
+// ✅ re-pass focusVisible to re-derive the color from the new palette
 createTheme({
   ...base,
   palette: { primary: { main: '#2e7d32' } },
