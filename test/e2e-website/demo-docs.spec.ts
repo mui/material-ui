@@ -279,6 +279,8 @@ test.describe('Demo docs', () => {
       const editor = await getSelectedFileEditor(syncDemo);
       await expect(editor).toHaveValue(/function LanguageSync\(\{ label = 'Language sync' \}\)/);
       await expect(editor).not.toHaveValue(/LanguageSyncProps/);
+      await page.waitForTimeout(500);
+      await expect(editor).not.toHaveValue(/LanguageSyncProps/);
 
       await page.evaluate(() => {
         document.cookie = 'codeVariant=JS;path=/';
