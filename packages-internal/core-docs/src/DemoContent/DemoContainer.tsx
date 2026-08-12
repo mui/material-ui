@@ -212,7 +212,9 @@ export const DemoAnchorLink = styled('div')({
 // (the toolbar is the demo's visual bottom) and square so it merges into the
 // code panel when a source window is visible below it — see the `DemoRoot`
 // `data-code-open` rule driven by `sourceVisible`.
-export const DemoToolbarRoot = styled('div')(({ theme }) => [
+export const DemoToolbarRoot = styled('div', {
+  shouldForwardProp: (prop) => prop !== 'bg',
+})<{ bg?: string | boolean }>(({ theme }) => [
   {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
@@ -227,6 +229,17 @@ export const DemoToolbarRoot = styled('div')(({ theme }) => [
       backgroundColor: alpha(theme.palette.grey[50], 0.2),
       borderRadius: '0 0 12px 12px',
     },
+    variants: [
+      {
+        props: { bg: 'inline' },
+        style: {
+          [theme.breakpoints.up('sm')]: {
+            marginTop: theme.spacing(1),
+            borderTopWidth: 1,
+          },
+        },
+      },
+    ],
     '& .MuiIconButton-root': {
       '&:hover': {
         backgroundColor: (theme.vars || theme).palette.grey[100],
@@ -593,7 +606,12 @@ export function DemoContainer(props: DemoContainerProps) {
   const themedName = name ?? 'demo';
   const themedPreview = (
     <DemoErrorBoundary key={previewEpoch} name={themedName} onReset={onReset}>
-      <DemoComponentTheme isolated={isolated} iframe={iframe} name={themedName}>
+      <DemoComponentTheme
+        isolated={isolated}
+        iframe={iframe}
+        iframeStyle={iframe ? previewStyle : undefined}
+        name={themedName}
+      >
         {preview}
       </DemoComponentTheme>
     </DemoErrorBoundary>
@@ -632,7 +650,7 @@ export function DemoContainer(props: DemoContainerProps) {
         hideToolbar={hideToolbar}
       >
         <DemoInitialFocus ref={focusRef} tabIndex={-1} aria-label={t('initialFocusLabel')} />
-        {previewStyle ? (
+        {previewStyle && !iframe ? (
           <DemoPreviewSandbox style={previewStyle}>{themedPreview}</DemoPreviewSandbox>
         ) : (
           themedPreview
@@ -643,6 +661,7 @@ export function DemoContainer(props: DemoContainerProps) {
         <React.Fragment>
           <DemoToolbarRoot
             ref={toolbarRef}
+            bg={resolvedBg}
             role="toolbar"
             aria-label={toolbarLabel}
             onKeyDown={onToolbarKeyDown}

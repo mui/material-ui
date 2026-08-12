@@ -67,7 +67,7 @@ function DemoErrorFallback({ error, name, onReset }: DemoErrorFallbackProps) {
       </Typography>
       <Typography>
         {'We would appreciate it if you '}
-        <Link href={issueLink} rel="noopener" target="_blank">
+        <Link href={issueLink} target="_blank">
           report this error
         </Link>
         {

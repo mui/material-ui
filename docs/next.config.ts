@@ -18,6 +18,47 @@ const workspaceRoot = path.join(currentDirectory, '../');
 const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 'utf8');
 const pkg = JSON.parse(pkgContent);
 
+// Shared alias list, paths relative to the workspace root. For turbopack, prefixed
+// with `../` (relative to `docs/`), and for webpack, resolved absolute.
+const aliasEntries: ReadonlyArray<readonly [string, string]> = [
+  ['@mui/material', 'packages/mui-material/src'],
+  ['@mui/material/package.json', 'packages/mui-material/package.json'],
+  ['@mui/internal-core-docs', 'packages-internal/core-docs/src'],
+  ['@mui/styled-engine', 'packages/mui-styled-engine/src'],
+  ['@mui/system', 'packages/mui-system/src'],
+  ['@mui/system/package.json', 'packages/mui-system/package.json'],
+  ['@mui/private-theming', 'packages/mui-private-theming/src'],
+  ['@mui/utils', 'packages/mui-utils/src'],
+  ['@mui/material-nextjs', 'packages/mui-material-nextjs/src'],
+];
+
+const turbopackResolveAlias: Record<string, string> = {
+  ...Object.fromEntries(aliasEntries.map(([name, rel]) => [name, `../${rel}`])),
+  // Bare `@mui/icons-material` → ESM index for namespace interop; deep imports
+  // (`@mui/icons-material/Add`) fall through to the installed package.
+  '@mui/icons-material': '../packages/mui-icons-material/lib/index.mjs',
+  // Mirrors the `docs` alias from babel.config.mjs / babel-plugin-module-resolver.
+  docs: '.',
+};
+
+const markdownLoaderBase = {
+  workspaceRoot,
+  languagesInProgress: [],
+  packages: [
+    {
+      productId: 'material-ui',
+      paths: [
+        path.join(workspaceRoot, 'packages/mui-lab/src'),
+        path.join(workspaceRoot, 'packages/mui-material/src'),
+      ],
+    },
+  ],
+  env: {
+    SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
+    LIB_VERSION: pkg.version,
+  },
+};
+
 export default withDeploymentConfig({
   turbopack: {
     resolveAlias: turbopackResolveAlias,
@@ -67,6 +108,14 @@ export default withDeploymentConfig({
       './**/demos/*/client.ts': {
         loaders: ['@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighterClient'],
       },
+      // API page description JSON (imported only by generated API pages) → render
+      // the markdown to HTML at build time.
+      '**/translations/api-docs/**/*.json': [
+        {
+          loaders: [{ loader: '@mui/internal-markdown/apiPageTranslationLoader' }],
+          as: '*.js',
+        },
+      ],
     },
   },
   webpack: (
@@ -221,6 +270,13 @@ export default withDeploymentConfig({
               '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighterClient',
             ],
           },
+          {
+            // API page description JSON (`translations/api-docs/**`, imported only by
+            // generated API pages) → render the markdown to HTML at build time.
+            test: /translations[\\/]api-docs[\\/].*\.json$/,
+            type: 'javascript/auto',
+            use: [{ loader: require.resolve('@mui/internal-markdown/apiPageTranslationLoader') }],
+          },
           // required to transpile ../packages/
           {
             test: /\.(js|mjs|tsx|ts)$/,
@@ -249,6 +305,10 @@ export default withDeploymentConfig({
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     SOURCE_GITHUB_BRANCH: 'master', // #target-branch-reference
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
+    // Selects the analytics target (Google Analytics + Apollo). Provided per
+    // deployment via the environment; production analytics requires
+    // `ANALYTICS_ENV=production` to be set explicitly.
+    ANALYTICS_ENV: process.env.ANALYTICS_ENV,
     // Legacy Netlify-prefixed env vars still read by the fork (e.g. pages/_app.tsx).
     // withDeploymentConfig exposes the same values under the SITE_NAME / SITE_DEPLOY_URL names.
     NETLIFY_SITE_NAME: process.env.SITE_NAME,

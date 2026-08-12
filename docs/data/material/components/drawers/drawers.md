@@ -139,4 +139,7 @@ Apps focused on information consumption that use a left-to-right hierarchy.
 
 Apps focused on productivity that require balance across the screen.
 
+The demo keeps the Drawer below the fixed App Bar by rendering an empty `Toolbar` at the top of the Drawer content.
+This spacer matches the App Bar height so navigation items are not covered by the App Bar.
+
 {{"component": "file://./demos/clipped/index.ts", "iframe": true}}

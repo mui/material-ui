@@ -14,6 +14,7 @@ import * as path from 'node:path';
 import vitestPlugin from '@vitest/eslint-plugin';
 import { fileURLToPath } from 'url';
 import { lintJavascriptDemoFocus } from '@mui/internal-docs-infra/pipeline/lintJavascriptDemoFocus';
+import remarkConfig from './.remarkrc.mjs';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
