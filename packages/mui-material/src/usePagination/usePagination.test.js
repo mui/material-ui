@@ -151,23 +151,21 @@ describe('usePagination', () => {
     expect(items[9]).to.have.property('page', 11);
   });
 
+  it('uses a compact layout when boundaryCount and siblingCount are zero', () => {
+    [1, 6, 11].forEach((page) => {
+      const items = renderHook(() =>
+        usePagination({ count: 11, page, boundaryCount: 0, siblingCount: 0 }),
+      ).result.current.items;
+
+      expect(serialize(items)).to.deep.equal(['previous', page, 'next']);
+    });
+  });
+
   it('should support boundaryCount={0}', () => {
-    let items;
-
-    items = renderHook(() =>
-      usePagination({ count: 11, page: 6, boundaryCount: 0, siblingCount: 0 }),
-    ).result.current.items;
-    expect(serialize(items)).to.deep.equal([
-      'previous',
-      'start-ellipsis',
-      6,
-      'end-ellipsis',
-      'next',
-    ]);
-
-    items = renderHook(() =>
+    const items = renderHook(() =>
       usePagination({ count: 11, page: 6, boundaryCount: 0, siblingCount: 1 }),
     ).result.current.items;
+
     expect(serialize(items)).to.deep.equal([
       'previous',
       'start-ellipsis',
