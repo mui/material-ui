@@ -1,9 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent, screen, waitFor } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme, useColorScheme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import DemoContext from '../DemoContext';
 import { DemoComponentTheme, DemoInstanceThemeProvider } from './DemoThemeProviders';
 
 function DarkMode() {
@@ -31,6 +32,10 @@ function ThemeProbe({ testId }: { testId: string }) {
 
 function IsolatedProbe() {
   return <div>isolated</div>;
+}
+
+function IframeProbe(_props: { window?: () => Window | null }) {
+  return <div>framed</div>;
 }
 
 const outerTheme = createTheme();
@@ -127,6 +132,27 @@ describe('docs demo theming', () => {
 
     await waitFor(() => expect(screen.getByTestId('invalid')).to.have.text('base'));
     delete runtimeWindow.getInjectTheme;
+  });
+
+  it.skipIf(isJsdom())('applies preview constraints to iframe demos', () => {
+    render(
+      <DemoContext.Provider
+        value={{
+          productDisplayName: 'Material UI',
+          csb: { primaryPackage: '@mui/material' },
+        }}
+      >
+        <ThemeProvider theme={outerTheme}>
+          <DemoComponentTheme name="framed" iframe iframeStyle={{ width: 320, height: 120 }}>
+            <IframeProbe />
+          </DemoComponentTheme>
+        </ThemeProvider>
+      </DemoContext.Provider>,
+    );
+
+    const iframe = screen.getByTitle('framed demo');
+    expect(iframe.style.width).to.equal('320px');
+    expect(iframe.style.height).to.equal('120px');
   });
 
   it('does not call the runtime theme bridge for isolated demos', async () => {
