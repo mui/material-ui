@@ -1402,22 +1402,29 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiSwitch|root|base||width': {
     label: 'Switch · width',
     hidden: true,
-    note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
+    note: 'Geometry derives from the six per-size Switch vars — the var rows are the knobs.',
   },
   'MuiSwitch|root|base||height': {
     label: 'Switch · height',
     hidden: true,
-    note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
+    note: 'Geometry derives from the six per-size Switch vars — the var rows are the knobs.',
   },
   'MuiSwitch|root|base||padding': {
     label: 'Switch · padding',
     hidden: true,
-    note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
+    note: 'Geometry derives from the six per-size Switch vars — the var rows are the knobs.',
   },
   'MuiSwitch|root|size=medium||--_width': 'Switch · width [size=medium]',
   'MuiSwitch|root|size=medium||--_height': 'Switch · height [size=medium]',
-  'MuiSwitch|root|size=medium||--_thumbSize': 'Switch · thumb size [size=medium]',
-  'MuiSwitch|root|size=medium||--_touchSize': 'Switch · touch size [size=medium]',
+  'MuiSwitch|root|size=medium||--_thumbHeight': {
+    label: 'Switch · thumb size [size=medium]',
+    note: 'Keep <= touch size (--_touchSize): the switchBase padding is calc((--_touchSize - --_thumbHeight) / 2) and clips if the thumb height exceeds it.',
+  },
+  'MuiSwitch|root|size=medium||--_thumbWidth': 'Switch · thumb width [size=medium]',
+  'MuiSwitch|root|size=medium||--_touchSize': {
+    label: 'Switch · touch size [size=medium]',
+    note: 'Must stay >= thumb size (--_thumbHeight): the switchBase padding calc((--_touchSize - --_thumbHeight) / 2) goes negative below it.',
+  },
   'MuiSwitch|root|size=medium||--_pad': 'Switch · gutter [size=medium]',
   'MuiSwitch|root|size=medium|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft':
     'Switch · marginLeft [size=medium]',
@@ -1425,8 +1432,15 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     'Switch · marginRight [size=medium]',
   'MuiSwitch|root|size=small||--_width': 'Switch · width [size=small]',
   'MuiSwitch|root|size=small||--_height': 'Switch · height [size=small]',
-  'MuiSwitch|root|size=small||--_thumbSize': 'Switch · thumb size [size=small]',
-  'MuiSwitch|root|size=small||--_touchSize': 'Switch · touch size [size=small]',
+  'MuiSwitch|root|size=small||--_thumbHeight': {
+    label: 'Switch · thumb size [size=small]',
+    note: 'Keep <= touch size (--_touchSize): the switchBase padding is calc((--_touchSize - --_thumbHeight) / 2) and clips if the thumb height exceeds it.',
+  },
+  'MuiSwitch|root|size=small||--_thumbWidth': 'Switch · thumb width [size=small]',
+  'MuiSwitch|root|size=small||--_touchSize': {
+    label: 'Switch · touch size [size=small]',
+    note: 'Must stay >= thumb size (--_thumbHeight): the switchBase padding calc((--_touchSize - --_thumbHeight) / 2) goes negative below it.',
+  },
   'MuiSwitch|root|size=small||--_pad': 'Switch · gutter [size=small]',
   'MuiSwitch|root|size=small|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft':
     'Switch · marginLeft [size=small]',
@@ -1435,64 +1449,64 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiSwitch|root|size=small|& .MuiSwitch-thumb|width': {
     label: 'Switch · width [size=small]',
     hidden: true,
-    note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
+    note: 'Geometry derives from the six per-size Switch vars — the var rows are the knobs.',
   },
   'MuiSwitch|root|size=small|& .MuiSwitch-thumb|height': {
     label: 'Switch · height [size=small]',
     hidden: true,
-    note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
+    note: 'Geometry derives from the six per-size Switch vars — the var rows are the knobs.',
   },
   'MuiSwitch|root|size=small|& .MuiSwitch-switchBase|padding': {
     label: 'Switch · padding [size=small]',
     hidden: true,
-    note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
+    note: 'Geometry derives from the six per-size Switch vars — the var rows are the knobs.',
   },
   'MuiSwitch|root|size=small|& .MuiSwitch-switchBase &.Mui-checked|transform': {
     label: 'Switch · transform [size=small]',
     hidden: true,
-    note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
+    note: 'Geometry derives from the six per-size Switch vars — the var rows are the knobs.',
   },
   'MuiSwitch|root|edge=start||marginLeft': 'Switch · marginLeft [edge=start]',
   'MuiSwitch|root|edge=end||marginRight': 'Switch · marginRight [edge=end]',
   'MuiSwitch|switchBase|base||top': {
     label: 'Switch · switchBase · top',
     hidden: true,
-    note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
+    note: 'Geometry derives from the six per-size Switch vars — the var rows are the knobs.',
   },
   'MuiSwitch|switchBase|base||padding': {
     label: 'Switch · switchBase · padding',
     hidden: true,
-    note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
+    note: 'Geometry derives from the six per-size Switch vars — the var rows are the knobs.',
   },
   'MuiSwitch|switchBase|base||left': {
     label: 'Switch · switchBase · left',
     hidden: true,
-    note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
+    note: 'Geometry derives from the six per-size Switch vars — the var rows are the knobs.',
   },
   'MuiSwitch|switchBase|base|&.Mui-checked|transform': {
     label: 'Switch · switchBase · transform',
     hidden: true,
-    note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
-  },
-  'MuiSwitch|switchBase|base|&.Mui-checked|left': {
-    label: 'Switch · switchBase · left',
-    hidden: true,
-    note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
+    note: 'Geometry derives from the six per-size Switch vars — the var rows are the knobs.',
   },
   'MuiSwitch|thumb|base||width': {
     label: 'Switch · thumb · width',
     hidden: true,
-    note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
+    note: 'Geometry derives from the six per-size Switch vars — the var rows are the knobs.',
   },
   'MuiSwitch|thumb|base||height': {
     label: 'Switch · thumb · height',
     hidden: true,
-    note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
+    note: 'Geometry derives from the six per-size Switch vars — the var rows are the knobs.',
+  },
+  'MuiSwitch|thumb|base||borderRadius': {
+    label: 'Switch · thumb · borderRadius',
+    hidden: true,
+    note: 'Pill radius derives from --_touchSize — plumbing, not an independent knob.',
   },
   'MuiSwitch|track|base||borderRadius': {
     label: 'Switch · track · borderRadius',
     hidden: true,
-    note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
+    note: 'Geometry derives from the six per-size Switch vars — the var rows are the knobs.',
   },
   'MuiTab|root|base||minHeight': { label: 'Tab min height', done: ['medium'] },
   'MuiTab|root|base||lineHeight': {

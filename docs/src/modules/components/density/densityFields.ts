@@ -773,6 +773,15 @@ export const densityLinkedWrites: Record<string, DensityLinkedWrite[]> = {
       wrap: negate,
     },
   ],
+  // Thumb size (--_thumbHeight) also writes the thumb width (square by default);
+  // the width var is a separate hidden knob, so an explicit width edit (applied
+  // after) overrides just the width for a non-square thumb.
+  'MuiSwitch|root|size=medium||--_thumbHeight': [
+    { id: 'MuiSwitch|root|size=medium||--_thumbWidth', wrap: (v) => v },
+  ],
+  'MuiSwitch|root|size=small||--_thumbHeight': [
+    { id: 'MuiSwitch|root|size=small||--_thumbWidth', wrap: (v) => v },
+  ],
 };
 
 export const densityVirtualKnobs: DensityVirtualKnob[] = [

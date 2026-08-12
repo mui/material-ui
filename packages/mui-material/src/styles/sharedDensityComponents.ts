@@ -602,14 +602,14 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     {
       // Center the touch target in the root; travel keeps the thumb symmetric.
       top: 'calc((var(--_height) - var(--_touchSize)) / 2)',
-      padding: 'calc((var(--_touchSize) - var(--_thumbSize)) / 2)',
+      padding: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
       // When the touch target outgrows the root height, re-anchor the thumb on
       // the track's end caps: nudge left by the overflow half at rest, right by
       // the same amount when checked (0 when touch <= height).
-      left: 'min(0px, calc((var(--_height) - var(--_touchSize)) / 2))',
+      left: 'calc((var(--_height) - var(--_touchSize)) / 2)',
       [`&.${switchClasses.checked}`]: {
-        transform: 'translateX(calc(var(--_width) - var(--_touchSize)))',
-        left: 'max(0px, calc((var(--_touchSize) - var(--_height)) / 2))',
+        transform:
+          'translateX(calc(var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight))))',
       },
     },
     'switchBase',
@@ -617,7 +617,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addRootOverride(
     enhanced.components,
     'MuiSwitch',
-    { width: 'var(--_thumbSize)', height: 'var(--_thumbSize)' },
+    {
+      width: 'var(--_thumbWidth)',
+      height: 'var(--_thumbHeight)',
+      borderRadius: 'var(--_touchSize)',
+    },
     'thumb',
   );
   addRootOverride(
@@ -1482,7 +1486,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         style: {
           '--_width': '58px',
           '--_height': '38px',
-          '--_thumbSize': '20px',
+          '--_thumbHeight': '20px',
+          '--_thumbWidth': '20px',
+          // Invariant: --_touchSize >= --_thumbHeight — the switchBase padding is
+          // calc((--_touchSize - --_thumbHeight) / 2), which clips (goes negative)
+          // if the touch target is smaller than the thumb height.
           '--_touchSize': '38px',
           '--_pad': '12px',
           // Label pull mirrors the gutter (Checkbox pattern); the gutter knob
@@ -1496,7 +1504,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         style: {
           '--_width': '40px',
           '--_height': '24px',
-          '--_thumbSize': '16px',
+          '--_thumbHeight': '16px',
+          '--_thumbWidth': '16px',
+          // Invariant: --_touchSize >= --_thumbHeight (see medium — padding clips).
           '--_touchSize': '24px',
           '--_pad': '7px',
           // Label pull mirrors the gutter (Checkbox pattern); the gutter knob
@@ -1506,13 +1516,14 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           // Master's small rules sit nested under the root variant at higher
           // specificity — re-assert the derivations there or they lose for small.
           [`& .${switchClasses.thumb}`]: {
-            width: 'var(--_thumbSize)',
-            height: 'var(--_thumbSize)',
+            width: 'var(--_thumbWidth)',
+            height: 'var(--_thumbHeight)',
           },
           [`& .${switchClasses.switchBase}`]: {
-            padding: 'calc((var(--_touchSize) - var(--_thumbSize)) / 2)',
+            padding: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
             [`&.${switchClasses.checked}`]: {
-              transform: 'translateX(calc(var(--_width) - var(--_touchSize)))',
+              transform:
+                'translateX(calc(var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight))))',
             },
           },
         },

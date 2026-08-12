@@ -6774,8 +6774,8 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { high: '38px', medium: '38px', low: '38px' },
   },
   {
-    id: 'MuiSwitch|root|size=medium||--_thumbSize',
-    label: 'Switch · --_thumbSize [size=medium]',
+    id: 'MuiSwitch|root|size=medium||--_thumbHeight',
+    label: 'Switch · --_thumbHeight [size=medium]',
     isDensity: false,
     densityKey: null,
     target: {
@@ -6783,7 +6783,21 @@ export const densityEmitTable: DensityEmitRow[] = [
       slot: 'root',
       props: { size: 'medium' },
       nested: '',
-      privateVar: '--_thumbSize',
+      privateVar: '--_thumbHeight',
+    },
+    values: { high: '20px', medium: '20px', low: '20px' },
+  },
+  {
+    id: 'MuiSwitch|root|size=medium||--_thumbWidth',
+    label: 'Switch · --_thumbWidth [size=medium]',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiSwitch',
+      slot: 'root',
+      props: { size: 'medium' },
+      nested: '',
+      privateVar: '--_thumbWidth',
     },
     values: { high: '20px', medium: '20px', low: '20px' },
   },
@@ -6872,8 +6886,8 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { high: '24px', medium: '24px', low: '24px' },
   },
   {
-    id: 'MuiSwitch|root|size=small||--_thumbSize',
-    label: 'Switch · --_thumbSize [size=small]',
+    id: 'MuiSwitch|root|size=small||--_thumbHeight',
+    label: 'Switch · --_thumbHeight [size=small]',
     isDensity: false,
     densityKey: null,
     target: {
@@ -6881,7 +6895,21 @@ export const densityEmitTable: DensityEmitRow[] = [
       slot: 'root',
       props: { size: 'small' },
       nested: '',
-      privateVar: '--_thumbSize',
+      privateVar: '--_thumbHeight',
+    },
+    values: { high: '16px', medium: '16px', low: '16px' },
+  },
+  {
+    id: 'MuiSwitch|root|size=small||--_thumbWidth',
+    label: 'Switch · --_thumbWidth [size=small]',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiSwitch',
+      slot: 'root',
+      props: { size: 'small' },
+      nested: '',
+      privateVar: '--_thumbWidth',
     },
     values: { high: '16px', medium: '16px', low: '16px' },
   },
@@ -6953,7 +6981,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '& .MuiSwitch-thumb',
       cssProp: 'width',
     },
-    values: { high: 'var(--_thumbSize)', medium: 'var(--_thumbSize)', low: 'var(--_thumbSize)' },
+    values: { high: 'var(--_thumbWidth)', medium: 'var(--_thumbWidth)', low: 'var(--_thumbWidth)' },
   },
   {
     id: 'MuiSwitch|root|size=small|& .MuiSwitch-thumb|height',
@@ -6967,7 +6995,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '& .MuiSwitch-thumb',
       cssProp: 'height',
     },
-    values: { high: 'var(--_thumbSize)', medium: 'var(--_thumbSize)', low: 'var(--_thumbSize)' },
+    values: {
+      high: 'var(--_thumbHeight)',
+      medium: 'var(--_thumbHeight)',
+      low: 'var(--_thumbHeight)',
+    },
   },
   {
     id: 'MuiSwitch|root|size=small|& .MuiSwitch-switchBase|padding',
@@ -6982,9 +7014,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'calc((var(--_touchSize) - var(--_thumbSize)) / 2)',
-      medium: 'calc((var(--_touchSize) - var(--_thumbSize)) / 2)',
-      low: 'calc((var(--_touchSize) - var(--_thumbSize)) / 2)',
+      high: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
+      medium: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
+      low: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
     },
   },
   {
@@ -7001,9 +7033,10 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'transform',
     },
     values: {
-      high: 'translateX(calc(var(--_width) - var(--_touchSize)))',
-      medium: 'translateX(calc(var(--_width) - var(--_touchSize)))',
-      low: 'translateX(calc(var(--_width) - var(--_touchSize)))',
+      high: 'translateX(calc(var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight))))',
+      medium:
+        'translateX(calc(var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight))))',
+      low: 'translateX(calc(var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight))))',
     },
   },
   {
@@ -7059,9 +7092,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'calc((var(--_touchSize) - var(--_thumbSize)) / 2)',
-      medium: 'calc((var(--_touchSize) - var(--_thumbSize)) / 2)',
-      low: 'calc((var(--_touchSize) - var(--_thumbSize)) / 2)',
+      high: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
+      medium: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
+      low: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
     },
   },
   {
@@ -7077,9 +7110,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'left',
     },
     values: {
-      high: 'min(0px, calc((var(--_height) - var(--_touchSize)) / 2))',
-      medium: 'min(0px, calc((var(--_height) - var(--_touchSize)) / 2))',
-      low: 'min(0px, calc((var(--_height) - var(--_touchSize)) / 2))',
+      high: 'calc((var(--_height) - var(--_touchSize)) / 2)',
+      medium: 'calc((var(--_height) - var(--_touchSize)) / 2)',
+      low: 'calc((var(--_height) - var(--_touchSize)) / 2)',
     },
   },
   {
@@ -7095,27 +7128,10 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'transform',
     },
     values: {
-      high: 'translateX(calc(var(--_width) - var(--_touchSize)))',
-      medium: 'translateX(calc(var(--_width) - var(--_touchSize)))',
-      low: 'translateX(calc(var(--_width) - var(--_touchSize)))',
-    },
-  },
-  {
-    id: 'MuiSwitch|switchBase|base|&.Mui-checked|left',
-    label: 'Switch · switchBase · left',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiSwitch',
-      slot: 'switchBase',
-      props: null,
-      nested: '&.Mui-checked',
-      cssProp: 'left',
-    },
-    values: {
-      high: 'max(0px, calc((var(--_touchSize) - var(--_height)) / 2))',
-      medium: 'max(0px, calc((var(--_touchSize) - var(--_height)) / 2))',
-      low: 'max(0px, calc((var(--_touchSize) - var(--_height)) / 2))',
+      high: 'translateX(calc(var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight))))',
+      medium:
+        'translateX(calc(var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight))))',
+      low: 'translateX(calc(var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight))))',
     },
   },
   {
@@ -7124,7 +7140,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiSwitch', slot: 'thumb', props: null, nested: '', cssProp: 'width' },
-    values: { high: 'var(--_thumbSize)', medium: 'var(--_thumbSize)', low: 'var(--_thumbSize)' },
+    values: { high: 'var(--_thumbWidth)', medium: 'var(--_thumbWidth)', low: 'var(--_thumbWidth)' },
   },
   {
     id: 'MuiSwitch|thumb|base||height',
@@ -7132,7 +7148,25 @@ export const densityEmitTable: DensityEmitRow[] = [
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiSwitch', slot: 'thumb', props: null, nested: '', cssProp: 'height' },
-    values: { high: 'var(--_thumbSize)', medium: 'var(--_thumbSize)', low: 'var(--_thumbSize)' },
+    values: {
+      high: 'var(--_thumbHeight)',
+      medium: 'var(--_thumbHeight)',
+      low: 'var(--_thumbHeight)',
+    },
+  },
+  {
+    id: 'MuiSwitch|thumb|base||borderRadius',
+    label: 'Switch · thumb · borderRadius',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiSwitch',
+      slot: 'thumb',
+      props: null,
+      nested: '',
+      cssProp: 'borderRadius',
+    },
+    values: { high: 'var(--_touchSize)', medium: 'var(--_touchSize)', low: 'var(--_touchSize)' },
   },
   {
     id: 'MuiSwitch|track|base||borderRadius',
