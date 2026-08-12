@@ -251,7 +251,7 @@ test.describe('Demo docs', () => {
       ).not.toContain("getMessage('Edited')");
     });
 
-    test('synchronizes language preference and lets a deep link override the cookie', async ({
+    test('synchronizes and preserves language preference and lets a deep link override the cookie', async ({
       page,
     }) => {
       await page.goto(validationPage);
@@ -281,6 +281,14 @@ test.describe('Demo docs', () => {
       await expect(editor).not.toHaveValue(/LanguageSyncProps/);
       await page.waitForTimeout(500);
       await expect(editor).not.toHaveValue(/LanguageSyncProps/);
+
+      const sourceToggle = syncDemo.locator('button[data-ga-event-action="expand"]');
+      await sourceToggle.click();
+      await sourceToggle.click();
+      await expect(
+        syncDemo.getByRole('button', { name: 'Show JavaScript source' }),
+      ).toHaveAttribute('aria-pressed', 'true');
+      await expect(await getSelectedFileEditor(syncDemo)).not.toHaveValue(/LanguageSyncProps/);
 
       await page.evaluate(() => {
         document.cookie = 'codeVariant=JS;path=/';
