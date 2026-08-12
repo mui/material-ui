@@ -41,7 +41,6 @@ export function createMuiChat(demoData: DemoData, csbConfig?: SandboxConfig) {
       if (!primaryPackage) {
         const productToPackage: Record<string, string> = {
           'material-ui': '@mui/material',
-          'joy-ui': '@mui/joy',
           'x-data-grid': '@mui/x-data-grid',
           'x-date-pickers': '@mui/x-date-pickers',
           'x-tree-view': '@mui/x-tree-view',

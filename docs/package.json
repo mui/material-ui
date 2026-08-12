@@ -13,7 +13,7 @@
     "icons": "rimraf --glob public/static/icons/* && node ./scripts/buildIcons.js",
     "start": "serve ./export",
     "create-playground": "cpy --cwd=scripts playground.template.tsx ../pages/playground/ --rename=index.tsx",
-    "typescript": "tsc -p tsconfig.json && tsc -p scripts/tsconfig.json",
+    "typescript": "tsgo -p tsconfig.json && tsgo -p scripts/tsconfig.json",
     "link-check": "tsx ./scripts/reportBrokenLinks.mts"
   },
   "dependencies": {
@@ -25,9 +25,7 @@
     "@emotion/react": "catalog:docs",
     "@emotion/server": "catalog:docs",
     "@emotion/styled": "catalog:docs",
-    "@fortawesome/fontawesome-svg-core": "^6.7.2",
-    "@fortawesome/free-solid-svg-icons": "^6.7.2",
-    "@fortawesome/react-fontawesome": "^0.2.6",
+
     "@mui/icons-material": "workspace:^",
     "@mui/internal-core-docs": "workspace:^",
     "@mui/internal-docs-infra": "catalog:docs",

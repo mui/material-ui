@@ -55,9 +55,6 @@ export function SandboxDependencies(
       commitRef === undefined ||
       process.env.SOURCE_CODE_REPO !== 'https://github.com/mui/material-ui'
     ) {
-      if (packageName === 'joy') {
-        return 'latest';
-      }
       // #npm-tag-reference
       return 'latest';
     }
