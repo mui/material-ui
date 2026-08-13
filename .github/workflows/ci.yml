@@ -28,16 +28,16 @@ jobs:
       pull-requests: write
     steps:
       - run: echo '${{ github.actor }}'
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           # fetch all tags which are required for `pnpm release:changelog`
           fetch-depth: 0
       - name: Set up pnpm
-        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
       - name: Use Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: '22.22.3'
+          node-version: '22.23.2'
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
       - name: Cache Next.js build
@@ -50,7 +50,7 @@ jobs:
             ${{ runner.os }}-nextjs-
       - run: pnpm release:build
       - name: Publish packages to pkg.pr.new
-        uses: mui/mui-public/.github/actions/ci-publish@80a73ec0e0c1ae634d226649075d27cd30a8c9da # master
+        uses: mui/mui-public/.github/actions/ci-publish@3aff78882d5ed7d5d6a22d13ffa91a75f1374ab1 # master
         if: ${{ matrix.os == 'ubuntu-latest' }}
       - name: Build docs
         run: pnpm docs:build
@@ -94,11 +94,11 @@ jobs:
     if: ${{ github.repository_owner == 'mui' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Prepare for publishing
-        uses: mui/mui-public/.github/actions/publish-prepare@80a73ec0e0c1ae634d226649075d27cd30a8c9da # master
+        uses: mui/mui-public/.github/actions/publish-prepare@3aff78882d5ed7d5d6a22d13ffa91a75f1374ab1 # master
         with:
-          node-version: '22.22.3'
+          node-version: '22.23.2'
       - name: Dry run npm publishing
         env:
           IS_PUBLISH_TEST: 'true'

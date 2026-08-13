@@ -563,7 +563,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   // Scheduler - Event Timeline
   'scheduler/timeline-views': (
-    <ColumnHead label="Timeline views" href="/x/react-scheduler/event-timeline/views/" />
+    <ColumnHead label="Timeline views" href="/x/react-scheduler/event-timeline/presets/" />
   ),
   'scheduler/timeline-drag-and-drop': (
     <ColumnHead label="Drag & drop" href="/x/react-scheduler/event-timeline/drag-interactions/" />
@@ -587,7 +587,10 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead label="Lazy loading" href="/x/react-scheduler/event-timeline/lazy-loading/" />
   ),
   'scheduler/timeline-zooming': (
-    <ColumnHead label="Zoom in/out" href="/x/react-scheduler/event-timeline/views/#zoom-in-out" />
+    <ColumnHead
+      label="Zoom in/out"
+      href="/x/react-scheduler/event-timeline/presets/#zoom-in-and-out"
+    />
   ),
   'scheduler/timeline-virtualization': (
     <ColumnHead label="Virtualization" href="/x/react-scheduler/event-timeline/virtualization/" />
