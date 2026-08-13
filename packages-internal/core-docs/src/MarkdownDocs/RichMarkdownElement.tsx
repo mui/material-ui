@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   shouldUseDocsInfraPipeline,
   resolveDocsInfraDemoFlags,
+  type DemoMarker,
 } from '@mui/internal-markdown/demoPipeline';
 import { useTranslate, useUserLanguage } from '../i18n';
 import { HighlightedCodeWithTabs } from '../HighlightedCodeWithTabs';
@@ -143,13 +144,13 @@ export function RichMarkdownElement(props: RichMarkdownElementProps) {
     demoToolbarSlot: DemoToolbar,
   };
 
-  const selection = { pagePath: localizedDoc.location, demoName: name };
+  const marker = renderedMarkdownOrDemo as DemoMarker;
 
-  if (shouldUseDocsInfraPipeline(selection) === 'docs-infra') {
+  if (shouldUseDocsInfraPipeline(marker) === 'docs-infra') {
     return (
       <DocsInfraDemo
         {...demoProps}
-        flags={resolveDocsInfraDemoFlags(selection)}
+        flags={resolveDocsInfraDemoFlags(marker)}
         docsInfra={demo.docsInfra}
       />
     );

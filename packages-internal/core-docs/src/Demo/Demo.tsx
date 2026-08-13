@@ -394,6 +394,7 @@ export interface DemoProps {
     height?: number;
     disableLiveEdit?: boolean;
     aiSuggestion?: string;
+    docsInfra?: boolean;
     hideEditButton?: boolean;
     anchorId?: string | null;
   };

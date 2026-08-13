@@ -10,36 +10,21 @@ export interface DocsInfraDemoFlags {
 
 export type DemoPipeline = 'legacy' | 'docs-infra';
 
-export interface DemoPipelineSelection {
-  /**
-   * Location of the Markdown page that renders the demo, for example
-   * `/docs/pages/experiments/docs/demos.md`.
-   */
-  pagePath: string;
-  /**
-   * Demo marker value as written in Markdown, for example `DemoInDocs.js`.
-   */
-  demoName: string;
-}
-
 /**
- * Flags shared by every demo on a page, optionally narrowed per demo.
+ * Demo marker as authored in Markdown, for example
+ * `{{"demo": "BasicButtons.js", "docsInfra": true}}`.
  */
-export interface DemoPipelineAllowlistEntry {
-  flags?: Partial<DocsInfraDemoFlags>;
-  demos?: Record<string, Partial<DocsInfraDemoFlags>>;
+export interface DemoMarker {
+  demo: string;
+  /** Renders this demo through docs-infra instead of the legacy pipeline. */
+  docsInfra?: boolean;
+  [option: string]: unknown;
 }
 
-export type DemoPipelineAllowlist = Record<string, DemoPipelineAllowlistEntry>;
+export const docsInfraPipelineEnabled: boolean;
 
-export const demoPipelineAllowlist: DemoPipelineAllowlist;
+export const docsInfraDemoFlags: DocsInfraDemoFlags;
 
-export function shouldUseDocsInfraPipeline(
-  selection: DemoPipelineSelection,
-  allowlist?: DemoPipelineAllowlist,
-): DemoPipeline;
+export function shouldUseDocsInfraPipeline(marker: DemoMarker): DemoPipeline;
 
-export function resolveDocsInfraDemoFlags(
-  selection: DemoPipelineSelection,
-  allowlist?: DemoPipelineAllowlist,
-): DocsInfraDemoFlags;
+export function resolveDocsInfraDemoFlags(marker: DemoMarker): DocsInfraDemoFlags;

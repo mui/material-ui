@@ -1,13 +1,12 @@
 export {
-  demoPipelineAllowlist,
+  docsInfraDemoFlags,
+  docsInfraPipelineEnabled,
   shouldUseDocsInfraPipeline,
   resolveDocsInfraDemoFlags,
 } from '@mui/internal-markdown/demoPipeline';
 export type {
+  DemoMarker,
   DemoPipeline,
-  DemoPipelineAllowlist,
-  DemoPipelineAllowlistEntry,
-  DemoPipelineSelection,
   DocsInfraDemoFlags,
 } from '@mui/internal-markdown/demoPipeline';
 export { DocsInfraDemo, type DocsInfraDemoProps } from './DocsInfraDemo';

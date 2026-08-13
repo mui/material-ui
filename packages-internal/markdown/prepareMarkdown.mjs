@@ -58,7 +58,7 @@ function resolveComponentApiUrl(productId, componentPkg, component) {
 
 /**
  * @typedef  {{ component: string, demo?: undefined }} ComponentEntry
- * @typedef  {{ component?: undefined, demo: string, hideToolbar?: boolean }} DemoEntry
+ * @typedef  {{ component?: undefined, demo: string, hideToolbar?: boolean, docsInfra?: boolean }} DemoEntry
  */
 
 /**

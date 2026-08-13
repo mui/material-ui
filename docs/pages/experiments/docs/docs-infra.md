@@ -4,9 +4,15 @@
 
 ## Source highlighting
 
-This demo is allowlisted in `demoPipelineAllowlist`, so the Markdown loader
+This demo opts in with `"docsInfra": true`, so the Markdown loader
 precomputes its source graph with docs-infra and the source below is highlighted
-by docs-infra instead of Prism. Demos without an allowlist entry still render
+by docs-infra instead of Prism. Every other demo on this page still renders
 through the legacy pipeline.
 
-{{"demo": "DemoInDocsDocsInfra.js", "defaultCodeOpen": true, "disableLiveEdit": true}}
+### Existing transform
+
+{{"demo": "DemoInDocsDocsInfra.js", "defaultCodeOpen": false, "disableLiveEdit": true}}
+
+### Docs infra transform
+
+{{"demo": "DemoInDocsDocsInfra.js", "docsInfra": true, "defaultCodeOpen": false, "disableLiveEdit": true}}

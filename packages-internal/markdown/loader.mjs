@@ -5,7 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import prepareMarkdown from './prepareMarkdown.mjs';
 import extractImports from './extractImports.mjs';
-import { demoPipelineAllowlist, shouldUseDocsInfraPipeline } from './demoPipeline.mjs';
+import { shouldUseDocsInfraPipeline } from './demoPipeline.mjs';
 
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 
@@ -80,7 +80,6 @@ function findComponents(packages) {
  * @property {Package[]} packages
  * @property {string[]} languagesInProgress
  * @property {string} workspaceRoot
- * @property {import('./demoPipeline.mjs').DemoPipelineAllowlist} [demoPipelineAllowlist]
  */
 
 /**
@@ -196,6 +195,8 @@ export default async function demoLoader() {
   const componentModuleIDs = new Set();
   /** @type {Set<string>} */
   const nonEditableDemos = new Set();
+  /** @type {Set<string>} */
+  const docsInfraDemos = new Set();
   /** @type {Map<string, Map<string, string[]>>} */
   const relativeModules = new Map();
   /** @type {string[]} */
@@ -208,6 +209,19 @@ export default async function demoLoader() {
       ).map((demoConfig) => {
         if (demoConfig.hideToolbar) {
           nonEditableDemos.add(demoConfig.demo);
+        }
+        if (demoConfig.docsInfra === false) {
+          throw new Error(
+            [
+              '"docsInfra": false is already the default.',
+              `Please remove the property in {{"demo": "${demoConfig.demo}", …}}.`,
+            ].join('\n'),
+          );
+        }
+        // A demo is precomputed once, so one opted-in marker covers every
+        // marker that renders the same demo on this page.
+        if (shouldUseDocsInfraPipeline(demoConfig) === 'docs-infra') {
+          docsInfraDemos.add(demoConfig.demo);
         }
         return demoConfig.demo;
       }),
@@ -646,13 +660,8 @@ export default async function demoLoader() {
         );
       }
 
-      // Only allowlisted markers pay the docs-infra source-processing cost.
-      if (
-        shouldUseDocsInfraPipeline(
-          { pagePath: docs.en.location, demoName },
-          options.demoPipelineAllowlist ?? demoPipelineAllowlist,
-        ) === 'docs-infra'
-      ) {
+      // Only opted-in demos pay the docs-infra source-processing cost.
+      if (docsInfraDemos.has(demoName)) {
         const { default: precomputeDocsInfraDemo } = await import('./precomputeDocsInfraDemo.mjs');
         const docsInfra = await precomputeDocsInfraDemo({
           demoName,
