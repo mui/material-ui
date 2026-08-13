@@ -15,7 +15,7 @@ describe('<TimelineContent />', () => {
     render,
     muiName: 'MuiTimelineContent',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    skip: ['componentProp', 'themeVariants'],
   }));
 
   it('should have positionLeft class when inside of a left-positioned timeline', () => {

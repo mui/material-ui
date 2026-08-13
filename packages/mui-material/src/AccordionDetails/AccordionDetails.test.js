@@ -14,7 +14,7 @@ describe('<AccordionDetails />', () => {
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAccordionDetails',
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    skip: ['componentProp', 'themeVariants'],
   }));
 
   it('should render a children element', () => {

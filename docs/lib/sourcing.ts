@@ -23,6 +23,10 @@ export interface BlogPost {
   authors?: Array<string>;
   date?: string;
   rank?: string;
+  /**
+   * If `true`, it omits posts with `hideFromHomeList: true` in frontmatter. Use it for SEO only blog posts.
+   */
+  hideFromHomeList?: string;
 }
 
 export function getBlogPost(filePath: string): BlogPost {

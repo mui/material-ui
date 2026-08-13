@@ -23,6 +23,7 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
     "disableScrollLock": { "type": { "name": "bool" }, "default": "false" },
     "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "8" },
     "marginThreshold": { "type": { "name": "number" }, "default": "16" },
@@ -101,6 +102,5 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Popover/Popover.js",
   "inheritance": { "component": "Modal", "pathname": "/material-ui/api/modal/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li>\n<li><a href=\"/material-ui/react-popover/\">Popover</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li>\n<li><a href=\"/material-ui/react-popover/\">Popover</a></li></ul>"
 }

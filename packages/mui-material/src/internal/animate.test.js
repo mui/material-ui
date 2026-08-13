@@ -3,9 +3,12 @@ import { isJsdom } from '@mui/internal-test-utils/env';
 import animate from './animate';
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+const isFirefox = /firefox/i.test(navigator.userAgent);
 const isJSDOM = isJsdom();
 
-describe.skipIf(isJSDOM || isSafari)('animate', () => {
+// Firefox in Vitest browser mode reports fractional `scrollLeft` values, so the exact
+// integer assertions below fail. See https://github.com/vitest-dev/vitest/issues/9223
+describe.skipIf(isJSDOM || isSafari || isFirefox)('animate', () => {
   let container;
 
   beforeAll(function beforeHook() {

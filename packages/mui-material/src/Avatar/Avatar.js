@@ -66,6 +66,10 @@ const AvatarRoot = styled('div', {
         props: { colorDefault: true },
         style: {
           color: (theme.vars || theme).palette.background.default,
+          '@media (forced-colors: active)': {
+            boxSizing: 'border-box',
+            border: '1px solid ButtonBorder',
+          },
           ...(theme.vars
             ? {
                 backgroundColor: theme.vars.palette.Avatar.defaultBg,
@@ -111,6 +115,7 @@ function useLoaded(src, srcSet, crossOrigin, referrerPolicy) {
       return undefined;
     }
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoaded(false);
 
     let active = true;

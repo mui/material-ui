@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
 import isMuiElement from '../utils/isMuiElement';
+import { useRovingTabIndexItem } from '../utils/useRovingTabIndex';
 import { useStepperContext } from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import stepButtonClasses, { getStepButtonUtilityClass } from './stepButtonClasses';
@@ -35,24 +37,46 @@ const StepButtonRoot = styled(ButtonBase, {
       styles[ownerState.orientation],
     ];
   },
-})({
-  width: '100%',
-  padding: '24px 16px',
-  margin: '-24px -16px',
-  boxSizing: 'content-box',
-  [`& .${stepButtonClasses.touchRipple}`]: {
-    color: 'rgba(0, 0, 0, 0.3)',
-  },
-  variants: [
-    {
-      props: { orientation: 'vertical' },
-      style: {
-        justifyContent: 'flex-start',
-        padding: '8px',
-        margin: '-8px',
-      },
+})(
+  memoTheme(({ theme }) => ({
+    width: '100%',
+    padding: '24px 16px',
+    margin: '-24px -16px',
+    boxSizing: 'content-box',
+    [`& .${stepButtonClasses.touchRipple}`]: {
+      color: 'rgba(0, 0, 0, 0.3)',
+      ...theme.applyStyles('dark', {
+        color: 'rgba(255, 255, 255, 0.3)',
+      }),
     },
-  ],
+    variants: [
+      {
+        props: { orientation: 'vertical' },
+        style: {
+          justifyContent: 'flex-start',
+          padding: '8px',
+          margin: '-8px',
+        },
+      },
+    ],
+  })),
+);
+
+const RovingStepButton = React.forwardRef(function RovingStepButton(props, ref) {
+  // eslint-disable-next-line react/prop-types
+  const { children, disabled, index, ...other } = props;
+
+  const rovingItemProps = useRovingTabIndexItem({
+    id: index,
+    ref,
+    disabled,
+  });
+
+  return (
+    <StepButtonRoot disabled={disabled} {...rovingItemProps} {...other}>
+      {children}
+    </StepButtonRoot>
+  );
 });
 
 const StepButton = React.forwardRef(function StepButton(inProps, ref) {
@@ -60,7 +84,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const { children, className, icon, optional, ...other } = props;
 
   const { disabled, active, index } = React.useContext(StepContext);
-  const { orientation, totalSteps, getRovingTabIndexProps } = useStepperContext();
+  const { orientation, totalSteps, isTabList } = useStepperContext();
 
   const ownerState = { ...props, orientation };
 
@@ -77,25 +101,30 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
     <StepLabel {...childProps}>{children}</StepLabel>
   );
 
-  const rovingTabIndexItemProps = getRovingTabIndexProps?.(index, ref) ?? {
-    ref,
-    tabIndex: active ? 0 : -1,
+  const stepButtonProps = {
+    internalNativeButton: true,
+    focusRipple: true,
+    disabled,
+    TouchRippleProps: { className: classes.touchRipple },
+    className: clsx(classes.root, className),
+    ownerState,
+    'aria-selected': active,
+    'aria-posinset': index + 1,
+    'aria-setsize': totalSteps,
+    role: 'tab',
+    ...other,
   };
 
+  if (isTabList) {
+    return (
+      <RovingStepButton {...stepButtonProps} index={index} ref={ref}>
+        {child}
+      </RovingStepButton>
+    );
+  }
+
   return (
-    <StepButtonRoot
-      focusRipple
-      disabled={disabled}
-      TouchRippleProps={{ className: classes.touchRipple }}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      aria-selected={active}
-      aria-posinset={index + 1}
-      aria-setsize={totalSteps}
-      role="tab"
-      {...rovingTabIndexItemProps}
-      {...other}
-    >
+    <StepButtonRoot ref={ref} tabIndex={active ? 0 : -1} {...stepButtonProps}>
       {child}
     </StepButtonRoot>
   );

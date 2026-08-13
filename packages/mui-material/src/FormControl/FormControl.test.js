@@ -5,7 +5,7 @@ import { act, createRenderer } from '@mui/internal-test-utils';
 import FormControl, { formControlClasses as classes } from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import Select from '@mui/material/Select';
-import useFormControl from './useFormControl';
+import useFormControl, { useFormControlState } from './useFormControl';
 import describeConformance from '../../test/describeConformance';
 
 describe('<FormControl />', () => {
@@ -19,6 +19,14 @@ describe('<FormControl />', () => {
     return null;
   }
 
+  function TestFormControlState({ stateCallback, states, ...props }) {
+    const [fcs, muiFormControl] = useFormControlState({ props, states });
+    React.useEffect(() => {
+      stateCallback(fcs, muiFormControl);
+    });
+    return null;
+  }
+
   describeConformance(<FormControl />, () => ({
     classes,
     inheritComponent: 'div',
@@ -27,7 +35,6 @@ describe('<FormControl />', () => {
     testComponentPropWith: 'fieldset',
     muiName: 'MuiFormControl',
     testVariantProps: { margin: 'dense' },
-    skip: ['componentsProp'],
   }));
 
   describe('initial state', () => {
@@ -361,6 +368,86 @@ describe('<FormControl />', () => {
           expect(formControlRef.current).to.have.property('focused', false);
         });
       });
+    });
+  });
+
+  describe('useFormControlState', () => {
+    it('returns the merged state and context from FormControl', () => {
+      const readState = spy();
+
+      render(
+        <FormControl disabled error required size="small">
+          <TestFormControlState
+            stateCallback={readState}
+            states={['disabled', 'error', 'required', 'size']}
+          />
+        </FormControl>,
+      );
+
+      expect(readState.args[0][0]).to.include({
+        disabled: true,
+        error: true,
+        required: true,
+        size: 'small',
+      });
+      expect(readState.args[0][1]).to.include({
+        disabled: true,
+        error: true,
+        required: true,
+        size: 'small',
+      });
+    });
+
+    it('prefers explicit props over context values', () => {
+      const readState = spy();
+
+      render(
+        <FormControl color="secondary" disabled error required size="small">
+          <TestFormControlState
+            color={null}
+            disabled={false}
+            error={false}
+            required={false}
+            size=""
+            stateCallback={readState}
+            states={['color', 'disabled', 'error', 'required', 'size']}
+          />
+        </FormControl>,
+      );
+
+      expect(readState.args[0][0]).to.include({
+        color: null,
+        disabled: false,
+        error: false,
+        required: false,
+        size: '',
+      });
+      expect(readState.args[0][1]).to.include({
+        color: 'secondary',
+        disabled: true,
+        error: true,
+        required: true,
+        size: 'small',
+      });
+    });
+
+    it('returns undefined context outside FormControl and keeps prop values', () => {
+      const readState = spy();
+
+      render(
+        <TestFormControlState
+          disabled={false}
+          required
+          stateCallback={readState}
+          states={['disabled', 'required']}
+        />,
+      );
+
+      expect(readState.args[0][0]).to.include({
+        disabled: false,
+        required: true,
+      });
+      expect(readState.args[0][1]).to.equal(undefined);
     });
   });
 });

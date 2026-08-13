@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -23,7 +22,7 @@ const useUtilityClasses = (ownerState) => {
       completed && 'completed',
       disabled && 'disabled',
     ],
-    line: ['line', `line${capitalize(orientation)}`],
+    line: ['line'],
   };
 
   return composeClasses(slots, getStepConnectorUtilityClass, classes);
@@ -52,7 +51,14 @@ const StepConnectorRoot = styled('div', {
       },
     },
     {
-      props: { alternativeLabel: true },
+      props: { orientation: 'vertical', alternativeLabel: true },
+      style: {
+        marginLeft: 'auto',
+        marginRight: 12, // half icon
+      },
+    },
+    {
+      props: { orientation: 'horizontal', alternativeLabel: true },
       style: {
         position: 'absolute',
         top: 8 + 4,
@@ -66,11 +72,6 @@ const StepConnectorRoot = styled('div', {
 const StepConnectorLine = styled('span', {
   name: 'MuiStepConnector',
   slot: 'Line',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [styles.line, styles[`line${capitalize(ownerState.orientation)}`]];
-  },
 })(
   memoTheme(({ theme }) => {
     const borderColor =

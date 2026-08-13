@@ -1,1 +1,1 @@
-import '@mui/docs/webpack';
+import '@mui/internal-core-docs/webpack';

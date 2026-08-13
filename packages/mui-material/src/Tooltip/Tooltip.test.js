@@ -9,10 +9,13 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
   reactMajor,
+  flushEffects,
   isJsdom,
+  waitFor,
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
 
@@ -34,6 +37,57 @@ function focusVisibleSync(element) {
   act(() => {
     element.focus();
   });
+}
+
+// The real browser pointer rests at the viewport origin, where the test container starts.
+// Offset the trigger so the pointer is not inside it. https://github.com/mui/material-ui/pull/47669
+function AwayFromRealPointer({ children }) {
+  return <div style={{ margin: 50 }}>{children}</div>;
+}
+
+const fixedRightPlacementPopperProps = {
+  popperOptions: {
+    modifiers: [
+      { name: 'flip', enabled: false },
+      { name: 'preventOverflow', enabled: false },
+    ],
+  },
+};
+
+function getTooltipParts() {
+  const popper = screen.getByRole('tooltip');
+  const tooltip = popper.querySelector(`.${classes.tooltip}`);
+  const arrow = popper.querySelector(`.${classes.arrow}`);
+
+  expect(tooltip).not.to.equal(null);
+  expect(arrow).not.to.equal(null);
+
+  return { popper, tooltip, arrow };
+}
+
+function hasInjectedStyle(declaration) {
+  const normalizedStyles = (document.head.textContent ?? '').replace(/\s+/g, '');
+
+  return normalizedStyles.includes(declaration.replace(/\s+/g, ''));
+}
+
+function expectArrowOnInlineEnd(tooltip, arrow) {
+  const tooltipRect = tooltip.getBoundingClientRect();
+  const arrowRect = arrow.getBoundingClientRect();
+  const tooltipCenterX = (tooltipRect.left + tooltipRect.right) / 2;
+  const arrowCenterX = (arrowRect.left + arrowRect.right) / 2;
+
+  expect(arrowCenterX).to.be.greaterThan(tooltipCenterX);
+}
+
+function expectRtlRightPlacementStyles() {
+  const { popper, tooltip, arrow } = getTooltipParts();
+
+  expect(popper).to.have.attribute('data-popper-placement', 'right');
+  expect(tooltip).toHaveComputedStyle({ direction: 'rtl' });
+  expect(hasInjectedStyle('margin-inline-start: 14px')).to.equal(true);
+  expect(hasInjectedStyle('inset-inline-start: 0')).to.equal(true);
+  expectArrowOnInlineEnd(tooltip, arrow);
 }
 
 describe('<Tooltip />', () => {
@@ -82,7 +136,7 @@ describe('<Tooltip />', () => {
         },
         arrow: { expectedClassName: classes.arrow },
       },
-      skip: ['componentProp', 'componentsProp', 'themeVariants'],
+      skip: ['componentProp', 'themeVariants'],
     }),
   );
 
@@ -337,6 +391,89 @@ describe('<Tooltip />', () => {
     clock.tick(transitionTimeout);
 
     expect(screen.queryByRole('tooltip')).to.equal(null);
+  });
+
+  it('opens when a disabled native button receives mouse events', async () => {
+    clock.restore();
+
+    const { user } = render(
+      <Tooltip title="Hello World" enterDelay={0} slotProps={{ transition: { timeout: 0 } }}>
+        <button disabled type="button">
+          Hello World
+        </button>
+      </Tooltip>,
+    );
+
+    await user.hover(screen.getByRole('button'));
+
+    expect(screen.getByRole('tooltip')).toBeVisible();
+  });
+
+  it('keeps a disabled-trigger tooltip open when the tooltip is hovered', async () => {
+    clock.restore();
+
+    const { user } = render(
+      <Tooltip
+        title="Hello World"
+        enterDelay={0}
+        leaveDelay={500}
+        slotProps={{ transition: { timeout: 0 } }}
+      >
+        <button disabled type="button">
+          Hello World
+        </button>
+      </Tooltip>,
+    );
+
+    const button = screen.getByRole('button');
+
+    await user.hover(button);
+    expect(screen.getByRole('tooltip')).toBeVisible();
+
+    await user.unhover(button);
+    await act(async () => {
+      await new Promise((resolve) => {
+        // Wait a bit but not long enough for the tooltip to disappear
+        setTimeout(resolve, 250);
+      });
+    });
+    await user.hover(screen.getByRole('tooltip'));
+    await act(async () => {
+      await new Promise((resolve) => {
+        // Wait out the close timeout until the tooltip should have disappeared
+        setTimeout(resolve, 300);
+      });
+    });
+
+    expect(screen.getByRole('tooltip')).toBeVisible();
+  });
+
+  it('opens on the next task when reduced motion is always', () => {
+    const handleEntered = spy();
+    const theme = createTheme({
+      motion: {
+        reducedMotion: 'always',
+      },
+    });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <Tooltip
+          enterDelay={0}
+          title="Hello World"
+          slotProps={{ transition: { onEntered: handleEntered, timeout: 250 } }}
+        >
+          <button type="button">Anchor</button>
+        </Tooltip>
+      </ThemeProvider>,
+    );
+
+    fireEvent.mouseOver(screen.getByRole('button'));
+
+    expect(handleEntered.callCount).to.equal(0);
+    clock.tick(0);
+    expect(handleEntered.callCount).to.equal(1);
+    expect(screen.getByRole('tooltip')).to.have.text('Hello World');
   });
 
   it('should be controllable', () => {
@@ -605,23 +742,20 @@ describe('<Tooltip />', () => {
       const enterDelay = 0;
       const transitionTimeout = 10;
       render(
-        <Tooltip
-          leaveDelay={leaveDelay}
-          enterDelay={enterDelay}
-          title="tooltip"
-          slotProps={{
-            transition: { timeout: transitionTimeout },
-          }}
-        >
-          <button
-            id="testChild"
-            type="submit"
-            // Moving the button away from 0,0 to avoid interference with initial mouse position
-            style={{ margin: 1 }}
+        <AwayFromRealPointer>
+          <Tooltip
+            leaveDelay={leaveDelay}
+            enterDelay={enterDelay}
+            title="tooltip"
+            slotProps={{
+              transition: { timeout: transitionTimeout },
+            }}
           >
-            Hello World
-          </button>
-        </Tooltip>,
+            <button id="testChild" type="submit">
+              Hello World
+            </button>
+          </Tooltip>
+        </AwayFromRealPointer>,
       );
       simulatePointerDevice();
 
@@ -715,44 +849,6 @@ describe('<Tooltip />', () => {
       fireEvent.mouseOver(screen.getByRole('tooltip'));
 
       expect(handleMouseOver.callCount).to.equal(0);
-    });
-  });
-
-  describe('disabled button warning', () => {
-    it('should not raise a warning if title is empty', () => {
-      expect(() => {
-        render(
-          <Tooltip title="">
-            <button type="submit" disabled>
-              Hello World
-            </button>
-          </Tooltip>,
-        );
-      }).not.toErrorDev();
-    });
-
-    it('should raise a warning when we are uncontrolled and can not listen to events', () => {
-      expect(() => {
-        render(
-          <Tooltip title="Hello World">
-            <button type="submit" disabled>
-              Hello World
-            </button>
-          </Tooltip>,
-        );
-      }).toWarnDev('MUI: You are providing a disabled `button` child to the Tooltip component');
-    });
-
-    it('should not raise a warning when we are controlled', () => {
-      expect(() => {
-        render(
-          <Tooltip title="Hello World" open>
-            <button type="submit" disabled>
-              Hello World
-            </button>
-          </Tooltip>,
-        );
-      }).not.toErrorDev();
     });
   });
 
@@ -905,6 +1001,84 @@ describe('<Tooltip />', () => {
 
       expect(appliedComputeStylesModifier).not.to.equal(undefined);
     });
+
+    it.skipIf(isJsdom())('uses RTL side offsets when html dir is rtl', async () => {
+      const previousDir = document.documentElement.getAttribute('dir');
+
+      document.documentElement.setAttribute('dir', 'rtl');
+
+      try {
+        render(
+          <div style={{ margin: '5em' }}>
+            <Tooltip
+              arrow
+              open
+              placement="right"
+              title="Tooltip content"
+              slotProps={{
+                popper: {
+                  ...fixedRightPlacementPopperProps,
+                },
+              }}
+            >
+              <button type="submit">Anchor</button>
+            </Tooltip>
+          </div>,
+        );
+
+        await flushEffects();
+        expectRtlRightPlacementStyles();
+      } finally {
+        if (previousDir === null) {
+          document.documentElement.removeAttribute('dir');
+        } else {
+          document.documentElement.setAttribute('dir', previousDir);
+        }
+      }
+    });
+
+    it.skipIf(isJsdom())(
+      'uses RTL side offsets when the popper portal container is inside an rtl subtree',
+      async () => {
+        const previousDir = document.documentElement.getAttribute('dir');
+
+        document.documentElement.removeAttribute('dir');
+
+        function Test() {
+          const rtlContainerRef = React.useRef(null);
+
+          return (
+            <div data-testid="rtl-root" dir="rtl" ref={rtlContainerRef} style={{ margin: '5em' }}>
+              <Tooltip
+                arrow
+                open
+                placement="right"
+                title="Tooltip content"
+                slotProps={{
+                  popper: {
+                    container: () => rtlContainerRef.current,
+                    ...fixedRightPlacementPopperProps,
+                  },
+                }}
+              >
+                <button type="submit">Anchor</button>
+              </Tooltip>
+            </div>
+          );
+        }
+
+        try {
+          render(<Test />);
+
+          await flushEffects();
+          expectRtlRightPlacementStyles();
+        } finally {
+          if (previousDir !== null) {
+            document.documentElement.setAttribute('dir', previousDir);
+          }
+        }
+      },
+    );
   });
 
   describe('prop forwarding', () => {
@@ -967,6 +1141,95 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
       expect(eventLog).to.deep.equal(['focus', 'open']);
+    });
+
+    it('closes when the focused child becomes disabled', async () => {
+      clock.restore();
+      const handleClose = spy();
+
+      function TestCase() {
+        const [disabled, setDisabled] = React.useState(false);
+
+        return (
+          <AwayFromRealPointer>
+            <Tooltip
+              enterDelay={0}
+              leaveDelay={0}
+              onClose={handleClose}
+              title="Some information"
+              slotProps={{ transition: { timeout: 0 } }}
+            >
+              <button disabled={disabled} onClick={() => setDisabled(true)}>
+                Disable
+              </button>
+            </Tooltip>
+          </AwayFromRealPointer>
+        );
+      }
+
+      const { user } = render(<TestCase />);
+
+      await user.tab();
+
+      await waitFor(() => {
+        expect(screen.getByRole('tooltip')).toBeVisible();
+      });
+
+      await user.keyboard('{Enter}');
+
+      await waitFor(() => {
+        expect(screen.queryByRole('tooltip')).to.equal(null);
+      });
+      expect(handleClose.callCount).to.equal(1);
+    });
+
+    it('stays closed when a stray mouseover lands while the disabled trigger is closing', async () => {
+      // Deterministic regression test for the flaky "stuck open" tooltip:
+      // when the focused trigger becomes disabled the close is scheduled via the React
+      // #9142 native-blur workaround, but a layout-shift `mouseover` on the interactive
+      // popper used to cancel that pending close and reopen the tooltip. A disabled
+      // anchor must never (re)open. `leaveDelay` opens a deterministic window in which to
+      // dispatch the stray `mouseover` before the close fires.
+      clock.restore();
+      const handleClose = spy();
+
+      function TestCase() {
+        const [disabled, setDisabled] = React.useState(false);
+        return (
+          <AwayFromRealPointer>
+            <Tooltip
+              enterDelay={0}
+              leaveDelay={100}
+              onClose={handleClose}
+              title="Some information"
+              slotProps={{ transition: { timeout: 0 } }}
+            >
+              <button disabled={disabled} onClick={() => setDisabled(true)}>
+                Disable
+              </button>
+            </Tooltip>
+          </AwayFromRealPointer>
+        );
+      }
+
+      const { user } = render(<TestCase />);
+
+      await user.tab();
+      await waitFor(() => {
+        expect(screen.getByRole('tooltip')).toBeVisible();
+      });
+
+      // Disabling the focused trigger schedules the close (leaveDelay window still pending).
+      await user.keyboard('{Enter}');
+
+      // A stray `mouseover` reaches the interactive popper before the close fires.
+      await user.hover(screen.getByRole('tooltip'));
+
+      // The disabled anchor must still close (and not reopen).
+      await waitFor(() => {
+        expect(screen.queryByRole('tooltip')).to.equal(null);
+      });
+      expect(handleClose.callCount).to.equal(1);
     });
 
     it('closes on blur', async () => {

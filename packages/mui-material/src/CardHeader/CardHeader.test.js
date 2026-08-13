@@ -41,7 +41,6 @@ describe('<CardHeader />', () => {
           expectedClassName: classes.subheader,
         },
       },
-      skip: ['componentsProp'],
     }),
   );
 

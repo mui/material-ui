@@ -19,7 +19,6 @@ describe('<InputLabel />', () => {
     refInstanceof: window.HTMLLabelElement,
     muiName: 'MuiInputLabel',
     testVariantProps: { size: 'small' },
-    skip: ['componentsProp'],
   }));
 
   it('should render a label with text', () => {

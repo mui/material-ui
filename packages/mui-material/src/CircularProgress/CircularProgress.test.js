@@ -1,8 +1,10 @@
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import CircularProgress, {
   circularProgressClasses as classes,
 } from '@mui/material/CircularProgress';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { resetWarningFlags } from './CircularProgress';
 import describeConformance from '../../test/describeConformance';
 
 describe('<CircularProgress />', () => {
@@ -16,7 +18,7 @@ describe('<CircularProgress />', () => {
     testDeepOverrides: { slotName: 'circle', slotClassName: classes.circle },
     testVariantProps: { variant: 'determinate' },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should render with the primary color by default', () => {
@@ -71,6 +73,44 @@ describe('<CircularProgress />', () => {
     expect(circle).to.have.tagName('circle');
     expect(circle).to.have.attribute('cx', '44');
     expect(circle).to.have.attribute('cy', '44');
+  });
+
+  it.skipIf(isJsdom())('disables determinate transitions when reduced motion is always', () => {
+    const theme = createTheme({
+      motion: {
+        reducedMotion: 'always',
+      },
+    });
+    render(
+      <ThemeProvider theme={theme}>
+        <CircularProgress variant="determinate" value={50} />
+      </ThemeProvider>,
+    );
+
+    const progressbar = screen.getByRole('progressbar');
+    const circle = progressbar.querySelector(`.${classes.circle}`);
+
+    expect(window.getComputedStyle(progressbar).transitionProperty).to.equal('none');
+    expect(window.getComputedStyle(circle).transitionProperty).to.equal('none');
+  });
+
+  it.skipIf(isJsdom())('disables indeterminate animations when reduced motion is always', () => {
+    const theme = createTheme({
+      motion: {
+        reducedMotion: 'always',
+      },
+    });
+    render(
+      <ThemeProvider theme={theme}>
+        <CircularProgress />
+      </ThemeProvider>,
+    );
+
+    const progressbar = screen.getByRole('progressbar');
+    const circle = progressbar.querySelector(`.${classes.circle}`);
+
+    expect(window.getComputedStyle(progressbar).animationName).to.equal('none');
+    expect(window.getComputedStyle(circle).animationName).to.equal('none');
   });
 
   describe('prop: variant="determinate"', () => {
@@ -168,6 +208,83 @@ describe('<CircularProgress />', () => {
       const [trackEl] = container.querySelectorAll('svg circle');
       expect(trackEl.style.strokeDasharray).to.equal('');
       expect(trackEl.style.strokeDashoffset).to.equal('');
+    });
+  });
+
+  describe('prop: min & max', () => {
+    it('should be able to use custom min and max values', () => {
+      render(<CircularProgress variant="determinate" value={5} min={0} max={10} />);
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar).to.have.attribute('aria-valuenow', '5');
+      expect(progressbar).to.have.attribute('aria-valuemin', '0');
+      expect(progressbar).to.have.attribute('aria-valuemax', '10');
+    });
+
+    it('min and max values should be used to calculate the circumference of the circle', () => {
+      const { container } = render(
+        <CircularProgress variant="determinate" value={15} min={10} max={30} />,
+      );
+      const [circle] = container.querySelectorAll('svg circle');
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar).to.have.nested.property('style.transform', 'rotate(-90deg)');
+      expect(circle.style.strokeDasharray).to.match(/126\.920?(px)?/gm);
+      expect(circle.style.strokeDashoffset).to.match(/95\.190?(px)?/gm);
+    });
+
+    it('should fallback value to min if min is passed', () => {
+      render(<CircularProgress variant="determinate" min={10} max={20} />);
+
+      expect(screen.getByRole('progressbar')).to.have.attribute('aria-valuenow', '10');
+    });
+
+    it('should be able to use decimal min, max and value props', () => {
+      render(<CircularProgress variant="determinate" value={5.5} min={2.5} max={10.3} />);
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar).to.have.attribute('aria-valuenow', '5.5');
+      expect(progressbar).to.have.attribute('aria-valuemin', '2.5');
+      expect(progressbar).to.have.attribute('aria-valuemax', '10.3');
+    });
+
+    it('should fallback to a full circumference strokeDashoffset (empty state) if max is less than min', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      const { container } = render(
+        <CircularProgress variant="determinate" value={5} min={10} max={0} />,
+      );
+      const [circle] = container.querySelectorAll('svg circle');
+      expect(circle.style.strokeDashoffset).to.match(/126\.920?(px)?/gm);
+
+      errorSpy.mockRestore();
+    });
+
+    describe('warnings and errors', () => {
+      beforeEach(() => {
+        resetWarningFlags();
+      });
+
+      it.each([
+        { value: 5, min: 10, max: 0 },
+        { value: 15, min: 10, max: 10 },
+        { value: 5, min: 10, max: 20 },
+        { value: 25, min: 10, max: 20 },
+      ])('should error if min=$min, max=$max, value=$value are invalid', ({ value, min, max }) => {
+        expect(() => {
+          render(<CircularProgress variant="determinate" value={value} min={min} max={max} />);
+        }).toErrorDev([
+          `MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=${min}, max=${max}, value=${value}.`,
+        ]);
+      });
+
+      it('should warn if min and max props are provided with an indeterminate variant', () => {
+        expect(() => {
+          render(<CircularProgress variant="indeterminate" min={0} max={10} />);
+        }).toWarnDev([
+          "MUI: You have provided the `min` or `max` props with an 'indeterminate' variant. These props will have no effect.",
+        ]);
+      });
     });
   });
 });

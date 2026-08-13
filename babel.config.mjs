@@ -1,7 +1,6 @@
 // @ts-check
 import { fileURLToPath } from 'node:url';
 import * as path from 'node:path';
-// @ts-ignore
 import getBaseConfig from '@mui/internal-code-infra/babel-config';
 
 /**
@@ -26,12 +25,17 @@ function resolveAliasPath(relativeToBabelConf) {
 export default function getBabelConfig(api) {
   const baseConfig = getBaseConfig(api);
 
+  // Covers: docs prod build (NODE_ENV=production), package esm build (BABEL_ENV=stable),
+  // package cjs build (BABEL_ENV=node). Excludes docs dev, tests, coverage.
+  const isProductionBuild = api.env(['production', 'stable', 'node']);
+
   const defaultAlias = {
     '@mui/material': resolveAliasPath('./packages/mui-material/src'),
-    '@mui/docs': resolveAliasPath('./packages/mui-docs/src'),
+    '@mui/internal-core-docs': resolveAliasPath('./packages-internal/core-docs/src'),
     '@mui/icons-material': resolveAliasPath(`./packages/mui-icons-material/lib`),
     '@mui/lab': resolveAliasPath('./packages/mui-lab/src'),
-    '@mui/internal-markdown': resolveAliasPath('./packages/markdown'),
+    '@mui/internal-markdown/prism': resolveAliasPath('./packages-internal/markdown/prism.mjs'),
+    '@mui/internal-markdown': resolveAliasPath('./packages-internal/markdown'),
     '@mui/styled-engine': resolveAliasPath('./packages/mui-styled-engine/src'),
     '@mui/styled-engine-sc': resolveAliasPath('./packages/mui-styled-engine-sc/src'),
     '@mui/system': resolveAliasPath('./packages/mui-system/src'),
@@ -43,7 +47,7 @@ export default function getBabelConfig(api) {
   };
 
   /** @type {babel.PluginItem[]} */
-  const plugins = [
+  const prodOnlyPlugins = [
     [
       '@mui/internal-babel-plugin-minify-errors',
       {
@@ -55,34 +59,35 @@ export default function getBabelConfig(api) {
     ],
   ];
 
+  const excludedBasePlugins = new Set([
+    '@mui/internal-babel-plugin-display-name',
+    // Inlining MUI_VERSION, etc only matters for shipped bundles.
+    // Dev reads process.env at runtime without needing substitution.
+    ...(isProductionBuild ? [] : ['babel-plugin-transform-inline-environment-variables']),
+  ]);
+
   const basePlugins = (baseConfig.plugins || []).filter(
     (/** @type {[unknown, unknown, string]} */ [, , pluginName]) =>
-      pluginName !== '@mui/internal-babel-plugin-display-name',
+      !excludedBasePlugins.has(pluginName),
   );
-  basePlugins.push(...plugins);
+
+  if (isProductionBuild) {
+    basePlugins.push(...prodOnlyPlugins);
+  }
 
   return {
     ...baseConfig,
     plugins: basePlugins,
-    overrides: [
-      {
-        exclude: /\.test\.(m?js|ts|tsx)$/,
-        plugins: ['@babel/plugin-transform-react-constant-elements'],
-      },
-    ],
+    // `@babel/plugin-transform-react-constant-elements` hoists static JSX — prod-only optimization.
+    overrides: isProductionBuild
+      ? [
+          {
+            exclude: /\.test\.(m?js|ts|tsx)$/,
+            plugins: ['@babel/plugin-transform-react-constant-elements'],
+          },
+        ]
+      : [],
     env: {
-      coverage: {
-        plugins: [
-          'babel-plugin-istanbul',
-          [
-            'babel-plugin-module-resolver',
-            {
-              root: ['./'],
-              alias: defaultAlias,
-            },
-          ],
-        ],
-      },
       development: {
         plugins: [
           [

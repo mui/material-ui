@@ -17,11 +17,11 @@ import { NoSsrProps } from './NoSsr.types';
  *
  * Demos:
  *
- * - [No SSR](https://next.mui.com/material-ui/react-no-ssr/)
+ * - [No SSR](https://mui.com/material-ui/react-no-ssr/)
  *
  * API:
  *
- * - [NoSsr API](https://next.mui.com/material-ui/api/no-ssr/)
+ * - [NoSsr API](https://mui.com/material-ui/api/no-ssr/)
  */
 function NoSsr(props: NoSsrProps): React.JSX.Element {
   const { children, defer = false, fallback = null } = props;
@@ -35,6 +35,7 @@ function NoSsr(props: NoSsrProps): React.JSX.Element {
 
   React.useEffect(() => {
     if (defer) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setMountedState(true);
     }
   }, [defer]);

@@ -20,7 +20,6 @@ describe('<TableHead />', () => {
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLTableSectionElement,
     testComponentPropWith: 'tbody',
-    skip: ['componentsProp'],
   }));
 
   it('should render children', () => {

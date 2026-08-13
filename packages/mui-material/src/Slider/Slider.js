@@ -16,6 +16,7 @@ import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import BaseSliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
+import { getTransitionStyles } from '../transitions/utils';
 
 function Identity(x) {
   return x;
@@ -131,6 +132,10 @@ export const SliderRail = styled('span', {
   borderRadius: 'inherit',
   backgroundColor: 'currentColor',
   opacity: 0.38,
+  '@media (forced-colors: active)': {
+    border: '1px solid transparent',
+    boxSizing: 'border-box',
+  },
   variants: [
     {
       props: { orientation: 'horizontal' },
@@ -170,14 +175,16 @@ export const SliderTrack = styled('span', {
       borderRadius: 'inherit',
       border: '1px solid currentColor',
       backgroundColor: 'currentColor',
-      transition: theme.transitions.create(['left', 'width', 'bottom', 'height'], {
+      ...getTransitionStyles(theme, ['left', 'width', 'bottom', 'height'], {
         duration: theme.transitions.duration.shortest,
       }),
       variants: [
         {
           props: { size: 'small' },
           style: {
-            border: 'none',
+            '@media (forced-colors: none)': {
+              border: 'none',
+            },
           },
         },
         {
@@ -232,14 +239,6 @@ export const SliderTrack = styled('span', {
 export const SliderThumb = styled('span', {
   name: 'MuiSlider',
   slot: 'Thumb',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-    return [
-      styles.thumb,
-      styles[`thumbColor${capitalize(ownerState.color)}`],
-      ownerState.size !== 'medium' && styles[`thumbSize${capitalize(ownerState.size)}`],
-    ];
-  },
 })(
   memoTheme(({ theme }) => ({
     position: 'absolute',
@@ -252,9 +251,12 @@ export const SliderThumb = styled('span', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    transition: theme.transitions.create(['box-shadow', 'left', 'bottom'], {
+    ...getTransitionStyles(theme, ['box-shadow', 'left', 'bottom'], {
       duration: theme.transitions.duration.shortest,
     }),
+    '@media (forced-colors: active)': {
+      border: '1px solid ButtonBorder',
+    },
     '&::before': {
       position: 'absolute',
       content: '""',
@@ -333,7 +335,7 @@ const SliderValueLabel = styled(BaseSliderValueLabel, {
     whiteSpace: 'nowrap',
     ...theme.typography.body2,
     fontWeight: 500,
-    transition: theme.transitions.create(['transform'], {
+    ...getTransitionStyles(theme, ['transform'], {
       duration: theme.transitions.duration.shortest,
     }),
     position: 'absolute',
@@ -535,12 +537,7 @@ const useUtilityClasses = (ownerState) => {
     markLabel: ['markLabel'],
     markLabelActive: ['markLabelActive'],
     valueLabel: ['valueLabel'],
-    thumb: [
-      'thumb',
-      disabled && 'disabled',
-      size && `thumbSize${capitalize(size)}`,
-      color && `thumbColor${capitalize(color)}`,
-    ],
+    thumb: ['thumb', disabled && 'disabled'],
     active: ['active'],
     disabled: ['disabled'],
     focusVisible: ['focusVisible'],
@@ -946,7 +943,7 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
-   * Callback function that is fired when the `mouseup` is triggered.
+   * Callback function that is fired when the pointer or touch interaction ends.
    *
    * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {Value} value The new value.

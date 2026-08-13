@@ -32,8 +32,6 @@ describe('@mui/envinfo', () => {
     expect(envinfo).to.have.nested.property('Browsers');
     // Non-exhaustive list of `@mui/*` packages
     expect(envinfo).to.have.nested.property('npmPackages.@mui/material');
-    expect(envinfo).to.have.nested.property('npmPackages.@mui/joy');
-    expect(envinfo).to.have.nested.property('npmPackages.@mui/base');
     // Other libraries
     expect(envinfo).to.have.nested.property('npmPackages.react');
     expect(envinfo).to.have.nested.property('npmPackages.react-dom');

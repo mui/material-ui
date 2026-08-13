@@ -15,14 +15,16 @@ describe('<ListItemSecondaryAction />', () => {
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiListItemSecondaryAction',
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    skip: ['themeVariants'],
   }));
 
   it('should render without classes that disable gutters', () => {
     render(
-      <ListItem>
-        <ListItemSecondaryAction data-testid="secondary-action" />
-      </ListItem>,
+      <ListItem
+        slots={{ secondaryAction: ListItemSecondaryAction }}
+        slotProps={{ secondaryAction: { 'data-testid': 'secondary-action' } }}
+        secondaryAction="foo"
+      />,
     );
 
     expect(screen.getByTestId('secondary-action')).not.to.have.class(classes.disableGutters);
@@ -30,9 +32,12 @@ describe('<ListItemSecondaryAction />', () => {
 
   it('should disable the gutters', () => {
     render(
-      <ListItem disableGutters>
-        <ListItemSecondaryAction data-testid="secondary-action" />
-      </ListItem>,
+      <ListItem
+        disableGutters
+        slots={{ secondaryAction: ListItemSecondaryAction }}
+        slotProps={{ secondaryAction: { 'data-testid': 'secondary-action' } }}
+        secondaryAction="foo"
+      />,
     );
 
     expect(screen.getByTestId('secondary-action')).to.have.class(classes.disableGutters);

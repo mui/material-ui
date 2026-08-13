@@ -30,6 +30,7 @@ TextMaskCustom.propTypes = {
 };
 
 export default function FormattedInputs() {
+  const id = React.useId();
   const [values, setValues] = React.useState({
     textmask: '(100) 000-0000',
     numberformat: '1320',
@@ -45,12 +46,12 @@ export default function FormattedInputs() {
   return (
     <Stack direction="row" spacing={2}>
       <FormControl variant="standard">
-        <InputLabel htmlFor="formatted-text-mask-input">react-imask</InputLabel>
+        <InputLabel htmlFor={`${id}-input`}>react-imask</InputLabel>
         <Input
           value={values.textmask}
           onChange={handleChange}
           name="textmask"
-          id="formatted-text-mask-input"
+          id={`${id}-input`}
           inputComponent={TextMaskCustom}
         />
       </FormControl>

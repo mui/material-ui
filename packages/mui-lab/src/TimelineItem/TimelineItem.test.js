@@ -11,6 +11,6 @@ describe('<TimelineItem />', () => {
     render,
     muiName: 'MuiTimelineItem',
     refInstanceof: window.HTMLLIElement,
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    skip: ['componentProp', 'themeVariants'],
   }));
 });

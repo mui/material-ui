@@ -39,6 +39,7 @@ export interface MenuItemOwnProps {
   divider?: boolean | undefined;
   /**
    * If `true`, the component is selected.
+   * For `menuitemcheckbox` and `menuitemradio` roles, this also drives `aria-checked`.
    * @default false
    */
   selected?: boolean | undefined;
@@ -60,12 +61,12 @@ export type MenuItemTypeMap<
  *
  * Demos:
  *
- * - [Menu](https://next.mui.com/material-ui/react-menu/)
+ * - [Menu](https://mui.com/material-ui/react-menu/)
  *
  * API:
  *
- * - [MenuItem API](https://next.mui.com/material-ui/api/menu-item/)
- * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
+ * - [MenuItem API](https://mui.com/material-ui/api/menu-item/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const MenuItem: ExtendButtonBase<MenuItemTypeMap>;
 

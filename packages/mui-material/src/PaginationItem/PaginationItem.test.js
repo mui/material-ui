@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
@@ -27,7 +28,6 @@ describe('<PaginationItem />', () => {
       next: {},
     },
     skip: [
-      'componentsProp',
       // Icon slots (first, last, previous, next) only render when `type` matches
       // (e.g. type="first" for the first slot). The conformance test renders
       // <PaginationItem /> which defaults to type="page", so icon slots are absent.
@@ -218,6 +218,24 @@ describe('<PaginationItem />', () => {
       expect(screen.queryByTestId('slot-previous')).to.equal(null);
       expect(screen.queryByTestId('slot-last')).not.to.equal(null);
       expect(screen.queryByTestId('slot-first')).to.equal(null);
+    });
+  });
+
+  describe('prop: nativeButton', () => {
+    it('forwards nativeButton={false} to ButtonBase with a custom component', () => {
+      const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(<PaginationItem component={CustomSpan} page={1} nativeButton={false} />);
+
+      const item = screen.getByRole('button');
+      expect(item).to.have.tagName('SPAN');
+      expect(item).not.to.have.attribute('type');
+
+      // Proves nativeButton={false} was forwarded — without it, ButtonBase
+      // would warn about a non-button host with nativeButton omitted.
+      expect(errorSpy.mock.calls.length).to.equal(0);
+      errorSpy.mockRestore();
     });
   });
 });

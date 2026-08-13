@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen, fireEvent, supportsTouch } from '@mui/internal-test-utils';
@@ -18,7 +19,7 @@ describe('<StepButton />', () => {
       muiName: 'MuiStepButton',
       refInstanceof: window.HTMLButtonElement,
       render,
-      skip: ['componentProp', 'componentsProp', 'themeVariants'],
+      skip: ['componentProp', 'themeVariants'],
     }));
 
     it('should receive the correct aria attributes', () => {
@@ -84,6 +85,39 @@ describe('<StepButton />', () => {
     expect(screen.getByRole('tab')).to.have.property('disabled', true);
   });
 
+  it('should skip disabled steps in the roving tablist path', async () => {
+    const { user } = render(
+      <Stepper nonLinear orientation="vertical">
+        <Step>
+          <StepButton>Step One</StepButton>
+        </Step>
+        <Step disabled>
+          <StepButton>Step Two</StepButton>
+        </Step>
+        <Step>
+          <StepButton>Step Three</StepButton>
+        </Step>
+      </Stepper>,
+    );
+
+    const stepOne = screen.getByRole('tab', { name: 'Step One' });
+    const stepTwo = screen.getByRole('tab', { name: 'Step Two' });
+    const stepThree = screen.getByRole('tab', { name: 'Step Three' });
+
+    expect(stepTwo).to.have.property('disabled', true);
+
+    await user.tab();
+    expect(stepOne).toHaveFocus();
+
+    await user.keyboard('{ArrowDown}');
+    expect(stepThree).toHaveFocus();
+    expect(stepTwo).not.toHaveFocus();
+
+    await user.keyboard('{ArrowUp}');
+    expect(stepOne).toHaveFocus();
+    expect(stepTwo).not.toHaveFocus();
+  });
+
   describe('event handlers', () => {
     // only run in supported browsers
     it.skipIf(!supportsTouch())(
@@ -134,6 +168,33 @@ describe('<StepButton />', () => {
         expect(handleTouchStart).to.have.property('callCount', 2);
       },
     );
+  });
+
+  describe('prop: nativeButton', () => {
+    it('forwards nativeButton={false} and preserves role="tab" over pseudo-button role', () => {
+      const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(
+        <Stepper>
+          <Step>
+            <StepButton component={CustomSpan} nativeButton={false}>
+              Step One
+            </StepButton>
+          </Step>
+        </Stepper>,
+      );
+
+      const stepButton = screen.getByRole('tab', { name: 'Step One' });
+      expect(stepButton).to.have.tagName('SPAN');
+      expect(stepButton).to.have.attribute('role', 'tab');
+      expect(stepButton).not.to.have.attribute('type');
+
+      // Proves nativeButton={false} was forwarded — without it, ButtonBase
+      // would warn about a non-button host with nativeButton omitted.
+      expect(errorSpy.mock.calls.length).to.equal(0);
+      errorSpy.mockRestore();
+    });
   });
 
   it('can be used as a child of `Step`', () => {

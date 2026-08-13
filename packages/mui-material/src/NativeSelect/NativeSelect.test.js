@@ -25,7 +25,7 @@ describe('<NativeSelect />', () => {
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiNativeSelect',
-    skip: ['componentProp', 'componentsProp', 'themeVariants', 'themeStyleOverrides'],
+    skip: ['componentProp', 'themeVariants', 'themeStyleOverrides'],
   }));
 
   it('should render a native select', () => {

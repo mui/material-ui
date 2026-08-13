@@ -16,9 +16,11 @@ The rendered UI is either:
 
 2. a demo from `docs/data`
 
-   By default all demos are included.
-   We exclude demos if they are redundant or flaky etc.
-   The logic for this exclusion is handled (like the composition) in `./index.js`
+   Most import-safe demos are included.
+   Non-demo paths and interactive or flaky components are excluded in `./index.jsx`.
+
+   Per-demo screenshot and accessibility rules live in `./demoMeta.ts`.
+   This keeps screenshot exclusions separate from accessibility coverage.
 
 If you introduce new behavior, prefer adding a demo to the documentation to solve documentation and testing with one file.
 If you're adding a new test prefer a new component instead of editing existing files since that might unknowingly alter existing tests.
@@ -33,15 +35,32 @@ By default, a devtools-like view is shown that can be disabled by appending `#no
 
 ### Automatic
 
-We're using [`playwright`](https://playwright.dev) to iterate over each fixture and take a screenshot.
+We're using [`playwright`](https://playwright.dev) to iterate over each fixture in a real browser.
+
+For screenshot-enabled fixtures, Playwright saves a screenshot in `./screenshots/$BROWSER_NAME/`.
+
+Some demos also run axe-core accessibility checks.
+Their results are saved next to the related component docs.
+
 It allows catching regressions like this one:
 
 ![before](/test/docs-regressions-before.png)
 ![diff](/test/docs-regressions-diff.png)
 
-Screenshots are saved in `./screenshots/$BROWSER_NAME/`.
 Each test tests only a single fixture.
 A fixture can be loaded with `await renderFixture(fixturePath)`, for example `renderFixture('FocusTrap/OpenFocusTrap')`.
+
+Accessibility checks are opt-in.
+Add rules in `./demoMeta.ts` under `A11Y_RULES`.
+
+Use a slug-wide rule for many demos, or a brace-glob for specific demos:
+
+```ts
+{ test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true }
+```
+
+Filtered runs with `-t` only refresh matched slugs.
+Use an unfiltered run when you need to refresh all generated results.
 
 ## Commands
 

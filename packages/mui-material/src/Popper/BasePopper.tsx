@@ -47,12 +47,7 @@ function flipPlacement(placement?: PopperPlacementType, direction?: 'ltr' | 'rtl
 
 function resolveAnchorEl(
   anchorEl:
-    | VirtualElement
-    | (() => VirtualElement)
-    | HTMLElement
-    | (() => HTMLElement)
-    | null
-    | undefined,
+    VirtualElement | (() => VirtualElement) | HTMLElement | (() => HTMLElement) | null | undefined,
 ): HTMLElement | VirtualElement | null | undefined {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
@@ -114,21 +109,16 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
    */
   const [placement, setPlacement] = React.useState<Placement | undefined>(rtlPlacement);
-  const [resolvedAnchorElement, setResolvedAnchorElement] = React.useState<
-    HTMLElement | VirtualElement | null | undefined
-  >(resolveAnchorEl(anchorEl));
+  const resolvedAnchorElement = React.useMemo<HTMLElement | VirtualElement | null | undefined>(
+    () => resolveAnchorEl(anchorEl),
+    [anchorEl],
+  );
 
   React.useEffect(() => {
     if (popperRef.current) {
       popperRef.current.forceUpdate();
     }
   });
-
-  React.useEffect(() => {
-    if (anchorEl) {
-      setResolvedAnchorElement(resolveAnchorEl(anchorEl));
-    }
-  }, [anchorEl]);
 
   useEnhancedEffect(() => {
     if (!resolvedAnchorElement || !open) {
@@ -203,8 +193,31 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
 
     handlePopperRefRef.current!(popper);
 
+    const popperElement = tooltipRef.current;
+
     return () => {
-      popper.destroy();
+      // popper.destroy() clears all inline positioning via the applyStyles
+      // modifier cleanup, which causes the element to jump to its static
+      // position. Snapshot and restore only the positioning properties so the
+      // element stays in place during the destroy/recreate gap (prevents scroll
+      // jumps when a child focuses between the two).
+      // https://github.com/mui/mui-x/issues/21839
+      if (popperElement) {
+        const { style } = popperElement;
+        const position = style.position;
+        const top = style.top;
+        const left = style.left;
+        const transform = style.transform;
+
+        popper.destroy();
+
+        style.position = position;
+        style.top = top;
+        style.left = left;
+        style.transform = transform;
+      } else {
+        popper.destroy();
+      }
       handlePopperRefRef.current!(null);
     };
   }, [resolvedAnchorElement, disablePortal, modifiers, open, popperOptions, rtlPlacement]);

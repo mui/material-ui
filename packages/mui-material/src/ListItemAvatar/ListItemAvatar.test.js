@@ -15,7 +15,7 @@ describe('<ListItemAvatar />', () => {
       render,
       muiName: 'MuiListItemAvatar',
       refInstanceof: window.HTMLDivElement,
-      skip: ['componentProp', 'componentsProp', 'themeVariants'],
+      skip: ['componentProp', 'themeVariants'],
     }),
   );
 });

@@ -51,7 +51,6 @@ interface ApiJson {
   filename?: string;
   inheritance?: ApiInheritance;
   demos?: string;
-  cssComponent?: boolean;
   deprecated?: boolean;
   deprecationInfo?: string;
 }
@@ -321,11 +320,6 @@ export function processApiJson(apiJson: ApiJson | string, options: ProcessApiOpt
   const classesTable = generateClassesTable(api.classes || [], origin);
   if (classesTable) {
     markdown += `${classesTable}\n`;
-  }
-
-  // Add CSS component note
-  if (api.cssComponent) {
-    markdown += `> **Note**: As a CSS utility, the \`${api.name}\` component also supports all system properties. You can use them as props directly on the component.\n\n`;
   }
 
   // Add source code section

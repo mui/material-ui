@@ -15,7 +15,6 @@ describe('<DialogTitle />', () => {
     muiName: 'MuiDialogTitle',
     refInstanceof: window.HTMLHeadingElement,
     testVariantProps: { 'data-color': 'red' },
-    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render JSX children', () => {
@@ -30,6 +29,13 @@ describe('<DialogTitle />', () => {
     render(<DialogTitle>{children}</DialogTitle>);
 
     screen.getByText('Hello');
+  });
+
+  it('should render the title as an h2 by default', () => {
+    render(<DialogTitle>foo</DialogTitle>);
+
+    const title = screen.getByRole('heading', { name: 'foo', level: 2 });
+    expect(title.tagName).to.equal('H2');
   });
 
   describe('prop: id', () => {

@@ -19,7 +19,7 @@ import Modal from '../Modal';
 import PaperBase from '../Paper';
 import { getPopoverUtilityClass } from './popoverClasses';
 import useSlot from '../utils/useSlot';
-import { mergeSlotProps } from '../utils';
+import mergeSlotProps from '../utils/mergeSlotProps';
 
 export function getOffsetTop(rect, vertical) {
   let offset = 0;
@@ -106,6 +106,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     children,
     className,
     container: containerProp,
+    disableAutoFocus = false,
     elevation = 8,
     marginThreshold = 16,
     open,
@@ -230,13 +231,13 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       const widthThreshold = containerWindow.innerWidth - marginThreshold;
 
       // Check if the vertical axis needs shifting
-      if (marginThreshold !== null && top < marginThreshold) {
+      if (marginThreshold != null && top < marginThreshold) {
         const diff = top - marginThreshold;
 
         top -= diff;
 
         elemTransformOrigin.vertical += diff;
-      } else if (marginThreshold !== null && bottom > heightThreshold) {
+      } else if (marginThreshold != null && bottom > heightThreshold) {
         const diff = bottom - heightThreshold;
 
         top -= diff;
@@ -259,7 +260,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       }
 
       // Check if the horizontal axis needs shifting
-      if (marginThreshold !== null && left < marginThreshold) {
+      if (marginThreshold != null && left < marginThreshold) {
         const diff = left - marginThreshold;
         left -= diff;
         elemTransformOrigin.horizontal += diff;
@@ -289,10 +290,10 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
 
     const positioning = getPositioningStyle(element);
 
-    if (positioning.top !== null) {
+    if (positioning.top != null) {
       element.style.setProperty('top', positioning.top);
     }
-    if (positioning.left !== null) {
+    if (positioning.left != null) {
       element.style.left = positioning.left;
     }
     element.style.transformOrigin = positioning.transformOrigin;
@@ -435,6 +436,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       {...(!isHostComponent(RootSlot) && {
         slots: rootSlotsProp,
         slotProps: rootSlotPropsProp,
+        disableAutoFocus,
         disableScrollLock,
       })}
     >
@@ -554,6 +556,16 @@ Popover.propTypes /* remove-proptypes */ = {
     HTMLElementType,
     PropTypes.func,
   ]),
+  /**
+   * If `true`, the modal will not automatically shift focus to itself when it opens, and
+   * replace it to the last focused element when it closes.
+   * This also works correctly with any modal children that have the `disableAutoFocus` prop.
+   *
+   * Generally this should never be set to `true` as it makes the modal less
+   * accessible to assistive technologies, like screen readers.
+   * @default false
+   */
+  disableAutoFocus: PropTypes.bool,
   /**
    * Disable the scroll lock behavior.
    * @default false

@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import useTimeout, { Timeout } from '@mui/utils/useTimeout';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
-import { useRtl } from '@mui/system/RtlProvider';
 import isFocusVisible from '@mui/utils/isFocusVisible';
 import getReactElementRef from '@mui/utils/getReactElementRef';
 import { styled, useTheme } from '../zero-styled';
@@ -61,15 +60,9 @@ const TooltipPopper = styled(Popper, {
     pointerEvents: 'none',
     variants: [
       {
-        props: ({ ownerState }) => !ownerState.disableInteractive,
+        props: ({ ownerState, open }) => open && !ownerState.disableInteractive,
         style: {
           pointerEvents: 'auto',
-        },
-      },
-      {
-        props: ({ open }) => !open,
-        style: {
-          pointerEvents: 'none',
         },
       },
       {
@@ -92,6 +85,8 @@ const TooltipPopper = styled(Popper, {
           [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
             height: '1em',
             width: '0.71em',
+            insetInlineStart: 0,
+            marginInlineStart: '-0.71em',
             '&::before': {
               transformOrigin: '100% 100%',
             },
@@ -99,45 +94,11 @@ const TooltipPopper = styled(Popper, {
           [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
             height: '1em',
             width: '0.71em',
+            insetInlineEnd: 0,
+            marginInlineEnd: '-0.71em',
             '&::before': {
               transformOrigin: '0 0',
             },
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.arrow && !ownerState.isRtl,
-        style: {
-          [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-            left: 0,
-            marginLeft: '-0.71em',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.arrow && !!ownerState.isRtl,
-        style: {
-          [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-            right: 0,
-            marginRight: '-0.71em',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.arrow && !ownerState.isRtl,
-        style: {
-          [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-            right: 0,
-            marginRight: '-0.71em',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.arrow && !!ownerState.isRtl,
-        style: {
-          [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-            left: 0,
-            marginLeft: '-0.71em',
           },
         },
       },
@@ -174,9 +135,11 @@ const TooltipTooltip = styled('div', {
     fontWeight: theme.typography.fontWeightMedium,
     [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
       transformOrigin: 'right center',
+      marginInlineEnd: '14px',
     },
     [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
       transformOrigin: 'left center',
+      marginInlineStart: '14px',
     },
     [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
       transformOrigin: 'center bottom',
@@ -191,7 +154,7 @@ const TooltipTooltip = styled('div', {
         props: ({ ownerState }) => ownerState.arrow,
         style: {
           position: 'relative',
-          margin: 0,
+          marginBlock: 0,
         },
       },
       {
@@ -204,60 +167,17 @@ const TooltipTooltip = styled('div', {
         },
       },
       {
-        props: ({ ownerState }) => !ownerState.isRtl,
-        style: {
-          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-            marginRight: '14px',
-          },
-          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-            marginLeft: '14px',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) => !ownerState.isRtl && ownerState.touch,
-        style: {
-          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-            marginRight: '24px',
-          },
-          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-            marginLeft: '24px',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) => !!ownerState.isRtl,
-        style: {
-          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-            marginLeft: '14px',
-          },
-          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-            marginRight: '14px',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) => !!ownerState.isRtl && ownerState.touch,
-        style: {
-          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-            marginLeft: '24px',
-          },
-          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-            marginRight: '24px',
-          },
-        },
-      },
-      {
         props: ({ ownerState }) => ownerState.touch,
         style: {
+          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
+            marginInlineEnd: '24px',
+          },
+          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
+            marginInlineStart: '24px',
+          },
           [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
             marginBottom: '24px',
           },
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.touch,
-        style: {
           [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
             marginTop: '24px',
           },
@@ -340,11 +260,11 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const children = React.isValidElement(childrenProp) ? childrenProp : <span>{childrenProp}</span>;
 
   const theme = useTheme();
-  const isRtl = useRtl();
 
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
   const ignoreNonTouchEvents = React.useRef(false);
+  const openedByDisabledTriggerRef = React.useRef(false);
 
   const disableInteractive = disableInteractiveProp || followCursor;
 
@@ -361,34 +281,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   });
 
   let open = openState;
-
-  if (process.env.NODE_ENV !== 'production') {
-    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
-    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
-    const { current: isControlled } = React.useRef(openProp !== undefined);
-
-    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
-    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
-    React.useEffect(() => {
-      if (
-        childNode &&
-        childNode.disabled &&
-        !isControlled &&
-        title !== '' &&
-        childNode.tagName.toLowerCase() === 'button'
-      ) {
-        console.warn(
-          [
-            'MUI: You are providing a disabled `button` child to the Tooltip component.',
-            'A disabled element does not fire events.',
-            "Tooltip needs to listen to the child element's events to display the title.",
-            '',
-            'Add a simple wrapper element, such as a `span`.',
-          ].join('\n'),
-        );
-      }
-    }, [title, childNode, isControlled]);
-  }
+  const { current: isControlled } = React.useRef(openProp !== undefined);
 
   const id = useId(idProp);
 
@@ -422,6 +315,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
      * @param {React.SyntheticEvent | Event} event
      */
     (event) => {
+      openedByDisabledTriggerRef.current = false;
       hystersisTimer.start(800 + leaveDelay, () => {
         hystersisOpen = false;
       });
@@ -460,6 +354,31 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   };
 
+  const handleTriggerMouseOver = (event) => {
+    if (childNode?.disabled && !isControlled) {
+      // A disabled trigger can open the tooltip if it receives pointer events.
+      // However, if the trigger became disabled while the tooltip was already open,
+      // stray mouseover events must not cancel the pending close.
+      if (open && !openedByDisabledTriggerRef.current) {
+        return;
+      }
+
+      openedByDisabledTriggerRef.current = true;
+    } else {
+      openedByDisabledTriggerRef.current = false;
+    }
+
+    handleMouseOver(event);
+  };
+
+  const handleInteractiveWrapperMouseOver = (event) => {
+    if (childNode?.disabled && !isControlled && !openedByDisabledTriggerRef.current) {
+      return;
+    }
+
+    handleMouseOver(event);
+  };
+
   const handleMouseLeave = (event) => {
     enterTimer.clear();
     leaveTimer.start(leaveDelay, () => {
@@ -471,7 +390,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const handleBlur = (event) => {
     // Needed for https://github.com/mui/material-ui/issues/45373
     const target = event?.target ?? childNode;
-    if (!target || !isFocusVisible(target)) {
+    if (!target || target.disabled || !isFocusVisible(target)) {
       setChildIsFocusVisible(false);
 
       // InputBase can call onBlur() without an event when the input becomes disabled.
@@ -489,14 +408,26 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   };
 
   const handleFocus = (event) => {
-    // Workaround for https://github.com/facebook/react/issues/7769
+    // Workaround for https://github.com/react/react/issues/7769
     // The autoFocus of React might trigger the event before the componentDidMount.
     // We need to account for this eventuality.
     if (!childNode) {
       setChildNode(event.currentTarget);
     }
 
+    openedByDisabledTriggerRef.current = false;
+
     if (isFocusVisible(event.target)) {
+      // Workaround for https://github.com/react/react/issues/9142.
+      // React does not fire blur when a focused element becomes disabled.
+      const handleNativeBlur = (blurEvent) => {
+        if (blurEvent.target.disabled) {
+          handleBlur(blurEvent);
+        }
+        blurEvent.target.removeEventListener('blur', handleNativeBlur);
+      };
+
+      event.target.addEventListener('blur', handleNativeBlur);
       setChildIsFocusVisible(true);
       handleMouseOver(event);
     }
@@ -523,7 +454,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
     touchTimer.start(enterTouchDelay, () => {
       document.body.style.WebkitUserSelect = prevUserSelect.current;
-      handleMouseOver(event);
+      handleTriggerMouseOver(event);
     });
   };
 
@@ -627,11 +558,14 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   }
 
   if (!disableHoverListener) {
-    childrenProps.onMouseOver = composeEventHandler(handleMouseOver, childrenProps.onMouseOver);
+    childrenProps.onMouseOver = composeEventHandler(
+      handleTriggerMouseOver,
+      childrenProps.onMouseOver,
+    );
     childrenProps.onMouseLeave = composeEventHandler(handleMouseLeave, childrenProps.onMouseLeave);
 
     if (!disableInteractive) {
-      interactiveWrapperListeners.onMouseOver = handleMouseOver;
+      interactiveWrapperListeners.onMouseOver = handleInteractiveWrapperMouseOver;
       interactiveWrapperListeners.onMouseLeave = handleMouseLeave;
     }
   }
@@ -659,7 +593,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const ownerState = {
     ...props,
-    isRtl,
     arrow,
     disableInteractive,
     placement,

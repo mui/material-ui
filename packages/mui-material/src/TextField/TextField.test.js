@@ -54,7 +54,7 @@ describe('<TextField />', () => {
           testWithElement: TestFormControl,
         },
       },
-      skip: ['componentProp', 'componentsProp'],
+      skip: ['componentProp'],
     }),
   );
 
@@ -90,11 +90,16 @@ describe('<TextField />', () => {
     });
 
     it('should forward the multiline prop to Input', () => {
-      render(<TextField variant="standard" multiline />);
-
-      expect(screen.getByRole('textbox', { hidden: false })).to.have.class(
-        inputBaseClasses.inputMultiline,
+      render(
+        <TextField
+          variant="standard"
+          multiline
+          slotProps={{ input: { 'data-testid': 'mui-input-base-root' } }}
+        />,
       );
+
+      expect(screen.getByTestId('mui-input-base-root')).to.have.class(inputBaseClasses.multiline);
+      expect(screen.getByRole('textbox', { hidden: false })).to.have.class(inputBaseClasses.input);
     });
 
     it('should forward the fullWidth prop to Input', () => {
@@ -405,9 +410,18 @@ describe('<TextField />', () => {
         );
       }
 
+      function fireAnimationStart(element, animationName) {
+        const event = new Event('animationstart', { bubbles: true });
+        Object.defineProperty(event, 'animationName', { value: animationName });
+        fireEvent(element, event);
+      }
+
       render(<AutoFillComponentTest />);
-      fireEvent.animationStart(screen.getByTestId('htmlInput'), { animationName: 'mui-auto-fill' });
+      fireAnimationStart(screen.getByTestId('htmlInput'), 'mui-auto-fill');
       expect(screen.getByTestId('label').getAttribute('data-shrink')).to.equal('true');
+
+      fireAnimationStart(screen.getByTestId('htmlInput'), 'mui-auto-fill-cancel');
+      expect(screen.getByTestId('label').getAttribute('data-shrink')).to.equal('false');
     });
   });
 });

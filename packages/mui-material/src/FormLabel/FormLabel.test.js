@@ -19,7 +19,6 @@ describe('<FormLabel />', () => {
     testComponentPropWith: 'div',
     muiName: 'MuiFormLabel',
     testVariantProps: { color: 'secondary' },
-    skip: ['componentsProp'],
   }));
 
   describe('prop: required', () => {

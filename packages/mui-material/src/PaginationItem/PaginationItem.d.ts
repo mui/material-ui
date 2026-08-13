@@ -104,6 +104,11 @@ export interface PaginationItemOwnProps extends PaginationItemSlotsAndSlotProps 
    */
   disabled?: boolean | undefined;
   /**
+   * Whether the custom component should render a native `<button>` element when
+   * rendering a React component with the `component` or `slots` prop.
+   */
+  nativeButton?: boolean | undefined;
+  /**
    * The current page number.
    */
   page?: React.ReactNode;
@@ -138,8 +143,7 @@ export interface PaginationItemOwnProps extends PaginationItemSlotsAndSlotProps 
    * @default 'text'
    */
   variant?:
-    | OverridableStringUnion<'text' | 'outlined', PaginationItemPropsVariantOverrides>
-    | undefined;
+    OverridableStringUnion<'text' | 'outlined', PaginationItemPropsVariantOverrides> | undefined;
 }
 
 export interface PaginationItemTypeMap<
@@ -154,12 +158,12 @@ export interface PaginationItemTypeMap<
  *
  * Demos:
  *
- * - [Pagination](https://next.mui.com/material-ui/react-pagination/)
+ * - [Pagination](https://mui.com/material-ui/react-pagination/)
  *
  * API:
  *
- * - [PaginationItem API](https://next.mui.com/material-ui/api/pagination-item/)
- * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
+ * - [PaginationItem API](https://mui.com/material-ui/api/pagination-item/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const PaginationItem: OverridableComponent<PaginationItemTypeMap>;
 

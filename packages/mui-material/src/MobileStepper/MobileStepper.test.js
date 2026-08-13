@@ -57,7 +57,7 @@ describe('<MobileStepper />', () => {
         testWithElement: CustomDot,
       },
     },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   describeConformance(<MobileStepper {...defaultProps} steps={1} variant="progress" />, () => ({

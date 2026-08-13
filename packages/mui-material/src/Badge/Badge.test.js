@@ -43,7 +43,6 @@ describe('<Badge />', () => {
           expectedClassName: classes.badge,
         },
       },
-      skip: ['componentsProp'],
     }),
   );
 
@@ -53,6 +52,12 @@ describe('<Badge />', () => {
     const { container } = render(<Badge badgeContent={badge}>{children}</Badge>);
     expect(container.firstChild).to.contain(screen.getByTestId('child'));
     expect(container.firstChild).to.contain(screen.getByTestId('badge'));
+  });
+
+  it('hides the visual badge from assistive technologies by default', () => {
+    const { container } = render(<Badge {...defaultProps} />);
+
+    expect(findBadge(container)).to.have.attribute('aria-hidden', 'true');
   });
 
   it('applies customized classes', () => {
@@ -344,6 +349,18 @@ describe('<Badge />', () => {
 
       screen.getByTestId('custom-root');
       screen.getByTestId('custom-badge');
+    });
+
+    it('allows overriding the badge accessibility props', () => {
+      const { container } = render(
+        <Badge
+          {...defaultProps}
+          slotProps={{ badge: { 'aria-hidden': false, 'aria-label': '10 notifications' } }}
+        />,
+      );
+
+      expect(findBadge(container)).to.have.attribute('aria-hidden', 'false');
+      expect(findBadge(container)).to.have.attribute('aria-label', '10 notifications');
     });
   });
 

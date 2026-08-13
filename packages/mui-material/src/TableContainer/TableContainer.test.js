@@ -13,6 +13,5 @@ describe('<TableContainer />', () => {
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    skip: ['componentsProp'],
   }));
 });

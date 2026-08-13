@@ -19,7 +19,6 @@ describe('<Table />', () => {
       refInstanceof: window.HTMLTableElement,
       // can't test another component with tbody as a child
       testComponentPropWith: 'table',
-      skip: ['componentsProp'],
     }),
   );
 

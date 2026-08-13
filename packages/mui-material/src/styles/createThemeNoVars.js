@@ -14,6 +14,7 @@ import createPalette from './createPalette';
 import createTypography from './createTypography';
 import shadows from './shadows';
 import createTransitions from './createTransitions';
+import createMotion from './createMotion';
 import zIndex from './zIndex';
 import { stringifyTheme } from './stringifyTheme';
 
@@ -77,6 +78,7 @@ function createThemeNoVars(options = {}, ...args) {
     mixins: mixinsInput = {},
     spacing: spacingInput,
     palette: paletteInput = {},
+    motion: motionInput = {},
     transitions: transitionsInput = {},
     typography: typographyInput = {},
     shape: shapeInput,
@@ -93,7 +95,7 @@ function createThemeNoVars(options = {}, ...args) {
     throw /* minify-error */ new Error(
       'MUI: `vars` is a private field used for CSS variables support.\n' +
         // #host-reference
-        'Please use another name or follow the [docs](https://next.mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
+        'Please use another name or follow the [docs](https://mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
     );
   }
 
@@ -106,12 +108,15 @@ function createThemeNoVars(options = {}, ...args) {
     // Don't use [...shadows] until you've verified its transpiled code is not invoking the iterator protocol.
     shadows: shadows.slice(),
     typography: createTypography(palette, typographyInput),
+    motion: createMotion(motionInput),
     transitions: createTransitions(transitionsInput),
     zIndex: { ...zIndex },
   });
 
   muiTheme = deepmerge(muiTheme, other);
   muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
+  // `reducedMotion` is owned by `theme.motion`; remove stale values preserved by systemCreateTheme.
+  delete muiTheme.transitions.reducedMotion;
 
   if (process.env.NODE_ENV !== 'production') {
     // TODO v6: Refactor to use globalStateClassesMapping from @mui/utils once `readOnly` state class is used in Rating component.

@@ -33,7 +33,7 @@ export default function AccountMenu() {
             sx={{ ml: 2 }}
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
+            aria-expanded={open}
           >
             <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
           </IconButton>

@@ -14,7 +14,7 @@ describe('<DialogContentText />', () => {
     render,
     muiName: 'MuiDialogContentText',
     refInstanceof: window.HTMLParagraphElement,
-    skip: ['componentsProp', 'themeVariants'],
+    skip: ['themeVariants'],
   }));
 
   describe('prop: children', () => {

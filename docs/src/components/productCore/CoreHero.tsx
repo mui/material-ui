@@ -1,9 +1,9 @@
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from '@mui/docs/SectionHeadline';
+import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import IconImage from '@mui/docs/IconImage';
+import IconImage from '@mui/internal-core-docs/IconImage';
 
 export default function CoreHero() {
   return (

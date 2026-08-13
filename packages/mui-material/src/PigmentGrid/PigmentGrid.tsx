@@ -17,7 +17,7 @@ import { Breakpoint, Theme } from '../styles';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
-export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+export type GridDirection = 'row' | 'row-reverse';
 
 export type GridSpacing = number | string;
 
@@ -123,11 +123,11 @@ const useUtilityClasses = (ownerState: GridBaseProps) => {
  *
  * Demos:
  *
- * - [Grid](https://next.mui.com/material-ui/react-grid/)
+ * - [Grid](https://mui.com/material-ui/react-grid/)
  *
  * API:
  *
- * - [PigmentGrid API](https://next.mui.com/material-ui/api/pigment-grid/)
+ * - [PigmentGrid API](https://mui.com/material-ui/api/pigment-grid/)
  */
 const PigmentGrid = React.forwardRef(function PigmentGrid(props, ref) {
   const { className, ...other } = props;
@@ -181,8 +181,8 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
    * @default 'row'
    */
   direction: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['column', 'column-reverse', 'row', 'row-reverse']),
-    PropTypes.arrayOf(PropTypes.oneOf(['column', 'column-reverse', 'row', 'row-reverse'])),
+    PropTypes.oneOf(['row', 'row-reverse']),
+    PropTypes.arrayOf(PropTypes.oneOf(['row', 'row-reverse'])),
     PropTypes.object,
   ]),
   /**

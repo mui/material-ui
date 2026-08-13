@@ -27,7 +27,7 @@ describe('<BottomNavigation />', () => {
       muiName: 'MuiBottomNavigation',
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'span',
-      skip: ['componentsProp', 'themeVariants'],
+      skip: ['themeVariants'],
     }),
   );
 

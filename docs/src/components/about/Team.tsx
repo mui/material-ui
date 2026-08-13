@@ -13,12 +13,13 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import XIcon from '@mui/icons-material/X';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { Link } from '@mui/docs/Link';
-import ROUTES from 'docs/src/route';
+import { Link } from '@mui/internal-core-docs/Link';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from '@mui/docs/SectionHeadline';
+import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import teamMembers from 'docs/data/about/teamMembers.json';
+import getMemberImageFile from './getMemberImageFile';
 // The teamMembers.json file should be synced with `pnpm docs:sync-team`.
 
 interface Profile {
@@ -149,7 +150,6 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
               component="a"
               href={`https://github.com/${props.github}`}
               target="_blank"
-              rel="noopener"
             >
               <GitHubIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
@@ -160,7 +160,6 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
               component="a"
               href={`https://x.com/${props.twitter}`}
               target="_blank"
-              rel="noopener"
             >
               <XIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
@@ -171,7 +170,6 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
               component="a"
               href={`https://www.linkedin.com/${props.linkedin}`}
               target="_blank"
-              rel="noopener"
             >
               <LinkedInIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
@@ -369,10 +367,7 @@ export default function Team() {
         <Grid container spacing={2}>
           {(teamMembers as Array<Profile>).map((profileJson) => {
             const profile = {
-              src: `/static/branding/about/${profileJson.name
-                .split(' ')
-                .map((x) => x.toLowerCase())
-                .join('-')}.png`,
+              src: `/static/branding/about/${getMemberImageFile(profileJson)}`,
               ...profileJson,
             };
             return (

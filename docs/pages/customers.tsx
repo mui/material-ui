@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { BrandingCssVarsProvider } from '@mui/docs/branding';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
+import { AppHeaderBanner, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 import CustomersHero from 'docs/src/components/customers/CustomersHero';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import Head from 'docs/src/modules/components/Head';
+
 import Box from '@mui/material/Box';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import Divider from '@mui/material/Divider';
@@ -30,7 +30,7 @@ export default function Customers(props: InferGetStaticPropsType<typeof getStati
       <AppHeaderBanner />
       <AppHeader />
       <Divider />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <CustomersHero />
         <CustomersLogoSlider />
         <Box

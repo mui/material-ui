@@ -11,6 +11,6 @@ describe('<TimelineSeparator />', () => {
     render,
     muiName: 'MuiTimelineSeparator',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    skip: ['componentProp', 'themeVariants'],
   }));
 });

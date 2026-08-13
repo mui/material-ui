@@ -4,7 +4,7 @@ import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Badge from '@mui/material/Badge';
 import Typography from '@mui/material/Typography';
-import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/internal-core-docs/Link';
 import OurValues from 'docs/src/components/about/OurValues';
 import PerksBenefits from 'docs/src/components/careers/PerksBenefits';
 import CareersFaq from 'docs/src/components/careers/CareersFaq';
@@ -12,11 +12,11 @@ import RoleEntry from 'docs/src/components/careers/RoleEntry';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { BrandingCssVarsProvider } from '@mui/docs/branding';
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from '@mui/docs/SectionHeadline';
-import Head from 'docs/src/modules/components/Head';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
+
+import { AppHeaderBanner, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
 const openRolesData = [
   {
@@ -57,12 +57,12 @@ const openRolesData = [
   {
     title: 'Sales',
     roles: [
-      {
-        title: 'Account Executive',
-        description:
-          'You will be a key player in driving revenue growth and building strong customer relationships.',
-        url: '/careers/account-executive/',
-      },
+      // {
+      //   title: 'Account Executive',
+      //   description:
+      //     'You will be a key player in driving revenue growth and building strong customer relationships.',
+      //   url: '/careers/account-executive/',
+      // },
       // {
       //   title: 'Account Manager',
       //   description:
@@ -79,6 +79,16 @@ const openRolesData = [
       //   description: 'MUI is looking for an experienced Tech Recruiter to join our People team.',
       //   url: '/careers/technical-recruiter/',
       // },
+    ],
+  },
+  {
+    title: 'Marketing',
+    roles: [
+      {
+        title: 'Product Marketing Manager',
+        description: 'Establish MUI product positioning and messaging.',
+        url: '/careers/product-marketing-manager/',
+      },
     ],
   },
   {
@@ -127,7 +137,7 @@ export default function Careers() {
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <Section cozy bg="gradient">
           <SectionHeadline
             alwaysCenter

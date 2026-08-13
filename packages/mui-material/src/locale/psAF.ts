@@ -40,7 +40,7 @@ export const psAF: Localization = {
       defaultProps: {
         clearText: 'پاک کول',
         closeText: 'تړل',
-        loadingText: '... لوډ کیږی',
+        loadingText: '… لوډ کیږی',
         noOptionsText: 'بی پایلی',
         openText: 'خلاصول',
       },

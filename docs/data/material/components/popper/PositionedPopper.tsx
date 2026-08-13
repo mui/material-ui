@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Popper, { PopperPlacementType } from '@mui/material/Popper';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
@@ -38,40 +38,28 @@ export default function PositionedPopper() {
           </Fade>
         )}
       </Popper>
-      <Grid container sx={{ justifyContent: 'center' }}>
-        <Grid>
-          <Button onClick={handleClick('top-start')}>top-start</Button>
-          <Button onClick={handleClick('top')}>top</Button>
-          <Button onClick={handleClick('top-end')}>top-end</Button>
-        </Grid>
-      </Grid>
-      <Grid container sx={{ justifyContent: 'center' }}>
-        <Grid size={6}>
+      <Stack direction="row" sx={{ justifyContent: 'center' }}>
+        <Button onClick={handleClick('top-start')}>top-start</Button>
+        <Button onClick={handleClick('top')}>top</Button>
+        <Button onClick={handleClick('top-end')}>top-end</Button>
+      </Stack>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Stack direction="column" sx={{ alignItems: 'flex-start' }}>
           <Button onClick={handleClick('left-start')}>left-start</Button>
-          <br />
           <Button onClick={handleClick('left')}>left</Button>
-          <br />
           <Button onClick={handleClick('left-end')}>left-end</Button>
-        </Grid>
-        <Grid container direction="column" sx={{ alignItems: 'flex-end' }} size={6}>
-          <Grid>
-            <Button onClick={handleClick('right-start')}>right-start</Button>
-          </Grid>
-          <Grid>
-            <Button onClick={handleClick('right')}>right</Button>
-          </Grid>
-          <Grid>
-            <Button onClick={handleClick('right-end')}>right-end</Button>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid container sx={{ justifyContent: 'center' }}>
-        <Grid>
-          <Button onClick={handleClick('bottom-start')}>bottom-start</Button>
-          <Button onClick={handleClick('bottom')}>bottom</Button>
-          <Button onClick={handleClick('bottom-end')}>bottom-end</Button>
-        </Grid>
-      </Grid>
+        </Stack>
+        <Stack direction="column" sx={{ alignItems: 'flex-end' }}>
+          <Button onClick={handleClick('right-start')}>right-start</Button>
+          <Button onClick={handleClick('right')}>right</Button>
+          <Button onClick={handleClick('right-end')}>right-end</Button>
+        </Stack>
+      </Box>
+      <Stack direction="row" sx={{ justifyContent: 'center' }}>
+        <Button onClick={handleClick('bottom-start')}>bottom-start</Button>
+        <Button onClick={handleClick('bottom')}>bottom</Button>
+        <Button onClick={handleClick('bottom-end')}>bottom-end</Button>
+      </Stack>
     </Box>
   );
 }

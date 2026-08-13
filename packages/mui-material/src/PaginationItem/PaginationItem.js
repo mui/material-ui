@@ -16,6 +16,7 @@ import useSlot from '../utils/useSlot';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { getTransitionStyles } from '../transitions/utils';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -24,8 +25,6 @@ const overridesResolver = (props, styles) => {
     styles.root,
     styles[ownerState.variant],
     styles[`size${capitalize(ownerState.size)}`],
-    ownerState.variant === 'text' && styles[`text${capitalize(ownerState.color)}`],
-    ownerState.variant === 'outlined' && styles[`outlined${capitalize(ownerState.color)}`],
     ownerState.shape === 'rounded' && styles.rounded,
     ownerState.type === 'page' && styles.page,
     (ownerState.type === 'start-ellipsis' || ownerState.type === 'end-ellipsis') && styles.ellipsis,
@@ -44,7 +43,6 @@ const useUtilityClasses = (ownerState) => {
       variant,
       shape,
       color !== 'standard' && `color${capitalize(color)}`,
-      color !== 'standard' && `${variant}${capitalize(color)}`,
       disabled && 'disabled',
       selected && 'selected',
       {
@@ -125,7 +123,7 @@ const PaginationItemPage = styled(ButtonBase, {
     [`&.${paginationItemClasses.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },
-    transition: theme.transitions.create(['color', 'background-color'], {
+    ...getTransitionStyles(theme, ['color', 'background-color'], {
       duration: theme.transitions.duration.short,
     }),
     '&:hover': {
@@ -392,6 +390,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       ref={ref}
       ownerState={ownerState}
       component={component}
+      internalNativeButton
       disabled={disabled}
       className={clsx(classes.root, className)}
       {...other}
@@ -441,6 +440,11 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * Whether the custom component should render a native `<button>` element when
+   * rendering a React component with the `component` or `slots` prop.
+   */
+  nativeButton: PropTypes.bool,
   /**
    * The current page number.
    */

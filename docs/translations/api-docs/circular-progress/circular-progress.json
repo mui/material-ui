@@ -11,6 +11,12 @@
     "enableTrackSlot": {
       "description": "If <code>true</code>, a track circle slot is mounted to show a subtle background for the progress. The <code>size</code> and <code>thickness</code> apply to the track slot to be consistent with the progress circle."
     },
+    "max": {
+      "description": "The maximum value for the progress indicator for the determinate variant."
+    },
+    "min": {
+      "description": "The minimum value for the progress indicator for the determinate variant."
+    },
     "size": {
       "description": "The size of the component. If using a number, the pixel unit is assumed. If using a string, you need to provide the CSS unit, for example &#39;3rem&#39;."
     },
@@ -19,7 +25,7 @@
     },
     "thickness": { "description": "The thickness of the circle." },
     "value": {
-      "description": "The value of the progress indicator for the determinate variant. Value between 0 and 100."
+      "description": "The value of the progress indicator for the determinate variant. Value between <code>min</code> and <code>max</code>."
     },
     "variant": {
       "description": "The variant to use. Use indeterminate when there is no progress value."

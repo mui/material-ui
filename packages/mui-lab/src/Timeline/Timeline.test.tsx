@@ -14,7 +14,7 @@ describe('<Timeline />', () => {
     refInstanceof: window.HTMLUListElement,
     testVariantProps: { position: 'left' },
     testStateOverrides: { prop: 'position', value: 'left', styleKey: 'positionLeft' },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should have correct classname', () => {

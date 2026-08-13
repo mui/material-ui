@@ -84,6 +84,16 @@ function Custom(props: AccordionProps) {
   );
 }
 
+// slotProps.transition should reject unknown props
+<Accordion
+  slotProps={{
+    // @ts-expect-error — unknown props should be rejected
+    transition: { randomInvalidProp: 'test' },
+  }}
+>
+  <div />
+</Accordion>;
+
 function Custom2(props: AccordionProps) {
   const { slotProps, ...other } = props;
   return (

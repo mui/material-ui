@@ -6,11 +6,14 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import IncreaseIcon from '@mui/icons-material/AddCircleOutline';
-import DecreaseIcon from '@mui/icons-material/RemoveCircleOutline';
-import { DispatchContext, ThemeOptionsContext } from '@mui/docs/ThemeContext';
-import { useTranslate } from '@mui/docs/i18n';
-import { setDocsSpacing, resetDocsSpacing } from '@mui/docs/branding';
+import IncreaseIcon from '@mui/icons-material/AddCircleOutlined';
+import DecreaseIcon from '@mui/icons-material/RemoveCircleOutlined';
+import {
+  DispatchContext,
+  ThemeOptionsContext,
+} from '@mui/internal-core-docs/ThemeContext';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
+import { setDocsSpacing, resetDocsSpacing } from '@mui/internal-core-docs/branding';
 
 const minSpacing = 0;
 const maxSpacing = 20;

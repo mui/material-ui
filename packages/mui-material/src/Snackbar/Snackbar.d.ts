@@ -4,7 +4,7 @@ import ClickAwayListener from '../ClickAwayListener';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { SnackbarContentProps } from '../SnackbarContent';
-import { TransitionProps } from '../transitions/transition';
+import { TransitionProps } from '../transitions/types';
 import { SnackbarClasses } from './snackbarClasses';
 import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
 
@@ -26,7 +26,7 @@ export interface SnackbarSlots {
   clickAwayListener: React.ElementType;
   /**
    * The component that renders the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transition-slots) to learn more about the requirements for this component.
    * @default Grow
    */
   transition: React.ElementType;
@@ -69,7 +69,7 @@ export type SnackbarSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the element is based on the [Grow](https://mui.com/material-ui/api/grow/#props) component.
      */
     transition: SlotComponentProps<
-      React.ElementType,
+      React.ElementType<TransitionProps>,
       TransitionProps & SnackbarTransitionSlotPropsOverrides,
       SnackbarOwnerState
     >;
@@ -141,8 +141,7 @@ export interface SnackbarProps
    * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`, or `"escapeKeyDown"`.
    */
   onClose?:
-    | ((event: React.SyntheticEvent<any> | Event, reason: SnackbarCloseReason) => void)
-    | undefined;
+    ((event: React.SyntheticEvent<any> | Event, reason: SnackbarCloseReason) => void) | undefined;
   /**
    * If `true`, the component is shown.
    */
@@ -173,11 +172,11 @@ export interface SnackbarProps
  *
  * Demos:
  *
- * - [Snackbar](https://next.mui.com/material-ui/react-snackbar/)
+ * - [Snackbar](https://mui.com/material-ui/react-snackbar/)
  *
  * API:
  *
- * - [Snackbar API](https://next.mui.com/material-ui/api/snackbar/)
+ * - [Snackbar API](https://mui.com/material-ui/api/snackbar/)
  */
 export default function Snackbar(props: SnackbarProps): React.JSX.Element;
 

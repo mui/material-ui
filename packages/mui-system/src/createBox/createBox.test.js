@@ -16,7 +16,7 @@ describe('createBox', () => {
   it('should use defaultTheme if provided', () => {
     const Box = createBox({ defaultTheme: { palette: { primary: { main: 'rgb(255, 0, 0)' } } } });
 
-    const { container } = render(<Box color="primary.main">Content</Box>);
+    const { container } = render(<Box sx={{ color: 'primary.main' }}>Content</Box>);
     expect(container.firstChild).toHaveComputedStyle({ color: 'rgb(255, 0, 0)' });
   });
 
@@ -25,7 +25,7 @@ describe('createBox', () => {
 
     const { container } = render(
       <ThemeProvider theme={{ palette: { primary: { main: 'rgb(0, 255, 0)' } } }}>
-        <Box color="primary.main">Content</Box>
+        <Box sx={{ color: 'primary.main' }}>Content</Box>
       </ThemeProvider>,
     );
     expect(container.firstChild).toHaveComputedStyle({ color: 'rgb(0, 255, 0)' });

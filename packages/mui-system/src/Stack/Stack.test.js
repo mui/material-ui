@@ -13,7 +13,7 @@ describe('<Stack />', () => {
     inheritComponent: 'div',
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiStack',
-    skip: ['componentProp', 'componentsProp', 'rootClass', 'themeVariants', 'themeStyleOverrides'],
+    skip: ['componentProp', 'rootClass', 'themeVariants', 'themeStyleOverrides'],
   }));
 
   const theme = createTheme();

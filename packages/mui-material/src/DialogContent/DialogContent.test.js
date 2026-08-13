@@ -12,7 +12,7 @@ describe('<DialogContent />', () => {
     muiName: 'MuiDialogContent',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { dividers: true },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should render children', () => {

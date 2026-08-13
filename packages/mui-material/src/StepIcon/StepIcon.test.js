@@ -14,7 +14,7 @@ describe('<StepIcon />', () => {
     muiName: 'MuiStepIcon',
     testVariantProps: { completed: true },
     refInstanceof: window.SVGSVGElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('renders <CheckCircle> when completed', () => {

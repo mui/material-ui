@@ -31,7 +31,6 @@ describe('<Chip />', () => {
     testStatOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    skip: ['componentsProp'],
     slots: {
       root: {
         expectedClassName: classes.root,
@@ -63,11 +62,7 @@ describe('<Chip />', () => {
       expect(chip).not.to.have.class(classes.colorPrimary);
       expect(chip).not.to.have.class(classes.colorSecondary);
       expect(chip).not.to.have.class(classes.clickable);
-      expect(chip).not.to.have.class(classes.clickableColorPrimary);
-      expect(chip).not.to.have.class(classes.clickableColorSecondary);
       expect(chip).not.to.have.class(classes.deletable);
-      expect(chip).not.to.have.class(classes.deletableColorPrimary);
-      expect(chip).not.to.have.class(classes.deletableColorSecondary);
     });
 
     it('should render with the color class name based on the color prop', () => {
@@ -82,12 +77,111 @@ describe('<Chip />', () => {
   });
 
   describe('clickable chip', () => {
+    /**
+     * @param {{ mock: { calls: unknown[][] } }} errorSpy
+     * @returns {string[]}
+     */
+    function getWarningMessages(errorSpy) {
+      return errorSpy.mock.calls.map((call) =>
+        String(call[0]).replace(/\s+/g, ' ').trim().toLowerCase(),
+      );
+    }
+
+    /**
+     * @param {{ mock: { calls: unknown[][] } }} errorSpy
+     * @param {string[]} fragments
+     */
+    function expectWarningWithFragments(errorSpy, fragments) {
+      const messages = getWarningMessages(errorSpy);
+
+      expect(messages.length).to.be.greaterThanOrEqual(1);
+      expect(
+        messages.some((message) =>
+          fragments.every((fragment) => message.includes(fragment.toLowerCase())),
+        ),
+      ).to.equal(true);
+    }
+
     it('renders as a button in taborder with the label as the accessible name', () => {
       render(<Chip label="My Chip" onClick={() => {}} />);
 
       const button = screen.getByRole('button');
       expect(button).to.have.property('tabIndex', 0);
       expect(button).toHaveAccessibleName('My Chip');
+    });
+
+    it('forwards nativeButton to ButtonBase when interactive', () => {
+      const CustomButton = React.forwardRef((props, ref) => <button ref={ref} {...props} />);
+
+      render(<Chip label="My Chip" onClick={() => {}} component={CustomButton} nativeButton />);
+
+      const chip = screen.getByRole('button');
+      expect(chip).to.have.tagName('BUTTON');
+      expect(chip).to.have.attribute('type', 'button');
+    });
+
+    it('does not leak nativeButton to DOM when not interactive', () => {
+      const { container } = render(<Chip label="My Chip" nativeButton />);
+
+      expect(container.firstChild).to.have.tagName('DIV');
+      expect(container.firstChild).not.to.have.attribute('nativebutton');
+    });
+
+    it('does not leak disabled-focus props from slotProps.root to the DOM when not interactive', () => {
+      const { container } = render(
+        <Chip
+          label="My Chip"
+          slotProps={{ root: { focusableWhenDisabled: true, skipFocusWhenDisabled: true } }}
+        />,
+      );
+
+      expect(container.firstChild).to.have.tagName('DIV');
+      expect(container.firstChild).not.to.have.attribute('focusablewhendisabled');
+      expect(container.firstChild).not.to.have.attribute('skipfocuswhendisabled');
+    });
+
+    it('does not forward focusableWhenDisabled to ButtonBase', () => {
+      render(<Chip label="My Chip" disabled onClick={() => {}} focusableWhenDisabled />);
+
+      const chip = screen.getByRole('button');
+      expect(chip).to.have.attribute('aria-disabled', 'true');
+      expect(chip).to.have.attribute('tabindex', '-1');
+    });
+
+    it('does not warn when nativeButton is omitted and a custom non-button component is used', () => {
+      const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(<Chip label="My Chip" onClick={() => {}} component={CustomSpan} />);
+
+      const messages = getWarningMessages(errorSpy);
+      expect(messages.some((message) => message.includes('nativebutton={false}'))).to.equal(false);
+      expect(screen.getByRole('button')).to.have.tagName('SPAN');
+      errorSpy.mockRestore();
+    });
+
+    it('warns when nativeButton is omitted and a custom button component is used', () => {
+      const CustomButton = React.forwardRef((props, ref) => <button ref={ref} {...props} />);
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(<Chip label="My Chip" onClick={() => {}} component={CustomButton} />);
+
+      expectWarningWithFragments(errorSpy, ['nativebutton={true}', 'native <button>']);
+      errorSpy.mockRestore();
+    });
+
+    it('does not warn when nativeButton={false} is set with a custom non-button component', () => {
+      const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(
+        <Chip label="My Chip" onClick={() => {}} component={CustomSpan} nativeButton={false} />,
+      );
+
+      const messages = getWarningMessages(errorSpy);
+      expect(messages.some((message) => message.includes('nativebutton={false}'))).to.equal(false);
+      expect(screen.getByRole('button')).to.have.tagName('SPAN');
+      errorSpy.mockRestore();
     });
 
     it('should render link with the button base', () => {
@@ -139,7 +233,6 @@ describe('<Chip />', () => {
       expect(button).to.have.class(classes.root);
       expect(button).to.have.class(classes.colorPrimary);
       expect(button).to.have.class(classes.clickable);
-      expect(button).to.have.class(classes.clickableColorPrimary);
     });
 
     it('should render with the root and outlined clickable primary class', () => {
@@ -151,9 +244,7 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.root);
       expect(chip).to.have.class(classes.colorPrimary);
       expect(chip).to.have.class(classes.clickable);
-      expect(chip).to.have.class(classes.clickableColorPrimary);
       expect(chip).to.have.class(classes.outlined);
-      expect(chip).to.have.class(classes.outlinedPrimary);
     });
 
     it('should render with the root and outlined clickable secondary class', () => {
@@ -163,9 +254,7 @@ describe('<Chip />', () => {
       expect(button).to.have.class(classes.root);
       expect(button).to.have.class(classes.colorSecondary);
       expect(button).to.have.class(classes.clickable);
-      expect(button).to.have.class(classes.clickableColorSecondary);
       expect(button).to.have.class(classes.outlined);
-      expect(button).to.have.class(classes.outlinedSecondary);
     });
 
     it('should render with the root and filled clickable primary class', () => {
@@ -175,9 +264,7 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.root);
       expect(chip).to.have.class(classes.colorPrimary);
       expect(chip).to.have.class(classes.clickable);
-      expect(chip).to.have.class(classes.clickableColorPrimary);
       expect(chip).to.have.class(classes.filled);
-      expect(chip).to.have.class(classes.filledPrimary);
     });
 
     it('should not be focused when a deletable chip is disabled and skipFocusWhenDisabled is true', () => {
@@ -208,9 +295,7 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.root);
       expect(chip).to.have.class(classes.colorSecondary);
       expect(chip).to.have.class(classes.clickable);
-      expect(chip).to.have.class(classes.clickableColorSecondary);
       expect(chip).to.have.class(classes.filled);
-      expect(chip).to.have.class(classes.filledSecondary);
     });
   });
 
@@ -318,9 +403,8 @@ describe('<Chip />', () => {
       const chip = container.querySelector(`.${classes.root}`);
       expect(chip).to.have.class(classes.colorPrimary);
       expect(chip).to.have.class(classes.deletable);
-      expect(chip).to.have.class(classes.deletableColorPrimary);
       const avatar = container.querySelector(`.${classes.avatar}`);
-      expect(avatar).to.have.class(classes.avatarColorPrimary);
+      expect(avatar).to.have.class(classes.avatar);
     });
 
     it('should render with the root, deletable and avatar secondary classes', () => {
@@ -336,9 +420,8 @@ describe('<Chip />', () => {
       const chip = container.querySelector(`.${classes.root}`);
       expect(chip).to.have.class(classes.colorSecondary);
       expect(chip).to.have.class(classes.deletable);
-      expect(chip).to.have.class(classes.deletableColorSecondary);
       const avatar = container.querySelector(`.${classes.avatar}`);
-      expect(avatar).to.have.class(classes.avatarColorSecondary);
+      expect(avatar).to.have.class(classes.avatar);
     });
   });
 
@@ -362,10 +445,8 @@ describe('<Chip />', () => {
       const chip = container.querySelector(`.${classes.root}`);
       expect(chip).to.have.class(classes.colorPrimary);
       expect(chip).to.have.class(classes.deletable);
-      expect(chip).to.have.class(classes.deletableColorPrimary);
       const icon = screen.getByTestId('CancelIcon');
       expect(icon).to.have.class(classes.deleteIcon);
-      expect(icon).to.have.class(classes.deleteIconColorPrimary);
     });
 
     it('should render a default icon with the root, deletable, deleteIcon secondary class', () => {
@@ -376,10 +457,8 @@ describe('<Chip />', () => {
       const chip = container.querySelector(`.${classes.root}`);
       expect(chip).to.have.class(classes.colorSecondary);
       expect(chip).to.have.class(classes.deletable);
-      expect(chip).to.have.class(classes.deletableColorSecondary);
       const icon = screen.getByTestId('CancelIcon');
       expect(icon).to.have.class(classes.deleteIcon);
-      expect(icon).to.have.class(classes.deleteIconColorSecondary);
     });
 
     it('should render default icon with the root, deletable, deleteIcon primary class and deleteIcon filled primary class', () => {
@@ -395,11 +474,8 @@ describe('<Chip />', () => {
       const chip = container.querySelector(`.${classes.root}`);
       expect(chip).to.have.class(classes.colorPrimary);
       expect(chip).to.have.class(classes.deletable);
-      expect(chip).to.have.class(classes.deletableColorPrimary);
       const icon = screen.getByTestId('CancelIcon');
       expect(icon).to.have.class(classes.deleteIcon);
-      expect(icon).to.have.class(classes.deleteIconColorPrimary);
-      expect(icon).to.have.class(classes.deleteIconFilledColorPrimary);
     });
 
     it('should render default icon with the root, deletable, deleteIcon primary class and deleteIcon outlined primary class', () => {
@@ -415,11 +491,8 @@ describe('<Chip />', () => {
       const chip = container.querySelector(`.${classes.root}`);
       expect(chip).to.have.class(classes.colorPrimary);
       expect(chip).to.have.class(classes.deletable);
-      expect(chip).to.have.class(classes.deletableColorPrimary);
       const icon = screen.getByTestId('CancelIcon');
       expect(icon).to.have.class(classes.deleteIcon);
-      expect(icon).to.have.class(classes.deleteIconColorPrimary);
-      expect(icon).to.have.class(classes.deleteIconOutlinedColorPrimary);
     });
 
     it('accepts a custom icon', () => {
@@ -615,8 +688,10 @@ describe('<Chip />', () => {
         </React.Fragment>,
       );
 
-      expect(screen.getByTestId('test-icon')).to.have.class('MuiChip-iconColorSuccess');
-      expect(screen.getByTestId('test-icon2')).to.have.class('MuiChip-iconColorSuccess');
+      expect(screen.getByTestId('test-icon')).to.have.class(classes.icon);
+      expect(screen.getByTestId('test-icon2')).to.have.class(classes.icon);
+      expect(screen.getByTestId('test-icon')).to.have.class('MuiSvgIcon-colorSuccess');
+      expect(screen.getByTestId('test-icon2')).to.have.class('MuiSvgIcon-colorSuccess');
       expect(screen.getByTestId('test-icon')).toHaveComputedStyle({
         color: hexToRgb(defaultTheme.palette.success.main),
       });
@@ -634,37 +709,42 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.sizeSmall);
     });
 
-    it('should render the label with the labelSmall class', () => {
+    it('should render the label with the sizeSmall chip', () => {
       const { container } = render(<Chip size="small" label="small chip" />);
 
+      const chip = container.querySelector(`.${classes.root}`);
       const label = container.querySelector(`.${classes.label}`);
-      expect(label).to.have.class(classes.labelSmall);
+      expect(chip).to.have.class(classes.sizeSmall);
+      expect(label).to.have.class(classes.label);
     });
 
-    it('should render an avatar with the avatarSmall class', () => {
+    it('should render an avatar on a sizeSmall chip', () => {
       const { container } = render(
         <Chip size="small" avatar={<Avatar className="my-Avatar">MB</Avatar>} />,
       );
 
+      const chip = container.querySelector(`.${classes.root}`);
       const avatar = container.querySelector('.my-Avatar');
+      expect(chip).to.have.class(classes.sizeSmall);
       expect(avatar).to.have.class(classes.avatar);
-      expect(avatar).to.have.class(classes.avatarSmall);
     });
 
-    it('should render an icon with the icon and iconSmall classes', () => {
+    it('should render an icon on a sizeSmall chip', () => {
       const { container } = render(<Chip size="small" icon={<span id="test-icon" />} />);
 
+      const chip = container.querySelector(`.${classes.root}`);
       const icon = container.querySelector('#test-icon');
+      expect(chip).to.have.class(classes.sizeSmall);
       expect(icon).to.have.class(classes.icon);
-      expect(icon).to.have.class(classes.iconSmall);
     });
 
-    it('should render the delete icon with the deleteIcon and deleteIconSmall classes', () => {
-      render(<Chip size="small" onDelete={() => {}} />);
+    it('should render the delete icon on a sizeSmall chip', () => {
+      const { container } = render(<Chip size="small" onDelete={() => {}} />);
 
+      const chip = container.querySelector(`.${classes.root}`);
       const icon = screen.getByTestId('CancelIcon');
+      expect(chip).to.have.class(classes.sizeSmall);
       expect(icon).to.have.class(classes.deleteIcon);
-      expect(icon).to.have.class(classes.deleteIconSmall);
     });
   });
 

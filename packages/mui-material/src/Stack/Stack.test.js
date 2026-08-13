@@ -17,6 +17,6 @@ describe('<Stack />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiStack',
     testVariantProps: { direction: 'row' },
-    skip: ['componentsProp', 'classesRoot'],
+    skip: ['classesRoot'],
   }));
 });

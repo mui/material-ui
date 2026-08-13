@@ -15,7 +15,6 @@ describe('<FormHelperText />', () => {
     testComponentPropWith: 'div',
     muiName: 'MuiFormHelperText',
     testVariantProps: { size: 'small' },
-    skip: ['componentsProp'],
   }));
 
   describe('prop: error', () => {

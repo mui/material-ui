@@ -30,15 +30,15 @@ Run one of the following commands to install it and save it to your `package.jso
 
 <codeblock storageKey="package-manager">
 ```bash npm
-npm install @mui/icons-material@next
+npm install @mui/icons-material
 ```
 
 ```bash pnpm
-pnpm add @mui/icons-material@next
+pnpm add @mui/icons-material
 ```
 
 ```bash yarn
-yarn add @mui/icons-material@next
+yarn add @mui/icons-material
 ```
 
 </codeblock>
@@ -149,7 +149,6 @@ const HomeIcon = createSvgIcon(
 // or with custom SVG
 const PlusIcon = createSvgIcon(
   <svg
-    xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
     strokeWidth={1.5}
@@ -163,16 +162,6 @@ const PlusIcon = createSvgIcon(
 ```
 
 {{"demo": "CreateSvgIcon.js"}}
-
-### Font Awesome
-
-If you find that there are layout issues when using FontAwesomeIcon from `@fortawesome/react-fontawesome`, you can try passing the Font Awesome SVG data directly to SvgIcon.
-
-Below is a comparison of the `FontAwesomeIcon` component and a wrapped `SvgIcon` component.
-
-{{"demo": "FontAwesomeSvgIconDemo.js"}}
-
-FontAwesomeIcon's `fullWidth` prop can also be used to approximate the correct dimensions, but it isn't perfect.
 
 ### Other libraries
 

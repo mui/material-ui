@@ -20,9 +20,6 @@
     "indeterminateIcon": {
       "description": "The icon to display when the component is indeterminate."
     },
-    "inputProps": {
-      "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes\">Attributes</a> applied to the <code>input</code> element."
-    },
     "onChange": {
       "description": "Callback fired when the state is changed.",
       "typeDescriptions": {

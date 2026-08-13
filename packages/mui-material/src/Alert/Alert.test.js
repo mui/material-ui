@@ -40,7 +40,6 @@ describe('<Alert />', () => {
         expectedClassName: classes.closeIcon,
       },
     },
-    skip: ['componentsProp'],
   }));
 
   describe('prop: square', () => {

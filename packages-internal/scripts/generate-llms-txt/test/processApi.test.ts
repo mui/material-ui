@@ -329,21 +329,6 @@ describe('processApi', () => {
       expect(result).to.include('You can use `MuiButton` to change the default props');
     });
 
-    it('should handle CSS component', () => {
-      const apiJson = {
-        name: 'Box',
-        imports: ["import Box from '@mui/material/Box';"],
-        props: {},
-        cssComponent: true,
-      };
-
-      const result = processApiJson(apiJson);
-
-      expect(result).to.include(
-        'As a CSS utility, the `Box` component also supports all system properties',
-      );
-    });
-
     it('should handle source code section', () => {
       const apiJson = {
         name: 'Component',

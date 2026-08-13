@@ -67,10 +67,10 @@ export default function CustomizedList() {
               <ListItemText
                 sx={{ my: 0 }}
                 primary="Firebash"
-                primaryTypographyProps={{
-                  fontSize: 20,
-                  fontWeight: 'medium',
-                  letterSpacing: 0,
+                slotProps={{
+                  primary: {
+                    sx: { fontSize: 20, fontWeight: 'medium', letterSpacing: 0 },
+                  },
                 }}
               />
             </ListItemButton>
@@ -82,10 +82,12 @@ export default function CustomizedList() {
                 </ListItemIcon>
                 <ListItemText
                   primary="Project Overview"
-                  primaryTypographyProps={{
-                    color: 'primary',
-                    fontWeight: 'medium',
-                    variant: 'body2',
+                  slotProps={{
+                    primary: {
+                      color: 'primary',
+                      sx: { fontWeight: 'medium' },
+                      variant: 'body2',
+                    },
                   }}
                 />
               </ListItemButton>
@@ -177,18 +179,24 @@ export default function CustomizedList() {
               >
                 <ListItemText
                   primary="Build"
-                  primaryTypographyProps={{
-                    fontSize: 15,
-                    fontWeight: 'medium',
-                    lineHeight: '20px',
-                    mb: '2px',
-                  }}
                   secondary="Authentication, Firestore Database, Realtime Database, Storage, Hosting, Functions, and Machine Learning"
-                  secondaryTypographyProps={{
-                    noWrap: true,
-                    fontSize: 12,
-                    lineHeight: '16px',
-                    color: open ? 'rgba(0,0,0,0)' : 'rgba(255,255,255,0.5)',
+                  slotProps={{
+                    primary: {
+                      sx: {
+                        fontSize: 15,
+                        fontWeight: 'medium',
+                        lineHeight: '20px',
+                        mb: '2px',
+                      },
+                    },
+                    secondary: {
+                      noWrap: true,
+                      sx: {
+                        fontSize: 12,
+                        lineHeight: '16px',
+                        color: open ? 'rgba(0,0,0,0)' : 'rgba(255,255,255,0.5)',
+                      },
+                    },
                   }}
                   sx={{ my: 0 }}
                 />
@@ -220,7 +228,9 @@ export default function CustomizedList() {
                     </ListItemIcon>
                     <ListItemText
                       primary={item.label}
-                      primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium' }}
+                      slotProps={{
+                        primary: { sx: { fontSize: 14, fontWeight: 'medium' } },
+                      }}
                     />
                   </ListItemButton>
                 ))}

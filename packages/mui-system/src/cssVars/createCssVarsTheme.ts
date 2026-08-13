@@ -6,8 +6,7 @@ interface Theme extends DefaultCssVarsTheme {
   cssVarPrefix?: string | undefined;
   colorSchemeSelector?: 'media' | string | undefined;
   shouldSkipGeneratingVar?:
-    | ((objectPathKeys: Array<string>, value: string | number) => boolean)
-    | undefined;
+    ((objectPathKeys: Array<string>, value: string | number) => boolean) | undefined;
 }
 
 function createCssVarsTheme<T extends Theme, ThemeVars extends Record<string, any>>({
@@ -28,6 +27,7 @@ function createCssVarsTheme<T extends Theme, ThemeVars extends Record<string, an
   output.generateStyleSheets = result.generateStyleSheets;
   output.colorSchemeSelector = colorSchemeSelector;
   output.getColorSchemeSelector = createGetColorSchemeSelector(colorSchemeSelector);
+  output.internal_cache = {};
 
   return output as T & typeof result;
 }

@@ -9,6 +9,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import cardActionAreaClasses, { getCardActionAreaUtilityClass } from './cardActionAreaClasses';
 import ButtonBase from '../ButtonBase';
 import useSlot from '../utils/useSlot';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -57,7 +58,7 @@ const CardActionAreaFocusHighlight = styled('span', {
     borderRadius: 'inherit',
     opacity: 0,
     backgroundColor: 'currentcolor',
-    transition: theme.transitions.create('opacity', {
+    ...getTransitionStyles(theme, 'opacity', {
       duration: theme.transitions.duration.short,
     }),
   })),
@@ -93,6 +94,7 @@ const CardActionArea = React.forwardRef(function CardActionArea(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     additionalProps: {
+      internalNativeButton: true,
       focusVisibleClassName: clsx(focusVisibleClassName, classes.focusVisible),
     },
   });

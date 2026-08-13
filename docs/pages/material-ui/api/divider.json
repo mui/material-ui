@@ -98,13 +98,6 @@
       "isGlobal": false
     },
     {
-      "key": "withChildrenVertical",
-      "className": "MuiDivider-withChildrenVertical",
-      "description": "Styles applied to the root element if divider have text and `orientation=\"vertical\"`.",
-      "isGlobal": false,
-      "isDeprecated": true
-    },
-    {
       "key": "wrapper",
       "className": "MuiDivider-wrapper",
       "description": "Styles applied to the span children element if `orientation=\"horizontal\"`.",
@@ -123,6 +116,5 @@
   "forwardsRefTo": "HTMLHRElement",
   "filename": "/packages/mui-material/src/Divider/Divider.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-divider/\">Divider</a></li>\n<li><a href=\"/material-ui/react-list/\">Lists</a></li>\n<li><a href=\"/material-ui/react-menubar/\">Menubar</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-divider/\">Divider</a></li>\n<li><a href=\"/material-ui/react-list/\">Lists</a></li>\n<li><a href=\"/material-ui/react-menubar/\">Menubar</a></li></ul>"
 }

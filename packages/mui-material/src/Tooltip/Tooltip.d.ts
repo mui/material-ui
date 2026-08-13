@@ -4,7 +4,7 @@ import { PopperProps } from '../Popper';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import { TransitionProps } from '../transitions/transition';
+import { TransitionProps } from '../transitions/types';
 import { TooltipClasses } from './tooltipClasses';
 
 export interface TooltipPopperSlotPropsOverrides {}
@@ -23,7 +23,7 @@ export interface TooltipSlots {
   popper: React.ElementType;
   /**
    * The component used for the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transition-slots) to learn more about the requirements for this component.
    * @default Grow
    */
   transition: React.ElementType;
@@ -54,7 +54,7 @@ export type TooltipSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the available props are based on the [Grow](https://mui.com/material-ui/api/grow/#props) component.
      */
     transition: SlotProps<
-      React.ElementType,
+      React.ElementType<TransitionProps>,
       TransitionProps & TooltipTransitionSlotPropsOverrides,
       TooltipOwnerState
     >;
@@ -187,10 +187,10 @@ export interface TooltipOwnerState extends TooltipProps {}
  *
  * Demos:
  *
- * - [Tooltip](https://next.mui.com/material-ui/react-tooltip/)
+ * - [Tooltip](https://mui.com/material-ui/react-tooltip/)
  *
  * API:
  *
- * - [Tooltip API](https://next.mui.com/material-ui/api/tooltip/)
+ * - [Tooltip API](https://mui.com/material-ui/api/tooltip/)
  */
 export default function Tooltip(props: TooltipProps): React.JSX.Element;

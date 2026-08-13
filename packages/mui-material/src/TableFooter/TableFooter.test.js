@@ -21,7 +21,6 @@ describe('<TableFooter />', () => {
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLTableSectionElement,
     testComponentPropWith: 'thead',
-    skip: ['componentsProp'],
   }));
 
   it('should render children', () => {

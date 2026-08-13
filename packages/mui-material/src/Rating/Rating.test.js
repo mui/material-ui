@@ -25,7 +25,6 @@ describe('<Rating />', () => {
         expectedClassName: classes.label,
       },
     },
-    skip: ['componentsProp'],
   }));
 
   describeConformance(<Rating max={1} />, () => ({
@@ -261,6 +260,14 @@ describe('<Rating />', () => {
     for (let i = 0; i < radios.length; i += 1) {
       expect(radios[i].getAttribute('id')).to.match(/^rating-test-/);
     }
+  });
+
+  it('should not spread the `value` prop on the icon slot DOM element', () => {
+    const { container } = render(<Rating name="rating-test" value={2} />);
+
+    container.querySelectorAll(`.${classes.icon}`).forEach((icon) => {
+      expect(icon).not.to.have.attribute('value');
+    });
   });
 
   it('should be able to replace the icon', () => {
