@@ -12,10 +12,10 @@ import Tab from '@mui/material/Tab';
 const theme = createTheme({
   focusVisible: {
     /* inner indicator */
-    outlineColor: '#F9F9F9',
-    outlineOffset: 0,
+    outlineColor: '#193146',
+    outlineOffset: 2,
     /* outer indicator */
-    boxShadow: '0 0 0 4px #193146',
+    boxShadow: '0 0 0 4px #FFF',
   },
   colorSchemes: { light: true, dark: true },
   // These demos opt out of the ripple, so the focus ring is the only keyboard indicator.
