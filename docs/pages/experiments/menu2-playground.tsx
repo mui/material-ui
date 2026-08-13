@@ -187,10 +187,10 @@ function PlaygroundDemo({
       <Menu2Submenu
         closeParentOnEsc={settings.closeParentOnEsc}
         trigger={
-          <React.Fragment>
+          <Menu2Item>
             Share
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </React.Fragment>
+          </Menu2Item>
         }
         slotProps={{ trigger: submenuTriggerProps }}
         {...submenuPopupProps}
@@ -204,10 +204,10 @@ function PlaygroundDemo({
         <Menu2Submenu
           closeParentOnEsc={settings.closeParentOnEsc}
           trigger={
-            <React.Fragment>
+            <Menu2Item>
               Export as
               <KeyboardArrowRightRoundedIcon fontSize="small" />
-            </React.Fragment>
+            </Menu2Item>
           }
           slotProps={{ trigger: submenuTriggerProps }}
           {...submenuPopupProps}
@@ -229,10 +229,10 @@ function PlaygroundDemo({
       <Menu2Submenu
         closeParentOnEsc={settings.closeParentOnEsc}
         trigger={
-          <React.Fragment>
+          <Menu2Item>
             View
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </React.Fragment>
+          </Menu2Item>
         }
         slotProps={{ trigger: submenuTriggerProps }}
         {...submenuPopupProps}

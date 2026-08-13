@@ -92,6 +92,18 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
   const { trigger: triggerSlotProps, ...popupSlotProps } = slotProps ?? {};
   const resolvedTriggerProps = resolveComponentProps(triggerSlotProps, themedProps);
 
+  if (process.env.NODE_ENV !== 'production' && trigger != null) {
+    // A fragment is an element, so the type does not catch it. Base UI cannot
+    // merge the trigger behavior into a fragment, and the trigger renders as
+    // bare content instead.
+    if ((trigger as React.ReactElement).type === React.Fragment) {
+      console.error(
+        'MUI: The `trigger` prop of `Menu2Submenu` cannot be a fragment. ' +
+          'Pass a single element, for example a `Menu2Item`.',
+      );
+    }
+  }
+
   const triggerNode =
     trigger == null ? null : (
       <BaseMenu.SubmenuTrigger

@@ -201,7 +201,7 @@ function MaterialPreviewCard(props: {
       }}
     >
       {item ? (
-        <React.Fragment>
+        <Menu2Item>
           <Typography variant="subtitle2" aria-hidden>
             {item.label}
           </Typography>
@@ -211,7 +211,7 @@ function MaterialPreviewCard(props: {
           <Typography color="text.secondary" sx={{ mt: 1 }} variant="caption">
             {item.footer}
           </Typography>
-        </React.Fragment>
+        </Menu2Item>
       ) : null}
     </Popover>
   );
@@ -287,10 +287,10 @@ function Menu2WithPreviewCardsDemo({ submenusOpenOnHover }: { submenusOpenOnHove
       </Menu2Item>
       <Menu2Submenu
         trigger={
-          <React.Fragment>
+          <Menu2Item>
             Version history
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </React.Fragment>
+          </Menu2Item>
         }
         slotProps={{
           trigger: {
@@ -353,10 +353,10 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
 
       <Menu2Submenu
         trigger={
-          <React.Fragment>
+          <Menu2Item>
             View options
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </React.Fragment>
+          </Menu2Item>
         }
         slotProps={{ trigger: { openOnHover: settings.submenusOpenOnHover } }}
       >
@@ -386,10 +386,10 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
 
         <Menu2Submenu
           trigger={
-            <React.Fragment>
+            <Menu2Item>
               More tools
               <KeyboardArrowRightRoundedIcon fontSize="small" />
-            </React.Fragment>
+            </Menu2Item>
           }
           slotProps={{ trigger: { openOnHover: settings.submenusOpenOnHover } }}
         >
@@ -401,10 +401,10 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
 
       <Menu2Submenu
         trigger={
-          <React.Fragment>
+          <Menu2Item>
             Download
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </React.Fragment>
+          </Menu2Item>
         }
         slotProps={{ trigger: { openOnHover: settings.submenusOpenOnHover } }}
       >
@@ -416,10 +416,10 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
       <Menu2Submenu
         disabled
         trigger={
-          <React.Fragment>
+          <Menu2Item>
             Add-ons unavailable
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </React.Fragment>
+          </Menu2Item>
         }
         slotProps={{ trigger: { disabled: true, openOnHover: settings.submenusOpenOnHover } }}
       >

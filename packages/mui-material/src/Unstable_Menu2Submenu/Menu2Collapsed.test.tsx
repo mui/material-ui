@@ -165,6 +165,24 @@ describe('<Menu2 /> collapsed API', () => {
     expect(selectedAndOpen).not.to.equal(selectedOnly);
   });
 
+  it('warns when the trigger is a fragment', () => {
+    const error = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    try {
+      render(
+        <Menu2 trigger={<React.Fragment>Options</React.Fragment>}>
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2>,
+      );
+
+      expect(
+        error.mock.calls.some(([message]) => String(message).includes('cannot be a fragment')),
+      ).to.equal(true);
+    } finally {
+      error.mockRestore();
+    }
+  });
+
   it.skipIf(isJsdom())('overlaps the parent menu by default', async () => {
     // The popup animates, so geometry has to be read after the transition ends.
     async function settle(element: HTMLElement) {
@@ -234,6 +252,16 @@ describe('<Menu2 /> collapsed API', () => {
     const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
     expect(submenuTrigger).to.have.class(menu2ItemClasses.root);
     expect(submenuTrigger).to.have.class(menu2SubmenuTriggerClasses.root);
+
+    // It must lay out as a menu item row, not as inline content. A fragment
+    // trigger used to render bare text here.
+    const { display } = window.getComputedStyle(submenuTrigger);
+    expect(display).to.equal('flex');
+    const list = submenuTrigger.parentElement!;
+    expect(submenuTrigger.getBoundingClientRect().width).to.be.closeTo(
+      list.getBoundingClientRect().width,
+      2,
+    );
   });
 
   it('falls back to the default trigger for a non-element', async () => {
