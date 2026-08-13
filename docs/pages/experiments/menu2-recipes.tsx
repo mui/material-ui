@@ -201,7 +201,7 @@ function MaterialPreviewCard(props: {
       }}
     >
       {item ? (
-        <Menu2Item>
+        <React.Fragment>
           <Typography variant="subtitle2" aria-hidden>
             {item.label}
           </Typography>
@@ -211,7 +211,7 @@ function MaterialPreviewCard(props: {
           <Typography color="text.secondary" sx={{ mt: 1 }} variant="caption">
             {item.footer}
           </Typography>
-        </Menu2Item>
+        </React.Fragment>
       ) : null}
     </Popover>
   );
