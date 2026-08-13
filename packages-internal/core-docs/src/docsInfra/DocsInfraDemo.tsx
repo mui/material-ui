@@ -1,6 +1,6 @@
 import * as React from 'react';
+import type { DocsInfraDemoFlags } from '@mui/internal-markdown/demoPipeline';
 import { Demo, type DemoProps } from '../Demo/Demo';
-import type { DocsInfraDemoFlags } from './types';
 
 export interface DocsInfraDemoProps extends DemoProps {
   flags: DocsInfraDemoFlags;

@@ -13,11 +13,11 @@ export type DemoPipeline = 'legacy' | 'docs-infra';
 export interface DemoPipelineSelection {
   /**
    * Location of the Markdown page that renders the demo, for example
-   * `/docs/data/material/components/buttons/buttons.md`.
+   * `/docs/pages/experiments/docs/demos.md`.
    */
   pagePath: string;
   /**
-   * Demo marker value as written in Markdown, for example `BasicButtons.js`.
+   * Demo marker value as written in Markdown, for example `DemoInDocs.js`.
    */
   demoName: string;
 }
@@ -31,3 +31,15 @@ export interface DemoPipelineAllowlistEntry {
 }
 
 export type DemoPipelineAllowlist = Record<string, DemoPipelineAllowlistEntry>;
+
+export const demoPipelineAllowlist: DemoPipelineAllowlist;
+
+export function shouldUseDocsInfraPipeline(
+  selection: DemoPipelineSelection,
+  allowlist?: DemoPipelineAllowlist,
+): DemoPipeline;
+
+export function resolveDocsInfraDemoFlags(
+  selection: DemoPipelineSelection,
+  allowlist?: DemoPipelineAllowlist,
+): DocsInfraDemoFlags;

@@ -8,6 +8,10 @@
   "types": "./index.d.mts",
   "exports": {
     ".": "./index.mjs",
+    "./demoPipeline": {
+      "types": "./demoPipeline.d.mts",
+      "import": "./demoPipeline.mjs"
+    },
     "./loader": "./loader.mjs",
     "./apiPageTranslationLoader": "./apiPageTranslationLoader.mjs",
     "./prism": {

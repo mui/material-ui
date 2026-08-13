@@ -1,11 +1,14 @@
 import * as React from 'react';
+import {
+  shouldUseDocsInfraPipeline,
+  resolveDocsInfraDemoFlags,
+} from '@mui/internal-markdown/demoPipeline';
 import { useTranslate, useUserLanguage } from '../i18n';
 import { HighlightedCodeWithTabs } from '../HighlightedCodeWithTabs';
 import { MarkdownElement } from './MarkdownElement';
 import { Demo, type DemoProps } from '../Demo/Demo';
 import { DemoToolbar } from '../Demo/DemoToolbar';
 import { DocsInfraDemo } from '../docsInfra/DocsInfraDemo';
-import { shouldUseDocsInfraPipeline, resolveDocsInfraDemoFlags } from '../docsInfra/shouldUseDocsInfraPipeline';
 
 function noComponent(moduleID: string) {
   return function NoComponent() {

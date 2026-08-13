@@ -1,11 +1,13 @@
 import { expect } from 'chai';
-import { shouldUseDocsInfraPipeline, resolveDocsInfraDemoFlags } from './shouldUseDocsInfraPipeline';
-import { demoPipelineAllowlist } from './demoPipelineAllowlist';
-import type { DemoPipelineAllowlist } from './types';
+import {
+  demoPipelineAllowlist,
+  shouldUseDocsInfraPipeline,
+  resolveDocsInfraDemoFlags,
+} from './demoPipeline.mjs';
 
-const PAGE = '/docs/data/material/components/buttons/buttons.md';
-const DEMO = 'BasicButtons.js';
-const SIBLING_DEMO = 'TextButtons.js';
+const PAGE = '/docs/pages/experiments/docs/demos.md';
+const DEMO = 'DemoInDocs.js';
+const SIBLING_DEMO = 'DemoMultiTabs.js';
 
 describe('shouldUseDocsInfraPipeline', () => {
   it('defaults to the legacy pipeline', () => {
@@ -13,8 +15,8 @@ describe('shouldUseDocsInfraPipeline', () => {
   });
 
   it('selects docs-infra for every demo on an allowlisted page', () => {
-    const allowlist: DemoPipelineAllowlist = {
-      'docs/data/material/components/buttons/buttons.md': { flags: { source: true } },
+    const allowlist = {
+      'docs/pages/experiments/docs/demos.md': { flags: { source: true } },
     };
 
     expect(shouldUseDocsInfraPipeline({ pagePath: PAGE, demoName: DEMO }, allowlist)).to.equal(
@@ -26,8 +28,8 @@ describe('shouldUseDocsInfraPipeline', () => {
   });
 
   it('selects docs-infra for one demo while its siblings stay on legacy', () => {
-    const allowlist: DemoPipelineAllowlist = {
-      'docs/data/material/components/buttons/buttons.md': { demos: { [DEMO]: { source: true } } },
+    const allowlist = {
+      'docs/pages/experiments/docs/demos.md': { demos: { [DEMO]: { source: true } } },
     };
 
     expect(shouldUseDocsInfraPipeline({ pagePath: PAGE, demoName: DEMO }, allowlist)).to.equal(
@@ -39,26 +41,26 @@ describe('shouldUseDocsInfraPipeline', () => {
   });
 
   it('keeps other pages on the legacy pipeline', () => {
-    const allowlist: DemoPipelineAllowlist = {
-      'docs/data/material/components/buttons/buttons.md': { flags: { source: true } },
+    const allowlist = {
+      'docs/pages/experiments/docs/demos.md': { flags: { source: true } },
     };
 
     expect(
       shouldUseDocsInfraPipeline(
-        { pagePath: '/docs/data/material/components/cards/cards.md', demoName: DEMO },
+        { pagePath: '/docs/pages/experiments/docs/markdown.md', demoName: DEMO },
         allowlist,
       ),
     ).to.equal('legacy');
   });
 
   it('ignores leading and trailing slashes in the page path', () => {
-    const allowlist: DemoPipelineAllowlist = {
-      'docs/data/material/components/buttons/buttons.md': { flags: { source: true } },
+    const allowlist = {
+      'docs/pages/experiments/docs/demos.md': { flags: { source: true } },
     };
 
     expect(
       shouldUseDocsInfraPipeline(
-        { pagePath: 'docs/data/material/components/buttons/buttons.md', demoName: DEMO },
+        { pagePath: 'docs/pages/experiments/docs/demos.md', demoName: DEMO },
         allowlist,
       ),
     ).to.equal('docs-infra');
@@ -79,8 +81,8 @@ describe('resolveDocsInfraDemoFlags', () => {
   });
 
   it('enables only the listed capabilities', () => {
-    const allowlist: DemoPipelineAllowlist = {
-      'docs/data/material/components/buttons/buttons.md': { flags: { source: true } },
+    const allowlist = {
+      'docs/pages/experiments/docs/demos.md': { flags: { source: true } },
     };
 
     expect(resolveDocsInfraDemoFlags({ pagePath: PAGE, demoName: DEMO }, allowlist)).to.deep.equal({
@@ -91,8 +93,8 @@ describe('resolveDocsInfraDemoFlags', () => {
   });
 
   it('lets a demo entry narrow the page capabilities', () => {
-    const allowlist: DemoPipelineAllowlist = {
-      'docs/data/material/components/buttons/buttons.md': {
+    const allowlist = {
+      'docs/pages/experiments/docs/demos.md': {
         flags: { source: true, languageTransform: true },
         demos: { [DEMO]: { languageTransform: false } },
       },
