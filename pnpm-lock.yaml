@@ -835,6 +835,9 @@ importers:
       es-toolkit:
         specifier: ^1.50.0
         version: 1.50.0
+      hast-util-to-html:
+        specifier: ^9.0.5
+        version: 9.0.5
       marked:
         specifier: ^18.0.7
         version: 18.0.7

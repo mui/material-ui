@@ -12,6 +12,8 @@ export interface PrecomputeDocsInfraDemoOptions {
 export interface DocsInfraDemoData {
   /** Entry source as loaded by docs-infra. */
   source: string;
+  /** Entry source highlighted by docs-infra, as HTML. */
+  html: string;
   /** Displayed file name. */
   fileName: string;
   /** Source language reported by docs-infra. */

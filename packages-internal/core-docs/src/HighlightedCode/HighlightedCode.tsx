@@ -23,6 +23,8 @@ const Pre = styled('pre')(({ theme }) => ({
 
 export interface HighlightedCodeProps {
   code: string;
+  /** Pre-highlighted markup for `code`. Skips the Prism pass when provided. */
+  highlightedHtml?: string;
   copyButtonHidden?: boolean;
   copyButtonProps?: ButtonProps;
   language: string;
@@ -35,6 +37,7 @@ export interface HighlightedCodeProps {
 export function HighlightedCode(props: HighlightedCodeProps) {
   const {
     code,
+    highlightedHtml,
     copyButtonHidden = false,
     copyButtonProps,
     language,
@@ -44,8 +47,8 @@ export function HighlightedCode(props: HighlightedCodeProps) {
     ...other
   } = props;
   const renderedCode = React.useMemo(() => {
-    return prism(code.trim(), language);
-  }, [code, language]);
+    return highlightedHtml ?? prism(code.trim(), language);
+  }, [code, highlightedHtml, language]);
   const handlers = useCodeCopy();
 
   const componentProps = !plainStyle ? other : undefined;

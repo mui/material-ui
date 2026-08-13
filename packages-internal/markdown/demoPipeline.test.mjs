@@ -68,8 +68,8 @@ describe('shouldUseDocsInfraPipeline', () => {
 
   it('ships only the experiment demo', () => {
     expect(demoPipelineAllowlist).to.deep.equal({
-      'docs/pages/experiments/docs/demos.md': {
-        demos: { 'DemoInDocs.js': { source: true } },
+      'docs/pages/experiments/docs/docs-infra.md': {
+        demos: { 'DemoInDocsDocsInfra.js': { source: true } },
       },
     });
   });

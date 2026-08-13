@@ -4,6 +4,7 @@ import path from 'path';
 import { pathToFileURL } from 'url';
 import { precomputeFileDemo } from '@mui/internal-docs-infra/pipeline/precomputeFileDemo';
 import { getHastTextContent } from '@mui/internal-docs-infra/pipeline/hastUtils';
+import { toHtml } from 'hast-util-to-html';
 
 /**
  * Builds the docs-infra source graph for one demo marker.
@@ -41,6 +42,7 @@ export default async function precomputeDocsInfraDemo(options) {
 
   return {
     source: getHastTextContent(variant.source),
+    html: toHtml(variant.source),
     fileName: variant.fileName ?? fileName,
     language: variant.language,
     externals: precomputed.externals,

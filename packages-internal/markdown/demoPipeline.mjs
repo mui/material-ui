@@ -12,8 +12,8 @@
  * @type {import('./demoPipeline.mjs').DemoPipelineAllowlist}
  */
 export const demoPipelineAllowlist = {
-  'docs/pages/experiments/docs/demos.md': {
-    demos: { 'DemoInDocs.js': { source: true } },
+  'docs/pages/experiments/docs/docs-infra.md': {
+    demos: { 'DemoInDocsDocsInfra.js': { source: true } },
   },
 };
 

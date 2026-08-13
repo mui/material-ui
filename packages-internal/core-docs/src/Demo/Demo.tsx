@@ -379,6 +379,8 @@ export interface DemoProps {
     tsxCSS?: React.ComponentType | null;
     gaLabel?: string;
     relativeModules?: Record<string, Array<{ module: string; raw: string }>>;
+    /** Pre-highlighted markup for the entry source. */
+    highlightedHtml?: string;
   };
   demoOptions: {
     demo: string;
@@ -709,6 +711,7 @@ export function Demo(props: DemoProps) {
                     <DemoCodeViewer
                       key={index}
                       code={tab.raw}
+                      highlightedHtml={index === 0 ? demo.highlightedHtml : undefined}
                       language={demoData.sourceLanguage}
                       copyButtonProps={
                         {
