@@ -21,8 +21,6 @@ export interface DemoMarker {
   [option: string]: unknown;
 }
 
-export const docsInfraPipelineEnabled: boolean;
-
 export const docsInfraDemoFlags: DocsInfraDemoFlags;
 
 export function shouldUseDocsInfraPipeline(marker: DemoMarker): DemoPipeline;

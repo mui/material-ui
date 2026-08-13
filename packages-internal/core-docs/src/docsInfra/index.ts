@@ -1,6 +1,5 @@
 export {
   docsInfraDemoFlags,
-  docsInfraPipelineEnabled,
   shouldUseDocsInfraPipeline,
   resolveDocsInfraDemoFlags,
 } from '@mui/internal-markdown/demoPipeline';

@@ -1,18 +1,11 @@
 // @ts-check
 
 /**
- * Master switch for the docs-infra demo pipeline.
- *
- * Set to `false` to send every demo back to the legacy pipeline without
- * touching the Markdown markers that opted in.
- */
-export const docsInfraPipelineEnabled = true;
-
-/**
  * Capabilities enabled for every demo that opted in with `"docsInfra": true`.
  *
  * Markers select the pipeline; this list decides what the pipeline does, so a
- * capability can be rolled out to every migrated demo at once.
+ * capability can be rolled out to every migrated demo at once, and turning
+ * every capability off sends migrated demos back to the legacy rendering.
  *
  * @type {import('./demoPipeline.mjs').DocsInfraDemoFlags}
  */
@@ -36,7 +29,7 @@ const DISABLED_FLAGS = {
  * @returns {import('./demoPipeline.mjs').DemoPipeline}
  */
 export function shouldUseDocsInfraPipeline(marker) {
-  return docsInfraPipelineEnabled && marker.docsInfra === true ? 'docs-infra' : 'legacy';
+  return marker.docsInfra === true ? 'docs-infra' : 'legacy';
 }
 
 /**

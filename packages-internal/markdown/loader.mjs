@@ -5,7 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import prepareMarkdown from './prepareMarkdown.mjs';
 import extractImports from './extractImports.mjs';
-import { shouldUseDocsInfraPipeline } from './demoPipeline.mjs';
+import { resolveDocsInfraDemoFlags } from './demoPipeline.mjs';
 
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 
@@ -220,7 +220,7 @@ export default async function demoLoader() {
         }
         // A demo is precomputed once, so one opted-in marker covers every
         // marker that renders the same demo on this page.
-        if (shouldUseDocsInfraPipeline(demoConfig) === 'docs-infra') {
+        if (resolveDocsInfraDemoFlags(demoConfig).source) {
           docsInfraDemos.add(demoConfig.demo);
         }
         return demoConfig.demo;
