@@ -62,6 +62,15 @@ const Button = styled('button')(({ theme }) => ({
   },
 }));
 
+const LiveRegion = styled('span')({
+  position: 'absolute',
+  width: 1,
+  height: 1,
+  overflow: 'hidden',
+  clip: 'rect(0 0 0 0)',
+  whiteSpace: 'nowrap',
+});
+
 export function NpmCopyButton(
   props: React.HTMLAttributes<HTMLButtonElement> & { installation: string; sx?: SxProps<Theme> },
 ) {
@@ -75,18 +84,22 @@ export function NpmCopyButton(
   };
   return (
     <Button
+      aria-label="Copy installation command"
       onClick={(event: any) => {
         handleCopy();
         onClick?.(event);
       }}
       {...other}
     >
-      $ {installation}
+      <code>$ {installation}</code>
       {copied ? (
-        <CheckRounded color="inherit" sx={{ fontSize: 15 }} />
+        <CheckRounded color="inherit" sx={{ fontSize: 15 }} aria-hidden />
       ) : (
-        <ContentCopyRounded color="inherit" sx={{ fontSize: 15 }} />
+        <ContentCopyRounded color="inherit" sx={{ fontSize: 15 }} aria-hidden />
       )}
+      <LiveRegion role="status" aria-live="polite">
+        {copied ? 'Copied command to clipboard' : ''}
+      </LiveRegion>
     </Button>
   );
 }
