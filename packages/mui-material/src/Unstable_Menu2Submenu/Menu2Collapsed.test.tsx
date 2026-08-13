@@ -209,6 +209,41 @@ describe('<Menu2 /> collapsed API', () => {
     expect(onMouseEnter.callCount).to.be.greaterThan(0);
   });
 
+  // A wrapper around the trigger swallows props that it does not forward, so
+  // `closeOnClick` never reaches the item inside it.
+  it.skipIf(isJsdom())('opens the submenu when the trigger sits inside a wrapper', async () => {
+    // A wrapper that forwards keeps the behavior. One that drops props, the way
+    // a hand-written Tooltip helper easily does, swallows it: the submenu never
+    // opens and the click closes the menu instead.
+    const Wrapper = React.forwardRef<
+      HTMLElement,
+      { children: React.ReactElement } & Record<string, any>
+    >(function Wrapper(props, ref) {
+      const { children, ...forwarded } = props;
+      return React.cloneElement(children, { ...forwarded, ref });
+    });
+
+    const { user } = render(
+      <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
+        <Menu2Submenu
+          trigger={
+            <Wrapper>
+              <Menu2Item>More</Menu2Item>
+            </Wrapper>
+          }
+        >
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2Submenu>
+      </Menu2>,
+    );
+
+    await user.click(await screen.findByRole('menuitem', { name: 'More' }));
+
+    // The submenu opens, and the parent menu stays open.
+    expect(await screen.findByRole('menuitem', { name: 'Nested' })).not.to.equal(null);
+    expect(screen.queryByRole('menuitem', { name: 'More' })).not.to.equal(null);
+  });
+
   it.skipIf(isJsdom())('overlaps the parent menu by default', async () => {
     // The popup animates, so geometry has to be read after the transition ends.
     async function settle(element: HTMLElement) {

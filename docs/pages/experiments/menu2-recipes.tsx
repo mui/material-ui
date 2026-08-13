@@ -118,12 +118,19 @@ interface MenuTooltipChildProps {
   onClickCapture?: React.MouseEventHandler<HTMLElement>;
 }
 
-function MenuTooltip(props: {
-  title: string;
-  children: React.ReactElement<MenuTooltipChildProps>;
-  tooltipProps?: Partial<TooltipProps>;
-}) {
-  const { title, children, tooltipProps = horizontalTooltipProps } = props;
+// A wrapper used around a menu item, or as a menu trigger, must forward every
+// other prop and the ref to its child. Base UI merges the item and trigger
+// behavior into the element it renders, and a wrapper that drops those props
+// swallows the behavior.
+const MenuTooltip = React.forwardRef<
+  HTMLElement,
+  {
+    title: string;
+    children: React.ReactElement<MenuTooltipChildProps>;
+    tooltipProps?: Partial<TooltipProps>;
+  } & Record<string, any>
+>(function MenuTooltip(props, ref) {
+  const { title, children, tooltipProps = horizontalTooltipProps, ...forwarded } = props;
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = React.useCallback(() => {
@@ -135,6 +142,8 @@ function MenuTooltip(props: {
   }, []);
 
   const child = React.cloneElement(children, {
+    ...forwarded,
+    ref,
     onClickCapture: (event: React.MouseEvent<HTMLElement>) => {
       setOpen(false);
       children.props.onClickCapture?.(event);
@@ -153,7 +162,7 @@ function MenuTooltip(props: {
       {child}
     </Tooltip>
   );
-}
+});
 
 function MaterialPreviewCard(props: {
   id: string | undefined;
