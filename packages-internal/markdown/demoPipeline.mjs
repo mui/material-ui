@@ -7,11 +7,15 @@
  * marker values as written in Markdown. Both are matched exactly so the loader,
  * the server, and the client always select the same pipeline.
  *
- * Keep this list empty on `master` until a capability is verified for a demo.
+ * Add a page or demo only after the capability is verified for it.
  *
  * @type {import('./demoPipeline.mjs').DemoPipelineAllowlist}
  */
-export const demoPipelineAllowlist = {};
+export const demoPipelineAllowlist = {
+  'docs/pages/experiments/docs/demos.md': {
+    demos: { 'DemoInDocs.js': { source: true } },
+  },
+};
 
 /** @type {import('./demoPipeline.mjs').DocsInfraDemoFlags} */
 const DISABLED_FLAGS = {

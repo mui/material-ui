@@ -66,8 +66,12 @@ describe('shouldUseDocsInfraPipeline', () => {
     ).to.equal('docs-infra');
   });
 
-  it('ships an empty allowlist', () => {
-    expect(demoPipelineAllowlist).to.deep.equal({});
+  it('ships only the experiment demo', () => {
+    expect(demoPipelineAllowlist).to.deep.equal({
+      'docs/pages/experiments/docs/demos.md': {
+        demos: { 'DemoInDocs.js': { source: true } },
+      },
+    });
   });
 });
 

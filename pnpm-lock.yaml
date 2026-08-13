@@ -829,6 +829,9 @@ importers:
       '@babel/runtime':
         specifier: ^7.29.7
         version: 7.29.7
+      '@mui/internal-docs-infra':
+        specifier: file:../../../mui-public-di-migration-bootstrap/.local-packages/mui-internal-docs-infra-0.12.1-canary.31.tgz
+        version: file:../mui-public-di-migration-bootstrap/.local-packages/mui-internal-docs-infra-0.12.1-canary.31.tgz(@types/react@19.2.17)(next@16.2.12(@babel/core@7.29.7(supports-color@10.2.2))(@playwright/test@1.62.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(prettier@3.9.6)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@10.2.2)(typescript@6.0.3)
       es-toolkit:
         specifier: ^1.50.0
         version: 1.50.0

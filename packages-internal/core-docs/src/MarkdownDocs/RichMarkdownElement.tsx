@@ -146,7 +146,13 @@ export function RichMarkdownElement(props: RichMarkdownElementProps) {
   const selection = { pagePath: localizedDoc.location, demoName: name };
 
   if (shouldUseDocsInfraPipeline(selection) === 'docs-infra') {
-    return <DocsInfraDemo {...demoProps} flags={resolveDocsInfraDemoFlags(selection)} />;
+    return (
+      <DocsInfraDemo
+        {...demoProps}
+        flags={resolveDocsInfraDemoFlags(selection)}
+        docsInfra={demo.docsInfra}
+      />
+    );
   }
 
   return <Demo {...demoProps} />;

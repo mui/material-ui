@@ -2,8 +2,10 @@
 
 import { promises as fs, readdirSync, statSync } from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import prepareMarkdown from './prepareMarkdown.mjs';
 import extractImports from './extractImports.mjs';
+import { demoPipelineAllowlist, shouldUseDocsInfraPipeline } from './demoPipeline.mjs';
 
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 
@@ -78,6 +80,7 @@ function findComponents(packages) {
  * @property {Package[]} packages
  * @property {string[]} languagesInProgress
  * @property {string} workspaceRoot
+ * @property {import('./demoPipeline.mjs').DemoPipelineAllowlist} [demoPipelineAllowlist]
  */
 
 /**
@@ -111,6 +114,7 @@ function findComponents(packages) {
  * @property {string} [tailwindJsxPreview]
  * @property {string} [cssJsxPreview]
  * @property {Object.<string, ModuleData[]>} [relativeModules]
+ * @property {import('./precomputeDocsInfraDemo.mjs').DocsInfraDemoData} [docsInfra]
  */
 
 /**
@@ -640,6 +644,27 @@ export default async function demoLoader() {
             }
           }),
         );
+      }
+
+      // Only allowlisted markers pay the docs-infra source-processing cost.
+      if (
+        shouldUseDocsInfraPipeline(
+          { pagePath: docs.en.location, demoName },
+          options.demoPipelineAllowlist ?? demoPipelineAllowlist,
+        ) === 'docs-infra'
+      ) {
+        const { default: precomputeDocsInfraDemo } = await import('./precomputeDocsInfraDemo.mjs');
+        const docsInfra = await precomputeDocsInfraDemo({
+          demoName,
+          moduleFilepath,
+          previewSource: demos[demoName].jsxPreview,
+        });
+
+        docsInfra.dependencies.forEach((dependency) => {
+          this.addDependency(fileURLToPath(dependency));
+        });
+
+        demos[demoName].docsInfra = docsInfra;
       }
     }),
   );
