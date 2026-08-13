@@ -109,11 +109,27 @@ const Menu2 = React.forwardRef(function Menu2(
     }
   }
 
+  // A wrapper that does not forward the ref also swallows the trigger
+  // behavior, and nothing else reports it. An unset ref proves the element
+  // never received what Base UI merged into it.
+  const triggerRef = React.useRef<HTMLButtonElement | null>(null);
+  React.useEffect(() => {
+    if (process.env.NODE_ENV !== 'production' && trigger != null && triggerRef.current == null) {
+      console.error(
+        'MUI: The `trigger` element of `Menu2` did not receive a ref. ' +
+          'A component used as the trigger must forward its props and its ref to ' +
+          'the element that it renders, the way Tooltip does. Without them the ' +
+          'menu behavior does not reach the element.',
+      );
+    }
+  }, [trigger]);
+
   const triggerNode =
     trigger == null ? null : (
       // Base UI's `render` merges the trigger behavior into the element, so the
       // caller keeps whatever component they passed.
       <BaseMenu.Trigger
+        ref={triggerRef}
         render={trigger}
         {...resolvedTriggerProps}
         className={(state) =>

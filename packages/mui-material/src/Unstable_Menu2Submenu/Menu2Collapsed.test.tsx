@@ -244,6 +244,35 @@ describe('<Menu2 /> collapsed API', () => {
     expect(screen.queryByRole('menuitem', { name: 'More' })).not.to.equal(null);
   });
 
+  it('warns when a wrapper swallows the trigger ref', () => {
+    const error = vi.spyOn(console, 'error').mockImplementation(() => {});
+    // Drops every prop and the ref, the way a hand-written helper easily does.
+    function SwallowingWrapper(props: { children: React.ReactElement }) {
+      return props.children;
+    }
+
+    try {
+      render(
+        <Menu2
+          defaultOpen
+          trigger={
+            <SwallowingWrapper>
+              <button type="button">Options</button>
+            </SwallowingWrapper>
+          }
+        >
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2>,
+      );
+
+      expect(
+        error.mock.calls.some(([message]) => String(message).includes('did not receive a ref')),
+      ).to.equal(true);
+    } finally {
+      error.mockRestore();
+    }
+  });
+
   it.skipIf(isJsdom())('overlaps the parent menu by default', async () => {
     // The popup animates, so geometry has to be read after the transition ends.
     async function settle(element: HTMLElement) {

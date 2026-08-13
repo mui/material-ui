@@ -104,9 +104,25 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
     }
   }
 
+  // A wrapper that does not forward the ref also swallows the trigger
+  // behavior, and nothing else reports it. An unset ref proves the element
+  // never received what Base UI merged into it.
+  const triggerRef = React.useRef<HTMLElement | null>(null);
+  React.useEffect(() => {
+    if (process.env.NODE_ENV !== 'production' && trigger != null && triggerRef.current == null) {
+      console.error(
+        'MUI: The `trigger` element of `Menu2Submenu` did not receive a ref. ' +
+          'A component used as the trigger must forward its props and its ref to ' +
+          'the element that it renders, the way Tooltip does. Without them the ' +
+          'menu behavior does not reach the element.',
+      );
+    }
+  }, [trigger]);
+
   const triggerNode =
     trigger == null ? null : (
       <BaseMenu.SubmenuTrigger
+        ref={triggerRef}
         render={trigger}
         // A submenu trigger must never close the menu. The caller usually passes
         // a `Menu2Item`, which closes on click by default. `SubmenuTrigger` does
