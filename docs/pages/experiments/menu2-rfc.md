@@ -20,7 +20,7 @@ Material UI's `Menu` cannot do submenus.
 - **Weak community options.** `mui-nested-menu`, `material-ui-popup-state`, and many sandboxes have weak keyboard and ARIA support. Maintainers report this problem many times.
 - **Copy-paste code.** The Menubar docs page shows Base UI submenus as copy-paste code. Users then asked for a real component ([#48336](https://github.com/mui/material-ui/issues/48336)). Copy-paste code has no version, no tests, and no theme support.
 
-We want submenus in `@mui/material` with Material visuals and full theme support. The current `Menu` must stay stable. The plan is to make the new component the default `Menu` in the next major version.
+We want submenus in `@mui/material` with Material visuals and full theme support. The current `Menu` must stay stable.
 
 This RFC also sets the rules to build future Material UI components on Base UI: customization, style reuse, dependencies, tests, and tools. Menu is the first component. We intend the decisions here to apply to the other components.
 
@@ -39,9 +39,8 @@ This RFC also sets the rules to build future Material UI components on Base UI
 5. **Near-zero cost for existing users.** The current `Menu` continues to work. Apps that do not import the new component get no behavior change and no Base UI bundle cost. They pay a one-time cost, because the classic components now read the styles that the new components share. See the size numbers below.
 6. **Keep the current API where the new foundation permits it.** Document the places where it does not.
 7. **Add the other menu features that users request often, at the same time.** These features are checkbox items, radio items, groups, hover-open, and context menus. Then we do not need to change the API later.
-8. **A clear path to become `Menu` in the next major version.** Supply a migration guide and codemods, so early adopters keep a way forward.
-9. **Reuse a maintained library.** Do not build focus, dismissal, and positioning again.
-10. **The component must look like any other Material UI component** in tooling, theming, imports, and tests. Users do not need to know about Base UI, and they do not install anything extra.
+8. **Reuse a maintained library.** Do not build focus, dismissal, and positioning again.
+9. **The component must look like any other Material UI component** in tooling, theming, imports, and tests. Users do not need to know about Base UI, and they do not install anything extra.
 
 ## What are our options?
 
@@ -89,40 +88,20 @@ Our work is the style, the theme, and the API surface.
 
 ## Proposed solution
 
-We propose a successor to `Menu` that uses Base UI. This successor follows the Grid lifecycle. A proof of concept ([#48663](https://github.com/mui/material-ui/pull/48663)) shows that this works. We test the open questions in a companion experiment ([#48823](https://github.com/mui/material-ui/pull/48823)).
+We propose a successor to `Menu` that uses Base UI. A proof of concept ([#48663](https://github.com/mui/material-ui/pull/48663)) shows that this works. We test the open questions in a companion experiment ([#48823](https://github.com/mui/material-ui/pull/48823)).
 
-### Positioning and lifecycle (decided)
+### Positioning (decided)
 
-The new component is a successor. It is not a rewrite of the current internals. It is also not a second namespace that stays forever.
+The new component is a successor. It is not a rewrite of the current internals. The current `Menu` does not change.
 
-| Phase           | Component name   | What happens                                                                                     |
-| :-------------- | :--------------- | :----------------------------------------------------------------------------------------------- |
-| Now (v9 minors) | `Unstable_Menu2` | Public incubation, a real release. The theme keys and the classes are `MuiMenu2*`.               |
-| Later in v9     | `Menu2`          | Stable under the interim name. The current `Menu` does not change. The theme keys do not change. |
-| Next major      | `Menu`           | `Menu2` becomes the canonical name.                                                              |
-| Next major      | `MenuLegacy`     | We rename and deprecate the current `Menu`. We supply a codemod.                                 |
+This RFC does not cover the component name across major versions, or how applications move from the current `Menu` to the successor. Those questions need the plan for the next major version, and that plan does not exist yet. We answer them separately.
 
-This plan follows Grid (`Unstable_Grid2` -> `Grid2` -> `Grid`, old one renamed `GridLegacy`, [#45363](https://github.com/mui/material-ui/pull/45363)).
-
-- **Renames.** Each rename breaks early adopters. But a codemod can do the rename, and we accepted this trade before.
-- **The `2` suffix.** It makes a stable phase before the major release possible. A name without the suffix would collide with the `Menu` that we still release.
-- **The `Unstable_` prefix.** Only the directories, the subpaths, and the exports use it. The internal names are `Menu2*` and the theme keys are `MuiMenu2*`. Our lint rules require this, and it matches Grid2.
-- **The theme keys.** They do not change in the `Unstable_Menu2` -> `Menu2` step. Only the final promotion to `Menu` renames them.
-- **The imports.** They follow our usual convention: flat names, one component for each subpath, and no short aliases such as `Root` or `Item`.
+The component ships under the `Unstable_` prefix while the API settles. The imports follow our usual convention: flat names, one component for each subpath.
 
 ```jsx
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 ```
-
-The subpaths use default exports. Therefore adopters can remove the `Unstable_` prefix in their own code. Their JSX then looks like the future API. We add the barrel exports at graduation.
-
-A checklist of four items controls graduation. It is not a judgment call.
-
-- The conformance suite passes, minus the documented skips.
-- The theme registration is at parity.
-- The `data-*` boundary is pinned.
-- The design team approves.
 
 ### Rules for Base UI-backed components (Menu is the first)
 
@@ -271,7 +250,7 @@ The proof of concept ([#48663](https://github.com/mui/material-ui/pull/48663)) c
 
 Done:
 
-- **Names.** We renamed the components to the `Unstable_Menu2` lifecycle name, one component for each subpath.
+- **Names.** The components use the `Unstable_Menu2` name, one component for each subpath.
 - **Docs tooling.** We removed the special cases.
 - **Styles.** The classic component and the successor share the same style modules.
 - **Composition.** Composed list primitives still work inside the items. `ListItemText inset` aligns with the icon column. `inset` is a `ListItemText` prop, not a menu item prop, so we implemented nothing.
@@ -326,8 +305,7 @@ These are settled. The detail stays here, because the caveats matter.
 1. Behavior benchmark: **done**. The results are above.
 2. Design phase for the API shape. We try the design in the companion experiment, then answer each question against a real preview.
 3. Release `Unstable_Menu2` in a v9 minor version, with conformance tests, API docs, and demos on the Menu page.
-4. Make changes from the feedback. Then make `Menu2` stable when it passes the graduation checklist.
-5. Next major version: promote `Menu2` to `Menu`, rename the old component to `MenuLegacy`, and release the migration guide and the codemods.
+4. Make changes from the feedback, then remove the `Unstable_` prefix when the API settles.
 
 ### Appendix: full prop mapping
 
@@ -441,7 +419,6 @@ Earlier attempts:
 Direction and precedent:
 
 - Maintainer statement (Dec 2024): [#11723 comment](https://github.com/mui/material-ui/issues/11723#issuecomment-2556390056) -- "Material UI will adopt (this new) Base UI component in its next major release."
-- Grid lifecycle: [#45363](https://github.com/mui/material-ui/pull/45363)
 - Menubar docs page that uses Base UI: [react-menubar](https://mui.com/material-ui/react-menubar/) (from [#47616](https://github.com/mui/material-ui/pull/47616))
 - [Base UI Menu](https://base-ui.com/react/components/menu) and [releases](https://base-ui.com/react/overview/releases)
 - Why the Base UI Menu has no `initialFocus`: [base-ui#2143](https://github.com/mui/base-ui/issues/2143)
