@@ -485,6 +485,88 @@ describe('useAutocomplete', () => {
     });
   });
 
+  describe('prop: getOptionValue', () => {
+    const options = [
+      { id: 'foo', label: 'Foo' },
+      { id: 'bar', label: 'Bar' },
+    ];
+
+    function Test(props) {
+      const { groupedOptions, getInputProps, getListboxProps, getOptionProps } = useAutocomplete({
+        options,
+        open: true,
+        multiple: true,
+        value: ['foo'],
+        getOptionLabel: (option) => option.label,
+        getOptionValue: (option) => option.id,
+        ...props,
+      });
+
+      return (
+        <div>
+          <input {...getInputProps()} />
+          <ul {...getListboxProps()}>
+            {groupedOptions.map((option, index) => {
+              const { key, ...optionProps } = getOptionProps({ option, index });
+              return (
+                <li key={key} {...optionProps}>
+                  {option.label}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      );
+    }
+
+    it('uses the mapped option value for default equality', () => {
+      render(<Test />);
+
+      expect(screen.getByRole('option', { name: 'Foo' })).to.have.attribute(
+        'aria-selected',
+        'true',
+      );
+      expect(screen.getByRole('option', { name: 'Bar' })).to.have.attribute(
+        'aria-selected',
+        'false',
+      );
+    });
+
+    it('uses the mapped option value when filtering selected options', () => {
+      render(<Test filterSelectedOptions />);
+
+      expect(screen.queryByRole('option', { name: 'Foo' })).to.equal(null);
+      expect(screen.getByRole('option', { name: 'Bar' })).to.have.attribute(
+        'aria-selected',
+        'false',
+      );
+    });
+
+    it('uses mapped equality when toggling an already selected option', async () => {
+      const onChange = spy();
+
+      const { user } = render(<Test onChange={onChange} />);
+      await user.click(screen.getByRole('option', { name: 'Foo' }));
+
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.args[0][1]).to.deep.equal([]);
+      expect(onChange.args[0][2]).to.equal('removeOption');
+      expect(onChange.args[0][3]).to.deep.equal({ option: options[0] });
+    });
+
+    it('gives a custom isOptionEqualToValue precedence over mapped default equality', () => {
+      const isOptionEqualToValue = spy(() => false);
+
+      render(<Test isOptionEqualToValue={isOptionEqualToValue} />);
+
+      expect(isOptionEqualToValue.calledWith(options[0], 'foo')).to.equal(true);
+      expect(screen.getByRole('option', { name: 'Foo' })).to.have.attribute(
+        'aria-selected',
+        'false',
+      );
+    });
+  });
+
   describe('prop: defaultValue', () => {
     it('should not trigger onInputChange when defaultValue is provided', () => {
       const onInputChange = spy();
