@@ -287,7 +287,7 @@ function Menu2WithPreviewCardsDemo({ submenusOpenOnHover }: { submenusOpenOnHove
       </Menu2Item>
       <Menu2Submenu
         trigger={
-          <Menu2Item>
+          <Menu2Item onFocus={clearActiveItem} onMouseEnter={clearActiveItem}>
             Version history
             <KeyboardArrowRightRoundedIcon fontSize="small" />
           </Menu2Item>
@@ -295,8 +295,6 @@ function Menu2WithPreviewCardsDemo({ submenusOpenOnHover }: { submenusOpenOnHove
         slotProps={{
           trigger: {
             openOnHover: submenusOpenOnHover,
-            onFocus: clearActiveItem,
-            onMouseEnter: clearActiveItem,
           },
         }}
       >
@@ -416,12 +414,12 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
       <Menu2Submenu
         disabled
         trigger={
-          <Menu2Item>
+          <Menu2Item disabled>
             Add-ons unavailable
             <KeyboardArrowRightRoundedIcon fontSize="small" />
           </Menu2Item>
         }
-        slotProps={{ trigger: { disabled: true, openOnHover: settings.submenusOpenOnHover } }}
+        slotProps={{ trigger: { openOnHover: settings.submenusOpenOnHover } }}
       >
         <Menu2Item>Marketplace</Menu2Item>
       </Menu2Submenu>

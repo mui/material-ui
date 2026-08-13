@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -181,6 +182,31 @@ describe('<Menu2 /> collapsed API', () => {
     } finally {
       error.mockRestore();
     }
+  });
+
+  // Hover is the default way to open a submenu, and it kept working only by
+  // accident until now: nothing covered it.
+  it.skipIf(isJsdom())('opens a submenu on hover, and keeps the element handler', async () => {
+    const onMouseEnter = spy();
+    const { user } = render(
+      <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
+        <Menu2Submenu trigger={<Menu2Item onMouseEnter={onMouseEnter}>More</Menu2Item>}>
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2Submenu>
+      </Menu2>,
+    );
+
+    const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
+    await user.hover(submenuTrigger);
+
+    await waitFor(
+      () => {
+        expect(screen.queryByRole('menuitem', { name: 'Nested' })).not.to.equal(null);
+      },
+      { timeout: 2000 },
+    );
+    // Base UI composes with the element's own handler rather than replacing it.
+    expect(onMouseEnter.callCount).to.be.greaterThan(0);
   });
 
   it.skipIf(isJsdom())('overlaps the parent menu by default', async () => {

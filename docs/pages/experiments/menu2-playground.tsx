@@ -127,8 +127,9 @@ function PlaygroundDemo({
 }) {
   const popupKnobProps = usePopupKnobProps(settings);
   const itemProps = { dense: settings.dense, divider: settings.dividers };
+  // The trigger element carries the item props. `slotProps.trigger` reaches
+  // Base UI's submenu trigger, so only its own props belong there.
   const submenuTriggerProps = {
-    ...itemProps,
     openOnHover: settings.submenusOpenOnHover,
     delay: settings.submenuDelay,
     closeDelay: settings.submenuCloseDelay,
@@ -187,7 +188,7 @@ function PlaygroundDemo({
       <Menu2Submenu
         closeParentOnEsc={settings.closeParentOnEsc}
         trigger={
-          <Menu2Item>
+          <Menu2Item {...itemProps}>
             Share
             <KeyboardArrowRightRoundedIcon fontSize="small" />
           </Menu2Item>
@@ -204,7 +205,7 @@ function PlaygroundDemo({
         <Menu2Submenu
           closeParentOnEsc={settings.closeParentOnEsc}
           trigger={
-            <Menu2Item>
+            <Menu2Item {...itemProps}>
               Export as
               <KeyboardArrowRightRoundedIcon fontSize="small" />
             </Menu2Item>
@@ -229,7 +230,7 @@ function PlaygroundDemo({
       <Menu2Submenu
         closeParentOnEsc={settings.closeParentOnEsc}
         trigger={
-          <Menu2Item>
+          <Menu2Item {...itemProps}>
             View
             <KeyboardArrowRightRoundedIcon fontSize="small" />
           </Menu2Item>
