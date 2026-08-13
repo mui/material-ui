@@ -67,7 +67,7 @@ const pageSize = 5;
 const defaultIsActiveElementInListbox = (listboxRef) =>
   listboxRef.current !== null && contains(listboxRef.current.parentElement, document.activeElement);
 
-const defaultIsOptionEqualToValue = (option, value) => option === value;
+const defaultGetOptionValue = (option) => option;
 
 const MULTIPLE_DEFAULT_VALUE = [];
 
@@ -104,12 +104,13 @@ function useAutocomplete(props) {
     getOptionDisabled,
     getOptionKey,
     getOptionLabel: getOptionLabelProp = (option) => option.label ?? option,
+    getOptionValue = defaultGetOptionValue,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
-    isOptionEqualToValue = defaultIsOptionEqualToValue,
+    isOptionEqualToValue: isOptionEqualToValueProp,
     multiple = false,
     onChange,
     onClose,
@@ -127,6 +128,17 @@ function useAutocomplete(props) {
   } = props;
 
   const id = useId(idProp);
+
+  const isOptionEqualToValue = React.useCallback(
+    (option, value2) => {
+      if (isOptionEqualToValueProp) {
+        return isOptionEqualToValueProp(option, value2);
+      }
+
+      return getOptionValue(option) === value2;
+    },
+    [getOptionValue, isOptionEqualToValueProp],
+  );
 
   let getOptionLabel = getOptionLabelProp;
 
@@ -256,24 +268,24 @@ function useAutocomplete(props) {
     return [];
   }, [multiple, value]);
   const selectedValuesSet = React.useMemo(() => {
-    // Fast path for the default strict equality comparator to avoid O(n^2) option checks.
-    if (isOptionEqualToValue !== defaultIsOptionEqualToValue || selectedValues.length === 0) {
+    // Fast path for the default equality behavior to avoid O(n^2) option checks.
+    if (isOptionEqualToValueProp || selectedValues.length === 0) {
       return null;
     }
 
     return new Set(selectedValues);
-  }, [isOptionEqualToValue, selectedValues]);
+  }, [isOptionEqualToValueProp, selectedValues]);
   const isOptionSelected = React.useCallback(
     (option) => {
       if (selectedValuesSet) {
-        return selectedValuesSet.has(option);
+        return selectedValuesSet.has(getOptionValue(option));
       }
 
       return selectedValues.some(
         (value2) => value2 != null && isOptionEqualToValue(option, value2),
       );
     },
-    [isOptionEqualToValue, selectedValues, selectedValuesSet],
+    [getOptionValue, isOptionEqualToValue, selectedValues, selectedValuesSet],
   );
 
   const filteredOptions = popupOpen
