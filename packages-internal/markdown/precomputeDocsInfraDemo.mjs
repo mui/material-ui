@@ -40,9 +40,16 @@ export default async function precomputeDocsInfraDemo(options) {
     throw new Error(`docs-infra returned no source for the demo "${demoName}"`);
   }
 
+  // `output: 'hast'` above, so the source is a HAST root rather than a string
+  // or one of the serialized forms.
+  const { source } = variant;
+  if (!source || typeof source === 'string' || !('type' in source) || source.type !== 'root') {
+    throw new Error(`docs-infra returned no highlighted source for the demo "${demoName}"`);
+  }
+
   return {
-    source: getHastTextContent(variant.source),
-    html: toHtml(variant.source),
+    source: getHastTextContent(source),
+    html: toHtml(source),
     fileName: variant.fileName ?? fileName,
     language: variant.language,
     externals: precomputed.externals,
