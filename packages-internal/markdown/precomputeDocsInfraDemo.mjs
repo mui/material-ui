@@ -20,13 +20,21 @@ export default async function precomputeDocsInfraDemo(options) {
   const { demoName, moduleFilepath, previewSource } = options;
   const fileName = path.basename(moduleFilepath);
   const name = fileName.replace(/\.[^.]+$/, '');
+  // Demos keep JSX in their `.js` files, which the plain JavaScript grammar
+  // does not highlight.
+  const language = fileName.endsWith('.js') ? 'jsx' : undefined;
 
   const precomputed = await precomputeFileDemo(
     {
       name,
       slug: demoName,
       entries: {
-        Default: { name: 'Default', url: pathToFileURL(moduleFilepath).href, fileName },
+        Default: {
+          name: 'Default',
+          url: pathToFileURL(moduleFilepath).href,
+          fileName,
+          ...(language ? { language } : {}),
+        },
       },
       ...(previewSource
         ? { preview: { source: previewSource, fileName: `${name}.tsx.preview` } }

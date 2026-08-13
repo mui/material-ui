@@ -4,19 +4,78 @@ import type { DocsInfraDemoFlags } from '@mui/internal-markdown/demoPipeline';
 import type { DocsInfraDemoData } from '@mui/internal-markdown/precomputeDocsInfraDemo';
 import { Demo, type DemoProps } from '../Demo/Demo';
 
-/**
- * Maps the Starry Night scope classes emitted by docs-infra to the okaidia
- * palette the Prism theme already uses, so a migrated demo matches its
- * neighbours. Scoped to migrated demos and removed once every demo migrates.
- */
+// Keep these in sync with docs/public/static/styles/prism-okaidia.css.
+const prismColors = {
+  comment: '#b2b2b2',
+  punctuation: '#f8f8f2',
+  property: '#fc929e',
+  boolean: '#b78eff',
+  string: '#a6e22e',
+  operator: '#f8f8f2',
+  function: '#e6db74',
+  keyword: '#66d9ef',
+  regex: '#fd971f',
+};
+
+/** Maps docs-infra syntax tokens to their legacy Prism equivalents. */
 const DocsInfraSourceScope = styled('div')({
-  '& .pl-k': { color: '#66d9ef' },
-  '& .pl-s, & .pl-pds': { color: '#a6e22e' },
-  '& .pl-c1': { color: '#b78eff' },
-  '& .pl-en, & .pl-e': { color: '#e6db74' },
-  '& .pl-ent': { color: '#fc929e' },
-  '& .pl-c': { color: '#b2b2b2' },
-  '& .pl-smi, & .pl-v': { color: '#f8f8f2' },
+  '& .pl-c': { color: prismColors.comment },
+  '& .pl-c1': { color: prismColors.operator },
+  '& .pl-s .pl-v': { color: prismColors.boolean },
+  '& .pl-e, & .pl-en': { color: prismColors.function },
+  '& .pl-smi, & .pl-s .pl-s1': { color: prismColors.operator },
+  '& .pl-ent': { color: prismColors.property },
+  '& .pl-k': { color: prismColors.keyword },
+  '& .pl-s, & .pl-pds, & .pl-s .pl-pse .pl-s1, & .pl-sr, & .pl-sr .pl-cce, & .pl-sr .pl-sre, & .pl-sr .pl-sra':
+    { color: prismColors.string },
+  '& .pl-v, & .pl-smw': { color: prismColors.operator },
+  '& .pl-bu': { color: prismColors.property },
+  '& .pl-ii, & .pl-c2': {
+    color: prismColors.punctuation,
+    backgroundColor: prismColors.property,
+  },
+  '& .pl-sr .pl-cce': {
+    color: prismColors.regex,
+    fontWeight: 'bold',
+  },
+  '& .pl-ml': { color: prismColors.keyword },
+  '& .pl-md, & .pl-mc': { color: prismColors.property },
+  '& .pl-mh, & .pl-mh .pl-en, & .pl-ms': {
+    color: prismColors.boolean,
+    fontWeight: 'bold',
+  },
+  '& .pl-mi': {
+    color: prismColors.punctuation,
+    fontStyle: 'italic',
+  },
+  '& .pl-mb': {
+    color: prismColors.punctuation,
+    fontWeight: 'bold',
+  },
+  '& .pl-mi1': { color: prismColors.string },
+  '& .pl-mi2, & .pl-ba, & .pl-sg': { color: prismColors.comment },
+  '& .pl-mdr': {
+    color: prismColors.function,
+    fontWeight: 'bold',
+  },
+  '& .pl-corl': {
+    color: prismColors.operator,
+    textDecoration: 'underline',
+  },
+  '& .di-num, & .di-bool': { color: prismColors.boolean },
+  '& .di-n, & .di-this': { color: prismColors.keyword },
+  '& .di-ps, & .di-cp, & .di-ht': { color: prismColors.property },
+  '& .di-op, & .di-op.di-jv': { color: prismColors.property },
+  '& .di-ak, & .di-da': { color: prismColors.string },
+  '& .di-av, & .di-jt': { color: prismColors.function },
+  // Prism colours JSX element names as tags, not as functions.
+  '& .di-jsx': { color: prismColors.property },
+  '& .di-ae, & .di-cv, & .di-bt, & .di-pu, & .di-te, & .di-td, & .di-jv': {
+    color: prismColors.punctuation,
+  },
+  '& .di-ps .pl-pds': { color: prismColors.property },
+  '& .di-av .pl-pds': { color: prismColors.punctuation },
+  '& .language-css .pl-e': { color: prismColors.string },
 });
 
 export interface DocsInfraDemoProps extends DemoProps {
