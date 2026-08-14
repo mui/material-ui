@@ -623,6 +623,27 @@ interface DensityComponentDef {
   Matrix: React.ComponentType;
 }
 
+// Size-led density proof cell: every sized family shows one UNSIZED instance —
+// the only cell a preset switch moves (the `defaultProps.size` flip), while the
+// hardcoded size cells stay put. Rendered first so the flip reads at a glance.
+function DefaultSizeRow({ children }: { children: React.ReactNode }) {
+  return (
+    <Box data-size-section="default">
+      <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+        default (density-driven)
+      </Typography>
+      <Stack
+        direction="row"
+        spacing={10}
+        useFlexGap
+        sx={{ alignItems: 'center', flexWrap: 'wrap' }}
+      >
+        {children}
+      </Stack>
+    </Box>
+  );
+}
+
 function ButtonMatrix() {
   return (
     <Stack spacing={4} sx={{ mt: 1 }}>
@@ -639,6 +660,14 @@ function ButtonMatrix() {
           </Typography>
         </Divider>
         <Stack spacing={3}>
+          <DefaultSizeRow>
+            <Button variant="contained" color="primary" data-cell="default">
+              <span className="density-debug-text">default</span>
+            </Button>
+            <IconButton color="primary" data-cell="icon-default" aria-label="close">
+              <CloseIcon />
+            </IconButton>
+          </DefaultSizeRow>
           {SIZES.map((size) => (
             <Box key={size} data-size-section={size}>
               <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
@@ -1276,6 +1305,10 @@ function AdornedFieldMatrix() {
 function TextFieldMatrix() {
   return (
     <Stack spacing={4} sx={{ mt: 1 }}>
+      <DefaultSizeRow>
+        <TextField label={<span className="density-debug-text">Default</span>} />
+        <TextField label={<span className="density-debug-text">Large</span>} size="large" />
+      </DefaultSizeRow>
       {(
         [
           ['outlined', <OutlinedInputMatrix />],
@@ -1350,7 +1383,7 @@ function TabsMatrix() {
   );
 }
 
-function CheckboxGroupDemo({ size }: { size: 'small' | 'medium' }) {
+function CheckboxGroupDemo({ size }: { size?: 'small' | 'medium' | 'large' }) {
   const opts = [
     { label: 'Email', checked: true },
     { label: 'SMS', checked: false },
@@ -1358,7 +1391,7 @@ function CheckboxGroupDemo({ size }: { size: 'small' | 'medium' }) {
   ];
   return (
     <FormControl component="fieldset">
-      <FormLabel sx={{ typography: 'caption' }}>Notifications ({size})</FormLabel>
+      <FormLabel sx={{ typography: 'caption' }}>Notifications ({size ?? 'default'})</FormLabel>
       <FormGroup>
         {opts.map((o) => (
           <FormControlLabel
@@ -1380,8 +1413,11 @@ function CheckboxMatrix() {
       useFlexGap
       sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
     >
+      {/* unsized first — the default (density-driven) cell */}
+      <CheckboxGroupDemo />
       <CheckboxGroupDemo size="medium" />
       <CheckboxGroupDemo size="small" />
+      <CheckboxGroupDemo size="large" />
     </Stack>
   );
 }
@@ -1504,9 +1540,9 @@ function SelectDemo({
   size,
 }: {
   variant: 'outlined' | 'filled' | 'standard';
-  size: 'medium' | 'small';
+  size?: 'medium' | 'small' | 'large';
 }) {
-  const labelId = `pg-select-${variant}-${size}-label`;
+  const labelId = `pg-select-${variant}-${size ?? 'default'}-label`;
   return (
     <FormControl variant={variant} size={size} sx={{ width: 200 }}>
       <InputLabel id={labelId}>
@@ -1569,8 +1605,11 @@ function SelectMatrix() {
             useFlexGap
             sx={{ alignItems: 'flex-start', flexWrap: 'wrap' }}
           >
+            {/* unsized first — the default (density-driven) cell */}
+            <SelectDemo variant={variant} />
             <SelectDemo variant={variant} size="medium" />
             <SelectDemo variant={variant} size="small" />
+            <SelectDemo variant={variant} size="large" />
           </Stack>
         </Box>
       ))}
@@ -1608,7 +1647,10 @@ function AlertMatrix() {
 function ChipMatrix() {
   return (
     <Stack spacing={4} sx={{ mt: 1 }}>
-      {(['medium', 'small'] as const).map((size) => (
+      <DefaultSizeRow>
+        <Chip label={<span className="density-debug-text">default</span>} onDelete={() => {}} />
+      </DefaultSizeRow>
+      {(['medium', 'small', 'large'] as const).map((size) => (
         <div key={size}>
           <Typography variant="caption" color="text.secondary">
             {size}
@@ -1690,11 +1732,11 @@ function AccordionMatrix() {
   );
 }
 
-function RadioGroupDemo({ size }: { size: 'small' | 'medium' }) {
+function RadioGroupDemo({ size }: { size?: 'small' | 'medium' | 'large' }) {
   return (
     <FormControl>
-      <FormLabel sx={{ typography: 'caption' }}>Shipping ({size})</FormLabel>
-      <RadioGroup defaultValue="standard" name={`shipping-${size}`}>
+      <FormLabel sx={{ typography: 'caption' }}>Shipping ({size ?? 'default'})</FormLabel>
+      <RadioGroup defaultValue="standard" name={`shipping-${size ?? 'default'}`}>
         {['Standard', 'Priority', 'Express'].map((label) => (
           <FormControlLabel
             key={label}
@@ -1716,20 +1758,23 @@ function RadioMatrix() {
       useFlexGap
       sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
     >
+      {/* unsized first — the default (density-driven) cell */}
+      <RadioGroupDemo />
       <RadioGroupDemo size="medium" />
       <RadioGroupDemo size="small" />
+      <RadioGroupDemo size="large" />
     </Stack>
   );
 }
 
-function SwitchGroupDemo({ size }: { size: 'small' | 'medium' }) {
+function SwitchGroupDemo({ size }: { size?: 'small' | 'medium' | 'large' }) {
   const opts = [
     { label: 'Wi-Fi', checked: true },
     { label: 'Bluetooth', checked: false },
   ];
   return (
     <FormControl component="fieldset">
-      <FormLabel sx={{ typography: 'caption' }}>Connectivity ({size})</FormLabel>
+      <FormLabel sx={{ typography: 'caption' }}>Connectivity ({size ?? 'default'})</FormLabel>
       <FormGroup>
         {opts.map((o) => (
           <FormControlLabel
@@ -1751,8 +1796,11 @@ function SwitchMatrix() {
       useFlexGap
       sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
     >
+      {/* unsized first — the default (density-driven) cell */}
+      <SwitchGroupDemo />
       <SwitchGroupDemo size="medium" />
       <SwitchGroupDemo size="small" />
+      <SwitchGroupDemo size="large" />
     </Stack>
   );
 }
@@ -1834,16 +1882,16 @@ function BreadcrumbsMatrix() {
 function ToggleButtonMatrix() {
   return (
     <Stack spacing={2} sx={{ mt: 1, alignItems: 'flex-start' }}>
-      {(['small', 'medium', 'large'] as const).map((size) => (
+      {([undefined, 'small', 'medium', 'large'] as const).map((size) => (
         <Stack
-          key={size}
+          key={size ?? 'default'}
           direction="row"
           spacing={10}
           useFlexGap
           sx={{ alignItems: 'center', flexWrap: 'wrap' }}
         >
           <Typography variant="caption" color="text.secondary" sx={{ width: 52 }}>
-            {size}
+            {size ?? 'default'}
           </Typography>
           <ToggleButtonGroup value="left" size={size} exclusive aria-label="text alignment">
             <ToggleButton value="left" aria-label="align left">
@@ -1945,10 +1993,13 @@ function SliderMatrix() {
       sx={{ mt: 5, alignItems: 'center', flexWrap: 'wrap' }}
     >
       <Box sx={{ width: 180 }}>
-        <Slider aria-label="Medium" defaultValue={40} />
+        <Slider aria-label="Default (density-driven)" defaultValue={40} />
       </Box>
       <Box sx={{ width: 180 }}>
         <Slider aria-label="Small" size="small" defaultValue={40} />
+      </Box>
+      <Box sx={{ width: 180 }}>
+        <Slider aria-label="Large" size="large" defaultValue={40} />
       </Box>
       <Box sx={{ width: 180 }}>
         <Slider aria-label="Value label" defaultValue={60} valueLabelDisplay="on" />
@@ -2009,8 +2060,8 @@ function ButtonGroupMatrix() {
       useFlexGap
       sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
     >
-      {(['small', 'medium', 'large'] as const).map((size) => (
-        <ButtonGroup key={size} variant="outlined" size={size}>
+      {([undefined, 'small', 'medium', 'large'] as const).map((size) => (
+        <ButtonGroup key={size ?? 'default'} variant="outlined" size={size}>
           <Button>
             <span className="density-debug-text">One</span>
           </Button>
@@ -2038,10 +2089,10 @@ function TableCellMatrix() {
   // leading padding="checkbox" cells, and the trailing padding="none" actions.
   return (
     <Stack spacing={4} sx={{ mt: 1, width: 440 }}>
-      {(['medium', 'small'] as const).map((size) => (
-        <div key={size}>
+      {([undefined, 'medium', 'small', 'large'] as const).map((size) => (
+        <div key={size ?? 'default'}>
           <Typography variant="caption" color="text.secondary">
-            {size}
+            {size ?? 'default (density-driven)'}
           </Typography>
           <Table size={size}>
             <TableHead>
@@ -2841,6 +2892,7 @@ function AutocompleteMatrix() {
       useFlexGap
       sx={{ mt: 1, minHeight: 260, alignItems: 'flex-start', flexWrap: 'wrap' }}
     >
+      {/* Autocomplete instances are unsized — the default (density-driven) cells. */}
       <Autocomplete
         open
         disablePortal
@@ -3128,6 +3180,7 @@ function FabMatrix() {
       <Fab size="medium" color="primary">
         <InboxIcon />
       </Fab>
+      {/* unsized — the default (density-driven) cell */}
       <Fab color="primary">
         <InboxIcon />
       </Fab>
@@ -3145,6 +3198,7 @@ function PaginationMatrix() {
     <Stack spacing={2} sx={{ mt: 1 }}>
       {/* count/defaultPage chosen so ellipsis renders (auto height, knob-excluded). */}
       <Pagination count={10} defaultPage={6} size="small" />
+      {/* unsized — the default (density-driven) cell */}
       <Pagination count={10} defaultPage={6} />
       <Pagination count={10} defaultPage={6} size="large" />
       {/* TablePagination chrome — toolbar/select/actions insets ride the knobs

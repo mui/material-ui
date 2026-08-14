@@ -50,6 +50,99 @@ export function applyPickerDaySize(
   );
 }
 
+// Size-led density needs a third size on the package's 2-size components —
+// augmentation only, no component-source change (their propTypes are already
+// `string`-tolerant, so no dev warnings). Explicit `size="large"` and the
+// presets' `defaultProps.size` both typecheck through these.
+declare module '../Chip/Chip' {
+  interface ChipPropsSizeOverrides {
+    large: true;
+  }
+}
+declare module '../Checkbox/Checkbox' {
+  interface CheckboxPropsSizeOverrides {
+    large: true;
+  }
+}
+declare module '../Radio/Radio' {
+  interface RadioPropsSizeOverrides {
+    large: true;
+  }
+}
+declare module '../Switch/Switch' {
+  interface SwitchPropsSizeOverrides {
+    large: true;
+  }
+}
+declare module '../Slider/Slider' {
+  interface SliderPropsSizeOverrides {
+    large: true;
+  }
+}
+declare module '../Table/Table' {
+  interface TablePropsSizeOverrides {
+    large: true;
+  }
+}
+declare module '../FormControl/FormControl' {
+  interface FormControlPropsSizeOverrides {
+    large: true;
+  }
+}
+declare module '../InputBase/InputBase' {
+  interface InputBasePropsSizeOverrides {
+    large: true;
+  }
+}
+declare module '../TextField/TextField' {
+  interface TextFieldPropsSizeOverrides {
+    large: true;
+  }
+}
+declare module '../Autocomplete/Autocomplete' {
+  interface AutocompletePropsSizeOverrides {
+    large: true;
+  }
+}
+
+/**
+ * Size-led density: each preset selects its diagonal size as the DEFAULT for
+ * every size-prop component (High→small, Medium→medium, Low→large); explicit
+ * per-instance `size` always wins, and a consumer theme's own defaultProps
+ * beat the preset (addDefaultProps merge order). The flip list lives here
+ * once — the implementation never varies per preset, only the size value each
+ * preset passes. Container components (ButtonGroup / ToggleButtonGroup /
+ * Pagination / Table / FormControl / Autocomplete) carry the flip for their
+ * children — their context/pass-through beats a child's own defaultProps, so
+ * flipping the child alone would not stick inside them.
+ */
+const SIZE_FLIP_COMPONENTS = [
+  'MuiButton',
+  'MuiButtonGroup',
+  'MuiIconButton',
+  'MuiFab',
+  'MuiToggleButton',
+  'MuiToggleButtonGroup',
+  'MuiPagination',
+  'MuiCheckbox',
+  'MuiRadio',
+  'MuiSwitch',
+  'MuiChip',
+  'MuiTable',
+  'MuiSlider',
+  'MuiFormControl',
+  'MuiAutocomplete',
+];
+
+export function applySizeDefaults(
+  components: NonNullable<EnhanceableTheme['components']>,
+  size: 'small' | 'medium' | 'large',
+): void {
+  for (const name of SIZE_FLIP_COMPONENTS) {
+    addDefaultProps(components, name, { size });
+  }
+}
+
 /**
  * PRIVATE shared component mapping used by the three `enhance*Density` presets
  * (not re-exported from the styles barrel — presets are the public surface).
@@ -75,43 +168,113 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       // its border keeps all variants at equal height (master's own
       // compensation, e.g. 3px/9px vs contained 4px/10px). Outlined inline is
       // NOT compensated — width parity across variants is not a goal.
-      { props: { size: 'small' }, style: { paddingBlock: d['xx-small'], paddingInline: d.small } },
+      // Small/large have no captured counterpart: paddingBlock fixed to match
+      // medium's 4/3; paddingInline rides the ladder one step off medium's
+      // `medium` (small/large); large minHeight 44 = the larger touch target.
+      // Type metrics pin per size from the size↔density diagonal (small←High's
+      // button type, medium←Medium's, large←Low's) as literals — sized text
+      // never varies with the active preset.
+      {
+        props: { size: 'small' },
+        style: { paddingBlock: 4, paddingInline: d.small, lineHeight: 1.38462 },
+      },
       {
         props: { size: 'small', variant: 'outlined' },
-        style: { paddingBlock: `calc(${d['xx-small']} - 1px)` },
+        style: { paddingBlock: 3 },
       },
       {
         props: { size: 'medium' },
-        // paddingBlock: semantic/spacing/fixed/xs (4px); paddingInline: semantic/spacing/variable/m
-        style: { paddingBlock: 4, paddingInline: d.medium },
+        // paddingBlock: semantic/spacing/fixed/xs (4px); paddingInline: semantic/spacing/variable/m;
+        // minHeight: semantic/size/touch-target/default (32px, raw sizing policy)
+        style: {
+          minHeight: '32px',
+          paddingBlock: 4,
+          paddingInline: d.medium,
+          fontSize: '0.875rem',
+          lineHeight: 1.428571429,
+        },
       },
       {
         props: { size: 'medium', variant: 'outlined' },
         // semantic/spacing/fixed/xs (4px) - 1px border compensation
         style: { paddingBlock: 3 },
       },
-      { props: { size: 'large' }, style: { paddingBlock: d.small, paddingInline: d['x-large'] } },
+      {
+        props: { size: 'large' },
+        style: {
+          minHeight: '44px',
+          paddingBlock: d['x-small'],
+          paddingInline: d.large,
+          lineHeight: 1.4,
+        },
+      },
       {
         props: { size: 'large', variant: 'outlined' },
-        style: { paddingBlock: `calc(${d.small} - 1px)` },
+        style: { paddingBlock: `calc(${d['x-small']} - 1px)` },
       },
     ],
   });
+  // Icon size inside Button (promoted from density-Medium-only): 16px glyph on
+  // the medium size via master's `& > *:nth-of-type(1)` seam; small/large keep
+  // master's 18/22. Both slots driven by ONE virtual knob
+  // (`virtual:MuiButton:iconFontSize`).
+  addRootOverride(
+    enhanced.components,
+    'MuiButton',
+    {
+      variants: [
+        { props: { size: 'medium' }, style: { '& > *:nth-of-type(1)': { fontSize: '16px' } } },
+      ],
+    },
+    'startIcon',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiButton',
+    {
+      variants: [
+        { props: { size: 'medium' }, style: { '& > *:nth-of-type(1)': { fontSize: '16px' } } },
+      ],
+    },
+    'endIcon',
+  );
   addRootOverride(enhanced.components, 'MuiIconButton', {
-    // Uniform padding per size = density steps (master: 5/8/12 for
-    // small/medium/large — same shape as Button's own per-size padding).
+    // Uniform padding fixed at 4 on every size (small/large have no captured
+    // counterpart — they match medium's model: the min box is the size lever,
+    // padding is constant chrome). Large min pair 44 = the larger touch target
+    // (square, mirroring medium's 32 pair; small keeps master, content-sized).
     // fontSize (the 1em-child sizing seam, 18/24/28) stays frozen — icon visual
     // size is owned by SvgIcon's own fontSize prop knob elsewhere.
     // edge start/end: -4px flush-margins (override master's -12/-3; one knob per
     // side, wins all sizes as the last-applied variant).
     variants: [
-      { props: { size: 'small' }, style: { padding: d['xx-small'] } },
-      // semantic/spacing/fixed/xs (4px) — contentWrapper uniform padding
-      { props: { size: 'medium' }, style: { padding: 4 } },
-      { props: { size: 'large' }, style: { padding: d.large } },
+      { props: { size: 'small' }, style: { padding: 4 } },
+      // semantic/spacing/fixed/xs (4px) — contentWrapper uniform padding;
+      // min pair: semantic/size/touch-target/default (32×32); glyph 16px
+      // (promoted from density-Medium-only — the min box is the size lever).
+      {
+        props: { size: 'medium' },
+        style: { padding: 4, minWidth: '32px', minHeight: '32px', fontSize: '16px' },
+      },
+      { props: { size: 'large' }, style: { padding: 4, minWidth: '44px', minHeight: '44px' } },
       { props: { edge: 'start' }, style: { marginLeft: '-4px' } },
       { props: { edge: 'end' }, style: { marginRight: '-4px' } },
     ],
+  });
+  // Global icon size per fontSize variant (promoted from density-Medium-only;
+  // master: 20/24/35px). Fixed-lane raw px — identical under every preset; the
+  // `fontSize` prop is SvgIcon's own size axis and no preset flips its default.
+  addRootOverride(enhanced.components, 'MuiSvgIcon', {
+    variants: [
+      { props: { fontSize: 'small' }, style: { fontSize: '16px' } },
+      { props: { fontSize: 'medium' }, style: { fontSize: '16px' } },
+      { props: { fontSize: 'large' }, style: { fontSize: '20px' } },
+    ],
+  });
+  // List-row floor (promoted from density-Medium-only):
+  // semantic/size/navigation/list-item/min-height (32px); dense keeps master.
+  addRootOverride(enhanced.components, 'MuiListItem', {
+    variants: [{ props: { dense: false }, style: { minHeight: '32px' } }],
   });
   // Master resets MenuItem min-height to `auto` at sm-up (non-dense only);
   // stylis hoists that media block AFTER the class rule, so a plain later
@@ -221,6 +384,16 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d['xx-small'] },
         },
       },
+      // size=large: augmented landing spot for the Low flip — block pad one
+      // structural step above the default (same +2px optical rhythm).
+      {
+        props: { size: 'large' },
+        style: {
+          [`.${formControlClasses.root}:has(> &)`]: {
+            '--_outlinedInputPadBlock': `calc(${d['x-small']} + 2px)`,
+          },
+        },
+      },
       {
         props: { multiline: true },
         style: {
@@ -234,6 +407,12 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         props: { multiline: true, size: 'small' },
         style: {
           paddingBlock: `var(--_outlinedInputPadBlock, ${d['xx-small']})`,
+        },
+      },
+      {
+        props: { multiline: true, size: 'large' },
+        style: {
+          paddingBlock: `var(--_outlinedInputPadBlock, calc(${d['x-small']} + 2px))`,
         },
       },
       // Adorned root pads (master 14px / --_trailingPad 14px; the Select nested
@@ -267,6 +446,10 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         {
           props: { size: 'small' },
           style: { paddingBlock: `var(--_outlinedInputPadBlock, ${d['xx-small']})` },
+        },
+        {
+          props: { size: 'large' },
+          style: { paddingBlock: `var(--_outlinedInputPadBlock, calc(${d['x-small']} + 2px))` },
         },
         {
           props: { multiline: true },
@@ -329,6 +512,14 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d['xx-small'] },
         },
       },
+      {
+        props: { inputSize: 'large' },
+        style: {
+          [`.${formControlClasses.root}:has(> &)`]: {
+            '--_outlinedInputPadBlock': `calc(${d['x-small']} + 2px)`,
+          },
+        },
+      },
     ],
   });
   addRootOverride(
@@ -343,6 +534,10 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         {
           props: { inputSize: 'small' },
           style: { paddingBlock: `var(--_outlinedInputPadBlock, ${d['xx-small']})` },
+        },
+        {
+          props: { inputSize: 'large' },
+          style: { paddingBlock: `var(--_outlinedInputPadBlock, calc(${d['x-small']} + 2px))` },
         },
       ],
     },
@@ -375,6 +570,19 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           },
         },
       },
+      {
+        props: { inputSize: 'large' },
+        style: {
+          [`.${formControlClasses.root}:has(> &)`]: {
+            '--_filledInputPadTop': d['x-large'],
+            '--_filledInputPadBottom': d.small,
+          },
+          [`.${inputLabelClasses.root}:has(~ &)`]: {
+            '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
+            '--_shrinkY': '10px',
+          },
+        },
+      },
     ],
   });
   addRootOverride(
@@ -394,6 +602,10 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         {
           props: { hiddenLabel: true, inputSize: 'small' },
           style: { paddingBlock: d['xx-small'] },
+        },
+        {
+          props: { hiddenLabel: true, inputSize: 'large' },
+          style: { paddingBlock: `calc(${d['x-small']} + 2px)` },
         },
       ],
     },
@@ -421,6 +633,10 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         {
           props: { hiddenLabel: true, size: 'small' },
           style: { paddingBlock: d['xx-small'] },
+        },
+        {
+          props: { hiddenLabel: true, size: 'large' },
+          style: { paddingBlock: `calc(${d['x-small']} + 2px)` },
         },
         {
           props: { multiline: true },
@@ -465,6 +681,20 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           },
         },
       },
+      // size=large: augmented landing spot for the Low flip — pads one
+      // structural step above the default (same +2px bottom rhythm).
+      {
+        props: { size: 'large' },
+        style: {
+          [`.${formControlClasses.root}:has(> &)`]: {
+            '--_inputPadTop': d.small,
+            '--_inputPadBottom': `calc(${d['x-small']} + 2px)`,
+          },
+          [`.${inputLabelClasses.root}:has(~ &)`]: {
+            '--_restY': `calc(var(--_inputMarginTop, ${d.small}) + (var(--_inputPadTop, ${d.small}) + var(--_inputPadBottom, ${d.small})) / 2)`,
+          },
+        },
+      },
       {
         props: { multiline: true },
         style: {
@@ -477,6 +707,13 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         style: {
           paddingTop: `var(--_inputPadTop, ${d['xx-small']})`,
           paddingBottom: `var(--_inputPadBottom, ${d['xx-small']})`,
+        },
+      },
+      {
+        props: { multiline: true, size: 'large' },
+        style: {
+          paddingTop: `var(--_inputPadTop, ${d.small})`,
+          paddingBottom: `var(--_inputPadBottom, calc(${d['x-small']} + 2px))`,
         },
       },
     ],
@@ -493,6 +730,13 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           style: {
             paddingTop: `var(--_inputPadTop, ${d['xx-small']})`,
             paddingBottom: `var(--_inputPadBottom, ${d['xx-small']})`,
+          },
+        },
+        {
+          props: { size: 'large' },
+          style: {
+            paddingTop: `var(--_inputPadTop, ${d.small})`,
+            paddingBottom: `var(--_inputPadBottom, ${d.small})`,
           },
         },
         {
@@ -531,6 +775,20 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           },
         },
       },
+      // size=large: augmented landing spot for the Low flip — no captured
+      // counterpart; same box as small/medium (glyph stays master).
+      {
+        props: { size: 'large' },
+        style: {
+          padding: d['x-small'],
+          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
+            marginLeft: `calc(-2px - ${d['x-small']})`,
+          },
+          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: {
+            marginRight: `calc(-2px - ${d['x-small']})`,
+          },
+        },
+      },
       // edge start/end: -4px flush-margins (override master's -12/-3; all sizes).
       { props: { edge: 'start' }, style: { marginLeft: '-4px' } },
       { props: { edge: 'end' }, style: { marginRight: '-4px' } },
@@ -554,6 +812,20 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
       {
         props: { size: 'small' },
+        style: {
+          padding: d['x-small'],
+          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
+            marginLeft: `calc(-2px - ${d['x-small']})`,
+          },
+          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: {
+            marginRight: `calc(-2px - ${d['x-small']})`,
+          },
+        },
+      },
+      // size=large: augmented landing spot for the Low flip — no captured
+      // counterpart; same box as small/medium (glyph stays master).
+      {
+        props: { size: 'large' },
         style: {
           padding: d['x-small'],
           [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
@@ -666,6 +938,23 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         paddingBlock: `var(--_autocompleteInputPadBlock)`,
       },
+    // large size (augmented for the Low flip): root + input pads sum to the
+    // plain OutlinedInput large pad (x-small + 2px) — root keeps medium's 3px,
+    // the input carries the rest. Master has no large rules, so the base
+    // consumers above apply — no re-assert section needed. Keyed by ownerState
+    // (variants), NOT a `:has(.MuiInputBase-sizeLarge)` selector — upstream
+    // Autocomplete forwards `size` to its input only when 'small'
+    // (`size: size === 'small' ? 'small' : undefined`), so the class never
+    // renders for large; ownerState.size is the reliable hook.
+    variants: [
+      {
+        props: { size: 'large' },
+        style: {
+          '--_autocompleteInputRootPadBlock': '3px',
+          '--_autocompleteInputPadBlock': `calc(${d['x-small']} - 1px)`,
+        },
+      },
+    ],
   });
   addRootOverride(enhanced.components, 'MuiAutocomplete', { margin: '1px' }, 'tag');
   // Horizontal step gutter: first paddingLeft / last paddingRight zeroed so the
@@ -945,6 +1234,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         // semantic/spacing/variable/s — contentWrapper inline padding
         { props: { size: 'medium' }, style: { paddingInline: d.small } },
         { props: { size: 'small' }, style: { paddingInline: d['x-small'] } },
+        // size=large: one step above medium (augmented for the Low flip).
+        { props: { size: 'large' }, style: { paddingInline: d.medium } },
       ],
     },
     'label',
@@ -1240,6 +1531,15 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         props: { position: 'end', size: 'small' },
         style: { marginLeft: d['xx-small'] },
       },
+      // size=large: one step above the default (augmented for the Low flip).
+      {
+        props: { position: 'start', size: 'large' },
+        style: { marginRight: d.small },
+      },
+      {
+        props: { position: 'end', size: 'large' },
+        style: { marginLeft: d.small },
+      },
       {
         props: { variant: 'filled' },
         style: {
@@ -1283,6 +1583,22 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           },
         },
       },
+      // size=large: augmented landing spot for the Low flip — one structural
+      // step above the default pads; shrinkY extrapolates the small→base
+      // delta (4/7/10).
+      {
+        props: { size: 'large' },
+        style: {
+          [`.${formControlClasses.root}:has(> &)`]: {
+            '--_filledInputPadTop': d['x-large'],
+            '--_filledInputPadBottom': d.small,
+          },
+          [`.${inputLabelClasses.root}:has(~ &)`]: {
+            '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
+            '--_shrinkY': '10px',
+          },
+        },
+      },
       {
         props: { multiline: true },
         style: {
@@ -1300,6 +1616,13 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           paddingBottom: `var(--_filledInputPadBottom, ${d['x-small']})`,
         },
       },
+      {
+        props: { multiline: true, size: 'large' },
+        style: {
+          paddingTop: `var(--_filledInputPadTop, ${d['x-large']})`,
+          paddingBottom: `var(--_filledInputPadBottom, ${d.small})`,
+        },
+      },
       // hidden label does not need to sync with label, so no need CSS variables.
       {
         props: { multiline: true, hiddenLabel: true },
@@ -1308,6 +1631,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { multiline: true, hiddenLabel: true, size: 'small' },
         style: { paddingTop: 8, paddingBottom: 9 },
+      },
+      // Extrapolates the small→base delta (8/16/24, 9/17/25).
+      {
+        props: { multiline: true, hiddenLabel: true, size: 'large' },
+        style: { paddingTop: 24, paddingBottom: 25 },
       },
       // Adorned root pads (master 12px / --_trailingPad 12px; Select's nested
       // --_trailingPad: 0 reset survives on specificity) — linked writes of the
@@ -1355,6 +1683,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       paddingBlock: d['x-small'],
       variants: [
         { props: { size: 'small' }, style: { paddingTop: d['xx-small'] } },
+        // size=large: one step above the default (augmented for the Low flip).
+        { props: { size: 'large' }, style: { paddingTop: d.small } },
         {
           props: { multiline: true },
           style: { paddingBlock: 0 },
@@ -1434,6 +1764,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         },
       },
       { props: { orientation: 'horizontal', size: 'small' }, style: { height: '2px' } },
+      // size=large: augmented landing spot for the Low flip (no captured
+      // counterpart) — track extrapolates the small→base delta (2/3/4).
+      { props: { orientation: 'horizontal', size: 'large' }, style: { height: '4px' } },
       {
         props: { orientation: 'vertical' },
         style: {
@@ -1443,6 +1776,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         },
       },
       { props: { orientation: 'vertical', size: 'small' }, style: { width: '2px' } },
+      { props: { orientation: 'vertical', size: 'large' }, style: { width: '4px' } },
     ],
   });
   addRootOverride(
@@ -1450,9 +1784,13 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'MuiSlider',
     {
       // Thumb square = raw px (sizing); the 42px ::after hit target stays frozen.
+      // size=large extrapolates the small→base delta (12/18/24).
       width: '18px',
       height: '18px',
-      variants: [{ props: { size: 'small' }, style: { width: '12px', height: '12px' } }],
+      variants: [
+        { props: { size: 'small' }, style: { width: '12px', height: '12px' } },
+        { props: { size: 'large' }, style: { width: '24px', height: '24px' } },
+      ],
     },
     'thumb',
   );
@@ -1532,6 +1870,27 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           },
         },
       },
+      // size=large: augmented landing spot for the Low flip — no captured
+      // counterpart; every var extrapolates the small→medium delta
+      // (medium + (medium − small)), which keeps the visual ladder linear
+      // (track 10/14/18, thumb 16/20/24). Master has no sizeLarge nested
+      // rules, so the base var consumers cover it — no re-asserts needed.
+      {
+        props: { size: 'large' },
+        style: {
+          '--_width': '76px',
+          '--_height': '52px',
+          '--_thumbHeight': '24px',
+          '--_thumbWidth': '24px',
+          // Invariant: --_touchSize >= --_thumbHeight (see medium — padding clips).
+          '--_touchSize': '52px',
+          '--_pad': '17px',
+          // Label pull mirrors the gutter (Checkbox pattern); the gutter knob
+          // re-writes these via the playground's linked-write registry.
+          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: { marginLeft: '-17px' },
+          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: { marginRight: '-17px' },
+        },
+      },
       // edge start/end: -4px flush-margins (override master's -8; on the Switch root).
       { props: { edge: 'start' }, style: { marginLeft: '-4px' } },
       { props: { edge: 'end' }, style: { marginRight: '-4px' } },
@@ -1550,6 +1909,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       // carry the extra half px (18 + 2x10.5 + 1 = 40). Inline FIXED 8px raw.
       { props: { size: 'medium' }, style: { padding: `calc(${d['x-small']} + 2.5px) 8px` } },
       { props: { size: 'small' }, style: { padding: `calc(${d['xx-small']} + 2.5px) 8px` } },
+      // size=large: augmented landing spot for the Low flip (no captured
+      // counterpart) — block pad one step above medium, same +2.5 rhythm.
+      { props: { size: 'large' }, style: { padding: `calc(${d.small} + 2.5px) 8px` } },
       { props: { padding: 'checkbox' }, style: { padding: '0 0 0 4px' } },
       { props: { padding: 'none' }, style: { padding: 0 } },
     ],
@@ -1740,6 +2102,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     variants: [
       { props: { size: 'medium' }, style: { '--_height': '32px', height: 'var(--_height)' } },
       { props: { size: 'small' }, style: { '--_height': '28px', height: 'var(--_height)' } },
+      // size=large: augmented landing spot for the Low flip — extrapolates the
+      // small→medium delta (28/32/36); child sizes follow the same rule below.
+      { props: { size: 'large' }, style: { '--_height': '36px', height: 'var(--_height)' } },
     ],
   });
   addRootOverride(
@@ -1766,6 +2131,15 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
             marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
           },
         },
+        {
+          props: { size: 'large' },
+          style: {
+            '--_avatarSize': '32px',
+            width: 'var(--_avatarSize)',
+            height: 'var(--_avatarSize)',
+            marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
+          },
+        },
       ],
     },
     'avatar',
@@ -1777,6 +2151,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       variants: [
         { props: { size: 'medium' }, style: { fontSize: '16px' } },
         { props: { size: 'small' }, style: { fontSize: '16px' } },
+        { props: { size: 'large' }, style: { fontSize: '16px' } },
       ],
     },
     'icon',
@@ -1795,6 +2170,10 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { size: 'small' },
         style: { '& .MuiChip-icon': { marginLeft: '8px', marginRight: '0px' } },
+      },
+      {
+        props: { size: 'large' },
+        style: { '& .MuiChip-icon': { marginLeft: '16px', marginRight: '-8px' } },
       },
     ],
   });
@@ -1816,6 +2195,14 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           props: { size: 'small' },
           style: {
             '--_deleteIconSize': '16px',
+            fontSize: 'var(--_deleteIconSize)',
+            marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
+          },
+        },
+        {
+          props: { size: 'large' },
+          style: {
+            '--_deleteIconSize': '28px',
             fontSize: 'var(--_deleteIconSize)',
             marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
           },

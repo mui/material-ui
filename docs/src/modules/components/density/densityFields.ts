@@ -20,30 +20,6 @@ export type DensityExtraRow = DensityEmitRow & {
   hiddenIn?: string[];
 };
 
-const radiusRow = (component: string, slot: string, label: string): DensityEmitRow => ({
-  id: `${component}|${slot}|base||borderRadius`,
-  label: `${label} · borderRadius`,
-  isDensity: false,
-  densityKey: null,
-  target: { component, slot, props: null, nested: '', cssProp: 'borderRadius' },
-  values: {},
-});
-
-// Per-size radius (Button splits by size like its padding/font-size do).
-const radiusRowSized = (
-  component: string,
-  slot: string,
-  label: string,
-  size: 'small' | 'medium' | 'large',
-): DensityEmitRow => ({
-  id: `${component}|${slot}|size=${size}||borderRadius`,
-  label: `${label} · borderRadius [size=${size}]`,
-  isDensity: false,
-  densityKey: null,
-  target: { component, slot, props: { size }, nested: '', cssProp: 'borderRadius' },
-  values: {},
-});
-
 // const edgeCorner = (nested: string, cssProp: string): DensityEmitRow => ({
 //   id: `MuiAccordion|root|base|${nested}|${cssProp}`,
 //   label: `Accordion · ${cssProp}`,
@@ -69,10 +45,6 @@ const slotRow = (
 });
 
 export const densityExtraRows: DensityExtraRow[] = [
-  // radiusRowSized('MuiButton', 'root', 'Button', 'small'),
-  // radiusRowSized('MuiButton', 'root', 'Button', 'medium'),
-  // radiusRowSized('MuiButton', 'root', 'Button', 'large'),
-  // radiusRow('MuiTooltip', 'tooltip', 'Tooltip'),
   slotRow('MuiAlert', 'icon', 'fontSize', 'Alert · icon · fontSize'),
   slotRow('MuiAlert', 'message', 'paddingBlock', 'Alert · message · paddingBlock'),
   slotRow('MuiAlert', 'message', 'fontSize', 'Alert · message · fontSize'),
@@ -234,6 +206,11 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiFormLabel: 'TextField',
   MuiFormHelperText: 'TextField',
   MuiInput: 'TextField',
+  // Size-led density flip carriers (defaultProps.size rows).
+  MuiFormControl: ['TextField', 'Select'],
+  MuiTable: 'Table',
+  MuiPagination: 'Pagination',
+  MuiToggleButtonGroup: 'ToggleButton',
   MuiCheckbox: 'Checkbox',
   MuiRadio: 'Radio',
   MuiFormControlLabel: ['Checkbox', 'Radio', 'Switch'],
@@ -799,6 +776,15 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
     members: [
       'MuiIconButton|root|size=medium||minWidth',
       'MuiIconButton|root|size=medium||minHeight',
+    ],
+  },
+  {
+    id: 'virtual:MuiIconButton:minSizeLarge',
+    label: 'IconButton · minimum size [size=large]',
+    group: 'Button',
+    members: [
+      'MuiIconButton|root|size=large||minWidth',
+      'MuiIconButton|root|size=large||minHeight',
     ],
   },
   // Both icon slots share master's `& > *:nth-of-type(1)` fontSize seam — one

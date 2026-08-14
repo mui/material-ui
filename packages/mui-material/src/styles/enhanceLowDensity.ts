@@ -6,7 +6,10 @@ import {
   DensityScale,
   EnhanceableTheme,
 } from './densityScale';
-import applySharedDensity, { applyPickerDaySize } from './sharedDensityComponents';
+import applySharedDensity, {
+  applyPickerDaySize,
+  applySizeDefaults,
+} from './sharedDensityComponents';
 
 const scale: DensityScale = {
   'xx-small': '8px',
@@ -21,6 +24,9 @@ const scale: DensityScale = {
 export default function enhanceLowDensity<T extends EnhanceableTheme>(theme: T) {
   const enhanced = applyDensity(theme, scale);
   applySharedDensity(enhanced);
+  // Size-led density: Low's diagonal size becomes the default for every
+  // size-prop component (explicit per-instance size wins).
+  applySizeDefaults(enhanced.components, 'large');
   // MUI X DataGrid — rationale in enhanceHighDensity; mirrored structure.
   addDefaultProps(enhanced.components, 'MuiDataGrid', {
     rowHeight: 60,
@@ -131,7 +137,9 @@ export default function enhanceLowDensity<T extends EnhanceableTheme>(theme: T) 
     'chartsPanelDataPlaceholder',
   );
   applyTypographyPatch(enhanced, {
-    button: { fontSize: '0.9375rem', lineHeight: 2 },
+    // lineHeight must equal the shared size=large pin (1.4 → 21px at 15px) — the
+    // size↔density diagonal ties Low's button type to the large size variant.
+    button: { fontSize: '0.9375rem', lineHeight: 1.4 },
   });
   // Row height rides upstream's own hook (content height: var(--TreeView-itemHeight,
   // unset)); sizing raw px. Master is unset (content-sized, about 32) — normal keeps it.

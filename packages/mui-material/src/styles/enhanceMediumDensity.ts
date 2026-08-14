@@ -6,7 +6,10 @@ import {
   DensityScale,
   EnhanceableTheme,
 } from './densityScale';
-import applySharedDensity, { applyPickerDaySize } from './sharedDensityComponents';
+import applySharedDensity, {
+  applyPickerDaySize,
+  applySizeDefaults,
+} from './sharedDensityComponents';
 
 // Explicit px (self-contained, not spacing-derived).
 const scale: DensityScale = {
@@ -42,62 +45,12 @@ export default function enhanceMediumDensity<T extends EnhanceableTheme>(theme: 
     button: { fontSize: '0.875rem', lineHeight: 1.428571429 },
   });
   applySharedDensity(enhanced);
-  // Button touch target: semantic/size/touch-target/default (32px) — the
-  // capture's contentWrapper height on every variant. Raw px (sizing policy);
-  // medium-only — high/low have no captured counterpart.
-  addRootOverride(enhanced.components, 'MuiButton', {
-    variants: [{ props: { size: 'medium' }, style: { minHeight: '32px' } }],
-  });
-  // Icon size inside Button: capture's icon wrappers are 16px boxes; glyph
-  // font-size 16px. Same `& > *:nth-of-type(1)` seam as master's per-size
-  // 18/20/22 ladder; medium-only (small/large keep master). Both slots are
-  // driven by ONE virtual knob (`virtual:MuiButton:iconFontSize`).
-  addRootOverride(
-    enhanced.components,
-    'MuiButton',
-    {
-      variants: [
-        { props: { size: 'medium' }, style: { '& > *:nth-of-type(1)': { fontSize: '16px' } } },
-      ],
-    },
-    'startIcon',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiButton',
-    {
-      variants: [
-        { props: { size: 'medium' }, style: { '& > *:nth-of-type(1)': { fontSize: '16px' } } },
-      ],
-    },
-    'endIcon',
-  );
-  // IconButton minimum size: semantic/size/touch-target/default (32px) — the
-  // capture's 32×32 buttonContainer. Raw px (sizing policy); medium-only. Both
-  // axes driven by ONE virtual knob (`virtual:MuiIconButton:minSize`).
-  addRootOverride(enhanced.components, 'MuiIconButton', {
-    variants: [{ props: { size: 'medium' }, style: { minWidth: '32px', minHeight: '32px' } }],
-  });
-  // Icon glyph size inside a medium IconButton (sizing raw px; medium-only).
-  addRootOverride(enhanced.components, 'MuiIconButton', {
-    variants: [{ props: { size: 'medium' }, style: { fontSize: '16px' } }],
-  });
-  // List-row floor: semantic/size/navigation/list-item/min-height (32px) — the
-  // capture's MenuItem 3.0 Min height — plain ListItem gets the floor here only
-  // (medium-only, dense keeps master). ListItemButton now carries it in shared
-  // (mirrors MenuItem across presets, both dense states).
-  addRootOverride(enhanced.components, 'MuiListItem', {
-    variants: [{ props: { dense: false }, style: { minHeight: '32px' } }],
-  });
-  // Medium-only: global icon size per fontSize variant (master: 20/24/35px).
-  // High/low emit nothing — icons keep master sizes there. Raw px (sizing policy).
-  addRootOverride(enhanced.components, 'MuiSvgIcon', {
-    variants: [
-      { props: { fontSize: 'small' }, style: { fontSize: '16px' } },
-      { props: { fontSize: 'medium' }, style: { fontSize: '16px' } },
-      { props: { fontSize: 'large' }, style: { fontSize: '20px' } },
-    ],
-  });
+  // Size-led density: Medium's diagonal size becomes the default for every
+  // size-prop component (explicit per-instance size wins).
+  applySizeDefaults(enhanced.components, 'medium');
+  // Per-size component styling (incl. the former Medium-only per-design blocks)
+  // lives in sharedDensityComponents — identical under every preset; this file
+  // contributes only scale values, size defaults, typography, and X sizing.
   // MUI X DataGrid — rationale in enhanceHighDensity; mirrored structure.
   addDefaultProps(enhanced.components, 'MuiDataGrid', {
     rowHeight: 40,

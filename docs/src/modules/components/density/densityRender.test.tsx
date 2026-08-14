@@ -158,7 +158,7 @@ describe('density render — TablePagination root-slot emission', () => {
     const rootHash = hashClassOf(container.querySelector('.MuiTablePagination-root')!, 'root');
     expect(
       winningDeclaration(documentCss(), [rootHash, 'MuiTablePagination-toolbar'], 'min-height'),
-    ).to.equal('44px');
+    ).to.equal('48px');
     unmount();
   });
 
@@ -220,17 +220,16 @@ describe('density render — TablePagination root-slot emission', () => {
 // prove it, per the TablePagination lesson: static emit-table checks can't see a
 // resolver eating styles.
 describe('density render — IconButton padding emission', () => {
-  it("high preset padding WINS over master's literal in the same rule block", () => {
+  it("high preset flips the unsized default to small — its fixed padding WINS over master's literal", () => {
     const { container, unmount } = mount(
       enhanceHighDensity(createTheme({ cssVariables: true })),
       <IconButton aria-label="more" />,
     );
     const rootHash = hashClassOf(container.querySelector('.MuiIconButton-root')!, 'root');
-    // cssVariables mode: the step resolves to a var() ref, not a literal — the
-    // literal only appears in the separate `:root{--mui-density-small:8px}` block.
-    expect(winningDeclaration(documentCss(), [rootHash], 'padding')).to.equal(
-      'var(--mui-density-small)',
-    );
+    // Size-led density: the unsized instance rides High's defaultProps.size
+    // flip (→ small); the fixed-lane padding lands as a literal, identical
+    // under every preset — the scale still ships for step-ref consumers.
+    expect(winningDeclaration(documentCss(), [rootHash], 'padding')).to.equal('4px');
     expect(documentCss()).to.match(/--mui-density-small:\s*8px/, 'expected high small step = 8px');
     unmount();
   });
@@ -243,9 +242,11 @@ describe('density render — IconButton padding emission', () => {
       (preset as unknown as { components: Record<string, unknown> }).components ?? {},
       buildOverrides([{ row: row!, value: '19px' }]),
     );
+    // Explicit size pins the medium variant — the flip moves only unsized
+    // instances (size-led density), so the medium-row edit renders size="medium".
     const { container, unmount } = mount(
       { ...preset, components },
-      <IconButton aria-label="more" />,
+      <IconButton size="medium" aria-label="more" />,
     );
     const rootHash = hashClassOf(container.querySelector('.MuiIconButton-root')!, 'root');
     // A raw CSS value (not a density key) is user input, not a step ref — it

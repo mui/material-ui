@@ -244,14 +244,52 @@ describe('density playground — emit table & override builder', () => {
   });
 
   describe('override-only + virtual knobs', () => {
-    it('override-only row builds a styleOverride only when filled (per-size)', () => {
-      const row = densityRow('MuiButton|root|size=medium||borderRadius')!;
-      expect(row, 'Button borderRadius extra row registered').to.not.equal(undefined);
+    it('override-only row builds a styleOverride only when filled', () => {
+      const row = densityRow('MuiAlert|icon|base||fontSize')!;
+      expect(row, 'Alert icon fontSize extra row registered').to.not.equal(undefined);
       expect(row.values.high, 'no preset default').to.equal(undefined);
-      const built = buildOverrides([{ row, value: '8px' }]);
-      const variant = built.MuiButton.styleOverrides.root.variants[0];
-      expect(variant.props).to.deep.equal({ size: 'medium' });
-      expect(variant.style.borderRadius).to.equal('8px');
+      const built = buildOverrides([{ row, value: '18px' }]);
+      expect(built.MuiAlert.styleOverrides.icon.fontSize).to.equal('18px');
+    });
+
+    it('every defaultProps.size flip lands on authored size styling', () => {
+      // Size-led density: a dangling flip silently renders master for that
+      // size. Container flips style their children (ButtonGroup→Button …);
+      // `medium` needs no matcher — it is the base-layer convention.
+      const FLIP_TARGETS: Record<string, string[]> = {
+        MuiButton: ['MuiButton'],
+        MuiButtonGroup: ['MuiButton'],
+        MuiIconButton: ['MuiIconButton'],
+        MuiFab: ['MuiFab'],
+        MuiToggleButton: ['MuiToggleButton'],
+        MuiToggleButtonGroup: ['MuiToggleButton'],
+        MuiPagination: ['MuiPaginationItem'],
+        MuiCheckbox: ['MuiCheckbox'],
+        MuiRadio: ['MuiRadio'],
+        MuiSwitch: ['MuiSwitch'],
+        MuiChip: ['MuiChip'],
+        MuiTable: ['MuiTableCell'],
+        MuiSlider: ['MuiSlider'],
+        MuiFormControl: ['MuiOutlinedInput', 'MuiFilledInput', 'MuiInput'],
+        MuiAutocomplete: ['MuiOutlinedInput'],
+      };
+      const flips = densityEmitTable.filter((r) => /\|defaultProps\|base\|\|size$/.test(r.id));
+      expect(flips.length, 'flip rows present').to.be.greaterThan(0);
+      for (const flip of flips) {
+        const targets = FLIP_TARGETS[flip.target.component];
+        expect(targets, `${flip.target.component} has a flip-target entry`).to.not.equal(undefined);
+        for (const level of LEVELS) {
+          const size = flip.values[level];
+          expect(size, `${flip.id} ${level} value`).to.be.a('string');
+          if (size === 'medium') {
+            continue;
+          }
+          const hit = densityEmitTable.some(
+            (r) => targets.includes(r.target.component) && r.id.includes(`size=${size}`),
+          );
+          expect(hit, `${flip.target.component} ${level}→${size} authored`).to.equal(true);
+        }
+      }
     });
 
     it('linked writes: key and linked rows all resolve to table rows', () => {
