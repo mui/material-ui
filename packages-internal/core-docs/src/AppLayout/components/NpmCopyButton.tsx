@@ -77,9 +77,9 @@ const CopyButton = styled('button')(({ theme }) => ({
 }));
 
 export function NpmCopyButton(
-  props: React.HTMLAttributes<HTMLButtonElement> & { installation: string; sx?: SxProps<Theme> },
+  props: React.HTMLAttributes<HTMLButtonElement> & { installation: string },
 ) {
-  const { installation, onClick, sx, ...other } = props;
+  const { installation, onClick, ...other } = props;
   const [copied, setCopied] = React.useState(false);
   const handleCopy = () => {
     setCopied(true);
@@ -88,7 +88,7 @@ export function NpmCopyButton(
     });
   };
   return (
-    <Root sx={sx}>
+    <Root>
       <code>$ {installation}</code>
       <CopyButton
         type="button"
