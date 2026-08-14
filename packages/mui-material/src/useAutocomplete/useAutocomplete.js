@@ -7,6 +7,7 @@ import useEventCallback from '@mui/utils/useEventCallback';
 import useControlled from '@mui/utils/useControlled';
 import useId from '@mui/utils/useId';
 import usePreviousProps from '@mui/utils/usePreviousProps';
+import validateOptionValues from './utils/validateOptionValues';
 
 function areArraysSame({ array1, array2, parser = (value) => value }) {
   return (
@@ -68,6 +69,7 @@ const defaultIsActiveElementInListbox = (listboxRef) =>
   listboxRef.current !== null && contains(listboxRef.current.parentElement, document.activeElement);
 
 const defaultGetOptionValue = (option) => option;
+const defaultGetOptionLabel = (option) => option.label ?? option;
 
 const MULTIPLE_DEFAULT_VALUE = [];
 
@@ -103,7 +105,7 @@ function useAutocomplete(props) {
     freeSolo = false,
     getOptionDisabled,
     getOptionKey,
-    getOptionLabel: getOptionLabelProp = (option) => option.label ?? option,
+    getOptionLabel: getOptionLabelProp = defaultGetOptionLabel,
     getOptionValue = defaultGetOptionValue,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
@@ -128,6 +130,10 @@ function useAutocomplete(props) {
   } = props;
 
   const id = useId(idProp);
+
+  if (process.env.NODE_ENV !== 'production') {
+    validateOptionValues({ options, componentName, getOptionValueProp: props.getOptionValue });
+  }
 
   const isOptionEqualToValue = React.useCallback(
     (option, value2) => {
