@@ -2,7 +2,8 @@
 import * as React from 'react';
 import copy from 'clipboard-copy';
 import { visuallyHidden } from '@mui/utils';
-import { styled, alpha } from '@mui/material/styles';
+import type { SxProps } from '@mui/system';
+import { styled, alpha, type Theme } from '@mui/material/styles';
 import ContentCopyRounded from '@mui/icons-material/ContentCopyRounded';
 import CheckRounded from '@mui/icons-material/CheckRounded';
 
@@ -76,9 +77,9 @@ const CopyButton = styled('button')(({ theme }) => ({
 }));
 
 export function NpmCopyButton(
-  props: React.HTMLAttributes<HTMLButtonElement> & { installation: string },
+  props: React.HTMLAttributes<HTMLButtonElement> & { installation: string; sx?: SxProps<Theme> },
 ) {
-  const { installation, onClick, ...other } = props;
+  const { installation, onClick, sx, ...other } = props;
   const [copied, setCopied] = React.useState(false);
   const handleCopy = () => {
     setCopied(true);
@@ -87,7 +88,7 @@ export function NpmCopyButton(
     });
   };
   return (
-    <Root>
+    <Root sx={sx}>
       <code>$ {installation}</code>
       <CopyButton
         type="button"
