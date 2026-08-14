@@ -294,35 +294,31 @@ describe('<Checkbox />', () => {
 
   describe('theme.focusVisible', () => {
     // Checkbox is an outer-ring exception to the shared ButtonBase rule: it opts the root out of
-    // the theme ring and draws it on the icon svg instead, so the ring renders fully. Running both
-    // var modes guards the shouldSkipGeneratingVar fix — the recipe stays inline on the svg.
-    [false, true].forEach((cssVariables) => {
-      it.skipIf(isJsdom())(
-        `draws the focus ring on the icon svg, not the ButtonBase root (cssVariables: ${cssVariables})`,
-        () => {
-          const theme = createTheme({
-            cssVariables,
-            focusVisible: true,
-            components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
-          });
-          render(
-            <ThemeProvider theme={theme}>
-              <Checkbox />
-            </ThemeProvider>,
-          );
-          const input = screen.getByRole('checkbox');
-          simulatePointerDevice();
-          focusVisible(input);
-          expect(input.parentElement).to.have.class(buttonBaseClasses.focusVisible);
-          expect(input.parentElement.querySelector('svg')).toHaveComputedStyle({
-            outlineStyle: 'solid',
-            outlineWidth: '2px',
-            outlineOffset: '2px',
-          });
-          // the shared ButtonBase root ring is off, so there is no double ring
-          expect(input.parentElement).toHaveComputedStyle({ outlineStyle: 'none' });
-        },
+    // the theme ring and draws it on the icon svg instead, so the ring renders fully. Vars mode
+    // guards the shouldSkipGeneratingVar fix — the recipe stays inline on the svg. The no-vars
+    // case is the FocusVisible/SelectionControls visual-regression fixture.
+    it.skipIf(isJsdom())('draws the focus ring on the icon svg, not the ButtonBase root', () => {
+      const theme = createTheme({
+        cssVariables: true,
+        focusVisible: true,
+        components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Checkbox />
+        </ThemeProvider>,
       );
+      const input = screen.getByRole('checkbox');
+      simulatePointerDevice();
+      focusVisible(input);
+      expect(input.parentElement).to.have.class(buttonBaseClasses.focusVisible);
+      expect(input.parentElement.querySelector('svg')).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+      // the shared ButtonBase root ring is off, so there is no double ring
+      expect(input.parentElement).toHaveComputedStyle({ outlineStyle: 'none' });
     });
   });
 });
