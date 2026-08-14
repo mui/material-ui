@@ -46,15 +46,16 @@ function createData(
 function Row(props: { row: ReturnType<typeof createData> }) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
-  const [exited, setExited] = React.useState(true);
+  const detailsId = React.useId();
 
   return (
     <React.Fragment>
       <TableRow sx={{ '& > .MuiTableCell-root': { borderBottom: 'unset' } }}>
         <TableCell>
           <IconButton
-            aria-label="expand row"
+            aria-label={open ? 'collapse row' : 'expand row'}
             aria-expanded={open}
+            aria-controls={detailsId}
             size="small"
             onClick={() => setOpen(!open)}
           >
@@ -69,15 +70,9 @@ function Row(props: { row: ReturnType<typeof createData> }) {
         <TableCell align="right">{row.carbs}</TableCell>
         <TableCell align="right">{row.protein}</TableCell>
       </TableRow>
-      <TableRow aria-hidden={!open && exited ? true : undefined}>
+      <TableRow id={detailsId} aria-hidden={!open ? true : undefined}>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse
-            in={open}
-            timeout="auto"
-            unmountOnExit
-            onEnter={() => setExited(false)}
-            onExited={() => setExited(true)}
-          >
+          <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
                 History
