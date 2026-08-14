@@ -49,6 +49,21 @@ export function mergeFocusVisibleInput(
 }
 
 /**
+ * Whether an input is this module's own output rather than something an author wrote. Only
+ * `wireFocusVisibleVars` produces the offset calc, so a re-composed theme
+ * (`createTheme(existingTheme, …)`) is recognizable by it — and its `outlineColor` is a baked
+ * default, not a choice.
+ */
+export function isResolvedFocusVisible(input: FocusVisibleInput): boolean {
+  return (
+    input != null &&
+    typeof input === 'object' &&
+    typeof input.outlineOffset === 'string' &&
+    input.outlineOffset.includes(focusVisibleOffsetVar)
+  );
+}
+
+/**
  * Resolve the opt-in ring (`true` → curated default, object → merged over it), wiring in the
  * private inset vars. `outlineColor` is the default the caller supplies — a hex, the palette var,
  * or a scheme's primary — overridden by a user-provided `outlineColor`.
