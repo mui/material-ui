@@ -75,9 +75,13 @@ export const menu2PopupListStyles = memoTheme(({ theme }) => ({
   // A submenu trigger is whatever element the caller passes, so its open state
   // is styled from the list that contains it, not from a component we render.
   // The highlighted state matches a plain item, and an open trigger keeps it.
-  [`& .${menu2SubmenuTriggerClasses.highlighted}, & .${menu2SubmenuTriggerClasses.open}`]: {
-    backgroundColor: (theme.vars || theme).palette.action.focus,
-  },
+  // `:hover` is here too: Base UI highlights a submenu trigger only once its
+  // submenu opens, so during the open delay the trigger would otherwise show
+  // the weaker hover tint while its neighbours show the full highlight.
+  [`& .${menu2SubmenuTriggerClasses.root}:hover, & .${menu2SubmenuTriggerClasses.highlighted}, & .${menu2SubmenuTriggerClasses.open}`]:
+    {
+      backgroundColor: (theme.vars || theme).palette.action.focus,
+    },
   [`& .${menu2SubmenuTriggerClasses.disabled}`]: {
     opacity: (theme.vars || theme).palette.action.disabledOpacity,
   },
