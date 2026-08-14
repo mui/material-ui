@@ -565,6 +565,81 @@ describe('useAutocomplete', () => {
         'false',
       );
     });
+
+    it('uses the default getOptionValue when no getOptionValue is provided', () => {
+      render(<Test getOptionValue={undefined} value={[options[0]]} />);
+
+      expect(screen.getByRole('option', { name: 'Foo' })).to.have.attribute(
+        'aria-selected',
+        'true',
+      );
+      expect(screen.getByRole('option', { name: 'Bar' })).to.have.attribute(
+        'aria-selected',
+        'false',
+      );
+    });
+
+    function ValidationTest({ options: optionsProp, getOptionValue }) {
+      const { getInputProps } = useAutocomplete({ options: optionsProp, getOptionValue });
+      return <input {...getInputProps()} />;
+    }
+
+    it.each([
+      { description: 'an object', optionValue: {}, returnedValue: 'a value of type object' },
+      { description: 'null', optionValue: null, returnedValue: 'null' },
+      {
+        description: 'undefined',
+        optionValue: undefined,
+        returnedValue: 'a value of type undefined',
+      },
+      {
+        description: 'a symbol',
+        optionValue: Symbol('value'),
+        returnedValue: 'a value of type symbol',
+      },
+      { description: 'NaN', optionValue: NaN, returnedValue: 'NaN' },
+    ])('warns when getOptionValue returns $description', ({ optionValue, returnedValue }) => {
+      expect(() => {
+        render(<ValidationTest options={[{}]} getOptionValue={() => optionValue} />, {
+          strict: false,
+        });
+      }).toErrorDev(
+        `MUI: The \`getOptionValue\` method of useAutocomplete returned ${returnedValue}, which is not a valid option value.\n` +
+          'useAutocomplete uses this value to identify and match options. ' +
+          'Return a unique string, number, bigint, or boolean for every option.',
+      );
+    });
+
+    it('warns once per duplicate mapped value', () => {
+      expect(() => {
+        render(
+          <ValidationTest
+            options={[{ id: 'duplicate' }, { id: 'duplicate' }, { id: 'duplicate' }]}
+            getOptionValue={(option) => option.id}
+          />,
+          { strict: false },
+        );
+      }).toErrorDev([
+        'MUI: The `getOptionValue` method of useAutocomplete returned the duplicate value "duplicate" for multiple options.\n' +
+          'useAutocomplete uses these values to identify options. ' +
+          'Change `getOptionValue` or the options so that every option has a unique value.',
+      ]);
+    });
+
+    it('accepts supported primitive option values', () => {
+      expect(() => {
+        render(
+          <ValidationTest options={['string', 1, 2n, true]} getOptionValue={(option) => option} />,
+          { strict: false },
+        );
+      }).not.toErrorDev();
+    });
+
+    it('does not validate raw options when getOptionValue is not provided', () => {
+      expect(() => {
+        render(<ValidationTest options={[{ id: 'foo' }, { id: 'foo' }]} />, { strict: false });
+      }).not.toErrorDev();
+    });
   });
 
   describe('prop: defaultValue', () => {
