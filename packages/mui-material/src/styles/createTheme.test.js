@@ -618,8 +618,6 @@ describe('createTheme', () => {
     });
 
     it('no-vars colorSchemes: an explicit outlineColor equal to the default stays pinned', () => {
-      // Provenance, not value equality: pinning the ring to the very color the light scheme would
-      // have defaulted to must still be honored, or dark mode silently regenerates its own.
       const pinned = createTheme({ cssVariables: false }).palette.primary.main;
       const theme = createTheme({
         cssVariables: false,
@@ -642,7 +640,6 @@ describe('createTheme', () => {
     });
 
     it('no-vars colorSchemes: an unset outlineColor still resolves per scheme', () => {
-      // The complement of the two above — provenance must not pin what the user never supplied.
       const theme = createTheme({
         cssVariables: false,
         focusVisible: { outlineWidth: 4 },

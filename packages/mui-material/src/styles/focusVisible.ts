@@ -49,10 +49,8 @@ export function mergeFocusVisibleInput(
 }
 
 /**
- * Whether an input is this module's own output rather than something an author wrote. Only
- * `wireFocusVisibleVars` produces the offset calc, so a re-composed theme
- * (`createTheme(existingTheme, …)`) is recognizable by it — and its `outlineColor` is a baked
- * default, not a choice.
+ * Whether an input is this module's own output. Only `wireFocusVisibleVars` emits the offset calc,
+ * so it identifies a ring fed back in by `createTheme(existingTheme, …)`.
  */
 export function isResolvedFocusVisible(input: FocusVisibleInput): boolean {
   return (

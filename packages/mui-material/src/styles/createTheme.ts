@@ -134,15 +134,13 @@ export default function createTheme(
 
     if (theme.focusVisible != null && theme.focusVisible !== false) {
       let focusVisibleInput = theme.focusVisible;
-      // Read the color the author actually wrote, before `resolveFocusVisible` filled a default in.
       const rawFocusVisible = mergeFocusVisibleInput(options.focusVisible, args);
       const authoredColor =
         rawFocusVisible && typeof rawFocusVisible === 'object'
           ? rawFocusVisible.outlineColor
           : undefined;
-      // Regenerate the color per scheme unless the author picked it. Recomposing
-      // (`createTheme(existingTheme, …)`) feeds a resolved ring back in, so its baked default looks
-      // authored — value equality is the fallback there, and only there.
+      // A re-composed theme carries a baked default that looks authored, so it falls back to value
+      // equality — the one case where a pinned `primary.main` is indistinguishable and gets reset.
       if (
         !authoredColor ||
         (isResolvedFocusVisible(rawFocusVisible) && authoredColor === theme.palette.primary.main)
