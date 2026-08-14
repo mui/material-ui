@@ -1,5 +1,5 @@
 import createPalette, { PaletteOptions } from './createPalette';
-import { resolveFocusVisible } from './focusVisible';
+import { resolveFocusVisible, mergeFocusVisibleInput } from './focusVisible';
 import { ColorSystemOptions } from './createThemeFoundation';
 import createThemeWithVars, {
   CssVarsThemeOptions,
@@ -130,7 +130,25 @@ export default function createTheme(
 
     if (theme.focusVisible != null && theme.focusVisible !== false) {
       let focusVisibleInput = theme.focusVisible;
-      if (focusVisibleInput.outlineColor === theme.palette.primary.main) {
+      // Decide whether `outlineColor` was authored or generated, so a scheme re-resolve only
+      // overwrites the latter. Read the raw input, before `resolveFocusVisible` filled a default in.
+      const rawFocusVisible = mergeFocusVisibleInput(options.focusVisible, args);
+      const rawIsObject = rawFocusVisible != null && typeof rawFocusVisible === 'object';
+      // Recomposing (`createTheme(existingTheme, …)`) feeds an already-resolved ring back in, whose
+      // `outlineColor` is a baked default, not an author's choice. Only this resolver produces the
+      // wired offset calc, so it identifies its own output.
+      const isResolvedRing =
+        rawIsObject &&
+        typeof rawFocusVisible.outlineOffset === 'string' &&
+        rawFocusVisible.outlineOffset.includes('--_focusVisible-offset');
+      const authoredOutlineColor =
+        rawIsObject && 'outlineColor' in rawFocusVisible && !isResolvedRing;
+      // Value equality is the last resort, and only for a re-composed ring: it cannot tell a pinned
+      // `primary.main` from a generated one, so it is never allowed to override an authored color.
+      if (
+        !authoredOutlineColor &&
+        (!isResolvedRing || focusVisibleInput.outlineColor === theme.palette.primary.main)
+      ) {
         const { outlineColor, ...rest } = focusVisibleInput;
         focusVisibleInput = rest;
       }

@@ -617,6 +617,45 @@ describe('createTheme', () => {
       expect(theme.colorSchemes.dark.focusVisible.outlineColor).to.equal('rgb(255, 0, 0)');
     });
 
+    it('no-vars colorSchemes: an explicit outlineColor equal to the default stays pinned', () => {
+      // Provenance, not value equality: pinning the ring to the very color the light scheme would
+      // have defaulted to must still be honored, or dark mode silently regenerates its own.
+      const pinned = createTheme({ cssVariables: false }).palette.primary.main;
+      const theme = createTheme({
+        cssVariables: false,
+        focusVisible: { outlineColor: pinned },
+        colorSchemes: { light: true, dark: true },
+      });
+      expect(theme.colorSchemes.light.focusVisible.outlineColor).to.equal(pinned);
+      expect(theme.colorSchemes.dark.focusVisible.outlineColor).to.equal(pinned);
+      // else the test is vacuous — dark would otherwise resolve to its own primary
+      expect(theme.colorSchemes.dark.palette.primary.main).not.to.equal(pinned);
+    });
+
+    it('no-vars colorSchemes: an explicit outlineColor from a merge argument stays pinned', () => {
+      const pinned = createTheme({ cssVariables: false }).palette.primary.main;
+      const theme = createTheme(
+        { cssVariables: false, colorSchemes: { light: true, dark: true }, focusVisible: true },
+        { focusVisible: { outlineColor: pinned } },
+      );
+      expect(theme.colorSchemes.dark.focusVisible.outlineColor).to.equal(pinned);
+    });
+
+    it('no-vars colorSchemes: an unset outlineColor still resolves per scheme', () => {
+      // The complement of the two above — provenance must not pin what the user never supplied.
+      const theme = createTheme({
+        cssVariables: false,
+        focusVisible: { outlineWidth: 4 },
+        colorSchemes: { light: true, dark: true },
+      });
+      expect(theme.colorSchemes.dark.focusVisible.outlineColor).to.equal(
+        theme.colorSchemes.dark.palette.primary.main,
+      );
+      expect(theme.colorSchemes.light.focusVisible.outlineColor).to.equal(
+        theme.colorSchemes.light.palette.primary.main,
+      );
+    });
+
     it('resolves the ring color against the merged palette, not the options palette', () => {
       const theme = createTheme(
         { cssVariables: false, focusVisible: true },
