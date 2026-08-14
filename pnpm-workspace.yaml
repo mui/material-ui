@@ -41,7 +41,7 @@ catalogs:
     '@emotion/react': '^11.14.0'
     '@emotion/server': '^11.11.0'
     '@emotion/styled': '^11.14.1'
-    '@mui/internal-docs-infra': 'https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@0fa870a'
+    '@mui/internal-docs-infra': 'https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@93bee03'
 
 overrides:
   # Both were bundled twice in the docs build
