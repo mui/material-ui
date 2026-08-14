@@ -13,6 +13,8 @@ export interface ThemeTokenKnob {
   path: readonly string[];
   /** numeric → coerce input to a number (lineHeight, radius); else keep string */
   numeric?: boolean;
+  /** presets this token is confirmed "per design" for (hand-authored, like densityKnobs.done) */
+  done?: Array<'high' | 'medium' | 'low'>;
 }
 export interface ThemeTokenSlot {
   /** heading (typography variant); '' = knobs sit directly under the group */
@@ -39,21 +41,34 @@ const TYPOGRAPHY_VARIANTS = [
   'button',
 ] as const;
 
+const DONE_MEDIUM: Array<'high' | 'medium' | 'low'> = ['medium'];
+// Variants the preset patches (per design, medium); h4/h5/h6/subtitle keep master.
+const TYPOGRAPHY_DONE_MEDIUM = new Set<string>(['h1', 'h2', 'h3', 'body1', 'body2', 'button']);
+
 export const themeTokenGroups: ThemeTokenGroup[] = [
   {
     key: 'Typography',
-    slots: TYPOGRAPHY_VARIANTS.map((v) => ({
-      key: v,
-      knobs: [
-        { id: `typography.${v}.fontSize`, label: 'fontSize', path: ['typography', v, 'fontSize'] },
-        {
-          id: `typography.${v}.lineHeight`,
-          label: 'lineHeight',
-          path: ['typography', v, 'lineHeight'],
-          numeric: true,
-        },
-      ],
-    })),
+    slots: TYPOGRAPHY_VARIANTS.map((v) => {
+      const done = TYPOGRAPHY_DONE_MEDIUM.has(v) ? { done: DONE_MEDIUM } : {};
+      return {
+        key: v,
+        knobs: [
+          {
+            id: `typography.${v}.fontSize`,
+            label: 'fontSize',
+            path: ['typography', v, 'fontSize'],
+            ...done,
+          },
+          {
+            id: `typography.${v}.lineHeight`,
+            label: 'lineHeight',
+            path: ['typography', v, 'lineHeight'],
+            numeric: true,
+            ...done,
+          },
+        ],
+      };
+    }),
   },
   {
     key: 'Border Radius',
@@ -104,6 +119,22 @@ export const PRESET_SPACING_DEFAULT: Record<'high' | 'medium' | 'low', number> =
   medium: 8,
   low: 8,
 };
+
+/** Flat id → knob lookup across every token group (done + path resolution). */
+const tokenKnobById: Record<string, ThemeTokenKnob> = {};
+for (const group of themeTokenGroups) {
+  for (const slot of group.slots) {
+    for (const knob of slot.knobs) {
+      tokenKnobById[knob.id] = knob;
+    }
+  }
+}
+
+/** True when `id` is a theme-token knob (vs a component/density row id). */
+export const isTokenId = (id: string): boolean => id in tokenKnobById;
+
+/** Presets a token knob is confirmed "per design" for — mirrors knobDonePresets. */
+export const tokenDonePresets = (id: string): readonly string[] => tokenKnobById[id]?.done ?? [];
 
 /** Live value at a token path on the built preset theme (placeholder/default). */
 export function readThemeToken(theme: unknown, path: readonly string[]): string {

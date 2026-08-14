@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import { useRouter } from 'next/router';
+import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
@@ -165,6 +166,8 @@ import {
   readThemeToken,
   setThemeToken,
   PRESET_SPACING_DEFAULT,
+  tokenDonePresets,
+  isTokenId,
 } from 'docs/src/modules/components/density/themeTokens';
 import {
   SCALE_KEYS,
@@ -1654,6 +1657,7 @@ function AccordionMatrix() {
           aria-controls="density-accordion1-content"
           id="density-accordion1-header"
         >
+          <AddIcon />
           <Typography component="span" className="density-debug-text">
             Accordion 1
           </Typography>
@@ -4657,22 +4661,27 @@ export default function DensityExperiment() {
       }
       lines.push(`${id} = ${value}`);
     }
-    for (const key of doneDraftByPreset[preset] ?? []) {
-      // staged checks already persisted as done meta drop out of the block
+    // Token ids (typography.*/shape.*/spacing) persist done on themeTokens knobs;
+    // component/virtual ids persist on densityKnobs. Pick the right source per id.
+    const donePersisted = (key: string): boolean => {
+      if (isTokenId(key)) {
+        return tokenDonePresets(key).includes(preset);
+      }
       const memberIds = key.startsWith('virtual:')
         ? (densityVirtualKnobs.find((k) => k.id === key)?.members ?? [key])
         : [key];
-      if (memberIds.every((id) => knobDonePresets(id).includes(preset))) {
+      return memberIds.every((id) => knobDonePresets(id).includes(preset));
+    };
+    for (const key of doneDraftByPreset[preset] ?? []) {
+      // staged checks already persisted as done meta drop out of the block
+      if (donePersisted(key)) {
         continue;
       }
       lines.push(`done: ${key}`);
     }
     for (const key of undoneDraftByPreset[preset] ?? []) {
       // only ids still marked done need undoing; persisted removals drop out
-      const memberIds = key.startsWith('virtual:')
-        ? (densityVirtualKnobs.find((k) => k.id === key)?.members ?? [key])
-        : [key];
-      if (!memberIds.every((id) => knobDonePresets(id).includes(preset))) {
+      if (!donePersisted(key)) {
         continue;
       }
       lines.push(`undone: ${key}`);
@@ -5065,6 +5074,11 @@ export default function DensityExperiment() {
                                 helper: previewText(draft || canon, scalePx),
                               })}
                               onCommit={(v) => setFields([knob.id], v)}
+                              done={tokenDonePresets(knob.id).includes(preset)}
+                              doneDraft={doneDraft.has(knob.id)}
+                              onDoneDraft={(checked) => toggleDoneDraft(knob.id, checked)}
+                              undoneDraft={undoneDraft.has(knob.id)}
+                              onUndoneDraft={(staged) => toggleUndoneDraft(knob.id, staged)}
                             />
                           );
                         })}

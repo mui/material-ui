@@ -22,22 +22,47 @@ export interface DensityKnobMeta {
 }
 
 export const densityKnobs: Record<string, string | DensityKnobMeta> = {
-  'MuiAccordionDetails|root|base||paddingBlockStart': 'AccordionDetails · paddingBlockStart',
-  'MuiAccordionDetails|root|base||paddingBlockEnd': 'AccordionDetails · paddingBlockEnd',
-  'MuiAccordionDetails|root|base||paddingInline': 'AccordionDetails · paddingInline',
-  'MuiAccordionSummary|content|base||marginBlock': 'AccordionSummary · content · marginBlock',
-  'MuiAccordionSummary|content|fn:ya70cs|&.Mui-expanded|marginBlock':
-    'AccordionSummary · content · marginBlock (expanded)',
+  'MuiAccordionDetails|root|base||paddingBlockStart': {
+    label: 'AccordionDetails · paddingBlockStart',
+    done: ['medium'],
+  },
+  'MuiAccordionDetails|root|base||paddingBlockEnd': {
+    label: 'AccordionDetails · paddingBlockEnd',
+    done: ['medium'],
+  },
+  'MuiAccordionDetails|root|base||paddingInline': {
+    label: 'AccordionDetails · paddingInline',
+    done: ['medium'],
+  },
+  'MuiAccordionSummary|content|base||marginBlock': {
+    label: 'AccordionSummary · content · marginBlock',
+    done: ['medium'],
+  },
+  'MuiAccordionSummary|content|base||alignItems': {
+    label: 'AccordionSummary · content · alignItems',
+    hidden: true,
+    note: 'Fixed layout (center the header row) — not a tunable density value.',
+  },
+  'MuiAccordionSummary|content|base||gap': {
+    label: 'AccordionSummary · content · gap',
+    done: ['medium'],
+  },
+  'MuiAccordionSummary|content|fn:ya70cs|&.Mui-expanded|marginBlock': {
+    label: 'AccordionSummary · content · marginBlock (expanded)',
+    done: ['medium'],
+  },
   'MuiAccordionSummary|root|base||minHeight': {
     label: 'AccordionSummary · minHeight',
-    hidden: true,
-    note: 'Preset-driven sizing, not independently tunable via sidebar.',
+    done: ['medium'],
   },
-  'MuiAccordionSummary|root|base||padding': 'AccordionSummary · padding',
+  'MuiAccordionSummary|root|base||padding': {
+    label: 'AccordionSummary · padding',
+    done: ['medium'],
+  },
   'MuiAccordionSummary|root|fn:ya70cs|&.Mui-expanded|minHeight': {
     label: 'AccordionSummary · minHeight (expanded)',
-    hidden: true,
-    note: 'Preset-driven sizing, not independently tunable via sidebar.',
+    done: ['medium'],
+    note: "Scoped to &.Mui-expanded (only when !disableGutters) so it wins master's 64px literal by specificity; a plain root minHeight would lose to it.",
   },
   'MuiAlert|icon|base||marginRight': 'Alert · icon · marginRight',
   'MuiAlert|root|base||paddingBlock': 'Alert · paddingBlock',

@@ -1836,13 +1836,15 @@ const high = {
       styleOverrides: {
         content: [
           {
-            marginBlock: 'var(--mui-density-medium)',
+            marginBlock: '0px',
+            alignItems: 'center',
+            gap: 'var(--mui-density-x-small)',
             variants: [
               {
                 props: ({ ownerState }) => !ownerState.disableGutters,
                 style: {
                   '&.Mui-expanded': {
-                    marginBlock: 'var(--mui-density-large)',
+                    marginBlock: '0px',
                   },
                 },
               },
@@ -1851,14 +1853,14 @@ const high = {
         ],
         root: [
           {
-            minHeight: '48px',
+            minHeight: '32px',
             padding: '0 var(--mui-density-x-small)',
             variants: [
               {
                 props: ({ ownerState }) => !ownerState.disableGutters,
                 style: {
                   '&.Mui-expanded': {
-                    minHeight: '64px',
+                    minHeight: '32px',
                   },
                 },
               },
@@ -2772,9 +2774,9 @@ const high = {
       styleOverrides: {
         root: [
           {
-            paddingBlockStart: 'var(--mui-density-small)',
-            paddingBlockEnd: 'var(--mui-density-large)',
-            paddingInline: 'var(--mui-density-large)',
+            paddingBlockStart: 'var(--mui-density-x-small)',
+            paddingBlockEnd: '0px',
+            paddingInline: 'var(--mui-density-x-large) 0px',
           },
         ],
       },
@@ -4808,13 +4810,15 @@ const medium = {
       styleOverrides: {
         content: [
           {
-            marginBlock: 'var(--mui-density-medium)',
+            marginBlock: '0px',
+            alignItems: 'center',
+            gap: 'var(--mui-density-x-small)',
             variants: [
               {
                 props: ({ ownerState }) => !ownerState.disableGutters,
                 style: {
                   '&.Mui-expanded': {
-                    marginBlock: 'var(--mui-density-large)',
+                    marginBlock: '0px',
                   },
                 },
               },
@@ -4823,14 +4827,14 @@ const medium = {
         ],
         root: [
           {
-            minHeight: '48px',
+            minHeight: '32px',
             padding: '0 var(--mui-density-x-small)',
             variants: [
               {
                 props: ({ ownerState }) => !ownerState.disableGutters,
                 style: {
                   '&.Mui-expanded': {
-                    minHeight: '64px',
+                    minHeight: '32px',
                   },
                 },
               },
@@ -5744,9 +5748,9 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            paddingBlockStart: 'var(--mui-density-small)',
-            paddingBlockEnd: 'var(--mui-density-large)',
-            paddingInline: 'var(--mui-density-large)',
+            paddingBlockStart: 'var(--mui-density-x-small)',
+            paddingBlockEnd: '0px',
+            paddingInline: 'var(--mui-density-x-large) 0px',
           },
         ],
       },
@@ -7719,13 +7723,15 @@ const low = {
       styleOverrides: {
         content: [
           {
-            marginBlock: 'var(--mui-density-medium)',
+            marginBlock: '0px',
+            alignItems: 'center',
+            gap: 'var(--mui-density-x-small)',
             variants: [
               {
                 props: ({ ownerState }) => !ownerState.disableGutters,
                 style: {
                   '&.Mui-expanded': {
-                    marginBlock: 'var(--mui-density-large)',
+                    marginBlock: '0px',
                   },
                 },
               },
@@ -7734,14 +7740,14 @@ const low = {
         ],
         root: [
           {
-            minHeight: '48px',
+            minHeight: '32px',
             padding: '0 var(--mui-density-x-small)',
             variants: [
               {
                 props: ({ ownerState }) => !ownerState.disableGutters,
                 style: {
                   '&.Mui-expanded': {
-                    minHeight: '64px',
+                    minHeight: '32px',
                   },
                 },
               },
@@ -8655,9 +8661,9 @@ const low = {
       styleOverrides: {
         root: [
           {
-            paddingBlockStart: 'var(--mui-density-small)',
-            paddingBlockEnd: 'var(--mui-density-large)',
-            paddingInline: 'var(--mui-density-large)',
+            paddingBlockStart: 'var(--mui-density-x-small)',
+            paddingBlockEnd: '0px',
+            paddingInline: 'var(--mui-density-x-large) 0px',
           },
         ],
       },

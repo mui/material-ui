@@ -954,7 +954,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'MuiAccordionSummary',
     {
       // Content block margin reduces with min-height (else it binds header height).
-      marginBlock: d.medium,
+      marginBlock: '0px',
+      // Center the header row within the reduced min-height.
+      alignItems: 'center',
+      // Gap between the header row items (icon/text).
+      gap: d['x-small'],
       variants: [
         {
           props: ({
@@ -962,7 +966,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           }: {
             ownerState: AccordionSummaryOwnerState & { disableGutters?: boolean | undefined };
           }) => !ownerState.disableGutters,
-          style: { [`&.${accordionSummaryClasses.expanded}`]: { marginBlock: d.large } },
+          style: { [`&.${accordionSummaryClasses.expanded}`]: { marginBlock: '0px' } },
         },
       ],
     },
@@ -1822,7 +1826,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   );
   addRootOverride(enhanced.components, 'MuiAccordionSummary', {
     // Collapsed min-height raw px; inline padding = step.
-    minHeight: '48px',
+    minHeight: '32px',
     // inline: semantic/spacing/variable/xs (headerWrapper)
     padding: `0 ${d['x-small']}`,
     variants: [
@@ -1832,16 +1836,17 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         }: {
           ownerState: AccordionSummaryOwnerState & { disableGutters?: boolean | undefined };
         }) => !ownerState.disableGutters,
-        // Re-assert expanded min-height (master literal wins by specificity else).
-        style: { [`&.${accordionSummaryClasses.expanded}`]: { minHeight: '64px' } },
+        // Expanded min-height (scoped to the expanded state so it wins master's
+        // 64px literal by specificity; a plain root minHeight would lose to it).
+        style: { [`&.${accordionSummaryClasses.expanded}`]: { minHeight: '32px' } },
       },
     ],
   });
   addRootOverride(enhanced.components, 'MuiAccordionDetails', {
     // Split from shorthand so each edge is its own knob (top differs from bottom).
-    paddingBlockStart: d.small,
-    paddingBlockEnd: d.large,
-    paddingInline: d.large,
+    paddingBlockStart: d['x-small'],
+    paddingBlockEnd: '0px',
+    paddingInline: `${d['x-large']} 0px`,
   });
   // MUI X — spacing-step rows shared across presets; the sizing raw px
   // (defaultProps heights, widths, min-heights — X's density levers) stay
