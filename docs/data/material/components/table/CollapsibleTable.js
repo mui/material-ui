@@ -61,7 +61,7 @@ function Row(props) {
         <TableCell align="right">{row.carbs}</TableCell>
         <TableCell align="right">{row.protein}</TableCell>
       </TableRow>
-      <TableRow>
+      <TableRow aria-hidden={!open}>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
