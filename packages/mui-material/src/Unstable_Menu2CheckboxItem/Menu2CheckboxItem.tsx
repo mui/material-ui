@@ -201,14 +201,21 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
     <ListContext.Provider value={childContext}>
       <BaseMenu.CheckboxItem
         ref={ref}
-        render={getMenu2RootRender(RootSlot, ownerState, {
-          ...resolveComponentProps(slotProps?.root, ownerState),
-          // ButtonBase renders a <button> by default; the items keep their element.
-          component: component ?? 'div',
-          disableRipple,
+        render={getMenu2RootRender(
+          RootSlot,
           ownerState,
-          sx,
-        })}
+          {
+            ...resolveComponentProps(slotProps?.root, ownerState),
+            // ButtonBase renders a <button> by default; the items keep their element.
+            component: component ?? 'div',
+            disableRipple,
+            ownerState,
+            // Base UI already activates the item on Enter and Space.
+            suppressKeyboardActivation: true,
+            sx,
+          },
+          Menu2CheckboxItemRoot,
+        )}
         className={(state) =>
           clsx(
             className,

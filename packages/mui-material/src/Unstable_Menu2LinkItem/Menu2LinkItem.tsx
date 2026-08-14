@@ -137,14 +137,21 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
     <ListContext.Provider value={childContext}>
       <BaseMenu.LinkItem
         ref={ref}
-        render={getMenu2RootRender(slots?.root ?? Menu2LinkItemRoot, ownerState, {
-          ...resolveComponentProps(slotProps?.root, ownerState),
-          // ButtonBase renders a <button> by default; the items keep their element.
-          component: component ?? 'a',
-          disableRipple,
+        render={getMenu2RootRender(
+          slots?.root ?? Menu2LinkItemRoot,
           ownerState,
-          sx,
-        })}
+          {
+            ...resolveComponentProps(slotProps?.root, ownerState),
+            // ButtonBase renders a <button> by default; the items keep their element.
+            component: component ?? 'a',
+            disableRipple,
+            ownerState,
+            // Base UI already activates the item on Enter and Space.
+            suppressKeyboardActivation: true,
+            sx,
+          },
+          Menu2LinkItemRoot,
+        )}
         className={mergeMenu2ItemClassName(className, classes, ownerState)}
         style={style}
         {...other}

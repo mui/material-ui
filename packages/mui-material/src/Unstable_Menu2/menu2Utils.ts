@@ -34,18 +34,28 @@ export function getMenu2RootRender<OwnerState>(
   RootSlot: React.ElementType,
   ownerState: OwnerState,
   props?: Record<string, any>,
+  defaultRootSlot?: React.ElementType,
 ) {
-  if (isHostComponent(RootSlot)) {
-    const hostProps = { ...(props ?? {}) };
-    delete hostProps.as;
-    delete hostProps.component;
-    delete hostProps.ownerState;
-    delete hostProps.sx;
+  const rootProps = { ...(props ?? {}) };
 
-    return React.createElement(RootSlot, hostProps);
+  // These props are internal to `ButtonBase`. Only the default root reaches it,
+  // so a custom slot would spread them onto the DOM and React would warn.
+  if (defaultRootSlot != null && RootSlot !== defaultRootSlot) {
+    delete rootProps.disableRipple;
+    delete rootProps.suppressKeyboardActivation;
   }
 
-  return React.createElement(RootSlot, appendOwnerState(RootSlot, props ?? {}, ownerState));
+  if (isHostComponent(RootSlot)) {
+    delete rootProps.as;
+    delete rootProps.component;
+    delete rootProps.ownerState;
+    delete rootProps.suppressKeyboardActivation;
+    delete rootProps.sx;
+
+    return React.createElement(RootSlot, rootProps);
+  }
+
+  return React.createElement(RootSlot, appendOwnerState(RootSlot, rootProps, ownerState));
 }
 
 export function isMenu2RootNativeButton(
