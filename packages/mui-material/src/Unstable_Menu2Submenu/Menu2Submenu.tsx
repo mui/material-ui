@@ -132,6 +132,10 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
         className={(state) =>
           clsx(
             menu2SubmenuTriggerClasses.root,
+            // Base UI highlights the trigger for the keyboard and the pointer.
+            // Without this class the trigger shows only the weaker CSS `:hover`.
+            state.highlighted && menu2SubmenuTriggerClasses.highlighted,
+            state.disabled && menu2SubmenuTriggerClasses.disabled,
             state.open && menu2SubmenuTriggerClasses.open,
             resolvedTriggerProps?.className,
           )

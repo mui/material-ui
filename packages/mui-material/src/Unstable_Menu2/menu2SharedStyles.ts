@@ -74,17 +74,22 @@ export const menu2PopupListStyles = memoTheme(({ theme }) => ({
   ...(menuListStyles as CSSObject),
   // A submenu trigger is whatever element the caller passes, so its open state
   // is styled from the list that contains it, not from a component we render.
-  [`& .${menu2SubmenuTriggerClasses.open}`]: {
+  // The highlighted state matches a plain item, and an open trigger keeps it.
+  [`& .${menu2SubmenuTriggerClasses.highlighted}, & .${menu2SubmenuTriggerClasses.open}`]: {
     backgroundColor: (theme.vars || theme).palette.action.focus,
   },
-  [`& .${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.open}`]: {
-    backgroundColor: theme.alpha(
-      (theme.vars || theme).palette.primary.main,
-      `${(theme.vars || theme).palette.action.selectedOpacity} + ${
-        (theme.vars || theme).palette.action.focusOpacity
-      }`,
-    ),
+  [`& .${menu2SubmenuTriggerClasses.disabled}`]: {
+    opacity: (theme.vars || theme).palette.action.disabledOpacity,
   },
+  [`& .${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.highlighted}, & .${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.open}`]:
+    {
+      backgroundColor: theme.alpha(
+        (theme.vars || theme).palette.primary.main,
+        `${(theme.vars || theme).palette.action.selectedOpacity} + ${
+          (theme.vars || theme).palette.action.focusOpacity
+        }`,
+      ),
+    },
 }));
 
 /**

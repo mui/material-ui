@@ -273,6 +273,31 @@ describe('<Menu2 /> collapsed API', () => {
     }
   });
 
+  // The trigger showed no highlight for the keyboard, and only the weaker CSS
+  // `:hover` for the pointer, because the highlighted state was not mapped.
+  it.skipIf(isJsdom())('highlights the submenu trigger like a plain item', async () => {
+    const { user } = render(
+      <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
+        <Menu2Item>Plain</Menu2Item>
+        <Menu2Submenu trigger={<Menu2Item>More</Menu2Item>}>
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2Submenu>
+      </Menu2>,
+    );
+
+    const plain = await screen.findByRole('menuitem', { name: 'Plain' });
+    const submenuTrigger = screen.getByRole('menuitem', { name: 'More' });
+
+    // Keyboard: the trigger takes the highlight the same way a plain item does.
+    await user.keyboard('{ArrowDown}');
+    expect(plain).to.have.class(menu2ItemClasses.highlighted);
+    const plainHighlight = window.getComputedStyle(plain).backgroundColor;
+
+    await user.keyboard('{ArrowDown}');
+    expect(submenuTrigger).to.have.class(menu2SubmenuTriggerClasses.highlighted);
+    expect(window.getComputedStyle(submenuTrigger).backgroundColor).to.equal(plainHighlight);
+  });
+
   it.skipIf(isJsdom())('overlaps the parent menu by default', async () => {
     // The popup animates, so geometry has to be read after the transition ends.
     async function settle(element: HTMLElement) {
