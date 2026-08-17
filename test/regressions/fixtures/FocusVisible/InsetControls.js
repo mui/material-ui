@@ -21,9 +21,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 // Each control sits inside its real clipping container (Tabs scroller, scrolling Menu/List, Card,
-// bounded BottomNavigation) so a regression in the ring inset shows up as a clipped ring. One
-// control per family renders already focus-visible (the `Mui-focusVisible` class the ring keys on),
-// so the screenshot loop captures the inset ring without a separate driven test.
+// bounded BottomNavigation), so a regression in the ring inset shows up as a clipped ring. One
+// control per family renders already focus-visible, so no driven test is needed.
 const theme = createTheme({
   focusVisible: true,
   components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },

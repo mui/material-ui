@@ -4,10 +4,9 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Switch from '@mui/material/Switch';
 
-// Pins the track colors under `theme.focusVisible` (they move from `opacity` to
-// alpha backgrounds so the ring stays visible): default-color checked must dim to 0.5,
-// disabled to 0.12, and checked+disabled must dim like disabled — reviewed as broken
-// once, so each state gets its own golden pixel here. Vars-mode twin: SwitchTrackStatesVars.
+// Pins the track colors under `theme.focusVisible`, where they move from `opacity` to alpha
+// backgrounds so the ring stays visible: checked dims to 0.5, disabled to 0.12, and
+// checked+disabled dims like disabled. Regressed once. Vars-mode twin: SwitchTrackStatesVars.
 const theme = createTheme({ focusVisible: true });
 
 const rows = [

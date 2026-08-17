@@ -1600,7 +1600,6 @@ describe('<ButtonBase />', () => {
   });
 
   describe('theme.focusVisible', () => {
-    /** @param {boolean | React.CSSProperties} [value] */
     function focusVisibleButton(value) {
       render(
         <ThemeProvider theme={createTheme({ focusVisible: value })}>

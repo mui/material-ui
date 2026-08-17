@@ -89,12 +89,10 @@ const RatingRoot = styled('span', {
       pointerEvents: 'none',
     },
     [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
-      // Legacy default, superseded when the curated ring is opted in. The class lands on the
-      // root (keyboard highlight state), but the indicator belongs on the active star only.
+      // Legacy default, superseded when the curated ring is opted in.
       ...(!theme.focusVisible && {
         outline: '1px solid #999',
       }),
-      // Reset the inset vars so the star ring stays outset even inside a clip-prone ancestor.
       ...(theme.focusVisible && { ...outsetFocusRing, ...theme.focusVisible }),
     },
     [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
@@ -148,7 +146,6 @@ const RatingLabel = styled('label', {
           ...(!theme.focusVisible && {
             outline: '1px solid #999',
           }),
-          // Reset the inset vars so the ring stays outset even inside a clip-prone ancestor.
           ...(theme.focusVisible && { ...outsetFocusRing, ...theme.focusVisible }),
         },
       },

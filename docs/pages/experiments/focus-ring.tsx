@@ -263,7 +263,6 @@ function OuterRing() {
           (internalDisabledThemeFocusVisible) and draw it on a specific slot instead — the icon
           svg for Checkbox/Radio, the track for Switch. Ring renders fully, so they bucket outer. */}
       <Row label="Checkbox">
-        {/* Ring targets the icon svg (not the ButtonBase root). */}
         <FormGroup>
           <FormControlLabel
             control={
@@ -293,7 +292,6 @@ function OuterRing() {
         </FormGroup>
       </Row>
       <Row label="Radio">
-        {/* Ring targets the icon svg (not the ButtonBase root). */}
         <RadioGroup defaultValue="a">
           <FormControlLabel
             control={
@@ -324,9 +322,6 @@ function OuterRing() {
         </RadioGroup>
       </Row>
       <Row label="Custom icons">
-        {/* icon/checkedIcon replaced with tight 16×16 svgs (glyph fills the viewBox — no
-            built-in whitespace like the default 24×24 Material icons). The ring rule targets
-            `svg:first-of-type`, so it wraps the replacement icon's box automatically. */}
         <FormGroup row>
           <FormControlLabel
             control={
@@ -378,7 +373,6 @@ function OuterRing() {
         </RadioGroup>
       </Row>
       <Row label="Switch">
-        {/* Ring targets the track slot (not the ButtonBase root). */}
         <FormControlLabel
           control={
             <Switch
@@ -718,7 +712,6 @@ export default function FocusVisible() {
     () => Array.from(document.querySelectorAll<HTMLElement>('[data-ring-target]')),
     [],
   );
-  // The walk steps over enabled targets only — disabled controls take no ring.
   const walkTargets = React.useCallback(
     () => ringTargets().filter((el) => !isRingDisabled(el)),
     [ringTargets],

@@ -57,11 +57,7 @@ const LinkRoot = styled(Typography, {
 })(
   memoTheme(({ theme }) => {
     return {
-      // Opt-in curated ring, same object-spread as the other components. For
-      // `component="button"` it replaces the variant's `outline: auto` (gated there),
-      // so it does not rely on variant source order.
       ...(theme.focusVisible && {
-        // Reset the inset vars so the ring stays outset even inside a clip-prone ancestor.
         [`&.${linkClasses.focusVisible}`]: { ...outsetFocusRing, ...theme.focusVisible },
       }),
       variants: [

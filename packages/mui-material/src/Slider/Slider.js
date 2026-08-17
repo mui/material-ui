@@ -283,7 +283,6 @@ export const SliderThumb = styled('span', {
       },
     },
     ...(theme.focusVisible && {
-      // Reset the inset vars so the thumb ring stays outset even inside a clip-prone ancestor.
       [`&.${sliderClasses.focusVisible}`]: { ...outsetFocusRing, ...theme.focusVisible },
     }),
     variants: [

@@ -308,8 +308,7 @@ async function main() {
 
     describe('theme.focusVisible ring', () => {
       // The FocusVisible fixtures render already focus-visible, so the standard screenshot loop
-      // above captures the ring. This case only adds the forced-colors variant (proving the outline
-      // survives Windows High Contrast), which needs Playwright to emulate the media feature.
+      // above captures the ring. Only the forced-colors variant needs Playwright here.
       test('keeps the outline ring visible in forced-colors mode', async ({ pooled }) => {
         const { page } = pooled;
         await page.emulateMedia({ forcedColors: 'active' });

@@ -5,10 +5,9 @@ import Checkbox from '@mui/material/Checkbox';
 import Radio from '@mui/material/Radio';
 import Switch from '@mui/material/Switch';
 
-// Checkbox/Radio/Switch draw the ring on a slot (the icon svg / the track), not the ButtonBase
-// root — special-cased vs the outline families. Each renders already focus-visible so the
-// screenshot loop captures the slot ring; the class goes on the SwitchBase root (Switch reaches it
-// via `slotProps.switchBase`, since its `className` targets the outer wrapper instead).
+// Pins the slot ring: Checkbox/Radio draw it on the icon svg and Switch on the track, not on the
+// ButtonBase root. The focus-visible class goes on the SwitchBase root — Switch's own `className`
+// targets the outer wrapper, hence `slotProps.switchBase`.
 const theme = createTheme({
   focusVisible: true,
   components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },

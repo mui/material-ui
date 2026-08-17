@@ -330,7 +330,6 @@ describe('<Tab />', () => {
 
     it.skipIf(isJsdom())('insets a user box-shadow automatically on clip-prone components', () => {
       const theme = createTheme({
-        // a plain box-shadow (C40 two-color pattern); createTheme prepends the behavior var so it insets here
         focusVisible: { boxShadow: '0 0 0 3px rgb(255, 0, 0)' },
         components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
       });
@@ -344,7 +343,6 @@ describe('<Tab />', () => {
       const tab = screen.getByRole('tab');
       simulatePointerDevice();
       focusVisible(tab);
-      // the box-shadow renders inside the scroller, so it cannot be clipped
       expect(window.getComputedStyle(tab).boxShadow).to.match(/inset/);
     });
   });

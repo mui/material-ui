@@ -8,6 +8,8 @@ const focusVisibleShadowVar = '--_focusVisible-shadow';
 const offsetValue = `var(${focusVisibleOffsetVar}, 1)`;
 const behaviorValue = `var(${focusVisibleBehaviorVar}, )`;
 
+// Spread on a root whose ring must stay outset: the inset vars inherit, so a clip-prone ancestor
+// would otherwise inset a descendant's ring too.
 export const outsetFocusRing = {
   [focusVisibleOffsetVar]: 1,
   [focusVisibleBehaviorVar]: 'initial', // reverts the var to guaranteed-invalid so `var(--_focusVisible-behavior, )` falls back to empty — there is no explicit `outset` keyword.
@@ -32,11 +34,9 @@ export function applyInsetFocusVisible(offset: number) {
 
 export type FocusVisibleInput = boolean | React.CSSProperties | null | undefined;
 
-// Assemble the raw `focusVisible` input from `createTheme(options, ...args)` with the theme's own
-// deep-merge semantics: two objects merge key-by-key, a non-object (`true`/`false`) replaces
-// wholesale. The single-key wrapper is load-bearing — raw values hit deepmerge's top-level
-// plain-object guard (`deepmerge(true, obj)` drops the object); wrapped, they take the per-key
-// branch that has the required semantics.
+// Merge the raw `focusVisible` input across `createTheme(options, ...args)` with the theme's own
+// deep-merge semantics. The single-key wrapper is load-bearing — a raw value hits deepmerge's
+// top-level plain-object guard (`deepmerge(true, obj)` drops the object).
 export function mergeFocusVisibleInput(
   optionsFocusVisible: FocusVisibleInput,
   args: readonly any[],
@@ -62,9 +62,8 @@ export function isResolvedFocusVisible(input: FocusVisibleInput): boolean {
 }
 
 /**
- * Resolve the opt-in ring (`true` → curated default, object → merged over it), wiring in the
- * private inset vars. `outlineColor` is the default the caller supplies — a hex, the palette var,
- * or a scheme's primary — overridden by a user-provided `outlineColor`.
+ * Resolve the opt-in ring, wiring in the private inset vars. `outlineColor` is the caller's default
+ * — a hex, the palette var, or a scheme's primary — overridden by a user-provided `outlineColor`.
  */
 export function resolveFocusVisible(
   input: true | React.CSSProperties,
@@ -83,22 +82,18 @@ export function resolveFocusVisible(
 
 /**
  * Wire the private inset vars into a resolved `theme.focusVisible` so a custom `outlineOffset` or
- * `boxShadow` insets automatically on clip-prone components — the consumer never references a var.
- * Mutates and returns the object.
+ * `boxShadow` insets automatically on clip-prone components. Mutates and returns the object.
  */
 export function wireFocusVisibleVars(resolved: React.CSSProperties): React.CSSProperties {
-  // Multiply the offset by the sign var so it flips to inset on clip-prone components; default to 0
-  // when no offset was set (the curated default sets an explicit `outlineOffset`). Skip if already
-  // wired, so re-composing a resolved theme (`createTheme(existingTheme, overrides)`) does not wrap
-  // the calc twice and invert the sign.
+  // Multiply the offset by the sign var so it flips to inset on clip-prone components. Skip if
+  // already wired: re-composing a resolved theme must not wrap the calc twice and invert the sign.
   const offset = resolved.outlineOffset ?? 0;
   if (typeof offset !== 'string' || !offset.includes(focusVisibleOffsetVar)) {
     const offsetPx = typeof offset === 'number' ? `${offset}px` : offset;
     resolved.outlineOffset = `calc(${offsetValue} * ${offsetPx})`;
   }
   // Prefix a box-shadow with the behavior var so it insets there too, unless it already opts in.
-  // Standalone keywords are complete values — prefixing would make the declaration invalid
-  // (`inset none`) on clip-prone components.
+  // Standalone keywords are complete values — prefixing would produce an invalid `inset none`.
   const standaloneBoxShadows = new Set([
     'none',
     'initial',

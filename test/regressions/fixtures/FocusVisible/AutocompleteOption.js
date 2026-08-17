@@ -4,10 +4,8 @@ import Box from '@mui/material/Box';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
-// Autocomplete options are plain <li> (not ButtonBase), so the ring is keyed to the option's
-// keyboard-navigation state and insets (the listbox scrolls). The first option renders already
-// focus-visible via `renderOption` so the screenshot loop captures the ring; `disablePortal` keeps
-// the listbox inside the testcase element so it's in the screenshot.
+// Pins the inset ring on an Autocomplete option: a plain <li>, not ButtonBase, inside a scrolling
+// listbox. `renderOption` forces focus-visible and `disablePortal` keeps the listbox in the shot.
 const theme = createTheme({ focusVisible: true });
 
 export default function AutocompleteOption() {

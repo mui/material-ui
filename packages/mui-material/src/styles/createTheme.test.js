@@ -474,7 +474,6 @@ describe('createTheme', () => {
     it('an object merges over the curated default, keeping geometry', () => {
       const theme = createTheme({ cssVariables: false, focusVisible: { outlineColor: 'red' } });
       expect(theme.focusVisible.outlineColor).to.equal('red');
-      // the curated geometry survives the merge
       expect(theme.focusVisible.outlineStyle).to.equal('solid');
       expect(theme.focusVisible.outlineWidth).to.equal(2);
     });
@@ -493,11 +492,9 @@ describe('createTheme', () => {
         cssVariables: false,
         focusVisible: { boxShadow: '0 0 0 4px #fff' },
       });
-      // prepended internally so the box-shadow insets on clip-prone components
       expect(theme.focusVisible.boxShadow).to.equal(
         'var(--_focusVisible-behavior, ) 0 0 0 4px #fff',
       );
-      // additive: the outline baseline stays
       expect(theme.focusVisible.outlineStyle).to.equal('solid');
       expect(theme.focusVisible.outlineColor).to.equal(theme.palette.primary.main);
     });
@@ -532,10 +529,7 @@ describe('createTheme', () => {
       const theme = createTheme({ cssVariables: true, focusVisible: true });
       // scheme-reactive: resolves through the palette var, correct in dark mode
       expect(theme.focusVisible.outlineColor).to.equal('var(--mui-palette-primary-main)');
-      // `focusVisible` is skipped from var generation (see `shouldSkipGeneratingVar`): hoisting it
-      // to a `:root` var resolves the embedded per-component private vars (`--_focusVisible-offset`)
-      // at `:root` where they are unset, freezing the offset and breaking the inner-ring inset. So
-      // there is no `--mui-focusVisible-*` var and the recipe stays inline on `theme.focusVisible`.
+      // no `--mui-focusVisible-*` var: the recipe stays inline (see `shouldSkipGeneratingVar`)
       expect(theme.vars.focusVisible).to.equal(undefined);
       expect(theme.focusVisible.outlineWidth).to.equal(2);
       expect(theme.focusVisible.outlineOffset).to.equal(
@@ -548,12 +542,10 @@ describe('createTheme', () => {
       expect(auto.focusVisible.outlineOffset).to.equal(
         'calc(var(--_focusVisible-offset, 1) * 2px)',
       );
-      // a wider ring keeps the curated 2px offset — the offset does not track the width
       const wide = createTheme({ cssVariables: false, focusVisible: { outlineWidth: 4 } });
       expect(wide.focusVisible.outlineOffset).to.equal(
         'calc(var(--_focusVisible-offset, 1) * 2px)',
       );
-      // a custom offset replaces it, still wrapped in the sign var so it insets on clip-prone components
       const fixed = createTheme({ cssVariables: false, focusVisible: { outlineOffset: 6 } });
       expect(fixed.focusVisible.outlineOffset).to.equal(
         'calc(var(--_focusVisible-offset, 1) * 6px)',
@@ -561,27 +553,22 @@ describe('createTheme', () => {
     });
 
     it('normalizes `focusVisible` passed as a merge argument (non-vars and vars)', () => {
-      // `createTheme(options, ...args)` — `focusVisible` arrives via a merge argument, not
-      // `options`. It must still resolve to the curated object, not stay a raw boolean.
       const merged = createTheme({ cssVariables: false }, { focusVisible: true }).focusVisible;
       expect(merged.outlineStyle).to.equal('solid');
       expect(merged.outlineColor).to.equal(createTheme().palette.primary.main);
       const varsTheme = createTheme({ cssVariables: true }, { focusVisible: true });
       expect(varsTheme.focusVisible.outlineColor).to.equal('var(--mui-palette-primary-main)');
-      // skipped from var generation — kept inline (see the vars-theme test above)
       expect(varsTheme.vars.focusVisible).to.equal(undefined);
     });
 
     it('re-composing a resolved theme does not double-wrap the offset (idempotent)', () => {
-      // `createTheme(existingTheme, overrides)` and `createTheme({ focusVisible: theme.focusVisible })`
-      // feed an already-resolved object back in. The offset calc must not wrap a second time, which
-      // would be `(-1 * -1)` = outset on clip-prone components and clip the ring after re-composition.
+      // Wrapping the offset calc twice would be `(-1 * -1)` = outset on clip-prone components,
+      // clipping the ring after re-composition.
       const base = createTheme({ cssVariables: false, focusVisible: true });
       const recomposed = createTheme({ cssVariables: false, focusVisible: base.focusVisible });
       expect(recomposed.focusVisible.outlineOffset).to.equal(
         'calc(var(--_focusVisible-offset, 1) * 2px)',
       );
-      // same via the merge-argument path
       const merged = createTheme(base, { cssVariables: false });
       expect(merged.focusVisible.outlineOffset).to.equal(
         'calc(var(--_focusVisible-offset, 1) * 2px)',

@@ -203,10 +203,8 @@ describe('<Radio />', () => {
   });
 
   describe('theme.focusVisible', () => {
-    // Radio is an outer-ring exception to the shared ButtonBase rule: it opts the root out of the
-    // theme ring and draws it on the icon svg instead, so the ring renders fully. Vars mode guards
-    // the shouldSkipGeneratingVar fix — the recipe stays inline on the svg. The no-vars case is
-    // the FocusVisible/SelectionControls visual-regression fixture.
+    // `cssVariables: true` guards the shouldSkipGeneratingVar fix — the recipe must stay inline on
+    // the svg. No-vars coverage is the FocusVisible/SelectionControls regression fixture.
     it.skipIf(isJsdom())('draws the focus ring on the icon svg, not the ButtonBase root', () => {
       const theme = createTheme({
         cssVariables: true,
