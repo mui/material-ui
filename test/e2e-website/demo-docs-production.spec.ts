@@ -355,10 +355,12 @@ export default function BasicButtons() {
 
       await demo.getByRole('button', { name: 'See more' }).click();
 
+      // `createDemo` builds this link from the deploy's own repository and
+      // commit, so the owner and ref differ between local and Netlify builds.
       const sourceLink = page.getByRole('menuitem', { name: 'View the source on GitHub' });
       await expect(sourceLink).toHaveAttribute(
         'href',
-        /github\.com\/mui\/material-ui\/blob\/.*\/docs\/data\/material\/components\/buttons\/demos\/basic\/BasicButtons\.tsx$/,
+        /github\.com\/[^/]+\/material-ui\/blob\/[^/]+\/docs\/data\/material\/components\/buttons\/demos\/basic\/BasicButtons\.tsx$/,
       );
       await expect(sourceLink).toHaveAttribute('target', '_blank');
 
@@ -368,7 +370,7 @@ export default function BasicButtons() {
       await demo.getByRole('button', { name: 'See more' }).click();
       await expect(sourceLink).toHaveAttribute(
         'href',
-        /github\.com\/mui\/material-ui\/blob\/.*\/docs\/data\/material\/components\/buttons\/demos\/basic\/BasicButtons\.jsx$/,
+        /github\.com\/[^/]+\/material-ui\/blob\/[^/]+\/docs\/data\/material\/components\/buttons\/demos\/basic\/BasicButtons\.jsx$/,
       );
     });
 
