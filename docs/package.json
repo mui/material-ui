@@ -26,7 +26,6 @@
     "@emotion/react": "catalog:docs",
     "@emotion/server": "catalog:docs",
     "@emotion/styled": "catalog:docs",
-
     "@mui/icons-material": "workspace:^",
     "@mui/internal-core-docs": "workspace:^",
     "@mui/internal-docs-infra": "catalog:docs",
