@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { exportVariant, exportVariantAsCra } from '@mui/internal-docs-infra/useDemo';
 import type { ExportConfig } from '@mui/internal-docs-infra/useDemo';
+import type { VariantCode } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import type { SandboxConfig } from '../DemoContext';
 
 // ---------------------------------------------------------------------------
@@ -205,6 +207,16 @@ const buildHtmlTemplate: ExportConfig['htmlTemplate'] = ({
 };
 
 /**
+ * The exporters derive the sandbox directory from the variant's URL, which
+ * `createDemo` rewrites to a hosted Git URL — leaving the demo nested under
+ * `src/mui/material-ui/tree/<ref>/docs/…`. Drop the URL and name the entry
+ * `Demo.<ext>` so exported projects stay flat, as the published sandboxes are.
+ */
+function flattenVariantForExport(variant: VariantCode, useTypescript?: boolean): VariantCode {
+  return { ...variant, url: undefined, fileName: `Demo.${useTypescript ? 'tsx' : 'jsx'}` };
+}
+
+/**
  * Build the full `ExportConfig` consumed by `useDemo`. Combines the resolver,
  * template, and dependency helpers above with the product-specific
  * `csbConfig` (theme injection, fallback dependency, etc.) so that demo
@@ -225,6 +237,8 @@ export function buildExportConfig(options: {
     versions,
     resolveDependencies,
     htmlTemplate: buildHtmlTemplate,
+    exportFunction: (variant, exportOptions) =>
+      exportVariant(flattenVariantForExport(variant, exportOptions.useTypescript), exportOptions),
     // Emotion is a peer dep always shipped with MUI demos (see
     // `includePeerDependencies` in docs/src/modules/sandbox/Dependencies.ts).
     // exportVariant only auto-seeds react/react-dom from `versions`, so add
@@ -260,6 +274,11 @@ export function buildExportConfig(options: {
  * CreateReactApp.ts `getTsconfig`.
  */
 export const codeSandboxTsconfigOverride = {
+  exportFunction: (variant: VariantCode, exportOptions: ExportConfig) =>
+    exportVariantAsCra(
+      flattenVariantForExport(variant, exportOptions.useTypescript),
+      exportOptions,
+    ),
   tsconfigOptions: {
     target: 'es5',
     lib: ['dom', 'dom.iterable', 'esnext'],

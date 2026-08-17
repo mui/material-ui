@@ -620,7 +620,7 @@ export function DemoContainer(props: DemoContainerProps) {
   const tabsAndCode = (
     <React.Fragment>
       {tabs}
-      {code != null ? (
+      {code != null && sourceVisible !== false ? (
         // Relative anchor so `codeOverlay` can straddle the code panel's top border
         // (below the toolbar). It can't live inside `DemoCodePanel` — that clips with
         // `overflow: hidden` — so it sits here as a sibling of the panel.
