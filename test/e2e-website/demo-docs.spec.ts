@@ -4,6 +4,7 @@ import { TestFixture } from './playwright.config';
 const test = base.extend<TestFixture>({});
 
 const validationPage = '/experiments/docs/live-edit-validation/';
+const WEBSITE_ORIGIN = new URL(process.env.PLAYWRIGHT_TEST_BASE_URL || 'https://mui.com').origin;
 
 function getDemo(page: Page, anchor: string) {
   return page.locator(`#${anchor}`).locator('..');
@@ -323,6 +324,28 @@ test.describe('Demo docs', () => {
       await expect(buttons.nth(1)).toBeFocused();
       await expect(toolbar.locator('button[tabindex="0"]')).toHaveCount(1);
     });
+  });
+
+  // The JavaScript variant is produced by a transform whose source projection is
+  // precomputed against the unedited source. Preferring it over the live one made
+  // the collapsed preview expand into the whole module on the first keystroke.
+  test('keeps the collapsed preview scoped while editing the JavaScript source', async ({
+    page,
+    context,
+  }) => {
+    await context.addCookies([{ name: 'codeVariant', value: 'JS', url: WEBSITE_ORIGIN }]);
+    await page.goto('/material-ui/react-button/');
+    const demo = getDemo(page, 'BasicButtons');
+
+    const editor = await getSelectedFileEditor(demo);
+    await expect(editor).toHaveValue(/^<Button/);
+    const previewLines = await demo.locator('pre code .line').count();
+
+    await editor.pressSequentially('x', { delay: 50 });
+    await editor.pressSequentially('y', { delay: 50 });
+
+    await expect(demo.locator('pre code .line')).toHaveCount(previewLines);
+    await expect(editor).not.toHaveValue(/import Button from/);
   });
 
   test('uses show and hide labels when collapsed source is empty', async ({ page }) => {
