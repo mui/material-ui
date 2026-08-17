@@ -20,6 +20,7 @@ import {
   createDemoUseOptions,
   expandDemo,
   getDemoEditingDependencies,
+  hasJavascriptTransform,
   resetDemo,
   resolveDemoSourceView,
   toggleDemoExpanded,
@@ -191,7 +192,9 @@ export default function DemoContent(props: DemoContentProps) {
   const toggleRef = React.useRef<HTMLButtonElement>(null);
   const languageToggleRef = React.useRef<HTMLDivElement | null>(null);
 
-  const hasJsTransform = demo.availableTransforms.includes('js');
+  const hasJsTransform =
+    demo.availableTransforms.includes('js') ||
+    hasJavascriptTransform(props.code, demo.selectedVariant);
   const isJsSelected = demo.selectedTransform === 'js';
 
   const handleLanguageClick = React.useCallback(
@@ -224,7 +227,12 @@ export default function DemoContent(props: DemoContentProps) {
     collapsible: demo.selectedFileCollapsible,
     hasFocusProjection: demo.selectedFileHasFocusProjection,
   });
-  const showCodeLabel = hasSourceFocus
+  // Whether the demo has a short preview is a property of its source, not of the
+  // reader's edits — a full-source edit drops the focus projection, and the
+  // Expand/Collapse labels must not turn into Show/Hide because of it.
+  const hadSourceFocusRef = React.useRef(false);
+  hadSourceFocusRef.current = hadSourceFocusRef.current || hasSourceFocus;
+  const showCodeLabel = hadSourceFocusRef.current
     ? t(demo.expanded ? 'hideFullSource' : 'showFullSource')
     : t(demo.expanded ? 'hideSource' : 'showSource');
 
@@ -302,12 +310,14 @@ export default function DemoContent(props: DemoContentProps) {
   const handleExpand = React.useCallback(() => {
     expandDemo(expandWithEditingPreload, remountPreview);
   }, [expandWithEditingPreload]);
-  // The collapsed preview projects the main file, so restore it when the viewer closes.
+  // The collapsed preview projects the unedited main file, so restore both the
+  // file selection and the original source when the viewer closes.
   const resetSourceFile = React.useCallback(() => {
     const mainFileName = demo.files[0]?.name;
     if (mainFileName && demo.selectedFileName !== mainFileName) {
       demo.selectFileName(mainFileName);
     }
+    resetDemo(demo.reset, remountPreview);
   }, [demo]);
   const handleToggleFrames = React.useCallback(() => {
     toggleDemoExpanded(
@@ -339,7 +349,7 @@ export default function DemoContent(props: DemoContentProps) {
   // hashes (`isHashRelevantToDemo`), so these colon-less ids never fight it. NEVER
   // join these ids with `:` or it re-enables native nav.
   const [hash] = useUrlHashState();
-  const { availableTransforms, selectTransform } = demo;
+  const { selectTransform } = demo;
 
   // The root file is the selected variant's entry file (`VariantCode.fileName`,
   // e.g. `ButtonBaseDemo.tsx`).
@@ -397,18 +407,22 @@ export default function DemoContent(props: DemoContentProps) {
   // configured, e.g. local dev — the menu item is then disabled). The rewrite
   // yields a `/tree/<ref>/` prefix; swap it for `/blob/<ref>/` so the link
   // opens the file view rather than a directory listing.
-  const githubLocation = demo.selectedFileUrl
-    ? demo.selectedFileUrl.replace('/tree/', '/blob/')
-    : undefined;
+  // `selectedFileUrl` keeps the authored `.tsx` name, so swap in the selected
+  // file name to follow both the active tab and the JavaScript/TypeScript choice.
+  const githubLocation = React.useMemo(() => {
+    if (!demo.selectedFileUrl) {
+      return undefined;
+    }
+    const blobUrl = demo.selectedFileUrl.replace('/tree/', '/blob/');
+    return demo.selectedFileName ? blobUrl.replace(/[^/]+$/, demo.selectedFileName) : blobUrl;
+  }, [demo.selectedFileUrl, demo.selectedFileName]);
 
   // Copy-link anchors for the demo's ROOT file: its TS source name and its JS twin
   // (e.g. `ButtonBaseDemo.tsx` / `ButtonBaseDemo.jsx`) — the ids rendered above, so
   // pasting the link opens the demo source in that language.
   const tsSourceAnchor = rootFileName;
   const jsSourceAnchor =
-    rootFileName && availableTransforms.includes('js')
-      ? toJavascriptFileName(rootFileName)
-      : undefined;
+    rootFileName && hasJsTransform ? toJavascriptFileName(rootFileName) : undefined;
 
   const router = useRouter();
   const deploymentLinks = React.useMemo(
