@@ -47,6 +47,25 @@ export function resolveDemoSourceView({
   };
 }
 
+/**
+ * `useDemo`'s `availableTransforms` drops a transform whose output matches the
+ * source (a `.tsx` demo with no TypeScript-only syntax). The docs always offer
+ * the JavaScript/TypeScript toggle, so report the transform whenever the
+ * variant lists it, delta or not.
+ */
+export function hasJavascriptTransform(code: Code | undefined, variantName: string) {
+  const variant = code?.[variantName];
+  if (!variant || typeof variant === 'string') {
+    return false;
+  }
+  if (variant.transforms?.js) {
+    return true;
+  }
+  return Object.values(variant.extraFiles ?? {}).some(
+    (file) => typeof file === 'object' && file !== null && Boolean(file.transforms?.js),
+  );
+}
+
 export function getDemoEditingDependencies(code: Code | undefined) {
   let js = false;
   let css = false;
