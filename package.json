@@ -78,7 +78,6 @@
   "dependencies": {
     "@netlify/functions": "^5.3.0",
     "@slack/bolt": "^5.0.0",
-    "@vitest/eslint-plugin": "^1.6.27",
     "execa": "^10.0.1"
   },
   "devDependencies": {
@@ -111,6 +110,7 @@
     "@vitejs/plugin-react": "^6.0.0",
     "@vitest/browser-playwright": "^4.1.0",
     "@vitest/coverage-v8": "^4.1.0",
+    "@vitest/eslint-plugin": "^1.6.27",
     "axe-core": "4.12.1",
     "babel-plugin-module-resolver": "5.0.3",
     "chalk": "6.0.0",

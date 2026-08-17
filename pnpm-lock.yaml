@@ -49,9 +49,6 @@ importers:
       '@slack/bolt':
         specifier: ^5.0.0
         version: 5.0.0(@types/express@5.0.0)(supports-color@10.2.2)(undici@7.28.0)
-      '@vitest/eslint-plugin':
-        specifier: ^1.6.27
-        version: 1.6.27(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.8)
       execa:
         specifier: ^10.0.1
         version: 10.0.1
@@ -143,6 +140,9 @@ importers:
       '@vitest/coverage-v8':
         specifier: ^4.1.0
         version: 4.1.8(@vitest/browser@4.1.8)(vitest@4.1.8)
+      '@vitest/eslint-plugin':
+        specifier: ^1.6.27
+        version: 1.6.27(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.8)
       axe-core:
         specifier: 4.12.1
         version: 4.12.1
