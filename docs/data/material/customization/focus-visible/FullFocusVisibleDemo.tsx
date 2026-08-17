@@ -43,7 +43,6 @@ import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Card from '@mui/material/Card';
@@ -55,6 +54,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
 import StarIcon from '@mui/icons-material/Star';
+import HomeIcon from '@mui/icons-material/Home';
 
 const theme = createTheme({
   focusVisible: true,
@@ -264,35 +264,21 @@ export default function FullFocusVisibleDemo() {
             </Stepper>
           </Row>
           <Row label="MenuItem">
-            <MenuList
-              sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1 }}
-            >
+            <MenuList>
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
             </MenuList>
           </Row>
           <Row label="ListItemButton">
-            <List
-              sx={{
-                border: '1px solid',
-                borderColor: 'divider',
-                borderRadius: 1,
-                minWidth: 200,
-                py: 0,
-              }}
-            >
-              <ListItemButton>
-                <ListItemText primary="List item" />
-              </ListItemButton>
+            <List>
+              <ListItemButton>List item button 1</ListItemButton>
+              <ListItemButton>List item button 2</ListItemButton>
             </List>
           </Row>
           <Row label="BottomNavigation">
-            <BottomNavigation
-              showLabels
-              value={0}
-              sx={{ width: 320, border: 1, borderColor: 'divider', borderRadius: 1 }}
-            >
+            <BottomNavigation showLabels value={0} sx={{ width: 320 }}>
               <BottomNavigationAction label="Star" icon={<StarIcon />} />
+              <BottomNavigationAction label="Home" icon={<HomeIcon />} />
               <BottomNavigationAction label="Add" icon={<AddIcon />} />
             </BottomNavigation>
           </Row>
