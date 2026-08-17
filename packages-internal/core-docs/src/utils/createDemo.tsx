@@ -73,7 +73,7 @@ const createDemoBase = createDemoFactory({
   controlled: true,
   projectDir,
   projectUrl,
-  editActivation: 'interaction',
+  editActivation: 'eager',
 });
 
 const createDemoWithVariantsBase = createDemoWithVariantsFactory({
@@ -82,7 +82,7 @@ const createDemoWithVariantsBase = createDemoWithVariantsFactory({
   controlled: true,
   projectDir,
   projectUrl,
-  editActivation: 'interaction',
+  editActivation: 'eager',
 });
 
 /**
