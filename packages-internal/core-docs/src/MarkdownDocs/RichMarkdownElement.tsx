@@ -1,9 +1,15 @@
 import * as React from 'react';
+import {
+  shouldUseDocsInfraPipeline,
+  resolveDocsInfraDemoFlags,
+  type DemoMarker,
+} from '@mui/internal-markdown/demoPipeline';
 import { useTranslate, useUserLanguage } from '../i18n';
 import { HighlightedCodeWithTabs } from '../HighlightedCodeWithTabs';
 import { MarkdownElement } from './MarkdownElement';
 import { Demo, type DemoProps } from '../Demo/Demo';
 import { DemoToolbar } from '../Demo/DemoToolbar';
+import { DocsInfraDemo } from '../docsInfra/DocsInfraDemo';
 
 function noComponent(moduleID: string) {
   return function NoComponent() {
@@ -109,34 +115,46 @@ export function RichMarkdownElement(props: RichMarkdownElementProps) {
   splitLocationBySlash.pop();
   const fileNameWithLocation = `${splitLocationBySlash.join('/')}/${name}`;
 
-  return (
-    <Demo
-      demo={{
-        raw: demo.raw,
-        js: demoComponents[demo.module!] ?? noComponent(demo.module!),
-        scope: demos.scope,
-        jsxPreview: demo.jsxPreview,
-        tailwindJsxPreview: demo.tailwindJsxPreview,
-        cssJsxPreview: demo.cssJsxPreview,
-        rawTS: demo.rawTS,
-        module: demo.module,
-        moduleTS: demo.moduleTS,
-        tsx: demoComponents[demo.moduleTS!] ?? noComponent(demo.moduleTS!),
-        rawTailwind: demo.rawTailwind,
-        rawTailwindTS: demo.rawTailwindTS,
-        jsTailwind: demoComponents[demo.moduleTailwind] ?? null,
-        tsxTailwind: demoComponents[demo.moduleTSTailwind] ?? null,
-        rawCSS: demo.rawCSS,
-        rawCSSTS: demo.rawCSSTS,
-        jsCSS: demoComponents[demo.moduleCSS] ?? null,
-        tsxCSS: demoComponents[demo.moduleTSCSS] ?? null,
-        gaLabel: fileNameWithLocation.replace(/^\/docs\/data\//, ''),
-        relativeModules: demo.relativeModules,
-      }}
-      disableAd={disableAd ?? false}
-      demoOptions={renderedMarkdownOrDemo as DemoProps['demoOptions']}
-      githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${fileNameWithLocation}`}
-      demoToolbarSlot={DemoToolbar}
-    />
-  );
+  const demoProps: DemoProps = {
+    demo: {
+      raw: demo.raw,
+      js: demoComponents[demo.module!] ?? noComponent(demo.module!),
+      scope: demos.scope,
+      jsxPreview: demo.jsxPreview,
+      tailwindJsxPreview: demo.tailwindJsxPreview,
+      cssJsxPreview: demo.cssJsxPreview,
+      rawTS: demo.rawTS,
+      module: demo.module,
+      moduleTS: demo.moduleTS,
+      tsx: demoComponents[demo.moduleTS!] ?? noComponent(demo.moduleTS!),
+      rawTailwind: demo.rawTailwind,
+      rawTailwindTS: demo.rawTailwindTS,
+      jsTailwind: demoComponents[demo.moduleTailwind] ?? null,
+      tsxTailwind: demoComponents[demo.moduleTSTailwind] ?? null,
+      rawCSS: demo.rawCSS,
+      rawCSSTS: demo.rawCSSTS,
+      jsCSS: demoComponents[demo.moduleCSS] ?? null,
+      tsxCSS: demoComponents[demo.moduleTSCSS] ?? null,
+      gaLabel: fileNameWithLocation.replace(/^\/docs\/data\//, ''),
+      relativeModules: demo.relativeModules,
+    },
+    disableAd: disableAd ?? false,
+    demoOptions: renderedMarkdownOrDemo as DemoProps['demoOptions'],
+    githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${fileNameWithLocation}`,
+    demoToolbarSlot: DemoToolbar,
+  };
+
+  const marker = renderedMarkdownOrDemo as DemoMarker;
+
+  if (shouldUseDocsInfraPipeline(marker) === 'docs-infra') {
+    return (
+      <DocsInfraDemo
+        {...demoProps}
+        flags={resolveDocsInfraDemoFlags(marker)}
+        docsInfra={demo.docsInfra}
+      />
+    );
+  }
+
+  return <Demo {...demoProps} />;
 }

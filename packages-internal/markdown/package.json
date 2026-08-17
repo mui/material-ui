@@ -8,7 +8,15 @@
   "types": "./index.d.mts",
   "exports": {
     ".": "./index.mjs",
+    "./demoPipeline": {
+      "types": "./demoPipeline.d.mts",
+      "import": "./demoPipeline.mjs"
+    },
     "./loader": "./loader.mjs",
+    "./precomputeDocsInfraDemo": {
+      "types": "./precomputeDocsInfraDemo.d.mts",
+      "import": "./precomputeDocsInfraDemo.mjs"
+    },
     "./apiPageTranslationLoader": "./apiPageTranslationLoader.mjs",
     "./prism": {
       "types": "./prism.d.mts",
@@ -27,7 +35,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.29.7",
+    "@mui/internal-docs-infra": "catalog:docs",
     "es-toolkit": "^1.50.0",
+    "hast-util-to-html": "^9.0.5",
     "marked": "^18.0.7",
     "prismjs": "^1.30.0"
   },
