@@ -13,6 +13,10 @@ const theme = createTheme({
 });
 
 export default function FocusVisibleInner() {
+  const [value, setValue] = React.useState(0);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   return (
     <ThemeProvider theme={theme}>
       <Stack spacing={2} sx={{ alignItems: 'center' }}>
@@ -20,7 +24,7 @@ export default function FocusVisibleInner() {
           Press <kbd>Tab</kbd>, then use the arrow keys — the ring insets so the Tabs
           scroller cannot clip it.
         </Typography>
-        <Tabs value={0}>
+        <Tabs value={value} onChange={handleChange}>
           <Tab label="One" />
           <Tab label="Two" />
           <Tab label="Three" />

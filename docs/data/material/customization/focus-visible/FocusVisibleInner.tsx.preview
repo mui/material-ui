@@ -4,7 +4,7 @@
       Press <kbd>Tab</kbd>, then use the arrow keys — the ring insets so the Tabs
       scroller cannot clip it.
     </Typography>
-    <Tabs value={0}>
+    <Tabs value={value} onChange={handleChange}>
       <Tab label="One" />
       <Tab label="Two" />
       <Tab label="Three" />
