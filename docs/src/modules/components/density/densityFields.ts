@@ -606,19 +606,15 @@ const half = (v: string) => `calc(${v} / 2)`;
 
 export const densityLinkedWrites: Record<string, DensityLinkedWrite[]> = {
   // Button block padding -> outlined re-emission at -1px (border keeps all
-  // variants at equal height; master's own compensation). One knob per size
-  // moves every variant, outlined stays 1px behind.
-  ...Object.fromEntries(
-    (['small', 'medium', 'large'] as const).map((size) => [
-      `MuiButton|root|size=${size}||paddingBlock`,
-      [
-        {
-          id: `MuiButton|root|size=${size},variant=outlined||paddingBlock`,
-          wrap: (v: string) => `calc(${v} - 1px)`,
-        },
-      ],
-    ]),
-  ),
+  // variants at equal height; master's own compensation). paddingBlock is
+  // size-uniform (base emission; the min box is the size lever), so ONE knob
+  // moves every size and variant, outlined stays 1px behind.
+  'MuiButton|root|base||paddingBlock': [
+    {
+      id: 'MuiButton|root|variant=outlined||paddingBlock',
+      wrap: (v: string) => `calc(${v} - 1px)`,
+    },
+  ],
   // MenuItem min-height -> the sm-up re-assert. Master resets non-dense
   // min-height to `auto` at sm-up (media rules hoist after the class rule), so
   // the knob's value must land inside that media too or desktop ignores it.

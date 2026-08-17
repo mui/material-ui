@@ -69,55 +69,37 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // cssVariables mode, raw px otherwise (dual-mode via `theme.vars || theme`).
   const d: DensityScale = (enhanced.vars || enhanced).density;
   addRootOverride(enhanced.components, 'MuiButton', {
+    // Longhand split: block is the height lever, inline the width. paddingBlock
+    // is fixed-lane and SIZE-UNIFORM — the min box is the size lever (medium 32
+    // touch target, large 44, small content-sized) and padding is constant
+    // chrome: semantic/spacing/fixed/xs (4px), emitted ONCE on the base.
+    paddingBlock: 4,
     variants: [
-      // Longhand split: block is the height lever, inline the width. One knob
-      // per axis moves every variant; outlined re-emits BLOCK only at −1px so
-      // its border keeps all variants at equal height (master's own
-      // compensation, e.g. 3px/9px vs contained 4px/10px). Outlined inline is
-      // NOT compensated — width parity across variants is not a goal.
-      // Small/large have no captured counterpart: paddingBlock fixed to match
-      // medium's 4/3; paddingInline rides the ladder one step off medium's
-      // `medium` (small/large); large minHeight 44 = the larger touch target.
-      // Type metrics pin per size from the size↔density diagonal (small←High's
-      // button type, medium←Medium's, large←Low's) as literals — sized text
-      // never varies with the active preset.
+      // Outlined re-emits BLOCK only at −1px border compensation (master's own
+      // shape) so its border keeps all variants at equal height; outlined
+      // inline is NOT compensated — width parity across variants is not a goal.
+      { props: { variant: 'outlined' }, style: { paddingBlock: 3 } },
+      // Per size: paddingInline rides the ladder one step off medium's `medium`
+      // (semantic/spacing/variable/m); type metrics pin per size from the
+      // size↔density diagonal (small←High's button type, medium←Medium's,
+      // large←Low's) as literals — sized text never varies with the preset.
       {
         props: { size: 'small' },
-        style: { paddingBlock: 4, paddingInline: d.small, lineHeight: 1.38462 },
-      },
-      {
-        props: { size: 'small', variant: 'outlined' },
-        style: { paddingBlock: 3 },
+        style: { paddingInline: d.small, lineHeight: 1.38462 },
       },
       {
         props: { size: 'medium' },
-        // paddingBlock: semantic/spacing/fixed/xs (4px); paddingInline: semantic/spacing/variable/m;
         // minHeight: semantic/size/touch-target/default (32px, raw sizing policy)
         style: {
           minHeight: '32px',
-          paddingBlock: 4,
           paddingInline: d.medium,
           fontSize: '0.875rem',
           lineHeight: 1.428571429,
         },
       },
       {
-        props: { size: 'medium', variant: 'outlined' },
-        // semantic/spacing/fixed/xs (4px) - 1px border compensation
-        style: { paddingBlock: 3 },
-      },
-      {
         props: { size: 'large' },
-        style: {
-          minHeight: '44px',
-          paddingBlock: d['x-small'],
-          paddingInline: d.large,
-          lineHeight: 1.4,
-        },
-      },
-      {
-        props: { size: 'large', variant: 'outlined' },
-        style: { paddingBlock: `calc(${d['x-small']} - 1px)` },
+        style: { minHeight: '44px', paddingInline: d.large, lineHeight: 1.4 },
       },
     ],
   });
@@ -146,24 +128,23 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'endIcon',
   );
   addRootOverride(enhanced.components, 'MuiIconButton', {
-    // Uniform padding fixed at 4 on every size (small/large have no captured
-    // counterpart — they match medium's model: the min box is the size lever,
-    // padding is constant chrome). Large min pair 44 = the larger touch target
-    // (square, mirroring medium's 32 pair; small keeps master, content-sized).
-    // fontSize (the 1em-child sizing seam, 18/24/28) stays frozen — icon visual
-    // size is owned by SvgIcon's own fontSize prop knob elsewhere.
+    // Padding is fixed-lane and SIZE-UNIFORM — the min box is the size lever
+    // (medium 32 pair, large 44 pair, small content-sized) and padding is
+    // constant chrome: semantic/spacing/fixed/xs (4px), emitted ONCE on the
+    // base (overrides master's per-size 5/8/12).
+    // fontSize (the 1em-child sizing seam, 18/24/28) stays frozen except the
+    // medium glyph 16px (promoted from density-Medium-only) — icon visual size
+    // is otherwise owned by SvgIcon's own fontSize prop knob elsewhere.
     // edge start/end: -4px flush-margins (override master's -12/-3; one knob per
     // side, wins all sizes as the last-applied variant).
+    padding: 4,
     variants: [
-      { props: { size: 'small' }, style: { padding: 4 } },
-      // semantic/spacing/fixed/xs (4px) — contentWrapper uniform padding;
-      // min pair: semantic/size/touch-target/default (32×32); glyph 16px
-      // (promoted from density-Medium-only — the min box is the size lever).
+      // min pair: semantic/size/touch-target/default (32×32)
       {
         props: { size: 'medium' },
-        style: { padding: 4, minWidth: '32px', minHeight: '32px', fontSize: '16px' },
+        style: { minWidth: '32px', minHeight: '32px', fontSize: '16px' },
       },
-      { props: { size: 'large' }, style: { padding: 4, minWidth: '44px', minHeight: '44px' } },
+      { props: { size: 'large' }, style: { minWidth: '44px', minHeight: '44px' } },
       { props: { edge: 'start' }, style: { marginLeft: '-4px' } },
       { props: { edge: 'end' }, style: { marginRight: '-4px' } },
     ],

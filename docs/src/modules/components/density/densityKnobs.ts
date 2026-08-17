@@ -150,19 +150,15 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'Button · endIcon · fontSize [size=medium]',
     done: ['medium'],
   },
-  'MuiButton|root|size=small||paddingBlock': 'Button · paddingBlock [size=small]',
+  'MuiButton|root|base||paddingBlock': { label: 'Button · paddingBlock', done: ['medium'] },
+  'MuiButton|root|variant=outlined||paddingBlock': {
+    label: 'Button · paddingBlock [outlined]',
+    note: 'Linked write: follows the paddingBlock knob at calc(v − 1px) — the outlined border compensation keeps all variants at equal height.',
+  },
   'MuiButton|root|size=small||paddingInline': 'Button · paddingInline [size=small]',
   'MuiButton|root|size=small||lineHeight': 'Button · lineHeight [size=small]',
-  'MuiButton|root|size=small,variant=outlined||paddingBlock': {
-    label: 'Button · paddingBlock [size=small, outlined]',
-    note: 'Linked write: follows the size=small paddingBlock knob at calc(v − 1px) — the outlined border compensation keeps all variants at equal height.',
-  },
   'MuiButton|root|size=medium||minHeight': {
     label: 'Button · minHeight [size=medium]',
-    done: ['medium'],
-  },
-  'MuiButton|root|size=medium||paddingBlock': {
-    label: 'Button · paddingBlock [size=medium]',
     done: ['medium'],
   },
   'MuiButton|root|size=medium||paddingInline': {
@@ -171,18 +167,9 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiButton|root|size=medium||fontSize': 'Button · fontSize [size=medium]',
   'MuiButton|root|size=medium||lineHeight': 'Button · lineHeight [size=medium]',
-  'MuiButton|root|size=medium,variant=outlined||paddingBlock': {
-    label: 'Button · paddingBlock [size=medium, outlined]',
-    note: 'Linked write: follows the size=medium paddingBlock knob at calc(v − 1px) — the outlined border compensation keeps all variants at equal height.',
-  },
   'MuiButton|root|size=large||minHeight': { label: 'Button · minHeight [size=large]' },
-  'MuiButton|root|size=large||paddingBlock': { label: 'Button · paddingBlock [size=large]' },
   'MuiButton|root|size=large||paddingInline': { label: 'Button · paddingInline [size=large]' },
   'MuiButton|root|size=large||lineHeight': 'Button · lineHeight [size=large]',
-  'MuiButton|root|size=large,variant=outlined||paddingBlock': {
-    label: 'Button · paddingBlock [size=large, outlined]',
-    note: 'Linked write: follows the size=large paddingBlock knob at calc(v − 1px) — the outlined border compensation keeps all variants at equal height.',
-  },
   'MuiButton|startIcon|size=medium|& > *:nth-of-type(1)|fontSize': {
     label: 'Button · startIcon · fontSize [size=medium]',
     done: ['medium'],
@@ -770,11 +757,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Rides theme.typography.body1.lineHeight — label metrics match input metrics (no ±0.5px restY fudge).',
   },
-  'MuiIconButton|root|size=small||padding': 'IconButton · padding [size=small]',
-  'MuiIconButton|root|size=medium||padding': {
-    label: 'IconButton · padding [size=medium]',
-    done: ['medium'],
-  },
+  'MuiIconButton|root|base||padding': { label: 'IconButton · padding', done: ['medium'] },
   'MuiIconButton|root|size=medium||minWidth': {
     label: 'IconButton · minWidth [size=medium]',
     done: ['medium'],
@@ -787,7 +770,6 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'IconButton · fontSize [size=medium]',
     done: ['medium'],
   },
-  'MuiIconButton|root|size=large||padding': { label: 'IconButton · padding [size=large]' },
   'MuiIconButton|root|size=large||minWidth': { label: 'IconButton · minWidth [size=large]' },
   'MuiIconButton|root|size=large||minHeight': { label: 'IconButton · minHeight [size=large]' },
   'MuiIconButton|root|edge=start||marginLeft': {

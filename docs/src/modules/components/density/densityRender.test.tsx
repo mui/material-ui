@@ -12,7 +12,7 @@ import { buildOverrides, mergeOntoPreset } from './buildDensityOverrides';
 
 const TOOLBAR_MIN_HEIGHT_ID =
   'MuiTablePagination|root|base|& .MuiTablePagination-toolbar|minHeight';
-const ICON_BUTTON_MEDIUM_PADDING_ID = 'MuiIconButton|root|size=medium||padding';
+const ICON_BUTTON_MEDIUM_PADDING_ID = 'MuiIconButton|root|base||padding';
 
 function mount(theme: unknown, element: React.ReactElement) {
   const container = document.createElement('div');

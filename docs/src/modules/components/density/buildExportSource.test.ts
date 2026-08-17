@@ -16,7 +16,7 @@ const workspaces = (high: Record<string, string> = {}): MappingByPreset => ({
 
 const EDITS = {
   densityKey: { 'MuiButton|root|size=small||paddingBlock': 'x-small' },
-  rawPx: { 'MuiButton|root|size=medium||paddingBlock': '30px' },
+  rawPx: { 'MuiButton|root|base||paddingBlock': '30px' },
   virtualMembers: {
     // virtual:MuiTab:iconGapBlock — both members get one value (fn-matcher rows)
     'MuiTab|root|fn:8b76di|& > .MuiTab-icon|marginBottom': 'small',
