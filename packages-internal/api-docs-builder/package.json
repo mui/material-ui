@@ -14,8 +14,8 @@
   "dependencies": {
     "@babel/core": "^7.29.7",
     "@babel/preset-typescript": "^7.29.7",
-    "@babel/traverse": "^7.29.7",
-    "@babel/types": "^7.29.7",
+    "@babel/traverse": "^7.29.8",
+    "@babel/types": "^7.29.8",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "doctrine": "^3.0.0",
