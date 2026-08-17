@@ -149,7 +149,13 @@ export default function BasicButtons() {
     test('remounts a stateful demo when reset', async ({ page }) => {
       await page.goto('/material-ui/react-checkbox/');
 
-      const demo = getDemo(page, 'ControlledCheckbox');
+      const demo = await reveal(getDemo(page, 'ControlledCheckbox'));
+      // The checkbox is server-rendered, so it accepts clicks before the demo
+      // hydrates and silently drops them. The toolbar mounts with the live demo,
+      // so waiting for it gates the click on a hydrated tree. Retrying the click
+      // is not an option here: a second one would toggle the box back.
+      await expect(demo.getByRole('button', { name: 'Reset demo' })).toBeVisible();
+
       const checkbox = demo.getByRole('checkbox', { name: 'controlled' });
       await expect(checkbox).toBeChecked();
       await checkbox.click();
