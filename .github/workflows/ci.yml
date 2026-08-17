@@ -72,7 +72,7 @@ jobs:
         run: |
           VERSION=$(node -p "(require('./package.json').config && require('./package.json').config.valeVersion) || ''")
           echo "vale_version=$VERSION" >> $GITHUB_OUTPUT
-      - uses: vale-cli/vale-action@85f9f7f2c5f449ac0ae5b66662961bae3f77ca6a # 2.1.2
+      - uses: vale-cli/vale-action@518a9136acc6e6668ce7c00d367051e0941e87ff # v3.0.0
         continue-on-error: true # GitHub Action flag needed until https://github.com/errata-ai/vale-action/issues/89 is fixed
         if: ${{ matrix.os == 'ubuntu-latest' }}
         with:
