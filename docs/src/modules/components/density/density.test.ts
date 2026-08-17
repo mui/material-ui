@@ -252,46 +252,6 @@ describe('density playground — emit table & override builder', () => {
       expect(built.MuiAlert.styleOverrides.icon.fontSize).to.equal('18px');
     });
 
-    it('every defaultProps.size flip lands on authored size styling', () => {
-      // Size-led density: a dangling flip silently renders master for that
-      // size. Container flips style their children (ButtonGroup→Button …);
-      // `medium` needs no matcher — it is the base-layer convention.
-      const FLIP_TARGETS: Record<string, string[]> = {
-        MuiButton: ['MuiButton'],
-        MuiButtonGroup: ['MuiButton'],
-        MuiIconButton: ['MuiIconButton'],
-        MuiFab: ['MuiFab'],
-        MuiToggleButton: ['MuiToggleButton'],
-        MuiToggleButtonGroup: ['MuiToggleButton'],
-        MuiPagination: ['MuiPaginationItem'],
-        MuiCheckbox: ['MuiCheckbox'],
-        MuiRadio: ['MuiRadio'],
-        MuiSwitch: ['MuiSwitch'],
-        MuiChip: ['MuiChip'],
-        MuiTable: ['MuiTableCell'],
-        MuiSlider: ['MuiSlider'],
-        MuiFormControl: ['MuiOutlinedInput', 'MuiFilledInput', 'MuiInput'],
-        MuiAutocomplete: ['MuiOutlinedInput'],
-      };
-      const flips = densityEmitTable.filter((r) => /\|defaultProps\|base\|\|size$/.test(r.id));
-      expect(flips.length, 'flip rows present').to.be.greaterThan(0);
-      for (const flip of flips) {
-        const targets = FLIP_TARGETS[flip.target.component];
-        expect(targets, `${flip.target.component} has a flip-target entry`).to.not.equal(undefined);
-        for (const level of LEVELS) {
-          const size = flip.values[level];
-          expect(size, `${flip.id} ${level} value`).to.be.a('string');
-          if (size === 'medium') {
-            continue;
-          }
-          const hit = densityEmitTable.some(
-            (r) => targets.includes(r.target.component) && r.id.includes(`size=${size}`),
-          );
-          expect(hit, `${flip.target.component} ${level}→${size} authored`).to.equal(true);
-        }
-      }
-    });
-
     it('linked writes: key and linked rows all resolve to table rows', () => {
       for (const [keyId, links] of Object.entries(densityLinkedWrites)) {
         expect(Boolean(densityRow(keyId)), `${keyId} resolves`).to.equal(true);

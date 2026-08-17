@@ -206,11 +206,6 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiFormLabel: 'TextField',
   MuiFormHelperText: 'TextField',
   MuiInput: 'TextField',
-  // Size-led density flip carriers (defaultProps.size rows).
-  MuiFormControl: ['TextField', 'Select'],
-  MuiTable: 'Table',
-  MuiPagination: 'Pagination',
-  MuiToggleButtonGroup: 'ToggleButton',
   MuiCheckbox: 'Checkbox',
   MuiRadio: 'Radio',
   MuiFormControlLabel: ['Checkbox', 'Radio', 'Switch'],

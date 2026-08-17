@@ -6,10 +6,7 @@ import {
   DensityScale,
   EnhanceableTheme,
 } from './densityScale';
-import applySharedDensity, {
-  applyPickerDaySize,
-  applySizeDefaults,
-} from './sharedDensityComponents';
+import applySharedDensity, { applyPickerDaySize } from './sharedDensityComponents';
 
 // Explicit px (self-contained, not spacing-derived).
 const scale: DensityScale = {
@@ -45,12 +42,9 @@ export default function enhanceMediumDensity<T extends EnhanceableTheme>(theme: 
     button: { fontSize: '0.875rem', lineHeight: 1.428571429 },
   });
   applySharedDensity(enhanced);
-  // Size-led density: Medium's diagonal size becomes the default for every
-  // size-prop component (explicit per-instance size wins).
-  applySizeDefaults(enhanced.components, 'medium');
   // Per-size component styling (incl. the former Medium-only per-design blocks)
   // lives in sharedDensityComponents — identical under every preset; this file
-  // contributes only scale values, size defaults, typography, and X sizing.
+  // contributes only scale values, typography, and X sizing.
   // MUI X DataGrid — rationale in enhanceHighDensity; mirrored structure.
   addDefaultProps(enhanced.components, 'MuiDataGrid', {
     rowHeight: 40,

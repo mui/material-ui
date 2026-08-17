@@ -155,9 +155,6 @@ const high = {
           },
         ],
       },
-      defaultProps: {
-        size: 'small',
-      },
     },
     MuiIconButton: {
       styleOverrides: {
@@ -212,9 +209,6 @@ const high = {
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'small',
       },
     },
     MuiSvgIcon: {
@@ -509,16 +503,6 @@ const high = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_outlinedInputPadBlock': 'calc(var(--mui-density-x-small) + 2px)',
-                  },
-                },
-              },
-              {
-                props: {
                   multiline: true,
                 },
                 style: {
@@ -533,15 +517,6 @@ const high = {
                 },
                 style: {
                   paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-                },
-              },
-              {
-                props: {
-                  multiline: true,
-                  size: 'large',
-                },
-                style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-x-small) + 2px))',
                 },
               },
               {
@@ -570,14 +545,6 @@ const high = {
                 },
                 style: {
                   paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-x-small) + 2px))',
                 },
               },
               {
@@ -648,16 +615,6 @@ const high = {
                   },
                 },
               },
-              {
-                props: {
-                  inputSize: 'large',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_outlinedInputPadBlock': 'calc(var(--mui-density-x-small) + 2px)',
-                  },
-                },
-              },
             ],
           },
         ],
@@ -672,14 +629,6 @@ const high = {
                 },
                 style: {
                   paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-                },
-              },
-              {
-                props: {
-                  inputSize: 'large',
-                },
-                style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-x-small) + 2px))',
                 },
               },
             ],
@@ -716,21 +665,6 @@ const high = {
                   },
                 },
               },
-              {
-                props: {
-                  inputSize: 'large',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_filledInputPadTop': 'var(--mui-density-x-large)',
-                    '--_filledInputPadBottom': 'var(--mui-density-small)',
-                  },
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-                    '--_shrinkY': '10px',
-                  },
-                },
-              },
             ],
           },
         ],
@@ -755,15 +689,6 @@ const high = {
                 },
                 style: {
                   paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  hiddenLabel: true,
-                  inputSize: 'large',
-                },
-                style: {
-                  paddingBlock: 'calc(var(--mui-density-x-small) + 2px)',
                 },
               },
             ],
@@ -794,15 +719,6 @@ const high = {
                 },
                 style: {
                   paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  hiddenLabel: true,
-                  size: 'large',
-                },
-                style: {
-                  paddingBlock: 'calc(var(--mui-density-x-small) + 2px)',
                 },
               },
               {
@@ -858,21 +774,6 @@ const high = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_filledInputPadTop': 'var(--mui-density-x-large)',
-                    '--_filledInputPadBottom': 'var(--mui-density-small)',
-                  },
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-                    '--_shrinkY': '10px',
-                  },
-                },
-              },
-              {
-                props: {
                   multiline: true,
                 },
                 style: {
@@ -894,16 +795,6 @@ const high = {
               {
                 props: {
                   multiline: true,
-                  size: 'large',
-                },
-                style: {
-                  paddingTop: 'var(--_filledInputPadTop, var(--mui-density-x-large))',
-                  paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
-                },
-              },
-              {
-                props: {
-                  multiline: true,
                   hiddenLabel: true,
                 },
                 style: {
@@ -920,17 +811,6 @@ const high = {
                 style: {
                   paddingTop: 8,
                   paddingBottom: 9,
-                },
-              },
-              {
-                props: {
-                  multiline: true,
-                  hiddenLabel: true,
-                  size: 'large',
-                },
-                style: {
-                  paddingTop: 24,
-                  paddingBottom: 25,
                 },
               },
               {
@@ -982,20 +862,6 @@ const high = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_inputPadTop': 'var(--mui-density-small)',
-                    '--_inputPadBottom': 'calc(var(--mui-density-x-small) + 2px)',
-                  },
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc(var(--_inputMarginTop, var(--mui-density-small)) + (var(--_inputPadTop, var(--mui-density-small)) + var(--_inputPadBottom, var(--mui-density-small))) / 2)',
-                  },
-                },
-              },
-              {
-                props: {
                   multiline: true,
                 },
                 style: {
@@ -1013,16 +879,6 @@ const high = {
                   paddingBottom: 'var(--_inputPadBottom, var(--mui-density-xx-small))',
                 },
               },
-              {
-                props: {
-                  multiline: true,
-                  size: 'large',
-                },
-                style: {
-                  paddingTop: 'var(--_inputPadTop, var(--mui-density-small))',
-                  paddingBottom: 'var(--_inputPadBottom, calc(var(--mui-density-x-small) + 2px))',
-                },
-              },
             ],
           },
         ],
@@ -1038,15 +894,6 @@ const high = {
                 style: {
                   paddingTop: 'var(--_inputPadTop, var(--mui-density-xx-small))',
                   paddingBottom: 'var(--_inputPadBottom, var(--mui-density-xx-small))',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  paddingTop: 'var(--_inputPadTop, var(--mui-density-small))',
-                  paddingBottom: 'var(--_inputPadBottom, var(--mui-density-small))',
                 },
               },
               {
@@ -1097,20 +944,6 @@ const high = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                },
-              },
-              {
-                props: {
                   edge: 'start',
                 },
                 style: {
@@ -1128,9 +961,6 @@ const high = {
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'small',
       },
     },
     MuiRadio: {
@@ -1168,20 +998,6 @@ const high = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                },
-              },
-              {
-                props: {
                   edge: 'start',
                 },
                 style: {
@@ -1199,9 +1015,6 @@ const high = {
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'small',
       },
     },
     MuiBreadcrumbs: {
@@ -1251,9 +1064,6 @@ const high = {
           },
         ],
       },
-      defaultProps: {
-        size: 'small',
-      },
     },
     MuiSlider: {
       styleOverrides: {
@@ -1298,15 +1108,6 @@ const high = {
               },
               {
                 props: {
-                  orientation: 'horizontal',
-                  size: 'large',
-                },
-                style: {
-                  height: '4px',
-                },
-              },
-              {
-                props: {
                   orientation: 'vertical',
                 },
                 style: {
@@ -1326,15 +1127,6 @@ const high = {
                   width: '2px',
                 },
               },
-              {
-                props: {
-                  orientation: 'vertical',
-                  size: 'large',
-                },
-                style: {
-                  width: '4px',
-                },
-              },
             ],
           },
         ],
@@ -1352,21 +1144,9 @@ const high = {
                   height: '12px',
                 },
               },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  width: '24px',
-                  height: '24px',
-                },
-              },
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'small',
       },
     },
     MuiSwitch: {
@@ -1449,25 +1229,6 @@ const high = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  '--_width': '76px',
-                  '--_height': '52px',
-                  '--_thumbHeight': '24px',
-                  '--_thumbWidth': '24px',
-                  '--_touchSize': '52px',
-                  '--_pad': '17px',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: '-17px',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: '-17px',
-                  },
-                },
-              },
-              {
-                props: {
                   edge: 'start',
                 },
                 style: {
@@ -1485,9 +1246,6 @@ const high = {
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'small',
       },
     },
     MuiAutocomplete: {
@@ -1517,17 +1275,6 @@ const high = {
             '& .MuiOutlinedInput-root.MuiInputBase-sizeSmall .MuiAutocomplete-input': {
               paddingBlock: 'var(--_autocompleteInputPadBlock)',
             },
-            variants: [
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  '--_autocompleteInputRootPadBlock': '3px',
-                  '--_autocompleteInputPadBlock': 'calc(var(--mui-density-x-small) - 1px)',
-                },
-              },
-            ],
           },
         ],
         tag: [
@@ -1544,9 +1291,6 @@ const high = {
             },
           },
         ],
-      },
-      defaultProps: {
-        size: 'small',
       },
     },
     MuiStep: {
@@ -2046,14 +1790,6 @@ const high = {
                   paddingInline: 'var(--mui-density-x-small)',
                 },
               },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  paddingInline: 'var(--mui-density-medium)',
-                },
-              },
             ],
           },
         ],
@@ -2075,15 +1811,6 @@ const high = {
                 },
                 style: {
                   '--_height': '28px',
-                  height: 'var(--_height)',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  '--_height': '36px',
                   height: 'var(--_height)',
                 },
               },
@@ -2110,17 +1837,6 @@ const high = {
                   '& .MuiChip-icon': {
                     marginLeft: '8px',
                     marginRight: '0px',
-                  },
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  '& .MuiChip-icon': {
-                    marginLeft: '16px',
-                    marginRight: '-8px',
                   },
                 },
               },
@@ -2152,17 +1868,6 @@ const high = {
                   marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
                 },
               },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  '--_avatarSize': '32px',
-                  width: 'var(--_avatarSize)',
-                  height: 'var(--_avatarSize)',
-                  marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
-                },
-              },
             ],
           },
         ],
@@ -2180,14 +1885,6 @@ const high = {
               {
                 props: {
                   size: 'small',
-                },
-                style: {
-                  fontSize: '16px',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
                 },
                 style: {
                   fontSize: '16px',
@@ -2219,22 +1916,9 @@ const high = {
                   marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
                 },
               },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  '--_deleteIconSize': '28px',
-                  fontSize: 'var(--_deleteIconSize)',
-                  marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
-                },
-              },
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'small',
       },
     },
     MuiAccordionSummary: {
@@ -2704,24 +2388,6 @@ const high = {
               },
               {
                 props: {
-                  position: 'start',
-                  size: 'large',
-                },
-                style: {
-                  marginRight: 'var(--mui-density-small)',
-                },
-              },
-              {
-                props: {
-                  position: 'end',
-                  size: 'large',
-                },
-                style: {
-                  marginLeft: 'var(--mui-density-small)',
-                },
-              },
-              {
-                props: {
                   variant: 'filled',
                 },
                 style: {
@@ -2755,14 +2421,6 @@ const high = {
                 },
                 style: {
                   paddingTop: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  paddingTop: 'var(--mui-density-small)',
                 },
               },
               {
@@ -2952,9 +2610,6 @@ const high = {
           },
         ],
       },
-      defaultProps: {
-        size: 'small',
-      },
     },
     MuiTableCell: {
       styleOverrides: {
@@ -2975,14 +2630,6 @@ const high = {
                 },
                 style: {
                   padding: 'calc(var(--mui-density-xx-small) + 2.5px) 8px',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  padding: 'calc(var(--mui-density-small) + 2.5px) 8px',
                 },
               },
               {
@@ -3120,9 +2767,6 @@ const high = {
           },
         ],
       },
-      defaultProps: {
-        size: 'small',
-      },
     },
     MuiPaginationItem: {
       styleOverrides: {
@@ -3242,30 +2886,6 @@ const high = {
           },
         ],
       },
-    },
-    MuiToggleButtonGroup: {
-      defaultProps: {
-        size: 'small',
-      },
-      styleOverrides: {},
-    },
-    MuiPagination: {
-      defaultProps: {
-        size: 'small',
-      },
-      styleOverrides: {},
-    },
-    MuiTable: {
-      defaultProps: {
-        size: 'small',
-      },
-      styleOverrides: {},
-    },
-    MuiFormControl: {
-      defaultProps: {
-        size: 'small',
-      },
-      styleOverrides: {},
     },
     MuiPickerDay: {
       styleOverrides: {
@@ -3517,9 +3137,6 @@ const medium = {
           },
         ],
       },
-      defaultProps: {
-        size: 'medium',
-      },
     },
     MuiIconButton: {
       styleOverrides: {
@@ -3574,9 +3191,6 @@ const medium = {
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'medium',
       },
     },
     MuiSvgIcon: {
@@ -3871,16 +3485,6 @@ const medium = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_outlinedInputPadBlock': 'calc(var(--mui-density-x-small) + 2px)',
-                  },
-                },
-              },
-              {
-                props: {
                   multiline: true,
                 },
                 style: {
@@ -3895,15 +3499,6 @@ const medium = {
                 },
                 style: {
                   paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-                },
-              },
-              {
-                props: {
-                  multiline: true,
-                  size: 'large',
-                },
-                style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-x-small) + 2px))',
                 },
               },
               {
@@ -3932,14 +3527,6 @@ const medium = {
                 },
                 style: {
                   paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-x-small) + 2px))',
                 },
               },
               {
@@ -4010,16 +3597,6 @@ const medium = {
                   },
                 },
               },
-              {
-                props: {
-                  inputSize: 'large',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_outlinedInputPadBlock': 'calc(var(--mui-density-x-small) + 2px)',
-                  },
-                },
-              },
             ],
           },
         ],
@@ -4034,14 +3611,6 @@ const medium = {
                 },
                 style: {
                   paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-                },
-              },
-              {
-                props: {
-                  inputSize: 'large',
-                },
-                style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-x-small) + 2px))',
                 },
               },
             ],
@@ -4078,21 +3647,6 @@ const medium = {
                   },
                 },
               },
-              {
-                props: {
-                  inputSize: 'large',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_filledInputPadTop': 'var(--mui-density-x-large)',
-                    '--_filledInputPadBottom': 'var(--mui-density-small)',
-                  },
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-                    '--_shrinkY': '10px',
-                  },
-                },
-              },
             ],
           },
         ],
@@ -4117,15 +3671,6 @@ const medium = {
                 },
                 style: {
                   paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  hiddenLabel: true,
-                  inputSize: 'large',
-                },
-                style: {
-                  paddingBlock: 'calc(var(--mui-density-x-small) + 2px)',
                 },
               },
             ],
@@ -4156,15 +3701,6 @@ const medium = {
                 },
                 style: {
                   paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  hiddenLabel: true,
-                  size: 'large',
-                },
-                style: {
-                  paddingBlock: 'calc(var(--mui-density-x-small) + 2px)',
                 },
               },
               {
@@ -4220,21 +3756,6 @@ const medium = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_filledInputPadTop': 'var(--mui-density-x-large)',
-                    '--_filledInputPadBottom': 'var(--mui-density-small)',
-                  },
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-                    '--_shrinkY': '10px',
-                  },
-                },
-              },
-              {
-                props: {
                   multiline: true,
                 },
                 style: {
@@ -4256,16 +3777,6 @@ const medium = {
               {
                 props: {
                   multiline: true,
-                  size: 'large',
-                },
-                style: {
-                  paddingTop: 'var(--_filledInputPadTop, var(--mui-density-x-large))',
-                  paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
-                },
-              },
-              {
-                props: {
-                  multiline: true,
                   hiddenLabel: true,
                 },
                 style: {
@@ -4282,17 +3793,6 @@ const medium = {
                 style: {
                   paddingTop: 8,
                   paddingBottom: 9,
-                },
-              },
-              {
-                props: {
-                  multiline: true,
-                  hiddenLabel: true,
-                  size: 'large',
-                },
-                style: {
-                  paddingTop: 24,
-                  paddingBottom: 25,
                 },
               },
               {
@@ -4344,20 +3844,6 @@ const medium = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_inputPadTop': 'var(--mui-density-small)',
-                    '--_inputPadBottom': 'calc(var(--mui-density-x-small) + 2px)',
-                  },
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc(var(--_inputMarginTop, var(--mui-density-small)) + (var(--_inputPadTop, var(--mui-density-small)) + var(--_inputPadBottom, var(--mui-density-small))) / 2)',
-                  },
-                },
-              },
-              {
-                props: {
                   multiline: true,
                 },
                 style: {
@@ -4375,16 +3861,6 @@ const medium = {
                   paddingBottom: 'var(--_inputPadBottom, var(--mui-density-xx-small))',
                 },
               },
-              {
-                props: {
-                  multiline: true,
-                  size: 'large',
-                },
-                style: {
-                  paddingTop: 'var(--_inputPadTop, var(--mui-density-small))',
-                  paddingBottom: 'var(--_inputPadBottom, calc(var(--mui-density-x-small) + 2px))',
-                },
-              },
             ],
           },
         ],
@@ -4400,15 +3876,6 @@ const medium = {
                 style: {
                   paddingTop: 'var(--_inputPadTop, var(--mui-density-xx-small))',
                   paddingBottom: 'var(--_inputPadBottom, var(--mui-density-xx-small))',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  paddingTop: 'var(--_inputPadTop, var(--mui-density-small))',
-                  paddingBottom: 'var(--_inputPadBottom, var(--mui-density-small))',
                 },
               },
               {
@@ -4459,20 +3926,6 @@ const medium = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                },
-              },
-              {
-                props: {
                   edge: 'start',
                 },
                 style: {
@@ -4490,9 +3943,6 @@ const medium = {
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'medium',
       },
     },
     MuiRadio: {
@@ -4530,20 +3980,6 @@ const medium = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                },
-              },
-              {
-                props: {
                   edge: 'start',
                 },
                 style: {
@@ -4561,9 +3997,6 @@ const medium = {
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'medium',
       },
     },
     MuiBreadcrumbs: {
@@ -4613,9 +4046,6 @@ const medium = {
           },
         ],
       },
-      defaultProps: {
-        size: 'medium',
-      },
     },
     MuiSlider: {
       styleOverrides: {
@@ -4660,15 +4090,6 @@ const medium = {
               },
               {
                 props: {
-                  orientation: 'horizontal',
-                  size: 'large',
-                },
-                style: {
-                  height: '4px',
-                },
-              },
-              {
-                props: {
                   orientation: 'vertical',
                 },
                 style: {
@@ -4688,15 +4109,6 @@ const medium = {
                   width: '2px',
                 },
               },
-              {
-                props: {
-                  orientation: 'vertical',
-                  size: 'large',
-                },
-                style: {
-                  width: '4px',
-                },
-              },
             ],
           },
         ],
@@ -4714,21 +4126,9 @@ const medium = {
                   height: '12px',
                 },
               },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  width: '24px',
-                  height: '24px',
-                },
-              },
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'medium',
       },
     },
     MuiSwitch: {
@@ -4811,25 +4211,6 @@ const medium = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  '--_width': '76px',
-                  '--_height': '52px',
-                  '--_thumbHeight': '24px',
-                  '--_thumbWidth': '24px',
-                  '--_touchSize': '52px',
-                  '--_pad': '17px',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: '-17px',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: '-17px',
-                  },
-                },
-              },
-              {
-                props: {
                   edge: 'start',
                 },
                 style: {
@@ -4847,9 +4228,6 @@ const medium = {
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'medium',
       },
     },
     MuiAutocomplete: {
@@ -4879,17 +4257,6 @@ const medium = {
             '& .MuiOutlinedInput-root.MuiInputBase-sizeSmall .MuiAutocomplete-input': {
               paddingBlock: 'var(--_autocompleteInputPadBlock)',
             },
-            variants: [
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  '--_autocompleteInputRootPadBlock': '3px',
-                  '--_autocompleteInputPadBlock': 'calc(var(--mui-density-x-small) - 1px)',
-                },
-              },
-            ],
           },
         ],
         tag: [
@@ -4906,9 +4273,6 @@ const medium = {
             },
           },
         ],
-      },
-      defaultProps: {
-        size: 'medium',
       },
     },
     MuiStep: {
@@ -5408,14 +4772,6 @@ const medium = {
                   paddingInline: 'var(--mui-density-x-small)',
                 },
               },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  paddingInline: 'var(--mui-density-medium)',
-                },
-              },
             ],
           },
         ],
@@ -5437,15 +4793,6 @@ const medium = {
                 },
                 style: {
                   '--_height': '28px',
-                  height: 'var(--_height)',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  '--_height': '36px',
                   height: 'var(--_height)',
                 },
               },
@@ -5472,17 +4819,6 @@ const medium = {
                   '& .MuiChip-icon': {
                     marginLeft: '8px',
                     marginRight: '0px',
-                  },
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  '& .MuiChip-icon': {
-                    marginLeft: '16px',
-                    marginRight: '-8px',
                   },
                 },
               },
@@ -5514,17 +4850,6 @@ const medium = {
                   marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
                 },
               },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  '--_avatarSize': '32px',
-                  width: 'var(--_avatarSize)',
-                  height: 'var(--_avatarSize)',
-                  marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
-                },
-              },
             ],
           },
         ],
@@ -5542,14 +4867,6 @@ const medium = {
               {
                 props: {
                   size: 'small',
-                },
-                style: {
-                  fontSize: '16px',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
                 },
                 style: {
                   fontSize: '16px',
@@ -5581,22 +4898,9 @@ const medium = {
                   marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
                 },
               },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  '--_deleteIconSize': '28px',
-                  fontSize: 'var(--_deleteIconSize)',
-                  marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
-                },
-              },
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'medium',
       },
     },
     MuiAccordionSummary: {
@@ -6066,24 +5370,6 @@ const medium = {
               },
               {
                 props: {
-                  position: 'start',
-                  size: 'large',
-                },
-                style: {
-                  marginRight: 'var(--mui-density-small)',
-                },
-              },
-              {
-                props: {
-                  position: 'end',
-                  size: 'large',
-                },
-                style: {
-                  marginLeft: 'var(--mui-density-small)',
-                },
-              },
-              {
-                props: {
                   variant: 'filled',
                 },
                 style: {
@@ -6117,14 +5403,6 @@ const medium = {
                 },
                 style: {
                   paddingTop: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  paddingTop: 'var(--mui-density-small)',
                 },
               },
               {
@@ -6314,9 +5592,6 @@ const medium = {
           },
         ],
       },
-      defaultProps: {
-        size: 'medium',
-      },
     },
     MuiTableCell: {
       styleOverrides: {
@@ -6337,14 +5612,6 @@ const medium = {
                 },
                 style: {
                   padding: 'calc(var(--mui-density-xx-small) + 2.5px) 8px',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  padding: 'calc(var(--mui-density-small) + 2.5px) 8px',
                 },
               },
               {
@@ -6482,9 +5749,6 @@ const medium = {
           },
         ],
       },
-      defaultProps: {
-        size: 'medium',
-      },
     },
     MuiPaginationItem: {
       styleOverrides: {
@@ -6604,30 +5868,6 @@ const medium = {
           },
         ],
       },
-    },
-    MuiToggleButtonGroup: {
-      defaultProps: {
-        size: 'medium',
-      },
-      styleOverrides: {},
-    },
-    MuiPagination: {
-      defaultProps: {
-        size: 'medium',
-      },
-      styleOverrides: {},
-    },
-    MuiTable: {
-      defaultProps: {
-        size: 'medium',
-      },
-      styleOverrides: {},
-    },
-    MuiFormControl: {
-      defaultProps: {
-        size: 'medium',
-      },
-      styleOverrides: {},
     },
     MuiPickerDay: {
       styleOverrides: {
@@ -6865,9 +6105,6 @@ const low = {
           },
         ],
       },
-      defaultProps: {
-        size: 'large',
-      },
     },
     MuiIconButton: {
       styleOverrides: {
@@ -6922,9 +6159,6 @@ const low = {
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'large',
       },
     },
     MuiSvgIcon: {
@@ -7219,16 +6453,6 @@ const low = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_outlinedInputPadBlock': 'calc(var(--mui-density-x-small) + 2px)',
-                  },
-                },
-              },
-              {
-                props: {
                   multiline: true,
                 },
                 style: {
@@ -7243,15 +6467,6 @@ const low = {
                 },
                 style: {
                   paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-                },
-              },
-              {
-                props: {
-                  multiline: true,
-                  size: 'large',
-                },
-                style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-x-small) + 2px))',
                 },
               },
               {
@@ -7280,14 +6495,6 @@ const low = {
                 },
                 style: {
                   paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-x-small) + 2px))',
                 },
               },
               {
@@ -7358,16 +6565,6 @@ const low = {
                   },
                 },
               },
-              {
-                props: {
-                  inputSize: 'large',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_outlinedInputPadBlock': 'calc(var(--mui-density-x-small) + 2px)',
-                  },
-                },
-              },
             ],
           },
         ],
@@ -7382,14 +6579,6 @@ const low = {
                 },
                 style: {
                   paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-                },
-              },
-              {
-                props: {
-                  inputSize: 'large',
-                },
-                style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-x-small) + 2px))',
                 },
               },
             ],
@@ -7426,21 +6615,6 @@ const low = {
                   },
                 },
               },
-              {
-                props: {
-                  inputSize: 'large',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_filledInputPadTop': 'var(--mui-density-x-large)',
-                    '--_filledInputPadBottom': 'var(--mui-density-small)',
-                  },
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-                    '--_shrinkY': '10px',
-                  },
-                },
-              },
             ],
           },
         ],
@@ -7465,15 +6639,6 @@ const low = {
                 },
                 style: {
                   paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  hiddenLabel: true,
-                  inputSize: 'large',
-                },
-                style: {
-                  paddingBlock: 'calc(var(--mui-density-x-small) + 2px)',
                 },
               },
             ],
@@ -7504,15 +6669,6 @@ const low = {
                 },
                 style: {
                   paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  hiddenLabel: true,
-                  size: 'large',
-                },
-                style: {
-                  paddingBlock: 'calc(var(--mui-density-x-small) + 2px)',
                 },
               },
               {
@@ -7568,21 +6724,6 @@ const low = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_filledInputPadTop': 'var(--mui-density-x-large)',
-                    '--_filledInputPadBottom': 'var(--mui-density-small)',
-                  },
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-                    '--_shrinkY': '10px',
-                  },
-                },
-              },
-              {
-                props: {
                   multiline: true,
                 },
                 style: {
@@ -7604,16 +6745,6 @@ const low = {
               {
                 props: {
                   multiline: true,
-                  size: 'large',
-                },
-                style: {
-                  paddingTop: 'var(--_filledInputPadTop, var(--mui-density-x-large))',
-                  paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
-                },
-              },
-              {
-                props: {
-                  multiline: true,
                   hiddenLabel: true,
                 },
                 style: {
@@ -7630,17 +6761,6 @@ const low = {
                 style: {
                   paddingTop: 8,
                   paddingBottom: 9,
-                },
-              },
-              {
-                props: {
-                  multiline: true,
-                  hiddenLabel: true,
-                  size: 'large',
-                },
-                style: {
-                  paddingTop: 24,
-                  paddingBottom: 25,
                 },
               },
               {
@@ -7692,20 +6812,6 @@ const low = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_inputPadTop': 'var(--mui-density-small)',
-                    '--_inputPadBottom': 'calc(var(--mui-density-x-small) + 2px)',
-                  },
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc(var(--_inputMarginTop, var(--mui-density-small)) + (var(--_inputPadTop, var(--mui-density-small)) + var(--_inputPadBottom, var(--mui-density-small))) / 2)',
-                  },
-                },
-              },
-              {
-                props: {
                   multiline: true,
                 },
                 style: {
@@ -7723,16 +6829,6 @@ const low = {
                   paddingBottom: 'var(--_inputPadBottom, var(--mui-density-xx-small))',
                 },
               },
-              {
-                props: {
-                  multiline: true,
-                  size: 'large',
-                },
-                style: {
-                  paddingTop: 'var(--_inputPadTop, var(--mui-density-small))',
-                  paddingBottom: 'var(--_inputPadBottom, calc(var(--mui-density-x-small) + 2px))',
-                },
-              },
             ],
           },
         ],
@@ -7748,15 +6844,6 @@ const low = {
                 style: {
                   paddingTop: 'var(--_inputPadTop, var(--mui-density-xx-small))',
                   paddingBottom: 'var(--_inputPadBottom, var(--mui-density-xx-small))',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  paddingTop: 'var(--_inputPadTop, var(--mui-density-small))',
-                  paddingBottom: 'var(--_inputPadBottom, var(--mui-density-small))',
                 },
               },
               {
@@ -7807,20 +6894,6 @@ const low = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                },
-              },
-              {
-                props: {
                   edge: 'start',
                 },
                 style: {
@@ -7838,9 +6911,6 @@ const low = {
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'large',
       },
     },
     MuiRadio: {
@@ -7878,20 +6948,6 @@ const low = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                },
-              },
-              {
-                props: {
                   edge: 'start',
                 },
                 style: {
@@ -7909,9 +6965,6 @@ const low = {
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'large',
       },
     },
     MuiBreadcrumbs: {
@@ -7961,9 +7014,6 @@ const low = {
           },
         ],
       },
-      defaultProps: {
-        size: 'large',
-      },
     },
     MuiSlider: {
       styleOverrides: {
@@ -8008,15 +7058,6 @@ const low = {
               },
               {
                 props: {
-                  orientation: 'horizontal',
-                  size: 'large',
-                },
-                style: {
-                  height: '4px',
-                },
-              },
-              {
-                props: {
                   orientation: 'vertical',
                 },
                 style: {
@@ -8036,15 +7077,6 @@ const low = {
                   width: '2px',
                 },
               },
-              {
-                props: {
-                  orientation: 'vertical',
-                  size: 'large',
-                },
-                style: {
-                  width: '4px',
-                },
-              },
             ],
           },
         ],
@@ -8062,21 +7094,9 @@ const low = {
                   height: '12px',
                 },
               },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  width: '24px',
-                  height: '24px',
-                },
-              },
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'large',
       },
     },
     MuiSwitch: {
@@ -8159,25 +7179,6 @@ const low = {
               },
               {
                 props: {
-                  size: 'large',
-                },
-                style: {
-                  '--_width': '76px',
-                  '--_height': '52px',
-                  '--_thumbHeight': '24px',
-                  '--_thumbWidth': '24px',
-                  '--_touchSize': '52px',
-                  '--_pad': '17px',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: '-17px',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: '-17px',
-                  },
-                },
-              },
-              {
-                props: {
                   edge: 'start',
                 },
                 style: {
@@ -8195,9 +7196,6 @@ const low = {
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'large',
       },
     },
     MuiAutocomplete: {
@@ -8227,17 +7225,6 @@ const low = {
             '& .MuiOutlinedInput-root.MuiInputBase-sizeSmall .MuiAutocomplete-input': {
               paddingBlock: 'var(--_autocompleteInputPadBlock)',
             },
-            variants: [
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  '--_autocompleteInputRootPadBlock': '3px',
-                  '--_autocompleteInputPadBlock': 'calc(var(--mui-density-x-small) - 1px)',
-                },
-              },
-            ],
           },
         ],
         tag: [
@@ -8254,9 +7241,6 @@ const low = {
             },
           },
         ],
-      },
-      defaultProps: {
-        size: 'large',
       },
     },
     MuiStep: {
@@ -8756,14 +7740,6 @@ const low = {
                   paddingInline: 'var(--mui-density-x-small)',
                 },
               },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  paddingInline: 'var(--mui-density-medium)',
-                },
-              },
             ],
           },
         ],
@@ -8785,15 +7761,6 @@ const low = {
                 },
                 style: {
                   '--_height': '28px',
-                  height: 'var(--_height)',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  '--_height': '36px',
                   height: 'var(--_height)',
                 },
               },
@@ -8820,17 +7787,6 @@ const low = {
                   '& .MuiChip-icon': {
                     marginLeft: '8px',
                     marginRight: '0px',
-                  },
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  '& .MuiChip-icon': {
-                    marginLeft: '16px',
-                    marginRight: '-8px',
                   },
                 },
               },
@@ -8862,17 +7818,6 @@ const low = {
                   marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
                 },
               },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  '--_avatarSize': '32px',
-                  width: 'var(--_avatarSize)',
-                  height: 'var(--_avatarSize)',
-                  marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
-                },
-              },
             ],
           },
         ],
@@ -8890,14 +7835,6 @@ const low = {
               {
                 props: {
                   size: 'small',
-                },
-                style: {
-                  fontSize: '16px',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
                 },
                 style: {
                   fontSize: '16px',
@@ -8929,22 +7866,9 @@ const low = {
                   marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
                 },
               },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  '--_deleteIconSize': '28px',
-                  fontSize: 'var(--_deleteIconSize)',
-                  marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
-                },
-              },
             ],
           },
         ],
-      },
-      defaultProps: {
-        size: 'large',
       },
     },
     MuiAccordionSummary: {
@@ -9414,24 +8338,6 @@ const low = {
               },
               {
                 props: {
-                  position: 'start',
-                  size: 'large',
-                },
-                style: {
-                  marginRight: 'var(--mui-density-small)',
-                },
-              },
-              {
-                props: {
-                  position: 'end',
-                  size: 'large',
-                },
-                style: {
-                  marginLeft: 'var(--mui-density-small)',
-                },
-              },
-              {
-                props: {
                   variant: 'filled',
                 },
                 style: {
@@ -9465,14 +8371,6 @@ const low = {
                 },
                 style: {
                   paddingTop: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  paddingTop: 'var(--mui-density-small)',
                 },
               },
               {
@@ -9662,9 +8560,6 @@ const low = {
           },
         ],
       },
-      defaultProps: {
-        size: 'large',
-      },
     },
     MuiTableCell: {
       styleOverrides: {
@@ -9685,14 +8580,6 @@ const low = {
                 },
                 style: {
                   padding: 'calc(var(--mui-density-xx-small) + 2.5px) 8px',
-                },
-              },
-              {
-                props: {
-                  size: 'large',
-                },
-                style: {
-                  padding: 'calc(var(--mui-density-small) + 2.5px) 8px',
                 },
               },
               {
@@ -9830,9 +8717,6 @@ const low = {
           },
         ],
       },
-      defaultProps: {
-        size: 'large',
-      },
     },
     MuiPaginationItem: {
       styleOverrides: {
@@ -9952,30 +8836,6 @@ const low = {
           },
         ],
       },
-    },
-    MuiToggleButtonGroup: {
-      defaultProps: {
-        size: 'large',
-      },
-      styleOverrides: {},
-    },
-    MuiPagination: {
-      defaultProps: {
-        size: 'large',
-      },
-      styleOverrides: {},
-    },
-    MuiTable: {
-      defaultProps: {
-        size: 'large',
-      },
-      styleOverrides: {},
-    },
-    MuiFormControl: {
-      defaultProps: {
-        size: 'large',
-      },
-      styleOverrides: {},
     },
     MuiPickerDay: {
       styleOverrides: {

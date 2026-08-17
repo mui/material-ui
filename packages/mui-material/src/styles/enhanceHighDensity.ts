@@ -6,10 +6,7 @@ import {
   DensityScale,
   EnhanceableTheme,
 } from './densityScale';
-import applySharedDensity, {
-  applyPickerDaySize,
-  applySizeDefaults,
-} from './sharedDensityComponents';
+import applySharedDensity, { applyPickerDaySize } from './sharedDensityComponents';
 
 const scale: DensityScale = {
   'xx-small': '2px',
@@ -24,9 +21,6 @@ const scale: DensityScale = {
 export default function enhanceHighDensity<T extends EnhanceableTheme>(theme: T) {
   const enhanced = applyDensity(theme, scale);
   applySharedDensity(enhanced);
-  // Size-led density: High's diagonal size becomes the default for every
-  // size-prop component (explicit per-instance size wins).
-  applySizeDefaults(enhanced.components, 'small');
   // Compact-only type per variant (fontSize + lineHeight); normal/comfort keep
   // master. Theme-level tokens, not component overrides — same layer as button.
   // MUI X DataGrid — cross-package emission (plain untyped keys; the grid reads

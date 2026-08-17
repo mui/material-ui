@@ -6,10 +6,7 @@ import {
   DensityScale,
   EnhanceableTheme,
 } from './densityScale';
-import applySharedDensity, {
-  applyPickerDaySize,
-  applySizeDefaults,
-} from './sharedDensityComponents';
+import applySharedDensity, { applyPickerDaySize } from './sharedDensityComponents';
 
 const scale: DensityScale = {
   'xx-small': '8px',
@@ -24,9 +21,6 @@ const scale: DensityScale = {
 export default function enhanceLowDensity<T extends EnhanceableTheme>(theme: T) {
   const enhanced = applyDensity(theme, scale);
   applySharedDensity(enhanced);
-  // Size-led density: Low's diagonal size becomes the default for every
-  // size-prop component (explicit per-instance size wins).
-  applySizeDefaults(enhanced.components, 'large');
   // MUI X DataGrid — rationale in enhanceHighDensity; mirrored structure.
   addDefaultProps(enhanced.components, 'MuiDataGrid', {
     rowHeight: 60,
