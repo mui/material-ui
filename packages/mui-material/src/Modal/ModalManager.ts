@@ -66,7 +66,14 @@ function ariaHiddenSiblings(
   [].forEach.call(container.children, (element: Element) => {
     const isNotExcludedElement = !blacklist.includes(element);
     const isNotForbiddenElement = !isAriaHiddenForbiddenOnElement(element);
-    if (isNotExcludedElement && isNotForbiddenElement) {
+    // When hiding, never hide an element that contains the modal, otherwise the
+    // modal itself becomes inaccessible. This happens when the modal is not
+    // portaled into the container, for example when `disablePortal` is used.
+    // Only apply this check when hiding; during restore we must not skip elements
+    // because a stale ancestor check would leave stale aria-hidden behind.
+    const isNotModalAncestor =
+      hide && currentElement ? !element.contains(currentElement) : true;
+    if (isNotExcludedElement && isNotForbiddenElement && isNotModalAncestor) {
       ariaHidden(element, hide);
     }
   });
@@ -199,14 +206,19 @@ export class ModalManager {
     this.containers = [];
   }
 
-  add(modal: Modal, container: HTMLElement): number {
+  add(modal: Modal, container: HTMLElement, addToIndex?: number): number {
     let modalIndex = this.modals.indexOf(modal);
     if (modalIndex !== -1) {
       return modalIndex;
     }
 
-    modalIndex = this.modals.length;
-    this.modals.push(modal);
+    if (addToIndex !== undefined && addToIndex >= 0 && addToIndex <= this.modals.length) {
+      modalIndex = addToIndex;
+      this.modals.splice(addToIndex, 0, modal);
+    } else {
+      modalIndex = this.modals.length;
+      this.modals.push(modal);
+    }
 
     // If the modal we are adding is already in the DOM.
     if (modal.modalRef) {
@@ -268,21 +280,36 @@ export class ModalManager {
 
       ariaHiddenSiblings(
         containerInfo.container,
-        modal.mount,
+        containerInfo.container,
         modal.modalRef,
         containerInfo.hiddenSiblings,
         false,
       );
       this.containers.splice(containerIndex, 1);
     } else {
-      // Otherwise make sure the next top modal is visible to a screen reader.
-      const nextTop = containerInfo.modals[containerInfo.modals.length - 1];
-      // as soon as a modal is adding its modalRef is undefined. it can't set
-      // aria-hidden because the dom element doesn't exist either
-      // when modal was unmounted before modalRef gets null
-      if (nextTop.modalRef) {
-        ariaHidden(nextTop.modalRef, false);
+      // Other modals remain in this container. Re-hide siblings based on
+      // what the remaining modals need hidden, instead of blindly restoring.
+      if (modal.modalRef) {
+        ariaHidden(modal.modalRef, ariaHiddenState);
       }
+      [].forEach.call(containerInfo.container.children, (element: Element) => {
+        const isNotForbiddenElement = !isAriaHiddenForbiddenOnElement(element);
+        if (!isNotForbiddenElement) {
+          return;
+        }
+        const shouldHide = containerInfo.modals.some((remainingModal) => {
+          return (
+            remainingModal.modalRef &&
+            remainingModal.modalRef !== element &&
+            !remainingModal.modalRef.contains(element) &&
+            !element.contains(remainingModal.modalRef) &&
+            !containerInfo.hiddenSiblings.includes(element)
+          );
+        });
+        if (shouldHide) {
+          ariaHidden(element, true);
+        }
+      });
     }
 
     return modalIndex;
@@ -290,5 +317,9 @@ export class ModalManager {
 
   isTopModal(modal: Modal): boolean {
     return this.modals.length > 0 && this.modals[this.modals.length - 1] === modal;
+  }
+
+  indexOf(modal: Modal): number {
+    return this.modals.indexOf(modal);
   }
 }
