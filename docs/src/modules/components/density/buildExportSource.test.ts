@@ -224,9 +224,10 @@ describe('buildExportSource', () => {
     );
     const { enhanceMediumDensity } = evaluate(src);
     const medium = enhanceMediumDensity(createTheme({}));
-    // medium's workspace was empty → master typography/shape, no 30px override
+    // medium's workspace was empty → no leaked high edits: master-ish typography
+    // and medium's own preset radius (6), not high's edited shape
     expect(medium.typography.h1.fontSize).not.to.equal('5rem');
-    expect(medium.shape.borderRadius).to.equal(4);
+    expect(medium.shape.borderRadius).to.equal(6);
     expect(JSON.stringify(medium.components.MuiButton.styleOverrides.root)).not.to.contain('30px');
   });
 

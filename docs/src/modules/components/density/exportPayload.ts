@@ -7,7 +7,7 @@ import {
 import { buildOverrides, mergeOntoPreset } from './buildDensityOverrides';
 import { collectDensityEdits, collectScaleEdits, collectThemeTokenEdits } from './collectEdits';
 import { shortenDensityVars } from './mappingValue';
-import { PRESET_SPACING_DEFAULT } from './themeTokens';
+import { PRESET_THEME_INPUT } from './themeTokens';
 import { USER_LAYER_KEY, USER_VALUE_KEY } from './buildExportSource';
 import type { ExportInput, ExportPresetPayload } from './buildExportSource';
 
@@ -29,11 +29,10 @@ type Level = keyof typeof PRESET_FN;
 
 export type MappingByPreset = Record<Level, Record<string, string>>;
 
-// The preset's own theme.typography patch. Authorship-first: presets record
-// what they write on `theme.densityTypography`, and every recorded prop exports
-// even when its value equals the MUI default — it's spec'd, and the export
-// survives upstream default drift. Value-diff fallback for themes without the
-// record (e.g. `unset`).
+// The composition layer's theme.typography input. Authorship-first: every
+// PRESET_THEME_INPUT leaf exports even when its value equals the MUI default —
+// it's spec'd, and the export survives upstream default drift. Value-diff
+// fallback for themes without an input.
 function typographyPatch(
   base: Record<string, any>,
   enhanced: Record<string, any>,
@@ -96,11 +95,22 @@ export function buildExportInput(mappingByPreset: MappingByPreset): ExportInput 
         (layer as Record<string, unknown>)[USER_LAYER_KEY] = true;
       }
     }
-    const enhanced = PRESET_FN[name](createTheme({ cssVariables: true })) as unknown as {
+    // Compose the userland layer BEFORE enhancing — mirrors the playground's
+    // presetTheme. Matters beyond the token sections: shared emissions derive
+    // from the incoming theme's type (InputBase/FormLabel/Tab lineHeight follow
+    // body1/button), so a bare theme would bake master metrics.
+    const input = PRESET_THEME_INPUT[name];
+    const enhanced = PRESET_FN[name](
+      createTheme({
+        cssVariables: true,
+        spacing: input.spacing,
+        typography: input.typography,
+        shape: input.shape,
+      }),
+    ) as unknown as {
       density: Record<string, string>;
       components: Record<string, any>;
       typography: Record<string, any>;
-      densityTypography?: Record<string, Record<string, string | number>>;
     };
     const presetComponents = enhanced.components ?? {};
     // This preset's user token edits: typography variants layer over the preset's
@@ -109,13 +119,14 @@ export function buildExportInput(mappingByPreset: MappingByPreset): ExportInput 
     const typography: ExportPresetPayload['typography'] = typographyPatch(
       base.typography as Record<string, any>,
       enhanced.typography,
-      enhanced.densityTypography,
+      input.typography,
     );
-    const shape: ExportPresetPayload['shape'] = {};
+    // Seeded from the composition input (authorship-first, like typography).
+    const shape: ExportPresetPayload['shape'] = { ...input.shape };
     // theme.spacing base — the preset default (high tightens to 6), overridable
     // via the Spacing knob. Baked only when it differs from the MUI default (8) or
     // is edited; an edit is tagged `// playground edit`.
-    const spacingDefault = PRESET_SPACING_DEFAULT[name];
+    const spacingDefault = input.spacing;
     let spacing: ExportPresetPayload['spacing'] = spacingDefault !== 8 ? spacingDefault : undefined;
     for (const edit of collectThemeTokenEdits(workspace)) {
       if (edit.path[0] === 'typography') {

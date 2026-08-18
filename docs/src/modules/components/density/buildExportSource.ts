@@ -219,6 +219,20 @@ function applyDensity(themeInput: AnyRecord, scale: Record<string, string>): Any
 // theme.spacing base — var-backed like the density scale (high tightens it to
 // 6). CSS-vars themes emit --mui-spacing on the channel (components read
 // calc(n * var(--mui-spacing))); static themes get a spacing function.
+function applyShape(theme: AnyRecord, patch: AnyRecord): AnyRecord {
+  theme.shape = { ...theme.shape, ...patch };
+  // Vars channel snapshots shape at createTheme — append an override sheet so
+  // the emitted --mui-shape-borderRadius follows the patch (same as spacing).
+  if (theme.vars && patch.borderRadius != null) {
+    const prev = theme.generateStyleSheets;
+    theme.generateStyleSheets = () => [
+      ...(prev ? prev() : []),
+      { [theme.rootSelector || ':root']: { '--mui-shape-borderRadius': patch.borderRadius + 'px' } },
+    ];
+  }
+  return theme;
+}
+
 function applySpacing(theme: AnyRecord, base: number): AnyRecord {
   const px = base + 'px';
   if (theme.vars) {
@@ -246,6 +260,15 @@ function enhance(
   },
 ): Theme {
   const enhanced: AnyRecord = applyDensity(theme as AnyRecord, p.scale);
+  // USERLAND COMPOSITION LAYER — type ramp, radius, spacing base (⊕ user edits).
+  // Ordinary theme design, not density-awareness: a real app would pass these to
+  // createTheme(). Applied up front, mutated in place (variants resolve off
+  // theme.typography; no createTheme re-run needed).
+  enhanced.typography = mergeTypography(enhanced.typography, p.typography);
+  applyShape(enhanced, p.shape);
+  if (p.spacing != null) {
+    applySpacing(enhanced, p.spacing);
+  }
 
   // Component overrides — flat array-form slot merge (density wins by order, the
   // app's own styleOverrides/variants are kept as the leading layer). NEVER
@@ -272,14 +295,6 @@ function enhance(
   // \`(vars || theme).density\`.
   if (!enhanced.vars) {
     enhanced.components = resolveDensityRefs(enhanced.components, enhanced.density);
-  }
-
-  // Typography reflow (⊕ user edits) and shape edits — mutated in place like the
-  // preset (variants resolve off theme.typography; no createTheme re-run needed).
-  enhanced.typography = mergeTypography(enhanced.typography, p.typography);
-  enhanced.shape = { ...enhanced.shape, ...p.shape };
-  if (p.spacing != null) {
-    applySpacing(enhanced, p.spacing);
   }
 
   return enhanced as Theme;

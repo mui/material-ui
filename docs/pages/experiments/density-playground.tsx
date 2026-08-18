@@ -165,7 +165,7 @@ import {
   themeTokenGroups,
   readThemeToken,
   setThemeToken,
-  PRESET_SPACING_DEFAULT,
+  PRESET_THEME_INPUT,
   tokenDonePresets,
   isTokenId,
 } from 'docs/src/modules/components/density/themeTokens';
@@ -201,7 +201,13 @@ type TabKey = 'density' | 'spacing' | 'components' | 'typography' | 'radius';
 // Radius is hidden for now — its wiring (TAB_TOKEN_GROUP, preview, token knobs)
 // stays intact; re-enable by adding it back here. Hidden tabs are also invalid
 // as `?tab=` values (they fall back to the default).
-const VISIBLE_TABS: readonly TabKey[] = ['density', 'spacing', 'typography', 'components'];
+const VISIBLE_TABS: readonly TabKey[] = [
+  'density',
+  'radius',
+  'spacing',
+  'typography',
+  'components',
+];
 const TAB_LABEL: Record<TabKey, string> = {
   density: 'Density',
   spacing: 'Spacing',
@@ -4389,11 +4395,18 @@ export default function DensityExperiment() {
     if (preset === 'unset') {
       return createTheme({ cssVariables: true });
     }
-    // Per-preset theme.spacing base (high tightens to 6) — set on the base
-    // theme so --mui-spacing ships on the preset's own channel; placeholder +
-    // canvas read it generically, and the export bakes it. See PRESET_SPACING_DEFAULT.
+    // USERLAND COMPOSITION LAYER (PRESET_THEME_INPUT): type ramp, radius and
+    // spacing base are ordinary createTheme() inputs set BEFORE the enhancer —
+    // the theme's own vars channel ships them natively (--mui-spacing,
+    // --mui-shape-borderRadius); the enhancer only adds density-awareness.
+    const input = PRESET_THEME_INPUT[preset];
     return PRESET_FN[preset](
-      createTheme({ cssVariables: true, spacing: PRESET_SPACING_DEFAULT[preset] }),
+      createTheme({
+        cssVariables: true,
+        spacing: input.spacing,
+        typography: input.typography,
+        shape: input.shape,
+      }),
     );
   }, [preset]);
 
@@ -5041,26 +5054,27 @@ export default function DensityExperiment() {
                           // theme.spacing is a function → can't be read off the
                           // theme as a number; its default is the per-preset base.
                           const isSpacing = knob.id === 'spacing';
+                          // `preset` is narrowed to a real level here — token
+                          // tabs never render under `unset`.
+                          const input = PRESET_THEME_INPUT[preset];
                           const emitted = isSpacing
-                            ? String(PRESET_SPACING_DEFAULT[preset as PresetLevel])
+                            ? String(input.spacing)
                             : readThemeToken(presetTheme, knob.path);
-                          // Typography authorship comes from the preset's own patch
-                          // record (theme.densityTypography): a preset value equal to
-                          // the MUI default still shows — blank means "the preset
-                          // never writes this" (a coverage gap to spec), not "the
-                          // value happens to equal the default". Non-typography
-                          // domains keep the value-diff heuristic; spacing always
-                          // shows its per-preset default.
-                          const typoPatch = (
-                            presetTheme as {
-                              densityTypography?: Record<string, Record<string, unknown>>;
-                            }
-                          ).densityTypography;
-                          const inherited =
-                            !isSpacing &&
-                            (knob.path[0] === 'typography' && typoPatch
-                              ? typoPatch[knob.path[1]]?.[knob.path[2]] == null
-                              : emitted === readThemeToken(baseTheme, knob.path));
+                          // Typography/shape authorship comes from the preset's
+                          // composition input (PRESET_THEME_INPUT): an input value
+                          // equal to the MUI default still shows — blank means "the
+                          // composition never writes this", not "the value happens
+                          // to equal the default" (e.g. high's borderRadius 4).
+                          // Other domains keep the value-diff heuristic; spacing
+                          // always shows its per-preset base.
+                          let inherited =
+                            !isSpacing && emitted === readThemeToken(baseTheme, knob.path);
+                          if (!isSpacing && knob.path[0] === 'typography') {
+                            inherited = input.typography[knob.path[1]]?.[knob.path[2]] == null;
+                          } else if (!isSpacing && knob.path[0] === 'shape') {
+                            inherited =
+                              (input.shape as Record<string, unknown>)[knob.path[1]] == null;
+                          }
                           const canon = inherited ? '' : emitted;
                           return (
                             <KnobInput

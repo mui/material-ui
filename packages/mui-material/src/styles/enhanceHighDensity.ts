@@ -2,7 +2,6 @@ import {
   addDefaultProps,
   addRootOverride,
   applyDensity,
-  applyTypographyPatch,
   DensityScale,
   EnhanceableTheme,
 } from './densityScale';
@@ -20,31 +19,6 @@ const scale: DensityScale = {
 
 export default function enhanceHighDensity<T extends EnhanceableTheme>(theme: T) {
   const enhanced = applyDensity(theme, scale);
-  // Type ramp from the design-system DTCG export (high mode): h1–h3/body1/caption
-  // pair fontSize+lineHeight token-for-token (variable/xxl…s); h4–h6/subtitle/body2
-  // interpolate the compressed ramp (h4 = h3/body1 midpoint, h5/subtitle1 = body1 fs,
-  // h6/subtitle2 = body2 fs; subtitle lh = body lh + 2px; body2 = body1 −1px fs /
-  // −2px lh); button mirrors body1. MUST run before applySharedDensity — shared
-  // derives InputBase/FormLabel/Tab line-heights live off the patched values.
-  applyTypographyPatch(enhanced, {
-    // font-size/variable/xxl 24 / line-height/variable/xxl 30
-    h1: { fontSize: '1.5rem', lineHeight: 1.25 },
-    // font-size/variable/xl 20 / line-height/variable/xl 26
-    h2: { fontSize: '1.25rem', lineHeight: 1.3 },
-    // font-size/variable/l 14 / line-height/variable/l 22
-    h3: { fontSize: '0.875rem', lineHeight: 1.571428571 },
-    h4: { fontSize: '0.8125rem', lineHeight: 1.538461538 }, // 13/20 interpolated
-    h5: { fontSize: '0.75rem', lineHeight: 1.5 }, // 12/18 interpolated
-    h6: { fontSize: '0.6875rem', lineHeight: 1.454545455 }, // 11/16 interpolated
-    subtitle1: { fontSize: '0.75rem', lineHeight: 1.5 }, // 12/18 = body1 + 2px lh
-    subtitle2: { fontSize: '0.6875rem', lineHeight: 1.454545455 }, // 11/16 = body2 + 2px lh
-    // font-size/variable/m 12 / line-height/variable/m 16
-    body1: { fontSize: '0.75rem', lineHeight: 1.333333333 },
-    body2: { fontSize: '0.6875rem', lineHeight: 1.272727273 }, // 11/14 = body1 −1/−2
-    // font-size/variable/s 11 / line-height/variable/s 14
-    caption: { fontSize: '0.6875rem', lineHeight: 1.272727273 },
-    button: { fontSize: '0.75rem', lineHeight: 1.333333333 }, // = body1
-  });
   applySharedDensity(enhanced);
   // MUI X DataGrid — cross-package emission (plain untyped keys; the grid reads
   // theme.components.MuiDataGrid via getThemeProps/styleOverrides). Row/header

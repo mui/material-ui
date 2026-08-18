@@ -26,15 +26,11 @@ export const DENSITY_KEYS: DensityKey[] = [
   'xx-large',
 ];
 
-/** Per-variant typography styles a preset explicitly writes (authorship record). */
-export type DensityTypographyPatch = Record<string, Record<string, string | number>>;
-
 /** Theme shape the presets can enhance in place. */
 export type EnhanceableTheme = {
   components?: Theme['components'] | undefined;
   typography?: Record<string, any> | undefined;
   breakpoints?: { up: (key: 'xs' | 'sm' | 'md' | 'lg' | 'xl') => string } | undefined;
-  densityTypography?: DensityTypographyPatch | undefined;
   vars?: Record<string, any> | undefined;
   // CSS-vars theme machinery (present when `createTheme({ cssVariables: … })`):
   cssVarPrefix?: string | undefined;
@@ -152,24 +148,4 @@ export function addDefaultProps(
     ...component,
     defaultProps: { ...defaults, ...component?.defaultProps },
   };
-}
-
-/**
- * Merge a preset's typography patch onto the enhanced theme AND record it on
- * `theme.densityTypography`. The record is AUTHORSHIP: playground token knobs
- * and the theme export treat every patched prop as preset-emitted even when its
- * value coincides with the MUI default — a blank knob must mean "the preset
- * never writes this", not "the written value happens to equal the default"
- * (and an export that carries the value survives upstream default drift).
- */
-export function applyTypographyPatch<T extends EnhanceableTheme>(
-  enhanced: T,
-  patch: DensityTypographyPatch,
-): void {
-  const typography: Record<string, any> = { ...enhanced.typography };
-  for (const [variant, styles] of Object.entries(patch)) {
-    typography[variant] = { ...typography[variant], ...styles };
-  }
-  enhanced.typography = typography;
-  enhanced.densityTypography = patch;
 }

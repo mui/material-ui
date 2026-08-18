@@ -2,7 +2,6 @@ import {
   addDefaultProps,
   addRootOverride,
   applyDensity,
-  applyTypographyPatch,
   DensityScale,
   EnhanceableTheme,
 } from './densityScale';
@@ -21,32 +20,6 @@ const scale: DensityScale = {
 
 export default function enhanceMediumDensity<T extends EnhanceableTheme>(theme: T) {
   const enhanced = applyDensity(theme, scale);
-  // Type ramp from the design-system DTCG export (medium mode) — the earlier
-  // capture's assumed fontSizes are now resolved (l was 16, not the assumed 20):
-  // h1–h3/body1/caption pair fontSize+lineHeight token-for-token (variable/xxl…s);
-  // h4–h6/subtitle/body2 interpolate (h4 = h3/body1 midpoint, h5/subtitle1 =
-  // body1 fs, h6/subtitle2 = body2 fs; subtitle lh = body lh + 2px; body2 =
-  // body1 −1px fs / −2px lh); button mirrors body1.
-  applyTypographyPatch(enhanced, {
-    // font-size/variable/xxl 28 / line-height/variable/xxl 36
-    h1: { fontSize: '1.75rem', lineHeight: 1.285714286 },
-    // font-size/variable/xl 24 / line-height/variable/xl 30
-    h2: { fontSize: '1.5rem', lineHeight: 1.25 },
-    // font-size/variable/l 16 / line-height/variable/l 26
-    h3: { fontSize: '1rem', lineHeight: 1.625 },
-    h4: { fontSize: '0.9375rem', lineHeight: 1.6 }, // 15/24 interpolated
-    h5: { fontSize: '0.875rem', lineHeight: 1.571428571 }, // 14/22 interpolated
-    h6: { fontSize: '0.8125rem', lineHeight: 1.538461538 }, // 13/20 interpolated
-    subtitle1: { fontSize: '0.875rem', lineHeight: 1.571428571 }, // 14/22 = body1 + 2px lh
-    subtitle2: { fontSize: '0.8125rem', lineHeight: 1.538461538 }, // 13/20 = body2 + 2px lh
-    // "body" = body1: font-size/variable/m 14 / line-height/variable/m 20
-    body1: { fontSize: '0.875rem', lineHeight: 1.428571429 },
-    // no design counterpart — body1 −1px fs / −2px lh (13/18)
-    body2: { fontSize: '0.8125rem', lineHeight: 1.384615385 },
-    // font-size/variable/s 12 / line-height/variable/s 18
-    caption: { fontSize: '0.75rem', lineHeight: 1.5 },
-    button: { fontSize: '0.875rem', lineHeight: 1.428571429 }, // = body1
-  });
   applySharedDensity(enhanced);
   // Per-size component styling (incl. the former Medium-only per-design blocks)
   // lives in sharedDensityComponents — identical under every preset; this file

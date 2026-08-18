@@ -3701,7 +3701,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'lineHeight',
     },
-    values: { high: '1.333333333', medium: '1.428571429', low: '1.375' },
+    values: { high: '1.5', medium: '1.5', low: '1.5' },
   },
   {
     id: 'MuiIconButton|root|base||padding',
@@ -4285,7 +4285,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'lineHeight',
     },
-    values: { high: '1.333333333', medium: '1.428571429', low: '1.375' },
+    values: { high: '1.5', medium: '1.5', low: '1.5' },
   },
   {
     id: 'MuiInputLabel|root|fn:1u4zrm||transform',
@@ -5801,7 +5801,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'lineHeight',
     },
-    values: { high: '1.333333333', medium: '1.428571429', low: '1.375' },
+    values: { high: '1.5', medium: '1.5', low: '1.5' },
   },
   {
     id: 'MuiPickersInputBase|section|base||lineHeight',
@@ -5815,7 +5815,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'lineHeight',
     },
-    values: { high: '1.333333333', medium: '1.428571429', low: '1.375' },
+    values: { high: '1.5', medium: '1.5', low: '1.5' },
   },
   {
     id: 'MuiPickersInputBase|sectionsContainer|base||lineHeight',
@@ -5829,7 +5829,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'lineHeight',
     },
-    values: { high: '1.333333333', medium: '1.428571429', low: '1.375' },
+    values: { high: '1.5', medium: '1.5', low: '1.5' },
   },
   {
     id: 'MuiPickersOutlinedInput|root|base||paddingInline',
@@ -7238,7 +7238,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiTab', slot: 'root', props: null, nested: '', cssProp: 'lineHeight' },
-    values: { high: '1.333333333', medium: '1.428571429', low: '1.375' },
+    values: { high: '1.75', medium: '1.75', low: '1.75' },
   },
   {
     id: 'MuiTab|root|base||paddingBlock',

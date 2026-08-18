@@ -2,7 +2,6 @@ import {
   addDefaultProps,
   addRootOverride,
   applyDensity,
-  applyTypographyPatch,
   DensityScale,
   EnhanceableTheme,
 } from './densityScale';
@@ -20,32 +19,6 @@ const scale: DensityScale = {
 
 export default function enhanceLowDensity<T extends EnhanceableTheme>(theme: T) {
   const enhanced = applyDensity(theme, scale);
-  // Type ramp from the design-system DTCG export (low mode): h1–h3/body1/caption
-  // pair fontSize+lineHeight token-for-token (variable/xxl…s); h4–h6/subtitle/body2
-  // interpolate (h4 = h3/body1 midpoint, h5/subtitle1 = body1 fs, h6/subtitle2 =
-  // body2 fs; subtitle lh = body lh + 2px; body2 = body1 −1px fs / −2px lh);
-  // button mirrors body1 (replaces the former 15px size=large pin — shared reads
-  // the patched button lineHeight live, so the size↔density diagonal follows).
-  // MUST run before applySharedDensity.
-  applyTypographyPatch(enhanced, {
-    // font-size/variable/xxl 30 / line-height/variable/xxl 38
-    h1: { fontSize: '1.875rem', lineHeight: 1.266666667 },
-    // font-size/variable/xl 26 / line-height/variable/xl 32
-    h2: { fontSize: '1.625rem', lineHeight: 1.230769231 },
-    // font-size/variable/l 20 / line-height/variable/l 28
-    h3: { fontSize: '1.25rem', lineHeight: 1.4 },
-    h4: { fontSize: '1.125rem', lineHeight: 1.444444444 }, // 18/26 interpolated
-    h5: { fontSize: '1rem', lineHeight: 1.5 }, // 16/24 interpolated
-    h6: { fontSize: '0.9375rem', lineHeight: 1.466666667 }, // 15/22 interpolated
-    subtitle1: { fontSize: '1rem', lineHeight: 1.5 }, // 16/24 = body1 + 2px lh
-    subtitle2: { fontSize: '0.9375rem', lineHeight: 1.466666667 }, // 15/22 = body2 + 2px lh
-    // font-size/variable/m 16 / line-height/variable/m 22
-    body1: { fontSize: '1rem', lineHeight: 1.375 },
-    body2: { fontSize: '0.9375rem', lineHeight: 1.333333333 }, // 15/20 = body1 −1/−2
-    // font-size/variable/s 14 / line-height/variable/s 20
-    caption: { fontSize: '0.875rem', lineHeight: 1.428571429 },
-    button: { fontSize: '1rem', lineHeight: 1.375 }, // = body1
-  });
   applySharedDensity(enhanced);
   // MUI X DataGrid — rationale in enhanceHighDensity; mirrored structure.
   addDefaultProps(enhanced.components, 'MuiDataGrid', {
