@@ -84,11 +84,11 @@ const openRolesData = [
   {
     title: 'Marketing',
     roles: [
-      {
-        title: 'Product Marketing Manager',
-        description: 'Establish MUI product positioning and messaging.',
-        url: '/careers/product-marketing-manager/',
-      },
+      // {
+      //   title: 'Product Marketing Manager',
+      //   description: 'Establish MUI product positioning and messaging.',
+      //   url: '/careers/product-marketing-manager/',
+      // },
     ],
   },
   {
