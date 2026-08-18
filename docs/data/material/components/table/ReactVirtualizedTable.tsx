@@ -109,6 +109,8 @@ function rowContent(_index: number, row: Data) {
       {columns.map((column) => (
         <TableCell
           key={column.dataKey}
+          component={column.dataKey === 'firstName' ? 'th' : 'td'}
+          scope={column.dataKey === 'firstName' ? 'row' : undefined}
           align={column.numeric || false ? 'right' : 'left'}
         >
           {row[column.dataKey]}
