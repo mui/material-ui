@@ -171,6 +171,52 @@ describe('resolveProps', () => {
         'aria-labelledby': 'dashboard',
       });
     });
+
+    it('keep function slot props with className and style when the slot is missing from props', () => {
+      const result = resolveProps(
+        {
+          slotProps: {
+            list: () => ({
+              className: 'default-list',
+              style: { color: 'red' },
+            }),
+          },
+        },
+        { slotProps: { paper: { className: 'my-paper' } } },
+        true,
+      );
+
+      const slotProps = result.slotProps as Record<string, any>;
+      expect(slotProps.paper).to.deep.equal({ className: 'my-paper' });
+      expect(slotProps.list).to.be.a('function');
+      expect(slotProps.list({})).to.deep.equal({
+        className: 'default-list',
+        style: { color: 'red' },
+      });
+    });
+
+    it('keep object slot props with className and style when the slot is missing from props', () => {
+      const result = resolveProps(
+        {
+          slotProps: {
+            list: {
+              className: 'default-list',
+              style: { color: 'red' },
+            },
+          },
+        },
+        { slotProps: { paper: { className: 'my-paper' } } },
+        true,
+      );
+
+      expect(result.slotProps).to.deep.equal({
+        paper: { className: 'my-paper' },
+        list: {
+          className: 'default-list',
+          style: { color: 'red' },
+        },
+      });
+    });
   });
 
   it('should not merge props that are not intended', () => {

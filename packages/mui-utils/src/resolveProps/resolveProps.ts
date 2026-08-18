@@ -57,16 +57,18 @@ export default function resolveProps<
                   ...args: unknown[]
                 ) =>
                   resolveProps(
-                    typeof defaultSlotPropValue === 'function'
+                    (typeof defaultSlotPropValue === 'function'
                       ? defaultSlotPropValue(...args)
-                      : defaultSlotPropValue,
-                    typeof slotPropValue === 'function' ? slotPropValue(...args) : slotPropValue,
+                      : defaultSlotPropValue) ?? {},
+                    (typeof slotPropValue === 'function'
+                      ? slotPropValue(...args)
+                      : slotPropValue) ?? {},
                     mergeClassNameAndStyle,
                   );
               } else {
                 (output[propName] as Record<string, unknown>)[slotPropName] = resolveProps(
-                  defaultSlotPropValue,
-                  slotPropValue,
+                  defaultSlotPropValue ?? {},
+                  slotPropValue ?? {},
                   mergeClassNameAndStyle,
                 );
               }
