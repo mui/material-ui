@@ -18,7 +18,18 @@ import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 
 import { AppHeaderBanner, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
-const openRolesData = [
+type Role = {
+  title: string;
+  description: string;
+  url: string;
+};
+
+type RoleCategory = {
+  title: string;
+  roles: Role[];
+};
+
+const openRolesData: RoleCategory[] = [
   {
     title: 'Engineering',
     roles: [
@@ -84,11 +95,11 @@ const openRolesData = [
   {
     title: 'Marketing',
     roles: [
-      {
-        title: 'Product Marketing Manager',
-        description: 'Establish MUI product positioning and messaging.',
-        url: '/careers/product-marketing-manager/',
-      },
+      // {
+      //   title: 'Product Marketing Manager',
+      //   description: 'Establish MUI product positioning and messaging.',
+      //   url: '/careers/product-marketing-manager/',
+      // },
     ],
   },
   {
