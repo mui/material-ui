@@ -121,8 +121,9 @@ export const themeTokenGroups: ThemeTokenGroup[] = [
  * h4–h6/subtitle/body2 interpolate (h4 = h3/body1 midpoint, h5/subtitle1 =
  * body1 fs, h6/subtitle2 = body2 fs; subtitle lh = body lh + 2px; body2 =
  * body1 −1px fs / −2px lh); button mirrors body1. Radius =
- * border-radius/variable/m (4/6/8). Spacing: high tightens the base to 6,
- * medium/low keep MUI's 8.
+ * border-radius/variable/m (4/6/8). Spacing: the unit stays MUI's 8 for every
+ * preset — the density core assumes a fixed 8px base (steps derive as
+ * multipliers on it), and overall tightening is the scaling dial's job.
  */
 export type PresetThemeInput = {
   typography: Record<string, Record<string, string | number>>;
@@ -144,10 +145,15 @@ export const PRESET_THEME_INPUT: Record<'high' | 'medium' | 'low', PresetThemeIn
       body1: { fontSize: '0.75rem', lineHeight: 1.333333333 }, // 12/16
       body2: { fontSize: '0.6875rem', lineHeight: 1.272727273 }, // 11/14
       caption: { fontSize: '0.6875rem', lineHeight: 1.272727273 }, // 11/14
-      button: { fontSize: '0.75rem', lineHeight: 1.333333333 }, // = body1
+      button: {
+        fontSize: '0.75rem',
+        lineHeight: 1.333333333,
+        textTransform: 'initial',
+        letterSpacing: 0,
+      }, // = body1
     },
     shape: { borderRadius: 4 },
-    spacing: 6,
+    spacing: 8,
   },
   medium: {
     typography: {
@@ -162,7 +168,12 @@ export const PRESET_THEME_INPUT: Record<'high' | 'medium' | 'low', PresetThemeIn
       body1: { fontSize: '0.875rem', lineHeight: 1.428571429 }, // 14/20
       body2: { fontSize: '0.8125rem', lineHeight: 1.384615385 }, // 13/18
       caption: { fontSize: '0.75rem', lineHeight: 1.5 }, // 12/18
-      button: { fontSize: '0.875rem', lineHeight: 1.428571429 }, // = body1
+      button: {
+        fontSize: '0.875rem',
+        lineHeight: 1.428571429,
+        textTransform: 'initial',
+        letterSpacing: 0,
+      }, // = body1
     },
     shape: { borderRadius: 6 },
     spacing: 8,
@@ -180,7 +191,7 @@ export const PRESET_THEME_INPUT: Record<'high' | 'medium' | 'low', PresetThemeIn
       body1: { fontSize: '1rem', lineHeight: 1.375 }, // 16/22
       body2: { fontSize: '0.9375rem', lineHeight: 1.333333333 }, // 15/20
       caption: { fontSize: '0.875rem', lineHeight: 1.428571429 }, // 14/20
-      button: { fontSize: '1rem', lineHeight: 1.375 }, // = body1
+      button: { fontSize: '1rem', lineHeight: 1.375, textTransform: 'initial', letterSpacing: 0 }, // = body1
     },
     shape: { borderRadius: 8 },
     spacing: 8,

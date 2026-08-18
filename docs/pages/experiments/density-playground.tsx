@@ -170,6 +170,7 @@ import {
   isTokenId,
 } from 'docs/src/modules/components/density/themeTokens';
 import {
+  resolveSpacingCalcPx,
   SCALE_KEYS,
   appendPxToNumeric,
   previewText,
@@ -4066,6 +4067,9 @@ const FamilyKnobs = React.memo(
 
 export default function DensityExperiment() {
   const [preset, setPreset] = React.useState<Preset>('unset');
+  // Scaling dial (enhance*Density options.scaling) — raw text, trust-the-input:
+  // empty/unparseable = default 1. Rebuilds the preset theme; not exported yet.
+  const [scaling, setScaling] = React.useState('');
   const [selection, setSelection] = React.useState<Selection>('All');
   const [debug, setDebug] = React.useState<string[]>([]);
   // Slot highlight: the sidebar slot group spotlighted in the canvas
@@ -4400,6 +4404,7 @@ export default function DensityExperiment() {
     // the theme's own vars channel ships them natively (--mui-spacing,
     // --mui-shape-borderRadius); the enhancer only adds density-awareness.
     const input = PRESET_THEME_INPUT[preset];
+    const scalingValue = parseFloat(scaling);
     return PRESET_FN[preset](
       createTheme({
         cssVariables: true,
@@ -4407,8 +4412,9 @@ export default function DensityExperiment() {
         typography: input.typography,
         shape: input.shape,
       }),
+      Number.isFinite(scalingValue) && scalingValue > 0 ? { scaling: scalingValue } : undefined,
     );
-  }, [preset]);
+  }, [preset, scaling]);
 
   // Unenhanced base. A typography knob counts as a preset default only when the
   // preset diverges from base here; a value equal to base is inherited (the
@@ -4480,12 +4486,21 @@ export default function DensityExperiment() {
     return Object.keys(out).length ? out : undefined;
   }, [preset, presetTheme, deferredMapping]);
 
-  // The preset's own scale in px, straight off the enhanced theme — placeholder
-  // source for the Density-tab knobs (mirrors what the preset ships).
-  const presetScalePx =
-    preset === 'unset'
-      ? null
-      : (presetTheme as unknown as { density: Record<string, string> }).density;
+  // The preset's own scale resolved to px — theme.density carries the
+  // spacing-calc strings on a vars theme (steps = theme.spacing(m)); the
+  // placeholders/helpers need px, resolved off the 8px unit × the dial.
+  const presetScalePx = React.useMemo(() => {
+    if (preset === 'unset') {
+      return null;
+    }
+    const scalingValue = parseFloat(scaling);
+    const dial = Number.isFinite(scalingValue) && scalingValue > 0 ? scalingValue : 1;
+    return Object.fromEntries(
+      Object.entries((presetTheme as unknown as { density: Record<string, string> }).density).map(
+        ([k, v]) => [k, resolveSpacingCalcPx(v, dial)],
+      ),
+    );
+  }, [preset, presetTheme, scaling]);
 
   // EFFECTIVE scale (preset ⊕ scale-step overrides) — single source of truth for
   // the legend + every helper preview, so `xs` resolves to what the canvas
@@ -4974,6 +4989,21 @@ export default function DensityExperiment() {
                 Each step feeds var(--mui-density-*) — every spacing knob mapped to it reflows.
               </Typography>
               <Stack spacing={1.5} sx={{ mt: 1.5 }}>
+                <KnobInput
+                  key={`${preset}:scaling`}
+                  id="density.scaling"
+                  idAttr="data-token-field"
+                  label="scaling"
+                  value={scaling}
+                  placeholder="1"
+                  computeHelper={(draft) => {
+                    const v = parseFloat(draft || '1');
+                    return Number.isFinite(v) && v > 0
+                      ? { helper: `×${v} on spacing / type / radius (--mui-scaling)` }
+                      : { helper: 'not a positive number — default 1', error: true };
+                  }}
+                  onCommit={setScaling}
+                />
                 {SCALE_KEYS.map((key) => {
                   const canon = presetScalePx[key];
                   return (

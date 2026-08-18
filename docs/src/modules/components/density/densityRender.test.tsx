@@ -220,17 +220,22 @@ describe('density render — TablePagination root-slot emission', () => {
 // prove it, per the TablePagination lesson: static emit-table checks can't see a
 // resolver eating styles.
 describe('density render — IconButton padding emission', () => {
-  it("high preset fixed padding WINS over master's literal in the same rule block", () => {
+  it("high preset zero padding WINS over master's literal in the same rule block", () => {
     const { container, unmount } = mount(
       enhanceHighDensity(createTheme({ cssVariables: true })),
       <IconButton aria-label="more" />,
     );
     const rootHash = hashClassOf(container.querySelector('.MuiIconButton-root')!, 'root');
-    // The unsized instance renders the medium variant; its fixed-lane padding
-    // lands as a literal, identical under every preset — the scale still ships
-    // for step-ref consumers.
-    expect(winningDeclaration(documentCss(), [rootHash], 'padding')).to.equal('4px');
-    expect(documentCss()).to.match(/--mui-density-small:\s*8px/, 'expected high small step = 8px');
+    // Total-height model: the 1:1 size box owns the geometry, padding is 0
+    // (identical under every preset) — the scale still ships for step-ref
+    // consumers.
+    expect(winningDeclaration(documentCss(), [rootHash], 'padding')).to.equal('0');
+    expect(documentCss()).to.match(
+      // spacing-derived via the intercepted theme.spacing: high small = 1 unit
+      // (the m=1 shortcut drops the inner calc) × the scaling dial
+      /--mui-density-small:\s*calc\(var\(--mui-spacing[^)]*\) \* var\(--mui-scaling\)\)/,
+      'expected high small step = 1 spacing unit × dial',
+    );
     unmount();
   });
 

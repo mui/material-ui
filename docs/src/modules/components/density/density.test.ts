@@ -364,7 +364,14 @@ describe('density scale emission — theme vars channel', () => {
       expect(theme.generateThemeVars().density.medium, level).to.equal('var(--mui-density-medium)');
       const sheets = theme.generateStyleSheets();
       const densitySheet = sheets.find((sheet: any) => sheet[':root']?.['--mui-density-medium']);
+      // Steps carry the intercepted theme.spacing(m) verbatim — spacing-derived
+      // and riding the scaling dial; theme.density is the same string.
       expect(densitySheet[':root']['--mui-density-medium'], level).to.equal(theme.density.medium);
+      expect(densitySheet[':root']['--mui-density-medium'], level).to.contain('var(--mui-spacing');
+      expect(densitySheet[':root']['--mui-density-medium'], level).to.contain('var(--mui-scaling)');
+      // the dial ships on the same sheet; --mui-spacing keeps its own 8px value
+      expect(densitySheet[':root']['--mui-scaling'], level).to.equal('1');
+      expect(densitySheet[':root']['--mui-spacing'], level).to.equal(undefined);
     }
   });
 
@@ -376,6 +383,8 @@ describe('density scale emission — theme vars channel', () => {
     const sheets = theme.generateStyleSheets();
     const densitySheet = sheets.find((sheet: any) => sheet[':root']?.['--acme-density-medium']);
     expect(densitySheet[':root']['--acme-density-medium']).to.equal(theme.density.medium);
+    expect(densitySheet[':root']['--acme-density-medium']).to.contain('var(--acme-spacing');
+    expect(densitySheet[':root']['--acme-density-medium']).to.contain('var(--acme-scaling)');
   });
 
   it('static theme: raw px on theme.density only — no vars, no stylesheet wrapping', () => {
@@ -384,5 +393,53 @@ describe('density scale emission — theme vars channel', () => {
     expect(theme.generateStyleSheets).to.equal(undefined);
     expect(theme.components.MuiCssBaseline).to.equal(undefined);
     expect(theme.density.medium).to.match(/px$/);
+  });
+});
+
+describe('anchor contract — Button family total height per preset', () => {
+  // medium×medium is the contract cell: the height must equal the touch-target
+  // token per density (24/32/44 — low rides the 48px x-large step for now; 44
+  // has no ladder step). Preset-VARYING dimensions must ride a density step:
+  // theme.spacing() is preset-invariant, and this guard exists because a
+  // refactor once re-based the Button height on it — every preset silently
+  // rendered the medium 32px (caught by the user, 2026-08-18).
+  const TOUCH_TARGET: Record<PresetLevel, string> = {
+    high: '24px',
+    medium: '32px',
+    low: '48px',
+  };
+  const findVariantStyle = (node: unknown, props: Record<string, unknown>): any => {
+    if (Array.isArray(node)) {
+      for (const item of node) {
+        const hit = findVariantStyle(item, props);
+        if (hit) {
+          return hit;
+        }
+      }
+      return null;
+    }
+    if (!node || typeof node !== 'object') {
+      return null;
+    }
+    const o = node as any;
+    if (o.props && o.style && JSON.stringify(o.props) === JSON.stringify(props)) {
+      return o.style;
+    }
+    return o.variants ? findVariantStyle(o.variants, props) : null;
+  };
+  it('size=medium height = the x-large step = the touch-target px (static resolution)', () => {
+    for (const level of LEVELS) {
+      const theme = PRESETS[level](createTheme({})) as any; // static: raw px
+      expect(theme.density['x-large'], level).to.equal(TOUCH_TARGET[level]);
+      const button = findVariantStyle(theme.components.MuiButton.styleOverrides.root, {
+        size: 'medium',
+      });
+      expect(button?.height, `${level} Button`).to.equal(TOUCH_TARGET[level]);
+      const icon = findVariantStyle(theme.components.MuiIconButton.styleOverrides.root, {
+        size: 'medium',
+      });
+      expect(icon?.width, `${level} IconButton`).to.equal(TOUCH_TARGET[level]);
+      expect(icon?.height, `${level} IconButton`).to.equal(TOUCH_TARGET[level]);
+    }
   });
 });

@@ -15,7 +15,7 @@ const workspaces = (high: Record<string, string> = {}): MappingByPreset => ({
 });
 
 const EDITS = {
-  densityKey: { 'MuiButton|root|size=small||paddingBlock': 'x-small' },
+  densityKey: { 'MuiButton|root|size=medium||paddingInline': 'x-small' },
   rawPx: { 'MuiButton|root|base||paddingBlock': '30px' },
   virtualMembers: {
     // virtual:MuiTab:iconGapBlock — both members get one value (fn-matcher rows)
@@ -231,17 +231,14 @@ describe('buildExportSource', () => {
     expect(JSON.stringify(medium.components.MuiButton.styleOverrides.root)).not.to.contain('30px');
   });
 
-  it('spacing: high bakes its tuned base (6); medium/low keep MUI default; dual-mode runtime', () => {
+  it('spacing: every preset keeps the fixed 8px unit — nothing baked without an edit', () => {
+    // The density core assumes the MUI default 8px unit (steps are multipliers
+    // on it); no preset tunes the base anymore — tightening is the scaling
+    // dial's job. An unedited export must carry no spacing override.
     const src = buildExportSource(buildExportInput(workspaces()));
-    expect(src).to.contain('spacing: 6,'); // high tightens spacing, baked plain
+    expect(src).to.not.match(/^\s*spacing: \d/m); // payload spacing line absent (template keeps its own `spacing:` identifiers)
     const { enhanceHighDensity, enhanceMediumDensity } = evaluate(src);
-    // CSS-vars theme: --mui-spacing rides the theme's own channel
-    const varsTheme = enhanceHighDensity(createTheme({ cssVariables: true }));
-    expect(varsTheme.vars.spacing).to.equal('var(--mui-spacing, 6px)');
-    expect(JSON.stringify(varsTheme.generateStyleSheets())).to.contain('"--mui-spacing":"6px"');
-    // static theme: spacing function scales off the tuned base (6 * 2)
-    expect(enhanceHighDensity(createTheme({})).spacing(2)).to.equal('12px');
-    // medium keeps the MUI default (8) — no baked spacing override (8 * 2)
+    expect(enhanceHighDensity(createTheme({})).spacing(2)).to.equal('16px');
     expect(enhanceMediumDensity(createTheme({})).spacing(2)).to.equal('16px');
   });
 

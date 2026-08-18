@@ -2,23 +2,28 @@ import {
   addDefaultProps,
   addRootOverride,
   applyDensity,
-  DensityScale,
+  DensityMultipliers,
+  DensityOptions,
   EnhanceableTheme,
 } from './densityScale';
 import applySharedDensity, { applyPickerDaySize } from './sharedDensityComponents';
 
-const scale: DensityScale = {
-  'xx-small': '2px',
-  'x-small': '4px',
-  small: '8px',
-  medium: '12px',
-  large: '16px',
-  'x-large': '24px',
-  'xx-large': '32px',
+// Steps × the 8px spacing unit → 2/4/8/12/16/24/32 (the design-token ladder).
+const scale: DensityMultipliers = {
+  'xx-small': 0.25,
+  'x-small': 0.5,
+  small: 1,
+  medium: 1.5,
+  large: 2,
+  'x-large': 3,
+  'xx-large': 4,
 };
 
-export default function enhanceHighDensity<T extends EnhanceableTheme>(theme: T) {
-  const enhanced = applyDensity(theme, scale);
+export default function enhanceHighDensity<T extends EnhanceableTheme>(
+  theme: T,
+  options?: DensityOptions,
+) {
+  const enhanced = applyDensity(theme, scale, options);
   applySharedDensity(enhanced);
   // MUI X DataGrid — cross-package emission (plain untyped keys; the grid reads
   // theme.components.MuiDataGrid via getThemeProps/styleOverrides). Row/header

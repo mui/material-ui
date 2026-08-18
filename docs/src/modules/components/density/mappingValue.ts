@@ -199,3 +199,19 @@ export const appendPxToNumeric = (value: string, prop?: string) => {
     .map((t) => (NUMERIC_TOKEN_RE.test(t) ? `${t}px` : t))
     .join(' ');
 };
+
+/**
+ * theme.density on a CSS-vars theme carries theme.spacing(m) verbatim —
+ * `calc(calc(m * var(--mui-spacing, 8px)) * var(--mui-scaling))` (the m=1
+ * shortcut drops the inner calc). Resolve to px off the fixed 8px unit × the
+ * scaling dial; anything else (raw px on a static theme, user edits) passes
+ * through untouched.
+ */
+export function resolveSpacingCalcPx(value: string, scaling: number = 1): string {
+  if (!value.includes('-scaling)')) {
+    return value;
+  }
+  const inner = value.match(/calc\(([\d.]+) \* var\([^)]*-spacing[^)]*\)\)/);
+  const m = inner ? parseFloat(inner[1]) : 1;
+  return `${m * 8 * scaling}px`;
+}

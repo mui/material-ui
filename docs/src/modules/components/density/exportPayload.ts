@@ -6,7 +6,7 @@ import {
 } from '@mui/material/styles';
 import { buildOverrides, mergeOntoPreset } from './buildDensityOverrides';
 import { collectDensityEdits, collectScaleEdits, collectThemeTokenEdits } from './collectEdits';
-import { shortenDensityVars } from './mappingValue';
+import { resolveSpacingCalcPx, shortenDensityVars } from './mappingValue';
 import { PRESET_THEME_INPUT } from './themeTokens';
 import { USER_LAYER_KEY, USER_VALUE_KEY } from './buildExportSource';
 import type { ExportInput, ExportPresetPayload } from './buildExportSource';
@@ -140,12 +140,15 @@ export function buildExportInput(mappingByPreset: MappingByPreset): ExportInput 
     }
     // Effective scale (a DensityScale): the preset's px per step, with Density-tab
     // step edits applied. A step alias (e.g. md → xs) resolves to the referenced
-    // step's px — theme.density holds px; component overrides keep the var refs.
-    const scalePx: Record<string, string> = { ...enhanced.density };
+    // step's px. theme.density carries spacing-calc strings on the vars preset
+    // theme — resolved to px here (the export has no scaling section yet → dial 1).
+    const scalePx: Record<string, string> = Object.fromEntries(
+      Object.entries(enhanced.density).map(([k, v]) => [k, resolveSpacingCalcPx(v as string)]),
+    );
     const editedSteps = new Set<string>();
     for (const edit of collectScaleEdits(workspace)) {
       const ref = shortenDensityVars(edit.value); // 'var(--mui-density-x-small)' → 'x-small'; '10px' → '10px'
-      scalePx[edit.key] = enhanced.density[ref] ?? ref;
+      scalePx[edit.key] = scalePx[ref] ?? ref;
       editedSteps.add(edit.key);
     }
     // Scale payload — bare step keys (exposed on theme.density); edited steps

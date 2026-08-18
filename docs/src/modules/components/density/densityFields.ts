@@ -605,16 +605,6 @@ const negate = (v: string) => `calc(-1 * ${v})`;
 const half = (v: string) => `calc(${v} / 2)`;
 
 export const densityLinkedWrites: Record<string, DensityLinkedWrite[]> = {
-  // Button block padding -> outlined re-emission at -1px (border keeps all
-  // variants at equal height; master's own compensation). paddingBlock is
-  // size-uniform (base emission; the min box is the size lever), so ONE knob
-  // moves every size and variant, outlined stays 1px behind.
-  'MuiButton|root|base||paddingBlock': [
-    {
-      id: 'MuiButton|root|variant=outlined||paddingBlock',
-      wrap: (v: string) => `calc(${v} - 1px)`,
-    },
-  ],
   // MenuItem min-height -> the sm-up re-assert. Master resets non-dense
   // min-height to `auto` at sm-up (media rules hoist after the class rule), so
   // the knob's value must land inside that media too or desktop ignores it.
@@ -759,35 +749,35 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
     group: 'Avatar',
     members: ['MuiAvatar|root|base||width', 'MuiAvatar|root|base||height'],
   },
-  // Touch-target floor on both axes — one knob (the Avatar-size pattern).
+  // 1:1 box per size — one knob per size drives width+height (Avatar pattern).
   {
-    id: 'virtual:MuiIconButton:minSize',
-    label: 'IconButton · minimum size [size=medium]',
+    id: 'virtual:MuiIconButton:sizeSmall',
+    label: 'IconButton · size [size=small]',
     group: 'Button',
-    members: [
-      'MuiIconButton|root|size=medium||minWidth',
-      'MuiIconButton|root|size=medium||minHeight',
-    ],
+    members: ['MuiIconButton|root|size=small||width', 'MuiIconButton|root|size=small||height'],
   },
   {
-    id: 'virtual:MuiIconButton:minSizeLarge',
-    label: 'IconButton · minimum size [size=large]',
+    id: 'virtual:MuiIconButton:size',
+    label: 'IconButton · size [size=medium]',
     group: 'Button',
-    members: [
-      'MuiIconButton|root|size=large||minWidth',
-      'MuiIconButton|root|size=large||minHeight',
-    ],
+    members: ['MuiIconButton|root|size=medium||width', 'MuiIconButton|root|size=medium||height'],
+  },
+  {
+    id: 'virtual:MuiIconButton:sizeLarge',
+    label: 'IconButton · size [size=large]',
+    group: 'Button',
+    members: ['MuiIconButton|root|size=large||width', 'MuiIconButton|root|size=large||height'],
   },
   // Both icon slots share master's `& > *:nth-of-type(1)` fontSize seam — one
   // glyph size, one knob, surfaced under a synthetic `icon` slot.
   {
     id: 'virtual:MuiButton:iconFontSize',
-    label: 'Button · icon · fontSize [size=medium]',
+    label: 'Button · icon · fontSize',
     group: 'Button',
     slot: 'icon',
     members: [
-      'MuiButton|startIcon|size=medium|& > *:nth-of-type(1)|fontSize',
-      'MuiButton|endIcon|size=medium|& > *:nth-of-type(1)|fontSize',
+      'MuiButton|startIcon|base|& > *:nth-of-type(1)|fontSize',
+      'MuiButton|endIcon|base|& > *:nth-of-type(1)|fontSize',
     ],
   },
   // Chip icon margins ride the root as `& .MuiChip-icon` (to beat master's 0,2,0

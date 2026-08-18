@@ -68,92 +68,46 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // Density steps from the enhanced theme: `var(--mui-density-*)` refs in
   // cssVariables mode, raw px otherwise (dual-mode via `theme.vars || theme`).
   const d: DensityScale = (enhanced.vars || enhanced).density;
+  // Button family — total-height model. Anchor contract: medium×medium =
+  // touch-target (d['x-large'] = 24/32/48 per preset; low approximates the
+  // 44px token). small/large = anchor ∓ one density step; type = the theme's
+  // button variant verbatim; glyphs ride the line box (0.8lh) / the ladder.
   addRootOverride(enhanced.components, 'MuiButton', {
-    // Longhand split: block is the height lever, inline the width. paddingBlock
-    // is fixed-lane and SIZE-UNIFORM — the min box is the size lever (medium 32
-    // touch target, large 44, small content-sized) and padding is constant
-    // chrome: semantic/spacing/fixed/xs (4px), emitted ONCE on the base.
-    paddingBlock: 4,
+    ...enhanced.typography?.button,
+    paddingBlock: 0,
     variants: [
-      // Outlined re-emits BLOCK only at −1px border compensation (master's own
-      // shape) so its border keeps all variants at equal height; outlined
-      // inline is NOT compensated — width parity across variants is not a goal.
-      { props: { variant: 'outlined' }, style: { paddingBlock: 3 } },
-      // Per size: paddingInline rides the ladder one step off medium's `medium`
-      // (semantic/spacing/variable/m); type metrics pin per size from the
-      // size↔density diagonal (small←High's button type, medium←Medium's,
-      // large←Low's) as literals — sized text never varies with the preset.
-      {
-        props: { size: 'small' },
-        // fontSize explicit — master's sizeSmall 0.8125rem no longer equals High's button type
-        style: { paddingInline: d.small, fontSize: '0.75rem', lineHeight: 1.333333333 },
-      },
-      {
-        props: { size: 'medium' },
-        // minHeight: semantic/size/touch-target/default (32px, raw sizing policy)
-        style: {
-          minHeight: '32px',
-          paddingInline: d.medium,
-          fontSize: '0.875rem',
-          lineHeight: 1.428571429,
-        },
-      },
-      {
-        props: { size: 'large' },
-        // fontSize explicit — master's sizeLarge 0.9375rem no longer equals Low's button type
-        style: { minHeight: '44px', paddingInline: d.large, fontSize: '1rem', lineHeight: 1.375 },
-      },
+      // per size: height + paddingInline each ±1 step off the medium anchors
+      // (x-large / medium)
+      { props: { size: 'small' }, style: { height: d.large, paddingInline: d.small } },
+      { props: { size: 'medium' }, style: { height: d['x-large'], paddingInline: d.medium } },
+      { props: { size: 'large' }, style: { height: d['xx-large'], paddingInline: d.large } },
     ],
   });
-  // Icon size inside Button (promoted from density-Medium-only): 16px glyph on
-  // the medium size via master's `& > *:nth-of-type(1)` seam; small/large keep
-  // master's 18/22. Both slots driven by ONE virtual knob
-  // (`virtual:MuiButton:iconFontSize`).
   addRootOverride(
     enhanced.components,
     'MuiButton',
-    {
-      variants: [
-        { props: { size: 'medium' }, style: { '& > *:nth-of-type(1)': { fontSize: '16px' } } },
-      ],
-    },
+    { '& > *:nth-of-type(1)': { fontSize: '0.8lh' } },
     'startIcon',
   );
   addRootOverride(
     enhanced.components,
     'MuiButton',
-    {
-      variants: [
-        { props: { size: 'medium' }, style: { '& > *:nth-of-type(1)': { fontSize: '16px' } } },
-      ],
-    },
+    { '& > *:nth-of-type(1)': { fontSize: '0.8lh' } },
     'endIcon',
   );
   addRootOverride(enhanced.components, 'MuiIconButton', {
-    // Padding is fixed-lane and SIZE-UNIFORM — the min box is the size lever
-    // (medium 32 pair, large 44 pair, small content-sized) and padding is
-    // constant chrome: semantic/spacing/fixed/xs (4px), emitted ONCE on the
-    // base (overrides master's per-size 5/8/12).
-    // fontSize (the 1em-child sizing seam, 18/24/28) stays frozen except the
-    // medium glyph 16px (promoted from density-Medium-only) — icon visual size
-    // is otherwise owned by SvgIcon's own fontSize prop knob elsewhere.
-    // edge start/end: -4px flush-margins (override master's -12/-3; one knob per
-    // side, wins all sizes as the last-applied variant).
-    padding: 4,
+    padding: 0,
+    fontSize: d.medium,
     variants: [
-      // min pair: semantic/size/touch-target/default (32×32)
-      {
-        props: { size: 'medium' },
-        style: { minWidth: '32px', minHeight: '32px', fontSize: '16px' },
-      },
-      { props: { size: 'large' }, style: { minWidth: '44px', minHeight: '44px' } },
-      { props: { edge: 'start' }, style: { marginLeft: '-4px' } },
-      { props: { edge: 'end' }, style: { marginRight: '-4px' } },
+      { props: { size: 'small' }, style: { width: d.large, height: d.large } },
+      { props: { size: 'medium' }, style: { width: d['x-large'], height: d['x-large'] } },
+      { props: { size: 'large' }, style: { width: d['xx-large'], height: d['xx-large'] } },
+      // edge margin = −(size/8)
+      { props: { edge: 'start' }, style: { marginLeft: `calc(${d['x-large']} / -8)` } },
+      { props: { edge: 'end' }, style: { marginRight: `calc(${d['x-large']} / -8)` } },
     ],
   });
-  // Global icon size per fontSize variant (promoted from density-Medium-only;
-  // master: 20/24/35px). Fixed-lane raw px — identical under every preset; the
-  // `fontSize` prop is SvgIcon's own size axis and no preset flips its default.
+
   addRootOverride(enhanced.components, 'MuiSvgIcon', {
     variants: [
       { props: { fontSize: 'small' }, style: { fontSize: '16px' } },

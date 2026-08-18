@@ -165,7 +165,12 @@ function mergeTypography(base: AnyRecord, patch: AnyRecord): AnyRecord {
 // theme's own stylesheet channel).
 function resolveDensityRefs(value: unknown, scale: Record<string, string>): unknown {
   if (typeof value === 'string') {
-    return value.replace(/var\\(--mui-density-([\\w-]+)\\)/g, (whole, key) => scale[key] ?? whole);
+    // Steps → px; the spacing unit and the scaling dial resolve to their static
+    // values (8px / 1) — the surrounding calc() stays and computes in CSS.
+    return value
+      .replace(/var\\(--mui-density-([\\w-]+)\\)/g, (whole, key) => scale[key] ?? whole)
+      .replace(/var\\(--mui-spacing[^)]*\\)/g, '8px')
+      .replace(/var\\(--mui-scaling\\)/g, '1');
   }
   if (value === null || typeof value !== 'object') {
     return value;
