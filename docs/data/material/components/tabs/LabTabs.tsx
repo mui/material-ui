@@ -22,16 +22,12 @@ export default function LabTabs() {
         >
           <Tab label="Item One" value="1" />
           <Tab label="Item Two" value="2" />
-          <Tab label="Item Three" value="3" />
         </TabList>
         <TabPanel value="1" tabIndex={0}>
           Item One
         </TabPanel>
         <TabPanel value="2" tabIndex={0}>
           Item Two
-        </TabPanel>
-        <TabPanel value="3" tabIndex={0}>
-          Item Three
         </TabPanel>
       </TabContext>
     </Box>
