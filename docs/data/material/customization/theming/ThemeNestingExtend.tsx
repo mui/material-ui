@@ -1,4 +1,4 @@
-import { createTheme, Theme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, type Theme, ThemeProvider } from '@mui/material/styles';
 import Checkbox from '@mui/material/Checkbox';
 import { green, orange } from '@mui/material/colors';
 

@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import { Element, RULESET } from 'stylis';
+import { type Element, RULESET } from 'stylis';
 
 // A workaround to https://github.com/emotion-js/emotion/issues/2836
 // to be able to use `:where` selector for styling.

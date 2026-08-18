@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
 import Box from '@mui/material/Box';
-import Dialog, { DialogProps } from '@mui/material/Dialog';
-import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
-import { mergeSlotProps, SlotComponentProps } from '@mui/material/utils';
+import Dialog, { type DialogProps } from '@mui/material/Dialog';
+import Tooltip, { type TooltipProps } from '@mui/material/Tooltip';
+import { mergeSlotProps, type SlotComponentProps } from '@mui/material/utils';
 
 // without explicit type
 const slotProps = mergeSlotProps(undefined, { className: 'foo', 'aria-label': 'bar' });

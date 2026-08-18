@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
-import Paper, { PaperProps } from '@mui/material/Paper';
+import Paper, { type PaperProps } from '@mui/material/Paper';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PricingTable from 'docs/src/components/pricing/PricingTable';

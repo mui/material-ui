@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '../internal';
-import { InputProps } from '../Input';
-import { MenuProps } from '../Menu';
-import { SelectChangeEvent, SelectInputProps } from './SelectInput';
-import { SelectClasses } from './selectClasses';
-import { OutlinedInputProps } from '../OutlinedInput';
-import { FilledInputProps } from '../FilledInput';
+import type * as React from 'react';
+import { type SxProps } from '@mui/system';
+import { type Theme } from '../styles';
+import { type InternalStandardProps as StandardProps } from '../internal';
+import { type InputProps } from '../Input';
+import { type MenuProps } from '../Menu';
+import { SelectChangeEvent, type SelectInputProps } from './SelectInput';
+import { type SelectClasses } from './selectClasses';
+import { type OutlinedInputProps } from '../OutlinedInput';
+import { type FilledInputProps } from '../FilledInput';
 
 export { SelectChangeEvent };
 

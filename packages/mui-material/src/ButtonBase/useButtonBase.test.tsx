@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
-import useButtonBase, { UseButtonBaseParameters } from './useButtonBase';
+import useButtonBase, { type UseButtonBaseParameters } from './useButtonBase';
 
 interface ButtonProps extends Omit<UseButtonBaseParameters, 'nativeButton' | 'disabled'> {
   id?: string | undefined;

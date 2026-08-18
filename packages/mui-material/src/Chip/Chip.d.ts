@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { OverridableStringUnion } from '@mui/types';
-import { SxProps } from '@mui/system';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import { Theme } from '../styles';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { ChipClasses } from './chipClasses';
+import type * as React from 'react';
+import { type OverridableStringUnion } from '@mui/types';
+import { type SxProps } from '@mui/system';
+import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
+import { type Theme } from '../styles';
+import { type OverridableComponent, type OverrideProps } from '../OverridableComponent';
+import { type ChipClasses } from './chipClasses';
 
 export interface ChipSlots {
   /**

@@ -10,14 +10,14 @@ import visuallyHidden from '@mui/utils/visuallyHidden';
 import clamp from '@mui/utils/clamp';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import {
-  Mark,
-  UseSliderHiddenInputProps,
-  UseSliderParameters,
-  UseSliderReturnValue,
-  UseSliderRootSlotProps,
-  UseSliderThumbSlotProps,
+  type Mark,
+  type UseSliderHiddenInputProps,
+  type UseSliderParameters,
+  type UseSliderReturnValue,
+  type UseSliderRootSlotProps,
+  type UseSliderThumbSlotProps,
 } from './useSlider.types';
-import { EventHandlers } from '../utils/types';
+import { type EventHandlers } from '../utils/types';
 import areArraysEqual from '../utils/areArraysEqual';
 import contains from '../utils/contains';
 import getActiveElement from '../utils/getActiveElement';

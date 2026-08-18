@@ -1,5 +1,10 @@
 import partition from 'es-toolkit/compat/partition';
-import { PropTypeDefinition, PropTypesComponent, PropType, LiteralType } from './models';
+import {
+  type PropTypeDefinition,
+  type PropTypesComponent,
+  type PropType,
+  type LiteralType,
+} from './models';
 import { createDOMElementType, createBooleanType, uniqueUnionTypes } from './createType';
 
 export interface GeneratePropTypesOptions {

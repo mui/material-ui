@@ -3,8 +3,8 @@ import {
   ThemeProvider,
   styled,
   useTheme,
-  Overlays,
-  StorageManager,
+  type Overlays,
+  type StorageManager,
 } from '@mui/material/styles';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 

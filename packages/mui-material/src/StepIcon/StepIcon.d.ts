@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { SvgIconOwnProps } from '../SvgIcon';
-import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '../internal';
-import { StepIconClasses } from './stepIconClasses';
+import type * as React from 'react';
+import { type SxProps } from '@mui/system';
+import { type SvgIconOwnProps } from '../SvgIcon';
+import { type Theme } from '../styles';
+import { type InternalStandardProps as StandardProps } from '../internal';
+import { type StepIconClasses } from './stepIconClasses';
 
 export interface StepIconProps
   // TODO v7: extend React.HTMLAttributes<SVGSVGElement> as svg is root component of StepIcon not div
