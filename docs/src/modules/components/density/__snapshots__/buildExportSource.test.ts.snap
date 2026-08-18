@@ -60,7 +60,8 @@ const high = {
                 },
                 style: {
                   paddingInline: 'var(--mui-density-small)',
-                  lineHeight: 1.38462,
+                  fontSize: '0.75rem',
+                  lineHeight: 1.333333333,
                 },
               },
               {
@@ -81,7 +82,8 @@ const high = {
                 style: {
                   minHeight: '44px',
                   paddingInline: 'var(--mui-density-large)',
-                  lineHeight: 1.4,
+                  fontSize: '1rem',
+                  lineHeight: 1.375,
                 },
               },
             ],
@@ -533,17 +535,17 @@ const high = {
       styleOverrides: {
         sectionsContainer: [
           {
-            lineHeight: 1.5,
+            lineHeight: 1.333333333,
           },
         ],
         section: [
           {
-            lineHeight: 1.5,
+            lineHeight: 1.333333333,
           },
         ],
         content: [
           {
-            lineHeight: 1.5,
+            lineHeight: 1.333333333,
           },
         ],
       },
@@ -2361,7 +2363,7 @@ const high = {
       styleOverrides: {
         root: [
           {
-            lineHeight: 1.5,
+            lineHeight: 1.333333333,
           },
         ],
         input: [
@@ -2396,7 +2398,7 @@ const high = {
       styleOverrides: {
         root: [
           {
-            lineHeight: 1.5,
+            lineHeight: 1.333333333,
           },
         ],
       },
@@ -2425,7 +2427,7 @@ const high = {
         root: [
           {
             minHeight: '32px',
-            lineHeight: 1.75,
+            lineHeight: 1.333333333,
             paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
             paddingInline: 'var(--mui-density-small)',
             variants: [
@@ -2933,48 +2935,52 @@ const high = {
   },
   typography: {
     h1: {
-      fontSize: '4.5rem',
-      lineHeight: 1.1,
-    },
-    h2: {
-      fontSize: '3rem',
-      lineHeight: 1.15,
-    },
-    h3: {
-      fontSize: '2.5rem',
-      lineHeight: 1.15,
-    },
-    h4: {
-      fontSize: '1.75rem',
-      lineHeight: 1.2,
-    },
-    h5: {
-      fontSize: '1.25rem',
+      fontSize: '1.5rem',
       lineHeight: 1.25,
     },
+    h2: {
+      fontSize: '1.25rem',
+      lineHeight: 1.3,
+    },
+    h3: {
+      fontSize: '0.875rem',
+      lineHeight: 1.571428571,
+    },
+    h4: {
+      fontSize: '0.8125rem',
+      lineHeight: 1.538461538,
+    },
+    h5: {
+      fontSize: '0.75rem',
+      lineHeight: 1.5,
+    },
     h6: {
-      fontSize: '1.125rem',
-      lineHeight: 1.4,
+      fontSize: '0.6875rem',
+      lineHeight: 1.454545455,
     },
     subtitle1: {
-      fontSize: '0.875rem',
+      fontSize: '0.75rem',
       lineHeight: 1.5,
     },
     subtitle2: {
-      fontSize: '0.8125rem',
-      lineHeight: 1.4,
+      fontSize: '0.6875rem',
+      lineHeight: 1.454545455,
     },
     body1: {
-      fontSize: '0.875rem',
-      lineHeight: 1.42857143,
+      fontSize: '0.75rem',
+      lineHeight: 1.333333333,
     },
     body2: {
-      fontSize: '0.8125rem',
-      lineHeight: 1.38462,
+      fontSize: '0.6875rem',
+      lineHeight: 1.272727273,
+    },
+    caption: {
+      fontSize: '0.6875rem',
+      lineHeight: 1.272727273,
     },
     button: {
-      fontSize: '0.8125rem',
-      lineHeight: 1.38462,
+      fontSize: '0.75rem',
+      lineHeight: 1.333333333,
     },
   },
   shape: {},
@@ -3012,7 +3018,8 @@ const medium = {
                 },
                 style: {
                   paddingInline: 'var(--mui-density-small)',
-                  lineHeight: 1.38462,
+                  fontSize: '0.75rem',
+                  lineHeight: 1.333333333,
                 },
               },
               {
@@ -3033,7 +3040,8 @@ const medium = {
                 style: {
                   minHeight: '44px',
                   paddingInline: 'var(--mui-density-large)',
-                  lineHeight: 1.4,
+                  fontSize: '1rem',
+                  lineHeight: 1.375,
                 },
               },
             ],
@@ -5896,8 +5904,28 @@ const medium = {
       lineHeight: 1.25,
     },
     h3: {
-      fontSize: '1.25rem',
-      lineHeight: 1.3,
+      fontSize: '1rem',
+      lineHeight: 1.625,
+    },
+    h4: {
+      fontSize: '0.9375rem',
+      lineHeight: 1.6,
+    },
+    h5: {
+      fontSize: '0.875rem',
+      lineHeight: 1.571428571,
+    },
+    h6: {
+      fontSize: '0.8125rem',
+      lineHeight: 1.538461538,
+    },
+    subtitle1: {
+      fontSize: '0.875rem',
+      lineHeight: 1.571428571,
+    },
+    subtitle2: {
+      fontSize: '0.8125rem',
+      lineHeight: 1.538461538,
     },
     body1: {
       fontSize: '0.875rem',
@@ -5905,7 +5933,7 @@ const medium = {
     },
     body2: {
       fontSize: '0.8125rem',
-      lineHeight: 1.38462,
+      lineHeight: 1.384615385,
     },
     caption: {
       fontSize: '0.75rem',
@@ -5950,7 +5978,8 @@ const low = {
                 },
                 style: {
                   paddingInline: 'var(--mui-density-small)',
-                  lineHeight: 1.38462,
+                  fontSize: '0.75rem',
+                  lineHeight: 1.333333333,
                 },
               },
               {
@@ -5971,7 +6000,8 @@ const low = {
                 style: {
                   minHeight: '44px',
                   paddingInline: 'var(--mui-density-large)',
-                  lineHeight: 1.4,
+                  fontSize: '1rem',
+                  lineHeight: 1.375,
                 },
               },
             ],
@@ -6423,17 +6453,17 @@ const low = {
       styleOverrides: {
         sectionsContainer: [
           {
-            lineHeight: 1.5,
+            lineHeight: 1.375,
           },
         ],
         section: [
           {
-            lineHeight: 1.5,
+            lineHeight: 1.375,
           },
         ],
         content: [
           {
-            lineHeight: 1.5,
+            lineHeight: 1.375,
           },
         ],
       },
@@ -8251,7 +8281,7 @@ const low = {
       styleOverrides: {
         root: [
           {
-            lineHeight: 1.5,
+            lineHeight: 1.375,
           },
         ],
         input: [
@@ -8286,7 +8316,7 @@ const low = {
       styleOverrides: {
         root: [
           {
-            lineHeight: 1.5,
+            lineHeight: 1.375,
           },
         ],
       },
@@ -8315,7 +8345,7 @@ const low = {
         root: [
           {
             minHeight: '32px',
-            lineHeight: 1.75,
+            lineHeight: 1.375,
             paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
             paddingInline: 'var(--mui-density-small)',
             variants: [
@@ -8822,9 +8852,53 @@ const low = {
     },
   },
   typography: {
-    button: {
-      fontSize: '0.9375rem',
+    h1: {
+      fontSize: '1.875rem',
+      lineHeight: 1.266666667,
+    },
+    h2: {
+      fontSize: '1.625rem',
+      lineHeight: 1.230769231,
+    },
+    h3: {
+      fontSize: '1.25rem',
       lineHeight: 1.4,
+    },
+    h4: {
+      fontSize: '1.125rem',
+      lineHeight: 1.444444444,
+    },
+    h5: {
+      fontSize: '1rem',
+      lineHeight: 1.5,
+    },
+    h6: {
+      fontSize: '0.9375rem',
+      lineHeight: 1.466666667,
+    },
+    subtitle1: {
+      fontSize: '1rem',
+      lineHeight: 1.5,
+    },
+    subtitle2: {
+      fontSize: '0.9375rem',
+      lineHeight: 1.466666667,
+    },
+    body1: {
+      fontSize: '1rem',
+      lineHeight: 1.375,
+    },
+    body2: {
+      fontSize: '0.9375rem',
+      lineHeight: 1.333333333,
+    },
+    caption: {
+      fontSize: '0.875rem',
+      lineHeight: 1.428571429,
+    },
+    button: {
+      fontSize: '1rem',
+      lineHeight: 1.375,
     },
   },
   shape: {},

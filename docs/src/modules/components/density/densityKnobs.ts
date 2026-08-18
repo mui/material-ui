@@ -156,6 +156,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     note: 'Linked write: follows the paddingBlock knob at calc(v − 1px) — the outlined border compensation keeps all variants at equal height.',
   },
   'MuiButton|root|size=small||paddingInline': 'Button · paddingInline [size=small]',
+  'MuiButton|root|size=small||fontSize': 'Button · fontSize [size=small]',
   'MuiButton|root|size=small||lineHeight': 'Button · lineHeight [size=small]',
   'MuiButton|root|size=medium||minHeight': {
     label: 'Button · minHeight [size=medium]',
@@ -169,6 +170,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiButton|root|size=medium||lineHeight': 'Button · lineHeight [size=medium]',
   'MuiButton|root|size=large||minHeight': { label: 'Button · minHeight [size=large]' },
   'MuiButton|root|size=large||paddingInline': { label: 'Button · paddingInline [size=large]' },
+  'MuiButton|root|size=large||fontSize': 'Button · fontSize [size=large]',
   'MuiButton|root|size=large||lineHeight': 'Button · lineHeight [size=large]',
   'MuiButton|startIcon|size=medium|& > *:nth-of-type(1)|fontSize': {
     label: 'Button · startIcon · fontSize [size=medium]',

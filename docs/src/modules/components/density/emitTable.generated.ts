@@ -743,6 +743,20 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
+    id: 'MuiButton|root|size=small||fontSize',
+    label: 'Button · fontSize [size=small]',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiButton',
+      slot: 'root',
+      props: { size: 'small' },
+      nested: '',
+      cssProp: 'fontSize',
+    },
+    values: { high: '0.75rem', medium: '0.75rem', low: '0.75rem' },
+  },
+  {
     id: 'MuiButton|root|size=small||lineHeight',
     label: 'Button · lineHeight [size=small]',
     isDensity: false,
@@ -754,7 +768,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'lineHeight',
     },
-    values: { high: '1.38462', medium: '1.38462', low: '1.38462' },
+    values: { high: '1.333333333', medium: '1.333333333', low: '1.333333333' },
   },
   {
     id: 'MuiButton|root|size=medium||minHeight',
@@ -849,6 +863,20 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
+    id: 'MuiButton|root|size=large||fontSize',
+    label: 'Button · fontSize [size=large]',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiButton',
+      slot: 'root',
+      props: { size: 'large' },
+      nested: '',
+      cssProp: 'fontSize',
+    },
+    values: { high: '1rem', medium: '1rem', low: '1rem' },
+  },
+  {
     id: 'MuiButton|root|size=large||lineHeight',
     label: 'Button · lineHeight [size=large]',
     isDensity: false,
@@ -860,7 +888,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'lineHeight',
     },
-    values: { high: '1.4', medium: '1.4', low: '1.4' },
+    values: { high: '1.375', medium: '1.375', low: '1.375' },
   },
   {
     id: 'MuiButton|startIcon|size=medium|& > *:nth-of-type(1)|fontSize',
@@ -3673,7 +3701,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'lineHeight',
     },
-    values: { high: '1.5', medium: '1.428571429', low: '1.5' },
+    values: { high: '1.333333333', medium: '1.428571429', low: '1.375' },
   },
   {
     id: 'MuiIconButton|root|base||padding',
@@ -4257,7 +4285,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'lineHeight',
     },
-    values: { high: '1.5', medium: '1.428571429', low: '1.5' },
+    values: { high: '1.333333333', medium: '1.428571429', low: '1.375' },
   },
   {
     id: 'MuiInputLabel|root|fn:1u4zrm||transform',
@@ -5773,7 +5801,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'lineHeight',
     },
-    values: { high: '1.5', medium: '1.428571429', low: '1.5' },
+    values: { high: '1.333333333', medium: '1.428571429', low: '1.375' },
   },
   {
     id: 'MuiPickersInputBase|section|base||lineHeight',
@@ -5787,7 +5815,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'lineHeight',
     },
-    values: { high: '1.5', medium: '1.428571429', low: '1.5' },
+    values: { high: '1.333333333', medium: '1.428571429', low: '1.375' },
   },
   {
     id: 'MuiPickersInputBase|sectionsContainer|base||lineHeight',
@@ -5801,7 +5829,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'lineHeight',
     },
-    values: { high: '1.5', medium: '1.428571429', low: '1.5' },
+    values: { high: '1.333333333', medium: '1.428571429', low: '1.375' },
   },
   {
     id: 'MuiPickersOutlinedInput|root|base||paddingInline',
@@ -7210,7 +7238,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiTab', slot: 'root', props: null, nested: '', cssProp: 'lineHeight' },
-    values: { high: '1.75', medium: '1.428571429', low: '1.75' },
+    values: { high: '1.333333333', medium: '1.428571429', low: '1.375' },
   },
   {
     id: 'MuiTab|root|base||paddingBlock',

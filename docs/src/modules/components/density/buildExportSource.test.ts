@@ -182,7 +182,7 @@ describe('buildExportSource', () => {
     expect(enhanced.typography.h1.fontSize).to.equal('5rem');
     expect(enhanced.shape.borderRadius).to.equal(2);
     // high typography reflow baked per preset
-    expect(enhanceHighDensity(createTheme({})).typography.body2.fontSize).to.equal('0.8125rem');
+    expect(enhanceHighDensity(createTheme({})).typography.body2.fontSize).to.equal('0.6875rem');
   });
 
   it('defaultProps emissions (DataGrid heights): baked per preset, app defaults win, knob edit applies', () => {

@@ -85,7 +85,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       // large←Low's) as literals — sized text never varies with the preset.
       {
         props: { size: 'small' },
-        style: { paddingInline: d.small, lineHeight: 1.38462 },
+        // fontSize explicit — master's sizeSmall 0.8125rem no longer equals High's button type
+        style: { paddingInline: d.small, fontSize: '0.75rem', lineHeight: 1.333333333 },
       },
       {
         props: { size: 'medium' },
@@ -99,7 +100,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
       {
         props: { size: 'large' },
-        style: { minHeight: '44px', paddingInline: d.large, lineHeight: 1.4 },
+        // fontSize explicit — master's sizeLarge 0.9375rem no longer equals Low's button type
+        style: { minHeight: '44px', paddingInline: d.large, fontSize: '1rem', lineHeight: 1.375 },
       },
     ],
   });
