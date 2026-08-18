@@ -54,7 +54,7 @@
     "fast-glob": "3.3.3",
     "react": "19.2.8",
     "sinon": "22.1.0",
-    "styled-components": "6.4.4"
+    "styled-components": "6.5.2"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
