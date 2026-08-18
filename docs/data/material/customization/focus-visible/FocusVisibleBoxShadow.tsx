@@ -23,6 +23,14 @@ const theme = createTheme({
 });
 
 export default function FocusVisibleBoxShadow() {
+  const [cardTab, setCardTab] = React.useState(0);
+  const [appBarTab, setAppBarTab] = React.useState(0);
+  const handleCardChange = (event: React.SyntheticEvent, newValue: number) => {
+    setCardTab(newValue);
+  };
+  const handleAppBarChange = (event: React.SyntheticEvent, newValue: number) => {
+    setAppBarTab(newValue);
+  };
   return (
     <ThemeProvider theme={theme}>
       <Stack spacing={2} sx={{ width: '100%' }}>
@@ -40,7 +48,7 @@ export default function FocusVisibleBoxShadow() {
           }}
         >
           <Button variant="outlined">Tab to me</Button>
-          <Tabs value={0}>
+          <Tabs value={cardTab} onChange={handleCardChange}>
             <Tab label="Tab one" />
             <Tab label="Tab two" />
           </Tabs>
@@ -50,7 +58,12 @@ export default function FocusVisibleBoxShadow() {
             <Button variant="outlined" color="inherit">
               Tab to me
             </Button>
-            <Tabs value={0} textColor="inherit" indicatorColor="secondary">
+            <Tabs
+              value={appBarTab}
+              onChange={handleAppBarChange}
+              textColor="inherit"
+              indicatorColor="secondary"
+            >
               <Tab label="Tab one" />
               <Tab label="Tab two" />
             </Tabs>

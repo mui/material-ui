@@ -123,6 +123,10 @@ Bucket.propTypes = {
 };
 
 export default function FullFocusVisibleDemo() {
+  const [tab, setTab] = React.useState(0);
+  const handleTabChange = (event, newValue) => {
+    setTab(newValue);
+  };
   return (
     <ThemeProvider theme={theme}>
       <Stack spacing={3}>
@@ -251,7 +255,7 @@ export default function FullFocusVisibleDemo() {
           hint="Inside a scrollable or overflow-clipped container — the ring is inset (outlineOffset -2) so it cannot be clipped."
         >
           <Row label="Tab">
-            <Tabs value={0} sx={{ minHeight: 0 }}>
+            <Tabs value={tab} onChange={handleTabChange} sx={{ minHeight: 0 }}>
               <Tab label="Tab one" />
               <Tab label="Tab two" />
             </Tabs>
