@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createTheme } from '@mui/material/styles';
 import prepareTypographyVars from './prepareTypographyVars';
 

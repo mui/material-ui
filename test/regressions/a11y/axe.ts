@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import type { AxeResults } from 'axe-core';
 import type { TestContext } from 'vitest';
 

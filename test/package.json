@@ -20,7 +20,6 @@
     "@types/react": "19.2.18",
     "@types/react-is": "19.2.0",
     "@types/sinon": "22.0.0",
-    "chai": "6.2.2",
     "docs": "workspace:^",
     "es-toolkit": "1.50.0",
     "fast-glob": "3.3.3",

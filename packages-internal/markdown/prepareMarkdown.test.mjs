@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import prepareMarkdown from './prepareMarkdown.mjs';
 
 describe('prepareMarkdown', () => {

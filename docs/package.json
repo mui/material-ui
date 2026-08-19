@@ -122,7 +122,6 @@
     "@types/react-transition-group": "4.4.12",
     "@types/semver": "7.8.0",
     "@types/stylis": "4.2.7",
-    "chai": "6.2.2",
     "cross-fetch": "4.1.0",
     "sharp": "0.35.3",
     "prettier": "3.9.6",

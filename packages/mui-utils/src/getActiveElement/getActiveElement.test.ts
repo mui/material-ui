@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { stub } from 'sinon';
 import getActiveElement from './getActiveElement';
 

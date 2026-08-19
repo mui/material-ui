@@ -555,9 +555,6 @@ importers:
       '@types/stylis':
         specifier: 4.2.7
         version: 4.2.7
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       cross-fetch:
         specifier: ^4.1.0
         version: 4.1.0(encoding@0.1.13)
@@ -646,9 +643,6 @@ importers:
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       sinon:
         specifier: 22.1.0
         version: 22.1.0
@@ -681,9 +675,6 @@ importers:
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       sinon:
         specifier: 22.1.0
         version: 22.1.0
@@ -729,9 +720,6 @@ importers:
       '@types/stylis':
         specifier: ^4.2.7
         version: 4.2.7
-      chai:
-        specifier: ^6.0.1
-        version: 6.2.2
       clipboard-copy:
         specifier: ^4.0.1
         version: 4.0.1
@@ -839,9 +827,6 @@ importers:
       '@types/chai':
         specifier: 5.2.3
         version: 5.2.3
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
 
   packages-internal/scripts:
     dependencies:
@@ -894,9 +879,6 @@ importers:
       '@types/uuid':
         specifier: 11.0.0
         version: 11.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       fast-glob:
         specifier: 3.3.3
         version: 3.3.3
@@ -948,9 +930,6 @@ importers:
       '@types/jscodeshift':
         specifier: 17.3.0
         version: 17.3.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
     publishDirectory: build
 
   packages/mui-core-downloads-tracker: {}
@@ -964,9 +943,6 @@ importers:
       '@types/chai':
         specifier: 5.2.3
         version: 5.2.3
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
     publishDirectory: build
 
   packages/mui-envinfo/test:
@@ -1012,9 +988,6 @@ importers:
       '@types/react':
         specifier: 19.2.18
         version: 19.2.18
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       chalk:
         specifier: 6.0.0
         version: 6.0.0
@@ -1095,9 +1068,6 @@ importers:
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -1172,9 +1142,6 @@ importers:
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       css-mediaquery:
         specifier: 0.1.2
         version: 0.1.2
@@ -1265,9 +1232,6 @@ importers:
       '@types/react':
         specifier: 19.2.18
         version: 19.2.18
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -1312,9 +1276,6 @@ importers:
       '@types/react':
         specifier: 19.2.18
         version: 19.2.18
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -1347,9 +1308,6 @@ importers:
       '@types/react':
         specifier: 19.2.18
         version: 19.2.18
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -1376,9 +1334,6 @@ importers:
       '@types/stylis':
         specifier: 4.2.7
         version: 4.2.7
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       stylis:
         specifier: 4.4.0
         version: 4.4.0
@@ -1432,9 +1387,6 @@ importers:
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       es-toolkit:
         specifier: 1.50.0
         version: 1.50.0
@@ -1505,9 +1457,6 @@ importers:
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -1570,9 +1519,6 @@ importers:
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       docs:
         specifier: workspace:^
         version: link:../docs

@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import styleFunctionSx from './styleFunctionSx';
 import cssContainerQueries from '../cssContainerQueries';
 import createBreakpoints from '../createBreakpoints/createBreakpoints';

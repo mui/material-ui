@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import composeClasses from '@mui/utils/composeClasses';
 
 describe('composeClasses', () => {

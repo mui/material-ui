@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Timeline, { timelineClasses as classes } from '@mui/lab/Timeline';
 import describeConformance from '../../test/describeConformance';

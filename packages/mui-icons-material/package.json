@@ -49,7 +49,6 @@
     "@mui/material": "workspace:^",
     "@types/chai": "5.2.3",
     "@types/react": "19.2.18",
-    "chai": "6.2.2",
     "chalk": "6.0.0",
     "cross-fetch": "4.1.0",
     "es-toolkit": "1.50.0",

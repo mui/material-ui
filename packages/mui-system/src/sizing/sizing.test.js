@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import createTheme from '@mui/system/createTheme';
 import sizing from './sizing';
 

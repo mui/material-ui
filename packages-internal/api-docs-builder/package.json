@@ -36,7 +36,6 @@
     "@types/mdast": "4.0.4",
     "@types/node": "20.19.43",
     "@types/sinon": "22.0.0",
-    "chai": "6.2.2",
     "sinon": "22.1.0"
   },
   "exports": {

@@ -49,7 +49,6 @@
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.18",
     "@types/sinon": "22.0.0",
-    "chai": "6.2.2",
     "es-toolkit": "1.50.0",
     "fast-glob": "3.3.3",
     "react": "19.2.8",

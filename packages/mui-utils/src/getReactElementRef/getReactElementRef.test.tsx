@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import getReactElementRef from '@mui/utils/getReactElementRef';
 import * as React from 'react';
 

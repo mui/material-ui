@@ -1,6 +1,5 @@
 import path from 'path';
 import fs from 'fs';
-import { expect } from 'chai';
 import sinon from 'sinon';
 import { getMaterialUiComponentInfo } from './getMaterialUiComponentInfo';
 

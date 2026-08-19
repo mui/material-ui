@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import breakpoints, {
   computeBreakpointsBase,
   resolveBreakpointValues,

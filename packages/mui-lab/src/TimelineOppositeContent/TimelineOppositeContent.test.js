@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Typography from '@mui/material/Typography';
 import Timeline from '@mui/lab/Timeline';

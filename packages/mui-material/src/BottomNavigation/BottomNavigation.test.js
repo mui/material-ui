@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import BottomNavigation, {
@@ -100,10 +99,10 @@ describe('<BottomNavigation />', () => {
       </BottomNavigation>,
     );
     fireEvent.click(getBottomNavigation(container).childNodes[0]);
-    expect(handleChange.args[0][1], '');
+    expect(handleChange.args[0][1]).to.equal('');
     fireEvent.click(getBottomNavigation(container).childNodes[1]);
-    expect(handleChange.args[1][1], 1);
+    expect(handleChange.args[1][1]).to.equal(1);
     fireEvent.click(getBottomNavigation(container).childNodes[2]);
-    expect(handleChange.args[2][1], '');
+    expect(handleChange.args[2][1]).to.equal(null);
   });
 });

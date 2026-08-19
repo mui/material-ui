@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { isJsdom } from '@mui/internal-test-utils/env';
 import deepmerge from './deepmerge';
 

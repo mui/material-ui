@@ -22,8 +22,7 @@
     "envinfo": "^7.21.0"
   },
   "devDependencies": {
-    "@types/chai": "5.2.3",
-    "chai": "6.2.2"
+    "@types/chai": "5.2.3"
   },
   "publishConfig": {
     "access": "public",

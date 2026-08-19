@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import ListSubheader, { listSubheaderClasses as classes } from '@mui/material/ListSubheader';
 import describeConformance from '../../test/describeConformance';

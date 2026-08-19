@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
 
 describe('generateUtilityClasses', () => {
