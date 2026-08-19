@@ -168,8 +168,10 @@ const ButtonGroupRoot = styled('div', {
         style: {
           [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
             borderRightColor: 'transparent',
-            '&:hover': {
-              borderRightColor: 'currentColor',
+            '@media (hover: hover)': {
+              '&:hover': {
+                borderRightColor: 'currentColor',
+              },
             },
           },
           [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
@@ -182,8 +184,10 @@ const ButtonGroupRoot = styled('div', {
         style: {
           [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
             borderBottomColor: 'transparent',
-            '&:hover': {
-              borderBottomColor: 'currentColor',
+            '@media (hover: hover)': {
+              '&:hover': {
+                borderBottomColor: 'currentColor',
+              },
             },
           },
           [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
