@@ -51,18 +51,20 @@ async function loadFaces() {
     }),
   );
 
-  return missing;
+  if (missing.length > 0) {
+    throw new Error(`Fonts failed to load. Missing: ${missing.join(', ')}`);
+  }
 }
 
 /**
  * Loads the webfonts the fixtures render with.
  *
- * @returns the faces that did not load. Empty when every face is available.
+ * @returns a promise that rejects when a face does not load.
  */
 export default function loadFonts() {
   return Promise.race([
     loadFaces(),
-    new Promise<string[]>((_, reject) => {
+    new Promise<void>((_, reject) => {
       setTimeout(() => reject(new Error(`Fonts did not load within ${TIMEOUT}ms.`)), TIMEOUT);
     }),
   ]);

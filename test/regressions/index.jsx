@@ -27,7 +27,12 @@ window.muiFixture = {
   navigate: () => {
     throw new Error(`muiFixture.navigate is not ready`);
   },
+  // `index.test.js` awaits this before it screenshots anything.
+  fontsReady: loadFonts(),
 };
+// The runner only reads `fontsReady` after navigating, so an early failure would
+// otherwise log as an unhandled rejection.
+window.muiFixture.fontsReady.catch(() => {});
 
 function FixtureRenderer({ component: FixtureComponent, path }) {
   React.useEffect(() => {
@@ -88,18 +93,6 @@ function App(props) {
   const hash = useHash();
   const isDev = computeIsDev(hash);
 
-  const [fontState, setFontState] = React.useState({ status: 'pending', missing: [] });
-  React.useEffect(() => {
-    loadFonts().then(
-      (missing) => {
-        setFontState({ status: missing.length === 0 ? 'active' : 'inactive', missing });
-      },
-      (error) => {
-        setFontState({ status: 'inactive', missing: [error.message] });
-      },
-    );
-  }, []);
-
   function computePath(fixture) {
     return `/${fixture.suite}/${fixture.name}`;
   }
@@ -111,8 +104,7 @@ function App(props) {
 
   return (
     <React.Fragment>
-      {fontState.status === 'active' ? (
-        <Routes>
+      <Routes>
           {fixtures.map((fixture) => {
             const path = computePath(fixture);
             const Component = fixture.Component;
@@ -141,14 +133,10 @@ function App(props) {
               />
             );
           })}
-        </Routes>
-      ) : null}
+      </Routes>
 
       {isDev ? (
         <div>
-          <div data-webfont={fontState.status} data-webfont-missing={fontState.missing.join(', ')}>
-            fonts: {fontState.status}
-          </div>
           <p>
             Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
             appending <code>#no-dev</code>.
