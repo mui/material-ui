@@ -10,7 +10,7 @@ catalogs:
       specifier: ^1.7.0
       version: 1.7.0
     '@docsearch/react':
-      specifier: ^4.6.3
+      specifier: ^4.7.0
       version: 4.7.0
     '@emotion/cache':
       specifier: ^11.14.0
@@ -258,7 +258,7 @@ importers:
         specifier: catalog:docs
         version: 1.7.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@docsearch/react':
-        specifier: ^4.6.3
+        specifier: catalog:docs
         version: 4.7.0(@algolia/client-search@5.56.0)(@types/react@19.2.18)(algoliasearch@5.56.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(search-insights@2.17.3)
       '@emotion/cache':
         specifier: catalog:docs
