@@ -462,11 +462,6 @@ In the event you want the avoid autofill, you can try the following:
 
 Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/Turning_off_form_autocompletion) for more details.
 
-### iOS VoiceOver
-
-VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well.
-You can work around the issue with the `disablePortal` prop.
-
 ### ListboxComponent
 
 If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.

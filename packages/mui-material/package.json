@@ -1,6 +1,6 @@
 {
   "name": "@mui/material",
-  "version": "9.2.0",
+  "version": "9.3.1",
   "author": "MUI Team",
   "description": "Material UI is an open-source React component library that implements Google's Material Design. It's comprehensive and can be used in production out of the box.",
   "license": "MIT",
@@ -49,12 +49,12 @@
   "devDependencies": {
     "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.17",
-    "@types/react-dom": "19.2.3",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
     "@types/sinon": "22.0.0",
     "chai": "6.2.2",
     "css-mediaquery": "0.1.2",
-    "es-toolkit": "1.49.0",
+    "es-toolkit": "1.50.0",
     "fast-glob": "3.3.3",
     "react": "19.2.8",
     "react-dom": "19.2.8",
