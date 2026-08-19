@@ -37,6 +37,11 @@ export interface A11yRule {
   /** Minimatch glob against `docs/data/material/components/{slug}/{Demo}`. */
   test: string;
   enabled?: boolean;
+  /**
+   * `visual` asserts rules that depend on rendered CSS. `all` asserts every
+   * axe violation/incomplete that is not listed in `skipAssertions`.
+   */
+  assertions?: 'visual' | 'all';
   /** Axe rule IDs recorded into results JSON but not asserted on. */
   skipAssertions?: string[];
 }
@@ -143,6 +148,95 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     viewportWidth: 1440,
     waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
   },
+  { test: 'docs/data/material/components/buttons/ButtonA11y*', enabled: false }, // A11y-only coverage fixtures
+  { test: 'docs/data/material/components/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+  { test: 'docs/data/material/components/progress/*', enabled: false }, // Animated progress bars make screenshots flaky; axe still runs on the enrolled LinearProgress demos
+  { test: 'docs/data/material/components/toggle-button/ToggleButtonA11y*', enabled: false }, // A11y-only coverage fixtures
+  {
+    test: 'docs/data/material/components/toggle-button/ToggleButtonA11yTextSpacing',
+    enabled: true,
+  }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+];
+
+// Button docs demos enrolled for axe assertions; IconButton/ButtonBase demos are excluded.
+const BUTTON_A11Y_DEMOS = [
+  'BasicButtons',
+  'TextButtons',
+  'ContainedButtons',
+  'DisableElevation',
+  'OutlinedButtons',
+  'ColorButtons',
+  'ButtonSizes',
+  'IconLabelButtons',
+  'InputFileUpload',
+  'LoadingButtons',
+  'CustomizedButtons',
+  'ButtonA11yNonNative',
+  'ButtonA11ySemanticStates',
+  'ButtonA11yTextSpacing',
+];
+
+const CHECKBOX_A11Y_DEMOS = [
+  'Checkboxes',
+  'CheckboxLabels',
+  'ColorCheckboxes',
+  'ControlledCheckbox',
+  'CustomizedCheckbox',
+  'IconCheckboxes',
+  'SizeCheckboxes',
+  'CheckboxesGroup',
+];
+
+// LinearProgress docs demos enrolled for axe assertions; CircularProgress and
+// the mixed/customized demos (CustomizedProgressBars, DelayingAppearance) are excluded.
+const LINEARPROGRESS_A11Y_DEMOS = [
+  'LinearIndeterminate',
+  'LinearDeterminate',
+  'LinearBuffer',
+  'LinearQuery',
+  'LinearColor',
+  'LinearWithValueLabel',
+  'LinearWithAriaValueText',
+  'LinearProgressA11ySemanticStates',
+  'LinearProgressA11yColorMatrix',
+];
+
+// Radio docs demos enrolled for axe assertions. FormControlLabelPlacement is left out: its axe
+// output duplicates RowRadioButtonsGroup (a row RadioGroup with a FormLabel), adding no new rules.
+const RADIO_A11Y_DEMOS = [
+  'RadioButtons',
+  'RadioButtonsGroup',
+  'ControlledRadioButtonsGroup',
+  'ColorRadioButtons',
+  'CustomizedRadios',
+  'SizeRadioButtons',
+  'RowRadioButtonsGroup',
+  'ErrorRadios',
+  'UseRadioGroup',
+];
+
+// Switch docs demos enrolled for axe assertions. FormControlLabelPosition is
+// excluded: its `aria-label` on a role-less FormGroup div trips
+// `aria-prohibited-attr`, a demo quirk unrelated to Switch.
+const SWITCH_A11Y_DEMOS = [
+  'BasicSwitches',
+  'SwitchLabels',
+  'ColorSwitches',
+  'ControlledSwitches',
+  'CustomizedSwitches',
+  'SwitchesSize',
+  'SwitchesGroup',
+];
+
+// toggle-button docs demos enrolled for axe assertions; the remaining demos add
+// no axe coverage beyond the fixtures below.
+const TOGGLE_BUTTON_A11Y_DEMOS = [
+  'ToggleButtons',
+  'ToggleButtonsMultiple',
+  'VerticalToggleButtons',
+  'ToggleButtonA11yNonNative',
+  'ToggleButtonA11ySemanticStates',
+  'ToggleButtonA11yTextSpacing',
 ];
 
 /**
@@ -150,10 +244,77 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
  * Slug-wide rules use `*`; brace-globs narrow enrolment to specific demos;
  * later opt-out rules disable individual demos.
  *
- * Initial PR scope: `buttons` only. Other components onboard incrementally.
+ * Scope: the components with a conformance report under
+ * `packages/mui-material/src/<Component>/accessibility.md`. Others onboard
+ * incrementally.
  */
 export const A11Y_RULES: A11yRule[] = [
-  { test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
+  {
+    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars,AvatarA11yImage}',
+    enabled: true,
+  },
+  // Avatar's default `colorDefault` styling is white text on grey[400] (~1.9:1),
+  // and the documented letter/background examples use low-contrast author
+  // colors, so color-contrast genuinely fails (WCAG 1.4.3). Record the
+  // violations in the JSON without failing the build. IconAvatars (icons only,
+  // aria-hidden, no text) is excluded here so it still asserts a clean pass.
+  {
+    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,VariantAvatars,AvatarA11yImage}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: `docs/data/material/components/buttons/{${BUTTON_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: 'docs/data/material/components/buttons/ButtonA11yColorMatrix',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: `docs/data/material/components/checkboxes/{${CHECKBOX_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    // `indeterminate` sets aria-checked="mixed" on the native <input type="checkbox">; axe's
+    // aria-conditional-attr flags it because the native .checked is false. Recorded, not asserted.
+    test: 'docs/data/material/components/checkboxes/IndeterminateCheckbox',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['aria-conditional-attr'],
+  },
+  // FormControlLabelPosition is not enrolled: its only axe finding is an aria-label on a
+  // role-less FormGroup div (aria-prohibited-attr), a demo quirk unrelated to Checkbox.
+  {
+    test: `docs/data/material/components/progress/{${LINEARPROGRESS_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/radio-buttons/{${RADIO_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/switches/{${SWITCH_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/toggle-button/{${TOGGLE_BUTTON_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: 'docs/data/material/components/toggle-button/ToggleButtonA11yColorMatrix',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
 ];
 
 export interface ParsedRoute {
