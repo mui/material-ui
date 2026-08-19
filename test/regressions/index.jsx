@@ -105,34 +105,34 @@ function App(props) {
   return (
     <React.Fragment>
       <Routes>
-          {fixtures.map((fixture) => {
-            const path = computePath(fixture);
-            const Component = fixture.Component;
-            if (Component === undefined) {
-              console.warn('Missing `Component` for ', fixture);
-              return null;
-            }
+        {fixtures.map((fixture) => {
+          const path = computePath(fixture);
+          const Component = fixture.Component;
+          if (Component === undefined) {
+            console.warn('Missing `Component` for ', fixture);
+            return null;
+          }
 
-            // Composites are authored for the Next.js docs site; wrap them in
-            // the branding theme here rather than threading a flag through
-            // `FixtureRenderer`.
-            const FixtureComponent = fixture.isComposite
-              ? () => (
-                  <MarketingWrapper>
-                    <Component />
-                  </MarketingWrapper>
-                )
-              : Component;
+          // Composites are authored for the Next.js docs site; wrap them in
+          // the branding theme here rather than threading a flag through
+          // `FixtureRenderer`.
+          const FixtureComponent = fixture.isComposite
+            ? () => (
+                <MarketingWrapper>
+                  <Component />
+                </MarketingWrapper>
+              )
+            : Component;
 
-            return (
-              <Route
-                key={path}
-                exact
-                path={path}
-                element={<FixtureRenderer component={FixtureComponent} path={path} />}
-              />
-            );
-          })}
+          return (
+            <Route
+              key={path}
+              exact
+              path={path}
+              element={<FixtureRenderer component={FixtureComponent} path={path} />}
+            />
+          );
+        })}
       </Routes>
 
       {isDev ? (
