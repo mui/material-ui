@@ -17,7 +17,7 @@
     "@tailwindcss/vite": "4.3.3",
     "@testing-library/dom": "10.4.1",
     "@types/chai": "5.2.3",
-    "@types/react": "19.2.17",
+    "@types/react": "19.2.18",
     "@types/react-is": "19.2.0",
     "@types/sinon": "22.0.0",
     "chai": "6.2.2",
@@ -31,7 +31,7 @@
     "react-router": "8.3.0",
     "react-window": "2.3.0",
     "sinon": "22.1.0",
-    "styled-components": "6.4.4",
+    "styled-components": "6.5.2",
     "stylis": "4.4.0",
     "tailwindcss": "4.3.3",
     "yargs": "17.7.3"
