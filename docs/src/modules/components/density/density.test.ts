@@ -444,6 +444,10 @@ describe('anchor contract — Button family total height per preset', () => {
         dense: false,
       });
       expect(menuItem?.minHeight, `${level} MenuItem`).to.equal(TOUCH_TARGET[level]);
+      // outlined input box: pad var derives (touch-target − line)/2, so the box
+      // hits the constraint at every preset (lh resolves at the consumer)
+      const outlined = JSON.stringify(theme.components.MuiOutlinedInput.styleOverrides.root);
+      expect(outlined, `${level} OutlinedInput`).to.contain('- 1lh) / 2');
     }
   });
 });

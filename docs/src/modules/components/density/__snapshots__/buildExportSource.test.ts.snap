@@ -373,57 +373,34 @@ const high = {
         ],
       },
     },
-    MuiInputLabel: {
+    MuiInputBase: {
       styleOverrides: {
         root: [
           {
+            lineHeight: 'calc(16px * var(--mui-scaling))',
+          },
+        ],
+        input: [
+          {
+            height: 'auto',
+          },
+          {
+            paddingBlock: 'var(--mui-density-x-small)',
             variants: [
               {
-                props: ({ ownerState }) => Boolean(ownerState.formControl),
+                props: {
+                  size: 'small',
+                },
                 style: {
-                  transform: 'translate(0, var(--_restY)) scale(1)',
+                  paddingTop: 'var(--mui-density-xx-small)',
                 },
               },
               {
                 props: {
-                  shrink: true,
+                  multiline: true,
                 },
                 style: {
-                  transform: 'translate(0, -1.5px) scale(0.75)',
-                },
-              },
-              {
-                props: {
-                  variant: 'filled',
-                },
-                style: {
-                  transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)',
-                },
-              },
-              {
-                props: {
-                  variant: 'filled',
-                  shrink: true,
-                },
-                style: {
-                  transform: 'translate(var(--_inlinePad), var(--_shrinkY)) scale(0.75)',
-                },
-              },
-              {
-                props: {
-                  variant: 'outlined',
-                },
-                style: {
-                  transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)',
-                },
-              },
-              {
-                props: {
-                  variant: 'outlined',
-                  shrink: true,
-                },
-                style: {
-                  transform: 'translate(14px, -9px) scale(0.75)',
+                  paddingBlock: 0,
                 },
               },
             ],
@@ -436,7 +413,7 @@ const high = {
         root: [
           {
             '.MuiFormControl-root:has(> &)': {
-              '--_outlinedInputPadBlock': 'calc(var(--mui-density-xx-small) + 2px)',
+              '--_outlinedInputPadBlock': 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
             },
             '.MuiInputLabel-root:has(~ &)': {
               '--_restY': 'var(--_outlinedInputPadBlock)',
@@ -458,7 +435,7 @@ const high = {
                   multiline: true,
                 },
                 style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
+                  paddingBlock: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
                   paddingInline: 'var(--mui-density-small)',
                 },
               },
@@ -488,7 +465,7 @@ const high = {
         ],
         input: [
           {
-            paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
+            paddingBlock: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
             paddingInline: 'var(--mui-density-small)',
             variants: [
               {
@@ -518,129 +495,6 @@ const high = {
                 props: ({ ownerState }) => Boolean(ownerState.endAdornment),
                 style: {
                   paddingRight: 0,
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    MuiPickersInputBase: {
-      styleOverrides: {
-        sectionsContainer: [
-          {
-            lineHeight: 'calc(16px * var(--mui-scaling))',
-          },
-        ],
-        section: [
-          {
-            lineHeight: 'calc(16px * var(--mui-scaling))',
-          },
-        ],
-        content: [
-          {
-            lineHeight: 'calc(16px * var(--mui-scaling))',
-          },
-        ],
-      },
-    },
-    MuiPickersOutlinedInput: {
-      styleOverrides: {
-        root: [
-          {
-            paddingInline: 'var(--mui-density-small)',
-            '.MuiFormControl-root:has(> &)': {
-              '--_outlinedInputPadBlock': 'calc(var(--mui-density-xx-small) + 2px)',
-            },
-            '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'var(--_outlinedInputPadBlock)',
-              '--_inlinePad': 'var(--mui-density-small)',
-            },
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-        sectionsContainer: [
-          {
-            paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
-            paddingInline: 0,
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    MuiPickersFilledInput: {
-      styleOverrides: {
-        root: [
-          {
-            '.MuiFormControl-root:has(> &)': {
-              '--_filledInputPadTop': 'var(--mui-density-large)',
-              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
-            },
-            '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-              '--_shrinkY': '7px',
-              '--_inlinePad': 'var(--mui-density-small)',
-            },
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
-                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
-                  },
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-                    '--_shrinkY': '4px',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-        sectionsContainer: [
-          {
-            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
-            paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
-            paddingInline: 'var(--mui-density-small)',
-            variants: [
-              {
-                props: {
-                  hiddenLabel: true,
-                },
-                style: {
-                  paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
-                },
-              },
-              {
-                props: {
-                  hiddenLabel: true,
-                  inputSize: 'small',
-                },
-                style: {
-                  paddingBlock: 'var(--mui-density-xx-small)',
                 },
               },
             ],
@@ -854,6 +708,269 @@ const high = {
                 },
                 style: {
                   paddingBlock: 0,
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: ({ ownerState }) => Boolean(ownerState.formControl),
+                style: {
+                  transform: 'translate(0, var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(0, -1.5px) scale(0.75)',
+                },
+              },
+              {
+                props: {
+                  variant: 'filled',
+                },
+                style: {
+                  transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  variant: 'filled',
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(var(--_inlinePad), var(--_shrinkY)) scale(0.75)',
+                },
+              },
+              {
+                props: {
+                  variant: 'outlined',
+                },
+                style: {
+                  transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  variant: 'outlined',
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(14px, -9px) scale(0.75)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: [
+          {
+            lineHeight: 'calc(16px * var(--mui-scaling))',
+          },
+        ],
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: [
+          {
+            marginTop: 'var(--mui-density-xx-small)',
+            variants: [
+              {
+                props: {
+                  contained: true,
+                },
+                style: {
+                  marginInline: 'var(--mui-density-small)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiInputAdornment: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  position: 'start',
+                },
+                style: {
+                  marginRight: 'var(--mui-density-x-small)',
+                },
+              },
+              {
+                props: {
+                  position: 'end',
+                },
+                style: {
+                  marginLeft: 'var(--mui-density-x-small)',
+                },
+              },
+              {
+                props: {
+                  position: 'start',
+                  size: 'small',
+                },
+                style: {
+                  marginRight: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  position: 'end',
+                  size: 'small',
+                },
+                style: {
+                  marginLeft: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  variant: 'filled',
+                },
+                style: {
+                  '&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)': {
+                    marginTop: 'calc(var(--_filledInputPadTop, 18px) - var(--_filledInputPadBottom, 2px))',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiPickersInputBase: {
+      styleOverrides: {
+        sectionsContainer: [
+          {
+            lineHeight: 'calc(16px * var(--mui-scaling))',
+          },
+        ],
+        section: [
+          {
+            lineHeight: 'calc(16px * var(--mui-scaling))',
+          },
+        ],
+        content: [
+          {
+            lineHeight: 'calc(16px * var(--mui-scaling))',
+          },
+        ],
+      },
+    },
+    MuiPickersOutlinedInput: {
+      styleOverrides: {
+        root: [
+          {
+            paddingInline: 'var(--mui-density-small)',
+            '.MuiFormControl-root:has(> &)': {
+              '--_outlinedInputPadBlock': 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'var(--_outlinedInputPadBlock)',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingBlock: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
+            paddingInline: 0,
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiPickersFilledInput: {
+      styleOverrides: {
+        root: [
+          {
+            '.MuiFormControl-root:has(> &)': {
+              '--_filledInputPadTop': 'var(--mui-density-large)',
+              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+              '--_shrinkY': '7px',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
+                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
+                  },
+                  '.MuiInputLabel-root:has(~ &)': {
+                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+                    '--_shrinkY': '4px',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
+            paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
+            paddingInline: 'var(--mui-density-small)',
+            variants: [
+              {
+                props: {
+                  hiddenLabel: true,
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
+                },
+              },
+              {
+                props: {
+                  hiddenLabel: true,
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
                 },
               },
             ],
@@ -1205,7 +1322,7 @@ const high = {
         root: [
           {
             '--_autocompleteInputRootPadBlock': '3px',
-            '--_autocompleteInputPadBlock': '3px',
+            '--_autocompleteInputPadBlock': 'calc((var(--mui-density-touch-target) - 1lh) / 2 - var(--_autocompleteInputRootPadBlock))',
             '& .MuiOutlinedInput-root': {
               paddingBlock: 'var(--_autocompleteInputRootPadBlock)',
               paddingLeft: '8px',
@@ -2299,123 +2416,6 @@ const high = {
         ],
       },
     },
-    MuiInputAdornment: {
-      styleOverrides: {
-        root: [
-          {
-            variants: [
-              {
-                props: {
-                  position: 'start',
-                },
-                style: {
-                  marginRight: 'var(--mui-density-x-small)',
-                },
-              },
-              {
-                props: {
-                  position: 'end',
-                },
-                style: {
-                  marginLeft: 'var(--mui-density-x-small)',
-                },
-              },
-              {
-                props: {
-                  position: 'start',
-                  size: 'small',
-                },
-                style: {
-                  marginRight: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  position: 'end',
-                  size: 'small',
-                },
-                style: {
-                  marginLeft: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  variant: 'filled',
-                },
-                style: {
-                  '&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)': {
-                    marginTop: 'calc(var(--_filledInputPadTop, 18px) - var(--_filledInputPadBottom, 2px))',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    MuiInputBase: {
-      styleOverrides: {
-        root: [
-          {
-            lineHeight: 'calc(16px * var(--mui-scaling))',
-          },
-        ],
-        input: [
-          {
-            height: 'auto',
-          },
-          {
-            paddingBlock: 'var(--mui-density-x-small)',
-            variants: [
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  paddingTop: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  multiline: true,
-                },
-                style: {
-                  paddingBlock: 0,
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    MuiFormLabel: {
-      styleOverrides: {
-        root: [
-          {
-            lineHeight: 'calc(16px * var(--mui-scaling))',
-          },
-        ],
-      },
-    },
-    MuiFormHelperText: {
-      styleOverrides: {
-        root: [
-          {
-            marginTop: 'var(--mui-density-xx-small)',
-            variants: [
-              {
-                props: {
-                  contained: true,
-                },
-                style: {
-                  marginInline: 'var(--mui-density-small)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiTab: {
       styleOverrides: {
         root: [
@@ -3314,57 +3314,34 @@ const medium = {
         ],
       },
     },
-    MuiInputLabel: {
+    MuiInputBase: {
       styleOverrides: {
         root: [
           {
+            lineHeight: 'calc(20px * var(--mui-scaling))',
+          },
+        ],
+        input: [
+          {
+            height: 'auto',
+          },
+          {
+            paddingBlock: 'var(--mui-density-x-small)',
             variants: [
               {
-                props: ({ ownerState }) => Boolean(ownerState.formControl),
+                props: {
+                  size: 'small',
+                },
                 style: {
-                  transform: 'translate(0, var(--_restY)) scale(1)',
+                  paddingTop: 'var(--mui-density-xx-small)',
                 },
               },
               {
                 props: {
-                  shrink: true,
+                  multiline: true,
                 },
                 style: {
-                  transform: 'translate(0, -1.5px) scale(0.75)',
-                },
-              },
-              {
-                props: {
-                  variant: 'filled',
-                },
-                style: {
-                  transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)',
-                },
-              },
-              {
-                props: {
-                  variant: 'filled',
-                  shrink: true,
-                },
-                style: {
-                  transform: 'translate(var(--_inlinePad), var(--_shrinkY)) scale(0.75)',
-                },
-              },
-              {
-                props: {
-                  variant: 'outlined',
-                },
-                style: {
-                  transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)',
-                },
-              },
-              {
-                props: {
-                  variant: 'outlined',
-                  shrink: true,
-                },
-                style: {
-                  transform: 'translate(14px, -9px) scale(0.75)',
+                  paddingBlock: 0,
                 },
               },
             ],
@@ -3377,7 +3354,7 @@ const medium = {
         root: [
           {
             '.MuiFormControl-root:has(> &)': {
-              '--_outlinedInputPadBlock': 'calc(var(--mui-density-xx-small) + 2px)',
+              '--_outlinedInputPadBlock': 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
             },
             '.MuiInputLabel-root:has(~ &)': {
               '--_restY': 'var(--_outlinedInputPadBlock)',
@@ -3399,7 +3376,7 @@ const medium = {
                   multiline: true,
                 },
                 style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
+                  paddingBlock: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
                   paddingInline: 'var(--mui-density-small)',
                 },
               },
@@ -3429,7 +3406,7 @@ const medium = {
         ],
         input: [
           {
-            paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
+            paddingBlock: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
             paddingInline: 'var(--mui-density-small)',
             variants: [
               {
@@ -3459,129 +3436,6 @@ const medium = {
                 props: ({ ownerState }) => Boolean(ownerState.endAdornment),
                 style: {
                   paddingRight: 0,
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    MuiPickersInputBase: {
-      styleOverrides: {
-        sectionsContainer: [
-          {
-            lineHeight: 'calc(20px * var(--mui-scaling))',
-          },
-        ],
-        section: [
-          {
-            lineHeight: 'calc(20px * var(--mui-scaling))',
-          },
-        ],
-        content: [
-          {
-            lineHeight: 'calc(20px * var(--mui-scaling))',
-          },
-        ],
-      },
-    },
-    MuiPickersOutlinedInput: {
-      styleOverrides: {
-        root: [
-          {
-            paddingInline: 'var(--mui-density-small)',
-            '.MuiFormControl-root:has(> &)': {
-              '--_outlinedInputPadBlock': 'calc(var(--mui-density-xx-small) + 2px)',
-            },
-            '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'var(--_outlinedInputPadBlock)',
-              '--_inlinePad': 'var(--mui-density-small)',
-            },
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-        sectionsContainer: [
-          {
-            paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
-            paddingInline: 0,
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    MuiPickersFilledInput: {
-      styleOverrides: {
-        root: [
-          {
-            '.MuiFormControl-root:has(> &)': {
-              '--_filledInputPadTop': 'var(--mui-density-large)',
-              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
-            },
-            '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-              '--_shrinkY': '7px',
-              '--_inlinePad': 'var(--mui-density-small)',
-            },
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
-                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
-                  },
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-                    '--_shrinkY': '4px',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-        sectionsContainer: [
-          {
-            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
-            paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
-            paddingInline: 'var(--mui-density-small)',
-            variants: [
-              {
-                props: {
-                  hiddenLabel: true,
-                },
-                style: {
-                  paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
-                },
-              },
-              {
-                props: {
-                  hiddenLabel: true,
-                  inputSize: 'small',
-                },
-                style: {
-                  paddingBlock: 'var(--mui-density-xx-small)',
                 },
               },
             ],
@@ -3795,6 +3649,269 @@ const medium = {
                 },
                 style: {
                   paddingBlock: 0,
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: ({ ownerState }) => Boolean(ownerState.formControl),
+                style: {
+                  transform: 'translate(0, var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(0, -1.5px) scale(0.75)',
+                },
+              },
+              {
+                props: {
+                  variant: 'filled',
+                },
+                style: {
+                  transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  variant: 'filled',
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(var(--_inlinePad), var(--_shrinkY)) scale(0.75)',
+                },
+              },
+              {
+                props: {
+                  variant: 'outlined',
+                },
+                style: {
+                  transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  variant: 'outlined',
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(14px, -9px) scale(0.75)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: [
+          {
+            lineHeight: 'calc(20px * var(--mui-scaling))',
+          },
+        ],
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: [
+          {
+            marginTop: 'var(--mui-density-xx-small)',
+            variants: [
+              {
+                props: {
+                  contained: true,
+                },
+                style: {
+                  marginInline: 'var(--mui-density-small)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiInputAdornment: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  position: 'start',
+                },
+                style: {
+                  marginRight: 'var(--mui-density-x-small)',
+                },
+              },
+              {
+                props: {
+                  position: 'end',
+                },
+                style: {
+                  marginLeft: 'var(--mui-density-x-small)',
+                },
+              },
+              {
+                props: {
+                  position: 'start',
+                  size: 'small',
+                },
+                style: {
+                  marginRight: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  position: 'end',
+                  size: 'small',
+                },
+                style: {
+                  marginLeft: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  variant: 'filled',
+                },
+                style: {
+                  '&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)': {
+                    marginTop: 'calc(var(--_filledInputPadTop, 18px) - var(--_filledInputPadBottom, 2px))',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiPickersInputBase: {
+      styleOverrides: {
+        sectionsContainer: [
+          {
+            lineHeight: 'calc(20px * var(--mui-scaling))',
+          },
+        ],
+        section: [
+          {
+            lineHeight: 'calc(20px * var(--mui-scaling))',
+          },
+        ],
+        content: [
+          {
+            lineHeight: 'calc(20px * var(--mui-scaling))',
+          },
+        ],
+      },
+    },
+    MuiPickersOutlinedInput: {
+      styleOverrides: {
+        root: [
+          {
+            paddingInline: 'var(--mui-density-small)',
+            '.MuiFormControl-root:has(> &)': {
+              '--_outlinedInputPadBlock': 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'var(--_outlinedInputPadBlock)',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingBlock: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
+            paddingInline: 0,
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiPickersFilledInput: {
+      styleOverrides: {
+        root: [
+          {
+            '.MuiFormControl-root:has(> &)': {
+              '--_filledInputPadTop': 'var(--mui-density-large)',
+              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+              '--_shrinkY': '7px',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
+                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
+                  },
+                  '.MuiInputLabel-root:has(~ &)': {
+                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+                    '--_shrinkY': '4px',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
+            paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
+            paddingInline: 'var(--mui-density-small)',
+            variants: [
+              {
+                props: {
+                  hiddenLabel: true,
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
+                },
+              },
+              {
+                props: {
+                  hiddenLabel: true,
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
                 },
               },
             ],
@@ -4146,7 +4263,7 @@ const medium = {
         root: [
           {
             '--_autocompleteInputRootPadBlock': '3px',
-            '--_autocompleteInputPadBlock': '3px',
+            '--_autocompleteInputPadBlock': 'calc((var(--mui-density-touch-target) - 1lh) / 2 - var(--_autocompleteInputRootPadBlock))',
             '& .MuiOutlinedInput-root': {
               paddingBlock: 'var(--_autocompleteInputRootPadBlock)',
               paddingLeft: '8px',
@@ -5240,123 +5357,6 @@ const medium = {
         ],
       },
     },
-    MuiInputAdornment: {
-      styleOverrides: {
-        root: [
-          {
-            variants: [
-              {
-                props: {
-                  position: 'start',
-                },
-                style: {
-                  marginRight: 'var(--mui-density-x-small)',
-                },
-              },
-              {
-                props: {
-                  position: 'end',
-                },
-                style: {
-                  marginLeft: 'var(--mui-density-x-small)',
-                },
-              },
-              {
-                props: {
-                  position: 'start',
-                  size: 'small',
-                },
-                style: {
-                  marginRight: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  position: 'end',
-                  size: 'small',
-                },
-                style: {
-                  marginLeft: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  variant: 'filled',
-                },
-                style: {
-                  '&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)': {
-                    marginTop: 'calc(var(--_filledInputPadTop, 18px) - var(--_filledInputPadBottom, 2px))',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    MuiInputBase: {
-      styleOverrides: {
-        root: [
-          {
-            lineHeight: 'calc(20px * var(--mui-scaling))',
-          },
-        ],
-        input: [
-          {
-            height: 'auto',
-          },
-          {
-            paddingBlock: 'var(--mui-density-x-small)',
-            variants: [
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  paddingTop: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  multiline: true,
-                },
-                style: {
-                  paddingBlock: 0,
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    MuiFormLabel: {
-      styleOverrides: {
-        root: [
-          {
-            lineHeight: 'calc(20px * var(--mui-scaling))',
-          },
-        ],
-      },
-    },
-    MuiFormHelperText: {
-      styleOverrides: {
-        root: [
-          {
-            marginTop: 'var(--mui-density-xx-small)',
-            variants: [
-              {
-                props: {
-                  contained: true,
-                },
-                style: {
-                  marginInline: 'var(--mui-density-small)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiTab: {
       styleOverrides: {
         root: [
@@ -6258,57 +6258,34 @@ const low = {
         ],
       },
     },
-    MuiInputLabel: {
+    MuiInputBase: {
       styleOverrides: {
         root: [
           {
+            lineHeight: 'calc(22px * var(--mui-scaling))',
+          },
+        ],
+        input: [
+          {
+            height: 'auto',
+          },
+          {
+            paddingBlock: 'var(--mui-density-x-small)',
             variants: [
               {
-                props: ({ ownerState }) => Boolean(ownerState.formControl),
+                props: {
+                  size: 'small',
+                },
                 style: {
-                  transform: 'translate(0, var(--_restY)) scale(1)',
+                  paddingTop: 'var(--mui-density-xx-small)',
                 },
               },
               {
                 props: {
-                  shrink: true,
+                  multiline: true,
                 },
                 style: {
-                  transform: 'translate(0, -1.5px) scale(0.75)',
-                },
-              },
-              {
-                props: {
-                  variant: 'filled',
-                },
-                style: {
-                  transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)',
-                },
-              },
-              {
-                props: {
-                  variant: 'filled',
-                  shrink: true,
-                },
-                style: {
-                  transform: 'translate(var(--_inlinePad), var(--_shrinkY)) scale(0.75)',
-                },
-              },
-              {
-                props: {
-                  variant: 'outlined',
-                },
-                style: {
-                  transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)',
-                },
-              },
-              {
-                props: {
-                  variant: 'outlined',
-                  shrink: true,
-                },
-                style: {
-                  transform: 'translate(14px, -9px) scale(0.75)',
+                  paddingBlock: 0,
                 },
               },
             ],
@@ -6321,7 +6298,7 @@ const low = {
         root: [
           {
             '.MuiFormControl-root:has(> &)': {
-              '--_outlinedInputPadBlock': 'calc(var(--mui-density-xx-small) + 2px)',
+              '--_outlinedInputPadBlock': 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
             },
             '.MuiInputLabel-root:has(~ &)': {
               '--_restY': 'var(--_outlinedInputPadBlock)',
@@ -6343,7 +6320,7 @@ const low = {
                   multiline: true,
                 },
                 style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
+                  paddingBlock: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
                   paddingInline: 'var(--mui-density-small)',
                 },
               },
@@ -6373,7 +6350,7 @@ const low = {
         ],
         input: [
           {
-            paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
+            paddingBlock: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
             paddingInline: 'var(--mui-density-small)',
             variants: [
               {
@@ -6403,129 +6380,6 @@ const low = {
                 props: ({ ownerState }) => Boolean(ownerState.endAdornment),
                 style: {
                   paddingRight: 0,
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    MuiPickersInputBase: {
-      styleOverrides: {
-        sectionsContainer: [
-          {
-            lineHeight: 'calc(22px * var(--mui-scaling))',
-          },
-        ],
-        section: [
-          {
-            lineHeight: 'calc(22px * var(--mui-scaling))',
-          },
-        ],
-        content: [
-          {
-            lineHeight: 'calc(22px * var(--mui-scaling))',
-          },
-        ],
-      },
-    },
-    MuiPickersOutlinedInput: {
-      styleOverrides: {
-        root: [
-          {
-            paddingInline: 'var(--mui-density-small)',
-            '.MuiFormControl-root:has(> &)': {
-              '--_outlinedInputPadBlock': 'calc(var(--mui-density-xx-small) + 2px)',
-            },
-            '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'var(--_outlinedInputPadBlock)',
-              '--_inlinePad': 'var(--mui-density-small)',
-            },
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-        sectionsContainer: [
-          {
-            paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
-            paddingInline: 0,
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    MuiPickersFilledInput: {
-      styleOverrides: {
-        root: [
-          {
-            '.MuiFormControl-root:has(> &)': {
-              '--_filledInputPadTop': 'var(--mui-density-large)',
-              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
-            },
-            '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-              '--_shrinkY': '7px',
-              '--_inlinePad': 'var(--mui-density-small)',
-            },
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
-                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
-                  },
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-                    '--_shrinkY': '4px',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-        sectionsContainer: [
-          {
-            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
-            paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
-            paddingInline: 'var(--mui-density-small)',
-            variants: [
-              {
-                props: {
-                  hiddenLabel: true,
-                },
-                style: {
-                  paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
-                },
-              },
-              {
-                props: {
-                  hiddenLabel: true,
-                  inputSize: 'small',
-                },
-                style: {
-                  paddingBlock: 'var(--mui-density-xx-small)',
                 },
               },
             ],
@@ -6739,6 +6593,269 @@ const low = {
                 },
                 style: {
                   paddingBlock: 0,
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: ({ ownerState }) => Boolean(ownerState.formControl),
+                style: {
+                  transform: 'translate(0, var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(0, -1.5px) scale(0.75)',
+                },
+              },
+              {
+                props: {
+                  variant: 'filled',
+                },
+                style: {
+                  transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  variant: 'filled',
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(var(--_inlinePad), var(--_shrinkY)) scale(0.75)',
+                },
+              },
+              {
+                props: {
+                  variant: 'outlined',
+                },
+                style: {
+                  transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  variant: 'outlined',
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(14px, -9px) scale(0.75)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: [
+          {
+            lineHeight: 'calc(22px * var(--mui-scaling))',
+          },
+        ],
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: [
+          {
+            marginTop: 'var(--mui-density-xx-small)',
+            variants: [
+              {
+                props: {
+                  contained: true,
+                },
+                style: {
+                  marginInline: 'var(--mui-density-small)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiInputAdornment: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  position: 'start',
+                },
+                style: {
+                  marginRight: 'var(--mui-density-x-small)',
+                },
+              },
+              {
+                props: {
+                  position: 'end',
+                },
+                style: {
+                  marginLeft: 'var(--mui-density-x-small)',
+                },
+              },
+              {
+                props: {
+                  position: 'start',
+                  size: 'small',
+                },
+                style: {
+                  marginRight: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  position: 'end',
+                  size: 'small',
+                },
+                style: {
+                  marginLeft: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  variant: 'filled',
+                },
+                style: {
+                  '&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)': {
+                    marginTop: 'calc(var(--_filledInputPadTop, 18px) - var(--_filledInputPadBottom, 2px))',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiPickersInputBase: {
+      styleOverrides: {
+        sectionsContainer: [
+          {
+            lineHeight: 'calc(22px * var(--mui-scaling))',
+          },
+        ],
+        section: [
+          {
+            lineHeight: 'calc(22px * var(--mui-scaling))',
+          },
+        ],
+        content: [
+          {
+            lineHeight: 'calc(22px * var(--mui-scaling))',
+          },
+        ],
+      },
+    },
+    MuiPickersOutlinedInput: {
+      styleOverrides: {
+        root: [
+          {
+            paddingInline: 'var(--mui-density-small)',
+            '.MuiFormControl-root:has(> &)': {
+              '--_outlinedInputPadBlock': 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'var(--_outlinedInputPadBlock)',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingBlock: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
+            paddingInline: 0,
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiPickersFilledInput: {
+      styleOverrides: {
+        root: [
+          {
+            '.MuiFormControl-root:has(> &)': {
+              '--_filledInputPadTop': 'var(--mui-density-large)',
+              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+              '--_shrinkY': '7px',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
+                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
+                  },
+                  '.MuiInputLabel-root:has(~ &)': {
+                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+                    '--_shrinkY': '4px',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
+            paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
+            paddingInline: 'var(--mui-density-small)',
+            variants: [
+              {
+                props: {
+                  hiddenLabel: true,
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
+                },
+              },
+              {
+                props: {
+                  hiddenLabel: true,
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
                 },
               },
             ],
@@ -7090,7 +7207,7 @@ const low = {
         root: [
           {
             '--_autocompleteInputRootPadBlock': '3px',
-            '--_autocompleteInputPadBlock': '3px',
+            '--_autocompleteInputPadBlock': 'calc((var(--mui-density-touch-target) - 1lh) / 2 - var(--_autocompleteInputRootPadBlock))',
             '& .MuiOutlinedInput-root': {
               paddingBlock: 'var(--_autocompleteInputRootPadBlock)',
               paddingLeft: '8px',
@@ -8177,123 +8294,6 @@ const low = {
                 },
                 style: {
                   padding: 'var(--mui-density-large) var(--mui-density-x-large)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    MuiInputAdornment: {
-      styleOverrides: {
-        root: [
-          {
-            variants: [
-              {
-                props: {
-                  position: 'start',
-                },
-                style: {
-                  marginRight: 'var(--mui-density-x-small)',
-                },
-              },
-              {
-                props: {
-                  position: 'end',
-                },
-                style: {
-                  marginLeft: 'var(--mui-density-x-small)',
-                },
-              },
-              {
-                props: {
-                  position: 'start',
-                  size: 'small',
-                },
-                style: {
-                  marginRight: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  position: 'end',
-                  size: 'small',
-                },
-                style: {
-                  marginLeft: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  variant: 'filled',
-                },
-                style: {
-                  '&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)': {
-                    marginTop: 'calc(var(--_filledInputPadTop, 18px) - var(--_filledInputPadBottom, 2px))',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    MuiInputBase: {
-      styleOverrides: {
-        root: [
-          {
-            lineHeight: 'calc(22px * var(--mui-scaling))',
-          },
-        ],
-        input: [
-          {
-            height: 'auto',
-          },
-          {
-            paddingBlock: 'var(--mui-density-x-small)',
-            variants: [
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  paddingTop: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  multiline: true,
-                },
-                style: {
-                  paddingBlock: 0,
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    MuiFormLabel: {
-      styleOverrides: {
-        root: [
-          {
-            lineHeight: 'calc(22px * var(--mui-scaling))',
-          },
-        ],
-      },
-    },
-    MuiFormHelperText: {
-      styleOverrides: {
-        root: [
-          {
-            marginTop: 'var(--mui-density-xx-small)',
-            variants: [
-              {
-                props: {
-                  contained: true,
-                },
-                style: {
-                  marginInline: 'var(--mui-density-small)',
                 },
               },
             ],

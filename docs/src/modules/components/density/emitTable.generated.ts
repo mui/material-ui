@@ -319,7 +319,12 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_autocompleteInputPadBlock',
     },
-    values: { high: '3px', medium: '3px', low: '3px' },
+    values: {
+      high: 'calc((var(--mui-density-touch-target) - 1lh) / 2 - var(--_autocompleteInputRootPadBlock))',
+      medium:
+        'calc((var(--mui-density-touch-target) - 1lh) / 2 - var(--_autocompleteInputRootPadBlock))',
+      low: 'calc((var(--mui-density-touch-target) - 1lh) / 2 - var(--_autocompleteInputRootPadBlock))',
+    },
   },
   {
     id: 'MuiAutocomplete|root|base|& .MuiOutlinedInput-root|paddingBlock',
@@ -4928,9 +4933,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBlock',
     },
     values: {
-      high: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
-      medium: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
-      low: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
+      high: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
+      medium: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
+      low: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
     },
   },
   {
@@ -5038,9 +5043,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_outlinedInputPadBlock',
     },
     values: {
-      high: 'calc(var(--mui-density-xx-small) + 2px)',
-      medium: 'calc(var(--mui-density-xx-small) + 2px)',
-      low: 'calc(var(--mui-density-xx-small) + 2px)',
+      high: 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
+      medium: 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
+      low: 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
     },
   },
   {
@@ -5110,9 +5115,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBlock',
     },
     values: {
-      high: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
-      medium: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
-      low: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
+      high: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
+      medium: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
+      low: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
     },
   },
   {
@@ -5934,9 +5939,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_outlinedInputPadBlock',
     },
     values: {
-      high: 'calc(var(--mui-density-xx-small) + 2px)',
-      medium: 'calc(var(--mui-density-xx-small) + 2px)',
-      low: 'calc(var(--mui-density-xx-small) + 2px)',
+      high: 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
+      medium: 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
+      low: 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
     },
   },
   {
@@ -6006,9 +6011,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBlock',
     },
     values: {
-      high: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
-      medium: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
-      low: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
+      high: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
+      medium: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
+      low: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
     },
   },
   {

@@ -191,64 +191,34 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'arrow',
   );
-  addRootOverride(enhanced.components, 'MuiInputLabel', {
-    // Floating-label Y — master ships literal translate Ys (component untouched).
-    // Re-emit the transform per state so the Y can come from a preset-closed var:
-    //   --_restY   — written for EVERY rest state by the input-side broadcasts
-    //                below (OutlinedInput/FilledInput/Input `:has` selectors,
-    //                per size) → consumed BARE, no fallback: a missing writer is
-    //                a bug and must break visibly.
-    //   --_shrinkY — written ONLY by the FilledInput broadcasts → consumed bare
-    //                in the filled-shrink state; outlined/standard shrink have NO
-    //                density writer, so they re-state master's literal directly.
-    // Size-small variants collapse: size differentiation lives in the writers.
-    // Variant ORDER mirrors master's (later wins at equal specificity). The
-    // literal shrink rules are NOT redundant with master's: the rest rules here
-    // (which must exist to consume the var) also match shrunk labels and land
-    // AFTER master's shrink rules in the cascade — each shrink state must be
-    // re-asserted in this layer or shrunk labels would show the rest transform.
-    variants: [
-      {
-        props: ({ ownerState }: { ownerState: { formControl?: object | undefined } }) =>
-          Boolean(ownerState.formControl),
-        style: { transform: 'translate(0, var(--_restY)) scale(1)' },
-      },
-      {
-        props: { shrink: true },
-        style: { transform: 'translate(0, -1.5px) scale(0.75)' },
-      },
-      {
-        props: { variant: 'filled' },
-        style: { transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)' },
-      },
-      {
-        props: { variant: 'filled', shrink: true },
-        style: { transform: 'translate(var(--_inlinePad), var(--_shrinkY)) scale(0.75)' },
-      },
-      {
-        props: { variant: 'outlined' },
-        style: { transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)' },
-      },
-      {
-        props: { variant: 'outlined', shrink: true },
-        style: { transform: 'translate(14px, -9px) scale(0.75)' },
-      },
-    ],
+  addRootOverride(enhanced.components, 'MuiInputBase', {
+    lineHeight: enhanced.typography?.body1?.lineHeight,
   });
-  addRootOverride(enhanced.components, 'MuiOutlinedInput', {
-    // broadcast the variable to the formControl so the label can reach it via `:has(> &)` (the input is a child).
-    // Default-size block pad: semantic/spacing/variable/xxs (dropdown inputContainer)
-    // — yields the 32px input box (20px line + 2×pad + border).
-    [`.${formControlClasses.root}:has(> &)`]: {
-      '--_outlinedInputPadBlock': `calc(${d['xx-small']} + 2px)`,
+  addRootOverride(enhanced.components, 'MuiInputBase', { height: 'auto' }, 'input');
+  addRootOverride(
+    enhanced.components,
+    'MuiInputBase',
+    {
+      paddingBlock: d['x-small'],
+      variants: [
+        { props: { size: 'small' }, style: { paddingTop: d['xx-small'] } },
+        {
+          props: { multiline: true },
+          style: { paddingBlock: 0 },
+        },
+      ],
     },
-    // Label line-height = input line-height (the FormLabel body1 normalization),
-    // so rest Y is exactly the block pad — the per-size ±0.5px optical fudge is
-    // gone, and small needs no restY re-declare of its own.
+    'input',
+  );
+  // Outlined label bridge: --_outlinedInputPadBlock broadcast to the FormControl
+  // via :has(); the label consumes it as --_restY, --_inlinePad = the inline knob.
+  // Input-slot re-assert chain mirrors master (multiline/adorned zero their side).
+  addRootOverride(enhanced.components, 'MuiOutlinedInput', {
+    [`.${formControlClasses.root}:has(> &)`]: {
+      '--_outlinedInputPadBlock': `calc((${d['touch-target']} - 1lh) / 2)`,
+    },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
       '--_restY': 'var(--_outlinedInputPadBlock)',
-      // Label X = the box's inline pad (master 14px) — linked write of the
-      // input-slot inline knob; the InputLabel transforms consume it bare.
       '--_inlinePad': d.small,
     },
     variants: [
@@ -261,9 +231,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { multiline: true },
         style: {
-          paddingBlock: `var(--_outlinedInputPadBlock, calc(${d['xx-small']} + 2px))`,
-          // multiline root carries the box's inline pad (master 14px) — linked
-          // write of the input-slot inline knob.
+          paddingBlock: `var(--_outlinedInputPadBlock, calc((${d['touch-target']} - 1lh) / 2))`,
           paddingInline: d.small,
         },
       },
@@ -273,9 +241,6 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           paddingBlock: `var(--_outlinedInputPadBlock, ${d['xx-small']})`,
         },
       },
-      // Adorned root pads (master 14px / --_trailingPad 14px; the Select nested
-      // --_trailingPad: 0 reset survives on specificity) — linked writes of the
-      // input-slot inline knob.
       {
         props: ({ ownerState }: { ownerState: { startAdornment?: unknown } }) =>
           Boolean(ownerState.startAdornment),
@@ -292,13 +257,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiOutlinedInput',
     {
-      // Block padding rides the label-communication var. Inline: ONE knob for
-      // both sizes (master 14px) — unconditional base emission + the SAME
-      // re-assert chain master ships on this slot (multiline/adorned zero their
-      // side; constant re-asserts, hidden knobs). The root-side 14s (adorned
-      // pads, --_trailingPad, multiline root inline) follow this knob via
-      // linked writes (densityLinkedWrites).
-      paddingBlock: `var(--_outlinedInputPadBlock, calc(${d['xx-small']} + 2px))`,
+      paddingBlock: `var(--_outlinedInputPadBlock, calc((${d['touch-target']} - 1lh) / 2))`,
       paddingInline: d.small,
       variants: [
         {
@@ -323,134 +282,14 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'input',
   );
-  // MUI X picker line box — every PickersInputBase slot that hardcodes 1.4375em
-  // (sectionsContainer, section, sectionContent→`content` key) follows body1 instead,
-  // matching InputBase. On the base, so standard/outlined/filled all inherit it.
-  addRootOverride(
-    enhanced.components,
-    'MuiPickersInputBase',
-    { lineHeight: enhanced.typography?.body1?.lineHeight },
-    'sectionsContainer',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiPickersInputBase',
-    { lineHeight: enhanced.typography?.body1?.lineHeight },
-    'section',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiPickersInputBase',
-    { lineHeight: enhanced.typography?.body1?.lineHeight },
-    'content',
-  );
-  // MUI X picker outlined field — mirror OutlinedInput's density box (X uses
-  // PickersOutlinedInput, not OutlinedInput, and ships no private vars of its own).
-  // Root: inline pad (master 14px) + broadcasts — --_outlinedInputPadBlock to the
-  // FormControl and --_inlinePad/--_restY to the shared Material InputLabel (label
-  // sibling, input direct child of the styled(FormControl) root). SectionsContainer:
-  // line box + block pad. Box = body1 line + 2·padBlock + outline = OutlinedInput's.
-  addRootOverride(enhanced.components, 'MuiPickersOutlinedInput', {
-    paddingInline: d.small,
-    [`.${formControlClasses.root}:has(> &)`]: {
-      '--_outlinedInputPadBlock': `calc(${d['xx-small']} + 2px)`,
-    },
-    [`.${inputLabelClasses.root}:has(~ &)`]: {
-      '--_restY': 'var(--_outlinedInputPadBlock)',
-      '--_inlinePad': d.small,
-    },
-    variants: [
-      {
-        props: { inputSize: 'small' },
-        style: {
-          [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d['xx-small'] },
-        },
-      },
-    ],
-  });
-  addRootOverride(
-    enhanced.components,
-    'MuiPickersOutlinedInput',
-    {
-      // Line box comes from the base MuiPickersInputBase override (body1); block pad
-      // then lands the box on OutlinedInput's height 1:1.
-      paddingBlock: `var(--_outlinedInputPadBlock, calc(${d['xx-small']} + 2px))`,
-      paddingInline: 0,
-      variants: [
-        {
-          props: { inputSize: 'small' },
-          style: { paddingBlock: `var(--_outlinedInputPadBlock, ${d['xx-small']})` },
-        },
-      ],
-    },
-    'sectionsContainer',
-  );
-  // MUI X picker filled field — mirror FilledInput's asymmetric density box (both
-  // pads on the sectionsContainer for filled). Root broadcasts --_filledInputPadTop/
-  // Bottom to the FormControl and --_inlinePad/--_restY/--_shrinkY to the InputLabel.
-  addRootOverride(enhanced.components, 'MuiPickersFilledInput', {
-    [`.${formControlClasses.root}:has(> &)`]: {
-      '--_filledInputPadTop': d.large,
-      '--_filledInputPadBottom': d['x-small'],
-    },
-    [`.${inputLabelClasses.root}:has(~ &)`]: {
-      '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
-      '--_shrinkY': '7px',
-      '--_inlinePad': d.small,
-    },
-    variants: [
-      {
-        props: { inputSize: 'small' },
-        style: {
-          [`.${formControlClasses.root}:has(> &)`]: {
-            '--_filledInputPadTop': `calc(${d.medium} + 2px)`,
-            '--_filledInputPadBottom': d['xx-small'],
-          },
-          [`.${inputLabelClasses.root}:has(~ &)`]: {
-            '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
-            '--_shrinkY': '4px',
-          },
-        },
-      },
-    ],
-  });
-  addRootOverride(
-    enhanced.components,
-    'MuiPickersFilledInput',
-    {
-      // Line box from the base MuiPickersInputBase override (body1); block pad rides the
-      // top/bottom vars, inline pad (master 12px) direct. hiddenLabel: symmetric block pad.
-      paddingTop: `var(--_filledInputPadTop, ${d.large})`,
-      paddingBottom: `var(--_filledInputPadBottom, ${d.small})`,
-      paddingInline: d.small,
-      variants: [
-        {
-          props: { hiddenLabel: true },
-          style: { paddingBlock: `calc(${d['xx-small']} + 2px)` },
-        },
-        {
-          props: { hiddenLabel: true, inputSize: 'small' },
-          style: { paddingBlock: d['xx-small'] },
-        },
-      ],
-    },
-    'sectionsContainer',
-  );
   addRootOverride(
     enhanced.components,
     'MuiFilledInput',
     {
-      // Block padding rides the label-communication vars. Inline: ONE knob for
-      // both sizes (master 12px) — same architecture as OutlinedInput above
-      // (base emission + master's re-assert chain; root-side 12s are linked
-      // writes of this knob).
       paddingTop: `var(--_filledInputPadTop, ${d.large})`,
       paddingBottom: `var(--_filledInputPadBottom, ${d.small})`,
       paddingInline: d.small,
       variants: [
-        // hiddenLabel: no floating label, so the `--_filledInputPad*` vars (the
-        // label-communication channel) don't apply — symmetric block padding set
-        // DIRECTLY, one step per size.
         {
           props: { hiddenLabel: true },
           style: { paddingBlock: `calc(${d['xx-small']} + 2px)` },
@@ -477,6 +316,65 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'input',
   );
+  addRootOverride(enhanced.components, 'MuiFilledInput', {
+    [`.${formControlClasses.root}:has(> &)`]: {
+      '--_filledInputPadTop': d.large,
+      '--_filledInputPadBottom': d['x-small'],
+    },
+    [`.${inputLabelClasses.root}:has(~ &)`]: {
+      '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
+      '--_shrinkY': '7px',
+      '--_inlinePad': d.small,
+    },
+    variants: [
+      {
+        props: { size: 'small' },
+        style: {
+          [`.${formControlClasses.root}:has(> &)`]: {
+            '--_filledInputPadTop': `calc(${d.medium} + 2px)`,
+            '--_filledInputPadBottom': d['xx-small'],
+          },
+          [`.${inputLabelClasses.root}:has(~ &)`]: {
+            '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
+            '--_shrinkY': '4px',
+          },
+        },
+      },
+      {
+        props: { multiline: true },
+        style: {
+          paddingTop: `var(--_filledInputPadTop, ${d['x-large']})`,
+          paddingBottom: `var(--_filledInputPadBottom, ${d.small})`,
+          paddingInline: d.small,
+        },
+      },
+      {
+        props: { multiline: true, size: 'small' },
+        style: {
+          paddingTop: `var(--_filledInputPadTop, ${d.large})`,
+          paddingBottom: `var(--_filledInputPadBottom, ${d['x-small']})`,
+        },
+      },
+      {
+        props: { multiline: true, hiddenLabel: true },
+        style: { paddingTop: 16, paddingBottom: 17 },
+      },
+      {
+        props: { multiline: true, hiddenLabel: true, size: 'small' },
+        style: { paddingTop: 8, paddingBottom: 9 },
+      },
+      {
+        props: ({ ownerState }: { ownerState: { startAdornment?: unknown } }) =>
+          Boolean(ownerState.startAdornment),
+        style: { paddingLeft: d.small },
+      },
+      {
+        props: ({ ownerState }: { ownerState: { endAdornment?: unknown } }) =>
+          Boolean(ownerState.endAdornment),
+        style: { '--_trailingPad': d.small },
+      },
+    ],
+  });
   addRootOverride(enhanced.components, 'MuiInput', {
     [`.${formControlClasses.root}:has(> &)`]: {
       '--_inputPadTop': d['x-small'],
@@ -539,6 +437,184 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       ],
     },
     'input',
+  );
+  // Floating-label transforms re-emitted so Y comes from preset-closed vars:
+  // --_restY (every rest state; input-side :has broadcasts) and --_shrinkY
+  // (filled only), consumed BARE — a missing writer must break visibly. Variant
+  // order mirrors master; each shrink state must re-assert or the rest rules
+  // here (landing after master's shrink) would leak the rest transform.
+  addRootOverride(enhanced.components, 'MuiInputLabel', {
+    variants: [
+      {
+        props: ({ ownerState }: { ownerState: { formControl?: object | undefined } }) =>
+          Boolean(ownerState.formControl),
+        style: { transform: 'translate(0, var(--_restY)) scale(1)' },
+      },
+      {
+        props: { shrink: true },
+        style: { transform: 'translate(0, -1.5px) scale(0.75)' },
+      },
+      {
+        props: { variant: 'filled' },
+        style: { transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)' },
+      },
+      {
+        props: { variant: 'filled', shrink: true },
+        style: { transform: 'translate(var(--_inlinePad), var(--_shrinkY)) scale(0.75)' },
+      },
+      {
+        props: { variant: 'outlined' },
+        style: { transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)' },
+      },
+      {
+        props: { variant: 'outlined', shrink: true },
+        style: { transform: 'translate(14px, -9px) scale(0.75)' },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiFormLabel', {
+    lineHeight: enhanced.typography?.body1?.lineHeight,
+  });
+  addRootOverride(enhanced.components, 'MuiFormHelperText', {
+    marginTop: d['xx-small'],
+    variants: [{ props: { contained: true }, style: { marginInline: d.small } }],
+  });
+  addRootOverride(enhanced.components, 'MuiInputAdornment', {
+    variants: [
+      { props: { position: 'start' }, style: { marginRight: d['x-small'] } },
+      { props: { position: 'end' }, style: { marginLeft: d['x-small'] } },
+      {
+        props: { position: 'start', size: 'small' },
+        style: { marginRight: d['xx-small'] },
+      },
+      {
+        props: { position: 'end', size: 'small' },
+        style: { marginLeft: d['xx-small'] },
+      },
+      {
+        props: { variant: 'filled' },
+        style: {
+          [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
+            {
+              marginTop:
+                'calc(var(--_filledInputPadTop, 18px) - var(--_filledInputPadBottom, 2px))',
+            },
+        },
+      },
+    ],
+  });
+  // MUI X picker line box — every PickersInputBase slot that hardcodes 1.4375em
+  // (sectionsContainer, section, sectionContent→`content` key) follows body1 instead,
+  // matching InputBase. On the base, so standard/outlined/filled all inherit it.
+  addRootOverride(
+    enhanced.components,
+    'MuiPickersInputBase',
+    { lineHeight: enhanced.typography?.body1?.lineHeight },
+    'sectionsContainer',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiPickersInputBase',
+    { lineHeight: enhanced.typography?.body1?.lineHeight },
+    'section',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiPickersInputBase',
+    { lineHeight: enhanced.typography?.body1?.lineHeight },
+    'content',
+  );
+  // MUI X picker outlined field — mirror OutlinedInput's density box (X uses
+  // PickersOutlinedInput, not OutlinedInput, and ships no private vars of its own).
+  // Root: inline pad (master 14px) + broadcasts — --_outlinedInputPadBlock to the
+  // FormControl and --_inlinePad/--_restY to the shared Material InputLabel (label
+  // sibling, input direct child of the styled(FormControl) root). SectionsContainer:
+  // line box + block pad. Box = body1 line + 2·padBlock + outline = OutlinedInput's.
+  addRootOverride(enhanced.components, 'MuiPickersOutlinedInput', {
+    paddingInline: d.small,
+    [`.${formControlClasses.root}:has(> &)`]: {
+      '--_outlinedInputPadBlock': `calc((${d['touch-target']} - 1lh) / 2)`,
+    },
+    [`.${inputLabelClasses.root}:has(~ &)`]: {
+      '--_restY': 'var(--_outlinedInputPadBlock)',
+      '--_inlinePad': d.small,
+    },
+    variants: [
+      {
+        props: { inputSize: 'small' },
+        style: {
+          [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d['xx-small'] },
+        },
+      },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiPickersOutlinedInput',
+    {
+      // Line box comes from the base MuiPickersInputBase override (body1); block pad
+      // then lands the box on OutlinedInput's height 1:1.
+      paddingBlock: `var(--_outlinedInputPadBlock, calc((${d['touch-target']} - 1lh) / 2))`,
+      paddingInline: 0,
+      variants: [
+        {
+          props: { inputSize: 'small' },
+          style: { paddingBlock: `var(--_outlinedInputPadBlock, ${d['xx-small']})` },
+        },
+      ],
+    },
+    'sectionsContainer',
+  );
+  // MUI X picker filled field — mirror FilledInput's asymmetric density box (both
+  // pads on the sectionsContainer for filled). Root broadcasts --_filledInputPadTop/
+  // Bottom to the FormControl and --_inlinePad/--_restY/--_shrinkY to the InputLabel.
+  addRootOverride(enhanced.components, 'MuiPickersFilledInput', {
+    [`.${formControlClasses.root}:has(> &)`]: {
+      '--_filledInputPadTop': d.large,
+      '--_filledInputPadBottom': d['x-small'],
+    },
+    [`.${inputLabelClasses.root}:has(~ &)`]: {
+      '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
+      '--_shrinkY': '7px',
+      '--_inlinePad': d.small,
+    },
+    variants: [
+      {
+        props: { inputSize: 'small' },
+        style: {
+          [`.${formControlClasses.root}:has(> &)`]: {
+            '--_filledInputPadTop': `calc(${d.medium} + 2px)`,
+            '--_filledInputPadBottom': d['xx-small'],
+          },
+          [`.${inputLabelClasses.root}:has(~ &)`]: {
+            '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
+            '--_shrinkY': '4px',
+          },
+        },
+      },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiPickersFilledInput',
+    {
+      // Line box from the base MuiPickersInputBase override (body1); block pad rides the
+      // top/bottom vars, inline pad (master 12px) direct. hiddenLabel: symmetric block pad.
+      paddingTop: `var(--_filledInputPadTop, ${d.large})`,
+      paddingBottom: `var(--_filledInputPadBottom, ${d.small})`,
+      paddingInline: d.small,
+      variants: [
+        {
+          props: { hiddenLabel: true },
+          style: { paddingBlock: `calc(${d['xx-small']} + 2px)` },
+        },
+        {
+          props: { hiddenLabel: true, inputSize: 'small' },
+          style: { paddingBlock: d['xx-small'] },
+        },
+      ],
+    },
+    'sectionsContainer',
   );
   addRootOverride(enhanced.components, 'MuiCheckbox', {
     // Touch-target padding per size (9px both sizes today) = density steps. Pull the
@@ -678,7 +754,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     // own pad still sets the row rhythm; the label restY broadcast below
     // (root + input) lands on the same value as plain inputs either way.
     '--_autocompleteInputRootPadBlock': '3px',
-    '--_autocompleteInputPadBlock': '3px',
+    '--_autocompleteInputPadBlock': `calc((${d['touch-target']} - 1lh) / 2 - var(--_autocompleteInputRootPadBlock))`,
     [`& .${outlinedInputClasses.root}`]: {
       paddingBlock: `var(--_autocompleteInputRootPadBlock)`,
       paddingLeft: '8px',
@@ -1212,143 +1288,6 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     ],
   });
 
-  addRootOverride(enhanced.components, 'MuiInputAdornment', {
-    // Adornment gap (start marginRight / end marginLeft) + filled positionStart
-    // marginTop = density steps, per size (medium default / small).
-    variants: [
-      { props: { position: 'start' }, style: { marginRight: d['x-small'] } },
-      { props: { position: 'end' }, style: { marginLeft: d['x-small'] } },
-      {
-        props: { position: 'start', size: 'small' },
-        style: { marginRight: d['xx-small'] },
-      },
-      {
-        props: { position: 'end', size: 'small' },
-        style: { marginLeft: d['xx-small'] },
-      },
-      {
-        props: { variant: 'filled' },
-        style: {
-          [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
-            {
-              marginTop:
-                'calc(var(--_filledInputPadTop, 18px) - var(--_filledInputPadBottom, 2px))',
-            },
-        },
-      },
-    ],
-  });
-  addRootOverride(enhanced.components, 'MuiFilledInput', {
-    // Root padding (adornment/multiline) = density steps. The floating label is a
-    // preceding sibling — reach it via `:has(~ &)` and set its rest/shrink Y as
-    // tuned raw px (no clean formula from topPad). hiddenLabel block padding stays
-    // at master literals (out of scope).
-    [`.${formControlClasses.root}:has(> &)`]: {
-      '--_filledInputPadTop': d.large,
-      '--_filledInputPadBottom': d['x-small'],
-    },
-    [`.${inputLabelClasses.root}:has(~ &)`]: {
-      '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
-      '--_shrinkY': '7px',
-      // Label X = the box's inline pad (master 12px) — linked write of the
-      // input-slot inline knob; the InputLabel transforms consume it bare.
-      '--_inlinePad': d.small,
-    },
-    variants: [
-      {
-        props: { size: 'small' },
-        style: {
-          [`.${formControlClasses.root}:has(> &)`]: {
-            // 18px, tracking the scale (medium + 2px) instead of a frozen literal
-            '--_filledInputPadTop': `calc(${d.medium} + 2px)`,
-            '--_filledInputPadBottom': d['xx-small'],
-          },
-          [`.${inputLabelClasses.root}:has(~ &)`]: {
-            '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
-            '--_shrinkY': '4px',
-          },
-        },
-      },
-      {
-        props: { multiline: true },
-        style: {
-          paddingTop: `var(--_filledInputPadTop, ${d['x-large']})`,
-          paddingBottom: `var(--_filledInputPadBottom, ${d.small})`,
-          // multiline root carries the box's inline pad (master 12px) — linked
-          // write of the input-slot inline knob.
-          paddingInline: d.small,
-        },
-      },
-      {
-        props: { multiline: true, size: 'small' },
-        style: {
-          paddingTop: `var(--_filledInputPadTop, ${d.large})`,
-          paddingBottom: `var(--_filledInputPadBottom, ${d['x-small']})`,
-        },
-      },
-      // hidden label does not need to sync with label, so no need CSS variables.
-      {
-        props: { multiline: true, hiddenLabel: true },
-        style: { paddingTop: 16, paddingBottom: 17 },
-      },
-      {
-        props: { multiline: true, hiddenLabel: true, size: 'small' },
-        style: { paddingTop: 8, paddingBottom: 9 },
-      },
-      // Adorned root pads (master 12px / --_trailingPad 12px; Select's nested
-      // --_trailingPad: 0 reset survives on specificity) — linked writes of the
-      // input-slot inline knob.
-      {
-        props: ({ ownerState }: { ownerState: { startAdornment?: unknown } }) =>
-          Boolean(ownerState.startAdornment),
-        style: { paddingLeft: d.small },
-      },
-      {
-        props: ({ ownerState }: { ownerState: { endAdornment?: unknown } }) =>
-          Boolean(ownerState.endAdornment),
-        style: { '--_trailingPad': d.small },
-      },
-    ],
-  });
-  // Normalization trio (hidden knobs): InputBase root + FormLabel line-height
-  // ride the theme's body1 (master hardcodes 1.4375em on both), and the input
-  // box height goes auto so the row height derives from line-height + padding
-  // instead of master's em height. With label metrics = input metrics the
-  // outlined `--_restY` writers need no ±0.5px optical fudge.
-  addRootOverride(enhanced.components, 'MuiInputBase', {
-    lineHeight: enhanced.typography?.body1?.lineHeight,
-  });
-  addRootOverride(enhanced.components, 'MuiInputBase', { height: 'auto' }, 'input');
-  addRootOverride(enhanced.components, 'MuiFormLabel', {
-    lineHeight: enhanced.typography?.body1?.lineHeight,
-  });
-  // Helper message offsets: block gap unconditional (master 3px). Inline scoped
-  // to contained (outlined/filled — master 14px); standard keeps master's flush
-  // 0 (negated-variant rule).
-  addRootOverride(enhanced.components, 'MuiFormHelperText', {
-    marginTop: d['xx-small'],
-    variants: [{ props: { contained: true }, style: { marginInline: d.small } }],
-  });
-  addRootOverride(
-    enhanced.components,
-    'MuiInputBase',
-    {
-      // Standard input box padding (block only; inline stays 0). Emitted on the
-      // base key so standard Input inherits it via the cascade; Outlined/Filled
-      // override on their own keys (win by injection order). Multiline box padding
-      // lives on the InputBase root (left at master) — reset the input to 0 as
-      // master does.
-      paddingBlock: d['x-small'],
-      variants: [
-        { props: { size: 'small' }, style: { paddingTop: d['xx-small'] } },
-        {
-          props: { multiline: true },
-          style: { paddingBlock: 0 },
-        },
-      ],
-    },
-    'input',
-  );
   addRootOverride(enhanced.components, 'MuiTab', {
     // Min-heights = raw px (paired with MuiTabs base below); padding = steps.
     // 32px = semantic/size/touch-target/default (tab.yml).
