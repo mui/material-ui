@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "9.1.1",
+  "version": "9.3.0",
   "author": "MUI Team",
   "description": "Utility functions for React components.",
   "license": "MIT",
@@ -31,25 +31,25 @@
     "attw": "attw --pack ./build --entrypoints \".\" \"deepmerge\" \"useId\" \"composeClasses\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.2",
+    "@babel/runtime": "^7.29.7",
     "@mui/types": "workspace:^",
     "@types/prop-types": "^15.7.15",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
-    "react-is": "^19.2.6"
+    "react-is": "^19.2.8"
   },
   "devDependencies": {
     "@mui/types": "workspace:^",
     "@types/chai": "5.2.3",
-    "@types/node": "20.19.39",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
+    "@types/node": "20.19.43",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
     "@types/react-is": "19.2.0",
-    "@types/sinon": "17.0.4",
+    "@types/sinon": "22.0.0",
     "chai": "6.2.2",
-    "react": "19.2.6",
-    "react-dom": "19.2.6",
-    "sinon": "22.0.0"
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "sinon": "22.1.0"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",

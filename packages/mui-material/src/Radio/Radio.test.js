@@ -6,6 +6,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import switchBaseClasses from '../internal/switchBaseClasses';
 import describeConformance from '../../test/describeConformance';
+import * as ripple from '../../test/ripple';
 
 describe('<Radio />', () => {
   const { render } = createRenderer();
@@ -145,5 +146,53 @@ describe('<Radio />', () => {
     render(<Radio slotProps={{ input: { 'aria-label': 'A' } }} />);
 
     expect(screen.queryByRole('radio', { name: 'A' })).not.to.equal(null);
+  });
+
+  describe('prop: disableRipple', () => {
+    it('should have a ripple by default', async () => {
+      render(<Radio TouchRippleProps={{ className: 'touch-ripple' }} />);
+
+      const radio = screen.getByRole('radio').parentElement;
+      await ripple.startTouch(radio);
+      expect(radio.querySelector('.touch-ripple')).not.to.equal(null);
+    });
+
+    it('should not have a ripple when disableRipple is set', async () => {
+      render(<Radio disableRipple TouchRippleProps={{ className: 'touch-ripple' }} />);
+
+      const radio = screen.getByRole('radio').parentElement;
+      await ripple.startTouch(radio);
+      expect(radio.querySelector('.touch-ripple')).to.equal(null);
+    });
+
+    it('should respect a global disableRipple from MuiButtonBase defaultProps', async () => {
+      const theme = createTheme({
+        components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Radio TouchRippleProps={{ className: 'touch-ripple' }} />
+        </ThemeProvider>,
+      );
+
+      const radio = screen.getByRole('radio').parentElement;
+      await ripple.startTouch(radio);
+      expect(radio.querySelector('.touch-ripple')).to.equal(null);
+    });
+
+    it('should let an explicit disableRipple={false} override a global disableRipple', async () => {
+      const theme = createTheme({
+        components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Radio disableRipple={false} TouchRippleProps={{ className: 'touch-ripple' }} />
+        </ThemeProvider>,
+      );
+
+      const radio = screen.getByRole('radio').parentElement;
+      await ripple.startTouch(radio);
+      expect(radio.querySelector('.touch-ripple')).not.to.equal(null);
+    });
   });
 });

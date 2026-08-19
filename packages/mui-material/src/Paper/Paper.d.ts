@@ -36,8 +36,7 @@ export interface PaperOwnProps {
    * @default 'elevation'
    */
   variant?:
-    | OverridableStringUnion<'elevation' | 'outlined', PaperPropsVariantOverrides>
-    | undefined;
+    OverridableStringUnion<'elevation' | 'outlined', PaperPropsVariantOverrides> | undefined;
 }
 
 export interface PaperTypeMap<

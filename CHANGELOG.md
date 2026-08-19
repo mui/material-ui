@@ -1,5 +1,169 @@
 # [Versions](https://mui.com/material-ui/getting-started/versions/)
 
+## 9.3.1
+
+<!-- generated comparing v9.3.0..master -->
+
+_Aug 6, 2026_
+
+A big thanks to the 4 contributors who made this release possible.
+
+### `@mui/material@9.3.1`
+
+- [transitions] Prevent exit transitions from getting stuck (#48881) @ZeeshanTamboli
+
+### `@mui/codemod@9.3.1`
+
+- Include transforms in published package (#48934) @brijeshb42
+
+### Core
+
+- [blog] Clarify early bird renewal discount scope (#48906) @DanailH
+- [test][pagination] Add more unit tests (#48927) @silviuaavram
+
+All contributors of this release in alphabetical order: @brijeshb42, @DanailH, @silviuaavram, @ZeeshanTamboli
+
+## 9.3.0
+
+<!-- generated comparing v9.2.0..master -->
+
+_Aug 4, 2026_
+
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- ♿️ Keyboard navigation in the [Toggle Button Group](https://mui.com/material-ui/react-toggle-button/) now follows the roving tabindex pattern.
+- ♿️ The [Autocomplete](https://mui.com/material-ui/react-autocomplete/) announces its loading and no options messages through a new `status` slot.
+
+### `@mui/material@9.3.0`
+
+- [autocomplete] Wrap the no results and loading messages in an aria live region (#48690) @silviuaavram
+- [buttongroup] Respect global disableRipple / disableFocusRipple in grouped buttons (#48762) @siriwatknp
+- [checkbox][radio] Respect global disableRipple from MuiButtonBase defaultProps (#48795) @siriwatknp
+- [formcontrollabel] Add missing `labelPlacementEnd` class (#48843) @siriwatknp
+- [listitembutton] Fix typos in component code (#48868) @ZeeshanTamboli
+- [menuitem] Add `aria-checked` for checkbox and radio menu items (#48651) @siriwatknp
+- [modal] Replace custom findIndexOf with findIndex (#48827) @ZeeshanTamboli
+- [modal][dialog] Fix scrollbar compensation in Shadow DOM (#48826) @ZeeshanTamboli
+- [select] Fix endAdornment overlapping the open indicator (#48723) @siriwatknp
+- [tablepagination] Add focus style to default InputBase used in Select (#48871) @silviuaavram
+- [togglebuttongroup] Add roving tabindex keyboard navigation (#48849) @silviuaavram
+
+### `@mui/system@9.3.0`
+
+- Prevent prototype pollution in cssVarsParser (#48822) @Janpot
+
+### `@mui/codemod@9.3.0`
+
+- Don't leak state between files in v5.0.0/path-imports (#48797) @manbearwiz
+- Remove use of eval() (#48701) @oliviertassinari
+- Transform all style exports in `v5.0.0/path-imports` codemod (#48800) @manbearwiz
+
+### Docs
+
+- Clarify `container` prop inheritance for Shadow DOM (#48670) @Juan-C-Ceballos
+- Clarify third-party script risk in CSP unsafe-inline note (#48787) @Janpot
+- Document `box-sx-prop` codemod (#48888) @SR0725
+- Document Grid direction column removal in v9 upgrade guide (#48880) @kalayciburak
+- Fix color contrast in GitHub labels example (#48844) @silviuaavram
+- Fix per-page canonical URL and stale SEO link (#48789) @brijeshb42
+- Fix redirect loop on the Design Kits page (#48869) @Janpot
+- Fix typo 'overriden' -> 'overridden' in CHANGELOG (#48785) @ZhouYinLong-lab
+- Improve TransferList examples (#48845) @silviuaavram
+- Link a new theme generator tool (#48847) @mansourcodes
+- Remove broken learning resource links (#48598) @morning-verlu
+- Update the 9.2.0 changelog (#48763) @silviuaavram
+- [autocomplete] Clarify how to render custom start and end adornments (#48883) @DebadityaHait
+- [drawer] Clarify clipped AppBar spacing (#48887) @rushijagani-dev
+- [menu] Fix stale `selected` prop reference in Selected menu section (#48879) @LukasTy
+- [skeleton] Document preserving typography sizing with custom border radius (#48596) @meaqua9420
+
+### Core
+
+- [blog] Fix caret annotation broken by Prettier wrapping (#48884) @bernardobelchior
+- [code-infra] Automate team sync on about page (#48794) @brijeshb42
+- [code-infra] Bump @mui/internal-code-infra to 0.0.4-canary.101 (#48878) @Janpot
+- [code-infra] Fix Dependabot alerts (#48756) @Janpot
+- [code-infra] Fix team sync PR creation (#48911) @brijeshb42
+- [code-infra] Pin node version in publish CI (#48799) @brijeshb42
+- [core-docs] Tighten service worker host check (#48581) @Janpot
+- [docs-infra] Change branch name to the allowed one (#48910) @brijeshb42
+
+All contributors of this release in alphabetical order: @bernardobelchior, @brijeshb42, @DebadityaHait, @Janpot, @Juan-C-Ceballos, @kalayciburak, @LukasTy, @manbearwiz, @mansourcodes, @meaqua9420, @morning-verlu, @oliviertassinari, @rushijagani-dev, @silviuaavram, @siriwatknp, @SR0725, @ZeeshanTamboli, @ZhouYinLong-lab
+
+## 9.2.0
+
+<!-- generated comparing v9.1.2..master -->
+
+_Jul 3, 2026_
+
+A big thanks to the 9 contributors who made this release possible.
+
+- ⚙️ Add support for [`data-*` attributes on `slotProps`](https://mui.com/material-ui/guides/typescript/#allowing-data-attributes-on-slotprops).
+
+### `@mui/material@9.2.0`
+
+- [l10n] Add missing MuiPagination localization to zh-CN locale (#48741) @greymoth-jp
+- [select] Guard display ref during mouse down (#48744) @michelengelen
+
+### `@mui/utils@9.2.0`
+
+- [utils] Add opt-in `DataAttributesOverrides` augmentation for slot props (#48554) @LukasTy
+
+### Docs
+
+- [docs] Improve Icon Dialog responsiveness on small screens (#48639) @Prakash1185
+- [docs] Fix invalid UTF-8 in skill references (#48739) @mturac
+
+### Core
+
+- [code-infra] Resolve Renovate dashboard warnings (#48700) @Sushantplive
+- [code-infra] Validate npm publishing through dry run (#48691) @brijeshb42
+- [code-infra] Run prettier after renovate update (#48754) @Janpot
+- [code-infra] Fix 'A11y results committed?' check on react-pinned nightly jobs (#48740) @Janpot
+- [core] Remove leftover Joy UI references (#48719) @siriwatknp
+- [code-infra] Bump react-router to 7.15.1 (#48725) @Janpot
+- [docs-infra] Drive docs analytics IDs via ANALYTICS_ENV (#48694) @Janpot
+- [docs-infra] Pre-render API page descriptions (#48693) @brijeshb42
+- [code-infra][icons-material] Build lib/package.json with code-infra --no-expand (#48689) @Janpot
+- [code-infra] Fix react@18/next nightly workflow (#48635) @Janpot
+
+All contributors of this release in alphabetical order: @brijeshb42, @greymoth-jp, @Janpot, @LukasTy, @michelengelen, @mturac, @Prakash1185, @siriwatknp, @Sushantplive
+
+## 9.1.2
+
+<!-- generated comparing v9.1.1..master -->
+
+_Jun 23, 2026_
+
+A big thanks to the 5 contributors who made this release possible.
+
+### `@mui/material@9.1.2`
+
+- [autocomplete] Don't submit forms when committing `freeSolo` value with Enter key (#48679) @mj12albert
+- [transitions] Fix RTG import in ESM (#48645) @mj12albert
+
+### `@mui/system@9.1.2`
+
+- [InitColorSchemeScript] Fix script tag warning in Next.js 16 dev mode (#48671) @siriwatknp
+
+### Docs
+
+- Fix typos in release instructions (#48687) @brijeshb42
+- Update @mui/x-\* packages to latest (#48661) @Janpot
+
+### Core
+
+- [code-infra] Convert leaf @mui/system .js+.d.ts pairs to TypeScript (part 1) (#48578) @Janpot
+- [code-infra] Bump to latest code-infra packages (#48672) @brijeshb42
+- [code-infra] Resolve remaining minimatch advisory (#48662) @Janpot
+- [code-infra] Bump nx to resolve minimatch advisory (#48658) @Janpot
+- [core] Drop @babel/\* pnpm overrides (#48710) @Janpot
+- [docs-infra] Revert "Pin StackBlitz demo vite to v7 and plugin-react to v5" (#48709) @Janpot
+- [docs-infra] Fix code-block copy button broken on direct page load (#48653) @brijeshb42
+- [test] Stabilize Data Grid demo data in Argos screenshots (#48654) @LukasTy
+
+All contributors of this release in alphabetical order: @brijeshb42, @Janpot, @LukasTy, @mj12albert, @siriwatknp
+
 ## 9.1.1
 
 <!-- generated comparing v9.1.0..master -->

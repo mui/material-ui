@@ -180,8 +180,7 @@ export interface TabsOwnProps extends TabsSlotsAndSlotProps {
    * @default 'primary'
    */
   indicatorColor?:
-    | OverridableStringUnion<'secondary' | 'primary', TabsPropsIndicatorColorOverrides>
-    | undefined;
+    OverridableStringUnion<'secondary' | 'primary', TabsPropsIndicatorColorOverrides> | undefined;
   /**
    * Callback fired when the value changes.
    *

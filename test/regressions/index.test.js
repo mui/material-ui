@@ -54,7 +54,19 @@ async function main() {
     // This should load shared resources such as fonts.
     await page.goto(`${baseUrl}#dev`, { waitUntil: 'networkidle0' });
     // If we still get flaky fonts after awaiting this try `document.fonts.ready`
-    await page.waitForSelector('[data-webfontloader="active"]', { state: 'attached' });
+    const fontStatus = await page.waitForSelector(
+      '[data-webfontloader]:not([data-webfontloader="pending"])',
+      { state: 'attached' },
+    );
+    const font = await fontStatus.evaluate((element) => ({
+      state: element.dataset.webfontloader,
+      missing: element.dataset.webfontMissing,
+    }));
+    // Screenshots taken with fallback faces look like a repo-wide text rendering
+    // change. Fail the run instead of publishing them.
+    if (font.state !== 'active') {
+      throw new Error(`Fonts failed to load. Missing: ${font.missing || 'all requested families'}`);
+    }
 
     // Simulate portrait mode for date pickers.
     // See `useIsLandscape`.
@@ -192,8 +204,11 @@ async function main() {
             }
             const testcase = await renderFixture(page, route);
 
+            // Scope the wait to the route's testcase element: pooled pages
+            // keep the previous route's DOM around briefly, so a page-global
+            // selector could match a leftover fixture instead of this one.
             if (screenshotRule?.waitForSelector) {
-              await page.waitForSelector(screenshotRule.waitForSelector);
+              await testcase.waitForSelector(screenshotRule.waitForSelector);
             }
 
             // Run axe before the screenshot (if any) so it observes the natural

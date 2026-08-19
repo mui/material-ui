@@ -233,7 +233,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   );
 
   const handleFocus = useEventCallback((event) => {
-    // Fix for https://github.com/facebook/react/issues/7769
+    // Fix for https://github.com/react/react/issues/7769
     if (!buttonRef.current) {
       buttonRef.current = event.currentTarget;
     }

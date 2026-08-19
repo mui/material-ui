@@ -3,6 +3,10 @@
 // globs — reads `Date` at module scope. See `fakeDateSetup.ts` for why this
 // ordering (and the separate `./fixtures` module) is required.
 import './fakeDateSetup';
+// Make the Data Grid demo-data generator run synchronously (before fixtures
+// load any composite). See `syncDataGridGenerator.ts` — prevents the async
+// row-generation skeleton/flake on the grid composites.
+import './syncDataGridGenerator';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';
@@ -85,8 +89,13 @@ function App(props) {
   const isDev = computeIsDev(hash);
 
   // Using <link rel="stylesheet" /> does not apply the google Roboto font in chromium headless/headfull.
-  const [fontState, setFontState] = React.useState('pending');
+  const [fontState, setFontState] = React.useState({ status: 'pending', missing: [] });
   React.useEffect(() => {
+    // `active` fires when at least one family loads, so a partial failure would
+    // still render the missing families with fallback faces. Collect them and
+    // report the load as inactive instead.
+    const missing = [];
+
     webfontloader.load({
       google: {
         families: ['Roboto:300,400,500,700', 'Inter:300,400,500,600,700,800,900', 'Material+Icons'],
@@ -96,11 +105,14 @@ function App(props) {
         urls: ['https://use.fontawesome.com/releases/v5.14.0/css/all.css'],
       },
       timeout: 20000,
+      fontinactive: (family, fvd) => {
+        missing.push(`${family}:${fvd}`);
+      },
       active: () => {
-        setFontState('active');
+        setFontState({ status: missing.length === 0 ? 'active' : 'inactive', missing });
       },
       inactive: () => {
-        setFontState('inactive');
+        setFontState({ status: 'inactive', missing });
       },
     });
   }, []);
@@ -116,7 +128,7 @@ function App(props) {
 
   return (
     <React.Fragment>
-      {fontState === 'active' ? (
+      {fontState.status === 'active' ? (
         <Routes>
           {fixtures.map((fixture) => {
             const path = computePath(fixture);
@@ -151,7 +163,12 @@ function App(props) {
 
       {isDev ? (
         <div>
-          <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
+          <div
+            data-webfontloader={fontState.status}
+            data-webfont-missing={fontState.missing.join(', ')}
+          >
+            webfontloader: {fontState.status}
+          </div>
           <p>
             Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
             appending <code>#no-dev</code>.

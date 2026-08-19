@@ -499,6 +499,7 @@ export function Demo(props: DemoProps) {
       navigatedDemoName &&
       (demoName === navigatedDemoName || (anchorName !== null && anchorName === navigatedDemoName))
     ) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCodeOpen(true);
     }
   }, [demoName, anchorName]);
@@ -532,25 +533,29 @@ export function Demo(props: DemoProps) {
     initialEditorCode,
   });
 
-  const resetDemo = React.useMemo(
-    () => () => {
-      setEditorCode({
-        value: initialEditorCode,
-        isPreview,
-        initialEditorCode,
-      });
-      setDemoKey();
-    },
-    [setEditorCode, setDemoKey, initialEditorCode, isPreview],
-  );
-
-  React.useEffect(() => {
+  const resetDemo = React.useCallback(() => {
     setEditorCode({
       value: initialEditorCode,
       isPreview,
       initialEditorCode,
     });
-  }, [initialEditorCode, isPreview]);
+    setDemoKey();
+  }, [setEditorCode, setDemoKey, initialEditorCode, isPreview]);
+
+  // Reset the (user-editable) editor code whenever the demo's source or preview
+  // mode changes. Adjusting state during render is preferred over an effect.
+  const [editorCodeSource, setEditorCodeSource] = React.useState({ initialEditorCode, isPreview });
+  if (
+    editorCodeSource.initialEditorCode !== initialEditorCode ||
+    editorCodeSource.isPreview !== isPreview
+  ) {
+    setEditorCodeSource({ initialEditorCode, isPreview });
+    setEditorCode({
+      value: initialEditorCode,
+      isPreview,
+      initialEditorCode,
+    });
+  }
 
   const [debouncedError, setDebouncedError] = React.useState<string | null>(null);
 

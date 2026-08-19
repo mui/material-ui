@@ -53,6 +53,12 @@ describe('<ToggleButton />', () => {
     expect(screen.getByRole('button')).to.have.property('disabled', true);
   });
 
+  it('should remain in the tab order when rendered standalone', () => {
+    render(<ToggleButton value="hello">Hello World</ToggleButton>);
+
+    expect(screen.getByRole('button')).to.have.property('tabIndex', 0);
+  });
+
   it('can render a small button', () => {
     render(
       <ToggleButton data-testid="root" size="small" value="hello">
