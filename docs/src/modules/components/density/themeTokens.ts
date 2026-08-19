@@ -38,12 +38,21 @@ const TYPOGRAPHY_VARIANTS = [
   'subtitle2',
   'body1',
   'body2',
+  'caption',
   'button',
 ] as const;
 
 const DONE_MEDIUM: Array<'high' | 'medium' | 'low'> = ['medium'];
 // Variants the preset patches (per design, medium); h4/h5/h6/subtitle keep master.
-const TYPOGRAPHY_DONE_MEDIUM = new Set<string>(['h1', 'h2', 'h3', 'body1', 'body2', 'button']);
+const TYPOGRAPHY_DONE_MEDIUM = new Set<string>([
+  'h1',
+  'h2',
+  'h3',
+  'body1',
+  'body2',
+  'caption',
+  'button',
+]);
 
 export const themeTokenGroups: ThemeTokenGroup[] = [
   {
@@ -167,7 +176,7 @@ export const PRESET_THEME_INPUT: Record<'high' | 'medium' | 'low', PresetThemeIn
       subtitle2: { fontSize: '0.8125rem', lineHeight: '20px' }, // 13/20
       body1: { fontSize: '0.875rem', lineHeight: '20px' }, // 14/20
       body2: { fontSize: '0.8125rem', lineHeight: '18px' }, // 13/18
-      caption: { fontSize: '0.75rem', lineHeight: '18px' }, // 12/18
+      caption: { fontSize: '0.75rem', lineHeight: '16px' }, // 12/16 (tooltip bubble line)
       button: {
         fontSize: '0.875rem',
         lineHeight: '20px',

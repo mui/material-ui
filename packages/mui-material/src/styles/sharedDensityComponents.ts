@@ -143,9 +143,49 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiTooltip',
     {
-      // Base arrow box on its own slot (inherits --_arrowSize from the popper
-      // root); left/right placements above re-assert because master sets them
-      // at popper level.
+      ...enhanced.typography?.caption,
+      padding: `${d['x-small']} ${d.small}`,
+      [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
+        marginInlineEnd: sp(0.5),
+      },
+      [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
+        marginInlineStart: sp(0.5),
+      },
+      [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: { marginBottom: sp(0.5) },
+      [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: { marginTop: sp(0.5) },
+    },
+    'tooltip',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiTooltip',
+    {
+      // 0.71 = master's 1/sqrt(2) square-arrow projection ratio.
+      '--_arrowSize': sp(1.375),
+      [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
+        marginTop: 'calc(var(--_arrowSize) * -0.71)',
+      },
+      [`&[data-popper-placement*="top"] .${tooltipClasses.arrow}`]: {
+        marginBottom: 'calc(var(--_arrowSize) * -0.71)',
+      },
+      [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
+        // re-assert: master's placement rules hit these selectors at equal specificity
+        height: 'var(--_arrowSize)',
+        width: 'calc(var(--_arrowSize) * 0.71)',
+        marginInlineStart: 'calc(var(--_arrowSize) * -0.71)',
+      },
+      [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
+        height: 'var(--_arrowSize)',
+        width: 'calc(var(--_arrowSize) * 0.71)',
+        marginInlineEnd: 'calc(var(--_arrowSize) * -0.71)',
+      },
+    },
+    'popper',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiTooltip',
+    {
       width: 'var(--_arrowSize)',
       height: 'calc(var(--_arrowSize) * 0.71)',
     },
@@ -1171,58 +1211,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
     ],
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiTooltip',
-    {
-      // Padding = density steps on the base (mirrors Tooltip.js base margins),
-      // so it applies to every tooltip; arrow doesn't change it. Type: capture's
-      // semantic/font-size/variable/s (12px) / line-height 16px, raw px. Offset
-      // = FIXED 4px raw (anchor gap is not a density lever). Arrow size lives on
-      // the popper slot (see the block below).
-      padding: `${d['x-small']} ${d.small}`,
-      fontSize: '12px',
-      lineHeight: '16px',
-      [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: { marginInlineEnd: '4px' },
-      [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-        marginInlineStart: '4px',
-      },
-      [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: { marginBottom: '4px' },
-      [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: { marginTop: '4px' },
-    },
-    'tooltip',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiTooltip',
-    {
-      // Arrow size — ONE preset-local var; the geometry below derives from it via
-      // calc. Master ships literal em values on these SAME selectors (component
-      // untouched); these popper-slot overrides win by cascade order. 0.71 = the
-      // master ratio (1/sqrt(2), the hypotenuse projection of the square arrow).
-      // Fixed sizing (no Figma arrow token) — master ratio geometry below.
-      '--_arrowSize': '11px',
-      [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
-        marginTop: 'calc(var(--_arrowSize) * -0.71)',
-      },
-      [`&[data-popper-placement*="top"] .${tooltipClasses.arrow}`]: {
-        marginBottom: 'calc(var(--_arrowSize) * -0.71)',
-      },
-      [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-        // width/height re-asserted here: master's placement rules set them at the
-        // same specificity, so the base arrow rule below would lose for left/right.
-        height: 'var(--_arrowSize)',
-        width: 'calc(var(--_arrowSize) * 0.71)',
-        marginInlineStart: 'calc(var(--_arrowSize) * -0.71)',
-      },
-      [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-        height: 'var(--_arrowSize)',
-        width: 'calc(var(--_arrowSize) * 0.71)',
-        marginInlineEnd: 'calc(var(--_arrowSize) * -0.71)',
-      },
-    },
-    'popper',
-  );
+
   addRootOverride(enhanced.components, 'MuiInputAdornment', {
     // Adornment gap (start marginRight / end marginLeft) + filled positionStart
     // marginTop = density steps, per size (medium default / small).

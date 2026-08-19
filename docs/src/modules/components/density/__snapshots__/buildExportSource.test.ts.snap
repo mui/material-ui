@@ -322,34 +322,31 @@ const high = {
     },
     MuiTooltip: {
       styleOverrides: {
-        arrow: [
-          {
-            width: 'var(--_arrowSize)',
-            height: 'calc(var(--_arrowSize) * 0.71)',
-          },
-        ],
         tooltip: [
           {
+            fontSize: 'calc(0.6875rem * var(--mui-scaling))',
+            lineHeight: 'calc(14px * var(--mui-scaling))',
+            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            fontWeight: 400,
+            letterSpacing: '0.03333em',
             padding: 'var(--mui-density-x-small) var(--mui-density-small)',
-            fontSize: '12px',
-            lineHeight: '16px',
             '.MuiTooltip-popper[data-popper-placement*="left"] &': {
-              marginInlineEnd: '4px',
+              marginInlineEnd: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             },
             '.MuiTooltip-popper[data-popper-placement*="right"] &': {
-              marginInlineStart: '4px',
+              marginInlineStart: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             },
             '.MuiTooltip-popper[data-popper-placement*="top"] &': {
-              marginBottom: '4px',
+              marginBottom: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             },
             '.MuiTooltip-popper[data-popper-placement*="bottom"] &': {
-              marginTop: '4px',
+              marginTop: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             },
           },
         ],
         popper: [
           {
-            '--_arrowSize': '11px',
+            '--_arrowSize': 'calc(calc(1.375 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             '&[data-popper-placement*="bottom"] .MuiTooltip-arrow': {
               marginTop: 'calc(var(--_arrowSize) * -0.71)',
             },
@@ -366,6 +363,12 @@ const high = {
               width: 'calc(var(--_arrowSize) * 0.71)',
               marginInlineEnd: 'calc(var(--_arrowSize) * -0.71)',
             },
+          },
+        ],
+        arrow: [
+          {
+            width: 'var(--_arrowSize)',
+            height: 'calc(var(--_arrowSize) * 0.71)',
           },
         ],
       },
@@ -3260,34 +3263,31 @@ const medium = {
     },
     MuiTooltip: {
       styleOverrides: {
-        arrow: [
-          {
-            width: 'var(--_arrowSize)',
-            height: 'calc(var(--_arrowSize) * 0.71)',
-          },
-        ],
         tooltip: [
           {
+            fontSize: 'calc(0.75rem * var(--mui-scaling))',
+            lineHeight: 'calc(16px * var(--mui-scaling))',
+            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            fontWeight: 400,
+            letterSpacing: '0.03333em',
             padding: 'var(--mui-density-x-small) var(--mui-density-small)',
-            fontSize: '12px',
-            lineHeight: '16px',
             '.MuiTooltip-popper[data-popper-placement*="left"] &': {
-              marginInlineEnd: '4px',
+              marginInlineEnd: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             },
             '.MuiTooltip-popper[data-popper-placement*="right"] &': {
-              marginInlineStart: '4px',
+              marginInlineStart: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             },
             '.MuiTooltip-popper[data-popper-placement*="top"] &': {
-              marginBottom: '4px',
+              marginBottom: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             },
             '.MuiTooltip-popper[data-popper-placement*="bottom"] &': {
-              marginTop: '4px',
+              marginTop: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             },
           },
         ],
         popper: [
           {
-            '--_arrowSize': '11px',
+            '--_arrowSize': 'calc(calc(1.375 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             '&[data-popper-placement*="bottom"] .MuiTooltip-arrow': {
               marginTop: 'calc(var(--_arrowSize) * -0.71)',
             },
@@ -3304,6 +3304,12 @@ const medium = {
               width: 'calc(var(--_arrowSize) * 0.71)',
               marginInlineEnd: 'calc(var(--_arrowSize) * -0.71)',
             },
+          },
+        ],
+        arrow: [
+          {
+            width: 'var(--_arrowSize)',
+            height: 'calc(var(--_arrowSize) * 0.71)',
           },
         ],
       },
@@ -5908,7 +5914,7 @@ const medium = {
     },
     caption: {
       fontSize: '0.75rem',
-      lineHeight: '18px',
+      lineHeight: '16px',
     },
     button: {
       fontSize: '0.875rem',
@@ -6201,34 +6207,31 @@ const low = {
     },
     MuiTooltip: {
       styleOverrides: {
-        arrow: [
-          {
-            width: 'var(--_arrowSize)',
-            height: 'calc(var(--_arrowSize) * 0.71)',
-          },
-        ],
         tooltip: [
           {
+            fontSize: 'calc(0.875rem * var(--mui-scaling))',
+            lineHeight: 'calc(20px * var(--mui-scaling))',
+            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            fontWeight: 400,
+            letterSpacing: '0.03333em',
             padding: 'var(--mui-density-x-small) var(--mui-density-small)',
-            fontSize: '12px',
-            lineHeight: '16px',
             '.MuiTooltip-popper[data-popper-placement*="left"] &': {
-              marginInlineEnd: '4px',
+              marginInlineEnd: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             },
             '.MuiTooltip-popper[data-popper-placement*="right"] &': {
-              marginInlineStart: '4px',
+              marginInlineStart: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             },
             '.MuiTooltip-popper[data-popper-placement*="top"] &': {
-              marginBottom: '4px',
+              marginBottom: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             },
             '.MuiTooltip-popper[data-popper-placement*="bottom"] &': {
-              marginTop: '4px',
+              marginTop: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             },
           },
         ],
         popper: [
           {
-            '--_arrowSize': '11px',
+            '--_arrowSize': 'calc(calc(1.375 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             '&[data-popper-placement*="bottom"] .MuiTooltip-arrow': {
               marginTop: 'calc(var(--_arrowSize) * -0.71)',
             },
@@ -6245,6 +6248,12 @@ const low = {
               width: 'calc(var(--_arrowSize) * 0.71)',
               marginInlineEnd: 'calc(var(--_arrowSize) * -0.71)',
             },
+          },
+        ],
+        arrow: [
+          {
+            width: 'var(--_arrowSize)',
+            height: 'calc(var(--_arrowSize) * 0.71)',
           },
         ],
       },

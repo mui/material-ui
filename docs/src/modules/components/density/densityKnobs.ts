@@ -1642,12 +1642,15 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Arrow geometry derives from the popper-slot --_arrowSize var — the var row is the knob.',
   },
-  'MuiTooltip|tooltip|base||padding': { label: 'Tooltip · tooltip · padding', done: ['medium'] },
+  'MuiTooltip|tooltip|base||fontFamily': 'Tooltip · tooltip · fontFamily',
+  'MuiTooltip|tooltip|base||fontWeight': 'Tooltip · tooltip · fontWeight',
   'MuiTooltip|tooltip|base||fontSize': { label: 'Tooltip · tooltip · fontSize', done: ['medium'] },
   'MuiTooltip|tooltip|base||lineHeight': {
     label: 'Tooltip · tooltip · lineHeight',
     done: ['medium'],
   },
+  'MuiTooltip|tooltip|base||letterSpacing': 'Tooltip · tooltip · letterSpacing',
+  'MuiTooltip|tooltip|base||padding': { label: 'Tooltip · tooltip · padding', done: ['medium'] },
   'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="left"] &|marginInlineEnd': {
     label: 'Tooltip · tooltip · marginInlineEnd',
     done: ['medium'],
