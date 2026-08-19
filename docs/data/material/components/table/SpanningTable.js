@@ -56,7 +56,9 @@ export default function SpanningTable() {
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.desc}>
-              <TableCell>{row.desc}</TableCell>
+              <TableCell component="th" scope="row">
+                {row.desc}
+              </TableCell>
               <TableCell align="right">{row.qty}</TableCell>
               <TableCell align="right">{row.unit}</TableCell>
               <TableCell align="right">{ccyFormat(row.price)}</TableCell>
@@ -64,16 +66,22 @@ export default function SpanningTable() {
           ))}
           <TableRow>
             <TableCell rowSpan={3} />
-            <TableCell colSpan={2}>Subtotal</TableCell>
+            <TableCell component="th" scope="row" colSpan={2}>
+              Subtotal
+            </TableCell>
             <TableCell align="right">{ccyFormat(invoiceSubtotal)}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>Tax</TableCell>
+            <TableCell component="th" scope="row">
+              Tax
+            </TableCell>
             <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
             <TableCell align="right">{ccyFormat(invoiceTaxes)}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell colSpan={2}>Total</TableCell>
+            <TableCell component="th" scope="row" colSpan={2}>
+              Total
+            </TableCell>
             <TableCell align="right">{ccyFormat(invoiceTotal)}</TableCell>
           </TableRow>
         </TableBody>
