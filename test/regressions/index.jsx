@@ -11,8 +11,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router';
-import webfontloader from 'webfontloader';
 import { Globals } from '@react-spring/web';
+import loadFonts from './loadFonts';
 import TestViewer from './TestViewer';
 import MarketingWrapper from './MarketingWrapper';
 import allFixtures from './fixtures';
@@ -88,33 +88,16 @@ function App(props) {
   const hash = useHash();
   const isDev = computeIsDev(hash);
 
-  // Using <link rel="stylesheet" /> does not apply the google Roboto font in chromium headless/headfull.
   const [fontState, setFontState] = React.useState({ status: 'pending', missing: [] });
   React.useEffect(() => {
-    // `active` fires when at least one family loads, so a partial failure would
-    // still render the missing families with fallback faces. Collect them and
-    // report the load as inactive instead.
-    const missing = [];
-
-    webfontloader.load({
-      google: {
-        families: ['Roboto:300,400,500,700', 'Inter:300,400,500,600,700,800,900', 'Material+Icons'],
-      },
-      custom: {
-        families: ['Font Awesome 5 Free:n9'],
-        urls: ['https://use.fontawesome.com/releases/v5.14.0/css/all.css'],
-      },
-      timeout: 20000,
-      fontinactive: (family, fvd) => {
-        missing.push(`${family}:${fvd}`);
-      },
-      active: () => {
+    loadFonts().then(
+      (missing) => {
         setFontState({ status: missing.length === 0 ? 'active' : 'inactive', missing });
       },
-      inactive: () => {
-        setFontState({ status: 'inactive', missing });
+      (error) => {
+        setFontState({ status: 'inactive', missing: [error.message] });
       },
-    });
+    );
   }, []);
 
   function computePath(fixture) {
@@ -163,11 +146,8 @@ function App(props) {
 
       {isDev ? (
         <div>
-          <div
-            data-webfontloader={fontState.status}
-            data-webfont-missing={fontState.missing.join(', ')}
-          >
-            webfontloader: {fontState.status}
+          <div data-webfont={fontState.status} data-webfont-missing={fontState.missing.join(', ')}>
+            fonts: {fontState.status}
           </div>
           <p>
             Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by

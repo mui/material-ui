@@ -54,12 +54,11 @@ async function main() {
     // This should load shared resources such as fonts.
     await page.goto(`${baseUrl}#dev`, { waitUntil: 'networkidle0' });
     // If we still get flaky fonts after awaiting this try `document.fonts.ready`
-    const fontStatus = await page.waitForSelector(
-      '[data-webfontloader]:not([data-webfontloader="pending"])',
-      { state: 'attached' },
-    );
+    const fontStatus = await page.waitForSelector('[data-webfont]:not([data-webfont="pending"])', {
+      state: 'attached',
+    });
     const font = await fontStatus.evaluate((element) => ({
-      state: element.dataset.webfontloader,
+      state: element.dataset.webfont,
       missing: element.dataset.webfontMissing,
     }));
     // Screenshots taken with fallback faces look like a repo-wide text rendering
