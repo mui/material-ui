@@ -77,6 +77,9 @@ async function main() {
   await fs.mkdir(screenshotDir, { recursive: true });
 
   const probePage = await pool.acquire();
+  // React renders the nav, so wait for it: `$$eval` returns [] when it is
+  // missing, which registers zero route tests and still passes.
+  await probePage.waitForSelector('#tests a', { state: 'attached' });
   let routes = await probePage.$$eval('#tests a', (links) => {
     return links.map((link) => link.href);
   });
