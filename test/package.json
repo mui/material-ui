@@ -34,7 +34,6 @@
     "styled-components": "6.5.2",
     "stylis": "4.4.0",
     "tailwindcss": "4.3.3",
-    "webfontloader": "1.6.28",
     "yargs": "17.7.3"
   },
   "dependencies": {
