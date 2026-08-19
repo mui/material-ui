@@ -9,12 +9,12 @@ const STYLESHEETS = [
   'https://use.fontawesome.com/releases/v5.14.0/css/all.css',
 ];
 
-// CSS `font` shorthands, one per face the fixtures use.
+// One entry per face the fixtures use.
 const FACES = [
-  ...[300, 400, 500, 700].map((weight) => `${weight} 16px Roboto`),
-  ...[300, 400, 500, 600, 700, 800, 900].map((weight) => `${weight} 16px Inter`),
-  '400 24px "Material Icons"',
-  '900 16px "Font Awesome 5 Free"',
+  ...[300, 400, 500, 700].map((weight) => ({ family: 'Roboto', weight })),
+  ...[300, 400, 500, 600, 700, 800, 900].map((weight) => ({ family: 'Inter', weight })),
+  { family: 'Material Icons', weight: 400 },
+  { family: 'Font Awesome 5 Free', weight: 900 },
 ];
 
 const TIMEOUT = 20000;
@@ -38,15 +38,17 @@ async function loadFaces() {
   // renders the family yet. `document.fonts.load()` forces the download.
   const missing: string[] = [];
   await Promise.all(
-    FACES.map(async (face) => {
+    FACES.map(async ({ family, weight }) => {
       try {
-        // Resolves with an empty list when no rule declares the face, and
-        // rejects when the font file fails to download.
-        if ((await document.fonts.load(face)).length === 0) {
-          missing.push(face);
+        // `load()` applies normal CSS matching, so a request for a weight the
+        // stylesheet omits resolves to the nearest one. Compare what came back.
+        const faces = await document.fonts.load(`${weight} 16px "${family}"`);
+        if (!faces.some((face) => face.weight === String(weight))) {
+          missing.push(`${family} ${weight}`);
         }
       } catch {
-        missing.push(face);
+        // The rule matched but the font file failed to download.
+        missing.push(`${family} ${weight}`);
       }
     }),
   );

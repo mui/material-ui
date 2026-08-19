@@ -30,9 +30,6 @@ window.muiFixture = {
   // `index.test.js` awaits this before it screenshots anything.
   fontsReady: loadFonts(),
 };
-// The runner only reads `fontsReady` after navigating, so an early failure would
-// otherwise log as an unhandled rejection.
-window.muiFixture.fontsReady.catch(() => {});
 
 function FixtureRenderer({ component: FixtureComponent, path }) {
   React.useEffect(() => {
