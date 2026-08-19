@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { expect } from 'chai';
 import { act, createRenderer, RenderCounter, screen, isJsdom } from '@mui/internal-test-utils';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Container from '@mui/material/Container';

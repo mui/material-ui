@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { screen, isJsdom, createDescribe } from '@mui/internal-test-utils';
 import type { Clock, MuiRenderResult } from '@mui/internal-test-utils';

@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import Avatar, { avatarClasses as classes } from '@mui/material/Avatar';

@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import ImageList, { imageListClasses as classes } from '@mui/material/ImageList';
 import describeConformance from '../../test/describeConformance';

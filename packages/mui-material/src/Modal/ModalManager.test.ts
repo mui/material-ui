@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import getScrollbarSize from '@mui/utils/getScrollbarSize';
 import { ModalManager } from './ModalManager';
 

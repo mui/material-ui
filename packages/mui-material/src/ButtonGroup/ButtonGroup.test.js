@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, screen, simulateKeyboardDevice, isJsdom } from '@mui/internal-test-utils';
 import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material/ButtonGroup';
 import { ThemeProvider, createTheme } from '@mui/material/styles';

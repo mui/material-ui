@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer } from '@mui/internal-test-utils';
 import FormControl, { formControlClasses as classes } from '@mui/material/FormControl';
@@ -215,7 +214,7 @@ describe('<FormControl />', () => {
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
-      expect(readContext.args[0][0].adornedStart, true);
+      expect(readContext.args[0][0]).to.have.property('adornedStart', true);
     });
   });
 

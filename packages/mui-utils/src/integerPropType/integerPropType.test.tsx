@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unknown-property */
-import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import integerPropType from '@mui/utils/integerPropType';
 import { getTypeByValue } from './integerPropType';

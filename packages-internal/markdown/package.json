@@ -31,10 +31,7 @@
     "marked": "^18.0.9",
     "prismjs": "^1.30.0"
   },
-  "devDependencies": {
-    "@types/chai": "5.2.3",
-    "chai": "6.2.2"
-  },
+  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   }

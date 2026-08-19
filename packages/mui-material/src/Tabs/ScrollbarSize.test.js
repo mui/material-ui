@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import ScrollbarSize from './ScrollbarSize';

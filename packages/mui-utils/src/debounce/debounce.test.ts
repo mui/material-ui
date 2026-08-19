@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import debounce from './debounce';
 

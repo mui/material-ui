@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import buildFormatNumber from './buildFormatNumber';
 
 describe('buildFormatNumber', () => {

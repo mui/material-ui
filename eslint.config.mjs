@@ -42,6 +42,14 @@ const NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES = [
   },
 ];
 
+const NO_RESTRICTED_IMPORTS_PATHS_CHAI = [
+  {
+    name: 'chai',
+    message:
+      "Use the global `expect` from Vitest instead. It's the same chai instance, extended with our custom matchers.",
+  },
+];
+
 const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
   {
     group: [
@@ -85,6 +93,7 @@ export default defineConfig(
       'no-restricted-imports': [
         'error',
         {
+          paths: NO_RESTRICTED_IMPORTS_PATHS_CHAI,
           patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
         },
       ],
@@ -163,6 +172,11 @@ export default defineConfig(
       'testing-library/no-container': 'off',
       // TODO: investigate and fix
       'vitest/expect-expect': 'off',
+      // Surfaced by dropping the `chai` import in favor of the Vitest global `expect`.
+      // The remaining reports are deliberate environment branches (`isJsdom()`, feature
+      // flags, optional fixtures) rather than assertions hidden in a `catch`.
+      // TODO: investigate and fix
+      'vitest/no-conditional-expect': 'off',
     },
   },
   // Test end
@@ -175,7 +189,10 @@ export default defineConfig(
       'no-restricted-imports': [
         'error',
         {
-          paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+          paths: [
+            ...NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+            ...NO_RESTRICTED_IMPORTS_PATHS_CHAI,
+          ],
           patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
         },
       ],
@@ -272,6 +289,7 @@ export default defineConfig(
         {
           paths: [
             ...NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+            ...NO_RESTRICTED_IMPORTS_PATHS_CHAI,
             {
               name: '@mui/utils',
               message: OneLevelImportMessage,

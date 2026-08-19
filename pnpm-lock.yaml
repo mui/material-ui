@@ -510,9 +510,6 @@ importers:
       '@types/autosuggest-highlight':
         specifier: 3.2.3
         version: 3.2.3
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
       '@types/chance':
         specifier: 1.1.8
         version: 1.1.8
@@ -555,9 +552,6 @@ importers:
       '@types/stylis':
         specifier: 4.2.7
         version: 4.2.7
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       cross-fetch:
         specifier: ^4.1.0
         version: 4.1.0(encoding@0.1.13)
@@ -631,9 +625,6 @@ importers:
       '@types/babel__traverse':
         specifier: 7.28.0
         version: 7.28.0
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
       '@types/doctrine':
         specifier: 0.0.9
         version: 0.0.9
@@ -646,9 +637,6 @@ importers:
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       sinon:
         specifier: 22.1.0
         version: 22.1.0
@@ -672,18 +660,12 @@ importers:
         specifier: ^1.50.0
         version: 1.50.0
     devDependencies:
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
       '@types/node':
         specifier: 20.19.43
         version: 20.19.43
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       sinon:
         specifier: 22.1.0
         version: 22.1.0
@@ -729,9 +711,6 @@ importers:
       '@types/stylis':
         specifier: ^4.2.7
         version: 4.2.7
-      chai:
-        specifier: ^6.0.1
-        version: 6.2.2
       clipboard-copy:
         specifier: ^4.0.1
         version: 4.0.1
@@ -781,9 +760,6 @@ importers:
       '@mui/material':
         specifier: workspace:*
         version: link:../../packages/mui-material/build
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
       '@types/fg-loadcss':
         specifier: 3.1.3
         version: 3.1.3
@@ -835,13 +811,6 @@ importers:
       prismjs:
         specifier: ^1.30.0
         version: 1.30.0
-    devDependencies:
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
 
   packages-internal/scripts:
     dependencies:
@@ -879,9 +848,6 @@ importers:
       '@types/babel__core':
         specifier: 7.20.5
         version: 7.20.5
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
       '@types/doctrine':
         specifier: 0.0.9
         version: 0.0.9
@@ -894,9 +860,6 @@ importers:
       '@types/uuid':
         specifier: 11.0.0
         version: 11.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       fast-glob:
         specifier: 3.3.3
         version: 3.3.3
@@ -942,15 +905,9 @@ importers:
       '@material-ui/core':
         specifier: ^4.12.4
         version: 4.12.4(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
       '@types/jscodeshift':
         specifier: 17.3.0
         version: 17.3.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
     publishDirectory: build
 
   packages/mui-core-downloads-tracker: {}
@@ -960,13 +917,6 @@ importers:
       envinfo:
         specifier: ^7.21.0
         version: 7.21.0
-    devDependencies:
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
     publishDirectory: build
 
   packages/mui-envinfo/test:
@@ -1006,15 +956,9 @@ importers:
       '@mui/material':
         specifier: workspace:^
         version: link:../mui-material/build
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
       '@types/react':
         specifier: 19.2.18
         version: 19.2.18
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       chalk:
         specifier: 6.0.0
         version: 6.0.0
@@ -1080,9 +1024,6 @@ importers:
       '@mui/material':
         specifier: workspace:^
         version: link:../mui-material/build
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
       '@types/prop-types':
         specifier: 15.7.15
         version: 15.7.15
@@ -1095,9 +1036,6 @@ importers:
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -1157,9 +1095,6 @@ importers:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
     devDependencies:
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
       '@types/prop-types':
         specifier: 15.7.15
         version: 15.7.15
@@ -1172,9 +1107,6 @@ importers:
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       css-mediaquery:
         specifier: 0.1.2
         version: 0.1.2
@@ -1256,18 +1188,12 @@ importers:
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
       '@types/prop-types':
         specifier: 15.7.15
         version: 15.7.15
       '@types/react':
         specifier: 19.2.18
         version: 19.2.18
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -1303,18 +1229,12 @@ importers:
       '@mui/styled-engine':
         specifier: workspace:*
         version: link:build
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
       '@types/prop-types':
         specifier: 15.7.15
         version: 15.7.15
       '@types/react':
         specifier: 19.2.18
         version: 19.2.18
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -1338,18 +1258,12 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
       '@types/prop-types':
         specifier: 15.7.15
         version: 15.7.15
       '@types/react':
         specifier: 19.2.18
         version: 19.2.18
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -1367,18 +1281,12 @@ importers:
         specifier: ^2.3.1
         version: 2.3.1
     devDependencies:
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
       '@types/node':
         specifier: 20.19.43
         version: 20.19.43
       '@types/stylis':
         specifier: 4.2.7
         version: 4.2.7
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       stylis:
         specifier: 4.4.0
         version: 4.4.0
@@ -1420,9 +1328,6 @@ importers:
       '@mui/system':
         specifier: workspace:*
         version: link:build
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
       '@types/prop-types':
         specifier: 15.7.15
         version: 15.7.15
@@ -1432,9 +1337,6 @@ importers:
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       es-toolkit:
         specifier: 1.50.0
         version: 1.50.0
@@ -1487,9 +1389,6 @@ importers:
         specifier: ^19.2.8
         version: 19.2.8
     devDependencies:
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
       '@types/node':
         specifier: 20.19.43
         version: 20.19.43
@@ -1505,9 +1404,6 @@ importers:
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -1558,9 +1454,6 @@ importers:
       '@testing-library/dom':
         specifier: 10.4.1
         version: 10.4.1
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
       '@types/react':
         specifier: 19.2.18
         version: 19.2.18
@@ -1570,9 +1463,6 @@ importers:
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
       docs:
         specifier: workspace:^
         version: link:../docs
