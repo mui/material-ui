@@ -16,6 +16,7 @@ const scale: DensityMultipliers = {
   medium: 3,
   large: 4,
   'x-large': 6,
+  'touch-target': 5.5,
   'xx-large': 8,
 };
 

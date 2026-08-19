@@ -16,6 +16,7 @@ const multipliers: DensityMultipliers = {
   large: 2,
   'x-large': 3,
   'xx-large': 4,
+  'touch-target': 3.5,
 };
 
 describe('densityScale', () => {
@@ -31,6 +32,7 @@ describe('densityScale', () => {
         large: '16px',
         'x-large': '24px',
         'xx-large': '32px',
+        'touch-target': '28px',
       });
     });
 

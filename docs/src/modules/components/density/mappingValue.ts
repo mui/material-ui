@@ -9,6 +9,7 @@ export const SCALE_KEYS = [
   'large',
   'x-large',
   'xx-large',
+  'touch-target',
 ] as const;
 
 export const isDensityKey = (t: string) => (SCALE_KEYS as readonly string[]).includes(t);

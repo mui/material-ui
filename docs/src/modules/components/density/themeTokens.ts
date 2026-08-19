@@ -134,20 +134,20 @@ export type PresetThemeInput = {
 export const PRESET_THEME_INPUT: Record<'high' | 'medium' | 'low', PresetThemeInput> = {
   high: {
     typography: {
-      h1: { fontSize: '1.5rem', lineHeight: 1.25 }, // 24/30
-      h2: { fontSize: '1.25rem', lineHeight: 1.3 }, // 20/26
-      h3: { fontSize: '0.875rem', lineHeight: 1.571428571 }, // 14/22
-      h4: { fontSize: '0.8125rem', lineHeight: 1.538461538 }, // 13/20
-      h5: { fontSize: '0.75rem', lineHeight: 1.5 }, // 12/18
-      h6: { fontSize: '0.6875rem', lineHeight: 1.454545455 }, // 11/16
-      subtitle1: { fontSize: '0.75rem', lineHeight: 1.5 }, // 12/18
-      subtitle2: { fontSize: '0.6875rem', lineHeight: 1.454545455 }, // 11/16
-      body1: { fontSize: '0.75rem', lineHeight: 1.333333333 }, // 12/16
-      body2: { fontSize: '0.6875rem', lineHeight: 1.272727273 }, // 11/14
-      caption: { fontSize: '0.6875rem', lineHeight: 1.272727273 }, // 11/14
+      h1: { fontSize: '1.5rem', lineHeight: '30px' }, // 24/30
+      h2: { fontSize: '1.25rem', lineHeight: '26px' }, // 20/26
+      h3: { fontSize: '0.875rem', lineHeight: '22px' }, // 14/22
+      h4: { fontSize: '0.8125rem', lineHeight: '20px' }, // 13/20
+      h5: { fontSize: '0.75rem', lineHeight: '18px' }, // 12/18
+      h6: { fontSize: '0.6875rem', lineHeight: '16px' }, // 11/16
+      subtitle1: { fontSize: '0.75rem', lineHeight: '18px' }, // 12/18
+      subtitle2: { fontSize: '0.6875rem', lineHeight: '16px' }, // 11/16
+      body1: { fontSize: '0.75rem', lineHeight: '16px' }, // 12/16
+      body2: { fontSize: '0.6875rem', lineHeight: '14px' }, // 11/14
+      caption: { fontSize: '0.6875rem', lineHeight: '14px' }, // 11/14
       button: {
         fontSize: '0.75rem',
-        lineHeight: 1.333333333,
+        lineHeight: '16px',
         textTransform: 'initial',
         letterSpacing: 0,
       }, // = body1
@@ -157,20 +157,20 @@ export const PRESET_THEME_INPUT: Record<'high' | 'medium' | 'low', PresetThemeIn
   },
   medium: {
     typography: {
-      h1: { fontSize: '1.75rem', lineHeight: 1.285714286 }, // 28/36
-      h2: { fontSize: '1.5rem', lineHeight: 1.25 }, // 24/30
-      h3: { fontSize: '1rem', lineHeight: 1.625 }, // 16/26
-      h4: { fontSize: '0.9375rem', lineHeight: 1.6 }, // 15/24
-      h5: { fontSize: '0.875rem', lineHeight: 1.571428571 }, // 14/22
-      h6: { fontSize: '0.8125rem', lineHeight: 1.538461538 }, // 13/20
-      subtitle1: { fontSize: '0.875rem', lineHeight: 1.571428571 }, // 14/22
-      subtitle2: { fontSize: '0.8125rem', lineHeight: 1.538461538 }, // 13/20
-      body1: { fontSize: '0.875rem', lineHeight: 1.428571429 }, // 14/20
-      body2: { fontSize: '0.8125rem', lineHeight: 1.384615385 }, // 13/18
-      caption: { fontSize: '0.75rem', lineHeight: 1.5 }, // 12/18
+      h1: { fontSize: '1.75rem', lineHeight: '36px' }, // 28/36
+      h2: { fontSize: '1.5rem', lineHeight: '30px' }, // 24/30
+      h3: { fontSize: '1rem', lineHeight: '26px' }, // 16/26
+      h4: { fontSize: '0.9375rem', lineHeight: '24px' }, // 15/24
+      h5: { fontSize: '0.875rem', lineHeight: '22px' }, // 14/22
+      h6: { fontSize: '0.8125rem', lineHeight: '20px' }, // 13/20
+      subtitle1: { fontSize: '0.875rem', lineHeight: '22px' }, // 14/22
+      subtitle2: { fontSize: '0.8125rem', lineHeight: '20px' }, // 13/20
+      body1: { fontSize: '0.875rem', lineHeight: '20px' }, // 14/20
+      body2: { fontSize: '0.8125rem', lineHeight: '18px' }, // 13/18
+      caption: { fontSize: '0.75rem', lineHeight: '18px' }, // 12/18
       button: {
         fontSize: '0.875rem',
-        lineHeight: 1.428571429,
+        lineHeight: '20px',
         textTransform: 'initial',
         letterSpacing: 0,
       }, // = body1
@@ -180,18 +180,18 @@ export const PRESET_THEME_INPUT: Record<'high' | 'medium' | 'low', PresetThemeIn
   },
   low: {
     typography: {
-      h1: { fontSize: '1.875rem', lineHeight: 1.266666667 }, // 30/38
-      h2: { fontSize: '1.625rem', lineHeight: 1.230769231 }, // 26/32
-      h3: { fontSize: '1.25rem', lineHeight: 1.4 }, // 20/28
-      h4: { fontSize: '1.125rem', lineHeight: 1.444444444 }, // 18/26
-      h5: { fontSize: '1rem', lineHeight: 1.5 }, // 16/24
-      h6: { fontSize: '0.9375rem', lineHeight: 1.466666667 }, // 15/22
-      subtitle1: { fontSize: '1rem', lineHeight: 1.5 }, // 16/24
-      subtitle2: { fontSize: '0.9375rem', lineHeight: 1.466666667 }, // 15/22
-      body1: { fontSize: '1rem', lineHeight: 1.375 }, // 16/22
-      body2: { fontSize: '0.9375rem', lineHeight: 1.333333333 }, // 15/20
-      caption: { fontSize: '0.875rem', lineHeight: 1.428571429 }, // 14/20
-      button: { fontSize: '1rem', lineHeight: 1.375, textTransform: 'initial', letterSpacing: 0 }, // = body1
+      h1: { fontSize: '1.875rem', lineHeight: '38px' }, // 30/38
+      h2: { fontSize: '1.625rem', lineHeight: '32px' }, // 26/32
+      h3: { fontSize: '1.25rem', lineHeight: '28px' }, // 20/28
+      h4: { fontSize: '1.125rem', lineHeight: '26px' }, // 18/26
+      h5: { fontSize: '1rem', lineHeight: '24px' }, // 16/24
+      h6: { fontSize: '0.9375rem', lineHeight: '22px' }, // 15/22
+      subtitle1: { fontSize: '1rem', lineHeight: '24px' }, // 16/24
+      subtitle2: { fontSize: '0.9375rem', lineHeight: '22px' }, // 15/22
+      body1: { fontSize: '1rem', lineHeight: '22px' }, // 16/22
+      body2: { fontSize: '0.9375rem', lineHeight: '20px' }, // 15/20
+      caption: { fontSize: '0.875rem', lineHeight: '20px' }, // 14/20
+      button: { fontSize: '1rem', lineHeight: '22px', textTransform: 'initial', letterSpacing: 0 }, // = body1
     },
     shape: { borderRadius: 8 },
     spacing: 8,

@@ -38,6 +38,7 @@ const high = {
     large: '16px',
     'x-large': '24px',
     'xx-large': '32px',
+    'touch-target': '28px',
   },
   components: {
     MuiButton: {
@@ -45,7 +46,7 @@ const high = {
         root: [
           {
             fontSize: 'calc(0.75rem * var(--mui-scaling))',
-            lineHeight: 1.333333333,
+            lineHeight: 'calc(16px * var(--mui-scaling))',
             textTransform: 'initial',
             letterSpacing: 0,
             fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -66,7 +67,7 @@ const high = {
                   size: 'medium',
                 },
                 style: {
-                  height: 'var(--mui-density-x-large)',
+                  height: 'var(--mui-density-touch-target)',
                   paddingInline: 'var(--mui-density-medium)',
                 },
               },
@@ -133,8 +134,8 @@ const high = {
                   size: 'medium',
                 },
                 style: {
-                  width: 'var(--mui-density-x-large)',
-                  height: 'var(--mui-density-x-large)',
+                  width: 'var(--mui-density-touch-target)',
+                  height: 'var(--mui-density-touch-target)',
                 },
               },
               {
@@ -151,7 +152,7 @@ const high = {
                   edge: 'start',
                 },
                 style: {
-                  marginLeft: 'calc(var(--mui-density-x-large) / -8)',
+                  marginLeft: 'calc(var(--mui-density-touch-target) / -8)',
                 },
               },
               {
@@ -159,7 +160,7 @@ const high = {
                   edge: 'end',
                 },
                 style: {
-                  marginRight: 'calc(var(--mui-density-x-large) / -8)',
+                  marginRight: 'calc(var(--mui-density-touch-target) / -8)',
                 },
               },
             ],
@@ -261,31 +262,22 @@ const high = {
       styleOverrides: {
         root: [
           {
+            paddingBlock: 'var(--mui-density-xx-small)',
+            minHeight: 'auto',
             variants: [
               {
                 props: {
                   dense: false,
                 },
                 style: {
-                  minHeight: '32px',
-                  paddingBlock: 'var(--mui-density-xx-small)',
+                  minHeight: 'var(--mui-density-touch-target)',
                   '@media (min-width:600px)': {
-                    minHeight: '32px',
+                    minHeight: 'var(--mui-density-touch-target)',
                   },
                 },
               },
               {
                 props: {
-                  dense: true,
-                },
-                style: {
-                  minHeight: '28px',
-                  paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  dense: false,
                   disableGutters: false,
                 },
                 style: {
@@ -295,15 +287,16 @@ const high = {
               {
                 props: {
                   dense: true,
-                  disableGutters: false,
                 },
                 style: {
-                  paddingInline: 'var(--mui-density-medium)',
+                  '& .MuiListItemIcon-root svg': {
+                    fontSize: '0.8lh',
+                  },
                 },
               },
             ],
             '& .MuiListItemIcon-root': {
-              minWidth: 24,
+              minWidth: 'var(--mui-density-large)',
             },
           },
         ],
@@ -319,7 +312,7 @@ const high = {
                   disablePadding: false,
                 },
                 style: {
-                  paddingBlock: 8,
+                  paddingBlock: 'calc(var(--mui-spacing, 8px) * var(--mui-scaling))',
                 },
               },
             ],
@@ -533,17 +526,17 @@ const high = {
       styleOverrides: {
         sectionsContainer: [
           {
-            lineHeight: 1.333333333,
+            lineHeight: 'calc(16px * var(--mui-scaling))',
           },
         ],
         section: [
           {
-            lineHeight: 1.333333333,
+            lineHeight: 'calc(16px * var(--mui-scaling))',
           },
         ],
         content: [
           {
-            lineHeight: 1.333333333,
+            lineHeight: 'calc(16px * var(--mui-scaling))',
           },
         ],
       },
@@ -2361,7 +2354,7 @@ const high = {
       styleOverrides: {
         root: [
           {
-            lineHeight: 1.333333333,
+            lineHeight: 'calc(16px * var(--mui-scaling))',
           },
         ],
         input: [
@@ -2396,7 +2389,7 @@ const high = {
       styleOverrides: {
         root: [
           {
-            lineHeight: 1.333333333,
+            lineHeight: 'calc(16px * var(--mui-scaling))',
           },
         ],
       },
@@ -2425,7 +2418,7 @@ const high = {
         root: [
           {
             minHeight: '32px',
-            lineHeight: 1.333333333,
+            lineHeight: 'calc(16px * var(--mui-scaling))',
             paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
             paddingInline: 'var(--mui-density-small)',
             variants: [
@@ -2934,51 +2927,51 @@ const high = {
   typography: {
     h1: {
       fontSize: '1.5rem',
-      lineHeight: 1.25,
+      lineHeight: '30px',
     },
     h2: {
       fontSize: '1.25rem',
-      lineHeight: 1.3,
+      lineHeight: '26px',
     },
     h3: {
       fontSize: '0.875rem',
-      lineHeight: 1.571428571,
+      lineHeight: '22px',
     },
     h4: {
       fontSize: '0.8125rem',
-      lineHeight: 1.538461538,
+      lineHeight: '20px',
     },
     h5: {
       fontSize: '0.75rem',
-      lineHeight: 1.5,
+      lineHeight: '18px',
     },
     h6: {
       fontSize: '0.6875rem',
-      lineHeight: 1.454545455,
+      lineHeight: '16px',
     },
     subtitle1: {
       fontSize: '0.75rem',
-      lineHeight: 1.5,
+      lineHeight: '18px',
     },
     subtitle2: {
       fontSize: '0.6875rem',
-      lineHeight: 1.454545455,
+      lineHeight: '16px',
     },
     body1: {
       fontSize: '0.75rem',
-      lineHeight: 1.333333333,
+      lineHeight: '16px',
     },
     body2: {
       fontSize: '0.6875rem',
-      lineHeight: 1.272727273,
+      lineHeight: '14px',
     },
     caption: {
       fontSize: '0.6875rem',
-      lineHeight: 1.272727273,
+      lineHeight: '14px',
     },
     button: {
       fontSize: '0.75rem',
-      lineHeight: 1.333333333,
+      lineHeight: '16px',
       textTransform: 'initial',
       letterSpacing: 0,
     },
@@ -2997,6 +2990,7 @@ const medium = {
     large: '24px',
     'x-large': '32px',
     'xx-large': '48px',
+    'touch-target': '32px',
   },
   components: {
     MuiButton: {
@@ -3004,7 +2998,7 @@ const medium = {
         root: [
           {
             fontSize: 'calc(0.875rem * var(--mui-scaling))',
-            lineHeight: 1.428571429,
+            lineHeight: 'calc(20px * var(--mui-scaling))',
             textTransform: 'initial',
             letterSpacing: 0,
             fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -3025,7 +3019,7 @@ const medium = {
                   size: 'medium',
                 },
                 style: {
-                  height: 'var(--mui-density-x-large)',
+                  height: 'var(--mui-density-touch-target)',
                   paddingInline: 'var(--mui-density-medium)',
                 },
               },
@@ -3078,8 +3072,8 @@ const medium = {
                   size: 'medium',
                 },
                 style: {
-                  width: 'var(--mui-density-x-large)',
-                  height: 'var(--mui-density-x-large)',
+                  width: 'var(--mui-density-touch-target)',
+                  height: 'var(--mui-density-touch-target)',
                 },
               },
               {
@@ -3096,7 +3090,7 @@ const medium = {
                   edge: 'start',
                 },
                 style: {
-                  marginLeft: 'calc(var(--mui-density-x-large) / -8)',
+                  marginLeft: 'calc(var(--mui-density-touch-target) / -8)',
                 },
               },
               {
@@ -3104,7 +3098,7 @@ const medium = {
                   edge: 'end',
                 },
                 style: {
-                  marginRight: 'calc(var(--mui-density-x-large) / -8)',
+                  marginRight: 'calc(var(--mui-density-touch-target) / -8)',
                 },
               },
             ],
@@ -3206,31 +3200,22 @@ const medium = {
       styleOverrides: {
         root: [
           {
+            paddingBlock: 'var(--mui-density-xx-small)',
+            minHeight: 'auto',
             variants: [
               {
                 props: {
                   dense: false,
                 },
                 style: {
-                  minHeight: '32px',
-                  paddingBlock: 'var(--mui-density-xx-small)',
+                  minHeight: 'var(--mui-density-touch-target)',
                   '@media (min-width:600px)': {
-                    minHeight: '32px',
+                    minHeight: 'var(--mui-density-touch-target)',
                   },
                 },
               },
               {
                 props: {
-                  dense: true,
-                },
-                style: {
-                  minHeight: '28px',
-                  paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  dense: false,
                   disableGutters: false,
                 },
                 style: {
@@ -3240,15 +3225,16 @@ const medium = {
               {
                 props: {
                   dense: true,
-                  disableGutters: false,
                 },
                 style: {
-                  paddingInline: 'var(--mui-density-medium)',
+                  '& .MuiListItemIcon-root svg': {
+                    fontSize: '0.8lh',
+                  },
                 },
               },
             ],
             '& .MuiListItemIcon-root': {
-              minWidth: 24,
+              minWidth: 'var(--mui-density-large)',
             },
           },
         ],
@@ -3264,7 +3250,7 @@ const medium = {
                   disablePadding: false,
                 },
                 style: {
-                  paddingBlock: 8,
+                  paddingBlock: 'calc(var(--mui-spacing, 8px) * var(--mui-scaling))',
                 },
               },
             ],
@@ -3478,17 +3464,17 @@ const medium = {
       styleOverrides: {
         sectionsContainer: [
           {
-            lineHeight: 1.428571429,
+            lineHeight: 'calc(20px * var(--mui-scaling))',
           },
         ],
         section: [
           {
-            lineHeight: 1.428571429,
+            lineHeight: 'calc(20px * var(--mui-scaling))',
           },
         ],
         content: [
           {
-            lineHeight: 1.428571429,
+            lineHeight: 'calc(20px * var(--mui-scaling))',
           },
         ],
       },
@@ -5306,7 +5292,7 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            lineHeight: 1.428571429,
+            lineHeight: 'calc(20px * var(--mui-scaling))',
           },
         ],
         input: [
@@ -5341,7 +5327,7 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            lineHeight: 1.428571429,
+            lineHeight: 'calc(20px * var(--mui-scaling))',
           },
         ],
       },
@@ -5370,7 +5356,7 @@ const medium = {
         root: [
           {
             minHeight: '32px',
-            lineHeight: 1.428571429,
+            lineHeight: 'calc(20px * var(--mui-scaling))',
             paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
             paddingInline: 'var(--mui-density-small)',
             variants: [
@@ -5882,51 +5868,51 @@ const medium = {
   typography: {
     h1: {
       fontSize: '1.75rem',
-      lineHeight: 1.285714286,
+      lineHeight: '36px',
     },
     h2: {
       fontSize: '1.5rem',
-      lineHeight: 1.25,
+      lineHeight: '30px',
     },
     h3: {
       fontSize: '1rem',
-      lineHeight: 1.625,
+      lineHeight: '26px',
     },
     h4: {
       fontSize: '0.9375rem',
-      lineHeight: 1.6,
+      lineHeight: '24px',
     },
     h5: {
       fontSize: '0.875rem',
-      lineHeight: 1.571428571,
+      lineHeight: '22px',
     },
     h6: {
       fontSize: '0.8125rem',
-      lineHeight: 1.538461538,
+      lineHeight: '20px',
     },
     subtitle1: {
       fontSize: '0.875rem',
-      lineHeight: 1.571428571,
+      lineHeight: '22px',
     },
     subtitle2: {
       fontSize: '0.8125rem',
-      lineHeight: 1.538461538,
+      lineHeight: '20px',
     },
     body1: {
       fontSize: '0.875rem',
-      lineHeight: 1.428571429,
+      lineHeight: '20px',
     },
     body2: {
       fontSize: '0.8125rem',
-      lineHeight: 1.384615385,
+      lineHeight: '18px',
     },
     caption: {
       fontSize: '0.75rem',
-      lineHeight: 1.5,
+      lineHeight: '18px',
     },
     button: {
       fontSize: '0.875rem',
-      lineHeight: 1.428571429,
+      lineHeight: '20px',
       textTransform: 'initial',
       letterSpacing: 0,
     },
@@ -5945,6 +5931,7 @@ const low = {
     large: '32px',
     'x-large': '48px',
     'xx-large': '64px',
+    'touch-target': '44px',
   },
   components: {
     MuiButton: {
@@ -5952,7 +5939,7 @@ const low = {
         root: [
           {
             fontSize: 'calc(1rem * var(--mui-scaling))',
-            lineHeight: 1.375,
+            lineHeight: 'calc(22px * var(--mui-scaling))',
             textTransform: 'initial',
             letterSpacing: 0,
             fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -5973,7 +5960,7 @@ const low = {
                   size: 'medium',
                 },
                 style: {
-                  height: 'var(--mui-density-x-large)',
+                  height: 'var(--mui-density-touch-target)',
                   paddingInline: 'var(--mui-density-medium)',
                 },
               },
@@ -6026,8 +6013,8 @@ const low = {
                   size: 'medium',
                 },
                 style: {
-                  width: 'var(--mui-density-x-large)',
-                  height: 'var(--mui-density-x-large)',
+                  width: 'var(--mui-density-touch-target)',
+                  height: 'var(--mui-density-touch-target)',
                 },
               },
               {
@@ -6044,7 +6031,7 @@ const low = {
                   edge: 'start',
                 },
                 style: {
-                  marginLeft: 'calc(var(--mui-density-x-large) / -8)',
+                  marginLeft: 'calc(var(--mui-density-touch-target) / -8)',
                 },
               },
               {
@@ -6052,7 +6039,7 @@ const low = {
                   edge: 'end',
                 },
                 style: {
-                  marginRight: 'calc(var(--mui-density-x-large) / -8)',
+                  marginRight: 'calc(var(--mui-density-touch-target) / -8)',
                 },
               },
             ],
@@ -6154,31 +6141,22 @@ const low = {
       styleOverrides: {
         root: [
           {
+            paddingBlock: 'var(--mui-density-xx-small)',
+            minHeight: 'auto',
             variants: [
               {
                 props: {
                   dense: false,
                 },
                 style: {
-                  minHeight: '32px',
-                  paddingBlock: 'var(--mui-density-xx-small)',
+                  minHeight: 'var(--mui-density-touch-target)',
                   '@media (min-width:600px)': {
-                    minHeight: '32px',
+                    minHeight: 'var(--mui-density-touch-target)',
                   },
                 },
               },
               {
                 props: {
-                  dense: true,
-                },
-                style: {
-                  minHeight: '28px',
-                  paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  dense: false,
                   disableGutters: false,
                 },
                 style: {
@@ -6188,15 +6166,16 @@ const low = {
               {
                 props: {
                   dense: true,
-                  disableGutters: false,
                 },
                 style: {
-                  paddingInline: 'var(--mui-density-medium)',
+                  '& .MuiListItemIcon-root svg': {
+                    fontSize: '0.8lh',
+                  },
                 },
               },
             ],
             '& .MuiListItemIcon-root': {
-              minWidth: 24,
+              minWidth: 'var(--mui-density-large)',
             },
           },
         ],
@@ -6212,7 +6191,7 @@ const low = {
                   disablePadding: false,
                 },
                 style: {
-                  paddingBlock: 8,
+                  paddingBlock: 'calc(var(--mui-spacing, 8px) * var(--mui-scaling))',
                 },
               },
             ],
@@ -6426,17 +6405,17 @@ const low = {
       styleOverrides: {
         sectionsContainer: [
           {
-            lineHeight: 1.375,
+            lineHeight: 'calc(22px * var(--mui-scaling))',
           },
         ],
         section: [
           {
-            lineHeight: 1.375,
+            lineHeight: 'calc(22px * var(--mui-scaling))',
           },
         ],
         content: [
           {
-            lineHeight: 1.375,
+            lineHeight: 'calc(22px * var(--mui-scaling))',
           },
         ],
       },
@@ -8254,7 +8233,7 @@ const low = {
       styleOverrides: {
         root: [
           {
-            lineHeight: 1.375,
+            lineHeight: 'calc(22px * var(--mui-scaling))',
           },
         ],
         input: [
@@ -8289,7 +8268,7 @@ const low = {
       styleOverrides: {
         root: [
           {
-            lineHeight: 1.375,
+            lineHeight: 'calc(22px * var(--mui-scaling))',
           },
         ],
       },
@@ -8318,7 +8297,7 @@ const low = {
         root: [
           {
             minHeight: '32px',
-            lineHeight: 1.375,
+            lineHeight: 'calc(22px * var(--mui-scaling))',
             paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
             paddingInline: 'var(--mui-density-small)',
             variants: [
@@ -8827,51 +8806,51 @@ const low = {
   typography: {
     h1: {
       fontSize: '1.875rem',
-      lineHeight: 1.266666667,
+      lineHeight: '38px',
     },
     h2: {
       fontSize: '1.625rem',
-      lineHeight: 1.230769231,
+      lineHeight: '32px',
     },
     h3: {
       fontSize: '1.25rem',
-      lineHeight: 1.4,
+      lineHeight: '28px',
     },
     h4: {
       fontSize: '1.125rem',
-      lineHeight: 1.444444444,
+      lineHeight: '26px',
     },
     h5: {
       fontSize: '1rem',
-      lineHeight: 1.5,
+      lineHeight: '24px',
     },
     h6: {
       fontSize: '0.9375rem',
-      lineHeight: 1.466666667,
+      lineHeight: '22px',
     },
     subtitle1: {
       fontSize: '1rem',
-      lineHeight: 1.5,
+      lineHeight: '24px',
     },
     subtitle2: {
       fontSize: '0.9375rem',
-      lineHeight: 1.466666667,
+      lineHeight: '22px',
     },
     body1: {
       fontSize: '1rem',
-      lineHeight: 1.375,
+      lineHeight: '22px',
     },
     body2: {
       fontSize: '0.9375rem',
-      lineHeight: 1.333333333,
+      lineHeight: '20px',
     },
     caption: {
       fontSize: '0.875rem',
-      lineHeight: 1.428571429,
+      lineHeight: '20px',
     },
     button: {
       fontSize: '1rem',
-      lineHeight: 1.375,
+      lineHeight: '22px',
       textTransform: 'initial',
       letterSpacing: 0,
     },

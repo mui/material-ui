@@ -226,18 +226,18 @@ describe('density playground — emit table & override builder', () => {
     });
 
     it('override wins by order and is isolated to its leaf', () => {
-      const editId = 'MuiMenuItem|root|dense=false||paddingBlock';
-      const siblingId = 'MuiMenuItem|root|dense=true||paddingBlock';
+      const editId = 'MuiButton|root|size=small||height';
+      const siblingId = 'MuiButton|root|size=medium||height';
       const editRow = densityRow(editId)!;
       const siblingRow = densityRow(siblingId)!;
       const edited = 'var(--mui-density-xx-large)';
       const merged = mergeOntoPreset(preset, buildOverrides([{ row: editRow, value: edited }]));
 
-      expect(
-        readLeaf(merged, 'MuiMenuItem', 'root', { dense: false }, '', 'paddingBlock'),
-      ).to.equal(edited);
-      // sibling (dense=true) untouched → still the preset value
-      expect(readLeaf(merged, 'MuiMenuItem', 'root', { dense: true }, '', 'paddingBlock')).to.equal(
+      expect(readLeaf(merged, 'MuiButton', 'root', { size: 'small' }, '', 'height')).to.equal(
+        edited,
+      );
+      // sibling (size=medium) untouched → still the preset value
+      expect(readLeaf(merged, 'MuiButton', 'root', { size: 'medium' }, '', 'height')).to.equal(
         siblingRow.values[level],
       );
     });
@@ -398,15 +398,15 @@ describe('density scale emission — theme vars channel', () => {
 
 describe('anchor contract — Button family total height per preset', () => {
   // medium×medium is the contract cell: the height must equal the touch-target
-  // token per density (24/32/44 — low rides the 48px x-large step for now; 44
-  // has no ladder step). Preset-VARYING dimensions must ride a density step:
+  // constraint per density (28/32/44 — the scale's dedicated 'touch-target'
+  // key). Preset-VARYING dimensions must ride a density step:
   // theme.spacing() is preset-invariant, and this guard exists because a
   // refactor once re-based the Button height on it — every preset silently
   // rendered the medium 32px (caught by the user, 2026-08-18).
   const TOUCH_TARGET: Record<PresetLevel, string> = {
-    high: '24px',
+    high: '28px',
     medium: '32px',
-    low: '48px',
+    low: '44px',
   };
   const findVariantStyle = (node: unknown, props: Record<string, unknown>): any => {
     if (Array.isArray(node)) {
@@ -430,7 +430,7 @@ describe('anchor contract — Button family total height per preset', () => {
   it('size=medium height = the x-large step = the touch-target px (static resolution)', () => {
     for (const level of LEVELS) {
       const theme = PRESETS[level](createTheme({})) as any; // static: raw px
-      expect(theme.density['x-large'], level).to.equal(TOUCH_TARGET[level]);
+      expect(theme.density['touch-target'], level).to.equal(TOUCH_TARGET[level]);
       const button = findVariantStyle(theme.components.MuiButton.styleOverrides.root, {
         size: 'medium',
       });
@@ -440,6 +440,10 @@ describe('anchor contract — Button family total height per preset', () => {
       });
       expect(icon?.width, `${level} IconButton`).to.equal(TOUCH_TARGET[level]);
       expect(icon?.height, `${level} IconButton`).to.equal(TOUCH_TARGET[level]);
+      const menuItem = findVariantStyle(theme.components.MuiMenuItem.styleOverrides.root, {
+        dense: false,
+      });
+      expect(menuItem?.minHeight, `${level} MenuItem`).to.equal(TOUCH_TARGET[level]);
     }
   });
 });

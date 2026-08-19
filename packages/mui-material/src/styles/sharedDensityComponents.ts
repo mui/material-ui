@@ -68,18 +68,13 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // Density steps from the enhanced theme: `var(--mui-density-*)` refs in
   // cssVariables mode, raw px otherwise (dual-mode via `theme.vars || theme`).
   const d: DensityScale = (enhanced.vars || enhanced).density;
-  // Button family — total-height model. Anchor contract: medium×medium =
-  // touch-target (d['x-large'] = 24/32/48 per preset; low approximates the
-  // 44px token). small/large = anchor ∓ one density step; type = the theme's
-  // button variant verbatim; glyphs ride the line box (0.8lh) / the ladder.
+  const sp = enhanced.spacing ?? ((v: number | string) => `${Number(v) * 8}px`);
   addRootOverride(enhanced.components, 'MuiButton', {
     ...enhanced.typography?.button,
     paddingBlock: 0,
     variants: [
-      // per size: height + paddingInline each ±1 step off the medium anchors
-      // (x-large / medium)
       { props: { size: 'small' }, style: { height: d.large, paddingInline: d.small } },
-      { props: { size: 'medium' }, style: { height: d['x-large'], paddingInline: d.medium } },
+      { props: { size: 'medium' }, style: { height: d['touch-target'], paddingInline: d.medium } },
       { props: { size: 'large' }, style: { height: d['xx-large'], paddingInline: d.large } },
     ],
   });
@@ -100,11 +95,10 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     fontSize: d.medium,
     variants: [
       { props: { size: 'small' }, style: { width: d.large, height: d.large } },
-      { props: { size: 'medium' }, style: { width: d['x-large'], height: d['x-large'] } },
+      { props: { size: 'medium' }, style: { width: d['touch-target'], height: d['touch-target'] } },
       { props: { size: 'large' }, style: { width: d['xx-large'], height: d['xx-large'] } },
-      // edge margin = −(size/8)
-      { props: { edge: 'start' }, style: { marginLeft: `calc(${d['x-large']} / -8)` } },
-      { props: { edge: 'end' }, style: { marginRight: `calc(${d['x-large']} / -8)` } },
+      { props: { edge: 'start' }, style: { marginLeft: `calc(${d['touch-target']} / -8)` } },
+      { props: { edge: 'end' }, style: { marginRight: `calc(${d['touch-target']} / -8)` } },
     ],
   });
 
@@ -127,27 +121,23 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // mirrors this via a linked write (densityFields `densityLinkedWrites`).
   const smUp = enhanced.breakpoints ? enhanced.breakpoints.up('sm') : '@media (min-width:600px)';
   addRootOverride(enhanced.components, 'MuiMenuItem', {
+    paddingBlock: d['xx-small'],
+    minHeight: 'auto',
     variants: [
-      // minHeight: semantic/size/touch-target/default (32px);
-      // paddingBlock: semantic/spacing/variable/xxs
       {
         props: { dense: false },
-        style: { minHeight: '32px', paddingBlock: d['xx-small'], [smUp]: { minHeight: '32px' } },
+        style: { minHeight: d['touch-target'], [smUp]: { minHeight: d['touch-target'] } },
       },
-      // dense has no captured counterpart — one 4px step tighter than the default row
-      { props: { dense: true }, style: { minHeight: '28px', paddingBlock: d['xx-small'] } },
-      // gutter inline: semantic/spacing/variable/xs
-      { props: { dense: false, disableGutters: false }, style: { paddingInline: d['x-small'] } },
-      { props: { dense: true, disableGutters: false }, style: { paddingInline: d.medium } },
+      { props: { disableGutters: false }, style: { paddingInline: d['x-small'] } },
+      {
+        props: { dense: true },
+        style: { [`& .${listItemIconClasses.root} svg`]: { fontSize: '0.8lh' } },
+      },
     ],
-    [`& .${listItemIconClasses.root}`]: {
-      minWidth: 24,
-    },
+    [`& .${listItemIconClasses.root}`]: { minWidth: d.large },
   });
   addRootOverride(enhanced.components, 'MuiList', {
-    // Menu/list vertical breathing; subheader keeps paddingTop 0.
-    // semantic/spacing/fixed/s (8px, derived from menu-container bbox: (204-188)/2)
-    variants: [{ props: { disablePadding: false }, style: { paddingBlock: 8 } }],
+    variants: [{ props: { disablePadding: false }, style: { paddingBlock: sp(1) } }],
   });
   addRootOverride(
     enhanced.components,

@@ -953,20 +953,19 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hiddenIn: ['Menu'],
     note: "Menu owns the icon column via MenuItem's nested seam — this standalone knob is the List family surface.",
   },
+  'MuiMenuItem|root|base||paddingBlock': 'MenuItem · paddingBlock',
+  'MuiMenuItem|root|base||minHeight': { label: 'min height [dense]', done: ['medium'] },
   'MuiMenuItem|root|base|& .MuiListItemIcon-root|minWidth': {
     label: 'MenuItem · icon min width',
     done: ['medium'],
   },
   'MuiMenuItem|root|dense=false||minHeight': { label: 'min height', done: ['medium'] },
-  'MuiMenuItem|root|dense=false||paddingBlock': { label: 'block padding', done: ['medium'] },
   'MuiMenuItem|root|dense=false|@media (min-width:600px)|minHeight':
     'MenuItem · minHeight [dense=false]',
-  'MuiMenuItem|root|dense=true||minHeight': { label: 'min height [dense]', done: ['medium'] },
-  'MuiMenuItem|root|dense=true||paddingBlock': 'block padding [dense]',
-  'MuiMenuItem|root|dense=false,disableGutters=false||paddingInline':
-    'inline padding [disableGutters]',
-  'MuiMenuItem|root|dense=true,disableGutters=false||paddingInline':
-    'inline padding [dense][disableGutters]',
+  'MuiMenuItem|root|disableGutters=false||paddingInline':
+    'MenuItem · paddingInline [disableGutters=false]',
+  'MuiMenuItem|root|dense=true|& .MuiListItemIcon-root svg|fontSize':
+    'MenuItem · fontSize [dense=true]',
   'MuiMonthCalendar|root|base||rowGap': { label: 'MonthCalendar · rowGap', done: ['medium'] },
   'MuiMonthCalendar|root|base||width': 'MonthCalendar · width',
   'MuiMultiSectionDigitalClockSection|item|base||padding': {
