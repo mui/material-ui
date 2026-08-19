@@ -45,7 +45,6 @@
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",
     "@mui/system": "workspace:*",
-    "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.18",
     "@types/sinon": "22.0.0",

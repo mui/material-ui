@@ -40,7 +40,6 @@
   },
   "devDependencies": {
     "@material-ui/core": "^4.12.4",
-    "@types/chai": "5.2.3",
     "@types/jscodeshift": "17.3.0"
   },
   "sideEffects": false,

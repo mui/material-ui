@@ -35,7 +35,6 @@
     "cssjanus": "^2.3.1"
   },
   "devDependencies": {
-    "@types/chai": "5.2.3",
     "@types/node": "20.19.43",
     "@types/stylis": "4.2.7",
     "stylis": "4.4.0"

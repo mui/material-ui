@@ -21,9 +21,7 @@
   "dependencies": {
     "envinfo": "^7.21.0"
   },
-  "devDependencies": {
-    "@types/chai": "5.2.3"
-  },
+  "devDependencies": {},
   "publishConfig": {
     "access": "public",
     "directory": "build"
