@@ -463,6 +463,10 @@ describe('anchor contract — Button family total height per preset', () => {
       expect(JSON.stringify(summary), `${level} AccordionSummary`).to.contain(
         `"minHeight":"${TOUCH_TARGET[level]}"`,
       );
+      const chip = findVariantStyle(theme.components.MuiChip.styleOverrides.root, {
+        size: 'medium',
+      });
+      expect(chip?.height, `${level} Chip`).to.equal(TOUCH_TARGET[level]);
       // standalone glyph ladder is preset-INVARIANT chrome (14/16/20 via
       // theme.spacing) — in-context glyphs ride their host (0.8lh / --_iconSize)
       for (const [glyph, px] of [

@@ -1825,158 +1825,6 @@ const high = {
         ],
       },
     },
-    MuiChip: {
-      styleOverrides: {
-        label: [
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  paddingInline: 'var(--mui-density-small)',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  paddingInline: 'var(--mui-density-x-small)',
-                },
-              },
-            ],
-          },
-        ],
-        root: [
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  '--_height': '32px',
-                  height: 'var(--_height)',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  '--_height': '28px',
-                  height: 'var(--_height)',
-                },
-              },
-            ],
-          },
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  '& .MuiChip-icon': {
-                    marginLeft: '12px',
-                    marginRight: '-4px',
-                  },
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  '& .MuiChip-icon': {
-                    marginLeft: '8px',
-                    marginRight: '0px',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-        avatar: [
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  '--_avatarSize': '24px',
-                  width: 'var(--_avatarSize)',
-                  height: 'var(--_avatarSize)',
-                  marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  '--_avatarSize': '16px',
-                  width: 'var(--_avatarSize)',
-                  height: 'var(--_avatarSize)',
-                  marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
-                },
-              },
-            ],
-          },
-        ],
-        icon: [
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  fontSize: '16px',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  fontSize: '16px',
-                },
-              },
-            ],
-          },
-        ],
-        deleteIcon: [
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  '--_deleteIconSize': '22px',
-                  fontSize: 'var(--_deleteIconSize)',
-                  marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  '--_deleteIconSize': '16px',
-                  fontSize: 'var(--_deleteIconSize)',
-                  marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiAccordionSummary: {
       styleOverrides: {
         content: [
@@ -2772,6 +2620,84 @@ const high = {
                 },
               },
             ],
+          },
+        ],
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  height: 'var(--mui-density-touch-target)',
+                  paddingInline: 'var(--mui-density-small)',
+                  gap: 'var(--mui-density-x-small)',
+                  '--_childSize': 'calc(var(--mui-density-touch-target) - var(--mui-density-x-small))',
+                  '--_offset': 'calc(-1 * (var(--mui-density-small) - var(--mui-density-x-small)/2))',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  height: 'calc(var(--mui-density-large) + calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling)))',
+                  paddingInline: 'var(--mui-density-x-small)',
+                  gap: 'var(--mui-density-xx-small)',
+                  '--_childSize': 'calc(var(--mui-density-large) + calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling)) - var(--mui-density-x-small))',
+                  '--_offset': 'calc(-1 * (var(--mui-density-x-small) - var(--mui-density-x-small)/2))',
+                },
+              },
+            ],
+          },
+        ],
+        label: [
+          {
+            paddingInline: 0,
+          },
+        ],
+        avatar: [
+          {
+            margin: 0,
+            width: 'var(--_childSize)',
+            height: 'var(--_childSize)',
+            marginLeft: 'var(--_offset)',
+          },
+        ],
+        icon: [
+          {
+            margin: 0,
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  fontSize: 'calc(calc(2 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  fontSize: 'calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+                },
+              },
+            ],
+          },
+        ],
+        deleteIcon: [
+          {
+            margin: 0,
+            width: 'var(--_childSize)',
+            height: 'var(--_childSize)',
+            marginRight: 'var(--_offset)',
           },
         ],
       },
@@ -4730,158 +4656,6 @@ const medium = {
         ],
       },
     },
-    MuiChip: {
-      styleOverrides: {
-        label: [
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  paddingInline: 'var(--mui-density-small)',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  paddingInline: 'var(--mui-density-x-small)',
-                },
-              },
-            ],
-          },
-        ],
-        root: [
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  '--_height': '32px',
-                  height: 'var(--_height)',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  '--_height': '28px',
-                  height: 'var(--_height)',
-                },
-              },
-            ],
-          },
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  '& .MuiChip-icon': {
-                    marginLeft: '12px',
-                    marginRight: '-4px',
-                  },
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  '& .MuiChip-icon': {
-                    marginLeft: '8px',
-                    marginRight: '0px',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-        avatar: [
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  '--_avatarSize': '24px',
-                  width: 'var(--_avatarSize)',
-                  height: 'var(--_avatarSize)',
-                  marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  '--_avatarSize': '16px',
-                  width: 'var(--_avatarSize)',
-                  height: 'var(--_avatarSize)',
-                  marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
-                },
-              },
-            ],
-          },
-        ],
-        icon: [
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  fontSize: '16px',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  fontSize: '16px',
-                },
-              },
-            ],
-          },
-        ],
-        deleteIcon: [
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  '--_deleteIconSize': '22px',
-                  fontSize: 'var(--_deleteIconSize)',
-                  marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  '--_deleteIconSize': '16px',
-                  fontSize: 'var(--_deleteIconSize)',
-                  marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiAccordionSummary: {
       styleOverrides: {
         content: [
@@ -5677,6 +5451,84 @@ const medium = {
                 },
               },
             ],
+          },
+        ],
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  height: 'var(--mui-density-touch-target)',
+                  paddingInline: 'var(--mui-density-small)',
+                  gap: 'var(--mui-density-x-small)',
+                  '--_childSize': 'calc(var(--mui-density-touch-target) - var(--mui-density-x-small))',
+                  '--_offset': 'calc(-1 * (var(--mui-density-small) - var(--mui-density-x-small)/2))',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  height: 'calc(var(--mui-density-large) + calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling)))',
+                  paddingInline: 'var(--mui-density-x-small)',
+                  gap: 'var(--mui-density-xx-small)',
+                  '--_childSize': 'calc(var(--mui-density-large) + calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling)) - var(--mui-density-x-small))',
+                  '--_offset': 'calc(-1 * (var(--mui-density-x-small) - var(--mui-density-x-small)/2))',
+                },
+              },
+            ],
+          },
+        ],
+        label: [
+          {
+            paddingInline: 0,
+          },
+        ],
+        avatar: [
+          {
+            margin: 0,
+            width: 'var(--_childSize)',
+            height: 'var(--_childSize)',
+            marginLeft: 'var(--_offset)',
+          },
+        ],
+        icon: [
+          {
+            margin: 0,
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  fontSize: 'calc(calc(2 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  fontSize: 'calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+                },
+              },
+            ],
+          },
+        ],
+        deleteIcon: [
+          {
+            margin: 0,
+            width: 'var(--_childSize)',
+            height: 'var(--_childSize)',
+            marginRight: 'var(--_offset)',
           },
         ],
       },
@@ -7638,158 +7490,6 @@ const low = {
         ],
       },
     },
-    MuiChip: {
-      styleOverrides: {
-        label: [
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  paddingInline: 'var(--mui-density-small)',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  paddingInline: 'var(--mui-density-x-small)',
-                },
-              },
-            ],
-          },
-        ],
-        root: [
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  '--_height': '32px',
-                  height: 'var(--_height)',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  '--_height': '28px',
-                  height: 'var(--_height)',
-                },
-              },
-            ],
-          },
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  '& .MuiChip-icon': {
-                    marginLeft: '12px',
-                    marginRight: '-4px',
-                  },
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  '& .MuiChip-icon': {
-                    marginLeft: '8px',
-                    marginRight: '0px',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-        avatar: [
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  '--_avatarSize': '24px',
-                  width: 'var(--_avatarSize)',
-                  height: 'var(--_avatarSize)',
-                  marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  '--_avatarSize': '16px',
-                  width: 'var(--_avatarSize)',
-                  height: 'var(--_avatarSize)',
-                  marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
-                },
-              },
-            ],
-          },
-        ],
-        icon: [
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  fontSize: '16px',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  fontSize: '16px',
-                },
-              },
-            ],
-          },
-        ],
-        deleteIcon: [
-          {
-            variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  '--_deleteIconSize': '22px',
-                  fontSize: 'var(--_deleteIconSize)',
-                  marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  '--_deleteIconSize': '16px',
-                  fontSize: 'var(--_deleteIconSize)',
-                  marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiAccordionSummary: {
       styleOverrides: {
         content: [
@@ -8585,6 +8285,84 @@ const low = {
                 },
               },
             ],
+          },
+        ],
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  height: 'var(--mui-density-touch-target)',
+                  paddingInline: 'var(--mui-density-small)',
+                  gap: 'var(--mui-density-x-small)',
+                  '--_childSize': 'calc(var(--mui-density-touch-target) - var(--mui-density-x-small))',
+                  '--_offset': 'calc(-1 * (var(--mui-density-small) - var(--mui-density-x-small)/2))',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  height: 'calc(var(--mui-density-large) + calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling)))',
+                  paddingInline: 'var(--mui-density-x-small)',
+                  gap: 'var(--mui-density-xx-small)',
+                  '--_childSize': 'calc(var(--mui-density-large) + calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling)) - var(--mui-density-x-small))',
+                  '--_offset': 'calc(-1 * (var(--mui-density-x-small) - var(--mui-density-x-small)/2))',
+                },
+              },
+            ],
+          },
+        ],
+        label: [
+          {
+            paddingInline: 0,
+          },
+        ],
+        avatar: [
+          {
+            margin: 0,
+            width: 'var(--_childSize)',
+            height: 'var(--_childSize)',
+            marginLeft: 'var(--_offset)',
+          },
+        ],
+        icon: [
+          {
+            margin: 0,
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  fontSize: 'calc(calc(2 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  fontSize: 'calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+                },
+              },
+            ],
+          },
+        ],
+        deleteIcon: [
+          {
+            margin: 0,
+            width: 'var(--_childSize)',
+            height: 'var(--_childSize)',
+            marginRight: 'var(--_offset)',
           },
         ],
       },

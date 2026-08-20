@@ -348,6 +348,7 @@ const PADDING_RING_SLOTS = [
   '.MuiSnackbarContent-action',
   '.MuiAccordionDetails-root',
   '.MuiToolbar-root',
+  '.MuiChip-root',
   '.MuiChip-label',
   '.MuiStepLabel-iconContainer',
   '.MuiStepContent-root',

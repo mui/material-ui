@@ -1022,19 +1022,6 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     [`& .${alertClasses.icon}`]: { marginRight: 0 },
     [`& .${alertClasses.action}`]: { paddingLeft: 0 },
   });
-  // Label inline padding = density steps, unified per size on the label slot.
-  addRootOverride(
-    enhanced.components,
-    'MuiChip',
-    {
-      variants: [
-        // semantic/spacing/variable/s — contentWrapper inline padding
-        { props: { size: 'medium' }, style: { paddingInline: d.small } },
-        { props: { size: 'small' }, style: { paddingInline: d['x-small'] } },
-      ],
-    },
-    'label',
-  );
   addRootOverride(
     enhanced.components,
     'MuiAccordionSummary',
@@ -1596,43 +1583,43 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
     ],
   });
-  // Chip: height + avatar/deleteIcon sizes are preset-local vars (raw px per
-  // sizing policy) so the derived centering margins on the child slots track
-  // knob edits live; icon/label stay plain. Rules land on the slot master
-  // defines them on, winning by cascade order at equal specificity (master:
-  // height 32/24, avatar 24/18, deleteIcon 22/16, icon 18 small-only).
-  // --_height sits on the root so the child slots inherit it.
+  // Chip spacing model: the root owns the edges (paddingInline) and the
+  // sibling spacing (gap = x-small at both sizes); the label is spacing-inert
+  // and every child margin resets to 0 at slot level (slot rules render after
+  // master's size re-asserts and win by order at equal specificity).
   addRootOverride(enhanced.components, 'MuiChip', {
     variants: [
-      { props: { size: 'medium' }, style: { '--_height': '32px', height: 'var(--_height)' } },
-      { props: { size: 'small' }, style: { '--_height': '28px', height: 'var(--_height)' } },
+      {
+        props: { size: 'medium' },
+        style: {
+          height: d['touch-target'],
+          paddingInline: d.small,
+          gap: d['x-small'],
+          '--_childSize': `calc(${d['touch-target']} - ${d['x-small']})`,
+          '--_offset': `calc(-1 * (${d.small} - ${d['x-small']}/2))`,
+        },
+      },
+      {
+        props: { size: 'small' },
+        style: {
+          height: `calc(${d.large} + ${sp(0.5)})`,
+          paddingInline: d['x-small'],
+          gap: d['xx-small'],
+          '--_childSize': `calc(${d.large} + ${sp(0.5)} - ${d['x-small']})`,
+          '--_offset': `calc(-1 * (${d['x-small']} - ${d['x-small']}/2))`,
+        },
+      },
     ],
   });
+  addRootOverride(enhanced.components, 'MuiChip', { paddingInline: 0 }, 'label');
   addRootOverride(
     enhanced.components,
     'MuiChip',
     {
-      variants: [
-        {
-          props: { size: 'medium' },
-          style: {
-            '--_avatarSize': '24px',
-            width: 'var(--_avatarSize)',
-            height: 'var(--_avatarSize)',
-            // center within the chip: (height - avatar) / 2
-            marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
-          },
-        },
-        {
-          props: { size: 'small' },
-          style: {
-            '--_avatarSize': '16px',
-            width: 'var(--_avatarSize)',
-            height: 'var(--_avatarSize)',
-            marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
-          },
-        },
-      ],
+      margin: 0,
+      width: 'var(--_childSize)',
+      height: 'var(--_childSize)',
+      marginLeft: 'var(--_offset)',
     },
     'avatar',
   );
@@ -1640,53 +1627,22 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiChip',
     {
+      margin: 0,
       variants: [
-        { props: { size: 'medium' }, style: { fontSize: '16px' } },
-        { props: { size: 'small' }, style: { fontSize: '16px' } },
+        { props: { size: 'medium' }, style: { fontSize: sp(2) } },
+        { props: { size: 'small' }, style: { fontSize: sp(1.75) } },
       ],
     },
     'icon',
   );
-  // Icon side margins — master styles these as root-descendant `& .MuiChip-icon`
-  // (base 5/-6, small 4/-4) at (0,2,0), so a plain icon-slot rule can't win. Emit
-  // the same root-descendant selector per size — applied after master's own
-  // variants, it overrides each size. Surfaced under the icon slot via the
-  // `virtual:MuiChip:iconMargin*` knobs (display-slot remap).
-  addRootOverride(enhanced.components, 'MuiChip', {
-    variants: [
-      {
-        props: { size: 'medium' },
-        style: { '& .MuiChip-icon': { marginLeft: '12px', marginRight: '-4px' } },
-      },
-      {
-        props: { size: 'small' },
-        style: { '& .MuiChip-icon': { marginLeft: '8px', marginRight: '0px' } },
-      },
-    ],
-  });
   addRootOverride(
     enhanced.components,
     'MuiChip',
     {
-      variants: [
-        {
-          props: { size: 'medium' },
-          style: {
-            '--_deleteIconSize': '22px',
-            fontSize: 'var(--_deleteIconSize)',
-            // center within the chip: (height - delete icon) / 2
-            marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
-          },
-        },
-        {
-          props: { size: 'small' },
-          style: {
-            '--_deleteIconSize': '16px',
-            fontSize: 'var(--_deleteIconSize)',
-            marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
-          },
-        },
-      ],
+      margin: 0,
+      width: 'var(--_childSize)',
+      height: 'var(--_childSize)',
+      marginRight: 'var(--_offset)',
     },
     'deleteIcon',
   );
