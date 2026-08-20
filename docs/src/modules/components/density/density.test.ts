@@ -203,9 +203,12 @@ describe('density playground — emit table & override builder', () => {
 
     it('readback parity — function-matcher rows (Tab icon+label)', () => {
       const cases: { id: string; sample: any }[] = [
-        { id: 'MuiTab|root|fn:1bbekq||minHeight', sample: { icon: true, label: true } },
         {
-          id: 'MuiTab|root|fn:8b76di|& > .MuiTab-icon|marginBottom',
+          id: 'MuiTab|root|fn:18jz1y||minHeight',
+          sample: { icon: true, label: true, iconPosition: 'top' },
+        },
+        {
+          id: 'MuiTab|root|fn:18jz1y||paddingBlock',
           sample: { icon: true, label: true, iconPosition: 'top' },
         },
       ];

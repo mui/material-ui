@@ -2420,48 +2420,20 @@ const high = {
       styleOverrides: {
         root: [
           {
-            minHeight: '32px',
+            minHeight: 'var(--mui-density-touch-target)',
             lineHeight: 'calc(16px * var(--mui-scaling))',
-            paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
+            paddingBlock: 0,
             paddingInline: 'var(--mui-density-small)',
+            gap: 'var(--mui-density-xx-small)',
+            '& > .MuiTab-icon': {
+              margin: 0,
+            },
             variants: [
               {
-                props: ({ ownerState }) => ownerState.icon && ownerState.label,
+                props: ({ ownerState }) => ownerState.icon && ownerState.label && (ownerState.iconPosition === "top" || ownerState.iconPosition === "bottom"),
                 style: {
-                  minHeight: '72px',
-                  paddingBlock: 'var(--mui-density-x-small)',
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "top",
-                style: {
-                  '& > .MuiTab-icon': {
-                    marginBottom: 'var(--mui-density-x-small)',
-                  },
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "bottom",
-                style: {
-                  '& > .MuiTab-icon': {
-                    marginTop: 'var(--mui-density-x-small)',
-                  },
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "start",
-                style: {
-                  '& > .MuiTab-icon': {
-                    marginRight: 'var(--mui-density-x-small)',
-                  },
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "end",
-                style: {
-                  '& > .MuiTab-icon': {
-                    marginLeft: 'var(--mui-density-x-small)',
-                  },
+                  minHeight: 'var(--mui-density-xx-large)',
+                  paddingBlock: 'var(--mui-density-xx-small)',
                 },
               },
             ],
@@ -2473,7 +2445,7 @@ const high = {
       styleOverrides: {
         root: [
           {
-            minHeight: '32px',
+            minHeight: 'var(--mui-density-touch-target)',
           },
         ],
       },
@@ -2488,7 +2460,7 @@ const high = {
                   orientation: 'horizontal',
                 },
                 style: {
-                  width: '32px',
+                  width: 'var(--mui-density-touch-target)',
                 },
               },
               {
@@ -2496,7 +2468,7 @@ const high = {
                   orientation: 'vertical',
                 },
                 style: {
-                  height: '32px',
+                  height: 'var(--mui-density-touch-target)',
                 },
               },
             ],
@@ -5367,48 +5339,20 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            minHeight: '32px',
+            minHeight: 'var(--mui-density-touch-target)',
             lineHeight: 'calc(20px * var(--mui-scaling))',
-            paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
+            paddingBlock: 0,
             paddingInline: 'var(--mui-density-small)',
+            gap: 'var(--mui-density-xx-small)',
+            '& > .MuiTab-icon': {
+              margin: 0,
+            },
             variants: [
               {
-                props: ({ ownerState }) => ownerState.icon && ownerState.label,
+                props: ({ ownerState }) => ownerState.icon && ownerState.label && (ownerState.iconPosition === "top" || ownerState.iconPosition === "bottom"),
                 style: {
-                  minHeight: '72px',
-                  paddingBlock: 'var(--mui-density-x-small)',
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "top",
-                style: {
-                  '& > .MuiTab-icon': {
-                    marginBottom: 'var(--mui-density-x-small)',
-                  },
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "bottom",
-                style: {
-                  '& > .MuiTab-icon': {
-                    marginTop: 'var(--mui-density-x-small)',
-                  },
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "start",
-                style: {
-                  '& > .MuiTab-icon': {
-                    marginRight: 'var(--mui-density-x-small)',
-                  },
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "end",
-                style: {
-                  '& > .MuiTab-icon': {
-                    marginLeft: 'var(--mui-density-x-small)',
-                  },
+                  minHeight: 'var(--mui-density-xx-large)',
+                  paddingBlock: 'var(--mui-density-xx-small)',
                 },
               },
             ],
@@ -5420,7 +5364,7 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            minHeight: '32px',
+            minHeight: 'var(--mui-density-touch-target)',
           },
         ],
       },
@@ -5435,7 +5379,7 @@ const medium = {
                   orientation: 'horizontal',
                 },
                 style: {
-                  width: '32px',
+                  width: 'var(--mui-density-touch-target)',
                 },
               },
               {
@@ -5443,7 +5387,7 @@ const medium = {
                   orientation: 'vertical',
                 },
                 style: {
-                  height: '32px',
+                  height: 'var(--mui-density-touch-target)',
                 },
               },
             ],
@@ -8317,48 +8261,20 @@ const low = {
       styleOverrides: {
         root: [
           {
-            minHeight: '32px',
+            minHeight: 'var(--mui-density-touch-target)',
             lineHeight: 'calc(22px * var(--mui-scaling))',
-            paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
+            paddingBlock: 0,
             paddingInline: 'var(--mui-density-small)',
+            gap: 'var(--mui-density-xx-small)',
+            '& > .MuiTab-icon': {
+              margin: 0,
+            },
             variants: [
               {
-                props: ({ ownerState }) => ownerState.icon && ownerState.label,
+                props: ({ ownerState }) => ownerState.icon && ownerState.label && (ownerState.iconPosition === "top" || ownerState.iconPosition === "bottom"),
                 style: {
-                  minHeight: '72px',
-                  paddingBlock: 'var(--mui-density-x-small)',
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "top",
-                style: {
-                  '& > .MuiTab-icon': {
-                    marginBottom: 'var(--mui-density-x-small)',
-                  },
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "bottom",
-                style: {
-                  '& > .MuiTab-icon': {
-                    marginTop: 'var(--mui-density-x-small)',
-                  },
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "start",
-                style: {
-                  '& > .MuiTab-icon': {
-                    marginRight: 'var(--mui-density-x-small)',
-                  },
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "end",
-                style: {
-                  '& > .MuiTab-icon': {
-                    marginLeft: 'var(--mui-density-x-small)',
-                  },
+                  minHeight: 'var(--mui-density-xx-large)',
+                  paddingBlock: 'var(--mui-density-xx-small)',
                 },
               },
             ],
@@ -8370,7 +8286,7 @@ const low = {
       styleOverrides: {
         root: [
           {
-            minHeight: '32px',
+            minHeight: 'var(--mui-density-touch-target)',
           },
         ],
       },
@@ -8385,7 +8301,7 @@ const low = {
                   orientation: 'horizontal',
                 },
                 style: {
-                  width: '32px',
+                  width: 'var(--mui-density-touch-target)',
                 },
               },
               {
@@ -8393,7 +8309,7 @@ const low = {
                   orientation: 'vertical',
                 },
                 style: {
-                  height: '32px',
+                  height: 'var(--mui-density-touch-target)',
                 },
               },
             ],

@@ -1281,42 +1281,22 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     done: ['medium'],
     note: 'Same lever as RichTreeView — inline-style var, defaultProp only.',
   },
-  'MuiSlider|root|orientation=horizontal||height': {
-    label: 'Slider · height [orientation=horizontal]',
-    done: ['medium'],
-  },
-  'MuiSlider|root|orientation=horizontal||paddingBlock': {
-    label: 'Slider · paddingBlock [orientation=horizontal]',
-    done: ['medium'],
-  },
-  'MuiSlider|root|orientation=horizontal|@media (pointer: coarse)|paddingBlock': {
-    label: 'Slider · paddingBlock [horizontal, coarse pointer]',
-    hidden: true,
-    note: 'Frozen 20px re-assert of the 42px coarse-pointer touch floor — never densified.',
-  },
-  'MuiSlider|root|orientation=horizontal,size=small||height': {
-    label: 'Slider · height [orientation=horizontal,size=small]',
-    done: ['medium'],
-  },
-  'MuiSlider|root|orientation=vertical||width': {
-    label: 'Slider · width [orientation=vertical]',
-    done: ['medium'],
-  },
-  'MuiSlider|root|orientation=vertical||paddingInline': {
-    label: 'Slider · paddingInline [orientation=vertical]',
-    done: ['medium'],
-  },
-  'MuiSlider|root|orientation=vertical|@media (pointer: coarse)|paddingInline': {
-    label: 'Slider · paddingInline [vertical, coarse pointer]',
-    hidden: true,
-    note: 'Frozen 20px re-assert of the 42px coarse-pointer touch floor — never densified.',
-  },
-  'MuiSlider|root|orientation=vertical,size=small||width': {
-    label: 'Slider · width [orientation=vertical,size=small]',
-    done: ['medium'],
-  },
-  'MuiSlider|thumb|base||width': { label: 'Slider · thumb · width', done: ['medium'] },
-  'MuiSlider|thumb|base||height': { label: 'Slider · thumb · height', done: ['medium'] },
+  'MuiSlider|root|orientation=horizontal||height': 'Slider · height [orientation=horizontal]',
+  'MuiSlider|root|orientation=horizontal||paddingBlock':
+    'Slider · paddingBlock [orientation=horizontal]',
+  'MuiSlider|root|orientation=horizontal|@media (pointer: coarse)|paddingBlock':
+    'Slider · paddingBlock [orientation=horizontal]',
+  'MuiSlider|root|orientation=horizontal,size=small||height':
+    'Slider · height [orientation=horizontal,size=small]',
+  'MuiSlider|root|orientation=vertical||width': 'Slider · width [orientation=vertical]',
+  'MuiSlider|root|orientation=vertical||paddingInline':
+    'Slider · paddingInline [orientation=vertical]',
+  'MuiSlider|root|orientation=vertical|@media (pointer: coarse)|paddingInline':
+    'Slider · paddingInline [orientation=vertical]',
+  'MuiSlider|root|orientation=vertical,size=small||width':
+    'Slider · width [orientation=vertical,size=small]',
+  'MuiSlider|thumb|base||width': 'Slider · thumb · width',
+  'MuiSlider|thumb|base||height': 'Slider · thumb · height',
   'MuiSlider|thumb|size=small||width': 'Slider · thumb · width [size=small]',
   'MuiSlider|thumb|size=small||height': 'Slider · thumb · height [size=small]',
   'MuiSlider|valueLabel|base||padding': 'Slider · valueLabel · padding',
@@ -1513,16 +1493,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiTab|root|base||paddingBlock': { label: 'Tab block padding', done: ['medium'] },
   'MuiTab|root|base||paddingInline': { label: 'Tab inline padding', done: ['medium'] },
-  'MuiTab|root|fn:1bbekq||minHeight': {
+  'MuiTab|root|base||gap': 'Tab · gap [fn]',
+  'MuiTab|root|base|& > .MuiTab-icon|margin': 'Tab · margin [fn]',
+  'MuiTab|root|fn:18jz1y||minHeight': {
     label: 'Icon+label min height',
     hidden: true,
     note: 'Preset-driven sizing, not independently tunable via sidebar.',
   },
-  'MuiTab|root|fn:1bbekq||paddingBlock': 'Icon+label block padding',
-  'MuiTab|root|fn:8b76di|& > .MuiTab-icon|marginBottom': 'Icon gap (top layout)',
-  'MuiTab|root|fn:ekzzmq|& > .MuiTab-icon|marginTop': 'Icon gap (bottom layout)',
-  'MuiTab|root|fn:s0l8zx|& > .MuiTab-icon|marginRight': 'Icon gap (start layout)',
-  'MuiTab|root|fn:8au602|& > .MuiTab-icon|marginLeft': 'Icon gap (end layout)',
+  'MuiTab|root|fn:18jz1y||paddingBlock': 'Icon+label block padding',
   'MuiTableCell|root|size=medium||padding': {
     label: 'TableCell · padding [size=medium]',
     done: ['medium'],
@@ -1558,14 +1536,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiTableSortLabel|icon|base||fontSize': 'TableSortLabel · icon · fontSize',
   'MuiTableSortLabel|icon|base||marginInline': 'TableSortLabel · icon · marginInline',
   'MuiTabs|root|base||minHeight': { label: 'Tabs min height', done: ['medium'] },
-  'MuiTabScrollButton|root|orientation=horizontal||width': {
-    label: 'TabScrollButton · width [horizontal]',
-    done: ['medium'],
-  },
-  'MuiTabScrollButton|root|orientation=vertical||height': {
-    label: 'TabScrollButton · height [vertical]',
-    done: ['medium'],
-  },
+  'MuiTabScrollButton|root|orientation=horizontal||width':
+    'TabScrollButton · width [orientation=horizontal]',
+  'MuiTabScrollButton|root|orientation=vertical||height':
+    'TabScrollButton · height [orientation=vertical]',
   'MuiToggleButton|root|size=small||padding': {
     label: 'ToggleButton · padding [size=small]',
     done: ['medium'],

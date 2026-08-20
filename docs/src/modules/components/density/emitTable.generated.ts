@@ -7326,10 +7326,14 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiTab|root|base||minHeight',
     label: 'Tab · minHeight',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'touch-target',
     target: { component: 'MuiTab', slot: 'root', props: null, nested: '', cssProp: 'minHeight' },
-    values: { high: '32px', medium: '32px', low: '32px' },
+    values: {
+      high: 'var(--mui-density-touch-target)',
+      medium: 'var(--mui-density-touch-target)',
+      low: 'var(--mui-density-touch-target)',
+    },
   },
   {
     id: 'MuiTab|root|base||lineHeight',
@@ -7345,11 +7349,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiTab', slot: 'root', props: null, nested: '', cssProp: 'paddingBlock' },
-    values: {
-      high: 'calc(var(--mui-density-xx-small) + 2px)',
-      medium: 'calc(var(--mui-density-xx-small) + 2px)',
-      low: 'calc(var(--mui-density-xx-small) + 2px)',
-    },
+    values: { high: '0', medium: '0', low: '0' },
   },
   {
     id: 'MuiTab|root|base||paddingInline',
@@ -7370,111 +7370,71 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
-    id: 'MuiTab|root|fn:1bbekq||minHeight',
-    label: 'Tab · minHeight [fn]',
+    id: 'MuiTab|root|base||gap',
+    label: 'Tab · gap',
+    isDensity: true,
+    densityKey: 'xx-small',
+    target: { component: 'MuiTab', slot: 'root', props: null, nested: '', cssProp: 'gap' },
+    values: {
+      high: 'var(--mui-density-xx-small)',
+      medium: 'var(--mui-density-xx-small)',
+      low: 'var(--mui-density-xx-small)',
+    },
+  },
+  {
+    id: 'MuiTab|root|base|& > .MuiTab-icon|margin',
+    label: 'Tab · margin',
     isDensity: false,
     densityKey: null,
     target: {
       component: 'MuiTab',
       slot: 'root',
-      props: ({ ownerState }) => ownerState.icon && ownerState.label,
-      nested: '',
-      cssProp: 'minHeight',
+      props: null,
+      nested: '& > .MuiTab-icon',
+      cssProp: 'margin',
     },
-    values: { high: '72px', medium: '72px', low: '72px' },
+    values: { high: '0', medium: '0', low: '0' },
   },
   {
-    id: 'MuiTab|root|fn:1bbekq||paddingBlock',
-    label: 'Tab · paddingBlock [fn]',
+    id: 'MuiTab|root|fn:18jz1y||minHeight',
+    label: 'Tab · minHeight [fn]',
     isDensity: true,
-    densityKey: 'x-small',
+    densityKey: 'xx-large',
     target: {
       component: 'MuiTab',
       slot: 'root',
-      props: ({ ownerState }) => ownerState.icon && ownerState.label,
+      props: ({ ownerState }) =>
+        ownerState.icon &&
+        ownerState.label &&
+        (ownerState.iconPosition === 'top' || ownerState.iconPosition === 'bottom'),
+      nested: '',
+      cssProp: 'minHeight',
+    },
+    values: {
+      high: 'var(--mui-density-xx-large)',
+      medium: 'var(--mui-density-xx-large)',
+      low: 'var(--mui-density-xx-large)',
+    },
+  },
+  {
+    id: 'MuiTab|root|fn:18jz1y||paddingBlock',
+    label: 'Tab · paddingBlock [fn]',
+    isDensity: true,
+    densityKey: 'xx-small',
+    target: {
+      component: 'MuiTab',
+      slot: 'root',
+      props: ({ ownerState }) =>
+        ownerState.icon &&
+        ownerState.label &&
+        (ownerState.iconPosition === 'top' || ownerState.iconPosition === 'bottom'),
       nested: '',
       cssProp: 'paddingBlock',
     },
     values: {
-      high: 'var(--mui-density-x-small)',
-      medium: 'var(--mui-density-x-small)',
-      low: 'var(--mui-density-x-small)',
-    },
-  },
-  {
-    id: 'MuiTab|root|fn:8b76di|& > .MuiTab-icon|marginBottom',
-    label: 'Tab · marginBottom [fn]',
-    isDensity: true,
-    densityKey: 'x-small',
-    target: {
-      component: 'MuiTab',
-      slot: 'root',
-      props: ({ ownerState }) =>
-        ownerState.icon && ownerState.label && ownerState.iconPosition === 'top',
-      nested: '& > .MuiTab-icon',
-      cssProp: 'marginBottom',
-    },
-    values: {
-      high: 'var(--mui-density-x-small)',
-      medium: 'var(--mui-density-x-small)',
-      low: 'var(--mui-density-x-small)',
-    },
-  },
-  {
-    id: 'MuiTab|root|fn:ekzzmq|& > .MuiTab-icon|marginTop',
-    label: 'Tab · marginTop [fn]',
-    isDensity: true,
-    densityKey: 'x-small',
-    target: {
-      component: 'MuiTab',
-      slot: 'root',
-      props: ({ ownerState }) =>
-        ownerState.icon && ownerState.label && ownerState.iconPosition === 'bottom',
-      nested: '& > .MuiTab-icon',
-      cssProp: 'marginTop',
-    },
-    values: {
-      high: 'var(--mui-density-x-small)',
-      medium: 'var(--mui-density-x-small)',
-      low: 'var(--mui-density-x-small)',
-    },
-  },
-  {
-    id: 'MuiTab|root|fn:s0l8zx|& > .MuiTab-icon|marginRight',
-    label: 'Tab · marginRight [fn]',
-    isDensity: true,
-    densityKey: 'x-small',
-    target: {
-      component: 'MuiTab',
-      slot: 'root',
-      props: ({ ownerState }) =>
-        ownerState.icon && ownerState.label && ownerState.iconPosition === 'start',
-      nested: '& > .MuiTab-icon',
-      cssProp: 'marginRight',
-    },
-    values: {
-      high: 'var(--mui-density-x-small)',
-      medium: 'var(--mui-density-x-small)',
-      low: 'var(--mui-density-x-small)',
-    },
-  },
-  {
-    id: 'MuiTab|root|fn:8au602|& > .MuiTab-icon|marginLeft',
-    label: 'Tab · marginLeft [fn]',
-    isDensity: true,
-    densityKey: 'x-small',
-    target: {
-      component: 'MuiTab',
-      slot: 'root',
-      props: ({ ownerState }) =>
-        ownerState.icon && ownerState.label && ownerState.iconPosition === 'end',
-      nested: '& > .MuiTab-icon',
-      cssProp: 'marginLeft',
-    },
-    values: {
-      high: 'var(--mui-density-x-small)',
-      medium: 'var(--mui-density-x-small)',
-      low: 'var(--mui-density-x-small)',
+      high: 'var(--mui-density-xx-small)',
+      medium: 'var(--mui-density-xx-small)',
+      low: 'var(--mui-density-xx-small)',
     },
   },
   {
@@ -7676,16 +7636,20 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiTabs|root|base||minHeight',
     label: 'Tabs · minHeight',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'touch-target',
     target: { component: 'MuiTabs', slot: 'root', props: null, nested: '', cssProp: 'minHeight' },
-    values: { high: '32px', medium: '32px', low: '32px' },
+    values: {
+      high: 'var(--mui-density-touch-target)',
+      medium: 'var(--mui-density-touch-target)',
+      low: 'var(--mui-density-touch-target)',
+    },
   },
   {
     id: 'MuiTabScrollButton|root|orientation=horizontal||width',
     label: 'TabScrollButton · width [orientation=horizontal]',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'touch-target',
     target: {
       component: 'MuiTabScrollButton',
       slot: 'root',
@@ -7693,13 +7657,17 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'width',
     },
-    values: { high: '32px', medium: '32px', low: '32px' },
+    values: {
+      high: 'var(--mui-density-touch-target)',
+      medium: 'var(--mui-density-touch-target)',
+      low: 'var(--mui-density-touch-target)',
+    },
   },
   {
     id: 'MuiTabScrollButton|root|orientation=vertical||height',
     label: 'TabScrollButton · height [orientation=vertical]',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'touch-target',
     target: {
       component: 'MuiTabScrollButton',
       slot: 'root',
@@ -7707,7 +7675,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '32px', medium: '32px', low: '32px' },
+    values: {
+      high: 'var(--mui-density-touch-target)',
+      medium: 'var(--mui-density-touch-target)',
+      low: 'var(--mui-density-touch-target)',
+    },
   },
   {
     id: 'MuiToggleButton|root|size=small||padding',

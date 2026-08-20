@@ -18,9 +18,9 @@ const EDITS = {
   densityKey: { 'MuiButton|root|size=medium||paddingInline': 'x-small' },
   rawPx: { 'MuiButton|root|base||paddingBlock': '30px' },
   virtualMembers: {
-    // virtual:MuiTab:iconGapBlock — both members get one value (fn-matcher rows)
-    'MuiTab|root|fn:8b76di|& > .MuiTab-icon|marginBottom': 'small',
-    'MuiTab|root|fn:ekzzmq|& > .MuiTab-icon|marginTop': 'small',
+    // virtual:MuiTab:minHeight — both members get one value
+    'MuiTab|root|base||minHeight': 'small',
+    'MuiTabs|root|base||minHeight': 'small',
   },
   themeTokens: { 'typography.h1.fontSize': '5rem', 'shape.borderRadius': '2' },
   scaleStep: { 'density.medium': '10px' },

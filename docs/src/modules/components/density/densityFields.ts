@@ -918,24 +918,6 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
     group: 'Tabs',
     members: ['MuiTab|root|base||minHeight', 'MuiTabs|root|base||minHeight'],
   },
-  {
-    id: 'virtual:MuiTab:iconGapBlock',
-    label: 'Tab · icon gap (block)',
-    group: 'Tabs',
-    members: [
-      'MuiTab|root|fn:8b76di|& > .MuiTab-icon|marginBottom', // icon-top layout
-      'MuiTab|root|fn:ekzzmq|& > .MuiTab-icon|marginTop', // icon-bottom layout
-    ],
-  },
-  {
-    id: 'virtual:MuiTab:iconGapInline',
-    label: 'Tab · icon gap (inline)',
-    group: 'Tabs',
-    members: [
-      'MuiTab|root|fn:s0l8zx|& > .MuiTab-icon|marginRight', // icon-start layout
-      'MuiTab|root|fn:8au602|& > .MuiTab-icon|marginLeft', // icon-end layout
-    ],
-  },
   // {
   //   id: 'virtual:MuiAccordion:edgeRadius',
   //   label: 'Accordion · edge radius',

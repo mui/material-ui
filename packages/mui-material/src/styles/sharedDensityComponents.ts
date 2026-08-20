@@ -1289,49 +1289,30 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   });
 
   addRootOverride(enhanced.components, 'MuiTab', {
-    // Min-heights = raw px (paired with MuiTabs base below); padding = steps.
-    // 32px = semantic/size/touch-target/default (tab.yml).
-    minHeight: '32px',
-    // Rides the theme's button type (master hardcodes 1.25) — hidden knob,
-    // live-derived from the Typography tab like the InputBase/FormLabel body1 pair.
+    minHeight: d['touch-target'],
     lineHeight: enhanced.typography?.button?.lineHeight,
-    paddingBlock: `calc(${d['xx-small']} + 2px)`,
-    // semantic/spacing/variable/s — contentWrapper inline pad (right-side token unresolved, symmetric)
+    paddingBlock: 0,
     paddingInline: d.small,
+    gap: d['xx-small'],
+    [`& > .${tabClasses.icon}`]: { margin: 0 },
     variants: [
       {
-        props: ({ ownerState }: { ownerState: TabProps }) => ownerState.icon && ownerState.label,
-        style: { minHeight: '72px', paddingBlock: d['x-small'] },
-      },
-      {
         props: ({ ownerState }: { ownerState: TabProps }) =>
-          ownerState.icon && ownerState.label && ownerState.iconPosition === 'top',
-        style: { [`& > .${tabClasses.icon}`]: { marginBottom: d['x-small'] } },
-      },
-      {
-        props: ({ ownerState }: { ownerState: TabProps }) =>
-          ownerState.icon && ownerState.label && ownerState.iconPosition === 'bottom',
-        style: { [`& > .${tabClasses.icon}`]: { marginTop: d['x-small'] } },
-      },
-      {
-        props: ({ ownerState }: { ownerState: TabProps }) =>
-          ownerState.icon && ownerState.label && ownerState.iconPosition === 'start',
-        style: { [`& > .${tabClasses.icon}`]: { marginRight: d['x-small'] } },
-      },
-      {
-        props: ({ ownerState }: { ownerState: TabProps }) =>
-          ownerState.icon && ownerState.label && ownerState.iconPosition === 'end',
-        style: { [`& > .${tabClasses.icon}`]: { marginLeft: d['x-small'] } },
+          ownerState.icon &&
+          ownerState.label &&
+          (ownerState.iconPosition === 'top' || ownerState.iconPosition === 'bottom'),
+        style: {
+          minHeight: d['xx-large'],
+          paddingBlock: d['xx-small'],
+        },
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiTabs', {
-    minHeight: '32px', // == MuiTab base minHeight (the pairing)
-  });
+  addRootOverride(enhanced.components, 'MuiTabs', { minHeight: d['touch-target'] });
   addRootOverride(enhanced.components, 'MuiTabScrollButton', {
     variants: [
-      { props: { orientation: 'horizontal' }, style: { width: '32px' } },
-      { props: { orientation: 'vertical' }, style: { height: '32px' } },
+      { props: { orientation: 'horizontal' }, style: { width: d['touch-target'] } },
+      { props: { orientation: 'vertical' }, style: { height: d['touch-target'] } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiAvatar', {
