@@ -1031,10 +1031,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'MuiSelect',
     {
       minHeight: 'auto',
-      // Caret machinery: master writes per-variant --_caret (24/32) and
-      // --_endAdornment (28) on these same :has hooks (NativeSelectInput);
-      // ONE step overrides every variant — surfaced as the `caret size`
-      // virtual knob.
+      // master writes per-variant --_caret/--_endAdornment on these same :has hooks
       [`.${inputBaseClasses.root}:has(> &)`]: { '--_caret': d.medium },
       [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
         '--_endAdornment': d.medium,
