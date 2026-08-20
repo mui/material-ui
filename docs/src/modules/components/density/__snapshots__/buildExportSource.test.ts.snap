@@ -978,37 +978,38 @@ const high = {
         ],
       },
     },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: [
+          {
+            margin: 0,
+          },
+        ],
+      },
+    },
     MuiCheckbox: {
       styleOverrides: {
         root: [
           {
+            '--_touchSize': 'var(--mui-density-touch-target)',
+            '--_iconSize': 'var(--mui-density-medium)',
+            padding: 0,
+            width: 'var(--_touchSize)',
+            height: 'var(--_touchSize)',
+            '& svg': {
+              fontSize: 'var(--_iconSize)',
+            },
+            '.MuiFormControlLabel-root &': {
+              marginLeft: 'calc((var(--_touchSize) - var(--_iconSize)) / -2)',
+            },
             variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                },
-              },
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
+                  '--_touchSize': 'var(--mui-density-large)',
+                  '--_iconSize': 'var(--mui-density-small)',
                 },
               },
               {
@@ -1016,7 +1017,7 @@ const high = {
                   edge: 'start',
                 },
                 style: {
-                  marginLeft: '-4px',
+                  marginLeft: 'calc(var(--_touchSize) / -8)',
                 },
               },
               {
@@ -1024,7 +1025,7 @@ const high = {
                   edge: 'end',
                 },
                 style: {
-                  marginRight: '-4px',
+                  marginRight: 'calc(var(--_touchSize) / -8)',
                 },
               },
             ],
@@ -1036,33 +1037,25 @@ const high = {
       styleOverrides: {
         root: [
           {
+            '--_touchSize': 'var(--mui-density-touch-target)',
+            '--_iconSize': 'var(--mui-density-medium)',
+            padding: 0,
+            width: 'var(--_touchSize)',
+            height: 'var(--_touchSize)',
+            '& svg': {
+              fontSize: 'var(--_iconSize)',
+            },
+            '.MuiFormControlLabel-root &': {
+              marginLeft: 'calc((var(--_touchSize) - var(--_iconSize)) / -2)',
+            },
             variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                },
-              },
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
+                  '--_touchSize': 'var(--mui-density-large)',
+                  '--_iconSize': 'var(--mui-density-small)',
                 },
               },
               {
@@ -1070,7 +1063,7 @@ const high = {
                   edge: 'start',
                 },
                 style: {
-                  marginLeft: '-4px',
+                  marginLeft: 'calc(var(--_touchSize) / -8)',
                 },
               },
               {
@@ -1078,7 +1071,7 @@ const high = {
                   edge: 'end',
                 },
                 style: {
-                  marginRight: '-4px',
+                  marginRight: 'calc(var(--_touchSize) / -8)',
                 },
               },
             ],
@@ -3896,37 +3889,38 @@ const medium = {
         ],
       },
     },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: [
+          {
+            margin: 0,
+          },
+        ],
+      },
+    },
     MuiCheckbox: {
       styleOverrides: {
         root: [
           {
+            '--_touchSize': 'var(--mui-density-touch-target)',
+            '--_iconSize': 'var(--mui-density-medium)',
+            padding: 0,
+            width: 'var(--_touchSize)',
+            height: 'var(--_touchSize)',
+            '& svg': {
+              fontSize: 'var(--_iconSize)',
+            },
+            '.MuiFormControlLabel-root &': {
+              marginLeft: 'calc((var(--_touchSize) - var(--_iconSize)) / -2)',
+            },
             variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                },
-              },
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
+                  '--_touchSize': 'var(--mui-density-large)',
+                  '--_iconSize': 'var(--mui-density-small)',
                 },
               },
               {
@@ -3934,7 +3928,7 @@ const medium = {
                   edge: 'start',
                 },
                 style: {
-                  marginLeft: '-4px',
+                  marginLeft: 'calc(var(--_touchSize) / -8)',
                 },
               },
               {
@@ -3942,7 +3936,7 @@ const medium = {
                   edge: 'end',
                 },
                 style: {
-                  marginRight: '-4px',
+                  marginRight: 'calc(var(--_touchSize) / -8)',
                 },
               },
             ],
@@ -3954,33 +3948,25 @@ const medium = {
       styleOverrides: {
         root: [
           {
+            '--_touchSize': 'var(--mui-density-touch-target)',
+            '--_iconSize': 'var(--mui-density-medium)',
+            padding: 0,
+            width: 'var(--_touchSize)',
+            height: 'var(--_touchSize)',
+            '& svg': {
+              fontSize: 'var(--_iconSize)',
+            },
+            '.MuiFormControlLabel-root &': {
+              marginLeft: 'calc((var(--_touchSize) - var(--_iconSize)) / -2)',
+            },
             variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                },
-              },
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
+                  '--_touchSize': 'var(--mui-density-large)',
+                  '--_iconSize': 'var(--mui-density-small)',
                 },
               },
               {
@@ -3988,7 +3974,7 @@ const medium = {
                   edge: 'start',
                 },
                 style: {
-                  marginLeft: '-4px',
+                  marginLeft: 'calc(var(--_touchSize) / -8)',
                 },
               },
               {
@@ -3996,7 +3982,7 @@ const medium = {
                   edge: 'end',
                 },
                 style: {
-                  marginRight: '-4px',
+                  marginRight: 'calc(var(--_touchSize) / -8)',
                 },
               },
             ],
@@ -6817,37 +6803,38 @@ const low = {
         ],
       },
     },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: [
+          {
+            margin: 0,
+          },
+        ],
+      },
+    },
     MuiCheckbox: {
       styleOverrides: {
         root: [
           {
+            '--_touchSize': 'var(--mui-density-touch-target)',
+            '--_iconSize': 'var(--mui-density-medium)',
+            padding: 0,
+            width: 'var(--_touchSize)',
+            height: 'var(--_touchSize)',
+            '& svg': {
+              fontSize: 'var(--_iconSize)',
+            },
+            '.MuiFormControlLabel-root &': {
+              marginLeft: 'calc((var(--_touchSize) - var(--_iconSize)) / -2)',
+            },
             variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                },
-              },
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
+                  '--_touchSize': 'var(--mui-density-large)',
+                  '--_iconSize': 'var(--mui-density-small)',
                 },
               },
               {
@@ -6855,7 +6842,7 @@ const low = {
                   edge: 'start',
                 },
                 style: {
-                  marginLeft: '-4px',
+                  marginLeft: 'calc(var(--_touchSize) / -8)',
                 },
               },
               {
@@ -6863,7 +6850,7 @@ const low = {
                   edge: 'end',
                 },
                 style: {
-                  marginRight: '-4px',
+                  marginRight: 'calc(var(--_touchSize) / -8)',
                 },
               },
             ],
@@ -6875,33 +6862,25 @@ const low = {
       styleOverrides: {
         root: [
           {
+            '--_touchSize': 'var(--mui-density-touch-target)',
+            '--_iconSize': 'var(--mui-density-medium)',
+            padding: 0,
+            width: 'var(--_touchSize)',
+            height: 'var(--_touchSize)',
+            '& svg': {
+              fontSize: 'var(--_iconSize)',
+            },
+            '.MuiFormControlLabel-root &': {
+              marginLeft: 'calc((var(--_touchSize) - var(--_iconSize)) / -2)',
+            },
             variants: [
-              {
-                props: {
-                  size: 'medium',
-                },
-                style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                },
-              },
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-x-small)',
-                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
-                  },
-                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
-                  },
+                  '--_touchSize': 'var(--mui-density-large)',
+                  '--_iconSize': 'var(--mui-density-small)',
                 },
               },
               {
@@ -6909,7 +6888,7 @@ const low = {
                   edge: 'start',
                 },
                 style: {
-                  marginLeft: '-4px',
+                  marginLeft: 'calc(var(--_touchSize) / -8)',
                 },
               },
               {
@@ -6917,7 +6896,7 @@ const low = {
                   edge: 'end',
                 },
                 style: {
-                  marginRight: '-4px',
+                  marginRight: 'calc(var(--_touchSize) / -8)',
                 },
               },
             ],

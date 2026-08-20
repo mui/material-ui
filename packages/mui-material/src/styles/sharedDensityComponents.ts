@@ -616,70 +616,45 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'sectionsContainer',
   );
+  addRootOverride(enhanced.components, 'MuiFormControlLabel', {
+    margin: 0,
+  });
   addRootOverride(enhanced.components, 'MuiCheckbox', {
-    // Touch-target padding per size (9px both sizes today) = density steps. Pull the
-    // sibling label back by the same amount so the control↔label gap stays constant.
+    '--_touchSize': d['touch-target'],
+    '--_iconSize': d.medium,
+    padding: 0,
+    width: 'var(--_touchSize)',
+    height: 'var(--_touchSize)',
+    '& svg': { fontSize: 'var(--_iconSize)' },
+    [`.${formControlLabelClasses.root} &`]: {
+      marginLeft: `calc((var(--_touchSize) - var(--_iconSize)) / -2)`,
+    },
     variants: [
       {
-        props: { size: 'medium' },
-        style: {
-          padding: d['x-small'],
-          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
-            marginLeft: `calc(-2px - ${d['x-small']})`,
-          },
-          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: {
-            marginRight: `calc(-2px - ${d['x-small']})`,
-          },
-        },
-      },
-      {
         props: { size: 'small' },
-        style: {
-          padding: d['x-small'],
-          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
-            marginLeft: `calc(-2px - ${d['x-small']})`,
-          },
-          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: {
-            marginRight: `calc(-2px - ${d['x-small']})`,
-          },
-        },
+        style: { '--_touchSize': d.large, '--_iconSize': d.small },
       },
-      // edge start/end: -4px flush-margins (override master's -12/-3; all sizes).
-      { props: { edge: 'start' }, style: { marginLeft: '-4px' } },
-      { props: { edge: 'end' }, style: { marginRight: '-4px' } },
+      { props: { edge: 'start' }, style: { marginLeft: `calc(var(--_touchSize) / -8)` } },
+      { props: { edge: 'end' }, style: { marginRight: `calc(var(--_touchSize) / -8)` } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiRadio', {
-    // Touch-target padding per size (9px both sizes today) = density steps. Pull the
-    // sibling label back by the same amount so the control↔label gap stays constant.
+    '--_touchSize': d['touch-target'],
+    '--_iconSize': d.medium,
+    padding: 0,
+    width: 'var(--_touchSize)',
+    height: 'var(--_touchSize)',
+    '& svg': { fontSize: 'var(--_iconSize)' },
+    [`.${formControlLabelClasses.root} &`]: {
+      marginLeft: `calc((var(--_touchSize) - var(--_iconSize)) / -2)`,
+    },
     variants: [
       {
-        props: { size: 'medium' },
-        style: {
-          padding: d['x-small'],
-          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
-            marginLeft: `calc(-2px - ${d['x-small']})`,
-          },
-          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: {
-            marginRight: `calc(-2px - ${d['x-small']})`,
-          },
-        },
-      },
-      {
         props: { size: 'small' },
-        style: {
-          padding: d['x-small'],
-          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
-            marginLeft: `calc(-2px - ${d['x-small']})`,
-          },
-          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: {
-            marginRight: `calc(-2px - ${d['x-small']})`,
-          },
-        },
+        style: { '--_touchSize': d.large, '--_iconSize': d.small },
       },
-      // edge start/end: -4px flush-margins (override master's -12/-3; all sizes).
-      { props: { edge: 'start' }, style: { marginLeft: '-4px' } },
-      { props: { edge: 'end' }, style: { marginRight: '-4px' } },
+      { props: { edge: 'start' }, style: { marginLeft: `calc(var(--_touchSize) / -8)` } },
+      { props: { edge: 'end' }, style: { marginRight: `calc(var(--_touchSize) / -8)` } },
     ],
   });
   // Separator inline margins (spacing step) on the separator slot.

@@ -454,6 +454,11 @@ describe('anchor contract — Button family total height per preset', () => {
       expect(theme.components.MuiCircularProgress.defaultProps.size, level).to.equal(
         TOUCH_TARGET[level],
       );
+      for (const control of ['MuiCheckbox', 'MuiRadio']) {
+        const root = JSON.stringify(theme.components[control].styleOverrides.root);
+        // box = var(--_touchSize); the var carries the step (static px here)
+        expect(root, `${level} ${control}`).to.contain(`"--_touchSize":"${TOUCH_TARGET[level]}"`);
+      }
       const summary = theme.components.MuiAccordionSummary.styleOverrides.root;
       expect(JSON.stringify(summary), `${level} AccordionSummary`).to.contain(
         `"minHeight":"${TOUCH_TARGET[level]}"`,
