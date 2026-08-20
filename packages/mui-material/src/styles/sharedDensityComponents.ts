@@ -972,33 +972,29 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     ],
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
-    // Tile root padding: semantic/spacing/variable/m; last-child keeps its step.
     padding: d.medium,
-    '&:last-child': { paddingBottom: d['x-large'] },
+    '&:last-child': { paddingBottom: d.medium },
   });
   addRootOverride(enhanced.components, 'MuiCardActions', {
-    // No size axis: root padding + inter-child gap (spacing variant) = steps.
-    padding: d.small,
+    padding: d.medium,
+    paddingTop: 0,
     variants: [
       {
         props: { disableSpacing: false },
-        style: { '& > :not(style) ~ :not(style)': { marginLeft: d.small } },
+        style: { gap: d['x-small'], '& > :not(style) ~ :not(style)': { marginLeft: 0 } },
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiCardHeader', {
-    // Root padding = step (no size axis).
-    padding: d.large,
-  });
-  // Avatar→content gap on the avatar slot.
-  addRootOverride(enhanced.components, 'MuiCardHeader', { marginRight: d.large }, 'avatar');
-  // Action negative pulls counteract the control's own box; scale with density.
+  addRootOverride(enhanced.components, 'MuiCardHeader', { padding: d.medium, gap: d.small });
+  // Avatar→content spacing stays a one-sided margin: a root gap would also
+  // open space between the flex-1 content and the action (master has none).
+  addRootOverride(enhanced.components, 'MuiCardHeader', { marginRight: 0 }, 'avatar');
   addRootOverride(
     enhanced.components,
     'MuiCardHeader',
     {
       marginBlock: `calc(${d['xx-small']} * -1)`,
-      marginRight: `calc(${d.small} * -1)`,
+      marginRight: `calc(${d['x-small']} * -1)`,
     },
     'action',
   );

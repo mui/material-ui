@@ -1423,10 +1423,10 @@ function CardMatrix() {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">
+          <Button variant="outlined">
             <span className="density-debug-text">Share</span>
           </Button>
-          <Button size="small">
+          <Button variant="outlined">
             <span className="density-debug-text">Learn more</span>
           </Button>
         </CardActions>

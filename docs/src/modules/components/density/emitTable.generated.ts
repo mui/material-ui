@@ -957,7 +957,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiCardActions|root|base||padding',
     label: 'CardActions · padding',
     isDensity: true,
-    densityKey: 'small',
+    densityKey: 'x-small',
     target: {
       component: 'MuiCardActions',
       slot: 'root',
@@ -966,16 +966,34 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
+      high: 'var(--mui-density-x-small)',
+      medium: 'var(--mui-density-x-small)',
+      low: 'var(--mui-density-x-small)',
+    },
+  },
+  {
+    id: 'MuiCardActions|root|disableSpacing=false||gap',
+    label: 'CardActions · gap [disableSpacing=false]',
+    isDensity: true,
+    densityKey: 'x-small',
+    target: {
+      component: 'MuiCardActions',
+      slot: 'root',
+      props: { disableSpacing: false },
+      nested: '',
+      cssProp: 'gap',
+    },
+    values: {
+      high: 'var(--mui-density-x-small)',
+      medium: 'var(--mui-density-x-small)',
+      low: 'var(--mui-density-x-small)',
     },
   },
   {
     id: 'MuiCardActions|root|disableSpacing=false|& > :not(style) ~ :not(style)|marginLeft',
     label: 'CardActions · marginLeft [disableSpacing=false]',
-    isDensity: true,
-    densityKey: 'small',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiCardActions',
       slot: 'root',
@@ -983,11 +1001,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '& > :not(style) ~ :not(style)',
       cssProp: 'marginLeft',
     },
-    values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
-    },
+    values: { high: '0', medium: '0', low: '0' },
   },
   {
     id: 'MuiCardContent|root|base||padding',
@@ -1011,7 +1025,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiCardContent|root|base|&:last-child|paddingBottom',
     label: 'CardContent · paddingBottom',
     isDensity: true,
-    densityKey: 'x-large',
+    densityKey: 'large',
     target: {
       component: 'MuiCardContent',
       slot: 'root',
@@ -1020,9 +1034,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBottom',
     },
     values: {
-      high: 'var(--mui-density-x-large)',
-      medium: 'var(--mui-density-x-large)',
-      low: 'var(--mui-density-x-large)',
+      high: 'var(--mui-density-large)',
+      medium: 'var(--mui-density-large)',
+      low: 'var(--mui-density-large)',
     },
   },
   {
@@ -1056,16 +1070,16 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'marginRight',
     },
     values: {
-      high: 'calc(var(--mui-density-small) * -1)',
-      medium: 'calc(var(--mui-density-small) * -1)',
-      low: 'calc(var(--mui-density-small) * -1)',
+      high: 'calc(var(--mui-density-x-small) * -1)',
+      medium: 'calc(var(--mui-density-x-small) * -1)',
+      low: 'calc(var(--mui-density-x-small) * -1)',
     },
   },
   {
     id: 'MuiCardHeader|avatar|base||marginRight',
     label: 'CardHeader · avatar · marginRight',
-    isDensity: true,
-    densityKey: 'large',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiCardHeader',
       slot: 'avatar',
@@ -1073,17 +1087,13 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'marginRight',
     },
-    values: {
-      high: 'var(--mui-density-large)',
-      medium: 'var(--mui-density-large)',
-      low: 'var(--mui-density-large)',
-    },
+    values: { high: '0', medium: '0', low: '0' },
   },
   {
     id: 'MuiCardHeader|root|base||padding',
     label: 'CardHeader · padding',
     isDensity: true,
-    densityKey: 'large',
+    densityKey: 'medium',
     target: {
       component: 'MuiCardHeader',
       slot: 'root',
@@ -1092,9 +1102,21 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-large)',
-      medium: 'var(--mui-density-large)',
-      low: 'var(--mui-density-large)',
+      high: 'var(--mui-density-medium)',
+      medium: 'var(--mui-density-medium)',
+      low: 'var(--mui-density-medium)',
+    },
+  },
+  {
+    id: 'MuiCardHeader|root|base||gap',
+    label: 'CardHeader · gap',
+    isDensity: true,
+    densityKey: 'medium',
+    target: { component: 'MuiCardHeader', slot: 'root', props: null, nested: '', cssProp: 'gap' },
+    values: {
+      high: 'var(--mui-density-medium)',
+      medium: 'var(--mui-density-medium)',
+      low: 'var(--mui-density-medium)',
     },
   },
   {

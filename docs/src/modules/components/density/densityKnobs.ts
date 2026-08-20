@@ -161,6 +161,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     done: ['medium'],
   },
   'MuiCardActions|root|base||padding': 'CardActions · padding',
+  'MuiCardActions|root|disableSpacing=false||gap': 'CardActions · gap [disableSpacing=false]',
   'MuiCardActions|root|disableSpacing=false|& > :not(style) ~ :not(style)|marginLeft':
     'CardActions · child gap',
   'MuiCardContent|root|base||padding': 'CardContent · padding',
@@ -169,6 +170,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiCardHeader|action|base||marginRight': 'CardHeader · action · marginRight',
   'MuiCardHeader|avatar|base||marginRight': 'CardHeader · avatar · marginRight',
   'MuiCardHeader|root|base||padding': 'CardHeader · padding',
+  'MuiCardHeader|root|base||gap': 'CardHeader · gap',
   'MuiCheckbox|root|base||--_touchSize': 'Checkbox · --_touchSize',
   'MuiCheckbox|root|base||--_iconSize': 'Checkbox · --_iconSize',
   'MuiCheckbox|root|base||padding': 'Checkbox · padding',

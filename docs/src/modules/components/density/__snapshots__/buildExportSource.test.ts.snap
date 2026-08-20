@@ -1746,7 +1746,7 @@ const high = {
           {
             padding: 'var(--mui-density-medium)',
             '&:last-child': {
-              paddingBottom: 'var(--mui-density-x-large)',
+              paddingBottom: 'var(--mui-density-large)',
             },
           },
         ],
@@ -1756,15 +1756,16 @@ const high = {
       styleOverrides: {
         root: [
           {
-            padding: 'var(--mui-density-small)',
+            padding: 'var(--mui-density-x-small)',
             variants: [
               {
                 props: {
                   disableSpacing: false,
                 },
                 style: {
+                  gap: 'var(--mui-density-x-small)',
                   '& > :not(style) ~ :not(style)': {
-                    marginLeft: 'var(--mui-density-small)',
+                    marginLeft: 0,
                   },
                 },
               },
@@ -1777,18 +1778,19 @@ const high = {
       styleOverrides: {
         root: [
           {
-            padding: 'var(--mui-density-large)',
+            padding: 'var(--mui-density-medium)',
+            gap: 'var(--mui-density-medium)',
           },
         ],
         avatar: [
           {
-            marginRight: 'var(--mui-density-large)',
+            marginRight: 0,
           },
         ],
         action: [
           {
             marginBlock: 'calc(var(--mui-density-xx-small) * -1)',
-            marginRight: 'calc(var(--mui-density-small) * -1)',
+            marginRight: 'calc(var(--mui-density-x-small) * -1)',
           },
         ],
       },
@@ -4577,7 +4579,7 @@ const medium = {
           {
             padding: 'var(--mui-density-medium)',
             '&:last-child': {
-              paddingBottom: 'var(--mui-density-x-large)',
+              paddingBottom: 'var(--mui-density-large)',
             },
           },
         ],
@@ -4587,15 +4589,16 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            padding: 'var(--mui-density-small)',
+            padding: 'var(--mui-density-x-small)',
             variants: [
               {
                 props: {
                   disableSpacing: false,
                 },
                 style: {
+                  gap: 'var(--mui-density-x-small)',
                   '& > :not(style) ~ :not(style)': {
-                    marginLeft: 'var(--mui-density-small)',
+                    marginLeft: 0,
                   },
                 },
               },
@@ -4608,18 +4611,19 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            padding: 'var(--mui-density-large)',
+            padding: 'var(--mui-density-medium)',
+            gap: 'var(--mui-density-medium)',
           },
         ],
         avatar: [
           {
-            marginRight: 'var(--mui-density-large)',
+            marginRight: 0,
           },
         ],
         action: [
           {
             marginBlock: 'calc(var(--mui-density-xx-small) * -1)',
-            marginRight: 'calc(var(--mui-density-small) * -1)',
+            marginRight: 'calc(var(--mui-density-x-small) * -1)',
           },
         ],
       },
@@ -7411,7 +7415,7 @@ const low = {
           {
             padding: 'var(--mui-density-medium)',
             '&:last-child': {
-              paddingBottom: 'var(--mui-density-x-large)',
+              paddingBottom: 'var(--mui-density-large)',
             },
           },
         ],
@@ -7421,15 +7425,16 @@ const low = {
       styleOverrides: {
         root: [
           {
-            padding: 'var(--mui-density-small)',
+            padding: 'var(--mui-density-x-small)',
             variants: [
               {
                 props: {
                   disableSpacing: false,
                 },
                 style: {
+                  gap: 'var(--mui-density-x-small)',
                   '& > :not(style) ~ :not(style)': {
-                    marginLeft: 'var(--mui-density-small)',
+                    marginLeft: 0,
                   },
                 },
               },
@@ -7442,18 +7447,19 @@ const low = {
       styleOverrides: {
         root: [
           {
-            padding: 'var(--mui-density-large)',
+            padding: 'var(--mui-density-medium)',
+            gap: 'var(--mui-density-medium)',
           },
         ],
         avatar: [
           {
-            marginRight: 'var(--mui-density-large)',
+            marginRight: 0,
           },
         ],
         action: [
           {
             marginBlock: 'calc(var(--mui-density-xx-small) * -1)',
-            marginRight: 'calc(var(--mui-density-small) * -1)',
+            marginRight: 'calc(var(--mui-density-x-small) * -1)',
           },
         ],
       },
