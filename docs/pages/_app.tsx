@@ -39,7 +39,6 @@ import { fontClasses as _fontClasses } from '@mui/internal-core-docs/nextFonts';
 import versionsJson from '../versions.json';
 import translationsJson from '../translations/translations.json';
 import '../public/static/components-gallery/base-theme.css';
-import './experiments/multi-theme/styles.css';
 import './global.css';
 
 // Workaround: turbopack's pages-router Custom App detection misfires when

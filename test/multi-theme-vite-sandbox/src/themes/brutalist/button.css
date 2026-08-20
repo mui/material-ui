@@ -1,16 +1,29 @@
 :where([data-mui-theme='brutalist']) .MuiButton-root.MuiButton-root {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-width: 0;
+  margin: 0;
   padding: 12px 20px;
   overflow: visible;
+  color: inherit;
+  background: transparent;
   border: 3px solid var(--multi-theme-ink);
   border-radius: 0;
+  outline: 0;
+  appearance: none;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
   font-family: var(--multi-theme-font);
   font-size: 0.875rem;
   font-weight: 900;
   line-height: 1.2;
   letter-spacing: 0.025em;
+  text-decoration: none;
   text-transform: uppercase;
+  -webkit-tap-highlight-color: transparent;
   box-shadow: 5px 5px 0 var(--multi-theme-ink);
   transition:
     color 80ms linear,
@@ -77,6 +90,8 @@
   color: var(--multi-theme-disabled);
   background: var(--multi-theme-disabled-bg);
   border-color: var(--multi-theme-disabled);
+  cursor: default;
+  pointer-events: none;
   box-shadow: 5px 5px 0 var(--multi-theme-disabled);
   transform: none;
 }
