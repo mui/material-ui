@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: [
       {
+        // Keep MUI's markup and behavior, but replace all runtime component style generation.
         find: /^@mui\/styled-engine$/,
         replacement: path.resolve(dirname, 'src/noopStyledEngine.tsx'),
       },

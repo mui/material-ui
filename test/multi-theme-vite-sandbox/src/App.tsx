@@ -87,6 +87,7 @@ function ThemePanel({ children, themeName }: ThemePanelProps) {
   const theme = themes.find((item) => item.name === themeName)!;
 
   return (
+    // This subtree is not keyed by theme, so changing the scope preserves component state.
     <article className="theme-panel" data-mui-theme={themeName}>
       <header className="theme-panel__header">
         <p className="theme-panel__eyebrow">{theme.label} theme</p>

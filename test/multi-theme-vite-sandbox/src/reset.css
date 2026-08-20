@@ -1,0 +1,15 @@
+/* Browser normalization only. Component layout belongs to each theme's component CSS. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
