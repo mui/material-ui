@@ -1164,6 +1164,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     done: ['medium'],
     note: 'Same lever as RichTreeView — inline-style var, defaultProp only.',
   },
+  'MuiSlider|markLabel|base||top': 'Slider · markLabel · top',
   'MuiSlider|rail|orientation=horizontal||height':
     'Slider · rail · height [orientation=horizontal]',
   'MuiSlider|rail|orientation=vertical||width': 'Slider · rail · width [orientation=vertical]',
@@ -1174,6 +1175,8 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiSlider|root|size=small||--_trackSize': 'Slider · --_trackSize [size=small]',
   'MuiSlider|thumb|base||width': 'Slider · thumb · width',
   'MuiSlider|thumb|base||height': 'Slider · thumb · height',
+  'MuiSlider|thumb|base|&::after|width': 'Slider · thumb · width',
+  'MuiSlider|thumb|base|&::after|height': 'Slider · thumb · height',
   'MuiSlider|thumb|size=small||width': 'Slider · thumb · width [size=small]',
   'MuiSlider|thumb|size=small||height': 'Slider · thumb · height [size=small]',
   'MuiSlider|track|orientation=horizontal||height':
@@ -1373,15 +1376,17 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     note: 'Preset-driven sizing, not independently tunable via sidebar.',
   },
   'MuiTab|root|fn:18jz1y||paddingBlock': 'Icon+label block padding',
-  'MuiTableCell|root|size=medium||padding': {
-    label: 'TableCell · padding [size=medium]',
-    done: ['medium'],
-  },
-  'MuiTableCell|root|size=small||padding': {
-    label: 'TableCell · padding [size=small]',
-    done: ['medium'],
-  },
-  'MuiTableCell|root|padding=checkbox||padding': 'TableCell · padding [padding=checkbox]',
+  'MuiTableCell|root|base||paddingBlock': 'TableCell · paddingBlock',
+  'MuiTableCell|root|base|&.MuiTableCell-paddingCheckbox|padding': 'TableCell · padding',
+  'MuiTableCell|root|size=medium||height': 'TableCell · height [size=medium]',
+  'MuiTableCell|root|size=medium||paddingInline': 'TableCell · paddingInline [size=medium]',
+  'MuiTableCell|root|size=small||height': 'TableCell · height [size=small]',
+  'MuiTableCell|root|size=small||paddingInline': 'TableCell · paddingInline [size=small]',
+  'MuiTableCell|root|variant=footer||fontFamily': 'TableCell · fontFamily [variant=footer]',
+  'MuiTableCell|root|variant=footer||fontWeight': 'TableCell · fontWeight [variant=footer]',
+  'MuiTableCell|root|variant=footer||fontSize': 'TableCell · fontSize [variant=footer]',
+  'MuiTableCell|root|variant=footer||lineHeight': 'TableCell · lineHeight [variant=footer]',
+  'MuiTableCell|root|variant=footer||letterSpacing': 'TableCell · letterSpacing [variant=footer]',
   'MuiTableCell|root|padding=none||padding': {
     label: 'TableCell · padding [padding=none]',
     hidden: true,

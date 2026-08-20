@@ -2108,7 +2108,7 @@ function TableCellMatrix() {
             <TableHead>
               <TableRow>
                 <TableCell padding="checkbox">
-                  <Checkbox size="small" />
+                  <Checkbox />
                 </TableCell>
                 <TableCell sortDirection="asc">
                   <TableSortLabel active direction="asc">
@@ -2128,7 +2128,7 @@ function TableCellMatrix() {
               {DESSERT_ROWS.map((row, i) => (
                 <TableRow key={row.name}>
                   <TableCell padding="checkbox">
-                    <Checkbox size="small" defaultChecked={i === 0} />
+                    <Checkbox defaultChecked={i === 0} />
                   </TableCell>
                   <TableCell>
                     <span className="density-debug-text">{row.name}</span>
@@ -2140,8 +2140,8 @@ function TableCellMatrix() {
                     <span className="density-debug-text">{row.fat.toFixed(1)}</span>
                   </TableCell>
                   <TableCell padding="none" align="right">
-                    <IconButton size="small" aria-label="more">
-                      <MoreVertIcon fontSize="small" />
+                    <IconButton aria-label="more">
+                      <MoreVertIcon />
                     </IconButton>
                   </TableCell>
                 </TableRow>
@@ -2167,6 +2167,15 @@ function TableCellMatrix() {
               </TableRow>
             </TableFooter>
           </Table>
+          <TablePagination
+            component="div"
+            count={DESSERT_ROWS.length}
+            page={0}
+            onPageChange={() => {}}
+            rowsPerPage={5}
+            rowsPerPageOptions={[5, 10, 25]}
+            onRowsPerPageChange={() => {}}
+          />
         </div>
       ))}
     </Stack>

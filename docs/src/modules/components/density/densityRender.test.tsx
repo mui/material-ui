@@ -158,7 +158,7 @@ describe('density render — TablePagination root-slot emission', () => {
     const rootHash = hashClassOf(container.querySelector('.MuiTablePagination-root')!, 'root');
     expect(
       winningDeclaration(documentCss(), [rootHash, 'MuiTablePagination-toolbar'], 'min-height'),
-    ).to.equal('48px');
+    ).to.equal('var(--mui-density-xx-large)');
     unmount();
   });
 

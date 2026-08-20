@@ -1148,108 +1148,6 @@ const high = {
         ],
       },
     },
-    MuiSlider: {
-      styleOverrides: {
-        valueLabel: [
-          {
-            padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
-          },
-        ],
-        root: [
-          {
-            padding: 0,
-            '--_trackSize': 'calc(var(--mui-density-small) / 4)',
-            variants: [
-              {
-                props: {
-                  orientation: 'horizontal',
-                },
-                style: {
-                  height: 'var(--mui-density-touch-target)',
-                },
-              },
-              {
-                props: {
-                  orientation: 'vertical',
-                },
-                style: {
-                  width: 'var(--mui-density-touch-target)',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  '--_trackSize': 'calc(var(--mui-density-x-small) / 4)',
-                },
-              },
-            ],
-          },
-        ],
-        rail: [
-          {
-            variants: [
-              {
-                props: {
-                  orientation: 'horizontal',
-                },
-                style: {
-                  height: 'var(--_trackSize)',
-                },
-              },
-              {
-                props: {
-                  orientation: 'vertical',
-                },
-                style: {
-                  width: 'var(--_trackSize)',
-                },
-              },
-            ],
-          },
-        ],
-        track: [
-          {
-            variants: [
-              {
-                props: {
-                  orientation: 'horizontal',
-                },
-                style: {
-                  height: 'var(--_trackSize)',
-                },
-              },
-              {
-                props: {
-                  orientation: 'vertical',
-                },
-                style: {
-                  width: 'var(--_trackSize)',
-                },
-              },
-            ],
-          },
-        ],
-        thumb: [
-          {
-            width: 'var(--mui-density-medium)',
-            height: 'var(--mui-density-medium)',
-            variants: [
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  width: 'var(--mui-density-small)',
-                  height: 'var(--mui-density-small)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiSwitch: {
       styleOverrides: {
         switchBase: [
@@ -1378,7 +1276,7 @@ const high = {
         listbox: [
           {
             '& .MuiAutocomplete-option': {
-              minHeight: '32px',
+              minHeight: 'var(--mui-density-touch-target)',
               paddingBlock: 'var(--mui-density-xx-small)',
               paddingInline: 'var(--mui-density-x-small)',
             },
@@ -2380,6 +2278,117 @@ const high = {
       },
       styleOverrides: {},
     },
+    MuiSlider: {
+      styleOverrides: {
+        root: [
+          {
+            padding: 0,
+            '--_trackSize': 'calc(var(--mui-density-small) / 4)',
+            variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                },
+                style: {
+                  height: 'var(--mui-density-touch-target)',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: 'var(--mui-density-touch-target)',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  '--_trackSize': 'calc(var(--mui-density-x-small) / 4)',
+                },
+              },
+            ],
+          },
+        ],
+        valueLabel: [
+          {
+            padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
+          },
+        ],
+        markLabel: [
+          {
+            top: 'var(--mui-density-touch-target)',
+          },
+        ],
+        rail: [
+          {
+            variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                },
+                style: {
+                  height: 'var(--_trackSize)',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: 'var(--_trackSize)',
+                },
+              },
+            ],
+          },
+        ],
+        track: [
+          {
+            variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                },
+                style: {
+                  height: 'var(--_trackSize)',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: 'var(--_trackSize)',
+                },
+              },
+            ],
+          },
+        ],
+        thumb: [
+          {
+            width: 'var(--mui-density-medium)',
+            height: 'var(--mui-density-medium)',
+            variants: [
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  width: 'var(--mui-density-small)',
+                  height: 'var(--mui-density-small)',
+                },
+              },
+            ],
+            '&::after': {
+              width: 'var(--mui-density-touch-target)',
+              height: 'var(--mui-density-touch-target)',
+            },
+          },
+        ],
+      },
+    },
     MuiBadge: {
       styleOverrides: {
         badge: [
@@ -2418,13 +2427,18 @@ const high = {
       styleOverrides: {
         root: [
           {
+            paddingBlock: 0,
+            '&.MuiTableCell-paddingCheckbox': {
+              padding: '0 0 0 calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+            },
             variants: [
               {
                 props: {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'calc(var(--mui-density-x-small) + 2.5px) 8px',
+                  height: 'calc(var(--mui-density-x-large) + var(--mui-density-x-small))',
+                  paddingInline: 'var(--mui-density-small)',
                 },
               },
               {
@@ -2432,15 +2446,20 @@ const high = {
                   size: 'small',
                 },
                 style: {
-                  padding: 'calc(var(--mui-density-xx-small) + 2.5px) 8px',
+                  height: 'calc(var(--mui-density-large) + var(--mui-density-xx-small))',
+                  paddingInline: 'var(--mui-density-x-small)',
                 },
               },
               {
                 props: {
-                  padding: 'checkbox',
+                  variant: 'footer',
                 },
                 style: {
-                  padding: '0 0 0 4px',
+                  fontSize: 'calc(0.6875rem * var(--mui-scaling))',
+                  lineHeight: 'calc(16px * var(--mui-scaling))',
+                  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+                  fontWeight: 500,
+                  letterSpacing: '0.00714em',
                 },
               },
               {
@@ -2460,7 +2479,7 @@ const high = {
       styleOverrides: {
         icon: [
           {
-            fontSize: '18px',
+            fontSize: 'calc(calc(2.25 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             marginInline: 'var(--mui-density-xx-small)',
           },
         ],
@@ -2471,7 +2490,7 @@ const high = {
         root: [
           {
             '& .MuiTablePagination-toolbar': {
-              minHeight: '48px',
+              minHeight: 'var(--mui-density-xx-large)',
               paddingRight: 'var(--mui-density-x-small)',
             },
             '& .MuiTablePagination-toolbar .MuiTablePagination-actions': {
@@ -2482,7 +2501,7 @@ const high = {
             },
             '& .MuiTablePagination-toolbar .MuiTablePagination-select': {
               paddingLeft: 'var(--mui-density-small)',
-              paddingRight: '22px',
+              paddingRight: 'calc(calc(2.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             },
           },
         ],
@@ -4017,108 +4036,6 @@ const medium = {
         ],
       },
     },
-    MuiSlider: {
-      styleOverrides: {
-        valueLabel: [
-          {
-            padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
-          },
-        ],
-        root: [
-          {
-            padding: 0,
-            '--_trackSize': 'calc(var(--mui-density-small) / 4)',
-            variants: [
-              {
-                props: {
-                  orientation: 'horizontal',
-                },
-                style: {
-                  height: 'var(--mui-density-touch-target)',
-                },
-              },
-              {
-                props: {
-                  orientation: 'vertical',
-                },
-                style: {
-                  width: 'var(--mui-density-touch-target)',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  '--_trackSize': 'calc(var(--mui-density-x-small) / 4)',
-                },
-              },
-            ],
-          },
-        ],
-        rail: [
-          {
-            variants: [
-              {
-                props: {
-                  orientation: 'horizontal',
-                },
-                style: {
-                  height: 'var(--_trackSize)',
-                },
-              },
-              {
-                props: {
-                  orientation: 'vertical',
-                },
-                style: {
-                  width: 'var(--_trackSize)',
-                },
-              },
-            ],
-          },
-        ],
-        track: [
-          {
-            variants: [
-              {
-                props: {
-                  orientation: 'horizontal',
-                },
-                style: {
-                  height: 'var(--_trackSize)',
-                },
-              },
-              {
-                props: {
-                  orientation: 'vertical',
-                },
-                style: {
-                  width: 'var(--_trackSize)',
-                },
-              },
-            ],
-          },
-        ],
-        thumb: [
-          {
-            width: 'var(--mui-density-medium)',
-            height: 'var(--mui-density-medium)',
-            variants: [
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  width: 'var(--mui-density-small)',
-                  height: 'var(--mui-density-small)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiSwitch: {
       styleOverrides: {
         switchBase: [
@@ -4247,7 +4164,7 @@ const medium = {
         listbox: [
           {
             '& .MuiAutocomplete-option': {
-              minHeight: '32px',
+              minHeight: 'var(--mui-density-touch-target)',
               paddingBlock: 'var(--mui-density-xx-small)',
               paddingInline: 'var(--mui-density-x-small)',
             },
@@ -5249,6 +5166,117 @@ const medium = {
       },
       styleOverrides: {},
     },
+    MuiSlider: {
+      styleOverrides: {
+        root: [
+          {
+            padding: 0,
+            '--_trackSize': 'calc(var(--mui-density-small) / 4)',
+            variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                },
+                style: {
+                  height: 'var(--mui-density-touch-target)',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: 'var(--mui-density-touch-target)',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  '--_trackSize': 'calc(var(--mui-density-x-small) / 4)',
+                },
+              },
+            ],
+          },
+        ],
+        valueLabel: [
+          {
+            padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
+          },
+        ],
+        markLabel: [
+          {
+            top: 'var(--mui-density-touch-target)',
+          },
+        ],
+        rail: [
+          {
+            variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                },
+                style: {
+                  height: 'var(--_trackSize)',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: 'var(--_trackSize)',
+                },
+              },
+            ],
+          },
+        ],
+        track: [
+          {
+            variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                },
+                style: {
+                  height: 'var(--_trackSize)',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: 'var(--_trackSize)',
+                },
+              },
+            ],
+          },
+        ],
+        thumb: [
+          {
+            width: 'var(--mui-density-medium)',
+            height: 'var(--mui-density-medium)',
+            variants: [
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  width: 'var(--mui-density-small)',
+                  height: 'var(--mui-density-small)',
+                },
+              },
+            ],
+            '&::after': {
+              width: 'var(--mui-density-touch-target)',
+              height: 'var(--mui-density-touch-target)',
+            },
+          },
+        ],
+      },
+    },
     MuiBadge: {
       styleOverrides: {
         badge: [
@@ -5287,13 +5315,18 @@ const medium = {
       styleOverrides: {
         root: [
           {
+            paddingBlock: 0,
+            '&.MuiTableCell-paddingCheckbox': {
+              padding: '0 0 0 calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+            },
             variants: [
               {
                 props: {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'calc(var(--mui-density-x-small) + 2.5px) 8px',
+                  height: 'calc(var(--mui-density-x-large) + var(--mui-density-x-small))',
+                  paddingInline: 'var(--mui-density-small)',
                 },
               },
               {
@@ -5301,15 +5334,20 @@ const medium = {
                   size: 'small',
                 },
                 style: {
-                  padding: 'calc(var(--mui-density-xx-small) + 2.5px) 8px',
+                  height: 'calc(var(--mui-density-large) + var(--mui-density-xx-small))',
+                  paddingInline: 'var(--mui-density-x-small)',
                 },
               },
               {
                 props: {
-                  padding: 'checkbox',
+                  variant: 'footer',
                 },
                 style: {
-                  padding: '0 0 0 4px',
+                  fontSize: 'calc(0.8125rem * var(--mui-scaling))',
+                  lineHeight: 'calc(20px * var(--mui-scaling))',
+                  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+                  fontWeight: 500,
+                  letterSpacing: '0.00714em',
                 },
               },
               {
@@ -5329,7 +5367,7 @@ const medium = {
       styleOverrides: {
         icon: [
           {
-            fontSize: '18px',
+            fontSize: 'calc(calc(2.25 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             marginInline: 'var(--mui-density-xx-small)',
           },
         ],
@@ -5340,7 +5378,7 @@ const medium = {
         root: [
           {
             '& .MuiTablePagination-toolbar': {
-              minHeight: '48px',
+              minHeight: 'var(--mui-density-xx-large)',
               paddingRight: 'var(--mui-density-x-small)',
             },
             '& .MuiTablePagination-toolbar .MuiTablePagination-actions': {
@@ -5351,7 +5389,7 @@ const medium = {
             },
             '& .MuiTablePagination-toolbar .MuiTablePagination-select': {
               paddingLeft: 'var(--mui-density-small)',
-              paddingRight: '22px',
+              paddingRight: 'calc(calc(2.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             },
           },
         ],
@@ -6889,108 +6927,6 @@ const low = {
         ],
       },
     },
-    MuiSlider: {
-      styleOverrides: {
-        valueLabel: [
-          {
-            padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
-          },
-        ],
-        root: [
-          {
-            padding: 0,
-            '--_trackSize': 'calc(var(--mui-density-small) / 4)',
-            variants: [
-              {
-                props: {
-                  orientation: 'horizontal',
-                },
-                style: {
-                  height: 'var(--mui-density-touch-target)',
-                },
-              },
-              {
-                props: {
-                  orientation: 'vertical',
-                },
-                style: {
-                  width: 'var(--mui-density-touch-target)',
-                },
-              },
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  '--_trackSize': 'calc(var(--mui-density-x-small) / 4)',
-                },
-              },
-            ],
-          },
-        ],
-        rail: [
-          {
-            variants: [
-              {
-                props: {
-                  orientation: 'horizontal',
-                },
-                style: {
-                  height: 'var(--_trackSize)',
-                },
-              },
-              {
-                props: {
-                  orientation: 'vertical',
-                },
-                style: {
-                  width: 'var(--_trackSize)',
-                },
-              },
-            ],
-          },
-        ],
-        track: [
-          {
-            variants: [
-              {
-                props: {
-                  orientation: 'horizontal',
-                },
-                style: {
-                  height: 'var(--_trackSize)',
-                },
-              },
-              {
-                props: {
-                  orientation: 'vertical',
-                },
-                style: {
-                  width: 'var(--_trackSize)',
-                },
-              },
-            ],
-          },
-        ],
-        thumb: [
-          {
-            width: 'var(--mui-density-medium)',
-            height: 'var(--mui-density-medium)',
-            variants: [
-              {
-                props: {
-                  size: 'small',
-                },
-                style: {
-                  width: 'var(--mui-density-small)',
-                  height: 'var(--mui-density-small)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiSwitch: {
       styleOverrides: {
         switchBase: [
@@ -7119,7 +7055,7 @@ const low = {
         listbox: [
           {
             '& .MuiAutocomplete-option': {
-              minHeight: '32px',
+              minHeight: 'var(--mui-density-touch-target)',
               paddingBlock: 'var(--mui-density-xx-small)',
               paddingInline: 'var(--mui-density-x-small)',
             },
@@ -8121,6 +8057,117 @@ const low = {
       },
       styleOverrides: {},
     },
+    MuiSlider: {
+      styleOverrides: {
+        root: [
+          {
+            padding: 0,
+            '--_trackSize': 'calc(var(--mui-density-small) / 4)',
+            variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                },
+                style: {
+                  height: 'var(--mui-density-touch-target)',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: 'var(--mui-density-touch-target)',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  '--_trackSize': 'calc(var(--mui-density-x-small) / 4)',
+                },
+              },
+            ],
+          },
+        ],
+        valueLabel: [
+          {
+            padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
+          },
+        ],
+        markLabel: [
+          {
+            top: 'var(--mui-density-touch-target)',
+          },
+        ],
+        rail: [
+          {
+            variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                },
+                style: {
+                  height: 'var(--_trackSize)',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: 'var(--_trackSize)',
+                },
+              },
+            ],
+          },
+        ],
+        track: [
+          {
+            variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                },
+                style: {
+                  height: 'var(--_trackSize)',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: 'var(--_trackSize)',
+                },
+              },
+            ],
+          },
+        ],
+        thumb: [
+          {
+            width: 'var(--mui-density-medium)',
+            height: 'var(--mui-density-medium)',
+            variants: [
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  width: 'var(--mui-density-small)',
+                  height: 'var(--mui-density-small)',
+                },
+              },
+            ],
+            '&::after': {
+              width: 'var(--mui-density-touch-target)',
+              height: 'var(--mui-density-touch-target)',
+            },
+          },
+        ],
+      },
+    },
     MuiBadge: {
       styleOverrides: {
         badge: [
@@ -8159,13 +8206,18 @@ const low = {
       styleOverrides: {
         root: [
           {
+            paddingBlock: 0,
+            '&.MuiTableCell-paddingCheckbox': {
+              padding: '0 0 0 calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+            },
             variants: [
               {
                 props: {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'calc(var(--mui-density-x-small) + 2.5px) 8px',
+                  height: 'calc(var(--mui-density-x-large) + var(--mui-density-x-small))',
+                  paddingInline: 'var(--mui-density-small)',
                 },
               },
               {
@@ -8173,15 +8225,20 @@ const low = {
                   size: 'small',
                 },
                 style: {
-                  padding: 'calc(var(--mui-density-xx-small) + 2.5px) 8px',
+                  height: 'calc(var(--mui-density-large) + var(--mui-density-xx-small))',
+                  paddingInline: 'var(--mui-density-x-small)',
                 },
               },
               {
                 props: {
-                  padding: 'checkbox',
+                  variant: 'footer',
                 },
                 style: {
-                  padding: '0 0 0 4px',
+                  fontSize: 'calc(0.9375rem * var(--mui-scaling))',
+                  lineHeight: 'calc(22px * var(--mui-scaling))',
+                  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+                  fontWeight: 500,
+                  letterSpacing: '0.00714em',
                 },
               },
               {
@@ -8201,7 +8258,7 @@ const low = {
       styleOverrides: {
         icon: [
           {
-            fontSize: '18px',
+            fontSize: 'calc(calc(2.25 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             marginInline: 'var(--mui-density-xx-small)',
           },
         ],
@@ -8212,7 +8269,7 @@ const low = {
         root: [
           {
             '& .MuiTablePagination-toolbar': {
-              minHeight: '48px',
+              minHeight: 'var(--mui-density-xx-large)',
               paddingRight: 'var(--mui-density-x-small)',
             },
             '& .MuiTablePagination-toolbar .MuiTablePagination-actions': {
@@ -8223,7 +8280,7 @@ const low = {
             },
             '& .MuiTablePagination-toolbar .MuiTablePagination-select': {
               paddingLeft: 'var(--mui-density-small)',
-              paddingRight: '22px',
+              paddingRight: 'calc(calc(2.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             },
           },
         ],

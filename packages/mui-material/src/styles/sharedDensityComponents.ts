@@ -4,6 +4,7 @@ import tooltipClasses from '../Tooltip/tooltipClasses';
 import tabClasses from '../Tab/tabClasses';
 import stepLabelClasses from '../StepLabel/stepLabelClasses';
 import tablePaginationClasses from '../TablePagination/tablePaginationClasses';
+import tableCellClasses from '../TableCell/tableCellClasses';
 import type { PaginationItemOwnerState } from '../PaginationItem';
 import type { TabProps } from '../Tab';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
@@ -1430,16 +1431,22 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       { props: { edge: 'end' }, style: { marginRight: 'calc(-1 * var(--_pad))' } },
     ],
   });
+  // td height acts as a min-height (cells grow with wrapped content). The
+  // checkbox re-assert nests &.paddingCheckbox: master's small-size rule pads
+  // it at 2-class specificity, so a plain variant (1 class) loses there.
   addRootOverride(enhanced.components, 'MuiTableCell', {
-    // Block pad per size (steps); inline pad shared. Re-assert the frozen
-    // checkbox/none affordances the size padding would otherwise clobber.
+    paddingBlock: 0,
+    [`&.${tableCellClasses.paddingCheckbox}`]: { padding: `0 0 0 ${sp(0.5)}` },
     variants: [
-      // Block pads land the 40px (medium) / 32px (small) row rhythm of the
-      // grid capture: body2 cell line is 18px, +1px collapsed border, so pads
-      // carry the extra half px (18 + 2x10.5 + 1 = 40). Inline FIXED 8px raw.
-      { props: { size: 'medium' }, style: { padding: `calc(${d['x-small']} + 2.5px) 8px` } },
-      { props: { size: 'small' }, style: { padding: `calc(${d['xx-small']} + 2.5px) 8px` } },
-      { props: { padding: 'checkbox' }, style: { padding: '0 0 0 4px' } },
+      {
+        props: { size: 'medium' },
+        style: { height: `calc(${d['x-large']} + ${d['x-small']})`, paddingInline: d.small },
+      },
+      {
+        props: { size: 'small' },
+        style: { height: `calc(${d.large} + ${d['xx-small']})`, paddingInline: d['x-small'] },
+      },
+      { props: { variant: 'footer' }, style: { ...enhanced.typography?.subtitle2 } },
       { props: { padding: 'none' }, style: { padding: 0 } },
     ],
   });
@@ -1447,10 +1454,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiTableSortLabel',
     {
-      // Sort arrow = raw px (sizing); icon<->label gap = one marginInline leaf
-      // (master sets both sides at 4px — the arrow flips sides in right-aligned
-      // columns; medium xx-small maps it exactly).
-      fontSize: '18px',
+      // One marginInline leaf: the arrow flips sides in right-aligned columns.
+      fontSize: sp(2.25),
       marginInline: d['xx-small'],
     },
     'icon',
@@ -1462,9 +1467,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     // playground layering) spreads to numeric keys and silently drops. Root's
     // default resolver is array-safe, and root-class nesting outranks the slot
     // rules (incl. master's duplicated minHeight media re-asserts).
-    // Bar min-height = raw px (sizing); trailing pad + actions gap = steps.
     [`& .${tablePaginationClasses.toolbar}`]: {
-      minHeight: '48px',
+      minHeight: d['xx-large'],
       paddingRight: d['x-small'],
     },
     [`& .${tablePaginationClasses.toolbar} .${tablePaginationClasses.actions}`]: {
@@ -1478,7 +1482,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     [`& .${tablePaginationClasses.toolbar} .${tablePaginationClasses.select}`]: {
       paddingLeft: d.small,
-      paddingRight: '22px',
+      paddingRight: sp(2.75),
     },
   });
   addRootOverride(
@@ -1488,9 +1492,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       // Option list (mirrors MenuItem) renders in a Popper → emit on the listbox
       // slot: minHeight raw px, block/inline pad steps.
       [`& .${autocompleteClasses.option}`]: {
-        // mirrors MenuItem: semantic/size/touch-target/default (32px),
-        // paddingBlock variable/xxs, paddingInline variable/xs
-        minHeight: '32px',
+        minHeight: d['touch-target'],
         paddingBlock: d['xx-small'],
         paddingInline: d['x-small'],
       },
