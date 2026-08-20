@@ -622,6 +622,11 @@ export function AppSearch(props: AppSearchProps) {
               stroke: 'var(--docsearch-muted-color)',
             },
             '& .DocSearch-Dropdown-Container': {
+              // DocSearch indents the hit lists by 1em, which pushes the result cards out of line
+              // with the section headings above them.
+              '& .DocSearch-Hits-padded': {
+                paddingInlineStart: 0,
+              },
               '& .DocSearch-Hits:first-of-type': {
                 '& .DocSearch-Hit-source': {
                   paddingTop: theme.spacing(2.5),
