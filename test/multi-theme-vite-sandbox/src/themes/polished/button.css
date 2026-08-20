@@ -1,16 +1,29 @@
 :where([data-mui-theme='polished']) .MuiButton-root.MuiButton-root {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-width: 0;
+  margin: 0;
   padding: 10px 18px;
   overflow: hidden;
+  color: inherit;
+  background: transparent;
   border: 1px solid transparent;
   border-radius: 999px;
+  outline: 0;
+  appearance: none;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
   font-family: var(--multi-theme-font);
   font-size: 0.875rem;
   font-weight: 720;
   line-height: 1.35;
   letter-spacing: -0.01em;
+  text-decoration: none;
   text-transform: none;
+  -webkit-tap-highlight-color: transparent;
   box-shadow: none;
   transition:
     color 160ms ease,
@@ -90,6 +103,8 @@
   color: var(--multi-theme-disabled);
   background: var(--multi-theme-disabled-bg);
   border-color: transparent;
+  cursor: default;
+  pointer-events: none;
   box-shadow: none;
   transform: none;
 }
