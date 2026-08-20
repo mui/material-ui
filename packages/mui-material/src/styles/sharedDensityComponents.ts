@@ -1063,11 +1063,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiAccordionSummary',
     {
-      // Content block margin reduces with min-height (else it binds header height).
       marginBlock: '0px',
-      // Center the header row within the reduced min-height.
       alignItems: 'center',
-      // Gap between the header row items (icon/text).
       gap: d['x-small'],
       variants: [
         {
@@ -1726,9 +1723,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'deleteIcon',
   );
   addRootOverride(enhanced.components, 'MuiAccordionSummary', {
-    // Collapsed min-height raw px; inline padding = step.
-    minHeight: '32px',
-    // inline: semantic/spacing/variable/xs (headerWrapper)
+    minHeight: d['touch-target'],
     padding: `0 ${d['x-small']}`,
     variants: [
       {
@@ -1737,17 +1732,14 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         }: {
           ownerState: AccordionSummaryOwnerState & { disableGutters?: boolean | undefined };
         }) => !ownerState.disableGutters,
-        // Expanded min-height (scoped to the expanded state so it wins master's
-        // 64px literal by specificity; a plain root minHeight would lose to it).
-        style: { [`&.${accordionSummaryClasses.expanded}`]: { minHeight: '32px' } },
+        // scoped to expanded: wins master's 64px literal on specificity
+        style: { [`&.${accordionSummaryClasses.expanded}`]: { minHeight: d['touch-target'] } },
       },
     ],
   });
   addRootOverride(enhanced.components, 'MuiAccordionDetails', {
-    // Split from shorthand so each edge is its own knob (top differs from bottom).
-    paddingBlockStart: d['x-small'],
-    paddingBlockEnd: '0px',
-    paddingInline: `${d['x-large']} 0px`,
+    paddingBlock: d['x-small'],
+    paddingInline: d.small,
   });
   // MUI X — spacing-step rows shared across presets; the sizing raw px
   // (defaultProps heights, widths, min-heights — X's density levers) stay

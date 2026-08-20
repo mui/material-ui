@@ -454,6 +454,10 @@ describe('anchor contract — Button family total height per preset', () => {
       expect(theme.components.MuiCircularProgress.defaultProps.size, level).to.equal(
         TOUCH_TARGET[level],
       );
+      const summary = theme.components.MuiAccordionSummary.styleOverrides.root;
+      expect(JSON.stringify(summary), `${level} AccordionSummary`).to.contain(
+        `"minHeight":"${TOUCH_TARGET[level]}"`,
+      );
     }
   });
 });

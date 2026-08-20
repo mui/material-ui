@@ -34,8 +34,8 @@ export interface DensityEmitRow {
 
 export const densityEmitTable: DensityEmitRow[] = [
   {
-    id: 'MuiAccordionDetails|root|base||paddingBlockStart',
-    label: 'AccordionDetails · paddingBlockStart',
+    id: 'MuiAccordionDetails|root|base||paddingBlock',
+    label: 'AccordionDetails · paddingBlock',
     isDensity: true,
     densityKey: 'x-small',
     target: {
@@ -43,7 +43,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       slot: 'root',
       props: null,
       nested: '',
-      cssProp: 'paddingBlockStart',
+      cssProp: 'paddingBlock',
     },
     values: {
       high: 'var(--mui-density-x-small)',
@@ -52,24 +52,10 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
-    id: 'MuiAccordionDetails|root|base||paddingBlockEnd',
-    label: 'AccordionDetails · paddingBlockEnd',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiAccordionDetails',
-      slot: 'root',
-      props: null,
-      nested: '',
-      cssProp: 'paddingBlockEnd',
-    },
-    values: { high: '0px', medium: '0px', low: '0px' },
-  },
-  {
     id: 'MuiAccordionDetails|root|base||paddingInline',
     label: 'AccordionDetails · paddingInline',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'small',
     target: {
       component: 'MuiAccordionDetails',
       slot: 'root',
@@ -78,9 +64,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingInline',
     },
     values: {
-      high: 'var(--mui-density-x-large) 0px',
-      medium: 'var(--mui-density-x-large) 0px',
-      low: 'var(--mui-density-x-large) 0px',
+      high: 'var(--mui-density-small)',
+      medium: 'var(--mui-density-small)',
+      low: 'var(--mui-density-small)',
     },
   },
   {
@@ -146,8 +132,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiAccordionSummary|root|base||minHeight',
     label: 'AccordionSummary · minHeight',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'touch-target',
     target: {
       component: 'MuiAccordionSummary',
       slot: 'root',
@@ -155,7 +141,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minHeight',
     },
-    values: { high: '32px', medium: '32px', low: '32px' },
+    values: {
+      high: 'var(--mui-density-touch-target)',
+      medium: 'var(--mui-density-touch-target)',
+      low: 'var(--mui-density-touch-target)',
+    },
   },
   {
     id: 'MuiAccordionSummary|root|base||padding',
@@ -178,8 +168,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiAccordionSummary|root|fn:ya70cs|&.Mui-expanded|minHeight',
     label: 'AccordionSummary · minHeight [fn]',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'touch-target',
     target: {
       component: 'MuiAccordionSummary',
       slot: 'root',
@@ -187,7 +177,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '&.Mui-expanded',
       cssProp: 'minHeight',
     },
-    values: { high: '32px', medium: '32px', low: '32px' },
+    values: {
+      high: 'var(--mui-density-touch-target)',
+      medium: 'var(--mui-density-touch-target)',
+      low: 'var(--mui-density-touch-target)',
+    },
   },
   {
     id: 'MuiAlert|icon|base||marginRight',

@@ -2011,14 +2011,14 @@ const high = {
         ],
         root: [
           {
-            minHeight: '32px',
+            minHeight: 'var(--mui-density-touch-target)',
             padding: '0 var(--mui-density-x-small)',
             variants: [
               {
                 props: ({ ownerState }) => !ownerState.disableGutters,
                 style: {
                   '&.Mui-expanded': {
-                    minHeight: '32px',
+                    minHeight: 'var(--mui-density-touch-target)',
                   },
                 },
               },
@@ -2793,9 +2793,8 @@ const high = {
       styleOverrides: {
         root: [
           {
-            paddingBlockStart: 'var(--mui-density-x-small)',
-            paddingBlockEnd: '0px',
-            paddingInline: 'var(--mui-density-x-large) 0px',
+            paddingBlock: 'var(--mui-density-x-small)',
+            paddingInline: 'var(--mui-density-small)',
           },
         ],
       },
@@ -4930,14 +4929,14 @@ const medium = {
         ],
         root: [
           {
-            minHeight: '32px',
+            minHeight: 'var(--mui-density-touch-target)',
             padding: '0 var(--mui-density-x-small)',
             variants: [
               {
                 props: ({ ownerState }) => !ownerState.disableGutters,
                 style: {
                   '&.Mui-expanded': {
-                    minHeight: '32px',
+                    minHeight: 'var(--mui-density-touch-target)',
                   },
                 },
               },
@@ -5712,9 +5711,8 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            paddingBlockStart: 'var(--mui-density-x-small)',
-            paddingBlockEnd: '0px',
-            paddingInline: 'var(--mui-density-x-large) 0px',
+            paddingBlock: 'var(--mui-density-x-small)',
+            paddingInline: 'var(--mui-density-small)',
           },
         ],
       },
@@ -7852,14 +7850,14 @@ const low = {
         ],
         root: [
           {
-            minHeight: '32px',
+            minHeight: 'var(--mui-density-touch-target)',
             padding: '0 var(--mui-density-x-small)',
             variants: [
               {
                 props: ({ ownerState }) => !ownerState.disableGutters,
                 style: {
                   '&.Mui-expanded': {
-                    minHeight: '32px',
+                    minHeight: 'var(--mui-density-touch-target)',
                   },
                 },
               },
@@ -8634,9 +8632,8 @@ const low = {
       styleOverrides: {
         root: [
           {
-            paddingBlockStart: 'var(--mui-density-x-small)',
-            paddingBlockEnd: '0px',
-            paddingInline: 'var(--mui-density-x-large) 0px',
+            paddingBlock: 'var(--mui-density-x-small)',
+            paddingInline: 'var(--mui-density-small)',
           },
         ],
       },

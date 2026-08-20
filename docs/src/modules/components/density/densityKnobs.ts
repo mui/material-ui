@@ -22,14 +22,7 @@ export interface DensityKnobMeta {
 }
 
 export const densityKnobs: Record<string, string | DensityKnobMeta> = {
-  'MuiAccordionDetails|root|base||paddingBlockStart': {
-    label: 'AccordionDetails · paddingBlockStart',
-    done: ['medium'],
-  },
-  'MuiAccordionDetails|root|base||paddingBlockEnd': {
-    label: 'AccordionDetails · paddingBlockEnd',
-    done: ['medium'],
-  },
+  'MuiAccordionDetails|root|base||paddingBlock': 'AccordionDetails · paddingBlock',
   'MuiAccordionDetails|root|base||paddingInline': {
     label: 'AccordionDetails · paddingInline',
     done: ['medium'],
