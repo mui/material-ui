@@ -1814,11 +1814,13 @@ const high = {
           {
             paddingBlock: 'var(--mui-density-x-small)',
             paddingInline: 'var(--mui-density-large)',
-          },
-        ],
-        icon: [
-          {
-            marginRight: 'var(--mui-density-medium)',
+            gap: 'var(--mui-density-medium)',
+            '& .MuiAlert-icon': {
+              marginRight: 0,
+            },
+            '& .MuiAlert-action': {
+              paddingLeft: 0,
+            },
           },
         ],
       },
@@ -4717,11 +4719,13 @@ const medium = {
           {
             paddingBlock: 'var(--mui-density-x-small)',
             paddingInline: 'var(--mui-density-large)',
-          },
-        ],
-        icon: [
-          {
-            marginRight: 'var(--mui-density-medium)',
+            gap: 'var(--mui-density-medium)',
+            '& .MuiAlert-icon': {
+              marginRight: 0,
+            },
+            '& .MuiAlert-action': {
+              paddingLeft: 0,
+            },
           },
         ],
       },
@@ -7623,11 +7627,13 @@ const low = {
           {
             paddingBlock: 'var(--mui-density-x-small)',
             paddingInline: 'var(--mui-density-large)',
-          },
-        ],
-        icon: [
-          {
-            marginRight: 'var(--mui-density-medium)',
+            gap: 'var(--mui-density-medium)',
+            '& .MuiAlert-icon': {
+              marginRight: 0,
+            },
+            '& .MuiAlert-action': {
+              paddingLeft: 0,
+            },
           },
         ],
       },

@@ -8,6 +8,7 @@ import tablePaginationClasses from '../TablePagination/tablePaginationClasses';
 import type { PaginationItemOwnerState } from '../PaginationItem';
 import type { TabProps } from '../Tab';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
+import alertClasses from '../Alert/alertClasses';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
 import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
@@ -1015,12 +1016,12 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'select',
   );
   addRootOverride(enhanced.components, 'MuiAlert', {
-    // No size axis: root padding (block/inline steps).
     paddingBlock: d['x-small'],
     paddingInline: d.large,
+    gap: d.medium,
+    [`& .${alertClasses.icon}`]: { marginRight: 0 },
+    [`& .${alertClasses.action}`]: { paddingLeft: 0 },
   });
-  // Icon→message gap on the icon slot (child element).
-  addRootOverride(enhanced.components, 'MuiAlert', { marginRight: d.medium }, 'icon');
   // Label inline padding = density steps, unified per size on the label slot.
   addRootOverride(
     enhanced.components,

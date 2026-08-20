@@ -57,9 +57,11 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     done: ['medium'],
     note: "Scoped to &.Mui-expanded (only when !disableGutters) so it wins master's 64px literal by specificity; a plain root minHeight would lose to it.",
   },
-  'MuiAlert|icon|base||marginRight': 'Alert · icon · marginRight',
   'MuiAlert|root|base||paddingBlock': 'Alert · paddingBlock',
   'MuiAlert|root|base||paddingInline': 'Alert · paddingInline',
+  'MuiAlert|root|base||gap': 'Alert · gap',
+  'MuiAlert|root|base|& .MuiAlert-icon|marginRight': 'Alert · marginRight',
+  'MuiAlert|root|base|& .MuiAlert-action|paddingLeft': 'Alert · paddingLeft',
   'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|minHeight': {
     label: 'Option min height',
     hidden: true,
