@@ -1,5 +1,10 @@
 import * as React from 'react';
 
+/**
+ * Minimal styled-engine contract for this sandbox. Style expressions are accepted so MUI can
+ * initialize normally, but they are deliberately never evaluated or injected.
+ */
+
 interface StyledOptions {
   shouldForwardProp?: (prop: PropertyKey) => boolean;
 }
