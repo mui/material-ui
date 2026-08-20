@@ -1,6 +1,6 @@
 import * as React from 'react';
 import AppSearchFixture from '../../AppSearchFixture';
 
-export default function SearchModal() {
-  return <AppSearchFixture mode="light" />;
+export default function SearchModalDark() {
+  return <AppSearchFixture mode="dark" />;
 }

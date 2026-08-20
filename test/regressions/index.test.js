@@ -267,10 +267,10 @@ async function main() {
       });
     });
 
-    describe('AppSearch', () => {
+    describe.each(['SearchModal', 'SearchModalDark'])('AppSearch/%s', (fixture) => {
       test('should render the DocSearch modal correctly', async ({ pooled }) => {
         const { page } = pooled;
-        await renderFixture(page, '/regression-AppSearch/SearchModal');
+        await renderFixture(page, `/regression-AppSearch/${fixture}`);
         // The modal portals to `document.body`, so it lands outside the
         // testcase element and has to be screenshotted on its own.
         await page.getByRole('button', { name: /search/i }).click();
@@ -295,7 +295,7 @@ async function main() {
         });
         await takeScreenshot(page, {
           testcase: modal,
-          route: '/regression-AppSearch/SearchModalOpen',
+          route: `/regression-AppSearch/${fixture}Open`,
         });
       });
     });
