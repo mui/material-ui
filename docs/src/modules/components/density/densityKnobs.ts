@@ -170,10 +170,6 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiButton|root|size=large||height': 'Button · height [size=large]',
   'MuiButton|root|size=large||paddingInline': 'Button · paddingInline [size=large]',
   'MuiButton|startIcon|base|& > *:nth-of-type(1)|fontSize': 'Button · startIcon · fontSize',
-  'MuiButtonGroup|root|base|& .MuiButtonGroup-grouped|minWidth': {
-    label: 'ButtonGroup · button minWidth',
-    done: ['medium'],
-  },
   'MuiCardActions|root|base||padding': 'CardActions · padding',
   'MuiCardActions|root|base||paddingTop': 'CardActions · paddingTop',
   'MuiCardActions|root|disableSpacing=false||gap': 'CardActions · gap [disableSpacing=false]',

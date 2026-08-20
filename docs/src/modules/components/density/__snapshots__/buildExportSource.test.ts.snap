@@ -1504,7 +1504,7 @@ const high = {
                 },
                 style: {
                   marginLeft: 'calc(var(--mui-density-touch-target) / 2)',
-                  paddingLeft: 'calc(var(--mui-density-touch-target) / 2)',
+                  paddingLeft: 'calc(var(--mui-density-touch-target) / 2 - 1px)',
                 },
               },
               {
@@ -1513,7 +1513,7 @@ const high = {
                 },
                 style: {
                   marginRight: 'calc(var(--mui-density-touch-target) / 2)',
-                  paddingRight: 'calc(var(--mui-density-touch-target) / 2)',
+                  paddingRight: 'calc(var(--mui-density-touch-target) / 2 - 1px)',
                 },
               },
             ],
@@ -2392,17 +2392,6 @@ const high = {
                 },
               },
             ],
-          },
-        ],
-      },
-    },
-    MuiButtonGroup: {
-      styleOverrides: {
-        root: [
-          {
-            '& .MuiButtonGroup-grouped': {
-              minWidth: '32px',
-            },
           },
         ],
       },
@@ -4366,7 +4355,7 @@ const medium = {
                 },
                 style: {
                   marginLeft: 'calc(var(--mui-density-touch-target) / 2)',
-                  paddingLeft: 'calc(var(--mui-density-touch-target) / 2)',
+                  paddingLeft: 'calc(var(--mui-density-touch-target) / 2 - 1px)',
                 },
               },
               {
@@ -4375,7 +4364,7 @@ const medium = {
                 },
                 style: {
                   marginRight: 'calc(var(--mui-density-touch-target) / 2)',
-                  paddingRight: 'calc(var(--mui-density-touch-target) / 2)',
+                  paddingRight: 'calc(var(--mui-density-touch-target) / 2 - 1px)',
                 },
               },
             ],
@@ -5254,17 +5243,6 @@ const medium = {
                 },
               },
             ],
-          },
-        ],
-      },
-    },
-    MuiButtonGroup: {
-      styleOverrides: {
-        root: [
-          {
-            '& .MuiButtonGroup-grouped': {
-              minWidth: '32px',
-            },
           },
         ],
       },
@@ -7231,7 +7209,7 @@ const low = {
                 },
                 style: {
                   marginLeft: 'calc(var(--mui-density-touch-target) / 2)',
-                  paddingLeft: 'calc(var(--mui-density-touch-target) / 2)',
+                  paddingLeft: 'calc(var(--mui-density-touch-target) / 2 - 1px)',
                 },
               },
               {
@@ -7240,7 +7218,7 @@ const low = {
                 },
                 style: {
                   marginRight: 'calc(var(--mui-density-touch-target) / 2)',
-                  paddingRight: 'calc(var(--mui-density-touch-target) / 2)',
+                  paddingRight: 'calc(var(--mui-density-touch-target) / 2 - 1px)',
                 },
               },
             ],
@@ -8119,17 +8097,6 @@ const low = {
                 },
               },
             ],
-          },
-        ],
-      },
-    },
-    MuiButtonGroup: {
-      styleOverrides: {
-        root: [
-          {
-            '& .MuiButtonGroup-grouped': {
-              minWidth: '32px',
-            },
           },
         ],
       },

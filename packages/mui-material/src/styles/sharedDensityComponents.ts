@@ -3,7 +3,6 @@ import switchClasses from '../Switch/switchClasses';
 import tooltipClasses from '../Tooltip/tooltipClasses';
 import tabClasses from '../Tab/tabClasses';
 import stepLabelClasses from '../StepLabel/stepLabelClasses';
-import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
 import tablePaginationClasses from '../TablePagination/tablePaginationClasses';
 import type { PaginationItemOwnerState } from '../PaginationItem';
 import type { TabProps } from '../Tab';
@@ -1424,10 +1423,6 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       { props: { edge: 'start' }, style: { marginLeft: 'calc(-1 * var(--_pad))' } },
       { props: { edge: 'end' }, style: { marginRight: 'calc(-1 * var(--_pad))' } },
     ],
-  });
-  addRootOverride(enhanced.components, 'MuiButtonGroup', {
-    // Grouped-button min-width floor = raw px (sizing; == the 32px touch target).
-    [`& .${buttonGroupClasses.grouped}`]: { minWidth: '32px' },
   });
   addRootOverride(enhanced.components, 'MuiTableCell', {
     // Block pad per size (steps); inline pad shared. Re-assert the frozen

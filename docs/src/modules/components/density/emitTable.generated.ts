@@ -1154,20 +1154,6 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { high: '0.8lh', medium: '0.8lh', low: '0.8lh' },
   },
   {
-    id: 'MuiButtonGroup|root|base|& .MuiButtonGroup-grouped|minWidth',
-    label: 'ButtonGroup · minWidth',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiButtonGroup',
-      slot: 'root',
-      props: null,
-      nested: '& .MuiButtonGroup-grouped',
-      cssProp: 'minWidth',
-    },
-    values: { high: '32px', medium: '32px', low: '32px' },
-  },
-  {
     id: 'MuiCardActions|root|base||padding',
     label: 'CardActions · padding',
     isDensity: true,
@@ -6945,9 +6931,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingLeft',
     },
     values: {
-      high: 'calc(var(--mui-density-touch-target) / 2)',
-      medium: 'calc(var(--mui-density-touch-target) / 2)',
-      low: 'calc(var(--mui-density-touch-target) / 2)',
+      high: 'calc(var(--mui-density-touch-target) / 2 - 1px)',
+      medium: 'calc(var(--mui-density-touch-target) / 2 - 1px)',
+      low: 'calc(var(--mui-density-touch-target) / 2 - 1px)',
     },
   },
   {
@@ -6981,9 +6967,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingRight',
     },
     values: {
-      high: 'calc(var(--mui-density-touch-target) / 2)',
-      medium: 'calc(var(--mui-density-touch-target) / 2)',
-      low: 'calc(var(--mui-density-touch-target) / 2)',
+      high: 'calc(var(--mui-density-touch-target) / 2 - 1px)',
+      medium: 'calc(var(--mui-density-touch-target) / 2 - 1px)',
+      low: 'calc(var(--mui-density-touch-target) / 2 - 1px)',
     },
   },
   {
