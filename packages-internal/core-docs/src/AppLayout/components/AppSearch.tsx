@@ -447,6 +447,9 @@ export function AppSearch(props: AppSearchProps) {
               '--docsearch-searchbox-focus-background': 'unset',
               '--docsearch-footer-background': 'unset',
               '--docsearch-modal-background': (theme.vars || theme).palette.background.paper,
+              // v5 forces a system font stack on the modal. Keep the docs typeface: the
+              // different metrics also push the hit title underline past its overflow clip.
+              '--docsearch-font-family': 'inherit',
               '--docsearch-hit-height': '52px',
               // Height left for the scrollable area between the search bar and the footer.
               // DocSearch drops the search box from its own budget, which makes the modal overshoot
