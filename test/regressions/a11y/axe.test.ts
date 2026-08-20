@@ -1,5 +1,4 @@
 import { describe, it } from 'vitest';
-import { expect } from 'chai';
 import type { AxeResults, Result } from 'axe-core';
 import type { TestContext } from 'vitest';
 import { recordA11y } from './axe';
