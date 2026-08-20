@@ -178,7 +178,7 @@ const high = {
                   fontSize: 'small',
                 },
                 style: {
-                  fontSize: '16px',
+                  fontSize: 'calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
                 },
               },
               {
@@ -186,7 +186,7 @@ const high = {
                   fontSize: 'medium',
                 },
                 style: {
-                  fontSize: '16px',
+                  fontSize: 'calc(calc(2 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
                 },
               },
               {
@@ -194,7 +194,7 @@ const high = {
                   fontSize: 'large',
                 },
                 style: {
-                  fontSize: '20px',
+                  fontSize: 'calc(calc(2.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
                 },
               },
             ],
@@ -3083,7 +3083,7 @@ const medium = {
                   fontSize: 'small',
                 },
                 style: {
-                  fontSize: '16px',
+                  fontSize: 'calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
                 },
               },
               {
@@ -3091,7 +3091,7 @@ const medium = {
                   fontSize: 'medium',
                 },
                 style: {
-                  fontSize: '16px',
+                  fontSize: 'calc(calc(2 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
                 },
               },
               {
@@ -3099,7 +3099,7 @@ const medium = {
                   fontSize: 'large',
                 },
                 style: {
-                  fontSize: '20px',
+                  fontSize: 'calc(calc(2.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
                 },
               },
             ],
@@ -5991,7 +5991,7 @@ const low = {
                   fontSize: 'small',
                 },
                 style: {
-                  fontSize: '16px',
+                  fontSize: 'calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
                 },
               },
               {
@@ -5999,7 +5999,7 @@ const low = {
                   fontSize: 'medium',
                 },
                 style: {
-                  fontSize: '16px',
+                  fontSize: 'calc(calc(2 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
                 },
               },
               {
@@ -6007,7 +6007,7 @@ const low = {
                   fontSize: 'large',
                 },
                 style: {
-                  fontSize: '20px',
+                  fontSize: 'calc(calc(2.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
                 },
               },
             ],

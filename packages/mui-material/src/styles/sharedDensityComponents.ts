@@ -105,9 +105,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
 
   addRootOverride(enhanced.components, 'MuiSvgIcon', {
     variants: [
-      { props: { fontSize: 'small' }, style: { fontSize: '16px' } },
-      { props: { fontSize: 'medium' }, style: { fontSize: '16px' } },
-      { props: { fontSize: 'large' }, style: { fontSize: '20px' } },
+      { props: { fontSize: 'small' }, style: { fontSize: sp(1.75) } },
+      { props: { fontSize: 'medium' }, style: { fontSize: sp(2) } },
+      { props: { fontSize: 'large' }, style: { fontSize: sp(2.5) } },
     ],
   });
   // List-row floor (promoted from density-Medium-only):

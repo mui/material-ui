@@ -6914,7 +6914,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'fontSize',
     },
-    values: { high: '16px', medium: '16px', low: '16px' },
+    values: {
+      high: 'calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+      medium: 'calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+      low: 'calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+    },
   },
   {
     id: 'MuiSvgIcon|root|fontSize=medium||fontSize',
@@ -6928,7 +6932,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'fontSize',
     },
-    values: { high: '16px', medium: '16px', low: '16px' },
+    values: {
+      high: 'calc(calc(2 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+      medium: 'calc(calc(2 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+      low: 'calc(calc(2 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+    },
   },
   {
     id: 'MuiSvgIcon|root|fontSize=large||fontSize',
@@ -6942,7 +6950,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'fontSize',
     },
-    values: { high: '20px', medium: '20px', low: '20px' },
+    values: {
+      high: 'calc(calc(2.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+      medium: 'calc(calc(2.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+      low: 'calc(calc(2.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+    },
   },
   {
     id: 'MuiSwitch|root|base||--_pad',

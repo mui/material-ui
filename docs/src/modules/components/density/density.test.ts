@@ -463,6 +463,18 @@ describe('anchor contract — Button family total height per preset', () => {
       expect(JSON.stringify(summary), `${level} AccordionSummary`).to.contain(
         `"minHeight":"${TOUCH_TARGET[level]}"`,
       );
+      // standalone glyph ladder is preset-INVARIANT chrome (14/16/20 via
+      // theme.spacing) — in-context glyphs ride their host (0.8lh / --_iconSize)
+      for (const [glyph, px] of [
+        ['small', '14px'],
+        ['medium', '16px'],
+        ['large', '20px'],
+      ] as const) {
+        const svg = findVariantStyle(theme.components.MuiSvgIcon.styleOverrides.root, {
+          fontSize: glyph,
+        });
+        expect(svg?.fontSize, `${level} SvgIcon ${glyph}`).to.equal(px);
+      }
     }
   });
 });
