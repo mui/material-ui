@@ -1435,8 +1435,8 @@ const high = {
           {
             padding: '0px',
             justifyContent: 'center',
-            minWidth: '32px',
-            minHeight: '32px',
+            minWidth: 'var(--mui-density-touch-target)',
+            minHeight: 'var(--mui-density-touch-target)',
             alignItems: 'center',
           },
         ],
@@ -1446,12 +1446,12 @@ const high = {
       styleOverrides: {
         root: [
           {
-            fontSize: '22px',
+            fontSize: 'calc(var(--mui-density-touch-target) - calc(calc(1.25 * var(--mui-spacing, 8px)) * var(--mui-scaling)))',
           },
         ],
         text: [
           {
-            fontSize: '0.875rem',
+            fontSize: 'calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
           },
         ],
       },
@@ -1467,7 +1467,7 @@ const high = {
                   alternativeLabel: true,
                 },
                 style: {
-                  top: 'calc(32px / 2)',
+                  top: 'calc(var(--mui-density-touch-target) / 2)',
                 },
               },
               {
@@ -1476,7 +1476,7 @@ const high = {
                   alternativeLabel: false,
                 },
                 style: {
-                  marginLeft: 'calc(32px / 2)',
+                  marginLeft: 'calc(var(--mui-density-touch-target) / 2)',
                 },
               },
               {
@@ -1485,7 +1485,7 @@ const high = {
                   alternativeLabel: true,
                 },
                 style: {
-                  marginRight: 'calc(32px / 2)',
+                  marginRight: 'calc(var(--mui-density-touch-target) / 2)',
                 },
               },
             ],
@@ -1503,8 +1503,8 @@ const high = {
                   alternativeLabel: false,
                 },
                 style: {
-                  marginLeft: 'calc(32px / 2)',
-                  paddingLeft: 'calc(32px / 2)',
+                  marginLeft: 'calc(var(--mui-density-touch-target) / 2)',
+                  paddingLeft: 'calc(var(--mui-density-touch-target) / 2)',
                 },
               },
               {
@@ -1512,8 +1512,8 @@ const high = {
                   alternativeLabel: true,
                 },
                 style: {
-                  marginRight: 'calc(32px / 2)',
-                  paddingRight: 'calc(32px / 2)',
+                  marginRight: 'calc(var(--mui-density-touch-target) / 2)',
+                  paddingRight: 'calc(var(--mui-density-touch-target) / 2)',
                 },
               },
             ],
@@ -4297,8 +4297,8 @@ const medium = {
           {
             padding: '0px',
             justifyContent: 'center',
-            minWidth: '32px',
-            minHeight: '32px',
+            minWidth: 'var(--mui-density-touch-target)',
+            minHeight: 'var(--mui-density-touch-target)',
             alignItems: 'center',
           },
         ],
@@ -4308,12 +4308,12 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            fontSize: '22px',
+            fontSize: 'calc(var(--mui-density-touch-target) - calc(calc(1.25 * var(--mui-spacing, 8px)) * var(--mui-scaling)))',
           },
         ],
         text: [
           {
-            fontSize: '0.875rem',
+            fontSize: 'calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
           },
         ],
       },
@@ -4329,7 +4329,7 @@ const medium = {
                   alternativeLabel: true,
                 },
                 style: {
-                  top: 'calc(32px / 2)',
+                  top: 'calc(var(--mui-density-touch-target) / 2)',
                 },
               },
               {
@@ -4338,7 +4338,7 @@ const medium = {
                   alternativeLabel: false,
                 },
                 style: {
-                  marginLeft: 'calc(32px / 2)',
+                  marginLeft: 'calc(var(--mui-density-touch-target) / 2)',
                 },
               },
               {
@@ -4347,7 +4347,7 @@ const medium = {
                   alternativeLabel: true,
                 },
                 style: {
-                  marginRight: 'calc(32px / 2)',
+                  marginRight: 'calc(var(--mui-density-touch-target) / 2)',
                 },
               },
             ],
@@ -4365,8 +4365,8 @@ const medium = {
                   alternativeLabel: false,
                 },
                 style: {
-                  marginLeft: 'calc(32px / 2)',
-                  paddingLeft: 'calc(32px / 2)',
+                  marginLeft: 'calc(var(--mui-density-touch-target) / 2)',
+                  paddingLeft: 'calc(var(--mui-density-touch-target) / 2)',
                 },
               },
               {
@@ -4374,8 +4374,8 @@ const medium = {
                   alternativeLabel: true,
                 },
                 style: {
-                  marginRight: 'calc(32px / 2)',
-                  paddingRight: 'calc(32px / 2)',
+                  marginRight: 'calc(var(--mui-density-touch-target) / 2)',
+                  paddingRight: 'calc(var(--mui-density-touch-target) / 2)',
                 },
               },
             ],
@@ -7162,8 +7162,8 @@ const low = {
           {
             padding: '0px',
             justifyContent: 'center',
-            minWidth: '32px',
-            minHeight: '32px',
+            minWidth: 'var(--mui-density-touch-target)',
+            minHeight: 'var(--mui-density-touch-target)',
             alignItems: 'center',
           },
         ],
@@ -7173,12 +7173,12 @@ const low = {
       styleOverrides: {
         root: [
           {
-            fontSize: '22px',
+            fontSize: 'calc(var(--mui-density-touch-target) - calc(calc(1.25 * var(--mui-spacing, 8px)) * var(--mui-scaling)))',
           },
         ],
         text: [
           {
-            fontSize: '0.875rem',
+            fontSize: 'calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
           },
         ],
       },
@@ -7194,7 +7194,7 @@ const low = {
                   alternativeLabel: true,
                 },
                 style: {
-                  top: 'calc(32px / 2)',
+                  top: 'calc(var(--mui-density-touch-target) / 2)',
                 },
               },
               {
@@ -7203,7 +7203,7 @@ const low = {
                   alternativeLabel: false,
                 },
                 style: {
-                  marginLeft: 'calc(32px / 2)',
+                  marginLeft: 'calc(var(--mui-density-touch-target) / 2)',
                 },
               },
               {
@@ -7212,7 +7212,7 @@ const low = {
                   alternativeLabel: true,
                 },
                 style: {
-                  marginRight: 'calc(32px / 2)',
+                  marginRight: 'calc(var(--mui-density-touch-target) / 2)',
                 },
               },
             ],
@@ -7230,8 +7230,8 @@ const low = {
                   alternativeLabel: false,
                 },
                 style: {
-                  marginLeft: 'calc(32px / 2)',
-                  paddingLeft: 'calc(32px / 2)',
+                  marginLeft: 'calc(var(--mui-density-touch-target) / 2)',
+                  paddingLeft: 'calc(var(--mui-density-touch-target) / 2)',
                 },
               },
               {
@@ -7239,8 +7239,8 @@ const low = {
                   alternativeLabel: true,
                 },
                 style: {
-                  marginRight: 'calc(32px / 2)',
-                  paddingRight: 'calc(32px / 2)',
+                  marginRight: 'calc(var(--mui-density-touch-target) / 2)',
+                  paddingRight: 'calc(var(--mui-density-touch-target) / 2)',
                 },
               },
             ],

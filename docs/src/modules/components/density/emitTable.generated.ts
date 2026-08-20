@@ -6872,7 +6872,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'top',
     },
-    values: { high: 'calc(32px / 2)', medium: 'calc(32px / 2)', low: 'calc(32px / 2)' },
+    values: {
+      high: 'calc(var(--mui-density-touch-target) / 2)',
+      medium: 'calc(var(--mui-density-touch-target) / 2)',
+      low: 'calc(var(--mui-density-touch-target) / 2)',
+    },
   },
   {
     id: 'MuiStepConnector|root|alternativeLabel=false,orientation=vertical||marginLeft',
@@ -6886,7 +6890,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'marginLeft',
     },
-    values: { high: 'calc(32px / 2)', medium: 'calc(32px / 2)', low: 'calc(32px / 2)' },
+    values: {
+      high: 'calc(var(--mui-density-touch-target) / 2)',
+      medium: 'calc(var(--mui-density-touch-target) / 2)',
+      low: 'calc(var(--mui-density-touch-target) / 2)',
+    },
   },
   {
     id: 'MuiStepConnector|root|alternativeLabel=true,orientation=vertical||marginRight',
@@ -6900,7 +6908,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'marginRight',
     },
-    values: { high: 'calc(32px / 2)', medium: 'calc(32px / 2)', low: 'calc(32px / 2)' },
+    values: {
+      high: 'calc(var(--mui-density-touch-target) / 2)',
+      medium: 'calc(var(--mui-density-touch-target) / 2)',
+      low: 'calc(var(--mui-density-touch-target) / 2)',
+    },
   },
   {
     id: 'MuiStepContent|root|alternativeLabel=false||marginLeft',
@@ -6914,7 +6926,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'marginLeft',
     },
-    values: { high: 'calc(32px / 2)', medium: 'calc(32px / 2)', low: 'calc(32px / 2)' },
+    values: {
+      high: 'calc(var(--mui-density-touch-target) / 2)',
+      medium: 'calc(var(--mui-density-touch-target) / 2)',
+      low: 'calc(var(--mui-density-touch-target) / 2)',
+    },
   },
   {
     id: 'MuiStepContent|root|alternativeLabel=false||paddingLeft',
@@ -6928,7 +6944,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'paddingLeft',
     },
-    values: { high: 'calc(32px / 2)', medium: 'calc(32px / 2)', low: 'calc(32px / 2)' },
+    values: {
+      high: 'calc(var(--mui-density-touch-target) / 2)',
+      medium: 'calc(var(--mui-density-touch-target) / 2)',
+      low: 'calc(var(--mui-density-touch-target) / 2)',
+    },
   },
   {
     id: 'MuiStepContent|root|alternativeLabel=true||marginRight',
@@ -6942,7 +6962,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'marginRight',
     },
-    values: { high: 'calc(32px / 2)', medium: 'calc(32px / 2)', low: 'calc(32px / 2)' },
+    values: {
+      high: 'calc(var(--mui-density-touch-target) / 2)',
+      medium: 'calc(var(--mui-density-touch-target) / 2)',
+      low: 'calc(var(--mui-density-touch-target) / 2)',
+    },
   },
   {
     id: 'MuiStepContent|root|alternativeLabel=true||paddingRight',
@@ -6956,7 +6980,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'paddingRight',
     },
-    values: { high: 'calc(32px / 2)', medium: 'calc(32px / 2)', low: 'calc(32px / 2)' },
+    values: {
+      high: 'calc(var(--mui-density-touch-target) / 2)',
+      medium: 'calc(var(--mui-density-touch-target) / 2)',
+      low: 'calc(var(--mui-density-touch-target) / 2)',
+    },
   },
   {
     id: 'MuiStepIcon|root|base||fontSize',
@@ -6970,7 +6998,12 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'fontSize',
     },
-    values: { high: '22px', medium: '22px', low: '22px' },
+    values: {
+      high: 'calc(var(--mui-density-touch-target) - calc(calc(1.25 * var(--mui-spacing, 8px)) * var(--mui-scaling)))',
+      medium:
+        'calc(var(--mui-density-touch-target) - calc(calc(1.25 * var(--mui-spacing, 8px)) * var(--mui-scaling)))',
+      low: 'calc(var(--mui-density-touch-target) - calc(calc(1.25 * var(--mui-spacing, 8px)) * var(--mui-scaling)))',
+    },
   },
   {
     id: 'MuiStepIcon|text|base||fontSize',
@@ -6984,7 +7017,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'fontSize',
     },
-    values: { high: '0.875rem', medium: '0.875rem', low: '0.875rem' },
+    values: {
+      high: 'calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+      medium: 'calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+      low: 'calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+    },
   },
   {
     id: 'MuiStepLabel|iconContainer|base||padding',
@@ -7017,8 +7054,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiStepLabel|iconContainer|base||minWidth',
     label: 'StepLabel · iconContainer · minWidth',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'touch-target',
     target: {
       component: 'MuiStepLabel',
       slot: 'iconContainer',
@@ -7026,13 +7063,17 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minWidth',
     },
-    values: { high: '32px', medium: '32px', low: '32px' },
+    values: {
+      high: 'var(--mui-density-touch-target)',
+      medium: 'var(--mui-density-touch-target)',
+      low: 'var(--mui-density-touch-target)',
+    },
   },
   {
     id: 'MuiStepLabel|iconContainer|base||minHeight',
     label: 'StepLabel · iconContainer · minHeight',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'touch-target',
     target: {
       component: 'MuiStepLabel',
       slot: 'iconContainer',
@@ -7040,7 +7081,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minHeight',
     },
-    values: { high: '32px', medium: '32px', low: '32px' },
+    values: {
+      high: 'var(--mui-density-touch-target)',
+      medium: 'var(--mui-density-touch-target)',
+      low: 'var(--mui-density-touch-target)',
+    },
   },
   {
     id: 'MuiStepLabel|iconContainer|base||alignItems',

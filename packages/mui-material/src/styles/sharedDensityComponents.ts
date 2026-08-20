@@ -798,8 +798,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
   });
   addRootOverride(enhanced.components, 'MuiAutocomplete', { margin: '1px' }, 'tag');
-  // Horizontal step gutter: first paddingLeft / last paddingRight zeroed so the
-  // end nodes sit flush with the stepper edge (raw px).
+  // hasConnector:false = the first step; end nodes sit flush with the edge.
   addRootOverride(enhanced.components, 'MuiStep', {
     variants: [
       {
@@ -812,16 +811,12 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
     ],
   });
-  // Vertical StepLabel row: drop master's 8px block padding so vertical steps
-  // pack tighter (raw px). Horizontal has no root block padding — leave it.
   addRootOverride(enhanced.components, 'MuiStepLabel', {
     variants: [{ props: { orientation: 'vertical' }, style: { paddingBlock: '0px' } }],
   });
-  // alternativeLabel icon→label gap zeroed. Master sets it on the label slot at
-  // 2-class specificity (&.alternativeLabel, 16px), so re-emit the same nested
-  // selector to win; a plain props variant (1 class) would lose. Scoped to
-  // horizontal: master already zeroes vertical alternativeLabel, and an unscoped
-  // emission would stomp that reset.
+  // Master sets the alternativeLabel gap at 2-class specificity — the nested
+  // selector must be re-emitted to win. Horizontal-only: master already zeroes
+  // vertical, an unscoped emission would stomp that reset.
   addRootOverride(
     enhanced.components,
     'MuiStepLabel',
@@ -835,62 +830,59 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'label',
   );
-  // Node touch box: semantic/size/touch-target/default (32px, raw px) —
-  // step-indicator.yml's node wrapper. padding:0 kills master's paddingRight
-  // gap; the icon→label spacing now falls out of centering the 22px icon in the
-  // wider box (justify/align center both axes; both ride the touch-target knob).
+  // Icon→label spacing falls out of centering the circle in the touch box.
   addRootOverride(
     enhanced.components,
     'MuiStepLabel',
     {
       padding: '0px',
       justifyContent: 'center',
-      minWidth: '32px',
-      minHeight: '32px',
+      minWidth: d['touch-target'],
+      minHeight: d['touch-target'],
       alignItems: 'center',
     },
     'iconContainer',
   );
-  // Step node circle = design node size (22px, raw px). Must land on MuiStepIcon
-  // root, not iconContainer: StepIcon is an SvgIcon sized from its own fontSize
-  // (w/h = 1em), so a parent iconContainer fontSize can't reach it. The number
-  // glyph rides the text slot (0.875rem, raw rem).
-  addRootOverride(enhanced.components, 'MuiStepIcon', { fontSize: '22px' });
-  addRootOverride(enhanced.components, 'MuiStepIcon', { fontSize: '0.875rem' }, 'text');
-  // Connector aligns to the node touch box: touchTarget/2 (icon center, since the
-  // icon is centered in the box). Master's `half icon` (12) is off now the icon
-  // lives in a 32px box. Scoped per case; the node-touch-target knob re-derives
-  // via a linked write. (Vertical alt keeps master's marginLeft:auto; only the
-  // marginRight side moves.)
+  // Circle must land on MuiStepIcon root: an SvgIcon sizes off its OWN
+  // fontSize (w/h = 1em) — a parent iconContainer fontSize can't reach it.
+  addRootOverride(enhanced.components, 'MuiStepIcon', {
+    fontSize: `calc(${d['touch-target']} - ${sp(1.25)})`,
+  });
+  addRootOverride(enhanced.components, 'MuiStepIcon', { fontSize: sp(1.75) }, 'text');
+  // Vertical-alt keeps master's marginLeft:auto — only marginRight moves.
   addRootOverride(enhanced.components, 'MuiStepConnector', {
     variants: [
       {
         props: { orientation: 'horizontal', alternativeLabel: true },
-        style: { top: 'calc(32px / 2)' },
+        style: { top: `calc(${d['touch-target']} / 2)` },
       },
       {
         props: { orientation: 'vertical', alternativeLabel: false },
-        style: { marginLeft: 'calc(32px / 2)' },
+        style: { marginLeft: `calc(${d['touch-target']} / 2)` },
       },
       {
         props: { orientation: 'vertical', alternativeLabel: true },
-        style: { marginRight: 'calc(32px / 2)' },
+        style: { marginRight: `calc(${d['touch-target']} / 2)` },
       },
     ],
   });
-  // StepContent border + text track the node touch box (vertical only). margin =
-  // touchTarget/2 puts the left border on the icon center (== connector); margin +
-  // padding = touchTarget so the content text lines up with the label. Mirrored on
-  // the right for vertical alt. Both derive from the node-touch-target knob.
+  // margin = half box lands the border on the icon center; margin + padding
+  // = the full box aligns content text with the label.
   addRootOverride(enhanced.components, 'MuiStepContent', {
     variants: [
       {
         props: { alternativeLabel: false },
-        style: { marginLeft: 'calc(32px / 2)', paddingLeft: 'calc(32px / 2)' },
+        style: {
+          marginLeft: `calc(${d['touch-target']} / 2)`,
+          paddingLeft: `calc(${d['touch-target']} / 2 - 1px)`, // 1px account for the border
+        },
       },
       {
         props: { alternativeLabel: true },
-        style: { marginRight: 'calc(32px / 2)', paddingRight: 'calc(32px / 2)' },
+        style: {
+          marginRight: `calc(${d['touch-target']} / 2)`,
+          paddingRight: `calc(${d['touch-target']} / 2 - 1px)`, // 1px account for the border
+        },
       },
     ],
   });
