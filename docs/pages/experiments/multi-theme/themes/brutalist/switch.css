@@ -1,0 +1,59 @@
+:where([data-mui-theme='brutalist']) .MuiSwitch-root.MuiSwitch-root {
+  width: 70px;
+  height: 34px;
+  padding: 0;
+  overflow: visible;
+}
+
+:where([data-mui-theme='brutalist']) .MuiSwitch-switchBase.MuiSwitch-switchBase {
+  padding: 4px;
+  color: var(--multi-theme-ink);
+  transition: transform 80ms steps(2, end);
+}
+
+:where([data-mui-theme='brutalist']) .MuiSwitch-switchBase.MuiSwitch-switchBase.Mui-checked {
+  color: var(--multi-theme-ink);
+  transform: translateX(36px);
+}
+
+:where([data-mui-theme='brutalist'])
+  .MuiSwitch-switchBase.MuiSwitch-switchBase.Mui-checked
+  + .MuiSwitch-track {
+  background: var(--multi-theme-accent);
+  opacity: 1;
+}
+
+:where([data-mui-theme='brutalist']) .MuiSwitch-switchBase.MuiSwitch-switchBase.Mui-focusVisible {
+  outline: 4px solid var(--multi-theme-focus);
+  outline-offset: 2px;
+}
+
+:where([data-mui-theme='brutalist']) .MuiSwitch-thumb.MuiSwitch-thumb {
+  width: 26px;
+  height: 26px;
+  background: var(--multi-theme-surface);
+  border: 3px solid var(--multi-theme-ink);
+  border-radius: 0;
+  box-shadow: 3px 3px 0 var(--multi-theme-ink);
+}
+
+:where([data-mui-theme='brutalist']) .MuiSwitch-track.MuiSwitch-track {
+  background:
+    repeating-linear-gradient(135deg, transparent 0 6px, rgb(17 17 17 / 14%) 6px 10px),
+    var(--multi-theme-track);
+  border: 3px solid var(--multi-theme-ink);
+  border-radius: 0;
+  opacity: 1;
+}
+
+:where([data-mui-theme='brutalist']) .MuiSwitch-switchBase.MuiSwitch-switchBase.Mui-disabled {
+  color: var(--multi-theme-disabled);
+}
+
+:where([data-mui-theme='brutalist'])
+  .MuiSwitch-switchBase.MuiSwitch-switchBase.Mui-disabled
+  + .MuiSwitch-track {
+  background: var(--multi-theme-disabled-bg);
+  border-color: var(--multi-theme-disabled);
+  opacity: 1;
+}
