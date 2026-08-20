@@ -148,6 +148,12 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     note: 'Centers the icon when unselected with a hidden label (net master condition — the no-label zero state stays untouched).',
   },
   'MuiBreadcrumbs|ol|base||minHeight': { label: 'Breadcrumbs · ol · minHeight', done: ['medium'] },
+  'MuiBreadcrumbs|ol|base|& a|display': 'Breadcrumbs · ol · display',
+  'MuiBreadcrumbs|ol|base|& a|lineHeight': 'Breadcrumbs · ol · lineHeight',
+  'MuiBreadcrumbs|ol|base|& li>.MuiButtonBase-root|paddingInline':
+    'Breadcrumbs · ol · paddingInline',
+  'MuiBreadcrumbs|ol|base|& li>.MuiButtonBase-root|height': 'Breadcrumbs · ol · height',
+  'MuiBreadcrumbs|ol|base|& li>.MuiButtonBase-root|margin': 'Breadcrumbs · ol · margin',
   'MuiBreadcrumbs|separator|base||marginInline': 'Breadcrumbs · separator · marginInline',
   'MuiButton|endIcon|base|& > *:nth-of-type(1)|fontSize': 'Button · endIcon · fontSize',
   'MuiButton|root|base||fontFamily': 'Button · fontFamily',

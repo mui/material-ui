@@ -1083,12 +1083,21 @@ const high = {
       styleOverrides: {
         separator: [
           {
-            marginInline: 'var(--mui-density-small)',
+            marginInline: 'var(--mui-density-x-small)',
           },
         ],
         ol: [
           {
-            minHeight: '32px',
+            minHeight: 'var(--mui-density-touch-target)',
+            '& a': {
+              display: 'inline-flex',
+              lineHeight: 'var(--mui-density-touch-target)',
+            },
+            '& li>.MuiButtonBase-root': {
+              paddingInline: 'var(--mui-density-x-small)',
+              height: 'var(--mui-density-touch-target)',
+              margin: 0,
+            },
           },
         ],
       },
@@ -3936,12 +3945,21 @@ const medium = {
       styleOverrides: {
         separator: [
           {
-            marginInline: 'var(--mui-density-small)',
+            marginInline: 'var(--mui-density-x-small)',
           },
         ],
         ol: [
           {
-            minHeight: '32px',
+            minHeight: 'var(--mui-density-touch-target)',
+            '& a': {
+              display: 'inline-flex',
+              lineHeight: 'var(--mui-density-touch-target)',
+            },
+            '& li>.MuiButtonBase-root': {
+              paddingInline: 'var(--mui-density-x-small)',
+              height: 'var(--mui-density-touch-target)',
+              margin: 0,
+            },
           },
         ],
       },
@@ -6792,12 +6810,21 @@ const low = {
       styleOverrides: {
         separator: [
           {
-            marginInline: 'var(--mui-density-small)',
+            marginInline: 'var(--mui-density-x-small)',
           },
         ],
         ol: [
           {
-            minHeight: '32px',
+            minHeight: 'var(--mui-density-touch-target)',
+            '& a': {
+              display: 'inline-flex',
+              lineHeight: 'var(--mui-density-touch-target)',
+            },
+            '& li>.MuiButtonBase-root': {
+              paddingInline: 'var(--mui-density-x-small)',
+              height: 'var(--mui-density-touch-target)',
+              margin: 0,
+            },
           },
         ],
       },

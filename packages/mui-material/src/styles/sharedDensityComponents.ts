@@ -658,11 +658,32 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       { props: { edge: 'end' }, style: { marginRight: `calc(var(--_touchSize) / -8)` } },
     ],
   });
-  // Separator inline margins (spacing step) on the separator slot.
-  addRootOverride(enhanced.components, 'MuiBreadcrumbs', { marginInline: d.small }, 'separator');
-  // Row floor = capture footprint (32px, raw px sizing). On the `ol` slot — the
-  // flex row with align-items: center — so crumbs stay vertically centered.
-  addRootOverride(enhanced.components, 'MuiBreadcrumbs', { minHeight: '32px' }, 'ol');
+  addRootOverride(
+    enhanced.components,
+    'MuiBreadcrumbs',
+    { marginInline: d['x-small'] },
+    'separator',
+  );
+  // Row floor on the `ol` slot — the flex row with align-items: center — so
+  // crumbs stay vertically centered.
+  addRootOverride(
+    enhanced.components,
+    'MuiBreadcrumbs',
+    {
+      minHeight: d['touch-target'],
+      '& a': {
+        display: 'inline-flex',
+        lineHeight: d['touch-target'],
+      },
+      '& li>.MuiButtonBase-root': {
+        // BreadcrumbCollapsed
+        paddingInline: d['x-small'],
+        height: d['touch-target'],
+        margin: 0,
+      },
+    },
+    'ol',
+  );
   addRootOverride(enhanced.components, 'MuiToggleButton', {
     ...enhanced.typography?.button,
     paddingBlock: 0,
