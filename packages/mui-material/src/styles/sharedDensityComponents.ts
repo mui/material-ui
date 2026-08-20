@@ -1354,42 +1354,35 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     // Consumers are base (they read whatever var is in scope); the var
     // DECLARATIONS live on explicit size variants so a knob edit rebuilds
     // size-scoped and never bleeds into the other size.
+    '--_pad': `calc((var(--_height) - var(--_thumbHeight)/1.4285714286) / 2)`, // to maintain the original ratio
+    '--_width': `calc(var(--_thumbHeight)*1.7 + var(--_pad)*2)`, // to maintain the original ratio
     width: 'var(--_width)',
     height: 'var(--_height)',
     padding: 'var(--_pad)',
+    [`.${formControlLabelClasses.labelPlacementEnd} &`]: {
+      marginLeft: 'calc(-1 * var(--_pad))',
+    },
+    [`.${formControlLabelClasses.labelPlacementStart} &`]: {
+      marginRight: 'calc(-1 * var(--_pad))',
+    },
     variants: [
       {
         props: { size: 'medium' },
         style: {
-          '--_width': '58px',
-          '--_height': '38px',
-          '--_thumbHeight': '20px',
-          '--_thumbWidth': '20px',
-          // Invariant: --_touchSize >= --_thumbHeight — the switchBase padding is
-          // calc((--_touchSize - --_thumbHeight) / 2), which clips (goes negative)
-          // if the touch target is smaller than the thumb height.
-          '--_touchSize': '38px',
-          '--_pad': '12px',
-          // Label pull mirrors the gutter (Checkbox pattern); the gutter knob
-          // re-writes these via the playground's linked-write registry.
-          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: { marginLeft: '-12px' },
-          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: { marginRight: '-12px' },
+          '--_height': d['touch-target'],
+          '--_touchSize': d['touch-target'],
+          '--_thumbHeight': d.medium,
+          '--_thumbWidth': d.medium,
         },
       },
       {
         props: { size: 'small' },
         style: {
-          '--_width': '40px',
-          '--_height': '24px',
-          '--_thumbHeight': '16px',
-          '--_thumbWidth': '16px',
+          '--_height': d.large,
           // Invariant: --_touchSize >= --_thumbHeight (see medium — padding clips).
-          '--_touchSize': '24px',
-          '--_pad': '7px',
-          // Label pull mirrors the gutter (Checkbox pattern); the gutter knob
-          // re-writes these via the playground's linked-write registry.
-          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: { marginLeft: '-7px' },
-          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: { marginRight: '-7px' },
+          '--_touchSize': d.large,
+          '--_thumbHeight': `calc(${d.medium} - 4px)`,
+          '--_thumbWidth': `calc(${d.medium} - 4px)`,
           // Master's small rules sit nested under the root variant at higher
           // specificity — re-assert the derivations there or they lose for small.
           [`& .${switchClasses.thumb}`]: {
@@ -1405,9 +1398,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           },
         },
       },
-      // edge start/end: -4px flush-margins (override master's -8; on the Switch root).
-      { props: { edge: 'start' }, style: { marginLeft: '-4px' } },
-      { props: { edge: 'end' }, style: { marginRight: '-4px' } },
+      { props: { edge: 'start' }, style: { marginLeft: 'calc(-1 * var(--_pad))' } },
+      { props: { edge: 'end' }, style: { marginRight: 'calc(-1 * var(--_pad))' } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiButtonGroup', {

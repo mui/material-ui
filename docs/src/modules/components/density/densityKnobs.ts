@@ -1326,6 +1326,8 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiSvgIcon|root|fontSize=medium||fontSize': 'Svg icon · size [medium]',
   'MuiSvgIcon|root|fontSize=large||fontSize': 'Svg icon · size [large]',
+  'MuiSwitch|root|base||--_pad': 'Switch · --_pad',
+  'MuiSwitch|root|base||--_width': 'Switch · --_width',
   'MuiSwitch|root|base||width': {
     label: 'Switch · width',
     hidden: true,
@@ -1341,38 +1343,29 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Geometry derives from the six per-size Switch vars — the var rows are the knobs.',
   },
-  'MuiSwitch|root|size=medium||--_width': 'Switch · width [size=medium]',
+  'MuiSwitch|root|base|.MuiFormControlLabel-labelPlacementEnd &|marginLeft': 'Switch · marginLeft',
+  'MuiSwitch|root|base|.MuiFormControlLabel-labelPlacementStart &|marginRight':
+    'Switch · marginRight',
   'MuiSwitch|root|size=medium||--_height': 'Switch · height [size=medium]',
+  'MuiSwitch|root|size=medium||--_touchSize': {
+    label: 'Switch · touch size [size=medium]',
+    note: 'Must stay >= thumb size (--_thumbHeight): the switchBase padding calc((--_touchSize - --_thumbHeight) / 2) goes negative below it.',
+  },
   'MuiSwitch|root|size=medium||--_thumbHeight': {
     label: 'Switch · thumb size [size=medium]',
     note: 'Keep <= touch size (--_touchSize): the switchBase padding is calc((--_touchSize - --_thumbHeight) / 2) and clips if the thumb height exceeds it.',
   },
   'MuiSwitch|root|size=medium||--_thumbWidth': 'Switch · thumb width [size=medium]',
-  'MuiSwitch|root|size=medium||--_touchSize': {
-    label: 'Switch · touch size [size=medium]',
+  'MuiSwitch|root|size=small||--_height': 'Switch · height [size=small]',
+  'MuiSwitch|root|size=small||--_touchSize': {
+    label: 'Switch · touch size [size=small]',
     note: 'Must stay >= thumb size (--_thumbHeight): the switchBase padding calc((--_touchSize - --_thumbHeight) / 2) goes negative below it.',
   },
-  'MuiSwitch|root|size=medium||--_pad': 'Switch · gutter [size=medium]',
-  'MuiSwitch|root|size=medium|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft':
-    'Switch · marginLeft [size=medium]',
-  'MuiSwitch|root|size=medium|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight':
-    'Switch · marginRight [size=medium]',
-  'MuiSwitch|root|size=small||--_width': 'Switch · width [size=small]',
-  'MuiSwitch|root|size=small||--_height': 'Switch · height [size=small]',
   'MuiSwitch|root|size=small||--_thumbHeight': {
     label: 'Switch · thumb size [size=small]',
     note: 'Keep <= touch size (--_touchSize): the switchBase padding is calc((--_touchSize - --_thumbHeight) / 2) and clips if the thumb height exceeds it.',
   },
   'MuiSwitch|root|size=small||--_thumbWidth': 'Switch · thumb width [size=small]',
-  'MuiSwitch|root|size=small||--_touchSize': {
-    label: 'Switch · touch size [size=small]',
-    note: 'Must stay >= thumb size (--_thumbHeight): the switchBase padding calc((--_touchSize - --_thumbHeight) / 2) goes negative below it.',
-  },
-  'MuiSwitch|root|size=small||--_pad': 'Switch · gutter [size=small]',
-  'MuiSwitch|root|size=small|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft':
-    'Switch · marginLeft [size=small]',
-  'MuiSwitch|root|size=small|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight':
-    'Switch · marginRight [size=small]',
   'MuiSwitch|root|size=small|& .MuiSwitch-thumb|width': {
     label: 'Switch · width [size=small]',
     hidden: true,

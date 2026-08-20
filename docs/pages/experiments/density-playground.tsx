@@ -1730,18 +1730,28 @@ function RadioMatrix() {
   );
 }
 
-function SwitchGroupDemo({ size }: { size: 'small' | 'medium' }) {
+function SwitchGroupDemo({
+  size,
+  labelPlacement = 'end',
+}: {
+  size: 'small' | 'medium';
+  labelPlacement?: 'start' | 'end';
+}) {
   const opts = [
     { label: 'Wi-Fi', checked: true },
     { label: 'Bluetooth', checked: false },
   ];
   return (
     <FormControl component="fieldset">
-      <FormLabel sx={{ typography: 'caption' }}>Connectivity ({size})</FormLabel>
+      <FormLabel sx={{ typography: 'caption' }}>
+        Connectivity ({size}
+        {labelPlacement === 'start' ? ', label start' : ''})
+      </FormLabel>
       <FormGroup>
         {opts.map((o) => (
           <FormControlLabel
             key={o.label}
+            labelPlacement={labelPlacement}
             control={<Switch size={size} defaultChecked={o.checked} />}
             label={<span className="density-debug-text">{o.label}</span>}
           />
@@ -1761,6 +1771,8 @@ function SwitchMatrix() {
     >
       <SwitchGroupDemo size="medium" />
       <SwitchGroupDemo size="small" />
+      <SwitchGroupDemo size="medium" labelPlacement="start" />
+      <SwitchGroupDemo size="small" labelPlacement="start" />
     </Stack>
   );
 }

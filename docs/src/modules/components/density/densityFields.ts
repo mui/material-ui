@@ -602,7 +602,6 @@ export interface DensityLinkedWrite {
   wrap: (resolvedValue: string) => string;
 }
 
-const negate = (v: string) => `calc(-1 * ${v})`;
 const half = (v: string) => `calc(${v} / 2)`;
 
 export const densityLinkedWrites: Record<string, DensityLinkedWrite[]> = {
@@ -710,27 +709,6 @@ export const densityLinkedWrites: Record<string, DensityLinkedWrite[]> = {
     { id: 'MuiFilledInput|input|multiline=true||paddingInline', wrap: () => '0px' },
     { id: 'MuiFilledInput|input|fn:4q8gcu||paddingLeft', wrap: () => '0px' },
     { id: 'MuiFilledInput|input|fn:ho424h||paddingRight', wrap: () => '0px' },
-  ],
-  // Switch gutter -> FormControlLabel pull (marginLeft/right = -gutter).
-  'MuiSwitch|root|size=medium||--_pad': [
-    {
-      id: 'MuiSwitch|root|size=medium|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft',
-      wrap: negate,
-    },
-    {
-      id: 'MuiSwitch|root|size=medium|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight',
-      wrap: negate,
-    },
-  ],
-  'MuiSwitch|root|size=small||--_pad': [
-    {
-      id: 'MuiSwitch|root|size=small|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft',
-      wrap: negate,
-    },
-    {
-      id: 'MuiSwitch|root|size=small|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight',
-      wrap: negate,
-    },
   ],
   // Thumb size (--_thumbHeight) also writes the thumb width (square by default);
   // the width var is a separate hidden knob, so an explicit width edit (applied
