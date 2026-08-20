@@ -37,6 +37,12 @@ export interface A11yRule {
   /** Minimatch glob against `docs/data/material/components/{slug}/{Demo}`. */
   test: string;
   enabled?: boolean;
+  /**
+   * `visual` asserts rules that depend on rendered CSS. `all` asserts every
+   * axe violation/incomplete that is not listed in `skipAssertions`.
+   * @default 'visual'
+   */
+  assertions?: 'visual' | 'all';
   /** Axe rule IDs recorded into results JSON but not asserted on. */
   skipAssertions?: string[];
 }
@@ -153,7 +159,11 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
  * Initial PR scope: `buttons` only. Other components onboard incrementally.
  */
 export const A11Y_RULES: A11yRule[] = [
-  { test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
+  {
+    test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}',
+    enabled: true,
+    assertions: 'all',
+  },
 ];
 
 export interface ParsedRoute {
