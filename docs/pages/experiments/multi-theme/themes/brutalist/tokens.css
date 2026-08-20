@@ -1,0 +1,20 @@
+:where([data-mui-theme='brutalist']) {
+  --multi-theme-accent: #ff4d00;
+  --multi-theme-accent-contrast: #111111;
+  --multi-theme-accent-dark: #d83b00;
+  --multi-theme-canvas: #ffef3b;
+  --multi-theme-disabled: #666666;
+  --multi-theme-disabled-bg: #c6c6c6;
+  --multi-theme-focus: #006cff;
+  --multi-theme-font: 'Arial Black', Arial, Helvetica, sans-serif;
+  --multi-theme-frame-border: 3px solid #111111;
+  --multi-theme-frame-radius: 0;
+  --multi-theme-frame-shadow: 10px 10px 0 #111111;
+  --multi-theme-heading-spacing: -0.055em;
+  --multi-theme-ink: #111111;
+  --multi-theme-letter-spacing: 0.06em;
+  --multi-theme-muted: #3d3d3d;
+  --multi-theme-surface: #ffffff;
+  --multi-theme-track: #ffffff;
+  color-scheme: light;
+}

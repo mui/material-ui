@@ -1,0 +1,95 @@
+:where([data-mui-theme='polished']) .MuiButton-root.MuiButton-root {
+  position: relative;
+  min-width: 0;
+  padding: 10px 18px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-family: var(--multi-theme-font);
+  font-size: 0.875rem;
+  font-weight: 720;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  box-shadow: none;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+:where([data-mui-theme='polished']) .MuiButton-root.MuiButton-root::after {
+  position: absolute;
+  top: -50%;
+  left: -35%;
+  width: 24%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 48%), transparent);
+  content: '';
+  pointer-events: none;
+  transform: translateX(-180%) rotate(18deg);
+  transition: transform 360ms ease;
+}
+
+:where([data-mui-theme='polished']) .MuiButton-root.MuiButton-root:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+:where([data-mui-theme='polished']) .MuiButton-root.MuiButton-root:hover::after {
+  transform: translateX(650%) rotate(18deg);
+}
+
+:where([data-mui-theme='polished']) .MuiButton-root.MuiButton-contained.MuiButton-colorPrimary {
+  color: var(--multi-theme-accent-contrast);
+  background: linear-gradient(135deg, #7669e7, var(--multi-theme-accent));
+  box-shadow: 0 8px 20px rgb(101 88 211 / 24%);
+}
+
+:where([data-mui-theme='polished'])
+  .MuiButton-root.MuiButton-contained.MuiButton-colorPrimary:hover {
+  background: linear-gradient(135deg, #6c60dc, var(--multi-theme-accent-dark));
+  box-shadow: 0 10px 26px rgb(101 88 211 / 32%);
+}
+
+:where([data-mui-theme='polished']) .MuiButton-root.MuiButton-outlined.MuiButton-colorPrimary {
+  color: var(--multi-theme-accent-dark);
+  background-color: rgb(255 255 255 / 74%);
+  border-color: rgb(101 88 211 / 30%);
+  backdrop-filter: blur(8px);
+}
+
+:where([data-mui-theme='polished'])
+  .MuiButton-root.MuiButton-outlined.MuiButton-colorPrimary:hover {
+  background-color: #ffffff;
+  border-color: var(--multi-theme-accent);
+}
+
+:where([data-mui-theme='polished']) .MuiButton-root.MuiButton-text.MuiButton-colorPrimary {
+  color: var(--multi-theme-muted);
+  background-color: transparent;
+}
+
+:where([data-mui-theme='polished']) .MuiButton-root.MuiButton-text.MuiButton-colorPrimary:hover {
+  color: var(--multi-theme-accent-dark);
+  background-color: rgb(101 88 211 / 8%);
+}
+
+:where([data-mui-theme='polished']) .MuiButton-root.MuiButton-sizeSmall {
+  padding: 7px 13px;
+  font-size: 0.8125rem;
+}
+
+:where([data-mui-theme='polished']) .MuiButton-root.MuiButton-root.Mui-focusVisible {
+  box-shadow: 0 0 0 4px var(--multi-theme-focus);
+}
+
+:where([data-mui-theme='polished']) .MuiButton-root.MuiButton-root.Mui-disabled {
+  color: var(--multi-theme-disabled);
+  background: var(--multi-theme-disabled-bg);
+  border-color: transparent;
+  box-shadow: none;
+  transform: none;
+}
