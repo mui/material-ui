@@ -5,6 +5,7 @@ import { chromium } from '@playwright/test';
 import { test as base } from 'vitest';
 import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
 import { A11Y_RULES, DEFAULT_VIEWPORT, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
+import { stubAlgoliaSearch, unstubAlgoliaSearch } from './algoliaSearchStub';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const AXE_SCRIPT = path.resolve(currentDirectory, '../../node_modules/axe-core/axe.min.js');
@@ -298,6 +299,22 @@ async function main() {
           testcase: modal,
           route: `/regression-AppSearch/${fixture}Open`,
         });
+
+        // The results screen carries the markup the start screen never shows:
+        // highlighted matches, breadcrumbs, and the tree connector between a
+        // section and its children.
+        try {
+          await stubAlgoliaSearch(page);
+          await page.locator('.DocSearch-Input').fill('card');
+          await page.waitForSelector('.DocSearch-Hit mark');
+          await takeScreenshot(page, {
+            testcase: modal,
+            route: `/regression-AppSearch/${fixture}Results`,
+          });
+        } finally {
+          // Pages are pooled, so leave the route table as we found it.
+          await unstubAlgoliaSearch(page);
+        }
       });
     });
 
