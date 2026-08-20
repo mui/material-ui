@@ -1614,6 +1614,24 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { high: '0px', medium: '0px', low: '0px' },
   },
   {
+    id: 'MuiCircularProgress|defaultProps|base||size',
+    label: 'CircularProgress · defaultProps · size',
+    isDensity: true,
+    densityKey: 'touch-target',
+    target: {
+      component: 'MuiCircularProgress',
+      slot: 'defaultProps',
+      props: null,
+      nested: '',
+      defaultProp: 'size',
+    },
+    values: {
+      high: 'var(--mui-density-touch-target)',
+      medium: 'var(--mui-density-touch-target)',
+      low: 'var(--mui-density-touch-target)',
+    },
+  },
+  {
     id: 'MuiDataGrid|actionsCell|base||gridGap',
     label: 'DataGrid · actionsCell · gridGap',
     isDensity: true,
@@ -4490,7 +4508,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '4px', medium: '4px', low: '4px' },
+    values: {
+      high: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+      medium: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+      low: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+    },
   },
   {
     id: 'MuiList|root|disablePadding=false||paddingBlock',

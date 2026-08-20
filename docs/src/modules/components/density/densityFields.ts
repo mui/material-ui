@@ -211,6 +211,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiFormControlLabel: ['Checkbox', 'Radio', 'Switch'],
   MuiAvatar: 'Avatar',
   MuiLinearProgress: 'Progress',
+  MuiCircularProgress: 'Progress',
   MuiSlider: 'Slider',
   MuiDivider: 'Divider',
   MuiFab: 'Fab',

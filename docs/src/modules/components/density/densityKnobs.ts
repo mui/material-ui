@@ -311,6 +311,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'Chip · marginRight [size=small]',
     done: ['medium'],
   },
+  'MuiCircularProgress|defaultProps|base||size': 'CircularProgress · defaultProps · size',
   'MuiDataGrid|actionsCell|base||gridGap': 'DataGrid · actionsCell · gridGap',
   'MuiDataGrid|aiAssistantPanel|base||width': {
     label: 'DataGrid · aiAssistantPanel · width',

@@ -2518,10 +2518,16 @@ const high = {
       styleOverrides: {
         root: [
           {
-            height: '4px',
+            height: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
           },
         ],
       },
+    },
+    MuiCircularProgress: {
+      defaultProps: {
+        size: 'var(--mui-density-touch-target)',
+      },
+      styleOverrides: {},
     },
     MuiBadge: {
       styleOverrides: {
@@ -5459,10 +5465,16 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            height: '4px',
+            height: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
           },
         ],
       },
+    },
+    MuiCircularProgress: {
+      defaultProps: {
+        size: 'var(--mui-density-touch-target)',
+      },
+      styleOverrides: {},
     },
     MuiBadge: {
       styleOverrides: {
@@ -8403,10 +8415,16 @@ const low = {
       styleOverrides: {
         root: [
           {
-            height: '4px',
+            height: 'calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
           },
         ],
       },
+    },
+    MuiCircularProgress: {
+      defaultProps: {
+        size: 'var(--mui-density-touch-target)',
+      },
+      styleOverrides: {},
     },
     MuiBadge: {
       styleOverrides: {

@@ -1339,10 +1339,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     width: '40px',
     height: '40px',
   });
-  // Bar thickness = raw px (sizing); bars are absolute top/bottom-0, so the
-  // root height drives every variant (determinate/indeterminate/buffer/query).
-  // semantic/size/feedback/progress/bar/height (4px, measured bbox)
-  addRootOverride(enhanced.components, 'MuiLinearProgress', { height: '4px' });
+  addRootOverride(enhanced.components, 'MuiLinearProgress', { height: sp(0.5) });
+  addDefaultProps(enhanced.components, 'MuiCircularProgress', { size: d['touch-target'] });
   addRootOverride(enhanced.components, 'MuiSlider', {
     // Track thickness = raw px (sizing; rail/track inherit the root box). Touch
     // padding = step on the logical axis (block for horizontal, inline for

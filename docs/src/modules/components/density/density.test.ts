@@ -448,6 +448,9 @@ describe('anchor contract — Button family total height per preset', () => {
       // hits the constraint at every preset (lh resolves at the consumer)
       const outlined = JSON.stringify(theme.components.MuiOutlinedInput.styleOverrides.root);
       expect(outlined, `${level} OutlinedInput`).to.contain('- 1lh) / 2');
+      expect(theme.components.MuiCircularProgress.defaultProps.size, level).to.equal(
+        TOUCH_TARGET[level],
+      );
     }
   });
 });

@@ -65,6 +65,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Alert from '@mui/material/Alert';
 import Chip from '@mui/material/Chip';
 import Avatar from '@mui/material/Avatar';
+import CircularProgress from '@mui/material/CircularProgress';
 import LinearProgress from '@mui/material/LinearProgress';
 import Slider from '@mui/material/Slider';
 import Badge from '@mui/material/Badge';
@@ -1969,7 +1970,7 @@ function SliderMatrix() {
 
 function ProgressMatrix() {
   // Bars need a width to render; alignItems center keeps the height ruler clear
-  // of neighbors. CircularProgress is excluded: its size is an inline-style prop.
+  // of neighbors. CircularProgress box = defaultProps.size (touch-target step).
   return (
     <Stack
       direction="row"
@@ -1977,6 +1978,7 @@ function ProgressMatrix() {
       useFlexGap
       sx={{ mt: 1, alignItems: 'center', flexWrap: 'wrap' }}
     >
+      <CircularProgress variant="determinate" value={65} />
       <Box sx={{ width: 200 }}>
         <LinearProgress />
       </Box>
