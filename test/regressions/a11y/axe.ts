@@ -56,6 +56,18 @@ interface RecordA11yOptions {
   slug: string;
   demo: string;
   /**
+   * `visual` asserts only rules that need real rendered CSS. `all` asserts
+   * every axe violation/incomplete not listed in `skipAssertions`.
+   *
+   * Note that `all` covers the `incomplete` bucket too, so a rule axe cannot
+   * decide on its own — a background it fails to resolve, say — fails the
+   * test rather than passing quietly. That is deliberate: an unresolved rule
+   * is not evidence of conformance. `skipAssertions` is the escape hatch for
+   * a fixture with a known-noisy incomplete; the result still lands in the
+   * JSON, only the assertion is suppressed.
+   */
+  assertions?: 'visual' | 'all';
+  /**
    * Rule ids whose violations are recorded but not asserted on. The rule
    * still runs and still lands in the results JSON — only the test-failing
    * assertion is suppressed.
@@ -73,7 +85,7 @@ interface RecordA11yOptions {
 export function recordA11y(
   ctx: TestContext,
   results: AxeResults,
-  { slug, demo, skipAssertions = [] }: RecordA11yOptions,
+  { slug, demo, assertions = 'visual', skipAssertions = [] }: RecordA11yOptions,
 ): void {
   const rules: Record<string, RuleEntry> = {};
   const buckets: ReadonlyArray<[AxeResults['passes'], RuleStatus]> = [
@@ -99,22 +111,20 @@ export function recordA11y(
   (ctx.task.meta as { a11y?: A11yMeta }).a11y = meta;
 
   const skip = new Set(skipAssertions);
-  const visualViolations = results.violations.filter(
-    (v) => VISUAL_RULES.includes(v.id) && !skip.has(v.id),
-  );
-  const visualIncomplete = results.incomplete.filter(
-    (v) => VISUAL_RULES.includes(v.id) && !skip.has(v.id),
-  );
+  const shouldAssert = (ruleId: string) =>
+    !skip.has(ruleId) && (assertions === 'all' || VISUAL_RULES.includes(ruleId));
+  const assertedViolations = results.violations.filter((v) => shouldAssert(v.id));
+  const assertedIncomplete = results.incomplete.filter((v) => shouldAssert(v.id));
 
   const failures: string[] = [];
-  if (visualViolations.length > 0) {
+  if (assertedViolations.length > 0) {
     failures.push(
-      `${visualViolations.length} axe violation(s):\n\n${formatResults(visualViolations)}`,
+      `${assertedViolations.length} axe violation(s):\n\n${formatResults(assertedViolations)}`,
     );
   }
-  if (visualIncomplete.length > 0) {
+  if (assertedIncomplete.length > 0) {
     failures.push(
-      `${visualIncomplete.length} axe incomplete (needs review):\n\n${formatResults(visualIncomplete)}`,
+      `${assertedIncomplete.length} axe incomplete (needs review):\n\n${formatResults(assertedIncomplete)}`,
     );
   }
   if (failures.length > 0) {
