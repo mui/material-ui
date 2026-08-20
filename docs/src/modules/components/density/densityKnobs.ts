@@ -123,8 +123,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
       note: 'Consumes --_autocompleteInputPadBlock — the var row is the knob.',
     },
   'MuiAutocomplete|tag|base||margin': { label: 'Autocomplete · tag · margin', done: ['medium'] },
+  'MuiAvatar|root|base||--_size': 'Avatar · --_size',
   'MuiAvatar|root|base||width': 'Avatar · width',
   'MuiAvatar|root|base||height': 'Avatar · height',
+  'MuiAvatar|root|base||fontSize': 'Avatar · fontSize',
   'MuiBadge|badge|variant=standard||minWidth': 'Badge · badge · minWidth [variant=standard]',
   'MuiBadge|badge|variant=standard||height': 'Badge · badge · height [variant=standard]',
   'MuiBadge|badge|variant=standard||paddingInline':
@@ -161,6 +163,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     done: ['medium'],
   },
   'MuiCardActions|root|base||padding': 'CardActions · padding',
+  'MuiCardActions|root|base||paddingTop': 'CardActions · paddingTop',
   'MuiCardActions|root|disableSpacing=false||gap': 'CardActions · gap [disableSpacing=false]',
   'MuiCardActions|root|disableSpacing=false|& > :not(style) ~ :not(style)|marginLeft':
     'CardActions · child gap',

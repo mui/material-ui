@@ -1746,7 +1746,7 @@ const high = {
           {
             padding: 'var(--mui-density-medium)',
             '&:last-child': {
-              paddingBottom: 'var(--mui-density-large)',
+              paddingBottom: 'var(--mui-density-medium)',
             },
           },
         ],
@@ -1756,7 +1756,8 @@ const high = {
       styleOverrides: {
         root: [
           {
-            padding: 'var(--mui-density-x-small)',
+            padding: 'var(--mui-density-medium)',
+            paddingTop: 0,
             variants: [
               {
                 props: {
@@ -1779,7 +1780,7 @@ const high = {
         root: [
           {
             padding: 'var(--mui-density-medium)',
-            gap: 'var(--mui-density-medium)',
+            gap: 'var(--mui-density-small)',
           },
         ],
         avatar: [
@@ -2317,8 +2318,10 @@ const high = {
       styleOverrides: {
         root: [
           {
-            width: '40px',
-            height: '40px',
+            '--_size': 'var(--mui-density-touch-target)',
+            width: 'var(--_size)',
+            height: 'var(--_size)',
+            fontSize: 'calc(var(--_size) / 2)',
           },
         ],
       },
@@ -4579,7 +4582,7 @@ const medium = {
           {
             padding: 'var(--mui-density-medium)',
             '&:last-child': {
-              paddingBottom: 'var(--mui-density-large)',
+              paddingBottom: 'var(--mui-density-medium)',
             },
           },
         ],
@@ -4589,7 +4592,8 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            padding: 'var(--mui-density-x-small)',
+            padding: 'var(--mui-density-medium)',
+            paddingTop: 0,
             variants: [
               {
                 props: {
@@ -4612,7 +4616,7 @@ const medium = {
         root: [
           {
             padding: 'var(--mui-density-medium)',
-            gap: 'var(--mui-density-medium)',
+            gap: 'var(--mui-density-small)',
           },
         ],
         avatar: [
@@ -5150,8 +5154,10 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            width: '40px',
-            height: '40px',
+            '--_size': 'var(--mui-density-touch-target)',
+            width: 'var(--_size)',
+            height: 'var(--_size)',
+            fontSize: 'calc(var(--_size) / 2)',
           },
         ],
       },
@@ -7415,7 +7421,7 @@ const low = {
           {
             padding: 'var(--mui-density-medium)',
             '&:last-child': {
-              paddingBottom: 'var(--mui-density-large)',
+              paddingBottom: 'var(--mui-density-medium)',
             },
           },
         ],
@@ -7425,7 +7431,8 @@ const low = {
       styleOverrides: {
         root: [
           {
-            padding: 'var(--mui-density-x-small)',
+            padding: 'var(--mui-density-medium)',
+            paddingTop: 0,
             variants: [
               {
                 props: {
@@ -7448,7 +7455,7 @@ const low = {
         root: [
           {
             padding: 'var(--mui-density-medium)',
-            gap: 'var(--mui-density-medium)',
+            gap: 'var(--mui-density-small)',
           },
         ],
         avatar: [
@@ -7986,8 +7993,10 @@ const low = {
       styleOverrides: {
         root: [
           {
-            width: '40px',
-            height: '40px',
+            '--_size': 'var(--mui-density-touch-target)',
+            width: 'var(--_size)',
+            height: 'var(--_size)',
+            fontSize: 'calc(var(--_size) / 2)',
           },
         ],
       },

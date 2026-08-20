@@ -1268,10 +1268,13 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       { props: { orientation: 'vertical' }, style: { height: d['touch-target'] } },
     ],
   });
+  // AvatarGroup overlap is untouchable: an inline --AvatarGroup-spacing style
+  // from the spacing prop (px numbers only) outranks any styleOverride.
   addRootOverride(enhanced.components, 'MuiAvatar', {
-    // Square size = raw px (sizing).
-    width: '40px',
-    height: '40px',
+    '--_size': d['touch-target'],
+    width: 'var(--_size)',
+    height: 'var(--_size)',
+    fontSize: 'calc(var(--_size) / 2)',
   });
   addRootOverride(enhanced.components, 'MuiLinearProgress', { height: sp(0.5) });
   addDefaultProps(enhanced.components, 'MuiCircularProgress', { size: d['touch-target'] });

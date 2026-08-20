@@ -507,12 +507,30 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { high: '1px', medium: '1px', low: '1px' },
   },
   {
+    id: 'MuiAvatar|root|base||--_size',
+    label: 'Avatar · --_size',
+    isDensity: true,
+    densityKey: 'touch-target',
+    target: {
+      component: 'MuiAvatar',
+      slot: 'root',
+      props: null,
+      nested: '',
+      privateVar: '--_size',
+    },
+    values: {
+      high: 'var(--mui-density-touch-target)',
+      medium: 'var(--mui-density-touch-target)',
+      low: 'var(--mui-density-touch-target)',
+    },
+  },
+  {
     id: 'MuiAvatar|root|base||width',
     label: 'Avatar · width',
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiAvatar', slot: 'root', props: null, nested: '', cssProp: 'width' },
-    values: { high: '40px', medium: '40px', low: '40px' },
+    values: { high: 'var(--_size)', medium: 'var(--_size)', low: 'var(--_size)' },
   },
   {
     id: 'MuiAvatar|root|base||height',
@@ -520,7 +538,19 @@ export const densityEmitTable: DensityEmitRow[] = [
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiAvatar', slot: 'root', props: null, nested: '', cssProp: 'height' },
-    values: { high: '40px', medium: '40px', low: '40px' },
+    values: { high: 'var(--_size)', medium: 'var(--_size)', low: 'var(--_size)' },
+  },
+  {
+    id: 'MuiAvatar|root|base||fontSize',
+    label: 'Avatar · fontSize',
+    isDensity: false,
+    densityKey: null,
+    target: { component: 'MuiAvatar', slot: 'root', props: null, nested: '', cssProp: 'fontSize' },
+    values: {
+      high: 'calc(var(--_size) / 2)',
+      medium: 'calc(var(--_size) / 2)',
+      low: 'calc(var(--_size) / 2)',
+    },
   },
   {
     id: 'MuiBadge|badge|variant=standard||minWidth',
@@ -957,7 +987,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiCardActions|root|base||padding',
     label: 'CardActions · padding',
     isDensity: true,
-    densityKey: 'x-small',
+    densityKey: 'medium',
     target: {
       component: 'MuiCardActions',
       slot: 'root',
@@ -966,10 +996,24 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-x-small)',
-      medium: 'var(--mui-density-x-small)',
-      low: 'var(--mui-density-x-small)',
+      high: 'var(--mui-density-medium)',
+      medium: 'var(--mui-density-medium)',
+      low: 'var(--mui-density-medium)',
     },
+  },
+  {
+    id: 'MuiCardActions|root|base||paddingTop',
+    label: 'CardActions · paddingTop',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiCardActions',
+      slot: 'root',
+      props: null,
+      nested: '',
+      cssProp: 'paddingTop',
+    },
+    values: { high: '0', medium: '0', low: '0' },
   },
   {
     id: 'MuiCardActions|root|disableSpacing=false||gap',
@@ -1025,7 +1069,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiCardContent|root|base|&:last-child|paddingBottom',
     label: 'CardContent · paddingBottom',
     isDensity: true,
-    densityKey: 'large',
+    densityKey: 'medium',
     target: {
       component: 'MuiCardContent',
       slot: 'root',
@@ -1034,9 +1078,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBottom',
     },
     values: {
-      high: 'var(--mui-density-large)',
-      medium: 'var(--mui-density-large)',
-      low: 'var(--mui-density-large)',
+      high: 'var(--mui-density-medium)',
+      medium: 'var(--mui-density-medium)',
+      low: 'var(--mui-density-medium)',
     },
   },
   {
@@ -1111,12 +1155,12 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiCardHeader|root|base||gap',
     label: 'CardHeader · gap',
     isDensity: true,
-    densityKey: 'medium',
+    densityKey: 'small',
     target: { component: 'MuiCardHeader', slot: 'root', props: null, nested: '', cssProp: 'gap' },
     values: {
-      high: 'var(--mui-density-medium)',
-      medium: 'var(--mui-density-medium)',
-      low: 'var(--mui-density-medium)',
+      high: 'var(--mui-density-small)',
+      medium: 'var(--mui-density-small)',
+      low: 'var(--mui-density-small)',
     },
   },
   {
