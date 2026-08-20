@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { getProductInfoFromUrl } from './getProductInfoFromUrl';
 
 describe('getProductInfoFromUrl', () => {

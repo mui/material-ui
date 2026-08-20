@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import createSpacing, { Spacing } from './createSpacing';
 
 describe('createSpacing', () => {

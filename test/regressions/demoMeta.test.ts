@@ -1,5 +1,4 @@
 import { describe, it } from 'vitest';
-import { expect } from 'chai';
 import { A11Y_RULES, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 
 describe('parseRoute', () => {

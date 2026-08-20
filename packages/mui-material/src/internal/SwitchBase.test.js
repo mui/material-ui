@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, reactMajor, screen, fireEvent } from '@mui/internal-test-utils';
 import SwitchBase from './SwitchBase';

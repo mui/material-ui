@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import findComponentJSX from './findComponentJSX';
 import { jscodeshift } from '../../testUtils';
 

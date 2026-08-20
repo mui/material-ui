@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import Stack from '@mui/system/Stack';
 import createTheme from '@mui/system/createTheme';

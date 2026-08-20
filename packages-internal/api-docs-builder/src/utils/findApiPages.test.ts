@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { extractApiPage } from './findApiPages';
 
 describe('extractApiPage', () => {

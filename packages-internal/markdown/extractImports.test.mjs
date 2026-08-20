@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import extractImports from './extractImports.mjs';
 
 describe('extractImports', () => {

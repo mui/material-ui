@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Divider from '@mui/material/Divider';

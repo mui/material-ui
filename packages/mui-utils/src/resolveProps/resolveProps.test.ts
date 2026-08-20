@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import resolveProps from './resolveProps';
 
 describe('resolveProps', () => {

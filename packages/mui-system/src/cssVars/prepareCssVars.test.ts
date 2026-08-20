@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import prepareCssVars from './prepareCssVars';
 
 describe('prepareCssVars', () => {

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import TableFooter from '@mui/material/TableFooter';
 import TableHead from '@mui/material/TableHead';
