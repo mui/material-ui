@@ -1340,14 +1340,17 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiBadge',
     {
-      // Bubble = raw px (sizing); standard inline pad = step. Dot resizes; dot pad
-      // + borderRadius stay frozen at master.
       variants: [
         {
           props: { variant: 'standard' },
-          style: { minWidth: '20px', height: '20px', paddingInline: 12 },
+          style: {
+            minWidth: sp(2.5),
+            height: sp(2.5),
+            paddingInline: sp(0.75),
+            ...enhanced.typography?.caption,
+          },
         },
-        { props: { variant: 'dot' }, style: { minWidth: '6px', height: '6px' } },
+        { props: { variant: 'dot' }, style: { minWidth: sp(1), height: sp(1) } },
       ],
     },
     'badge',

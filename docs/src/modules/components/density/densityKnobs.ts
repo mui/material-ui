@@ -131,6 +131,12 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiBadge|badge|variant=standard||height': 'Badge · badge · height [variant=standard]',
   'MuiBadge|badge|variant=standard||paddingInline':
     'Badge · badge · paddingInline [variant=standard]',
+  'MuiBadge|badge|variant=standard||fontFamily': 'Badge · badge · fontFamily [variant=standard]',
+  'MuiBadge|badge|variant=standard||fontWeight': 'Badge · badge · fontWeight [variant=standard]',
+  'MuiBadge|badge|variant=standard||fontSize': 'Badge · badge · fontSize [variant=standard]',
+  'MuiBadge|badge|variant=standard||lineHeight': 'Badge · badge · lineHeight [variant=standard]',
+  'MuiBadge|badge|variant=standard||letterSpacing':
+    'Badge · badge · letterSpacing [variant=standard]',
   'MuiBadge|badge|variant=dot||minWidth': 'Badge · badge · minWidth [variant=dot]',
   'MuiBadge|badge|variant=dot||height': 'Badge · badge · height [variant=dot]',
   'MuiBottomNavigation|root|base||height': 'BottomNavigation · height',

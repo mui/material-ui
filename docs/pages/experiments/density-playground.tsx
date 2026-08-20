@@ -2027,6 +2027,9 @@ function BadgeMatrix() {
       <Badge badgeContent={4} color="primary">
         <InboxIcon />
       </Badge>
+      <Badge badgeContent={999} color="error">
+        <InboxIcon />
+      </Badge>
       <Badge variant="dot" color="primary">
         <InboxIcon />
       </Badge>
