@@ -770,27 +770,21 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
     id: 'virtual:MuiSlider:trackThickness',
     label: 'Slider · track thickness [size=medium]',
     group: 'Slider',
-    members: [
-      'MuiSlider|root|orientation=horizontal||height',
-      'MuiSlider|root|orientation=vertical||width',
-    ],
+    members: ['MuiSlider|root|base||--_trackSize'],
   },
   {
     id: 'virtual:MuiSlider:trackThicknessSmall',
     label: 'Slider · track thickness [size=small]',
     group: 'Slider',
-    members: [
-      'MuiSlider|root|orientation=horizontal,size=small||height',
-      'MuiSlider|root|orientation=vertical,size=small||width',
-    ],
+    members: ['MuiSlider|root|size=small||--_trackSize'],
   },
   {
-    id: 'virtual:MuiSlider:touchPadding',
-    label: 'Slider · touch padding',
+    id: 'virtual:MuiSlider:touchTarget',
+    label: 'Slider · touch target',
     group: 'Slider',
     members: [
-      'MuiSlider|root|orientation=horizontal||paddingBlock',
-      'MuiSlider|root|orientation=vertical||paddingInline',
+      'MuiSlider|root|orientation=horizontal||height',
+      'MuiSlider|root|orientation=vertical||width',
     ],
   },
   {

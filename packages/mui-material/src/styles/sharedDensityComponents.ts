@@ -714,19 +714,6 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   });
   addRootOverride(
     enhanced.components,
-    'MuiSlider',
-    {
-      // Bubble padding = steps (normal maps master's 0.25rem 0.75rem / 0.5rem
-      // exactly); arrow box + placement offsets stay frozen.
-      padding: `${d['xx-small']} ${d['x-small']}`,
-      variants: [
-        { props: { size: 'small' }, style: { padding: `${d['xx-small']} ${d['x-small']}` } },
-      ],
-    },
-    'valueLabel',
-  );
-  addRootOverride(
-    enhanced.components,
     'MuiSwitch',
     {
       // Center the touch target in the root; travel keeps the thumb symmetric.
@@ -1310,41 +1297,60 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   });
   addRootOverride(enhanced.components, 'MuiLinearProgress', { height: sp(0.5) });
   addDefaultProps(enhanced.components, 'MuiCircularProgress', { size: d['touch-target'] });
+  // Root box = the touch target (padding 0 also kills master's coarse-pointer
+  // padding; the thumb keeps its frozen 42px ::after hit target). Master sizes
+  // rail/track via height:inherit off the root, so their thickness is
+  // re-emitted explicitly from --_trackSize. markLabel offsets stay master.
   addRootOverride(enhanced.components, 'MuiSlider', {
-    // Track thickness = raw px (sizing; rail/track inherit the root box). Touch
-    // padding = step on the logical axis (block for horizontal, inline for
-    // vertical) so one knob drives both; the coarse-pointer 20px floor is
-    // re-asserted frozen (42px a11y hit target, never densified). Marks and
-    // markLabel geometry stay frozen (master-literal offsets the margins align to).
+    padding: 0,
+    '--_trackSize': `calc(${d.small} / 4)`,
     variants: [
-      {
-        props: { orientation: 'horizontal' },
-        style: {
-          height: '3px',
-          paddingBlock: d.medium,
-          '@media (pointer: coarse)': { paddingBlock: '20px' },
-        },
-      },
-      { props: { orientation: 'horizontal', size: 'small' }, style: { height: '2px' } },
-      {
-        props: { orientation: 'vertical' },
-        style: {
-          width: '3px',
-          paddingInline: d.medium,
-          '@media (pointer: coarse)': { paddingInline: '20px' },
-        },
-      },
-      { props: { orientation: 'vertical', size: 'small' }, style: { width: '2px' } },
+      { props: { orientation: 'horizontal' }, style: { height: d['touch-target'] } },
+      { props: { orientation: 'vertical' }, style: { width: d['touch-target'] } },
+      { props: { size: 'small' }, style: { '--_trackSize': `calc(${d['x-small']} / 4)` } },
     ],
   });
   addRootOverride(
     enhanced.components,
     'MuiSlider',
     {
-      // Thumb square = raw px (sizing); the 42px ::after hit target stays frozen.
-      width: '18px',
-      height: '18px',
-      variants: [{ props: { size: 'small' }, style: { width: '12px', height: '12px' } }],
+      padding: `${d['xx-small']} ${d['x-small']}`,
+    },
+    'valueLabel',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiSlider',
+    {
+      top: d['touch-target'],
+    },
+    'markLabel',
+  );
+  for (const slot of ['rail', 'track'] as const) {
+    addRootOverride(
+      enhanced.components,
+      'MuiSlider',
+      {
+        variants: [
+          { props: { orientation: 'horizontal' }, style: { height: 'var(--_trackSize)' } },
+          { props: { orientation: 'vertical' }, style: { width: 'var(--_trackSize)' } },
+        ],
+      },
+      slot,
+    );
+  }
+  addRootOverride(
+    enhanced.components,
+    'MuiSlider',
+    {
+      // The 42px ::after hit target stays frozen.
+      width: d.medium,
+      height: d.medium,
+      variants: [{ props: { size: 'small' }, style: { width: d.small, height: d.small } }],
+      '&::after': {
+        width: d['touch-target'],
+        height: d['touch-target'],
+      },
     },
     'thumb',
   );

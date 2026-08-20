@@ -1985,6 +1985,31 @@ function SliderMatrix() {
       <Box sx={{ width: 180 }}>
         <Slider aria-label="Value label" defaultValue={60} valueLabelDisplay="on" />
       </Box>
+      <Box sx={{ width: 180 }}>
+        <Slider
+          aria-label="Steps"
+          defaultValue={30}
+          valueLabelDisplay="auto"
+          step={10}
+          marks
+          min={10}
+          max={110}
+        />
+      </Box>
+      <Box sx={{ width: 180 }}>
+        <Slider
+          aria-label="Custom marks"
+          defaultValue={20}
+          step={10}
+          valueLabelDisplay="auto"
+          marks={[
+            { value: 0, label: '0°C' },
+            { value: 20, label: '20°C' },
+            { value: 37, label: '37°C' },
+            { value: 100, label: '100°C' },
+          ]}
+        />
+      </Box>
       <Box sx={{ height: 120 }}>
         <Slider aria-label="Vertical" orientation="vertical" defaultValue={40} />
       </Box>

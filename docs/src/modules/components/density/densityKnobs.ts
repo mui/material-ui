@@ -1164,26 +1164,22 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     done: ['medium'],
     note: 'Same lever as RichTreeView — inline-style var, defaultProp only.',
   },
+  'MuiSlider|rail|orientation=horizontal||height':
+    'Slider · rail · height [orientation=horizontal]',
+  'MuiSlider|rail|orientation=vertical||width': 'Slider · rail · width [orientation=vertical]',
+  'MuiSlider|root|base||padding': 'Slider · padding',
+  'MuiSlider|root|base||--_trackSize': 'Slider · --_trackSize',
   'MuiSlider|root|orientation=horizontal||height': 'Slider · height [orientation=horizontal]',
-  'MuiSlider|root|orientation=horizontal||paddingBlock':
-    'Slider · paddingBlock [orientation=horizontal]',
-  'MuiSlider|root|orientation=horizontal|@media (pointer: coarse)|paddingBlock':
-    'Slider · paddingBlock [orientation=horizontal]',
-  'MuiSlider|root|orientation=horizontal,size=small||height':
-    'Slider · height [orientation=horizontal,size=small]',
   'MuiSlider|root|orientation=vertical||width': 'Slider · width [orientation=vertical]',
-  'MuiSlider|root|orientation=vertical||paddingInline':
-    'Slider · paddingInline [orientation=vertical]',
-  'MuiSlider|root|orientation=vertical|@media (pointer: coarse)|paddingInline':
-    'Slider · paddingInline [orientation=vertical]',
-  'MuiSlider|root|orientation=vertical,size=small||width':
-    'Slider · width [orientation=vertical,size=small]',
+  'MuiSlider|root|size=small||--_trackSize': 'Slider · --_trackSize [size=small]',
   'MuiSlider|thumb|base||width': 'Slider · thumb · width',
   'MuiSlider|thumb|base||height': 'Slider · thumb · height',
   'MuiSlider|thumb|size=small||width': 'Slider · thumb · width [size=small]',
   'MuiSlider|thumb|size=small||height': 'Slider · thumb · height [size=small]',
+  'MuiSlider|track|orientation=horizontal||height':
+    'Slider · track · height [orientation=horizontal]',
+  'MuiSlider|track|orientation=vertical||width': 'Slider · track · width [orientation=vertical]',
   'MuiSlider|valueLabel|base||padding': 'Slider · valueLabel · padding',
-  'MuiSlider|valueLabel|size=small||padding': 'Slider · valueLabel · padding [size=small]',
   'MuiSnackbarContent|action|base||paddingLeft': 'SnackbarContent · action · paddingLeft',
   'MuiSnackbarContent|message|base||paddingBlock': 'SnackbarContent · message · paddingBlock',
   'MuiSnackbarContent|root|base||padding': 'SnackbarContent · padding',

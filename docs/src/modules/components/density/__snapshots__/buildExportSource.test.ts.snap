@@ -1153,19 +1153,41 @@ const high = {
         valueLabel: [
           {
             padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
+          },
+        ],
+        root: [
+          {
+            padding: 0,
+            '--_trackSize': 'calc(var(--mui-density-small) / 4)',
             variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                },
+                style: {
+                  height: 'var(--mui-density-touch-target)',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: 'var(--mui-density-touch-target)',
+                },
+              },
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
+                  '--_trackSize': 'calc(var(--mui-density-x-small) / 4)',
                 },
               },
             ],
           },
         ],
-        root: [
+        rail: [
           {
             variants: [
               {
@@ -1173,20 +1195,29 @@ const high = {
                   orientation: 'horizontal',
                 },
                 style: {
-                  height: '3px',
-                  paddingBlock: 'var(--mui-density-medium)',
-                  '@media (pointer: coarse)': {
-                    paddingBlock: '20px',
-                  },
+                  height: 'var(--_trackSize)',
                 },
               },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: 'var(--_trackSize)',
+                },
+              },
+            ],
+          },
+        ],
+        track: [
+          {
+            variants: [
               {
                 props: {
                   orientation: 'horizontal',
-                  size: 'small',
                 },
                 style: {
-                  height: '2px',
+                  height: 'var(--_trackSize)',
                 },
               },
               {
@@ -1194,20 +1225,7 @@ const high = {
                   orientation: 'vertical',
                 },
                 style: {
-                  width: '3px',
-                  paddingInline: 'var(--mui-density-medium)',
-                  '@media (pointer: coarse)': {
-                    paddingInline: '20px',
-                  },
-                },
-              },
-              {
-                props: {
-                  orientation: 'vertical',
-                  size: 'small',
-                },
-                style: {
-                  width: '2px',
+                  width: 'var(--_trackSize)',
                 },
               },
             ],
@@ -1215,16 +1233,16 @@ const high = {
         ],
         thumb: [
           {
-            width: '18px',
-            height: '18px',
+            width: 'var(--mui-density-medium)',
+            height: 'var(--mui-density-medium)',
             variants: [
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  width: '12px',
-                  height: '12px',
+                  width: 'var(--mui-density-small)',
+                  height: 'var(--mui-density-small)',
                 },
               },
             ],
@@ -4004,19 +4022,41 @@ const medium = {
         valueLabel: [
           {
             padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
+          },
+        ],
+        root: [
+          {
+            padding: 0,
+            '--_trackSize': 'calc(var(--mui-density-small) / 4)',
             variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                },
+                style: {
+                  height: 'var(--mui-density-touch-target)',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: 'var(--mui-density-touch-target)',
+                },
+              },
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
+                  '--_trackSize': 'calc(var(--mui-density-x-small) / 4)',
                 },
               },
             ],
           },
         ],
-        root: [
+        rail: [
           {
             variants: [
               {
@@ -4024,20 +4064,29 @@ const medium = {
                   orientation: 'horizontal',
                 },
                 style: {
-                  height: '3px',
-                  paddingBlock: 'var(--mui-density-medium)',
-                  '@media (pointer: coarse)': {
-                    paddingBlock: '20px',
-                  },
+                  height: 'var(--_trackSize)',
                 },
               },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: 'var(--_trackSize)',
+                },
+              },
+            ],
+          },
+        ],
+        track: [
+          {
+            variants: [
               {
                 props: {
                   orientation: 'horizontal',
-                  size: 'small',
                 },
                 style: {
-                  height: '2px',
+                  height: 'var(--_trackSize)',
                 },
               },
               {
@@ -4045,20 +4094,7 @@ const medium = {
                   orientation: 'vertical',
                 },
                 style: {
-                  width: '3px',
-                  paddingInline: 'var(--mui-density-medium)',
-                  '@media (pointer: coarse)': {
-                    paddingInline: '20px',
-                  },
-                },
-              },
-              {
-                props: {
-                  orientation: 'vertical',
-                  size: 'small',
-                },
-                style: {
-                  width: '2px',
+                  width: 'var(--_trackSize)',
                 },
               },
             ],
@@ -4066,16 +4102,16 @@ const medium = {
         ],
         thumb: [
           {
-            width: '18px',
-            height: '18px',
+            width: 'var(--mui-density-medium)',
+            height: 'var(--mui-density-medium)',
             variants: [
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  width: '12px',
-                  height: '12px',
+                  width: 'var(--mui-density-small)',
+                  height: 'var(--mui-density-small)',
                 },
               },
             ],
@@ -6858,19 +6894,41 @@ const low = {
         valueLabel: [
           {
             padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
+          },
+        ],
+        root: [
+          {
+            padding: 0,
+            '--_trackSize': 'calc(var(--mui-density-small) / 4)',
             variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                },
+                style: {
+                  height: 'var(--mui-density-touch-target)',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: 'var(--mui-density-touch-target)',
+                },
+              },
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
+                  '--_trackSize': 'calc(var(--mui-density-x-small) / 4)',
                 },
               },
             ],
           },
         ],
-        root: [
+        rail: [
           {
             variants: [
               {
@@ -6878,20 +6936,29 @@ const low = {
                   orientation: 'horizontal',
                 },
                 style: {
-                  height: '3px',
-                  paddingBlock: 'var(--mui-density-medium)',
-                  '@media (pointer: coarse)': {
-                    paddingBlock: '20px',
-                  },
+                  height: 'var(--_trackSize)',
                 },
               },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: 'var(--_trackSize)',
+                },
+              },
+            ],
+          },
+        ],
+        track: [
+          {
+            variants: [
               {
                 props: {
                   orientation: 'horizontal',
-                  size: 'small',
                 },
                 style: {
-                  height: '2px',
+                  height: 'var(--_trackSize)',
                 },
               },
               {
@@ -6899,20 +6966,7 @@ const low = {
                   orientation: 'vertical',
                 },
                 style: {
-                  width: '3px',
-                  paddingInline: 'var(--mui-density-medium)',
-                  '@media (pointer: coarse)': {
-                    paddingInline: '20px',
-                  },
-                },
-              },
-              {
-                props: {
-                  orientation: 'vertical',
-                  size: 'small',
-                },
-                style: {
-                  width: '2px',
+                  width: 'var(--_trackSize)',
                 },
               },
             ],
@@ -6920,16 +6974,16 @@ const low = {
         ],
         thumb: [
           {
-            width: '18px',
-            height: '18px',
+            width: 'var(--mui-density-medium)',
+            height: 'var(--mui-density-medium)',
             variants: [
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  width: '12px',
-                  height: '12px',
+                  width: 'var(--mui-density-small)',
+                  height: 'var(--mui-density-small)',
                 },
               },
             ],
