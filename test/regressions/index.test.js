@@ -267,6 +267,39 @@ async function main() {
       });
     });
 
+    describe('AppSearch', () => {
+      test('should render the DocSearch modal correctly', async ({ pooled }) => {
+        const { page } = pooled;
+        await renderFixture(page, '/regression-AppSearch/SearchModal');
+        // The modal portals to `document.body`, so it lands outside the
+        // testcase element and has to be screenshotted on its own.
+        await page.getByRole('button', { name: /search/i }).click();
+        const modal = await page.waitForSelector('.DocSearch-Modal');
+        // `useLazyCSS` fetches the DocSearch stylesheet and injects it as a
+        // `<style data-href>`. Without it the modal is unstyled.
+        await page.waitForFunction(() =>
+          Boolean(document.querySelector('style[data-href*="docsearch"]')),
+        );
+        // Rank `docsearch` below `mui`, the way the layer order that
+        // `BrandingCssVarsProvider` declares does in the docs. Without it the
+        // DocSearch stylesheet wins and none of the `AppSearch` overrides
+        // apply. It has to happen here rather than in the fixture: a layer's
+        // position is fixed by where it is first named, emotion prepends its
+        // tags above everything in `<head>`, and it keeps doing so as
+        // components mount — so the only stable point is once the modal has
+        // finished rendering.
+        await page.evaluate(() => {
+          const style = document.createElement('style');
+          style.textContent = '@layer docsearch, mui;';
+          document.head.prepend(style);
+        });
+        await takeScreenshot(page, {
+          testcase: modal,
+          route: '/regression-AppSearch/SearchModalOpen',
+        });
+      });
+    });
+
     describe('Autocomplete', () => {
       test('should not close immediately when textbox expands', async ({ pooled }) => {
         const { page } = pooled;

@@ -39,6 +39,9 @@ export default defineConfig({
   ],
   define: {
     'process.env.NODE_ENV': JSON.stringify('production'),
+    // `AppSearch` reads it for the Algolia index name, which also keys the
+    // stored recent searches the `AppSearch/SearchModal` fixture seeds.
+    'process.env.SEARCH_INDEX': JSON.stringify('material-ui-regressions'),
     // Seed `@mui/x-data-grid-generator`'s Chance instances deterministically so
     // the Data Grid composites (XHero/XGridFullDemo/XDataGrid/XTheming via
     // `useDemoData`) render identical rows on every load. Without this the
