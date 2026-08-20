@@ -1877,6 +1877,17 @@ function ToggleButtonMatrix() {
               <FormatAlignRightIcon fontSize={size} />
             </ToggleButton>
           </ToggleButtonGroup>
+          <ToggleButtonGroup value="web" size={size} exclusive aria-label="platform">
+            <ToggleButton value="web">
+              <span className="density-debug-text">Web</span>
+            </ToggleButton>
+            <ToggleButton value="android">
+              <span className="density-debug-text">Android</span>
+            </ToggleButton>
+            <ToggleButton value="ios">
+              <span className="density-debug-text">iOS</span>
+            </ToggleButton>
+          </ToggleButtonGroup>
         </Stack>
       ))}
     </Stack>

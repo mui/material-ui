@@ -1408,18 +1408,21 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     'TabScrollButton · width [orientation=horizontal]',
   'MuiTabScrollButton|root|orientation=vertical||height':
     'TabScrollButton · height [orientation=vertical]',
-  'MuiToggleButton|root|size=small||padding': {
-    label: 'ToggleButton · padding [size=small]',
-    done: ['medium'],
-  },
-  'MuiToggleButton|root|size=medium||padding': {
-    label: 'ToggleButton · padding [size=medium]',
-    done: ['medium'],
-  },
-  'MuiToggleButton|root|size=large||padding': {
-    label: 'ToggleButton · padding [size=large]',
-    done: ['medium'],
-  },
+  'MuiToggleButton|root|base||fontFamily': 'ToggleButton · fontFamily',
+  'MuiToggleButton|root|base||fontWeight': 'ToggleButton · fontWeight',
+  'MuiToggleButton|root|base||fontSize': 'ToggleButton · fontSize',
+  'MuiToggleButton|root|base||lineHeight': 'ToggleButton · lineHeight',
+  'MuiToggleButton|root|base||letterSpacing': 'ToggleButton · letterSpacing',
+  'MuiToggleButton|root|base||textTransform': 'ToggleButton · textTransform',
+  'MuiToggleButton|root|base||paddingBlock': 'ToggleButton · paddingBlock',
+  'MuiToggleButton|root|base||height': 'ToggleButton · height',
+  'MuiToggleButton|root|base||minWidth': 'ToggleButton · minWidth',
+  'MuiToggleButton|root|size=small||--_size': 'ToggleButton · --_size [size=small]',
+  'MuiToggleButton|root|size=small||paddingInline': 'ToggleButton · paddingInline [size=small]',
+  'MuiToggleButton|root|size=medium||--_size': 'ToggleButton · --_size [size=medium]',
+  'MuiToggleButton|root|size=medium||paddingInline': 'ToggleButton · paddingInline [size=medium]',
+  'MuiToggleButton|root|size=large||--_size': 'ToggleButton · --_size [size=large]',
+  'MuiToggleButton|root|size=large||paddingInline': 'ToggleButton · paddingInline [size=large]',
   'MuiToolbar|root|disableGutters=false||paddingInline':
     'Toolbar · paddingInline [disableGutters=false]',
   'MuiToolbar|root|disableGutters=false|@media (min-width:600px)|paddingInline':

@@ -1097,13 +1097,23 @@ const high = {
       styleOverrides: {
         root: [
           {
+            fontSize: 'calc(0.75rem * var(--mui-scaling))',
+            lineHeight: 'calc(16px * var(--mui-scaling))',
+            textTransform: 'initial',
+            letterSpacing: 0,
+            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            fontWeight: 500,
+            paddingBlock: 0,
+            height: 'var(--_size)',
+            minWidth: 'var(--_size)',
             variants: [
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  padding: 'calc(var(--mui-density-xx-small) - 1px)',
+                  '--_size': 'var(--mui-density-large)',
+                  paddingInline: 'calc((var(--_size) - calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))) / 2 - 1px)',
                 },
               },
               {
@@ -1111,7 +1121,8 @@ const high = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'calc(var(--mui-density-x-small) - 1px)',
+                  '--_size': 'var(--mui-density-touch-target)',
+                  paddingInline: 'calc((var(--_size) - calc(calc(2 * var(--mui-spacing, 8px)) * var(--mui-scaling))) / 2 - 1px)',
                 },
               },
               {
@@ -1119,7 +1130,8 @@ const high = {
                   size: 'large',
                 },
                 style: {
-                  padding: 'calc(var(--mui-density-small) - 1px)',
+                  '--_size': 'var(--mui-density-xx-large)',
+                  paddingInline: 'calc((var(--_size) - calc(calc(2.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))) / 2 - 1px)',
                 },
               },
             ],
@@ -3933,13 +3945,23 @@ const medium = {
       styleOverrides: {
         root: [
           {
+            fontSize: 'calc(0.875rem * var(--mui-scaling))',
+            lineHeight: 'calc(20px * var(--mui-scaling))',
+            textTransform: 'initial',
+            letterSpacing: 0,
+            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            fontWeight: 500,
+            paddingBlock: 0,
+            height: 'var(--_size)',
+            minWidth: 'var(--_size)',
             variants: [
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  padding: 'calc(var(--mui-density-xx-small) - 1px)',
+                  '--_size': 'var(--mui-density-large)',
+                  paddingInline: 'calc((var(--_size) - calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))) / 2 - 1px)',
                 },
               },
               {
@@ -3947,7 +3969,8 @@ const medium = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'calc(var(--mui-density-x-small) - 1px)',
+                  '--_size': 'var(--mui-density-touch-target)',
+                  paddingInline: 'calc((var(--_size) - calc(calc(2 * var(--mui-spacing, 8px)) * var(--mui-scaling))) / 2 - 1px)',
                 },
               },
               {
@@ -3955,7 +3978,8 @@ const medium = {
                   size: 'large',
                 },
                 style: {
-                  padding: 'calc(var(--mui-density-small) - 1px)',
+                  '--_size': 'var(--mui-density-xx-large)',
+                  paddingInline: 'calc((var(--_size) - calc(calc(2.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))) / 2 - 1px)',
                 },
               },
             ],
@@ -6772,13 +6796,23 @@ const low = {
       styleOverrides: {
         root: [
           {
+            fontSize: 'calc(1rem * var(--mui-scaling))',
+            lineHeight: 'calc(22px * var(--mui-scaling))',
+            textTransform: 'initial',
+            letterSpacing: 0,
+            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            fontWeight: 500,
+            paddingBlock: 0,
+            height: 'var(--_size)',
+            minWidth: 'var(--_size)',
             variants: [
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  padding: 'calc(var(--mui-density-xx-small) - 1px)',
+                  '--_size': 'var(--mui-density-large)',
+                  paddingInline: 'calc((var(--_size) - calc(calc(1.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))) / 2 - 1px)',
                 },
               },
               {
@@ -6786,7 +6820,8 @@ const low = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'calc(var(--mui-density-x-small) - 1px)',
+                  '--_size': 'var(--mui-density-touch-target)',
+                  paddingInline: 'calc((var(--_size) - calc(calc(2 * var(--mui-spacing, 8px)) * var(--mui-scaling))) / 2 - 1px)',
                 },
               },
               {
@@ -6794,7 +6829,8 @@ const low = {
                   size: 'large',
                 },
                 style: {
-                  padding: 'calc(var(--mui-density-small) - 1px)',
+                  '--_size': 'var(--mui-density-xx-large)',
+                  paddingInline: 'calc((var(--_size) - calc(calc(2.5 * var(--mui-spacing, 8px)) * var(--mui-scaling))) / 2 - 1px)',
                 },
               },
             ],

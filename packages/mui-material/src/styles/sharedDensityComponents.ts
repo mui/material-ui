@@ -664,12 +664,32 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // flex row with align-items: center — so crumbs stay vertically centered.
   addRootOverride(enhanced.components, 'MuiBreadcrumbs', { minHeight: '32px' }, 'ol');
   addRootOverride(enhanced.components, 'MuiToggleButton', {
-    // Emit uniform padding directly on the size variants ToggleButton ships (no
-    // seam). -1px = border compensation (master's own shape).
+    ...enhanced.typography?.button,
+    paddingBlock: 0,
+    height: 'var(--_size)',
+    minWidth: 'var(--_size)',
     variants: [
-      { props: { size: 'small' }, style: { padding: `calc(${d['xx-small']} - 1px)` } },
-      { props: { size: 'medium' }, style: { padding: `calc(${d['x-small']} - 1px)` } },
-      { props: { size: 'large' }, style: { padding: `calc(${d.small} - 1px)` } },
+      {
+        props: { size: 'small' },
+        style: {
+          '--_size': d.large,
+          paddingInline: `calc((var(--_size) - ${sp(1.75)}) / 2 - 1px)`,
+        },
+      },
+      {
+        props: { size: 'medium' },
+        style: {
+          '--_size': d['touch-target'],
+          paddingInline: `calc((var(--_size) - ${sp(2)}) / 2 - 1px)`,
+        },
+      },
+      {
+        props: { size: 'large' },
+        style: {
+          '--_size': d['xx-large'],
+          paddingInline: `calc((var(--_size) - ${sp(2.5)}) / 2 - 1px)`,
+        },
+      },
     ],
   });
   addRootOverride(
