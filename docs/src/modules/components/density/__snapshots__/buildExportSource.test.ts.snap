@@ -2060,6 +2060,7 @@ const high = {
       styleOverrides: {
         root: [
           {
+            minHeight: 0,
             variants: [
               {
                 props: {
@@ -2067,8 +2068,8 @@ const high = {
                   size: 'small',
                 },
                 style: {
-                  width: '40px',
-                  height: '40px',
+                  width: 'calc(var(--mui-density-large) + var(--mui-density-small))',
+                  height: 'calc(var(--mui-density-large) + var(--mui-density-small))',
                 },
               },
               {
@@ -2077,8 +2078,8 @@ const high = {
                   size: 'medium',
                 },
                 style: {
-                  width: '48px',
-                  height: '48px',
+                  width: 'calc(var(--mui-density-touch-target) + var(--mui-density-x-small))',
+                  height: 'calc(var(--mui-density-touch-target) + var(--mui-density-x-small))',
                 },
               },
               {
@@ -2087,8 +2088,8 @@ const high = {
                   size: 'large',
                 },
                 style: {
-                  width: '56px',
-                  height: '56px',
+                  width: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
+                  height: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
                 },
               },
             ],
@@ -4967,6 +4968,7 @@ const medium = {
       styleOverrides: {
         root: [
           {
+            minHeight: 0,
             variants: [
               {
                 props: {
@@ -4974,8 +4976,8 @@ const medium = {
                   size: 'small',
                 },
                 style: {
-                  width: '40px',
-                  height: '40px',
+                  width: 'calc(var(--mui-density-large) + var(--mui-density-small))',
+                  height: 'calc(var(--mui-density-large) + var(--mui-density-small))',
                 },
               },
               {
@@ -4984,8 +4986,8 @@ const medium = {
                   size: 'medium',
                 },
                 style: {
-                  width: '48px',
-                  height: '48px',
+                  width: 'calc(var(--mui-density-touch-target) + var(--mui-density-x-small))',
+                  height: 'calc(var(--mui-density-touch-target) + var(--mui-density-x-small))',
                 },
               },
               {
@@ -4994,8 +4996,8 @@ const medium = {
                   size: 'large',
                 },
                 style: {
-                  width: '56px',
-                  height: '56px',
+                  width: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
+                  height: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
                 },
               },
             ],
@@ -7877,6 +7879,7 @@ const low = {
       styleOverrides: {
         root: [
           {
+            minHeight: 0,
             variants: [
               {
                 props: {
@@ -7884,8 +7887,8 @@ const low = {
                   size: 'small',
                 },
                 style: {
-                  width: '40px',
-                  height: '40px',
+                  width: 'calc(var(--mui-density-large) + var(--mui-density-small))',
+                  height: 'calc(var(--mui-density-large) + var(--mui-density-small))',
                 },
               },
               {
@@ -7894,8 +7897,8 @@ const low = {
                   size: 'medium',
                 },
                 style: {
-                  width: '48px',
-                  height: '48px',
+                  width: 'calc(var(--mui-density-touch-target) + var(--mui-density-x-small))',
+                  height: 'calc(var(--mui-density-touch-target) + var(--mui-density-x-small))',
                 },
               },
               {
@@ -7904,8 +7907,8 @@ const low = {
                   size: 'large',
                 },
                 style: {
-                  width: '56px',
-                  height: '56px',
+                  width: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
+                  height: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
                 },
               },
             ],

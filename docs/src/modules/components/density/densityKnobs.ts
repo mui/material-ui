@@ -533,6 +533,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'DigitalClock · item · padding',
     note: "Item = styled(MenuItem) — Material Menu emissions cascade under this. The 2px 4px item margin is frozen: the scroll positioning math subtracts the first item's 4px in JS.",
   },
+  'MuiFab|root|base||minHeight': 'Fab · minHeight',
   'MuiFab|root|size=small,variant=circular||width': 'Fab · width [variant=circular,size=small]',
   'MuiFab|root|size=small,variant=circular||height': 'Fab · height [variant=circular,size=small]',
   'MuiFab|root|size=medium,variant=circular||width': 'Fab · width [variant=circular,size=medium]',

@@ -3471,6 +3471,14 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
+    id: 'MuiFab|root|base||minHeight',
+    label: 'Fab · minHeight',
+    isDensity: false,
+    densityKey: null,
+    target: { component: 'MuiFab', slot: 'root', props: null, nested: '', cssProp: 'minHeight' },
+    values: { high: '0', medium: '0', low: '0' },
+  },
+  {
     id: 'MuiFab|root|size=small,variant=circular||width',
     label: 'Fab · width [variant=circular,size=small]',
     isDensity: false,
@@ -3482,7 +3490,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'width',
     },
-    values: { high: '40px', medium: '40px', low: '40px' },
+    values: {
+      high: 'calc(var(--mui-density-large) + var(--mui-density-small))',
+      medium: 'calc(var(--mui-density-large) + var(--mui-density-small))',
+      low: 'calc(var(--mui-density-large) + var(--mui-density-small))',
+    },
   },
   {
     id: 'MuiFab|root|size=small,variant=circular||height',
@@ -3496,7 +3508,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '40px', medium: '40px', low: '40px' },
+    values: {
+      high: 'calc(var(--mui-density-large) + var(--mui-density-small))',
+      medium: 'calc(var(--mui-density-large) + var(--mui-density-small))',
+      low: 'calc(var(--mui-density-large) + var(--mui-density-small))',
+    },
   },
   {
     id: 'MuiFab|root|size=medium,variant=circular||width',
@@ -3510,7 +3526,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'width',
     },
-    values: { high: '48px', medium: '48px', low: '48px' },
+    values: {
+      high: 'calc(var(--mui-density-touch-target) + var(--mui-density-x-small))',
+      medium: 'calc(var(--mui-density-touch-target) + var(--mui-density-x-small))',
+      low: 'calc(var(--mui-density-touch-target) + var(--mui-density-x-small))',
+    },
   },
   {
     id: 'MuiFab|root|size=medium,variant=circular||height',
@@ -3524,7 +3544,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '48px', medium: '48px', low: '48px' },
+    values: {
+      high: 'calc(var(--mui-density-touch-target) + var(--mui-density-x-small))',
+      medium: 'calc(var(--mui-density-touch-target) + var(--mui-density-x-small))',
+      low: 'calc(var(--mui-density-touch-target) + var(--mui-density-x-small))',
+    },
   },
   {
     id: 'MuiFab|root|size=large,variant=circular||width',
@@ -3538,7 +3562,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'width',
     },
-    values: { high: '56px', medium: '56px', low: '56px' },
+    values: {
+      high: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
+      medium: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
+      low: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
+    },
   },
   {
     id: 'MuiFab|root|size=large,variant=circular||height',
@@ -3552,7 +3580,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '56px', medium: '56px', low: '56px' },
+    values: {
+      high: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
+      medium: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
+      low: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
+    },
   },
   {
     id: 'MuiFilledInput|input|base||paddingTop',

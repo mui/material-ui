@@ -1199,13 +1199,32 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
     ],
   });
+  // Scoped to circular so the extended variant (auto width + literal height)
+  // stays frozen at master.
   addRootOverride(enhanced.components, 'MuiFab', {
-    // Circular size = raw px per size (button-like action). Scoped to circular so
-    // the extended variant (auto width + literal height) stays frozen at master.
+    minHeight: 0,
     variants: [
-      { props: { variant: 'circular', size: 'small' }, style: { width: '40px', height: '40px' } },
-      { props: { variant: 'circular', size: 'medium' }, style: { width: '48px', height: '48px' } },
-      { props: { variant: 'circular', size: 'large' }, style: { width: '56px', height: '56px' } },
+      {
+        props: { variant: 'circular', size: 'small' },
+        style: {
+          width: `calc(${d.large} + ${d.small})`,
+          height: `calc(${d.large} + ${d.small})`,
+        },
+      },
+      {
+        props: { variant: 'circular', size: 'medium' },
+        style: {
+          width: `calc(${d['touch-target']} + ${d['x-small']})`,
+          height: `calc(${d['touch-target']} + ${d['x-small']})`,
+        },
+      },
+      {
+        props: { variant: 'circular', size: 'large' },
+        style: {
+          width: `calc(${d['xx-large']} + ${d['xx-small']})`,
+          height: `calc(${d['xx-large']} + ${d['xx-small']})`,
+        },
+      },
     ],
   });
   addRootOverride(enhanced.components, 'MuiPaginationItem', {
