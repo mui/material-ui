@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import resolveProps from './resolveProps';
 
 describe('resolveProps', () => {
@@ -78,6 +77,144 @@ describe('resolveProps', () => {
         root: { className: 'root' },
         input: { className: 'input', style: { color: 'red' } },
       },
+    });
+  });
+
+  describe('function slotProps', () => {
+    it('merge function slot props from default props with object slot props from props', () => {
+      const result = resolveProps(
+        {
+          slotProps: {
+            list: (ownerState: { anchorId: string }) => ({
+              'aria-labelledby': ownerState.anchorId,
+              role: 'menu',
+            }),
+          },
+        },
+        { slotProps: { list: { className: 'my-menu-list', role: 'listbox' } } },
+      );
+
+      const list = (result.slotProps as Record<string, any>).list;
+      expect(list).to.be.a('function');
+      expect(list({ anchorId: 'dashboard' })).to.deep.equal({
+        'aria-labelledby': 'dashboard',
+        role: 'listbox',
+        className: 'my-menu-list',
+      });
+    });
+
+    it('merge object slot props from default props with function slot props from props', () => {
+      const result = resolveProps(
+        { slotProps: { list: { 'aria-labelledby': 'dashboard', role: 'menu' } } },
+        {
+          slotProps: {
+            list: (ownerState: { dense: boolean }) => ({
+              className: ownerState.dense ? 'dense' : 'regular',
+              role: 'listbox',
+            }),
+          },
+        },
+      );
+
+      const list = (result.slotProps as Record<string, any>).list;
+      expect(list).to.be.a('function');
+      expect(list({ dense: true })).to.deep.equal({
+        'aria-labelledby': 'dashboard',
+        role: 'listbox',
+        className: 'dense',
+      });
+    });
+
+    it('merge function slot props from both default props and props', () => {
+      const result = resolveProps(
+        {
+          slotProps: {
+            list: (ownerState: { anchorId: string }) => ({
+              'aria-labelledby': ownerState.anchorId,
+              role: 'menu',
+            }),
+          },
+        },
+        {
+          slotProps: {
+            list: (ownerState: { anchorId: string }) => ({ className: ownerState.anchorId }),
+          },
+        },
+      );
+
+      const list = (result.slotProps as Record<string, any>).list;
+      expect(list).to.be.a('function');
+      expect(list({ anchorId: 'dashboard' })).to.deep.equal({
+        'aria-labelledby': 'dashboard',
+        role: 'menu',
+        className: 'dashboard',
+      });
+    });
+
+    it('keep function slot props from default props when the slot is missing from props', () => {
+      const result = resolveProps(
+        {
+          slotProps: {
+            list: (ownerState: { anchorId: string }) => ({
+              'aria-labelledby': ownerState.anchorId,
+            }),
+          },
+        },
+        { slotProps: { paper: { className: 'my-paper' } } },
+      );
+
+      const slotProps = result.slotProps as Record<string, any>;
+      expect(slotProps.paper).to.deep.equal({ className: 'my-paper' });
+      expect(slotProps.list).to.be.a('function');
+      expect(slotProps.list({ anchorId: 'dashboard' })).to.deep.equal({
+        'aria-labelledby': 'dashboard',
+      });
+    });
+
+    it('keep function slot props with className and style when the slot is missing from props', () => {
+      const result = resolveProps(
+        {
+          slotProps: {
+            list: () => ({
+              className: 'default-list',
+              style: { color: 'red' },
+            }),
+          },
+        },
+        { slotProps: { paper: { className: 'my-paper' } } },
+        true,
+      );
+
+      const slotProps = result.slotProps as Record<string, any>;
+      expect(slotProps.paper).to.deep.equal({ className: 'my-paper' });
+      expect(slotProps.list).to.be.a('function');
+      expect(slotProps.list({})).to.deep.equal({
+        className: 'default-list',
+        style: { color: 'red' },
+      });
+    });
+
+    it('keep object slot props with className and style when the slot is missing from props', () => {
+      const result = resolveProps(
+        {
+          slotProps: {
+            list: {
+              className: 'default-list',
+              style: { color: 'red' },
+            },
+          },
+        },
+        { slotProps: { paper: { className: 'my-paper' } } },
+        true,
+      );
+
+      expect(result.slotProps).to.deep.equal({
+        paper: { className: 'my-paper' },
+        list: {
+          className: 'default-list',
+          style: { color: 'red' },
+        },
+      });
     });
   });
 

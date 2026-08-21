@@ -30,7 +30,7 @@ export default function Customers(props: InferGetStaticPropsType<typeof getStati
       <AppHeaderBanner />
       <AppHeader />
       <Divider />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <CustomersHero />
         <CustomersLogoSlider />
         <Box

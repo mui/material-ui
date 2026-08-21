@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { EventHandlers } from '@mui/utils/types';
 import mergeSlotProps from '@mui/utils/mergeSlotProps';
 

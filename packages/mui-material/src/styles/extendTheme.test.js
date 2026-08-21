@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import sinon from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';

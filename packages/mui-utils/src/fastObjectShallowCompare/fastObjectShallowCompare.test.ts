@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import fastObjectShallowCompare from './fastObjectShallowCompare';
 
 describe('fastObjectShallowCompare', () => {

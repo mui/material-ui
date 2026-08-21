@@ -53,8 +53,9 @@ async function main() {
     // Wait for all requests to finish.
     // This should load shared resources such as fonts.
     await page.goto(`${baseUrl}#dev`, { waitUntil: 'networkidle0' });
-    // If we still get flaky fonts after awaiting this try `document.fonts.ready`
-    await page.waitForSelector('[data-webfontloader="active"]', { state: 'attached' });
+    // Screenshots taken with fallback faces look like a repo-wide text rendering
+    // change. Fail the run instead of publishing them.
+    await page.evaluate(() => window.muiFixture.fontsReady);
 
     // Simulate portrait mode for date pickers.
     // See `useIsLandscape`.
@@ -76,6 +77,9 @@ async function main() {
   await fs.mkdir(screenshotDir, { recursive: true });
 
   const probePage = await pool.acquire();
+  // React renders the nav, so wait for it: `$$eval` returns [] when it is
+  // missing, which registers zero route tests and still passes.
+  await probePage.waitForSelector('#tests a', { state: 'attached' });
   let routes = await probePage.$$eval('#tests a', (links) => {
     return links.map((link) => link.href);
   });

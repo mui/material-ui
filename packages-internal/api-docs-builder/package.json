@@ -14,8 +14,8 @@
   "dependencies": {
     "@babel/core": "^7.29.7",
     "@babel/preset-typescript": "^7.29.7",
-    "@babel/traverse": "^7.29.7",
-    "@babel/types": "^7.29.7",
+    "@babel/traverse": "^7.29.8",
+    "@babel/types": "^7.29.8",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "doctrine": "^3.0.0",
@@ -23,7 +23,7 @@
     "fast-glob": "^3.3.3",
     "prettier": "^3.9.6",
     "react-docgen": "^8.0.3",
-    "recast": "^0.23.19",
+    "recast": "^0.24.0",
     "remark": "^15.0.1",
     "typescript": "^6.0.3",
     "unist-util-visit": "^5.1.0"
@@ -31,12 +31,10 @@
   "devDependencies": {
     "@types/babel__core": "7.20.5",
     "@types/babel__traverse": "7.28.0",
-    "@types/chai": "5.2.3",
     "@types/doctrine": "0.0.9",
     "@types/mdast": "4.0.4",
     "@types/node": "20.19.43",
     "@types/sinon": "22.0.0",
-    "chai": "6.2.2",
     "sinon": "22.1.0"
   },
   "exports": {
@@ -47,6 +45,6 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=22.23.1"
+    "node": ">=22.23.2"
   }
 }

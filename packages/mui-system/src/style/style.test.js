@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import style from './style';
 
 describe('style', () => {

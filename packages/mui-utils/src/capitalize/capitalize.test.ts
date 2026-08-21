@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import capitalize from '@mui/utils/capitalize';
 
 describe('capitalize', () => {

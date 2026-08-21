@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { compile, Middleware, middleware, prefixer, serialize, stringify } from 'stylis';
 import muiRtlPlugin from '@mui/stylis-plugin-rtl';
 

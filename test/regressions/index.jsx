@@ -11,8 +11,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router';
-import webfontloader from 'webfontloader';
 import { Globals } from '@react-spring/web';
+import loadFonts from './loadFonts';
 import TestViewer from './TestViewer';
 import MarketingWrapper from './MarketingWrapper';
 import allFixtures from './fixtures';
@@ -27,6 +27,8 @@ window.muiFixture = {
   navigate: () => {
     throw new Error(`muiFixture.navigate is not ready`);
   },
+  // `index.test.js` awaits this before it screenshots anything.
+  fontsReady: loadFonts(),
 };
 
 function FixtureRenderer({ component: FixtureComponent, path }) {
@@ -88,27 +90,6 @@ function App(props) {
   const hash = useHash();
   const isDev = computeIsDev(hash);
 
-  // Using <link rel="stylesheet" /> does not apply the google Roboto font in chromium headless/headfull.
-  const [fontState, setFontState] = React.useState('pending');
-  React.useEffect(() => {
-    webfontloader.load({
-      google: {
-        families: ['Roboto:300,400,500,700', 'Inter:300,400,500,600,700,800,900', 'Material+Icons'],
-      },
-      custom: {
-        families: ['Font Awesome 5 Free:n9'],
-        urls: ['https://use.fontawesome.com/releases/v5.14.0/css/all.css'],
-      },
-      timeout: 20000,
-      active: () => {
-        setFontState('active');
-      },
-      inactive: () => {
-        setFontState('inactive');
-      },
-    });
-  }, []);
-
   function computePath(fixture) {
     return `/${fixture.suite}/${fixture.name}`;
   }
@@ -120,42 +101,39 @@ function App(props) {
 
   return (
     <React.Fragment>
-      {fontState === 'active' ? (
-        <Routes>
-          {fixtures.map((fixture) => {
-            const path = computePath(fixture);
-            const Component = fixture.Component;
-            if (Component === undefined) {
-              console.warn('Missing `Component` for ', fixture);
-              return null;
-            }
+      <Routes>
+        {fixtures.map((fixture) => {
+          const path = computePath(fixture);
+          const Component = fixture.Component;
+          if (Component === undefined) {
+            console.warn('Missing `Component` for ', fixture);
+            return null;
+          }
 
-            // Composites are authored for the Next.js docs site; wrap them in
-            // the branding theme here rather than threading a flag through
-            // `FixtureRenderer`.
-            const FixtureComponent = fixture.isComposite
-              ? () => (
-                  <MarketingWrapper>
-                    <Component />
-                  </MarketingWrapper>
-                )
-              : Component;
+          // Composites are authored for the Next.js docs site; wrap them in
+          // the branding theme here rather than threading a flag through
+          // `FixtureRenderer`.
+          const FixtureComponent = fixture.isComposite
+            ? () => (
+                <MarketingWrapper>
+                  <Component />
+                </MarketingWrapper>
+              )
+            : Component;
 
-            return (
-              <Route
-                key={path}
-                exact
-                path={path}
-                element={<FixtureRenderer component={FixtureComponent} path={path} />}
-              />
-            );
-          })}
-        </Routes>
-      ) : null}
+          return (
+            <Route
+              key={path}
+              exact
+              path={path}
+              element={<FixtureRenderer component={FixtureComponent} path={path} />}
+            />
+          );
+        })}
+      </Routes>
 
       {isDev ? (
         <div>
-          <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
           <p>
             Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
             appending <code>#no-dev</code>.

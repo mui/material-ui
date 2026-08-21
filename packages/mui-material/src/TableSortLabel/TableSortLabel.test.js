@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import TableSortLabel, { tableSortLabelClasses as classes } from '@mui/material/TableSortLabel';
 import ButtonBase from '@mui/material/ButtonBase';

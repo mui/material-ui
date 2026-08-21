@@ -37,7 +37,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: '22.23.1'
+          node-version: '22.23.2'
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
       - name: Cache Next.js build
@@ -50,7 +50,7 @@ jobs:
             ${{ runner.os }}-nextjs-
       - run: pnpm release:build
       - name: Publish packages to pkg.pr.new
-        uses: mui/mui-public/.github/actions/ci-publish@3aff78882d5ed7d5d6a22d13ffa91a75f1374ab1 # master
+        uses: mui/mui-public/.github/actions/ci-publish@0534c1cc1a7f0f170d927199ec407192a656e81f # master
         if: ${{ matrix.os == 'ubuntu-latest' }}
       - name: Build docs
         run: pnpm docs:build
@@ -72,7 +72,7 @@ jobs:
         run: |
           VERSION=$(node -p "(require('./package.json').config && require('./package.json').config.valeVersion) || ''")
           echo "vale_version=$VERSION" >> $GITHUB_OUTPUT
-      - uses: vale-cli/vale-action@85f9f7f2c5f449ac0ae5b66662961bae3f77ca6a # 2.1.2
+      - uses: vale-cli/vale-action@518a9136acc6e6668ce7c00d367051e0941e87ff # v3.0.0
         continue-on-error: true # GitHub Action flag needed until https://github.com/errata-ai/vale-action/issues/89 is fixed
         if: ${{ matrix.os == 'ubuntu-latest' }}
         with:
@@ -96,9 +96,9 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Prepare for publishing
-        uses: mui/mui-public/.github/actions/publish-prepare@3aff78882d5ed7d5d6a22d13ffa91a75f1374ab1 # master
+        uses: mui/mui-public/.github/actions/publish-prepare@0534c1cc1a7f0f170d927199ec407192a656e81f # master
         with:
-          node-version: '22.23.1'
+          node-version: '22.23.2'
       - name: Dry run npm publishing
         env:
           IS_PUBLISH_TEST: 'true'

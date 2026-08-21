@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import * as React from 'react';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import ImageList from '@mui/material/ImageList';

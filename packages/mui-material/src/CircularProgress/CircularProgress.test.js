@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import CircularProgress, {
   circularProgressClasses as classes,

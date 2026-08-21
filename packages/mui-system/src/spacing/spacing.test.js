@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import spacing, { margin, padding } from './spacing';
 
 describe('system spacing', () => {

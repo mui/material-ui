@@ -49,7 +49,7 @@ export default function Home() {
       </NoSsr>
       <AppHeaderBanner />
       <AppHeader />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <Hero />
         <References companies={CORE_CUSTOMERS} />
         <Divider />

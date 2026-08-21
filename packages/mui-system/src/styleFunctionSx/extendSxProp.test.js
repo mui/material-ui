@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import extendSxProp from './extendSxProp';
 
 describe('extendSxProp', () => {

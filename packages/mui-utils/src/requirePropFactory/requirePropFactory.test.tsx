@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { expect } from 'chai';
 import requirePropFactory from './requirePropFactory';
 
 describe('requirePropFactory', () => {

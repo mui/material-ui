@@ -40,6 +40,7 @@ export interface A11yRule {
   /**
    * `visual` asserts rules that depend on rendered CSS. `all` asserts every
    * axe violation/incomplete that is not listed in `skipAssertions`.
+   * @default 'visual'
    */
   assertions?: 'visual' | 'all';
   /** Axe rule IDs recorded into results JSON but not asserted on. */

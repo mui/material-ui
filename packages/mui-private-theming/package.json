@@ -36,10 +36,8 @@
   },
   "devDependencies": {
     "@mui/types": "workspace:^",
-    "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.17",
-    "chai": "6.2.2",
+    "@types/react": "19.2.18",
     "react": "19.2.8"
   },
   "peerDependencies": {

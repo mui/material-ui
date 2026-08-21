@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
 
