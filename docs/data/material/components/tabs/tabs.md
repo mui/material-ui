@@ -51,13 +51,13 @@ Keeping panels mounted preserves state and makes subsequent tab changes faster. 
 
 When using the `@mui/lab` API, pass `keepMounted` to each `TabPanel`.
 
-{{"demo": "KeepMountedLabTabs.js"}}
+{{"component": "file://./demos/keep-mounted-lab/index.ts"}}
 
 ### With standard API
 
 With the standard API, render the panel children unconditionally and use the hidden attribute to control visibility.
 
-{{"demo": "KeepMountedStandardTabs.js"}}
+{{"component": "file://./demos/keep-mounted-standard/index.ts"}}
 
 ## Wrapped labels
 
