@@ -886,11 +886,23 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   );
   addRootOverride(enhanced.components, 'MuiAlert', {
     paddingBlock: d['x-small'],
-    paddingInline: d.large,
-    gap: d.medium,
-    [`& .${alertClasses.icon}`]: { marginRight: 0 },
-    [`& .${alertClasses.action}`]: { paddingLeft: 0 },
+    paddingInline: d.small,
+    gap: d['x-small'],
+    [`& .${alertClasses.icon}`]: {
+      marginRight: 0,
+      paddingBlock: sp(0.75),
+      fontSize: '1.1lh',
+    },
+    [`& .${alertClasses.action}`]: {
+      padding: 0,
+      marginRight: 0,
+      alignSelf: 'center',
+    },
   });
+  addDefaultProps(enhanced.components, 'MuiAlert', {
+    slotProps: { closeButton: { size: 'medium' } },
+  });
+  addRootOverride(enhanced.components, 'MuiAlert', { paddingBlock: sp(0.875) }, 'message');
   addRootOverride(
     enhanced.components,
     'MuiAccordionSummary',

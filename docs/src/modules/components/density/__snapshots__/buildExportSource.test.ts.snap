@@ -1631,16 +1631,32 @@ const high = {
         root: [
           {
             paddingBlock: 'var(--mui-density-x-small)',
-            paddingInline: 'var(--mui-density-large)',
-            gap: 'var(--mui-density-medium)',
+            paddingInline: 'var(--mui-density-small)',
+            gap: 'var(--mui-density-x-small)',
             '& .MuiAlert-icon': {
               marginRight: 0,
+              paddingBlock: 'calc(calc(0.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+              fontSize: '1.1lh',
             },
             '& .MuiAlert-action': {
-              paddingLeft: 0,
+              padding: 0,
+              marginRight: 0,
+              alignSelf: 'center',
             },
           },
         ],
+        message: [
+          {
+            paddingBlock: 'calc(calc(0.875 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+          },
+        ],
+      },
+      defaultProps: {
+        slotProps: {
+          closeButton: {
+            size: 'medium',
+          },
+        },
       },
     },
     MuiAccordionSummary: {
@@ -4521,16 +4537,32 @@ const medium = {
         root: [
           {
             paddingBlock: 'var(--mui-density-x-small)',
-            paddingInline: 'var(--mui-density-large)',
-            gap: 'var(--mui-density-medium)',
+            paddingInline: 'var(--mui-density-small)',
+            gap: 'var(--mui-density-x-small)',
             '& .MuiAlert-icon': {
               marginRight: 0,
+              paddingBlock: 'calc(calc(0.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+              fontSize: '1.1lh',
             },
             '& .MuiAlert-action': {
-              paddingLeft: 0,
+              padding: 0,
+              marginRight: 0,
+              alignSelf: 'center',
             },
           },
         ],
+        message: [
+          {
+            paddingBlock: 'calc(calc(0.875 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+          },
+        ],
+      },
+      defaultProps: {
+        slotProps: {
+          closeButton: {
+            size: 'medium',
+          },
+        },
       },
     },
     MuiAccordionSummary: {
@@ -7414,16 +7446,32 @@ const low = {
         root: [
           {
             paddingBlock: 'var(--mui-density-x-small)',
-            paddingInline: 'var(--mui-density-large)',
-            gap: 'var(--mui-density-medium)',
+            paddingInline: 'var(--mui-density-small)',
+            gap: 'var(--mui-density-x-small)',
             '& .MuiAlert-icon': {
               marginRight: 0,
+              paddingBlock: 'calc(calc(0.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+              fontSize: '1.1lh',
             },
             '& .MuiAlert-action': {
-              paddingLeft: 0,
+              padding: 0,
+              marginRight: 0,
+              alignSelf: 'center',
             },
           },
         ],
+        message: [
+          {
+            paddingBlock: 'calc(calc(0.875 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+          },
+        ],
+      },
+      defaultProps: {
+        slotProps: {
+          closeButton: {
+            size: 'medium',
+          },
+        },
       },
     },
     MuiAccordionSummary: {
