@@ -512,6 +512,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     note: 'Derived from --_dialogMargin — the var row is the knob.',
   },
   'MuiDialogActions|root|base||padding': { label: 'DialogActions · padding', done: ['medium'] },
+  'MuiDialogActions|root|fn:1jmonb||gap': 'DialogActions · gap [fn]',
   'MuiDialogActions|root|fn:1jmonb|& > :not(style) ~ :not(style)|marginLeft': {
     label: 'DialogActions · button gap',
     note: 'Inter-button gap under !disableSpacing (master 8 — CardActions twin).',

@@ -3331,7 +3331,7 @@ function DialogStaticComposition() {
         </IconButton>
       </DialogTitle>
       <DialogContent dividers>
-        <Typography variant="body2">
+        <Typography variant="body2" sx={{ py: 2 }}>
           <span className="density-debug-text">
             Let apps use your location to find nearby places. You can turn this off anytime in
             settings.

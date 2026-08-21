@@ -1352,7 +1352,7 @@ const high = {
                   dividers: false,
                 },
                 style: {
-                  padding: '0px 16px',
+                  padding: '0 var(--mui-density-medium)',
                 },
               },
               {
@@ -1360,7 +1360,7 @@ const high = {
                   dividers: true,
                 },
                 style: {
-                  padding: '0px 16px',
+                  padding: '0 var(--mui-density-medium)',
                 },
               },
             ],
@@ -1377,8 +1377,9 @@ const high = {
               {
                 props: ({ ownerState }) => !ownerState.disableSpacing,
                 style: {
+                  gap: 'var(--mui-density-small)',
                   '& > :not(style) ~ :not(style)': {
-                    marginLeft: 'var(--mui-density-small)',
+                    marginLeft: 0,
                   },
                 },
               },
@@ -1391,7 +1392,7 @@ const high = {
       styleOverrides: {
         paper: [
           {
-            '--_dialogMargin': 'var(--mui-density-xx-large)',
+            '--_dialogMargin': 'var(--mui-density-large)',
             variants: [
               {
                 props: {
@@ -4241,7 +4242,7 @@ const medium = {
                   dividers: false,
                 },
                 style: {
-                  padding: '0px 16px',
+                  padding: '0 var(--mui-density-medium)',
                 },
               },
               {
@@ -4249,7 +4250,7 @@ const medium = {
                   dividers: true,
                 },
                 style: {
-                  padding: '0px 16px',
+                  padding: '0 var(--mui-density-medium)',
                 },
               },
             ],
@@ -4266,8 +4267,9 @@ const medium = {
               {
                 props: ({ ownerState }) => !ownerState.disableSpacing,
                 style: {
+                  gap: 'var(--mui-density-small)',
                   '& > :not(style) ~ :not(style)': {
-                    marginLeft: 'var(--mui-density-small)',
+                    marginLeft: 0,
                   },
                 },
               },
@@ -4280,7 +4282,7 @@ const medium = {
       styleOverrides: {
         paper: [
           {
-            '--_dialogMargin': 'var(--mui-density-xx-large)',
+            '--_dialogMargin': 'var(--mui-density-large)',
             variants: [
               {
                 props: {
@@ -7133,7 +7135,7 @@ const low = {
                   dividers: false,
                 },
                 style: {
-                  padding: '0px 16px',
+                  padding: '0 var(--mui-density-medium)',
                 },
               },
               {
@@ -7141,7 +7143,7 @@ const low = {
                   dividers: true,
                 },
                 style: {
-                  padding: '0px 16px',
+                  padding: '0 var(--mui-density-medium)',
                 },
               },
             ],
@@ -7158,8 +7160,9 @@ const low = {
               {
                 props: ({ ownerState }) => !ownerState.disableSpacing,
                 style: {
+                  gap: 'var(--mui-density-small)',
                   '& > :not(style) ~ :not(style)': {
-                    marginLeft: 'var(--mui-density-small)',
+                    marginLeft: 0,
                   },
                 },
               },
@@ -7172,7 +7175,7 @@ const low = {
       styleOverrides: {
         paper: [
           {
-            '--_dialogMargin': 'var(--mui-density-xx-large)',
+            '--_dialogMargin': 'var(--mui-density-large)',
             variants: [
               {
                 props: {

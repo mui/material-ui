@@ -3093,7 +3093,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiDialog|paper|base||--_dialogMargin',
     label: 'Dialog · paper · --_dialogMargin',
     isDensity: true,
-    densityKey: 'xx-large',
+    densityKey: 'large',
     target: {
       component: 'MuiDialog',
       slot: 'paper',
@@ -3102,9 +3102,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_dialogMargin',
     },
     values: {
-      high: 'var(--mui-density-xx-large)',
-      medium: 'var(--mui-density-xx-large)',
-      low: 'var(--mui-density-xx-large)',
+      high: 'var(--mui-density-large)',
+      medium: 'var(--mui-density-large)',
+      low: 'var(--mui-density-large)',
     },
   },
   {
@@ -3288,10 +3288,28 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
-    id: 'MuiDialogActions|root|fn:1jmonb|& > :not(style) ~ :not(style)|marginLeft',
-    label: 'DialogActions · marginLeft [fn]',
+    id: 'MuiDialogActions|root|fn:1jmonb||gap',
+    label: 'DialogActions · gap [fn]',
     isDensity: true,
     densityKey: 'small',
+    target: {
+      component: 'MuiDialogActions',
+      slot: 'root',
+      props: ({ ownerState }) => !ownerState.disableSpacing,
+      nested: '',
+      cssProp: 'gap',
+    },
+    values: {
+      high: 'var(--mui-density-small)',
+      medium: 'var(--mui-density-small)',
+      low: 'var(--mui-density-small)',
+    },
+  },
+  {
+    id: 'MuiDialogActions|root|fn:1jmonb|& > :not(style) ~ :not(style)|marginLeft',
+    label: 'DialogActions · marginLeft [fn]',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiDialogActions',
       slot: 'root',
@@ -3299,11 +3317,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '& > :not(style) ~ :not(style)',
       cssProp: 'marginLeft',
     },
-    values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
-    },
+    values: { high: '0', medium: '0', low: '0' },
   },
   {
     id: 'MuiDialogContent|root|dividers=false||padding',
@@ -3317,7 +3331,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'padding',
     },
-    values: { high: '0px 16px', medium: '0px 16px', low: '0px 16px' },
+    values: {
+      high: '0 var(--mui-density-medium)',
+      medium: '0 var(--mui-density-medium)',
+      low: '0 var(--mui-density-medium)',
+    },
   },
   {
     id: 'MuiDialogContent|root|dividers=true||padding',
@@ -3331,7 +3349,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'padding',
     },
-    values: { high: '0px 16px', medium: '0px 16px', low: '0px 16px' },
+    values: {
+      high: '0 var(--mui-density-medium)',
+      medium: '0 var(--mui-density-medium)',
+      low: '0 var(--mui-density-medium)',
+    },
   },
   {
     id: 'MuiDialogTitle|root|base||padding',

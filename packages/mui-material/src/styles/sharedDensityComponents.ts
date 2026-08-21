@@ -738,26 +738,23 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // Inline-start inset only; the -8px flush end pull is an edge offset (frozen).
   addRootOverride(enhanced.components, 'MuiSnackbarContent', { paddingLeft: d.large }, 'action');
   addRootOverride(enhanced.components, 'MuiDialogTitle', {
-    // headerWrapper: top/right/bottom semantic/spacing/variable/s, left semantic/spacing/variable/m
     padding: `${d.small} ${d.small} ${d.small} ${d.medium}`,
   });
+  // Separate dividers variants keep one knob per state (dividers:true overrides
+  // master's distinct 16 24).
   addRootOverride(enhanced.components, 'MuiDialogContent', {
-    // Both dividers states pad 0px 16px (raw). Separate variants keep one knob
-    // per state; dividers:true now overrides master's distinct 16 24.
     variants: [
-      { props: { dividers: false }, style: { padding: '0px 16px' } },
-      { props: { dividers: true }, style: { padding: '0px 16px' } },
+      { props: { dividers: false }, style: { padding: `0 ${d.medium}` } },
+      { props: { dividers: true }, style: { padding: `0 ${d.medium}` } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiDialogActions', {
-    // Root inset: footer bottomContentWrapper semantic/spacing/variable/m;
-    // inter-button gap keeps its step (no Figma capture).
     padding: d.medium,
     variants: [
       {
         props: ({ ownerState }: { ownerState: { disableSpacing?: boolean | undefined } }) =>
           !ownerState.disableSpacing,
-        style: { '& > :not(style) ~ :not(style)': { marginLeft: d.small } },
+        style: { gap: d.small, '& > :not(style) ~ :not(style)': { marginLeft: 0 } },
       },
     ],
   });
@@ -781,7 +778,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       // scoped fullScreen:false — master's fullScreen state zeroes all of these
       // and must stay untouched (an unscoped rule lands later in the cascade
       // and would clobber it).
-      '--_dialogMargin': d['xx-large'],
+      '--_dialogMargin': d.large,
       variants: [
         { props: { fullScreen: false }, style: { margin: 'var(--_dialogMargin)' } },
         {
