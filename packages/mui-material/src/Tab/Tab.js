@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import ButtonBase from '../ButtonBase';
+import ButtonBase, { buttonBaseClasses } from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import { applyInsetFocusVisible } from '../styles/focusVisible';
 import { styled } from '../zero-styled';
@@ -136,6 +136,11 @@ const TabRoot = styled(ButtonBase, {
           [`&.${tabClasses.selected}`]: {
             opacity: 1,
           },
+          ...(theme.focusVisible && {
+            [`&.${buttonBaseClasses.focusVisible}`]: {
+              opacity: 1,
+            },
+          }),
           [`&.${tabClasses.disabled}`]: {
             opacity: (theme.vars || theme).palette.action.disabledOpacity,
           },
