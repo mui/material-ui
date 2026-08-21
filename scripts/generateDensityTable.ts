@@ -15,11 +15,12 @@ import {
   enhanceMediumDensity,
   enhanceLowDensity,
 } from '@mui/material/styles';
+import { withXDensity } from 'docs/src/modules/components/density/xDensity';
 
 const PRESETS = {
-  high: enhanceHighDensity,
-  medium: enhanceMediumDensity,
-  low: enhanceLowDensity,
+  high: withXDensity(enhanceHighDensity, 'high'),
+  medium: withXDensity(enhanceMediumDensity, 'medium'),
+  low: withXDensity(enhanceLowDensity, 'low'),
 } as const;
 type PresetName = keyof typeof PRESETS;
 const PRESET_NAMES = Object.keys(PRESETS) as PresetName[];

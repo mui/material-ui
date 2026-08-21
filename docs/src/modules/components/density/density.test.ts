@@ -19,11 +19,12 @@ import {
 } from './densityFields';
 import { densityKnobs } from './densityKnobs';
 import { buildOverrides, mergeOntoPreset } from './buildDensityOverrides';
+import { withXDensity } from './xDensity';
 
 const PRESETS = {
-  high: enhanceHighDensity,
-  medium: enhanceMediumDensity,
-  low: enhanceLowDensity,
+  high: withXDensity(enhanceHighDensity, 'high'),
+  medium: withXDensity(enhanceMediumDensity, 'medium'),
+  low: withXDensity(enhanceLowDensity, 'low'),
 } as const;
 type PresetLevel = keyof typeof PRESETS;
 const LEVELS = Object.keys(PRESETS) as PresetLevel[];

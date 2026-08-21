@@ -8,6 +8,7 @@ import { buildOverrides, mergeOntoPreset } from './buildDensityOverrides';
 import { collectDensityEdits, collectScaleEdits, collectThemeTokenEdits } from './collectEdits';
 import { resolveSpacingCalcPx, shortenDensityVars } from './mappingValue';
 import { PRESET_THEME_INPUT } from './themeTokens';
+import { withXDensity } from './xDensity';
 import { USER_LAYER_KEY, USER_VALUE_KEY } from './buildExportSource';
 import type { ExportInput, ExportPresetPayload } from './buildExportSource';
 
@@ -20,9 +21,9 @@ export type { ExportInput } from './buildExportSource';
 // construction. Each preset's payload carries ITS OWN workspace's edits.
 
 const PRESET_FN = {
-  high: enhanceHighDensity,
-  medium: enhanceMediumDensity,
-  low: enhanceLowDensity,
+  high: withXDensity(enhanceHighDensity, 'high'),
+  medium: withXDensity(enhanceMediumDensity, 'medium'),
+  low: withXDensity(enhanceLowDensity, 'low'),
 } as const;
 
 type Level = keyof typeof PRESET_FN;

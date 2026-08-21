@@ -855,129 +855,6 @@ const high = {
         ],
       },
     },
-    MuiPickersInputBase: {
-      styleOverrides: {
-        sectionsContainer: [
-          {
-            lineHeight: 'calc(16px * var(--mui-scaling))',
-          },
-        ],
-        section: [
-          {
-            lineHeight: 'calc(16px * var(--mui-scaling))',
-          },
-        ],
-        content: [
-          {
-            lineHeight: 'calc(16px * var(--mui-scaling))',
-          },
-        ],
-      },
-    },
-    MuiPickersOutlinedInput: {
-      styleOverrides: {
-        root: [
-          {
-            paddingInline: 'var(--mui-density-small)',
-            '.MuiFormControl-root:has(> &)': {
-              '--_outlinedInputPadBlock': 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
-            },
-            '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'var(--_outlinedInputPadBlock)',
-              '--_inlinePad': 'var(--mui-density-small)',
-            },
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-        sectionsContainer: [
-          {
-            paddingBlock: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
-            paddingInline: 0,
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    MuiPickersFilledInput: {
-      styleOverrides: {
-        root: [
-          {
-            '.MuiFormControl-root:has(> &)': {
-              '--_filledInputPadTop': 'var(--mui-density-large)',
-              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
-            },
-            '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-              '--_shrinkY': '7px',
-              '--_inlinePad': 'var(--mui-density-small)',
-            },
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
-                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
-                  },
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-                    '--_shrinkY': '4px',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-        sectionsContainer: [
-          {
-            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
-            paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
-            paddingInline: 'var(--mui-density-small)',
-            variants: [
-              {
-                props: {
-                  hiddenLabel: true,
-                },
-                style: {
-                  paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
-                },
-              },
-              {
-                props: {
-                  hiddenLabel: true,
-                  inputSize: 'small',
-                },
-                style: {
-                  paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiFormControlLabel: {
       styleOverrides: {
         root: [
@@ -1802,395 +1679,6 @@ const high = {
         ],
       },
     },
-    MuiDataGrid: {
-      styleOverrides: {
-        cell: [
-          {
-            paddingInline: 'var(--mui-density-x-small)',
-          },
-          {
-            '&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell': {
-              paddingTop: 'var(--mui-density-small)',
-            },
-          },
-        ],
-        columnHeader: [
-          {
-            paddingInline: 'var(--mui-density-x-small)',
-          },
-        ],
-        editInputCell: [
-          {
-            '& input': {
-              paddingInline: 'var(--mui-density-medium)',
-            },
-          },
-        ],
-        columnHeaderTitleContainer: [
-          {
-            gap: 'var(--mui-density-xx-small)',
-          },
-        ],
-        toolbarDivider: [
-          {
-            marginInline: 'var(--mui-density-x-small)',
-          },
-        ],
-        toolbarLabel: [
-          {
-            marginInline: 'var(--mui-density-x-small)',
-          },
-        ],
-        rowCount: [
-          {
-            marginInline: 'var(--mui-density-large)',
-          },
-        ],
-        selectedRowCount: [
-          {
-            marginInline: 'var(--mui-density-large)',
-          },
-        ],
-        actionsCell: [
-          {
-            gridGap: 'var(--mui-density-small)',
-          },
-        ],
-        panel: [
-          {
-            '& .MuiDataGrid-panelContent': {
-              padding: 'var(--mui-density-medium) var(--mui-density-small) var(--mui-density-large) var(--mui-density-large)',
-              gap: 'var(--mui-density-medium)',
-            },
-          },
-        ],
-        panelFooter: [
-          {
-            padding: 'var(--mui-density-medium)',
-          },
-        ],
-        filterForm: [
-          {
-            gap: 'var(--mui-density-medium)',
-          },
-        ],
-        columnsManagement: [
-          {
-            padding: 'var(--mui-density-x-small) var(--mui-density-medium)',
-            '& .MuiFormControlLabel-root': {
-              gap: 'var(--mui-density-x-small)',
-            },
-          },
-        ],
-        columnsManagementHeader: [
-          {
-            padding: 'var(--mui-density-medium) var(--mui-density-large)',
-          },
-        ],
-        columnsManagementFooter: [
-          {
-            padding: 'var(--mui-density-small) var(--mui-density-small) var(--mui-density-small) var(--mui-density-medium)',
-          },
-        ],
-        columnsManagementEmptyText: [
-          {
-            paddingBlock: 'var(--mui-density-small)',
-          },
-        ],
-        overlay: [
-          {
-            gap: 'var(--mui-density-small)',
-          },
-        ],
-        'columnHeader--dragging': [
-          {
-            paddingInline: 'var(--mui-density-medium)',
-          },
-        ],
-        'row--dragging': [
-          {
-            paddingInline: 'var(--mui-density-medium)',
-            '& .MuiDataGrid-rowReorderCellPlaceholder': {
-              paddingInline: 'var(--mui-density-x-small)',
-            },
-          },
-        ],
-        root: [
-          {
-            '& .MuiDataGrid-columnHeader--filter': {
-              paddingBlock: 'var(--mui-density-small)',
-              paddingRight: 'var(--mui-density-x-small)',
-            },
-          },
-          {
-            '--DataGrid-cellOffsetMultiplier': '1.5',
-          },
-        ],
-        columnHeaderFilterInput: [
-          {
-            marginRight: 'var(--mui-density-x-small)',
-            marginBottom: 'calc(var(--mui-density-xx-small) * -1)',
-          },
-        ],
-        toolbar: [
-          {
-            padding: 'var(--mui-density-small)',
-            gap: 'var(--mui-density-xx-small)',
-          },
-          {
-            minHeight: '44px',
-          },
-        ],
-        treeDataGroupingCellToggle: [
-          {
-            marginRight: 'var(--mui-density-large)',
-          },
-          {
-            flexBasis: '24px',
-          },
-        ],
-        groupingCriteriaCellToggle: [
-          {
-            marginRight: 'var(--mui-density-large)',
-          },
-          {
-            flexBasis: '24px',
-          },
-        ],
-        pivotPanelField: [
-          {
-            marginInlineStart: 'var(--mui-density-x-small)',
-          },
-          {
-            height: '26px',
-          },
-        ],
-        chartsPanelDataField: [
-          {
-            marginInlineStart: 'var(--mui-density-x-small)',
-          },
-          {
-            height: '26px',
-          },
-        ],
-        footerContainer: [
-          {
-            minHeight: '44px',
-          },
-        ],
-        filterFormLogicOperatorInput: [
-          {
-            minWidth: '65px',
-          },
-        ],
-        filterFormColumnInput: [
-          {
-            width: '130px',
-          },
-        ],
-        filterFormOperatorInput: [
-          {
-            width: '130px',
-          },
-        ],
-        filterFormValueInput: [
-          {
-            width: '165px',
-          },
-        ],
-        menu: [
-          {
-            '& .MuiDataGrid-menuList': {
-              minWidth: '220px',
-            },
-          },
-        ],
-        toolbarQuickFilterControl: [
-          {
-            variants: [
-              {
-                props: {
-                  expanded: true,
-                },
-                style: {
-                  width: '230px',
-                },
-              },
-            ],
-          },
-        ],
-        sidebar: [
-          {
-            width: '270px',
-            minWidth: '240px',
-            maxWidth: '370px',
-          },
-        ],
-        pivotPanelHeader: [
-          {
-            height: '44px',
-          },
-        ],
-        pivotPanelAvailableFields: [
-          {
-            minHeight: '68px',
-          },
-        ],
-        pivotPanelSections: [
-          {
-            minHeight: '128px',
-          },
-        ],
-        pivotPanelPlaceholder: [
-          {
-            minHeight: '32px',
-          },
-        ],
-        aiAssistantPanel: [
-          {
-            width: '340px',
-          },
-        ],
-        aiAssistantPanelHeader: [
-          {
-            height: '44px',
-          },
-        ],
-        chartsPanelDataAvailableFields: [
-          {
-            minHeight: '68px',
-          },
-        ],
-        chartsPanelDataSections: [
-          {
-            minHeight: '128px',
-          },
-        ],
-        chartsPanelDataPlaceholder: [
-          {
-            minHeight: '32px',
-          },
-        ],
-      },
-      defaultProps: {
-        rowHeight: 28,
-        columnHeaderHeight: 28,
-      },
-    },
-    MuiRichTreeView: {
-      defaultProps: {
-        itemChildrenIndentation: 'var(--mui-density-x-large)',
-      },
-      styleOverrides: {},
-    },
-    MuiSimpleTreeView: {
-      defaultProps: {
-        itemChildrenIndentation: 'var(--mui-density-x-large)',
-      },
-      styleOverrides: {},
-    },
-    MuiTreeItem: {
-      styleOverrides: {
-        content: [
-          {
-            paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
-            paddingRight: 'var(--mui-density-small)',
-            paddingLeft: 'calc(var(--mui-density-x-small) + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))',
-            gap: 'var(--mui-density-x-small)',
-          },
-        ],
-        checkbox: [
-          {
-            marginLeft: '8px',
-          },
-        ],
-        iconContainer: [
-          {
-            '& svg': {
-              fontSize: '16px',
-            },
-          },
-        ],
-        root: [
-          {
-            '--TreeView-itemHeight': '28px',
-          },
-        ],
-      },
-    },
-    MuiPickersCalendarHeader: {
-      styleOverrides: {
-        label: [
-          {
-            marginRight: 'var(--mui-density-x-small)',
-          },
-        ],
-        root: [
-          {
-            marginTop: 'var(--mui-density-medium)',
-            marginBottom: 'var(--mui-density-medium)',
-            paddingLeft: 'var(--mui-density-medium)',
-            paddingRight: 'var(--mui-density-medium)',
-          },
-          {
-            minHeight: '36px',
-            maxHeight: '36px',
-          },
-        ],
-      },
-    },
-    MuiYearCalendar: {
-      styleOverrides: {
-        root: [
-          {
-            rowGap: '4px',
-            width: '284px',
-          },
-        ],
-        button: [
-          {
-            width: '56.5px',
-          },
-        ],
-      },
-    },
-    MuiMonthCalendar: {
-      styleOverrides: {
-        root: [
-          {
-            rowGap: 'var(--mui-density-xx-small)',
-            width: '284px',
-          },
-        ],
-      },
-    },
-    MuiDigitalClock: {
-      styleOverrides: {
-        item: [
-          {
-            padding: 'var(--mui-density-xx-small) var(--mui-density-medium)',
-          },
-        ],
-      },
-    },
-    MuiPickersToolbar: {
-      styleOverrides: {
-        root: [
-          {
-            variants: [
-              {
-                props: {
-                  pickerOrientation: 'portrait',
-                },
-                style: {
-                  padding: 'var(--mui-density-large) var(--mui-density-x-large)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiTab: {
       styleOverrides: {
         root: [
@@ -2765,6 +2253,518 @@ const high = {
           {
             paddingBlock: 'var(--mui-density-x-small)',
             paddingInline: 'var(--mui-density-small)',
+          },
+        ],
+      },
+    },
+    MuiPickersInputBase: {
+      styleOverrides: {
+        sectionsContainer: [
+          {
+            lineHeight: 'calc(16px * var(--mui-scaling))',
+          },
+        ],
+        section: [
+          {
+            lineHeight: 'calc(16px * var(--mui-scaling))',
+          },
+        ],
+        content: [
+          {
+            lineHeight: 'calc(16px * var(--mui-scaling))',
+          },
+        ],
+      },
+    },
+    MuiPickersOutlinedInput: {
+      styleOverrides: {
+        root: [
+          {
+            paddingInline: 'var(--mui-density-small)',
+            '.MuiFormControl-root:has(> &)': {
+              '--_outlinedInputPadBlock': 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'var(--_outlinedInputPadBlock)',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingBlock: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
+            paddingInline: 0,
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiPickersFilledInput: {
+      styleOverrides: {
+        root: [
+          {
+            '.MuiFormControl-root:has(> &)': {
+              '--_filledInputPadTop': 'var(--mui-density-large)',
+              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+              '--_shrinkY': '7px',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
+                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
+                  },
+                  '.MuiInputLabel-root:has(~ &)': {
+                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+                    '--_shrinkY': '4px',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
+            paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
+            paddingInline: 'var(--mui-density-small)',
+            variants: [
+              {
+                props: {
+                  hiddenLabel: true,
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
+                },
+              },
+              {
+                props: {
+                  hiddenLabel: true,
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiDataGrid: {
+      styleOverrides: {
+        cell: [
+          {
+            paddingInline: 'var(--mui-density-x-small)',
+          },
+          {
+            '&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell': {
+              paddingTop: 'var(--mui-density-small)',
+            },
+          },
+        ],
+        columnHeader: [
+          {
+            paddingInline: 'var(--mui-density-x-small)',
+          },
+        ],
+        editInputCell: [
+          {
+            '& input': {
+              paddingInline: 'var(--mui-density-medium)',
+            },
+          },
+        ],
+        columnHeaderTitleContainer: [
+          {
+            gap: 'var(--mui-density-xx-small)',
+          },
+        ],
+        toolbarDivider: [
+          {
+            marginInline: 'var(--mui-density-x-small)',
+          },
+        ],
+        toolbarLabel: [
+          {
+            marginInline: 'var(--mui-density-x-small)',
+          },
+        ],
+        rowCount: [
+          {
+            marginInline: 'var(--mui-density-large)',
+          },
+        ],
+        selectedRowCount: [
+          {
+            marginInline: 'var(--mui-density-large)',
+          },
+        ],
+        actionsCell: [
+          {
+            gridGap: 'var(--mui-density-small)',
+          },
+        ],
+        panel: [
+          {
+            '& .MuiDataGrid-panelContent': {
+              padding: 'var(--mui-density-medium) var(--mui-density-small) var(--mui-density-large) var(--mui-density-large)',
+              gap: 'var(--mui-density-medium)',
+            },
+          },
+        ],
+        panelFooter: [
+          {
+            padding: 'var(--mui-density-medium)',
+          },
+        ],
+        filterForm: [
+          {
+            gap: 'var(--mui-density-medium)',
+          },
+        ],
+        columnsManagement: [
+          {
+            padding: 'var(--mui-density-x-small) var(--mui-density-medium)',
+            '& .MuiFormControlLabel-root': {
+              gap: 'var(--mui-density-x-small)',
+            },
+          },
+        ],
+        columnsManagementHeader: [
+          {
+            padding: 'var(--mui-density-medium) var(--mui-density-large)',
+          },
+        ],
+        columnsManagementFooter: [
+          {
+            padding: 'var(--mui-density-small) var(--mui-density-small) var(--mui-density-small) var(--mui-density-medium)',
+          },
+        ],
+        columnsManagementEmptyText: [
+          {
+            paddingBlock: 'var(--mui-density-small)',
+          },
+        ],
+        overlay: [
+          {
+            gap: 'var(--mui-density-small)',
+          },
+        ],
+        'columnHeader--dragging': [
+          {
+            paddingInline: 'var(--mui-density-medium)',
+          },
+        ],
+        'row--dragging': [
+          {
+            paddingInline: 'var(--mui-density-medium)',
+            '& .MuiDataGrid-rowReorderCellPlaceholder': {
+              paddingInline: 'var(--mui-density-x-small)',
+            },
+          },
+        ],
+        root: [
+          {
+            '& .MuiDataGrid-columnHeader--filter': {
+              paddingBlock: 'var(--mui-density-small)',
+              paddingRight: 'var(--mui-density-x-small)',
+            },
+          },
+          {
+            '--DataGrid-cellOffsetMultiplier': '1.5',
+          },
+        ],
+        columnHeaderFilterInput: [
+          {
+            marginRight: 'var(--mui-density-x-small)',
+            marginBottom: 'calc(var(--mui-density-xx-small) * -1)',
+          },
+        ],
+        toolbar: [
+          {
+            padding: 'var(--mui-density-small)',
+            gap: 'var(--mui-density-xx-small)',
+          },
+          {
+            minHeight: '44px',
+          },
+        ],
+        treeDataGroupingCellToggle: [
+          {
+            marginRight: 'var(--mui-density-large)',
+          },
+          {
+            flexBasis: '24px',
+          },
+        ],
+        groupingCriteriaCellToggle: [
+          {
+            marginRight: 'var(--mui-density-large)',
+          },
+          {
+            flexBasis: '24px',
+          },
+        ],
+        pivotPanelField: [
+          {
+            marginInlineStart: 'var(--mui-density-x-small)',
+          },
+          {
+            height: '26px',
+          },
+        ],
+        chartsPanelDataField: [
+          {
+            marginInlineStart: 'var(--mui-density-x-small)',
+          },
+          {
+            height: '26px',
+          },
+        ],
+        footerContainer: [
+          {
+            minHeight: '44px',
+          },
+        ],
+        filterFormLogicOperatorInput: [
+          {
+            minWidth: '65px',
+          },
+        ],
+        filterFormColumnInput: [
+          {
+            width: '130px',
+          },
+        ],
+        filterFormOperatorInput: [
+          {
+            width: '130px',
+          },
+        ],
+        filterFormValueInput: [
+          {
+            width: '165px',
+          },
+        ],
+        menu: [
+          {
+            '& .MuiDataGrid-menuList': {
+              minWidth: '220px',
+            },
+          },
+        ],
+        toolbarQuickFilterControl: [
+          {
+            variants: [
+              {
+                props: {
+                  expanded: true,
+                },
+                style: {
+                  width: '230px',
+                },
+              },
+            ],
+          },
+        ],
+        sidebar: [
+          {
+            width: '270px',
+            minWidth: '240px',
+            maxWidth: '370px',
+          },
+        ],
+        pivotPanelHeader: [
+          {
+            height: '44px',
+          },
+        ],
+        pivotPanelAvailableFields: [
+          {
+            minHeight: '68px',
+          },
+        ],
+        pivotPanelSections: [
+          {
+            minHeight: '128px',
+          },
+        ],
+        pivotPanelPlaceholder: [
+          {
+            minHeight: '32px',
+          },
+        ],
+        aiAssistantPanel: [
+          {
+            width: '340px',
+          },
+        ],
+        aiAssistantPanelHeader: [
+          {
+            height: '44px',
+          },
+        ],
+        chartsPanelDataAvailableFields: [
+          {
+            minHeight: '68px',
+          },
+        ],
+        chartsPanelDataSections: [
+          {
+            minHeight: '128px',
+          },
+        ],
+        chartsPanelDataPlaceholder: [
+          {
+            minHeight: '32px',
+          },
+        ],
+      },
+      defaultProps: {
+        rowHeight: 28,
+        columnHeaderHeight: 28,
+      },
+    },
+    MuiRichTreeView: {
+      defaultProps: {
+        itemChildrenIndentation: 'var(--mui-density-x-large)',
+      },
+      styleOverrides: {},
+    },
+    MuiSimpleTreeView: {
+      defaultProps: {
+        itemChildrenIndentation: 'var(--mui-density-x-large)',
+      },
+      styleOverrides: {},
+    },
+    MuiTreeItem: {
+      styleOverrides: {
+        content: [
+          {
+            paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
+            paddingRight: 'var(--mui-density-small)',
+            paddingLeft: 'calc(var(--mui-density-x-small) + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))',
+            gap: 'var(--mui-density-x-small)',
+          },
+        ],
+        checkbox: [
+          {
+            marginLeft: '8px',
+          },
+        ],
+        iconContainer: [
+          {
+            '& svg': {
+              fontSize: '16px',
+            },
+          },
+        ],
+        root: [
+          {
+            '--TreeView-itemHeight': '28px',
+          },
+        ],
+      },
+    },
+    MuiPickersCalendarHeader: {
+      styleOverrides: {
+        label: [
+          {
+            marginRight: 'var(--mui-density-x-small)',
+          },
+        ],
+        root: [
+          {
+            marginTop: 'var(--mui-density-medium)',
+            marginBottom: 'var(--mui-density-medium)',
+            paddingLeft: 'var(--mui-density-medium)',
+            paddingRight: 'var(--mui-density-medium)',
+          },
+          {
+            minHeight: '36px',
+            maxHeight: '36px',
+          },
+        ],
+      },
+    },
+    MuiYearCalendar: {
+      styleOverrides: {
+        root: [
+          {
+            rowGap: '4px',
+            width: '284px',
+          },
+        ],
+        button: [
+          {
+            width: '56.5px',
+          },
+        ],
+      },
+    },
+    MuiMonthCalendar: {
+      styleOverrides: {
+        root: [
+          {
+            rowGap: 'var(--mui-density-xx-small)',
+            width: '284px',
+          },
+        ],
+      },
+    },
+    MuiDigitalClock: {
+      styleOverrides: {
+        item: [
+          {
+            padding: 'var(--mui-density-xx-small) var(--mui-density-medium)',
+          },
+        ],
+      },
+    },
+    MuiPickersToolbar: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  pickerOrientation: 'portrait',
+                },
+                style: {
+                  padding: 'var(--mui-density-large) var(--mui-density-x-large)',
+                },
+              },
+            ],
           },
         ],
       },
@@ -3743,129 +3743,6 @@ const medium = {
         ],
       },
     },
-    MuiPickersInputBase: {
-      styleOverrides: {
-        sectionsContainer: [
-          {
-            lineHeight: 'calc(20px * var(--mui-scaling))',
-          },
-        ],
-        section: [
-          {
-            lineHeight: 'calc(20px * var(--mui-scaling))',
-          },
-        ],
-        content: [
-          {
-            lineHeight: 'calc(20px * var(--mui-scaling))',
-          },
-        ],
-      },
-    },
-    MuiPickersOutlinedInput: {
-      styleOverrides: {
-        root: [
-          {
-            paddingInline: 'var(--mui-density-small)',
-            '.MuiFormControl-root:has(> &)': {
-              '--_outlinedInputPadBlock': 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
-            },
-            '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'var(--_outlinedInputPadBlock)',
-              '--_inlinePad': 'var(--mui-density-small)',
-            },
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-        sectionsContainer: [
-          {
-            paddingBlock: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
-            paddingInline: 0,
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    MuiPickersFilledInput: {
-      styleOverrides: {
-        root: [
-          {
-            '.MuiFormControl-root:has(> &)': {
-              '--_filledInputPadTop': 'var(--mui-density-large)',
-              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
-            },
-            '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-              '--_shrinkY': '7px',
-              '--_inlinePad': 'var(--mui-density-small)',
-            },
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
-                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
-                  },
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-                    '--_shrinkY': '4px',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-        sectionsContainer: [
-          {
-            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
-            paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
-            paddingInline: 'var(--mui-density-small)',
-            variants: [
-              {
-                props: {
-                  hiddenLabel: true,
-                },
-                style: {
-                  paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
-                },
-              },
-              {
-                props: {
-                  hiddenLabel: true,
-                  inputSize: 'small',
-                },
-                style: {
-                  paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiFormControlLabel: {
       styleOverrides: {
         root: [
@@ -4690,395 +4567,6 @@ const medium = {
         ],
       },
     },
-    MuiDataGrid: {
-      styleOverrides: {
-        cell: [
-          {
-            paddingInline: 'var(--mui-density-x-small)',
-          },
-          {
-            '&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell': {
-              paddingTop: 'var(--mui-density-small)',
-            },
-          },
-        ],
-        columnHeader: [
-          {
-            paddingInline: 'var(--mui-density-x-small)',
-          },
-        ],
-        editInputCell: [
-          {
-            '& input': {
-              paddingInline: 'var(--mui-density-medium)',
-            },
-          },
-        ],
-        columnHeaderTitleContainer: [
-          {
-            gap: 'var(--mui-density-xx-small)',
-          },
-        ],
-        toolbarDivider: [
-          {
-            marginInline: 'var(--mui-density-x-small)',
-          },
-        ],
-        toolbarLabel: [
-          {
-            marginInline: 'var(--mui-density-x-small)',
-          },
-        ],
-        rowCount: [
-          {
-            marginInline: 'var(--mui-density-large)',
-          },
-        ],
-        selectedRowCount: [
-          {
-            marginInline: 'var(--mui-density-large)',
-          },
-        ],
-        actionsCell: [
-          {
-            gridGap: 'var(--mui-density-small)',
-          },
-        ],
-        panel: [
-          {
-            '& .MuiDataGrid-panelContent': {
-              padding: 'var(--mui-density-medium) var(--mui-density-small) var(--mui-density-large) var(--mui-density-large)',
-              gap: 'var(--mui-density-medium)',
-            },
-          },
-        ],
-        panelFooter: [
-          {
-            padding: 'var(--mui-density-medium)',
-          },
-        ],
-        filterForm: [
-          {
-            gap: 'var(--mui-density-medium)',
-          },
-        ],
-        columnsManagement: [
-          {
-            padding: 'var(--mui-density-x-small) var(--mui-density-medium)',
-            '& .MuiFormControlLabel-root': {
-              gap: 'var(--mui-density-x-small)',
-            },
-          },
-        ],
-        columnsManagementHeader: [
-          {
-            padding: 'var(--mui-density-medium) var(--mui-density-large)',
-          },
-        ],
-        columnsManagementFooter: [
-          {
-            padding: 'var(--mui-density-small) var(--mui-density-small) var(--mui-density-small) var(--mui-density-medium)',
-          },
-        ],
-        columnsManagementEmptyText: [
-          {
-            paddingBlock: 'var(--mui-density-small)',
-          },
-        ],
-        overlay: [
-          {
-            gap: 'var(--mui-density-small)',
-          },
-        ],
-        'columnHeader--dragging': [
-          {
-            paddingInline: 'var(--mui-density-medium)',
-          },
-        ],
-        'row--dragging': [
-          {
-            paddingInline: 'var(--mui-density-medium)',
-            '& .MuiDataGrid-rowReorderCellPlaceholder': {
-              paddingInline: 'var(--mui-density-x-small)',
-            },
-          },
-        ],
-        root: [
-          {
-            '& .MuiDataGrid-columnHeader--filter': {
-              paddingBlock: 'var(--mui-density-small)',
-              paddingRight: 'var(--mui-density-x-small)',
-            },
-          },
-          {
-            '--DataGrid-cellOffsetMultiplier': '2',
-          },
-        ],
-        columnHeaderFilterInput: [
-          {
-            marginRight: 'var(--mui-density-x-small)',
-            marginBottom: 'calc(var(--mui-density-xx-small) * -1)',
-          },
-        ],
-        toolbar: [
-          {
-            padding: 'var(--mui-density-small)',
-            gap: 'var(--mui-density-xx-small)',
-          },
-          {
-            minHeight: '52px',
-          },
-        ],
-        treeDataGroupingCellToggle: [
-          {
-            marginRight: 'var(--mui-density-large)',
-          },
-          {
-            flexBasis: '28px',
-          },
-        ],
-        groupingCriteriaCellToggle: [
-          {
-            marginRight: 'var(--mui-density-large)',
-          },
-          {
-            flexBasis: '28px',
-          },
-        ],
-        pivotPanelField: [
-          {
-            marginInlineStart: 'var(--mui-density-x-small)',
-          },
-          {
-            height: '32px',
-          },
-        ],
-        chartsPanelDataField: [
-          {
-            marginInlineStart: 'var(--mui-density-x-small)',
-          },
-          {
-            height: '32px',
-          },
-        ],
-        footerContainer: [
-          {
-            minHeight: '52px',
-          },
-        ],
-        filterFormLogicOperatorInput: [
-          {
-            minWidth: '75px',
-          },
-        ],
-        filterFormColumnInput: [
-          {
-            width: '150px',
-          },
-        ],
-        filterFormOperatorInput: [
-          {
-            width: '150px',
-          },
-        ],
-        filterFormValueInput: [
-          {
-            width: '190px',
-          },
-        ],
-        menu: [
-          {
-            '& .MuiDataGrid-menuList': {
-              minWidth: '248px',
-            },
-          },
-        ],
-        toolbarQuickFilterControl: [
-          {
-            variants: [
-              {
-                props: {
-                  expanded: true,
-                },
-                style: {
-                  width: '260px',
-                },
-              },
-            ],
-          },
-        ],
-        sidebar: [
-          {
-            width: '300px',
-            minWidth: '260px',
-            maxWidth: '400px',
-          },
-        ],
-        pivotPanelHeader: [
-          {
-            height: '52px',
-          },
-        ],
-        pivotPanelAvailableFields: [
-          {
-            minHeight: '84px',
-          },
-        ],
-        pivotPanelSections: [
-          {
-            minHeight: '158px',
-          },
-        ],
-        pivotPanelPlaceholder: [
-          {
-            minHeight: '38px',
-          },
-        ],
-        aiAssistantPanel: [
-          {
-            width: '380px',
-          },
-        ],
-        aiAssistantPanelHeader: [
-          {
-            height: '52px',
-          },
-        ],
-        chartsPanelDataAvailableFields: [
-          {
-            minHeight: '84px',
-          },
-        ],
-        chartsPanelDataSections: [
-          {
-            minHeight: '158px',
-          },
-        ],
-        chartsPanelDataPlaceholder: [
-          {
-            minHeight: '38px',
-          },
-        ],
-      },
-      defaultProps: {
-        rowHeight: 40,
-        columnHeaderHeight: 40,
-      },
-    },
-    MuiRichTreeView: {
-      defaultProps: {
-        itemChildrenIndentation: 'var(--mui-density-x-large)',
-      },
-      styleOverrides: {},
-    },
-    MuiSimpleTreeView: {
-      defaultProps: {
-        itemChildrenIndentation: 'var(--mui-density-x-large)',
-      },
-      styleOverrides: {},
-    },
-    MuiTreeItem: {
-      styleOverrides: {
-        content: [
-          {
-            paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
-            paddingRight: 'var(--mui-density-small)',
-            paddingLeft: 'calc(var(--mui-density-x-small) + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))',
-            gap: 'var(--mui-density-x-small)',
-          },
-        ],
-        checkbox: [
-          {
-            marginLeft: '8px',
-          },
-        ],
-        iconContainer: [
-          {
-            '& svg': {
-              fontSize: '16px',
-            },
-          },
-        ],
-        root: [
-          {
-            '--TreeView-itemHeight': '32px',
-          },
-        ],
-      },
-    },
-    MuiPickersCalendarHeader: {
-      styleOverrides: {
-        label: [
-          {
-            marginRight: 'var(--mui-density-x-small)',
-          },
-        ],
-        root: [
-          {
-            marginTop: 'var(--mui-density-medium)',
-            marginBottom: 'var(--mui-density-medium)',
-            paddingLeft: 'var(--mui-density-medium)',
-            paddingRight: 'var(--mui-density-medium)',
-          },
-          {
-            minHeight: '32px',
-            maxHeight: '32px',
-          },
-        ],
-      },
-    },
-    MuiYearCalendar: {
-      styleOverrides: {
-        root: [
-          {
-            rowGap: '4px',
-            width: '284px',
-          },
-        ],
-        button: [
-          {
-            width: '56.5px',
-          },
-        ],
-      },
-    },
-    MuiMonthCalendar: {
-      styleOverrides: {
-        root: [
-          {
-            rowGap: 'var(--mui-density-xx-small)',
-            width: '284px',
-          },
-        ],
-      },
-    },
-    MuiDigitalClock: {
-      styleOverrides: {
-        item: [
-          {
-            padding: 'var(--mui-density-xx-small) var(--mui-density-medium)',
-          },
-        ],
-      },
-    },
-    MuiPickersToolbar: {
-      styleOverrides: {
-        root: [
-          {
-            variants: [
-              {
-                props: {
-                  pickerOrientation: 'portrait',
-                },
-                style: {
-                  padding: 'var(--mui-density-large) var(--mui-density-x-large)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiTab: {
       styleOverrides: {
         root: [
@@ -5653,6 +5141,518 @@ const medium = {
           {
             paddingBlock: 'var(--mui-density-x-small)',
             paddingInline: 'var(--mui-density-small)',
+          },
+        ],
+      },
+    },
+    MuiPickersInputBase: {
+      styleOverrides: {
+        sectionsContainer: [
+          {
+            lineHeight: 'calc(20px * var(--mui-scaling))',
+          },
+        ],
+        section: [
+          {
+            lineHeight: 'calc(20px * var(--mui-scaling))',
+          },
+        ],
+        content: [
+          {
+            lineHeight: 'calc(20px * var(--mui-scaling))',
+          },
+        ],
+      },
+    },
+    MuiPickersOutlinedInput: {
+      styleOverrides: {
+        root: [
+          {
+            paddingInline: 'var(--mui-density-small)',
+            '.MuiFormControl-root:has(> &)': {
+              '--_outlinedInputPadBlock': 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'var(--_outlinedInputPadBlock)',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingBlock: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
+            paddingInline: 0,
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiPickersFilledInput: {
+      styleOverrides: {
+        root: [
+          {
+            '.MuiFormControl-root:has(> &)': {
+              '--_filledInputPadTop': 'var(--mui-density-large)',
+              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+              '--_shrinkY': '7px',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
+                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
+                  },
+                  '.MuiInputLabel-root:has(~ &)': {
+                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+                    '--_shrinkY': '4px',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
+            paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
+            paddingInline: 'var(--mui-density-small)',
+            variants: [
+              {
+                props: {
+                  hiddenLabel: true,
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
+                },
+              },
+              {
+                props: {
+                  hiddenLabel: true,
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiDataGrid: {
+      styleOverrides: {
+        cell: [
+          {
+            paddingInline: 'var(--mui-density-x-small)',
+          },
+          {
+            '&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell': {
+              paddingTop: 'var(--mui-density-small)',
+            },
+          },
+        ],
+        columnHeader: [
+          {
+            paddingInline: 'var(--mui-density-x-small)',
+          },
+        ],
+        editInputCell: [
+          {
+            '& input': {
+              paddingInline: 'var(--mui-density-medium)',
+            },
+          },
+        ],
+        columnHeaderTitleContainer: [
+          {
+            gap: 'var(--mui-density-xx-small)',
+          },
+        ],
+        toolbarDivider: [
+          {
+            marginInline: 'var(--mui-density-x-small)',
+          },
+        ],
+        toolbarLabel: [
+          {
+            marginInline: 'var(--mui-density-x-small)',
+          },
+        ],
+        rowCount: [
+          {
+            marginInline: 'var(--mui-density-large)',
+          },
+        ],
+        selectedRowCount: [
+          {
+            marginInline: 'var(--mui-density-large)',
+          },
+        ],
+        actionsCell: [
+          {
+            gridGap: 'var(--mui-density-small)',
+          },
+        ],
+        panel: [
+          {
+            '& .MuiDataGrid-panelContent': {
+              padding: 'var(--mui-density-medium) var(--mui-density-small) var(--mui-density-large) var(--mui-density-large)',
+              gap: 'var(--mui-density-medium)',
+            },
+          },
+        ],
+        panelFooter: [
+          {
+            padding: 'var(--mui-density-medium)',
+          },
+        ],
+        filterForm: [
+          {
+            gap: 'var(--mui-density-medium)',
+          },
+        ],
+        columnsManagement: [
+          {
+            padding: 'var(--mui-density-x-small) var(--mui-density-medium)',
+            '& .MuiFormControlLabel-root': {
+              gap: 'var(--mui-density-x-small)',
+            },
+          },
+        ],
+        columnsManagementHeader: [
+          {
+            padding: 'var(--mui-density-medium) var(--mui-density-large)',
+          },
+        ],
+        columnsManagementFooter: [
+          {
+            padding: 'var(--mui-density-small) var(--mui-density-small) var(--mui-density-small) var(--mui-density-medium)',
+          },
+        ],
+        columnsManagementEmptyText: [
+          {
+            paddingBlock: 'var(--mui-density-small)',
+          },
+        ],
+        overlay: [
+          {
+            gap: 'var(--mui-density-small)',
+          },
+        ],
+        'columnHeader--dragging': [
+          {
+            paddingInline: 'var(--mui-density-medium)',
+          },
+        ],
+        'row--dragging': [
+          {
+            paddingInline: 'var(--mui-density-medium)',
+            '& .MuiDataGrid-rowReorderCellPlaceholder': {
+              paddingInline: 'var(--mui-density-x-small)',
+            },
+          },
+        ],
+        root: [
+          {
+            '& .MuiDataGrid-columnHeader--filter': {
+              paddingBlock: 'var(--mui-density-small)',
+              paddingRight: 'var(--mui-density-x-small)',
+            },
+          },
+          {
+            '--DataGrid-cellOffsetMultiplier': '2',
+          },
+        ],
+        columnHeaderFilterInput: [
+          {
+            marginRight: 'var(--mui-density-x-small)',
+            marginBottom: 'calc(var(--mui-density-xx-small) * -1)',
+          },
+        ],
+        toolbar: [
+          {
+            padding: 'var(--mui-density-small)',
+            gap: 'var(--mui-density-xx-small)',
+          },
+          {
+            minHeight: '52px',
+          },
+        ],
+        treeDataGroupingCellToggle: [
+          {
+            marginRight: 'var(--mui-density-large)',
+          },
+          {
+            flexBasis: '28px',
+          },
+        ],
+        groupingCriteriaCellToggle: [
+          {
+            marginRight: 'var(--mui-density-large)',
+          },
+          {
+            flexBasis: '28px',
+          },
+        ],
+        pivotPanelField: [
+          {
+            marginInlineStart: 'var(--mui-density-x-small)',
+          },
+          {
+            height: '32px',
+          },
+        ],
+        chartsPanelDataField: [
+          {
+            marginInlineStart: 'var(--mui-density-x-small)',
+          },
+          {
+            height: '32px',
+          },
+        ],
+        footerContainer: [
+          {
+            minHeight: '52px',
+          },
+        ],
+        filterFormLogicOperatorInput: [
+          {
+            minWidth: '75px',
+          },
+        ],
+        filterFormColumnInput: [
+          {
+            width: '150px',
+          },
+        ],
+        filterFormOperatorInput: [
+          {
+            width: '150px',
+          },
+        ],
+        filterFormValueInput: [
+          {
+            width: '190px',
+          },
+        ],
+        menu: [
+          {
+            '& .MuiDataGrid-menuList': {
+              minWidth: '248px',
+            },
+          },
+        ],
+        toolbarQuickFilterControl: [
+          {
+            variants: [
+              {
+                props: {
+                  expanded: true,
+                },
+                style: {
+                  width: '260px',
+                },
+              },
+            ],
+          },
+        ],
+        sidebar: [
+          {
+            width: '300px',
+            minWidth: '260px',
+            maxWidth: '400px',
+          },
+        ],
+        pivotPanelHeader: [
+          {
+            height: '52px',
+          },
+        ],
+        pivotPanelAvailableFields: [
+          {
+            minHeight: '84px',
+          },
+        ],
+        pivotPanelSections: [
+          {
+            minHeight: '158px',
+          },
+        ],
+        pivotPanelPlaceholder: [
+          {
+            minHeight: '38px',
+          },
+        ],
+        aiAssistantPanel: [
+          {
+            width: '380px',
+          },
+        ],
+        aiAssistantPanelHeader: [
+          {
+            height: '52px',
+          },
+        ],
+        chartsPanelDataAvailableFields: [
+          {
+            minHeight: '84px',
+          },
+        ],
+        chartsPanelDataSections: [
+          {
+            minHeight: '158px',
+          },
+        ],
+        chartsPanelDataPlaceholder: [
+          {
+            minHeight: '38px',
+          },
+        ],
+      },
+      defaultProps: {
+        rowHeight: 40,
+        columnHeaderHeight: 40,
+      },
+    },
+    MuiRichTreeView: {
+      defaultProps: {
+        itemChildrenIndentation: 'var(--mui-density-x-large)',
+      },
+      styleOverrides: {},
+    },
+    MuiSimpleTreeView: {
+      defaultProps: {
+        itemChildrenIndentation: 'var(--mui-density-x-large)',
+      },
+      styleOverrides: {},
+    },
+    MuiTreeItem: {
+      styleOverrides: {
+        content: [
+          {
+            paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
+            paddingRight: 'var(--mui-density-small)',
+            paddingLeft: 'calc(var(--mui-density-x-small) + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))',
+            gap: 'var(--mui-density-x-small)',
+          },
+        ],
+        checkbox: [
+          {
+            marginLeft: '8px',
+          },
+        ],
+        iconContainer: [
+          {
+            '& svg': {
+              fontSize: '16px',
+            },
+          },
+        ],
+        root: [
+          {
+            '--TreeView-itemHeight': '32px',
+          },
+        ],
+      },
+    },
+    MuiPickersCalendarHeader: {
+      styleOverrides: {
+        label: [
+          {
+            marginRight: 'var(--mui-density-x-small)',
+          },
+        ],
+        root: [
+          {
+            marginTop: 'var(--mui-density-medium)',
+            marginBottom: 'var(--mui-density-medium)',
+            paddingLeft: 'var(--mui-density-medium)',
+            paddingRight: 'var(--mui-density-medium)',
+          },
+          {
+            minHeight: '32px',
+            maxHeight: '32px',
+          },
+        ],
+      },
+    },
+    MuiYearCalendar: {
+      styleOverrides: {
+        root: [
+          {
+            rowGap: '4px',
+            width: '284px',
+          },
+        ],
+        button: [
+          {
+            width: '56.5px',
+          },
+        ],
+      },
+    },
+    MuiMonthCalendar: {
+      styleOverrides: {
+        root: [
+          {
+            rowGap: 'var(--mui-density-xx-small)',
+            width: '284px',
+          },
+        ],
+      },
+    },
+    MuiDigitalClock: {
+      styleOverrides: {
+        item: [
+          {
+            padding: 'var(--mui-density-xx-small) var(--mui-density-medium)',
+          },
+        ],
+      },
+    },
+    MuiPickersToolbar: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  pickerOrientation: 'portrait',
+                },
+                style: {
+                  padding: 'var(--mui-density-large) var(--mui-density-x-large)',
+                },
+              },
+            ],
           },
         ],
       },
@@ -6634,129 +6634,6 @@ const low = {
         ],
       },
     },
-    MuiPickersInputBase: {
-      styleOverrides: {
-        sectionsContainer: [
-          {
-            lineHeight: 'calc(22px * var(--mui-scaling))',
-          },
-        ],
-        section: [
-          {
-            lineHeight: 'calc(22px * var(--mui-scaling))',
-          },
-        ],
-        content: [
-          {
-            lineHeight: 'calc(22px * var(--mui-scaling))',
-          },
-        ],
-      },
-    },
-    MuiPickersOutlinedInput: {
-      styleOverrides: {
-        root: [
-          {
-            paddingInline: 'var(--mui-density-small)',
-            '.MuiFormControl-root:has(> &)': {
-              '--_outlinedInputPadBlock': 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
-            },
-            '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'var(--_outlinedInputPadBlock)',
-              '--_inlinePad': 'var(--mui-density-small)',
-            },
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-        sectionsContainer: [
-          {
-            paddingBlock: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
-            paddingInline: 0,
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-    MuiPickersFilledInput: {
-      styleOverrides: {
-        root: [
-          {
-            '.MuiFormControl-root:has(> &)': {
-              '--_filledInputPadTop': 'var(--mui-density-large)',
-              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
-            },
-            '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-              '--_shrinkY': '7px',
-              '--_inlinePad': 'var(--mui-density-small)',
-            },
-            variants: [
-              {
-                props: {
-                  inputSize: 'small',
-                },
-                style: {
-                  '.MuiFormControl-root:has(> &)': {
-                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
-                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
-                  },
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
-                    '--_shrinkY': '4px',
-                  },
-                },
-              },
-            ],
-          },
-        ],
-        sectionsContainer: [
-          {
-            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
-            paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
-            paddingInline: 'var(--mui-density-small)',
-            variants: [
-              {
-                props: {
-                  hiddenLabel: true,
-                },
-                style: {
-                  paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
-                },
-              },
-              {
-                props: {
-                  hiddenLabel: true,
-                  inputSize: 'small',
-                },
-                style: {
-                  paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiFormControlLabel: {
       styleOverrides: {
         root: [
@@ -7581,395 +7458,6 @@ const low = {
         ],
       },
     },
-    MuiDataGrid: {
-      styleOverrides: {
-        cell: [
-          {
-            paddingInline: 'var(--mui-density-x-small)',
-          },
-          {
-            '&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell': {
-              paddingTop: 'var(--mui-density-small)',
-            },
-          },
-        ],
-        columnHeader: [
-          {
-            paddingInline: 'var(--mui-density-x-small)',
-          },
-        ],
-        editInputCell: [
-          {
-            '& input': {
-              paddingInline: 'var(--mui-density-medium)',
-            },
-          },
-        ],
-        columnHeaderTitleContainer: [
-          {
-            gap: 'var(--mui-density-xx-small)',
-          },
-        ],
-        toolbarDivider: [
-          {
-            marginInline: 'var(--mui-density-x-small)',
-          },
-        ],
-        toolbarLabel: [
-          {
-            marginInline: 'var(--mui-density-x-small)',
-          },
-        ],
-        rowCount: [
-          {
-            marginInline: 'var(--mui-density-large)',
-          },
-        ],
-        selectedRowCount: [
-          {
-            marginInline: 'var(--mui-density-large)',
-          },
-        ],
-        actionsCell: [
-          {
-            gridGap: 'var(--mui-density-small)',
-          },
-        ],
-        panel: [
-          {
-            '& .MuiDataGrid-panelContent': {
-              padding: 'var(--mui-density-medium) var(--mui-density-small) var(--mui-density-large) var(--mui-density-large)',
-              gap: 'var(--mui-density-medium)',
-            },
-          },
-        ],
-        panelFooter: [
-          {
-            padding: 'var(--mui-density-medium)',
-          },
-        ],
-        filterForm: [
-          {
-            gap: 'var(--mui-density-medium)',
-          },
-        ],
-        columnsManagement: [
-          {
-            padding: 'var(--mui-density-x-small) var(--mui-density-medium)',
-            '& .MuiFormControlLabel-root': {
-              gap: 'var(--mui-density-x-small)',
-            },
-          },
-        ],
-        columnsManagementHeader: [
-          {
-            padding: 'var(--mui-density-medium) var(--mui-density-large)',
-          },
-        ],
-        columnsManagementFooter: [
-          {
-            padding: 'var(--mui-density-small) var(--mui-density-small) var(--mui-density-small) var(--mui-density-medium)',
-          },
-        ],
-        columnsManagementEmptyText: [
-          {
-            paddingBlock: 'var(--mui-density-small)',
-          },
-        ],
-        overlay: [
-          {
-            gap: 'var(--mui-density-small)',
-          },
-        ],
-        'columnHeader--dragging': [
-          {
-            paddingInline: 'var(--mui-density-medium)',
-          },
-        ],
-        'row--dragging': [
-          {
-            paddingInline: 'var(--mui-density-medium)',
-            '& .MuiDataGrid-rowReorderCellPlaceholder': {
-              paddingInline: 'var(--mui-density-x-small)',
-            },
-          },
-        ],
-        root: [
-          {
-            '& .MuiDataGrid-columnHeader--filter': {
-              paddingBlock: 'var(--mui-density-small)',
-              paddingRight: 'var(--mui-density-x-small)',
-            },
-          },
-          {
-            '--DataGrid-cellOffsetMultiplier': '2.5',
-          },
-        ],
-        columnHeaderFilterInput: [
-          {
-            marginRight: 'var(--mui-density-x-small)',
-            marginBottom: 'calc(var(--mui-density-xx-small) * -1)',
-          },
-        ],
-        toolbar: [
-          {
-            padding: 'var(--mui-density-small)',
-            gap: 'var(--mui-density-xx-small)',
-          },
-          {
-            minHeight: '60px',
-          },
-        ],
-        treeDataGroupingCellToggle: [
-          {
-            marginRight: 'var(--mui-density-large)',
-          },
-          {
-            flexBasis: '32px',
-          },
-        ],
-        groupingCriteriaCellToggle: [
-          {
-            marginRight: 'var(--mui-density-large)',
-          },
-          {
-            flexBasis: '32px',
-          },
-        ],
-        pivotPanelField: [
-          {
-            marginInlineStart: 'var(--mui-density-x-small)',
-          },
-          {
-            height: '38px',
-          },
-        ],
-        chartsPanelDataField: [
-          {
-            marginInlineStart: 'var(--mui-density-x-small)',
-          },
-          {
-            height: '38px',
-          },
-        ],
-        footerContainer: [
-          {
-            minHeight: '60px',
-          },
-        ],
-        filterFormLogicOperatorInput: [
-          {
-            minWidth: '85px',
-          },
-        ],
-        filterFormColumnInput: [
-          {
-            width: '170px',
-          },
-        ],
-        filterFormOperatorInput: [
-          {
-            width: '170px',
-          },
-        ],
-        filterFormValueInput: [
-          {
-            width: '215px',
-          },
-        ],
-        menu: [
-          {
-            '& .MuiDataGrid-menuList': {
-              minWidth: '276px',
-            },
-          },
-        ],
-        toolbarQuickFilterControl: [
-          {
-            variants: [
-              {
-                props: {
-                  expanded: true,
-                },
-                style: {
-                  width: '290px',
-                },
-              },
-            ],
-          },
-        ],
-        sidebar: [
-          {
-            width: '330px',
-            minWidth: '280px',
-            maxWidth: '430px',
-          },
-        ],
-        pivotPanelHeader: [
-          {
-            height: '60px',
-          },
-        ],
-        pivotPanelAvailableFields: [
-          {
-            minHeight: '100px',
-          },
-        ],
-        pivotPanelSections: [
-          {
-            minHeight: '188px',
-          },
-        ],
-        pivotPanelPlaceholder: [
-          {
-            minHeight: '44px',
-          },
-        ],
-        aiAssistantPanel: [
-          {
-            width: '420px',
-          },
-        ],
-        aiAssistantPanelHeader: [
-          {
-            height: '60px',
-          },
-        ],
-        chartsPanelDataAvailableFields: [
-          {
-            minHeight: '100px',
-          },
-        ],
-        chartsPanelDataSections: [
-          {
-            minHeight: '188px',
-          },
-        ],
-        chartsPanelDataPlaceholder: [
-          {
-            minHeight: '44px',
-          },
-        ],
-      },
-      defaultProps: {
-        rowHeight: 60,
-        columnHeaderHeight: 60,
-      },
-    },
-    MuiRichTreeView: {
-      defaultProps: {
-        itemChildrenIndentation: 'var(--mui-density-x-large)',
-      },
-      styleOverrides: {},
-    },
-    MuiSimpleTreeView: {
-      defaultProps: {
-        itemChildrenIndentation: 'var(--mui-density-x-large)',
-      },
-      styleOverrides: {},
-    },
-    MuiTreeItem: {
-      styleOverrides: {
-        content: [
-          {
-            paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
-            paddingRight: 'var(--mui-density-small)',
-            paddingLeft: 'calc(var(--mui-density-x-small) + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))',
-            gap: 'var(--mui-density-x-small)',
-          },
-        ],
-        checkbox: [
-          {
-            marginLeft: '8px',
-          },
-        ],
-        iconContainer: [
-          {
-            '& svg': {
-              fontSize: '16px',
-            },
-          },
-        ],
-        root: [
-          {
-            '--TreeView-itemHeight': '40px',
-          },
-        ],
-      },
-    },
-    MuiPickersCalendarHeader: {
-      styleOverrides: {
-        label: [
-          {
-            marginRight: 'var(--mui-density-x-small)',
-          },
-        ],
-        root: [
-          {
-            marginTop: 'var(--mui-density-medium)',
-            marginBottom: 'var(--mui-density-medium)',
-            paddingLeft: 'var(--mui-density-medium)',
-            paddingRight: 'var(--mui-density-medium)',
-          },
-          {
-            minHeight: '48px',
-            maxHeight: '48px',
-          },
-        ],
-      },
-    },
-    MuiYearCalendar: {
-      styleOverrides: {
-        root: [
-          {
-            rowGap: '4px',
-            width: '284px',
-          },
-        ],
-        button: [
-          {
-            width: '56.5px',
-          },
-        ],
-      },
-    },
-    MuiMonthCalendar: {
-      styleOverrides: {
-        root: [
-          {
-            rowGap: 'var(--mui-density-xx-small)',
-            width: '284px',
-          },
-        ],
-      },
-    },
-    MuiDigitalClock: {
-      styleOverrides: {
-        item: [
-          {
-            padding: 'var(--mui-density-xx-small) var(--mui-density-medium)',
-          },
-        ],
-      },
-    },
-    MuiPickersToolbar: {
-      styleOverrides: {
-        root: [
-          {
-            variants: [
-              {
-                props: {
-                  pickerOrientation: 'portrait',
-                },
-                style: {
-                  padding: 'var(--mui-density-large) var(--mui-density-x-large)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiTab: {
       styleOverrides: {
         root: [
@@ -8544,6 +8032,518 @@ const low = {
           {
             paddingBlock: 'var(--mui-density-x-small)',
             paddingInline: 'var(--mui-density-small)',
+          },
+        ],
+      },
+    },
+    MuiPickersInputBase: {
+      styleOverrides: {
+        sectionsContainer: [
+          {
+            lineHeight: 'calc(22px * var(--mui-scaling))',
+          },
+        ],
+        section: [
+          {
+            lineHeight: 'calc(22px * var(--mui-scaling))',
+          },
+        ],
+        content: [
+          {
+            lineHeight: 'calc(22px * var(--mui-scaling))',
+          },
+        ],
+      },
+    },
+    MuiPickersOutlinedInput: {
+      styleOverrides: {
+        root: [
+          {
+            paddingInline: 'var(--mui-density-small)',
+            '.MuiFormControl-root:has(> &)': {
+              '--_outlinedInputPadBlock': 'calc((var(--mui-density-touch-target) - 1lh) / 2)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'var(--_outlinedInputPadBlock)',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingBlock: 'var(--_outlinedInputPadBlock, calc((var(--mui-density-touch-target) - 1lh) / 2))',
+            paddingInline: 0,
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiPickersFilledInput: {
+      styleOverrides: {
+        root: [
+          {
+            '.MuiFormControl-root:has(> &)': {
+              '--_filledInputPadTop': 'var(--mui-density-large)',
+              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
+            },
+            '.MuiInputLabel-root:has(~ &)': {
+              '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+              '--_shrinkY': '7px',
+              '--_inlinePad': 'var(--mui-density-small)',
+            },
+            variants: [
+              {
+                props: {
+                  inputSize: 'small',
+                },
+                style: {
+                  '.MuiFormControl-root:has(> &)': {
+                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
+                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
+                  },
+                  '.MuiInputLabel-root:has(~ &)': {
+                    '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
+                    '--_shrinkY': '4px',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        sectionsContainer: [
+          {
+            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
+            paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
+            paddingInline: 'var(--mui-density-small)',
+            variants: [
+              {
+                props: {
+                  hiddenLabel: true,
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
+                },
+              },
+              {
+                props: {
+                  hiddenLabel: true,
+                  inputSize: 'small',
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiDataGrid: {
+      styleOverrides: {
+        cell: [
+          {
+            paddingInline: 'var(--mui-density-x-small)',
+          },
+          {
+            '&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell': {
+              paddingTop: 'var(--mui-density-small)',
+            },
+          },
+        ],
+        columnHeader: [
+          {
+            paddingInline: 'var(--mui-density-x-small)',
+          },
+        ],
+        editInputCell: [
+          {
+            '& input': {
+              paddingInline: 'var(--mui-density-medium)',
+            },
+          },
+        ],
+        columnHeaderTitleContainer: [
+          {
+            gap: 'var(--mui-density-xx-small)',
+          },
+        ],
+        toolbarDivider: [
+          {
+            marginInline: 'var(--mui-density-x-small)',
+          },
+        ],
+        toolbarLabel: [
+          {
+            marginInline: 'var(--mui-density-x-small)',
+          },
+        ],
+        rowCount: [
+          {
+            marginInline: 'var(--mui-density-large)',
+          },
+        ],
+        selectedRowCount: [
+          {
+            marginInline: 'var(--mui-density-large)',
+          },
+        ],
+        actionsCell: [
+          {
+            gridGap: 'var(--mui-density-small)',
+          },
+        ],
+        panel: [
+          {
+            '& .MuiDataGrid-panelContent': {
+              padding: 'var(--mui-density-medium) var(--mui-density-small) var(--mui-density-large) var(--mui-density-large)',
+              gap: 'var(--mui-density-medium)',
+            },
+          },
+        ],
+        panelFooter: [
+          {
+            padding: 'var(--mui-density-medium)',
+          },
+        ],
+        filterForm: [
+          {
+            gap: 'var(--mui-density-medium)',
+          },
+        ],
+        columnsManagement: [
+          {
+            padding: 'var(--mui-density-x-small) var(--mui-density-medium)',
+            '& .MuiFormControlLabel-root': {
+              gap: 'var(--mui-density-x-small)',
+            },
+          },
+        ],
+        columnsManagementHeader: [
+          {
+            padding: 'var(--mui-density-medium) var(--mui-density-large)',
+          },
+        ],
+        columnsManagementFooter: [
+          {
+            padding: 'var(--mui-density-small) var(--mui-density-small) var(--mui-density-small) var(--mui-density-medium)',
+          },
+        ],
+        columnsManagementEmptyText: [
+          {
+            paddingBlock: 'var(--mui-density-small)',
+          },
+        ],
+        overlay: [
+          {
+            gap: 'var(--mui-density-small)',
+          },
+        ],
+        'columnHeader--dragging': [
+          {
+            paddingInline: 'var(--mui-density-medium)',
+          },
+        ],
+        'row--dragging': [
+          {
+            paddingInline: 'var(--mui-density-medium)',
+            '& .MuiDataGrid-rowReorderCellPlaceholder': {
+              paddingInline: 'var(--mui-density-x-small)',
+            },
+          },
+        ],
+        root: [
+          {
+            '& .MuiDataGrid-columnHeader--filter': {
+              paddingBlock: 'var(--mui-density-small)',
+              paddingRight: 'var(--mui-density-x-small)',
+            },
+          },
+          {
+            '--DataGrid-cellOffsetMultiplier': '2.5',
+          },
+        ],
+        columnHeaderFilterInput: [
+          {
+            marginRight: 'var(--mui-density-x-small)',
+            marginBottom: 'calc(var(--mui-density-xx-small) * -1)',
+          },
+        ],
+        toolbar: [
+          {
+            padding: 'var(--mui-density-small)',
+            gap: 'var(--mui-density-xx-small)',
+          },
+          {
+            minHeight: '60px',
+          },
+        ],
+        treeDataGroupingCellToggle: [
+          {
+            marginRight: 'var(--mui-density-large)',
+          },
+          {
+            flexBasis: '32px',
+          },
+        ],
+        groupingCriteriaCellToggle: [
+          {
+            marginRight: 'var(--mui-density-large)',
+          },
+          {
+            flexBasis: '32px',
+          },
+        ],
+        pivotPanelField: [
+          {
+            marginInlineStart: 'var(--mui-density-x-small)',
+          },
+          {
+            height: '38px',
+          },
+        ],
+        chartsPanelDataField: [
+          {
+            marginInlineStart: 'var(--mui-density-x-small)',
+          },
+          {
+            height: '38px',
+          },
+        ],
+        footerContainer: [
+          {
+            minHeight: '60px',
+          },
+        ],
+        filterFormLogicOperatorInput: [
+          {
+            minWidth: '85px',
+          },
+        ],
+        filterFormColumnInput: [
+          {
+            width: '170px',
+          },
+        ],
+        filterFormOperatorInput: [
+          {
+            width: '170px',
+          },
+        ],
+        filterFormValueInput: [
+          {
+            width: '215px',
+          },
+        ],
+        menu: [
+          {
+            '& .MuiDataGrid-menuList': {
+              minWidth: '276px',
+            },
+          },
+        ],
+        toolbarQuickFilterControl: [
+          {
+            variants: [
+              {
+                props: {
+                  expanded: true,
+                },
+                style: {
+                  width: '290px',
+                },
+              },
+            ],
+          },
+        ],
+        sidebar: [
+          {
+            width: '330px',
+            minWidth: '280px',
+            maxWidth: '430px',
+          },
+        ],
+        pivotPanelHeader: [
+          {
+            height: '60px',
+          },
+        ],
+        pivotPanelAvailableFields: [
+          {
+            minHeight: '100px',
+          },
+        ],
+        pivotPanelSections: [
+          {
+            minHeight: '188px',
+          },
+        ],
+        pivotPanelPlaceholder: [
+          {
+            minHeight: '44px',
+          },
+        ],
+        aiAssistantPanel: [
+          {
+            width: '420px',
+          },
+        ],
+        aiAssistantPanelHeader: [
+          {
+            height: '60px',
+          },
+        ],
+        chartsPanelDataAvailableFields: [
+          {
+            minHeight: '100px',
+          },
+        ],
+        chartsPanelDataSections: [
+          {
+            minHeight: '188px',
+          },
+        ],
+        chartsPanelDataPlaceholder: [
+          {
+            minHeight: '44px',
+          },
+        ],
+      },
+      defaultProps: {
+        rowHeight: 60,
+        columnHeaderHeight: 60,
+      },
+    },
+    MuiRichTreeView: {
+      defaultProps: {
+        itemChildrenIndentation: 'var(--mui-density-x-large)',
+      },
+      styleOverrides: {},
+    },
+    MuiSimpleTreeView: {
+      defaultProps: {
+        itemChildrenIndentation: 'var(--mui-density-x-large)',
+      },
+      styleOverrides: {},
+    },
+    MuiTreeItem: {
+      styleOverrides: {
+        content: [
+          {
+            paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
+            paddingRight: 'var(--mui-density-small)',
+            paddingLeft: 'calc(var(--mui-density-x-small) + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))',
+            gap: 'var(--mui-density-x-small)',
+          },
+        ],
+        checkbox: [
+          {
+            marginLeft: '8px',
+          },
+        ],
+        iconContainer: [
+          {
+            '& svg': {
+              fontSize: '16px',
+            },
+          },
+        ],
+        root: [
+          {
+            '--TreeView-itemHeight': '40px',
+          },
+        ],
+      },
+    },
+    MuiPickersCalendarHeader: {
+      styleOverrides: {
+        label: [
+          {
+            marginRight: 'var(--mui-density-x-small)',
+          },
+        ],
+        root: [
+          {
+            marginTop: 'var(--mui-density-medium)',
+            marginBottom: 'var(--mui-density-medium)',
+            paddingLeft: 'var(--mui-density-medium)',
+            paddingRight: 'var(--mui-density-medium)',
+          },
+          {
+            minHeight: '48px',
+            maxHeight: '48px',
+          },
+        ],
+      },
+    },
+    MuiYearCalendar: {
+      styleOverrides: {
+        root: [
+          {
+            rowGap: '4px',
+            width: '284px',
+          },
+        ],
+        button: [
+          {
+            width: '56.5px',
+          },
+        ],
+      },
+    },
+    MuiMonthCalendar: {
+      styleOverrides: {
+        root: [
+          {
+            rowGap: 'var(--mui-density-xx-small)',
+            width: '284px',
+          },
+        ],
+      },
+    },
+    MuiDigitalClock: {
+      styleOverrides: {
+        item: [
+          {
+            padding: 'var(--mui-density-xx-small) var(--mui-density-medium)',
+          },
+        ],
+      },
+    },
+    MuiPickersToolbar: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  pickerOrientation: 'portrait',
+                },
+                style: {
+                  padding: 'var(--mui-density-large) var(--mui-density-x-large)',
+                },
+              },
+            ],
           },
         ],
       },

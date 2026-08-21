@@ -231,7 +231,7 @@ export function addRootOverride(
 /**
  * Attach theme `defaultProps` for a component, preserving anything the consuming
  * theme already set (an explicit user default wins over the preset's). For seams
- * CSS cannot reach — e.g. the X DataGrid's row/header heights, which feed the
+ * CSS cannot reach — e.g. virtualized row/header heights that feed the
  * virtualizer's JS math and only apply through props.
  *
  * **Mutates `components` in place** — same contract as `addRootOverride`.

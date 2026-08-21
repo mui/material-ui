@@ -185,6 +185,7 @@ import {
   collectThemeTokenEdits,
 } from 'docs/src/modules/components/density/collectEdits';
 import { buildExportSource } from 'docs/src/modules/components/density/buildExportSource';
+import { withXDensity } from 'docs/src/modules/components/density/xDensity';
 import { buildExportInput } from 'docs/src/modules/components/density/exportPayload';
 import { KnobInput } from 'docs/src/modules/components/density/KnobInput';
 
@@ -617,11 +618,12 @@ const PRESET_LABEL: Record<Preset, string> = {
   low: 'low',
 };
 
-// Each preset maps to its `enhance*Density` fn; `unset` applies none.
+// Each preset maps to its `enhance*Density` fn (X layer composed on top —
+// the core package ships X-free); `unset` applies none.
 const PRESET_FN = {
-  high: enhanceHighDensity,
-  medium: enhanceMediumDensity,
-  low: enhanceLowDensity,
+  high: withXDensity(enhanceHighDensity, 'high'),
+  medium: withXDensity(enhanceMediumDensity, 'medium'),
+  low: withXDensity(enhanceLowDensity, 'low'),
 } as const;
 
 interface DensityComponentDef {
