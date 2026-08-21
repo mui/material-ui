@@ -5,10 +5,13 @@ import clsx from 'clsx';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
+import { mergeProps } from '@base-ui/react/merge-props';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import CheckBoxIcon from '../internal/svg-icons/CheckBox';
+import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import { menu2IndicatorStyles } from '../Unstable_Menu2/menu2SharedStyles';
 import { getMenu2RootRender, Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
@@ -87,18 +90,9 @@ const Menu2CheckboxItemIndicatorRoot = styled('span', {
   overridesResolver: (props, styles) => styles.root,
 })(menu2IndicatorStyles) as any;
 
-function DefaultCheckboxIndicatorIcon() {
-  return (
-    <svg aria-hidden="true" data-mui-menu2-indicator-icon="" focusable="false" viewBox="0 0 24 24">
-      <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2z" />
-      <path
-        data-mui-menu2-checkbox-checkmark=""
-        data-mui-menu2-indicator-mark=""
-        d="m10 17-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-      />
-    </svg>
-  );
-}
+// `small` keeps the 1.25rem box the menu row is built around.
+const defaultCheckedIcon = <CheckBoxIcon fontSize="small" />;
+const defaultIcon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 
 /**
  *
@@ -135,12 +129,19 @@ const Menu2CheckboxItemIndicator = React.forwardRef(function Menu2CheckboxItemIn
   return (
     <BaseMenu.CheckboxItemIndicator
       ref={ref}
-      render={getMenu2RootRender(slots?.root ?? Menu2CheckboxItemIndicatorRoot, ownerState, {
-        ...resolveComponentProps(slotProps?.root, ownerState),
-        as: component,
-        ownerState,
-        sx,
-      })}
+      // The render callback is the only place the checked state is available,
+      // and the icon has to change with it.
+      render={(elementProps, state) =>
+        getMenu2RootRender(slots?.root ?? Menu2CheckboxItemIndicatorRoot, ownerState, {
+          ...mergeProps(elementProps, {
+            ...resolveComponentProps(slotProps?.root, ownerState),
+            as: component,
+            ownerState,
+            sx,
+          }),
+          children: children ?? (state.checked ? defaultCheckedIcon : defaultIcon),
+        })
+      }
       className={(state) =>
         clsx(
           className,
@@ -152,9 +153,7 @@ const Menu2CheckboxItemIndicator = React.forwardRef(function Menu2CheckboxItemIn
       }
       style={style}
       {...other}
-    >
-      {children ?? <DefaultCheckboxIndicatorIcon />}
-    </BaseMenu.CheckboxItemIndicator>
+    />
   );
 });
 

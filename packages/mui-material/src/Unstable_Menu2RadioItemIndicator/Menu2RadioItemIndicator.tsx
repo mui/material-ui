@@ -5,10 +5,12 @@ import clsx from 'clsx';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
+import { mergeProps } from '@base-ui/react/merge-props';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import RadioButtonIcon from '../Radio/RadioButtonIcon';
 import { menu2IndicatorStyles } from '../Unstable_Menu2/menu2SharedStyles';
 import { getMenu2RootRender, Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
@@ -87,17 +89,10 @@ const Menu2RadioItemIndicatorRoot = styled('span', {
   overridesResolver: (props, styles) => styles.root,
 })(menu2IndicatorStyles) as any;
 
-function DefaultRadioIndicatorIcon() {
-  return (
-    <svg aria-hidden="true" data-mui-menu2-indicator-icon="" focusable="false" viewBox="0 0 24 24">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" />
-      <path
-        data-mui-menu2-indicator-mark=""
-        d="M8.465 8.465C9.37 7.56 10.62 7 12 7C14.76 7 17 9.24 17 12C17 13.38 16.44 14.63 15.535 15.535C14.63 16.44 13.38 17 12 17C9.24 17 7 14.76 7 12C7 10.62 7.56 9.37 8.465 8.465Z"
-      />
-    </svg>
-  );
-}
+// The same icon the real Radio uses, so the dot keeps its scale transition.
+// `small` keeps the 1.25rem box the menu row is built around.
+const defaultCheckedIcon = <RadioButtonIcon checked fontSize="small" />;
+const defaultIcon = <RadioButtonIcon fontSize="small" />;
 
 /**
  *
@@ -134,12 +129,19 @@ const Menu2RadioItemIndicator = React.forwardRef(function Menu2RadioItemIndicato
   return (
     <BaseMenu.RadioItemIndicator
       ref={ref}
-      render={getMenu2RootRender(slots?.root ?? Menu2RadioItemIndicatorRoot, ownerState, {
-        ...resolveComponentProps(slotProps?.root, ownerState),
-        as: component,
-        ownerState,
-        sx,
-      })}
+      // The render callback is the only place the checked state is available,
+      // and the icon has to change with it.
+      render={(elementProps, state) =>
+        getMenu2RootRender(slots?.root ?? Menu2RadioItemIndicatorRoot, ownerState, {
+          ...mergeProps(elementProps, {
+            ...resolveComponentProps(slotProps?.root, ownerState),
+            as: component,
+            ownerState,
+            sx,
+          }),
+          children: children ?? (state.checked ? defaultCheckedIcon : defaultIcon),
+        })
+      }
       className={(state) =>
         clsx(
           className,
@@ -151,9 +153,7 @@ const Menu2RadioItemIndicator = React.forwardRef(function Menu2RadioItemIndicato
       }
       style={style}
       {...other}
-    >
-      {children ?? <DefaultRadioIndicatorIcon />}
-    </BaseMenu.RadioItemIndicator>
+    />
   );
 });
 

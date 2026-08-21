@@ -10,7 +10,6 @@ import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
 import menuItemClasses from '../MenuItem/menuItemClasses';
 import {
   menu2CheckboxItemClasses,
-  menu2CheckboxItemIndicatorClasses,
   menu2ItemClasses,
   menu2LinkItemClasses,
   menu2RadioItemClasses,
@@ -480,24 +479,7 @@ export default function enhanceHighContrast<
         ...c?.MuiMenu2CheckboxItem?.styleOverrides,
         root: [
           c?.MuiMenu2CheckboxItem?.styleOverrides?.root,
-          {
-            ...menu2ItemOverrides(menu2CheckboxItemClasses, hcTokens),
-            // The indicator has no `selected` class of its own, so the
-            // knocked-out checkmark has to follow the item background from
-            // here; left alone it stays Canvas and merges into the box.
-            [`&.${menu2CheckboxItemClasses.selected} [data-mui-menu2-checkbox-checkmark]`]: {
-              [HCM]: {
-                forcedColorAdjust: 'none',
-                fill: hcTokens.selectedBackground,
-              },
-            },
-            [`&.${menu2CheckboxItemClasses.selected}.${menu2CheckboxItemClasses.highlighted} [data-mui-menu2-checkbox-checkmark]`]:
-              {
-                [HCM]: {
-                  fill: hcTokens.activeBackground,
-                },
-              },
-          },
+          menu2ItemOverrides(menu2CheckboxItemClasses, hcTokens),
         ],
       },
     },
@@ -556,18 +538,11 @@ export default function enhanceHighContrast<
         root: [
           c?.MuiMenu2CheckboxItemIndicator?.styleOverrides?.root,
           {
+            // `&[data-checked]` matches the indicator's own checked rule, which
+            // would otherwise outrank this override on specificity.
             [HCM]: {
-              color: 'inherit',
-              '& [data-mui-menu2-checkbox-checkmark]': {
-                forcedColorAdjust: 'none',
-                fill: hcTokens.canvas,
-              },
-            },
-            [`&.${menu2CheckboxItemIndicatorClasses.highlighted}`]: {
-              [HCM]: {
-                '& [data-mui-menu2-checkbox-checkmark]': {
-                  fill: hcTokens.activeBackground,
-                },
+              '&, &[data-checked]': {
+                color: 'inherit',
               },
             },
           },
@@ -581,8 +556,12 @@ export default function enhanceHighContrast<
         root: [
           c?.MuiMenu2RadioItemIndicator?.styleOverrides?.root,
           {
+            // `&[data-checked]` matches the indicator's own checked rule, which
+            // would otherwise outrank this override on specificity.
             [HCM]: {
-              color: 'inherit',
+              '&, &[data-checked]': {
+                color: 'inherit',
+              },
             },
           },
         ],

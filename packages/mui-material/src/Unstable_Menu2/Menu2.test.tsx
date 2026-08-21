@@ -11,6 +11,7 @@ import Menu2, { menu2PopupClasses, menu2TriggerClasses } from '@mui/material/Uns
 import Menu2CheckboxItem, {
   menu2CheckboxItemClasses,
 } from '@mui/material/Unstable_Menu2CheckboxItem';
+import { menu2CheckboxItemIndicatorClasses } from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
@@ -329,10 +330,7 @@ describe('<Menu2 />', () => {
         <ThemeProvider theme={enhanceHighContrast(createTheme())}>
           <Menu2 trigger={<Button disableRipple>Options</Button>}>
             <Menu2Item>Profile</Menu2Item>
-            <Menu2CheckboxItem defaultChecked>
-              {/* The indicator only mounts while checked. */}
-              Bookmarks
-            </Menu2CheckboxItem>
+            <Menu2CheckboxItem defaultChecked>Bookmarks</Menu2CheckboxItem>
             <Menu2Submenu trigger={<Menu2Item>View</Menu2Item>}>
               <Menu2Item>Zoom in</Menu2Item>
             </Menu2Submenu>
@@ -368,7 +366,17 @@ describe('<Menu2 />', () => {
       expect(matches(menu2ItemClasses.highlighted)).to.equal(true);
       expect(matches(menu2CheckboxItemClasses.highlighted)).to.equal(true);
       expect(matches(menu2SubmenuTriggerClasses.open)).to.equal(true);
-      expect(matches('data-mui-menu2-checkbox-checkmark')).to.equal(true);
+      expect(matches(menu2CheckboxItemIndicatorClasses.root)).to.equal(true);
+      // The indicator's own `[data-checked]` colour is (0,2,0). The override has
+      // to carry the same attribute, or a checked indicator keeps the MUI blue
+      // in forced colors instead of the system colour.
+      expect(
+        menu2ForcedColorsRules.some(
+          (text) =>
+            text.includes(menu2CheckboxItemIndicatorClasses.root) &&
+            text.includes('[data-checked]'),
+        ),
+      ).to.equal(true);
     },
   );
 
@@ -724,22 +732,28 @@ describe('<Menu2 />', () => {
     await user.pointer({ keys: '[/MouseLeft]', target: withoutRipple });
   });
 
-  it('keeps mounted unchecked indicator marks hidden', () => {
+  it('renders the Checkbox and Radio icons for each indicator state', () => {
     render(
       <Menu2 open trigger={<Button disableRipple>Options</Button>}>
-        <Menu2CheckboxItem slotProps={{ indicator: { 'data-testid': 'checkbox-indicator' } }}>
+        <Menu2CheckboxItem slotProps={{ indicator: { 'data-testid': 'unchecked-checkbox' } }}>
           Show hidden files
+        </Menu2CheckboxItem>
+        <Menu2CheckboxItem
+          defaultChecked
+          slotProps={{ indicator: { 'data-testid': 'checked-checkbox' } }}
+        >
+          Show the sidebar
         </Menu2CheckboxItem>
         <Menu2RadioGroup defaultValue="small">
           <Menu2RadioItem
             value="small"
-            slotProps={{ indicator: { 'data-testid': 'checked-radio-indicator' } }}
+            slotProps={{ indicator: { 'data-testid': 'checked-radio' } }}
           >
             Small
           </Menu2RadioItem>
           <Menu2RadioItem
             value="large"
-            slotProps={{ indicator: { 'data-testid': 'unchecked-radio-indicator' } }}
+            slotProps={{ indicator: { 'data-testid': 'unchecked-radio' } }}
           >
             Large
           </Menu2RadioItem>
@@ -747,38 +761,45 @@ describe('<Menu2 />', () => {
       </Menu2>,
     );
 
-    const checkboxIndicator = screen.getByTestId('checkbox-indicator');
-    const checkboxIcon = checkboxIndicator.querySelector('[data-mui-menu2-indicator-icon]');
-    const checkboxMark = checkboxIndicator.querySelector('[data-mui-menu2-indicator-mark]');
-    expect(checkboxIndicator).to.have.attribute('data-unchecked', '');
-    expect(window.getComputedStyle(checkboxIndicator).visibility).to.equal('visible');
-    expect(checkboxIcon).not.to.equal(null);
-    expect(window.getComputedStyle(checkboxIcon!).visibility).to.equal('visible');
-    expect(checkboxMark).not.to.equal(null);
-    expect(window.getComputedStyle(checkboxMark!).visibility).to.equal('hidden');
+    // The checkbox swaps the icon the way the real Checkbox does: an outlined
+    // empty box, then the filled box with the check.
+    const uncheckedCheckbox = screen.getByTestId('unchecked-checkbox');
+    expect(uncheckedCheckbox).to.have.attribute('data-unchecked', '');
+    expect(
+      uncheckedCheckbox.querySelector('[data-testid="CheckBoxOutlineBlankIcon"]'),
+    ).not.to.equal(null);
+    expect(uncheckedCheckbox.querySelector('[data-testid="CheckBoxIcon"]')).to.equal(null);
 
-    const checkedRadioIndicator = screen.getByTestId('checked-radio-indicator');
-    const checkedRadioIcon = checkedRadioIndicator.querySelector('[data-mui-menu2-indicator-icon]');
-    const checkedRadioMark = checkedRadioIndicator.querySelector('[data-mui-menu2-indicator-mark]');
-    expect(checkedRadioIndicator).to.have.attribute('data-checked', '');
-    expect(checkedRadioIcon).not.to.equal(null);
-    expect(window.getComputedStyle(checkedRadioIcon!).visibility).to.equal('visible');
-    expect(checkedRadioMark).not.to.equal(null);
-    expect(window.getComputedStyle(checkedRadioMark!).visibility).to.equal('visible');
+    const checkedCheckbox = screen.getByTestId('checked-checkbox');
+    expect(checkedCheckbox).to.have.attribute('data-checked', '');
+    expect(checkedCheckbox.querySelector('[data-testid="CheckBoxIcon"]')).not.to.equal(null);
+    expect(checkedCheckbox.querySelector('[data-testid="CheckBoxOutlineBlankIcon"]')).to.equal(
+      null,
+    );
 
-    const uncheckedRadioIndicator = screen.getByTestId('unchecked-radio-indicator');
-    const uncheckedRadioIcon = uncheckedRadioIndicator.querySelector(
-      '[data-mui-menu2-indicator-icon]',
-    );
-    const uncheckedRadioMark = uncheckedRadioIndicator.querySelector(
-      '[data-mui-menu2-indicator-mark]',
-    );
-    expect(uncheckedRadioIndicator).to.have.attribute('data-unchecked', '');
-    expect(window.getComputedStyle(uncheckedRadioIndicator).visibility).to.equal('visible');
-    expect(uncheckedRadioIcon).not.to.equal(null);
-    expect(window.getComputedStyle(uncheckedRadioIcon!).visibility).to.equal('visible');
-    expect(uncheckedRadioMark).not.to.equal(null);
-    expect(window.getComputedStyle(uncheckedRadioMark!).visibility).to.equal('hidden');
+    // The radio keeps both layers of `RadioButtonIcon` mounted, so the dot can
+    // animate; only the scale changes with the state.
+    const checkedRadio = screen.getByTestId('checked-radio');
+    const uncheckedRadio = screen.getByTestId('unchecked-radio');
+    expect(checkedRadio).to.have.attribute('data-checked', '');
+    expect(uncheckedRadio).to.have.attribute('data-unchecked', '');
+
+    [checkedRadio, uncheckedRadio].forEach((indicator) => {
+      expect(indicator.querySelector('[data-testid="RadioButtonUncheckedIcon"]')).not.to.equal(
+        null,
+      );
+      expect(indicator.querySelector('[data-testid="RadioButtonCheckedIcon"]')).not.to.equal(null);
+    });
+
+    // A real browser reports the transform as a matrix, jsdom as written.
+    const getScale = (element: Element) => {
+      const { transform } = window.getComputedStyle(element);
+      return Number(/^(?:matrix|scale)\(([^,)]+)/.exec(transform)?.[1]);
+    };
+    const checkedDot = checkedRadio.querySelector('[data-testid="RadioButtonCheckedIcon"]')!;
+    const uncheckedDot = uncheckedRadio.querySelector('[data-testid="RadioButtonCheckedIcon"]')!;
+    expect(getScale(checkedDot)).to.equal(1);
+    expect(getScale(uncheckedDot)).to.equal(0);
   });
 
   it('supports groups, labels, separators, link items, and submenus', async () => {

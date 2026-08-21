@@ -137,23 +137,15 @@ export const menu2PopupTransitionStyles = memoTheme(({ theme }) => ({
   },
 }));
 
+// The indicators render the same icons as Checkbox and Radio, so they take the
+// same colors: `text.secondary` until checked, then `primary.main`.
 export const menu2IndicatorStyles = memoTheme(({ theme }) => ({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
   minWidth: 36,
-  color: (theme.vars || theme).palette.action.active,
-  '& [data-mui-menu2-indicator-icon]': {
-    display: 'inline-block',
-    flexShrink: 0,
-    width: '1.25rem',
-    height: '1.25rem',
-    fill: 'currentColor',
-  },
-  '& [data-mui-menu2-checkbox-checkmark]': {
-    fill: (theme.vars || theme).palette.background.paper,
-  },
-  '&[data-unchecked] [data-mui-menu2-indicator-mark]': {
-    visibility: 'hidden',
+  color: (theme.vars || theme).palette.text.secondary,
+  '&[data-checked]': {
+    color: (theme.vars || theme).palette.primary.main,
   },
 }));

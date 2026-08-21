@@ -10,7 +10,6 @@ import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
 import menuItemClasses from '../MenuItem/menuItemClasses';
 import {
   menu2CheckboxItemClasses,
-  menu2CheckboxItemIndicatorClasses,
   menu2ItemClasses,
   menu2LinkItemClasses,
   menu2RadioItemClasses,
@@ -712,22 +711,6 @@ describe('enhanceHighContrast', () => {
       },
     );
 
-    test('MuiMenu2CheckboxItem repaints the checkmark for the selected background', () => {
-      const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiMenu2CheckboxItem?.styleOverrides
-        ?.root as Array<StyleOverride>;
-      const hcmOverride = rootOverrides[rootOverrides.length - 1];
-      const selectedKey = `&.${menu2CheckboxItemClasses.selected} [data-mui-menu2-checkbox-checkmark]`;
-      const selectedActiveKey = `&.${menu2CheckboxItemClasses.selected}.${menu2CheckboxItemClasses.highlighted} [data-mui-menu2-checkbox-checkmark]`;
-
-      expect(hcmOverride[selectedKey]).to.deep.equal({
-        [HCM]: { forcedColorAdjust: 'none', fill: 'SelectedItem' },
-      });
-      expect(hcmOverride[selectedActiveKey]).to.deep.equal({
-        [HCM]: { fill: 'Highlight' },
-      });
-    });
-
     test('MuiMenu2Submenu marks the trigger open state from the list', () => {
       const theme = enhanceHighContrast(createTheme());
       const listOverrides = theme.components?.MuiMenu2Submenu?.styleOverrides
@@ -745,23 +728,18 @@ describe('enhanceHighContrast', () => {
   });
 
   describe('Menu2 indicator overrides', () => {
-    test('MuiMenu2CheckboxItemIndicator inherits the item color and repaints the checkmark', () => {
+    // The checkmark is a hole in the `CheckBox` icon, so it shows the item
+    // background on its own and needs no override of its own.
+    test('MuiMenu2CheckboxItemIndicator inherits the item color', () => {
       const theme = enhanceHighContrast(createTheme());
       const rootOverrides = theme.components?.MuiMenu2CheckboxItemIndicator?.styleOverrides
         ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
+      // `&[data-checked]` must be present: the indicator's own checked rule is
+      // (0,2,0) and outranks a bare `color: inherit` at (0,1,0).
       expect(hcmOverride[HCM]).to.deep.equal({
-        color: 'inherit',
-        '& [data-mui-menu2-checkbox-checkmark]': {
-          forcedColorAdjust: 'none',
-          fill: 'Canvas',
-        },
-      });
-      expect(hcmOverride[`&.${menu2CheckboxItemIndicatorClasses.highlighted}`]).to.deep.equal({
-        [HCM]: {
-          '& [data-mui-menu2-checkbox-checkmark]': { fill: 'Highlight' },
-        },
+        '&, &[data-checked]': { color: 'inherit' },
       });
     });
 
@@ -771,18 +749,10 @@ describe('enhanceHighContrast', () => {
         ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
-      expect(hcmOverride[HCM]).to.deep.equal({ color: 'inherit' });
-    });
-
-    test('the checkmark follows the canvas token', () => {
-      const theme = enhanceHighContrast(createTheme(), { canvas: 'ButtonFace' });
-      const rootOverrides = theme.components?.MuiMenu2CheckboxItemIndicator?.styleOverrides
-        ?.root as Array<StyleOverride>;
-      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<string, StyleOverride>;
-
-      expect(hcmOverride[HCM]['& [data-mui-menu2-checkbox-checkmark]']).to.deep.equal({
-        forcedColorAdjust: 'none',
-        fill: 'ButtonFace',
+      // `&[data-checked]` must be present: the indicator's own checked rule is
+      // (0,2,0) and outranks a bare `color: inherit` at (0,1,0).
+      expect(hcmOverride[HCM]).to.deep.equal({
+        '&, &[data-checked]': { color: 'inherit' },
       });
     });
   });
