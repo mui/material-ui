@@ -1149,6 +1149,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiSnackbarContent|action|base||paddingLeft': 'SnackbarContent · action · paddingLeft',
   'MuiSnackbarContent|message|base||paddingBlock': 'SnackbarContent · message · paddingBlock',
   'MuiSnackbarContent|root|base||padding': 'SnackbarContent · padding',
+  'MuiSnackbarContent|root|base||gap': 'SnackbarContent · gap',
   'MuiStep|root|alternativeLabel=false,hasConnector=false,orientation=horizontal||paddingLeft': {
     label: 'Step · paddingLeft [first, horizontal]',
     done: ['medium'],

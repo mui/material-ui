@@ -730,13 +730,17 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     ],
   });
   addRootOverride(enhanced.components, 'MuiSnackbarContent', {
-    // Block: semantic/spacing/fixed/s (8px, px unverified — assumed from fixed
-    // ladder 2/4/8/12); inline: no Figma capture, stays a step.
-    padding: `8px ${d.large}`,
+    padding: `${d['x-small']} ${d.medium}`,
+    gap: d.small,
   });
-  addRootOverride(enhanced.components, 'MuiSnackbarContent', { paddingBlock: d.small }, 'message');
+  addRootOverride(
+    enhanced.components,
+    'MuiSnackbarContent',
+    { paddingBlock: d['x-small'] },
+    'message',
+  );
   // Inline-start inset only; the -8px flush end pull is an edge offset (frozen).
-  addRootOverride(enhanced.components, 'MuiSnackbarContent', { paddingLeft: d.large }, 'action');
+  addRootOverride(enhanced.components, 'MuiSnackbarContent', { paddingLeft: 0 }, 'action');
   addRootOverride(enhanced.components, 'MuiDialogTitle', {
     padding: `${d.small} ${d.small} ${d.small} ${d.medium}`,
   });

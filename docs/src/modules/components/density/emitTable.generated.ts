@@ -6963,8 +6963,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiSnackbarContent|action|base||paddingLeft',
     label: 'SnackbarContent · action · paddingLeft',
-    isDensity: true,
-    densityKey: 'large',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiSnackbarContent',
       slot: 'action',
@@ -6972,17 +6972,13 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'paddingLeft',
     },
-    values: {
-      high: 'var(--mui-density-large)',
-      medium: 'var(--mui-density-large)',
-      low: 'var(--mui-density-large)',
-    },
+    values: { high: '0', medium: '0', low: '0' },
   },
   {
     id: 'MuiSnackbarContent|message|base||paddingBlock',
     label: 'SnackbarContent · message · paddingBlock',
     isDensity: true,
-    densityKey: 'small',
+    densityKey: 'x-small',
     target: {
       component: 'MuiSnackbarContent',
       slot: 'message',
@@ -6991,9 +6987,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBlock',
     },
     values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
+      high: 'var(--mui-density-x-small)',
+      medium: 'var(--mui-density-x-small)',
+      low: 'var(--mui-density-x-small)',
     },
   },
   {
@@ -7009,9 +7005,27 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: '8px var(--mui-density-large)',
-      medium: '8px var(--mui-density-large)',
-      low: '8px var(--mui-density-large)',
+      high: 'var(--mui-density-x-small) var(--mui-density-medium)',
+      medium: 'var(--mui-density-x-small) var(--mui-density-medium)',
+      low: 'var(--mui-density-x-small) var(--mui-density-medium)',
+    },
+  },
+  {
+    id: 'MuiSnackbarContent|root|base||gap',
+    label: 'SnackbarContent · gap',
+    isDensity: true,
+    densityKey: 'small',
+    target: {
+      component: 'MuiSnackbarContent',
+      slot: 'root',
+      props: null,
+      nested: '',
+      cssProp: 'gap',
+    },
+    values: {
+      high: 'var(--mui-density-small)',
+      medium: 'var(--mui-density-small)',
+      low: 'var(--mui-density-small)',
     },
   },
   {

@@ -1318,17 +1318,18 @@ const high = {
       styleOverrides: {
         root: [
           {
-            padding: '8px var(--mui-density-large)',
+            padding: 'var(--mui-density-x-small) var(--mui-density-medium)',
+            gap: 'var(--mui-density-small)',
           },
         ],
         message: [
           {
-            paddingBlock: 'var(--mui-density-small)',
+            paddingBlock: 'var(--mui-density-x-small)',
           },
         ],
         action: [
           {
-            paddingLeft: 'var(--mui-density-large)',
+            paddingLeft: 0,
           },
         ],
       },
@@ -4224,17 +4225,18 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            padding: '8px var(--mui-density-large)',
+            padding: 'var(--mui-density-x-small) var(--mui-density-medium)',
+            gap: 'var(--mui-density-small)',
           },
         ],
         message: [
           {
-            paddingBlock: 'var(--mui-density-small)',
+            paddingBlock: 'var(--mui-density-x-small)',
           },
         ],
         action: [
           {
-            paddingLeft: 'var(--mui-density-large)',
+            paddingLeft: 0,
           },
         ],
       },
@@ -7133,17 +7135,18 @@ const low = {
       styleOverrides: {
         root: [
           {
-            padding: '8px var(--mui-density-large)',
+            padding: 'var(--mui-density-x-small) var(--mui-density-medium)',
+            gap: 'var(--mui-density-small)',
           },
         ],
         message: [
           {
-            paddingBlock: 'var(--mui-density-small)',
+            paddingBlock: 'var(--mui-density-x-small)',
           },
         ],
         action: [
           {
-            paddingLeft: 'var(--mui-density-large)',
+            paddingLeft: 0,
           },
         ],
       },
