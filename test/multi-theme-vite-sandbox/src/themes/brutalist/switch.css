@@ -21,7 +21,7 @@
   justify-content: center;
   margin: 0;
   padding: 4px;
-  color: var(--multi-theme-ink);
+  color: var(--multi-theme-palette-text-strong);
   background: transparent;
   border: 0;
   border-radius: 0;
@@ -30,7 +30,7 @@
   cursor: pointer;
   user-select: none;
   box-sizing: border-box;
-  transition: transform 80ms steps(2, end);
+  transition: transform var(--multi-theme-duration-shortest) steps(2, end);
 }
 
 :where([data-mui-theme='brutalist']) .MuiSwitch-input.MuiSwitch-input {
@@ -47,19 +47,19 @@
 }
 
 :where([data-mui-theme='brutalist']) .MuiSwitch-switchBase.MuiSwitch-switchBase.Mui-checked {
-  color: var(--multi-theme-ink);
+  color: var(--multi-theme-palette-text-strong);
   transform: translateX(36px);
 }
 
 :where([data-mui-theme='brutalist'])
   .MuiSwitch-switchBase.MuiSwitch-switchBase.Mui-checked
   + .MuiSwitch-track {
-  background: var(--multi-theme-accent);
+  background: var(--multi-theme-palette-secondary-main);
   opacity: 1;
 }
 
 :where([data-mui-theme='brutalist']) .MuiSwitch-switchBase.MuiSwitch-switchBase.Mui-focusVisible {
-  outline: 4px solid var(--multi-theme-focus);
+  outline: 4px solid var(--multi-theme-palette-focus-strong);
   outline-offset: 2px;
 }
 
@@ -67,11 +67,11 @@
   display: block;
   width: 26px;
   height: 26px;
-  background: var(--multi-theme-surface);
-  border: 3px solid var(--multi-theme-ink);
+  background: var(--multi-theme-palette-background-paper);
+  border: 3px solid var(--multi-theme-palette-text-strong);
   border-radius: 0;
   box-sizing: border-box;
-  box-shadow: 3px 3px 0 var(--multi-theme-ink);
+  box-shadow: 3px 3px 0 var(--multi-theme-palette-text-strong);
 }
 
 :where([data-mui-theme='brutalist']) .MuiSwitch-track.MuiSwitch-track {
@@ -81,15 +81,15 @@
   height: 100%;
   background:
     repeating-linear-gradient(135deg, transparent 0 6px, rgb(17 17 17 / 14%) 6px 10px),
-    var(--multi-theme-track);
-  border: 3px solid var(--multi-theme-ink);
+    var(--multi-theme-palette-background-paper);
+  border: 3px solid var(--multi-theme-palette-text-strong);
   border-radius: 0;
   opacity: 1;
   box-sizing: border-box;
 }
 
 :where([data-mui-theme='brutalist']) .MuiSwitch-switchBase.MuiSwitch-switchBase.Mui-disabled {
-  color: var(--multi-theme-disabled);
+  color: var(--multi-theme-palette-action-disabled-strong);
   cursor: default;
   pointer-events: none;
 }
@@ -97,7 +97,7 @@
 :where([data-mui-theme='brutalist'])
   .MuiSwitch-switchBase.MuiSwitch-switchBase.Mui-disabled
   + .MuiSwitch-track {
-  background: var(--multi-theme-disabled-bg);
-  border-color: var(--multi-theme-disabled);
+  background: var(--multi-theme-palette-action-disabled-background-strong);
+  border-color: var(--multi-theme-palette-action-disabled-strong);
   opacity: 1;
 }

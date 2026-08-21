@@ -118,16 +118,28 @@ body {
   min-width: 0;
   padding: clamp(24px, 5vw, 40px);
   overflow: hidden;
-  color: var(--multi-theme-ink);
-  background: var(--multi-theme-canvas);
-  border: var(--multi-theme-frame-border);
-  border-radius: var(--multi-theme-frame-radius);
-  box-shadow: var(--multi-theme-frame-shadow);
-  font-family: var(--multi-theme-font);
   transition:
-    background-color 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease;
+    background-color var(--multi-theme-duration-standard) var(--multi-theme-easing-standard),
+    border-color var(--multi-theme-duration-standard) var(--multi-theme-easing-standard),
+    box-shadow var(--multi-theme-duration-standard) var(--multi-theme-easing-standard);
+}
+
+.theme-panel[data-mui-theme='polished'] {
+  color: var(--multi-theme-palette-text-primary);
+  background: var(--multi-theme-palette-background-default);
+  border: 1px solid var(--multi-theme-palette-divider);
+  border-radius: var(--multi-theme-shape-rounded);
+  box-shadow: var(--multi-theme-elevation-soft);
+  font-family: var(--multi-theme-font-family);
+}
+
+.theme-panel[data-mui-theme='brutalist'] {
+  color: var(--multi-theme-palette-text-strong);
+  background: var(--multi-theme-palette-warning-main);
+  border: 3px solid var(--multi-theme-palette-common-black);
+  border-radius: 0;
+  box-shadow: var(--multi-theme-elevation-hard);
+  font-family: var(--multi-theme-font-family-display);
 }
 
 .theme-panel__header {
@@ -136,23 +148,47 @@ body {
 
 .theme-panel__eyebrow {
   margin-bottom: 8px;
-  color: var(--multi-theme-accent);
-  letter-spacing: var(--multi-theme-letter-spacing);
 }
 
 .theme-panel h2 {
   margin: 0 0 10px;
-  color: var(--multi-theme-ink);
+  color: inherit;
   font-size: clamp(1.65rem, 4vw, 2rem);
   line-height: 1.1;
-  letter-spacing: var(--multi-theme-heading-spacing);
 }
 
 .theme-panel__description {
   max-width: 560px;
   margin: 0;
-  color: var(--multi-theme-muted);
   line-height: 1.55;
+}
+
+.theme-panel[data-mui-theme='polished'] .theme-panel__eyebrow {
+  color: var(--multi-theme-palette-primary-main);
+  letter-spacing: 0.12em;
+}
+
+.theme-panel[data-mui-theme='brutalist'] .theme-panel__eyebrow {
+  color: var(--multi-theme-palette-secondary-main);
+  letter-spacing: 0.06em;
+}
+
+.theme-panel[data-mui-theme='polished'] h2 {
+  letter-spacing: -0.035em;
+}
+
+.theme-panel[data-mui-theme='brutalist'] h2 {
+  letter-spacing: -0.055em;
+}
+
+.theme-panel[data-mui-theme='polished']
+  :is(.theme-panel__description, .component-label, .switch-sample--muted) {
+  color: var(--multi-theme-palette-text-secondary);
+}
+
+.theme-panel[data-mui-theme='brutalist']
+  :is(.theme-panel__description, .component-label, .switch-sample--muted) {
+  color: var(--multi-theme-palette-text-strong-secondary);
 }
 
 .component-samples {
@@ -162,7 +198,6 @@ body {
 
 .component-label {
   margin-bottom: 12px;
-  color: var(--multi-theme-muted);
 }
 
 .component-row {
@@ -180,12 +215,11 @@ body {
   display: inline-flex;
   gap: 10px;
   align-items: center;
-  color: var(--multi-theme-ink);
+  color: inherit;
   font-weight: 650;
 }
 
 .switch-sample--muted {
-  color: var(--multi-theme-muted);
   font-weight: 500;
 }
 

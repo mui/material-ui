@@ -9,14 +9,14 @@
   overflow: visible;
   color: inherit;
   background: transparent;
-  border: 3px solid var(--multi-theme-ink);
+  border: 3px solid var(--multi-theme-palette-text-strong);
   border-radius: 0;
   outline: 0;
   appearance: none;
   cursor: pointer;
   user-select: none;
   vertical-align: middle;
-  font-family: var(--multi-theme-font);
+  font-family: var(--multi-theme-font-family-display);
   font-size: 0.875rem;
   font-weight: 900;
   line-height: 1.2;
@@ -24,12 +24,12 @@
   text-decoration: none;
   text-transform: uppercase;
   -webkit-tap-highlight-color: transparent;
-  box-shadow: 5px 5px 0 var(--multi-theme-ink);
+  box-shadow: 5px 5px 0 var(--multi-theme-palette-text-strong);
   transition:
-    color 80ms linear,
-    background-color 80ms linear,
-    box-shadow 80ms linear,
-    transform 80ms linear;
+    color var(--multi-theme-duration-shortest) linear,
+    background-color var(--multi-theme-duration-shortest) linear,
+    box-shadow var(--multi-theme-duration-shortest) linear,
+    transform var(--multi-theme-duration-shortest) linear;
 }
 
 :where([data-mui-theme='brutalist']) .MuiButton-root.MuiButton-root::before {
@@ -44,36 +44,36 @@
 
 :where([data-mui-theme='brutalist']) .MuiButton-root.MuiButton-root:hover {
   text-decoration: none;
-  box-shadow: 2px 2px 0 var(--multi-theme-ink);
+  box-shadow: 2px 2px 0 var(--multi-theme-palette-text-strong);
   transform: translate(3px, 3px);
 }
 
 :where([data-mui-theme='brutalist']) .MuiButton-root.MuiButton-contained.MuiButton-colorPrimary {
-  color: var(--multi-theme-accent-contrast);
-  background: var(--multi-theme-accent);
+  color: var(--multi-theme-palette-common-black);
+  background: var(--multi-theme-palette-secondary-main);
 }
 
 :where([data-mui-theme='brutalist'])
   .MuiButton-root.MuiButton-contained.MuiButton-colorPrimary:hover {
-  background: #ff6a2b;
+  background: var(--multi-theme-palette-secondary-light);
 }
 
 :where([data-mui-theme='brutalist']) .MuiButton-root.MuiButton-outlined.MuiButton-colorPrimary {
-  color: var(--multi-theme-ink);
-  background: var(--multi-theme-surface);
-  border-color: var(--multi-theme-ink);
+  color: var(--multi-theme-palette-text-strong);
+  background: var(--multi-theme-palette-background-paper);
+  border-color: var(--multi-theme-palette-text-strong);
 }
 
 :where([data-mui-theme='brutalist'])
   .MuiButton-root.MuiButton-outlined.MuiButton-colorPrimary:hover {
-  color: #ffffff;
-  background: var(--multi-theme-ink);
-  border-color: var(--multi-theme-ink);
+  color: var(--multi-theme-palette-common-white);
+  background: var(--multi-theme-palette-text-strong);
+  border-color: var(--multi-theme-palette-text-strong);
 }
 
 :where([data-mui-theme='brutalist']) .MuiButton-root.MuiButton-text.MuiButton-colorPrimary {
-  color: var(--multi-theme-ink);
-  background: #38d9ff;
+  color: var(--multi-theme-palette-text-strong);
+  background: var(--multi-theme-palette-info-main);
 }
 
 :where([data-mui-theme='brutalist']) .MuiButton-root.MuiButton-sizeSmall {
@@ -82,16 +82,16 @@
 }
 
 :where([data-mui-theme='brutalist']) .MuiButton-root.MuiButton-root.Mui-focusVisible {
-  outline: 4px solid var(--multi-theme-focus);
+  outline: 4px solid var(--multi-theme-palette-focus-strong);
   outline-offset: 4px;
 }
 
 :where([data-mui-theme='brutalist']) .MuiButton-root.MuiButton-root.Mui-disabled {
-  color: var(--multi-theme-disabled);
-  background: var(--multi-theme-disabled-bg);
-  border-color: var(--multi-theme-disabled);
+  color: var(--multi-theme-palette-action-disabled-strong);
+  background: var(--multi-theme-palette-action-disabled-background-strong);
+  border-color: var(--multi-theme-palette-action-disabled-strong);
   cursor: default;
   pointer-events: none;
-  box-shadow: 5px 5px 0 var(--multi-theme-disabled);
+  box-shadow: 5px 5px 0 var(--multi-theme-palette-action-disabled-strong);
   transform: none;
 }
