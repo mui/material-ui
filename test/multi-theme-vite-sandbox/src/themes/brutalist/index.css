@@ -1,4 +1,0 @@
-/* Component files intentionally include both structural and visual rules for this theme. */
-@import '../../tokens.css';
-@import './button.css';
-@import './switch.css';

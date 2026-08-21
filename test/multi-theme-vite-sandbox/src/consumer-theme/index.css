@@ -1,0 +1,5 @@
+@layer mui.tokens, mui.base, mui.theme;
+
+/* Consumer-owned barrel; its tokens and base CSS are selected by the importing app entry. */
+@import './button.css';
+@import './slider.css';

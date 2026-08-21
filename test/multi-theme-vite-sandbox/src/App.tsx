@@ -1,163 +1,137 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import Switch from '@mui/material/Switch';
+import Slider from '@mui/material/Slider';
 
-type ThemeName = 'polished' | 'brutalist';
+export interface ThemeExample {
+  description: string;
+  id: 'polished' | 'brutalist' | 'ocean';
+  label: string;
+  owner: 'Material UI' | 'Consumer';
+}
 
-const themes: Array<{ name: ThemeName; label: string; description: string }> = [
+const themeExamples: Array<ThemeExample & { href: string }> = [
   {
-    name: 'polished',
+    id: 'polished',
     label: 'Polished',
-    description: 'Soft surfaces, compact proportions, and restrained motion.',
+    owner: 'Material UI',
+    description: 'A library theme loaded through its whole-theme CSS rollup.',
+    href: './index.html',
   },
   {
-    name: 'brutalist',
+    id: 'brutalist',
     label: 'Brutalist',
-    description: 'Hard edges, louder contrast, and intentionally oversized controls.',
+    owner: 'Material UI',
+    description: 'A library theme loaded through granular Button and Slider CSS entries.',
+    href: './brutalist.html',
+  },
+  {
+    id: 'ocean',
+    label: 'Ocean',
+    owner: 'Consumer',
+    description: 'An app-owned theme built on Material UI tokens and component base CSS.',
+    href: './consumer.html',
   },
 ];
 
-interface ComponentSamplesProps {
-  buttonClicks?: number;
-  interactive?: boolean;
-  onButtonClick?: () => void;
-  onSwitchChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  switchChecked?: boolean;
+const marks = [
+  { value: 20, label: '20' },
+  { value: 50, label: '50' },
+  { value: 80, label: '80' },
+];
+
+interface AppProps {
+  theme: ThemeExample;
 }
 
-function ComponentSamples({
-  buttonClicks = 0,
-  interactive = false,
-  onButtonClick,
-  onSwitchChange,
-  switchChecked = true,
-}: ComponentSamplesProps) {
-  const enabledSwitchId = React.useId();
-  const disabledSwitchId = React.useId();
-
-  return (
-    <div className="component-samples">
-      <section>
-        <h3 className="component-label">Button</h3>
-        <div className="component-row">
-          <Button disableRipple variant="contained" onClick={onButtonClick}>
-            {interactive ? `Clicked ${buttonClicks}` : 'Primary action'}
-          </Button>
-          <Button disableRipple variant="outlined">
-            Secondary
-          </Button>
-          <Button disableRipple size="small">
-            Quiet action
-          </Button>
-          <Button disabled disableRipple variant="contained">
-            Disabled
-          </Button>
-        </div>
-      </section>
-
-      <section>
-        <h3 className="component-label">Switch</h3>
-        <div className="component-row component-row--switches">
-          <label className="switch-sample" htmlFor={enabledSwitchId}>
-            <Switch
-              disableRipple
-              {...(interactive
-                ? { checked: switchChecked, onChange: onSwitchChange }
-                : { defaultChecked: switchChecked })}
-              slotProps={{ input: { id: enabledSwitchId } }}
-            />
-            <span>{switchChecked ? 'Enabled' : 'Disabled'}</span>
-          </label>
-          <label className="switch-sample switch-sample--muted" htmlFor={disabledSwitchId}>
-            <Switch disabled disableRipple slotProps={{ input: { id: disabledSwitchId } }} />
-            <span>Unavailable</span>
-          </label>
-        </div>
-      </section>
-    </div>
-  );
-}
-
-interface ThemePanelProps {
-  children: React.ReactNode;
-  themeName: ThemeName;
-}
-
-function ThemePanel({ children, themeName }: ThemePanelProps) {
-  const theme = themes.find((item) => item.name === themeName)!;
-
-  return (
-    // This subtree is not keyed by theme, so changing the scope preserves component state.
-    <article className="theme-panel" data-mui-theme={themeName}>
-      <header className="theme-panel__header">
-        <p className="theme-panel__eyebrow">{theme.label} theme</p>
-        <h2>Same components, different CSS</h2>
-        <p className="theme-panel__description">{theme.description}</p>
-      </header>
-      {children}
-    </article>
-  );
-}
-
-export default function App() {
-  const [themeName, setThemeName] = React.useState<ThemeName>('polished');
+export default function App({ theme }: AppProps) {
   const [buttonClicks, setButtonClicks] = React.useState(0);
-  const [switchChecked, setSwitchChecked] = React.useState(true);
+  const [sliderValue, setSliderValue] = React.useState(50);
 
   return (
     <main className="experiment">
       <header className="experiment__header">
-        <p className="experiment__eyebrow">Material UI experiment</p>
-        <h1>Multi-theme CSS with a no-op styled engine</h1>
+        <p className="experiment__eyebrow">Material UI static CSS experiment</p>
+        <h1>One component implementation, one selected CSS theme</h1>
         <p className="experiment__lede">
-          These are real Material UI Button and Switch components. The no-op engine preserves their
-          markup, classes, state, and behavior, but injects no component styles. Each visual theme
-          is supplied by its own CSS files.
+          Button and Slider keep their Material UI markup, classes, accessibility, and behavior, but
+          their component CSS-in-JS style definitions are empty. The page loads shared foundational
+          CSS plus exactly one visual theme.
         </p>
         <p className="engine-badge">
           <span aria-hidden="true" /> @mui/styled-engine → local no-op
         </p>
       </header>
 
-      <fieldset className="theme-picker">
-        <legend>Active theme</legend>
-        {themes.map((theme) => (
-          <button
-            key={theme.name}
-            type="button"
-            aria-pressed={theme.name === themeName}
-            onClick={() => setThemeName(theme.name)}
+      <nav className="theme-nav" aria-label="Theme examples">
+        {themeExamples.map((example) => (
+          <a
+            key={example.id}
+            href={example.href}
+            aria-current={theme.id === example.id ? 'page' : undefined}
           >
-            {theme.label}
-          </button>
+            {example.label}
+            <small>{example.owner}</small>
+          </a>
         ))}
-      </fieldset>
+      </nav>
 
-      <ThemePanel themeName={themeName}>
-        <ComponentSamples
-          buttonClicks={buttonClicks}
-          interactive
-          onButtonClick={() => setButtonClicks((value) => value + 1)}
-          onSwitchChange={(event) => setSwitchChecked(event.target.checked)}
-          switchChecked={switchChecked}
-        />
-      </ThemePanel>
-
-      <section className="scope-check">
-        <header>
-          <h2>Side-by-side scope check</h2>
-          <p>
-            Identical component markup is rendered under both scopes to expose selector leakage.
-          </p>
+      <article className={`theme-panel theme-panel--${theme.id}`}>
+        <header className="theme-panel__header">
+          <p className="theme-panel__eyebrow">{theme.owner} theme</p>
+          <h2>{theme.label}</h2>
+          <p>{theme.description}</p>
         </header>
-        <div className="scope-check__grid">
-          <ThemePanel themeName="polished">
-            <ComponentSamples />
-          </ThemePanel>
-          <ThemePanel themeName="brutalist">
-            <ComponentSamples />
-          </ThemePanel>
+
+        <div className="component-samples">
+          <section>
+            <h3 className="component-label">Button</h3>
+            <div className="component-row">
+              <Button
+                disableRipple
+                variant="contained"
+                onClick={() => setButtonClicks((value) => value + 1)}
+              >
+                Clicked {buttonClicks}
+              </Button>
+              <Button className="consumer-override" disableRipple variant="outlined">
+                Consumer override
+              </Button>
+              <Button disableRipple size="small">
+                Quiet action
+              </Button>
+              <Button disabled disableRipple variant="contained">
+                Disabled
+              </Button>
+            </div>
+          </section>
+
+          <section>
+            <div className="component-heading-row">
+              <h3 className="component-label">Slider</h3>
+              <output>{sliderValue}</output>
+            </div>
+            <div className="slider-sample">
+              <Slider
+                aria-label="Interactive value"
+                marks={marks}
+                value={sliderValue}
+                onChange={(_event, value) => setSliderValue(value as number)}
+              />
+            </div>
+            <div className="slider-sample slider-sample--small">
+              <Slider aria-label="Small disabled value" defaultValue={35} disabled size="small" />
+            </div>
+          </section>
         </div>
+      </article>
+
+      <section className="architecture-note">
+        <h2>What this page loads</h2>
+        <p>
+          Shared tokens → Button and Slider base CSS → {theme.label} component theme CSS. The
+          Consumer override button also proves that unlayered app CSS wins even though it is
+          imported before the library theme.
+        </p>
       </section>
     </main>
   );

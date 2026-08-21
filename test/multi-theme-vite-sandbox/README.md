@@ -1,50 +1,80 @@
-# Multi-theme no-op sandbox
+# Multi-theme static CSS sandbox
 
-This experiment renders real Material UI `Button` and `Switch` components while replacing
-`@mui/styled-engine` with a local no-op implementation in `vite.config.ts`.
+This PoC renders real Material UI `Button` and `Slider` components while moving their styles
+out of JavaScript. Their CSS-in-JS style bodies are empty, and Vite maps
+`@mui/styled-engine` to a no-op so other Material UI internals cannot inject styles.
 
-The no-op keeps component markup, utility classes, accessibility, state, and event handling, but it
-does not inject Material UI's component CSS. Each theme therefore owns a complete stylesheet for
-each component:
+It follows the RFC's v1 model: one theme is selected per page/build. Runtime switching is not tested.
+
+## How the CSS is organized
+
+Material UI publishes CSS through `@mui/material/css/*`:
 
 ```text
-src/reset.css       # browser normalization only; no component selectors
-src/tokens.css      # one foundational palette, spacing, density, typography, and motion contract
-src/app.css         # experiment shell; no Material UI component selectors
-src/themes/
-  polished/
-    button.css
-    switch.css
-    index.css
-  brutalist/
-    button.css
-    switch.css
-    index.css
+packages/mui-material/src/css/
+  tokens.css
+  base/{button,slider}.css
+  themes/
+    polished/{button,slider,index}.css
+    brutalist/{button,slider,index}.css
 ```
 
-Both themes are loaded for this docs-like scenario and scoped with `data-mui-theme`. Switching the
-attribute changes the active theme without remounting the components, so their state is preserved.
+- `tokens.css` defines the shared palette, spacing, typography, shape, and motion variables.
+- `base/*.css` contains theme-independent component structure and behavior hooks.
+- `themes/*/{component}.css` imports its tokens and base, then adds one component's visual skin.
+- `themes/*/index.css` is the convenience barrel containing the whole theme.
 
-## How it works
+Cascade layers establish `mui.tokens < mui.base < mui.theme`. Unlayered consumer CSS beats all
+three, even when imported first.
 
-- `vite.config.ts` aliases `@mui/styled-engine` to `src/noopStyledEngine.tsx`.
-- `reset.css` contains only rules that cannot vary by component theme, such as `box-sizing`, body
-  margin normalization, and inherited form-control fonts.
-- Both themes consume the same `tokens.css` values. They create different appearances by selecting,
-  combining, and applying those foundational tokens differently rather than redefining them.
-- Every theme component file includes its own structure, dimensions, states, and visual skin. The
-  duplication is intentional so one theme never has to undo another shared component base.
-- This experiment loads both scoped theme indexes. A normal single-theme build should import only
-  the selected theme; scoped multi-theme output is for docs and runtime switching.
+The package copies these files during its build, exports them with the `./css/*` wildcard, and
+marks CSS as a side effect so bundlers retain it.
 
-Run the experiment from the repository root:
+## Consumption modes
+
+Whole-theme convenience import:
+
+```ts
+import '@mui/material/css/themes/polished/index.css';
+```
+
+Granular imports for smaller CSS bundles:
+
+```ts
+import '@mui/material/css/themes/brutalist/button.css';
+import '@mui/material/css/themes/brutalist/slider.css';
+```
+
+A custom theme imports Material UI's public tokens and component base files, then supplies only its
+own `mui.theme` rules. See `src/consumer-theme/`.
+
+## Demo pages
+
+- `index.html`: Material UI Polished theme through its barrel.
+- `brutalist.html`: Material UI Brutalist theme through granular imports.
+- `consumer.html`: consumer-owned Ocean theme with no Material UI theme CSS.
+
+All pages import `consumer-overrides.css` before the selected theme to demonstrate that unlayered
+consumer overrides still win.
+
+## Running and verification
+
+From the repository root:
 
 ```bash
 pnpm -F @mui-internal/multi-theme-vite-sandbox dev
-```
-
-Then open the URL printed by Vite. Build it with:
-
-```bash
 pnpm -F @mui-internal/multi-theme-vite-sandbox build
 ```
+
+The build runs `verify-build.mjs`, which fails unless:
+
+1. exactly one generated CSS asset exists for each theme;
+2. shared tokens, Button base, and Slider base each occur once per theme asset;
+3. every asset contains its own theme signature and none from the other themes; and
+4. every HTML entry references only its selected theme asset.
+
+## Not covered yet
+
+Production would generate these distribution files from component-colocated source CSS and add
+flattened, minified `index.bundle.css` files for CDN consumers. Scoped runtime-switching builds are
+a later extension.
