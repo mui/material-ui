@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { spy } from 'sinon';
-import { expect } from 'chai';
 import { createRenderer, screen, fireEvent, isJsdom } from '@mui/internal-test-utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';

@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { isJsdom } from '@mui/internal-test-utils/env';
 import getScrollbarSize from './getScrollbarSize';
 

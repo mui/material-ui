@@ -1,5 +1,4 @@
 import path from 'path';
-import { expect } from 'chai';
 import { jscodeshift } from '../../../testUtils';
 import transform from './slider-props';
 import readFile from '../../util/readFile';

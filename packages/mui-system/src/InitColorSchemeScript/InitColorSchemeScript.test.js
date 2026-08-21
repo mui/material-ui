@@ -1,5 +1,4 @@
 /* eslint-disable no-eval */
-import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import InitColorSchemeScript from '@mui/system/InitColorSchemeScript';
 import {

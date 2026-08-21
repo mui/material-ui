@@ -1,5 +1,4 @@
 import path from 'path';
-import { expect } from 'chai';
 import postcss from 'postcss';
 import { jscodeshift } from '../../../testUtils';
 import jsTransform from './table-sort-label-classes';

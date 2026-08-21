@@ -6,7 +6,6 @@ import {
   flushEffects,
   isJsdom,
 } from '@mui/internal-test-utils';
-import { expect } from 'chai';
 import { createTheme } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
 import Masonry, { masonryClasses as classes } from '@mui/lab/Masonry';

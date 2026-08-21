@@ -3,7 +3,6 @@ import AccordionActions, {
   accordionActionsClasses as classes,
 } from '@mui/material/AccordionActions';
 import Button from '@mui/material/Button';
-import { expect } from 'chai';
 import describeConformance from '../../test/describeConformance';
 
 describe('<AccordionActions />', () => {

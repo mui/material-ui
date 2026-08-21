@@ -35,10 +35,8 @@
     "cssjanus": "^2.3.1"
   },
   "devDependencies": {
-    "@types/chai": "5.2.3",
     "@types/node": "20.19.43",
     "@types/stylis": "4.2.7",
-    "chai": "6.2.2",
     "stylis": "4.4.0"
   },
   "peerDependencies": {

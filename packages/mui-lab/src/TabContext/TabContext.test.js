@@ -1,7 +1,6 @@
 // @ts-check
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import TabContext, { getPanelId, getTabId, useTabContext } from './TabContext';
 

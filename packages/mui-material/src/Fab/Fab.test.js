@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import {
   createRenderer,
   screen,

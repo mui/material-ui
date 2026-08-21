@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import { act, createRenderer, fireEvent, within, screen, isJsdom } from '@mui/internal-test-utils';

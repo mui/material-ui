@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createTheme, extendTheme } from '../styles';
 import getTextDecoration from './getTextDecoration';
 

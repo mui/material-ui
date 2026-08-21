@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { parseInline as renderInlineMarkdown } from 'marked';
 import textToHash from './textToHash.mjs';
 

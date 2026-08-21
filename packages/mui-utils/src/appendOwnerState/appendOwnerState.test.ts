@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import appendOwnerState from '@mui/utils/appendOwnerState';
 
 const ownerState = {

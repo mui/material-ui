@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { blend } from '@mui/system';
 
 import {

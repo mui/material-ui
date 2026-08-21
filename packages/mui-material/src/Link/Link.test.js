@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';

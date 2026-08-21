@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { expect } from 'chai';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import { ClassNames } from '@emotion/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';

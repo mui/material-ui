@@ -53,20 +53,9 @@ async function main() {
     // Wait for all requests to finish.
     // This should load shared resources such as fonts.
     await page.goto(`${baseUrl}#dev`, { waitUntil: 'networkidle0' });
-    // If we still get flaky fonts after awaiting this try `document.fonts.ready`
-    const fontStatus = await page.waitForSelector(
-      '[data-webfontloader]:not([data-webfontloader="pending"])',
-      { state: 'attached' },
-    );
-    const font = await fontStatus.evaluate((element) => ({
-      state: element.dataset.webfontloader,
-      missing: element.dataset.webfontMissing,
-    }));
     // Screenshots taken with fallback faces look like a repo-wide text rendering
     // change. Fail the run instead of publishing them.
-    if (font.state !== 'active') {
-      throw new Error(`Fonts failed to load. Missing: ${font.missing || 'all requested families'}`);
-    }
+    await page.evaluate(() => window.muiFixture.fontsReady);
 
     // Simulate portrait mode for date pickers.
     // See `useIsLandscape`.
@@ -88,6 +77,9 @@ async function main() {
   await fs.mkdir(screenshotDir, { recursive: true });
 
   const probePage = await pool.acquire();
+  // React renders the nav, so wait for it: `$$eval` returns [] when it is
+  // missing, which registers zero route tests and still passes.
+  await probePage.waitForSelector('#tests a', { state: 'attached' });
   let routes = await probePage.$$eval('#tests a', (links) => {
     return links.map((link) => link.href);
   });
@@ -231,6 +223,7 @@ async function main() {
               recordA11y({ task }, results, {
                 slug: parsed.slug,
                 demo: parsed.demo,
+                assertions: a11yRule.assertions,
                 skipAssertions: a11yRule.skipAssertions,
               });
             }

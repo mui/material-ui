@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import getEventTarget from './getEventTarget';
 
 describe('getEventTarget', () => {
