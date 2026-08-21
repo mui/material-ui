@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { resolveDemoSourceView } from './DemoContent.helpers';
 
 describe('DemoContentLoading', () => {
