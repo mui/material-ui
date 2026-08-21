@@ -5607,63 +5607,11 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
-    id: 'MuiPaginationItem|root|size=small||minWidth',
-    label: 'PaginationItem · minWidth [size=small]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiPaginationItem',
-      slot: 'root',
-      props: { size: 'small' },
-      nested: '',
-      cssProp: 'minWidth',
-    },
-    values: { high: '26px', medium: '26px', low: '26px' },
-  },
-  {
-    id: 'MuiPaginationItem|root|size=small||paddingInline',
-    label: 'PaginationItem · paddingInline [size=small]',
-    isDensity: true,
-    densityKey: 'xx-small',
-    target: {
-      component: 'MuiPaginationItem',
-      slot: 'root',
-      props: { size: 'small' },
-      nested: '',
-      cssProp: 'paddingInline',
-    },
-    values: {
-      high: 'var(--mui-density-xx-small)',
-      medium: 'var(--mui-density-xx-small)',
-      low: 'var(--mui-density-xx-small)',
-    },
-  },
-  {
-    id: 'MuiPaginationItem|root|size=medium||minWidth',
-    label: 'PaginationItem · minWidth [size=medium]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiPaginationItem',
-      slot: 'root',
-      props: { size: 'medium' },
-      nested: '',
-      cssProp: 'minWidth',
-    },
-    values: { high: '32px', medium: '32px', low: '32px' },
-  },
-  {
-    id: 'MuiPaginationItem|root|size=medium||paddingInline',
-    label: 'PaginationItem · paddingInline [size=medium]',
+    id: 'MuiPagination|ul|base||gap',
+    label: 'Pagination · ul · gap',
     isDensity: true,
     densityKey: 'x-small',
-    target: {
-      component: 'MuiPaginationItem',
-      slot: 'root',
-      props: { size: 'medium' },
-      nested: '',
-      cssProp: 'paddingInline',
-    },
+    target: { component: 'MuiPagination', slot: 'ul', props: null, nested: '', cssProp: 'gap' },
     values: {
       high: 'var(--mui-density-x-small)',
       medium: 'var(--mui-density-x-small)',
@@ -5671,28 +5619,142 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
-    id: 'MuiPaginationItem|root|size=medium||marginInline',
-    label: 'PaginationItem · marginInline [size=medium]',
+    id: 'MuiPaginationItem|root|base||margin',
+    label: 'PaginationItem · margin',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiPaginationItem',
+      slot: 'root',
+      props: null,
+      nested: '',
+      cssProp: 'margin',
+    },
+    values: { high: '0', medium: '0', low: '0' },
+  },
+  {
+    id: 'MuiPaginationItem|root|base||padding',
+    label: 'PaginationItem · padding',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiPaginationItem',
+      slot: 'root',
+      props: null,
+      nested: '',
+      cssProp: 'padding',
+    },
+    values: { high: '0', medium: '0', low: '0' },
+  },
+  {
+    id: 'MuiPaginationItem|root|base||borderRadius',
+    label: 'PaginationItem · borderRadius',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiPaginationItem',
+      slot: 'root',
+      props: null,
+      nested: '',
+      cssProp: 'borderRadius',
+    },
+    values: { high: '50%', medium: '50%', low: '50%' },
+  },
+  {
+    id: 'MuiPaginationItem|root|size=small||height',
+    label: 'PaginationItem · height [size=small]',
     isDensity: true,
-    densityKey: 'xx-small',
+    densityKey: 'large',
+    target: {
+      component: 'MuiPaginationItem',
+      slot: 'root',
+      props: { size: 'small' },
+      nested: '',
+      cssProp: 'height',
+    },
+    values: {
+      high: 'var(--mui-density-large)',
+      medium: 'var(--mui-density-large)',
+      low: 'var(--mui-density-large)',
+    },
+  },
+  {
+    id: 'MuiPaginationItem|root|size=small||minWidth',
+    label: 'PaginationItem · minWidth [size=small]',
+    isDensity: true,
+    densityKey: 'large',
+    target: {
+      component: 'MuiPaginationItem',
+      slot: 'root',
+      props: { size: 'small' },
+      nested: '',
+      cssProp: 'minWidth',
+    },
+    values: {
+      high: 'var(--mui-density-large)',
+      medium: 'var(--mui-density-large)',
+      low: 'var(--mui-density-large)',
+    },
+  },
+  {
+    id: 'MuiPaginationItem|root|size=medium||height',
+    label: 'PaginationItem · height [size=medium]',
+    isDensity: true,
+    densityKey: 'touch-target',
     target: {
       component: 'MuiPaginationItem',
       slot: 'root',
       props: { size: 'medium' },
       nested: '',
-      cssProp: 'marginInline',
+      cssProp: 'height',
     },
     values: {
-      high: 'var(--mui-density-xx-small)',
-      medium: 'var(--mui-density-xx-small)',
-      low: 'var(--mui-density-xx-small)',
+      high: 'var(--mui-density-touch-target)',
+      medium: 'var(--mui-density-touch-target)',
+      low: 'var(--mui-density-touch-target)',
+    },
+  },
+  {
+    id: 'MuiPaginationItem|root|size=medium||minWidth',
+    label: 'PaginationItem · minWidth [size=medium]',
+    isDensity: true,
+    densityKey: 'touch-target',
+    target: {
+      component: 'MuiPaginationItem',
+      slot: 'root',
+      props: { size: 'medium' },
+      nested: '',
+      cssProp: 'minWidth',
+    },
+    values: {
+      high: 'var(--mui-density-touch-target)',
+      medium: 'var(--mui-density-touch-target)',
+      low: 'var(--mui-density-touch-target)',
+    },
+  },
+  {
+    id: 'MuiPaginationItem|root|size=large||height',
+    label: 'PaginationItem · height [size=large]',
+    isDensity: true,
+    densityKey: 'xx-large',
+    target: {
+      component: 'MuiPaginationItem',
+      slot: 'root',
+      props: { size: 'large' },
+      nested: '',
+      cssProp: 'height',
+    },
+    values: {
+      high: 'var(--mui-density-xx-large)',
+      medium: 'var(--mui-density-xx-large)',
+      low: 'var(--mui-density-xx-large)',
     },
   },
   {
     id: 'MuiPaginationItem|root|size=large||minWidth',
     label: 'PaginationItem · minWidth [size=large]',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'xx-large',
     target: {
       component: 'MuiPaginationItem',
       slot: 'root',
@@ -5700,63 +5762,14 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minWidth',
     },
-    values: { high: '40px', medium: '40px', low: '40px' },
-  },
-  {
-    id: 'MuiPaginationItem|root|size=large||paddingInline',
-    label: 'PaginationItem · paddingInline [size=large]',
-    isDensity: true,
-    densityKey: 'small',
-    target: {
-      component: 'MuiPaginationItem',
-      slot: 'root',
-      props: { size: 'large' },
-      nested: '',
-      cssProp: 'paddingInline',
-    },
     values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
+      high: 'var(--mui-density-xx-large)',
+      medium: 'var(--mui-density-xx-large)',
+      low: 'var(--mui-density-xx-large)',
     },
   },
   {
-    id: 'MuiPaginationItem|root|size=large||marginInline',
-    label: 'PaginationItem · marginInline [size=large]',
-    isDensity: true,
-    densityKey: 'xx-small',
-    target: {
-      component: 'MuiPaginationItem',
-      slot: 'root',
-      props: { size: 'large' },
-      nested: '',
-      cssProp: 'marginInline',
-    },
-    values: {
-      high: 'var(--mui-density-xx-small)',
-      medium: 'var(--mui-density-xx-small)',
-      low: 'var(--mui-density-xx-small)',
-    },
-  },
-  {
-    id: 'MuiPaginationItem|root|fn:1nddmo||--_height',
-    label: 'PaginationItem · --_height [fn]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiPaginationItem',
-      slot: 'root',
-      props: ({ ownerState }) =>
-        ownerState.type !== 'start-ellipsis' &&
-        ownerState.type !== 'end-ellipsis' &&
-        ownerState.size === 'small',
-      nested: '',
-      privateVar: '--_height',
-    },
-    values: { high: '26px', medium: '26px', low: '26px' },
-  },
-  {
-    id: 'MuiPaginationItem|root|fn:1nddmo||height',
+    id: 'MuiPaginationItem|root|fn:ryjquw||height',
     label: 'PaginationItem · height [fn]',
     isDensity: false,
     densityKey: null,
@@ -5764,144 +5777,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       component: 'MuiPaginationItem',
       slot: 'root',
       props: ({ ownerState }) =>
-        ownerState.type !== 'start-ellipsis' &&
-        ownerState.type !== 'end-ellipsis' &&
-        ownerState.size === 'small',
+        ownerState.type === 'start-ellipsis' || ownerState.type === 'end-ellipsis',
       nested: '',
       cssProp: 'height',
     },
-    values: { high: 'var(--_height)', medium: 'var(--_height)', low: 'var(--_height)' },
-  },
-  {
-    id: 'MuiPaginationItem|root|fn:1nddmo||borderRadius',
-    label: 'PaginationItem · borderRadius [fn]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiPaginationItem',
-      slot: 'root',
-      props: ({ ownerState }) =>
-        ownerState.type !== 'start-ellipsis' &&
-        ownerState.type !== 'end-ellipsis' &&
-        ownerState.size === 'small',
-      nested: '',
-      cssProp: 'borderRadius',
-    },
-    values: {
-      high: 'calc(var(--_height) / 2)',
-      medium: 'calc(var(--_height) / 2)',
-      low: 'calc(var(--_height) / 2)',
-    },
-  },
-  {
-    id: 'MuiPaginationItem|root|fn:1dnyyw||--_height',
-    label: 'PaginationItem · --_height [fn]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiPaginationItem',
-      slot: 'root',
-      props: ({ ownerState }) =>
-        ownerState.type !== 'start-ellipsis' &&
-        ownerState.type !== 'end-ellipsis' &&
-        ownerState.size === 'medium',
-      nested: '',
-      privateVar: '--_height',
-    },
-    values: { high: '32px', medium: '32px', low: '32px' },
-  },
-  {
-    id: 'MuiPaginationItem|root|fn:1dnyyw||height',
-    label: 'PaginationItem · height [fn]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiPaginationItem',
-      slot: 'root',
-      props: ({ ownerState }) =>
-        ownerState.type !== 'start-ellipsis' &&
-        ownerState.type !== 'end-ellipsis' &&
-        ownerState.size === 'medium',
-      nested: '',
-      cssProp: 'height',
-    },
-    values: { high: 'var(--_height)', medium: 'var(--_height)', low: 'var(--_height)' },
-  },
-  {
-    id: 'MuiPaginationItem|root|fn:1dnyyw||borderRadius',
-    label: 'PaginationItem · borderRadius [fn]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiPaginationItem',
-      slot: 'root',
-      props: ({ ownerState }) =>
-        ownerState.type !== 'start-ellipsis' &&
-        ownerState.type !== 'end-ellipsis' &&
-        ownerState.size === 'medium',
-      nested: '',
-      cssProp: 'borderRadius',
-    },
-    values: {
-      high: 'calc(var(--_height) / 2)',
-      medium: 'calc(var(--_height) / 2)',
-      low: 'calc(var(--_height) / 2)',
-    },
-  },
-  {
-    id: 'MuiPaginationItem|root|fn:1tf0li||--_height',
-    label: 'PaginationItem · --_height [fn]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiPaginationItem',
-      slot: 'root',
-      props: ({ ownerState }) =>
-        ownerState.type !== 'start-ellipsis' &&
-        ownerState.type !== 'end-ellipsis' &&
-        ownerState.size === 'large',
-      nested: '',
-      privateVar: '--_height',
-    },
-    values: { high: '40px', medium: '40px', low: '40px' },
-  },
-  {
-    id: 'MuiPaginationItem|root|fn:1tf0li||height',
-    label: 'PaginationItem · height [fn]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiPaginationItem',
-      slot: 'root',
-      props: ({ ownerState }) =>
-        ownerState.type !== 'start-ellipsis' &&
-        ownerState.type !== 'end-ellipsis' &&
-        ownerState.size === 'large',
-      nested: '',
-      cssProp: 'height',
-    },
-    values: { high: 'var(--_height)', medium: 'var(--_height)', low: 'var(--_height)' },
-  },
-  {
-    id: 'MuiPaginationItem|root|fn:1tf0li||borderRadius',
-    label: 'PaginationItem · borderRadius [fn]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiPaginationItem',
-      slot: 'root',
-      props: ({ ownerState }) =>
-        ownerState.type !== 'start-ellipsis' &&
-        ownerState.type !== 'end-ellipsis' &&
-        ownerState.size === 'large',
-      nested: '',
-      cssProp: 'borderRadius',
-    },
-    values: {
-      high: 'calc(var(--_height) / 2)',
-      medium: 'calc(var(--_height) / 2)',
-      low: 'calc(var(--_height) / 2)',
-    },
+    values: { high: 'auto', medium: 'auto', low: 'auto' },
   },
   {
     id: 'MuiPickerDay|root|base||--PickerDay-size',

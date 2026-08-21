@@ -215,6 +215,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiSlider: 'Slider',
   MuiDivider: 'Divider',
   MuiFab: 'Fab',
+  MuiPagination: 'Pagination',
   MuiPaginationItem: 'Pagination',
   MuiSnackbarContent: 'SnackbarContent',
   MuiBottomNavigation: 'BottomNavigation',

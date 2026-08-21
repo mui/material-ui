@@ -2097,18 +2097,30 @@ const high = {
         ],
       },
     },
+    MuiPagination: {
+      styleOverrides: {
+        ul: [
+          {
+            gap: 'var(--mui-density-x-small)',
+          },
+        ],
+      },
+    },
     MuiPaginationItem: {
       styleOverrides: {
         root: [
           {
+            margin: 0,
+            padding: 0,
+            borderRadius: '50%',
             variants: [
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  minWidth: '26px',
-                  paddingInline: 'var(--mui-density-xx-small)',
+                  height: 'var(--mui-density-large)',
+                  minWidth: 'var(--mui-density-large)',
                 },
               },
               {
@@ -2116,9 +2128,8 @@ const high = {
                   size: 'medium',
                 },
                 style: {
-                  minWidth: '32px',
-                  paddingInline: 'var(--mui-density-x-small)',
-                  marginInline: 'var(--mui-density-xx-small)',
+                  height: 'var(--mui-density-touch-target)',
+                  minWidth: 'var(--mui-density-touch-target)',
                 },
               },
               {
@@ -2126,33 +2137,14 @@ const high = {
                   size: 'large',
                 },
                 style: {
-                  minWidth: '40px',
-                  paddingInline: 'var(--mui-density-small)',
-                  marginInline: 'var(--mui-density-xx-small)',
+                  height: 'var(--mui-density-xx-large)',
+                  minWidth: 'var(--mui-density-xx-large)',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.type !== "start-ellipsis" && ownerState.type !== "end-ellipsis" && ownerState.size === "small",
+                props: ({ ownerState }) => ownerState.type === "start-ellipsis" || ownerState.type === "end-ellipsis",
                 style: {
-                  '--_height': '26px',
-                  height: 'var(--_height)',
-                  borderRadius: 'calc(var(--_height) / 2)',
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.type !== "start-ellipsis" && ownerState.type !== "end-ellipsis" && ownerState.size === "medium",
-                style: {
-                  '--_height': '32px',
-                  height: 'var(--_height)',
-                  borderRadius: 'calc(var(--_height) / 2)',
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.type !== "start-ellipsis" && ownerState.type !== "end-ellipsis" && ownerState.size === "large",
-                style: {
-                  '--_height': '40px',
-                  height: 'var(--_height)',
-                  borderRadius: 'calc(var(--_height) / 2)',
+                  height: 'auto',
                 },
               },
             ],
@@ -5005,18 +4997,30 @@ const medium = {
         ],
       },
     },
+    MuiPagination: {
+      styleOverrides: {
+        ul: [
+          {
+            gap: 'var(--mui-density-x-small)',
+          },
+        ],
+      },
+    },
     MuiPaginationItem: {
       styleOverrides: {
         root: [
           {
+            margin: 0,
+            padding: 0,
+            borderRadius: '50%',
             variants: [
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  minWidth: '26px',
-                  paddingInline: 'var(--mui-density-xx-small)',
+                  height: 'var(--mui-density-large)',
+                  minWidth: 'var(--mui-density-large)',
                 },
               },
               {
@@ -5024,9 +5028,8 @@ const medium = {
                   size: 'medium',
                 },
                 style: {
-                  minWidth: '32px',
-                  paddingInline: 'var(--mui-density-x-small)',
-                  marginInline: 'var(--mui-density-xx-small)',
+                  height: 'var(--mui-density-touch-target)',
+                  minWidth: 'var(--mui-density-touch-target)',
                 },
               },
               {
@@ -5034,33 +5037,14 @@ const medium = {
                   size: 'large',
                 },
                 style: {
-                  minWidth: '40px',
-                  paddingInline: 'var(--mui-density-small)',
-                  marginInline: 'var(--mui-density-xx-small)',
+                  height: 'var(--mui-density-xx-large)',
+                  minWidth: 'var(--mui-density-xx-large)',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.type !== "start-ellipsis" && ownerState.type !== "end-ellipsis" && ownerState.size === "small",
+                props: ({ ownerState }) => ownerState.type === "start-ellipsis" || ownerState.type === "end-ellipsis",
                 style: {
-                  '--_height': '26px',
-                  height: 'var(--_height)',
-                  borderRadius: 'calc(var(--_height) / 2)',
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.type !== "start-ellipsis" && ownerState.type !== "end-ellipsis" && ownerState.size === "medium",
-                style: {
-                  '--_height': '32px',
-                  height: 'var(--_height)',
-                  borderRadius: 'calc(var(--_height) / 2)',
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.type !== "start-ellipsis" && ownerState.type !== "end-ellipsis" && ownerState.size === "large",
-                style: {
-                  '--_height': '40px',
-                  height: 'var(--_height)',
-                  borderRadius: 'calc(var(--_height) / 2)',
+                  height: 'auto',
                 },
               },
             ],
@@ -7916,18 +7900,30 @@ const low = {
         ],
       },
     },
+    MuiPagination: {
+      styleOverrides: {
+        ul: [
+          {
+            gap: 'var(--mui-density-x-small)',
+          },
+        ],
+      },
+    },
     MuiPaginationItem: {
       styleOverrides: {
         root: [
           {
+            margin: 0,
+            padding: 0,
+            borderRadius: '50%',
             variants: [
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  minWidth: '26px',
-                  paddingInline: 'var(--mui-density-xx-small)',
+                  height: 'var(--mui-density-large)',
+                  minWidth: 'var(--mui-density-large)',
                 },
               },
               {
@@ -7935,9 +7931,8 @@ const low = {
                   size: 'medium',
                 },
                 style: {
-                  minWidth: '32px',
-                  paddingInline: 'var(--mui-density-x-small)',
-                  marginInline: 'var(--mui-density-xx-small)',
+                  height: 'var(--mui-density-touch-target)',
+                  minWidth: 'var(--mui-density-touch-target)',
                 },
               },
               {
@@ -7945,33 +7940,14 @@ const low = {
                   size: 'large',
                 },
                 style: {
-                  minWidth: '40px',
-                  paddingInline: 'var(--mui-density-small)',
-                  marginInline: 'var(--mui-density-xx-small)',
+                  height: 'var(--mui-density-xx-large)',
+                  minWidth: 'var(--mui-density-xx-large)',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.type !== "start-ellipsis" && ownerState.type !== "end-ellipsis" && ownerState.size === "small",
+                props: ({ ownerState }) => ownerState.type === "start-ellipsis" || ownerState.type === "end-ellipsis",
                 style: {
-                  '--_height': '26px',
-                  height: 'var(--_height)',
-                  borderRadius: 'calc(var(--_height) / 2)',
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.type !== "start-ellipsis" && ownerState.type !== "end-ellipsis" && ownerState.size === "medium",
-                style: {
-                  '--_height': '32px',
-                  height: 'var(--_height)',
-                  borderRadius: 'calc(var(--_height) / 2)',
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.type !== "start-ellipsis" && ownerState.type !== "end-ellipsis" && ownerState.size === "large",
-                style: {
-                  '--_height': '40px',
-                  height: 'var(--_height)',
-                  borderRadius: 'calc(var(--_height) / 2)',
+                  height: 'auto',
                 },
               },
             ],

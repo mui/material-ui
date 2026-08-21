@@ -1227,54 +1227,28 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
     ],
   });
+  addRootOverride(enhanced.components, 'MuiPagination', { gap: d['x-small'] }, 'ul');
   addRootOverride(enhanced.components, 'MuiPaginationItem', {
-    // Item box: min-width raw px + inline pad/inter-item gap steps per size on
-    // every item (ellipsis shares master's values; small's 1px margin is
-    // sub-step — frozen). Button items get height through one --_height var so
-    // the pill radius derives as height/2 (master pins per-size radius literals
-    // that would go stale as the heights move); ellipsis keeps auto height.
+    margin: 0,
+    padding: 0,
+    borderRadius: '50%',
     variants: [
-      { props: { size: 'small' }, style: { minWidth: '26px', paddingInline: d['xx-small'] } },
+      {
+        props: { size: 'small' },
+        style: { height: d.large, minWidth: d.large },
+      },
       {
         props: { size: 'medium' },
-        style: { minWidth: '32px', paddingInline: d['x-small'], marginInline: d['xx-small'] },
+        style: { height: d['touch-target'], minWidth: d['touch-target'] },
       },
       {
         props: { size: 'large' },
-        style: { minWidth: '40px', paddingInline: d.small, marginInline: d['xx-small'] },
+        style: { height: d['xx-large'], minWidth: d['xx-large'] },
       },
       {
         props: ({ ownerState }: { ownerState: PaginationItemOwnerState }) =>
-          ownerState.type !== 'start-ellipsis' &&
-          ownerState.type !== 'end-ellipsis' &&
-          ownerState.size === 'small',
-        style: {
-          '--_height': '26px',
-          height: 'var(--_height)',
-          borderRadius: 'calc(var(--_height) / 2)',
-        },
-      },
-      {
-        props: ({ ownerState }: { ownerState: PaginationItemOwnerState }) =>
-          ownerState.type !== 'start-ellipsis' &&
-          ownerState.type !== 'end-ellipsis' &&
-          ownerState.size === 'medium',
-        style: {
-          '--_height': '32px',
-          height: 'var(--_height)',
-          borderRadius: 'calc(var(--_height) / 2)',
-        },
-      },
-      {
-        props: ({ ownerState }: { ownerState: PaginationItemOwnerState }) =>
-          ownerState.type !== 'start-ellipsis' &&
-          ownerState.type !== 'end-ellipsis' &&
-          ownerState.size === 'large',
-        style: {
-          '--_height': '40px',
-          height: 'var(--_height)',
-          borderRadius: 'calc(var(--_height) / 2)',
-        },
+          ownerState.type === 'start-ellipsis' || ownerState.type === 'end-ellipsis',
+        style: { height: 'auto' },
       },
     ],
   });
