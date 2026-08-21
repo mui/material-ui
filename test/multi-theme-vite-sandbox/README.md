@@ -9,15 +9,14 @@ each component:
 
 ```text
 src/reset.css       # browser normalization only; no component selectors
+src/tokens.css      # one foundational palette, spacing, density, typography, and motion contract
 src/app.css         # experiment shell; no Material UI component selectors
 src/themes/
   polished/
-    tokens.css
     button.css
     switch.css
     index.css
   brutalist/
-    tokens.css
     button.css
     switch.css
     index.css
@@ -31,6 +30,8 @@ attribute changes the active theme without remounting the components, so their s
 - `vite.config.ts` aliases `@mui/styled-engine` to `src/noopStyledEngine.tsx`.
 - `reset.css` contains only rules that cannot vary by component theme, such as `box-sizing`, body
   margin normalization, and inherited form-control fonts.
+- Both themes consume the same `tokens.css` values. They create different appearances by selecting,
+  combining, and applying those foundational tokens differently rather than redefining them.
 - Every theme component file includes its own structure, dimensions, states, and visual skin. The
   duplication is intentional so one theme never has to undo another shared component base.
 - This experiment loads both scoped theme indexes. A normal single-theme build should import only
