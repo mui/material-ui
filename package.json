@@ -92,7 +92,7 @@
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.0.3-canary.6",
     "@mui/internal-scripts": "workspace:^",
-    "@mui/internal-test-utils": "2.0.18-canary.31",
+    "@mui/internal-test-utils": "2.0.18-canary.32",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
     "@next/eslint-plugin-next": "16.3.1",

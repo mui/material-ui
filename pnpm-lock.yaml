@@ -87,8 +87,8 @@ importers:
         specifier: workspace:^
         version: link:packages-internal/scripts
       '@mui/internal-test-utils':
-        specifier: 2.0.18-canary.31
-        version: 2.0.18-canary.31(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.18)(react@19.2.8)(supports-color@11.0.0))(@playwright/test@1.62.1)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(@vitest/utils@4.1.10)(chai@6.2.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vite@8.2.1(@types/node@20.19.43)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.10)
+        specifier: 2.0.18-canary.32
+        version: 2.0.18-canary.32(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.18)(react@19.2.8)(supports-color@11.0.0))(@playwright/test@1.62.1)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(@vitest/utils@4.1.10)(chai@6.2.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vite@8.2.1(@types/node@20.19.43)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.10)
       '@mui/material':
         specifier: workspace:^
         version: link:packages/mui-material/build
@@ -1433,6 +1433,9 @@ importers:
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../packages/mui-icons-material/build
+      '@mui/internal-test-utils':
+        specifier: 2.0.18-canary.32
+        version: 2.0.18-canary.32(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.18)(react@19.2.8)(supports-color@11.0.0))(@playwright/test@1.62.1)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(@vitest/utils@4.1.10)(chai@6.2.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vite@8.2.1(@types/node@20.19.43)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.10)
       '@mui/lab':
         specifier: workspace:*
         version: link:../packages/mui-lab/build
@@ -3296,8 +3299,8 @@ packages:
   '@mui/internal-netlify-cache@0.0.3-canary.6':
     resolution: {integrity: sha512-pKwVUSqTV1dn+c3nMdvVSB1tHaKuFBAwiLh3qPL5TfxVy/Qx3fgoW6NjR8u0N3NheM6jKHpnF1dqEChRXrL8gA==}
 
-  '@mui/internal-test-utils@2.0.18-canary.31':
-    resolution: {integrity: sha512-zuC2sknxtXNcmz+Sid65uaMaE8s/0AlAIkj7hY4xlHB670NXPp98ckDbAEc2Mb2461jFhmy3ypXJAARXs1bpZA==}
+  '@mui/internal-test-utils@2.0.18-canary.32':
+    resolution: {integrity: sha512-UzpFutfHzy8rVnR9qPybSwQcR8Ae313o3V4XYdgHTIygvAB/0jC9BfA4GeCt88ssMfKpBqxze5sqjiKZYhFetA==}
     peerDependencies:
       '@emotion/cache': '11'
       '@emotion/react': '11'
@@ -13206,7 +13209,7 @@ snapshots:
 
   '@mui/internal-netlify-cache@0.0.3-canary.6': {}
 
-  '@mui/internal-test-utils@2.0.18-canary.31(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.18)(react@19.2.8)(supports-color@11.0.0))(@playwright/test@1.62.1)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(@vitest/utils@4.1.10)(chai@6.2.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vite@8.2.1(@types/node@20.19.43)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.10)':
+  '@mui/internal-test-utils@2.0.18-canary.32(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.18)(react@19.2.8)(supports-color@11.0.0))(@playwright/test@1.62.1)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(@vitest/utils@4.1.10)(chai@6.2.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vite@8.2.1(@types/node@20.19.43)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.10)':
     dependencies:
       '@babel/runtime': 7.29.7
       '@playwright/test': 1.62.1

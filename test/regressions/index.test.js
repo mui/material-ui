@@ -7,6 +7,9 @@ import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
 import { A11Y_RULES, DEFAULT_VIEWPORT, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
+// Guards against a font host that accepts the connection but never responds.
+const FONT_TIMEOUT = 20_000;
+
 const AXE_SCRIPT = path.resolve(currentDirectory, '../../node_modules/axe-core/axe.min.js');
 
 async function main() {
@@ -54,8 +57,19 @@ async function main() {
     // This should load shared resources such as fonts.
     await page.goto(`${baseUrl}#dev`, { waitUntil: 'networkidle0' });
     // Screenshots taken with fallback faces look like a repo-wide text rendering
-    // change. Fail the run instead of publishing them.
-    await page.evaluate(() => window.muiFixture.fontsReady);
+    // change. Fail the run instead of publishing them. This race is the only
+    // guard: `loadFonts` no longer times out on its own, `page.evaluate` has no
+    // timeout, and the first page is acquired at module scope where vitest's
+    // `testTimeout` does not apply.
+    await Promise.race([
+      page.evaluate(() => window.muiFixture.fontsReady),
+      new Promise((resolve, reject) => {
+        setTimeout(
+          () => reject(new Error(`Fonts did not load within ${FONT_TIMEOUT}ms.`)),
+          FONT_TIMEOUT,
+        );
+      }),
+    ]);
 
     // Simulate portrait mode for date pickers.
     // See `useIsLandscape`.
