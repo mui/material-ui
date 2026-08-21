@@ -1,3 +1,0 @@
-/* Load both scoped themes only for the runtime switcher and side-by-side leakage check. */
-@import './polished/index.css';
-@import './brutalist/index.css';

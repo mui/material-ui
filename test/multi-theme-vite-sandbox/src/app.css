@@ -17,14 +17,14 @@ body {
 }
 
 .experiment {
-  width: min(1180px, calc(100% - 32px));
+  width: min(920px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 64px 0 80px;
+  padding: 56px 0 72px;
 }
 
 .experiment__header {
-  max-width: 800px;
-  margin-bottom: 32px;
+  max-width: 760px;
+  margin-bottom: 28px;
 }
 
 .experiment__eyebrow,
@@ -43,15 +43,15 @@ body {
 
 .experiment h1 {
   margin: 8px 0 16px;
-  font-size: clamp(2.15rem, 5vw, 4rem);
+  font-size: clamp(2.15rem, 6vw, 4rem);
   line-height: 1;
   letter-spacing: -0.055em;
 }
 
 .experiment__lede,
-.scope-check > header p {
+.architecture-note p {
   color: #596176;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   line-height: 1.65;
 }
 
@@ -77,183 +77,134 @@ body {
   box-shadow: 0 0 0 3px rgb(46 174 104 / 16%);
 }
 
-.theme-picker {
+.theme-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.theme-nav a {
   display: flex;
-  gap: 8px;
-  margin: 0 0 28px;
-  padding: 8px;
+  flex-direction: column;
+  padding: 12px 14px;
+  color: #394055;
   background: #ffffff;
   border: 1px solid #d7dce7;
-  border-radius: 14px;
+  border-radius: 12px;
+  font-weight: 800;
+  text-decoration: none;
 }
 
-.theme-picker legend {
-  padding: 0 8px;
-  color: #596176;
-  font-size: 0.8rem;
-  font-weight: 700;
+.theme-nav a:hover {
+  border-color: #6558d3;
 }
 
-.theme-picker button {
-  padding: 9px 16px;
-  color: #394055;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 9px;
-  cursor: pointer;
-  font-weight: 750;
-}
-
-.theme-picker button[aria-pressed='true'] {
+.theme-nav a[aria-current='page'] {
   color: #ffffff;
   background: #6558d3;
+  border-color: #6558d3;
 }
 
-.theme-picker button:focus-visible {
-  outline: 3px solid rgb(101 88 211 / 28%);
-  outline-offset: 2px;
+.theme-nav small {
+  margin-top: 3px;
+  opacity: 0.72;
+  font-size: 0.7rem;
+  font-weight: 600;
 }
 
 .theme-panel {
   min-width: 0;
-  padding: clamp(24px, 5vw, 40px);
-  overflow: hidden;
-  transition:
-    background-color var(--multi-theme-duration-standard) var(--multi-theme-easing-standard),
-    border-color var(--multi-theme-duration-standard) var(--multi-theme-easing-standard),
-    box-shadow var(--multi-theme-duration-standard) var(--multi-theme-easing-standard);
-}
-
-.theme-panel[data-mui-theme='polished'] {
-  color: var(--multi-theme-palette-text-primary);
-  background: var(--multi-theme-palette-background-default);
-  border: 1px solid var(--multi-theme-palette-divider);
-  border-radius: var(--multi-theme-shape-rounded);
-  box-shadow: var(--multi-theme-elevation-soft);
-  font-family: var(--multi-theme-font-family);
-}
-
-.theme-panel[data-mui-theme='brutalist'] {
-  color: var(--multi-theme-palette-text-strong);
-  background: var(--multi-theme-palette-warning-main);
-  border: 3px solid var(--multi-theme-palette-common-black);
-  border-radius: 0;
-  box-shadow: var(--multi-theme-elevation-hard);
-  font-family: var(--multi-theme-font-family-display);
+  padding: clamp(24px, 5vw, 42px);
+  color: #202334;
+  background: #ffffff;
+  border: 1px solid #dfe3ec;
+  border-radius: 18px;
+  box-shadow: 0 22px 70px rgb(36 42 66 / 12%);
 }
 
 .theme-panel__header {
-  margin-bottom: 32px;
+  margin-bottom: 34px;
 }
 
-.theme-panel__eyebrow {
-  margin-bottom: 8px;
-}
-
-.theme-panel h2 {
-  margin: 0 0 10px;
-  color: inherit;
-  font-size: clamp(1.65rem, 4vw, 2rem);
+.theme-panel__header h2 {
+  margin: 6px 0 8px;
+  font-size: 2rem;
   line-height: 1.1;
 }
 
-.theme-panel__description {
-  max-width: 560px;
+.theme-panel__header p:last-child {
+  max-width: 600px;
   margin: 0;
   line-height: 1.55;
 }
 
-.theme-panel[data-mui-theme='polished'] .theme-panel__eyebrow {
-  color: var(--multi-theme-palette-primary-main);
-  letter-spacing: 0.12em;
-}
-
-.theme-panel[data-mui-theme='brutalist'] .theme-panel__eyebrow {
-  color: var(--multi-theme-palette-secondary-main);
-  letter-spacing: 0.06em;
-}
-
-.theme-panel[data-mui-theme='polished'] h2 {
-  letter-spacing: -0.035em;
-}
-
-.theme-panel[data-mui-theme='brutalist'] h2 {
-  letter-spacing: -0.055em;
-}
-
-.theme-panel[data-mui-theme='polished']
-  :is(.theme-panel__description, .component-label, .switch-sample--muted) {
-  color: var(--multi-theme-palette-text-secondary);
-}
-
-.theme-panel[data-mui-theme='brutalist']
-  :is(.theme-panel__description, .component-label, .switch-sample--muted) {
-  color: var(--multi-theme-palette-text-strong-secondary);
+.theme-panel__eyebrow {
+  color: #6558d3;
 }
 
 .component-samples {
   display: grid;
-  gap: 32px;
+  gap: 38px;
 }
 
 .component-label {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .component-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 16px;
   align-items: center;
 }
 
-.component-row--switches {
-  gap: 24px;
+.component-heading-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
-.switch-sample {
-  display: inline-flex;
-  gap: 10px;
-  align-items: center;
-  color: inherit;
-  font-weight: 650;
+.component-heading-row output {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.875rem;
+  font-weight: 800;
 }
 
-.switch-sample--muted {
-  font-weight: 500;
+.slider-sample {
+  width: min(100%, 620px);
+  padding: 6px 12px;
 }
 
-.scope-check {
-  margin-top: 64px;
+.slider-sample--small {
+  width: min(72%, 420px);
+  margin-top: 22px;
 }
 
-.scope-check > header {
-  margin-bottom: 20px;
+.architecture-note {
+  margin-top: 42px;
+  padding: 20px 22px;
+  background: #ffffff;
+  border: 1px solid #d7dce7;
+  border-radius: 14px;
 }
 
-.scope-check > header h2 {
+.architecture-note h2 {
   margin: 0 0 4px;
-  font-size: 1.6rem;
-  letter-spacing: -0.03em;
+  font-size: 1.1rem;
 }
 
-.scope-check > header p {
+.architecture-note p {
   margin: 0;
-  font-size: 1rem;
+  font-size: 0.92rem;
 }
 
-.scope-check__grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-}
-
-@media (max-width: 820px) {
+@media (max-width: 640px) {
   .experiment {
-    padding-top: 40px;
+    padding-top: 36px;
   }
 
-  .scope-check__grid {
+  .theme-nav {
     grid-template-columns: 1fr;
   }
 }

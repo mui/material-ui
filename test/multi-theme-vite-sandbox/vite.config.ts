@@ -6,6 +6,15 @@ import { defineConfig } from 'vite';
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig(({ mode }) => ({
+  build: {
+    rollupOptions: {
+      input: {
+        polished: path.resolve(dirname, 'index.html'),
+        brutalist: path.resolve(dirname, 'brutalist.html'),
+        consumer: path.resolve(dirname, 'consumer.html'),
+      },
+    },
+  },
   define: {
     'process.env.NODE_ENV': JSON.stringify(mode === 'production' ? 'production' : 'development'),
   },

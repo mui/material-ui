@@ -1,0 +1,64 @@
+@layer mui.tokens, mui.base, mui.theme;
+
+/* Consumer-authored skin: it uses the public token/base contract but no Material UI theme CSS. */
+@layer mui.theme {
+  .MuiButton-root {
+    min-width: 68px;
+    padding: 9px 16px;
+    color: var(--mui-palette-text-primary);
+    background: var(--mui-palette-background-paper);
+    border: 2px solid var(--mui-palette-info-main);
+    border-radius: var(--mui-shape-radius-medium);
+    font-family: var(--mui-font-family);
+    font-size: 0.875rem;
+    font-weight: 750;
+    line-height: 1.4;
+    letter-spacing: 0;
+    text-transform: none;
+    box-shadow: 0 4px 0 var(--mui-palette-info-main);
+    transition:
+      color var(--mui-duration-short) var(--mui-easing-snappy),
+      background-color var(--mui-duration-short) var(--mui-easing-snappy),
+      box-shadow var(--mui-duration-short) var(--mui-easing-snappy),
+      transform var(--mui-duration-short) var(--mui-easing-snappy);
+  }
+
+  .MuiButton-root:hover {
+    box-shadow: 0 2px 0 var(--mui-palette-info-main);
+    transform: translateY(2px);
+  }
+
+  .MuiButton-contained.MuiButton-colorPrimary {
+    color: var(--mui-palette-common-black);
+    background: var(--mui-palette-info-main);
+  }
+
+  .MuiButton-outlined.MuiButton-colorPrimary {
+    color: var(--mui-palette-info-main);
+  }
+
+  .MuiButton-text.MuiButton-colorPrimary {
+    color: var(--mui-palette-text-primary);
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  .MuiButton-sizeSmall {
+    padding: 6px 11px;
+    font-size: 0.8125rem;
+  }
+
+  .MuiButton-root.Mui-focusVisible {
+    outline: 3px solid var(--mui-palette-warning-main);
+    outline-offset: 3px;
+  }
+
+  .MuiButton-root.Mui-disabled {
+    color: var(--mui-palette-action-disabled);
+    background: var(--mui-palette-action-disabled-background);
+    border-color: var(--mui-palette-action-disabled);
+    box-shadow: none;
+    transform: none;
+  }
+}

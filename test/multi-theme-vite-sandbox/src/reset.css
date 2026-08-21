@@ -1,4 +1,4 @@
-/* Browser normalization only. Component layout belongs to each theme's component CSS. */
+/* Browser normalization only. Material UI component structure lives in its base CSS files. */
 *,
 *::before,
 *::after {

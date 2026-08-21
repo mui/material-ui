@@ -1,0 +1,5 @@
+@layer mui.tokens, mui.base, mui.theme;
+
+/* Convenience barrel: loads the entire theme. Import component files directly for less CSS. */
+@import './button.css';
+@import './slider.css';
