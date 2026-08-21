@@ -438,7 +438,7 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
             text.bottom > box.bottom + 0.5
           );
         })
-        .map((node) => node.className);
+        .map((node) => node.getAttribute('class'));
 
       style.remove();
       return { horizontalOverflow, clipped: clipped.slice(0, 3) };
@@ -454,6 +454,10 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
     // entries this build doesn't contain rather than waiting for a fixture that
     // was never bundled.
     if (!routes.includes(route)) {
+      // The slug enters the bundle only when its component enrolls (see fixtures.js).
+      describe(`${component} layout criteria`, () => {
+        test.skip(`route not bundled: ${route}`, () => {});
+      });
       return;
     }
     const covers = (criterion) => !skipCriteria.includes(criterion);
@@ -521,16 +525,6 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
     });
   });
 }
-
-/**
- * Registers 2.4.7 Focus Visible, which axe has no rule for and jsdom cannot
- * answer: several components carry a `skipIf(isJsdom())` unit test for it that
- * therefore never runs.
- *
- * The check is a pixel comparison rather than a computed-style diff because
- * MUI's focus indicator is usually the ripple — a child element that appears in
- * the DOM. Diffing styles on the control itself would miss it entirely.
- */
 
 function createPagePool(factory) {
   const all = new Set();
