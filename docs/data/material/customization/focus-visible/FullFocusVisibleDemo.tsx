@@ -123,6 +123,27 @@ export default function FullFocusVisibleDemo() {
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setTab(newValue);
   };
+  const [alignment, setAlignment] = React.useState<string | null>('left');
+  const handleAlignmentChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string | null,
+  ) => {
+    setAlignment(newAlignment);
+  };
+  const [orderBy, setOrderBy] = React.useState('name');
+  const [order, setOrder] = React.useState<'asc' | 'desc'>('asc');
+  const createSortHandler = (column: string) => () => {
+    if (orderBy === column) {
+      setOrder(order === 'asc' ? 'desc' : 'asc');
+    } else {
+      setOrderBy(column);
+      setOrder('asc');
+    }
+  };
+  const [activeStep, setActiveStep] = React.useState(0);
+  const handleStep = (step: number) => () => {
+    setActiveStep(step);
+  };
   return (
     <ThemeProvider theme={theme}>
       <Stack spacing={3}>
@@ -147,7 +168,11 @@ export default function FullFocusVisibleDemo() {
             </ButtonGroup>
           </Row>
           <Row label="ToggleButton">
-            <ToggleButtonGroup value="left" exclusive>
+            <ToggleButtonGroup
+              value={alignment}
+              onChange={handleAlignmentChange}
+              exclusive
+            >
               <ToggleButton value="left">Left</ToggleButton>
               <ToggleButton value="right">Right</ToggleButton>
             </ToggleButtonGroup>
@@ -209,12 +234,22 @@ export default function FullFocusVisibleDemo() {
                 <TableHead>
                   <TableRow>
                     <TableCell>
-                      <TableSortLabel active direction="asc">
+                      <TableSortLabel
+                        active={orderBy === 'name'}
+                        direction={orderBy === 'name' ? order : 'asc'}
+                        onClick={createSortHandler('name')}
+                      >
                         Name
                       </TableSortLabel>
                     </TableCell>
                     <TableCell>
-                      <TableSortLabel>Size</TableSortLabel>
+                      <TableSortLabel
+                        active={orderBy === 'size'}
+                        direction={orderBy === 'size' ? order : 'asc'}
+                        onClick={createSortHandler('size')}
+                      >
+                        Size
+                      </TableSortLabel>
                     </TableCell>
                   </TableRow>
                 </TableHead>
@@ -258,12 +293,12 @@ export default function FullFocusVisibleDemo() {
             </Tabs>
           </Row>
           <Row label="Stepper">
-            <Stepper nonLinear activeStep={0} sx={{ minWidth: 260 }}>
+            <Stepper nonLinear activeStep={activeStep} sx={{ minWidth: 260 }}>
               <Step>
-                <StepButton>One</StepButton>
+                <StepButton onClick={handleStep(0)}>One</StepButton>
               </Step>
               <Step>
-                <StepButton>Two</StepButton>
+                <StepButton onClick={handleStep(1)}>Two</StepButton>
               </Step>
             </Stepper>
           </Row>
