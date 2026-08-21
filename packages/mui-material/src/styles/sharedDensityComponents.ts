@@ -1143,22 +1143,14 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     // rules (incl. master's duplicated minHeight media re-asserts).
     [`& .${tablePaginationClasses.toolbar}`]: {
       minHeight: d['xx-large'],
-      paddingRight: d['x-small'],
-    },
-    [`& .${tablePaginationClasses.toolbar} .${tablePaginationClasses.actions}`]: {
-      marginLeft: d['x-large'],
-    },
-    // Rows-per-page select: outer left gap + inner pad (right side = the dropdown
-    // icon lane). Inner pad nests past the toolbar so it outranks master's own
-    // 2-class `& .select` rule.
-    [`& .${tablePaginationClasses.selectRoot}`]: {
-      marginLeft: d.small,
-    },
-    [`& .${tablePaginationClasses.toolbar} .${tablePaginationClasses.select}`]: {
-      paddingLeft: d.small,
-      paddingRight: sp(2.75),
     },
   });
+  addRootOverride(
+    enhanced.components,
+    'MuiTablePagination',
+    { ...enhanced.typography?.body2 },
+    'select',
+  );
   addRootOverride(
     enhanced.components,
     'MuiAutocomplete',
@@ -1268,8 +1260,6 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     // state rule stays untouched. Selected label 12→14 stays master (state axis).
     gap: d['xx-small'],
     paddingInline: d.small,
-    minWidth: sp(10),
-    maxWidth: sp(21),
     variants: [
       {
         // Net master condition (pT14 unless the no-label rule zeroes it) — one
@@ -1306,10 +1296,10 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { size: 'small' },
         style: {
-          height: `calc(${d.large} + ${sp(0.5)})`,
+          height: `calc(${d.large} + ${d['xx-small']})`,
           paddingInline: d['x-small'],
           gap: d['xx-small'],
-          '--_childSize': `calc(${d.large} + ${sp(0.5)} - ${d['x-small']})`,
+          '--_childSize': `calc(${d.large} + ${d['xx-small']} - ${d['x-small']})`,
           '--_offset': `calc(-1 * (${d['x-small']} - ${d['x-small']}/2))`,
         },
       },
