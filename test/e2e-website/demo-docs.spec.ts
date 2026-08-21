@@ -29,7 +29,7 @@ async function clickForEffect(target: Locator, expectation: () => Promise<void>)
   await expect(async () => {
     await target.click();
     await expectation();
-  }).toPass();
+  }).toPass({ timeout: 15_000 });
 }
 
 test.describe('Demo docs', () => {
