@@ -79,11 +79,6 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       { props: { fontSize: 'large' }, style: { fontSize: sp(2.5) } },
     ],
   });
-  // List-row floor (promoted from density-Medium-only):
-  // semantic/size/navigation/list-item/min-height (32px); dense keeps master.
-  addRootOverride(enhanced.components, 'MuiListItem', {
-    variants: [{ props: { dense: false }, style: { minHeight: '32px' } }],
-  });
   // Master resets MenuItem min-height to `auto` at sm-up (non-dense only);
   // stylis hoists that media block AFTER the class rule, so a plain later
   // declaration can never win on desktop — the floor must re-assert inside the
@@ -826,26 +821,39 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // Mirror MenuItem (design): same touch-target floors + spacing steps. No sm-up
   // re-assert (ListItemButton has no master minHeight media reset, unlike MenuItem).
   addRootOverride(enhanced.components, 'MuiListItemButton', {
+    gap: d['x-small'],
+    paddingBlock: d['xx-small'],
     variants: [
-      { props: { dense: false }, style: { minHeight: '32px', paddingBlock: d['xx-small'] } },
-      { props: { dense: true }, style: { minHeight: '28px', paddingBlock: d['xx-small'] } },
+      {
+        props: { dense: false },
+        style: { minHeight: d['touch-target'] },
+      },
+      { props: { dense: true }, style: { minHeight: d.large } },
       { props: { dense: false, disableGutters: false }, style: { paddingInline: d['x-small'] } },
-      { props: { dense: true, disableGutters: false }, style: { paddingInline: d.medium } },
+      { props: { dense: true, disableGutters: false }, style: { paddingInline: d['xx-small'] } },
     ],
   });
-  // Match MenuItem's icon column (24px). MuiListItemIcon global — hidden in Menu
+  // Column reservations die (incl. master's 56px floors) — the row gap owns
+  // icon/avatar↔text spacing. MuiListItemIcon global — hidden in Menu
   // (MenuItem's nested seam owns it there); surfaces as its own knob in List.
-  addRootOverride(enhanced.components, 'MuiListItemIcon', { minWidth: 24 });
-  // ListItemAvatar column floor (32px, raw px sizing).
-  addRootOverride(enhanced.components, 'MuiListItemAvatar', { minWidth: 32 });
+  addRootOverride(enhanced.components, 'MuiListItemIcon', { minWidth: 0 });
+  addRootOverride(enhanced.components, 'MuiListItemAvatar', { minWidth: 0 });
+  addRootOverride(enhanced.components, 'MuiListItemText', { margin: 0 });
   // Plain ListItem (no ListItemButton) mirrors MenuItem spacing; disablePadding
   // zeroes it when a ListItemButton owns the row. minHeight stays medium-only.
   addRootOverride(enhanced.components, 'MuiListItem', {
+    gap: d['x-small'],
     variants: [
-      { props: { dense: false }, style: { paddingBlock: d['xx-small'] } },
-      { props: { dense: true }, style: { paddingBlock: d['xx-small'] } },
-      { props: { dense: false, disableGutters: false }, style: { paddingInline: d['x-small'] } },
-      { props: { dense: true, disableGutters: false }, style: { paddingInline: d.medium } },
+      { props: { dense: false, disablePadding: false }, style: { paddingBlock: d['xx-small'] } },
+      { props: { dense: true, disablePadding: false }, style: { paddingBlock: d['xx-small'] } },
+      {
+        props: { dense: false, disableGutters: false, disablePadding: false },
+        style: { paddingInline: d['x-small'] },
+      },
+      {
+        props: { dense: true, disableGutters: false, disablePadding: false },
+        style: { paddingInline: d['xx-small'] },
+      },
     ],
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {

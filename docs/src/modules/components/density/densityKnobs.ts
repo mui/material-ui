@@ -829,27 +829,26 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'List block padding',
     done: ['medium'],
   },
-  'MuiListItem|root|dense=false||minHeight': {
-    label: 'ListItem · minHeight [dense=false]',
+  'MuiListItem|root|base||gap': 'ListItem · gap',
+  'MuiListItem|root|dense=false,disablePadding=false||paddingBlock':
+    'ListItem · paddingBlock [dense=false,disablePadding=false]',
+  'MuiListItem|root|dense=true,disablePadding=false||paddingBlock':
+    'ListItem · paddingBlock [dense=true,disablePadding=false]',
+  'MuiListItem|root|dense=false,disableGutters=false,disablePadding=false||paddingInline':
+    'ListItem · paddingInline [dense=false,disableGutters=false,disablePadding=false]',
+  'MuiListItem|root|dense=true,disableGutters=false,disablePadding=false||paddingInline':
+    'ListItem · paddingInline [dense=true,disableGutters=false,disablePadding=false]',
+  'MuiListItemAvatar|root|base||minWidth': { label: 'ListItemAvatar · minWidth', done: ['medium'] },
+  'MuiListItemButton|root|base||gap': 'ListItemButton · gap',
+  'MuiListItemButton|root|base||paddingBlock': {
+    label: 'ListItemButton · paddingBlock [dense=false]',
     done: ['medium'],
   },
-  'MuiListItem|root|dense=false||paddingBlock': 'ListItem · paddingBlock [dense=false]',
-  'MuiListItem|root|dense=true||paddingBlock': 'ListItem · paddingBlock [dense=true]',
-  'MuiListItem|root|dense=false,disableGutters=false||paddingInline':
-    'ListItem · paddingInline [dense=false,disableGutters=false]',
-  'MuiListItem|root|dense=true,disableGutters=false||paddingInline':
-    'ListItem · paddingInline [dense=true,disableGutters=false]',
-  'MuiListItemAvatar|root|base||minWidth': { label: 'ListItemAvatar · minWidth', done: ['medium'] },
   'MuiListItemButton|root|dense=false||minHeight': {
     label: 'ListItemButton · minHeight [dense=false]',
     done: ['medium'],
   },
-  'MuiListItemButton|root|dense=false||paddingBlock': {
-    label: 'ListItemButton · paddingBlock [dense=false]',
-    done: ['medium'],
-  },
   'MuiListItemButton|root|dense=true||minHeight': 'ListItemButton · minHeight [dense=true]',
-  'MuiListItemButton|root|dense=true||paddingBlock': 'ListItemButton · paddingBlock [dense=true]',
   'MuiListItemButton|root|dense=false,disableGutters=false||paddingInline': {
     label: 'ListItemButton · paddingInline [dense=false]',
     done: ['medium'],
@@ -862,6 +861,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hiddenIn: ['Menu'],
     note: "Menu owns the icon column via MenuItem's nested seam — this standalone knob is the List family surface.",
   },
+  'MuiListItemText|root|base||margin': 'ListItemText · margin',
   'MuiMenuItem|root|base||paddingBlock': 'MenuItem · paddingBlock',
   'MuiMenuItem|root|base||minHeight': { label: 'min height [dense]', done: ['medium'] },
   'MuiMenuItem|root|base|& .MuiListItemIcon-root|minWidth': {
@@ -938,7 +938,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiPagination|ul|base||gap': 'Pagination · ul · gap',
   'MuiPaginationItem|root|base||margin': 'PaginationItem · margin',
   'MuiPaginationItem|root|base||padding': 'PaginationItem · padding',
-  'MuiPaginationItem|root|base||borderRadius': 'PaginationItem · borderRadius [fn]',
+  'MuiPaginationItem|root|base||borderRadius': 'PaginationItem · borderRadius',
   'MuiPaginationItem|root|size=small||height': 'PaginationItem · height [size=small]',
   'MuiPaginationItem|root|size=small||minWidth': 'PaginationItem · minWidth [size=small]',
   'MuiPaginationItem|root|size=medium||height': 'PaginationItem · height [size=medium]',

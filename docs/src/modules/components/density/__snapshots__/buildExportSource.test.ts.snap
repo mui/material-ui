@@ -202,62 +202,6 @@ const high = {
         ],
       },
     },
-    MuiListItem: {
-      styleOverrides: {
-        root: [
-          {
-            variants: [
-              {
-                props: {
-                  dense: false,
-                },
-                style: {
-                  minHeight: '32px',
-                },
-              },
-            ],
-          },
-          {
-            variants: [
-              {
-                props: {
-                  dense: false,
-                },
-                style: {
-                  paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  dense: true,
-                },
-                style: {
-                  paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  dense: false,
-                  disableGutters: false,
-                },
-                style: {
-                  paddingInline: 'var(--mui-density-x-small)',
-                },
-              },
-              {
-                props: {
-                  dense: true,
-                  disableGutters: false,
-                },
-                style: {
-                  paddingInline: 'var(--mui-density-medium)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiMenuItem: {
       styleOverrides: {
         root: [
@@ -1496,14 +1440,15 @@ const high = {
       styleOverrides: {
         root: [
           {
+            gap: 'var(--mui-density-x-small)',
+            paddingBlock: 'var(--mui-density-xx-small)',
             variants: [
               {
                 props: {
                   dense: false,
                 },
                 style: {
-                  minHeight: '32px',
-                  paddingBlock: 'var(--mui-density-xx-small)',
+                  minHeight: 'var(--mui-density-touch-target)',
                 },
               },
               {
@@ -1511,8 +1456,7 @@ const high = {
                   dense: true,
                 },
                 style: {
-                  minHeight: '28px',
-                  paddingBlock: 'var(--mui-density-xx-small)',
+                  minHeight: 'var(--mui-density-large)',
                 },
               },
               {
@@ -1530,7 +1474,7 @@ const high = {
                   disableGutters: false,
                 },
                 style: {
-                  paddingInline: 'var(--mui-density-medium)',
+                  paddingInline: 'var(--mui-density-xx-small)',
                 },
               },
             ],
@@ -1542,7 +1486,7 @@ const high = {
       styleOverrides: {
         root: [
           {
-            minWidth: 24,
+            minWidth: 0,
           },
         ],
       },
@@ -1551,7 +1495,65 @@ const high = {
       styleOverrides: {
         root: [
           {
-            minWidth: 32,
+            minWidth: 0,
+          },
+        ],
+      },
+    },
+    MuiListItemText: {
+      styleOverrides: {
+        root: [
+          {
+            margin: 0,
+          },
+        ],
+      },
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: [
+          {
+            gap: 'var(--mui-density-x-small)',
+            variants: [
+              {
+                props: {
+                  dense: false,
+                  disablePadding: false,
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  dense: true,
+                  disablePadding: false,
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  dense: false,
+                  disableGutters: false,
+                  disablePadding: false,
+                },
+                style: {
+                  paddingInline: 'var(--mui-density-x-small)',
+                },
+              },
+              {
+                props: {
+                  dense: true,
+                  disableGutters: false,
+                  disablePadding: false,
+                },
+                style: {
+                  paddingInline: 'var(--mui-density-xx-small)',
+                },
+              },
+            ],
           },
         ],
       },
@@ -3102,62 +3104,6 @@ const medium = {
         ],
       },
     },
-    MuiListItem: {
-      styleOverrides: {
-        root: [
-          {
-            variants: [
-              {
-                props: {
-                  dense: false,
-                },
-                style: {
-                  minHeight: '32px',
-                },
-              },
-            ],
-          },
-          {
-            variants: [
-              {
-                props: {
-                  dense: false,
-                },
-                style: {
-                  paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  dense: true,
-                },
-                style: {
-                  paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  dense: false,
-                  disableGutters: false,
-                },
-                style: {
-                  paddingInline: 'var(--mui-density-x-small)',
-                },
-              },
-              {
-                props: {
-                  dense: true,
-                  disableGutters: false,
-                },
-                style: {
-                  paddingInline: 'var(--mui-density-medium)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiMenuItem: {
       styleOverrides: {
         root: [
@@ -4396,14 +4342,15 @@ const medium = {
       styleOverrides: {
         root: [
           {
+            gap: 'var(--mui-density-x-small)',
+            paddingBlock: 'var(--mui-density-xx-small)',
             variants: [
               {
                 props: {
                   dense: false,
                 },
                 style: {
-                  minHeight: '32px',
-                  paddingBlock: 'var(--mui-density-xx-small)',
+                  minHeight: 'var(--mui-density-touch-target)',
                 },
               },
               {
@@ -4411,8 +4358,7 @@ const medium = {
                   dense: true,
                 },
                 style: {
-                  minHeight: '28px',
-                  paddingBlock: 'var(--mui-density-xx-small)',
+                  minHeight: 'var(--mui-density-large)',
                 },
               },
               {
@@ -4430,7 +4376,7 @@ const medium = {
                   disableGutters: false,
                 },
                 style: {
-                  paddingInline: 'var(--mui-density-medium)',
+                  paddingInline: 'var(--mui-density-xx-small)',
                 },
               },
             ],
@@ -4442,7 +4388,7 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            minWidth: 24,
+            minWidth: 0,
           },
         ],
       },
@@ -4451,7 +4397,65 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            minWidth: 32,
+            minWidth: 0,
+          },
+        ],
+      },
+    },
+    MuiListItemText: {
+      styleOverrides: {
+        root: [
+          {
+            margin: 0,
+          },
+        ],
+      },
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: [
+          {
+            gap: 'var(--mui-density-x-small)',
+            variants: [
+              {
+                props: {
+                  dense: false,
+                  disablePadding: false,
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  dense: true,
+                  disablePadding: false,
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  dense: false,
+                  disableGutters: false,
+                  disablePadding: false,
+                },
+                style: {
+                  paddingInline: 'var(--mui-density-x-small)',
+                },
+              },
+              {
+                props: {
+                  dense: true,
+                  disableGutters: false,
+                  disablePadding: false,
+                },
+                style: {
+                  paddingInline: 'var(--mui-density-xx-small)',
+                },
+              },
+            ],
           },
         ],
       },
@@ -6005,62 +6009,6 @@ const low = {
         ],
       },
     },
-    MuiListItem: {
-      styleOverrides: {
-        root: [
-          {
-            variants: [
-              {
-                props: {
-                  dense: false,
-                },
-                style: {
-                  minHeight: '32px',
-                },
-              },
-            ],
-          },
-          {
-            variants: [
-              {
-                props: {
-                  dense: false,
-                },
-                style: {
-                  paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  dense: true,
-                },
-                style: {
-                  paddingBlock: 'var(--mui-density-xx-small)',
-                },
-              },
-              {
-                props: {
-                  dense: false,
-                  disableGutters: false,
-                },
-                style: {
-                  paddingInline: 'var(--mui-density-x-small)',
-                },
-              },
-              {
-                props: {
-                  dense: true,
-                  disableGutters: false,
-                },
-                style: {
-                  paddingInline: 'var(--mui-density-medium)',
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     MuiMenuItem: {
       styleOverrides: {
         root: [
@@ -7299,14 +7247,15 @@ const low = {
       styleOverrides: {
         root: [
           {
+            gap: 'var(--mui-density-x-small)',
+            paddingBlock: 'var(--mui-density-xx-small)',
             variants: [
               {
                 props: {
                   dense: false,
                 },
                 style: {
-                  minHeight: '32px',
-                  paddingBlock: 'var(--mui-density-xx-small)',
+                  minHeight: 'var(--mui-density-touch-target)',
                 },
               },
               {
@@ -7314,8 +7263,7 @@ const low = {
                   dense: true,
                 },
                 style: {
-                  minHeight: '28px',
-                  paddingBlock: 'var(--mui-density-xx-small)',
+                  minHeight: 'var(--mui-density-large)',
                 },
               },
               {
@@ -7333,7 +7281,7 @@ const low = {
                   disableGutters: false,
                 },
                 style: {
-                  paddingInline: 'var(--mui-density-medium)',
+                  paddingInline: 'var(--mui-density-xx-small)',
                 },
               },
             ],
@@ -7345,7 +7293,7 @@ const low = {
       styleOverrides: {
         root: [
           {
-            minWidth: 24,
+            minWidth: 0,
           },
         ],
       },
@@ -7354,7 +7302,65 @@ const low = {
       styleOverrides: {
         root: [
           {
-            minWidth: 32,
+            minWidth: 0,
+          },
+        ],
+      },
+    },
+    MuiListItemText: {
+      styleOverrides: {
+        root: [
+          {
+            margin: 0,
+          },
+        ],
+      },
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: [
+          {
+            gap: 'var(--mui-density-x-small)',
+            variants: [
+              {
+                props: {
+                  dense: false,
+                  disablePadding: false,
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  dense: true,
+                  disablePadding: false,
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xx-small)',
+                },
+              },
+              {
+                props: {
+                  dense: false,
+                  disableGutters: false,
+                  disablePadding: false,
+                },
+                style: {
+                  paddingInline: 'var(--mui-density-x-small)',
+                },
+              },
+              {
+                props: {
+                  dense: true,
+                  disableGutters: false,
+                  disablePadding: false,
+                },
+                style: {
+                  paddingInline: 'var(--mui-density-xx-small)',
+                },
+              },
+            ],
           },
         ],
       },

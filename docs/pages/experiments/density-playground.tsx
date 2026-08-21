@@ -3238,7 +3238,7 @@ function SnackbarMatrix() {
     <SnackbarContent
       message={<span className="density-debug-text">Something happened</span>}
       action={
-        <Button color="secondary" size="small">
+        <Button color="inherit">
           <span className="density-debug-text">Undo</span>
         </Button>
       }
@@ -3498,6 +3498,30 @@ function ListMatrix() {
         </List>
       </div>
       <PlainListDemo />
+      <div>
+        <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+          unordered (default)
+        </Typography>
+        <List sx={{ width: 240 }}>
+          {['First item', 'Second item', 'Third item'].map((label) => (
+            <ListItem key={label}>
+              <ListItemText primary={<span className="density-debug-text">{label}</span>} />
+            </ListItem>
+          ))}
+        </List>
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+          ordered (native ol numbers)
+        </Typography>
+        <List component="ol" sx={{ width: 240, listStyleType: 'decimal', pl: 3 }}>
+          {['First item', 'Second item', 'Third item'].map((label) => (
+            <ListItem key={label} component="li" sx={{ display: 'list-item' }}>
+              <ListItemText primary={<span className="density-debug-text">{label}</span>} />
+            </ListItem>
+          ))}
+        </List>
+      </div>
     </Stack>
   );
 }
