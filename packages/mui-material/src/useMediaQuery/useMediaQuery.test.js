@@ -8,7 +8,6 @@ import {
   strictModeDoubleLoggingSuppressed,
 } from '@mui/internal-test-utils';
 import mediaQuery from 'css-mediaquery';
-import { expect } from 'chai';
 import { stub } from 'sinon';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { THEME_ID, ThemeProvider, createTheme } from '@mui/material/styles';

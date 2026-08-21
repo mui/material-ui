@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import isValueSelected from './isValueSelected';
 
 describe('<ToggleButton /> isValueSelected', () => {

@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import compose from './compose';
 import style from '../style';
 

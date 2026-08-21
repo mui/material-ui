@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
 import checkboxClasses from '../Checkbox/checkboxClasses';

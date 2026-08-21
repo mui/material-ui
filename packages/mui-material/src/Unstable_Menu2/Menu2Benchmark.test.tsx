@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';

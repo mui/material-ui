@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import NotchedOutline from './NotchedOutline';

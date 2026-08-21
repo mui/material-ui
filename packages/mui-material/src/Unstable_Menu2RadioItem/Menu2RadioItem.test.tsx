@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import Menu2 from '@mui/material/Unstable_Menu2';

@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup, { avatarGroupClasses as classes } from '@mui/material/AvatarGroup';

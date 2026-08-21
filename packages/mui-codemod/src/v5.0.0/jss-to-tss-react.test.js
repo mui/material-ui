@@ -1,5 +1,4 @@
 import path from 'path';
-import { expect } from 'chai';
 import jscodeshiftWithDefaultParser from 'jscodeshift';
 import transform from './jss-to-tss-react';
 import readFile from '../util/readFile';

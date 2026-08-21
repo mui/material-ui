@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import omitEventHandlers from '@mui/utils/omitEventHandlers';
 
 describe('omitEventHandlers', () => {

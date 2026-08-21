@@ -1,5 +1,3 @@
-import { expect } from 'chai';
-
 import { isMuiElement } from '.';
 import { Input, ListItemSecondaryAction, SvgIcon } from '..';
 

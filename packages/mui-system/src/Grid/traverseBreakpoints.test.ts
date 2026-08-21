@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import createBreakpoints from '../createBreakpoints/createBreakpoints';
 import { traverseBreakpoints, filterBreakpointKeys } from './traverseBreakpoints';
 

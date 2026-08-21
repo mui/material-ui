@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Alert, { alertClasses as classes } from '@mui/material/Alert';
@@ -234,7 +233,7 @@ describe('<Alert />', () => {
 
       expect(screen.queryByTestId('SuccessOutlinedIcon')).not.to.equal(null);
       expect(screen.queryByTestId('InfoOutlinedIcon')).not.to.equal(null);
-      // overriden icon in theme
+      // overridden icon in theme
       expect(screen.queryByTestId('AlarmIcon')).not.to.equal(null);
       expect(screen.queryByTestId('ErrorOutlineIcon')).not.to.equal(null);
       // default warning icon

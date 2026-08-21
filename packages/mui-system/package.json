@@ -45,16 +45,14 @@
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",
     "@mui/system": "workspace:*",
-    "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.17",
+    "@types/react": "19.2.18",
     "@types/sinon": "22.0.0",
-    "chai": "6.2.2",
     "es-toolkit": "1.50.0",
     "fast-glob": "3.3.3",
     "react": "19.2.8",
     "sinon": "22.1.0",
-    "styled-components": "6.4.4"
+    "styled-components": "6.5.2"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

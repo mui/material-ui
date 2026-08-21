@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item, { menu2ItemClasses as classes } from '@mui/material/Unstable_Menu2Item';

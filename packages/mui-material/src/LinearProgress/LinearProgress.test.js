@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import RtlProvider from '@mui/system/RtlProvider';
 import LinearProgress, { linearProgressClasses as classes } from '@mui/material/LinearProgress';

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { act, createRenderer, RenderCounter, screen } from '@mui/internal-test-utils';
 import type { ReducedMotionMode } from '../styles/createMotion';
 import useReducedMotion from './useReducedMotion';

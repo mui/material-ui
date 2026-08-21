@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Table, { tableClasses as classes } from '@mui/material/Table';
 import describeConformance from '../../test/describeConformance';
