@@ -832,17 +832,12 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'ListItem · minHeight [dense=false]',
     done: ['medium'],
   },
-  'MuiListItem|root|dense=false||paddingBlock': {
-    label: 'ListItem · paddingBlock [dense=false]',
-    done: ['medium'],
-  },
+  'MuiListItem|root|dense=false||paddingBlock': 'ListItem · paddingBlock [dense=false]',
   'MuiListItem|root|dense=true||paddingBlock': 'ListItem · paddingBlock [dense=true]',
-  'MuiListItem|root|dense=false,disableGutters=false||paddingInline': {
-    label: 'ListItem · paddingInline [dense=false]',
-    done: ['medium'],
-  },
+  'MuiListItem|root|dense=false,disableGutters=false||paddingInline':
+    'ListItem · paddingInline [dense=false,disableGutters=false]',
   'MuiListItem|root|dense=true,disableGutters=false||paddingInline':
-    'ListItem · paddingInline [dense=true]',
+    'ListItem · paddingInline [dense=true,disableGutters=false]',
   'MuiListItemAvatar|root|base||minWidth': { label: 'ListItemAvatar · minWidth', done: ['medium'] },
   'MuiListItemButton|root|dense=false||minHeight': {
     label: 'ListItemButton · minHeight [dense=false]',
@@ -940,62 +935,23 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiOutlinedInput|root|fn:4q8gcu||paddingLeft': 'OutlinedInput · paddingLeft [fn]',
   'MuiOutlinedInput|root|fn:ho424h||--_trailingPad': 'OutlinedInput · --_trailingPad [fn]',
   'MuiPaginationItem|root|size=small||minWidth': 'PaginationItem · minWidth [size=small]',
-  'MuiPaginationItem|root|size=small||paddingInline': {
-    label: 'PaginationItem · paddingInline [size=small]',
-    note: 'Small inter-item margin stays master 1px (sub-step, frozen).',
-  },
+  'MuiPaginationItem|root|size=small||paddingInline': 'PaginationItem · paddingInline [size=small]',
   'MuiPaginationItem|root|size=medium||minWidth': 'PaginationItem · minWidth [size=medium]',
   'MuiPaginationItem|root|size=medium||paddingInline':
     'PaginationItem · paddingInline [size=medium]',
   'MuiPaginationItem|root|size=medium||marginInline': 'PaginationItem · marginInline [size=medium]',
   'MuiPaginationItem|root|size=large||minWidth': 'PaginationItem · minWidth [size=large]',
-  'MuiPaginationItem|root|size=large||paddingInline': {
-    label: 'PaginationItem · paddingInline [size=large]',
-    note: 'Small inter-item margin stays master 1px (sub-step, frozen).',
-  },
+  'MuiPaginationItem|root|size=large||paddingInline': 'PaginationItem · paddingInline [size=large]',
   'MuiPaginationItem|root|size=large||marginInline': 'PaginationItem · marginInline [size=large]',
-  'MuiPaginationItem|root|fn:1nddmo||--_height': {
-    label: 'PaginationItem · height [size=small] (px)',
-    note: 'One private var: item height + pill radius (height/2) derive from it; ellipsis keeps auto height.',
-  },
-  'MuiPaginationItem|root|fn:1nddmo||height': {
-    label: 'PaginationItem · height [fn small]',
-    hidden: true,
-    note: 'Derived from --_height — the var row is the knob.',
-  },
-  'MuiPaginationItem|root|fn:1nddmo||borderRadius': {
-    label: 'PaginationItem · borderRadius [fn small]',
-    hidden: true,
-    note: 'Derived from --_height (height/2) — the var row is the knob.',
-  },
-  'MuiPaginationItem|root|fn:1dnyyw||--_height': {
-    label: 'PaginationItem · height [size=medium] (px)',
-    note: 'One private var: item height + pill radius (height/2) derive from it; ellipsis keeps auto height.',
-  },
-  'MuiPaginationItem|root|fn:1dnyyw||height': {
-    label: 'PaginationItem · height [fn medium]',
-    hidden: true,
-    note: 'Derived from --_height — the var row is the knob.',
-  },
-  'MuiPaginationItem|root|fn:1dnyyw||borderRadius': {
-    label: 'PaginationItem · borderRadius [fn medium]',
-    hidden: true,
-    note: 'Derived from --_height (height/2) — the var row is the knob.',
-  },
-  'MuiPaginationItem|root|fn:1tf0li||--_height': {
-    label: 'PaginationItem · height [size=large] (px)',
-    note: 'One private var: item height + pill radius (height/2) derive from it; ellipsis keeps auto height.',
-  },
-  'MuiPaginationItem|root|fn:1tf0li||height': {
-    label: 'PaginationItem · height [fn large]',
-    hidden: true,
-    note: 'Derived from --_height — the var row is the knob.',
-  },
-  'MuiPaginationItem|root|fn:1tf0li||borderRadius': {
-    label: 'PaginationItem · borderRadius [fn large]',
-    hidden: true,
-    note: 'Derived from --_height (height/2) — the var row is the knob.',
-  },
+  'MuiPaginationItem|root|fn:1nddmo||--_height': 'PaginationItem · --_height [fn]',
+  'MuiPaginationItem|root|fn:1nddmo||height': 'PaginationItem · height [fn]',
+  'MuiPaginationItem|root|fn:1nddmo||borderRadius': 'PaginationItem · borderRadius [fn]',
+  'MuiPaginationItem|root|fn:1dnyyw||--_height': 'PaginationItem · --_height [fn]',
+  'MuiPaginationItem|root|fn:1dnyyw||height': 'PaginationItem · height [fn]',
+  'MuiPaginationItem|root|fn:1dnyyw||borderRadius': 'PaginationItem · borderRadius [fn]',
+  'MuiPaginationItem|root|fn:1tf0li||--_height': 'PaginationItem · --_height [fn]',
+  'MuiPaginationItem|root|fn:1tf0li||height': 'PaginationItem · height [fn]',
+  'MuiPaginationItem|root|fn:1tf0li||borderRadius': 'PaginationItem · borderRadius [fn]',
   'MuiPickerDay|root|base||--PickerDay-size': {
     label: 'PickerDay · --PickerDay-size',
     done: ['medium'],

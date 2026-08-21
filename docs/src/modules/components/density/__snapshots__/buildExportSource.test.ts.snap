@@ -2033,7 +2033,7 @@ const high = {
                   variant: 'dense',
                 },
                 style: {
-                  minHeight: '48px',
+                  minHeight: 'var(--mui-density-xx-large)',
                 },
               },
               {
@@ -2041,12 +2041,12 @@ const high = {
                   variant: 'regular',
                 },
                 style: {
-                  minHeight: '56px',
+                  minHeight: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
                   '@media (orientation: landscape)': {
-                    minHeight: '48px',
+                    minHeight: 'var(--mui-density-xx-large)',
                   },
                   '@media (min-width:600px)': {
-                    minHeight: '64px',
+                    minHeight: 'calc(var(--mui-density-xx-large) + var(--mui-density-x-small))',
                   },
                 },
               },
@@ -4939,7 +4939,7 @@ const medium = {
                   variant: 'dense',
                 },
                 style: {
-                  minHeight: '48px',
+                  minHeight: 'var(--mui-density-xx-large)',
                 },
               },
               {
@@ -4947,12 +4947,12 @@ const medium = {
                   variant: 'regular',
                 },
                 style: {
-                  minHeight: '56px',
+                  minHeight: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
                   '@media (orientation: landscape)': {
-                    minHeight: '48px',
+                    minHeight: 'var(--mui-density-xx-large)',
                   },
                   '@media (min-width:600px)': {
-                    minHeight: '64px',
+                    minHeight: 'calc(var(--mui-density-xx-large) + var(--mui-density-x-small))',
                   },
                 },
               },
@@ -7848,7 +7848,7 @@ const low = {
                   variant: 'dense',
                 },
                 style: {
-                  minHeight: '48px',
+                  minHeight: 'var(--mui-density-xx-large)',
                 },
               },
               {
@@ -7856,12 +7856,12 @@ const low = {
                   variant: 'regular',
                 },
                 style: {
-                  minHeight: '56px',
+                  minHeight: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
                   '@media (orientation: landscape)': {
-                    minHeight: '48px',
+                    minHeight: 'var(--mui-density-xx-large)',
                   },
                   '@media (min-width:600px)': {
-                    minHeight: '64px',
+                    minHeight: 'calc(var(--mui-density-xx-large) + var(--mui-density-x-small))',
                   },
                 },
               },

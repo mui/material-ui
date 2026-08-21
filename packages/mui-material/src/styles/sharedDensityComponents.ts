@@ -1178,18 +1178,18 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           },
         },
       },
-      { props: { variant: 'dense' }, style: { minHeight: '48px' } },
+      { props: { variant: 'dense' }, style: { minHeight: d['xx-large'] } },
       {
         props: { variant: 'regular' },
         style: {
-          minHeight: '56px',
+          minHeight: `calc(${d['xx-large']} + ${d['xx-small']})`,
           // Master nests this under breakpoints.up('xs') — a no-op (min-width:0)
           // wrapper; emitted flat so the emit-table readback can resolve it.
-          '@media (orientation: landscape)': { minHeight: '48px' },
+          '@media (orientation: landscape)': { minHeight: d['xx-large'] },
           [(enhanced as unknown as { breakpoints: { up: (key: string) => string } }).breakpoints.up(
             'sm',
           )]: {
-            minHeight: '64px',
+            minHeight: `calc(${d['xx-large']} + ${d['x-small']})`,
           },
         },
       },

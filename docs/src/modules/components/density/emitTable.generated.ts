@@ -8610,8 +8610,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiToolbar|root|variant=dense||minHeight',
     label: 'Toolbar · minHeight [variant=dense]',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'xx-large',
     target: {
       component: 'MuiToolbar',
       slot: 'root',
@@ -8619,7 +8619,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minHeight',
     },
-    values: { high: '48px', medium: '48px', low: '48px' },
+    values: {
+      high: 'var(--mui-density-xx-large)',
+      medium: 'var(--mui-density-xx-large)',
+      low: 'var(--mui-density-xx-large)',
+    },
   },
   {
     id: 'MuiToolbar|root|variant=regular||minHeight',
@@ -8633,13 +8637,17 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minHeight',
     },
-    values: { high: '56px', medium: '56px', low: '56px' },
+    values: {
+      high: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
+      medium: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
+      low: 'calc(var(--mui-density-xx-large) + var(--mui-density-xx-small))',
+    },
   },
   {
     id: 'MuiToolbar|root|variant=regular|@media (orientation: landscape)|minHeight',
     label: 'Toolbar · minHeight [variant=regular]',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'xx-large',
     target: {
       component: 'MuiToolbar',
       slot: 'root',
@@ -8647,7 +8655,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '@media (orientation: landscape)',
       cssProp: 'minHeight',
     },
-    values: { high: '48px', medium: '48px', low: '48px' },
+    values: {
+      high: 'var(--mui-density-xx-large)',
+      medium: 'var(--mui-density-xx-large)',
+      low: 'var(--mui-density-xx-large)',
+    },
   },
   {
     id: 'MuiToolbar|root|variant=regular|@media (min-width:600px)|minHeight',
@@ -8661,7 +8673,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '@media (min-width:600px)',
       cssProp: 'minHeight',
     },
-    values: { high: '64px', medium: '64px', low: '64px' },
+    values: {
+      high: 'calc(var(--mui-density-xx-large) + var(--mui-density-x-small))',
+      medium: 'calc(var(--mui-density-xx-large) + var(--mui-density-x-small))',
+      low: 'calc(var(--mui-density-xx-large) + var(--mui-density-x-small))',
+    },
   },
   {
     id: 'MuiTooltip|arrow|base||width',
