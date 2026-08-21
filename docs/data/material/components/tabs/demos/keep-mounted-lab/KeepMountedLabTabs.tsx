@@ -15,6 +15,7 @@ export default function KeepMountedLabTabs() {
 
   return (
     <Box sx={{ width: '100%' }}>
+      {/* @focus-start */}
       <TabContext value={value}>
         <TabList
           onChange={handleChange}
@@ -31,6 +32,7 @@ export default function KeepMountedLabTabs() {
           <TextField label="Item Two input" />
         </TabPanel>
       </TabContext>
+      {/* @focus-end */}
     </Box>
   );
 }
