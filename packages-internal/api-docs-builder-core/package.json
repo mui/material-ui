@@ -24,6 +24,6 @@
     "@types/node": "20.19.43",
     "@types/sinon": "22.0.0",
     "sinon": "22.1.0",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   }
 }
