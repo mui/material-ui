@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "release:test": "node instantiations.test.mjs"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@mui/material": "workspace:^"
+  }
+}

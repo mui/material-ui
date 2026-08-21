@@ -463,6 +463,9 @@ jobs:
       - run:
           name: test exported typescript
           command: pnpm --filter @mui-internal/test-module-resolution typescript:all
+      - run:
+          name: Run tests that depend on built packages
+          command: pnpm -r run release:test
       - store_artifacts:
           name: Persist size snapshot as pipeline artifact
           path: size-snapshot.json

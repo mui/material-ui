@@ -98,3 +98,42 @@ const CustomButton = styled(Button)({
   // your custom styles go here
 }) as typeof Button;
 ```
+
+## Performance optimization
+
+When type checking a custom theme, TypeScript instantiates the types of all components and their variants through `theme.components`.
+In large projects this slows down type checking and increases memory usage, which can lead to out-of-memory errors in CI.
+
+To skip this cost, enable the `optimizedTheme` type feature with module augmentation in a single declaration file:
+
+```ts
+declare module '@mui/material/styles' {
+  interface TypeFeatures {
+    optimizedTheme: true;
+  }
+}
+```
+
+No import changes are required, and the flag cannot be turned off by other imports or by dependencies—it applies to the whole program.
+
+With the flag enabled, `theme.components` accepts any value without type checking.
+To bring back type safety and autocompletion for the components you customize, augment the `ThemeComponents` interface:
+
+```ts
+import { Components, Theme } from '@mui/material/styles';
+
+declare module '@mui/material/styles' {
+  interface TypeFeatures {
+    optimizedTheme: true;
+  }
+  interface ThemeComponents extends Pick<
+    Components<Theme>,
+    'MuiButton' | 'MuiTextField'
+  > {}
+}
+```
+
+:::warning
+If you are building a reusable library, do not include this augmentation in the type declarations you publish.
+It would enable the optimization for all consumers of your library.
+:::
