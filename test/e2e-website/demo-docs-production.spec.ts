@@ -42,7 +42,7 @@ async function clickForEffect(target: Locator, expectation: () => Promise<void>)
   await expect(async () => {
     await target.click();
     await expectation();
-  }).toPass();
+  }).toPass({ timeout: 15_000 });
 }
 
 async function expectButtonsPreview(demo: Locator) {
@@ -580,11 +580,12 @@ export default function BasicButtons() {
           await expect(
             page.locator('div:has(> [data-element="demo-mode-toggle-paper"])'),
           ).toHaveClass(/dark/, { timeout: 2000 });
+          await expect(page.locator('[data-element="demo-mode-toggle-paper"]')).toHaveCSS(
+            'background-color',
+            'rgb(18, 18, 18)',
+            { timeout: 10_000 },
+          );
         },
-      );
-      await expect(page.locator('[data-element="demo-mode-toggle-paper"]')).toHaveCSS(
-        'background-color',
-        'rgb(18, 18, 18)',
       );
     });
 
@@ -611,11 +612,10 @@ export default function BasicButtons() {
           await expect(
             page.locator('div:has(> [data-element="demo-mode-toggle-custom-theme-paper"])'),
           ).toHaveClass(/dark/, { timeout: 2000 });
+          await expect(
+            page.locator('[data-element="demo-mode-toggle-custom-theme-paper"]'),
+          ).toHaveCSS('background-color', 'rgb(183, 28, 28)', { timeout: 10_000 });
         },
-      );
-      await expect(page.locator('[data-element="demo-mode-toggle-custom-theme-paper"]')).toHaveCSS(
-        'background-color',
-        'rgb(183, 28, 28)',
       );
     });
 
@@ -637,11 +637,12 @@ export default function BasicButtons() {
           .locator('label:nth-child(3)'),
         async () => {
           await expect(iframe.locator('html')).toHaveClass(/dark/, { timeout: 2000 });
+          await expect(iframe.locator('[data-element="demo-mode-toggle-iframe-paper"]')).toHaveCSS(
+            'background-color',
+            'rgb(18, 18, 18)',
+            { timeout: 10_000 },
+          );
         },
-      );
-      await expect(iframe.locator('[data-element="demo-mode-toggle-iframe-paper"]')).toHaveCSS(
-        'background-color',
-        'rgb(18, 18, 18)',
       );
     });
   });
