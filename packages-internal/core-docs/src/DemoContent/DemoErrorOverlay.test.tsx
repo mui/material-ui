@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import { DemoErrorOverlay } from './DemoErrorOverlay';
 

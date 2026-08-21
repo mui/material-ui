@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { CODE_VARIANTS } from '../constants';
 import { resolveInitialCodeVariant } from './codeVariant';
 

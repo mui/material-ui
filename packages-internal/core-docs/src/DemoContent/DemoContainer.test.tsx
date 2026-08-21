@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/material/styles';
 import { brandingLightTheme } from '../branding';

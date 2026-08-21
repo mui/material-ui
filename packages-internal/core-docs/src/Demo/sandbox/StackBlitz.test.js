@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import * as StackBlitz from './StackBlitz';
 
 const testCase = `import * as React from 'react';
