@@ -2145,7 +2145,7 @@ const high = {
       styleOverrides: {
         root: [
           {
-            height: '56px',
+            height: 'var(--mui-density-xx-large)',
           },
         ],
       },
@@ -2154,9 +2154,10 @@ const high = {
       styleOverrides: {
         root: [
           {
-            paddingInline: 'var(--mui-density-medium)',
-            minWidth: '80px',
-            maxWidth: '168px',
+            gap: 'var(--mui-density-xx-small)',
+            paddingInline: 'var(--mui-density-small)',
+            minWidth: 'calc(calc(10 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+            maxWidth: 'calc(calc(21 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             variants: [
               {
                 props: ({ ownerState }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
@@ -5033,7 +5034,7 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            height: '56px',
+            height: 'var(--mui-density-xx-large)',
           },
         ],
       },
@@ -5042,9 +5043,10 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            paddingInline: 'var(--mui-density-medium)',
-            minWidth: '80px',
-            maxWidth: '168px',
+            gap: 'var(--mui-density-xx-small)',
+            paddingInline: 'var(--mui-density-small)',
+            minWidth: 'calc(calc(10 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+            maxWidth: 'calc(calc(21 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             variants: [
               {
                 props: ({ ownerState }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
@@ -7924,7 +7926,7 @@ const low = {
       styleOverrides: {
         root: [
           {
-            height: '56px',
+            height: 'var(--mui-density-xx-large)',
           },
         ],
       },
@@ -7933,9 +7935,10 @@ const low = {
       styleOverrides: {
         root: [
           {
-            paddingInline: 'var(--mui-density-medium)',
-            minWidth: '80px',
-            maxWidth: '168px',
+            gap: 'var(--mui-density-xx-small)',
+            paddingInline: 'var(--mui-density-small)',
+            minWidth: 'calc(calc(10 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+            maxWidth: 'calc(calc(21 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             variants: [
               {
                 props: ({ ownerState }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),

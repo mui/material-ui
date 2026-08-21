@@ -140,6 +140,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiBadge|badge|variant=dot||minWidth': 'Badge · badge · minWidth [variant=dot]',
   'MuiBadge|badge|variant=dot||height': 'Badge · badge · height [variant=dot]',
   'MuiBottomNavigation|root|base||height': 'BottomNavigation · height',
+  'MuiBottomNavigationAction|root|base||gap': 'BottomNavigationAction · gap',
   'MuiBottomNavigationAction|root|base||paddingInline': 'BottomNavigationAction · paddingInline',
   'MuiBottomNavigationAction|root|base||minWidth': 'BottomNavigationAction · minWidth',
   'MuiBottomNavigationAction|root|base||maxWidth': 'BottomNavigationAction · maxWidth',

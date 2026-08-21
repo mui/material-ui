@@ -1247,16 +1247,15 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     ],
   });
   addRootOverride(enhanced.components, 'MuiBottomNavigation', {
-    height: '56px',
+    height: d['xx-large'],
   });
   addRootOverride(enhanced.components, 'MuiBottomNavigationAction', {
-    // Inline pad = step; per-item width clamps = raw px (sizing). Icon-only
-    // centering paddingTop = step, with master's no-label zero re-asserted
-    // (this emission lands after it in the cascade and would clobber it).
-    // Selected label type shift (12→14) stays frozen — state, not a size axis.
-    paddingInline: d.medium,
-    minWidth: '80px',
-    maxWidth: '168px',
+    // The fn matcher nets master's condition so its no-label paddingTop:0
+    // state rule stays untouched. Selected label 12→14 stays master (state axis).
+    gap: d['xx-small'],
+    paddingInline: d.small,
+    minWidth: sp(10),
+    maxWidth: sp(21),
     variants: [
       {
         // Net master condition (pT14 unless the no-label rule zeroes it) — one

@@ -727,8 +727,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiBottomNavigation|root|base||height',
     label: 'BottomNavigation · height',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'xx-large',
     target: {
       component: 'MuiBottomNavigation',
       slot: 'root',
@@ -736,13 +736,35 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '56px', medium: '56px', low: '56px' },
+    values: {
+      high: 'var(--mui-density-xx-large)',
+      medium: 'var(--mui-density-xx-large)',
+      low: 'var(--mui-density-xx-large)',
+    },
+  },
+  {
+    id: 'MuiBottomNavigationAction|root|base||gap',
+    label: 'BottomNavigationAction · gap',
+    isDensity: true,
+    densityKey: 'xx-small',
+    target: {
+      component: 'MuiBottomNavigationAction',
+      slot: 'root',
+      props: null,
+      nested: '',
+      cssProp: 'gap',
+    },
+    values: {
+      high: 'var(--mui-density-xx-small)',
+      medium: 'var(--mui-density-xx-small)',
+      low: 'var(--mui-density-xx-small)',
+    },
   },
   {
     id: 'MuiBottomNavigationAction|root|base||paddingInline',
     label: 'BottomNavigationAction · paddingInline',
     isDensity: true,
-    densityKey: 'medium',
+    densityKey: 'small',
     target: {
       component: 'MuiBottomNavigationAction',
       slot: 'root',
@@ -751,9 +773,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingInline',
     },
     values: {
-      high: 'var(--mui-density-medium)',
-      medium: 'var(--mui-density-medium)',
-      low: 'var(--mui-density-medium)',
+      high: 'var(--mui-density-small)',
+      medium: 'var(--mui-density-small)',
+      low: 'var(--mui-density-small)',
     },
   },
   {
@@ -768,7 +790,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minWidth',
     },
-    values: { high: '80px', medium: '80px', low: '80px' },
+    values: {
+      high: 'calc(calc(10 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+      medium: 'calc(calc(10 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+      low: 'calc(calc(10 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+    },
   },
   {
     id: 'MuiBottomNavigationAction|root|base||maxWidth',
@@ -782,7 +808,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'maxWidth',
     },
-    values: { high: '168px', medium: '168px', low: '168px' },
+    values: {
+      high: 'calc(calc(21 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+      medium: 'calc(calc(21 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+      low: 'calc(calc(21 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+    },
   },
   {
     id: 'MuiBottomNavigationAction|root|fn:x2hhfk||paddingTop',
