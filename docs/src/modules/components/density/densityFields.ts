@@ -760,12 +760,6 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
       'MuiButton|endIcon|base|& > *:nth-of-type(1)|fontSize',
     ],
   },
-  {
-    id: 'virtual:MuiStepper:gap',
-    label: 'Stepper · column gap',
-    group: 'Stepper',
-    members: ['MuiStepper|root|base||columnGap', 'MuiStep|root|base||columnGap'],
-  },
   // Slider — symmetric orientation/axis pairs collapse to one knob each.
   {
     id: 'virtual:MuiSlider:trackThickness',

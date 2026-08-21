@@ -35,8 +35,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     components: NonNullable<EnhanceableTheme['components']>;
   },
 ): void {
-  // Density steps from the enhanced theme: `var(--mui-density-*)` refs in
-  // cssVariables mode, raw px otherwise (dual-mode via `theme.vars || theme`).
+  // Steps are var refs under cssVariables, raw px otherwise (theme.vars || theme).
   const d: DensityScale = (enhanced.vars || enhanced).density;
   const sp = enhanced.spacing ?? ((v: number | string) => `${Number(v) * 8}px`);
   addRootOverride(enhanced.components, 'MuiButton', {
@@ -79,11 +78,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       { props: { fontSize: 'large' }, style: { fontSize: sp(2.5) } },
     ],
   });
-  // Master resets MenuItem min-height to `auto` at sm-up (non-dense only);
-  // stylis hoists that media block AFTER the class rule, so a plain later
-  // declaration can never win on desktop — the floor must re-assert inside the
-  // same media. Dense has no master media reset, so no re-assert. The knob
-  // mirrors this via a linked write (densityFields `densityLinkedWrites`).
+  // Master resets MenuItem min-height at sm-up and stylis hoists that media
+  // block AFTER the class rule — the floor must re-assert inside the same media.
   const smUp = enhanced.breakpoints ? enhanced.breakpoints.up('sm') : '@media (min-width:600px)';
   addRootOverride(enhanced.components, 'MuiMenuItem', {
     paddingBlock: d['xx-small'],
@@ -175,9 +171,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'input',
   );
-  // Outlined label bridge: --_outlinedInputPadBlock broadcast to the FormControl
-  // via :has(); the label consumes it as --_restY, --_inlinePad = the inline knob.
-  // Input-slot re-assert chain mirrors master (multiline/adorned zero their side).
+  // --_outlinedInputPadBlock broadcasts to the FormControl via :has(); the
+  // label consumes it as --_restY. Re-assert chain mirrors master.
   addRootOverride(enhanced.components, 'MuiOutlinedInput', {
     [`.${formControlClasses.root}:has(> &)`]: {
       '--_outlinedInputPadBlock': `calc((${d['touch-target']} - 1lh) / 2)`,
@@ -403,11 +398,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'input',
   );
-  // Floating-label transforms re-emitted so Y comes from preset-closed vars:
-  // --_restY (every rest state; input-side :has broadcasts) and --_shrinkY
-  // (filled only), consumed BARE — a missing writer must break visibly. Variant
-  // order mirrors master; each shrink state must re-assert or the rest rules
-  // here (landing after master's shrink) would leak the rest transform.
+  // Label Y rides --_restY/--_shrinkY consumed BARE (a missing writer must
+  // break visibly); each shrink state must re-assert or the rest rules here,
+  // landing after master's shrink, would leak the rest transform.
   addRootOverride(enhanced.components, 'MuiInputLabel', {
     variants: [
       {
@@ -515,8 +508,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     { marginInline: d['x-small'] },
     'separator',
   );
-  // Row floor on the `ol` slot — the flex row with align-items: center — so
-  // crumbs stay vertically centered.
+  // The floor sits on the `ol` (the centering flex row), not the nav root.
   addRootOverride(
     enhanced.components,
     'MuiBreadcrumbs',
@@ -568,12 +560,10 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiSwitch',
     {
-      // Center the touch target in the root; travel keeps the thumb symmetric.
       top: 'calc((var(--_height) - var(--_touchSize)) / 2)',
       padding: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
-      // When the touch target outgrows the root height, re-anchor the thumb on
-      // the track's end caps: nudge left by the overflow half at rest, right by
-      // the same amount when checked (0 when touch <= height).
+      // Touch target taller than the root: re-anchor on the track's end caps
+      // (0 when touch <= height).
       left: 'calc((var(--_height) - var(--_touchSize)) / 2)',
       [`&.${switchClasses.checked}`]: {
         transform:
@@ -596,18 +586,13 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiSwitch',
     {
-      // Full pill: half the track thickness (height minus the two gutters).
       borderRadius: 'calc((var(--_height) - 2 * var(--_pad)) / 2)',
     },
     'track',
   );
-  // Input wrapper block padding (around the value/tags) + tag (chip) margin = steps.
   addRootOverride(enhanced.components, 'MuiAutocomplete', {
-    // Root block pad is 0 — the input carries the WHOLE per-side pad, equal to
-    // the plain OutlinedInput pad (32px total; small 4px -> 28px). Keeps
-    // multi-select simple: chips stack in an unpadded root while the input's
-    // own pad still sets the row rhythm; the label restY broadcast below
-    // (root + input) lands on the same value as plain inputs either way.
+    // Root block pad 0: the INPUT carries the whole per-side pad, so chips
+    // stack in an unpadded root while the input still sets the row rhythm.
     '--_autocompleteInputRootPadBlock': '3px',
     '--_autocompleteInputPadBlock': `calc((${d['touch-target']} - 1lh) / 2 - var(--_autocompleteInputRootPadBlock))`,
     [`& .${outlinedInputClasses.root}`]: {
@@ -622,7 +607,6 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       '--_outlinedInputPadBlock':
         'calc(var(--_autocompleteInputRootPadBlock) + var(--_autocompleteInputPadBlock))',
     },
-    // small size
     [`&:has(.${inputBaseClasses.sizeSmall})`]: {
       '--_autocompleteInputRootPadBlock': '0px',
       '--_autocompleteInputPadBlock': d['xx-small'],
@@ -734,13 +718,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     { paddingBlock: d['x-small'] },
     'message',
   );
-  // Inline-start inset only; the -8px flush end pull is an edge offset (frozen).
   addRootOverride(enhanced.components, 'MuiSnackbarContent', { paddingLeft: 0 }, 'action');
   addRootOverride(enhanced.components, 'MuiDialogTitle', {
     padding: `${d.small} ${d.small} ${d.small} ${d.medium}`,
   });
-  // Separate dividers variants keep one knob per state (dividers:true overrides
-  // master's distinct 16 24).
+  // Two variants = one knob per dividers state (true overrides master's 16 24).
   addRootOverride(enhanced.components, 'MuiDialogContent', {
     variants: [
       { props: { dividers: false }, style: { padding: `0 ${d.medium}` } },
@@ -770,13 +752,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiDialog',
     {
-      // Paper margin + every "100% minus margin" viewport calc derive from ONE
-      // private var so the knob and the offset math can't desync. Media-query
-      // GUARDS (down(width + 32*2)) stay at master's boundaries — media queries
-      // can't read vars; only the applied maxWidth co-varies. Every emission is
-      // scoped fullScreen:false — master's fullScreen state zeroes all of these
-      // and must stay untouched (an unscoped rule lands later in the cascade
-      // and would clobber it).
+      // Media-query GUARDS stay at master's 32*2 boundaries (media can't read
+      // vars); everything scopes fullScreen:false — master's fullScreen zeroes
+      // these and an unscoped rule would clobber it.
       '--_dialogMargin': d.large,
       variants: [
         { props: { fullScreen: false }, style: { margin: 'var(--_dialogMargin)' } },
@@ -818,8 +796,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'paper',
   );
-  // Mirror MenuItem (design): same touch-target floors + spacing steps. No sm-up
-  // re-assert (ListItemButton has no master minHeight media reset, unlike MenuItem).
+  // No sm-up re-assert: ListItemButton has no master minHeight media reset.
   addRootOverride(enhanced.components, 'MuiListItemButton', {
     gap: d['x-small'],
     paddingBlock: d['xx-small'],
@@ -833,14 +810,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       { props: { dense: true, disableGutters: false }, style: { paddingInline: d['xx-small'] } },
     ],
   });
-  // Column reservations die (incl. master's 56px floors) — the row gap owns
-  // icon/avatar↔text spacing. MuiListItemIcon global — hidden in Menu
-  // (MenuItem's nested seam owns it there); surfaces as its own knob in List.
+  // minWidth 0 kills master's 56px column floors — the row gap owns spacing.
   addRootOverride(enhanced.components, 'MuiListItemIcon', { minWidth: 0 });
   addRootOverride(enhanced.components, 'MuiListItemAvatar', { minWidth: 0 });
   addRootOverride(enhanced.components, 'MuiListItemText', { margin: 0 });
-  // Plain ListItem (no ListItemButton) mirrors MenuItem spacing; disablePadding
-  // zeroes it when a ListItemButton owns the row. minHeight stays medium-only.
+  // disablePadding:false scoping keeps rows owned by a ListItemButton unpadded.
   addRootOverride(enhanced.components, 'MuiListItem', {
     gap: d['x-small'],
     variants: [
@@ -1048,15 +1022,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'badge',
   );
-  // Switch: interlocked geometry off five preset-local vars (seam from PR
-  // #48624 moved here; component stays master). SwitchBase pad, touch-target
-  // centering, checked travel, and track radius all DERIVE from the vars, so the
-  // thumb stays centered whatever the knobs say. All raw px — the gutter drives
-  // track thickness (height - 2*pad), so it rides the dims, not a step.
   addRootOverride(enhanced.components, 'MuiSwitch', {
-    // Consumers are base (they read whatever var is in scope); the var
-    // DECLARATIONS live on explicit size variants so a knob edit rebuilds
-    // size-scoped and never bleeds into the other size.
+    // Var declarations sit on size variants so a knob edit rebuilds
+    // size-scoped; consumers are base.
     '--_pad': `calc((var(--_height) - var(--_thumbHeight)/1.4285714286) / 2)`, // to maintain the original ratio
     '--_width': `calc(var(--_thumbHeight)*1.7 + var(--_pad)*2)`, // to maintain the original ratio
     width: 'var(--_width)',
@@ -1135,28 +1103,19 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'icon',
   );
   addRootOverride(enhanced.components, 'MuiTablePagination', {
-    // ALL pagination geometry rides the ROOT slot as descendant selectors: the
-    // toolbar/select slots have custom overridesResolvers that SPREAD the theme
-    // styleOverride ({...styles.toolbar}) — an array-form slot (addRootOverride,
-    // playground layering) spreads to numeric keys and silently drops. Root's
-    // default resolver is array-safe, and root-class nesting outranks the slot
-    // rules (incl. master's duplicated minHeight media re-asserts).
+    // Everything rides the ROOT slot: the toolbar/select overridesResolvers
+    // SPREAD the theme styleOverride, so an array-form slot silently drops;
+    // root-class nesting outranks the slot rules.
     [`& .${tablePaginationClasses.toolbar}`]: {
       minHeight: d['xx-large'],
     },
+    [`& .${tablePaginationClasses.select}`]: enhanced.typography?.body2 ?? {},
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiTablePagination',
-    { ...enhanced.typography?.body2 },
-    'select',
-  );
   addRootOverride(
     enhanced.components,
     'MuiAutocomplete',
     {
-      // Option list (mirrors MenuItem) renders in a Popper → emit on the listbox
-      // slot: minHeight raw px, block/inline pad steps.
+      // The option list renders in a Popper — emit on the listbox slot.
       [`& .${autocompleteClasses.option}`]: {
         minHeight: d['touch-target'],
         paddingBlock: d['xx-small'],
@@ -1166,10 +1125,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'listbox',
   );
   addRootOverride(enhanced.components, 'MuiToolbar', {
-    // Gutter inline pad: semantic/spacing/variable/m at every width (sm-up bump collapsed); dense + regular bar
-    // min-heights (raw px). Regular mirrors theme.mixins.toolbar's responsive
-    // shape (portrait / landscape / sm-up) as styleOverrides — the mixin itself
-    // stays untouched, so mixins.toolbar offset math keeps master.
+    // Regular mirrors theme.mixins.toolbar's responsive shape as
+    // styleOverrides — the mixin stays untouched (offset math keeps master).
     variants: [
       {
         props: { disableGutters: false },
@@ -1199,8 +1156,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
     ],
   });
-  // Scoped to circular so the extended variant (auto width + literal height)
-  // stays frozen at master.
+  // Circular-scoped: the extended variant stays frozen at master.
   addRootOverride(enhanced.components, 'MuiFab', {
     minHeight: 0,
     variants: [
@@ -1256,8 +1212,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     height: d['xx-large'],
   });
   addRootOverride(enhanced.components, 'MuiBottomNavigationAction', {
-    // The fn matcher nets master's condition so its no-label paddingTop:0
-    // state rule stays untouched. Selected label 12→14 stays master (state axis).
+    // Selected label 12→14 stays master (state axis, not size).
     gap: d['xx-small'],
     paddingInline: d.small,
     variants: [
@@ -1277,10 +1232,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
     ],
   });
-  // Chip spacing model: the root owns the edges (paddingInline) and the
-  // sibling spacing (gap = x-small at both sizes); the label is spacing-inert
-  // and every child margin resets to 0 at slot level (slot rules render after
-  // master's size re-asserts and win by order at equal specificity).
+  // Child-margin clears sit at slot level: slot rules render after master's
+  // size re-asserts and win by order at equal specificity.
   addRootOverride(enhanced.components, 'MuiChip', {
     variants: [
       {

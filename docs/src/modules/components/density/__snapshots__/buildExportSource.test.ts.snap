@@ -1999,17 +1999,13 @@ const high = {
           {
             '& .MuiTablePagination-toolbar': {
               minHeight: 'var(--mui-density-xx-large)',
-              paddingRight: 'var(--mui-density-x-small)',
             },
-            '& .MuiTablePagination-toolbar .MuiTablePagination-actions': {
-              marginLeft: 'var(--mui-density-x-large)',
-            },
-            '& .MuiTablePagination-selectRoot': {
-              marginLeft: 'var(--mui-density-small)',
-            },
-            '& .MuiTablePagination-toolbar .MuiTablePagination-select': {
-              paddingLeft: 'var(--mui-density-small)',
-              paddingRight: 'calc(calc(2.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+            '& .MuiTablePagination-select': {
+              fontSize: 'calc(0.6875rem * var(--mui-scaling))',
+              lineHeight: 'calc(14px * var(--mui-scaling))',
+              fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+              fontWeight: 400,
+              letterSpacing: '0.01071em',
             },
           },
         ],
@@ -2169,8 +2165,6 @@ const high = {
           {
             gap: 'var(--mui-density-xx-small)',
             paddingInline: 'var(--mui-density-small)',
-            minWidth: 'calc(calc(10 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
-            maxWidth: 'calc(calc(21 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             variants: [
               {
                 props: ({ ownerState }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
@@ -2205,10 +2199,10 @@ const high = {
                   size: 'small',
                 },
                 style: {
-                  height: 'calc(var(--mui-density-large) + calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling)))',
+                  height: 'calc(var(--mui-density-large) + var(--mui-density-xx-small))',
                   paddingInline: 'var(--mui-density-x-small)',
                   gap: 'var(--mui-density-xx-small)',
-                  '--_childSize': 'calc(var(--mui-density-large) + calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling)) - var(--mui-density-x-small))',
+                  '--_childSize': 'calc(var(--mui-density-large) + var(--mui-density-xx-small) - var(--mui-density-x-small))',
                   '--_offset': 'calc(-1 * (var(--mui-density-x-small) - var(--mui-density-x-small)/2))',
                 },
               },
@@ -4901,17 +4895,13 @@ const medium = {
           {
             '& .MuiTablePagination-toolbar': {
               minHeight: 'var(--mui-density-xx-large)',
-              paddingRight: 'var(--mui-density-x-small)',
             },
-            '& .MuiTablePagination-toolbar .MuiTablePagination-actions': {
-              marginLeft: 'var(--mui-density-x-large)',
-            },
-            '& .MuiTablePagination-selectRoot': {
-              marginLeft: 'var(--mui-density-small)',
-            },
-            '& .MuiTablePagination-toolbar .MuiTablePagination-select': {
-              paddingLeft: 'var(--mui-density-small)',
-              paddingRight: 'calc(calc(2.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+            '& .MuiTablePagination-select': {
+              fontSize: 'calc(0.8125rem * var(--mui-scaling))',
+              lineHeight: 'calc(18px * var(--mui-scaling))',
+              fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+              fontWeight: 400,
+              letterSpacing: '0.01071em',
             },
           },
         ],
@@ -5071,8 +5061,6 @@ const medium = {
           {
             gap: 'var(--mui-density-xx-small)',
             paddingInline: 'var(--mui-density-small)',
-            minWidth: 'calc(calc(10 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
-            maxWidth: 'calc(calc(21 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             variants: [
               {
                 props: ({ ownerState }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
@@ -5107,10 +5095,10 @@ const medium = {
                   size: 'small',
                 },
                 style: {
-                  height: 'calc(var(--mui-density-large) + calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling)))',
+                  height: 'calc(var(--mui-density-large) + var(--mui-density-xx-small))',
                   paddingInline: 'var(--mui-density-x-small)',
                   gap: 'var(--mui-density-xx-small)',
-                  '--_childSize': 'calc(var(--mui-density-large) + calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling)) - var(--mui-density-x-small))',
+                  '--_childSize': 'calc(var(--mui-density-large) + var(--mui-density-xx-small) - var(--mui-density-x-small))',
                   '--_offset': 'calc(-1 * (var(--mui-density-x-small) - var(--mui-density-x-small)/2))',
                 },
               },
@@ -7806,17 +7794,13 @@ const low = {
           {
             '& .MuiTablePagination-toolbar': {
               minHeight: 'var(--mui-density-xx-large)',
-              paddingRight: 'var(--mui-density-x-small)',
             },
-            '& .MuiTablePagination-toolbar .MuiTablePagination-actions': {
-              marginLeft: 'var(--mui-density-x-large)',
-            },
-            '& .MuiTablePagination-selectRoot': {
-              marginLeft: 'var(--mui-density-small)',
-            },
-            '& .MuiTablePagination-toolbar .MuiTablePagination-select': {
-              paddingLeft: 'var(--mui-density-small)',
-              paddingRight: 'calc(calc(2.75 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
+            '& .MuiTablePagination-select': {
+              fontSize: 'calc(0.9375rem * var(--mui-scaling))',
+              lineHeight: 'calc(20px * var(--mui-scaling))',
+              fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+              fontWeight: 400,
+              letterSpacing: '0.01071em',
             },
           },
         ],
@@ -7976,8 +7960,6 @@ const low = {
           {
             gap: 'var(--mui-density-xx-small)',
             paddingInline: 'var(--mui-density-small)',
-            minWidth: 'calc(calc(10 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
-            maxWidth: 'calc(calc(21 * var(--mui-spacing, 8px)) * var(--mui-scaling))',
             variants: [
               {
                 props: ({ ownerState }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
@@ -8012,10 +7994,10 @@ const low = {
                   size: 'small',
                 },
                 style: {
-                  height: 'calc(var(--mui-density-large) + calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling)))',
+                  height: 'calc(var(--mui-density-large) + var(--mui-density-xx-small))',
                   paddingInline: 'var(--mui-density-x-small)',
                   gap: 'var(--mui-density-xx-small)',
-                  '--_childSize': 'calc(var(--mui-density-large) + calc(calc(0.5 * var(--mui-spacing, 8px)) * var(--mui-scaling)) - var(--mui-density-x-small))',
+                  '--_childSize': 'calc(var(--mui-density-large) + var(--mui-density-xx-small) - var(--mui-density-x-small))',
                   '--_offset': 'calc(-1 * (var(--mui-density-x-small) - var(--mui-density-x-small)/2))',
                 },
               },

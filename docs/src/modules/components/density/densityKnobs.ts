@@ -147,8 +147,6 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiBottomNavigation|root|base||height': 'BottomNavigation · height',
   'MuiBottomNavigationAction|root|base||gap': 'BottomNavigationAction · gap',
   'MuiBottomNavigationAction|root|base||paddingInline': 'BottomNavigationAction · paddingInline',
-  'MuiBottomNavigationAction|root|base||minWidth': 'BottomNavigationAction · minWidth',
-  'MuiBottomNavigationAction|root|base||maxWidth': 'BottomNavigationAction · maxWidth',
   'MuiBottomNavigationAction|root|fn:x2hhfk||paddingTop': {
     label: 'BottomNavigationAction · paddingTop [icon-only]',
     note: 'Centers the icon when unselected with a hidden label (net master condition — the no-label zero state stays untouched).',
@@ -1144,14 +1142,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiSnackbarContent|message|base||paddingBlock': 'SnackbarContent · message · paddingBlock',
   'MuiSnackbarContent|root|base||padding': 'SnackbarContent · padding',
   'MuiSnackbarContent|root|base||gap': 'SnackbarContent · gap',
-  'MuiStep|root|alternativeLabel=false,hasConnector=false,orientation=horizontal||paddingLeft': {
-    label: 'Step · paddingLeft [first, horizontal]',
-    done: ['medium'],
-  },
-  'MuiStep|root|alternativeLabel=false,last=true,orientation=horizontal||paddingRight': {
-    label: 'Step · paddingRight [last, horizontal]',
-    done: ['medium'],
-  },
+  'MuiStep|root|alternativeLabel=false,hasConnector=false,orientation=horizontal||paddingLeft':
+    'Step · paddingLeft [orientation=horizontal,alternativeLabel=false,hasConnector=false]',
+  'MuiStep|root|alternativeLabel=false,last=true,orientation=horizontal||paddingRight':
+    'Step · paddingRight [orientation=horizontal,alternativeLabel=false,last=true]',
   'MuiStepConnector|root|alternativeLabel=true,orientation=horizontal||top': {
     label: 'StepConnector · top [horizontal alt]',
     done: ['medium'],
@@ -1354,20 +1348,16 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'TablePagination · toolbar minHeight',
     done: ['medium'],
   },
-  'MuiTablePagination|root|base|& .MuiTablePagination-toolbar|paddingRight': {
-    label: 'TablePagination · toolbar paddingRight',
-    done: ['medium'],
-  },
-  'MuiTablePagination|root|base|& .MuiTablePagination-toolbar .MuiTablePagination-actions|marginLeft':
-    { label: 'TablePagination · actions marginLeft', done: ['medium'] },
-  'MuiTablePagination|root|base|& .MuiTablePagination-selectRoot|marginLeft': {
-    label: 'TablePagination · select marginLeft',
-    done: ['medium'],
-  },
-  'MuiTablePagination|root|base|& .MuiTablePagination-toolbar .MuiTablePagination-select|paddingLeft':
-    { label: 'TablePagination · select paddingLeft', done: ['medium'] },
-  'MuiTablePagination|root|base|& .MuiTablePagination-toolbar .MuiTablePagination-select|paddingRight':
-    { label: 'TablePagination · select paddingRight', done: ['medium'] },
+  'MuiTablePagination|root|base|& .MuiTablePagination-select|fontFamily':
+    'TablePagination · fontFamily',
+  'MuiTablePagination|root|base|& .MuiTablePagination-select|fontWeight':
+    'TablePagination · fontWeight',
+  'MuiTablePagination|root|base|& .MuiTablePagination-select|fontSize':
+    'TablePagination · fontSize',
+  'MuiTablePagination|root|base|& .MuiTablePagination-select|lineHeight':
+    'TablePagination · lineHeight',
+  'MuiTablePagination|root|base|& .MuiTablePagination-select|letterSpacing':
+    'TablePagination · letterSpacing',
   'MuiTableSortLabel|icon|base||fontSize': 'TableSortLabel · icon · fontSize',
   'MuiTableSortLabel|icon|base||marginInline': 'TableSortLabel · icon · marginInline',
   'MuiTabs|root|base||minHeight': { label: 'Tabs min height', done: ['medium'] },
