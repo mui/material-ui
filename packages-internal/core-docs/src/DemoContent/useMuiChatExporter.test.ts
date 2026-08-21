@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import type { VariantCode, VariantSource } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import { applyVariantTransform } from './useMuiChatExporter';
 
