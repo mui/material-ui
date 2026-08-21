@@ -1,7 +1,8 @@
 {
+  "name": "@mui-internal/test-ts-performance",
   "private": true,
   "scripts": {
-    "release:test": "node instantiations.test.mjs"
+    "test:performance": "node test.mjs"
   },
   "devDependencies": {},
   "dependencies": {

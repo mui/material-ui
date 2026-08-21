@@ -10,9 +10,8 @@
     "strict": true,
     "noEmit": true,
     "noErrorTruncation": true,
-    "rootDir": "./src",
     "skipLibCheck": true,
     "types": []
   },
-  "exclude": ["**/node_modules/"]
+  "include": []
 }
