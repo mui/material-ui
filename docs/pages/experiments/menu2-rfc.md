@@ -94,8 +94,6 @@ We propose a successor to `Menu` that uses Base UI. A proof of concept ([#48663
 
 The new component is a successor. It is not a rewrite of the current internals. The current `Menu` does not change.
 
-This RFC does not cover the component name across major versions, or how applications move from the current `Menu` to the successor. Those questions need the plan for the next major version, and that plan does not exist yet. We answer them separately.
-
 The component ships under the `Unstable_` prefix while the API settles. The imports follow our usual convention: flat names, one component for each subpath.
 
 ```jsx

@@ -5,6 +5,7 @@ import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-uti
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Menu2, { menu2PopupClasses, menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
+import { resetMenu2WarningFlags } from '@mui/material/Unstable_Menu2/menu2Utils';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
 import Menu2Submenu, {
   menu2SubmenuPopupClasses,
@@ -15,6 +16,10 @@ import Menu2Submenu, {
 // prop, children as the popup.
 describe('<Menu2 /> collapsed API', () => {
   const { render } = createRenderer();
+
+  beforeEach(() => {
+    resetMenu2WarningFlags();
+  });
 
   it('renders the trigger element as-is and opens the menu', async () => {
     const { user } = render(
@@ -179,6 +184,26 @@ describe('<Menu2 /> collapsed API', () => {
       expect(
         error.mock.calls.some(([message]) => String(message).includes('cannot be a fragment')),
       ).to.equal(true);
+    } finally {
+      error.mockRestore();
+    }
+  });
+
+  it('warns once, however many times the bad trigger renders', () => {
+    const error = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    try {
+      const { setProps } = render(
+        <Menu2 trigger={<React.Fragment>Options</React.Fragment>}>
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2>,
+      );
+      setProps({ 'aria-label': 'first' });
+      setProps({ 'aria-label': 'second' });
+
+      expect(
+        error.mock.calls.filter(([message]) => String(message).includes('cannot be a fragment')),
+      ).to.have.length(1);
     } finally {
       error.mockRestore();
     }

@@ -7,7 +7,7 @@ import { Menu as BaseMenu } from '@base-ui/react/menu';
 import Menu2Popup, { Menu2PopupProps } from './Menu2Popup';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { menu2TriggerClasses } from './menu2Classes';
-import { SlotProps } from './menu2Utils';
+import { SlotProps, warnMenu2FragmentTrigger, warnMenu2TriggerRef } from './menu2Utils';
 
 export interface Menu2Slots extends NonNullable<Menu2PopupProps['slots']> {}
 
@@ -97,30 +97,14 @@ const Menu2 = React.forwardRef(function Menu2(
   const { trigger: triggerSlotProps, ...popupSlotProps } = slotProps ?? {};
   const resolvedTriggerProps = resolveComponentProps(triggerSlotProps, themedProps);
 
-  if (process.env.NODE_ENV !== 'production' && trigger != null) {
-    // A fragment is an element, so the type does not catch it. Base UI cannot
-    // merge the trigger behavior into a fragment, and the trigger renders as
-    // bare content instead.
-    if ((trigger as React.ReactElement).type === React.Fragment) {
-      console.error(
-        'MUI: The `trigger` prop of `Menu2` cannot be a fragment. ' +
-          'Pass a single element, for example a `Button`.',
-      );
-    }
+  if (process.env.NODE_ENV !== 'production') {
+    warnMenu2FragmentTrigger(trigger, 'Menu2', 'Button');
   }
 
-  // A wrapper that does not forward the ref also swallows the trigger
-  // behavior, and nothing else reports it. An unset ref proves the element
-  // never received what Base UI merged into it.
   const triggerRef = React.useRef<HTMLButtonElement | null>(null);
   React.useEffect(() => {
-    if (process.env.NODE_ENV !== 'production' && trigger != null && triggerRef.current == null) {
-      console.error(
-        'MUI: The `trigger` element of `Menu2` did not receive a ref. ' +
-          'A component used as the trigger must forward its props and its ref to ' +
-          'the element that it renders, the way Tooltip does. Without them the ' +
-          'menu behavior does not reach the element.',
-      );
+    if (process.env.NODE_ENV !== 'production' && triggerRef.current == null) {
+      warnMenu2TriggerRef(trigger, 'Menu2');
     }
   }, [trigger]);
 

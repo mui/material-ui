@@ -3,6 +3,55 @@ import clsx from 'clsx';
 import appendOwnerState from '@mui/utils/appendOwnerState';
 import isHostComponent from '@mui/utils/isHostComponent';
 
+// One log per component for each warning, so a bad trigger does not spam the
+// console on every render.
+const warnedFragmentTrigger = new Set<string>();
+const warnedTriggerRef = new Set<string>();
+
+export function resetMenu2WarningFlags() {
+  warnedFragmentTrigger.clear();
+  warnedTriggerRef.clear();
+}
+
+export function warnMenu2FragmentTrigger(
+  trigger: React.ReactNode,
+  componentName: string,
+  triggerExample: string,
+) {
+  // A fragment is an element, so the type does not catch it. Base UI cannot
+  // merge the trigger behavior into a fragment, and the trigger renders as
+  // bare content instead.
+  if (
+    trigger == null ||
+    (trigger as React.ReactElement).type !== React.Fragment ||
+    warnedFragmentTrigger.has(componentName)
+  ) {
+    return;
+  }
+
+  warnedFragmentTrigger.add(componentName);
+  console.error(
+    `MUI: The \`trigger\` prop of \`${componentName}\` cannot be a fragment. ` +
+      `Pass a single element, for example a \`${triggerExample}\`.`,
+  );
+}
+
+export function warnMenu2TriggerRef(trigger: React.ReactNode, componentName: string) {
+  // A wrapper that does not forward the ref also swallows the trigger behavior,
+  // and nothing else reports it.
+  if (trigger == null || warnedTriggerRef.has(componentName)) {
+    return;
+  }
+
+  warnedTriggerRef.add(componentName);
+  console.error(
+    `MUI: The \`trigger\` element of \`${componentName}\` did not receive a ref. ` +
+      'A component used as the trigger must forward its props and its ref to ' +
+      'the element that it renders, the way Tooltip does. Without them the ' +
+      'menu behavior does not reach the element.',
+  );
+}
+
 export type StateClassName<State> = string | ((state: State) => string | undefined) | undefined;
 
 export function resolveStateClassName<State>(

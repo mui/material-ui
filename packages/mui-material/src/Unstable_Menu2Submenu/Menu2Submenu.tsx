@@ -6,7 +6,11 @@ import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import Menu2SubmenuPopup, { Menu2SubmenuPopupProps } from '../Unstable_Menu2/Menu2SubmenuPopup';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { SlotProps } from '../Unstable_Menu2/menu2Utils';
+import {
+  SlotProps,
+  warnMenu2FragmentTrigger,
+  warnMenu2TriggerRef,
+} from '../Unstable_Menu2/menu2Utils';
 import { menu2SubmenuTriggerClasses } from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2SubmenuSlots extends NonNullable<Menu2SubmenuPopupProps['slots']> {}
@@ -92,30 +96,14 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
   const { trigger: triggerSlotProps, ...popupSlotProps } = slotProps ?? {};
   const resolvedTriggerProps = resolveComponentProps(triggerSlotProps, themedProps);
 
-  if (process.env.NODE_ENV !== 'production' && trigger != null) {
-    // A fragment is an element, so the type does not catch it. Base UI cannot
-    // merge the trigger behavior into a fragment, and the trigger renders as
-    // bare content instead.
-    if ((trigger as React.ReactElement).type === React.Fragment) {
-      console.error(
-        'MUI: The `trigger` prop of `Menu2Submenu` cannot be a fragment. ' +
-          'Pass a single element, for example a `Menu2Item`.',
-      );
-    }
+  if (process.env.NODE_ENV !== 'production') {
+    warnMenu2FragmentTrigger(trigger, 'Menu2Submenu', 'Menu2Item');
   }
 
-  // A wrapper that does not forward the ref also swallows the trigger
-  // behavior, and nothing else reports it. An unset ref proves the element
-  // never received what Base UI merged into it.
   const triggerRef = React.useRef<HTMLElement | null>(null);
   React.useEffect(() => {
-    if (process.env.NODE_ENV !== 'production' && trigger != null && triggerRef.current == null) {
-      console.error(
-        'MUI: The `trigger` element of `Menu2Submenu` did not receive a ref. ' +
-          'A component used as the trigger must forward its props and its ref to ' +
-          'the element that it renders, the way Tooltip does. Without them the ' +
-          'menu behavior does not reach the element.',
-      );
+    if (process.env.NODE_ENV !== 'production' && triggerRef.current == null) {
+      warnMenu2TriggerRef(trigger, 'Menu2Submenu');
     }
   }, [trigger]);
 
