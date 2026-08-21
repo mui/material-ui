@@ -42,6 +42,7 @@ export default function KeepMountedStandardTabs() {
 
   return (
     <Box sx={{ width: '100%' }}>
+      {/* @focus-start */}
       <Tabs
         value={value}
         onChange={handleChange}
@@ -57,6 +58,7 @@ export default function KeepMountedStandardTabs() {
       <CustomTabPanel value={value} index={1}>
         <TextField label="Item Two input" />
       </CustomTabPanel>
+      {/* @focus-end */}
     </Box>
   );
 }
