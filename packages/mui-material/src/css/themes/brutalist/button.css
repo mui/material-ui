@@ -1,0 +1,82 @@
+@layer mui.tokens, mui.base, mui.theme;
+
+/* Granular entry: includes the shared tokens and Button base before the Brutalist skin. */
+@import '../../tokens.css';
+@import '../../base/button.css';
+
+@layer mui.theme {
+  .MuiButton-root {
+    min-width: 76px;
+    padding: 12px 20px;
+    overflow: visible;
+    color: var(--mui-palette-common-black);
+    background: var(--mui-palette-warning-main);
+    border: 3px solid var(--mui-palette-common-black);
+    border-radius: 0;
+    font-family: var(--mui-font-family-display);
+    font-size: 0.875rem;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    box-shadow: var(--mui-elevation-hard);
+    transition:
+      background-color var(--mui-duration-shortest) linear,
+      box-shadow var(--mui-duration-shortest) linear,
+      transform var(--mui-duration-shortest) linear;
+  }
+
+  .MuiButton-root::before {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 9px;
+    background: currentColor;
+    content: '';
+    transform: rotate(45deg);
+  }
+
+  .MuiButton-root:hover {
+    box-shadow: 2px 2px 0 var(--mui-palette-common-black);
+    transform: translate(3px, 3px);
+  }
+
+  .MuiButton-contained.MuiButton-colorPrimary {
+    background: var(--mui-palette-secondary-main);
+  }
+
+  .MuiButton-contained.MuiButton-colorPrimary:hover {
+    background: var(--mui-palette-secondary-light);
+  }
+
+  .MuiButton-outlined.MuiButton-colorPrimary {
+    background: var(--mui-palette-background-paper);
+  }
+
+  .MuiButton-outlined.MuiButton-colorPrimary:hover {
+    color: var(--mui-palette-common-white);
+    background: var(--mui-palette-common-black);
+  }
+
+  .MuiButton-text.MuiButton-colorPrimary {
+    background: var(--mui-palette-info-main);
+  }
+
+  .MuiButton-sizeSmall {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+
+  .MuiButton-root.Mui-focusVisible {
+    outline: 4px solid var(--mui-palette-primary-main);
+    outline-offset: 4px;
+  }
+
+  .MuiButton-root.Mui-disabled {
+    color: var(--mui-palette-action-disabled);
+    background: var(--mui-palette-action-disabled-background);
+    border-color: var(--mui-palette-action-disabled);
+    box-shadow: 5px 5px 0 var(--mui-palette-action-disabled);
+    transform: none;
+  }
+}
