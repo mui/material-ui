@@ -25,7 +25,8 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --tsgo --flat",
+    "prebuild": "node ./scripts/stagePublishedDocs.mjs",
+    "build": "code-infra build --tsgo --flat --copy \"published-docs/**:docs\"",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
     "typescript": "tsgo -p tsconfig.json",
