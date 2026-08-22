@@ -259,6 +259,7 @@ describe('<Select />', () => {
         await sleep(450);
       });
 
+      await user.pointer({ target: screen.getByRole('option', { name: 'Ten' }) });
       await user.pointer({
         keys: '[/MouseLeft]',
         target: screen.getByRole('option', { name: 'Ten' }),
@@ -267,6 +268,33 @@ describe('<Select />', () => {
       expect(onClose.callCount).to.equal(1);
       expect(trigger).to.have.text('Ten');
       expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('does not select an option when the opening mouseup lands on it after the drag delay without moving', async () => {
+      const onChange = spy();
+      const { user } = render(
+        <Select defaultValue={10} onChange={onChange}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      const trigger = screen.getByRole('combobox');
+      await user.pointer({ keys: '[MouseLeft>]', target: trigger });
+
+      await act(async () => {
+        await sleep(450);
+      });
+
+      await user.pointer({
+        keys: '[/MouseLeft]',
+        target: screen.getByRole('option', { name: 'Twenty' }),
+      });
+
+      expect(trigger).to.have.text('Ten');
+      expect(onChange.callCount).to.equal(0);
+      expect(screen.queryByRole('listbox', { hidden: false })).not.to.equal(null);
     });
 
     it('selects an option when dragging from the trigger and releasing after the drag delay', async () => {
@@ -285,6 +313,7 @@ describe('<Select />', () => {
       await act(async () => {
         await sleep(250);
       });
+      await user.pointer({ target: screen.getByRole('option', { name: 'Twenty' }) });
       await user.pointer({
         keys: '[/MouseLeft]',
         target: screen.getByRole('option', { name: 'Twenty' }),
@@ -334,6 +363,7 @@ describe('<Select />', () => {
       await act(async () => {
         await sleep(250);
       });
+      await user.pointer({ target: screen.getByRole('option', { name: 'Twenty' }) });
       await user.pointer({
         keys: '[/MouseLeft]',
         target: screen.getByRole('option', { name: 'Twenty' }),
