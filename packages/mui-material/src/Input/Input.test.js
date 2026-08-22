@@ -1,6 +1,7 @@
 import { createRenderer, screen } from '@mui/internal-test-utils';
+import FormControl from '@mui/material/FormControl';
 import InputBase from '@mui/material/InputBase';
-import Input, { inputClasses as classes } from '@mui/material/Input';
+import Input, { getInputUtilityClass, inputClasses as classes } from '@mui/material/Input';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Input />', () => {
@@ -42,6 +43,20 @@ describe('<Input />', () => {
       <Input data-test="test" multiline sx={{ [`&.${classes.multiline}`]: { mt: '10px' } }} />,
     );
     expect(document.querySelector('[data-test=test]')).toHaveComputedStyle({ marginTop: '10px' });
+  });
+
+  it('should have the documented state classes', () => {
+    render(
+      <FormControl hiddenLabel>
+        <Input data-testid="root" readOnly startAdornment="start" endAdornment="end" />
+      </FormControl>,
+    );
+    const root = screen.getByTestId('root');
+
+    expect(root).to.have.class(getInputUtilityClass('adornedStart'));
+    expect(root).to.have.class(getInputUtilityClass('adornedEnd'));
+    expect(root).to.have.class(getInputUtilityClass('hiddenLabel'));
+    expect(root).to.have.class(getInputUtilityClass('readOnly'));
   });
 
   it('should not forward the notched prop to the DOM', () => {
