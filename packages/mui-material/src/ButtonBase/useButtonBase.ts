@@ -56,6 +56,12 @@ export interface UseButtonBaseParameters {
    */
   stopEventPropagation?: boolean | undefined;
   /**
+   * When `true`, the hook does not synthesize Enter and Space clicks on non-native roots.
+   * Set it when an outer layer already activates the element from the keyboard.
+   * @default false
+   */
+  suppressKeyboardActivation?: boolean | undefined;
+  /**
    * An additional function that will run before the user's `onKeyDown`, e.g.
    * to trigger the ripple effect in `<ButtonBase>`.
    */
@@ -116,6 +122,7 @@ export default function useButtonBase(
     tabIndex = 0,
     focusableWhenDisabled: focusableWhenDisabledParam,
     stopEventPropagation = false,
+    suppressKeyboardActivation = false,
     onBeforeKeyDown,
     onBeforeKeyUp,
   } = parameters;
@@ -278,7 +285,11 @@ export default function useButtonBase(
         onBeforeKeyDown?.(event);
         externalOnKeyDown?.(event);
 
-        if (event.target !== event.currentTarget || hasNativeKeyboardActivation()) {
+        if (
+          suppressKeyboardActivation ||
+          event.target !== event.currentTarget ||
+          hasNativeKeyboardActivation()
+        ) {
           return;
         }
 
@@ -302,6 +313,7 @@ export default function useButtonBase(
         externalOnKeyUp?.(event);
 
         if (
+          !suppressKeyboardActivation &&
           event.target === event.currentTarget &&
           !hasNativeKeyboardActivation() &&
           event.key === ' ' &&
@@ -328,6 +340,7 @@ export default function useButtonBase(
       onBeforeKeyDown,
       onBeforeKeyUp,
       stopEventPropagation,
+      suppressKeyboardActivation,
     ],
   );
 
