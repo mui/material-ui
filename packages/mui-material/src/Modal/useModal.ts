@@ -79,10 +79,12 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     // keeps the `aria-hidden` state computed for the previous sibling set.
     // Unregister the modal first so the new container is evaluated against its own siblings.
     if (registeredContainerRef.current && registeredContainerRef.current !== resolvedContainer) {
-      const previousIndex = manager.indexOf(getModal());
-      manager.remove(getModal(), ariaHiddenProp);
+      const previousIndex = manager.remove(getModal(), ariaHiddenProp);
       registeredContainerRef.current = null;
       manager.add(getModal(), resolvedContainer as HTMLElement, previousIndex);
+    } else if (registeredContainerRef.current === resolvedContainer) {
+      // Same container, already registered — nothing to do.
+      return;
     } else {
       manager.add(getModal(), resolvedContainer as HTMLElement);
     }

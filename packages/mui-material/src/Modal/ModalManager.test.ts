@@ -483,5 +483,34 @@ describe('ModalManager', () => {
         document.body.removeChild(containerA);
       }
     });
+
+    it('should unhide remaining modal when a nested modal is removed', () => {
+      const sibling = document.createElement('div');
+      const modalRef1 = document.createElement('div');
+      const modalRef2 = document.createElement('div');
+      container2.appendChild(sibling);
+      container2.appendChild(modalRef1);
+      container2.appendChild(modalRef2);
+
+      const m1 = { ...getDummyModal(), modalRef: modalRef1 };
+      const m2 = { ...getDummyModal(), modalRef: modalRef2 };
+
+      modalManager.add(m1, container2);
+      modalManager.mount(m1, {});
+      expect(modalRef1).not.toBeInaccessible();
+      expect(sibling).toBeInaccessible();
+
+      modalManager.add(m2, container2);
+      modalManager.mount(m2, {});
+      expect(modalRef1).toBeInaccessible();
+      expect(sibling).toBeInaccessible();
+      expect(modalRef2).not.toBeInaccessible();
+
+      // Removing the top modal should unhide the remaining modal.
+      modalManager.remove(m2);
+      expect(modalRef1).not.toBeInaccessible();
+      expect(modalRef2).toBeInaccessible();
+      expect(sibling).toBeInaccessible();
+    });
   });
 });

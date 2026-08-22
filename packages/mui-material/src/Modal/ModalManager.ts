@@ -293,8 +293,10 @@ export class ModalManager {
         ariaHidden(modal.modalRef, ariaHiddenState);
       }
       [].forEach.call(containerInfo.container.children, (element: Element) => {
-        const isNotForbiddenElement = !isAriaHiddenForbiddenOnElement(element);
-        if (!isNotForbiddenElement) {
+        if (isAriaHiddenForbiddenOnElement(element)) {
+          return;
+        }
+        if (containerInfo.hiddenSiblings.includes(element)) {
           return;
         }
         const shouldHide = containerInfo.modals.some((remainingModal) => {
@@ -302,13 +304,10 @@ export class ModalManager {
             remainingModal.modalRef &&
             remainingModal.modalRef !== element &&
             !remainingModal.modalRef.contains(element) &&
-            !element.contains(remainingModal.modalRef) &&
-            !containerInfo.hiddenSiblings.includes(element)
+            !element.contains(remainingModal.modalRef)
           );
         });
-        if (shouldHide) {
-          ariaHidden(element, true);
-        }
+        ariaHidden(element, shouldHide);
       });
     }
 
@@ -317,9 +316,5 @@ export class ModalManager {
 
   isTopModal(modal: Modal): boolean {
     return this.modals.length > 0 && this.modals[this.modals.length - 1] === modal;
-  }
-
-  indexOf(modal: Modal): number {
-    return this.modals.indexOf(modal);
   }
 }
