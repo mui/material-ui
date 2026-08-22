@@ -77,7 +77,7 @@ function Component() {
     options: ['1', '2', '3'],
     multiple: true,
     onChange(event, value) {
-      expectType<string[], typeof value>(value);
+      expectType<readonly string[], typeof value>(value);
       value;
     },
   });
@@ -87,7 +87,7 @@ function Component() {
     options: ['1', '2', '3', 4, true],
     multiple: true,
     onChange(event, value) {
-      expectType<Array<string | number | boolean>, typeof value>(value);
+      expectType<ReadonlyArray<string | number | boolean>, typeof value>(value);
     },
   });
 
@@ -96,7 +96,7 @@ function Component() {
     options: persons,
     multiple: true,
     onChange(event, value) {
-      expectType<Person[], typeof value>(value);
+      expectType<readonly Person[], typeof value>(value);
       value;
     },
   });
@@ -105,7 +105,7 @@ function Component() {
   useAutocomplete({
     options: persons,
     multiple: true,
-    onChange(event, value: Person[]) {},
+    onChange(event, value: readonly Person[]) {},
   });
 
   // options accepts const and value has correct type
@@ -163,7 +163,7 @@ function Component() {
     options: persons,
     multiple: true,
     onChange(event, value) {
-      expectType<Array<string | Person>, typeof value>(value);
+      expectType<ReadonlyArray<string | Person>, typeof value>(value);
     },
     freeSolo: true,
   });
