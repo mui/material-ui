@@ -349,6 +349,20 @@ describe('ModalManager', () => {
       expect(modal2).not.toBeInaccessible();
     });
 
+    it('should not add aria-hidden to container siblings that contain the modal', () => {
+      // Simulates a non-portaled modal (disablePortal) whose DOM node is nested
+      // inside one of the container's children. Hiding that child would make the
+      // modal itself inaccessible.
+      const nestedParent = document.createElement('div');
+      const nestedModalRef = document.createElement('div');
+      nestedParent.appendChild(nestedModalRef);
+      container2.appendChild(nestedParent);
+
+      modalManager.add({ ...getDummyModal(), modalRef: nestedModalRef }, container2);
+
+      expect(nestedParent).not.toBeInaccessible();
+    });
+
     it('should add aria-hidden to container siblings', () => {
       const secondSibling = document.createElement('input');
       container2.appendChild(secondSibling);
@@ -436,6 +450,66 @@ describe('ModalManager', () => {
       expect(container2.children[0]).toBeInaccessible();
       expect(container2.children[1]).toBeInaccessible();
       expect(container2.children[2]).not.toBeInaccessible();
+    });
+
+    it('should restore aria-hidden when a modal is re-registered to a nested container', () => {
+      const containerA = document.createElement('div');
+      const containerB = document.createElement('div');
+      const sibling = document.createElement('div');
+      const modalRef = document.createElement('div');
+      containerA.appendChild(sibling);
+      containerA.appendChild(containerB);
+      containerA.appendChild(modalRef);
+      document.body.appendChild(containerA);
+
+      try {
+        const modal = { mount: containerA, modalRef };
+        modalManager.add(modal, containerA);
+        modalManager.mount(modal, {});
+        expect(containerB).toBeInaccessible();
+        expect(sibling).toBeInaccessible();
+
+        // Simulates the portal having moved into containerB before the manager is notified.
+        modal.mount = containerB;
+
+        modalManager.remove(modal);
+        modalManager.add(modal, containerB);
+
+        expect(containerB).not.toBeInaccessible();
+        expect(sibling).not.toBeInaccessible();
+        expect(modalRef).not.toBeInaccessible();
+      } finally {
+        document.body.removeChild(containerA);
+      }
+    });
+
+    it('should unhide remaining modal when a nested modal is removed', () => {
+      const sibling = document.createElement('div');
+      const modalRef1 = document.createElement('div');
+      const modalRef2 = document.createElement('div');
+      container2.appendChild(sibling);
+      container2.appendChild(modalRef1);
+      container2.appendChild(modalRef2);
+
+      const m1 = { ...getDummyModal(), modalRef: modalRef1 };
+      const m2 = { ...getDummyModal(), modalRef: modalRef2 };
+
+      modalManager.add(m1, container2);
+      modalManager.mount(m1, {});
+      expect(modalRef1).not.toBeInaccessible();
+      expect(sibling).toBeInaccessible();
+
+      modalManager.add(m2, container2);
+      modalManager.mount(m2, {});
+      expect(modalRef1).toBeInaccessible();
+      expect(sibling).toBeInaccessible();
+      expect(modalRef2).not.toBeInaccessible();
+
+      // Removing the top modal should unhide the remaining modal.
+      modalManager.remove(m2);
+      expect(modalRef1).not.toBeInaccessible();
+      expect(modalRef2).toBeInaccessible();
+      expect(sibling).toBeInaccessible();
     });
   });
 });

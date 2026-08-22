@@ -798,6 +798,29 @@ describe('<Modal />', () => {
       setProps({ anchorEl: document.body });
     });
 
+    it('should remove aria-hidden from the previous container when the container changes', () => {
+      const root = document.createElement('div');
+      root.setAttribute('id', 'root');
+      document.body.appendChild(root);
+
+      try {
+        const { setProps } = render(
+          <Modal open>
+            <div data-testid="modal-content" />
+          </Modal>,
+        );
+
+        // The modal is mounted in the body, making #root an aria-hidden sibling.
+        expect(root).toBeInaccessible();
+
+        // Moving the modal into #root must remove the stale aria-hidden from it.
+        setProps({ container: root });
+        expect(root).not.toBeInaccessible();
+      } finally {
+        document.body.removeChild(root);
+      }
+    });
+
     it('should finish closing when the container changes during the exit transition', () => {
       function TestCase(props) {
         const firstContainerRef = React.useRef(null);
