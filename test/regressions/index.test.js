@@ -5,6 +5,7 @@ import { chromium } from '@playwright/test';
 import { test as base } from 'vitest';
 import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
 import { A11Y_RULES, DEFAULT_VIEWPORT, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
+import { stubAlgoliaSearch, unstubAlgoliaSearch } from './algoliaSearchStub';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const AXE_SCRIPT = path.resolve(currentDirectory, '../../node_modules/axe-core/axe.min.js');
@@ -265,6 +266,55 @@ async function main() {
           testcase,
           route: '/regression-Rating/PreciseFocusVisibleRating3',
         });
+      });
+    });
+
+    describe.each(['SearchModal', 'SearchModalDark'])('AppSearch/%s', (fixture) => {
+      test('should render the DocSearch modal correctly', async ({ pooled }) => {
+        const { page } = pooled;
+        await renderFixture(page, `/regression-AppSearch/${fixture}`);
+        // The modal portals to `document.body`, so it lands outside the
+        // testcase element and has to be screenshotted on its own.
+        await page.getByRole('button', { name: /search/i }).click();
+        const modal = await page.waitForSelector('.DocSearch-Modal');
+        // `useLazyCSS` fetches the DocSearch stylesheet and injects it as a
+        // `<style data-href>`. Without it the modal is unstyled.
+        await page.waitForFunction(() =>
+          Boolean(document.querySelector('style[data-href*="docsearch"]')),
+        );
+        // Rank `docsearch` below `mui`, the way the layer order that
+        // `BrandingCssVarsProvider` declares does in the docs. Without it the
+        // DocSearch stylesheet wins and none of the `AppSearch` overrides
+        // apply. It has to happen here rather than in the fixture: a layer's
+        // position is fixed by where it is first named, emotion prepends its
+        // tags above everything in `<head>`, and it keeps doing so as
+        // components mount — so the only stable point is once the modal has
+        // finished rendering.
+        await page.evaluate(() => {
+          const style = document.createElement('style');
+          style.textContent = '@layer docsearch, mui;';
+          document.head.prepend(style);
+        });
+        await takeScreenshot(page, {
+          testcase: modal,
+          route: `/regression-AppSearch/${fixture}Open`,
+        });
+
+        // The results screen carries the markup the start screen never shows:
+        // highlighted matches, breadcrumbs, and the tree connector between a
+        // section and its children.
+        try {
+          await stubAlgoliaSearch(page);
+          await page.locator('.DocSearch-Input').fill('card');
+          await page.waitForSelector('.DocSearch-Hit mark');
+          await takeScreenshot(page, {
+            testcase: modal,
+            route: `/regression-AppSearch/${fixture}Results`,
+          });
+        } finally {
+          // Pages are pooled, so leave the route table as we found it.
+          await unstubAlgoliaSearch(page);
+        }
       });
     });
 
