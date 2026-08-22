@@ -150,23 +150,67 @@ describe('usePagination', () => {
     expect(items[9]).to.have.property('page', 11);
   });
 
-  it('should support boundaryCount={0}', () => {
-    let items;
+  it('uses a compact layout when boundaryCount and siblingCount are zero', () => {
+    [1, 6, 11].forEach((page) => {
+      const items = renderHook(() =>
+        usePagination({ count: 11, page, boundaryCount: 0, siblingCount: 0 }),
+      ).result.current.items;
 
-    items = renderHook(() =>
-      usePagination({ count: 11, page: 6, boundaryCount: 0, siblingCount: 0 }),
-    ).result.current.items;
-    expect(serialize(items)).to.deep.equal([
+      expect(serialize(items)).to.deep.equal(['previous', page, 'next']);
+    });
+  });
+
+  it('does not render a page when count is zero', () => {
+    const items = renderHook(() => usePagination({ count: 0, boundaryCount: 0, siblingCount: 0 }))
+      .result.current.items;
+
+    expect(serialize(items)).to.deep.equal(['previous', 'next']);
+    expect(items[0]).to.have.property('disabled', true);
+    expect(items[1]).to.have.property('disabled', true);
+  });
+
+  it('does not render a stale uncontrolled page when count decreases', () => {
+    const result = React.createRef();
+
+    function TestCase({ count }) {
+      const hookResult = usePagination({
+        count,
+        defaultPage: 11,
+        boundaryCount: 0,
+        siblingCount: 0,
+      });
+      React.useEffect(() => {
+        result.current = hookResult;
+      }, [hookResult]);
+      return null;
+    }
+
+    const { rerender } = render(<TestCase count={11} />);
+    expect(serialize(result.current.items)).to.deep.equal(['previous', 11, 'next']);
+
+    rerender(<TestCase count={5} />);
+    expect(serialize(result.current.items)).to.deep.equal([
       'previous',
       'start-ellipsis',
-      6,
-      'end-ellipsis',
+      4,
+      5,
       'next',
     ]);
+  });
 
-    items = renderHook(() =>
+  it('does not render an out-of-range controlled page', () => {
+    const items = renderHook(() =>
+      usePagination({ count: 5, page: 0, boundaryCount: 0, siblingCount: 0 }),
+    ).result.current.items;
+
+    expect(serialize(items)).to.deep.equal(['previous', 1, 2, 'end-ellipsis', 'next']);
+  });
+
+  it('should support boundaryCount={0}', () => {
+    const items = renderHook(() =>
       usePagination({ count: 11, page: 6, boundaryCount: 0, siblingCount: 1 }),
     ).result.current.items;
+
     expect(serialize(items)).to.deep.equal([
       'previous',
       'start-ellipsis',
