@@ -1433,6 +1433,9 @@ importers:
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../packages/mui-icons-material/build
+      '@mui/internal-test-utils':
+        specifier: 2.0.18-canary.32
+        version: 2.0.18-canary.32(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.18)(react@19.2.8)(supports-color@11.0.0))(@playwright/test@1.62.1)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(@vitest/utils@4.1.10)(chai@6.2.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vite@8.2.1(@types/node@20.19.43)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.10)
       '@mui/lab':
         specifier: workspace:*
         version: link:../packages/mui-lab/build

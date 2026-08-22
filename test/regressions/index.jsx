@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router';
 import { Globals } from '@react-spring/web';
-import loadFonts from './loadFonts';
+import loadFonts from '@mui/internal-test-utils/loadFonts';
 import TestViewer from './TestViewer';
 import MarketingWrapper from './MarketingWrapper';
 import allFixtures from './fixtures';
@@ -27,8 +27,22 @@ window.muiFixture = {
   navigate: () => {
     throw new Error(`muiFixture.navigate is not ready`);
   },
-  // `index.test.js` awaits this before it screenshots anything.
-  fontsReady: loadFonts(),
+  // `index.test.js` awaits this before it screenshots anything, and races it
+  // against a real timer -- see the comment there for why nothing else guards it.
+  // Keep the v1 `css?family=` endpoint: it serves the static per-weight faces the
+  // baselines were recorded with, while `css2` returns variable fonts.
+  fontsReady: loadFonts({
+    stylesheets: [
+      'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CInter:300,400,500,600,700,800,900%7CMaterial+Icons',
+      'https://use.fontawesome.com/releases/v5.14.0/css/all.css',
+    ],
+    faces: [
+      ...[300, 400, 500, 700].map((weight) => ({ family: 'Roboto', weight })),
+      ...[300, 400, 500, 600, 700, 800, 900].map((weight) => ({ family: 'Inter', weight })),
+      { family: 'Material Icons', weight: 400 },
+      { family: 'Font Awesome 5 Free', weight: 900 },
+    ],
+  }),
 };
 
 function FixtureRenderer({ component: FixtureComponent, path }) {
