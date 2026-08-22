@@ -126,6 +126,34 @@ describe('ThemeProvider', () => {
     });
   });
 
+  describe('focus visible', () => {
+    it('outline color follows the active scheme on mode change', async () => {
+      function Probe() {
+        const theme = useTheme();
+        const { setMode } = useColorScheme();
+        return (
+          <button type="button" onClick={() => setMode('dark')}>
+            {theme.focusVisible && theme.focusVisible.outlineColor}
+          </button>
+        );
+      }
+      const theme = createTheme({ focusVisible: true, colorSchemes: { light: true, dark: true } });
+      const { user } = render(
+        <ThemeProvider theme={theme}>
+          <Probe />
+        </ThemeProvider>,
+      );
+
+      const button = screen.getByRole('button');
+      expect(button.textContent).to.equal(createTheme().palette.primary.main);
+
+      await user.click(button);
+      expect(button.textContent).to.equal(
+        createTheme({ palette: { mode: 'dark' } }).palette.primary.main,
+      );
+    });
+  });
+
   describe('nested ThemeProvider', () => {
     it('should have `vars` as null for nested non-vars theme', () => {
       const upperTheme = createTheme({

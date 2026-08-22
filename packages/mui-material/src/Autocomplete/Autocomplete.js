@@ -23,6 +23,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
+import { applyInsetFocusVisible } from '../styles/focusVisible';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
@@ -368,9 +369,16 @@ const AutocompleteListbox = styled('ul', {
         opacity: (theme.vars || theme).palette.action.disabledOpacity,
         pointerEvents: 'none',
       },
-      [`&.${autocompleteClasses.focusVisible}`]: {
-        backgroundColor: (theme.vars || theme).palette.action.focus,
-      },
+      [`&.${autocompleteClasses.focusVisible}`]: theme.focusVisible
+        ? {
+            // Options are plain <li> (not ButtonBase), so add the ring here, keyed to the
+            // keyboard-navigation state. It insets: the listbox scrolls and would clip an outset ring.
+            ...applyInsetFocusVisible(1),
+            ...theme.focusVisible,
+          }
+        : {
+            backgroundColor: (theme.vars || theme).palette.action.focus,
+          },
       '&[aria-selected="true"]': {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,
