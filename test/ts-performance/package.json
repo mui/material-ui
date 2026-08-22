@@ -1,0 +1,11 @@
+{
+  "name": "@mui-internal/test-ts-performance",
+  "private": true,
+  "scripts": {
+    "test:performance": "node test.mjs"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@mui/material": "workspace:^"
+  }
+}

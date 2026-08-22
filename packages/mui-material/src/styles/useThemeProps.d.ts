@@ -1,8 +1,8 @@
 import { Theme } from './createTheme';
-import { Components } from './components';
+import { ResolvedComponents } from './createThemeNoVars';
 
 export interface ThemeWithProps {
-  components?: Components<Omit<Theme, 'components'>> | undefined;
+  components?: ResolvedComponents<Omit<Theme, 'components'>> | undefined;
 }
 
 export type ThemedProps<ThemeInput, Name extends keyof any> = ThemeInput extends {

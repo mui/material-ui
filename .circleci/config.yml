@@ -463,6 +463,9 @@ jobs:
       - run:
           name: test exported typescript
           command: pnpm --filter @mui-internal/test-module-resolution typescript:all
+      - run:
+          name: Test theme type instantiations
+          command: pnpm --filter @mui-internal/test-ts-performance test:performance
       - store_artifacts:
           name: Persist size snapshot as pipeline artifact
           path: size-snapshot.json

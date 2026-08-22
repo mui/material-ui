@@ -11,7 +11,7 @@ import createThemeNoVars, {
   ThemeOptions as ThemeNoVarsOptions,
 } from './createThemeNoVars';
 
-export type { Theme, CssThemeVariables } from './createThemeNoVars';
+export type { Theme, CssThemeVariables, TypeFeatures, ThemeComponents } from './createThemeNoVars';
 
 type CssVarsOptions = CssThemeVariables extends {
   enabled: true;
