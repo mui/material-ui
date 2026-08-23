@@ -15,6 +15,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import InputBase, { inputBaseClasses as classes } from '@mui/material/InputBase';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import { createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
@@ -68,6 +69,102 @@ describe('<InputBase />', () => {
   });
 
   describe('multiline', () => {
+    it.skipIf(isJsdom())('should apply the padding to the native textarea', () => {
+      const cases = [
+        { variant: 'standard', padding: ['4px', '0px', '5px', '0px'] },
+        { variant: 'standard', size: 'small', padding: ['1px', '0px', '5px', '0px'] },
+        { variant: 'filled', padding: ['25px', '12px', '8px', '12px'] },
+        { variant: 'filled', size: 'small', padding: ['21px', '12px', '4px', '12px'] },
+        { variant: 'filled', hiddenLabel: true, padding: ['16px', '12px', '17px', '12px'] },
+        {
+          variant: 'filled',
+          hiddenLabel: true,
+          size: 'small',
+          padding: ['8px', '12px', '9px', '12px'],
+        },
+        { variant: 'outlined', padding: ['16.5px', '14px', '16.5px', '14px'] },
+        { variant: 'outlined', size: 'small', padding: ['8.5px', '14px', '8.5px', '14px'] },
+        {
+          variant: 'filled',
+          slotProps: {
+            input: { startAdornment: <InputAdornment position="start">start</InputAdornment> },
+          },
+          rootPadding: ['0px', '0px', '0px', '12px'],
+          padding: ['25px', '12px', '8px', '0px'],
+        },
+        {
+          variant: 'outlined',
+          slotProps: {
+            input: { endAdornment: <InputAdornment position="end">end</InputAdornment> },
+          },
+          rootPadding: ['0px', '14px', '0px', '0px'],
+          padding: ['16.5px', '0px', '16.5px', '14px'],
+        },
+      ];
+
+      cases.forEach(({ padding, rootPadding, ...props }) => {
+        const { container, unmount } = render(<TextField multiline rows={2} {...props} />);
+        const root = container.querySelector(`.${classes.root}`);
+        const textarea = screen.getByRole('textbox');
+        const [paddingTop, paddingRight, paddingBottom, paddingLeft] = padding;
+        const [rootPaddingTop, rootPaddingRight, rootPaddingBottom, rootPaddingLeft] =
+          rootPadding ?? ['0px', '0px', '0px', '0px'];
+
+        expect(root).toHaveComputedStyle({
+          paddingTop: rootPaddingTop,
+          paddingRight: rootPaddingRight,
+          paddingBottom: rootPaddingBottom,
+          paddingLeft: rootPaddingLeft,
+        });
+        expect(textarea).toHaveComputedStyle({
+          paddingTop,
+          paddingRight,
+          paddingBottom,
+          paddingLeft,
+        });
+        expect(root.getBoundingClientRect().height).to.equal(
+          textarea.getBoundingClientRect().height,
+        );
+        if (rootPadding == null) {
+          expect(root.getBoundingClientRect().width).to.equal(
+            textarea.getBoundingClientRect().width,
+          );
+        }
+
+        unmount();
+      });
+    });
+
+    it.skipIf(isJsdom())('should preserve scrolling with minRows and maxRows', () => {
+      const { container } = render(
+        <TextField
+          multiline
+          minRows={2}
+          maxRows={3}
+          defaultValue={'first\nsecond\nthird\nfourth\nfifth'}
+        />,
+      );
+      const root = container.querySelector(`.${classes.root}`);
+      const textarea = screen.getByRole('textbox');
+
+      expect(textarea.scrollHeight).to.be.greaterThan(textarea.clientHeight);
+      expect(root.getBoundingClientRect().height).to.equal(textarea.getBoundingClientRect().height);
+    });
+
+    it.skipIf(isJsdom())(
+      'should include the multiline padding in the textarea hit target',
+      function test() {
+        const { container } = render(
+          <OutlinedInput multiline rows={2} defaultValue={'first line\nsecond line'} />,
+        );
+        const root = container.querySelector(`.${classes.root}`);
+        const textarea = screen.getByRole('textbox');
+        const { left, top } = root.getBoundingClientRect();
+
+        expect(document.elementFromPoint(left + 2, top + 2)).to.equal(textarea);
+      },
+    );
+
     it('should render a `textbox` with `aria-multiline`', () => {
       render(<InputBase multiline />);
 
