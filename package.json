@@ -110,7 +110,7 @@
     "@vitejs/plugin-react": "^6.0.0",
     "@vitest/browser-playwright": "^4.1.0",
     "@vitest/coverage-v8": "^4.1.0",
-    "@vitest/eslint-plugin": "^1.6.27",
+    "@vitest/eslint-plugin": "1.6.27",
     "axe-core": "4.13.0",
     "babel-plugin-module-resolver": "5.0.3",
     "chalk": "6.0.0",
