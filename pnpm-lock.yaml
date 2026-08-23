@@ -186,8 +186,8 @@ importers:
         specifier: 30.0.1
         version: 30.0.1
       lerna:
-        specifier: 10.0.0
-        version: 10.0.0(@types/node@20.19.43)(babel-plugin-macros@3.1.0)(supports-color@11.0.0)(typescript@6.0.3)
+        specifier: 10.0.1
+        version: 10.0.1(@types/node@20.19.43)(babel-plugin-macros@3.1.0)(supports-color@11.0.0)(typescript@6.0.3)
       minimatch:
         specifier: 10.2.6
         version: 10.2.6
@@ -6134,8 +6134,8 @@ packages:
     resolution: {integrity: sha512-cs+LadpH7Kpw0M3k8wurk+sOVVDAENA0iK4OBOrkL94j5lEVYRJ4j3zd2bhY9qgzyrPqthdcYT3axzRN7AliMg==}
     engines: {node: '>=22'}
 
-  conventional-commits-parser@7.1.0:
-    resolution: {integrity: sha512-DPp6hkUjvwIivxbkrTiLXeRswNv1A/4GFA2X6scXma0AMa9632V3TwxmrlkUIEtUktiM3Ln+RrSH2xlP3/jUTw==}
+  conventional-commits-parser@7.1.2:
+    resolution: {integrity: sha512-O+x4N2yH+ijvqWlIyTHsXTAP+algNWgGbjY2duCe8w2vUMvUB95cLRslCPfTMQyLAKlet3bhZTdu6ozn4M+QJQ==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -8031,8 +8031,8 @@ packages:
     resolution: {integrity: sha512-MbjN408fEndfiQXbFQ1vnd+1NoLDsnQW41410oQBXiyXDMYH5z505juWa4KUE1LqxRC7DgOgZDbKLxHIwm27hA==}
     engines: {node: '>=0.10'}
 
-  lerna@10.0.0:
-    resolution: {integrity: sha512-U1Rkz2lMZEGstg7h6vw2LfuGNTomXANZ+mX80+3pR0L2RWWcXI/gZJya9EDq4wTY+1AoUzhNNUnlAEWdFugisw==}
+  lerna@10.0.1:
+    resolution: {integrity: sha512-ibmMaBmH/sR2HpZzgvpEI5/6bCgMp0AISIFZ/cQcCzRVH2EgPapBYHXS6A6NgI6vRJNE4pgnxQbNiSq00HVSjA==}
     engines: {node: ^22.13.0 || ^24.0.0 || ^26.0.0}
     hasBin: true
 
@@ -10454,8 +10454,8 @@ packages:
     resolution: {integrity: sha512-ujeqbceABgwMZxEJnk2HDY2DlnUZ+9oEcb1KzTVfYHio0UE6dG71n60d8D2I4qNvleWrrXpmjpt7vZeF1LnMZQ==}
     engines: {node: '>=6'}
 
-  tar@7.5.20:
-    resolution: {integrity: sha512-9FcyK4PA6+WbzlTM9WhQm6vB5W7cP7dUiPsv1g7YDwEQnQ1CGpK3MGlKk/ITVWMk05kHZuBhmVhiv8LZoy/PFQ==}
+  tar@7.5.22:
+    resolution: {integrity: sha512-MFO/QzvtAOmJbkhOaCTvbGcFN9L9b+JunIsDwaKljSOdcLMea3NJ1k9Usz/rjdfSXTq4dfzfeS7W4p4YOAAHeA==}
     engines: {node: '>=18'}
 
   terser@5.50.0:
@@ -12258,14 +12258,14 @@ snapshots:
   '@colors/colors@1.5.0':
     optional: true
 
-  '@conventional-changelog/git-client@3.1.2(conventional-commits-filter@6.0.1)(conventional-commits-parser@7.1.0)':
+  '@conventional-changelog/git-client@3.1.2(conventional-commits-filter@6.0.1)(conventional-commits-parser@7.1.2)':
     dependencies:
       '@simple-libs/child-process-utils': 2.0.0
       '@simple-libs/stream-utils': 2.0.0
       semver: 7.8.5
     optionalDependencies:
       conventional-commits-filter: 6.0.1
-      conventional-commits-parser: 7.1.0
+      conventional-commits-parser: 7.1.2
 
   '@conventional-changelog/template@1.3.0': {}
 
@@ -16165,31 +16165,31 @@ snapshots:
 
   conventional-changelog@8.1.0(conventional-commits-filter@6.0.1):
     dependencies:
-      '@conventional-changelog/git-client': 3.1.2(conventional-commits-filter@6.0.1)(conventional-commits-parser@7.1.0)
+      '@conventional-changelog/git-client': 3.1.2(conventional-commits-filter@6.0.1)(conventional-commits-parser@7.1.2)
       '@simple-libs/hosted-git-info': 2.0.0
       '@simple-libs/normalize-package-data': 1.0.0
       argue-cli: 3.1.0
       conventional-changelog-preset-loader: 6.0.1
       conventional-changelog-writer: 9.2.1
-      conventional-commits-parser: 7.1.0
+      conventional-commits-parser: 7.1.2
       fd-package-json: 2.0.0
     transitivePeerDependencies:
       - conventional-commits-filter
 
   conventional-commits-filter@6.0.1: {}
 
-  conventional-commits-parser@7.1.0:
+  conventional-commits-parser@7.1.2:
     dependencies:
       '@simple-libs/stream-utils': 2.0.0
       argue-cli: 3.1.0
 
   conventional-recommended-bump@12.1.0:
     dependencies:
-      '@conventional-changelog/git-client': 3.1.2(conventional-commits-filter@6.0.1)(conventional-commits-parser@7.1.0)
+      '@conventional-changelog/git-client': 3.1.2(conventional-commits-filter@6.0.1)(conventional-commits-parser@7.1.2)
       argue-cli: 3.1.0
       conventional-changelog-preset-loader: 6.0.1
       conventional-commits-filter: 6.0.1
-      conventional-commits-parser: 7.1.0
+      conventional-commits-parser: 7.1.2
 
   convert-source-map@1.9.0: {}
 
@@ -18341,7 +18341,7 @@ snapshots:
     dependencies:
       language-subtag-registry: 0.3.23
 
-  lerna@10.0.0(@types/node@20.19.43)(babel-plugin-macros@3.1.0)(supports-color@11.0.0)(typescript@6.0.3):
+  lerna@10.0.1(@types/node@20.19.43)(babel-plugin-macros@3.1.0)(supports-color@11.0.0)(typescript@6.0.3):
     dependencies:
       '@npmcli/arborist': 9.1.6(supports-color@11.0.0)
       '@npmcli/package-json': 7.0.2
@@ -18355,7 +18355,7 @@ snapshots:
       conventional-changelog: 8.1.0(conventional-commits-filter@6.0.1)
       conventional-changelog-angular: 9.2.1
       conventional-commits-filter: 6.0.1
-      conventional-commits-parser: 7.1.0
+      conventional-commits-parser: 7.1.2
       conventional-recommended-bump: 12.1.0
       cosmiconfig: 9.0.0(typescript@6.0.3)
       dedent: 1.5.3(babel-plugin-macros@3.1.0)
@@ -18386,7 +18386,7 @@ snapshots:
       signal-exit: 3.0.7
       ssri: 12.0.0
       string-width: 4.2.3
-      tar: 7.5.20
+      tar: 7.5.22
       tinyglobby: 0.2.12
       validate-npm-package-license: 3.0.4
       validate-npm-package-name: 6.0.2
@@ -19399,7 +19399,7 @@ snapshots:
       nopt: 9.0.0
       proc-log: 6.1.0
       semver: 7.8.5
-      tar: 7.5.20
+      tar: 7.5.22
       tinyglobby: 0.2.17
       undici: 6.28.0
       which: 6.0.1
@@ -20033,7 +20033,7 @@ snapshots:
       promise-retry: 2.0.1
       sigstore: 4.1.1(supports-color@11.0.0)
       ssri: 12.0.0
-      tar: 7.5.20
+      tar: 7.5.22
     transitivePeerDependencies:
       - supports-color
 
@@ -20055,7 +20055,7 @@ snapshots:
       proc-log: 6.1.0
       sigstore: 4.1.1(supports-color@11.0.0)
       ssri: 13.0.1
-      tar: 7.5.20
+      tar: 7.5.22
     transitivePeerDependencies:
       - supports-color
 
@@ -21596,7 +21596,7 @@ snapshots:
       inherits: 2.0.4
       readable-stream: 3.6.2
 
-  tar@7.5.20:
+  tar@7.5.22:
     dependencies:
       '@isaacs/fs-minipass': 4.0.1
       chownr: 3.0.0
