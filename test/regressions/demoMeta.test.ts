@@ -14,6 +14,16 @@ describe('parseRoute', () => {
     });
   });
 
+  it('parses a getting-started template route into its docs/data path', () => {
+    expect(
+      parseRoute('/docs-getting-started-templates-crud-dashboard/CrudDashboard'),
+    ).to.deep.equal({
+      path: 'docs/data/material/getting-started/templates/crud-dashboard/CrudDashboard',
+      slug: 'crud-dashboard',
+      demo: 'CrudDashboard',
+    });
+  });
+
   it('parses a docs-product route into the matching product*/ docs/src path', () => {
     expect(parseRoute('/docs-product-material/MaterialHero')).to.deep.equal({
       path: 'docs/src/components/productMaterial/MaterialHero',
@@ -70,6 +80,23 @@ describe('getConfig', () => {
       test: 'docs/data/material/components/foo/*',
       enabled: true,
     });
+  });
+});
+
+describe('minReactMajor', () => {
+  it('marks the crud-dashboard template as needing React 19', () => {
+    expect(
+      getConfig(
+        SCREENSHOT_RULES,
+        'docs/data/material/getting-started/templates/crud-dashboard/CrudDashboard',
+      ),
+    ).to.deep.include({ minReactMajor: 19 });
+  });
+
+  it('leaves demos without the field unconstrained', () => {
+    expect(
+      getConfig(SCREENSHOT_RULES, 'docs/data/material/components/autocomplete/Asynchronous'),
+    ).to.not.have.property('minReactMajor');
   });
 });
 
