@@ -383,14 +383,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         selectionRef.current.allowUnselectedMouseUp = true;
       });
     } else {
+      // Both timers start from the mousedown. Chaining the selected timer inside the
+      // unselected callback would compound setTimeout jitter past the 400ms window.
       // mousedown -> move to unselected item -> mouseup should not select within 200ms.
       unselectedMouseUpTimer.start(UNSELECTED_MOUSE_UP_DELAY, () => {
         selectionRef.current.allowUnselectedMouseUp = true;
+      });
 
-        // mousedown -> mouseup on selected item should not select within 400ms.
-        selectedMouseUpTimer.start(UNSELECTED_MOUSE_UP_DELAY, () => {
-          selectionRef.current.allowSelectedMouseUp = true;
-        });
+      // mousedown -> mouseup on selected item should not select within 400ms.
+      selectedMouseUpTimer.start(SELECTED_MOUSE_UP_DELAY, () => {
+        selectionRef.current.allowSelectedMouseUp = true;
       });
     }
   };
