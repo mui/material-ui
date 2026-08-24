@@ -27,8 +27,7 @@ window.muiFixture = {
   navigate: () => {
     throw new Error(`muiFixture.navigate is not ready`);
   },
-  // `index.test.js` awaits this before it screenshots anything, and races it
-  // against a real timer -- see the comment there for why nothing else guards it.
+  // `index.test.js` awaits this in `renderFixture`, before any fixture mounts.
   // Keep the v1 `css?family=` endpoint: it serves the static per-weight faces the
   // baselines were recorded with, while `css2` returns variable fonts.
   fontsReady: loadFonts({

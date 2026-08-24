@@ -7,9 +7,6 @@ import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
 import { A11Y_RULES, DEFAULT_VIEWPORT, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
-// Guards against a font host that accepts the connection but never responds.
-const FONT_TIMEOUT = 20_000;
-
 const AXE_SCRIPT = path.resolve(currentDirectory, '../../node_modules/axe-core/axe.min.js');
 
 async function main() {
@@ -53,23 +50,9 @@ async function main() {
       }
     });
 
-    // Wait for all requests to finish.
-    // This should load shared resources such as fonts.
+    // Wait for all requests to finish. Fonts are awaited per render in
+    // `renderFixture`, not here.
     await page.goto(`${baseUrl}#dev`, { waitUntil: 'networkidle0' });
-    // Screenshots taken with fallback faces look like a repo-wide text rendering
-    // change. Fail the run instead of publishing them. This race is the only
-    // guard: `loadFonts` no longer times out on its own, `page.evaluate` has no
-    // timeout, and the first page is acquired at module scope where vitest's
-    // `testTimeout` does not apply.
-    await Promise.race([
-      page.evaluate(() => window.muiFixture.fontsReady),
-      new Promise((resolve, reject) => {
-        setTimeout(
-          () => reject(new Error(`Fonts did not load within ${FONT_TIMEOUT}ms.`)),
-          FONT_TIMEOUT,
-        );
-      }),
-    ]);
 
     // Simulate portrait mode for date pickers.
     // See `useIsLandscape`.
@@ -130,6 +113,14 @@ async function main() {
    * @param {string} route
    */
   async function renderFixture(page, route) {
+    // Screenshots taken with fallback faces look like a repo-wide text rendering
+    // change. Wait here rather than at page creation: every caller is inside a
+    // test, so vitest's timeout covers it, and nothing that does not need fonts
+    // (route discovery, page setup) is blocked. It has to happen before the
+    // fixture mounts -- components that measure text at mount would otherwise
+    // bake in fallback metrics that the later font swap does not recompute.
+    await page.evaluate(() => window.muiFixture.fontsReady);
+
     await page.evaluate((_route) => {
       // Use client-side routing which is much faster than full page navigation via page.goto().
       window.muiFixture.navigate(`${_route}#no-dev`);
