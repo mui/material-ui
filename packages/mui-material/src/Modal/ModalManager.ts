@@ -54,6 +54,9 @@ function isAriaHiddenForbiddenOnElement(element: Element): boolean {
   return isForbiddenTagName || isInputHidden;
 }
 
+// The chain of elements from `node` up to (but not including) `container`.
+// Returns an empty set when `node` is not inside `container`, e.g. the modal
+// has not mounted yet which keeps the old shallow behaviour as a fallback.
 function getKeepChain(node: HTMLElement, container: HTMLElement): Set<HTMLElement> {
   const chain = new Set<HTMLElement>();
   let current: HTMLElement | null = node;
@@ -66,6 +69,9 @@ function getKeepChain(node: HTMLElement, container: HTMLElement): Set<HTMLElemen
   return current === container ? chain : new Set<HTMLElement>();
 }
 
+// Walk down from `parent` collecting everything that should be aria-hidden.
+// An element on the keep chain is stepped through rather than hidden, so the
+// modal's own ancestors stay readable while their other children get hidden.
 function collectHiddenTargets(
   parent: HTMLElement,
   keep: HTMLElement,
@@ -101,6 +107,9 @@ function syncAriaHidden(containerInfo: Container): void {
   });
   hiddenSiblings.forEach((element) => next.delete(element));
 
+  // Anything we hid last time that isn't in the new answer gets un-hidden.
+  // This is the line that hands the accessibility tree back to a parent dialog
+  // when a nested one closes.
   containerInfo.hiddenSet.forEach((element) => {
     if (!next.has(element)) {
       ariaHidden(element, false);
