@@ -1127,7 +1127,7 @@ describe('<ButtonBase />', () => {
       // layer already activates the element from the keyboard.
       it('does not synthesize a click when a handler sets defaultMuiPrevented', async () => {
         const onClickSpy = spy();
-        /** @param {any} event */
+        /** @param {import('./useButtonBase').MuiKeyboardEvent} event */
         const suppress = (event) => {
           event.defaultMuiPrevented = true;
         };
