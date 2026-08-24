@@ -6,6 +6,7 @@ import { test as base } from 'vitest';
 import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
 import { A11Y_RULES, DEFAULT_VIEWPORT, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 import { stubAlgoliaSearch, unstubAlgoliaSearch } from './algoliaSearchStub';
+import { favoriteSearchesKey, recentSearchesKey, RECENT_SEARCHES } from './docsearchFixtureData';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const AXE_SCRIPT = path.resolve(currentDirectory, '../../node_modules/axe-core/axe.min.js');
@@ -272,6 +273,17 @@ async function main() {
     describe.each(['SearchModal', 'SearchModalDark'])('AppSearch/%s', (fixture) => {
       test('should render the DocSearch modal correctly', async ({ pooled }) => {
         const { page } = pooled;
+        // Seed from here rather than from the fixture. The `pooled` fixture
+        // clears storage on acquisition, and navigating to a route the pooled
+        // page already rendered does not remount it, so a seed written on mount
+        // would be gone by the time the modal reads it.
+        await page.evaluate(
+          ([key, favoriteKey, hits]) => {
+            localStorage.setItem(key, JSON.stringify(hits));
+            localStorage.setItem(favoriteKey, '[]');
+          },
+          [recentSearchesKey, favoriteSearchesKey, RECENT_SEARCHES],
+        );
         await renderFixture(page, `/regression-AppSearch/${fixture}`);
         // The modal portals to `document.body`, so it lands outside the
         // testcase element and has to be screenshotted on its own.
@@ -282,6 +294,14 @@ async function main() {
         await page.waitForFunction(() =>
           Boolean(document.querySelector('style[data-href*="docsearch"]')),
         );
+        // Neither of the waits above says anything about the two areas this
+        // screenshot is for. The stylesheet request starts when `AppSearch`
+        // mounts, well before the modal opens, so that wait can already be
+        // satisfied. The stored searches arrive through autocomplete's async
+        // source pipeline, and the custom start screen is portalled in from an
+        // effect. Wait for one sentinel from each.
+        await page.waitForSelector('.DocSearch-Modal .DocSearch-Hit');
+        await page.waitForSelector('.DocSearch-Modal .DocSearch-NewStartScreenItem');
         // Rank `docsearch` below `mui`, the way the layer order that
         // `BrandingCssVarsProvider` declares does in the docs. Without it the
         // DocSearch stylesheet wins and none of the `AppSearch` overrides
@@ -310,6 +330,19 @@ async function main() {
           await takeScreenshot(page, {
             testcase: modal,
             route: `/regression-AppSearch/${fixture}Results`,
+          });
+
+          // Below 768px DocSearch lets the hit title and path wrap. Cropping to
+          // the modal does not reach that rule -- media queries read the
+          // viewport -- so the width has to change. 767px keeps the modal at
+          // the same width our `max-width` override gives it on desktop, which
+          // leaves the typography as the only thing that differs. The `pooled`
+          // fixture resets the viewport on acquisition, so this does not leak.
+          await page.setViewportSize({ width: 767, height: DEFAULT_VIEWPORT.height });
+          await page.waitForFunction(() => window.matchMedia('(max-width: 768px)').matches);
+          await takeScreenshot(page, {
+            testcase: modal,
+            route: `/regression-AppSearch/${fixture}ResultsNarrow`,
           });
         } finally {
           // Pages are pooled, so leave the route table as we found it.

@@ -68,11 +68,15 @@ const HITS = [
     objectID: 'api-card-props',
     type: 'content',
     hierarchy: { lvl0: 'Component API', lvl1: 'Card API' },
-    content: 'The content of the card. Use raised to render a raised card.',
+    // Long on purpose. Below 768px DocSearch lets the title and the path wrap
+    // instead of truncating, and a string that fits on one line would render
+    // the same either way, leaving the narrow capture with nothing to catch.
+    content:
+      'The content of the card, which renders inside a Paper surface and accepts any children you pass to it, including a card header, card media and card actions.',
     snippet: {
       content: {
         value:
-          'The content of the <mark>card</mark>. Use raised to render a raised <mark>card</mark>.',
+          'The content of the <mark>card</mark>, which renders inside a Paper surface and accepts any children you pass to it, including a <mark>card</mark> header, <mark>card</mark> media and <mark>card</mark> actions.',
         matchLevel: 'full',
       },
     },
