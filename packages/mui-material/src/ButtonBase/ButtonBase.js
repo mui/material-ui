@@ -93,9 +93,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     // escape hatch to suppress the focusVisible state and callback
     // used by anchored <Menu>s to to suppress focus visible styling when opened with a pointer
     suppressFocusVisible = false,
-    // escape hatch for roots that already get Enter and Space activation from an outer
-    // layer, for example a Base UI part that renders into ButtonBase
-    suppressKeyboardActivation = false,
     // private prop to allow native vs non-native button props to be resolved before mount
     internalNativeButton: internalNativeButtonProp,
     /* eslint-enable react/prop-types */
@@ -171,7 +168,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     type,
     hasFormAction,
     tabIndex,
-    suppressKeyboardActivation,
     onBeforeKeyDown: handleBeforeKeyDown,
     onBeforeKeyUp: handleBeforeKeyUp,
   });

@@ -79,6 +79,25 @@ export interface Menu2RootSlotProps<OwnerState> {
   root?: SlotProps<Record<string, any>, OwnerState>;
 }
 
+// Base UI owns the Enter and Space activation of a menu item. The item root is
+// a ButtonBase rendered as a div, so ButtonBase would emulate a second one.
+// `defaultMuiPrevented` is the MUI convention that turns that emulation off.
+export function suppressButtonBaseKeyboardActivation(props?: Record<string, any>) {
+  const externalOnKeyDown = props?.onKeyDown;
+  const externalOnKeyUp = props?.onKeyUp;
+
+  return {
+    onKeyDown: (event: React.KeyboardEvent<HTMLElement>) => {
+      externalOnKeyDown?.(event);
+      (event as any).defaultMuiPrevented = true;
+    },
+    onKeyUp: (event: React.KeyboardEvent<HTMLElement>) => {
+      externalOnKeyUp?.(event);
+      (event as any).defaultMuiPrevented = true;
+    },
+  };
+}
+
 export function getMenu2RootRender<OwnerState>(
   RootSlot: React.ElementType,
   ownerState: OwnerState,
@@ -91,14 +110,12 @@ export function getMenu2RootRender<OwnerState>(
   // so a custom slot would spread them onto the DOM and React would warn.
   if (defaultRootSlot != null && RootSlot !== defaultRootSlot) {
     delete rootProps.disableRipple;
-    delete rootProps.suppressKeyboardActivation;
   }
 
   if (isHostComponent(RootSlot)) {
     delete rootProps.as;
     delete rootProps.component;
     delete rootProps.ownerState;
-    delete rootProps.suppressKeyboardActivation;
     delete rootProps.sx;
 
     return React.createElement(RootSlot, rootProps);

@@ -26,9 +26,8 @@ describe('<Menu2Item />', () => {
     testVariantProps: { dense: true },
   }));
 
-  // `disableRipple` and `suppressKeyboardActivation` are internal to
-  // `ButtonBase`. A custom root slot does not reach it, so React warns if the
-  // slot spreads them onto the DOM.
+  // `disableRipple` is internal to `ButtonBase`. A custom root slot does not
+  // reach it, so React warns if the slot spreads it onto the DOM.
   it('does not forward the internal ButtonBase props to a custom root slot', async () => {
     let received: string[] = [];
     const CustomRoot = React.forwardRef(function CustomRoot(
@@ -48,7 +47,6 @@ describe('<Menu2Item />', () => {
     await screen.findByRole('menuitem', { name: 'Item' });
     // The slot is in use, so the assertion below is not vacuous.
     expect(received).to.include('className');
-    expect(received).not.to.include('suppressKeyboardActivation');
     expect(received).not.to.include('disableRipple');
   });
 });

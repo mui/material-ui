@@ -22,6 +22,7 @@ import {
   getMenu2RootRender,
   isMenu2RootNativeButton,
   Menu2RootSlotProps,
+  suppressButtonBaseKeyboardActivation,
 } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2ItemUtilityClass,
@@ -135,6 +136,8 @@ const Menu2Item = React.forwardRef(function Menu2Item(
   );
   const RootSlot = slots?.root ?? Menu2ItemRoot;
 
+  const rootSlotProps = resolveComponentProps(slotProps?.root, ownerState);
+
   return (
     <ListContext.Provider value={childContext}>
       <BaseMenu.Item
@@ -143,14 +146,14 @@ const Menu2Item = React.forwardRef(function Menu2Item(
           RootSlot,
           ownerState,
           {
-            ...resolveComponentProps(slotProps?.root, ownerState),
+            ...rootSlotProps,
             // ButtonBase renders a <button> by default; the items keep their element.
             component: component ?? 'div',
             disableRipple,
             ownerState,
-            // Base UI already activates the item on Enter and Space.
-            suppressKeyboardActivation: true,
             sx,
+            // Base UI owns the Enter and Space activation of the item.
+            ...suppressButtonBaseKeyboardActivation(rootSlotProps),
           },
           Menu2ItemRoot,
         )}

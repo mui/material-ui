@@ -56,12 +56,6 @@ export interface UseButtonBaseParameters {
    */
   stopEventPropagation?: boolean | undefined;
   /**
-   * When `true`, the hook does not synthesize Enter and Space clicks on non-native roots.
-   * Set it when an outer layer already activates the element from the keyboard.
-   * @default false
-   */
-  suppressKeyboardActivation?: boolean | undefined;
-  /**
    * An additional function that will run before the user's `onKeyDown`, e.g.
    * to trigger the ripple effect in `<ButtonBase>`.
    */
@@ -108,6 +102,12 @@ export interface UseButtonBaseReturnValue {
 
 const EMPTY = {};
 
+// A handler can set `defaultMuiPrevented` to keep the hook from emulating the
+// Enter and Space activation, the same convention Autocomplete and Snackbar use.
+type MuiKeyboardEvent = React.KeyboardEvent<HTMLElement> & {
+  defaultMuiPrevented?: boolean | undefined;
+};
+
 export default function useButtonBase(
   parameters: UseButtonBaseParameters,
 ): UseButtonBaseReturnValue {
@@ -122,7 +122,6 @@ export default function useButtonBase(
     tabIndex = 0,
     focusableWhenDisabled: focusableWhenDisabledParam,
     stopEventPropagation = false,
-    suppressKeyboardActivation = false,
     onBeforeKeyDown,
     onBeforeKeyUp,
   } = parameters;
@@ -286,7 +285,7 @@ export default function useButtonBase(
         externalOnKeyDown?.(event);
 
         if (
-          suppressKeyboardActivation ||
+          (event as MuiKeyboardEvent).defaultMuiPrevented ||
           event.target !== event.currentTarget ||
           hasNativeKeyboardActivation()
         ) {
@@ -313,7 +312,7 @@ export default function useButtonBase(
         externalOnKeyUp?.(event);
 
         if (
-          !suppressKeyboardActivation &&
+          !(event as MuiKeyboardEvent).defaultMuiPrevented &&
           event.target === event.currentTarget &&
           !hasNativeKeyboardActivation() &&
           event.key === ' ' &&
@@ -340,7 +339,6 @@ export default function useButtonBase(
       onBeforeKeyDown,
       onBeforeKeyUp,
       stopEventPropagation,
-      suppressKeyboardActivation,
     ],
   );
 

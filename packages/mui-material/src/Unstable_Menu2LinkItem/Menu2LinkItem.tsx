@@ -9,7 +9,11 @@ import memoTheme from '../utils/memoTheme';
 import ButtonBase from '../ButtonBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenu2ItemStyles } from '../Unstable_Menu2/menu2SharedStyles';
-import { getMenu2RootRender, Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
+import {
+  getMenu2RootRender,
+  Menu2RootSlotProps,
+  suppressButtonBaseKeyboardActivation,
+} from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2ItemOwnerState,
   Menu2LinkItemBaseProps,
@@ -133,6 +137,8 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
     [dense, disableGutters],
   );
 
+  const rootSlotProps = resolveComponentProps(slotProps?.root, ownerState);
+
   return (
     <ListContext.Provider value={childContext}>
       <BaseMenu.LinkItem
@@ -141,14 +147,14 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
           slots?.root ?? Menu2LinkItemRoot,
           ownerState,
           {
-            ...resolveComponentProps(slotProps?.root, ownerState),
+            ...rootSlotProps,
             // ButtonBase renders a <button> by default; the items keep their element.
             component: component ?? 'a',
             disableRipple,
             ownerState,
-            // Base UI already activates the item on Enter and Space.
-            suppressKeyboardActivation: true,
             sx,
+            // Base UI owns the Enter and Space activation of the item.
+            ...suppressButtonBaseKeyboardActivation(rootSlotProps),
           },
           Menu2LinkItemRoot,
         )}

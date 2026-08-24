@@ -1123,6 +1123,34 @@ describe('<ButtonBase />', () => {
     });
 
     describe('keyboard accessibility for non interactive elements', () => {
+      // The MUI convention: a handler sets `defaultMuiPrevented` when an outer
+      // layer already activates the element from the keyboard.
+      it('does not synthesize a click when a handler sets defaultMuiPrevented', async () => {
+        const onClickSpy = spy();
+        /** @param {any} event */
+        const suppress = (event) => {
+          event.defaultMuiPrevented = true;
+        };
+
+        render(
+          <ButtonBase onClick={onClickSpy} onKeyDown={suppress} onKeyUp={suppress} component="div">
+            Hello
+          </ButtonBase>,
+        );
+
+        const button = screen.getByRole('button');
+
+        await act(async () => {
+          button.focus();
+        });
+
+        // Space activates on keyup, Enter on keydown.
+        fireEvent.keyDown(button, { key: ' ' });
+        fireEvent.keyUp(button, { key: ' ' });
+        fireEvent.keyDown(button, { key: 'Enter' });
+
+        expect(onClickSpy.callCount).to.equal(0);
+      });
       it('does not call onClick when a spacebar is pressed on the element but prevents the default', async () => {
         const onKeyDown = spy();
         const onClickSpy = spy();

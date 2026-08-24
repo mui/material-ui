@@ -18,6 +18,7 @@ import {
   isMenu2RootNativeButton,
   Menu2RootSlotProps,
   SlotProps,
+  suppressButtonBaseKeyboardActivation,
 } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2ItemClassName,
@@ -197,6 +198,8 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
   const IndicatorSlot = slots?.indicator ?? Menu2CheckboxItemIndicator;
   const resolvedIndicatorProps = resolveComponentProps(slotProps?.indicator, ownerState);
 
+  const rootSlotProps = resolveComponentProps(slotProps?.root, ownerState);
+
   return (
     <ListContext.Provider value={childContext}>
       <BaseMenu.CheckboxItem
@@ -205,14 +208,14 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
           RootSlot,
           ownerState,
           {
-            ...resolveComponentProps(slotProps?.root, ownerState),
+            ...rootSlotProps,
             // ButtonBase renders a <button> by default; the items keep their element.
             component: component ?? 'div',
             disableRipple,
             ownerState,
-            // Base UI already activates the item on Enter and Space.
-            suppressKeyboardActivation: true,
             sx,
+            // Base UI owns the Enter and Space activation of the item.
+            ...suppressButtonBaseKeyboardActivation(rootSlotProps),
           },
           Menu2CheckboxItemRoot,
         )}
