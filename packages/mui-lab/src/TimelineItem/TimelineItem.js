@@ -38,7 +38,12 @@ const TimelineItemRoot = styled('li', {
   display: 'flex',
   position: 'relative',
   minHeight: 70,
-  [`&:not(:has(.${timelineOppositeContentClasses.root}))::before`]: {
+  // `:where()` keeps the `:has()` check while contributing no specificity of
+  // its own. Bare `:not(:has(.class))` inherits its argument's specificity,
+  // which put this rule level with the `Timeline` override the docs recommend
+  // for removing the spacer -- and a tie is settled by emotion's insertion
+  // order, so whichever demo rendered first on a page decided the result.
+  [`&:where(:not(:has(.${timelineOppositeContentClasses.root})))::before`]: {
     content: '""',
     flex: 1,
     padding: '6px 16px',
