@@ -310,20 +310,25 @@ async function main() {
         // tags above everything in `<head>`, and it keeps doing so as
         // components mount — so the only stable point is once the modal has
         // finished rendering.
-        await page.evaluate(() => {
-          const style = document.createElement('style');
-          style.textContent = '@layer docsearch, mui;';
-          document.head.prepend(style);
-        });
-        await takeScreenshot(page, {
-          testcase: modal,
-          route: `/regression-AppSearch/${fixture}Open`,
-        });
-
-        // The results screen carries the markup the start screen never shows:
-        // highlighted matches, breadcrumbs, and the tree connector between a
-        // section and its children.
+        //
+        // It only inserts `docsearch`: `mui` already ranks first here, because
+        // emotion prepends its tags above the bundle stylesheet and outranks the
+        // order `global.css` declares. Every other layer keeps its position.
         try {
+          await page.evaluate(() => {
+            const style = document.createElement('style');
+            style.id = 'docsearch-layer-order';
+            style.textContent = '@layer docsearch, mui;';
+            document.head.prepend(style);
+          });
+          await takeScreenshot(page, {
+            testcase: modal,
+            route: `/regression-AppSearch/${fixture}Open`,
+          });
+
+          // The results screen carries the markup the start screen never shows:
+          // highlighted matches, breadcrumbs, and the tree connector between a
+          // section and its children.
           await stubAlgoliaSearch(page);
           await page.locator('.DocSearch-Input').fill('card');
           await page.waitForSelector('.DocSearch-Hit mark');
@@ -345,8 +350,14 @@ async function main() {
             route: `/regression-AppSearch/${fixture}ResultsNarrow`,
           });
         } finally {
-          // Pages are pooled, so leave the route table as we found it.
+          // Pages are pooled and only the viewport and storage are reset between
+          // tests, so undo the rest ourselves. The layer declaration is inert for
+          // fixtures that put nothing in `docsearch`, but leaving it behind makes
+          // their layer order depend on which test ran first.
           await unstubAlgoliaSearch(page);
+          await page.evaluate(() => {
+            document.getElementById('docsearch-layer-order')?.remove();
+          });
         }
       });
     });
