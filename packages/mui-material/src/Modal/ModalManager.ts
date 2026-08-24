@@ -107,9 +107,7 @@ function syncAriaHidden(containerInfo: Container): void {
   });
   hiddenSiblings.forEach((element) => next.delete(element));
 
-  // Anything we hid last time that isn't in the new answer gets un-hidden.
-  // This is the line that hands the accessibility tree back to a parent dialog
-  // when a nested one closes.
+  // Hands the accessibility tree back to a parent dialog when a nested one closes.
   containerInfo.hiddenSet.forEach((element) => {
     if (!next.has(element)) {
       ariaHidden(element, false);
