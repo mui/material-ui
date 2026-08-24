@@ -29,6 +29,9 @@ catalogs:
       version: 4.2.0
 
 overrides:
+  '@mui/internal-api-docs-builder>typescript': ^6.0.3
+  '@mui/internal-docs-utils>typescript': ^6.0.3
+  '@mui/internal-scripts>typescript': ^6.0.3
   docs>stylis: 4.2.0
   docs>react-is: 19.2.8
   caniuse-lite: ^1.0.30001809
@@ -793,7 +796,7 @@ importers:
         version: 6.1.3
     devDependencies:
       typescript:
-        specifier: 6.0.3
+        specifier: ^6.0.3
         version: 6.0.3
     publishDirectory: build
 
