@@ -3,7 +3,9 @@ import NextLink from 'next/link';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
-import Popover from '@mui/material/Popover';
+import Grow from '@mui/material/Grow';
+import Paper from '@mui/material/Paper';
+import Popper from '@mui/material/Popper';
 import Stack from '@mui/material/Stack';
 import Tooltip, { type TooltipProps } from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
@@ -12,7 +14,10 @@ import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRigh
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 // The Unstable_ subpaths use default exports, so the local bindings drop the
 // prefix and the JSX mirrors the future stable names.
-import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2, {
+  useMenu2ItemPopover,
+  type UseMenu2ItemPopoverPopover,
+} from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
@@ -94,8 +99,6 @@ const versionHistoryPreviewCardItems: PreviewCardItem[] = [
   },
 ];
 
-const previewCardItems = [...rootPreviewCardItems, ...versionHistoryPreviewCardItems];
-
 const horizontalTooltipProps = {
   placement: 'right',
   slotProps: {
@@ -164,65 +167,34 @@ const MenuTooltip = React.forwardRef<
   );
 });
 
-function MaterialPreviewCard(props: {
-  id: string | undefined;
-  item: PreviewCardItem | null;
-  anchorEl: HTMLElement | null;
-}) {
-  const { id, item, anchorEl } = props;
-  const open = Boolean(item && anchorEl);
+// The hook supplies the position, the id, and the non-interactive style. A
+// Popper has no Paper, so the card renders its own.
+function MaterialPreviewCard(props: { popover: UseMenu2ItemPopoverPopover<PreviewCardItem> }) {
+  const item = props.popover.value;
 
   return (
-    <Popover
-      open={open}
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'left',
-      }}
-      marginThreshold={8}
-      // Material UI does not have a PreviewCard primitive, so keep the Popover
-      // non-interactive and opt out of Modal focus behavior for this experiment.
-      disableAutoFocus
-      disableEnforceFocus
-      disableRestoreFocus
-      disableScrollLock
-      hideBackdrop
-      slotProps={{
-        root: {
-          sx: {
-            pointerEvents: 'none',
-          },
-        },
-        paper: {
-          id,
-          sx: {
-            width: 256,
-            p: 1.5,
-            ml: 1,
-            pointerEvents: 'none',
-          },
-        },
-      }}
-    >
-      {item ? (
-        <React.Fragment>
-          <Typography variant="subtitle2" aria-hidden>
-            {item.label}
-          </Typography>
-          <Typography color="text.secondary" sx={{ mt: 0.5 }} variant="body2">
-            {item.description}
-          </Typography>
-          <Typography color="text.secondary" sx={{ mt: 1 }} variant="caption">
-            {item.footer}
-          </Typography>
-        </React.Fragment>
-      ) : null}
-    </Popover>
+    // `transition` keeps the Grow that the Popover gave the card before.
+    <Popper {...props.popover.props} transition sx={{ zIndex: 'tooltip' }}>
+      {({ TransitionProps }) => (
+        <Grow {...TransitionProps} timeout="auto">
+          <Paper elevation={8} sx={{ width: 256, p: 1.5 }}>
+            {item ? (
+              <React.Fragment>
+                <Typography variant="subtitle2" aria-hidden>
+                  {item.label}
+                </Typography>
+                <Typography color="text.secondary" sx={{ mt: 0.5 }} variant="body2">
+                  {item.description}
+                </Typography>
+                <Typography color="text.secondary" sx={{ mt: 1 }} variant="caption">
+                  {item.footer}
+                </Typography>
+              </React.Fragment>
+            ) : null}
+          </Paper>
+        </Grow>
+      )}
+    </Popper>
   );
 }
 
@@ -239,44 +211,13 @@ function DisabledTooltip(props: { title: string; children: React.ReactElement })
 }
 
 function Menu2WithPreviewCardsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: boolean }) {
-  const previewCardIdPrefix = React.useId();
-  const [activeItemId, setActiveItemId] = React.useState<string | null>(null);
-  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
-  const activeItem =
-    previewCardItems.find((previewCardItem) => previewCardItem.id === activeItemId) ?? null;
-  const activePreviewCardId = activeItem
-    ? `${previewCardIdPrefix}-${activeItem.id}-preview-card`
-    : undefined;
-
-  const clearActiveItem = () => {
-    setActiveItemId(null);
-    setAnchorEl(null);
-  };
-
-  const getPreviewCardProps = (item: PreviewCardItem) => {
-    const setActiveItem = (element: HTMLElement) => {
-      setActiveItemId(item.id);
-      setAnchorEl(element);
-    };
-
-    return {
-      'aria-describedby':
-        activeItemId === item.id ? `${previewCardIdPrefix}-${item.id}-preview-card` : undefined,
-      onFocus: (event: React.FocusEvent<HTMLElement>) => {
-        setActiveItem(event.currentTarget);
-      },
-      onMouseEnter: (event: React.MouseEvent<HTMLElement>) => {
-        setActiveItem(event.currentTarget);
-      },
-    };
-  };
+  const { getItemProps, popover, close } = useMenu2ItemPopover<PreviewCardItem>();
 
   return (
     <Menu2
       onOpenChange={(open) => {
         if (!open) {
-          setActiveItemId(null);
-          setAnchorEl(null);
+          close();
         }
       }}
       trigger={<Button>Help cards</Button>}
@@ -288,15 +229,12 @@ function Menu2WithPreviewCardsDemo({ submenusOpenOnHover }: { submenusOpenOnHove
       }}
       sideOffset={8}
     >
-      <Menu2Item
-        label={rootPreviewCardItems[0].label}
-        {...getPreviewCardProps(rootPreviewCardItems[0])}
-      >
+      <Menu2Item label={rootPreviewCardItems[0].label} {...getItemProps(rootPreviewCardItems[0])}>
         {rootPreviewCardItems[0].label}
       </Menu2Item>
       <Menu2Submenu
         trigger={
-          <Menu2Item onFocus={clearActiveItem} onMouseEnter={clearActiveItem}>
+          <Menu2Item>
             Version history
             <KeyboardArrowRightRoundedIcon fontSize="small" />
           </Menu2Item>
@@ -308,18 +246,15 @@ function Menu2WithPreviewCardsDemo({ submenusOpenOnHover }: { submenusOpenOnHove
         }}
       >
         {versionHistoryPreviewCardItems.map((item) => (
-          <Menu2Item key={item.id} label={item.label} {...getPreviewCardProps(item)}>
+          <Menu2Item key={item.id} label={item.label} {...getItemProps(item)}>
             {item.label}
           </Menu2Item>
         ))}
       </Menu2Submenu>
-      <Menu2Item
-        label={rootPreviewCardItems[1].label}
-        {...getPreviewCardProps(rootPreviewCardItems[1])}
-      >
+      <Menu2Item label={rootPreviewCardItems[1].label} {...getItemProps(rootPreviewCardItems[1])}>
         {rootPreviewCardItems[1].label}
       </Menu2Item>
-      <MaterialPreviewCard id={activePreviewCardId} item={activeItem} anchorEl={anchorEl} />
+      <MaterialPreviewCard popover={popover} />
     </Menu2>
   );
 }
@@ -682,8 +617,11 @@ export default function Menu2Experiment() {
             <Menu2WithTooltipsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
           </section>
           <section>
-            <h3 id="menu2-popover-preview-card">Menu2 + Popover-based preview card</h3>
-            <p>Material UI Popover used as a PreviewCard-style menu item help card.</p>
+            <h3 id="menu2-popover-preview-card">Menu2 + preview card popover</h3>
+            <p>
+              The <code>useMenu2ItemPopover</code> hook builds a PreviewCard-style menu item help
+              card on a Popper.
+            </p>
             <Menu2WithPreviewCardsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
           </section>
           <section>

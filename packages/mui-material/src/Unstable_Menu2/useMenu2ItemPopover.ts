@@ -1,0 +1,232 @@
+'use client';
+import * as React from 'react';
+import ownerDocument from '@mui/utils/ownerDocument';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import useId from '@mui/utils/useId';
+import type { PopperPlacementType, PopperProps } from '../Popper';
+
+export interface UseMenu2ItemPopoverOptions {
+  /**
+   * The id of the popover surface. The hook generates one when you omit it.
+   */
+  id?: string | undefined;
+}
+
+/**
+ * The handlers that the caller adds to the same item. `getItemProps` runs each
+ * of them first, then runs its own, so both handlers run.
+ */
+export interface UseMenu2ItemPopoverItemHandlers {
+  onBlur?: React.FocusEventHandler<HTMLElement> | undefined;
+  onFocus?: React.FocusEventHandler<HTMLElement> | undefined;
+  onMouseEnter?: React.MouseEventHandler<HTMLElement> | undefined;
+  onMouseLeave?: React.MouseEventHandler<HTMLElement> | undefined;
+}
+
+/**
+ * The props for one menu item. The hook puts `aria-describedby` on the active
+ * element itself, so the props carry the handlers only.
+ */
+export type UseMenu2ItemPopoverItemProps = Required<UseMenu2ItemPopoverItemHandlers>;
+
+export interface UseMenu2ItemPopoverPopoverProps {
+  anchorEl: HTMLElement | null;
+  id: string | undefined;
+  modifiers: PopperProps['modifiers'];
+  open: boolean;
+  placement: PopperPlacementType;
+  style: React.CSSProperties;
+}
+
+export interface UseMenu2ItemPopoverPopover<Value> {
+  /**
+   * `true` while an item owns the popover.
+   */
+  open: boolean;
+  /**
+   * The props to spread on a `Popper`. Spread them first, then override.
+   */
+  props: UseMenu2ItemPopoverPopoverProps;
+  /**
+   * The value of the item that owns the popover.
+   */
+  value: Value | null;
+}
+
+export interface UseMenu2ItemPopoverReturnValue<Value> {
+  /**
+   * Closes the popover. Wire it to the `onOpenChange` of the menu.
+   */
+  close: () => void;
+  /**
+   * Returns the props for one menu item. `value` needs no contract, because the
+   * hook identifies the active item by its element. Pass the handlers of the
+   * caller in `handlers`, so that the item keeps them.
+   */
+  getItemProps: (
+    value: Value,
+    handlers?: UseMenu2ItemPopoverItemHandlers,
+  ) => UseMenu2ItemPopoverItemProps;
+  /**
+   * The state of the shared popover.
+   */
+  popover: UseMenu2ItemPopoverPopover<Value>;
+}
+
+interface ActiveMenu2Item<Value> {
+  anchorEl: HTMLElement;
+  value: Value;
+}
+
+const placement: PopperPlacementType = 'right-start';
+
+// The card sits beside the item, and keeps a gap to the edge of the viewport.
+const modifiers: PopperProps['modifiers'] = [
+  { name: 'offset', options: { offset: [0, 8] } },
+  { name: 'preventOverflow', options: { padding: 8 } },
+];
+
+// Material UI has no preview card primitive, so the card is made
+// non-interactive here instead of by each caller. The style is inline, because
+// the `sx` of the caller must not remove it.
+const nonInteractiveStyle: React.CSSProperties = { pointerEvents: 'none' };
+
+/**
+ * Shares one `Popper` between the items of a `Menu2`. The item that has focus,
+ * or that the pointer is over, owns the popover and describes it.
+ *
+ * `popover.props` targets a
+ * [`Popper`](https://mui.com/material-ui/react-popper/), not a `Popover`. A
+ * `Popover` renders a `Modal`, and the modal sets `aria-hidden` on every
+ * sibling of the popup. The `role="menu"` subtree of `Menu2` is a sibling, so
+ * the items leave the accessibility tree and the description is never
+ * announced. `Tooltip` uses `Popper` for the same reason. `Popper` has no
+ * Paper, so the caller renders one.
+ *
+ * An interactive mode would arrive as `{ interactive: true }` in the options. It
+ * would drop `nonInteractiveStyle`, and add open and close delays plus a hover
+ * bridge. It would also drop `aria-describedby`, because interactive content
+ * cannot be an accessible description.
+ *
+ * @example
+ * const { getItemProps, popover, close } = useMenu2ItemPopover<Item>();
+ * <Menu2Item {...getItemProps(item, { onFocus: handleFocus })}>{item.label}</Menu2Item>
+ * <Popper {...popover.props}><Paper>{popover.value?.description}</Paper></Popper>
+ *
+ * @param options The options of the popover.
+ */
+export default function useMenu2ItemPopover<Value>(
+  options: UseMenu2ItemPopoverOptions = {},
+): UseMenu2ItemPopoverReturnValue<Value> {
+  const id = useId(options.id);
+  const [activeItem, setActiveItem] = React.useState<ActiveMenu2Item<Value> | null>(null);
+  const anchorEl = activeItem === null ? null : activeItem.anchorEl;
+
+  const close = React.useCallback(() => {
+    setActiveItem(null);
+  }, []);
+
+  // The attribute goes on the anchor element itself, so two items that share
+  // one `Value` never describe the popover at the same time.
+  useEnhancedEffect(() => {
+    if (anchorEl === null || id === undefined) {
+      return undefined;
+    }
+
+    const previous = anchorEl.getAttribute('aria-describedby');
+    anchorEl.setAttribute('aria-describedby', id);
+
+    return () => {
+      // The caller owns the attribute again if it changed while the card was
+      // open. Only the value that this effect wrote may be undone.
+      if (anchorEl.getAttribute('aria-describedby') !== id) {
+        return;
+      }
+
+      if (previous === null) {
+        anchorEl.removeAttribute('aria-describedby');
+      } else {
+        anchorEl.setAttribute('aria-describedby', previous);
+      }
+    };
+  }, [anchorEl, id]);
+
+  // A menu unmounts the active item without an event, for example when a
+  // submenu closes. The popover then has no owner, so it closes.
+  useEnhancedEffect(() => {
+    if (anchorEl === null) {
+      return undefined;
+    }
+
+    if (!anchorEl.isConnected) {
+      close();
+      return undefined;
+    }
+
+    const observer = new MutationObserver(() => {
+      if (!anchorEl.isConnected) {
+        close();
+      }
+    });
+    observer.observe(ownerDocument(anchorEl), { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [anchorEl, close]);
+
+  const getItemProps = (
+    value: Value,
+    handlers: UseMenu2ItemPopoverItemHandlers = {},
+  ): UseMenu2ItemPopoverItemProps => {
+    const activate = (event: React.SyntheticEvent<HTMLElement>) => {
+      setActiveItem({ anchorEl: event.currentTarget, value });
+    };
+
+    // Only the item that owns the popover clears it, so the pointer and the
+    // keyboard can hand the popover to another item without closing it.
+    const deactivate = (event: React.SyntheticEvent<HTMLElement>) => {
+      const element = event.currentTarget;
+      setActiveItem((current) =>
+        current !== null && current.anchorEl === element ? null : current,
+      );
+    };
+
+    return {
+      onBlur: (event) => {
+        handlers.onBlur?.(event);
+        deactivate(event);
+      },
+      onFocus: (event) => {
+        handlers.onFocus?.(event);
+        activate(event);
+      },
+      onMouseEnter: (event) => {
+        handlers.onMouseEnter?.(event);
+        activate(event);
+      },
+      onMouseLeave: (event) => {
+        handlers.onMouseLeave?.(event);
+        deactivate(event);
+      },
+    };
+  };
+
+  const popover = React.useMemo<UseMenu2ItemPopoverPopover<Value>>(
+    () => ({
+      open: activeItem !== null,
+      props: {
+        anchorEl,
+        id,
+        modifiers,
+        open: activeItem !== null,
+        placement,
+        style: nonInteractiveStyle,
+      },
+      value: activeItem === null ? null : activeItem.value,
+    }),
+    [activeItem, anchorEl, id],
+  );
+
+  return { close, getItemProps, popover };
+}

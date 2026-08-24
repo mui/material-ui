@@ -14,3 +14,13 @@ export type {
   Menu2PopupClasses,
   Menu2PopupClassKey,
 } from './menu2Classes';
+
+export { default as useMenu2ItemPopover } from './useMenu2ItemPopover';
+export type {
+  UseMenu2ItemPopoverOptions,
+  UseMenu2ItemPopoverItemHandlers,
+  UseMenu2ItemPopoverItemProps,
+  UseMenu2ItemPopoverPopover,
+  UseMenu2ItemPopoverPopoverProps,
+  UseMenu2ItemPopoverReturnValue,
+} from './useMenu2ItemPopover';
