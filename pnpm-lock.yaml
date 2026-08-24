@@ -44,8 +44,8 @@ importers:
   .:
     dependencies:
       '@netlify/functions':
-        specifier: ^5.3.0
-        version: 5.3.0
+        specifier: ^6.0.0
+        version: 6.0.0
       '@slack/bolt':
         specifier: ^5.0.0
         version: 5.0.0(@types/express@5.0.6)(supports-color@11.0.0)(undici@7.29.0)
@@ -3953,13 +3953,13 @@ packages:
       '@emnapi/core': ^1.7.1
       '@emnapi/runtime': ^1.7.1
 
-  '@netlify/functions@5.3.0':
-    resolution: {integrity: sha512-FP+xCoZMkMOUsKa4UdG/oiK/2md1/TxuXvqqieaMVMgDbFFMaHI8h0oHCViUY73kPbKV6HyzayaSXGYXKpBSoQ==}
-    engines: {node: '>=18.0.0'}
+  '@netlify/functions@6.0.0':
+    resolution: {integrity: sha512-Pee+FoFnAtdejTkl62a7mZxj6Wx4eqVNuYyDc5T4XPJN9GaAWaUf4cZQFlf2m4Fqq0HoghjtcPKo+BZviVPPKA==}
+    engines: {node: '>=22.12.0'}
 
-  '@netlify/types@2.8.0':
-    resolution: {integrity: sha512-8/g0Pt6y6wXj5Ia5eeYLiXhRfWeqZXGXpGFeCiiQdUOem+FPtXdA4+YdGxqzWc7D0AvptKSO01KGeeVWHSu8Kg==}
-    engines: {node: ^18.14.0 || >=20}
+  '@netlify/types@3.0.0':
+    resolution: {integrity: sha512-zRCidsQgI4CZWrZB/kmwdPf0QbSNljakfNSLizFvrsSA3UcUrTWSBNMVKmZnob92/8ESeUN0ewXLOlffJU+ATQ==}
+    engines: {node: '>=22.12.0'}
 
   '@next/env@16.3.1':
     resolution: {integrity: sha512-35G3xwkQUb2oETSDjFXGrVugknoayLFBh7vSE+yAcl9IP2zT9wyGwq7297AYHR11kJld807t5f8AJBs6WBzXsQ==}
@@ -13877,11 +13877,11 @@ snapshots:
       '@tybys/wasm-util': 0.10.3
     optional: true
 
-  '@netlify/functions@5.3.0':
+  '@netlify/functions@6.0.0':
     dependencies:
-      '@netlify/types': 2.8.0
+      '@netlify/types': 3.0.0
 
-  '@netlify/types@2.8.0': {}
+  '@netlify/types@3.0.0': {}
 
   '@next/env@16.3.1': {}
 
