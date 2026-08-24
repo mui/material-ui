@@ -71,8 +71,7 @@ function ariaHiddenSiblings(
     // portaled into the container, for example when `disablePortal` is used.
     // Only apply this check when hiding; during restore we must not skip elements
     // because a stale ancestor check would leave stale aria-hidden behind.
-    const isNotModalAncestor =
-      hide && currentElement ? !element.contains(currentElement) : true;
+    const isNotModalAncestor = hide && currentElement ? !element.contains(currentElement) : true;
     if (isNotExcludedElement && isNotForbiddenElement && isNotModalAncestor) {
       ariaHidden(element, hide);
     }
