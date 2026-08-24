@@ -1,78 +1,52 @@
-# Multi-theme static CSS sandbox
+# Multi-theme static CSS Vite PoC
 
-This PoC renders real Material UI `Button` and `Slider` components while moving their styles
-out of JavaScript. Their CSS-in-JS style bodies are empty, and Vite maps
-`@mui/styled-engine` to a no-op so other Material UI internals cannot inject styles.
+This sandbox verifies that real Material UI `Button` and `Slider` components can keep their markup
+and behavior while receiving all visual styles from static CSS.
 
-It follows the RFC's v1 model: one theme is selected per page/build. Runtime switching is not tested.
+## What it demonstrates
 
-## How the CSS is organized
+- A page loads one theme without downloading CSS from another theme.
+- Whole-theme and per-component CSS imports both work with Vite.
+- Shared tokens and component base CSS occur once after bundling overlapping granular imports.
+- A consumer can build a custom theme from Material UI tokens and base CSS.
+- Cascade layers guarantee `consumer overrides > theme > base > tokens`, regardless of import order.
+- Flattened rollups and self-contained granular files work without JavaScript or a CSS bundler.
 
-Material UI publishes CSS through `@mui/material/css/*`:
+## Scenarios
+
+| Page                | CSS selection                                               | Purpose                            |
+| :------------------ | :---------------------------------------------------------- | :--------------------------------- |
+| `index.html`        | `themes/polished/index.css`                                 | Material UI whole-theme import     |
+| `brutalist.html`    | `themes/brutalist/{button,slider}.css`                      | Material UI granular imports       |
+| `consumer.html`     | `tokens.css`, component base CSS, and `src/consumer-theme/` | Consumer-owned theme               |
+| `cdn.html`          | generated `themes/polished/index.bundle.css`                | No-bundler whole-theme consumption |
+| `cdn-granular.html` | `themes/brutalist/button.css` and its native CSS `@import`s | No-bundler granular consumption    |
+
+The three Vite pages import `consumer-overrides.css` before the selected theme. Because the
+override is unlayered, it still wins over Material UI's layered CSS.
+
+## How it works
+
+Material UI supplies:
 
 ```text
-packages/mui-material/src/css/
-  tokens.css
-  base/{button,slider}.css
-  themes/
-    polished/{button,slider,index}.css
-    brutalist/{button,slider,index}.css
+css/tokens.css
+css/base/{button,slider}.css
+css/themes/{polished,brutalist}/{button,slider,index}.css
 ```
 
-- `tokens.css` defines the shared palette, spacing, typography, shape, and motion variables.
-- `base/*.css` contains theme-independent component structure and behavior hooks.
-- `themes/*/{component}.css` imports its tokens and base, then adds one component's visual skin.
-- `themes/*/index.css` is the convenience barrel containing the whole theme.
-- The package build flattens each barrel into a minified `index.bundle.css` and source map.
+Each granular theme file imports the shared tokens and its component base file before defining the
+component's `mui.theme` rules. The Brutalist entry imports its Button and Slider files through
+separate modules, exercising Vite's deduplication of their shared token dependency.
 
-Cascade layers establish `mui.tokens < mui.base < mui.theme`. Unlayered consumer CSS beats all
-three, even when imported first.
+The components' CSS-in-JS style bodies are empty. Vite also aliases `@mui/styled-engine` to
+`src/noopStyledEngine.tsx`, preventing other Material UI internals from injecting runtime styles.
 
-The package copies these files during its build, exports them with the `./css/*` wildcard, and
-marks CSS as a side effect so bundlers retain it.
+The Material UI package build copies the authored CSS and uses Lightning CSS to generate a
+minified, import-free `index.bundle.css` and source map for every theme directory. The sandbox build
+then runs Vite and `verify-build.mjs`.
 
-## Consumption modes
-
-Whole-theme convenience import:
-
-```ts
-import '@mui/material/css/themes/polished/index.css';
-```
-
-Granular imports for smaller CSS bundles:
-
-```ts
-import '@mui/material/css/themes/brutalist/button.css';
-import '@mui/material/css/themes/brutalist/slider.css';
-```
-
-The Brutalist fixture imports two self-contained component files through separate modules. Both
-files import the same token file, while the final page must still load each shared rule once.
-
-No-bundler/CDN consumption uses the generated flattened file:
-
-```html
-<link rel="stylesheet" href="@mui/material/css/themes/polished/index.bundle.css" />
-```
-
-A no-bundler page can also link one granular file directly. Its native `@import` dependencies work,
-but the flattened rollup avoids request waterfalls and is the recommended CDN path.
-
-A custom theme imports Material UI's public tokens and component base files, then supplies only its
-own `mui.theme` rules. See `src/consumer-theme/`.
-
-## Demo pages
-
-- `index.html`: Material UI Polished theme through its barrel.
-- `brutalist.html`: Material UI Brutalist theme through granular imports.
-- `consumer.html`: consumer-owned Ocean theme with no Material UI theme CSS.
-- `cdn.html`: plain HTML linked directly to the built Polished bundle, with no JavaScript.
-- `cdn-granular.html`: plain HTML linked to one self-contained Brutalist component file.
-
-The three Vite pages import `consumer-overrides.css` before the selected theme to demonstrate that
-unlayered consumer overrides still win.
-
-## Running and verification
+## Run it
 
 From the repository root:
 
@@ -81,19 +55,13 @@ pnpm -F @mui-internal/multi-theme-vite-sandbox dev
 pnpm -F @mui-internal/multi-theme-vite-sandbox build
 ```
 
-The dev server covers the three Vite pages. After building, open either `cdn*.html` file directly
-or serve the repository root as static files; those pages are deliberately not Vite inputs.
+The dev server exposes `/`, `/brutalist.html`, and `/consumer.html`. After building, open either
+`cdn*.html` file directly or serve the repository root as static files; those pages are deliberately
+not Vite inputs.
 
-The sandbox build first builds Material UI, including the CDN artifacts, and then runs
-`verify-build.mjs`. It fails unless:
+The production build fails unless:
 
-1. exactly one theme-specific CSS asset exists for each Vite page;
-2. each page's complete loaded stylesheet set contains tokens and component base rules once;
-3. every page contains its own theme signature and none from the other themes; and
-4. each CDN bundle has no `@import`, contains one foundation copy, and has a source map; and
-5. both no-bundler pages use one valid CSS graph through `<link>` and have no script entry.
-
-## Not covered yet
-
-Production would generate the source distribution files from component-colocated CSS. A second
-tier-1 bundler fixture and scoped runtime-switching builds remain later extensions.
+1. every Vite page references only its selected theme;
+2. its complete stylesheet set contains one token contract and one copy of each component base;
+3. the generated theme bundles contain no `@import`, include source maps, and remain isolated; and
+4. both no-bundler pages resolve the expected CSS graph without a script entry.
