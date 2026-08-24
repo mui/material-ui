@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { spy } from 'sinon';
+import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item, { menu2ItemClasses as classes } from '@mui/material/Unstable_Menu2Item';
 import describeConformance from '../../test/describeConformance';
@@ -48,5 +49,32 @@ describe('<Menu2Item />', () => {
     // The slot is in use, so the assertion below is not vacuous.
     expect(received).to.include('className');
     expect(received).not.to.include('disableRipple');
+  });
+
+  // The item root is a ButtonBase. Base UI and ButtonBase both emulate keyboard
+  // activation on a non-native root, which used to fire the item twice.
+  it('fires once per activation, with the keyboard and with the pointer', async () => {
+    const onClick = spy();
+    const { user } = render(
+      <Menu2 defaultOpen modal={false} anchor={document.body}>
+        <Menu2Item closeOnClick={false} onClick={onClick}>
+          Item
+        </Menu2Item>
+      </Menu2>,
+    );
+
+    const item = screen.getByRole('menuitem', { name: 'Item' });
+    await act(async () => {
+      item.focus();
+    });
+
+    await user.keyboard('[Space]');
+    expect(onClick.callCount).to.equal(1);
+
+    await user.keyboard('[Enter]');
+    expect(onClick.callCount).to.equal(2);
+
+    await user.click(item);
+    expect(onClick.callCount).to.equal(3);
   });
 });

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { spy } from 'sinon';
-import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
+import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Menu2, { menu2PopupClasses, menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
@@ -493,6 +493,30 @@ describe('<Menu2 /> collapsed API', () => {
 
     await waitFor(() => {
       expect(screen.getByRole('menuitem', { name: 'Zoom in' })).not.to.equal(null);
+    });
+  });
+
+  // The submenu trigger renders a Menu2Item, so it takes the same non-native
+  // keyboard path as a plain item and used to fire twice per press. Each key
+  // gets a fresh render, because opening the submenu moves focus into it.
+  ['[Space]', '[Enter]'].forEach((key) => {
+    it(`fires the submenu trigger once per ${key} press`, async () => {
+      const onClick = spy();
+      const { user } = render(
+        <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
+          <Menu2Submenu trigger={<Menu2Item onClick={onClick}>More</Menu2Item>}>
+            <Menu2Item>Nested</Menu2Item>
+          </Menu2Submenu>
+        </Menu2>,
+      );
+
+      const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
+      await act(async () => {
+        submenuTrigger.focus();
+      });
+
+      await user.keyboard(key);
+      expect(onClick.callCount).to.equal(1);
     });
   });
 });

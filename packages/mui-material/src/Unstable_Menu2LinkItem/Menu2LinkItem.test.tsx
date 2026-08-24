@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { createRenderer } from '@mui/internal-test-utils';
+import { spy } from 'sinon';
+import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2LinkItem, {
   menu2LinkItemClasses as classes,
@@ -25,4 +26,28 @@ describe('<Menu2LinkItem />', () => {
     muiName: 'MuiMenu2LinkItem',
     testVariantProps: { 'data-variant': 'probe' },
   }));
+
+  // An anchor without `href` takes the same non-native path as the other items,
+  // where Base UI and ButtonBase both emulate the keyboard activation.
+  it('fires once per keyboard activation without an href', async () => {
+    const onClick = spy();
+    const { user } = render(
+      <Menu2 defaultOpen modal={false} anchor={document.body}>
+        <Menu2LinkItem closeOnClick={false} onClick={onClick}>
+          Profile
+        </Menu2LinkItem>
+      </Menu2>,
+    );
+
+    const item = screen.getByRole('menuitem', { name: 'Profile' });
+    await act(async () => {
+      item.focus();
+    });
+
+    await user.keyboard('[Space]');
+    expect(onClick.callCount).to.equal(1);
+
+    await user.keyboard('[Enter]');
+    expect(onClick.callCount).to.equal(2);
+  });
 });
