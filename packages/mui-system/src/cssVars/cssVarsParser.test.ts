@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import cssVarsParser, { assignNestedKeys, walkObjectDeep } from './cssVarsParser';
 
 describe('cssVarsParser', () => {

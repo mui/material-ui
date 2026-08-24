@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';

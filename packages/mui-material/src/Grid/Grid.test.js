@@ -1,7 +1,6 @@
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';
 import { createTheme, ThemeProvider, THEME_ID } from '@mui/material/styles';
-import { expect } from 'chai';
 import describeConformance from '../../test/describeConformance';
 
 // The main tests are in mui-system Grid folder

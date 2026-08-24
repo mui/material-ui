@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';

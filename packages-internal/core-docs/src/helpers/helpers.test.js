@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { pageToTitle } from './helpers';
 
 describe('docs getDependencies helpers', () => {

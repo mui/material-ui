@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import NativeSelect, { nativeSelectClasses as classes } from '@mui/material/NativeSelect';

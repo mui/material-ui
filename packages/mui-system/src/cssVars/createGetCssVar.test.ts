@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import createGetCssVar from './createGetCssVar';
 
 describe('createGetCssVar', () => {

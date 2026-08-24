@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import ListItem from '@mui/material/ListItem';
 import ListItemSecondaryAction, {

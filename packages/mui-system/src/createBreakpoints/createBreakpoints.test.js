@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import createBreakpoints from './createBreakpoints';
 
 describe('createBreakpoints', () => {

@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import extractTemplates from './extractTemplates';
 
 describe('extractTemplates', () => {

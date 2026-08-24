@@ -2,7 +2,6 @@ import * as React from 'react';
 import { __unsafe_useEmotionCache } from '@emotion/react';
 import styled, { StyledEngineProvider, GlobalStyles } from '@mui/styled-engine';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
-import { expect } from 'chai';
 import { TEST_INTERNALS_DO_NOT_USE } from './StyledEngineProvider';
 
 const isJSDOM = isJsdom();

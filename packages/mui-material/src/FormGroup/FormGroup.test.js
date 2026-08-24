@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import FormGroup, { formGroupClasses as classes } from '@mui/material/FormGroup';
 import FormControl from '@mui/material/FormControl';
