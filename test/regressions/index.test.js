@@ -364,9 +364,6 @@ async function main() {
  * introduced independently of the harness it runs on.
  */
 function registerCssLayoutSuites({ test, renderFixture, routes }) {
-  // CSS-dependent criteria that axe cannot cover: they need a real layout at a
-  // real viewport. Each component is exercised through one representative demo;
-  // the criteria a component is rated against are listed alongside it.
   const CSS_LAYOUT_SUITES = [
     { component: 'Accordion', route: '/docs-components-accordion/AccordionUsage' },
     // The same demo renders the summary header, which is rated separately.
