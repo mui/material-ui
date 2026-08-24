@@ -689,6 +689,12 @@ export function AppSearch(props: AppSearchProps) {
               overflow: 'hidden',
               textOverflow: 'ellipsis',
             },
+            // DocSearch underlines matched text 0.3em below the baseline, which at the 14px
+            // hit title falls outside the overflow clip above and disappears at some zoom
+            // levels. Pull it closer; the 12px path has room either way.
+            '& .DocSearch-Hit mark': {
+              textUnderlineOffset: '0.14em',
+            },
             '& .DocSearch-Hit-icon': {
               '> svg': {
                 height: '16px',
