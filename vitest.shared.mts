@@ -43,7 +43,7 @@ function getVitestEnvironment(fileName: string): 'browser' | 'node' {
   return 'node';
 }
 
-const MONOREPO_ROOT = path.resolve(__dirname, '.');
+const MONOREPO_ROOT = path.resolve(import.meta.dirname, '.');
 
 export const alias = {
   '@mui/internal-api-docs-builder': path.resolve(
