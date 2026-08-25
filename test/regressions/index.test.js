@@ -50,12 +50,10 @@ async function main() {
       }
     });
 
-    // Wait for all requests to finish.
-    // This should load shared resources such as fonts.
+    // Wait for all requests to finish. That covers the font stylesheet too --
+    // `loadFonts` appends it during module evaluation -- so a stalled font host
+    // fails here instead of hanging every test.
     await page.goto(`${baseUrl}#dev`, { waitUntil: 'networkidle0' });
-    // Screenshots taken with fallback faces look like a repo-wide text rendering
-    // change. Fail the run instead of publishing them.
-    await page.evaluate(() => window.muiFixture.fontsReady);
 
     // Simulate portrait mode for date pickers.
     // See `useIsLandscape`.
@@ -116,6 +114,12 @@ async function main() {
    * @param {string} route
    */
   async function renderFixture(page, route) {
+    // Screenshots taken with fallback faces look like a repo-wide text rendering
+    // change. Gate here so it happens before the fixture mounts -- components
+    // that measure text at mount would otherwise bake in fallback metrics that
+    // the later font swap does not recompute.
+    await page.evaluate(() => window.muiFixture.fontsReady);
+
     await page.evaluate((_route) => {
       // Use client-side routing which is much faster than full page navigation via page.goto().
       window.muiFixture.navigate(`${_route}#no-dev`);
