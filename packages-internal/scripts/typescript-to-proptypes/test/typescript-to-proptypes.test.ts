@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 import path from 'path';
 import fs from 'fs';
-import * as ts from 'typescript';
+import * as ts from '@typescript/typescript6';
 import glob from 'fast-glob';
 import prettier from 'prettier';
 import { TypeScriptProject, createTypeScriptProjectBuilder } from '@mui/internal-docs-utils';
