@@ -1,4 +1,5 @@
 /* eslint-disable react/prefer-stateless-function */
+import { describe, beforeEach, expect, it } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { createRenderer, waitFor } from '@mui/internal-test-utils';

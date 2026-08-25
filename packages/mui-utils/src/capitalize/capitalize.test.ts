@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import capitalize from '@mui/utils/capitalize';
 
 describe('capitalize', () => {

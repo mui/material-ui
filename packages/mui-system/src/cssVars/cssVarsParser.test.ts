@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import cssVarsParser, { assignNestedKeys, walkObjectDeep } from './cssVarsParser';
 
 describe('cssVarsParser', () => {
