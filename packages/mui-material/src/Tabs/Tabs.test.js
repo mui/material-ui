@@ -950,6 +950,122 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       clock.tick(1000);
       expect(tablistContainer.scrollLeft).to.equal(0);
     });
+
+    it('should account for scroll-padding-left when scrolling a tab into view on the left', function test() {
+      const { forceUpdate } = render(
+        <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+        </Tabs>,
+      );
+      const tablist = screen.getByRole('tablist');
+      const tablistContainer = tablist.parentElement;
+      const tab = tablist.children[0];
+
+      tablistContainer.style.scrollPaddingLeft = '15px';
+      Object.defineProperty(tablistContainer, 'clientWidth', { value: 100 });
+      tablistContainer.scrollLeft = 100;
+      tablistContainer.getBoundingClientRect = () => ({
+        left: 0,
+        right: 100,
+      });
+      tab.getBoundingClientRect = () => ({
+        left: 10,
+        width: 50,
+        right: 60,
+      });
+      forceUpdate();
+      clock.tick(1000);
+      expect(tablistContainer.scrollLeft).to.equal(95);
+    });
+
+    it('should account for scroll-padding-right when scrolling a tab into view on the right', function test() {
+      const { forceUpdate } = render(
+        <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+        </Tabs>,
+      );
+      const tablist = screen.getByRole('tablist');
+      const tablistContainer = tablist.parentElement;
+      const tab = tablist.children[0];
+
+      tablistContainer.style.scrollPaddingRight = '20px';
+      Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 });
+      tablistContainer.scrollLeft = 0;
+      tablistContainer.getBoundingClientRect = () => ({
+        left: 0,
+        right: 100,
+      });
+      tab.getBoundingClientRect = () => ({
+        left: 100,
+        width: 50,
+        right: 150,
+      });
+      forceUpdate();
+      clock.tick(1000);
+      expect(tablistContainer.scrollLeft).to.equal(70);
+    });
+
+    it('should resolve a percentage scroll-padding against the scroller clientWidth', function test() {
+      const { forceUpdate } = render(
+        <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+        </Tabs>,
+      );
+      const tablist = screen.getByRole('tablist');
+      const tablistContainer = tablist.parentElement;
+      const tab = tablist.children[0];
+
+      tablistContainer.style.scrollPaddingRight = '10%';
+      Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 });
+      tablistContainer.scrollLeft = 0;
+      tablistContainer.getBoundingClientRect = () => ({
+        left: 0,
+        right: 100,
+      });
+      tab.getBoundingClientRect = () => ({
+        left: 100,
+        width: 50,
+        right: 150,
+      });
+      forceUpdate();
+      clock.tick(1000);
+      expect(tablistContainer.scrollLeft).to.equal(70);
+    });
+
+    it('should account for scroll-padding-bottom when scrolling a vertical tab into view', function test() {
+      const { forceUpdate } = render(
+        <Tabs value={0} variant="scrollable" orientation="vertical" style={{ height: 200 }}>
+          <Tab style={{ height: 120 }} />
+          <Tab style={{ height: 120 }} />
+          <Tab style={{ height: 120 }} />
+        </Tabs>,
+      );
+      const tablist = screen.getByRole('tablist');
+      const tablistContainer = tablist.parentElement;
+      const tab = tablist.children[0];
+
+      tablistContainer.style.scrollPaddingBottom = '20px';
+      Object.defineProperty(tablistContainer, 'clientHeight', { value: 200 });
+      tablistContainer.scrollTop = 0;
+      tablistContainer.getBoundingClientRect = () => ({
+        top: 0,
+        bottom: 100,
+      });
+      tab.getBoundingClientRect = () => ({
+        top: 100,
+        height: 50,
+        bottom: 150,
+      });
+      forceUpdate();
+      clock.tick(1000);
+      expect(tablistContainer.scrollTop).to.equal(70);
+    });
   });
 
   describe('slotProps: indicator', () => {
