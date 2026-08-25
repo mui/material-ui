@@ -38,16 +38,25 @@ const TimelineItemRoot = styled('li', {
   display: 'flex',
   position: 'relative',
   minHeight: 70,
-  // `:where()` keeps the `:has()` check while contributing no specificity of
-  // its own. Bare `:not(:has(.class))` inherits its argument's specificity,
-  // which put this rule level with the `Timeline` override the docs recommend
-  // for removing the spacer -- and a tie is settled by emotion's insertion
-  // order, so whichever demo rendered first on a page decided the result.
-  [`&:where(:not(:has(.${timelineOppositeContentClasses.root})))::before`]: {
-    content: '""',
-    flex: 1,
-    padding: '6px 16px',
-  },
+  // The spacer that keeps content centred when there is no opposite content.
+  // Kept at plain `&::before` -- (0,1,1) -- so the `Timeline` override the docs
+  // recommend for removing it always wins on specificity. (`:where()` would do
+  // the same, but the docs' `globalSelector` stylis middleware strips the class
+  // in front of any `:where(`/`:is(`, turning the rule global -- see
+  // emotion issue 2836 -- so it cannot be used in component styles.)
+  ...(!ownerState.hasOppositeContent && {
+    '&::before': {
+      content: '""',
+      flex: 1,
+      padding: '6px 16px',
+    },
+    // The children walk behind `hasOppositeContent` only sees direct children.
+    // Suppress the spacer from CSS when opposite content is nested deeper
+    // (see #46663) -- (0,2,1), deliberately above the spacer rule.
+    [`&:has(.${timelineOppositeContentClasses.root})::before`]: {
+      content: 'none',
+    },
+  }),
   ...(ownerState.position === 'left' && {
     flexDirection: 'row-reverse',
   }),
