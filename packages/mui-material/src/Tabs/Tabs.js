@@ -591,8 +591,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       return;
     }
 
-    // scroll-padding marks the part of the scrollport covered by other content, such as scroll
-    // buttons laid over the strip; native scrollIntoView honours it and so should we.
     const scrollerComputedStyle = ownerWindow(tabsRef.current).getComputedStyle(tabsRef.current);
     const scrollportSize = tabsRef.current[clientSize];
     const scrollPaddingStart = resolveScrollPadding(
