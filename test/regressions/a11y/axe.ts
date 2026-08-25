@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 import type { AxeResults } from 'axe-core';
 import type { TestContext } from 'vitest';
 

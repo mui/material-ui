@@ -2,7 +2,7 @@ import * as url from 'url';
 import * as path from 'path';
 import * as fs from 'node:fs/promises';
 import { chromium } from '@playwright/test';
-import { test as base } from 'vitest';
+import { describe, test as base } from 'vitest';
 import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
 import { A11Y_RULES, DEFAULT_VIEWPORT, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 
