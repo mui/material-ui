@@ -54,9 +54,8 @@ function isAriaHiddenForbiddenOnElement(element: Element): boolean {
   return isForbiddenTagName || isInputHidden;
 }
 
-// The chain of elements from `node` up to (but not including) `container`.
-// Returns an empty set when `node` is not inside `container`, e.g. the modal
-// has not mounted yet which keeps the old shallow behaviour as a fallback.
+// The chain of elements from `node` up to (but not including) `container`
+// that should not be aria-hidden.
 function getKeepChain(node: HTMLElement, container: HTMLElement): Set<HTMLElement> {
   const chain = new Set<HTMLElement>();
   let current: HTMLElement | null = node;
