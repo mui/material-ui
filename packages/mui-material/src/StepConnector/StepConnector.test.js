@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { createRenderer } from '@mui/internal-test-utils';
 import Step from '@mui/material/Step';
 import StepConnector, { stepConnectorClasses as classes } from '@mui/material/StepConnector';

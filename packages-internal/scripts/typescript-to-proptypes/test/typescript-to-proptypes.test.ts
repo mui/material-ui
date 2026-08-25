@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+import { describe, beforeAll, it, expect } from 'vitest';
 import path from 'path';
 import fs from 'fs';
 import * as ts from '@typescript/typescript6';

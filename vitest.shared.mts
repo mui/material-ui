@@ -102,7 +102,6 @@ export default async function create(
     test: {
       name,
       exclude: ['**/node_modules/**', '**/build/**', '**/*.spec.*', '**/.next/**', ...excludes],
-      globals: true,
       disableConsoleIntercept: true,
       setupFiles: [
         // Must load before `react-dom`, which `setupVitest.ts` pulls in.

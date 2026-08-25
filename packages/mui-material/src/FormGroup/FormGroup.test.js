@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import FormGroup, { formGroupClasses as classes } from '@mui/material/FormGroup';
 import FormControl from '@mui/material/FormControl';

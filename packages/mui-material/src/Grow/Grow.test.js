@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';

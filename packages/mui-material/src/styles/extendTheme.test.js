@@ -1,3 +1,4 @@
+import { describe, beforeEach, afterEach, it, expect } from 'vitest';
 import sinon from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';

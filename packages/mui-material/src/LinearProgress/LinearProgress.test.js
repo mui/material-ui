@@ -1,3 +1,4 @@
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import RtlProvider from '@mui/system/RtlProvider';
 import LinearProgress, { linearProgressClasses as classes } from '@mui/material/LinearProgress';

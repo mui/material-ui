@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Icon, { iconClasses as classes } from '@mui/material/Icon';
 import describeConformance from '../../test/describeConformance';

@@ -3,7 +3,7 @@
   "compilerOptions": {
     "allowJs": false,
     "skipLibCheck": true,
-    "types": ["react", "vitest/globals", "@mui/internal-code-infra/build-env"]
+    "types": ["react", "@mui/internal-code-infra/build-env"]
   },
   "include": ["src/**/*"]
 }

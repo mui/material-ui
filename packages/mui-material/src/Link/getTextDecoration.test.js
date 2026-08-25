@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { createTheme, extendTheme } from '../styles';
 import getTextDecoration from './getTextDecoration';
 
