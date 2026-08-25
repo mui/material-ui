@@ -553,9 +553,11 @@ describe('ModalManager', () => {
       expect(wrapper).not.toBeInaccessible();
 
       modalManager.add({ ...getDummyModal(), modalRef: portalRef }, container2);
-      // The whole wrapper is hidden now, so the deep attribute must be cleaned up.
+      // `wrapper` is hidden as a whole now, so the deep attribute inside it is
+      // redundant and must be released. Assert the attribute directly. The
+      // accessibility check would report it inaccessible via its hidden ancestor.
       expect(wrapper).toBeInaccessible();
-      expect(appContent).not.toBeInaccessible();
+      expect(appContent.getAttribute('aria-hidden')).to.equal(null);
       expect(portalRef).not.toBeInaccessible();
     });
   });
