@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import deprecatedPropType from '@mui/utils/deprecatedPropType';
 

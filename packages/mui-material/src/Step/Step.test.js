@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Step, { stepClasses as classes } from '@mui/material/Step';
 import Stepper, { StepperContext } from '@mui/material/Stepper';

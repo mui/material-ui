@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import styleFunctionSx from '@mui/system/styleFunctionSx';
 import {
   private_createMixins as createMixins,

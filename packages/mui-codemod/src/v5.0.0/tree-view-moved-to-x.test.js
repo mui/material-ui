@@ -1,5 +1,4 @@
 import path from 'path';
-import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
 import transform from './tree-view-moved-to-x';
 import readFile from '../util/readFile';

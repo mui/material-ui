@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, fireEvent, act, screen } from '@mui/internal-test-utils';
 import {

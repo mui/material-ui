@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import excludeVariablesFromRoot from './excludeVariablesFromRoot';
 
 describe('excludeVariablesFromRoot', () => {

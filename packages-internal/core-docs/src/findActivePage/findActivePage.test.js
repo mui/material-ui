@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import findActivePage from './findActivePage';
 
 describe('findActivePage', () => {

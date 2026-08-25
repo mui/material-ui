@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import { act, createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';

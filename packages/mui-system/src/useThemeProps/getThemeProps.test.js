@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import getThemeProps from './getThemeProps';
 
 describe('getThemeProps', () => {

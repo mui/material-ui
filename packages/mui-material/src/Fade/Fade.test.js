@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { act, createRenderer, isJsdom } from '@mui/internal-test-utils';
 import Fade from '@mui/material/Fade';
 import { createTheme, ThemeProvider } from '@mui/material/styles';

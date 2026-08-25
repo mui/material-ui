@@ -2,7 +2,6 @@
 import j from 'jscodeshift';
 import { EOL } from 'os';
 import path from 'path';
-import { expect } from 'chai';
 import readFile from '../src/util/readFile';
 
 export const jscodeshift = j.withParser('tsx');

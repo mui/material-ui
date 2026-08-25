@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { hasValue, isFilled } from './utils';
 
 describe('Input/utils.js', () => {

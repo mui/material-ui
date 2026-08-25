@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 

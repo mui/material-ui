@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import fastDeepAssign from './fastDeepAssign';
 
 describe('fastDeepAssign', () => {

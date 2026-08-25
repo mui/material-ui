@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import AppBar, { appBarClasses as classes } from '@mui/material/AppBar';
 import Paper from '@mui/material/Paper';

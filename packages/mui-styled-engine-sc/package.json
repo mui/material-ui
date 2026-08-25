@@ -37,12 +37,10 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.17",
-    "chai": "6.2.2",
+    "@types/react": "19.2.18",
     "react": "19.2.8",
-    "styled-components": "6.4.4"
+    "styled-components": "6.5.3"
   },
   "peerDependencies": {
     "styled-components": "^6.0.0"
