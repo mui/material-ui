@@ -1,4 +1,4 @@
-import ts from 'typescript';
+import ts from '@typescript/typescript6';
 import * as doctrine from 'doctrine';
 import {
   GetPropsFromComponentDeclarationOptions,
