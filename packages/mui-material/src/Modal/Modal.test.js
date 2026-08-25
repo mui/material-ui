@@ -904,6 +904,21 @@ describe('<Modal />', () => {
 
       expect(within(screen.getByTestId('parent')).getByTestId('child')).not.to.equal(null);
     });
+
+    it('should not apply aria-hidden to an ancestor of the modal', () => {
+      render(
+        <div data-testid="app">
+          <div data-testid="app-content" />
+          <Modal open disablePortal>
+            <div data-testid="modal-content" />
+          </Modal>
+        </div>,
+      );
+
+      expect(screen.getByTestId('app')).not.toBeInaccessible();
+      expect(screen.getByTestId('modal-content')).not.toBeInaccessible();
+      expect(screen.getByTestId('app-content')).toBeInaccessible();
+    });
   });
 
   describe('prop: slotProps.backdrop', () => {
