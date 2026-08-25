@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { spy } from 'sinon';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';

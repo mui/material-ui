@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { collapseClasses } from '@mui/material/Collapse';
 import Stepper from '@mui/material/Stepper';

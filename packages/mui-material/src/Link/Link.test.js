@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import Link, { linkClasses as classes } from '@mui/material/Link';

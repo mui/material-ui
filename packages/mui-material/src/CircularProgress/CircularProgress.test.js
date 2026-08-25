@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer } from '@mui/internal-test-utils';
 import CircularProgress, {
   circularProgressClasses as classes,

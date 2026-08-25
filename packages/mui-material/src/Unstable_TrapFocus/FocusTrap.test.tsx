@@ -1,6 +1,6 @@
+import { describe, beforeEach, afterEach, it, expect } from 'vitest';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { expect } from 'chai';
 import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
 import FocusTrap from '@mui/material/Unstable_TrapFocus';
 import Portal from '@mui/material/Portal';

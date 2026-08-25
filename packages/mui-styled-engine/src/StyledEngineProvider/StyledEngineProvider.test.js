@@ -1,7 +1,7 @@
+import { describe, beforeAll, afterAll, beforeEach, it, expect } from 'vitest';
 import { __unsafe_useEmotionCache } from '@emotion/react';
 import { StyledEngineProvider, GlobalStyles } from '@mui/styled-engine';
 import { createRenderer } from '@mui/internal-test-utils';
-import { expect } from 'chai';
 import { TEST_INTERNALS_DO_NOT_USE } from './StyledEngineProvider';
 
 describe('[Emotion] StyledEngineProvider', () => {

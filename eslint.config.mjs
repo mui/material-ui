@@ -152,6 +152,12 @@ export default defineConfig(
       'testing-library/no-container': 'off',
       // TODO: investigate and fix
       'vitest/expect-expect': 'off',
+      // The assertions are chai style (`.to.have.property`) on Vitest's chai
+      // based `expect`. Now that `expect` is imported from `vitest` the plugin
+      // reads those chains and rejects every chai modifier. mui-x turns these
+      // off for the same reason.
+      'vitest/valid-expect': 'off',
+      'vitest/no-conditional-expect': 'off',
     },
   },
   // Test end

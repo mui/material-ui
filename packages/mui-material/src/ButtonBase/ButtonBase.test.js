@@ -1,6 +1,6 @@
 // @ts-check
+import { describe, beforeAll, it, expect, beforeEach, vi } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
   act,

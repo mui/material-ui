@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import {
   alpha as systemAlpha,

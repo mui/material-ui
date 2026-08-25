@@ -1,6 +1,6 @@
+import { describe, it, expect, beforeEach } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, fireEvent, reactMajor, screen } from '@mui/internal-test-utils';
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';

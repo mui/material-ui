@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, beforeAll, afterAll, it, expect, beforeEach, afterEach } from 'vitest';
 import getScrollbarSize from '@mui/utils/getScrollbarSize';
 import { ModalManager } from './ModalManager';
 

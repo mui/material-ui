@@ -1,5 +1,5 @@
+import { describe, it, expect, vi } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import Fab, { fabClasses as classes } from '@mui/material/Fab';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';

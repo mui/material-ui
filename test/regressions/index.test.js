@@ -1,3 +1,4 @@
+import { describe, beforeEach, afterAll, it } from 'vitest';
 import * as url from 'url';
 import * as path from 'path';
 import * as fs from 'node:fs/promises';

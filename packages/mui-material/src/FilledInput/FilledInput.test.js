@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer } from '@mui/internal-test-utils';
 import { styled } from '@mui/material/styles';
 import FilledInput, { filledInputClasses as classes } from '@mui/material/FilledInput';

@@ -1,7 +1,7 @@
+import { it, expect, describe, beforeEach } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
-import { expect } from 'chai';
 import {
   act,
   createRenderer,

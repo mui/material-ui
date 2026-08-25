@@ -1,5 +1,5 @@
+import { describe, beforeEach, it, expect, afterEach } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   act,

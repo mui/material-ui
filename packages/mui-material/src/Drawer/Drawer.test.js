@@ -1,5 +1,5 @@
+import { describe, expect, it } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
