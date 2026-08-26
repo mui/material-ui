@@ -309,7 +309,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 `✅ Supports` · `◐ Shared`
 
 - The visible text is the accessible name: the children become the name, decorative MUI icons are hidden (a custom icon node is not, unless the author hides it), and `loadingPosition="center"` keeps the label in the name despite `color: transparent`.
-- An `aria-label` that omits or reorders the visible words breaks this. Compare the visible text to the computed name. Covered by unit tests.
+- An `aria-label` that omits or reorders the visible words breaks this. Compare the visible text to the computed name.
 
 #### 2.5.8 Target Size (Minimum) · AA
 
