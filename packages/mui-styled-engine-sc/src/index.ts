@@ -249,7 +249,7 @@ export type StyledComponentInnerOtherProps<C extends AnyStyledComponent> =
 export type StyledComponentInnerAttrs<C extends AnyStyledComponent> =
   C extends StyledComponent<any, any, any, infer A> ? A : never;
 
-type StyledComponentInnerProps<
+export type StyledComponentInnerProps<
   C extends StyledComponentInstance,
   T extends object,
 > = StyledComponentProps<
