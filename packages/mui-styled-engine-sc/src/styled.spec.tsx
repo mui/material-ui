@@ -58,4 +58,5 @@ declare const ButtonWithAttrs: StyledComponent<
 
 const ExtendedButtonWithAttrs = styled(ButtonWithAttrs)({});
 
-<ExtendedButtonWithAttrs />;
+// @ts-expect-error attrs prop must keep its type
+<ExtendedButtonWithAttrs requiredByBase={123} />;
