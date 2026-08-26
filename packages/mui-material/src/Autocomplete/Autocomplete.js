@@ -394,12 +394,14 @@ const AutocompleteListbox = styled('ul', {
             backgroundColor: (theme.vars || theme).palette.action.selected,
           },
         },
-        [`&.${autocompleteClasses.focusVisible}`]: {
-          backgroundColor: theme.alpha(
-            (theme.vars || theme).palette.primary.main,
-            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
-          ),
-        },
+        ...(!theme.focusVisible && {
+          [`&.${autocompleteClasses.focusVisible}`]: {
+            backgroundColor: theme.alpha(
+              (theme.vars || theme).palette.primary.main,
+              `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+            ),
+          },
+        }),
       },
     },
   })),

@@ -5341,5 +5341,29 @@ describe('<Autocomplete />', () => {
         outlineOffset: '-2px',
       });
     });
+
+    it.skipIf(isJsdom())('does not add the focus tint on a selected highlighted option', () => {
+      render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Autocomplete
+            open
+            value="one"
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />
+        </ThemeProvider>,
+      );
+      const combobox = screen.getByRole('combobox');
+      // walk past "two" and "three" so the highlight lands back on the selected "one"
+      fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+      fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+      fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+
+      const option = screen.getAllByRole('option')[0];
+      expect(option).to.have.class(classes.focusVisible);
+      expect(option).to.have.attribute('aria-selected', 'true');
+      // selected + hover only; the extra focusOpacity bump is suppressed by the theme ring
+      expect(option).toHaveComputedStyle({ backgroundColor: 'rgba(25, 118, 210, 0.12)' });
+    });
   });
 });
