@@ -56,6 +56,11 @@
       "nodeName": "the root element",
       "conditions": "<code>labelPlacement=\"bottom\"</code>"
     },
+    "labelPlacementEnd": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>labelPlacement=\"end\"</code>"
+    },
     "labelPlacementStart": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

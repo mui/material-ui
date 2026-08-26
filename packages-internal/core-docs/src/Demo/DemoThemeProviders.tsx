@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { deepmerge } from '@mui/utils';
-import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useTheme, enhanceHighContrast } from '@mui/material/styles';
 import { ThemeOptionsContext, highDensity } from '../ThemeContext';
 import { BrandingCssVarsProvider } from '../branding';
 
@@ -8,6 +8,9 @@ const defaultTheme = createTheme({
   colorSchemes: { light: true, dark: true },
   cssVariables: {
     colorSchemeSelector: 'data-mui-color-scheme',
+  },
+  motion: {
+    reducedMotion: 'system',
   },
 });
 
@@ -32,18 +35,23 @@ export function DemoInstanceThemeProvider({
   const upperMode = upperTheme?.palette?.mode;
 
   const theme = React.useMemo(() => {
-    const resultTheme = createTheme(
-      {
-        cssVariables: {
-          colorSchemeSelector: 'data-mui-color-scheme',
+    const resultTheme = enhanceHighContrast(
+      createTheme(
+        {
+          cssVariables: {
+            colorSchemeSelector: 'data-mui-color-scheme',
+          },
+          colorSchemes: {
+            light: true,
+            dark: true,
+          },
+          direction: direction as 'ltr' | 'rtl',
+          motion: {
+            reducedMotion: 'system',
+          },
         },
-        colorSchemes: {
-          light: true,
-          dark: true,
-        },
-        direction: direction as 'ltr' | 'rtl',
-      },
-      dense ? highDensity : {},
+        dense ? highDensity : {},
+      ),
     );
     if (upperMode) {
       Object.assign(resultTheme, resultTheme.colorSchemes[upperMode]);

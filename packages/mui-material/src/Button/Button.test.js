@@ -1,5 +1,5 @@
+import { describe, expect, it, vi } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import {
   createRenderer,
   screen,

@@ -19,6 +19,7 @@ import ownerDocument from '../utils/ownerDocument';
 import getActiveElement from '../utils/getActiveElement';
 import { isFilled } from './utils';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
+import { getTransitionStyles } from '../transitions/utils';
 
 const MUI_AUTO_FILL = 'mui-auto-fill';
 const MUI_AUTO_FILL_CANCEL = 'mui-auto-fill-cancel';
@@ -147,7 +148,7 @@ export const InputBaseInput = styled('input', {
         : {
             opacity: light ? 0.42 : 0.5,
           }),
-      transition: theme.transitions.create('opacity', {
+      ...getTransitionStyles(theme, 'opacity', {
         duration: theme.transitions.duration.shorter,
       }),
     };
@@ -350,6 +351,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   // We need to book keep the focused state manually.
   React.useEffect(() => {
     if (!muiFormControl && disabled && focused) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFocused(false);
       if (onBlur) {
         onBlur();

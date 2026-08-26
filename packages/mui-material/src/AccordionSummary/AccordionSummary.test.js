@@ -1,5 +1,5 @@
+import { describe, it, expect, vi } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import AccordionSummary, {

@@ -17,6 +17,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
 import useSlot from '../utils/useSlot';
+import { getTransitionStyles } from '../transitions/utils';
 
 function getDecimalPrecision(num) {
   const decimalPart = num.toString().split('.')[1];
@@ -160,11 +161,11 @@ const RatingIcon = styled('span', {
   memoTheme(({ theme }) => ({
     // Fit wrapper to actual icon size.
     display: 'flex',
-    transition: theme.transitions.create('transform', {
+    ...getTransitionStyles(theme, 'transform', {
       duration: theme.transitions.duration.shortest,
     }),
     // Fix mouseLeave issue.
-    // https://github.com/facebook/react/issues/4492
+    // https://github.com/react/react/issues/4492
     pointerEvents: 'none',
     variants: [
       {
@@ -478,7 +479,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const handleClear = (event) => {
     // Ignore keyboard events
-    // https://github.com/facebook/react/issues/7407
+    // https://github.com/react/react/issues/7407
     if (event.clientX === 0 && event.clientY === 0) {
       return;
     }

@@ -11,6 +11,7 @@ import {
 import { ExtractTypographyTokens } from '@mui/system/cssVars';
 import { Palette, PaletteOptions } from './createPalette';
 import { Shadows } from './shadows';
+import { Motion } from './createMotion';
 import { Transitions } from './createTransitions';
 import { Mixins } from './createMixins';
 import { TypographyVariants } from './createTypography';
@@ -413,6 +414,7 @@ export interface CssVarsTheme extends ColorSystem {
   breakpoints: SystemTheme['breakpoints'];
   shape: Shape;
   typography: TypographyVariants;
+  motion: Motion;
   transitions: Transitions;
   shadows: Shadows;
   mixins: Mixins;

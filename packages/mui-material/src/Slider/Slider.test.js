@@ -1,7 +1,7 @@
+import { beforeEach, expect, it, describe } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
-import { expect } from 'chai';
 import {
   act,
   createRenderer,
@@ -83,6 +83,30 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
       ],
     }),
   );
+
+  it.skipIf(isJsdom())('disables CSS transitions when reduced motion is always', () => {
+    const theme = createTheme({
+      motion: {
+        reducedMotion: 'always',
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Slider defaultValue={50} valueLabelDisplay="on" />
+      </ThemeProvider>,
+    );
+
+    expect(container.querySelector(`.${classes.track}`)).toHaveComputedStyle({
+      transitionDuration: '0s',
+    });
+    expect(container.querySelector(`.${classes.thumb}`)).toHaveComputedStyle({
+      transitionDuration: '0s',
+    });
+    expect(container.querySelector(`.${classes.valueLabel}`)).toHaveComputedStyle({
+      transitionDuration: '0s',
+    });
+  });
 
   it.skipIf(isJsdom())('should call handlers', () => {
     const handleChange = spy();

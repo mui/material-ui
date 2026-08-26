@@ -11,6 +11,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import stepLabelClasses, { getStepLabelUtilityClass } from './stepLabelClasses';
 import useSlot from '../utils/useSlot';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, active, completed, error, disabled, alternativeLabel } = ownerState;
@@ -89,7 +90,7 @@ const StepLabelLabel = styled('span', {
   memoTheme(({ theme }) => ({
     ...theme.typography.body2,
     display: 'block',
-    transition: theme.transitions.create('color', {
+    ...getTransitionStyles(theme, 'color', {
       duration: theme.transitions.duration.shortest,
     }),
     [`&.${stepLabelClasses.active}, &.${stepLabelClasses.completed}`]: {

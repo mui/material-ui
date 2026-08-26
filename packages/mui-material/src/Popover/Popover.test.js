@@ -1,5 +1,5 @@
+import { describe, beforeAll, afterAll, it, expect, beforeEach, afterEach } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy, stub, match } from 'sinon';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import PropTypes from 'prop-types';
@@ -1014,6 +1014,33 @@ describe('<Popover />', () => {
         </Popover>,
       );
       expect(screen.getByTestId('transition')).not.to.have.attribute('data-timeout');
+    });
+
+    it('opens on the next task when reduced motion is always', () => {
+      const handleEntered = spy();
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <Popover
+            anchorEl={defaultAnchorEl}
+            open
+            transitionDuration={250}
+            slotProps={{ transition: { onEntered: handleEntered } }}
+          >
+            <div>Content</div>
+          </Popover>
+        </ThemeProvider>,
+      );
+
+      expect(handleEntered.callCount).to.equal(0);
+      clock.tick(0);
+      expect(handleEntered.callCount).to.equal(1);
+      expect(screen.getByText('Content')).not.to.equal(null);
     });
   });
 

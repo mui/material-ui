@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import {
   alpha as systemAlpha,
@@ -274,6 +274,24 @@ describe('createTheme', () => {
         expect(theme.spacing(-1)).to.equal(`calc(-1 * var(--mui-spacing-1, 4px))`);
         expect(theme.spacing(-2)).to.equal(`calc(-1 * var(--mui-spacing-2, 8px))`);
       });
+    });
+  });
+
+  describe('motion', () => {
+    it('should provide the default values', () => {
+      const theme = createTheme();
+
+      expect(theme.motion.reducedMotion).to.equal('never');
+    });
+
+    it('should provide custom values', () => {
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'system',
+        },
+      });
+
+      expect(theme.motion.reducedMotion).to.equal('system');
     });
   });
 

@@ -3,7 +3,8 @@
  * screenshots, one for axe — so editing one tool can never stomp on the
  * other. Each list is evaluated last-match-wins (no inheritance: an override
  * rule must restate every field it cares about) against the docs path
- * `docs/data/material/components/{slug}/{Demo}`.
+ * `docs/data/material/components/{slug}/{Demo}` (component demos) or
+ * `docs/src/components/product{Product}/{Name}` (landing-page composites).
  *
  * Whole-slug exclusions where *no* tool wants anything live in the
  * `index.jsx` glob — dropping them from the bundle entirely, not just from
@@ -12,18 +13,43 @@
 
 import { minimatch } from 'minimatch';
 
+/** Default playwright viewport when no `ScreenshotRule.viewport` matches. */
+export const DEFAULT_VIEWPORT = { width: 1000, height: 700 };
+
 export interface ScreenshotRule {
-  /** Minimatch glob against `docs/data/material/components/{slug}/{Demo}`. */
+  /** Minimatch glob against the docs path (see file-level comment). */
   test: string;
   enabled?: boolean;
-  /** Playwright waits for this selector after navigation, before axe + screenshot. */
+  /** Playwright waits for this selector to appear after navigation, before axe + screenshot. */
   waitForSelector?: string;
+  /**
+   * Per-route viewport width override (px). Defaults to
+   * {@link DEFAULT_VIEWPORT}'s width. Only the width is configurable: the
+   * screenshot targets the testcase element, which captures its full rendered
+   * height regardless of viewport, so width is the only axis that affects the
+   * result (composites key off desktop breakpoints). The viewport height stays
+   * at the default.
+   */
+  viewportWidth?: number;
+  /**
+   * Skip the demo when the run's React major is below this. For demos whose
+   * third-party dependencies need a newer React than MUI itself supports —
+   * the nightly `test_regressions-react@18` job installs React 18 across the
+   * workspace via pnpm overrides, past any peer range that says otherwise.
+   */
+  minReactMajor?: number;
 }
 
 export interface A11yRule {
   /** Minimatch glob against `docs/data/material/components/{slug}/{Demo}`. */
   test: string;
   enabled?: boolean;
+  /**
+   * `visual` asserts rules that depend on rendered CSS. `all` asserts every
+   * axe violation/incomplete that is not listed in `skipAssertions`.
+   * @default 'visual'
+   */
+  assertions?: 'visual' | 'all';
   /** Axe rule IDs recorded into results JSON but not asserted on. */
   skipAssertions?: string[];
 }
@@ -98,6 +124,50 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     test: 'docs/data/material/components/table/ReactVirtualizedTable',
     waitForSelector: '[data-index="1"]',
   }, // Wait for virtualized rows to render
+
+  // Landing-page composites under `docs/src/components/product*/` use
+  // desktop breakpoints (`md`+) and look clipped at the default width.
+  { test: 'docs/src/components/product*/**', viewportWidth: 1280 },
+  // X composites (large grids, dense charts) want a wider canvas to match
+  // their live-docs desktop layout. Last-match-wins so this overrides the
+  // broader product*/** width above.
+  { test: 'docs/src/components/productX/**', viewportWidth: 1440 },
+
+  // The template mounts react-router's data router (`createHashRouter` +
+  // `RouterProvider`), which calls `useOptimistic` — React 19 only.
+  // react-router@8 peers on `react >= 19.2.7`, so under the nightly
+  // `test_regressions-react@18` override the whole demo throws on render and
+  // the harness waits out its timeout on a testcase element that never
+  // appears. It is the only demo mounting a data router; the other
+  // react-router demos use `MemoryRouter`/`Link` and are unaffected.
+  {
+    test: 'docs/data/material/getting-started/templates/crud-dashboard/CrudDashboard',
+    minReactMajor: 19,
+  },
+
+  // Composites whose Data Grid loads its rows asynchronously via `useDemoData`
+  // — `aria-busy` only tracks fonts, not the grid data, so without this the
+  // screenshot can capture the loading skeleton. The skeleton's cells carry
+  // *both* `.MuiDataGrid-cell` and `.MuiDataGrid-cellSkeleton` (and its rows
+  // both `.MuiDataGrid-row` and `.MuiDataGrid-rowSkeleton`), so a plain
+  // `.MuiDataGrid-row .MuiDataGrid-cell` matches the skeleton too. Exclude
+  // skeleton rows so the wait only resolves once real data has rendered. Rules
+  // are last-match-wins, so each restates the X width from the rule above.
+  {
+    test: 'docs/src/components/productX/XHero',
+    viewportWidth: 1440,
+    waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
+  },
+  {
+    test: 'docs/src/components/productX/XGridFullDemo',
+    viewportWidth: 1440,
+    waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
+  },
+  {
+    test: 'docs/src/components/productX/XTheming',
+    viewportWidth: 1440,
+    waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
+  },
 ];
 
 /**
@@ -108,7 +178,11 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
  * Initial PR scope: `buttons` only. Other components onboard incrementally.
  */
 export const A11Y_RULES: A11yRule[] = [
-  { test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
+  {
+    test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}',
+    enabled: true,
+    assertions: 'all',
+  },
 ];
 
 export interface ParsedRoute {
@@ -117,19 +191,48 @@ export interface ParsedRoute {
   demo: string;
 }
 
-const ROUTE_REGEX = /^\/docs-components-([^/]+)\/(.+)$/;
+const COMPONENT_ROUTE_REGEX = /^\/docs-components-([^/]+)\/(.+)$/;
+const COMPOSITE_ROUTE_REGEX = /^\/docs-product-([^/]+)\/(.+)$/;
+const TEMPLATE_ROUTE_REGEX = /^\/docs-getting-started-templates-([^/]+)\/(.+)$/;
 
 /**
  * Map a VRT route to its docs path + slug + demo, or `null` for non-component
  * routes (regression fixtures).
+ *
+ * Recognises two route shapes:
+ * - `/docs-components-{slug}/{Demo}` → `docs/data/material/components/{slug}/{Demo}`
+ * - `/docs-product-{product}/{Name}` → `docs/src/components/product{Product}/{Name}`
+ * - `/docs-getting-started-templates-{slug}/{Demo}` →
+ *   `docs/data/material/getting-started/templates/{slug}/{Demo}`
+ *
+ * The template shape is matched by its literal prefix: `fixtures.js` joins the
+ * directory segments with `-`, so `getting-started-templates-crud-dashboard`
+ * cannot be split back into directories without knowing where the slug starts.
  */
 export function parseRoute(route: string): ParsedRoute | null {
-  const match = route.match(ROUTE_REGEX);
-  if (!match) {
-    return null;
+  const componentMatch = route.match(COMPONENT_ROUTE_REGEX);
+  if (componentMatch) {
+    const [, slug, demo] = componentMatch;
+    return { path: `docs/data/material/components/${slug}/${demo}`, slug, demo };
   }
-  const [, slug, demo] = match;
-  return { path: `docs/data/material/components/${slug}/${demo}`, slug, demo };
+  const templateMatch = route.match(TEMPLATE_ROUTE_REGEX);
+  if (templateMatch) {
+    const [, slug, demo] = templateMatch;
+    return {
+      path: `docs/data/material/getting-started/templates/${slug}/${demo}`,
+      slug,
+      demo,
+    };
+  }
+  const compositeMatch = route.match(COMPOSITE_ROUTE_REGEX);
+  if (compositeMatch) {
+    const [, product, demo] = compositeMatch;
+    // Re-capitalize the single-word product segment from `index.jsx`'s glob
+    // (`material` → `Material`, `x` → `X`) to rebuild the directory name.
+    const dir = `product${product.charAt(0).toUpperCase()}${product.slice(1)}`;
+    return { path: `docs/src/components/${dir}/${demo}`, slug: product, demo };
+  }
+  return null;
 }
 
 /**

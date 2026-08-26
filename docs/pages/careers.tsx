@@ -18,7 +18,18 @@ import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 
 import { AppHeaderBanner, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
-const openRolesData = [
+type Role = {
+  title: string;
+  description: string;
+  url: string;
+};
+
+type RoleCategory = {
+  title: string;
+  roles: Role[];
+};
+
+const openRolesData: RoleCategory[] = [
   {
     title: 'Engineering',
     roles: [
@@ -57,12 +68,12 @@ const openRolesData = [
   {
     title: 'Sales',
     roles: [
-      {
-        title: 'Account Executive',
-        description:
-          'You will be a key player in driving revenue growth and building strong customer relationships.',
-        url: '/careers/account-executive/',
-      },
+      // {
+      //   title: 'Account Executive',
+      //   description:
+      //     'You will be a key player in driving revenue growth and building strong customer relationships.',
+      //   url: '/careers/account-executive/',
+      // },
       // {
       //   title: 'Account Manager',
       //   description:
@@ -78,6 +89,16 @@ const openRolesData = [
       //   title: 'Technical Recruiter',
       //   description: 'MUI is looking for an experienced Tech Recruiter to join our People team.',
       //   url: '/careers/technical-recruiter/',
+      // },
+    ],
+  },
+  {
+    title: 'Marketing',
+    roles: [
+      // {
+      //   title: 'Product Marketing Manager',
+      //   description: 'Establish MUI product positioning and messaging.',
+      //   url: '/careers/product-marketing-manager/',
       // },
     ],
   },
@@ -127,7 +148,7 @@ export default function Careers() {
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <Section cozy bg="gradient">
           <SectionHeadline
             alwaysCenter

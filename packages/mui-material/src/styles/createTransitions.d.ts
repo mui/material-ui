@@ -22,6 +22,10 @@ export interface TransitionsOptions {
   duration?: Partial<Duration> | undefined;
   create?:
     | ((
+        props?: string | string[],
+        options?: Partial<{ duration: number | string; easing: string; delay: number | string }>,
+      ) => string)
+    | ((
         props: string | string[],
         options?: Partial<{ duration: number | string; easing: string; delay: number | string }>,
       ) => string)
@@ -35,7 +39,7 @@ export interface TransitionsOptions {
  * @param options
  */
 export function create(
-  props: string | string[],
+  props?: string | string[],
   options?: Partial<{ duration: number | string; easing: string; delay: number | string }>,
 ): string;
 
