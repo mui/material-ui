@@ -1,5 +1,4 @@
-import { ThemeOptions, Theme } from './createThemeNoVars';
-import { Components } from './components';
+import { ThemeOptions, Theme, ResolvedComponents } from './createThemeNoVars';
 import {
   DefaultColorScheme,
   ColorSchemeOverrides,
@@ -130,7 +129,7 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
   /**
    * Theme components
    */
-  components?: Components<Omit<Theme, 'components' | 'palette'> & CssVarsTheme> | undefined;
+  components?: ResolvedComponents<Omit<Theme, 'components' | 'palette'> & CssVarsTheme> | undefined;
   /**
    * Color schemes configuration
    */
