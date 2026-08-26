@@ -1,0 +1,44 @@
+@layer mui.tokens, mui.base, mui.theme;
+
+/*
+ * Shared foundational contract. Theme styles select and combine these values; v1 themes do not
+ * redefine them. These names are illustrative and would become semver-public in a real release.
+ */
+@layer mui.tokens {
+  :root {
+    --mui-palette-common-black: #111111;
+    --mui-palette-common-white: #ffffff;
+    --mui-palette-primary-light: #7669e7;
+    --mui-palette-primary-main: #6558d3;
+    --mui-palette-primary-dark: #4f46b6;
+    --mui-palette-secondary-light: #ff6a2b;
+    --mui-palette-secondary-main: #ff4d00;
+    --mui-palette-info-main: #00a6c7;
+    --mui-palette-warning-main: #ffef3b;
+    --mui-palette-background-default: #f5f7fb;
+    --mui-palette-background-paper: #ffffff;
+    --mui-palette-text-primary: #202334;
+    --mui-palette-text-secondary: #656b7c;
+    --mui-palette-divider: #dfe3ec;
+    --mui-palette-action-disabled: #8d94a5;
+    --mui-palette-action-disabled-background: #e6e9f0;
+    --mui-font-family:
+      Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --mui-font-family-display: 'Arial Black', Arial, Helvetica, sans-serif;
+    --mui-shape-radius-small: 6px;
+    --mui-shape-radius-medium: 12px;
+    --mui-shape-radius-pill: 999px;
+    --mui-elevation-soft: 0 8px 20px rgb(101 88 211 / 24%);
+    --mui-elevation-hard: 5px 5px 0 var(--mui-palette-common-black);
+    --mui-duration-shortest: 80ms;
+    --mui-duration-short: 160ms;
+    --mui-easing-standard: ease;
+    --mui-easing-snappy: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --mui-spacing-1: 4px;
+    --mui-spacing-2: 8px;
+    --mui-spacing-3: 12px;
+    --mui-spacing-4: 16px;
+    --mui-spacing-5: 20px;
+    --mui-density-unit: 2px;
+  }
+}

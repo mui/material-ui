@@ -1,0 +1,63 @@
+@layer mui.tokens, mui.base, mui.theme;
+
+/* Shared Button structure and behavior hooks. No theme-specific color or decoration lives here. */
+@layer mui.base {
+  .MuiButton-root {
+    position: relative;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    outline: 0;
+    appearance: none;
+    cursor: pointer;
+    user-select: none;
+    vertical-align: middle;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .MuiButton-root:hover {
+    text-decoration: none;
+  }
+
+  .MuiButton-root.Mui-disabled {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .MuiButton-root.MuiButton-fullWidth {
+    width: 100%;
+  }
+
+  .MuiButton-startIcon,
+  .MuiButton-endIcon {
+    display: inherit;
+    align-items: center;
+  }
+
+  .MuiButton-loadingIndicator {
+    position: absolute;
+    display: none;
+    visibility: visible;
+  }
+
+  .MuiButton-loading .MuiButton-loadingIndicator {
+    display: flex;
+  }
+
+  .MuiButton-loadingIconPlaceholder {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .MuiButton-root,
+    .MuiButton-root::before,
+    .MuiButton-root::after {
+      transition: none;
+    }
+  }
+}
