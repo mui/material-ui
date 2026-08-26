@@ -140,6 +140,30 @@ async function main() {
       `[data-testid="testcase"][data-testpath="${route}"]:not([aria-busy="true"])`,
     );
 
+    // `aria-busy` covers fonts, not images. The route handler aborts every
+    // image request, and components like Avatar only swap to their fallback
+    // after the error event triggers a re-render -- strictly later than the
+    // busy flip, so under CI contention the screenshot can catch the pending
+    // <img>: blank where every baseline has the settled fallback. Wait for
+    // each image to settle, then two frames so React commits the swap the
+    // load/error event scheduled.
+    await testcase.evaluate(async (element) => {
+      await Promise.all(
+        Array.from(element.querySelectorAll('img'), (img) => {
+          if (img.complete) {
+            return undefined;
+          }
+          return new Promise((resolve) => {
+            img.addEventListener('load', resolve, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+          });
+        }),
+      );
+      await new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      });
+    });
+
     return testcase;
   }
 
