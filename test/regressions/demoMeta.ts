@@ -31,6 +31,13 @@ export interface ScreenshotRule {
    * at the default.
    */
   viewportWidth?: number;
+  /**
+   * Skip the demo when the run's React major is below this. For demos whose
+   * third-party dependencies need a newer React than MUI itself supports —
+   * the nightly `test_regressions-react@18` job installs React 18 across the
+   * workspace via pnpm overrides, past any peer range that says otherwise.
+   */
+  minReactMajor?: number;
 }
 
 export interface A11yRule {
@@ -126,6 +133,18 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   // broader product*/** width above.
   { test: 'docs/src/components/productX/**', viewportWidth: 1440 },
 
+  // The template mounts react-router's data router (`createHashRouter` +
+  // `RouterProvider`), which calls `useOptimistic` — React 19 only.
+  // react-router@8 peers on `react >= 19.2.7`, so under the nightly
+  // `test_regressions-react@18` override the whole demo throws on render and
+  // the harness waits out its timeout on a testcase element that never
+  // appears. It is the only demo mounting a data router; the other
+  // react-router demos use `MemoryRouter`/`Link` and are unaffected.
+  {
+    test: 'docs/data/material/getting-started/templates/crud-dashboard/CrudDashboard',
+    minReactMajor: 19,
+  },
+
   // Composites whose Data Grid loads its rows asynchronously via `useDemoData`
   // — `aria-busy` only tracks fonts, not the grid data, so without this the
   // screenshot can capture the loading skeleton. The skeleton's cells carry
@@ -174,6 +193,7 @@ export interface ParsedRoute {
 
 const COMPONENT_ROUTE_REGEX = /^\/docs-components-([^/]+)\/(.+)$/;
 const COMPOSITE_ROUTE_REGEX = /^\/docs-product-([^/]+)\/(.+)$/;
+const TEMPLATE_ROUTE_REGEX = /^\/docs-getting-started-templates-([^/]+)\/(.+)$/;
 
 /**
  * Map a VRT route to its docs path + slug + demo, or `null` for non-component
@@ -182,12 +202,27 @@ const COMPOSITE_ROUTE_REGEX = /^\/docs-product-([^/]+)\/(.+)$/;
  * Recognises two route shapes:
  * - `/docs-components-{slug}/{Demo}` → `docs/data/material/components/{slug}/{Demo}`
  * - `/docs-product-{product}/{Name}` → `docs/src/components/product{Product}/{Name}`
+ * - `/docs-getting-started-templates-{slug}/{Demo}` →
+ *   `docs/data/material/getting-started/templates/{slug}/{Demo}`
+ *
+ * The template shape is matched by its literal prefix: `fixtures.js` joins the
+ * directory segments with `-`, so `getting-started-templates-crud-dashboard`
+ * cannot be split back into directories without knowing where the slug starts.
  */
 export function parseRoute(route: string): ParsedRoute | null {
   const componentMatch = route.match(COMPONENT_ROUTE_REGEX);
   if (componentMatch) {
     const [, slug, demo] = componentMatch;
     return { path: `docs/data/material/components/${slug}/${demo}`, slug, demo };
+  }
+  const templateMatch = route.match(TEMPLATE_ROUTE_REGEX);
+  if (templateMatch) {
+    const [, slug, demo] = templateMatch;
+    return {
+      path: `docs/data/material/getting-started/templates/${slug}/${demo}`,
+      slug,
+      demo,
+    };
   }
   const compositeMatch = route.match(COMPOSITE_ROUTE_REGEX);
   if (compositeMatch) {

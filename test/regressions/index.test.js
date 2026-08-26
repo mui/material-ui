@@ -82,6 +82,9 @@ async function main() {
     return links.map((link) => link.href);
   });
   routes = routes.map((route) => route.replace(baseUrl, ''));
+  const reactMajor = Number(
+    (await probePage.evaluate(() => window.muiFixture.reactVersion)).split('.')[0],
+  );
   pool.release(probePage);
 
   const test = base.extend({
@@ -165,7 +168,8 @@ async function main() {
         const parsed = parseRoute(route);
         const screenshotRule = parsed ? getConfig(SCREENSHOT_RULES, parsed.path) : undefined;
         const a11yRule = parsed ? getConfig(A11Y_RULES, parsed.path) : undefined;
-        const runScreenshot = parsed ? (screenshotRule?.enabled ?? true) : true;
+        const meetsReactFloor = reactMajor >= (screenshotRule?.minReactMajor ?? 0);
+        const runScreenshot = parsed ? (screenshotRule?.enabled ?? true) && meetsReactFloor : true;
         const runA11y = a11yRule?.enabled === true;
         if (!runScreenshot && !runA11y) {
           return;
