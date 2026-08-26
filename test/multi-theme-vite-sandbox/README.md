@@ -36,8 +36,8 @@ css/themes/{polished,brutalist}/{button,slider,index}.css
 ```
 
 Each granular theme file imports the shared tokens and its component base file before defining the
-component's `mui.theme` rules. The Brutalist entry imports its Button and Slider files through
-separate modules, exercising Vite's deduplication of their shared token dependency.
+component's `mui.theme` rules. The Brutalist entry imports its Button and Slider CSS directly,
+exercising Vite's deduplication of their shared token dependency.
 
 The components' CSS-in-JS style bodies are empty. Vite also aliases `@mui/styled-engine` to
 `src/noopStyledEngine.tsx`, preventing other Material UI internals from injecting runtime styles.
