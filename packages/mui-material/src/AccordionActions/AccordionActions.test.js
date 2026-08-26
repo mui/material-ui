@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import AccordionActions, {
   accordionActionsClasses as classes,

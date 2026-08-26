@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { createTheme } from '@mui/material/styles';
 import createTransitions, { easing, duration } from './createTransitions';
 

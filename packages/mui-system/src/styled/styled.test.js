@@ -1,3 +1,4 @@
+import { describe, it, expect, beforeAll } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { styled, ThemeProvider } from '@mui/system';
 

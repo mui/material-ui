@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import Avatar, { avatarClasses as classes } from '@mui/material/Avatar';

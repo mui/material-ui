@@ -1,4 +1,5 @@
 // @ts-check
+import { describe, beforeAll, it, expect, beforeEach, vi } from 'vitest';
 import * as React from 'react';
 import { spy, stub } from 'sinon';
 import {

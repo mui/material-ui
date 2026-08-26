@@ -50,7 +50,7 @@
     "@types/react": "19.2.18",
     "chalk": "6.0.0",
     "cross-fetch": "4.1.0",
-    "es-toolkit": "1.50.0",
+    "es-toolkit": "1.51.0",
     "fast-glob": "3.3.3",
     "mustache": "4.2.0",
     "react": "19.2.8",

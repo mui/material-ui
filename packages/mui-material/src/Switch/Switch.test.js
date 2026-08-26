@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { act, createRenderer, fireEvent, isJsdom, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Switch, { switchClasses as classes } from '@mui/material/Switch';

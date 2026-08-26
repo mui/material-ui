@@ -18,14 +18,14 @@
     "@babel/types": "^7.29.8",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
+    "@typescript/typescript6": "^6.0.2",
     "doctrine": "^3.0.0",
-    "es-toolkit": "^1.50.0",
+    "es-toolkit": "^1.51.0",
     "fast-glob": "^3.3.3",
     "prettier": "^3.9.6",
     "react-docgen": "^8.0.3",
     "recast": "^0.24.0",
     "remark": "^15.0.1",
-    "typescript": "^6.0.3",
     "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {

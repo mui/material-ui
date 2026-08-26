@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import composeClasses from '@mui/utils/composeClasses';
 
 describe('composeClasses', () => {

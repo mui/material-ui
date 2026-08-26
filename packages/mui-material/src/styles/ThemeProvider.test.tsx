@@ -1,3 +1,4 @@
+import { describe, beforeEach, afterEach, it, expect } from 'vitest';
 import { createRenderer, renderHook, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme, useColorScheme, useTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';

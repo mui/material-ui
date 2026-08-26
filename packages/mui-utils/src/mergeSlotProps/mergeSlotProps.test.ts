@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { EventHandlers } from '@mui/utils/types';
 import mergeSlotProps from '@mui/utils/mergeSlotProps';
