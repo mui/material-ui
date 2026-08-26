@@ -1138,24 +1138,23 @@ describe('<Button />', () => {
       expect(handleClick.callCount).to.equal(0);
     });
 
-    it('3.2.2 On Input: state changes only from explicit activation, never on its own', async () => {
+    it('3.2.2 On Input: toggling the pressed or loading state does not activate the button', async () => {
       const handleClick = spy();
-      const { user } = render(
-        <React.Fragment>
-          <Button onClick={handleClick} aria-pressed>
-            Pressed
-          </Button>
-          <Button onClick={handleClick} loading>
-            Loading
-          </Button>
-        </React.Fragment>,
+      const { setProps, user } = render(
+        <Button onClick={handleClick} aria-pressed={false} loading={false}>
+          Toggle
+        </Button>,
       );
 
-      // Neither the pressed state nor the loading state activates a button on its own.
+      // Flipping the pressed and loading state programmatically must not activate the button.
+      setProps({ 'aria-pressed': true });
+      setProps({ loading: true });
       expect(handleClick.callCount).to.equal(0);
 
-      // The pressed toggle changes context only when the user explicitly activates it.
-      await user.click(screen.getByRole('button', { name: 'Pressed' }));
+      // Only explicit activation runs the handler. `loading` is turned off first,
+      // since a loading button is removed from interaction.
+      setProps({ loading: false });
+      await user.click(screen.getByRole('button'));
       expect(handleClick.callCount).to.equal(1);
     });
 
