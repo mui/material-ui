@@ -205,6 +205,15 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
   },
+  // `color-contrast` is a known, documented product gap, not a regression:
+  // `info` and `warning` fail 4.5:1 in every variant with the default palette
+  // Asserting it would keep CI permanently red, so the failure is recorded in
+  // `buttons.a11y.json` (status only, a tripwire for flips) and documented with
+  // measured ratios in `packages/mui-material/src/Button/accessibility.md`
+  // § 1.4.3. A palette change cannot go unnoticed: the "1.4.3 Contrast
+  // (Minimum)" unit tests in `Button.test.js` recompute the ratios from
+  // `createTheme()` and fail when the failing set or the documented table
+  // goes stale.
   {
     test: 'docs/data/material/components/buttons/ButtonA11yColorMatrix',
     enabled: true,
