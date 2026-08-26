@@ -229,10 +229,7 @@ export type StyledComponent<
 
 // any doesn't count as assignable to never in the extends clause, and we default A to never
 export type AnyStyledComponent =
-  | StyledComponent<any, any, any, any>
-  | StyledComponent<any, any, any>
-  | React.FunctionComponent<any>
-  | React.ComponentType<any>;
+  StyledComponentInstance | React.FunctionComponent<any> | React.ComponentType<any>;
 
 type StyledComponentInstance = StyledComponent<any, any, any, any> | StyledComponent<any, any, any>;
 
