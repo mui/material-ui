@@ -153,10 +153,21 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `⚠️ Partially Supports` · `● Component`
 
-- `info` and `warning` contained buttons do not meet `4.5:1`.
+- `info` and `warning` buttons do not meet `4.5:1` in any variant.
 - axe-core `color-contrast` checks the default state.
 - `:hover` and `:active` colors need a visual check.
 - Disabled buttons are exempt.
+
+The shortfalls, measured from the default light palette (all pairs against `#fff`):
+
+| Combination                               | Foreground | Background |  Ratio | Required |
+| :---------------------------------------- | :--------- | :--------- | -----: | -------: |
+| `contained` `color="warning"`             | `#fff`     | `#ed6c02`  | 3.11:1 |    4.5:1 |
+| `contained` `color="info"`                | `#fff`     | `#0288d1`  | 3.86:1 |    4.5:1 |
+| `text`/`outlined` `color="warning"` label | `#ed6c02`  | `#fff`     | 3.11:1 |    4.5:1 |
+| `text`/`outlined` `color="info"` label    | `#0288d1`  | `#fff`     | 3.86:1 |    4.5:1 |
+
+Every other `variant` × `color` combination clears `4.5:1`; the closest pass is `primary` at `4.6:1`. The button label (14px, weight 500) does not qualify as WCAG large text, so the `3:1` threshold never applies here.
 
 **Manual testing steps**
 
@@ -331,7 +342,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 - Toggling the button's setting (`loading` to disabled, or an `aria-pressed` toggle) changes no context on its own.
 - Whether an author's handler couples that change to navigation or a new window without warning is an author decision.
-- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (toggling `aria-pressed` or `loading` does not activate the button).
+- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (rendering with `aria-pressed` or `loading` does not fire `onClick`).
 
 ## Not applicable
 
@@ -365,7 +376,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 ## Scope and test environment
 
 - **Standard.** WCAG 2.2, Level A and AA.
-- **Component version.** `@mui/material` 9.1.1.
+- **Component version.** `@mui/material` 9.x.
 - **Scope.** The Button component in isolation, rendered through its documented API.
 - **Automated.** axe-core via Playwright test harness (results in [`buttons.a11y.json`](../../../../docs/data/material/components/buttons/buttons.a11y.json)), plus interaction tests in `ButtonBase.test.js` and `Button.test.js`.
 - **Assistive-technology review.** Not yet performed. Flagged criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.
