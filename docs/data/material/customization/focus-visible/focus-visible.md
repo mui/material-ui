@@ -1,8 +1,8 @@
 # Focus visible
 
-<p class="description">Configure a theme option to apply an outline keyboard focus across Material UI components.</p>
+<p class="description">Apply an outline or inset keyboard focus across Material UI components.</p>
 
-Starting from v9.x, Material UI provides built-in support for visual keyboard focus indicator through CSS. The demos on this page opt out of the ripple to show only the focus visible indicator.
+Starting from v9.4, Material UI provides built-in support for visual keyboard focus indicator through CSS. The demos on this page opt out of the ripple to show only the focus visible indicator.
 
 ## Usage
 
@@ -121,7 +121,7 @@ The indicator hugs whatever box the svg renders at, so smaller replacement icons
 
 ### Component focus-visible styles are replaced by the theme
 
-Some components indicate keyboard focus with a translucent background or overlay by default — the Chip, MenuItem, ListItemButton, AccordionSummary, PaginationItem, CardActionArea, Autocomplete options, and the Slider thumb. When `focusVisible` is enabled, these component focus-visible styles are removed so that the theme's indicator is the only one, consistent across all components — hover, selected, and active styles are unchanged.
+Some components indicate keyboard focus with a translucent background or overlay by default — the `Chip`, `MenuItem`, `ListItemButton`, `AccordionSummary`, `PaginationItem`, `CardActionArea`, `Autocomplete` options, and the `Slider` thumb. When `focusVisible` is enabled, these component focus-visible styles are removed so that the theme's indicator is the only one, consistent across all components — hover, selected, and active styles are unchanged.
 
 ### Recomposing a theme with a palette change
 
