@@ -279,6 +279,16 @@ export default function FullFocusVisibleDemo() {
           <Row label="Rating">
             <Rating defaultValue={3} />
           </Row>
+          <Row label="Stepper">
+            <Stepper nonLinear activeStep={activeStep} sx={{ minWidth: 260 }}>
+              <Step>
+                <StepButton onClick={handleStep(0)}>One</StepButton>
+              </Step>
+              <Step>
+                <StepButton onClick={handleStep(1)}>Two</StepButton>
+              </Step>
+            </Stepper>
+          </Row>
         </Bucket>
 
         <Divider />
@@ -291,16 +301,6 @@ export default function FullFocusVisibleDemo() {
               <Tab label="Tab one" />
               <Tab label="Tab two" />
             </Tabs>
-          </Row>
-          <Row label="Stepper">
-            <Stepper nonLinear activeStep={activeStep} sx={{ minWidth: 260 }}>
-              <Step>
-                <StepButton onClick={handleStep(0)}>One</StepButton>
-              </Step>
-              <Step>
-                <StepButton onClick={handleStep(1)}>Two</StepButton>
-              </Step>
-            </Stepper>
           </Row>
           <Row label="MenuItem">
             <MenuList>
