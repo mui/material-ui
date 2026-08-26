@@ -340,9 +340,9 @@ Every other `variant` × `color` combination clears `4.5:1`; the closest pass is
 
 `✅ Supports` · `◐ Shared`
 
-- Toggling the button's setting (`loading` to disabled, or an `aria-pressed` toggle) changes no context on its own.
+- Programmatically toggling the button's setting (`aria-pressed`, or `loading` to disabled) fires no handler and changes no context on its own. Activation comes only from explicit user input.
 - Whether an author's handler couples that change to navigation or a new window without warning is an author decision.
-- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (rendering with `aria-pressed` or `loading` does not fire `onClick`).
+- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js): flipping `aria-pressed` and `loading` on a rendered button fires no `onClick`, and a real click does.
 
 ## Not applicable
 
