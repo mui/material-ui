@@ -5362,8 +5362,14 @@ describe('<Autocomplete />', () => {
       const option = screen.getAllByRole('option')[0];
       expect(option).to.have.class(classes.focusVisible);
       expect(option).to.have.attribute('aria-selected', 'true');
-      // selected + hover only; the extra focusOpacity bump is suppressed by the theme ring
-      expect(option).toHaveComputedStyle({ backgroundColor: 'rgba(25, 118, 210, 0.12)' });
+
+      // The theme ring suppresses the extra focusOpacity bump, so the option keeps whatever the
+      // highlight alone gives it. That value is media-dependent: pointer devices get the blended
+      // `selectedOpacity + hoverOpacity`, while `@media (hover: none)` environments (headless
+      // Firefox on CI, touch devices) fall back to `action.selected`.
+      const backgroundColor = window.getComputedStyle(option).backgroundColor;
+      expect(backgroundColor).not.to.equal('rgba(25, 118, 210, 0.2)');
+      expect(['rgba(25, 118, 210, 0.12)', 'rgba(0, 0, 0, 0.08)']).to.contain(backgroundColor);
     });
   });
 });
