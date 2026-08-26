@@ -12,7 +12,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 ## Known gaps
 
-- ⚠️ **1.4.3 Contrast (Minimum).** `info` and `warning` contained buttons fall short of 4.5:1.
+- ⚠️ **1.4.3 Contrast (Minimum).** `info` and `warning` buttons fall short of 4.5:1 in every variant.
 - ⚠️ **1.4.11 Non-text Contrast.** Focus-indicator, border, and icon contrast are untested; `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator, and `disableElevation` removes the `contained` one.
 - ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator; `contained` loses its indicator only when `disableElevation` is combined with them.
 - ⚠️ **4.1.3 Status Messages.** The `loading` state adds no live region, so the change may go unannounced.
@@ -302,7 +302,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 `✅ Supports` · `● Component`
 
 - Activation runs on `click`, fired on pointer-up over the target. `onMouseDown` only starts the ripple, and releasing off the target cancels, so nothing runs on the down event.
-- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (`mousedown` does not activate; `click` does). Covered by unit tests.
+- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (`mousedown` does not activate; `click` does).
 
 #### 2.5.3 Label in Name · A
 
