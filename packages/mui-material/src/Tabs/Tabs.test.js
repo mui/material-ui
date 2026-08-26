@@ -1,3 +1,4 @@
+import { it, expect, describe, beforeAll, afterAll } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
 import {

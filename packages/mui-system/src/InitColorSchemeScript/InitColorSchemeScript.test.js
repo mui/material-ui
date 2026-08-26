@@ -1,4 +1,5 @@
 /* eslint-disable no-eval */
+import { describe, beforeEach, afterEach, it, expect } from 'vitest';
 import { createRenderer } from '@mui/internal-test-utils';
 import InitColorSchemeScript from '@mui/system/InitColorSchemeScript';
 import {

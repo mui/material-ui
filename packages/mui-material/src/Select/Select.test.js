@@ -1,3 +1,4 @@
+import { describe, beforeEach, it, expect, vi } from 'vitest';
 import * as React from 'react';
 import { spy, stub } from 'sinon';
 import {

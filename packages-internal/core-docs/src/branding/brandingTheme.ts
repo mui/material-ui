@@ -1347,7 +1347,7 @@ export function getThemedComponents(): ThemeOptions {
                     outlineOffset: 2,
                   },
                 },
-                ':is(a&), :is(button&)': {
+                '&:is(a, button)': {
                   '&:hover': {
                     borderColor: (theme.vars || theme).palette.primary[200],
                     boxShadow: `0px 4px 16px ${(theme.vars || theme).palette.grey[200]}`,
@@ -1368,7 +1368,7 @@ export function getThemedComponents(): ThemeOptions {
                     boxShadow: `0px 2px 8px ${alpha(theme.palette.primary[900], 0.6)}`,
                   },
                 },
-                ':is(a&), :is(button&)': {
+                '&:is(a, button)': {
                   '&:hover': {
                     boxShadow: `0px 4px 24px ${(theme.vars || theme).palette.common.black}`,
                   },

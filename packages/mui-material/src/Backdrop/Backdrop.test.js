@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { spy } from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';
 import Backdrop, { backdropClasses as classes } from '@mui/material/Backdrop';

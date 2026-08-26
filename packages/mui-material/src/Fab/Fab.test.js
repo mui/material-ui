@@ -1,3 +1,4 @@
+import { describe, it, expect, vi } from 'vitest';
 import * as React from 'react';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import Fab, { fabClasses as classes } from '@mui/material/Fab';

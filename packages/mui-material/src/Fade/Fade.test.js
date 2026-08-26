@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest';
 import * as React from 'react';
 import { act, createRenderer, isJsdom } from '@mui/internal-test-utils';
 import Fade from '@mui/material/Fade';

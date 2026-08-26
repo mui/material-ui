@@ -1,3 +1,4 @@
+import { describe, beforeAll, beforeEach, afterAll, it, expect, afterEach } from 'vitest';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { spy } from 'sinon';

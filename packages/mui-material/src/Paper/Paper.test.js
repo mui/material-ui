@@ -1,3 +1,4 @@
+import { describe, it, expect, beforeEach } from 'vitest';
 import PropTypes from 'prop-types';
 import {
   createRenderer,

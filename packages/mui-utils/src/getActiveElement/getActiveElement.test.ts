@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { stub } from 'sinon';
 import getActiveElement from './getActiveElement';
 

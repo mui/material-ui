@@ -664,7 +664,7 @@ const Root = styled('div')(
     },
   }),
   ({ theme }) => ({
-    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+    [`*:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       color: 'rgb(255, 255, 255)',
       '& :not(pre) > code': {
         // inline code block

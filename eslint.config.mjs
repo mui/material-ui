@@ -11,7 +11,6 @@ import { fixupPluginRules } from '@eslint/compat';
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
 import * as path from 'node:path';
-import vitestPlugin from '@vitest/eslint-plugin';
 import { fileURLToPath } from 'url';
 import remarkConfig from './.remarkrc.mjs';
 
@@ -161,11 +160,6 @@ export default defineConfig(
       useMocha: false,
       useVitest: true,
     }),
-    languageOptions: {
-      globals: {
-        ...vitestPlugin.environments.env.globals,
-      },
-    },
     rules: {
       'mui/material-ui-no-empty-box': 'off',
       // Disabled temporarily. Enable one by one.
