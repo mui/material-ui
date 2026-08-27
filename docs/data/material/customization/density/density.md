@@ -1,12 +1,12 @@
 # Density
 
-<p class="description">Apply consistent, adjustable sizing across Material UI components.</p>
+<p class="description">Apply consistent, adjustable sizing across Material UI components.</p>
 
-Material UI's default sizes follow the Material Design guidelines, which are comfortable by design. Data-dense interfaces—dashboards, admin consoles, design tools—usually need something tighter, and some products need something roomier.
+Material UI's default sizes follow the Material Design guidelines, which are comfortable by design. Data-dense interfaces—dashboards, admin consoles, design tools—usually need something tighter, and some products need something roomier.
 
 At the defaults, sizes are also set per component rather than from a shared scale, so controls of the same size don't line up: a medium Button is 36.5px tall next to a 40px IconButton, a 42px Checkbox, a 48px ToggleButton, and a 56px outlined TextField.
 
-Starting from v9.5, Material UI provides `enhanceDensity`, an opt-in theme enhancer that maps every component onto one shared spacing scale. Same-size controls end up on the same box, and one scale controls the whole set.
+Starting from v9.5, Material UI provides `enhanceDensity`, an opt-in theme enhancer that maps every component onto one shared spacing scale. Same-size controls end up on the same box, and one scale controls the whole set.
 
 ## Usage
 
