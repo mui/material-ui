@@ -18,9 +18,6 @@ export interface DensityScale {
 
 export type DensityKey = keyof DensityScale;
 
-/** Per-step multipliers on the spacing unit (assumed at MUI's 8px default). */
-export type DensityMultipliers = Record<DensityKey, number>;
-
 export const DENSITY_KEYS: DensityKey[] = [
   'xx-small',
   'x-small',
@@ -48,17 +45,17 @@ export type EnhanceableTheme = Theme &
     >
   >;
 
-const isDensityKey = (value: string): value is DensityKey =>
-  (DENSITY_KEYS as string[]).includes(value);
-
 /**
  * PRIVATE density core behind `enhanceDensity`: the keyed `theme.spacing`
  * wrapper + the `--<prefix>-spacing-*` step emission. No `theme.density` node.
  */
 export function applyDensity<T extends EnhanceableTheme>(
   themeInput: T,
-  multipliers: DensityMultipliers,
-  scaleOverrides?: Partial<Record<DensityKey, string | number>>,
+  /** Per-step multipliers on the spacing unit. Internal to the enhancers. */
+  multipliers: Record<DensityKey, number>,
+  /** Per-step replacement in px. Numbers keep every step resolvable in JS too
+   * (MUI X derives virtualized heights off the same ladder). */
+  scaleOverrides?: Partial<Record<DensityKey, number>>,
 ): T & { components: NonNullable<EnhanceableTheme['components']> } {
   const theme = { ...themeInput } as T & {
     components: NonNullable<EnhanceableTheme['components']>;
@@ -81,46 +78,41 @@ export function applyDensity<T extends EnhanceableTheme>(
     ? (multiplier) => `${multiplier * 8}px`
     : (multiplier) => String(prevSpacing(multiplier));
 
-  const overrides: Partial<Record<DensityKey, string>> = {};
-  for (const [key, value] of Object.entries(scaleOverrides ?? {})) {
-    overrides[key as DensityKey] = typeof value === 'number' ? `${value}px` : value;
-  }
+  const overrides = scaleOverrides ?? {};
 
-  const resolveKey: (key: DensityKey, negative: boolean) => string = themeInput.vars
-    ? (key, negative) => {
-        const ref = `var(${stepVarName(key)})`;
-        return negative ? `calc(${ref} * -1)` : ref;
-      }
-    : (key, negative) => {
-        const override = overrides[key];
-        if (override !== undefined) {
-          return negative ? `calc(${override} * -1)` : override;
-        }
-        return stepValue(negative ? -multipliers[key] : multipliers[key]);
-      };
+  const stepValues = {} as Record<DensityKey, string>;
+  // Every key AND its negated pull resolved once per theme, so the wrapper is a
+  // hash lookup instead of per-call key parsing. Null-prototype: on a bare `{}`
+  // inherited members (`toString`) would read as steps.
+  const resolved: Record<string, string> = Object.create(null);
+  DENSITY_KEYS.forEach((key) => {
+    // An override is px, so both directions stay plain lengths; an unoverridden
+    // step goes back through the spacing unit and rides the scaling dial.
+    const override = overrides[key];
+    stepValues[key] = override === undefined ? stepValue(multipliers[key]) : `${override}px`;
+    const negated = override === undefined ? stepValue(-multipliers[key]) : `${-override}px`;
 
-  const isKeyArg = (arg: number | string): boolean =>
-    typeof arg === 'string' &&
-    (isDensityKey(arg) || (arg.startsWith('-') && isDensityKey(arg.slice(1))));
+    if (themeInput.vars) {
+      const ref = `var(${stepVarName(key)})`;
+      resolved[key] = ref;
+      resolved[`-${key}`] = `calc(${ref} * -1)`;
+      return;
+    }
+    resolved[key] = stepValues[key];
+    resolved[`-${key}`] = negated;
+  });
 
   // Key-free calls are the hot path (sx/gap/Stack route every spacing value
   // through here at style-computation time) — delegate wholesale so the
   // wrapper adds one function hop, not a second map/join pass.
   const spacing = (...args: ReadonlyArray<number | string>): string => {
-    if (!args.some(isKeyArg)) {
+    if (!args.some((arg) => typeof arg === 'string' && resolved[arg] !== undefined)) {
       return String(prevSpacing(...args));
     }
     return args
       .map((arg) => {
-        if (typeof arg === 'string') {
-          if (isDensityKey(arg)) {
-            return resolveKey(arg, false);
-          }
-          if (arg.startsWith('-') && isDensityKey(arg.slice(1))) {
-            return resolveKey(arg.slice(1) as DensityKey, true);
-          }
-        }
-        return String(prevSpacing(arg));
+        const step = typeof arg === 'string' ? resolved[arg] : undefined;
+        return step === undefined ? String(prevSpacing(arg)) : step;
       })
       .join(' ');
   };
@@ -133,7 +125,7 @@ export function applyDensity<T extends EnhanceableTheme>(
   if (themeInput.vars) {
     const rootVars: Record<string, string> = {};
     DENSITY_KEYS.forEach((key) => {
-      rootVars[stepVarName(key)] = overrides[key] ?? stepValue(multipliers[key]);
+      rootVars[stepVarName(key)] = stepValues[key];
     });
     const prevStyleSheets = themeInput.generateStyleSheets;
     const rootSelector = themeInput.rootSelector || ':root';

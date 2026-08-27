@@ -1,8 +1,9 @@
-import { applyDensity, DensityKey, DensityMultipliers, EnhanceableTheme } from './densityScale';
+import { applyDensity, DENSITY_KEYS, DensityKey, EnhanceableTheme } from './densityScale';
 import applySharedDensity from './sharedDensityComponents';
 
-/** Per-step override — any CSS length; a number means px. */
-export type DensityScaleOverrides = Partial<Record<DensityKey, string | number>>;
+/** Per-step override in px — same shape as `defaultDensityScale`, so the two
+ * merge by spread and every step stays resolvable in JS as well as CSS. */
+export type DensityScaleOverrides = Partial<Record<DensityKey, number>>;
 
 /**
  * The ONE shipped ladder in px + the touch-target sizing key. Internal —
@@ -22,16 +23,9 @@ export const defaultDensityScale: Record<DensityKey, number> = {
 };
 
 // applyDensity consumes multipliers on the (fixed 8px) spacing unit.
-const defaultMultipliers: DensityMultipliers = {
-  'xx-small': defaultDensityScale['xx-small'] / 8,
-  'x-small': defaultDensityScale['x-small'] / 8,
-  small: defaultDensityScale.small / 8,
-  medium: defaultDensityScale.medium / 8,
-  large: defaultDensityScale.large / 8,
-  'x-large': defaultDensityScale['x-large'] / 8,
-  'xx-large': defaultDensityScale['xx-large'] / 8,
-  'touch-target': defaultDensityScale['touch-target'] / 8,
-};
+const defaultMultipliers = Object.fromEntries(
+  DENSITY_KEYS.map((key) => [key, defaultDensityScale[key] / 8]),
+) as Record<DensityKey, number>;
 
 /**
  * The proportional dial — CSS plumbing only, no JS lever: ships

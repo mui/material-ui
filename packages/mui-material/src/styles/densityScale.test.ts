@@ -1,9 +1,9 @@
 import { describe, test, expect } from 'vitest';
 import createTheme from './createTheme';
-import { applyDensity, DENSITY_KEYS, DensityMultipliers } from './densityScale';
+import { applyDensity, DENSITY_KEYS, DensityKey } from './densityScale';
 
 // The high-density ladder: steps × 8px → 2/4/8/12/16/24/32.
-const multipliers: DensityMultipliers = {
+const multipliers: Record<DensityKey, number> = {
   'xx-small': 0.25,
   'x-small': 0.5,
   small: 1,
@@ -55,12 +55,12 @@ describe('densityScale', () => {
 
     test('scale overrides replace a step wholesale (number = px)', () => {
       const theme = applyDensity(createTheme(), multipliers, {
-        small: '6px',
+        small: 6,
         'touch-target': 40,
       });
 
       expect(theme.spacing('small')).to.equal('6px');
-      expect(theme.spacing('-small')).to.equal('calc(6px * -1)');
+      expect(theme.spacing('-small')).to.equal('-6px');
       expect(theme.spacing('touch-target')).to.equal('40px');
       expect(theme.spacing('medium')).to.equal('12px');
     });
@@ -127,7 +127,7 @@ describe('densityScale', () => {
 
     test('scale overrides land as the step var VALUE on a vars theme', () => {
       const theme = applyDensity(createTheme({ cssVariables: true }), multipliers, {
-        small: '6px',
+        small: 6,
       });
       const sheets = theme.generateStyleSheets();
       const rootVars = sheets[sheets.length - 1][':root'] as Record<string, string>;
