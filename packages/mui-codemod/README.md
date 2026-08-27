@@ -3282,9 +3282,26 @@ npx @mui/codemod@latest v5.0.0/base-rename-components-to-slots <path>
 
 The associated breaking change was done in [#34693](https://github.com/mui/material-ui/pull/34693).
 
+#### `box-sx-prop`
+
+Moves supported Box system props into the `sx` prop.
+
+```diff
+-<Box border="1px dashed grey" p={2} />
++<Box sx={{ border: '1px dashed grey', p: 2 }} />
+```
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod@latest v5.0.0/box-sx-prop <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#box).
+
 #### `box-borderradius-values`
 
-Updates the Box API from separate system props to `sx`.
+Updates Box `borderRadius` values for the v5 sizing behavior.
 
 ```diff
 -<Box borderRadius="borderRadius">

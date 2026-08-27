@@ -16,6 +16,12 @@ minimumReleaseAgeExclude:
   - '@base-ui/*'
   # Renovate security update: @babel/core@7.29.6
   - '@babel/core@7.29.6'
+  # Renovate security update: react-router@8.3.0
+  - react-router@8.3.0
+  # Renovate security update: next@16.2.11
+  - next@16.2.11
+  # Renovate security update: postcss@8.5.23
+  - postcss@8.5.23
 trustPolicy: no-downgrade
 # Skip trust-policy checks for packages published more than 365 days ago.
 # Some widely-used legacy packages (notably semver@6.x — pulled in by @babel/core@7.x — plus
@@ -29,8 +35,8 @@ trustPolicyIgnoreAfter: 525600
 catalogs:
   docs:
     stylis: '4.2.0'
-    '@base-ui/react': '^1.6.0'
-    '@docsearch/react': '^3.9.0'
+    '@base-ui/react': '^1.7.0'
+    '@docsearch/react': '^4.7.0'
     '@emotion/cache': '^11.14.0'
     '@emotion/react': '^11.14.0'
     '@emotion/server': '^11.11.0'
@@ -39,9 +45,9 @@ catalogs:
 overrides:
   # Both were bundled twice in the docs build
   'docs>stylis': '4.2.0'
-  'docs>react-is': '19.2.7'
+  'docs>react-is': '19.2.8'
   # Migrated from package.json "resolutions" (pnpm 11 ignores that field).
-  caniuse-lite: '^1.0.30001800'
+  caniuse-lite: '^1.0.30001809'
   '@types/node': '20.19.43'
   cross-fetch: '^4.1.0'
   '@pigment-css/react': '0.0.31'

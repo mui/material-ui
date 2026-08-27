@@ -174,6 +174,33 @@ See the [Grid v2 migration guide](/material-ui/migration/upgrade-to-grid-v2/) fo
 
 `MuiGridLegacy` has also been removed from the theme `components` types (`ComponentsProps`, `ComponentsOverrides`, and `ComponentsVariants`).
 
+### Grid
+
+#### `direction="column"` and `direction="column-reverse"` removed
+
+The `Grid` component no longer accepts `direction="column"` or `direction="column-reverse"`.
+These values were unsupported in practice in earlier versions and are now removed from the TypeScript types and prop validation.
+
+`Grid` is designed to subdivide a layout into **columns**, not rows.
+For vertical stacking, use the [`Stack`](/material-ui/react-stack/) component instead (including inside a `Grid` item when needed).
+See the [Grid column direction limitation](/material-ui/react-grid/#column-direction) for details.
+
+```diff
+-import Grid from '@mui/material/Grid';
++import Stack from '@mui/material/Stack';
+
+-<Grid container direction="column" spacing={2}>
+-  <Grid size={12}>First item</Grid>
+-  <Grid size={12}>Second item</Grid>
+-</Grid>
++<Stack spacing={2}>
++  <div>First item</div>
++  <div>Second item</div>
++</Stack>
+```
+
+If you still need horizontal column subdivision, keep using `Grid` with `direction="row"` (the default) or `direction="row-reverse"`.
+
 ### List
 
 The `ListItemIcon` default min-width has changed to `36px` (previously `56px`) to be consistent with the menu item, and now uses `theme.spacing` instead of a hardcoded number.

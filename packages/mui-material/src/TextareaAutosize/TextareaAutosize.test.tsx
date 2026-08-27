@@ -1,5 +1,5 @@
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
 import { act, screen, waitFor, createRenderer, fireEvent, isJsdom } from '@mui/internal-test-utils';
 import TextareaAutosize from '@mui/material/TextareaAutosize';

@@ -210,6 +210,9 @@ function DocSearchHit(props: DocSearchHitComponentProps) {
   return <Link href={hit.url}>{children}</Link>;
 }
 
+// Stable no-op so callbacks passed to DocSearch keep the same identity across renders.
+const noop = () => {};
+
 const standaloneProducts = ['base-ui'];
 
 export interface AppSearchProps {
@@ -218,7 +221,7 @@ export interface AppSearchProps {
 
 export function AppSearch(props: AppSearchProps) {
   useLazyCSS(
-    'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
+    'https://cdn.jsdelivr.net/npm/@docsearch/css@4.7.0/dist/style.min.css',
     '#app-search',
     { layer: 'docsearch' },
   );
@@ -253,22 +256,32 @@ export function AppSearch(props: AppSearchProps) {
       modal.style.opacity = '0';
     }
     setIsOpen(false); // DO NOT call setIsOpen inside a timeout (it causes scroll issue).
-  }, [setIsOpen]);
+    // Reset the type-ahead seed so reopening (e.g. Cmd+K) starts from an empty query.
+    setInitialQuery(undefined);
+  }, [setIsOpen, setInitialQuery]);
 
-  const onInput = React.useCallback(
-    (event: KeyboardEvent) => {
-      setIsOpen(true);
-      setInitialQuery(event.key);
+  // v4's useDocSearchKeyboardEvents no longer opens the modal when the user types on the
+  // focused search button (onInput/searchButtonRef are deprecated no-ops), so restore it here.
+  const handleSearchButtonKeyDown = React.useCallback(
+    (event: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (/^[a-zA-Z0-9]$/.test(event.key) && !event.metaKey && !event.ctrlKey && !event.altKey) {
+        // preventDefault stops the pressed key from also being typed into the modal
+        // input once it mounts, which would duplicate the first character.
+        event.preventDefault();
+        setInitialQuery(event.key);
+        setIsOpen(true);
+      }
     },
-    [setIsOpen, setInitialQuery],
+    [setInitialQuery, setIsOpen],
   );
 
   useDocSearchKeyboardEvents({
     isOpen,
     onOpen,
     onClose,
-    onInput,
-    searchButtonRef,
+    // MUI docs don't use the Ask AI feature, so it is always inactive.
+    isAskAiActive: false,
+    onAskAiToggle: noop,
   });
 
   React.useEffect(() => {
@@ -280,37 +293,45 @@ export function AppSearch(props: AppSearchProps) {
       modal.style.opacity = '1';
     }
 
-    // DocSearch may mount the dropdown asynchronously; watch the DOM until it appears.
-    const findDropdown = () => document.querySelector<HTMLElement>('.DocSearch-Dropdown');
-    const initial = findDropdown();
-    let observer: MutationObserver | undefined;
-    if (initial) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setStartScreenHost(initial);
-    } else {
-      observer = new MutationObserver(() => {
-        const host = findDropdown();
-        if (host) {
-          setStartScreenHost(host);
-          observer!.disconnect();
-          observer = undefined;
-        }
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
-    }
+    // IMPORTANT: never call setState while the search input is being typed into. Re-rendering
+    // DocSearchModal mid-keystroke makes React revert its controlled input, which breaks typing.
+    // The start screen renders into this stable node, so reparenting it below is a plain DOM
+    // move that React never re-renders through.
+    const host = document.createElement('div');
+    host.className = 'DocSearch-NewStartScreenHost';
 
-    const searchInput = document.querySelector<HTMLInputElement>('.DocSearch-Input');
-    const handleInput = (event: Event) => {
-      const el = document.querySelector<HTMLElement>('.DocSearch-NewStartScreen');
-      if (el) {
-        el.style.display = (event.target as HTMLInputElement).value !== '' ? 'none' : 'grid';
-      }
+    const updateStartScreenVisibility = () => {
+      const input = document.querySelector<HTMLInputElement>('.DocSearch-Input');
+      host.style.display = input && input.value !== '' ? 'none' : '';
     };
-    searchInput?.addEventListener('input', handleInput);
+
+    // Host the start screen inside the dropdown so recent searches and the product links share
+    // one fixed-height scroll container (as in v3) instead of stacking and growing the modal.
+    // v4 only renders the dropdown when it has content, so fall back to the modal.
+    const setup = () => {
+      const parent =
+        document.querySelector<HTMLElement>('.DocSearch-Dropdown') ??
+        document.querySelector<HTMLElement>('.DocSearch-Modal');
+      // Keep it last so the product links stay below the recent searches, which DocSearch
+      // renders into the dropdown after we host ourselves there.
+      if (parent && (host.parentElement !== parent || host.nextSibling !== null)) {
+        parent.appendChild(host);
+        // Same node every time, so React bails out instead of re-rendering on later moves.
+        setStartScreenHost(host);
+      }
+      updateStartScreenVisibility();
+    };
+    setup();
+    const observer = new MutationObserver(setup);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Capture-phase, so it runs before React handles the change but only reads/sets a style.
+    document.addEventListener('input', updateStartScreenVisibility, true);
 
     return () => {
-      observer?.disconnect();
-      searchInput?.removeEventListener('input', handleInput);
+      observer.disconnect();
+      document.removeEventListener('input', updateStartScreenVisibility, true);
+      host.remove();
       setStartScreenHost(null);
     };
   }, [isOpen]);
@@ -336,7 +357,12 @@ export function AppSearch(props: AppSearchProps) {
 
   return (
     <React.Fragment>
-      <SearchButton onRef={searchButtonRef} onClick={onOpen} {...props} />
+      <SearchButton
+        onRef={searchButtonRef}
+        onClick={onOpen}
+        onKeyDown={handleSearchButtonKeyDown}
+        {...props}
+      />
       {isOpen &&
         ReactDOM.createPortal(
           <DocSearchModal
@@ -389,18 +415,26 @@ export function AppSearch(props: AppSearchProps) {
             hitComponent={DocSearchHit}
             initialScrollY={typeof window !== 'undefined' ? window.scrollY : 0}
             onClose={onClose}
+            // MUI docs don't use the Ask AI feature.
+            onAskAiToggle={noop}
             navigator={keyboardNavigator}
           />,
           document.body,
         )}
-      {startScreenHost && ReactDOM.createPortal(<NewStartScreen />, startScreenHost)}
+      {isOpen &&
+        startScreenHost?.isConnected &&
+        ReactDOM.createPortal(<NewStartScreen />, startScreenHost)}
       <GlobalStyles
         styles={(theme) => ({
           html: {
             ':root': {
-              '--docsearch-primary-color': (theme.vars || theme).palette.primary[600],
+              '--docsearch-highlight-color': (theme.vars || theme).palette.primary[600],
               '--docsearch-text-color': (theme.vars || theme).palette.text.primary,
               '--docsearch-muted-color': (theme.vars || theme).palette.grey[600],
+              // Keep the v4 muted icons/text (hit icon, no-results text, idle magnifier, screen
+              // icons) on MUI's muted grey instead of Algolia's default purple-grey.
+              '--docsearch-secondary-text-color': 'var(--docsearch-muted-color)',
+              '--docsearch-icon-color': 'var(--docsearch-muted-color)',
               '--docsearch-searchbox-shadow': 0,
               '--docsearch-hit-shadow': 0,
               '--docsearch-footer-shadow': 0,
@@ -410,6 +444,12 @@ export function AppSearch(props: AppSearchProps) {
               '--docsearch-searchbox-focus-background': 'unset',
               '--docsearch-footer-background': 'unset',
               '--docsearch-modal-background': (theme.vars || theme).palette.background.paper,
+              '--docsearch-hit-height': '52px',
+              // Height left for the scrollable area between the search bar and the footer. v4
+              // dropped the search box from its own budget, which makes the modal overshoot
+              // --docsearch-modal-height; subtract it again so the modal stays 600px.
+              '--muidocs-docsearch-content-max-height':
+                'calc(var(--docsearch-modal-height) - var(--docsearch-searchbox-height) - var(--docsearch-spacing) - var(--docsearch-footer-height))',
             },
           },
           body: {
@@ -428,6 +468,15 @@ export function AppSearch(props: AppSearchProps) {
               gridTemplateColumns: 'repeat(2, 1fr)',
               gap: theme.spacing(2),
               paddingBottom: theme.spacing(2),
+            },
+            // Only when there is no dropdown to host it: sit between the search bar and the
+            // footer (see also DocSearch-Footer order) and take over the dropdown's padding,
+            // height cap and scrolling.
+            '& .DocSearch-Modal > .DocSearch-NewStartScreenHost': {
+              order: 1,
+              padding: theme.spacing(0, 1.5),
+              maxHeight: 'var(--muidocs-docsearch-content-max-height)',
+              overflowY: 'auto',
             },
             '& .DocSearch-NewStartScreenCategory': {
               display: 'flex',
@@ -498,7 +547,12 @@ export function AppSearch(props: AppSearchProps) {
               padding: theme.spacing(0.5, 1),
             },
             '& .DocSearch-Form': {
-              '& .DocSearch-Reset': {
+              // v4 form defaults to 12px 16px; drop the right padding so the "esc" chip sits
+              // near the edge (v3 rendered the close button outside the form).
+              padding: theme.spacing(1.5, 0, 1.5, 1.5),
+              // v4 adds a form border-bottom; remove it as the divider lives on the search bar.
+              borderBottom: 'none',
+              '& .DocSearch-Clear': {
                 display: 'none',
               },
               '& .DocSearch-Input': {
@@ -515,7 +569,11 @@ export function AppSearch(props: AppSearchProps) {
                 visibility: 'hidden',
               },
             },
-            '& .DocSearch-Cancel': {
+            // v4 adds a vertical divider before the close button; match the search bar borders.
+            '& .DocSearch-Divider': {
+              borderColor: (theme.vars || theme).palette.grey[200],
+            },
+            '& .DocSearch-Close': {
               display: 'block',
               alignSelf: 'center',
               cursor: 'pointer',
@@ -527,6 +585,10 @@ export function AppSearch(props: AppSearchProps) {
               backgroundColor: (theme.vars || theme).palette.grey[50],
               border: '1px solid',
               borderColor: (theme.vars || theme).palette.grey[200],
+              // v4's close button renders an X icon; hide it so only the "esc" chip shows.
+              '& svg': {
+                display: 'none',
+              },
               '&::before': {
                 content: '"esc"',
                 fontFamily: theme.typography.fontFamilyCode,
@@ -536,7 +598,10 @@ export function AppSearch(props: AppSearchProps) {
               },
             },
             '& .DocSearch-Dropdown': {
-              minHeight: 384, // = StartScreen height, to prevent layout shift when first char
+              // v4 fixes the dropdown to 60dvh; make it fit its content instead so recent
+              // searches stay compact and don't leave a gap above the product links.
+              height: 'auto',
+              maxHeight: 'var(--muidocs-docsearch-content-max-height)',
               '&::-webkit-scrollbar-thumb': {
                 borderColor: (theme.vars || theme).palette.background.paper,
                 backgroundColor: (theme.vars || theme).palette.grey[500],
@@ -547,6 +612,11 @@ export function AppSearch(props: AppSearchProps) {
               '* ul': {
                 marginTop: theme.spacing(1),
               },
+            },
+            // The v4 screen icon (no-results / empty state) hardcodes an inline stroke="#5a5e9a"
+            // that no variable can reach; recolor it to the MUI muted grey.
+            '& .DocSearch-Screen-Icon svg': {
+              stroke: 'var(--docsearch-muted-color)',
             },
             '& .DocSearch-Dropdown-Container': {
               '& .DocSearch-Hits:first-of-type': {
@@ -572,9 +642,6 @@ export function AppSearch(props: AppSearchProps) {
               '&:not(:first-of-type)': {
                 marginTop: -1,
               },
-              '& .DocSearch-Hit-Container': {
-                height: '52px',
-              },
             },
             '& .DocSearch-Hit a': {
               padding: theme.spacing(0.25, 0),
@@ -598,10 +665,16 @@ export function AppSearch(props: AppSearchProps) {
               fontSize: theme.typography.pxToRem(14),
               fontWeight: theme.typography.fontWeightMedium,
               color: (theme.vars || theme).palette.text.primary,
+              // Algolia sets text-overflow on the flex container, where it can never apply, so long
+              // snippets get clipped mid-word. Truncate on the items instead.
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
             },
             '& .DocSearch-Hit-path': {
               fontSize: theme.typography.pxToRem(12),
               color: (theme.vars || theme).palette.text.secondary,
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
             },
             '& .DocSearch-Hit-icon': {
               '> svg': {
@@ -618,8 +691,16 @@ export function AppSearch(props: AppSearchProps) {
               backgroundColor: (theme.vars || theme).palette.primary[50],
               borderColor: (theme.vars || theme).palette.primary[300],
             },
+            // v4 tints the selected icon/action/mark with the muted --docsearch-highlight-color;
+            // restore the brighter active color, and extend it to the tree connector so it matches
+            // the icon instead of staying grey.
+            '& .DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-icon, & .DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-action, & .DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-Tree, & .DocSearch-Hit[aria-selected="true"] mark':
+              {
+                color: 'var(--docsearch-hit-active-color)',
+              },
             '& .DocSearch-Hit-action, & .DocSearch-Hits mark': {
-              color: (theme.vars || theme).palette.primary[500],
+              // Match the selected-hit accent so all highlighted text is one blue, not two shades.
+              color: 'var(--docsearch-hit-active-color)',
               '& .DocSearch-Hit-action-button': {
                 display: 'flex',
                 width: '24px',
@@ -635,6 +716,8 @@ export function AppSearch(props: AppSearchProps) {
               },
             },
             '& .DocSearch-Footer': {
+              // Keep the footer below the custom start screen (which uses order: 1).
+              order: 2,
               borderTop: '1px solid',
               borderColor: (theme.vars || theme).palette.grey[200],
               '& .DocSearch-Commands': {
@@ -648,7 +731,9 @@ export function AppSearch(props: AppSearchProps) {
         styles={(theme) => [
           {
             [theme.vars ? '[data-mui-color-scheme="dark"]:root' : '.mode-dark']: {
-              '--docsearch-primary-color': (theme.vars || theme).palette.primaryDark[300],
+              // Use the brand blue (primary) not the dark-surface palette (primaryDark) so the search
+              // icon matches the other dark-mode accents instead of rendering grey-blue.
+              '--docsearch-highlight-color': (theme.vars || theme).palette.primary[300],
               '--docsearch-hit-active-color': (theme.vars || theme).palette.primary[300],
             },
           },
@@ -681,7 +766,10 @@ export function AppSearch(props: AppSearchProps) {
               '& .DocSearch-SearchBar': {
                 borderColor: (theme.vars || theme).palette.primaryDark[700],
               },
-              '& .DocSearch-Cancel': {
+              '& .DocSearch-Divider': {
+                borderColor: (theme.vars || theme).palette.primaryDark[600],
+              },
+              '& .DocSearch-Close': {
                 backgroundColor: (theme.vars || theme).palette.primaryDark[800],
                 borderColor: (theme.vars || theme).palette.primaryDark[600],
               },
@@ -706,7 +794,7 @@ export function AppSearch(props: AppSearchProps) {
                 borderColor: alpha(theme.palette.primary[700], 0.6),
               },
               '& .DocSearch-Hit-action, & .DocSearch-Hits mark': {
-                color: (theme.vars || theme).palette.primary[400],
+                // color comes from --docsearch-hit-active-color (primary[300] in dark).
                 '& .DocSearch-Hit-action-button': {
                   '&:hover': {
                     backgroundColor: alpha(theme.palette.primary[900], 0.8),

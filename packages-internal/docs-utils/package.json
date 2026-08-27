@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-docs-utils",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "author": "MUI Team",
   "description": "Utilities for MUI docs. This is an internal package not meant for general use.",
   "repository": {
@@ -16,6 +16,7 @@
     "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
+    "@typescript/typescript6": "^6.0.2",
     "rimraf": "^6.1.3"
   },
   "publishConfig": {
@@ -24,11 +25,5 @@
   },
   "exports": {
     ".": "./src/index.ts"
-  },
-  "devDependencies": {
-    "typescript": "6.0.3"
-  },
-  "peerDependencies": {
-    "typescript": "^5.9.3 || ^6.0.0"
   }
 }
