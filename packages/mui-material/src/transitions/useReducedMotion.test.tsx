@@ -1,3 +1,4 @@
+import { describe, beforeEach, afterEach, it, expect } from 'vitest';
 import * as React from 'react';
 import { act, createRenderer, RenderCounter, screen } from '@mui/internal-test-utils';
 import type { ReducedMotionMode } from '../styles/createMotion';

@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Menu2 from '@mui/material/Unstable_Menu2';

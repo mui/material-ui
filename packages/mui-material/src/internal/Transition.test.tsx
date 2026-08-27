@@ -1,4 +1,5 @@
 /// <reference path="./react-transition-group.d.ts" />
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
 import { TransitionGroup } from 'react-transition-group';

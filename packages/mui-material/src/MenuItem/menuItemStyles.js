@@ -1,3 +1,4 @@
+import { applyInsetFocusVisible } from '../styles/focusVisible';
 import { dividerClasses } from '../Divider';
 import { listItemIconClasses } from '../ListItemIcon';
 import { listItemTextClasses } from '../ListItemText';
@@ -16,6 +17,9 @@ export const menuItemOverridesResolver = (props, styles) => {
 export function getMenuItemRootStyles(theme, classes, options = {}) {
   const focusVisibleClass = options.focusVisibleClass ?? classes.focusVisible;
   const disabledPointerEvents = options.disabledPointerEvents ?? false;
+  // A keyboard-only class can hand the cue to the theme ring. Menu2 highlights
+  // on hover with the same class, where a `:focus-visible` ring never matches.
+  const themeFocusRing = (options.themeFocusRing ?? true) && Boolean(theme.focusVisible);
 
   return {
     ...theme.typography.body1,
@@ -42,16 +46,17 @@ export function getMenuItemRootStyles(theme, classes, options = {}) {
         (theme.vars || theme).palette.primary.main,
         (theme.vars || theme).palette.action.selectedOpacity,
       ),
-      ...(focusVisibleClass && {
-        [`&.${focusVisibleClass}`]: {
-          backgroundColor: theme.alpha(
-            (theme.vars || theme).palette.primary.main,
-            `${(theme.vars || theme).palette.action.selectedOpacity} + ${
-              (theme.vars || theme).palette.action.focusOpacity
-            }`,
-          ),
-        },
-      }),
+      ...(focusVisibleClass &&
+        !themeFocusRing && {
+          [`&.${focusVisibleClass}`]: {
+            backgroundColor: theme.alpha(
+              (theme.vars || theme).palette.primary.main,
+              `${(theme.vars || theme).palette.action.selectedOpacity} + ${
+                (theme.vars || theme).palette.action.focusOpacity
+              }`,
+            ),
+          },
+        }),
     },
     [`&.${classes.selected}:hover`]: {
       backgroundColor: theme.alpha(
@@ -68,11 +73,14 @@ export function getMenuItemRootStyles(theme, classes, options = {}) {
         ),
       },
     },
-    ...(focusVisibleClass && {
-      [`&.${focusVisibleClass}`]: {
-        backgroundColor: (theme.vars || theme).palette.action.focus,
-      },
-    }),
+    ...(themeFocusRing
+      ? // Inset the ring: a scrolling Menu/MenuList clips an outset ring.
+        applyInsetFocusVisible(1)
+      : focusVisibleClass && {
+          [`&.${focusVisibleClass}`]: {
+            backgroundColor: (theme.vars || theme).palette.action.focus,
+          },
+        }),
     [`&.${classes.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
       ...(disabledPointerEvents && {

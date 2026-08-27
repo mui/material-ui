@@ -45,6 +45,9 @@ export function getMenu2ItemStyles(
     ...getMenuItemRootStyles(theme, classes, {
       focusVisibleClass: classes.highlighted,
       disabledPointerEvents: true,
+      // Base UI highlights on hover with this class, and a `:focus-visible`
+      // ring never matches a hover, so the item keeps painting a background.
+      themeFocusRing: false,
     }),
     ...(classes.open && {
       [`&.${classes.open}`]: {

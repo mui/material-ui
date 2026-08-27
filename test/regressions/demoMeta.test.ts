@@ -1,4 +1,4 @@
-import { describe, it } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { A11Y_RULES, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 
 describe('parseRoute', () => {
@@ -11,6 +11,16 @@ describe('parseRoute', () => {
       path: 'docs/data/material/components/buttons/BasicButtons',
       slug: 'buttons',
       demo: 'BasicButtons',
+    });
+  });
+
+  it('parses a getting-started template route into its docs/data path', () => {
+    expect(
+      parseRoute('/docs-getting-started-templates-crud-dashboard/CrudDashboard'),
+    ).to.deep.equal({
+      path: 'docs/data/material/getting-started/templates/crud-dashboard/CrudDashboard',
+      slug: 'crud-dashboard',
+      demo: 'CrudDashboard',
     });
   });
 
@@ -70,6 +80,23 @@ describe('getConfig', () => {
       test: 'docs/data/material/components/foo/*',
       enabled: true,
     });
+  });
+});
+
+describe('minReactMajor', () => {
+  it('marks the crud-dashboard template as needing React 19', () => {
+    expect(
+      getConfig(
+        SCREENSHOT_RULES,
+        'docs/data/material/getting-started/templates/crud-dashboard/CrudDashboard',
+      ),
+    ).to.deep.include({ minReactMajor: 19 });
+  });
+
+  it('leaves demos without the field unconstrained', () => {
+    expect(
+      getConfig(SCREENSHOT_RULES, 'docs/data/material/components/autocomplete/Asynchronous'),
+    ).to.not.have.property('minReactMajor');
   });
 });
 

@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { spy } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';

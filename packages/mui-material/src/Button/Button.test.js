@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from 'vitest';
 import * as React from 'react';
 import {
   createRenderer,

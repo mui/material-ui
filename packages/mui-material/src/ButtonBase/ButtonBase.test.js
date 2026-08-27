@@ -1,4 +1,5 @@
 // @ts-check
+import { describe, beforeAll, it, expect, beforeEach, vi } from 'vitest';
 import * as React from 'react';
 import { spy, stub } from 'sinon';
 import {
@@ -1624,5 +1625,61 @@ describe('<ButtonBase />', () => {
         expect(formActionSpy.callCount).to.equal(1);
       },
     );
+  });
+
+  describe('theme.focusVisible', () => {
+    /**
+     * @param {boolean | import('react').CSSProperties | undefined} value
+     */
+    function focusVisibleButton(value) {
+      render(
+        <ThemeProvider theme={createTheme({ focusVisible: value })}>
+          <ButtonBase>Hello</ButtonBase>
+        </ThemeProvider>,
+      );
+      const button = screen.getByText('Hello');
+      simulatePointerDevice();
+      focusVisible(button);
+      return button;
+    }
+
+    it.skipIf(isJsdom())(
+      'renders the curated ring on focus-visible when focusVisible is set',
+      () => {
+        const button = focusVisibleButton(true);
+        expect(button).to.have.class(classes.focusVisible);
+        expect(button).toHaveComputedStyle({
+          outlineStyle: 'solid',
+          outlineWidth: '2px',
+          outlineOffset: '2px',
+        });
+      },
+    );
+
+    it.skipIf(isJsdom())('renders no ring when focusVisible is unset (non-breaking)', () => {
+      const button = focusVisibleButton(undefined);
+      expect(button).toHaveComputedStyle({ outlineStyle: 'none' });
+    });
+
+    it.skipIf(isJsdom())('leaves a user box-shadow outset on a non-clip-prone component', () => {
+      // createTheme prepends the behavior var; on a bare ButtonBase it is unset, so it stays outset
+      const button = focusVisibleButton({ boxShadow: '0 0 0 3px rgb(255, 0, 0)' });
+      expect(window.getComputedStyle(button).boxShadow).not.to.match(/inset/);
+    });
+
+    it.skipIf(isJsdom())('an object recolors the ring but keeps the curated geometry', () => {
+      const button = focusVisibleButton({ outlineColor: 'rgb(255, 0, 0)' });
+      expect(button).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineColor: 'rgb(255, 0, 0)',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+    });
+
+    it.skipIf(isJsdom())('`outlineColor: transparent` removes the visible outline', () => {
+      const button = focusVisibleButton({ outlineColor: 'transparent' });
+      expect(button).toHaveComputedStyle({ outlineColor: 'rgba(0, 0, 0, 0)' });
+    });
   });
 });

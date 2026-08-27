@@ -1,3 +1,4 @@
+import { describe, it, expect, vi } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
 import { createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
@@ -1093,5 +1094,25 @@ describe('<Menu2 />', () => {
     } finally {
       warn.mockRestore();
     }
+  });
+
+  // `theme.focusVisible` swaps the classic MenuItem focus background for an
+  // outline ring. Base UI sets `highlighted` on hover too, where a
+  // `:focus-visible` ring never matches, so the item keeps its background.
+  it.skipIf(isJsdom())('keeps the highlight background under theme.focusVisible', async () => {
+    const { user } = render(
+      <ThemeProvider theme={createTheme({ focusVisible: true })}>
+        <Menu2 defaultOpen modal={false} anchor={document.body}>
+          <Menu2Item>Alpha</Menu2Item>
+        </Menu2>
+      </ThemeProvider>,
+    );
+
+    const item = await screen.findByRole('menuitem', { name: 'Alpha' });
+    const atRest = window.getComputedStyle(item).backgroundColor;
+
+    await user.keyboard('{ArrowDown}');
+
+    expect(window.getComputedStyle(item).backgroundColor).not.to.equal(atRest);
   });
 });

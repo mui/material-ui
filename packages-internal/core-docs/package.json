@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-core-docs",
-  "version": "9.3.0",
+  "version": "9.4.0",
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
   "license": "MIT",
@@ -32,7 +32,7 @@
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
-    "es-toolkit": "^1.50.0",
+    "es-toolkit": "^1.51.0",
     "fg-loadcss": "^3.1.0",
     "lz-string": "^1.5.0",
     "nprogress": "^0.2.0",

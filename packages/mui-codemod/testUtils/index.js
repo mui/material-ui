@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+import { describe, it, expect } from 'vitest';
 import j from 'jscodeshift';
 import { EOL } from 'os';
 import path from 'path';
