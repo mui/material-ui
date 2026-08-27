@@ -65,9 +65,9 @@ describe('<TimelineItem />', () => {
     expect(window.getComputedStyle(item, '::before').flexGrow).to.equal('0');
   });
 
-  // The spacer is matched with `:has()` rather than from the children walk that
-  // drives `missingOppositeContent`, so that opposite content still counts when
-  // it is not a direct child.
+  // The children walk that emits the spacer only sees direct children; a
+  // `:has()` rule removes the spacer again when opposite content sits deeper
+  // in the tree, so it still counts even when it is not a direct child.
   it.skipIf(isJsdom())('omits the spacer when opposite content is nested', () => {
     const { container } = render(
       <Timeline>

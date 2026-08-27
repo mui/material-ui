@@ -40,19 +40,23 @@ const TimelineItemRoot = styled('li', {
   minHeight: 70,
   // The spacer that keeps content centred when there is no opposite content.
   // Kept at plain `&::before` -- (0,1,1) -- so the `Timeline` override the docs
-  // recommend for removing it always wins on specificity. (`:where()` would do
-  // the same, but the docs' `globalSelector` stylis middleware strips the class
-  // in front of any `:where(`/`:is(`, turning the rule global -- see
-  // emotion issue 2836 -- so it cannot be used in component styles.)
+  // recommend for removing it always wins on specificity. A `:where()` selector
+  // would achieve the same, but this package is consumed by docs pipelines that
+  // postprocess selectors around emotion's `:where()`/`:is()` quirk
+  // (https://github.com/emotion-js/emotion/issues/2836), where those
+  // pseudo-classes have been mangled before. Driving the common case from
+  // `ownerState` also keeps the spacer working where `:has()` is unsupported.
   ...(!ownerState.hasOppositeContent && {
     '&::before': {
       content: '""',
       flex: 1,
       padding: '6px 16px',
     },
-    // The children walk behind `hasOppositeContent` only sees direct children.
-    // Suppress the spacer from CSS when opposite content is nested deeper
-    // (see #46663) -- (0,2,1), deliberately above the spacer rule.
+    // The children walk behind `hasOppositeContent` emits the spacer but only
+    // sees direct children; this `:has()` rule removes the spacer again when
+    // opposite content sits deeper in the tree
+    // (https://github.com/mui/material-ui/pull/46663) -- (0,2,1), deliberately
+    // above the spacer rule.
     [`&:has(.${timelineOppositeContentClasses.root})::before`]: {
       content: 'none',
     },
