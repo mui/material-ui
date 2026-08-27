@@ -39,6 +39,31 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // Keyed spacing: a scale key resolves to its step (var ref under cssVariables,
   // raw px otherwise); numbers stay plain spacing units.
   const { spacing } = enhanced;
+  const sharedCheckboxRadio = {
+    padding: 0,
+    width: spacing('touch-target'),
+    height: spacing('touch-target'),
+    '& svg': { fontSize: spacing('medium') },
+    [`.${formControlLabelClasses.root}:has(&)`]: {
+      marginLeft: `calc((${spacing('touch-target')} - ${spacing('medium')}) / -2)`,
+    },
+    variants: [
+      {
+        props: { size: 'small' },
+        style: {
+          '--_touchSize': spacing('large'),
+          '--_iconSize': spacing('small'),
+          [`.${formControlLabelClasses.root}:has(&)`]: {
+            marginLeft: `calc((${spacing('large')} - ${spacing('small')}) / -2)`,
+          },
+        },
+      },
+      { props: { edge: 'start' }, style: { marginLeft: `calc(${spacing('touch-target')} / -8)` } },
+      { props: { edge: 'start', size: 'small' }, style: { marginLeft: `calc(${spacing('large')} / -8)` } },
+      { props: { edge: 'end' }, style: { marginRight: `calc(${spacing('touch-target')} / -8)` } },
+      { props: { edge: 'end', size: 'small' }, style: { marginRight: `calc(${spacing('large')} / -8)` } },
+    ],
+  }
   addRootOverride(enhanced.components, 'MuiButton', {
     ...enhanced.typography?.button,
     paddingBlock: 0,
@@ -498,44 +523,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addRootOverride(enhanced.components, 'MuiFormControlLabel', {
     margin: 0,
   });
-  addRootOverride(enhanced.components, 'MuiCheckbox', {
-    '--_touchSize': spacing('touch-target'),
-    '--_iconSize': spacing('medium'),
-    padding: 0,
-    width: 'var(--_touchSize)',
-    height: 'var(--_touchSize)',
-    '& svg': { fontSize: 'var(--_iconSize)' },
-    [`.${formControlLabelClasses.root} &`]: {
-      marginLeft: `calc((var(--_touchSize) - var(--_iconSize)) / -2)`,
-    },
-    variants: [
-      {
-        props: { size: 'small' },
-        style: { '--_touchSize': spacing('large'), '--_iconSize': spacing('small') },
-      },
-      { props: { edge: 'start' }, style: { marginLeft: `calc(var(--_touchSize) / -8)` } },
-      { props: { edge: 'end' }, style: { marginRight: `calc(var(--_touchSize) / -8)` } },
-    ],
-  });
-  addRootOverride(enhanced.components, 'MuiRadio', {
-    '--_touchSize': spacing('touch-target'),
-    '--_iconSize': spacing('medium'),
-    padding: 0,
-    width: 'var(--_touchSize)',
-    height: 'var(--_touchSize)',
-    '& svg': { fontSize: 'var(--_iconSize)' },
-    [`.${formControlLabelClasses.root} &`]: {
-      marginLeft: `calc((var(--_touchSize) - var(--_iconSize)) / -2)`,
-    },
-    variants: [
-      {
-        props: { size: 'small' },
-        style: { '--_touchSize': spacing('large'), '--_iconSize': spacing('small') },
-      },
-      { props: { edge: 'start' }, style: { marginLeft: `calc(var(--_touchSize) / -8)` } },
-      { props: { edge: 'end' }, style: { marginRight: `calc(var(--_touchSize) / -8)` } },
-    ],
-  });
+  addRootOverride(enhanced.components, 'MuiCheckbox', sharedCheckboxRadio);
+  addRootOverride(enhanced.components, 'MuiRadio', sharedCheckboxRadio);
   addRootOverride(
     enhanced.components,
     'MuiBreadcrumbs',
