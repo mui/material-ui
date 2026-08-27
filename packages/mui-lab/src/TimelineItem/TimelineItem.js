@@ -38,16 +38,9 @@ const TimelineItemRoot = styled('li', {
   display: 'flex',
   position: 'relative',
   minHeight: 70,
-  // The spacer that keeps content centred when there is no opposite content.
-  // `:where()` contributes no specificity, so the rule sits at (0,1,1) and the
-  // `Timeline` override the docs recommend for removing it always wins. A bare
-  // `:not(:has(...))` would take its argument's specificity -- (0,2,1), level
-  // with that override -- leaving the winner to emotion's insertion order, and
-  // so to the order demos happen to render in
-  // (https://github.com/mui/material-ui/pull/49028). The `:has()` check covers
-  // opposite content that is not a direct child, which the children walk
-  // behind `missingOppositeContent` cannot see
-  // (https://github.com/mui/material-ui/pull/46663).
+  // Spacer that keeps content centred when there is no opposite content,
+  // nested or not. `:where()` keeps the specificity at (0,1,1) so user
+  // overrides on `::before` win.
   [`&:where(:not(:has(.${timelineOppositeContentClasses.root})))::before`]: {
     content: '""',
     flex: 1,

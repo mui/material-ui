@@ -45,10 +45,8 @@ describe('<TimelineItem />', () => {
     expect(withOpposite).not.to.have.class(classes.missingOppositeContent);
   });
 
-  // The spacer keeps content centred when there is no opposite content. Its
-  // selector has to stay weak enough that the documented `Timeline` override
-  // wins on specificity alone -- when the two tie, whichever emotion happens to
-  // insert last takes effect, which varies with render order.
+  // The spacer selector must stay weak enough that the documented `Timeline`
+  // override wins on specificity alone.
   it.skipIf(isJsdom())('lets a Timeline sx override remove the spacer', () => {
     const { container } = render(
       <Timeline sx={{ [`& .${classes.root}:before`]: { flex: 0, padding: 0 } }}>
@@ -65,9 +63,8 @@ describe('<TimelineItem />', () => {
     expect(window.getComputedStyle(item, '::before').flexGrow).to.equal('0');
   });
 
-  // The spacer is matched with `:has()` rather than from the children walk
-  // that drives `missingOppositeContent`, so opposite content still counts
-  // when it is not a direct child.
+  // The children walk behind `missingOppositeContent` only sees direct
+  // children; the spacer's `:has()` also covers nested opposite content.
   it.skipIf(isJsdom())('omits the spacer when opposite content is nested', () => {
     const { container } = render(
       <Timeline>
