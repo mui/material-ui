@@ -39,28 +39,20 @@ const TimelineItemRoot = styled('li', {
   position: 'relative',
   minHeight: 70,
   // The spacer that keeps content centred when there is no opposite content.
-  // Kept at plain `&::before` -- (0,1,1) -- so the `Timeline` override the docs
-  // recommend for removing it always wins on specificity. A `:where()` selector
-  // would achieve the same, but this package is consumed by docs pipelines that
-  // postprocess selectors around emotion's `:where()`/`:is()` quirk
-  // (https://github.com/emotion-js/emotion/issues/2836), where those
-  // pseudo-classes have been mangled before. Driving the common case from
-  // `ownerState` also keeps the spacer working where `:has()` is unsupported.
-  ...(!ownerState.hasOppositeContent && {
-    '&::before': {
-      content: '""',
-      flex: 1,
-      padding: '6px 16px',
-    },
-    // The children walk behind `hasOppositeContent` emits the spacer but only
-    // sees direct children; this `:has()` rule removes the spacer again when
-    // opposite content sits deeper in the tree
-    // (https://github.com/mui/material-ui/pull/46663) -- (0,2,1), deliberately
-    // above the spacer rule.
-    [`&:has(.${timelineOppositeContentClasses.root})::before`]: {
-      content: 'none',
-    },
-  }),
+  // `:where()` contributes no specificity, so the rule sits at (0,1,1) and the
+  // `Timeline` override the docs recommend for removing it always wins. A bare
+  // `:not(:has(...))` would take its argument's specificity -- (0,2,1), level
+  // with that override -- leaving the winner to emotion's insertion order, and
+  // so to the order demos happen to render in
+  // (https://github.com/mui/material-ui/pull/49028). The `:has()` check covers
+  // opposite content that is not a direct child, which the children walk
+  // behind `missingOppositeContent` cannot see
+  // (https://github.com/mui/material-ui/pull/46663).
+  [`&:where(:not(:has(.${timelineOppositeContentClasses.root})))::before`]: {
+    content: '""',
+    flex: 1,
+    padding: '6px 16px',
+  },
   ...(ownerState.position === 'left' && {
     flexDirection: 'row-reverse',
   }),
