@@ -319,6 +319,24 @@ async function main() {
       });
     });
 
+    describe('theme.focusVisible ring', () => {
+      // The FocusVisible fixtures render already focus-visible, so the standard screenshot loop
+      // above captures the ring. Only the forced-colors variant needs Playwright here.
+      test('keeps the outline ring visible in forced-colors mode', async ({ pooled }) => {
+        const { page } = pooled;
+        await page.emulateMedia({ forcedColors: 'active' });
+        try {
+          const testcase = await renderFixture(page, '/regression-FocusVisible/InsetControls');
+          await takeScreenshot(page, {
+            testcase,
+            route: '/regression-FocusVisible/InsetControlsForcedColors',
+          });
+        } finally {
+          await page.emulateMedia({ forcedColors: 'none' });
+        }
+      });
+    });
+
     describe('TextField', () => {
       test('should render standard variant correctly in forced-colors mode', async ({ pooled }) => {
         const { page } = pooled;
