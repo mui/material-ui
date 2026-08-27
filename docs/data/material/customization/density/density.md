@@ -158,38 +158,6 @@ const theme = enhanceDensity(
 
 Because `styleOverrides` callbacks resolve at render time, they read the enhanced theme even though they're declared in the `createTheme()` call that runs first.
 
-## Proportional scaling
-
-`enhanceDensity` also sets up a proportional dial: the `--mui-scaling` CSS variable multiplies the spacing unit, the border radius, and the type ramp together. It ships at `1`, so it has no effect until you change it.
-
-Unlike the scale, which is per-component and deliberate, scaling is a single proportional multiplier for the whole UI. Turn it from CSS:
-
-```jsx
-import GlobalStyles from '@mui/material/GlobalStyles';
-
-<GlobalStyles styles={{ ':root': { '--mui-scaling': 0.92 } }} />;
-```
-
-:::warning
-Set `--mui-scaling` on the same element that carries the theme's other variables—`:root` by default. The spacing variable is declared there as `calc(8px * var(--mui-scaling))`, so its value resolves at that point. Overriding `--mui-scaling` further down the tree only re-scales typography, and every spacing-derived size stays behind.
-:::
-
-Because it's a plain CSS variable, it can also respond to the environment. This example scales the UI up on small screens, which raises the base font size to 16px and prevents iOS Safari from zooming when an input receives focus:
-
-```css
-@media (max-width: 900px) {
-  :root {
-    --mui-scaling: 1.15;
-  }
-}
-```
-
-Changing the variable at runtime reflows the UI immediately—no theme rebuild.
-
-:::info
-Scaling requires a theme created with [CSS theme variables](/material-ui/customization/css-theme-variables/overview/).
-:::
-
 ## Density with component props
 
 Several components accept props that reduce their size individually. This was the only built-in approach before `enhanceDensity`, and it remains available:

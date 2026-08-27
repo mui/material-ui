@@ -87,7 +87,7 @@ export function applyDensity<T extends EnhanceableTheme>(
   const resolved: Record<string, string> = Object.create(null);
   DENSITY_KEYS.forEach((key) => {
     // An override is px, so both directions stay plain lengths; an unoverridden
-    // step goes back through the spacing unit and rides the scaling dial.
+    // step goes back through the spacing unit.
     const override = overrides[key];
     stepValues[key] = override === undefined ? stepValue(multipliers[key]) : `${override}px`;
     const negated = override === undefined ? stepValue(-multipliers[key]) : `${-override}px`;
