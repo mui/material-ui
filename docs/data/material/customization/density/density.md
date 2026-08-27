@@ -84,10 +84,10 @@ This means the scale can be read—and overridden—from plain CSS:
 
 ## Customizing the scale
 
-Pass an object as the second argument to override any step. A step accepts any CSS length:
+Pass an object as the second argument to override any step. Each step is a number of pixels:
 
 ```js
-const theme = enhanceDensity(createTheme(), { 'touch-target': '40px' });
+const theme = enhanceDensity(createTheme(), { 'touch-target': 40 });
 ```
 
 Steps you don't list keep their default value, and every component that uses the overridden step reflows with it.
@@ -99,14 +99,14 @@ There are no built-in density modes. A denser or roomier product overrides the w
 ```js
 // Compact — for data-dense interfaces.
 const compact = {
-  'xx-small': '2px',
-  'x-small': '4px',
-  small: '8px',
-  medium: '12px',
-  large: '16px',
-  'x-large': '24px',
-  'xx-large': '32px',
-  'touch-target': '24px',
+  'xx-small': 2,
+  'x-small': 4,
+  small: 8,
+  medium: 12,
+  large: 16,
+  'x-large': 24,
+  'xx-large': 32,
+  'touch-target': 24,
 };
 
 const theme = enhanceDensity(createTheme(), compact);
@@ -115,14 +115,14 @@ const theme = enhanceDensity(createTheme(), compact);
 ```js
 // Comfortable — for touch-first interfaces.
 const comfortable = {
-  'xx-small': '8px',
-  'x-small': '12px',
-  small: '16px',
-  medium: '24px',
-  large: '32px',
-  'x-large': '48px',
-  'xx-large': '64px',
-  'touch-target': '44px',
+  'xx-small': 8,
+  'x-small': 12,
+  small: 16,
+  medium: 24,
+  large: 32,
+  'x-large': 48,
+  'xx-large': 64,
+  'touch-target': 44,
 };
 
 const theme = enhanceDensity(createTheme(), comfortable);
