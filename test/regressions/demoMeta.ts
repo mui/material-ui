@@ -168,8 +168,8 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     viewportWidth: 1440,
     waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
   },
-  { test: 'docs/data/material/components/buttons/ButtonA11y*', enabled: false }, // A11y-only coverage fixtures
-  { test: 'docs/data/material/components/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+  { test: 'test/regressions/fixtures/buttons/ButtonA11y*', enabled: false }, // A11y-only coverage fixtures
+  { test: 'test/regressions/fixtures/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
 ];
 
 // Button docs demos enrolled for axe assertions; IconButton/ButtonBase demos are excluded.
@@ -185,9 +185,6 @@ const BUTTON_A11Y_DEMOS = [
   'InputFileUpload',
   'LoadingButtons',
   'CustomizedButtons',
-  'ButtonA11yNonNative',
-  'ButtonA11ySemanticStates',
-  'ButtonA11yTextSpacing',
 ];
 
 /**
@@ -205,6 +202,14 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
   },
+  // A11y-only fixtures live under `test/regressions/fixtures/buttons/` (no
+  // docs page consumes them); the suite name maps their results into the
+  // same `buttons.a11y.json` as the docs demos above.
+  {
+    test: 'test/regressions/fixtures/buttons/{ButtonA11yNonNative,ButtonA11ySemanticStates,ButtonA11yTextSpacing}',
+    enabled: true,
+    assertions: 'all',
+  },
   // `color-contrast` is a known, documented product gap, not a regression:
   // `info` and `warning` fail 4.5:1 in every variant with the default palette
   // Asserting it would keep CI permanently red, so the failure is recorded in
@@ -215,7 +220,7 @@ export const A11Y_RULES: A11yRule[] = [
   // `createTheme()` and fail when the failing set or the documented table
   // goes stale.
   {
-    test: 'docs/data/material/components/buttons/ButtonA11yColorMatrix',
+    test: 'test/regressions/fixtures/buttons/ButtonA11yColorMatrix',
     enabled: true,
     assertions: 'all',
     skipAssertions: ['color-contrast'],
@@ -231,20 +236,27 @@ export interface ParsedRoute {
 const COMPONENT_ROUTE_REGEX = /^\/docs-components-([^/]+)\/(.+)$/;
 const COMPOSITE_ROUTE_REGEX = /^\/docs-product-([^/]+)\/(.+)$/;
 const TEMPLATE_ROUTE_REGEX = /^\/docs-getting-started-templates-([^/]+)\/(.+)$/;
+const FIXTURE_ROUTE_REGEX = /^\/regression-([^/]+)\/(.+)$/;
 
 /**
- * Map a VRT route to its docs path + slug + demo, or `null` for non-component
- * routes (regression fixtures).
+ * Map a VRT route to its source path + slug + demo.
  *
- * Recognises two route shapes:
+ * Recognises four route shapes:
  * - `/docs-components-{slug}/{Demo}` → `docs/data/material/components/{slug}/{Demo}`
  * - `/docs-product-{product}/{Name}` → `docs/src/components/product{Product}/{Name}`
  * - `/docs-getting-started-templates-{slug}/{Demo}` →
  *   `docs/data/material/getting-started/templates/{slug}/{Demo}`
+ * - `/regression-{suite}/{Name}` → `test/regressions/fixtures/{suite}/{Name}`
  *
  * The template shape is matched by its literal prefix: `fixtures.js` joins the
  * directory segments with `-`, so `getting-started-templates-crud-dashboard`
  * cannot be split back into directories without knowing where the slug starts.
+ *
+ * For fixture routes the suite directory doubles as the slug. Name a fixture
+ * suite after a docs slug (lowercase, for example `fixtures/buttons/`) to
+ * record its axe results into that slug's committed `{slug}.a11y.json` — for
+ * a11y-only fixtures that must not live in `docs/data` because no docs page
+ * consumes them.
  */
 export function parseRoute(route: string): ParsedRoute | null {
   const componentMatch = route.match(COMPONENT_ROUTE_REGEX);
@@ -268,6 +280,11 @@ export function parseRoute(route: string): ParsedRoute | null {
     // (`material` → `Material`, `x` → `X`) to rebuild the directory name.
     const dir = `product${product.charAt(0).toUpperCase()}${product.slice(1)}`;
     return { path: `docs/src/components/${dir}/${demo}`, slug: product, demo };
+  }
+  const fixtureMatch = route.match(FIXTURE_ROUTE_REGEX);
+  if (fixtureMatch) {
+    const [, suite, demo] = fixtureMatch;
+    return { path: `test/regressions/fixtures/${suite}/${demo}`, slug: suite, demo };
   }
   return null;
 }

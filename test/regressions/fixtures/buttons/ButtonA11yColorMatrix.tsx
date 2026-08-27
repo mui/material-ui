@@ -1,16 +1,8 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
-const variants = ['text', 'outlined', 'contained'];
-const colors = [
-  'primary',
-  'secondary',
-  'success',
-  'error',
-  'info',
-  'warning',
-  'inherit',
-];
+const variants = ['text', 'outlined', 'contained'] as const;
+const colors = ['primary', 'secondary', 'success', 'error', 'info', 'warning', 'inherit'] as const;
 
 export default function ButtonA11yColorMatrix() {
   return (

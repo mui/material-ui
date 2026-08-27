@@ -2,12 +2,11 @@ import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
-const CustomDivButton = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(function CustomDivButton(props, ref) {
-  return <div ref={ref} {...props} />;
-});
+const CustomDivButton = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  function CustomDivButton(props, ref) {
+    return <div ref={ref} {...props} />;
+  },
+);
 
 export default function ButtonA11yNonNative() {
   return (

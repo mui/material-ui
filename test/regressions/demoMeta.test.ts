@@ -2,8 +2,12 @@ import { describe, it, expect } from 'vitest';
 import { A11Y_RULES, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 
 describe('parseRoute', () => {
-  it('returns null for non-component routes (regression fixtures)', () => {
-    expect(parseRoute('/regression-Rating/FocusVisibleRating')).to.equal(null);
+  it('parses a regression fixture route into its fixtures path, suite as slug', () => {
+    expect(parseRoute('/regression-Rating/FocusVisibleRating')).to.deep.equal({
+      path: 'test/regressions/fixtures/Rating/FocusVisibleRating',
+      slug: 'Rating',
+      demo: 'FocusVisibleRating',
+    });
   });
 
   it('parses a docs-components route into path/slug/demo', () => {
@@ -56,13 +60,13 @@ describe('getConfig', () => {
       getConfig(A11Y_RULES, 'docs/data/material/components/buttons/BasicButtons'),
     ).to.deep.include({ enabled: true, assertions: 'all' });
     expect(
-      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/ButtonA11yNonNative'),
+      getConfig(A11Y_RULES, 'test/regressions/fixtures/buttons/ButtonA11yNonNative'),
     ).to.deep.include({ enabled: true, assertions: 'all' });
   });
 
   it('allows a known Button color-contrast fixture to record failures without asserting them', () => {
     expect(
-      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/ButtonA11yColorMatrix'),
+      getConfig(A11Y_RULES, 'test/regressions/fixtures/buttons/ButtonA11yColorMatrix'),
     ).to.deep.include({
       enabled: true,
       assertions: 'all',
