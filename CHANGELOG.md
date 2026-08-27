@@ -13,7 +13,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 ### `@mui/material@9.4.0`
 
-- Add `theme.focusVisible` opt-in keyboard focus ring (#48743) @siriwatknp
+- [theme] Add `theme.focusVisible` opt-in keyboard focus ring (#48743) @siriwatknp
 - [buttongroup] Prevent sticky hover border on touch devices (#48993) @petr-kratochvil
 - [l10n] Complete Traditional Chinese localization (#48946) @nrps9909
 - [menulist] Preserve custom list padding when adjusting for the scrollbar (#48707) @creazyfrog
