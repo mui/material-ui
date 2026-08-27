@@ -8,10 +8,12 @@ import type { MuiKeyboardEvent } from '../ButtonBase/useButtonBase';
 // console on every render.
 const warnedFragmentTrigger = new Set<string>();
 const warnedTriggerRef = new Set<string>();
+const warnedDuplicateValue = new Set<string>();
 
 export function resetMenu2WarningFlags() {
   warnedFragmentTrigger.clear();
   warnedTriggerRef.clear();
+  warnedDuplicateValue.clear();
 }
 
 export function warnMenu2FragmentTrigger(
@@ -50,6 +52,21 @@ export function warnMenu2TriggerRef(trigger: React.ReactNode, componentName: str
       'A component used as the trigger must forward its props and its ref to ' +
       'the element that it renders, the way Tooltip does. Without them the ' +
       'menu behavior does not reach the element.',
+  );
+}
+
+export function warnMenu2DuplicateValue(hookName: string) {
+  // Only the value tells the items apart, so a shared value makes two items
+  // describe one popover.
+  if (warnedDuplicateValue.has(hookName)) {
+    return;
+  }
+
+  warnedDuplicateValue.add(hookName);
+  console.error(
+    `MUI: \`${hookName}\` received the same \`value\` twice in one render. ` +
+      'Each item needs a value that identifies it, the same rule that React ' +
+      'applies to `key`.',
   );
 }
 

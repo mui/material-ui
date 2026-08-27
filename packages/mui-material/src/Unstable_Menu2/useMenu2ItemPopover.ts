@@ -4,6 +4,7 @@ import ownerDocument from '@mui/utils/ownerDocument';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import useId from '@mui/utils/useId';
 import type { PopperPlacementType, PopperProps } from '../Popper';
+import { warnMenu2DuplicateValue } from './menu2Utils';
 
 export interface UseMenu2ItemPopoverOptions {
   /**
@@ -24,10 +25,12 @@ export interface UseMenu2ItemPopoverItemHandlers {
 }
 
 /**
- * The props for one menu item. The hook puts `aria-describedby` on the active
- * element itself, so the props carry the handlers only.
+ * The props for one menu item. `aria-describedby` names the popover on the
+ * active item, and is `undefined` on every other item.
  */
-export type UseMenu2ItemPopoverItemProps = Required<UseMenu2ItemPopoverItemHandlers>;
+export interface UseMenu2ItemPopoverItemProps extends Required<UseMenu2ItemPopoverItemHandlers> {
+  'aria-describedby': string | undefined;
+}
 
 export interface UseMenu2ItemPopoverPopoverProps {
   anchorEl: HTMLElement | null;
@@ -59,9 +62,12 @@ export interface UseMenu2ItemPopoverReturnValue<Value> {
    */
   close: () => void;
   /**
-   * Returns the props for one menu item. `value` needs no contract, because the
-   * hook identifies the active item by its element. Pass the handlers of the
-   * caller in `handlers`, so that the item keeps them.
+   * Returns the props for one menu item. `value` must identify the item, the
+   * same rule that React applies to `key`, because the hook gives
+   * `aria-describedby` to the item whose value is the active one. Pass the
+   * handlers of the caller in `handlers`, so that the item keeps them. Spread
+   * the props first: an `aria-describedby` that the caller writes after the
+   * spread replaces the one of the hook.
    */
   getItemProps: (
     value: Value,
@@ -126,31 +132,6 @@ export default function useMenu2ItemPopover<Value>(
     setActiveItem(null);
   }, []);
 
-  // The attribute goes on the anchor element itself, so two items that share
-  // one `Value` never describe the popover at the same time.
-  useEnhancedEffect(() => {
-    if (anchorEl === null || id === undefined) {
-      return undefined;
-    }
-
-    const previous = anchorEl.getAttribute('aria-describedby');
-    anchorEl.setAttribute('aria-describedby', id);
-
-    return () => {
-      // The caller owns the attribute again if it changed while the card was
-      // open. Only the value that this effect wrote may be undone.
-      if (anchorEl.getAttribute('aria-describedby') !== id) {
-        return;
-      }
-
-      if (previous === null) {
-        anchorEl.removeAttribute('aria-describedby');
-      } else {
-        anchorEl.setAttribute('aria-describedby', previous);
-      }
-    };
-  }, [anchorEl, id]);
-
   // A menu unmounts the active item without an event, for example when a
   // submenu closes. The popover then has no owner, so it closes.
   useEnhancedEffect(() => {
@@ -175,6 +156,18 @@ export default function useMenu2ItemPopover<Value>(
     };
   }, [anchorEl, close]);
 
+  // The rendered result is the only reliable place to see a shared value: the
+  // items can render in any component, so counting the calls gives false alarms.
+  useEnhancedEffect(() => {
+    if (process.env.NODE_ENV === 'production' || anchorEl === null || id === undefined) {
+      return;
+    }
+
+    if (ownerDocument(anchorEl).querySelectorAll(`[aria-describedby="${id}"]`).length > 1) {
+      warnMenu2DuplicateValue('useMenu2ItemPopover');
+    }
+  }, [anchorEl, id]);
+
   const getItemProps = (
     value: Value,
     handlers: UseMenu2ItemPopoverItemHandlers = {},
@@ -193,6 +186,8 @@ export default function useMenu2ItemPopover<Value>(
     };
 
     return {
+      'aria-describedby':
+        activeItem !== null && Object.is(activeItem.value, value) ? id : undefined,
       onBlur: (event) => {
         handlers.onBlur?.(event);
         deactivate(event);

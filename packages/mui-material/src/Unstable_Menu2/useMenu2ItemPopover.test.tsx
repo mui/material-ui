@@ -8,7 +8,9 @@ import { type SxProps, type Theme } from '@mui/material/styles';
 import Menu2, {
   useMenu2ItemPopover,
   type UseMenu2ItemPopoverItemHandlers,
+  type UseMenu2ItemPopoverItemProps,
 } from '@mui/material/Unstable_Menu2';
+import { resetMenu2WarningFlags } from '@mui/material/Unstable_Menu2/menu2Utils';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 
 interface PreviewCardItem {
@@ -98,8 +100,8 @@ function TestUnmountingPreviewCard() {
   );
 }
 
-// Two items share one primitive value, which is the case that an identity
-// comparison on `Value` cannot tell apart.
+// Two items share one primitive value, which breaks the contract that a value
+// identifies an item.
 function TestSharedValuePreviewCards() {
   const { getItemProps, popover } = useMenu2ItemPopover<string>();
 
@@ -144,6 +146,10 @@ function TestMenu2PreviewCards() {
 
 describe('useMenu2ItemPopover', () => {
   const { render } = createRenderer();
+
+  beforeEach(() => {
+    resetMenu2WarningFlags();
+  });
 
   function getItem(label: string) {
     return screen.getByText(label);
@@ -279,14 +285,63 @@ describe('useMenu2ItemPopover', () => {
     expect(item).not.to.have.attribute('aria-describedby');
   });
 
-  it('describes the active item only, when the items share one primitive value', async () => {
-    const { user } = render(<TestSharedValuePreviewCards />);
+  // The value identifies the item, so two items with one value describe the
+  // popover at the same time. The check reads the rendered result, so the card
+  // has to open first.
+  it('warns when two items share one value', () => {
+    expect(() => {
+      render(<TestSharedValuePreviewCards />);
+      fireEvent.mouseEnter(screen.getByTestId('first'));
+    }).toErrorDev('MUI: `useMenu2ItemPopover` received the same `value` twice in one render.');
+  });
 
-    await user.hover(screen.getByTestId('second'));
+  it('does not warn when the values differ', () => {
+    expect(() => {
+      render(<TestPreviewCards />);
+      fireEvent.mouseEnter(screen.getAllByRole('button')[0]);
+    }).not.toErrorDev();
+  });
 
-    expect(await screen.findByTestId('preview-card')).to.have.text('Copy the link.');
-    expect(screen.getByTestId('second')).to.have.attribute('aria-describedby');
-    expect(screen.getByTestId('first')).not.to.have.attribute('aria-describedby');
+  // `getItemProps` often runs in the render of a child that re-renders on its
+  // own. Counting the calls of one render pass warned about correct code here.
+  it('does not warn when a child re-renders and asks for its props again', () => {
+    let bumpChild = () => {};
+
+    function Item(props: {
+      getItemProps: (value: string) => UseMenu2ItemPopoverItemProps;
+      label: string;
+    }) {
+      const [, setTick] = React.useState(0);
+      bumpChild = () => setTick((tick) => tick + 1);
+
+      return (
+        <button data-testid={props.label} type="button" {...props.getItemProps(props.label)}>
+          {props.label}
+        </button>
+      );
+    }
+
+    function TestChildRenderedItems() {
+      const { getItemProps, popover } = useMenu2ItemPopover<string>();
+
+      return (
+        <div>
+          <Item getItemProps={getItemProps} label="first" />
+          <Popper {...popover.props}>
+            <Paper data-testid="preview-card">{popover.value}</Paper>
+          </Popper>
+        </div>
+      );
+    }
+
+    expect(() => {
+      render(<TestChildRenderedItems />);
+      // The child renders again while the owner of the hook does not.
+      act(() => {
+        bumpChild();
+      });
+      fireEvent.mouseEnter(screen.getByTestId('first'));
+    }).not.toErrorDev();
   });
 
   it('runs the handlers of the caller as well as its own', async () => {
@@ -395,28 +450,21 @@ describe('useMenu2ItemPopover', () => {
     expect(item).to.have.attribute('aria-describedby');
   });
 
-  // The hook writes `aria-describedby` on the element, so its cleanup must not
-  // undo a value that the caller set while the card was open.
-  it('leaves an aria-describedby that the caller set while the card was open', async () => {
+  // React owns the attribute now. A caller that writes it after the spread
+  // keeps its own value, which an imperative write from the hook would undo.
+  it('keeps the aria-describedby that the caller writes after the spread', async () => {
     function TestCallerDescribedBy() {
-      const { getItemProps, popover, close } = useMenu2ItemPopover<string>();
-      const [ownDescribedBy, setOwnDescribedBy] = React.useState<string | undefined>(undefined);
+      const { getItemProps, popover } = useMenu2ItemPopover<string>();
 
       return (
         <div>
           <button
             type="button"
             data-testid="item"
-            aria-describedby={ownDescribedBy}
             {...getItemProps('Copy the link.')}
+            aria-describedby="caller"
           >
             Copy
-          </button>
-          <button type="button" data-testid="describe" onClick={() => setOwnDescribedBy('caller')}>
-            describe
-          </button>
-          <button type="button" data-testid="close" onClick={close}>
-            close
           </button>
           <Popper {...popover.props}>
             <Paper data-testid="preview-card">{popover.value}</Paper>
@@ -429,15 +477,7 @@ describe('useMenu2ItemPopover', () => {
     const item = screen.getByTestId('item');
 
     fireEvent.mouseEnter(item);
-    await waitFor(() => {
-      expect(item).to.have.attribute('aria-describedby');
-    });
-
-    fireEvent.click(screen.getByTestId('describe'));
-    fireEvent.click(screen.getByTestId('close'));
-    await waitFor(() => {
-      expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
-    });
+    expect(await screen.findByTestId('preview-card')).to.have.text('Copy the link.');
 
     expect(item).to.have.attribute('aria-describedby', 'caller');
   });
