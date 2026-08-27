@@ -170,6 +170,10 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 <GlobalStyles styles={{ ':root': { '--mui-scaling': 0.92 } }} />;
 ```
 
+:::warning
+Set `--mui-scaling` on the same element that carries the theme's other variables—`:root` by default. The spacing variable is declared there as `calc(8px * var(--mui-scaling))`, so its value resolves at that point. Overriding `--mui-scaling` further down the tree only re-scales typography, and every spacing-derived size stays behind.
+:::
+
 Because it's a plain CSS variable, it can also respond to the environment. This example scales the UI up on small screens, which raises the base font size to 16px and prevents iOS Safari from zooming when an input receives focus:
 
 ```css
