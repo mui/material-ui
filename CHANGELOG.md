@@ -1,5 +1,69 @@
 # [Versions](https://mui.com/material-ui/getting-started/versions/)
 
+## 9.4.0
+
+<!-- generated comparing v9.3.1..master -->
+
+_Aug 27, 2026_
+
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+
+- ♿️ Opt in to a consistent [keyboard focus ring](https://mui.com/material-ui/customization/focus-visible/) across components with the new `theme.focusVisible`.
+- ♿️ The [Tooltip](https://mui.com/material-ui/react-tooltip/) now supports disabled button triggers without an extra wrapper element.
+
+### `@mui/material@9.4.0`
+
+- Add `theme.focusVisible` opt-in keyboard focus ring (#48743) @siriwatknp
+- [buttongroup] Prevent sticky hover border on touch devices (#48993) @petr-kratochvil
+- [l10n] Complete Traditional Chinese localization (#48946) @nrps9909
+- [menulist] Preserve custom list padding when adjusting for the scrollbar (#48707) @creazyfrog
+- [pagination] Manage focus whenever first / last / next / previous buttons become disabled (#48877) @silviuaavram
+- [tooltip] Improve support for disabled button triggers (#48622) @mayank99
+
+### `@mui/utils@9.4.0`
+
+- Fix resolveProps to correctly merge slotProps defined as functions (#48955) @mnajdova
+- Replace deprecated `clip` CSS property with `clip-path` (#48966) @ZeeshanTamboli
+
+### `@mui/styled-engine-sc@9.4.0`
+
+- Fix types for components extended with styled (#45988) @megos
+
+### Docs
+
+- Bump @docsearch/react to ^4.7.0 (#48886) @LukasTy
+- Fix broken links reported by Ahrefs (#48949) @brijeshb42
+- Manage focus on Open in Chat button click (#48942) @silviuaavram
+- Move focus to the main content with the skip link (#48944) @lazerg
+- Use relative link for LICENSE in README (#49040) @loulanyue
+- [autocomplete] Remove the "aria-owns" reference (#48958) @silviuaavram
+- [table] Fix wrong number of rows reported to screen readers (#47653) @seomsoo
+- [table] Reference DataGrid link in the row header section (#48988) @silviuaavram
+- [table] Use and document the row header cells (#48965) @silviuaavram
+- [tabs] Make tab panel focusable and show keep mounted examples (#48939) @silviuaavram
+- [templates] Remove focusable links from hidden carousel slides (#49003) @gonzoblasco
+
+### Core
+
+- [code-infra] Fix team sync review requests (#48914) @brijeshb42
+- [code-infra] Import the test globals from vitest (#49033) @JCQuintas
+- [code-infra] Point the support validator link at frontend-public (#49041) @Janpot
+- [code-infra] Update CircleCI orb (#49030) @Janpot
+- [code-infra] Use ESM current directory syntax for Vitest config (#49032) @ZeeshanTamboli
+- [core] Use @typescript/typescript6 for the docs tooling (#49025) @Janpot
+- [core-docs] Remove the `globalSelector` stylis middleware (#49029) @Janpot
+- [test] Add an `assertions` mode to the axe regression harness (#48915) @michelengelen
+- [test] Automate the CSS-dependent WCAG criteria (#48936) @michelengelen
+- [test] Fail the regression run when a webfont does not load (#48948) @LukasTy
+- [test] Fix typo 'overriden' -> 'overridden' in Alert test comment (#48987) @FirmaSpring
+- [test] Replace webfontloader with the CSS Font Loading API (#48995) @LukasTy
+- [test] Skip the CrudDashboard VRT on React 18 (#49027) @Janpot
+- [test] Use the shared loadFonts from @mui/internal-test-utils (#49007) @LukasTy
+- [test] Use the Vitest global expect instead of importing chai (#48996) @JCQuintas
+- [test][tooltip] Keep the disabled trigger away from the real pointer (#48947) @LukasTy
+
+All contributors of this release in alphabetical order: @brijeshb42, @creazyfrog, @FirmaSpring, @gonzoblasco, @Janpot, @JCQuintas, @lazerg, @loulanyue, @LukasTy, @mayank99, @megos, @michelengelen, @mnajdova, @nrps9909, @petr-kratochvil, @seomsoo, @silviuaavram, @siriwatknp, @ZeeshanTamboli
+
 ## 9.3.1
 
 <!-- generated comparing v9.3.0..master -->
