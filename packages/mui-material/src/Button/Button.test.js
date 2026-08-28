@@ -1050,57 +1050,65 @@ describe('<Button />', () => {
       await user.tab();
       expect(screen.getByRole('button', { name: 'Middle' })).toHaveFocus();
 
-      // Tab moves focus back out of the button — it is never captured.
+      // Tab moves focus back out of the button - it is never captured.
       await user.tab();
       expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
 
       // Shift+Tab moves back onto it.
       await user.tab({ shift: true });
       expect(screen.getByRole('button', { name: 'Middle' })).toHaveFocus();
+
+      // Another Shift+Tab moves out of the button - still not captured.
+      await user.tab({ shift: true });
+      expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
     });
 
     describe('2.4.3 Focus Order', () => {
-      it('is a single tab stop in natural DOM order with no positive tabIndex', async () => {
-        const { user } = render(
-          <React.Fragment>
-            <button type="button">Before</button>
-            <Button>Middle</Button>
-            <button type="button">After</button>
-          </React.Fragment>,
-        );
-        expect(screen.getByRole('button', { name: 'Middle' })).to.have.property('tabIndex', 0);
-
-        await user.tab();
-        expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
-        await user.tab();
-        expect(screen.getByRole('button', { name: 'Middle' })).toHaveFocus();
-        await user.tab();
-        expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+      it('is a single tab stop in natural DOM order with no positive tabIndex', () => {
+        render(<Button>Middle</Button>);
+        expect(screen.getByRole('button')).to.have.property('tabIndex', 0);
       });
 
       it('removes a disabled button from the tab order', async () => {
         const { user } = render(
           <React.Fragment>
+            <button type="button">Before</button>
             <Button disabled>Disabled</Button>
             <button type="button">After</button>
           </React.Fragment>,
         );
 
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
+
         // Tab skips the disabled button and lands on the next control.
         await user.tab();
         expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+
+        // Backwards tabbing also skips the disabled button and lands back on the first control.
+        await user.tab({ shift: true });
+        expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
       });
 
       it('removes a loading button from the tab order', async () => {
         const { user } = render(
           <React.Fragment>
+            <button type="button">Before</button>
             <Button loading>Loading</Button>
             <button type="button">After</button>
           </React.Fragment>,
         );
 
         await user.tab();
+        expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
+
+        // Tab skips the disabled button and lands on the next control.
+        await user.tab();
         expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+
+        // Backwards tabbing also skips the disabled button and lands back on the first control.
+        await user.tab({ shift: true });
+        expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
       });
     });
 
