@@ -107,6 +107,12 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
 export interface Theme extends BaseTheme, CssVarsProperties {
   cssVariables?: false | undefined;
   components?: Components<BaseTheme> | undefined;
+  /**
+   * Ready-to-use interaction styles keyed by state name. Present only after
+   * `enhanceColorStates()` — absent on every theme that does not call it, which
+   * is exactly what the converted components gate on.
+   */
+  states?: import('./createStates').ThemeStates | undefined;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
   alpha: (color: string, value: number | string) => string;
