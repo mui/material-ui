@@ -45,9 +45,6 @@ export function getMenu2ItemStyles(
     ...getMenuItemRootStyles(theme, classes, {
       focusVisibleClass: classes.highlighted,
       disabledPointerEvents: true,
-      // Base UI highlights on hover with this class, so the background stays.
-      // The item still takes the inset ring for the keyboard.
-      focusRingReplacesBackground: false,
     }),
     ...(classes.open && {
       [`&.${classes.open}`]: {
@@ -77,19 +74,32 @@ export const menu2PopupListStyles = memoTheme(({ theme }) => ({
   ...(menuListStyles as CSSObject),
   // A submenu trigger is whatever element the caller passes, so its open state
   // is styled from the list that contains it, not from a component we render.
-  // The highlighted state matches a plain item, and an open trigger keeps it.
+  // An open trigger keeps the tint, because open is a state and not a focus cue.
+  [`& .${menu2SubmenuTriggerClasses.open}`]: {
+    backgroundColor: (theme.vars || theme).palette.action.focus,
+  },
+  // The theme ring replaces the highlight, the way it does for a plain item.
   // `:hover` is here too: Base UI highlights a submenu trigger only once its
   // submenu opens, so during the open delay the trigger would otherwise show
   // the weaker hover tint while its neighbours show the full highlight.
-  [`& .${menu2SubmenuTriggerClasses.root}:hover, & .${menu2SubmenuTriggerClasses.highlighted}, & .${menu2SubmenuTriggerClasses.open}`]:
-    {
+  ...(!theme.focusVisible && {
+    [`& .${menu2SubmenuTriggerClasses.root}:hover, & .${menu2SubmenuTriggerClasses.highlighted}`]: {
       backgroundColor: (theme.vars || theme).palette.action.focus,
     },
+  }),
   [`& .${menu2SubmenuTriggerClasses.disabled}`]: {
     opacity: (theme.vars || theme).palette.action.disabledOpacity,
   },
-  [`& .${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.highlighted}, & .${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.open}`]:
-    {
+  [`& .${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.open}`]: {
+    backgroundColor: theme.alpha(
+      (theme.vars || theme).palette.primary.main,
+      `${(theme.vars || theme).palette.action.selectedOpacity} + ${
+        (theme.vars || theme).palette.action.focusOpacity
+      }`,
+    ),
+  },
+  ...(!theme.focusVisible && {
+    [`& .${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.highlighted}`]: {
       backgroundColor: theme.alpha(
         (theme.vars || theme).palette.primary.main,
         `${(theme.vars || theme).palette.action.selectedOpacity} + ${
@@ -97,6 +107,7 @@ export const menu2PopupListStyles = memoTheme(({ theme }) => ({
         }`,
       ),
     },
+  }),
 }));
 
 /**

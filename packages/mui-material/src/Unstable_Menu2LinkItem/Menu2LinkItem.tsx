@@ -105,7 +105,7 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
     component,
     dense = false,
     disableGutters = false,
-    disableRipple = false,
+    disableRipple,
     divider = false,
     selected = false,
     slotProps,
@@ -150,7 +150,9 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
             ...rootSlotProps,
             // ButtonBase renders a <button> by default; the items keep their element.
             component: component ?? 'a',
-            disableRipple,
+            // Pass it only when the caller sets it. An explicit prop beats the
+            // `MuiButtonBase` default props, so ButtonBase resolves the default.
+            ...(disableRipple !== undefined && { disableRipple }),
             ownerState,
             sx,
             // Base UI owns the Enter and Space activation of the item.

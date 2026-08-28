@@ -520,4 +520,34 @@ describe('<Menu2 /> collapsed API', () => {
       expect(onClick.callCount).to.equal(1);
     });
   });
+
+  // The trigger background lives in the list styles, so the theme ring has to
+  // reach it there too. Otherwise a highlighted trigger keeps the tint while a
+  // highlighted plain item in the same menu shows the ring alone.
+  [true, false].forEach((focusVisible) => {
+    it.skipIf(isJsdom())(
+      `highlights the trigger like a plain item, focusVisible=${focusVisible}`,
+      async () => {
+        const { user } = render(
+          <ThemeProvider theme={createTheme({ focusVisible })}>
+            <Menu2 defaultOpen modal={false} anchor={document.body}>
+              <Menu2Item>Plain</Menu2Item>
+              <Menu2Submenu trigger={<Menu2Item>More</Menu2Item>}>
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2Submenu>
+            </Menu2>
+          </ThemeProvider>,
+        );
+
+        const plain = await screen.findByRole('menuitem', { name: 'Plain' });
+        const submenuTrigger = screen.getByRole('menuitem', { name: 'More' });
+
+        await user.keyboard('{ArrowDown}');
+        const plainHighlight = window.getComputedStyle(plain).backgroundColor;
+
+        await user.keyboard('{ArrowDown}');
+        expect(window.getComputedStyle(submenuTrigger).backgroundColor).to.equal(plainHighlight);
+      },
+    );
+  });
 });

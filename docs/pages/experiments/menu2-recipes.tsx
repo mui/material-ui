@@ -563,8 +563,15 @@ export default function Menu2Experiment() {
   };
 
   // Opt-in keyboard focus ring, to compare the Menu2 item indicator against the classic one.
+  // The ring also opts out of the ripple, the way the focus visible docs page does.
   const theme = React.useMemo(
-    () => createTheme({ focusVisible: settings.focusVisible }),
+    () =>
+      createTheme({
+        focusVisible: settings.focusVisible,
+        ...(settings.focusVisible && {
+          components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+        }),
+      }),
     [settings.focusVisible],
   );
 

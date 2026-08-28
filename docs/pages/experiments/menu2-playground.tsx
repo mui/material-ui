@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ClassicMenu from '@mui/material/Menu';
 import ClassicMenuItem from '@mui/material/MenuItem';
-import ClassicMenuList from '@mui/material/MenuList';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Stack from '@mui/material/Stack';
@@ -102,7 +101,14 @@ const theme = createTheme({});
 // against their absence while emulating high contrast in the browser.
 function usePlaygroundTheme({ rtl, highContrast, focusVisible }: PlaygroundSettings) {
   return React.useMemo(() => {
-    const nextTheme = createTheme({ direction: rtl ? 'rtl' : 'ltr', focusVisible });
+    const nextTheme = createTheme({
+      direction: rtl ? 'rtl' : 'ltr',
+      focusVisible,
+      // The focus visible docs page opts out of the ripple, so only the ring shows.
+      ...(focusVisible && {
+        components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+      }),
+    });
     return highContrast ? enhanceHighContrast(nextTheme) : nextTheme;
   }, [rtl, highContrast, focusVisible]);
 }
@@ -329,9 +335,11 @@ function ClassicVersusSuccessorDemo({ settings }: { settings: PlaygroundSettings
   );
 }
 
-// Side-by-side focus indicator check. Base UI moves DOM focus to a Menu2Item on hover, so a pointer
-// user can get a keyboard ring; the classic MenuItem avoids that with `suppressInitialFocusVisible`.
+// Side-by-side focus indicator check. Both sides are real menus that open from a trigger. Base UI
+// moves DOM focus to a Menu2Item on hover, so a pointer user can get a keyboard ring; the classic
+// MenuItem avoids that with `suppressInitialFocusVisible`.
 function FocusRingComparisonDemo({ settings }: { settings: PlaygroundSettings }) {
+  const [classicAnchorEl, setClassicAnchorEl] = React.useState<null | HTMLElement>(null);
   const [open, setOpen] = React.useState(false);
   const itemProps = { dense: settings.dense, divider: settings.dividers };
 
@@ -339,20 +347,32 @@ function FocusRingComparisonDemo({ settings }: { settings: PlaygroundSettings })
     <Stack direction="row" spacing={4} sx={{ alignItems: 'flex-start' }}>
       <div>
         <Typography variant="subtitle2" gutterBottom>
-          Classic MenuList + MenuItem
+          Classic Menu + MenuItem
         </Typography>
-        <ClassicMenuList sx={{ width: 220, border: 1, borderColor: 'divider', borderRadius: 1 }}>
+        <Button
+          variant="outlined"
+          endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}
+          onClick={(event) => setClassicAnchorEl(event.currentTarget)}
+        >
+          Open the classic menu
+        </Button>
+        <ClassicMenu
+          open={Boolean(classicAnchorEl)}
+          anchorEl={classicAnchorEl}
+          onClose={() => setClassicAnchorEl(null)}
+        >
           {parityItems.map((item) => (
             <ClassicMenuItem
               key={item.label}
               {...itemProps}
               selected={'selected' in item && item.selected}
               disabled={'disabled' in item && item.disabled}
+              onClick={() => setClassicAnchorEl(null)}
             >
               {item.label}
             </ClassicMenuItem>
           ))}
-        </ClassicMenuList>
+        </ClassicMenu>
       </div>
       <div>
         <Typography variant="subtitle2" gutterBottom>
@@ -694,8 +714,14 @@ export default function MenuRfcExperiment() {
           <section>
             <h3 id="focus-ring-comparison">Focus indicator: classic vs successor</h3>
             <p>
-              Both sides use the same theme. Turn on the <code>focusVisible theme</code> knob to
-              show the ring. The successor menu is not modal, so the classic list stays interactive.
+              Both sides are real menus that open from a trigger, and both use the same theme. Turn
+              on the <code>focusVisible theme</code> knob to show the ring. That knob also sets{' '}
+              <code>MuiButtonBase.defaultProps.disableRipple</code>, the way the focus visible docs
+              page does, so only the ring shows.
+            </p>
+            <p>
+              The successor menu is not modal, so its trigger and the classic trigger both stay
+              clickable while it is open.
             </p>
             <p>
               Try this: hover the items with the mouse, then navigate with the arrow keys. Compare

@@ -127,7 +127,7 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     dense = false,
     disabled = false,
     disableGutters = false,
-    disableRipple = false,
+    disableRipple,
     divider = false,
     nativeButton: nativeButtonProp,
     selected = false,
@@ -170,7 +170,9 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
             ...rootSlotProps,
             // ButtonBase renders a <button> by default; the items keep their element.
             component: component ?? 'div',
-            disableRipple,
+            // Pass it only when the caller sets it. An explicit prop beats the
+            // `MuiButtonBase` default props, so ButtonBase resolves the default.
+            ...(disableRipple !== undefined && { disableRipple }),
             ownerState,
             sx,
             // Base UI owns the Enter and Space activation of the item.

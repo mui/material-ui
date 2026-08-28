@@ -6,6 +6,8 @@ import Button from '@mui/material/Button';
 import { listClasses } from '@mui/material/List';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import ClassicMenuItem, { menuItemClasses } from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
 import { paperClasses } from '@mui/material/Paper';
 import Tooltip from '@mui/material/Tooltip';
 import Menu2, { menu2PopupClasses, menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
@@ -733,6 +735,60 @@ describe('<Menu2 />', () => {
     await user.pointer({ keys: '[/MouseLeft]', target: withoutRipple });
   });
 
+  // The focus visible docs opt out of the ripple through `MuiButtonBase`
+  // default props. An explicit prop on the item would beat them.
+  it.skipIf(isJsdom())('lets the MuiButtonBase default props turn the ripple off', async () => {
+    const theme = createTheme({
+      components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+    });
+    const { user } = render(
+      <ThemeProvider theme={theme}>
+        <Menu2 defaultOpen modal={false} anchor={document.body}>
+          <Menu2Item closeOnClick={false}>Item</Menu2Item>
+          <Menu2CheckboxItem>Checkbox item</Menu2CheckboxItem>
+          <Menu2RadioGroup defaultValue="one">
+            <Menu2RadioItem value="one">Radio item</Menu2RadioItem>
+          </Menu2RadioGroup>
+          <Menu2LinkItem href="/profile" onClick={(event) => event.preventDefault()}>
+            Link item
+          </Menu2LinkItem>
+          <Menu2Item closeOnClick={false} disableRipple={false}>
+            Explicit ripple
+          </Menu2Item>
+        </Menu2>
+      </ThemeProvider>,
+    );
+
+    await screen.findByRole('menuitem', { name: 'Item' });
+
+    const themedItems = [
+      screen.getByRole('menuitem', { name: 'Item' }),
+      screen.getByRole('menuitemcheckbox', { name: 'Checkbox item' }),
+      screen.getByRole('menuitemradio', { name: 'Radio item' }),
+      screen.getByRole('menuitem', { name: 'Link item' }),
+    ];
+
+    const rippled: (string | null)[] = [];
+    for (const item of themedItems) {
+      // eslint-disable-next-line no-await-in-loop
+      await user.pointer({ keys: '[MouseLeft>]', target: item });
+      if (item.querySelector('.MuiTouchRipple-root') !== null) {
+        rippled.push(item.textContent);
+      }
+      // eslint-disable-next-line no-await-in-loop
+      await user.pointer({ keys: '[/MouseLeft]', target: item });
+    }
+    expect(rippled).to.deep.equal([]);
+
+    // An explicit prop still wins over the default props.
+    const explicit = screen.getByRole('menuitem', { name: 'Explicit ripple' });
+    await user.pointer({ keys: '[MouseLeft>]', target: explicit });
+    await waitFor(() => {
+      expect(explicit.querySelectorAll('.MuiTouchRipple-ripple').length).to.be.greaterThan(0);
+    });
+    await user.pointer({ keys: '[/MouseLeft]', target: explicit });
+  });
+
   it('renders the Checkbox and Radio icons for each indicator state', () => {
     render(
       <Menu2 open trigger={<Button disableRipple>Options</Button>}>
@@ -1116,23 +1172,46 @@ describe('<Menu2 />', () => {
     expect(styles.outlineOffset).to.equal('-2px');
   });
 
-  // `theme.focusVisible` swaps the classic MenuItem focus background for an
-  // outline ring. Base UI sets `highlighted` on hover too, where a
-  // `:focus-visible` ring never matches, so the item keeps its background.
-  it.skipIf(isJsdom())('keeps the highlight background under theme.focusVisible', async () => {
+  // `theme.focusVisible` swaps the item focus background for an outline ring.
+  // Menu2 must match the classic MenuItem: the ring replaces the background.
+  it.skipIf(isJsdom())('drops the highlight background under theme.focusVisible', async () => {
     const { user } = render(
       <ThemeProvider theme={createTheme({ focusVisible: true })}>
-        <Menu2 defaultOpen modal={false} anchor={document.body}>
+        <MenuList>
+          <ClassicMenuItem>Classic</ClassicMenuItem>
+        </MenuList>
+        <Menu2 modal={false} trigger={<Button disableRipple>Options</Button>}>
           <Menu2Item>Alpha</Menu2Item>
+          <Menu2Item>Beta</Menu2Item>
         </Menu2>
       </ThemeProvider>,
     );
 
-    const item = await screen.findByRole('menuitem', { name: 'Alpha' });
-    const atRest = window.getComputedStyle(item).backgroundColor;
+    // The classic reference: a keyboard-focused MenuItem under the ring theme.
+    await user.tab();
+    const classicItem = screen.getByRole('menuitem', { name: 'Classic' });
+    expect(classicItem).to.have.class(menuItemClasses.focusVisible);
+    const classicBackground = window.getComputedStyle(classicItem).backgroundColor;
 
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'Options' })).toHaveFocus();
+
+    // ArrowDown opens the successor menu and highlights the first item.
     await user.keyboard('{ArrowDown}');
+    const item = await screen.findByRole('menuitem', { name: 'Alpha' });
+    await waitFor(() => {
+      expect(item).to.have.class(menu2ItemClasses.highlighted);
+    });
 
-    expect(window.getComputedStyle(item).backgroundColor).not.to.equal(atRest);
+    const atRest = window.getComputedStyle(
+      screen.getByRole('menuitem', { name: 'Beta' }),
+    ).backgroundColor;
+    const highlighted = window.getComputedStyle(item);
+
+    // The ring shows, and the 0.12 focus background does not.
+    expect(highlighted.outlineWidth).to.equal('2px');
+    expect(highlighted.backgroundColor).to.equal(atRest);
+    // The classic MenuItem paints the same background in the same state.
+    expect(highlighted.backgroundColor).to.equal(classicBackground);
   });
 });
