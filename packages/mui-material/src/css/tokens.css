@@ -1,4 +1,4 @@
-@layer mui.tokens, mui.base, mui.theme;
+@layer mui.tokens, mui.base, mui.theme, mui.a11y;
 
 /*
  * Shared foundational contract. Theme styles select and combine these values; v1 themes do not
@@ -40,5 +40,20 @@
     --mui-spacing-4: 16px;
     --mui-spacing-5: 20px;
     --mui-density-unit: 2px;
+  }
+
+  /* Shared semantic mappings for Windows High Contrast and other forced-colors modes. */
+  @media (forced-colors: active) {
+    :root {
+      --mui-forced-colors-disabled: GrayText;
+      --mui-forced-colors-error: ActiveText;
+      --mui-forced-colors-selected-background: SelectedItem;
+      --mui-forced-colors-selected-text: SelectedItemText;
+      --mui-forced-colors-active-background: Highlight;
+      --mui-forced-colors-active-text: HighlightText;
+      --mui-forced-colors-button-border: ButtonBorder;
+      --mui-forced-colors-button-text: ButtonText;
+      --mui-forced-colors-canvas: Canvas;
+    }
   }
 }

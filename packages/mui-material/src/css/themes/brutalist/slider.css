@@ -1,4 +1,4 @@
-@layer mui.tokens, mui.base, mui.theme;
+@layer mui.tokens, mui.base, mui.theme, mui.a11y;
 
 /* Granular entry: includes the shared tokens and Slider base before the Brutalist skin. */
 @import '../../tokens.css';

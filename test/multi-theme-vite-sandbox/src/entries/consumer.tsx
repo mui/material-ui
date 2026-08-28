@@ -2,7 +2,7 @@
 import '../reset.css';
 import '../app.css';
 import '../consumer-overrides.css';
-// A custom theme explicitly selects the library's public foundational CSS.
+// Base entries also include Material UI's shared forced-colors treatment for each component.
 import '@mui/material/css/tokens.css';
 import '@mui/material/css/base/button.css';
 import '@mui/material/css/base/slider.css';

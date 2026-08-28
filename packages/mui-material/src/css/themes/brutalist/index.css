@@ -1,4 +1,4 @@
-@layer mui.tokens, mui.base, mui.theme;
+@layer mui.tokens, mui.base, mui.theme, mui.a11y;
 
 /* Convenience barrel: loads the entire theme. Import component files directly for less CSS. */
 @import './button.css';

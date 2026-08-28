@@ -1,4 +1,4 @@
-@layer mui.tokens, mui.base, mui.theme;
+@layer mui.tokens, mui.base, mui.theme, mui.a11y;
 
 /* Consumer-authored skin: it uses the public token/base contract but no Material UI theme CSS. */
 @layer mui.theme {
