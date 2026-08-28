@@ -53,6 +53,16 @@ describe('<Link />', () => {
     ).not.to.throw();
   });
 
+  it('using a named CSS color should not crash', () => {
+    expect(() =>
+      render(
+        <Link href="/" color="white" underline="always">
+          Test
+        </Link>,
+      ),
+    ).not.to.throw();
+  });
+
   describe('event callbacks', () => {
     it('should fire event callbacks', () => {
       const events = ['onBlur', 'onFocus'];
