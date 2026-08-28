@@ -140,7 +140,7 @@ The spacing props of the [`sx` prop](/material-ui/customization/how-to-customize
 <Box sx={{ p: 'small', gap: 'x-small' }} />
 ```
 
-This covers every spacing prop—`p`, `m`, their per-side and axis forms, and `gap`—including responsive values. A leading dash negates the step, and the names surface in autocompletion:
+This covers every spacing prop—`p`, `m`, their per-side and axis forms, and `gap`—including responsive values. A leading dash negates the step:
 
 ```jsx
 <Box sx={{ px: { xs: 'small', md: 'large' }, mt: '-x-small' }} />
@@ -150,6 +150,17 @@ Numbers keep their current meaning as multipliers of the spacing unit, and any o
 
 ```jsx
 <Box sx={{ p: 2, m: 'auto', width: '50%' }} />
+```
+
+Only the spacing props read the step names. Every other CSS property—sizing in particular, where `touch-target` is most useful—takes them through `theme.spacing()`, which works anywhere and offers the names in autocompletion:
+
+```jsx
+<Box
+  sx={(theme) => ({
+    height: theme.spacing('touch-target'),
+    top: theme.spacing('small'),
+  })}
+/>
 ```
 
 The steps are also available in theme component overrides:

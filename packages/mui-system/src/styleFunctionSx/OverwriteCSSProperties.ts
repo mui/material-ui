@@ -1,5 +1,4 @@
 import * as CSS from 'csstype';
-import { SpacingPropValue } from '../createTheme/createSpacing';
 
 export interface OverwriteCSSProperties {
   /**
@@ -53,35 +52,4 @@ export interface OverwriteCSSProperties {
    * @see https://developer.mozilla.org/docs/Web/CSS/z-index
    */
   zIndex?: CSS.Property.ZIndex | string | undefined;
-
-  /**
-   * Spacing properties additionally accept the scale names registered through
-   * `SpacingKeyOverrides`, which `theme.spacing()` resolves. Without a registered
-   * scale `SpacingKey` is `never`, so these are the plain CSS types.
-   */
-  padding?: SpacingPropValue | undefined;
-  paddingTop?: SpacingPropValue | undefined;
-  paddingRight?: SpacingPropValue | undefined;
-  paddingBottom?: SpacingPropValue | undefined;
-  paddingLeft?: SpacingPropValue | undefined;
-  paddingInline?: SpacingPropValue | undefined;
-  paddingInlineStart?: SpacingPropValue | undefined;
-  paddingInlineEnd?: SpacingPropValue | undefined;
-  paddingBlock?: SpacingPropValue | undefined;
-  paddingBlockStart?: SpacingPropValue | undefined;
-  paddingBlockEnd?: SpacingPropValue | undefined;
-  margin?: SpacingPropValue | undefined;
-  marginTop?: SpacingPropValue | undefined;
-  marginRight?: SpacingPropValue | undefined;
-  marginBottom?: SpacingPropValue | undefined;
-  marginLeft?: SpacingPropValue | undefined;
-  marginInline?: SpacingPropValue | undefined;
-  marginInlineStart?: SpacingPropValue | undefined;
-  marginInlineEnd?: SpacingPropValue | undefined;
-  marginBlock?: SpacingPropValue | undefined;
-  marginBlockStart?: SpacingPropValue | undefined;
-  marginBlockEnd?: SpacingPropValue | undefined;
-  gap?: SpacingPropValue | undefined;
-  rowGap?: SpacingPropValue | undefined;
-  columnGap?: SpacingPropValue | undefined;
 }
