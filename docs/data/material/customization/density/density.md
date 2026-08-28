@@ -134,13 +134,25 @@ Keep the recipe in its own module and import it wherever the values are needed. 
 
 ## Using the scale in your own styles
 
-Application styles can use the same steps, so custom components match the built-in ones:
+The spacing props of the [`sx` prop](/material-ui/customization/how-to-customize/#the-sx-prop) accept the step names directly, so custom layout matches the built-in components:
 
 ```jsx
-<Box sx={{ p: (theme) => theme.spacing('small') }} />
+<Box sx={{ p: 'small', gap: 'x-small' }} />
 ```
 
-They're also available in theme component overrides:
+This covers every spacing prop—`p`, `m`, their per-side and axis forms, and `gap`—including responsive values. A leading dash negates the step, and the names surface in autocompletion:
+
+```jsx
+<Box sx={{ px: { xs: 'small', md: 'large' }, mt: '-x-small' }} />
+```
+
+Numbers keep their current meaning as multipliers of the spacing unit, and any other string is still passed through as raw CSS:
+
+```jsx
+<Box sx={{ p: 2, m: 'auto', width: '50%' }} />
+```
+
+The steps are also available in theme component overrides:
 
 ```js
 const theme = enhanceDensity(

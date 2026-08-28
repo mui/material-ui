@@ -101,6 +101,62 @@ describe('enhanceDensity', () => {
     });
   });
 
+  describe('sx spacing props', () => {
+    const sx = (theme: ReturnType<typeof enhanceDensity>, input: Record<string, unknown>) =>
+      (theme as any).unstable_sx(input);
+
+    test('resolves step names, on a static theme and through the vars channel', () => {
+      const staticTheme = enhanceDensity(createTheme());
+      expect(sx(staticTheme, { p: 'small' })).to.deep.equal({ padding: '12px' });
+      expect(sx(staticTheme, { mx: '-small' })).to.deep.equal({
+        marginLeft: '-12px',
+        marginRight: '-12px',
+      });
+      expect(sx(staticTheme, { gap: 'touch-target' })).to.deep.equal({ gap: '32px' });
+
+      // On a CSS variables theme the sx transformer is built from
+      // `theme.vars.spacing`, which can't resolve names — the step must still win.
+      const varsTheme = enhanceDensity(createTheme({ cssVariables: true }));
+      expect(sx(varsTheme, { p: 'small' })).to.deep.equal({
+        padding: 'var(--mui-spacing-small)',
+      });
+      expect(sx(varsTheme, { gap: '-medium' })).to.deep.equal({
+        gap: 'calc(var(--mui-spacing-medium) * -1)',
+      });
+    });
+
+    test('steps resolve inside responsive values', () => {
+      const theme = enhanceDensity(createTheme());
+
+      expect(sx(theme, { p: { xs: 'small', md: 'large' } })).to.deep.equal({
+        '@media (min-width:0px)': { padding: '12px' },
+        '@media (min-width:900px)': { padding: '24px' },
+      });
+    });
+
+    test('raw CSS and multipliers are untouched', () => {
+      const theme = enhanceDensity(createTheme({ cssVariables: true }));
+
+      expect(sx(theme, { m: 'auto' })).to.deep.equal({ margin: 'auto' });
+      expect(sx(theme, { p: '2rem' })).to.deep.equal({ padding: '2rem' });
+      expect(sx(theme, { p: 2 })).to.deep.equal({
+        padding: 'calc(2 * var(--mui-spacing, 8px))',
+      });
+      expect(sx(theme, { p: 0 })).to.deep.equal({ padding: 0 });
+    });
+
+    test('a theme without the enhancer is unaffected', () => {
+      const plain = createTheme({ cssVariables: true });
+
+      // no registered scale — the name stays a raw (invalid) CSS string, exactly
+      // as it does today
+      expect((plain as any).unstable_sx({ p: 'small' })).to.deep.equal({ padding: 'small' });
+      expect((plain as any).unstable_sx({ p: 2 })).to.deep.equal({
+        padding: 'calc(2 * var(--mui-spacing, 8px))',
+      });
+    });
+  });
+
   test('leaves the type ramp untouched', () => {
     const base = createTheme({ cssVariables: true });
     const theme = enhanceDensity(createTheme({ cssVariables: true }));

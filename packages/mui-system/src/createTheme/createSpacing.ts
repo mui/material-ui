@@ -23,6 +23,14 @@ export type SpacingKey = OverridableStringUnion<never, SpacingKeyOverrides>;
 // SpacingKey literals surface in autocompletion.
 export type SpacingArgument = number | SpacingKey | (string & {});
 
+/**
+ * The value an sx spacing prop (`p`, `mx`, `gap`, …) accepts: a registered scale
+ * name, a spacing multiplier, or raw CSS. Declared with `(string & {})` rather
+ * than `string` on purpose — a bare `string` member would absorb the `SpacingKey`
+ * literals during union reduction and they would stop autocompleting.
+ */
+export type SpacingPropValue = SpacingKey | number | (string & {});
+
 // The different signatures imply different meaning for their arguments that can't be expressed structurally.
 // We express the difference with variable names.
 export interface Spacing {

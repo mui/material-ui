@@ -1,5 +1,5 @@
-import { createTheme } from '@mui/material/styles';
-import { SpacingKey } from '@mui/system';
+import { createTheme, SxProps, Theme } from '@mui/material/styles';
+import { AliasesCSSProperties, OverwriteCSSProperties, SpacingKey } from '@mui/system';
 
 // densityScale.ts augments @mui/system's SpacingKeyOverrides with the scale keys
 // (+ their negated pulls) so `theme.spacing()` surfaces them in autocompletion.
@@ -43,3 +43,19 @@ takesString(theme.spacing(1, 'auto'));
 // raw CSS stays first-class — unregistered strings pass through by design
 takesString(theme.spacing('12px'));
 takesString(theme.spacing('small', 2, 'auto', '3px'));
+
+// The scale names also reach the sx spacing props. `Extract` only matches a
+// LITERAL union member, so these fail to compile if `SpacingKey` ever stops
+// being wired into the alias / standard property types — which is exactly what
+// surfaces the names in autocompletion (csstype's `string & {}` cannot).
+const sxAlias: Extract<AliasesCSSProperties['p'], 'small'> = 'small';
+const sxNegated: Extract<AliasesCSSProperties['mx'], '-x-small'> = '-x-small';
+const sxStandard: Extract<OverwriteCSSProperties['gap'], 'touch-target'> = 'touch-target';
+const sxProp: SxProps<Theme> = { p: 'small', mx: '-x-small', gap: 'touch-target' };
+
+export { sxAlias, sxNegated, sxStandard, sxProp };
+
+// Raw CSS, multipliers and keywords stay assignable on the same props.
+const sxRaw: SxProps<Theme> = { p: '2rem', m: 'auto', gap: 8, px: 0, py: '50%' };
+
+export { sxRaw };

@@ -120,6 +120,9 @@ export function applyDensity<T extends EnhanceableTheme>(
   // an enhanced theme keeps the wrapper.
   (spacing as any).mui = true;
   (spacing as any).unit = (prevSpacing as any).unit;
+  // `createUnaryUnit` hands this very function to the sx spacing props, so
+  // advertising the step names is what lets `sx={{ p: 'small' }}` resolve.
+  (spacing as any).keys = new Set(Object.keys(resolved));
   theme.spacing = spacing;
 
   if (themeInput.vars) {
