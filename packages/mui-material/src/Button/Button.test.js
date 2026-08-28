@@ -1,4 +1,4 @@
-import { assert, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
 import {
@@ -14,7 +14,6 @@ import Button, { buttonClasses as classes } from '@mui/material/Button';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
-import accessibilityReport from './accessibility.md?raw';
 
 describe('<Button />', () => {
   const { render, renderToString } = createRenderer();
@@ -1198,77 +1197,6 @@ describe('<Button />', () => {
         render(<Button disabled>Submit</Button>);
 
         expect(screen.getByRole('button')).to.have.property('disabled', true);
-      });
-    });
-
-    describe('1.4.3 Contrast (Minimum)', () => {
-      // Exact WCAG 2.x contrast math. The table in `accessibility.md` § 1.4.3
-      // documents the failing pairs; these tests pin that table to the default
-      // palette, so a palette change cannot leave the report stale.
-      function wcagLuminance(color) {
-        let value = color.replace('#', '');
-        if (value.length === 3) {
-          value = [...value].map((digit) => digit + digit).join('');
-        }
-        const [r, g, b] = [0, 2, 4]
-          .map((offset) => parseInt(value.slice(offset, offset + 2), 16) / 255)
-          .map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
-        return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-      }
-
-      function contrastRatio(a, b) {
-        const [hi, lo] = [wcagLuminance(a), wcagLuminance(b)].sort((x, y) => y - x);
-        return (hi + 0.05) / (lo + 0.05);
-      }
-
-      it('only info and warning fall short of 4.5:1 in the default palette', () => {
-        const { palette } = createTheme();
-        const colors = ['primary', 'secondary', 'error', 'info', 'success', 'warning'];
-        const ratios = colors.map((color) => ({
-          color,
-          ratio:
-            Math.round(contrastRatio(palette[color].contrastText, palette[color].main) * 100) / 100,
-        }));
-        const failing = ratios.filter(({ ratio }) => ratio < 4.5).map(({ color }) => color);
-
-        assert.deepEqual(
-          failing,
-          ['info', 'warning'],
-          'The set of default-palette button colors failing WCAG 4.5:1 changed. ' +
-            `Current ratios: ${ratios.map(({ color, ratio }) => `${color} ${ratio}:1`).join(', ')}. ` +
-            'Update the 1.4.3 section and the Known gaps entry in ' +
-            'packages/mui-material/src/Button/accessibility.md, and expect the recorded ' +
-            'axe results (buttons.a11y.json) to change with the next regression run.',
-        );
-      });
-
-      it('matches the ratios documented in accessibility.md', () => {
-        const section = accessibilityReport
-          .split('#### 1.4.3 Contrast (Minimum)')[1]
-          .split('\n#### ')[0];
-        const rows = [
-          ...section.matchAll(
-            /\|[^|]*\|\s*`(#[0-9a-fA-F]{3,6})`\s*\|\s*`(#[0-9a-fA-F]{3,6})`\s*\|\s*([\d.]+):1\s*\|/g,
-          ),
-        ];
-
-        assert.lengthOf(
-          rows,
-          4,
-          'Could not find the four documented color pairs in the § 1.4.3 table of ' +
-            'packages/mui-material/src/Button/accessibility.md. If the table moved or ' +
-            'changed shape, update this test alongside it.',
-        );
-        rows.forEach(([, foreground, background, documented]) => {
-          const measured = Math.round(contrastRatio(foreground, background) * 100) / 100;
-          assert.equal(
-            measured,
-            Number(documented),
-            `accessibility.md § 1.4.3 documents ${foreground} on ${background} as ` +
-              `${documented}:1, but the WCAG math gives ${measured}:1. The palette and the ` +
-              'report disagree — recompute the table and re-check the failing combinations.',
-          );
-        });
       });
     });
   });

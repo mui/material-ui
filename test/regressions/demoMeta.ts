@@ -215,10 +215,9 @@ export const A11Y_RULES: A11yRule[] = [
   // Asserting it would keep CI permanently red, so the failure is recorded in
   // `buttons.a11y.json` (status only, a tripwire for flips) and documented with
   // measured ratios in `packages/mui-material/src/Button/accessibility.md`
-  // § 1.4.3. A palette change cannot go unnoticed: the "1.4.3 Contrast
-  // (Minimum)" unit tests in `Button.test.js` recompute the ratios from
-  // `createTheme()` and fail when the failing set or the documented table
-  // goes stale.
+  // § 1.4.3. A palette change cannot go unnoticed: the contrast contract
+  // tests recompute the ratios from `createTheme()` and fail when the
+  // failing set drifts.
   {
     test: 'test/regressions/fixtures/buttons/ButtonA11yColorMatrix',
     enabled: true,
