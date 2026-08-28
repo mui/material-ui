@@ -3,8 +3,9 @@
  * screenshots, one for axe — so editing one tool can never stomp on the
  * other. Each list is evaluated last-match-wins (no inheritance: an override
  * rule must restate every field it cares about) against the docs path
- * `docs/data/material/components/{slug}/{Demo}` (component demos) or
- * `docs/src/components/product{Product}/{Name}` (landing-page composites).
+ * `docs/data/material/components/{slug}/{Demo}` (component demos),
+ * `docs/src/components/product{Product}/{Name}` (landing-page composites), or
+ * `test/regressions/a11y/fixtures/{slug}/{Demo}` (a11y-only fixtures).
  *
  * Whole-slug exclusions where *no* tool wants anything live in the
  * `index.jsx` glob — dropping them from the bundle entirely, not just from
@@ -168,8 +169,10 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     viewportWidth: 1440,
     waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
   },
-  { test: 'test/regressions/fixtures/buttons/ButtonA11y*', enabled: false }, // A11y-only coverage fixtures
-  { test: 'test/regressions/fixtures/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+  // The a11y fixture tree exists for axe, so screenshots are off by default.
+  // Later rules re-enable single fixtures that also guard a visual state.
+  { test: 'test/regressions/a11y/fixtures/**', enabled: false }, // A11y-only coverage fixtures
+  { test: 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
 ];
 
 // Button docs demos enrolled for axe assertions; IconButton/ButtonBase demos are excluded.
@@ -202,11 +205,11 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
   },
-  // A11y-only fixtures live under `test/regressions/fixtures/buttons/` (no
-  // docs page consumes them); the suite name maps their results into the
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/buttons/`
+  // (no docs page consumes them); the suite name maps their results into the
   // same `buttons.a11y.json` as the docs demos above.
   {
-    test: 'test/regressions/fixtures/buttons/{ButtonA11yNonNative,ButtonA11ySemanticStates,ButtonA11yTextSpacing}',
+    test: 'test/regressions/a11y/fixtures/buttons/{ButtonA11yNonNative,ButtonA11ySemanticStates,ButtonA11yTextSpacing}',
     enabled: true,
     assertions: 'all',
   },
@@ -219,7 +222,7 @@ export const A11Y_RULES: A11yRule[] = [
   // tests recompute the ratios from `createTheme()` and fail when the
   // failing set drifts.
   {
-    test: 'test/regressions/fixtures/buttons/ButtonA11yColorMatrix',
+    test: 'test/regressions/a11y/fixtures/buttons/ButtonA11yColorMatrix',
     enabled: true,
     assertions: 'all',
     skipAssertions: ['color-contrast'],
@@ -235,27 +238,32 @@ export interface ParsedRoute {
 const COMPONENT_ROUTE_REGEX = /^\/docs-components-([^/]+)\/(.+)$/;
 const COMPOSITE_ROUTE_REGEX = /^\/docs-product-([^/]+)\/(.+)$/;
 const TEMPLATE_ROUTE_REGEX = /^\/docs-getting-started-templates-([^/]+)\/(.+)$/;
-const FIXTURE_ROUTE_REGEX = /^\/regression-([^/]+)\/(.+)$/;
+const A11Y_FIXTURE_ROUTE_REGEX = /^\/a11y-([^/]+)\/(.+)$/;
 
 /**
- * Map a VRT route to its source path + slug + demo.
+ * Map a VRT route to its source path + slug + demo, or `null` for
+ * `/regression-*` screenshot fixtures (always screenshot, never axe).
  *
  * Recognises four route shapes:
  * - `/docs-components-{slug}/{Demo}` → `docs/data/material/components/{slug}/{Demo}`
  * - `/docs-product-{product}/{Name}` → `docs/src/components/product{Product}/{Name}`
  * - `/docs-getting-started-templates-{slug}/{Demo}` →
  *   `docs/data/material/getting-started/templates/{slug}/{Demo}`
- * - `/regression-{suite}/{Name}` → `test/regressions/fixtures/{suite}/{Name}`
+ * - `/a11y-{slug}/{Demo}` → `test/regressions/a11y/fixtures/{slug}/{Demo}`
  *
  * The template shape is matched by its literal prefix: `fixtures.js` joins the
  * directory segments with `-`, so `getting-started-templates-crud-dashboard`
  * cannot be split back into directories without knowing where the slug starts.
  *
- * For fixture routes the suite directory doubles as the slug. Name a fixture
- * suite after a docs slug (lowercase, for example `fixtures/buttons/`) to
- * record its axe results into that slug's committed `{slug}.a11y.json` — for
- * a11y-only fixtures that must not live in `docs/data` because no docs page
- * consumes them.
+ * For a11y fixture routes the suite directory doubles as the slug. Name a
+ * suite after an existing docs slug (lowercase, for example
+ * `a11y/fixtures/buttons/`) to record its axe results into that slug's
+ * committed `{slug}.a11y.json` — for a11y-only fixtures that must not live in
+ * `docs/data` because no docs page consumes them. The a11y reporter rejects a
+ * slug without a docs directory. These suites live outside
+ * `test/regressions/fixtures/` because a lowercase slug directory next to a
+ * PascalCase screenshot suite (`rating/` next to `Rating/`) would fold into
+ * one directory on case-insensitive file systems.
  */
 export function parseRoute(route: string): ParsedRoute | null {
   const componentMatch = route.match(COMPONENT_ROUTE_REGEX);
@@ -280,10 +288,10 @@ export function parseRoute(route: string): ParsedRoute | null {
     const dir = `product${product.charAt(0).toUpperCase()}${product.slice(1)}`;
     return { path: `docs/src/components/${dir}/${demo}`, slug: product, demo };
   }
-  const fixtureMatch = route.match(FIXTURE_ROUTE_REGEX);
-  if (fixtureMatch) {
-    const [, suite, demo] = fixtureMatch;
-    return { path: `test/regressions/fixtures/${suite}/${demo}`, slug: suite, demo };
+  const a11yFixtureMatch = route.match(A11Y_FIXTURE_ROUTE_REGEX);
+  if (a11yFixtureMatch) {
+    const [, suite, demo] = a11yFixtureMatch;
+    return { path: `test/regressions/a11y/fixtures/${suite}/${demo}`, slug: suite, demo };
   }
   return null;
 }

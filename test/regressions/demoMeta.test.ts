@@ -2,12 +2,16 @@ import { describe, it, expect } from 'vitest';
 import { A11Y_RULES, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 
 describe('parseRoute', () => {
-  it('parses a regression fixture route into its fixtures path, suite as slug', () => {
-    expect(parseRoute('/regression-Rating/FocusVisibleRating')).to.deep.equal({
-      path: 'test/regressions/fixtures/Rating/FocusVisibleRating',
-      slug: 'Rating',
-      demo: 'FocusVisibleRating',
+  it('parses an a11y fixture route into its a11y/fixtures path, suite as slug', () => {
+    expect(parseRoute('/a11y-buttons/ButtonA11yNonNative')).to.deep.equal({
+      path: 'test/regressions/a11y/fixtures/buttons/ButtonA11yNonNative',
+      slug: 'buttons',
+      demo: 'ButtonA11yNonNative',
     });
+  });
+
+  it('returns null for a screenshot-only regression fixture route', () => {
+    expect(parseRoute('/regression-Rating/FocusVisibleRating')).to.equal(null);
   });
 
   it('parses a docs-components route into path/slug/demo', () => {
@@ -60,18 +64,27 @@ describe('getConfig', () => {
       getConfig(A11Y_RULES, 'docs/data/material/components/buttons/BasicButtons'),
     ).to.deep.include({ enabled: true, assertions: 'all' });
     expect(
-      getConfig(A11Y_RULES, 'test/regressions/fixtures/buttons/ButtonA11yNonNative'),
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yNonNative'),
     ).to.deep.include({ enabled: true, assertions: 'all' });
   });
 
   it('allows a known Button color-contrast fixture to record failures without asserting them', () => {
     expect(
-      getConfig(A11Y_RULES, 'test/regressions/fixtures/buttons/ButtonA11yColorMatrix'),
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yColorMatrix'),
     ).to.deep.include({
       enabled: true,
       assertions: 'all',
       skipAssertions: ['color-contrast'],
     });
+  });
+
+  it('keeps the a11y fixture tree screenshot-off, except explicit re-enrolments', () => {
+    expect(
+      getConfig(SCREENSHOT_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yColorMatrix'),
+    ).to.deep.include({ enabled: false });
+    expect(
+      getConfig(SCREENSHOT_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing'),
+    ).to.deep.include({ enabled: true });
   });
 
   it('returns undefined for a demo outside a brace-glob enrolment', () => {
