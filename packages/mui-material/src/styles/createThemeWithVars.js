@@ -25,6 +25,7 @@ import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import defaultGetSelector from './createGetSelector';
 import { stringifyTheme } from './stringifyTheme';
 import { light, dark } from './createPalette';
+import { resolveFocusVisible, mergeFocusVisibleInput } from './focusVisible';
 
 function assignNode(obj, keys) {
   keys.forEach((k) => {
@@ -954,6 +955,14 @@ export default function createThemeWithVars(options = {}, ...args) {
   });
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
+
+  // Default color is the palette var, not a hex: `focusVisible` is spread inline (skipped from var
+  // generation, see `shouldSkipGeneratingVar`), so the var adapts per scheme at the CSS level — no
+  // per-scheme copy needed here, unlike the no-vars path in `createTheme`.
+  const focusVisibleInput = mergeFocusVisibleInput(options.focusVisible, args);
+  if (focusVisibleInput != null && focusVisibleInput !== false) {
+    theme.focusVisible = resolveFocusVisible(focusVisibleInput, getCssVar('palette-primary-main'));
+  }
 
   const parserConfig = {
     prefix: cssVarPrefix,
