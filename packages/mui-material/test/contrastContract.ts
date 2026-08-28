@@ -1,5 +1,5 @@
 import type { Theme } from '@mui/material/styles';
-import { roundedContrastRatio } from './contrast';
+import { contrastRatio } from './contrast';
 
 /**
  * The palette contrast contract: the pinned WCAG 1.4.3 facts of the default
@@ -18,6 +18,13 @@ import { roundedContrastRatio } from './contrast';
  * those hex values. Verify any row with a contrast checker, for example
  * https://webaim.org/resources/contrastchecker/ — `contrastText` and
  * `background.paper` are both `#fff`, which is why the directions agree.
+ *
+ * The pinned ratios use two decimals on purpose. That is the precision the
+ * reports and public checkers display, so a human can verify each row against
+ * an independent implementation. More digits would remove that property and
+ * add no drift protection: the exact tripwire is the pinned `main` hex.
+ * Exactness matters only when a ratio meets a WCAG threshold — for that,
+ * `measurePaletteContrast` returns exact ratios.
  *
  * Component suites consume this contract instead of restating numbers:
  *
@@ -63,12 +70,17 @@ export const PALETTE_CONTRAST: readonly PaletteContrastEntry[] = [
  */
 export const FAILING_PALETTE_COLORS: readonly PaletteContrastColor[] = ['info', 'warning'];
 
-/** Recomputes the contract's facts from a theme, in `PALETTE_CONTRAST` shape. */
+/**
+ * Recomputes the contract's facts from a theme, in `PALETTE_CONTRAST` shape.
+ * The ratios are exact: classify against WCAG thresholds directly on them.
+ * Round with `roundRatio` from `./contrast` only to compare against the
+ * pinned two-decimal claim or to display a value.
+ */
 export function measurePaletteContrast(theme: Theme): PaletteContrastEntry[] {
   return PALETTE_CONTRAST_COLORS.map((color) => ({
     color,
     main: theme.palette[color].main,
-    onMain: roundedContrastRatio(theme.palette[color].contrastText, theme.palette[color].main),
-    onPaper: roundedContrastRatio(theme.palette[color].main, theme.palette.background.paper),
+    onMain: contrastRatio(theme.palette[color].contrastText, theme.palette[color].main),
+    onPaper: contrastRatio(theme.palette[color].main, theme.palette.background.paper),
   }));
 }

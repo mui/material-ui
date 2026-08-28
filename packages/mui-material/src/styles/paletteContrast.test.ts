@@ -1,6 +1,6 @@
 import { describe, it, assert } from 'vitest';
 import { createTheme } from '@mui/material/styles';
-import { blend, roundedContrastRatio, requiredRatio } from '../../test/contrast';
+import { blend, roundRatio, roundedContrastRatio, requiredRatio } from '../../test/contrast';
 import {
   FAILING_PALETTE_COLORS,
   PALETTE_CONTRAST,
@@ -17,7 +17,13 @@ describe('palette contrast contract', () => {
   const theme = createTheme();
 
   it('pins the contrast ratios of every palette color', () => {
-    const measured = measurePaletteContrast(theme);
+    // The claim is stated at two decimals — the precision the reports and
+    // public checkers display — so round the exact measurement to compare.
+    const measured = measurePaletteContrast(theme).map((entry) => ({
+      ...entry,
+      onMain: roundRatio(entry.onMain),
+      onPaper: roundRatio(entry.onPaper),
+    }));
 
     assert.deepEqual(
       measured,
@@ -32,6 +38,8 @@ describe('palette contrast contract', () => {
   });
 
   it('only info and warning fall short of WCAG 4.5:1, in both directions', () => {
+    // Classify on the exact ratios: rounding first can flip a color at the
+    // boundary (a true 4.4966:1 fails 1.4.3 but rounds to 4.5).
     const failing = measurePaletteContrast(theme)
       .filter(({ onMain, onPaper }) => onMain < 4.5 || onPaper < 4.5)
       .map(({ color }) => color);

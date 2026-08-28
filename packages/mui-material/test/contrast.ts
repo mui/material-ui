@@ -83,9 +83,19 @@ export function contrastRatio(foreground: string, background: string): number {
   return (hi + 0.05) / (lo + 0.05);
 }
 
+/**
+ * Rounds a ratio to two decimals — the precision the reports and public
+ * checkers display. Display only: WCAG classification must compare the exact
+ * ratio, because rounding can flip a value at a threshold (a true 4.4966:1
+ * fails 1.4.3 but rounds to 4.5).
+ */
+export function roundRatio(ratio: number): number {
+  return Math.round(ratio * 100) / 100;
+}
+
 /** `contrastRatio` rounded to two decimals, the precision the reports use. */
 export function roundedContrastRatio(foreground: string, background: string): number {
-  return Math.round(contrastRatio(foreground, background) * 100) / 100;
+  return roundRatio(contrastRatio(foreground, background));
 }
 
 export interface TypographyStyleLike {
