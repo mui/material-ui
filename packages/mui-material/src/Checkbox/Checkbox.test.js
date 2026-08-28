@@ -118,11 +118,22 @@ describe('<Checkbox />', () => {
     });
 
     it('should set the indeterminate property on the input', () => {
-      const { setProps } = render(<Checkbox indeterminate />);
+      render(<Checkbox indeterminate />);
       expect(screen.getByRole('checkbox')).to.have.property('indeterminate', true);
+    });
+
+    it('should unset the indeterminate property on the input when no longer indeterminate', () => {
+      const { setProps } = render(<Checkbox indeterminate />);
 
       setProps({ indeterminate: false });
       expect(screen.getByRole('checkbox')).to.have.property('indeterminate', false);
+    });
+
+    it('should keep the indeterminate property on the input after a click', async () => {
+      const { user } = render(<Checkbox indeterminate />);
+
+      await user.click(screen.getByRole('checkbox'));
+      expect(screen.getByRole('checkbox')).to.have.property('indeterminate', true);
     });
   });
 

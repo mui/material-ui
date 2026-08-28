@@ -192,6 +192,10 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
           ...mergeSlotProps(externalInputProps, {
             'data-indeterminate': indeterminate,
             'aria-checked': indeterminate ? 'mixed' : undefined,
+            // Activating a checkbox clears its native indeterminate state, restore it.
+            onChange: (event) => {
+              event.target.indeterminate = indeterminate;
+            },
           }),
           ref: handleInputRef,
         },
@@ -259,9 +263,8 @@ Checkbox.propTypes /* remove-proptypes */ = {
   id: PropTypes.string,
   /**
    * If `true`, the component appears indeterminate.
-   * This does not set the native input element to indeterminate due
-   * to inconsistent behavior across browsers.
-   * However, we set a `data-indeterminate` attribute on the `input`.
+   * This sets the native input element to indeterminate,
+   * and we also set a `data-indeterminate` attribute on the `input`.
    * @default false
    */
   indeterminate: PropTypes.bool,
