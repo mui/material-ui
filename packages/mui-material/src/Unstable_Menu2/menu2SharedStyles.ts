@@ -45,9 +45,9 @@ export function getMenu2ItemStyles(
     ...getMenuItemRootStyles(theme, classes, {
       focusVisibleClass: classes.highlighted,
       disabledPointerEvents: true,
-      // Base UI highlights on hover with this class, and a `:focus-visible`
-      // ring never matches a hover, so the item keeps painting a background.
-      themeFocusRing: false,
+      // Base UI highlights on hover with this class, so the background stays.
+      // The item still takes the inset ring for the keyboard.
+      focusRingReplacesBackground: false,
     }),
     ...(classes.open && {
       [`&.${classes.open}`]: {

@@ -33,14 +33,14 @@ interface MenuSettings {
   modal: boolean;
   disabled: boolean;
   submenusOpenOnHover: boolean;
+  focusVisible: boolean;
 }
-
-const theme = createTheme({});
 
 const defaultSettings: MenuSettings = {
   modal: true,
   disabled: false,
   submenusOpenOnHover: false,
+  focusVisible: false,
 };
 
 function createVirtualAnchor(mouseX: number, mouseY: number) {
@@ -562,6 +562,12 @@ export default function Menu2Experiment() {
     };
   };
 
+  // Opt-in keyboard focus ring, to compare the Menu2 item indicator against the classic one.
+  const theme = React.useMemo(
+    () => createTheme({ focusVisible: settings.focusVisible }),
+    [settings.focusVisible],
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -604,6 +610,14 @@ export default function Menu2Experiment() {
                 onChange={handleCheckboxChange('submenusOpenOnHover')}
               />{' '}
               Submenus open on hover
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={settings.focusVisible}
+                onChange={handleCheckboxChange('focusVisible')}
+              />{' '}
+              focusVisible theme (keyboard focus ring)
             </label>
           </fieldset>
           <section>

@@ -17,9 +17,10 @@ export const menuItemOverridesResolver = (props, styles) => {
 export function getMenuItemRootStyles(theme, classes, options = {}) {
   const focusVisibleClass = options.focusVisibleClass ?? classes.focusVisible;
   const disabledPointerEvents = options.disabledPointerEvents ?? false;
-  // A keyboard-only class can hand the cue to the theme ring. Menu2 highlights
-  // on hover with the same class, where a `:focus-visible` ring never matches.
-  const themeFocusRing = (options.themeFocusRing ?? true) && Boolean(theme.focusVisible);
+  const themeRing = Boolean(theme.focusVisible);
+  // The ring replaces the background only for a keyboard-only class. Menu2
+  // highlights on hover with the same class, so it keeps the background.
+  const ringReplacesBackground = (options.focusRingReplacesBackground ?? true) && themeRing;
 
   return {
     ...theme.typography.body1,
@@ -47,7 +48,7 @@ export function getMenuItemRootStyles(theme, classes, options = {}) {
         (theme.vars || theme).palette.action.selectedOpacity,
       ),
       ...(focusVisibleClass &&
-        !themeFocusRing && {
+        !ringReplacesBackground && {
           [`&.${focusVisibleClass}`]: {
             backgroundColor: theme.alpha(
               (theme.vars || theme).palette.primary.main,
@@ -73,14 +74,15 @@ export function getMenuItemRootStyles(theme, classes, options = {}) {
         ),
       },
     },
-    ...(themeFocusRing
-      ? // Inset the ring: a scrolling Menu/MenuList clips an outset ring.
-        applyInsetFocusVisible(1)
-      : focusVisibleClass && {
-          [`&.${focusVisibleClass}`]: {
-            backgroundColor: (theme.vars || theme).palette.action.focus,
-          },
-        }),
+    // Inset the ring: a scrolling Menu/MenuList clips an outset ring. Every
+    // item needs this, whether or not the ring replaces the background.
+    ...(themeRing && applyInsetFocusVisible(1)),
+    ...(focusVisibleClass &&
+      !ringReplacesBackground && {
+        [`&.${focusVisibleClass}`]: {
+          backgroundColor: (theme.vars || theme).palette.action.focus,
+        },
+      }),
     [`&.${classes.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
       ...(disabledPointerEvents && {

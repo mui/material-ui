@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ClassicMenu from '@mui/material/Menu';
 import ClassicMenuItem from '@mui/material/MenuItem';
+import ClassicMenuList from '@mui/material/MenuList';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Stack from '@mui/material/Stack';
@@ -63,6 +64,7 @@ interface PlaygroundSettings {
   dividers: boolean;
   rtl: boolean;
   highContrast: boolean;
+  focusVisible: boolean;
 }
 
 const defaultSettings: PlaygroundSettings = {
@@ -86,6 +88,7 @@ const defaultSettings: PlaygroundSettings = {
   dividers: false,
   rtl: false,
   highContrast: true,
+  focusVisible: false,
 };
 
 const SIDES: PopupSide[] = ['bottom', 'top', 'left', 'right', 'inline-start', 'inline-end'];
@@ -93,12 +96,16 @@ const ALIGNS: PopupAlign[] = ['start', 'center', 'end'];
 const ELEVATIONS = [0, 1, 4, 8, 16, 24];
 
 const theme = createTheme({});
-const rtlTheme = createTheme({ direction: 'rtl' });
+
 // Docs demos always run through the enhancer (see `DemoInstanceThemeProvider`);
-// the toggle is here so the forced-colors rules can be compared against their
-// absence while emulating high contrast in the browser.
-const highContrastTheme = enhanceHighContrast(createTheme({}));
-const rtlHighContrastTheme = enhanceHighContrast(createTheme({ direction: 'rtl' }));
+// the highContrast toggle is here so the forced-colors rules can be compared
+// against their absence while emulating high contrast in the browser.
+function usePlaygroundTheme({ rtl, highContrast, focusVisible }: PlaygroundSettings) {
+  return React.useMemo(() => {
+    const nextTheme = createTheme({ direction: rtl ? 'rtl' : 'ltr', focusVisible });
+    return highContrast ? enhanceHighContrast(nextTheme) : nextTheme;
+  }, [rtl, highContrast, focusVisible]);
+}
 
 // The successor animates by default (a CSS match for the classic Grow); this
 // demonstrates overriding that default away through the popup slot.
@@ -318,6 +325,59 @@ function ClassicVersusSuccessorDemo({ settings }: { settings: PlaygroundSettings
           </Menu2Item>
         ))}
       </Menu2>
+    </Stack>
+  );
+}
+
+// Side-by-side focus indicator check. Base UI moves DOM focus to a Menu2Item on hover, so a pointer
+// user can get a keyboard ring; the classic MenuItem avoids that with `suppressInitialFocusVisible`.
+function FocusRingComparisonDemo({ settings }: { settings: PlaygroundSettings }) {
+  const [open, setOpen] = React.useState(false);
+  const itemProps = { dense: settings.dense, divider: settings.dividers };
+
+  return (
+    <Stack direction="row" spacing={4} sx={{ alignItems: 'flex-start' }}>
+      <div>
+        <Typography variant="subtitle2" gutterBottom>
+          Classic MenuList + MenuItem
+        </Typography>
+        <ClassicMenuList sx={{ width: 220, border: 1, borderColor: 'divider', borderRadius: 1 }}>
+          {parityItems.map((item) => (
+            <ClassicMenuItem
+              key={item.label}
+              {...itemProps}
+              selected={'selected' in item && item.selected}
+              disabled={'disabled' in item && item.disabled}
+            >
+              {item.label}
+            </ClassicMenuItem>
+          ))}
+        </ClassicMenuList>
+      </div>
+      <div>
+        <Typography variant="subtitle2" gutterBottom>
+          Menu2 + Menu2Item
+        </Typography>
+        <Menu2
+          modal={false}
+          open={open}
+          onOpenChange={(nextOpen) => setOpen(nextOpen)}
+          trigger={<Button>Open the successor menu</Button>}
+          slotProps={{ trigger: { variant: 'outlined' } }}
+          sideOffset={4}
+        >
+          {parityItems.map((item) => (
+            <Menu2Item
+              key={item.label}
+              {...itemProps}
+              selected={'selected' in item && item.selected}
+              disabled={'disabled' in item && item.disabled}
+            >
+              {item.label}
+            </Menu2Item>
+          ))}
+        </Menu2>
+      </div>
     </Stack>
   );
 }
@@ -542,6 +602,7 @@ function SettingsPanel({
         {renderCheckbox('dividers', 'item dividers')}
         {renderCheckbox('rtl', 'RTL direction')}
         {renderCheckbox('highContrast', 'enhanceHighContrast theme')}
+        {renderCheckbox('focusVisible', 'focusVisible theme (keyboard focus ring)')}
       </div>
     </Box>
   );
@@ -555,12 +616,7 @@ export default function MenuRfcExperiment() {
     setLog((currentLog) => [...currentLog.slice(-11), entry]);
   }, []);
 
-  const playgroundTheme = (() => {
-    if (settings.rtl) {
-      return settings.highContrast ? rtlHighContrastTheme : rtlTheme;
-    }
-    return settings.highContrast ? highContrastTheme : theme;
-  })();
+  const playgroundTheme = usePlaygroundTheme(settings);
 
   return (
     <ThemeProvider theme={theme}>
@@ -633,6 +689,25 @@ export default function MenuRfcExperiment() {
               slot.
             </p>
             <ClassicVersusSuccessorDemo settings={settings} />
+          </section>
+
+          <section>
+            <h3 id="focus-ring-comparison">Focus indicator: classic vs successor</h3>
+            <p>
+              Both sides use the same theme. Turn on the <code>focusVisible theme</code> knob to
+              show the ring. The successor menu is not modal, so the classic list stays interactive.
+            </p>
+            <p>
+              Try this: hover the items with the mouse, then navigate with the arrow keys. Compare
+              when each side shows the ring.
+            </p>
+            <ThemeProvider theme={playgroundTheme}>
+              <DirectionProvider direction={settings.rtl ? 'rtl' : 'ltr'}>
+                <Box dir={settings.rtl ? 'rtl' : 'ltr'}>
+                  <FocusRingComparisonDemo settings={settings} />
+                </Box>
+              </DirectionProvider>
+            </ThemeProvider>
           </section>
 
           <section>

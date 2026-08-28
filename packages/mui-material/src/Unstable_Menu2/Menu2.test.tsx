@@ -1096,6 +1096,26 @@ describe('<Menu2 />', () => {
     }
   });
 
+  // A menu popup scrolls, so an outset ring gets clipped. The item takes the
+  // same inset ring as the classic MenuItem.
+  it.skipIf(isJsdom())('insets the focus ring under theme.focusVisible', async () => {
+    const { user } = render(
+      <ThemeProvider theme={createTheme({ focusVisible: true })}>
+        <Menu2 defaultOpen modal={false} anchor={document.body}>
+          <Menu2Item>Alpha</Menu2Item>
+        </Menu2>
+      </ThemeProvider>,
+    );
+
+    const item = await screen.findByRole('menuitem', { name: 'Alpha' });
+    await user.keyboard('{ArrowDown}');
+
+    const styles = window.getComputedStyle(item);
+    expect(styles.outlineWidth).to.equal('2px');
+    // A negative offset draws the ring inside the item.
+    expect(styles.outlineOffset).to.equal('-2px');
+  });
+
   // `theme.focusVisible` swaps the classic MenuItem focus background for an
   // outline ring. Base UI sets `highlighted` on hover too, where a
   // `:focus-visible` ring never matches, so the item keeps its background.
