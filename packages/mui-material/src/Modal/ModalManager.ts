@@ -212,9 +212,9 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   return restore;
 }
 
-function getHiddenSiblings(container: HTMLElement) {
-  const hiddenSiblings: HTMLElement[] = [];
-  [].forEach.call(container.children, (element: HTMLElement) => {
+function getHiddenSiblings(container: HTMLElement | SVGElement) {
+  const hiddenSiblings: Container['hiddenSiblings'] = [];
+  [].forEach.call(container.children, (element: HTMLElement | SVGElement) => {
     if (element.getAttribute('aria-hidden') === 'true') {
       hiddenSiblings.push(element);
     }
