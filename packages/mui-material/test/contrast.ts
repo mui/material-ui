@@ -126,24 +126,71 @@ export interface TypographyStyleLike {
 }
 
 /**
+ * The two 1.4.3 thresholds. Named so a test states which one it means instead
+ * of repeating a bare number that reads as a magic constant.
+ */
+export const WCAG_MINIMUM_RATIO = {
+  /** Text below the WCAG "large text" cutoff. */
+  normalText: 4.5,
+  /** At least 24px, or at least 18.66px at weight 700+. */
+  largeText: 3,
+} as const;
+
+/** CSS keywords `fontWeight` accepts that map to a fixed numeric weight. */
+const ABSOLUTE_FONT_WEIGHTS: Record<string, number> = { normal: 400, bold: 700 };
+
+function toPx(fontSize: string | number, htmlFontSize: number): number {
+  if (typeof fontSize === 'number') {
+    return fontSize;
+  }
+  const match = /^(\d*\.?\d+)(px|rem)$/.exec(fontSize.trim());
+  if (!match) {
+    throw new Error(
+      `requiredRatio() cannot size "${fontSize}". Pass px, rem, or a number: any other ` +
+        'unit depends on the render tree, which a theme value cannot tell us.',
+    );
+  }
+  const value = parseFloat(match[1]);
+  return match[2] === 'rem' ? value * htmlFontSize : value;
+}
+
+function toWeight(fontWeight: string | number | undefined): number {
+  if (fontWeight == null) {
+    return 400;
+  }
+  if (typeof fontWeight === 'number') {
+    return fontWeight;
+  }
+  const keyword = ABSOLUTE_FONT_WEIGHTS[fontWeight.trim()];
+  if (keyword !== undefined) {
+    return keyword;
+  }
+  const numeric = Number(fontWeight);
+  if (Number.isNaN(numeric)) {
+    throw new Error(
+      `requiredRatio() cannot weigh "${fontWeight}". Pass a number, "normal", or "bold": ` +
+        '"bolder" and "lighter" are relative to the parent, which a theme value cannot tell us.',
+    );
+  }
+  return numeric;
+}
+
+/**
  * The 1.4.3 threshold a text style must meet: 3:1 for WCAG "large text"
  * (at least 24px, or at least 18.66px at weight 700+), 4.5:1 otherwise.
  * Pass a theme typography variant (`theme.typography.button`) so the
  * threshold derives from the same tokens the component renders with.
+ *
+ * Throws on a size or weight it cannot resolve rather than guessing. A silent
+ * fallback here misclassifies the threshold, which is the one number the whole
+ * conformance guard rests on.
  */
 export function requiredRatio(style: TypographyStyleLike, htmlFontSize = 16): 4.5 | 3 {
   if (style.fontSize == null) {
     throw new Error('requiredRatio() needs a style with a fontSize to derive the threshold.');
   }
-  let px: number;
-  if (typeof style.fontSize === 'number') {
-    px = style.fontSize;
-  } else if (style.fontSize.endsWith('rem')) {
-    px = parseFloat(style.fontSize) * htmlFontSize;
-  } else {
-    px = parseFloat(style.fontSize);
-  }
-  const weight = Number(style.fontWeight ?? 400);
+  const px = toPx(style.fontSize, htmlFontSize);
+  const weight = toWeight(style.fontWeight);
   const isLargeText = px >= 24 || (px >= 18.66 && weight >= 700);
-  return isLargeText ? 3 : 4.5;
+  return isLargeText ? WCAG_MINIMUM_RATIO.largeText : WCAG_MINIMUM_RATIO.normalText;
 }

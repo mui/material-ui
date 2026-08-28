@@ -1,9 +1,16 @@
 import { describe, it, assert } from 'vitest';
 import { createTheme } from '@mui/material/styles';
-import { blend, roundRatio, roundedContrastRatio, requiredRatio } from '../../test/contrast';
+import {
+  blend,
+  roundRatio,
+  roundedContrastRatio,
+  requiredRatio,
+  WCAG_MINIMUM_RATIO,
+} from '../../test/contrast';
 import {
   FAILING_PALETTE_COLORS,
   PALETTE_CONTRAST,
+  failsWcag,
   measurePaletteContrast,
 } from '../../test/contrastContract';
 
@@ -41,9 +48,7 @@ describe('palette contrast contract', () => {
     // Classify on the exact ratios: rounding first can flip a color at the
     // boundary (a true 4.4992:1 fails 1.4.3 but rounds to 4.5).
     const failing = measurePaletteContrast(theme)
-      .filter(
-        ({ contrastTextOnMain, mainOnPaper }) => contrastTextOnMain < 4.5 || mainOnPaper < 4.5,
-      )
+      .filter((entry) => failsWcag(entry, WCAG_MINIMUM_RATIO.normalText))
       .map(({ color }) => color);
 
     assert.deepEqual(
@@ -66,6 +71,22 @@ describe('palette contrast contract', () => {
     // 14pt bold (18.66px at weight 700) is the other large-text doorway.
     assert.equal(requiredRatio({ fontSize: '18.66px', fontWeight: 700 }), 3);
     assert.equal(requiredRatio({ fontSize: '18.66px', fontWeight: 500 }), 4.5);
+    // The CSS keyword is the same doorway as the number it stands for.
+    assert.equal(requiredRatio({ fontSize: '18.66px', fontWeight: 'bold' }), 3);
+    assert.equal(requiredRatio({ fontSize: '18.66px', fontWeight: 'normal' }), 4.5);
+  });
+
+  it('refuses a size or weight it cannot resolve instead of guessing', () => {
+    // `em` depends on the parent, so a theme value alone cannot size it. The
+    // old silent parseFloat read this as 1.5px and rated it as normal text.
+    assert.throws(() => requiredRatio({ fontSize: '1.5em' }), /cannot size/);
+    assert.throws(() => requiredRatio({ fontSize: '2rex' }), /cannot size/);
+    // `bolder` is relative to the parent for the same reason. The old
+    // `Number('bolder')` gave NaN, which silently failed the >= 700 test.
+    assert.throws(
+      () => requiredRatio({ fontSize: '18.66px', fontWeight: 'bolder' }),
+      /cannot weigh/,
+    );
   });
 
   it('composites translucent surfaces the way the browser paints them', () => {

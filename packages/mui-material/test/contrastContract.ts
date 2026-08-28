@@ -1,5 +1,5 @@
 import type { Theme } from '@mui/material/styles';
-import { contrastRatio } from './contrast';
+import { contrastRatio, WCAG_MINIMUM_RATIO } from './contrast';
 
 /**
  * The palette contrast contract: the pinned WCAG 1.4.3 facts of the default
@@ -55,7 +55,16 @@ export interface PaletteContrastEntry {
   mainOnPaper: number;
 }
 
-export const PALETTE_CONTRAST: readonly PaletteContrastEntry[] = [
+/**
+ * The pinned claim: the same shape as a measurement, but the ratios are
+ * rounded to the two decimals the reports publish. Never classify against
+ * these. A rounded ratio can sit on the wrong side of a threshold, which is
+ * exactly the bug `measurePaletteContrast` returning exact ratios avoids.
+ * Use `FAILING_PALETTE_COLORS`, or `failsWcag` over a fresh measurement.
+ */
+export type PinnedPaletteContrastEntry = PaletteContrastEntry;
+
+export const PALETTE_CONTRAST: readonly PinnedPaletteContrastEntry[] = [
   { color: 'primary', main: '#1976d2', contrastTextOnMain: 4.6, mainOnPaper: 4.6 },
   { color: 'secondary', main: '#9c27b0', contrastTextOnMain: 6.3, mainOnPaper: 6.3 },
   { color: 'error', main: '#d32f2f', contrastTextOnMain: 4.98, mainOnPaper: 4.98 },
@@ -83,4 +92,16 @@ export function measurePaletteContrast(theme: Theme): PaletteContrastEntry[] {
     contrastTextOnMain: contrastRatio(theme.palette[color].contrastText, theme.palette[color].main),
     mainOnPaper: contrastRatio(theme.palette[color].main, theme.palette.background.paper),
   }));
+}
+
+/**
+ * Whether an entry falls short of a 1.4.3 threshold in either direction.
+ * Feed it a `measurePaletteContrast` entry, never a `PALETTE_CONTRAST` one:
+ * classification needs the exact ratio.
+ */
+export function failsWcag(
+  entry: PaletteContrastEntry,
+  threshold: number = WCAG_MINIMUM_RATIO.normalText,
+): boolean {
+  return entry.contrastTextOnMain < threshold || entry.mainOnPaper < threshold;
 }
