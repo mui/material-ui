@@ -11,7 +11,6 @@ const multipliers: Record<DensityKey, number> = {
   large: 2,
   'x-large': 3,
   'xx-large': 4,
-  'touch-target': 3.5,
 };
 
 describe('densityScale', () => {
@@ -21,7 +20,6 @@ describe('densityScale', () => {
 
       expect(theme.spacing('xx-small')).to.equal('2px');
       expect(theme.spacing('small')).to.equal('8px');
-      expect(theme.spacing('touch-target')).to.equal('28px');
       const steps = Object.fromEntries(DENSITY_KEYS.map((key) => [key, theme.spacing(key)]));
       expect(steps).to.deep.equal({
         'xx-small': '2px',
@@ -31,7 +29,6 @@ describe('densityScale', () => {
         large: '16px',
         'x-large': '24px',
         'xx-large': '32px',
-        'touch-target': '28px',
       });
     });
 
@@ -56,12 +53,12 @@ describe('densityScale', () => {
     test('scale overrides replace a step wholesale (number = px)', () => {
       const theme = applyDensity(createTheme(), multipliers, {
         small: 6,
-        'touch-target': 40,
+        large: 40,
       });
 
       expect(theme.spacing('small')).to.equal('6px');
       expect(theme.spacing('-small')).to.equal('-6px');
-      expect(theme.spacing('touch-target')).to.equal('40px');
+      expect(theme.spacing('large')).to.equal('40px');
       expect(theme.spacing('medium')).to.equal('12px');
     });
 

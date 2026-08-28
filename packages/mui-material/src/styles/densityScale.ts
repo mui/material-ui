@@ -11,9 +11,6 @@ export interface DensityScale {
   large: string;
   'x-large': string;
   'xx-large': string;
-  /** Sizing, not a ladder step: the touch-target box (24/32/44). Specific to
-   * anchor (medium-size) cells — small/large sizes stay on the plain ladder. */
-  'touch-target': string;
 }
 
 export type DensityKey = keyof DensityScale;
@@ -26,7 +23,6 @@ export const DENSITY_KEYS: DensityKey[] = [
   'large',
   'x-large',
   'xx-large',
-  'touch-target',
 ];
 
 // Type-level only: without `enhanceDensity` the strings pass through verbatim.

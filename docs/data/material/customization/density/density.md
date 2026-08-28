@@ -36,18 +36,17 @@ Every component's spacing and sizing now comes from the scale, and medium-size c
 
 The scale is a set of named steps. `enhanceDensity` adds them to the theme's spacing surface—there's no new theme node to learn:
 
-| Step           | Default value | Typical use                                        |
-| :------------- | :------------ | :------------------------------------------------- |
-| `xx-small`     | 4px           | Icon-to-label gaps, tight insets                   |
-| `x-small`      | 8px           | Compact padding, small control insets              |
-| `small`        | 12px          | Default inline padding                             |
-| `medium`       | 16px          | Container padding                                  |
-| `large`        | 24px          | Section spacing, small control height              |
-| `x-large`      | 32px          | Large control height                               |
-| `xx-large`     | 48px          | Large surfaces                                     |
-| `touch-target` | 32px          | The interactive box shared by medium-size controls |
+| Step       | Default value | Typical use                           |
+| :--------- | :------------ | :------------------------------------ |
+| `xx-small` | 4px           | Icon-to-label gaps, tight insets      |
+| `x-small`  | 8px           | Compact padding, small control insets |
+| `small`    | 12px          | Default inline padding                |
+| `medium`   | 16px          | Container padding                     |
+| `large`    | 24px          | Section spacing, small control height |
+| `x-large`  | 32px          | Large control height                  |
+| `xx-large` | 48px          | Large surfaces                        |
 
-`touch-target` is a sizing step rather than a ladder step: it's the height that medium-size interactive controls converge on. Raise it for touch-first products, lower it for data tools.
+One more value sits outside the ladder: **`touch-target`**, the 32px box that medium-size interactive controls converge on. It sizes controls rather than spacing them, so it is emitted as a plain length—it is not a spacing step, has no CSS variable, and `theme.spacing()` doesn't resolve it. It is still yours to move, through the same override object described below: raise it for touch-first products, lower it for data tools.
 
 ### Augmented `theme.spacing()`
 
@@ -78,7 +77,7 @@ This means the scale can be read—and overridden—from plain CSS:
 
 ```css
 .dense-region {
-  --mui-spacing-touch-target: 24px;
+  --mui-spacing-medium: 12px;
 }
 ```
 
@@ -152,12 +151,12 @@ Numbers keep their current meaning as multipliers of the spacing unit, and any o
 <Box sx={{ p: 2, m: 'auto', width: '50%' }} />
 ```
 
-Only the spacing props read the step names. Every other CSS property—sizing in particular, where `touch-target` is most useful—takes them through `theme.spacing()`, which works anywhere and offers the names in autocompletion:
+Only the spacing props read the step names. Every other CSS property takes them through `theme.spacing()`, which works anywhere and offers the names in autocompletion:
 
 ```jsx
 <Box
   sx={(theme) => ({
-    height: theme.spacing('touch-target'),
+    height: theme.spacing('x-large'),
     top: theme.spacing('small'),
   })}
 />

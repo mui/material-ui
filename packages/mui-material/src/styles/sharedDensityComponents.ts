@@ -35,17 +35,20 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   enhanced: T & {
     components: NonNullable<EnhanceableTheme['components']>;
   },
+  /** The interactive box height in px. A sizing constant rather than a spacing
+   * key, so it is emitted literally and has no CSS variable. */
+  touchTarget: string,
 ): void {
   // Keyed spacing: a scale key resolves to its step (var ref under cssVariables,
   // raw px otherwise); numbers stay plain spacing units.
   const { spacing } = enhanced;
   const sharedCheckboxRadio = {
     padding: 0,
-    width: spacing('touch-target'),
-    height: spacing('touch-target'),
+    width: touchTarget,
+    height: touchTarget,
     '& svg': { fontSize: spacing('medium') },
     [`.${formControlLabelClasses.root}:has(&)`]: {
-      marginLeft: `calc((${spacing('touch-target')} - ${spacing('medium')}) / -2)`,
+      marginLeft: `calc((${touchTarget} - ${spacing('medium')}) / -2)`,
     },
     variants: [
       {
@@ -58,12 +61,18 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           },
         },
       },
-      { props: { edge: 'start' }, style: { marginLeft: `calc(${spacing('touch-target')} / -8)` } },
-      { props: { edge: 'start', size: 'small' }, style: { marginLeft: `calc(${spacing('large')} / -8)` } },
-      { props: { edge: 'end' }, style: { marginRight: `calc(${spacing('touch-target')} / -8)` } },
-      { props: { edge: 'end', size: 'small' }, style: { marginRight: `calc(${spacing('large')} / -8)` } },
+      { props: { edge: 'start' }, style: { marginLeft: `calc(${touchTarget} / -8)` } },
+      {
+        props: { edge: 'start', size: 'small' },
+        style: { marginLeft: `calc(${spacing('large')} / -8)` },
+      },
+      { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -8)` } },
+      {
+        props: { edge: 'end', size: 'small' },
+        style: { marginRight: `calc(${spacing('large')} / -8)` },
+      },
     ],
-  }
+  };
   addRootOverride(enhanced.components, 'MuiButton', {
     ...enhanced.typography?.button,
     paddingBlock: 0,
@@ -75,7 +84,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
       {
         props: { size: 'medium' },
-        style: { height: spacing('touch-target'), paddingInline: spacing('medium') },
+        style: { height: touchTarget, paddingInline: spacing('medium') },
       },
       {
         props: { size: 'large' },
@@ -102,14 +111,14 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       { props: { size: 'small' }, style: { width: spacing('large'), height: spacing('large') } },
       {
         props: { size: 'medium' },
-        style: { width: spacing('touch-target'), height: spacing('touch-target') },
+        style: { width: touchTarget, height: touchTarget },
       },
       {
         props: { size: 'large' },
         style: { width: spacing('xx-large'), height: spacing('xx-large') },
       },
-      { props: { edge: 'start' }, style: { marginLeft: `calc(${spacing('touch-target')} / -8)` } },
-      { props: { edge: 'end' }, style: { marginRight: `calc(${spacing('touch-target')} / -8)` } },
+      { props: { edge: 'start' }, style: { marginLeft: `calc(${touchTarget} / -8)` } },
+      { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -8)` } },
     ],
   });
 
@@ -130,9 +139,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { dense: false },
         style: {
-          minHeight: spacing('touch-target'),
+          minHeight: touchTarget,
           gap: spacing('x-small'),
-          [smUp]: { minHeight: spacing('touch-target') },
+          [smUp]: { minHeight: touchTarget },
         },
       },
       { props: { disableGutters: false }, style: { paddingInline: spacing('x-small') } },
@@ -224,7 +233,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // label consumes it as --_restY. Re-assert chain mirrors master.
   addRootOverride(enhanced.components, 'MuiOutlinedInput', {
     [`.${formControlClasses.root}:has(> &)`]: {
-      '--_outlinedInputPadBlock': `calc((${spacing('touch-target')} - 1lh) / 2)`,
+      '--_outlinedInputPadBlock': `calc((${touchTarget} - 1lh) / 2)`,
     },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
       '--_restY': 'var(--_outlinedInputPadBlock)',
@@ -242,7 +251,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { multiline: true },
         style: {
-          paddingBlock: `var(--_outlinedInputPadBlock, calc((${spacing('touch-target')} - 1lh) / 2))`,
+          paddingBlock: `var(--_outlinedInputPadBlock, calc((${touchTarget} - 1lh) / 2))`,
           paddingInline: spacing('small'),
         },
       },
@@ -268,7 +277,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiOutlinedInput',
     {
-      paddingBlock: `var(--_outlinedInputPadBlock, calc((${spacing('touch-target')} - 1lh) / 2))`,
+      paddingBlock: `var(--_outlinedInputPadBlock, calc((${touchTarget} - 1lh) / 2))`,
       paddingInline: spacing('small'),
       variants: [
         {
@@ -536,15 +545,15 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiBreadcrumbs',
     {
-      minHeight: spacing('touch-target'),
+      minHeight: touchTarget,
       '& a': {
         display: 'inline-flex',
-        lineHeight: spacing('touch-target'),
+        lineHeight: touchTarget,
       },
       [`& li>.${buttonBaseClasses.root}`]: {
         // BreadcrumbCollapsed
         paddingInline: spacing('x-small'),
-        height: spacing('touch-target'),
+        height: touchTarget,
         margin: 0,
       },
     },
@@ -566,7 +575,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { size: 'medium' },
         style: {
-          '--_size': spacing('touch-target'),
+          '--_size': touchTarget,
           paddingInline: `calc((var(--_size) - ${spacing(2)}) / 2 - 1px)`,
         },
       },
@@ -617,7 +626,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     // Root block pad 0: the INPUT carries the whole per-side pad, so chips
     // stack in an unpadded root while the input still sets the row rhythm.
     '--_autocompleteInputRootPadBlock': '3px',
-    '--_autocompleteInputPadBlock': `calc((${spacing('touch-target')} - 1lh) / 2 - var(--_autocompleteInputRootPadBlock))`,
+    '--_autocompleteInputPadBlock': `calc((${touchTarget} - 1lh) / 2 - var(--_autocompleteInputRootPadBlock))`,
     [`& .${outlinedInputClasses.root}`]: {
       paddingBlock: `var(--_autocompleteInputRootPadBlock)`,
       paddingLeft: '8px',
@@ -682,8 +691,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     {
       padding: '0px',
       justifyContent: 'center',
-      minWidth: spacing('touch-target'),
-      minHeight: spacing('touch-target'),
+      minWidth: touchTarget,
+      minHeight: touchTarget,
       alignItems: 'center',
     },
     'iconContainer',
@@ -691,7 +700,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // Circle must land on MuiStepIcon root: an SvgIcon sizes off its OWN
   // fontSize (w/h = 1em) — a parent iconContainer fontSize can't reach it.
   addRootOverride(enhanced.components, 'MuiStepIcon', {
-    fontSize: `calc(${spacing('touch-target')} - ${spacing('small')} + 2px)`,
+    fontSize: `calc(${touchTarget} - ${spacing('small')} + 2px)`,
   });
   addRootOverride(enhanced.components, 'MuiStepIcon', { fontSize: spacing(1.75) }, 'text');
   // Vertical-alt keeps master's marginLeft:auto — only marginRight moves.
@@ -699,15 +708,15 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     variants: [
       {
         props: { orientation: 'horizontal', alternativeLabel: true },
-        style: { top: `calc(${spacing('touch-target')} / 2)` },
+        style: { top: `calc(${touchTarget} / 2)` },
       },
       {
         props: { orientation: 'vertical', alternativeLabel: false },
-        style: { marginLeft: `calc(${spacing('touch-target')} / 2)` },
+        style: { marginLeft: `calc(${touchTarget} / 2)` },
       },
       {
         props: { orientation: 'vertical', alternativeLabel: true },
-        style: { marginRight: `calc(${spacing('touch-target')} / 2)` },
+        style: { marginRight: `calc(${touchTarget} / 2)` },
       },
     ],
   });
@@ -718,15 +727,15 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { alternativeLabel: false },
         style: {
-          marginLeft: `calc(${spacing('touch-target')} / 2)`,
-          paddingLeft: `calc(${spacing('touch-target')} / 2 - 1px)`, // 1px account for the border
+          marginLeft: `calc(${touchTarget} / 2)`,
+          paddingLeft: `calc(${touchTarget} / 2 - 1px)`, // 1px account for the border
         },
       },
       {
         props: { alternativeLabel: true },
         style: {
-          marginRight: `calc(${spacing('touch-target')} / 2)`,
-          paddingRight: `calc(${spacing('touch-target')} / 2 - 1px)`, // 1px account for the border
+          marginRight: `calc(${touchTarget} / 2)`,
+          paddingRight: `calc(${touchTarget} / 2 - 1px)`, // 1px account for the border
         },
       },
     ],
@@ -831,7 +840,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     variants: [
       {
         props: { dense: false },
-        style: { minHeight: spacing('touch-target') },
+        style: { minHeight: touchTarget },
       },
       { props: { dense: true }, style: { minHeight: spacing('large') } },
       {
@@ -868,14 +877,14 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         props: ({ ownerState }: { ownerState: ListItemOwnerState }) =>
           !ownerState.disablePadding && !!ownerState.secondaryAction,
         style: {
-          paddingRight: `calc(${spacing('touch-target')} + ${spacing('x-small')})`,
+          paddingRight: `calc(${touchTarget} + ${spacing('x-small')})`,
         },
       },
       {
         props: ({ ownerState }: { ownerState: ListItemOwnerState }) => !!ownerState.secondaryAction,
         style: {
           [`& > .${listItemButtonClasses.root}`]: {
-            paddingRight: `calc(${spacing('touch-target')} + ${spacing('x-small')})`,
+            paddingRight: `calc(${touchTarget} + ${spacing('x-small')})`,
           },
         },
       },
@@ -967,7 +976,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'content',
   );
   addRootOverride(enhanced.components, 'MuiTab', {
-    minHeight: spacing('touch-target'),
+    minHeight: touchTarget,
     lineHeight: enhanced.typography?.button?.lineHeight,
     paddingBlock: 0,
     paddingInline: spacing('small'),
@@ -986,23 +995,23 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiTabs', { minHeight: spacing('touch-target') });
+  addRootOverride(enhanced.components, 'MuiTabs', { minHeight: touchTarget });
   addRootOverride(enhanced.components, 'MuiTabScrollButton', {
     variants: [
-      { props: { orientation: 'horizontal' }, style: { width: spacing('touch-target') } },
-      { props: { orientation: 'vertical' }, style: { height: spacing('touch-target') } },
+      { props: { orientation: 'horizontal' }, style: { width: touchTarget } },
+      { props: { orientation: 'vertical' }, style: { height: touchTarget } },
     ],
   });
   // AvatarGroup overlap is untouchable: an inline --AvatarGroup-spacing style
   // from the spacing prop (px numbers only) outranks any styleOverride.
   addRootOverride(enhanced.components, 'MuiAvatar', {
-    '--_size': spacing('touch-target'),
+    '--_size': touchTarget,
     width: 'var(--_size)',
     height: 'var(--_size)',
     fontSize: 'calc(var(--_size) / 2)',
   });
   addRootOverride(enhanced.components, 'MuiLinearProgress', { height: spacing(0.5) });
-  addDefaultProps(enhanced.components, 'MuiCircularProgress', { size: spacing('touch-target') });
+  addDefaultProps(enhanced.components, 'MuiCircularProgress', { size: touchTarget });
   // Root box = the touch target (padding 0 also kills master's coarse-pointer
   // padding; the thumb keeps its frozen 42px ::after hit target). Master sizes
   // rail/track via height:inherit off the root, so their thickness is
@@ -1011,8 +1020,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     padding: 0,
     '--_trackSize': `calc(${spacing('small')} / 4)`,
     variants: [
-      { props: { orientation: 'horizontal' }, style: { height: spacing('touch-target') } },
-      { props: { orientation: 'vertical' }, style: { width: spacing('touch-target') } },
+      { props: { orientation: 'horizontal' }, style: { height: touchTarget } },
+      { props: { orientation: 'vertical' }, style: { width: touchTarget } },
       { props: { size: 'small' }, style: { '--_trackSize': `calc(${spacing('x-small')} / 4)` } },
     ],
   });
@@ -1028,7 +1037,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiSlider',
     {
-      top: spacing('touch-target'),
+      top: touchTarget,
     },
     'markLabel',
   );
@@ -1056,8 +1065,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         { props: { size: 'small' }, style: { width: spacing('small'), height: spacing('small') } },
       ],
       '&::after': {
-        width: spacing('touch-target'),
-        height: spacing('touch-target'),
+        width: touchTarget,
+        height: touchTarget,
       },
     },
     'thumb',
@@ -1099,8 +1108,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { size: 'medium' },
         style: {
-          '--_height': spacing('touch-target'),
-          '--_touchSize': spacing('touch-target'),
+          '--_height': touchTarget,
+          '--_touchSize': touchTarget,
           '--_thumbHeight': spacing('medium'),
           '--_thumbWidth': spacing('medium'),
         },
@@ -1182,7 +1191,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     {
       // The option list renders in a Popper — emit on the listbox slot.
       [`& .${autocompleteClasses.option}`]: {
-        minHeight: spacing('touch-target'),
+        minHeight: touchTarget,
         paddingBlock: spacing('xx-small'),
         paddingInline: spacing('x-small'),
       },
@@ -1236,8 +1245,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { variant: 'circular', size: 'medium' },
         style: {
-          width: `calc(${spacing('touch-target')} + ${spacing('x-small')})`,
-          height: `calc(${spacing('touch-target')} + ${spacing('x-small')})`,
+          width: `calc(${touchTarget} + ${spacing('x-small')})`,
+          height: `calc(${touchTarget} + ${spacing('x-small')})`,
         },
       },
       {
@@ -1261,7 +1270,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
       {
         props: { size: 'medium' },
-        style: { height: spacing('touch-target'), minWidth: spacing('touch-target') },
+        style: { height: touchTarget, minWidth: touchTarget },
       },
       {
         props: { size: 'large' },
@@ -1305,10 +1314,10 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { size: 'medium' },
         style: {
-          height: spacing('touch-target'),
+          height: touchTarget,
           paddingInline: spacing('small'),
           gap: spacing('x-small'),
-          '--_childSize': `calc(${spacing('touch-target')} - ${spacing('x-small')})`,
+          '--_childSize': `calc(${touchTarget} - ${spacing('x-small')})`,
           '--_offset': `calc(-1 * (${spacing('small')} - ${spacing('x-small')}/2))`,
         },
       },
@@ -1360,7 +1369,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'deleteIcon',
   );
   addRootOverride(enhanced.components, 'MuiAccordionSummary', {
-    minHeight: spacing('touch-target'),
+    minHeight: touchTarget,
     padding: `0 ${spacing('x-small')}`,
     variants: [
       {
@@ -1371,7 +1380,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         }) => !ownerState.disableGutters,
         // scoped to expanded: wins master's 64px literal on specificity
         style: {
-          [`&.${accordionSummaryClasses.expanded}`]: { minHeight: spacing('touch-target') },
+          [`&.${accordionSummaryClasses.expanded}`]: { minHeight: touchTarget },
         },
       },
     ],

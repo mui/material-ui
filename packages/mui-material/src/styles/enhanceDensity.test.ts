@@ -7,12 +7,16 @@ import enhanceDensity from './enhanceDensity';
 // keyed-spacing mechanics (var refs, negation, vars channel) live in
 // densityScale.test.ts against applyDensity.
 
+/** The interactive box as emitted onto a control — it is a plain px constant, so
+ * it is only observable through the component styles. */
+const controlBox = (theme: ReturnType<typeof enhanceDensity>) =>
+  ((theme.components as any).MuiCheckbox.styleOverrides.root as any[])[1].height;
+
 describe('enhanceDensity', () => {
   test('ships the one canonical ladder (static px)', () => {
     const theme = enhanceDensity(createTheme());
 
     expect(theme.spacing('small')).to.equal('12px');
-    expect(theme.spacing('touch-target')).to.equal('32px');
     expect(theme.spacing('xx-large')).to.equal('48px');
   });
 
@@ -29,14 +33,14 @@ describe('enhanceDensity', () => {
     });
 
     expect(compact.spacing('small')).to.equal('8px');
-    expect(compact.spacing('touch-target')).to.equal('24px');
     expect(compact.spacing('xx-large')).to.equal('32px');
+    expect(controlBox(compact)).to.equal('24px');
   });
 
   test('a partial override keeps the canonical ladder elsewhere', () => {
     const theme = enhanceDensity(createTheme(), { 'touch-target': 40 });
 
-    expect(theme.spacing('touch-target')).to.equal('40px');
+    expect(controlBox(theme)).to.equal('40px');
     expect(theme.spacing('small')).to.equal('12px');
   });
 
@@ -60,7 +64,6 @@ describe('enhanceDensity', () => {
     test('number: steps ride the unit proportionally', () => {
       const theme = enhanceDensity(createTheme({ spacing: 4 }));
       expect(theme.spacing('small')).to.equal('6px');
-      expect(theme.spacing('touch-target')).to.equal('16px');
       expect(theme.spacing(2)).to.equal('8px');
     });
 
@@ -81,7 +84,7 @@ describe('enhanceDensity', () => {
       expect(staticTheme.spacing('-small')).to.equal('-0.375rem');
 
       const { stepVars } = lastSheets(enhanceDensity(createTheme({ cssVariables: true, spacing })));
-      expect(stepVars['--mui-spacing-touch-target']).to.equal('1rem');
+      expect(stepVars['--mui-spacing-x-large']).to.equal('1rem');
     });
 
     test('array: fractional multipliers have no index — canonical px fallback', () => {
@@ -112,7 +115,7 @@ describe('enhanceDensity', () => {
         marginLeft: '-12px',
         marginRight: '-12px',
       });
-      expect(sx(staticTheme, { gap: 'touch-target' })).to.deep.equal({ gap: '32px' });
+      expect(sx(staticTheme, { gap: 'x-large' })).to.deep.equal({ gap: '32px' });
 
       // On a CSS variables theme the sx transformer is built from
       // `theme.vars.spacing`, which can't resolve names — the step must still win.
@@ -164,6 +167,22 @@ describe('enhanceDensity', () => {
     expect(theme.typography.h1.fontSize).to.equal(base.typography.h1.fontSize);
     expect(theme.typography.body1.lineHeight).to.equal(base.typography.body1.lineHeight);
     expect(theme.typography.fontSize).to.equal(base.typography.fontSize);
+  });
+
+  test('the interactive box is a sizing constant, not a spacing key', () => {
+    const theme = enhanceDensity(createTheme({ cssVariables: true }));
+    const sheets = theme.generateStyleSheets();
+    const stepVars = sheets[sheets.length - 1][':root'] as Record<string, string>;
+
+    // emitted literally, even on a vars theme — no variable to override
+    expect(controlBox(theme)).to.equal('32px');
+    expect(stepVars).to.not.have.property('--mui-spacing-touch-target');
+
+    // and it never became a spacing key: both channels pass it through as raw CSS
+    expect(theme.spacing('touch-target')).to.equal('touch-target');
+    expect((theme as any).unstable_sx({ m: 'touch-target' })).to.deep.equal({
+      margin: 'touch-target',
+    });
   });
 
   test('applies the component emissions', () => {

@@ -16,7 +16,6 @@ const keys: SpacingKey[] = [
   'large',
   'x-large',
   'xx-large',
-  'touch-target',
   '-xx-small',
   '-x-small',
   '-small',
@@ -24,11 +23,14 @@ const keys: SpacingKey[] = [
   '-large',
   '-x-large',
   '-xx-large',
-  '-touch-target',
 ];
 keys.forEach((key) => takesKey(key));
 // @ts-expect-error — not a registered spacing key
 takesKey('tiny');
+// `touch-target` sizes the interactive box; it is emitted as plain px and is
+// deliberately NOT a spacing key, so it never reaches theme.spacing() or sx.
+// @ts-expect-error — sizing constant, not a spacing key
+takesKey('touch-target');
 
 // Keys, negated keys, numbers, raw CSS and mixed args all type-check on
 // theme.spacing() — with or without a density preset applied — and return string.
@@ -38,7 +40,7 @@ function takesString(value: string) {
 const theme = createTheme();
 takesString(theme.spacing('small'));
 takesString(theme.spacing('-x-small'));
-takesString(theme.spacing('touch-target', 2));
+takesString(theme.spacing('x-large', 2));
 takesString(theme.spacing(1, 'auto'));
 // raw CSS stays first-class — unregistered strings pass through by design
 takesString(theme.spacing('12px'));
