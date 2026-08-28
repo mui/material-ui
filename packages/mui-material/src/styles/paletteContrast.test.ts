@@ -39,7 +39,7 @@ describe('palette contrast contract', () => {
 
   it('only info and warning fall short of WCAG 4.5:1, in both directions', () => {
     // Classify on the exact ratios: rounding first can flip a color at the
-    // boundary (a true 4.4966:1 fails 1.4.3 but rounds to 4.5).
+    // boundary (a true 4.4992:1 fails 1.4.3 but rounds to 4.5).
     const failing = measurePaletteContrast(theme)
       .filter(
         ({ contrastTextOnMain, mainOnPaper }) => contrastTextOnMain < 4.5 || mainOnPaper < 4.5,
