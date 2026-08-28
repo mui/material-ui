@@ -21,15 +21,15 @@ describe('palette contrast contract', () => {
     // public checkers display — so round the exact measurement to compare.
     const measured = measurePaletteContrast(theme).map((entry) => ({
       ...entry,
-      onMain: roundRatio(entry.onMain),
-      onPaper: roundRatio(entry.onPaper),
+      contrastTextOnMain: roundRatio(entry.contrastTextOnMain),
+      mainOnPaper: roundRatio(entry.mainOnPaper),
     }));
 
     assert.deepEqual(
       measured,
       [...PALETTE_CONTRAST],
       'The default palette contrast ratios changed. Current values: ' +
-        `${measured.map(({ color, main, onMain, onPaper }) => `${color} (${main}) ${onMain}:1 on main, ${onPaper}:1 on paper`).join('; ')}. ` +
+        `${measured.map(({ color, main, contrastTextOnMain, mainOnPaper }) => `${color} (${main}) ${contrastTextOnMain}:1 contrastText on main, ${mainOnPaper}:1 main on paper`).join('; ')}. ` +
         'Update PALETTE_CONTRAST in test/contrastContract.ts, the 1.4.3 sections ' +
         'of the affected conformance reports ' +
         '(packages/mui-material/src/<Component>/accessibility.md), and expect the ' +
@@ -41,7 +41,9 @@ describe('palette contrast contract', () => {
     // Classify on the exact ratios: rounding first can flip a color at the
     // boundary (a true 4.4966:1 fails 1.4.3 but rounds to 4.5).
     const failing = measurePaletteContrast(theme)
-      .filter(({ onMain, onPaper }) => onMain < 4.5 || onPaper < 4.5)
+      .filter(
+        ({ contrastTextOnMain, mainOnPaper }) => contrastTextOnMain < 4.5 || mainOnPaper < 4.5,
+      )
       .map(({ color }) => color);
 
     assert.deepEqual(

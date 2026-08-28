@@ -49,19 +49,19 @@ export interface PaletteContrastEntry {
   color: PaletteContrastColor;
   /** The palette constant behind the ratios, pinned so hex drift is loud. */
   main: string;
-  /** `contrastText` on `main` — filled surfaces (contained Button). */
-  onMain: number;
-  /** `main` on `background.paper` — colored text (text/outlined labels). */
-  onPaper: number;
+  /** Filled surfaces: a contained Button's label on its background. */
+  contrastTextOnMain: number;
+  /** Colored text: a text/outlined Button's label on `background.paper`. */
+  mainOnPaper: number;
 }
 
 export const PALETTE_CONTRAST: readonly PaletteContrastEntry[] = [
-  { color: 'primary', main: '#1976d2', onMain: 4.6, onPaper: 4.6 },
-  { color: 'secondary', main: '#9c27b0', onMain: 6.3, onPaper: 6.3 },
-  { color: 'error', main: '#d32f2f', onMain: 4.98, onPaper: 4.98 },
-  { color: 'info', main: '#0288d1', onMain: 3.86, onPaper: 3.86 },
-  { color: 'success', main: '#2e7d32', onMain: 5.13, onPaper: 5.13 },
-  { color: 'warning', main: '#ed6c02', onMain: 3.11, onPaper: 3.11 },
+  { color: 'primary', main: '#1976d2', contrastTextOnMain: 4.6, mainOnPaper: 4.6 },
+  { color: 'secondary', main: '#9c27b0', contrastTextOnMain: 6.3, mainOnPaper: 6.3 },
+  { color: 'error', main: '#d32f2f', contrastTextOnMain: 4.98, mainOnPaper: 4.98 },
+  { color: 'info', main: '#0288d1', contrastTextOnMain: 3.86, mainOnPaper: 3.86 },
+  { color: 'success', main: '#2e7d32', contrastTextOnMain: 5.13, mainOnPaper: 5.13 },
+  { color: 'warning', main: '#ed6c02', contrastTextOnMain: 3.11, mainOnPaper: 3.11 },
 ];
 
 /**
@@ -80,7 +80,7 @@ export function measurePaletteContrast(theme: Theme): PaletteContrastEntry[] {
   return PALETTE_CONTRAST_COLORS.map((color) => ({
     color,
     main: theme.palette[color].main,
-    onMain: contrastRatio(theme.palette[color].contrastText, theme.palette[color].main),
-    onPaper: contrastRatio(theme.palette[color].main, theme.palette.background.paper),
+    contrastTextOnMain: contrastRatio(theme.palette[color].contrastText, theme.palette[color].main),
+    mainOnPaper: contrastRatio(theme.palette[color].main, theme.palette.background.paper),
   }));
 }
