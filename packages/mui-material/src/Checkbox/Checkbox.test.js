@@ -116,6 +116,14 @@ describe('<Checkbox />', () => {
       render(<Checkbox />);
       expect(screen.getByRole('checkbox')).not.to.have.attribute('aria-checked');
     });
+
+    it('should set the indeterminate property on the input', () => {
+      const { setProps } = render(<Checkbox indeterminate />);
+      expect(screen.getByRole('checkbox')).to.have.property('indeterminate', true);
+
+      setProps({ indeterminate: false });
+      expect(screen.getByRole('checkbox')).to.have.property('indeterminate', false);
+    });
   });
 
   describe('prop: size', () => {
