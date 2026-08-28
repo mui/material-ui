@@ -2,6 +2,30 @@ import { describe, it, expect } from 'vitest';
 import grid from './cssGrid';
 
 describe('grid', () => {
+  describe('named scale values', () => {
+    // Same contract as the padding/margin props: a spacing function may advertise
+    // named values through `keys`; every other string stays raw CSS.
+    const scaled = { small: '12px', 'x-large': '32px' };
+    const keyedSpacing = (...args) => args.map((arg) => scaled[arg] ?? `${arg * 8}px`).join(' ');
+    keyedSpacing.keys = new Set(Object.keys(scaled));
+
+    it('resolves names on gap, rowGap and columnGap', () => {
+      const theme = { spacing: keyedSpacing };
+
+      expect(grid({ theme, gap: 'small' })).to.deep.equal({ gap: '12px' });
+      expect(grid({ theme, rowGap: 'x-large' })).to.deep.equal({ rowGap: '32px' });
+      expect(grid({ theme, columnGap: 'small' })).to.deep.equal({ columnGap: '12px' });
+    });
+
+    it('leaves raw CSS and numbers alone', () => {
+      const theme = { spacing: keyedSpacing };
+
+      expect(grid({ theme, gap: 'normal' })).to.deep.equal({ gap: 'normal' });
+      expect(grid({ theme, gap: 2 })).to.deep.equal({ gap: '16px' });
+      expect(grid({ theme: { spacing: 8 }, gap: 'small' })).to.deep.equal({ gap: 'small' });
+    });
+  });
+
   it('should use the spacing unit', () => {
     const output = grid({
       gap: 1,

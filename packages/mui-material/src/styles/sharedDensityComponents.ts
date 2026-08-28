@@ -1,4 +1,6 @@
-import { addDefaultProps, addRootOverride, EnhanceableTheme } from './densityScale';
+import addDefaultProps from '../utils/addDefaultProps';
+import addRootOverride from '../utils/addRootOverride';
+import { EnhanceableTheme } from './densityScale';
 import switchClasses from '../Switch/switchClasses';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import tooltipClasses from '../Tooltip/tooltipClasses';
