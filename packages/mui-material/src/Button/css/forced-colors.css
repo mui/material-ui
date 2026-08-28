@@ -1,0 +1,28 @@
+/* Material UI-owned Button colors for forced-colors mode. */
+@media (forced-colors: active) {
+  .MuiButton-root {
+    color: var(--mui-forced-colors-button-text);
+    background: var(--mui-forced-colors-canvas);
+    border-color: var(--mui-forced-colors-button-border);
+    box-shadow: none;
+    transform: none;
+  }
+
+  .MuiButton-root::before,
+  .MuiButton-root::after {
+    display: none;
+  }
+
+  .MuiButton-root.Mui-focusVisible {
+    outline: 3px solid var(--mui-forced-colors-active-background);
+    outline-offset: 2px;
+    box-shadow: none;
+  }
+
+  .MuiButton-root.Mui-disabled {
+    color: var(--mui-forced-colors-disabled);
+    background: var(--mui-forced-colors-canvas);
+    border-color: var(--mui-forced-colors-disabled);
+    opacity: 1;
+  }
+}

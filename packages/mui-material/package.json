@@ -25,7 +25,8 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --tsgo --flat --no-expand --copy \"src/css/**/*.css\" && pnpm build:css-bundles",
+    "build": "code-infra build --tsgo --flat --no-expand && pnpm build:css",
+    "build:css": "node scripts/buildCss.mjs && pnpm build:css-bundles",
     "build:css-bundles": "node scripts/buildCssBundles.mjs",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
@@ -101,7 +102,7 @@
     "./ButtonBase/TouchRipple": "./src/ButtonBase/TouchRipple.js",
     "./zero-styled": "./src/zero-styled/index.tsx",
     "./className": "./src/className/index.ts",
-    "./css/*": "./src/css/*",
+    "./css/*": "./build/css/*",
     "./ClickAwayListener": "./src/ClickAwayListener/index.ts",
     "./darkScrollbar": "./src/darkScrollbar/index.ts",
     "./DefaultPropsProvider": "./src/DefaultPropsProvider/index.ts",
