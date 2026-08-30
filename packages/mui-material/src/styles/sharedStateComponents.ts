@@ -65,6 +65,17 @@ export default function applySharedStates<T extends StatefulTheme>(theme: T): vo
         // Text and outlined fills tint toward the pole whatever the button's
         // color, so they come from the color-independent entry.
         const ghost = t.states?.default;
+        // The ghost properties are emitted ONLY when `default` was configured.
+        // Writing them as `undefined` would blank the value the component still
+        // emits for itself when `default` is absent — the two are gated
+        // independently, so they must be applied independently too.
+        const ghostAt = (level: 'hover' | 'active') =>
+          ghost
+            ? {
+                '--variant-textBg': ghost[level].backgroundColor,
+                '--variant-outlinedBg': ghost[level].backgroundColor,
+              }
+            : null;
         return {
           props: { color },
           style: {
@@ -72,15 +83,13 @@ export default function applySharedStates<T extends StatefulTheme>(theme: T): vo
               '&:hover': {
                 '--variant-containedBg': state.hover.backgroundColor,
                 '--variant-outlinedBorder': state.hover.borderColor,
-                '--variant-textBg': ghost?.hover.backgroundColor,
-                '--variant-outlinedBg': ghost?.hover.backgroundColor,
+                ...ghostAt('hover'),
               },
             },
             '&:active': {
               '--variant-containedBg': state.active.backgroundColor,
               '--variant-outlinedBorder': state.active.borderColor,
-              '--variant-textBg': ghost?.active.backgroundColor,
-              '--variant-outlinedBg': ghost?.active.backgroundColor,
+              ...ghostAt('active'),
             },
           },
         };

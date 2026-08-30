@@ -26,6 +26,7 @@ export function experimental_sx() {
 }
 export { default as createTheme } from './createTheme';
 export { default as enhanceColorStates } from './enhanceColorStates';
+export { colorMix, relativeColor } from './stateGenerators';
 export { default as enhanceHighContrast } from './enhanceHighContrast';
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
 export { default as createStyles } from './createStyles';

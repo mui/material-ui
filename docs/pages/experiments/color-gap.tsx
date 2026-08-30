@@ -33,6 +33,8 @@ import {
   ThemeOptions,
   useColorScheme,
   enhanceColorStates,
+  colorMix,
+  relativeColor,
   alpha,
 } from '@mui/material/styles';
 import type { Shadows } from '@mui/material/styles';
@@ -352,10 +354,17 @@ const designTokens: ThemeOptions = {
   },
 };
 
-// The proposed narrow state API: levels are semantic and shared; the magnitudes
-// live PER SCHEME, because measured overlay steps differ 5% light vs 10% dark.
-// Total user-facing surface for every interaction colour in the library:
-// three integers + two percentages per scheme.
+// The state API: FLAT, one entry per palette colour, each naming its own
+// generator. Nothing is derived for a colour that is not listed, so `info` and
+// `success` below keep today's styles — adoption is per colour.
+//
+// `warning` demonstrates `relativeColor`. Amber is the only hue family in the
+// reference export that rotates hue along its ramp (4.15 deg/level, vs <0.4 for
+// every other family) because it loses chroma steeply as lightness drops and
+// reads brown without the correction — a capability `color-mix` does not have.
+// NOTE the numbers below were fitted to the reference's amber SURFACE token, not
+// to this `warning.main`; the design has no solid interactive warning fill to
+// calibrate against. They show the backend working, not a verified match.
 const tokensTheme = enhanceColorStates(
   createTheme({
     cssVariables: { colorSchemeSelector: 'class' },
@@ -374,20 +383,33 @@ const tokensTheme = enhanceColorStates(
       // them per scheme as `--mui-palette-states-*`. The generator reads those vars,
       // which is why one set of generated styles is correct in both schemes.
       // Upstream this wants its own `--mui-state-*` namespace rather than a palette key.
-      light: { palette: { ...lightPalette, states: { step: '4.6%', overlayStep: '5%' } } },
-      dark: { palette: { ...darkPalette, states: { step: '4.4%', overlayStep: '10%' } } },
+      light: {
+        palette: {
+          ...lightPalette,
+          states: { step: '4.6%', overlayStep: '5%', error: { step: '3.7%' } },
+        },
+      },
+      dark: {
+        palette: {
+          ...darkPalette,
+          states: { step: '4.4%', overlayStep: '10%', error: { step: '6.5%' } },
+        },
+      },
     },
     components: {
       MuiButtonBase: { defaultProps: { disableRipple: true } },
     },
   }),
   {
-    // PROTOTYPE PLUMBING, deliberately here and not in the package: the levers are
-    // passed as `var()` references so they resolve PER SCHEME off `palette.states`
-    // above. The library defaults are plain values ('4.5%' / '5%') — it must not
-    // invent a custom-property name, since it cannot know this theme's prefix.
-    step: 'var(--mui-palette-states-step, 4.5%)',
-    overlayStep: 'var(--mui-palette-states-overlayStep, 5%)',
+    // The magnitudes are passed as `var()` references so they resolve PER SCHEME
+    // off `palette.states` above. The library never invents a custom-property
+    // name — it cannot know this theme's prefix — so the reference is authored
+    // here, by the theme that owns the variable.
+    default: colorMix({ overlayStep: 'var(--mui-palette-states-overlayStep, 5%)' }),
+    primary: colorMix({ step: 'var(--mui-palette-states-step, 4.5%)' }),
+    secondary: colorMix({ step: 'var(--mui-palette-states-step, 4.5%)' }),
+    error: colorMix({ step: 'var(--mui-palette-states-error-step, 3.7%)' }),
+    warning: relativeColor({ lightness: 0.072, chroma: 0.014, hue: 4.15 }),
   },
 );
 

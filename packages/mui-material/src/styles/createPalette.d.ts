@@ -137,6 +137,8 @@ export interface PaletteStateLevers {
   step?: string | undefined;
   /** overlay alpha per level for transparent bases, e.g. `'5%'` */
   overlayStep?: string | undefined;
+  /** per-colour magnitudes, e.g. `{ error: { step: '3.7%' } }` */
+  [color: string]: string | { step?: string; overlayStep?: string } | undefined;
 }
 
 export interface PaletteOptions {

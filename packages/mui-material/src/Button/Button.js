@@ -192,28 +192,35 @@ const ButtonRoot = styled(ButtonBase, {
               ),
               '--variant-containedColor': (theme.vars || theme).palette[color].contrastText,
               '--variant-containedBg': (theme.vars || theme).palette[color].main,
-              // Fixed per-state colours are OMITTED once the theme carries derived
-              // states (`enhanceColorStates`); the state layer supplies them
-              // instead. Rest values above are always emitted, so a colour the
+              // Each fixed per-state colour is gated on the entry that would REPLACE
+              // it, not on the feature as a whole: the fill and the border come
+              // from `states[color]`, the text/outlined tints from the
+              // colour-independent `states.default`. Those are configured
+              // separately, so gating them together would drop a value nothing
+              // puts back. Rest values above are always emitted, so a colour the
               // state layer does not cover degrades to "no hover", never "no fill".
-              ...(theme.states?.[color]
-                ? null
-                : {
-                    '@media (hover: hover)': {
-                      '&:hover': {
+              '@media (hover: hover)': {
+                '&:hover': {
+                  ...(theme.states?.[color]
+                    ? null
+                    : {
                         '--variant-containedBg': (theme.vars || theme).palette[color].dark,
+                        '--variant-outlinedBorder': (theme.vars || theme).palette[color].main,
+                      }),
+                  ...(theme.states?.default
+                    ? null
+                    : {
                         '--variant-textBg': theme.alpha(
                           (theme.vars || theme).palette[color].main,
                           (theme.vars || theme).palette.action.hoverOpacity,
                         ),
-                        '--variant-outlinedBorder': (theme.vars || theme).palette[color].main,
                         '--variant-outlinedBg': theme.alpha(
                           (theme.vars || theme).palette[color].main,
                           (theme.vars || theme).palette.action.hoverOpacity,
                         ),
-                      },
-                    },
-                  }),
+                      }),
+                },
+              },
             },
           })),
         {

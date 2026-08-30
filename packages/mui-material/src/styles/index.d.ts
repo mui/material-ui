@@ -11,7 +11,22 @@ export {
 } from './createTheme';
 export { default as enhanceHighContrast, HighContrastTokens } from './enhanceHighContrast';
 export { default as enhanceColorStates } from './enhanceColorStates';
-export { ColorStates, ThemeStates, StatesConfig, StateStyle, DisabledStyle } from './createStates';
+export {
+  ColorStates,
+  ThemeStates,
+  ColorStatesConfig,
+  StateGenerator,
+  GeneratorContext,
+  StateStyle,
+  DisabledStyle,
+} from './createStates';
+export {
+  colorMix,
+  relativeColor,
+  ColorMixOptions,
+  RelativeColorOptions,
+  StateLevels,
+} from './stateGenerators';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
 export { Shadows } from './shadows';
 export { ZIndex } from './zIndex';
