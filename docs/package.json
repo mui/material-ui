@@ -82,7 +82,7 @@
     "react-draggable": "^4.7.1",
     "react-final-form": "^7.0.1",
     "react-imask": "^7.6.1",
-    "react-intersection-observer": "^11.0.0",
+    "react-intersection-observer": "^11.0.1",
     "react-is": "^19.2.8",
     "react-number-format": "^5.4.5",
     "react-router": "^8.3.0",
@@ -97,7 +97,7 @@
     "styled-components": "^6.5.3",
     "stylis": "catalog:docs",
     "use-count-up": "^3.0.1",
-    "webpack-bundle-analyzer": "^5.3.1"
+    "webpack-bundle-analyzer": "^5.3.2"
   },
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "7.29.7",
