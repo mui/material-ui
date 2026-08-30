@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { act, createRenderer, fireEvent, isJsdom, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Switch, { switchClasses as classes } from '@mui/material/Switch';
@@ -8,7 +8,13 @@ import describeConformance from '../../test/describeConformance';
 describe('<Switch />', () => {
   const { render } = createRenderer();
 
-  function CustomSwitchBase({ centerRipple, focusRipple, ownerState, ...props }) {
+  function CustomSwitchBase({
+    centerRipple,
+    focusRipple,
+    ownerState,
+    internalDisabledThemeFocusVisible,
+    ...props
+  }) {
     return <div data-testid="custom" {...props} />;
   }
 

@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import TableCell, { tableCellClasses as classes } from '@mui/material/TableCell';
 import Table from '@mui/material/Table';

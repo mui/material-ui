@@ -1,10 +1,17 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
+import {
+  act,
+  createRenderer,
+  screen,
+  isJsdom,
+  simulatePointerDevice,
+  focusVisible,
+} from '@mui/internal-test-utils';
 import Checkbox, { checkboxClasses as classes } from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
-import ButtonBase from '@mui/material/ButtonBase';
+import ButtonBase, { buttonBaseClasses } from '@mui/material/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
@@ -253,5 +260,63 @@ describe('<Checkbox />', () => {
     const checkbox = screen.getByRole('checkbox').parentElement;
     await ripple.startTouch(checkbox);
     expect(checkbox.querySelector('.touch-ripple')).to.equal(null);
+  });
+
+  it('should respect a global disableRipple from MuiButtonBase defaultProps', async () => {
+    const theme = createTheme({
+      components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+    });
+    render(
+      <ThemeProvider theme={theme}>
+        <Checkbox TouchRippleProps={{ className: 'touch-ripple' }} />
+      </ThemeProvider>,
+    );
+
+    const checkbox = screen.getByRole('checkbox').parentElement;
+    await ripple.startTouch(checkbox);
+    expect(checkbox.querySelector('.touch-ripple')).to.equal(null);
+  });
+
+  it('should let an explicit disableRipple={false} override a global disableRipple', async () => {
+    const theme = createTheme({
+      components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+    });
+    render(
+      <ThemeProvider theme={theme}>
+        <Checkbox disableRipple={false} TouchRippleProps={{ className: 'touch-ripple' }} />
+      </ThemeProvider>,
+    );
+
+    const checkbox = screen.getByRole('checkbox').parentElement;
+    await ripple.startTouch(checkbox);
+    expect(checkbox.querySelector('.touch-ripple')).not.to.equal(null);
+  });
+
+  describe('theme.focusVisible', () => {
+    // `cssVariables: true` guards the shouldSkipGeneratingVar fix — the recipe must stay inline on
+    // the svg. No-vars coverage is the FocusVisible/SelectionControls regression fixture.
+    it.skipIf(isJsdom())('draws the focus ring on the icon svg, not the ButtonBase root', () => {
+      const theme = createTheme({
+        cssVariables: true,
+        focusVisible: true,
+        components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Checkbox />
+        </ThemeProvider>,
+      );
+      const input = screen.getByRole('checkbox');
+      simulatePointerDevice();
+      focusVisible(input);
+      expect(input.parentElement).to.have.class(buttonBaseClasses.focusVisible);
+      expect(input.parentElement.querySelector('svg')).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+      // the shared ButtonBase root ring is off, so there is no double ring
+      expect(input.parentElement).toHaveComputedStyle({ outlineStyle: 'none' });
+    });
   });
 });

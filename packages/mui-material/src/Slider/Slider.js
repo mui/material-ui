@@ -17,6 +17,7 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import BaseSliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { getTransitionStyles } from '../transitions/utils';
+import { outsetFocusRing } from '../styles/focusVisible';
 
 function Identity(x) {
   return x;
@@ -281,6 +282,9 @@ export const SliderThumb = styled('span', {
         boxShadow: 'none',
       },
     },
+    ...(theme.focusVisible && {
+      [`&.${sliderClasses.focusVisible}`]: { ...outsetFocusRing, ...theme.focusVisible },
+    }),
     variants: [
       {
         props: { size: 'small' },
@@ -311,12 +315,20 @@ export const SliderThumb = styled('span', {
         .map(([color]) => ({
           props: { color },
           style: {
-            [`&:hover, &.${sliderClasses.focusVisible}`]: {
+            '&:hover': {
               boxShadow: `0px 0px 0px 8px ${theme.alpha((theme.vars || theme).palette[color].main, 0.16)}`,
               '@media (hover: none)': {
                 boxShadow: 'none',
               },
             },
+            ...(!theme.focusVisible && {
+              [`&.${sliderClasses.focusVisible}`]: {
+                boxShadow: `0px 0px 0px 8px ${theme.alpha((theme.vars || theme).palette[color].main, 0.16)}`,
+                '@media (hover: none)': {
+                  boxShadow: 'none',
+                },
+              },
+            }),
             [`&.${sliderClasses.active}`]: {
               boxShadow: `0px 0px 0px 14px ${theme.alpha((theme.vars || theme).palette[color].main, 0.16)}`,
             },

@@ -9,7 +9,7 @@ title: Overview
 ## Introduction
 
 MUI System is a set of CSS utilities to help you build custom designs more efficiently.
-It's used internally by libraries like [Material UI](/material-ui/), [Joy UI](/joy-ui/getting-started/).
+It's used internally by libraries like [Material UI](/material-ui/).
 
 MUI System gives you a set of flexible, generic wrapper components like [`Box`](/system/react-box/) and [`Container`](/system/react-container/) that can be quickly customized using the `sx` prop.
 This prop lets you define styles directly within the components themselves, rather than creating bulky and redundant `const` definitions with styled-components.

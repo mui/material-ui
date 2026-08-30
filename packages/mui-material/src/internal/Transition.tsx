@@ -6,7 +6,10 @@ import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import useValueAsRef from '@mui/utils/useValueAsRef';
 // Material UI transitions must still work inside react-transition-group's TransitionGroup.
 // Import only its context module; do not import its Transition or TransitionGroup components.
-import TransitionGroupContext from 'react-transition-group/TransitionGroupContext';
+// Use RTG's explicit CJS file for Node ESM/SSR; package.json's `browser` field redirects
+// browser bundles to RTG's ESM file.
+// eslint-disable-next-line import/extensions -- Node ESM needs the explicit .js extension.
+import TransitionGroupContext from 'react-transition-group/cjs/TransitionGroupContext.js';
 import { reflow } from '../transitions/utils';
 
 type RenderedTransitionStatus = 'entering' | 'entered' | 'exiting' | 'exited';
@@ -24,8 +27,7 @@ interface CancellableCallback {
 }
 
 type TransitionEndListener =
-  | ((done: () => void) => void)
-  | ((node: HTMLElement, done: () => void) => void);
+  ((done: () => void) => void) | ((node: HTMLElement, done: () => void) => void);
 
 interface InternalTransitionProps {
   in?: boolean | undefined;
@@ -348,7 +350,7 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
   // Runs on mount. useEnhancedEffect is needed because the initial appear
   // transition may read layout before paint. In StrictMode development builds,
   // React mounts, cleans up, and mounts again; cleanup cancels pending work and
-  // the second mount restarts the same transition.
+  // the status effect below restarts an active transition when effects reconnect.
   useEnhancedEffect(() => {
     mountedRef.current = true;
     if (shouldAppearOnMountRef.current) {
@@ -387,6 +389,8 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
 
   // Fire lifecycle callbacks for committed status changes. The guard prevents
   // duplicate callbacks in StrictMode; propsRef keeps delayed callbacks fresh.
+  // Completion is scheduled outside the guard so an active transition is
+  // restarted when React reconnects effects while preserving state.
   useEnhancedEffect(() => {
     // `unmounted` is bookkeeping, not a real transition state. Do not fire
     // callbacks when moving into or out of it; otherwise the first open with
@@ -396,21 +400,29 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
       return;
     }
     const prev = lastFiredStatusRef.current;
-    if (prev === status) {
-      return;
+    const statusChanged = prev !== status;
+    if (statusChanged) {
+      lastFiredStatusRef.current = status;
     }
-    lastFiredStatusRef.current = status;
 
     const current = propsRef.current;
     if (status === 'entering') {
-      current.onEntering?.(isAppearingRef.current);
-      scheduleTransitionEnd('entered', 'entering');
+      if (statusChanged) {
+        current.onEntering?.(isAppearingRef.current);
+      }
+      if (nextCallbackRef.current === null && statusRef.current === status) {
+        scheduleTransitionEnd('entered', 'entering');
+      }
     } else if (status === 'exiting') {
-      current.onExiting?.();
-      scheduleTransitionEnd('exited', 'exiting');
-    } else if (status === 'entered') {
+      if (statusChanged) {
+        current.onExiting?.();
+      }
+      if (nextCallbackRef.current === null && statusRef.current === status) {
+        scheduleTransitionEnd('exited', 'exiting');
+      }
+    } else if (status === 'entered' && statusChanged) {
       current.onEntered?.(isAppearingRef.current);
-    } else if (status === 'exited') {
+    } else if (status === 'exited' && statusChanged) {
       current.onExited?.();
     }
   }, [propsRef, scheduleTransitionEnd, status]);

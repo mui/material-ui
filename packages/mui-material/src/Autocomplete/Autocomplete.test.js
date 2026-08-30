@@ -1,6 +1,6 @@
+import { expect, describe, it, beforeEach } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { expect } from 'chai';
 import {
   act,
   createRenderer,
@@ -93,6 +93,7 @@ describe('<Autocomplete />', () => {
       slots: {
         clearIndicator: { expectedClassName: classes.clearIndicator },
         popupIndicator: { expectedClassName: classes.popupIndicator },
+        status: { expectedClassName: classes.status },
       },
       only: [
         'slotsProp',
@@ -231,6 +232,26 @@ describe('<Autocomplete />', () => {
       );
       fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
       expect(document.querySelector(`.${classes.paper}`).textContent).to.equal('Loading…');
+    });
+
+    it('should render the loading message in the status container', () => {
+      const view = render(
+        <Autocomplete
+          open
+          options={['one']}
+          loadingText="Fetching options"
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const status = screen.getByRole('status');
+      expect(status).to.have.attribute('aria-live', 'polite');
+      expect(status).to.have.attribute('aria-atomic', 'true');
+      expect(status.children).to.have.length(0);
+
+      view.setProps({ options: [], loading: true });
+
+      expect(status).to.have.text('Fetching options');
     });
 
     it('should show supplied options to the "options" prop even when loading', () => {
@@ -3374,6 +3395,73 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.equal('The');
     });
 
+    it('should prevent form submission when committing typed text over auto-highlighted match', async () => {
+      const handleChange = spy();
+      const handleSubmit = spy();
+      const options = ['The Shawshank Redemption', 'The Godfather'];
+      const { user } = render(
+        <div
+          onKeyDown={(event) => {
+            if (!event.defaultPrevented && event.key === 'Enter') {
+              handleSubmit();
+            }
+          }}
+        >
+          <Autocomplete
+            freeSolo
+            autoHighlight
+            openOnFocus
+            options={options}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />
+        </div>,
+      );
+
+      await user.type(screen.getByRole('combobox'), 'The{Enter}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('The');
+      expect(handleSubmit.callCount).to.equal(0);
+
+      await user.keyboard('{Enter}');
+
+      expect(handleSubmit.callCount).to.equal(1);
+    });
+
+    it('should prevent form submission when committing edited selected text over value-highlighted match', async () => {
+      const handleChange = spy();
+      const handleSubmit = spy();
+      const options = ['The Shawshank Redemption', 'The Godfather'];
+      const { user } = render(
+        <div
+          onKeyDown={(event) => {
+            if (!event.defaultPrevented && event.key === 'Enter') {
+              handleSubmit();
+            }
+          }}
+        >
+          <Autocomplete
+            freeSolo
+            defaultValue="The Godfather"
+            options={options}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />
+        </div>,
+      );
+
+      await user.keyboard('{Backspace}{Backspace}{Backspace}{Backspace}{Backspace}{Enter}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('The Godf');
+      expect(handleSubmit.callCount).to.equal(0);
+
+      await user.keyboard('{Enter}');
+
+      expect(handleSubmit.callCount).to.equal(1);
+    });
+
     it('should prefer typed text after editing a selected value', async () => {
       const handleChange = spy();
       const options = ['The Shawshank Redemption', 'The Godfather'];
@@ -4970,6 +5058,78 @@ describe('<Autocomplete />', () => {
     expect(screen.getByTestId('label')).to.have.attribute('data-shrink', 'false');
   });
 
+  describe('prop: noOptionsText', () => {
+    it('should render the no options text when there are no options', () => {
+      render(
+        <Autocomplete
+          open
+          options={[]}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      expect(screen.getByText('No options')).not.to.equal(null);
+    });
+
+    it('should render the custom no options text when there are no options', () => {
+      render(
+        <Autocomplete
+          open
+          options={[]}
+          noOptionsText="No results"
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      expect(screen.getByText('No results')).not.to.equal(null);
+    });
+
+    it('should not render the no options text when loading and there are no options', () => {
+      render(
+        <Autocomplete
+          open
+          options={[]}
+          loading
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      expect(screen.queryByText('No options')).to.equal(null);
+    });
+
+    it('should not render the no options text when freeSolo is true and there are no options', () => {
+      render(
+        <Autocomplete
+          open
+          options={[]}
+          freeSolo
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      expect(screen.queryByText('No options')).to.equal(null);
+    });
+
+    it('should always render a status message container for no options', async () => {
+      const { user } = render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const status = screen.getByRole('status');
+      expect(status).to.have.attribute('aria-live', 'polite');
+      expect(status).to.have.attribute('aria-atomic', 'true');
+      expect(status.children).to.have.length(0);
+
+      await user.type(screen.getByRole('combobox'), 'three');
+
+      expect(status.children).to.have.length(1);
+    });
+  });
+
   // https://github.com/mui/material-ui/issues/47203
   it.skipIf(isJsdom())(
     'should not scroll the listbox to the top when listbox is scrolled down and one of the end option is clicked',
@@ -5158,6 +5318,58 @@ describe('<Autocomplete />', () => {
       } finally {
         window.ResizeObserver = originalRO;
       }
+    });
+  });
+
+  describe('theme.focusVisible', () => {
+    it.skipIf(isJsdom())('insets the curated ring on the keyboard-highlighted option', () => {
+      render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Autocomplete
+            open
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />
+        </ThemeProvider>,
+      );
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
+      const option = screen.getAllByRole('option')[0];
+      expect(option).to.have.class(classes.focusVisible);
+      expect(option).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '-2px',
+      });
+    });
+
+    it.skipIf(isJsdom())('does not add the focus tint on a selected highlighted option', () => {
+      render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Autocomplete
+            open
+            value="one"
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />
+        </ThemeProvider>,
+      );
+      const combobox = screen.getByRole('combobox');
+      // walk past "two" and "three" so the highlight lands back on the selected "one"
+      fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+      fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+      fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+
+      const option = screen.getAllByRole('option')[0];
+      expect(option).to.have.class(classes.focusVisible);
+      expect(option).to.have.attribute('aria-selected', 'true');
+
+      // The theme ring suppresses the extra focusOpacity bump, so the option keeps whatever the
+      // highlight alone gives it. That value is media-dependent: pointer devices get the blended
+      // `selectedOpacity + hoverOpacity`, while `@media (hover: none)` environments (headless
+      // Firefox on CI, touch devices) fall back to `action.selected`.
+      const backgroundColor = window.getComputedStyle(option).backgroundColor;
+      expect(backgroundColor).not.to.equal('rgba(25, 118, 210, 0.2)');
+      expect(['rgba(25, 118, 210, 0.12)', 'rgba(0, 0, 0, 0.08)']).to.contain(backgroundColor);
     });
   });
 });

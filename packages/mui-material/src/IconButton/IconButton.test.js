@@ -1,6 +1,5 @@
+import { describe, it, expect, vi } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
-import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import { createRenderer, isJsdom, reactMajor, screen, within } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
@@ -100,8 +99,8 @@ describe('<IconButton />', () => {
     });
 
     it('allows disabled buttons to remain focusable without activation', async () => {
-      const onClick = spy();
-      const onParentClick = spy();
+      const onClick = vi.fn();
+      const onParentClick = vi.fn();
 
       const { user } = render(
         <div onClick={onParentClick}>
@@ -124,22 +123,12 @@ describe('<IconButton />', () => {
       await user.keyboard(' ');
       await user.click(button);
 
-      expect(onClick.callCount).to.equal(0);
-      expect(onParentClick.callCount).to.equal(0);
+      expect(onClick).not.toHaveBeenCalled();
+      expect(onParentClick).not.toHaveBeenCalled();
     });
 
-    it.skipIf(isJsdom())('applies a customizable focus ring to disabled focusable buttons', () => {
-      const theme = createTheme({
-        components: {
-          MuiIconButton: {
-            styleOverrides: {
-              root: {
-                '--IconButton-focusRingColor': 'rgb(1, 2, 3)',
-              },
-            },
-          },
-        },
-      });
+    it.skipIf(isJsdom())('draws the theme focus ring on disabled focusable buttons', () => {
+      const theme = createTheme({ focusVisible: { outlineColor: 'rgb(1, 2, 3)' } });
 
       render(
         <ThemeProvider theme={theme}>
@@ -154,10 +143,8 @@ describe('<IconButton />', () => {
         outlineStyle: 'solid',
         outlineWidth: '2px',
         outlineOffset: '2px',
+        outlineColor: 'rgb(1, 2, 3)',
       });
-      expect(getComputedStyle(button).getPropertyValue('--IconButton-focusRingColor')).to.equal(
-        'rgb(1, 2, 3)',
-      );
     });
 
     it('allows Tooltip to open from hover and focus on disabled focusable buttons', async () => {
