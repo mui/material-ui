@@ -150,6 +150,10 @@ const OutlinedInputInput = styled(InputBaseInput, {
       borderRadius: 'inherit',
       ...(theme.vars && {
         WebkitBoxShadow: theme.vars.palette.Input.autofillWebkitBoxShadow,
+        ...theme.applyStyles('dark', {
+          WebkitTextFillColor: '#fff',
+          caretColor: '#fff',
+        }),
       }),
     },
     variants: [

@@ -225,6 +225,10 @@ const FilledInputInput = styled(InputBaseInput, {
       borderTopRightRadius: 'inherit',
       ...(theme.vars && {
         WebkitBoxShadow: theme.vars.palette.Input.autofillWebkitBoxShadow,
+        ...theme.applyStyles('dark', {
+          WebkitTextFillColor: '#fff',
+          caretColor: '#fff',
+        }),
       }),
     },
     variants: [
