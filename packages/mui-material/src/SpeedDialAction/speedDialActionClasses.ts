@@ -16,6 +16,10 @@ export interface SpeedDialActionClasses {
   tooltipPlacementLeft: string;
   /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="right"`` */
   tooltipPlacementRight: string;
+  /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="top"`` */
+  tooltipPlacementTop: string;
+  /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="bottom"`` */
+  tooltipPlacementBottom: string;
 }
 
 export type SpeedDialActionClassKey = keyof SpeedDialActionClasses;
@@ -34,6 +38,8 @@ const speedDialActionClasses: SpeedDialActionClasses = generateUtilityClasses(
     'staticTooltipLabel',
     'tooltipPlacementLeft',
     'tooltipPlacementRight',
+    'tooltipPlacementTop',
+    'tooltipPlacementBottom',
   ],
 );
 
