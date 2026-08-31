@@ -20,7 +20,7 @@
     "@types/react-is": "19.2.0",
     "@types/sinon": "22.0.0",
     "docs": "workspace:^",
-    "es-toolkit": "1.51.0",
+    "es-toolkit": "1.52.0",
     "fast-glob": "3.3.3",
     "prop-types": "15.8.1",
     "react": "19.2.8",
