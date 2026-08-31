@@ -117,6 +117,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     getBackdropProps,
     getTransitionProps,
     portalRef,
+    portalContainer,
     isTopModal,
     exited,
     hasTransition,
@@ -186,7 +187,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   }
 
   return (
-    <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
+    <Portal ref={portalRef} container={portalContainer} disablePortal={disablePortal}>
       <RootSlot {...rootProps}>
         {!hideBackdrop ? <BackdropSlot {...backdropProps} /> : null}
         <FocusTrap

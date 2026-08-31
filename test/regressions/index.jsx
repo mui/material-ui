@@ -3,12 +3,16 @@
 // globs — reads `Date` at module scope. See `fakeDateSetup.ts` for why this
 // ordering (and the separate `./fixtures` module) is required.
 import './fakeDateSetup';
+// Make the Data Grid demo-data generator run synchronously (before fixtures
+// load any composite). See `syncDataGridGenerator.ts` — prevents the async
+// row-generation skeleton/flake on the grid composites.
+import './syncDataGridGenerator';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router';
-import webfontloader from 'webfontloader';
 import { Globals } from '@react-spring/web';
+import loadFonts from '@mui/internal-test-utils/loadFonts';
 import TestViewer from './TestViewer';
 import MarketingWrapper from './MarketingWrapper';
 import allFixtures from './fixtures';
@@ -23,6 +27,25 @@ window.muiFixture = {
   navigate: () => {
     throw new Error(`muiFixture.navigate is not ready`);
   },
+  // `index.test.js` awaits this in `renderFixture`, before any fixture mounts.
+  // Keep the v1 `css?family=` endpoint: it serves the static per-weight faces the
+  // baselines were recorded with, while `css2` returns variable fonts.
+  fontsReady: loadFonts({
+    stylesheets: [
+      'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CInter:300,400,500,600,700,800,900%7CMaterial+Icons',
+      'https://use.fontawesome.com/releases/v5.14.0/css/all.css',
+    ],
+    faces: [
+      ...[300, 400, 500, 700].map((weight) => ({ family: 'Roboto', weight })),
+      ...[300, 400, 500, 600, 700, 800, 900].map((weight) => ({ family: 'Inter', weight })),
+      { family: 'Material Icons', weight: 400 },
+      { family: 'Font Awesome 5 Free', weight: 900 },
+    ],
+  }),
+  // Read by `index.test.js` to evaluate `ScreenshotRule.minReactMajor`. Taken
+  // from the bundle rather than the test process's own `react` so the two can
+  // never disagree about which React the demos actually render with.
+  reactVersion: React.version,
 };
 
 function FixtureRenderer({ component: FixtureComponent, path }) {
@@ -84,27 +107,6 @@ function App(props) {
   const hash = useHash();
   const isDev = computeIsDev(hash);
 
-  // Using <link rel="stylesheet" /> does not apply the google Roboto font in chromium headless/headfull.
-  const [fontState, setFontState] = React.useState('pending');
-  React.useEffect(() => {
-    webfontloader.load({
-      google: {
-        families: ['Roboto:300,400,500,700', 'Inter:300,400,500,600,700,800,900', 'Material+Icons'],
-      },
-      custom: {
-        families: ['Font Awesome 5 Free:n9'],
-        urls: ['https://use.fontawesome.com/releases/v5.14.0/css/all.css'],
-      },
-      timeout: 20000,
-      active: () => {
-        setFontState('active');
-      },
-      inactive: () => {
-        setFontState('inactive');
-      },
-    });
-  }, []);
-
   function computePath(fixture) {
     return `/${fixture.suite}/${fixture.name}`;
   }
@@ -116,42 +118,39 @@ function App(props) {
 
   return (
     <React.Fragment>
-      {fontState === 'active' ? (
-        <Routes>
-          {fixtures.map((fixture) => {
-            const path = computePath(fixture);
-            const Component = fixture.Component;
-            if (Component === undefined) {
-              console.warn('Missing `Component` for ', fixture);
-              return null;
-            }
+      <Routes>
+        {fixtures.map((fixture) => {
+          const path = computePath(fixture);
+          const Component = fixture.Component;
+          if (Component === undefined) {
+            console.warn('Missing `Component` for ', fixture);
+            return null;
+          }
 
-            // Composites are authored for the Next.js docs site; wrap them in
-            // the branding theme here rather than threading a flag through
-            // `FixtureRenderer`.
-            const FixtureComponent = fixture.isComposite
-              ? () => (
-                  <MarketingWrapper>
-                    <Component />
-                  </MarketingWrapper>
-                )
-              : Component;
+          // Composites are authored for the Next.js docs site; wrap them in
+          // the branding theme here rather than threading a flag through
+          // `FixtureRenderer`.
+          const FixtureComponent = fixture.isComposite
+            ? () => (
+                <MarketingWrapper>
+                  <Component />
+                </MarketingWrapper>
+              )
+            : Component;
 
-            return (
-              <Route
-                key={path}
-                exact
-                path={path}
-                element={<FixtureRenderer component={FixtureComponent} path={path} />}
-              />
-            );
-          })}
-        </Routes>
-      ) : null}
+          return (
+            <Route
+              key={path}
+              exact
+              path={path}
+              element={<FixtureRenderer component={FixtureComponent} path={path} />}
+            />
+          );
+        })}
+      </Routes>
 
       {isDev ? (
         <div>
-          <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
           <p>
             Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
             appending <code>#no-dev</code>.

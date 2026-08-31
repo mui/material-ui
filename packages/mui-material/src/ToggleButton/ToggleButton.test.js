@@ -1,5 +1,5 @@
+import { describe, it, expect, vi } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import ToggleButton, { toggleButtonClasses as classes } from '@mui/material/ToggleButton';
@@ -51,6 +51,12 @@ describe('<ToggleButton />', () => {
     );
 
     expect(screen.getByRole('button')).to.have.property('disabled', true);
+  });
+
+  it('should remain in the tab order when rendered standalone', () => {
+    render(<ToggleButton value="hello">Hello World</ToggleButton>);
+
+    expect(screen.getByRole('button')).to.have.property('tabIndex', 0);
   });
 
   it('can render a small button', () => {

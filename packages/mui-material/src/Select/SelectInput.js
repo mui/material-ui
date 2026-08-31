@@ -403,6 +403,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
     // Hijack the default focus behavior.
     event.preventDefault();
+
+    if (!displayRef.current) {
+      return;
+    }
+
     displayRef.current.focus();
 
     const doc = ownerDocument(event.currentTarget);
