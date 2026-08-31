@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import type { VariantCode, VariantSource } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import { applyVariantTransform } from './useMuiChatExporter';
 
