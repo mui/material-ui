@@ -116,7 +116,7 @@
     "@types/nprogress": "0.2.3",
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.4",
+    "@types/react-dom": "19.2.5",
     "@types/react-swipeable-views": "0.13.6",
     "@types/react-transition-group": "4.4.12",
     "@types/semver": "7.8.0",
