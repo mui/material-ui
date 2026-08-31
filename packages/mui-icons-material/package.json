@@ -50,13 +50,13 @@
     "@types/react": "19.2.18",
     "chalk": "6.0.0",
     "cross-fetch": "4.1.0",
-    "es-toolkit": "1.51.0",
+    "es-toolkit": "1.52.0",
     "fast-glob": "3.3.3",
     "mustache": "4.2.0",
     "react": "19.2.8",
     "rimraf": "6.1.3",
     "shx": "0.4.0",
-    "svgo": "4.0.2",
+    "svgo": "4.1.0",
     "yargs": "18.1.0"
   },
   "peerDependencies": {
