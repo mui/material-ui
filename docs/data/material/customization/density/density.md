@@ -10,7 +10,7 @@ Starting from v9.5, Material UI provides `enhanceDensity`, an opt-in theme enha
 
 ## Usage
 
-Apply `enhanceDensity` to a theme and pass the result to `ThemeProvider`:
+Apply `enhanceDensity` to a theme and pass the result to `ThemeProvider`, components under the provider will start using the new scale:
 
 ```js
 import { createTheme, enhanceDensity, ThemeProvider } from '@mui/material/styles';
@@ -22,7 +22,9 @@ function App() {
 }
 ```
 
-Each annotation names the value behind that dimension. Turn the enhancer off to see the same button on its own built-in numbers:
+The demo below demonstrates the effect of `enhanceDensity` on a Button between sizes.
+
+Without the enhancer, the Button uses raw pixel values for various CSS properties. When the enhancer kicks in, the Button's CSS implmentation switches to use the new spacing scale and the touch-target size for the `medium` size.
 
 {{"demo": "EnhanceDensityDemo.js"}}
 
@@ -34,9 +36,11 @@ Spacing between children moves to the container as well: wherever the layout all
 `enhanceDensity` changes nothing until you call it. A theme that doesn't go through the enhancer renders exactly as it does today.
 :::
 
-## The spacing scale
+## Benefits
 
-The scale is a set of named steps. `enhanceDensity` adds them to the theme's spacing surface—there's no new theme node to learn:
+### The spacing scale
+
+Every component draws its spacing and sizing from one fixed set of steps, so nothing is sized on its own terms and values that should match do match:
 
 | Step       | Default value | Typical use                           |
 | :--------- | :------------ | :------------------------------------ |
@@ -48,26 +52,31 @@ The scale is a set of named steps. `enhanceDensity` adds them to the theme's spa
 | `x-large`  | 32px          | Large control height                  |
 | `xx-large` | 48px          | Large surfaces                        |
 
-One more value sits outside the ladder: **`touch-target`**, the 32px box that medium-size interactive controls converge on. It sizes controls rather than spacing them, so it is emitted as a plain length—it is not a spacing step, has no CSS variable, and `theme.spacing()` doesn't resolve it. It is still yours to move, through the same override object described below: raise it for touch-first products, lower it for data tools.
+One more value sits outside the ladder: **`touch-target`**, the 32px box that medium-size interactive controls converge on. It sizes controls rather than spacing them, so it is not a spacing step and `theme.spacing()` doesn't resolve it. It is still yours to move, through the same override object as the rest.
 
-### Augmented `theme.spacing()`
+### Works with the existing API
 
-`enhanceDensity` augments [`theme.spacing()`](/material-ui/customization/spacing/) so it resolves step names in addition to the numbers and raw CSS values it already accepts:
+The scale rides the spacing API you already use—there's no new function to learn and no new theme node. [`theme.spacing()`](/material-ui/customization/spacing/) resolves step names alongside the numbers and raw CSS values it already accepts, and a leading dash negates a step:
 
 ```js
 const theme = enhanceDensity(createTheme());
 
 theme.spacing(2); // '16px' — unchanged
 theme.spacing('small'); // '12px'
-theme.spacing('-x-small'); // '-8px' — a leading dash negates the step
-theme.spacing('small', 'medium'); // '12px 16px' — steps work in every argument
+theme.spacing('-x-small'); // '-8px'
 ```
 
-The step names surface in TypeScript autocompletion. Numbers and raw CSS strings keep their current output, so existing `theme.spacing()` calls, `sx` spacing props, and `gap` values are unaffected.
+The spacing props of the [`sx` prop](/material-ui/customization/how-to-customize/#the-sx-prop) take the same names:
 
-### CSS variables
+```jsx
+<Box sx={{ p: 'small', gap: 'x-small' }} />
+```
 
-On a theme created with [CSS theme variables](/material-ui/customization/css-theme-variables/overview/), the steps also ship as CSS variables, and `theme.spacing()` returns a reference to them:
+Numbers and raw CSS strings keep their current output, so existing calls are unaffected, and the step names surface in TypeScript autocompletion.
+
+### CSS variables support
+
+On a theme created with [CSS theme variables](/material-ui/customization/css-theme-variables/overview/), the steps also ship as global CSS variables, and `theme.spacing()` returns a reference to them:
 
 ```js
 const theme = enhanceDensity(createTheme({ cssVariables: true }));
@@ -75,13 +84,15 @@ const theme = enhanceDensity(createTheme({ cssVariables: true }));
 theme.spacing('small'); // 'var(--mui-spacing-small)'
 ```
 
-This means the scale can be read—and overridden—from plain CSS:
+This means the scale can be read—and overridden—from plain CSS, including for one region of the page:
 
 ```css
 .dense-region {
   --mui-spacing-medium: 12px;
 }
 ```
+
+Every step gets a variable except `touch-target`, which is emitted as a plain length because it isn't a spacing step.
 
 ## Customizing the scale
 
@@ -135,13 +146,7 @@ Keep the recipe in its own module and import it wherever the values are needed. 
 
 ## Using the scale in your own styles
 
-The spacing props of the [`sx` prop](/material-ui/customization/how-to-customize/#the-sx-prop) accept the step names directly, so custom layout matches the built-in components:
-
-```jsx
-<Box sx={{ p: 'small', gap: 'x-small' }} />
-```
-
-This covers every spacing prop—`p`, `m`, their per-side and axis forms, and `gap`—including responsive values. A leading dash negates the step:
+Step names work across every spacing prop—`p`, `m`, their per-side and axis forms, and `gap`—including responsive values:
 
 ```jsx
 <Box sx={{ px: { xs: 'small', md: 'large' }, mt: '-x-small' }} />
