@@ -72,7 +72,13 @@ export function colorMix(options: ColorMixOptions = {}): StateGenerator {
 
   return ({ color, theme }: GeneratorContext): ColorStates => {
     const palette = ((theme as any).vars || theme).palette;
-    const pole = target ?? palette.common.onBackground;
+    // `common.onBackground` only exists on `cssVariables` themes. On a plain
+    // `createTheme({ palette })` it is absent, and an undefined pole would emit
+    // `color-mix(in oklab, C, undefined 4%)` — invalid CSS that browsers drop
+    // silently, leaving the element transparent. Fall back to the value that
+    // token carries anyway: black on a light ground, white on a dark one.
+    const pole =
+      target ?? palette.common?.onBackground ?? (theme.palette?.mode === 'dark' ? '#fff' : '#000');
     const times = (n: number, unit: string) => (n === 1 ? unit : `calc(${n} * ${unit})`);
     const mix = (base: string, to: string, amount: string) =>
       `color-mix(in oklab, ${base}, ${to} ${amount})`;
