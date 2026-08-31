@@ -54,7 +54,7 @@ Every component draws its spacing and sizing from one fixed set of steps, so not
 
 One more value sits outside the ladder: **`touch-target`**, the 32px box that medium-size interactive controls converge on. It sizes controls rather than spacing them, so it is not a spacing step and `theme.spacing()` doesn't resolve it. It is still yours to move, through the same override object as the rest.
 
-### Works with the existing API
+### Compatible with `theme.spacing` and `sx` prop
 
 The scale rides the spacing API you already use—there's no new function to learn and no new theme node. [`theme.spacing()`](/material-ui/customization/spacing/) resolves step names alongside the numbers and raw CSS values it already accepts, and a leading dash negates a step:
 
@@ -72,7 +72,7 @@ The spacing props of the [`sx` prop](/material-ui/customization/how-to-customize
 <Box sx={{ p: 'small', gap: 'x-small' }} />
 ```
 
-Numbers and raw CSS strings keep their current output, so existing calls are unaffected, and the step names surface in TypeScript autocompletion.
+Numbers and raw CSS strings keep their current output, so existing calls are unaffected. TypeScript suggests the step names inside `theme.spacing()`; the `sx` props accept the same names, but don't list them in autocompletion.
 
 ### CSS variables support
 
