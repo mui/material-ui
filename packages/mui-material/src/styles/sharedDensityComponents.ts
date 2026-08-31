@@ -131,9 +131,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       { props: { fontSize: 'large' }, style: { fontSize: spacing(2.5) } },
     ],
   });
-  // Master resets MenuItem min-height at sm-up and stylis hoists that media
-  // block AFTER the class rule — the floor must re-assert inside the same media.
-  const smUp = enhanced.breakpoints ? enhanced.breakpoints.up('sm') : '@media (min-width:600px)';
+  const smUp = enhanced.breakpoints.up('sm');
   addRootOverride(enhanced.components, 'MuiMenuItem', {
     paddingBlock: spacing('xx-small'),
     minHeight: 'auto',
@@ -653,7 +651,28 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         paddingBlock: `var(--_autocompleteInputPadBlock)`,
       },
   });
-  addRootOverride(enhanced.components, 'MuiAutocomplete', { margin: '1px' }, 'tag');
+  addRootOverride(
+    enhanced.components,
+    'MuiAutocomplete',
+    {
+      // The option list renders in a Popper — emit on the listbox slot.
+      [`& .${autocompleteClasses.option}`]: {
+        minHeight: touchTarget,
+        paddingBlock: spacing('xx-small'),
+        paddingInline: spacing('x-small'),
+      },
+    },
+    'listbox',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiAutocomplete',
+    {
+      margin: '1px',
+      '--_height': `calc(${touchTarget} - 2px - 2*var(--_autocompleteInputRootPadBlock))`, // 2px is from the margin
+    },
+    'tag',
+  );
   // hasConnector:false = the first step; end nodes sit flush with the edge.
   addRootOverride(enhanced.components, 'MuiStep', {
     variants: [
@@ -1187,19 +1206,6 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     [`& .${tablePaginationClasses.select}`]: enhanced.typography?.body2 ?? {},
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiAutocomplete',
-    {
-      // The option list renders in a Popper — emit on the listbox slot.
-      [`& .${autocompleteClasses.option}`]: {
-        minHeight: touchTarget,
-        paddingBlock: spacing('xx-small'),
-        paddingInline: spacing('x-small'),
-      },
-    },
-    'listbox',
-  );
   addRootOverride(enhanced.components, 'MuiToolbar', {
     // Regular mirrors theme.mixins.toolbar's responsive shape as
     // styleOverrides — the mixin stays untouched (offset math keeps master).
@@ -1312,25 +1318,26 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // Child-margin clears sit at slot level: slot rules render after master's
   // size re-asserts and win by order at equal specificity.
   addRootOverride(enhanced.components, 'MuiChip', {
+    '--_childSize': `calc(var(--_height) - ${spacing('x-small')})`,
+    '--_offset': `calc(var(--_height)/2 - var(--_childSize)/2 - var(--_paddingInline))`,
+    height: 'var(--_height)', // use private variable to be controlled by Autocomplete
+    paddingInline: 'var(--_paddingInline)',
+    borderRadius: 'var(--_height)', // pill shape
     variants: [
       {
         props: { size: 'medium' },
         style: {
-          height: touchTarget,
-          paddingInline: spacing('small'),
+          '--_height': touchTarget,
+          '--_paddingInline': spacing('small'),
           gap: spacing('x-small'),
-          '--_childSize': `calc(${touchTarget} - ${spacing('x-small')})`,
-          '--_offset': `calc(-1 * (${spacing('small')} - ${spacing('x-small')}/2))`,
         },
       },
       {
         props: { size: 'small' },
         style: {
-          height: `calc(${spacing('large')} + ${spacing('xx-small')})`,
-          paddingInline: spacing('x-small'),
+          '--_height': `calc(${spacing('large')} + ${spacing('xx-small')})`,
+          '--_paddingInline': spacing('x-small'),
           gap: spacing('xx-small'),
-          '--_childSize': `calc(${spacing('large')} + ${spacing('xx-small')} - ${spacing('x-small')})`,
-          '--_offset': `calc(-1 * (${spacing('x-small')} - ${spacing('x-small')}/2))`,
         },
       },
     ],
