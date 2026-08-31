@@ -175,6 +175,23 @@ function TestMenu2GrowPreviewCards() {
   );
 }
 
+// An ancestor that the test animates, so it controls what the card waits for.
+// The `Popper` portals out of it, so only the item sits below the animation.
+function TestAnimatedAncestor(props: { style?: React.CSSProperties }) {
+  const { getItemProps, popover } = useMenu2ItemPopover<string>();
+
+  return (
+    <div data-testid="ancestor" style={props.style}>
+      <button data-testid="item" type="button" {...getItemProps('Alpha detail.')}>
+        Alpha
+      </button>
+      <Popper {...popover.props}>
+        <Paper data-testid="preview-card">{popover.value}</Paper>
+      </Popper>
+    </div>
+  );
+}
+
 interface FrameSample {
   card: DOMRect | null;
   menu: DOMRect | null;
@@ -681,5 +698,120 @@ describe('useMenu2ItemPopover', () => {
     // The card follows once the menu stops animating.
     await screen.findByTestId('preview-card');
     expect(item).to.have.attribute('aria-describedby');
+  });
+
+  // The browser cancels a transition whose target changes while it runs, which
+  // rejects `Animation.finished`. A wait that ends on the rejection opens the
+  // card mid-movement, and a wait with no rejection handler never opens it.
+  it.skipIf(isJsdom())('waits for the animation that replaces a cancelled one', async () => {
+    render(<TestAnimatedAncestor />);
+
+    const ancestor = screen.getByTestId('ancestor');
+    const keyframes = [{ transform: 'translateX(0px)' }, { transform: 'translateX(20px)' }];
+    const first = ancestor.animate(keyframes, { duration: 400 });
+
+    fireEvent.mouseEnter(screen.getByTestId('item'));
+    expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
+
+    // The replacement starts in the same task, the way the browser restarts a
+    // transition it cancelled.
+    first.cancel();
+    const second = ancestor.animate(keyframes, { duration: 200 });
+
+    await act(async () => {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 80);
+      });
+    });
+    expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
+
+    await act(async () => {
+      await second.finished;
+    });
+    await screen.findByTestId('preview-card');
+  });
+
+  // The menu fades for longer than it moves, so a wait for every animation
+  // costs the card about 75ms for a transition that places nothing.
+  it.skipIf(isJsdom())('does not wait for a transition that cannot move the item', () => {
+    render(<TestAnimatedAncestor style={{ opacity: 1, transition: 'opacity 300ms linear' }} />);
+
+    const ancestor = screen.getByTestId('ancestor');
+    // Resolve the current style, so that the change after it starts a
+    // transition instead of landing in the same recalculation.
+    ancestor.getBoundingClientRect();
+    ancestor.style.opacity = '0.5';
+
+    // A wait for every animation would hold the card while this transition runs.
+    expect(ancestor.getAnimations()).to.have.length(1);
+
+    fireEvent.mouseEnter(screen.getByTestId('item'));
+
+    expect(document.querySelector('[data-testid="preview-card"]')).not.to.equal(null);
+  });
+
+  // The filter is a deny list, so a property that is not on it holds the card.
+  it.skipIf(isJsdom())('waits for a transition of a property it does not know', async () => {
+    render(
+      <TestAnimatedAncestor style={{ marginLeft: 0, transition: 'margin-left 200ms linear' }} />,
+    );
+
+    const ancestor = screen.getByTestId('ancestor');
+    ancestor.getBoundingClientRect();
+    ancestor.style.marginLeft = '24px';
+
+    expect(ancestor.getAnimations()).to.have.length(1);
+
+    fireEvent.mouseEnter(screen.getByTestId('item'));
+    expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
+
+    await screen.findByTestId('preview-card');
+  });
+
+  // The menu closes while the card still waits, so the wait has to end with it.
+  it.skipIf(isJsdom())(
+    'leaves no card behind when the menu closes during its open animation',
+    async () => {
+      const { user } = render(<TestMenu2GrowPreviewCards />);
+      await act(async () => {
+        screen.getByRole('button', { name: 'Help cards' }).focus();
+      });
+
+      await user.keyboard('{Enter}');
+      expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
+
+      await user.keyboard('{Escape}');
+      await act(async () => {
+        await new Promise((resolve) => {
+          setTimeout(resolve, 600);
+        });
+      });
+
+      expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
+      expect(document.querySelector('[role="menu"]')).to.equal(null);
+    },
+  );
+
+  // A paused animation holds the element still, and nothing promises that it
+  // resumes. `Animation.finished` never settles while it is paused.
+  it.skipIf(isJsdom())('does not wait for a paused ancestor animation', async () => {
+    render(<TestAnimatedAncestor />);
+
+    const item = screen.getByTestId('item');
+    const ancestor = screen.getByTestId('ancestor');
+    const animation = ancestor.animate(
+      [{ transform: 'translateX(0px)' }, { transform: 'translateX(50px)' }],
+      4000,
+    );
+    animation.pause();
+
+    try {
+      fireEvent.mouseEnter(item);
+
+      await screen.findByTestId('preview-card');
+      expect(animation.playState).to.equal('paused');
+    } finally {
+      animation.cancel();
+    }
   });
 });

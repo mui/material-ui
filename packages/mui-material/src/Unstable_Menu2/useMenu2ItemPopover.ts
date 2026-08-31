@@ -1,7 +1,6 @@
 'use client';
 import * as React from 'react';
 import ownerDocument from '@mui/utils/ownerDocument';
-import ownerWindow from '@mui/utils/ownerWindow';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import useId from '@mui/utils/useId';
 import type { PopperPlacementType, PopperProps } from '../Popper';
@@ -109,31 +108,139 @@ const nonInteractiveStyle: React.CSSProperties = { pointerEvents: 'none' };
 // animation yet, so no animation object exists on the element at that moment.
 const startingStyleAttribute = 'data-starting-style';
 
-// The longest wait before the popover opens anyway. An ancestor that animates
-// without an end, or a browser that never finishes one, cannot hide the card.
-const settleTimeout = 500;
+// A transition of one of these properties leaves the element where it is, so
+// the popover does not wait for it. The menu fades for 225ms but stops moving
+// after its 150ms transform, and the card is placed, not painted, by the fade.
+// The list is a deny list on purpose: an unknown property, and a keyframe
+// animation that names no single property, counts as movement.
+const staticTransitionProperties = new Set([
+  'background-color',
+  'border-bottom-color',
+  'border-left-color',
+  'border-right-color',
+  'border-top-color',
+  'box-shadow',
+  'color',
+  'fill',
+  'opacity',
+  'stroke',
+  'visibility',
+]);
+
+/**
+ * Returns the ancestors of the item below the body, where a page level
+ * animation cannot block the popover.
+ */
+function getAnchorAncestors(anchorEl: HTMLElement): HTMLElement[] {
+  const body = ownerDocument(anchorEl).body;
+  const ancestors: HTMLElement[] = [];
+
+  for (
+    let node = anchorEl.parentElement;
+    node !== null && node !== body;
+    node = node.parentElement
+  ) {
+    ancestors.push(node);
+  }
+
+  return ancestors;
+}
+
+// Returns every running animation that can move one of the ancestors.
+function getMovingAnimations(ancestors: HTMLElement[]): Animation[] {
+  const animations: Animation[] = [];
+
+  ancestors.forEach((node) => {
+    if (typeof node.getAnimations !== 'function') {
+      return;
+    }
+    node.getAnimations().forEach((animation) => {
+      // A paused animation holds the element still, and nothing promises that
+      // it ever resumes, so it must not hold the card back.
+      if (animation.playState === 'paused') {
+        return;
+      }
+
+      const { transitionProperty } = animation as Partial<CSSTransition>;
+      if (transitionProperty === undefined || !staticTransitionProperties.has(transitionProperty)) {
+        animations.push(animation);
+      }
+    });
+  });
+
+  return animations;
+}
+
+function hasStartingStyle(ancestors: HTMLElement[]): boolean {
+  return ancestors.some((node) => node.hasAttribute(startingStyleAttribute));
+}
 
 /**
  * Reports whether every ancestor of the item stands still. A menu scales its
  * popup while it opens, which moves each item, so a popover that opens then
- * keeps a position inside the settled menu. The walk stops below the body,
- * where a page level animation cannot block the popover.
+ * keeps a position inside the settled menu.
  */
 function isAnchorSettled(anchorEl: HTMLElement): boolean {
-  const body = ownerDocument(anchorEl).body;
-  let node = anchorEl.parentElement;
+  const ancestors = getAnchorAncestors(anchorEl);
+  return !hasStartingStyle(ancestors) && getMovingAnimations(ancestors).length === 0;
+}
 
-  while (node !== null && node !== body) {
-    if (node.hasAttribute(startingStyleAttribute)) {
-      return false;
+/**
+ * Calls `onSettled` once every ancestor animation that moves the item ends, and
+ * returns a function that stops the wait. `Animation.finished` always settles,
+ * so the wait needs no deadline. It rejects when the browser cancels the
+ * transition, and a cancelled transition often has a replacement, so both
+ * outcomes read the animations again and wait for whatever still runs.
+ */
+function waitForAnchor(anchorEl: HTMLElement, onSettled: () => void): () => void {
+  const ancestors = getAnchorAncestors(anchorEl);
+  const observer = new MutationObserver(() => {
+    if (!hasStartingStyle(ancestors)) {
+      observer.disconnect();
+      waitForAnimations();
     }
-    if (typeof node.getAnimations === 'function' && node.getAnimations().length > 0) {
-      return false;
+  });
+  let aborted = false;
+
+  function settle() {
+    if (aborted) {
+      return;
     }
-    node = node.parentElement;
+    // An animation that ended can stay readable, so wait again only for one
+    // that still has work to do. Without the check the two calls loop.
+    const running = getMovingAnimations(ancestors).filter(
+      (animation) => animation.pending || animation.playState !== 'finished',
+    );
+    if (running.length > 0) {
+      waitForAnimations();
+      return;
+    }
+    onSettled();
   }
 
-  return true;
+  function waitForAnimations() {
+    const animations = getMovingAnimations(ancestors);
+    if (animations.length === 0) {
+      onSettled();
+      return;
+    }
+    Promise.all(animations.map((animation) => animation.finished)).then(settle, settle);
+  }
+
+  if (hasStartingStyle(ancestors)) {
+    // The transition has not started yet, so `getAnimations` is empty on every
+    // ancestor. Read the animations once the attribute goes.
+    ancestors.forEach((node) => {
+      observer.observe(node, { attributeFilter: [startingStyleAttribute] });
+    });
+  } else {
+    waitForAnimations();
+  }
+
+  return () => {
+    aborted = true;
+    observer.disconnect();
+  };
 }
 
 /**
@@ -173,36 +280,21 @@ export default function useMenu2ItemPopover<Value>(
   }, []);
 
   // An item that activates while the menu opens holds the popover closed, so
-  // the Popper paints nothing. Watch each frame, and open the popover as soon
-  // as the menu stands still or the safety timeout ends the wait.
+  // the Popper paints nothing. Open it as soon as the menu stops moving.
   useEnhancedEffect(() => {
     if (activeItem === null || activeItem.ready) {
       return undefined;
     }
 
     const { anchorEl: pendingAnchorEl } = activeItem;
-    const view = ownerWindow(pendingAnchorEl);
-    const deadline = view.performance.now() + settleTimeout;
-    let frame = 0;
 
-    const check = () => {
-      if (!isAnchorSettled(pendingAnchorEl) && view.performance.now() < deadline) {
-        frame = view.requestAnimationFrame(check);
-        return;
-      }
-
+    return waitForAnchor(pendingAnchorEl, () => {
       setActiveItem((current) =>
         current !== null && current.anchorEl === pendingAnchorEl && !current.ready
           ? { ...current, ready: true }
           : current,
       );
-    };
-
-    frame = view.requestAnimationFrame(check);
-
-    return () => {
-      view.cancelAnimationFrame(frame);
-    };
+    });
   }, [activeItem]);
 
   // A menu unmounts the active item without an event, for example when a
