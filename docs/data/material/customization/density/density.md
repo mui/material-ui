@@ -38,6 +38,12 @@ Spacing between children moves to the container as well: wherever the layout all
 
 ## Benefits
 
+### Touch target control
+
+A configurable touch target size that apply to every interactive control to create consistent sizing across the library. If the component has a `size` prop, only the `medium` size is set to the touch target.
+
+<!-- a demo to showcase touch target control -->
+
 ### The spacing scale
 
 Every component draws its spacing and sizing from one fixed set of steps, so nothing is sized on its own terms and values that should match do match:
@@ -54,7 +60,7 @@ Every component draws its spacing and sizing from one fixed set of steps, so not
 
 One more value sits outside the ladder: **`touch-target`**, the 32px box that medium-size interactive controls converge on. It sizes controls rather than spacing them, so it is not a spacing step and `theme.spacing()` doesn't resolve it. It is still yours to move, through the same override object as the rest.
 
-### Compatible with `theme.spacing` and `sx` prop
+### Works with existing spacing API
 
 The scale rides the spacing API you already use—there's no new function to learn and no new theme node. [`theme.spacing()`](/material-ui/customization/spacing/) resolves step names alongside the numbers and raw CSS values it already accepts, and a leading dash negates a step:
 
@@ -70,6 +76,7 @@ The spacing props of the [`sx` prop](/material-ui/customization/how-to-customize
 
 ```jsx
 <Box sx={{ p: 'small', gap: 'x-small' }} />
+// .Box-hashed-class { padding: 12px; gap: 8px; }
 ```
 
 Numbers and raw CSS strings keep their current output, so existing calls are unaffected. TypeScript suggests the step names inside `theme.spacing()`; the `sx` props accept the same names, but don't list them in autocompletion.
@@ -93,6 +100,12 @@ This means the scale can be read—and overridden—from plain CSS, including fo
 ```
 
 Every step gets a variable except `touch-target`, which is emitted as a plain length because it isn't a spacing step.
+
+### Touch target control
+
+Interactive controls converge on one box, so the size of every hit area in the product is a single number. Raise it for touch-first screens, lower it for dense tools—each control reflows around it, and none of them drift apart:
+
+{{"demo": "TouchTargetDemo.js"}}
 
 ## Customizing the scale
 
