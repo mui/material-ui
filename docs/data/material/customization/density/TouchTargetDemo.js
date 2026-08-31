@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import { createTheme, enhanceDensity, ThemeProvider } from '@mui/material/styles';
 import Autocomplete from '@mui/material/Autocomplete';
 import Avatar from '@mui/material/Avatar';
+import AvatarGroup from '@mui/material/AvatarGroup';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Paper from '@mui/material/Paper';
 import Radio from '@mui/material/Radio';
@@ -31,69 +35,42 @@ const themes = STEPS.reduce((acc, value) => {
   return acc;
 }, {});
 
-/** One control plus the height it resolved to, measured off the rendered box. */
-function Cell({ name, span, value, children }) {
+/** Rows are one interactive box tall. A row that reports more than the current
+ * value is carrying a wrapper that pads around the box rather than sitting in
+ * it — the label is measured so it can say so. */
+function Row({ value, children }) {
   const ref = React.useRef(null);
-  const [height, setHeight] = React.useState(0);
+  const [height, setHeight] = React.useState(value);
 
   React.useEffect(() => {
-    const control = ref.current?.firstElementChild;
-    if (!control) {
+    const cell = ref.current;
+    if (!cell) {
       return undefined;
     }
-    const measure = () => setHeight(control.getBoundingClientRect().height);
+    const measure = () => setHeight(Math.round(cell.getBoundingClientRect().height));
     measure();
-    // Border box, not the default content box: a control can absorb the whole
-    // change in its own padding, leaving the content box untouched.
     const observer = new ResizeObserver(measure);
-    observer.observe(control, { box: 'border-box' });
+    observer.observe(cell, { box: 'border-box' });
     return () => observer.disconnect();
   }, [value]);
 
   return (
-    <Box sx={{ gridColumn: `span ${span}` }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, minHeight: 48 }}>
-        <Box ref={ref} sx={{ display: 'flex', alignItems: 'center', minWidth: 0 }}>
-          {children}
-        </Box>
-        <Box
-          aria-hidden
-          sx={{
-            flexShrink: 0,
-            width: 9,
-            height,
-            borderTop: '1px solid',
-            borderBottom: '1px solid',
-            borderColor: 'text.disabled',
-            position: 'relative',
-            '&::before': {
-              content: '""',
-              position: 'absolute',
-              insetBlock: 0,
-              left: 4,
-              borderLeft: '1px solid',
-              borderColor: 'text.disabled',
-            },
-          }}
-        />
+    <React.Fragment>
+      {children}
+      <Box ref={ref} sx={{ justifyContent: 'center' }}>
         <Typography
           variant="caption"
-          sx={{ color: 'text.secondary', flexShrink: 0 }}
+          sx={{ color: height === value ? 'text.secondary' : 'warning.main' }}
         >
           {height}px
         </Typography>
       </Box>
-      <Typography variant="caption" sx={{ color: 'text.disabled' }}>
-        {name}
-      </Typography>
-    </Box>
+    </React.Fragment>
   );
 }
 
-Cell.propTypes = {
+Row.propTypes = {
   children: PropTypes.node,
-  name: PropTypes.string.isRequired,
-  span: PropTypes.number.isRequired,
   value: PropTypes.number.isRequired,
 };
 
@@ -106,54 +83,94 @@ export default function TouchTargetDemo() {
         <ThemeProvider theme={themes[value]}>
           <Box
             sx={{
+              minWidth: 520,
               display: 'grid',
-              gridTemplateColumns: 'repeat(12, 1fr)',
-              columnGap: 2,
-              rowGap: 2,
-              minWidth: 480,
+              gridTemplateColumns: 'repeat(3, 1fr) auto',
+              gridAutoRows: `minmax(${value}px, auto)`,
+              // 1px gaps over a divider-colored ground draw the grid lines.
+              gap: '1px',
+              bgcolor: 'divider',
+              border: '1px solid',
+              borderColor: 'divider',
+              '& > *': {
+                bgcolor: 'background.paper',
+                display: 'flex',
+                alignItems: 'center',
+                px: 1.5,
+                minWidth: 0,
+              },
             }}
           >
-            <Cell value={value} name="Checkbox" span={3}>
-              <Checkbox defaultChecked />
-            </Cell>
-            <Cell value={value} name="Radio" span={3}>
-              <Radio checked />
-            </Cell>
-            <Cell value={value} name="Switch" span={3}>
-              <Switch defaultChecked />
-            </Cell>
-            <Cell value={value} name="Avatar" span={3}>
-              <Avatar>M</Avatar>
-            </Cell>
+            <Row value={value}>
+              <div>
+                <FormControlLabel
+                  control={<Checkbox defaultChecked />}
+                  label="Notify"
+                />
+              </div>
+              <div>
+                <FormControlLabel control={<Radio checked />} label="Daily" />
+              </div>
+              <div>
+                <FormControlLabel
+                  control={<Switch defaultChecked />}
+                  label="Public"
+                />
+              </div>
+            </Row>
 
-            <Cell value={value} name="Button" span={4}>
-              <Button variant="contained">Button</Button>
-            </Cell>
-            <Cell value={value} name="Chip" span={4}>
-              <Chip label="Chip" color="primary" />
-            </Cell>
-            <Cell value={value} name="ToggleButtonGroup" span={4}>
-              <ToggleButtonGroup value="bold" exclusive size="medium">
-                <ToggleButton value="bold" aria-label="bold">
-                  <FormatBoldIcon />
-                </ToggleButton>
-                <ToggleButton value="italic" aria-label="italic">
-                  <FormatItalicIcon />
-                </ToggleButton>
-              </ToggleButtonGroup>
-            </Cell>
+            <Row value={value}>
+              <div>
+                <Button variant="contained">Button</Button>
+              </div>
+              <div>
+                <Chip variant="outlined" label="Chip" onDelete={() => {}} />
+              </div>
+              <div>
+                <ToggleButtonGroup value="bold" exclusive>
+                  <ToggleButton value="bold" aria-label="bold">
+                    <FormatBoldIcon />
+                  </ToggleButton>
+                  <ToggleButton value="italic" aria-label="italic">
+                    <FormatItalicIcon />
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </div>
+            </Row>
 
-            <Cell value={value} name="OutlinedInput" span={6}>
-              <OutlinedInput defaultValue="Text" sx={{ width: 150 }} />
-            </Cell>
-            <Cell value={value} name="Autocomplete" span={6}>
-              <Autocomplete
-                options={['One', 'Two']}
-                defaultValue="One"
-                sx={{ width: 170 }}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            </Cell>
+            <Row value={value}>
+              <Box sx={{ gridColumn: 'span 3' }}>
+                <FormControl sx={{ width: 220 }}>
+                  <InputLabel htmlFor="density-project">Project</InputLabel>
+                  <OutlinedInput
+                    id="density-project"
+                    label="Project"
+                    defaultValue="Acme"
+                  />
+                </FormControl>
+              </Box>
+            </Row>
+
+            <Row value={value}>
+              <Box sx={{ gridColumn: 'span 3' }}>
+                <AvatarGroup total={4}>
+                  <Avatar>M</Avatar>
+                  <Avatar>U</Avatar>
+                </AvatarGroup>
+              </Box>
+            </Row>
+
+            <Row value={value}>
+              <Box sx={{ gridColumn: 'span 3' }}>
+                <Autocomplete
+                  multiple
+                  options={['Design', 'Docs', 'Infra']}
+                  defaultValue={['Design']}
+                  sx={{ width: '100%' }}
+                  renderInput={(params) => <TextField {...params} label="Tags" />}
+                />
+              </Box>
+            </Row>
           </Box>
         </ThemeProvider>
       </Box>
