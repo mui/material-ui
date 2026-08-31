@@ -352,6 +352,35 @@ describe('extendTheme', () => {
     });
   });
 
+  describe('Input palette', () => {
+    it('should provide the default autofill tokens', () => {
+      const theme = extendTheme();
+      expect(theme.colorSchemes.light.palette.Input).to.deep.equal({
+        autofillWebkitBoxShadow: 'none',
+      });
+      expect(theme.colorSchemes.dark.palette.Input).to.deep.equal({
+        autofillWebkitBoxShadow: '0 0 0 100px #266798 inset',
+      });
+    });
+
+    it('should allow overriding the autofill tokens', () => {
+      const theme = extendTheme({
+        colorSchemes: {
+          light: {
+            palette: {
+              Input: {
+                autofillWebkitBoxShadow: '0 0 0 100px #e8f0fe inset',
+              },
+            },
+          },
+        },
+      });
+      expect(theme.colorSchemes.light.palette.Input).to.deep.equal({
+        autofillWebkitBoxShadow: '0 0 0 100px #e8f0fe inset',
+      });
+    });
+  });
+
   describe('overlays', () => {
     it('should provide the default array', () => {
       const theme = extendTheme();

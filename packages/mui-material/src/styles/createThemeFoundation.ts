@@ -157,7 +157,7 @@ export interface PaletteFilledInput {
 }
 
 export interface PaletteInput {
-  autofillWebkitShadowBox: string;
+  autofillWebkitBoxShadow: string;
 }
 
 export interface PaletteLinearProgress {
