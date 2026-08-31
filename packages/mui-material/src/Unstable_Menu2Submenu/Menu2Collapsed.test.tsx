@@ -164,10 +164,10 @@ describe('<Menu2 /> collapsed API', () => {
     await screen.findByRole('menuitem', { name: 'Nested' });
 
     const selectedAndOpen = window.getComputedStyle(submenuTrigger).backgroundColor;
-    // Still the primary tint, not the neutral `action.focus` that the list sets
-    // for a plain open trigger.
+    // Still the primary tint, not the neutral `action.selected` that the list
+    // sets for a plain open trigger.
     expect(selectedAndOpen).to.contain('25, 118, 210');
-    // And stronger than selected alone, because the open state adds focus opacity.
+    // And stronger than selected alone, because the open state doubles the tint.
     expect(selectedAndOpen).not.to.equal(selectedOnly);
   });
 
@@ -549,5 +549,32 @@ describe('<Menu2 /> collapsed API', () => {
         expect(window.getComputedStyle(submenuTrigger).backgroundColor).to.equal(plainHighlight);
       },
     );
+  });
+
+  // Open is a state, not a focus cue. The tint stays below the highlight, so an
+  // open parent stays visible without reading as the focused item.
+  it.skipIf(isJsdom())('tints an open trigger below the highlight', async () => {
+    const { user } = render(
+      <Menu2 defaultOpen modal={false} anchor={document.body}>
+        <Menu2Item>Plain</Menu2Item>
+        <Menu2Submenu trigger={<Menu2Item>More</Menu2Item>}>
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2Submenu>
+      </Menu2>,
+    );
+
+    const plain = await screen.findByRole('menuitem', { name: 'Plain' });
+    const submenuTrigger = screen.getByRole('menuitem', { name: 'More' });
+
+    await user.keyboard('{ArrowDown}');
+    const highlighted = window.getComputedStyle(plain).backgroundColor;
+
+    await user.click(submenuTrigger);
+    await screen.findByRole('menuitem', { name: 'Nested' });
+    const open = window.getComputedStyle(submenuTrigger).backgroundColor;
+
+    // `action.selected` against `action.focus`.
+    expect(open).to.equal('rgba(0, 0, 0, 0.08)');
+    expect(highlighted).to.equal('rgba(0, 0, 0, 0.12)');
   });
 });
