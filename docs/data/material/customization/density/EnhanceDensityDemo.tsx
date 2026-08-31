@@ -16,13 +16,24 @@ const densityTheme = enhanceDensity(createTheme({ colorSchemes }));
 const STAGE_WIDTH = 420;
 const STAGE_HEIGHT = 240;
 
+// The colors browser devtools use when it highlights a box.
+const PADDING_COLOR = '#c3e5a5';
+const GAP_COLOR = '#9b6cd9';
+
+interface Edges {
+  top: number;
+  right: number;
+  bottom: number;
+  left: number;
+}
+
 interface Metrics {
   x: number;
   y: number;
   width: number;
   height: number;
-  padLeft: number;
-  padRight: number;
+  border: Edges;
+  padding: Edges;
   iconX: number;
   iconY: number;
   iconSize: number;
@@ -30,7 +41,24 @@ interface Metrics {
   gap: number;
 }
 
+interface Rect {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
 const round = (value: number) => `${Math.round(value * 10) / 10}px`;
+
+const path = (rect: Rect) =>
+  `M${rect.x},${rect.y}H${rect.x + rect.width}V${rect.y + rect.height}H${rect.x}Z`;
+
+const inset = (rect: Rect, edges: Edges): Rect => ({
+  x: rect.x + edges.left,
+  y: rect.y + edges.top,
+  width: rect.width - edges.left - edges.right,
+  height: rect.height - edges.top - edges.bottom,
+});
 
 // With the enhancer on, every dimension is a value you can name; with it off
 // they are the component's own built-in numbers.
@@ -42,14 +70,21 @@ const tokens = {
 };
 
 function Annotations({ metrics, enhanced }: { metrics: Metrics; enhanced: boolean }) {
+  const hatchId = React.useId();
   const { x, y, width, height } = metrics;
   const right = x + width;
   const bottom = y + height;
-  const padRow = bottom + 30;
-  const gapRow = y - 24;
-  const iconRow = y - 12;
-  const gapCenter = metrics.gapX + metrics.gap / 2;
-  const iconCenter = metrics.iconX + metrics.iconSize / 2;
+  const paddingBox = inset(metrics, metrics.border);
+  const contentBox = inset(paddingBox, metrics.padding);
+
+  const iconCenter = { x: metrics.iconX + metrics.iconSize / 2, y: metrics.iconY + metrics.iconSize / 2 };
+  const gapCenter = { x: metrics.gapX + metrics.gap / 2, y: contentBox.y + contentBox.height / 2 };
+  const padCenter = {
+    x: paddingBox.x + paddingBox.width - metrics.padding.right / 2,
+    y: paddingBox.y + paddingBox.height / 2,
+  };
+  const padLabelY = bottom + 42;
+
   const caption = (token: string, value: number) =>
     enhanced ? `${token} · ${round(value)}` : round(value);
 
@@ -66,50 +101,57 @@ function Annotations({ metrics, enhanced }: { metrics: Metrics; enhanced: boolea
         pointerEvents: 'none',
         color: 'text.secondary',
         fontSize: 12,
-        '& line, & polyline': { stroke: 'currentColor' },
-        '& rect': { stroke: 'currentColor', fill: 'none' },
         '& text': { fill: 'currentColor' },
-        '& .guide': { strokeDasharray: '3 3', opacity: 0.5 },
+        '& .dim': { stroke: 'currentColor', fill: 'none' },
+        '& .leader': {
+          stroke: 'currentColor',
+          fill: 'none',
+          strokeDasharray: '3 3',
+          opacity: 0.6,
+        },
+        '& .padding-box': { fill: PADDING_COLOR, opacity: 0.7 },
+        '& .gap-box': { stroke: GAP_COLOR, strokeDasharray: '2 2' },
+        '& .hatch': { stroke: GAP_COLOR, opacity: 0.55 },
       }}
     >
-      {/* Inline padding: a dimension line under each padding edge. */}
-      {[x, x + metrics.padLeft, right - metrics.padRight, right].map((guideX) => (
-        <line key={guideX} className="guide" x1={guideX} y1={bottom} x2={guideX} y2={padRow} />
-      ))}
-      <line x1={x} y1={padRow} x2={x + metrics.padLeft} y2={padRow} />
-      <line x1={right - metrics.padRight} y1={padRow} x2={right} y2={padRow} />
-      <text x={x + width / 2} y={padRow + 16} textAnchor="middle">
-        {caption(tokens.padding, metrics.padLeft)}
+      <defs>
+        <pattern
+          id={hatchId}
+          width={6}
+          height={6}
+          patternUnits="userSpaceOnUse"
+          patternTransform="rotate(45)"
+        >
+          <line className="hatch" x1={0} y1={0} x2={0} y2={6} strokeWidth={3} />
+        </pattern>
+      </defs>
+
+      {/* The padding ring, the way devtools paints it: the padding box with the
+          content box punched out. */}
+      <path className="padding-box" fillRule="evenodd" d={`${path(paddingBox)}${path(contentBox)}`} />
+
+      {/* The gap between the icon and the label. */}
+      <rect
+        className="gap-box"
+        fill={`url(#${hatchId})`}
+        x={metrics.gapX}
+        y={contentBox.y}
+        width={metrics.gap}
+        height={contentBox.height}
+      />
+
+      <line className="leader" x1={x + width / 2} y1={padLabelY - 10} x2={padCenter.x} y2={padCenter.y} />
+      <text x={x + width / 2} y={padLabelY} textAnchor="middle">
+        {caption(tokens.padding, metrics.padding.left)}
       </text>
 
-      {/* Icon-to-label gap, measured between the two rendered boxes. */}
-      <line className="guide" x1={metrics.gapX} y1={y} x2={metrics.gapX} y2={gapRow} />
-      <line
-        className="guide"
-        x1={metrics.gapX + metrics.gap}
-        y1={y}
-        x2={metrics.gapX + metrics.gap}
-        y2={gapRow}
-      />
-      <line x1={metrics.gapX} y1={gapRow} x2={metrics.gapX + metrics.gap} y2={gapRow} />
-      <text x={gapCenter} y={gapRow - 7} textAnchor="middle">
+      <line className="leader" x1={gapCenter.x} y1={y - 26} x2={gapCenter.x} y2={gapCenter.y} />
+      <text x={gapCenter.x} y={y - 32} textAnchor="middle">
         {caption(tokens.gap, metrics.gap)}
       </text>
 
-      {/* Icon box. */}
-      <rect
-        className="guide"
-        x={metrics.iconX}
-        y={metrics.iconY}
-        width={metrics.iconSize}
-        height={metrics.iconSize}
-      />
-      <polyline
-        className="guide"
-        fill="none"
-        points={`${iconCenter},${metrics.iconY} ${iconCenter},${iconRow} ${x - 30},${iconRow}`}
-      />
-      <text x={x - 36} y={iconRow} textAnchor="end" dominantBaseline="middle">
+      <line className="leader" x1={x - 30} y1={iconCenter.y} x2={iconCenter.x} y2={iconCenter.y} />
+      <text x={x - 36} y={iconCenter.y} textAnchor="end" dominantBaseline="middle">
         {caption(tokens.icon, metrics.iconSize)}
       </text>
 
@@ -117,9 +159,9 @@ function Annotations({ metrics, enhanced }: { metrics: Metrics; enhanced: boolea
           it the box is whatever the padding and line height add up to. */}
       {enhanced ? (
         <React.Fragment>
-          <line x1={right + 14} y1={y} x2={right + 14} y2={bottom} />
-          <line x1={right + 10} y1={y} x2={right + 18} y2={y} />
-          <line x1={right + 10} y1={bottom} x2={right + 18} y2={bottom} />
+          <line className="dim" x1={right + 14} y1={y} x2={right + 14} y2={bottom} />
+          <line className="dim" x1={right + 10} y1={y} x2={right + 18} y2={y} />
+          <line className="dim" x1={right + 10} y1={bottom} x2={right + 18} y2={bottom} />
           <text x={right + 24} y={y + height / 2} dominantBaseline="middle">
             {caption(tokens.height, height)}
           </text>
@@ -155,13 +197,19 @@ export default function EnhanceDensityDemo() {
       const iconBox = icon.getBoundingClientRect();
       const labelBox = label.getBoundingClientRect();
       const styles = window.getComputedStyle(button);
+      const edges = (prefix: string, suffix: string): Edges => ({
+        top: parseFloat(styles[`${prefix}Top${suffix}` as any]),
+        right: parseFloat(styles[`${prefix}Right${suffix}` as any]),
+        bottom: parseFloat(styles[`${prefix}Bottom${suffix}` as any]),
+        left: parseFloat(styles[`${prefix}Left${suffix}` as any]),
+      });
       setMetrics({
         x: buttonBox.left - stageBox.left,
         y: buttonBox.top - stageBox.top,
         width: buttonBox.width,
         height: buttonBox.height,
-        padLeft: parseFloat(styles.paddingLeft),
-        padRight: parseFloat(styles.paddingRight),
+        border: edges('border', 'Width'),
+        padding: edges('padding', ''),
         iconX: iconBox.left - stageBox.left,
         iconY: iconBox.top - stageBox.top,
         iconSize: iconBox.width,
@@ -180,16 +228,11 @@ export default function EnhanceDensityDemo() {
       <Box sx={{ overflowX: 'auto', p: 2 }}>
         <Box
           ref={stageRef}
-          sx={{
-            position: 'relative',
-            width: STAGE_WIDTH,
-            height: STAGE_HEIGHT,
-            mx: 'auto',
-          }}
+          sx={{ position: 'relative', width: STAGE_WIDTH, height: STAGE_HEIGHT, mx: 'auto' }}
         >
           <ThemeProvider theme={enhanced ? densityTheme : defaultTheme}>
             <Box sx={{ position: 'absolute', inset: 0, display: 'grid', placeItems: 'center' }}>
-              <Button ref={buttonRef} variant="contained" startIcon={<AddIcon />}>
+              <Button ref={buttonRef} variant="outlined" startIcon={<AddIcon />}>
                 <span ref={labelRef}>Button</span>
               </Button>
             </Box>
@@ -201,10 +244,7 @@ export default function EnhanceDensityDemo() {
       <Box sx={{ px: 2, py: 1 }}>
         <FormControlLabel
           control={
-            <Switch
-              checked={enhanced}
-              onChange={(event) => setEnhanced(event.target.checked)}
-            />
+            <Switch checked={enhanced} onChange={(event) => setEnhanced(event.target.checked)} />
           }
           label="Enhance density"
         />
