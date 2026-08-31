@@ -22,9 +22,9 @@ function App() {
 }
 ```
 
-Drag the handle to compare—both sides render the same components, and the right side is the same theme with `enhanceDensity` applied:
+Each annotation names the value behind that dimension. Turn the enhancer off to see the same button on its own built-in numbers:
 
-{{"demo": "DensityComparison.js"}}
+{{"demo": "EnhanceDensityDemo.js"}}
 
 Every component's spacing and sizing now comes from the scale, and medium-size controls share a single 32px box. Components with a `size` prop keep their small and large options; those sizes move to neighboring steps of the same scale, so they stay coherent with each other.
 
