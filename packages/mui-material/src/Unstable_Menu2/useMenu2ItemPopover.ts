@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import ownerDocument from '@mui/utils/ownerDocument';
+import ownerWindow from '@mui/utils/ownerWindow';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import useId from '@mui/utils/useId';
 import type { PopperPlacementType, PopperProps } from '../Popper';
@@ -43,7 +44,9 @@ export interface UseMenu2ItemPopoverPopoverProps {
 
 export interface UseMenu2ItemPopoverPopover<Value> {
   /**
-   * `true` while an item owns the popover.
+   * `true` while an item owns the popover and the menu around it stands still.
+   * It stays `false` while the menu runs its open animation, so the popover
+   * paints its first frame at the position of the settled menu.
    */
   open: boolean;
   /**
@@ -81,6 +84,11 @@ export interface UseMenu2ItemPopoverReturnValue<Value> {
 
 interface ActiveMenu2Item<Value> {
   anchorEl: HTMLElement;
+  /**
+   * `false` while an ancestor of the item still moves. The popover waits,
+   * because Popper measures the item once and keeps that position.
+   */
+  ready: boolean;
   value: Value;
 }
 
@@ -96,6 +104,37 @@ const modifiers: PopperProps['modifiers'] = [
 // non-interactive here instead of by each caller. The style is inline, because
 // the `sx` of the caller must not remove it.
 const nonInteractiveStyle: React.CSSProperties = { pointerEvents: 'none' };
+
+// Base UI sets this attribute on a popup that has not started its open
+// animation yet, so no animation object exists on the element at that moment.
+const startingStyleAttribute = 'data-starting-style';
+
+// The longest wait before the popover opens anyway. An ancestor that animates
+// without an end, or a browser that never finishes one, cannot hide the card.
+const settleTimeout = 500;
+
+/**
+ * Reports whether every ancestor of the item stands still. A menu scales its
+ * popup while it opens, which moves each item, so a popover that opens then
+ * keeps a position inside the settled menu. The walk stops below the body,
+ * where a page level animation cannot block the popover.
+ */
+function isAnchorSettled(anchorEl: HTMLElement): boolean {
+  const body = ownerDocument(anchorEl).body;
+  let node = anchorEl.parentElement;
+
+  while (node !== null && node !== body) {
+    if (node.hasAttribute(startingStyleAttribute)) {
+      return false;
+    }
+    if (typeof node.getAnimations === 'function' && node.getAnimations().length > 0) {
+      return false;
+    }
+    node = node.parentElement;
+  }
+
+  return true;
+}
 
 /**
  * Shares one `Popper` between the items of a `Menu2`. The item that has focus,
@@ -127,10 +166,44 @@ export default function useMenu2ItemPopover<Value>(
   const id = useId(options.id);
   const [activeItem, setActiveItem] = React.useState<ActiveMenu2Item<Value> | null>(null);
   const anchorEl = activeItem === null ? null : activeItem.anchorEl;
+  const open = activeItem !== null && activeItem.ready;
 
   const close = React.useCallback(() => {
     setActiveItem(null);
   }, []);
+
+  // An item that activates while the menu opens holds the popover closed, so
+  // the Popper paints nothing. Watch each frame, and open the popover as soon
+  // as the menu stands still or the safety timeout ends the wait.
+  useEnhancedEffect(() => {
+    if (activeItem === null || activeItem.ready) {
+      return undefined;
+    }
+
+    const { anchorEl: pendingAnchorEl } = activeItem;
+    const view = ownerWindow(pendingAnchorEl);
+    const deadline = view.performance.now() + settleTimeout;
+    let frame = 0;
+
+    const check = () => {
+      if (!isAnchorSettled(pendingAnchorEl) && view.performance.now() < deadline) {
+        frame = view.requestAnimationFrame(check);
+        return;
+      }
+
+      setActiveItem((current) =>
+        current !== null && current.anchorEl === pendingAnchorEl && !current.ready
+          ? { ...current, ready: true }
+          : current,
+      );
+    };
+
+    frame = view.requestAnimationFrame(check);
+
+    return () => {
+      view.cancelAnimationFrame(frame);
+    };
+  }, [activeItem]);
 
   // A menu unmounts the active item without an event, for example when a
   // submenu closes. The popover then has no owner, so it closes.
@@ -166,14 +239,15 @@ export default function useMenu2ItemPopover<Value>(
     if (ownerDocument(anchorEl).querySelectorAll(`[aria-describedby="${id}"]`).length > 1) {
       warnMenu2DuplicateValue('useMenu2ItemPopover');
     }
-  }, [anchorEl, id]);
+  }, [anchorEl, id, open]);
 
   const getItemProps = (
     value: Value,
     handlers: UseMenu2ItemPopoverItemHandlers = {},
   ): UseMenu2ItemPopoverItemProps => {
     const activate = (event: React.SyntheticEvent<HTMLElement>) => {
-      setActiveItem({ anchorEl: event.currentTarget, value });
+      const element = event.currentTarget;
+      setActiveItem({ anchorEl: element, ready: isAnchorSettled(element), value });
     };
 
     // Only the item that owns the popover clears it, so the pointer and the
@@ -186,6 +260,8 @@ export default function useMenu2ItemPopover<Value>(
     };
 
     return {
+      // Not gated on `ready`: a screen reader announces the item when it takes
+      // focus, so a description that arrives with the paint arrives too late.
       'aria-describedby':
         activeItem !== null && Object.is(activeItem.value, value) ? id : undefined,
       onBlur: (event) => {
@@ -209,18 +285,18 @@ export default function useMenu2ItemPopover<Value>(
 
   const popover = React.useMemo<UseMenu2ItemPopoverPopover<Value>>(
     () => ({
-      open: activeItem !== null,
+      open,
       props: {
         anchorEl,
         id,
         modifiers,
-        open: activeItem !== null,
+        open,
         placement,
         style: nonInteractiveStyle,
       },
       value: activeItem === null ? null : activeItem.value,
     }),
-    [activeItem, anchorEl, id],
+    [activeItem, anchorEl, id, open],
   );
 
   return { close, getItemProps, popover };

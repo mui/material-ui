@@ -1,8 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen, waitFor } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
+import Grow from '@mui/material/Grow';
 import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import { type SxProps, type Theme } from '@mui/material/styles';
@@ -143,6 +144,91 @@ function TestMenu2PreviewCards() {
       </Popper>
     </Menu2>
   );
+}
+
+// The recipe of the docs: a `Popper` with a transition, and a `Grow`.
+function TestMenu2GrowPreviewCards() {
+  const { getItemProps, popover, close } = useMenu2ItemPopover<PreviewCardItem>();
+
+  return (
+    <Menu2
+      onOpenChange={(open) => {
+        if (!open) {
+          close();
+        }
+      }}
+      trigger={<Button disableRipple>Help cards</Button>}
+    >
+      {items.map((item) => (
+        <Menu2Item key={item.id} {...getItemProps(item)}>
+          {item.label}
+        </Menu2Item>
+      ))}
+      <Popper {...popover.props} transition>
+        {({ TransitionProps }) => (
+          <Grow {...TransitionProps} timeout="auto">
+            <Paper data-testid="preview-card">{popover.value?.description}</Paper>
+          </Grow>
+        )}
+      </Popper>
+    </Menu2>
+  );
+}
+
+interface FrameSample {
+  card: DOMRect | null;
+  menu: DOMRect | null;
+  overlap: number | null;
+}
+
+function readFrame(): FrameSample {
+  const menu = document.querySelector('[role="menu"]');
+  const card = document.querySelector('[data-testid="preview-card"]')?.parentElement ?? null;
+  const menuRect = menu === null ? null : menu.getBoundingClientRect();
+  const cardRect = card === null ? null : card.getBoundingClientRect();
+
+  return {
+    card: cardRect,
+    menu: menuRect,
+    overlap:
+      menuRect === null || cardRect === null
+        ? null
+        : Math.min(menuRect.right, cardRect.right) - Math.max(menuRect.left, cardRect.left),
+  };
+}
+
+// Records the menu and the card once per frame, so the assertions can look at
+// the first frame the card paints in and at every frame after it.
+function startFrameSampler() {
+  const frames: FrameSample[] = [];
+  let running = true;
+  const tick = () => {
+    frames.push(readFrame());
+    if (running) {
+      requestAnimationFrame(tick);
+    }
+  };
+  requestAnimationFrame(tick);
+
+  return {
+    stop: () => {
+      running = false;
+      return frames;
+    },
+  };
+}
+
+// React holds an update that starts outside its own event handlers until the
+// act() call around it ends. A frame accurate measurement needs the update at
+// the frame it happens in, so the act environment is off while it runs.
+async function withoutActEnvironment<T>(callback: () => Promise<T>): Promise<T> {
+  const globalScope = globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean };
+  globalScope.IS_REACT_ACT_ENVIRONMENT = false;
+  try {
+    return await callback();
+  } finally {
+    globalScope.IS_REACT_ACT_ENVIRONMENT = true;
+  }
 }
 
 describe('useMenu2ItemPopover', () => {
@@ -481,5 +567,119 @@ describe('useMenu2ItemPopover', () => {
     expect(await screen.findByTestId('preview-card')).to.have.text('Copy the link.');
 
     expect(item).to.have.attribute('aria-describedby', 'caller');
+  });
+
+  // The menu opens with a scale transition, so every item is smaller and closer
+  // to the transform origin while it runs. Popper measures the item once, so a
+  // card that opens at the first frame used to keep a position inside the
+  // settled menu, then jump sideways when the transition ended.
+  it.skipIf(isJsdom())('paints the first frame of the card beside the settled menu', async () => {
+    const { user } = render(<TestMenu2GrowPreviewCards />);
+    await act(async () => {
+      screen.getByRole('button', { name: 'Help cards' }).focus();
+    });
+
+    // The frame sampler runs outside the act environment. Inside act, React
+    // holds a state update that starts in a frame callback until act ends, so
+    // the card would appear only after the sampled window.
+    const frames = await withoutActEnvironment(async () => {
+      const sampler = startFrameSampler();
+      // The keyboard opens the menu and focuses the first item at once, so the
+      // card activates at the first frame of the menu open animation.
+      await user.keyboard('{Enter}');
+      await new Promise((resolve) => {
+        setTimeout(resolve, 700);
+      });
+      return sampler.stop();
+    });
+
+    const painted = frames.filter((frame) => frame.card !== null);
+    expect(painted.length).to.be.greaterThan(0);
+
+    // The menu stands still at the end of the window, so the last frame holds
+    // the geometry the user ends up looking at.
+    const settledMenu = frames[frames.length - 1]!.menu!;
+    const first = painted[0]!;
+
+    // The first frame of the card already sits beside the settled menu, and
+    // keeps the 8px offset of the hook, so a card that misses the menu is not
+    // a pass either.
+    expect(first.card!.left).to.be.at.least(settledMenu.right);
+    expect(first.card!.left).to.be.closeTo(settledMenu.right + 8, 2);
+
+    // The card never moves after it paints, so it does not jump into place.
+    painted.forEach((frame) => {
+      expect(frame.card!.left).to.equal(first.card!.left);
+    });
+  });
+
+  // The wait belongs to the menu open animation alone. An item that activates
+  // on a menu that stands still keeps the card immediate.
+  it.skipIf(isJsdom())('shows the card at once when the menu stands still', async () => {
+    const { user } = render(<TestMenu2GrowPreviewCards />);
+
+    // The pointer opens the menu without focusing an item, so no card opens
+    // during the menu animation.
+    await user.click(screen.getByRole('button', { name: 'Help cards' }));
+    await act(async () => {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 400);
+      });
+    });
+    expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
+
+    await user.hover(screen.getByRole('menuitem', { name: 'Publish to web' }));
+
+    // `user.hover` runs inside act, so the card is here as soon as it resolves
+    // unless the hook waits for a frame that never comes.
+    const card = document.querySelector('[data-testid="preview-card"]');
+    expect(card).not.to.equal(null);
+
+    const menuRect = screen.getByRole('menu').getBoundingClientRect();
+    const cardRect = card!.parentElement!.getBoundingClientRect();
+    expect(
+      Math.min(menuRect.right, cardRect.right) - Math.max(menuRect.left, cardRect.left),
+    ).to.be.at.most(0);
+  });
+
+  // A screen reader announces the item when it takes focus. The card waits for
+  // the menu animation, but the description must not wait with it.
+  it.skipIf(isJsdom())('describes the item before the card paints', async () => {
+    function TestDeferredDescription() {
+      const { getItemProps, popover, close } = useMenu2ItemPopover<string>();
+
+      return (
+        <Menu2
+          trigger={<button type="button">Open</button>}
+          onOpenChange={(open) => {
+            if (!open) {
+              close();
+            }
+          }}
+        >
+          <Menu2Item {...getItemProps('Alpha detail.')}>Alpha</Menu2Item>
+          <Popper {...popover.props}>
+            <Paper data-testid="preview-card">{popover.value}</Paper>
+          </Popper>
+        </Menu2>
+      );
+    }
+
+    const { user } = render(<TestDeferredDescription />);
+    const trigger = screen.getByRole('button', { name: 'Open' });
+    await act(async () => {
+      trigger.focus();
+    });
+
+    // The keyboard opens the menu, so Base UI focuses the first item at once.
+    await user.keyboard('{Enter}');
+    const item = await screen.findByRole('menuitem', { name: 'Alpha' });
+
+    expect(item).to.have.attribute('aria-describedby');
+    expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
+
+    // The card follows once the menu stops animating.
+    await screen.findByTestId('preview-card');
+    expect(item).to.have.attribute('aria-describedby');
   });
 });
