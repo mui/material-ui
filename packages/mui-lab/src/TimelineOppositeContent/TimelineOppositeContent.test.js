@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Typography from '@mui/material/Typography';
 import Timeline from '@mui/lab/Timeline';
@@ -17,7 +17,7 @@ describe('<TimelineOppositeContent />', () => {
     render,
     muiName: 'MuiTimelineOppositeContent',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    skip: ['componentProp', 'themeVariants'],
   }));
 
   it('should have positionLeft class when inside of a left-positioned timeline', () => {

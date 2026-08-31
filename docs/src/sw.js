@@ -1,4 +1,4 @@
-/* eslint-env serviceworker */
+/* global self */
 // https://github.com/airbnb/javascript/issues/1632
 
 // See https://developer.chrome.com/docs/workbox/remove-buggy-service-workers/

@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
@@ -16,13 +16,7 @@ describe('<RadioGroup />', () => {
     classes: {},
     inheritComponent: FormGroup,
     refInstanceof: window.HTMLDivElement,
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'themeDefaultProps',
-      'themeStyleOverrides',
-      'themeVariants',
-    ],
+    skip: ['componentProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
   }));
 
   it('the root component has the radiogroup role', () => {

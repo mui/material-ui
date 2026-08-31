@@ -10,7 +10,7 @@ githubSource: packages/mui-material/src/Pagination
 
 <p class="description">The Pagination component enables the user to select a specific page from a range of pages.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic pagination
 

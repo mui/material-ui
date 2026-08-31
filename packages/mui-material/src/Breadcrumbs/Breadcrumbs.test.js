@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import {
   act,
   createRenderer,
@@ -21,7 +21,6 @@ describe('<Breadcrumbs />', () => {
     refInstanceof: window.HTMLElement,
     testComponentPropWith: 'div',
     testVariantProps: { separator: '=' },
-    skip: ['componentsProp'],
   }));
 
   it('should render inaccessible separators between each listitem', () => {

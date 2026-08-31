@@ -42,7 +42,6 @@ import { FormControlProps } from '../FormControl';
 import { FormGroupProps } from '../FormGroup';
 import { FormHelperTextProps } from '../FormHelperText';
 import { FormLabelProps } from '../FormLabel';
-import { GridLegacyProps } from '../GridLegacy';
 import { GridProps } from '../Grid';
 import { IconButtonProps } from '../IconButton';
 import { IconProps } from '../Icon';
@@ -115,7 +114,6 @@ import { ToggleButtonProps } from '../ToggleButton';
 import { ToggleButtonGroupProps } from '../ToggleButtonGroup';
 import { ToolbarProps } from '../Toolbar';
 import { TooltipProps } from '../Tooltip';
-import { TouchRippleProps } from '../ButtonBase/TouchRipple';
 import { TypographyProps } from '../Typography';
 import { PopperProps } from '../Popper';
 
@@ -168,7 +166,6 @@ export interface ComponentsPropsList {
   MuiFormGroup: FormGroupProps;
   MuiFormHelperText: FormHelperTextProps;
   MuiFormLabel: FormLabelProps;
-  MuiGridLegacy: GridLegacyProps;
   MuiGrid: GridProps;
   MuiImageList: ImageListProps;
   MuiImageListItem: ImageListItemProps;
@@ -241,7 +238,6 @@ export interface ComponentsPropsList {
   MuiToggleButtonGroup: ToggleButtonGroupProps;
   MuiToolbar: ToolbarProps;
   MuiTooltip: TooltipProps;
-  MuiTouchRipple: TouchRippleProps;
   MuiTypography: TypographyProps;
   MuiUseMediaQuery: UseMediaQueryOptions;
 }

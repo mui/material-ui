@@ -5,7 +5,7 @@ import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
 const LightTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} />
+  <Tooltip describeChild {...props} classes={{ popper: className }} />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: theme.palette.common.white,
@@ -16,7 +16,7 @@ const LightTooltip = styled(({ className, ...props }) => (
 }));
 
 const BootstrapTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} arrow classes={{ popper: className }} />
+  <Tooltip describeChild {...props} arrow classes={{ popper: className }} />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.arrow}`]: {
     color: theme.palette.common.black,
@@ -27,7 +27,7 @@ const BootstrapTooltip = styled(({ className, ...props }) => (
 }));
 
 const HtmlTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} />
+  <Tooltip describeChild {...props} classes={{ popper: className }} />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: '#f5f5f9',
@@ -50,7 +50,13 @@ export default function CustomizedTooltips() {
       <HtmlTooltip
         title={
           <React.Fragment>
-            <Typography color="inherit">Tooltip with HTML</Typography>
+            <Typography
+              sx={{
+                color: 'inherit',
+              }}
+            >
+              Tooltip with HTML
+            </Typography>
             <em>{"And here's"}</em> <b>{'some'}</b> <u>{'amazing content'}</u>.{' '}
             {"It's very engaging. Right?"}
           </React.Fragment>

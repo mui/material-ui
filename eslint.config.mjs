@@ -7,11 +7,12 @@ import {
   EXTENSION_TEST_FILE,
   EXTENSION_DTS,
 } from '@mui/internal-code-infra/eslint';
+import { fixupPluginRules } from '@eslint/compat';
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
 import * as path from 'node:path';
-import vitestPlugin from '@vitest/eslint-plugin';
 import { fileURLToPath } from 'url';
+import remarkConfig from './.remarkrc.mjs';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -40,6 +41,14 @@ const NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES = [
   },
 ];
 
+const NO_RESTRICTED_IMPORTS_PATHS_CHAI = [
+  {
+    name: 'chai',
+    message:
+      "Use the global `expect` from Vitest instead. It's the same chai instance, extended with our custom matchers.",
+  },
+];
+
 const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
   {
     group: [
@@ -47,7 +56,7 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
       '@pigment-css/*/*/*',
       // Allow any import depth with any internal packages
       '!@mui/internal-*/**',
-      '!@mui/docs/**', // @mui/docs should be @mui/internal-docs
+      '!@mui/internal-core-docs/**',
     ],
     message: OneLevelImportMessage,
   },
@@ -59,6 +68,11 @@ export default defineConfig(
     baseDirectory: dirname,
     materialUi: true,
   }),
+  // eslint-plugin-mdx loads `.remarkrc.mjs` itself, but ESLint doesn't know
+  // that file is a config dependency, so `--cache` doesn't invalidate when
+  // it changes. Embedding the imported value in a setting puts its content
+  // into the resolved-config hash, forcing cache invalidation on edits.
+  { settings: { remarkConfig } },
   {
     name: 'Material UI overrides',
     files: [`**/*${EXTENSION_TS}`],
@@ -68,6 +82,9 @@ export default defineConfig(
           project: ['tsconfig.json'],
         },
       },
+      next: {
+        rootDir: 'docs',
+      },
     },
     rules: {
       'import/prefer-default-export': 'error',
@@ -75,14 +92,20 @@ export default defineConfig(
       'no-restricted-imports': [
         'error',
         {
+          paths: NO_RESTRICTED_IMPORTS_PATHS_CHAI,
           patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
         },
       ],
       'react/react-in-jsx-scope': 'off',
+      '@typescript-eslint/no-shadow': 'off',
       'react/sort-prop-types': 'off', // 228
       '@typescript-eslint/ban-ts-comment': 'off', // 117
       '@typescript-eslint/no-require-imports': 'off', // 133
       'react/jsx-filename-extension': 'off',
+      // Modern browsers imply rel="noopener" for target="_blank", so no rel is required.
+      // See https://github.com/mui/material-ui/pull/40447
+      // TODO move to mui/mui-public.
+      'react/jsx-no-target-blank': 'off',
 
       // TODO enable:
       'react-hooks/refs': 'off',
@@ -92,9 +115,6 @@ export default defineConfig(
       'react-hooks/incompatible-library': 'off',
       'react-hooks/static-components': 'off',
       'react-hooks/purity': 'off',
-
-      // TODO (@Janpot) fix in https://github.com/mui/material-ui/pull/47692
-      'mui/consistent-production-guard': 'off',
     },
   },
   ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(
@@ -116,6 +136,17 @@ export default defineConfig(
     }),
   ),
   {
+    files: [
+      `packages-internal/**/*${EXTENSION_TS}`,
+      `packages-internal/api-docs-builder/**/*${EXTENSION_TS}`,
+      `packages-internal/api-docs-builder-core/**/*${EXTENSION_TS}`,
+    ],
+    rules: {
+      // Only applies to our public packages
+      'compat/compat': 'off',
+    },
+  },
+  {
     files: [`packages/**/*${EXTENSION_TS}`],
     rules: {
       // Our packages write .js + .d.ts files manually.
@@ -125,21 +156,18 @@ export default defineConfig(
   // Test start
   {
     files: [`**/*${EXTENSION_TEST_FILE}`],
-    extends: createTestConfig({
-      useMocha: false,
-      useVitest: true,
-    }),
-    languageOptions: {
-      globals: {
-        ...vitestPlugin.environments.env.globals,
-      },
-    },
+    extends: createTestConfig(),
     rules: {
       'mui/material-ui-no-empty-box': 'off',
       // Disabled temporarily. Enable one by one.
       'testing-library/no-container': 'off',
       // TODO: investigate and fix
       'vitest/expect-expect': 'off',
+      // Surfaced by dropping the `chai` import in favor of the Vitest global `expect`.
+      // The remaining reports are deliberate environment branches (`isJsdom()`, feature
+      // flags, optional fixtures) rather than assertions hidden in a `catch`.
+      // TODO: investigate and fix
+      'vitest/no-conditional-expect': 'off',
     },
   },
   // Test end
@@ -152,7 +180,10 @@ export default defineConfig(
       'no-restricted-imports': [
         'error',
         {
-          paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+          paths: [
+            ...NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+            ...NO_RESTRICTED_IMPORTS_PATHS_CHAI,
+          ],
           patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
         },
       ],
@@ -194,11 +225,10 @@ export default defineConfig(
       // filenames/match-exported sees filename as 'file-name.d'
       // Plugin looks unmaintain, find alternative? (e.g. eslint-plugin-project-structure)
       '**/*.d.ts',
-      'docs/data/joy/getting-started/templates/**/*',
       'docs/data/**/{css,system,tailwind}/*',
     ],
     plugins: {
-      'consistent-default-export-name': eslintPluginConsistentName,
+      'consistent-default-export-name': fixupPluginRules(eslintPluginConsistentName),
     },
     rules: {
       'consistent-default-export-name/default-export-match-filename': ['error'],
@@ -206,20 +236,36 @@ export default defineConfig(
   },
   // Docs end
   {
+    files: [`test/**/*${EXTENSION_TS}`, `docs/**/*${EXTENSION_TS}`],
+    rules: {
+      'react-hooks/set-state-in-effect': 'off',
+    },
+  },
+  {
     files: [`**/*${EXTENSION_DTS}`],
     rules: {
       'import/export': 'off', // Not sure why it doesn't work
     },
   },
   {
-    files: [`packages/*/src/*/*${EXTENSION_TS}`],
+    files: [`packages/*/src/**/*${EXTENSION_TS}`, `packages/*/src/**/*${EXTENSION_DTS}`],
     ignores: [
       '**/*.spec.*',
       '**/*.test.*',
-      // deprecated library
-      '**/mui-joy/**/*',
       // used internally, not used on app router yet
-      '**/mui-docs/**/*',
+      '**/mui-internal-core-docs/**/*',
+    ],
+    rules: {
+      'mui/add-undef-to-optional': 'error',
+    },
+  },
+  {
+    files: [`packages/*/src/**/*${EXTENSION_TS}`],
+    ignores: [
+      '**/*.spec.*',
+      '**/*.test.*',
+      // used internally, not used on app router yet
+      '**/mui-internal-core-docs/**/*',
     ],
     rules: {
       'mui/disallow-react-api-in-server-components': 'error',
@@ -234,6 +280,7 @@ export default defineConfig(
         {
           paths: [
             ...NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+            ...NO_RESTRICTED_IMPORTS_PATHS_CHAI,
             {
               name: '@mui/utils',
               message: OneLevelImportMessage,
@@ -258,7 +305,19 @@ export default defineConfig(
   },
   {
     files: [`packages/*/src/**/*${EXTENSION_TS}`],
-    ignores: ['**/*.d.ts', '**/*.spec.*', 'packages/mui-joy/**/*'],
+    ignores: ['**/*.spec.*', '**/*.test.*', '**/mui-lab/**'],
+    rules: {
+      'mui/require-dev-wrapper': [
+        'error',
+        {
+          functionNames: ['warnOnce', 'warn', 'checkSlot', 'isLayoutSupported'],
+        },
+      ],
+    },
+  },
+  {
+    files: [`packages/*/src/**/*${EXTENSION_TS}`],
+    ignores: ['**/*.d.ts', '**/*.spec.*'],
     rules: {
       'mui/material-ui-name-matches-component-name': 'error',
     },
@@ -278,20 +337,21 @@ export default defineConfig(
       'import/extensions': 'off',
     },
   },
-  // Migrated config from packages/api-docs-builder/.eslintrc.js
+  // Migrated config from packages-internal/api-docs-builder/.eslintrc.js
   {
     files: [
-      `packages/api-docs-builder/**/*${EXTENSION_TS}`,
-      // Allow named exports for locales: https://github.com/mui/material-ui/pull/46933
+      `packages-internal/api-docs-builder/**/*${EXTENSION_TS}`,
+      // Allow named exports for locales and mui-internal-core-docs: https://github.com/mui/material-ui/pull/46933
       `packages/mui-material/src/locale/*${EXTENSION_TS}`,
+      `packages-internal/core-docs/src/**/*${EXTENSION_TS}`,
     ],
     rules: {
       'import/prefer-default-export': 'off',
     },
   },
-  // Migrated config from packages/api-docs-builder-core/.eslintrc.js
+  // Migrated config from packages-internal/api-docs-builder-core/.eslintrc.js
   {
-    files: [`packages/api-docs-builder-core/**/*${EXTENSION_TS}`],
+    files: [`packages-internal/api-docs-builder-core/**/*${EXTENSION_TS}`],
     rules: {
       'import/no-default-export': 'error',
       'import/prefer-default-export': 'off',
@@ -329,6 +389,14 @@ export default defineConfig(
       'testing-library/prefer-screen-queries': 'off', // Enable usage of playwright queries
       'testing-library/no-await-sync-queries': 'off',
       'testing-library/render-result-naming-convention': 'off', // inconsequential in regression tests
+    },
+  },
+  {
+    // `test/e2e` uses Playwright's `expect` (for matchers like `toBeFocused()`),
+    // not Vitest's, so this rule reports false positives here.
+    files: [`test/e2e/**/*${EXTENSION_TS}`],
+    rules: {
+      'vitest/prefer-importing-vitest-globals': 'off',
     },
   },
 );

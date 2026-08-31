@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import NotchedOutline from './NotchedOutline';
-import useFormControl from '../FormControl/useFormControl';
-import formControlState from '../FormControl/formControlState';
+import { useFormControlState } from '../FormControl/useFormControl';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
+import selectClasses from '../Select/selectClasses';
 import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
@@ -94,7 +94,12 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => ownerState.endAdornment,
           style: {
-            paddingRight: 14,
+            // use CSS variable to keep specificity
+            '--_trailingPad': '14px',
+            paddingRight: 'var(--_trailingPad)',
+            [`&.${selectClasses.root}`]: {
+              '--_trailingPad': '0px',
+            },
           },
         },
         {
@@ -136,31 +141,20 @@ const OutlinedInputInput = styled(InputBaseInput, {
 })(
   memoTheme(({ theme }) => ({
     padding: '16.5px 14px',
-    ...(!theme.vars && {
-      '&:-webkit-autofill': {
+    '&:-webkit-autofill': {
+      ...(!theme.vars && {
         WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
         WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
         caretColor: theme.palette.mode === 'light' ? null : '#fff',
-        borderRadius: 'inherit',
-      },
-    }),
-    ...(theme.vars && {
-      '&:-webkit-autofill': {
-        borderRadius: 'inherit',
-      },
-      [theme.getColorSchemeSelector('light')]: {
-        '&:-webkit-autofill': {
-          WebkitBoxShadow: theme.vars.palette.Input.autofillWebkitShadowBox,
-        },
-      },
-      [theme.getColorSchemeSelector('dark')]: {
-        '&:-webkit-autofill': {
+      }),
+      borderRadius: 'inherit',
+      ...(theme.vars &&
+        theme.applyStyles('dark', {
           WebkitBoxShadow: theme.vars.palette.Input.autofillWebkitShadowBox,
           WebkitTextFillColor: '#fff',
           caretColor: '#fff',
-        },
-      },
-    }),
+        })),
+    },
     variants: [
       {
         props: {
@@ -195,7 +189,6 @@ const OutlinedInputInput = styled(InputBaseInput, {
 const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiOutlinedInput' });
   const {
-    components = {},
     fullWidth = false,
     inputComponent = 'input',
     label,
@@ -209,10 +202,8 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
 
   const classes = useUtilityClasses(props);
 
-  const muiFormControl = useFormControl();
-  const fcs = formControlState({
+  const [fcs, muiFormControl] = useFormControlState({
     props,
-    muiFormControl,
     states: ['color', 'disabled', 'error', 'focused', 'hiddenLabel', 'size', 'required'],
   });
 
@@ -230,8 +221,8 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
     type,
   };
 
-  const RootSlot = slots.root ?? components.Root ?? OutlinedInputRoot;
-  const InputSlot = slots.input ?? components.Input ?? OutlinedInputInput;
+  const RootSlot = slots.root ?? OutlinedInputRoot;
+  const InputSlot = slots.input ?? OutlinedInputInput;
 
   const [NotchedSlot, notchedProps] = useSlot('notchedOutline', {
     elementType: NotchedOutlineRoot,
@@ -312,17 +303,6 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary']),
     PropTypes.string,
   ]),
-  /**
-   * The components used for each slot inside.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
   /**
    * The default value. Use when the component is not controlled.
    */

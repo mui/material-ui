@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, beforeEach, afterEach, it, expect } from 'vitest';
 import sinon from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
@@ -211,6 +211,24 @@ describe('extendTheme', () => {
     });
     expect(theme.colorSchemes.light.palette.primary.mainChannel).to.equal('255 87 34');
     expect(theme.colorSchemes.light.palette.secondary.mainChannel).to.equal('0 230 118');
+  });
+
+  describe('motion', () => {
+    it('should provide the default values', () => {
+      const theme = extendTheme();
+
+      expect(theme.motion.reducedMotion).to.equal('never');
+    });
+
+    it('should provide custom values', () => {
+      const theme = extendTheme({
+        motion: {
+          reducedMotion: 'system',
+        },
+      });
+
+      expect(theme.motion.reducedMotion).to.equal('system');
+    });
   });
 
   describe('transitions', () => {

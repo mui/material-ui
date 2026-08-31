@@ -16,21 +16,21 @@ export interface ToolbarOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<ToolbarClasses>;
+  classes?: Partial<ToolbarClasses> | undefined;
   /**
    * If `true`, disables gutter padding.
    * @default false
    */
-  disableGutters?: boolean;
+  disableGutters?: boolean | undefined;
   /**
    * The variant to use.
    * @default 'regular'
    */
-  variant?: OverridableStringUnion<'regular' | 'dense', ToolbarPropsVariantOverrides>;
+  variant?: OverridableStringUnion<'regular' | 'dense', ToolbarPropsVariantOverrides> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface ToolbarTypeMap<
@@ -56,7 +56,7 @@ export type ToolbarProps<
   RootComponent extends React.ElementType = ToolbarTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<ToolbarTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default Toolbar;

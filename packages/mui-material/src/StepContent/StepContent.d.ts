@@ -3,19 +3,19 @@ import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { CollapseProps } from '../Collapse';
-import { TransitionProps } from '../transitions/transition';
+import { TransitionProps } from '../transitions/types';
 import { StepContentClasses } from './stepContentClasses';
 import { CreateSlotsAndSlotProps, SlotComponentProps } from '../utils/types';
 
 export interface StepContentSlots {
   /**
    * The component that renders the transition slot.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transition-slots) to learn more about the requirements for this component.
    * @default Collapse
    */
-  transition?: React.JSXElementConstructor<
-    TransitionProps & { children?: React.ReactElement<unknown, any> }
-  >;
+  transition?:
+    | React.JSXElementConstructor<TransitionProps & { children: React.ReactElement<unknown, any> }>
+    | undefined;
 }
 
 export type StepContentSlotsAndSlotProps = CreateSlotsAndSlotProps<
@@ -25,7 +25,11 @@ export type StepContentSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the transition slot.
      * By default, the available props are based on the [Collapse](https://mui.com/material-ui/api/collapse/#props) component
      */
-    transition: SlotComponentProps<React.ElementType, CollapseProps, StepContentOwnerState>;
+    transition: SlotComponentProps<
+      React.ElementType<CollapseProps>,
+      CollapseProps,
+      StepContentOwnerState
+    >;
   }
 >;
 
@@ -40,20 +44,11 @@ export interface StepContentProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<StepContentClasses>;
+  classes?: Partial<StepContentClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
-  /**
-   * The component used for the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default Collapse
-   * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
-   */
-  TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<unknown, any> }
-  >;
+  sx?: SxProps<Theme> | undefined;
   /**
    * Adjust the duration of the content expand transition.
    * Passed as a prop to the transition component.
@@ -61,13 +56,7 @@ export interface StepContentProps
    * Set to 'auto' to automatically calculate transition time based on height.
    * @default 'auto'
    */
-  transitionDuration?: TransitionProps['timeout'] | 'auto';
-  /**
-   * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated Use `slotProps.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  TransitionProps?: TransitionProps;
+  transitionDuration?: TransitionProps['timeout'] | 'auto' | undefined;
 }
 
 export type StepContentClasskey = keyof NonNullable<StepContentProps['classes']>;

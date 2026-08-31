@@ -1,3 +1,4 @@
+import { describe } from 'vitest';
 import { createRenderer } from '@mui/internal-test-utils';
 import TimelineSeparator, { timelineSeparatorClasses as classes } from '@mui/lab/TimelineSeparator';
 import describeConformance from '../../test/describeConformance';
@@ -11,6 +12,6 @@ describe('<TimelineSeparator />', () => {
     render,
     muiName: 'MuiTimelineSeparator',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    skip: ['componentProp', 'themeVariants'],
   }));
 });

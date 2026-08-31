@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Badge, { badgeClasses as classes } from '@mui/material/Badge';
 import describeConformance from '../../test/describeConformance';
@@ -52,6 +52,12 @@ describe('<Badge />', () => {
     const { container } = render(<Badge badgeContent={badge}>{children}</Badge>);
     expect(container.firstChild).to.contain(screen.getByTestId('child'));
     expect(container.firstChild).to.contain(screen.getByTestId('badge'));
+  });
+
+  it('hides the visual badge from assistive technologies by default', () => {
+    const { container } = render(<Badge {...defaultProps} />);
+
+    expect(findBadge(container)).to.have.attribute('aria-hidden', 'true');
   });
 
   it('applies customized classes', () => {
@@ -303,30 +309,7 @@ describe('<Badge />', () => {
     });
   });
 
-  describe('prop: components / slots', () => {
-    it('allows overriding the slots using the components prop', () => {
-      const CustomRoot = React.forwardRef((props, ref) => {
-        const { ownerState, ...other } = props;
-        return <span {...other} ref={ref} data-testid="custom-root" />;
-      });
-
-      const CustomBadge = React.forwardRef((props, ref) => {
-        const { ownerState, ...other } = props;
-        return <span {...other} ref={ref} data-testid="custom-badge" />;
-      });
-
-      render(
-        <Badge
-          {...defaultProps}
-          badgeContent={1}
-          components={{ Root: CustomRoot, Badge: CustomBadge }}
-        />,
-      );
-
-      screen.getByTestId('custom-root');
-      screen.getByTestId('custom-badge');
-    });
-
+  describe('prop: slots', () => {
     it('allows overriding the slots using the slots prop', () => {
       const CustomRoot = React.forwardRef((props, ref) => {
         const { ownerState, ...other } = props;
@@ -351,23 +334,7 @@ describe('<Badge />', () => {
     });
   });
 
-  describe('prop: componentsProps / slotProps', () => {
-    it('allows modifying slots props using the componentsProps prop', () => {
-      render(
-        <Badge
-          {...defaultProps}
-          badgeContent={1}
-          componentsProps={{
-            root: { 'data-testid': 'custom-root' },
-            badge: { 'data-testid': 'custom-badge' },
-          }}
-        />,
-      );
-
-      screen.getByTestId('custom-root');
-      screen.getByTestId('custom-badge');
-    });
-
+  describe('prop: slotProps', () => {
     it('allows modifying slots props using the slotProps prop', () => {
       render(
         <Badge
@@ -382,6 +349,18 @@ describe('<Badge />', () => {
 
       screen.getByTestId('custom-root');
       screen.getByTestId('custom-badge');
+    });
+
+    it('allows overriding the badge accessibility props', () => {
+      const { container } = render(
+        <Badge
+          {...defaultProps}
+          slotProps={{ badge: { 'aria-hidden': false, 'aria-label': '10 notifications' } }}
+        />,
+      );
+
+      expect(findBadge(container)).to.have.attribute('aria-hidden', 'false');
+      expect(findBadge(container)).to.have.attribute('aria-label', '10 notifications');
     });
   });
 

@@ -3,14 +3,14 @@ import ownerDocument from '@mui/utils/ownerDocument';
 import getScrollbarSize from '@mui/utils/getScrollbarSize';
 
 export interface ManagedModalProps {
-  disableScrollLock?: boolean;
+  disableScrollLock?: boolean | undefined;
 }
 
 // Is a vertical scrollbar displayed?
 function isOverflowing(container: Element): boolean {
   const doc = ownerDocument(container);
 
-  if (doc.body === container) {
+  if (container === doc.body || container === doc.documentElement) {
     return ownerWindow(container).innerWidth > doc.documentElement.clientWidth;
   }
 
@@ -72,18 +72,6 @@ function ariaHiddenSiblings(
   });
 }
 
-function findIndexOf<T>(items: readonly T[], callback: (item: T) => boolean): number {
-  let idx = -1;
-  items.some((item, index) => {
-    if (callback(item)) {
-      idx = index;
-      return true;
-    }
-    return false;
-  });
-  return idx;
-}
-
 function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   const restoreStyle: Array<{
     /**
@@ -96,30 +84,6 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   const container = containerInfo.container;
 
   if (!props.disableScrollLock) {
-    if (isOverflowing(container)) {
-      // Compute the size before applying overflow hidden to avoid any scroll jumps.
-      const scrollbarSize = getScrollbarSize(ownerWindow(container));
-
-      restoreStyle.push({
-        value: container.style.paddingRight,
-        property: 'padding-right',
-        el: container,
-      });
-      // Use computed style, here to get the real padding to add our scrollbar width.
-      container.style.paddingRight = `${getPaddingRight(container) + scrollbarSize}px`;
-
-      // .mui-fixed is a global helper.
-      const fixedElements = ownerDocument(container).querySelectorAll('.mui-fixed');
-      [].forEach.call(fixedElements, (element: HTMLElement | SVGElement) => {
-        restoreStyle.push({
-          value: element.style.paddingRight,
-          property: 'padding-right',
-          el: element,
-        });
-        element.style.paddingRight = `${getPaddingRight(element) + scrollbarSize}px`;
-      });
-    }
-
     let scrollContainer: HTMLElement;
 
     if (container.parentNode instanceof DocumentFragment) {
@@ -134,6 +98,30 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
         containerWindow.getComputedStyle(parent).overflowY === 'scroll'
           ? parent
           : container;
+    }
+
+    if (isOverflowing(scrollContainer)) {
+      // Compute the size before applying overflow hidden to avoid any scroll jumps.
+      const scrollbarSize = getScrollbarSize(ownerWindow(scrollContainer));
+
+      restoreStyle.push({
+        value: scrollContainer.style.paddingRight,
+        property: 'padding-right',
+        el: scrollContainer,
+      });
+      // Use computed style, here to get the real padding to add our scrollbar width.
+      scrollContainer.style.paddingRight = `${getPaddingRight(scrollContainer) + scrollbarSize}px`;
+
+      // .mui-fixed is a global helper.
+      const fixedElements = ownerDocument(container).querySelectorAll('.mui-fixed');
+      [].forEach.call(fixedElements, (element: HTMLElement | SVGElement) => {
+        restoreStyle.push({
+          value: element.style.paddingRight,
+          property: 'padding-right',
+          el: element,
+        });
+        element.style.paddingRight = `${getPaddingRight(element) + scrollbarSize}px`;
+      });
     }
 
     // Block the scroll even if no scrollbar is visible to account for mobile keyboard
@@ -228,7 +216,7 @@ export class ModalManager {
     const hiddenSiblings = getHiddenSiblings(container);
     ariaHiddenSiblings(container, modal.mount, modal.modalRef, hiddenSiblings, true);
 
-    const containerIndex = findIndexOf(this.containers, (item) => item.container === container);
+    const containerIndex = this.containers.findIndex((item) => item.container === container);
     if (containerIndex !== -1) {
       this.containers[containerIndex].modals.push(modal);
       return modalIndex;
@@ -245,7 +233,7 @@ export class ModalManager {
   }
 
   mount(modal: Modal, props: ManagedModalProps): void {
-    const containerIndex = findIndexOf(this.containers, (item) => item.modals.includes(modal));
+    const containerIndex = this.containers.findIndex((item) => item.modals.includes(modal));
     const containerInfo = this.containers[containerIndex];
 
     if (!containerInfo.restore) {
@@ -260,7 +248,7 @@ export class ModalManager {
       return modalIndex;
     }
 
-    const containerIndex = findIndexOf(this.containers, (item) => item.modals.includes(modal));
+    const containerIndex = this.containers.findIndex((item) => item.modals.includes(modal));
     const containerInfo = this.containers[containerIndex];
 
     containerInfo.modals.splice(containerInfo.modals.indexOf(modal), 1);

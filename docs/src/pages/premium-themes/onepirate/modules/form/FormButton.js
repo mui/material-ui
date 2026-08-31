@@ -19,6 +19,7 @@ function FormButton(props) {
 FormButton.propTypes = {
   /**
    * If `true`, the component is disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   mounted: PropTypes.bool,

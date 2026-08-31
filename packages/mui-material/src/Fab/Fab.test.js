@@ -1,8 +1,16 @@
-import { expect } from 'chai';
-import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
+import { describe, it, expect, vi } from 'vitest';
+import * as React from 'react';
+import {
+  createRenderer,
+  screen,
+  isJsdom,
+  focusVisible,
+  simulatePointerDevice,
+} from '@mui/internal-test-utils';
 import Fab, { fabClasses as classes } from '@mui/material/Fab';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 import Icon from '@mui/material/Icon';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
 
@@ -17,7 +25,6 @@ describe('<Fab />', () => {
     testVariantProps: { variant: 'extended' },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentsProp'],
   }));
 
   it('should render with the root class but no others', () => {
@@ -147,6 +154,13 @@ describe('<Fab />', () => {
     expect(container.querySelector('button')).to.have.class(disabledClassName);
   });
 
+  it('does not pass classes.root to ButtonBase classes', () => {
+    render(<Fab classes={{ root: 'my-root-class' }}>Fab</Fab>);
+    const button = screen.getByRole('button');
+    const classList = button.className.split(' ');
+    expect(classList.filter((c) => c === 'my-root-class')).to.have.length(1);
+  });
+
   it('should render Icon children with right classes', () => {
     const childClassName = 'child-woof';
     const iconChild = <Icon data-testid="icon" className={childClassName} />;
@@ -157,10 +171,82 @@ describe('<Fab />', () => {
     expect(renderedIconChild).to.have.class(childClassName);
   });
 
+  describe('prop: nativeButton', () => {
+    it('forwards nativeButton={false} to ButtonBase with a custom component', () => {
+      const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(
+        <Fab component={CustomSpan} nativeButton={false}>
+          Fab
+        </Fab>,
+      );
+
+      const fab = screen.getByRole('button');
+      expect(fab).to.have.tagName('SPAN');
+      expect(fab).not.to.have.attribute('type');
+
+      // Proves nativeButton={false} was forwarded — without it, ButtonBase
+      // would warn about a non-button host with nativeButton omitted.
+      expect(errorSpy.mock.calls.length).to.equal(0);
+      errorSpy.mockRestore();
+    });
+  });
+
   describe.skipIf(!isJsdom())('server-side', () => {
     it('should server-side render', () => {
       const { container } = renderToString(<Fab>Fab</Fab>);
       expect(container.firstChild).to.have.text('Fab');
+    });
+  });
+
+  describe('theme.focusVisible', () => {
+    // The effective box-shadow is the last matching rule in source order (equal specificity here).
+    // Read it from the CSSOM rather than getComputedStyle, which returns a mid-transition value.
+    function effectiveBoxShadow(el) {
+      let shadow = '';
+      for (const sheet of Array.from(document.styleSheets)) {
+        let rules;
+        try {
+          rules = sheet.cssRules;
+        } catch {
+          continue;
+        }
+        for (const rule of Array.from(rules)) {
+          if (!rule.style || !rule.style.boxShadow || !rule.selectorText) {
+            continue;
+          }
+          const matches = rule.selectorText.split(',').some((selector) => {
+            try {
+              return el.matches(selector.trim());
+            } catch {
+              return false;
+            }
+          });
+          if (matches) {
+            shadow = rule.style.boxShadow;
+          }
+        }
+      }
+      return shadow;
+    }
+
+    it.skipIf(isJsdom())('a user box-shadow wins over the focus elevation', () => {
+      render(
+        <ThemeProvider
+          theme={createTheme({
+            focusVisible: { boxShadow: '0 0 0 4px rgb(255, 0, 0)' },
+            components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+          })}
+        >
+          <Fab>Fab</Fab>
+        </ThemeProvider>,
+      );
+      const fab = screen.getByRole('button');
+      simulatePointerDevice();
+      focusVisible(fab);
+      expect(fab).to.have.class(classes.focusVisible);
+      expect(effectiveBoxShadow(fab)).to.contain('rgb(255, 0, 0)');
     });
   });
 });

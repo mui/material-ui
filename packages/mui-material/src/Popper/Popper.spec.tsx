@@ -19,8 +19,8 @@ export default function ValueLabelComponent(props: Props) {
 
   return (
     <Tooltip
-      PopperProps={{
-        popperRef,
+      slotProps={{
+        popper: { popperRef },
       }}
       enterTouchDelay={0}
       placement="top"

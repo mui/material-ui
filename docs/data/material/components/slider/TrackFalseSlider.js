@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -33,25 +34,27 @@ function valuetext(value) {
 }
 
 export default function TrackFalseSlider() {
+  const id = React.useId();
+  const rangeId = React.useId();
   return (
     <Box sx={{ width: 250 }}>
-      <Typography id="track-false-slider" gutterBottom>
+      <Typography id={`${id}-label`} gutterBottom>
         Removed track
       </Typography>
       <Slider
         track={false}
-        aria-labelledby="track-false-slider"
+        aria-labelledby={`${id}-label`}
         getAriaValueText={valuetext}
         defaultValue={30}
         marks={marks}
       />
       <Separator />
-      <Typography id="track-false-range-slider" gutterBottom>
+      <Typography id={`${rangeId}-label`} gutterBottom>
         Removed track range slider
       </Typography>
       <Slider
         track={false}
-        aria-labelledby="track-false-range-slider"
+        aria-labelledby={`${rangeId}-label`}
         getAriaValueText={valuetext}
         defaultValue={[20, 37, 50]}
         marks={marks}

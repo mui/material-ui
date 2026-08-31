@@ -1,15 +1,6 @@
 import Radio from '@mui/material/Radio';
 import { expectType } from '@mui/types';
 
-// deprecated props
-<Radio
-  inputProps={{
-    'aria-label': 'Radio',
-    onChange: () => {},
-  }}
-  inputRef={null}
-/>;
-
 <Radio
   slots={{
     root: 'div',

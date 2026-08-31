@@ -10,7 +10,7 @@ githubLabel: 'package: icons'
 
 <p class="description">2,100+ ready-to-use React Material Icons from the official website.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 <br/>
 
 [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material)

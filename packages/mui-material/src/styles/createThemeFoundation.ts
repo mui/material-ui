@@ -11,6 +11,7 @@ import {
 import { ExtractTypographyTokens } from '@mui/system/cssVars';
 import { Palette, PaletteOptions } from './createPalette';
 import { Shadows } from './shadows';
+import { Motion } from './createMotion';
 import { Transitions } from './createTransitions';
 import { Mixins } from './createMixins';
 import { TypographyVariants } from './createTypography';
@@ -223,37 +224,39 @@ export interface ShapeOptions extends SystemShapeOptions {}
 
 // The Palette should be sync with `../themeCssVarsAugmentation/index.d.ts`
 export interface ColorSystemOptions {
-  palette?: PaletteOptions & {
-    background?: Partial<PaletteBackgroundChannel>;
-    common?: Partial<PaletteCommonChannel>;
-    primary?: Partial<PaletteColorChannel>;
-    secondary?: Partial<PaletteColorChannel>;
-    error?: Partial<PaletteColorChannel>;
-    info?: Partial<PaletteColorChannel>;
-    success?: Partial<PaletteColorChannel>;
-    text?: Partial<PaletteTextChannel>;
-    dividerChannel?: Partial<string>;
-    action?: Partial<PaletteActionChannel>;
-    Alert?: Partial<PaletteAlert>;
-    AppBar?: Partial<PaletteAppBar>;
-    Avatar?: Partial<PaletteAvatar>;
-    Button?: Partial<PaletteButton>;
-    Chip?: Partial<PaletteChip>;
-    FilledInput?: Partial<PaletteFilledInput>;
-    Input?: Partial<PaletteInput>;
-    LinearProgress?: Partial<PaletteLinearProgress>;
-    Skeleton?: Partial<PaletteSkeleton>;
-    Slider?: Partial<PaletteSlider>;
-    SnackbarContent?: Partial<PaletteSnackbarContent>;
-    SpeedDialAction?: Partial<PaletteSpeedDialAction>;
-    StepConnector?: Partial<PaletteStepConnector>;
-    StepContent?: Partial<PaletteStepContent>;
-    Switch?: Partial<PaletteSwitch>;
-    TableCell?: Partial<PaletteTableCell>;
-    Tooltip?: Partial<PaletteTooltip>;
-  };
-  opacity?: Partial<Opacity>;
-  overlays?: Overlays;
+  palette?:
+    | (PaletteOptions & {
+        background?: Partial<PaletteBackgroundChannel> | undefined;
+        common?: Partial<PaletteCommonChannel> | undefined;
+        primary?: Partial<PaletteColorChannel> | undefined;
+        secondary?: Partial<PaletteColorChannel> | undefined;
+        error?: Partial<PaletteColorChannel> | undefined;
+        info?: Partial<PaletteColorChannel> | undefined;
+        success?: Partial<PaletteColorChannel> | undefined;
+        text?: Partial<PaletteTextChannel> | undefined;
+        dividerChannel?: Partial<string> | undefined;
+        action?: Partial<PaletteActionChannel> | undefined;
+        Alert?: Partial<PaletteAlert> | undefined;
+        AppBar?: Partial<PaletteAppBar> | undefined;
+        Avatar?: Partial<PaletteAvatar> | undefined;
+        Button?: Partial<PaletteButton> | undefined;
+        Chip?: Partial<PaletteChip> | undefined;
+        FilledInput?: Partial<PaletteFilledInput> | undefined;
+        Input?: Partial<PaletteInput> | undefined;
+        LinearProgress?: Partial<PaletteLinearProgress> | undefined;
+        Skeleton?: Partial<PaletteSkeleton> | undefined;
+        Slider?: Partial<PaletteSlider> | undefined;
+        SnackbarContent?: Partial<PaletteSnackbarContent> | undefined;
+        SpeedDialAction?: Partial<PaletteSpeedDialAction> | undefined;
+        StepConnector?: Partial<PaletteStepConnector> | undefined;
+        StepContent?: Partial<PaletteStepContent> | undefined;
+        Switch?: Partial<PaletteSwitch> | undefined;
+        TableCell?: Partial<PaletteTableCell> | undefined;
+        Tooltip?: Partial<PaletteTooltip> | undefined;
+      })
+    | undefined;
+  opacity?: Partial<Opacity> | undefined;
+  overlays?: Overlays | undefined;
 }
 
 export interface CssVarsPalette {
@@ -417,6 +420,7 @@ export interface CssVarsTheme extends ColorSystem {
   breakpoints: SystemTheme['breakpoints'];
   shape: Shape;
   typography: TypographyVariants;
+  motion: Motion;
   transitions: Transitions;
   shadows: Shadows;
   mixins: Mixins;

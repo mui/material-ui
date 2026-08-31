@@ -5,11 +5,11 @@ import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import { Link } from '@mui/docs/Link';
-import IconImage from 'docs/src/components/icon/IconImage';
+import { Link } from '@mui/internal-core-docs/Link';
+import IconImage from '@mui/internal-core-docs/IconImage';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
-import ROUTES from 'docs/src/route';
+import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 
 const companyInfo = [
   {
@@ -104,7 +104,7 @@ function RemoteAwardCard() {
 export default function PerksBenefits() {
   return (
     <Section bg="gradient" cozy>
-      <Grid container spacing={5} alignItems="center">
+      <Grid container spacing={5} sx={{ alignItems: 'center' }}>
         <Grid size={{ md: 6 }}>
           <SectionHeadline
             overline="Working at MUI"

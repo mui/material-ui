@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import buildFormatNumber from './utils/buildFormatNumber';
+
+const formatNumber = buildFormatNumber('zh-CN');
 
 export const zhCN: Localization = {
   components: {
@@ -23,7 +26,7 @@ export const zhCN: Localization = {
         },
         labelRowsPerPage: '每页行数:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `第 ${from} 条到第 ${to} 条，${count !== -1 ? `共 ${count} 条` : `至少 ${to} 条`}`,
+          `第 ${formatNumber(from)} 条到第 ${formatNumber(to)} 条，${count !== -1 ? `共 ${formatNumber(count)} 条` : `至少 ${formatNumber(to)} 条`}`,
       },
     },
     MuiRating: {
@@ -44,6 +47,27 @@ export const zhCN: Localization = {
     MuiAlert: {
       defaultProps: {
         closeText: '关闭',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': '分页导航',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : '转到'}第 ${page} 页`;
+          }
+          if (type === 'first') {
+            return '转到第一页';
+          }
+          if (type === 'last') {
+            return '转到最后一页';
+          }
+          if (type === 'next') {
+            return '转到下一页';
+          }
+          // if (type === 'previous')
+          return '转到上一页';
+        },
       },
     },
   },

@@ -105,14 +105,14 @@ Let's take one row from [the table above](#properties-reference-table), for exam
 and detail each column:
 
 - **System keys**.
-  The column lists the key(s) by which you can use this property with the `sx` prop (or as a system function).
+  The column lists the key(s) by which you can use this property with the `sx` prop.
 
   ```jsx
   <Button sx={{ mb: 3 }}>
   // or
-  <Box mb={3}>
+  <Box sx={{ mb: 3 }}>
   // or
-  <Box marginBottom={3}>
+  <Box sx={{ marginBottom: 3 }}>
   ```
 
 - **CSS properties**.

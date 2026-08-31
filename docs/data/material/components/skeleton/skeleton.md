@@ -12,7 +12,7 @@ githubSource: packages/mui-material/src/Skeleton
 
 The data for your components might not be immediately available. You can improve the perceived responsiveness of the page by using skeletons. It feels like things are happening immediately, then the information is incrementally displayed on the screen (Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Usage
 
@@ -70,6 +70,8 @@ It works well when it comes to typography as its height is set using `em` units.
 ```
 
 {{"demo": "SkeletonTypography.js", "defaultCodeOpen": false}}
+
+Use `variant="text"` when inferring dimensions from typography, and customize the border radius with the `sx` prop if you need a different shape while preserving typography-based sizing.
 
 But when it comes to other components, you may not want to repeat the width and
 height. In these instances, you can pass `children` and it will

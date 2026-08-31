@@ -11,6 +11,7 @@ import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
+import selectClasses from '../Select/selectClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
@@ -18,6 +19,7 @@ import {
   InputBaseInput,
 } from '../InputBase/InputBase';
 import { capitalize } from '../utils';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableUnderline, startAdornment, endAdornment, size, hiddenLabel, multiline } =
@@ -67,7 +69,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
       backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
       borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
       borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
-      transition: theme.transitions.create('background-color', {
+      ...getTransitionStyles(theme, 'background-color', {
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.easeOut,
       }),
@@ -97,7 +99,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
               position: 'absolute',
               right: 0,
               transform: 'scaleX(0)',
-              transition: theme.transitions.create('transform', {
+              ...getTransitionStyles(theme, 'transform', {
                 duration: theme.transitions.duration.shorter,
                 easing: theme.transitions.easing.easeOut,
               }),
@@ -124,10 +126,10 @@ const FilledInputRoot = styled(InputBaseRoot, {
               }`,
               left: 0,
               bottom: 0,
-              content: '"\\00a0"',
+              content: '""',
               position: 'absolute',
               right: 0,
-              transition: theme.transitions.create('border-bottom-color', {
+              ...getTransitionStyles(theme, 'border-bottom-color', {
                 duration: theme.transitions.duration.shorter,
               }),
               pointerEvents: 'none', // Transparent to the hover style.
@@ -162,7 +164,12 @@ const FilledInputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => ownerState.endAdornment,
           style: {
-            paddingRight: 12,
+            // use CSS variable to keep specificity
+            '--_trailingPad': '12px',
+            paddingRight: 'var(--_trailingPad)',
+            [`&.${selectClasses.root}`]: {
+              '--_trailingPad': '0px',
+            },
           },
         },
         {
@@ -208,33 +215,21 @@ const FilledInputInput = styled(InputBaseInput, {
     paddingRight: 12,
     paddingBottom: 8,
     paddingLeft: 12,
-    ...(!theme.vars && {
-      '&:-webkit-autofill': {
+    '&:-webkit-autofill': {
+      ...(!theme.vars && {
         WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
         WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
         caretColor: theme.palette.mode === 'light' ? null : '#fff',
-        borderTopLeftRadius: 'inherit',
-        borderTopRightRadius: 'inherit',
-      },
-    }),
-    ...(theme.vars && {
-      '&:-webkit-autofill': {
-        borderTopLeftRadius: 'inherit',
-        borderTopRightRadius: 'inherit',
-      },
-      [theme.getColorSchemeSelector('light')]: {
-        '&:-webkit-autofill': {
-          WebkitBoxShadow: theme.vars.palette.Input.autofillWebkitShadowBox,
-        },
-      },
-      [theme.getColorSchemeSelector('dark')]: {
-        '&:-webkit-autofill': {
+      }),
+      borderTopLeftRadius: 'inherit',
+      borderTopRightRadius: 'inherit',
+      ...(theme.vars &&
+        theme.applyStyles('dark', {
           WebkitBoxShadow: theme.vars.palette.Input.autofillWebkitShadowBox,
           WebkitTextFillColor: '#fff',
           caretColor: '#fff',
-        },
-      },
-    }),
+        })),
+    },
     variants: [
       {
         props: {
@@ -289,12 +284,11 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
 
   const {
     disableUnderline = false,
-    components = {},
-    componentsProps: componentsPropsProp,
     fullWidth = false,
     hiddenLabel, // declare here to prevent spreading to DOM
     inputComponent = 'input',
     multiline = false,
+    notched, // declare here to prevent spreading to DOM
     slotProps,
     slots = {},
     type = 'text',
@@ -313,13 +307,12 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   const classes = useUtilityClasses(props);
   const filledInputComponentsProps = { root: { ownerState }, input: { ownerState } };
 
-  const componentsProps =
-    (slotProps ?? componentsPropsProp)
-      ? deepmerge(filledInputComponentsProps, slotProps ?? componentsPropsProp)
-      : filledInputComponentsProps;
+  const componentsProps = slotProps
+    ? deepmerge(filledInputComponentsProps, slotProps)
+    : filledInputComponentsProps;
 
-  const RootSlot = slots.root ?? components.Root ?? FilledInputRoot;
-  const InputSlot = slots.input ?? components.Input ?? FilledInputInput;
+  const RootSlot = slots.root ?? FilledInputRoot;
+  const InputSlot = slots.input ?? FilledInputInput;
 
   return (
     <InputBase
@@ -365,29 +358,6 @@ FilledInput.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary']),
     PropTypes.string,
   ]),
-  /**
-   * The components used for each slot inside.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.object,
-    root: PropTypes.object,
-  }),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -466,6 +436,10 @@ FilledInput.propTypes /* remove-proptypes */ = {
    */
   name: PropTypes.string,
   /**
+   * @internal
+   */
+  notched: PropTypes.bool,
+  /**
    * Callback fired when the value is changed.
    *
    * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
@@ -494,8 +468,6 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -504,8 +476,6 @@ FilledInput.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
    *
    * @default {}
    */

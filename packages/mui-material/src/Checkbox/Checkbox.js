@@ -3,6 +3,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
+import { outsetFocusRing } from '../styles/focusVisible';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
@@ -54,6 +56,13 @@ const CheckboxRoot = styled(SwitchBase, {
 })(
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
+    ...(theme.focusVisible && {
+      [`&.${buttonBaseClasses.focusVisible} svg:first-of-type`]: {
+        ...outsetFocusRing,
+        borderRadius: (theme.vars || theme).shape.borderRadius,
+        ...theme.focusVisible,
+      },
+    }),
     variants: [
       {
         props: { color: 'default', disableRipple: false },
@@ -120,7 +129,6 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     icon: iconProp = defaultIcon,
     indeterminate = false,
     indeterminateIcon: indeterminateIconProp = defaultIndeterminateIcon,
-    inputProps,
     size = 'medium',
     disableRipple = false,
     className,
@@ -142,7 +150,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const externalInputProps = slotProps.input ?? inputProps;
+  const externalInputProps = slotProps.input;
 
   const [RootSlot, rootSlotProps] = useSlot('root', {
     ref,
@@ -163,7 +171,9 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       checkedIcon: React.cloneElement(indeterminateIcon, {
         fontSize: indeterminateIcon.props.fontSize ?? size,
       }),
-      disableRipple,
+      // Forward the raw prop so an unset value stays `undefined` and ButtonBase resolves its
+      // own default — letting a global `MuiButtonBase.defaultProps.disableRipple` apply here.
+      disableRipple: props.disableRipple,
       slots,
       slotProps: {
         input: mergeSlotProps(
@@ -172,6 +182,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
             : externalInputProps,
           {
             'data-indeterminate': indeterminate,
+            'aria-checked': indeterminate ? 'mixed' : undefined,
           },
         ),
       },
@@ -249,11 +260,6 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @default <IndeterminateCheckBoxIcon />
    */
   indeterminateIcon: PropTypes.node,
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  inputProps: PropTypes.object,
   /**
    * Callback fired when the state is changed.
    *

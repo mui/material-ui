@@ -29,6 +29,5 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-lab/src/TimelineSeparator/TimelineSeparator.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-timeline/\">Timeline</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-timeline/\">Timeline</a></li></ul>"
 }

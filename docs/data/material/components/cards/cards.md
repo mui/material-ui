@@ -11,7 +11,7 @@ githubSource: packages/mui-material/src/Card
 
 <p class="description">Cards contain content and actions about a single subject.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -84,4 +84,4 @@ To customize a Card's styles when it's in an active state, you can attach a `dat
 
 {{"demo": "SelectActionCard.js", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/card-introduction--docs).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/card).

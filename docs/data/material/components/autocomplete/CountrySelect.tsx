@@ -35,8 +35,9 @@ export default function CountrySelect() {
           {...params}
           label="Choose a country"
           slotProps={{
+            ...params.slotProps,
             htmlInput: {
-              ...params.inputProps,
+              ...params.slotProps.htmlInput,
               autoComplete: 'new-password', // disable autocomplete and autofill
             },
           }}

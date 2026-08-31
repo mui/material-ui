@@ -37,7 +37,7 @@ const StyledAutocompletePopper = styled('div')(({ theme }) => ({
       },
       [`&.${autocompleteClasses.focused}, &.${autocompleteClasses.focused}[aria-selected="true"]`]:
         {
-          backgroundColor: theme.palette.action.hover,
+          backgroundColor: (theme.vars || theme).palette.action.hover,
         },
     },
   },
@@ -273,8 +273,8 @@ export default function GitHubLabel() {
               getOptionLabel={(option) => option.name}
               renderInput={(params) => (
                 <StyledInput
-                  ref={params.InputProps.ref}
-                  inputProps={params.inputProps}
+                  ref={params.slotProps.input.ref}
+                  inputProps={params.slotProps.htmlInput}
                   autoFocus
                   placeholder="Filter labels"
                 />

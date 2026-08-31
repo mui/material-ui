@@ -14,7 +14,7 @@ githubSource: packages/mui-material/src/SpeedDial
 
 If more than six actions are needed, something other than a FAB should be used to present them.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic speed dial
 
@@ -46,6 +46,12 @@ The SpeedDialActions tooltips can be displayed persistently so that users don't 
 It is enabled here across all devices for demo purposes, but in production it could use the `isTouch` logic to conditionally set the prop.
 
 {{"demo": "SpeedDialTooltipOpen.js"}}
+
+## Transitions
+
+Speed Dial uses [Zoom](/material-ui/transitions/#zoom) by default.
+Use `slots.transition` and `slotProps.transition` to replace it with another transition or to pass transition props.
+Use `transitionDuration` to control the timing.
 
 ## Accessibility
 

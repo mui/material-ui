@@ -9,7 +9,7 @@ githubLabel: 'scope: portal'
 
 <p class="description">The Portal component lets you render its children into a DOM node that exists outside of the Portal's own DOM hierarchy.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader", "design": false}}
 
 ## Introduction
 
@@ -53,5 +53,5 @@ This callback is called during a React layout effect:
 :::error
 The Portal component cannot be used to render child elements on the server—client-side hydration is necessary.
 This is because React doesn't support the [`createPortal()` API](https://react.dev/reference/react-dom/createPortal) on the server.
-See [this GitHub issue](https://github.com/facebook/react/issues/13097) for details.
+See [this GitHub issue](https://github.com/react/react/issues/13097) for details.
 :::

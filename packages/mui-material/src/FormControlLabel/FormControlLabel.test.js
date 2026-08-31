@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import FormControlLabel, {
   formControlLabelClasses as classes,
@@ -22,7 +22,7 @@ describe('<FormControlLabel />', () => {
     slots: {
       typography: { expectedClassName: classes.label },
     },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   describe('prop: label', () => {
@@ -130,6 +130,20 @@ describe('<FormControlLabel />', () => {
       expect(container.firstChild).to.have.class(classes.labelPlacementStart);
     });
 
+    it('should have the `end` class', () => {
+      const { container } = render(
+        <FormControlLabel label="Pizza" labelPlacement="end" control={<div />} />,
+      );
+
+      expect(container.firstChild).to.have.class(classes.labelPlacementEnd);
+    });
+
+    it('should have the `end` class by default', () => {
+      const { container } = render(<FormControlLabel label="Pizza" control={<div />} />);
+
+      expect(container.firstChild).to.have.class(classes.labelPlacementEnd);
+    });
+
     it('should have the `top` class', () => {
       const { container } = render(
         <FormControlLabel label="Pizza" labelPlacement="top" control={<div />} />,
@@ -191,12 +205,12 @@ describe('<FormControlLabel />', () => {
     });
   });
 
-  describe('componentsProps: typography', () => {
+  describe('slotProps: typography', () => {
     it('should spread its contents to the typography element', () => {
       render(
         <FormControlLabel
           label="Pizza"
-          componentsProps={{
+          slotProps={{
             typography: {
               'data-testid': 'labelTypography',
               name: 'test',

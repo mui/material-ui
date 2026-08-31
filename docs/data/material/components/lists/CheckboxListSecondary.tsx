@@ -35,7 +35,7 @@ export default function CheckboxListSecondary() {
                 edge="end"
                 onChange={handleToggle(value)}
                 checked={checked.includes(value)}
-                inputProps={{ 'aria-labelledby': labelId }}
+                slotProps={{ input: { 'aria-labelledby': labelId } }}
               />
             }
             disablePadding

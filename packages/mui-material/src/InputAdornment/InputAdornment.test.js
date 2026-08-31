@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import {
   createRenderer,
   strictModeDoubleLoggingSuppressed,
@@ -21,7 +21,6 @@ describe('<InputAdornment />', () => {
     muiName: 'MuiInputAdornment',
     testVariantProps: { color: 'primary' },
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentsProp'],
     testComponentPropWith: 'span',
   }));
 
@@ -57,12 +56,14 @@ describe('<InputAdornment />', () => {
           placeholder="Search"
           label="Search"
           variant="filled"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment data-testid="InputAdornment" position="start">
-                foo
-              </InputAdornment>
-            ),
+          slotProps={{
+            input: {
+              startAdornment: (
+                <InputAdornment data-testid="InputAdornment" position="start">
+                  foo
+                </InputAdornment>
+              ),
+            },
           }}
         />,
       );
@@ -97,12 +98,14 @@ describe('<InputAdornment />', () => {
           placeholder="Search"
           label="Search"
           variant="filled"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment data-testid="InputAdornment" variant="standard" position="start">
-                foo
-              </InputAdornment>
-            ),
+          slotProps={{
+            input: {
+              startAdornment: (
+                <InputAdornment data-testid="InputAdornment" variant="standard" position="start">
+                  foo
+                </InputAdornment>
+              ),
+            },
           }}
         />,
       );

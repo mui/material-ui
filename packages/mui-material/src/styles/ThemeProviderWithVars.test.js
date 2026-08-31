@@ -1,5 +1,5 @@
+import { describe, beforeEach, afterEach, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { createRenderer, screen, fireEvent, isJsdom } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
 import {

@@ -17,16 +17,16 @@ export interface ImageListItemBarProps extends StandardProps<
    * Position of secondary action IconButton.
    * @default 'right'
    */
-  actionPosition?: 'left' | 'right';
+  actionPosition?: 'left' | 'right' | undefined;
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<ImageListItemBarClasses>;
+  classes?: Partial<ImageListItemBarClasses> | undefined;
   /**
    * Position of the title bar.
    * @default 'bottom'
    */
-  position?: 'below' | 'top' | 'bottom';
+  position?: 'below' | 'top' | 'bottom' | undefined;
   /**
    * String or element serving as subtitle (support text).
    */
@@ -34,7 +34,7 @@ export interface ImageListItemBarProps extends StandardProps<
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * Title to be displayed.
    */

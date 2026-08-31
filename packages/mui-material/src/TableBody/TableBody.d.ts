@@ -12,11 +12,11 @@ export interface TableBodyOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TableBodyClasses>;
+  classes?: Partial<TableBodyClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface TableBodyTypeMap<
@@ -42,7 +42,7 @@ export type TableBodyProps<
   RootComponent extends React.ElementType = TableBodyTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<TableBodyTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default TableBody;

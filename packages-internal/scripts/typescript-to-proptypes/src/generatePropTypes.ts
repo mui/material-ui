@@ -35,6 +35,10 @@ export interface GeneratePropTypesOptions {
    */
   previousPropTypesSource?: Map<string, string>;
   /**
+   * Previous JSDoc comment source for each prop type
+   */
+  previousPropTypesJsDoc?: Map<string, string>;
+  /**
    * Given the `prop`, the `previous` source of the validator and the `generated` source:
    * What source should be injected? `previous` is `undefined` if the validator
    * didn't exist before
@@ -108,6 +112,7 @@ export function generatePropTypes(
     includeJSDoc = true,
     sortProptypes = true,
     previousPropTypesSource = new Map<string, string>(),
+    previousPropTypesJsDoc = new Map<string, string>(),
     reconcilePropTypes = (_prop: PropTypeDefinition, _previous: string, generated: string) =>
       generated,
     shouldInclude,
@@ -306,7 +311,13 @@ export function generatePropTypes(
       })}${isRequired === true ? '.isRequired' : ''}`,
     );
 
-    return `${jsDoc(propTypeDefinition)}"${propTypeDefinition.name}": ${validatorSource},`;
+    const previousJsDoc = previousPropTypesJsDoc.get(propTypeDefinition.name);
+    const jsDocSource =
+      previousJsDoc !== undefined && validatorSource.includes('@typescript-to-proptypes-ignore')
+        ? `${previousJsDoc}\n`
+        : jsDoc(propTypeDefinition);
+
+    return `${jsDocSource}"${propTypeDefinition.name}": ${validatorSource},`;
   }
 
   const propTypes = component.types.slice();

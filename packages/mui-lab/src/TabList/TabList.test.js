@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
@@ -18,13 +18,7 @@ describe('<TabList />', () => {
      */
     render: (node) => render(<TabContext value="0">{node}</TabContext>),
     refInstanceof: window.HTMLDivElement,
-    skip: [
-      'componentsProp',
-      'themeDefaultProps',
-      'themeStyleOverrides',
-      'themeVariants',
-      'rootClass',
-    ],
+    skip: ['themeDefaultProps', 'themeStyleOverrides', 'themeVariants', 'rootClass'],
   }));
 
   // outside of TabContext pass every test in Tabs

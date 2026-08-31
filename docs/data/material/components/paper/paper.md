@@ -11,7 +11,7 @@ githubSource: packages/mui-material/src/Paper
 
 <p class="description">The Paper component is a container for displaying content on an elevated surface.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 

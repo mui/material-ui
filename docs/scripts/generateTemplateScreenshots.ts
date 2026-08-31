@@ -7,7 +7,7 @@ import { chromium } from '@playwright/test';
  *
  * Usage:
  * - `pnpm template:screenshot` to generate all screenshots
- * - `pnpm template:screenshot material-ui` to generate all screenshots for Material-UI templates
+ * - `pnpm template:screenshot material-ui` to generate all screenshots for Material UI templates
  * - `pnpm template:screenshot order-dashboard` to generate screenshots for file named `order-dashboard.tsx`
  * - `pnpm template:screenshot material-ui dashboard` to generate screenshots for file named `dashboard.tsx` of Material UI templates
  *
@@ -42,11 +42,6 @@ const projects = {
     input: path.join(process.cwd(), 'docs/pages/material-ui/getting-started/templates'),
     output: 'docs/public/static/screenshots',
     viewport: { width: 813 * 2, height: 457 * 2 },
-  },
-  'joy-ui': {
-    input: path.join(process.cwd(), 'docs/pages/joy-ui/getting-started/templates'),
-    output: 'docs/public/static/screenshots',
-    viewport: { width: 1600, height: 800 },
   },
 };
 

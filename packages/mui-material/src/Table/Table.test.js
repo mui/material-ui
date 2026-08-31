@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Table, { tableClasses as classes } from '@mui/material/Table';
 import describeConformance from '../../test/describeConformance';
@@ -19,7 +19,6 @@ describe('<Table />', () => {
       refInstanceof: window.HTMLTableElement,
       // can't test another component with tbody as a child
       testComponentPropWith: 'table',
-      skip: ['componentsProp'],
     }),
   );
 

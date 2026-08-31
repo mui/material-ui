@@ -18,14 +18,6 @@ export interface CircularProgressClasses {
   track: string;
   /** Styles applied to the `circle` svg path. */
   circle: string;
-  /** Styles applied to the `circle` svg path if `variant="determinate"`.
-   * @deprecated Combine the [.MuiCircularProgress-circle](/material-ui/api/circular-progress/#circular-progress-classes-MuiCircularProgress-circle) and [.MuiCircularProgress-determinate](/material-ui/api/circular-progress/#circular-progress-classes-MuiCircularProgress-determinate) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  circleDeterminate: string;
-  /** Styles applied to the `circle` svg path if `variant="indeterminate"`.
-   * @deprecated Combine the [.MuiCircularProgress-circle](/material-ui/api/circular-progress/#circular-progress-classes-MuiCircularProgress-circle) and [.MuiCircularProgress-indeterminate](/material-ui/api/circular-progress/#circular-progress-classes-MuiCircularProgress-indeterminate) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  circleIndeterminate: string;
   /** Styles applied to the `circle` svg path if `disableShrink={true}`. */
   circleDisableShrink: string;
 }
@@ -47,8 +39,6 @@ const circularProgressClasses: CircularProgressClasses = generateUtilityClasses(
     'svg',
     'track',
     'circle',
-    'circleDeterminate',
-    'circleIndeterminate',
     'circleDisableShrink',
   ],
 );
