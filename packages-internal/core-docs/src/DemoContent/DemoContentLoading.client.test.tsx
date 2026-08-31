@@ -1,3 +1,4 @@
+import { describe, beforeEach, it, expect, vi } from 'vitest';
 import * as React from 'react';
 import { createRenderer, waitFor } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/material/styles';
