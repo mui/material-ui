@@ -26,36 +26,13 @@ Each annotation names the value behind that dimension. Turn the enhancer off to 
 
 {{"demo": "EnhanceDensityDemo.js"}}
 
-Every component's spacing and sizing now comes from the scale, and medium-size controls share a single 32px box. Components with a `size` prop keep their small and large options; those sizes move to neighboring steps of the same scale, so they stay coherent with each other.
+Every component's spacing and sizing now comes from the scale, and medium-size controls share a touch-target size. Components with a `size` prop keep their small and large options; those sizes move to neighboring steps of the same scale, so they stay coherent with each other.
+
+Spacing between children moves to the container as well: wherever the layout allows, per-child margins are cleared in favor of a `gap` on the parent—the button above sets one `gap` instead of the margin pair its icon carries by default. That leaves one value to override, and it holds up when you change the padding around it or when a child doesn't render.
 
 :::info
 `enhanceDensity` changes nothing until you call it. A theme that doesn't go through the enhancer renders exactly as it does today.
 :::
-
-### Gaps instead of margins
-
-Where a component spaced its children with margins, the enhancer clears them and puts a `gap` on the container instead. The Button in the demo is one case: by default its start icon carries `margin-right: 8px` alongside a `margin-left: -4px` that cancels part of the button's own padding, and every size repeats that pair. The enhanced Button declares `gap` once on the root and zeroes the icon's margins.
-
-The result is a component that holds up better when you change it:
-
-- **Spacing survives a padding change.** A negative margin only works against the padding it was written for. Widen the padding and the icon's inset shifts by an amount nobody chose. A `gap` isn't cancelling anything, so it stays correct.
-- **It applies between the children that actually render.** Margins travel with the child, so components reach for sibling selectors to suppress the leading one—[DialogActions](/material-ui/api/dialog-actions/) uses `& > :not(style) ~ :not(style)`, which stops matching as soon as you wrap a child or slot in an element it didn't expect. A container's `gap` has no such condition.
-- **One value replaces many rules.** [Tab](/material-ui/api/tab/) sets a different margin per icon position; the enhanced Tab sets one `gap`. Overriding it is a single declaration rather than a rule for each variant and size.
-- **It needs no right-to-left mirroring, and it works when rows wrap**—unlike a horizontal margin, a `gap` also spaces the rows themselves.
-
-```js
-const theme = enhanceDensity(
-  createTheme({
-    components: {
-      MuiTab: {
-        styleOverrides: { root: { gap: 4 } },
-      },
-    },
-  }),
-);
-```
-
-Alert, Button, CardActions, CardHeader, Chip, DialogActions, ListItem, ListItemButton, MenuItem, Pagination, SnackbarContent, and Tab all move to `gap` this way.
 
 ## The spacing scale
 
