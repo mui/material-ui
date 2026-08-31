@@ -75,8 +75,8 @@ importers:
         specifier: 1.0.9-canary.89
         version: 1.0.9-canary.89(@types/node@20.19.43)(esbuild@0.28.2)(jiti@2.7.0)(rolldown@1.2.4)(terser@5.50.0)(tsx@4.23.12)(yaml@2.9.0)
       '@mui/internal-code-infra':
-        specifier: 0.0.4-canary.108
-        version: 0.0.4-canary.108(@next/eslint-plugin-next@16.3.3(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0)))(@types/node@20.19.43)(@typescript-eslint/eslint-plugin@8.67.0(@typescript-eslint/parser@8.67.0(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0)(typescript@6.0.3))(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0)(typescript@6.0.3))(@typescript-eslint/parser@8.67.0(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0)(typescript@6.0.3))(@typescript/native-preview@7.0.0-dev.20260707.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.26)(prettier@3.9.6)(stylelint@17.14.1(supports-color@11.0.0)(typescript@6.0.3))(supports-color@11.0.0)(typescript@6.0.3)(vitest@4.1.10)
+        specifier: 0.0.4-canary.109
+        version: 0.0.4-canary.109(@next/eslint-plugin-next@16.3.3(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0)))(@types/node@20.19.43)(@typescript-eslint/eslint-plugin@8.67.0(@typescript-eslint/parser@8.67.0(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0)(typescript@6.0.3))(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0)(typescript@6.0.3))(@typescript-eslint/parser@8.67.0(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0)(typescript@6.0.3))(@typescript/native-preview@7.0.0-dev.20260707.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.26)(prettier@3.9.6)(stylelint@17.14.1(supports-color@11.0.0)(typescript@6.0.3))(supports-color@11.0.0)(typescript@6.0.3)(vitest@4.1.10)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils/build
@@ -3277,8 +3277,8 @@ packages:
     resolution: {integrity: sha512-PNB4dyE3GTQaOESDcFQwlIYrHr9QcpuS5U5eN0xMIokXGzmoAwOG0QMnFrmq1wlpoUJ1yFhgAEfs3N8tS511+g==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.0.4-canary.108':
-    resolution: {integrity: sha512-0+qRNQBpQjglvXbN4qnxxQ2nxcLkfeB1LFdCKYViZw3ICFUOYO2yq5EmRKlzvgFnmbRDhYCUmDMQU+p9csP4iQ==}
+  '@mui/internal-code-infra@0.0.4-canary.109':
+    resolution: {integrity: sha512-JQBLjwHMiGySoYRifbY70W3zIB6ycnpiDhjAaaqM/h3H+Lu6siB2ri29oQkwfUprffutcHVCjnth3QfzmiNtCg==}
     hasBin: true
     peerDependencies:
       '@next/eslint-plugin-next': '*'
@@ -6114,6 +6114,10 @@ packages:
   content-type@2.1.0:
     resolution: {integrity: sha512-mj7UPXE0jaqaOsukNZRUEfEi2AcL7C/vwmwcHV0O97eO1E1pxBZuyjlZrx5seTaNBg1U6+o35wpa35Qfcc+7ag==}
     engines: {node: '>=18'}
+
+  content-type@3.0.0:
+    resolution: {integrity: sha512-AIi5H6p0xk5uknXcN3/rmhP8jgp69OfSe/JuKiQAFprJ7UGw7mwj7m4XcmDzlrnJDG+cGpphAINGdU3g3g7kDw==}
+    engines: {node: '>=22'}
 
   conventional-changelog-angular@9.2.1:
     resolution: {integrity: sha512-oWSL6ZhnXbYraOFTK3PgRAQJ8fADDAEv5K6AdeyQPLvjFmhG8+ejL0jZZp/R7vTmGJaBvZEE+sE7dB4bCv7sAw==}
@@ -13103,7 +13107,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@mui/internal-code-infra@0.0.4-canary.108(@next/eslint-plugin-next@16.3.3(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0)))(@types/node@20.19.43)(@typescript-eslint/eslint-plugin@8.67.0(@typescript-eslint/parser@8.67.0(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0)(typescript@6.0.3))(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0)(typescript@6.0.3))(@typescript-eslint/parser@8.67.0(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0)(typescript@6.0.3))(@typescript/native-preview@7.0.0-dev.20260707.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.26)(prettier@3.9.6)(stylelint@17.14.1(supports-color@11.0.0)(typescript@6.0.3))(supports-color@11.0.0)(typescript@6.0.3)(vitest@4.1.10)':
+  '@mui/internal-code-infra@0.0.4-canary.109(@next/eslint-plugin-next@16.3.3(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0)))(@types/node@20.19.43)(@typescript-eslint/eslint-plugin@8.67.0(@typescript-eslint/parser@8.67.0(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0)(typescript@6.0.3))(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0)(typescript@6.0.3))(@typescript-eslint/parser@8.67.0(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0)(typescript@6.0.3))(@typescript/native-preview@7.0.0-dev.20260707.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.9.1(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.26)(prettier@3.9.6)(stylelint@17.14.1(supports-color@11.0.0)(typescript@6.0.3))(supports-color@11.0.0)(typescript@6.0.3)(vitest@4.1.10)':
     dependencies:
       '@argos-ci/core': 6.8.1(@types/node@20.19.43)(supports-color@11.0.0)
       '@babel/cli': 7.29.7(@babel/core@7.29.7(supports-color@11.0.0))
@@ -13141,7 +13145,7 @@ snapshots:
       babel-plugin-transform-remove-imports: 1.8.1(@babel/core@7.29.7(supports-color@11.0.0))
       chalk: 6.0.0
       clipboardy: 5.3.2
-      content-type: 2.1.0
+      content-type: 3.0.0
       env-ci: 11.2.0
       es-toolkit: 1.52.0
       eslint: 10.9.1(jiti@2.7.0)(supports-color@11.0.0)
@@ -16156,6 +16160,8 @@ snapshots:
   content-type@1.0.5: {}
 
   content-type@2.1.0: {}
+
+  content-type@3.0.0: {}
 
   conventional-changelog-angular@9.2.1:
     dependencies:
