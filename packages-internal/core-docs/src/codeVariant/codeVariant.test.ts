@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { CODE_VARIANTS } from '../constants';
 import { resolveInitialCodeVariant } from './codeVariant';
 
