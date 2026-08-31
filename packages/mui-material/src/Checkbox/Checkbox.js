@@ -162,7 +162,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     if (inputRef.current) {
       inputRef.current.indeterminate = indeterminate;
     }
-  }, [indeterminate]);
+  });
 
   const [RootSlot, rootSlotProps] = useSlot('root', {
     ref,

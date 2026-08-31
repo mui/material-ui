@@ -135,6 +135,16 @@ describe('<Checkbox />', () => {
       await user.click(screen.getByRole('checkbox'));
       expect(screen.getByRole('checkbox')).to.have.property('indeterminate', true);
     });
+
+    it('should set the indeterminate property on the input when the input slot changes', () => {
+      const CustomInput = React.forwardRef(({ ownerState, ...props }, ref) => (
+        <input ref={ref} {...props} />
+      ));
+      const { setProps } = render(<Checkbox indeterminate />);
+
+      setProps({ slots: { input: CustomInput } });
+      expect(screen.getByRole('checkbox')).to.have.property('indeterminate', true);
+    });
   });
 
   describe('prop: size', () => {
