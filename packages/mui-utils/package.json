@@ -42,7 +42,7 @@
     "@mui/types": "workspace:^",
     "@types/node": "20.19.43",
     "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.4",
+    "@types/react-dom": "19.2.5",
     "@types/react-is": "19.2.0",
     "@types/sinon": "22.0.0",
     "react": "19.2.8",

@@ -48,7 +48,7 @@
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.18",
     "@types/sinon": "22.0.0",
-    "es-toolkit": "1.51.0",
+    "es-toolkit": "1.52.0",
     "fast-glob": "3.3.3",
     "react": "19.2.8",
     "sinon": "22.1.0",
