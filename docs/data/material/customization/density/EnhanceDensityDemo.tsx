@@ -238,6 +238,8 @@ export default function EnhanceDensityDemo() {
       });
     };
     measure();
+    // A late webfont changes the label box without changing the button box.
+    document.fonts?.ready.then(measure);
     const observer = new ResizeObserver(measure);
     observer.observe(button);
     return () => observer.disconnect();
