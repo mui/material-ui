@@ -7,6 +7,8 @@ import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Paper from '@mui/material/Paper';
 import Switch from '@mui/material/Switch';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import AddIcon from '@mui/icons-material/Add';
 
 const colorSchemes = { light: true, dark: true };
@@ -14,7 +16,7 @@ const colorSchemes = { light: true, dark: true };
 const defaultTheme = createTheme({ colorSchemes });
 const densityTheme = enhanceDensity(createTheme({ colorSchemes }));
 
-const STAGE_WIDTH = 420;
+const STAGE_WIDTH = 520;
 const STAGE_HEIGHT = 240;
 
 // The colors browser devtools use when it highlights a box.
@@ -37,13 +39,19 @@ const inset = (rect, edges) => ({
 // With the enhancer on, every dimension is a value you can name; with it off
 // they are the component's own built-in numbers.
 const tokens = {
-  height: 'touch-target',
-  padding: "spacing('medium')",
   gap: "spacing('x-small')",
   icon: '0.8lh',
+  // Only the box and its padding step up with the size prop.
+  bySize: {
+    small: { height: "spacing('large')", padding: "spacing('small')" },
+    medium: { height: 'touch-target', padding: "spacing('medium')" },
+    large: { height: "spacing('xx-large')", padding: "spacing('large')" },
+  },
 };
 
-function Annotations({ metrics, enhanced }) {
+const SIZES = Object.keys(tokens.bySize);
+
+function Annotations({ metrics, enhanced, size }) {
   const hatchId = React.useId();
   const { x, y, width, height } = metrics;
   const right = x + width;
@@ -148,7 +156,7 @@ function Annotations({ metrics, enhanced }) {
         y2={padCenter.y}
       />
       <text x={x + width / 2} y={padLabelY} textAnchor="middle">
-        {caption(tokens.padding, metrics.padding.left)}
+        {caption(tokens.bySize[size].padding, metrics.padding.left)}
       </text>
 
       <line
@@ -187,7 +195,7 @@ function Annotations({ metrics, enhanced }) {
             y2={bottom}
           />
           <text x={right + 24} y={y + height / 2} dominantBaseline="middle">
-            {caption(tokens.height, height)}
+            {caption(tokens.bySize[size].height, height)}
           </text>
         </React.Fragment>
       ) : null}
@@ -220,10 +228,12 @@ Annotations.propTypes = {
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
   }).isRequired,
+  size: PropTypes.oneOf(['large', 'medium', 'small']).isRequired,
 };
 
 export default function EnhanceDensityDemo() {
   const [enhanced, setEnhanced] = React.useState(true);
+  const [size, setSize] = React.useState('medium');
   const [metrics, setMetrics] = React.useState(null);
   const stageRef = React.useRef(null);
   const buttonRef = React.useRef(null);
@@ -274,7 +284,7 @@ export default function EnhanceDensityDemo() {
     const observer = new ResizeObserver(measure);
     observer.observe(button);
     return () => observer.disconnect();
-  }, [enhanced]);
+  }, [enhanced, size]);
 
   return (
     <Paper variant="outlined" sx={{ width: '100%' }}>
@@ -297,16 +307,33 @@ export default function EnhanceDensityDemo() {
                 placeItems: 'center',
               }}
             >
-              <Button ref={buttonRef} variant="outlined" startIcon={<AddIcon />}>
+              <Button
+                ref={buttonRef}
+                variant="outlined"
+                size={size}
+                startIcon={<AddIcon />}
+              >
                 <span ref={labelRef}>Button</span>
               </Button>
             </Box>
           </ThemeProvider>
-          {metrics ? <Annotations metrics={metrics} enhanced={enhanced} /> : null}
+          {metrics ? (
+            <Annotations metrics={metrics} enhanced={enhanced} size={size} />
+          ) : null}
         </Box>
       </Box>
       <Divider />
-      <Box sx={{ px: 2, py: 1 }}>
+      <Box
+        sx={{
+          px: 2,
+          py: 1,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 3,
+          flexWrap: 'wrap',
+        }}
+      >
         <FormControlLabel
           control={
             <Switch
@@ -316,6 +343,23 @@ export default function EnhanceDensityDemo() {
           }
           label="Enhance density"
         />
+        <ToggleButtonGroup
+          exclusive
+          size="small"
+          value={size}
+          onChange={(event, next) => {
+            if (next) {
+              setSize(next);
+            }
+          }}
+          aria-label="button size"
+        >
+          {SIZES.map((option) => (
+            <ToggleButton key={option} value={option} sx={{ textTransform: 'none' }}>
+              {option}
+            </ToggleButton>
+          ))}
+        </ToggleButtonGroup>
       </Box>
     </Paper>
   );

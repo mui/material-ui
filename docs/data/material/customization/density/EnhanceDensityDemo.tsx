@@ -6,6 +6,8 @@ import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Paper from '@mui/material/Paper';
 import Switch from '@mui/material/Switch';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import AddIcon from '@mui/icons-material/Add';
 
 const colorSchemes = { light: true, dark: true };
@@ -13,7 +15,7 @@ const colorSchemes = { light: true, dark: true };
 const defaultTheme = createTheme({ colorSchemes });
 const densityTheme = enhanceDensity(createTheme({ colorSchemes }));
 
-const STAGE_WIDTH = 420;
+const STAGE_WIDTH = 520;
 const STAGE_HEIGHT = 240;
 
 // The colors browser devtools use when it highlights a box.
@@ -64,13 +66,29 @@ const inset = (rect: Rect, edges: Edges): Rect => ({
 // With the enhancer on, every dimension is a value you can name; with it off
 // they are the component's own built-in numbers.
 const tokens = {
-  height: 'touch-target',
-  padding: "spacing('medium')",
   gap: "spacing('x-small')",
   icon: '0.8lh',
+  // Only the box and its padding step up with the size prop.
+  bySize: {
+    small: { height: "spacing('large')", padding: "spacing('small')" },
+    medium: { height: 'touch-target', padding: "spacing('medium')" },
+    large: { height: "spacing('xx-large')", padding: "spacing('large')" },
+  },
 };
 
-function Annotations({ metrics, enhanced }: { metrics: Metrics; enhanced: boolean }) {
+type Size = keyof typeof tokens.bySize;
+
+const SIZES = Object.keys(tokens.bySize) as Size[];
+
+function Annotations({
+  metrics,
+  enhanced,
+  size,
+}: {
+  metrics: Metrics;
+  enhanced: boolean;
+  size: Size;
+}) {
   const hatchId = React.useId();
   const { x, y, width, height } = metrics;
   const right = x + width;
@@ -78,8 +96,14 @@ function Annotations({ metrics, enhanced }: { metrics: Metrics; enhanced: boolea
   const paddingBox = inset(metrics, metrics.border);
   const contentBox = inset(paddingBox, metrics.padding);
 
-  const iconCenter = { x: metrics.iconX + metrics.iconSize / 2, y: metrics.iconY + metrics.iconSize / 2 };
-  const gapCenter = { x: metrics.gapX + metrics.gap / 2, y: contentBox.y + contentBox.height / 2 };
+  const iconCenter = {
+    x: metrics.iconX + metrics.iconSize / 2,
+    y: metrics.iconY + metrics.iconSize / 2,
+  };
+  const gapCenter = {
+    x: metrics.gapX + metrics.gap / 2,
+    y: contentBox.y + contentBox.height / 2,
+  };
   const padCenter = {
     x: paddingBox.x + paddingBox.width - metrics.padding.right / 2,
     y: paddingBox.y + paddingBox.height / 2,
@@ -140,7 +164,11 @@ function Annotations({ metrics, enhanced }: { metrics: Metrics; enhanced: boolea
 
       {/* The padding ring, the way devtools paints it: the padding box with the
           content box punched out. */}
-      <path className="padding-box" fillRule="evenodd" d={`${path(paddingBox)}${path(contentBox)}`} />
+      <path
+        className="padding-box"
+        fillRule="evenodd"
+        d={`${path(paddingBox)}${path(contentBox)}`}
+      />
 
       {/* The gap between the icon and the label. */}
       <rect
@@ -160,17 +188,35 @@ function Annotations({ metrics, enhanced }: { metrics: Metrics; enhanced: boolea
         height={metrics.iconSize}
       />
 
-      <line className="leader" x1={x + width / 2} y1={padLabelY - 10} x2={padCenter.x} y2={padCenter.y} />
+      <line
+        className="leader"
+        x1={x + width / 2}
+        y1={padLabelY - 10}
+        x2={padCenter.x}
+        y2={padCenter.y}
+      />
       <text x={x + width / 2} y={padLabelY} textAnchor="middle">
-        {caption(tokens.padding, metrics.padding.left)}
+        {caption(tokens.bySize[size].padding, metrics.padding.left)}
       </text>
 
-      <line className="leader" x1={gapCenter.x} y1={y - 26} x2={gapCenter.x} y2={gapCenter.y} />
+      <line
+        className="leader"
+        x1={gapCenter.x}
+        y1={y - 26}
+        x2={gapCenter.x}
+        y2={gapCenter.y}
+      />
       <text x={gapCenter.x} y={y - 32} textAnchor="middle">
         {caption(tokens.gap, metrics.gap)}
       </text>
 
-      <line className="leader" x1={x - 30} y1={iconCenter.y} x2={iconCenter.x} y2={iconCenter.y} />
+      <line
+        className="leader"
+        x1={x - 30}
+        y1={iconCenter.y}
+        x2={iconCenter.x}
+        y2={iconCenter.y}
+      />
       <text x={x - 36} y={iconCenter.y} textAnchor="end" dominantBaseline="middle">
         {caption(tokens.icon, metrics.iconSize)}
       </text>
@@ -181,9 +227,15 @@ function Annotations({ metrics, enhanced }: { metrics: Metrics; enhanced: boolea
         <React.Fragment>
           <line className="dim" x1={right + 14} y1={y} x2={right + 14} y2={bottom} />
           <line className="dim" x1={right + 10} y1={y} x2={right + 18} y2={y} />
-          <line className="dim" x1={right + 10} y1={bottom} x2={right + 18} y2={bottom} />
+          <line
+            className="dim"
+            x1={right + 10}
+            y1={bottom}
+            x2={right + 18}
+            y2={bottom}
+          />
           <text x={right + 24} y={y + height / 2} dominantBaseline="middle">
-            {caption(tokens.height, height)}
+            {caption(tokens.bySize[size].height, height)}
           </text>
         </React.Fragment>
       ) : null}
@@ -193,6 +245,7 @@ function Annotations({ metrics, enhanced }: { metrics: Metrics; enhanced: boolea
 
 export default function EnhanceDensityDemo() {
   const [enhanced, setEnhanced] = React.useState(true);
+  const [size, setSize] = React.useState<Size>('medium');
   const [metrics, setMetrics] = React.useState<Metrics | null>(null);
   const stageRef = React.useRef<HTMLDivElement>(null);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
@@ -243,33 +296,82 @@ export default function EnhanceDensityDemo() {
     const observer = new ResizeObserver(measure);
     observer.observe(button);
     return () => observer.disconnect();
-  }, [enhanced]);
+  }, [enhanced, size]);
 
   return (
     <Paper variant="outlined" sx={{ width: '100%' }}>
       <Box sx={{ overflowX: 'auto', p: 2 }}>
         <Box
           ref={stageRef}
-          sx={{ position: 'relative', width: STAGE_WIDTH, height: STAGE_HEIGHT, mx: 'auto' }}
+          sx={{
+            position: 'relative',
+            width: STAGE_WIDTH,
+            height: STAGE_HEIGHT,
+            mx: 'auto',
+          }}
         >
           <ThemeProvider theme={enhanced ? densityTheme : defaultTheme}>
-            <Box sx={{ position: 'absolute', inset: 0, display: 'grid', placeItems: 'center' }}>
-              <Button ref={buttonRef} variant="outlined" startIcon={<AddIcon />}>
+            <Box
+              sx={{
+                position: 'absolute',
+                inset: 0,
+                display: 'grid',
+                placeItems: 'center',
+              }}
+            >
+              <Button
+                ref={buttonRef}
+                variant="outlined"
+                size={size}
+                startIcon={<AddIcon />}
+              >
                 <span ref={labelRef}>Button</span>
               </Button>
             </Box>
           </ThemeProvider>
-          {metrics ? <Annotations metrics={metrics} enhanced={enhanced} /> : null}
+          {metrics ? (
+            <Annotations metrics={metrics} enhanced={enhanced} size={size} />
+          ) : null}
         </Box>
       </Box>
       <Divider />
-      <Box sx={{ px: 2, py: 1 }}>
+      <Box
+        sx={{
+          px: 2,
+          py: 1,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 3,
+          flexWrap: 'wrap',
+        }}
+      >
         <FormControlLabel
           control={
-            <Switch checked={enhanced} onChange={(event) => setEnhanced(event.target.checked)} />
+            <Switch
+              checked={enhanced}
+              onChange={(event) => setEnhanced(event.target.checked)}
+            />
           }
           label="Enhance density"
         />
+        <ToggleButtonGroup
+          exclusive
+          size="small"
+          value={size}
+          onChange={(event, next) => {
+            if (next) {
+              setSize(next);
+            }
+          }}
+          aria-label="button size"
+        >
+          {SIZES.map((option) => (
+            <ToggleButton key={option} value={option} sx={{ textTransform: 'none' }}>
+              {option}
+            </ToggleButton>
+          ))}
+        </ToggleButtonGroup>
       </Box>
     </Paper>
   );
