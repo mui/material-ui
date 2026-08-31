@@ -354,7 +354,7 @@ describe('extendTheme', () => {
 
   describe('Input palette', () => {
     it('should provide the default autofill tokens', () => {
-      const theme = extendTheme();
+      const theme = extendTheme({ colorSchemes: { light: true, dark: true } });
       expect(theme.colorSchemes.light.palette.Input).to.deep.equal({
         autofillWebkitBoxShadow: 'none',
       });
