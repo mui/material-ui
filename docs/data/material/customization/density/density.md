@@ -32,6 +32,31 @@ Every component's spacing and sizing now comes from the scale, and medium-size c
 `enhanceDensity` changes nothing until you call it. A theme that doesn't go through the enhancer renders exactly as it does today.
 :::
 
+### Gaps instead of margins
+
+Where a component spaced its children with margins, the enhancer clears them and puts a `gap` on the container instead. The Button in the demo is one case: by default its start icon carries `margin-right: 8px` alongside a `margin-left: -4px` that cancels part of the button's own padding, and every size repeats that pair. The enhanced Button declares `gap` once on the root and zeroes the icon's margins.
+
+The result is a component that holds up better when you change it:
+
+- **Spacing survives a padding change.** A negative margin only works against the padding it was written for. Widen the padding and the icon's inset shifts by an amount nobody chose. A `gap` isn't cancelling anything, so it stays correct.
+- **It applies between the children that actually render.** Margins travel with the child, so components reach for sibling selectors to suppress the leading one—[DialogActions](/material-ui/api/dialog-actions/) uses `& > :not(style) ~ :not(style)`, which stops matching as soon as you wrap a child or slot in an element it didn't expect. A container's `gap` has no such condition.
+- **One value replaces many rules.** [Tab](/material-ui/api/tab/) sets a different margin per icon position; the enhanced Tab sets one `gap`. Overriding it is a single declaration rather than a rule for each variant and size.
+- **It needs no right-to-left mirroring, and it works when rows wrap**—unlike a horizontal margin, a `gap` also spaces the rows themselves.
+
+```js
+const theme = enhanceDensity(
+  createTheme({
+    components: {
+      MuiTab: {
+        styleOverrides: { root: { gap: 4 } },
+      },
+    },
+  }),
+);
+```
+
+Alert, Button, CardActions, CardHeader, Chip, DialogActions, ListItem, ListItemButton, MenuItem, Pagination, SnackbarContent, and Tab all move to `gap` this way.
+
 ## The spacing scale
 
 The scale is a set of named steps. `enhanceDensity` adds them to the theme's spacing surface—there's no new theme node to learn:
