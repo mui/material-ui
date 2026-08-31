@@ -18,6 +18,7 @@ const STAGE_HEIGHT = 240;
 
 // The colors browser devtools use when it highlights a box.
 const PADDING_COLOR = '#c3e5a5';
+const PADDING_LINE = '#7ba85a';
 const GAP_COLOR = '#9b6cd9';
 
 interface Edges {
@@ -86,7 +87,7 @@ function Annotations({ metrics, enhanced }: { metrics: Metrics; enhanced: boolea
   const padLabelY = bottom + 42;
 
   const caption = (token: string, value: number) =>
-    enhanced ? `${token} · ${round(value)}` : round(value);
+    enhanced ? `${token} (${round(value)})` : round(value);
 
   return (
     <Box
@@ -100,7 +101,7 @@ function Annotations({ metrics, enhanced }: { metrics: Metrics; enhanced: boolea
         overflow: 'visible',
         pointerEvents: 'none',
         color: 'text.secondary',
-        fontSize: 12,
+        fontSize: 13,
         '& text': { fill: 'currentColor' },
         '& .dim': { stroke: 'currentColor', fill: 'none' },
         '& .leader': {
@@ -109,7 +110,18 @@ function Annotations({ metrics, enhanced }: { metrics: Metrics; enhanced: boolea
           strokeDasharray: '3 3',
           opacity: 0.6,
         },
-        '& .padding-box': { fill: PADDING_COLOR, opacity: 0.7 },
+        '& .padding-box': {
+          fill: PADDING_COLOR,
+          fillOpacity: 0.7,
+          stroke: PADDING_LINE,
+          strokeDasharray: '2 2',
+        },
+        '& .icon-box': {
+          fill: 'none',
+          stroke: 'currentColor',
+          strokeDasharray: '2 2',
+          opacity: 0.6,
+        },
         '& .gap-box': { stroke: GAP_COLOR, strokeDasharray: '2 2' },
         '& .hatch': { stroke: GAP_COLOR, opacity: 0.55 },
       }}
@@ -138,6 +150,14 @@ function Annotations({ metrics, enhanced }: { metrics: Metrics; enhanced: boolea
         y={contentBox.y}
         width={metrics.gap}
         height={contentBox.height}
+      />
+
+      <rect
+        className="icon-box"
+        x={metrics.iconX}
+        y={metrics.iconY}
+        width={metrics.iconSize}
+        height={metrics.iconSize}
       />
 
       <line className="leader" x1={x + width / 2} y1={padLabelY - 10} x2={padCenter.x} y2={padCenter.y} />
@@ -188,7 +208,7 @@ export default function EnhanceDensityDemo() {
       return undefined;
     }
     const measure = () => {
-      const icon = button.querySelector(`.${buttonClasses.startIcon}`);
+      const icon = button.querySelector(`.${buttonClasses.startIcon} svg`);
       if (!icon) {
         return;
       }
