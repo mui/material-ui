@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import { DemoErrorOverlay } from './DemoErrorOverlay';
