@@ -82,7 +82,7 @@
     "react-draggable": "^4.7.1",
     "react-final-form": "^7.0.1",
     "react-imask": "^7.6.1",
-    "react-intersection-observer": "^11.0.0",
+    "react-intersection-observer": "^11.0.1",
     "react-is": "^19.2.8",
     "react-number-format": "^5.4.5",
     "react-router": "^8.3.0",
@@ -97,7 +97,7 @@
     "styled-components": "^6.5.3",
     "stylis": "catalog:docs",
     "use-count-up": "^3.0.1",
-    "webpack-bundle-analyzer": "^5.3.1"
+    "webpack-bundle-analyzer": "^5.3.2"
   },
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "7.29.7",
@@ -116,13 +116,13 @@
     "@types/nprogress": "0.2.3",
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.4",
+    "@types/react-dom": "19.2.5",
     "@types/react-swipeable-views": "0.13.6",
     "@types/react-transition-group": "4.4.12",
     "@types/semver": "7.8.0",
     "@types/stylis": "4.2.7",
     "cross-fetch": "4.1.0",
-    "sharp": "0.35.3",
+    "sharp": "0.35.4",
     "prettier": "3.9.6",
     "raw-loader": "4.0.2",
     "tailwindcss": "4.3.3",

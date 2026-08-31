@@ -44,7 +44,7 @@
     "@mui/material": "workspace:^",
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.4",
+    "@types/react-dom": "19.2.5",
     "@types/sinon": "22.0.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
