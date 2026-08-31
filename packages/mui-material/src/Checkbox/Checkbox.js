@@ -191,7 +191,6 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
         input: {
           ...mergeSlotProps(externalInputProps, {
             'data-indeterminate': indeterminate,
-            'aria-checked': indeterminate ? 'mixed' : undefined,
             // Activating a checkbox clears its native indeterminate state, restore it.
             onChange: (event) => {
               event.target.indeterminate = indeterminate;
