@@ -40,6 +40,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   /** The interactive box height in px. A sizing constant rather than a spacing
    * key, so it is emitted literally and has no CSS variable. */
   touchTarget: string,
+  /** The default icon glyph size in px, on the same terms as `touchTarget`.
+   * Anchor cells only — the small and large icon sizes stay on the ladder. */
+  iconTarget: string,
 ): void {
   // Keyed spacing: a scale key resolves to its step (var ref under cssVariables,
   // raw px otherwise); numbers stay plain spacing units.
@@ -48,9 +51,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     padding: 0,
     width: touchTarget,
     height: touchTarget,
-    '& svg': { fontSize: spacing('medium') },
+    '& svg': { fontSize: iconTarget },
     [`.${formControlLabelClasses.root}:has(&)`]: {
-      marginLeft: `calc((${touchTarget} - ${spacing('medium')}) / -2)`,
+      marginLeft: `calc((${touchTarget} - ${iconTarget}) / -2)`,
     },
     variants: [
       {
@@ -108,7 +111,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   );
   addRootOverride(enhanced.components, 'MuiIconButton', {
     padding: 0,
-    fontSize: spacing('medium'),
+    fontSize: iconTarget,
     variants: [
       { props: { size: 'small' }, style: { width: spacing('large'), height: spacing('large') } },
       {
@@ -127,7 +130,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addRootOverride(enhanced.components, 'MuiSvgIcon', {
     variants: [
       { props: { fontSize: 'small' }, style: { fontSize: spacing(1.75) } },
-      { props: { fontSize: 'medium' }, style: { fontSize: spacing(2) } },
+      { props: { fontSize: 'medium' }, style: { fontSize: iconTarget } },
       { props: { fontSize: 'large' }, style: { fontSize: spacing(2.5) } },
     ],
   });
@@ -950,9 +953,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     {
       minHeight: 'auto',
       // master writes per-variant --_caret/--_endAdornment on these same :has hooks
-      [`.${inputBaseClasses.root}:has(> &)`]: { '--_caret': spacing('medium') },
+      [`.${inputBaseClasses.root}:has(> &)`]: { '--_caret': iconTarget },
       [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
-        '--_endAdornment': spacing('medium'),
+        '--_endAdornment': iconTarget,
       },
     },
     'select',
@@ -1360,7 +1363,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     {
       margin: 0,
       variants: [
-        { props: { size: 'medium' }, style: { fontSize: spacing(2) } },
+        { props: { size: 'medium' }, style: { fontSize: iconTarget } },
         { props: { size: 'small' }, style: { fontSize: spacing(1.75) } },
       ],
     },

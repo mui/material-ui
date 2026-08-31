@@ -12,6 +12,10 @@ import enhanceDensity from './enhanceDensity';
 const controlBox = (theme: ReturnType<typeof enhanceDensity>) =>
   ((theme.components as any).MuiCheckbox.styleOverrides.root as any[])[1].height;
 
+/** Same for the icon glyph, read off the same control. */
+const iconBox = (theme: ReturnType<typeof enhanceDensity>) =>
+  ((theme.components as any).MuiCheckbox.styleOverrides.root as any[])[1]['& svg'].fontSize;
+
 describe('enhanceDensity', () => {
   test('ships the one canonical ladder (static px)', () => {
     const theme = enhanceDensity(createTheme());
@@ -41,7 +45,17 @@ describe('enhanceDensity', () => {
     const theme = enhanceDensity(createTheme(), { 'touch-target': 40 });
 
     expect(controlBox(theme)).to.equal('40px');
+    expect(iconBox(theme)).to.equal('16px');
     expect(theme.spacing('small')).to.equal('12px');
+  });
+
+  test('the icon glyph is its own sizing constant', () => {
+    expect(iconBox(enhanceDensity(createTheme()))).to.equal('16px');
+
+    const theme = enhanceDensity(createTheme(), { 'icon-target': 20 });
+    expect(iconBox(theme)).to.equal('20px');
+    // moving the glyph leaves the box it sits in alone
+    expect(controlBox(theme)).to.equal('32px');
   });
 
   test('emits the steps as a last sheet block, off the theme spacing var', () => {
@@ -182,6 +196,19 @@ describe('enhanceDensity', () => {
     expect(theme.spacing('touch-target')).to.equal('touch-target');
     expect((theme as any).unstable_sx({ m: 'touch-target' })).to.deep.equal({
       margin: 'touch-target',
+    });
+  });
+
+  test('the icon glyph is a sizing constant too', () => {
+    const theme = enhanceDensity(createTheme({ cssVariables: true }), { 'icon-target': 20 });
+    const sheets = theme.generateStyleSheets();
+    const stepVars = sheets[sheets.length - 1][':root'] as Record<string, string>;
+
+    expect(iconBox(theme)).to.equal('20px');
+    expect(stepVars).to.not.have.property('--mui-spacing-icon-target');
+    expect(theme.spacing('icon-target')).to.equal('icon-target');
+    expect((theme as any).unstable_sx({ m: 'icon-target' })).to.deep.equal({
+      margin: 'icon-target',
     });
   });
 

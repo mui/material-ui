@@ -58,7 +58,7 @@ Every component draws its spacing and sizing from one fixed set of steps, so not
 | `x-large`  | 32px          | Large control height                  |
 | `xx-large` | 48px          | Large surfaces                        |
 
-One more value sits outside the ladder: **`touch-target`**, the 32px box that medium-size interactive controls converge on. It sizes controls rather than spacing them, so it is not a spacing step and `theme.spacing()` doesn't resolve it. It is still yours to move, through the same override object as the rest.
+Two values sit outside the ladder: **`touch-target`** (32px), the box that medium-size interactive controls converge on, and **`icon-target`** (16px), the default icon glyph. They size things rather than space them, so neither is a spacing step and `theme.spacing()` doesn't resolve either. Both are still yours to move, through the same override object as the rest.
 
 ### Works with existing spacing API
 
@@ -99,7 +99,7 @@ This means the scale can be read—and overridden—from plain CSS, including fo
 }
 ```
 
-Every step gets a variable except `touch-target`, which is emitted as a plain length because it isn't a spacing step.
+Every step gets a variable except `touch-target` and `icon-target`, which are emitted as plain lengths because they aren't spacing steps.
 
 ### Touch target control
 
@@ -112,7 +112,10 @@ Interactive controls converge on one box, so the size of every hit area in the p
 Pass an object as the second argument to override any step. Each step is a number of pixels:
 
 ```js
-const theme = enhanceDensity(createTheme(), { 'touch-target': 40 });
+const theme = enhanceDensity(createTheme(), {
+  'touch-target': 40,
+  'icon-target': 20,
+});
 ```
 
 Steps you don't list keep their default value, and every component that uses the overridden step reflows with it.
@@ -132,6 +135,7 @@ const compact = {
   'x-large': 24,
   'xx-large': 32,
   'touch-target': 24,
+  'icon-target': 14,
 };
 
 const theme = enhanceDensity(createTheme(), compact);
@@ -148,6 +152,7 @@ const comfortable = {
   'x-large': 48,
   'xx-large': 64,
   'touch-target': 44,
+  'icon-target': 20,
 };
 
 const theme = enhanceDensity(createTheme(), comfortable);

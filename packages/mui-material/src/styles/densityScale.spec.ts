@@ -27,10 +27,12 @@ const keys: SpacingKey[] = [
 keys.forEach((key) => takesKey(key));
 // @ts-expect-error — not a registered spacing key
 takesKey('tiny');
-// `touch-target` sizes the interactive box; it is emitted as plain px and is
-// deliberately NOT a spacing key, so it never reaches theme.spacing() or sx.
+// The sizing constants are emitted as plain px and are deliberately NOT
+// spacing keys, so neither ever reaches theme.spacing() or sx.
 // @ts-expect-error — sizing constant, not a spacing key
 takesKey('touch-target');
+// @ts-expect-error — sizing constant, not a spacing key
+takesKey('icon-target');
 
 // Keys, negated keys, numbers, raw CSS and mixed args all type-check on
 // theme.spacing() — with or without a density preset applied — and return string.

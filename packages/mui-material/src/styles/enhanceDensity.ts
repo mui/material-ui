@@ -2,20 +2,26 @@ import { applyDensity, DENSITY_KEYS, DensityKey, EnhanceableTheme } from './dens
 import applySharedDensity from './sharedDensityComponents';
 
 /**
- * Per-value override in px — same shape as `defaultDensityScale`, so the two
- * merge by spread and every value stays resolvable in JS as well as CSS.
- * `touch-target` is included even though it is not a spacing key: it sizes the
- * interactive box, so apps need to move it with the rest of the scale.
+ * Values that size a box rather than space one, so they are not spacing keys:
+ * they emit as plain lengths, get no CSS variable, and `theme.spacing()` does
+ * not resolve them. They ride the same override object because apps need to
+ * move them with the rest of the scale.
  */
-export type DensityScaleOverrides = Partial<Record<DensityKey | 'touch-target', number>>;
+export type DensitySizingKey = 'touch-target' | 'icon-target';
 
 /**
- * The ONE shipped ladder in px + the touch-target sizing key. Internal —
+ * Per-value override in px — same shape as `defaultDensityScale`, so the two
+ * merge by spread and every value stays resolvable in JS as well as CSS.
+ */
+export type DensityScaleOverrides = Partial<Record<DensityKey | DensitySizingKey, number>>;
+
+/**
+ * The ONE shipped ladder in px + the sizing keys. Internal —
  * barrel-exported as `private_defaultDensityScale` (the `private_*`
  * convention, like `private_createTypography`) so sibling enhancers (MUI X)
  * can merge user recipes over the canonical numbers for JS-gated derivations.
  */
-export const defaultDensityScale: Record<DensityKey | 'touch-target', number> = {
+export const defaultDensityScale: Record<DensityKey | DensitySizingKey, number> = {
   'xx-small': 4,
   'x-small': 8,
   small: 12,
@@ -24,6 +30,7 @@ export const defaultDensityScale: Record<DensityKey | 'touch-target', number> = 
   'x-large': 32,
   'xx-large': 48,
   'touch-target': 32,
+  'icon-target': 16,
 };
 
 // applyDensity consumes multipliers on the (fixed 8px) spacing unit.
@@ -41,11 +48,9 @@ export default function enhanceDensity<T extends EnhanceableTheme>(
   scale?: DensityScaleOverrides,
 ) {
   const enhanced = applyDensity(theme, defaultMultipliers, scale);
-  // The interactive box is a sizing constant, not a ladder step: it emits as
-  // plain px, so it never becomes a spacing key or a CSS variable.
-  applySharedDensity(
-    enhanced,
-    `${scale?.['touch-target'] ?? defaultDensityScale['touch-target']}px`,
-  );
+  // Sizing constants rather than ladder steps: they emit as plain px, so
+  // neither becomes a spacing key or a CSS variable.
+  const sizing = (key: DensitySizingKey) => `${scale?.[key] ?? defaultDensityScale[key]}px`;
+  applySharedDensity(enhanced, sizing('touch-target'), sizing('icon-target'));
   return enhanced;
 }
