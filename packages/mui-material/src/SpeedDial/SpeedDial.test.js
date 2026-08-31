@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { spy } from 'sinon';
 import {
   createRenderer,
@@ -38,7 +38,6 @@ describe('<SpeedDial />', () => {
     slots: { transition: { testWithElement: null }, root: { expectedClassName: classes.root } },
     skip: [
       'componentProp', // react-transition-group issue
-      'componentsProp',
     ],
   }));
 
@@ -65,9 +64,9 @@ describe('<SpeedDial />', () => {
   it('should render with a null child', () => {
     render(
       <SpeedDial {...defaultProps}>
-        <SpeedDialAction icon={icon} tooltipTitle="One" />
+        <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'One' } }} />
         {null}
-        <SpeedDialAction icon={icon} tooltipTitle="Three" />
+        <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'Three' } }} />
       </SpeedDial>,
     );
 
@@ -80,8 +79,16 @@ describe('<SpeedDial />', () => {
 
     render(
       <SpeedDial {...defaultProps}>
-        <SpeedDialAction classes={actionClasses} icon={icon} tooltipTitle="SpeedDialAction1" />
-        <SpeedDialAction classes={actionClasses} icon={icon} tooltipTitle="SpeedDialAction2" />
+        <SpeedDialAction
+          classes={actionClasses}
+          icon={icon}
+          slotProps={{ tooltip: { title: 'SpeedDialAction1' } }}
+        />
+        <SpeedDialAction
+          classes={actionClasses}
+          icon={icon}
+          slotProps={{ tooltip: { title: 'SpeedDialAction2' } }}
+        />
       </SpeedDial>,
     );
 
@@ -93,8 +100,8 @@ describe('<SpeedDial />', () => {
   it('should reset the state of the tooltip when the speed dial is closed while it is open', () => {
     render(
       <SpeedDial icon={icon} ariaLabel="mySpeedDial">
-        <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction1" />
-        <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction2" />
+        <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'SpeedDialAction1' } }} />
+        <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'SpeedDialAction2' } }} />
       </SpeedDial>,
     );
 
@@ -156,8 +163,8 @@ describe('<SpeedDial />', () => {
       it(`should place actions in the correct position when direction=${direction}`, () => {
         render(
           <SpeedDial {...defaultProps} direction={direction.toLowerCase()}>
-            <SpeedDialAction icon={icon} tooltipTitle="action1" />
-            <SpeedDialAction icon={icon} tooltipTitle="action2" />
+            <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'action1' } }} />
+            <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'action2' } }} />
           </SpeedDial>,
         );
 
@@ -174,8 +181,8 @@ describe('<SpeedDial />', () => {
       it(`should place the tooltip in the correct position when direction=${direction}`, () => {
         render(
           <SpeedDial {...defaultProps} open direction={direction.toLowerCase()}>
-            <SpeedDialAction icon={icon} tooltipTitle="action1" />
-            <SpeedDialAction icon={icon} tooltipTitle="action2" />
+            <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'action1' } }} />
+            <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'action2' } }} />
           </SpeedDial>,
         );
 
@@ -193,8 +200,8 @@ describe('<SpeedDial />', () => {
 
       render(
         <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
-          <SpeedDialAction tooltipTitle="action1" />
-          <SpeedDialAction tooltipTitle="action2" />
+          <SpeedDialAction slotProps={{ tooltip: { title: 'action1' } }} />
+          <SpeedDialAction slotProps={{ tooltip: { title: 'action2' } }} />
         </SpeedDial>,
       );
 
@@ -222,8 +229,8 @@ describe('<SpeedDial />', () => {
 
         render(
           <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
-            <SpeedDialAction tooltipTitle="action1" />
-            <SpeedDialAction tooltipTitle="action2" />
+            <SpeedDialAction slotProps={{ tooltip: { title: 'action1' } }} />
+            <SpeedDialAction slotProps={{ tooltip: { title: 'action2' } }} />
           </SpeedDial>,
         );
 
@@ -254,6 +261,8 @@ describe('<SpeedDial />', () => {
         expect(screen.queryByRole('tooltip')).to.equal(null);
         expect(fab).to.have.attribute('aria-expanded', 'false');
         expect(fab).toHaveFocus();
+
+        await flushEffects();
       },
     );
   });
@@ -285,18 +294,20 @@ describe('<SpeedDial />', () => {
           }}
           open
           direction={direction}
-          TransitionComponent={NoTransition}
+          slots={{ transition: NoTransition }}
         >
           {Array.from({ length: actionCount }, (_, index) => (
             <SpeedDialAction
               key={index}
-              FabProps={{
-                ref: (element) => {
-                  actionButtons[index] = element;
+              slotProps={{
+                fab: {
+                  ref: (element) => {
+                    actionButtons[index] = element;
+                  },
                 },
+                tooltip: { title: `action${index}` },
               }}
               icon={icon}
-              tooltipTitle={`action${index}`}
             />
           ))}
         </SpeedDial>,
@@ -474,7 +485,7 @@ describe('<SpeedDial />', () => {
           }}
           open
           direction={direction}
-          TransitionComponent={NoTransition}
+          slots={{ transition: NoTransition }}
         >
           {Array.from({ length: actionCount }, (_, index) => (
             <SpeedDialAction
@@ -485,9 +496,9 @@ describe('<SpeedDial />', () => {
                     actionButtons[index] = element;
                   },
                 },
+                tooltip: { title: `action${index}` },
               }}
               icon={icon}
-              tooltipTitle={`action${index}`}
             />
           ))}
         </SpeedDial>,
@@ -669,6 +680,53 @@ describe('<SpeedDial />', () => {
 
       const child = screen.getByTestId('speedDial').firstChild;
       expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
+    });
+
+    it('enters on the next task when reduced motion is always', () => {
+      const handleEntered = spy();
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <SpeedDial
+            data-testid="speedDial"
+            {...defaultProps}
+            hidden={false}
+            transitionDuration={250}
+            slotProps={{ transition: { onEntered: handleEntered } }}
+          />
+        </ThemeProvider>,
+      );
+
+      expect(handleEntered.callCount).to.equal(0);
+      clock.tick(0);
+      expect(handleEntered.callCount).to.equal(1);
+      expect(screen.getByTestId('speedDial')).not.to.equal(null);
+    });
+
+    it.skipIf(isJsdom())('disables actions CSS transition when reduced motion is always', () => {
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <SpeedDial data-testid="speedDial" {...defaultProps} open={false}>
+            <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'action1' } }} />
+          </SpeedDial>
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByRole('menu')).toHaveComputedStyle({
+        transitionDuration: '0s',
+        transitionDelay: '0s',
+      });
     });
   });
 });

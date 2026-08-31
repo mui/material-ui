@@ -8,12 +8,12 @@ Sponsorship increases the rate of bug fixes, documentation improvements, and fea
 ## Diamond sponsors
 
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap; margin-top: 8px;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="doit.com" href="https://www.doit.com/flexsave/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" class="remove-link-arrow" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/doit-square.svg" alt="doit" title="Management platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="doit.com" href="https://www.doit.com/flexsave/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/doit-square.svg" alt="doit" title="Management platform for Google Cloud and AWS" loading="lazy" /></a>
 </p>
 
-_2/3 slots available_
+_1/3 slots available_
 
-Diamond sponsors are those who've pledged \$1,500/month or more to the MUI organization. [Tier benefits](#diamond).
+Diamond sponsors are those who've pledged $1,500/month or more to the MUI organization. [Tier benefits](#diamond).
 
 ## Gold sponsors
 
@@ -28,17 +28,19 @@ via [Open Collective](https://opencollective.com/mui-org) or via [the for-profi
 List gold sponsors that regular sponsors could feel uncomfortable being listed next to.
 For example, it could be because the service breaks another service's Terms of service and hence is a moral minefield.
 -->
+
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="goread.io" href="https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Instagram followers, likes, views, and comments.">Goread.io</a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="buzzoid.com" href="https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Instant delivery Instagram followers.">Buzzoid</a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="twicsy.com" href="https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Instant delivery Instagram followers.">Twicsy</a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="views4you.com" href="https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Social media growth services.">Views4You</a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="poprey.com" href="https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Buy Instagram likes with crypto.">Poprey</a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="socialwick.com/followers" href="https://www.socialwick.com/instagram/followers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Buy Instagram followers.">SocialWick</a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="follower24.de" href="https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Social media success.">Follower24</a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="views4you.com" href="https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Maximize Social Media Impact.">Views4You</a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="daosmm.com" href="https://daosmm.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Global SMM Panel.">DaoSMM</a>
 </p>
 
-Gold sponsors are those who've pledged \$500/month or more to the MUI organization. [Tier benefits](#gold).
+Gold sponsors are those who've pledged $500/month or more to the MUI organization. [Tier benefits](#gold).
 
 ## Silver sponsors
 

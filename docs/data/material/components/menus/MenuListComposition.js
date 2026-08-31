@@ -57,7 +57,7 @@ export default function MenuListComposition() {
           ref={anchorRef}
           id="composition-button"
           aria-controls={open ? 'composition-menu' : undefined}
-          aria-expanded={open ? 'true' : undefined}
+          aria-expanded={open}
           aria-haspopup="true"
           onClick={handleToggle}
         >

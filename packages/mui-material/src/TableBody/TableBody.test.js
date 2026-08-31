@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import TableBody, { tableBodyClasses as classes } from '@mui/material/TableBody';
 import describeConformance from '../../test/describeConformance';
@@ -22,7 +22,6 @@ describe('<TableBody />', () => {
     refInstanceof: window.HTMLTableSectionElement,
     // can't test with custom `component` with `renderInTable`
     testComponentPropWith: 'tbody',
-    skip: ['componentsProp'],
   }));
 
   it('should render children', () => {

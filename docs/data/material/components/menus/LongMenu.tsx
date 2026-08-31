@@ -39,7 +39,7 @@ export default function LongMenu() {
         aria-label="more"
         id="long-button"
         aria-controls={open ? 'long-menu' : undefined}
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open}
         aria-haspopup="true"
         onClick={handleClick}
       >

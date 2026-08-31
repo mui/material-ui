@@ -13,7 +13,7 @@ export interface StepButtonOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<StepButtonClasses>;
+  classes?: Partial<StepButtonClasses> | undefined;
   /**
    * The icon displayed by the step label.
    */
@@ -25,7 +25,7 @@ export interface StepButtonOwnProps {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export type StepButtonTypeMap<
@@ -59,7 +59,7 @@ export type StepButtonProps<
   RootComponent extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<StepButtonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default StepButton;

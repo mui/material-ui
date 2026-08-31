@@ -13,11 +13,11 @@ export interface DialogTitleOwnProps extends Omit<TypographyTypeMap['props'], 'c
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<DialogTitleClasses>;
+  classes?: Partial<DialogTitleClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface DialogTitleTypeMap<
@@ -43,9 +43,9 @@ declare const DialogTitle: OverridableComponent<DialogTitleTypeMap>;
 
 export type DialogTitleProps<
   RootComponent extends React.ElementType = DialogTitleTypeMap['defaultComponent'],
-  AdditionalProps = { component?: React.ElementType },
+  AdditionalProps = { component?: React.ElementType | undefined },
 > = OverrideProps<DialogTitleTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default DialogTitle;

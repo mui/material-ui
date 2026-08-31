@@ -13,6 +13,7 @@
     "@mui/lab": "workspace:*",
     "@mui/private-theming": "workspace:*",
     "@mui/system": "workspace:*",
-    "@mui/utils": "workspace:*"
+    "@mui/utils": "workspace:*",
+    "@mui/internal-core-docs": "workspace:*"
   }
 }

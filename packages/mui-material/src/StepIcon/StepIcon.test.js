@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import StepIcon, { stepIconClasses as classes } from '@mui/material/StepIcon';
 import SvgIcon from '@mui/material/SvgIcon';
@@ -14,7 +14,7 @@ describe('<StepIcon />', () => {
     muiName: 'MuiStepIcon',
     testVariantProps: { completed: true },
     refInstanceof: window.SVGSVGElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('renders <CheckCircle> when completed', () => {

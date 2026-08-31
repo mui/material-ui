@@ -5,38 +5,48 @@
   "lockFileMaintenance": {
     "schedule": "* 0-4 1 * *"
   },
+  "customManagers": [
+    {
+      "description": "Update Node.js versions in CircleCI download URLs",
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.circleci\\/config\\.yml$/"],
+      "matchStrings": [
+        "curl -fsSL https://nodejs\\.org/dist/v(?<currentValue>\\d+\\.\\d+\\.\\d+)/node-v\\d+\\.\\d+\\.\\d+-linux-x64\\.tar\\.gz"
+      ],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "node-version",
+      "versioningTemplate": "node",
+      "autoReplaceStringTemplate": "curl -fsSL https://nodejs.org/dist/v{{{newValue}}}/node-v{{{newValue}}}-linux-x64.tar.gz"
+    },
+    {
+      "description": "Track the @docsearch/css version pinned in the jsDelivr CDN URL as an npm dependency so Renovate bumps it (grouped with @docsearch/react).",
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^packages-internal\\/core-docs\\/src\\/AppLayout\\/components\\/AppSearch\\.tsx$/"
+      ],
+      "matchStrings": ["@docsearch/css@(?<currentValue>[\\d.]+)/dist/"],
+      "depNameTemplate": "@docsearch/css",
+      "datasourceTemplate": "npm"
+    }
+  ],
   "packageRules": [
     {
       "groupName": "Pigment CSS",
       "matchPackageNames": ["@pigment-css/*"]
     },
     {
-      "groupName": "Font awesome SVG icons",
-      "matchPackageNames": "@fortawesome/*"
+      "groupName": "Emotion",
+      "description": "Keep stylis in sync with emotion to avoid duplicated stylis versions in the bundle.",
+      "matchPackageNames": ["@emotion/*", "stylis", "@types/stylis"]
     },
     {
-      "groupName": "JSS",
-      "matchPackageNames": [
-        "css-jss",
-        "jss-plugin-cache",
-        "jss-plugin-camel-case",
-        "jss-plugin-compose",
-        "jss-plugin-default-unit",
-        "jss-plugin-expand",
-        "jss-plugin-extend",
-        "jss-plugin-global",
-        "jss-plugin-isolate",
-        "jss-plugin-nested",
-        "jss-plugin-props-sort",
-        "jss-plugin-rule-value-function",
-        "jss-plugin-rule-value-observable",
-        "jss-plugin-template",
-        "jss-plugin-vendor-prefixer",
-        "jss-preset-default",
-        "jss-starter-kit",
-        "jss",
-        "react-jss"
-      ]
+      "groupName": "DocSearch",
+      "description": "Keep the pinned @docsearch/css CDN link (AppSearch.tsx, tracked via customManagers) in lockstep with the @docsearch/react package.",
+      "matchPackageNames": ["@docsearch/react", "@docsearch/css"]
+    },
+    {
+      "groupName": "Font awesome SVG icons",
+      "matchPackageNames": "@fortawesome/*"
     },
     {
       "groupName": "MUI X",
@@ -55,17 +65,34 @@
     },
     {
       "groupName": "bundling fixtures",
-      "matchPaths": ["test/bundling/fixtures/**/package.json"],
+      "matchFileNames": ["test/bundling/fixtures/**/package.json"],
       "schedule": "* * 1 1,7 *"
     },
     {
+      "description": "Prevent major version updates of bundler/framework packages in bundling fixtures",
+      "matchFileNames": ["test/bundling/fixtures/**/package.json"],
+      "matchPackageNames": [
+        "esbuild",
+        "gatsby",
+        "next",
+        "rollup",
+        "snowpack",
+        "vite",
+        "webpack",
+        "@types/react**",
+        "react**"
+      ],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
       "groupName": "examples",
-      "matchPaths": ["examples/**/package.json"],
+      "matchFileNames": ["examples/**/package.json"],
       "enabled": false
     },
     {
       "groupName": "envinfo tests",
-      "matchPaths": ["packages/mui-envinfo/test/package.json"],
+      "matchFileNames": ["packages/mui-envinfo/test/package.json"],
       "matchPackageNames": ["@mui/*"],
       "enabled": false
     },
@@ -77,7 +104,6 @@
       "enabled": false
     },
     {
-      // Leave legacy browser image as is.
       "matchPackageNames": ["mcr.microsoft.com/playwright"],
       "matchCurrentVersion": "v1.49.1-noble",
       "enabled": false

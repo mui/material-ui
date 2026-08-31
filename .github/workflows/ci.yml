@@ -15,10 +15,6 @@ on:
 permissions: {}
 
 jobs:
-  continuous-releases:
-    name: Continuous releases
-    uses: mui/mui-public/.github/workflows/ci-base.yml@master
-
   # Tests dev-only scripts across all supported dev environments
   test-dev:
     # l10nbot does not affect dev scripts.
@@ -29,22 +25,23 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
     permissions:
       contents: read
+      pull-requests: write
     steps:
       - run: echo '${{ github.actor }}'
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           # fetch all tags which are required for `pnpm release:changelog`
           fetch-depth: 0
       - name: Set up pnpm
-        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
       - name: Use Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: '22.18.0'
+          node-version: '22.23.2'
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
       - name: Cache Next.js build
-        uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5.0.2
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: docs/.next/cache
           key: ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('docs/**/*.js', 'docs/**/*.ts', 'docs/**/*.tsx', 'docs/**/*.jsx', 'docs/**/*.json', 'docs/**/*.md', 'docs/**/*.mdx') }}
@@ -52,6 +49,9 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
             ${{ runner.os }}-nextjs-
       - run: pnpm release:build
+      - name: Publish packages to pkg.pr.new
+        uses: mui/mui-public/.github/actions/ci-publish@487b5aad17ff4335a4863ac74b0e08e501947184 # master
+        if: ${{ matrix.os == 'ubuntu-latest' }}
       - name: Build docs
         run: pnpm docs:build
         env:
@@ -66,3 +66,40 @@ jobs:
       - name: Debug export-detail.json on when pnpm docs:build fails with EMFILE error
         if: failure()
         run: cat ./docs/.next/export-detail.json || true
+      - name: Extract Vale version
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        id: vale-version
+        run: |
+          VERSION=$(node -p "(require('./package.json').config && require('./package.json').config.valeVersion) || ''")
+          echo "vale_version=$VERSION" >> $GITHUB_OUTPUT
+      - uses: vale-cli/vale-action@518a9136acc6e6668ce7c00d367051e0941e87ff # v3.0.0
+        continue-on-error: true # GitHub Action flag needed until https://github.com/errata-ai/vale-action/issues/89 is fixed
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        with:
+          version: ${{ steps.vale-version.outputs.vale_version }}
+          # Errors should be more visible
+          fail_on_error: true
+          # The other reports don't work, not really https://github.com/reviewdog/reviewdog#reporters
+          reporter: github-pr-check
+          # Required, set by GitHub actions automatically:
+          # https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret
+          token: ${{secrets.GITHUB_TOKEN}}
+
+  # Mirrors the real publish workflow environment (`publish.yml`) so an env
+  # mismatch — e.g. the Node version pinned by `publish-prepare` violating our
+  # engineStrict `engines` range — is caught here instead of during publishing.
+  publish-dry-run:
+    name: Publish Dry Run
+
+    if: ${{ github.repository_owner == 'mui' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Prepare for publishing
+        uses: mui/mui-public/.github/actions/publish-prepare@487b5aad17ff4335a4863ac74b0e08e501947184 # master
+        with:
+          node-version: '22.23.2'
+      - name: Dry run npm publishing
+        env:
+          IS_PUBLISH_TEST: 'true'
+        run: pnpm code-infra publish --ci --dry-run

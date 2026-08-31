@@ -7,6 +7,7 @@ import MdPhone from '@mui/icons-material/Phone';
 import Chip from '@mui/material/Chip';
 
 const theme = createTheme({
+  colorSchemes: { light: true, dark: true },
   components: {
     MuiIcon: {
       styleOverrides: {
@@ -23,8 +24,13 @@ const theme = createTheme({
 
 export default function FontAwesomeIconSize() {
   React.useEffect(() => {
+    const href = 'https://use.fontawesome.com/releases/v5.14.0/css/all.css';
+    if (document.querySelector(`link[href="${href}"]`)) {
+      return undefined;
+    }
+
     const node = loadCSS(
-      'https://use.fontawesome.com/releases/v5.14.0/css/all.css',
+      href,
       // Inject before JSS
       document.querySelector('#font-awesome-css') || document.head.firstChild,
     );

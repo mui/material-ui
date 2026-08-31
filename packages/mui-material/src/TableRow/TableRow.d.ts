@@ -12,21 +12,21 @@ export interface TableRowOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TableRowClasses>;
+  classes?: Partial<TableRowClasses> | undefined;
   /**
    * If `true`, the table row will shade on hover.
    * @default false
    */
-  hover?: boolean;
+  hover?: boolean | undefined;
   /**
    * If `true`, the table row will have the selected shading.
    * @default false
    */
-  selected?: boolean;
+  selected?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface TableRowTypeMap<
@@ -54,7 +54,7 @@ export type TableRowProps<
   RootComponent extends React.ElementType = TableRowTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<TableRowTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default TableRow;

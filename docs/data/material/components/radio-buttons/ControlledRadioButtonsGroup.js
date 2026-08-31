@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
 export default function ControlledRadioButtonsGroup() {
+  const id = React.useId();
   const [value, setValue] = React.useState('female');
 
   const handleChange = (event) => {
@@ -14,9 +15,9 @@ export default function ControlledRadioButtonsGroup() {
 
   return (
     <FormControl>
-      <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
+      <FormLabel id={`${id}-label`}>Gender</FormLabel>
       <RadioGroup
-        aria-labelledby="demo-controlled-radio-buttons-group"
+        aria-labelledby={`${id}-label`}
         name="controlled-radio-buttons-group"
         value={value}
         onChange={handleChange}

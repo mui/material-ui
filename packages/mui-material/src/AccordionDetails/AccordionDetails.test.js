@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import AccordionDetails, {
   accordionDetailsClasses as classes,
@@ -14,7 +14,7 @@ describe('<AccordionDetails />', () => {
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAccordionDetails',
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    skip: ['componentProp', 'themeVariants'],
   }));
 
   it('should render a children element', () => {

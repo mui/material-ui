@@ -7,7 +7,7 @@ function RFTextField(
   const {
     autoComplete,
     input,
-    InputProps,
+    slotProps,
     meta: { touched, error, submitError },
     ...other
   } = props;
@@ -17,11 +17,12 @@ function RFTextField(
       error={Boolean(!!touched && (error || submitError))}
       {...input}
       {...other}
-      InputProps={{
-        inputProps: {
+      slotProps={{
+        ...slotProps,
+        htmlInput: {
           autoComplete,
+          ...slotProps?.htmlInput,
         },
-        ...InputProps,
       }}
       helperText={touched ? error || submitError : ''}
       variant="standard"

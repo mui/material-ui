@@ -19,6 +19,10 @@ import { Tabs as MyTabs } from '@org/ui/material';
     indicator: { className: 'indicator' }
   }} />;
 
+<Tabs
+  slots={{ startScrollButtonIcon: CustomIcon, endScrollButtonIcon: CustomIcon2 }}
+/>;
+
 <CustomTabs
   ScrollButtonComponent={CustomScrollButton}
   TabScrollButtonProps={{ disableRipple: true }}

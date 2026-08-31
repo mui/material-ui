@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { applyChildrenFocusVisible } from '../styles/focusVisible';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import Paper from '../Paper';
@@ -23,7 +24,7 @@ const useUtilityClasses = (ownerState) => {
 
 // var2 is the fallback.
 // Ex. var1: 'var(--a)', var2: 'var(--b)'; return: 'var(--a, var(--b))'
-const joinVars = (var1, var2) => (var1 ? `${var1?.replace(')', '')}, ${var2})` : var2);
+const joinVars = (var1, var2) => (var1 ? `${var1.replace(')', '')}, ${var2})` : var2);
 
 const AppBarRoot = styled(Paper, {
   name: 'MuiAppBar',
@@ -124,6 +125,10 @@ const AppBarRoot = styled(Paper, {
           style: {
             '--AppBar-background': (theme.vars ?? theme).palette[color].main,
             '--AppBar-color': (theme.vars ?? theme).palette[color].contrastText,
+            ...(theme.focusVisible &&
+              applyChildrenFocusVisible(
+                `0 0 0 4px ${(theme.vars || theme).palette.background.default}`,
+              )),
           },
         })),
       {

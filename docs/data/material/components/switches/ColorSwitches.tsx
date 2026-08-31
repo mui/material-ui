@@ -14,7 +14,7 @@ const PinkSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-const label = { inputProps: { 'aria-label': 'Color switch demo' } };
+const label = { slotProps: { input: { 'aria-label': 'Color switch demo' } } };
 
 export default function ColorSwitches() {
   return (

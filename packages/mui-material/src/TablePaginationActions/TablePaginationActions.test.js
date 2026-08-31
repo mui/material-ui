@@ -1,3 +1,4 @@
+import { describe } from 'vitest';
 import { createRenderer } from '@mui/internal-test-utils';
 import TablePaginationActions, {
   tablePaginationActionsClasses as classes,
@@ -34,7 +35,7 @@ describe('<TablePaginationActions />', () => {
       classes,
       muiName: 'MuiTablePaginationActions',
       refInstanceof: window.HTMLDivElement,
-      skip: ['componentsProp', 'componentProp', 'themeVariants'],
+      skip: ['componentProp', 'themeVariants'],
     }),
   );
 });

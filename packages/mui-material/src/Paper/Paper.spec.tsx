@@ -10,13 +10,13 @@ const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
 const props1: PaperProps<'div'> = {
   component: 'div',
   onChange: (event) => {
-    expectType<React.FormEvent<HTMLDivElement>, typeof event>(event);
+    expectType<React.ChangeEvent<HTMLDivElement>, typeof event>(event);
   },
 };
 
 const props2: PaperProps = {
   onChange: (event) => {
-    expectType<React.FormEvent<HTMLDivElement>, typeof event>(event);
+    expectType<React.ChangeEvent<HTMLDivElement>, typeof event>(event);
   },
 };
 

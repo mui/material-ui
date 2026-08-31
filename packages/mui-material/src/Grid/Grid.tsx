@@ -1,7 +1,7 @@
 'use client';
 import PropTypes from 'prop-types';
 import { createGrid } from '@mui/system/Grid';
-import { SxProps, SystemProps } from '@mui/system';
+import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 import requirePropFactory from '../utils/requirePropFactory';
 import { Theme, styled, Breakpoint } from '../styles';
@@ -10,7 +10,7 @@ import useTheme from '../styles/useTheme';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
-export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+export type GridDirection = 'row' | 'row-reverse';
 
 export type GridSpacing = number | string;
 
@@ -29,28 +29,33 @@ export interface GridBaseProps {
    * The number of columns.
    * @default 12
    */
-  columns?: ResponsiveStyleValue<number>;
+  columns?: ResponsiveStyleValue<number> | undefined;
   /**
    * Defines the horizontal space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
-  columnSpacing?: ResponsiveStyleValue<GridSpacing>;
+  columnSpacing?: ResponsiveStyleValue<GridSpacing> | undefined;
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
    * @default false
    */
-  container?: boolean;
+  container?: boolean | undefined;
   /**
-   * Defines the `flex-direction` style property.
-   * It is applied for all screen sizes.
+   * Defines the `flex-direction` style property for the container.
+   *
+   * ⚠️ Only `row` and `row-reverse` are supported. `column` and `column-reverse` are not supported,
+   * because the Grid component is designed to subdivide layouts into **columns**, not rows.
+   *
+   * For vertical layouts, use `Stack` instead.
+   *
    * @default 'row'
    */
-  direction?: ResponsiveStyleValue<GridDirection>;
+  direction?: ResponsiveStyleValue<GridDirection> | undefined;
   /**
    * Defines the offset value for the type `item` components.
    */
-  offset?: ResponsiveStyleValue<GridOffset>;
+  offset?: ResponsiveStyleValue<GridOffset> | undefined;
   /**
    * @internal
    * The level of the grid starts from `0` and increases when the grid nests
@@ -78,16 +83,16 @@ export interface GridBaseProps {
    *     <Grid container> // level 0
    * ```
    */
-  unstable_level?: number;
+  unstable_level?: number | undefined;
   /**
    * Defines the vertical space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
-  rowSpacing?: ResponsiveStyleValue<GridSpacing>;
+  rowSpacing?: ResponsiveStyleValue<GridSpacing> | undefined;
   /**
    * Defines the size of the the type `item` components.
    */
-  size?: ResponsiveStyleValue<GridSize>;
+  size?: ResponsiveStyleValue<GridSize> | undefined;
   /**
    * Defines the space between the type `item` components.
    * It can only be used on a type `container` component.
@@ -99,18 +104,18 @@ export interface GridBaseProps {
    * It's applied for all screen sizes.
    * @default 'wrap'
    */
-  wrap?: GridWrap;
+  wrap?: GridWrap | undefined;
 }
 
 export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & GridBaseProps & { sx?: SxProps<Theme> } & SystemProps<Theme>;
+  props: P & GridBaseProps & { sx?: SxProps<Theme> | undefined };
   defaultComponent: D;
 }
 
 export type GridProps<
   D extends React.ElementType = GridTypeMap['defaultComponent'],
   P = {
-    component?: React.ElementType;
+    component?: React.ElementType | undefined;
   },
 > = OverrideProps<GridTypeMap<P, D>, D>;
 
@@ -173,13 +178,18 @@ Grid.propTypes /* remove-proptypes */ = {
    */
   container: PropTypes.bool,
   /**
-   * Defines the `flex-direction` style property.
-   * It is applied for all screen sizes.
+   * Defines the `flex-direction` style property for the container.
+   *
+   * ⚠️ Only `row` and `row-reverse` are supported. `column` and `column-reverse` are not supported,
+   * because the Grid component is designed to subdivide layouts into **columns**, not rows.
+   *
+   * For vertical layouts, use `Stack` instead.
+   *
    * @default 'row'
    */
   direction: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
-    PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
+    PropTypes.oneOf(['row-reverse', 'row']),
+    PropTypes.arrayOf(PropTypes.oneOf(['row-reverse', 'row'])),
     PropTypes.object,
   ]),
   /**

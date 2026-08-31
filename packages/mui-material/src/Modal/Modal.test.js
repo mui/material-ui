@@ -1,6 +1,6 @@
+import { describe, beforeAll, beforeEach, afterAll, it, expect, afterEach } from 'vitest';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import { act, createRenderer, fireEvent, within, screen, isJsdom } from '@mui/internal-test-utils';
@@ -33,14 +33,12 @@ describe('<Modal />', () => {
       muiName: 'MuiModal',
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { hideBackdrop: true },
-      testLegacyComponentsProp: true,
       slots: {
         root: { expectedClassName: classes.root },
         backdrop: { expectedClassName: classes.backdrop },
       },
       skip: [
         'rootClass', // portal, can't determine the root
-        'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
         'themeDefaultProps', // portal, can't determine the root
         'themeStyleOverrides', // portal, can't determine the root
       ],
@@ -212,11 +210,7 @@ describe('<Modal />', () => {
           }
         }
 
-        return (
-          <Modal onClose={handleClose} {...other}>
-            <div />
-          </Modal>
-        );
+        return <Modal onClose={handleClose} {...other} />;
       }
       const onClose = spy();
 
@@ -224,7 +218,7 @@ describe('<Modal />', () => {
         <ModalWithDisabledBackdropClick
           onClose={onClose}
           open
-          BackdropProps={{ 'data-testid': 'backdrop' }}
+          slotProps={{ backdrop: { 'data-testid': 'backdrop' } }}
         >
           <div />
         </ModalWithDisabledBackdropClick>,
@@ -296,28 +290,31 @@ describe('<Modal />', () => {
       expect(handleKeyDown).to.have.property('callCount', 0);
     });
 
-    it('should not call onClose when `disableEscapeKeyDown={true}`', () => {
-      const handleKeyDown = spy();
-      const onCloseSpy = spy();
+    it('should let the user disable escape key down triggering onClose', () => {
+      function ModalWithDisabledEscapeKeyDown(props) {
+        const { onClose, ...other } = props;
+        function handleClose(event, reason) {
+          if (reason !== 'escapeKeyDown') {
+            onClose(event, reason);
+          }
+        }
+
+        return <Modal onClose={handleClose} {...other} />;
+      }
+      const onClose = spy();
 
       render(
-        <div onKeyDown={handleKeyDown}>
-          <Modal open disableEscapeKeyDown onClose={onCloseSpy}>
-            <div data-testid="modal" tabIndex={-1} />
-          </Modal>
-        </div>,
+        <ModalWithDisabledEscapeKeyDown onClose={onClose} open>
+          <div data-testid="modal" />
+        </ModalWithDisabledEscapeKeyDown>,
       );
 
-      act(() => {
-        screen.getByTestId('modal').focus();
-      });
-
+      fireEvent.focus(screen.getByTestId('modal'));
       fireEvent.keyDown(screen.getByTestId('modal'), {
         key: 'Escape',
       });
 
-      expect(onCloseSpy).to.have.property('callCount', 0);
-      expect(handleKeyDown).to.have.property('callCount', 1);
+      expect(onClose).to.have.property('callCount', 0);
     });
 
     it('calls onKeyDown on the Modal', () => {
@@ -782,6 +779,8 @@ describe('<Modal />', () => {
   });
 
   describe('prop: container', () => {
+    clock.withFakeTimers();
+
     it('should be able to change the container', () => {
       function TestCase(props) {
         const { anchorEl } = props;
@@ -799,6 +798,99 @@ describe('<Modal />', () => {
       setProps({ anchorEl: null });
       setProps({ anchorEl: document.body });
     });
+
+    it('should finish closing when the container changes during the exit transition', () => {
+      function TestCase(props) {
+        const firstContainerRef = React.useRef(null);
+        const secondContainerRef = React.useRef(null);
+        const getContainer = React.useCallback(
+          () =>
+            props.containerIndex === 0 ? firstContainerRef.current : secondContainerRef.current,
+          [props.containerIndex],
+        );
+
+        return (
+          <React.Fragment>
+            <div data-testid="first-container" ref={firstContainerRef} />
+            <div data-testid="second-container" ref={secondContainerRef} />
+            <Modal
+              data-testid="modal"
+              open={props.open}
+              container={getContainer}
+              closeAfterTransition
+              onTransitionExited={props.onTransitionExited}
+            >
+              <Fade
+                in={props.open}
+                timeout={100}
+                onExit={props.onExit}
+                onExiting={props.onExiting}
+                onExited={props.onExited}
+              >
+                <div>Content</div>
+              </Fade>
+            </Modal>
+          </React.Fragment>
+        );
+      }
+
+      const handleExit = spy();
+      const handleExiting = spy();
+      const handleExited = spy();
+      const handleTransitionExited = spy();
+      const { setProps } = render(
+        <TestCase
+          open
+          containerIndex={0}
+          onExit={handleExit}
+          onExiting={handleExiting}
+          onExited={handleExited}
+          onTransitionExited={handleTransitionExited}
+        />,
+      );
+
+      act(() => {
+        clock.runToLast();
+      });
+      const firstContainer = screen.getByTestId('first-container');
+      const secondContainer = screen.getByTestId('second-container');
+      expect(within(firstContainer).getByTestId('modal')).not.to.equal(null);
+
+      setProps({ open: false, containerIndex: 0 });
+      expect(handleExit.callCount).to.equal(1);
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExited.callCount).to.equal(0);
+      expect(handleTransitionExited.callCount).to.equal(0);
+
+      act(() => {
+        clock.tick(50);
+      });
+      setProps({ open: false, containerIndex: 1 });
+
+      expect(within(firstContainer).getByTestId('modal')).not.to.equal(null);
+      expect(within(secondContainer).queryByTestId('modal')).to.equal(null);
+      expect(handleExit.callCount).to.equal(1);
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExited.callCount).to.equal(0);
+      expect(handleTransitionExited.callCount).to.equal(0);
+
+      act(() => {
+        clock.tick(50);
+      });
+      expect(screen.queryByTestId('modal')).to.equal(null);
+      expect(handleExit.callCount).to.equal(1);
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExited.callCount).to.equal(1);
+      expect(handleTransitionExited.callCount).to.equal(1);
+      expect(firstContainer.style).to.have.property('overflow', '');
+
+      setProps({ open: true, containerIndex: 1 });
+      act(() => {
+        clock.runToLast();
+      });
+      expect(within(firstContainer).queryByTestId('modal')).to.equal(null);
+      expect(within(secondContainer).getByTestId('modal')).not.to.equal(null);
+    });
   });
 
   describe('prop: disablePortal', () => {
@@ -815,10 +907,13 @@ describe('<Modal />', () => {
     });
   });
 
-  describe('prop: BackdropProps', () => {
+  describe('prop: slotProps.backdrop', () => {
     it('should handle custom className', () => {
       render(
-        <Modal open BackdropProps={{ className: 'custom-backdrop', 'data-testid': 'backdrop' }}>
+        <Modal
+          open
+          slotProps={{ backdrop: { className: 'custom-backdrop', 'data-testid': 'backdrop' } }}
+        >
           <div />
         </Modal>,
       );

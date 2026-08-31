@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 
 const QUOTES = [
@@ -120,19 +119,18 @@ function Data({
         flexDirection: 'column',
         justifyContent: 'end',
         color: 'text.primary',
-        border: '1px solid',
-        borderColor: 'divider',
+        backgroundColor: 'background.paper',
         background:
           isFirstColumn || isLastColumn
             ? `radial-gradient(#ebf5ff 1.8px, transparent 1.8px) 0% 50% / 22px 22px repeat,
               linear-gradient(180deg, ${(theme.vars || theme).palette.primary[50]} 5%, #FFF 20%)`
-            : 'background.paper',
+            : undefined,
         ...theme.applyDarkStyles({
           background:
             isFirstColumn || isLastColumn
               ? `radial-gradient(#131C23 1.8px, transparent 1.8px) 0% 50% / 22px 22px repeat,
                 linear-gradient(180deg, #131C23 5%, #15181A 20%)`
-              : 'background.paper',
+              : undefined,
         }),
         gap: 2,
       })}
@@ -189,7 +187,7 @@ export default function CustomerQuotes() {
     <Box
       sx={{
         display: 'grid',
-        gap: 0,
+        gap: '1px',
         gridTemplateColumns: {
           xs: '1fr',
           sm: '1fr 1fr',
@@ -218,13 +216,15 @@ export default function CustomerQuotes() {
         },
         borderRadius: '10px',
         overflow: 'hidden',
-        backgroundColor: 'background.default',
+        border: '1px solid',
+        borderColor: 'divider',
+        backgroundColor: 'divider',
       }}
     >
       {QUOTES.map((item) => (
-        <Grid gridArea={item.profile.gridArea} key={item.profile.name} size={{ xs: 12, sm: 6 }}>
+        <Box key={item.profile.name} sx={{ gridArea: item.profile.gridArea }}>
           <Data {...item} />
-        </Grid>
+        </Box>
       ))}
     </Box>
   );

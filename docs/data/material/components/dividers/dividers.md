@@ -11,7 +11,7 @@ githubSource: packages/mui-material/src/Divider
 
 <p class="description">The Divider component provides a thin, unobtrusive line for grouping elements to reinforce visual hierarchy.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 

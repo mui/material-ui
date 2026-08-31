@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Box from '@mui/material/Box';
 import FilledInput from '@mui/material/FilledInput';
 import FormControl from '@mui/material/FormControl';
@@ -7,6 +8,12 @@ import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
 export default function ComposedTextField() {
+  const simpleId = React.useId();
+  const helperId = React.useId();
+  const disabledId = React.useId();
+  const errorId = React.useId();
+  const outlinedId = React.useId();
+  const filledId = React.useId();
   return (
     <Box
       component="form"
@@ -15,45 +22,45 @@ export default function ComposedTextField() {
       autoComplete="off"
     >
       <FormControl variant="standard">
-        <InputLabel htmlFor="component-simple">Name</InputLabel>
-        <Input id="component-simple" defaultValue="Composed TextField" />
+        <InputLabel htmlFor={`${simpleId}-input`}>Name</InputLabel>
+        <Input id={`${simpleId}-input`} defaultValue="Composed TextField" />
       </FormControl>
       <FormControl variant="standard">
-        <InputLabel htmlFor="component-helper">Name</InputLabel>
+        <InputLabel htmlFor={`${helperId}-input`}>Name</InputLabel>
         <Input
-          id="component-helper"
+          id={`${helperId}-input`}
           defaultValue="Composed TextField"
-          aria-describedby="component-helper-text"
+          aria-describedby={`${helperId}-helper-text`}
         />
-        <FormHelperText id="component-helper-text">
+        <FormHelperText id={`${helperId}-helper-text`}>
           Some important helper text
         </FormHelperText>
       </FormControl>
       <FormControl disabled variant="standard">
-        <InputLabel htmlFor="component-disabled">Name</InputLabel>
-        <Input id="component-disabled" defaultValue="Composed TextField" />
+        <InputLabel htmlFor={`${disabledId}-input`}>Name</InputLabel>
+        <Input id={`${disabledId}-input`} defaultValue="Composed TextField" />
         <FormHelperText>Disabled</FormHelperText>
       </FormControl>
       <FormControl error variant="standard">
-        <InputLabel htmlFor="component-error">Name</InputLabel>
+        <InputLabel htmlFor={`${errorId}-input`}>Name</InputLabel>
         <Input
-          id="component-error"
+          id={`${errorId}-input`}
           defaultValue="Composed TextField"
-          aria-describedby="component-error-text"
+          aria-describedby={`${errorId}-error-text`}
         />
-        <FormHelperText id="component-error-text">Error</FormHelperText>
+        <FormHelperText id={`${errorId}-error-text`}>Error</FormHelperText>
       </FormControl>
       <FormControl>
-        <InputLabel htmlFor="component-outlined">Name</InputLabel>
+        <InputLabel htmlFor={`${outlinedId}-input`}>Name</InputLabel>
         <OutlinedInput
-          id="component-outlined"
+          id={`${outlinedId}-input`}
           defaultValue="Composed TextField"
           label="Name"
         />
       </FormControl>
       <FormControl variant="filled">
-        <InputLabel htmlFor="component-filled">Name</InputLabel>
-        <FilledInput id="component-filled" defaultValue="Composed TextField" />
+        <InputLabel htmlFor={`${filledId}-input`}>Name</InputLabel>
+        <FilledInput id={`${filledId}-input`} defaultValue="Composed TextField" />
       </FormControl>
     </Box>
   );

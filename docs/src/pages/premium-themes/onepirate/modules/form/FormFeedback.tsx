@@ -36,7 +36,7 @@ export default function FormFeedback(props: FormFeedbackProps) {
 
   return (
     <Root error={error} success={success} className={className} {...other}>
-      <Typography color="inherit">{children}</Typography>
+      <Typography sx={{ color: 'inherit' }}>{children}</Typography>
     </Root>
   );
 }

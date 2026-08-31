@@ -1,6 +1,6 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import clsx from 'clsx';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';
@@ -18,7 +18,7 @@ describe('<Snackbar />', () => {
    * `plainRender` is already wrapped in act().
    * However, React has a bug that flushes effects in a portal synchronously.
    * We have to defer the effect manually like `useEffect` would so we have to flush the effect manually instead of relying on `act()`.
-   * React bug: https://github.com/facebook/react/issues/20074
+   * React bug: https://github.com/react/react/issues/20074
    */
   function render(...args) {
     // eslint-disable-next-line testing-library/render-result-naming-convention
@@ -47,7 +47,7 @@ describe('<Snackbar />', () => {
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSnackbar',
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    skip: ['componentProp', 'themeVariants'],
     slots: {
       root: {
         expectedClassName: classes.root,
@@ -132,7 +132,7 @@ describe('<Snackbar />', () => {
           <Snackbar
             open={open}
             onClose={handleClose}
-            TransitionProps={{ onExited: handleExited }}
+            slotProps={{ transition: { onExited: handleExited } }}
             message="message"
             autoHideDuration={duration}
             transitionDuration={duration / 2}
@@ -174,6 +174,36 @@ describe('<Snackbar />', () => {
 
       expect(onClose.callCount).to.equal(messageCount);
       expect(onExited.callCount).to.equal(messageCount);
+    });
+  });
+
+  describe('reduced motion', () => {
+    it('still opens through transition slot props when reduced motion is always', () => {
+      const handleEnter = spy();
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+
+      function Test(props) {
+        return (
+          <ThemeProvider theme={theme}>
+            <Snackbar
+              message="message"
+              slotProps={{ transition: { onEnter: handleEnter } }}
+              {...props}
+            />
+          </ThemeProvider>
+        );
+      }
+
+      const { setProps } = render(<Test open={false} />);
+
+      setProps({ open: true });
+
+      expect(handleEnter.callCount).to.be.greaterThan(0);
+      expect(screen.getByText('message')).not.to.equal(null);
     });
   });
 
@@ -542,7 +572,7 @@ describe('<Snackbar />', () => {
     });
   });
 
-  describe('prop: TransitionComponent', () => {
+  describe('prop: slots.transition', () => {
     it('should use a Grow by default', () => {
       const childRef = React.createRef();
       render(
@@ -558,7 +588,7 @@ describe('<Snackbar />', () => {
       function Transition() {
         return <div className="cloned-element-class" ref={transitionRef} />;
       }
-      const { container } = render(<Snackbar open TransitionComponent={Transition} />);
+      const { container } = render(<Snackbar open slots={{ transition: Transition }} />);
       expect(container).to.contain(transitionRef.current);
     });
   });

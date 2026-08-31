@@ -10,6 +10,7 @@ import { createPopper, Instance, Modifier, Placement, State, VirtualElement } fr
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import useSlotProps from '@mui/utils/useSlotProps';
+import isLayoutSupported from '../utils/isLayoutSupported';
 import Portal from '../Portal';
 import { getPopperUtilityClass } from './popperClasses';
 import { WithOptionalOwnerState } from '../utils/types';
@@ -46,12 +47,7 @@ function flipPlacement(placement?: PopperPlacementType, direction?: 'ltr' | 'rtl
 
 function resolveAnchorEl(
   anchorEl:
-    | VirtualElement
-    | (() => VirtualElement)
-    | HTMLElement
-    | (() => HTMLElement)
-    | null
-    | undefined,
+    VirtualElement | (() => VirtualElement) | HTMLElement | (() => HTMLElement) | null | undefined,
 ): HTMLElement | VirtualElement | null | undefined {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
@@ -113,21 +109,16 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
    */
   const [placement, setPlacement] = React.useState<Placement | undefined>(rtlPlacement);
-  const [resolvedAnchorElement, setResolvedAnchorElement] = React.useState<
-    HTMLElement | VirtualElement | null | undefined
-  >(resolveAnchorEl(anchorEl));
+  const resolvedAnchorElement = React.useMemo<HTMLElement | VirtualElement | null | undefined>(
+    () => resolveAnchorEl(anchorEl),
+    [anchorEl],
+  );
 
   React.useEffect(() => {
     if (popperRef.current) {
       popperRef.current.forceUpdate();
     }
   });
-
-  React.useEffect(() => {
-    if (anchorEl) {
-      setResolvedAnchorElement(resolveAnchorEl(anchorEl));
-    }
-  }, [anchorEl]);
 
   useEnhancedEffect(() => {
     if (!resolvedAnchorElement || !open) {
@@ -147,7 +138,7 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
         const box = resolvedAnchorElement.getBoundingClientRect();
 
         if (
-          process.env.NODE_ENV !== 'test' &&
+          isLayoutSupported() &&
           box.top === 0 &&
           box.left === 0 &&
           box.right === 0 &&
@@ -202,8 +193,31 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
 
     handlePopperRefRef.current!(popper);
 
+    const popperElement = tooltipRef.current;
+
     return () => {
-      popper.destroy();
+      // popper.destroy() clears all inline positioning via the applyStyles
+      // modifier cleanup, which causes the element to jump to its static
+      // position. Snapshot and restore only the positioning properties so the
+      // element stays in place during the destroy/recreate gap (prevents scroll
+      // jumps when a child focuses between the two).
+      // https://github.com/mui/mui-x/issues/21839
+      if (popperElement) {
+        const { style } = popperElement;
+        const position = style.position;
+        const top = style.top;
+        const left = style.left;
+        const transform = style.transform;
+
+        popper.destroy();
+
+        style.position = position;
+        style.top = top;
+        style.left = left;
+        style.transform = transform;
+      } else {
+        popper.destroy();
+      }
       handlePopperRefRef.current!(null);
     };
   }, [resolvedAnchorElement, disablePortal, modifiers, open, popperOptions, rtlPlacement]);
@@ -350,21 +364,22 @@ Popper.propTypes /* remove-proptypes */ = {
           resolvedAnchorEl.nodeType === 1
         ) {
           const box = resolvedAnchorEl.getBoundingClientRect();
-
-          if (
-            process.env.NODE_ENV !== 'test' &&
-            box.top === 0 &&
-            box.left === 0 &&
-            box.right === 0 &&
-            box.bottom === 0
-          ) {
-            return new Error(
-              [
-                'MUI: The `anchorEl` prop provided to the component is invalid.',
-                'The anchor element should be part of the document layout.',
-                "Make sure the element is present in the document or that it's not display none.",
-              ].join('\n'),
-            );
+          if (process.env.NODE_ENV !== 'production') {
+            if (
+              isLayoutSupported() &&
+              box.top === 0 &&
+              box.left === 0 &&
+              box.right === 0 &&
+              box.bottom === 0
+            ) {
+              return new Error(
+                [
+                  'MUI: The `anchorEl` prop provided to the component is invalid.',
+                  'The anchor element should be part of the document layout.',
+                  "Make sure the element is present in the document or that it's not display none.",
+                ].join('\n'),
+              );
+            }
           }
         } else if (
           !resolvedAnchorEl ||

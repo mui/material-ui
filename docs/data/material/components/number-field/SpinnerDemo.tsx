@@ -13,12 +13,13 @@ export default function SpinnerDemo() {
       }}
     >
       <NumberSpinner label="Number Spinner" min={10} max={40} />
+      <NumberSpinner label="Number Spinner (Small)" size="small" />
       <NumberSpinner
-        label="Small and Error"
+        label="Spinner with Error"
         min={10}
         max={40}
-        size="small"
         defaultValue={100}
+        size="small"
         error
       />
     </Box>

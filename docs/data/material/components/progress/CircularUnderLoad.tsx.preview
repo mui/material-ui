@@ -1,1 +1,1 @@
-<CircularProgress disableShrink />
+<CircularProgress disableShrink aria-label="Loading…" />

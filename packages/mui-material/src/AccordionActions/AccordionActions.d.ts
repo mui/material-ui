@@ -12,16 +12,16 @@ export interface AccordionActionsProps extends StandardProps<React.HTMLAttribute
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<AccordionActionsClasses>;
+  classes?: Partial<AccordionActionsClasses> | undefined;
   /**
    * If `true`, the actions do not have additional margin.
    * @default false
    */
-  disableSpacing?: boolean;
+  disableSpacing?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**

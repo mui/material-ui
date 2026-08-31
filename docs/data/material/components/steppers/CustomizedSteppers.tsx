@@ -167,14 +167,14 @@ export default function CustomizedSteppers() {
       <Stepper alternativeLabel activeStep={1} connector={<QontoConnector />}>
         {steps.map((label) => (
           <Step key={label}>
-            <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
+            <StepLabel slots={{ stepIcon: QontoStepIcon }}>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
       <Stepper alternativeLabel activeStep={1} connector={<ColorlibConnector />}>
         {steps.map((label) => (
           <Step key={label}>
-            <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
+            <StepLabel slots={{ stepIcon: ColorlibStepIcon }}>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>

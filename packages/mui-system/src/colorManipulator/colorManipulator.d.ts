@@ -3,7 +3,7 @@ export type ColorFormat = 'rgb' | 'rgba' | 'hsl' | 'hsla' | 'color';
 export interface ColorObject {
   type: ColorFormat;
   values: [number, number, number] | [number, number, number, number];
-  colorSpace?: 'srgb' | 'display-p3' | 'a98-rgb' | 'prophoto-rgb' | 'rec-2020';
+  colorSpace?: 'srgb' | 'display-p3' | 'a98-rgb' | 'prophoto-rgb' | 'rec-2020' | undefined;
 }
 
 export function hexToRgb(hex: string): string;

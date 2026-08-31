@@ -63,21 +63,23 @@ export interface RadioProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<RadioClasses>;
+  classes?: Partial<RadioClasses> | undefined;
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color?: OverridableStringUnion<
-    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'default',
-    RadioPropsColorOverrides
-  >;
+  color?:
+    | OverridableStringUnion<
+        'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'default',
+        RadioPropsColorOverrides
+      >
+    | undefined;
   /**
    * If `true`, the component is disabled.
    */
-  disabled?: boolean;
+  disabled?: boolean | undefined;
   /**
    * The icon to display when the component is unchecked.
    * @default <RadioButtonIcon />
@@ -88,11 +90,11 @@ export interface RadioProps
    * `small` is equivalent to the dense radio styling.
    * @default 'medium'
    */
-  size?: OverridableStringUnion<'small' | 'medium', RadioPropsSizeOverrides>;
+  size?: OverridableStringUnion<'small' | 'medium', RadioPropsSizeOverrides> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface RadioOwnerState extends Omit<RadioProps, 'slots' | 'slotProps'> {}

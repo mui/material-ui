@@ -93,21 +93,23 @@ export interface SwitchProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<SwitchClasses>;
+  classes?: Partial<SwitchClasses> | undefined;
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color?: OverridableStringUnion<
-    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'default',
-    SwitchPropsColorOverrides
-  >;
+  color?:
+    | OverridableStringUnion<
+        'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'default',
+        SwitchPropsColorOverrides
+      >
+    | undefined;
   /**
    * If `true`, the component is disabled.
    */
-  disabled?: boolean;
+  disabled?: boolean | undefined;
   /**
    * The icon to display when the component is unchecked.
    */
@@ -117,11 +119,11 @@ export interface SwitchProps
    * `small` is equivalent to the dense switch styling.
    * @default 'medium'
    */
-  size?: OverridableStringUnion<'small' | 'medium', SwitchPropsSizeOverrides>;
+  size?: OverridableStringUnion<'small' | 'medium', SwitchPropsSizeOverrides> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * The value of the component. The DOM API casts this to a string.
    * The browser uses "on" as the default value.

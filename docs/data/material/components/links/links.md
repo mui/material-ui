@@ -10,7 +10,7 @@ githubSource: packages/mui-material/src/Link
 
 <p class="description">The Link component allows you to easily customize anchor elements with your theme colors and typography styles.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic links
 
@@ -28,15 +28,6 @@ However, the Link component has some different default props than the Typography
 The `underline` prop can be used to set the underline behavior. The default is `always`.
 
 {{"demo": "UnderlineLink.js"}}
-
-## Security
-
-When you use `target="_blank"` with Links, it is [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to third party content.
-
-- `rel="noopener"` prevents the new page from being able to access the `window.opener` property and ensures it runs in a separate process.
-  Without this, the target page can potentially redirect your page to a malicious URL.
-- `rel="noreferrer"` has the same effect, but also prevents the _Referer_ header from being sent to the new page.
-  ⚠️ Removing the referrer header will affect analytics.
 
 ## Third-party routing library
 

@@ -32,12 +32,10 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
   const props = useDefaultProps({ props: inProps, name: 'MuiTablePaginationActions' });
 
   const {
-    backIconButtonProps,
     className,
     count,
     disabled = false,
     getItemAriaLabel,
-    nextIconButtonProps,
     onPageChange,
     page,
     rowsPerPage,
@@ -112,7 +110,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         color="inherit"
         aria-label={getItemAriaLabel('previous', page)}
         title={getItemAriaLabel('previous', page)}
-        {...(previousButtonSlotProps ?? backIconButtonProps)}
+        {...previousButtonSlotProps}
       >
         {isRtl ? (
           <NextButtonIcon {...slotProps.nextButtonIcon} />
@@ -126,7 +124,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         color="inherit"
         aria-label={getItemAriaLabel('next', page)}
         title={getItemAriaLabel('next', page)}
-        {...(nextButtonSlotProps ?? nextIconButtonProps)}
+        {...nextButtonSlotProps}
       >
         {isRtl ? (
           <PreviousButtonIcon {...slotProps.previousButtonIcon} />
@@ -159,11 +157,6 @@ TablePaginationActions.propTypes /* remove-proptypes */ = {
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * This prop is an alias for `slotProps.previousButton` and will be overridden by it if both are used.
-   * @deprecated Use `slotProps.previousButton` instead.
-   */
-  backIconButtonProps: PropTypes.object,
-  /**
    * @ignore
    */
   children: PropTypes.node,
@@ -193,11 +186,6 @@ TablePaginationActions.propTypes /* remove-proptypes */ = {
    * @returns {string}
    */
   getItemAriaLabel: PropTypes.func.isRequired,
-  /**
-   * This prop is an alias for `slotProps.nextButton` and will be overridden by it if both are used.
-   * @deprecated Use `slotProps.nextButton` instead.
-   */
-  nextIconButtonProps: PropTypes.object,
   /**
    * @ignore
    */

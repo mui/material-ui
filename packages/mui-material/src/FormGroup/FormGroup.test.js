@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import FormGroup, { formGroupClasses as classes } from '@mui/material/FormGroup';
 import FormControl from '@mui/material/FormControl';
@@ -14,7 +14,7 @@ describe('<FormGroup />', () => {
     muiName: 'MuiFormGroup',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { row: true },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should render a div with a div child', () => {

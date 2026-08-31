@@ -1,3 +1,6 @@
+'use client';
+import * as React from 'react';
+
 export const DEFAULT_MODE_STORAGE_KEY = 'mode';
 export const DEFAULT_COLOR_SCHEME_STORAGE_KEY = 'color-scheme';
 export const DEFAULT_ATTRIBUTE = 'data-color-scheme';
@@ -7,46 +10,72 @@ export interface InitColorSchemeScriptProps {
    * The default mode when the storage is empty (user's first visit).
    * @default 'system'
    */
-  defaultMode?: 'system' | 'light' | 'dark';
+  defaultMode?: 'system' | 'light' | 'dark' | undefined;
   /**
    * The default color scheme to be used on the light mode.
    * @default 'light'
    */
-  defaultLightColorScheme?: string;
+  defaultLightColorScheme?: string | undefined;
   /**
    * The default color scheme to be used on the dark mode.
    * * @default 'dark'
    */
-  defaultDarkColorScheme?: string;
+  defaultDarkColorScheme?: string | undefined;
   /**
    * The node (provided as string) used to attach the color-scheme attribute.
    * @default 'document.documentElement'
    */
-  colorSchemeNode?: string;
+  colorSchemeNode?: string | undefined;
   /**
    * localStorage key used to store `mode`.
    * @default 'mode'
    */
-  modeStorageKey?: string;
+  modeStorageKey?: string | undefined;
   /**
    * localStorage key used to store `colorScheme`.
    * @default 'color-scheme'
    */
-  colorSchemeStorageKey?: string;
+  colorSchemeStorageKey?: string | undefined;
   /**
    * DOM attribute for applying color scheme.
    * @default 'data-color-scheme'
    * @example '.mode-%s' // for class based color scheme
    * @example '[data-mode-%s]' // for data-attribute without '='
    */
-  attribute?: 'class' | 'data' | string;
+  attribute?: 'class' | 'data' | string | undefined;
   /**
    * Nonce string to pass to the inline script for CSP headers.
    */
   nonce?: string | undefined;
 }
 
-export default function InitColorSchemeScript(options?: InitColorSchemeScriptProps) {
+// React 17 has no `useSyncExternalStore`; spread into a plain object so reading the
+// missing property returns `undefined` instead of throwing under strict ESM. See #41190 (comment).
+const safeReact = { ...React };
+const maybeReactUseSyncExternalStore: undefined | any = safeReact.useSyncExternalStore;
+
+const subscribe = () => () => {};
+
+/**
+ * `true` during the server render and the matching hydration render, `false`
+ * on every client render afterwards. React warns when a `<script>` is
+ * created during a client render (such scripts never execute), so the inline
+ * script is only emitted on the server pass and dropped after hydration — the
+ * attribute it already set on the document persists. React <18 has no
+ * `useSyncExternalStore` and no such warning, so the script is always emitted.
+ */
+function useIsServerRender() {
+  if (maybeReactUseSyncExternalStore === undefined) {
+    return true;
+  }
+  return maybeReactUseSyncExternalStore(
+    subscribe,
+    () => false,
+    () => true,
+  );
+}
+
+export function buildInitColorSchemeScript(options?: InitColorSchemeScriptProps) {
   const {
     defaultMode = 'system',
     defaultLightColorScheme = 'light',
@@ -118,4 +147,12 @@ try {
       }}
     />
   );
+}
+
+export default function InitColorSchemeScript(options?: InitColorSchemeScriptProps) {
+  const isServerRender = useIsServerRender();
+  if (!isServerRender) {
+    return null;
+  }
+  return buildInitColorSchemeScript(options);
 }
