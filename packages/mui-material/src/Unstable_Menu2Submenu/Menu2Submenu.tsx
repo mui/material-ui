@@ -12,6 +12,7 @@ import {
   warnMenu2TriggerRef,
 } from '../Unstable_Menu2/menu2Utils';
 import { menu2SubmenuTriggerClasses } from '../Unstable_Menu2/menu2Classes';
+import { Menu2SubmenuTriggerContext } from '../Unstable_Menu2/menu2ItemShared';
 
 export interface Menu2SubmenuSlots extends NonNullable<Menu2SubmenuPopupProps['slots']> {}
 
@@ -133,7 +134,9 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
 
   return (
     <BaseMenu.SubmenuRoot {...rootProps}>
-      {triggerNode}
+      {/* The trigger shares its node with the caller's item, and the item then
+           reads the highlight from the submenu store. This tells it to stand down. */}
+      <Menu2SubmenuTriggerContext.Provider value>{triggerNode}</Menu2SubmenuTriggerContext.Provider>
       <Menu2SubmenuPopup
         ref={ref}
         align={align}

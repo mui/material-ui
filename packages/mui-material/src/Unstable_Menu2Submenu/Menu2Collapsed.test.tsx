@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
-import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Menu2, { menu2PopupClasses, menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
@@ -576,5 +576,71 @@ describe('<Menu2 /> collapsed API', () => {
     // `action.hover` against `action.focus`.
     expect(open).to.equal('rgba(0, 0, 0, 0.04)');
     expect(highlighted).to.equal('rgba(0, 0, 0, 0.12)');
+  });
+
+  // The trigger node also renders the caller's `Menu.Item`, which reads the
+  // highlight from the submenu store with its index in the parent list. When the
+  // two indices match, the open parent used to paint the full focus tint and
+  // became indistinguishable from the child trigger the reader is on.
+  const nestedChain = (
+    <Menu2 defaultOpen modal={false} anchor={document.body}>
+      {/* Each trigger is index 0 of its own list, so the indices collide. */}
+      <Menu2Submenu trigger={<Menu2Item>View options</Menu2Item>}>
+        <Menu2Submenu trigger={<Menu2Item>More tools</Menu2Item>}>
+          <Menu2Item>Leaf</Menu2Item>
+        </Menu2Submenu>
+      </Menu2Submenu>
+    </Menu2>
+  );
+
+  // `action.hover` for the open parent trail, `action.focus` for the item the
+  // reader is on.
+  const OPEN_TINT = 'rgba(0, 0, 0, 0.04)';
+  const FOCUS_TINT = 'rgba(0, 0, 0, 0.12)';
+
+  it.skipIf(isJsdom())('keeps an open parent below the focused child trigger', async () => {
+    const { user } = render(nestedChain);
+
+    const parent = await screen.findByRole('menuitem', { name: 'View options' });
+
+    await user.keyboard('{ArrowDown}');
+    await user.keyboard('{ArrowRight}');
+    await screen.findByRole('menuitem', { name: 'More tools' });
+    await user.keyboard('{ArrowDown}');
+
+    const child = screen.getByRole('menuitem', { name: 'More tools' });
+    await waitFor(() => {
+      expect(child).to.equal(document.activeElement);
+    });
+
+    // The parent is open, and only open. The item class is the false highlight
+    // that the submenu store used to put on it.
+    expect(parent).to.have.class(menu2SubmenuTriggerClasses.open);
+    expect(parent).not.to.have.class(menu2ItemClasses.highlighted);
+    expect(window.getComputedStyle(child).backgroundColor).to.equal(FOCUS_TINT);
+    expect(window.getComputedStyle(parent).backgroundColor).to.equal(OPEN_TINT);
+  });
+
+  // The pointer sets the same submenu index that the arrow keys do, so it
+  // reaches the same state. `fireEvent` drives it, because Base UI blocks the
+  // pointer over the fresh popup and `user.hover` refuses to cross it.
+  it.skipIf(isJsdom())('keeps an open parent below the hovered child trigger', async () => {
+    const { user } = render(nestedChain);
+
+    const parent = await screen.findByRole('menuitem', { name: 'View options' });
+
+    await user.hover(parent);
+    const child = await screen.findByRole('menuitem', { name: 'More tools' });
+    fireEvent.mouseOver(child);
+    fireEvent.mouseMove(child);
+
+    await waitFor(() => {
+      expect(child).to.have.class(menu2SubmenuTriggerClasses.highlighted);
+    });
+
+    expect(parent).to.have.class(menu2SubmenuTriggerClasses.open);
+    expect(parent).not.to.have.class(menu2ItemClasses.highlighted);
+    expect(window.getComputedStyle(child).backgroundColor).to.equal(FOCUS_TINT);
+    expect(window.getComputedStyle(parent).backgroundColor).to.equal(OPEN_TINT);
   });
 });

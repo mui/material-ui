@@ -22,6 +22,7 @@ import {
 } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2ItemClassName,
+  Menu2SubmenuTriggerContext,
   getMenu2ItemOwnerState,
   Menu2ItemBaseProps,
   Menu2ItemOwnerState,
@@ -199,6 +200,7 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
   const resolvedIndicatorProps = resolveComponentProps(slotProps?.indicator, ownerState);
 
   const rootSlotProps = resolveComponentProps(slotProps?.root, ownerState);
+  const isSubmenuTrigger = React.useContext(Menu2SubmenuTriggerContext);
 
   return (
     <ListContext.Provider value={childContext}>
@@ -224,7 +226,7 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
         className={(state) =>
           clsx(
             className,
-            getMenu2ItemClassName(classes, ownerState, state),
+            getMenu2ItemClassName(classes, ownerState, state, isSubmenuTrigger),
             state.checked && classes.checked,
           )
         }

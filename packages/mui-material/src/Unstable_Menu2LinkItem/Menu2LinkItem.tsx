@@ -20,6 +20,7 @@ import {
   Menu2ItemOwnerState,
   Menu2ItemVisualProps,
   menu2ItemOverridesResolver,
+  Menu2SubmenuTriggerContext,
   mergeMenu2ItemClassName,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
@@ -138,6 +139,7 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
   );
 
   const rootSlotProps = resolveComponentProps(slotProps?.root, ownerState);
+  const isSubmenuTrigger = React.useContext(Menu2SubmenuTriggerContext);
 
   return (
     <ListContext.Provider value={childContext}>
@@ -160,7 +162,7 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
           },
           Menu2LinkItemRoot,
         )}
-        className={mergeMenu2ItemClassName(className, classes, ownerState)}
+        className={mergeMenu2ItemClassName(className, classes, ownerState, isSubmenuTrigger)}
         style={style}
         {...other}
       />
