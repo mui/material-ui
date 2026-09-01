@@ -805,7 +805,8 @@ function useAutocomplete(props) {
 
   const selectNewValue = (event, option, reasonProp = 'selectOption', origin = 'options') => {
     let reason = reasonProp;
-    let newValue = origin === 'options' ? getOptionValue(option) : option;
+    const optionValue = origin === 'options' ? getOptionValue(option) : option;
+    let newValue = optionValue;
 
     if (multiple) {
       newValue = Array.isArray(value) ? value.slice() : [];
@@ -826,7 +827,7 @@ function useAutocomplete(props) {
       const itemIndex = newValue.findIndex((valueItem) => isOptionEqualToValue(option, valueItem));
 
       if (itemIndex === -1) {
-        newValue.push(option);
+        newValue.push(optionValue);
       } else if (origin !== 'freeSolo') {
         newValue.splice(itemIndex, 1);
         reason = 'removeOption';
