@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine-sc",
-  "version": "9.3.0",
+  "version": "9.4.0",
   "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "build": "code-infra build --tsgo --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/styled-engine-sc\"",
-    "typescript": "tsgo -p tsconfig.json"
+    "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
     "@babel/runtime": "^7.29.7",
