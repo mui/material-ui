@@ -491,6 +491,31 @@ describe('useAutocomplete', () => {
       { id: 'bar', label: 'Bar' },
     ];
 
+    function SingleSelectTest(props) {
+      const { groupedOptions, getInputProps, getListboxProps, getOptionProps } = useAutocomplete({
+        options,
+        open: true,
+        getOptionValue: (option) => option.id,
+        ...props,
+      });
+
+      return (
+        <div>
+          <input {...getInputProps()} />
+          <ul {...getListboxProps()}>
+            {groupedOptions.map((option, index) => {
+              const { key, ...optionProps } = getOptionProps({ option, index });
+              return (
+                <li key={key} {...optionProps}>
+                  {option.label}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      );
+    }
+
     function Test(props) {
       const { groupedOptions, getInputProps, getListboxProps, getOptionProps } = useAutocomplete({
         options,
@@ -530,6 +555,18 @@ describe('useAutocomplete', () => {
         'aria-selected',
         'false',
       );
+    });
+
+    it('returns the mapped option value when selecting a single option', async () => {
+      const onChange = spy();
+
+      const { user } = render(<SingleSelectTest onChange={onChange} />);
+      await user.click(screen.getByRole('option', { name: 'Bar' }));
+
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.args[0][1]).to.equal('bar');
+      expect(onChange.args[0][2]).to.equal('selectOption');
+      expect(onChange.args[0][3]).to.deep.equal({ option: options[1] });
     });
 
     it('uses the mapped option value when filtering selected options', () => {
