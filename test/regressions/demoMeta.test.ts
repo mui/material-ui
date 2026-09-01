@@ -1,9 +1,16 @@
-import { describe, it } from 'vitest';
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { A11Y_RULES, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 
 describe('parseRoute', () => {
-  it('returns null for non-component routes (regression fixtures)', () => {
+  it('parses an a11y fixture route into its a11y/fixtures path, suite as slug', () => {
+    expect(parseRoute('/a11y-buttons/ButtonA11yNonNative')).to.deep.equal({
+      path: 'test/regressions/a11y/fixtures/buttons/ButtonA11yNonNative',
+      slug: 'buttons',
+      demo: 'ButtonA11yNonNative',
+    });
+  });
+
+  it('returns null for a screenshot-only regression fixture route', () => {
     expect(parseRoute('/regression-Rating/FocusVisibleRating')).to.equal(null);
   });
 
@@ -12,6 +19,16 @@ describe('parseRoute', () => {
       path: 'docs/data/material/components/buttons/BasicButtons',
       slug: 'buttons',
       demo: 'BasicButtons',
+    });
+  });
+
+  it('parses a getting-started template route into its docs/data path', () => {
+    expect(
+      parseRoute('/docs-getting-started-templates-crud-dashboard/CrudDashboard'),
+    ).to.deep.equal({
+      path: 'docs/data/material/getting-started/templates/crud-dashboard/CrudDashboard',
+      slug: 'crud-dashboard',
+      demo: 'CrudDashboard',
     });
   });
 
@@ -47,13 +64,13 @@ describe('getConfig', () => {
       getConfig(A11Y_RULES, 'docs/data/material/components/buttons/BasicButtons'),
     ).to.deep.include({ enabled: true, assertions: 'all' });
     expect(
-      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/ButtonA11yNonNative'),
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yNonNative'),
     ).to.deep.include({ enabled: true, assertions: 'all' });
   });
 
   it('allows a known Button color-contrast fixture to record failures without asserting them', () => {
     expect(
-      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/ButtonA11yColorMatrix'),
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yColorMatrix'),
     ).to.deep.include({
       enabled: true,
       assertions: 'all',
@@ -84,6 +101,15 @@ describe('getConfig', () => {
       assertions: 'all',
       skipAssertions: ['color-contrast'],
     });
+  });
+
+  it('keeps the a11y fixture tree screenshot-off, except explicit re-enrolments', () => {
+    expect(
+      getConfig(SCREENSHOT_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yColorMatrix'),
+    ).to.deep.include({ enabled: false });
+    expect(
+      getConfig(SCREENSHOT_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing'),
+    ).to.deep.include({ enabled: true });
   });
 
   it('returns undefined for a demo outside a brace-glob enrolment', () => {
@@ -221,6 +247,23 @@ describe('getConfig (accordion a11y)', () => {
     expect(
       getConfig(A11Y_RULES, 'docs/data/material/components/accordion/SomeUnenrolledDemo'),
     ).to.equal(undefined);
+  });
+});
+
+describe('minReactMajor', () => {
+  it('marks the crud-dashboard template as needing React 19', () => {
+    expect(
+      getConfig(
+        SCREENSHOT_RULES,
+        'docs/data/material/getting-started/templates/crud-dashboard/CrudDashboard',
+      ),
+    ).to.deep.include({ minReactMajor: 19 });
+  });
+
+  it('leaves demos without the field unconstrained', () => {
+    expect(
+      getConfig(SCREENSHOT_RULES, 'docs/data/material/components/autocomplete/Asynchronous'),
+    ).to.not.have.property('minReactMajor');
   });
 });
 

@@ -33,12 +33,7 @@ export default function ButtonA11ySemanticStates() {
         <Button variant="contained" endIcon={<SendIcon />}>
           Send message
         </Button>
-        <Button
-          loading
-          loadingPosition="start"
-          startIcon={<SaveIcon />}
-          variant="outlined"
-        >
+        <Button loading loadingPosition="start" startIcon={<SaveIcon />} variant="outlined">
           Save changes
         </Button>
       </Stack>

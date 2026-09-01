@@ -12,7 +12,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 ## Known gaps
 
-- ⚠️ **1.4.3 Contrast (Minimum).** `info` and `warning` contained buttons fall short of 4.5:1.
+- ⚠️ **1.4.3 Contrast (Minimum).** `info` and `warning` buttons fall short of 4.5:1 in every variant.
 - ⚠️ **1.4.11 Non-text Contrast.** Focus-indicator, border, and icon contrast are untested; `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator, and `disableElevation` removes the `contained` one.
 - ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator; `contained` loses its indicator only when `disableElevation` is combined with them.
 - ⚠️ **4.1.3 Status Messages.** The `loading` state adds no live region, so the change may go unannounced.
@@ -153,10 +153,21 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `⚠️ Partially Supports` · `● Component`
 
-- `info` and `warning` contained buttons do not meet `4.5:1`.
+- `info` and `warning` buttons do not meet `4.5:1` in any variant.
 - axe-core `color-contrast` checks the default state.
 - `:hover` and `:active` colors need a visual check.
 - Disabled buttons are exempt.
+
+The shortfalls, measured from the default light palette (all pairs against `#fff`):
+
+| Combination                               | Foreground | Background |  Ratio | Required |
+| :---------------------------------------- | :--------- | :--------- | -----: | -------: |
+| `contained` `color="warning"`             | `#fff`     | `#ed6c02`  | 3.11:1 |    4.5:1 |
+| `contained` `color="info"`                | `#fff`     | `#0288d1`  | 3.86:1 |    4.5:1 |
+| `text`/`outlined` `color="warning"` label | `#ed6c02`  | `#fff`     | 3.11:1 |    4.5:1 |
+| `text`/`outlined` `color="info"` label    | `#0288d1`  | `#fff`     | 3.86:1 |    4.5:1 |
+
+Every other `variant` × `color` combination clears `4.5:1`; the closest pass is `primary` at `4.6:1`. The button label (14px, weight 500) does not qualify as WCAG large text, so the `3:1` threshold never applies here.
 
 **Manual testing steps**
 
@@ -302,14 +313,14 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 `✅ Supports` · `● Component`
 
 - Activation runs on `click`, fired on pointer-up over the target. `onMouseDown` only starts the ripple, and releasing off the target cancels, so nothing runs on the down event.
-- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (`mousedown` does not activate; `click` does). Covered by unit tests.
+- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (`mousedown` does not activate; `click` does).
 
 #### 2.5.3 Label in Name · A
 
 `✅ Supports` · `◐ Shared`
 
 - The visible text is the accessible name: the children become the name, decorative MUI icons are hidden (a custom icon node is not, unless the author hides it), and `loadingPosition="center"` keeps the label in the name despite `color: transparent`.
-- An `aria-label` that omits or reorders the visible words breaks this. Compare the visible text to the computed name. Covered by unit tests.
+- An `aria-label` that omits or reorders the visible words breaks this. Compare the visible text to the computed name.
 
 #### 2.5.8 Target Size (Minimum) · AA
 
@@ -329,9 +340,9 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `✅ Supports` · `◐ Shared`
 
-- Toggling the button's setting (`loading` to disabled, or an `aria-pressed` toggle) changes no context on its own.
+- Programmatically toggling the button's setting (`aria-pressed`, or `loading` to disabled) fires no handler and changes no context on its own. Activation comes only from explicit user input.
 - Whether an author's handler couples that change to navigation or a new window without warning is an author decision.
-- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (toggling `aria-pressed` or `loading` does not activate the button).
+- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js): flipping `aria-pressed` and `loading` on a rendered button fires no `onClick`, and a real click does.
 
 ## Not applicable
 
@@ -365,7 +376,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 ## Scope and test environment
 
 - **Standard.** WCAG 2.2, Level A and AA.
-- **Component version.** `@mui/material` 9.1.1.
+- **Component version.** `@mui/material` 9.x.
 - **Scope.** The Button component in isolation, rendered through its documented API.
 - **Automated.** axe-core via Playwright test harness (results in [`buttons.a11y.json`](../../../../docs/data/material/components/buttons/buttons.a11y.json)), plus interaction tests in `ButtonBase.test.js` and `Button.test.js`.
 - **Assistive-technology review.** Not yet performed. Flagged criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.

@@ -20,18 +20,10 @@ export default function ButtonA11yTextSpacing() {
         Review accessibility settings before continuing
       </Button>
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-        <Button
-          variant="outlined"
-          startIcon={<SaveIcon />}
-          sx={{ whiteSpace: 'normal' }}
-        >
+        <Button variant="outlined" startIcon={<SaveIcon />} sx={{ whiteSpace: 'normal' }}>
           Save a longer action label
         </Button>
-        <Button
-          variant="contained"
-          endIcon={<SendIcon />}
-          sx={{ whiteSpace: 'normal' }}
-        >
+        <Button variant="contained" endIcon={<SendIcon />} sx={{ whiteSpace: 'normal' }}>
           Send confirmation message
         </Button>
       </Box>

@@ -2,7 +2,7 @@ import * as url from 'url';
 import * as path from 'path';
 import * as fs from 'node:fs/promises';
 import { chromium } from '@playwright/test';
-import { test as base } from 'vitest';
+import { describe, test as base, afterAll } from 'vitest';
 import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
 import { A11Y_RULES, DEFAULT_VIEWPORT, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 
@@ -50,11 +50,10 @@ async function main() {
       }
     });
 
-    // Wait for all requests to finish.
-    // This should load shared resources such as fonts.
+    // Wait for all requests to finish. That covers the font stylesheet too --
+    // `loadFonts` appends it during module evaluation -- so a stalled font host
+    // fails here instead of hanging every test.
     await page.goto(`${baseUrl}#dev`, { waitUntil: 'networkidle0' });
-    // If we still get flaky fonts after awaiting this try `document.fonts.ready`
-    await page.waitForSelector('[data-webfontloader="active"]', { state: 'attached' });
 
     // Simulate portrait mode for date pickers.
     // See `useIsLandscape`.
@@ -76,10 +75,16 @@ async function main() {
   await fs.mkdir(screenshotDir, { recursive: true });
 
   const probePage = await pool.acquire();
+  // React renders the nav, so wait for it: `$$eval` returns [] when it is
+  // missing, which registers zero route tests and still passes.
+  await probePage.waitForSelector('#tests a', { state: 'attached' });
   let routes = await probePage.$$eval('#tests a', (links) => {
     return links.map((link) => link.href);
   });
   routes = routes.map((route) => route.replace(baseUrl, ''));
+  const reactMajor = Number(
+    (await probePage.evaluate(() => window.muiFixture.reactVersion)).split('.')[0],
+  );
   pool.release(probePage);
 
   const test = base.extend({
@@ -112,6 +117,12 @@ async function main() {
    * @param {string} route
    */
   async function renderFixture(page, route) {
+    // Screenshots taken with fallback faces look like a repo-wide text rendering
+    // change. Gate here so it happens before the fixture mounts -- components
+    // that measure text at mount would otherwise bake in fallback metrics that
+    // the later font swap does not recompute.
+    await page.evaluate(() => window.muiFixture.fontsReady);
+
     await page.evaluate((_route) => {
       // Use client-side routing which is much faster than full page navigation via page.goto().
       window.muiFixture.navigate(`${_route}#no-dev`);
@@ -128,6 +139,30 @@ async function main() {
     const testcase = await page.waitForSelector(
       `[data-testid="testcase"][data-testpath="${route}"]:not([aria-busy="true"])`,
     );
+
+    // `aria-busy` covers fonts, not images. The route handler aborts every
+    // image request, and components like Avatar only swap to their fallback
+    // after the error event triggers a re-render -- strictly later than the
+    // busy flip, so under CI contention the screenshot can catch the pending
+    // <img>: blank where every baseline has the settled fallback. Wait for
+    // each image to settle, then two frames so React commits the swap the
+    // load/error event scheduled.
+    await testcase.evaluate(async (element) => {
+      await Promise.all(
+        Array.from(element.querySelectorAll('img'), (img) => {
+          if (img.complete) {
+            return undefined;
+          }
+          return new Promise((resolve) => {
+            img.addEventListener('load', resolve, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+          });
+        }),
+      );
+      await new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      });
+    });
 
     return testcase;
   }
@@ -157,7 +192,8 @@ async function main() {
         const parsed = parseRoute(route);
         const screenshotRule = parsed ? getConfig(SCREENSHOT_RULES, parsed.path) : undefined;
         const a11yRule = parsed ? getConfig(A11Y_RULES, parsed.path) : undefined;
-        const runScreenshot = parsed ? (screenshotRule?.enabled ?? true) : true;
+        const meetsReactFloor = reactMajor >= (screenshotRule?.minReactMajor ?? 0);
+        const runScreenshot = parsed ? (screenshotRule?.enabled ?? true) && meetsReactFloor : true;
         const runA11y = a11yRule?.enabled === true;
         if (!runScreenshot && !runA11y) {
           return;
@@ -307,6 +343,24 @@ async function main() {
       });
     });
 
+    describe('theme.focusVisible ring', () => {
+      // The FocusVisible fixtures render already focus-visible, so the standard screenshot loop
+      // above captures the ring. Only the forced-colors variant needs Playwright here.
+      test('keeps the outline ring visible in forced-colors mode', async ({ pooled }) => {
+        const { page } = pooled;
+        await page.emulateMedia({ forcedColors: 'active' });
+        try {
+          const testcase = await renderFixture(page, '/regression-FocusVisible/InsetControls');
+          await takeScreenshot(page, {
+            testcase,
+            route: '/regression-FocusVisible/InsetControlsForcedColors',
+          });
+        } finally {
+          await page.emulateMedia({ forcedColors: 'none' });
+        }
+      });
+    });
+
     describe('TextField', () => {
       test('should render standard variant correctly in forced-colors mode', async ({ pooled }) => {
         const { page } = pooled;
@@ -398,9 +452,7 @@ async function main() {
  * introduced independently of the harness it runs on.
  */
 function registerCssLayoutSuites({ test, renderFixture, routes }) {
-  // CSS-dependent criteria that axe cannot cover: they need a real layout at a
-  // real viewport. Each component is exercised through one representative demo;
-  // the criteria a component is rated against are listed alongside it.
+
   const CSS_LAYOUT_SUITES = [
     { component: 'Accordion', route: '/docs-components-accordion/AccordionUsage' },
     // The same demo renders the summary header, which is rated separately.
@@ -476,7 +528,7 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
             text.bottom > box.bottom + 0.5
           );
         })
-        .map((node) => node.className);
+        .map((node) => node.getAttribute('class'));
 
       style.remove();
       return { horizontalOverflow, clipped: clipped.slice(0, 3) };
@@ -492,6 +544,10 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
     // entries this build doesn't contain rather than waiting for a fixture that
     // was never bundled.
     if (!routes.includes(route)) {
+      // The slug enters the bundle only when its component enrolls (see fixtures.js).
+      describe(`${component} layout criteria`, () => {
+        test.skip(`route not bundled: ${route}`, () => {});
+      });
       return;
     }
     const covers = (criterion) => !skipCriteria.includes(criterion);
@@ -559,16 +615,6 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
     });
   });
 }
-
-/**
- * Registers 2.4.7 Focus Visible, which axe has no rule for and jsdom cannot
- * answer: several components carry a `skipIf(isJsdom())` unit test for it that
- * therefore never runs.
- *
- * The check is a pixel comparison rather than a computed-style diff because
- * MUI's focus indicator is usually the ripple — a child element that appears in
- * the DOM. Diffing styles on the control itself would miss it entirely.
- */
 
 function createPagePool(factory) {
   const all = new Set();

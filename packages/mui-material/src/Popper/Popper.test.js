@@ -1,5 +1,5 @@
+import { describe, beforeAll, afterAll, it, expect, vi } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Grow from '@mui/material/Grow';

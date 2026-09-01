@@ -221,7 +221,7 @@ export interface AppSearchProps {
 
 export function AppSearch(props: AppSearchProps) {
   useLazyCSS(
-    'https://cdn.jsdelivr.net/npm/@docsearch/css@4.6.3/dist/style.min.css',
+    'https://cdn.jsdelivr.net/npm/@docsearch/css@4.7.0/dist/style.min.css',
     '#app-search',
     { layer: 'docsearch' },
   );
@@ -444,6 +444,7 @@ export function AppSearch(props: AppSearchProps) {
               '--docsearch-searchbox-focus-background': 'unset',
               '--docsearch-footer-background': 'unset',
               '--docsearch-modal-background': (theme.vars || theme).palette.background.paper,
+              '--docsearch-hit-height': '52px',
               // Height left for the scrollable area between the search bar and the footer. v4
               // dropped the search box from its own budget, which makes the modal overshoot
               // --docsearch-modal-height; subtract it again so the modal stays 600px.
@@ -612,11 +613,6 @@ export function AppSearch(props: AppSearchProps) {
                 marginTop: theme.spacing(1),
               },
             },
-            // The no-results title inherits a too-small line-height, so its long query text
-            // overlaps instead of wrapping; restore a readable line-height (matches prod).
-            '& .DocSearch-NoResults .DocSearch-Title': {
-              lineHeight: 1.5,
-            },
             // The v4 screen icon (no-results / empty state) hardcodes an inline stroke="#5a5e9a"
             // that no variable can reach; recolor it to the MUI muted grey.
             '& .DocSearch-Screen-Icon svg': {
@@ -645,9 +641,6 @@ export function AppSearch(props: AppSearchProps) {
               paddingBottom: 8,
               '&:not(:first-of-type)': {
                 marginTop: -1,
-              },
-              '& .DocSearch-Hit-Container': {
-                height: '52px',
               },
             },
             '& .DocSearch-Hit a': {
