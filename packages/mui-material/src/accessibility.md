@@ -66,3 +66,4 @@ Components are rated in isolation against WCAG 2.2 A and AA. The levels are [cum
 | Component                           | ✅ Supports | ⚠️ Partially Supports | ❌ Does Not Support | ➖ Not Applicable |
 | :---------------------------------- | :---------- | :-------------------- | :------------------ | :---------------- |
 | [Avatar](./Avatar/accessibility.md) | 9           | 2                     | 0                   | 44                |
+| [Button](./Button/accessibility.md) | 23          | 4                     | 0                   | 28                |

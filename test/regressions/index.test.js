@@ -140,6 +140,30 @@ async function main() {
       `[data-testid="testcase"][data-testpath="${route}"]:not([aria-busy="true"])`,
     );
 
+    // `aria-busy` covers fonts, not images. The route handler aborts every
+    // image request, and components like Avatar only swap to their fallback
+    // after the error event triggers a re-render -- strictly later than the
+    // busy flip, so under CI contention the screenshot can catch the pending
+    // <img>: blank where every baseline has the settled fallback. Wait for
+    // each image to settle, then two frames so React commits the swap the
+    // load/error event scheduled.
+    await testcase.evaluate(async (element) => {
+      await Promise.all(
+        Array.from(element.querySelectorAll('img'), (img) => {
+          if (img.complete) {
+            return undefined;
+          }
+          return new Promise((resolve) => {
+            img.addEventListener('load', resolve, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+          });
+        }),
+      );
+      await new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      });
+    });
+
     return testcase;
   }
 
@@ -312,6 +336,24 @@ async function main() {
           await takeScreenshot(page, {
             testcase,
             route: '/regression-Switch/SimpleSwitchForcedColors',
+          });
+        } finally {
+          await page.emulateMedia({ forcedColors: 'none' });
+        }
+      });
+    });
+
+    describe('theme.focusVisible ring', () => {
+      // The FocusVisible fixtures render already focus-visible, so the standard screenshot loop
+      // above captures the ring. Only the forced-colors variant needs Playwright here.
+      test('keeps the outline ring visible in forced-colors mode', async ({ pooled }) => {
+        const { page } = pooled;
+        await page.emulateMedia({ forcedColors: 'active' });
+        try {
+          const testcase = await renderFixture(page, '/regression-FocusVisible/InsetControls');
+          await takeScreenshot(page, {
+            testcase,
+            route: '/regression-FocusVisible/InsetControlsForcedColors',
           });
         } finally {
           await page.emulateMedia({ forcedColors: 'none' });
