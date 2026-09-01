@@ -164,10 +164,10 @@ describe('<Menu2 /> collapsed API', () => {
     await screen.findByRole('menuitem', { name: 'Nested' });
 
     const selectedAndOpen = window.getComputedStyle(submenuTrigger).backgroundColor;
-    // Still the primary tint, not the neutral `action.selected` that the list
+    // Still the primary tint, not the neutral `action.hover` that the list
     // sets for a plain open trigger.
     expect(selectedAndOpen).to.contain('25, 118, 210');
-    // And stronger than selected alone, because the open state doubles the tint.
+    // And stronger than selected alone, because the open state adds its tint.
     expect(selectedAndOpen).not.to.equal(selectedOnly);
   });
 
@@ -573,8 +573,8 @@ describe('<Menu2 /> collapsed API', () => {
     await screen.findByRole('menuitem', { name: 'Nested' });
     const open = window.getComputedStyle(submenuTrigger).backgroundColor;
 
-    // `action.selected` against `action.focus`.
-    expect(open).to.equal('rgba(0, 0, 0, 0.08)');
+    // `action.hover` against `action.focus`.
+    expect(open).to.equal('rgba(0, 0, 0, 0.04)');
     expect(highlighted).to.equal('rgba(0, 0, 0, 0.12)');
   });
 });
