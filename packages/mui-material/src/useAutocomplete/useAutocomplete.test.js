@@ -491,31 +491,6 @@ describe('useAutocomplete', () => {
       { id: 'bar', label: 'Bar' },
     ];
 
-    function SingleSelectTest(props) {
-      const { groupedOptions, getInputProps, getListboxProps, getOptionProps } = useAutocomplete({
-        options,
-        open: true,
-        getOptionValue: (option) => option.id,
-        ...props,
-      });
-
-      return (
-        <div>
-          <input {...getInputProps()} />
-          <ul {...getListboxProps()}>
-            {groupedOptions.map((option, index) => {
-              const { key, ...optionProps } = getOptionProps({ option, index });
-              return (
-                <li key={key} {...optionProps}>
-                  {option.label}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      );
-    }
-
     function Test(props) {
       const { groupedOptions, getInputProps, getListboxProps, getOptionProps } = useAutocomplete({
         options,
@@ -560,11 +535,30 @@ describe('useAutocomplete', () => {
     it('returns the mapped option value when selecting a single option', async () => {
       const onChange = spy();
 
-      const { user } = render(<SingleSelectTest onChange={onChange} />);
+      const { user } = render(
+        <Test
+          multiple={false}
+          value={undefined}
+          getOptionLabel={(option) => option.label ?? option}
+          onChange={onChange}
+        />,
+      );
       await user.click(screen.getByRole('option', { name: 'Bar' }));
 
       expect(onChange.callCount).to.equal(1);
       expect(onChange.args[0][1]).to.equal('bar');
+      expect(onChange.args[0][2]).to.equal('selectOption');
+      expect(onChange.args[0][3]).to.deep.equal({ option: options[1] });
+    });
+
+    it('appends the mapped option value when selecting multiple options', async () => {
+      const onChange = spy();
+
+      const { user } = render(<Test onChange={onChange} />);
+      await user.click(screen.getByRole('option', { name: 'Bar' }));
+
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.args[0][1]).to.deep.equal(['foo', 'bar']);
       expect(onChange.args[0][2]).to.equal('selectOption');
       expect(onChange.args[0][3]).to.deep.equal({ option: options[1] });
     });
