@@ -54,7 +54,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   const largeBox = `calc(${touchTarget} + ${spacing('small')})`;
   // Icons ride the glyph constant the same way boxes ride the interactive one.
   const iconSmall = `calc(${iconTarget} - ${spacing(0.25)})`;
-  const iconLarge = `calc(${iconTarget} + ${spacing('xx-small')})`;
+  const iconLarge = `calc(${iconTarget} + ${spacing(0.5)})`;
   // A control's own glyph steps further down than the icon ramp does.
   const controlGlyphSmall = `calc(${iconTarget} - ${spacing('xx-small')})`;
   const sharedCheckboxRadio = {
