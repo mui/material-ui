@@ -53,7 +53,7 @@
       "docs/*": ["./docs/*"]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.
-    "types": ["node", "react", "vitest/globals"]
+    "types": ["node", "react"]
   },
   "exclude": ["**/.*/", "**/build", "**/node_modules", "docs/export", "scripts/buildApiDocs"]
 }

@@ -3,8 +3,9 @@
  * screenshots, one for axe — so editing one tool can never stomp on the
  * other. Each list is evaluated last-match-wins (no inheritance: an override
  * rule must restate every field it cares about) against the docs path
- * `docs/data/material/components/{slug}/{Demo}` (component demos) or
- * `docs/src/components/product{Product}/{Name}` (landing-page composites).
+ * `docs/data/material/components/{slug}/{Demo}` (component demos),
+ * `docs/src/components/product{Product}/{Name}` (landing-page composites), or
+ * `test/regressions/a11y/fixtures/{slug}/{Demo}` (a11y-only fixtures).
  *
  * Whole-slug exclusions where *no* tool wants anything live in the
  * `index.jsx` glob — dropping them from the bundle entirely, not just from
@@ -31,6 +32,13 @@ export interface ScreenshotRule {
    * at the default.
    */
   viewportWidth?: number;
+  /**
+   * Skip the demo when the run's React major is below this. For demos whose
+   * third-party dependencies need a newer React than MUI itself supports —
+   * the nightly `test_regressions-react@18` job installs React 18 across the
+   * workspace via pnpm overrides, past any peer range that says otherwise.
+   */
+  minReactMajor?: number;
 }
 
 export interface A11yRule {
@@ -40,6 +48,7 @@ export interface A11yRule {
   /**
    * `visual` asserts rules that depend on rendered CSS. `all` asserts every
    * axe violation/incomplete that is not listed in `skipAssertions`.
+   * @default 'visual'
    */
   assertions?: 'visual' | 'all';
   /** Axe rule IDs recorded into results JSON but not asserted on. */
@@ -125,6 +134,18 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   // broader product*/** width above.
   { test: 'docs/src/components/productX/**', viewportWidth: 1440 },
 
+  // The template mounts react-router's data router (`createHashRouter` +
+  // `RouterProvider`), which calls `useOptimistic` — React 19 only.
+  // react-router@8 peers on `react >= 19.2.7`, so under the nightly
+  // `test_regressions-react@18` override the whole demo throws on render and
+  // the harness waits out its timeout on a testcase element that never
+  // appears. It is the only demo mounting a data router; the other
+  // react-router demos use `MemoryRouter`/`Link` and are unaffected.
+  {
+    test: 'docs/data/material/getting-started/templates/crud-dashboard/CrudDashboard',
+    minReactMajor: 19,
+  },
+
   // Composites whose Data Grid loads its rows asynchronously via `useDemoData`
   // — `aria-busy` only tracks fonts, not the grid data, so without this the
   // screenshot can capture the loading skeleton. The skeleton's cells carry
@@ -150,14 +171,16 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   },
   { test: 'docs/data/material/components/accordion/AccordionA11y*', enabled: false }, // A11y-only coverage fixtures
   { test: 'docs/data/material/components/accordion/AccordionA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
-  { test: 'docs/data/material/components/buttons/ButtonA11y*', enabled: false }, // A11y-only coverage fixtures
-  { test: 'docs/data/material/components/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
   { test: 'docs/data/material/components/progress/*', enabled: false }, // Animated progress bars make screenshots flaky; axe still runs on the enrolled LinearProgress demos
   { test: 'docs/data/material/components/toggle-button/ToggleButtonA11y*', enabled: false }, // A11y-only coverage fixtures
   {
     test: 'docs/data/material/components/toggle-button/ToggleButtonA11yTextSpacing',
     enabled: true,
   }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+  // The a11y fixture tree exists for axe, so screenshots are off by default.
+  // Later rules re-enable single fixtures that also guard a visual state.
+  { test: 'test/regressions/a11y/fixtures/**', enabled: false }, // A11y-only coverage fixtures
+  { test: 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
 ];
 
 // Accordion docs demos + a11y fixtures enrolled for axe assertions (the cluster:
@@ -187,9 +210,6 @@ const BUTTON_A11Y_DEMOS = [
   'InputFileUpload',
   'LoadingButtons',
   'CustomizedButtons',
-  'ButtonA11yNonNative',
-  'ButtonA11ySemanticStates',
-  'ButtonA11yTextSpacing',
 ];
 
 const CHECKBOX_A11Y_DEMOS = [
@@ -305,8 +325,24 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
   },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/buttons/`
+  // (no docs page consumes them); the suite name maps their results into the
+  // same `buttons.a11y.json` as the docs demos above.
   {
-    test: 'docs/data/material/components/buttons/ButtonA11yColorMatrix',
+    test: 'test/regressions/a11y/fixtures/buttons/{ButtonA11yNonNative,ButtonA11ySemanticStates,ButtonA11yTextSpacing}',
+    enabled: true,
+    assertions: 'all',
+  },
+  // `color-contrast` is a known, documented product gap, not a regression:
+  // `info` and `warning` fail 4.5:1 in every variant with the default palette
+  // Asserting it would keep CI permanently red, so the failure is recorded in
+  // `buttons.a11y.json` (status only, a tripwire for flips) and documented with
+  // measured ratios in `packages/mui-material/src/Button/accessibility.md`
+  // § 1.4.3. A palette change cannot go unnoticed: the contrast contract
+  // tests recompute the ratios from `createTheme()` and fail when the
+  // failing set drifts.
+  {
+    test: 'test/regressions/a11y/fixtures/buttons/ButtonA11yColorMatrix',
     enabled: true,
     assertions: 'all',
     skipAssertions: ['color-contrast'],
@@ -374,20 +410,48 @@ export interface ParsedRoute {
 
 const COMPONENT_ROUTE_REGEX = /^\/docs-components-([^/]+)\/(.+)$/;
 const COMPOSITE_ROUTE_REGEX = /^\/docs-product-([^/]+)\/(.+)$/;
+const TEMPLATE_ROUTE_REGEX = /^\/docs-getting-started-templates-([^/]+)\/(.+)$/;
+const A11Y_FIXTURE_ROUTE_REGEX = /^\/a11y-([^/]+)\/(.+)$/;
 
 /**
- * Map a VRT route to its docs path + slug + demo, or `null` for non-component
- * routes (regression fixtures).
+ * Map a VRT route to its source path + slug + demo, or `null` for
+ * `/regression-*` screenshot fixtures (always screenshot, never axe).
  *
- * Recognises two route shapes:
+ * Recognises four route shapes:
  * - `/docs-components-{slug}/{Demo}` → `docs/data/material/components/{slug}/{Demo}`
  * - `/docs-product-{product}/{Name}` → `docs/src/components/product{Product}/{Name}`
+ * - `/docs-getting-started-templates-{slug}/{Demo}` →
+ *   `docs/data/material/getting-started/templates/{slug}/{Demo}`
+ * - `/a11y-{slug}/{Demo}` → `test/regressions/a11y/fixtures/{slug}/{Demo}`
+ *
+ * The template shape is matched by its literal prefix: `fixtures.js` joins the
+ * directory segments with `-`, so `getting-started-templates-crud-dashboard`
+ * cannot be split back into directories without knowing where the slug starts.
+ *
+ * For a11y fixture routes the suite directory doubles as the slug. Name a
+ * suite after an existing docs slug (lowercase, for example
+ * `a11y/fixtures/buttons/`) to record its axe results into that slug's
+ * committed `{slug}.a11y.json` — for a11y-only fixtures that must not live in
+ * `docs/data` because no docs page consumes them. The a11y reporter rejects a
+ * slug without a docs directory. These suites live outside
+ * `test/regressions/fixtures/` because a lowercase slug directory next to a
+ * PascalCase screenshot suite (`rating/` next to `Rating/`) would fold into
+ * one directory on case-insensitive file systems.
  */
 export function parseRoute(route: string): ParsedRoute | null {
   const componentMatch = route.match(COMPONENT_ROUTE_REGEX);
   if (componentMatch) {
     const [, slug, demo] = componentMatch;
     return { path: `docs/data/material/components/${slug}/${demo}`, slug, demo };
+  }
+  const templateMatch = route.match(TEMPLATE_ROUTE_REGEX);
+  if (templateMatch) {
+    const [, slug, demo] = templateMatch;
+    return {
+      path: `docs/data/material/getting-started/templates/${slug}/${demo}`,
+      slug,
+      demo,
+    };
   }
   const compositeMatch = route.match(COMPOSITE_ROUTE_REGEX);
   if (compositeMatch) {
@@ -396,6 +460,11 @@ export function parseRoute(route: string): ParsedRoute | null {
     // (`material` → `Material`, `x` → `X`) to rebuild the directory name.
     const dir = `product${product.charAt(0).toUpperCase()}${product.slice(1)}`;
     return { path: `docs/src/components/${dir}/${demo}`, slug: product, demo };
+  }
+  const a11yFixtureMatch = route.match(A11Y_FIXTURE_ROUTE_REGEX);
+  if (a11yFixtureMatch) {
+    const [, suite, demo] = a11yFixtureMatch;
+    return { path: `test/regressions/a11y/fixtures/${suite}/${demo}`, slug: suite, demo };
   }
   return null;
 }

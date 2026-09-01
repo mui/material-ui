@@ -1,5 +1,6 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { spy } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import ToggleButtonGroup, {
@@ -7,7 +8,6 @@ import ToggleButtonGroup, {
 } from '@mui/material/ToggleButtonGroup';
 import ToggleButton, { toggleButtonClasses } from '@mui/material/ToggleButton';
 import Tooltip from '@mui/material/Tooltip';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<ToggleButtonGroup />', () => {

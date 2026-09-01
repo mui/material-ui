@@ -1,5 +1,5 @@
+import { describe, expect, it, vi } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   createRenderer,
@@ -1049,57 +1049,65 @@ describe('<Button />', () => {
       await user.tab();
       expect(screen.getByRole('button', { name: 'Middle' })).toHaveFocus();
 
-      // Tab moves focus back out of the button — it is never captured.
+      // Tab moves focus back out of the button - it is never captured.
       await user.tab();
       expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
 
       // Shift+Tab moves back onto it.
       await user.tab({ shift: true });
       expect(screen.getByRole('button', { name: 'Middle' })).toHaveFocus();
+
+      // Another Shift+Tab moves out of the button - still not captured.
+      await user.tab({ shift: true });
+      expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
     });
 
     describe('2.4.3 Focus Order', () => {
-      it('is a single tab stop in natural DOM order with no positive tabIndex', async () => {
-        const { user } = render(
-          <React.Fragment>
-            <button type="button">Before</button>
-            <Button>Middle</Button>
-            <button type="button">After</button>
-          </React.Fragment>,
-        );
-        expect(screen.getByRole('button', { name: 'Middle' })).to.have.property('tabIndex', 0);
-
-        await user.tab();
-        expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
-        await user.tab();
-        expect(screen.getByRole('button', { name: 'Middle' })).toHaveFocus();
-        await user.tab();
-        expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+      it('is a single tab stop in natural DOM order with no positive tabIndex', () => {
+        render(<Button>Middle</Button>);
+        expect(screen.getByRole('button')).to.have.property('tabIndex', 0);
       });
 
       it('removes a disabled button from the tab order', async () => {
         const { user } = render(
           <React.Fragment>
+            <button type="button">Before</button>
             <Button disabled>Disabled</Button>
             <button type="button">After</button>
           </React.Fragment>,
         );
 
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
+
         // Tab skips the disabled button and lands on the next control.
         await user.tab();
         expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+
+        // Backwards tabbing also skips the disabled button and lands back on the first control.
+        await user.tab({ shift: true });
+        expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
       });
 
       it('removes a loading button from the tab order', async () => {
         const { user } = render(
           <React.Fragment>
+            <button type="button">Before</button>
             <Button loading>Loading</Button>
             <button type="button">After</button>
           </React.Fragment>,
         );
 
         await user.tab();
+        expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
+
+        // Tab skips the disabled button and lands on the next control.
+        await user.tab();
         expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+
+        // Backwards tabbing also skips the disabled button and lands back on the first control.
+        await user.tab({ shift: true });
+        expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
       });
     });
 
@@ -1137,24 +1145,23 @@ describe('<Button />', () => {
       expect(handleClick.callCount).to.equal(0);
     });
 
-    it('3.2.2 On Input: state changes only from explicit activation, never on its own', async () => {
+    it('3.2.2 On Input: toggling the pressed or loading state does not activate the button', async () => {
       const handleClick = spy();
-      const { user } = render(
-        <React.Fragment>
-          <Button onClick={handleClick} aria-pressed>
-            Pressed
-          </Button>
-          <Button onClick={handleClick} loading>
-            Loading
-          </Button>
-        </React.Fragment>,
+      const { setProps, user } = render(
+        <Button onClick={handleClick} aria-pressed={false} loading={false}>
+          Toggle
+        </Button>,
       );
 
-      // Neither the pressed state nor the loading state activates a button on its own.
+      // Flipping the pressed and loading state programmatically must not activate the button.
+      setProps({ 'aria-pressed': true });
+      setProps({ loading: true });
       expect(handleClick.callCount).to.equal(0);
 
-      // The pressed toggle changes context only when the user explicitly activates it.
-      await user.click(screen.getByRole('button', { name: 'Pressed' }));
+      // Only explicit activation runs the handler. `loading` is turned off first,
+      // since a loading button is removed from interaction.
+      setProps({ loading: false });
+      await user.click(screen.getByRole('button'));
       expect(handleClick.callCount).to.equal(1);
     });
 

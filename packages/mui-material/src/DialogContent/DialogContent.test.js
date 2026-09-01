@@ -1,3 +1,4 @@
+import { describe, it } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import DialogContent, { dialogContentClasses as classes } from '@mui/material/DialogContent';
 import describeConformance from '../../test/describeConformance';
