@@ -12,17 +12,27 @@ import enhanceDensity from './enhanceDensity';
 const controlBox = (theme: ReturnType<typeof enhanceDensity>) =>
   ((theme.components as any).MuiCheckbox.styleOverrides.root as any[])[1].height;
 
-/** The style a component emits for one value of the `size` prop. */
-const sizeStyle = (theme: ReturnType<typeof enhanceDensity>, component: string, size: string) => {
-  const layers = (theme.components as any)[component].styleOverrides.root as any[];
+/** The style a component emits for one variant, matched on its props. */
+const variantStyle = (
+  theme: ReturnType<typeof enhanceDensity>,
+  component: string,
+  props: Record<string, string>,
+  slot = 'root',
+) => {
+  const layers = (theme.components as any)[component].styleOverrides[slot] as any[];
   for (const layer of layers) {
-    const match = layer?.variants?.find((variant: any) => variant.props?.size === size);
+    const match = layer?.variants?.find((variant: any) =>
+      Object.entries(props).every(([key, value]) => variant.props?.[key] === value),
+    );
     if (match) {
       return match.style;
     }
   }
   return undefined;
 };
+
+const sizeStyle = (theme: ReturnType<typeof enhanceDensity>, component: string, size: string) =>
+  variantStyle(theme, component, { size });
 
 /** Same for the icon glyph, read off the same control. */
 const iconBox = (theme: ReturnType<typeof enhanceDensity>) =>
@@ -84,6 +94,29 @@ describe('enhanceDensity', () => {
 
     // 28px, which no shared derivation reaches — see the block comment
     expect(sizeStyle(theme, 'MuiChip', 'small')['--_height']).to.equal('calc(32px - 4px)');
+  });
+
+  test('the icon ramp steps off the glyph constant', () => {
+    const theme = enhanceDensity(createTheme());
+    const svgIcon = (fontSize: string) => variantStyle(theme, 'MuiSvgIcon', { fontSize }).fontSize;
+
+    // 14 / 16 / 20 — the values the ladder used to spell out directly
+    expect(svgIcon('small')).to.equal('calc(16px - 2px)');
+    expect(svgIcon('medium')).to.equal('16px');
+    expect(svgIcon('large')).to.equal('calc(16px + 4px)');
+  });
+
+  test('an icon-target override carries the whole ramp', () => {
+    const theme = enhanceDensity(createTheme(), { 'icon-target': 20 });
+
+    expect(variantStyle(theme, 'MuiSvgIcon', { fontSize: 'small' }).fontSize).to.equal(
+      'calc(20px - 2px)',
+    );
+    expect(variantStyle(theme, 'MuiSvgIcon', { fontSize: 'large' }).fontSize).to.equal(
+      'calc(20px + 4px)',
+    );
+    // a control's own glyph follows too
+    expect(sizeStyle(theme, 'MuiCheckbox', 'small')['--_iconSize']).to.equal('calc(20px - 4px)');
   });
 
   test('the icon glyph is its own sizing constant', () => {

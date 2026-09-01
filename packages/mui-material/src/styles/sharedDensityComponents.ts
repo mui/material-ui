@@ -52,6 +52,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // one. Both land on today's px at the default 32.
   const smallBox = `calc(${touchTarget} - ${spacing('x-small')})`;
   const largeBox = `calc(${touchTarget} + ${spacing('small')})`;
+  // Icons ride the glyph constant the same way boxes ride the interactive one.
+  const iconSmall = `calc(${iconTarget} - ${spacing(0.25)})`;
+  const iconLarge = `calc(${iconTarget} + ${spacing('xx-small')})`;
+  // A control's own glyph steps further down than the icon ramp does.
+  const controlGlyphSmall = `calc(${iconTarget} - ${spacing('xx-small')})`;
   const sharedCheckboxRadio = {
     padding: 0,
     width: touchTarget,
@@ -65,9 +70,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         props: { size: 'small' },
         style: {
           '--_touchSize': smallBox,
-          '--_iconSize': spacing('small'),
+          '--_iconSize': controlGlyphSmall,
           [`.${formControlLabelClasses.root}:has(&)`]: {
-            marginLeft: `calc((${smallBox} - ${spacing('small')}) / -2)`,
+            marginLeft: `calc((${smallBox} - ${controlGlyphSmall}) / -2)`,
           },
         },
       },
@@ -134,9 +139,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
 
   addRootOverride(enhanced.components, 'MuiSvgIcon', {
     variants: [
-      { props: { fontSize: 'small' }, style: { fontSize: spacing(1.75) } },
+      { props: { fontSize: 'small' }, style: { fontSize: iconSmall } },
       { props: { fontSize: 'medium' }, style: { fontSize: iconTarget } },
-      { props: { fontSize: 'large' }, style: { fontSize: spacing(2.5) } },
+      { props: { fontSize: 'large' }, style: { fontSize: iconLarge } },
     ],
   });
   const smUp = enhanced.breakpoints.up('sm');
@@ -634,7 +639,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     // Root block pad 0: the INPUT carries the whole per-side pad, so chips
     // stack in an unpadded root while the input still sets the row rhythm.
     '--_autocompleteInputRootPadBlock': '3px',
-    '--_autocompleteInputPadBlock': `calc((${touchTarget} - 1lh) / 2 - var(--_autocompleteInputRootPadBlock))`,
+    '--_autocompleteInputPadBlock': `max(0px, (${touchTarget} - 1lh) / 2 - var(--_autocompleteInputRootPadBlock))`,
     [`& .${outlinedInputClasses.root}`]: {
       paddingBlock: `var(--_autocompleteInputRootPadBlock)`,
       paddingLeft: '8px',
@@ -677,7 +682,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'MuiAutocomplete',
     {
       margin: '1px',
-      '--_height': `calc(${touchTarget} - 2px - 2*var(--_autocompleteInputRootPadBlock))`, // 2px is from the margin
+      '--_height': `calc(${touchTarget} - ${spacing('x-small')})`,
     },
     'tag',
   );
@@ -1200,7 +1205,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'MuiTableSortLabel',
     {
       // One marginInline leaf: the arrow flips sides in right-aligned columns.
-      fontSize: spacing(2.25),
+      fontSize: `calc(${iconTarget} + ${spacing(0.25)})`,
       marginInline: spacing('xx-small'),
     },
     'icon',
@@ -1369,7 +1374,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       margin: 0,
       variants: [
         { props: { size: 'medium' }, style: { fontSize: iconTarget } },
-        { props: { size: 'small' }, style: { fontSize: spacing(1.75) } },
+        { props: { size: 'small' }, style: { fontSize: iconSmall } },
       ],
     },
     'icon',
