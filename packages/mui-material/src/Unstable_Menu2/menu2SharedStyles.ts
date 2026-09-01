@@ -12,20 +12,12 @@ export interface SharedMenu2ItemClasses {
   divider: string;
   gutters: string;
   selected: string;
-  open?: string | undefined;
 }
 
 export function getMenu2ItemStyles(
   theme: Theme,
   classes: SharedMenu2ItemClasses,
 ): CSSInterpolation {
-  const selectedFocusBackgroundColor = theme.alpha(
-    (theme.vars || theme).palette.primary.main,
-    `${(theme.vars || theme).palette.action.selectedOpacity} + ${
-      (theme.vars || theme).palette.action.focusOpacity
-    }`,
-  );
-
   return {
     WebkitTapHighlightColor: 'transparent',
     backgroundColor: 'transparent',
@@ -45,14 +37,6 @@ export function getMenu2ItemStyles(
     ...getMenuItemRootStyles(theme, classes, {
       focusVisibleClass: classes.highlighted,
       disabledPointerEvents: true,
-    }),
-    ...(classes.open && {
-      [`&.${classes.open}`]: {
-        backgroundColor: (theme.vars || theme).palette.action.focus,
-      },
-      [`&.${classes.selected}.${classes.open}`]: {
-        backgroundColor: selectedFocusBackgroundColor,
-      },
     }),
   };
 }
