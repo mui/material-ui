@@ -16,6 +16,7 @@ import toggleButtonGroupClasses, {
 import ToggleButtonGroupContext from './ToggleButtonGroupContext';
 import ToggleButtonGroupButtonContext from './ToggleButtonGroupButtonContext';
 import toggleButtonClasses from '../ToggleButton/toggleButtonClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, fullWidth, disabled } = ownerState;
@@ -57,6 +58,13 @@ const ToggleButtonGroupRoot = styled('div', {
   memoTheme(({ theme }) => ({
     display: 'inline-flex',
     borderRadius: (theme.vars || theme).shape.borderRadius,
+    ...(theme.focusVisible && {
+      // paint the focused item above its siblings so a selected sibling's
+      // background cannot cover the ring edges
+      [`& .${toggleButtonGroupClasses.grouped}.${buttonBaseClasses.focusVisible}`]: {
+        zIndex: 1,
+      },
+    }),
     variants: [
       {
         props: { orientation: 'vertical' },
