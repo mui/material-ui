@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { createTheme, enhanceDensity, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -28,55 +30,63 @@ const ITEMS = [
   { label: 'Settings', icon: <SettingsIcon /> },
 ];
 
-/** A dimension bar of a measured height, with the value beside it. */
-function Measure({ height, side }) {
+/** One row's worth of gutter: a dimension bar of the measured height, with the
+ * value beside it. Kept outside the list so its markup stays a plain nav list. */
+function Gutter({ side, barHeight, rowHeight }) {
   const value = (
     <Typography
       variant="caption"
       sx={{ color: 'text.secondary', whiteSpace: 'nowrap' }}
     >
-      {height ? `${Math.round(height)}px` : ''}
+      {barHeight ? `${Math.round(barHeight)}px` : ''}
     </Typography>
   );
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: side === 'left' ? 'flex-end' : 'flex-start',
-        gap: 0.75,
-        px: 1.5,
-      }}
-    >
-      {side === 'left' ? value : null}
-      <Box
-        aria-hidden
-        sx={{
-          flexShrink: 0,
-          width: 9,
-          height,
-          borderTop: '1px solid',
-          borderBottom: '1px solid',
-          borderColor: 'text.disabled',
-          position: 'relative',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            insetBlock: 0,
-            left: 4,
-            borderLeft: '1px solid',
-            borderColor: 'text.disabled',
-          },
-        }}
-      />
-      {side === 'right' ? value : null}
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>
+      {ITEMS.map((item) => (
+        <Box
+          key={item.label}
+          sx={{
+            height: rowHeight || 'auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: side === 'left' ? 'flex-end' : 'flex-start',
+            gap: 0.75,
+            px: 1.5,
+          }}
+        >
+          {side === 'left' ? value : null}
+          <Box
+            aria-hidden
+            sx={{
+              flexShrink: 0,
+              width: 9,
+              height: barHeight,
+              borderTop: '1px solid',
+              borderBottom: '1px solid',
+              borderColor: 'text.secondary',
+              position: 'relative',
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                insetBlock: 0,
+                left: 4,
+                borderLeft: '1px solid',
+                borderColor: 'text.secondary',
+              },
+            }}
+          />
+          {side === 'right' ? value : null}
+        </Box>
+      ))}
     </Box>
   );
 }
 
-Measure.propTypes = {
-  height: PropTypes.number.isRequired,
+Gutter.propTypes = {
+  barHeight: PropTypes.number.isRequired,
+  rowHeight: PropTypes.number.isRequired,
   side: PropTypes.oneOf(['left', 'right']).isRequired,
 };
 
@@ -147,26 +157,34 @@ export default function TouchTargetDemo() {
       <Box sx={{ overflowX: 'auto', py: 2 }}>
         <Box
           sx={{
-            minWidth: 420,
+            minWidth: 440,
             display: 'grid',
-            gridTemplateColumns: 'minmax(72px, 1fr) auto minmax(72px, 1fr)',
-            alignItems: 'center',
+            gridTemplateColumns: '1fr auto 1fr',
+            alignItems: 'start',
           }}
         >
           <ThemeProvider theme={theme}>
-            {ITEMS.map((item, index) => (
-              <React.Fragment key={item.label}>
-                <Measure height={sizes.icon} side="left" />
-                <ListItemButton
-                  ref={index === 0 ? rowRef : undefined}
-                  sx={{ width: 220, borderRadius: 1 }}
-                >
-                  <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.label} />
-                </ListItemButton>
-                <Measure height={sizes.row} side="right" />
-              </React.Fragment>
-            ))}
+            <Gutter side="left" barHeight={sizes.icon} rowHeight={sizes.row} />
+            <Box component="nav" aria-label="mailbox folders">
+              <List disablePadding sx={{ width: 240 }}>
+                {ITEMS.map((item, index) => (
+                  <React.Fragment key={item.label}>
+                    {index > 0 ? <Divider component="li" /> : null}
+                    <ListItem disablePadding>
+                      <ListItemButton ref={index === 0 ? rowRef : undefined}>
+                        <ListItemIcon
+                          sx={{ '& svg': { outline: '1px dashed currentColor' } }}
+                        >
+                          {item.icon}
+                        </ListItemIcon>
+                        <ListItemText primary={item.label} />
+                      </ListItemButton>
+                    </ListItem>
+                  </React.Fragment>
+                ))}
+              </List>
+            </Box>
+            <Gutter side="right" barHeight={sizes.row} rowHeight={sizes.row} />
           </ThemeProvider>
         </Box>
       </Box>
