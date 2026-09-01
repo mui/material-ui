@@ -58,10 +58,15 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // A control's own glyph steps further down than the icon ramp does.
   const controlGlyphSmall = `calc(${iconTarget} - ${spacing('xx-small')})`;
   const sharedCheckboxRadio = {
+    // The size variant retunes the box by rewriting these, so the base has to
+    // read them rather than the constants directly. The label pull below keeps
+    // the literals: it lands on the label, which the vars don't reach.
+    '--_touchSize': touchTarget,
+    '--_iconSize': iconTarget,
     padding: 0,
-    width: touchTarget,
-    height: touchTarget,
-    '& svg': { fontSize: iconTarget },
+    width: 'var(--_touchSize)',
+    height: 'var(--_touchSize)',
+    '& svg': { fontSize: 'var(--_iconSize)' },
     [`.${formControlLabelClasses.root}:has(&)`]: {
       marginLeft: `calc((${touchTarget} - ${iconTarget}) / -2)`,
     },
