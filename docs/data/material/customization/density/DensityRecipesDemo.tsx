@@ -147,6 +147,7 @@ export default function DensityRecipesDemo() {
             {
               // Padding is a whole cell, so the ruling passes through the
               // controls' own edges instead of beside them.
+              '--recipe-cell': `${cell}px`,
               p: `${cell}px`,
               minWidth: 520,
               backgroundSize: `${cell}px ${cell}px`,

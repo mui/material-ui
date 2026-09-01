@@ -34,6 +34,8 @@ import LanguageIcon from '@mui/icons-material/Language';
 import ScienceIcon from '@mui/icons-material/Science';
 import StorageIcon from '@mui/icons-material/Storage';
 
+const CONTROL_MIN_WIDTH = 140;
+
 function PricingUi() {
   return (
     <Stack sx={{ gap: 'large', alignItems: 'center', maxWidth: 420, mx: 'auto' }}>
@@ -350,138 +352,215 @@ function SettingsUi() {
   return (
     <Stack sx={{ gap: 'large', maxWidth: 520 }}>
       <Typography variant="h3">Preferences</Typography>
-      <Stack component="section" sx={{ gap: 'x-small' }}>
-        <Typography variant="subtitle2" component="h4">
+      <Stack
+        component="section"
+        aria-labelledby={`${id}-general`}
+        sx={{ gap: 'x-small' }}
+      >
+        <Typography
+          variant="overline"
+          component="h4"
+          id={`${id}-general`}
+          sx={{ color: 'text.secondary' }}
+        >
           General
         </Typography>
-        <Paper variant="outlined">
+        <Paper variant="outlined" sx={{ bgcolor: 'transparent' }}>
           <List disablePadding>
-            <ListItem divider sx={{ gap: 'small' }}>
+            <ListItem
+              divider
+              sx={{ gap: 'small', minHeight: 'calc(var(--recipe-cell) * 2)' }}
+            >
               <ListItemText
                 primary="Default home view"
                 secondary="Select which view to display on launch"
                 slotProps={{
                   primary: { id: `${id}-home-view`, variant: 'body2' },
-                  secondary: { variant: 'caption' },
+                  secondary: { id: `${id}-home-view-desc`, variant: 'caption' },
                 }}
               />
               <Select
                 labelId={`${id}-home-view`}
-                size="small"
+                aria-describedby={`${id}-home-view-desc`}
                 defaultValue="Dashboard"
-                sx={{ minWidth: 140 }}
+                sx={{ minWidth: CONTROL_MIN_WIDTH }}
               >
                 <MenuItem value="Dashboard">Dashboard</MenuItem>
                 <MenuItem value="My issues">My issues</MenuItem>
                 <MenuItem value="Inbox">Inbox</MenuItem>
               </Select>
             </ListItem>
-            <ListItem divider sx={{ gap: 'small' }}>
+            <ListItem
+              divider
+              sx={{ gap: 'small', minHeight: 'calc(var(--recipe-cell) * 2)' }}
+            >
               <ListItemText
                 primary="Display names"
                 secondary="Select how names are shown across the interface"
                 slotProps={{
                   primary: { id: `${id}-display-names`, variant: 'body2' },
-                  secondary: { variant: 'caption' },
+                  secondary: { id: `${id}-display-names-desc`, variant: 'caption' },
                 }}
               />
               <Select
                 labelId={`${id}-display-names`}
-                size="small"
+                aria-describedby={`${id}-display-names-desc`}
                 defaultValue="Full name"
-                sx={{ minWidth: 140 }}
+                sx={{ minWidth: CONTROL_MIN_WIDTH }}
               >
                 <MenuItem value="Full name">Full name</MenuItem>
                 <MenuItem value="Username">Username</MenuItem>
                 <MenuItem value="Initials">Initials</MenuItem>
               </Select>
             </ListItem>
-            <ListItem divider sx={{ gap: 'small' }}>
+            <ListItem
+              divider
+              sx={{ gap: 'small', minHeight: 'calc(var(--recipe-cell) * 2)' }}
+            >
               <ListItemText
                 primary="First day of the week"
                 secondary="Used for date pickers"
                 slotProps={{
                   primary: { id: `${id}-first-day`, variant: 'body2' },
-                  secondary: { variant: 'caption' },
+                  secondary: { id: `${id}-first-day-desc`, variant: 'caption' },
                 }}
               />
               <Select
                 labelId={`${id}-first-day`}
-                size="small"
+                aria-describedby={`${id}-first-day-desc`}
                 defaultValue="Sunday"
-                sx={{ minWidth: 140 }}
+                sx={{ minWidth: CONTROL_MIN_WIDTH }}
               >
                 <MenuItem value="Sunday">Sunday</MenuItem>
                 <MenuItem value="Monday">Monday</MenuItem>
               </Select>
             </ListItem>
-            <ListItem sx={{ gap: 'small' }}>
+            <ListItem
+              sx={{ gap: 'small', minHeight: 'calc(var(--recipe-cell) * 2)' }}
+            >
               <ListItemText
                 primary="Convert text emoticons into emoji"
                 secondary="Strings like :) are replaced as you type"
                 slotProps={{
                   primary: { id: `${id}-emoticons`, variant: 'body2' },
-                  secondary: { variant: 'caption' },
+                  secondary: { id: `${id}-emoticons-desc`, variant: 'caption' },
                 }}
               />
               <Switch
                 edge="end"
                 defaultChecked
-                slotProps={{ input: { 'aria-labelledby': `${id}-emoticons` } }}
+                slotProps={{
+                  input: {
+                    'aria-labelledby': `${id}-emoticons`,
+                    'aria-describedby': `${id}-emoticons-desc`,
+                  },
+                }}
               />
             </ListItem>
           </List>
         </Paper>
       </Stack>
-      <Stack component="section" sx={{ gap: 'x-small' }}>
-        <Typography variant="subtitle2" component="h4">
+      <Stack
+        component="section"
+        aria-labelledby={`${id}-interface`}
+        sx={{ gap: 'x-small' }}
+      >
+        <Typography
+          variant="overline"
+          component="h4"
+          id={`${id}-interface`}
+          sx={{ color: 'text.secondary' }}
+        >
           Interface and theme
         </Typography>
-        <Paper variant="outlined">
+        <Paper variant="outlined" sx={{ bgcolor: 'transparent' }}>
           <List disablePadding>
-            <ListItem divider sx={{ gap: 'small' }}>
+            <ListItem
+              divider
+              sx={{ gap: 'small', minHeight: 'calc(var(--recipe-cell) * 2)' }}
+            >
               <ListItemText
                 primary="App sidebar"
                 secondary="Item visibility, ordering, and badge style"
                 slotProps={{
-                  primary: { variant: 'body2' },
-                  secondary: { variant: 'caption' },
+                  primary: { id: `${id}-sidebar`, variant: 'body2' },
+                  secondary: { id: `${id}-sidebar-desc`, variant: 'caption' },
                 }}
               />
-              <Button variant="text">Customize</Button>
+              <Button
+                variant="text"
+                aria-describedby={`${id}-sidebar-desc`}
+                sx={{ mr: '-x-small' }}
+              >
+                Customize
+              </Button>
             </ListItem>
-            <ListItem divider sx={{ gap: 'small' }}>
+            <ListItem
+              divider
+              sx={{ gap: 'small', minHeight: 'calc(var(--recipe-cell) * 2)' }}
+            >
+              <ListItemText
+                primary="Theme"
+                secondary="Match the system or pick one"
+                slotProps={{
+                  primary: { id: `${id}-theme`, variant: 'body2' },
+                  secondary: { id: `${id}-theme-desc`, variant: 'caption' },
+                }}
+              />
+              <Select
+                labelId={`${id}-theme`}
+                aria-describedby={`${id}-theme-desc`}
+                defaultValue="System"
+                sx={{ minWidth: CONTROL_MIN_WIDTH }}
+              >
+                <MenuItem value="System">System</MenuItem>
+                <MenuItem value="Light">Light</MenuItem>
+                <MenuItem value="Dark">Dark</MenuItem>
+              </Select>
+            </ListItem>
+            <ListItem
+              divider
+              sx={{ gap: 'small', minHeight: 'calc(var(--recipe-cell) * 2)' }}
+            >
               <ListItemText
                 primary="Font size"
                 secondary="Adjust the size of text across the app"
                 slotProps={{
                   primary: { id: `${id}-font-size`, variant: 'body2' },
-                  secondary: { variant: 'caption' },
+                  secondary: { id: `${id}-font-size-desc`, variant: 'caption' },
                 }}
               />
               <Select
                 labelId={`${id}-font-size`}
-                size="small"
+                aria-describedby={`${id}-font-size-desc`}
                 defaultValue="Default"
-                sx={{ minWidth: 140 }}
+                sx={{ minWidth: CONTROL_MIN_WIDTH }}
               >
                 <MenuItem value="Small">Small</MenuItem>
                 <MenuItem value="Default">Default</MenuItem>
                 <MenuItem value="Large">Large</MenuItem>
               </Select>
             </ListItem>
-            <ListItem sx={{ gap: 'small' }}>
+            <ListItem
+              sx={{ gap: 'small', minHeight: 'calc(var(--recipe-cell) * 2)' }}
+            >
               <ListItemText
                 primary="Use pointer cursors"
                 secondary="Show a pointer over interactive elements"
                 slotProps={{
                   primary: { id: `${id}-pointer`, variant: 'body2' },
-                  secondary: { variant: 'caption' },
+                  secondary: { id: `${id}-pointer-desc`, variant: 'caption' },
                 }}
               />
               <Switch
                 edge="end"
-                slotProps={{ input: { 'aria-labelledby': `${id}-pointer` } }}
+
+                slotProps={{
+                  input: {
+                    'aria-labelledby': `${id}-pointer`,
+                    'aria-describedby': `${id}-pointer-desc`,
+                  },
+                }}
               />
             </ListItem>
           </List>
