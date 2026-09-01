@@ -24,13 +24,11 @@ function App() {
 
 The demo below demonstrates the effect of `enhanceDensity` on a Button between sizes.
 
-Without the enhancer, the Button uses raw pixel values for various CSS properties. When the enhancer kicks in, the Button's CSS implmentation switches to use the new spacing scale and the touch-target size for the `medium` size.
+With the enhancer, the Button's CSS implementation switches from raw pixel values to the new spacing scale and the touch-target size.
 
 {{"demo": "EnhanceDensityDemo.js"}}
 
-Every component's spacing and sizing now comes from the scale, and medium-size controls share a touch-target size. Components with a `size` prop keep their small and large options, and both are derived from that box — one step under it and one step over — so moving `touch-target` carries all three sizes rather than only the middle one.
-
-Spacing between children moves to the container as well: wherever the layout allows, per-child margins are cleared in favor of a `gap` on the parent—the button above sets one `gap` instead of the margin pair its icon carries by default. That leaves one value to override, and it holds up when you change the padding around it or when a child doesn't render.
+The enhancer also modernizes components like Button that use the margin-based spacing between children to use the `gap` property instead. This makes the component more resilient and easier to customize.
 
 :::info
 `enhanceDensity` changes nothing until you call it. A theme that doesn't go through the enhancer renders exactly as it does today.
@@ -38,13 +36,23 @@ Spacing between children moves to the container as well: wherever the layout all
 
 ## Benefits
 
-### Touch target control
+### Consistent sizing
 
-A configurable touch target size that apply to every interactive control to create consistent sizing across the library. If the component has a `size` prop, only the `medium` size is set to the touch target.
+The enhancer lets you set 2 target sizes:
 
-<!-- a demo to showcase touch target control -->
+- the touch-target size: apply to every interactive control to create consistent sizing across the library.
+- the icon-target size: apply to the `SvgIcon` component.
 
-### The spacing scale
+```ts
+const theme = enhanceDensity(createTheme(), {
+  'touch-target': 40,
+  'icon-target': 20,
+});
+```
+
+{{"demo": "TouchTargetDemo.js"}}
+
+### Spacing scale
 
 Every component draws its spacing and sizing from one fixed set of steps, so nothing is sized on its own terms and values that should match do match:
 
@@ -58,28 +66,33 @@ Every component draws its spacing and sizing from one fixed set of steps, so not
 | `x-large`  | 32px          | Large control height                  |
 | `xx-large` | 48px          | Large surfaces                        |
 
-Two values sit outside the ladder: **`touch-target`** (32px), the box that medium-size interactive controls converge on, and **`icon-target`** (16px), the default icon glyph. They size things rather than space them, so neither is a spacing step and `theme.spacing()` doesn't resolve either. Both are still yours to move, through the same override object as the rest.
-
-### Works with existing spacing API
-
 The scale rides the spacing API you already use—there's no new function to learn and no new theme node. [`theme.spacing()`](/material-ui/customization/spacing/) resolves step names alongside the numbers and raw CSS values it already accepts, and a leading dash negates a step:
 
 ```js
 const theme = enhanceDensity(createTheme());
 
-theme.spacing(2); // '16px' — unchanged
 theme.spacing('small'); // '12px'
 theme.spacing('-x-small'); // '-8px'
-```
 
-The spacing props of the [`sx` prop](/material-ui/customization/how-to-customize/#the-sx-prop) take the same names:
-
-```jsx
-<Box sx={{ p: 'small', gap: 'x-small' }} />
+<Box sx={{ p: 'small', gap: 'x-small' }} />;
 // .Box-hashed-class { padding: 12px; gap: 8px; }
 ```
 
-Numbers and raw CSS strings keep their current output, so existing calls are unaffected. TypeScript suggests the step names inside `theme.spacing()`; the `sx` props accept the same names, but don't list them in autocompletion.
+To use the scale in your theme component overrides, write a callback that receives the theme and calls `theme.spacing(<scale>)`:
+
+```js
+const customTheme = enhanceDensity(
+  createTheme({
+    components: {
+      MuiCard: {
+        styleOverrides: {
+          root: ({ theme }) => ({ padding: theme.spacing('medium') }),
+        },
+      },
+    },
+  }),
+);
+```
 
 ### CSS variables support
 
@@ -99,34 +112,14 @@ This means the scale can be read—and overridden—from plain CSS, including fo
 }
 ```
 
-Every step gets a variable except `touch-target` and `icon-target`, which are emitted as plain lengths because they aren't spacing steps.
-
-### Touch target control
-
-Interactive controls converge on one box, so the size of every hit area in the product is a single number. Raise it for touch-first screens, lower it for dense tools—each control reflows around it, and none of them drift apart:
-
-{{"demo": "TouchTargetDemo.js"}}
-
 ## Customizing the scale
 
-Pass an object as the second argument to override any step. Each step is a number of pixels:
+To override the default steps, pass a second argument to `enhanceDensity`. If the object is a partial scale, the missing steps keep their default values.
+
+Below is an example of a full scale overrides for a very dense application:
 
 ```js
 const theme = enhanceDensity(createTheme(), {
-  'touch-target': 40,
-  'icon-target': 20,
-});
-```
-
-Steps you don't list keep their default value, and every component that uses the overridden step reflows with it.
-
-### Density recipes
-
-There are no built-in density modes. A denser or roomier product overrides the whole scale, which keeps the steps proportional to each other. Copy one of these recipes and adjust it:
-
-```js
-// Compact — for data-dense interfaces.
-const compact = {
   'xx-small': 2,
   'x-small': 4,
   small: 8,
@@ -136,93 +129,26 @@ const compact = {
   'xx-large': 32,
   'touch-target': 24,
   'icon-target': 14,
-};
-
-const theme = enhanceDensity(createTheme(), compact);
+});
 ```
 
-```js
-// Comfortable — for touch-first interfaces.
-const comfortable = {
-  'xx-small': 8,
-  'x-small': 12,
-  small: 16,
-  medium: 24,
-  large: 32,
-  'x-large': 48,
-  'xx-large': 64,
-  'touch-target': 44,
-  'icon-target': 20,
-};
+The scale is a closed set of seven steps, plus the two targets. The values must be numbers, which are interpreted as pixels.
 
-const theme = enhanceDensity(createTheme(), comfortable);
-```
-
-:::success
-Keep the recipe in its own module and import it wherever the values are needed. Sibling packages that read the same scale—and your own components—stay in sync with the theme when they share one object.
+:::info
+The enhancer does not support a custom scale that adds new steps or removes existing ones. The seven steps and two targets are fixed.
 :::
 
-## Using the scale in your own styles
+## Density recipes
 
-Step names work across every spacing prop—`p`, `m`, their per-side and axis forms, and `gap`—including responsive values:
-
-```jsx
-<Box sx={{ px: { xs: 'small', md: 'large' }, mt: '-x-small' }} />
-```
-
-Numbers keep their current meaning as multipliers of the spacing unit, and any other string is still passed through as raw CSS:
-
-```jsx
-<Box sx={{ p: 2, m: 'auto', width: '50%' }} />
-```
-
-Only the spacing props read the step names. Every other CSS property takes them through `theme.spacing()`, which works anywhere and offers the names in autocompletion:
-
-```jsx
-<Box
-  sx={(theme) => ({
-    height: theme.spacing('x-large'),
-    top: theme.spacing('small'),
-  })}
-/>
-```
-
-The steps are also available in theme component overrides:
+A recipe is two layers. Typography, shape and component `defaultProps` are ordinary [`createTheme()`](/material-ui/customization/theming/) inputs—the design your product already has. The scale is the enhancer's own argument. Compose the first, then enhance with the second:
 
 ```js
-const theme = enhanceDensity(
-  createTheme({
-    components: {
-      MuiCard: {
-        styleOverrides: {
-          root: ({ theme }) => ({ padding: theme.spacing('medium') }),
-        },
-      },
-    },
-  }),
-);
+const theme = enhanceDensity(createTheme({ shape, typography, components }), scale);
 ```
 
-Because `styleOverrides` callbacks resolve at render time, they read the enhanced theme even though they're declared in the `createTheme()` call that runs first.
+Switch between the three recipes below to see one product surface at three densities. The canvas is ruled at each recipe's `touch-target`, so you can read whether controls land on the grid. Use **Layers** to drop the design layers one at a time—with all three off, what remains is `enhanceDensity` alone.
 
-## Density with component props
-
-Several components accept props that reduce their size individually. This was the only built-in approach before `enhanceDensity`, and it remains available:
-
-- `size="small"` on [Button](/material-ui/api/button/), [Fab](/material-ui/api/fab/), [IconButton](/material-ui/api/icon-button/), and [Table](/material-ui/api/table/)
-- `margin="dense"` on [FilledInput](/material-ui/api/filled-input/), [FormControl](/material-ui/api/form-control/), [FormHelperText](/material-ui/api/form-helper-text/), [InputBase](/material-ui/api/input-base/), [InputLabel](/material-ui/api/input-label/), [OutlinedInput](/material-ui/api/outlined-input/), and [TextField](/material-ui/api/text-field/)
-- `dense` on [ListItem](/material-ui/api/list-item/)
-- `variant="dense"` on [Toolbar](/material-ui/api/toolbar/)
-
-Setting these as `defaultProps` applies them across an application, but it covers only these components, offers a single step in one direction, and leaves the rest of the library at its default sizes.
-
-The tool below applies that approach to the documentation so you can see how far it goes:
-
-{{"demo": "DensityTool.js", "hideToolbar": true}}
-
-:::warning
-The theme this tool applies is for demonstration only. The Material Design guidelines have a [comprehensive guide](https://m2.material.io/design/layout/applying-density.html) on when density is and isn't appropriate.
-:::
+{{"demo": "DensityRecipesDemo.js"}}
 
 ## Caveats
 
@@ -241,7 +167,3 @@ const broken = createTheme({ ...theme, palette: { mode: 'dark' } });
 ```
 
 To change a theme after enhancing it, recompose the original options and enhance again.
-
-### Custom sizes keep their own values
-
-The scale covers each component's built-in sizes. Sizes added through the theme—custom `variants` with their own dimensions—keep whatever values they declare.
