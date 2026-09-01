@@ -70,9 +70,15 @@ const tokens = {
   icon: '0.8lh',
   // Only the box and its padding step up with the size prop.
   bySize: {
-    small: { height: "spacing('large')", padding: "spacing('small')" },
+    small: {
+      height: "touch-target - spacing('x-small')",
+      padding: "spacing('small')",
+    },
     medium: { height: 'touch-target', padding: "spacing('medium')" },
-    large: { height: "spacing('xx-large')", padding: "spacing('large')" },
+    large: {
+      height: "touch-target + spacing('small')",
+      padding: "spacing('large')",
+    },
   },
 };
 
@@ -234,8 +240,11 @@ function Annotations({
             x2={right + 18}
             y2={bottom}
           />
-          <text x={right + 24} y={y + height / 2} dominantBaseline="middle">
-            {caption(tokens.bySize[size].height, height)}
+          <text x={right + 24} y={y + height / 2 - 8} dominantBaseline="middle">
+            {tokens.bySize[size].height}
+          </text>
+          <text x={right + 24} y={y + height / 2 + 9} dominantBaseline="middle">
+            {round(height)}
           </text>
         </React.Fragment>
       ) : null}
@@ -315,6 +324,8 @@ export default function EnhanceDensityDemo() {
               sx={{
                 position: 'absolute',
                 inset: 0,
+                // the derived size labels are long; bias the button left
+                pr: '90px',
                 display: 'grid',
                 placeItems: 'center',
               }}

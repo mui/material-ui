@@ -12,6 +12,18 @@ import enhanceDensity from './enhanceDensity';
 const controlBox = (theme: ReturnType<typeof enhanceDensity>) =>
   ((theme.components as any).MuiCheckbox.styleOverrides.root as any[])[1].height;
 
+/** The style a component emits for one value of the `size` prop. */
+const sizeStyle = (theme: ReturnType<typeof enhanceDensity>, component: string, size: string) => {
+  const layers = (theme.components as any)[component].styleOverrides.root as any[];
+  for (const layer of layers) {
+    const match = layer?.variants?.find((variant: any) => variant.props?.size === size);
+    if (match) {
+      return match.style;
+    }
+  }
+  return undefined;
+};
+
 /** Same for the icon glyph, read off the same control. */
 const iconBox = (theme: ReturnType<typeof enhanceDensity>) =>
   ((theme.components as any).MuiCheckbox.styleOverrides.root as any[])[1]['& svg'].fontSize;
@@ -47,6 +59,31 @@ describe('enhanceDensity', () => {
     expect(controlBox(theme)).to.equal('40px');
     expect(iconBox(theme)).to.equal('16px');
     expect(theme.spacing('small')).to.equal('12px');
+  });
+
+  test('every size steps off the interactive box, not the ladder', () => {
+    const theme = enhanceDensity(createTheme());
+
+    expect(sizeStyle(theme, 'MuiButton', 'small').height).to.equal('calc(32px - 8px)');
+    expect(sizeStyle(theme, 'MuiButton', 'medium').height).to.equal('32px');
+    expect(sizeStyle(theme, 'MuiButton', 'large').height).to.equal('calc(32px + 12px)');
+  });
+
+  test('a touch-target override carries small and large with it', () => {
+    const theme = enhanceDensity(createTheme(), { 'touch-target': 44 });
+
+    // the whole ramp moves; before, small and large sat on fixed ladder steps
+    expect(sizeStyle(theme, 'MuiButton', 'small').height).to.equal('calc(44px - 8px)');
+    expect(sizeStyle(theme, 'MuiButton', 'large').height).to.equal('calc(44px + 12px)');
+    expect(sizeStyle(theme, 'MuiIconButton', 'small').width).to.equal('calc(44px - 8px)');
+    expect(sizeStyle(theme, 'MuiToggleButton', 'large')['--_size']).to.equal('calc(44px + 12px)');
+  });
+
+  test('Chip holds its own small, one step nearer the box', () => {
+    const theme = enhanceDensity(createTheme());
+
+    // 28px, which no shared derivation reaches — see the block comment
+    expect(sizeStyle(theme, 'MuiChip', 'small')['--_height']).to.equal('calc(32px - 4px)');
   });
 
   test('the icon glyph is its own sizing constant', () => {

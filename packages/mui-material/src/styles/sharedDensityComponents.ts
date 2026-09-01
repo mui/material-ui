@@ -47,6 +47,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // Keyed spacing: a scale key resolves to its step (var ref under cssVariables,
   // raw px otherwise); numbers stay plain spacing units.
   const { spacing } = enhanced;
+  // Sized components step off the interactive box rather than the ladder, so a
+  // `touch-target` override carries all three sizes instead of only the middle
+  // one. Both land on today's px at the default 32.
+  const smallBox = `calc(${touchTarget} - ${spacing('x-small')})`;
+  const largeBox = `calc(${touchTarget} + ${spacing('small')})`;
   const sharedCheckboxRadio = {
     padding: 0,
     width: touchTarget,
@@ -59,22 +64,22 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { size: 'small' },
         style: {
-          '--_touchSize': spacing('large'),
+          '--_touchSize': smallBox,
           '--_iconSize': spacing('small'),
           [`.${formControlLabelClasses.root}:has(&)`]: {
-            marginLeft: `calc((${spacing('large')} - ${spacing('small')}) / -2)`,
+            marginLeft: `calc((${smallBox} - ${spacing('small')}) / -2)`,
           },
         },
       },
       { props: { edge: 'start' }, style: { marginLeft: `calc(${touchTarget} / -8)` } },
       {
         props: { edge: 'start', size: 'small' },
-        style: { marginLeft: `calc(${spacing('large')} / -8)` },
+        style: { marginLeft: `calc(${smallBox} / -8)` },
       },
       { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -8)` } },
       {
         props: { edge: 'end', size: 'small' },
-        style: { marginRight: `calc(${spacing('large')} / -8)` },
+        style: { marginRight: `calc(${smallBox} / -8)` },
       },
     ],
   };
@@ -85,7 +90,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     variants: [
       {
         props: { size: 'small' },
-        style: { height: spacing('large'), paddingInline: spacing('small') },
+        style: { height: smallBox, paddingInline: spacing('small') },
       },
       {
         props: { size: 'medium' },
@@ -93,7 +98,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
       {
         props: { size: 'large' },
-        style: { height: spacing('xx-large'), paddingInline: spacing('large') },
+        style: { height: largeBox, paddingInline: spacing('large') },
       },
     ],
   });
@@ -113,14 +118,14 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     padding: 0,
     fontSize: iconTarget,
     variants: [
-      { props: { size: 'small' }, style: { width: spacing('large'), height: spacing('large') } },
+      { props: { size: 'small' }, style: { width: smallBox, height: smallBox } },
       {
         props: { size: 'medium' },
         style: { width: touchTarget, height: touchTarget },
       },
       {
         props: { size: 'large' },
-        style: { width: spacing('xx-large'), height: spacing('xx-large') },
+        style: { width: largeBox, height: largeBox },
       },
       { props: { edge: 'start' }, style: { marginLeft: `calc(${touchTarget} / -8)` } },
       { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -8)` } },
@@ -571,7 +576,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { size: 'small' },
         style: {
-          '--_size': spacing('large'),
+          '--_size': smallBox,
           paddingInline: `calc((var(--_size) - ${spacing(1.75)}) / 2 - 1px)`,
         },
       },
@@ -585,7 +590,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { size: 'large' },
         style: {
-          '--_size': spacing('xx-large'),
+          '--_size': largeBox,
           paddingInline: `calc((var(--_size) - ${spacing(2.5)}) / 2 - 1px)`,
         },
       },
@@ -1141,9 +1146,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { size: 'small' },
         style: {
-          '--_height': spacing('large'),
+          '--_height': smallBox,
           // Invariant: --_touchSize >= --_thumbHeight (see medium — padding clips).
-          '--_touchSize': spacing('large'),
+          '--_touchSize': smallBox,
           '--_thumbHeight': `calc(${spacing('medium')} - 4px)`,
           '--_thumbWidth': `calc(${spacing('medium')} - 4px)`,
           // Master's small rules sit nested under the root variant at higher
@@ -1277,7 +1282,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     variants: [
       {
         props: { size: 'small' },
-        style: { height: spacing('large'), minWidth: spacing('large') },
+        style: { height: smallBox, minWidth: smallBox },
       },
       {
         props: { size: 'medium' },
@@ -1285,7 +1290,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
       {
         props: { size: 'large' },
-        style: { height: spacing('xx-large'), minWidth: spacing('xx-large') },
+        style: { height: largeBox, minWidth: largeBox },
       },
       {
         props: ({ ownerState }: { ownerState: PaginationItemOwnerState }) =>
@@ -1338,7 +1343,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { size: 'small' },
         style: {
-          '--_height': `calc(${spacing('large')} + ${spacing('xx-small')})`,
+          '--_height': `calc(${touchTarget} - ${spacing('xx-small')})`,
           '--_paddingInline': spacing('x-small'),
           gap: spacing('xx-small'),
         },

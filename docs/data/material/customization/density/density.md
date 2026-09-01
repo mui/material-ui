@@ -28,7 +28,7 @@ Without the enhancer, the Button uses raw pixel values for various CSS propertie
 
 {{"demo": "EnhanceDensityDemo.js"}}
 
-Every component's spacing and sizing now comes from the scale, and medium-size controls share a touch-target size. Components with a `size` prop keep their small and large options; those sizes move to neighboring steps of the same scale, so they stay coherent with each other.
+Every component's spacing and sizing now comes from the scale, and medium-size controls share a touch-target size. Components with a `size` prop keep their small and large options, and both are derived from that box — one step under it and one step over — so moving `touch-target` carries all three sizes rather than only the middle one.
 
 Spacing between children moves to the container as well: wherever the layout allows, per-child margins are cleared in favor of a `gap` on the parent—the button above sets one `gap` instead of the margin pair its icon carries by default. That leaves one value to override, and it holds up when you change the padding around it or when a child doesn't render.
 
