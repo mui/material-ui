@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, enhanceDensity } from '@mui/material/styles';
 import { SpacingKey } from '@mui/system';
 
 // densityScale.ts augments @mui/system's SpacingKeyOverrides with the scale keys
@@ -47,3 +47,12 @@ takesString(theme.spacing(1, 'auto'));
 // raw CSS stays first-class — unregistered strings pass through by design
 takesString(theme.spacing('12px'));
 takesString(theme.spacing('small', 2, 'auto', '3px'));
+
+// The scale is closed: every key of the override object must be one the
+// enhancer already knows, so a misspelling is a compile error rather than a
+// value that silently never reaches a component.
+enhanceDensity(createTheme(), { small: 8, 'touch-target': 40, 'icon-target': 20 });
+// @ts-expect-error — misspelled step
+enhanceDensity(createTheme(), { smal: 8 });
+// @ts-expect-error — the scale cannot be extended with new names
+enhanceDensity(createTheme(), { huge: 64 });
