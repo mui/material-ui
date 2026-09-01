@@ -23,6 +23,7 @@ import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import listItemIconClasses from '../ListItemIcon/listItemIconClasses';
 import { ListItemOwnerState } from '../ListItem';
 import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
+import { buttonGroupClasses } from '../ButtonGroup';
 
 /**
  * PRIVATE shared component mapping used by the three `enhance*Density` presets
@@ -134,6 +135,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       { props: { edge: 'start' }, style: { marginLeft: `calc(${touchTarget} / -8)` } },
       { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -8)` } },
     ],
+  });
+  addRootOverride(enhanced.components, 'MuiButtonGroup', {
+    [`& .${buttonGroupClasses.grouped}`]: { minWidth: touchTarget },
   });
 
   addRootOverride(enhanced.components, 'MuiSvgIcon', {
