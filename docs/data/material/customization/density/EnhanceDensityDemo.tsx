@@ -68,18 +68,18 @@ const inset = (rect: Rect, edges: Edges): Rect => ({
 // With the enhancer on, every dimension is a value you can name; with it off
 // they are the component's own built-in numbers.
 const tokens = {
-  gap: "spacing('x-small')",
+  gap: 'x-small',
   icon: '0.8lh',
   // Only the box and its padding step up with the size prop.
   bySize: {
     small: {
       height: 'touch-target - x-small',
-      padding: "spacing('small')",
+      padding: 'small',
     },
-    medium: { height: 'touch-target', padding: "spacing('medium')" },
+    medium: { height: 'touch-target', padding: 'medium' },
     large: {
       height: 'touch-target + small',
-      padding: "spacing('large')",
+      padding: 'large',
     },
   },
 };
