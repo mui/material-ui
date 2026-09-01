@@ -17,6 +17,8 @@ import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { mergeSlotProps } from '../utils';
+import useEnhancedEffect from '../utils/useEnhancedEffect';
+import useForkRef from '../utils/useForkRef';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
@@ -150,7 +152,17 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const externalInputProps = slotProps.input;
+  const externalInputProps =
+    typeof slotProps.input === 'function' ? slotProps.input(ownerState) : slotProps.input;
+
+  const inputRef = React.useRef(null);
+  const handleInputRef = useForkRef(inputRef, externalInputProps?.ref);
+
+  useEnhancedEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.indeterminate = indeterminate;
+    }
+  });
 
   const [RootSlot, rootSlotProps] = useSlot('root', {
     ref,
@@ -176,15 +188,16 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       disableRipple: props.disableRipple,
       slots,
       slotProps: {
-        input: mergeSlotProps(
-          typeof externalInputProps === 'function'
-            ? externalInputProps(ownerState)
-            : externalInputProps,
-          {
+        input: {
+          ...mergeSlotProps(externalInputProps, {
             'data-indeterminate': indeterminate,
-            'aria-checked': indeterminate ? 'mixed' : undefined,
-          },
-        ),
+            // Activating a checkbox clears its native indeterminate state, restore it.
+            onChange: (event) => {
+              event.target.indeterminate = indeterminate;
+            },
+          }),
+          ref: handleInputRef,
+        },
       },
     },
   });
@@ -249,9 +262,8 @@ Checkbox.propTypes /* remove-proptypes */ = {
   id: PropTypes.string,
   /**
    * If `true`, the component appears indeterminate.
-   * This does not set the native input element to indeterminate due
-   * to inconsistent behavior across browsers.
-   * However, we set a `data-indeterminate` attribute on the `input`.
+   * This sets the native input element to indeterminate,
+   * and we also set a `data-indeterminate` attribute on the `input`.
    * @default false
    */
   indeterminate: PropTypes.bool,
