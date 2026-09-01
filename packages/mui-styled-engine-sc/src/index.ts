@@ -229,10 +229,9 @@ export type StyledComponent<
 
 // any doesn't count as assignable to never in the extends clause, and we default A to never
 export type AnyStyledComponent =
-  | StyledComponent<any, any, any, any>
-  | StyledComponent<any, any, any>
-  | React.FunctionComponent<any>
-  | React.ComponentType<any>;
+  StyledComponentInstance | React.FunctionComponent<any> | React.ComponentType<any>;
+
+type StyledComponentInstance = StyledComponent<any, any, any, any> | StyledComponent<any, any, any>;
 
 export type StyledComponentInnerComponent<C extends AnyStyledComponent> =
   C extends StyledComponent<infer I, any, any, any>
@@ -249,6 +248,16 @@ export type StyledComponentInnerOtherProps<C extends AnyStyledComponent> =
       : never;
 export type StyledComponentInnerAttrs<C extends AnyStyledComponent> =
   C extends StyledComponent<any, any, any, infer A> ? A : never;
+
+export type StyledComponentInnerProps<
+  C extends StyledComponentInstance,
+  T extends object,
+> = StyledComponentProps<
+  StyledComponentInnerComponent<C>,
+  T,
+  StyledComponentInnerOtherProps<C>,
+  StyledComponentInnerAttrs<C>
+>;
 
 export interface StyledComponentBase<
   C extends string | React.ComponentType<any>,
@@ -339,7 +348,13 @@ export type CreateStyledComponent<
   SpecificComponentProps extends {} = {},
   JSXProps extends {} = {},
   T extends object = {},
-> = ThemedStyledFunction<React.ComponentType<ComponentProps>, T, SpecificComponentProps & JSXProps>;
+  A extends keyof any = never,
+> = ThemedStyledFunction<
+  React.ComponentType<ComponentProps>,
+  T,
+  SpecificComponentProps & JSXProps,
+  A
+>;
 
 // Config to be used with withConfig
 export interface StyledConfig<O extends object = {}> {
@@ -367,6 +382,34 @@ export interface ThemedBaseStyledInterface<
   MuiStyledOptions extends object,
   Theme extends object,
 > extends ThemedStyledComponentFactories<Theme> {
+  <
+    C extends StyledComponentInstance,
+    ForwardedProps extends keyof StyledComponentInnerProps<C, Theme> =
+      keyof StyledComponentInnerProps<C, Theme>,
+  >(
+    component: C,
+    options: FilteringStyledOptions<StyledComponentInnerProps<C, Theme>, ForwardedProps> &
+      MuiStyledOptions,
+  ): CreateStyledComponent<
+    Pick<StyledComponentInnerProps<C, Theme>, ForwardedProps> & MUIStyledCommonProps,
+    StyledComponentInnerOtherProps<C>,
+    {},
+    Theme,
+    StyledComponentInnerAttrs<C>
+  >;
+
+  <C extends StyledComponentInstance>(
+    component: C,
+    options?: StyledConfig<StyledComponentInnerProps<C, Theme> & MUIStyledCommonProps> &
+      MuiStyledOptions,
+  ): CreateStyledComponent<
+    StyledComponentInnerProps<C, Theme> & MUIStyledCommonProps,
+    StyledComponentInnerOtherProps<C>,
+    {},
+    Theme,
+    StyledComponentInnerAttrs<C>
+  >;
+
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
