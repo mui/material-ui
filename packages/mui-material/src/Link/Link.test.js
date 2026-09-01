@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, afterEach } from 'vitest';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -51,6 +51,71 @@ describe('<Link />', () => {
         </Link>,
       ),
     ).not.to.throw();
+  });
+
+  describe('underline color', () => {
+    let reference;
+
+    afterEach(() => {
+      reference?.remove();
+      reference = undefined;
+    });
+
+    it('using a named CSS color should not crash', () => {
+      expect(() =>
+        render(
+          <Link href="/" color="white" underline="always">
+            Test
+          </Link>,
+        ),
+      ).not.to.throw();
+    });
+
+    it.skipIf(isJsdom())('should apply transparency to a named CSS color', () => {
+      render(
+        <Link href="/" color="white" underline="always">
+          Test
+        </Link>,
+      );
+      const link = screen.getByRole('link');
+      reference = document.createElement('span');
+      reference.style.textDecorationColor = 'color-mix(in srgb, white 40%, transparent)';
+      expect(reference.style.textDecorationColor).not.to.equal('');
+      document.body.appendChild(reference);
+
+      expect(getComputedStyle(link).textDecorationColor).to.equal(
+        getComputedStyle(reference).textDecorationColor,
+      );
+    });
+
+    it.skipIf(isJsdom())('should derive the underline color from the color prop', () => {
+      const theme = createTheme({
+        components: {
+          MuiLink: {
+            styleOverrides: {
+              root: {
+                color: '#ff5252',
+              },
+            },
+          },
+        },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Link href="/">Test</Link>
+        </ThemeProvider>,
+      );
+      const link = screen.getByRole('link');
+      reference = document.createElement('span');
+      reference.style.color = '#ff5252';
+      reference.style.textDecorationColor = theme.alpha(theme.palette.primary.main, 0.4);
+      document.body.appendChild(reference);
+
+      expect(getComputedStyle(link).color).to.equal(getComputedStyle(reference).color);
+      expect(getComputedStyle(link).textDecorationColor).to.equal(
+        getComputedStyle(reference).textDecorationColor,
+      );
+    });
   });
 
   describe('event callbacks', () => {
