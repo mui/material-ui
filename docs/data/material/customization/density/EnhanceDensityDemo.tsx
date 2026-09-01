@@ -73,12 +73,12 @@ const tokens = {
   // Only the box and its padding step up with the size prop.
   bySize: {
     small: {
-      height: "touch-target - spacing('x-small')",
+      height: 'touch-target - x-small',
       padding: "spacing('small')",
     },
     medium: { height: 'touch-target', padding: "spacing('medium')" },
     large: {
-      height: "touch-target + spacing('small')",
+      height: 'touch-target + small',
       padding: "spacing('large')",
     },
   },
@@ -242,11 +242,8 @@ function Annotations({
             x2={right + 18}
             y2={bottom}
           />
-          <text x={right + 24} y={y + height / 2 - 8} dominantBaseline="middle">
-            {tokens.bySize[size].height}
-          </text>
-          <text x={right + 24} y={y + height / 2 + 9} dominantBaseline="middle">
-            {round(height)}
+          <text x={right + 24} y={y + height / 2} dominantBaseline="middle">
+            {caption(tokens.bySize[size].height, height)}
           </text>
         </React.Fragment>
       ) : null}
