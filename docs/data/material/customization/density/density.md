@@ -146,7 +146,9 @@ A recipe is two layers. Typography, shape and component `defaultProps` are ordin
 const theme = enhanceDensity(createTheme({ shape, typography, components }), scale);
 ```
 
-Switch between the three recipes below to see one product surface at three densities. The canvas is ruled at each recipe's `touch-target`, so you can read whether controls land on the grid. Use **Layers** to drop the design layers one at a time—with all three off, what remains is `enhanceDensity` alone.
+This recipe demonstrates a design system that needs multiple densities to support various context of applications. The design system has custom radius and typography scale as the base theme. Finally, the high/medium/low density theme are created by the enhancer with different scale values.
+
+Switch between toggle buttons at the top to see the differences between each density.
 
 {{"demo": "DensityRecipesDemo.js"}}
 
