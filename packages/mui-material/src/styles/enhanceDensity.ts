@@ -1,4 +1,4 @@
-import { applyDensity, DENSITY_KEYS, DensityKey, EnhanceableTheme } from './densityScale';
+import { applyDensity, DensityKey, EnhanceableTheme } from './densityScale';
 import applySharedDensity from './sharedDensityComponents';
 
 /**
@@ -34,9 +34,17 @@ export const defaultDensityScale: Record<DensityKey | DensitySizingKey, number> 
 };
 
 // applyDensity consumes multipliers on the (fixed 8px) spacing unit.
-const defaultMultipliers = Object.fromEntries(
-  DENSITY_KEYS.map((key) => [key, defaultDensityScale[key] / 8]),
-) as Record<DensityKey, number>;
+const defaultMultipliers = {
+  'xx-small': 0.5,
+  'x-small': 1,
+  small: 1.5,
+  medium: 2,
+  large: 3,
+  'x-large': 4,
+  'xx-large': 6,
+  'touch-target': 4,
+  'icon-target': 2,
+};
 
 /**
  * Make every component density-aware on the one shipped scale (`scale`
