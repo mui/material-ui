@@ -35,6 +35,35 @@ Object.keys(importRegressionFixtures).forEach((path) => {
   }
 }, []);
 
+// A11y-only fixtures, routed as `/a11y-{slug}/{Name}`. Each suite directory
+// is named after a docs slug (lowercase) so the reporter merges its results
+// into that slug's `{slug}.a11y.json` — see `parseRoute` in `demoMeta.ts`.
+// They live outside `./fixtures/` on purpose: a lowercase slug directory next
+// to a PascalCase screenshot suite (`rating/` next to `Rating/`) would fold
+// into one directory on case-insensitive file systems (macOS default).
+const importA11yFixtures = import.meta.glob(['./a11y/fixtures/**/*.{js,ts,tsx}'], {
+  import: 'default',
+  eager: true,
+});
+
+const a11yFixtures = [];
+
+Object.keys(importA11yFixtures).forEach((path) => {
+  const [suite, name] = path
+    .replace('./a11y/fixtures/', '')
+    .replace(/\.\w+$/, '')
+    .split('/');
+
+  if (path.startsWith('./')) {
+    a11yFixtures.push({
+      path,
+      suite: `a11y-${suite}`,
+      name,
+      Component: importA11yFixtures[path],
+    });
+  }
+}, []);
+
 // Also use some of the demos to avoid code duplication.
 //
 // Two exclusion layers:
@@ -204,6 +233,9 @@ Object.keys(importComposites).forEach((path) => {
   });
 }, []);
 
-const fixtures = regressionFixtures.concat(demoFixtures).concat(compositeFixtures);
+const fixtures = regressionFixtures
+  .concat(a11yFixtures)
+  .concat(demoFixtures)
+  .concat(compositeFixtures);
 
 export default fixtures;

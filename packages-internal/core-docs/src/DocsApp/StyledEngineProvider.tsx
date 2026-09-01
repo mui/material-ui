@@ -4,7 +4,6 @@ import { createEmotionCache as createCache } from '@mui/material-nextjs/v15-page
 import { prefixer } from 'stylis';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { ThemeOptionsContext } from '../ThemeContext';
-import globalSelector from '../globalSelector';
 
 type StyledEngineProviderProps = {
   cacheLtr: ReturnType<typeof createCache>;
@@ -26,7 +25,7 @@ function loadRtl() {
         key: 'rtl',
         prepend: true,
         enableCssLayer: true,
-        stylisPlugins: [prefixer, bundle.rtlPlugin, globalSelector],
+        stylisPlugins: [prefixer, bundle.rtlPlugin],
       }),
     }));
   }
