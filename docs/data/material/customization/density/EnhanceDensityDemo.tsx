@@ -15,6 +15,8 @@ const colorSchemes = { light: true, dark: true };
 const defaultTheme = createTheme({ colorSchemes });
 const densityTheme = enhanceDensity(createTheme({ colorSchemes }));
 
+// Below this the canvas scrolls. Kept under the card's inner width so the
+// stage never overflows it — that would shift the button off centre.
 const STAGE_WIDTH = 520;
 const STAGE_HEIGHT = 240;
 
@@ -314,7 +316,8 @@ export default function EnhanceDensityDemo() {
           ref={stageRef}
           sx={{
             position: 'relative',
-            width: STAGE_WIDTH,
+            width: '100%',
+            minWidth: STAGE_WIDTH,
             height: STAGE_HEIGHT,
             mx: 'auto',
           }}
@@ -324,8 +327,6 @@ export default function EnhanceDensityDemo() {
               sx={{
                 position: 'absolute',
                 inset: 0,
-                // the derived size labels are long; bias the button left
-                pr: '90px',
                 display: 'grid',
                 placeItems: 'center',
               }}
