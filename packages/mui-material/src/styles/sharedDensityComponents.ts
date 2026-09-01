@@ -55,18 +55,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // Icons ride the glyph constant the same way boxes ride the interactive one.
   const iconSmall = `calc(${iconTarget} - ${spacing(0.25)})`;
   const iconLarge = `calc(${iconTarget} + ${spacing(0.5)})`;
-  // A control's own glyph steps further down than the icon ramp does.
-  const controlGlyphSmall = `calc(${iconTarget} - ${spacing('xx-small')})`;
   const sharedCheckboxRadio = {
-    // The size variant retunes the box by rewriting these, so the base has to
-    // read them rather than the constants directly. The label pull below keeps
-    // the literals: it lands on the label, which the vars don't reach.
-    '--_touchSize': touchTarget,
-    '--_iconSize': iconTarget,
     padding: 0,
-    width: 'var(--_touchSize)',
-    height: 'var(--_touchSize)',
-    '& svg': { fontSize: 'var(--_iconSize)' },
+    width: touchTarget,
+    height: touchTarget,
+    '& svg': { fontSize: iconTarget },
     [`.${formControlLabelClasses.root}:has(&)`]: {
       marginLeft: `calc((${touchTarget} - ${iconTarget}) / -2)`,
     },
@@ -74,10 +67,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { size: 'small' },
         style: {
-          '--_touchSize': smallBox,
-          '--_iconSize': controlGlyphSmall,
+          width: smallBox,
+          height: smallBox,
+          '& svg': { fontSize: iconSmall },
           [`.${formControlLabelClasses.root}:has(&)`]: {
-            marginLeft: `calc((${smallBox} - ${controlGlyphSmall}) / -2)`,
+            marginLeft: `calc((${smallBox} - ${iconSmall}) / -2)`,
           },
         },
       },
@@ -115,13 +109,13 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addRootOverride(
     enhanced.components,
     'MuiButton',
-    { margin: 0, '& > *:nth-of-type(1)': { fontSize: '0.8lh' } },
+    { margin: 0, '& > *:nth-of-type(1)': { fontSize: '0.8lh' } }, // '& > *:nth-of-type(1)' is the same as Button's implementation
     'startIcon',
   );
   addRootOverride(
     enhanced.components,
     'MuiButton',
-    { margin: 0, '& > *:nth-of-type(1)': { fontSize: '0.8lh' } },
+    { margin: 0, '& > *:nth-of-type(1)': { fontSize: '0.8lh' } }, // '& > *:nth-of-type(1)' is the same as Button's implementation
     'endIcon',
   );
   addRootOverride(enhanced.components, 'MuiIconButton', {

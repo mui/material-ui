@@ -10,7 +10,7 @@ import enhanceDensity from './enhanceDensity';
 /** The interactive box as emitted onto a control — it is a plain px constant, so
  * it is only observable through the component styles. */
 const controlBox = (theme: ReturnType<typeof enhanceDensity>) =>
-  ((theme.components as any).MuiCheckbox.styleOverrides.root as any[])[1]['--_touchSize'];
+  ((theme.components as any).MuiCheckbox.styleOverrides.root as any[])[1].height;
 
 /** The style a component emits for one variant, matched on its props. */
 const variantStyle = (
@@ -36,7 +36,7 @@ const sizeStyle = (theme: ReturnType<typeof enhanceDensity>, component: string, 
 
 /** Same for the icon glyph, read off the same control. */
 const iconBox = (theme: ReturnType<typeof enhanceDensity>) =>
-  ((theme.components as any).MuiCheckbox.styleOverrides.root as any[])[1]['--_iconSize'];
+  ((theme.components as any).MuiCheckbox.styleOverrides.root as any[])[1]['& svg'].fontSize;
 
 describe('enhanceDensity', () => {
   test('ships the one canonical ladder (static px)', () => {
@@ -116,17 +116,16 @@ describe('enhanceDensity', () => {
       'calc(20px + 4px)',
     );
     // a control's own glyph follows too
-    expect(sizeStyle(theme, 'MuiCheckbox', 'small')['--_iconSize']).to.equal('calc(20px - 4px)');
+    expect(sizeStyle(theme, 'MuiCheckbox', 'small')['& svg'].fontSize).to.equal('calc(20px - 2px)');
   });
 
-  test('a control size variant reaches the box through its own vars', () => {
-    const theme = enhanceDensity(createTheme());
-    const base = ((theme.components as any).MuiCheckbox.styleOverrides.root as any[])[1];
+  test('a control size variant sets the box it changes', () => {
+    const small = sizeStyle(enhanceDensity(createTheme()), 'MuiCheckbox', 'small');
 
-    // the variant only rewrites the vars, so the base must consume them
-    expect(base.width).to.equal('var(--_touchSize)');
-    expect(base['& svg'].fontSize).to.equal('var(--_iconSize)');
-    expect(sizeStyle(theme, 'MuiCheckbox', 'small')['--_touchSize']).to.equal('calc(32px - 8px)');
+    // written straight onto the variant — nothing indirects through a var
+    expect(small.width).to.equal('calc(32px - 8px)');
+    expect(small.height).to.equal('calc(32px - 8px)');
+    expect(small['& svg'].fontSize).to.equal('calc(16px - 2px)');
   });
 
   test('the icon glyph is its own sizing constant', () => {
