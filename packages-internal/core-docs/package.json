@@ -49,7 +49,8 @@
     "@types/nprogress": "0.2.3",
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.5"
+    "@types/react-dom": "19.2.5",
+    "typescript": "npm:@typescript/typescript6@6.0.2"
   },
   "peerDependencies": {
     "@base-ui/react": "^1",

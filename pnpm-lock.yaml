@@ -574,6 +574,9 @@ importers:
       tailwindcss:
         specifier: 4.3.3
         version: 4.3.3
+      typescript:
+        specifier: npm:@typescript/typescript6@6.0.2
+        version: '@typescript/typescript6@6.0.2'
       yargs:
         specifier: 18.1.0
         version: 18.1.0
@@ -794,6 +797,9 @@ importers:
       '@types/react-dom':
         specifier: 19.2.5
         version: 19.2.5(@types/react@19.2.18)
+      typescript:
+        specifier: npm:@typescript/typescript6@6.0.2
+        version: '@typescript/typescript6@6.0.2'
     publishDirectory: build
 
   packages-internal/docs-utils:
@@ -881,6 +887,9 @@ importers:
       rimraf:
         specifier: 6.1.3
         version: 6.1.3
+      typescript:
+        specifier: npm:@typescript/typescript6@6.0.2
+        version: '@typescript/typescript6@6.0.2'
 
   packages-internal/waterfall: {}
 
