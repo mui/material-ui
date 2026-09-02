@@ -41,14 +41,24 @@ export type EnhanceableTheme = Theme &
     >
   >;
 
+/** How far each step sits along the spacing unit. Internal: the ladder's
+ * shape is the enhancer's to define, not something a caller passes in. */
+const STEP_MULTIPLIERS: Record<DensityKey, number> = {
+  'xx-small': 0.5,
+  'x-small': 1,
+  small: 1.5,
+  medium: 2,
+  large: 3,
+  'x-large': 4,
+  'xx-large': 6,
+};
+
 /**
  * PRIVATE density core behind `enhanceDensity`: the keyed `theme.spacing`
  * wrapper + the `--<prefix>-spacing-*` step emission. No `theme.density` node.
  */
 export function applyDensity<T extends EnhanceableTheme>(
   themeInput: T,
-  /** Per-step multipliers on the spacing unit. Internal to the enhancers. */
-  multipliers: Record<DensityKey, number>,
   /** Per-step replacement in px. Numbers keep every step resolvable in JS too
    * (MUI X derives virtualized heights off the same ladder). */
   scaleOverrides?: Partial<Record<DensityKey, number>>,
@@ -85,8 +95,8 @@ export function applyDensity<T extends EnhanceableTheme>(
     // An override is px, so both directions stay plain lengths; an unoverridden
     // step goes back through the spacing unit.
     const override = overrides[key];
-    stepValues[key] = override === undefined ? stepValue(multipliers[key]) : `${override}px`;
-    const negated = override === undefined ? stepValue(-multipliers[key]) : `${-override}px`;
+    stepValues[key] = override === undefined ? stepValue(STEP_MULTIPLIERS[key]) : `${override}px`;
+    const negated = override === undefined ? stepValue(-STEP_MULTIPLIERS[key]) : `${-override}px`;
 
     if (themeInput.vars) {
       const ref = `var(${stepVarName(key)})`;
@@ -102,15 +112,24 @@ export function applyDensity<T extends EnhanceableTheme>(
   // through here at style-computation time) — delegate wholesale so the
   // wrapper adds one function hop, not a second map/join pass.
   const spacing = (...args: ReadonlyArray<number | string>): string => {
-    if (!args.some((arg) => typeof arg === 'string' && resolved[arg] !== undefined)) {
+    let keyed = false;
+    for (let i = 0; i < args.length; i += 1) {
+      const arg = args[i];
+      if (typeof arg === 'string' && resolved[arg] !== undefined) {
+        keyed = true;
+        break;
+      }
+    }
+    if (!keyed) {
       return String(prevSpacing(...args));
     }
-    return args
-      .map((arg) => {
-        const step = typeof arg === 'string' ? resolved[arg] : undefined;
-        return step === undefined ? String(prevSpacing(arg)) : step;
-      })
-      .join(' ');
+    let out = '';
+    for (let i = 0; i < args.length; i += 1) {
+      const arg = args[i];
+      const step = typeof arg === 'string' ? resolved[arg] : undefined;
+      out += (i === 0 ? '' : ' ') + (step === undefined ? String(prevSpacing(arg)) : step);
+    }
+    return out;
   };
   // `createSpacing` early-returns on this flag, so re-running createTheme over
   // an enhanced theme keeps the wrapper.

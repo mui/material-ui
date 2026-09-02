@@ -33,19 +33,6 @@ export const defaultDensityScale: Record<DensityKey | DensitySizingKey, number> 
   'icon-target': 16,
 };
 
-// applyDensity consumes multipliers on the (fixed 8px) spacing unit.
-const defaultMultipliers = {
-  'xx-small': 0.5,
-  'x-small': 1,
-  small: 1.5,
-  medium: 2,
-  large: 3,
-  'x-large': 4,
-  'xx-large': 6,
-  'touch-target': 4,
-  'icon-target': 2,
-};
-
 /**
  * Make every component density-aware on the one shipped scale (`scale`
  * overrides any step). Apply LAST, on the final composed theme — later
@@ -55,7 +42,7 @@ export default function enhanceDensity<T extends EnhanceableTheme>(
   theme: T,
   scale?: DensityScaleOverrides,
 ) {
-  const enhanced = applyDensity(theme, defaultMultipliers, scale);
+  const enhanced = applyDensity(theme, scale);
   // Sizing constants rather than ladder steps: they emit as plain px, so
   // neither becomes a spacing key or a CSS variable.
   const sizing = (key: DensitySizingKey) => `${scale?.[key] ?? defaultDensityScale[key]}px`;

@@ -3,11 +3,17 @@ import spacing, { margin, padding } from './spacing';
 
 describe('system spacing', () => {
   describe('named scale values', () => {
-    // A spacing function that advertises named values through `keys` — the contract
-    // `SpacingKeyOverrides` registers. Everything else must stay raw CSS.
-    const scaled = { small: '12px', '-small': '-12px', 'x-large': '32px' };
-    const keyedSpacing = (...args) => args.map((arg) => scaled[arg] ?? `${arg * 8}px`).join(' ');
-    keyedSpacing.keys = new Set(Object.keys(scaled));
+    // Stands in for a userland spacing function — what an enhancer such as
+    // `enhanceDensity` installs on the theme. It advertises its named values
+    // through `keys`, the contract these props read; everything it does not
+    // name must stay raw CSS.
+    const createScaleSpacing = () => {
+      const scaled = { small: '12px', '-small': '-12px', 'x-large': '32px' };
+      const fn = (...args) => args.map((arg) => scaled[arg] ?? `${arg * 8}px`).join(' ');
+      fn.keys = new Set(Object.keys(scaled));
+      return fn;
+    };
+    const keyedSpacing = createScaleSpacing();
 
     it('resolves the names a transformer registers, on every spacing prop', () => {
       const theme = { spacing: keyedSpacing };

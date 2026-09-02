@@ -6,13 +6,19 @@ import createTheme from '../createTheme';
 
 describe('styleFunctionSx', () => {
   describe('spacing scale names', () => {
-    // A spacing function may advertise named values through `keys` (the contract
-    // `SpacingKeyOverrides` registers). `mui: true` is what makes `createSpacing`
-    // hand the function through untouched, so the names survive `createTheme`.
-    const scaled = { small: '12px', '-small': '-12px', 'x-large': '32px' };
-    const keyedSpacing = (...args) => args.map((arg) => scaled[arg] ?? `${arg * 8}px`).join(' ');
-    keyedSpacing.mui = true;
-    keyedSpacing.keys = new Set(Object.keys(scaled));
+    // Stands in for a userland spacing function — what an enhancer such as
+    // `enhanceDensity` installs on the theme — so this suite locks the sx
+    // contract without depending on `@mui/material`. `keys` is how names are
+    // advertised; `mui: true` is what makes `createSpacing` hand the function
+    // through untouched, so those names survive `createTheme`.
+    const createScaleSpacing = () => {
+      const scaled = { small: '12px', '-small': '-12px', 'x-large': '32px' };
+      const fn = (...args) => args.map((arg) => scaled[arg] ?? `${arg * 8}px`).join(' ');
+      fn.mui = true;
+      fn.keys = new Set(Object.keys(scaled));
+      return fn;
+    };
+    const keyedSpacing = createScaleSpacing();
 
     const keyedTheme = createTheme({ spacing: keyedSpacing });
 
