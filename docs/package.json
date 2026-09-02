@@ -14,7 +14,7 @@
     "icons": "rimraf --glob public/static/icons/* && node ./scripts/buildIcons.js",
     "start": "serve ./export",
     "create-playground": "cpy --cwd=scripts playground.template.tsx ../pages/playground/ --rename=index.tsx",
-    "typescript": "tsgo -p tsconfig.json && tsgo -p scripts/tsconfig.json",
+    "typescript": "tsc -p tsconfig.json && tsc -p scripts/tsconfig.json",
     "link-check": "tsx ./scripts/reportBrokenLinks.mts"
   },
   "dependencies": {
@@ -123,10 +123,11 @@
     "@types/semver": "7.8.0",
     "@types/stylis": "4.2.7",
     "cross-fetch": "4.1.0",
-    "sharp": "0.35.4",
     "prettier": "3.9.6",
     "raw-loader": "4.0.2",
+    "sharp": "0.35.4",
     "tailwindcss": "4.3.3",
+    "typescript": "npm:@typescript/typescript6@6.0.2",
     "yargs": "18.1.0"
   }
 }
