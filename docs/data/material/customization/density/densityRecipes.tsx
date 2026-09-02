@@ -1,119 +1,4 @@
-import * as React from 'react';
 import type { DensityScaleOverrides, ThemeOptions } from '@mui/material/styles';
-import SvgIcon from '@mui/material/SvgIcon';
-
-// Control glyphs on a 16-unit viewBox, so the drawing fills the icon box with no
-// dead margin around it. Size is left to the theme's `icon-target`. `currentColor`
-// follows the component's own state color; the inner marks ride the primary
-// contrast text so the pair stays correct in both color schemes without styles.
-const CONTRAST = 'var(--mui-palette-primary-contrastText, #fff)';
-
-function BoxBlankIcon(props: React.ComponentProps<typeof SvgIcon>) {
-  return (
-    <SvgIcon viewBox="0 0 16 16" {...props}>
-      <rect
-        x="0.75"
-        y="0.75"
-        width="14.5"
-        height="14.5"
-        rx="3.25"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-    </SvgIcon>
-  );
-}
-
-function BoxCheckedIcon(props: React.ComponentProps<typeof SvgIcon>) {
-  return (
-    <SvgIcon viewBox="0 0 16 16" {...props}>
-      <rect x="0" y="0" width="16" height="16" rx="4" fill="currentColor" />
-      <path
-        d="m4.5 8.5 2.5 2.5 4.5-5"
-        fill="none"
-        stroke={CONTRAST}
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </SvgIcon>
-  );
-}
-
-function BoxIndeterminateIcon(props: React.ComponentProps<typeof SvgIcon>) {
-  return (
-    <SvgIcon viewBox="0 0 16 16" {...props}>
-      <rect x="0" y="0" width="16" height="16" rx="4" fill="currentColor" />
-      <path
-        d="M4.5 8 H11.5"
-        stroke={CONTRAST}
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </SvgIcon>
-  );
-}
-
-function CircleBlankIcon(props: React.ComponentProps<typeof SvgIcon>) {
-  return (
-    <SvgIcon viewBox="0 0 16 16" {...props}>
-      <circle
-        cx="8"
-        cy="8"
-        r="7.25"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-    </SvgIcon>
-  );
-}
-
-function CircleCheckedIcon(props: React.ComponentProps<typeof SvgIcon>) {
-  return (
-    <SvgIcon viewBox="0 0 16 16" {...props}>
-      <circle
-        cx="8"
-        cy="8"
-        r="7.25"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      <circle cx="8" cy="8" r="3.75" fill="currentColor" />
-    </SvgIcon>
-  );
-}
-
-function ChevronDownIcon(props: React.ComponentProps<typeof SvgIcon>) {
-  return (
-    <SvgIcon {...props}>
-      <path
-        d="M8 10 L12 14.5 L16 10"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </SvgIcon>
-  );
-}
-
-function ThinCloseIcon(props: React.ComponentProps<typeof SvgIcon>) {
-  return (
-    <SvgIcon {...props}>
-      <path
-        d="M8.5 8.5 L15.5 15.5 M15.5 8.5 L8.5 15.5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-    </SvgIcon>
-  );
-}
 
 export interface DensityRecipe {
   id: string;
@@ -125,40 +10,7 @@ export interface DensityRecipe {
   typography: NonNullable<ThemeOptions['typography']>;
 }
 
-/**
- * `defaultProps` are a theme layer of their own: swapping the control glyphs
- * costs no styleOverrides and survives the enhancer untouched. Shared across
- * recipes because an icon set is a brand decision, not a density one.
- */
-export const iconComponents: NonNullable<ThemeOptions['components']> = {
-  MuiCheckbox: {
-    defaultProps: {
-      icon: <BoxBlankIcon />,
-      checkedIcon: <BoxCheckedIcon />,
-      indeterminateIcon: <BoxIndeterminateIcon />,
-    },
-  },
-  MuiRadio: {
-    defaultProps: {
-      icon: <CircleBlankIcon />,
-      checkedIcon: <CircleCheckedIcon />,
-    },
-  },
-  MuiSelect: {
-    defaultProps: { IconComponent: ChevronDownIcon },
-  },
-  MuiAutocomplete: {
-    defaultProps: {
-      popupIcon: <ChevronDownIcon />,
-      clearIcon: <ThinCloseIcon fontSize="small" />,
-    },
-  },
-  MuiChip: {
-    defaultProps: { deleteIcon: <ThinCloseIcon /> },
-  },
-};
-
-export const recipes: DensityRecipe[] = [
+const densityRecipes: DensityRecipe[] = [
   {
     id: 'low',
     label: 'Low',
@@ -265,3 +117,5 @@ export const recipes: DensityRecipe[] = [
     },
   },
 ];
+
+export default densityRecipes;

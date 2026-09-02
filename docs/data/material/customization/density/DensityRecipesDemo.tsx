@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import { iconComponents, recipes } from './densityRecipes';
+import densityRecipes from './densityRecipes';
 import recipeUis from './recipeUis';
 
 const colorSchemes = { light: true, dark: true };
@@ -24,9 +24,8 @@ const colorSchemes = { light: true, dark: true };
 const chromeTheme = enhanceDensity(createTheme({ colorSchemes }));
 
 const LAYERS = [
-  { id: 'radius', label: 'Radius' },
-  { id: 'typography', label: 'Typography' },
-  { id: 'icons', label: 'Custom icons' },
+  { id: 'radius', label: 'New Radius' },
+  { id: 'typography', label: 'New Typography' },
   { id: 'focus', label: 'Focus visible' },
 ] as const;
 
@@ -37,13 +36,13 @@ export default function DensityRecipesDemo() {
   const [layers, setLayers] = React.useState<Record<LayerId, boolean>>({
     radius: true,
     typography: true,
-    icons: true,
     focus: true,
   });
   const [uiIndex, setUiIndex] = React.useState(0);
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
-  const recipe = recipes.find((item) => item.id === recipeId) ?? recipes[1];
+  const recipe =
+    densityRecipes.find((item) => item.id === recipeId) ?? densityRecipes[1];
 
   // Every checked layer is an ordinary `createTheme` input; only the scale is
   // the enhancer's own argument. Unchecking one falls back to the defaults.
@@ -51,7 +50,6 @@ export default function DensityRecipesDemo() {
     // Both layers write `components`, so they merge rather than overwrite. With
     // the ripple off, the ring is the only keyboard indicator left.
     const components = {
-      ...(layers.icons ? iconComponents : {}),
       ...(layers.focus
         ? { MuiButtonBase: { defaultProps: { disableRipple: true } } }
         : {}),
@@ -91,7 +89,7 @@ export default function DensityRecipesDemo() {
             }}
             aria-label="density recipe"
           >
-            {recipes.map((item) => (
+            {densityRecipes.map((item) => (
               <ToggleButton
                 key={item.id}
                 value={item.id}
@@ -107,7 +105,7 @@ export default function DensityRecipesDemo() {
             aria-haspopup="true"
             onClick={(event) => setAnchorEl(event.currentTarget)}
           >
-            Theme Customization
+            Extensions
           </Button>
           <Menu
             anchorEl={anchorEl}
