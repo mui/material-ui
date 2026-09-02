@@ -918,7 +918,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // No sm-up re-assert: ListItemButton has no master minHeight media reset.
   addRootOverride(enhanced.components, 'MuiListItemButton', {
     gap: spacing('x-small'),
-    paddingBlock: spacing('xx-small'),
+    paddingBlock: spacing('x-small'),
     variants: [
       {
         props: { dense: false },
@@ -927,11 +927,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       { props: { dense: true }, style: { minHeight: spacing('large') } },
       {
         props: { dense: false, disableGutters: false },
-        style: { paddingInline: spacing('x-small') },
+        style: { paddingInline: spacing('small') },
       },
       {
         props: { dense: true, disableGutters: false },
-        style: { paddingInline: spacing('xx-small') },
+        style: { paddingInline: spacing('xsmall') },
       },
     ],
   });
@@ -945,15 +945,15 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     variants: [
       {
         props: { disablePadding: false },
-        style: { paddingBlock: spacing('xx-small') },
+        style: { paddingBlock: spacing('x-small') },
       },
       {
         props: { dense: false, disableGutters: false, disablePadding: false },
-        style: { paddingInline: spacing('x-small') },
+        style: { paddingInline: spacing('small') },
       },
       {
         props: { dense: true, disableGutters: false, disablePadding: false },
-        style: { paddingInline: spacing('xx-small') },
+        style: { paddingInline: spacing('x-small') },
       },
       {
         props: ({ ownerState }: { ownerState: ListItemOwnerState }) =>
