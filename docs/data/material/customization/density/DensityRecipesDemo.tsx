@@ -151,11 +151,11 @@ export default function DensityRecipesDemo() {
               p: `${cell}px`,
               minWidth: 520,
               backgroundSize: `${cell}px ${cell}px`,
-              backgroundImage: `linear-gradient(to right, rgba(216, 27, 96, 0.16) 1px, transparent 1px), linear-gradient(to bottom, rgba(216, 27, 96, 0.16) 1px, transparent 1px)`,
+              backgroundImage: `linear-gradient(to right, rgba(216, 27, 96, 0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(216, 27, 96, 0.08) 1px, transparent 1px)`,
             },
             (muiTheme) =>
               muiTheme.applyStyles('dark', {
-                backgroundImage: `linear-gradient(to right, rgba(244, 143, 177, 0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(244, 143, 177, 0.2) 1px, transparent 1px)`,
+                backgroundImage: `linear-gradient(to right, rgba(244, 143, 177, 0.11) 1px, transparent 1px), linear-gradient(to bottom, rgba(244, 143, 177, 0.11) 1px, transparent 1px)`,
               }),
           ]}
         >
