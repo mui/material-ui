@@ -148,28 +148,17 @@ function PricingUi() {
           </Button>
         </CardActions>
       </Card>
-      <Paper variant="outlined" sx={{ width: '100%' }}>
-        <Stack
-          direction="row"
-          spacing="small"
-          sx={{
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            p: 'small',
-          }}
-        >
-          <Stack spacing="xx-small">
-            <Typography variant="h6" component="h3">
-              Organization
-            </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              Volume pricing, audit logs, and onboarding support.
-            </Typography>
-          </Stack>
+      <Card variant="outlined" sx={{ width: '100%' }}>
+        <CardContent>
+          <Typography variant="h6" component="h3">
+            Organization
+          </Typography>
+          <Typography variant="body2" gutterBottom sx={{ color: 'text.secondary' }}>
+            Volume pricing, audit logs, and onboarding support.
+          </Typography>
           <Button variant="outlined">Contact sales</Button>
-        </Stack>
-      </Paper>
+        </CardContent>
+      </Card>
     </Stack>
   );
 }
@@ -179,7 +168,7 @@ function ProductUi() {
   const [plan, setPlan] = React.useState('subscribe');
 
   return (
-    <Stack spacing="medium" sx={{ maxWidth: 520 }}>
+    <Stack spacing="medium" sx={{ maxWidth: 520, mx: 'auto' }}>
       <Stack direction="row" spacing="medium">
         <Box
           role="img"
@@ -354,7 +343,7 @@ function SettingsUi() {
   const id = React.useId();
 
   return (
-    <Stack spacing="large" sx={{ maxWidth: 520 }}>
+    <Stack spacing="large" sx={{ maxWidth: 520, mx: 'auto' }}>
       <Typography variant="h3">Preferences</Typography>
       <Stack component="section" aria-labelledby={`${id}-general`} spacing="x-small">
         <Typography
