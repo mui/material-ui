@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
+import Avatar from '@mui/material/Avatar';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Box from '@mui/material/Box';
@@ -28,6 +29,7 @@ import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
+import { pink } from '@mui/material/colors';
 import CallMadeIcon from '@mui/icons-material/CallMade';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import GroupIcon from '@mui/icons-material/Group';
@@ -161,11 +163,13 @@ function PricingUi() {
           <Typography variant="h6" component="h3">
             Organization
           </Typography>
-          <Typography variant="body2" gutterBottom sx={{ color: 'text.secondary' }}>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             Volume pricing, audit logs, and onboarding support.
           </Typography>
-          <Button variant="outlined">Contact sales</Button>
         </CardContent>
+        <CardActions>
+          <Button variant="outlined">Contact sales</Button>
+        </CardActions>
       </Card>
     </Stack>
   );
@@ -351,7 +355,7 @@ function SettingsUi() {
   const id = React.useId();
 
   return (
-    <Stack spacing="large" sx={{ maxWidth: 520, mx: 'auto' }}>
+    <Stack spacing="small" sx={{ maxWidth: 520, mx: 'auto' }}>
       <Typography variant="h3">Preferences</Typography>
       <TextField
         fullWidth
@@ -377,6 +381,13 @@ function SettingsUi() {
         </Typography>
         <Paper variant="outlined" sx={{ bgcolor: 'transparent' }}>
           <List disablePadding>
+            <ListItem divider>
+              <ListItemText
+                primary="Profile picture"
+                slotProps={{ primary: { variant: 'body2' } }}
+              />
+              <Avatar sx={{ bgcolor: pink[300] }}>JU</Avatar>
+            </ListItem>
             <ListItem divider>
               <ListItemText
                 primary="Start-up screen"
