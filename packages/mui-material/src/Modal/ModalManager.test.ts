@@ -150,8 +150,7 @@ describe('ModalManager', () => {
     it.skipIf(isJsdom())(
       'should not compensate the scrollbar when the scroll container has a stable gutter',
       () => {
-        // Asserted rather than skipped: every browser in the test matrix supports the
-        // property, so losing it should fail instead of silently voiding this test.
+        // This test is useless without support.
         expect(CSS.supports('scrollbar-gutter', 'stable')).to.equal(true);
 
         fixedNode.style.paddingRight = '14.4px';
