@@ -1334,6 +1334,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     height: 'var(--_height)', // use private variable to be controlled by Autocomplete
     paddingInline: 'var(--_paddingInline)',
     borderRadius: 'var(--_height)', // pill shape
+    ...enhanced.typography?.body1,
     variants: [
       {
         props: { size: 'medium' },
@@ -1349,6 +1350,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           '--_height': `calc(${touchTarget} - ${spacing('xx-small')})`,
           '--_paddingInline': spacing('x-small'),
           gap: spacing('xx-small'),
+          ...enhanced.typography?.body2,
         },
       },
     ],
