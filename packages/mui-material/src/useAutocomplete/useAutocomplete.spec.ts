@@ -215,6 +215,8 @@ function Component() {
     value: persons[0].id,
   });
   expectType<string | null, typeof mappedAutocomplete.value>(mappedAutocomplete.value);
+  const mappedOption = mappedAutocomplete.getOptionFromValue(persons[0].id);
+  expectType<Person | null, typeof mappedOption>(mappedOption);
   expectType<Person[], typeof mappedAutocomplete.groupedOptions>(mappedAutocomplete.groupedOptions);
 
   const mappedGroupedAutocomplete = useAutocomplete({
