@@ -140,15 +140,9 @@ The enhancer does not support a custom scale that adds new steps or removes exis
 
 ## Density recipes
 
-A recipe is two layers. Typography, shape and component `defaultProps` are ordinary [`createTheme()`](/material-ui/customization/theming/) inputs—the design your product already has. The scale is the enhancer's own argument. Compose the first, then enhance with the second:
+This recipe demonstrates a design system that needs multiple densities to support various context of applications. The densities are defined as low/medium/high, each with its own set of spacing values, typography scale, and border radius.
 
-```js
-const theme = enhanceDensity(createTheme({ shape, typography, components }), scale);
-```
-
-This recipe demonstrates a design system that needs multiple densities to support various context of applications. The design system has custom radius and typography scale as the base theme. Finally, the high/medium/low density theme are created by the enhancer with different scale values.
-
-Switch between toggle buttons at the top to see the differences between each density.
+Switch between toggle buttons at the top to see the differences between each density. To see the actual values of each density, click the "Show code" and find the `./densityRecipes.ts` file.
 
 {{"demo": "DensityRecipesDemo.js"}}
 

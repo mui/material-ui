@@ -63,7 +63,12 @@ function PricingUi() {
               <Typography variant="h6" component="h3">
                 Team
               </Typography>
-              <Chip label="Recommended" size="small" color="primary" />
+              <Chip
+                label="Recommended"
+                size="small"
+                color="primary"
+                variant="outlined"
+              />
             </Stack>
             <FormControlLabel
               control={<Switch defaultChecked />}

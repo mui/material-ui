@@ -76,7 +76,7 @@ export default function DensityRecipesDemo() {
             alignItems: 'center',
             gap: 2,
             flexWrap: 'wrap',
-            pb: 1,
+            pb: 2,
           }}
         >
           <ToggleButtonGroup
