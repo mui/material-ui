@@ -1,6 +1,7 @@
 import addDefaultProps from '../utils/addDefaultProps';
 import addRootOverride from '../utils/addRootOverride';
 import { EnhanceableTheme } from './densityScale';
+import type { Breakpoint } from '@mui/system';
 import switchClasses from '../Switch/switchClasses';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import tooltipClasses from '../Tooltip/tooltipClasses';
@@ -147,7 +148,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       { props: { fontSize: 'large' }, style: { fontSize: iconLarge } },
     ],
   });
-  const smUp = enhanced.breakpoints.up('sm');
+  // Mirrors MenuItem's own sm-up reset, which hardcodes the same key. Cast so
+  // the file still compiles against an augmented BreakpointOverrides.
+  const smUp = enhanced.breakpoints.up('sm' as Breakpoint);
   addRootOverride(enhanced.components, 'MuiMenuItem', {
     paddingBlock: spacing('xx-small'),
     minHeight: 'auto',
