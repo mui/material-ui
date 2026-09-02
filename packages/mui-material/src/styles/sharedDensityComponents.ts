@@ -228,12 +228,16 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   );
   addRootOverride(enhanced.components, 'MuiInputBase', {
     lineHeight: enhanced.typography?.body1?.lineHeight,
+    variants: [
+      { props: { size: 'medium' }, style: { gap: spacing('x-small') } },
+      { props: { size: 'small' }, style: { gap: spacing('xx-small') } },
+    ],
   });
-  addRootOverride(enhanced.components, 'MuiInputBase', { height: 'auto' }, 'input');
   addRootOverride(
     enhanced.components,
     'MuiInputBase',
     {
+      height: 'auto',
       paddingBlock: spacing('x-small'),
       variants: [
         { props: { size: 'small' }, style: { paddingTop: spacing('xx-small') } },
@@ -523,16 +527,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   });
   addRootOverride(enhanced.components, 'MuiInputAdornment', {
     variants: [
-      { props: { position: 'start' }, style: { marginRight: spacing('x-small') } },
-      { props: { position: 'end' }, style: { marginLeft: spacing('x-small') } },
-      {
-        props: { position: 'start', size: 'small' },
-        style: { marginRight: spacing('xx-small') },
-      },
-      {
-        props: { position: 'end', size: 'small' },
-        style: { marginLeft: spacing('xx-small') },
-      },
+      { props: { position: 'start' }, style: { margin: 0 } },
+      { props: { position: 'end' }, style: { margin: 0 } },
       {
         props: { variant: 'filled' },
         style: {
@@ -545,36 +541,41 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiFormControlLabel', {
-    margin: 0,
-  });
+  addRootOverride(enhanced.components, 'MuiFormControlLabel', { margin: 0 });
   addRootOverride(enhanced.components, 'MuiCheckbox', sharedCheckboxRadio);
   addRootOverride(enhanced.components, 'MuiRadio', sharedCheckboxRadio);
-  addRootOverride(
-    enhanced.components,
-    'MuiBreadcrumbs',
-    { marginInline: spacing('x-small') },
-    'separator',
-  );
   // The floor sits on the `ol` (the centering flex row), not the nav root.
   addRootOverride(
     enhanced.components,
     'MuiBreadcrumbs',
     {
-      minHeight: touchTarget,
+      gap: spacing('x-small'),
       '& a': {
         display: 'inline-flex',
         lineHeight: touchTarget,
+        paddingInline: spacing('x-small'),
       },
       [`& li>.${buttonBaseClasses.root}`]: {
         // BreadcrumbCollapsed
         paddingInline: spacing('x-small'),
         height: touchTarget,
         margin: 0,
+        '& svg': { width: '1em', height: '1em' },
       },
     },
     'ol',
   );
+  addRootOverride(
+    enhanced.components,
+    'MuiBreadcrumbs',
+    {
+      '&:not(:has(a))': {
+        paddingInline: spacing('x-small'),
+      },
+    },
+    'li',
+  );
+  addRootOverride(enhanced.components, 'MuiBreadcrumbs', { marginInline: 0 }, 'separator'); // use gap on `ol` instead
   addRootOverride(enhanced.components, 'MuiToggleButton', {
     ...enhanced.typography?.button,
     paddingBlock: 0,
