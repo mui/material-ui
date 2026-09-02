@@ -50,7 +50,7 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0(@types/express@5.0.6)(supports-color@11.0.0)(undici@7.29.0)
       execa:
-        specifier: ^10.0.0
+        specifier: ^10.0.1
         version: 10.0.1
     devDependencies:
       '@arethetypeswrong/cli':
