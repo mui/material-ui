@@ -460,6 +460,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     getOptionDisabled,
     getOptionKey,
     getOptionLabel: getOptionLabelProp,
+    getOptionValue,
     isOptionEqualToValue,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
@@ -504,6 +505,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     getClearProps,
     getItemProps,
     getListboxProps,
+    getOptionFromValue,
     getOptionProps,
     value,
     dirty,
@@ -700,12 +702,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       if (renderValue) {
         startAdornment = renderValue(value, getCustomizedItemProps, ownerState);
       } else {
-        startAdornment = value.map((option, index) => {
+        startAdornment = value.map((valueItem, index) => {
           const { key, ...customItemProps } = getCustomizedItemProps({ index });
+          const option = getOptionFromValue(valueItem);
+
           return (
             <Chip
               key={key}
-              label={getOptionLabel(option)}
+              label={option == null ? '' : getOptionLabel(option)}
               size={size}
               {...customItemProps}
               {...externalForwardedProps.slotProps.chip}
@@ -1050,6 +1054,16 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default (option) => option.label ?? option
    */
   getOptionLabel: PropTypes.func,
+  /**
+   * Used to determine the selected value for a given option.
+   *
+   * When provided, the `value`, `defaultValue`, and `onChange` value use the returned type instead
+   * of the option type. The returned value must be a unique, non-null primitive.
+   *
+   * @param {Value} option The option to get the value for.
+   * @returns {string | number | bigint | boolean}
+   */
+  getOptionValue: PropTypes.func,
   /**
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
