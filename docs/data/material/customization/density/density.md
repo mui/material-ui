@@ -145,25 +145,3 @@ This recipe demonstrates a design system that needs multiple densities to suppor
 Switch between toggle buttons at the top to see the differences between each density. To see the actual values of each density, click the "Show code" and find the `./densityRecipes.ts` file.
 
 {{"demo": "DensityRecipesDemo.js"}}
-
-## Caveats
-
-### Apply the enhancer last
-
-`enhanceDensity` augments a finished theme, writing across several of its parts—the spacing function, the component overrides, and the emitted CSS variables. Always call the enhancer last, so nothing overrides what it wrote:
-
-```js
-// ✅ compose the theme first, enhance it last
-const theme = enhanceDensity(
-  createTheme({ cssVariables: true, palette: { mode: 'dark' } }),
-);
-
-// ❌ the second call rebuilds part of the theme over the enhancer's output
-const broken = createTheme({ ...theme, components: {/* ... */} });
-```
-
-:::warning
-Nothing throws when this happens. The theme still renders, so the loss shows up as sizes that quietly ignore the scale.
-:::
-
-To change an enhanced theme, recompose the original options and enhance again.
