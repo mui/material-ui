@@ -1411,7 +1411,6 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     ],
   });
   addRootOverride(enhanced.components, 'MuiAccordionDetails', {
-    paddingBlock: spacing('x-small'),
-    paddingInline: spacing('small'),
+    padding: `${spacing('xx-small')} ${spacing('small')} ${spacing('small')}`,
   });
 }
