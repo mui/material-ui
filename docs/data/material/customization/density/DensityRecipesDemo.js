@@ -2,8 +2,8 @@ import * as React from 'react';
 import { createTheme, enhanceDensity, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
 import Divider from '@mui/material/Divider';
+import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Tab from '@mui/material/Tab';
@@ -12,6 +12,8 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import { iconComponents, recipes } from './densityRecipes';
 import recipeUis from './recipeUis';
 
@@ -98,12 +100,12 @@ export default function DensityRecipesDemo() {
             ))}
           </ToggleButtonGroup>
           <Button
-            color="inherit"
+            variant="outlined"
             endIcon={<ArrowDropDownIcon />}
             aria-haspopup="true"
             onClick={(event) => setAnchorEl(event.currentTarget)}
           >
-            Layers
+            Theme Customization
           </Button>
           <Menu
             anchorEl={anchorEl}
@@ -119,7 +121,13 @@ export default function DensityRecipesDemo() {
                   setLayers((prev) => ({ ...prev, [layer.id]: !prev[layer.id] }))
                 }
               >
-                <Checkbox checked={layers[layer.id]} tabIndex={-1} disableRipple />
+                <ListItemIcon>
+                  {layers[layer.id] ? (
+                    <CheckBoxIcon color="primary" />
+                  ) : (
+                    <CheckBoxOutlineBlankIcon />
+                  )}
+                </ListItemIcon>
                 {layer.label}
               </MenuItem>
             ))}
