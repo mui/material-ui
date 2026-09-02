@@ -1,9 +1,9 @@
 {
   "name": "@mui/internal-api-docs-builder",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "scripts": {
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/internal-api-docs-builder\"",
-    "typescript": "tsgo -p tsconfig.json",
+    "typescript": "tsc -p tsconfig.json",
     "build": "code-infra build --tsgo --flat --skipBabelRuntimeCheck"
   },
   "repository": {
