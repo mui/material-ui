@@ -93,7 +93,7 @@ export default function DensityRecipesDemo() {
                 value={item.id}
                 aria-label={`${item.label} density`}
               >
-                {item.icon}
+                {item.label}
               </ToggleButton>
             ))}
           </ToggleButtonGroup>
