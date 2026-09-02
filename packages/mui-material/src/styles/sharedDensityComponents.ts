@@ -502,7 +502,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
       {
         props: { variant: 'outlined', shrink: true },
-        style: { transform: 'translate(14px, -9px) scale(0.75)' },
+        style: { transform: 'translate(14px, -0.375lh) scale(0.75)' }, // 0.375 = 50% * 0.75 scale factor
       },
     ],
   });
