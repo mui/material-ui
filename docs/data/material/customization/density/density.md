@@ -150,16 +150,20 @@ Switch between toggle buttons at the top to see the differences between each den
 
 ### Apply the enhancer last
 
-`enhanceDensity` reads the finished theme, so it must run after everything else is composed. Theme-level typography, `shape.borderRadius`, and the spacing base are ordinary `createTheme()` inputs, and they belong in the call that the enhancer receives:
+`enhanceDensity` augments a finished theme, writing across several of its parts—the spacing function, the component overrides, and the emitted CSS variables. Passing an enhanced theme back into `createTheme()` rebuilds those parts from the options given to the new call, so whatever it touches replaces what the enhancer wrote:
 
 ```js
-// ✅ the enhancer runs on the composed theme
+// ✅ compose the theme first, enhance it last
 const theme = enhanceDensity(
   createTheme({ cssVariables: true, palette: { mode: 'dark' } }),
 );
 
-// ❌ a later createTheme() call rebuilds the theme and drops the scale
-const broken = createTheme({ ...theme, palette: { mode: 'dark' } });
+// ❌ the second call rebuilds part of the theme over the enhancer's output
+const broken = createTheme({ ...theme, components: {/* ... */} });
 ```
 
-To change a theme after enhancing it, recompose the original options and enhance again.
+:::warning
+Nothing throws when this happens. The theme still renders, so the loss shows up as sizes that quietly ignore the scale.
+:::
+
+To change an enhanced theme, recompose the original options and enhance again.
