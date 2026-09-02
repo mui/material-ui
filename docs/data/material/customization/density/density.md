@@ -150,7 +150,7 @@ Switch between toggle buttons at the top to see the differences between each den
 
 ### Apply the enhancer last
 
-`enhanceDensity` augments a finished theme, writing across several of its parts—the spacing function, the component overrides, and the emitted CSS variables. Passing an enhanced theme back into `createTheme()` rebuilds those parts from the options given to the new call, so whatever it touches replaces what the enhancer wrote:
+`enhanceDensity` augments a finished theme, writing across several of its parts—the spacing function, the component overrides, and the emitted CSS variables. Always call the enhancer last, so nothing overrides what it wrote:
 
 ```js
 // ✅ compose the theme first, enhance it last
