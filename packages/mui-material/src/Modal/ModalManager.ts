@@ -72,6 +72,25 @@ function ariaHiddenSiblings(
   });
 }
 
+// A stable scrollbar gutter keeps the scrollbar space reserved while the scroll is locked,
+// so there is no layout shift to compensate for.
+// Reading the computed value doubles as a feature detection: browsers that don't support
+// scrollbar-gutter resolve it to an empty string.
+function hasStableScrollbarGutter(scrollContainer: HTMLElement): boolean {
+  const win = ownerWindow(scrollContainer);
+  const doc = ownerDocument(scrollContainer);
+  // scrollbar-gutter isn't inherited, but the one set on the root element propagates to the
+  // viewport, so check <html> as well when locking the document scroller.
+  const elements =
+    scrollContainer === doc.body || scrollContainer === doc.documentElement
+      ? [scrollContainer, doc.documentElement]
+      : [scrollContainer];
+
+  return elements.some((element) =>
+    win.getComputedStyle(element).getPropertyValue('scrollbar-gutter').includes('stable'),
+  );
+}
+
 function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   const restoreStyle: Array<{
     /**
@@ -100,7 +119,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
           : container;
     }
 
-    if (isOverflowing(scrollContainer)) {
+    if (isOverflowing(scrollContainer) && !hasStableScrollbarGutter(scrollContainer)) {
       // Compute the size before applying overflow hidden to avoid any scroll jumps.
       const scrollbarSize = getScrollbarSize(ownerWindow(scrollContainer));
 
