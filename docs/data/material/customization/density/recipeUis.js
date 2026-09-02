@@ -38,29 +38,29 @@ const CONTROL_MIN_WIDTH = 140;
 
 function PricingUi() {
   return (
-    <Stack sx={{ gap: 'large', alignItems: 'center', maxWidth: 420, mx: 'auto' }}>
-      <Stack sx={{ gap: 'xx-small', textAlign: 'center' }}>
+    <Stack spacing="large" sx={{ alignItems: 'center', maxWidth: 420, mx: 'auto' }}>
+      <Stack spacing="xx-small" sx={{ textAlign: 'center' }}>
         <Typography variant="h2">Pricing</Typography>
         <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-          Start free. Upgrade to unlock features and raise limits.
+          Start free. Move up a plan when you need more room.
         </Typography>
       </Stack>
       <Card variant="outlined" sx={{ width: '100%', borderColor: 'primary.main' }}>
         <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 'small' }}>
           <Stack
             direction="row"
+            spacing="x-small"
             sx={{
               alignItems: 'center',
               justifyContent: 'space-between',
-              gap: 'x-small',
               flexWrap: 'wrap',
             }}
           >
-            <Stack direction="row" sx={{ alignItems: 'center', gap: 'x-small' }}>
+            <Stack direction="row" spacing="x-small" sx={{ alignItems: 'center' }}>
               <Typography variant="h6" component="h3">
-                Pro
+                Team
               </Typography>
-              <Chip label="Most popular" size="small" color="primary" />
+              <Chip label="Recommended" size="small" color="primary" />
             </Stack>
             <FormControlLabel
               control={<Switch defaultChecked />}
@@ -70,64 +70,64 @@ function PricingUi() {
             />
           </Stack>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            Growing professional sites
+            For growing product teams
           </Typography>
           <Divider />
-          <Stack direction="row" sx={{ alignItems: 'baseline', gap: 'xx-small' }}>
+          <Stack direction="row" spacing="xx-small" sx={{ alignItems: 'baseline' }}>
             <Typography variant="h3" component="p">
-              $24
+              $18
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              per month, billed annually
+              per editor, billed yearly
             </Typography>
           </Stack>
           <Divider />
           <Typography variant="body2">Includes:</Typography>
           <List disablePadding>
-            <ListItem disablePadding disableGutters>
+            <ListItem disableGutters>
               <ListItemIcon>
                 <HistoryIcon />
               </ListItemIcon>
               <ListItemText
-                primary="Staging and instant rollback"
+                primary="Version history and restore"
                 slotProps={{ primary: { variant: 'body2' } }}
               />
             </ListItem>
-            <ListItem disablePadding disableGutters>
+            <ListItem disableGutters>
               <ListItemIcon>
                 <GroupIcon />
               </ListItemIcon>
               <ListItemText
-                primary="Roles and permissions"
+                primary="Shared workspaces"
                 slotProps={{ primary: { variant: 'body2' } }}
               />
             </ListItem>
-            <ListItem disablePadding disableGutters>
+            <ListItem disableGutters>
               <ListItemIcon>
                 <StorageIcon />
               </ListItemIcon>
               <ListItemText
-                primary="Relational CMS"
+                primary="Unlimited project archive"
                 slotProps={{ primary: { variant: 'body2' } }}
               />
             </ListItem>
-            <ListItem disablePadding disableGutters>
+            <ListItem disableGutters>
               <ListItemIcon>
                 <CallMadeIcon />
               </ListItemIcon>
               <ListItemText
-                primary="Site redirects"
+                primary="Scheduled exports"
                 slotProps={{ primary: { variant: 'body2' } }}
               />
             </ListItem>
-            <ListItem disablePadding disableGutters>
+            <ListItem disableGutters>
               <ListItemIcon>
                 <LanguageIcon />
               </ListItemIcon>
               <ListItemText
                 primary={
                   <React.Fragment>
-                    Multiple locales{' '}
+                    Extra regions{' '}
                     <Typography
                       component="span"
                       variant="body2"
@@ -144,30 +144,30 @@ function PricingUi() {
         </CardContent>
         <CardActions>
           <Button variant="contained" fullWidth>
-            Start with Pro
+            Choose Team
           </Button>
         </CardActions>
       </Card>
       <Paper variant="outlined" sx={{ width: '100%' }}>
         <Stack
           direction="row"
+          spacing="small"
           sx={{
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: 'small',
             flexWrap: 'wrap',
             p: 'small',
           }}
         >
-          <Stack sx={{ gap: 'xx-small' }}>
+          <Stack spacing="xx-small">
             <Typography variant="h6" component="h3">
-              Enterprise
+              Organization
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              Custom limits, security review, and dedicated support.
+              Volume pricing, audit logs, and onboarding support.
             </Typography>
           </Stack>
-          <Button variant="outlined">Request trial</Button>
+          <Button variant="outlined">Contact sales</Button>
         </Stack>
       </Paper>
     </Stack>
@@ -179,8 +179,8 @@ function ProductUi() {
   const [plan, setPlan] = React.useState('subscribe');
 
   return (
-    <Stack sx={{ gap: 'medium', maxWidth: 520 }}>
-      <Stack direction="row" sx={{ gap: 'medium' }}>
+    <Stack spacing="medium" sx={{ maxWidth: 520 }}>
+      <Stack direction="row" spacing="medium">
         <Box
           role="img"
           aria-label="Product photography placeholder"
@@ -199,33 +199,37 @@ function ProductUi() {
         >
           <ScienceIcon sx={(theme) => ({ fontSize: theme.spacing('x-large') })} />
         </Box>
-        <Stack sx={{ gap: 'x-small', flexGrow: 1 }}>
-          <Stack direction="row" sx={{ alignItems: 'center', gap: 'x-small' }}>
-            <Chip label="DM-02" size="small" variant="outlined" />
-            <Typography variant="h3">Daily Multivitamin</Typography>
+        <Stack spacing="x-small" sx={{ flexGrow: 1 }}>
+          <Stack direction="row" spacing="x-small" sx={{ alignItems: 'center' }}>
+            <Chip label="TR-12" size="small" variant="outlined" />
+            <Typography variant="h3">Everyday Mineral Blend</Typography>
           </Stack>
-          <Stack direction="row" sx={{ alignItems: 'center', gap: 'x-small' }}>
+          <Stack direction="row" spacing="x-small" sx={{ alignItems: 'center' }}>
             <Rating value={4.5} precision={0.5} size="small" readOnly />
             <Link component="button" type="button" variant="body2">
-              298 reviews
+              412 reviews
             </Link>
           </Stack>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            Covers the nutritional needs of your body with 100% daily value of 20
-            essential vitamins and minerals.
+            A once-daily capsule that tops up the minerals a mixed diet usually
+            misses, in forms the body absorbs easily.
           </Typography>
-          <Stack direction="row" sx={{ alignItems: 'center', gap: 'x-small' }}>
-            <Typography variant="h3" component="p" sx={{ fontWeight: 'bold' }}>
-              $39.99
+          <Stack direction="row" spacing="x-small" sx={{ alignItems: 'center' }}>
+            <Typography
+              variant="h3"
+              component="p"
+              color="error"
+              sx={{ fontWeight: 'bold' }}
+            >
+              $28.00
             </Typography>
-            <Chip label="New" size="small" color="success" />
           </Stack>
           <Typography variant="body2">
-            In stock — <strong>30-day supply</strong> delivered monthly.
+            In stock — <strong>60 capsules</strong>, shipped every two months.
           </Typography>
         </Stack>
       </Stack>
-      <Stack direction="row" sx={{ gap: 'small', flexWrap: 'wrap' }}>
+      <Stack direction="row" spacing="small" sx={{ flexWrap: 'wrap' }}>
         <ToggleButtonGroup
           exclusive
           value={plan}
@@ -241,10 +245,10 @@ function ProductUi() {
             One-time
           </ToggleButton>
           <ToggleButton value="subscribe" sx={{ flexGrow: 1 }}>
-            Subscribe and save 15%
+            Repeat order, save 10%
           </ToggleButton>
         </ToggleButtonGroup>
-        <FormControl size="small" sx={{ minWidth: 96 }}>
+        <FormControl sx={{ minWidth: 96 }}>
           <InputLabel id={`${id}-quantity-label`}>Quantity</InputLabel>
           <Select
             labelId={`${id}-quantity-label`}
@@ -252,21 +256,21 @@ function ProductUi() {
             label="Quantity"
             defaultValue={1}
           >
-            <MenuItem value={1}>1 jar</MenuItem>
-            <MenuItem value={2}>2 jars</MenuItem>
-            <MenuItem value={3}>3 jars</MenuItem>
+            <MenuItem value={1}>1 pack</MenuItem>
+            <MenuItem value={2}>2 packs</MenuItem>
+            <MenuItem value={3}>3 packs</MenuItem>
           </Select>
         </FormControl>
       </Stack>
-      <Stack sx={{ gap: 'xx-small' }}>
+      <Stack spacing="small">
         <Button variant="contained" fullWidth>
-          Start now
+          Add to cart
         </Button>
         <Typography
           variant="caption"
           sx={{ color: 'text.secondary', textAlign: 'center' }}
         >
-          30-day risk-free guarantee. Free shipping.
+          Returns accepted within 60 days. Shipping included.
         </Typography>
       </Stack>
       <Stack>
@@ -289,25 +293,25 @@ function ProductUi() {
             <List disablePadding sx={{ listStyleType: 'disc', pl: 'medium' }}>
               <ListItem disablePadding disableGutters sx={{ display: 'list-item' }}>
                 <ListItemText
-                  primary="Meets 100% daily value of 20 vitamins and minerals"
+                  primary="Covers the daily reference intake for nine minerals"
                   slotProps={{ primary: { variant: 'body2' } }}
                 />
               </ListItem>
               <ListItem disablePadding disableGutters sx={{ display: 'list-item' }}>
                 <ListItemText
-                  primary="Helps fill daily nutrient gaps with precise dosing"
+                  primary="Measured doses, so nothing needs weighing"
                   slotProps={{ primary: { variant: 'body2' } }}
                 />
               </ListItem>
               <ListItem disablePadding disableGutters sx={{ display: 'list-item' }}>
                 <ListItemText
-                  primary="Engineered for absorption throughout the tract"
+                  primary="Chelated forms chosen for absorption"
                   slotProps={{ primary: { variant: 'body2' } }}
                 />
               </ListItem>
               <ListItem disablePadding disableGutters sx={{ display: 'list-item' }}>
                 <ListItemText
-                  primary="Bioavailable nutrients your body can use"
+                  primary="No fillers, colourings, or added sugar"
                   slotProps={{ primary: { variant: 'body2' } }}
                 />
               </ListItem>
@@ -326,16 +330,16 @@ function ProductUi() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              Full ingredient list with sourcing and dosage per capsule.
+              Sourcing notes and per-capsule amounts for every ingredient.
             </Typography>
           </AccordionDetails>
         </Accordion>
       </Stack>
       <Card variant="outlined">
         <CardContent>
-          <Typography variant="subtitle2">Bundle and save 25%</Typography>
+          <Typography variant="subtitle2">Pair and save 20%</Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            Add the daily synbiotic to your routine and save on your first order.
+            Add the evening magnesium blend and save on the first order.
           </Typography>
         </CardContent>
         <CardActions>
@@ -350,13 +354,9 @@ function SettingsUi() {
   const id = React.useId();
 
   return (
-    <Stack sx={{ gap: 'large', maxWidth: 520 }}>
+    <Stack spacing="large" sx={{ maxWidth: 520 }}>
       <Typography variant="h3">Preferences</Typography>
-      <Stack
-        component="section"
-        aria-labelledby={`${id}-general`}
-        sx={{ gap: 'x-small' }}
-      >
+      <Stack component="section" aria-labelledby={`${id}-general`} spacing="x-small">
         <Typography
           variant="overline"
           component="h4"
@@ -367,83 +367,53 @@ function SettingsUi() {
         </Typography>
         <Paper variant="outlined" sx={{ bgcolor: 'transparent' }}>
           <List disablePadding>
-            <ListItem
-              divider
-              sx={{ gap: 'small', minHeight: 'calc(var(--recipe-cell) * 2)' }}
-            >
+            <ListItem divider>
               <ListItemText
-                primary="Default home view"
-                secondary="Select which view to display on launch"
+                primary="Start-up screen"
+                secondary="Choose what opens when the app launches"
                 slotProps={{
-                  primary: { id: `${id}-home-view`, variant: 'body2' },
-                  secondary: { id: `${id}-home-view-desc`, variant: 'caption' },
+                  primary: { id: `${id}-startup`, variant: 'body2' },
+                  secondary: { id: `${id}-startup-desc`, variant: 'caption' },
                 }}
               />
               <Select
-                labelId={`${id}-home-view`}
-                aria-describedby={`${id}-home-view-desc`}
-                defaultValue="Dashboard"
+                labelId={`${id}-startup`}
+                aria-describedby={`${id}-startup-desc`}
+                defaultValue="Overview"
                 sx={{ minWidth: CONTROL_MIN_WIDTH }}
               >
-                <MenuItem value="Dashboard">Dashboard</MenuItem>
-                <MenuItem value="My issues">My issues</MenuItem>
-                <MenuItem value="Inbox">Inbox</MenuItem>
+                <MenuItem value="Overview">Overview</MenuItem>
+                <MenuItem value="Assigned">Assigned to me</MenuItem>
+                <MenuItem value="Recent">Recent files</MenuItem>
               </Select>
             </ListItem>
-            <ListItem
-              divider
-              sx={{ gap: 'small', minHeight: 'calc(var(--recipe-cell) * 2)' }}
-            >
+            <ListItem divider>
               <ListItemText
-                primary="Display names"
-                secondary="Select how names are shown across the interface"
+                primary="Name format"
+                secondary="How teammate names appear throughout the app"
                 slotProps={{
-                  primary: { id: `${id}-display-names`, variant: 'body2' },
-                  secondary: { id: `${id}-display-names-desc`, variant: 'caption' },
+                  primary: { id: `${id}-name-format`, variant: 'body2' },
+                  secondary: { id: `${id}-name-format-desc`, variant: 'caption' },
                 }}
               />
               <Select
-                labelId={`${id}-display-names`}
-                aria-describedby={`${id}-display-names-desc`}
+                labelId={`${id}-name-format`}
+                aria-describedby={`${id}-name-format-desc`}
                 defaultValue="Full name"
                 sx={{ minWidth: CONTROL_MIN_WIDTH }}
               >
                 <MenuItem value="Full name">Full name</MenuItem>
-                <MenuItem value="Username">Username</MenuItem>
+                <MenuItem value="Short name">Short name</MenuItem>
                 <MenuItem value="Initials">Initials</MenuItem>
               </Select>
             </ListItem>
-            <ListItem
-              divider
-              sx={{ gap: 'small', minHeight: 'calc(var(--recipe-cell) * 2)' }}
-            >
+            <ListItem>
               <ListItemText
-                primary="First day of the week"
-                secondary="Used for date pickers"
+                primary="Replace shortcuts with symbols"
+                secondary="Typing (c) becomes © as you write"
                 slotProps={{
-                  primary: { id: `${id}-first-day`, variant: 'body2' },
-                  secondary: { id: `${id}-first-day-desc`, variant: 'caption' },
-                }}
-              />
-              <Select
-                labelId={`${id}-first-day`}
-                aria-describedby={`${id}-first-day-desc`}
-                defaultValue="Sunday"
-                sx={{ minWidth: CONTROL_MIN_WIDTH }}
-              >
-                <MenuItem value="Sunday">Sunday</MenuItem>
-                <MenuItem value="Monday">Monday</MenuItem>
-              </Select>
-            </ListItem>
-            <ListItem
-              sx={{ gap: 'small', minHeight: 'calc(var(--recipe-cell) * 2)' }}
-            >
-              <ListItemText
-                primary="Convert text emoticons into emoji"
-                secondary="Strings like :) are replaced as you type"
-                slotProps={{
-                  primary: { id: `${id}-emoticons`, variant: 'body2' },
-                  secondary: { id: `${id}-emoticons-desc`, variant: 'caption' },
+                  primary: { id: `${id}-shortcuts`, variant: 'body2' },
+                  secondary: { id: `${id}-shortcuts-desc`, variant: 'caption' },
                 }}
               />
               <Switch
@@ -451,8 +421,8 @@ function SettingsUi() {
                 defaultChecked
                 slotProps={{
                   input: {
-                    'aria-labelledby': `${id}-emoticons`,
-                    'aria-describedby': `${id}-emoticons-desc`,
+                    'aria-labelledby': `${id}-shortcuts`,
+                    'aria-describedby': `${id}-shortcuts-desc`,
                   },
                 }}
               />
@@ -463,7 +433,7 @@ function SettingsUi() {
       <Stack
         component="section"
         aria-labelledby={`${id}-interface`}
-        sx={{ gap: 'x-small' }}
+        spacing="x-small"
       >
         <Typography
           variant="overline"
@@ -475,30 +445,20 @@ function SettingsUi() {
         </Typography>
         <Paper variant="outlined" sx={{ bgcolor: 'transparent' }}>
           <List disablePadding>
-            <ListItem
-              divider
-              sx={{ gap: 'small', minHeight: 'calc(var(--recipe-cell) * 2)' }}
-            >
+            <ListItem divider>
               <ListItemText
-                primary="App sidebar"
-                secondary="Item visibility, ordering, and badge style"
+                primary="Side panel"
+                secondary="Which sections appear, and in what order"
                 slotProps={{
-                  primary: { id: `${id}-sidebar`, variant: 'body2' },
-                  secondary: { id: `${id}-sidebar-desc`, variant: 'caption' },
+                  primary: { id: `${id}-side-panel`, variant: 'body2' },
+                  secondary: { id: `${id}-side-panel-desc`, variant: 'caption' },
                 }}
               />
-              <Button
-                variant="text"
-                aria-describedby={`${id}-sidebar-desc`}
-                sx={{ mr: '-x-small' }}
-              >
-                Customize
+              <Button variant="text" aria-describedby={`${id}-side-panel-desc`}>
+                Edit
               </Button>
             </ListItem>
-            <ListItem
-              divider
-              sx={{ gap: 'small', minHeight: 'calc(var(--recipe-cell) * 2)' }}
-            >
+            <ListItem divider>
               <ListItemText
                 primary="Theme"
                 secondary="Match the system or pick one"
@@ -518,21 +478,18 @@ function SettingsUi() {
                 <MenuItem value="Dark">Dark</MenuItem>
               </Select>
             </ListItem>
-            <ListItem
-              divider
-              sx={{ gap: 'small', minHeight: 'calc(var(--recipe-cell) * 2)' }}
-            >
+            <ListItem divider>
               <ListItemText
-                primary="Font size"
-                secondary="Adjust the size of text across the app"
+                primary="Text size"
+                secondary="Scale text across every screen"
                 slotProps={{
-                  primary: { id: `${id}-font-size`, variant: 'body2' },
-                  secondary: { id: `${id}-font-size-desc`, variant: 'caption' },
+                  primary: { id: `${id}-text-size`, variant: 'body2' },
+                  secondary: { id: `${id}-text-size-desc`, variant: 'caption' },
                 }}
               />
               <Select
-                labelId={`${id}-font-size`}
-                aria-describedby={`${id}-font-size-desc`}
+                labelId={`${id}-text-size`}
+                aria-describedby={`${id}-text-size-desc`}
                 defaultValue="Default"
                 sx={{ minWidth: CONTROL_MIN_WIDTH }}
               >
@@ -541,24 +498,21 @@ function SettingsUi() {
                 <MenuItem value="Large">Large</MenuItem>
               </Select>
             </ListItem>
-            <ListItem
-              sx={{ gap: 'small', minHeight: 'calc(var(--recipe-cell) * 2)' }}
-            >
+            <ListItem>
               <ListItemText
-                primary="Use pointer cursors"
-                secondary="Show a pointer over interactive elements"
+                primary="Pointer on hover"
+                secondary="Show a hand cursor over clickable items"
                 slotProps={{
-                  primary: { id: `${id}-pointer`, variant: 'body2' },
-                  secondary: { id: `${id}-pointer-desc`, variant: 'caption' },
+                  primary: { id: `${id}-hover-cursor`, variant: 'body2' },
+                  secondary: { id: `${id}-hover-cursor-desc`, variant: 'caption' },
                 }}
               />
               <Switch
                 edge="end"
-
                 slotProps={{
                   input: {
-                    'aria-labelledby': `${id}-pointer`,
-                    'aria-describedby': `${id}-pointer-desc`,
+                    'aria-labelledby': `${id}-hover-cursor`,
+                    'aria-describedby': `${id}-hover-cursor-desc`,
                   },
                 }}
               />
