@@ -12,7 +12,7 @@
     "icons": "rimraf --glob public/static/icons/* && node ./scripts/buildIcons.js",
     "start": "serve ./export",
     "create-playground": "cpy --cwd=scripts playground.template.tsx ../pages/playground/ --rename=index.tsx",
-    "typescript": "tsgo -p tsconfig.json && tsgo -p scripts/tsconfig.json",
+    "typescript": "tsc -p tsconfig.json && tsc -p scripts/tsconfig.json",
     "link-check": "tsx ./scripts/reportBrokenLinks.mts"
   },
   "dependencies": {
@@ -124,6 +124,7 @@
     "prettier": "3.9.9",
     "raw-loader": "4.0.2",
     "tailwindcss": "4.3.3",
+    "typescript": "npm:@typescript/typescript6@6.0.2",
     "yargs": "18.2.0"
   }
 }
