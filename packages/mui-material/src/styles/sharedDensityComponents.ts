@@ -604,6 +604,58 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
     ],
   });
+  addRootOverride(enhanced.components, 'MuiSwitch', {
+    // Var declarations sit on size variants so a knob edit rebuilds
+    // size-scoped; consumers are base.
+    '--_pad': `calc((var(--_height) - var(--_thumbHeight)/1.4285714286) / 2)`, // to maintain the original ratio
+    '--_width': `calc(var(--_thumbHeight)*1.7 + var(--_pad)*2)`, // to maintain the original ratio
+    '--_offset': 'calc(-1 * (var(--_height)/2 - var(--_thumbHeight)/2))',
+    width: 'var(--_width)',
+    height: 'var(--_height)',
+    padding: 'var(--_pad)',
+    [`.${formControlLabelClasses.labelPlacementEnd} &`]: {
+      marginLeft: 'var(--_offset)',
+    },
+    [`.${formControlLabelClasses.labelPlacementStart} &`]: {
+      marginRight: 'var(--_offset)',
+    },
+    variants: [
+      {
+        props: { size: 'medium' },
+        style: {
+          '--_height': touchTarget,
+          '--_touchSize': touchTarget,
+          '--_thumbHeight': spacing('medium'),
+          '--_thumbWidth': spacing('medium'),
+        },
+      },
+      {
+        props: { size: 'small' },
+        style: {
+          '--_height': smallBox,
+          // Invariant: --_touchSize >= --_thumbHeight (see medium — padding clips).
+          '--_touchSize': smallBox,
+          '--_thumbHeight': `calc(${spacing('medium')} - 4px)`,
+          '--_thumbWidth': `calc(${spacing('medium')} - 4px)`,
+          // Master's small rules sit nested under the root variant at higher
+          // specificity — re-assert the derivations there or they lose for small.
+          [`& .${switchClasses.thumb}`]: {
+            width: 'var(--_thumbWidth)',
+            height: 'var(--_thumbHeight)',
+          },
+          [`& .${switchClasses.switchBase}`]: {
+            padding: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
+            [`&.${switchClasses.checked}`]: {
+              transform:
+                'translateX(calc(var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight))))',
+            },
+          },
+        },
+      },
+      { props: { edge: 'start' }, style: { marginLeft: 'var(--_offset)' } },
+      { props: { edge: 'end' }, style: { marginRight: 'var(--_offset)' } },
+    ],
+  });
   addRootOverride(
     enhanced.components,
     'MuiSwitch',
@@ -630,14 +682,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'thumb',
   );
-  addRootOverride(
-    enhanced.components,
-    'MuiSwitch',
-    {
-      borderRadius: 'calc((var(--_height) - 2 * var(--_pad)) / 2)',
-    },
-    'track',
-  );
+  addRootOverride(enhanced.components, 'MuiSwitch', { borderRadius: 'var(--_height)' }, 'track');
   addRootOverride(enhanced.components, 'MuiAutocomplete', {
     // Root block pad 0: the INPUT carries the whole per-side pad, so chips
     // stack in an unpadded root while the input still sets the row rhythm.
@@ -1127,57 +1172,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'badge',
   );
-  addRootOverride(enhanced.components, 'MuiSwitch', {
-    // Var declarations sit on size variants so a knob edit rebuilds
-    // size-scoped; consumers are base.
-    '--_pad': `calc((var(--_height) - var(--_thumbHeight)/1.4285714286) / 2)`, // to maintain the original ratio
-    '--_width': `calc(var(--_thumbHeight)*1.7 + var(--_pad)*2)`, // to maintain the original ratio
-    width: 'var(--_width)',
-    height: 'var(--_height)',
-    padding: 'var(--_pad)',
-    [`.${formControlLabelClasses.labelPlacementEnd} &`]: {
-      marginLeft: 'calc(-1 * var(--_pad))',
-    },
-    [`.${formControlLabelClasses.labelPlacementStart} &`]: {
-      marginRight: 'calc(-1 * var(--_pad))',
-    },
-    variants: [
-      {
-        props: { size: 'medium' },
-        style: {
-          '--_height': touchTarget,
-          '--_touchSize': touchTarget,
-          '--_thumbHeight': spacing('medium'),
-          '--_thumbWidth': spacing('medium'),
-        },
-      },
-      {
-        props: { size: 'small' },
-        style: {
-          '--_height': smallBox,
-          // Invariant: --_touchSize >= --_thumbHeight (see medium — padding clips).
-          '--_touchSize': smallBox,
-          '--_thumbHeight': `calc(${spacing('medium')} - 4px)`,
-          '--_thumbWidth': `calc(${spacing('medium')} - 4px)`,
-          // Master's small rules sit nested under the root variant at higher
-          // specificity — re-assert the derivations there or they lose for small.
-          [`& .${switchClasses.thumb}`]: {
-            width: 'var(--_thumbWidth)',
-            height: 'var(--_thumbHeight)',
-          },
-          [`& .${switchClasses.switchBase}`]: {
-            padding: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
-            [`&.${switchClasses.checked}`]: {
-              transform:
-                'translateX(calc(var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight))))',
-            },
-          },
-        },
-      },
-      { props: { edge: 'start' }, style: { marginLeft: 'calc(-1 * var(--_pad))' } },
-      { props: { edge: 'end' }, style: { marginRight: 'calc(-1 * var(--_pad))' } },
-    ],
-  });
+
   // td height acts as a min-height (cells grow with wrapped content). The
   // checkbox re-assert nests &.paddingCheckbox: master's small-size rule pads
   // it at 2-class specificity, so a plain variant (1 class) loses there.
