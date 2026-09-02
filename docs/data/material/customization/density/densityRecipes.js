@@ -37,8 +37,6 @@ const densityRecipes = [
   {
     id: 'medium',
     label: 'Medium',
-    // The shipped ladder — the enhancer's own defaults, spelled out so the
-    // three recipes read side by side.
     scale: {
       'xx-small': 4,
       'x-small': 8,

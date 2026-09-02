@@ -3,9 +3,7 @@ import type { DensityScaleOverrides, ThemeOptions } from '@mui/material/styles';
 export interface DensityRecipe {
   id: string;
   label: string;
-  /** Second argument to `enhanceDensity` — the density layer. */
   scale: DensityScaleOverrides;
-  /** `createTheme` inputs — ordinary design, applied before the enhancer. */
   shape: NonNullable<ThemeOptions['shape']>;
   typography: NonNullable<ThemeOptions['typography']>;
 }
@@ -49,8 +47,6 @@ const densityRecipes: DensityRecipe[] = [
   {
     id: 'medium',
     label: 'Medium',
-    // The shipped ladder — the enhancer's own defaults, spelled out so the
-    // three recipes read side by side.
     scale: {
       'xx-small': 4,
       'x-small': 8,
