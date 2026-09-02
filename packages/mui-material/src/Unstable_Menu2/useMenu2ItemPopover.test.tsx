@@ -361,8 +361,11 @@ describe('useMenu2ItemPopover', () => {
       getItem('Restore version').focus();
     });
 
+    // The attribute follows the focus through a render.
+    await waitFor(() => {
+      expect(getItem('Restore version')).to.have.attribute('aria-describedby');
+    });
     const describedBy = getItem('Restore version').getAttribute('aria-describedby');
-    expect(describedBy).not.to.equal(null);
     expect(getItem('Template gallery')).not.to.have.attribute('aria-describedby');
     expect(getItem('Publish to web')).not.to.have.attribute('aria-describedby');
 
@@ -499,9 +502,13 @@ describe('useMenu2ItemPopover', () => {
 
     await user.hover(getItem('Restore version'));
 
-    await waitFor(() => {
-      expect(screen.getByTestId('preview-card')).to.have.text(items[2].description);
-    });
+    await waitFor(
+      () => {
+        expect(screen.getByTestId('preview-card')).to.have.text(items[2].description);
+      },
+      // The card waits for the ancestor animations before it paints.
+      { timeout: 3000 },
+    );
     expect(document.querySelectorAll('[data-testid="preview-card"]')).to.have.length(1);
     expectAnchor('Restore version');
   });
@@ -765,7 +772,8 @@ describe('useMenu2ItemPopover', () => {
     fireEvent.mouseEnter(screen.getByTestId('item'));
     expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
 
-    await screen.findByTestId('preview-card');
+    // The card appears only when the transition ends.
+    await screen.findByTestId('preview-card', undefined, { timeout: 3000 });
   });
 
   // The menu closes while the card still waits, so the wait has to end with it.

@@ -1166,10 +1166,12 @@ describe('<Menu2 />', () => {
     const item = await screen.findByRole('menuitem', { name: 'Alpha' });
     await user.keyboard('{ArrowDown}');
 
-    const styles = window.getComputedStyle(item);
-    expect(styles.outlineWidth).to.equal('2px');
+    // The ring follows a state change, so a slow machine needs a moment.
+    await waitFor(() => {
+      expect(window.getComputedStyle(item).outlineWidth).to.equal('2px');
+    });
     // A negative offset draws the ring inside the item.
-    expect(styles.outlineOffset).to.equal('-2px');
+    expect(window.getComputedStyle(item).outlineOffset).to.equal('-2px');
   });
 
   // `theme.focusVisible` swaps the item focus background for an outline ring.
