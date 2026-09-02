@@ -11,6 +11,7 @@ import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import Link from '@mui/material/Link';
 import List from '@mui/material/List';
@@ -23,6 +24,7 @@ import Rating from '@mui/material/Rating';
 import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
+import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
@@ -32,6 +34,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import HistoryIcon from '@mui/icons-material/History';
 import LanguageIcon from '@mui/icons-material/Language';
 import ScienceIcon from '@mui/icons-material/Science';
+import SearchIcon from '@mui/icons-material/Search';
 import StorageIcon from '@mui/icons-material/Storage';
 
 const CONTROL_MIN_WIDTH = 140;
@@ -345,6 +348,19 @@ function SettingsUi() {
   return (
     <Stack spacing="large" sx={{ maxWidth: 520, mx: 'auto' }}>
       <Typography variant="h3">Preferences</Typography>
+      <TextField
+        fullWidth
+        placeholder="Search settings"
+        slotProps={{
+          input: {
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          },
+        }}
+      />
       <Stack component="section" aria-labelledby={`${id}-general`} spacing="x-small">
         <Typography
           variant="overline"
@@ -374,26 +390,6 @@ function SettingsUi() {
                 <MenuItem value="Overview">Overview</MenuItem>
                 <MenuItem value="Assigned">Assigned to me</MenuItem>
                 <MenuItem value="Recent">Recent files</MenuItem>
-              </Select>
-            </ListItem>
-            <ListItem divider>
-              <ListItemText
-                primary="Name format"
-                secondary="How teammate names appear throughout the app"
-                slotProps={{
-                  primary: { id: `${id}-name-format`, variant: 'body2' },
-                  secondary: { id: `${id}-name-format-desc`, variant: 'caption' },
-                }}
-              />
-              <Select
-                labelId={`${id}-name-format`}
-                aria-describedby={`${id}-name-format-desc`}
-                defaultValue="Full name"
-                sx={{ minWidth: CONTROL_MIN_WIDTH }}
-              >
-                <MenuItem value="Full name">Full name</MenuItem>
-                <MenuItem value="Short name">Short name</MenuItem>
-                <MenuItem value="Initials">Initials</MenuItem>
               </Select>
             </ListItem>
             <ListItem>
