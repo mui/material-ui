@@ -199,6 +199,7 @@ const CHECKBOX_A11Y_DEMOS = [
   'IconCheckboxes',
   'SizeCheckboxes',
   'CheckboxesGroup',
+  'IndeterminateCheckbox',
 ];
 
 /**
@@ -238,18 +239,13 @@ export const A11Y_RULES: A11yRule[] = [
     assertions: 'all',
     skipAssertions: ['color-contrast'],
   },
+  // IndeterminateCheckbox needs no skip: the component sets the native
+  // `.indeterminate` property and no aria-checked attribute (#49053), so
+  // axe's aria-conditional-attr passes.
   {
     test: `docs/data/material/components/checkboxes/{${CHECKBOX_A11Y_DEMOS.join(',')}}`,
     enabled: true,
     assertions: 'all',
-  },
-  {
-    // `indeterminate` sets aria-checked="mixed" on the native <input type="checkbox">; axe's
-    // aria-conditional-attr flags it because the native .checked is false. Recorded, not asserted.
-    test: 'docs/data/material/components/checkboxes/IndeterminateCheckbox',
-    enabled: true,
-    assertions: 'all',
-    skipAssertions: ['aria-conditional-attr'],
   },
 ];
 

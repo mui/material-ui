@@ -318,7 +318,7 @@
         "tags": ["wcag2a"]
       },
       "aria-conditional-attr": {
-        "status": "fail",
+        "status": "pass",
         "tags": ["wcag2a"]
       },
       "aria-hidden-focus": {

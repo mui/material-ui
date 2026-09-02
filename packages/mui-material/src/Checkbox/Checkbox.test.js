@@ -439,8 +439,8 @@ describe('<Checkbox />', () => {
     });
 
     describe('4.1.2 Name, Role, Value', () => {
-      // The `indeterminate` state is a known gap (it sets aria-checked="mixed" on a
-      // native checkbox whose `checked` is false); these cover the parts that pass.
+      // `indeterminate` sets the native `.indeterminate` property and no
+      // aria-checked attribute; the `prop: indeterminate` block above covers it.
       it('exposes the checkbox role and its accessible name', () => {
         render(<FormControlLabel control={<Checkbox />} label="Subscribe" />);
 

@@ -4,8 +4,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 22    |
-| ⚠️ Partially Supports | 3     |
+| ✅ Supports           | 23    |
+| ⚠️ Partially Supports | 2     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 30    |
 | 🚩 Flagged            | 4/25  |
@@ -14,7 +14,6 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 - ⚠️ **1.4.11 Non-text Contrast.** The default checkmark icons clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 (a faint custom unchecked box can be about 1.1:1 against the page).
 - ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styling.
-- ⚠️ **4.1.2 Name, Role, Value.** The `indeterminate` state sets `aria-checked="mixed"` on the native checkbox, which ARIA in HTML disallows because the native `.checked` is `false` (axe `aria-conditional-attr` flags it). The conforming fix is to set the native `.indeterminate` property instead.
 
 ## Success criteria
 
@@ -113,15 +112,15 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `✅ Supports` · `◐ Shared`
 
-- The native `<input type="checkbox">` exposes role and checked state; `required` and `disabled` map to native attributes; `indeterminate` sets `aria-checked="mixed"` (unit-tested).
+- The native `<input type="checkbox">` exposes role and checked state; `required` and `disabled` map to native attributes; `indeterminate` sets the native `.indeterminate` property (unit-tested).
 - `FormControlLabel` associates the label through a real `<label>`, and `FormControl component="fieldset"` with `FormLabel component="legend"` names a group.
-- axe-core's ARIA rules (`aria-allowed-attr`, `aria-valid-attr-value`, `aria-prohibited-attr`, `form-field-multiple-labels`) pass across the demos. The one exception is `indeterminate`'s non-conforming `aria-checked="mixed"`, tracked under 4.1.2.
+- axe-core's ARIA rules (`aria-allowed-attr`, `aria-valid-attr-value`, `aria-prohibited-attr`, `form-field-multiple-labels`) pass across the demos.
 - Two relationships are the author's responsibility. `FormHelperText` is a bare `<p>` with no `aria-describedby`, so helper and error text are not associated with the control, and a tri-state "select all" parent is not linked to its children. The author must associate them with `aria-describedby` and the appropriate group markup.
 
 **Manual testing steps**
 
 1. For a requiredlabelledcheckbox (`Checkbox required` inside a `FormControlLabel`), confirm `role=checkbox`, the name, `required`, and the wrapping `<label>`.
-2. Toggle indeterminate and confirm `aria-checked` cycles `true`/`false`/`mixed`.
+2. Toggle indeterminate and confirm the accessibility tree exposes the mixed state (from the native `.indeterminate` property).
 3. In a fieldset group (`FormControl component="fieldset"` + `FormLabel component="legend"` around a `FormGroup`), confirm the `<fieldset>`/`<legend>` name is exposed but any error or required constraint is not (no `aria-describedby`/`aria-invalid`).
 
 **Pass:** role, states, label association, and group name are programmatically determinable, and any helper/error text is tied to the control via author-supplied `aria-describedby`.
@@ -221,12 +220,10 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 4.1.2 Name, Role, Value · A
 
-`⚠️ Partially Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
 - Role, checked, and disabled are met natively: the native `<input type="checkbox">` exposes `role=checkbox`, the checked state, and change notification with no ARIA needed, and `disabled` maps to native `disabled`. axe-core (`aria-allowed-attr`, `aria-valid-attr-value`, `label`, `nested-interactive`) confirms them.
-- The `indeterminate` state is the failing part: it sets `aria-checked="mixed"` on the native input, which ARIA in HTML disallows because the native `.checked` stays `false`. axe `aria-conditional-attr` records the violation in `checkboxes.a11y.json`.
-- Major screen readers do announce "mixed" (and it is unit-tested), but a `mixed` state on a native checkbox is not guaranteed across browsers.
-- The conforming fix is the native `.indeterminate` property instead of `aria-checked`; the component currently avoids `.indeterminate`, citing cross-browser inconsistency.
+- The `indeterminate` state sets the native `.indeterminate` property and no `aria-checked` attribute, so browsers expose the mixed state through the standard mechanism. axe `aria-conditional-attr` passes across the demos, and unit tests cover the property (set, kept after a click, restored when the input slot changes).
 - The name is the shared part: it comes from the author's `FormControlLabel` or `aria-label`. One caveat: `readOnly` sets the native `readonly` attribute, which has no effect on a checkbox and is not exposed to assistive technology, so a read-only checkbox is not announced as such. Use `disabled` or `aria-readonly` if that state must be conveyed.
 - Confirmed by unit tests in [`./Checkbox.test.js`](./Checkbox.test.js) (role, `checked`, and `disabled` are exposed).
 
