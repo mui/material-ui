@@ -19,6 +19,7 @@ export default function validateOptionValues({
   for (const option of options) {
     const value = getOptionValueProp(option);
 
+    // Only primitive keys can safely identify options in comparisons and lookup maps.
     if (!isValidOptionValue(value)) {
       const invalidValue =
         value === null || Number.isNaN(value)
@@ -32,6 +33,7 @@ export default function validateOptionValues({
       );
     }
 
+    // Report a duplicated key once even when more than two options share it.
     if (seenOptionValues.has(value) && !reportedDuplicateValues.has(value)) {
       console.error(
         `MUI: The \`getOptionValue\` method of ${componentName} returned the duplicate value ${getOptionValueDescription(

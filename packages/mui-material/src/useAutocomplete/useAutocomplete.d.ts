@@ -507,6 +507,16 @@ export interface UseAutocompleteReturnValue<
    */
   getListboxProps: (externalProps?: any) => React.HTMLAttributes<HTMLUListElement>;
   /**
+   * Resolves a selected value to its backing option.
+   * Free-solo strings are returned unchanged, and unmatched mapped values return `null`.
+   */
+  getOptionFromValue: (
+    value: AutocompleteValueOrFreeSoloValueMapping<
+      AutocompleteResolvedValue<Option, Value>,
+      FreeSolo
+    >,
+  ) => AutocompleteValueOrFreeSoloValueMapping<Option, FreeSolo> | null;
+  /**
    * Resolver for the rendered option element's props.
    * @param renderedOption option rendered on the Autocomplete
    * @returns props that should be spread on the li element
