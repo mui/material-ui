@@ -146,6 +146,30 @@ function getAnchorAncestors(anchorEl: HTMLElement): HTMLElement[] {
   return ancestors;
 }
 
+// The card opens after this long even when an ancestor keeps moving. The menu
+// moves for 150ms, so a real menu open always settles well before the deadline.
+const maxAnchorWait = 500;
+
+/**
+ * Reports whether an animation still reaches an end on its own. An animation
+ * that never ends must not hold the card back, because the wait would never
+ * finish.
+ */
+function endsOnItsOwn(animation: Animation): boolean {
+  // `idle`, `paused` and `finished` all hold the element still, and nothing
+  // promises that a paused or an idle animation ever runs again.
+  if (animation.playState !== 'running') {
+    return false;
+  }
+  // A stopped clock never advances the animation to its end.
+  if (animation.playbackRate === 0) {
+    return false;
+  }
+  const endTime = animation.effect?.getComputedTiming().endTime;
+  // An animation that repeats for ever has an infinite end time.
+  return typeof endTime !== 'number' || Number.isFinite(endTime);
+}
+
 // Returns every running animation that can move one of the ancestors.
 function getMovingAnimations(ancestors: HTMLElement[]): Animation[] {
   const animations: Animation[] = [];
@@ -155,9 +179,7 @@ function getMovingAnimations(ancestors: HTMLElement[]): Animation[] {
       return;
     }
     node.getAnimations().forEach((animation) => {
-      // A paused animation holds the element still, and nothing promises that
-      // it ever resumes, so it must not hold the card back.
-      if (animation.playState === 'paused') {
+      if (!endsOnItsOwn(animation)) {
         return;
       }
 
@@ -186,61 +208,47 @@ function isAnchorSettled(anchorEl: HTMLElement): boolean {
 }
 
 /**
- * Calls `onSettled` once every ancestor animation that moves the item ends, and
- * returns a function that stops the wait. `Animation.finished` always settles,
- * so the wait needs no deadline. It rejects when the browser cancels the
- * transition, and a cancelled transition often has a replacement, so both
- * outcomes read the animations again and wait for whatever still runs.
+ * Calls `onSettled` once every ancestor of the item stands still, and returns a
+ * function that stops the wait.
+ *
+ * The check runs once per frame instead of on `Animation.finished`, because an
+ * animation can pause, stop its clock or repeat for ever, and its `finished`
+ * promise then never settles. A frame also covers the replacement that the
+ * browser starts for a transition it cancels, and the moment a delayed
+ * transition starts. The deadline covers the rest: a frame never arrives on a
+ * hidden page, and an ancestor animation can outlast the menu.
  */
 function waitForAnchor(anchorEl: HTMLElement, onSettled: () => void): () => void {
-  const ancestors = getAnchorAncestors(anchorEl);
-  const observer = new MutationObserver(() => {
-    if (!hasStartingStyle(ancestors)) {
-      observer.disconnect();
-      waitForAnimations();
-    }
-  });
-  let aborted = false;
+  const view = ownerDocument(anchorEl).defaultView ?? window;
+  let frame = 0;
+  let timer = 0;
+  let done = false;
 
-  function settle() {
-    if (aborted) {
-      return;
-    }
-    // An animation that ended can stay readable, so wait again only for one
-    // that still has work to do. Without the check the two calls loop.
-    const running = getMovingAnimations(ancestors).filter(
-      (animation) => animation.pending || animation.playState !== 'finished',
-    );
-    if (running.length > 0) {
-      waitForAnimations();
-      return;
-    }
-    onSettled();
+  function stop() {
+    done = true;
+    view.cancelAnimationFrame(frame);
+    view.clearTimeout(timer);
   }
 
-  function waitForAnimations() {
-    const animations = getMovingAnimations(ancestors);
-    if (animations.length === 0) {
+  function finish() {
+    if (!done) {
+      stop();
       onSettled();
+    }
+  }
+
+  function poll() {
+    if (isAnchorSettled(anchorEl)) {
+      finish();
       return;
     }
-    Promise.all(animations.map((animation) => animation.finished)).then(settle, settle);
+    frame = view.requestAnimationFrame(poll);
   }
 
-  if (hasStartingStyle(ancestors)) {
-    // The transition has not started yet, so `getAnimations` is empty on every
-    // ancestor. Read the animations once the attribute goes.
-    ancestors.forEach((node) => {
-      observer.observe(node, { attributeFilter: [startingStyleAttribute] });
-    });
-  } else {
-    waitForAnimations();
-  }
+  timer = view.setTimeout(finish, maxAnchorWait);
+  poll();
 
-  return () => {
-    aborted = true;
-    observer.disconnect();
-  };
+  return stop;
 }
 
 /**

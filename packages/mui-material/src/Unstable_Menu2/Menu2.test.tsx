@@ -3,6 +3,7 @@ import * as React from 'react';
 import { spy } from 'sinon';
 import { createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
+import { buttonBaseClasses } from '@mui/material/ButtonBase';
 import { listClasses } from '@mui/material/List';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -1153,9 +1154,11 @@ describe('<Menu2 />', () => {
   });
 
   // A menu popup scrolls, so an outset ring gets clipped. The item takes the
-  // same inset ring as the classic MenuItem.
+  // same inset ring as the classic MenuItem. `Mui-focusVisible` goes on by
+  // hand: ButtonBase sets it from `:focus-visible`, a browser heuristic on the
+  // input modality that no test event moves.
   it.skipIf(isJsdom())('insets the focus ring under theme.focusVisible', async () => {
-    const { user } = render(
+    render(
       <ThemeProvider theme={createTheme({ focusVisible: true })}>
         <Menu2 defaultOpen modal={false} anchor={document.body}>
           <Menu2Item>Alpha</Menu2Item>
@@ -1164,14 +1167,19 @@ describe('<Menu2 />', () => {
     );
 
     const item = await screen.findByRole('menuitem', { name: 'Alpha' });
-    await user.keyboard('{ArrowDown}');
+    const atRest = window.getComputedStyle(item);
+    // The item turns the shared ring inward. A scrolling popup clips an outset
+    // ring, so the sign is the whole point of the two variables.
+    expect(atRest.getPropertyValue('--_focusVisible-offset').trim()).to.equal('-1');
+    expect(atRest.getPropertyValue('--_focusVisible-behavior').trim()).to.equal('inset');
 
-    // The ring follows a state change, so a slow machine needs a moment.
-    await waitFor(() => {
-      expect(window.getComputedStyle(item).outlineWidth).to.equal('2px');
-    });
+    item.classList.add(buttonBaseClasses.focusVisible);
+
+    const ring = window.getComputedStyle(item);
+    expect(ring.outlineStyle).to.equal('solid');
+    expect(ring.outlineWidth).to.equal('2px');
     // A negative offset draws the ring inside the item.
-    expect(window.getComputedStyle(item).outlineOffset).to.equal('-2px');
+    expect(ring.outlineOffset).to.equal('-2px');
   });
 
   // `theme.focusVisible` swaps the item focus background for an outline ring.

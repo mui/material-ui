@@ -582,8 +582,10 @@ describe('<Menu2 /> collapsed API', () => {
   // highlight from the submenu store with its index in the parent list. When the
   // two indices match, the open parent used to paint the full focus tint and
   // became indistinguishable from the child trigger the reader is on.
+  // The menu keeps a real trigger. Anchored to the body it has nothing to give
+  // the focus back to, and it closes itself about 200ms after a submenu opens.
   const nestedChain = (
-    <Menu2 defaultOpen modal={false} anchor={document.body}>
+    <Menu2 defaultOpen modal={false} trigger={<Button disableRipple>Options</Button>}>
       {/* Each trigger is index 0 of its own list, so the indices collide. */}
       <Menu2Submenu trigger={<Menu2Item>View options</Menu2Item>}>
         <Menu2Submenu trigger={<Menu2Item>More tools</Menu2Item>}>
@@ -602,13 +604,18 @@ describe('<Menu2 /> collapsed API', () => {
     const { user } = render(nestedChain);
 
     const parent = await screen.findByRole('menuitem', { name: 'View options' });
+    // The popup takes the focus in a frame callback, not with the render. A key
+    // that arrives first lands on the body and is lost.
+    const popup = parent.closest('[role="menu"]')!;
+    await waitFor(() => {
+      expect(popup.contains(document.activeElement)).to.equal(true);
+    });
 
     await user.keyboard('{ArrowDown}');
     await user.keyboard('{ArrowRight}');
-    await screen.findByRole('menuitem', { name: 'More tools' });
+    const child = await screen.findByRole('menuitem', { name: 'More tools' });
     await user.keyboard('{ArrowDown}');
 
-    const child = screen.getByRole('menuitem', { name: 'More tools' });
     await waitFor(() => {
       expect(child).to.equal(document.activeElement);
     });

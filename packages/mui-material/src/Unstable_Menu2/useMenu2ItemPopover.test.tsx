@@ -264,8 +264,12 @@ describe('useMenu2ItemPopover', () => {
     expect(screen.getByTestId('state')).to.have.attribute('data-anchor', label);
   }
 
+  // The state node is rendered, so the assertions wait for the render instead
+  // of assuming that React flushed the update before the event call returned.
   async function expectClosed() {
-    expect(screen.getByTestId('state')).to.have.attribute('data-open', 'false');
+    await waitFor(() => {
+      expect(screen.getByTestId('state')).to.have.attribute('data-open', 'false');
+    });
     expect(screen.getByTestId('state')).to.have.attribute('data-anchor', 'none');
     await waitFor(() => {
       expect(screen.queryByTestId('preview-card')).to.equal(null);
@@ -350,6 +354,9 @@ describe('useMenu2ItemPopover', () => {
     expectAnchor('Publish to web');
   });
 
+  // `fireEvent.mouseEnter` drives the ownership, because a browser hands the
+  // focus out on its own terms: a page that is not focused delivers no focus
+  // event, and the item then owns nothing. The hook treats the two the same.
   it('sets aria-describedby only on the active item, with the popover id', async () => {
     render(<TestPreviewCards />);
 
@@ -357,22 +364,32 @@ describe('useMenu2ItemPopover', () => {
       expect(getItem(item.label)).not.to.have.attribute('aria-describedby');
     });
 
-    await act(async () => {
-      getItem('Restore version').focus();
-    });
+    fireEvent.mouseEnter(getItem('Restore version'));
 
-    // The attribute follows the focus through a render.
-    await waitFor(() => {
-      expect(getItem('Restore version')).to.have.attribute('aria-describedby');
-    });
-    const describedBy = getItem('Restore version').getAttribute('aria-describedby');
+    expect(getItem('Restore version')).to.have.attribute('aria-describedby');
     expect(getItem('Template gallery')).not.to.have.attribute('aria-describedby');
     expect(getItem('Publish to web')).not.to.have.attribute('aria-describedby');
 
+    // The attribute names the surface that holds the card. Read the id off the
+    // card, so the assertion cannot pass on an element that left the document.
     const previewCard = await screen.findByTestId('preview-card');
-    const popover = document.getElementById(describedBy!);
-    expect(popover).not.to.equal(null);
-    expect(popover!.contains(previewCard)).to.equal(true);
+    const popover = previewCard.parentElement!;
+    expect(popover.id).not.to.equal('');
+    expect(getItem('Restore version')).to.have.attribute('aria-describedby', popover.id);
+  });
+
+  // The focus path of the same rule. It runs on its own, so a browser that
+  // refuses the focus fails only this test.
+  it('sets aria-describedby on the item that takes the focus', async () => {
+    render(<TestPreviewCards />);
+
+    const item = getItem('Restore version');
+    await act(async () => {
+      item.focus();
+    });
+
+    expect(item).to.have.attribute('aria-describedby');
+    expect(getItem('Template gallery')).not.to.have.attribute('aria-describedby');
   });
 
   it('removes aria-describedby from the item that loses the popover', async () => {
@@ -494,21 +511,20 @@ describe('useMenu2ItemPopover', () => {
     await expectClosed();
   });
 
+  // `fireEvent` hands the popover over, because the second item has to take it
+  // while the first one still holds it. A pointer move cannot do that: it
+  // leaves the first item on the way, which closes the popover in between.
   it('shares one popover between the items', async () => {
-    const { user } = render(<TestPreviewCards />);
+    render(<TestPreviewCards />);
 
-    await user.hover(getItem('Template gallery'));
+    fireEvent.mouseEnter(getItem('Template gallery'));
     expect(await screen.findByTestId('preview-card')).to.have.text(items[0].description);
 
-    await user.hover(getItem('Restore version'));
+    fireEvent.mouseEnter(getItem('Restore version'));
 
-    await waitFor(
-      () => {
-        expect(screen.getByTestId('preview-card')).to.have.text(items[2].description);
-      },
-      // The card waits for the ancestor animations before it paints.
-      { timeout: 3000 },
-    );
+    await waitFor(() => {
+      expect(screen.getByTestId('preview-card')).to.have.text(items[2].description);
+    });
     expect(document.querySelectorAll('[data-testid="preview-card"]')).to.have.length(1);
     expectAnchor('Restore version');
   });
@@ -773,7 +789,7 @@ describe('useMenu2ItemPopover', () => {
     expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
 
     // The card appears only when the transition ends.
-    await screen.findByTestId('preview-card', undefined, { timeout: 3000 });
+    await screen.findByTestId('preview-card');
   });
 
   // The menu closes while the card still waits, so the wait has to end with it.
@@ -818,6 +834,83 @@ describe('useMenu2ItemPopover', () => {
 
       await screen.findByTestId('preview-card');
       expect(animation.playState).to.equal('paused');
+    } finally {
+      animation.cancel();
+    }
+  });
+
+  // An animation that repeats for ever never reaches an end, so a wait on it
+  // would hold the card for as long as the menu is open.
+  it.skipIf(isJsdom())('does not wait for an endless ancestor animation', async () => {
+    render(<TestAnimatedAncestor />);
+
+    const ancestor = screen.getByTestId('ancestor');
+    const animation = ancestor.animate(
+      [{ transform: 'translateX(0px)' }, { transform: 'translateX(50px)' }],
+      { duration: 200, iterations: Infinity },
+    );
+
+    try {
+      fireEvent.mouseEnter(screen.getByTestId('item'));
+
+      expect(document.querySelector('[data-testid="preview-card"]')).not.to.equal(null);
+    } finally {
+      animation.cancel();
+    }
+  });
+
+  // The state at the start of the wait is not the final one. An animation that
+  // runs when the card starts to wait can stop right after, and it then never
+  // ends. The wait re-reads the ancestors, so it sees the new state.
+  it.skipIf(isJsdom())(
+    'opens the card when an ancestor animation stops after it waits',
+    async () => {
+      render(<TestAnimatedAncestor />);
+
+      const ancestor = screen.getByTestId('ancestor');
+      const animation = ancestor.animate(
+        [{ transform: 'translateX(0px)' }, { transform: 'translateX(50px)' }],
+        4000,
+      );
+
+      try {
+        fireEvent.mouseEnter(screen.getByTestId('item'));
+        expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
+
+        animation.pause();
+
+        // Well inside the deadline of the hook, so only the re-read can pass it.
+        await waitFor(
+          () => {
+            expect(document.querySelector('[data-testid="preview-card"]')).not.to.equal(null);
+          },
+          { timeout: 400 },
+        );
+      } finally {
+        animation.cancel();
+      }
+    },
+  );
+
+  // The last line of defence. An ancestor animation that outlives the menu must
+  // not hold the card, whatever it does, so the wait has a deadline.
+  it.skipIf(isJsdom())('opens the card when an ancestor animation outlasts the menu', async () => {
+    render(<TestAnimatedAncestor />);
+
+    const ancestor = screen.getByTestId('ancestor');
+    const animation = ancestor.animate(
+      [{ transform: 'translateX(0px)' }, { transform: 'translateX(50px)' }],
+      6000,
+    );
+
+    try {
+      fireEvent.mouseEnter(screen.getByTestId('item'));
+      expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
+
+      await screen.findByTestId('preview-card', undefined, { timeout: 2000 });
+      // The animation still runs, so the deadline opened the card, not the end
+      // of the animation.
+      expect(animation.playState).to.equal('running');
     } finally {
       animation.cancel();
     }
