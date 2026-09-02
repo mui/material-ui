@@ -304,11 +304,16 @@ These are settled. The detail stays here, because the caveats matter.
    - **A facade.** We put a Material UI facade over the root props and the callbacks.
    - **Inheritance.** We accept the inheritance, pin the exact version, and state clearly that the Base UI API is a part of the Material UI contract.
 6. **The tint of an open submenu parent.** An open trigger paints `action.hover`, which is the value that a hovered item paints. The two states never occur on one row at the same time, so a reader cannot confuse them today. But the open state borrows a tint that means something else. Nothing in the palette is lighter and still visible, because the next step is full transparency. A lighter open state therefore needs a dedicated token, not an action tint. A design owner or a Material Design owner must decide.
+7. **The collapsed trigger API duplicates the Base UI item registration.** Base UI uses `Menu.SubmenuTrigger` as the menu item that opens a submenu, and its documentation says so. Our API takes that item as an element instead: `trigger={<Menu2Item>View options</Menu2Item>}`. `Menu2Item` renders `Menu.Item`, so one DOM node registers as a menu item twice. It runs `useCompositeListItem` twice and `useMenuItem` twice. The composite index stays correct, because `CompositeList` keys its map by DOM node, and the two entries collapse into one. The cost is elsewhere. The inner item reads its highlight from the store of the child menu, and its index from the list of the parent menu. A parent trigger therefore copied the highlight of its child. A context stops the inner item from adding its highlight class, and that mask is what we ship. Two typeahead registrations and two keyboard handler sets stay on the node. A checkbox item and a radio item cannot avoid the duplication at all, because the indicator needs a context that only `Menu.CheckboxItem` and `Menu.RadioItem` create.
+
+   We keep the mask, because the two alternatives both break a settled decision. If the item skips its own `Menu.Item` when it is the trigger, a wrapped trigger loses `disabled` and `label`, which breaks the `Tooltip` pattern above. We measured this. If `Menu2Submenu` renders the trigger itself, the caller has no element to wrap, so the `Tooltip` pattern moves onto `Menu2Submenu`.
+
+   An unfolded submenu API removes the duplication instead of masking it. A separate `Menu2SubmenuTrigger` part renders `Menu.SubmenuTrigger` with the item styles, so the node registers once, and a `Tooltip` still wraps that part. We removed those parts when we collapsed the API, so this question asks whether the smaller API is worth the duplication.
 
 ### Rollout plan
 
 1. Behavior benchmark: **done**. The results are above.
-2. Design phase for the API shape: **in progress**. The decisions above are settled against the playground and the recipes previews. The six open questions above are the remainder.
+2. Design phase for the API shape: **in progress**. The decisions above are settled against the playground and the recipes previews. The seven open questions above are the remainder.
 3. Release `Unstable_Menu2` in a v9 minor version. The conformance suites cover 10 of the 12 parts already; the root and the submenu still need one, and the API docs and the Menu page demos are not written.
 4. Make changes from the feedback, then remove the `Unstable_` prefix when the API settles.
 
