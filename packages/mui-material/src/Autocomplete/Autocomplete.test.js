@@ -4110,6 +4110,45 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: getOptionValue', () => {
+    const options = [
+      { id: 'foo', label: 'Foo' },
+      { id: 'bar', label: 'Bar' },
+    ];
+
+    it('uses option labels for mapped values', () => {
+      render(
+        <Autocomplete
+          multiple
+          options={options}
+          value={['foo', 'bar']}
+          getOptionLabel={(option) => option.label}
+          getOptionValue={(option) => option.id}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      expect(screen.getByText('Foo')).not.to.equal(null);
+      expect(screen.getByText('Bar')).not.to.equal(null);
+    });
+
+    it('uses custom equality when resolving mapped values to options', () => {
+      render(
+        <Autocomplete
+          multiple
+          options={options}
+          value={['FOO']}
+          getOptionLabel={(option) => option.label}
+          getOptionValue={(option) => option.id}
+          isOptionEqualToValue={(option, value) => option.id.toUpperCase() === value}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      expect(screen.getByText('Foo')).not.to.equal(null);
+    });
+  });
+
   it('should specify option key for duplicate options', () => {
     render(
       <Autocomplete

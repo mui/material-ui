@@ -532,23 +532,59 @@ describe('useAutocomplete', () => {
       );
     });
 
+    it('returns a resolver for mapped values', () => {
+      let resolveOptionValue;
+
+      function ResolverTest() {
+        const { getInputProps, getOptionFromValue } = useAutocomplete({
+          options,
+          getOptionValue: (option) => option.id,
+        });
+        resolveOptionValue = getOptionFromValue;
+        return <input {...getInputProps()} />;
+      }
+
+      render(<ResolverTest />);
+
+      expect(resolveOptionValue('foo')).to.equal(options[0]);
+      expect(resolveOptionValue('missing')).to.equal(null);
+    });
+
     it('returns the mapped option value when selecting a single option', async () => {
       const onChange = spy();
 
-      const { user } = render(
-        <Test
-          multiple={false}
-          value={undefined}
-          getOptionLabel={(option) => option.label ?? option}
-          onChange={onChange}
-        />,
-      );
+      const { user } = render(<Test multiple={false} value={undefined} onChange={onChange} />);
       await user.click(screen.getByRole('option', { name: 'Bar' }));
 
+      expect(screen.getByRole('combobox')).to.have.value('Bar');
       expect(onChange.callCount).to.equal(1);
       expect(onChange.args[0][1]).to.equal('bar');
       expect(onChange.args[0][2]).to.equal('selectOption');
       expect(onChange.args[0][3]).to.deep.equal({ option: options[1] });
+    });
+
+    it('uses the option label for a mapped controlled value', () => {
+      render(<Test multiple={false} value="foo" />);
+
+      expect(screen.getByRole('combobox')).to.have.value('Foo');
+    });
+
+    it('uses custom equality when resolving a mapped value to its option', () => {
+      render(
+        <Test
+          multiple={false}
+          value="FOO"
+          isOptionEqualToValue={(option, value) => option.id.toUpperCase() === value}
+        />,
+      );
+
+      expect(screen.getByRole('combobox')).to.have.value('Foo');
+    });
+
+    it('uses the option label for a mapped default value', () => {
+      render(<Test multiple={false} value={undefined} defaultValue="foo" />);
+
+      expect(screen.getByRole('combobox')).to.have.value('Foo');
     });
 
     it('appends the mapped option value when selecting multiple options', async () => {
