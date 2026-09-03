@@ -256,7 +256,7 @@ export default function AllComponentsDemo() {
             placeItems: 'center',
           }}
         >
-          <Box ref={demoRef} sx={{ display: 'contents' }}>
+          <Box ref={demoRef} data-density-demo sx={{ display: 'contents' }}>
             <ThemeProvider theme={densityTheme}>{spec.render(values)}</ThemeProvider>
           </Box>
           {measured ? (

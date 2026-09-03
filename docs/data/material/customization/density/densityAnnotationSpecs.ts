@@ -89,7 +89,8 @@ export const DENSITY_ANNOTATIONS: Record<
       { on: base, aspect: 'touch-target', root: true, label: 'InputBase' },
       { on: baseInput, aspect: 'padding', axis: 'block', token: small ? 'xx-small' : 'x-small', label: 'InputBase' },
       { on: '.MuiInput-root', aspect: 'touch-target', root: true, label: 'Standard' },
-      { on: '.MuiInput-input', aspect: 'padding', axis: 'block', token: small ? 'xx-small' : 'x-small', label: 'Standard' },
+      // 8px top, 6px bottom — two values, so no single token can name them.
+      { on: '.MuiInput-input', aspect: 'padding', axis: 'block', label: 'Standard' },
       { on: '.MuiFilledInput-root', aspect: 'touch-target', root: true, label: 'Filled' },
       // Asymmetric: `large` on top, `small` underneath — two captions.
       { on: '.MuiFilledInput-input', aspect: 'padding', axis: 'block', label: 'Filled' },
