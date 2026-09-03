@@ -51,8 +51,10 @@ export default function mergeSlotProps<
         ...defaultSlotPropsValue,
         ...externalSlotPropsValue,
         ...handlers,
-        ...(!!className && { className }),
       };
+      if (className) {
+        result.className = className;
+      }
       if (defaultSlotPropsValue?.style && externalSlotPropsValue?.style) {
         result.style = { ...defaultSlotPropsValue.style, ...externalSlotPropsValue.style };
       }
@@ -76,8 +78,10 @@ export default function mergeSlotProps<
     ...defaultSlotProps,
     ...externalSlotProps,
     ...handlers,
-    ...(!!className && { className }),
   };
+  if (className) {
+    result.className = className;
+  }
   if (typedDefaultSlotProps?.style && externalSlotProps?.style) {
     result.style = { ...typedDefaultSlotProps.style, ...externalSlotProps.style };
   }
