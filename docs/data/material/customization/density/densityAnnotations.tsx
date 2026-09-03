@@ -25,6 +25,11 @@ const MARGIN_COLOR = '#f8cb9c';
 const MARGIN_EDGE = '#d99a5b';
 const GAP_COLOR = '#9b6cd9';
 
+// Connector + caption inks, one per aspect. Darker than the fills so text holds
+// up on white, lifted in dark mode where the fills would be far too dim.
+const INK = { padding: '#4f7a35', margin: '#a8641c', gap: '#6c3fb0' };
+const INK_DARK = { padding: '#a9d18a', margin: '#f0b47a', gap: '#c9adf0' };
+
 export type Aspect = 'padding' | 'margin' | 'gap' | 'icon' | 'touch-target';
 
 export interface Annotation {
@@ -284,6 +289,7 @@ function Comb({
   side,
   label,
   labelAt,
+  tone,
 }: {
   from: { x: number; y: number }[];
   /** the coordinate the rail sits on: a y for top/bottom, an x for left/right. */
@@ -292,6 +298,8 @@ function Comb({
   label: string;
   /** where the text sits, when it had to move clear of another caption. */
   labelAt?: number;
+  /** the aspect's colour, so a line reads as padding/margin/gap on sight. */
+  tone?: string;
 }) {
   const horizontal = side === 'top' || side === 'bottom';
   const away = side === 'top' || side === 'left' ? -1 : 1;
@@ -302,7 +310,7 @@ function Comb({
     : (Math.min(...ys) + Math.max(...ys)) / 2;
 
   return (
-    <React.Fragment>
+    <g className={tone}>
       {from.map((point) => (
         <line
           key={`${point.x},${point.y}`}
@@ -358,7 +366,7 @@ function Comb({
           </text>
         </React.Fragment>
       )}
-    </React.Fragment>
+    </g>
   );
 }
 
@@ -514,6 +522,7 @@ export function Annotations({
             rail={nextRail(side)}
             side={side}
             label={caption(group[0].value, named)}
+            tone={isPadding ? 'tone-padding' : 'tone-margin'}
             labelAt={
               side === 'left' || side === 'right' ? reserveY(side, mid) : undefined
             }
@@ -561,6 +570,7 @@ export function Annotations({
           rail={nextRail(side)}
           side={side}
           label={caption(gap.size, annotation)}
+          tone="tone-gap"
           labelAt={
             side === 'left' || side === 'right'
               ? reserveY(side, band.y + band.height / 2)
@@ -654,7 +664,7 @@ export function Annotations({
     <Box
       component="svg"
       aria-hidden
-      sx={{
+      sx={(theme) => ({
         position: 'absolute',
         inset: 0,
         width: '100%',
@@ -683,7 +693,15 @@ export function Annotations({
         },
         '& .gap-box': { stroke: GAP_COLOR, strokeDasharray: '2 2' },
         '& .hatch': { stroke: GAP_COLOR, opacity: 0.55 },
-      }}
+        '& .tone-padding': { color: INK.padding },
+        '& .tone-margin': { color: INK.margin },
+        '& .tone-gap': { color: INK.gap },
+        ...theme.applyStyles('dark', {
+          '& .tone-padding': { color: INK_DARK.padding },
+          '& .tone-margin': { color: INK_DARK.margin },
+          '& .tone-gap': { color: INK_DARK.gap },
+        }),
+      })}
     >
       <defs>
         <pattern

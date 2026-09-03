@@ -26,6 +26,11 @@ const MARGIN_COLOR = '#f8cb9c';
 const MARGIN_EDGE = '#d99a5b';
 const GAP_COLOR = '#9b6cd9';
 
+// Connector + caption inks, one per aspect. Darker than the fills so text holds
+// up on white, lifted in dark mode where the fills would be far too dim.
+const INK = { padding: '#4f7a35', margin: '#a8641c', gap: '#6c3fb0' };
+const INK_DARK = { padding: '#a9d18a', margin: '#f0b47a', gap: '#c9adf0' };
+
 /** The slot a reader toggles: every annotation on it goes together. */
 export const slotLabel = (annotation) =>
   annotation.label ??
@@ -224,7 +229,7 @@ export function useAnnotations(stageRef, demoRef, annotations, deps) {
 
 /** One caption's connector: a stem out of every band it names, a rail joining
  * them, a riser to the label. Axis-aligned throughout — never a diagonal. */
-function Comb({ from, rail, side, label, labelAt }) {
+function Comb({ from, rail, side, label, labelAt, tone }) {
   const horizontal = side === 'top' || side === 'bottom';
   const away = side === 'top' || side === 'left' ? -1 : 1;
   const xs = from.map((point) => point.x);
@@ -234,7 +239,7 @@ function Comb({ from, rail, side, label, labelAt }) {
     : (Math.min(...ys) + Math.max(...ys)) / 2;
 
   return (
-    <React.Fragment>
+    <g className={tone}>
       {from.map((point) => (
         <line
           key={`${point.x},${point.y}`}
@@ -294,7 +299,7 @@ function Comb({ from, rail, side, label, labelAt }) {
           </text>
         </React.Fragment>
       )}
-    </React.Fragment>
+    </g>
   );
 }
 
@@ -315,6 +320,10 @@ Comb.propTypes = {
    */
   rail: PropTypes.number.isRequired,
   side: PropTypes.oneOf(['bottom', 'left', 'right', 'top']).isRequired,
+  /**
+   * the aspect's colour, so a line reads as padding/margin/gap on sight.
+   */
+  tone: PropTypes.string,
 };
 
 function Annotations({ measured, bounds }) {
@@ -467,6 +476,7 @@ function Annotations({ measured, bounds }) {
             rail={nextRail(side)}
             side={side}
             label={caption(group[0].value, named)}
+            tone={isPadding ? 'tone-padding' : 'tone-margin'}
             labelAt={
               side === 'left' || side === 'right' ? reserveY(side, mid) : undefined
             }
@@ -514,6 +524,7 @@ function Annotations({ measured, bounds }) {
           rail={nextRail(side)}
           side={side}
           label={caption(gap.size, annotation)}
+          tone="tone-gap"
           labelAt={
             side === 'left' || side === 'right'
               ? reserveY(side, band.y + band.height / 2)
@@ -611,7 +622,7 @@ function Annotations({ measured, bounds }) {
     <Box
       component="svg"
       aria-hidden
-      sx={{
+      sx={(theme) => ({
         position: 'absolute',
         inset: 0,
         width: '100%',
@@ -648,7 +659,15 @@ function Annotations({ measured, bounds }) {
         },
         '& .gap-box': { stroke: GAP_COLOR, strokeDasharray: '2 2' },
         '& .hatch': { stroke: GAP_COLOR, opacity: 0.55 },
-      }}
+        '& .tone-padding': { color: INK.padding },
+        '& .tone-margin': { color: INK.margin },
+        '& .tone-gap': { color: INK.gap },
+        ...theme.applyStyles('dark', {
+          '& .tone-padding': { color: INK_DARK.padding },
+          '& .tone-margin': { color: INK_DARK.margin },
+          '& .tone-gap': { color: INK_DARK.gap },
+        }),
+      })}
     >
       <defs>
         <pattern
