@@ -1,6 +1,8 @@
 # Material UI styling
 
-Version 1.0.0
+Version 1.0.0 (Material UI v9)
+
+> **Version notice:** This skill targets Material UI v9 (`>=9.0.0 <10.0.0`). If you are using a different major version, verify the API details before following this guidance.
 
 > Note: This document is for agents and LLMs maintaining or generating Material UI code. It follows [How to customize](https://mui.com/material-ui/customization/how-to-customize.md) and related sources in this repository (`docs/data/material/customization/`, `docs/data/system/`).
 
@@ -27,8 +29,8 @@ Material UI stacks four strategies from narrowest to broadest scope. Pick the s
 
 ## Quick decision (use in order)
 
-1. Single instance or local layout? → [`sx`](https://mui.com/system/getting-started/the-sx-prop.md)
-2. Same override in many places? → [`styled()`](https://mui.com/system/styled.md) around the MUI component (or a thin wrapper component)
+1. Single instance or local layout? → [`sx`](https://mui.com/system/getting-started/the-sx-prop/)
+2. Same override in many places? → [`styled()`](https://mui.com/system/styled/) around the MUI component (or a thin wrapper component)
 3. All instances of a component should look different by default? → [`theme.components`](https://mui.com/material-ui/customization/theme-components.md) (`styleOverrides`, `variants`, `defaultProps`)
 4. Global element baselines (for example all `h1`) or non-component CSS? → [`GlobalStyles`](https://mui.com/material-ui/api/global-styles.md) or [`CssBaseline`](https://mui.com/material-ui/react-css-baseline.md) overrides
 
@@ -78,7 +80,7 @@ import { styled } from '@mui/material/styles';
 - `styled()` adds theme integration, optional `name` / `slot` for theme overrides, and `sx` on the result (unless disabled).
 - For custom props, use `shouldForwardProp` so DOM/React does not receive invalid attributes. Extend the component's prop types in TypeScript.
 
-Dynamic styling: prefer CSS variables or conditional style objects in the style callback; avoid per-field functions inside the style object for readability (see [styled() docs](https://mui.com/system/styled.md)).
+Dynamic styling: prefer CSS variables or conditional style objects in the style callback; avoid per-field functions inside the style object for readability (see [styled() docs](https://mui.com/system/styled/)).
 
 ---
 
@@ -114,26 +116,26 @@ Use when: styling raw HTML elements or app-wide snippets that are not tied to a 
 | Meaning of numeric padding like `1`          | Theme spacing unit | Pixels, not `theme.spacing(1)`                               |
 | Theme palette strings (`'primary.main'`)     | Yes                | Use `theme` in a function                                    |
 
-To reuse `sx` logic inside `styled()`, use theme's `unstable_sx` (see [styled()—Difference with the sx prop](https://mui.com/system/styled.md#difference-with-the-sx-prop)).
+To reuse `sx` logic inside `styled()`, use theme's `unstable_sx` (see [styled()—Difference with the sx prop](https://mui.com/system/styled/#difference-with-the-sx-prop)).
 
 ---
 
 ## Imports and consistency
 
 - In application code, prefer one-level imports from packages (for example `@mui/material/Button`) to avoid pulling the entire barrel.
-- `Box` / `Stack` / `Typography` / `Grid`: system layout props apply directly on these; other components use `sx` for system shortcuts, not arbitrary CSS prop shortcuts on the component itself.
+- Use `sx` for system layout shortcuts (`p`, `gap`, `mt`, etc.) on MUI components; use component props only for behavior documented by that component.
 
 ---
 
 ## Further reading (repo / site)
 
-| Topic                   | Doc                                                                                           |
-| :---------------------- | :-------------------------------------------------------------------------------------------- |
-| Choosing strategy       | [How to customize](https://mui.com/material-ui/customization/how-to-customize.md)             |
-| `sx` reference          | [The sx prop](https://mui.com/system/getting-started/the-sx-prop.md)                          |
-| `styled()` API          | [styled()](https://mui.com/system/styled.md)                                                  |
-| Theme per component     | [Themed components](https://mui.com/material-ui/customization/theme-components.md)            |
-| System property mapping | [System properties](https://mui.com/system/properties.md)                                     |
-| State / class naming    | [Advanced—Class names](https://mui.com/system/styles/advanced.md#class-names) (system styles) |
+| Topic                   | Doc                                                                                          |
+| :---------------------- | :------------------------------------------------------------------------------------------- |
+| Choosing strategy       | [How to customize](https://mui.com/material-ui/customization/how-to-customize.md)            |
+| `sx` reference          | [The sx prop](https://mui.com/system/getting-started/the-sx-prop/)                           |
+| `styled()` API          | [styled()](https://mui.com/system/styled/)                                                   |
+| Theme per component     | [Themed components](https://mui.com/material-ui/customization/theme-components.md)           |
+| System property mapping | [System properties](https://mui.com/system/properties/)                                      |
+| State / class naming    | [State classes](https://mui.com/material-ui/customization/how-to-customize.md#state-classes) |
 
 For MUI-specific class and state tables, see [reference.md](reference.md).

@@ -1,7 +1,7 @@
 import { alpha, styled } from '@mui/material/styles';
 import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../../branding';
 import { useTranslate } from '../../i18n';
-import { SlotDefinition } from '../definitions';
+import { type SlotDefinition } from '../definitions';
 import { ApiItemContainer, ExpandableApiItem } from './ExpandableApiItem';
 
 const StyledApiItem = styled(ExpandableApiItem)(
@@ -28,7 +28,7 @@ const StyledApiItem = styled(ExpandableApiItem)(
     },
   }),
   ({ theme }) => ({
-    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+    [`*:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& .global-class-value': {
         borderColor: alpha(darkTheme.palette.primary[400], 0.1),
         backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),

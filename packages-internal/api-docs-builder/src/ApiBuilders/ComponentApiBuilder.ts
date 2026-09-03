@@ -33,8 +33,6 @@ import {
 import { Slot, ComponentInfo, ApiItemDescription } from '../types/utils.types';
 import extractInfoFromEnum from '../utils/extractInfoFromEnum';
 
-const cssComponents = new Set(['Box', 'Grid', 'Typography', 'Stack']);
-
 /**
  * Produces markdown of the description that can be hosted anywhere.
  *
@@ -353,7 +351,6 @@ const generateApiPage = async (
     demos: `<ul>${reactApi.demos
       .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
-    cssComponent: cssComponents.has(reactApi.name),
     deprecated: reactApi.deprecated,
   };
 
@@ -377,31 +374,19 @@ const generateApiPage = async (
     await writePrettifiedFile(
       path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
       `import * as React from 'react';
-  import { ApiPage } from '@mui/internal-core-docs/ApiPage';
-  import { mapApiPageTranslations } from '@mui/internal-core-docs/mapApiPageTranslations';${
-    layoutConfigPath === ''
-      ? ''
-      : `
-  import layoutConfig from '${layoutConfigPath}';`
-  }
-  import jsonPageContent from './${kebabCase(reactApi.name)}.json';
+import { ApiPage } from '@mui/internal-core-docs/ApiPage';${
+        layoutConfigPath === ''
+          ? ''
+          : `
+import layoutConfig from '${layoutConfigPath}';`
+      }
+import descriptions from '${importTranslationPagesDirectory}/${kebabCase(reactApi.name)}/${kebabCase(reactApi.name)}.json';
+import jsonPageContent from './${kebabCase(reactApi.name)}.json';
 
-  export default function Page(props) {
-    const { descriptions } = props;
-    return <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={jsonPageContent} />;
-  }
-
-  export async function getStaticProps() {
-    const req = require.context(
-      '${importTranslationPagesDirectory}/${kebabCase(reactApi.name)}',
-      false,
-      /\\.\\/${kebabCase(reactApi.name)}.*\\.json$/,
-    );
-    const descriptions = mapApiPageTranslations(req);
-
-    return { props: { descriptions } };
-  }
-  `.replace(/\r?\n/g, reactApi.EOL),
+export default function Page() {
+  return <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={jsonPageContent} />;
+}
+`.replace(/\r?\n/g, reactApi.EOL),
     );
   }
 };

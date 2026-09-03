@@ -21,7 +21,7 @@ export default function Templates() {
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <TemplateHero />
         <References companies={TEMPLATES_CUSTOMERS} />
         <Divider />

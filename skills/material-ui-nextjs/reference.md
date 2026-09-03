@@ -1,4 +1,4 @@
-# Material UI + Next.js: reference
+# MaterialÂ UI + Next.js: reference
 
 ## `@mui/material-nextjs` entry points
 

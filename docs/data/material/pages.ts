@@ -20,6 +20,7 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/getting-started/supported-components' },
       { pathname: '/material-ui/getting-started/supported-platforms' },
       { pathname: '/material-ui/getting-started/support' },
+      { pathname: '/material-ui/getting-started/versions' },
     ],
   },
   {
@@ -203,6 +204,11 @@ const pages: MuiPage[] = [
             newFeature: true,
           },
           { pathname: '/material-ui/customization/density' },
+          {
+            pathname: '/material-ui/customization/focus-visible',
+            title: 'Focus visible',
+            newFeature: true,
+          },
           { pathname: '/material-ui/customization/z-index', title: 'z-index' },
           { pathname: '/material-ui/customization/transitions' },
         ],

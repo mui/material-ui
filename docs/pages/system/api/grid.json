@@ -47,6 +47,7 @@
       },
       "default": "0"
     },
+    "unstable_level": { "type": { "name": "number" } },
     "wrap": {
       "type": {
         "name": "enum",
@@ -107,6 +108,5 @@
   "forwardsRefTo": "HTMLElement",
   "filename": "/packages/mui-system/src/Grid/Grid.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-grid/\">Grid (Material UI)</a></li></ul>",
-  "cssComponent": true
+  "demos": "<ul><li><a href=\"/material-ui/react-grid/\">Grid (Material UI)</a></li></ul>"
 }

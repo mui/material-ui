@@ -1,7 +1,8 @@
 {
   "version": "1.0.0",
-  "organization": "Material UI",
-  "abstract": "Tailwind CSS v4 with Material UI via @layer ordering and enableCssLayer; Next.js App/Pages and Vite setup; className and slotProps; @theme token bridge from --mui-* variables; VS Code IntelliSense; Tailwind v3 legacy path via interoperability guide.",
+  "muiVersion": ">=9.0.0 <10.0.0",
+  "organization": "Material UI",
+  "abstract": "Tailwind CSS v4 with Material UI via @layer ordering and enableCssLayer; Next.js App/Pages and Vite setup; className and slotProps; @theme token bridge from --mui-* variables; VS Code IntelliSense; Tailwind v3 legacy path via interoperability guide.",
   "references": [
     "https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4.md",
     "https://mui.com/material-ui/integrations/interoperability.md#tailwind-css-v3",

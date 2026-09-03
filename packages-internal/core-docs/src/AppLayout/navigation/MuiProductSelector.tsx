@@ -1,11 +1,11 @@
 import * as React from 'react';
 import NextLink from 'next/link';
-import { styled, alpha, Theme } from '@mui/material/styles';
+import { styled, alpha, type Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import MenuList, { MenuListProps } from '@mui/material/MenuList';
-import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
+import MenuList, { type MenuListProps } from '@mui/material/MenuList';
+import MenuItem, { type MenuItemProps } from '@mui/material/MenuItem';
 import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
@@ -13,7 +13,6 @@ import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
 import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
 import EventNoteRoundedIcon from '@mui/icons-material/EventNoteRounded';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
-import WebRoundedIcon from '@mui/icons-material/WebRounded';
 import { ROUTES } from '../../constants';
 import { MuiLogomarkIcon, BaseUiLogoIcon } from '../../svgIcons';
 import PageContext from '../../PageContext';
@@ -141,13 +140,6 @@ const coreProducts = [
     description: 'Unstyled components for accessible UIs.',
     icon: <BaseUiLogoIcon width={14} height={16} sx={logoColor} />,
     href: ROUTES.baseDocs,
-  },
-  {
-    id: 'joy-ui',
-    name: 'Joy UI',
-    description: 'Delightful modern components.',
-    icon: <WebRoundedIcon sx={iconStyles} />,
-    href: ROUTES.joyDocs,
   },
   {
     id: 'system',

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { styled, Theme } from '@mui/material/styles';
+import { styled, type Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import { SxProps } from '@mui/system';
+import type { SxProps } from '@mui/system';
 import { ThemeOptionsContext } from '../ThemeContext';
 
 export type IconImageProps = {
@@ -52,6 +52,7 @@ export default function IconImage(props: IconImageProps) {
   const themeOptions = React.useContext(ThemeOptionsContext);
   const [firstRender, setFirstRender] = React.useState(true);
   React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setFirstRender(false);
     neverHydrated = false;
   }, []);

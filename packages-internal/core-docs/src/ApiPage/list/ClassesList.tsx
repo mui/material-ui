@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import { useTranslate } from '../../i18n';
 import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../../branding';
 import { ApiItemContainer, ExpandableApiItem } from './ExpandableApiItem';
-import { ClassDefinition } from '../definitions/types';
+import { type ClassDefinition } from '../definitions/types';
 import { ApiWarningAlert } from '../ApiWarningAlert';
 
 const StyledApiItem = styled(ExpandableApiItem)(
@@ -29,7 +29,7 @@ const StyledApiItem = styled(ExpandableApiItem)(
     },
   }),
   ({ theme }) => ({
-    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+    [`*:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& .prop-list-title': {
         color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
       },

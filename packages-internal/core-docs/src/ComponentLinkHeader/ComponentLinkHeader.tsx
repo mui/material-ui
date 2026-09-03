@@ -5,7 +5,7 @@ import Tooltip from '@mui/material/Tooltip';
 import ChatRounded from '@mui/icons-material/ChatRounded';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { styled } from '@mui/material/styles';
-import { MarkdownHeaders } from '@mui/internal-markdown';
+import { type MarkdownHeaders } from '@mui/internal-markdown';
 import {
   FigmaIcon,
   BundleSizeIcon,
@@ -37,7 +37,6 @@ const Root = styled('ul')(({ theme }) => ({
 
 const defaultPackageNames: Record<string, string | undefined> = {
   'material-ui': '@mui/material',
-  'joy-ui': '@mui/joy',
   system: '@mui/system',
 };
 
@@ -195,25 +194,23 @@ export function ComponentLinkHeader(props: ComponentLinkHeaderProps) {
               label="Figma"
             />
           </li>
-          {packageName === '@mui/joy' ? null : (
-            <li>
-              <Chip
-                clickable
-                role={undefined}
-                component="a"
-                size="small"
-                variant="outlined"
-                rel="nofollow"
-                href="https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
-                icon={<SketchIcon />}
-                data-ga-event-category="ComponentLinkHeader"
-                data-ga-event-action="click"
-                data-ga-event-label="Sketch"
-                data-ga-event-split="0.1"
-                label="Sketch"
-              />
-            </li>
-          )}
+          <li>
+            <Chip
+              clickable
+              role={undefined}
+              component="a"
+              size="small"
+              variant="outlined"
+              rel="nofollow"
+              href="https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
+              icon={<SketchIcon />}
+              data-ga-event-category="ComponentLinkHeader"
+              data-ga-event-action="click"
+              data-ga-event-label="Sketch"
+              data-ga-event-split="0.1"
+              label="Sketch"
+            />
+          </li>
         </React.Fragment>
       )}
     </Root>

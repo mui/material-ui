@@ -1,4 +1,4 @@
-import AdDisplay, { AdParameters } from './AdDisplay';
+import AdDisplay, { type AdParameters } from './AdDisplay';
 
 export default function AdInHouse(props: { ad: Omit<AdParameters, 'poweredby' | 'label'> }) {
   const { ad } = props;

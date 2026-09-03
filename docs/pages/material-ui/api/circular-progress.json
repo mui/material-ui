@@ -97,6 +97,5 @@
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/CircularProgress/CircularProgress.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-progress/\">Progress</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-progress/\">Progress</a></li></ul>"
 }

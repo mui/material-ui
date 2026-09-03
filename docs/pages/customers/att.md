@@ -38,7 +38,7 @@ Their internal applications, MyResults and MyCOACH, serve as key platforms for p
   MUI X has enabled us to develop faster and maintain standards across our multiple applications.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
-    – <a href="https://www.linkedin.com/in/blisskeith/" target="_blank" rel="noopener">Bliss Keith</a>, Principal Scrum Master
+    – <a href="https://www.linkedin.com/in/blisskeith/" target="_blank">Bliss Keith</a>, Principal Scrum Master
   </span>
 </blockquote>
 </span>
@@ -47,7 +47,7 @@ Their internal applications, MyResults and MyCOACH, serve as key platforms for p
   MUI X has enabled us to develop faster and maintain standards across our multiple applications.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
-    – <a href="https://www.linkedin.com/in/blisskeith/" target="_blank" rel="noopener">Bliss Keith</a>, Principal Scrum Master
+    – <a href="https://www.linkedin.com/in/blisskeith/" target="_blank">Bliss Keith</a>, Principal Scrum Master
   </span>
 </blockquote>
 </span>

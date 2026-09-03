@@ -10,9 +10,8 @@ import { MenuProps } from '../Menu';
  */
 
 export type SelectChangeEvent<Value = string> = Value extends (string & {}) | number
-  ?
-      | React.ChangeEvent<Omit<HTMLInputElement, 'value'> & { value: Value }>
-      | (Event & { target: { value: Value; name: string } })
+  ? | React.ChangeEvent<Omit<HTMLInputElement, 'value'> & { value: Value }>
+    | (Event & { target: { value: Value; name: string } })
   : React.ChangeEvent<HTMLInputElement> | (Event & { target: { value: Value; name: string } });
 
 export interface SelectInputProps<Value = unknown> {
@@ -25,8 +24,7 @@ export interface SelectInputProps<Value = unknown> {
   inputRef?:
     | ((
         ref:
-          | HTMLSelectElement
-          | { node: HTMLInputElement; value: SelectInputProps<Value>['value'] },
+          HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps<Value>['value'] },
       ) => void)
     | undefined;
   MenuProps?: Partial<MenuProps> | undefined;

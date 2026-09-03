@@ -23,6 +23,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
+import { applyInsetFocusVisible } from '../styles/focusVisible';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
@@ -59,6 +60,7 @@ const useUtilityClasses = (ownerState) => {
     listbox: ['listbox'],
     loading: ['loading'],
     noOptions: ['noOptions'],
+    status: ['status'],
     option: ['option'],
     groupLabel: ['groupLabel'],
     groupUl: ['groupUl'],
@@ -312,6 +314,11 @@ const AutocompleteLoading = styled('div', {
   })),
 );
 
+const AutocompleteStatus = styled('div', {
+  name: 'MuiAutocomplete',
+  slot: 'Status',
+})({});
+
 const AutocompleteNoOptions = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'NoOptions',
@@ -332,6 +339,7 @@ const AutocompleteListbox = styled('ul', {
     padding: '8px 0',
     maxHeight: '40vh',
     overflow: 'auto',
+    isolation: 'isolate', // Prevent overlap with iOS overlay scrollbars.
     position: 'relative',
     [`& .${autocompleteClasses.option}`]: {
       minHeight: 48,
@@ -361,9 +369,16 @@ const AutocompleteListbox = styled('ul', {
         opacity: (theme.vars || theme).palette.action.disabledOpacity,
         pointerEvents: 'none',
       },
-      [`&.${autocompleteClasses.focusVisible}`]: {
-        backgroundColor: (theme.vars || theme).palette.action.focus,
-      },
+      [`&.${autocompleteClasses.focusVisible}`]: theme.focusVisible
+        ? {
+            // Options are plain <li> (not ButtonBase), so add the ring here, keyed to the
+            // keyboard-navigation state. It insets: the listbox scrolls and would clip an outset ring.
+            ...applyInsetFocusVisible(1),
+            ...theme.focusVisible,
+          }
+        : {
+            backgroundColor: (theme.vars || theme).palette.action.focus,
+          },
       '&[aria-selected="true"]': {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,
@@ -379,12 +394,14 @@ const AutocompleteListbox = styled('ul', {
             backgroundColor: (theme.vars || theme).palette.action.selected,
           },
         },
-        [`&.${autocompleteClasses.focusVisible}`]: {
-          backgroundColor: theme.alpha(
-            (theme.vars || theme).palette.primary.main,
-            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
-          ),
-        },
+        ...(!theme.focusVisible && {
+          [`&.${autocompleteClasses.focusVisible}`]: {
+            backgroundColor: theme.alpha(
+              (theme.vars || theme).palette.primary.main,
+              `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+            ),
+          },
+        }),
       },
     },
   })),
@@ -469,6 +486,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     renderInput,
     renderOption: renderOptionProp,
     renderValue,
+    resetHighlightOnMouseLeave = false,
     selectOnFocus = !props.freeSolo,
     size = 'medium',
     slots = {},
@@ -549,7 +567,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
   const { onMouseDown: handleInputMouseDown } = getInputProps();
-  const { ref: listboxRef, ...otherListboxProps } = getListboxProps();
 
   const defaultGetOptionLabel = (option) => option.label ?? option;
   const getOptionLabel = getOptionLabelProp || defaultGetOptionLabel;
@@ -593,8 +610,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     externalForwardedProps,
     ownerState,
     className: classes.listbox,
-    additionalProps: otherListboxProps,
-    ref: listboxRef,
+    getSlotProps: getListboxProps,
   });
 
   const [PaperSlot, paperProps] = useSlot('paper', {
@@ -602,6 +618,18 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     externalForwardedProps,
     ownerState,
     className: classes.paper,
+  });
+
+  const [StatusSlot, statusProps] = useSlot('status', {
+    elementType: AutocompleteStatus,
+    externalForwardedProps,
+    ownerState,
+    className: classes.status,
+    additionalProps: {
+      role: 'status',
+      'aria-live': 'polite',
+      'aria-atomic': 'true',
+    },
   });
 
   const [PopperSlot, popperProps] = useSlot('popper', {
@@ -791,24 +819,25 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       {anchorEl && hasPopupContent ? (
         <AutocompletePopper as={PopperSlot} {...popperProps}>
           <AutocompletePaper as={PaperSlot} {...paperProps}>
-            {loading && renderedOptions.length === 0 ? (
-              <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
-                {loadingText}
-              </AutocompleteLoading>
-            ) : null}
-            {renderedOptions.length === 0 && !freeSolo && !loading ? (
-              <AutocompleteNoOptions
-                className={classes.noOptions}
-                ownerState={ownerState}
-                role="presentation"
-                onMouseDown={(event) => {
-                  // Prevent input blur when interacting with the "no options" content
-                  event.preventDefault();
-                }}
-              >
-                {noOptionsText}
-              </AutocompleteNoOptions>
-            ) : null}
+            <StatusSlot {...statusProps}>
+              {loading && renderedOptions.length === 0 ? (
+                <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
+                  {loadingText}
+                </AutocompleteLoading>
+              ) : null}
+              {renderedOptions.length === 0 && !freeSolo && !loading ? (
+                <AutocompleteNoOptions
+                  className={classes.noOptions}
+                  ownerState={ownerState}
+                  onMouseDown={(event) => {
+                    // Prevent input blur when interacting with the "no options" content
+                    event.preventDefault();
+                  }}
+                >
+                  {noOptionsText}
+                </AutocompleteNoOptions>
+              ) : null}
+            </StatusSlot>
             {renderedOptions.length > 0 ? (
               <ListboxSlot {...listboxProps}>
                 {renderedOptions.map((option, index) => {
@@ -978,7 +1007,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   freeSolo: PropTypes.bool,
   /**
-   * If `true`, the input will take up the full width of its container.
+   * If `true`, the input takes up the full width of its container.
+   *
+   * `Autocomplete` treats `undefined` and `false` differently.
+   * If `undefined`, the inner input takes up the full width of its container.
+   * If `false`, the inner input is restricted to its intrinsic width.
    * @default false
    */
   fullWidth: PropTypes.bool,
@@ -1201,6 +1234,12 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   renderValue: PropTypes.func,
   /**
+   * If `true`, clears an option highlighted by mouse movement when the mouse leaves the listbox.
+   * This behavior will be enabled by default in the next major version.
+   * @default false
+   */
+  resetHighlightOnMouseLeave: PropTypes.bool,
+  /**
    * If `true`, the input's text is selected on focus.
    * It helps the user clear the selected value.
    * @default !props.freeSolo
@@ -1222,6 +1261,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     chip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    status: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -1238,6 +1278,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     popper: PropTypes.elementType,
     popupIndicator: PropTypes.elementType,
     root: PropTypes.elementType,
+    status: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

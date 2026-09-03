@@ -45,7 +45,7 @@ const StyledAutocompletePopper = styled('div')(({ theme }) => ({
       },
       [`&.${autocompleteClasses.focused}, &.${autocompleteClasses.focused}[aria-selected="true"]`]:
         {
-          backgroundColor: theme.palette.action.hover,
+          backgroundColor: (theme.vars || theme).palette.action.hover,
         },
     },
   },

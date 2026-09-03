@@ -1,12 +1,12 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { ComponentApiContent } from '@mui/internal-api-docs-builder';
+import { type ComponentApiContent } from '@mui/internal-api-docs-builder';
 import { useTranslate } from '../../i18n';
 import { SectionTitle } from '../../SectionTitle';
 import SlotsList from '../list/SlotsList';
 import SlotsTable from '../table/SlotsTable';
-import { SlotDefinition } from '../definitions/types';
+import { type SlotDefinition } from '../definitions/types';
 import {
   type ApiDisplayLayout,
   ToggleDisplayOption,

@@ -77,6 +77,5 @@
   "forwardsRefTo": "HTMLElement",
   "filename": "/packages/mui-material/src/Grid/Grid.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-grid/\">Grid</a></li></ul>",
-  "cssComponent": true
+  "demos": "<ul><li><a href=\"/material-ui/react-grid/\">Grid</a></li></ul>"
 }

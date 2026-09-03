@@ -121,6 +121,5 @@
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Checkbox/Checkbox.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-checkbox/\">Checkbox</a></li>\n<li><a href=\"/material-ui/react-transfer-list/\">Transfer List</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-checkbox/\">Checkbox</a></li>\n<li><a href=\"/material-ui/react-transfer-list/\">Transfer List</a></li></ul>"
 }

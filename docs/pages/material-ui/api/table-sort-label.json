@@ -73,6 +73,5 @@
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/TableSortLabel/TableSortLabel.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Table</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Table</a></li></ul>"
 }

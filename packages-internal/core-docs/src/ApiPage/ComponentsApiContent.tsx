@@ -3,15 +3,18 @@ import * as React from 'react';
 import type { ComponentApiContent, PropsTranslations } from '@mui/internal-api-docs-builder';
 import { kebabCase } from 'es-toolkit/string';
 import { useRouter } from 'next/router';
-import { Translate, useTranslate, useUserLanguage } from '../i18n';
-import { SectionTitle, SectionTitleProps } from '../SectionTitle';
+import { type Translate, useTranslate, useUserLanguage } from '../i18n';
+import { SectionTitle, type SectionTitleProps } from '../SectionTitle';
 import { HighlightedCode } from '../HighlightedCode';
 import { MarkdownElement } from '../MarkdownDocs/MarkdownElement';
 import type { LayoutStorageKeys } from './types';
 import { getPropsApiDefinitions } from './definitions/properties';
 import { getClassApiDefinitions } from './definitions/classes';
 import { getSlotsApiDefinitions } from './definitions/slots';
-import { ApiDisplayLayout, DEFAULT_API_LAYOUT_STORAGE_KEYS } from './sections/ToggleDisplayOption';
+import {
+  type ApiDisplayLayout,
+  DEFAULT_API_LAYOUT_STORAGE_KEYS,
+} from './sections/ToggleDisplayOption';
 import { PropertiesSection } from './sections/PropertiesSection';
 import { SlotsSection } from './sections/SlotsSection';
 import { ClassesSection } from './sections/ClassesSection';
@@ -82,7 +85,6 @@ export function ComponentsApiContent(props: ComponentsApiContentProps) {
   return components.map((key) => {
     const pageContent = pageContents[key];
     const {
-      cssComponent,
       forwardsRefTo,
       inheritance,
       name: componentName,
@@ -154,17 +156,6 @@ export function ComponentsApiContent(props: ComponentsApiContentProps) {
             layoutStorageKey={layoutStorageKey.props}
           />
           <br />
-          {cssComponent && (
-            <React.Fragment>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: t('api-docs.cssComponent').replace(/{{name}}/, pageContent.name),
-                }}
-              />
-              <br />
-              <br />
-            </React.Fragment>
-          )}
           <div
             className="MuiCallout-root MuiCallout-info"
             dangerouslySetInnerHTML={{ __html: refHint }}

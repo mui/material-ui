@@ -1,4 +1,4 @@
-import { RootSvg, RootSvgProps } from './RootSvg';
+import { RootSvg, type RootSvgProps } from './RootSvg';
 
 export function HamburgerMenuIcon(props: RootSvgProps) {
   return (

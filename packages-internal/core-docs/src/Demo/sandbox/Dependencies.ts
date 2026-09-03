@@ -1,6 +1,6 @@
 import { CODE_VARIANTS } from '../../constants/constants';
 import type { SandboxConfig } from '../../DemoContext/DemoContext';
-import { DemoData } from './types';
+import { type DemoData } from './types';
 
 const packagesWithBundledTypes = [
   'date-fns',
@@ -55,9 +55,6 @@ export function SandboxDependencies(
       commitRef === undefined ||
       process.env.SOURCE_CODE_REPO !== 'https://github.com/mui/material-ui'
     ) {
-      if (packageName === 'joy') {
-        return 'latest';
-      }
       // #npm-tag-reference
       return 'latest';
     }

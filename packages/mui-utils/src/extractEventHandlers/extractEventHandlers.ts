@@ -1,3 +1,4 @@
+import isEventHandler from '@mui/utils/isEventHandler';
 import { EventHandlers } from '../types';
 
 /**
@@ -5,26 +6,19 @@ import { EventHandlers } from '../types';
  * A prop is considered an event handler if it is a function and its name starts with `on`.
  *
  * @param object An object to extract event handlers from.
- * @param excludeKeys An array of keys to exclude from the returned object.
  */
-function extractEventHandlers(
-  object: Record<string, any> | undefined,
-  excludeKeys: string[] = [],
-): EventHandlers {
+function extractEventHandlers(object: Record<string, any> | undefined): EventHandlers {
   if (object === undefined) {
     return {};
   }
 
   const result: EventHandlers = {};
 
-  Object.keys(object)
-    .filter(
-      (prop) =>
-        prop.match(/^on[A-Z]/) && typeof object[prop] === 'function' && !excludeKeys.includes(prop),
-    )
-    .forEach((prop) => {
+  for (const prop of Object.keys(object)) {
+    if (isEventHandler(prop, object[prop])) {
       result[prop] = object[prop];
-    });
+    }
+  }
 
   return result;
 }

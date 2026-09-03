@@ -7,16 +7,19 @@ import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { Ad, AdGuest } from '../Ad';
 import type { TocItem, LayoutStorageKeys } from './types';
-import { Translate, useTranslate, useUserLanguage } from '../i18n';
+import { type Translate, useTranslate } from '../i18n';
 import { HighlightedCode } from '../HighlightedCode';
 import { BrandingProvider, BrandingCssVarsProvider } from '../branding';
-import { SectionTitle, SectionTitleProps } from '../SectionTitle';
+import { SectionTitle, type SectionTitleProps } from '../SectionTitle';
 import { MarkdownElement } from '../MarkdownDocs/MarkdownElement';
 import { AppLayoutDocs } from '../AppLayout';
 import { getPropertiesToc, getPropsApiDefinitions } from './definitions/properties';
 import { getClassesToc, getClassApiDefinitions } from './definitions/classes';
 import { getSlotsApiDefinitions, getSlotsToc } from './definitions/slots';
-import { ApiDisplayLayout, DEFAULT_API_LAYOUT_STORAGE_KEYS } from './sections/ToggleDisplayOption';
+import {
+  type ApiDisplayLayout,
+  DEFAULT_API_LAYOUT_STORAGE_KEYS,
+} from './sections/ToggleDisplayOption';
 import { PropertiesSection } from './sections/PropertiesSection';
 import { SlotsSection } from './sections/SlotsSection';
 import { ClassesSection } from './sections/ClassesSection';
@@ -64,11 +67,9 @@ function Heading(props: Pick<SectionTitleProps<ApiHeaderKeys>, 'hash' | 'level'>
 }
 
 export interface ApiPageProps {
-  descriptions: {
-    [lang: string]: PropsTranslations & {
-      // Table of Content added by the mapApiPageTranslations function
-      componentDescriptionToc: TocItem[];
-    };
+  descriptions: PropsTranslations & {
+    // Table of Content added by mapApiPageTranslation.
+    componentDescriptionToc: TocItem[];
   };
   disableAd?: boolean;
   pageContent: ComponentApiContent;
@@ -90,10 +91,8 @@ export function ApiPage(props: ApiPageProps) {
     layoutStorageKey = DEFAULT_API_LAYOUT_STORAGE_KEYS,
   } = props;
   const t = useTranslate();
-  const userLanguage = useUserLanguage();
 
   const {
-    cssComponent,
     demos,
     deprecated,
     filename,
@@ -119,7 +118,7 @@ export function ApiPage(props: ApiPageProps) {
     deprecationInfo,
     propDescriptions,
     slotDescriptions = {},
-  } = descriptions[userLanguage];
+  } = descriptions;
   const description = t('api-docs.pageDescription').replace(/{{name}}/, pageContent.name);
 
   // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
@@ -261,17 +260,6 @@ export function ApiPage(props: ApiPageProps) {
             defaultLayout={defaultLayout}
             layoutStorageKey={layoutStorageKey.props}
           />
-          {cssComponent && (
-            <React.Fragment>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: t('api-docs.cssComponent').replace(/{{name}}/, pageContent.name),
-                }}
-              />
-              <br />
-              <br />
-            </React.Fragment>
-          )}
           <div
             className="MuiCallout-root MuiCallout-info"
             dangerouslySetInnerHTML={{ __html: refHint }}

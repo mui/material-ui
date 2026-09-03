@@ -51,7 +51,14 @@ const StepConnectorRoot = styled('div', {
       },
     },
     {
-      props: { alternativeLabel: true },
+      props: { orientation: 'vertical', alternativeLabel: true },
+      style: {
+        marginLeft: 'auto',
+        marginRight: 12, // half icon
+      },
+    },
+    {
+      props: { orientation: 'horizontal', alternativeLabel: true },
       style: {
         position: 'absolute',
         top: 8 + 4,

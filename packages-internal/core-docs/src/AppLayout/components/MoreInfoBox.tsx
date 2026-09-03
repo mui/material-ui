@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
-import Box, { BoxProps } from '@mui/material/Box';
+import Box, { type BoxProps } from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import KeyboardArrowUpRounded from '@mui/icons-material/KeyboardArrowUpRounded';

@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, expect, afterEach, it } from 'vitest';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';

@@ -149,6 +149,7 @@
         "describedArgs": ["value", "getItemProps", "ownerState"]
       }
     },
+    "resetHighlightOnMouseLeave": { "type": { "name": "bool" }, "default": "false" },
     "selectOnFocus": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "size": {
       "type": {
@@ -160,14 +161,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ chip?: func<br>&#124;&nbsp;object, clearIndicator?: func<br>&#124;&nbsp;object, listbox?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, popupIndicator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+        "description": "{ chip?: func<br>&#124;&nbsp;object, clearIndicator?: func<br>&#124;&nbsp;object, listbox?: func<br>&#124;&nbsp;object, status?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, popupIndicator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ clearIndicator?: elementType, listbox?: elementType, paper?: elementType, popper?: elementType, popupIndicator?: elementType, root?: elementType }"
+        "description": "{ clearIndicator?: elementType, listbox?: elementType, paper?: elementType, popper?: elementType, popupIndicator?: elementType, root?: elementType, status?: elementType }"
       },
       "default": "{}"
     },
@@ -209,6 +210,12 @@
       "description": "The component used to render the listbox.",
       "default": "'ul'",
       "class": "MuiAutocomplete-listbox"
+    },
+    {
+      "name": "status",
+      "description": "The component used to render the status message container.",
+      "default": "'div'",
+      "class": "MuiAutocomplete-status"
     },
     {
       "name": "paper",
@@ -350,6 +357,5 @@
   "muiName": "MuiAutocomplete",
   "filename": "/packages/mui-material/src/Autocomplete/Autocomplete.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-autocomplete/\">Autocomplete</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-autocomplete/\">Autocomplete</a></li></ul>"
 }

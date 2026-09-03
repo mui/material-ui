@@ -1,9 +1,10 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Transition } from 'react-transition-group';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import getReactElementRef from '@mui/utils/getReactElementRef';
+import Transition from '../internal/Transition';
+import useReducedMotion from '../transitions/useReducedMotion';
 import { useTheme } from '../zero-styled';
 import {
   normalizedTransitionCallback,
@@ -24,7 +25,6 @@ const hiddenStyles = { opacity: 0, visibility: 'hidden' };
 
 /**
  * The Fade transition is used by the [Modal](/material-ui/react-modal/) component.
- * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Fade = React.forwardRef(function Fade(props, ref) {
   const theme = useTheme();
@@ -37,6 +37,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     addEndListener,
     appear = true,
     children,
+    disablePrefersReducedMotion = false,
     easing,
     in: inProp,
     onEnter,
@@ -49,6 +50,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     timeout = defaultTimeout,
     ...other
   } = props;
+  const reducedMotion = useReducedMotion(theme.motion.reducedMotion, disablePrefersReducedMotion);
 
   const nodeRef = React.useRef(null);
   const handleRef = useForkRef(nodeRef, getReactElementRef(children), ref);
@@ -56,7 +58,9 @@ const Fade = React.forwardRef(function Fade(props, ref) {
   const handleEntering = normalizedTransitionCallback(nodeRef, onEntering);
 
   const handleEnter = normalizedTransitionCallback(nodeRef, (node, isAppearing) => {
-    reflow(node); // So the animation always start from the start.
+    if (!reducedMotion.shouldReduceMotion) {
+      reflow(node); // Force layout so the animation starts from the initial styles.
+    }
 
     const transitionProps = getTransitionProps(
       { style, timeout, easing },
@@ -64,8 +68,16 @@ const Fade = React.forwardRef(function Fade(props, ref) {
         mode: 'enter',
       },
     );
+    const transitionTiming = reducedMotion.getTransitionTiming({
+      duration: transitionProps.duration,
+      delay: transitionProps.delay,
+    });
 
-    node.style.transition = theme.transitions.create('opacity', transitionProps);
+    node.style.transition = theme.transitions.create('opacity', {
+      duration: transitionTiming.duration,
+      easing: transitionProps.easing,
+      delay: transitionTiming.delay,
+    });
 
     if (onEnter) {
       onEnter(node, isAppearing);
@@ -83,8 +95,16 @@ const Fade = React.forwardRef(function Fade(props, ref) {
         mode: 'exit',
       },
     );
+    const transitionTiming = reducedMotion.getTransitionTiming({
+      duration: transitionProps.duration,
+      delay: transitionProps.delay,
+    });
 
-    node.style.transition = theme.transitions.create('opacity', transitionProps);
+    node.style.transition = theme.transitions.create('opacity', {
+      duration: transitionTiming.duration,
+      easing: transitionProps.easing,
+      delay: transitionTiming.delay,
+    });
 
     if (onExit) {
       onExit(node);
@@ -92,9 +112,9 @@ const Fade = React.forwardRef(function Fade(props, ref) {
   });
 
   const handleExited = normalizedTransitionCallback(nodeRef, (node) => {
-    // Clear the transition CSS to release the compositor layer when the
-    // element is fully exited (prevents idle CPU usage on fixed elements
-    // like Backdrop). handleEnter re-sets it on the next open.
+    // Clear transition CSS after exit so fixed elements like Backdrop do not
+    // keep a compositor layer alive and cause idle CPU usage. handleEnter sets
+    // it again on next open.
     node.style.transition = '';
 
     if (onExited) {
@@ -102,12 +122,11 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     }
   });
 
-  const handleAddEndListener = (next) => {
-    if (addEndListener) {
-      // Old call signature before `react-transition-group` implemented `nodeRef`
-      addEndListener(nodeRef.current, next);
-    }
-  };
+  const handleAddEndListener = addEndListener
+    ? (next) => {
+        addEndListener(nodeRef.current, next);
+      }
+    : undefined;
 
   return (
     <Transition
@@ -121,11 +140,13 @@ const Fade = React.forwardRef(function Fade(props, ref) {
       onExited={handleExited}
       onExiting={handleExiting}
       addEndListener={handleAddEndListener}
+      reduceMotion={reducedMotion.shouldReduceMotion}
       timeout={timeout}
       {...other}
     >
-      {/* Ensure "ownerState" is not forwarded to the child DOM element when a direct HTML element is used. This avoids unexpected behavior since "ownerState" is intended for internal styling, component props and not as a DOM attribute. */}
       {(state, { ownerState, ...restChildProps }) => {
+        // Do not pass ownerState to a DOM child. ownerState is only for
+        // Material UI styling, and React would treat it as an invalid DOM attribute.
         const childStyle = getTransitionChildStyle(
           state,
           inProp,
@@ -151,9 +172,12 @@ Fade.propTypes /* remove-proptypes */ = {
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * Add a custom transition end trigger. Called with the transitioning DOM
-   * node and a done callback. Allows for more fine grained transition end
-   * logic. Note: Timeouts are still used as a fallback if provided.
+   * Add a custom transition end trigger.
+   * Use it when you need custom logic to decide when the transition has ended.
+   * Note: Timeouts are still used as a fallback if provided.
+   *
+   * @param {HTMLElement} node The transitioning DOM node.
+   * @param {Function} done Call this when the transition has finished.
    */
   addEndListener: PropTypes.func,
   /**
@@ -166,6 +190,11 @@ Fade.propTypes /* remove-proptypes */ = {
    * A single child content element.
    */
   children: elementAcceptingRef.isRequired,
+  /**
+   * If `true`, the transition ignores `theme.motion.reducedMotion` and keeps its normal timing.
+   * @default false
+   */
+  disablePrefersReducedMotion: PropTypes.bool,
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.

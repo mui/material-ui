@@ -4,7 +4,7 @@ import { styled, alpha } from '@mui/material/styles';
 import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../../branding';
 import { useTranslate } from '../../i18n';
 import { StyledTableContainer } from './StyledTableContainer';
-import { ClassDefinition } from '../definitions/types';
+import { type ClassDefinition } from '../definitions/types';
 import { ApiWarningAlert } from '../ApiWarningAlert';
 
 const StyledTable = styled('table')(
@@ -35,7 +35,7 @@ const StyledTable = styled('table')(
     },
   }),
   ({ theme }) => ({
-    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+    [`*:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& .class-name': {
         color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
       },

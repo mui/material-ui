@@ -7,7 +7,7 @@ import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
 import { ModalProps } from '../Modal';
 import { BackdropProps } from '../Backdrop';
-import { TransitionProps } from '../transitions/transition';
+import { TransitionProps } from '../transitions/types';
 import { MenuClasses } from './menuClasses';
 import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
 

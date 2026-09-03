@@ -142,6 +142,7 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 - `selectOnFocus` to help the user clear the selected value.
 - `clearOnBlur` to help the user enter a new value.
 - `handleHomeEndKeys` to move focus inside the popup with the <kbd class="key">Home</kbd> and <kbd class="key">End</kbd> keys.
+- `resetHighlightOnMouseLeave` to clear mouse-created highlights when the pointer leaves the popup.
 - A last option, for instance: `Add "YOUR SEARCH"`.
 
 {{"demo": "FreeSoloCreateOption.js"}}
@@ -287,9 +288,38 @@ Fancy smaller inputs? Use the `size` prop.
 
 ### Custom input
 
-The `renderInput` prop allows you to customize the rendered input.
-The first argument of this render prop contains props that you need to forward.
-Pay specific attention to the `ref` and `inputProps` keys.
+The `renderInput` prop allows you to customize the rendered input. Its argument contains props that must be forwarded.
+Pay particular attention to `params.slotProps.input` (including its `ref`) and `params.slotProps.htmlInput`.
+
+Autocomplete renders selected values through `params.slotProps.input.startAdornment`. When adding a custom start
+adornment, preserve the provided adornment:
+
+```tsx
+const getInputSlotProps = (params) => ({
+  ...params.slotProps.input,
+  startAdornment: (
+    <>
+      {customStartAdornment}
+      {params.slotProps.input.startAdornment}
+    </>
+  ),
+});
+
+<Autocomplete
+  options={options}
+  renderInput={(params) => (
+    <TextField
+      {...params}
+      slotProps={{
+        ...params.slotProps,
+        input: getInputSlotProps(params),
+      }}
+    />
+  )}
+/>;
+```
+
+Likewise, preserve `params.slotProps.input.endAdornment` when customizing it. It contains Autocomplete's built-in controls.
 
 :::warning
 If you're using a custom input component inside the Autocomplete, make sure that you forward the ref to the underlying DOM element.
@@ -431,11 +461,6 @@ In the event you want the avoid autofill, you can try the following:
   ```
 
 Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/Turning_off_form_autocompletion) for more details.
-
-### iOS VoiceOver
-
-VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well.
-You can work around the issue with the `disablePortal` prop.
 
 ### ListboxComponent
 

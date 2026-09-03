@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { alpha, styled, SxProps } from '@mui/material/styles';
+import { alpha, styled, type SxProps } from '@mui/material/styles';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Divider from '@mui/material/Divider';
@@ -118,7 +118,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
     },
   }),
   ({ theme }) => ({
-    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+    [`*:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& .MuiApi-item-header': {
         '&>span, &>div': {
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
@@ -191,9 +191,11 @@ export function ExpandableApiItem(props: ExpandableApiItemProps) {
 
   const [isExtended, setIsExtended] = React.useState(() => displayOption === 'expanded');
 
-  React.useEffect(() => {
+  const [prevDisplayOption, setPrevDisplayOption] = React.useState(displayOption);
+  if (prevDisplayOption !== displayOption) {
+    setPrevDisplayOption(displayOption);
     setIsExtended(displayOption === 'expanded');
-  }, [displayOption]);
+  }
 
   return (
     <Root
