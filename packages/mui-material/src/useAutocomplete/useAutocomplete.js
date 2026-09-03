@@ -863,6 +863,11 @@ function useAutocomplete(props) {
     setValueState(newValue);
   };
 
+  // State stores mapped values, but change details keep the raw option contract.
+  const getRemovalDetails = (valueToRemove) => ({
+    option: getOptionFromValue(valueToRemove),
+  });
+
   const selectNewValue = (event, option, reasonProp = 'selectOption', origin = 'options') => {
     let reason = reasonProp;
     // Options produce mapped values; free-solo input remains the string entered by the user.
@@ -1177,9 +1182,7 @@ function useAutocomplete(props) {
             const index = focusedItem === -1 ? value.length - 1 : focusedItem;
             const newValue = value.slice();
             newValue.splice(index, 1);
-            handleValue(event, newValue, 'removeOption', {
-              option: value[index],
-            });
+            handleValue(event, newValue, 'removeOption', getRemovalDetails(value[index]));
             if (focusedItem !== -1) {
               // Suppress the spurious Backspace VoiceOver synthesises on the
               // input after focus returns to it. Clear it shortly after
@@ -1194,7 +1197,7 @@ function useAutocomplete(props) {
             }
           }
           if (!multiple && renderValue && !readOnly && inputValue === '') {
-            handleValue(event, null, 'removeOption', { option: value });
+            handleValue(event, null, 'removeOption', getRemovalDetails(value));
           }
           break;
         case 'Delete':
@@ -1209,14 +1212,12 @@ function useAutocomplete(props) {
             const index = focusedItem;
             const newValue = value.slice();
             newValue.splice(index, 1);
-            handleValue(event, newValue, 'removeOption', {
-              option: value[index],
-            });
+            handleValue(event, newValue, 'removeOption', getRemovalDetails(value[index]));
           }
           if (!multiple && renderValue && !readOnly && inputValue === '') {
             // Single-value rendering: Delete on empty input removes
             // the single rendered option, same "removeOption" reason as multiple.
-            handleValue(event, null, 'removeOption', { option: value });
+            handleValue(event, null, 'removeOption', getRemovalDetails(value));
           }
           break;
         default:
@@ -1374,15 +1375,11 @@ function useAutocomplete(props) {
   const handleItemDelete = (index) => (event) => {
     const newValue = value.slice();
     newValue.splice(index, 1);
-    handleValue(event, newValue, 'removeOption', {
-      option: value[index],
-    });
+    handleValue(event, newValue, 'removeOption', getRemovalDetails(value[index]));
   };
 
   const handleSingleItemDelete = (event) => {
-    handleValue(event, null, 'removeOption', {
-      option: value,
-    });
+    handleValue(event, null, 'removeOption', getRemovalDetails(value));
   };
 
   const handlePopupIndicator = (event) => {
