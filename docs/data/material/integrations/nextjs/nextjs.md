@@ -91,7 +91,7 @@ To integrate [Next.js font optimization](https://nextjs.org/docs/app/getting-sta
 +    <html lang="en" className={roboto.className}>
        <body>
           <AppRouterCacheProvider>
-              {props.children}
+              {children}
           </AppRouterCacheProvider>
        </body>
      </html>
@@ -108,8 +108,6 @@ Material UI applies Roboto-specific letter-spacing only when `fontFamily` exact
 A CSS variable bypasses this check and removes letter-spacing from all typography variants.
 If you are using a custom font instead of Roboto, see [Custom font](#custom-font) below.
 :::
-
-To learn more about theming, check out the [theming guide](/material-ui/customization/theming/) page.
 
 ### Custom font
 
@@ -129,7 +127,7 @@ const theme = createTheme({
 export default theme;
 ```
 
-Then in `app/layout.tsx`, load the font with a `variable` name and apply it to the `<html>` element:
+Then in `src/app/layout.tsx`, load the font with a `variable` name and apply it to the `<html>` element:
 
 ```diff title="app/layout.tsx"
  import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
@@ -158,6 +156,8 @@ Then in `app/layout.tsx`, load the font with a `variable` name and apply it to t
    );
  }
 ```
+
+To learn more about theming, check out the [theming guide](/material-ui/customization/theming/) page.
 
 ### CSS theme variables
 
@@ -501,15 +501,14 @@ To integrate [Next.js font optimization](https://nextjs.org/docs/pages/getting-s
 ```
 
 This approach keeps the theme's default `fontFamily` unchanged, so Material UI's Roboto-tuned typography letter-spacing values are preserved.
+Next.js preloads and self-hosts the font at build time, so the browser uses it for any element that references `"Roboto"` — including Material UI components.
 
 :::warning
 Avoid setting `typography.fontFamily` to `var(--font-roboto)` in the theme.
 Material UI applies Roboto-specific letter-spacing only when `fontFamily` exactly matches the default font stack.
 A CSS variable bypasses this check and removes letter-spacing from all typography variants.
-If you are using a custom font instead of Roboto, see [Custom font](#custom-font) below.
+If you are using a custom font instead of Roboto, see [Custom font](#custom-font-2) below.
 :::
-
-To learn more about theming, check out the [Theming guide](/material-ui/customization/theming/).
 
 ### Custom font
 
@@ -550,6 +549,8 @@ In `pages/_app.tsx`:
   );
  }
 ```
+
+To learn more about theming, check out the [Theming guide](/material-ui/customization/theming/).
 
 ### CSS theme variables
 

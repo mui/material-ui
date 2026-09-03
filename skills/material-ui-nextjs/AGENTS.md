@@ -104,7 +104,7 @@ Why: `createTypography` applies Roboto-specific letter-spacing only when `fontFa
 
 Use `next/font/google` (or local fonts), set `variable: '--font-…'`, put `className={font.variable}` on `<html>` (App Router) or a wrapper element (Pages Router), and set `typography.fontFamily: 'var(--font-…)'` in a `'use client'` theme file. Wrap with `ThemeProvider` inside `AppRouterCacheProvider` as needed.
 
-Details: [Next.js integration—Font optimization](https://mui.com/material-ui/integrations/nextjs.md#font-optimization) and [Next.js integration—Custom font](https://mui.com/material-ui/integrations/nextjs.md#custom-font) (App Router); same sections under the Pages Router heading for `pages/_app.tsx`.
+Details, App Router: [Font optimization](https://mui.com/material-ui/integrations/nextjs.md#font-optimization) and [Custom font](https://mui.com/material-ui/integrations/nextjs.md#custom-font). Pages Router: [Font optimization](https://mui.com/material-ui/integrations/nextjs.md#font-optimization-2) and [Custom font](https://mui.com/material-ui/integrations/nextjs.md#custom-font-2).
 
 ---
 
