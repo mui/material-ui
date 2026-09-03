@@ -112,6 +112,12 @@ This means the scale can be read—and overridden—from plain CSS, including fo
 }
 ```
 
+## All components density
+
+`enhanceDensity` is not a Button feature — one call maps every component in the library onto the same scale. Pick a component below to see the boxes it lands on: the padding ring, the gap between children, and the height the control settles at, each measured off the rendered element and named back to the step that produced it.
+
+{{"demo": "AllComponentsDemo.js"}}
+
 ## Customizing the scale
 
 To override the default steps, pass a second argument to `enhanceDensity`. If the object is a partial scale, the missing steps keep their default values.
