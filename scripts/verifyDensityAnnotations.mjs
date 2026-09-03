@@ -19,6 +19,8 @@
  *   node scripts/verifyDensityAnnotations.mjs
  */
 import { chromium } from 'playwright';
+// eslint-disable-next-line import/no-relative-packages -- a dev script reaching
+// into the docs workspace, the same way scripts/generateDensityTable.ts does
 import {
   DENSITY_ANNOTATIONS,
   annotationsFor,
