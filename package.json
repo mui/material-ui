@@ -88,14 +88,14 @@
     "@eslint/compat": "2.1.0",
     "@mui/internal-babel-plugin-minify-errors": "2.0.8-canary.30",
     "@mui/internal-bundle-size-checker": "1.0.9-canary.89",
-    "@mui/internal-code-infra": "0.0.4-canary.108",
+    "@mui/internal-code-infra": "0.0.4-canary.111",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.0.3-canary.6",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "2.0.18-canary.33",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "16.3.1",
+    "@next/eslint-plugin-next": "16.3.3",
     "@octokit/rest": "22.0.1",
     "@pigment-css/react": "0.0.31",
     "@playwright/test": "1.62.1",
@@ -106,7 +106,7 @@
     "@types/node": "20.19.43",
     "@types/react": "19.2.18",
     "@types/yargs": "17.0.35",
-    "@typescript/native-preview": "7.0.0-dev.20260707.2",
+    "@typescript/native": "npm:typescript@7.0.2",
     "@vitejs/plugin-react": "^6.0.0",
     "@vitest/browser-playwright": "^4.1.0",
     "@vitest/coverage-v8": "^4.1.0",
@@ -118,8 +118,8 @@
     "cpy-cli": "7.0.0",
     "cross-env": "10.1.0",
     "dotenv": "17.4.2",
-    "es-toolkit": "1.51.0",
-    "eslint": "10.8.1",
+    "es-toolkit": "1.52.0",
+    "eslint": "10.9.1",
     "eslint-plugin-consistent-default-export-name": "0.0.15",
     "fast-glob": "3.3.3",
     "git-url-parse": "16.1.0",
@@ -140,18 +140,18 @@
     "stylelint": "17.14.1",
     "supports-color": "11.0.0",
     "tsx": "4.23.12",
-    "typescript": "6.0.3",
+    "typescript": "npm:@typescript/typescript6@6.0.2",
     "vite": "^8.0.0",
     "vitest": "^4.1.0",
     "vitest-fail-on-console": "0.10.1",
     "yargs": "18.1.0"
   },
   "config": {
-    "valeVersion": "3.18.0"
+    "valeVersion": "3.19.0"
   },
-  "packageManager": "pnpm@11.22.0",
+  "packageManager": "pnpm@11.24.0",
   "engines": {
-    "pnpm": "11.22.0",
+    "pnpm": "11.24.0",
     "node": ">=22.23.2"
   }
 }

@@ -102,19 +102,38 @@ describe('<Checkbox />', () => {
       expect(screen.getByTestId('IndeterminateCheckBoxIcon')).not.to.equal(null);
     });
 
-    it('should set aria-checked to mixed', () => {
+    it('should not set aria-checked', () => {
       render(<Checkbox indeterminate />);
-      expect(screen.getByRole('checkbox')).to.have.attribute('aria-checked', 'mixed');
-    });
-
-    it('should set aria-checked to mixed even when checked', () => {
-      render(<Checkbox indeterminate checked />);
-      expect(screen.getByRole('checkbox')).to.have.attribute('aria-checked', 'mixed');
-    });
-
-    it('should not set aria-checked when not indeterminate', () => {
-      render(<Checkbox />);
       expect(screen.getByRole('checkbox')).not.to.have.attribute('aria-checked');
+    });
+
+    it('should set the indeterminate property on the input', () => {
+      render(<Checkbox indeterminate />);
+      expect(screen.getByRole('checkbox')).to.have.property('indeterminate', true);
+    });
+
+    it('should unset the indeterminate property on the input when no longer indeterminate', () => {
+      const { setProps } = render(<Checkbox indeterminate />);
+
+      setProps({ indeterminate: false });
+      expect(screen.getByRole('checkbox')).to.have.property('indeterminate', false);
+    });
+
+    it('should keep the indeterminate property on the input after a click', async () => {
+      const { user } = render(<Checkbox indeterminate />);
+
+      await user.click(screen.getByRole('checkbox'));
+      expect(screen.getByRole('checkbox')).to.have.property('indeterminate', true);
+    });
+
+    it('should set the indeterminate property on the input when the input slot changes', () => {
+      const CustomInput = React.forwardRef(({ ownerState, ...props }, ref) => (
+        <input ref={ref} {...props} />
+      ));
+      const { setProps } = render(<Checkbox indeterminate />);
+
+      setProps({ slots: { input: CustomInput } });
+      expect(screen.getByRole('checkbox')).to.have.property('indeterminate', true);
     });
   });
 

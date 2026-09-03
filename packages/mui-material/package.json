@@ -28,7 +28,7 @@
     "build": "code-infra build --tsgo --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
-    "typescript": "tsgo -p tsconfig.json",
+    "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
     "attw": "attw --pack ./build --entrypoints \".\" \"Button\" \"styles\" \"utils\""
   },
@@ -49,10 +49,10 @@
   "devDependencies": {
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.4",
+    "@types/react-dom": "19.2.5",
     "@types/sinon": "22.0.0",
     "css-mediaquery": "0.1.2",
-    "es-toolkit": "1.51.0",
+    "es-toolkit": "1.52.0",
     "fast-glob": "3.3.3",
     "react": "19.2.8",
     "react-dom": "19.2.8",
