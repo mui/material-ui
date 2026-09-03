@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
+import useForkRef from '@mui/utils/useForkRef';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import Menu2Popup, { Menu2PopupProps } from './Menu2Popup';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -56,8 +57,7 @@ export interface Menu2Props
  */
 const Menu2 = React.forwardRef(function Menu2(
   props: Menu2Props,
-  // The popup surface is the element callers reach for, the way the classic
-  // Menu's ref lands on its Paper.
+  // The public ref targets the semantic popup. Use slotProps.paper.ref for Paper.
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const themedProps = useDefaultProps({
@@ -98,6 +98,7 @@ const Menu2 = React.forwardRef(function Menu2(
   }
 
   const triggerRef = React.useRef<HTMLButtonElement | null>(null);
+  const handleTriggerRef = useForkRef(triggerRef, resolvedTriggerProps?.ref);
   React.useEffect(() => {
     if (process.env.NODE_ENV !== 'production' && triggerRef.current == null) {
       warnMenu2TriggerRef(trigger, 'Menu2');
@@ -109,9 +110,9 @@ const Menu2 = React.forwardRef(function Menu2(
       // Base UI's `render` merges the trigger behavior into the element, so the
       // caller keeps whatever component they passed.
       <BaseMenu.Trigger
-        ref={triggerRef}
         render={trigger}
         {...resolvedTriggerProps}
+        ref={handleTriggerRef}
         className={(state) =>
           clsx(
             menu2TriggerClasses.root,

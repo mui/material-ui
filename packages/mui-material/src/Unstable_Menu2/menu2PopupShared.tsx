@@ -3,6 +3,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
+import useForkRef from '@mui/utils/useForkRef';
 import useSlotProps from '@mui/utils/useSlotProps';
 import appendOwnerState from '@mui/utils/appendOwnerState';
 import isHostComponent from '@mui/utils/isHostComponent';
@@ -254,6 +255,7 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   const resolvedListProps = resolveComponentProps(slotProps?.list, ownerState);
   const { className: resolvedPopupClassName, ...resolvedPopupOtherProps } =
     resolvedPopupProps ?? {};
+  const handlePopupRef = useForkRef(ref, resolvedPopupProps?.ref);
   const positionerProps = {
     ...defaultPositionerProps,
   };
@@ -329,7 +331,7 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
           style={style}
           {...other}
           {...resolvedPopupOtherProps}
-          ref={ref}
+          ref={handlePopupRef}
           render={popupRender}
           className={popupClassName}
         >

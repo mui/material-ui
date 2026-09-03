@@ -53,20 +53,24 @@ describe('<Menu2 /> collapsed API', () => {
 
   ['Menu2', 'Menu2Submenu'].forEach((componentName) => {
     describe(`${componentName} popup props`, () => {
-      function TestMenu({
-        children = (
-          <React.Fragment>
-            <Menu2Item>Alpha</Menu2Item>
-            <Menu2Item>Beta</Menu2Item>
-          </React.Fragment>
-        ),
-        ...props
-      }: React.ComponentProps<typeof Menu2Submenu>) {
+      const TestMenu = React.forwardRef(function TestMenu(
+        {
+          children = (
+            <React.Fragment>
+              <Menu2Item>Alpha</Menu2Item>
+              <Menu2Item>Beta</Menu2Item>
+            </React.Fragment>
+          ),
+          ...props
+        }: React.ComponentPropsWithoutRef<typeof Menu2Submenu>,
+        ref: React.ForwardedRef<HTMLDivElement>,
+      ) {
         if (componentName === 'Menu2Submenu') {
           return (
             <Menu2 defaultOpen modal={false} trigger={<Button disableRipple>Options</Button>}>
               <Menu2Submenu
                 {...props}
+                ref={ref}
                 trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
               >
                 {children}
@@ -76,11 +80,11 @@ describe('<Menu2 /> collapsed API', () => {
         }
 
         return (
-          <Menu2 defaultOpen modal={false} anchor={document.body} {...props}>
+          <Menu2 defaultOpen modal={false} anchor={document.body} {...props} ref={ref}>
             {children}
           </Menu2>
         );
-      }
+      });
 
       async function openSubmenu(user: ReturnType<typeof render>['user'], keyboard = false) {
         if (componentName === 'Menu2Submenu') {
@@ -99,6 +103,82 @@ describe('<Menu2 /> collapsed API', () => {
       function getPopup() {
         return screen.getByRole('menuitem', { name: 'Alpha' }).closest('[role="menu"]')!;
       }
+
+      it('forwards a popup slot ref without a public ref, including a custom popup slot', async () => {
+        const slotRef = React.createRef<HTMLDivElement>();
+        const { user, unmount } = render(
+          <TestMenu slots={{ popup: 'div' }} slotProps={{ popup: () => ({ ref: slotRef }) }} />,
+        );
+
+        await openSubmenu(user);
+        expect(slotRef.current).to.equal(getPopup());
+
+        unmount();
+        expect(slotRef.current).to.equal(null);
+      });
+
+      it('composes public and slot refs on the semantic popup, separate from Paper', async () => {
+        const publicRef = vi.fn();
+        const slotRef = React.createRef<HTMLDivElement>();
+        const paperRef = React.createRef<HTMLDivElement>();
+        const { user, unmount } = render(
+          <TestMenu
+            ref={publicRef}
+            slotProps={{ popup: { ref: slotRef }, paper: { ref: paperRef } }}
+          />,
+        );
+
+        await openSubmenu(user);
+        const popup = getPopup();
+        expect(publicRef).toHaveBeenLastCalledWith(popup);
+        expect(slotRef.current).to.equal(popup);
+        expect(paperRef.current).to.have.class('MuiPaper-root');
+        expect(popup).to.contain(paperRef.current);
+        expect(paperRef.current).not.to.equal(popup);
+
+        unmount();
+        expect(publicRef).toHaveBeenLastCalledWith(null);
+        expect(slotRef.current).to.equal(null);
+        expect(paperRef.current).to.equal(null);
+      });
+
+      it('updates public and slot refs without replacing the popup', async () => {
+        const firstRef = React.createRef<HTMLDivElement>();
+        const nextRef = React.createRef<HTMLDivElement>();
+        const firstSlotRef = vi.fn();
+        const nextSlotRef = vi.fn();
+
+        function ChangeRefs() {
+          const [changed, setChanged] = React.useState(false);
+          return (
+            <TestMenu
+              ref={changed ? nextRef : firstRef}
+              slotProps={{ popup: () => ({ ref: changed ? nextSlotRef : firstSlotRef }) }}
+            >
+              <Menu2Item closeOnClick={false} onClick={() => setChanged(true)}>
+                Alpha
+              </Menu2Item>
+            </TestMenu>
+          );
+        }
+
+        const { user, unmount } = render(<ChangeRefs />);
+        await openSubmenu(user);
+        const popup = getPopup();
+        expect(firstRef.current).to.equal(popup);
+        expect(firstSlotRef).toHaveBeenLastCalledWith(popup);
+
+        await user.click(screen.getByRole('menuitem', { name: 'Alpha' }));
+        expect(getPopup()).to.equal(popup);
+        expect(firstRef.current).to.equal(null);
+        expect(firstSlotRef).toHaveBeenLastCalledWith(null);
+        expect(nextRef.current).to.equal(popup);
+        expect(nextSlotRef).toHaveBeenLastCalledWith(popup);
+
+        unmount();
+        expect(nextRef.current).to.equal(null);
+        expect(nextSlotRef).toHaveBeenLastCalledWith(null);
+      });
 
       it('forwards HTML and ARIA attributes to the semantic popup', async () => {
         const { user } = render(
@@ -229,6 +309,47 @@ describe('<Menu2 /> collapsed API', () => {
       expect(submenuRef.current).not.to.equal(null);
     });
     expect(submenuRef.current).to.have.class(menu2SubmenuPopupClasses.root);
+  });
+
+  ['object', 'callback'].forEach((slotPropsType) => {
+    it(`composes trigger element and slot refs with ${slotPropsType} slot props without warning`, async () => {
+      const elementRef = React.createRef<HTMLButtonElement>();
+      const slotRef = vi.fn();
+      const error = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      try {
+        const triggerProps = { ref: slotRef };
+        const { user, unmount } = render(
+          <Menu2
+            trigger={
+              <Button ref={elementRef} disableRipple>
+                Options
+              </Button>
+            }
+            slotProps={{
+              trigger: slotPropsType === 'callback' ? () => triggerProps : triggerProps,
+            }}
+          >
+            <Menu2Item>Profile</Menu2Item>
+          </Menu2>,
+        );
+
+        const trigger = screen.getByRole('button', { name: 'Options' });
+        expect(elementRef.current).to.equal(trigger);
+        expect(slotRef).toHaveBeenLastCalledWith(trigger);
+        expect(error).not.toHaveBeenCalled();
+
+        await user.click(trigger);
+        expect(await screen.findByRole('menu')).not.to.equal(null);
+
+        unmount();
+        expect(elementRef.current).to.equal(null);
+        expect(slotRef).toHaveBeenLastCalledWith(null);
+        expect(error).not.toHaveBeenCalled();
+      } finally {
+        error.mockRestore();
+      }
+    });
   });
 
   // The parts are internal, so their theme overrides have to resolve through the
