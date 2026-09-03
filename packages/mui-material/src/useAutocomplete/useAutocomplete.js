@@ -637,9 +637,20 @@ function useAutocomplete(props) {
 
   const getPreviousHighlightedOptionIndex = () => {
     const isSameValue = (value1, value2) => {
-      const label1 = value1 ? getOptionLabel(value1) : '';
-      const label2 = value2 ? getOptionLabel(value2) : '';
-      return label1 === label2;
+      // Values may be mapped primitives, but getOptionLabel only accepts options.
+      // Resolve both sides first and fall back to direct equality when either cannot be resolved.
+      if (value1 == null || value2 == null) {
+        return value1 === value2;
+      }
+
+      const option1 = getOptionFromValue(value1);
+      const option2 = getOptionFromValue(value2);
+
+      if (option1 == null || option2 == null) {
+        return value1 === value2;
+      }
+
+      return getOptionLabel(option1) === getOptionLabel(option2);
     };
 
     if (
@@ -652,7 +663,7 @@ function useAutocomplete(props) {
       previousProps.inputValue === inputValue &&
       (multiple
         ? value.length === previousProps.value.length &&
-          previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
+          previousProps.value.every((val, i) => isSameValue(value[i], val))
         : isSameValue(previousProps.value, value))
     ) {
       const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
@@ -863,10 +874,12 @@ function useAutocomplete(props) {
     setValueState(newValue);
   };
 
-  // State stores mapped values, but change details keep the raw option contract.
-  const getRemovalDetails = (valueToRemove) => ({
-    option: getOptionFromValue(valueToRemove),
-  });
+  // State stores mapped values; change details expose the raw option when it can be resolved.
+  const getRemovalDetails = (valueToRemove) => {
+    const option = getOptionFromValue(valueToRemove);
+
+    return option == null ? undefined : { option };
+  };
 
   const selectNewValue = (event, option, reasonProp = 'selectOption', origin = 'options') => {
     let reason = reasonProp;
@@ -878,19 +891,24 @@ function useAutocomplete(props) {
       newValue = Array.isArray(value) ? value.slice() : [];
 
       if (process.env.NODE_ENV !== 'production') {
-        const matches = newValue.filter((val) => isOptionEqualToValue(option, val));
+        if (origin === 'options') {
+          const matches = newValue.filter((val) => isOptionEqualToValue(option, val));
 
-        if (matches.length > 1) {
-          console.error(
-            [
-              `MUI: The \`isOptionEqualToValue\` method of ${componentName} does not handle the arguments correctly.`,
-              `The component expects a single value to match a given option but found ${matches.length} matches.`,
-            ].join('\n'),
-          );
+          if (matches.length > 1) {
+            console.error(
+              [
+                `MUI: The \`isOptionEqualToValue\` method of ${componentName} does not handle the arguments correctly.`,
+                `The component expects a single value to match a given option but found ${matches.length} matches.`,
+              ].join('\n'),
+            );
+          }
         }
       }
 
-      const itemIndex = newValue.findIndex((valueItem) => isOptionEqualToValue(option, valueItem));
+      const itemIndex =
+        origin === 'freeSolo'
+          ? newValue.indexOf(optionValue)
+          : newValue.findIndex((valueItem) => isOptionEqualToValue(option, valueItem));
 
       if (itemIndex === -1) {
         newValue.push(optionValue);

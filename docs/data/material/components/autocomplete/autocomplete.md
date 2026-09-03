@@ -51,8 +51,9 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 However, you can use different structures by providing a `getOptionLabel` prop.
 
-By default, the component uses strict equality to compare an option with the current value.
+Without `getOptionValue`, the component uses strict equality to compare an option with the current value.
 If your options are objects and the value is not one of the exact option instances, provide the `isOptionEqualToValue` prop to customize the comparison.
+When `getOptionValue` is provided, its return value is used for the default comparison instead.
 
 :::warning
 If your options have duplicate labels, you must extract a unique key with the `getOptionKey` prop.
