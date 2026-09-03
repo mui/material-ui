@@ -650,6 +650,78 @@ describe('useAutocomplete', () => {
       expect(onChange.args[0][3]).to.deep.equal({ option: 'custom' });
     });
 
+    it('does not pass values created in freeSolo mode to getOptionValue', async () => {
+      const onChange = spy();
+      const getOptionValue = (option) => {
+        // `option.id` alone returns undefined for a string and would hide the contract violation.
+        return option.id.toUpperCase();
+      };
+      const { user } = render(
+        <Test
+          defaultValue={['BAR']}
+          freeSolo
+          value={undefined}
+          getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
+          getOptionValue={getOptionValue}
+          onChange={onChange}
+        />,
+      );
+
+      await user.type(screen.getByRole('combobox'), 'custom{Enter}');
+
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.args[0][1]).to.deep.equal(['BAR', 'custom']);
+      expect(onChange.args[0][2]).to.equal('createOption');
+      expect(onChange.args[0][3]).to.deep.equal({ option: 'custom' });
+    });
+
+    it.each([
+      { description: 'a single selection', multiple: false, value: 'foo' },
+      { description: 'multiple selections', multiple: true, value: ['foo'] },
+    ])(
+      'does not pass mapped values to getOptionLabel when preserving the highlight for $description',
+      async ({ multiple, value }) => {
+        const initialOptions = [
+          { id: 'foo', label: 'Foo' },
+          { id: 'bar', label: 'Bar' },
+        ];
+        const updatedOptions = [{ id: 'baz', label: 'Baz' }, ...initialOptions];
+        const getOptionLabel = (option) => option.label.toUpperCase();
+
+        const { rerender, user } = render(
+          <Test
+            options={initialOptions}
+            multiple={multiple}
+            value={value}
+            getOptionLabel={getOptionLabel}
+          />,
+        );
+        const input = screen.getByRole('combobox');
+
+        await user.click(input);
+        await user.keyboard('{ArrowDown}');
+
+        expect(input).to.have.attribute(
+          'aria-activedescendant',
+          screen.getByRole('option', { name: 'Bar' }).id,
+        );
+
+        rerender(
+          <Test
+            options={updatedOptions}
+            multiple={multiple}
+            value={value}
+            getOptionLabel={getOptionLabel}
+          />,
+        );
+
+        expect(input).to.have.attribute(
+          'aria-activedescendant',
+          screen.getByRole('option', { name: 'Bar' }).id,
+        );
+      },
+    );
+
     it('uses the mapped option value when filtering selected options', () => {
       render(<Test filterSelectedOptions />);
 
@@ -670,6 +742,19 @@ describe('useAutocomplete', () => {
       expect(onChange.args[0][1]).to.deep.equal([]);
       expect(onChange.args[0][2]).to.equal('removeOption');
       expect(onChange.args[0][3]).to.deep.equal({ option: options[0] });
+    });
+
+    it('omits change details when removing an unmatched mapped value', async () => {
+      const onChange = spy();
+      const { user } = render(<Test value={['missing']} onChange={onChange} />);
+
+      await user.click(screen.getByRole('combobox'));
+      await user.keyboard('{Backspace}');
+
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.args[0][1]).to.deep.equal([]);
+      expect(onChange.args[0][2]).to.equal('removeOption');
+      expect(onChange.args[0][3]).to.equal(undefined);
     });
 
     it('gives a custom isOptionEqualToValue precedence over mapped default equality', () => {
