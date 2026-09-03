@@ -92,6 +92,10 @@ export const planInfo: Record<
       },
       { primaryLabel: 'Access new features first', icon: 'check' },
       {
+        primaryLabel: <React.Fragment>MUI X {highlightText('Premium')} access</React.Fragment>,
+        icon: 'check',
+      },
+      {
         primaryLabel: <React.Fragment>5+ {highlightText('Premium')} features</React.Fragment>,
         icon: 'check',
       },

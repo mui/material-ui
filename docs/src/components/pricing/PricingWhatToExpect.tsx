@@ -55,8 +55,7 @@ export default function PricingWhatToExpect() {
             You can learn more about this in{' '}
             <Link
               target="_blank"
-              rel="noopener"
-              href="https://mui.com/legal/mui-x-eula/#required-quantity-of-licenses"
+              href="https://mui.com/legal/mui-x-eula/#authorized-developer-count-rule"
             >
               the EULA
             </Link>
@@ -134,11 +133,7 @@ export default function PricingWhatToExpect() {
             <br />
             <br />
             You can learn more about this in{' '}
-            <Link
-              target="_blank"
-              rel="noopener"
-              href="https://mui.com/legal/mui-x-eula/#annual-license"
-            >
+            <Link target="_blank" href="https://mui.com/legal/mui-x-eula/#annual-license">
               the EULA
             </Link>
             .

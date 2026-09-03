@@ -9,9 +9,18 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
+import { getReducedMotionStyles, getTransitionStyles } from '../transitions/utils';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 
 const SIZE = 44;
+
+let warnedMinMaxWithoutVariant = false;
+let warnedInvalidMinMaxValue = false;
+
+export function resetWarningFlags() {
+  warnedMinMaxWithoutVariant = false;
+  warnedInvalidMinMaxValue = false;
+}
 
 const circularRotateKeyframe = keyframes`
   0% {
@@ -83,35 +92,51 @@ const CircularProgressRoot = styled('span', {
     ];
   },
 })(
-  memoTheme(({ theme }) => ({
-    display: 'inline-block',
-    variants: [
-      {
-        props: {
-          variant: 'determinate',
-        },
-        style: {
-          transition: theme.transitions.create('transform'),
-        },
-      },
-      {
-        props: {
-          variant: 'indeterminate',
-        },
-        style: rotateAnimation || {
-          animation: `${circularRotateKeyframe} 1.4s linear infinite`,
-        },
-      },
-      ...Object.entries(theme.palette)
-        .filter(createSimplePaletteValueFilter())
-        .map(([color]) => ({
-          props: { color },
-          style: {
-            color: (theme.vars || theme).palette[color].main,
+  memoTheme(({ theme }) => {
+    const reducedMotionAnimationStyles = getReducedMotionStyles(theme, {
+      animation: 'none',
+    });
+
+    return {
+      display: 'inline-block',
+      variants: [
+        {
+          props: {
+            variant: 'determinate',
           },
-        })),
-    ],
-  })),
+          style: {
+            ...getTransitionStyles(theme, 'transform'),
+          },
+        },
+        {
+          props: {
+            variant: 'indeterminate',
+          },
+          style: rotateAnimation || {
+            animation: `${circularRotateKeyframe} 1.4s linear infinite`,
+          },
+        },
+        ...(reducedMotionAnimationStyles
+          ? [
+              {
+                props: {
+                  variant: 'indeterminate',
+                },
+                style: reducedMotionAnimationStyles,
+              },
+            ]
+          : []),
+        ...Object.entries(theme.palette)
+          .filter(createSimplePaletteValueFilter())
+          .map(([color]) => ({
+            props: { color },
+            style: {
+              color: (theme.vars || theme).palette[color].main,
+            },
+          })),
+      ],
+    };
+  }),
 );
 
 const CircularProgressSVG = styled('svg', {
@@ -130,37 +155,52 @@ const CircularProgressCircle = styled('circle', {
     return [styles.circle, ownerState.disableShrink && styles.circleDisableShrink];
   },
 })(
-  memoTheme(({ theme }) => ({
-    stroke: 'currentColor',
-    variants: [
-      {
-        props: {
-          variant: 'determinate',
+  memoTheme(({ theme }) => {
+    const reducedMotionAnimationStyles = getReducedMotionStyles(theme, {
+      animation: 'none',
+    });
+
+    return {
+      stroke: 'currentColor',
+      variants: [
+        {
+          props: {
+            variant: 'determinate',
+          },
+          style: {
+            ...getTransitionStyles(theme, 'stroke-dashoffset'),
+          },
         },
-        style: {
-          transition: theme.transitions.create('stroke-dashoffset'),
+        {
+          props: {
+            variant: 'indeterminate',
+          },
+          style: {
+            // Some default value that looks fine while waiting for the animation to kick in.
+            strokeDasharray: '80px, 200px',
+            strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
+          },
         },
-      },
-      {
-        props: {
-          variant: 'indeterminate',
+        {
+          props: ({ ownerState }) =>
+            ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
+          style: dashAnimation || {
+            // At runtime for Pigment CSS, `dashAnimation` will be null and the generated keyframe will be used.
+            animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
+          },
         },
-        style: {
-          // Some default value that looks fine waiting for the animation to kicks in.
-          strokeDasharray: '80px, 200px',
-          strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
-        style: dashAnimation || {
-          // At runtime for Pigment CSS, `dashAnimation` will be null and the generated keyframe will be used.
-          animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
-        },
-      },
-    ],
-  })),
+        ...(reducedMotionAnimationStyles
+          ? [
+              {
+                props: ({ ownerState }) =>
+                  ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
+                style: reducedMotionAnimationStyles,
+              },
+            ]
+          : []),
+      ],
+    };
+  }),
 );
 
 const CircularProgressTrack = styled('circle', {
@@ -198,10 +238,15 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   } = props;
 
   if (process.env.NODE_ENV !== 'production') {
-    if (variant === 'indeterminate' && (minProp !== undefined || maxProp !== undefined)) {
+    if (
+      !warnedMinMaxWithoutVariant &&
+      variant === 'indeterminate' &&
+      (minProp !== undefined || maxProp !== undefined)
+    ) {
       console.warn(
         `MUI: You have provided the \`min\` or \`max\` props with an 'indeterminate' variant. These props will have no effect.`,
       );
+      warnedMinMaxWithoutVariant = true;
     }
   }
 
@@ -229,10 +274,11 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
 
     if (process.env.NODE_ENV !== 'production') {
-      if (value < min || value > max || min >= max) {
+      if (!warnedInvalidMinMaxValue && (value < min || value > max || min >= max)) {
         console.error(
           `MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=${min}, max=${max}, value=${value}.`,
         );
+        warnedInvalidMinMaxValue = true;
       }
     }
 

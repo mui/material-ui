@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   fireEvent,
@@ -438,6 +438,54 @@ describe('<SwipeableDrawer />', () => {
           expect(handleClose.callCount).to.equal(0);
         });
       });
+    });
+
+    it('uses reduced motion timing when an opening swipe is aborted', () => {
+      const handleOpen = spy();
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <SwipeableDrawer
+            onOpen={handleOpen}
+            onClose={() => {}}
+            open={false}
+            transitionDuration={123}
+            slotProps={{
+              paper: { component: FakePaper, 'data-testid': 'paper' },
+            }}
+          >
+            <div>SwipeableDrawer</div>
+          </SwipeableDrawer>
+        </ThemeProvider>,
+      );
+
+      const swipeArea = document.querySelector('[class*=PrivateSwipeArea-root]');
+      const paper = screen.getByTestId('paper');
+
+      fireEvent.touchStart(swipeArea, {
+        touches: [new Touch({ identifier: 0, target: swipeArea, pageX: 0, clientY: 0 })],
+      });
+      fireEvent.touchMove(swipeArea, {
+        touches: [new Touch({ identifier: 0, target: swipeArea, pageX: 20, clientY: 0 })],
+      });
+
+      expect(paper.style.transition).to.equal('');
+
+      fireEvent.touchEnd(swipeArea, {
+        changedTouches: [new Touch({ identifier: 0, target: swipeArea, pageX: 20, clientY: 0 })],
+      });
+
+      expect(handleOpen.callCount).to.equal(0);
+      if (isJsdom()) {
+        expect(paper.style.transition).to.include('0ms');
+      } else {
+        expect(paper.style.transitionDuration).to.equal('0ms');
+      }
     });
 
     it('should abort when the SwipeableDrawer is closed', () => {

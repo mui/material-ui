@@ -4,14 +4,16 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
-import StepLabel from '../StepLabel';
+import StepLabel, { stepLabelClasses } from '../StepLabel';
 import isMuiElement from '../utils/isMuiElement';
 import { useRovingTabIndexItem } from '../utils/useRovingTabIndex';
 import { useStepperContext } from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import stepButtonClasses, { getStepButtonUtilityClass } from './stepButtonClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation } = ownerState;
@@ -36,25 +38,36 @@ const StepButtonRoot = styled(ButtonBase, {
       styles[ownerState.orientation],
     ];
   },
-})({
-  width: '100%',
-  padding: '24px 16px',
-  margin: '-24px -16px',
-  boxSizing: 'content-box',
-  [`& .${stepButtonClasses.touchRipple}`]: {
-    color: 'rgba(0, 0, 0, 0.3)',
-  },
-  variants: [
-    {
-      props: { orientation: 'vertical' },
-      style: {
-        justifyContent: 'flex-start',
-        padding: '8px',
-        margin: '-8px',
-      },
+})(
+  memoTheme(({ theme }) => ({
+    width: '100%',
+    padding: '24px 16px',
+    margin: '-24px -16px',
+    boxSizing: 'content-box',
+    [`& .${stepButtonClasses.touchRipple}`]: {
+      color: 'rgba(0, 0, 0, 0.3)',
+      ...theme.applyStyles('dark', {
+        color: 'rgba(255, 255, 255, 0.3)',
+      }),
     },
-  ],
-});
+    ...(theme.focusVisible && {
+      [`&.${buttonBaseClasses.focusVisible} .${stepLabelClasses.root}`]: {
+        borderRadius: (theme.vars || theme).shape.borderRadius,
+        ...theme.focusVisible,
+      },
+    }),
+    variants: [
+      {
+        props: { orientation: 'vertical' },
+        style: {
+          justifyContent: 'flex-start',
+          padding: '8px',
+          margin: '-8px',
+        },
+      },
+    ],
+  })),
+);
 
 const RovingStepButton = React.forwardRef(function RovingStepButton(props, ref) {
   // eslint-disable-next-line react/prop-types
@@ -106,6 +119,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
     'aria-posinset': index + 1,
     'aria-setsize': totalSteps,
     role: 'tab',
+    internalDisabledThemeFocusVisible: true,
     ...other,
   };
 

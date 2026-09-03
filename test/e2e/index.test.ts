@@ -1,5 +1,5 @@
 import { Page, Browser, chromium, expect } from '@playwright/test';
-import { describe, it, beforeAll } from 'vitest';
+import { describe, it, beforeAll, afterAll } from 'vitest';
 import '@mui/internal-test-utils/initPlaywrightMatchers';
 
 const BASE_URL = 'http://localhost:5001';
@@ -84,6 +84,44 @@ describe('e2e', () => {
       await page.getByText('confirm').focus();
       await page.keyboard.press('Shift+Tab');
       await expect(page.getByText('ok')).toBeFocused();
+    });
+
+    it('should loop the tab key in positive tabIndex order', async () => {
+      await renderFixture('FocusTrap/PositiveTabIndexFocusTrap');
+
+      await expect(page.getByTestId('root')).toBeFocused();
+
+      await page.keyboard.press('Tab');
+      await expect(page.getByText('indexed 1')).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(page.getByText('indexed 2')).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(page.getByText('indexed 3')).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(page.getByText('normal 1')).toBeFocused();
+
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('indexed 3')).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(page.getByText('normal 1')).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(page.getByText('normal 2')).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(page.getByText('normal 3')).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(page.getByText('indexed 1')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('normal 3')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('normal 2')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('normal 1')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('indexed 3')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('indexed 2')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('indexed 1')).toBeFocused();
     });
 
     it('should loop the tab key after activation', async () => {

@@ -5,7 +5,8 @@ import { GlobalStyles } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import ThemeProvider from '../ThemeProvider';
-import InitColorSchemeScript, {
+import {
+  buildInitColorSchemeScript,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
   DEFAULT_MODE_STORAGE_KEY,
 } from '../InitColorSchemeScript/InitColorSchemeScript';
@@ -401,7 +402,7 @@ export default function createCssVarsProvider(options) {
     typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
 
   const getInitColorSchemeScript = (params) =>
-    InitColorSchemeScript({
+    buildInitColorSchemeScript({
       colorSchemeStorageKey: defaultColorSchemeStorageKey,
       defaultLightColorScheme,
       defaultDarkColorScheme,
