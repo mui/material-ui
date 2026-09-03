@@ -20,6 +20,7 @@ export interface Menu2SlotProps extends NonNullable<Menu2PopupProps['slotProps']
  * `actionsRef`, keyboard behavior) plus the popup's positioning and appearance
  * props, so one menu is one component. `Omit` (a mapped type) is used instead
  * of bare `extends` so the proptypes generator resolves the inherited members.
+ * HTML attributes and event handlers are forwarded to the popup element.
  */
 export interface Menu2Props
   extends
@@ -69,28 +70,23 @@ const Menu2 = React.forwardRef(function Menu2(
     trigger,
     slots,
     slotProps,
-    // The popup surface, hoisted onto the root.
-    align,
-    alignOffset,
-    anchor,
-    arrowPadding,
-    classes,
-    className,
-    collisionAvoidance,
-    collisionBoundary,
-    collisionPadding,
-    container,
-    disableAnchorTracking,
-    elevation,
-    finalFocus,
-    keepMounted,
-    positionMethod,
-    side,
-    sideOffset,
-    sticky,
-    style,
-    sx,
-    ...rootProps
+    // Only behavior props belong on the renderless root. All remaining props,
+    // including DOM attributes and event handlers, belong on the popup.
+    actionsRef,
+    closeParentOnEsc,
+    defaultOpen,
+    defaultTriggerId,
+    disabled,
+    handle,
+    highlightItemOnHover,
+    loopFocus,
+    modal,
+    onOpenChange,
+    onOpenChangeComplete,
+    open,
+    orientation,
+    triggerId,
+    ...popupProps
   } = themedProps;
 
   const popupSlots = slots;
@@ -127,33 +123,24 @@ const Menu2 = React.forwardRef(function Menu2(
     );
 
   return (
-    <BaseMenu.Root {...rootProps}>
+    <BaseMenu.Root
+      actionsRef={actionsRef}
+      closeParentOnEsc={closeParentOnEsc}
+      defaultOpen={defaultOpen}
+      defaultTriggerId={defaultTriggerId}
+      disabled={disabled}
+      handle={handle}
+      highlightItemOnHover={highlightItemOnHover}
+      loopFocus={loopFocus}
+      modal={modal}
+      onOpenChange={onOpenChange}
+      onOpenChangeComplete={onOpenChangeComplete}
+      open={open}
+      orientation={orientation}
+      triggerId={triggerId}
+    >
       {triggerNode}
-      <Menu2Popup
-        ref={ref}
-        align={align}
-        alignOffset={alignOffset}
-        anchor={anchor}
-        arrowPadding={arrowPadding}
-        classes={classes}
-        className={className}
-        collisionAvoidance={collisionAvoidance}
-        collisionBoundary={collisionBoundary}
-        collisionPadding={collisionPadding}
-        container={container}
-        disableAnchorTracking={disableAnchorTracking}
-        elevation={elevation}
-        finalFocus={finalFocus}
-        keepMounted={keepMounted}
-        positionMethod={positionMethod}
-        side={side}
-        sideOffset={sideOffset}
-        slotProps={popupSlotProps}
-        slots={popupSlots}
-        sticky={sticky}
-        style={style}
-        sx={sx}
-      >
+      <Menu2Popup {...popupProps} ref={ref} slotProps={popupSlotProps} slots={popupSlots}>
         {children}
       </Menu2Popup>
     </BaseMenu.Root>

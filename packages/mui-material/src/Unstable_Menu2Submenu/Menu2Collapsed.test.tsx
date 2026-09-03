@@ -51,6 +51,139 @@ describe('<Menu2 /> collapsed API', () => {
     expect(screen.getByRole('menuitem', { name: 'Profile' })).to.have.class(menu2ItemClasses.root);
   });
 
+  ['Menu2', 'Menu2Submenu'].forEach((componentName) => {
+    describe(`${componentName} popup props`, () => {
+      function TestMenu({
+        children = (
+          <React.Fragment>
+            <Menu2Item>Alpha</Menu2Item>
+            <Menu2Item>Beta</Menu2Item>
+          </React.Fragment>
+        ),
+        ...props
+      }: React.ComponentProps<typeof Menu2Submenu>) {
+        if (componentName === 'Menu2Submenu') {
+          return (
+            <Menu2 defaultOpen modal={false} trigger={<Button disableRipple>Options</Button>}>
+              <Menu2Submenu
+                {...props}
+                trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
+              >
+                {children}
+              </Menu2Submenu>
+            </Menu2>
+          );
+        }
+
+        return (
+          <Menu2 defaultOpen modal={false} anchor={document.body} {...props}>
+            {children}
+          </Menu2>
+        );
+      }
+
+      async function openSubmenu(user: ReturnType<typeof render>['user'], keyboard = false) {
+        if (componentName === 'Menu2Submenu') {
+          const trigger = screen.getByRole('menuitem', { name: 'More' });
+          await waitForPopupFocus(trigger);
+          if (keyboard) {
+            await act(async () => trigger.focus());
+            await user.keyboard('{ArrowRight}');
+          } else {
+            await user.click(trigger);
+          }
+          await screen.findByRole('menuitem', { name: 'Alpha' });
+        }
+      }
+
+      function getPopup() {
+        return screen.getByRole('menuitem', { name: 'Alpha' }).closest('[role="menu"]')!;
+      }
+
+      it('forwards HTML and ARIA attributes to the semantic popup', async () => {
+        const { user } = render(
+          <React.Fragment>
+            <span id="actions-description">Available actions</span>
+            <TestMenu
+              id="actions-menu"
+              aria-label="Actions"
+              aria-describedby="actions-description"
+              data-testid="actions-popup"
+              title="Action menu"
+            />
+          </React.Fragment>,
+        );
+
+        await openSubmenu(user);
+        const popup = getPopup();
+        expect(popup).to.equal(screen.getByTestId('actions-popup'));
+        expect(popup).to.have.attribute('id', 'actions-menu');
+        expect(popup).to.have.attribute('aria-label', 'Actions');
+        expect(popup).to.have.attribute('aria-describedby', 'actions-description');
+        expect(popup).to.have.attribute('title', 'Action menu');
+      });
+
+      it('preserves popup slot precedence over forwarded attributes', async () => {
+        const { user } = render(
+          <TestMenu
+            id="top-level-id"
+            aria-label="Top-level label"
+            title="Forwarded title"
+            slotProps={{
+              popup: {
+                id: 'slot-id',
+                'aria-label': 'Slot label',
+              },
+            }}
+          />,
+        );
+
+        await openSubmenu(user);
+        const popup = getPopup();
+        expect(popup).to.have.attribute('id', 'slot-id');
+        expect(popup).to.have.attribute('aria-label', 'Slot label');
+        expect(popup).to.have.attribute('title', 'Forwarded title');
+      });
+
+      it.skipIf(isJsdom())(
+        'forwards keyboard handlers while preserving root behavior',
+        async () => {
+          const currentTargets: EventTarget[] = [];
+          const onKeyDown = vi.fn((event: React.KeyboardEvent<HTMLDivElement>) => {
+            currentTargets.push(event.currentTarget);
+          });
+          const onOpenChange = vi.fn();
+          const { user } = render(
+            <TestMenu loopFocus={false} onKeyDown={onKeyDown} onOpenChange={onOpenChange} />,
+          );
+          await openSubmenu(user, true);
+          const firstItem = screen.getByRole('menuitem', { name: 'Alpha' });
+          const lastItem = screen.getByRole('menuitem', { name: 'Beta' });
+          const popup = firstItem.closest('[role="menu"]')!;
+          await waitForPopupFocus(firstItem);
+          await act(async () => firstItem.focus());
+
+          await user.keyboard('{ArrowDown}{ArrowDown}');
+
+          expect(document.activeElement).to.equal(lastItem);
+          expect(onKeyDown).toHaveBeenCalledTimes(2);
+          expect(currentTargets).to.deep.equal([popup, popup]);
+          expect(popup).not.to.have.attribute('loopfocus');
+
+          await user.keyboard('{Escape}');
+
+          expect(onOpenChange).toHaveBeenCalledWith(
+            false,
+            expect.objectContaining({ reason: 'escape-key' }),
+          );
+          await waitFor(() =>
+            expect(screen.queryByRole('menuitem', { name: 'Alpha' })).to.equal(null),
+          );
+        },
+      );
+    });
+  });
+
   // The type fixture advertises these slots but only typechecks them. They are
   // context providers, so swapping them for a plain element used to break the
   // tree at runtime; these render for real.

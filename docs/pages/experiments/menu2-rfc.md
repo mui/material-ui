@@ -255,7 +255,7 @@ Done:
 - **Docs tooling.** We removed the special cases.
 - **Styles.** The classic component and the successor share the same style modules.
 - **Composition.** Composed list primitives still work inside the items. `ListItemText inset` aligns with the icon column. `inset` is a `ListItemText` prop, not a menu item prop, so we implemented nothing.
-- **Types.** The prop types inherit from Base UI. The roots get `actionsRef` and future props at no cost.
+- **Types and prop routing.** The prop types inherit from Base UI. The collapsed components pass behavior props, such as `open` and `actionsRef`, explicitly to the renderless root. The remaining props, including HTML attributes and event handlers, go to the popup element. New Base UI root props need an explicit routing update.
 - **Elevation.** Top-level `elevation` on the popup, default 8.
 - **Animation.** A default open and close animation, and a backdrop slot that you opt in to.
 - **Preview cards.** The `useMenu2ItemPopover` hook replaces the anchor handling that the recipes did by hand.

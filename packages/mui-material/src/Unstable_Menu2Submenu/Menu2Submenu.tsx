@@ -12,6 +12,7 @@ export interface Menu2SubmenuSlotProps extends NonNullable<Menu2SubmenuPopupProp
 /**
  * The submenu counterpart of `Menu2`, with the same shape: a prop-only root,
  * the trigger passed as a prop, and the children forming the popup.
+ * HTML attributes and event handlers are forwarded to the popup element.
  */
 export interface Menu2SubmenuProps
   extends
@@ -57,58 +58,35 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
     trigger,
     slots,
     slotProps,
-    // The popup surface, hoisted onto the root.
-    align,
-    alignOffset,
-    anchor,
-    arrowPadding,
-    classes,
-    className,
-    collisionAvoidance,
-    collisionBoundary,
-    collisionPadding,
-    container,
-    disableAnchorTracking,
-    elevation,
-    finalFocus,
-    keepMounted,
-    positionMethod,
-    side,
-    sideOffset,
-    sticky,
-    style,
-    sx,
-    ...rootProps
+    // Keep behavior on the renderless root and forward the rest to the popup.
+    actionsRef,
+    closeParentOnEsc,
+    defaultOpen,
+    disabled,
+    highlightItemOnHover,
+    loopFocus,
+    onOpenChange,
+    onOpenChangeComplete,
+    open,
+    orientation,
+    ...popupProps
   } = themedProps;
 
   return (
-    <BaseMenu.SubmenuRoot {...rootProps}>
+    <BaseMenu.SubmenuRoot
+      actionsRef={actionsRef}
+      closeParentOnEsc={closeParentOnEsc}
+      defaultOpen={defaultOpen}
+      disabled={disabled}
+      highlightItemOnHover={highlightItemOnHover}
+      loopFocus={loopFocus}
+      onOpenChange={onOpenChange}
+      onOpenChangeComplete={onOpenChangeComplete}
+      open={open}
+      orientation={orientation}
+    >
       {trigger}
-      <Menu2SubmenuPopup
-        ref={ref}
-        align={align}
-        alignOffset={alignOffset}
-        anchor={anchor}
-        arrowPadding={arrowPadding}
-        classes={classes}
-        className={className}
-        collisionAvoidance={collisionAvoidance}
-        collisionBoundary={collisionBoundary}
-        collisionPadding={collisionPadding}
-        container={container}
-        disableAnchorTracking={disableAnchorTracking}
-        elevation={elevation}
-        finalFocus={finalFocus}
-        keepMounted={keepMounted}
-        positionMethod={positionMethod}
-        side={side}
-        sideOffset={sideOffset}
-        slotProps={slotProps}
-        slots={slots}
-        sticky={sticky}
-        style={style}
-        sx={sx}
-      >
+      <Menu2SubmenuPopup {...popupProps} ref={ref} slotProps={slotProps} slots={slots}>
         {children}
       </Menu2SubmenuPopup>
     </BaseMenu.SubmenuRoot>
