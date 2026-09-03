@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/076479f7fc8775ddbf12ac7d9801e9fbfee9129e/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/d635b57a4903c914b791b2a5f77291f69b63ce94/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
@@ -230,14 +230,16 @@ jobs:
       - checkout
       - code-infra/install-deps:
           react-version: << parameters.react-version >>
-      - code-infra/run-regressions:
-          test-results-path: ''
+      - run:
+          name: Run visual regression tests
+          command: xvfb-run pnpm test:regressions
       - run:
           name: A11y results committed?
           # The react@17/18/next jobs pin React via `package-overrides`, which rewrites
           # pnpm-workspace.yaml (overrides) and may touch pnpm-lock.yaml. Exclude those so
           # this check still verifies the a11y results without tripping on the pinned deps.
           command: git add -A -- . ':(exclude)pnpm-*.yaml' && git diff --exit-code --staged
+      - code-infra/argos-push
   test_bundling_prepare:
     <<: *default-job
     steps:
@@ -402,8 +404,7 @@ jobs:
       - run:
           name: Build @mui packages
           command: pnpm release:build
-      - code-infra/upload-size-snapshot:
-          concurrency: 6
+      - code-infra/upload-size-snapshot
       - run:
           name: Validate type declarations
           command: pnpm validate-declarations
