@@ -53,6 +53,7 @@ function PricingUi() {
       <Card variant="outlined" sx={{ width: '100%', borderColor: 'primary.main' }}>
         <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 'small' }}>
           <Stack
+            data-measure
             direction="row"
             spacing="x-small"
             sx={{
@@ -83,7 +84,12 @@ function PricingUi() {
             For growing product teams
           </Typography>
           <Divider />
-          <Stack direction="row" spacing="xx-small" sx={{ alignItems: 'baseline' }}>
+          <Stack
+            data-measure
+            direction="row"
+            spacing="xx-small"
+            sx={{ alignItems: 'baseline' }}
+          >
             <Typography variant="h3" component="p">
               $18
             </Typography>
@@ -94,7 +100,7 @@ function PricingUi() {
           <Divider />
           <Typography variant="body2">Includes:</Typography>
           <List disablePadding>
-            <ListItem disableGutters>
+            <ListItem data-measure disableGutters>
               <ListItemIcon>
                 <HistoryIcon />
               </ListItemIcon>
@@ -103,7 +109,7 @@ function PricingUi() {
                 slotProps={{ primary: { variant: 'body2' } }}
               />
             </ListItem>
-            <ListItem disableGutters>
+            <ListItem data-measure disableGutters>
               <ListItemIcon>
                 <GroupIcon />
               </ListItemIcon>
@@ -112,7 +118,7 @@ function PricingUi() {
                 slotProps={{ primary: { variant: 'body2' } }}
               />
             </ListItem>
-            <ListItem disableGutters>
+            <ListItem data-measure disableGutters>
               <ListItemIcon>
                 <StorageIcon />
               </ListItemIcon>
@@ -121,7 +127,7 @@ function PricingUi() {
                 slotProps={{ primary: { variant: 'body2' } }}
               />
             </ListItem>
-            <ListItem disableGutters>
+            <ListItem data-measure disableGutters>
               <ListItemIcon>
                 <CallMadeIcon />
               </ListItemIcon>
@@ -130,7 +136,7 @@ function PricingUi() {
                 slotProps={{ primary: { variant: 'body2' } }}
               />
             </ListItem>
-            <ListItem disableGutters>
+            <ListItem data-measure disableGutters>
               <ListItemIcon>
                 <LanguageIcon />
               </ListItemIcon>
@@ -153,7 +159,7 @@ function PricingUi() {
           </List>
         </CardContent>
         <CardActions>
-          <Button variant="contained" fullWidth>
+          <Button data-measure variant="contained" fullWidth>
             Choose Team
           </Button>
         </CardActions>
@@ -168,7 +174,9 @@ function PricingUi() {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button variant="outlined">Contact sales</Button>
+          <Button data-measure variant="outlined">
+            Contact sales
+          </Button>
         </CardActions>
       </Card>
     </Stack>
@@ -201,11 +209,21 @@ function ProductUi() {
           <ScienceIcon sx={(theme) => ({ fontSize: theme.spacing('x-large') })} />
         </Box>
         <Stack spacing="x-small" sx={{ flexGrow: 1 }}>
-          <Stack direction="row" spacing="x-small" sx={{ alignItems: 'center' }}>
+          <Stack
+            data-measure
+            direction="row"
+            spacing="x-small"
+            sx={{ alignItems: 'center' }}
+          >
             <Chip label="TR-12" size="small" variant="outlined" />
             <Typography variant="h3">Everyday Mineral Blend</Typography>
           </Stack>
-          <Stack direction="row" spacing="x-small" sx={{ alignItems: 'center' }}>
+          <Stack
+            data-measure
+            direction="row"
+            spacing="x-small"
+            sx={{ alignItems: 'center' }}
+          >
             <Rating value={4.5} precision={0.5} size="small" readOnly />
             <Link component="button" type="button" variant="body2">
               412 reviews
@@ -230,7 +248,7 @@ function ProductUi() {
           </Typography>
         </Stack>
       </Stack>
-      <Stack direction="row" spacing="small" sx={{ flexWrap: 'wrap' }}>
+      <Stack data-measure direction="row" spacing="small" sx={{ flexWrap: 'wrap' }}>
         <ToggleButtonGroup
           exclusive
           value={plan}
@@ -264,7 +282,7 @@ function ProductUi() {
         </FormControl>
       </Stack>
       <Stack spacing="small">
-        <Button variant="contained" fullWidth>
+        <Button data-measure variant="contained" fullWidth>
           Add to cart
         </Button>
         <Typography
@@ -282,6 +300,7 @@ function ProductUi() {
           sx={{ '&:not(:last-of-type)': { borderBottom: 0 } }}
         >
           <AccordionSummary
+            data-measure
             expandIcon={<ExpandMoreIcon />}
             aria-controls={`${id}-benefits-content`}
             id={`${id}-benefits-header`}
@@ -321,6 +340,7 @@ function ProductUi() {
         </Accordion>
         <Accordion disableGutters variant="outlined">
           <AccordionSummary
+            data-measure
             expandIcon={<ExpandMoreIcon />}
             aria-controls={`${id}-ingredients-content`}
             id={`${id}-ingredients-header`}
@@ -344,7 +364,9 @@ function ProductUi() {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button variant="outlined">Add to order</Button>
+          <Button data-measure variant="outlined">
+            Add to order
+          </Button>
         </CardActions>
       </Card>
     </Stack>
@@ -358,6 +380,7 @@ function SettingsUi() {
     <Stack spacing="small" sx={{ maxWidth: 520, mx: 'auto' }}>
       <Typography variant="h3">Preferences</Typography>
       <TextField
+        data-measure
         fullWidth
         placeholder="Search settings"
         slotProps={{
@@ -381,14 +404,14 @@ function SettingsUi() {
         </Typography>
         <Paper variant="outlined" sx={{ bgcolor: 'transparent' }}>
           <List disablePadding>
-            <ListItem divider>
+            <ListItem data-measure="left" divider>
               <ListItemText
                 primary="Profile picture"
                 slotProps={{ primary: { variant: 'body2' } }}
               />
-              <Avatar sx={{ bgcolor: pink[300] }}>JU</Avatar>
+              <Avatar data-measure sx={{ bgcolor: pink[300] }}>JU</Avatar>
             </ListItem>
-            <ListItem divider>
+            <ListItem data-measure="left" divider>
               <ListItemText
                 primary="Start-up screen"
                 secondary="Choose what opens when the app launches"
@@ -398,6 +421,7 @@ function SettingsUi() {
                 }}
               />
               <Select
+                data-measure
                 labelId={`${id}-startup`}
                 aria-describedby={`${id}-startup-desc`}
                 defaultValue="Overview"
@@ -408,7 +432,7 @@ function SettingsUi() {
                 <MenuItem value="Recent">Recent files</MenuItem>
               </Select>
             </ListItem>
-            <ListItem>
+            <ListItem data-measure="left">
               <ListItemText
                 primary="Replace shortcuts with symbols"
                 secondary="Typing (c) becomes © as you write"
@@ -418,6 +442,7 @@ function SettingsUi() {
                 }}
               />
               <Switch
+                data-measure
                 edge="end"
                 defaultChecked
                 slotProps={{
@@ -446,7 +471,7 @@ function SettingsUi() {
         </Typography>
         <Paper variant="outlined" sx={{ bgcolor: 'transparent' }}>
           <List disablePadding>
-            <ListItem divider>
+            <ListItem data-measure="left" divider>
               <ListItemText
                 primary="Side panel"
                 secondary="Which sections appear, and in what order"
@@ -455,11 +480,11 @@ function SettingsUi() {
                   secondary: { id: `${id}-side-panel-desc`, variant: 'caption' },
                 }}
               />
-              <Button variant="text" aria-describedby={`${id}-side-panel-desc`}>
+              <Button data-measure variant="text" aria-describedby={`${id}-side-panel-desc`}>
                 Edit
               </Button>
             </ListItem>
-            <ListItem divider>
+            <ListItem data-measure="left" divider>
               <ListItemText
                 primary="Theme"
                 secondary="Match the system or pick one"
@@ -469,6 +494,7 @@ function SettingsUi() {
                 }}
               />
               <Select
+                data-measure
                 labelId={`${id}-theme`}
                 aria-describedby={`${id}-theme-desc`}
                 defaultValue="System"
@@ -479,7 +505,7 @@ function SettingsUi() {
                 <MenuItem value="Dark">Dark</MenuItem>
               </Select>
             </ListItem>
-            <ListItem divider>
+            <ListItem data-measure="left" divider>
               <ListItemText
                 primary="Text size"
                 secondary="Scale text across every screen"
@@ -489,6 +515,7 @@ function SettingsUi() {
                 }}
               />
               <Select
+                data-measure
                 labelId={`${id}-text-size`}
                 aria-describedby={`${id}-text-size-desc`}
                 defaultValue="Default"
@@ -499,7 +526,7 @@ function SettingsUi() {
                 <MenuItem value="Large">Large</MenuItem>
               </Select>
             </ListItem>
-            <ListItem>
+            <ListItem data-measure="left">
               <ListItemText
                 primary="Pointer on hover"
                 secondary="Show a hand cursor over clickable items"
@@ -509,6 +536,7 @@ function SettingsUi() {
                 }}
               />
               <Switch
+                data-measure
                 edge="end"
                 slotProps={{
                   input: {
