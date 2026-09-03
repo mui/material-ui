@@ -144,6 +144,67 @@ describe('mergeSlotProps', () => {
     });
   });
 
+  it('merges the style props when getSlotProps is not provided', () => {
+    const additionalProps = {
+      style: {
+        fontSize: '14px',
+        color: 'red',
+        textAlign: 'center' as const,
+      },
+    };
+
+    const externalForwardedProps = {
+      style: {
+        color: 'blue',
+        fontWeight: 500,
+      },
+    };
+
+    const externalSlotProps = {
+      style: {
+        fontWeight: 700,
+        textDecoration: 'underline',
+      },
+    };
+
+    const merged = mergeSlotProps({
+      additionalProps,
+      externalForwardedProps,
+      externalSlotProps,
+    });
+
+    expect(merged.props.style).to.deep.equal({
+      fontSize: '14px',
+      color: 'blue',
+      textAlign: 'center',
+      fontWeight: 700,
+      textDecoration: 'underline',
+    });
+  });
+
+  it('merges the style props from any pair of sources when getSlotProps is not provided', () => {
+    expect(
+      mergeSlotProps({
+        additionalProps: { style: { color: 'red' } },
+        externalForwardedProps: { style: { fontWeight: 500 } },
+      }).props.style,
+    ).to.deep.equal({ color: 'red', fontWeight: 500 });
+
+    expect(
+      mergeSlotProps({
+        additionalProps: { style: { color: 'red' } },
+        externalSlotProps: { style: { fontWeight: 500 } },
+      }).props.style,
+    ).to.deep.equal({ color: 'red', fontWeight: 500 });
+
+    expect(
+      mergeSlotProps({
+        externalForwardedProps: { style: { color: 'red' } },
+        externalSlotProps: { style: { fontWeight: 500 } },
+      }).props.style,
+    ).to.deep.equal({ color: 'red', fontWeight: 500 });
+  });
+
   it('does not add a style prop when no style props are provided', () => {
     const getSlotProps = () => ({
       id: 'internal',
