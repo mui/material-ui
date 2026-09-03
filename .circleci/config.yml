@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/fdfa28912aa56f2473702b4a49a5a7a3164f5e4c/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/076479f7fc8775ddbf12ac7d9801e9fbfee9129e/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
@@ -49,32 +49,12 @@ default-context: &default-context
 #   restore_cache:
 #     key: v1-repo-{{ .Branch }}-{{ .Revision }}
 
-commands:
-  install-deps:
-    parameters:
-      ignore-workspace:
-        type: boolean
-        default: false
-      react-version:
-        type: string
-        default: stable
-      typescript-version:
-        type: string
-        default: stable
-      playwright-version:
-        type: string
-        default: stable
-    steps:
-      - code-infra/install-deps:
-          package-overrides: react@<< parameters.react-version >> typescript@<< parameters.typescript-version >> @playwright/test@<< parameters.playwright-version >> playwright@<< parameters.playwright-version >>
-          ignore-workspace: << parameters.ignore-workspace >>
-
 jobs:
   test_unit:
     <<: *default-job
     steps:
       - checkout
-      - install-deps:
+      - code-infra/install-deps:
           react-version: << parameters.react-version >>
       - run:
           name: Tests fake browser
@@ -101,50 +81,30 @@ jobs:
     <<: *default-job
     steps:
       - checkout
-      - install-deps
+      - code-infra/install-deps
       - code-infra/eslint
       - code-infra/stylelint
       - code-infra/valelint
   test_static:
     <<: *default-job
     resource_class: medium
-    environment:
-      <<: *default-environment
-      # pnpm 11's `pnpm dedupe --check` exceeds Node's default heap on this runner.
-      NODE_OPTIONS: --max-old-space-size=3584
     steps:
       - checkout
-      - install-deps
+      - code-infra/install-deps
       - code-infra/check-static-changes
-      - run:
-          name: Generate PropTypes
+      - code-infra/check-generated:
           command: pnpm proptypes
-      - run:
-          name: '`pnpm proptypes` changes committed?'
-          command: git add -A && git diff --exit-code --staged
-      - run:
-          name: Generate the documentation
+      - code-infra/check-generated:
           command: pnpm docs:api
-      - run:
-          name: '`pnpm docs:api` changes committed?'
-          command: git add -A && git diff --exit-code --staged
-      - run:
-          name: '`pnpm extract-error-codes` changes committed?'
-          command: |
-            pnpm extract-error-codes
-            git add -A && git diff --exit-code --staged
+      - code-infra/extract-error-codes
   test_types:
     <<: *default-job
     resource_class: xlarge.gen2
     steps:
       - checkout
-      - install-deps
-      - run:
-          name: Transpile TypeScript demos
+      - code-infra/install-deps
+      - code-infra/check-generated:
           command: pnpm docs:typescript:formatted
-      - run:
-          name: '`pnpm docs:typescript:formatted` changes committed?'
-          command: git add -A && git diff --exit-code --staged
       - run:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
@@ -156,7 +116,7 @@ jobs:
     resource_class: xlarge.gen2
     steps:
       - checkout
-      - install-deps:
+      - code-infra/install-deps:
           typescript-version: << parameters.typescript-version >>
       - run:
           name: Tests TypeScript definitions
@@ -189,7 +149,7 @@ jobs:
       - run:
           name: Configure pnpm engine-strict
           command: pnpm config set --location project engine-strict false
-      - install-deps:
+      - code-infra/install-deps:
           react-version: << parameters.react-version >>
           playwright-version: '1.49.1'
       - run:
@@ -215,7 +175,7 @@ jobs:
       playwright-img-version: v1.62.1-noble
     steps:
       - checkout
-      - install-deps:
+      - code-infra/install-deps:
           react-version: << parameters.react-version >>
       - run:
           name: Tests Chromium
@@ -240,7 +200,7 @@ jobs:
       playwright-img-version: v1.62.1-noble
     steps:
       - checkout
-      - install-deps:
+      - code-infra/install-deps:
           react-version: << parameters.react-version >>
       - run:
           name: pnpm test:e2e
@@ -254,7 +214,7 @@ jobs:
       playwright-img-version: v1.62.1-noble
     steps:
       - checkout
-      - install-deps
+      - code-infra/install-deps
       - run:
           name: pnpm test:e2e-website
           command: pnpm test:e2e-website
@@ -268,25 +228,21 @@ jobs:
       playwright-img-version: v1.62.1-noble
     steps:
       - checkout
-      - install-deps:
+      - code-infra/install-deps:
           react-version: << parameters.react-version >>
-      - run:
-          name: Run visual regression tests
-          command: xvfb-run pnpm test:regressions
+      - code-infra/run-regressions:
+          test-results-path: ''
       - run:
           name: A11y results committed?
           # The react@17/18/next jobs pin React via `package-overrides`, which rewrites
           # pnpm-workspace.yaml (overrides) and may touch pnpm-lock.yaml. Exclude those so
           # this check still verifies the a11y results without tripping on the pinned deps.
           command: git add -A -- . ':(exclude)pnpm-*.yaml' && git diff --exit-code --staged
-      - run:
-          name: Upload screenshots to Argos CI
-          command: pnpm test:argos
   test_bundling_prepare:
     <<: *default-job
     steps:
       - checkout
-      - install-deps
+      - code-infra/install-deps
       - run:
           name: Build packages for fixtures
           command: pnpm lerna run --scope "@mui/*" build
@@ -305,7 +261,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install-deps:
+      - code-infra/install-deps:
           ignore-workspace: true
       - run:
           name: Test fixture
@@ -318,7 +274,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install-deps:
+      - code-infra/install-deps:
           ignore-workspace: true
       - run:
           name: Test fixture
@@ -335,7 +291,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install-deps:
+      - code-infra/install-deps:
           ignore-workspace: true
       - run:
           name: Test fixture
@@ -351,7 +307,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install-deps:
+      - code-infra/install-deps:
           ignore-workspace: true
       - run:
           name: Test fixture
@@ -367,7 +323,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install-deps:
+      - code-infra/install-deps:
           ignore-workspace: true
       - run:
           name: Test fixture
@@ -383,7 +339,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install-deps:
+      - code-infra/install-deps:
           ignore-workspace: true
       - run:
           name: Test fixture
@@ -399,7 +355,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install-deps:
+      - code-infra/install-deps:
           ignore-workspace: true
       - run:
           name: Test fixture
@@ -414,7 +370,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install-deps:
+      - code-infra/install-deps:
           ignore-workspace: true
       - run:
           name: Test fixture
@@ -432,7 +388,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - install-deps:
+      - code-infra/install-deps:
           ignore-workspace: true
       - run:
           name: Test fixture
@@ -442,14 +398,12 @@ jobs:
     resource_class: medium
     steps:
       - checkout
-      - install-deps
+      - code-infra/install-deps
       - run:
           name: Build @mui packages
           command: pnpm release:build
-      # @TODO: Not using code-infra/upload-size-snapshot since it doesn't support setting concurrency yet
-      - run:
-          name: Create and upload a size snapshot
-          command: pnpm size:snapshot --concurrency 6
+      - code-infra/upload-size-snapshot:
+          concurrency: 6
       - run:
           name: Validate type declarations
           command: pnpm validate-declarations
