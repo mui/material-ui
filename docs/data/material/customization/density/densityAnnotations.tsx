@@ -73,26 +73,19 @@ export interface Measured {
 
 const round = (value: number) => `${Math.round(value * 10) / 10}px`;
 
-const nameOf = (value: number, dictionary: Record<string, number>) =>
-  Object.keys(dictionary).find(
-    (key) => Math.abs(dictionary[key] - Math.abs(value)) < 0.5 && value !== 0,
-  );
-
 /**
  * `token (24px)` when the annotation names the expression the preset authored,
- * `step (12px)` when the measured number is a scale step on its own, plain px
- * otherwise — a component is free to sit on a value the scale doesn't name.
+ * plain px when it doesn't.
+ *
+ * A token is a claim of authorship, so it is never inferred from the measured
+ * number: a standard input at `size="small"` happens to come out at 32px, and
+ * naming that `touch-target` would assert a derivation the preset never made.
+ * No token means the value is measured, not emitted — and it prints as such.
  */
 function caption(value: number, annotation: Annotation) {
-  if (annotation.token) {
-    return `${annotation.token} (${round(value)})`;
-  }
-  const target: Record<string, number> =
-    annotation.aspect === 'icon'
-      ? { 'icon-target': DENSITY_TARGETS['icon-target'] }
-      : { 'touch-target': DENSITY_TARGETS['touch-target'] };
-  const token = nameOf(value, target) ?? nameOf(value, DENSITY_SCALE);
-  return token ? `${token} (${round(value)})` : round(value);
+  return annotation.token
+    ? `${annotation.token} (${round(value)})`
+    : round(value);
 }
 
 const rectPath = (rect: Rect) =>
