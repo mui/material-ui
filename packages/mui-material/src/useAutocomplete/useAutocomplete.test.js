@@ -491,19 +491,22 @@ describe('useAutocomplete', () => {
       { id: 'bar', label: 'Bar' },
     ];
 
+    const getOptionValue = (option) => option.id;
+
     function Test(props) {
-      const { groupedOptions, getInputProps, getListboxProps, getOptionProps } = useAutocomplete({
-        options,
-        open: true,
-        multiple: true,
-        value: ['foo'],
-        getOptionLabel: (option) => option.label,
-        getOptionValue: (option) => option.id,
-        ...props,
-      });
+      const { groupedOptions, getRootProps, getInputProps, getListboxProps, getOptionProps } =
+        useAutocomplete({
+          options,
+          open: true,
+          multiple: true,
+          value: ['foo'],
+          getOptionLabel: (option) => option.label,
+          getOptionValue,
+          ...props,
+        });
 
       return (
-        <div>
+        <div {...getRootProps()}>
           <input {...getInputProps()} />
           <ul {...getListboxProps()}>
             {groupedOptions.map((option, index) => {
@@ -550,6 +553,28 @@ describe('useAutocomplete', () => {
       expect(resolveOptionValue('missing')).to.equal(null);
     });
 
+    it('rebuilds the mapped value resolver when the options change', () => {
+      let resolveOptionValue;
+      const getOptionValue = (option) => option.id;
+      const initialOptions = [{ id: 'foo', label: 'Initial Foo' }];
+      const updatedOptions = [{ id: 'foo', label: 'Updated Foo' }];
+
+      function ResolverTest({ options: optionsProp }) {
+        const { getInputProps, getOptionFromValue } = useAutocomplete({
+          options: optionsProp,
+          getOptionValue,
+        });
+        resolveOptionValue = getOptionFromValue;
+        return <input {...getInputProps()} />;
+      }
+
+      const { rerender } = render(<ResolverTest options={initialOptions} />);
+      expect(resolveOptionValue('foo')).to.equal(initialOptions[0]);
+
+      rerender(<ResolverTest options={updatedOptions} />);
+      expect(resolveOptionValue('foo')).to.equal(updatedOptions[0]);
+    });
+
     it('returns the mapped option value when selecting a single option', async () => {
       const onChange = spy();
 
@@ -587,6 +612,12 @@ describe('useAutocomplete', () => {
       expect(screen.getByRole('combobox')).to.have.value('Foo');
     });
 
+    it('handles an unmatched mapped value without passing it to getOptionLabel', () => {
+      render(<Test multiple={false} value="missing" />);
+
+      expect(screen.getByRole('combobox')).to.have.value('');
+    });
+
     it('appends the mapped option value when selecting multiple options', async () => {
       const onChange = spy();
 
@@ -597,6 +628,26 @@ describe('useAutocomplete', () => {
       expect(onChange.args[0][1]).to.deep.equal(['foo', 'bar']);
       expect(onChange.args[0][2]).to.equal('selectOption');
       expect(onChange.args[0][3]).to.deep.equal({ option: options[1] });
+    });
+
+    it('maps options and preserves values created in freeSolo mode', async () => {
+      const onChange = spy();
+      const { user } = render(
+        <Test
+          defaultValue={['bar']}
+          freeSolo
+          value={undefined}
+          getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
+          onChange={onChange}
+        />,
+      );
+
+      await user.type(screen.getByRole('combobox'), 'custom{Enter}');
+
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.args[0][1]).to.deep.equal(['bar', 'custom']);
+      expect(onChange.args[0][2]).to.equal('createOption');
+      expect(onChange.args[0][3]).to.deep.equal({ option: 'custom' });
     });
 
     it('uses the mapped option value when filtering selected options', () => {
