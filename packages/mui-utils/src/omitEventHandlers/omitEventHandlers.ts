@@ -1,4 +1,4 @@
-import { isEventHandler } from '../extractEventHandlers/extractEventHandlers';
+import isEventHandler from '../isEventHandler';
 
 /**
  * Removes event handlers from the given object.
