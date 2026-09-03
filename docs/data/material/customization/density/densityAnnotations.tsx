@@ -241,11 +241,16 @@ export function useAnnotations(
         // `space-between` row would otherwise report all its leftover space.
         const column = parseFloat(styles.columnGap) || 0;
         const row = parseFloat(styles.rowGap) || 0;
+        // The band starts where the first child ends, so only that child has to
+        // be an element. A Button's label is a bare text node — using the second
+        // child to tell a row gap from a column one would miss it entirely.
         const first = element.children[0]?.getBoundingClientRect();
         const second = element.children[1]?.getBoundingClientRect();
         let gap: Measured['gap'] = null;
-        if (first && second) {
-          const stacked = second.top >= first.bottom - 0.5;
+        if (first) {
+          const stacked = second
+            ? second.top >= first.bottom - 0.5
+            : row > 0.5 && column <= 0.5;
           const size = stacked ? row : column;
           if (size > 0.5) {
             gap = {
@@ -285,12 +290,15 @@ function Comb({
   rail,
   side,
   label,
+  labelAt,
 }: {
   from: { x: number; y: number }[];
   /** the coordinate the rail sits on: a y for top/bottom, an x for left/right. */
   rail: number;
   side: Side;
   label: string;
+  /** where the text sits, when it had to move clear of another caption. */
+  labelAt?: number;
 }) {
   const horizontal = side === 'top' || side === 'bottom';
   const away = side === 'top' || side === 'left' ? -1 : 1;
@@ -321,26 +329,41 @@ function Comb({
           y2={horizontal ? rail : Math.max(...ys)}
         />
       ) : null}
-      <line
-        className="leader"
-        x1={horizontal ? mid : rail}
-        y1={horizontal ? rail : mid}
-        x2={horizontal ? mid : rail + away * 10}
-        y2={horizontal ? rail + away * 10 : mid}
-      />
       {horizontal ? (
-        <text x={mid} y={rail + away * (side === 'top' ? 16 : 26)} textAnchor="middle">
-          {label}
-        </text>
+        <React.Fragment>
+          <line
+            className="leader"
+            x1={mid}
+            y1={rail}
+            x2={mid}
+            y2={rail + away * 10}
+          />
+          <text x={mid} y={rail + away * (side === 'top' ? 16 : 26)} textAnchor="middle">
+            {label}
+          </text>
+        </React.Fragment>
       ) : (
-        <text
-          x={rail + away * 14}
-          y={mid}
-          textAnchor={side === 'left' ? 'end' : 'start'}
-          dominantBaseline="middle"
-        >
-          {label}
-        </text>
+        <React.Fragment>
+          {/* Stacked clear of a neighbour: run along the rail, then out. */}
+          {labelAt !== undefined && Math.abs(labelAt - mid) > 0.5 ? (
+            <line className="leader" x1={rail} y1={mid} x2={rail} y2={labelAt} />
+          ) : null}
+          <line
+            className="leader"
+            x1={rail}
+            y1={labelAt ?? mid}
+            x2={rail + away * 10}
+            y2={labelAt ?? mid}
+          />
+          <text
+            x={rail + away * 14}
+            y={labelAt ?? mid}
+            textAnchor={side === 'left' ? 'end' : 'start'}
+            dominantBaseline="middle"
+          >
+            {label}
+          </text>
+        </React.Fragment>
       )}
     </React.Fragment>
   );
@@ -368,17 +391,37 @@ export function Annotations({
   const nextRail = (side: Side) => {
     const index = lanes[side];
     lanes[side] += 1;
-    // Left/right captions separate by their own y, so their lanes need little room.
     if (side === 'top') {
       return bounds.y - 22 - index * 30;
     }
     if (side === 'bottom') {
       return bounds.y + bounds.height + 22 + index * 30;
     }
+    // Side captions get ONE rail each, not a lane per caption: they already
+    // separate by y (see `reserveY`), so an x step would only make the whole
+    // column drift inward as slots are switched off.
     if (side === 'left') {
-      return bounds.x - 22 - index * 14;
+      return bounds.x - 22;
     }
-    return bounds.x + bounds.width + 22 + index * 14;
+    return bounds.x + bounds.width + 22;
+  };
+
+  const takenY: Record<'left' | 'right', number[]> = { left: [], right: [] };
+  const reserveY = (side: 'left' | 'right', y: number) => {
+    let next = y;
+    let clashed = true;
+    while (clashed) {
+      clashed = false;
+      for (const used of takenY[side]) {
+        if (Math.abs(used - next) < 18) {
+          next += 20;
+          clashed = true;
+          break;
+        }
+      }
+    }
+    takenY[side].push(next);
+    return next;
   };
 
   const fills: React.ReactNode[] = [];
@@ -462,14 +505,23 @@ export function Annotations({
         const bucket = Math.round(Math.abs(band.value) * 10) / 10;
         byValue.set(bucket, [...(byValue.get(bucket) ?? []), band]);
       });
+      // A token names ONE value. When the two bands of an axis differ, it can't
+      // honestly label both — Input's block padding is `x-small` on top and a
+      // private-var fallback underneath — so the split captions fall back to px.
+      const named = byValue.size === 1 ? annotation : { ...annotation, token: undefined };
       byValue.forEach((group, value) => {
+        const points = group.map((band) => stem(band.side));
+        const mid = (points[0].y + points[points.length - 1].y) / 2;
         marks.push(
           <Comb
             key={`comb-${key}-${value}`}
-            from={group.map((band) => stem(band.side))}
+            from={points}
             rail={nextRail(side)}
             side={side}
-            label={caption(group[0].value, annotation)}
+            label={caption(group[0].value, named)}
+            labelAt={
+              side === 'left' || side === 'right' ? reserveY(side, mid) : undefined
+            }
           />,
         );
       });
@@ -514,6 +566,11 @@ export function Annotations({
           rail={nextRail(side)}
           side={side}
           label={caption(gap.size, annotation)}
+          labelAt={
+            side === 'left' || side === 'right'
+              ? reserveY(side, band.y + band.height / 2)
+              : undefined
+          }
         />,
       );
       return;
@@ -527,14 +584,20 @@ export function Annotations({
       fills.push(
         <path key={`icon-${key}`} className="slot-outline" d={rectPath(icon)} />,
       );
-      const side = nearest(icon, 'block');
+      const side = nearest(icon, 'block') as 'left' | 'right';
       marks.push(
         <Comb
           key={`comb-${key}`}
-          from={[{ x: side === 'left' ? icon.x : icon.x + icon.width, y: icon.y + icon.height / 2 }]}
+          from={[
+            {
+              x: side === 'left' ? icon.x : icon.x + icon.width,
+              y: icon.y + icon.height / 2,
+            },
+          ]}
           rail={nextRail(side)}
           side={side}
           label={caption(icon.height, annotation)}
+          labelAt={reserveY(side, icon.y + icon.height / 2)}
         />,
       );
       return;
@@ -543,6 +606,7 @@ export function Annotations({
     // touch-target — an I-beam in the side gutter, reached by one horizontal stem.
     const side = nearest(box, 'block') === 'left' ? 'right' : 'left';
     const rail = nextRail(side);
+    const labelY = reserveY(side, box.y + box.height / 2);
     outline();
     marks.push(
       <React.Fragment key={`beam-${key}`}>
@@ -562,9 +626,18 @@ export function Annotations({
           x2={rail + 4}
           y2={box.y + box.height}
         />
+        {Math.abs(labelY - (box.y + box.height / 2)) > 0.5 ? (
+          <line
+            className="leader"
+            x1={rail}
+            y1={box.y + box.height / 2}
+            x2={rail}
+            y2={labelY}
+          />
+        ) : null}
         <text
           x={rail + (side === 'right' ? 10 : -10)}
-          y={box.y + box.height / 2}
+          y={labelY}
           textAnchor={side === 'right' ? 'start' : 'end'}
           dominantBaseline="middle"
         >
