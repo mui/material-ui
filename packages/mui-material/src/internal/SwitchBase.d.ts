@@ -24,7 +24,11 @@ type SwitchBaseSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the root slot.
      * By default, the available props are based on the [ButtonBase](https://mui.com/material-ui/api/button-base/#props) component.
      */
-    root: SlotProps<React.ElementType<ButtonBaseProps>, {}, SwitchBaseOwnerState>;
+    root: SlotProps<
+      React.ElementType<Omit<ButtonBaseProps, 'nativeButton'>>,
+      {},
+      SwitchBaseOwnerState
+    >;
     /**
      * Props forwarded to the input slot.
      */
@@ -34,7 +38,10 @@ type SwitchBaseSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface SwitchBaseProps
   extends
-    StandardProps<ButtonBaseProps, 'children' | 'onChange' | 'type' | 'value'>,
+    StandardProps<
+      Omit<ButtonBaseProps, 'nativeButton'>,
+      'children' | 'onChange' | 'type' | 'value'
+    >,
     SwitchBaseSlotsAndSlotProps {
   autoFocus?: boolean | undefined;
   /**
@@ -77,16 +84,6 @@ export interface SwitchBaseProps
    * The id of the `input` element.
    */
   id?: string | undefined;
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement> | undefined;
-  /**
-   * Pass a ref to the `input` element.
-   * @deprecated Use `slotProps.input.ref` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  inputRef?: React.Ref<any> | undefined;
   /**
    * Name attribute of the `input` element.
    */

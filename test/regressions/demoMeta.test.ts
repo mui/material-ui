@@ -1,0 +1,138 @@
+import { describe, it, expect } from 'vitest';
+import { A11Y_RULES, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
+
+describe('parseRoute', () => {
+  it('parses an a11y fixture route into its a11y/fixtures path, suite as slug', () => {
+    expect(parseRoute('/a11y-buttons/ButtonA11yNonNative')).to.deep.equal({
+      path: 'test/regressions/a11y/fixtures/buttons/ButtonA11yNonNative',
+      slug: 'buttons',
+      demo: 'ButtonA11yNonNative',
+    });
+  });
+
+  it('returns null for a screenshot-only regression fixture route', () => {
+    expect(parseRoute('/regression-Rating/FocusVisibleRating')).to.equal(null);
+  });
+
+  it('parses a docs-components route into path/slug/demo', () => {
+    expect(parseRoute('/docs-components-buttons/BasicButtons')).to.deep.equal({
+      path: 'docs/data/material/components/buttons/BasicButtons',
+      slug: 'buttons',
+      demo: 'BasicButtons',
+    });
+  });
+
+  it('parses a getting-started template route into its docs/data path', () => {
+    expect(
+      parseRoute('/docs-getting-started-templates-crud-dashboard/CrudDashboard'),
+    ).to.deep.equal({
+      path: 'docs/data/material/getting-started/templates/crud-dashboard/CrudDashboard',
+      slug: 'crud-dashboard',
+      demo: 'CrudDashboard',
+    });
+  });
+
+  it('parses a docs-product route into the matching product*/ docs/src path', () => {
+    expect(parseRoute('/docs-product-material/MaterialHero')).to.deep.equal({
+      path: 'docs/src/components/productMaterial/MaterialHero',
+      slug: 'material',
+      demo: 'MaterialHero',
+    });
+    expect(parseRoute('/docs-product-x/XGridFullDemo')).to.deep.equal({
+      path: 'docs/src/components/productX/XGridFullDemo',
+      slug: 'x',
+      demo: 'XGridFullDemo',
+    });
+  });
+});
+
+describe('getConfig', () => {
+  it('returns undefined when no rule matches', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/accordion/BasicAccordion'),
+    ).to.equal(undefined);
+  });
+
+  it('returns a screenshot opt-out rule for an excluded demo', () => {
+    expect(
+      getConfig(SCREENSHOT_RULES, 'docs/data/material/components/autocomplete/Asynchronous'),
+    ).to.deep.include({ enabled: false });
+  });
+
+  it('returns the a11y rule for a brace-glob enrolment', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/BasicButtons'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yNonNative'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('allows a known Button color-contrast fixture to record failures without asserting them', () => {
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yColorMatrix'),
+    ).to.deep.include({
+      enabled: true,
+      assertions: 'all',
+      skipAssertions: ['color-contrast'],
+    });
+  });
+
+  it('keeps the a11y fixture tree screenshot-off, except explicit re-enrolments', () => {
+    expect(
+      getConfig(SCREENSHOT_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yColorMatrix'),
+    ).to.deep.include({ enabled: false });
+    expect(
+      getConfig(SCREENSHOT_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing'),
+    ).to.deep.include({ enabled: true });
+  });
+
+  it('returns undefined for a demo outside a brace-glob enrolment', () => {
+    // Button a11y enrolment covers @mui/material/Button, not IconButton.
+    expect(getConfig(A11Y_RULES, 'docs/data/material/components/buttons/DisabledButtons')).to.equal(
+      undefined,
+    );
+    expect(getConfig(A11Y_RULES, 'docs/data/material/components/buttons/IconButtons')).to.equal(
+      undefined,
+    );
+  });
+
+  it('honours last-match-wins when multiple rules apply', () => {
+    const rules = [
+      { test: 'docs/data/material/components/foo/*', enabled: true },
+      { test: 'docs/data/material/components/foo/Bar', enabled: false },
+    ];
+    expect(getConfig(rules, 'docs/data/material/components/foo/Bar')).to.deep.equal({
+      test: 'docs/data/material/components/foo/Bar',
+      enabled: false,
+    });
+    expect(getConfig(rules, 'docs/data/material/components/foo/Baz')).to.deep.equal({
+      test: 'docs/data/material/components/foo/*',
+      enabled: true,
+    });
+  });
+});
+
+describe('minReactMajor', () => {
+  it('marks the crud-dashboard template as needing React 19', () => {
+    expect(
+      getConfig(
+        SCREENSHOT_RULES,
+        'docs/data/material/getting-started/templates/crud-dashboard/CrudDashboard',
+      ),
+    ).to.deep.include({ minReactMajor: 19 });
+  });
+
+  it('leaves demos without the field unconstrained', () => {
+    expect(
+      getConfig(SCREENSHOT_RULES, 'docs/data/material/components/autocomplete/Asynchronous'),
+    ).to.not.have.property('minReactMajor');
+  });
+});
+
+describe('rule data sanity', () => {
+  it('rule arrays are non-empty (catches accidental import regression)', () => {
+    expect(SCREENSHOT_RULES.length).to.be.greaterThan(0);
+    expect(A11Y_RULES.length).to.be.greaterThan(0);
+  });
+});

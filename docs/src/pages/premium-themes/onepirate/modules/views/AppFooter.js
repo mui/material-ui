@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
 import Typography from '../components/Typography';
 import TextField from '../components/TextField';
 
@@ -51,8 +52,7 @@ export default function AppFooter() {
       <Container sx={{ my: 8, display: 'flex' }}>
         <Grid container spacing={5}>
           <Grid size={{ xs: 6, sm: 4, md: 3 }}>
-            <Grid
-              container
+            <Stack
               direction="column"
               spacing={2}
               sx={{ justifyContent: 'flex-end', height: 120 }}
@@ -71,7 +71,7 @@ export default function AppFooter() {
               <Grid>
                 <Copyright />
               </Grid>
-            </Grid>
+            </Stack>
           </Grid>
           <Grid size={{ xs: 6, sm: 4, md: 2 }}>
             <Typography variant="h6" marked="left" gutterBottom>
@@ -123,7 +123,6 @@ export default function AppFooter() {
                 href="https://creativecommons.org/licenses/by/3.0/"
                 title="Creative Commons BY 3.0"
                 target="_blank"
-                rel="noopener noreferrer"
               >
                 CC 3.0 BY
               </Link>

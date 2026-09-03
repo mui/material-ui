@@ -1,1 +1,2 @@
-export { default } from './useRovingTabIndex';
+export * from './RovingTabIndexContext';
+export * from './useRovingTabIndex';

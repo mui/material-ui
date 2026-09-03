@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Alert, { alertClasses as classes } from '@mui/material/Alert';
@@ -40,7 +40,6 @@ describe('<Alert />', () => {
         expectedClassName: classes.closeIcon,
       },
     },
-    skip: ['componentsProp'],
   }));
 
   describe('prop: square', () => {
@@ -235,7 +234,7 @@ describe('<Alert />', () => {
 
       expect(screen.queryByTestId('SuccessOutlinedIcon')).not.to.equal(null);
       expect(screen.queryByTestId('InfoOutlinedIcon')).not.to.equal(null);
-      // overriden icon in theme
+      // overridden icon in theme
       expect(screen.queryByTestId('AlarmIcon')).not.to.equal(null);
       expect(screen.queryByTestId('ErrorOutlineIcon')).not.to.equal(null);
       // default warning icon

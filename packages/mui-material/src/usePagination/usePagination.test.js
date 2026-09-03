@@ -1,6 +1,6 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
-import { expect } from 'chai';
 import usePagination from '@mui/material/usePagination';
 
 describe('usePagination', () => {

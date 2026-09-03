@@ -22,8 +22,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import SvgIcon from '@mui/material/SvgIcon';
 import * as mui from '@mui/icons-material';
-import { Link } from '@mui/docs/Link';
-import { useTranslate } from '@mui/docs/i18n';
+import { Link } from '@mui/internal-core-docs/Link';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
 
 // For Debugging
@@ -47,7 +47,7 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 // import DeleteForeverRounded from '@mui/icons-material/DeleteForeverRounded';
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import synonyms from './synonyms';
 
 const FlexSearchIndex = flexsearch.Index;
@@ -98,7 +98,7 @@ const iconWidth = 35;
 
 const SVG_ICON_CLASS = 'svg-icon';
 
-const StyledIcon = styled('span')(({ theme }) => ({
+const StyledIcon = styled('div')(({ theme }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
   color: (theme.vars ?? theme).palette.text.secondary,
@@ -399,6 +399,12 @@ const DialogDetails = React.memo(function DialogDetails(props) {
               onClick={handleClick(2)}
               code={`import ${selectedIcon.importName}Icon from '@mui/icons-material/${selectedIcon.importName}';`}
               language="js"
+              sx={{
+                '& pre': {
+                  whiteSpace: 'pre-wrap',
+                  wordBreak: 'break-all',
+                },
+              }}
             />
           </Tooltip>
           <ImportLink
@@ -409,13 +415,20 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             {t('searchIcons.learnMore')}
           </ImportLink>
           <DialogContent>
-            <Grid container>
-              <Grid size="grow">
-                <Grid container sx={{ justifyContent: 'center' }}>
+            <Grid container spacing={2} sx={{ rowGap: { xs: 3, sm: 0 } }}>
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <Grid
+                  container
+                  sx={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100%',
+                  }}
+                >
                   <CanvasComponent as={selectedIcon.Component} />
                 </Grid>
               </Grid>
-              <Grid size="grow">
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <Grid
                   container
                   sx={{ alignItems: 'flex-end', justifyContent: 'center' }}
@@ -442,7 +455,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     </Tooltip>
                   </Grid>
                 </Grid>
-                <Grid container sx={{ justifyContent: 'center' }}>
+                <Grid container sx={{ justifyContent: 'center', mt: 1 }}>
                   <ContextComponent
                     as={selectedIcon.Component}
                     contextColor="primary"
@@ -615,9 +628,7 @@ export default function SearchIcons() {
         }}
       >
         <Form>
-          <Typography fontWeight={500} sx={{ mb: 1 }}>
-            Filter the style
-          </Typography>
+          <Typography sx={{ fontWeight: 500, mb: 1 }}>Filter the style</Typography>
           <RadioGroup
             value={theme}
             onChange={(event) => setTheme(event.target.value)}
@@ -668,7 +679,7 @@ export default function SearchIcons() {
         <Icons icons={deferredIcons} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails
-        open={!!selectedIcon}
+        open={Boolean(selectedIcon)}
         selectedIcon={dialogSelectedIcon}
         handleClose={handleClose}
       />

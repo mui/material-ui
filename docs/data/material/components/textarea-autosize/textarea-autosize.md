@@ -9,7 +9,7 @@ githubLabel: 'component: TextareaAutosize'
 
 <p class="description">The Textarea Autosize component automatically adjusts its height to match the length of the content within.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader", "design": false}}
 
 ## Introduction
 

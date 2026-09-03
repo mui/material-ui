@@ -57,20 +57,6 @@ export interface StepLabelProps
    */
   classes?: Partial<StepLabelClasses> | undefined;
   /**
-   * The props used for each slot inside.
-   * @default {}
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  componentsProps?:
-    | {
-        /**
-         * Props applied to the label element.
-         * @default {}
-         */
-        label?: React.HTMLProps<HTMLSpanElement> | undefined;
-      }
-    | undefined;
-  /**
    * If `true`, the step is marked as failed.
    * @default false
    */
@@ -84,16 +70,6 @@ export interface StepLabelProps
    */
   optional?: React.ReactNode;
   /**
-   * The component to render in place of the [`StepIcon`](https://mui.com/material-ui/api/step-icon/).
-   * @deprecated Use `slots.stepIcon` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  StepIconComponent?: React.ElementType<StepIconProps> | undefined;
-  /**
-   * Props applied to the [`StepIcon`](https://mui.com/material-ui/api/step-icon/) element.
-   * @deprecated Use `slotProps.stepIcon` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  StepIconProps?: Partial<StepIconProps> | undefined;
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme> | undefined;
@@ -105,11 +81,11 @@ export type StepLabelClasskey = keyof NonNullable<StepLabelProps['classes']>;
  *
  * Demos:
  *
- * - [Stepper](https://next.mui.com/material-ui/react-stepper/)
+ * - [Stepper](https://mui.com/material-ui/react-stepper/)
  *
  * API:
  *
- * - [StepLabel API](https://next.mui.com/material-ui/api/step-label/)
+ * - [StepLabel API](https://mui.com/material-ui/api/step-label/)
  */
 declare const StepLabel: ((props: StepLabelProps) => React.JSX.Element) & {
   muiName: string;

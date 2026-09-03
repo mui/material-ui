@@ -1,15 +1,15 @@
 {
   "name": "@mui/envinfo",
-  "version": "2.0.47",
+  "version": "2.0.52",
   "author": "MUI Team",
   "description": "Logs info about the environment relevant to @mui/*.",
+  "license": "MIT",
   "bin": "./src/envinfo.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-envinfo"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
@@ -21,10 +21,7 @@
   "dependencies": {
     "envinfo": "^7.21.0"
   },
-  "devDependencies": {
-    "@types/chai": "5.2.3",
-    "chai": "6.2.2"
-  },
+  "devDependencies": {},
   "publishConfig": {
     "access": "public",
     "directory": "build"

@@ -1,4 +1,5 @@
-import { createTheme, ThemeOptions } from '@mui/material/styles';
+import { createTheme, ThemeOptions, FocusVisible } from '@mui/material/styles';
+import { buttonClasses } from '@mui/material/Button';
 
 const theme = createTheme();
 
@@ -110,41 +111,43 @@ const theme = createTheme();
       },
       MuiButton: {
         styleOverrides: {
-          containedSuccess: {
-            backgroundColor: '#7CFC00',
-          },
-          containedError: {
-            backgroundColor: '#FF4500',
-          },
-          containedInfo: {
-            backgroundColor: '#7B68EE',
-          },
-          containedWarning: {
-            backgroundColor: '#FFD700',
-          },
-          textSuccess: {
-            color: '#7CFC00',
-          },
-          textError: {
-            color: '#FF4500',
-          },
-          textInfo: {
-            color: '#7B68EE',
-          },
-          textWarning: {
-            color: '#FFD700',
-          },
-          outlinedSuccess: {
-            color: '#7CFC00',
-          },
-          outlinedError: {
-            color: '#FF4500',
-          },
-          outlinedInfo: {
-            color: '#7B68EE',
-          },
-          outlinedWarning: {
-            color: '#FFD700',
+          root: {
+            [`&.${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: {
+              backgroundColor: '#7CFC00',
+            },
+            [`&.${buttonClasses.contained}.${buttonClasses.colorError}`]: {
+              backgroundColor: '#FF4500',
+            },
+            [`&.${buttonClasses.contained}.${buttonClasses.colorInfo}`]: {
+              backgroundColor: '#7B68EE',
+            },
+            [`&.${buttonClasses.contained}.${buttonClasses.colorWarning}`]: {
+              backgroundColor: '#FFD700',
+            },
+            [`&.${buttonClasses.text}.${buttonClasses.colorSuccess}`]: {
+              color: '#7CFC00',
+            },
+            [`&.${buttonClasses.text}.${buttonClasses.colorError}`]: {
+              color: '#FF4500',
+            },
+            [`&.${buttonClasses.text}.${buttonClasses.colorInfo}`]: {
+              color: '#7B68EE',
+            },
+            [`&.${buttonClasses.text}.${buttonClasses.colorWarning}`]: {
+              color: '#FFD700',
+            },
+            [`&.${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: {
+              color: '#7CFC00',
+            },
+            [`&.${buttonClasses.outlined}.${buttonClasses.colorError}`]: {
+              color: '#FF4500',
+            },
+            [`&.${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: {
+              color: '#7B68EE',
+            },
+            [`&.${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: {
+              color: '#FFD700',
+            },
           },
         },
       },
@@ -312,5 +315,31 @@ const theme = createTheme();
     components: {
       mergeClassNameAndStyle: true,
     },
+  });
+}
+
+// focusVisible theme key
+{
+  createTheme({ focusVisible: true });
+  createTheme({ focusVisible: { outlineColor: 'red', outlineWidth: 2, outlineOffset: 3 } });
+  createTheme({ focusVisible: { outlineColor: 'red' } });
+  createTheme({ focusVisible: { outlineStyle: 'dashed' } });
+  createTheme({ focusVisible: { boxShadow: '0 0 0 4px #fff' } });
+  createTheme({ focusVisible: { boxShadow: '0 0 0 4px #fff', outlineColor: 'transparent' } });
+  createTheme({ focusVisible: false });
+  createTheme({ focusVisible: undefined });
+
+  // Resolved theme always exposes the merged object (never the boolean).
+  const focusVisible: FocusVisible | false | undefined = theme.focusVisible;
+  createTheme({ focusVisible });
+
+  createTheme({
+    // @ts-expect-error outlineWidth must be a number or string
+    focusVisible: { outlineWidth: true },
+  });
+
+  createTheme({
+    // @ts-expect-error focusVisible must be a boolean or a CSS properties object
+    focusVisible: 'solid',
   });
 }

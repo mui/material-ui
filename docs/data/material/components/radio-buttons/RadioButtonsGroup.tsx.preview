@@ -1,7 +1,7 @@
 <FormControl>
-  <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+  <FormLabel id={`${id}-label`}>Gender</FormLabel>
   <RadioGroup
-    aria-labelledby="demo-radio-buttons-group-label"
+    aria-labelledby={`${id}-label`}
     defaultValue="female"
     name="radio-buttons-group"
   >

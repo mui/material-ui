@@ -47,7 +47,6 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemIcon,
-  ListItemSecondaryAction,
   ListItemText,
   Menu,
   MenuItem,
@@ -95,7 +94,7 @@ function AppBarTest() {
         <IconButton color="inherit" aria-label="menu">
           <FakeIcon />
         </IconButton>
-        <Typography variant="h6" color="inherit">
+        <Typography variant="h6" sx={{ color: 'inherit' }}>
           Title
         </Typography>
         <Button color="inherit">Login</Button>
@@ -399,7 +398,6 @@ function DividerTest() {
   return (
     <div>
       <Divider />
-      <Divider light />
     </div>
   );
 }
@@ -567,19 +565,22 @@ function ListTest() {
   return (
     <List>
       {[0, 1, 2, 3].map((value) => (
-        <ListItemButton dense selected={false} key={value} onClick={(event) => log(event)}>
-          <Checkbox checked tabIndex={-1} disableRipple />
-          <ListItemText primary={`Line item ${value + 1}`} />
-          <ListItemSecondaryAction>
+        <ListItem
+          dense
+          key={value}
+          secondaryAction={
             <IconButton aria-label="comments">
               <FakeIcon />
             </IconButton>
-          </ListItemSecondaryAction>
-        </ListItemButton>
+          }
+        >
+          <ListItemButton selected={false} onClick={(event) => log(event)}>
+            <Checkbox checked tabIndex={-1} disableRipple />
+            <ListItemText primary={`Line item ${value + 1}`} />
+          </ListItemButton>
+        </ListItem>
       ))}
-      <ListItem ContainerComponent="div" ContainerProps={{ className: 'demo' }}>
-        an item
-      </ListItem>
+      <ListItem>an item</ListItem>
     </List>
   );
 }
@@ -767,12 +768,11 @@ function SnackbarTest() {
         open
         autoHideDuration={6000}
         onClose={(event) => log(event)}
-        ContentProps={
-          {
-            // 'aria-describedby': 'message-id',
-            // ^ will work once https://github.com/DefinitelyTyped/DefinitelyTyped/pull/22582 is merged.
-          }
-        }
+        slotProps={{
+          content: {
+            'aria-describedby': 'message-id',
+          },
+        }}
         message={<span id="message-id">Note archived</span>}
         action={[
           <Button key="undo" color="secondary" size="small" onClick={(event) => log(event)}>

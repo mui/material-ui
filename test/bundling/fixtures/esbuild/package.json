@@ -18,13 +18,13 @@
     "@mui/styled-engine": "workspace:*",
     "@mui/system": "workspace:*",
     "@mui/utils": "workspace:*",
-    "esbuild": "0.25.0",
+    "esbuild": "0.28.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0"
   },
   "devDependencies": {
-    "concurrently": "7.4.0",
+    "concurrently": "10.0.3",
     "playwright": "1.55.1",
     "serve": "14.2.4"
   },

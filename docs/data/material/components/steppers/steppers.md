@@ -17,7 +17,7 @@ Steppers may display a transient feedback message after a step is saved.
 - **Types of Steps**: Editable, Non-editable, Mobile, Optional
 - **Types of Steppers**: Horizontal, Vertical, Linear, Non-linear
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 :::info
 This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
@@ -99,7 +99,18 @@ Vertical steppers are designed for narrow screen sizes. They are ideal for mobil
 
 {{"demo": "VerticalLinearStepper.js"}}
 
-### Performance
+### Alternative label
+
+Use `alternativeLabel` prop on the vertical `Stepper` component to reverse the placement of the label and content.
+
+{{"demo": "VerticalLinearAlternativeLabelStepper.js"}}
+
+## Transition
+
+`StepContent` uses [Collapse](/material-ui/transitions/#collapse) by default.
+Use `slots.transition` and `slotProps.transition` to replace it with another transition or to pass transition props.
+
+## Performance
 
 The content of a step is unmounted when closed.
 If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to keep the step mounted with:

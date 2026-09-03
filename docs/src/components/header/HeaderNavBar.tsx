@@ -8,10 +8,10 @@ import Paper from '@mui/material/Paper';
 import { unstable_debounce as debounce } from '@mui/utils';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
-import IconImage from '@mui/docs/IconImage';
-import ROUTES from 'docs/src/route';
-import { Link } from '@mui/docs/Link';
-import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
+import IconImage from '@mui/internal-core-docs/IconImage';
+import { ROUTES } from '@mui/internal-core-docs/constants';
+import { Link } from '@mui/internal-core-docs/Link';
+import { MuiProductSelector } from '@mui/internal-core-docs/AppLayout';
 
 const Navigation = styled('nav')(({ theme }) => [
   {

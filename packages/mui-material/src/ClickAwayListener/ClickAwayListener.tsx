@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import contains from '@mui/utils/contains';
 import ownerDocument from '@mui/utils/ownerDocument';
 import useForkRef from '@mui/utils/useForkRef';
 import useEventCallback from '@mui/utils/useEventCallback';
@@ -23,11 +24,7 @@ function clickedRootScrollbar(event: MouseEvent, doc: Document) {
 }
 
 type ClickAwayMouseEventHandler =
-  | 'onClick'
-  | 'onMouseDown'
-  | 'onMouseUp'
-  | 'onPointerDown'
-  | 'onPointerUp';
+  'onClick' | 'onMouseDown' | 'onMouseUp' | 'onPointerDown' | 'onPointerUp';
 type ClickAwayTouchEventHandler = 'onTouchStart' | 'onTouchEnd';
 
 export interface ClickAwayListenerProps {
@@ -63,12 +60,12 @@ export interface ClickAwayListenerProps {
  *
  * Demos:
  *
- * - [Click-Away Listener](https://next.mui.com/material-ui/react-click-away-listener/)
- * - [Menu](https://next.mui.com/material-ui/react-menu/)
+ * - [Click-Away Listener](https://mui.com/material-ui/react-click-away-listener/)
+ * - [Menu](https://mui.com/material-ui/react-menu/)
  *
  * API:
  *
- * - [ClickAwayListener API](https://next.mui.com/material-ui/api/click-away-listener/)
+ * - [ClickAwayListener API](https://mui.com/material-ui/api/click-away-listener/)
  */
 function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
   const {
@@ -85,7 +82,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
 
   React.useEffect(() => {
     // Ensure that this component is not "activated" synchronously.
-    // https://github.com/facebook/react/issues/20074
+    // https://github.com/react/react/issues/20074
     setTimeout(() => {
       activatedRef.current = true;
     }, 0);
@@ -110,7 +107,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
 
     const doc = ownerDocument(nodeRef.current);
 
-    // 1. IE11 support, which trigger the handleClickAway even after the unbind
+    // 1. IE 11 support, which trigger the handleClickAway even after the unbind
     // 2. The child might render null.
     // 3. Behave like a blur listener.
     if (
@@ -134,14 +131,8 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
       insideDOM = event.composedPath().includes(nodeRef.current);
     } else {
       insideDOM =
-        !doc.documentElement.contains(
-          // @ts-expect-error returns `false` as intended when not dispatched from a Node
-          event.target,
-        ) ||
-        nodeRef.current.contains(
-          // @ts-expect-error returns `false` as intended when not dispatched from a Node
-          event.target,
-        );
+        !contains(doc.documentElement, event.target as Element) ||
+        contains(nodeRef.current, event.target as Element);
     }
 
     if (!insideDOM && (disableReactTree || !insideReactTree)) {

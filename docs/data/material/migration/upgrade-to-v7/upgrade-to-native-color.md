@@ -14,15 +14,15 @@ Update Material UI to the latest version (or at least v7.3.0).
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material@next
+npm install @mui/material
 ```
 
 ```bash pnpm
-pnpm add @mui/material@next
+pnpm add @mui/material
 ```
 
 ```bash yarn
-yarn add @mui/material@next
+yarn add @mui/material
 ```
 
 </codeblock>

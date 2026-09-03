@@ -1,6 +1,7 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Link, { linkClasses as classes } from '@mui/material/Link';
 import Typography, { typographyClasses } from '@mui/material/Typography';
 import describeConformance from '../../test/describeConformance';
@@ -24,7 +25,6 @@ describe('<Link />', () => {
     refInstanceof: window.HTMLAnchorElement,
     testVariantProps: { color: 'secondary', variant: 'h1' },
     testStateOverrides: { prop: 'underline', value: 'always', styleKey: 'underlineAlways' },
-    skip: ['componentsProp'],
   }));
 
   it('should render children', () => {
@@ -94,6 +94,40 @@ describe('<Link />', () => {
       });
 
       expect(anchor).not.to.have.class(classes.focusVisible);
+    });
+  });
+
+  describe('theme.focusVisible', () => {
+    it.skipIf(isJsdom())('renders the curated ring on keyboard focus when set', () => {
+      const { container } = render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Link href="/">Home</Link>
+        </ThemeProvider>,
+      );
+      const anchor = container.querySelector('a');
+      focusVisible(anchor);
+      expect(anchor).to.have.class(classes.focusVisible);
+      expect(anchor).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+    });
+
+    it.skipIf(isJsdom())('curated ring replaces the button variant outline: auto', () => {
+      const { container } = render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Link component="button">Home</Link>
+        </ThemeProvider>,
+      );
+      const button = container.querySelector('button');
+      focusVisible(button);
+      expect(button).to.have.class(classes.focusVisible);
+      expect(button).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
     });
   });
 });

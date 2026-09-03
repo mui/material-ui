@@ -1,5 +1,5 @@
+import { describe, beforeEach, afterEach, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeContext } from '@mui/styled-engine';
@@ -90,6 +90,7 @@ describe('Multiple nested theme providers', () => {
       </LibThemeProvider>,
     );
 
-    expect(screen.getByText('Material')).to.have.class(material.buttonClasses.outlinedPrimary);
+    expect(screen.getByText('Material')).to.have.class(material.buttonClasses.outlined);
+    expect(screen.getByText('Material')).to.have.class(material.buttonClasses.colorPrimary);
   });
 });

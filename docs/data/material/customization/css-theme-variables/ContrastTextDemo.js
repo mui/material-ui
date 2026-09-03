@@ -54,7 +54,7 @@ export default function ContrastTextDemo() {
             flexShrink: 0,
           }}
         >
-          <Typography variant="body2" fontFamily="monospace">
+          <Typography variant="body2" sx={{ fontFamily: 'monospace' }}>
             {backgroundColor}
           </Typography>
         </Box>
@@ -112,7 +112,7 @@ export default function ContrastTextDemo() {
             gap: 3,
           }}
         >
-          <Typography variant="body2" fontFamily="monospace">
+          <Typography variant="body2" sx={{ fontFamily: 'monospace' }}>
             <b>Text color:</b> {contrastText}
           </Typography>
         </Box>

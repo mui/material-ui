@@ -37,18 +37,17 @@ export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTM
    * @default 'filled'
    */
   variant?:
-    | OverridableStringUnion<'filled' | 'outlined', TimelineDotPropsVariantOverrides>
-    | undefined;
+    OverridableStringUnion<'filled' | 'outlined', TimelineDotPropsVariantOverrides> | undefined;
 }
 
 /**
  *
  * Demos:
  *
- * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineDot API](https://next.mui.com/material-ui/api/timeline-dot/)
+ * - [TimelineDot API](https://mui.com/material-ui/api/timeline-dot/)
  */
 export default function TimelineDot(props: TimelineDotProps): React.JSX.Element;

@@ -14,7 +14,15 @@ function Test() {
   return (
     <React.Fragment>
       <Drawer open />;
-      <Drawer open PaperProps={paperProps} />;
+      <Drawer open slotProps={{ paper: paperProps }} />;
+      <Drawer
+        open
+        slotProps={{
+          // @ts-expect-error — unknown props should be rejected
+          transition: { randomInvalidProp: 'test' },
+        }}
+      />
+      ;
     </React.Fragment>
   );
 }

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { ResponsiveStyleValue, SxProps, SystemProps } from '@mui/system';
+import { ResponsiveStyleValue, SxProps } from '@mui/system';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles/createTheme';
 
-export interface StackOwnProps extends SystemProps<Theme> {
+export interface StackOwnProps {
   /**
    * The content of the component.
    */
@@ -26,7 +26,7 @@ export interface StackOwnProps extends SystemProps<Theme> {
   /**
    * If `true`, the CSS flexbox `gap` is used instead of applying `margin` to children.
    *
-   * While CSS `gap` removes the [known limitations](https://mui.com/joy-ui/react-stack/#limitations),
+   * While CSS `gap` removes the known limitations,
    * it is not fully supported in some browsers. We recommend checking https://caniuse.com/?search=flex%20gap before using this flag.
    *
    * To enable this flag globally, follow the [theme's default props](https://mui.com/material-ui/customization/theme-components/#default-props) configuration.
@@ -50,11 +50,11 @@ export interface StackTypeMap<
  *
  * Demos:
  *
- * - [Stack](https://next.mui.com/material-ui/react-stack/)
+ * - [Stack](https://mui.com/material-ui/react-stack/)
  *
  * API:
  *
- * - [Stack API](https://next.mui.com/material-ui/api/stack/)
+ * - [Stack API](https://mui.com/material-ui/api/stack/)
  */
 declare const Stack: OverridableComponent<StackTypeMap>;
 

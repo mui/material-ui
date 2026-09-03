@@ -1,7 +1,7 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Step, { stepClasses as classes } from '@mui/material/Step';
-import Stepper, { StepperContextProvider } from '@mui/material/Stepper';
+import Stepper, { StepperContext } from '@mui/material/Stepper';
 import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
 import StepButton, { stepButtonClasses } from '@mui/material/StepButton';
 import describeConformance from '../../test/describeConformance';
@@ -9,16 +9,22 @@ import describeConformance from '../../test/describeConformance';
 describe('<Step />', () => {
   const { render } = createRenderer();
 
-  // StepButton needs to be rendered in a StepperContextProvider
+  // StepButton needs to be rendered in a StepperContext.Provider
   function renderInContext(node) {
     return render(
-      <StepperContextProvider
+      <StepperContext.Provider
         value={{
-          registerElementRef: () => {},
+          activeStep: 0,
+          alternativeLabel: false,
+          connector: null,
+          nonLinear: false,
+          orientation: 'horizontal',
+          totalSteps: 1,
+          isTabList: false,
         }}
       >
         {node}
-      </StepperContextProvider>,
+      </StepperContext.Provider>,
     );
   }
 
@@ -29,7 +35,6 @@ describe('<Step />', () => {
     muiName: 'MuiStep',
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLLIElement,
-    skip: ['componentsProp'],
   }));
 
   it('merges styles and other props into the root node', () => {
@@ -146,6 +151,48 @@ describe('<Step />', () => {
 
       const stepLabels = container.querySelectorAll(`.${stepLabelClasses.root}`);
       expect(stepLabels[1]).to.have.class(stepLabelClasses.disabled);
+    });
+
+    it('checks that step connector is a child of the step when alternativeLabel is true', () => {
+      const { container } = render(
+        <Stepper activeStep={1} connector={<div data-testid="connector" />} alternativeLabel>
+          <Step>
+            <StepLabel>Step 1</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Step 2</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Step 3</StepLabel>
+          </Step>
+        </Stepper>,
+      );
+
+      const connectors = container.querySelectorAll('li>[data-testid="connector"]');
+      expect(connectors).to.have.lengthOf(2);
+    });
+
+    it('checks that step connector is a child of the step when alternativeLabel is false', () => {
+      const { container } = render(
+        <Stepper
+          activeStep={1}
+          connector={<div data-testid="connector" />}
+          alternativeLabel={false}
+        >
+          <Step>
+            <StepLabel>Step 1</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Step 2</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Step 3</StepLabel>
+          </Step>
+        </Stepper>,
+      );
+
+      const connectors = container.querySelectorAll('li>[data-testid="connector"]');
+      expect(connectors).to.have.lengthOf(2);
     });
   });
 });

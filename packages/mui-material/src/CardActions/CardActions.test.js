@@ -1,7 +1,7 @@
+import { describe, expect, it } from 'vitest';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import CardActions, { cardActionsClasses as classes } from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
-import { expect } from 'chai';
 import describeConformance from '../../test/describeConformance';
 
 describe('<CardActions />', () => {
@@ -14,7 +14,7 @@ describe('<CardActions />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiCardActions',
     testVariantProps: { disableSpacing: true },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it.skipIf(isJsdom())('should apply margin to all children but the first one', function test() {

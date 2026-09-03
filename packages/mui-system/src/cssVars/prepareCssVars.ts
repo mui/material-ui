@@ -14,8 +14,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     disableCssColorScheme?: boolean | undefined;
     enableContrastVars?: boolean | undefined;
     shouldSkipGeneratingVar?:
-      | ((objectPathKeys: Array<string>, value: string | number) => boolean)
-      | undefined;
+      ((objectPathKeys: Array<string>, value: string | number) => boolean) | undefined;
     getSelector?:
       | ((
           colorScheme: keyof T['colorSchemes'] | undefined,
@@ -30,7 +29,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     colorSchemeSelector: selector,
     enableContrastVars,
   } = parserConfig;
-  // @ts-ignore - ignore components do not exist
+  // @ts-expect-error - ignore components do not exist
   const { colorSchemes = {}, components, defaultColorScheme = 'light', ...otherTheme } = theme;
   const {
     vars: rootVars,

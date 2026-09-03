@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -5,13 +6,14 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function DisabledAccordion() {
+  const id = React.useId();
   return (
     <div>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1-content"
-          id="panel1-header"
+          aria-controls={`${id}-panel1-content`}
+          id={`${id}-panel1-header`}
         >
           <Typography component="span">Accordion 1</Typography>
         </AccordionSummary>
@@ -25,8 +27,8 @@ export default function DisabledAccordion() {
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2-content"
-          id="panel2-header"
+          aria-controls={`${id}-panel2-content`}
+          id={`${id}-panel2-header`}
         >
           <Typography component="span">Accordion 2</Typography>
         </AccordionSummary>
@@ -40,8 +42,8 @@ export default function DisabledAccordion() {
       <Accordion disabled>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3-content"
-          id="panel3-header"
+          aria-controls={`${id}-panel3-content`}
+          id={`${id}-panel3-header`}
         >
           <Typography component="span">Disabled Accordion</Typography>
         </AccordionSummary>

@@ -9,7 +9,7 @@ githubLabel: 'scope: click away listener'
 
 <p class="description">The Click-Away Listener component detects when a click event happens outside of its child element.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader", "design": false}}
 
 ## Introduction
 

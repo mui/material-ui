@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, expect, afterEach, it } from 'vitest';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -13,14 +13,7 @@ describe('<Box />', () => {
   describeConformance(<Box />, () => ({
     render,
     inheritComponent: 'div',
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'rootClass',
-      'themeVariants',
-      'themeStyleOverrides',
-      'themeDefaultProps',
-    ],
+    skip: ['rootClass', 'themeVariants', 'themeStyleOverrides', 'themeDefaultProps'],
     refInstanceof: window.HTMLDivElement,
   }));
 
@@ -35,7 +28,7 @@ describe('<Box />', () => {
 
     const { container } = render(
       <ThemeProvider theme={theme}>
-        <Box color="primary.main" />
+        <Box sx={{ color: 'primary.main' }} />
       </ThemeProvider>,
     );
 

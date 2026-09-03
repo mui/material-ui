@@ -53,6 +53,5 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-lab/src/TimelineContent/TimelineContent.js",
   "inheritance": { "component": "Typography", "pathname": "/material-ui/api/typography/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-timeline/\">Timeline</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-timeline/\">Timeline</a></li></ul>"
 }

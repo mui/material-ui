@@ -8,7 +8,7 @@ components: Button, IconButton, InputLabel, FormControl, FormLabel, FormHelperTe
 
 <p class="description">A React component for capturing numeric input from users.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 A number field is an input with increment and decrement buttons for capturing numeric input from users.
 

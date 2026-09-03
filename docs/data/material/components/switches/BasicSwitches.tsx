@@ -1,6 +1,6 @@
 import Switch from '@mui/material/Switch';
 
-const label = { inputProps: { 'aria-label': 'Switch demo' } };
+const label = { slotProps: { input: { 'aria-label': 'Switch demo' } } };
 
 export default function BasicSwitches() {
   return (

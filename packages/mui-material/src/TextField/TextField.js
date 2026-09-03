@@ -140,6 +140,14 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     slotProps,
   };
 
+  const [SelectSlot, selectProps] = useSlot('select', {
+    elementType: Select,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const nativeSelect = select && selectProps.native;
+
   const inputAdditionalProps = {};
   const inputLabelSlotProps = externalForwardedProps.slotProps.inputLabel;
 
@@ -151,7 +159,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
   }
   if (select) {
     // unset defaults from textbox inputs
-    if (!slotProps.select || !slotProps.select.native) {
+    if (!nativeSelect) {
       inputAdditionalProps.id = undefined;
     }
     inputAdditionalProps['aria-describedby'] = undefined;
@@ -202,12 +210,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     ownerState,
   });
 
-  const [SelectSlot, selectProps] = useSlot('select', {
-    elementType: Select,
-    externalForwardedProps,
-    ownerState,
-  });
-
   const InputElement = (
     <InputSlot
       aria-describedby={helperTextId}
@@ -239,7 +241,12 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
   return (
     <RootSlot {...rootProps}>
       {label != null && label !== '' && (
-        <InputLabelSlot htmlFor={id} id={inputLabelId} {...inputLabelProps}>
+        <InputLabelSlot
+          htmlFor={select && !nativeSelect ? undefined : id}
+          id={inputLabelId}
+          {...(select && !nativeSelect && { component: 'div' })}
+          {...inputLabelProps}
+        >
           {label}
         </InputLabelSlot>
       )}

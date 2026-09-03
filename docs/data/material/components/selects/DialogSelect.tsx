@@ -12,6 +12,8 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 export default function DialogSelect() {
+  const nativeId = React.useId();
+  const selectId = React.useId();
   const [open, setOpen] = React.useState(false);
   const [age, setAge] = React.useState<number | string>('');
 
@@ -44,12 +46,12 @@ export default function DialogSelect() {
         <DialogContent>
           <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
             <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel htmlFor="demo-dialog-native">Age</InputLabel>
+              <InputLabel htmlFor={`${nativeId}-select`}>Age</InputLabel>
               <Select
                 native
                 value={age}
                 onChange={handleChange}
-                input={<OutlinedInput label="Age" id="demo-dialog-native" />}
+                input={<OutlinedInput label="Age" id={`${nativeId}-select`} />}
               >
                 <option aria-label="None" value="" />
                 <option value={10}>Ten</option>
@@ -58,10 +60,10 @@ export default function DialogSelect() {
               </Select>
             </FormControl>
             <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-dialog-select-label">Age</InputLabel>
+              <InputLabel id={`${selectId}-label`}>Age</InputLabel>
               <Select
-                labelId="demo-dialog-select-label"
-                id="demo-dialog-select"
+                labelId={`${selectId}-label`}
+                id={`${selectId}-select`}
                 value={age}
                 onChange={handleChange}
                 input={<OutlinedInput label="Age" />}

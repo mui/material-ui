@@ -44,15 +44,42 @@ export default function resolveProps<
           for (const slotKey in defaultSlotProps) {
             if (Object.prototype.hasOwnProperty.call(defaultSlotProps, slotKey)) {
               const slotPropName = slotKey;
-              (output[propName] as Record<string, unknown>)[slotPropName] = resolveProps(
-                (defaultSlotProps as Record<string, any>)[slotPropName],
-                (slotProps as Record<string, any>)[slotPropName],
-                mergeClassNameAndStyle,
-              );
+              const defaultSlotPropValue = (defaultSlotProps as Record<string, any>)[slotPropName];
+              const slotPropValue = (slotProps as Record<string, any>)[slotPropName];
+
+              if (
+                typeof defaultSlotPropValue === 'function' ||
+                typeof slotPropValue === 'function'
+              ) {
+                // Function slot props are resolved later (with `ownerState`), so defer
+                // the merge until then to avoid dropping either side.
+                (output[propName] as Record<string, unknown>)[slotPropName] = (
+                  ...args: unknown[]
+                ) =>
+                  resolveProps(
+                    (typeof defaultSlotPropValue === 'function'
+                      ? defaultSlotPropValue(...args)
+                      : defaultSlotPropValue) ?? {},
+                    (typeof slotPropValue === 'function'
+                      ? slotPropValue(...args)
+                      : slotPropValue) ?? {},
+                    mergeClassNameAndStyle,
+                  );
+              } else {
+                (output[propName] as Record<string, unknown>)[slotPropName] = resolveProps(
+                  defaultSlotPropValue ?? {},
+                  slotPropValue ?? {},
+                  mergeClassNameAndStyle,
+                );
+              }
             }
           }
         }
-      } else if (propName === 'className' && mergeClassNameAndStyle && props.className) {
+      } else if (
+        propName === 'className' &&
+        mergeClassNameAndStyle &&
+        props.className !== undefined
+      ) {
         output.className = clsx(defaultProps?.className, props?.className);
       } else if (propName === 'style' && mergeClassNameAndStyle && props.style) {
         output.style = {

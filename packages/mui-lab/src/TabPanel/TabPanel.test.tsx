@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import TabPanel, { tabPanelClasses as classes } from '@mui/lab/TabPanel';
 import TabContext from '../TabContext';
@@ -13,7 +13,7 @@ describe('<TabPanel />', () => {
     render: (node) => render(<TabContext value="0">{node}</TabContext>),
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiTabPanel',
-    skip: ['componentProp', 'componentsProp', 'themeDefaultProps', 'themeVariants'],
+    skip: ['componentProp', 'themeDefaultProps', 'themeVariants'],
   }));
 
   it('renders a [role="tabpanel"] and mounts children', () => {

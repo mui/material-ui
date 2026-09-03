@@ -18,7 +18,7 @@ Tables display information in a way that's easy to scan, so that users can look 
 - Navigation
 - Tools to query and manipulate data
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -138,6 +138,28 @@ Virtualization helps with performance issues.
 ## Accessibility
 
 (WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)
+
+### Row and column headers
+
+Header cells identify the data in each row or column.
+Screen readers use these associations to provide context as users navigate the table.
+
+`TableCell` renders as a `<th>` automatically when it is placed inside a `TableHead`, but it renders as a `<td>` inside a `TableBody`.
+When a body cell contains the label that identifies its row, render it as a row header with `component="th"` and `scope="row"`:
+
+```jsx
+<TableRow>
+  <TableCell component="th" scope="row">
+    {row.name}
+  </TableCell>
+  <TableCell>{row.calories}</TableCell>
+</TableRow>
+```
+
+Choose a meaningful value for the row header, such as a person's name or a product name, rather than an arbitrary index. Multiple cells could be marked as row headers, for example when the table contains both first name and last name columns.
+
+The Data Grid uses ARIA roles instead of native table elements.
+See the [Data Grid row headers guide](/x/react-data-grid/accessibility/#row-headers) to learn how to identify its row header columns.
 
 ### Caption
 

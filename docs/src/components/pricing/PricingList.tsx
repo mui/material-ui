@@ -48,7 +48,7 @@ const Plan = React.forwardRef<
       )}
       <PlanPrice plan={plan} multiApp={multiApp} />
       {plan !== 'community' && plan !== 'enterprise' && <MultiAppSwitch />}
-      <Box textAlign="left" sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 2 }}>
+      <Box sx={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: 2, mt: 2 }}>
         {features.map((feature, index) => (
           <FeatureItem feature={feature} idPrefix={plan} key={index} />
         ))}

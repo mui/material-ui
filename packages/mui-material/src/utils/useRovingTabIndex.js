@@ -1,4 +1,7 @@
 'use client';
-import useRovingTabIndex from '@mui/utils/useRovingTabIndex';
-
-export default useRovingTabIndex;
+export {
+  RovingTabIndexContext,
+  useRovingTabIndexContext,
+  useRovingTabIndexItem,
+  useRovingTabIndexRoot,
+} from '@mui/utils/useRovingTabIndex';

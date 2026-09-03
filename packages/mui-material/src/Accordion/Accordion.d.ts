@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { TransitionProps } from '../transitions/transition';
+import { TransitionProps } from '../transitions/types';
 import { AccordionClasses } from './accordionClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ExtendPaperTypeMap, PaperProps } from '../Paper/Paper';
@@ -20,7 +20,7 @@ export interface AccordionSlots {
   heading: React.ElementType;
   /**
    * The component that renders the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transition-slots) to learn more about the requirements for this component.
    * @default Collapse
    */
   transition: React.ElementType;
@@ -58,7 +58,7 @@ export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the available props are based on the [Collapse](https://mui.com/material-ui/api/collapse/#props) component.
      */
     transition: SlotComponentProps<
-      React.ElementType,
+      React.ElementType<TransitionProps>,
       TransitionProps & AccordionTransitionSlotPropsOverrides,
       AccordionOwnerState
     >;
@@ -127,12 +127,12 @@ export type AccordionTypeMap<
  *
  * Demos:
  *
- * - [Accordion](https://next.mui.com/material-ui/react-accordion/)
+ * - [Accordion](https://mui.com/material-ui/react-accordion/)
  *
  * API:
  *
- * - [Accordion API](https://next.mui.com/material-ui/api/accordion/)
- * - inherits [Paper API](https://next.mui.com/material-ui/api/paper/)
+ * - [Accordion API](https://mui.com/material-ui/api/accordion/)
+ * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 declare const Accordion: OverridableComponent<AccordionTypeMap>;
 

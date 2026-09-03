@@ -65,8 +65,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
    * The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components.
    */
   variant?:
-    | OverridableStringUnion<'head' | 'body' | 'footer', TableCellPropsVariantOverrides>
-    | undefined;
+    OverridableStringUnion<'head' | 'body' | 'footer', TableCellPropsVariantOverrides> | undefined;
 }
 
 export type TableCellBaseProps = React.ThHTMLAttributes<HTMLTableCellElement> &
@@ -80,10 +79,10 @@ export type SortDirection = 'asc' | 'desc' | false;
  *
  * Demos:
  *
- * - [Table](https://next.mui.com/material-ui/react-table/)
+ * - [Table](https://mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TableCell API](https://next.mui.com/material-ui/api/table-cell/)
+ * - [TableCell API](https://mui.com/material-ui/api/table-cell/)
  */
 export default function TableCell(props: TableCellProps): React.JSX.Element;

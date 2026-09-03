@@ -1,5 +1,5 @@
+import { describe, it, expect, beforeEach } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import {
   createRenderer,
   screen,
@@ -334,6 +334,47 @@ describe('useAutocomplete', () => {
     await flushEffects();
   });
 
+  it('should not crash when the input ref is cleared before a pending highlighted index sync', async () => {
+    function Test() {
+      const [showAutocomplete, setShowAutocomplete] = React.useState(true);
+      const options = showAutocomplete ? ['foo', 'bar'] : [];
+      const { getRootProps, getInputProps, getListboxProps, getOptionProps, groupedOptions } =
+        useAutocomplete({ options, open: true });
+
+      return (
+        <React.Fragment>
+          <button type="button" onClick={() => setShowAutocomplete(false)}>
+            Hide
+          </button>
+          <div {...getRootProps()}>
+            {showAutocomplete ? <input {...getInputProps()} /> : null}
+            {groupedOptions.length > 0 ? (
+              <ul {...getListboxProps()}>
+                {groupedOptions.map((option, index) => {
+                  const { key, ...optionProps } = getOptionProps({ option, index });
+                  return (
+                    <li key={key} {...optionProps}>
+                      {option}
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : null}
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    const { user } = render(<Test />);
+
+    // This hides the input/listbox while the hook stays mounted. A full unmount
+    // doesn't run the highlighted index sync after refs are cleared; this state
+    // update does, so it exercises the problematic ordering.
+    await user.click(screen.getByRole('button', { name: 'Hide' }));
+
+    await flushEffects();
+  });
+
   describe('prop: freeSolo', () => {
     it('should not reset if the component value does not change on blur', () => {
       function Test(props) {
@@ -402,6 +443,46 @@ describe('useAutocomplete', () => {
     expect(() => {
       fireEvent.click(button);
     }).not.to.throw();
+  });
+
+  describe('prop: isOptionEqualToValue', () => {
+    it('should respect custom equality even when option is referentially equal to value', () => {
+      const option = { id: 1, label: 'foo' };
+
+      function Test() {
+        const { groupedOptions, getInputProps, getListboxProps, getOptionProps } = useAutocomplete({
+          options: [option],
+          open: true,
+          multiple: true,
+          value: [option],
+          filterSelectedOptions: true,
+          getOptionLabel: (optionParam) => optionParam.label,
+          isOptionEqualToValue: () => false,
+        });
+
+        return (
+          <div>
+            <input {...getInputProps()} />
+            <ul {...getListboxProps()}>
+              {groupedOptions.map((optionParam, index) => {
+                const { key, ...optionProps } = getOptionProps({ option: optionParam, index });
+                return (
+                  <li key={key} {...optionProps}>
+                    {optionParam.label}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      }
+
+      render(<Test />);
+
+      const renderedOption = screen.getByRole('option');
+      expect(renderedOption).to.have.text('foo');
+      expect(renderedOption).to.have.attribute('aria-selected', 'false');
+    });
   });
 
   describe('prop: defaultValue', () => {

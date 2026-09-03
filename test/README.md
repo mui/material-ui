@@ -158,7 +158,7 @@ When running this command you should get under `coverage/index.html` a full cove
 
 ### DOM API level
 
-#### Run the browser test suit
+#### Run the browser test suite
 
 `pnpm test:browser`
 

@@ -8,7 +8,6 @@ import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import composeClasses from '@mui/utils/composeClasses';
 import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
-import { extendSxProp } from '../styleFunctionSx';
 import createTheme from '../createTheme';
 import { CreateMUIStyled } from '../createStyled';
 import { StackTypeMap, StackOwnerState } from './StackProps';
@@ -183,7 +182,6 @@ export default function createStack(
     const themeProps = useThemeProps<
       typeof inProps & { component?: React.ElementType | undefined }
     >(inProps);
-    const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'>; // `color` type conflicts with html color attribute.
     const {
       component = 'div',
       direction = 'column',
@@ -193,7 +191,7 @@ export default function createStack(
       className,
       useFlexGap = false,
       ...other
-    } = props;
+    } = themeProps;
 
     const ownerState = {
       direction,

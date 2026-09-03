@@ -1,3 +1,4 @@
+import { describe, it } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import DialogContent, { dialogContentClasses as classes } from '@mui/material/DialogContent';
 import describeConformance from '../../test/describeConformance';
@@ -12,7 +13,7 @@ describe('<DialogContent />', () => {
     muiName: 'MuiDialogContent',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { dividers: true },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should render children', () => {

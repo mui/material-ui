@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer } from '@mui/internal-test-utils';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup, { avatarGroupClasses as classes } from '@mui/material/AvatarGroup';
@@ -23,7 +23,6 @@ describe('<AvatarGroup />', () => {
       slots: {
         surplus: { expectedClassName: classes.avatar },
       },
-      skip: ['componentsProp'],
     }),
   );
 

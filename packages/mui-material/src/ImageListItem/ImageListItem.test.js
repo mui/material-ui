@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import ImageList from '@mui/material/ImageList';
@@ -16,7 +16,7 @@ describe('<ImageListItem />', () => {
     testComponentPropWith: 'div',
     muiName: 'MuiImageListItem',
     testVariantProps: { variant: 'masonry' },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   const itemData = {

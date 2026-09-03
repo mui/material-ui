@@ -14,7 +14,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import FormGroup from '@mui/material/FormGroup';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 
 const Popper = styled(MuiPopper, {
   shouldForwardProp: (prop) => prop !== 'arrow',

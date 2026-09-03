@@ -7,7 +7,9 @@ import ownerDocument from '@mui/utils/ownerDocument';
 import getReactElementRef from '@mui/utils/getReactElementRef';
 import exactProp from '@mui/utils/exactProp';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import contains from '../utils/contains';
 import getActiveElement from '../utils/getActiveElement';
+import { getFocusTarget } from '../utils/focusable';
 import { FocusTrapProps } from './FocusTrap.types';
 
 // Inspired by https://github.com/focus-trap/tabbable
@@ -157,6 +159,10 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
   }, [disableAutoFocus, open]);
 
   React.useEffect(() => {
+    // Reset on every mount — React 18 Strict Mode double-mounts leave this
+    // stuck at `true` after the cleanup of the previous mount set it.
+    ignoreNextEnforceFocus.current = false;
+
     // We might render an empty child.
     if (!open || !rootRef.current) {
       return;
@@ -165,8 +171,12 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     const doc = ownerDocument(rootRef.current);
     const activeElement = getActiveElement(doc);
 
-    if (!rootRef.current.contains(activeElement)) {
-      if (!rootRef.current.hasAttribute('tabIndex')) {
+    // Prefer the explicitly marked focusable element. Fall back to the root
+    // element for generic FocusTrap usage.
+    const focusTarget = getFocusTarget(rootRef.current) ?? rootRef.current;
+
+    if (!contains(rootRef.current, activeElement)) {
+      if (!focusTarget.hasAttribute('tabIndex')) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(
             [
@@ -176,26 +186,19 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
             ].join('\n'),
           );
         }
-        rootRef.current.setAttribute('tabIndex', '-1');
+        focusTarget.setAttribute('tabIndex', '-1');
       }
 
       if (activated.current) {
-        rootRef.current.focus();
+        focusTarget.focus();
       }
     }
 
     return () => {
       // restoreLastFocus()
-      if (!disableRestoreFocus) {
-        // In IE11 it is possible for document.activeElement to be null resulting
-        // in nodeToRestore.current being null.
-        // Not all elements in IE11 have a focus method.
-        // Once IE11 support is dropped the focus() call can be unconditional.
-        if (nodeToRestore.current && (nodeToRestore.current as HTMLElement).focus) {
-          ignoreNextEnforceFocus.current = true;
-          (nodeToRestore.current as HTMLElement).focus();
-        }
-
+      if (!disableRestoreFocus && nodeToRestore.current) {
+        ignoreNextEnforceFocus.current = true;
+        (nodeToRestore.current as HTMLElement).focus();
         nodeToRestore.current = null;
       }
     };
@@ -219,17 +222,61 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
         return;
       }
 
+      const rootElement = rootRef.current;
       const activeElement = getActiveElement(doc);
 
-      // Make sure the next tab starts from the right place.
-      // activeElement refers to the origin.
-      if (activeElement === rootRef.current && nativeEvent.shiftKey) {
-        // We need to ignore the next contain as
-        // it will try to move the focus back to the rootRef element.
-        ignoreNextEnforceFocus.current = true;
-        if (sentinelEnd.current) {
-          sentinelEnd.current.focus();
+      if (rootElement === null) {
+        return;
+      }
+
+      const focusTarget = getFocusTarget(rootElement);
+      const isFocusStart = activeElement === rootElement || activeElement === focusTarget;
+
+      // Marked focus targets can be non-tabbable, but should start tabbing
+      // from the first/last tabbable child.
+      if (isFocusStart) {
+        const tabbable = getTabbable(rootElement);
+
+        if (tabbable.length === 0) {
+          return;
         }
+
+        nativeEvent.preventDefault();
+        if (nativeEvent.shiftKey) {
+          tabbable[tabbable.length - 1].focus();
+        } else {
+          tabbable[0].focus();
+        }
+        return;
+      }
+
+      if (contains(rootElement, activeElement)) {
+        const tabbable = getTabbable(rootElement);
+        const currentIndex = tabbable.indexOf(activeElement as HTMLElement);
+
+        if (currentIndex === -1) {
+          // Leave shadow-root descendants to native tab handling.
+          return;
+        }
+
+        const hasPositiveTabIndex = tabbable.some((node) => getTabIndex(node) > 0);
+
+        // Positive tabIndex needs the computed order; regular tabIndex=0 can
+        // use native tab handling.
+        if (!hasPositiveTabIndex) {
+          return;
+        }
+
+        nativeEvent.preventDefault();
+
+        let nextIndex = 0;
+        if (nativeEvent.shiftKey) {
+          nextIndex = currentIndex <= 0 ? tabbable.length - 1 : currentIndex - 1;
+        } else {
+          nextIndex = currentIndex === tabbable.length - 1 ? 0 : currentIndex + 1;
+        }
+
+        tabbable[nextIndex].focus();
       }
     };
 
@@ -250,7 +297,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       }
 
       // The focus is already inside
-      if (rootElement.contains(activeEl)) {
+      if (contains(rootElement, activeEl)) {
         return;
       }
 

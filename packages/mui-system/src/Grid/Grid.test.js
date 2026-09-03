@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createTheme from '@mui/system/createTheme';
@@ -20,7 +20,7 @@ describe('System <Grid />', () => {
     refInstanceof: window.HTMLElement,
     muiName: 'MuiGrid',
     testVariantProps: { container: true, spacing: 5 },
-    skip: ['componentsProp', 'classesRoot'],
+    skip: ['classesRoot'],
   }));
 
   describe('prop: container', () => {

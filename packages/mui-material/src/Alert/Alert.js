@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { applyChildrenFocusVisible } from '../styles/focusVisible';
 import useSlot from '../utils/useSlot';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
@@ -22,12 +23,7 @@ const useUtilityClasses = (ownerState) => {
   const { variant, color, severity, classes } = ownerState;
 
   const slots = {
-    root: [
-      'root',
-      `color${capitalize(color || severity)}`,
-      `${variant}${capitalize(color || severity)}`,
-      `${variant}`,
-    ],
+    root: ['root', `color${capitalize(color || severity)}`, `${variant}`],
     icon: ['icon'],
     message: ['message'],
     action: ['action'],
@@ -42,11 +38,7 @@ const AlertRoot = styled(Paper, {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [
-      styles.root,
-      styles[ownerState.variant],
-      styles[`${ownerState.variant}${capitalize(ownerState.color || ownerState.severity)}`],
-    ];
+    return [styles.root, styles[ownerState.variant]];
   },
 })(
   memoTheme(({ theme }) => {
@@ -97,6 +89,10 @@ const AlertRoot = styled(Paper, {
           .map(([color]) => ({
             props: { colorSeverity: color, variant: 'filled' },
             style: {
+              ...(theme.focusVisible &&
+                applyChildrenFocusVisible(
+                  `0 0 0 4px ${(theme.vars || theme).palette.background.default}`,
+                )),
               fontWeight: theme.typography.fontWeightMedium,
               ...(theme.vars
                 ? {

@@ -6,6 +6,8 @@ import * as mui from '@mui/icons-material';
 import synonyms from 'docs/data/material/components/material-icons/synonyms';
 // eslint-disable-next-line import/no-relative-packages
 import myDestRewriter from '../../packages/mui-icons-material/renameFilters/material-design-icons';
+// eslint-disable-next-line import/no-relative-packages, import/extensions
+import { LEGACY_OUTLINE_ICONS } from '../../packages/mui-icons-material/builder.test.mjs';
 
 function not(a, b) {
   return a.filter((value) => !b.includes(value));
@@ -55,7 +57,8 @@ async function run() {
     const iconList = union(Object.keys(materialIcons), Object.keys(synonyms))
       .filter((icon) => {
         // The icon is not in @mui/material so no point in having synonyms.
-        return npmPackageIcons[icon];
+        // Also exclude legacy *Outline duplicates removed in v9.
+        return npmPackageIcons[icon] && !LEGACY_OUTLINE_ICONS.includes(icon);
       })
       .sort((a, b) => -b.localeCompare(a));
 

@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import NativeSelect, { nativeSelectClasses as classes } from '@mui/material/NativeSelect';
@@ -25,7 +25,7 @@ describe('<NativeSelect />', () => {
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiNativeSelect',
-    skip: ['componentProp', 'componentsProp', 'themeVariants', 'themeStyleOverrides'],
+    skip: ['componentProp', 'themeVariants', 'themeStyleOverrides'],
   }));
 
   it('should render a native select', () => {

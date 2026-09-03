@@ -38,11 +38,11 @@
  *
  * ```bash
  * # Process all Material UI components
- * pnpm tsx scripts/buildLlmsDocs/index.ts --projectSettings ./packages/api-docs-builder-core/materialUi/projectSettings.ts
+ * pnpm tsx scripts/buildLlmsDocs/index.ts --projectSettings ./packages-internal/api-docs-builder-core/materialUi/projectSettings.ts
  *
  * # Process specific components with non-component docs
  * pnpm tsx scripts/buildLlmsDocs/index.ts \
- *   --projectSettings ./packages/api-docs-builder-core/materialUi/projectSettings.ts \
+ *   --projectSettings ./packages-internal/api-docs-builder-core/materialUi/projectSettings.ts \
  *   --nonComponentFolders system material/customization \
  *   --grep "Button|borders"
  * ```
@@ -62,10 +62,13 @@ import yargs, { ArgumentsCamelCase } from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { kebabCase } from 'es-toolkit/string';
 import { processMarkdownFile, processApiFile } from '@mui/internal-scripts/generate-llms-txt';
-import { ComponentInfo, ProjectSettings } from '@mui-internal/api-docs-builder';
+import {
+  ComponentInfo,
+  ProjectSettings,
+  findComponents,
+  findPagesMarkdown,
+} from '@mui/internal-api-docs-builder';
 import { getHeaders } from '@mui/internal-markdown';
-import findComponents from '@mui-internal/api-docs-builder/utils/findComponents';
-import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
 
 // Determine the host based on environment variables
 let ORIGIN: string | undefined = 'https://mui.com';
@@ -259,14 +262,20 @@ function findNonComponentMarkdownFiles(
       pathname.startsWith('/material-ui/') &&
       !ignoredPaths.some((ignored) => pathname.startsWith(ignored))
     ) {
-      // Match by filename basename to avoid pathname collisions when multiple files
-      // exist in the same directory (e.g., upgrade-to-v7.md and upgrade-to-native-color.md)
-      const lastSegment = parsedPathname.split('/').filter(Boolean).pop();
-      const page = allMarkdownFiles.find((p) => {
-        const fileBasename = path.basename(p.filename).replace(/\.mdx?$/, '');
-        // p.pathname already has the parent path (from findPagesMarkdown which strips the filename)
-        return fileBasename === lastSegment && p.pathname === parsedPathname;
-      });
+      // findPagesMarkdown returns the file's parent directory as its pathname. Match the
+      // filename too to avoid collisions between files in the same directory (for example,
+      // upgrade-to-v7.md and upgrade-to-native-color.md).
+      const lastSegment = path.posix.basename(parsedPathname);
+      const findPage = (expectedPathname: string) =>
+        allMarkdownFiles.find((page) => {
+          const fileBasename = path.basename(page.filename).replace(/\.mdx?$/, '');
+          return fileBasename === lastSegment && page.pathname === expectedPathname;
+        });
+
+      // First support the directory-named layout, where nextjs/nextjs.md has the pathname
+      // /material/integrations/nextjs. Then support the sibling-file layout, where
+      // css-theme-variables/overview.md has the pathname /material/customization/css-theme-variables.
+      const page = findPage(parsedPathname) ?? findPage(path.posix.dirname(parsedPathname));
 
       if (page) {
         files.push({

@@ -2,6 +2,14 @@ import { mergeSlotProps } from '@mui/material/utils';
 import Snackbar, { SnackbarProps } from '@mui/material/Snackbar';
 import { expectType } from '@mui/types';
 
+// slotProps.transition should reject unknown props
+<Snackbar
+  slotProps={{
+    // @ts-expect-error — unknown props should be rejected
+    transition: { randomInvalidProp: 'test' },
+  }}
+/>;
+
 <Snackbar
   slots={{
     root: 'dialog',

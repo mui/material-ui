@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer } from '@mui/internal-test-utils';
 import Stack from '@mui/system/Stack';
 import createTheme from '@mui/system/createTheme';
@@ -13,7 +13,7 @@ describe('<Stack />', () => {
     inheritComponent: 'div',
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiStack',
-    skip: ['componentProp', 'componentsProp', 'rootClass', 'themeVariants', 'themeStyleOverrides'],
+    skip: ['componentProp', 'rootClass', 'themeVariants', 'themeStyleOverrides'],
   }));
 
   const theme = createTheme();

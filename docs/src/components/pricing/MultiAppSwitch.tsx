@@ -35,10 +35,10 @@ export default function MultiAppSwitch() {
           label={
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
               <Typography
-                fontWeight="semiBold"
-                color="text.primary"
                 variant="body2"
                 sx={{
+                  color: 'text.primary',
+                  fontWeight: 'semiBold',
                   textAlign: 'left',
                   whiteSpace: 'nowrap',
                 }}
@@ -61,7 +61,7 @@ export default function MultiAppSwitch() {
           labelPlacement="start"
         />
       </FormGroup>
-      <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+      <Typography variant="body2" sx={{ color: 'text.secondary', mt: 1 }}>
         {MultiAppDescription}
       </Typography>
     </Box>

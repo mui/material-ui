@@ -1,3 +1,4 @@
-import SvgIcon from '../SvgIcon';
-
-export default function createSvgIcon(path: React.ReactNode, displayName: string): typeof SvgIcon;
+/**
+ * @deprecated Import `createSvgIcon` from `@mui/material/SvgIcon` instead.
+ */
+export { default } from '../SvgIcon/createSvgIcon';

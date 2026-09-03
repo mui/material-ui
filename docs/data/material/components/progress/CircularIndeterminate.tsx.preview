@@ -1,1 +1,1 @@
-<CircularProgress />
+<CircularProgress aria-label="Loading…" />
