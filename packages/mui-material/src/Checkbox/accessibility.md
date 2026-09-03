@@ -353,7 +353,7 @@ The following SC are applicable but out of scope:
 ## Scope and test environment
 
 - **Standard.** WCAG 2.2, Level A and AA.
-- **Component version.** `@mui/material` 9.1.1.
+- **Component version.** `@mui/material` 9.x.
 - **Scope.** The Checkbox component and its documented composition with `FormControlLabel`, `FormControl`/`FormGroup`, `FormLabel`, and `FormHelperText`, rendered through the documented API.
 - **Automated.** axe-core via the Playwright visual-regression harness (results in [`checkboxes.a11y.json`](../../../../docs/data/material/components/checkboxes/checkboxes.a11y.json)), plus interaction tests in [`Checkbox.test.js`](./Checkbox.test.js). Checkmark icon contrast is computed from the theme tokens, since no axe rule covers non-text contrast.
 - **Assistive-technology review.** Not yet performed. Flagged criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.
