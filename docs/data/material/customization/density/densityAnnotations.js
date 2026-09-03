@@ -350,21 +350,18 @@ function Annotations({ measured, bounds }) {
     return bounds.x + bounds.width + 22;
   };
 
-  const takenY = { left: [], right: [] };
+  // Captions on a side never sit closer than one rung apart, and they descend in
+  // annotation order. Where boxes are already far apart (a stacked instance)
+  // each keeps its natural y; where they cluster (Alert's slots all share one
+  // row) they become an evenly spaced ladder instead of piling up.
+  const RUNG = 20;
+  const lastY = {
+    left: Number.NEGATIVE_INFINITY,
+    right: Number.NEGATIVE_INFINITY,
+  };
   const reserveY = (side, y) => {
-    let next = y;
-    let clashed = true;
-    while (clashed) {
-      clashed = false;
-      for (const used of takenY[side]) {
-        if (Math.abs(used - next) < 18) {
-          next += 20;
-          clashed = true;
-          break;
-        }
-      }
-    }
-    takenY[side].push(next);
+    const next = Math.max(y, lastY[side] + RUNG);
+    lastY[side] = next;
     return next;
   };
 
@@ -373,7 +370,12 @@ function Annotations({ measured, bounds }) {
   // One ring per element, however many band annotations point at it.
   const ringed = new Set();
 
-  measured.forEach((item, index) => {
+  // The ladder walks downward, so annotations must arrive in that order too.
+  // Spec order is not visual order — TextField lists InputBase first but renders
+  // it last, which pushed every later beam below it into a pile.
+  const ordered = [...measured].sort((a, b) => a.box.y - b.box.y);
+
+  ordered.forEach((item, index) => {
     const { annotation, box } = item;
     const key = `${annotation.on}-${annotation.aspect}-${annotation.axis ?? ''}-${index}`;
     const paddingBox = inset(box, item.border);
@@ -549,8 +551,14 @@ function Annotations({ measured, bounds }) {
       return;
     }
 
-    // touch-target — an I-beam in the side gutter, reached by one horizontal stem.
-    const side = nearest(box, 'block') === 'left' ? 'right' : 'left';
+    // touch-target — an I-beam in the side gutter, reached by one horizontal
+    // stem. An I-beam measures height, so only a side gutter can hold it; it
+    // takes the one its box is nearest, and a full-width box that ties goes to
+    // whichever side is carrying fewer captions.
+    const centred =
+      Math.abs(box.x + box.width / 2 - (bounds.x + bounds.width / 2)) < 1;
+    const lighter = lanes.left <= lanes.right ? 'left' : 'right';
+    const side = centred ? lighter : nearest(box, 'block');
     const rail = nextRail(side);
     const labelY = reserveY(side, box.y + box.height / 2);
     outline();
