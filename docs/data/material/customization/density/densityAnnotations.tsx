@@ -45,7 +45,18 @@ export interface Annotation {
   root?: boolean;
   /** shown in the toggle list; derived from the selector when absent. */
   label?: string;
+  /** Force the gutter. A value outside the aspect's natural pair flips the
+   * connector to a spine — one line crossing every band, ticked where it meets
+   * each — which is the only shape that can reach the other pair without the
+   * stems doubling back through the component. Omit for automatic placement. */
+  place?: Side;
+  /** where along the axis the connector crosses, 0–1. 0.5 is the slot's centre. */
+  at?: number;
+  /** extra rungs of distance between the slot and its label. */
+  offset?: number;
 }
+
+export type Side = 'top' | 'bottom' | 'left' | 'right';
 
 /** The slot a reader toggles: every annotation on it goes together. */
 export const slotLabel = (annotation: Annotation) =>
@@ -279,8 +290,6 @@ export function useAnnotations(
   return state;
 }
 
-type Side = 'top' | 'bottom' | 'left' | 'right';
-
 /** One caption's connector: a stem out of every band it names, a rail joining
  * them, a riser to the label. Axis-aligned throughout — never a diagonal. */
 function Comb({
@@ -308,6 +317,7 @@ function Comb({
   const mid = horizontal
     ? (Math.min(...xs) + Math.max(...xs)) / 2
     : (Math.min(...ys) + Math.max(...ys)) / 2;
+  const anchor = labelAt ?? mid;
 
   return (
     <g className={tone}>
@@ -334,31 +344,112 @@ function Comb({
         <React.Fragment>
           <line
             className="leader"
-            x1={mid}
+            x1={anchor}
             y1={rail}
-            x2={mid}
+            x2={anchor}
             y2={rail + away * 10}
           />
-          <text x={mid} y={rail + away * (side === 'top' ? 16 : 26)} textAnchor="middle">
+          <text
+            x={anchor}
+            y={rail + away * (side === 'top' ? 16 : 26)}
+            textAnchor="middle"
+          >
             {label}
           </text>
         </React.Fragment>
       ) : (
         <React.Fragment>
           {/* Stacked clear of a neighbour: run along the rail, then out. */}
-          {labelAt !== undefined && Math.abs(labelAt - mid) > 0.5 ? (
-            <line className="leader" x1={rail} y1={mid} x2={rail} y2={labelAt} />
+          {Math.abs(anchor - mid) > 0.5 ? (
+            <line className="leader" x1={rail} y1={mid} x2={rail} y2={anchor} />
           ) : null}
           <line
             className="leader"
             x1={rail}
-            y1={labelAt ?? mid}
+            y1={anchor}
             x2={rail + away * 10}
-            y2={labelAt ?? mid}
+            y2={anchor}
           />
           <text
             x={rail + away * 14}
-            y={labelAt ?? mid}
+            y={anchor}
+            textAnchor={side === 'left' ? 'end' : 'start'}
+            dominantBaseline="middle"
+          >
+            {label}
+          </text>
+        </React.Fragment>
+      )}
+    </g>
+  );
+}
+
+/** The off-axis connector: one line crossing every band it names, ticked where
+ * it meets each, running out to a gutter. A comb's stems leave a band
+ * perpendicular to it and so can only reach the band's own pair of gutters; a
+ * spine crosses the stack instead, which is what lets a block-axis padding
+ * report upward. With one band it is just a stem. */
+function Spine({
+  marks,
+  cross,
+  rail,
+  side,
+  label,
+  tone,
+  labelAt,
+}: {
+  /** each band's centre along the crossing axis. */
+  marks: number[];
+  /** the spine's fixed coordinate: an x when it runs vertically, else a y. */
+  cross: number;
+  rail: number;
+  side: Side;
+  label: string;
+  tone?: string;
+  /** where the text sits when the ladder moved it clear of a neighbour. */
+  labelAt?: number;
+}) {
+  const vertical = side === 'top' || side === 'bottom';
+  const anchor = labelAt ?? cross;
+  const away = side === 'top' || side === 'left' ? -1 : 1;
+  const far = away < 0 ? Math.max(...marks) : Math.min(...marks);
+  const TICK = 5;
+
+  return (
+    <g className={tone}>
+      <line
+        className="leader"
+        x1={vertical ? cross : rail}
+        y1={vertical ? rail : cross}
+        x2={vertical ? cross : far}
+        y2={vertical ? far : cross}
+      />
+      {marks.map((mark) => (
+        <line
+          key={mark}
+          className="dim"
+          x1={vertical ? cross - TICK : mark}
+          y1={vertical ? mark : cross - TICK}
+          x2={vertical ? cross + TICK : mark}
+          y2={vertical ? mark : cross + TICK}
+        />
+      ))}
+      {vertical ? (
+        <text
+          x={cross}
+          y={rail + away * (side === 'top' ? 6 : 16)}
+          textAnchor="middle"
+        >
+          {label}
+        </text>
+      ) : (
+        <React.Fragment>
+          {Math.abs(anchor - cross) > 0.5 ? (
+            <line className="leader" x1={rail} y1={cross} x2={rail} y2={anchor} />
+          ) : null}
+          <text
+            x={rail + away * 6}
+            y={anchor}
             textAnchor={side === 'left' ? 'end' : 'start'}
             dominantBaseline="middle"
           >
@@ -389,8 +480,8 @@ export function Annotations({
     }
     return box.x + box.width / 2 < bounds.x + bounds.width / 2 ? 'left' : 'right';
   };
-  const nextRail = (side: Side) => {
-    const index = lanes[side];
+  const nextRail = (side: Side, extra = 0) => {
+    const index = lanes[side] + extra;
     lanes[side] += 1;
     if (side === 'top') {
       return bounds.y - 22 - index * 30;
@@ -482,9 +573,13 @@ export function Annotations({
       }
       outline();
 
-      const side = nearest(box, axis);
-      // A stem leaves from the edge FACING its rail — anchoring it on the far
-      // edge would drag the line straight through the component to get there.
+      // The natural pair is the one a comb's stems can reach; anything else is
+      // an author override and switches the connector to a spine.
+      const naturalPair: Side[] =
+        axis === 'inline' ? ['top', 'bottom'] : ['left', 'right'];
+      const side = annotation.place ?? nearest(box, axis);
+      const flipped = !naturalPair.includes(side);
+      const at = annotation.at ?? 0.5;
       const stem = (band: 'left' | 'right' | 'top' | 'bottom') => {
         const near = side === 'top' ? outer.y : outer.y + outer.height;
         const far = side === 'left' ? outer.x : outer.x + outer.width;
@@ -512,20 +607,53 @@ export function Annotations({
       // honestly label both — Input's block padding is `x-small` on top and a
       // private-var fallback underneath — so the split captions fall back to px.
       const named = byValue.size === 1 ? annotation : { ...annotation, token: undefined };
+      const tone = isPadding ? 'tone-padding' : 'tone-margin';
       byValue.forEach((group, value) => {
+        const rail = nextRail(side, annotation.offset ?? 0);
+
+        if (flipped) {
+          // The spine crosses the bands, so it is fixed on the axis the bands
+          // are stacked along and travels along the other.
+          const vertical = side === 'top' || side === 'bottom';
+          const cross = vertical
+            ? outer.x + outer.width * at
+            : outer.y + outer.height * at;
+          marks.push(
+            <Spine
+              key={`spine-${key}-${value}`}
+              marks={group.map((band) => {
+                const point = stem(band.side);
+                return vertical ? point.y : point.x;
+              })}
+              cross={cross}
+              rail={rail}
+              side={side}
+              label={caption(group[0].value, named)}
+              tone={tone}
+              labelAt={
+                side === 'left' || side === 'right'
+                  ? reserveY(side, cross)
+                  : undefined
+              }
+            />,
+          );
+          return;
+        }
+
         const points = group.map((band) => stem(band.side));
-        const mid = (points[0].y + points[points.length - 1].y) / 2;
+        const sideways = side === 'left' || side === 'right';
+        const along = sideways
+          ? reserveY(side, outer.y + outer.height * at)
+          : outer.x + outer.width * at;
         marks.push(
           <Comb
             key={`comb-${key}-${value}`}
             from={points}
-            rail={nextRail(side)}
+            rail={rail}
             side={side}
             label={caption(group[0].value, named)}
-            tone={isPadding ? 'tone-padding' : 'tone-margin'}
-            labelAt={
-              side === 'left' || side === 'right' ? reserveY(side, mid) : undefined
-            }
+            tone={tone}
+            labelAt={along}
           />,
         );
       });
