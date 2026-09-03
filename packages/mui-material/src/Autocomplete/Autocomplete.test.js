@@ -4147,6 +4147,15 @@ describe('<Autocomplete />', () => {
       expect(screen.getByText('Foo')).not.to.equal(null);
     });
 
+    it('passes mapped values to renderValue', () => {
+      const renderValue = spy((value) => <span>{value}</span>);
+
+      render(<Test value="foo" renderValue={renderValue} />);
+
+      expect(renderValue.lastCall.args[0]).to.equal('foo');
+      expect(screen.getByText('foo')).not.to.equal(null);
+    });
+
     it('provides the raw option when deleting a mapped chip', async () => {
       const handleChange = spy();
       const { user } = render(<Test multiple value={['foo', 'bar']} onChange={handleChange} />);
