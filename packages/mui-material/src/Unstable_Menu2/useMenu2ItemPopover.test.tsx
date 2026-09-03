@@ -339,16 +339,17 @@ describe('useMenu2ItemPopover', () => {
     await expectClosed();
   });
 
+  // `fireEvent.mouseEnter` hands the popover over, for the reason below: a page
+  // that is not focused delivers no focus event, and the second item then owns
+  // nothing. The focus path has its own tests.
   it('keeps the popover when another item already took it over', async () => {
     const { user } = render(<TestPreviewCards />);
 
     const first = getItem('Template gallery');
     await user.hover(first);
-    // The keyboard hands the popover to the second item, so the pointer leaving
-    // the first item must not close it.
-    await act(async () => {
-      getItem('Publish to web').focus();
-    });
+    // The second item takes the popover while the first one still holds it, so
+    // the pointer leaving the first item must not close it.
+    fireEvent.mouseEnter(getItem('Publish to web'));
     await user.unhover(first);
 
     expectAnchor('Publish to web');
@@ -714,6 +715,11 @@ describe('useMenu2ItemPopover', () => {
     // The keyboard opens the menu, so Base UI focuses the first item at once.
     await user.keyboard('{Enter}');
     const item = await screen.findByRole('menuitem', { name: 'Alpha' });
+    // Base UI focuses the item a frame after it mounts, and the focus is what
+    // gives it the description.
+    await waitFor(() => {
+      expect(item).to.equal(document.activeElement);
+    });
 
     expect(item).to.have.attribute('aria-describedby');
     expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
@@ -788,8 +794,10 @@ describe('useMenu2ItemPopover', () => {
     fireEvent.mouseEnter(screen.getByTestId('item'));
     expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
 
-    // The card appears only when the transition ends.
-    await screen.findByTestId('preview-card');
+    // The card appears when the transition ends, and at the latest at the
+    // deadline of the hook. The budget covers the deadline plus the clamp that a
+    // browser puts on a timer in a page it treats as hidden.
+    await screen.findByTestId('preview-card', undefined, { timeout: 2000 });
   });
 
   // The menu closes while the card still waits, so the wait has to end with it.
