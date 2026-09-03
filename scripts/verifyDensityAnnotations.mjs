@@ -19,13 +19,14 @@
  *   node scripts/verifyDensityAnnotations.mjs
  */
 import { chromium } from 'playwright';
-// A dev script reaching into the docs workspace, the same way
-// scripts/generateDensityTable.ts does.
-// eslint-disable-next-line import/no-relative-packages
-import {
-  DENSITY_ANNOTATIONS,
-  annotationsFor,
-} from '../docs/data/material/customization/density/densityAnnotationSpecs.js';
+// Loaded by URL rather than imported: a dev script reaching into the docs
+// workspace, which a static cross-package import would not allow.
+const { DENSITY_ANNOTATIONS, annotationsFor } = await import(
+  new URL(
+    '../docs/data/material/customization/density/densityAnnotationSpecs.js',
+    import.meta.url,
+  ).href
+);
 
 const HOST = process.env.HOST ?? 'http://localhost:5099';
 const only = process.argv.slice(2);
