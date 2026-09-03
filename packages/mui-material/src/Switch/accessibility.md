@@ -12,7 +12,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 ## Known gaps
 
-- ⚠️ **1.4.11 Non-text Contrast.** In light mode the thumb and track stay under 3:1 (the off-state white thumb is about 2.7:1 on the gray track, the track about 2.7:1 on the page, and each checked color 1.8:1 to 2.6:1 thumb-on-track); the focus indicator is also untested and `disableRipple` removes it.
+- ⚠️ **1.4.11 Non-text Contrast.** In light mode the thumb and track stay under 3:1. The off-state white thumb is about 2.7:1 on the gray track, and the track is about 2.7:1 on the page. Each checked color measures 1.8:1 to 2.6:1 thumb-on-track. The focus indicator is untested, and `disableRipple` removes it.
 - ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styling.
 
 ## Success criteria
