@@ -51,7 +51,8 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 However, you can use different structures by providing a `getOptionLabel` prop.
 
-If your options are objects, you must provide the `isOptionEqualToValue` prop to ensure correct selection and highlighting. By default, it uses strict equality to compare options with the current value.
+By default, the component uses strict equality to compare an option with the current value.
+If your options are objects and the value is not one of the exact option instances, provide the `isOptionEqualToValue` prop to customize the comparison.
 
 :::warning
 If your options have duplicate labels, you must extract a unique key with the `getOptionKey` prop.
@@ -66,6 +67,17 @@ return <Autocomplete options={options} getOptionKey={(option) => option.id} />;
 ```
 
 :::
+
+### Object options with primitive values
+
+By default, `value`, `defaultValue`, and the value passed to `onChange` contain the selected option object.
+Use the `getOptionValue` prop when you want them to contain a primitive value instead, such as an ID.
+The prop must return a unique, non-null string, number, bigint, or boolean for every option.
+
+Callbacks that operate on options, such as `getOptionLabel` and `renderOption`, continue to receive the original option object.
+The `details.option` passed to `onChange` also contains the original option.
+
+{{"demo": "OptionValueMapping.js"}}
 
 ### Playground
 

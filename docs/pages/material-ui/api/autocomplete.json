@@ -36,7 +36,7 @@
       "type": { "name": "func" },
       "default": "createFilterOptions()",
       "signature": {
-        "type": "function(options: Array<Value>, state: object) => Array<Value>",
+        "type": "function(options: Array<Option>, state: object) => Array<Option>",
         "describedArgs": ["options", "state"]
       }
     },
@@ -54,23 +54,27 @@
     },
     "getOptionDisabled": {
       "type": { "name": "func" },
-      "signature": { "type": "function(option: Value) => boolean", "describedArgs": ["option"] }
+      "signature": { "type": "function(option: Option) => boolean", "describedArgs": ["option"] }
     },
     "getOptionKey": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(option: Value) => string | number",
+        "type": "function(option: Option) => string | number",
         "describedArgs": ["option"]
       }
     },
     "getOptionLabel": {
       "type": { "name": "func" },
       "default": "(option) => option.label ?? option",
-      "signature": { "type": "function(option: Value | string) => string", "describedArgs": [] }
+      "signature": { "type": "function(option: Option | string) => string", "describedArgs": [] }
+    },
+    "getOptionValue": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(option: Option) => Value", "describedArgs": ["option"] }
     },
     "groupBy": {
       "type": { "name": "func" },
-      "signature": { "type": "function(option: Value) => string", "describedArgs": ["option"] }
+      "signature": { "type": "function(option: Option) => string", "describedArgs": ["option"] }
     },
     "handleHomeEndKeys": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "id": { "type": { "name": "string" } },
@@ -79,7 +83,7 @@
     "isOptionEqualToValue": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(option: Value, value: Value | string) => boolean",
+        "type": "function(option: Option, value: Option | Value | string) => boolean",
         "describedArgs": ["option", "value"]
       }
     },
@@ -91,7 +95,7 @@
     "onChange": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(event: React.SyntheticEvent, value: Value | Array<Value>, reason: string, details?: string) => void",
+        "type": "function(event: React.SyntheticEvent, value: Option | Value | Array<Option | Value>, reason: string, details?: string) => void",
         "describedArgs": ["event", "value", "reason"]
       }
     },
@@ -105,7 +109,7 @@
     "onHighlightChange": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(event: React.SyntheticEvent, option: Value, reason: string) => void",
+        "type": "function(event: React.SyntheticEvent, option: Option, reason: string) => void",
         "describedArgs": ["event", "option", "reason"]
       }
     },
@@ -138,14 +142,14 @@
     "renderOption": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(props: object, option: Value, state: object, ownerState: object) => ReactNode",
+        "type": "function(props: object, option: Option, state: object, ownerState: object) => ReactNode",
         "describedArgs": ["props", "option", "state", "ownerState"]
       }
     },
     "renderValue": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(value: AutocompleteRenderValue<Value, Multiple, FreeSolo>, getItemProps: function, ownerState: object) => ReactNode",
+        "type": "function(value: AutocompleteRenderValue<Option, Multiple, FreeSolo, Value>, getItemProps: function, ownerState: object) => ReactNode",
         "describedArgs": ["value", "getItemProps", "ownerState"]
       }
     },
