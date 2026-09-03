@@ -1,72 +1,53 @@
 'use client';
 import * as React from 'react';
-import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import ListContext from '../List/ListContext';
-import { styled } from '../zero-styled';
-import memoTheme from '../utils/memoTheme';
-import ButtonBase from '../ButtonBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { getMenu2ItemStyles } from '../Unstable_Menu2/menu2SharedStyles';
-import Menu2RadioItemIndicator, {
-  Menu2RadioItemIndicatorProps,
-} from '../Unstable_Menu2RadioItemIndicator';
-import {
-  getMenu2RootRender,
-  isMenu2RootNativeButton,
-  Menu2RootSlotProps,
-  SlotProps,
-  suppressButtonBaseKeyboardActivation,
-} from '../Unstable_Menu2/menu2Utils';
+import Menu2SubmenuTriggerRootSlot from './Menu2SubmenuTriggerRootSlot';
+import { isMenu2RootNativeButton, Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2ItemClassName,
   getMenu2ItemOwnerState,
-  Menu2ItemBaseProps,
   Menu2ItemOwnerState,
   Menu2ItemVisualProps,
-  menu2ItemOverridesResolver,
+  Menu2SubmenuTriggerBaseProps,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
 import {
-  getMenu2RadioItemUtilityClass,
-  menu2RadioItemClasses,
-  Menu2RadioItemClasses,
+  getMenu2SubmenuTriggerUtilityClass,
+  Menu2SubmenuTriggerClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
-export interface Menu2RadioItemSlots {
+export interface Menu2SubmenuTriggerSlots {
   /**
    * The component that renders the root.
    * @default 'div'
    */
   root?: React.ElementType | undefined;
-  /**
-   * The component that renders the check indicator.
-   * @default Menu2RadioItemIndicator
-   */
-  indicator?: React.ElementType | undefined;
 }
 
-export interface Menu2RadioItemSlotProps extends Menu2RootSlotProps<Menu2ItemOwnerState> {
-  indicator?:
-    | SlotProps<Partial<Menu2RadioItemIndicatorProps> & Record<string, any>, Menu2ItemOwnerState>
-    | undefined;
+export interface Menu2SubmenuTriggerOwnerState extends Menu2ItemOwnerState {
+  open: boolean;
+  highlighted: boolean;
 }
 
-export interface Menu2RadioItemProps
+export interface Menu2SubmenuTriggerSlotProps extends Menu2RootSlotProps<Menu2SubmenuTriggerOwnerState> {}
+
+export interface Menu2SubmenuTriggerProps
   extends
-    Omit<BaseMenu.RadioItem.Props, 'className' | 'nativeButton' | 'render' | 'style'>,
-    Menu2ItemBaseProps,
-    Menu2ItemVisualProps<Menu2RadioItemClasses, Menu2RadioItemSlots, Menu2RadioItemSlotProps> {
+    Omit<BaseMenu.SubmenuTrigger.Props, 'className' | 'nativeButton' | 'render' | 'style'>,
+    Menu2SubmenuTriggerBaseProps,
+    Menu2ItemVisualProps<
+      Menu2SubmenuTriggerClasses,
+      Menu2SubmenuTriggerSlots,
+      Menu2SubmenuTriggerSlotProps
+    > {
   /**
    * The content of the component.
    */
   children?: React.ReactNode;
-  /**
-   * Value of the radio item.
-   */
-  value: any;
   /**
    * Whether the component should ignore user interaction.
    * @default false
@@ -77,32 +58,38 @@ export interface Menu2RadioItemProps
    */
   label?: string | undefined;
   /**
-   * Whether to close the menu when the item is clicked.
-   * @default false
+   * How long to wait before the submenu may be opened on hover, in milliseconds.
+   *
+   * Requires the `openOnHover` prop.
+   * @default 100
    */
-  closeOnClick?: boolean | undefined;
+  delay?: number | undefined;
+  /**
+   * How long to wait before closing the submenu that was opened on hover, in milliseconds.
+   *
+   * Requires the `openOnHover` prop.
+   * @default 0
+   */
+  closeDelay?: number | undefined;
+  /**
+   * Whether the submenu should also open when the trigger is hovered.
+   * @default true
+   */
+  openOnHover?: boolean | undefined;
   /**
    * CSS class applied to the element.
    */
   className?: string | undefined;
   /**
+   * Styles applied to the root element.
+   */
+  style?: React.CSSProperties | undefined;
+  /**
    * If `true`, the ripple effect is disabled.
    * @default false
    */
   disableRipple?: boolean | undefined;
-  /**
-   * Styles applied to the root element.
-   */
-  style?: React.CSSProperties | undefined;
 }
-
-const Menu2RadioItemRoot = styled(ButtonBase, {
-  name: 'MuiMenu2RadioItem',
-  slot: 'Root',
-  overridesResolver: menu2ItemOverridesResolver,
-})<{ ownerState: Menu2ItemOwnerState }>(
-  memoTheme(({ theme }) => getMenu2ItemStyles(theme, menu2RadioItemClasses)),
-);
 
 /**
  *
@@ -110,17 +97,16 @@ const Menu2RadioItemRoot = styled(ButtonBase, {
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
  */
-const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
-  inProps: Menu2RadioItemProps,
+const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
+  inProps: Menu2SubmenuTriggerProps,
   ref: React.ForwardedRef<HTMLElement>,
 ) {
   const props = useDefaultProps({
     props: inProps,
-    name: 'MuiMenu2RadioItem',
+    name: 'MuiMenu2SubmenuTrigger',
   });
 
   const {
-    children,
     className,
     classes: classesProp,
     component,
@@ -142,9 +128,9 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     ...getMenu2ItemOwnerState({ dense, disabled, disableGutters, divider, selected }),
     classes: classesProp,
   };
-  const classes = useMenu2ItemUtilityClasses<Menu2RadioItemClasses>(
+  const classes = useMenu2ItemUtilityClasses<Menu2SubmenuTriggerClasses>(
     ownerState,
-    getMenu2RadioItemUtilityClass,
+    getMenu2SubmenuTriggerUtilityClass,
   );
   const childContext = React.useMemo(
     () => ({
@@ -153,54 +139,40 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     }),
     [dense, disableGutters],
   );
-  const RootSlot = slots?.root ?? Menu2RadioItemRoot;
-  const IndicatorSlot = slots?.indicator ?? Menu2RadioItemIndicator;
-  const resolvedIndicatorProps = resolveComponentProps(slotProps?.indicator, ownerState);
-
-  const rootSlotProps = resolveComponentProps(slotProps?.root, ownerState);
+  const RootSlot = slots?.root ?? Menu2SubmenuTriggerRootSlot;
 
   return (
     <ListContext.Provider value={childContext}>
-      <BaseMenu.RadioItem
+      <BaseMenu.SubmenuTrigger
         ref={ref}
-        render={getMenu2RootRender(
-          RootSlot,
-          ownerState,
-          {
-            ...rootSlotProps,
-            // ButtonBase renders a <button> by default; the items keep their element.
-            component: component ?? 'div',
-            // Pass it only when the caller sets it. An explicit prop beats the
-            // `MuiButtonBase` default props, so ButtonBase resolves the default.
-            ...(disableRipple !== undefined && { disableRipple }),
-            ownerState,
-            sx,
-            // Base UI owns the Enter and Space activation of the item.
-            ...suppressButtonBaseKeyboardActivation(rootSlotProps),
-          },
-          Menu2RadioItemRoot,
+        render={(renderProps, state) => (
+          <Menu2SubmenuTriggerRootSlot
+            baseProps={renderProps}
+            ownerState={{ ...ownerState, ...state }}
+            component={component}
+            disableRipple={disableRipple}
+            slotProps={slotProps}
+            slots={slots}
+            sx={sx}
+          />
         )}
         className={(state) =>
           clsx(
             className,
             getMenu2ItemClassName(classes, ownerState, state),
-            state.checked && classes.checked,
+            state.open && classes.open,
           )
         }
         disabled={disabled}
         nativeButton={nativeButtonProp ?? isMenu2RootNativeButton(RootSlot, component)}
         style={style}
         {...other}
-      >
-        {/* Reserved by default: an unmounted indicator would shift the label. */}
-        <IndicatorSlot keepMounted {...resolvedIndicatorProps} />
-        {children}
-      </BaseMenu.RadioItem>
+      />
     </ListContext.Provider>
   );
 });
 
-Menu2RadioItem.propTypes /* remove-proptypes */ = {
+Menu2SubmenuTrigger.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
@@ -218,14 +190,23 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * Whether to close the menu when the item is clicked.
-   * @default false
+   * How long to wait before closing the submenu that was opened on hover, in milliseconds.
+   *
+   * Requires the `openOnHover` prop.
+   * @default 0
    */
-  closeOnClick: PropTypes.bool,
+  closeDelay: PropTypes.number,
   /**
    * The component used for the root node.
    */
   component: PropTypes.elementType,
+  /**
+   * How long to wait before the submenu may be opened on hover, in milliseconds.
+   *
+   * Requires the `openOnHover` prop.
+   * @default 100
+   */
+  delay: PropTypes.number,
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input is used.
    * @default false
@@ -262,6 +243,11 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
    */
   nativeButton: PropTypes.bool,
   /**
+   * Whether the submenu should also open when the trigger is hovered.
+   * @default true
+   */
+  openOnHover: PropTypes.bool,
+  /**
    * If `true`, the component is selected.
    * @default false
    */
@@ -270,14 +256,12 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    */
   slotProps: PropTypes.shape({
-    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    */
   slots: PropTypes.shape({
-    indicator: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
   /**
@@ -292,10 +276,6 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  /**
-   * Value of the radio item.
-   */
-  value: PropTypes.any.isRequired,
 } as any;
 
-export default Menu2RadioItem;
+export default Menu2SubmenuTrigger;

@@ -24,6 +24,7 @@ import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
 import Menu2Submenu, { menu2SubmenuTriggerClasses } from '@mui/material/Unstable_Menu2Submenu';
+import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { createTheme, enhanceHighContrast, ThemeProvider } from '@mui/material/styles';
 
 describe('<Menu2 />', () => {
@@ -114,8 +115,11 @@ describe('<Menu2 />', () => {
             </Menu2RadioItem>
           </Menu2RadioGroup>
           <Menu2Submenu
-            trigger={<Menu2Item slots={{ root: 'button' }}>Native submenu trigger</Menu2Item>}
-            slotProps={{ trigger: { nativeButton: true } }}
+            trigger={
+              <Menu2SubmenuTrigger slots={{ root: 'button' }}>
+                Native submenu trigger
+              </Menu2SubmenuTrigger>
+            }
           >
             <Menu2Item>Nested</Menu2Item>
           </Menu2Submenu>
@@ -182,11 +186,10 @@ describe('<Menu2 />', () => {
           </Menu2Item>
           <Menu2Submenu
             trigger={
-              <Menu2Item nativeButton slots={{ root: CustomButtonRoot }}>
+              <Menu2SubmenuTrigger nativeButton slots={{ root: CustomButtonRoot }}>
                 Custom native submenu trigger
-              </Menu2Item>
+              </Menu2SubmenuTrigger>
             }
-            slotProps={{ trigger: { nativeButton: true } }}
           >
             <Menu2Item>Nested</Menu2Item>
           </Menu2Submenu>
@@ -335,7 +338,7 @@ describe('<Menu2 />', () => {
           <Menu2 trigger={<Button disableRipple>Options</Button>}>
             <Menu2Item>Profile</Menu2Item>
             <Menu2CheckboxItem defaultChecked>Bookmarks</Menu2CheckboxItem>
-            <Menu2Submenu trigger={<Menu2Item>View</Menu2Item>}>
+            <Menu2Submenu trigger={<Menu2SubmenuTrigger>View</Menu2SubmenuTrigger>}>
               <Menu2Item>Zoom in</Menu2Item>
             </Menu2Submenu>
           </Menu2>
@@ -868,7 +871,7 @@ describe('<Menu2 />', () => {
           <Menu2LinkItem href="/profile">Profile</Menu2LinkItem>
         </Menu2Group>
         <Menu2Separator />
-        <Menu2Submenu defaultOpen trigger={<Menu2Item>More</Menu2Item>}>
+        <Menu2Submenu defaultOpen trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
           <Menu2Item>Archive</Menu2Item>
         </Menu2Submenu>
       </Menu2>,
@@ -984,7 +987,7 @@ describe('<Menu2 />', () => {
   it.skipIf(isJsdom())('keeps separator spacing stable while a submenu is open', async () => {
     const { user } = render(
       <Menu2 trigger={<Button disableRipple>Options</Button>}>
-        <Menu2Submenu defaultOpen trigger={<Menu2Item>View</Menu2Item>}>
+        <Menu2Submenu defaultOpen trigger={<Menu2SubmenuTrigger>View</Menu2SubmenuTrigger>}>
           <Menu2Item>Zoom</Menu2Item>
         </Menu2Submenu>
         <Menu2Separator />
@@ -1080,10 +1083,9 @@ describe('<Menu2 />', () => {
         <Menu2Submenu
           trigger={
             <ClickClosingTooltip title="Open view settings">
-              <Menu2Item>View options</Menu2Item>
+              <Menu2SubmenuTrigger openOnHover={false}>View options</Menu2SubmenuTrigger>
             </ClickClosingTooltip>
           }
-          slotProps={{ trigger: { openOnHover: false } }}
         >
           <Menu2Item>Comments</Menu2Item>
         </Menu2Submenu>
@@ -1131,7 +1133,10 @@ describe('<Menu2 />', () => {
     try {
       const { user } = render(
         <Menu2 trigger={<Button disableRipple>Options</Button>}>
-          <Menu2Submenu disabled trigger={<Menu2Item>Add-ons unavailable</Menu2Item>}>
+          <Menu2Submenu
+            disabled
+            trigger={<Menu2SubmenuTrigger>Add-ons unavailable</Menu2SubmenuTrigger>}
+          >
             <Menu2Item>Marketplace</Menu2Item>
           </Menu2Submenu>
         </Menu2>,

@@ -1,5 +1,4 @@
 'use client';
-import * as React from 'react';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { CSSInterpolation, SxProps } from '@mui/system';
@@ -150,6 +149,7 @@ export interface Menu2SubmenuTriggerBaseProps {
   closeDelay?: number | undefined;
   /**
    * Whether the submenu should also open when the trigger is hovered.
+   * @default true
    */
   openOnHover?: boolean | undefined;
 }
@@ -221,26 +221,14 @@ export function useMenu2ItemUtilityClasses<Classes extends object>(
   } as Classes;
 }
 
-/**
- * True for the element that `Menu2Submenu` renders as its trigger.
- *
- * One DOM node then carries a `Menu.SubmenuTrigger` and the `Menu.Item` inside
- * the caller's item. That inner item reads the highlight from the submenu store
- * with its index in the parent list, so it reports a highlight that belongs to
- * an item of the submenu. `Menu2Submenu` owns the trigger state classes, so the
- * inner item must not add its own.
- */
-export const Menu2SubmenuTriggerContext = React.createContext(false);
-
 export function getMenu2ItemClassName<State extends Menu2BaseItemState>(
   classes: Partial<Record<'root' | 'highlighted' | 'disabled', string>>,
   ownerState: Menu2ItemOwnerState,
   state: State,
-  ignoreHighlighted: boolean = false,
 ) {
   return clsx(
     classes.root,
-    state.highlighted && !ignoreHighlighted && classes.highlighted,
+    state.highlighted && classes.highlighted,
     state.disabled && !ownerState.disabled && classes.disabled,
   );
 }
@@ -249,9 +237,8 @@ export function mergeMenu2ItemClassName<State extends Menu2BaseItemState>(
   className: StateClassName<State>,
   classes: Partial<Record<'root' | 'highlighted' | 'disabled', string>>,
   ownerState: Menu2ItemOwnerState,
-  ignoreHighlighted: boolean = false,
 ) {
   return mergeStateClassName(className, (state) =>
-    getMenu2ItemClassName(classes, ownerState, state, ignoreHighlighted),
+    getMenu2ItemClassName(classes, ownerState, state),
   );
 }

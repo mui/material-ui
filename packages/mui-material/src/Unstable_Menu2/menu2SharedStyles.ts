@@ -54,7 +54,9 @@ export const menu2PopupPaperStyles: CSSInterpolation = {
   overflowY: 'auto',
 };
 
-export const menu2PopupListStyles = memoTheme(({ theme }) => {
+export const menu2PopupListStyles = menuListStyles;
+
+export function menu2SubmenuTriggerStyles(theme: Theme) {
   // The highlight outranks the open tint. The open selector excludes both states
   // that paint the highlight, so the rules never match the same element and the
   // insertion order cannot decide the winner. Under `theme.focusVisible` the
@@ -64,13 +66,11 @@ export const menu2PopupListStyles = memoTheme(({ theme }) => {
     : `:not(.${menu2SubmenuTriggerClasses.highlighted}):not(:hover)`;
 
   return {
-    ...(menuListStyles as CSSObject),
-    // A submenu trigger is whatever element the caller passes, so its open state
-    // is styled from the list that contains it, not from a component we render.
+    // The trigger owns its state styling, independently of its parent list.
     // An open trigger keeps a tint, because open is a state and not a focus cue.
     // `action.hover` is the lightest of the three, so an open parent stays visible
     // without competing with the item the reader is on.
-    [`& .${menu2SubmenuTriggerClasses.open}${notHighlighted}`]: {
+    [`&.${menu2SubmenuTriggerClasses.open}${notHighlighted}`]: {
       backgroundColor: (theme.vars || theme).palette.action.hover,
     },
     // The theme ring replaces the highlight, the way it does for a plain item.
@@ -78,16 +78,12 @@ export const menu2PopupListStyles = memoTheme(({ theme }) => {
     // submenu opens, so during the open delay the trigger would otherwise show
     // the weaker hover tint while its neighbours show the full highlight.
     ...(!theme.focusVisible && {
-      [`& .${menu2SubmenuTriggerClasses.root}:hover, & .${menu2SubmenuTriggerClasses.highlighted}`]:
-        {
-          backgroundColor: (theme.vars || theme).palette.action.focus,
-        },
+      [`&.${menu2SubmenuTriggerClasses.root}:hover, &.${menu2SubmenuTriggerClasses.highlighted}`]: {
+        backgroundColor: (theme.vars || theme).palette.action.focus,
+      },
     }),
-    [`& .${menu2SubmenuTriggerClasses.disabled}`]: {
-      opacity: (theme.vars || theme).palette.action.disabledOpacity,
-    },
     // A selected trigger that is open blends its own tint with the open tint.
-    [`& .${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.open}${notHighlighted}`]:
+    [`&.${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.open}${notHighlighted}`]:
       {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,
@@ -97,7 +93,7 @@ export const menu2PopupListStyles = memoTheme(({ theme }) => {
         ),
       },
     ...(!theme.focusVisible && {
-      [`& .${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.highlighted}`]: {
+      [`&.${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.highlighted}`]: {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,
           `${(theme.vars || theme).palette.action.selectedOpacity} + ${
@@ -107,7 +103,7 @@ export const menu2PopupListStyles = memoTheme(({ theme }) => {
       },
     }),
   };
-});
+}
 
 /**
  * Default open/close animation for the menu surface, matching the classic

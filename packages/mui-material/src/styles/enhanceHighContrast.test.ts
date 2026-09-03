@@ -712,13 +712,17 @@ describe('enhanceHighContrast', () => {
       },
     );
 
-    test('MuiMenu2Submenu marks the trigger open state from the list', () => {
+    test('MuiMenu2SubmenuTrigger owns its open state', () => {
       const theme = enhanceHighContrast(createTheme());
-      const listOverrides = theme.components?.MuiMenu2Submenu?.styleOverrides
-        ?.list as Array<StyleOverride>;
-      const hcmOverride = listOverrides[listOverrides.length - 1] as Record<string, StyleOverride>;
+      const rootOverrides = theme.components?.MuiMenu2SubmenuTrigger?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<string, StyleOverride>;
 
-      expect(hcmOverride[`& .${menu2SubmenuTriggerClasses.open}`]).to.deep.equal({
+      expect(
+        hcmOverride[
+          `&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.open}.${menu2SubmenuTriggerClasses.selected}`
+        ],
+      ).to.deep.equal({
         [HCM]: {
           forcedColorAdjust: 'none',
           color: 'HighlightText',
@@ -1055,7 +1059,7 @@ describe('enhanceHighContrast', () => {
       ['MuiMenu2LinkItem', 'root'],
       ['MuiMenu2CheckboxItem', 'root'],
       ['MuiMenu2RadioItem', 'root'],
-      ['MuiMenu2Submenu', 'list'],
+      ['MuiMenu2SubmenuTrigger', 'root'],
       ['MuiMenu2CheckboxItemIndicator', 'root'],
       ['MuiMenu2RadioItemIndicator', 'root'],
       ['MuiNativeSelect', 'icon'],

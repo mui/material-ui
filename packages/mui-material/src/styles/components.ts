@@ -561,6 +561,13 @@ export interface Components<Theme = unknown> {
         variants?: ComponentsVariants<Theme>['MuiMenu2Submenu'] | undefined;
       }
     | undefined;
+  MuiMenu2SubmenuTrigger?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenu2SubmenuTrigger'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenu2SubmenuTrigger'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenu2SubmenuTrigger'] | undefined;
+      }
+    | undefined;
   MuiMobileStepper?:
     | {
         defaultProps?: ComponentsProps['MuiMobileStepper'] | undefined;

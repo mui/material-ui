@@ -12,6 +12,7 @@ import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2RadioItemIndicator from '@mui/material/Unstable_Menu2RadioItemIndicator';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
+import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { createTheme } from '@mui/material/styles';
 // @ts-expect-error Menu2 is intentionally not exported from the root barrel for this POC.
 import { Menu2 as RootBarrelMenu2 } from '@mui/material';
@@ -82,9 +83,12 @@ function Menu2Composition() {
             expectType<boolean, typeof open>(open);
             eventDetails.cancel();
           }}
-          trigger={<Menu2Item>More</Menu2Item>}
+          trigger={
+            <Menu2SubmenuTrigger openOnHover nativeButton={false}>
+              More
+            </Menu2SubmenuTrigger>
+          }
           sideOffset={2}
-          slotProps={{ trigger: { openOnHover: true, nativeButton: false } }}
         >
           <Menu2Item>Nested</Menu2Item>
         </Menu2Submenu>
@@ -126,6 +130,11 @@ createTheme({
         list: {},
       },
     },
+    MuiMenu2SubmenuTrigger: {
+      defaultProps: { openOnHover: false, dense: true, disableRipple: true },
+      styleOverrides: { root: {}, highlighted: {} },
+      variants: [{ props: { selected: true }, style: {} }],
+    },
     MuiMenu2Item: {
       defaultProps: {
         dense: true,
@@ -164,6 +173,28 @@ createTheme({
 <Menu2
   // @ts-expect-error Popover anchorOrigin is intentionally not supported.
   anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+/>;
+
+<Menu2Submenu
+  slotProps={{
+    // @ts-expect-error Configure the explicit Menu2SubmenuTrigger directly.
+    trigger: { openOnHover: false },
+  }}
+/>;
+
+<Menu2SubmenuTrigger
+  slotProps={{
+    root: (state) => {
+      expectType<boolean, typeof state.open>(state.open);
+      expectType<boolean, typeof state.highlighted>(state.highlighted);
+      return { 'data-open': state.open };
+    },
+  }}
+/>;
+
+<Menu2SubmenuTrigger
+  // @ts-expect-error Submenu triggers never close the parent on activation.
+  closeOnClick
 />;
 
 <Menu2

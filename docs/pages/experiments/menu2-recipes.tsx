@@ -27,6 +27,7 @@ import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
+import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
 interface MenuSettings {
@@ -234,16 +235,11 @@ function Menu2WithPreviewCardsDemo({ submenusOpenOnHover }: { submenusOpenOnHove
       </Menu2Item>
       <Menu2Submenu
         trigger={
-          <Menu2Item>
+          <Menu2SubmenuTrigger openOnHover={submenusOpenOnHover}>
             Version history
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </Menu2Item>
+          </Menu2SubmenuTrigger>
         }
-        slotProps={{
-          trigger: {
-            openOnHover: submenusOpenOnHover,
-          },
-        }}
       >
         {versionHistoryPreviewCardItems.map((item) => (
           <Menu2Item key={item.id} label={item.label} {...getItemProps(item)}>
@@ -295,12 +291,11 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
 
       <Menu2Submenu
         trigger={
-          <Menu2Item>
+          <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
             View options
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </Menu2Item>
+          </Menu2SubmenuTrigger>
         }
-        slotProps={{ trigger: { openOnHover: settings.submenusOpenOnHover } }}
       >
         <Menu2Group>
           <Menu2GroupLabel>Document display</Menu2GroupLabel>
@@ -328,12 +323,11 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
 
         <Menu2Submenu
           trigger={
-            <Menu2Item>
+            <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
               More tools
               <KeyboardArrowRightRoundedIcon fontSize="small" />
-            </Menu2Item>
+            </Menu2SubmenuTrigger>
           }
-          slotProps={{ trigger: { openOnHover: settings.submenusOpenOnHover } }}
         >
           <Menu2Item onClick={handleItemClick}>Word count</Menu2Item>
           <Menu2Item onClick={handleItemClick}>Dictionary</Menu2Item>
@@ -343,12 +337,11 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
 
       <Menu2Submenu
         trigger={
-          <Menu2Item>
+          <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
             Download
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </Menu2Item>
+          </Menu2SubmenuTrigger>
         }
-        slotProps={{ trigger: { openOnHover: settings.submenusOpenOnHover } }}
       >
         <Menu2Item>Microsoft Word (.docx)</Menu2Item>
         <Menu2Item>PDF document (.pdf)</Menu2Item>
@@ -358,12 +351,11 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
       <Menu2Submenu
         disabled
         trigger={
-          <Menu2Item disabled>
+          <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover} disabled>
             Add-ons unavailable
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </Menu2Item>
+          </Menu2SubmenuTrigger>
         }
-        slotProps={{ trigger: { openOnHover: settings.submenusOpenOnHover } }}
       >
         <Menu2Item>Marketplace</Menu2Item>
       </Menu2Submenu>
@@ -425,13 +417,12 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
       <Menu2Submenu
         trigger={
           <MenuTooltip title="Open view settings" tooltipProps={submenuTriggerTooltipProps}>
-            <Menu2Item>
+            <Menu2SubmenuTrigger openOnHover={submenusOpenOnHover}>
               View options
               <KeyboardArrowRightRoundedIcon fontSize="small" />
-            </Menu2Item>
+            </Menu2SubmenuTrigger>
           </MenuTooltip>
         }
-        slotProps={{ trigger: { openOnHover: submenusOpenOnHover } }}
       >
         <Menu2Group>
           <Menu2GroupLabel>Show</Menu2GroupLabel>

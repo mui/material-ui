@@ -76,6 +76,7 @@ import { Menu2RadioItemProps } from '../Unstable_Menu2RadioItem';
 import { Menu2RadioItemIndicatorProps } from '../Unstable_Menu2RadioItemIndicator';
 import { Menu2SeparatorProps } from '../Unstable_Menu2Separator';
 import { Menu2SubmenuProps } from '../Unstable_Menu2Submenu';
+import { Menu2SubmenuTriggerProps } from '../Unstable_Menu2SubmenuTrigger';
 import { MenuProps } from '../Menu';
 import { MobileStepperProps } from '../MobileStepper';
 import { ModalProps } from '../Modal';
@@ -213,6 +214,7 @@ export interface ComponentsPropsList {
   MuiMenu2RadioItemIndicator: Menu2RadioItemIndicatorProps;
   MuiMenu2Separator: Menu2SeparatorProps;
   MuiMenu2Submenu: Menu2SubmenuProps;
+  MuiMenu2SubmenuTrigger: Menu2SubmenuTriggerProps;
   MuiMobileStepper: MobileStepperProps;
   MuiModal: ModalProps;
   MuiNativeSelect: NativeSelectProps;

@@ -1,6 +1,6 @@
 export { default } from './Menu2Submenu';
 export * from './Menu2Submenu';
-// Rendered by Menu2Submenu itself; only the style hooks are public.
+// The popup stays internal. Trigger class exports remain available here too.
 export {
   menu2SubmenuTriggerClasses,
   getMenu2SubmenuTriggerUtilityClass,

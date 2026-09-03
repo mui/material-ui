@@ -14,7 +14,6 @@ import {
   Menu2ItemBaseProps,
   Menu2ItemOwnerState,
   Menu2ItemVisualProps,
-  Menu2SubmenuTriggerContext,
   menu2ItemOverridesResolver,
   mergeMenu2ItemClassName,
   useMenu2ItemUtilityClasses,
@@ -136,9 +135,6 @@ const Menu2Item = React.forwardRef(function Menu2Item(
     [dense, disableGutters],
   );
   const RootSlot = slots?.root ?? Menu2ItemRoot;
-  // As a submenu trigger the item shares its node with `Menu.SubmenuTrigger`,
-  // which owns the highlight. The inner item reads the wrong menu's store.
-  const isSubmenuTrigger = React.useContext(Menu2SubmenuTriggerContext);
 
   const rootSlotProps = resolveComponentProps(slotProps?.root, ownerState);
 
@@ -163,7 +159,7 @@ const Menu2Item = React.forwardRef(function Menu2Item(
           },
           Menu2ItemRoot,
         )}
-        className={mergeMenu2ItemClassName(className, classes, ownerState, isSubmenuTrigger)}
+        className={mergeMenu2ItemClassName(className, classes, ownerState)}
         disabled={disabled}
         nativeButton={nativeButtonProp ?? isMenu2RootNativeButton(RootSlot, component)}
         style={style}

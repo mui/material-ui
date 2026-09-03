@@ -11,15 +11,25 @@ import Menu2Submenu, {
   menu2SubmenuPopupClasses,
   menu2SubmenuTriggerClasses,
 } from '@mui/material/Unstable_Menu2Submenu';
+import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 
-// The collapsed shape: one component per menu at both levels, trigger as a
-// prop, children as the popup.
+// The collapsed surfaces: trigger as a prop and children as the popup, with
+// one explicit behavioral component for the submenu trigger.
 describe('<Menu2 /> collapsed API', () => {
   const { render } = createRenderer();
 
   beforeEach(() => {
     resetMenu2WarningFlags();
   });
+
+  // The popup takes the focus in a frame callback, not with the render. A key
+  // that arrives first lands on the body and is lost.
+  async function waitForPopupFocus(itemInPopup: HTMLElement) {
+    const popup = itemInPopup.closest('[role="menu"]')!;
+    await waitFor(() => {
+      expect(popup.contains(document.activeElement)).to.equal(true);
+    });
+  }
 
   it('renders the trigger element as-is and opens the menu', async () => {
     const { user } = render(
@@ -71,7 +81,7 @@ describe('<Menu2 /> collapsed API', () => {
     const submenuRef = React.createRef<HTMLDivElement>();
     const { user } = render(
       <Menu2 ref={menuRef} trigger={<Button disableRipple>Options</Button>}>
-        <Menu2Submenu ref={submenuRef} trigger={<Menu2Item>More</Menu2Item>}>
+        <Menu2Submenu ref={submenuRef} trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
           <Menu2Item>Nested</Menu2Item>
         </Menu2Submenu>
       </Menu2>,
@@ -113,7 +123,7 @@ describe('<Menu2 /> collapsed API', () => {
           slotProps={{ paper: { 'data-testid': 'paper' } }}
         >
           <Menu2Submenu
-            trigger={<Menu2Item>More</Menu2Item>}
+            trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
             slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}
           >
             <Menu2Item>Nested</Menu2Item>
@@ -149,7 +159,7 @@ describe('<Menu2 /> collapsed API', () => {
   it.skipIf(isJsdom())('keeps the selected blend on a trigger whose submenu is open', async () => {
     const { user } = render(
       <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
-        <Menu2Submenu trigger={<Menu2Item selected>More</Menu2Item>}>
+        <Menu2Submenu trigger={<Menu2SubmenuTrigger selected>More</Menu2SubmenuTrigger>}>
           <Menu2Item>Nested</Menu2Item>
         </Menu2Submenu>
       </Menu2>,
@@ -215,7 +225,9 @@ describe('<Menu2 /> collapsed API', () => {
     const onMouseEnter = spy();
     const { user } = render(
       <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
-        <Menu2Submenu trigger={<Menu2Item onMouseEnter={onMouseEnter}>More</Menu2Item>}>
+        <Menu2Submenu
+          trigger={<Menu2SubmenuTrigger onMouseEnter={onMouseEnter}>More</Menu2SubmenuTrigger>}
+        >
           <Menu2Item>Nested</Menu2Item>
         </Menu2Submenu>
       </Menu2>,
@@ -234,26 +246,19 @@ describe('<Menu2 /> collapsed API', () => {
     expect(onMouseEnter.callCount).to.be.greaterThan(0);
   });
 
-  // A wrapper around the trigger swallows props that it does not forward, so
-  // `closeOnClick` never reaches the item inside it.
+  // The explicit trigger owns its behavior. Its wrapper need not forward props
+  // injected by Menu2Submenu, because the submenu renders it as-is.
   it.skipIf(isJsdom())('opens the submenu when the trigger sits inside a wrapper', async () => {
-    // A wrapper that forwards keeps the behavior. One that drops props, the way
-    // a hand-written Tooltip helper easily does, swallows it: the submenu never
-    // opens and the click closes the menu instead.
-    const Wrapper = React.forwardRef<
-      HTMLElement,
-      { children: React.ReactElement } & Record<string, any>
-    >(function Wrapper(props, ref) {
-      const { children, ...forwarded } = props;
-      return React.cloneElement(children, { ...forwarded, ref });
-    });
+    function Wrapper({ children }: { children: React.ReactElement }) {
+      return children;
+    }
 
     const { user } = render(
       <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
         <Menu2Submenu
           trigger={
             <Wrapper>
-              <Menu2Item>More</Menu2Item>
+              <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
             </Wrapper>
           }
         >
@@ -304,7 +309,7 @@ describe('<Menu2 /> collapsed API', () => {
     const { user } = render(
       <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
         <Menu2Item>Plain</Menu2Item>
-        <Menu2Submenu trigger={<Menu2Item>More</Menu2Item>}>
+        <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
           <Menu2Item>Nested</Menu2Item>
         </Menu2Submenu>
       </Menu2>,
@@ -312,13 +317,20 @@ describe('<Menu2 /> collapsed API', () => {
 
     const plain = await screen.findByRole('menuitem', { name: 'Plain' });
     const submenuTrigger = screen.getByRole('menuitem', { name: 'More' });
+    await waitForPopupFocus(plain);
 
     // Keyboard: the trigger takes the highlight the same way a plain item does.
     await user.keyboard('{ArrowDown}');
+    await waitFor(() => {
+      expect(plain).to.equal(document.activeElement);
+    });
     expect(plain).to.have.class(menu2ItemClasses.highlighted);
     const plainHighlight = window.getComputedStyle(plain).backgroundColor;
 
     await user.keyboard('{ArrowDown}');
+    await waitFor(() => {
+      expect(submenuTrigger).to.equal(document.activeElement);
+    });
     expect(submenuTrigger).to.have.class(menu2SubmenuTriggerClasses.highlighted);
     expect(window.getComputedStyle(submenuTrigger).backgroundColor).to.equal(plainHighlight);
   });
@@ -345,7 +357,7 @@ describe('<Menu2 /> collapsed API', () => {
         slotProps={{ paper: { 'data-testid': 'paper' } }}
       >
         <Menu2Submenu
-          trigger={<Menu2Item>More</Menu2Item>}
+          trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
           slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}
         >
           <Menu2Item>Nested</Menu2Item>
@@ -378,7 +390,7 @@ describe('<Menu2 /> collapsed API', () => {
   it('renders the caller element as the trigger at both levels', async () => {
     const { user } = render(
       <Menu2 trigger={<Button disableRipple>Options</Button>}>
-        <Menu2Submenu trigger={<Menu2Item>More</Menu2Item>}>
+        <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
           <Menu2Item>Nested</Menu2Item>
         </Menu2Submenu>
       </Menu2>,
@@ -390,7 +402,7 @@ describe('<Menu2 /> collapsed API', () => {
 
     await user.click(trigger);
     const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
-    expect(submenuTrigger).to.have.class(menu2ItemClasses.root);
+    expect(submenuTrigger).not.to.have.class(menu2ItemClasses.root);
     expect(submenuTrigger).to.have.class(menu2SubmenuTriggerClasses.root);
 
     // It must lay out as a menu item row, not as inline content. A fragment
@@ -479,7 +491,7 @@ describe('<Menu2 /> collapsed API', () => {
     const { user } = render(
       <Menu2 trigger={<Button disableRipple>Options</Button>}>
         <Menu2Item>Cut</Menu2Item>
-        <Menu2Submenu trigger={<Menu2Item>View</Menu2Item>}>
+        <Menu2Submenu trigger={<Menu2SubmenuTrigger>View</Menu2SubmenuTrigger>}>
           <Menu2Item>Zoom in</Menu2Item>
         </Menu2Submenu>
       </Menu2>,
@@ -497,7 +509,7 @@ describe('<Menu2 /> collapsed API', () => {
     });
   });
 
-  // The submenu trigger renders a Menu2Item, so it takes the same non-native
+  // The submenu trigger renders ButtonBase, so it takes the same non-native
   // keyboard path as a plain item and used to fire twice per press. Each key
   // gets a fresh render, because opening the submenu moves focus into it.
   ['[Space]', '[Enter]'].forEach((key) => {
@@ -505,7 +517,7 @@ describe('<Menu2 /> collapsed API', () => {
       const onClick = spy();
       const { user } = render(
         <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
-          <Menu2Submenu trigger={<Menu2Item onClick={onClick}>More</Menu2Item>}>
+          <Menu2Submenu trigger={<Menu2SubmenuTrigger onClick={onClick}>More</Menu2SubmenuTrigger>}>
             <Menu2Item>Nested</Menu2Item>
           </Menu2Submenu>
         </Menu2>,
@@ -532,7 +544,7 @@ describe('<Menu2 /> collapsed API', () => {
           <ThemeProvider theme={createTheme({ focusVisible })}>
             <Menu2 defaultOpen modal={false} anchor={document.body}>
               <Menu2Item>Plain</Menu2Item>
-              <Menu2Submenu trigger={<Menu2Item>More</Menu2Item>}>
+              <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
                 <Menu2Item>Nested</Menu2Item>
               </Menu2Submenu>
             </Menu2>
@@ -541,11 +553,18 @@ describe('<Menu2 /> collapsed API', () => {
 
         const plain = await screen.findByRole('menuitem', { name: 'Plain' });
         const submenuTrigger = screen.getByRole('menuitem', { name: 'More' });
+        await waitForPopupFocus(plain);
 
         await user.keyboard('{ArrowDown}');
+        await waitFor(() => {
+          expect(plain).to.equal(document.activeElement);
+        });
         const plainHighlight = window.getComputedStyle(plain).backgroundColor;
 
         await user.keyboard('{ArrowDown}');
+        await waitFor(() => {
+          expect(submenuTrigger).to.equal(document.activeElement);
+        });
         expect(window.getComputedStyle(submenuTrigger).backgroundColor).to.equal(plainHighlight);
       },
     );
@@ -557,7 +576,7 @@ describe('<Menu2 /> collapsed API', () => {
     const { user } = render(
       <Menu2 defaultOpen modal={false} anchor={document.body}>
         <Menu2Item>Plain</Menu2Item>
-        <Menu2Submenu trigger={<Menu2Item>More</Menu2Item>}>
+        <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
           <Menu2Item>Nested</Menu2Item>
         </Menu2Submenu>
       </Menu2>,
@@ -565,8 +584,12 @@ describe('<Menu2 /> collapsed API', () => {
 
     const plain = await screen.findByRole('menuitem', { name: 'Plain' });
     const submenuTrigger = screen.getByRole('menuitem', { name: 'More' });
+    await waitForPopupFocus(plain);
 
     await user.keyboard('{ArrowDown}');
+    await waitFor(() => {
+      expect(plain).to.equal(document.activeElement);
+    });
     const highlighted = window.getComputedStyle(plain).backgroundColor;
 
     await user.click(submenuTrigger);
@@ -587,8 +610,8 @@ describe('<Menu2 /> collapsed API', () => {
   const nestedChain = (
     <Menu2 defaultOpen modal={false} trigger={<Button disableRipple>Options</Button>}>
       {/* Each trigger is index 0 of its own list, so the indices collide. */}
-      <Menu2Submenu trigger={<Menu2Item>View options</Menu2Item>}>
-        <Menu2Submenu trigger={<Menu2Item>More tools</Menu2Item>}>
+      <Menu2Submenu trigger={<Menu2SubmenuTrigger>View options</Menu2SubmenuTrigger>}>
+        <Menu2Submenu trigger={<Menu2SubmenuTrigger>More tools</Menu2SubmenuTrigger>}>
           <Menu2Item>Leaf</Menu2Item>
         </Menu2Submenu>
       </Menu2Submenu>
@@ -604,12 +627,7 @@ describe('<Menu2 /> collapsed API', () => {
     const { user } = render(nestedChain);
 
     const parent = await screen.findByRole('menuitem', { name: 'View options' });
-    // The popup takes the focus in a frame callback, not with the render. A key
-    // that arrives first lands on the body and is lost.
-    const popup = parent.closest('[role="menu"]')!;
-    await waitFor(() => {
-      expect(popup.contains(document.activeElement)).to.equal(true);
-    });
+    await waitForPopupFocus(parent);
 
     await user.keyboard('{ArrowDown}');
     await user.keyboard('{ArrowRight}');
@@ -620,10 +638,12 @@ describe('<Menu2 /> collapsed API', () => {
       expect(child).to.equal(document.activeElement);
     });
 
-    // The parent is open, and only open. The item class is the false highlight
-    // that the submenu store used to put on it.
+    // The parent is open, and only open. The highlight classes are the false
+    // highlight that the submenu store used to put on it. A trigger carries the
+    // submenu trigger class, so the item class alone misses it.
     expect(parent).to.have.class(menu2SubmenuTriggerClasses.open);
     expect(parent).not.to.have.class(menu2ItemClasses.highlighted);
+    expect(parent).not.to.have.class(menu2SubmenuTriggerClasses.highlighted);
     expect(window.getComputedStyle(child).backgroundColor).to.equal(FOCUS_TINT);
     expect(window.getComputedStyle(parent).backgroundColor).to.equal(OPEN_TINT);
   });
@@ -641,12 +661,16 @@ describe('<Menu2 /> collapsed API', () => {
     fireEvent.mouseOver(child);
     fireEvent.mouseMove(child);
 
+    // The child highlights one frame before the parent drops its own highlight,
+    // so wait for the focus, the way the keyboard test above does.
     await waitFor(() => {
-      expect(child).to.have.class(menu2SubmenuTriggerClasses.highlighted);
+      expect(child).to.equal(document.activeElement);
     });
+    expect(child).to.have.class(menu2SubmenuTriggerClasses.highlighted);
 
     expect(parent).to.have.class(menu2SubmenuTriggerClasses.open);
     expect(parent).not.to.have.class(menu2ItemClasses.highlighted);
+    expect(parent).not.to.have.class(menu2SubmenuTriggerClasses.highlighted);
     expect(window.getComputedStyle(child).backgroundColor).to.equal(FOCUS_TINT);
     expect(window.getComputedStyle(parent).backgroundColor).to.equal(OPEN_TINT);
   });

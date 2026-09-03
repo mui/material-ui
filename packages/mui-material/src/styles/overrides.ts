@@ -68,6 +68,7 @@ import { MenuClassKey } from '../Menu';
 import { MenuItemClassKey } from '../MenuItem';
 import { MenuListClassKey } from '../MenuList';
 import { Menu2ClassKey, Menu2SubmenuClassKey } from '../Unstable_Menu2/menu2Classes';
+import { Menu2SubmenuTriggerClassKey } from '../Unstable_Menu2SubmenuTrigger';
 import { Menu2CheckboxItemClassKey } from '../Unstable_Menu2CheckboxItem';
 import { Menu2CheckboxItemIndicatorClassKey } from '../Unstable_Menu2CheckboxItemIndicator';
 import { Menu2GroupClassKey } from '../Unstable_Menu2Group';
@@ -224,6 +225,7 @@ export interface ComponentNameToClassKey {
   MuiMenuList: MenuListClassKey;
   MuiMenu2: Menu2ClassKey;
   MuiMenu2Submenu: Menu2SubmenuClassKey;
+  MuiMenu2SubmenuTrigger: Menu2SubmenuTriggerClassKey;
   MuiMenu2CheckboxItem: Menu2CheckboxItemClassKey;
   MuiMenu2CheckboxItemIndicator: Menu2CheckboxItemIndicatorClassKey;
   MuiMenu2Group: Menu2GroupClassKey;

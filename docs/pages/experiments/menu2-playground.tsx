@@ -31,6 +31,7 @@ import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
+import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
 type MenuProps = React.ComponentProps<typeof Menu2>;
@@ -140,8 +141,7 @@ function PlaygroundDemo({
 }) {
   const popupKnobProps = usePopupKnobProps(settings);
   const itemProps = { dense: settings.dense, divider: settings.dividers };
-  // The trigger element carries the item props. `slotProps.trigger` reaches
-  // Base UI's submenu trigger, so only its own props belong there.
+  // The explicit trigger accepts both item appearance and submenu behavior.
   const submenuTriggerProps = {
     openOnHover: settings.submenusOpenOnHover,
     delay: settings.submenuDelay,
@@ -201,12 +201,11 @@ function PlaygroundDemo({
       <Menu2Submenu
         closeParentOnEsc={settings.closeParentOnEsc}
         trigger={
-          <Menu2Item {...itemProps}>
+          <Menu2SubmenuTrigger {...submenuTriggerProps} {...itemProps}>
             Share
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </Menu2Item>
+          </Menu2SubmenuTrigger>
         }
-        slotProps={{ trigger: submenuTriggerProps }}
         {...submenuPopupProps}
       >
         <Menu2Item {...itemProps} onClick={handleItemClick}>
@@ -218,12 +217,11 @@ function PlaygroundDemo({
         <Menu2Submenu
           closeParentOnEsc={settings.closeParentOnEsc}
           trigger={
-            <Menu2Item {...itemProps}>
+            <Menu2SubmenuTrigger {...submenuTriggerProps} {...itemProps}>
               Export as
               <KeyboardArrowRightRoundedIcon fontSize="small" />
-            </Menu2Item>
+            </Menu2SubmenuTrigger>
           }
-          slotProps={{ trigger: submenuTriggerProps }}
           {...submenuPopupProps}
         >
           <Menu2RadioGroup defaultValue="pdf">
@@ -243,12 +241,11 @@ function PlaygroundDemo({
       <Menu2Submenu
         closeParentOnEsc={settings.closeParentOnEsc}
         trigger={
-          <Menu2Item {...itemProps}>
+          <Menu2SubmenuTrigger {...submenuTriggerProps} {...itemProps}>
             View
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </Menu2Item>
+          </Menu2SubmenuTrigger>
         }
-        slotProps={{ trigger: submenuTriggerProps }}
         {...submenuPopupProps}
       >
         <Menu2CheckboxItem {...itemProps} defaultChecked>

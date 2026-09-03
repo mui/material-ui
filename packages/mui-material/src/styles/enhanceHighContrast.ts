@@ -493,40 +493,22 @@ export default function enhanceHighContrast<
         ],
       },
     },
-    // The submenu trigger is whatever element the caller passes, so its open
-    // state is styled from the list that contains it.
-    MuiMenu2Submenu: {
-      ...c?.MuiMenu2Submenu,
+    MuiMenu2SubmenuTrigger: {
+      ...c?.MuiMenu2SubmenuTrigger,
       styleOverrides: {
-        ...c?.MuiMenu2Submenu?.styleOverrides,
-        list: [
-          c?.MuiMenu2Submenu?.styleOverrides?.list,
+        ...c?.MuiMenu2SubmenuTrigger?.styleOverrides,
+        root: [
+          c?.MuiMenu2SubmenuTrigger?.styleOverrides?.root,
           {
-            [`& .${menu2SubmenuTriggerClasses.open}`]: {
-              [HCM]: {
-                forcedColorAdjust: 'none',
-                color: hcTokens.activeText,
-                backgroundColor: hcTokens.activeBackground,
+            [`&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.open}.${menu2SubmenuTriggerClasses.selected}`]:
+              {
+                [HCM]: {
+                  forcedColorAdjust: 'none',
+                  color: hcTokens.activeText,
+                  backgroundColor: hcTokens.activeBackground,
+                },
               },
-            },
-          },
-        ],
-      },
-    },
-    MuiMenu2: {
-      ...c?.MuiMenu2,
-      styleOverrides: {
-        ...c?.MuiMenu2?.styleOverrides,
-        list: [
-          c?.MuiMenu2?.styleOverrides?.list,
-          {
-            [`& .${menu2SubmenuTriggerClasses.open}`]: {
-              [HCM]: {
-                forcedColorAdjust: 'none',
-                color: hcTokens.activeText,
-                backgroundColor: hcTokens.activeBackground,
-              },
-            },
+            ...menu2ItemOverrides(menu2SubmenuTriggerClasses, hcTokens),
           },
         ],
       },
