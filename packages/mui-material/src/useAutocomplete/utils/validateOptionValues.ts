@@ -1,14 +1,14 @@
-type OptionValueTypeValidationParams = {
-  options: unknown[];
+type OptionValueTypeValidationParams<Option> = {
+  options: readonly Option[];
   componentName: string;
-  getOptionValueProp: (option: unknown) => unknown | undefined;
+  getOptionValueProp: ((option: Option) => unknown) | undefined;
 };
 
-export default function validateOptionValues({
+export default function validateOptionValues<Option>({
   options,
   componentName,
   getOptionValueProp,
-}: OptionValueTypeValidationParams) {
+}: OptionValueTypeValidationParams<Option>) {
   if (!getOptionValueProp) {
     return;
   }
