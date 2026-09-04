@@ -203,6 +203,20 @@ const BUTTON_A11Y_DEMOS = [
   'CustomizedButtons',
 ];
 
+// Radio docs demos enrolled for axe assertions. FormControlLabelPlacement is left out: its axe
+// output duplicates RowRadioButtonsGroup (a row RadioGroup with a FormLabel), adding no new rules.
+const RADIO_A11Y_DEMOS = [
+  'RadioButtons',
+  'RadioButtonsGroup',
+  'ControlledRadioButtonsGroup',
+  'ColorRadioButtons',
+  'CustomizedRadios',
+  'SizeRadioButtons',
+  'RowRadioButtonsGroup',
+  'ErrorRadios',
+  'UseRadioGroup',
+];
+
 // Switch docs demos enrolled for axe assertions. FormControlLabelPosition is
 // excluded: its `aria-label` on a role-less FormGroup div trips
 // `aria-prohibited-attr`, a demo quirk unrelated to Switch.
@@ -288,6 +302,11 @@ export const A11Y_RULES: A11yRule[] = [
   // same `progress.a11y.json` as the docs demos above.
   {
     test: 'test/regressions/a11y/fixtures/progress/{LinearProgressA11ySemanticStates,LinearProgressA11yColorMatrix}',
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/radio-buttons/{${RADIO_A11Y_DEMOS.join(',')}}`,
     enabled: true,
     assertions: 'all',
   },
