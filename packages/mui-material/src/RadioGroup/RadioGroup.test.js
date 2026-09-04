@@ -469,33 +469,30 @@ describe('<RadioGroup />', () => {
       },
     );
 
-    it.skipIf(isJsdom())(
-      '2.1.1 Keyboard: arrow navigation skips a disabled radio',
-      async () => {
-        const { user } = render(
-          <RadioGroup name="pet" defaultValue="cat">
-            <Radio value="cat" disableRipple slotProps={{ input: { 'aria-label': 'Cat' } }} />
-            <Radio
-              value="dog"
-              disabled
-              disableRipple
-              slotProps={{ input: { 'aria-label': 'Dog' } }}
-            />
-            <Radio value="bird" disableRipple slotProps={{ input: { 'aria-label': 'Bird' } }} />
-          </RadioGroup>,
-        );
-        const [cat, dog, bird] = screen.getAllByRole('radio');
+    it.skipIf(isJsdom())('2.1.1 Keyboard: arrow navigation skips a disabled radio', async () => {
+      const { user } = render(
+        <RadioGroup name="pet" defaultValue="cat">
+          <Radio value="cat" disableRipple slotProps={{ input: { 'aria-label': 'Cat' } }} />
+          <Radio
+            value="dog"
+            disabled
+            disableRipple
+            slotProps={{ input: { 'aria-label': 'Dog' } }}
+          />
+          <Radio value="bird" disableRipple slotProps={{ input: { 'aria-label': 'Bird' } }} />
+        </RadioGroup>,
+      );
+      const [cat, dog, bird] = screen.getAllByRole('radio');
 
-        await user.tab();
-        expect(cat).toHaveFocus();
+      await user.tab();
+      expect(cat).toHaveFocus();
 
-        // The arrow moves selection past the disabled radio to the next enabled one.
-        await user.keyboard('[ArrowDown]');
-        expect(bird).toHaveFocus();
-        expect(bird).to.have.property('checked', true);
-        expect(dog).to.have.property('checked', false);
-      },
-    );
+      // The arrow moves selection past the disabled radio to the next enabled one.
+      await user.keyboard('[ArrowDown]');
+      expect(bird).toHaveFocus();
+      expect(bird).to.have.property('checked', true);
+      expect(dog).to.have.property('checked', false);
+    });
 
     describe('4.1.2 Name, Role, Value', () => {
       it('exposes the radiogroup role named by the author FormLabel', () => {
