@@ -283,7 +283,18 @@ export const A11Y_RULES: A11yRule[] = [
     assertions: 'all',
   },
   {
-<<<<<<< HEAD
+    test: `docs/data/material/components/text-fields/{${TEXTFIELD_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+    // color-contrast is recorded but not asserted (1.4.3): axe cannot resolve
+    // the input value's background through the overlapping notched outline
+    // (logged as incomplete), and the focused color labels (warning 3.11:1),
+    // error text on the filled surface (4.36:1), and the ~0.42-opacity
+    // placeholder (~2.6:1) are known shortfalls kept in the JSON without
+    // failing CI.
+    skipAssertions: ['color-contrast'],
+  },
+  {
     test: `docs/data/material/components/toggle-button/{${TOGGLE_BUTTON_A11Y_DEMOS.join(',')}}`,
     enabled: true,
     assertions: 'all',
@@ -306,17 +317,6 @@ export const A11Y_RULES: A11yRule[] = [
     test: 'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11yColorMatrix',
     enabled: true,
     assertions: 'all',
-=======
-    test: `docs/data/material/components/text-fields/{${TEXTFIELD_A11Y_DEMOS.join(',')}}`,
-    enabled: true,
-    assertions: 'all',
-    // color-contrast is recorded but not asserted (1.4.3): axe cannot resolve
-    // the input value's background through the overlapping notched outline
-    // (logged as incomplete), and the focused color labels (warning 3.11:1),
-    // error text on the filled surface (4.36:1), and the ~0.42-opacity
-    // placeholder (~2.6:1) are known shortfalls kept in the JSON without
-    // failing CI.
->>>>>>> master
     skipAssertions: ['color-contrast'],
   },
 ];
