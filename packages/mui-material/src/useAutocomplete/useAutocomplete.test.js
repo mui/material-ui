@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import * as React from 'react';
 import {
   createRenderer,
@@ -482,6 +482,485 @@ describe('useAutocomplete', () => {
       const renderedOption = screen.getByRole('option');
       expect(renderedOption).to.have.text('foo');
       expect(renderedOption).to.have.attribute('aria-selected', 'false');
+    });
+  });
+
+  describe('prop: getOptionValue', () => {
+    const options = [
+      { id: 'foo', label: 'Foo' },
+      { id: 'bar', label: 'Bar' },
+    ];
+    const freeSoloOptions = [
+      { id: 1, label: 'Foo' },
+      { id: 2, label: 'Bar' },
+    ];
+
+    const freeSoloStringMappingError =
+      'MUI: The `getOptionValue` method of useAutocomplete returned the string value "draft" while `freeSolo` is enabled.\n' +
+      'useAutocomplete cannot distinguish string option values from free-solo values. ' +
+      'Return a number, bigint, or boolean from `getOptionValue`, or disable `freeSolo`.';
+
+    const getOptionValue = (option) => option.id;
+
+    function Test(props) {
+      const { groupedOptions, getRootProps, getInputProps, getListboxProps, getOptionProps } =
+        useAutocomplete({
+          options,
+          open: true,
+          multiple: true,
+          value: ['foo'],
+          getOptionLabel: (option) => option.label,
+          getOptionValue,
+          ...props,
+        });
+
+      return (
+        <div {...getRootProps()}>
+          <input {...getInputProps()} />
+          <ul {...getListboxProps()}>
+            {groupedOptions.map((option, index) => {
+              const { key, ...optionProps } = getOptionProps({ option, index });
+              return (
+                <li key={key} {...optionProps}>
+                  {option.label}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      );
+    }
+
+    // These tests use the same string as an option's mapped value and as free-solo text.
+    // Capture the expected development error while verifying the JavaScript fallback.
+    function renderWithFreeSoloStringMapping(element) {
+      let view;
+      expect(() => {
+        view = render(element, { strict: false });
+      }).toErrorDev(freeSoloStringMappingError);
+      return view;
+    }
+
+    it('uses the mapped option value for default equality', () => {
+      render(<Test />);
+
+      expect(screen.getByRole('option', { name: 'Foo' })).to.have.attribute(
+        'aria-selected',
+        'true',
+      );
+      expect(screen.getByRole('option', { name: 'Bar' })).to.have.attribute(
+        'aria-selected',
+        'false',
+      );
+    });
+
+    it('returns a resolver for mapped values', () => {
+      let resolveOptionValue;
+
+      function ResolverTest() {
+        const { getInputProps, getOptionFromValue } = useAutocomplete({
+          options,
+          getOptionValue: (option) => option.id,
+        });
+        resolveOptionValue = getOptionFromValue;
+        return <input {...getInputProps()} />;
+      }
+
+      render(<ResolverTest />);
+
+      expect(resolveOptionValue('foo')).to.equal(options[0]);
+      expect(resolveOptionValue('missing')).to.equal(null);
+    });
+
+    it('gives freeSolo strings precedence over colliding mapped option values', () => {
+      let resolveOptionValue;
+      const collidingOptions = [{ id: 'draft', label: 'Published' }];
+
+      function ResolverTest() {
+        const { getInputProps, getOptionFromValue } = useAutocomplete({
+          options: collidingOptions,
+          freeSolo: true,
+          getOptionValue: (option) => option.id,
+        });
+        resolveOptionValue = getOptionFromValue;
+        return <input {...getInputProps()} />;
+      }
+
+      renderWithFreeSoloStringMapping(<ResolverTest />);
+
+      expect(resolveOptionValue('draft')).to.equal('draft');
+    });
+
+    it('gives freeSolo strings precedence when custom equality matches an option', () => {
+      let resolveOptionValue;
+      const collidingOptions = [{ id: 'draft', label: 'Published' }];
+
+      function ResolverTest() {
+        const { getInputProps, getOptionFromValue } = useAutocomplete({
+          options: collidingOptions,
+          freeSolo: true,
+          getOptionValue: (option) => option.id,
+          isOptionEqualToValue: () => true,
+        });
+        resolveOptionValue = getOptionFromValue;
+        return <input {...getInputProps()} />;
+      }
+
+      renderWithFreeSoloStringMapping(<ResolverTest />);
+
+      expect(resolveOptionValue('draft')).to.equal('draft');
+    });
+
+    it('rebuilds the mapped value resolver when the options change', () => {
+      let resolveOptionValue;
+      const getOptionValue = (option) => option.id;
+      const initialOptions = [{ id: 'foo', label: 'Initial Foo' }];
+      const updatedOptions = [{ id: 'foo', label: 'Updated Foo' }];
+
+      function ResolverTest({ options: optionsProp }) {
+        const { getInputProps, getOptionFromValue } = useAutocomplete({
+          options: optionsProp,
+          getOptionValue,
+        });
+        resolveOptionValue = getOptionFromValue;
+        return <input {...getInputProps()} />;
+      }
+
+      const { rerender } = render(<ResolverTest options={initialOptions} />);
+      expect(resolveOptionValue('foo')).to.equal(initialOptions[0]);
+
+      rerender(<ResolverTest options={updatedOptions} />);
+      expect(resolveOptionValue('foo')).to.equal(updatedOptions[0]);
+    });
+
+    it('returns the mapped option value when selecting a single option', async () => {
+      const onChange = spy();
+
+      const { user } = render(<Test multiple={false} value={undefined} onChange={onChange} />);
+      await user.click(screen.getByRole('option', { name: 'Bar' }));
+
+      expect(screen.getByRole('combobox')).to.have.value('Bar');
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.args[0][1]).to.equal('bar');
+      expect(onChange.args[0][2]).to.equal('selectOption');
+      expect(onChange.args[0][3]).to.deep.equal({ option: options[1] });
+    });
+
+    it('uses the option label for a mapped controlled value', () => {
+      render(<Test multiple={false} value="foo" />);
+
+      expect(screen.getByRole('combobox')).to.have.value('Foo');
+    });
+
+    it('uses custom equality when resolving a mapped value to its option', () => {
+      render(
+        <Test
+          multiple={false}
+          value="FOO"
+          isOptionEqualToValue={(option, value) => option.id.toUpperCase() === value}
+        />,
+      );
+
+      expect(screen.getByRole('combobox')).to.have.value('Foo');
+    });
+
+    it('uses the option label for a mapped default value', () => {
+      render(<Test multiple={false} value={undefined} defaultValue="foo" />);
+
+      expect(screen.getByRole('combobox')).to.have.value('Foo');
+    });
+
+    it('handles an unmatched mapped value without passing it to getOptionLabel', () => {
+      render(<Test multiple={false} value="missing" />);
+
+      expect(screen.getByRole('combobox')).to.have.value('');
+    });
+
+    it('appends the mapped option value when selecting multiple options', async () => {
+      const onChange = spy();
+
+      const { user } = render(<Test onChange={onChange} />);
+      await user.click(screen.getByRole('option', { name: 'Bar' }));
+
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.args[0][1]).to.deep.equal(['foo', 'bar']);
+      expect(onChange.args[0][2]).to.equal('selectOption');
+      expect(onChange.args[0][3]).to.deep.equal({ option: options[1] });
+    });
+
+    it('maps options and preserves values created in freeSolo mode', async () => {
+      const onChange = spy();
+      const { user } = render(
+        <Test
+          options={freeSoloOptions}
+          defaultValue={[freeSoloOptions[1].id]}
+          freeSolo
+          value={undefined}
+          getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
+          onChange={onChange}
+        />,
+      );
+
+      await user.type(screen.getByRole('combobox'), 'custom{Enter}');
+
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.args[0][1]).to.deep.equal([freeSoloOptions[1].id, 'custom']);
+      expect(onChange.args[0][2]).to.equal('createOption');
+      expect(onChange.args[0][3]).to.deep.equal({ option: 'custom' });
+    });
+
+    it('preserves freeSolo text that collides with a mapped option value', async () => {
+      const onChange = spy();
+      const collidingOptions = [{ id: 'draft', label: 'Published' }];
+      const { user } = renderWithFreeSoloStringMapping(
+        <Test
+          options={collidingOptions}
+          multiple={false}
+          value={undefined}
+          freeSolo
+          getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
+          onChange={onChange}
+        />,
+      );
+      const input = screen.getByRole('combobox');
+
+      // The invalid string mapping is already asserted during the initial render above.
+      // Suppress the same validation error from the input-driven rerenders in this interaction test.
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      try {
+        await user.type(input, 'draft{Enter}');
+        expect(
+          errorSpy.mock.calls.every(([message]) => message === freeSoloStringMappingError),
+        ).to.equal(true);
+      } finally {
+        errorSpy.mockRestore();
+      }
+
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.args[0][1]).to.equal('draft');
+      expect(input).to.have.value('draft');
+    });
+
+    it('does not treat a colliding controlled freeSolo value as a selected option', () => {
+      const collidingOptions = [{ id: 'draft', label: 'Published' }];
+
+      renderWithFreeSoloStringMapping(
+        <Test
+          options={collidingOptions}
+          multiple={false}
+          value="draft"
+          freeSolo
+          getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
+        />,
+      );
+
+      expect(screen.getByRole('option', { name: 'Published' })).to.have.attribute(
+        'aria-selected',
+        'false',
+      );
+    });
+
+    it('does not pass values created in freeSolo mode to getOptionValue', async () => {
+      const onChange = spy();
+      const getOptionValue = spy((option) => option.id);
+      const { user } = render(
+        <Test
+          options={freeSoloOptions}
+          defaultValue={[freeSoloOptions[1].id]}
+          freeSolo
+          value={undefined}
+          getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
+          getOptionValue={getOptionValue}
+          onChange={onChange}
+        />,
+      );
+
+      await user.type(screen.getByRole('combobox'), 'custom{Enter}');
+
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.args[0][1]).to.deep.equal([freeSoloOptions[1].id, 'custom']);
+      expect(onChange.args[0][2]).to.equal('createOption');
+      expect(onChange.args[0][3]).to.deep.equal({ option: 'custom' });
+      expect(getOptionValue.neverCalledWith('custom')).to.equal(true);
+    });
+
+    it.each([
+      { description: 'a single selection', multiple: false, value: 'foo' },
+      { description: 'multiple selections', multiple: true, value: ['foo'] },
+    ])(
+      'does not pass mapped values to getOptionLabel when preserving the highlight for $description',
+      async ({ multiple, value }) => {
+        const initialOptions = [
+          { id: 'foo', label: 'Foo' },
+          { id: 'bar', label: 'Bar' },
+        ];
+        const updatedOptions = [{ id: 'baz', label: 'Baz' }, ...initialOptions];
+        const getOptionLabel = (option) => option.label.toUpperCase();
+
+        const { rerender, user } = render(
+          <Test
+            options={initialOptions}
+            multiple={multiple}
+            value={value}
+            getOptionLabel={getOptionLabel}
+          />,
+        );
+        const input = screen.getByRole('combobox');
+
+        await user.click(input);
+        await user.keyboard('{ArrowDown}');
+
+        expect(input).to.have.attribute(
+          'aria-activedescendant',
+          screen.getByRole('option', { name: 'Bar' }).id,
+        );
+
+        rerender(
+          <Test
+            options={updatedOptions}
+            multiple={multiple}
+            value={value}
+            getOptionLabel={getOptionLabel}
+          />,
+        );
+
+        expect(input).to.have.attribute(
+          'aria-activedescendant',
+          screen.getByRole('option', { name: 'Bar' }).id,
+        );
+      },
+    );
+
+    it('uses the mapped option value when filtering selected options', () => {
+      render(<Test filterSelectedOptions />);
+
+      expect(screen.queryByRole('option', { name: 'Foo' })).to.equal(null);
+      expect(screen.getByRole('option', { name: 'Bar' })).to.have.attribute(
+        'aria-selected',
+        'false',
+      );
+    });
+
+    it('uses mapped equality when toggling an already selected option', async () => {
+      const onChange = spy();
+
+      const { user } = render(<Test onChange={onChange} />);
+      await user.click(screen.getByRole('option', { name: 'Foo' }));
+
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.args[0][1]).to.deep.equal([]);
+      expect(onChange.args[0][2]).to.equal('removeOption');
+      expect(onChange.args[0][3]).to.deep.equal({ option: options[0] });
+    });
+
+    it('omits change details when removing an unmatched mapped value', async () => {
+      const onChange = spy();
+      const { user } = render(<Test value={['missing']} onChange={onChange} />);
+
+      await user.click(screen.getByRole('combobox'));
+      await user.keyboard('{Backspace}');
+
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.args[0][1]).to.deep.equal([]);
+      expect(onChange.args[0][2]).to.equal('removeOption');
+      expect(onChange.args[0][3]).to.equal(undefined);
+    });
+
+    it('gives a custom isOptionEqualToValue precedence over mapped default equality', () => {
+      const isOptionEqualToValue = spy(() => false);
+
+      render(<Test isOptionEqualToValue={isOptionEqualToValue} />);
+
+      expect(isOptionEqualToValue.calledWith(options[0], 'foo')).to.equal(true);
+      expect(screen.getByRole('option', { name: 'Foo' })).to.have.attribute(
+        'aria-selected',
+        'false',
+      );
+    });
+
+    it('uses the default getOptionValue when no getOptionValue is provided', () => {
+      render(<Test getOptionValue={undefined} value={[options[0]]} />);
+
+      expect(screen.getByRole('option', { name: 'Foo' })).to.have.attribute(
+        'aria-selected',
+        'true',
+      );
+      expect(screen.getByRole('option', { name: 'Bar' })).to.have.attribute(
+        'aria-selected',
+        'false',
+      );
+    });
+
+    function ValidationTest({ options: optionsProp, getOptionValue, freeSolo }) {
+      const { getInputProps } = useAutocomplete({ options: optionsProp, getOptionValue, freeSolo });
+      return <input {...getInputProps()} />;
+    }
+
+    it('warns when getOptionValue returns a string in freeSolo mode', () => {
+      renderWithFreeSoloStringMapping(
+        <ValidationTest
+          options={[{ id: 'draft' }]}
+          getOptionValue={(option) => option.id}
+          freeSolo
+        />,
+      );
+    });
+
+    it.each([
+      { description: 'an object', optionValue: {}, returnedValue: 'a value of type object' },
+      { description: 'null', optionValue: null, returnedValue: 'null' },
+      {
+        description: 'undefined',
+        optionValue: undefined,
+        returnedValue: 'a value of type undefined',
+      },
+      {
+        description: 'a symbol',
+        optionValue: Symbol('value'),
+        returnedValue: 'a value of type symbol',
+      },
+      { description: 'NaN', optionValue: NaN, returnedValue: 'NaN' },
+    ])('warns when getOptionValue returns $description', ({ optionValue, returnedValue }) => {
+      expect(() => {
+        render(<ValidationTest options={[{}]} getOptionValue={() => optionValue} />, {
+          strict: false,
+        });
+      }).toErrorDev(
+        `MUI: The \`getOptionValue\` method of useAutocomplete returned ${returnedValue}, which is not a valid option value.\n` +
+          'useAutocomplete uses this value to identify and match options. ' +
+          'Return a unique string, number, bigint, or boolean for every option.',
+      );
+    });
+
+    it('warns once per duplicate mapped value', () => {
+      expect(() => {
+        render(
+          <ValidationTest
+            options={[{ id: 'duplicate' }, { id: 'duplicate' }, { id: 'duplicate' }]}
+            getOptionValue={(option) => option.id}
+          />,
+          { strict: false },
+        );
+      }).toErrorDev([
+        'MUI: The `getOptionValue` method of useAutocomplete returned the duplicate value "duplicate" for multiple options.\n' +
+          'useAutocomplete uses these values to identify options. ' +
+          'Change `getOptionValue` or the options so that every option has a unique value.',
+      ]);
+    });
+
+    it('accepts supported primitive option values', () => {
+      expect(() => {
+        render(
+          <ValidationTest options={['string', 1, 2n, true]} getOptionValue={(option) => option} />,
+          { strict: false },
+        );
+      }).not.toErrorDev();
+    });
+
+    it('does not validate raw options when getOptionValue is not provided', () => {
+      expect(() => {
+        render(<ValidationTest options={[{ id: 'foo' }, { id: 'foo' }]} />, { strict: false });
+      }).not.toErrorDev();
     });
   });
 

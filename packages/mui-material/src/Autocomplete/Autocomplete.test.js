@@ -4110,6 +4110,163 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: getOptionValue', () => {
+    const options = [
+      { id: 'foo', label: 'Foo' },
+      { id: 'bar', label: 'Bar' },
+    ];
+
+    function Test(props) {
+      return (
+        <Autocomplete
+          options={options}
+          getOptionLabel={(option) => option.label}
+          getOptionValue={(option) => option.id}
+          renderInput={(params) => <TextField {...params} />}
+          {...props}
+        />
+      );
+    }
+
+    it('uses option labels for mapped values', () => {
+      render(<Test multiple value={['foo', 'bar']} />);
+
+      expect(screen.getByText('Foo')).not.to.equal(null);
+      expect(screen.getByText('Bar')).not.to.equal(null);
+    });
+
+    it('uses freeSolo text for a chip when it collides with a mapped option value', () => {
+      const collidingOptions = [{ id: 'draft', label: 'Published' }];
+      const expectedError =
+        'MUI: The `getOptionValue` method of Autocomplete returned the string value "draft" while `freeSolo` is enabled.\n' +
+        'Autocomplete cannot distinguish string option values from free-solo values. ' +
+        'Return a number, bigint, or boolean from `getOptionValue`, or disable `freeSolo`.';
+
+      expect(() => {
+        render(
+          <Test
+            options={collidingOptions}
+            multiple
+            freeSolo
+            value={['draft']}
+            getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
+          />,
+          { strict: false },
+        );
+      }).toErrorDev([expectedError, expectedError]);
+
+      expect(screen.getByRole('button', { name: 'draft' })).not.to.equal(null);
+    });
+
+    it('uses custom equality when resolving mapped values to options', () => {
+      render(
+        <Test
+          multiple
+          value={['FOO']}
+          isOptionEqualToValue={(option, value) => option.id.toUpperCase() === value}
+        />,
+      );
+
+      expect(screen.getByText('Foo')).not.to.equal(null);
+    });
+
+    it('passes mapped values to renderValue', () => {
+      const renderValue = spy((value) => <span>{value}</span>);
+
+      render(<Test value="foo" renderValue={renderValue} />);
+
+      expect(renderValue.lastCall.args[0]).to.equal('foo');
+      expect(screen.getByText('foo')).not.to.equal(null);
+    });
+
+    it('provides the raw option when deleting a mapped chip', async () => {
+      const handleChange = spy();
+      const { user } = render(<Test multiple value={['foo', 'bar']} onChange={handleChange} />);
+
+      await user.click(screen.getAllByTestId('CancelIcon')[0]);
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(['bar']);
+      expect(handleChange.args[0][2]).to.equal('removeOption');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: options[0] });
+    });
+
+    it('provides the raw option when removing a mapped value with Backspace', async () => {
+      const handleChange = spy();
+      const { user } = render(<Test multiple value={['foo', 'bar']} onChange={handleChange} />);
+      const textbox = screen.getByRole('combobox');
+
+      await user.tab();
+      expect(textbox).toHaveFocus();
+      await user.keyboard('{Backspace}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(['foo']);
+      expect(handleChange.args[0][2]).to.equal('removeOption');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: options[1] });
+    });
+
+    it('provides the raw option when removing a focused mapped value with Delete', async () => {
+      const handleChange = spy();
+      const { user } = render(<Test multiple value={['foo', 'bar']} onChange={handleChange} />);
+      const textbox = screen.getByRole('combobox');
+      const firstChip = screen.getByRole('button', { name: 'Foo' });
+
+      await user.tab();
+      expect(textbox).toHaveFocus();
+      await user.keyboard('{ArrowLeft}{ArrowLeft}');
+      expect(firstChip).toHaveFocus();
+      await user.keyboard('{Delete}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(['bar']);
+      expect(handleChange.args[0][2]).to.equal('removeOption');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: options[0] });
+    });
+
+    it('provides the raw option when deleting a mapped single-value item', async () => {
+      const handleChange = spy();
+      const { user } = render(
+        <Test
+          value="foo"
+          onChange={handleChange}
+          renderValue={(value, getItemProps) => <Chip label={value} {...getItemProps()} />}
+        />,
+      );
+
+      await user.click(screen.getByTestId('CancelIcon'));
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(null);
+      expect(handleChange.args[0][2]).to.equal('removeOption');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: options[0] });
+    });
+
+    it.each(['Backspace', 'Delete'])(
+      'provides the raw option when removing a mapped single value with %s',
+      async (key) => {
+        const handleChange = spy();
+        const { user } = render(
+          <Test
+            value="foo"
+            onChange={handleChange}
+            renderValue={(value, getItemProps) => <Chip label={value} {...getItemProps()} />}
+          />,
+        );
+        const textbox = screen.getByRole('combobox');
+
+        await user.tab();
+        expect(textbox).toHaveFocus();
+        await user.keyboard(`{${key}}`);
+
+        expect(handleChange.callCount).to.equal(1);
+        expect(handleChange.args[0][1]).to.equal(null);
+        expect(handleChange.args[0][2]).to.equal('removeOption');
+        expect(handleChange.args[0][3]).to.deep.equal({ option: options[0] });
+      },
+    );
+  });
+
   it('should specify option key for duplicate options', () => {
     render(
       <Autocomplete

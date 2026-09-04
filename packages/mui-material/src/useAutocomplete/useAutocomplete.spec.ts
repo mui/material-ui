@@ -3,6 +3,7 @@ import {
   useAutocomplete,
   FilterOptionsState,
   AutocompleteGroupedOption,
+  UseAutocompleteProps,
 } from '@mui/material/useAutocomplete';
 
 interface Person {
@@ -184,6 +185,139 @@ function Component() {
       return '';
     },
     freeSolo: true,
+  });
+
+  // getOptionValue separates the option type from the selected value type
+  const mappedAutocomplete = useAutocomplete({
+    options: persons,
+    getOptionValue(option) {
+      expectType<Person, typeof option>(option);
+      return option.id;
+    },
+    getOptionLabel(option) {
+      expectType<Person, typeof option>(option);
+      return option.name;
+    },
+    isOptionEqualToValue(option, value) {
+      expectType<Person, typeof option>(option);
+      expectType<string, typeof value>(value);
+      return option.id === value;
+    },
+    onChange(event, value, reason, details) {
+      expectType<string | null, typeof value>(value);
+      if (details) {
+        expectType<Person, typeof details.option>(details.option);
+      }
+    },
+    onHighlightChange(event, option) {
+      expectType<Person | null, typeof option>(option);
+    },
+    value: persons[0].id,
+  });
+  expectType<string | null, typeof mappedAutocomplete.value>(mappedAutocomplete.value);
+  const mappedOption = mappedAutocomplete.getOptionFromValue(persons[0].id);
+  expectType<Person | null, typeof mappedOption>(mappedOption);
+  expectType<Person[], typeof mappedAutocomplete.groupedOptions>(mappedAutocomplete.groupedOptions);
+
+  const mappedGroupedAutocomplete = useAutocomplete({
+    options: persons,
+    getOptionValue: (option) => option.id,
+    groupBy: (option) => option.name[0],
+  });
+  expectType<string | null, typeof mappedGroupedAutocomplete.value>(
+    mappedGroupedAutocomplete.value,
+  );
+  expectType<AutocompleteGroupedOption<Person>[], typeof mappedGroupedAutocomplete.groupedOptions>(
+    mappedGroupedAutocomplete.groupedOptions,
+  );
+
+  // mapped multiple values use the getOptionValue return type
+  useAutocomplete({
+    options: persons,
+    getOptionValue: (option) => Number(option.id),
+    multiple: true,
+    defaultValue: [1, 2],
+    onChange(event, value) {
+      expectType<number[], typeof value>(value);
+    },
+  });
+
+  // disableClearable removes null from a mapped single value
+  useAutocomplete({
+    options: persons,
+    getOptionValue: (option) => Number(option.id),
+    disableClearable: true,
+    onChange(event, value) {
+      expectType<number, typeof value>(value);
+    },
+  });
+
+  // freeSolo adds strings to a non-string mapped value
+  useAutocomplete({
+    options: persons,
+    getOptionValue: (option) => Number(option.id),
+    freeSolo: true,
+    onChange(event, value) {
+      expectType<string | number | null, typeof value>(value);
+    },
+    isOptionEqualToValue(option, value) {
+      expectType<Person, typeof option>(option);
+      expectType<string | number, typeof value>(value);
+      return typeof value === 'number' && Number(option.id) === value;
+    },
+  });
+
+  useAutocomplete({
+    options: persons,
+    // @ts-expect-error String option values are indistinguishable from freeSolo values.
+    getOptionValue: (option) => option.id,
+    freeSolo: true,
+  });
+
+  // Existing explicit generic arguments retain their meaning and raw-option value type
+  const existingProps: UseAutocompleteProps<Person, false, false, false> = {
+    options: persons,
+    value: persons[0],
+  };
+  expectType<Person | null | undefined, typeof existingProps.value>(existingProps.value);
+
+  const inferredFromRawValue = useAutocomplete({ options: [], value: persons[0] });
+  expectType<Person | null, typeof inferredFromRawValue.value>(inferredFromRawValue.value);
+
+  useAutocomplete<Person, true>({
+    options: persons,
+    multiple: true,
+    onChange(event, value) {
+      expectType<Person[], typeof value>(value);
+    },
+  });
+
+  // Appending OptionValue allows explicitly typed mapped wrappers
+  const mappedProps: UseAutocompleteProps<Person, false, false, false, string> = {
+    options: persons,
+    getOptionValue: (option) => option.id,
+    value: persons[0].id,
+  };
+  expectType<string | null | undefined, typeof mappedProps.value>(mappedProps.value);
+
+  // `value` alone must not opt an object-option Autocomplete into mapped-value mode
+  useAutocomplete({
+    options: persons,
+    // @ts-expect-error Without getOptionValue, value must have the same type as an option.
+    value: persons[0].id,
+  });
+
+  useAutocomplete({
+    options: persons,
+    // @ts-expect-error getOptionValue must return a primitive value.
+    getOptionValue: (option) => ({ id: option.id }),
+  });
+
+  useAutocomplete<Person, false, false, false, string>({
+    options: persons,
+    getOptionValue: (option) => option.id,
+    // @ts-expect-error value must match the getOptionValue return type.
+    value: 1,
   });
 
   const ungroupedAutocomplete = useAutocomplete({ options: persons });

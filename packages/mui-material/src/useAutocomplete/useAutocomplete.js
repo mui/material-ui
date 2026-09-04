@@ -7,6 +7,7 @@ import useEventCallback from '@mui/utils/useEventCallback';
 import useControlled from '@mui/utils/useControlled';
 import useId from '@mui/utils/useId';
 import usePreviousProps from '@mui/utils/usePreviousProps';
+import validateOptionValues from './utils/validateOptionValues';
 
 function areArraysSame({ array1, array2, parser = (value) => value }) {
   return (
@@ -67,15 +68,22 @@ const pageSize = 5;
 const defaultIsActiveElementInListbox = (listboxRef) =>
   listboxRef.current !== null && contains(listboxRef.current.parentElement, document.activeElement);
 
-const defaultIsOptionEqualToValue = (option, value) => option === value;
+const defaultGetOptionValue = (option) => option;
+const defaultGetOptionLabel = (option) => option.label ?? option;
+const defaultGetOptionFromValue = (value) => value;
 
 const MULTIPLE_DEFAULT_VALUE = [];
 
-function getInputValue(value, multiple, getOptionLabel, renderValue) {
+function getInputValue(value, multiple, getOptionLabel, renderValue, getOptionFromValue) {
   if (multiple || value == null || renderValue) {
     return '';
   }
-  const optionLabel = getOptionLabel(value);
+  // `getOptionLabel` remains option-facing, so resolve a mapped value before calling it.
+  const option = getOptionFromValue(value);
+  if (option == null) {
+    return '';
+  }
+  const optionLabel = getOptionLabel(option);
   return typeof optionLabel === 'string' ? optionLabel : '';
 }
 
@@ -103,13 +111,14 @@ function useAutocomplete(props) {
     freeSolo = false,
     getOptionDisabled,
     getOptionKey,
-    getOptionLabel: getOptionLabelProp = (option) => option.label ?? option,
+    getOptionLabel: getOptionLabelProp = defaultGetOptionLabel,
+    getOptionValue: getOptionValueProp,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
-    isOptionEqualToValue = defaultIsOptionEqualToValue,
+    isOptionEqualToValue: isOptionEqualToValueProp,
     multiple = false,
     onChange,
     onClose,
@@ -126,7 +135,72 @@ function useAutocomplete(props) {
     value: valueProp,
   } = props;
 
+  const getOptionValue = getOptionValueProp ?? defaultGetOptionValue;
+
   const id = useId(idProp);
+
+  if (process.env.NODE_ENV !== 'production') {
+    // Mapped values identify options and must therefore be valid, unique primitive keys.
+    validateOptionValues({ options, componentName, freeSolo, getOptionValueProp });
+  }
+
+  const isOptionEqualToValue = React.useCallback(
+    (option, value) => {
+      // With value mapping, strings are reserved for free-solo values and cannot identify options.
+      if (getOptionValueProp !== undefined && freeSolo && typeof value === 'string') {
+        return false;
+      }
+
+      // Custom equality takes precedence over comparing the option's mapped value.
+      if (isOptionEqualToValueProp) {
+        return isOptionEqualToValueProp(option, value);
+      }
+
+      return getOptionValue(option) === value;
+    },
+    [freeSolo, getOptionValue, getOptionValueProp, isOptionEqualToValueProp],
+  );
+
+  const getOptionFromValue = React.useMemo(() => {
+    if (getOptionValueProp === undefined) {
+      // Without value mapping, selected values are already options, so return them unchanged.
+      return defaultGetOptionFromValue;
+    }
+
+    const resolveOption = (option) => {
+      if (option !== undefined) {
+        // Return the matched option for labels and other option-facing callbacks.
+        return option;
+      }
+
+      // A mapped value without a matching option cannot be resolved.
+      return null;
+    };
+
+    if (isOptionEqualToValueProp) {
+      // Custom equality defines matching behavior, so resolve the first matching option.
+      return (value) => {
+        if (freeSolo && typeof value === 'string') {
+          // Strings always represent free-solo values when mapping is enabled.
+          return value;
+        }
+
+        return resolveOption(options.find((option) => isOptionEqualToValueProp(option, value)));
+      };
+    }
+
+    const optionValueMap = new Map(options.map((option) => [getOptionValueProp(option), option]));
+
+    // Default equality uses mapped values as keys, so resolve them through the lookup map.
+    return (value) => {
+      if (freeSolo && typeof value === 'string') {
+        // Check before the map because a mapped string and free-solo text are indistinguishable.
+        return value;
+      }
+
+      return resolveOption(optionValueMap.get(value));
+    };
+  }, [freeSolo, getOptionValueProp, isOptionEqualToValueProp, options]);
 
   let getOptionLabel = getOptionLabelProp;
 
@@ -179,7 +253,13 @@ function useAutocomplete(props) {
   // Calculate the initial inputValue on mount only.
   // useRef ensures it doesn't update dynamically with defaultValue or value props.
   const initialInputValue = React.useRef(
-    getInputValue(defaultValue ?? valueProp, multiple, getOptionLabel),
+    getInputValue(
+      defaultValue ?? valueProp,
+      multiple,
+      getOptionLabel,
+      undefined,
+      getOptionFromValue,
+    ),
   ).current;
 
   const [value, setValueState] = useControlled({
@@ -206,7 +286,13 @@ function useAutocomplete(props) {
       if (!isOptionSelected && !clearOnBlur && !shouldClearOnReset) {
         return;
       }
-      const newInputValue = getInputValue(newValue, multiple, getOptionLabel, renderValue);
+      const newInputValue = getInputValue(
+        newValue,
+        multiple,
+        getOptionLabel,
+        renderValue,
+        getOptionFromValue,
+      );
 
       if (inputValue === newInputValue) {
         return;
@@ -226,6 +312,7 @@ function useAutocomplete(props) {
       setInputValueState,
       clearOnBlur,
       freeSolo,
+      getOptionFromValue,
       value,
       renderValue,
     ],
@@ -240,8 +327,9 @@ function useAutocomplete(props) {
 
   const [inputPristine, setInputPristine] = React.useState(true);
 
+  const selectedOption = !multiple && value != null ? getOptionFromValue(value) : null;
   const inputValueIsSelectedValue =
-    !multiple && value != null && inputValue === getOptionLabel(value);
+    selectedOption != null && inputValue === getOptionLabel(selectedOption);
 
   const popupOpen = open && !readOnly;
   const selectedValues = React.useMemo(() => {
@@ -256,24 +344,28 @@ function useAutocomplete(props) {
     return [];
   }, [multiple, value]);
   const selectedValuesSet = React.useMemo(() => {
-    // Fast path for the default strict equality comparator to avoid O(n^2) option checks.
-    if (isOptionEqualToValue !== defaultIsOptionEqualToValue || selectedValues.length === 0) {
+    // Fast path for the default equality behavior to avoid O(n^2) option checks.
+    if (isOptionEqualToValueProp || selectedValues.length === 0) {
       return null;
     }
 
-    return new Set(selectedValues);
-  }, [isOptionEqualToValue, selectedValues]);
+    return new Set(
+      getOptionValueProp !== undefined && freeSolo
+        ? selectedValues.filter((selectedValue) => typeof selectedValue !== 'string')
+        : selectedValues,
+    );
+  }, [freeSolo, getOptionValueProp, isOptionEqualToValueProp, selectedValues]);
   const isOptionSelected = React.useCallback(
     (option) => {
       if (selectedValuesSet) {
-        return selectedValuesSet.has(option);
+        return selectedValuesSet.has(getOptionValue(option));
       }
 
       return selectedValues.some(
         (value2) => value2 != null && isOptionEqualToValue(option, value2),
       );
     },
-    [isOptionEqualToValue, selectedValues, selectedValuesSet],
+    [getOptionValue, isOptionEqualToValue, selectedValues, selectedValuesSet],
   );
 
   const filteredOptions = popupOpen
@@ -559,9 +651,20 @@ function useAutocomplete(props) {
 
   const getPreviousHighlightedOptionIndex = () => {
     const isSameValue = (value1, value2) => {
-      const label1 = value1 ? getOptionLabel(value1) : '';
-      const label2 = value2 ? getOptionLabel(value2) : '';
-      return label1 === label2;
+      // Values may be mapped primitives, but getOptionLabel only accepts options.
+      // Resolve both sides first and fall back to direct equality when either cannot be resolved.
+      if (value1 == null || value2 == null) {
+        return value1 === value2;
+      }
+
+      const option1 = getOptionFromValue(value1);
+      const option2 = getOptionFromValue(value2);
+
+      if (option1 == null || option2 == null) {
+        return value1 === value2;
+      }
+
+      return getOptionLabel(option1) === getOptionLabel(option2);
     };
 
     if (
@@ -574,7 +677,7 @@ function useAutocomplete(props) {
       previousProps.inputValue === inputValue &&
       (multiple
         ? value.length === previousProps.value.length &&
-          previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
+          previousProps.value.every((val, i) => isSameValue(value[i], val))
         : isSameValue(previousProps.value, value))
     ) {
       const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
@@ -785,30 +888,44 @@ function useAutocomplete(props) {
     setValueState(newValue);
   };
 
+  // State stores mapped values; change details expose the raw option when it can be resolved.
+  const getRemovalDetails = (valueToRemove) => {
+    const option = getOptionFromValue(valueToRemove);
+
+    return option == null ? undefined : { option };
+  };
+
   const selectNewValue = (event, option, reasonProp = 'selectOption', origin = 'options') => {
     let reason = reasonProp;
-    let newValue = option;
+    // Options produce mapped values; free-solo input remains the string entered by the user.
+    const optionValue = origin === 'options' ? getOptionValue(option) : option;
+    let newValue = optionValue;
 
     if (multiple) {
       newValue = Array.isArray(value) ? value.slice() : [];
 
       if (process.env.NODE_ENV !== 'production') {
-        const matches = newValue.filter((val) => isOptionEqualToValue(option, val));
+        if (origin === 'options') {
+          const matches = newValue.filter((val) => isOptionEqualToValue(option, val));
 
-        if (matches.length > 1) {
-          console.error(
-            [
-              `MUI: The \`isOptionEqualToValue\` method of ${componentName} does not handle the arguments correctly.`,
-              `The component expects a single value to match a given option but found ${matches.length} matches.`,
-            ].join('\n'),
-          );
+          if (matches.length > 1) {
+            console.error(
+              [
+                `MUI: The \`isOptionEqualToValue\` method of ${componentName} does not handle the arguments correctly.`,
+                `The component expects a single value to match a given option but found ${matches.length} matches.`,
+              ].join('\n'),
+            );
+          }
         }
       }
 
-      const itemIndex = newValue.findIndex((valueItem) => isOptionEqualToValue(option, valueItem));
+      const itemIndex =
+        origin === 'freeSolo'
+          ? newValue.indexOf(optionValue)
+          : newValue.findIndex((valueItem) => isOptionEqualToValue(option, valueItem));
 
       if (itemIndex === -1) {
-        newValue.push(option);
+        newValue.push(optionValue);
       } else if (origin !== 'freeSolo') {
         newValue.splice(itemIndex, 1);
         reason = 'removeOption';
@@ -1097,9 +1214,7 @@ function useAutocomplete(props) {
             const index = focusedItem === -1 ? value.length - 1 : focusedItem;
             const newValue = value.slice();
             newValue.splice(index, 1);
-            handleValue(event, newValue, 'removeOption', {
-              option: value[index],
-            });
+            handleValue(event, newValue, 'removeOption', getRemovalDetails(value[index]));
             if (focusedItem !== -1) {
               // Suppress the spurious Backspace VoiceOver synthesises on the
               // input after focus returns to it. Clear it shortly after
@@ -1114,7 +1229,7 @@ function useAutocomplete(props) {
             }
           }
           if (!multiple && renderValue && !readOnly && inputValue === '') {
-            handleValue(event, null, 'removeOption', { option: value });
+            handleValue(event, null, 'removeOption', getRemovalDetails(value));
           }
           break;
         case 'Delete':
@@ -1129,14 +1244,12 @@ function useAutocomplete(props) {
             const index = focusedItem;
             const newValue = value.slice();
             newValue.splice(index, 1);
-            handleValue(event, newValue, 'removeOption', {
-              option: value[index],
-            });
+            handleValue(event, newValue, 'removeOption', getRemovalDetails(value[index]));
           }
           if (!multiple && renderValue && !readOnly && inputValue === '') {
             // Single-value rendering: Delete on empty input removes
             // the single rendered option, same "removeOption" reason as multiple.
-            handleValue(event, null, 'removeOption', { option: value });
+            handleValue(event, null, 'removeOption', getRemovalDetails(value));
           }
           break;
         default:
@@ -1294,15 +1407,11 @@ function useAutocomplete(props) {
   const handleItemDelete = (index) => (event) => {
     const newValue = value.slice();
     newValue.splice(index, 1);
-    handleValue(event, newValue, 'removeOption', {
-      option: value[index],
-    });
+    handleValue(event, newValue, 'removeOption', getRemovalDetails(value[index]));
   };
 
   const handleSingleItemDelete = (event) => {
-    handleValue(event, null, 'removeOption', {
-      option: value,
-    });
+    handleValue(event, null, 'removeOption', getRemovalDetails(value));
   };
 
   const handlePopupIndicator = (event) => {
@@ -1497,6 +1606,7 @@ function useAutocomplete(props) {
         handleListboxMouseLeave(event);
       },
     }),
+    getOptionFromValue,
     getOptionProps: ({ index, option }) => {
       const selected = isOptionSelected(option);
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;

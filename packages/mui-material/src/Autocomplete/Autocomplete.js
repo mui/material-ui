@@ -460,6 +460,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     getOptionDisabled,
     getOptionKey,
     getOptionLabel: getOptionLabelProp,
+    getOptionValue,
     isOptionEqualToValue,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
@@ -504,6 +505,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     getClearProps,
     getItemProps,
     getListboxProps,
+    getOptionFromValue,
     getOptionProps,
     value,
     dirty,
@@ -700,12 +702,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       if (renderValue) {
         startAdornment = renderValue(value, getCustomizedItemProps, ownerState);
       } else {
-        startAdornment = value.map((option, index) => {
+        startAdornment = value.map((valueItem, index) => {
           const { key, ...customItemProps } = getCustomizedItemProps({ index });
+          const option = getOptionFromValue(valueItem);
+
           return (
             <Chip
               key={key}
-              label={getOptionLabel(option)}
+              label={option == null ? '' : getOptionLabel(option)}
               size={size}
               {...customItemProps}
               {...externalForwardedProps.slotProps.chip}
@@ -986,9 +990,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * A function that determines the filtered options to be rendered on search.
    *
    * @default createFilterOptions()
-   * @param {Value[]} options The options to render.
+   * @param {Option[]} options The options to render.
    * @param {object} state The state of the component.
-   * @returns {Value[]}
+   * @returns {Option[]}
    */
   filterOptions: PropTypes.func,
   /**
@@ -1026,8 +1030,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Used to determine the disabled state for a given option.
    *
-   * @param {Value} option The option to test.
-   * @template Value The option shape. Will be the same shape as an item of the options.
+   * @param {Option} option The option to test.
+   * @template Option The option shape. Will be the same shape as an item of the options.
    * @returns {boolean}
    */
   getOptionDisabled: PropTypes.func,
@@ -1035,7 +1039,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Used to determine the key for a given option.
    * This can be useful when the labels of options are not unique (since labels are used as keys by default).
    *
-   * @param {Value} option The option to get the key for.
+   * @param {Option} option The option to get the key for.
    * @returns {string | number}
    */
   getOptionKey: PropTypes.func,
@@ -1045,16 +1049,28 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * If used in free solo mode, it must accept both the type of the options and a string.
    *
-   * @param {Value|string} option
+   * @param {Option|string} option
    * @returns {string}
    * @default (option) => option.label ?? option
    */
   getOptionLabel: PropTypes.func,
   /**
+   * Used to determine the selected value for a given option.
+   *
+   * When provided, the `value`, `defaultValue`, and `onChange` value use the returned type instead
+   * of the option type. The returned value must be a unique, non-null primitive.
+   * When `freeSolo` is enabled, it must not return a string because strings are reserved for
+   * free-solo values.
+   *
+   * @param {Option} option The option to get the value for.
+   * @returns {Value}
+   */
+  getOptionValue: PropTypes.func,
+  /**
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {Value} option The Autocomplete option.
+   * @param {Option} option The Autocomplete option.
    * @returns {string}
    */
   groupBy: PropTypes.func,
@@ -1083,8 +1099,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Uses strict equality by default.
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
-   * @param {Value} option The option to test.
-   * @param {Value|string} value The value to test against.
+   * @param {Option} option The option to test.
+   * @param {Option|Value|string} value The selected value to test against. When `getOptionValue` is
+   * provided, this is the value returned by `getOptionValue` (or a free-solo string).
    * @returns {boolean}
    */
   isOptionEqualToValue: PropTypes.func,
@@ -1123,7 +1140,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Callback fired when the value changes.
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
-   * @param {Value|Value[]} value The new value of the component.
+   * @param {Option|Value|Array<Option|Value>} value The new selected value of the component. When `getOptionValue` is
+   * provided, this contains the value(s) returned by `getOptionValue`.
    * @param {string} reason One of "createOption", "selectOption", "removeOption", "blur" or "clear".
    * @param {string} [details]
    */
@@ -1140,7 +1158,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Callback fired when the highlight option changes.
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
-   * @param {Value} option The highlighted option.
+   * @param {Option} option The highlighted option.
    * @param {string} reason Can be: `"keyboard"`, `"mouse"`, `"touch"`.
    */
   onHighlightChange: PropTypes.func,
@@ -1218,7 +1236,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Render the option, use `getOptionLabel` by default.
    *
    * @param {object} props The props to apply on the li element.
-   * @param {Value} option The option to render.
+   * @param {Option} option The option to render.
    * @param {object} state The state of each option.
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
@@ -1227,7 +1245,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Renders the selected value(s) as rich content in the input for both single and multiple selections.
    *
-   * @param {AutocompleteRenderValue<Value, Multiple, FreeSolo>} value The `value` provided to the component.
+   * @param {AutocompleteRenderValue<Option, Multiple, FreeSolo, Value>} value The `value` provided to the component.
    * @param {function} getItemProps The value item props.
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
@@ -1291,7 +1309,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * The value of the autocomplete.
    *
-   * The value must have reference equality with the option in order to be selected.
+   * Without `getOptionValue`, the value must have reference equality with the option in order to
+   * be selected. When `getOptionValue` is provided, its returned value is used instead.
    * You can customize the equality behavior with the `isOptionEqualToValue` prop.
    */
   value: chainPropTypes(PropTypes.any, (props) => {

@@ -1,0 +1,13 @@
+<div>{`value: ${value ?? 'null'}`}</div>
+<br />
+<Autocomplete
+  options={films}
+  getOptionLabel={(option) => option.label}
+  getOptionValue={(option) => option.id}
+  value={value}
+  onChange={(_event, newValue) => {
+    setValue(newValue);
+  }}
+  sx={{ width: 300 }}
+  renderInput={(params) => <TextField {...params} label="Film" />}
+/>
