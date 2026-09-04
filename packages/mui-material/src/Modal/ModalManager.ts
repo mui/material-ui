@@ -54,22 +54,74 @@ function isAriaHiddenForbiddenOnElement(element: Element): boolean {
   return isForbiddenTagName || isInputHidden;
 }
 
-function ariaHiddenSiblings(
-  container: Element,
-  mountElement: Element,
-  currentElement: Element,
-  elementsToExclude: readonly Element[],
-  hide: boolean,
-): void {
-  const blacklist = [mountElement, currentElement, ...elementsToExclude];
+// The chain of elements from `node` up to (but not including) `container`
+// that should not be aria-hidden.
+function getKeepChain(
+  node: HTMLElement | SVGElement,
+  container: HTMLElement | SVGElement,
+): Set<HTMLElement | SVGElement> {
+  const chain = new Set<HTMLElement | SVGElement>();
+  let current: HTMLElement | SVGElement | null = node;
 
-  [].forEach.call(container.children, (element: Element) => {
-    const isNotExcludedElement = !blacklist.includes(element);
-    const isNotForbiddenElement = !isAriaHiddenForbiddenOnElement(element);
-    if (isNotExcludedElement && isNotForbiddenElement) {
-      ariaHidden(element, hide);
+  while (current && current !== container) {
+    chain.add(current);
+    current = current.parentElement;
+  }
+
+  return current === container ? chain : new Set<HTMLElement | SVGElement>();
+}
+
+// Walk down from `parent` collecting everything that should be aria-hidden.
+// An element on the keep chain is stepped through rather than hidden, so the
+// modal's own ancestors stay readable while their other children get hidden.
+function collectHiddenTargets(
+  parent: HTMLElement | SVGElement,
+  keep: HTMLElement | SVGElement,
+  keepChain: Set<HTMLElement | SVGElement>,
+  out: Set<HTMLElement | SVGElement>,
+): void {
+  [].forEach.call(parent.children, (element: HTMLElement | SVGElement) => {
+    if (element === keep || isAriaHiddenForbiddenOnElement(element)) {
+      return;
+    }
+
+    if (keepChain.has(element)) {
+      collectHiddenTargets(element, keep, keepChain, out);
+      return;
+    }
+
+    out.add(element);
+  });
+}
+
+function syncAriaHidden(containerInfo: Container): void {
+  const { container, modals, hiddenSiblings } = containerInfo;
+  const top = modals[modals.length - 1];
+  const keep = top.modalRef;
+
+  const next = new Set<HTMLElement | SVGElement>();
+  collectHiddenTargets(container, keep, getKeepChain(keep, container), next);
+
+  next.forEach((element) => {
+    if (!containerInfo.hiddenSet.has(element) && element.getAttribute('aria-hidden') === 'true') {
+      next.delete(element);
     }
   });
+  hiddenSiblings.forEach((element) => next.delete(element));
+
+  // Hands the accessibility tree back to a parent dialog when a nested one closes.
+  containerInfo.hiddenSet.forEach((element) => {
+    if (!next.has(element)) {
+      ariaHidden(element, false);
+    }
+  });
+  next.forEach((element) => ariaHidden(element, true));
+
+  if (keep) {
+    ariaHidden(keep, false);
+  }
+
+  containerInfo.hiddenSet = next;
 }
 
 function handleContainer(containerInfo: Container, props: ManagedModalProps) {
@@ -160,9 +212,9 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   return restore;
 }
 
-function getHiddenSiblings(container: Element) {
-  const hiddenSiblings: Element[] = [];
-  [].forEach.call(container.children, (element: Element) => {
+function getHiddenSiblings(container: HTMLElement | SVGElement) {
+  const hiddenSiblings: Container['hiddenSiblings'] = [];
+  [].forEach.call(container.children, (element: HTMLElement | SVGElement) => {
     if (element.getAttribute('aria-hidden') === 'true') {
       hiddenSiblings.push(element);
     }
@@ -171,13 +223,14 @@ function getHiddenSiblings(container: Element) {
 }
 
 interface Modal {
-  mount: Element;
-  modalRef: Element;
+  mount: HTMLElement | SVGElement;
+  modalRef: HTMLElement | SVGElement;
 }
 
 interface Container {
   container: HTMLElement;
-  hiddenSiblings: Element[];
+  hiddenSiblings: (HTMLElement | SVGElement)[];
+  hiddenSet: Set<HTMLElement | SVGElement>;
   modals: Modal[];
   restore: null | (() => void);
 }
@@ -213,21 +266,23 @@ export class ModalManager {
       ariaHidden(modal.modalRef, false);
     }
 
-    const hiddenSiblings = getHiddenSiblings(container);
-    ariaHiddenSiblings(container, modal.mount, modal.modalRef, hiddenSiblings, true);
-
     const containerIndex = this.containers.findIndex((item) => item.container === container);
+
     if (containerIndex !== -1) {
       this.containers[containerIndex].modals.push(modal);
+      syncAriaHidden(this.containers[containerIndex]);
       return modalIndex;
     }
 
-    this.containers.push({
+    const containerInfo: Container = {
       modals: [modal],
       container,
       restore: null,
-      hiddenSiblings,
-    });
+      hiddenSiblings: getHiddenSiblings(container),
+      hiddenSet: new Set(),
+    };
+    this.containers.push(containerInfo);
+    syncAriaHidden(containerInfo);
 
     return modalIndex;
   }
@@ -266,22 +321,14 @@ export class ModalManager {
         ariaHidden(modal.modalRef, ariaHiddenState);
       }
 
-      ariaHiddenSiblings(
-        containerInfo.container,
-        modal.mount,
-        modal.modalRef,
-        containerInfo.hiddenSiblings,
-        false,
-      );
+      containerInfo.hiddenSet.forEach((element) => ariaHidden(element, false));
+      containerInfo.hiddenSet.clear();
       this.containers.splice(containerIndex, 1);
     } else {
-      // Otherwise make sure the next top modal is visible to a screen reader.
-      const nextTop = containerInfo.modals[containerInfo.modals.length - 1];
-      // as soon as a modal is adding its modalRef is undefined. it can't set
-      // aria-hidden because the dom element doesn't exist either
-      // when modal was unmounted before modalRef gets null
-      if (nextTop.modalRef) {
-        ariaHidden(nextTop.modalRef, false);
+      syncAriaHidden(containerInfo);
+
+      if (modal.modalRef) {
+        ariaHidden(modal.modalRef, ariaHiddenState);
       }
     }
 
