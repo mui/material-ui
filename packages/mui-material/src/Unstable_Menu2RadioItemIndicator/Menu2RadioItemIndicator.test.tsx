@@ -8,7 +8,6 @@ import Menu2RadioItemIndicator, {
   menu2RadioItemIndicatorClasses as classes,
 } from '@mui/material/Unstable_Menu2RadioItemIndicator';
 import describeConformance from '../../test/describeConformance';
-import withPortalledRoot from '../../test/menu2Conformance';
 
 // The item renders its own indicator; this suppresses it so the suite can
 // mount one directly.
@@ -22,18 +21,16 @@ describe('<Menu2RadioItemIndicator />', () => {
   describeConformance(<Menu2RadioItemIndicator keepMounted />, () => ({
     classes,
     render: (node) =>
-      withPortalledRoot(
-        render(
-          <Menu2 defaultOpen modal={false} anchor={document.body}>
-            <Menu2RadioGroup>
-              <Menu2RadioItem value="one" slots={{ indicator: NoIndicator }}>
-                {node}One
-              </Menu2RadioItem>
-            </Menu2RadioGroup>
-          </Menu2>,
-        ),
-        `.${classes.root}`,
+      render(
+        <Menu2 defaultOpen modal={false} anchor={document.body}>
+          <Menu2RadioGroup>
+            <Menu2RadioItem value="one" slots={{ indicator: NoIndicator }}>
+              {node}One
+            </Menu2RadioItem>
+          </Menu2RadioGroup>
+        </Menu2>,
       ),
+    getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'i',
     muiName: 'MuiMenu2RadioItemIndicator',

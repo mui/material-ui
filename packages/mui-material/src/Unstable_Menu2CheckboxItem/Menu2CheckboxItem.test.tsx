@@ -7,7 +7,6 @@ import Menu2CheckboxItem, {
   menu2CheckboxItemClasses as classes,
 } from '@mui/material/Unstable_Menu2CheckboxItem';
 import describeConformance from '../../test/describeConformance';
-import withPortalledRoot from '../../test/menu2Conformance';
 
 describe('<Menu2CheckboxItem />', () => {
   const { render } = createRenderer();
@@ -15,14 +14,12 @@ describe('<Menu2CheckboxItem />', () => {
   describeConformance(<Menu2CheckboxItem>Ruler</Menu2CheckboxItem>, () => ({
     classes,
     render: (node) =>
-      withPortalledRoot(
-        render(
-          <Menu2 defaultOpen modal={false} anchor={document.body}>
-            {node}
-          </Menu2>,
-        ),
-        `.${classes.root}`,
+      render(
+        <Menu2 defaultOpen modal={false} anchor={document.body}>
+          {node}
+        </Menu2>,
       ),
+    getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     muiName: 'MuiMenu2CheckboxItem',

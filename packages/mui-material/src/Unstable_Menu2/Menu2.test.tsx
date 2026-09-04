@@ -27,7 +27,6 @@ import Menu2Submenu, { menu2SubmenuTriggerClasses } from '@mui/material/Unstable
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { createTheme, enhanceHighContrast, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
-import withPortalledRoot from '../../test/menu2Conformance';
 
 describe('<Menu2 />', () => {
   const { render } = createRenderer();
@@ -38,7 +37,8 @@ describe('<Menu2 />', () => {
     </Menu2>,
     () => ({
       classes: menu2PopupClasses,
-      render: (node) => withPortalledRoot(render(node), `.${menu2PopupClasses.root}`),
+      render,
+      getRootElement: ({ baseElement }) => baseElement.querySelector(`.${menu2PopupClasses.root}`),
       // The public root is the semantic popup. Its host is configured through
       // slots.popup rather than a component prop.
       skip: ['componentProp'],

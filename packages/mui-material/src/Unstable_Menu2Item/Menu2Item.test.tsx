@@ -11,17 +11,13 @@ describe('<Menu2Item />', () => {
 
   describeConformance(<Menu2Item>Item</Menu2Item>, () => ({
     classes,
-    render: (node) => {
-      const { container, ...other } = render(
+    render: (node) =>
+      render(
         <Menu2 defaultOpen modal={false} anchor={document.body}>
           {node}
         </Menu2>,
-      );
-      // The popup renders in a portal; hand the harness a container whose
-      // firstChild is the item root (the conformance contract).
-      const item = document.querySelector('[role="menuitem"]')!;
-      return { ...other, container: { firstChild: item } as unknown as HTMLElement };
-    },
+      ),
+    getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     muiName: 'MuiMenu2Item',

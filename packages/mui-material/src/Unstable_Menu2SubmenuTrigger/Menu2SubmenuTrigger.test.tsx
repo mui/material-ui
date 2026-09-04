@@ -11,7 +11,6 @@ import Menu2SubmenuTrigger, {
 } from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
-import withPortalledRoot from '../../test/menu2Conformance';
 
 describe('<Menu2SubmenuTrigger />', () => {
   const { render } = createRenderer();
@@ -19,16 +18,15 @@ describe('<Menu2SubmenuTrigger />', () => {
   describeConformance(<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>, () => ({
     classes,
     render: (node) =>
-      withPortalledRoot(
-        render(
-          <Menu2 defaultOpen modal={false} anchor={document.body}>
-            <Menu2Submenu trigger={node}>
-              <Menu2Item>Nested</Menu2Item>
-            </Menu2Submenu>
-          </Menu2>,
-        ),
-        '[role="menuitem"][aria-haspopup="menu"]',
+      render(
+        <Menu2 defaultOpen modal={false} anchor={document.body}>
+          <Menu2Submenu trigger={node}>
+            <Menu2Item>Nested</Menu2Item>
+          </Menu2Submenu>
+        </Menu2>,
       ),
+    getRootElement: ({ baseElement }) =>
+      baseElement.querySelector('[role="menuitem"][aria-haspopup="menu"]'),
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     muiName: 'MuiMenu2SubmenuTrigger',

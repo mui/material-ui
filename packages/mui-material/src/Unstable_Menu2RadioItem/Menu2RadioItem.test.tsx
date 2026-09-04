@@ -8,7 +8,6 @@ import Menu2RadioItem, {
   menu2RadioItemClasses as classes,
 } from '@mui/material/Unstable_Menu2RadioItem';
 import describeConformance from '../../test/describeConformance';
-import withPortalledRoot from '../../test/menu2Conformance';
 
 describe('<Menu2RadioItem />', () => {
   const { render } = createRenderer();
@@ -16,14 +15,12 @@ describe('<Menu2RadioItem />', () => {
   describeConformance(<Menu2RadioItem value="one">One</Menu2RadioItem>, () => ({
     classes,
     render: (node) =>
-      withPortalledRoot(
-        render(
-          <Menu2 defaultOpen modal={false} anchor={document.body}>
-            <Menu2RadioGroup>{node}</Menu2RadioGroup>
-          </Menu2>,
-        ),
-        `.${classes.root}`,
+      render(
+        <Menu2 defaultOpen modal={false} anchor={document.body}>
+          <Menu2RadioGroup>{node}</Menu2RadioGroup>
+        </Menu2>,
       ),
+    getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     muiName: 'MuiMenu2RadioItem',

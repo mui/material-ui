@@ -7,7 +7,6 @@ import Menu2LinkItem, {
   menu2LinkItemClasses as classes,
 } from '@mui/material/Unstable_Menu2LinkItem';
 import describeConformance from '../../test/describeConformance';
-import withPortalledRoot from '../../test/menu2Conformance';
 
 describe('<Menu2LinkItem />', () => {
   const { render } = createRenderer();
@@ -15,14 +14,12 @@ describe('<Menu2LinkItem />', () => {
   describeConformance(<Menu2LinkItem href="/profile">Profile</Menu2LinkItem>, () => ({
     classes,
     render: (node) =>
-      withPortalledRoot(
-        render(
-          <Menu2 defaultOpen modal={false} anchor={document.body}>
-            {node}
-          </Menu2>,
-        ),
-        `.${classes.root}`,
+      render(
+        <Menu2 defaultOpen modal={false} anchor={document.body}>
+          {node}
+        </Menu2>,
       ),
+    getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
     refInstanceof: window.HTMLAnchorElement,
     muiName: 'MuiMenu2LinkItem',
     testVariantProps: { 'data-variant': 'probe' },

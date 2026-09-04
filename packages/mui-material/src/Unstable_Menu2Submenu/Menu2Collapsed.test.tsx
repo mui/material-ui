@@ -13,7 +13,6 @@ import Menu2Submenu, {
 } from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import describeConformance from '../../test/describeConformance';
-import withPortalledRoot from '../../test/menu2Conformance';
 
 // The collapsed surfaces: trigger as a prop and children as the popup, with
 // one explicit behavioral component for the submenu trigger.
@@ -33,14 +32,13 @@ describe('<Menu2 /> collapsed API', () => {
       () => ({
         classes: menu2SubmenuPopupClasses,
         render: (node) =>
-          withPortalledRoot(
-            render(
-              <Menu2 defaultOpen modal={false} anchor={document.body}>
-                {node}
-              </Menu2>,
-            ),
-            `.${menu2SubmenuPopupClasses.root}`,
+          render(
+            <Menu2 defaultOpen modal={false} anchor={document.body}>
+              {node}
+            </Menu2>,
           ),
+        getRootElement: ({ baseElement }) =>
+          baseElement.querySelector(`.${menu2SubmenuPopupClasses.root}`),
         // The public root is the semantic popup. Its host is configured through
         // slots.popup rather than a component prop.
         skip: ['componentProp'],

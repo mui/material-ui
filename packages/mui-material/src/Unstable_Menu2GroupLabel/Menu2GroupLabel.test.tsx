@@ -7,7 +7,6 @@ import Menu2GroupLabel, {
   menu2GroupLabelClasses as classes,
 } from '@mui/material/Unstable_Menu2GroupLabel';
 import describeConformance from '../../test/describeConformance';
-import withPortalledRoot from '../../test/menu2Conformance';
 
 describe('<Menu2GroupLabel />', () => {
   const { render } = createRenderer();
@@ -15,14 +14,12 @@ describe('<Menu2GroupLabel />', () => {
   describeConformance(<Menu2GroupLabel>Section</Menu2GroupLabel>, () => ({
     classes,
     render: (node) =>
-      withPortalledRoot(
-        render(
-          <Menu2 defaultOpen modal={false} anchor={document.body}>
-            <Menu2Group>{node}</Menu2Group>
-          </Menu2>,
-        ),
-        `.${classes.root}`,
+      render(
+        <Menu2 defaultOpen modal={false} anchor={document.body}>
+          <Menu2Group>{node}</Menu2Group>
+        </Menu2>,
       ),
+    getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'h3',
     muiName: 'MuiMenu2GroupLabel',
