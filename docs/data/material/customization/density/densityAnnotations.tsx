@@ -437,7 +437,7 @@ function Spine({
       {vertical ? (
         <text
           x={cross}
-          y={rail + away * (side === 'top' ? 6 : 16)}
+          y={rail + away * (side === 'top' ? 16 : 26)}
           textAnchor="middle"
         >
           {label}
@@ -448,7 +448,7 @@ function Spine({
             <line className="leader" x1={rail} y1={cross} x2={rail} y2={anchor} />
           ) : null}
           <text
-            x={rail + away * 6}
+            x={rail + away * 14}
             y={anchor}
             textAnchor={side === 'left' ? 'end' : 'start'}
             dominantBaseline="middle"
@@ -680,28 +680,55 @@ export function Annotations({
         />,
       );
       outline();
-      const side = gap.vertical ? nearest(box, 'block') : nearest(box, 'inline');
+      // One band, so the comb is a single stem; a place on the other axis still
+      // needs the spine, which crosses rather than leaves perpendicular.
+      const naturalPair: Side[] = gap.vertical
+        ? ['left', 'right']
+        : ['top', 'bottom'];
+      const side =
+        annotation.place ?? nearest(box, gap.vertical ? 'block' : 'inline');
+      const rail = nextRail(side, annotation.offset ?? 0);
+      const centre = {
+        x: band.x + band.width / 2,
+        y: band.y + band.height / 2,
+      };
+
+      if (!naturalPair.includes(side)) {
+        const vertical = side === 'top' || side === 'bottom';
+        marks.push(
+          <Spine
+            key={`spine-${key}`}
+            marks={[vertical ? centre.y : centre.x]}
+            cross={vertical ? centre.x : centre.y}
+            rail={rail}
+            side={side}
+            label={caption(gap.size, annotation)}
+            tone="tone-gap"
+            labelAt={
+              side === 'left' || side === 'right'
+                ? reserveY(side, centre.y)
+                : undefined
+            }
+          />,
+        );
+        return;
+      }
+
       marks.push(
         <Comb
           key={`comb-${key}`}
           from={[
             gap.vertical
-              ? {
-                  x: side === 'left' ? band.x : band.x + band.width,
-                  y: band.y + band.height / 2,
-                }
-              : {
-                  x: band.x + band.width / 2,
-                  y: side === 'top' ? band.y : band.y + band.height,
-                },
+              ? { x: side === 'left' ? band.x : band.x + band.width, y: centre.y }
+              : { x: centre.x, y: side === 'top' ? band.y : band.y + band.height },
           ]}
-          rail={nextRail(side)}
+          rail={rail}
           side={side}
           label={caption(gap.size, annotation)}
           tone="tone-gap"
           labelAt={
             side === 'left' || side === 'right'
-              ? reserveY(side, band.y + band.height / 2)
+              ? reserveY(side, centre.y)
               : undefined
           }
         />,
