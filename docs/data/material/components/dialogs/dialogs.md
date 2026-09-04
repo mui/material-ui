@@ -62,7 +62,8 @@ If a title is required:
 
 ## Transitions
 
-You can also swap out the transition, the next example uses `Slide`.
+You can swap out the default transition with the `slots.transition` and `slotProps.transition` props.
+The next example uses `Slide`.
 
 {{"demo": "AlertDialogSlide.js"}}
 

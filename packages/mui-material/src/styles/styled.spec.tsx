@@ -174,8 +174,8 @@ function variantsAPI() {
     ],
   }));
 
-  // @ts-expect-error the API is not valid for CSS properties
   const WrongUsage = styled('div')<{ foo?: string; bar?: number }>({
+    // @ts-expect-error the API is not valid for CSS properties
     color: [
       {
         props: { foo: 'a' },

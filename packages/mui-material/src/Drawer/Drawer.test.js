@@ -1,5 +1,5 @@
+import { describe, expect, it } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import { act, createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -152,6 +152,38 @@ describe('<Drawer />', () => {
         clock.tick(transitionDuration.enter);
 
         expect(handleEntered.callCount).to.equal(1);
+      });
+
+      it('opens on the next task when reduced motion is always', () => {
+        const handleEntered = spy();
+        const theme = createTheme({
+          motion: {
+            reducedMotion: 'always',
+          },
+        });
+
+        function Test(props) {
+          return (
+            <ThemeProvider theme={theme}>
+              <Drawer
+                open={props.open}
+                transitionDuration={transitionDuration}
+                slotProps={{ transition: { onEntered: handleEntered } }}
+              >
+                <div />
+              </Drawer>
+            </ThemeProvider>
+          );
+        }
+
+        const { setProps } = render(<Test open={false} />);
+
+        setProps({ open: true });
+
+        expect(handleEntered.callCount).to.equal(0);
+        clock.tick(0);
+        expect(handleEntered.callCount).to.equal(1);
+        expect(screen.getByRole('dialog')).not.to.equal(null);
       });
     });
 

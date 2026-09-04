@@ -132,6 +132,6 @@ Below is an example of how to apply margin using this prop:
 
 Key factors to follow for an accessible typography:
 
-- **Color**. Provide enough contrast between text and its background, check out the minimum recommended [WCAG 2.0 color contrast ratio](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) (4.5:1).
+- **Color**. Provide enough contrast between text and its background, check out the minimum recommended [WCAG 2.2 color contrast ratio](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) (4.5:1).
 - **Font size**. Use [relative units (rem)](/material-ui/customization/typography/#font-size), instead of pixels, to accommodate the user's browser settings.
 - **Heading hierarchy**. Based on [the W3 guidelines](https://www.w3.org/WAI/tutorials/page-structure/headings/), don't skip heading levels. Make sure to [separate the semantics from the style](#changing-the-semantic-element).

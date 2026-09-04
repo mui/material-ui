@@ -18,7 +18,7 @@ export interface SpeedDialSlots {
   root: React.ElementType;
   /**
    * The component that renders the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transition-slots) to learn more about the requirements for this component.
    * @default Zoom
    */
   transition: React.ElementType;

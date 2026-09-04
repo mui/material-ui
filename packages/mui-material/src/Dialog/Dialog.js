@@ -117,6 +117,8 @@ const DialogPaper = styled(Paper, {
     margin: 32,
     position: 'relative',
     overflowY: 'auto',
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 0,
     '@media print': {
       overflowY: 'visible',
       boxShadow: 'none',

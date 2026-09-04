@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import GlobalStyles from '@mui/material/GlobalStyles';
+import { StyledEngineProvider } from '@mui/material/styles';
 
 function TestViewer(props) {
   const { children, path } = props;
@@ -44,7 +45,7 @@ function TestViewer(props) {
   };
 
   return (
-    <React.Fragment>
+    <StyledEngineProvider enableCssLayer>
       <GlobalStyles
         styles={{
           html: {
@@ -65,17 +66,15 @@ function TestViewer(props) {
           },
         }}
       />
-      {
-        <Box
-          aria-busy={!ready}
-          data-testid="testcase"
-          data-testpath={path}
-          sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
-        >
-          {children}
-        </Box>
-      }
-    </React.Fragment>
+      <Box
+        aria-busy={!ready}
+        data-testid="testcase"
+        data-testpath={path}
+        sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
+      >
+        {children}
+      </Box>
+    </StyledEngineProvider>
   );
 }
 

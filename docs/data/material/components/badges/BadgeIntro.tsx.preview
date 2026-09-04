@@ -1,0 +1,9 @@
+<IconButton aria-label={label}>
+  <Badge
+    badgeContent={unreadNotificationsCount}
+    color="secondary"
+    max={maxVisibleNotifications}
+  >
+    <MailIcon />
+  </Badge>
+</IconButton>

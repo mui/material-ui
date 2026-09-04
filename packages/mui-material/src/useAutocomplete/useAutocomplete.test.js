@@ -1,5 +1,5 @@
+import { describe, it, expect, beforeEach } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import {
   createRenderer,
   screen,
@@ -330,6 +330,47 @@ describe('useAutocomplete', () => {
         </ErrorBoundary>,
       );
     }).toErrorDev(devErrorMessages);
+
+    await flushEffects();
+  });
+
+  it('should not crash when the input ref is cleared before a pending highlighted index sync', async () => {
+    function Test() {
+      const [showAutocomplete, setShowAutocomplete] = React.useState(true);
+      const options = showAutocomplete ? ['foo', 'bar'] : [];
+      const { getRootProps, getInputProps, getListboxProps, getOptionProps, groupedOptions } =
+        useAutocomplete({ options, open: true });
+
+      return (
+        <React.Fragment>
+          <button type="button" onClick={() => setShowAutocomplete(false)}>
+            Hide
+          </button>
+          <div {...getRootProps()}>
+            {showAutocomplete ? <input {...getInputProps()} /> : null}
+            {groupedOptions.length > 0 ? (
+              <ul {...getListboxProps()}>
+                {groupedOptions.map((option, index) => {
+                  const { key, ...optionProps } = getOptionProps({ option, index });
+                  return (
+                    <li key={key} {...optionProps}>
+                      {option}
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : null}
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    const { user } = render(<Test />);
+
+    // This hides the input/listbox while the hook stays mounted. A full unmount
+    // doesn't run the highlighted index sync after refs are cleared; this state
+    // update does, so it exercises the problematic ordering.
+    await user.click(screen.getByRole('button', { name: 'Hide' }));
 
     await flushEffects();
   });

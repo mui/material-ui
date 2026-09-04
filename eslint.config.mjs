@@ -11,8 +11,8 @@ import { fixupPluginRules } from '@eslint/compat';
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
 import * as path from 'node:path';
-import vitestPlugin from '@vitest/eslint-plugin';
 import { fileURLToPath } from 'url';
+import remarkConfig from './.remarkrc.mjs';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -41,6 +41,14 @@ const NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES = [
   },
 ];
 
+const NO_RESTRICTED_IMPORTS_PATHS_CHAI = [
+  {
+    name: 'chai',
+    message:
+      "Use the global `expect` from Vitest instead. It's the same chai instance, extended with our custom matchers.",
+  },
+];
+
 const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
   {
     group: [
@@ -60,6 +68,11 @@ export default defineConfig(
     baseDirectory: dirname,
     materialUi: true,
   }),
+  // eslint-plugin-mdx loads `.remarkrc.mjs` itself, but ESLint doesn't know
+  // that file is a config dependency, so `--cache` doesn't invalidate when
+  // it changes. Embedding the imported value in a setting puts its content
+  // into the resolved-config hash, forcing cache invalidation on edits.
+  { settings: { remarkConfig } },
   {
     name: 'Material UI overrides',
     files: [`**/*${EXTENSION_TS}`],
@@ -79,14 +92,20 @@ export default defineConfig(
       'no-restricted-imports': [
         'error',
         {
+          paths: NO_RESTRICTED_IMPORTS_PATHS_CHAI,
           patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
         },
       ],
       'react/react-in-jsx-scope': 'off',
+      '@typescript-eslint/no-shadow': 'off',
       'react/sort-prop-types': 'off', // 228
       '@typescript-eslint/ban-ts-comment': 'off', // 117
       '@typescript-eslint/no-require-imports': 'off', // 133
       'react/jsx-filename-extension': 'off',
+      // Modern browsers imply rel="noopener" for target="_blank", so no rel is required.
+      // See https://github.com/mui/material-ui/pull/40447
+      // TODO move to mui/mui-public.
+      'react/jsx-no-target-blank': 'off',
 
       // TODO enable:
       'react-hooks/refs': 'off',
@@ -137,21 +156,18 @@ export default defineConfig(
   // Test start
   {
     files: [`**/*${EXTENSION_TEST_FILE}`],
-    extends: createTestConfig({
-      useMocha: false,
-      useVitest: true,
-    }),
-    languageOptions: {
-      globals: {
-        ...vitestPlugin.environments.env.globals,
-      },
-    },
+    extends: createTestConfig(),
     rules: {
       'mui/material-ui-no-empty-box': 'off',
       // Disabled temporarily. Enable one by one.
       'testing-library/no-container': 'off',
       // TODO: investigate and fix
       'vitest/expect-expect': 'off',
+      // Surfaced by dropping the `chai` import in favor of the Vitest global `expect`.
+      // The remaining reports are deliberate environment branches (`isJsdom()`, feature
+      // flags, optional fixtures) rather than assertions hidden in a `catch`.
+      // TODO: investigate and fix
+      'vitest/no-conditional-expect': 'off',
     },
   },
   // Test end
@@ -164,7 +180,10 @@ export default defineConfig(
       'no-restricted-imports': [
         'error',
         {
-          paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+          paths: [
+            ...NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+            ...NO_RESTRICTED_IMPORTS_PATHS_CHAI,
+          ],
           patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
         },
       ],
@@ -217,6 +236,12 @@ export default defineConfig(
   },
   // Docs end
   {
+    files: [`test/**/*${EXTENSION_TS}`, `docs/**/*${EXTENSION_TS}`],
+    rules: {
+      'react-hooks/set-state-in-effect': 'off',
+    },
+  },
+  {
     files: [`**/*${EXTENSION_DTS}`],
     rules: {
       'import/export': 'off', // Not sure why it doesn't work
@@ -255,6 +280,7 @@ export default defineConfig(
         {
           paths: [
             ...NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+            ...NO_RESTRICTED_IMPORTS_PATHS_CHAI,
             {
               name: '@mui/utils',
               message: OneLevelImportMessage,
@@ -363,6 +389,14 @@ export default defineConfig(
       'testing-library/prefer-screen-queries': 'off', // Enable usage of playwright queries
       'testing-library/no-await-sync-queries': 'off',
       'testing-library/render-result-naming-convention': 'off', // inconsequential in regression tests
+    },
+  },
+  {
+    // `test/e2e` uses Playwright's `expect` (for matchers like `toBeFocused()`),
+    // not Vitest's, so this rule reports false positives here.
+    files: [`test/e2e/**/*${EXTENSION_TS}`],
+    rules: {
+      'vitest/prefer-importing-vitest-globals': 'off',
     },
   },
 );

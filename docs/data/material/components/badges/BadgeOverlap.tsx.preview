@@ -1,12 +1,12 @@
-<Badge color="secondary" badgeContent=" ">
-  {rectangle}
+<Badge color="secondary" badgeContent={1}>
+  <Rectangle />
 </Badge>
-<Badge color="secondary" badgeContent=" " variant="dot">
-  {rectangle}
+<Badge color="secondary" variant="dot">
+  <Rectangle />
 </Badge>
-<Badge color="secondary" overlap="circular" badgeContent=" ">
-  {circle}
+<Badge color="secondary" overlap="circular" badgeContent={1}>
+  <Circle />
 </Badge>
-<Badge color="secondary" overlap="circular" badgeContent=" " variant="dot">
-  {circle}
+<Badge color="secondary" overlap="circular" variant="dot">
+  <Circle />
 </Badge>
