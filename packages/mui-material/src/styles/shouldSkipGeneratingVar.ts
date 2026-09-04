@@ -9,6 +9,12 @@ export default function shouldSkipGeneratingVar(keys: string[]) {
       /(cssVarPrefix|colorSchemeSelector|modularCssLayers|rootSelector|typography|mixins|breakpoints|direction|transitions)/,
     ) ||
     !!keys[0].match(/sxConfig$/) || // ends with sxConfig
-    (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/))
+    (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/)) ||
+    // `theme.states` holds ready-to-use STYLE objects keyed by state name
+    // (`hover`, `selectedHover`, `disabled`). Hoisting them to `:root` vars would
+    // emit one var per state-property pair and resolve nowhere useful. This skips
+    // the generated OUTPUT only — `palette.states`, where a theme may put the
+    // per-scheme input levers, is a different node and is still emitted.
+    keys[0] === 'states'
   );
 }
