@@ -163,12 +163,11 @@ export const handler: Handler = async (event, context, callback) => {
       // The design feedback alert was removed in https://github.com/mui/material-ui/pull/39691
       // This dead code is here to simplify the creation of special feedback channel
       const isDesignFeedback = inCommentSectionURL.includes('#new-docs-api-feedback');
-      const commentSectionURL = isDesignFeedback ? '' : inCommentSectionURL;
 
-      // Render links only to validated MUI URLs; otherwise fall back to plain text so the
-      // bot cannot post a link pointing at an attacker-controlled destination.
+      // Untrusted URLs render as plain text rather than links (see parseMuiUrl). Design
+      // feedback intentionally carries no section link.
       const safeCurrentLocationURL = parseMuiUrl(currentLocationURL);
-      const safeCommentSectionURL = parseMuiUrl(commentSectionURL);
+      const safeCommentSectionURL = isDesignFeedback ? null : parseMuiUrl(inCommentSectionURL);
 
       let sectionSuffix = '';
       if (commentSectionTitle) {
