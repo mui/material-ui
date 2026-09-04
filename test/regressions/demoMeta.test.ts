@@ -78,6 +78,31 @@ describe('getConfig', () => {
     });
   });
 
+  it('asserts every rule on the enrolled Toggle Button demos', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/toggle-button/ToggleButtons'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'docs/data/material/components/toggle-button/ToggleButtonA11ySemanticStates',
+      ),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('allows a known Toggle Button color-contrast fixture to record failures without asserting them', () => {
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'docs/data/material/components/toggle-button/ToggleButtonA11yColorMatrix',
+      ),
+    ).to.deep.include({
+      enabled: true,
+      assertions: 'all',
+      skipAssertions: ['color-contrast'],
+    });
+  });
+
   it('keeps the a11y fixture tree screenshot-off, except explicit re-enrolments', () => {
     expect(
       getConfig(SCREENSHOT_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yColorMatrix'),
@@ -145,6 +170,32 @@ describe('getConfig', () => {
     ).to.equal(undefined);
   });
 
+  it('returns the radio a11y rule for a brace-glob enrolment', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/radio-buttons/RadioButtonsGroup'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/radio-buttons/UseRadioGroup'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('returns undefined for a radio demo outside the enrolment', () => {
+    // The radio-buttons enrolment omits FormControlLabelPlacement.
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'docs/data/material/components/radio-buttons/FormControlLabelPlacement',
+      ),
+    ).to.equal(undefined);
+  });
+
+  it('leaves the StandaloneToggleButton demo unenrolled', () => {
+    // StandaloneToggleButton is a docs demo that is not enrolled for axe assertions.
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/toggle-button/StandaloneToggleButton'),
+    ).to.equal(undefined);
+  });
+
   it('enrols a text-fields demo with assertions:all and color-contrast recorded-not-asserted', () => {
     expect(
       getConfig(A11Y_RULES, 'docs/data/material/components/text-fields/FormPropsTextFields'),
@@ -170,6 +221,35 @@ describe('getConfig', () => {
       test: 'docs/data/material/components/foo/*',
       enabled: true,
     });
+  });
+});
+
+describe('getConfig (accordion a11y)', () => {
+  it('enrols the accordion demos and fixtures for all-rule assertions', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/accordion/AccordionUsage'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/accordion/AccordionA11yNonNative'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('records but does not assert color-contrast on the accordion cluster', () => {
+    // The divider `::before` makes axe unable to resolve the summary background.
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/accordion/CustomizedAccordions'),
+    ).to.deep.include({
+      enabled: true,
+      assertions: 'all',
+      skipAssertions: ['color-contrast'],
+    });
+  });
+
+  it('returns undefined for an accordion demo outside the brace-glob enrolment', () => {
+    // The accordion enrolment lists specific demos; it is not slug-wide.
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/accordion/SomeUnenrolledDemo'),
+    ).to.equal(undefined);
   });
 });
 

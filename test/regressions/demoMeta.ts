@@ -169,11 +169,32 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     viewportWidth: 1440,
     waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
   },
+  { test: 'docs/data/material/components/accordion/AccordionA11y*', enabled: false }, // A11y-only coverage fixtures
+  { test: 'docs/data/material/components/accordion/AccordionA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
   { test: 'docs/data/material/components/progress/*', enabled: false }, // Animated progress bars make screenshots flaky; axe still runs on the enrolled LinearProgress demos
+  { test: 'docs/data/material/components/toggle-button/ToggleButtonA11y*', enabled: false }, // A11y-only coverage fixtures
+  {
+    test: 'docs/data/material/components/toggle-button/ToggleButtonA11yTextSpacing',
+    enabled: true,
+  }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
   // The a11y fixture tree exists for axe, so screenshots are off by default.
   // Later rules re-enable single fixtures that also guard a visual state.
   { test: 'test/regressions/a11y/fixtures/**', enabled: false }, // A11y-only coverage fixtures
   { test: 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+];
+
+// Accordion docs demos + a11y fixtures enrolled for axe assertions (the cluster:
+// root Accordion + AccordionSummary header + AccordionDetails/Actions).
+const ACCORDION_A11Y_DEMOS = [
+  'AccordionUsage',
+  'AccordionExpandDefault',
+  'AccordionExpandIcon',
+  'ControlledAccordions',
+  'CustomizedAccordions',
+  'DisabledAccordion',
+  'AccordionTransition',
+  'AccordionA11yNonNative',
+  'AccordionA11yTextSpacing',
 ];
 
 // LinearProgress docs demos enrolled for axe assertions; CircularProgress and
@@ -203,6 +224,31 @@ const BUTTON_A11Y_DEMOS = [
   'CustomizedButtons',
 ];
 
+const CHECKBOX_A11Y_DEMOS = [
+  'Checkboxes',
+  'CheckboxLabels',
+  'ColorCheckboxes',
+  'ControlledCheckbox',
+  'CustomizedCheckbox',
+  'IconCheckboxes',
+  'SizeCheckboxes',
+  'CheckboxesGroup',
+];
+
+// Radio docs demos enrolled for axe assertions. FormControlLabelPlacement is left out: its axe
+// output duplicates RowRadioButtonsGroup (a row RadioGroup with a FormLabel), adding no new rules.
+const RADIO_A11Y_DEMOS = [
+  'RadioButtons',
+  'RadioButtonsGroup',
+  'ControlledRadioButtonsGroup',
+  'ColorRadioButtons',
+  'CustomizedRadios',
+  'SizeRadioButtons',
+  'RowRadioButtonsGroup',
+  'ErrorRadios',
+  'UseRadioGroup',
+];
+
 // Switch docs demos enrolled for axe assertions. FormControlLabelPosition is
 // excluded: its `aria-label` on a role-less FormGroup div trips
 // `aria-prohibited-attr`, a demo quirk unrelated to Switch.
@@ -227,6 +273,17 @@ const TEXTFIELD_A11Y_DEMOS = [
   'MultilineTextFields',
 ];
 
+// toggle-button docs demos enrolled for axe assertions; the remaining demos add
+// no axe coverage beyond the fixtures below.
+const TOGGLE_BUTTON_A11Y_DEMOS = [
+  'ToggleButtons',
+  'ToggleButtonsMultiple',
+  'VerticalToggleButtons',
+  'ToggleButtonA11yNonNative',
+  'ToggleButtonA11ySemanticStates',
+  'ToggleButtonA11yTextSpacing',
+];
+
 /**
  * A11y defaults to off — only matched-and-enabled rules produce results.
  * Slug-wide rules use `*`; brace-globs narrow enrolment to specific demos;
@@ -237,6 +294,16 @@ const TEXTFIELD_A11Y_DEMOS = [
  * incrementally.
  */
 export const A11Y_RULES: A11yRule[] = [
+  {
+    // `color-contrast` is recorded but not asserted: the Accordion root's
+    // divider `::before` pseudo-element blocks axe's background resolution for
+    // the summary label, so the rule returns `incomplete` on some demos.
+    // No demo records a contrast failure; the label clears 4.5:1 on `paper`.
+    test: `docs/data/material/components/accordion/{${ACCORDION_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
   {
     test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars,AvatarA11yImage}',
     enabled: true,
@@ -279,6 +346,21 @@ export const A11Y_RULES: A11yRule[] = [
     skipAssertions: ['color-contrast'],
   },
   {
+    test: `docs/data/material/components/checkboxes/{${CHECKBOX_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    // `indeterminate` sets aria-checked="mixed" on the native <input type="checkbox">; axe's
+    // aria-conditional-attr flags it because the native .checked is false. Recorded, not asserted.
+    test: 'docs/data/material/components/checkboxes/IndeterminateCheckbox',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['aria-conditional-attr'],
+  },
+  // FormControlLabelPosition is not enrolled: its only axe finding is an aria-label on a
+  // role-less FormGroup div (aria-prohibited-attr), a demo quirk unrelated to Checkbox.
+  {
     test: `docs/data/material/components/progress/{${LINEARPROGRESS_A11Y_DEMOS.join(',')}}`,
     enabled: true,
     assertions: 'all',
@@ -288,6 +370,11 @@ export const A11Y_RULES: A11yRule[] = [
   // same `progress.a11y.json` as the docs demos above.
   {
     test: 'test/regressions/a11y/fixtures/progress/{LinearProgressA11ySemanticStates,LinearProgressA11yColorMatrix}',
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/radio-buttons/{${RADIO_A11Y_DEMOS.join(',')}}`,
     enabled: true,
     assertions: 'all',
   },
@@ -306,6 +393,17 @@ export const A11Y_RULES: A11yRule[] = [
     // error text on the filled surface (4.36:1), and the ~0.42-opacity
     // placeholder (~2.6:1) are known shortfalls kept in the JSON without
     // failing CI.
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: `docs/data/material/components/toggle-button/{${TOGGLE_BUTTON_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: 'docs/data/material/components/toggle-button/ToggleButtonA11yColorMatrix',
+    enabled: true,
+    assertions: 'all',
     skipAssertions: ['color-contrast'],
   },
 ];
