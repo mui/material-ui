@@ -225,7 +225,7 @@ const TEXTFIELD_A11Y_DEMOS = [
  */
 export const A11Y_RULES: A11yRule[] = [
   {
-    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars,AvatarA11yImage}',
+    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars}',
     enabled: true,
   },
   // Avatar's default `colorDefault` styling is white text on grey[400] (~1.9:1),
@@ -234,8 +234,19 @@ export const A11Y_RULES: A11yRule[] = [
   // violations in the JSON without failing the build. IconAvatars (icons only,
   // aria-hidden, no text) is excluded here so it still asserts a clean pass.
   {
-    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,VariantAvatars,AvatarA11yImage}',
+    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,VariantAvatars}',
     enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  // A11y-only fixture under `test/regressions/a11y/fixtures/avatars/` (no
+  // docs page consumes it); the suite name maps its results into the same
+  // `avatars.a11y.json` as the docs demos above. `assertions: 'all'` makes
+  // axe's `image-alt` rule an asserted check, which is the reason the
+  // fixture exists.
+  {
+    test: 'test/regressions/a11y/fixtures/avatars/AvatarA11yImage',
+    enabled: true,
+    assertions: 'all',
     skipAssertions: ['color-contrast'],
   },
   {
