@@ -5,7 +5,7 @@
   getOptionLabel={(option) => option.label}
   getOptionValue={(option) => option.id}
   value={value}
-  onChange={(event, newValue: number | null) => {
+  onChange={(_event, newValue) => {
     setValue(newValue);
   }}
   sx={{ width: 300 }}
