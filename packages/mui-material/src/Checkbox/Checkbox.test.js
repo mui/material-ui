@@ -439,8 +439,16 @@ describe('<Checkbox />', () => {
     });
 
     describe('4.1.2 Name, Role, Value', () => {
-      // `indeterminate` sets the native `.indeterminate` property and no
-      // aria-checked attribute; the `prop: indeterminate` block above covers it.
+      it('exposes the mixed state through the native indeterminate property', () => {
+        // The `prop: indeterminate` block above covers the property lifecycle;
+        // this asserts the 4.1.2 exposure: native property, no aria-checked.
+        render(<Checkbox indeterminate />);
+        const checkbox = screen.getByRole('checkbox');
+
+        expect(checkbox).to.have.property('indeterminate', true);
+        expect(checkbox).not.to.have.attribute('aria-checked');
+      });
+
       it('exposes the checkbox role and its accessible name', () => {
         render(<FormControlLabel control={<Checkbox />} label="Subscribe" />);
 

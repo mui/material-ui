@@ -12,8 +12,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 ## Known gaps
 
-- ⚠️ **1.4.11 Non-text Contrast.** The default checkmark icons clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 (a faint custom unchecked box can be about 1.1:1 against the page).
-- ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styling.
+- ⚠️ **1.4.11 Non-text Contrast.** The default checkmark icons clear 3:1 (`warning` is the tightest at 3.11:1). The keyboard focus indicator is untested. `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 — a faint custom unchecked box can be about 1.1:1 against the page.
+- ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple). None remains unless the author adds `.Mui-focusVisible` styling or enables the `theme.focusVisible` ring, which draws on the icon and does not depend on the ripple.
 
 ## Success criteria
 
