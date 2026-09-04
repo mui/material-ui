@@ -646,7 +646,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
         // rendered options would pass undefined to selectNewValue.
         pointerEvents: popupOpen ? undefined : 'none',
       },
-      role: 'presentation',
+      role: 'none',
       anchorEl,
       open: popupOpen,
     },
