@@ -154,6 +154,7 @@ function AutocompleteComponentsProps() {
         paper: { elevation: 2 },
         popper: { placement: 'bottom-end' },
         popupIndicator: { size: 'large' },
+        status: { 'aria-label': 'current autocomplete message' },
       }}
     />
   );
@@ -166,6 +167,18 @@ function CustomListboxRef() {
       renderInput={(params) => <TextField {...params} />}
       options={['one', 'two', 'three']}
       slotProps={{ listbox: { ref } }}
+    />
+  );
+}
+
+function CustomStatusSlot() {
+  const ref = React.useRef<HTMLDivElement>(null);
+  return (
+    <Autocomplete
+      renderInput={(params) => <TextField {...params} />}
+      options={['one', 'two', 'three']}
+      slots={{ status: 'div' }}
+      slotProps={{ status: { ref } }}
     />
   );
 }

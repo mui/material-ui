@@ -47,12 +47,7 @@ function flipPlacement(placement?: PopperPlacementType, direction?: 'ltr' | 'rtl
 
 function resolveAnchorEl(
   anchorEl:
-    | VirtualElement
-    | (() => VirtualElement)
-    | HTMLElement
-    | (() => HTMLElement)
-    | null
-    | undefined,
+    VirtualElement | (() => VirtualElement) | HTMLElement | (() => HTMLElement) | null | undefined,
 ): HTMLElement | VirtualElement | null | undefined {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
@@ -114,21 +109,16 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
    */
   const [placement, setPlacement] = React.useState<Placement | undefined>(rtlPlacement);
-  const [resolvedAnchorElement, setResolvedAnchorElement] = React.useState<
-    HTMLElement | VirtualElement | null | undefined
-  >(resolveAnchorEl(anchorEl));
+  const resolvedAnchorElement = React.useMemo<HTMLElement | VirtualElement | null | undefined>(
+    () => resolveAnchorEl(anchorEl),
+    [anchorEl],
+  );
 
   React.useEffect(() => {
     if (popperRef.current) {
       popperRef.current.forceUpdate();
     }
   });
-
-  React.useEffect(() => {
-    if (anchorEl) {
-      setResolvedAnchorElement(resolveAnchorEl(anchorEl));
-    }
-  }, [anchorEl]);
 
   useEnhancedEffect(() => {
     if (!resolvedAnchorElement || !open) {
@@ -357,7 +347,7 @@ Popper.propTypes /* remove-proptypes */ = {
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
+   * An HTML element, [virtualElement](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/virtual-elements.md),
    * or a function that returns either.
    * It's used to set the position of the popper.
    * The return value will passed as the reference object of the Popper instance.
@@ -402,7 +392,7 @@ Popper.propTypes /* remove-proptypes */ = {
             [
               'MUI: The `anchorEl` prop provided to the component is invalid.',
               'It should be an HTML element instance or a virtualElement ',
-              '(https://popper.js.org/docs/v2/virtual-elements/).',
+              '(https://github.com/floating-ui/popper-docs/blob/main/docs/v2/virtual-elements.md).',
             ].join('\n'),
           );
         }
@@ -456,7 +446,7 @@ Popper.propTypes /* remove-proptypes */ = {
    * A modifier is a function that is called each time Popper.js needs to
    * compute the position of the popper.
    * For this reason, modifiers should be very performant to avoid bottlenecks.
-   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
+   * To learn how to create a modifier, [read the modifiers documentation](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/modifiers/index.md).
    */
   modifiers: PropTypes.arrayOf(
     PropTypes.shape({
@@ -507,7 +497,7 @@ Popper.propTypes /* remove-proptypes */ = {
     'top',
   ]),
   /**
-   * Options provided to the [`Popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
+   * Options provided to the [`Popper.js`](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/constructors.md#options) instance.
    * @default {}
    */
   popperOptions: PropTypes.shape({

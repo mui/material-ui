@@ -4,9 +4,7 @@
  */
 function resolveComponentProps<TProps, TOwnerState, TSlotState>(
   componentProps:
-    | TProps
-    | ((ownerState: TOwnerState, slotState?: TSlotState) => TProps)
-    | undefined,
+    TProps | ((ownerState: TOwnerState, slotState?: TSlotState) => TProps) | undefined,
   ownerState: TOwnerState,
   slotState?: TSlotState,
 ): TProps | undefined {

@@ -1,10 +1,17 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
+import {
+  act,
+  createRenderer,
+  screen,
+  isJsdom,
+  simulatePointerDevice,
+  focusVisible,
+} from '@mui/internal-test-utils';
 import Checkbox, { checkboxClasses as classes } from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
-import ButtonBase from '@mui/material/ButtonBase';
+import ButtonBase, { buttonBaseClasses } from '@mui/material/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
@@ -95,19 +102,38 @@ describe('<Checkbox />', () => {
       expect(screen.getByTestId('IndeterminateCheckBoxIcon')).not.to.equal(null);
     });
 
-    it('should set aria-checked to mixed', () => {
+    it('should not set aria-checked', () => {
       render(<Checkbox indeterminate />);
-      expect(screen.getByRole('checkbox')).to.have.attribute('aria-checked', 'mixed');
-    });
-
-    it('should set aria-checked to mixed even when checked', () => {
-      render(<Checkbox indeterminate checked />);
-      expect(screen.getByRole('checkbox')).to.have.attribute('aria-checked', 'mixed');
-    });
-
-    it('should not set aria-checked when not indeterminate', () => {
-      render(<Checkbox />);
       expect(screen.getByRole('checkbox')).not.to.have.attribute('aria-checked');
+    });
+
+    it('should set the indeterminate property on the input', () => {
+      render(<Checkbox indeterminate />);
+      expect(screen.getByRole('checkbox')).to.have.property('indeterminate', true);
+    });
+
+    it('should unset the indeterminate property on the input when no longer indeterminate', () => {
+      const { setProps } = render(<Checkbox indeterminate />);
+
+      setProps({ indeterminate: false });
+      expect(screen.getByRole('checkbox')).to.have.property('indeterminate', false);
+    });
+
+    it('should keep the indeterminate property on the input after a click', async () => {
+      const { user } = render(<Checkbox indeterminate />);
+
+      await user.click(screen.getByRole('checkbox'));
+      expect(screen.getByRole('checkbox')).to.have.property('indeterminate', true);
+    });
+
+    it('should set the indeterminate property on the input when the input slot changes', () => {
+      const CustomInput = React.forwardRef(({ ownerState, ...props }, ref) => (
+        <input ref={ref} {...props} />
+      ));
+      const { setProps } = render(<Checkbox indeterminate />);
+
+      setProps({ slots: { input: CustomInput } });
+      expect(screen.getByRole('checkbox')).to.have.property('indeterminate', true);
     });
   });
 
@@ -253,5 +279,63 @@ describe('<Checkbox />', () => {
     const checkbox = screen.getByRole('checkbox').parentElement;
     await ripple.startTouch(checkbox);
     expect(checkbox.querySelector('.touch-ripple')).to.equal(null);
+  });
+
+  it('should respect a global disableRipple from MuiButtonBase defaultProps', async () => {
+    const theme = createTheme({
+      components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+    });
+    render(
+      <ThemeProvider theme={theme}>
+        <Checkbox TouchRippleProps={{ className: 'touch-ripple' }} />
+      </ThemeProvider>,
+    );
+
+    const checkbox = screen.getByRole('checkbox').parentElement;
+    await ripple.startTouch(checkbox);
+    expect(checkbox.querySelector('.touch-ripple')).to.equal(null);
+  });
+
+  it('should let an explicit disableRipple={false} override a global disableRipple', async () => {
+    const theme = createTheme({
+      components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+    });
+    render(
+      <ThemeProvider theme={theme}>
+        <Checkbox disableRipple={false} TouchRippleProps={{ className: 'touch-ripple' }} />
+      </ThemeProvider>,
+    );
+
+    const checkbox = screen.getByRole('checkbox').parentElement;
+    await ripple.startTouch(checkbox);
+    expect(checkbox.querySelector('.touch-ripple')).not.to.equal(null);
+  });
+
+  describe('theme.focusVisible', () => {
+    // `cssVariables: true` guards the shouldSkipGeneratingVar fix — the recipe must stay inline on
+    // the svg. No-vars coverage is the FocusVisible/SelectionControls regression fixture.
+    it.skipIf(isJsdom())('draws the focus ring on the icon svg, not the ButtonBase root', () => {
+      const theme = createTheme({
+        cssVariables: true,
+        focusVisible: true,
+        components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Checkbox />
+        </ThemeProvider>,
+      );
+      const input = screen.getByRole('checkbox');
+      simulatePointerDevice();
+      focusVisible(input);
+      expect(input.parentElement).to.have.class(buttonBaseClasses.focusVisible);
+      expect(input.parentElement.querySelector('svg')).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+      // the shared ButtonBase root ring is off, so there is no double ring
+      expect(input.parentElement).toHaveComputedStyle({ outlineStyle: 'none' });
+    });
   });
 });

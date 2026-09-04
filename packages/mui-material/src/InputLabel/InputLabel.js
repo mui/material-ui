@@ -11,6 +11,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, formControl, size, shrink, disableAnimation, variant, required } = ownerState;
@@ -90,7 +91,7 @@ const InputLabelRoot = styled(FormLabel, {
       {
         props: ({ ownerState }) => !ownerState.disableAnimation,
         style: {
-          transition: theme.transitions.create(['color', 'transform', 'max-width'], {
+          ...getTransitionStyles(theme, ['color', 'transform', 'max-width'], {
             duration: theme.transitions.duration.shorter,
             easing: theme.transitions.easing.easeOut,
           }),

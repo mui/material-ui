@@ -258,6 +258,7 @@ function ColorTool() {
                   onChange={handleChangeHue(intent)}
                   value={hue}
                   name={intent}
+                  aria-label={hue}
                   icon={
                     <Box
                       sx={{ width: 48, height: 48 }}

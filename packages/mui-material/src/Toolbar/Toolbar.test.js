@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer } from '@mui/internal-test-utils';
 import Toolbar, { toolbarClasses as classes } from '@mui/material/Toolbar';
 import describeConformance from '../../test/describeConformance';

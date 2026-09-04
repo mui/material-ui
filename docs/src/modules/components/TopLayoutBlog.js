@@ -469,7 +469,6 @@ export default function TopLayoutBlog(props) {
                       <Link
                         href={`https://github.com/${authors[author].github}`}
                         target="_blank"
-                        rel="noopener"
                         variant="body2"
                         sx={{ color: 'primary', fontWeight: 500 }}
                       >
