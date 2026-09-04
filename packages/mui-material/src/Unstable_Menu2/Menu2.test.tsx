@@ -464,7 +464,48 @@ describe('<Menu2 />', () => {
     expect(overflowY).to.equal('auto');
   });
 
-  it('supports controlled open state and Base UI cancellation details', async () => {
+  it('supports controlled open state', async () => {
+    const handleOpenChange = spy();
+
+    function ControlledMenu() {
+      const [open, setOpen] = React.useState(false);
+
+      return (
+        <Menu2
+          open={open}
+          modal={false}
+          onOpenChange={(nextOpen, eventDetails) => {
+            handleOpenChange(nextOpen, eventDetails);
+            setOpen(nextOpen);
+          }}
+          trigger={<Button disableRipple>Options</Button>}
+        >
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2>
+      );
+    }
+
+    const { user } = render(<ControlledMenu />);
+    const trigger = screen.getByRole('button', { name: 'Options' });
+
+    await user.click(trigger);
+    await screen.findByRole('menu');
+
+    expect(handleOpenChange.callCount).to.equal(1);
+    expect(handleOpenChange.args[0][0]).to.equal(true);
+    expect(handleOpenChange.args[0][1].reason).to.equal('trigger-press');
+
+    await user.click(trigger);
+    await waitFor(() => {
+      expect(screen.queryByRole('menu')).to.equal(null);
+    });
+
+    expect(handleOpenChange.callCount).to.equal(2);
+    expect(handleOpenChange.args[1][0]).to.equal(false);
+    expect(handleOpenChange.args[1][1].reason).to.equal('trigger-press');
+  });
+
+  it('supports cancelling an open state change', async () => {
     const handleOpenChange = spy((open: boolean, eventDetails: any) => {
       expect(open).to.equal(true);
       expect(eventDetails.reason).to.equal('trigger-press');
@@ -542,11 +583,12 @@ describe('<Menu2 />', () => {
     });
   });
 
-  it('returns focus to the trigger on Escape and closes on outside press', async () => {
+  it('reports dismissal reasons and native events for Escape and outside press', async () => {
+    const handleOpenChange = spy();
     const { user } = render(
       <React.Fragment>
         <button type="button">Outside</button>
-        <Menu2 trigger={<Button disableRipple>Options</Button>}>
+        <Menu2 onOpenChange={handleOpenChange} trigger={<Button disableRipple>Options</Button>}>
           <Menu2Item>Profile</Menu2Item>
         </Menu2>
       </React.Fragment>,
@@ -555,20 +597,94 @@ describe('<Menu2 />', () => {
     const trigger = screen.getByRole('button', { name: 'Options' });
     await user.click(trigger);
     await screen.findByRole('menu');
+    handleOpenChange.resetHistory();
 
     await user.keyboard('[Escape]');
     await waitFor(() => {
       expect(screen.queryByRole('menu')).to.equal(null);
     });
+    expect(handleOpenChange.callCount).to.equal(1);
+    expect(handleOpenChange.args[0][0]).to.equal(false);
+    expect(handleOpenChange.args[0][1].reason).to.equal('escape-key');
+    expect(handleOpenChange.args[0][1].event).to.be.instanceOf(KeyboardEvent);
+    expect(handleOpenChange.args[0][1].event.type).to.equal('keydown');
+    expect(handleOpenChange.args[0][1].event).not.to.have.property('nativeEvent');
     expect(document.activeElement).to.equal(trigger);
 
     await user.click(trigger);
     await screen.findByRole('menu');
+    handleOpenChange.resetHistory();
     await user.click(screen.getByRole('button', { name: 'Outside' }));
 
     await waitFor(() => {
       expect(screen.queryByRole('menu')).to.equal(null);
     });
+    expect(handleOpenChange.callCount).to.equal(1);
+    expect(handleOpenChange.args[0][0]).to.equal(false);
+    expect(handleOpenChange.args[0][1].reason).to.equal('outside-press');
+    expect(handleOpenChange.args[0][1].event).to.be.instanceOf(Event);
+    expect(handleOpenChange.args[0][1].event.type).to.equal('pointerdown');
+    expect(handleOpenChange.args[0][1].event).not.to.have.property('nativeEvent');
+  });
+
+  it('supports cancelling a close state change', async () => {
+    const handleOpenChange = spy((open: boolean, eventDetails: any) => {
+      expect(open).to.equal(false);
+      expect(eventDetails.reason).to.equal('escape-key');
+      eventDetails.cancel();
+      expect(eventDetails.isCanceled).to.equal(true);
+    });
+    const { user } = render(
+      <Menu2
+        defaultOpen
+        trigger={<Button disableRipple>Options</Button>}
+        onOpenChange={handleOpenChange}
+      >
+        <Menu2Item>Profile</Menu2Item>
+      </Menu2>,
+    );
+
+    await user.keyboard('[Escape]');
+
+    await waitFor(() => {
+      expect(handleOpenChange.callCount).to.equal(1);
+    });
+    expect(screen.getByRole('menu')).not.to.equal(null);
+  });
+
+  it.skipIf(isJsdom())('reports focus-out when tabbing away from a non-modal menu', async () => {
+    const handleOpenChange = spy();
+    const { user } = render(
+      <React.Fragment>
+        <Menu2
+          modal={false}
+          onOpenChange={handleOpenChange}
+          trigger={<Button disableRipple>Options</Button>}
+        >
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2>
+        <button type="button">After</button>
+      </React.Fragment>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+    const item = await screen.findByRole('menuitem', { name: 'Profile' });
+    await waitFor(() => {
+      expect(item.closest('[role="menu"]')!.contains(document.activeElement)).to.equal(true);
+    });
+    handleOpenChange.resetHistory();
+
+    await user.tab();
+
+    await waitFor(() => {
+      expect(screen.queryByRole('menu')).to.equal(null);
+    });
+    expect(handleOpenChange.callCount).to.equal(1);
+    expect(handleOpenChange.args[0][0]).to.equal(false);
+    expect(handleOpenChange.args[0][1].reason).to.equal('focus-out');
+    expect(handleOpenChange.args[0][1].event).to.be.instanceOf(FocusEvent);
+    expect(handleOpenChange.args[0][1].event).not.to.have.property('nativeEvent');
+    expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
   });
 
   it('supports touch trigger interactions', async () => {
