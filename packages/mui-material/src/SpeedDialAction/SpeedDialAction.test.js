@@ -199,6 +199,23 @@ describe('<SpeedDialAction />', () => {
     expect(staticToolTipLabel).to.have.class(classes.staticTooltipLabel);
   });
 
+  [
+    ['top', { bottom: '100%', marginBottom: '8px' }],
+    ['bottom', { top: '100%', marginTop: '8px' }],
+  ].forEach(([placement, styles]) => {
+    it(`positions a static tooltip label when placement is ${placement}`, () => {
+      const { container } = render(
+        <SpeedDialAction
+          icon={<Icon>add</Icon>}
+          open
+          slotProps={{ tooltip: { open: true, placement, title: 'placeholder' } }}
+        />,
+      );
+
+      expect(container.querySelector(`.${classes.staticTooltipLabel}`)).toHaveComputedStyle(styles);
+    });
+  });
+
   it('should have staticToolTip and staticToolTipLabel classes if slotProps.tooltip.open is true and custom slots are provided', () => {
     const CustomStaticTooltip = React.forwardRef(({ ownerState, ...props }, ref) => (
       <div {...props} ref={ref}>
