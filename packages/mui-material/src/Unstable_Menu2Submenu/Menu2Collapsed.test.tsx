@@ -12,11 +12,52 @@ import Menu2Submenu, {
   menu2SubmenuTriggerClasses,
 } from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
+import describeConformance from '../../test/describeConformance';
+import withPortalledRoot from '../../test/menu2Conformance';
 
 // The collapsed surfaces: trigger as a prop and children as the popup, with
 // one explicit behavioral component for the submenu trigger.
 describe('<Menu2 /> collapsed API', () => {
   const { render } = createRenderer();
+
+  // Base UI submenus need layout to open, which jsdom does not provide, so the
+  // nested popup never mounts there; run this suite in the browser project.
+  describe.skipIf(isJsdom())('<Menu2Submenu /> conformance', () => {
+    describeConformance(
+      <Menu2Submenu
+        defaultOpen
+        trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
+      >
+        <Menu2Item>Nested</Menu2Item>
+      </Menu2Submenu>,
+      () => ({
+        classes: menu2SubmenuPopupClasses,
+        render: (node) =>
+          withPortalledRoot(
+            render(
+              <Menu2 defaultOpen modal={false} anchor={document.body}>
+                {node}
+              </Menu2>,
+            ),
+            `.${menu2SubmenuPopupClasses.root}`,
+          ),
+        // The public root is the semantic popup. Its host is configured through
+        // slots.popup rather than a component prop.
+        skip: ['componentProp'],
+        refInstanceof: window.HTMLDivElement,
+        muiName: 'MuiMenu2Submenu',
+        testVariantProps: { align: 'center' },
+        slots: {
+          paper: {
+            expectedClassName: menu2SubmenuPopupClasses.paper,
+          },
+          list: {
+            expectedClassName: menu2SubmenuPopupClasses.list,
+          },
+        },
+      }),
+    );
+  });
 
   beforeEach(() => {
     resetMenu2WarningFlags();

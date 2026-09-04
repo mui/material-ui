@@ -26,9 +26,36 @@ import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
 import Menu2Submenu, { menu2SubmenuTriggerClasses } from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { createTheme, enhanceHighContrast, ThemeProvider } from '@mui/material/styles';
+import describeConformance from '../../test/describeConformance';
+import withPortalledRoot from '../../test/menu2Conformance';
 
 describe('<Menu2 />', () => {
   const { render } = createRenderer();
+
+  describeConformance(
+    <Menu2 defaultOpen modal={false} anchor={document.body}>
+      <Menu2Item>Item</Menu2Item>
+    </Menu2>,
+    () => ({
+      classes: menu2PopupClasses,
+      render: (node) => withPortalledRoot(render(node), `.${menu2PopupClasses.root}`),
+      // The public root is the semantic popup. Its host is configured through
+      // slots.popup rather than a component prop.
+      skip: ['componentProp'],
+      refInstanceof: window.HTMLDivElement,
+      muiName: 'MuiMenu2',
+      testVariantProps: { align: 'center' },
+      slots: {
+        paper: {
+          expectedClassName: menu2PopupClasses.paper,
+        },
+        list: {
+          expectedClassName: menu2PopupClasses.list,
+        },
+      },
+    }),
+  );
+
   type User = ReturnType<typeof render>['user'];
 
   async function expectTooltipOnHover(user: User, element: Element, title: string) {
