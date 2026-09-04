@@ -15,8 +15,21 @@ export interface Menu2SubmenuSlotProps extends NonNullable<Menu2SubmenuPopupProp
  * HTML attributes and event handlers are forwarded to the popup element.
  */
 export interface Menu2SubmenuProps
+  // `Pick` names each prop the submenu forwards, the same way `Menu2` does.
+  // `orientation` is not picked: a submenu is always vertical.
   extends
-    Omit<BaseMenu.SubmenuRoot.Props, 'children'>,
+    Pick<
+      BaseMenu.SubmenuRoot.Props,
+      | 'actionsRef'
+      | 'closeParentOnEsc'
+      | 'defaultOpen'
+      | 'disabled'
+      | 'highlightItemOnHover'
+      | 'loopFocus'
+      | 'onOpenChange'
+      | 'onOpenChangeComplete'
+      | 'open'
+    >,
     Omit<Menu2SubmenuPopupProps, 'children' | 'slots' | 'slotProps'> {
   /**
    * The submenu items.
@@ -68,7 +81,6 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
     onOpenChange,
     onOpenChangeComplete,
     open,
-    orientation,
     ...popupProps
   } = themedProps;
 
@@ -83,7 +95,6 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
       onOpenChange={onOpenChange}
       onOpenChangeComplete={onOpenChangeComplete}
       open={open}
-      orientation={orientation}
     >
       {trigger}
       <Menu2SubmenuPopup {...popupProps} ref={ref} slotProps={slotProps} slots={slots}>

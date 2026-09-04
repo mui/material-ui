@@ -239,3 +239,13 @@ createTheme({
 >
   <Menu2Item>Item</Menu2Item>
 </Menu2>;
+
+<Menu2 trigger={<button type="button">Open</button>}>
+  <Menu2Submenu
+    // @ts-expect-error A submenu is always vertical.
+    orientation="horizontal"
+    trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
+  >
+    <Menu2Item>Item</Menu2Item>
+  </Menu2Submenu>
+</Menu2>;

@@ -19,19 +19,31 @@ export interface Menu2SlotProps extends NonNullable<Menu2PopupProps['slotProps']
 }
 
 /**
- * Inherits the Base UI `Menu.Root` prop surface (open/close control, modality,
- * `actionsRef`, keyboard behavior) plus the popup's positioning and appearance
- * props, so one menu is one component. `Omit` (a mapped type) is used instead
- * of bare `extends` so the proptypes generator resolves the inherited members.
- * HTML attributes and event handlers are forwarded to the popup element.
+ * Picks the Base UI `Menu.Root` props that it forwards (open/close control,
+ * modality, `actionsRef`, keyboard behavior) plus the popup's positioning and
+ * appearance props, so one menu is one component. `Pick` names each forwarded
+ * prop, so a prop that a later Base UI version adds reaches neither the type
+ * nor the popup DOM until Menu2 supports it. The mapped type also lets the
+ * proptypes generator resolve the members. HTML attributes and event handlers
+ * are forwarded to the popup element.
  */
 export interface Menu2Props
-  // Detached triggers and orientation are outside the Menu2 contract, and
-  // `handle` needs `Menu.createHandle`, which Menu2 does not export.
+  // Not picked: `handle` needs `Menu.createHandle`, which Menu2 does not
+  // export, and `triggerId`, `defaultTriggerId`, `orientation` serve detached
+  // triggers and a horizontal menu, which are outside the contract.
   extends
-    Omit<
+    Pick<
       BaseMenu.Root.Props,
-      'children' | 'defaultTriggerId' | 'handle' | 'orientation' | 'triggerId'
+      | 'actionsRef'
+      | 'closeParentOnEsc'
+      | 'defaultOpen'
+      | 'disabled'
+      | 'highlightItemOnHover'
+      | 'loopFocus'
+      | 'modal'
+      | 'onOpenChange'
+      | 'onOpenChangeComplete'
+      | 'open'
     >,
     Omit<Menu2PopupProps, 'children' | 'slots' | 'slotProps'> {
   /**
