@@ -60,8 +60,8 @@ describe('createSpacing', () => {
   describe('warnings', () => {
     it('should warn for wrong input', () => {
       expect(() => {
+        // @ts-expect-error
         createSpacing({
-          // @ts-expect-error
           unit: 4,
         });
       }).toErrorDev('MUI: The `theme.spacing` value ([object Object]) is invalid');

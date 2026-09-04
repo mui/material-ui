@@ -5,6 +5,76 @@ import createBreakpoints from '../createBreakpoints/createBreakpoints';
 import createTheme from '../createTheme';
 
 describe('styleFunctionSx', () => {
+  describe('spacing scale names', () => {
+    // Stands in for a userland spacing function — what an enhancer such as
+    // `enhanceDensity` installs on the theme — so this suite locks the sx
+    // contract without depending on `@mui/material`. `keys` is how names are
+    // advertised; `mui: true` is what makes `createSpacing` hand the function
+    // through untouched, so those names survive `createTheme`.
+    const createScaleSpacing = () => {
+      const scaled = { small: '12px', '-small': '-12px', 'x-large': '32px' };
+      const fn = (...args) => args.map((arg) => scaled[arg] ?? `${arg * 8}px`).join(' ');
+      fn.mui = true;
+      fn.keys = new Set(Object.keys(scaled));
+      return fn;
+    };
+    const keyedSpacing = createScaleSpacing();
+
+    const keyedTheme = createTheme({ spacing: keyedSpacing });
+
+    it('resolves the names on every spacing prop', () => {
+      const result = styleFunctionSx({
+        theme: keyedTheme,
+        sx: { p: 'small', mt: '-small', px: 'x-large', gap: 'small' },
+      });
+
+      expect(result).to.deep.equal({
+        padding: '12px',
+        marginTop: '-12px',
+        paddingLeft: '32px',
+        paddingRight: '32px',
+        gap: '12px',
+      });
+    });
+
+    it('resolves the names inside responsive values', () => {
+      const result = styleFunctionSx({
+        theme: keyedTheme,
+        sx: { p: { xs: 'small', md: 'x-large' } },
+      });
+
+      expect(result).to.deep.equal({
+        '@media (min-width:0px)': { padding: '12px' },
+        '@media (min-width:900px)': { padding: '32px' },
+      });
+    });
+
+    it('leaves raw CSS, unregistered names and multipliers alone', () => {
+      const result = styleFunctionSx({
+        theme: keyedTheme,
+        sx: { m: 'auto', pt: '2rem', pb: 'smal', pl: 2, width: '50%' },
+      });
+
+      expect(result).to.deep.equal({
+        margin: 'auto',
+        paddingTop: '2rem',
+        // a typo stays untouched rather than silently resolving
+        paddingBottom: 'smal',
+        paddingLeft: '16px',
+        width: '50%',
+      });
+    });
+
+    it('changes nothing for a theme that registers no names', () => {
+      const result = styleFunctionSx({
+        theme: createTheme({ spacing: 8 }),
+        sx: { p: 'small', m: 2 },
+      });
+
+      expect(result).to.deep.equal({ padding: 'small', margin: '16px' });
+    });
+  });
+
   const breakpointsValues = {
     xs: 0,
     sm: 600,

@@ -93,7 +93,12 @@ export { default as createBreakpoints } from './createBreakpoints/createBreakpoi
 export * from './createBreakpoints/createBreakpoints';
 
 export { default as createSpacing } from './createTheme/createSpacing';
-export { SpacingOptions, Spacing } from './createTheme/createSpacing';
+export {
+  SpacingOptions,
+  Spacing,
+  SpacingKeyOverrides,
+  SpacingKey,
+} from './createTheme/createSpacing';
 
 export { default as shape } from './createTheme/shape';
 export * from './createTheme/shape';
