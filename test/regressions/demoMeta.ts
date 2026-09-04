@@ -204,6 +204,19 @@ const RADIO_A11Y_DEMOS = [
   'UseRadioGroup',
 ];
 
+// Switch docs demos enrolled for axe assertions. FormControlLabelPosition is
+// excluded: its `aria-label` on a role-less FormGroup div trips
+// `aria-prohibited-attr`, a demo quirk unrelated to Switch.
+const SWITCH_A11Y_DEMOS = [
+  'BasicSwitches',
+  'SwitchLabels',
+  'ColorSwitches',
+  'ControlledSwitches',
+  'CustomizedSwitches',
+  'SwitchesSize',
+  'SwitchesGroup',
+];
+
 /**
  * A11y defaults to off — only matched-and-enabled rules produce results.
  * Slug-wide rules use `*`; brace-globs narrow enrolment to specific demos;
@@ -215,9 +228,18 @@ const RADIO_A11Y_DEMOS = [
  */
 export const A11Y_RULES: A11yRule[] = [
   {
-    test: `docs/data/material/components/radio-buttons/{${RADIO_A11Y_DEMOS.join(',')}}`,
+    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars,AvatarA11yImage}',
     enabled: true,
-    assertions: 'all',
+  },
+  // Avatar's default `colorDefault` styling is white text on grey[400] (~1.9:1),
+  // and the documented letter/background examples use low-contrast author
+  // colors, so color-contrast genuinely fails (WCAG 1.4.3). Record the
+  // violations in the JSON without failing the build. IconAvatars (icons only,
+  // aria-hidden, no text) is excluded here so it still asserts a clean pass.
+  {
+    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,VariantAvatars,AvatarA11yImage}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
   },
   {
     test: `docs/data/material/components/buttons/{${BUTTON_A11Y_DEMOS.join(',')}}`,
@@ -245,6 +267,16 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
     skipAssertions: ['color-contrast'],
+  },
+  {
+    test: `docs/data/material/components/radio-buttons/{${RADIO_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/switches/{${SWITCH_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
   },
 ];
 
