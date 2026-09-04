@@ -102,7 +102,10 @@ describe('getConfig', () => {
       getConfig(A11Y_RULES, 'docs/data/material/components/progress/LinearDeterminate'),
     ).to.deep.include({ enabled: true, assertions: 'all' });
     expect(
-      getConfig(A11Y_RULES, 'docs/data/material/components/progress/LinearProgressA11yColorMatrix'),
+      getConfig(
+        A11Y_RULES,
+        'test/regressions/a11y/fixtures/progress/LinearProgressA11yColorMatrix',
+      ),
     ).to.deep.include({ enabled: true, assertions: 'all' });
   });
 
@@ -121,7 +124,7 @@ describe('getConfig', () => {
     expect(
       getConfig(
         SCREENSHOT_RULES,
-        'docs/data/material/components/progress/LinearProgressA11ySemanticStates',
+        'test/regressions/a11y/fixtures/progress/LinearProgressA11ySemanticStates',
       ),
     ).to.deep.include({ enabled: false });
   });

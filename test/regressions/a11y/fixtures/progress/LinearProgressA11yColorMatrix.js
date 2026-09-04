@@ -2,15 +2,7 @@ import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import Stack from '@mui/material/Stack';
 
-const colors = [
-  'primary',
-  'secondary',
-  'success',
-  'error',
-  'info',
-  'warning',
-  'inherit',
-];
+const colors = ['primary', 'secondary', 'success', 'error', 'info', 'warning', 'inherit'];
 
 const variants = ['determinate', 'buffer', 'indeterminate', 'query'];
 

@@ -12,11 +12,7 @@ export default function LinearProgressA11ySemanticStates() {
       {/* Query: same indeterminate semantics, reversed animation. */}
       <LinearProgress variant="query" aria-label="Searching" />
       {/* Determinate: name plus aria-valuenow/min/max (default 0–100 range). */}
-      <LinearProgress
-        variant="determinate"
-        value={40}
-        aria-label="Upload progress"
-      />
+      <LinearProgress variant="determinate" value={40} aria-label="Upload progress" />
       {/* Buffer: name plus the value and buffered value. */}
       <LinearProgress
         variant="buffer"

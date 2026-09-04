@@ -186,8 +186,6 @@ const LINEARPROGRESS_A11Y_DEMOS = [
   'LinearColor',
   'LinearWithValueLabel',
   'LinearWithAriaValueText',
-  'LinearProgressA11ySemanticStates',
-  'LinearProgressA11yColorMatrix',
 ];
 
 // Button docs demos enrolled for axe assertions; IconButton/ButtonBase demos are excluded.
@@ -271,6 +269,14 @@ export const A11Y_RULES: A11yRule[] = [
   },
   {
     test: `docs/data/material/components/progress/{${LINEARPROGRESS_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/progress/`
+  // (no docs page consumes them); the suite name maps their results into the
+  // same `progress.a11y.json` as the docs demos above.
+  {
+    test: 'test/regressions/a11y/fixtures/progress/{LinearProgressA11ySemanticStates,LinearProgressA11yColorMatrix}',
     enabled: true,
     assertions: 'all',
   },
