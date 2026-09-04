@@ -80,8 +80,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `✅ Supports` · `● Component`
 
-- Keyboard focus thickens the `outlined` notched outline to a 2px `color.main` border and grows the `filled` underline to a 2px `color.main` line, a clear change from the resting state.
-- Unlike the `ButtonBase` controls, no documented prop removes this indicator; an author would have to override the `.Mui-focused` styles to lose it. Covered by a Playwright test that compares the control focused and unfocused.
+- Keyboard focus thickens the `outlined` notched outline to a 2px `color.main` border and grows the `filled` underline to a 2px `color.main` line, a clear change from the resting state. Covered by a Playwright test that compares the control focused and unfocused.
+- Unlike the `ButtonBase` controls, no documented prop removes this indicator; an author would have to override the `.Mui-focused` styles to lose it.
 
 **Manual testing steps**
 
