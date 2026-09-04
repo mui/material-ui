@@ -274,12 +274,12 @@ Done:
 - **Animation.** A default open and close animation, and a backdrop slot that you opt in to.
 - **Preview cards.** The `useMenu2ItemPopover` hook replaces the anchor handling that the recipes did by hand.
 - **Focus indicator previews.** The playground and the recipes have a `focusVisible` theme knob. The knob also sets `MuiButtonBase.defaultProps.disableRipple`, the way the focus visible docs demos do. The playground opens a real classic `Menu` next to a `Menu2` under one theme. The focus visible docs page shows a `Menu2Item` row next to its `MenuItem` row.
+- **Behavior tests.** The benchmark covers the open action, focus, disabled items, dismissal, scroll locking, backdrop treatment, and placement. The migrated tests also cover item and link activation, checkbox and radio activation, controlled state and callback reasons, context-menu focus, submenu hover delays, and safe pointer travel. Two capabilities remain delegated to Base UI and are not duplicated here: `aria-controls` on the trigger and `aria-labelledby` on a group.
 
 Left:
 
 - **Style sharing.** The components share styles at the style-function level. It is better to share the styled element itself where this fits.
 - **Slot helpers.** The slot helpers for Base UI should move into `@mui/utils`.
-- **Behavior tests.** We must still adapt the existing Menu behavior tests. The flat container was the blocker, and it now exists, so this task is next. The benchmark covers the open action, focus, disabled items, dismissal, scroll locking, backdrop treatment, and placement. The migrated tests also cover default item and link activation and close behavior, checkbox and radio activation, controlled state and callback reasons, outside-pointer dismissal, and context-menu focus. The remaining gap is hover and submenu timing. Two capabilities also have no test of their own, because Base UI supplies them: `aria-controls` on the trigger and `aria-labelledby` on a group. The explicit submenu trigger has regression tests for typeahead and the `label` override, including a Tooltip wrapper.
 
 ### Decisions
 

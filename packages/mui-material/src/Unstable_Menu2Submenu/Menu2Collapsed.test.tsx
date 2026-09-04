@@ -539,14 +539,16 @@ describe('<Menu2 /> collapsed API', () => {
     }
   });
 
-  // Hover is the default way to open a submenu, and it kept working only by
-  // accident until now: nothing covered it.
-  it.skipIf(isJsdom())('opens a submenu on hover, and keeps the element handler', async () => {
+  it.skipIf(isJsdom())('respects the hover open delay and keeps the element handler', async () => {
     const onMouseEnter = spy();
     const { user } = render(
       <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
         <Menu2Submenu
-          trigger={<Menu2SubmenuTrigger onMouseEnter={onMouseEnter}>More</Menu2SubmenuTrigger>}
+          trigger={
+            <Menu2SubmenuTrigger delay={200} onMouseEnter={onMouseEnter}>
+              More
+            </Menu2SubmenuTrigger>
+          }
         >
           <Menu2Item>Nested</Menu2Item>
         </Menu2Submenu>
@@ -556,6 +558,7 @@ describe('<Menu2 /> collapsed API', () => {
     const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
     await user.hover(submenuTrigger);
 
+    expect(screen.queryByRole('menuitem', { name: 'Nested' })).to.equal(null);
     await waitFor(
       () => {
         expect(screen.queryByRole('menuitem', { name: 'Nested' })).not.to.equal(null);
@@ -564,6 +567,114 @@ describe('<Menu2 /> collapsed API', () => {
     );
     // Base UI composes with the element's own handler rather than replacing it.
     expect(onMouseEnter.callCount).to.be.greaterThan(0);
+  });
+
+  it.skipIf(isJsdom())('does not open on hover when openOnHover is false', async () => {
+    const { user } = render(
+      <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
+        <Menu2Submenu
+          trigger={
+            <Menu2SubmenuTrigger delay={0} openOnHover={false}>
+              More
+            </Menu2SubmenuTrigger>
+          }
+        >
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2Submenu>
+      </Menu2>,
+    );
+
+    const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
+    await user.hover(submenuTrigger);
+
+    expect(screen.queryByRole('menuitem', { name: 'Nested' })).to.equal(null);
+
+    await user.click(submenuTrigger);
+    expect(await screen.findByRole('menuitem', { name: 'Nested' })).not.to.equal(null);
+  });
+
+  it.skipIf(isJsdom())('keeps the submenu open during pointer transit', async () => {
+    const { user } = render(
+      <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
+        <Menu2Submenu
+          trigger={
+            <Menu2SubmenuTrigger delay={0} closeDelay={150}>
+              More
+            </Menu2SubmenuTrigger>
+          }
+        >
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2Submenu>
+      </Menu2>,
+    );
+
+    const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
+    await user.hover(submenuTrigger);
+    const nestedItem = await screen.findByRole('menuitem', { name: 'Nested' });
+    const submenuPositioner = nestedItem.closest<HTMLElement>('[data-nested]')!;
+    const triggerRect = submenuTrigger.getBoundingClientRect();
+    const submenuRect = submenuPositioner.getBoundingClientRect();
+
+    // Base UI temporarily blocks pointer events outside the trigger and popup
+    // while its safe polygon is active, so dispatch the real transit events
+    // directly instead of asking user-event to cross the blocked region.
+    fireEvent.mouseLeave(submenuTrigger, {
+      relatedTarget: document.body,
+      clientX: triggerRect.right,
+      clientY: triggerRect.top + triggerRect.height / 2,
+    });
+    fireEvent.mouseMove(submenuPositioner, {
+      clientX: submenuRect.left + 1,
+      clientY: submenuRect.top + 1,
+    });
+    fireEvent.mouseEnter(submenuPositioner, {
+      relatedTarget: submenuTrigger,
+      clientX: submenuRect.left + 1,
+      clientY: submenuRect.top + 1,
+    });
+
+    await act(async () => {
+      await new Promise<void>((resolve) => {
+        setTimeout(resolve, 250);
+      });
+    });
+    expect(screen.getByRole('menuitem', { name: 'Nested' })).not.to.equal(null);
+  });
+
+  it.skipIf(isJsdom())('respects the hover close delay when moving to another item', async () => {
+    const { user } = render(
+      <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
+        <Menu2Submenu
+          trigger={
+            <Menu2SubmenuTrigger delay={0} closeDelay={150}>
+              More
+            </Menu2SubmenuTrigger>
+          }
+        >
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2Submenu>
+        <Menu2Item closeOnClick={false}>Other</Menu2Item>
+      </Menu2>,
+    );
+
+    const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
+    await user.hover(submenuTrigger);
+    await screen.findByRole('menuitem', { name: 'Nested' });
+
+    // The safe polygon blocks user-event from targeting a sibling while the
+    // submenu is open. Base UI receives the same item-hover signal from the
+    // item's mousemove handler.
+    const otherItem = screen.getByRole('menuitem', { name: 'Other' });
+    fireEvent.mouseOver(otherItem);
+    fireEvent.mouseMove(otherItem);
+
+    expect(screen.getByRole('menuitem', { name: 'Nested' })).not.to.equal(null);
+    await waitFor(
+      () => {
+        expect(screen.queryByRole('menuitem', { name: 'Nested' })).to.equal(null);
+      },
+      { timeout: 1000 },
+    );
   });
 
   // The explicit trigger owns its behavior. Its wrapper need not forward props
