@@ -315,6 +315,14 @@ function CustomStatusSlot() {
   renderInput={() => null}
 />;
 
+<Autocomplete
+  freeSolo
+  options={options}
+  // @ts-expect-error String option values are indistinguishable from freeSolo values.
+  getOptionValue={(option) => option.value}
+  renderInput={() => null}
+/>;
+
 // Existing explicit generic arguments retain their meaning: the second argument is Multiple.
 <Autocomplete<Option, true>
   multiple

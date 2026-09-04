@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import * as React from 'react';
 import {
   createRenderer,
@@ -490,6 +490,15 @@ describe('useAutocomplete', () => {
       { id: 'foo', label: 'Foo' },
       { id: 'bar', label: 'Bar' },
     ];
+    const freeSoloOptions = [
+      { id: 1, label: 'Foo' },
+      { id: 2, label: 'Bar' },
+    ];
+
+    const freeSoloStringMappingError =
+      'MUI: The `getOptionValue` method of useAutocomplete returned the string value "draft" while `freeSolo` is enabled.\n' +
+      'useAutocomplete cannot distinguish string option values from free-solo values. ' +
+      'Return a number, bigint, or boolean from `getOptionValue`, or disable `freeSolo`.';
 
     const getOptionValue = (option) => option.id;
 
@@ -522,6 +531,16 @@ describe('useAutocomplete', () => {
       );
     }
 
+    // These tests use the same string as an option's mapped value and as free-solo text.
+    // Capture the expected development error while verifying the JavaScript fallback.
+    function renderWithFreeSoloStringMapping(element) {
+      let view;
+      expect(() => {
+        view = render(element, { strict: false });
+      }).toErrorDev(freeSoloStringMappingError);
+      return view;
+    }
+
     it('uses the mapped option value for default equality', () => {
       render(<Test />);
 
@@ -551,6 +570,45 @@ describe('useAutocomplete', () => {
 
       expect(resolveOptionValue('foo')).to.equal(options[0]);
       expect(resolveOptionValue('missing')).to.equal(null);
+    });
+
+    it('gives freeSolo strings precedence over colliding mapped option values', () => {
+      let resolveOptionValue;
+      const collidingOptions = [{ id: 'draft', label: 'Published' }];
+
+      function ResolverTest() {
+        const { getInputProps, getOptionFromValue } = useAutocomplete({
+          options: collidingOptions,
+          freeSolo: true,
+          getOptionValue: (option) => option.id,
+        });
+        resolveOptionValue = getOptionFromValue;
+        return <input {...getInputProps()} />;
+      }
+
+      renderWithFreeSoloStringMapping(<ResolverTest />);
+
+      expect(resolveOptionValue('draft')).to.equal('draft');
+    });
+
+    it('gives freeSolo strings precedence when custom equality matches an option', () => {
+      let resolveOptionValue;
+      const collidingOptions = [{ id: 'draft', label: 'Published' }];
+
+      function ResolverTest() {
+        const { getInputProps, getOptionFromValue } = useAutocomplete({
+          options: collidingOptions,
+          freeSolo: true,
+          getOptionValue: (option) => option.id,
+          isOptionEqualToValue: () => true,
+        });
+        resolveOptionValue = getOptionFromValue;
+        return <input {...getInputProps()} />;
+      }
+
+      renderWithFreeSoloStringMapping(<ResolverTest />);
+
+      expect(resolveOptionValue('draft')).to.equal('draft');
     });
 
     it('rebuilds the mapped value resolver when the options change', () => {
@@ -634,7 +692,8 @@ describe('useAutocomplete', () => {
       const onChange = spy();
       const { user } = render(
         <Test
-          defaultValue={['bar']}
+          options={freeSoloOptions}
+          defaultValue={[freeSoloOptions[1].id]}
           freeSolo
           value={undefined}
           getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
@@ -645,20 +704,69 @@ describe('useAutocomplete', () => {
       await user.type(screen.getByRole('combobox'), 'custom{Enter}');
 
       expect(onChange.callCount).to.equal(1);
-      expect(onChange.args[0][1]).to.deep.equal(['bar', 'custom']);
+      expect(onChange.args[0][1]).to.deep.equal([freeSoloOptions[1].id, 'custom']);
       expect(onChange.args[0][2]).to.equal('createOption');
       expect(onChange.args[0][3]).to.deep.equal({ option: 'custom' });
     });
 
+    it('preserves freeSolo text that collides with a mapped option value', async () => {
+      const onChange = spy();
+      const collidingOptions = [{ id: 'draft', label: 'Published' }];
+      const { user } = renderWithFreeSoloStringMapping(
+        <Test
+          options={collidingOptions}
+          multiple={false}
+          value={undefined}
+          freeSolo
+          getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
+          onChange={onChange}
+        />,
+      );
+      const input = screen.getByRole('combobox');
+
+      // The invalid string mapping is already asserted during the initial render above.
+      // Suppress the same validation error from the input-driven rerenders in this interaction test.
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      try {
+        await user.type(input, 'draft{Enter}');
+        expect(
+          errorSpy.mock.calls.every(([message]) => message === freeSoloStringMappingError),
+        ).to.equal(true);
+      } finally {
+        errorSpy.mockRestore();
+      }
+
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.args[0][1]).to.equal('draft');
+      expect(input).to.have.value('draft');
+    });
+
+    it('does not treat a colliding controlled freeSolo value as a selected option', () => {
+      const collidingOptions = [{ id: 'draft', label: 'Published' }];
+
+      renderWithFreeSoloStringMapping(
+        <Test
+          options={collidingOptions}
+          multiple={false}
+          value="draft"
+          freeSolo
+          getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
+        />,
+      );
+
+      expect(screen.getByRole('option', { name: 'Published' })).to.have.attribute(
+        'aria-selected',
+        'false',
+      );
+    });
+
     it('does not pass values created in freeSolo mode to getOptionValue', async () => {
       const onChange = spy();
-      const getOptionValue = (option) => {
-        // `option.id` alone returns undefined for a string and would hide the contract violation.
-        return option.id.toUpperCase();
-      };
+      const getOptionValue = spy((option) => option.id);
       const { user } = render(
         <Test
-          defaultValue={['BAR']}
+          options={freeSoloOptions}
+          defaultValue={[freeSoloOptions[1].id]}
           freeSolo
           value={undefined}
           getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
@@ -670,9 +778,10 @@ describe('useAutocomplete', () => {
       await user.type(screen.getByRole('combobox'), 'custom{Enter}');
 
       expect(onChange.callCount).to.equal(1);
-      expect(onChange.args[0][1]).to.deep.equal(['BAR', 'custom']);
+      expect(onChange.args[0][1]).to.deep.equal([freeSoloOptions[1].id, 'custom']);
       expect(onChange.args[0][2]).to.equal('createOption');
       expect(onChange.args[0][3]).to.deep.equal({ option: 'custom' });
+      expect(getOptionValue.neverCalledWith('custom')).to.equal(true);
     });
 
     it.each([
@@ -782,10 +891,20 @@ describe('useAutocomplete', () => {
       );
     });
 
-    function ValidationTest({ options: optionsProp, getOptionValue }) {
-      const { getInputProps } = useAutocomplete({ options: optionsProp, getOptionValue });
+    function ValidationTest({ options: optionsProp, getOptionValue, freeSolo }) {
+      const { getInputProps } = useAutocomplete({ options: optionsProp, getOptionValue, freeSolo });
       return <input {...getInputProps()} />;
     }
+
+    it('warns when getOptionValue returns a string in freeSolo mode', () => {
+      renderWithFreeSoloStringMapping(
+        <ValidationTest
+          options={[{ id: 'draft' }]}
+          getOptionValue={(option) => option.id}
+          freeSolo
+        />,
+      );
+    });
 
     it.each([
       { description: 'an object', optionValue: {}, returnedValue: 'a value of type object' },
