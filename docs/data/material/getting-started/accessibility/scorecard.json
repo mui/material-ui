@@ -1,0 +1,2666 @@
+{
+  "standard": "WCAG 2.2 Level A and AA",
+  "componentCount": 12,
+  "totals": {
+    "supports": 206,
+    "partiallySupports": 24,
+    "doesNotSupport": 0,
+    "notApplicable": 387,
+    "inherited": 43,
+    "flagged": 46
+  },
+  "criteria": [
+    {
+      "number": "1.1.1",
+      "name": "Non-text Content",
+      "level": "A",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "1.3.1",
+      "name": "Info and Relationships",
+      "level": "A",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "1.3.2",
+      "name": "Meaningful Sequence",
+      "level": "A",
+      "conformance": "Supports",
+      "flagged": true,
+      "affected": []
+    },
+    {
+      "number": "1.3.3",
+      "name": "Sensory Characteristics",
+      "level": "A",
+      "conformance": "Supports",
+      "flagged": true,
+      "affected": []
+    },
+    {
+      "number": "1.3.5",
+      "name": "Identify Input Purpose",
+      "level": "AA",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "1.4.1",
+      "name": "Use of Color",
+      "level": "A",
+      "conformance": "Partially Supports",
+      "flagged": true,
+      "affected": ["ToggleButton"]
+    },
+    {
+      "number": "1.4.3",
+      "name": "Contrast (Minimum)",
+      "level": "AA",
+      "conformance": "Partially Supports",
+      "flagged": true,
+      "affected": ["Avatar", "Button", "TextField", "ToggleButton"]
+    },
+    {
+      "number": "1.4.4",
+      "name": "Resize Text",
+      "level": "AA",
+      "conformance": "Supports",
+      "flagged": true,
+      "affected": []
+    },
+    {
+      "number": "1.4.5",
+      "name": "Images of Text",
+      "level": "AA",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "1.4.10",
+      "name": "Reflow",
+      "level": "AA",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "1.4.11",
+      "name": "Non-text Contrast",
+      "level": "AA",
+      "conformance": "Partially Supports",
+      "flagged": true,
+      "affected": [
+        "AccordionSummary",
+        "Avatar",
+        "Button",
+        "Checkbox",
+        "LinearProgress",
+        "Radio",
+        "Switch",
+        "TextField",
+        "ToggleButton"
+      ]
+    },
+    {
+      "number": "1.4.12",
+      "name": "Text Spacing",
+      "level": "AA",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "2.1.1",
+      "name": "Keyboard",
+      "level": "A",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "2.1.2",
+      "name": "No Keyboard Trap",
+      "level": "A",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "2.2.2",
+      "name": "Pause, Stop, Hide",
+      "level": "A",
+      "conformance": "Partially Supports",
+      "flagged": true,
+      "affected": ["LinearProgress"]
+    },
+    {
+      "number": "2.3.1",
+      "name": "Three Flashes or Below Threshold",
+      "level": "A",
+      "conformance": "Supports",
+      "flagged": true,
+      "affected": []
+    },
+    {
+      "number": "2.4.3",
+      "name": "Focus Order",
+      "level": "A",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "2.4.4",
+      "name": "Link Purpose (In Context)",
+      "level": "A",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "2.4.6",
+      "name": "Headings and Labels",
+      "level": "AA",
+      "conformance": "Supports",
+      "flagged": true,
+      "affected": []
+    },
+    {
+      "number": "2.4.7",
+      "name": "Focus Visible",
+      "level": "AA",
+      "conformance": "Partially Supports",
+      "flagged": true,
+      "affected": ["Button", "Checkbox", "Radio", "Switch", "ToggleButton"]
+    },
+    {
+      "number": "2.4.11",
+      "name": "Focus Not Obscured (Minimum)",
+      "level": "AA",
+      "conformance": "Supports",
+      "flagged": true,
+      "affected": []
+    },
+    {
+      "number": "2.5.2",
+      "name": "Pointer Cancellation",
+      "level": "A",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "2.5.3",
+      "name": "Label in Name",
+      "level": "A",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "2.5.8",
+      "name": "Target Size (Minimum)",
+      "level": "AA",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "3.2.1",
+      "name": "On Focus",
+      "level": "A",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "3.2.2",
+      "name": "On Input",
+      "level": "A",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "3.2.4",
+      "name": "Consistent Identification",
+      "level": "AA",
+      "conformance": "Supports",
+      "flagged": true,
+      "affected": []
+    },
+    {
+      "number": "3.3.1",
+      "name": "Error Identification",
+      "level": "A",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "3.3.2",
+      "name": "Labels or Instructions",
+      "level": "A",
+      "conformance": "Supports",
+      "flagged": true,
+      "affected": []
+    },
+    {
+      "number": "3.3.3",
+      "name": "Error Suggestion",
+      "level": "AA",
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
+    },
+    {
+      "number": "4.1.2",
+      "name": "Name, Role, Value",
+      "level": "A",
+      "conformance": "Partially Supports",
+      "flagged": false,
+      "affected": ["Checkbox"]
+    },
+    {
+      "number": "4.1.3",
+      "name": "Status Messages",
+      "level": "AA",
+      "conformance": "Partially Supports",
+      "flagged": true,
+      "affected": ["Button", "LinearProgress", "TextField"]
+    }
+  ],
+  "components": [
+    {
+      "component": "Accordion",
+      "counts": {
+        "supports": "19",
+        "partiallySupports": "0",
+        "doesNotSupport": "0",
+        "notApplicable": "31",
+        "inherited": "5",
+        "flagged": "3/19"
+      },
+      "gaps": [
+        "Inherits: ⚠️ **1.4.11 Non-text Contrast** (the summary focus indicator) from [AccordionSummary](../AccordionSummary/accessibility.md)."
+      ],
+      "criteria": [
+        {
+          "number": "1.3.2",
+          "name": "Meaningful Sequence",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.3.3",
+          "name": "Sensory Characteristics",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.4.1",
+          "name": "Use of Color",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.4.5",
+          "name": "Images of Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "2.4.11",
+          "name": "Focus Not Obscured (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "3.2.4",
+          "name": "Consistent Identification",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.3",
+          "name": "Contrast (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "2.4.6",
+          "name": "Headings and Labels",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "4.1.2",
+          "name": "Name, Role, Value",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.4",
+          "name": "Resize Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.10",
+          "name": "Reflow",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.12",
+          "name": "Text Spacing",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.1.1",
+          "name": "Keyboard",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.1.2",
+          "name": "No Keyboard Trap",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.4.3",
+          "name": "Focus Order",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.2",
+          "name": "Pointer Cancellation",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.2.1",
+          "name": "On Focus",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.2.2",
+          "name": "On Input",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        }
+      ],
+      "summary": {
+        "rated": 19,
+        "levelA": 11,
+        "levelAA": 8,
+        "supports": 19,
+        "partiallySupports": 0,
+        "doesNotSupport": 0,
+        "verified": 16,
+        "automated": 9
+      }
+    },
+    {
+      "component": "AccordionSummary",
+      "counts": {
+        "supports": "23",
+        "partiallySupports": "1",
+        "doesNotSupport": "0",
+        "notApplicable": "31",
+        "flagged": "4/24"
+      },
+      "gaps": [
+        "⚠️ **1.4.11 Non-text Contrast.** The keyboard-focus indicator is only a background tint (`action.focus`), about 1.3:1 against the adjacent `paper` surface, below the 3:1 minimum."
+      ],
+      "criteria": [
+        {
+          "number": "1.3.2",
+          "name": "Meaningful Sequence",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.3.3",
+          "name": "Sensory Characteristics",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.4.1",
+          "name": "Use of Color",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.4.5",
+          "name": "Images of Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.4.11",
+          "name": "Non-text Contrast",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "2.4.11",
+          "name": "Focus Not Obscured (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "3.2.4",
+          "name": "Consistent Identification",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.1.1",
+          "name": "Non-text Content",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.3",
+          "name": "Contrast (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "2.4.6",
+          "name": "Headings and Labels",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "2.4.7",
+          "name": "Focus Visible",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "4.1.2",
+          "name": "Name, Role, Value",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.4",
+          "name": "Resize Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.10",
+          "name": "Reflow",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.12",
+          "name": "Text Spacing",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.1.1",
+          "name": "Keyboard",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.1.2",
+          "name": "No Keyboard Trap",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.4.3",
+          "name": "Focus Order",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.2",
+          "name": "Pointer Cancellation",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.3",
+          "name": "Label in Name",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.8",
+          "name": "Target Size (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.2.1",
+          "name": "On Focus",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.2.2",
+          "name": "On Input",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        }
+      ],
+      "summary": {
+        "rated": 24,
+        "levelA": 13,
+        "levelAA": 11,
+        "supports": 23,
+        "partiallySupports": 1,
+        "doesNotSupport": 0,
+        "verified": 20,
+        "automated": 11
+      }
+    },
+    {
+      "component": "Avatar",
+      "counts": {
+        "supports": "9",
+        "partiallySupports": "2",
+        "doesNotSupport": "0",
+        "notApplicable": "44",
+        "flagged": "5/11"
+      },
+      "gaps": [
+        "⚠️ **1.4.3 Contrast (Minimum).** Default letter and fallback avatars render white text on `grey[400]` (about 1.9:1), and the `deepOrange[500]` example is 3.16:1, both below 4.5:1; arbitrary `stringToColor` backgrounds are unguaranteed.",
+        "⚠️ **1.4.11 Non-text Contrast.** Meaningful icon-child avatars use the default white-on-`grey[400]` (1.9:1) or low-contrast author backgrounds (for example `green[500]` 2.78:1), below the 3:1 minimum for graphical objects."
+      ],
+      "criteria": [
+        {
+          "number": "1.3.2",
+          "name": "Meaningful Sequence",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.3.3",
+          "name": "Sensory Characteristics",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.4.4",
+          "name": "Resize Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.4.5",
+          "name": "Images of Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.1.1",
+          "name": "Non-text Content",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.4.1",
+          "name": "Use of Color",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.4.3",
+          "name": "Contrast (Minimum)",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.4.11",
+          "name": "Non-text Contrast",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.4.10",
+          "name": "Reflow",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.12",
+          "name": "Text Spacing",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        }
+      ],
+      "summary": {
+        "rated": 11,
+        "levelA": 5,
+        "levelAA": 6,
+        "supports": 9,
+        "partiallySupports": 2,
+        "doesNotSupport": 0,
+        "verified": 6,
+        "automated": 2
+      }
+    },
+    {
+      "component": "Button",
+      "counts": {
+        "supports": "23",
+        "partiallySupports": "4",
+        "doesNotSupport": "0",
+        "notApplicable": "28",
+        "flagged": "8/27"
+      },
+      "gaps": [
+        "⚠️ **1.4.3 Contrast (Minimum).** `info` and `warning` contained buttons fall short of 4.5:1.",
+        "⚠️ **1.4.11 Non-text Contrast.** Focus-indicator, border, and icon contrast are untested; `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator, and `disableElevation` removes the `contained` one.",
+        "⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator; `contained` loses its indicator only when `disableElevation` is combined with them.",
+        "⚠️ **4.1.3 Status Messages.** The `loading` state adds no live region, so the change may go unannounced."
+      ],
+      "criteria": [
+        {
+          "number": "1.3.2",
+          "name": "Meaningful Sequence",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.3.3",
+          "name": "Sensory Characteristics",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.4.5",
+          "name": "Images of Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "2.4.11",
+          "name": "Focus Not Obscured (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "3.2.4",
+          "name": "Consistent Identification",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "4.1.3",
+          "name": "Status Messages",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.1.1",
+          "name": "Non-text Content",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.1",
+          "name": "Use of Color",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "1.4.3",
+          "name": "Contrast (Minimum)",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.11",
+          "name": "Non-text Contrast",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "2.4.4",
+          "name": "Link Purpose (In Context)",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "2.4.6",
+          "name": "Headings and Labels",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "2.4.7",
+          "name": "Focus Visible",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "3.3.2",
+          "name": "Labels or Instructions",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "4.1.2",
+          "name": "Name, Role, Value",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.4",
+          "name": "Resize Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.10",
+          "name": "Reflow",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.12",
+          "name": "Text Spacing",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.1.1",
+          "name": "Keyboard",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.1.2",
+          "name": "No Keyboard Trap",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.4.3",
+          "name": "Focus Order",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.2",
+          "name": "Pointer Cancellation",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.3",
+          "name": "Label in Name",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.8",
+          "name": "Target Size (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.2.1",
+          "name": "On Focus",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.2.2",
+          "name": "On Input",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        }
+      ],
+      "summary": {
+        "rated": 27,
+        "levelA": 15,
+        "levelAA": 12,
+        "supports": 23,
+        "partiallySupports": 4,
+        "doesNotSupport": 0,
+        "verified": 19,
+        "automated": 11
+      }
+    },
+    {
+      "component": "Checkbox",
+      "counts": {
+        "supports": "22",
+        "partiallySupports": "3",
+        "doesNotSupport": "0",
+        "notApplicable": "30",
+        "flagged": "4/25"
+      },
+      "gaps": [
+        "⚠️ **1.4.11 Non-text Contrast.** The default checkmark icons clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 (a faint custom unchecked box can be about 1.1:1 against the page).",
+        "⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styling.",
+        "⚠️ **4.1.2 Name, Role, Value.** The `indeterminate` state sets `aria-checked=\"mixed\"` on the native checkbox, which ARIA in HTML disallows because the native `.checked` is `false` (axe `aria-conditional-attr` flags it). The conforming fix is to set the native `.indeterminate` property instead."
+      ],
+      "criteria": [
+        {
+          "number": "1.3.2",
+          "name": "Meaningful Sequence",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.3.3",
+          "name": "Sensory Characteristics",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.4.5",
+          "name": "Images of Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "2.4.11",
+          "name": "Focus Not Obscured (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "3.2.4",
+          "name": "Consistent Identification",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.1.1",
+          "name": "Non-text Content",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.1",
+          "name": "Use of Color",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "1.4.3",
+          "name": "Contrast (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.11",
+          "name": "Non-text Contrast",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "2.4.6",
+          "name": "Headings and Labels",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "2.4.7",
+          "name": "Focus Visible",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "3.3.2",
+          "name": "Labels or Instructions",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "4.1.2",
+          "name": "Name, Role, Value",
+          "level": "A",
+          "conformance": "Partially Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.4",
+          "name": "Resize Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.10",
+          "name": "Reflow",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.12",
+          "name": "Text Spacing",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.1.1",
+          "name": "Keyboard",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.1.2",
+          "name": "No Keyboard Trap",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.4.3",
+          "name": "Focus Order",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.2",
+          "name": "Pointer Cancellation",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.3",
+          "name": "Label in Name",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.8",
+          "name": "Target Size (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.2.1",
+          "name": "On Focus",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.2.2",
+          "name": "On Input",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        }
+      ],
+      "summary": {
+        "rated": 25,
+        "levelA": 14,
+        "levelAA": 11,
+        "supports": 22,
+        "partiallySupports": 3,
+        "doesNotSupport": 0,
+        "verified": 21,
+        "automated": 11
+      }
+    },
+    {
+      "component": "LinearProgress",
+      "counts": {
+        "supports": "8",
+        "partiallySupports": "3",
+        "doesNotSupport": "0",
+        "notApplicable": "44",
+        "flagged": "5/11"
+      },
+      "gaps": [
+        "⚠️ **1.4.11 Non-text Contrast.** The fill-vs-track boundary falls below `3:1` for most palette colors in light mode, including the default `primary` (about `2.7:1`); in dark mode only `error` (`2.77:1`) falls short.",
+        "⚠️ **2.2.2 Pause, Stop, Hide.** The `indeterminate`, `query`, and `buffer` variants animate indefinitely with no built-in pause, stop, or hide control.",
+        "⚠️ **4.1.3 Status Messages.** The `progressbar` role is not a live region, so `value` changes are not announced unless the surrounding application adds one."
+      ],
+      "criteria": [
+        {
+          "number": "1.4.1",
+          "name": "Use of Color",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.3.3",
+          "name": "Sensory Characteristics",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.4.11",
+          "name": "Non-text Contrast",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "2.2.2",
+          "name": "Pause, Stop, Hide",
+          "level": "A",
+          "conformance": "Partially Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "2.3.1",
+          "name": "Three Flashes or Below Threshold",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "3.2.4",
+          "name": "Consistent Identification",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "4.1.3",
+          "name": "Status Messages",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "2.4.6",
+          "name": "Headings and Labels",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "4.1.2",
+          "name": "Name, Role, Value",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.10",
+          "name": "Reflow",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        }
+      ],
+      "summary": {
+        "rated": 11,
+        "levelA": 6,
+        "levelAA": 5,
+        "supports": 8,
+        "partiallySupports": 3,
+        "doesNotSupport": 0,
+        "verified": 6,
+        "automated": 1
+      }
+    },
+    {
+      "component": "Radio",
+      "counts": {
+        "supports": "23",
+        "partiallySupports": "2",
+        "doesNotSupport": "0",
+        "notApplicable": "30",
+        "flagged": "3/25"
+      },
+      "gaps": [
+        "⚠️ **1.4.11 Non-text Contrast.** The default dot and circle clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 (the `CustomizedRadios` unchecked circle is about 1.1:1 against the page).",
+        "⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the focus ripple, leaving none unless the author adds `.Mui-focusVisible` styling."
+      ],
+      "criteria": [
+        {
+          "number": "1.3.2",
+          "name": "Meaningful Sequence",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.3.3",
+          "name": "Sensory Characteristics",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.4.5",
+          "name": "Images of Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "2.4.11",
+          "name": "Focus Not Obscured (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "3.2.4",
+          "name": "Consistent Identification",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "3.3.2",
+          "name": "Labels or Instructions",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.1.1",
+          "name": "Non-text Content",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.1",
+          "name": "Use of Color",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "1.4.3",
+          "name": "Contrast (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.11",
+          "name": "Non-text Contrast",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "2.4.6",
+          "name": "Headings and Labels",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "2.4.7",
+          "name": "Focus Visible",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "4.1.2",
+          "name": "Name, Role, Value",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.4",
+          "name": "Resize Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.10",
+          "name": "Reflow",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.12",
+          "name": "Text Spacing",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.1.1",
+          "name": "Keyboard",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.1.2",
+          "name": "No Keyboard Trap",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.4.3",
+          "name": "Focus Order",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.2",
+          "name": "Pointer Cancellation",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.3",
+          "name": "Label in Name",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.8",
+          "name": "Target Size (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.2.1",
+          "name": "On Focus",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.2.2",
+          "name": "On Input",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        }
+      ],
+      "summary": {
+        "rated": 25,
+        "levelA": 14,
+        "levelAA": 11,
+        "supports": 23,
+        "partiallySupports": 2,
+        "doesNotSupport": 0,
+        "verified": 22,
+        "automated": 11
+      }
+    },
+    {
+      "component": "RadioGroup",
+      "counts": {
+        "supports": "7",
+        "partiallySupports": "0",
+        "doesNotSupport": "0",
+        "notApplicable": "30",
+        "inherited": "18",
+        "flagged": "3/7"
+      },
+      "gaps": [],
+      "criteria": [
+        {
+          "number": "1.4.1",
+          "name": "Use of Color",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "2.4.6",
+          "name": "Headings and Labels",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "3.3.2",
+          "name": "Labels or Instructions",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "4.1.2",
+          "name": "Name, Role, Value",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "2.1.1",
+          "name": "Keyboard",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.4.3",
+          "name": "Focus Order",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        }
+      ],
+      "summary": {
+        "rated": 7,
+        "levelA": 6,
+        "levelAA": 1,
+        "supports": 7,
+        "partiallySupports": 0,
+        "doesNotSupport": 0,
+        "verified": 4,
+        "automated": 2
+      }
+    },
+    {
+      "component": "Switch",
+      "counts": {
+        "supports": "23",
+        "partiallySupports": "2",
+        "doesNotSupport": "0",
+        "notApplicable": "30",
+        "flagged": "3/25"
+      },
+      "gaps": [
+        "⚠️ **1.4.11 Non-text Contrast.** In light mode the thumb and track stay under 3:1 (the off-state white thumb is about 2.7:1 on the gray track, the track about 2.7:1 on the page, and each checked color 1.8:1 to 2.6:1 thumb-on-track); the focus indicator is also untested and `disableRipple` removes it.",
+        "⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styling."
+      ],
+      "criteria": [
+        {
+          "number": "1.3.2",
+          "name": "Meaningful Sequence",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.3.3",
+          "name": "Sensory Characteristics",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.4.5",
+          "name": "Images of Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "2.4.11",
+          "name": "Focus Not Obscured (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "3.2.4",
+          "name": "Consistent Identification",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "3.3.2",
+          "name": "Labels or Instructions",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.1.1",
+          "name": "Non-text Content",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.1",
+          "name": "Use of Color",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "1.4.3",
+          "name": "Contrast (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.11",
+          "name": "Non-text Contrast",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "2.4.6",
+          "name": "Headings and Labels",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "2.4.7",
+          "name": "Focus Visible",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "4.1.2",
+          "name": "Name, Role, Value",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.4",
+          "name": "Resize Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.10",
+          "name": "Reflow",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.12",
+          "name": "Text Spacing",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.1.1",
+          "name": "Keyboard",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.1.2",
+          "name": "No Keyboard Trap",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.4.3",
+          "name": "Focus Order",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.2",
+          "name": "Pointer Cancellation",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.3",
+          "name": "Label in Name",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.8",
+          "name": "Target Size (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.2.1",
+          "name": "On Focus",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.2.2",
+          "name": "On Input",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        }
+      ],
+      "summary": {
+        "rated": 25,
+        "levelA": 14,
+        "levelAA": 11,
+        "supports": 23,
+        "partiallySupports": 2,
+        "doesNotSupport": 0,
+        "verified": 22,
+        "automated": 11
+      }
+    },
+    {
+      "component": "TextField",
+      "counts": {
+        "supports": "25",
+        "partiallySupports": "3",
+        "doesNotSupport": "0",
+        "notApplicable": "27",
+        "flagged": "5/28"
+      },
+      "gaps": [
+        "⚠️ **1.4.3 Contrast (Minimum).** The placeholder (about 2.55:1), the focused `warning` label (3.11:1), and the focused color labels on the filled surface (`primary` 4.04:1) fall short of 4.5:1.",
+        "⚠️ **1.4.11 Non-text Contrast.** The default `outlined` resting border (`rgba(0, 0, 0, 0.23)`, about 1.74:1) is below 3:1; the `filled` underline (about 3.03:1) clears it only marginally.",
+        "⚠️ **4.1.3 Status Messages.** A dynamically shown error is associated to the input but is not a live region, so it may go unannounced when focus is elsewhere."
+      ],
+      "criteria": [
+        {
+          "number": "1.3.2",
+          "name": "Meaningful Sequence",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.3.3",
+          "name": "Sensory Characteristics",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.4.5",
+          "name": "Images of Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.4.11",
+          "name": "Non-text Contrast",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "2.4.7",
+          "name": "Focus Visible",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "2.4.11",
+          "name": "Focus Not Obscured (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "3.2.4",
+          "name": "Consistent Identification",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "3.3.3",
+          "name": "Error Suggestion",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "4.1.3",
+          "name": "Status Messages",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.3.5",
+          "name": "Identify Input Purpose",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.1",
+          "name": "Use of Color",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "1.4.3",
+          "name": "Contrast (Minimum)",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "2.4.6",
+          "name": "Headings and Labels",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "3.3.2",
+          "name": "Labels or Instructions",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "4.1.2",
+          "name": "Name, Role, Value",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.4",
+          "name": "Resize Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.10",
+          "name": "Reflow",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.12",
+          "name": "Text Spacing",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.1.1",
+          "name": "Keyboard",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.1.2",
+          "name": "No Keyboard Trap",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.4.3",
+          "name": "Focus Order",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.2",
+          "name": "Pointer Cancellation",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.3",
+          "name": "Label in Name",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.8",
+          "name": "Target Size (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.2.1",
+          "name": "On Focus",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.2.2",
+          "name": "On Input",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.3.1",
+          "name": "Error Identification",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        }
+      ],
+      "summary": {
+        "rated": 28,
+        "levelA": 14,
+        "levelAA": 14,
+        "supports": 25,
+        "partiallySupports": 3,
+        "doesNotSupport": 0,
+        "verified": 23,
+        "automated": 12
+      }
+    },
+    {
+      "component": "ToggleButton",
+      "counts": {
+        "supports": "20",
+        "partiallySupports": "4",
+        "doesNotSupport": "0",
+        "notApplicable": "31",
+        "flagged": "2/24"
+      },
+      "gaps": [
+        "⚠️ **1.4.1 Use of Color.** For the color variants (`primary`, `error`, `info`, `success`), the selected and unselected labels are near-identical in grayscale lightness, so the pressed state is conveyed almost entirely by hue.",
+        "⚠️ **1.4.3 Contrast (Minimum).** When selected, the `primary`, `error`, `info`, and `warning` labels (their `color.main` text over the tinted selected background) fall short of 4.5:1.",
+        "⚠️ **1.4.11 Non-text Contrast.** The focus indicator is the ripple; `disableRipple`/`disableFocusRipple` remove it, leaving no focus indicator. The selected-state fill is untested for 3:1.",
+        "⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` remove the only keyboard focus indicator; the Toggle Button has no box-shadow fallback."
+      ],
+      "criteria": [
+        {
+          "number": "1.3.2",
+          "name": "Meaningful Sequence",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.3.3",
+          "name": "Sensory Characteristics",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.4.5",
+          "name": "Images of Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "2.4.11",
+          "name": "Focus Not Obscured (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "3.2.4",
+          "name": "Consistent Identification",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.1.1",
+          "name": "Non-text Content",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.1",
+          "name": "Use of Color",
+          "level": "A",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "1.4.3",
+          "name": "Contrast (Minimum)",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.11",
+          "name": "Non-text Contrast",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "2.4.6",
+          "name": "Headings and Labels",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "2.4.7",
+          "name": "Focus Visible",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "4.1.2",
+          "name": "Name, Role, Value",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.4",
+          "name": "Resize Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.10",
+          "name": "Reflow",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.12",
+          "name": "Text Spacing",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.1.1",
+          "name": "Keyboard",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.1.2",
+          "name": "No Keyboard Trap",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.4.3",
+          "name": "Focus Order",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.2",
+          "name": "Pointer Cancellation",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.3",
+          "name": "Label in Name",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.8",
+          "name": "Target Size (Minimum)",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.2.1",
+          "name": "On Focus",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "3.2.2",
+          "name": "On Input",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        }
+      ],
+      "summary": {
+        "rated": 24,
+        "levelA": 13,
+        "levelAA": 11,
+        "supports": 20,
+        "partiallySupports": 4,
+        "doesNotSupport": 0,
+        "verified": 22,
+        "automated": 11
+      }
+    },
+    {
+      "component": "ToggleButtonGroup",
+      "counts": {
+        "supports": "4",
+        "partiallySupports": "0",
+        "doesNotSupport": "0",
+        "notApplicable": "31",
+        "inherited": "20",
+        "flagged": "1/4"
+      },
+      "gaps": [],
+      "criteria": [
+        {
+          "number": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "2.4.6",
+          "name": "Headings and Labels",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "4.1.2",
+          "name": "Name, Role, Value",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.4.10",
+          "name": "Reflow",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        }
+      ],
+      "summary": {
+        "rated": 4,
+        "levelA": 2,
+        "levelAA": 2,
+        "supports": 4,
+        "partiallySupports": 0,
+        "doesNotSupport": 0,
+        "verified": 3,
+        "automated": 1
+      }
+    }
+  ]
+}
