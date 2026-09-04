@@ -453,6 +453,13 @@ export function AppSearch(props: AppSearchProps) {
             },
           },
           body: {
+            // DocSearch unconditionally sets `margin-right: <scrollbar width>` on the body to
+            // compensate for the scrollbar it expects to hide. It only hides the one on <body>,
+            // while the docs keep the scrollbar on <html> (overflow-y: scroll), so nothing
+            // disappears and the compensation shifts the whole page to the left instead.
+            '&.DocSearch--active': {
+              marginRight: '0 !important',
+            },
             '.DocSearch-Container': {
               transition: `opacity ${FADE_DURATION}ms`,
               opacity: 0,

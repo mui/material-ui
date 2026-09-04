@@ -1,5 +1,6 @@
 import { describe, beforeAll, afterAll, it, expect, beforeEach, afterEach } from 'vitest';
 import getScrollbarSize from '@mui/utils/getScrollbarSize';
+import { isJsdom } from '@mui/internal-test-utils';
 import { ModalManager } from './ModalManager';
 
 interface Modal {
@@ -125,6 +126,7 @@ describe('ModalManager', () => {
 
     afterEach(() => {
       document.body.removeChild(fixedNode);
+      container1.style.removeProperty('scrollbar-gutter');
       window.innerWidth -= 1;
     });
 
@@ -142,6 +144,30 @@ describe('ModalManager', () => {
       expect(container1.style.paddingRight).to.equal('20px');
       expect(fixedNode.style.paddingRight).to.equal('14.4px');
     });
+
+    // A stable scrollbar gutter keeps the scrollbar space reserved while the scroll is locked,
+    // so compensating for it would shift the content instead of keeping it in place.
+    it.skipIf(isJsdom())(
+      'should not compensate the scrollbar when the scroll container has a stable gutter',
+      () => {
+        // This test is useless without support.
+        expect(CSS.supports('scrollbar-gutter', 'stable')).to.equal(true);
+
+        fixedNode.style.paddingRight = '14.4px';
+        container1.style.setProperty('scrollbar-gutter', 'stable');
+
+        const modal = getDummyModal();
+        modalManager.add(modal, container1);
+        modalManager.mount(modal, {});
+        expect(container1.style.overflow).to.equal('hidden');
+        expect(container1.style.paddingRight).to.equal('20px');
+        expect(fixedNode.style.paddingRight).to.equal('14.4px');
+        modalManager.remove(modal);
+        expect(container1.style.overflow).to.equal('');
+        expect(container1.style.paddingRight).to.equal('20px');
+        expect(fixedNode.style.paddingRight).to.equal('14.4px');
+      },
+    );
 
     it('should disable the scroll even when not overflowing', () => {
       // simulate non-overflowing container
