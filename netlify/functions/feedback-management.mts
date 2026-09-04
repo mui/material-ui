@@ -75,6 +75,28 @@ const getSlackChannelId = (
   return CORE_FEEBACKS_CHANNEL_ID;
 };
 
+// Slack treats `<...>` and `&` as control syntax in mrkdwn. The feedback payload is
+// public and unauthenticated, so escape user-authored text before it reaches Slack to
+// prevent mention (e.g. `<!channel>`), link, and markup injection.
+const escapeSlackMrkdwn = (value: string) =>
+  value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+// Derive the "Create issue" repository from the product server-side. The payload's
+// `githubRepo` is client-controlled and must not be trusted, otherwise the button in a
+// genuine MUI bot message can be pointed at an arbitrary destination.
+const getGitHubRepo = (productId: string) => {
+  if (productId === 'base-ui') {
+    return 'https://github.com/mui/base-ui';
+  }
+  if (productId.startsWith('x-')) {
+    return 'https://github.com/mui/mui-x';
+  }
+  if (productId.startsWith('toolpad-')) {
+    return 'https://github.com/mui/toolpad';
+  }
+  return 'https://github.com/mui/material-ui';
+};
+
 // Setup of the slack bot (taken from https://slack.dev/bolt-js/deployments/aws-lambda)
 const awsLambdaReceiver = new AwsLambdaReceiver({
   signingSecret: process.env.SLACK_SIGNING_SECRET!,
@@ -125,7 +147,6 @@ export const handler: Handler = async (event, context, callback) => {
         currentLocationURL,
         commentSectionURL: inCommentSectionURL,
         commentSectionTitle,
-        githubRepo,
         productId,
       } = data;
 
@@ -136,9 +157,11 @@ export const handler: Handler = async (event, context, callback) => {
 
       const simpleSlackMessage = [
         `New comment ${rating === 1 ? '👍' : ''}${rating === 0 ? '👎' : ''}`,
-        `>${comment.split('\n').join('\n>')}`,
-        `sent from ${currentLocationURL}${
-          commentSectionTitle ? ` (from section <${commentSectionURL}|${commentSectionTitle})>` : ''
+        `>${escapeSlackMrkdwn(comment).split('\n').join('\n>')}`,
+        `sent from ${escapeSlackMrkdwn(currentLocationURL)}${
+          commentSectionTitle
+            ? ` (from section <${escapeSlackMrkdwn(commentSectionURL)}|${escapeSlackMrkdwn(commentSectionTitle)}>)`
+            : ''
         }`,
       ].join('\n\n');
 
@@ -172,7 +195,7 @@ from ${commentSectionURL}
                   text: 'Create issue',
                   emoji: true,
                 },
-                url: `${githubRepo}/issues/new?${githubNewIssueParams}`,
+                url: `${getGitHubRepo(String(productId))}/issues/new?${githubNewIssueParams}`,
               },
               {
                 type: 'button',
