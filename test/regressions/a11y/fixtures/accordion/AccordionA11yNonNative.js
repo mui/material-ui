@@ -5,10 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const CustomDivSummary = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(function CustomDivSummary(props, ref) {
+const CustomDivSummary = React.forwardRef(function CustomDivSummary(props, ref) {
   return <div ref={ref} {...props} />;
 });
 
@@ -27,8 +24,8 @@ export default function AccordionA11yNonNative() {
           <Typography component="span">Non-native summary</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+          sit amet blandit leo lobortis eget.
         </AccordionDetails>
       </Accordion>
       <Accordion disabled>
@@ -42,8 +39,8 @@ export default function AccordionA11yNonNative() {
           <Typography component="span">Disabled non-native summary</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+          sit amet blandit leo lobortis eget.
         </AccordionDetails>
       </Accordion>
     </div>

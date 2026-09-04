@@ -135,7 +135,7 @@ describe('getConfig (accordion a11y)', () => {
       getConfig(A11Y_RULES, 'docs/data/material/components/accordion/AccordionUsage'),
     ).to.deep.include({ enabled: true, assertions: 'all' });
     expect(
-      getConfig(A11Y_RULES, 'docs/data/material/components/accordion/AccordionA11yNonNative'),
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/accordion/AccordionA11yNonNative'),
     ).to.deep.include({ enabled: true, assertions: 'all' });
   });
 

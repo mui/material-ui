@@ -169,12 +169,11 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     viewportWidth: 1440,
     waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
   },
-  { test: 'docs/data/material/components/accordion/AccordionA11y*', enabled: false }, // A11y-only coverage fixtures
-  { test: 'docs/data/material/components/accordion/AccordionA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
   // The a11y fixture tree exists for axe, so screenshots are off by default.
   // Later rules re-enable single fixtures that also guard a visual state.
   { test: 'test/regressions/a11y/fixtures/**', enabled: false }, // A11y-only coverage fixtures
   { test: 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+  { test: 'test/regressions/a11y/fixtures/accordion/AccordionA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
 ];
 
 // Accordion docs demos + a11y fixtures enrolled for axe assertions (the cluster:
@@ -187,8 +186,6 @@ const ACCORDION_A11Y_DEMOS = [
   'CustomizedAccordions',
   'DisabledAccordion',
   'AccordionTransition',
-  'AccordionA11yNonNative',
-  'AccordionA11yTextSpacing',
 ];
 
 // Button docs demos enrolled for axe assertions; IconButton/ButtonBase demos are excluded.
@@ -252,6 +249,15 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
     skipAssertions: ['color-contrast'],
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/accordion/`
+  // (no docs page consumes them); the suite name maps their results into the
+  // same `accordion.a11y.json` as the docs demos above. The divider
+  // `::before` skip is not needed here: both fixtures pass `color-contrast`.
+  {
+    test: 'test/regressions/a11y/fixtures/accordion/{AccordionA11yNonNative,AccordionA11yTextSpacing}',
+    enabled: true,
+    assertions: 'all',
   },
   {
     test: `docs/data/material/components/buttons/{${BUTTON_A11Y_DEMOS.join(',')}}`,
