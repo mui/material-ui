@@ -203,6 +203,18 @@ const BUTTON_A11Y_DEMOS = [
   'CustomizedButtons',
 ];
 
+const CHECKBOX_A11Y_DEMOS = [
+  'Checkboxes',
+  'CheckboxLabels',
+  'ColorCheckboxes',
+  'ControlledCheckbox',
+  'CustomizedCheckbox',
+  'IconCheckboxes',
+  'SizeCheckboxes',
+  'CheckboxesGroup',
+  'IndeterminateCheckbox',
+];
+
 // Switch docs demos enrolled for axe assertions. FormControlLabelPosition is
 // excluded: its `aria-label` on a role-less FormGroup div trips
 // `aria-prohibited-attr`, a demo quirk unrelated to Switch.
@@ -277,6 +289,14 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
     skipAssertions: ['color-contrast'],
+  },
+  // IndeterminateCheckbox needs no skip: the component sets the native
+  // `.indeterminate` property and no aria-checked attribute (#49053), so
+  // axe's aria-conditional-attr passes.
+  {
+    test: `docs/data/material/components/checkboxes/{${CHECKBOX_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
   },
   {
     test: `docs/data/material/components/progress/{${LINEARPROGRESS_A11Y_DEMOS.join(',')}}`,
