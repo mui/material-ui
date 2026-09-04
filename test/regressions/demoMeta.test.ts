@@ -94,7 +94,7 @@ describe('getConfig', () => {
     expect(
       getConfig(
         A11Y_RULES,
-        'docs/data/material/components/toggle-button/ToggleButtonA11ySemanticStates',
+        'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11ySemanticStates',
       ),
     ).to.deep.include({ enabled: true, assertions: 'all' });
   });
@@ -103,7 +103,7 @@ describe('getConfig', () => {
     expect(
       getConfig(
         A11Y_RULES,
-        'docs/data/material/components/toggle-button/ToggleButtonA11yColorMatrix',
+        'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11yColorMatrix',
       ),
     ).to.deep.include({
       enabled: true,
