@@ -22,7 +22,8 @@ export interface InitColorSchemeScriptProps {
    */
   defaultDarkColorScheme?: string | undefined;
   /**
-   * The node (provided as string) used to attach the color-scheme attribute.
+   * The node (provided as a document property path or `document.querySelector()` string) used to
+   * attach the color-scheme attribute.
    * @default 'document.documentElement'
    */
   colorSchemeNode?: string | undefined;
@@ -56,6 +57,52 @@ const maybeReactUseSyncExternalStore: undefined | any = safeReact.useSyncExterna
 
 const subscribe = () => () => {};
 
+// Serialize a value into a JS string literal for embedding in the inline script.
+// `JSON.stringify` handles quotes/backslashes; the extra escapes cover what it leaves
+// intact but the HTML/JS parser does not: `<` (so `</script>` can't break out of the
+// element) and the U+2028/U+2029 line separators (invalid raw inside a JS string).
+function serializeScriptValue(value: string) {
+  return JSON.stringify(value)
+    .replace(/</g, '\\u003c')
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029');
+}
+
+// Resolve `colorSchemeNode` (a string naming the target node) to a JS expression without
+// ever emitting it as raw source: the two supported shapes are matched, and the operand is
+// serialized so a value that slips past the allowlist can only ever be read as data. A
+// dotted `document.x.y` path is walked at runtime rather than interpolated verbatim.
+function getColorSchemeNodeExpression(colorSchemeNode: string) {
+  const querySelectorMatch = colorSchemeNode.match(/^document\.querySelector\((['"])(.*)\1\)$/s);
+  if (querySelectorMatch) {
+    return `document.querySelector(${serializeScriptValue(querySelectorMatch[2])})`;
+  }
+
+  const nodePath = colorSchemeNode.replace(/^window\./, '');
+  if (/^document(?:\.[A-Za-z_$][\w$]*)+$/.test(nodePath)) {
+    return `${serializeScriptValue(nodePath)}.split('.').reduce((node, property) => node?.[property], window)`;
+  }
+
+  return 'document.documentElement';
+}
+
+function getSafeAttribute(initialAttribute: string) {
+  if (initialAttribute === 'class') {
+    return '.%s';
+  }
+  if (initialAttribute === 'data') {
+    return '[data-%s]';
+  }
+  if (
+    /^data-[\w-]+$/.test(initialAttribute) ||
+    /^\.(?:[\w-]|%s)+$/.test(initialAttribute) ||
+    /^\[data-(?:[\w-]|%s)+(?:=['"]?%s['"]?)?\]$/.test(initialAttribute)
+  ) {
+    return initialAttribute;
+  }
+  return DEFAULT_ATTRIBUTE;
+}
+
 /**
  * `true` during the server render and the matching hydration render, `false`
  * on every client render afterwards. React warns when a `<script>` is
@@ -87,29 +134,27 @@ export function buildInitColorSchemeScript(options?: InitColorSchemeScriptProps)
     nonce,
   } = options || {};
   let setter = '';
-  let attribute = initialAttribute;
-  if (initialAttribute === 'class') {
-    attribute = '.%s';
-  }
-  if (initialAttribute === 'data') {
-    attribute = '[data-%s]';
-  }
+  const attribute = getSafeAttribute(initialAttribute);
+  const colorSchemeNodeExpression = getColorSchemeNodeExpression(colorSchemeNode);
   if (attribute.startsWith('.')) {
     const selector = attribute.substring(1);
-    setter += `${colorSchemeNode}.classList.remove('${selector}'.replace('%s', light), '${selector}'.replace('%s', dark));
-      ${colorSchemeNode}.classList.add('${selector}'.replace('%s', colorScheme));`;
+    const serializedSelector = serializeScriptValue(selector);
+    setter += `colorSchemeNode.classList.remove(${serializedSelector}.replace('%s', light), ${serializedSelector}.replace('%s', dark));
+      colorSchemeNode.classList.add(${serializedSelector}.replace('%s', colorScheme));`;
   }
   const matches = attribute.match(/\[([^[\]]+)\]/); // case [data-color-scheme='%s'] or [data-color-scheme]
   if (matches) {
-    const [attr, value] = matches[1].split('=');
+    const [attr, quotedValue] = matches[1].split('=');
+    const value = quotedValue?.replace(/^(['"])(.*)\1$/, '$2');
+    const serializedAttr = serializeScriptValue(attr);
     if (!value) {
-      setter += `${colorSchemeNode}.removeAttribute('${attr}'.replace('%s', light));
-      ${colorSchemeNode}.removeAttribute('${attr}'.replace('%s', dark));`;
+      setter += `colorSchemeNode.removeAttribute(${serializedAttr}.replace('%s', light));
+      colorSchemeNode.removeAttribute(${serializedAttr}.replace('%s', dark));`;
     }
     setter += `
-      ${colorSchemeNode}.setAttribute('${attr}'.replace('%s', colorScheme), ${value ? `${value}.replace('%s', colorScheme)` : '""'});`;
+      colorSchemeNode.setAttribute(${serializedAttr}.replace('%s', colorScheme), ${value ? `${serializeScriptValue(value)}.replace('%s', colorScheme)` : '""'});`;
   } else if (attribute !== '.%s') {
-    setter += `${colorSchemeNode}.setAttribute('${attribute}', colorScheme);`;
+    setter += `colorSchemeNode.setAttribute(${serializeScriptValue(attribute)}, colorScheme);`;
   }
 
   return (
@@ -122,9 +167,10 @@ export function buildInitColorSchemeScript(options?: InitColorSchemeScriptProps)
         __html: `(function() {
 try {
   let colorScheme = '';
-  const mode = localStorage.getItem('${modeStorageKey}') || '${defaultMode}';
-  const dark = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
-  const light = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
+  const colorSchemeNode = ${colorSchemeNodeExpression};
+  const mode = localStorage.getItem(${serializeScriptValue(modeStorageKey)}) || ${serializeScriptValue(defaultMode)};
+  const dark = localStorage.getItem(${serializeScriptValue(`${colorSchemeStorageKey}-dark`)}) || ${serializeScriptValue(defaultDarkColorScheme)};
+  const light = localStorage.getItem(${serializeScriptValue(`${colorSchemeStorageKey}-light`)}) || ${serializeScriptValue(defaultLightColorScheme)};
   if (mode === 'system') {
     // handle system mode
     const mql = window.matchMedia('(prefers-color-scheme: dark)');

@@ -26,7 +26,8 @@ export interface InitColorSchemeScriptProps {
    */
   defaultDarkColorScheme?: string | undefined;
   /**
-   * The node (provided as string) used to attach the color-scheme attribute.
+   * The node (provided as a document property path or `document.querySelector()` string) used to
+   * attach the color-scheme attribute.
    * @default 'document.documentElement'
    */
   colorSchemeNode?: string | undefined;
@@ -100,7 +101,8 @@ InitColorSchemeScript.propTypes /* remove-proptypes */ = {
    */
   attribute: PropTypes.string,
   /**
-   * The node (provided as string) used to attach the color-scheme attribute.
+   * The node (provided as a document property path or `document.querySelector()` string) used to
+   * attach the color-scheme attribute.
    * @default 'document.documentElement'
    */
   colorSchemeNode: PropTypes.string,

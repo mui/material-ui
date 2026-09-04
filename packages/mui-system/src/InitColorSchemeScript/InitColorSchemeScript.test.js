@@ -186,6 +186,58 @@ describe('InitColorSchemeScript', () => {
     });
   });
 
+  it('should serialize configuration values before embedding them in the script', () => {
+    const payload = `';globalThis.muiScriptInjection = true;//</script><script>globalThis.muiScriptInjection = true</script>`;
+    const configurations = [
+      { defaultMode: payload },
+      { defaultLightColorScheme: payload },
+      { defaultDarkColorScheme: payload },
+      { modeStorageKey: payload },
+      { colorSchemeStorageKey: payload },
+      { attribute: payload },
+      { colorSchemeNode: payload },
+    ];
+
+    configurations.forEach((configuration) => {
+      delete globalThis.muiScriptInjection;
+      const { container } = renderToString(<InitColorSchemeScript {...configuration} />);
+
+      expect(container.querySelectorAll('script')).to.have.length(1);
+      eval(container.firstChild.textContent);
+      expect(globalThis.muiScriptInjection).to.equal(undefined);
+    });
+  });
+
+  it('should not create event handler attributes', () => {
+    storage[DEFAULT_MODE_STORAGE_KEY] = 'light';
+    const payload = 'globalThis.muiScriptInjection = true';
+    const { container } = renderToString(
+      <InitColorSchemeScript attribute="onclick" defaultLightColorScheme={payload} />,
+    );
+
+    eval(container.firstChild.textContent);
+    document.documentElement.click();
+
+    expect(document.documentElement.getAttribute('onclick')).to.equal(null);
+    expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal(payload);
+    expect(globalThis.muiScriptInjection).to.equal(undefined);
+  });
+
+  it('should safely resolve a custom querySelector color scheme node', () => {
+    storage[DEFAULT_MODE_STORAGE_KEY] = 'light';
+    const colorSchemeNode = document.createElement('div');
+    colorSchemeNode.id = 'theme-root';
+    document.body.appendChild(colorSchemeNode);
+
+    const { container } = renderToString(
+      <InitColorSchemeScript colorSchemeNode="document.querySelector('#theme-root')" />,
+    );
+    eval(container.firstChild.textContent);
+
+    expect(colorSchemeNode.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('light');
+    colorSchemeNode.remove();
+  });
+
   // Client renders must stay script-free (#48595).
   it('should not render the script on the client', () => {
     const { container } = render(<InitColorSchemeScript />);
