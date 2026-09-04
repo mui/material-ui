@@ -29,6 +29,17 @@ const GAP_COLOR = '#9b6cd9';
 // so `offset` means the same distance wherever it is used.
 const RUNG = 24;
 
+// How far a connector reaches past its rail before the caption starts. Shared
+// by every shape, so a comb and a spine on one rail end level with each other.
+const REACH = 10;
+
+// The I-beam's bar sits this far INSIDE its rail. Every other side caption
+// ladders along the rail itself, and the bar is the one thing drawn down it —
+// left on the rail the two are collinear, and the laddered caption reads as
+// labelling the beam. Inboard rather than outboard so the caption column stays
+// aligned with every other side caption.
+const BEAM_INSET = 10;
+
 // Connector + caption inks, one per aspect. Darker than the fills so text holds
 // up on white, lifted in dark mode where the fills would be far too dim.
 const INK = { padding: '#4f7a35', margin: '#a8641c', gap: '#6c3fb0' };
@@ -295,6 +306,76 @@ export function useAnnotations(
   return state;
 }
 
+/**
+ * The end every connector shares: an optional run along the rail to the rung the
+ * ladder gave this caption, a riser out of the rail, then the text. A comb and a
+ * spine differ in how they reach the rail, never in how they leave it — so both
+ * hand the ending here and land level with each other.
+ */
+function Caption({
+  rail,
+  side,
+  /** where the text sits — the connector's own coordinate, unless a ladder
+   * moved it clear of a neighbour. */
+  anchor,
+  /** the connector's own coordinate, which the run along the rail starts from. */
+  natural,
+  label,
+}: {
+  rail: number;
+  side: Side;
+  anchor: number;
+  natural: number;
+  label: string;
+}) {
+  const away = side === 'top' || side === 'left' ? -1 : 1;
+  // A top/bottom caption needs no run: the rail already spans the stems and the
+  // riser drops at the anchor. Only the side gutters ladder by y.
+  if (side === 'top' || side === 'bottom') {
+    return (
+      <React.Fragment>
+        <line
+          className="leader"
+          x1={anchor}
+          y1={rail}
+          x2={anchor}
+          y2={rail + away * REACH}
+        />
+        <text
+          x={anchor}
+          y={rail + away * (side === 'top' ? 16 : 26)}
+          textAnchor="middle"
+        >
+          {label}
+        </text>
+      </React.Fragment>
+    );
+  }
+  return (
+    <React.Fragment>
+      {/* Stacked clear of a neighbour: run along the rail, then out. */}
+      {Math.abs(anchor - natural) > 0.5 ? (
+        <line className="leader" x1={rail} y1={natural} x2={rail} y2={anchor} />
+      ) : null}
+      <line
+        className="leader"
+        x1={rail}
+        y1={anchor}
+        x2={rail + away * REACH}
+        y2={anchor}
+      />
+      <text
+        x={rail + away * 14}
+        y={anchor}
+        textAnchor={side === 'left' ? 'end' : 'start'}
+        dominantBaseline="middle"
+      >
+        {label}
+      </text>
+    </React.Fragment>
+  );
+}
+
 /** One caption's connector: a stem out of every band it names, a rail joining
  * them, a riser to the label. Axis-aligned throughout — never a diagonal. */
 function Comb({
@@ -316,13 +397,11 @@ function Comb({
   tone?: string;
 }) {
   const horizontal = side === 'top' || side === 'bottom';
-  const away = side === 'top' || side === 'left' ? -1 : 1;
   const xs = from.map((point) => point.x);
   const ys = from.map((point) => point.y);
   const mid = horizontal
     ? (Math.min(...xs) + Math.max(...xs)) / 2
     : (Math.min(...ys) + Math.max(...ys)) / 2;
-  const anchor = labelAt ?? mid;
 
   return (
     <g className={tone}>
@@ -345,46 +424,13 @@ function Comb({
           y2={horizontal ? rail : Math.max(...ys)}
         />
       ) : null}
-      {horizontal ? (
-        <React.Fragment>
-          <line
-            className="leader"
-            x1={anchor}
-            y1={rail}
-            x2={anchor}
-            y2={rail + away * 10}
-          />
-          <text
-            x={anchor}
-            y={rail + away * (side === 'top' ? 16 : 26)}
-            textAnchor="middle"
-          >
-            {label}
-          </text>
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          {/* Stacked clear of a neighbour: run along the rail, then out. */}
-          {Math.abs(anchor - mid) > 0.5 ? (
-            <line className="leader" x1={rail} y1={mid} x2={rail} y2={anchor} />
-          ) : null}
-          <line
-            className="leader"
-            x1={rail}
-            y1={anchor}
-            x2={rail + away * 10}
-            y2={anchor}
-          />
-          <text
-            x={rail + away * 14}
-            y={anchor}
-            textAnchor={side === 'left' ? 'end' : 'start'}
-            dominantBaseline="middle"
-          >
-            {label}
-          </text>
-        </React.Fragment>
-      )}
+      <Caption
+        rail={rail}
+        side={side}
+        anchor={labelAt ?? mid}
+        natural={mid}
+        label={label}
+      />
     </g>
   );
 }
@@ -439,29 +485,13 @@ function Spine({
           y2={vertical ? mark : cross + TICK}
         />
       ))}
-      {vertical ? (
-        <text
-          x={cross}
-          y={rail + away * (side === 'top' ? 16 : 26)}
-          textAnchor="middle"
-        >
-          {label}
-        </text>
-      ) : (
-        <React.Fragment>
-          {Math.abs(anchor - cross) > 0.5 ? (
-            <line className="leader" x1={rail} y1={cross} x2={rail} y2={anchor} />
-          ) : null}
-          <text
-            x={rail + away * 14}
-            y={anchor}
-            textAnchor={side === 'left' ? 'end' : 'start'}
-            dominantBaseline="middle"
-          >
-            {label}
-          </text>
-        </React.Fragment>
-      )}
+      <Caption
+        rail={rail}
+        side={side}
+        anchor={anchor}
+        natural={cross}
+        label={label}
+      />
     </g>
   );
 }
@@ -478,13 +508,17 @@ export function Annotations({
   // A caption leaves through the gutter its box is nearest, so a slot low in the
   // demo doesn't drag a leader up across everything above it. Several on the same
   // side stack into lanes.
-  const lanes: Record<Side, number> = { top: 0, bottom: 0, left: 0, right: 0 };
+  // Only the side gutters count: top/bottom separate by rung, not by lane.
+  const lanes: Record<'left' | 'right', number> = { left: 0, right: 0 };
   const nearest = (box: Rect, axis: 'inline' | 'block'): Side => {
     if (axis === 'inline') {
       return box.y + box.height / 2 < bounds.y + bounds.height / 2 ? 'top' : 'bottom';
     }
     return box.x + box.width / 2 < bounds.x + bounds.width / 2 ? 'left' : 'right';
   };
+  /** An I-beam and an icon box measure height, so only a side gutter can hold
+   * their caption — the block axis always answers with one. */
+  const nearestSide = (box: Rect) => nearest(box, 'block') as 'left' | 'right';
   // Top/bottom captions only need a new rung when they would actually overlap
   // in x — the same reasoning that gave the side gutters a single rail. Bumping
   // a lane per annotation instead pushed rails far out, and a spine has to run
@@ -555,6 +589,57 @@ export function Annotations({
 
   const fills: React.ReactNode[] = [];
   const marks: React.ReactNode[] = [];
+
+  /**
+   * Draw one caption's connector. The shape follows from the side: inside the
+   * aspect's natural pair a comb's stems reach it directly; outside, only a
+   * spine can, by crossing the bands instead of leaving them perpendicular.
+   *
+   * The rail must be claimed before the rung, in this order — both ladders are
+   * stateful, and the caption's position is where they cross.
+   */
+  const connect = ({
+    id,
+    naturalPair,
+    side,
+    offset,
+    tone,
+    label,
+    points,
+    /** where the caption sits on a top/bottom rail. */
+    alongTop,
+    /** the connector's natural y, when the caption lands in a side gutter. */
+    alongSide,
+  }: {
+    id: string;
+    naturalPair: Side[];
+    side: Side;
+    offset?: number;
+    tone?: string;
+    label: string;
+    points: { x: number; y: number }[];
+    alongTop: number;
+    alongSide: number;
+  }) => {
+    const rail = nextRail(side, offset, alongTop, label);
+    const sideways = side === 'left' || side === 'right';
+    const labelAt = sideways ? reserveY(side, alongSide, offset) : alongTop;
+    const shared = { rail, side, label, tone, labelAt };
+    marks.push(
+      naturalPair.includes(side) ? (
+        <Comb key={id} from={points} {...shared} />
+      ) : (
+        // A spine travels along one axis, so it ticks each stem at that stem's
+        // coordinate on it — the same points the comb would have used.
+        <Spine
+          key={id}
+          marks={points.map((point) => (sideways ? point.x : point.y))}
+          cross={sideways ? alongSide : alongTop}
+          {...shared}
+        />
+      ),
+    );
+  };
   // One ring per element, however many band annotations point at it.
   const ringed = new Set<string>();
 
@@ -618,7 +703,6 @@ export function Annotations({
       const naturalPair: Side[] =
         axis === 'inline' ? ['top', 'bottom'] : ['left', 'right'];
       const side = annotation.place ?? nearest(box, axis);
-      const flipped = !naturalPair.includes(side);
       const at = annotation.at ?? 0.5;
       const stem = (band: 'left' | 'right' | 'top' | 'bottom') => {
         const near = side === 'top' ? outer.y : outer.y + outer.height;
@@ -649,55 +733,17 @@ export function Annotations({
       const named = byValue.size === 1 ? annotation : { ...annotation, token: undefined };
       const tone = isPadding ? 'tone-padding' : 'tone-margin';
       byValue.forEach((group, value) => {
-        const text = caption(group[0].value, named);
-        const alongX = outer.x + outer.width * at;
-        const rail = nextRail(side, annotation.offset, alongX, text);
-
-        if (flipped) {
-          // The spine crosses the bands, so it is fixed on the axis the bands
-          // are stacked along and travels along the other.
-          const vertical = side === 'top' || side === 'bottom';
-          const cross = vertical
-            ? outer.x + outer.width * at
-            : outer.y + outer.height * at;
-          marks.push(
-            <Spine
-              key={`spine-${key}-${value}`}
-              marks={group.map((band) => {
-                const point = stem(band.side);
-                return vertical ? point.y : point.x;
-              })}
-              cross={cross}
-              rail={rail}
-              side={side}
-              label={text}
-              tone={tone}
-              labelAt={
-                side === 'left' || side === 'right'
-                  ? reserveY(side, cross, annotation.offset)
-                  : undefined
-              }
-            />,
-          );
-          return;
-        }
-
-        const points = group.map((band) => stem(band.side));
-        const sideways = side === 'left' || side === 'right';
-        const along = sideways
-          ? reserveY(side, outer.y + outer.height * at, annotation.offset)
-          : alongX;
-        marks.push(
-          <Comb
-            key={`comb-${key}-${value}`}
-            from={points}
-            rail={rail}
-            side={side}
-            label={text}
-            tone={tone}
-            labelAt={along}
-          />,
-        );
+        connect({
+          id: `link-${key}-${value}`,
+          naturalPair,
+          side,
+          offset: annotation.offset,
+          tone,
+          label: caption(group[0].value, named),
+          points: group.map((band) => stem(band.side)),
+          alongTop: outer.x + outer.width * at,
+          alongSide: outer.y + outer.height * at,
+        });
       });
       return;
     }
@@ -729,54 +775,26 @@ export function Annotations({
         : ['top', 'bottom'];
       const side =
         annotation.place ?? nearest(box, gap.vertical ? 'block' : 'inline');
-      const at = annotation.at;
+      const at = annotation.at ?? 0.5;
       const centre = {
-        x: at === undefined ? band.x + band.width / 2 : band.x + band.width * at,
-        y: at === undefined ? band.y + band.height / 2 : band.y + band.height * at,
+        x: band.x + band.width * at,
+        y: band.y + band.height * at,
       };
-      const gapText = caption(gap.size, annotation);
-      const rail = nextRail(side, annotation.offset, centre.x, gapText);
-
-      if (!naturalPair.includes(side)) {
-        const vertical = side === 'top' || side === 'bottom';
-        marks.push(
-          <Spine
-            key={`spine-${key}`}
-            marks={[vertical ? centre.y : centre.x]}
-            cross={vertical ? centre.x : centre.y}
-            rail={rail}
-            side={side}
-            label={gapText}
-            tone="tone-gap"
-            labelAt={
-              side === 'left' || side === 'right'
-                ? reserveY(side, centre.y, annotation.offset)
-                : undefined
-            }
-          />,
-        );
-        return;
-      }
-
-      marks.push(
-        <Comb
-          key={`comb-${key}`}
-          from={[
-            gap.vertical
-              ? { x: side === 'left' ? band.x : band.x + band.width, y: centre.y }
-              : { x: centre.x, y: side === 'top' ? band.y : band.y + band.height },
-          ]}
-          rail={rail}
-          side={side}
-          label={gapText}
-          tone="tone-gap"
-          labelAt={
-            side === 'left' || side === 'right'
-              ? reserveY(side, centre.y, annotation.offset)
-              : undefined
-          }
-        />,
-      );
+      connect({
+        id: `link-${key}`,
+        naturalPair,
+        side,
+        offset: annotation.offset,
+        tone: 'tone-gap',
+        label: caption(gap.size, annotation),
+        points: [
+          gap.vertical
+            ? { x: side === 'left' ? band.x : band.x + band.width, y: centre.y }
+            : { x: centre.x, y: side === 'top' ? band.y : band.y + band.height },
+        ],
+        alongTop: centre.x,
+        alongSide: centre.y,
+      });
       return;
     }
 
@@ -788,22 +806,22 @@ export function Annotations({
       fills.push(
         <path key={`icon-${key}`} className="slot-outline" d={rectPath(icon)} />,
       );
-      const side = nearest(icon, 'block') as 'left' | 'right';
-      marks.push(
-        <Comb
-          key={`comb-${key}`}
-          from={[
-            {
-              x: side === 'left' ? icon.x : icon.x + icon.width,
-              y: icon.y + icon.height / 2,
-            },
-          ]}
-          rail={nextRail(side)}
-          side={side}
-          label={caption(icon.height, annotation)}
-          labelAt={reserveY(side, icon.y + icon.height / 2)}
-        />,
-      );
+      const side = nearestSide(icon);
+      connect({
+        id: `link-${key}`,
+        naturalPair: ['left', 'right'],
+        side,
+        offset: annotation.offset,
+        label: caption(icon.height, annotation),
+        points: [
+          {
+            x: side === 'left' ? icon.x : icon.x + icon.width,
+            y: icon.y + icon.height / 2,
+          },
+        ],
+        alongTop: icon.x + icon.width / 2,
+        alongSide: icon.y + icon.height / 2,
+      });
       return;
     }
 
@@ -814,11 +832,12 @@ export function Annotations({
     const centred =
       Math.abs(box.x + box.width / 2 - (bounds.x + bounds.width / 2)) < 1;
     const lighter: 'left' | 'right' = lanes.left <= lanes.right ? 'left' : 'right';
-    const side: 'left' | 'right' = centred
-      ? lighter
-      : (nearest(box, 'block') as 'left' | 'right');
+    const side: 'left' | 'right' = centred ? lighter : nearestSide(box);
     const rail = nextRail(side);
     const labelY = reserveY(side, box.y + box.height / 2);
+    // The stem still runs to the rail, so it crosses the bar at the box's own
+    // centre — which is where an I-beam's leader belongs anyway.
+    const bar = rail - (side === 'right' ? 1 : -1) * BEAM_INSET;
     outline();
     marks.push(
       <React.Fragment key={`beam-${key}`}>
@@ -829,13 +848,13 @@ export function Annotations({
           x2={rail}
           y2={box.y + box.height / 2}
         />
-        <line className="dim" x1={rail} y1={box.y} x2={rail} y2={box.y + box.height} />
-        <line className="dim" x1={rail - 4} y1={box.y} x2={rail + 4} y2={box.y} />
+        <line className="dim" x1={bar} y1={box.y} x2={bar} y2={box.y + box.height} />
+        <line className="dim" x1={bar - 4} y1={box.y} x2={bar + 4} y2={box.y} />
         <line
           className="dim"
-          x1={rail - 4}
+          x1={bar - 4}
           y1={box.y + box.height}
-          x2={rail + 4}
+          x2={bar + 4}
           y2={box.y + box.height}
         />
         {Math.abs(labelY - (box.y + box.height / 2)) > 0.5 ? (

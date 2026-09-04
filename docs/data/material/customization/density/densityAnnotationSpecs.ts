@@ -66,7 +66,17 @@ export const DENSITY_ANNOTATIONS: Record<
   Autocomplete: (values) => {
     const annotations: Annotation[] = [
       { on: '.MuiAutocomplete-option', aspect: 'touch-target', token: 'touch-target', label: 'Option' },
-      { on: '.MuiAutocomplete-option', aspect: 'padding', axis: 'inline', token: 'x-small', label: 'Option' },
+      // Below the list, not above it: the option is inside the popup, so a top
+      // gutter would drag both stems up across the input. Downward they follow
+      // the listbox's own edges, clear of every option's text.
+      {
+        on: '.MuiAutocomplete-option',
+        aspect: 'padding',
+        axis: 'inline',
+        token: 'x-small',
+        label: 'Option',
+        place: 'bottom',
+      },
       { on: '.MuiAutocomplete-option', aspect: 'padding', axis: 'block', token: 'xx-small', label: 'Option' },
       // 3px, and a composite of private vars — px only. The inline axis is not
       // annotated: its right band is master's 39px popup-indicator reserve, and
@@ -74,7 +84,9 @@ export const DENSITY_ANNOTATIONS: Record<
       { on: '.MuiOutlinedInput-root', aspect: 'padding', axis: 'block', root: true, label: 'Input root' },
       // ~1px, what is left of the touch target once the root's 3px is taken.
       { on: '.MuiAutocomplete-input', aspect: 'padding', axis: 'block', label: 'Input' },
-      { on: '.MuiAutocomplete-input', aspect: 'padding', axis: 'inline', token: '4px', label: 'Input' },
+      // No token: the preset authors a bare `4px`, so naming it would only
+      // repeat the number the caption already prints.
+      { on: '.MuiAutocomplete-input', aspect: 'padding', axis: 'inline', label: 'Input' },
     ];
     if (values.multiple === true) {
       annotations.push(
@@ -90,6 +102,10 @@ export const DENSITY_ANNOTATIONS: Record<
     { on: '.MuiAvatar-root', aspect: 'touch-target', token: 'touch-target', root: true, label: 'Avatar' },
   ],
   Badge: (values) => [
+    // The anchor. Outlining it is what makes the badge read as hanging off a
+    // control rather than floating beside a stray glyph — and the 32px box is
+    // the shared-density touch target, not decoration.
+    { on: '.MuiIconButton-root', aspect: 'touch-target', token: 'touch-target', label: 'Button' },
     // Not `root`: the dashed outline is what makes a 20px chip floating over an
     // icon legible as the box being measured.
     {
@@ -112,7 +128,9 @@ export const DENSITY_ANNOTATIONS: Record<
         ]),
   ],
   BottomNavigation: () => [
-    { on: '.MuiBottomNavigation-root', aspect: 'touch-target', token: 'xx-large', root: true, label: 'Bar' },
+    // Not `root`: the bar paints nothing of its own, so the dashed outline is
+    // the only thing showing which box the 48px belongs to.
+    { on: '.MuiBottomNavigation-root', aspect: 'touch-target', token: 'xx-large', label: 'Bar' },
     { on: '.MuiBottomNavigationAction-root', aspect: 'padding', axis: 'inline', token: 'small', label: 'Action' },
     // Icon over label — a row gap, not a column one.
     { on: '.MuiBottomNavigationAction-root', aspect: 'gap', token: 'xx-small', label: 'Action' },

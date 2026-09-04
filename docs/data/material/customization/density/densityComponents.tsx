@@ -74,9 +74,9 @@ import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import InboxIcon from '@mui/icons-material/Inbox';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonIcon from '@mui/icons-material/Person';
 import RestoreIcon from '@mui/icons-material/Restore';
 import SearchIcon from '@mui/icons-material/Search';
@@ -128,12 +128,16 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
     controls: [{ prop: 'multiple', type: 'switch', initial: false }],
     // The listbox is absolutely positioned, so the wrapper is what reserves the
     // room the stage measures its bounds from — without it every option caption
-    // lands on top of the list. `open disablePortal` keeps the popper inside the
-    // demo, where the selectors can reach it.
+    // lands on top of the list. 148 is the list's own bottom (144) plus a hair:
+    // any taller and the bottom gutter opens a gap of dead space under the
+    // popup, since the rails hang off these bounds. `multiple` keeps its tag
+    // inside the same input height, so one number covers both states.
+    // `open disablePortal` keeps the popper inside the demo, where the
+    // selectors can reach it.
     render: (values) => {
       const multiple = values.multiple === true;
       return (
-        <Box sx={{ width: 300, height: 216 }}>
+        <Box sx={{ width: 300, height: 148 }}>
           <Autocomplete
             key={String(multiple)}
             open
@@ -160,7 +164,9 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
     render: (values) => (
       <Box sx={{ p: 2 }}>
         <Badge badgeContent={4} color="primary" variant={values.variant as 'standard' | 'dot'}>
-          <MailIcon />
+          <IconButton>
+            <NotificationsIcon />
+          </IconButton>
         </Badge>
       </Box>
     ),
