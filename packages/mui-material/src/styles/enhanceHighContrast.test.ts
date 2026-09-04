@@ -9,6 +9,13 @@ import formLabelClasses from '../FormLabel/formLabelClasses';
 import inputClasses from '../Input/inputClasses';
 import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
 import menuItemClasses from '../MenuItem/menuItemClasses';
+import {
+  menu2CheckboxItemClasses,
+  menu2ItemClasses,
+  menu2LinkItemClasses,
+  menu2RadioItemClasses,
+  menu2SubmenuTriggerClasses,
+} from '../Unstable_Menu2/menu2Classes';
 import nativeSelectClasses from '../NativeSelect/nativeSelectClasses';
 import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import radioClasses from '../Radio/radioClasses';
@@ -587,6 +594,174 @@ describe('enhanceHighContrast', () => {
     });
   });
 
+  describe('Menu2 item overrides', () => {
+    const itemCases: Array<
+      [
+        component: string,
+        classes: { disabled: string; highlighted: string; selected: string },
+        slot: string,
+      ]
+    > = [
+      ['MuiMenu2Item', menu2ItemClasses, 'root'],
+      ['MuiMenu2LinkItem', menu2LinkItemClasses, 'root'],
+      ['MuiMenu2CheckboxItem', menu2CheckboxItemClasses, 'root'],
+      ['MuiMenu2RadioItem', menu2RadioItemClasses, 'root'],
+    ];
+
+    test.each(itemCases)(
+      '%s keys the active state off `highlighted`',
+      (component, classes, slot) => {
+        const theme = enhanceHighContrast(createTheme());
+        const rootOverrides = (theme.components as any)[component].styleOverrides[
+          slot
+        ] as Array<StyleOverride>;
+        const hcmOverride = rootOverrides[rootOverrides.length - 1];
+
+        expect(hcmOverride[`&.${classes.highlighted}, &:hover`]).to.deep.equal({
+          [HCM]: {
+            forcedColorAdjust: 'none',
+            color: 'HighlightText',
+            backgroundColor: 'Highlight',
+            outline: 'none',
+          },
+        });
+      },
+    );
+
+    test.each(itemCases)('%s covers disabled and selected', (component, classes, slot) => {
+      const theme = enhanceHighContrast(createTheme());
+      const rootOverrides = (theme.components as any)[component].styleOverrides[
+        slot
+      ] as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1];
+
+      expect(hcmOverride[`&.${classes.disabled}`]).to.deep.equal({
+        [HCM]: { color: 'GrayText', opacity: 1 },
+      });
+      expect(hcmOverride[`&.${classes.selected}`]).to.deep.equal({
+        [HCM]: {
+          forcedColorAdjust: 'none',
+          color: 'SelectedItemText',
+          backgroundColor: 'SelectedItem',
+        },
+      });
+      const selectedActiveKey = `&.${classes.selected}.${classes.highlighted}, &.${classes.selected}:hover`;
+      expect(hcmOverride[selectedActiveKey]).to.deep.equal({
+        [HCM]: { color: 'HighlightText', backgroundColor: 'Highlight' },
+      });
+    });
+
+    test.each(itemCases)('%s uses custom tokens', (component, classes, slot) => {
+      const theme = enhanceHighContrast(createTheme(), {
+        disabled: 'ButtonText',
+        activeText: 'Canvas',
+        activeBackground: 'ButtonBorder',
+      });
+      const rootOverrides = (theme.components as any)[component].styleOverrides[
+        slot
+      ] as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1];
+
+      expect(hcmOverride[`&.${classes.disabled}`]).to.deep.equal({
+        [HCM]: { color: 'ButtonText', opacity: 1 },
+      });
+      expect(hcmOverride[`&.${classes.highlighted}, &:hover`]).to.deep.equal({
+        [HCM]: {
+          forcedColorAdjust: 'none',
+          color: 'Canvas',
+          backgroundColor: 'ButtonBorder',
+          outline: 'none',
+        },
+      });
+    });
+
+    test.each(itemCases)(
+      '%s keeps the disabled cue when highlighted',
+      (component, classes, slot) => {
+        // Base UI keeps disabled items focusable, so this combination is
+        // reachable here even though it is not on the classic item.
+        const theme = enhanceHighContrast(createTheme());
+        const rootOverrides = (theme.components as any)[component].styleOverrides[
+          slot
+        ] as Array<StyleOverride>;
+        const hcmOverride = rootOverrides[rootOverrides.length - 1];
+
+        expect(hcmOverride[`&.${classes.disabled}.${classes.highlighted}`]).to.deep.equal({
+          [HCM]: {
+            forcedColorAdjust: 'none',
+            color: 'GrayText',
+            backgroundColor: 'Canvas',
+            outline: '1px solid ButtonBorder',
+          },
+        });
+      },
+    );
+
+    test.each(itemCases)(
+      '%s orders the disabled rules after the highlight',
+      (component, classes, slot) => {
+        const theme = enhanceHighContrast(createTheme());
+        const rootOverrides = (theme.components as any)[component].styleOverrides[
+          slot
+        ] as Array<StyleOverride>;
+        const keys = Object.keys(rootOverrides[rootOverrides.length - 1]);
+
+        expect(keys.indexOf(`&.${classes.disabled}`)).to.be.greaterThan(
+          keys.indexOf(`&.${classes.highlighted}, &:hover`),
+        );
+      },
+    );
+
+    test('MuiMenu2SubmenuTrigger owns its open state', () => {
+      const theme = enhanceHighContrast(createTheme());
+      const rootOverrides = theme.components?.MuiMenu2SubmenuTrigger?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<string, StyleOverride>;
+
+      expect(
+        hcmOverride[
+          `&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.open}.${menu2SubmenuTriggerClasses.selected}`
+        ],
+      ).to.deep.equal({
+        [HCM]: {
+          forcedColorAdjust: 'none',
+          color: 'HighlightText',
+          backgroundColor: 'Highlight',
+        },
+      });
+    });
+  });
+
+  describe('Menu2 indicator overrides', () => {
+    // The checkmark is a hole in the `CheckBox` icon, so it shows the item
+    // background on its own and needs no override of its own.
+    test('MuiMenu2CheckboxItemIndicator inherits the item color', () => {
+      const theme = enhanceHighContrast(createTheme());
+      const rootOverrides = theme.components?.MuiMenu2CheckboxItemIndicator?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1];
+
+      // `&[data-checked]` must be present: the indicator's own checked rule is
+      // (0,2,0) and outranks a bare `color: inherit` at (0,1,0).
+      expect(hcmOverride[HCM]).to.deep.equal({
+        '&, &[data-checked]': { color: 'inherit' },
+      });
+    });
+
+    test('MuiMenu2RadioItemIndicator inherits the item color', () => {
+      const theme = enhanceHighContrast(createTheme());
+      const rootOverrides = theme.components?.MuiMenu2RadioItemIndicator?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1];
+
+      // `&[data-checked]` must be present: the indicator's own checked rule is
+      // (0,2,0) and outranks a bare `color: inherit` at (0,1,0).
+      expect(hcmOverride[HCM]).to.deep.equal({
+        '&, &[data-checked]': { color: 'inherit' },
+      });
+    });
+  });
+
   describe('MuiNativeSelect overrides', () => {
     test('should apply disabled color to disabled icon', () => {
       const theme = enhanceHighContrast(createTheme());
@@ -880,6 +1055,13 @@ describe('enhanceHighContrast', () => {
       ['MuiLinearProgress', 'bar2'],
       ['MuiListItemButton', 'root'],
       ['MuiMenuItem', 'root'],
+      ['MuiMenu2Item', 'root'],
+      ['MuiMenu2LinkItem', 'root'],
+      ['MuiMenu2CheckboxItem', 'root'],
+      ['MuiMenu2RadioItem', 'root'],
+      ['MuiMenu2SubmenuTrigger', 'root'],
+      ['MuiMenu2CheckboxItemIndicator', 'root'],
+      ['MuiMenu2RadioItemIndicator', 'root'],
       ['MuiNativeSelect', 'icon'],
       ['MuiOutlinedInput', 'root'],
       ['MuiRadio', 'root'],

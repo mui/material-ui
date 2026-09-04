@@ -1,0 +1,162 @@
+import * as React from 'react';
+import clsx from 'clsx';
+import appendOwnerState from '@mui/utils/appendOwnerState';
+import isHostComponent from '@mui/utils/isHostComponent';
+import type { MuiKeyboardEvent } from '../ButtonBase/useButtonBase';
+
+// One log per component for each warning, so a bad trigger does not spam the
+// console on every render.
+const warnedFragmentTrigger = new Set<string>();
+const warnedTriggerRef = new Set<string>();
+const warnedDuplicateValue = new Set<string>();
+
+export function resetMenu2WarningFlags() {
+  warnedFragmentTrigger.clear();
+  warnedTriggerRef.clear();
+  warnedDuplicateValue.clear();
+}
+
+export function warnMenu2FragmentTrigger(
+  trigger: React.ReactNode,
+  componentName: string,
+  triggerExample: string,
+) {
+  // A fragment is an element, so the type does not catch it. Base UI cannot
+  // merge the trigger behavior into a fragment, and the trigger renders as
+  // bare content instead.
+  if (
+    trigger == null ||
+    (trigger as React.ReactElement).type !== React.Fragment ||
+    warnedFragmentTrigger.has(componentName)
+  ) {
+    return;
+  }
+
+  warnedFragmentTrigger.add(componentName);
+  console.error(
+    `MUI: The \`trigger\` prop of \`${componentName}\` cannot be a fragment. ` +
+      `Pass a single element, for example a \`${triggerExample}\`.`,
+  );
+}
+
+export function warnMenu2TriggerRef(trigger: React.ReactNode, componentName: string) {
+  // A wrapper that does not forward the ref also swallows the trigger behavior,
+  // and nothing else reports it.
+  if (trigger == null || warnedTriggerRef.has(componentName)) {
+    return;
+  }
+
+  warnedTriggerRef.add(componentName);
+  console.error(
+    `MUI: The \`trigger\` element of \`${componentName}\` did not receive a ref. ` +
+      'A component used as the trigger must forward its props and its ref to ' +
+      'the element that it renders, the way Tooltip does. Without them the ' +
+      'menu behavior does not reach the element.',
+  );
+}
+
+export function warnMenu2DuplicateValue(hookName: string) {
+  // Only the value tells the items apart, so a shared value makes two items
+  // describe one popover.
+  if (warnedDuplicateValue.has(hookName)) {
+    return;
+  }
+
+  warnedDuplicateValue.add(hookName);
+  console.error(
+    `MUI: \`${hookName}\` received the same \`value\` twice in one render. ` +
+      'Each item needs a value that identifies it, the same rule that React ' +
+      'applies to `key`.',
+  );
+}
+
+export type StateClassName<State> = string | ((state: State) => string | undefined) | undefined;
+
+export function resolveStateClassName<State>(
+  className: StateClassName<State>,
+  state: State,
+): string | undefined {
+  return typeof className === 'function' ? className(state) : className;
+}
+
+export function mergeStateClassName<State>(
+  className: StateClassName<State>,
+  getClassName: (state: State) => string | undefined,
+) {
+  return (state: State) => clsx(getClassName(state), resolveStateClassName(className, state));
+}
+
+export type SlotProps<SlotPropsValue, OwnerState> =
+  SlotPropsValue | ((ownerState: OwnerState) => SlotPropsValue) | undefined;
+
+export interface Menu2RootSlots {
+  root?: React.ElementType | undefined;
+}
+
+export interface Menu2RootSlotProps<OwnerState> {
+  root?: SlotProps<Record<string, any>, OwnerState>;
+}
+
+// Base UI owns the Enter and Space activation of a menu item. The item root is
+// a ButtonBase rendered as a div, so ButtonBase would emulate a second one.
+// `defaultMuiPrevented` is the MUI convention that turns that emulation off.
+export function suppressButtonBaseKeyboardActivation(props?: {
+  onKeyDown?: React.KeyboardEventHandler<HTMLElement> | undefined;
+  onKeyUp?: React.KeyboardEventHandler<HTMLElement> | undefined;
+}) {
+  const externalOnKeyDown = props?.onKeyDown;
+  const externalOnKeyUp = props?.onKeyUp;
+
+  return {
+    onKeyDown: (event: MuiKeyboardEvent) => {
+      externalOnKeyDown?.(event);
+      event.defaultMuiPrevented = true;
+    },
+    onKeyUp: (event: MuiKeyboardEvent) => {
+      externalOnKeyUp?.(event);
+      event.defaultMuiPrevented = true;
+    },
+  };
+}
+
+export function getMenu2RootRender<OwnerState>(
+  RootSlot: React.ElementType,
+  ownerState: OwnerState,
+  props?: Record<string, any>,
+  defaultRootSlot?: React.ElementType,
+) {
+  const rootProps = { ...(props ?? {}) };
+
+  // These props are internal to `ButtonBase`. Only the default root reaches it,
+  // so a custom slot would spread them onto the DOM and React would warn.
+  if (defaultRootSlot != null && RootSlot !== defaultRootSlot) {
+    delete rootProps.disableRipple;
+  }
+
+  if (isHostComponent(RootSlot)) {
+    delete rootProps.as;
+    delete rootProps.component;
+    delete rootProps.ownerState;
+    delete rootProps.sx;
+
+    return React.createElement(RootSlot, rootProps);
+  }
+
+  return React.createElement(RootSlot, appendOwnerState(RootSlot, rootProps, ownerState));
+}
+
+export function isMenu2RootNativeButton(
+  RootSlot: React.ElementType,
+  component: React.ElementType | undefined,
+  defaultNativeButton = false,
+) {
+  if (isHostComponent(RootSlot)) {
+    return RootSlot === 'button';
+  }
+
+  if (component != null) {
+    return component === 'button';
+  }
+
+  return defaultNativeButton;
+}
