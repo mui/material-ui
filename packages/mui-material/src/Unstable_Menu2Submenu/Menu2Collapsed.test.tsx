@@ -101,8 +101,74 @@ describe('<Menu2 /> collapsed API', () => {
       }
 
       function getPopup() {
-        return screen.getByRole('menuitem', { name: 'Alpha' }).closest('[role="menu"]')!;
+        return screen
+          .getByRole('menuitem', { name: 'Alpha' })
+          .closest<HTMLDivElement>('[role="menu"]')!;
       }
+
+      it('applies className and style to the popup, and sx to Paper', async () => {
+        const { user } = render(
+          <TestMenu
+            className="custom-popup"
+            style={{ paddingTop: '3px' }}
+            sx={{ paddingBottom: '7px' }}
+            slotProps={{ paper: { 'data-testid': 'paper' } }}
+          />,
+        );
+
+        await openSubmenu(user);
+        const popup = getPopup();
+        const paper = screen.getByTestId('paper');
+        expect(popup).to.have.class('custom-popup');
+        expect(paper).not.to.have.class('custom-popup');
+        expect(popup.style.paddingTop).to.equal('3px');
+        expect(paper.style.paddingTop).to.equal('');
+        expect(getComputedStyle(paper).paddingBottom).to.equal('7px');
+        expect(getComputedStyle(popup).paddingBottom).not.to.equal('7px');
+      });
+
+      it('keeps popup, paper, and list slot styles separate and merges Paper sx', async () => {
+        const { user } = render(
+          <TestMenu
+            className="custom-popup"
+            classes={{ root: 'popup-root', paper: 'paper-root', list: 'list-root' }}
+            sx={[{ paddingBottom: '7px' }, (theme) => ({ paddingTop: theme.spacing(1) })]}
+            slotProps={{
+              popup: { className: 'popup-slot', style: { paddingLeft: '3px' } },
+              paper: {
+                className: 'paper-slot',
+                style: { paddingRight: '5px' },
+                sx: [{ paddingBottom: '9px' }],
+                'data-testid': 'paper',
+              },
+              list: {
+                className: 'list-slot',
+                sx: { paddingTop: '11px' },
+                'data-testid': 'list',
+              },
+            }}
+          />,
+        );
+
+        await openSubmenu(user);
+        const popup = getPopup();
+        const paper = screen.getByTestId('paper');
+        const list = screen.getByTestId('list');
+        expect(popup).to.have.class('custom-popup');
+        expect(popup).to.have.class('popup-root');
+        expect(popup).to.have.class('popup-slot');
+        expect(paper).to.have.class('paper-root');
+        expect(paper).to.have.class('paper-slot');
+        expect(list).to.have.class('list-root');
+        expect(list).to.have.class('list-slot');
+        expect(popup.style.paddingLeft).to.equal('3px');
+        expect(paper.style.paddingRight).to.equal('5px');
+        expect(getComputedStyle(paper).paddingTop).to.equal('8px');
+        expect(getComputedStyle(paper).paddingBottom).to.equal('9px');
+        expect(getComputedStyle(list).paddingTop).to.equal('11px');
+        expect(paper.style.paddingLeft).to.equal('');
+        expect(popup.style.paddingRight).to.equal('');
+      });
 
       it('forwards a popup slot ref without a public ref, including a custom popup slot', async () => {
         const slotRef = React.createRef<HTMLDivElement>();

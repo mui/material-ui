@@ -156,11 +156,11 @@ export interface Menu2PopupPublicProps
    */
   children?: React.ReactNode;
   /**
-   * CSS class applied to the Base UI popup element.
+   * CSS class applied to the semantic popup element, not the Paper surface.
    */
   className?: string | undefined;
   /**
-   * Styles applied to the Base UI popup element.
+   * Inline styles applied to the semantic popup element, not the Paper surface.
    */
   style?: React.CSSProperties | undefined;
   /**

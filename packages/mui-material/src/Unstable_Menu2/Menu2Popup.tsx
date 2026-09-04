@@ -31,11 +31,11 @@ export interface Menu2PopupProps extends Omit<
    */
   children?: React.ReactNode;
   /**
-   * CSS class applied to the Base UI popup element.
+   * CSS class applied to the semantic popup element, not the Paper surface.
    */
   className?: Menu2PopupPublicProps['className'] | undefined;
   /**
-   * Styles applied to the Base UI popup element.
+   * Inline styles applied to the semantic popup element, not the Paper surface.
    */
   style?: Menu2PopupPublicProps['style'] | undefined;
   /**
@@ -122,6 +122,7 @@ export interface Menu2PopupProps extends Omit<
   classes?: Partial<Menu2PopupClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
+   * Applied to the Paper surface, not the semantic popup element.
    */
   sx?: SxProps<Theme> | undefined;
   /**
@@ -297,7 +298,7 @@ Menu2Popup.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * CSS class applied to the Base UI popup element.
+   * CSS class applied to the semantic popup element, not the Paper surface.
    */
   className: PropTypes.string,
   /**
@@ -418,11 +419,12 @@ Menu2Popup.propTypes /* remove-proptypes */ = {
    */
   sticky: PropTypes.bool,
   /**
-   * Styles applied to the Base UI popup element.
+   * Inline styles applied to the semantic popup element, not the Paper surface.
    */
   style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
+   * Applied to the Paper surface, not the semantic popup element.
    */
   sx: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),

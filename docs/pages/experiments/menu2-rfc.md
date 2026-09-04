@@ -192,6 +192,18 @@ The experiment started with a fully compound API, then collapsed both menu level
 
 The popup part still exists, but it is internal. We export only its class hooks, so `styleOverrides` still uses one theme key for the whole menu: `MuiMenu2`, with the `root`, `backdrop`, `paper`, and `list` slots. One thing changes: `sx` on `Menu2` applies to the Paper surface. On the classic `Menu` it applies to the Modal root.
 
+The customization targets are the same for `Menu2` and `Menu2Submenu`. The submenu uses the `MuiMenu2Submenu` theme key.
+
+| Target                         | Top-level props                                              | Slot and theme customization                               |
+| :----------------------------- | :----------------------------------------------------------- | :--------------------------------------------------------- |
+| Semantic popup (`role="menu"`) | `ref`, `className`, `style`, HTML attributes, event handlers | `slotProps.popup`, `classes.root`, `styleOverrides.root`   |
+| Paper surface inside the popup | `sx`, `elevation`                                            | `slotProps.paper`, `classes.paper`, `styleOverrides.paper` |
+| List inside Paper              | None                                                         | `slotProps.list`, `classes.list`, `styleOverrides.list`    |
+
+`className` and `style` do not target the same element as `sx`. A `styled(Menu2)` wrapper also attaches its generated class to the popup. To apply a CSS class or inline styles to the visible surface, use `slotProps.paper.className` or `slotProps.paper.style`. Top-level `sx` is combined with `slotProps.paper.sx`, with the slot styles taking precedence when they set the same property.
+
+Each slot's ref targets that slot's element. The public ref and `slotProps.popup.ref` point to the same popup, while `slotProps.paper.ref` points to the Paper inside it. Portal and positioner customization goes through their named slots; `Menu2` also has an optional backdrop slot. Trigger customization stays separate: use the supplied element or `slotProps.trigger` on `Menu2`, and the props of `Menu2SubmenuTrigger` for a submenu.
+
 Four results come from this work:
 
 - **`trigger` takes an element at both levels, with different ownership.** `Menu2` merges behavior into the supplied button. `Menu2Submenu` renders the supplied `Menu2SubmenuTrigger` as-is, so it does not add a second menu item. A `Tooltip` can wrap either trigger:
