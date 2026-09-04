@@ -51,10 +51,10 @@ export const DENSITY_ANNOTATIONS: Record<
     { on: '.MuiAlert-root', aspect: 'padding', axis: 'inline', token: 'small', root: true, label: 'Alert' },
     // The root's four slots all sit on one row, so the automatic rules pile
     // three captions into the left gutter. Reporting the block paddings upward
-    // as spines spreads them out; the gap rides the root's own rail so the two
-    // Alert-level numbers read as a pair.
+    // as spines spreads them out; the gap needs no offset because rungs are
+    // only claimed when captions would overlap in x, and these two don't.
     { on: '.MuiAlert-root', aspect: 'padding', axis: 'block', token: 'x-small', root: true, label: 'Alert', place: 'top', at: 0.75 },
-    { on: '.MuiAlert-root', aspect: 'gap', token: 'x-small', root: true, label: 'Alert', place: 'top', offset: -1 },
+    { on: '.MuiAlert-root', aspect: 'gap', token: 'x-small', root: true, label: 'Alert', place: 'top' },
     // `1.1lh` off the alert's own line-height, not a scale step — the icon box
     // reflows with it because the severity svg is `fontSize="inherit"`.
     { on: '.MuiAlert-icon', aspect: 'icon', token: '1.1lh', label: 'Icon' },

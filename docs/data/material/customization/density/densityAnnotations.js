@@ -420,22 +420,48 @@ function Annotations({ measured, bounds }) {
     }
     return box.x + box.width / 2 < bounds.x + bounds.width / 2 ? 'left' : 'right';
   };
-  const nextRail = (side, extra = 0) => {
-    const index = lanes[side] + extra;
-    lanes[side] += 1;
+  // Top/bottom captions only need a new rung when they would actually overlap
+  // in x — the same reasoning that gave the side gutters a single rail. Bumping
+  // a lane per annotation instead pushed rails far out, and a spine has to run
+  // from its rail all the way down through the box.
+  const taken = {
+    top: [],
+    bottom: [],
+  };
+  const reserveLane = (side, centre, label) => {
+    // 13px type: close enough to keep neighbours apart without measuring.
+    const half = (label.length * 7.2) / 2 + 8;
+    const span = { min: centre - half, max: centre + half };
+    const rungs = taken[side];
+    for (let i = 0; i < rungs.length; i += 1) {
+      if (rungs[i].every((r) => span.max < r.min || span.min > r.max)) {
+        rungs[i].push(span);
+        return i;
+      }
+    }
+    rungs.push([span]);
+    return rungs.length - 1;
+  };
+  const nextRail = (side, extra = 0, centre = 0, label = '') => {
     if (side === 'top') {
-      return bounds.y - 22 - index * 30;
+      return bounds.y - 22 - (reserveLane('top', centre, label) + extra) * 30;
     }
     if (side === 'bottom') {
-      return bounds.y + bounds.height + 22 + index * 30;
+      return (
+        bounds.y +
+        bounds.height +
+        22 +
+        (reserveLane('bottom', centre, label) + extra) * 30
+      );
     }
     // Side captions get ONE rail each, not a lane per caption: they already
     // separate by y (see `reserveY`), so an x step would only make the whole
-    // column drift inward as slots are switched off.
-    if (side === 'left') {
-      return bounds.x - 22;
-    }
-    return bounds.x + bounds.width + 22;
+    // column drift inward as slots are switched off. `extra` still pushes an
+    // individual caption further out.
+    lanes[side] += 1;
+    return side === 'left'
+      ? bounds.x - 22 - extra * 30
+      : bounds.x + bounds.width + 22 + extra * 30;
   };
 
   // Captions on a side never sit closer than one rung apart, and they descend in
@@ -550,7 +576,9 @@ function Annotations({ measured, bounds }) {
         byValue.size === 1 ? annotation : { ...annotation, token: undefined };
       const tone = isPadding ? 'tone-padding' : 'tone-margin';
       byValue.forEach((group, value) => {
-        const rail = nextRail(side, annotation.offset ?? 0);
+        const text = caption(group[0].value, named);
+        const alongX = outer.x + outer.width * at;
+        const rail = nextRail(side, annotation.offset ?? 0, alongX, text);
 
         if (flipped) {
           // The spine crosses the bands, so it is fixed on the axis the bands
@@ -569,7 +597,7 @@ function Annotations({ measured, bounds }) {
               cross={cross}
               rail={rail}
               side={side}
-              label={caption(group[0].value, named)}
+              label={text}
               tone={tone}
               labelAt={
                 side === 'left' || side === 'right'
@@ -585,14 +613,14 @@ function Annotations({ measured, bounds }) {
         const sideways = side === 'left' || side === 'right';
         const along = sideways
           ? reserveY(side, outer.y + outer.height * at)
-          : outer.x + outer.width * at;
+          : alongX;
         marks.push(
           <Comb
             key={`comb-${key}-${value}`}
             from={points}
             rail={rail}
             side={side}
-            label={caption(group[0].value, named)}
+            label={text}
             tone={tone}
             labelAt={along}
           />,
@@ -626,11 +654,13 @@ function Annotations({ measured, bounds }) {
       const naturalPair = gap.vertical ? ['left', 'right'] : ['top', 'bottom'];
       const side =
         annotation.place ?? nearest(box, gap.vertical ? 'block' : 'inline');
-      const rail = nextRail(side, annotation.offset ?? 0);
+      const at = annotation.at;
       const centre = {
-        x: band.x + band.width / 2,
-        y: band.y + band.height / 2,
+        x: at === undefined ? band.x + band.width / 2 : band.x + band.width * at,
+        y: at === undefined ? band.y + band.height / 2 : band.y + band.height * at,
       };
+      const gapText = caption(gap.size, annotation);
+      const rail = nextRail(side, annotation.offset ?? 0, centre.x, gapText);
 
       if (!naturalPair.includes(side)) {
         const vertical = side === 'top' || side === 'bottom';
@@ -641,7 +671,7 @@ function Annotations({ measured, bounds }) {
             cross={vertical ? centre.x : centre.y}
             rail={rail}
             side={side}
-            label={caption(gap.size, annotation)}
+            label={gapText}
             tone="tone-gap"
             labelAt={
               side === 'left' || side === 'right'
@@ -663,7 +693,7 @@ function Annotations({ measured, bounds }) {
           ]}
           rail={rail}
           side={side}
-          label={caption(gap.size, annotation)}
+          label={gapText}
           tone="tone-gap"
           labelAt={
             side === 'left' || side === 'right'
