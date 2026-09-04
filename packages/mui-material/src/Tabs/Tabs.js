@@ -231,6 +231,15 @@ const TabsScrollbarSize = styled(ScrollbarSize)({
 
 const defaultIndicatorStyle = {};
 
+// scroll-padding computes to 'auto', a <length>, or a <percentage> of the scrollport
+function resolveScrollPadding(value, scrollportSize) {
+  const number = parseFloat(value);
+  if (Number.isNaN(number)) {
+    return 0;
+  }
+  return value.endsWith('%') ? (number / 100) * scrollportSize : number;
+}
+
 // Dev-only: tracks per-`Tabs` instance (keyed by its ref) whether the invalid-value warning was
 // already logged, so it isn't repeated across the several effects that call `getTabsMeta`.
 // Only referenced from `process.env.NODE_ENV !== 'production'` blocks; the `@__PURE__` annotation
@@ -582,13 +591,26 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       return;
     }
 
-    if (tabMeta[start] < tabsMeta[start]) {
+    const scrollerComputedStyle = ownerWindow(tabsRef.current).getComputedStyle(tabsRef.current);
+    const scrollportSize = tabsRef.current[clientSize];
+    const scrollPaddingStart = resolveScrollPadding(
+      scrollerComputedStyle[vertical ? 'scrollPaddingTop' : 'scrollPaddingLeft'],
+      scrollportSize,
+    );
+    const scrollPaddingEnd = resolveScrollPadding(
+      scrollerComputedStyle[vertical ? 'scrollPaddingBottom' : 'scrollPaddingRight'],
+      scrollportSize,
+    );
+
+    if (tabMeta[start] - scrollPaddingStart < tabsMeta[start]) {
       // left side of button is out of view
-      const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[start] - tabsMeta[start]);
+      const nextScrollStart =
+        tabsMeta[scrollStart] + (tabMeta[start] - scrollPaddingStart - tabsMeta[start]);
       scroll(nextScrollStart, { animation });
-    } else if (tabMeta[end] > tabsMeta[end]) {
+    } else if (tabMeta[end] + scrollPaddingEnd > tabsMeta[end]) {
       // right side of button is out of view
-      const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[end] - tabsMeta[end]);
+      const nextScrollStart =
+        tabsMeta[scrollStart] + (tabMeta[end] + scrollPaddingEnd - tabsMeta[end]);
       scroll(nextScrollStart, { animation });
     }
   });
