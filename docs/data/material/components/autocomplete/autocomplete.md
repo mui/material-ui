@@ -74,6 +74,8 @@ return <Autocomplete options={options} getOptionKey={(option) => option.id} />;
 By default, `value`, `defaultValue`, and the value passed to `onChange` contain the selected option object.
 Use the `getOptionValue` prop when you want them to contain a primitive value instead, such as an ID.
 The prop must return a unique, non-null string, number, bigint, or boolean for every option.
+When `freeSolo` is enabled, it must return a number, bigint, or boolean because strings are reserved
+for free-solo values.
 
 Callbacks that operate on options, such as `getOptionLabel` and `renderOption`, continue to receive the original option object.
 The `details.option` passed to `onChange` also contains the original option.

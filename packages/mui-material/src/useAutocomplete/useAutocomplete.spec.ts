@@ -267,6 +267,13 @@ function Component() {
     },
   });
 
+  useAutocomplete({
+    options: persons,
+    // @ts-expect-error String option values are indistinguishable from freeSolo values.
+    getOptionValue: (option) => option.id,
+    freeSolo: true,
+  });
+
   // Existing explicit generic arguments retain their meaning and raw-option value type
   const existingProps: UseAutocompleteProps<Person, false, false, false> = {
     options: persons,

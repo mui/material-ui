@@ -1059,6 +1059,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * When provided, the `value`, `defaultValue`, and `onChange` value use the returned type instead
    * of the option type. The returned value must be a unique, non-null primitive.
+   * When `freeSolo` is enabled, it must not return a string because strings are reserved for
+   * free-solo values.
    *
    * @param {Option} option The option to get the value for.
    * @returns {Value}

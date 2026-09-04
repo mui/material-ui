@@ -12,6 +12,7 @@ import useAutocomplete, {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
+  AutocompleteMappedValue,
   AutocompleteResolvedValue,
   AutocompletePrimitiveValue,
   AutocompleteValue,
@@ -32,6 +33,7 @@ export {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
+  AutocompleteMappedValue,
   AutocompleteResolvedValue,
   AutocompletePrimitiveValue,
   AutocompleteValue,
@@ -44,7 +46,7 @@ export type AutocompleteOwnerState<
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
-  Value extends AutocompletePrimitiveValue = never,
+  Value extends AutocompleteMappedValue<FreeSolo> = never,
 > = AutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, ChipComponent, Value> & {
   disablePortal: boolean;
   expanded: boolean;
@@ -172,7 +174,7 @@ export type AutocompleteSlotsAndSlotProps<
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
-  Value extends AutocompletePrimitiveValue = never,
+  Value extends AutocompleteMappedValue<FreeSolo> = never,
 > = CreateSlotsAndSlotProps<
   AutocompleteSlots,
   {
@@ -233,7 +235,7 @@ export interface AutocompleteProps<
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
-  Value extends AutocompletePrimitiveValue = never,
+  Value extends AutocompleteMappedValue<FreeSolo> = never,
 >
   extends
     UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, Value>,
@@ -433,7 +435,7 @@ export default function Autocomplete<
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
-  Value extends AutocompletePrimitiveValue = AutocompletePrimitiveValue,
+  Value extends AutocompleteMappedValue<FreeSolo> = AutocompleteMappedValue<FreeSolo>,
 >(
   props: AutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, ChipComponent, Value> & {
     getOptionValue: (option: Option) => Value;
