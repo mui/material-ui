@@ -63,10 +63,12 @@ Components are rated in isolation against WCAG 2.2 A and AA. The levels are [cum
 
 ## Reports
 
-| Component                                           | ✅ Supports | ⚠️ Partially Supports | ❌ Does Not Support | ➖ Not Applicable |
-| :-------------------------------------------------- | :---------- | :-------------------- | :------------------ | :---------------- |
-| [Avatar](./Avatar/accessibility.md)                 | 9           | 2                     | 0                   | 44                |
-| [Button](./Button/accessibility.md)                 | 23          | 4                     | 0                   | 28                |
-| [LinearProgress](./LinearProgress/accessibility.md) | 8           | 3                     | 0                   | 44                |
-| [Switch](./Switch/accessibility.md)                 | 23          | 2                     | 0                   | 30                |
-| [TextField](./TextField/accessibility.md)           | 25          | 3                     | 0                   | 27                |
+| Component                                               | ✅ Supports | ⚠️ Partially Supports | ❌ Does Not Support | ➖ Not Applicable |
+| :------------------------------------------------------ | :---------- | :-------------------- | :------------------ | :---------------- |
+| [Accordion](./Accordion/accessibility.md)               | 19          | 0                     | 0                   | 31                |
+| [AccordionSummary](./AccordionSummary/accessibility.md) | 23          | 1                     | 0                   | 31                |
+| [Avatar](./Avatar/accessibility.md)                     | 9           | 2                     | 0                   | 44                |
+| [Button](./Button/accessibility.md)                     | 23          | 4                     | 0                   | 28                |
+| [LinearProgress](./LinearProgress/accessibility.md)     | 8           | 3                     | 0                   | 44                |
+| [Switch](./Switch/accessibility.md)                     | 23          | 2                     | 0                   | 30                |
+| [TextField](./TextField/accessibility.md)               | 25          | 3                     | 0                   | 27                |

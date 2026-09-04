@@ -174,6 +174,19 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   // Later rules re-enable single fixtures that also guard a visual state.
   { test: 'test/regressions/a11y/fixtures/**', enabled: false }, // A11y-only coverage fixtures
   { test: 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+  { test: 'test/regressions/a11y/fixtures/accordion/AccordionA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+];
+
+// Accordion docs demos + a11y fixtures enrolled for axe assertions (the cluster:
+// root Accordion + AccordionSummary header + AccordionDetails/Actions).
+const ACCORDION_A11Y_DEMOS = [
+  'AccordionUsage',
+  'AccordionExpandDefault',
+  'AccordionExpandIcon',
+  'ControlledAccordions',
+  'CustomizedAccordions',
+  'DisabledAccordion',
+  'AccordionTransition',
 ];
 
 // LinearProgress docs demos enrolled for axe assertions; CircularProgress and
@@ -250,6 +263,25 @@ export const A11Y_RULES: A11yRule[] = [
     test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,VariantAvatars,AvatarA11yImage}',
     enabled: true,
     skipAssertions: ['color-contrast'],
+  },
+  {
+    // `color-contrast` is recorded but not asserted: the Accordion root's
+    // divider `::before` pseudo-element blocks axe's background resolution for
+    // the summary label, so the rule returns `incomplete` on some demos.
+    // No demo records a contrast failure; the label clears 4.5:1 on `paper`.
+    test: `docs/data/material/components/accordion/{${ACCORDION_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/accordion/`
+  // (no docs page consumes them); the suite name maps their results into the
+  // same `accordion.a11y.json` as the docs demos above. The divider
+  // `::before` skip is not needed here: both fixtures pass `color-contrast`.
+  {
+    test: 'test/regressions/a11y/fixtures/accordion/{AccordionA11yNonNative,AccordionA11yTextSpacing}',
+    enabled: true,
+    assertions: 'all',
   },
   {
     test: `docs/data/material/components/buttons/{${BUTTON_A11Y_DEMOS.join(',')}}`,
