@@ -197,6 +197,18 @@ const ACCORDION_A11Y_DEMOS = [
   'AccordionA11yTextSpacing',
 ];
 
+// LinearProgress docs demos enrolled for axe assertions; CircularProgress and
+// the mixed/customized demos (CustomizedProgressBars, DelayingAppearance) are excluded.
+const LINEARPROGRESS_A11Y_DEMOS = [
+  'LinearIndeterminate',
+  'LinearDeterminate',
+  'LinearBuffer',
+  'LinearQuery',
+  'LinearColor',
+  'LinearWithValueLabel',
+  'LinearWithAriaValueText',
+];
+
 // Button docs demos enrolled for axe assertions; IconButton/ButtonBase demos are excluded.
 const BUTTON_A11Y_DEMOS = [
   'BasicButtons',
@@ -221,20 +233,6 @@ const CHECKBOX_A11Y_DEMOS = [
   'IconCheckboxes',
   'SizeCheckboxes',
   'CheckboxesGroup',
-];
-
-// LinearProgress docs demos enrolled for axe assertions; CircularProgress and
-// the mixed/customized demos (CustomizedProgressBars, DelayingAppearance) are excluded.
-const LINEARPROGRESS_A11Y_DEMOS = [
-  'LinearIndeterminate',
-  'LinearDeterminate',
-  'LinearBuffer',
-  'LinearQuery',
-  'LinearColor',
-  'LinearWithValueLabel',
-  'LinearWithAriaValueText',
-  'LinearProgressA11ySemanticStates',
-  'LinearProgressA11yColorMatrix',
 ];
 
 // Radio docs demos enrolled for axe assertions. FormControlLabelPlacement is left out: its axe
@@ -364,6 +362,14 @@ export const A11Y_RULES: A11yRule[] = [
   // role-less FormGroup div (aria-prohibited-attr), a demo quirk unrelated to Checkbox.
   {
     test: `docs/data/material/components/progress/{${LINEARPROGRESS_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/progress/`
+  // (no docs page consumes them); the suite name maps their results into the
+  // same `progress.a11y.json` as the docs demos above.
+  {
+    test: 'test/regressions/a11y/fixtures/progress/{LinearProgressA11ySemanticStates,LinearProgressA11yColorMatrix}',
     enabled: true,
     assertions: 'all',
   },
