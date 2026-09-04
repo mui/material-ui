@@ -39,15 +39,15 @@ describe('<Menu2 /> collapsed API', () => {
           ),
         getRootElement: ({ baseElement }) =>
           baseElement.querySelector(`.${menu2SubmenuPopupClasses.root}`),
-        // The public root is the semantic popup. Its host is configured through
-        // slots.popup rather than a component prop.
+        // The public root is the semantic popup, rendered as the Paper. Its host
+        // is configured through slots.root rather than a component prop.
         skip: ['componentProp'],
         refInstanceof: window.HTMLDivElement,
         muiName: 'MuiMenu2Submenu',
         testVariantProps: { align: 'center' },
         slots: {
-          paper: {
-            expectedClassName: menu2SubmenuPopupClasses.paper,
+          root: {
+            expectedClassName: menu2SubmenuPopupClasses.root,
           },
           list: {
             expectedClassName: menu2SubmenuPopupClasses.list,
@@ -145,40 +145,35 @@ describe('<Menu2 /> collapsed API', () => {
           .closest<HTMLDivElement>('[role="menu"]')!;
       }
 
-      it('applies className and style to the popup, and sx to Paper', async () => {
+      it('applies className, style, and sx to the one root, which is the Paper', async () => {
         const { user } = render(
           <TestMenu
             className="custom-popup"
             style={{ paddingTop: '3px' }}
             sx={{ paddingBottom: '7px' }}
-            slotProps={{ paper: { 'data-testid': 'paper' } }}
           />,
         );
 
         await openSubmenu(user);
         const popup = getPopup();
-        const paper = screen.getByTestId('paper');
         expect(popup).to.have.class('custom-popup');
-        expect(paper).not.to.have.class('custom-popup');
+        expect(popup).to.have.class('MuiPaper-root');
         expect(popup.style.paddingTop).to.equal('3px');
-        expect(paper.style.paddingTop).to.equal('');
-        expect(getComputedStyle(paper).paddingBottom).to.equal('7px');
-        expect(getComputedStyle(popup).paddingBottom).not.to.equal('7px');
+        expect(getComputedStyle(popup).paddingBottom).to.equal('7px');
       });
 
-      it('keeps popup, paper, and list slot styles separate and merges Paper sx', async () => {
+      it('merges the root slot className, style, and sx, and keeps the list separate', async () => {
         const { user } = render(
           <TestMenu
             className="custom-popup"
-            classes={{ root: 'popup-root', paper: 'paper-root', list: 'list-root' }}
+            classes={{ root: 'popup-root', list: 'list-root' }}
+            style={{ paddingLeft: '3px' }}
             sx={[{ paddingBottom: '7px' }, (theme) => ({ paddingTop: theme.spacing(1) })]}
             slotProps={{
-              popup: { className: 'popup-slot', style: { paddingLeft: '3px' } },
-              paper: {
-                className: 'paper-slot',
+              root: {
+                className: 'root-slot',
                 style: { paddingRight: '5px' },
                 sx: [{ paddingBottom: '9px' }],
-                'data-testid': 'paper',
               },
               list: {
                 className: 'list-slot',
@@ -191,28 +186,24 @@ describe('<Menu2 /> collapsed API', () => {
 
         await openSubmenu(user);
         const popup = getPopup();
-        const paper = screen.getByTestId('paper');
         const list = screen.getByTestId('list');
         expect(popup).to.have.class('custom-popup');
         expect(popup).to.have.class('popup-root');
-        expect(popup).to.have.class('popup-slot');
-        expect(paper).to.have.class('paper-root');
-        expect(paper).to.have.class('paper-slot');
+        expect(popup).to.have.class('root-slot');
         expect(list).to.have.class('list-root');
         expect(list).to.have.class('list-slot');
         expect(popup.style.paddingLeft).to.equal('3px');
-        expect(paper.style.paddingRight).to.equal('5px');
-        expect(getComputedStyle(paper).paddingTop).to.equal('8px');
-        expect(getComputedStyle(paper).paddingBottom).to.equal('9px');
+        expect(popup.style.paddingRight).to.equal('5px');
+        expect(getComputedStyle(popup).paddingTop).to.equal('8px');
+        expect(getComputedStyle(popup).paddingBottom).to.equal('9px');
         expect(getComputedStyle(list).paddingTop).to.equal('11px');
-        expect(paper.style.paddingLeft).to.equal('');
-        expect(popup.style.paddingRight).to.equal('');
+        expect(list.style.paddingLeft).to.equal('');
       });
 
-      it('forwards a popup slot ref without a public ref, including a custom popup slot', async () => {
+      it('forwards a root slot ref without a public ref, including a custom root slot', async () => {
         const slotRef = React.createRef<HTMLDivElement>();
         const { user, unmount } = render(
-          <TestMenu slots={{ popup: 'div' }} slotProps={{ popup: () => ({ ref: slotRef }) }} />,
+          <TestMenu slots={{ root: 'div' }} slotProps={{ root: () => ({ ref: slotRef }) }} />,
         );
 
         await openSubmenu(user);
@@ -222,29 +213,22 @@ describe('<Menu2 /> collapsed API', () => {
         expect(slotRef.current).to.equal(null);
       });
 
-      it('composes public and slot refs on the semantic popup, separate from Paper', async () => {
+      it('composes public and slot refs on the root, which is the Paper', async () => {
         const publicRef = vi.fn();
         const slotRef = React.createRef<HTMLDivElement>();
-        const paperRef = React.createRef<HTMLDivElement>();
         const { user, unmount } = render(
-          <TestMenu
-            ref={publicRef}
-            slotProps={{ popup: { ref: slotRef }, paper: { ref: paperRef } }}
-          />,
+          <TestMenu ref={publicRef} slotProps={{ root: { ref: slotRef } }} />,
         );
 
         await openSubmenu(user);
         const popup = getPopup();
         expect(publicRef).toHaveBeenLastCalledWith(popup);
         expect(slotRef.current).to.equal(popup);
-        expect(paperRef.current).to.have.class('MuiPaper-root');
-        expect(popup).to.contain(paperRef.current);
-        expect(paperRef.current).not.to.equal(popup);
+        expect(popup).to.have.class('MuiPaper-root');
 
         unmount();
         expect(publicRef).toHaveBeenLastCalledWith(null);
         expect(slotRef.current).to.equal(null);
-        expect(paperRef.current).to.equal(null);
       });
 
       it('updates public and slot refs without replacing the popup', async () => {
@@ -258,7 +242,7 @@ describe('<Menu2 /> collapsed API', () => {
           return (
             <TestMenu
               ref={changed ? nextRef : firstRef}
-              slotProps={{ popup: () => ({ ref: changed ? nextSlotRef : firstSlotRef }) }}
+              slotProps={{ root: () => ({ ref: changed ? nextSlotRef : firstSlotRef }) }}
             >
               <Menu2Item closeOnClick={false} onClick={() => setChanged(true)}>
                 Alpha
@@ -315,7 +299,7 @@ describe('<Menu2 /> collapsed API', () => {
             aria-label="Top-level label"
             title="Forwarded title"
             slotProps={{
-              popup: {
+              root: {
                 id: 'slot-id',
                 'aria-label': 'Slot label',
               },
@@ -464,13 +448,13 @@ describe('<Menu2 /> collapsed API', () => {
       components: {
         MuiMenu2: {
           styleOverrides: {
-            paper: { paddingTop: '9px' },
+            root: { paddingTop: '9px' },
             list: { paddingBottom: '7px' },
           },
         },
         MuiMenu2Submenu: {
           styleOverrides: {
-            paper: { paddingTop: '11px' },
+            root: { paddingTop: '11px' },
           },
         },
       },
@@ -479,11 +463,11 @@ describe('<Menu2 /> collapsed API', () => {
       <ThemeProvider theme={theme}>
         <Menu2
           trigger={<Button disableRipple>Options</Button>}
-          slotProps={{ paper: { 'data-testid': 'paper' } }}
+          slotProps={{ root: { 'data-testid': 'paper' } }}
         >
           <Menu2Submenu
             trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
-            slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}
+            slotProps={{ root: { 'data-testid': 'submenu-paper' } }}
           >
             <Menu2Item>Nested</Menu2Item>
           </Menu2Submenu>
@@ -824,11 +808,11 @@ describe('<Menu2 /> collapsed API', () => {
       <Menu2
         defaultOpen
         trigger={<Button disableRipple>Options</Button>}
-        slotProps={{ paper: { 'data-testid': 'paper' } }}
+        slotProps={{ root: { 'data-testid': 'paper' } }}
       >
         <Menu2Submenu
           trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
-          slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}
+          slotProps={{ root: { 'data-testid': 'submenu-paper' } }}
         >
           <Menu2Item>Nested</Menu2Item>
         </Menu2Submenu>
@@ -863,7 +847,7 @@ describe('<Menu2 /> collapsed API', () => {
           <Menu2 defaultOpen trigger={<Button disableRipple>Options</Button>}>
             <Menu2Submenu
               trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
-              slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}
+              slotProps={{ root: { 'data-testid': 'submenu-paper' } }}
             >
               <Menu2Item>Nested</Menu2Item>
             </Menu2Submenu>
@@ -953,7 +937,7 @@ describe('<Menu2 /> collapsed API', () => {
         trigger={<Button disableRipple>Options</Button>}
         side="top"
         elevation={16}
-        slotProps={{ paper: { 'data-testid': 'paper' } }}
+        slotProps={{ root: { 'data-testid': 'paper' } }}
       >
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,

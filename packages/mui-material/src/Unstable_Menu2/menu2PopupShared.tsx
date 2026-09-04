@@ -53,7 +53,7 @@ function getSlotProps<ElementType extends React.ElementType, Props extends Recor
   return isHostComponent(Slot) ? omitProps(props, hostOmittedProps) : props;
 }
 
-const paperHostOmittedProps = [
+const rootHostOmittedProps = [
   'classes',
   'component',
   'elevation',
@@ -88,15 +88,10 @@ export interface Menu2PopupSharedSlots {
    */
   positioner?: React.ElementType | undefined;
   /**
-   * The component rendered by the Base UI popup.
-   * @default 'div'
-   */
-  popup?: React.ElementType | undefined;
-  /**
-   * The component used for the Material surface.
+   * The component rendered as the popup. It is the root element and the visible surface.
    * @default Paper
    */
-  paper?: React.ElementType | undefined;
+  root?: React.ElementType | undefined;
   /**
    * The component used for the presentational list wrapper.
    * @default List
@@ -108,8 +103,7 @@ export interface Menu2PopupSharedSlotProps<OwnerState> {
   portal?: SlotProps<ExternalSlotProps<BaseMenu.Portal.Props>, OwnerState> | undefined;
   backdrop?: SlotProps<ExternalSlotProps<BaseMenu.Backdrop.Props>, OwnerState> | undefined;
   positioner?: SlotProps<ExternalSlotProps<BaseMenu.Positioner.Props>, OwnerState> | undefined;
-  popup?: SlotProps<ExternalSlotProps<BaseMenu.Popup.Props>, OwnerState> | undefined;
-  paper?: SlotProps<ExternalSlotProps<PaperProps>, OwnerState> | undefined;
+  root?: SlotProps<ExternalSlotProps<PaperProps>, OwnerState> | undefined;
   list?: SlotProps<ExternalSlotProps<ListProps>, OwnerState> | undefined;
 }
 
@@ -156,11 +150,11 @@ export interface Menu2PopupPublicProps
    */
   children?: React.ReactNode;
   /**
-   * CSS class applied to the semantic popup element, not the Paper surface.
+   * CSS class applied to the root element.
    */
   className?: string | undefined;
   /**
-   * Inline styles applied to the semantic popup element, not the Paper surface.
+   * Inline styles applied to the root element.
    */
   style?: React.CSSProperties | undefined;
   /**
@@ -185,13 +179,12 @@ export interface Menu2PopupSharedProps<OwnerState>
   extends
     Omit<BaseMenu.Popup.Props, 'children' | 'className' | 'render' | 'style' | 'finalFocus'>,
     Menu2PopupPublicProps {
-  classes?: Partial<Record<'root' | 'backdrop' | 'paper' | 'list', string>> | undefined;
+  classes?: Partial<Record<'root' | 'backdrop' | 'list', string>> | undefined;
   ownerState: OwnerState;
   slots?: Menu2PopupSharedSlots | undefined;
   slotProps?: Menu2PopupSharedSlotProps<OwnerState> | undefined;
   defaultSlots: {
-    popup: React.ElementType;
-    paper: React.ElementType;
+    root: React.ElementType;
     list: React.ElementType;
     backdrop?: React.ElementType | undefined;
   };
@@ -243,19 +236,29 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   // full-screen layer, and modal menus already get Base UI's inert backdrop.
   const BackdropSlot = slots?.backdrop ?? (slotProps?.backdrop ? defaultSlots.backdrop : undefined);
   const PositionerSlot = slots?.positioner;
-  const PopupSlot = slots?.popup ?? defaultSlots.popup;
-  const PaperSlot = slots?.paper ?? defaultSlots.paper;
+  const RootSlot = slots?.root ?? defaultSlots.root;
   const ListSlot = slots?.list ?? defaultSlots.list;
 
   const resolvedPortalProps = resolveComponentProps(slotProps?.portal, ownerState);
   const resolvedBackdropProps = resolveComponentProps(slotProps?.backdrop, ownerState);
   const resolvedPositionerProps = resolveComponentProps(slotProps?.positioner, ownerState);
-  const resolvedPopupProps = resolveComponentProps(slotProps?.popup, ownerState);
-  const resolvedPaperProps = resolveComponentProps(slotProps?.paper, ownerState);
+  const resolvedRootProps = resolveComponentProps(slotProps?.root, ownerState);
   const resolvedListProps = resolveComponentProps(slotProps?.list, ownerState);
-  const { className: resolvedPopupClassName, ...resolvedPopupOtherProps } =
-    resolvedPopupProps ?? {};
-  const handlePopupRef = useForkRef(ref, resolvedPopupProps?.ref);
+  // Base UI merges the popup's className, style, and ref into the element that
+  // `render` gives it, so those go through the popup. The rest goes on the
+  // element, where the Paper props belong.
+  const {
+    className: resolvedRootClassName,
+    ref: resolvedRootRef,
+    style: resolvedRootStyle,
+    sx: resolvedRootSx,
+    ...resolvedRootOtherProps
+  } = resolvedRootProps ?? {};
+  const handleRootRef = useForkRef(ref, resolvedRootRef);
+  const rootStyle =
+    style === undefined && resolvedRootStyle === undefined
+      ? undefined
+      : { ...style, ...resolvedRootStyle };
   const positionerProps = {
     ...defaultPositionerProps,
   };
@@ -273,8 +276,7 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   setDefinedProp(positionerProps, 'disableAnchorTracking', disableAnchorTracking);
   setDefinedProp(positionerProps, 'collisionAvoidance', collisionAvoidance);
 
-  const popupClassName = clsx(classes?.root, className, resolvedPopupClassName);
-  const popupRender = <PopupSlot {...appendOwnerState(PopupSlot, {}, ownerState)} />;
+  const rootClassName = clsx(classes?.root, className, resolvedRootClassName);
   const portalRender = PortalSlot ? (
     <PortalSlot {...appendOwnerState(PortalSlot, {}, ownerState)} />
   ) : undefined;
@@ -290,16 +292,22 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     ...positionerProps,
     ...resolvedPositionerProps,
   };
-  // The Material surfaces go through the shared slot plumbing (className
-  // merging, ref forking, host-aware ownerState). Base UI-specific host-prop
-  // omission is layered on top; see `getSlotProps`.
-  const mergedPaperProps = useSlotProps({
-    elementType: PaperSlot,
-    externalSlotProps: resolvedPaperProps,
-    ownerState,
-    additionalProps: { elevation: elevation ?? 8 },
-    className: classes?.paper,
-  });
+  const rootSlotProps = getSlotProps(
+    RootSlot,
+    appendOwnerState(
+      RootSlot,
+      {
+        elevation: elevation ?? 8,
+        ...resolvedRootOtherProps,
+        sx: mergeSx(sx, resolvedRootSx),
+      },
+      ownerState,
+    ),
+    rootHostOmittedProps,
+  );
+  const rootRender = <RootSlot {...rootSlotProps} />;
+  // The list goes through the shared slot plumbing (className merging, ref
+  // forking, host-aware ownerState). Host-prop omission is layered on top.
   const mergedListProps = useSlotProps({
     elementType: ListSlot,
     externalSlotProps: resolvedListProps,
@@ -308,11 +316,6 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     className: classes?.list,
   });
 
-  const paperSlotProps = getSlotProps(
-    PaperSlot,
-    { ...mergedPaperProps, sx: mergeSx(sx, resolvedPaperProps?.sx) },
-    paperHostOmittedProps,
-  );
   const listSlotProps = getSlotProps(ListSlot, mergedListProps, listHostOmittedProps);
 
   return (
@@ -328,16 +331,13 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
         <BaseMenu.Popup
           id={id}
           finalFocus={finalFocus}
-          style={style}
+          style={rootStyle}
           {...other}
-          {...resolvedPopupOtherProps}
-          ref={handlePopupRef}
-          render={popupRender}
-          className={popupClassName}
+          ref={handleRootRef}
+          render={rootRender}
+          className={rootClassName}
         >
-          <PaperSlot {...paperSlotProps}>
-            <ListSlot {...listSlotProps}>{children}</ListSlot>
-          </PaperSlot>
+          <ListSlot {...listSlotProps}>{children}</ListSlot>
         </BaseMenu.Popup>
       </BaseMenu.Positioner>
     </BaseMenu.Portal>

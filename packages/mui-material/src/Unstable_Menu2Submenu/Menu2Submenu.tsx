@@ -119,20 +119,18 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
   slotProps: PropTypes.shape({
     backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popup: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     portal: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     positioner: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    */
   slots: PropTypes.shape({
     list: PropTypes.elementType,
-    paper: PropTypes.elementType,
-    popup: PropTypes.elementType,
     portal: PropTypes.elementType,
     positioner: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
   /**
    * The `Menu2SubmenuTrigger` that opens the submenu, optionally wrapped in a `Tooltip`.

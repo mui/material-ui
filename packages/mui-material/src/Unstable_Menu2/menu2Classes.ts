@@ -27,8 +27,6 @@ export interface Menu2PopupClasses {
   root: string;
   /** Styles applied to the backdrop element. */
   backdrop: string;
-  /** Styles applied to the Material Paper element. */
-  paper: string;
   /** Styles applied to the Material List element. */
   list: string;
 }
@@ -42,15 +40,12 @@ export function getMenu2PopupUtilityClass(slot: string): string {
 export const menu2PopupClasses: Menu2PopupClasses = generateUtilityClasses('MuiMenu2Popup', [
   'root',
   'backdrop',
-  'paper',
   'list',
 ]);
 
 export interface Menu2SubmenuPopupClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the Material Paper element. */
-  paper: string;
   /** Styles applied to the Material List element. */
   list: string;
 }
@@ -63,7 +58,7 @@ export function getMenu2SubmenuPopupUtilityClass(slot: string): string {
 
 export const menu2SubmenuPopupClasses: Menu2SubmenuPopupClasses = generateUtilityClasses(
   'MuiMenu2SubmenuPopup',
-  ['root', 'paper', 'list'],
+  ['root', 'list'],
 );
 
 export interface Menu2ItemClasses {
@@ -280,7 +275,7 @@ export const menu2SubmenuTriggerClasses: Menu2SubmenuTriggerClasses = generateUt
  * are rendered internally, so their overrides live here rather than under their
  * own component keys.
  */
-export type Menu2ClassKey = 'root' | 'backdrop' | 'paper' | 'list';
+export type Menu2ClassKey = 'root' | 'backdrop' | 'list';
 
 /** Theme `styleOverrides` slots for the collapsed `Menu2Submenu`. */
-export type Menu2SubmenuClassKey = 'root' | 'paper' | 'list';
+export type Menu2SubmenuClassKey = 'root' | 'list';

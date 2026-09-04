@@ -120,12 +120,12 @@ const noAnimationSx: SxProps<Theme> = { transition: 'none' };
 function usePopupKnobProps(settings: PlaygroundSettings) {
   return React.useMemo(
     () => ({
-      // Top-level convenience prop (forwards to the Paper slot).
+      // Top-level convenience prop; the root element is the Paper.
       elevation: settings.elevation,
       ...(settings.backdrop === 'dimmed'
         ? { slotProps: { backdrop: { sx: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } } } }
         : null),
-      ...(settings.animation === 'off' ? { slotProps: { popup: { sx: noAnimationSx } } } : null),
+      ...(settings.animation === 'off' ? { slotProps: { root: { sx: noAnimationSx } } } : null),
     }),
     [settings.elevation, settings.animation, settings.backdrop],
   );
@@ -469,9 +469,7 @@ function TypeaheadScrollDemo() {
           Country
         </Button>
       }
-      slotProps={{
-        paper: { sx: { maxHeight: 320, overflow: 'auto' } },
-      }}
+      sx={{ maxHeight: 320 }}
       sideOffset={4}
     >
       {typeaheadEntries.map((entry) => (
@@ -596,7 +594,7 @@ function SettingsPanel({
             onChange={(event) => setSetting('animation', event.target.value as 'default' | 'off')}
           >
             <option value="default">default (Grow-like)</option>
-            <option value="off">off (overridden via slotProps.popup)</option>
+            <option value="off">off (overridden via slotProps.root)</option>
           </select>
         </label>
         <label style={{ display: 'block' }}>
@@ -736,7 +734,7 @@ export default function MenuRfcExperiment() {
             <h3 id="typeahead">Typeahead and scrolling</h3>
             <p>
               Open the menu and type to jump between items (for example type &quot;sw&quot;). The
-              popup constrains height via <code>slotProps.paper</code>.
+              popup constrains height via <code>sx</code>.
             </p>
             <TypeaheadScrollDemo />
           </section>

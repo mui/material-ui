@@ -86,7 +86,7 @@ export interface Menu2Props
  */
 const Menu2 = React.forwardRef(function Menu2(
   props: Menu2Props,
-  // The public ref targets the semantic popup. Use slotProps.paper.ref for Paper.
+  // The public ref targets the root element, which is the Paper.
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const themedProps = useDefaultProps({
@@ -194,10 +194,9 @@ Menu2.propTypes /* remove-proptypes */ = {
   slotProps: PropTypes.shape({
     backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popup: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     portal: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     positioner: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     trigger: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.shape({
@@ -212,10 +211,9 @@ Menu2.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     backdrop: PropTypes.elementType,
     list: PropTypes.elementType,
-    paper: PropTypes.elementType,
-    popup: PropTypes.elementType,
     portal: PropTypes.elementType,
     positioner: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
   /**
    * The element that opens the menu, for example a `Button`.

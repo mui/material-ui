@@ -41,13 +41,12 @@ function Menu2Composition() {
       slots={{
         portal: 'div',
         positioner: 'div',
-        popup: 'div',
-        paper: 'div',
+        root: 'div',
         list: 'div',
       }}
       slotProps={{
         trigger: { nativeButton: true, className: 'trigger' },
-        paper: { elevation: 4 },
+        root: { elevation: 4 },
         list: { 'data-testid': 'list' },
       }}
     >
@@ -113,7 +112,6 @@ createTheme({
       styleOverrides: {
         root: {},
         backdrop: {},
-        paper: {},
         list: {},
       },
       variants: [
@@ -129,7 +127,6 @@ createTheme({
       },
       styleOverrides: {
         root: {},
-        paper: {},
         list: {},
       },
     },
@@ -214,7 +211,7 @@ createTheme({
 
 <Menu2
   slotProps={{
-    popup: {
+    root: {
       // @ts-expect-error Base UI render prop is intentionally not supported.
       render: <div />,
     },
@@ -258,6 +255,26 @@ createTheme({
   slotProps={{
     // @ts-expect-error The trigger element owns its own props.
     trigger: { variant: 'outlined' },
+  }}
+>
+  <Menu2Item>Item</Menu2Item>
+</Menu2>;
+
+<Menu2
+  trigger={<button type="button">Open</button>}
+  slots={{
+    // @ts-expect-error The popup and the Paper are one root slot.
+    paper: 'div',
+  }}
+>
+  <Menu2Item>Item</Menu2Item>
+</Menu2>;
+
+<Menu2
+  trigger={<button type="button">Open</button>}
+  slotProps={{
+    // @ts-expect-error The popup and the Paper are one root slot.
+    popup: { className: 'popup' },
   }}
 >
   <Menu2Item>Item</Menu2Item>

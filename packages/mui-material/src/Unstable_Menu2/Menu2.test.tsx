@@ -39,15 +39,15 @@ describe('<Menu2 />', () => {
       classes: menu2PopupClasses,
       render,
       getRootElement: ({ baseElement }) => baseElement.querySelector(`.${menu2PopupClasses.root}`),
-      // The public root is the semantic popup. Its host is configured through
-      // slots.popup rather than a component prop.
+      // The public root is the semantic popup, rendered as the Paper. Its host
+      // is configured through slots.root rather than a component prop.
       skip: ['componentProp'],
       refInstanceof: window.HTMLDivElement,
       muiName: 'MuiMenu2',
       testVariantProps: { align: 'center' },
       slots: {
-        paper: {
-          expectedClassName: menu2PopupClasses.paper,
+        root: {
+          expectedClassName: menu2PopupClasses.root,
         },
         list: {
           expectedClassName: menu2PopupClasses.list,
@@ -73,7 +73,7 @@ describe('<Menu2 />', () => {
   it('opens from the trigger and keeps Menu.Popup as the semantic menu root', async () => {
     const { user } = render(
       <Menu2
-        slotProps={{ paper: { 'data-testid': 'paper' } }}
+        slotProps={{ root: { 'data-testid': 'root' } }}
         trigger={<Button disableRipple>Options</Button>}
       >
         <Menu2Item>Profile</Menu2Item>
@@ -85,11 +85,13 @@ describe('<Menu2 />', () => {
 
     await user.click(trigger);
 
+    // One root: the semantic popup is the Paper.
     const menu = await screen.findByRole('menu');
     expect(menu).to.have.class(menu2PopupClasses.root);
-    expect(screen.getByTestId('paper')).to.have.class(menu2PopupClasses.paper);
+    expect(menu).to.have.class(paperClasses.root);
+    expect(screen.getByTestId('root')).to.equal(menu);
 
-    const list = screen.getByTestId('paper').querySelector(`.${menu2PopupClasses.list}`);
+    const list = menu.querySelector(`.${menu2PopupClasses.list}`);
     expect(list).not.to.equal(null);
     expect(list!.tagName).to.equal('DIV');
     expect(list!).to.have.class(listClasses.padding);
@@ -101,11 +103,11 @@ describe('<Menu2 />', () => {
   // the describeConformance suites next to each component; what stays here is
   // Base UI-specific behavior and Material integration.
 
-  it('does not pass ownerState to host popup slots', async () => {
+  it('does not pass ownerState to host root slots', async () => {
     const { user } = render(
       <Menu2
-        slots={{ popup: 'div' }}
-        slotProps={{ popup: { 'data-testid': 'popup' } }}
+        slots={{ root: 'div' }}
+        slotProps={{ root: { 'data-testid': 'popup' } }}
         trigger={<Button disableRipple>Options</Button>}
       >
         <Menu2Item>Profile</Menu2Item>
@@ -259,13 +261,13 @@ describe('<Menu2 />', () => {
     }
   });
 
-  it('does not pass internal props to host paper and list slots', async () => {
+  it('does not pass internal props to host root and list slots', async () => {
     const { user } = render(
       <Menu2
         sx={{ minWidth: 120 }}
-        slots={{ paper: 'div', list: 'div' }}
+        slots={{ root: 'div', list: 'div' }}
         slotProps={{
-          paper: {
+          root: {
             'data-testid': 'paper',
             classes: { root: 'paper-root' },
             component: 'section',
@@ -304,7 +306,7 @@ describe('<Menu2 />', () => {
   it('defaults the popup surface elevation to 8', async () => {
     const { user } = render(
       <Menu2
-        slotProps={{ paper: { 'data-testid': 'paper' } }}
+        slotProps={{ root: { 'data-testid': 'paper' } }}
         trigger={<Button disableRipple>Options</Button>}
       >
         <Menu2Item>Profile</Menu2Item>
@@ -320,7 +322,7 @@ describe('<Menu2 />', () => {
     const { user } = render(
       <Menu2
         elevation={4}
-        slotProps={{ paper: { 'data-testid': 'paper' } }}
+        slotProps={{ root: { 'data-testid': 'paper' } }}
         trigger={<Button disableRipple>Options</Button>}
       >
         <Menu2Item>Profile</Menu2Item>
@@ -431,10 +433,7 @@ describe('<Menu2 />', () => {
 
   it.skipIf(isJsdom())('lets the default animation be overridden', async () => {
     const { user } = render(
-      <Menu2
-        slotProps={{ popup: { sx: { transition: 'none' } } }}
-        trigger={<Button disableRipple>Options</Button>}
-      >
+      <Menu2 sx={{ transition: 'none' }} trigger={<Button disableRipple>Options</Button>}>
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -487,7 +486,7 @@ describe('<Menu2 />', () => {
   it.skipIf(isJsdom())('constrains the popup surface to the collision-aware height', async () => {
     const { user } = render(
       <Menu2
-        slotProps={{ paper: { 'data-testid': 'paper' } }}
+        slotProps={{ root: { 'data-testid': 'paper' } }}
         trigger={<Button disableRipple>Options</Button>}
       >
         <Menu2Item>Profile</Menu2Item>

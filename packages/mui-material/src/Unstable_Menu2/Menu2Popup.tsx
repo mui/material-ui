@@ -31,11 +31,11 @@ export interface Menu2PopupProps extends Omit<
    */
   children?: React.ReactNode;
   /**
-   * CSS class applied to the semantic popup element, not the Paper surface.
+   * CSS class applied to the root element.
    */
   className?: Menu2PopupPublicProps['className'] | undefined;
   /**
-   * Inline styles applied to the semantic popup element, not the Paper surface.
+   * Inline styles applied to the root element.
    */
   style?: Menu2PopupPublicProps['style'] | undefined;
   /**
@@ -122,7 +122,6 @@ export interface Menu2PopupProps extends Omit<
   classes?: Partial<Menu2PopupClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
-   * Applied to the Paper surface, not the semantic popup element.
    */
   sx?: SxProps<Theme> | undefined;
   /**
@@ -154,15 +153,10 @@ export interface Menu2PopupSlots {
    */
   backdrop?: React.ElementType | undefined;
   /**
-   * The component rendered by the Base UI popup.
-   * @default 'div'
-   */
-  popup?: React.ElementType | undefined;
-  /**
-   * The component used for the Material surface.
+   * The component rendered as the popup. It is the root element and the visible surface.
    * @default Paper
    */
-  paper?: React.ElementType | undefined;
+  root?: React.ElementType | undefined;
   /**
    * The component used for the presentational list wrapper.
    * @default List
@@ -178,18 +172,17 @@ const useUtilityClasses = (ownerState: Menu2PopupOwnerState) => {
   const slots = {
     root: ['root'],
     backdrop: ['backdrop'],
-    paper: ['paper'],
     list: ['list'],
   };
 
   return composeClasses(slots, getMenu2PopupUtilityClass, classes);
 };
 
-const Menu2PopupRoot = styled('div', {
+const Menu2PopupRoot = styled(Paper, {
   name: 'MuiMenu2',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})({ outline: 0 }, menu2PopupTransitionStyles);
+})({ outline: 0 }, menu2PopupPaperStyles, menu2PopupTransitionStyles);
 
 const Menu2PopupBackdrop = styled(BaseMenu.Backdrop, {
   name: 'MuiMenu2',
@@ -206,12 +199,6 @@ const Menu2PopupBackdrop = styled(BaseMenu.Backdrop, {
   pointerEvents: 'none',
   WebkitTapHighlightColor: 'transparent',
 }) as any;
-
-const Menu2PopupPaper = styled(Paper, {
-  name: 'MuiMenu2',
-  slot: 'Paper',
-  overridesResolver: (props, styles) => styles.paper,
-})(menu2PopupPaperStyles);
 
 const Menu2PopupList = styled(List, {
   name: 'MuiMenu2',
@@ -246,8 +233,7 @@ const Menu2Popup = React.forwardRef(function Menu2Popup(
       ownerState={ownerState}
       classes={classes}
       defaultSlots={{
-        popup: Menu2PopupRoot,
-        paper: Menu2PopupPaper,
+        root: Menu2PopupRoot,
         list: Menu2PopupList,
         backdrop: Menu2PopupBackdrop,
       }}
@@ -298,7 +284,7 @@ Menu2Popup.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * CSS class applied to the semantic popup element, not the Paper surface.
+   * CSS class applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -419,12 +405,11 @@ Menu2Popup.propTypes /* remove-proptypes */ = {
    */
   sticky: PropTypes.bool,
   /**
-   * Inline styles applied to the semantic popup element, not the Paper surface.
+   * Inline styles applied to the root element.
    */
   style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
-   * Applied to the Paper surface, not the semantic popup element.
    */
   sx: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
