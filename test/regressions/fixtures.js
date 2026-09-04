@@ -126,9 +126,9 @@ const importDemos = import.meta.glob(
     '!docs/data/material/components/material-icons/SearchIcons.*', // Heavy icon grid
     '!docs/data/material/components/menus/**', // Needs interaction
     '!docs/data/material/components/popper/**', // Needs interaction
-    // `progress` is included so axe can run on the LinearProgress a11y demos; its
-    // animated bars make screenshots flaky, so screenshots are disabled slug-wide
-    // in `SCREENSHOT_RULES` (a11y still runs on the enrolled demos).
+    // `progress` is included so axe can run on the enrolled LinearProgress docs
+    // demos; its animated bars make screenshots flaky, so screenshots are
+    // disabled slug-wide in `SCREENSHOT_RULES` (a11y still runs on the demos).
     '!docs/data/material/components/speed-dial/**', // Needs interaction
     '!docs/data/material/components/textarea-autosize/**', // Superseded by a dedicated regression test
     '!docs/data/material/components/tooltips/**', // Needs interaction
