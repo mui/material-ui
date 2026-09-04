@@ -97,7 +97,6 @@ describe('getConfig', () => {
     );
   });
 
-<<<<<<< HEAD
   it('returns the radio a11y rule for a brace-glob enrolment', () => {
     expect(
       getConfig(A11Y_RULES, 'docs/data/material/components/radio-buttons/RadioButtonsGroup'),
@@ -117,7 +116,6 @@ describe('getConfig', () => {
     ).to.equal(undefined);
   });
 
-=======
   it('returns the a11y rule with assertions:all for the progress brace-glob enrolment', () => {
     expect(
       getConfig(A11Y_RULES, 'docs/data/material/components/progress/LinearDeterminate'),
@@ -150,7 +148,6 @@ describe('getConfig', () => {
     ).to.deep.include({ enabled: false });
   });
 
->>>>>>> master
   it('asserts every rule on the enrolled Switch demos', () => {
     expect(
       getConfig(A11Y_RULES, 'docs/data/material/components/switches/BasicSwitches'),

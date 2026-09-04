@@ -293,9 +293,6 @@ export const A11Y_RULES: A11yRule[] = [
     skipAssertions: ['color-contrast'],
   },
   {
-<<<<<<< HEAD
-    test: `docs/data/material/components/radio-buttons/{${RADIO_A11Y_DEMOS.join(',')}}`,
-=======
     test: `docs/data/material/components/progress/{${LINEARPROGRESS_A11Y_DEMOS.join(',')}}`,
     enabled: true,
     assertions: 'all',
@@ -305,7 +302,11 @@ export const A11Y_RULES: A11yRule[] = [
   // same `progress.a11y.json` as the docs demos above.
   {
     test: 'test/regressions/a11y/fixtures/progress/{LinearProgressA11ySemanticStates,LinearProgressA11yColorMatrix}',
->>>>>>> master
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/radio-buttons/{${RADIO_A11Y_DEMOS.join(',')}}`,
     enabled: true,
     assertions: 'all',
   },
