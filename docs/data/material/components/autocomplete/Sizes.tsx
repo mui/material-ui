@@ -1,9 +1,22 @@
+import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Chip from '@mui/material/Chip';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
+const removeDescription = 'Press Backspace or Delete to remove';
+
+function getInputDescription(valueLength: number) {
+  return valueLength > 0
+    ? `${valueLength} selected. From the start of the input, press Left Arrow to focus the selected items`
+    : undefined;
+}
+
 export default function Sizes() {
+  const [standardValue, setStandardValue] = React.useState([top100Films[13]]);
+  const [outlinedValue, setOutlinedValue] = React.useState([top100Films[13]]);
+  const [filledValue, setFilledValue] = React.useState([top100Films[13]]);
+
   return (
     <Stack spacing={2} sx={{ width: 500 }}>
       <Autocomplete
@@ -27,13 +40,28 @@ export default function Sizes() {
         size="small"
         options={top100Films}
         getOptionLabel={(option) => option.title}
-        defaultValue={[top100Films[13]]}
+        value={standardValue}
+        onChange={(event, newValue) => {
+          setStandardValue(newValue);
+        }}
+        slotProps={{
+          chip: {
+            'aria-description': removeDescription,
+          },
+        }}
         renderInput={(params) => (
           <TextField
             {...params}
             variant="standard"
             label="Size small"
             placeholder="Favorites"
+            slotProps={{
+              ...params.slotProps,
+              htmlInput: {
+                ...params.slotProps.htmlInput,
+                'aria-description': getInputDescription(standardValue.length),
+              },
+            }}
           />
         )}
       />
@@ -53,9 +81,28 @@ export default function Sizes() {
         size="small"
         options={top100Films}
         getOptionLabel={(option) => option.title}
-        defaultValue={[top100Films[13]]}
+        value={outlinedValue}
+        onChange={(event, newValue) => {
+          setOutlinedValue(newValue);
+        }}
+        slotProps={{
+          chip: {
+            'aria-description': removeDescription,
+          },
+        }}
         renderInput={(params) => (
-          <TextField {...params} label="Size small" placeholder="Favorites" />
+          <TextField
+            {...params}
+            label="Size small"
+            placeholder="Favorites"
+            slotProps={{
+              ...params.slotProps,
+              htmlInput: {
+                ...params.slotProps.htmlInput,
+                'aria-description': getInputDescription(outlinedValue.length),
+              },
+            }}
+          />
         )}
       />
       <Autocomplete
@@ -79,7 +126,10 @@ export default function Sizes() {
         size="small"
         options={top100Films}
         getOptionLabel={(option) => option.title}
-        defaultValue={[top100Films[13]]}
+        value={filledValue}
+        onChange={(event, newValue) => {
+          setFilledValue(newValue);
+        }}
         renderValue={(values, getItemProps) =>
           values.map((option, index) => {
             const { key, ...itemProps } = getItemProps({ index });
@@ -89,6 +139,7 @@ export default function Sizes() {
                 variant="outlined"
                 label={option.title}
                 size="small"
+                aria-description={removeDescription}
                 {...itemProps}
               />
             );
@@ -100,6 +151,13 @@ export default function Sizes() {
             variant="filled"
             label="Size small"
             placeholder="Favorites"
+            slotProps={{
+              ...params.slotProps,
+              htmlInput: {
+                ...params.slotProps.htmlInput,
+                'aria-description': getInputDescription(filledValue.length),
+              },
+            }}
           />
         )}
       />

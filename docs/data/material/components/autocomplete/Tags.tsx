@@ -1,9 +1,28 @@
+import * as React from 'react';
 import Chip from '@mui/material/Chip';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 
+const removeDescription = 'Press Backspace or Delete to remove';
+
+function getInputDescription(valueLength: number) {
+  return valueLength > 0
+    ? `${valueLength} selected. From the start of the input, press Left Arrow to focus the selected items`
+    : undefined;
+}
+
 export default function Tags() {
+  const [standardValue, setStandardValue] = React.useState([top100Films[13]]);
+  const [outlinedValue, setOutlinedValue] = React.useState([top100Films[13]]);
+  const [filledValue, setFilledValue] = React.useState<string[]>([
+    top100Films[13].title,
+  ]);
+  const [readOnlyValue] = React.useState([
+    top100Films[12].title,
+    top100Films[13].title,
+  ]);
+
   return (
     <Stack spacing={3} sx={{ width: 500 }}>
       <Autocomplete
@@ -11,13 +30,28 @@ export default function Tags() {
         id="tags-standard"
         options={top100Films}
         getOptionLabel={(option) => option.title}
-        defaultValue={[top100Films[13]]}
+        value={standardValue}
+        onChange={(event, newValue) => {
+          setStandardValue(newValue);
+        }}
+        slotProps={{
+          chip: {
+            'aria-description': removeDescription,
+          },
+        }}
         renderInput={(params) => (
           <TextField
             {...params}
             variant="standard"
             label="Multiple values"
             placeholder="Favorites"
+            slotProps={{
+              ...params.slotProps,
+              htmlInput: {
+                ...params.slotProps.htmlInput,
+                'aria-description': getInputDescription(standardValue.length),
+              },
+            }}
           />
         )}
       />
@@ -26,13 +60,28 @@ export default function Tags() {
         id="tags-outlined"
         options={top100Films}
         getOptionLabel={(option) => option.title}
-        defaultValue={[top100Films[13]]}
+        value={outlinedValue}
+        onChange={(event, newValue) => {
+          setOutlinedValue(newValue);
+        }}
         filterSelectedOptions
+        slotProps={{
+          chip: {
+            'aria-description': removeDescription,
+          },
+        }}
         renderInput={(params) => (
           <TextField
             {...params}
             label="filterSelectedOptions"
             placeholder="Favorites"
+            slotProps={{
+              ...params.slotProps,
+              htmlInput: {
+                ...params.slotProps.htmlInput,
+                'aria-description': getInputDescription(outlinedValue.length),
+              },
+            }}
           />
         )}
       />
@@ -40,13 +89,22 @@ export default function Tags() {
         multiple
         id="tags-filled"
         options={top100Films.map((option) => option.title)}
-        defaultValue={[top100Films[13].title]}
+        value={filledValue}
+        onChange={(event, newValue) => {
+          setFilledValue(newValue);
+        }}
         freeSolo
         renderValue={(value: readonly string[], getItemProps) =>
           value.map((option: string, index: number) => {
             const { key, ...itemProps } = getItemProps({ index });
             return (
-              <Chip variant="outlined" label={option} key={key} {...itemProps} />
+              <Chip
+                variant="outlined"
+                label={option}
+                key={key}
+                aria-description={removeDescription}
+                {...itemProps}
+              />
             );
           })
         }
@@ -56,6 +114,13 @@ export default function Tags() {
             variant="filled"
             label="freeSolo"
             placeholder="Favorites"
+            slotProps={{
+              ...params.slotProps,
+              htmlInput: {
+                ...params.slotProps.htmlInput,
+                'aria-description': getInputDescription(filledValue.length),
+              },
+            }}
           />
         )}
       />
@@ -63,10 +128,21 @@ export default function Tags() {
         multiple
         id="tags-readOnly"
         options={top100Films.map((option) => option.title)}
-        defaultValue={[top100Films[12].title, top100Films[13].title]}
+        defaultValue={readOnlyValue}
         readOnly
         renderInput={(params) => (
-          <TextField {...params} label="readOnly" placeholder="Favorites" />
+          <TextField
+            {...params}
+            label="readOnly"
+            placeholder="Favorites"
+            slotProps={{
+              ...params.slotProps,
+              htmlInput: {
+                ...params.slotProps.htmlInput,
+                'aria-description': getInputDescription(readOnlyValue.length),
+              },
+            }}
+          />
         )}
       />
     </Stack>
