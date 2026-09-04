@@ -26,6 +26,10 @@ const MARGIN_COLOR = '#f8cb9c';
 const MARGIN_EDGE = '#d99a5b';
 const GAP_COLOR = '#9b6cd9';
 
+// One rung = one caption line plus breathing room. Every ladder steps by it,
+// so `offset` means the same distance wherever it is used.
+const RUNG = 24;
+
 // Connector + caption inks, one per aspect. Darker than the fills so text holds
 // up on white, lifted in dark mode where the fills would be far too dim.
 const INK = { padding: '#4f7a35', margin: '#a8641c', gap: '#6c3fb0' };
@@ -428,11 +432,18 @@ function Annotations({ measured, bounds }) {
     top: [],
     bottom: [],
   };
-  const reserveLane = (side, centre, label) => {
+  const reserveLane = (side, centre, label, rung) => {
     // 13px type: close enough to keep neighbours apart without measuring.
     const half = (label.length * 7.2) / 2 + 8;
     const span = { min: centre - half, max: centre + half };
     const rungs = taken[side];
+    if (rung !== undefined) {
+      while (rungs.length <= rung) {
+        rungs.push([]);
+      }
+      rungs[rung].push(span);
+      return rung;
+    }
     for (let i = 0; i < rungs.length; i += 1) {
       if (rungs[i].every((r) => span.max < r.min || span.min > r.max)) {
         rungs[i].push(span);
@@ -442,40 +453,42 @@ function Annotations({ measured, bounds }) {
     rungs.push([span]);
     return rungs.length - 1;
   };
-  const nextRail = (side, extra = 0, centre = 0, label = '') => {
+  /** `rung` is absolute: which line out from the component the caption sits on.
+   * Left undefined it is chosen automatically — the first line where this
+   * caption would not overlap one already placed. */
+  const nextRail = (side, rung, centre = 0, label = '') => {
     if (side === 'top') {
-      return bounds.y - 22 - (reserveLane('top', centre, label) + extra) * 30;
+      return bounds.y - 22 - reserveLane('top', centre, label, rung) * RUNG;
     }
     if (side === 'bottom') {
       return (
         bounds.y +
         bounds.height +
         22 +
-        (reserveLane('bottom', centre, label) + extra) * 30
+        reserveLane('bottom', centre, label, rung) * RUNG
       );
     }
-    // Side captions get ONE rail each, not a lane per caption: they already
-    // separate by y (see `reserveY`), so an x step would only make the whole
-    // column drift inward as slots are switched off. `extra` still pushes an
-    // individual caption further out.
+    // Side captions share ONE rail — they separate by y (see `reserveY`), and
+    // an x step would make the column drift inward as slots are toggled off.
     lanes[side] += 1;
-    return side === 'left'
-      ? bounds.x - 22 - extra * 30
-      : bounds.x + bounds.width + 22 + extra * 30;
+    return side === 'left' ? bounds.x - 22 : bounds.x + bounds.width + 22;
   };
 
   // Captions on a side never sit closer than one rung apart, and they descend in
   // annotation order. Where boxes are already far apart (a stacked instance)
   // each keeps its natural y; where they cluster (Alert's slots all share one
   // row) they become an evenly spaced ladder instead of piling up.
-  const RUNG = 20;
+
   const lastY = {
     left: Number.NEGATIVE_INFINITY,
     right: Number.NEGATIVE_INFINITY,
   };
-  const reserveY = (side, y) => {
-    const next = Math.max(y, lastY[side] + RUNG);
-    lastY[side] = next;
+  const reserveY = (side, y, rung) => {
+    // An explicit rung counts down from the demo's top edge; otherwise the
+    // caption keeps its natural y, never closer than one rung to the last.
+    const next =
+      rung === undefined ? Math.max(y, lastY[side] + RUNG) : bounds.y + rung * RUNG;
+    lastY[side] = Math.max(lastY[side], next);
     return next;
   };
 
@@ -578,7 +591,7 @@ function Annotations({ measured, bounds }) {
       byValue.forEach((group, value) => {
         const text = caption(group[0].value, named);
         const alongX = outer.x + outer.width * at;
-        const rail = nextRail(side, annotation.offset ?? 0, alongX, text);
+        const rail = nextRail(side, annotation.offset, alongX, text);
 
         if (flipped) {
           // The spine crosses the bands, so it is fixed on the axis the bands
@@ -601,7 +614,7 @@ function Annotations({ measured, bounds }) {
               tone={tone}
               labelAt={
                 side === 'left' || side === 'right'
-                  ? reserveY(side, cross)
+                  ? reserveY(side, cross, annotation.offset)
                   : undefined
               }
             />,
@@ -612,7 +625,7 @@ function Annotations({ measured, bounds }) {
         const points = group.map((band) => stem(band.side));
         const sideways = side === 'left' || side === 'right';
         const along = sideways
-          ? reserveY(side, outer.y + outer.height * at)
+          ? reserveY(side, outer.y + outer.height * at, annotation.offset)
           : alongX;
         marks.push(
           <Comb
@@ -660,7 +673,7 @@ function Annotations({ measured, bounds }) {
         y: at === undefined ? band.y + band.height / 2 : band.y + band.height * at,
       };
       const gapText = caption(gap.size, annotation);
-      const rail = nextRail(side, annotation.offset ?? 0, centre.x, gapText);
+      const rail = nextRail(side, annotation.offset, centre.x, gapText);
 
       if (!naturalPair.includes(side)) {
         const vertical = side === 'top' || side === 'bottom';
@@ -675,7 +688,7 @@ function Annotations({ measured, bounds }) {
             tone="tone-gap"
             labelAt={
               side === 'left' || side === 'right'
-                ? reserveY(side, centre.y)
+                ? reserveY(side, centre.y, annotation.offset)
                 : undefined
             }
           />,
@@ -697,7 +710,7 @@ function Annotations({ measured, bounds }) {
           tone="tone-gap"
           labelAt={
             side === 'left' || side === 'right'
-              ? reserveY(side, centre.y)
+              ? reserveY(side, centre.y, annotation.offset)
               : undefined
           }
         />,
