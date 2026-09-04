@@ -82,7 +82,6 @@ async function submitFeedback(
     currentLocationURL: window.location.href,
     commentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
     commentSectionTitle: commentedSection.text,
-    githubRepo: process.env.SOURCE_CODE_REPO,
     productId,
   };
   if (!comment || comment.length < 10) {
