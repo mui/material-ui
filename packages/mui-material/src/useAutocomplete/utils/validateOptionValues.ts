@@ -1,12 +1,14 @@
 type OptionValueTypeValidationParams<Option> = {
   options: readonly Option[];
   componentName: string;
+  freeSolo: boolean;
   getOptionValueProp: ((option: Option) => unknown) | undefined;
 };
 
 export default function validateOptionValues<Option>({
   options,
   componentName,
+  freeSolo,
   getOptionValueProp,
 }: OptionValueTypeValidationParams<Option>) {
   if (!getOptionValueProp) {
@@ -18,6 +20,17 @@ export default function validateOptionValues<Option>({
 
   for (const option of options) {
     const value = getOptionValueProp(option);
+
+    if (freeSolo && typeof value === 'string') {
+      console.error(
+        `MUI: The \`getOptionValue\` method of ${componentName} returned the string value ${getOptionValueDescription(
+          value,
+        )} while \`freeSolo\` is enabled.\n` +
+          `${componentName} cannot distinguish string option values from free-solo values. ` +
+          'Return a number, bigint, or boolean from `getOptionValue`, or disable `freeSolo`.',
+      );
+      continue;
+    }
 
     // Only primitive keys can safely identify options in comparisons and lookup maps.
     if (!isValidOptionValue(value)) {

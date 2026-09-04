@@ -34,6 +34,10 @@ export type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo 
 
 export type AutocompletePrimitiveValue = string | number | bigint | boolean;
 
+export type AutocompleteMappedValue<FreeSolo> = true extends FreeSolo
+  ? Exclude<AutocompletePrimitiveValue, string>
+  : AutocompletePrimitiveValue;
+
 export type AutocompleteResolvedValue<Option, Value> = [Value] extends [never]
   ? Option
   : NoInfer<Value>;
@@ -49,7 +53,7 @@ export interface UseAutocompleteProps<
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-  Value extends AutocompletePrimitiveValue = never,
+  Value extends AutocompleteMappedValue<FreeSolo> = never,
 > {
   /**
    * @internal The prefix of the state class name, temporary for Joy UI
@@ -189,6 +193,8 @@ export interface UseAutocompleteProps<
    *
    * When provided, the `value`, `defaultValue`, and `onChange` value use the returned type instead
    * of the option type. The returned value must be a unique, non-null primitive.
+   * When `freeSolo` is enabled, it must not return a string because strings are reserved for
+   * free-solo values.
    *
    * @param {Option} option The option to get the value for.
    * @returns {Value}
@@ -372,7 +378,7 @@ export interface UseAutocompleteParameters<
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-  Value extends AutocompletePrimitiveValue = never,
+  Value extends AutocompleteMappedValue<FreeSolo> = never,
 > extends UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, Value> {}
 
 export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'touch';
@@ -412,7 +418,7 @@ export function useAutocomplete<
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
-  Value extends AutocompletePrimitiveValue = AutocompletePrimitiveValue,
+  Value extends AutocompleteMappedValue<FreeSolo> = AutocompleteMappedValue<FreeSolo>,
 >(
   props: PartiallyRequired<
     UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, Value>,
@@ -426,7 +432,7 @@ export function useAutocomplete<
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
-  Value extends AutocompletePrimitiveValue = AutocompletePrimitiveValue,
+  Value extends AutocompleteMappedValue<FreeSolo> = AutocompleteMappedValue<FreeSolo>,
 >(
   props: Omit<
     UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, Value>,
