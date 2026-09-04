@@ -81,22 +81,6 @@ const getSlackChannelId = (
 const escapeSlackMrkdwn = (value: string) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-// Derive the "Create issue" repository from the product server-side. The payload's
-// `githubRepo` is client-controlled and must not be trusted, otherwise the button in a
-// genuine MUI bot message can be pointed at an arbitrary destination.
-const getGitHubRepo = (productId: string) => {
-  if (productId === 'base-ui') {
-    return 'https://github.com/mui/base-ui';
-  }
-  if (productId.startsWith('x-')) {
-    return 'https://github.com/mui/mui-x';
-  }
-  if (productId.startsWith('toolpad-')) {
-    return 'https://github.com/mui/toolpad';
-  }
-  return 'https://github.com/mui/material-ui';
-};
-
 // Setup of the slack bot (taken from https://slack.dev/bolt-js/deployments/aws-lambda)
 const awsLambdaReceiver = new AwsLambdaReceiver({
   signingSecret: process.env.SLACK_SIGNING_SECRET!,
@@ -165,15 +149,6 @@ export const handler: Handler = async (event, context, callback) => {
         }`,
       ].join('\n\n');
 
-      const githubNewIssueParams = new URLSearchParams({
-        title: '[ ] Docs feedback',
-        body: `Feedback received:
-${comment}
-
-from ${commentSectionURL}
-`,
-      });
-
       await app.client.chat.postMessage({
         channel: getSlackChannelId(currentLocationURL, productId, { isDesignFeedback }),
         text: simpleSlackMessage, // Fallback for notification
@@ -188,15 +163,6 @@ from ${commentSectionURL}
           {
             type: 'actions',
             elements: [
-              {
-                type: 'button',
-                text: {
-                  type: 'plain_text',
-                  text: 'Create issue',
-                  emoji: true,
-                },
-                url: `${getGitHubRepo(String(productId))}/issues/new?${githubNewIssueParams}`,
-              },
               {
                 type: 'button',
                 text: {
