@@ -3,6 +3,8 @@ import Chip from '@mui/material/Chip';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
+const removeDescription = 'Press Backspace or Delete to remove';
+
 export default function FixedTags() {
   const fixedOptions = [top100Films[6]];
   const [value, setValue] = React.useState([...fixedOptions, top100Films[13]]);
@@ -27,6 +29,9 @@ export default function FixedTags() {
             <Chip
               key={key}
               label={option.title}
+              aria-description={
+                fixedOptions.includes(option) ? undefined : removeDescription
+              }
               {...itemProps}
               disabled={fixedOptions.includes(option)}
             />
@@ -35,7 +40,21 @@ export default function FixedTags() {
       }
       style={{ width: 500 }}
       renderInput={(params) => (
-        <TextField {...params} label="Fixed tag" placeholder="Favorites" />
+        <TextField
+          {...params}
+          label="Fixed tag"
+          placeholder="Favorites"
+          slotProps={{
+            ...params.slotProps,
+            htmlInput: {
+              ...params.slotProps.htmlInput,
+              'aria-description':
+                value.length > 0
+                  ? `${value.length} selected. From the start of the input, press Left Arrow to focus the selected items`
+                  : undefined,
+            },
+          }}
+        />
       )}
     />
   );
