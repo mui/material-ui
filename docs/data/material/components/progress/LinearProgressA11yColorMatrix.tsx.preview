@@ -1,0 +1,13 @@
+{variants.map((variant) => (
+  <Stack key={variant} spacing={1}>
+    {colors.map((color) => (
+      <LinearProgress
+        key={`${variant}-${color}`}
+        color={color}
+        variant={variant}
+        aria-label={`${color} ${variant}`}
+        {...valuePropsByVariant[variant]}
+      />
+    ))}
+  </Stack>
+))}

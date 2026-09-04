@@ -443,6 +443,7 @@ async function main() {
     });
 
     registerCssLayoutSuites({ test, renderFixture, routes });
+    registerFocusVisibleSuites({ test, renderFixture, routes });
   });
 }
 
@@ -452,6 +453,7 @@ async function main() {
  * introduced independently of the harness it runs on.
  */
 function registerCssLayoutSuites({ test, renderFixture, routes }) {
+
   const CSS_LAYOUT_SUITES = [
     { component: 'Accordion', route: '/docs-components-accordion/AccordionUsage' },
     // The same demo renders the summary header, which is rated separately.
@@ -611,6 +613,117 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
           }
         },
       );
+    });
+  });
+}
+
+/**
+ * Registers 2.4.7 Focus Visible, which axe has no rule for and jsdom cannot
+ * answer: several components carry a `skipIf(isJsdom())` unit test for it that
+ * therefore never runs.
+ *
+ * The check is a pixel comparison rather than a computed-style diff because
+ * MUI's focus indicator is usually the ripple — a child element that appears in
+ * the DOM. Diffing styles on the control itself would miss it entirely.
+ */
+function registerFocusVisibleSuites({ test, renderFixture, routes }) {
+  const FOCUS_VISIBLE_TARGETS = [
+    {
+      component: 'AccordionSummary',
+      route: '/docs-components-accordion/AccordionUsage',
+      selector: '.MuiAccordionSummary-root',
+    },
+    {
+      component: 'Button',
+      route: '/docs-components-buttons/BasicButtons',
+      selector: '.MuiButton-root',
+    },
+    {
+      component: 'Checkbox',
+      route: '/docs-components-checkboxes/Checkboxes',
+      selector: '.MuiCheckbox-root',
+    },
+    {
+      component: 'Radio',
+      route: '/docs-components-radio-buttons/RadioButtonsGroup',
+      selector: '.MuiRadio-root',
+    },
+    {
+      component: 'Switch',
+      route: '/docs-components-switches/BasicSwitches',
+      selector: '.MuiSwitch-root',
+    },
+    {
+      component: 'TextField',
+      route: '/docs-components-text-fields/BasicTextFields',
+      selector: '.MuiOutlinedInput-root',
+    },
+    {
+      component: 'ToggleButton',
+      route: '/docs-components-toggle-button/ToggleButtons',
+      selector: '.MuiToggleButton-root',
+    },
+  ];
+
+  /** An outline or ring can paint outside the control, so capture a padded box. */
+  const PADDING = 8;
+
+  async function shotAround(page, handle) {
+    const box = await handle.boundingBox();
+    return page.screenshot({
+      animations: 'disabled',
+      clip: {
+        x: Math.max(0, box.x - PADDING),
+        y: Math.max(0, box.y - PADDING),
+        width: box.width + PADDING * 2,
+        height: box.height + PADDING * 2,
+      },
+    });
+  }
+
+  /** Tab until the target (or something inside it) holds focus. */
+  async function tabTo(page, selector) {
+    for (let attempt = 0; attempt < 12; attempt += 1) {
+      // eslint-disable-next-line no-await-in-loop
+      await page.keyboard.press('Tab');
+      // eslint-disable-next-line no-await-in-loop
+      const reached = await page.evaluate(
+        (target) => document.activeElement?.closest(target) !== null,
+        selector,
+      );
+      if (reached) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  FOCUS_VISIBLE_TARGETS.forEach(({ component, route, selector }) => {
+    if (!routes.includes(route)) {
+      return;
+    }
+
+    test(`${component} 2.4.7 Focus Visible: keyboard focus changes how the control looks`, async ({
+      pooled,
+    }) => {
+      const { page } = pooled;
+      const testcase = await renderFixture(page, route);
+      const handle = await testcase.$(selector);
+      if (!handle) {
+        throw new Error(`${component}: no element matched ${selector} on ${route}`);
+      }
+
+      const unfocused = await shotAround(page, handle);
+      if (!(await tabTo(page, selector))) {
+        throw new Error(`${component}: could not reach ${selector} with the Tab key`);
+      }
+      const focused = await shotAround(page, handle);
+
+      if (unfocused.equals(focused)) {
+        throw new Error(
+          `${component} looks identical focused and unfocused — no visible focus indicator`,
+        );
+      }
     });
   });
 }
