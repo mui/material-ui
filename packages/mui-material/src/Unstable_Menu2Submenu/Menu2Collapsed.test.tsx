@@ -705,6 +705,36 @@ describe('<Menu2 /> collapsed API', () => {
     expect(Math.round(submenu.top)).to.equal(Math.round(triggerRect.top) - 8);
   });
 
+  it.skipIf(isJsdom())('positions a submenu at inline-end in an RTL theme', async () => {
+    const theme = createTheme({ direction: 'rtl' });
+    const { user } = render(
+      <ThemeProvider theme={theme}>
+        <div dir="rtl" style={{ padding: '96px 400px' }}>
+          <Menu2 defaultOpen trigger={<Button disableRipple>Options</Button>}>
+            <Menu2Submenu
+              trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
+              slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}
+            >
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2Submenu>
+          </Menu2>
+        </div>
+      </ThemeProvider>,
+    );
+
+    const trigger = await screen.findByRole('menuitem', { name: 'More' });
+    const triggerRect = trigger.getBoundingClientRect();
+    await user.click(trigger);
+    const paper = await screen.findByTestId('submenu-paper');
+    await waitFor(() => {
+      const submenu = paper.getBoundingClientRect();
+      expect(submenu.left).to.be.lessThan(triggerRect.left);
+      // The 4px overlap stays on the inline-end edge when that edge is left.
+      expect(submenu.right).to.be.greaterThan(triggerRect.left);
+      expect(submenu.right - triggerRect.left).to.be.lessThan(12);
+    });
+  });
+
   // `trigger` takes an element at both levels, and the element the caller passes
   // becomes the trigger itself.
   it('renders the caller element as the trigger at both levels', async () => {

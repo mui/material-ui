@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import useForkRef from '@mui/utils/useForkRef';
+import { useRtl } from '@mui/system/RtlProvider';
+import { DirectionProvider } from '@base-ui/react/direction-provider';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import Menu2Popup, { Menu2PopupProps } from './Menu2Popup';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -64,6 +66,7 @@ const Menu2 = React.forwardRef(function Menu2(
     props,
     name: 'MuiMenu2',
   });
+  const isRtl = useRtl();
 
   const {
     children,
@@ -124,27 +127,29 @@ const Menu2 = React.forwardRef(function Menu2(
     );
 
   return (
-    <BaseMenu.Root
-      actionsRef={actionsRef}
-      closeParentOnEsc={closeParentOnEsc}
-      defaultOpen={defaultOpen}
-      defaultTriggerId={defaultTriggerId}
-      disabled={disabled}
-      handle={handle}
-      highlightItemOnHover={highlightItemOnHover}
-      loopFocus={loopFocus}
-      modal={modal}
-      onOpenChange={onOpenChange}
-      onOpenChangeComplete={onOpenChangeComplete}
-      open={open}
-      orientation={orientation}
-      triggerId={triggerId}
-    >
-      {triggerNode}
-      <Menu2Popup {...popupProps} ref={ref} slotProps={popupSlotProps} slots={popupSlots}>
-        {children}
-      </Menu2Popup>
-    </BaseMenu.Root>
+    <DirectionProvider direction={isRtl ? 'rtl' : 'ltr'}>
+      <BaseMenu.Root
+        actionsRef={actionsRef}
+        closeParentOnEsc={closeParentOnEsc}
+        defaultOpen={defaultOpen}
+        defaultTriggerId={defaultTriggerId}
+        disabled={disabled}
+        handle={handle}
+        highlightItemOnHover={highlightItemOnHover}
+        loopFocus={loopFocus}
+        modal={modal}
+        onOpenChange={onOpenChange}
+        onOpenChangeComplete={onOpenChangeComplete}
+        open={open}
+        orientation={orientation}
+        triggerId={triggerId}
+      >
+        {triggerNode}
+        <Menu2Popup {...popupProps} ref={ref} slotProps={popupSlotProps} slots={popupSlots}>
+          {children}
+        </Menu2Popup>
+      </BaseMenu.Root>
+    </DirectionProvider>
   );
 });
 

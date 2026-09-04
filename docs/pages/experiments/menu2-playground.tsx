@@ -18,7 +18,6 @@ import {
   type SxProps,
   type Theme,
 } from '@mui/material/styles';
-import { DirectionProvider } from '@base-ui/react/direction-provider';
 // The Unstable_ subpaths use default exports, so the local bindings drop the
 // prefix and the JSX mirrors the future stable names.
 import Menu2 from '@mui/material/Unstable_Menu2';
@@ -669,11 +668,9 @@ export default function MenuRfcExperiment() {
               <code>enhanceHighContrast theme</code> knob.
             </p>
             <ThemeProvider theme={playgroundTheme}>
-              <DirectionProvider direction={settings.rtl ? 'rtl' : 'ltr'}>
-                <Box dir={settings.rtl ? 'rtl' : 'ltr'}>
-                  <PlaygroundDemo settings={settings} onLog={pushLog} />
-                </Box>
-              </DirectionProvider>
+              <Box dir={settings.rtl ? 'rtl' : 'ltr'}>
+                <PlaygroundDemo settings={settings} onLog={pushLog} />
+              </Box>
             </ThemeProvider>
             <Box
               component="pre"
@@ -725,11 +722,9 @@ export default function MenuRfcExperiment() {
               when each side shows the ring.
             </p>
             <ThemeProvider theme={playgroundTheme}>
-              <DirectionProvider direction={settings.rtl ? 'rtl' : 'ltr'}>
-                <Box dir={settings.rtl ? 'rtl' : 'ltr'}>
-                  <FocusRingComparisonDemo settings={settings} />
-                </Box>
-              </DirectionProvider>
+              <Box dir={settings.rtl ? 'rtl' : 'ltr'}>
+                <FocusRingComparisonDemo settings={settings} />
+              </Box>
             </ThemeProvider>
           </section>
 

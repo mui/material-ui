@@ -269,6 +269,7 @@ Done:
 - **Composition.** Composed list primitives still work inside the items. `ListItemText inset` aligns with the icon column. `inset` is a `ListItemText` prop, not a menu item prop, so we implemented nothing.
 - **Types and prop routing.** The prop types inherit from Base UI. The collapsed components pass behavior props, such as `open` and `actionsRef`, explicitly to the renderless root. The remaining props, including HTML attributes and event handlers, go to the popup element. New Base UI root props need an explicit routing update.
 - **Refs.** The public ref and `slotProps.popup.ref` both target the semantic popup of `Menu2` and `Menu2Submenu`. Use `slotProps.paper.ref` for the Paper surface. The root trigger composes its internal ref with `slotProps.trigger.ref` and the trigger element's own ref.
+- **RTL integration.** `Menu2` passes Material UI's theme direction to Base UI, so submenu arrow keys and logical-side positioning follow the Material theme.
 - **Elevation.** Top-level `elevation` on the popup, default 8.
 - **Animation.** A default open and close animation, and a backdrop slot that you opt in to.
 - **Preview cards.** The `useMenu2ItemPopover` hook replaces the anchor handling that the recipes did by hand.
@@ -278,7 +279,7 @@ Left:
 
 - **Style sharing.** The components share styles at the style-function level. It is better to share the styled element itself where this fits.
 - **Slot helpers.** The slot helpers for Base UI should move into `@mui/utils`.
-- **Behavior tests.** We must still adapt the existing Menu behavior tests. The flat container was the blocker, and it now exists, so this task is next. The benchmark covers the open action, focus, disabled items, dismissal, scroll locking, backdrop treatment, and placement. The benchmark does not yet cover these areas: the default item close behavior, link items, checkbox and radio activation, controlled callback reasons, outside-pointer dismissal, hover and submenu timing, RTL submenu navigation, and context-menu focus. Two capabilities also have no test of their own, because Base UI supplies them: `aria-controls` on the trigger and `aria-labelledby` on a group. The explicit submenu trigger has regression tests for typeahead and the `label` override, including a Tooltip wrapper.
+- **Behavior tests.** We must still adapt the existing Menu behavior tests. The flat container was the blocker, and it now exists, so this task is next. The benchmark covers the open action, focus, disabled items, dismissal, scroll locking, backdrop treatment, and placement. The benchmark does not yet cover these areas: the default item close behavior, link items, checkbox and radio activation, controlled callback reasons, outside-pointer dismissal, hover and submenu timing, and context-menu focus. Two capabilities also have no test of their own, because Base UI supplies them: `aria-controls` on the trigger and `aria-labelledby` on a group. The explicit submenu trigger has regression tests for typeahead and the `label` override, including a Tooltip wrapper.
 
 ### Decisions
 

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import { buttonBaseClasses } from '@mui/material/ButtonBase';
 import { listClasses } from '@mui/material/List';
@@ -623,19 +623,41 @@ describe('<Menu2 />', () => {
     expect(screen.getByTestId('non-modal-positioner').previousElementSibling).to.equal(null);
   });
 
-  it('opens in an RTL tree', async () => {
-    const { user } = render(
-      <div dir="rtl">
-        <Menu2 trigger={<Button disableRipple>Options</Button>}>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2>
-      </div>,
-    );
+  it.skipIf(isJsdom())(
+    'uses the Material theme direction for submenu keyboard navigation',
+    async () => {
+      const { user } = render(
+        <ThemeProvider theme={createTheme({ direction: 'rtl' })}>
+          <Menu2 defaultOpen modal={false} anchor={document.body}>
+            <Menu2Submenu
+              trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
+            >
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2Submenu>
+          </Menu2>
+        </ThemeProvider>,
+      );
 
-    await user.click(screen.getByRole('button', { name: 'Options' }));
+      const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
+      await waitFor(() => {
+        expect(submenuTrigger.closest('[role="menu"]')!.contains(document.activeElement)).to.equal(
+          true,
+        );
+      });
+      await act(async () => submenuTrigger.focus());
+      await user.keyboard('{ArrowLeft}');
 
-    expect(await screen.findByRole('menu')).not.to.equal(null);
-  });
+      const nestedItem = await screen.findByRole('menuitem', { name: 'Nested' });
+      await act(async () => nestedItem.focus());
+
+      await user.keyboard('{ArrowRight}');
+
+      await waitFor(() => {
+        expect(screen.queryByRole('menuitem', { name: 'Nested' })).to.equal(null);
+      });
+      expect(submenuTrigger).to.equal(document.activeElement);
+    },
+  );
 
   it.skipIf(isJsdom())('applies Base UI positioning attributes in the browser', async () => {
     const { user } = render(
