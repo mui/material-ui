@@ -71,28 +71,32 @@ export default function usePagination(props = {}) {
   const itemList = [
     ...(showFirstButton ? ['first'] : []),
     ...(hidePrevButton ? [] : ['previous']),
-    ...startPages,
+    ...(boundaryCount === 0 && siblingCount === 0
+      ? [page]
+      : [
+          ...startPages,
 
-    // Start ellipsis
-    // eslint-disable-next-line no-nested-ternary
-    ...(siblingsStart > boundaryCount + 2
-      ? ['start-ellipsis']
-      : boundaryCount + 1 < count - boundaryCount
-        ? [boundaryCount + 1]
-        : []),
+          // Start ellipsis
+          // eslint-disable-next-line no-nested-ternary
+          ...(siblingsStart > boundaryCount + 2
+            ? ['start-ellipsis']
+            : boundaryCount + 1 < count - boundaryCount
+              ? [boundaryCount + 1]
+              : []),
 
-    // Sibling pages
-    ...range(siblingsStart, siblingsEnd),
+          // Sibling pages
+          ...range(siblingsStart, siblingsEnd),
 
-    // End ellipsis
-    // eslint-disable-next-line no-nested-ternary
-    ...(siblingsEnd < count - boundaryCount - 1
-      ? ['end-ellipsis']
-      : count - boundaryCount > boundaryCount
-        ? [count - boundaryCount]
-        : []),
+          // End ellipsis
+          // eslint-disable-next-line no-nested-ternary
+          ...(siblingsEnd < count - boundaryCount - 1
+            ? ['end-ellipsis']
+            : count - boundaryCount > boundaryCount
+              ? [count - boundaryCount]
+              : []),
 
-    ...endPages,
+          ...endPages,
+        ]),
     ...(hideNextButton ? [] : ['next']),
     ...(showLastButton ? ['last'] : []),
   ];

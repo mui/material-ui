@@ -157,13 +157,7 @@ describe('usePagination', () => {
     items = renderHook(() =>
       usePagination({ count: 11, page: 6, boundaryCount: 0, siblingCount: 0 }),
     ).result.current.items;
-    expect(serialize(items)).to.deep.equal([
-      'previous',
-      'start-ellipsis',
-      6,
-      'end-ellipsis',
-      'next',
-    ]);
+    expect(serialize(items)).to.deep.equal(['previous', 6, 'next']);
 
     items = renderHook(() =>
       usePagination({ count: 11, page: 6, boundaryCount: 0, siblingCount: 1 }),
