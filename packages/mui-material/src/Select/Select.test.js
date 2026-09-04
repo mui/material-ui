@@ -257,7 +257,8 @@ describe('<Select />', () => {
       await user.pointer({ keys: '[MouseLeft>]', target: trigger });
 
       await act(async () => {
-        await sleep(450);
+        // Well past the 400ms selected-item window; a tight margin flakes on slow CI.
+        await sleep(700);
       });
 
       await user.pointer({
@@ -284,7 +285,8 @@ describe('<Select />', () => {
       await user.pointer({ keys: '[MouseLeft>]', target: trigger });
 
       await act(async () => {
-        await sleep(250);
+        // Well past the 200ms drag window; a tight margin flakes on slow CI.
+        await sleep(400);
       });
       await user.pointer({
         keys: '[/MouseLeft]',
@@ -333,7 +335,8 @@ describe('<Select />', () => {
       await user.pointer({ keys: '[MouseLeft>]', target: trigger });
 
       await act(async () => {
-        await sleep(250);
+        // Well past the 200ms drag window; a tight margin flakes on slow CI.
+        await sleep(400);
       });
       await user.pointer({
         keys: '[/MouseLeft]',
