@@ -131,6 +131,10 @@ const SPEACIAL_FEEDBACK_HASH = [{ hash: 'new-docs-api-feedback', text: 'New API 
 
 const iconColor = 'grey.500';
 
+// Keep feedback comments within the Slack message limit. The server enforces the real
+// bound; this is the browser-side hint so a long comment isn't silently truncated.
+const MAX_COMMENT_LENGTH = 1000;
+
 export interface AppLayoutDocsFooterProps {
   tableOfContents?: TocItem[];
   location: string;
@@ -353,11 +357,16 @@ export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
                   rows={2}
                   value={comment}
                   onChange={handleChangeTextfield}
+                  helperText={`${comment.length}/${MAX_COMMENT_LENGTH}`}
                   slotProps={{
                     htmlInput: {
                       'aria-label': t('feedbackCommentLabel'),
                       'aria-describedby': 'feedback-description',
+                      maxLength: MAX_COMMENT_LENGTH,
                       ref: inputRef,
+                    },
+                    formHelperText: {
+                      sx: { textAlign: 'right', mx: 0 },
                     },
                   }}
                 />
