@@ -14,23 +14,32 @@ import { SlotProps, warnMenu2FragmentTrigger, warnMenu2TriggerRef } from './menu
 
 export interface Menu2Slots extends NonNullable<Menu2PopupProps['slots']> {}
 
+// The trigger element owns its own props. The slot carries only what the
+// merged trigger behavior needs: the native-button hint, plus the class name
+// and the ref that the merge composes.
+export interface Menu2TriggerSlotProps extends Pick<BaseMenu.Trigger.Props, 'nativeButton'> {
+  className?: string | undefined;
+  ref?: React.Ref<HTMLElement> | undefined;
+}
+
 export interface Menu2SlotProps extends NonNullable<Menu2PopupProps['slotProps']> {
-  trigger?: SlotProps<Record<string, any>, Menu2Props> | undefined;
+  trigger?: SlotProps<Menu2TriggerSlotProps, Menu2Props> | undefined;
 }
 
 /**
  * Picks the Base UI `Menu.Root` props that it forwards (open/close control,
- * modality, `actionsRef`, keyboard behavior) plus the popup's positioning and
- * appearance props, so one menu is one component. `Pick` names each forwarded
- * prop, so a prop that a later Base UI version adds reaches neither the type
- * nor the popup DOM until Menu2 supports it. The mapped type also lets the
- * proptypes generator resolve the members. HTML attributes and event handlers
- * are forwarded to the popup element.
+ * modality, `actionsRef`, keyboard behavior), the `Menu.Trigger` hover props,
+ * plus the popup's positioning and appearance props, so one menu is one
+ * component. `Pick` names each forwarded prop, so a prop that a later Base UI
+ * version adds reaches neither the type nor the popup DOM until Menu2 supports
+ * it. The mapped type also lets the proptypes generator resolve the members.
+ * HTML attributes and event handlers are forwarded to the popup element.
  */
 export interface Menu2Props
   // Not picked: `handle` needs `Menu.createHandle`, which Menu2 does not
   // export, and `triggerId`, `defaultTriggerId`, `orientation` serve detached
-  // triggers and a horizontal menu, which are outside the contract.
+  // triggers and a horizontal menu, which are outside the contract. The
+  // trigger element owns its remaining props.
   extends
     Pick<
       BaseMenu.Root.Props,
@@ -45,6 +54,7 @@ export interface Menu2Props
       | 'onOpenChangeComplete'
       | 'open'
     >,
+    Pick<BaseMenu.Trigger.Props, 'closeDelay' | 'delay' | 'openOnHover'>,
     Omit<Menu2PopupProps, 'children' | 'slots' | 'slotProps'> {
   /**
    * The menu items.
@@ -90,11 +100,14 @@ const Menu2 = React.forwardRef(function Menu2(
     trigger,
     slots,
     slotProps,
-    // Only behavior props belong on the renderless root. All remaining props,
-    // including DOM attributes and event handlers, belong on the popup.
+    // Only behavior props belong on the renderless root and the trigger. All
+    // remaining props, including DOM attributes and event handlers, belong on
+    // the popup.
     actionsRef,
+    closeDelay,
     closeParentOnEsc,
     defaultOpen,
+    delay,
     disabled,
     highlightItemOnHover,
     loopFocus,
@@ -102,6 +115,7 @@ const Menu2 = React.forwardRef(function Menu2(
     onOpenChange,
     onOpenChangeComplete,
     open,
+    openOnHover,
     ...popupProps
   } = themedProps;
 
@@ -113,7 +127,7 @@ const Menu2 = React.forwardRef(function Menu2(
     warnMenu2FragmentTrigger(trigger, 'Menu2', 'Button');
   }
 
-  const triggerRef = React.useRef<HTMLButtonElement | null>(null);
+  const triggerRef = React.useRef<HTMLElement | null>(null);
   const handleTriggerRef = useForkRef(triggerRef, resolvedTriggerProps?.ref);
   React.useEffect(() => {
     if (process.env.NODE_ENV !== 'production' && triggerRef.current == null) {
@@ -127,6 +141,9 @@ const Menu2 = React.forwardRef(function Menu2(
       // caller keeps whatever component they passed.
       <BaseMenu.Trigger
         render={trigger}
+        openOnHover={openOnHover}
+        delay={delay}
+        closeDelay={closeDelay}
         {...resolvedTriggerProps}
         ref={handleTriggerRef}
         className={(state) =>
@@ -181,7 +198,13 @@ Menu2.propTypes /* remove-proptypes */ = {
     popup: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     portal: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     positioner: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    trigger: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    trigger: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        className: PropTypes.string,
+        nativeButton: PropTypes.bool,
+      }),
+    ]),
   }),
   /**
    * The components used for each slot inside.

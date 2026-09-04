@@ -117,6 +117,21 @@ describe('<Menu2 />', () => {
     expect(await screen.findByTestId('popup')).not.to.have.attribute('ownerState');
   });
 
+  it.skipIf(isJsdom())('opens on hover when openOnHover is set', async () => {
+    const { user } = render(
+      <Menu2 trigger={<button type="button">Options</button>} openOnHover delay={0}>
+        <Menu2Item>Item</Menu2Item>
+      </Menu2>,
+    );
+
+    const trigger = screen.getByRole('button', { name: 'Options' });
+    await user.hover(trigger);
+
+    expect(await screen.findByRole('menuitem', { name: 'Item' })).not.to.equal(null);
+    // Park the pointer away from the trigger, so it does not leak into the next test.
+    await user.unhover(trigger);
+  });
+
   it('derives native button behavior from host root slots', async () => {
     const error = vi.spyOn(console, 'error').mockImplementation(() => {});
 

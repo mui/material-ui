@@ -221,13 +221,11 @@ function Menu2WithPreviewCardsDemo({ submenusOpenOnHover }: { submenusOpenOnHove
           close();
         }
       }}
-      trigger={<Button>Help cards</Button>}
-      slotProps={{
-        trigger: {
-          variant: 'contained',
-          endIcon: <KeyboardArrowDownRoundedIcon fontSize="small" />,
-        },
-      }}
+      trigger={
+        <Button variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
+          Help cards
+        </Button>
+      }
       sideOffset={8}
     >
       <Menu2Item label={rootPreviewCardItems[0].label} {...getItemProps(rootPreviewCardItems[0])}>
@@ -265,13 +263,11 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
     <Menu2
       modal={settings.modal}
       disabled={settings.disabled}
-      trigger={<Button>File</Button>}
-      slotProps={{
-        trigger: {
-          variant: 'contained',
-          endIcon: <KeyboardArrowDownRoundedIcon fontSize="small" />,
-        },
-      }}
+      trigger={
+        <Button variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
+          File
+        </Button>
+      }
       sideOffset={8}
     >
       <Menu2Item onClick={handleItemClick}>New document</Menu2Item>
@@ -388,13 +384,11 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
 
   return (
     <Menu2
-      trigger={<Button>Tools</Button>}
-      slotProps={{
-        trigger: {
-          variant: 'contained',
-          endIcon: <KeyboardArrowDownRoundedIcon fontSize="small" />,
-        },
-      }}
+      trigger={
+        <Button variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
+          Tools
+        </Button>
+      }
       sideOffset={8}
     >
       <MenuTooltip title="Create a blank document">

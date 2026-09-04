@@ -168,14 +168,12 @@ function PlaygroundDemo({
       highlightItemOnHover={settings.highlightItemOnHover}
       onOpenChange={handleOpenChange}
       onOpenChangeComplete={handleOpenChangeComplete}
-      trigger={<Button>Project</Button>}
-      slotProps={{
-        trigger: {
-          variant: 'contained',
-          openOnHover: settings.triggerOpenOnHover,
-          endIcon: <KeyboardArrowDownRoundedIcon fontSize="small" />,
-        },
-      }}
+      trigger={
+        <Button variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
+          Project
+        </Button>
+      }
+      openOnHover={settings.triggerOpenOnHover}
       side={settings.side}
       align={settings.align}
       sideOffset={settings.sideOffset}
@@ -307,13 +305,11 @@ function ClassicVersusSuccessorDemo({ settings }: { settings: PlaygroundSettings
         </ClassicMenu>
       </div>
       <Menu2
-        trigger={<Button>Successor</Button>}
-        slotProps={{
-          trigger: {
-            variant: 'outlined',
-            endIcon: <KeyboardArrowDownRoundedIcon fontSize="small" />,
-          },
-        }}
+        trigger={
+          <Button variant="outlined" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
+            Successor
+          </Button>
+        }
         {...popupKnobProps}
       >
         {parityItems.map((item) => (
@@ -378,8 +374,7 @@ function FocusRingComparisonDemo({ settings }: { settings: PlaygroundSettings })
           modal={false}
           open={open}
           onOpenChange={(nextOpen) => setOpen(nextOpen)}
-          trigger={<Button>Open the successor menu</Button>}
-          slotProps={{ trigger: { variant: 'outlined' } }}
+          trigger={<Button variant="outlined">Open the successor menu</Button>}
           sideOffset={4}
         >
           {parityItems.map((item) => (
@@ -469,12 +464,12 @@ const typeaheadEntries = [
 function TypeaheadScrollDemo() {
   return (
     <Menu2
-      trigger={<Button>Country</Button>}
+      trigger={
+        <Button variant="outlined" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
+          Country
+        </Button>
+      }
       slotProps={{
-        trigger: {
-          variant: 'outlined',
-          endIcon: <KeyboardArrowDownRoundedIcon fontSize="small" />,
-        },
         paper: { sx: { maxHeight: 320, overflow: 'auto' } },
       }}
       sideOffset={4}

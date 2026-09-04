@@ -22,6 +22,9 @@ function Menu2Composition() {
     <Menu2
       modal={false}
       defaultOpen
+      openOnHover
+      delay={100}
+      closeDelay={0}
       onOpenChange={(open, eventDetails) => {
         expectType<boolean, typeof open>(open);
         eventDetails.cancel();
@@ -43,7 +46,7 @@ function Menu2Composition() {
         list: 'div',
       }}
       slotProps={{
-        trigger: { openOnHover: true, delay: 100 },
+        trigger: { nativeButton: true, className: 'trigger' },
         paper: { elevation: 4 },
         list: { 'data-testid': 'list' },
       }}
@@ -236,6 +239,26 @@ createTheme({
 <Menu2
   // @ts-expect-error Menu2 is always vertical.
   orientation="horizontal"
+>
+  <Menu2Item>Item</Menu2Item>
+</Menu2>;
+
+<Menu2
+  trigger={<button type="button">Open</button>}
+  slotProps={{
+    // @ts-expect-error The hover props live on Menu2, not on the trigger slot.
+    trigger: { openOnHover: true },
+  }}
+>
+  <Menu2Item>Item</Menu2Item>
+</Menu2>;
+
+<Menu2
+  trigger={<button type="button">Open</button>}
+  slotProps={{
+    // @ts-expect-error The trigger element owns its own props.
+    trigger: { variant: 'outlined' },
+  }}
 >
   <Menu2Item>Item</Menu2Item>
 </Menu2>;
