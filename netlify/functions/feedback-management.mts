@@ -78,7 +78,6 @@ const getSlackChannelId = (
 // Slack's section text is capped at 3000 characters. Escaping can expand input up to 5x
 // (e.g. `&` -> `&amp;`), so bound the final message to stay within the limit.
 const MAX_SLACK_SECTION_LENGTH = 3000;
-const MAX_URL_LENGTH = 1000;
 
 // Slack treats `<...>` and `&` as control syntax in mrkdwn. The feedback payload is
 // public and unauthenticated, so escape user-authored text before it reaches Slack to
@@ -86,25 +85,16 @@ const MAX_URL_LENGTH = 1000;
 const escapeSlackMrkdwn = (value: string) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-// Only trust MUI-owned https origins for links rendered in the Slack message. The payload
-// is public, so an unvalidated URL would let the bot post a link to any destination while
-// showing an attacker-chosen label. Returns the normalized URL, or null when untrusted.
-const parseMuiUrl = (value: unknown): string | null => {
-  if (typeof value !== 'string' || value.length > MAX_URL_LENGTH) {
+// Only link to MUI-owned https origins, so the bot can't post a link to an arbitrary
+// destination while showing an attacker-chosen label. A genuine submission always sends a
+// valid URL, so a malformed value can only be crafted input — letting `new URL` throw
+// (and 500) is fine. Returns the normalized URL, or null for a valid non-MUI origin.
+const parseMuiUrl = (value: string): string | null => {
+  const { protocol, hostname, href } = new URL(value);
+  if (protocol !== 'https:' || (hostname !== 'mui.com' && !hostname.endsWith('.mui.com'))) {
     return null;
   }
-  try {
-    const url = new URL(value);
-    if (
-      url.protocol !== 'https:' ||
-      (url.hostname !== 'mui.com' && !url.hostname.endsWith('.mui.com'))
-    ) {
-      return null;
-    }
-    return url.href;
-  } catch {
-    return null;
-  }
+  return href;
 };
 
 // Setup of the slack bot (taken from https://slack.dev/bolt-js/deployments/aws-lambda)
