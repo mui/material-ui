@@ -138,7 +138,10 @@ export const DENSITY_ANNOTATIONS: Record<
   // The separator's own margin is zeroed, so the list's gap is the only thing
   // spacing the crumbs — and the same step pads each crumb from the inside.
   Breadcrumbs: () => [
-    { on: '.MuiBreadcrumbs-ol', aspect: 'gap', token: 'x-small', label: 'Ol' },
+    // Up, not down: the crumb's own inline padding is the same step and lands
+    // in the bottom gutter, so two identical captions ended up stacked there
+    // with only their colour telling them apart.
+    { on: '.MuiBreadcrumbs-ol', aspect: 'gap', token: 'x-small', label: 'Ol', place: 'top' },
     {
       on: '.MuiBreadcrumbs-ol a',
       aspect: 'padding',
@@ -182,11 +185,11 @@ export const DENSITY_ANNOTATIONS: Record<
         root: true,
         label: 'Checkbox',
       },
-      // `medium` measures 16px, which `caption` already names `icon-target`.
+      // The preset sizes the glyph `fontSize: iconTarget`, so `medium` names it.
       {
         on: '.MuiCheckbox-root',
         aspect: 'icon',
-        token: small ? 'icon-target - 0.25 × spacing' : undefined,
+        token: small ? 'icon-target - 0.25 × spacing' : 'icon-target',
         label: 'Checkbox icon',
       },
       // Authored on the checkbox as `.MuiFormControlLabel-root:has(&)`, so the
@@ -212,6 +215,9 @@ export const DENSITY_ANNOTATIONS: Record<
         token: small ? 'touch-target - xx-small' : 'touch-target',
         root: true,
         label: 'Chip',
+        // The avatar's own bar reads off an edge only a few px inside this one,
+        // so the outer dimension steps out to keep the two apart.
+        offset: 1,
       },
       {
         on: '.MuiChip-root',
@@ -362,10 +368,9 @@ export const DENSITY_ANNOTATIONS: Record<
     ];
   },
   Pagination: (values) => {
-    // Medium is left tokenless so the caption reads `touch-target (32px)`
-    // rather than repeating the same number twice.
     const box = {
       small: 'touch-target - x-small',
+      medium: 'touch-target',
       large: 'touch-target + small',
     }[values.size as string];
     return [
@@ -376,6 +381,8 @@ export const DENSITY_ANNOTATIONS: Record<
         token: box,
         root: true,
         label: 'Item',
+        // Steps clear of the previous-page arrow standing to its left.
+        offset: 1,
       },
       // The items' own margin is zeroed, so the list's gap is the whole story.
       { on: '.MuiPagination-ul', aspect: 'gap', token: 'x-small', label: 'Ul' },
@@ -413,7 +420,7 @@ export const DENSITY_ANNOTATIONS: Record<
       {
         on: '.MuiRadio-root',
         aspect: 'icon',
-        token: small ? 'icon-target - 0.25 × spacing' : undefined,
+        token: small ? 'icon-target - 0.25 × spacing' : 'icon-target',
         label: 'Radio icon',
       },
       {
@@ -535,7 +542,7 @@ export const DENSITY_ANNOTATIONS: Record<
       aspect: 'icon',
       token: {
         small: 'icon-target - 0.25 × spacing',
-        medium: undefined,
+        medium: 'icon-target',
         large: 'icon-target + 0.5 × spacing',
       }[values.fontSize as string],
       label: 'Icon',
@@ -555,7 +562,16 @@ export const DENSITY_ANNOTATIONS: Record<
       // single step names it — px only.
       { on: '.MuiSwitch-root', aspect: 'padding', axis: 'block', root: true, label: 'Switch' },
       // Same composite, negated: the root is pulled back under the label.
-      { on: '.MuiSwitch-root', aspect: 'margin', axis: 'inline', root: true, label: 'Switch' },
+      // Reported upward: the base's caption is wider than the whole control, so
+      // anything sharing the bottom gutter has to run its leader through it.
+      {
+        on: '.MuiSwitch-root',
+        aspect: 'margin',
+        axis: 'inline',
+        root: true,
+        label: 'Switch',
+        place: 'top',
+      },
       {
         on: '.MuiSwitch-switchBase',
         aspect: 'padding',
@@ -564,6 +580,9 @@ export const DENSITY_ANNOTATIONS: Record<
           ? '(touch-target - x-small - (medium - 4px)) / 2'
           : '(touch-target - medium) / 2',
         label: 'Switch base',
+        // The control is small enough that the left ladder reaches into the
+        // bottom gutter's first rung, so both bottom captions start below it.
+        offset: 1,
       },
       {
         on: '.MuiSwitch-thumb',
@@ -582,6 +601,8 @@ export const DENSITY_ANNOTATIONS: Record<
       {
         on: cell,
         aspect: 'touch-target',
+        // Clear of the checkbox column and of the checkbox's own dimension.
+        offset: 3,
         token: small ? 'large + xx-small' : 'x-large + x-small',
         root: true,
         label: 'Cell',
@@ -627,6 +648,9 @@ export const DENSITY_ANNOTATIONS: Record<
               token: 'touch-target',
               root: true,
               label: 'Tabs',
+              // The bar and a tab are both `touch-target`, so left to itself the
+              // ladder stacked two identical captions in one gutter. One per side.
+              place: 'right',
             },
           ] as Annotation[])),
       {
@@ -635,6 +659,8 @@ export const DENSITY_ANNOTATIONS: Record<
         token: icon ? undefined : 'touch-target',
         root: true,
         label: 'Tab',
+        // The left scroll button stands between this tab and the gutter.
+        offset: 1,
       },
       {
         on: '.MuiTab-root',
@@ -643,6 +669,17 @@ export const DENSITY_ANNOTATIONS: Record<
         token: 'small',
         root: true,
         label: 'Tab',
+      },
+      // A `width`, not a height — so the beam measures the inline axis and
+      // reports to a top/bottom gutter instead of a side one.
+      {
+        on: '.MuiTabScrollButton-root',
+        aspect: 'touch-target',
+        // Above, where nothing else reads: below it collides with the tab's
+        // own inline padding caption.
+        place: 'top',
+        token: 'touch-target',
+        label: 'Scroll button',
       },
       // Without an icon the block padding is `0` and there is nothing for the
       // gap to separate; both rows only exist under the icon+label variant,
@@ -711,7 +748,7 @@ export const DENSITY_ANNOTATIONS: Record<
         root: true,
         label: 'ToggleButton',
       },
-      { on: '.MuiSvgIcon-root', aspect: 'icon', label: 'Icon' },
+      { on: '.MuiSvgIcon-root', aspect: 'icon', token: 'icon-target', label: 'Icon' },
     ];
   },
   // One ring, two captions: the bar has no floor left, so its height is the

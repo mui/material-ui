@@ -53,6 +53,7 @@ import Tab from '@mui/material/Tab';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
+import TableFooter from '@mui/material/TableFooter';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
@@ -257,8 +258,11 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
   Dialog: {
     // `disablePortal` keeps the paper inside the demo subtree, and the absolute
     // positioning inside a relative box keeps the modal off the rest of the page.
+    // 208 = the paper's 160 plus its own 24px margin either side. The modal
+    // centres the paper, so any surplus here becomes dead space inside the
+    // measured bounds and pushes the gutters off the card entirely.
     render: () => (
-      <Box sx={{ position: 'relative', width: 420, height: 320 }}>
+      <Box sx={{ position: 'relative', width: 420, height: 208 }}>
         <Dialog
           open
           fullWidth
@@ -531,6 +535,12 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
               <TableCell align="right">$24.00</TableCell>
             </TableRow>
           </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TableCell colSpan={2}>1 order</TableCell>
+              <TableCell align="right">$24.00</TableCell>
+            </TableRow>
+          </TableFooter>
         </Table>
       );
     },
@@ -540,8 +550,19 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
     // The label is wrapped on purpose: `Tab` renders it straight into its own
     // flex box, and a bare string is a text node the gap band cannot start from.
     render: (values) => (
-      <Tabs value={0} sx={{ maxWidth: 360 }}>
-        {['Overview', 'Activity', 'Files'].map((label) => (
+      <Tabs value={0} variant="scrollable" scrollButtons sx={{ maxWidth: 360 }}>
+        {[
+          'Overview',
+          'Activity',
+          'Files',
+          'Members',
+          'Settings',
+          'Billing',
+          'Usage',
+          'Alerts',
+          'Audit',
+          'Archive',
+        ].map((label) => (
           <Tab
             key={label}
             icon={values.icon === true ? <FavoriteIcon /> : undefined}

@@ -106,10 +106,13 @@ for (const family of families) {
   await page.waitForTimeout(600);
 
   // The toolbar's own defaults are what the spec is evaluated against.
+  // The label is an InputLabel `div`, not a `<label>` — querying for the latter
+  // silently yielded `{}` for every family, which left every size-mapped token
+  // `undefined` and so skipped its value check entirely.
   const values = await page.evaluate(() => {
     const out = {};
     document.querySelectorAll('.MuiFormControl-root').forEach((control) => {
-      const label = control.querySelector('label')?.textContent;
+      const label = control.querySelector('.MuiInputLabel-root')?.textContent;
       const value = control.querySelector('[role="combobox"]')?.textContent;
       if (label && value && label !== 'Component') {
         out[label] = value;
@@ -125,7 +128,7 @@ for (const family of families) {
   });
 
   const captions = await page.evaluate(() =>
-    Array.from(document.querySelectorAll('svg[aria-hidden="true"] text')).map(
+    Array.from(document.querySelectorAll('svg[data-annotations] text')).map(
       (node) => node.textContent,
     ),
   );

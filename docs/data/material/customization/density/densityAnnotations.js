@@ -34,12 +34,10 @@ const RUNG = 24;
 // by every shape, so a comb and a spine on one rail end level with each other.
 const REACH = 10;
 
-// The I-beam's bar sits this far INSIDE its rail. Every other side caption
-// ladders along the rail itself, and the bar is the one thing drawn down it —
-// left on the rail the two are collinear, and the laddered caption reads as
-// labelling the beam. Inboard rather than outboard so the caption column stays
-// aligned with every other side caption.
-const BEAM_INSET = 10;
+// How far an `offset: 0` dimension bar sits clear of the edge it measures. Each
+// further step moves it out by one RUNG, which is what `offset` means on a
+// touch-target: distance from the element, not which caption line to sit on.
+const BEAM_GAP = 10;
 
 // Connector + caption inks, one per aspect. Darker than the fills so text holds
 // up on white, lifted in dark mode where the fills would be far too dim.
@@ -737,7 +735,10 @@ function Annotations({ measured, bounds }) {
       fills.push(
         <path key={`icon-${key}`} className="slot-outline" d={rectPath(icon)} />,
       );
-      const side = nearestSide(icon);
+      // A side gutter by default; `place` sends it to a top/bottom one, where the
+      // connector becomes a spine crossing the glyph. Needed when the side is
+      // already carrying an I-beam for the same box.
+      const side = annotation.place ?? nearestSide(icon);
       connect({
         id: `link-${key}`,
         naturalPair: ['left', 'right'],
@@ -756,55 +757,110 @@ function Annotations({ measured, bounds }) {
       return;
     }
 
-    // touch-target — an I-beam in the side gutter, reached by one horizontal
-    // stem. An I-beam measures height, so only a side gutter can hold it; it
-    // takes the one its box is nearest, and a full-width box that ties goes to
-    // whichever side is carrying fewer captions.
-    const centred =
-      Math.abs(box.x + box.width / 2 - (bounds.x + bounds.width / 2)) < 1;
-    const lighter = lanes.left <= lanes.right ? 'left' : 'right';
-    const side = centred ? lighter : nearestSide(box);
-    const rail = nextRail(side);
-    const labelY = reserveY(side, box.y + box.height / 2);
-    // The stem still runs to the rail, so it crosses the bar at the box's own
-    // centre — which is where an I-beam's leader belongs anyway.
-    const bar = rail - (side === 'right' ? 1 : -1) * BEAM_INSET;
+    // touch-target — a dimension line: a bar spanning the box, ticked at both
+    // ends, set clear of the edge it measures. The side decides the dimension —
+    // a height reads against a left/right gutter, a width against a top/bottom
+    // one, the way a drawing dimensions them — so `place` picks both at once and
+    // `axis: 'inline'` asks for a width without naming a side.
+    let side;
+    if (annotation.place) {
+      side = annotation.place;
+    } else if (annotation.axis === 'inline') {
+      side = nearest(box, 'inline');
+    } else {
+      // A full-width box ties on both sides, so it takes whichever gutter is
+      // carrying fewer captions.
+      const centred =
+        Math.abs(box.x + box.width / 2 - (bounds.x + bounds.width / 2)) < 1;
+      const lighter = lanes.left <= lanes.right ? 'left' : 'right';
+      side = (centred && lighter) || nearestSide(box);
+    }
+    const measuresWidth = side === 'top' || side === 'bottom';
+    if (!measuresWidth) {
+      lanes[side] += 1;
+    }
+    const text = caption(measuresWidth ? box.width : box.height, annotation);
+    const away = side === 'top' || side === 'left' ? -1 : 1;
+    // The edge the dimension is set off from, and the span it reads.
+    const near = side === 'top' || side === 'left';
+    let edge;
+    if (measuresWidth) {
+      edge = near ? box.y : box.y + box.height;
+    } else {
+      edge = near ? box.x : box.x + box.width;
+    }
+    const lo = measuresWidth ? box.x : box.y;
+    const hi = measuresWidth ? box.x + box.width : box.y + box.height;
+    const steps = annotation.offset ?? 0;
+    const bar = edge + away * (BEAM_GAP + steps * RUNG);
+    const mid = (lo + hi) / 2;
+    // Only a side caption ladders; a top/bottom one keeps the span's centre.
+    const along = measuresWidth ? mid : reserveY(side, mid);
+    /** a point on the bar's axis, `step` away from the bar itself. */
+    const pt = (span, step) =>
+      measuresWidth ? { x: span, y: bar + step } : { x: bar + step, y: span };
+    /** carried out from the element so a moved bar still reads against it. */
+    const extension = (span) => {
+      const from = measuresWidth
+        ? { x: span, y: edge + away * 3 }
+        : { x: edge + away * 3, y: span };
+      const to = pt(span, away * 4);
+      return (
+        <line
+          key={`ext-${span}`}
+          className="leader"
+          x1={from.x}
+          y1={from.y}
+          x2={to.x}
+          y2={to.y}
+        />
+      );
+    };
+    const serif = (span) => (
+      <line
+        key={`serif-${span}`}
+        className="dim"
+        x1={pt(span, -4).x}
+        y1={pt(span, -4).y}
+        x2={pt(span, 4).x}
+        y2={pt(span, 4).y}
+      />
+    );
+
     outline();
     marks.push(
       <React.Fragment key={`beam-${key}`}>
-        <line
-          className="leader"
-          x1={side === 'right' ? box.x + box.width : box.x}
-          y1={box.y + box.height / 2}
-          x2={rail}
-          y2={box.y + box.height / 2}
-        />
-        <line className="dim" x1={bar} y1={box.y} x2={bar} y2={box.y + box.height} />
-        <line className="dim" x1={bar - 4} y1={box.y} x2={bar + 4} y2={box.y} />
+        {steps > 0 ? [extension(lo), extension(hi)] : null}
         <line
           className="dim"
-          x1={bar - 4}
-          y1={box.y + box.height}
-          x2={bar + 4}
-          y2={box.y + box.height}
+          x1={pt(lo, 0).x}
+          y1={pt(lo, 0).y}
+          x2={pt(hi, 0).x}
+          y2={pt(hi, 0).y}
         />
-        {Math.abs(labelY - (box.y + box.height / 2)) > 0.5 ? (
-          <line
-            className="leader"
-            x1={rail}
-            y1={box.y + box.height / 2}
-            x2={rail}
-            y2={labelY}
-          />
+        {serif(lo)}
+        {serif(hi)}
+        {Math.abs(along - mid) > 0.5 ? (
+          <line className="leader" x1={bar} y1={mid} x2={bar} y2={along} />
         ) : null}
-        <text
-          x={rail + (side === 'right' ? 10 : -10)}
-          y={labelY}
-          textAnchor={side === 'right' ? 'start' : 'end'}
-          dominantBaseline="middle"
-        >
-          {caption(box.height, annotation)}
-        </text>
+        {measuresWidth ? (
+          <text
+            x={mid}
+            y={bar + away * (side === 'top' ? 16 : 26)}
+            textAnchor="middle"
+          >
+            {text}
+          </text>
+        ) : (
+          <text
+            x={bar + away * 10}
+            y={along}
+            textAnchor={side === 'right' ? 'start' : 'end'}
+            dominantBaseline="middle"
+          >
+            {text}
+          </text>
+        )}
       </React.Fragment>,
     );
   });
@@ -813,6 +869,9 @@ function Annotations({ measured, bounds }) {
     <Box
       component="svg"
       aria-hidden
+      // Addressable: every MUI icon is also an aria-hidden svg, and some carry
+      // their own <text>, so tooling cannot find this overlay by shape alone.
+      data-annotations
       sx={(theme) => ({
         position: 'absolute',
         inset: 0,
