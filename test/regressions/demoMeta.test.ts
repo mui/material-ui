@@ -78,6 +78,12 @@ describe('getConfig', () => {
     });
   });
 
+  it('asserts image-alt on the Avatar a11y fixture', () => {
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/avatars/AvatarA11yImage'),
+    ).to.deep.include({ enabled: true, assertions: 'all', skipAssertions: ['color-contrast'] });
+  });
+
   it('keeps the a11y fixture tree screenshot-off, except explicit re-enrolments', () => {
     expect(
       getConfig(SCREENSHOT_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yColorMatrix'),
