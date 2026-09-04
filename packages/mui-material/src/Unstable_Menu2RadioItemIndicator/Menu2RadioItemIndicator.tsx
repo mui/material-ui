@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
@@ -28,14 +29,7 @@ export interface Menu2RadioItemIndicatorSlots {
 
 export interface Menu2RadioItemIndicatorSlotProps extends Menu2RootSlotProps<Menu2RadioItemIndicatorProps> {}
 
-export interface Menu2RadioItemIndicatorProps extends Omit<
-  BaseMenu.RadioItemIndicator.Props,
-  'className' | 'render' | 'style'
-> {
-  /**
-   * The component used for the root node.
-   */
-  component?: React.ElementType | undefined;
+export interface Menu2RadioItemIndicatorOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -66,6 +60,24 @@ export interface Menu2RadioItemIndicatorProps extends Omit<
    */
   sx?: SxProps<Theme> | undefined;
 }
+
+export interface Menu2RadioItemIndicatorTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'span',
+> {
+  props: AdditionalProps & Menu2RadioItemIndicatorOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type Menu2RadioItemIndicatorProps<
+  RootComponent extends React.ElementType = Menu2RadioItemIndicatorTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<Menu2RadioItemIndicatorTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  /**
+   * The component used for the root node.
+   */
+  component?: React.ElementType | undefined;
+};
 
 const useUtilityClasses = (ownerState: Menu2RadioItemIndicatorProps) => {
   const { classes } = ownerState;
@@ -155,7 +167,7 @@ const Menu2RadioItemIndicator = React.forwardRef(function Menu2RadioItemIndicato
       {...other}
     />
   );
-});
+}) as OverridableComponent<Menu2RadioItemIndicatorTypeMap>;
 
 Menu2RadioItemIndicator.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -176,6 +188,7 @@ Menu2RadioItemIndicator.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**

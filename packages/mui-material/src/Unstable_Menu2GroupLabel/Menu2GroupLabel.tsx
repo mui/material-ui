@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
@@ -26,14 +27,7 @@ export interface Menu2GroupLabelSlots {
 
 export interface Menu2GroupLabelSlotProps extends Menu2RootSlotProps<Menu2GroupLabelProps> {}
 
-export interface Menu2GroupLabelProps extends Omit<
-  BaseMenu.GroupLabel.Props,
-  'className' | 'render' | 'style'
-> {
-  /**
-   * The component used for the root node.
-   */
-  component?: React.ElementType | undefined;
+export interface Menu2GroupLabelOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -59,6 +53,24 @@ export interface Menu2GroupLabelProps extends Omit<
    */
   sx?: SxProps<Theme> | undefined;
 }
+
+export interface Menu2GroupLabelTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & Menu2GroupLabelOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type Menu2GroupLabelProps<
+  RootComponent extends React.ElementType = Menu2GroupLabelTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<Menu2GroupLabelTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  /**
+   * The component used for the root node.
+   */
+  component?: React.ElementType | undefined;
+};
 
 const useUtilityClasses = (ownerState: Menu2GroupLabelProps) => {
   const { classes } = ownerState;
@@ -122,7 +134,7 @@ const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
       {...other}
     />
   );
-});
+}) as OverridableComponent<Menu2GroupLabelTypeMap>;
 
 Menu2GroupLabel.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -143,6 +155,7 @@ Menu2GroupLabel.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**

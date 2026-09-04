@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
@@ -39,9 +40,8 @@ export interface Menu2LinkItemSlots {
 
 export interface Menu2LinkItemSlotProps extends Menu2RootSlotProps<Menu2ItemOwnerState> {}
 
-export interface Menu2LinkItemProps
+export interface Menu2LinkItemOwnProps
   extends
-    Omit<BaseMenu.LinkItem.Props, 'className' | 'render' | 'style'>,
     Menu2LinkItemBaseProps,
     Menu2ItemVisualProps<Menu2LinkItemClasses, Menu2LinkItemSlots, Menu2LinkItemSlotProps> {
   /**
@@ -75,6 +75,24 @@ export interface Menu2LinkItemProps
    */
   style?: React.CSSProperties | undefined;
 }
+
+export interface Menu2LinkItemTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'a',
+> {
+  props: AdditionalProps & Menu2LinkItemOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type Menu2LinkItemProps<
+  RootComponent extends React.ElementType = Menu2LinkItemTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<Menu2LinkItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  /**
+   * The component used for the root node.
+   */
+  component?: React.ElementType | undefined;
+};
 
 const Menu2LinkItemRoot = styled(ButtonBase, {
   name: 'MuiMenu2LinkItem',
@@ -166,7 +184,7 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
       />
     </ListContext.Provider>
   );
-});
+}) as OverridableComponent<Menu2LinkItemTypeMap>;
 
 Menu2LinkItem.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -192,6 +210,7 @@ Menu2LinkItem.propTypes /* remove-proptypes */ = {
   closeOnClick: PropTypes.bool,
   /**
    * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**

@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
@@ -22,14 +23,7 @@ export interface Menu2GroupSlots {
 
 export interface Menu2GroupSlotProps extends Menu2RootSlotProps<Menu2GroupProps> {}
 
-export interface Menu2GroupProps extends Omit<
-  BaseMenu.Group.Props,
-  'className' | 'render' | 'style'
-> {
-  /**
-   * The component used for the root node.
-   */
-  component?: React.ElementType | undefined;
+export interface Menu2GroupOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -55,6 +49,24 @@ export interface Menu2GroupProps extends Omit<
    */
   sx?: SxProps<Theme> | undefined;
 }
+
+export interface Menu2GroupTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & Menu2GroupOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type Menu2GroupProps<
+  RootComponent extends React.ElementType = Menu2GroupTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<Menu2GroupTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  /**
+   * The component used for the root node.
+   */
+  component?: React.ElementType | undefined;
+};
 
 const useUtilityClasses = (ownerState: Menu2GroupProps) => {
   const { classes } = ownerState;
@@ -117,7 +129,7 @@ const Menu2Group = React.forwardRef(function Menu2Group(
       {...other}
     />
   );
-});
+}) as OverridableComponent<Menu2GroupTypeMap>;
 
 Menu2Group.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -125,7 +137,7 @@ Menu2Group.propTypes /* remove-proptypes */ = {
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * The content of the component.
+   * @ignore
    */
   children: PropTypes.node,
   /**
@@ -138,6 +150,7 @@ Menu2Group.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**

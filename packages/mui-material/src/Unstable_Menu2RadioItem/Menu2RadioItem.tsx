@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -54,9 +55,8 @@ export interface Menu2RadioItemSlotProps extends Menu2RootSlotProps<Menu2ItemOwn
     | undefined;
 }
 
-export interface Menu2RadioItemProps
+export interface Menu2RadioItemOwnProps
   extends
-    Omit<BaseMenu.RadioItem.Props, 'className' | 'nativeButton' | 'render' | 'style'>,
     Menu2ItemBaseProps,
     Menu2ItemVisualProps<Menu2RadioItemClasses, Menu2RadioItemSlots, Menu2RadioItemSlotProps> {
   /**
@@ -95,6 +95,24 @@ export interface Menu2RadioItemProps
    */
   style?: React.CSSProperties | undefined;
 }
+
+export interface Menu2RadioItemTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & Menu2RadioItemOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type Menu2RadioItemProps<
+  RootComponent extends React.ElementType = Menu2RadioItemTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<Menu2RadioItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  /**
+   * The component used for the root node.
+   */
+  component?: React.ElementType | undefined;
+};
 
 const Menu2RadioItemRoot = styled(ButtonBase, {
   name: 'MuiMenu2RadioItem',
@@ -198,7 +216,7 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
       </BaseMenu.RadioItem>
     </ListContext.Provider>
   );
-});
+}) as OverridableComponent<Menu2RadioItemTypeMap>;
 
 Menu2RadioItem.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -224,6 +242,7 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
   closeOnClick: PropTypes.bool,
   /**
    * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**

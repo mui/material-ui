@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
@@ -27,18 +28,11 @@ export interface Menu2RadioGroupSlots {
 
 export interface Menu2RadioGroupSlotProps extends Menu2RootSlotProps<Menu2RadioGroupOwnerState> {}
 
-export interface Menu2RadioGroupProps extends Omit<
-  BaseMenu.RadioGroup.Props,
-  'className' | 'onChange' | 'onValueChange' | 'render' | 'style'
-> {
+export interface Menu2RadioGroupOwnProps {
   /**
    * The content of the component.
    */
   children?: React.ReactNode;
-  /**
-   * The component used for the root node.
-   */
-  component?: React.ElementType | undefined;
   /**
    * Override or extend the styles applied to the component.
    */
@@ -83,6 +77,24 @@ export interface Menu2RadioGroupProps extends Omit<
    */
   sx?: SxProps<Theme> | undefined;
 }
+
+export interface Menu2RadioGroupTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & Menu2RadioGroupOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type Menu2RadioGroupProps<
+  RootComponent extends React.ElementType = Menu2RadioGroupTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<Menu2RadioGroupTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  /**
+   * The component used for the root node.
+   */
+  component?: React.ElementType | undefined;
+};
 
 const useUtilityClasses = (ownerState: Menu2RadioGroupOwnerState) => {
   const { classes } = ownerState;
@@ -157,7 +169,7 @@ const Menu2RadioGroup = React.forwardRef(function Menu2RadioGroup(
       {...other}
     />
   );
-});
+}) as OverridableComponent<Menu2RadioGroupTypeMap>;
 
 Menu2RadioGroup.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -178,6 +190,7 @@ Menu2RadioGroup.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**

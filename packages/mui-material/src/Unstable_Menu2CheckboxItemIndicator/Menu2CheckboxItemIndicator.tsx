@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
@@ -29,14 +30,7 @@ export interface Menu2CheckboxItemIndicatorSlots {
 
 export interface Menu2CheckboxItemIndicatorSlotProps extends Menu2RootSlotProps<Menu2CheckboxItemIndicatorProps> {}
 
-export interface Menu2CheckboxItemIndicatorProps extends Omit<
-  BaseMenu.CheckboxItemIndicator.Props,
-  'className' | 'render' | 'style'
-> {
-  /**
-   * The component used for the root node.
-   */
-  component?: React.ElementType | undefined;
+export interface Menu2CheckboxItemIndicatorOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -67,6 +61,27 @@ export interface Menu2CheckboxItemIndicatorProps extends Omit<
    */
   sx?: SxProps<Theme> | undefined;
 }
+
+export interface Menu2CheckboxItemIndicatorTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'span',
+> {
+  props: AdditionalProps & Menu2CheckboxItemIndicatorOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type Menu2CheckboxItemIndicatorProps<
+  RootComponent extends React.ElementType = Menu2CheckboxItemIndicatorTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<
+  Menu2CheckboxItemIndicatorTypeMap<AdditionalProps, RootComponent>,
+  RootComponent
+> & {
+  /**
+   * The component used for the root node.
+   */
+  component?: React.ElementType | undefined;
+};
 
 const useUtilityClasses = (ownerState: Menu2CheckboxItemIndicatorProps) => {
   const { classes } = ownerState;
@@ -155,7 +170,7 @@ const Menu2CheckboxItemIndicator = React.forwardRef(function Menu2CheckboxItemIn
       {...other}
     />
   );
-});
+}) as OverridableComponent<Menu2CheckboxItemIndicatorTypeMap>;
 
 Menu2CheckboxItemIndicator.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -176,6 +191,7 @@ Menu2CheckboxItemIndicator.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**

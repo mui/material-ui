@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
@@ -27,14 +28,7 @@ export interface Menu2SeparatorSlots {
 
 export interface Menu2SeparatorSlotProps extends Menu2RootSlotProps<Menu2SeparatorProps> {}
 
-export interface Menu2SeparatorProps extends Omit<
-  BaseSeparator.Props,
-  'className' | 'render' | 'style'
-> {
-  /**
-   * The component used for the root node.
-   */
-  component?: React.ElementType | undefined;
+export interface Menu2SeparatorOwnProps extends Pick<BaseSeparator.Props, 'orientation'> {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -60,6 +54,24 @@ export interface Menu2SeparatorProps extends Omit<
    */
   sx?: SxProps<Theme> | undefined;
 }
+
+export interface Menu2SeparatorTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & Menu2SeparatorOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type Menu2SeparatorProps<
+  RootComponent extends React.ElementType = Menu2SeparatorTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<Menu2SeparatorTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  /**
+   * The component used for the root node.
+   */
+  component?: React.ElementType | undefined;
+};
 
 const useUtilityClasses = (ownerState: Menu2SeparatorProps) => {
   const { classes } = ownerState;
@@ -135,7 +147,7 @@ const Menu2Separator = React.forwardRef(function Menu2Separator(
       {...other}
     />
   );
-});
+}) as OverridableComponent<Menu2SeparatorTypeMap>;
 
 Menu2Separator.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -156,6 +168,7 @@ Menu2Separator.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**

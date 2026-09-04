@@ -113,8 +113,8 @@ describe('<Menu2SubmenuTrigger />', () => {
   );
 
   it('composes public and slot refs and provides live slot state', async () => {
-    const forwardedRef = React.createRef<HTMLElement>();
-    const slotRef = React.createRef<HTMLElement>();
+    const forwardedRef = React.createRef<HTMLDivElement>();
+    const slotRef = React.createRef<HTMLDivElement>();
     const onClick = vi.fn();
     const onSlotClick = vi.fn();
     const { user } = render(

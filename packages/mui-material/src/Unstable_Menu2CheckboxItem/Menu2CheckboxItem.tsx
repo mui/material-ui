@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -54,12 +55,8 @@ export interface Menu2CheckboxItemSlotProps extends Menu2RootSlotProps<Menu2Item
     | undefined;
 }
 
-export interface Menu2CheckboxItemProps
+export interface Menu2CheckboxItemOwnProps
   extends
-    Omit<
-      BaseMenu.CheckboxItem.Props,
-      'className' | 'nativeButton' | 'onChange' | 'onCheckedChange' | 'render' | 'style'
-    >,
     Menu2ItemBaseProps,
     Menu2ItemVisualProps<
       Menu2CheckboxItemClasses,
@@ -121,6 +118,24 @@ export interface Menu2CheckboxItemProps
    */
   style?: React.CSSProperties | undefined;
 }
+
+export interface Menu2CheckboxItemTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & Menu2CheckboxItemOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type Menu2CheckboxItemProps<
+  RootComponent extends React.ElementType = Menu2CheckboxItemTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<Menu2CheckboxItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  /**
+   * The component used for the root node.
+   */
+  component?: React.ElementType | undefined;
+};
 
 const Menu2CheckboxItemRoot = styled(ButtonBase, {
   name: 'MuiMenu2CheckboxItem',
@@ -241,7 +256,7 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
       </BaseMenu.CheckboxItem>
     </ListContext.Provider>
   );
-});
+}) as OverridableComponent<Menu2CheckboxItemTypeMap>;
 
 Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -273,6 +288,7 @@ Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
   closeOnClick: PropTypes.bool,
   /**
    * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**

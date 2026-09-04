@@ -25,10 +25,6 @@ export interface Menu2ItemVisualProps<
   SlotProps = Menu2RootSlotProps<Menu2ItemOwnerState>,
 > {
   /**
-   * The component used for the root node.
-   */
-  component?: React.ElementType | undefined;
-  /**
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<Classes> | undefined;

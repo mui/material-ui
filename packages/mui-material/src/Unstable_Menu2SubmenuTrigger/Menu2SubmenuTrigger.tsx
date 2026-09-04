@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
@@ -35,9 +36,8 @@ export interface Menu2SubmenuTriggerOwnerState extends Menu2ItemOwnerState {
 
 export interface Menu2SubmenuTriggerSlotProps extends Menu2RootSlotProps<Menu2SubmenuTriggerOwnerState> {}
 
-export interface Menu2SubmenuTriggerProps
+export interface Menu2SubmenuTriggerOwnProps
   extends
-    Omit<BaseMenu.SubmenuTrigger.Props, 'className' | 'nativeButton' | 'render' | 'style'>,
     Menu2SubmenuTriggerBaseProps,
     Menu2ItemVisualProps<
       Menu2SubmenuTriggerClasses,
@@ -90,6 +90,24 @@ export interface Menu2SubmenuTriggerProps
    */
   disableRipple?: boolean | undefined;
 }
+
+export interface Menu2SubmenuTriggerTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & Menu2SubmenuTriggerOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type Menu2SubmenuTriggerProps<
+  RootComponent extends React.ElementType = Menu2SubmenuTriggerTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<Menu2SubmenuTriggerTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  /**
+   * The component used for the root node.
+   */
+  component?: React.ElementType | undefined;
+};
 
 /**
  *
@@ -170,7 +188,7 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
       />
     </ListContext.Provider>
   );
-});
+}) as OverridableComponent<Menu2SubmenuTriggerTypeMap>;
 
 Menu2SubmenuTrigger.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -198,6 +216,7 @@ Menu2SubmenuTrigger.propTypes /* remove-proptypes */ = {
   closeDelay: PropTypes.number,
   /**
    * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**

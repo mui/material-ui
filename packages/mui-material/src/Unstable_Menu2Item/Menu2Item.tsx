@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
@@ -40,9 +41,8 @@ export interface Menu2ItemSlots {
 
 export interface Menu2ItemSlotProps extends Menu2RootSlotProps<Menu2ItemOwnerState> {}
 
-export interface Menu2ItemProps
+export interface Menu2ItemOwnProps
   extends
-    Omit<BaseMenu.Item.Props, 'className' | 'nativeButton' | 'render' | 'style'>,
     Menu2ItemBaseProps,
     Menu2ItemVisualProps<Menu2ItemClasses, Menu2ItemSlots, Menu2ItemSlotProps> {
   /**
@@ -77,6 +77,24 @@ export interface Menu2ItemProps
    */
   style?: React.CSSProperties | undefined;
 }
+
+export interface Menu2ItemTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & Menu2ItemOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type Menu2ItemProps<
+  RootComponent extends React.ElementType = Menu2ItemTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<Menu2ItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  /**
+   * The component used for the root node.
+   */
+  component?: React.ElementType | undefined;
+};
 
 const Menu2ItemRoot = styled(ButtonBase, {
   name: 'MuiMenu2Item',
@@ -167,7 +185,7 @@ const Menu2Item = React.forwardRef(function Menu2Item(
       />
     </ListContext.Provider>
   );
-});
+}) as OverridableComponent<Menu2ItemTypeMap>;
 
 Menu2Item.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -193,6 +211,7 @@ Menu2Item.propTypes /* remove-proptypes */ = {
   closeOnClick: PropTypes.bool,
   /**
    * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**

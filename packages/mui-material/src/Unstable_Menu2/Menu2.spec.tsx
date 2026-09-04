@@ -289,3 +289,45 @@ createTheme({
     <Menu2Item>Item</Menu2Item>
   </Menu2Submenu>
 </Menu2>;
+
+// The ref and the HTML attributes follow the `component` prop, the same as the
+// classic parts.
+<Menu2 trigger={<button type="button">Open</button>}>
+  <Menu2Item ref={(node) => expectType<HTMLDivElement | null, typeof node>(node)}>Item</Menu2Item>
+  <Menu2Item component="li" ref={(node) => expectType<HTMLLIElement | null, typeof node>(node)}>
+    List item
+  </Menu2Item>
+  <Menu2Item component="a" href="/anchor">
+    Anchor attributes
+  </Menu2Item>
+  <Menu2LinkItem
+    href="/profile"
+    ref={(node) => expectType<HTMLAnchorElement | null, typeof node>(node)}
+  >
+    Link
+  </Menu2LinkItem>
+  <Menu2CheckboxItem>
+    <Menu2CheckboxItemIndicator
+      ref={(node) => expectType<HTMLSpanElement | null, typeof node>(node)}
+    />
+    Checkbox
+  </Menu2CheckboxItem>
+  <Menu2Separator ref={(node) => expectType<HTMLDivElement | null, typeof node>(node)} />
+  <Menu2Submenu
+    trigger={
+      <Menu2SubmenuTrigger
+        component="li"
+        ref={(node) => expectType<HTMLLIElement | null, typeof node>(node)}
+      >
+        More
+      </Menu2SubmenuTrigger>
+    }
+  >
+    <Menu2Item>Nested</Menu2Item>
+  </Menu2Submenu>
+</Menu2>;
+
+<Menu2 trigger={<button type="button">Open</button>}>
+  {/* @ts-expect-error `href` is an anchor attribute, and the default root is a div. */}
+  <Menu2Item href="/anchor">Item</Menu2Item>
+</Menu2>;
