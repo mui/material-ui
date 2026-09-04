@@ -24,6 +24,7 @@ import * as ripple from '../../test/ripple';
 
 describe('<ButtonBase />', () => {
   const { render } = createRenderer();
+  const UntypedButtonBase = /** @type {any} */ (ButtonBase);
 
   // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14156632/
   let canFireDragEvents = true;
@@ -810,6 +811,40 @@ describe('<ButtonBase />', () => {
       expect(button).not.to.have.attribute('aria-disabled');
     });
 
+    it('allows the internal focusableWhenDisabled prop to opt into disabled focusability', () => {
+      render(
+        <UntypedButtonBase disabled focusableWhenDisabled>
+          Hello
+        </UntypedButtonBase>,
+      );
+      const button = screen.getByRole('button');
+
+      expect(button).not.to.have.attribute('disabled');
+      expect(button).to.have.attribute('aria-disabled', 'true');
+      expect(button).not.to.have.attribute('focusablewhendisabled');
+      expect(button).to.have.property('tabIndex', 0);
+      expect(button).toHaveComputedStyle({ pointerEvents: 'auto' });
+    });
+
+    it('does not allow marker props to make disabled ButtonBase focusable', () => {
+      render(
+        <UntypedButtonBase
+          disabled
+          data-focusable-when-disabled
+          ownerState={{ focusableWhenDisabled: true }}
+        >
+          Hello
+        </UntypedButtonBase>,
+      );
+      const button = screen.getByRole('button');
+
+      expect(button).to.have.attribute('disabled');
+      expect(button).not.to.have.attribute('aria-disabled');
+      expect(button).not.to.have.attribute('ownerstate');
+      expect(button).to.have.property('tabIndex', -1);
+      expect(button).toHaveComputedStyle({ pointerEvents: 'none' });
+    });
+
     it('should use aria-disabled for other components', () => {
       const { setProps } = render(
         <ButtonBase component="span" disabled>
@@ -874,6 +909,162 @@ describe('<ButtonBase />', () => {
 
       expect(buttonClickSpy.callCount).to.equal(0);
       expect(parentClickSpy.callCount).to.equal(0);
+    });
+
+    it('allows disabled focusable roots to receive focus while suppressing activation', async () => {
+      const onClickSpy = spy();
+      const parentClickSpy = spy();
+
+      const { user } = render(
+        <div onClick={parentClickSpy}>
+          <UntypedButtonBase disabled focusableWhenDisabled onClick={onClickSpy}>
+            Hello
+          </UntypedButtonBase>
+        </div>,
+      );
+      const button = screen.getByRole('button');
+
+      expect(button).not.to.have.attribute('disabled');
+      expect(button).to.have.attribute('aria-disabled', 'true');
+      expect(button).to.have.property('tabIndex', 0);
+      expect(button).toHaveComputedStyle({ pointerEvents: 'auto' });
+
+      await user.tab();
+      expect(button).toHaveFocus();
+
+      await user.keyboard('{Enter}');
+      await user.keyboard(' ');
+      await user.click(button);
+
+      expect(onClickSpy.callCount).to.equal(0);
+      expect(parentClickSpy.callCount).to.equal(0);
+    });
+
+    it('keeps disabled links pointer-inert and non-focusable', () => {
+      render(
+        <UntypedButtonBase disabled focusableWhenDisabled href="https://example.com">
+          Hello
+        </UntypedButtonBase>,
+      );
+      const button = screen.getByRole('link');
+
+      expect(button).to.have.attribute('aria-disabled', 'true');
+      expect(button).to.have.property('tabIndex', -1);
+      expect(button).toHaveComputedStyle({ pointerEvents: 'none' });
+    });
+
+    it('shields disabled focusable press, pointer, touch, context menu, and drag-leave events', () => {
+      const parentClickSpy = spy();
+      const parentPointerDownSpy = spy();
+      const parentPointerUpSpy = spy();
+      const onClickSpy = spy();
+      const onMouseDownSpy = spy();
+      const onMouseUpSpy = spy();
+      const onPointerDownSpy = spy();
+      const onPointerUpSpy = spy();
+      const onContextMenuSpy = spy();
+      const onDragLeaveSpy = spy();
+      const onTouchStartSpy = spy();
+      const onTouchEndSpy = spy();
+      const onTouchMoveSpy = spy();
+
+      const { container } = render(
+        <div
+          onClick={parentClickSpy}
+          onPointerDown={parentPointerDownSpy}
+          onPointerUp={parentPointerUpSpy}
+        >
+          <UntypedButtonBase
+            disabled
+            focusableWhenDisabled
+            onClick={onClickSpy}
+            onMouseDown={onMouseDownSpy}
+            onMouseUp={onMouseUpSpy}
+            onPointerDown={onPointerDownSpy}
+            onPointerUp={onPointerUpSpy}
+            onContextMenu={onContextMenuSpy}
+            onDragLeave={onDragLeaveSpy}
+            onTouchStart={onTouchStartSpy}
+            onTouchEnd={onTouchEndSpy}
+            onTouchMove={onTouchMoveSpy}
+            TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }}
+          >
+            Hello
+          </UntypedButtonBase>
+        </div>,
+      );
+      const button = screen.getByRole('button');
+
+      fireEvent.mouseDown(button);
+      fireEvent.mouseUp(button);
+      fireEvent.pointerDown(button);
+      fireEvent.pointerUp(button);
+      fireEvent.contextMenu(button);
+      fireEvent.dragLeave(button);
+      fireEvent.touchStart(button);
+      fireEvent.touchMove(button);
+      fireEvent.touchEnd(button);
+      fireEvent.click(button);
+
+      expect(onClickSpy.callCount).to.equal(0);
+      expect(parentClickSpy.callCount).to.equal(0);
+      expect(onMouseDownSpy.callCount).to.equal(0);
+      expect(onMouseUpSpy.callCount).to.equal(0);
+      expect(onPointerDownSpy.callCount).to.equal(0);
+      expect(parentPointerDownSpy.callCount).to.equal(0);
+      expect(onPointerUpSpy.callCount).to.equal(0);
+      expect(parentPointerUpSpy.callCount).to.equal(0);
+      expect(onContextMenuSpy.callCount).to.equal(0);
+      expect(onDragLeaveSpy.callCount).to.equal(0);
+      expect(onTouchStartSpy.callCount).to.equal(0);
+      expect(onTouchMoveSpy.callCount).to.equal(0);
+      expect(onTouchEndSpy.callCount).to.equal(0);
+      expect(container.querySelector('.ripple-visible')).to.equal(null);
+    });
+
+    it('allows focus, blur, hover exit, and non-activation keyboard bubbling when disabled focusable', async () => {
+      const onFocusSpy = spy();
+      const onBlurSpy = spy();
+      const onMouseLeaveSpy = spy();
+      const onKeyDownSpy = spy();
+      const parentKeyDownSpy = spy();
+
+      render(
+        <div onKeyDown={parentKeyDownSpy}>
+          <UntypedButtonBase
+            disabled
+            focusableWhenDisabled
+            onBlur={onBlurSpy}
+            onFocus={onFocusSpy}
+            onKeyDown={onKeyDownSpy}
+            onMouseLeave={onMouseLeaveSpy}
+          >
+            Hello
+          </UntypedButtonBase>
+        </div>,
+      );
+      const button = screen.getByRole('button');
+
+      await act(async () => {
+        button.focus();
+      });
+      expect(onFocusSpy.callCount).to.equal(1);
+
+      fireEvent.mouseLeave(button);
+      expect(onMouseLeaveSpy.callCount).to.equal(1);
+
+      expect(fireEvent.keyDown(button, { key: 'Escape' })).to.equal(true);
+      expect(onKeyDownSpy.callCount).to.equal(0);
+      expect(parentKeyDownSpy.callCount).to.equal(1);
+
+      fireEvent.keyDown(button, { key: 'Enter' });
+      fireEvent.keyDown(button, { key: ' ' });
+      expect(parentKeyDownSpy.callCount).to.equal(1);
+
+      await act(async () => {
+        button.blur();
+      });
+      expect(onBlurSpy.callCount).to.equal(1);
     });
   });
 
