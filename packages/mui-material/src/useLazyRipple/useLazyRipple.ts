@@ -67,8 +67,8 @@ export class LazyRipple {
     if (this.shouldMount && !this.didMount) {
       if (this.ref.current !== null) {
         this.didMount = true;
-        this.mounted!.resolve();
       }
+      this.mounted!.resolve();
     }
   };
 
