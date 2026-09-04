@@ -97,6 +97,38 @@ describe('getConfig', () => {
     );
   });
 
+  it('returns the a11y rule with assertions:all for the progress brace-glob enrolment', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/progress/LinearDeterminate'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'test/regressions/a11y/fixtures/progress/LinearProgressA11yColorMatrix',
+      ),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('returns undefined for a CircularProgress or customized demo outside the progress enrolment', () => {
+    // The progress enrolment covers @mui/material/LinearProgress, not CircularProgress
+    // or the mixed/customized demos.
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/progress/CircularIndeterminate'),
+    ).to.equal(undefined);
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/progress/CustomizedProgressBars'),
+    ).to.equal(undefined);
+  });
+
+  it('opts the LinearProgress a11y fixtures out of screenshots', () => {
+    expect(
+      getConfig(
+        SCREENSHOT_RULES,
+        'test/regressions/a11y/fixtures/progress/LinearProgressA11ySemanticStates',
+      ),
+    ).to.deep.include({ enabled: false });
+  });
+
   it('asserts every rule on the enrolled Switch demos', () => {
     expect(
       getConfig(A11Y_RULES, 'docs/data/material/components/switches/BasicSwitches'),
