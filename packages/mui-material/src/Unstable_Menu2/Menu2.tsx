@@ -26,8 +26,13 @@ export interface Menu2SlotProps extends NonNullable<Menu2PopupProps['slotProps']
  * HTML attributes and event handlers are forwarded to the popup element.
  */
 export interface Menu2Props
+  // Detached triggers and orientation are outside the Menu2 contract, and
+  // `handle` needs `Menu.createHandle`, which Menu2 does not export.
   extends
-    Omit<BaseMenu.Root.Props, 'children'>,
+    Omit<
+      BaseMenu.Root.Props,
+      'children' | 'defaultTriggerId' | 'handle' | 'orientation' | 'triggerId'
+    >,
     Omit<Menu2PopupProps, 'children' | 'slots' | 'slotProps'> {
   /**
    * The menu items.
@@ -78,17 +83,13 @@ const Menu2 = React.forwardRef(function Menu2(
     actionsRef,
     closeParentOnEsc,
     defaultOpen,
-    defaultTriggerId,
     disabled,
-    handle,
     highlightItemOnHover,
     loopFocus,
     modal,
     onOpenChange,
     onOpenChangeComplete,
     open,
-    orientation,
-    triggerId,
     ...popupProps
   } = themedProps;
 
@@ -132,17 +133,13 @@ const Menu2 = React.forwardRef(function Menu2(
         actionsRef={actionsRef}
         closeParentOnEsc={closeParentOnEsc}
         defaultOpen={defaultOpen}
-        defaultTriggerId={defaultTriggerId}
         disabled={disabled}
-        handle={handle}
         highlightItemOnHover={highlightItemOnHover}
         loopFocus={loopFocus}
         modal={modal}
         onOpenChange={onOpenChange}
         onOpenChangeComplete={onOpenChangeComplete}
         open={open}
-        orientation={orientation}
-        triggerId={triggerId}
       >
         {triggerNode}
         <Menu2Popup {...popupProps} ref={ref} slotProps={popupSlotProps} slots={popupSlots}>

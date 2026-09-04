@@ -217,3 +217,25 @@ createTheme({
     },
   }}
 />;
+
+// One element per prop: TypeScript reports one excess prop per element.
+<Menu2
+  // @ts-expect-error `handle` needs `Menu.createHandle`, which Menu2 does not export.
+  handle={undefined}
+>
+  <Menu2Item>Item</Menu2Item>
+</Menu2>;
+
+<Menu2
+  // @ts-expect-error Detached triggers are outside the Menu2 contract.
+  triggerId="detached"
+>
+  <Menu2Item>Item</Menu2Item>
+</Menu2>;
+
+<Menu2
+  // @ts-expect-error Menu2 is always vertical.
+  orientation="horizontal"
+>
+  <Menu2Item>Item</Menu2Item>
+</Menu2>;
