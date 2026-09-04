@@ -216,6 +216,17 @@ const SWITCH_A11Y_DEMOS = [
   'SwitchesGroup',
 ];
 
+// TextField docs demos enrolled for axe assertions; the `select` dropdown,
+// InputBase-only, and standalone hidden-label demos are excluded.
+const TEXTFIELD_A11Y_DEMOS = [
+  'BasicTextFields',
+  'ColorTextFields',
+  'ValidationTextFields',
+  'FormPropsTextFields',
+  'TextFieldSizes',
+  'MultilineTextFields',
+];
+
 /**
  * A11y defaults to off — only matched-and-enabled rules produce results.
  * Slug-wide rules use `*`; brace-globs narrow enrolment to specific demos;
@@ -284,6 +295,18 @@ export const A11Y_RULES: A11yRule[] = [
     test: `docs/data/material/components/switches/{${SWITCH_A11Y_DEMOS.join(',')}}`,
     enabled: true,
     assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/text-fields/{${TEXTFIELD_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+    // color-contrast is recorded but not asserted (1.4.3): axe cannot resolve
+    // the input value's background through the overlapping notched outline
+    // (logged as incomplete), and the focused color labels (warning 3.11:1),
+    // error text on the filled surface (4.36:1), and the ~0.42-opacity
+    // placeholder (~2.6:1) are known shortfalls kept in the JSON without
+    // failing CI.
+    skipAssertions: ['color-contrast'],
   },
 ];
 
