@@ -141,11 +141,16 @@ function useAutocomplete(props) {
 
   if (process.env.NODE_ENV !== 'production') {
     // Mapped values identify options and must therefore be valid, unique primitive keys.
-    validateOptionValues({ options, componentName, getOptionValueProp });
+    validateOptionValues({ options, componentName, freeSolo, getOptionValueProp });
   }
 
   const isOptionEqualToValue = React.useCallback(
     (option, value) => {
+      // With value mapping, strings are reserved for free-solo values and cannot identify options.
+      if (getOptionValueProp !== undefined && freeSolo && typeof value === 'string') {
+        return false;
+      }
+
       // Custom equality takes precedence over comparing the option's mapped value.
       if (isOptionEqualToValueProp) {
         return isOptionEqualToValueProp(option, value);
@@ -153,7 +158,7 @@ function useAutocomplete(props) {
 
       return getOptionValue(option) === value;
     },
-    [getOptionValue, isOptionEqualToValueProp],
+    [freeSolo, getOptionValue, getOptionValueProp, isOptionEqualToValueProp],
   );
 
   const getOptionFromValue = React.useMemo(() => {
@@ -162,15 +167,10 @@ function useAutocomplete(props) {
       return defaultGetOptionFromValue;
     }
 
-    const resolveOption = (option, value) => {
+    const resolveOption = (option) => {
       if (option !== undefined) {
         // Return the matched option for labels and other option-facing callbacks.
         return option;
-      }
-
-      if (freeSolo && typeof value === 'string') {
-        // Free-solo strings are valid without a backing option, so return the value itself.
-        return value;
       }
 
       // A mapped value without a matching option cannot be resolved.
@@ -179,17 +179,27 @@ function useAutocomplete(props) {
 
     if (isOptionEqualToValueProp) {
       // Custom equality defines matching behavior, so resolve the first matching option.
-      return (value) =>
-        resolveOption(
-          options.find((option) => isOptionEqualToValueProp(option, value)),
-          value,
-        );
+      return (value) => {
+        if (freeSolo && typeof value === 'string') {
+          // Strings always represent free-solo values when mapping is enabled.
+          return value;
+        }
+
+        return resolveOption(options.find((option) => isOptionEqualToValueProp(option, value)));
+      };
     }
 
     const optionValueMap = new Map(options.map((option) => [getOptionValueProp(option), option]));
 
     // Default equality uses mapped values as keys, so resolve them through the lookup map.
-    return (value) => resolveOption(optionValueMap.get(value), value);
+    return (value) => {
+      if (freeSolo && typeof value === 'string') {
+        // Check before the map because a mapped string and free-solo text are indistinguishable.
+        return value;
+      }
+
+      return resolveOption(optionValueMap.get(value));
+    };
   }, [freeSolo, getOptionValueProp, isOptionEqualToValueProp, options]);
 
   let getOptionLabel = getOptionLabelProp;
@@ -339,8 +349,12 @@ function useAutocomplete(props) {
       return null;
     }
 
-    return new Set(selectedValues);
-  }, [isOptionEqualToValueProp, selectedValues]);
+    return new Set(
+      getOptionValueProp !== undefined && freeSolo
+        ? selectedValues.filter((selectedValue) => typeof selectedValue !== 'string')
+        : selectedValues,
+    );
+  }, [freeSolo, getOptionValueProp, isOptionEqualToValueProp, selectedValues]);
   const isOptionSelected = React.useCallback(
     (option) => {
       if (selectedValuesSet) {
