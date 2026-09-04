@@ -75,11 +75,37 @@ const getSlackChannelId = (
   return CORE_FEEBACKS_CHANNEL_ID;
 };
 
+// Slack's section text is capped at 3000 characters. Escaping can expand input up to 5x
+// (e.g. `&` -> `&amp;`), so bound the final message to stay within the limit.
+const MAX_SLACK_SECTION_LENGTH = 3000;
+const MAX_URL_LENGTH = 1000;
+
 // Slack treats `<...>` and `&` as control syntax in mrkdwn. The feedback payload is
 // public and unauthenticated, so escape user-authored text before it reaches Slack to
 // prevent mention (e.g. `<!channel>`), link, and markup injection.
 const escapeSlackMrkdwn = (value: string) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+// Only trust MUI-owned https origins for links rendered in the Slack message. The payload
+// is public, so an unvalidated URL would let the bot post a link to any destination while
+// showing an attacker-chosen label. Returns the normalized URL, or null when untrusted.
+const parseMuiUrl = (value: unknown): string | null => {
+  if (typeof value !== 'string' || value.length > MAX_URL_LENGTH) {
+    return null;
+  }
+  try {
+    const url = new URL(value);
+    if (
+      url.protocol !== 'https:' ||
+      (url.hostname !== 'mui.com' && !url.hostname.endsWith('.mui.com'))
+    ) {
+      return null;
+    }
+    return url.href;
+  } catch {
+    return null;
+  }
+};
 
 // Setup of the slack bot (taken from https://slack.dev/bolt-js/deployments/aws-lambda)
 const awsLambdaReceiver = new AwsLambdaReceiver({
@@ -139,25 +165,39 @@ export const handler: Handler = async (event, context, callback) => {
       const isDesignFeedback = inCommentSectionURL.includes('#new-docs-api-feedback');
       const commentSectionURL = isDesignFeedback ? '' : inCommentSectionURL;
 
+      // Render links only to validated MUI URLs; otherwise fall back to plain text so the
+      // bot cannot post a link pointing at an attacker-controlled destination.
+      const safeCurrentLocationURL = parseMuiUrl(currentLocationURL);
+      const safeCommentSectionURL = parseMuiUrl(commentSectionURL);
+
+      let sectionSuffix = '';
+      if (commentSectionTitle) {
+        const escapedTitle = escapeSlackMrkdwn(commentSectionTitle);
+        sectionSuffix = safeCommentSectionURL
+          ? ` (from section <${safeCommentSectionURL}|${escapedTitle}>)`
+          : ` (from section ${escapedTitle})`;
+      }
+
       const simpleSlackMessage = [
         `New comment ${rating === 1 ? '👍' : ''}${rating === 0 ? '👎' : ''}`,
         `>${escapeSlackMrkdwn(comment).split('\n').join('\n>')}`,
-        `sent from ${escapeSlackMrkdwn(currentLocationURL)}${
-          commentSectionTitle
-            ? ` (from section <${escapeSlackMrkdwn(commentSectionURL)}|${escapeSlackMrkdwn(commentSectionTitle)}>)`
-            : ''
-        }`,
+        `sent from ${safeCurrentLocationURL ?? 'an unknown page'}${sectionSuffix}`,
       ].join('\n\n');
+
+      const boundedSlackMessage =
+        simpleSlackMessage.length > MAX_SLACK_SECTION_LENGTH
+          ? `${simpleSlackMessage.slice(0, MAX_SLACK_SECTION_LENGTH - 1)}…`
+          : simpleSlackMessage;
 
       await app.client.chat.postMessage({
         channel: getSlackChannelId(currentLocationURL, productId, { isDesignFeedback }),
-        text: simpleSlackMessage, // Fallback for notification
+        text: boundedSlackMessage, // Fallback for notification
         blocks: [
           {
             type: 'section',
             text: {
               type: 'mrkdwn',
-              text: simpleSlackMessage,
+              text: boundedSlackMessage,
             },
           },
           {
@@ -169,11 +209,8 @@ export const handler: Handler = async (event, context, callback) => {
                   type: 'plain_text',
                   text: 'Delete',
                 },
-                value: JSON.stringify({
-                  comment,
-                  currentLocationURL,
-                  commentSectionURL,
-                }),
+                // The delete handler only uses the message ref, not this value.
+                value: 'delete_feedback',
                 style: 'danger',
                 action_id: 'delete_action',
               },
