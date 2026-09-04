@@ -70,3 +70,4 @@ Components are rated in isolation against WCAG 2.2 A and AA. The levels are [cum
 | [Radio](./Radio/accessibility.md)           | 23          | 2                     | 0                   | 30                |
 | [RadioGroup](./RadioGroup/accessibility.md) | 7           | 0                     | 0                   | 30                |
 | [Switch](./Switch/accessibility.md)         | 23          | 2                     | 0                   | 30                |
+| [TextField](./TextField/accessibility.md)   | 25          | 3                     | 0                   | 27                |
