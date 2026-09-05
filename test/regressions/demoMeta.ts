@@ -3,7 +3,9 @@
  * screenshots, one for axe — so editing one tool can never stomp on the
  * other. Each list is evaluated last-match-wins (no inheritance: an override
  * rule must restate every field it cares about) against the docs path
- * `docs/data/material/components/{slug}/{Demo}`.
+ * `docs/data/material/components/{slug}/{Demo}` (component demos),
+ * `docs/src/components/product{Product}/{Name}` (landing-page composites), or
+ * `test/regressions/a11y/fixtures/{slug}/{Demo}` (a11y-only fixtures).
  *
  * Whole-slug exclusions where *no* tool wants anything live in the
  * `index.jsx` glob — dropping them from the bundle entirely, not just from
@@ -12,18 +14,43 @@
 
 import { minimatch } from 'minimatch';
 
+/** Default playwright viewport when no `ScreenshotRule.viewport` matches. */
+export const DEFAULT_VIEWPORT = { width: 1000, height: 700 };
+
 export interface ScreenshotRule {
-  /** Minimatch glob against `docs/data/material/components/{slug}/{Demo}`. */
+  /** Minimatch glob against the docs path (see file-level comment). */
   test: string;
   enabled?: boolean;
-  /** Playwright waits for this selector after navigation, before axe + screenshot. */
+  /** Playwright waits for this selector to appear after navigation, before axe + screenshot. */
   waitForSelector?: string;
+  /**
+   * Per-route viewport width override (px). Defaults to
+   * {@link DEFAULT_VIEWPORT}'s width. Only the width is configurable: the
+   * screenshot targets the testcase element, which captures its full rendered
+   * height regardless of viewport, so width is the only axis that affects the
+   * result (composites key off desktop breakpoints). The viewport height stays
+   * at the default.
+   */
+  viewportWidth?: number;
+  /**
+   * Skip the demo when the run's React major is below this. For demos whose
+   * third-party dependencies need a newer React than MUI itself supports —
+   * the nightly `test_regressions-react@18` job installs React 18 across the
+   * workspace via pnpm overrides, past any peer range that says otherwise.
+   */
+  minReactMajor?: number;
 }
 
 export interface A11yRule {
   /** Minimatch glob against `docs/data/material/components/{slug}/{Demo}`. */
   test: string;
   enabled?: boolean;
+  /**
+   * `visual` asserts rules that depend on rendered CSS. `all` asserts every
+   * axe violation/incomplete that is not listed in `skipAssertions`.
+   * @default 'visual'
+   */
+  assertions?: 'visual' | 'all';
   /** Axe rule IDs recorded into results JSON but not asserted on. */
   skipAssertions?: string[];
 }
@@ -98,6 +125,118 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     test: 'docs/data/material/components/table/ReactVirtualizedTable',
     waitForSelector: '[data-index="1"]',
   }, // Wait for virtualized rows to render
+
+  // Landing-page composites under `docs/src/components/product*/` use
+  // desktop breakpoints (`md`+) and look clipped at the default width.
+  { test: 'docs/src/components/product*/**', viewportWidth: 1280 },
+  // X composites (large grids, dense charts) want a wider canvas to match
+  // their live-docs desktop layout. Last-match-wins so this overrides the
+  // broader product*/** width above.
+  { test: 'docs/src/components/productX/**', viewportWidth: 1440 },
+
+  // The template mounts react-router's data router (`createHashRouter` +
+  // `RouterProvider`), which calls `useOptimistic` — React 19 only.
+  // react-router@8 peers on `react >= 19.2.7`, so under the nightly
+  // `test_regressions-react@18` override the whole demo throws on render and
+  // the harness waits out its timeout on a testcase element that never
+  // appears. It is the only demo mounting a data router; the other
+  // react-router demos use `MemoryRouter`/`Link` and are unaffected.
+  {
+    test: 'docs/data/material/getting-started/templates/crud-dashboard/CrudDashboard',
+    minReactMajor: 19,
+  },
+
+  // Composites whose Data Grid loads its rows asynchronously via `useDemoData`
+  // — `aria-busy` only tracks fonts, not the grid data, so without this the
+  // screenshot can capture the loading skeleton. The skeleton's cells carry
+  // *both* `.MuiDataGrid-cell` and `.MuiDataGrid-cellSkeleton` (and its rows
+  // both `.MuiDataGrid-row` and `.MuiDataGrid-rowSkeleton`), so a plain
+  // `.MuiDataGrid-row .MuiDataGrid-cell` matches the skeleton too. Exclude
+  // skeleton rows so the wait only resolves once real data has rendered. Rules
+  // are last-match-wins, so each restates the X width from the rule above.
+  {
+    test: 'docs/src/components/productX/XHero',
+    viewportWidth: 1440,
+    waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
+  },
+  {
+    test: 'docs/src/components/productX/XGridFullDemo',
+    viewportWidth: 1440,
+    waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
+  },
+  {
+    test: 'docs/src/components/productX/XTheming',
+    viewportWidth: 1440,
+    waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
+  },
+  { test: 'docs/data/material/components/progress/*', enabled: false }, // Animated progress bars make screenshots flaky; axe still runs on the enrolled LinearProgress demos
+  // The a11y fixture tree exists for axe, so screenshots are off by default.
+  // Later rules re-enable single fixtures that also guard a visual state.
+  { test: 'test/regressions/a11y/fixtures/**', enabled: false }, // A11y-only coverage fixtures
+  { test: 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+  {
+    test: 'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11yTextSpacing',
+    enabled: true,
+  }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+];
+
+// toggle-button docs demos enrolled for axe assertions; the remaining demos add
+// no axe coverage beyond the a11y fixtures.
+const TOGGLE_BUTTON_A11Y_DEMOS = [
+  'ToggleButtons',
+  'ToggleButtonsMultiple',
+  'VerticalToggleButtons',
+];
+
+// LinearProgress docs demos enrolled for axe assertions; CircularProgress and
+// the mixed/customized demos (CustomizedProgressBars, DelayingAppearance) are excluded.
+const LINEARPROGRESS_A11Y_DEMOS = [
+  'LinearIndeterminate',
+  'LinearDeterminate',
+  'LinearBuffer',
+  'LinearQuery',
+  'LinearColor',
+  'LinearWithValueLabel',
+  'LinearWithAriaValueText',
+];
+
+// Button docs demos enrolled for axe assertions; IconButton/ButtonBase demos are excluded.
+const BUTTON_A11Y_DEMOS = [
+  'BasicButtons',
+  'TextButtons',
+  'ContainedButtons',
+  'DisableElevation',
+  'OutlinedButtons',
+  'ColorButtons',
+  'ButtonSizes',
+  'IconLabelButtons',
+  'InputFileUpload',
+  'LoadingButtons',
+  'CustomizedButtons',
+];
+
+// Switch docs demos enrolled for axe assertions. FormControlLabelPosition is
+// excluded: its `aria-label` on a role-less FormGroup div trips
+// `aria-prohibited-attr`, a demo quirk unrelated to Switch.
+const SWITCH_A11Y_DEMOS = [
+  'BasicSwitches',
+  'SwitchLabels',
+  'ColorSwitches',
+  'ControlledSwitches',
+  'CustomizedSwitches',
+  'SwitchesSize',
+  'SwitchesGroup',
+];
+
+// TextField docs demos enrolled for axe assertions; the `select` dropdown,
+// InputBase-only, and standalone hidden-label demos are excluded.
+const TEXTFIELD_A11Y_DEMOS = [
+  'BasicTextFields',
+  'ColorTextFields',
+  'ValidationTextFields',
+  'FormPropsTextFields',
+  'TextFieldSizes',
+  'MultilineTextFields',
 ];
 
 /**
@@ -105,10 +244,107 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
  * Slug-wide rules use `*`; brace-globs narrow enrolment to specific demos;
  * later opt-out rules disable individual demos.
  *
- * Initial PR scope: `buttons` only. Other components onboard incrementally.
+ * Scope: the components with a conformance report under
+ * `packages/mui-material/src/<Component>/accessibility.md`. Others onboard
+ * incrementally.
  */
 export const A11Y_RULES: A11yRule[] = [
-  { test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
+  {
+    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars,AvatarA11yImage}',
+    enabled: true,
+  },
+  // Avatar's default `colorDefault` styling is white text on grey[400] (~1.9:1),
+  // and the documented letter/background examples use low-contrast author
+  // colors, so color-contrast genuinely fails (WCAG 1.4.3). Record the
+  // violations in the JSON without failing the build. IconAvatars (icons only,
+  // aria-hidden, no text) is excluded here so it still asserts a clean pass.
+  {
+    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,VariantAvatars,AvatarA11yImage}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: `docs/data/material/components/buttons/{${BUTTON_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/buttons/`
+  // (no docs page consumes them); the suite name maps their results into the
+  // same `buttons.a11y.json` as the docs demos above.
+  {
+    test: 'test/regressions/a11y/fixtures/buttons/{ButtonA11yNonNative,ButtonA11ySemanticStates,ButtonA11yTextSpacing}',
+    enabled: true,
+    assertions: 'all',
+  },
+  // `color-contrast` is a known, documented product gap, not a regression:
+  // `info` and `warning` fail 4.5:1 in every variant with the default palette
+  // Asserting it would keep CI permanently red, so the failure is recorded in
+  // `buttons.a11y.json` (status only, a tripwire for flips) and documented with
+  // measured ratios in `packages/mui-material/src/Button/accessibility.md`
+  // § 1.4.3. A palette change cannot go unnoticed: the contrast contract
+  // tests recompute the ratios from `createTheme()` and fail when the
+  // failing set drifts.
+  {
+    test: 'test/regressions/a11y/fixtures/buttons/ButtonA11yColorMatrix',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: `docs/data/material/components/progress/{${LINEARPROGRESS_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/progress/`
+  // (no docs page consumes them); the suite name maps their results into the
+  // same `progress.a11y.json` as the docs demos above.
+  {
+    test: 'test/regressions/a11y/fixtures/progress/{LinearProgressA11ySemanticStates,LinearProgressA11yColorMatrix}',
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/switches/{${SWITCH_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/text-fields/{${TEXTFIELD_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+    // color-contrast is recorded but not asserted (1.4.3): axe cannot resolve
+    // the input value's background through the overlapping notched outline
+    // (logged as incomplete), and the focused color labels (warning 3.11:1),
+    // error text on the filled surface (4.36:1), and the ~0.42-opacity
+    // placeholder (~2.6:1) are known shortfalls kept in the JSON without
+    // failing CI.
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: `docs/data/material/components/toggle-button/{${TOGGLE_BUTTON_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/toggle-button/`
+  // (no docs page consumes them); the suite name maps their results into the
+  // same `toggle-button.a11y.json` as the docs demos above.
+  {
+    test: 'test/regressions/a11y/fixtures/toggle-button/{ToggleButtonA11yNonNative,ToggleButtonA11ySemanticStates,ToggleButtonA11yTextSpacing}',
+    enabled: true,
+    assertions: 'all',
+  },
+  // `color-contrast` is a documented gap, not a regression: a selected label
+  // renders `color.main` text over an alpha tint of the same color, and the
+  // `primary`/`error`/`info`/`warning` labels fall short of 4.5:1 there. The
+  // failure is recorded in `toggle-button.a11y.json` (a tripwire for flips)
+  // and documented in `packages/mui-material/src/ToggleButton/accessibility.md`
+  // § 1.4.3.
+  {
+    test: 'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11yColorMatrix',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
 ];
 
 export interface ParsedRoute {
@@ -117,19 +353,65 @@ export interface ParsedRoute {
   demo: string;
 }
 
-const ROUTE_REGEX = /^\/docs-components-([^/]+)\/(.+)$/;
+const COMPONENT_ROUTE_REGEX = /^\/docs-components-([^/]+)\/(.+)$/;
+const COMPOSITE_ROUTE_REGEX = /^\/docs-product-([^/]+)\/(.+)$/;
+const TEMPLATE_ROUTE_REGEX = /^\/docs-getting-started-templates-([^/]+)\/(.+)$/;
+const A11Y_FIXTURE_ROUTE_REGEX = /^\/a11y-([^/]+)\/(.+)$/;
 
 /**
- * Map a VRT route to its docs path + slug + demo, or `null` for non-component
- * routes (regression fixtures).
+ * Map a VRT route to its source path + slug + demo, or `null` for
+ * `/regression-*` screenshot fixtures (always screenshot, never axe).
+ *
+ * Recognises four route shapes:
+ * - `/docs-components-{slug}/{Demo}` → `docs/data/material/components/{slug}/{Demo}`
+ * - `/docs-product-{product}/{Name}` → `docs/src/components/product{Product}/{Name}`
+ * - `/docs-getting-started-templates-{slug}/{Demo}` →
+ *   `docs/data/material/getting-started/templates/{slug}/{Demo}`
+ * - `/a11y-{slug}/{Demo}` → `test/regressions/a11y/fixtures/{slug}/{Demo}`
+ *
+ * The template shape is matched by its literal prefix: `fixtures.js` joins the
+ * directory segments with `-`, so `getting-started-templates-crud-dashboard`
+ * cannot be split back into directories without knowing where the slug starts.
+ *
+ * For a11y fixture routes the suite directory doubles as the slug. Name a
+ * suite after an existing docs slug (lowercase, for example
+ * `a11y/fixtures/buttons/`) to record its axe results into that slug's
+ * committed `{slug}.a11y.json` — for a11y-only fixtures that must not live in
+ * `docs/data` because no docs page consumes them. The a11y reporter rejects a
+ * slug without a docs directory. These suites live outside
+ * `test/regressions/fixtures/` because a lowercase slug directory next to a
+ * PascalCase screenshot suite (`rating/` next to `Rating/`) would fold into
+ * one directory on case-insensitive file systems.
  */
 export function parseRoute(route: string): ParsedRoute | null {
-  const match = route.match(ROUTE_REGEX);
-  if (!match) {
-    return null;
+  const componentMatch = route.match(COMPONENT_ROUTE_REGEX);
+  if (componentMatch) {
+    const [, slug, demo] = componentMatch;
+    return { path: `docs/data/material/components/${slug}/${demo}`, slug, demo };
   }
-  const [, slug, demo] = match;
-  return { path: `docs/data/material/components/${slug}/${demo}`, slug, demo };
+  const templateMatch = route.match(TEMPLATE_ROUTE_REGEX);
+  if (templateMatch) {
+    const [, slug, demo] = templateMatch;
+    return {
+      path: `docs/data/material/getting-started/templates/${slug}/${demo}`,
+      slug,
+      demo,
+    };
+  }
+  const compositeMatch = route.match(COMPOSITE_ROUTE_REGEX);
+  if (compositeMatch) {
+    const [, product, demo] = compositeMatch;
+    // Re-capitalize the single-word product segment from `index.jsx`'s glob
+    // (`material` → `Material`, `x` → `X`) to rebuild the directory name.
+    const dir = `product${product.charAt(0).toUpperCase()}${product.slice(1)}`;
+    return { path: `docs/src/components/${dir}/${demo}`, slug: product, demo };
+  }
+  const a11yFixtureMatch = route.match(A11Y_FIXTURE_ROUTE_REGEX);
+  if (a11yFixtureMatch) {
+    const [, suite, demo] = a11yFixtureMatch;
+    return { path: `test/regressions/a11y/fixtures/${suite}/${demo}`, slug: suite, demo };
+  }
+  return null;
 }
 
 /**

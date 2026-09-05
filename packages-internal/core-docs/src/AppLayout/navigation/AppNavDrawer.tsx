@@ -481,12 +481,14 @@ export function AppNavDrawer(props: AppNavDrawerProps) {
     );
   }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl, swipeableDrawer]);
 
-  if (!productIdentifier) {
-    throw new Error('docs-infra: missing productIdentifier in PageContext');
-  }
-
-  if (!productIdentifier.versions) {
-    throw new Error('docs-infra: missing productIdentifier.versions in PageContext');
+  // Guard with NEXT_RUNTIME so this check is dead-code-eliminated from client bundles.
+  if (process.env.NEXT_RUNTIME) {
+    if (!productIdentifier) {
+      throw new Error('docs-infra: missing productIdentifier in PageContext');
+    }
+    if (!productIdentifier.versions) {
+      throw new Error('docs-infra: missing productIdentifier.versions in PageContext');
+    }
   }
 
   return (

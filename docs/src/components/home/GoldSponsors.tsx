@@ -58,9 +58,14 @@ const BACKLINKs = [
     href: 'https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
-    name: 'FollowerFabrik',
-    description: 'Your German Social Media Agency.',
-    href: 'https://followerfabrik.de/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+    name: 'Views4You',
+    description: 'Maximize Social Media Impact.',
+    href: 'https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'DaoSMM',
+    description: 'Global SMM Panel.',
+    href: 'https://daosmm.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
 
@@ -122,7 +127,6 @@ export default function GoldSponsors() {
               component="a"
               href={ROUTES.goldSponsor}
               target="_blank"
-              rel="noopener"
               color="primary"
             >
               <AddRounded />
@@ -133,7 +137,7 @@ export default function GoldSponsors() {
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 Find out how{' '}
-                <Link href={ROUTES.goldSponsor} target="_blank" rel="noopener">
+                <Link href={ROUTES.goldSponsor} target="_blank">
                   you can support MUI.
                 </Link>
               </Typography>

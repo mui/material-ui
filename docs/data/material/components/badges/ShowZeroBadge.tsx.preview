@@ -1,6 +1,10 @@
-<Badge color="secondary" badgeContent={0}>
-  <MailIcon />
-</Badge>
-<Badge color="secondary" badgeContent={0} showZero>
-  <MailIcon />
-</Badge>
+<IconButton aria-label="show no unread messages">
+  <Badge color="secondary" badgeContent={0}>
+    <MailIcon />
+  </Badge>
+</IconButton>
+<IconButton aria-label="show 0 unread messages">
+  <Badge color="secondary" badgeContent={0} showZero>
+    <MailIcon />
+  </Badge>
+</IconButton>

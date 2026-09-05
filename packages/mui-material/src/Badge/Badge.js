@@ -12,6 +12,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 import useSlot from '../utils/useSlot';
+import { getTransitionStyles } from '../transitions/utils';
 
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
@@ -88,7 +89,7 @@ const BadgeBadge = styled('span', {
     '@media (forced-colors: active)': {
       border: '1px solid ButtonBorder',
     },
-    transition: theme.transitions.create('transform', {
+    ...getTransitionStyles(theme, 'transform', {
       easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -114,29 +115,20 @@ const BadgeBadge = styled('span', {
       {
         props: { invisible: true },
         style: {
-          transition: theme.transitions.create('transform', {
+          ...getTransitionStyles(theme, 'transform', {
             easing: theme.transitions.easing.easeInOut,
             duration: theme.transitions.duration.leavingScreen,
           }),
         },
       },
       {
-        style: ({ ownerState }) => {
-          const { vertical, horizontal } = ownerState.anchorOrigin;
-          const offset = ownerState.overlap === 'circular' ? '14%' : 0;
-          return {
-            '--Badge-translateX': horizontal === 'right' ? '50%' : '-50%',
-            '--Badge-translateY': vertical === 'top' ? '-50%' : '50%',
-            top: vertical === 'top' ? offset : 'initial',
-            bottom: vertical === 'bottom' ? offset : 'initial',
-            right: horizontal === 'right' ? offset : 'initial',
-            left: horizontal === 'left' ? offset : 'initial',
-            transform: 'scale(1) translate(var(--Badge-translateX), var(--Badge-translateY))',
-            transformOrigin: `${horizontal === 'right' ? '100%' : '0%'} ${vertical === 'top' ? '0%' : '100%'}`,
-            [`&.${badgeClasses.invisible}`]: {
-              transform: 'scale(0) translate(var(--Badge-translateX), var(--Badge-translateY))',
-            },
-          };
+        style: {
+          inset: 'var(--Badge-inset)',
+          transform: 'scale(1) translate(var(--Badge-translate))',
+          transformOrigin: 'var(--Badge-origin)',
+          [`&.${badgeClasses.invisible}`]: {
+            transform: 'scale(0) translate(var(--Badge-translate))',
+          },
         },
       },
     ],
@@ -236,11 +228,25 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     },
   });
 
+  const { vertical, horizontal } = anchorOrigin;
+  const offset = overlap === 'circular' ? '14%' : '0';
+  const top = vertical === 'top' ? offset : 'auto';
+  const bottom = vertical === 'bottom' ? offset : 'auto';
+  const right = horizontal === 'right' ? offset : 'auto';
+  const left = horizontal === 'left' ? offset : 'auto';
   const [BadgeSlot, badgeProps] = useSlot('badge', {
     elementType: BadgeBadge,
     externalForwardedProps,
     ownerState,
     className: classes.badge,
+    additionalProps: {
+      'aria-hidden': true,
+      style: {
+        '--Badge-translate': `${horizontal === 'right' ? '50%' : '-50%'}, ${vertical === 'top' ? '-50%' : '50%'}`,
+        '--Badge-inset': `${top} ${right} ${bottom} ${left}`,
+        '--Badge-origin': `${horizontal === 'right' ? '100%' : '0%'} ${vertical === 'top' ? '0%' : '100%'}`,
+      },
+    },
   });
 
   return (

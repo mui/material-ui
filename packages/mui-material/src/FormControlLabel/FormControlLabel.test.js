@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import FormControlLabel, {
   formControlLabelClasses as classes,
@@ -128,6 +128,20 @@ describe('<FormControlLabel />', () => {
       );
 
       expect(container.firstChild).to.have.class(classes.labelPlacementStart);
+    });
+
+    it('should have the `end` class', () => {
+      const { container } = render(
+        <FormControlLabel label="Pizza" labelPlacement="end" control={<div />} />,
+      );
+
+      expect(container.firstChild).to.have.class(classes.labelPlacementEnd);
+    });
+
+    it('should have the `end` class by default', () => {
+      const { container } = render(<FormControlLabel label="Pizza" control={<div />} />);
+
+      expect(container.firstChild).to.have.class(classes.labelPlacementEnd);
     });
 
     it('should have the `top` class', () => {

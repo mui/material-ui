@@ -2,10 +2,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import useTimeout from '@mui/utils/useTimeout';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
 import Transition from '../internal/Transition';
+import useReducedMotion from '../transitions/useReducedMotion';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -14,6 +14,8 @@ import { normalizedTransitionCallback, getTransitionProps } from '../transitions
 import { useForkRef } from '../utils';
 import useSlot from '../utils/useSlot';
 import { getCollapseUtilityClass } from './collapseClasses';
+
+const EMPTY_OBJECT = {};
 
 const useUtilityClasses = (ownerState) => {
   const { orientation, classes } = ownerState;
@@ -140,6 +142,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     className,
     collapsedSize: collapsedSizeProp = '0px',
     component,
+    disablePrefersReducedMotion = false,
     easing,
     in: inProp,
     onEnter,
@@ -149,8 +152,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     onExited,
     onExiting,
     orientation = 'vertical',
-    slots = {},
-    slotProps = {},
+    slots = EMPTY_OBJECT,
+    slotProps = EMPTY_OBJECT,
     style,
     timeout = duration.standard,
     // eslint-disable-next-line react/prop-types
@@ -167,13 +170,13 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const theme = useTheme();
-  const timer = useTimeout();
   const wrapperRef = React.useRef(null);
-  const autoTransitionDuration = React.useRef();
+  const autoTransitionDuration = React.useRef(null);
   const collapsedSize =
     typeof collapsedSizeProp === 'number' ? `${collapsedSizeProp}px` : collapsedSizeProp;
   const isHorizontal = orientation === 'horizontal';
   const size = isHorizontal ? 'width' : 'height';
+  const reducedMotion = useReducedMotion(theme.motion.reducedMotion, disablePrefersReducedMotion);
 
   const nodeRef = React.useRef(null);
   const handleRef = useForkRef(ref, nodeRef);
@@ -209,14 +212,21 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
       },
     );
 
-    if (timeout === 'auto') {
+    if (timeout === 'auto' && !reducedMotion.shouldReduceMotion) {
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperSize);
-      node.style.transitionDuration = `${duration2}ms`;
       autoTransitionDuration.current = duration2;
     } else {
-      node.style.transitionDuration =
-        typeof transitionDuration === 'string' ? transitionDuration : `${transitionDuration}ms`;
+      autoTransitionDuration.current = null;
     }
+    const transitionTiming = reducedMotion.getTransitionTiming({
+      duration: autoTransitionDuration.current ?? transitionDuration,
+      delay: undefined,
+    });
+
+    node.style.transitionDuration =
+      typeof transitionTiming.duration === 'string'
+        ? transitionTiming.duration
+        : `${transitionTiming.duration}ms`;
 
     node.style[size] = `${wrapperSize}px`;
     node.style.transitionTimingFunction = transitionTimingFunction;
@@ -253,15 +263,22 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
       },
     );
 
-    if (timeout === 'auto') {
+    if (timeout === 'auto' && !reducedMotion.shouldReduceMotion) {
       // getAutoHeightDuration also works for width; it calculates duration from size.
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperSize);
-      node.style.transitionDuration = `${duration2}ms`;
       autoTransitionDuration.current = duration2;
     } else {
-      node.style.transitionDuration =
-        typeof transitionDuration === 'string' ? transitionDuration : `${transitionDuration}ms`;
+      autoTransitionDuration.current = null;
     }
+    const transitionTiming = reducedMotion.getTransitionTiming({
+      duration: autoTransitionDuration.current ?? transitionDuration,
+      delay: undefined,
+    });
+
+    node.style.transitionDuration =
+      typeof transitionTiming.duration === 'string'
+        ? transitionTiming.duration
+        : `${transitionTiming.duration}ms`;
 
     node.style[size] = collapsedSize;
     node.style.transitionTimingFunction = transitionTimingFunction;
@@ -271,14 +288,11 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     }
   });
 
-  const handleAddEndListener = (next) => {
-    if (timeout === 'auto') {
-      timer.start(autoTransitionDuration.current || 0, next);
-    }
-    if (addEndListener) {
-      addEndListener(nodeRef.current, next);
-    }
-  };
+  const handleAddEndListener = addEndListener
+    ? (next) => {
+        addEndListener(nodeRef.current, next);
+      }
+    : undefined;
 
   const externalForwardedProps = {
     slots,
@@ -325,6 +339,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
       onExited={handleExited}
       onExiting={handleExiting}
       addEndListener={handleAddEndListener}
+      getAutoTimeout={timeout === 'auto' ? () => autoTransitionDuration.current : undefined}
+      reduceMotion={reducedMotion.shouldReduceMotion}
       nodeRef={nodeRef}
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
@@ -390,6 +406,11 @@ Collapse.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: elementTypeAcceptingRef,
+  /**
+   * If `true`, the transition ignores `theme.motion.reducedMotion` and keeps its normal timing.
+   * @default false
+   */
+  disablePrefersReducedMotion: PropTypes.bool,
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.

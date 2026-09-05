@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import * as StackBlitz from './StackBlitz';
 
 const testCase = `import * as React from 'react';

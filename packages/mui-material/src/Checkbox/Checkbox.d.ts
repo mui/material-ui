@@ -101,9 +101,8 @@ export interface CheckboxProps
   id?: SwitchBaseProps['id'] | undefined;
   /**
    * If `true`, the component appears indeterminate.
-   * This does not set the native input element to indeterminate due
-   * to inconsistent behavior across browsers.
-   * However, we set a `data-indeterminate` attribute on the `input`.
+   * This sets the native input element to indeterminate,
+   * and we also set a `data-indeterminate` attribute on the `input`.
    * @default false
    */
   indeterminate?: boolean | undefined;
@@ -130,8 +129,7 @@ export interface CheckboxProps
    * @default 'medium'
    */
   size?:
-    | OverridableStringUnion<'small' | 'medium' | 'large', CheckboxPropsSizeOverrides>
-    | undefined;
+    OverridableStringUnion<'small' | 'medium' | 'large', CheckboxPropsSizeOverrides> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

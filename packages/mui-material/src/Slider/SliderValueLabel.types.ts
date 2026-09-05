@@ -1,7 +1,6 @@
 export interface SliderValueLabelProps {
   children?:
-    | React.ReactElement<{ className?: string | undefined; children?: React.ReactNode }>
-    | undefined;
+    React.ReactElement<{ className?: string | undefined; children?: React.ReactNode }> | undefined;
   className?: string | undefined;
   style?: React.CSSProperties | undefined;
   /**

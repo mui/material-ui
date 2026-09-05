@@ -151,6 +151,9 @@ function useAutocomplete(props) {
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
   const listboxRef = React.useRef(null);
+  // VoiceOver synthesises a spurious Backspace on the input after a chip
+  // deletion moves DOM focus back to it. This flag suppresses that one event.
+  const ignoreNextBackspaceRef = React.useRef(false);
   const windowLostFocus = React.useRef(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -303,8 +306,11 @@ function useAutocomplete(props) {
       return;
     }
 
-    // Only reset the input's value when freeSolo if the component's value changes.
-    if (freeSolo && !valueChange) {
+    // In freeSolo mode, only reset the input after a real value change.
+    // Also prevent the initial default value of `null` from clearing controlled values.
+    const shouldSkipFreeSoloReset =
+      freeSolo && (!valueChange || (value == null && previousProps.value === undefined));
+    if (shouldSkipFreeSoloReset) {
       return;
     }
 
@@ -324,6 +330,7 @@ function useAutocomplete(props) {
   // Ensure the focusedItem is never inconsistent
   React.useEffect(() => {
     if (multiple && focusedItem > value.length - 1) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFocusedItem(-1);
       focusItem(-1);
     }
@@ -367,6 +374,12 @@ function useAutocomplete(props) {
 
   const syncHighlightedIndexToDOM = useEventCallback(
     ({ index, reason, preserveScroll = false }) => {
+      // React can clear refs before pending passive effects run during unmount.
+      // If both refs are gone, there is no DOM left to sync.
+      if (inputRef.current == null && listboxRef.current == null) {
+        return;
+      }
+
       // does the index exist?
       if (index === -1) {
         inputRef.current.removeAttribute('aria-activedescendant');
@@ -1003,14 +1016,16 @@ function useAutocomplete(props) {
           }
           break;
         case 'Enter': {
-          // In freeSolo, only select the highlighted option if the user hasn't
-          // typed new text (inputPristine) or explicitly interacted with an option
-          // (keyboard, mouse, or touch — any non-null reason). This lets typed
-          // text win over a programmatic highlight (reason=null, e.g. from
-          // syncHighlightedIndex matching a previous value) while still honoring
-          // deliberate user interactions like hovering a suggestion then pressing Enter.
-          const shouldSelectHighlighted =
-            !freeSolo || inputPristine || highlightReasonRef.current !== null;
+          // In freeSolo, once the user has typed new text, Enter should commit that text instead
+          // of treating a programmatic highlight as an intentional selection. Programmatic
+          // highlights include autoHighlight and syncHighlightedIndex matching a previous value.
+          const hasProgrammaticHighlight =
+            popupOpen && highlightedIndexRef.current !== -1 && highlightReasonRef.current === null;
+          const shouldCommitFreeSoloOverProgrammaticHighlight =
+            freeSolo && !inputPristine && hasProgrammaticHighlight;
+          const shouldSelectHighlighted = !freeSolo || inputPristine || !hasProgrammaticHighlight;
+          const shouldPreventSubmitAfterFreeSoloCommit =
+            shouldCommitFreeSoloOverProgrammaticHighlight && !touchScrolledRef.current;
 
           if (
             highlightedIndexRef.current !== -1 &&
@@ -1040,8 +1055,8 @@ function useAutocomplete(props) {
               );
             }
           } else if (freeSolo && inputValue !== '' && inputValueIsSelectedValue === false) {
-            if (multiple) {
-              // Allow people to add new values before they submit the form.
+            if (multiple || shouldPreventSubmitAfterFreeSoloCommit) {
+              // Allow people to commit the freeSolo value before they submit the form.
               event.preventDefault();
             }
             selectNewValue(event, inputValue, 'createOption', 'freeSolo');
@@ -1074,6 +1089,10 @@ function useAutocomplete(props) {
           break;
         case 'Backspace':
           // Remove the value on the left of the "cursor"
+          if (ignoreNextBackspaceRef.current) {
+            ignoreNextBackspaceRef.current = false;
+            break;
+          }
           if (multiple && !readOnly && inputValue === '' && value.length > 0) {
             const index = focusedItem === -1 ? value.length - 1 : focusedItem;
             const newValue = value.slice();
@@ -1081,6 +1100,18 @@ function useAutocomplete(props) {
             handleValue(event, newValue, 'removeOption', {
               option: value[index],
             });
+            if (focusedItem !== -1) {
+              // Suppress the spurious Backspace VoiceOver synthesises on the
+              // input after focus returns to it. Clear it shortly after
+              // deletion so a later real Backspace is not ignored if the
+              // synthetic follow-up event never arrives.
+              ignoreNextBackspaceRef.current = true;
+              setTimeout(() => {
+                if (ignoreNextBackspaceRef.current) {
+                  ignoreNextBackspaceRef.current = false;
+                }
+              }, 0);
+            }
           }
           if (!multiple && renderValue && !readOnly && inputValue === '') {
             handleValue(event, null, 'removeOption', { option: value });
@@ -1418,6 +1449,12 @@ function useAutocomplete(props) {
       ...(multiple && { key: index }),
       'data-item-index': index,
       tabIndex: -1,
+      onFocus: () => {
+        // If focus on the item doesn't come from keyboard events, we update the state via onFocus.
+        if (focusedItem !== index) {
+          setFocusedItem(index);
+        }
+      },
       ...(!readOnly && { onDelete: multiple ? handleItemDelete(index) : handleSingleItemDelete }),
     }),
     getPopupIndicatorProps: () => ({
