@@ -87,6 +87,31 @@ describe('getConfig', () => {
     ).to.deep.include({ enabled: true });
   });
 
+  it('asserts every rule on the enrolled Toggle Button demos', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/toggle-button/ToggleButtons'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11ySemanticStates',
+      ),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('allows a known Toggle Button color-contrast fixture to record failures without asserting them', () => {
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11yColorMatrix',
+      ),
+    ).to.deep.include({
+      enabled: true,
+      assertions: 'all',
+      skipAssertions: ['color-contrast'],
+    });
+  });
+
   it('returns undefined for a demo outside a brace-glob enrolment', () => {
     // Button a11y enrolment covers @mui/material/Button, not IconButton.
     expect(getConfig(A11Y_RULES, 'docs/data/material/components/buttons/DisabledButtons')).to.equal(
@@ -95,6 +120,13 @@ describe('getConfig', () => {
     expect(getConfig(A11Y_RULES, 'docs/data/material/components/buttons/IconButtons')).to.equal(
       undefined,
     );
+  });
+
+  it('leaves the StandaloneToggleButton demo unenrolled', () => {
+    // StandaloneToggleButton is a docs demo that is not enrolled for axe assertions.
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/toggle-button/StandaloneToggleButton'),
+    ).to.equal(undefined);
   });
 
   it('returns the a11y rule with assertions:all for the progress brace-glob enrolment', () => {
