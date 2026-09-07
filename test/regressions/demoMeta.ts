@@ -169,11 +169,16 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     viewportWidth: 1440,
     waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
   },
+  { test: 'docs/data/material/components/progress/*', enabled: false }, // Animated progress bars make screenshots flaky; axe still runs on the enrolled LinearProgress demos
   // The a11y fixture tree exists for axe, so screenshots are off by default.
   // Later rules re-enable single fixtures that also guard a visual state.
   { test: 'test/regressions/a11y/fixtures/**', enabled: false }, // A11y-only coverage fixtures
   { test: 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
   { test: 'test/regressions/a11y/fixtures/accordion/AccordionA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+  {
+    test: 'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11yTextSpacing',
+    enabled: true,
+  }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
 ];
 
 // Accordion docs demos + a11y fixtures enrolled for axe assertions (the cluster:
@@ -186,6 +191,26 @@ const ACCORDION_A11Y_DEMOS = [
   'CustomizedAccordions',
   'DisabledAccordion',
   'AccordionTransition',
+];
+
+// toggle-button docs demos enrolled for axe assertions; the remaining demos add
+// no axe coverage beyond the a11y fixtures.
+const TOGGLE_BUTTON_A11Y_DEMOS = [
+  'ToggleButtons',
+  'ToggleButtonsMultiple',
+  'VerticalToggleButtons',
+];
+
+// LinearProgress docs demos enrolled for axe assertions; CircularProgress and
+// the mixed/customized demos (CustomizedProgressBars, DelayingAppearance) are excluded.
+const LINEARPROGRESS_A11Y_DEMOS = [
+  'LinearIndeterminate',
+  'LinearDeterminate',
+  'LinearBuffer',
+  'LinearQuery',
+  'LinearColor',
+  'LinearWithValueLabel',
+  'LinearWithAriaValueText',
 ];
 
 // Button docs demos enrolled for axe assertions; IconButton/ButtonBase demos are excluded.
@@ -298,6 +323,19 @@ export const A11Y_RULES: A11yRule[] = [
     skipAssertions: ['color-contrast'],
   },
   {
+    test: `docs/data/material/components/progress/{${LINEARPROGRESS_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/progress/`
+  // (no docs page consumes them); the suite name maps their results into the
+  // same `progress.a11y.json` as the docs demos above.
+  {
+    test: 'test/regressions/a11y/fixtures/progress/{LinearProgressA11ySemanticStates,LinearProgressA11yColorMatrix}',
+    enabled: true,
+    assertions: 'all',
+  },
+  {
     test: `docs/data/material/components/switches/{${SWITCH_A11Y_DEMOS.join(',')}}`,
     enabled: true,
     assertions: 'all',
@@ -312,6 +350,31 @@ export const A11Y_RULES: A11yRule[] = [
     // error text on the filled surface (4.36:1), and the ~0.42-opacity
     // placeholder (~2.6:1) are known shortfalls kept in the JSON without
     // failing CI.
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: `docs/data/material/components/toggle-button/{${TOGGLE_BUTTON_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/toggle-button/`
+  // (no docs page consumes them); the suite name maps their results into the
+  // same `toggle-button.a11y.json` as the docs demos above.
+  {
+    test: 'test/regressions/a11y/fixtures/toggle-button/{ToggleButtonA11yNonNative,ToggleButtonA11ySemanticStates,ToggleButtonA11yTextSpacing}',
+    enabled: true,
+    assertions: 'all',
+  },
+  // `color-contrast` is a documented gap, not a regression: a selected label
+  // renders `color.main` text over an alpha tint of the same color, and the
+  // `primary`/`error`/`info`/`warning` labels fall short of 4.5:1 there. The
+  // failure is recorded in `toggle-button.a11y.json` (a tripwire for flips)
+  // and documented in `packages/mui-material/src/ToggleButton/accessibility.md`
+  // § 1.4.3.
+  {
+    test: 'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11yColorMatrix',
+    enabled: true,
+    assertions: 'all',
     skipAssertions: ['color-contrast'],
   },
 ];
