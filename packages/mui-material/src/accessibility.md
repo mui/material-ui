@@ -114,7 +114,7 @@ component report. Edit the reports, not this table.
 | [AccordionSummary](./AccordionSummary/accessibility.md)   | 23          | 1                     | 0                   | 31                | 3/24       |
 | [Avatar](./Avatar/accessibility.md)                       | 9           | 2                     | 0                   | 44                | 5/11       |
 | [Button](./Button/accessibility.md)                       | 23          | 4                     | 0                   | 28                | 7/27       |
-| [Checkbox](./Checkbox/accessibility.md)                   | 22          | 3                     | 0                   | 30                | 3/25       |
+| [Checkbox](./Checkbox/accessibility.md)                   | 23          | 2                     | 0                   | 30                | 3/25       |
 | [LinearProgress](./LinearProgress/accessibility.md)       | 8           | 3                     | 0                   | 44                | 5/11       |
 | [Radio](./Radio/accessibility.md)                         | 23          | 2                     | 0                   | 30                | 2/25       |
 | [RadioGroup](./RadioGroup/accessibility.md)               | 7           | 0                     | 0                   | 30                | 3/7        |
@@ -122,7 +122,7 @@ component report. Edit the reports, not this table.
 | [TextField](./TextField/accessibility.md)                 | 25          | 3                     | 0                   | 27                | 4/28       |
 | [ToggleButton](./ToggleButton/accessibility.md)           | 20          | 4                     | 0                   | 31                | 2/24       |
 | [ToggleButtonGroup](./ToggleButtonGroup/accessibility.md) | 4           | 0                     | 0                   | 31                | 1/4        |
-| **12 components**                                         | **206**     | **24**                | **0**               | **387**           | **40**     |
+| **12 components**                                         | **207**     | **23**                | **0**               | **387**           | **40**     |
 
 <!-- scorecard:end -->
 

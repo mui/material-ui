@@ -228,17 +228,6 @@ const BUTTON_A11Y_DEMOS = [
   'CustomizedButtons',
 ];
 
-const CHECKBOX_A11Y_DEMOS = [
-  'Checkboxes',
-  'CheckboxLabels',
-  'ColorCheckboxes',
-  'ControlledCheckbox',
-  'CustomizedCheckbox',
-  'IconCheckboxes',
-  'SizeCheckboxes',
-  'CheckboxesGroup',
-];
-
 // Radio docs demos enrolled for axe assertions. FormControlLabelPlacement is left out: its axe
 // output duplicates RowRadioButtonsGroup (a row RadioGroup with a FormLabel), adding no new rules.
 const RADIO_A11Y_DEMOS = [
@@ -251,6 +240,18 @@ const RADIO_A11Y_DEMOS = [
   'RowRadioButtonsGroup',
   'ErrorRadios',
   'UseRadioGroup',
+];
+
+const CHECKBOX_A11Y_DEMOS = [
+  'Checkboxes',
+  'CheckboxLabels',
+  'ColorCheckboxes',
+  'ControlledCheckbox',
+  'CustomizedCheckbox',
+  'IconCheckboxes',
+  'SizeCheckboxes',
+  'CheckboxesGroup',
+  'IndeterminateCheckbox',
 ];
 
 // Switch docs demos enrolled for axe assertions. FormControlLabelPosition is
@@ -368,18 +369,13 @@ export const A11Y_RULES: A11yRule[] = [
     assertions: 'all',
     skipAssertions: ['color-contrast'],
   },
+  // IndeterminateCheckbox needs no skip: the component sets the native
+  // `.indeterminate` property and no aria-checked attribute (#49053), so
+  // axe's aria-conditional-attr passes.
   {
     test: `docs/data/material/components/checkboxes/{${CHECKBOX_A11Y_DEMOS.join(',')}}`,
     enabled: true,
     assertions: 'all',
-  },
-  {
-    // `indeterminate` sets aria-checked="mixed" on the native <input type="checkbox">; axe's
-    // aria-conditional-attr flags it because the native .checked is false. Recorded, not asserted.
-    test: 'docs/data/material/components/checkboxes/IndeterminateCheckbox',
-    enabled: true,
-    assertions: 'all',
-    skipAssertions: ['aria-conditional-attr'],
   },
   // FormControlLabelPosition is not enrolled: its only axe finding is an aria-label on a
   // role-less FormGroup div (aria-prohibited-attr), a demo quirk unrelated to Checkbox.
