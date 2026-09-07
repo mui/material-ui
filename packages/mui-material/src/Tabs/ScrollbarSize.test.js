@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { spy, stub } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import ScrollbarSize from './ScrollbarSize';

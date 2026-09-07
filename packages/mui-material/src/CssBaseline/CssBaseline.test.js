@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme, hexToRgb } from '@mui/material/styles';

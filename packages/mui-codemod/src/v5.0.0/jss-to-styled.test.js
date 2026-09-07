@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import path from 'path';
 import jscodeshift from 'jscodeshift';
 import transform from './jss-to-styled';

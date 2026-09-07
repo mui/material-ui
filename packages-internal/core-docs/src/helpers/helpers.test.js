@@ -1,3 +1,4 @@
+import { describe, beforeAll, afterAll, it, expect } from 'vitest';
 import { pageToTitle } from './helpers';
 
 describe('docs getDependencies helpers', () => {

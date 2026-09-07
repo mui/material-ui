@@ -1,3 +1,4 @@
+import { describe, it, expect, vi } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { collapseClasses } from '@mui/material/Collapse';
 import Stepper from '@mui/material/Stepper';

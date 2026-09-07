@@ -12,7 +12,7 @@ githubSource: packages/mui-material/src/Popper
 
 Some important features of the Popper component:
 
-- 🕷 Popper relies on the 3rd party library ([Popper.js](https://popper.js.org/docs/v2/)) for perfect positioning.
+- 🕷 Popper relies on the 3rd party library ([Popper.js](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/index.md)) for perfect positioning.
 - 💄 It's an alternative API to react-popper. It aims for simplicity.
 - Its child element is a [Portal](/material-ui/react-portal/) on the body of the document to avoid rendering problems.
   You can disable this behavior with `disablePortal`.
@@ -57,7 +57,7 @@ Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring
 ## Virtual element
 
 The value of the `anchorEl` prop can be a reference to a fake DOM element.
-You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+You need to create an object shaped like the [`VirtualElement`](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/virtual-elements.md).
 
 Highlight part of the text to see the popper:
 

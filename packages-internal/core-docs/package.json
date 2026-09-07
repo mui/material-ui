@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-core-docs",
-  "version": "9.3.0",
+  "version": "9.4.0",
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
   "license": "MIT",
@@ -25,7 +25,7 @@
     "build": "code-infra build --tsgo --flat --bundle esm --copy \"src/translations/translations.json\" --copy \"src/nextFonts/fonts\"",
     "release": "pnpm build && pnpm publish",
     "test": "exit 0",
-    "typescript": "tsgo -p tsconfig.json"
+    "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
     "@babel/runtime": "^7.29.7",
@@ -48,8 +48,8 @@
     "@types/nprogress": "0.2.3",
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.4",
-    "next": "16.3.1"
+    "@types/react-dom": "19.2.5",
+    "next": "16.3.3"
   },
   "peerDependencies": {
     "@base-ui/react": "^1",

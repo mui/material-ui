@@ -1,4 +1,4 @@
-import { describe, it } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import type { AxeResults, Result } from 'axe-core';
 import type { TestContext } from 'vitest';
 import { recordA11y } from './axe';

@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import findComponentJSX from './findComponentJSX';
 import { jscodeshift } from '../../testUtils';
 

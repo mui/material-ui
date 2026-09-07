@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';
 import { createTheme, ThemeProvider, THEME_ID } from '@mui/material/styles';
