@@ -1,11 +1,10 @@
+import { it, expect, describe, beforeAll, afterAll } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   act,
   createRenderer,
   fireEvent,
-  reactMajor,
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
@@ -49,7 +48,46 @@ function hasRightScrollButton(container) {
   return !scrollButton.parentElement.classList.contains('Mui-disabled');
 }
 
+// jsdom has no ResizeObserver and no layout, so observed elements are mapped to their callback
+// to let tests fire resizes by hand.
+function mockResizeObserver() {
+  const callbacks = new Map();
+  const original = globalThis.ResizeObserver;
+
+  globalThis.ResizeObserver = class {
+    constructor(callback) {
+      this.callback = callback;
+      this.elements = new Set();
+    }
+
+    observe(element) {
+      this.elements.add(element);
+      callbacks.set(element, this.callback);
+    }
+
+    unobserve(element) {
+      this.elements.delete(element);
+      callbacks.delete(element);
+    }
+
+    disconnect() {
+      this.elements.forEach((element) => {
+        callbacks.delete(element);
+      });
+      this.elements.clear();
+    }
+  };
+
+  return {
+    callbacks,
+    restore() {
+      globalThis.ResizeObserver = original;
+    },
+  };
+}
+
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+const isFirefox = /firefox/i.test(navigator.userAgent);
 
 describe.skipIf(isSafari)('<Tabs />', () => {
   const { clock, render, renderToString } = createRenderer();
@@ -488,16 +526,8 @@ describe.skipIf(isSafari)('<Tabs />', () => {
               <Tab value={3} />
             </Tabs>,
           );
-        }).toErrorDev([
-          'You can provide one of the following values: 1, 3',
-          // React Strict Mode runs mount effects twice
-          reactMajor >= 18 && 'You can provide one of the following values: 1, 3',
-          'You can provide one of the following values: 1, 3',
-          // React Strict Mode runs mount effects twice
-          reactMajor >= 18 && 'You can provide one of the following values: 1, 3',
-          'You can provide one of the following values: 1, 3',
-          'You can provide one of the following values: 1, 3',
-        ]);
+          // The warning is logged only once (see `warnedTabValueInvalid`).
+        }).toErrorDev(['You can provide one of the following values: 1, 3']);
       });
 
       describe.skipIf(!isJsdom())('hidden tab / tabs', () => {
@@ -812,7 +842,10 @@ describe.skipIf(isSafari)('<Tabs />', () => {
     });
   });
 
-  describe('scroll button behavior', () => {
+  // Firefox reports fractional `scrollLeft`/`scrollTop` in Vitest browser mode, so the
+  // exact integer assertions in these scroll tests fail.
+  // See https://github.com/vitest-dev/vitest/issues/9223
+  describe.skipIf(isFirefox)('scroll button behavior', () => {
     clock.withFakeTimers();
 
     it.skipIf(isJSDOM)('should scroll visible items', async function test() {
@@ -864,6 +897,34 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       tablistContainer.scrollLeft = 0;
       fireEvent.click(findScrollButton(container, 'right'));
       clock.tick(1000);
+      expect(tablistContainer.scrollLeft).equal(200);
+    });
+
+    it('should not animate scroll buttons when reduced motion is always', () => {
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
+            <Tab style={{ width: 220, minWidth: 'auto' }} />
+            <Tab style={{ width: 200, minWidth: 'auto' }} />
+            <Tab style={{ width: 200, minWidth: 'auto' }} />
+          </Tabs>
+        </ThemeProvider>,
+      );
+      const tablistContainer = screen.getByRole('tablist').parentElement;
+      const tabs = screen.getAllByRole('tab');
+      Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 });
+      Object.defineProperty(tabs[0], 'clientWidth', { value: 220 });
+      Object.defineProperty(tabs[1], 'clientWidth', { value: 200 });
+      Object.defineProperty(tabs[2], 'clientWidth', { value: 200 });
+      Object.defineProperty(tablistContainer, 'scrollWidth', { value: 620 });
+
+      tablistContainer.scrollLeft = 0;
+      fireEvent.click(findScrollButton(container, 'right'));
       expect(tablistContainer.scrollLeft).equal(200);
     });
 
@@ -926,6 +987,87 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       forceUpdate();
       clock.tick(1000);
       expect(tablistContainer.scrollLeft).to.equal(0);
+    });
+
+    // Firefox reports fractional `scrollLeft` in Vitest browser mode.
+    // See https://github.com/vitest-dev/vitest/issues/9223
+    it.skipIf(isFirefox)(
+      'should scroll the selected tab into view when the scroller resizes (scrollButtons="auto")',
+      () => {
+        const { callbacks, restore } = mockResizeObserver();
+
+        try {
+          render(
+            <Tabs value={2} variant="scrollable" scrollButtons="auto" style={{ width: 200 }}>
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+            </Tabs>,
+          );
+
+          const tablist = screen.getByRole('tablist');
+          const tablistContainer = tablist.parentElement;
+          const selectedTab = tablist.children[2];
+
+          // Mounting the scroll buttons narrows the scroller, leaving the selected tab
+          // overhanging its right edge by 110px.
+          tablistContainer.getBoundingClientRect = () => ({ left: 40, right: 160 });
+          selectedTab.getBoundingClientRect = () => ({ left: 150, right: 270 });
+          tablistContainer.scrollLeft = 0;
+
+          const scrollerCallback = callbacks.get(tablistContainer);
+          expect(scrollerCallback).not.to.equal(undefined);
+
+          scrollerCallback([]);
+
+          expect(tablistContainer.scrollLeft).to.equal(110);
+        } finally {
+          restore();
+        }
+      },
+    );
+
+    it('should not observe the scroller when scrollButtons is not "auto"', () => {
+      const { callbacks, restore } = mockResizeObserver();
+
+      try {
+        render(
+          <Tabs value={2} variant="scrollable" scrollButtons style={{ width: 200 }}>
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+          </Tabs>,
+        );
+
+        const tablistContainer = screen.getByRole('tablist').parentElement;
+
+        expect(callbacks.has(tablistContainer)).to.equal(false);
+      } finally {
+        restore();
+      }
+    });
+
+    it('should stop observing the scroller on unmount', () => {
+      const { callbacks, restore } = mockResizeObserver();
+
+      try {
+        const { unmount } = render(
+          <Tabs value={2} variant="scrollable" scrollButtons="auto" style={{ width: 200 }}>
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+          </Tabs>,
+        );
+
+        const tablistContainer = screen.getByRole('tablist').parentElement;
+        expect(callbacks.has(tablistContainer)).to.equal(true);
+
+        unmount();
+
+        expect(callbacks.has(tablistContainer)).to.equal(false);
+      } finally {
+        restore();
+      }
     });
   });
 

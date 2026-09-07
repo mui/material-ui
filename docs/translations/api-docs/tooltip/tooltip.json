@@ -108,6 +108,6 @@
     "arrow": "The component used for the arrow.",
     "popper": "The component used for the popper.",
     "tooltip": "The component used for the tooltip.",
-    "transition": "The component used for the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
+    "transition": "The component used for the transition. <a href=\"/material-ui/transitions/#transition-slots\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

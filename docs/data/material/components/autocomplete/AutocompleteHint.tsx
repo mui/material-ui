@@ -24,6 +24,7 @@ export default function AutocompleteHint() {
         setInputValue(newValue && newValue.label ? newValue.label : '');
       }}
       disablePortal
+      resetHighlightOnMouseLeave
       inputValue={inputValue}
       id="combo-box-hint-demo"
       options={top100Films}

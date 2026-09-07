@@ -6,7 +6,7 @@ import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
-import { TransitionProps } from '../transitions/transition';
+import { TransitionProps } from '../transitions/types';
 import { PopoverClasses } from './popoverClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 

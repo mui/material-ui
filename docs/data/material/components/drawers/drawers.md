@@ -84,6 +84,11 @@ You can change this default behavior with the `ModalProps` prop, but you may enc
 />
 ```
 
+### Transition
+
+Temporary drawers use [Slide](/material-ui/transitions/#slide) by default.
+Use `slots.transition` and `slotProps.transition` to replace it with another transition or to pass transition props.
+
 ## Responsive drawer
 
 You can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens.
@@ -133,5 +138,8 @@ Apps focused on information consumption that use a left-to-right hierarchy.
 ### Clipped under the app bar
 
 Apps focused on productivity that require balance across the screen.
+
+The demo keeps the Drawer below the fixed App Bar by rendering an empty `Toolbar` at the top of the Drawer content.
+This spacer matches the App Bar height so navigation items are not covered by the App Bar.
 
 {{"demo": "ClippedDrawer.js", "iframe": true}}

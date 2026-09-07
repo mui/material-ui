@@ -11,6 +11,7 @@ import {
 import { ExtractTypographyTokens } from '@mui/system/cssVars';
 import { Palette, PaletteOptions } from './createPalette';
 import { Shadows } from './shadows';
+import { Motion } from './createMotion';
 import { Transitions } from './createTransitions';
 import { Mixins } from './createMixins';
 import { TypographyVariants } from './createTypography';
@@ -155,6 +156,10 @@ export interface PaletteFilledInput {
   disabledBg: string;
 }
 
+export interface PaletteInput {
+  autofillWebkitBoxShadow: string;
+}
+
 export interface PaletteLinearProgress {
   primaryBg: string;
   secondaryBg: string;
@@ -237,6 +242,7 @@ export interface ColorSystemOptions {
         Button?: Partial<PaletteButton> | undefined;
         Chip?: Partial<PaletteChip> | undefined;
         FilledInput?: Partial<PaletteFilledInput> | undefined;
+        Input?: Partial<PaletteInput> | undefined;
         LinearProgress?: Partial<PaletteLinearProgress> | undefined;
         Skeleton?: Partial<PaletteSkeleton> | undefined;
         Slider?: Partial<PaletteSlider> | undefined;
@@ -271,6 +277,7 @@ export interface CssVarsPalette {
   Button: PaletteButton;
   Chip: PaletteChip;
   FilledInput: PaletteFilledInput;
+  Input: PaletteInput;
   LinearProgress: PaletteLinearProgress;
   Skeleton: PaletteSkeleton;
   Slider: PaletteSlider;
@@ -413,6 +420,7 @@ export interface CssVarsTheme extends ColorSystem {
   breakpoints: SystemTheme['breakpoints'];
   shape: Shape;
   typography: TypographyVariants;
+  motion: Motion;
   transitions: Transitions;
   shadows: Shadows;
   mixins: Mixins;

@@ -25,9 +25,7 @@ export default function GroupedSelect() {
         </Select>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id={`${id}-label`} htmlFor={`${id}-select`}>
-          Grouping
-        </InputLabel>
+        <InputLabel id={`${id}-label`}>Grouping</InputLabel>
         <Select
           defaultValue=""
           id={`${id}-select`}

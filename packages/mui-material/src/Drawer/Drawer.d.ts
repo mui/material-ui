@@ -6,7 +6,7 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { ModalProps } from '../Modal';
 import { BackdropProps } from '../Backdrop';
 import { PaperProps } from '../Paper';
-import { TransitionProps } from '../transitions/transition';
+import { TransitionProps } from '../transitions/types';
 import { DrawerClasses } from './drawerClasses';
 
 export interface DrawerRootSlotPropsOverrides {}
@@ -42,7 +42,7 @@ export interface DrawerSlots {
   paper: React.ElementType;
   /**
    * The component used for the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transition-slots) to learn more about the requirements for this component.
    * @default Slide
    */
   transition: React.ElementType;

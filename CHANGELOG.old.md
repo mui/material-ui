@@ -1521,7 +1521,7 @@ A big thanks to the 11 contributors who made this release possible.
 - [Grid2] Add container styles from styleOverrides (#44598) @sai6855
 - Skip `tonalOffset` from setting color channel (#44585) @siriwatknp
 - Remove few more React.ReactElement<any> types (#44290) @sai6855
-- [Tabs] Fix `ScrollbarSize` ref being overriden (#44593) @DiegoAndai
+- [Tabs] Fix `ScrollbarSize` ref being overridden (#44593) @DiegoAndai
 - [Select][TextField] Fix screen reader from saying `&ZeroWidthSpace` (#44631) @arishoham
 
 ### `@mui/system@6.1.10`
@@ -8193,7 +8193,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 ### `@mui/material@5.11.0`
 
 - [Alert] Update icon color in all variants (#35414) @danilo-leal
-- [Select] Fix `MenuProps.PopoverClasses` being overriden (#35394) @vitorfrs-dev
+- [Select] Fix `MenuProps.PopoverClasses` being overridden (#35394) @vitorfrs-dev
 - [SwipeableDrawer] Fix TypeScript warning "prop open undefined" (#34710) @kraftware
 
 ### `@mui/icons-material@5.11.0`

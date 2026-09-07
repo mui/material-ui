@@ -1,15 +1,16 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Transition } from 'react-transition-group';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import getReactElementRef from '@mui/utils/getReactElementRef';
+import Transition from '../internal/Transition';
 import isLayoutSupported from '../utils/isLayoutSupported';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import { useTheme } from '../zero-styled';
+import useReducedMotion from '../transitions/useReducedMotion';
 import {
   normalizedTransitionCallback,
   reflow,
@@ -19,6 +20,7 @@ import {
 import { ownerWindow } from '../utils';
 
 const hiddenStyles = { visibility: 'hidden' };
+const DEFAULT_TRANSLATE_OPTIONS = {};
 
 /**
  * Detects SwipeableDrawer's active-swipe `translate(x, y)` transform.
@@ -28,9 +30,13 @@ function isGestureTranslate(transform) {
   return typeof transform === 'string' && /^translate\(.+,\s*.+\)$/.test(transform);
 }
 
-// Translate the node so it can't be seen on the screen.
-// Later, we're going to translate the node back to its original location with `none`.
-function getTranslateValue(direction, node, resolvedContainer, options = {}) {
+// Move the node off-screen. Later we reset transform to `none` to slide it in.
+function getTranslateValue(
+  direction,
+  node,
+  resolvedContainer,
+  options = DEFAULT_TRANSLATE_OPTIONS,
+) {
   const { resetInlineTransform = true } = options;
   const containerRect = resolvedContainer && resolvedContainer.getBoundingClientRect();
   const containerWindow = ownerWindow(node);
@@ -38,9 +44,9 @@ function getTranslateValue(direction, node, resolvedContainer, options = {}) {
   let transform;
 
   if (resetInlineTransform) {
-    // Clear the inline transform and transition before reading layout and computed
-    // style so we compute from the element's natural position, not its previous
-    // off-screen translation.
+    // Read layout from the element's natural position, not from a previous
+    // off-screen transform. Clear transition too, or the browser may report an
+    // in-between animated value during exit.
     const previousTransform = node.style.transform;
     const previousTransition = node.style.transition;
     node.style.transition = '';
@@ -103,7 +109,6 @@ export function setTranslateValue(direction, node, containerProp, options) {
 
 /**
  * The Slide transition is used by the [Drawer](/material-ui/react-drawer/) component.
- * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Slide = React.forwardRef(function Slide(props, ref) {
   const theme = useTheme();
@@ -122,6 +127,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     appear = true,
     children,
     container: containerProp,
+    disablePrefersReducedMotion = false,
     direction = 'down',
     easing: easingProp = defaultEasing,
     in: inProp,
@@ -135,6 +141,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     timeout = defaultTimeout,
     ...other
   } = props;
+  const reducedMotion = useReducedMotion(theme.motion.reducedMotion, disablePrefersReducedMotion);
 
   const childrenRef = React.useRef(null);
   const preserveInlineTransformRef = React.useRef(false);
@@ -142,7 +149,9 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const handleEnter = normalizedTransitionCallback(childrenRef, (node, isAppearing) => {
     setTranslateValue(direction, node, containerProp);
-    reflow(node);
+    if (!reducedMotion.shouldReduceMotion) {
+      reflow(node);
+    }
 
     if (onEnter) {
       onEnter(node, isAppearing);
@@ -156,8 +165,16 @@ const Slide = React.forwardRef(function Slide(props, ref) {
         mode: 'enter',
       },
     );
+    const transitionTiming = reducedMotion.getTransitionTiming({
+      duration: transitionProps.duration,
+      delay: transitionProps.delay,
+    });
 
-    node.style.transition = theme.transitions.create('transform', transitionProps);
+    node.style.transition = theme.transitions.create('transform', {
+      duration: transitionTiming.duration,
+      easing: transitionProps.easing,
+      delay: transitionTiming.delay,
+    });
 
     node.style.transform = 'none';
     if (onEntering) {
@@ -175,8 +192,16 @@ const Slide = React.forwardRef(function Slide(props, ref) {
         mode: 'exit',
       },
     );
+    const transitionTiming = reducedMotion.getTransitionTiming({
+      duration: transitionProps.duration,
+      delay: transitionProps.delay,
+    });
 
-    node.style.transition = theme.transitions.create('transform', transitionProps);
+    node.style.transition = theme.transitions.create('transform', {
+      duration: transitionTiming.duration,
+      easing: transitionProps.easing,
+      delay: transitionTiming.delay,
+    });
 
     const preserveInlineTransform = isGestureTranslate(node.style.transform);
     preserveInlineTransformRef.current = preserveInlineTransform;
@@ -194,7 +219,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const handleExited = normalizedTransitionCallback(childrenRef, (node) => {
     preserveInlineTransformRef.current = false;
-    // No need for transitions when the component is hidden
+    // Hidden nodes stay off-screen without animating.
     node.style.transition = '';
 
     if (onExited) {
@@ -202,12 +227,11 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     }
   });
 
-  const handleAddEndListener = (next) => {
-    if (addEndListener) {
-      // Old call signature before `react-transition-group` implemented `nodeRef`
-      addEndListener(childrenRef.current, next);
-    }
-  };
+  const handleAddEndListener = addEndListener
+    ? (next) => {
+        addEndListener(childrenRef.current, next);
+      }
+    : undefined;
 
   const updatePosition = React.useCallback(() => {
     if (childrenRef.current) {
@@ -216,7 +240,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   }, [direction, containerProp]);
 
   React.useEffect(() => {
-    // Skip configuration where the position is screen size invariant.
+    // Skip resize listeners when the off-screen position does not depend on screen size.
     if (inProp || direction === 'down' || direction === 'right') {
       return undefined;
     }
@@ -237,8 +261,8 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   React.useEffect(() => {
     if (!inProp && !preserveInlineTransformRef.current) {
-      // We need to update the position of the drawer when the direction change and
-      // when it's hidden.
+      // While hidden, keep the child at the correct off-screen position if
+      // direction or container changes.
       updatePosition();
     }
   }, [inProp, updatePosition]);
@@ -255,11 +279,13 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       addEndListener={handleAddEndListener}
       appear={appear}
       in={inProp}
+      reduceMotion={reducedMotion.shouldReduceMotion}
       timeout={timeout}
       {...other}
     >
-      {/* Ensure "ownerState" is not forwarded to the child DOM element when a direct HTML element is used. This avoids unexpected behavior since "ownerState" is intended for internal styling, component props and not as a DOM attribute. */}
       {(state, { ownerState, ...restChildProps }) => {
+        // Do not pass ownerState to a DOM child. ownerState is only for
+        // Material UI styling, and React would treat it as an invalid DOM attribute.
         let childStyle;
         if (state === 'exited' && !inProp) {
           childStyle =
@@ -288,9 +314,12 @@ Slide.propTypes /* remove-proptypes */ = {
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * Add a custom transition end trigger. Called with the transitioning DOM
-   * node and a done callback. Allows for more fine grained transition end
-   * logic. Note: Timeouts are still used as a fallback if provided.
+   * Add a custom transition end trigger.
+   * Use it when you need custom logic to decide when the transition has ended.
+   * Note: Timeouts are still used as a fallback if provided.
+   *
+   * @param {HTMLElement} node The transitioning DOM node.
+   * @param {Function} done Call this when the transition has finished.
    */
   addEndListener: PropTypes.func,
   /**
@@ -353,6 +382,11 @@ Slide.propTypes /* remove-proptypes */ = {
    * @default 'down'
    */
   direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
+  /**
+   * If `true`, the transition ignores `theme.motion.reducedMotion` and keeps its normal timing.
+   * @default false
+   */
+  disablePrefersReducedMotion: PropTypes.bool,
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.

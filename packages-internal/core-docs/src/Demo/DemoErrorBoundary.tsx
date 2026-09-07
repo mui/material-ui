@@ -87,7 +87,7 @@ export class DemoErrorBoundary extends React.Component<
           </Typography>
           <Typography>
             {'We would appreciate it if you '}
-            <Link href={issueLink} rel="noopener" target="_blank">
+            <Link href={issueLink} target="_blank">
               report this error
             </Link>
             {` directly in our issue tracker with the steps you took to trigger it.

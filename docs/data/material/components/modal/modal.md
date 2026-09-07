@@ -47,6 +47,8 @@ Notice that you can disable the outline (often blue or gold) with the `outline: 
 
 Modals can be nested, for example a select within a dialog, but stacking of more than two modals, or any two modals with a backdrop is discouraged.
 
+If you need to nest modals, use the `hideBackdrop` prop on nested Modals to avoid stacking multiple backdrops, which can obscure the active modal or affect interactions.
+
 {{"demo": "NestedModal.js"}}
 
 ## Transitions
@@ -85,7 +87,7 @@ Be sure to identify bottlenecks first, and then try out these optimization strat
 
 ## Server-side modal
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://react.dev/reference/react-dom/createPortal) API on the server.
+React [doesn't support](https://github.com/react/react/issues/13097) the [`createPortal()`](https://react.dev/reference/react-dom/createPortal) API on the server.
 In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
 
 {{"demo": "ServerModal.js"}}

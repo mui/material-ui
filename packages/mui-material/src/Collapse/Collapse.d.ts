@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { TransitionStatus } from 'react-transition-group';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { TransitionProps } from '../transitions/transition';
+import { TransitionProps, TransitionStatus } from '../transitions/types';
 import { CollapseClasses } from './collapseClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
@@ -43,6 +42,15 @@ export type CollapseSlotsAndSlotProps = CreateSlotsAndSlotProps<
 export interface CollapseProps
   extends StandardProps<TransitionProps, 'timeout'>, CollapseSlotsAndSlotProps {
   /**
+   * Add a custom transition end trigger.
+   * Use it when you need custom logic to decide when the transition has ended.
+   * Note: Timeouts are still used as a fallback if provided.
+   *
+   * @param {HTMLElement} node The transitioning DOM node.
+   * @param {Function} done Call this when the transition has finished.
+   */
+  addEndListener?: TransitionProps['addEndListener'] | undefined;
+  /**
    * The content node to be collapsed.
    */
   children?: React.ReactNode;
@@ -61,6 +69,11 @@ export interface CollapseProps
    * Either a string to use a HTML element or a component.
    */
   component?: React.ElementType<TransitionProps> | undefined;
+  /**
+   * If `true`, the transition ignores `theme.motion.reducedMotion` and keeps its normal timing.
+   * @default false
+   */
+  disablePrefersReducedMotion?: boolean | undefined;
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
@@ -96,7 +109,6 @@ export interface CollapseOwnerState extends CollapseProps {
 /**
  * The Collapse transition is used by the
  * [Vertical Stepper](https://mui.com/material-ui/react-stepper/#vertical-stepper) StepContent component.
- * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
  *

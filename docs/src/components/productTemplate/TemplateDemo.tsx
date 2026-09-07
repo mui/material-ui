@@ -142,6 +142,7 @@ export default function TemplateDemo() {
                         href={`${item.href}?utm_source=marketing&utm_medium=referral&utm_campaign=templates-cta2`}
                         noLinkStyle
                         target="_blank"
+                        tabIndex={templateIndex === index ? 0 : -1}
                         sx={{
                           transition: '0.3s',
                           borderRadius: 1,

@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { defaultStyles, resolveReducedMotionStyles } from '../styles/reducedMotion';
+import type { ReducedMotionMode } from '../styles/createMotion';
 
 export const reflow = (node: Element) => node.scrollTop;
 
@@ -18,12 +20,21 @@ interface TransitionProps {
   delay: string | undefined;
 }
 
+interface TransitionCreateOptions {
+  duration: number | string;
+  easing: string;
+  delay: number | string;
+}
+
 interface TranslateOffset {
   offsetX: number;
   offsetY: number;
 }
 
 const DEFAULT_TRANSLATE_OFFSET = { offsetX: 0, offsetY: 0 };
+const EMPTY_STYLE: React.CSSProperties = {};
+const DEFAULT_TRANSITION_PROPS = ['all'];
+const EMPTY_OPTIONS: Partial<TransitionCreateOptions> = {};
 
 const transformOffsetIndexes: Record<string, readonly [number | null, number | null]> = {
   matrix: [4, 5],
@@ -100,7 +111,7 @@ export function normalizedTransitionCallback(
   return (maybeIsAppearing) => {
     if (callback) {
       const node = nodeRef.current!;
-      // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
+      // Enter callbacks receive isAppearing; exit callbacks do not.
       if (maybeIsAppearing === undefined) {
         callback(node);
       } else {
@@ -109,12 +120,11 @@ export function normalizedTransitionCallback(
     }
   };
 }
-
 type TransitionState = 'entering' | 'entered' | 'exiting' | 'exited';
 
 /**
- * Computes the child style for a transition component, reusing existing
- * references when possible to preserve referential equality for React.memo.
+ * Return the child style for a transition. Reuse predefined style objects when
+ * no custom styles are present so memoized children see the same object.
  */
 export function getTransitionChildStyle(
   state: TransitionState,
@@ -130,7 +140,7 @@ export function getTransitionChildStyle(
 }
 
 export function getTransitionProps(props: ComponentProps, options: Options): TransitionProps {
-  const { timeout, easing, style = {} } = props;
+  const { timeout, easing, style = EMPTY_STYLE } = props;
 
   return {
     duration:
@@ -141,4 +151,43 @@ export function getTransitionProps(props: ComponentProps, options: Options): Tra
       (typeof easing === 'object' ? easing[options.mode] : easing),
     delay: style.transitionDelay,
   };
+}
+
+/**
+ * Returns CSS that disables component-owned transitions when reduced motion is active.
+ * Pass custom styles only when the default `transition: none` reset is not enough.
+ */
+export function getReducedMotionStyles<Styles extends object = typeof defaultStyles>(
+  theme: {
+    motion?: { reducedMotion?: ReducedMotionMode | undefined } | undefined;
+  },
+  styles?: Styles,
+): Styles | { '@media (prefers-reduced-motion: reduce)': Styles } | null {
+  const resolvedStyles = (styles ?? defaultStyles) as Styles;
+
+  return resolveReducedMotionStyles(theme.motion?.reducedMotion, resolvedStyles);
+}
+
+export function getTransitionStyles(
+  theme: {
+    transitions?:
+      | {
+          create: (props?: string | string[], options?: Partial<TransitionCreateOptions>) => string;
+        }
+      | undefined;
+    motion?: { reducedMotion?: ReducedMotionMode | undefined } | undefined;
+  },
+  props: string | string[] = DEFAULT_TRANSITION_PROPS,
+  options: Partial<TransitionCreateOptions> = EMPTY_OPTIONS,
+) {
+  const transition = theme.transitions?.create?.(props, options);
+  const reducedMotionStyles = getReducedMotionStyles(theme);
+
+  if (transition === undefined) {
+    return reducedMotionStyles ?? EMPTY_STYLE;
+  }
+
+  const transitionStyles = { transition };
+
+  return reducedMotionStyles ? { ...transitionStyles, ...reducedMotionStyles } : transitionStyles;
 }

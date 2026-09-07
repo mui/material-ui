@@ -233,7 +233,7 @@ If you are using `next/font` to optimize font loading, pass a CSS variable name 
 +  variable: '--my-font-family',
  });
 
-export default function RootLayout(props) {
+ export default function RootLayout(props) {
    const { children } = props;
    return (
      <html lang="en">

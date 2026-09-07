@@ -1,7 +1,8 @@
 <!-- #host-reference -->
-<!-- markdownlint-disable-next-line -->
+<!-- lint disable mui-first-block-heading -->
+
 <p align="center">
-  <a href="https://mui.com/material-ui/" rel="noopener" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="Material UI logo"></a>
+  <a href="https://mui.com/material-ui/" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="Material UI logo"></a>
 </p>
 
 <h1 align="center">Material UI</h1>

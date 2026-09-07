@@ -1,6 +1,6 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   act,

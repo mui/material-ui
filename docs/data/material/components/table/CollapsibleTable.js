@@ -40,13 +40,16 @@ function createData(name, calories, fat, carbs, protein, price) {
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
+  const detailsId = React.useId();
 
   return (
     <React.Fragment>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+      <TableRow sx={{ '& > .MuiTableCell-root': { borderBottom: 'unset' } }}>
         <TableCell>
           <IconButton
-            aria-label="expand row"
+            aria-label={open ? 'collapse row' : 'expand row'}
+            aria-expanded={open}
+            aria-controls={detailsId}
             size="small"
             onClick={() => setOpen(!open)}
           >
@@ -61,7 +64,7 @@ function Row(props) {
         <TableCell align="right">{row.carbs}</TableCell>
         <TableCell align="right">{row.protein}</TableCell>
       </TableRow>
-      <TableRow>
+      <TableRow id={detailsId} aria-hidden={!open ? true : undefined}>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>

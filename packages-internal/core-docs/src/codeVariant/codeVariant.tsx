@@ -57,6 +57,7 @@ export function CodeVariantProvider(props: { children: React.ReactNode }) {
 
   React.useEffect(() => {
     if (codeVariant !== noSsrCodeVariant) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCodeVariant(noSsrCodeVariant);
     }
   }, [codeVariant, noSsrCodeVariant]);

@@ -46,11 +46,22 @@ For the menu that has long list and long text, you can use the `dense` prop to r
 
 ## Selected menu
 
-If used for item selection, when opened, simple menus places the initial focus on the selected menu item.
-The currently selected menu item is set using the `selected` prop (from [ListItem](/material-ui/api/list-item/)).
+If used for item selection, when opened, simple menus place the initial focus on the selected menu item.
+The currently selected menu item is set using the `selected` prop available on `MenuItem`.
 To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
 
 {{"demo": "SimpleListMenu.js"}}
+
+## Checkbox and radio menu items
+
+To build a menu of toggleable options, set each item's `role` to `menuitemcheckbox` for independent toggles, or `menuitemradio` for a single choice within a group.
+For these roles, the `selected` prop drives `aria-checked`, so assistive technologies announce the checked state.
+
+{{"demo": "CheckboxMenu.js", "bg": true}}
+
+For a single choice within a group, use `menuitemradio`:
+
+{{"demo": "RadioMenu.js", "bg": true}}
 
 ## Positioned menu
 
@@ -102,7 +113,7 @@ You can use the `Typography` component with `noWrap` to workaround this issue:
 
 ## Change transition
 
-Use a different transition.
+Use `slots.transition` and `slotProps.transition` to use a different transition.
 
 {{"demo": "FadeMenu.js"}}
 

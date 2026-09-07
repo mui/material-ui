@@ -12,9 +12,9 @@ export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
 
-  const isStepOptional = (step: number) => {
+  const isStepOptional = React.useCallback((step: number) => {
     return step === 1;
-  };
+  }, []);
 
   const isStepSkipped = (step: number) => {
     return skipped.has(step);
@@ -54,6 +54,31 @@ export default function HorizontalLinearStepper() {
     setActiveStep(0);
   };
 
+  const previousActiveStepRef = React.useRef(activeStep);
+  const resetButtonRef = React.useRef<HTMLButtonElement>(null);
+  const nextButtonRef = React.useRef<HTMLButtonElement>(null);
+
+  // Manage focus when the active step changes.
+  React.useEffect(() => {
+    const previousActiveStep = previousActiveStepRef.current;
+    previousActiveStepRef.current = activeStep;
+
+    if (activeStep === steps.length) {
+      // If the user has completed all steps and hits "Finish", focus the "Reset" button.
+      resetButtonRef.current!.focus();
+      return;
+    }
+    if (activeStep === 0 && previousActiveStep === steps.length) {
+      // If the user has completed all steps and hits "Reset", focus the "Next" button.
+      nextButtonRef.current!.focus();
+      return;
+    }
+    if (isStepOptional(previousActiveStep) && !isStepOptional(activeStep)) {
+      // If the user hits "Skip" and the next step is not optional, focus the "Next" button.
+      nextButtonRef.current!.focus();
+    }
+  }, [activeStep, isStepOptional]);
+
   return (
     <Box sx={{ width: '100%' }}>
       <Stepper activeStep={activeStep}>
@@ -84,7 +109,9 @@ export default function HorizontalLinearStepper() {
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleReset}>Reset</Button>
+            <Button onClick={handleReset} ref={resetButtonRef}>
+              Reset
+            </Button>
           </Box>
         </React.Fragment>
       ) : (
@@ -105,7 +132,7 @@ export default function HorizontalLinearStepper() {
                 Skip
               </Button>
             )}
-            <Button onClick={handleNext}>
+            <Button onClick={handleNext} ref={nextButtonRef}>
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>
           </Box>

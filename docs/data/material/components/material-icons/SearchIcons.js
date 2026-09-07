@@ -399,6 +399,12 @@ const DialogDetails = React.memo(function DialogDetails(props) {
               onClick={handleClick(2)}
               code={`import ${selectedIcon.importName}Icon from '@mui/icons-material/${selectedIcon.importName}';`}
               language="js"
+              sx={{
+                '& pre': {
+                  whiteSpace: 'pre-wrap',
+                  wordBreak: 'break-all',
+                },
+              }}
             />
           </Tooltip>
           <ImportLink
@@ -409,13 +415,20 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             {t('searchIcons.learnMore')}
           </ImportLink>
           <DialogContent>
-            <Grid container>
-              <Grid size="grow">
-                <Grid container sx={{ justifyContent: 'center' }}>
+            <Grid container spacing={2} sx={{ rowGap: { xs: 3, sm: 0 } }}>
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <Grid
+                  container
+                  sx={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100%',
+                  }}
+                >
                   <CanvasComponent as={selectedIcon.Component} />
                 </Grid>
               </Grid>
-              <Grid size="grow">
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <Grid
                   container
                   sx={{ alignItems: 'flex-end', justifyContent: 'center' }}
@@ -442,7 +455,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     </Tooltip>
                   </Grid>
                 </Grid>
-                <Grid container sx={{ justifyContent: 'center' }}>
+                <Grid container sx={{ justifyContent: 'center', mt: 1 }}>
                   <ContextComponent
                     as={selectedIcon.Component}
                     contextColor="primary"

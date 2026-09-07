@@ -58,6 +58,6 @@
     "docked": "The component used for the root element when the variant is <code>permanent</code> or <code>persistent</code>.",
     "paper": "The component used for the paper.",
     "root": "The component used for the root when the variant is <code>temporary</code>.",
-    "transition": "The component used for the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
+    "transition": "The component used for the transition. <a href=\"/material-ui/transitions/#transition-slots\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }
