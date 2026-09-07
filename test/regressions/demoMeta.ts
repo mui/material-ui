@@ -181,14 +181,6 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
 ];
 
-// toggle-button docs demos enrolled for axe assertions; the remaining demos add
-// no axe coverage beyond the a11y fixtures.
-const TOGGLE_BUTTON_A11Y_DEMOS = [
-  'ToggleButtons',
-  'ToggleButtonsMultiple',
-  'VerticalToggleButtons',
-];
-
 // Accordion docs demos + a11y fixtures enrolled for axe assertions (the cluster:
 // root Accordion + AccordionSummary header + AccordionDetails/Actions).
 const ACCORDION_A11Y_DEMOS = [
@@ -199,6 +191,14 @@ const ACCORDION_A11Y_DEMOS = [
   'CustomizedAccordions',
   'DisabledAccordion',
   'AccordionTransition',
+];
+
+// toggle-button docs demos enrolled for axe assertions; the remaining demos add
+// no axe coverage beyond the a11y fixtures.
+const TOGGLE_BUTTON_A11Y_DEMOS = [
+  'ToggleButtons',
+  'ToggleButtonsMultiple',
+  'VerticalToggleButtons',
 ];
 
 // LinearProgress docs demos enrolled for axe assertions; CircularProgress and
@@ -289,16 +289,6 @@ const TEXTFIELD_A11Y_DEMOS = [
  */
 export const A11Y_RULES: A11yRule[] = [
   {
-    // `color-contrast` is recorded but not asserted: the Accordion root's
-    // divider `::before` pseudo-element blocks axe's background resolution for
-    // the summary label, so the rule returns `incomplete` on some demos.
-    // No demo records a contrast failure; the label clears 4.5:1 on `paper`.
-    test: `docs/data/material/components/accordion/{${ACCORDION_A11Y_DEMOS.join(',')}}`,
-    enabled: true,
-    assertions: 'all',
-    skipAssertions: ['color-contrast'],
-  },
-  {
     test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars}',
     enabled: true,
   },
@@ -377,8 +367,6 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
   },
-  // FormControlLabelPosition is not enrolled: its only axe finding is an aria-label on a
-  // role-less FormGroup div (aria-prohibited-attr), a demo quirk unrelated to Checkbox.
   {
     test: `docs/data/material/components/progress/{${LINEARPROGRESS_A11Y_DEMOS.join(',')}}`,
     enabled: true,
