@@ -198,9 +198,15 @@ interface FrameSample {
   overlap: number | null;
 }
 
+// A pending card is mounted for aria-describedby, but Popper does not display it.
+function getDisplayedCard() {
+  const card = screen.queryByTestId('preview-card');
+  return card && getComputedStyle(card.parentElement!).display !== 'none' ? card : null;
+}
+
 function readFrame(): FrameSample {
   const menu = document.querySelector('[role="menu"]');
-  const card = document.querySelector('[data-testid="preview-card"]')?.parentElement ?? null;
+  const card = getDisplayedCard()?.parentElement ?? null;
   const menuRect = menu === null ? null : menu.getBoundingClientRect();
   const cardRect = card === null ? null : card.getBoundingClientRect();
 
@@ -263,6 +269,42 @@ describe('useMenu2ItemPopover', () => {
     expect(screen.getByTestId('state')).to.have.attribute('data-open', 'true');
     expect(screen.getByTestId('state')).to.have.attribute('data-anchor', label);
   }
+
+  async function waitForDisplayedCard(timeout = 1000) {
+    await waitFor(() => expect(getDisplayedCard()).not.to.equal(null), { timeout });
+  }
+
+  it('updates and clears the hidden description while the card is waiting', async () => {
+    const { user } = render(
+      <div data-starting-style="">
+        <TestPreviewCards />
+      </div>,
+    );
+    const first = getItem(items[0].label);
+    const second = getItem(items[1].label);
+
+    await user.tab();
+    expect(document.activeElement).to.equal(first);
+    expect(first).toHaveAccessibleDescription(items[0].description);
+    expect(getComputedStyle(screen.getByTestId('preview-card').parentElement!).display).to.equal(
+      'none',
+    );
+    expect(screen.getByTestId('state')).to.have.attribute('data-open', 'false');
+
+    await user.tab();
+    expect(document.activeElement).to.equal(second);
+    expect(first).not.to.have.attribute('aria-describedby');
+    expect(second).toHaveAccessibleDescription(items[1].description);
+    expect(getComputedStyle(screen.getByTestId('preview-card').parentElement!).display).to.equal(
+      'none',
+    );
+
+    await user.tab({ shift: true });
+    await user.tab({ shift: true });
+    await expectClosed();
+    expect(first).not.to.have.attribute('aria-describedby');
+    expect(second).not.to.have.attribute('aria-describedby');
+  });
 
   // The state node is rendered, so the assertions wait for the render instead
   // of assuming that React flushed the update before the event call returned.
@@ -722,12 +764,37 @@ describe('useMenu2ItemPopover', () => {
     });
 
     expect(item).to.have.attribute('aria-describedby');
-    expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
+    expect(item).toHaveAccessibleDescription('Alpha detail.');
+    expect(getComputedStyle(screen.getByTestId('preview-card').parentElement!).display).to.equal(
+      'none',
+    );
 
     // The card follows once the menu stops animating.
-    await screen.findByTestId('preview-card');
-    expect(item).to.have.attribute('aria-describedby');
+    await waitForDisplayedCard();
+    expect(item).toHaveAccessibleDescription('Alpha detail.');
   });
+
+  // The transition recipe must retain the description too, even though Grow
+  // also hides its child before entering.
+  it.skipIf(isJsdom())(
+    'keeps the pending description available with a Grow transition',
+    async () => {
+      const { user } = render(<TestMenu2GrowPreviewCards />);
+      await act(async () => screen.getByRole('button', { name: 'Help cards' }).focus());
+      await user.keyboard('{Enter}');
+      const item = await screen.findByRole('menuitem', { name: items[0].label });
+      await waitFor(() => expect(item).to.equal(document.activeElement));
+
+      expect(item).toHaveAccessibleDescription(items[0].description);
+      expect(getComputedStyle(screen.getByTestId('preview-card').parentElement!).display).to.equal(
+        'none',
+      );
+      expect(getDisplayedCard()).to.equal(null);
+
+      await waitForDisplayedCard();
+      expect(item).toHaveAccessibleDescription(items[0].description);
+    },
+  );
 
   // The browser cancels a transition whose target changes while it runs, which
   // rejects `Animation.finished`. A wait that ends on the rejection opens the
@@ -740,7 +807,7 @@ describe('useMenu2ItemPopover', () => {
     const first = ancestor.animate(keyframes, { duration: 400 });
 
     fireEvent.mouseEnter(screen.getByTestId('item'));
-    expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
+    expect(getDisplayedCard()).to.equal(null);
 
     // The replacement starts in the same task, the way the browser restarts a
     // transition it cancelled.
@@ -752,12 +819,12 @@ describe('useMenu2ItemPopover', () => {
         setTimeout(resolve, 80);
       });
     });
-    expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
+    expect(getDisplayedCard()).to.equal(null);
 
     await act(async () => {
       await second.finished;
     });
-    await screen.findByTestId('preview-card');
+    await waitForDisplayedCard();
   });
 
   // The menu fades for longer than it moves, so a wait for every animation
@@ -792,12 +859,12 @@ describe('useMenu2ItemPopover', () => {
     expect(ancestor.getAnimations()).to.have.length(1);
 
     fireEvent.mouseEnter(screen.getByTestId('item'));
-    expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
+    expect(getDisplayedCard()).to.equal(null);
 
     // The card appears when the transition ends, and at the latest at the
     // deadline of the hook. The budget covers the deadline plus the clamp that a
     // browser puts on a timer in a page it treats as hidden.
-    await screen.findByTestId('preview-card', undefined, { timeout: 2000 });
+    await waitForDisplayedCard(2000);
   });
 
   // The menu closes while the card still waits, so the wait has to end with it.
@@ -810,7 +877,7 @@ describe('useMenu2ItemPopover', () => {
       });
 
       await user.keyboard('{Enter}');
-      expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
+      expect(getDisplayedCard()).to.equal(null);
 
       await user.keyboard('{Escape}');
       await act(async () => {
@@ -883,14 +950,14 @@ describe('useMenu2ItemPopover', () => {
 
       try {
         fireEvent.mouseEnter(screen.getByTestId('item'));
-        expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
+        expect(getDisplayedCard()).to.equal(null);
 
         animation.pause();
 
         // Well inside the deadline of the hook, so only the re-read can pass it.
         await waitFor(
           () => {
-            expect(document.querySelector('[data-testid="preview-card"]')).not.to.equal(null);
+            expect(getDisplayedCard()).not.to.equal(null);
           },
           { timeout: 400 },
         );
@@ -913,9 +980,9 @@ describe('useMenu2ItemPopover', () => {
 
     try {
       fireEvent.mouseEnter(screen.getByTestId('item'));
-      expect(document.querySelector('[data-testid="preview-card"]')).to.equal(null);
+      expect(getDisplayedCard()).to.equal(null);
 
-      await screen.findByTestId('preview-card', undefined, { timeout: 2000 });
+      await waitForDisplayedCard(2000);
       // The animation still runs, so the deadline opened the card, not the end
       // of the animation.
       expect(animation.playState).to.equal('running');

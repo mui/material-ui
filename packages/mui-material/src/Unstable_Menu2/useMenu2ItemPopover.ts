@@ -35,6 +35,8 @@ export interface UseMenu2ItemPopoverItemProps extends Required<UseMenu2ItemPopov
 export interface UseMenu2ItemPopoverPopoverProps {
   anchorEl: HTMLElement | null;
   id: string | undefined;
+  /** Mount the active description even while its visual opening is deferred. */
+  keepMounted: boolean;
   modifiers: PopperProps['modifiers'];
   open: boolean;
   placement: PopperPlacementType;
@@ -50,6 +52,8 @@ export interface UseMenu2ItemPopoverPopover<Value> {
   open: boolean;
   /**
    * The props to spread on a `Popper`. Spread them first, then override.
+   * Keep `keepMounted` and render the content even when `open` is false: the
+   * hidden card supplies the active item's accessible description while waiting.
    */
   props: UseMenu2ItemPopoverPopoverProps;
   /**
@@ -288,7 +292,8 @@ export default function useMenu2ItemPopover<Value>(
   }, []);
 
   // An item that activates while the menu opens holds the popover closed, so
-  // the Popper paints nothing. Open it as soon as the menu stops moving.
+  // the Popper stays hidden but its description is mounted. Open it as soon
+  // as the menu stops moving.
   useEnhancedEffect(() => {
     if (activeItem === null || activeItem.ready) {
       return undefined;
@@ -389,6 +394,7 @@ export default function useMenu2ItemPopover<Value>(
       props: {
         anchorEl,
         id,
+        keepMounted: activeItem !== null,
         modifiers,
         open,
         placement,
