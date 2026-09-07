@@ -613,7 +613,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     });
 
     let resizeObserver;
-    let scrollerResizeObserver;
 
     /**
      * @type {MutationCallback}
@@ -641,19 +640,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       Array.from(tabListRef.current.children).forEach((child) => {
         resizeObserver.observe(child);
       });
-
-      // The scroller shrinks when scroll buttons appear and grows when they hide (auto mode).
-      // This can push the selected tab out of view without changing indicatorStyle, which is
-      // the normal trigger for scrollSelectedIntoView. Observing the scroller element ensures
-      // we re-scroll whenever its size changes (e.g. scroll buttons toggling in auto mode).
-      if (scrollable && scrollButtons === 'auto') {
-        scrollerResizeObserver = new ResizeObserver(() => {
-          if (tabsRef.current) {
-            scrollSelectedIntoView(false);
-          }
-        });
-        scrollerResizeObserver.observe(tabsRef.current);
-      }
     }
 
     if (typeof MutationObserver !== 'undefined') {
@@ -668,15 +654,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       win.removeEventListener('resize', handleResize);
       mutationObserver?.disconnect();
       resizeObserver?.disconnect();
-      scrollerResizeObserver?.disconnect();
     };
-  }, [
-    updateIndicatorState,
-    updateScrollButtonState,
-    scrollable,
-    scrollButtons,
-    scrollSelectedIntoView,
-  ]);
+  }, [updateIndicatorState, updateScrollButtonState]);
 
   /**
    * Toggle visibility of start and end scroll buttons
@@ -733,6 +712,23 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     // Don't animate on the first render.
     scrollSelectedIntoView(defaultIndicatorStyle !== indicatorStyle);
   }, [scrollSelectedIntoView, indicatorStyle]);
+
+  React.useEffect(() => {
+    if (typeof ResizeObserver === 'undefined' || !scrollable || scrollButtons !== 'auto') {
+      return undefined;
+    }
+
+    // Mounting the scroll buttons shrinks the scroller after `scrollSelectedIntoView` has run,
+    // which can push the selected tab out of view without changing `indicatorStyle`.
+    const scrollerResizeObserver = new ResizeObserver(() => {
+      scrollSelectedIntoView(false);
+    });
+    scrollerResizeObserver.observe(tabsRef.current);
+
+    return () => {
+      scrollerResizeObserver.disconnect();
+    };
+  }, [scrollable, scrollButtons, scrollSelectedIntoView]);
 
   React.useImperativeHandle(
     action,

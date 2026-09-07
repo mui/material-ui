@@ -48,6 +48,44 @@ function hasRightScrollButton(container) {
   return !scrollButton.parentElement.classList.contains('Mui-disabled');
 }
 
+// jsdom has no ResizeObserver and no layout, so observed elements are mapped to their callback
+// to let tests fire resizes by hand.
+function mockResizeObserver() {
+  const callbacks = new Map();
+  const original = globalThis.ResizeObserver;
+
+  globalThis.ResizeObserver = class {
+    constructor(callback) {
+      this.callback = callback;
+      this.elements = new Set();
+    }
+
+    observe(element) {
+      this.elements.add(element);
+      callbacks.set(element, this.callback);
+    }
+
+    unobserve(element) {
+      this.elements.delete(element);
+      callbacks.delete(element);
+    }
+
+    disconnect() {
+      this.elements.forEach((element) => {
+        callbacks.delete(element);
+      });
+      this.elements.clear();
+    }
+  };
+
+  return {
+    callbacks,
+    restore() {
+      globalThis.ResizeObserver = original;
+    },
+  };
+}
+
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 const isFirefox = /firefox/i.test(navigator.userAgent);
 
@@ -951,31 +989,8 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       expect(tablistContainer.scrollLeft).to.equal(0);
     });
 
-    it('should scroll selected tab into view when scroller resizes (scrollButtons="auto")', function test() {
-      if (typeof window === 'undefined') {
-        this.skip();
-      }
-
-      // Map from observed element to the ResizeObserver callback
-      const elementCallbacks = new Map();
-      const MockResizeObserver = class {
-        constructor(callback) {
-          this.resizeCallback = callback;
-        }
-
-        observe(el) {
-          elementCallbacks.set(el, this.resizeCallback);
-        }
-
-        disconnect() {}
-
-        unobserve(el) {
-          elementCallbacks.delete(el);
-        }
-      };
-
-      const originalRO = window.ResizeObserver;
-      window.ResizeObserver = MockResizeObserver;
+    it('should scroll the selected tab into view when the scroller resizes (scrollButtons="auto")', () => {
+      const { callbacks, restore } = mockResizeObserver();
 
       try {
         render(
@@ -990,22 +1005,63 @@ describe.skipIf(isSafari)('<Tabs />', () => {
         const tablistContainer = tablist.parentElement;
         const selectedTab = tablist.children[2];
 
-        // Simulate the scroller shrinking after scroll buttons appear:
-        // scroller is now narrower (right moved left by scroll button width)
+        // Mounting the scroll buttons narrows the scroller, leaving the selected tab
+        // overhanging its right edge by 110px.
         tablistContainer.getBoundingClientRect = () => ({ left: 40, right: 160 });
         selectedTab.getBoundingClientRect = () => ({ left: 150, right: 270 });
         tablistContainer.scrollLeft = 0;
 
-        // Trigger the ResizeObserver callback registered for the scroller element
-        const scrollerCallback = elementCallbacks.get(tablistContainer);
+        const scrollerCallback = callbacks.get(tablistContainer);
         expect(scrollerCallback).not.to.equal(undefined);
-        scrollerCallback([]);
-        clock.tick(1000);
 
-        // scrollSelectedIntoView should have scrolled right by (270 - 160) = 110
+        scrollerCallback([]);
+
         expect(tablistContainer.scrollLeft).to.equal(110);
       } finally {
-        window.ResizeObserver = originalRO;
+        restore();
+      }
+    });
+
+    it('should not observe the scroller when scrollButtons is not "auto"', () => {
+      const { callbacks, restore } = mockResizeObserver();
+
+      try {
+        render(
+          <Tabs value={2} variant="scrollable" scrollButtons style={{ width: 200 }}>
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+          </Tabs>,
+        );
+
+        const tablistContainer = screen.getByRole('tablist').parentElement;
+
+        expect(callbacks.has(tablistContainer)).to.equal(false);
+      } finally {
+        restore();
+      }
+    });
+
+    it('should stop observing the scroller on unmount', () => {
+      const { callbacks, restore } = mockResizeObserver();
+
+      try {
+        const { unmount } = render(
+          <Tabs value={2} variant="scrollable" scrollButtons="auto" style={{ width: 200 }}>
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+          </Tabs>,
+        );
+
+        const tablistContainer = screen.getByRole('tablist').parentElement;
+        expect(callbacks.has(tablistContainer)).to.equal(true);
+
+        unmount();
+
+        expect(callbacks.has(tablistContainer)).to.equal(false);
+      } finally {
+        restore();
       }
     });
   });
