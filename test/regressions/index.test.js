@@ -303,7 +303,11 @@ async function main() {
     });
 
     describe.each(['SearchModal', 'SearchModalDark'])('AppSearch/%s', (fixture) => {
-      test('should render the DocSearch modal correctly', async ({ pooled }) => {
+      // The route belongs in the name so the `-t` filter documented in
+      // `AGENTS.md` reaches this test. Without it a scoped run refreshes only
+      // the closed-button capture the route loop generates, and leaves the
+      // three below stale.
+      test(`should render /regression-AppSearch/${fixture} correctly`, async ({ pooled }) => {
         const { page } = pooled;
         // Seed from here rather than from the fixture. The `pooled` fixture
         // clears storage on acquisition, and navigating to a route the pooled
