@@ -2,8 +2,8 @@
   "standard": "WCAG 2.2 Level A and AA",
   "componentCount": 12,
   "totals": {
-    "supports": 206,
-    "partiallySupports": 24,
+    "supports": 207,
+    "partiallySupports": 23,
     "doesNotSupport": 0,
     "notApplicable": 387,
     "inherited": 43,
@@ -264,9 +264,9 @@
       "number": "4.1.2",
       "name": "Name, Role, Value",
       "level": "A",
-      "conformance": "Partially Supports",
+      "conformance": "Supports",
       "flagged": false,
-      "affected": ["Checkbox"]
+      "affected": []
     },
     {
       "number": "4.1.3",
@@ -1115,16 +1115,15 @@
     {
       "component": "Checkbox",
       "counts": {
-        "supports": "22",
-        "partiallySupports": "3",
+        "supports": "23",
+        "partiallySupports": "2",
         "doesNotSupport": "0",
         "notApplicable": "30",
         "flagged": "4/25"
       },
       "gaps": [
-        "⚠️ **1.4.11 Non-text Contrast.** The default checkmark icons clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 (a faint custom unchecked box can be about 1.1:1 against the page).",
-        "⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styling.",
-        "⚠️ **4.1.2 Name, Role, Value.** The `indeterminate` state sets `aria-checked=\"mixed\"` on the native checkbox, which ARIA in HTML disallows because the native `.checked` is `false` (axe `aria-conditional-attr` flags it). The conforming fix is to set the native `.indeterminate` property instead."
+        "⚠️ **1.4.11 Non-text Contrast.** The default checkmark icons clear 3:1 (`warning` is the tightest at 3.11:1). The keyboard focus indicator is untested. `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 — a faint custom unchecked box can be about 1.1:1 against the page.",
+        "⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple). None remains unless the author adds `.Mui-focusVisible` styling or enables the `theme.focusVisible` ring, which draws on the icon and does not depend on the ripple."
       ],
       "criteria": [
         {
@@ -1248,7 +1247,7 @@
           "number": "4.1.2",
           "name": "Name, Role, Value",
           "level": "A",
-          "conformance": "Partially Supports",
+          "conformance": "Supports",
           "responsibility": "Shared",
           "group": "Hybrid",
           "flagged": false
@@ -1357,8 +1356,8 @@
         "rated": 25,
         "levelA": 14,
         "levelAA": 11,
-        "supports": 22,
-        "partiallySupports": 3,
+        "supports": 23,
+        "partiallySupports": 2,
         "doesNotSupport": 0,
         "verified": 21,
         "automated": 11
