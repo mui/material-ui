@@ -78,8 +78,8 @@ function ariaHiddenSiblings(
 // scrollbar-gutter resolve it to an empty string.
 function hasStableScrollbarGutter(scrollContainer: HTMLElement): boolean {
   const doc = ownerDocument(scrollContainer);
-  // Unlike overflow, scrollbar-gutter only propagates to the viewport from the root element,
-  // never from <body>, so a gutter declared on <body> reserves no space for the page scrollbar.
+  // Locking <body> means locking the viewport scrollbar, and only the root element's gutter
+  // propagates to the viewport — unlike overflow, which propagates from <body> too.
   const gutterElement = scrollContainer === doc.body ? doc.documentElement : scrollContainer;
 
   return ownerWindow(scrollContainer)
