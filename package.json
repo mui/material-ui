@@ -80,7 +80,6 @@
   "dependencies": {
     "@netlify/functions": "^6.0.0",
     "@slack/bolt": "^5.0.0",
-    "@vitest/eslint-plugin": "^1.6.24",
     "execa": "^10.0.1"
   },
   "devDependencies": {
