@@ -451,6 +451,27 @@ describe('<ToggleButtonGroup />', () => {
   });
 
   describe('WCAG 2.2 conformance', () => {
+    it('2.1.1 Keyboard: Space and Enter select the focused button', async () => {
+      // Arrow-key navigation is covered by the `keyboard navigation` block.
+      const handleChange = spy();
+      const { user } = render(
+        <ToggleButtonGroup value={null} exclusive onChange={handleChange}>
+          <ToggleButton value="bold">Bold</ToggleButton>
+          <ToggleButton value="italic">Italic</ToggleButton>
+        </ToggleButtonGroup>,
+      );
+
+      await user.tab();
+      await user.keyboard('[Space]');
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.firstCall.args[1]).to.equal('bold');
+
+      await user.keyboard('{ArrowRight}');
+      await user.keyboard('[Enter]');
+      expect(handleChange.callCount).to.equal(2);
+      expect(handleChange.secondCall.args[1]).to.equal('italic');
+    });
+
     describe('1.3.1 Info and Relationships', () => {
       it('exposes the group role on the root', () => {
         render(

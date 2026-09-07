@@ -1,15 +1,7 @@
 import Box from '@mui/material/Box';
 import ToggleButton from '@mui/material/ToggleButton';
 
-const colors = [
-  'standard',
-  'primary',
-  'secondary',
-  'error',
-  'info',
-  'success',
-  'warning',
-] as const;
+const colors = ['standard', 'primary', 'secondary', 'error', 'info', 'success', 'warning'];
 
 export default function ToggleButtonA11yColorMatrix() {
   return (
