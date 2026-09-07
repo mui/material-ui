@@ -78,6 +78,15 @@ describe('getConfig', () => {
     });
   });
 
+  it('keeps the a11y fixture tree screenshot-off, except explicit re-enrolments', () => {
+    expect(
+      getConfig(SCREENSHOT_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yColorMatrix'),
+    ).to.deep.include({ enabled: false });
+    expect(
+      getConfig(SCREENSHOT_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing'),
+    ).to.deep.include({ enabled: true });
+  });
+
   it('asserts every rule on the enrolled Toggle Button demos', () => {
     expect(
       getConfig(A11Y_RULES, 'docs/data/material/components/toggle-button/ToggleButtons'),
@@ -85,7 +94,7 @@ describe('getConfig', () => {
     expect(
       getConfig(
         A11Y_RULES,
-        'docs/data/material/components/toggle-button/ToggleButtonA11ySemanticStates',
+        'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11ySemanticStates',
       ),
     ).to.deep.include({ enabled: true, assertions: 'all' });
   });
@@ -94,22 +103,13 @@ describe('getConfig', () => {
     expect(
       getConfig(
         A11Y_RULES,
-        'docs/data/material/components/toggle-button/ToggleButtonA11yColorMatrix',
+        'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11yColorMatrix',
       ),
     ).to.deep.include({
       enabled: true,
       assertions: 'all',
       skipAssertions: ['color-contrast'],
     });
-  });
-
-  it('keeps the a11y fixture tree screenshot-off, except explicit re-enrolments', () => {
-    expect(
-      getConfig(SCREENSHOT_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yColorMatrix'),
-    ).to.deep.include({ enabled: false });
-    expect(
-      getConfig(SCREENSHOT_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing'),
-    ).to.deep.include({ enabled: true });
   });
 
   it('returns undefined for a demo outside a brace-glob enrolment', () => {
