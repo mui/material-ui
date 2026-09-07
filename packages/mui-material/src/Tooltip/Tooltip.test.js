@@ -632,6 +632,135 @@ describe('<Tooltip />', () => {
     });
   });
 
+  describe('scroll', () => {
+    // JSDOM has no layout, the rects the component reads have to be provided by the test.
+    function setRect(element, { top, left, bottom, right }) {
+      element.getBoundingClientRect = () => ({
+        top,
+        left,
+        bottom,
+        right,
+        x: left,
+        y: top,
+        width: right - left,
+        height: bottom - top,
+        toJSON() {},
+      });
+    }
+
+    function renderTooltip(props) {
+      const handleClose = spy();
+
+      render(
+        <div data-testid="scroller">
+          <Tooltip
+            title="Hello World"
+            enterDelay={100}
+            leaveDelay={111}
+            onClose={handleClose}
+            slotProps={{ transition: { timeout: 10 } }}
+            {...props}
+          >
+            <button type="submit">Hello World</button>
+          </Tooltip>
+        </div>,
+      );
+
+      const trigger = screen.getByRole('button');
+      setRect(trigger, { top: 0, left: 0, bottom: 20, right: 100 });
+
+      return { handleClose, trigger };
+    }
+
+    it('should close when a scroll moves the trigger away from the cursor', async () => {
+      const { handleClose, trigger } = renderTooltip();
+
+      fireEvent.mouseOver(trigger, { clientX: 50, clientY: 10 });
+      clock.tick(100);
+
+      expect(screen.getByRole('tooltip')).toBeVisible();
+
+      // The container scrolls under a motionless cursor: the trigger is no longer below it.
+      setRect(trigger, { top: -60, left: 0, bottom: -40, right: 100 });
+      fireEvent.scroll(screen.getByTestId('scroller'));
+      // Popper schedules its update in a microtask, flush it before moving on.
+      await act(async () => {
+        await Promise.resolve();
+      });
+      clock.tick(111);
+      clock.tick(10);
+
+      expect(handleClose.callCount).to.equal(1);
+      expect(screen.queryByRole('tooltip')).to.equal(null);
+    });
+
+    it('should stay open when the cursor is still over the trigger after the scroll', async () => {
+      const { handleClose, trigger } = renderTooltip();
+
+      fireEvent.mouseOver(trigger, { clientX: 50, clientY: 10 });
+      clock.tick(100);
+
+      // Scrolled by 5px only, the cursor is still within the trigger.
+      setRect(trigger, { top: -5, left: 0, bottom: 15, right: 100 });
+      fireEvent.scroll(document);
+      // Popper schedules its update in a microtask, flush it before moving on.
+      await act(async () => {
+        await Promise.resolve();
+      });
+      clock.tick(111);
+      clock.tick(10);
+
+      expect(handleClose.callCount).to.equal(0);
+      expect(screen.getByRole('tooltip')).toBeVisible();
+    });
+
+    it('should stay open when the cursor is over an interactive tooltip', async () => {
+      const { handleClose, trigger } = renderTooltip();
+
+      fireEvent.mouseOver(trigger, { clientX: 50, clientY: 10 });
+      clock.tick(100);
+
+      // The cursor moved from the trigger onto the tooltip.
+      const tooltip = screen.getByRole('tooltip');
+      fireEvent.mouseLeave(trigger);
+      fireEvent.mouseOver(tooltip, { clientX: 50, clientY: 60 });
+      setRect(trigger, { top: -40, left: 0, bottom: -20, right: 100 });
+      setRect(tooltip, { top: 50, left: 0, bottom: 80, right: 100 });
+      fireEvent.scroll(document);
+      // Popper schedules its update in a microtask, flush it before moving on.
+      await act(async () => {
+        await Promise.resolve();
+      });
+      clock.tick(111);
+      clock.tick(10);
+
+      expect(handleClose.callCount).to.equal(0);
+      expect(screen.queryByRole('tooltip')).not.to.equal(null);
+    });
+
+    it('should not close a tooltip that was not opened by the cursor', async () => {
+      const enterTouchDelay = 700;
+      const { handleClose, trigger } = renderTooltip({ enterTouchDelay });
+
+      fireEvent.touchStart(trigger);
+      clock.tick(enterTouchDelay + 100);
+
+      expect(screen.getByRole('tooltip')).toBeVisible();
+
+      setRect(trigger, { top: -60, left: 0, bottom: -40, right: 100 });
+      fireEvent.scroll(document);
+      // Popper schedules its update in a microtask, flush it before moving on.
+      await act(async () => {
+        await Promise.resolve();
+      });
+      clock.tick(111);
+      clock.tick(10);
+
+      expect(handleClose.callCount).to.equal(0);
+      expect(screen.queryByRole('tooltip')).not.to.equal(null);
+    });
+  });
+
   describe('mount', () => {
     it('should mount without any issue', () => {
       render(
