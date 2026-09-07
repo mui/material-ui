@@ -7,6 +7,7 @@ import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { Separator as BaseSeparator } from '@base-ui/react/separator';
 import { SxProps } from '@mui/system';
+import mergeSlotProps from '../utils/mergeSlotProps';
 import Divider from '../Divider';
 import { Theme } from '../styles';
 import { styled } from '../zero-styled';
@@ -130,17 +131,17 @@ const Menu2Separator = React.forwardRef(function Menu2Separator(
     orientation,
   };
   const classes = useUtilityClasses(ownerState);
+  const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });
 
   return (
     <BaseSeparator
       ref={ref}
       orientation={orientation}
       render={getMenu2RootRender(slots?.root ?? Menu2SeparatorRoot, ownerState, {
-        ...resolveComponentProps(slotProps?.root, ownerState),
+        ...rootSlotProps,
         component: component ?? 'div',
         orientation,
         ownerState,
-        sx,
       })}
       className={clsx(className, classes.root)}
       style={style}

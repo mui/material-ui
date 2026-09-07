@@ -4,6 +4,7 @@ import { OverridableComponent, OverrideProps } from '@mui/types';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
+import mergeSlotProps from '../utils/mergeSlotProps';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -154,7 +155,7 @@ const Menu2Item = React.forwardRef(function Menu2Item(
   );
   const RootSlot = slots?.root ?? Menu2ItemRoot;
 
-  const rootSlotProps = resolveComponentProps(slotProps?.root, ownerState);
+  const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });
 
   return (
     <ListContext.Provider value={childContext}>
@@ -171,7 +172,6 @@ const Menu2Item = React.forwardRef(function Menu2Item(
             // `MuiButtonBase` default props, so ButtonBase resolves the default.
             ...(disableRipple !== undefined && { disableRipple }),
             ownerState,
-            sx,
             // Base UI owns the Enter and Space activation of the item.
             ...suppressButtonBaseKeyboardActivation(rootSlotProps),
           },

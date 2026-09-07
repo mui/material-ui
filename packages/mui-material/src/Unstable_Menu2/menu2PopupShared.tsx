@@ -9,6 +9,7 @@ import useSlotProps from '@mui/utils/useSlotProps';
 import appendOwnerState from '@mui/utils/appendOwnerState';
 import isHostComponent from '@mui/utils/isHostComponent';
 import { SxProps } from '@mui/system';
+import mergeSlotProps from '../utils/mergeSlotProps';
 import { Theme } from '../styles';
 import { PaperProps } from '../Paper';
 import { ListProps } from '../List';
@@ -20,10 +21,6 @@ type ExternalSlotProps<Props> = Omit<Partial<Props>, 'className' | 'render' | 's
   render?: never | undefined;
   style?: React.CSSProperties | undefined;
 } & Record<string, any>;
-
-function mergeSx(...sx: Array<SxProps<Theme> | undefined>) {
-  return sx.flatMap((style) => (Array.isArray(style) ? style : [style])).filter(Boolean);
-}
 
 // React event handler props are the `on` + capital letter keys.
 const isEventHandlerKey = (key: string) => /^on[A-Z]/.test(key);
@@ -252,7 +249,9 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   const PaperSlot = slots?.paper ?? defaultSlots.paper;
   const ListSlot = slots?.list ?? defaultSlots.list;
 
-  const resolvedRootProps = resolveComponentProps(slotProps?.root, ownerState);
+  const resolvedRootProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), {
+    sx,
+  });
   const resolvedBackdropProps = resolveComponentProps(slotProps?.backdrop, ownerState);
   const resolvedPositionerProps = resolveComponentProps(slotProps?.positioner, ownerState);
   const resolvedPaperProps = resolveComponentProps(slotProps?.paper, ownerState);
@@ -311,7 +310,7 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     <RootSlot
       {...getSlotProps(
         RootSlot,
-        appendOwnerState(RootSlot, { sx: mergeSx(sx, rootSlotSx) }, ownerState),
+        appendOwnerState(RootSlot, { sx: rootSlotSx }, ownerState),
         sxHostOmittedProps,
       )}
     />

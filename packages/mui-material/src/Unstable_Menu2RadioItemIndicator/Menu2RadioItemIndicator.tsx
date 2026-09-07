@@ -8,6 +8,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { mergeProps } from '@base-ui/react/merge-props';
 import { SxProps } from '@mui/system';
+import mergeSlotProps from '../utils/mergeSlotProps';
 import { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -137,6 +138,7 @@ const Menu2RadioItemIndicator = React.forwardRef(function Menu2RadioItemIndicato
     classes: classesProp,
   };
   const classes = useUtilityClasses(ownerState);
+  const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });
 
   return (
     <BaseMenu.RadioItemIndicator
@@ -146,10 +148,9 @@ const Menu2RadioItemIndicator = React.forwardRef(function Menu2RadioItemIndicato
       render={(elementProps, state) =>
         getMenu2RootRender(slots?.root ?? Menu2RadioItemIndicatorRoot, ownerState, {
           ...mergeProps(elementProps, {
-            ...resolveComponentProps(slotProps?.root, ownerState),
+            ...rootSlotProps,
             as: component,
             ownerState,
-            sx,
           }),
           children: children ?? (state.checked ? defaultCheckedIcon : defaultIcon),
         })

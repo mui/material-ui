@@ -3,6 +3,7 @@ import * as React from 'react';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import useForkRef from '@mui/utils/useForkRef';
 import { mergeProps } from '@base-ui/react/merge-props';
+import mergeSlotProps from '../utils/mergeSlotProps';
 import ButtonBase from '../ButtonBase';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -40,7 +41,9 @@ function Menu2SubmenuTriggerRootSlot({
   ownerState: Menu2SubmenuTriggerOwnerState;
 }) {
   const RootSlot = slots?.root ?? Menu2SubmenuTriggerRoot;
-  const externalSlotProps = resolveComponentProps(slotProps?.root, ownerState);
+  const externalSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), {
+    sx,
+  });
   const rootProps = mergeProps(baseProps, externalSlotProps);
   const ref = useForkRef(baseProps.ref, externalSlotProps?.ref);
 
@@ -53,7 +56,6 @@ function Menu2SubmenuTriggerRootSlot({
       component: component ?? 'div',
       ...(disableRipple !== undefined && { disableRipple }),
       ownerState,
-      sx,
       ...suppressButtonBaseKeyboardActivation(rootProps),
     },
     Menu2SubmenuTriggerRoot,

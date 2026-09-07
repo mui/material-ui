@@ -7,6 +7,7 @@ import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { SxProps } from '@mui/system';
+import mergeSlotProps from '../utils/mergeSlotProps';
 import { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -114,15 +115,15 @@ const Menu2Group = React.forwardRef(function Menu2Group(
     classes: classesProp,
   };
   const classes = useUtilityClasses(ownerState);
+  const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });
 
   return (
     <BaseMenu.Group
       ref={ref}
       render={getMenu2RootRender(slots?.root ?? Menu2GroupRoot, ownerState, {
-        ...resolveComponentProps(slotProps?.root, ownerState),
+        ...rootSlotProps,
         as: component,
         ownerState,
-        sx,
       })}
       className={clsx(className, classes.root)}
       style={style}

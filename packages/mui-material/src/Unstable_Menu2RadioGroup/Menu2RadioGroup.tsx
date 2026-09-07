@@ -7,6 +7,7 @@ import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { SxProps } from '@mui/system';
+import mergeSlotProps from '../utils/mergeSlotProps';
 import { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -147,6 +148,7 @@ const Menu2RadioGroup = React.forwardRef(function Menu2RadioGroup(
     classes: classesProp,
   };
   const classes = useUtilityClasses(ownerState);
+  const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });
   const handleValueChange = React.useCallback(
     (newValue: any, eventDetails: BaseMenu.RadioGroup.ChangeEventDetails) => {
       onChange?.(eventDetails.event, newValue, eventDetails);
@@ -158,10 +160,9 @@ const Menu2RadioGroup = React.forwardRef(function Menu2RadioGroup(
     <BaseMenu.RadioGroup
       ref={ref}
       render={getMenu2RootRender(slots?.root ?? Menu2RadioGroupRoot, ownerState, {
-        ...resolveComponentProps(slotProps?.root, ownerState),
+        ...rootSlotProps,
         as: component,
         ownerState,
-        sx,
       })}
       className={(state) => clsx(className, classes.root, state.disabled && classes.disabled)}
       onValueChange={handleValueChange}

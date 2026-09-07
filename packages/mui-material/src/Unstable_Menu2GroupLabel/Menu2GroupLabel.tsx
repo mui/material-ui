@@ -7,6 +7,7 @@ import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { SxProps } from '@mui/system';
+import mergeSlotProps from '../utils/mergeSlotProps';
 import ListSubheader from '../ListSubheader';
 import { Theme } from '../styles';
 import { styled } from '../zero-styled';
@@ -118,16 +119,18 @@ const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
     classes: classesProp,
   };
   const classes = useUtilityClasses(ownerState);
+  const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });
+  const RootSlot = slots?.root ?? Menu2GroupLabelRoot;
 
   return (
     <BaseMenu.GroupLabel
       ref={ref}
-      render={getMenu2RootRender(slots?.root ?? Menu2GroupLabelRoot, ownerState, {
-        ...resolveComponentProps(slotProps?.root, ownerState),
+      render={getMenu2RootRender(RootSlot, ownerState, {
+        ...rootSlotProps,
         component: component ?? 'div',
-        disableSticky: true,
+        // Only the default ListSubheader root consumes this prop.
+        ...(RootSlot === Menu2GroupLabelRoot && { disableSticky: true }),
         ownerState,
-        sx,
       })}
       className={clsx(className, classes.root)}
       style={style}
