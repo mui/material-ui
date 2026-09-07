@@ -194,8 +194,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `⚠️ Partially Supports` · `● Component`
 
-- The focus ripple serves as focus visible indicator
-- `disableRipple` or `disableFocusRipple` removes the focus indicator (the focus ripple), relying on the author to add it with `.Mui-focusVisible` styles. Covered by a Playwright test that compares the control focused and unfocused.
+- The focus ripple serves as focus visible indicator. Covered by a Playwright test that compares the control focused and unfocused.
+- `disableRipple` or `disableFocusRipple` removes the focus indicator (the focus ripple), relying on the author to add it with `.Mui-focusVisible` styles.
 
 **Manual testing steps**
 

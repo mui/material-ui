@@ -169,13 +169,12 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     viewportWidth: 1440,
     waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
   },
-  { test: 'docs/data/material/components/accordion/AccordionA11y*', enabled: false }, // A11y-only coverage fixtures
-  { test: 'docs/data/material/components/accordion/AccordionA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
   { test: 'docs/data/material/components/progress/*', enabled: false }, // Animated progress bars make screenshots flaky; axe still runs on the enrolled LinearProgress demos
   // The a11y fixture tree exists for axe, so screenshots are off by default.
   // Later rules re-enable single fixtures that also guard a visual state.
   { test: 'test/regressions/a11y/fixtures/**', enabled: false }, // A11y-only coverage fixtures
   { test: 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+  { test: 'test/regressions/a11y/fixtures/accordion/AccordionA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
   {
     test: 'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11yTextSpacing',
     enabled: true,
@@ -200,8 +199,6 @@ const ACCORDION_A11Y_DEMOS = [
   'CustomizedAccordions',
   'DisabledAccordion',
   'AccordionTransition',
-  'AccordionA11yNonNative',
-  'AccordionA11yTextSpacing',
 ];
 
 // LinearProgress docs demos enrolled for axe assertions; CircularProgress and
@@ -301,7 +298,7 @@ export const A11Y_RULES: A11yRule[] = [
     skipAssertions: ['color-contrast'],
   },
   {
-    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars,AvatarA11yImage}',
+    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars}',
     enabled: true,
   },
   // Avatar's default `colorDefault` styling is white text on grey[400] (~1.9:1),
@@ -310,9 +307,39 @@ export const A11Y_RULES: A11yRule[] = [
   // violations in the JSON without failing the build. IconAvatars (icons only,
   // aria-hidden, no text) is excluded here so it still asserts a clean pass.
   {
-    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,VariantAvatars,AvatarA11yImage}',
+    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,VariantAvatars}',
     enabled: true,
     skipAssertions: ['color-contrast'],
+  },
+  // A11y-only fixture under `test/regressions/a11y/fixtures/avatars/` (no
+  // docs page consumes it); the suite name maps its results into the same
+  // `avatars.a11y.json` as the docs demos above. `assertions: 'all'` makes
+  // axe's `image-alt` rule an asserted check, which is the reason the
+  // fixture exists.
+  {
+    test: 'test/regressions/a11y/fixtures/avatars/AvatarA11yImage',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    // `color-contrast` is recorded but not asserted: the Accordion root's
+    // divider `::before` pseudo-element blocks axe's background resolution for
+    // the summary label, so the rule returns `incomplete` on some demos.
+    // No demo records a contrast failure; the label clears 4.5:1 on `paper`.
+    test: `docs/data/material/components/accordion/{${ACCORDION_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/accordion/`
+  // (no docs page consumes them); the suite name maps their results into the
+  // same `accordion.a11y.json` as the docs demos above. The divider
+  // `::before` skip is not needed here: both fixtures pass `color-contrast`.
+  {
+    test: 'test/regressions/a11y/fixtures/accordion/{AccordionA11yNonNative,AccordionA11yTextSpacing}',
+    enabled: true,
+    assertions: 'all',
   },
   {
     test: `docs/data/material/components/buttons/{${BUTTON_A11Y_DEMOS.join(',')}}`,
