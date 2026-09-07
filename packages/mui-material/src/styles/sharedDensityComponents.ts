@@ -1,7 +1,7 @@
 import addDefaultProps from '../utils/addDefaultProps';
 import addRootOverride from '../utils/addRootOverride';
 import { EnhanceableTheme } from './densityScale';
-import type { Breakpoint } from '@mui/system';
+import type { Breakpoint } from '..';
 import switchClasses from '../Switch/switchClasses';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import tooltipClasses from '../Tooltip/tooltipClasses';
@@ -54,6 +54,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // one. Both land on today's px at the default 32.
   const smallBox = `calc(${touchTarget} - ${spacing('x-small')})`;
   const largeBox = `calc(${touchTarget} + ${spacing('small')})`;
+  const hugeBox = `calc(${touchTarget} + ${spacing('medium')})`;
   // Icons ride the glyph constant the same way boxes ride the interactive one.
   const iconSmall = `calc(${iconTarget} - ${spacing(0.25)})`;
   const iconLarge = `calc(${iconTarget} + ${spacing(0.5)})`;
@@ -862,15 +863,6 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
     ],
   });
-  const bp = (
-    enhanced as unknown as {
-      breakpoints: {
-        values: Record<string, number>;
-        unit: string;
-        down: (width: number) => string;
-      };
-    }
-  ).breakpoints;
   addRootOverride(
     enhanced.components,
     'MuiDialog',
@@ -896,17 +888,20 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         {
           props: { maxWidth: 'xs', scroll: 'body', fullScreen: false },
           style: {
-            [bp.down(Math.max(bp.values.xs, 444) + 32 * 2)]: {
+            [enhanced.breakpoints.down(Math.max(enhanced.breakpoints.values.xs, 444) + 32 * 2)]: {
               maxWidth: 'calc(100% - var(--_dialogMargin) * 2)',
             },
           },
         },
-        ...Object.keys(bp.values)
+        ...Object.keys(enhanced.breakpoints.values)
           .filter((maxWidth) => maxWidth !== 'xs')
           .map((maxWidth) => ({
             props: { maxWidth, scroll: 'body', fullScreen: false },
             style: {
-              [bp.down(bp.values[maxWidth] + 32 * 2)]: {
+              [enhanced.breakpoints.down(
+                enhanced.breakpoints.values[maxWidth as keyof typeof enhanced.breakpoints.values] +
+                  32 * 2,
+              )]: {
                 maxWidth: 'calc(100% - var(--_dialogMargin) * 2)',
               },
             },
@@ -922,20 +917,20 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // No sm-up re-assert: ListItemButton has no master minHeight media reset.
   addRootOverride(enhanced.components, 'MuiListItemButton', {
     gap: spacing('x-small'),
-    paddingBlock: spacing('x-small'),
+    paddingBlock: spacing('xx-small'),
     variants: [
       {
         props: { dense: false },
         style: { minHeight: touchTarget },
       },
-      { props: { dense: true }, style: { minHeight: spacing('large') } },
+      { props: { dense: true }, style: { minHeight: smallBox } },
       {
         props: { dense: false, disableGutters: false },
         style: { paddingInline: spacing('small') },
       },
       {
         props: { dense: true, disableGutters: false },
-        style: { paddingInline: spacing('xsmall') },
+        style: { paddingInline: spacing('x-small') },
       },
     ],
   });
@@ -1075,7 +1070,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           ownerState.label &&
           (ownerState.iconPosition === 'top' || ownerState.iconPosition === 'bottom'),
         style: {
-          minHeight: spacing('xx-large'),
+          minHeight: hugeBox,
           paddingBlock: spacing('xx-small'),
         },
       },
@@ -1217,38 +1212,34 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     // SPREAD the theme styleOverride, so an array-form slot silently drops;
     // root-class nesting outranks the slot rules.
     [`& .${tablePaginationClasses.toolbar}`]: {
-      minHeight: spacing('xx-large'),
+      minHeight: hugeBox,
     },
     [`& .${tablePaginationClasses.select}`]: enhanced.typography?.body2 ?? {},
   });
   addRootOverride(enhanced.components, 'MuiToolbar', {
-    // Regular mirrors theme.mixins.toolbar's responsive shape as
-    // styleOverrides — the mixin stays untouched (offset math keeps master).
-    minHeight: 'initial',
     variants: [
       {
         props: { disableGutters: false },
         style: {
           paddingInline: spacing('medium'),
-          [(enhanced as unknown as { breakpoints: { up: (key: string) => string } }).breakpoints.up(
-            'sm',
-          )]: {
-            paddingInline: spacing('medium'),
-          },
+          [enhanced.breakpoints.up('sm')]: { paddingInline: spacing('medium') },
         },
       },
-      { props: { variant: 'dense' }, style: { paddingBlock: spacing('xx-small') } },
+      {
+        props: { variant: 'dense' },
+        style: { minHeight: `calc(${touchTarget} + 2*${spacing('x-small')})` },
+      },
       {
         props: { variant: 'regular' },
         style: {
-          paddingBlock: spacing('x-small'),
-          // Master nests this under breakpoints.up('xs') — a no-op (min-width:0)
-          // wrapper; emitted flat so the emit-table readback can resolve it.
-          '@media (orientation: landscape)': { minHeight: spacing('xx-large') },
-          [(enhanced as unknown as { breakpoints: { up: (key: string) => string } }).breakpoints.up(
-            'sm',
-          )]: {
-            minHeight: 'initial',
+          minHeight: `calc(${touchTarget} + 2*${spacing('small')})`,
+          [enhanced.breakpoints.up('xs')]: {
+            '@media (orientation: landscape)': {
+              minHeight: `calc(${touchTarget} + 2*${spacing('x-small')})`,
+            },
+          },
+          [enhanced.breakpoints.up('sm')]: {
+            minHeight: `calc(${touchTarget} + 2*${spacing('small')})`,
           },
         },
       },
