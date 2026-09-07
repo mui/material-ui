@@ -453,7 +453,6 @@ async function main() {
  * introduced independently of the harness it runs on.
  */
 function registerCssLayoutSuites({ test, renderFixture, routes }) {
-
   const CSS_LAYOUT_SUITES = [
     { component: 'Accordion', route: '/docs-components-accordion/AccordionUsage' },
     // The same demo renders the summary header, which is rated separately.
