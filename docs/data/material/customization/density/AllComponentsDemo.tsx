@@ -15,11 +15,11 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormLabel from '@mui/material/FormLabel';
 import {
-  Annotations,
+  Annotate,
   slotLabel,
   DENSITY_SCALE,
   DENSITY_TARGETS,
-  useAnnotations,
+  useClaims,
 } from './densityAnnotations';
 import { annotationsFor } from './densityAnnotationSpecs';
 import {
@@ -130,7 +130,7 @@ export default function AllComponentsDemo() {
     () => annotations.filter((item) => !off?.includes(slotLabel(item))),
     [annotations, off],
   );
-  const measured = useAnnotations(stageRef, demoRef, shown, [component, values, shown]);
+  const resolved = useClaims(stageRef, demoRef, shown, [component, values, shown]);
 
   const toggle = (slot: string) =>
     setHidden((previous) => {
@@ -261,9 +261,7 @@ export default function AllComponentsDemo() {
           <Box ref={demoRef} data-density-demo sx={{ display: 'contents' }}>
             <ThemeProvider theme={densityTheme}>{spec.render(values)}</ThemeProvider>
           </Box>
-          {measured ? (
-            <Annotations measured={measured.measured} bounds={measured.bounds} />
-          ) : null}
+          {resolved ? <Annotate items={resolved.items} bounds={resolved.bounds} /> : null}
         </Box>
       </Box>
     </Paper>

@@ -67,6 +67,7 @@ import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import ContentCutIcon from '@mui/icons-material/ContentCut';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -344,6 +345,14 @@ export const DENSITY_COMPONENTS = {
             <ListItemText primary="Drafts" />
           </ListItemButton>
         </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <FavoriteIcon />
+            </ListItemIcon>
+            <ListItemText primary="Saved" />
+          </ListItemButton>
+        </ListItem>
       </List>
     ),
   },
@@ -367,6 +376,12 @@ export const DENSITY_COMPONENTS = {
               <ContentPasteIcon />
             </ListItemIcon>
             <ListItemText>Paste</ListItemText>
+          </MenuItem>
+          <MenuItem>
+            <ListItemIcon>
+              <ContentCutIcon />
+            </ListItemIcon>
+            <ListItemText>Cut</ListItemText>
           </MenuItem>
         </MenuList>
       </Paper>
@@ -424,26 +439,51 @@ export const DENSITY_COMPONENTS = {
         initial: 'medium',
       },
     ],
-    // `standard` outside a FormControl is the only shape where the Select
-    // family's own rows are the computed value — the outlined default lets
-    // `MuiOutlinedInput` win the input's block padding. The adornment is what
-    // gives the root a second in-flow child, so its gap exists at all.
-    render: (values) => (
-      <Select
-        variant="standard"
-        size={values.size}
-        value="shipped"
-        startAdornment={
-          <InputAdornment position="start">
-            <LocalShippingIcon />
-          </InputAdornment>
-        }
-        sx={{ width: 220 }}
-      >
-        <MenuItem value="shipped">Shipped</MenuItem>
-        <MenuItem value="pending">Pending</MenuItem>
-      </Select>
-    ),
+    // All three variants at once, like the TextField demo. `standard` is the
+    // only shape where the Select family's own rows are the computed value —
+    // outlined/filled let their input roots win the block padding, so the
+    // space claims read off the standard variant. The adornment is what gives
+    // the root a second in-flow child, so its gap exists at all.
+    render: (values) => {
+      const size = values.size;
+      const adornment = (
+        <InputAdornment position="start">
+          <LocalShippingIcon />
+        </InputAdornment>
+      );
+
+      return (
+        <Stack spacing={3} sx={{ width: 220 }}>
+          <Select
+            variant="outlined"
+            size={size}
+            value="shipped"
+            startAdornment={adornment}
+          >
+            <MenuItem value="shipped">Shipped</MenuItem>
+            <MenuItem value="pending">Pending</MenuItem>
+          </Select>
+          <Select
+            variant="filled"
+            size={size}
+            value="shipped"
+            startAdornment={adornment}
+          >
+            <MenuItem value="shipped">Shipped</MenuItem>
+            <MenuItem value="pending">Pending</MenuItem>
+          </Select>
+          <Select
+            variant="standard"
+            size={size}
+            value="shipped"
+            startAdornment={adornment}
+          >
+            <MenuItem value="shipped">Shipped</MenuItem>
+            <MenuItem value="pending">Pending</MenuItem>
+          </Select>
+        </Stack>
+      );
+    },
   },
   Slider: {
     controls: [
@@ -557,7 +597,7 @@ export const DENSITY_COMPONENTS = {
     render: (values) => {
       const size = values.size;
       return (
-        <Table size={size} sx={{ width: 380 }}>
+        <Table size={size} sx={{ width: 300 }}>
           <TableHead>
             <TableRow>
               <TableCell padding="checkbox">
@@ -635,7 +675,7 @@ export const DENSITY_COMPONENTS = {
       const multiline = values.multiline === true;
       const adornment = (
         <InputAdornment position="start">
-          <SearchIcon fontSize="small" />
+          <SearchIcon />
         </InputAdornment>
       );
 
@@ -729,9 +769,14 @@ export const DENSITY_COMPONENTS = {
       },
     ],
     // `open` + `disablePortal` put the bubble inside the demo; the padding
-    // reserves the room it is positioned into.
+    // reserves only the room the bubble is positioned into — reserving the
+    // other sides would hang the gutters off dead space.
     render: (values) => (
-      <Box sx={{ py: 6, px: 12 }}>
+      <Box
+        sx={
+          values.placement === 'right' ? { py: 2, pl: 0, pr: 12 } : { py: 6, px: 12 }
+        }
+      >
         <Tooltip
           title="Copy to clipboard"
           arrow

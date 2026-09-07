@@ -1,4 +1,4 @@
-import { Annotation } from './densityAnnotations';
+import { Claim } from './densityAnnotations';
 
 /**
  * What to measure on each family, and what the preset authored for it. Every
@@ -11,14 +11,13 @@ import { Annotation } from './densityAnnotations';
  */
 export const DENSITY_ANNOTATIONS: Record<
   string,
-  (values: Record<string, string | boolean>) => Annotation[]
+  (values: Record<string, string | boolean>) => Claim[]
 > = {
   Accordion: () => [
     {
       on: '.MuiAccordionSummary-root',
       aspect: 'touch-target',
       token: 'touch-target',
-      root: true,
       label: 'Summary',
     },
     {
@@ -26,7 +25,6 @@ export const DENSITY_ANNOTATIONS: Record<
       aspect: 'padding',
       axis: 'inline',
       token: 'x-small',
-      root: true,
       label: 'Summary',
     },
     { on: '.MuiAccordionSummary-content', aspect: 'gap', token: 'x-small', label: 'Summary content' },
@@ -35,62 +33,132 @@ export const DENSITY_ANNOTATIONS: Record<
       aspect: 'padding',
       axis: 'inline',
       token: 'small',
-      root: true,
       label: 'Details',
     },
-    // `xx-small` on top, `small` underneath — the two bands get their own captions.
+    // `xx-small` on top, `small` underneath — one claim per side, each
+    // carrying the expression the preset authored for that band.
     {
       on: '.MuiAccordionDetails-root',
       aspect: 'padding',
-      axis: 'block',
-      root: true,
+      side: 'top',
+      token: 'xx-small',
+      label: 'Details',
+    },
+    {
+      on: '.MuiAccordionDetails-root',
+      aspect: 'padding',
+      side: 'bottom',
+      token: 'small',
       label: 'Details',
     },
   ],
   Alert: () => [
-    { on: '.MuiAlert-root', aspect: 'padding', axis: 'inline', token: 'small', root: true, label: 'Alert' },
-    // The root's four slots all sit on one row, so the automatic rules pile
-    // three captions into the left gutter. Reporting the block paddings upward
-    // as spines spreads them out; the gap needs no offset because rungs are
-    // only claimed when captions would overlap in x, and these two don't.
-    { on: '.MuiAlert-root', aspect: 'padding', axis: 'block', token: 'x-small', root: true, label: 'Alert', place: 'top', at: 0.75 },
-    { on: '.MuiAlert-root', aspect: 'gap', token: 'x-small', root: true, label: 'Alert', place: 'top' },
+    { on: '.MuiAlert-root', aspect: 'padding', axis: 'inline', token: 'small', label: 'Alert' },
+    // The three block paddings all sit on the alert's one row: the root's comb
+    // keeps the row's centre, and the slot paddings fan out as diagonals above
+    // and below it — three labels, one connector shape each, no shared rail.
+    {
+      on: '.MuiAlert-root',
+      aspect: 'padding',
+      axis: 'block',
+      token: 'x-small',
+      label: 'Alert',
+      route: { gutter: 'left' },
+    },
+    { on: '.MuiAlert-root', aspect: 'gap', token: 'x-small', label: 'Alert' },
     // `1.1lh` off the alert's own line-height, not a scale step — the icon box
     // reflows with it because the severity svg is `fontSize="inherit"`.
-    { on: '.MuiAlert-icon', aspect: 'icon', token: '1.1lh', label: 'Icon' },
-    { on: '.MuiAlert-icon', aspect: 'padding', axis: 'block', token: '0.75 × spacing', label: 'Icon', place: 'top', at: 0.5 },
-    { on: '.MuiAlert-message', aspect: 'padding', axis: 'block', token: '0.875 × spacing', label: 'Message', place: 'top', at: 0.5 },
+    {
+      on: '.MuiAlert-icon',
+      aspect: 'icon',
+      token: '1.1lh',
+      label: 'Icon',
+      route: { gutter: 'left', shift: -32, line: 'diagonal' },
+    },
+    // The slot paddings report to the empty bottom gutter; `at` picks where
+    // along each strip the spine drops — the message's slides right (0.85) so
+    // the crossing falls in the blank space past the sentence.
+    {
+      on: '.MuiAlert-icon',
+      aspect: 'padding',
+      axis: 'block',
+      token: '0.75 × spacing',
+      label: 'Icon',
+      route: { gutter: 'bottom' },
+    },
+    {
+      on: '.MuiAlert-message',
+      aspect: 'padding',
+      axis: 'block',
+      token: '0.875 × spacing',
+      label: 'Message',
+      route: { gutter: 'bottom', at: 0.85 },
+    },
     // Only exists because of `onClose`; sized by a defaultProp, not a style override.
-    { on: '.MuiAlert-action .MuiIconButton-root', aspect: 'touch-target', token: 'touch-target', label: 'Close button' },
+    {
+      on: '.MuiAlert-action .MuiIconButton-root',
+      aspect: 'touch-target',
+      token: 'touch-target',
+      outlined: true,
+      label: 'Close button',
+    },
   ],
   Autocomplete: (values) => {
-    const annotations: Annotation[] = [
-      { on: '.MuiAutocomplete-option', aspect: 'touch-target', token: 'touch-target', label: 'Option' },
-      // Below the list, not above it: the option is inside the popup, so a top
-      // gutter would drag both stems up across the input. Downward they follow
-      // the listbox's own edges, clear of every option's text.
+    // Every option carries a beam — the point is that each row hits the
+    // target. The space claims read off one sample row; they are identical on
+    // every row, and three copies would pile onto the same labels.
+    const sample = '.MuiAutocomplete-option:nth-of-type(2)';
+    const annotations: Claim[] = [
       {
-        on: '.MuiAutocomplete-option',
+        on: sample,
+        aspect: 'touch-target',
+        token: 'touch-target',
+        label: 'Option',
+        route: { gutter: 'left' },
+      },
+      {
+        on: sample,
         aspect: 'padding',
         axis: 'inline',
         token: 'x-small',
         label: 'Option',
-        place: 'bottom',
+        route: { gutter: 'bottom' },
       },
-      { on: '.MuiAutocomplete-option', aspect: 'padding', axis: 'block', token: 'xx-small', label: 'Option' },
-      // 3px, and a composite of private vars — px only. The inline axis is not
-      // annotated: its right band is master's 39px popup-indicator reserve, and
-      // a ring is drawn on both bands of an axis or neither.
-      { on: '.MuiOutlinedInput-root', aspect: 'padding', axis: 'block', root: true, label: 'Input root' },
-      // ~1px, what is left of the touch target once the root's 3px is taken.
-      { on: '.MuiAutocomplete-input', aspect: 'padding', axis: 'block', label: 'Input' },
-      // No token: the preset authors a bare `4px`, so naming it would only
-      // repeat the number the caption already prints.
-      { on: '.MuiAutocomplete-input', aspect: 'padding', axis: 'inline', label: 'Input' },
+      {
+        on: sample,
+        aspect: 'padding',
+        axis: 'block',
+        token: 'xx-small',
+        label: 'Option',
+        route: { gutter: 'right' },
+      },
+      // The input's own interactive box. No token: the preset composes this
+      // height from private vars.
+      {
+        on: '.MuiOutlinedInput-root',
+        aspect: 'touch-target',
+        text: 'OutlinedInput',
+        label: 'Input root',
+        route: { gutter: 'right' },
+      },
+      // A medium IconButton box (no size prop) — a width, read against the top.
+      {
+        on: '.MuiAutocomplete-popupIndicator',
+        aspect: 'touch-target',
+        token: 'touch-target',
+        label: 'Popup indicator',
+        route: { gutter: 'top' },
+      },
     ];
     if (values.multiple === true) {
       annotations.push(
-        { on: '.MuiAutocomplete-tag', aspect: 'touch-target', token: 'touch-target - x-small', label: 'Tag' },
+        {
+          on: '.MuiAutocomplete-tag',
+          aspect: 'touch-target',
+          token: 'touch-target - x-small',
+          text: "Chip size='small'",
+          label: 'Tag',
+        },
         { on: '.MuiAutocomplete-tag', aspect: 'margin', axis: 'inline', label: 'Tag' },
       );
     }
@@ -99,19 +167,26 @@ export const DENSITY_ANNOTATIONS: Record<
   // The only live row: `width`/`height` off one private var, which resolves to
   // the interactive box. The root `fontSize` is the letter's type size, not an icon.
   Avatar: () => [
-    { on: '.MuiAvatar-root', aspect: 'touch-target', token: 'touch-target', root: true, label: 'Avatar' },
+    { on: '.MuiAvatar-root', aspect: 'touch-target', token: 'touch-target', label: 'Avatar' },
   ],
   Badge: (values) => [
     // The anchor. Outlining it is what makes the badge read as hanging off a
     // control rather than floating beside a stray glyph — and the 32px box is
     // the shared-density touch target, not decoration.
-    { on: '.MuiIconButton-root', aspect: 'touch-target', token: 'touch-target', label: 'Button' },
+    {
+      on: '.MuiIconButton-root',
+      aspect: 'touch-target',
+      token: 'touch-target',
+      outlined: true,
+      label: 'Button',
+    },
     // Not `root`: the dashed outline is what makes a 20px chip floating over an
     // icon legible as the box being measured.
     {
       on: '.MuiBadge-badge',
       aspect: 'touch-target',
       token: values.variant === 'dot' ? 'spacing' : '2.5 × spacing',
+      outlined: true,
       label: 'Badge',
     },
     // The dot has no padding at all — master zeroes it and the preset emits none.
@@ -130,24 +205,68 @@ export const DENSITY_ANNOTATIONS: Record<
   BottomNavigation: () => [
     // Not `root`: the bar paints nothing of its own, so the dashed outline is
     // the only thing showing which box the 48px belongs to.
-    { on: '.MuiBottomNavigation-root', aspect: 'touch-target', token: 'xx-large', label: 'Bar' },
-    { on: '.MuiBottomNavigationAction-root', aspect: 'padding', axis: 'inline', token: 'small', label: 'Action' },
+    {
+      on: '.MuiBottomNavigation-root',
+      aspect: 'touch-target',
+      token: 'xx-large',
+      outlined: true,
+      label: 'Bar',
+      route: { gutter: 'left' },
+    },
+    // One sample action carries the space claims — three identical copies
+    // would pile onto the same labels.
+    {
+      on: '.MuiBottomNavigationAction-root:nth-of-type(2)',
+      aspect: 'padding',
+      axis: 'inline',
+      token: 'small',
+      label: 'Action',
+    },
     // Icon over label — a row gap, not a column one.
-    { on: '.MuiBottomNavigationAction-root', aspect: 'gap', token: 'xx-small', label: 'Action' },
+    {
+      on: '.MuiBottomNavigationAction-root:nth-of-type(2)',
+      aspect: 'gap',
+      token: 'xx-small',
+      label: 'Action',
+      route: { gutter: 'right' },
+    },
   ],
   // The separator's own margin is zeroed, so the list's gap is the only thing
   // spacing the crumbs — and the same step pads each crumb from the inside.
   Breadcrumbs: () => [
-    // Up, not down: the crumb's own inline padding is the same step and lands
-    // in the bottom gutter, so two identical captions ended up stacked there
-    // with only their colour telling them apart.
-    { on: '.MuiBreadcrumbs-ol', aspect: 'gap', token: 'x-small', label: 'Ol', place: 'top' },
+    // The gap and the crumb padding are the same step — opposite gutters, so
+    // two identical captions never sit side by side. Both boundaries of the
+    // first separator are shown: crumb->separator and separator->crumb.
     {
-      on: '.MuiBreadcrumbs-ol a',
+      on: '.MuiBreadcrumbs-ol',
+      aspect: 'gap',
+      token: 'x-small',
+      label: 'Ol',
+      route: { gutter: 'top', shift: -40 },
+    },
+    {
+      on: '.MuiBreadcrumbs-ol',
+      aspect: 'gap',
+      after: 1,
+      token: 'x-small',
+      label: 'Ol',
+      route: { gutter: 'top', shift: 40 },
+    },
+    {
+      on: '.MuiBreadcrumbs-ol li:first-child a',
       aspect: 'padding',
       axis: 'inline',
       token: 'x-small',
       label: 'Crumb link',
+      route: { gutter: 'bottom', shift: -40 },
+    },
+    {
+      on: '.MuiBreadcrumbs-ol li:nth-child(3) a',
+      aspect: 'padding',
+      axis: 'inline',
+      token: 'x-small',
+      label: 'Crumb link',
+      route: { gutter: 'bottom', shift: 40 },
     },
   ],
   Button: (values) => {
@@ -158,22 +277,56 @@ export const DENSITY_ANNOTATIONS: Record<
     }[values.size as string];
     const inline = { small: 'small', medium: 'medium', large: 'large' }[values.size as string];
     return [
-      { on: '.MuiButton-root', aspect: 'touch-target', token: height, root: true, label: 'Root' },
-      { on: '.MuiButton-root', aspect: 'padding', axis: 'inline', token: inline, root: true, label: 'Root' },
-      { on: '.MuiButton-root', aspect: 'gap', token: 'x-small', root: true, label: 'Root' },
-      { on: '.MuiButton-startIcon', aspect: 'icon', token: '0.8lh', label: 'Start icon' },
+      {
+        on: '.MuiButton-root',
+        aspect: 'touch-target',
+        token: height,
+        label: 'Root',
+        route: { gutter: 'right' },
+      },
+      {
+        on: '.MuiButton-root',
+        aspect: 'padding',
+        axis: 'inline',
+        token: inline,
+        label: 'Root',
+        route: { gutter: 'bottom' },
+      },
+      { on: '.MuiButton-root', aspect: 'gap', token: 'x-small', label: 'Root', route: { gutter: 'top' } },
+      {
+        on: '.MuiButton-startIcon',
+        aspect: 'icon',
+        token: '0.8lh',
+        label: 'Start icon',
+        route: { gutter: 'left' },
+      },
     ];
   },
   Card: () => [
-    { on: '.MuiCardHeader-root', aspect: 'padding', axis: 'inline', token: 'medium', root: true, label: 'Header' },
-    { on: '.MuiCardHeader-root', aspect: 'gap', token: 'small', root: true, label: 'Header' },
+    {
+      on: '.MuiCardHeader-root',
+      aspect: 'padding',
+      axis: 'inline',
+      token: 'medium',
+      label: 'Header',
+      route: { gutter: 'top', shift: 40 },
+    },
+    { on: '.MuiCardHeader-root', aspect: 'gap', token: 'small', label: 'Header' },
     // Negative: the action is pulled back out of the header's own padding.
     { on: '.MuiCardHeader-action', aspect: 'margin', axis: 'inline', token: '-x-small', label: 'Header action' },
     { on: '.MuiCardHeader-action', aspect: 'margin', axis: 'block', token: '-xx-small', label: 'Header action' },
-    { on: '.MuiCardContent-root', aspect: 'padding', axis: 'inline', token: 'medium', root: true, label: 'Content' },
+    // The whole ring, one label: a single line leads from the right band.
+    {
+      on: '.MuiCardContent-root',
+      aspect: 'padding',
+      axis: 'all',
+      token: 'medium',
+      label: 'Content',
+      route: { gutter: 'right', line: 'diagonal' },
+    },
     // `padding: medium` with `paddingTop: 0` — only the bottom band is live.
-    { on: '.MuiCardActions-root', aspect: 'padding', axis: 'block', token: 'medium', root: true, label: 'Actions' },
-    { on: '.MuiCardActions-root', aspect: 'gap', token: 'x-small', root: true, label: 'Actions' },
+    { on: '.MuiCardActions-root', aspect: 'padding', axis: 'block', token: 'medium', label: 'Actions' },
+    { on: '.MuiCardActions-root', aspect: 'gap', token: 'x-small', label: 'Actions' },
   ],
   Checkbox: (values) => {
     const small = values.size === 'small';
@@ -182,7 +335,6 @@ export const DENSITY_ANNOTATIONS: Record<
         on: '.MuiCheckbox-root',
         aspect: 'touch-target',
         token: small ? 'touch-target - x-small' : 'touch-target',
-        root: true,
         label: 'Checkbox',
       },
       // The preset sizes the glyph `fontSize: iconTarget`, so `medium` names it.
@@ -191,48 +343,36 @@ export const DENSITY_ANNOTATIONS: Record<
         aspect: 'icon',
         token: small ? 'icon-target - 0.25 × spacing' : 'icon-target',
         label: 'Checkbox icon',
-      },
-      // Authored on the checkbox as `.MuiFormControlLabel-root:has(&)`, so the
-      // band lands on the label: the control is pulled back by half its gutter.
-      {
-        on: '.MuiFormControlLabel-root',
-        aspect: 'margin',
-        axis: 'inline',
-        token: small
-          ? '(touch-target - x-small - (icon-target - 0.25 × spacing)) / -2'
-          : '(touch-target - icon-target) / -2',
-        root: true,
-        label: 'Label',
+        route: { gutter: 'top' },
       },
     ];
   },
   Chip: (values) => {
     const small = values.size === 'small';
     return [
+      // The two beams take opposite sides: the chip's own on the right, the
+      // avatar's (nested, with ties) on the left.
       {
         on: '.MuiChip-root',
         aspect: 'touch-target',
         token: small ? 'touch-target - xx-small' : 'touch-target',
-        root: true,
         label: 'Chip',
-        // The avatar's own bar reads off an edge only a few px inside this one,
-        // so the outer dimension steps out to keep the two apart.
-        offset: 1,
+        route: { gutter: 'right' },
       },
       {
         on: '.MuiChip-root',
         aspect: 'padding',
         axis: 'inline',
         token: small ? 'x-small' : 'small',
-        root: true,
         label: 'Chip',
+        route: { gutter: 'bottom' },
       },
       {
         on: '.MuiChip-root',
         aspect: 'gap',
         token: small ? 'xx-small' : 'x-small',
-        root: true,
         label: 'Chip',
+        route: { gutter: 'top' },
       },
       // Two classes deep, so it beats the Avatar root's own 32px box.
       {
@@ -240,22 +380,45 @@ export const DENSITY_ANNOTATIONS: Record<
         aspect: 'touch-target',
         token: small ? 'touch-target - xx-small - x-small' : 'touch-target - x-small',
         label: 'Avatar',
+        route: { gutter: 'left' },
       },
-      // Negative: the child is pulled back out of the root's inline padding.
-      // The offset is a composite of three private vars, so the caption is px only.
-      { on: '.MuiChip-avatar', aspect: 'margin', axis: 'inline', label: 'Avatar' },
+      // Same authored size as the avatar: the child box off the chip's height.
+      {
+        on: '.MuiChip-deleteIcon',
+        aspect: 'icon',
+        token: small ? 'touch-target - xx-small - x-small' : 'touch-target - x-small',
+        label: 'Delete icon',
+        route: { gutter: 'top', shift: 60 },
+      },
     ];
   },
   Dialog: () => [
-    // `medium` on the left, `small` on the right — two bands, two captions, so a
-    // single token would mislabel one of them.
-    { on: '.MuiDialogTitle-root', aspect: 'padding', axis: 'inline', root: true, label: 'Title' },
-    { on: '.MuiDialogTitle-root', aspect: 'padding', axis: 'block', token: 'small', root: true, label: 'Title' },
+    // `medium` on the left, `small` on the right — one claim per side, each
+    // carrying the expression the preset authored for that band.
+    { on: '.MuiDialogTitle-root', aspect: 'padding', side: 'left', token: 'medium', label: 'Title' },
+    { on: '.MuiDialogTitle-root', aspect: 'padding', side: 'right', token: 'small', label: 'Title' },
+    { on: '.MuiDialogTitle-root', aspect: 'padding', axis: 'block', token: 'small', label: 'Title' },
     { on: '.MuiDialogTitle-root .MuiIconButton-root', aspect: 'touch-target', token: 'touch-target', label: 'Close button' },
-    // Block padding is 0, so the inline pair is the only live one.
-    { on: '.MuiDialogContent-root', aspect: 'padding', axis: 'inline', token: 'medium', root: true, label: 'Content' },
-    { on: '.MuiDialogActions-root', aspect: 'padding', axis: 'inline', token: 'medium', root: true, label: 'Actions' },
-    { on: '.MuiDialogActions-root', aspect: 'gap', token: 'small', root: true, label: 'Actions' },
+    // Block padding is 0, so the inline pair is the only live one. The spine
+    // crosses at 0.97 — under the text, through the content's blank bottom.
+    {
+      on: '.MuiDialogContent-root',
+      aspect: 'padding',
+      axis: 'inline',
+      token: 'medium',
+      label: 'Content',
+      route: { gutter: 'left', at: 0.97 },
+    },
+    // `padding: medium` on every side — one ring, one line to the left.
+    {
+      on: '.MuiDialogActions-root',
+      aspect: 'padding',
+      axis: 'all',
+      token: 'medium',
+      label: 'Actions',
+      route: { gutter: 'left', line: 'diagonal' },
+    },
+    { on: '.MuiDialogActions-root', aspect: 'gap', token: 'small', label: 'Actions' },
   ],
   // Three sizes, three different expressions for one box — the only thing this
   // family emits beyond a `minHeight: 0` reset.
@@ -268,102 +431,114 @@ export const DENSITY_ANNOTATIONS: Record<
         medium: 'touch-target + x-small',
         large: 'xx-large + xx-small',
       }[values.size as string],
-      root: true,
       label: 'Fab',
     },
   ],
   List: (values) => {
     const dense = values.dense === true;
     return [
-      // `spacing(1)`, the base unit — not the `x-small` step that shares its px.
+      // `spacing(1)`, the base unit — not the `x-small` step that shares its
+      // px. The spine drops at 0.85 — right of the gap label sharing the top.
       {
         on: '.MuiList-root',
         aspect: 'padding',
         axis: 'block',
         token: 'spacing',
-        root: true,
         label: 'List',
+        route: { gutter: 'top', at: 0.85 },
       },
-      // Dense drops the text to `body2`, so the row sits above its own floor and
-      // the box is content-sized: no token to name then.
+      // Dense names the authored floor (`minHeight: touch-target - x-small`);
+      // the box measures above it because the content outgrows 24px.
       {
-        on: '.MuiListItemButton-root',
+        on: '.MuiListItem-root:nth-of-type(2) .MuiListItemButton-root',
         aspect: 'touch-target',
-        token: dense ? undefined : 'touch-target',
-        root: true,
+        token: dense ? 'touch-target - x-small' : 'touch-target',
         label: 'Item',
       },
       {
-        on: '.MuiListItemButton-root',
+        on: '.MuiListItem-root:nth-of-type(2) .MuiListItemButton-root',
         aspect: 'padding',
         axis: 'block',
         token: 'xx-small',
-        root: true,
         label: 'Item',
+        route: { gutter: 'right' },
       },
       {
-        on: '.MuiListItemButton-root',
+        on: '.MuiListItem-root:nth-of-type(2) .MuiListItemButton-root',
         aspect: 'padding',
         axis: 'inline',
         token: dense ? 'x-small' : 'small',
-        root: true,
         label: 'Item',
+        route: { gutter: 'bottom' },
       },
-      { on: '.MuiListItemButton-root', aspect: 'gap', token: 'x-small', root: true, label: 'Item' },
+      {
+        on: '.MuiListItem-root:nth-of-type(2) .MuiListItemButton-root',
+        aspect: 'gap',
+        token: 'x-small',
+        label: 'Item',
+        route: { gutter: 'top' },
+      },
     ];
   },
   Menu: (values) => {
     const dense = values.dense === true;
     return [
-      // `spacing(1)`, the base unit — not the `x-small` step that shares its px.
+      // `spacing(1)`, the base unit — not the `x-small` step that shares its
+      // px. The spine drops at 0.85 — right of the gap label sharing the top.
       {
         on: '.MuiList-root',
         aspect: 'padding',
         axis: 'block',
         token: 'spacing',
-        root: true,
         label: 'MenuList',
+        route: { gutter: 'top', at: 0.85 },
       },
       // Dense replaces the floor with `auto`: the item is content-sized, so
       // there is no box to name.
+      // Dense has no box to name at all — the preset sets `minHeight: auto`.
       ...(dense
         ? []
         : ([
             {
-              on: '.MuiMenuItem-root',
+              on: '.MuiMenuItem-root:nth-of-type(2)',
               aspect: 'touch-target',
               token: 'touch-target',
-              root: true,
               label: 'Item',
             },
-          ] as Annotation[])),
+          ] as Claim[])),
       {
-        on: '.MuiMenuItem-root',
+        on: '.MuiMenuItem-root:nth-of-type(2)',
         aspect: 'padding',
         axis: 'block',
         token: 'xx-small',
-        root: true,
         label: 'Item',
+        route: { gutter: 'right' },
       },
       {
-        on: '.MuiMenuItem-root',
+        on: '.MuiMenuItem-root:nth-of-type(2)',
         aspect: 'padding',
         axis: 'inline',
         token: 'x-small',
-        root: true,
         label: 'Item',
+        route: { gutter: 'bottom' },
       },
-      { on: '.MuiMenuItem-root', aspect: 'gap', token: 'x-small', root: true, label: 'Item' },
+      {
+        on: '.MuiMenuItem-root:nth-of-type(2)',
+        aspect: 'gap',
+        token: 'x-small',
+        label: 'Item',
+        route: { gutter: 'top' },
+      },
       // Only dense sizes the glyph, and it rides the line box, not the scale.
       ...(dense
         ? ([
             {
-              on: '.MuiMenuItem-root .MuiListItemIcon-root svg',
+              on: '.MuiMenuItem-root:nth-of-type(2) .MuiListItemIcon-root svg',
               aspect: 'icon',
               token: '0.8lh',
               label: 'Item icon',
             },
-          ] as Annotation[])
+          ] as Claim[])
         : []),
     ];
   },
@@ -374,15 +549,15 @@ export const DENSITY_ANNOTATIONS: Record<
       large: 'touch-target + small',
     }[values.size as string];
     return [
-      // `-page`, not `-root`: the first root is the previous-page arrow.
+      // One sample box — a horizontal row's beams all share one y, so
+      // multi-matching just piles identical bars and sprays ties through the
+      // numbers. The selected page is the visually anchored pick.
       {
-        on: '.MuiPaginationItem-page',
+        on: '.MuiPaginationItem-page.Mui-selected',
         aspect: 'touch-target',
         token: box,
-        root: true,
         label: 'Item',
-        // Steps clear of the previous-page arrow standing to its left.
-        offset: 1,
+        route: { gutter: 'left' },
       },
       // The items' own margin is zeroed, so the list's gap is the whole story.
       { on: '.MuiPagination-ul', aspect: 'gap', token: 'x-small', label: 'Ul' },
@@ -395,14 +570,12 @@ export const DENSITY_ANNOTATIONS: Record<
       on: '.MuiLinearProgress-root',
       aspect: 'touch-target',
       token: 'spacing / 2',
-      root: true,
       label: 'Linear bar',
     },
     {
       on: '.MuiCircularProgress-root',
       aspect: 'touch-target',
       token: 'touch-target',
-      root: true,
       label: 'Circular',
     },
   ],
@@ -414,7 +587,6 @@ export const DENSITY_ANNOTATIONS: Record<
         on: '.MuiRadio-root',
         aspect: 'touch-target',
         token: small ? 'touch-target - x-small' : 'touch-target',
-        root: true,
         label: 'Radio',
       },
       {
@@ -422,50 +594,77 @@ export const DENSITY_ANNOTATIONS: Record<
         aspect: 'icon',
         token: small ? 'icon-target - 0.25 × spacing' : 'icon-target',
         label: 'Radio icon',
-      },
-      {
-        on: '.MuiFormControlLabel-root',
-        aspect: 'margin',
-        axis: 'inline',
-        token: small
-          ? '(touch-target - x-small - (icon-target - 0.25 × spacing)) / -2'
-          : '(touch-target - icon-target) / -2',
-        root: true,
-        label: 'Label',
+        route: { gutter: 'top' },
       },
     ];
   },
   Select: (values) => {
     const small = values.size === 'small';
     return [
+      // One beam per variant — no tokens: each height composes from that
+      // input family's private vars.
+      {
+        on: '.MuiOutlinedInput-root',
+        aspect: 'touch-target',
+        text: 'Outlined',
+        label: 'Outlined',
+        route: { gutter: 'left' },
+      },
+      {
+        on: '.MuiFilledInput-root',
+        aspect: 'touch-target',
+        text: 'Filled',
+        label: 'Filled',
+        route: { gutter: 'left' },
+      },
+      {
+        on: '.MuiInput-root',
+        aspect: 'touch-target',
+        text: 'Standard',
+        label: 'Standard',
+        route: { gutter: 'left' },
+      },
+      // Standard only: the one variant whose own rows are the computed value.
       // At `small` both bands come off different rows that agree on 4px, so the
       // reverse lookup names the step and an explicit token would only be able
       // to lie once they diverge.
       {
-        on: '.MuiInputBase-input',
+        on: '.MuiInput-root .MuiInputBase-input',
         aspect: 'padding',
         axis: 'block',
         token: small ? undefined : 'x-small',
         label: 'Select value',
+        route: { gutter: 'right' },
       },
       {
-        on: '.MuiInputBase-root',
+        on: '.MuiInput-root',
         aspect: 'gap',
         token: small ? 'xx-small' : 'x-small',
-        root: true,
         label: 'Input root',
+        route: { gutter: 'bottom' },
       },
     ];
   },
   Slider: (values) => {
     const small = values.size === 'small';
+    // Three heights on one horizontal line: the root hugs the left, the thumb
+    // stands off the right, the rail steps a rung further and slides down.
     return [
-      { on: '.MuiSlider-root', aspect: 'touch-target', token: 'touch-target', root: true, label: 'Root' },
+      {
+        on: '.MuiSlider-root',
+        aspect: 'touch-target',
+        token: 'touch-target',
+        label: 'Root',
+        route: { gutter: 'left' },
+      },
+      // The thumb reads as a size, not a bracketed length: frame + pointer.
       {
         on: '.MuiSlider-thumb',
         aspect: 'touch-target',
+        pointer: true,
         token: small ? 'small' : 'medium',
         label: 'Thumb',
+        route: { gutter: 'top' },
       },
       // A thickness, told with a dimension line — the caption says so.
       {
@@ -473,62 +672,103 @@ export const DENSITY_ANNOTATIONS: Record<
         aspect: 'touch-target',
         token: small ? 'x-small / 4' : 'small / 4',
         label: 'Rail',
+        route: { gutter: 'right' },
       },
     ];
   },
   SnackbarContent: () => [
-    { on: '.MuiSnackbarContent-root', aspect: 'padding', axis: 'inline', token: 'medium', root: true, label: 'Snackbar' },
+    { on: '.MuiSnackbarContent-root', aspect: 'padding', axis: 'inline', token: 'medium', label: 'Snackbar' },
     // The base unit, not `x-small` — both are 8px today and diverge on a rescale.
-    { on: '.MuiSnackbarContent-root', aspect: 'padding', axis: 'block', token: 'spacing', root: true, label: 'Snackbar' },
-    { on: '.MuiSnackbarContent-root', aspect: 'gap', token: 'small', root: true, label: 'Snackbar' },
-    { on: '.MuiSnackbarContent-message', aspect: 'padding', axis: 'block', token: 'x-small', label: 'Message' },
+    {
+      on: '.MuiSnackbarContent-root',
+      aspect: 'padding',
+      axis: 'block',
+      token: 'spacing',
+      label: 'Snackbar',
+      route: { gutter: 'left' },
+    },
+    { on: '.MuiSnackbarContent-root', aspect: 'gap', token: 'small', label: 'Snackbar' },
+    // Down through the blank stretch past the sentence.
+    {
+      on: '.MuiSnackbarContent-message',
+      aspect: 'padding',
+      axis: 'block',
+      token: 'x-small',
+      label: 'Message',
+      route: { gutter: 'bottom', at: 0.9 },
+    },
     // Negative: the action is pulled back out of the root's own padding.
-    { on: '.MuiSnackbarContent-action', aspect: 'margin', axis: 'inline', token: '-x-small', label: 'Action' },
+    {
+      on: '.MuiSnackbarContent-action',
+      aspect: 'margin',
+      axis: 'inline',
+      token: '-x-small',
+      label: 'Action',
+      route: { gutter: 'right', line: 'diagonal' },
+    },
   ],
   Stepper: (values) => {
     const vertical = values.orientation === 'vertical';
     return [
       // The icon→label spacing falls out of centering the circle in this box.
+      // First step only — the three steps share one row, so multi-matching
+      // piles identical bars and labels on one y.
       {
-        on: '.MuiStepLabel-iconContainer',
+        on: '.MuiStep-root:first-of-type .MuiStepLabel-iconContainer',
         aspect: 'touch-target',
+        pointer: true,
         token: 'touch-target',
         label: 'Icon container',
+        route: { gutter: 'left' },
       },
       // An SvgIcon sizes off its own font size, so the circle is set here.
       {
-        on: '.MuiStepIcon-root',
+        on: '.MuiStep-root:first-of-type .MuiStepIcon-root',
         aspect: 'icon',
         token: 'touch-target - small + 2px',
         label: 'Step icon',
+        route: { gutter: 'bottom' },
       },
+      // The connector->label spacing: a step with a connector is a grid with
+      // master's `gap: 8`, untouched by the preset — px only. Horizontal only.
+      ...(vertical
+        ? []
+        : [
+            {
+              on: '.MuiStep-root:nth-of-type(2)',
+              aspect: 'gap' as const,
+              label: 'Step',
+              route: { gutter: 'top' as const },
+            },
+          ]),
       // Vertical only: half the box lands the rule on the icon's center, and
-      // margin + padding lines the content up with the label.
+      // margin + padding lines the content up with the label. All three are
+      // left-band stories — side claims, one connector as the sample.
       ...(vertical
         ? [
             {
-              on: '.MuiStepConnector-root',
+              on: '.MuiStep-root:nth-of-type(2) .MuiStepConnector-root',
               aspect: 'margin' as const,
-              axis: 'inline' as const,
+              side: 'left' as const,
               token: 'touch-target / 2',
-              root: true,
               label: 'Connector',
+              route: { gutter: 'left' as const },
             },
             {
               on: '.MuiStepContent-root',
               aspect: 'margin' as const,
-              axis: 'inline' as const,
+              side: 'left' as const,
               token: 'touch-target / 2',
-              root: true,
               label: 'Content',
+              route: { gutter: 'top' as const },
             },
             {
               on: '.MuiStepContent-root',
               aspect: 'padding' as const,
-              axis: 'inline' as const,
+              side: 'left' as const,
               token: 'touch-target / 2 - 1px',
-              root: true,
               label: 'Content',
+              route: { gutter: 'bottom' as const, shift: 300 },
             },
           ]
         : []),
@@ -555,40 +795,15 @@ export const DENSITY_ANNOTATIONS: Record<
         on: '.MuiSwitch-root',
         aspect: 'touch-target',
         token: small ? 'touch-target - x-small' : 'touch-target',
-        root: true,
         label: 'Switch',
-      },
-      // The pad is authored from the track height and the thumb together, so no
-      // single step names it — px only.
-      { on: '.MuiSwitch-root', aspect: 'padding', axis: 'block', root: true, label: 'Switch' },
-      // Same composite, negated: the root is pulled back under the label.
-      // Reported upward: the base's caption is wider than the whole control, so
-      // anything sharing the bottom gutter has to run its leader through it.
-      {
-        on: '.MuiSwitch-root',
-        aspect: 'margin',
-        axis: 'inline',
-        root: true,
-        label: 'Switch',
-        place: 'top',
-      },
-      {
-        on: '.MuiSwitch-switchBase',
-        aspect: 'padding',
-        axis: 'inline',
-        token: small
-          ? '(touch-target - x-small - (medium - 4px)) / 2'
-          : '(touch-target - medium) / 2',
-        label: 'Switch base',
-        // The control is small enough that the left ladder reaches into the
-        // bottom gutter's first rung, so both bottom captions start below it.
-        offset: 1,
+        route: { gutter: 'left' },
       },
       {
         on: '.MuiSwitch-thumb',
         aspect: 'touch-target',
         token: small ? 'medium - 4px' : 'medium',
         label: 'Thumb',
+        route: { gutter: 'right' },
       },
     ];
   },
@@ -598,40 +813,56 @@ export const DENSITY_ANNOTATIONS: Record<
     // would caption the wrong cell — `querySelector` takes the first match.
     const cell = '.MuiTableCell-root:not(.MuiTableCell-paddingCheckbox)';
     return [
+      // The last column only: one beam per row makes the right gutter a ruler;
+      // matching every cell doubles each row's bar and label.
       {
-        on: cell,
+        on: `${cell}:last-child`,
         aspect: 'touch-target',
         // Clear of the checkbox column and of the checkbox's own dimension.
-        offset: 3,
         token: small ? 'large + xx-small' : 'x-large + x-small',
-        root: true,
         label: 'Cell',
+        route: { gutter: 'right' },
       },
+      // One body cell carries the padding story.
       {
-        on: cell,
+        on: 'tbody .MuiTableCell-root:nth-child(2)',
         aspect: 'padding',
         axis: 'inline',
         token: small ? 'x-small' : 'small',
-        root: true,
         label: 'Cell',
+        route: { gutter: 'bottom' },
       },
       // `0 0 0 4px` — only the left band is live, so the token lands on it alone.
       {
-        on: '.MuiTableCell-paddingCheckbox',
+        on: 'thead .MuiTableCell-paddingCheckbox',
         aspect: 'padding',
         axis: 'inline',
         token: 'spacing / 2',
         label: 'Checkbox cell',
+        route: { gutter: 'top' },
       },
       {
-        on: '.MuiCheckbox-root',
+        on: 'tbody .MuiCheckbox-root',
         aspect: 'touch-target',
         token: small ? 'touch-target - x-small' : 'touch-target',
-        root: true,
         label: 'Checkbox',
+        route: { gutter: 'left' },
       },
-      { on: '.MuiTableSortLabel-icon', aspect: 'icon', token: 'icon-target + spacing / 4', label: 'Sort icon' },
-      { on: '.MuiTableSortLabel-icon', aspect: 'margin', axis: 'inline', token: 'xx-small', label: 'Sort icon' },
+      {
+        on: '.MuiTableSortLabel-icon',
+        aspect: 'icon',
+        token: 'icon-target + spacing / 4',
+        label: 'Sort icon',
+        route: { gutter: 'top', line: 'diagonal', shift: 230 },
+      },
+      {
+        on: '.MuiTableSortLabel-icon',
+        aspect: 'margin',
+        axis: 'inline',
+        token: 'xx-small',
+        label: 'Sort icon',
+        route: { gutter: 'top', shift: 70 },
+      },
     ];
   },
   Tabs: (values) => {
@@ -639,47 +870,31 @@ export const DENSITY_ANNOTATIONS: Record<
     return [
       // With an icon on top the stack outgrows both floors, so the bar's own
       // box stops being the density number and the row is dropped.
-      ...(icon
-        ? []
-        : ([
-            {
-              on: '.MuiTabs-root',
-              aspect: 'touch-target',
-              token: 'touch-target',
-              root: true,
-              label: 'Tabs',
-              // The bar and a tab are both `touch-target`, so left to itself the
-              // ladder stacked two identical captions in one gutter. One per side.
-              place: 'right',
-            },
-          ] as Annotation[])),
+      // The second tab is the sample — eight tabs' worth of identical beams
+      // and paddings would pile on one row.
       {
-        on: '.MuiTab-root',
+        on: '.MuiTab-root:nth-of-type(2)',
         aspect: 'touch-target',
         token: icon ? undefined : 'touch-target',
-        root: true,
         label: 'Tab',
-        // The left scroll button stands between this tab and the gutter.
-        offset: 1,
+        route: { gutter: 'left' },
       },
       {
-        on: '.MuiTab-root',
+        on: '.MuiTab-root:nth-of-type(2)',
         aspect: 'padding',
         axis: 'inline',
         token: 'small',
-        root: true,
         label: 'Tab',
+        route: { gutter: 'bottom' },
       },
-      // A `width`, not a height — so the beam measures the inline axis and
-      // reports to a top/bottom gutter instead of a side one.
+      // A `width`, not a height — the beam measures the inline axis, so it
+      // reports to a top/bottom gutter.
       {
         on: '.MuiTabScrollButton-root',
         aspect: 'touch-target',
-        // Above, where nothing else reads: below it collides with the tab's
-        // own inline padding caption.
-        place: 'top',
         token: 'touch-target',
         label: 'Scroll button',
+        route: { gutter: 'top', out: 1 },
       },
       // Without an icon the block padding is `0` and there is nothing for the
       // gap to separate; both rows only exist under the icon+label variant,
@@ -687,15 +902,21 @@ export const DENSITY_ANNOTATIONS: Record<
       ...(icon
         ? ([
             {
-              on: '.MuiTab-root',
+              on: '.MuiTab-root:nth-of-type(2)',
               aspect: 'padding',
               axis: 'block',
               token: 'xx-small',
-              root: true,
               label: 'Tab',
+              route: { gutter: 'bottom', shift: -170, line: 'diagonal' },
             },
-            { on: '.MuiTab-root', aspect: 'gap', token: 'xx-small', root: true, label: 'Tab' },
-          ] as Annotation[])
+            {
+              on: '.MuiTab-root:nth-of-type(2)',
+              aspect: 'gap',
+              token: 'xx-small',
+              label: 'Tab',
+              route: { gutter: 'bottom', shift: 130, line: 'diagonal' },
+            },
+          ] as Claim[])
         : []),
     ];
   },
@@ -707,18 +928,35 @@ export const DENSITY_ANNOTATIONS: Record<
     return [
       // Measured, not emitted — four different inputs landing on one number is
       // the whole claim, so each row carries its own beam.
-      { on: base, aspect: 'touch-target', root: true, label: 'InputBase' },
+      { on: base, aspect: 'touch-target', label: 'InputBase' },
       { on: baseInput, aspect: 'padding', axis: 'block', token: small ? 'xx-small' : 'x-small', label: 'InputBase' },
-      { on: '.MuiInput-root', aspect: 'touch-target', root: true, label: 'Standard' },
+      { on: '.MuiInput-root', aspect: 'touch-target', label: 'Standard' },
       // 8px top, 6px bottom — two values, so no single token can name them.
       { on: '.MuiInput-input', aspect: 'padding', axis: 'block', label: 'Standard' },
-      { on: '.MuiFilledInput-root', aspect: 'touch-target', root: true, label: 'Filled' },
+      { on: '.MuiFilledInput-root', aspect: 'touch-target', label: 'Filled' },
       // Asymmetric: `large` on top, `small` underneath — two captions.
       { on: '.MuiFilledInput-input', aspect: 'padding', axis: 'block', label: 'Filled' },
-      { on: '.MuiOutlinedInput-root', aspect: 'touch-target', root: true, label: 'Outlined' },
+      { on: '.MuiOutlinedInput-root', aspect: 'touch-target', label: 'Outlined' },
       { on: '.MuiOutlinedInput-input', aspect: 'padding', axis: 'block', token: small ? 'xx-small' : '(touch-target - 1lh) / 2', label: 'Outlined' },
-      { on: '.MuiOutlinedInput-root', aspect: 'gap', token: small ? 'xx-small' : 'x-small', root: true, label: 'Outlined' },
+      { on: '.MuiOutlinedInput-root', aspect: 'gap', token: small ? 'xx-small' : 'x-small', label: 'Outlined' },
+      // The small adornment icon, read below-left of the outlined input.
+      {
+        on: '.MuiOutlinedInput-root svg',
+        aspect: 'icon',
+        token: 'icon-target',
+        label: 'Outlined',
+        route: { gutter: 'left', shift: 60, line: 'diagonal' },
+      },
       { on: '.MuiFormHelperText-root', aspect: 'margin', axis: 'block', token: 'x-small', label: 'Helper text' },
+      // Contained helper text also carries an authored inline margin.
+      {
+        on: '.MuiFormHelperText-root',
+        aspect: 'margin',
+        axis: 'inline',
+        token: 'x-small',
+        label: 'Helper text',
+        route: { gutter: 'right' },
+      },
     ];
   },
   ToggleButton: (values) => {
@@ -727,28 +965,37 @@ export const DENSITY_ANNOTATIONS: Record<
       medium: 'touch-target',
       large: 'touch-target + small',
     }[values.size as string];
-    // Not the icon: the button never resizes its children, so this term is a
-    // nominal content width off the spacing base and stays 16px throughout.
-    const inner = { small: '1.75 × spacing', medium: '2 × spacing', large: '2.5 × spacing' }[
-      values.size as string
-    ];
+    // The inner term IS the icon size now: the padding centres the glyph's
+    // box inside the button, so each size pairs its box with its icon step.
+    const inner = {
+      small: '(icon-target - 0.25 × spacing)',
+      medium: 'icon-target',
+      large: '(icon-target + 0.5 × spacing)',
+    }[values.size as string];
+    // First button only — the group's two buttons double every label.
     return [
       {
-        on: '.MuiToggleButton-root',
+        on: '.MuiToggleButton-root:first-of-type',
         aspect: 'touch-target',
         token: box,
-        root: true,
         label: 'ToggleButton',
+        route: { gutter: 'left' },
       },
       {
-        on: '.MuiToggleButton-root',
+        on: '.MuiToggleButton-root:first-of-type',
         aspect: 'padding',
         axis: 'inline',
         token: `(${box} - ${inner}) / 2 - 1px`,
-        root: true,
         label: 'ToggleButton',
+        route: { gutter: 'bottom' },
       },
-      { on: '.MuiSvgIcon-root', aspect: 'icon', token: 'icon-target', label: 'Icon' },
+      {
+        on: '.MuiToggleButton-root:first-of-type .MuiSvgIcon-root',
+        aspect: 'icon',
+        token: 'icon-target',
+        label: 'Icon',
+        route: { gutter: 'top' },
+      },
     ];
   },
   // One ring, two captions: the bar has no floor left, so its height is the
@@ -759,21 +1006,37 @@ export const DENSITY_ANNOTATIONS: Record<
       aspect: 'padding',
       axis: 'inline',
       token: 'medium',
-      root: true,
       label: 'Toolbar',
     },
+    // The height story is a min-height composition, not block padding. The
+    // expression is long, so the px lands on its own line.
     {
       on: '.MuiToolbar-root',
-      aspect: 'padding',
-      axis: 'block',
-      token: values.dense === true ? 'xx-small' : 'x-small',
-      root: true,
+      aspect: 'touch-target',
+      token:
+        values.dense === true
+          ? 'touch-target + 2 × x-small'
+          : 'touch-target + 2 × small',
+      wrap: true,
       label: 'Toolbar',
     },
   ],
   Tooltip: (values) => [
-    { on: '.MuiTooltip-tooltip', aspect: 'padding', axis: 'inline', token: 'small', root: true, label: 'Tooltip' },
-    { on: '.MuiTooltip-tooltip', aspect: 'padding', axis: 'block', token: 'x-small', root: true, label: 'Tooltip' },
+    { on: '.MuiTooltip-tooltip', aspect: 'padding', axis: 'inline', token: 'small', label: 'Tooltip' },
+    // At `right` placement the side gutters belong to the arrow's beam, so
+    // the drop centres below; at `bottom` the right gutter is free and the
+    // pair reads there plainly.
+    {
+      on: '.MuiTooltip-tooltip',
+      aspect: 'padding',
+      axis: 'block',
+      token: 'x-small',
+      label: 'Tooltip',
+      route:
+        values.placement === 'right'
+          ? { gutter: 'bottom', at: 0.5 }
+          : { gutter: 'right' },
+    },
     // The offset is placement-shaped. At `bottom` it is one clean top band; at
     // `right` master's surviving 2px sits on the opposite side and would take a
     // second band under the same, wrong, token.
@@ -784,7 +1047,6 @@ export const DENSITY_ANNOTATIONS: Record<
             aspect: 'margin' as const,
             axis: 'block' as const,
             token: '0.5 × spacing',
-            root: true,
             label: 'Tooltip',
           },
         ]
@@ -792,11 +1054,27 @@ export const DENSITY_ANNOTATIONS: Record<
     // Only at a side placement is the arrow's 11px its height.
     ...(values.placement === 'right'
       ? [
+          // A pointer up to the button's top — a beam's ties here would run
+          // across the bubble's text. The margin's authored band is the left
+          // one; master's surviving 2px on the far side stays unclaimed.
           {
             on: '.MuiTooltip-arrow',
             aspect: 'touch-target' as const,
+            pointer: true,
+            // `block`: the 11px is the arrow's height even though the label
+            // sits on the top gutter.
+            axis: 'block' as const,
             token: '1.375 × spacing',
             label: 'Arrow',
+            route: { gutter: 'top' as const, line: 'diagonal' as const, shift: -60 },
+          },
+          {
+            on: '.MuiTooltip-tooltip',
+            aspect: 'margin' as const,
+            side: 'left' as const,
+            token: '0.5 × spacing',
+            label: 'Tooltip',
+            route: { gutter: 'bottom' as const, shift: -70 },
           },
         ]
       : []),
@@ -807,6 +1085,6 @@ export const DENSITY_ANNOTATIONS: Record<
 export function annotationsFor(
   family: string,
   values: Record<string, string | boolean>,
-): Annotation[] {
+): Claim[] {
   return DENSITY_ANNOTATIONS[family]?.(values) ?? [];
 }

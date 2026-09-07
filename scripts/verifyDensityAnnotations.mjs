@@ -58,7 +58,7 @@ function expected(token) {
   return negated ? -SCALE[key] : SCALE[key];
 }
 
-const measureInPage = ([selector, aspect, axis]) => {
+const measureInPage = ([selector, aspect, axis, side]) => {
   // Scope to the demo, or the toolbar's own inputs answer for the component's.
   const demo = document.querySelector('[data-density-demo]');
   const element = demo?.querySelector(selector);
@@ -72,10 +72,16 @@ const measureInPage = ([selector, aspect, axis]) => {
   const styles = window.getComputedStyle(element);
   const num = (value) => parseFloat(value) || 0;
   if (aspect === 'padding' || aspect === 'margin') {
-    const sides =
-      axis === 'block'
-        ? [`${aspect}Top`, `${aspect}Bottom`]
-        : [`${aspect}Left`, `${aspect}Right`];
+    let axisSides;
+    if (axis === 'all') {
+      axisSides = [`${aspect}Top`, `${aspect}Right`, `${aspect}Bottom`, `${aspect}Left`];
+    } else if (axis === 'block') {
+      axisSides = [`${aspect}Top`, `${aspect}Bottom`];
+    } else {
+      axisSides = [`${aspect}Left`, `${aspect}Right`];
+    }
+    // a side claim names one band's own expression, so only it is measured
+    const sides = side ? [`${aspect}${side[0].toUpperCase()}${side.slice(1)}`] : axisSides;
     const values = sides.map((side) => num(styles[side])).filter((v) => Math.abs(v) > 0.5);
     return { values };
   }
@@ -141,6 +147,7 @@ for (const family of families) {
       annotation.on,
       annotation.aspect,
       annotation.axis,
+      annotation.side,
     ]);
 
     // A — the element is there and visible
@@ -171,7 +178,7 @@ for (const family of families) {
         );
         continue;
       }
-      const shown = `${annotation.token} (${Math.round(want * 10) / 10}px)`;
+      const shown = `${annotation.text ?? annotation.token} (${Math.round(want * 10) / 10}px)`;
       if (!captions.some((text) => text === shown)) {
         failures.push(`${where}: expected the caption "${shown}", not drawn`);
       }

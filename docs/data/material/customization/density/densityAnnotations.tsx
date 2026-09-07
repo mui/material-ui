@@ -45,35 +45,10 @@ const INK_DARK = { padding: '#a9d18a', margin: '#f0b47a', gap: '#c9adf0' };
 
 export type Aspect = 'padding' | 'margin' | 'gap' | 'icon' | 'touch-target';
 
-export interface Annotation {
-  /** selector, resolved inside the stage. */
-  on: string;
-  aspect: Aspect;
-  /** the expression the preset authored, e.g. `touch-target - x-small`. Left off
-   * when the value is a composite of private vars — then the caption is px only. */
-  token?: string;
-  /** which pair of bands a ring annotation is about. */
-  axis?: 'inline' | 'block';
-  /** the component's own root, so it needs no dashed outline to identify it. */
-  root?: boolean;
-  /** shown in the toggle list; derived from the selector when absent. */
-  label?: string;
-  /** Force the gutter. A value outside the aspect's natural pair flips the
-   * connector to a spine — one line crossing every band, ticked where it meets
-   * each — which is the only shape that can reach the other pair without the
-   * stems doubling back through the component. Omit for automatic placement. */
-  place?: Side;
-  /** where along the axis the connector crosses, 0–1. 0.5 is the slot's centre. */
-  at?: number;
-  /** which rung the label sits on, counting out from the component. Absolute,
-   * not a nudge: leave it off and the rung is chosen automatically. */
-  offset?: number;
-}
-
 export type Side = 'top' | 'bottom' | 'left' | 'right';
 
 /** The slot a reader toggles: every annotation on it goes together. */
-export const slotLabel = (annotation: Annotation) =>
+export const slotLabel = (annotation: { on: string; label?: string }) =>
   annotation.label ??
   annotation.on.replace(/^\.Mui/, '').replace(/-root$/, '').replace(/-/g, ' ');
 
@@ -84,42 +59,14 @@ interface Edges {
   left: number;
 }
 
-interface Rect {
+export interface Rect {
   x: number;
   y: number;
   width: number;
   height: number;
 }
 
-export interface Measured {
-  annotation: Annotation;
-  box: Rect;
-  border: Edges;
-  padding: Edges;
-  margin: Edges;
-  gap: { x: number; y: number; size: number; vertical: boolean } | null;
-  icon: Rect | null;
-}
-
 const round = (value: number) => `${Math.round(value * 10) / 10}px`;
-
-/**
- * `token (24px)` when the annotation names the expression the preset authored,
- * plain px when it doesn't.
- *
- * A token is a claim of authorship, so it is never inferred from the measured
- * number: a standard input at `size="small"` happens to come out at 32px, and
- * naming that `touch-target` would assert a derivation the preset never made.
- * No token means the value is measured, not emitted — and it prints as such.
- */
-function caption(value: number, annotation: Annotation) {
-  return annotation.token
-    ? `${annotation.token} (${round(value)})`
-    : round(value);
-}
-
-const rectPath = (rect: Rect) =>
-  `M${rect.x},${rect.y}H${rect.x + rect.width}V${rect.y + rect.height}H${rect.x}Z`;
 
 const inset = (rect: Rect, edges: Edges): Rect => ({
   x: rect.x + edges.left,
@@ -198,749 +145,546 @@ function useStageEffect(
   }, deps);
 }
 
-/**
- * Measure every annotated element plus the demo's own bounds, so the numbers can
- * never drift from what the theme emits and captions can hang off the gutters
- * rather than off the component.
- */
-export function useAnnotations(
-  stageRef: React.RefObject<HTMLElement | null>,
-  demoRef: React.RefObject<HTMLElement | null>,
-  annotations: Annotation[],
-  deps: React.DependencyList,
-) {
-  const [state, setState] = React.useState<{
-    measured: Measured[];
-    bounds: Rect;
-  } | null>(null);
 
-  useStageEffect(
-    stageRef,
-    (stage) => {
-      const stageBox = stage.getBoundingClientRect();
-      const relative = (rect: DOMRect): Rect => ({
-        x: rect.left - stageBox.left,
-        y: rect.top - stageBox.top,
-        width: rect.width,
-        height: rect.height,
-      });
+// ---------------------------------------------------------------------------
+// The annotation lib. A claim (`on` + aspect + token) resolves to items; the
+// draw layer takes plain geometry plus an authored route and knows nothing
+// about MUI. No item's position depends on another's — adjusting one route
+// moves exactly one label, so hand-tuning converges.
+// ---------------------------------------------------------------------------
 
-      const demo = demoRef.current;
-      if (!demo) {
-        setState(null);
-        return;
-      }
-      const painted = [demo, ...Array.from(demo.children)]
-        .map((node) => node.getBoundingClientRect())
-        .filter((box) => box.width > 0 && box.height > 0);
-      if (painted.length === 0) {
-        setState(null);
-        return;
-      }
-      const left = Math.min(...painted.map((box) => box.left));
-      const top = Math.min(...painted.map((box) => box.top));
-      const bounds: Rect = {
-        x: left - stageBox.left,
-        y: top - stageBox.top,
-        width: Math.max(...painted.map((box) => box.right)) - left,
-        height: Math.max(...painted.map((box) => box.bottom)) - top,
-      };
+export type Gutter = Side;
 
-      const measured: Measured[] = [];
-      annotations.forEach((annotation) => {
-        const element = demo.querySelector(annotation.on);
-        if (!element || !isVisible(element)) {
-          return;
-        }
-        const styles = window.getComputedStyle(element);
-        const edges = (prefix: string, suffix: string): Edges => ({
-          top: parseFloat(styles[`${prefix}Top${suffix}` as any]) || 0,
-          right: parseFloat(styles[`${prefix}Right${suffix}` as any]) || 0,
-          bottom: parseFloat(styles[`${prefix}Bottom${suffix}` as any]) || 0,
-          left: parseFloat(styles[`${prefix}Left${suffix}` as any]) || 0,
-        });
-
-        // The band is the declared gap, drawn where the first child ends — a
-        // `space-between` row would otherwise report all its leftover space.
-        const column = parseFloat(styles.columnGap) || 0;
-        const row = parseFloat(styles.rowGap) || 0;
-        // The band starts where the first child ends, so only that child has to
-        // be an element. A Button's label is a bare text node — using the second
-        // child to tell a row gap from a column one would miss it entirely.
-        const first = element.children[0]?.getBoundingClientRect();
-        const second = element.children[1]?.getBoundingClientRect();
-        let gap: Measured['gap'] = null;
-        if (first) {
-          const stacked = second
-            ? second.top >= first.bottom - 0.5
-            : row > 0.5 && column <= 0.5;
-          const size = stacked ? row : column;
-          if (size > 0.5) {
-            gap = {
-              x: (stacked ? first.left : first.right) - stageBox.left,
-              y: (stacked ? first.bottom : first.top) - stageBox.top,
-              size,
-              vertical: stacked,
-            };
-          }
-        }
-
-        const icon = element.matches('svg') ? element : element.querySelector('svg');
-        measured.push({
-          annotation,
-          box: relative(element.getBoundingClientRect()),
-          border: edges('border', 'Width'),
-          padding: edges('padding', ''),
-          margin: edges('margin', ''),
-          gap,
-          icon: icon ? relative(icon.getBoundingClientRect()) : null,
-        });
-      });
-      setState({ measured, bounds });
-    },
-    deps,
-  );
-
-  return state;
+/** Where a label goes. Every field is absolute. */
+export interface Route {
+  /** which margin strip around the demo the label lives in. */
+  gutter: Gutter;
+  /** 0-1 along the band edge facing the gutter: where the line attaches. */
+  at?: number;
+  /** rungs (label lines) out from the gutter's first line. */
+  out?: number;
+  /** px along the gutter: slides the label; the line follows. */
+  shift?: number;
+  /** ladder (axis-aligned, default) or diagonal — the opt-in for a crowded
+   * side, where straight segments fan instead of stacking. */
+  line?: 'diagonal' | 'ladder';
 }
 
-/**
- * The end every connector shares: an optional run along the rail to the rung the
- * ladder gave this caption, a riser out of the rail, then the text. A comb and a
- * spine differ in how they reach the rail, never in how they leave it — so both
- * hand the ending here and land level with each other.
- */
-function Caption({
+export type AnnotateItem =
+  | {
+      /** a strip of space: padding, margin, gap. Shown by filling it. */
+      kind: 'band';
+      bands: Rect[];
+      /** paint this ring (outer minus inner, evenodd) instead of the band
+       * rects — the full-perimeter highlight behind an `axis: 'all'` claim. */
+      ring?: { outer: Rect; inner: Rect };
+      /** which axis the strip measures: 'x' = its width is the value. */
+      measures: 'x' | 'y';
+      tone: 'padding' | 'margin' | 'gap';
+      label: string;
+      route: Route;
+    }
+  | {
+      /** an extent of a box: touch-target, icon. Shown by bracketing its ends. */
+      kind: 'bound';
+      box: Rect;
+      /** dashed box + pointer (a slot inside the component) instead of a beam
+       * (the component's own overall size). */
+      outline?: boolean;
+      /** beam + the dashed target box drawn inset inside the element, so bands
+       * touching its edges stay clear. */
+      outlined?: boolean;
+      /** the `(px)` part of the label renders on its own line. */
+      wrap?: boolean;
+      measures: 'x' | 'y';
+      label: string;
+      route: Route;
+    };
+
+// The gutter's first label line, off the demo bounds. `out` steps outward from
+// it by RUNG. REACH doubles as the fixed lead-in between a line and its label.
+const EDGE = 22;
+
+const away = (g: Gutter) => (g === 'top' || g === 'left' ? -1 : 1);
+const sideways = (g: Gutter) => g === 'left' || g === 'right';
+
+function railOf(bounds: Rect, g: Gutter, out: number) {
+  const d = EDGE + out * RUNG;
+  if (g === 'top') {
+    return bounds.y - d;
+  }
+  if (g === 'bottom') {
+    return bounds.y + bounds.height + d;
+  }
+  if (g === 'left') {
+    return bounds.x - d;
+  }
+  return bounds.x + bounds.width + d;
+}
+
+/** Just the text, at its gutter address. */
+function LabelText({
+  gutter,
   rail,
-  side,
-  /** where the text sits — the connector's own coordinate, unless a ladder
-   * moved it clear of a neighbour. */
   anchor,
-  /** the connector's own coordinate, which the run along the rail starts from. */
-  natural,
   label,
 }: {
+  gutter: Gutter;
   rail: number;
-  side: Side;
   anchor: number;
-  natural: number;
   label: string;
 }) {
-  const away = side === 'top' || side === 'left' ? -1 : 1;
-  // A top/bottom caption needs no run: the rail already spans the stems and the
-  // riser drops at the anchor. Only the side gutters ladder by y.
-  if (side === 'top' || side === 'bottom') {
+  const a = away(gutter);
+  if (!sideways(gutter)) {
     return (
-      <React.Fragment>
-        <line
-          className="leader"
-          x1={anchor}
-          y1={rail}
-          x2={anchor}
-          y2={rail + away * REACH}
-        />
-        <text
-          x={anchor}
-          y={rail + away * (side === 'top' ? 16 : 26)}
-          textAnchor="middle"
-        >
-          {label}
-        </text>
-      </React.Fragment>
+      <text x={anchor} y={rail + a * (gutter === 'top' ? 16 : 26)} textAnchor="middle">
+        {label}
+      </text>
     );
   }
   return (
-    <React.Fragment>
-      {/* Stacked clear of a neighbour: run along the rail, then out. */}
-      {Math.abs(anchor - natural) > 0.5 ? (
-        <line className="leader" x1={rail} y1={natural} x2={rail} y2={anchor} />
-      ) : null}
-      <line
-        className="leader"
-        x1={rail}
-        y1={anchor}
-        x2={rail + away * REACH}
-        y2={anchor}
-      />
-      <text
-        x={rail + away * 14}
-        y={anchor}
-        textAnchor={side === 'left' ? 'end' : 'start'}
-        dominantBaseline="middle"
-      >
-        {label}
-      </text>
-    </React.Fragment>
+    <text
+      x={rail + a * 14}
+      y={anchor}
+      textAnchor={gutter === 'left' ? 'end' : 'start'}
+      dominantBaseline="middle"
+    >
+      {label}
+    </text>
   );
 }
 
-/** One caption's connector: a stem out of every band it names, a rail joining
- * them, a riser to the label. Axis-aligned throughout — never a diagonal. */
-function Comb({
-  from,
+/** One straight segment from each attach point to the label. Ends where the
+ * ladder's lead-in ends, so both styles stick to the text the same way. */
+function DiagonalLeader({
+  gutter,
   rail,
-  side,
+  anchor,
+  attach,
   label,
-  labelAt,
-  tone,
 }: {
-  from: { x: number; y: number }[];
-  /** the coordinate the rail sits on: a y for top/bottom, an x for left/right. */
+  gutter: Gutter;
   rail: number;
-  side: Side;
+  anchor: number;
+  attach: { x: number; y: number }[];
   label: string;
-  /** where the text sits, when it had to move clear of another caption. */
-  labelAt?: number;
-  /** the aspect's colour, so a line reads as padding/margin/gap on sight. */
-  tone?: string;
 }) {
-  const horizontal = side === 'top' || side === 'bottom';
-  const xs = from.map((point) => point.x);
-  const ys = from.map((point) => point.y);
-  const mid = horizontal
-    ? (Math.min(...xs) + Math.max(...xs)) / 2
-    : (Math.min(...ys) + Math.max(...ys)) / 2;
-
+  const a = away(gutter);
+  const end = sideways(gutter)
+    ? { x: rail + a * REACH, y: anchor }
+    : { x: anchor, y: rail + a * REACH };
   return (
-    <g className={tone}>
-      {from.map((point) => (
+    <React.Fragment>
+      {attach.map((point) => (
         <line
           key={`${point.x},${point.y}`}
           className="leader"
           x1={point.x}
           y1={point.y}
-          x2={horizontal ? point.x : rail}
-          y2={horizontal ? rail : point.y}
+          x2={end.x}
+          y2={end.y}
         />
       ))}
-      {from.length > 1 ? (
-        <line
-          className="leader"
-          x1={horizontal ? Math.min(...xs) : rail}
-          y1={horizontal ? rail : Math.min(...ys)}
-          x2={horizontal ? Math.max(...xs) : rail}
-          y2={horizontal ? rail : Math.max(...ys)}
-        />
-      ) : null}
-      <Caption
-        rail={rail}
-        side={side}
-        anchor={labelAt ?? mid}
-        natural={mid}
-        label={label}
-      />
-    </g>
+      <LabelText gutter={gutter} rail={rail} anchor={anchor} label={label} />
+    </React.Fragment>
   );
 }
 
-/** The off-axis connector: one line crossing every band it names, ticked where
- * it meets each, running out to a gutter. A comb's stems leave a band
- * perpendicular to it and so can only reach the band's own pair of gutters; a
- * spine crosses the stack instead, which is what lets a block-axis padding
- * report upward. With one band it is just a stem. */
-function Spine({
-  marks,
-  cross,
+/** The ending every ladder shares: an optional run along the gutter when
+ * `shift` moved the label, the fixed lead-in, then the text. */
+function LadderEnding({
+  gutter,
   rail,
-  side,
+  natural,
+  shift = 0,
+  covered,
   label,
-  tone,
-  labelAt,
 }: {
-  /** each band's centre along the crossing axis. */
-  marks: number[];
-  /** the spine's fixed coordinate: an x when it runs vertically, else a y. */
-  cross: number;
+  gutter: Gutter;
   rail: number;
-  side: Side;
+  natural: number;
+  shift?: number;
+  /** the stretch of rail a crossbar already draws — the run never repaints it,
+   * or the doubled dashes read as a solid streak. */
+  covered?: [number, number];
   label: string;
-  tone?: string;
-  /** where the text sits when the ladder moved it clear of a neighbour. */
-  labelAt?: number;
 }) {
-  const vertical = side === 'top' || side === 'bottom';
-  const anchor = labelAt ?? cross;
-  const away = side === 'top' || side === 'left' ? -1 : 1;
-  const far = away < 0 ? Math.max(...marks) : Math.min(...marks);
-  const TICK = 5;
-
+  const a = away(gutter);
+  const anchor = natural + shift;
+  let runFrom: number | null = shift !== 0 ? natural : null;
+  if (shift !== 0 && covered) {
+    if (anchor >= covered[0] && anchor <= covered[1]) {
+      runFrom = null;
+    } else {
+      runFrom = anchor < covered[0] ? covered[0] : covered[1];
+    }
+  }
+  if (!sideways(gutter)) {
+    return (
+      <React.Fragment>
+        {runFrom !== null ? (
+          <line className="leader" x1={runFrom} y1={rail} x2={anchor} y2={rail} />
+        ) : null}
+        <line className="leader" x1={anchor} y1={rail} x2={anchor} y2={rail + a * REACH} />
+        <LabelText gutter={gutter} rail={rail} anchor={anchor} label={label} />
+      </React.Fragment>
+    );
+  }
   return (
-    <g className={tone}>
-      <line
-        className="leader"
-        x1={vertical ? cross : rail}
-        y1={vertical ? rail : cross}
-        x2={vertical ? cross : far}
-        y2={vertical ? far : cross}
+    <React.Fragment>
+      {runFrom !== null ? (
+        <line className="leader" x1={rail} y1={runFrom} x2={rail} y2={anchor} />
+      ) : null}
+      <line className="leader" x1={rail} y1={anchor} x2={rail + a * REACH} y2={anchor} />
+      <LabelText gutter={gutter} rail={rail} anchor={anchor} label={label} />
+    </React.Fragment>
+  );
+}
+
+function BandView({
+  item,
+  bounds,
+  hatchId,
+}: {
+  item: Extract<AnnotateItem, { kind: 'band' }>;
+  bounds: Rect;
+  hatchId: string;
+}) {
+  const { bands, measures, route, label, tone } = item;
+  const g = route.gutter;
+  const rail = railOf(bounds, g, route.out ?? 0);
+  // A stem leaves a band along the strip's own run, so it can only reach the
+  // gutter pair perpendicular to the measured axis. Anywhere else the ladder
+  // crosses the strip instead — a spine, ticked where it meets each band.
+  const naturalPair: Gutter[] = measures === 'x' ? ['top', 'bottom'] : ['left', 'right'];
+  const comb = naturalPair.includes(g);
+  const diagonal = (route.line ?? 'ladder') === 'diagonal';
+  // `at` (0-1, default centre) picks the point along the band edge facing the
+  // gutter where the line attaches.
+  const t = route.at ?? 0.5;
+  const facing = (b: Rect) => {
+    if (g === 'top') {
+      return { x: b.x + b.width * t, y: b.y };
+    }
+    if (g === 'bottom') {
+      return { x: b.x + b.width * t, y: b.y + b.height };
+    }
+    if (g === 'left') {
+      return { x: b.x, y: b.y + b.height * t };
+    }
+    return { x: b.x + b.width, y: b.y + b.height * t };
+  };
+
+  const ringPath = (r: Rect) =>
+    `M${r.x},${r.y}H${r.x + r.width}V${r.y + r.height}H${r.x}Z`;
+  const fill = item.ring ? (
+    <path
+      className={`${tone}-box`}
+      fillRule="evenodd"
+      d={`${ringPath(item.ring.outer)}${ringPath(item.ring.inner)}`}
+    />
+  ) : (
+  bands.map((b) =>
+    tone === 'gap' ? (
+      <rect
+        key={`f-${b.x}-${b.y}`}
+        className="gap-box"
+        fill={`url(#${hatchId})`}
+        x={b.x}
+        y={b.y}
+        width={b.width}
+        height={b.height}
       />
-      {marks.map((mark) => (
-        <line
-          key={mark}
-          className="dim"
-          x1={vertical ? cross - TICK : mark}
-          y1={vertical ? mark : cross - TICK}
-          x2={vertical ? cross + TICK : mark}
-          y2={vertical ? mark : cross + TICK}
+    ) : (
+      <rect
+        key={`f-${b.x}-${b.y}`}
+        className={`${tone}-box`}
+        x={b.x}
+        y={b.y}
+        width={b.width}
+        height={b.height}
+      />
+    ),
+  ));
+
+  if (diagonal) {
+    // Exit from the band edge facing the gutter — the exact point a ladder
+    // stem leaves from. Only the line's angle differs between styles.
+    const attach = bands.map(facing);
+    const spans = attach.map((point) => (sideways(g) ? point.y : point.x));
+    const natural = (Math.min(...spans) + Math.max(...spans)) / 2;
+    return (
+      <g className={`tone-${tone}`}>
+        {fill}
+        <DiagonalLeader
+          gutter={g}
+          rail={rail}
+          anchor={natural + (route.shift ?? 0)}
+          attach={attach}
+          label={label}
         />
-      ))}
-      <Caption
-        rail={rail}
-        side={side}
-        anchor={anchor}
-        natural={cross}
-        label={label}
-      />
+      </g>
+    );
+  }
+
+  if (comb) {
+    const stems = bands.map((b) => {
+      const point = facing(b);
+      return sideways(g) ? point.y : point.x;
+    });
+    const edgeOf = (b: Rect) => {
+      if (g === 'top') {
+        return b.y;
+      }
+      if (g === 'bottom') {
+        return b.y + b.height;
+      }
+      if (g === 'left') {
+        return b.x;
+      }
+      return b.x + b.width;
+    };
+    const natural = (Math.min(...stems) + Math.max(...stems)) / 2;
+    return (
+      <g className={`tone-${tone}`}>
+        {fill}
+        {bands.map((b, index) =>
+          sideways(g) ? (
+            <line
+              key={`s-${b.x}-${b.y}`}
+              className="leader"
+              x1={edgeOf(b)}
+              y1={stems[index]}
+              x2={rail}
+              y2={stems[index]}
+            />
+          ) : (
+            <line
+              key={`s-${b.x}-${b.y}`}
+              className="leader"
+              x1={stems[index]}
+              y1={edgeOf(b)}
+              x2={stems[index]}
+              y2={rail}
+            />
+          ),
+        )}
+        {bands.length > 1 ? (
+          <line
+            className="leader"
+            x1={sideways(g) ? rail : Math.min(...stems)}
+            y1={sideways(g) ? Math.min(...stems) : rail}
+            x2={sideways(g) ? rail : Math.max(...stems)}
+            y2={sideways(g) ? Math.max(...stems) : rail}
+          />
+        ) : null}
+        <LadderEnding
+          gutter={g}
+          rail={rail}
+          natural={natural}
+          shift={route.shift}
+          covered={
+            bands.length > 1 ? [Math.min(...stems), Math.max(...stems)] : undefined
+          }
+          label={label}
+        />
+      </g>
+    );
+  }
+
+  // Spine: one line crossing the strip(s), a tick where it meets each.
+  const lo = Math.min(...bands.map((b) => (measures === 'x' ? b.y : b.x)));
+  const hi = Math.max(...bands.map((b) => (measures === 'x' ? b.y + b.height : b.x + b.width)));
+  const cross = lo + (hi - lo) * t;
+  const marks = bands.map((b) => (measures === 'x' ? b.x + b.width / 2 : b.y + b.height / 2));
+  const far = away(g) < 0 ? Math.max(...marks) : Math.min(...marks);
+  const TICK = 5;
+  return (
+    <g className={`tone-${tone}`}>
+      {fill}
+      {sideways(g) ? (
+        <line className="leader" x1={rail} y1={cross} x2={far} y2={cross} />
+      ) : (
+        <line className="leader" x1={cross} y1={rail} x2={cross} y2={far} />
+      )}
+      {marks.map((mark) =>
+        sideways(g) ? (
+          <line key={mark} className="dim" x1={mark} y1={cross - TICK} x2={mark} y2={cross + TICK} />
+        ) : (
+          <line key={mark} className="dim" x1={cross - TICK} y1={mark} x2={cross + TICK} y2={mark} />
+        ),
+      )}
+      <LadderEnding gutter={g} rail={rail} natural={cross} shift={route.shift} label={label} />
     </g>
   );
 }
 
-export function Annotations({
-  measured,
+function BoundView({
+  item,
   bounds,
 }: {
-  measured: Measured[];
+  item: Extract<AnnotateItem, { kind: 'bound' }>;
   bounds: Rect;
 }) {
-  const hatchId = React.useId();
+  const { box, measures, route, label, outline, outlined, wrap } = item;
+  // Split before the trailing `(px)`; the tail keeps its leading space so the
+  // node's textContent still reads exactly like the one-line caption.
+  const breakAt = wrap ? label.lastIndexOf(' (') : -1;
+  const g = route.gutter;
+  const a = away(g);
+  const vertical = measures === 'y';
+  // Inside the element's own edge, so a band fill touching that edge is not
+  // painted over by the frame's stroke.
+  const frame = (
+    <rect
+      className="slot-outline"
+      x={box.x + 1}
+      y={box.y + 1}
+      width={box.width - 2}
+      height={box.height - 2}
+    />
+  );
 
-  // A caption leaves through the gutter its box is nearest, so a slot low in the
-  // demo doesn't drag a leader up across everything above it. Several on the same
-  // side stack into lanes.
-  // Only the side gutters count: top/bottom separate by rung, not by lane.
-  const lanes: Record<'left' | 'right', number> = { left: 0, right: 0 };
-  const nearest = (box: Rect, axis: 'inline' | 'block'): Side => {
-    if (axis === 'inline') {
-      return box.y + box.height / 2 < bounds.y + bounds.height / 2 ? 'top' : 'bottom';
-    }
-    return box.x + box.width / 2 < bounds.x + bounds.width / 2 ? 'left' : 'right';
-  };
-  /** An I-beam and an icon box measure height, so only a side gutter can hold
-   * their caption — the block axis always answers with one. */
-  const nearestSide = (box: Rect) => nearest(box, 'block') as 'left' | 'right';
-  // Top/bottom captions only need a new rung when they would actually overlap
-  // in x — the same reasoning that gave the side gutters a single rail. Bumping
-  // a lane per annotation instead pushed rails far out, and a spine has to run
-  // from its rail all the way down through the box.
-  const taken: Record<'top' | 'bottom', { min: number; max: number }[][]> = {
-    top: [],
-    bottom: [],
-  };
-  const reserveLane = (
-    side: 'top' | 'bottom',
-    centre: number,
-    label: string,
-    rung?: number,
-  ) => {
-    // 13px type: close enough to keep neighbours apart without measuring.
-    const half = (label.length * 7.2) / 2 + 8;
-    const span = { min: centre - half, max: centre + half };
-    const rungs = taken[side];
-    if (rung !== undefined) {
-      while (rungs.length <= rung) {
-        rungs.push([]);
-      }
-      rungs[rung].push(span);
-      return rung;
-    }
-    for (let i = 0; i < rungs.length; i += 1) {
-      if (rungs[i].every((r) => span.max < r.min || span.min > r.max)) {
-        rungs[i].push(span);
-        return i;
-      }
-    }
-    rungs.push([span]);
-    return rungs.length - 1;
-  };
-  /** `rung` is absolute: which line out from the component the caption sits on.
-   * Left undefined it is chosen automatically — the first line where this
-   * caption would not overlap one already placed. */
-  const nextRail = (side: Side, rung?: number, centre = 0, label = '') => {
-    if (side === 'top') {
-      return bounds.y - 22 - reserveLane('top', centre, label, rung) * RUNG;
-    }
-    if (side === 'bottom') {
-      return bounds.y + bounds.height + 22 + reserveLane('bottom', centre, label, rung) * RUNG;
-    }
-    // Side captions share ONE rail — they separate by y (see `reserveY`), and
-    // an x step would make the column drift inward as slots are toggled off.
-    lanes[side] += 1;
-    return side === 'left' ? bounds.x - 22 : bounds.x + bounds.width + 22;
-  };
-
-  // Captions on a side never sit closer than one rung apart, and they descend in
-  // annotation order. Where boxes are already far apart (a stacked instance)
-  // each keeps its natural y; where they cluster (Alert's slots all share one
-  // row) they become an evenly spaced ladder instead of piling up.
-
-  const lastY: Record<'left' | 'right', number> = {
-    left: Number.NEGATIVE_INFINITY,
-    right: Number.NEGATIVE_INFINITY,
-  };
-  const reserveY = (side: 'left' | 'right', y: number, rung?: number) => {
-    // An explicit rung counts down from the demo's top edge; otherwise the
-    // caption keeps its natural y, never closer than one rung to the last.
-    const next =
-      rung === undefined ? Math.max(y, lastY[side] + RUNG) : bounds.y + rung * RUNG;
-    lastY[side] = Math.max(lastY[side], next);
-    return next;
-  };
-
-  const fills: React.ReactNode[] = [];
-  const marks: React.ReactNode[] = [];
-
-  /**
-   * Draw one caption's connector. The shape follows from the side: inside the
-   * aspect's natural pair a comb's stems reach it directly; outside, only a
-   * spine can, by crossing the bands instead of leaving them perpendicular.
-   *
-   * The rail must be claimed before the rung, in this order — both ladders are
-   * stateful, and the caption's position is where they cross.
-   */
-  const connect = ({
-    id,
-    naturalPair,
-    side,
-    offset,
-    tone,
-    label,
-    points,
-    /** where the caption sits on a top/bottom rail. */
-    alongTop,
-    /** the connector's natural y, when the caption lands in a side gutter. */
-    alongSide,
-  }: {
-    id: string;
-    naturalPair: Side[];
-    side: Side;
-    offset?: number;
-    tone?: string;
-    label: string;
-    points: { x: number; y: number }[];
-    alongTop: number;
-    alongSide: number;
-  }) => {
-    const rail = nextRail(side, offset, alongTop, label);
-    const sideways = side === 'left' || side === 'right';
-    const labelAt = sideways ? reserveY(side, alongSide, offset) : alongTop;
-    const shared = { rail, side, label, tone, labelAt };
-    marks.push(
-      naturalPair.includes(side) ? (
-        <Comb key={id} from={points} {...shared} />
-      ) : (
-        // A spine travels along one axis, so it ticks each stem at that stem's
-        // coordinate on it — the same points the comb would have used.
-        <Spine
-          key={id}
-          marks={points.map((point) => (sideways ? point.x : point.y))}
-          cross={sideways ? alongSide : alongTop}
-          {...shared}
-        />
-      ),
-    );
-  };
-  // One ring per element, however many band annotations point at it.
-  const ringed = new Set<string>();
-
-  // The ladder walks downward, so annotations must arrive in that order too.
-  // Spec order is not visual order — TextField lists InputBase first but renders
-  // it last, which pushed every later beam below it into a pile.
-  const ordered = [...measured].sort((a, b) => a.box.y - b.box.y);
-
-  ordered.forEach((item, index) => {
-    const { annotation, box } = item;
-    const key = `${annotation.on}-${annotation.aspect}-${annotation.axis ?? ''}-${index}`;
-    const paddingBox = inset(box, item.border);
-    const contentBox = inset(paddingBox, item.padding);
-
-    const outline = () => {
-      if (!annotation.root && !ringed.has(`outline-${annotation.on}`)) {
-        ringed.add(`outline-${annotation.on}`);
-        fills.push(
-          <path key={`outline-${key}`} className="slot-outline" d={rectPath(box)} />,
-        );
-      }
-    };
-
-    if (annotation.aspect === 'padding' || annotation.aspect === 'margin') {
-      const isPadding = annotation.aspect === 'padding';
-      const edges = isPadding ? item.padding : item.margin;
-      const outer = isPadding ? paddingBox : outset(box, edges);
-      const inner = isPadding ? contentBox : box;
-      const axis = annotation.axis ?? 'inline';
-      const bands =
-        axis === 'inline'
-          ? [
-              { side: 'left' as const, value: edges.left },
-              { side: 'right' as const, value: edges.right },
-            ]
-          : [
-              { side: 'top' as const, value: edges.top },
-              { side: 'bottom' as const, value: edges.bottom },
-            ];
-      const live = bands.filter((band) => Math.abs(band.value) > 0.5);
-      if (live.length === 0) {
-        return;
-      }
-
-      const ringKey = `${annotation.aspect}-${annotation.on}`;
-      if (!ringed.has(ringKey)) {
-        ringed.add(ringKey);
-        fills.push(
-          <path
-            key={`fill-${key}`}
-            className={isPadding ? 'padding-box' : 'margin-box'}
-            fillRule="evenodd"
-            d={`${rectPath(outer)}${rectPath(inner)}`}
-          />,
-        );
-      }
-      outline();
-
-      // The natural pair is the one a comb's stems can reach; anything else is
-      // an author override and switches the connector to a spine.
-      const naturalPair: Side[] =
-        axis === 'inline' ? ['top', 'bottom'] : ['left', 'right'];
-      const side = annotation.place ?? nearest(box, axis);
-      const at = annotation.at ?? 0.5;
-      const stem = (band: 'left' | 'right' | 'top' | 'bottom') => {
-        const near = side === 'top' ? outer.y : outer.y + outer.height;
-        const far = side === 'left' ? outer.x : outer.x + outer.width;
-        if (band === 'left') {
-          return { x: outer.x + Math.abs(edges.left) / 2, y: near };
-        }
-        if (band === 'right') {
-          return { x: outer.x + outer.width - Math.abs(edges.right) / 2, y: near };
-        }
-        if (band === 'top') {
-          return { x: far, y: outer.y + Math.abs(edges.top) / 2 };
-        }
-        return { x: far, y: outer.y + outer.height - Math.abs(edges.bottom) / 2 };
-      };
-
-      // Bands of the same size share one caption; when the two sides differ
-      // (AccordionDetails is `xx-small` on top, `small` underneath) each gets
-      // its own, because one label can't honestly name both.
-      const byValue = new Map<number, typeof live>();
-      live.forEach((band) => {
-        const bucket = Math.round(Math.abs(band.value) * 10) / 10;
-        byValue.set(bucket, [...(byValue.get(bucket) ?? []), band]);
-      });
-      // A token names ONE value. When the two bands of an axis differ, it can't
-      // honestly label both — Input's block padding is `x-small` on top and a
-      // private-var fallback underneath — so the split captions fall back to px.
-      const named = byValue.size === 1 ? annotation : { ...annotation, token: undefined };
-      const tone = isPadding ? 'tone-padding' : 'tone-margin';
-      byValue.forEach((group, value) => {
-        connect({
-          id: `link-${key}-${value}`,
-          naturalPair,
-          side,
-          offset: annotation.offset,
-          tone,
-          label: caption(group[0].value, named),
-          points: group.map((band) => stem(band.side)),
-          alongTop: outer.x + outer.width * at,
-          alongSide: outer.y + outer.height * at,
-        });
-      });
-      return;
-    }
-
-    if (annotation.aspect === 'gap') {
-      const { gap } = item;
-      if (!gap) {
-        return;
-      }
-      const band: Rect = gap.vertical
-        ? { x: contentBox.x, y: gap.y, width: contentBox.width, height: gap.size }
-        : { x: gap.x, y: contentBox.y, width: gap.size, height: contentBox.height };
-      fills.push(
-        <rect
-          key={`fill-${key}`}
-          className="gap-box"
-          fill={`url(#${hatchId})`}
-          x={band.x}
-          y={band.y}
-          width={band.width}
-          height={band.height}
-        />,
-      );
-      outline();
-      // One band, so the comb is a single stem; a place on the other axis still
-      // needs the spine, which crosses rather than leaves perpendicular.
-      const naturalPair: Side[] = gap.vertical
-        ? ['left', 'right']
-        : ['top', 'bottom'];
-      const side =
-        annotation.place ?? nearest(box, gap.vertical ? 'block' : 'inline');
-      const at = annotation.at ?? 0.5;
-      const centre = {
-        x: band.x + band.width * at,
-        y: band.y + band.height * at,
-      };
-      connect({
-        id: `link-${key}`,
-        naturalPair,
-        side,
-        offset: annotation.offset,
-        tone: 'tone-gap',
-        label: caption(gap.size, annotation),
-        points: [
-          gap.vertical
-            ? { x: side === 'left' ? band.x : band.x + band.width, y: centre.y }
-            : { x: centre.x, y: side === 'top' ? band.y : band.y + band.height },
-        ],
-        alongTop: centre.x,
-        alongSide: centre.y,
-      });
-      return;
-    }
-
-    if (annotation.aspect === 'icon') {
-      const { icon } = item;
-      if (!icon) {
-        return;
-      }
-      fills.push(
-        <path key={`icon-${key}`} className="slot-outline" d={rectPath(icon)} />,
-      );
-      // A side gutter by default; `place` sends it to a top/bottom one, where the
-      // connector becomes a spine crossing the glyph. Needed when the side is
-      // already carrying an I-beam for the same box.
-      const side = annotation.place ?? nearestSide(icon);
-      connect({
-        id: `link-${key}`,
-        naturalPair: ['left', 'right'],
-        side,
-        offset: annotation.offset,
-        label: caption(icon.height, annotation),
-        points: [
-          {
-            x: side === 'left' ? icon.x : icon.x + icon.width,
-            y: icon.y + icon.height / 2,
-          },
-        ],
-        alongTop: icon.x + icon.width / 2,
-        alongSide: icon.y + icon.height / 2,
-      });
-      return;
-    }
-
-    // touch-target — a dimension line: a bar spanning the box, ticked at both
-    // ends, set clear of the edge it measures. The side decides the dimension —
-    // a height reads against a left/right gutter, a width against a top/bottom
-    // one, the way a drawing dimensions them — so `place` picks both at once and
-    // `axis: 'inline'` asks for a width without naming a side.
-    let side: Side;
-    if (annotation.place) {
-      side = annotation.place;
-    } else if (annotation.axis === 'inline') {
-      side = nearest(box, 'inline');
-    } else {
-      // A full-width box ties on both sides, so it takes whichever gutter is
-      // carrying fewer captions.
-      const centred =
-        Math.abs(box.x + box.width / 2 - (bounds.x + bounds.width / 2)) < 1;
-      const lighter: 'left' | 'right' = lanes.left <= lanes.right ? 'left' : 'right';
-      side = (centred && lighter) || nearestSide(box);
-    }
-    const measuresWidth = side === 'top' || side === 'bottom';
-    if (!measuresWidth) {
-      lanes[side as 'left' | 'right'] += 1;
-    }
-    const text = caption(measuresWidth ? box.width : box.height, annotation);
-    const away = side === 'top' || side === 'left' ? -1 : 1;
-    // The edge the dimension is set off from, and the span it reads.
-    const near = side === 'top' || side === 'left';
-    let edge;
-    if (measuresWidth) {
-      edge = near ? box.y : box.y + box.height;
-    } else {
-      edge = near ? box.x : box.x + box.width;
-    }
-    const lo = measuresWidth ? box.x : box.y;
-    const hi = measuresWidth ? box.x + box.width : box.y + box.height;
-    const steps = annotation.offset ?? 0;
-    const bar = edge + away * (BEAM_GAP + steps * RUNG);
-    const mid = (lo + hi) / 2;
-    // Only a side caption ladders; a top/bottom one keeps the span's centre.
-    const along = measuresWidth
-      ? mid
-      : reserveY(side as 'left' | 'right', mid);
-    /** a point on the bar's axis, `step` away from the bar itself. */
-    const pt = (span: number, step: number) =>
-      measuresWidth ? { x: span, y: bar + step } : { x: bar + step, y: span };
-    /** carried out from the element so a moved bar still reads against it. */
-    const extension = (span: number) => {
-      const from = measuresWidth
-        ? { x: span, y: edge + away * 3 }
-        : { x: edge + away * 3, y: span };
-      const to = pt(span, away * 4);
+  if (outline) {
+    // Pointer: the dashed box already brackets the extent; the line just
+    // points at it from the gutter, leaving the edge midpoint facing it.
+    const rail = railOf(bounds, g, route.out ?? 0);
+    const cx = box.x + box.width / 2;
+    const cy = box.y + box.height / 2;
+    const from = sideways(g)
+      ? { x: g === 'left' ? box.x : box.x + box.width, y: cy }
+      : { x: cx, y: g === 'top' ? box.y : box.y + box.height };
+    const natural = sideways(g) ? cy : cx;
+    if ((route.line ?? 'ladder') === 'diagonal') {
       return (
-        <line
-          key={`ext-${span}`}
-          className="leader"
-          x1={from.x}
-          y1={from.y}
-          x2={to.x}
-          y2={to.y}
-        />
+        <g>
+          {frame}
+          <DiagonalLeader
+            gutter={g}
+            rail={rail}
+            anchor={natural + (route.shift ?? 0)}
+            attach={[from]}
+            label={label}
+          />
+        </g>
       );
-    };
-    const serif = (span: number) => (
-      <line
-        key={`serif-${span}`}
-        className="dim"
-        x1={pt(span, -4).x}
-        y1={pt(span, -4).y}
-        x2={pt(span, 4).x}
-        y2={pt(span, 4).y}
-      />
-    );
-    outline();
-    marks.push(
-      <React.Fragment key={`beam-${key}`}>
-        {steps > 0 ? [extension(lo), extension(hi)] : null}
-        <line
-          className="dim"
-          x1={pt(lo, 0).x}
-          y1={pt(lo, 0).y}
-          x2={pt(hi, 0).x}
-          y2={pt(hi, 0).y}
-        />
-        {serif(lo)}
-        {serif(hi)}
-        {Math.abs(along - mid) > 0.5 ? (
-          <line className="leader" x1={bar} y1={mid} x2={bar} y2={along} />
-        ) : null}
-        {measuresWidth ? (
-          <text
-            x={mid}
-            y={bar + away * (side === 'top' ? 16 : 26)}
-            textAnchor="middle"
-          >
-            {text}
-          </text>
+    }
+    return (
+      <g>
+        {frame}
+        {sideways(g) ? (
+          <line className="leader" x1={from.x} y1={from.y} x2={rail} y2={from.y} />
         ) : (
-          <text
-            x={bar + away * 10}
-            y={along}
-            textAnchor={side === 'right' ? 'start' : 'end'}
-            dominantBaseline="middle"
-          >
-            {text}
-          </text>
+          <line className="leader" x1={from.x} y1={from.y} x2={from.x} y2={rail} />
         )}
-      </React.Fragment>,
+        <LadderEnding gutter={g} rail={rail} natural={natural} shift={route.shift} label={label} />
+      </g>
     );
-  });
+  }
 
+  // Beam: a bar spanning the box, serifs at both ends. A bound whose edge IS
+  // the demo's edge (a root, at out 0) hugs it with nothing to bridge; a
+  // nested or moved-out bar stands off in the gutter, with dashed extension
+  // lines tying it back to the edges it measures.
+  const lo = vertical ? box.y : box.x;
+  const hi = vertical ? box.y + box.height : box.x + box.width;
+  const mid = (lo + hi) / 2;
+  const anchor = mid + (route.shift ?? 0);
+  let edge;
+  if (vertical) {
+    edge = g === 'left' ? box.x : box.x + box.width;
+  } else {
+    edge = g === 'top' ? box.y : box.y + box.height;
+  }
+  let boundsEdge;
+  if (vertical) {
+    boundsEdge = g === 'left' ? bounds.x : bounds.x + bounds.width;
+  } else {
+    boundsEdge = g === 'top' ? bounds.y : bounds.y + bounds.height;
+  }
+  const snug = (route.out ?? 0) === 0 && Math.abs(edge - boundsEdge) < 1;
+  const bar = snug ? edge + a * BEAM_GAP : railOf(bounds, g, route.out ?? 0);
+  const pt = (span: number, off: number) =>
+    vertical ? { x: bar + off, y: span } : { x: span, y: bar + off };
+  return (
+    <g>
+      {outlined ? frame : null}
+      {snug
+        ? null
+        : [lo, hi].map((span) => {
+            const from = vertical ? { x: edge + a * 3, y: span } : { x: span, y: edge + a * 3 };
+            const to = pt(span, a * 4);
+            return (
+              <line key={`e${span}`} className="leader" x1={from.x} y1={from.y} x2={to.x} y2={to.y} />
+            );
+          })}
+      <line className="dim" x1={pt(lo, 0).x} y1={pt(lo, 0).y} x2={pt(hi, 0).x} y2={pt(hi, 0).y} />
+      {[lo, hi].map((span) => (
+        <line
+          key={`s${span}`}
+          className="dim"
+          x1={pt(span, -4).x}
+          y1={pt(span, -4).y}
+          x2={pt(span, 4).x}
+          y2={pt(span, 4).y}
+        />
+      ))}
+      {route.shift && (anchor < lo || anchor > hi)
+        ? (() => {
+            const runFrom = anchor < lo ? lo : hi;
+            return (
+              <line
+                className="leader"
+                x1={vertical ? bar : runFrom}
+                y1={vertical ? runFrom : bar}
+                x2={vertical ? bar : anchor}
+                y2={vertical ? anchor : bar}
+              />
+            );
+          })()
+        : null}
+      {vertical ? (
+        <text
+          x={bar + a * REACH}
+          y={anchor}
+          textAnchor={g === 'right' ? 'start' : 'end'}
+          dominantBaseline="middle"
+        >
+          {breakAt > 0 ? (
+            <React.Fragment>
+              <tspan x={bar + a * REACH} dy="-0.55em">
+                {label.slice(0, breakAt)}
+              </tspan>
+              <tspan x={bar + a * REACH} dy="1.15em">
+                {label.slice(breakAt)}
+              </tspan>
+            </React.Fragment>
+          ) : (
+            label
+          )}
+        </text>
+      ) : (
+        <text x={anchor} y={bar + a * (g === 'top' ? 16 : 26)} textAnchor="middle">
+          {label}
+        </text>
+      )}
+    </g>
+  );
+}
+
+export function Annotate({ items, bounds }: { items: AnnotateItem[]; bounds: Rect }) {
+  const hatchId = React.useId();
+  const rendered = items.map((item, index) =>
+    item.kind === 'band' ? (
+      <BandView key={index} item={item} bounds={bounds} hatchId={hatchId} />
+    ) : (
+      <BoundView key={index} item={item} bounds={bounds} />
+    ),
+  );
   return (
     <Box
       component="svg"
       aria-hidden
-      // Addressable: every MUI icon is also an aria-hidden svg, and some carry
-      // their own <text>, so tooling cannot find this overlay by shape alone.
       data-annotations
       sx={(theme) => ({
         position: 'absolute',
@@ -949,11 +693,24 @@ export function Annotations({
         height: '100%',
         overflow: 'visible',
         pointerEvents: 'none',
-        // Above a Modal (1300) and a Tooltip (1500) — a demo may open either.
         zIndex: 1600,
         color: 'text.secondary',
         fontSize: 13,
-        '& text': { fill: 'currentColor' },
+        '& text': {
+          fill: 'currentColor',
+          // the badge: a halo of the page background, so a line passing behind
+          // a label never strikes through its text
+          stroke: (theme.vars || theme).palette.background.paper,
+          strokeWidth: 4,
+          strokeLinejoin: 'round',
+          paintOrder: 'stroke',
+        },
+        // labels always paint in front: a lines pass with text hidden, then a
+        // labels pass with everything else hidden
+        '& .pass-lines text': { display: 'none' },
+        '& .pass-labels line, & .pass-labels rect, & .pass-labels path': {
+          display: 'none',
+        },
         '& .dim': { stroke: 'currentColor', fill: 'none' },
         '& .leader': {
           stroke: 'currentColor',
@@ -992,8 +749,338 @@ export function Annotations({
           <line className="hatch" x1={0} y1={0} x2={0} y2={6} strokeWidth={3} />
         </pattern>
       </defs>
-      {fills}
-      {marks}
+      <g className="pass-lines">{rendered}</g>
+      <g className="pass-labels">{rendered}</g>
     </Box>
   );
+}
+
+/** A claim: what is measured and what the theme authored for it. */
+export interface Claim {
+  /** selector, resolved inside the demo. Every match is annotated. */
+  on: string;
+  aspect: Aspect;
+  /** the expression the theme authored; omitted -> plain px caption. */
+  token?: string;
+  /** printed instead of the token — to name the measured thing when the
+   * expression is private or the component identity matters more. The token,
+   * when also given, still drives the value gate's check. */
+  text?: string;
+  /** 'all' paints the full ring (every live band) with ONE label, led by a
+   * single line from the band facing the route's gutter. */
+  axis?: 'inline' | 'block' | 'all';
+  /** gap only: which child boundary the band follows (0 = after the first
+   * child). A row with separators has several gaps; this picks one. */
+  after?: number;
+  /** touch-target only: also draw the dashed target box, inset inside the
+   * element — makes the interactive area visible, not just its length. */
+  outlined?: boolean;
+  /** touch-target only: draw as a frame + pointer line (the icon device)
+   * instead of a beam — for a small box whose area matters more than a
+   * bracketed length. */
+  pointer?: boolean;
+  /** render the caption's `(px)` part on its own line — for long expressions
+   * whose one-line label would reach too far into the demo. */
+  wrap?: boolean;
+  /** one band only. The way to name a pair whose values differ: the presets
+   * author each side's expression separately (details: `xx-small` top,
+   * `small` bottom), so each side gets its own claim carrying its own token. */
+  side?: 'top' | 'right' | 'bottom' | 'left';
+  /** shown in the slot toggle list; derived from the selector when absent. */
+  label?: string;
+  /** authored position; anything omitted falls back to nearest-side defaults. */
+  route?: Partial<Route>;
+}
+
+function labelFor(value: number, token?: string) {
+  return token ? `${token} (${round(value)})` : round(value);
+}
+
+/**
+ * Turn claims into draw items by measuring the DOM. Pure per claim: no item's
+ * geometry depends on another claim's.
+ */
+export function resolveClaims(
+  stage: HTMLElement,
+  demo: HTMLElement,
+  claims: Claim[],
+): { items: AnnotateItem[]; bounds: Rect } {
+  const stageBox = stage.getBoundingClientRect();
+  const rel = (r: DOMRect): Rect => ({
+    x: r.left - stageBox.left,
+    y: r.top - stageBox.top,
+    width: r.width,
+    height: r.height,
+  });
+  // A `display: contents` demo wrapper has no box of its own — bounds are the
+  // union of what actually painted.
+  const painted = [demo, ...Array.from(demo.children)]
+    .map((node) => node.getBoundingClientRect())
+    .filter((b) => b.width > 0 && b.height > 0);
+  const leftMost = Math.min(...painted.map((b) => b.left));
+  const topMost = Math.min(...painted.map((b) => b.top));
+  const bounds: Rect =
+    painted.length > 0
+      ? {
+          x: leftMost - stageBox.left,
+          y: topMost - stageBox.top,
+          width: Math.max(...painted.map((b) => b.right)) - leftMost,
+          height: Math.max(...painted.map((b) => b.bottom)) - topMost,
+        }
+      : rel(demo.getBoundingClientRect());
+  const items: AnnotateItem[] = [];
+
+  // nearest-side defaults: a pure function of the feature's own position. A
+  // feature spanning the whole demo (a collapsed or single-row state) is a
+  // tie — broken toward top/left so a component's states don't flip labels.
+  const nearestOf = (box: Rect, pair: [Gutter, Gutter]): Gutter => {
+    if (pair[0] === 'top') {
+      return box.y + box.height / 2 <= bounds.y + bounds.height / 2 + 1 ? 'top' : 'bottom';
+    }
+    return box.x + box.width / 2 <= bounds.x + bounds.width / 2 + 1 ? 'left' : 'right';
+  };
+  const routed = (route: Partial<Route> | undefined, fallback: Gutter): Route => ({
+    gutter: fallback,
+    ...route,
+  });
+
+  claims.forEach((claim) => {
+    Array.from(demo.querySelectorAll(claim.on)).forEach((element) => {
+      if (!isVisible(element)) {
+        return;
+      }
+      const box = rel(element.getBoundingClientRect());
+      const styles = window.getComputedStyle(element);
+      const num = (value: string) => parseFloat(value) || 0;
+      const edgesOf = (prefix: string, suffix: string): Edges => ({
+        top: num(styles[`${prefix}Top${suffix}` as any]),
+        right: num(styles[`${prefix}Right${suffix}` as any]),
+        bottom: num(styles[`${prefix}Bottom${suffix}` as any]),
+        left: num(styles[`${prefix}Left${suffix}` as any]),
+      });
+      const border = edgesOf('border', 'Width');
+      const padding = edgesOf('padding', '');
+      const paddingBox = inset(box, border);
+      const contentBox = inset(paddingBox, padding);
+
+      if (claim.aspect === 'padding' || claim.aspect === 'margin') {
+        const isPad = claim.aspect === 'padding';
+        const edges = isPad ? padding : edgesOf('margin', '');
+        const outer = isPad ? paddingBox : outset(box, edges);
+        const axis =
+          claim.axis ??
+          (claim.side === 'top' || claim.side === 'bottom' ? 'block' : 'inline');
+        if (axis === 'all') {
+          const liveSides = (['top', 'right', 'bottom', 'left'] as (keyof Edges)[]).filter(
+            (edge) => Math.abs(edges[edge]) > 0.5,
+          );
+          if (liveSides.length === 0) {
+            return;
+          }
+          const values = new Set(liveSides.map((edge) => Math.round(Math.abs(edges[edge]) * 10) / 10));
+          const gutter = claim.route?.gutter ?? 'right';
+          const lead = liveSides.includes(gutter as keyof Edges)
+            ? (gutter as keyof Edges)
+            : liveSides[0];
+          const outerOf = (side: keyof Edges): Rect => {
+            const size = Math.abs(edges[side]);
+            if (side === 'left') {
+              return { x: outer.x, y: outer.y, width: size, height: outer.height };
+            }
+            if (side === 'right') {
+              return { x: outer.x + outer.width - size, y: outer.y, width: size, height: outer.height };
+            }
+            if (side === 'top') {
+              return { x: outer.x, y: outer.y, width: outer.width, height: size };
+            }
+            return { x: outer.x, y: outer.y + outer.height - size, width: outer.width, height: size };
+          };
+          items.push({
+            kind: 'band',
+            tone: isPad ? 'padding' : 'margin',
+            measures: lead === 'left' || lead === 'right' ? 'x' : 'y',
+            // one label for the whole ring — only honest when every live band
+            // agrees on the value
+            label: labelFor(
+              edges[lead],
+              values.size === 1 ? claim.text ?? claim.token : undefined,
+            ),
+            bands: [outerOf(lead)],
+            ring: { outer, inner: isPad ? contentBox : box },
+            route: routed(claim.route, gutter),
+          });
+          return;
+        }
+        const bandOf = (side: keyof Edges): Rect => {
+          const size = Math.abs(edges[side]);
+          if (side === 'left') {
+            return { x: outer.x, y: outer.y, width: size, height: outer.height };
+          }
+          if (side === 'right') {
+            return {
+              x: outer.x + outer.width - size,
+              y: outer.y,
+              width: size,
+              height: outer.height,
+            };
+          }
+          if (side === 'top') {
+            return { x: outer.x, y: outer.y, width: outer.width, height: size };
+          }
+          return {
+            x: outer.x,
+            y: outer.y + outer.height - size,
+            width: outer.width,
+            height: size,
+          };
+        };
+        const naturalSides: (keyof Edges)[] =
+          axis === 'inline' ? ['left', 'right'] : ['top', 'bottom'];
+        const pair: (keyof Edges)[] = claim.side ? [claim.side] : naturalSides;
+        const live = pair.filter((side) => Math.abs(edges[side]) > 0.5);
+        if (live.length === 0) {
+          return;
+        }
+        // Equal bands share one item (and may carry the token); unequal bands
+        // split, and both drop it — one name cannot cover two values.
+        const byValue = new Map<number, (keyof Edges)[]>();
+        live.forEach((side) => {
+          const key = Math.round(Math.abs(edges[side]) * 10) / 10;
+          byValue.set(key, [...(byValue.get(key) ?? []), side]);
+        });
+        const gutterPair: [Gutter, Gutter] =
+          axis === 'inline' ? ['top', 'bottom'] : ['left', 'right'];
+        byValue.forEach((group) => {
+          // grouped by magnitude, captioned with the signed value — a pulled-
+          // back action margin prints -8px, matching its -x-small token
+          const signed = edges[group[0]];
+          items.push({
+            kind: 'band',
+            tone: isPad ? 'padding' : 'margin',
+            measures: axis === 'inline' ? 'x' : 'y',
+            label: labelFor(signed, byValue.size === 1 ? claim.text ?? claim.token : undefined),
+            bands: group.map(bandOf),
+            route: routed(claim.route, nearestOf(box, gutterPair)),
+          });
+        });
+        return;
+      }
+
+      if (claim.aspect === 'gap') {
+        const column = num(styles.columnGap);
+        const row = num(styles.rowGap);
+        // The band starts where the child before the boundary ends — only that
+        // child must be an element (a Button label is a bare text node).
+        // `after` picks which boundary when there are several.
+        const boundary = claim.after ?? 0;
+        const first = element.children[boundary]?.getBoundingClientRect();
+        const second = element.children[boundary + 1]?.getBoundingClientRect();
+        if (!first) {
+          return;
+        }
+        const stacked = second ? second.top >= first.bottom - 0.5 : row > 0.5 && column <= 0.5;
+        let size = stacked ? row : column;
+        if (size <= 0.5 && second) {
+          // No flex gap declared — the space is margin-made. The distance
+          // between the children is still the story the annotation tells.
+          const spacing = stacked ? second.top - first.bottom : second.left - first.right;
+          if (spacing > 0.5) {
+            size = spacing;
+          }
+        }
+        if (size <= 0.5) {
+          return;
+        }
+        const band: Rect = stacked
+          ? {
+              x: contentBox.x,
+              y: first.bottom - stageBox.top,
+              width: contentBox.width,
+              height: size,
+            }
+          : {
+              x: first.right - stageBox.left,
+              y: contentBox.y,
+              width: size,
+              height: contentBox.height,
+            };
+        items.push({
+          kind: 'band',
+          tone: 'gap',
+          measures: stacked ? 'y' : 'x',
+          label: labelFor(size, claim.text ?? claim.token),
+          bands: [band],
+          route: routed(
+            claim.route,
+            nearestOf(box, stacked ? ['left', 'right'] : ['top', 'bottom']),
+          ),
+        });
+        return;
+      }
+
+      if (claim.aspect === 'icon') {
+        const svg = element.matches('svg') ? element : element.querySelector('svg');
+        if (!svg) {
+          return;
+        }
+        const iconBox = rel(svg.getBoundingClientRect());
+        items.push({
+          kind: 'bound',
+          measures: 'y',
+          outline: true,
+          label: labelFor(iconBox.height, claim.text ?? claim.token),
+          box: iconBox,
+          route: routed(claim.route, nearestOf(iconBox, ['left', 'right'])),
+        });
+        return;
+      }
+
+      // touch-target: the element's own box, bracketed by a beam. The gutter
+      // decides the dimension — a side reads height, top/bottom reads width —
+      // unless `axis` names it (a pointer's label can sit anywhere).
+      const route = routed(claim.route, nearestOf(box, ['left', 'right']));
+      const measuresWidth = claim.axis
+        ? claim.axis === 'inline'
+        : route.gutter === 'top' || route.gutter === 'bottom';
+      items.push({
+        kind: 'bound',
+        measures: measuresWidth ? 'x' : 'y',
+        outline: claim.pointer,
+        outlined: claim.outlined,
+        wrap: claim.wrap,
+        label: labelFor(measuresWidth ? box.width : box.height, claim.text ?? claim.token),
+        box,
+        route,
+      });
+    });
+  });
+
+  return { items, bounds };
+}
+
+/** Resolve claims against the live DOM, re-measuring whenever the stage could
+ * have moved — a resize, a late webfont, a popper mounting a frame later. */
+export function useClaims(
+  stageRef: React.RefObject<HTMLElement | null>,
+  demoRef: React.RefObject<HTMLElement | null>,
+  claims: Claim[],
+  deps: React.DependencyList,
+) {
+  const [state, setState] = React.useState<{
+    items: AnnotateItem[];
+    bounds: Rect;
+  } | null>(null);
+  useStageEffect(
+    stageRef,
+    (stage) => {
+      const demo = demoRef.current;
+      if (!demo) {
+        setState(null);
+        return;
+      }
+      setState(resolveClaims(stage, demo, claims));
+    },
+    deps,
+  );
+  return state;
 }
