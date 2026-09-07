@@ -154,6 +154,70 @@ describe('<Menu2 /> collapsed API', () => {
         return getPopup().closest<HTMLDivElement>(`.${rootClass}`)!;
       }
 
+      it('preserves behavior props in popup ownerState for theme variants and slot callbacks', async () => {
+        const theme = createTheme({
+          components: {
+            [componentName === 'Menu2' ? 'MuiMenu2' : 'MuiMenu2Submenu']: {
+              defaultProps: { loopFocus: false, highlightItemOnHover: false },
+              variants: [
+                { props: { open: true, loopFocus: false }, style: { paddingLeft: '17px' } },
+                { props: { open: false }, style: { paddingLeft: '19px' } },
+              ],
+            },
+          },
+        });
+
+        function ControlledMenu() {
+          const [open, setOpen] = React.useState(true);
+          return (
+            <TestMenu
+              open={open}
+              onOpenChange={setOpen}
+              keepMounted
+              slotProps={{
+                root: (state) => ({ 'data-open': String(state.open) }),
+                positioner: (state) => ({ 'data-loop-focus': String(state.loopFocus) }),
+                paper: (state) => ({
+                  'data-highlight-on-hover': String(state.highlightItemOnHover),
+                  style: { transition: 'none' },
+                }),
+                list: (state) => ({ 'data-open': String(state.open) }),
+              }}
+            >
+              <Menu2Item closeOnClick={false} onClick={() => setOpen(false)}>
+                Alpha
+              </Menu2Item>
+            </TestMenu>
+          );
+        }
+
+        const { user } = render(
+          <ThemeProvider theme={theme}>
+            <ControlledMenu />
+          </ThemeProvider>,
+        );
+        const item = await screen.findByRole('menuitem', { name: 'Alpha' });
+        const root = getRoot();
+        const popup = getPopup();
+        const list = item.parentElement!;
+        expect(getComputedStyle(root).paddingLeft).to.equal('17px');
+        expect(root).to.have.attribute('data-open', 'true');
+        expect(popup.parentElement).to.have.attribute('data-loop-focus', 'false');
+        expect(popup).to.have.attribute('data-highlight-on-hover', 'false');
+        expect(list).to.have.attribute('data-open', 'true');
+        expect(root).not.to.have.attribute('open');
+        expect(root).not.to.have.attribute('loopFocus');
+        expect(popup).not.to.have.attribute('open');
+
+        await user.click(item);
+
+        await waitFor(() => {
+          expect(root).to.have.attribute('data-open', 'false');
+          expect(list).to.have.attribute('data-open', 'false');
+          expect(getComputedStyle(root).paddingLeft).to.equal('19px');
+        });
+      });
+
       it('applies className, style, and sx to the root, and keeps the surface separate', async () => {
         const { user } = render(
           <TestMenu

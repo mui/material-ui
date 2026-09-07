@@ -105,7 +105,13 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
     >
       <Menu2SubmenuClosingContext.Provider value={closingContext}>
         {trigger}
-        <Menu2SubmenuPopup {...popupProps} ref={ref} slotProps={slotProps} slots={slots}>
+        <Menu2SubmenuPopup
+          {...popupProps}
+          ref={ref}
+          ownerState={themedProps}
+          slotProps={slotProps}
+          slots={slots}
+        >
           {children}
         </Menu2SubmenuPopup>
       </Menu2SubmenuClosingContext.Provider>

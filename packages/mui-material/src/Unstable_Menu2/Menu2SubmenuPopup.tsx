@@ -22,6 +22,7 @@ import {
 } from './menu2SharedStyles';
 import { getMenu2SubmenuPopupUtilityClass, Menu2SubmenuPopupClasses } from './menu2Classes';
 import Menu2SubmenuClosingContext from './Menu2SubmenuClosingContext';
+import type { Menu2SubmenuProps } from '../Unstable_Menu2Submenu/Menu2Submenu';
 
 export interface Menu2SubmenuPopupProps extends Omit<
   Menu2PopupSharedProps<Menu2SubmenuPopupOwnerState>,
@@ -141,7 +142,11 @@ export interface Menu2SubmenuPopupProps extends Omit<
   slots?: Menu2SubmenuPopupSlots | undefined;
 }
 
-export interface Menu2SubmenuPopupOwnerState extends Menu2SubmenuPopupProps {}
+export interface Menu2SubmenuPopupOwnerState extends Menu2SubmenuProps {}
+
+interface Menu2SubmenuPopupInternalProps extends Menu2SubmenuPopupProps {
+  ownerState: Menu2SubmenuPopupOwnerState;
+}
 
 export interface Menu2SubmenuPopupSlots {
   /**
@@ -212,17 +217,18 @@ const Menu2SubmenuPopupList = styled(List, {
  * - [Menu](https://mui.com/material-ui/react-menu/)
  */
 const Menu2SubmenuPopup = React.forwardRef(function Menu2SubmenuPopup(
-  inProps: Menu2SubmenuPopupProps,
+  inProps: Menu2SubmenuPopupInternalProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  // Internal: `MuiMenu2Submenu` defaults are applied by Menu2Submenu.
-  const props = inProps;
+  // Keep the collapsed component's resolved props for styling, without
+  // forwarding its behavior props to the popup DOM.
+  const { ownerState: ownerStateProp, ...props } = inProps;
   const { onClosingChange } = React.useContext(Menu2SubmenuClosingContext);
 
   const ownerState: Menu2SubmenuPopupOwnerState = {
     side: 'inline-end',
     align: 'start',
-    ...props,
+    ...ownerStateProp,
   };
   const classes = useUtilityClasses(ownerState);
 

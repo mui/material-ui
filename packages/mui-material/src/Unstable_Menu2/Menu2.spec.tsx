@@ -45,6 +45,12 @@ function Menu2Composition() {
         list: 'div',
       }}
       slotProps={{
+        root: (ownerState) => {
+          expectType<boolean | undefined, typeof ownerState.open>(ownerState.open);
+          expectType<boolean | undefined, typeof ownerState.modal>(ownerState.modal);
+          expectType<boolean | undefined, typeof ownerState.loopFocus>(ownerState.loopFocus);
+          return {};
+        },
         trigger: { nativeButton: true, className: 'trigger' },
         paper: { elevation: 4 },
         list: { 'data-testid': 'list' },
@@ -81,6 +87,13 @@ function Menu2Composition() {
         </Menu2RadioGroup>
         <Menu2Separator />
         <Menu2Submenu
+          slotProps={{
+            root: (ownerState) => {
+              expectType<boolean | undefined, typeof ownerState.open>(ownerState.open);
+              expectType<boolean | undefined, typeof ownerState.disabled>(ownerState.disabled);
+              return {};
+            },
+          }}
           onOpenChange={(open, eventDetails) => {
             expectType<boolean, typeof open>(open);
             eventDetails.cancel();
@@ -121,12 +134,14 @@ createTheme({
           props: { align: 'start' },
           style: {},
         },
+        { props: { open: true, modal: false }, style: {} },
       ],
     },
     MuiMenu2Submenu: {
       defaultProps: {
         defaultOpen: false,
       },
+      variants: [{ props: { open: true, disabled: false }, style: {} }],
       styleOverrides: {
         root: {},
         positioner: {},
@@ -173,6 +188,15 @@ createTheme({
     },
   },
 });
+
+<Menu2
+  // @ts-expect-error ownerState is internal and cannot be overridden.
+  ownerState={{ open: true }}
+/>;
+<Menu2Submenu
+  // @ts-expect-error ownerState is internal and cannot be overridden.
+  ownerState={{ open: true }}
+/>;
 
 <Menu2
   // @ts-expect-error Popover anchorOrigin is intentionally not supported.

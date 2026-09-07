@@ -174,7 +174,13 @@ const Menu2 = React.forwardRef(function Menu2(
         open={open}
       >
         {triggerNode}
-        <Menu2Popup {...popupProps} ref={ref} slotProps={popupSlotProps} slots={popupSlots}>
+        <Menu2Popup
+          {...popupProps}
+          ref={ref}
+          ownerState={themedProps}
+          slotProps={popupSlotProps}
+          slots={popupSlots}
+        >
           {children}
         </Menu2Popup>
       </BaseMenu.Root>

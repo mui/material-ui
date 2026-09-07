@@ -22,6 +22,7 @@ import {
   menu2PopupTransitionStyles,
 } from './menu2SharedStyles';
 import { getMenu2PopupUtilityClass, Menu2PopupClasses } from './menu2Classes';
+import type { Menu2Props } from './Menu2';
 
 export interface Menu2PopupProps extends Omit<
   Menu2PopupSharedProps<Menu2PopupOwnerState>,
@@ -141,7 +142,11 @@ export interface Menu2PopupProps extends Omit<
   slots?: Menu2PopupSlots | undefined;
 }
 
-export interface Menu2PopupOwnerState extends Menu2PopupProps {}
+export interface Menu2PopupOwnerState extends Menu2Props {}
+
+interface Menu2PopupInternalProps extends Menu2PopupProps {
+  ownerState: Menu2PopupOwnerState;
+}
 
 export interface Menu2PopupSlots {
   /**
@@ -234,16 +239,17 @@ const Menu2PopupList = styled(List, {
  * - [Menu](https://mui.com/material-ui/react-menu/)
  */
 const Menu2Popup = React.forwardRef(function Menu2Popup(
-  inProps: Menu2PopupProps,
+  inProps: Menu2PopupInternalProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  // Internal: the collapsed component has already applied `MuiMenu2` defaults.
-  const props = inProps;
+  // Keep the collapsed component's resolved props for styling, without
+  // forwarding its behavior props to the popup DOM.
+  const { ownerState: ownerStateProp, ...props } = inProps;
 
   const ownerState: Menu2PopupOwnerState = {
     side: 'bottom',
     align: 'start',
-    ...props,
+    ...ownerStateProp,
   };
   const classes = useUtilityClasses(ownerState);
 
