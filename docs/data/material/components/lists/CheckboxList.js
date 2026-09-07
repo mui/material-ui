@@ -4,8 +4,9 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CommentIcon from '@mui/icons-material/Comment';
 
 export default function CheckboxList() {
@@ -28,28 +29,38 @@ export default function CheckboxList() {
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       {[0, 1, 2, 3].map((value) => {
         const labelId = `checkbox-list-label-${value}`;
+        const labelValue = `Line item ${value + 1}`;
+        const isChecked = checked.includes(value);
+        const SelectionIcon = isChecked ? CheckBoxIcon : CheckBoxOutlineBlankIcon;
 
         return (
           <ListItem
             key={value}
             secondaryAction={
-              <IconButton edge="end" aria-label="comments">
+              <IconButton edge="end" aria-label={`see comments for ${labelValue}`}>
                 <CommentIcon />
               </IconButton>
             }
             disablePadding
           >
-            <ListItemButton role={undefined} onClick={handleToggle(value)} dense>
+            <ListItemButton
+              role="checkbox"
+              aria-checked={isChecked}
+              aria-labelledby={labelId}
+              onClick={handleToggle(value)}
+              dense
+            >
               <ListItemIcon>
-                <Checkbox
-                  edge="start"
-                  checked={checked.includes(value)}
-                  tabIndex={-1}
-                  disableRipple
-                  slotProps={{ input: { 'aria-labelledby': labelId } }}
+                <SelectionIcon
+                  sx={{
+                    color: isChecked ? 'primary.main' : 'text.secondary',
+                    padding: '9px',
+                    marginLeft: '-12px',
+                    boxSizing: 'content-box',
+                  }}
                 />
               </ListItemIcon>
-              <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
+              <ListItemText id={labelId} primary={labelValue} />
             </ListItemButton>
           </ListItem>
         );
