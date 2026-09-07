@@ -851,7 +851,7 @@
         "flagged": "8/27"
       },
       "gaps": [
-        "⚠️ **1.4.3 Contrast (Minimum).** `info` and `warning` contained buttons fall short of 4.5:1.",
+        "⚠️ **1.4.3 Contrast (Minimum).** `info` and `warning` buttons fall short of 4.5:1 in every variant.",
         "⚠️ **1.4.11 Non-text Contrast.** Focus-indicator, border, and icon contrast are untested; `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator, and `disableElevation` removes the `contained` one.",
         "⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator; `contained` loses its indicator only when `disableElevation` is combined with them.",
         "⚠️ **4.1.3 Status Messages.** The `loading` state adds no live region, so the change may go unannounced."
@@ -1838,7 +1838,7 @@
         "flagged": "3/25"
       },
       "gaps": [
-        "⚠️ **1.4.11 Non-text Contrast.** In light mode the thumb and track stay under 3:1 (the off-state white thumb is about 2.7:1 on the gray track, the track about 2.7:1 on the page, and each checked color 1.8:1 to 2.6:1 thumb-on-track); the focus indicator is also untested and `disableRipple` removes it.",
+        "⚠️ **1.4.11 Non-text Contrast.** In light mode the thumb and track stay under 3:1. The off-state white thumb is about 2.7:1 on the gray track, and the track is about 2.7:1 on the page. Each checked color measures 1.8:1 to 2.6:1 thumb-on-track. The focus indicator is untested, and `disableRipple` removes it.",
         "⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styling."
       ],
       "criteria": [
