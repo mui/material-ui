@@ -169,6 +169,48 @@ describe('ModalManager', () => {
       },
     );
 
+    // Locking <body> is the default: the scroll container only resolves to <html> when its
+    // overflow-y computes to `scroll`.
+    describe.skipIf(isJsdom())('when locking the body', () => {
+      // A dedicated manager per test, so the document-wide styles these mutate can't leak
+      // into the shared one when an assertion fails before the modal is removed.
+      let bodyModalManager: ModalManager;
+
+      beforeEach(() => {
+        bodyModalManager = new ModalManager();
+      });
+
+      afterEach(() => {
+        document.documentElement.style.removeProperty('scrollbar-gutter');
+        document.body.style.removeProperty('scrollbar-gutter');
+        document.body.style.removeProperty('padding-right');
+        document.body.style.removeProperty('overflow');
+      });
+
+      it('should not compensate the scrollbar when the root element has a stable gutter', () => {
+        document.documentElement.style.setProperty('scrollbar-gutter', 'stable');
+
+        const modal = getDummyModal();
+        bodyModalManager.add(modal, document.body);
+        bodyModalManager.mount(modal, {});
+        expect(document.body.style.paddingRight).to.equal('');
+        bodyModalManager.remove(modal);
+      });
+
+      // scrollbar-gutter propagates to the viewport from the root element only, so a gutter
+      // on <body> reserves nothing and the compensation is still needed.
+      it('should compensate the scrollbar when only the body has a stable gutter', () => {
+        document.body.style.setProperty('scrollbar-gutter', 'stable');
+
+        const modal = getDummyModal();
+        bodyModalManager.add(modal, document.body);
+        bodyModalManager.mount(modal, {});
+        expect(document.body.style.paddingRight).to.equal(`${getScrollbarSize(window)}px`);
+        bodyModalManager.remove(modal);
+        expect(document.body.style.paddingRight).to.equal('');
+      });
+    });
+
     it('should disable the scroll even when not overflowing', () => {
       // simulate non-overflowing container
       const container2 = document.createElement('div');

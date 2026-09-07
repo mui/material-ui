@@ -77,18 +77,15 @@ function ariaHiddenSiblings(
 // Reading the computed value doubles as a feature detection: browsers that don't support
 // scrollbar-gutter resolve it to an empty string.
 function hasStableScrollbarGutter(scrollContainer: HTMLElement): boolean {
-  const win = ownerWindow(scrollContainer);
   const doc = ownerDocument(scrollContainer);
-  // scrollbar-gutter isn't inherited, but the one set on the root element propagates to the
-  // viewport, so check <html> as well when locking the document scroller.
-  const elements =
-    scrollContainer === doc.body || scrollContainer === doc.documentElement
-      ? [scrollContainer, doc.documentElement]
-      : [scrollContainer];
+  // Unlike overflow, scrollbar-gutter only propagates to the viewport from the root element,
+  // never from <body>, so a gutter declared on <body> reserves no space for the page scrollbar.
+  const gutterElement = scrollContainer === doc.body ? doc.documentElement : scrollContainer;
 
-  return elements.some((element) =>
-    win.getComputedStyle(element).getPropertyValue('scrollbar-gutter').includes('stable'),
-  );
+  return ownerWindow(scrollContainer)
+    .getComputedStyle(gutterElement)
+    .getPropertyValue('scrollbar-gutter')
+    .includes('stable');
 }
 
 function handleContainer(containerInfo: Container, props: ManagedModalProps) {
