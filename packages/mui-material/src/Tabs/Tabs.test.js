@@ -989,38 +989,43 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       expect(tablistContainer.scrollLeft).to.equal(0);
     });
 
-    it('should scroll the selected tab into view when the scroller resizes (scrollButtons="auto")', () => {
-      const { callbacks, restore } = mockResizeObserver();
+    // Firefox reports fractional `scrollLeft` in Vitest browser mode.
+    // See https://github.com/vitest-dev/vitest/issues/9223
+    it.skipIf(isFirefox)(
+      'should scroll the selected tab into view when the scroller resizes (scrollButtons="auto")',
+      () => {
+        const { callbacks, restore } = mockResizeObserver();
 
-      try {
-        render(
-          <Tabs value={2} variant="scrollable" scrollButtons="auto" style={{ width: 200 }}>
-            <Tab style={{ width: 120, minWidth: 'auto' }} />
-            <Tab style={{ width: 120, minWidth: 'auto' }} />
-            <Tab style={{ width: 120, minWidth: 'auto' }} />
-          </Tabs>,
-        );
+        try {
+          render(
+            <Tabs value={2} variant="scrollable" scrollButtons="auto" style={{ width: 200 }}>
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+            </Tabs>,
+          );
 
-        const tablist = screen.getByRole('tablist');
-        const tablistContainer = tablist.parentElement;
-        const selectedTab = tablist.children[2];
+          const tablist = screen.getByRole('tablist');
+          const tablistContainer = tablist.parentElement;
+          const selectedTab = tablist.children[2];
 
-        // Mounting the scroll buttons narrows the scroller, leaving the selected tab
-        // overhanging its right edge by 110px.
-        tablistContainer.getBoundingClientRect = () => ({ left: 40, right: 160 });
-        selectedTab.getBoundingClientRect = () => ({ left: 150, right: 270 });
-        tablistContainer.scrollLeft = 0;
+          // Mounting the scroll buttons narrows the scroller, leaving the selected tab
+          // overhanging its right edge by 110px.
+          tablistContainer.getBoundingClientRect = () => ({ left: 40, right: 160 });
+          selectedTab.getBoundingClientRect = () => ({ left: 150, right: 270 });
+          tablistContainer.scrollLeft = 0;
 
-        const scrollerCallback = callbacks.get(tablistContainer);
-        expect(scrollerCallback).not.to.equal(undefined);
+          const scrollerCallback = callbacks.get(tablistContainer);
+          expect(scrollerCallback).not.to.equal(undefined);
 
-        scrollerCallback([]);
+          scrollerCallback([]);
 
-        expect(tablistContainer.scrollLeft).to.equal(110);
-      } finally {
-        restore();
-      }
-    });
+          expect(tablistContainer.scrollLeft).to.equal(110);
+        } finally {
+          restore();
+        }
+      },
+    );
 
     it('should not observe the scroller when scrollButtons is not "auto"', () => {
       const { callbacks, restore } = mockResizeObserver();
