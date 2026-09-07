@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 
 function not(a, b) {
   return a.filter((value) => !b.includes(value));
@@ -23,24 +24,27 @@ const CustomList = React.forwardRef(function CustomList(props, ref) {
 
   return (
     <Paper sx={{ width: 200, height: 230, overflow: 'auto' }}>
-      <MenuList dense component="div" role="list" ref={ref}>
+      <MenuList dense component="div" ref={ref}>
         {items.map((value) => {
           const labelId = `transfer-list-item-${value}-label`;
+          const isChecked = checked.includes(value);
+          const SelectionIcon = isChecked ? CheckBoxIcon : CheckBoxOutlineBlankIcon;
 
           return (
             <MenuItem
               component="div"
               key={value}
-              role="listitem"
+              role="menuitemcheckbox"
+              aria-checked={isChecked}
+              aria-labelledby={labelId}
               onClick={handleToggle(value)}
             >
               <ListItemIcon>
-                <Checkbox
-                  checked={checked.includes(value)}
-                  tabIndex={-1}
-                  disableRipple
-                  slotProps={{
-                    input: { 'aria-labelledby': labelId },
+                <SelectionIcon
+                  sx={{
+                    color: isChecked ? 'primary.main' : 'text.secondary',
+                    padding: '9px',
+                    boxSizing: 'content-box',
                   }}
                 />
               </ListItemIcon>

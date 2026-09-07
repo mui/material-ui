@@ -10,6 +10,8 @@ import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 
 function not(a: readonly number[], b: readonly number[]) {
   return a.filter((value) => !b.includes(value));
@@ -70,26 +72,28 @@ const CustomList = React.forwardRef(function CustomList(
         }}
         dense
         component="div"
-        role="list"
         ref={ref}
       >
         {items.map((value: number) => {
           const labelId = `transfer-list-all-item-${value}-label`;
+          const isChecked = checked.includes(value);
+          const SelectionIcon = isChecked ? CheckBoxIcon : CheckBoxOutlineBlankIcon;
 
           return (
             <MenuItem
               component="div"
               key={value}
-              role="listitem"
+              role="menuitemcheckbox"
+              aria-checked={isChecked}
+              aria-labelledby={labelId}
               onClick={handleToggle(value)}
             >
               <ListItemIcon>
-                <Checkbox
-                  checked={checked.includes(value)}
-                  tabIndex={-1}
-                  disableRipple
-                  slotProps={{
-                    input: { 'aria-labelledby': labelId },
+                <SelectionIcon
+                  sx={{
+                    color: isChecked ? 'primary.main' : 'text.secondary',
+                    padding: '9px',
+                    boxSizing: 'content-box',
                   }}
                 />
               </ListItemIcon>
