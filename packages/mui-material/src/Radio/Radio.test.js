@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
 import {
-  act,
   createRenderer,
   screen,
   isJsdom,
@@ -212,9 +211,8 @@ describe('<Radio />', () => {
       const { user } = render(<Radio value="a" onChange={handleChange} />);
       const radio = screen.getByRole('radio');
 
-      await act(async () => {
-        radio.focus();
-      });
+      await user.tab();
+      expect(radio).toHaveFocus();
 
       await user.keyboard('[Space]');
       expect(radio).to.have.property('checked', true);
@@ -233,7 +231,8 @@ describe('<Radio />', () => {
       const after = screen.getByRole('button', { name: 'after' });
       const radio = screen.getByRole('radio');
 
-      before.focus();
+      await user.tab();
+      expect(document.activeElement).to.equal(before);
       await user.tab();
       expect(document.activeElement).to.equal(radio);
       await user.tab();
@@ -254,11 +253,25 @@ describe('<Radio />', () => {
       const radio = screen.getByRole('radio');
       const last = screen.getByRole('button', { name: 'last' });
 
-      first.focus();
+      await user.tab();
+      expect(document.activeElement).to.equal(first);
       await user.tab();
       expect(document.activeElement).to.equal(radio);
       await user.tab();
       expect(document.activeElement).to.equal(last);
+    });
+
+    it('2.4.3 Focus Order: a disabled radio is not in the tab order', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <Radio value="a" disabled />
+          <button type="button">after</button>
+        </React.Fragment>,
+      );
+
+      // Tab skips the disabled radio and lands on the next control.
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'after' })).toHaveFocus();
     });
 
     it('2.5.2 Pointer Cancellation: activates on the pointer up-event, not the down-event', async () => {

@@ -173,8 +173,8 @@ This is the item-level report for the accordion header button. The root `<Accord
 
 `✅ Supports` · `● Component`
 
-- Keyboard focus applies the `.Mui-focusVisible` background (`action.focus`); mouse focus is suppressed, and `ButtonBase` removes the native outline, so this tint is the only indicator.
-- Covered by a unit test in [`AccordionSummary.test.js`](./AccordionSummary.test.js) that confirms the focus-visible state fires; whether the tint is perceptible enough is the visual step (its contrast is the 1.4.11 shortfall). Covered by a Playwright test that compares the control focused and unfocused.
+- Keyboard focus applies the `.Mui-focusVisible` background (`action.focus`); mouse focus is suppressed, and `ButtonBase` removes the native outline, so this tint is the only indicator. Covered by a Playwright test that compares the control focused and unfocused.
+- Covered by a unit test in [`AccordionSummary.test.js`](./AccordionSummary.test.js) that confirms the focus-visible state fires; whether the tint is perceptible enough is the visual step (its contrast is the 1.4.11 shortfall).
 
 **Manual testing steps**
 

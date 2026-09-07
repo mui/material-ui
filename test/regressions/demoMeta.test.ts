@@ -78,6 +78,12 @@ describe('getConfig', () => {
     });
   });
 
+  it('asserts image-alt on the Avatar a11y fixture', () => {
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/avatars/AvatarA11yImage'),
+    ).to.deep.include({ enabled: true, assertions: 'all', skipAssertions: ['color-contrast'] });
+  });
+
   it('keeps the a11y fixture tree screenshot-off, except explicit re-enrolments', () => {
     expect(
       getConfig(SCREENSHOT_RULES, 'test/regressions/a11y/fixtures/buttons/ButtonA11yColorMatrix'),
@@ -120,6 +126,32 @@ describe('getConfig', () => {
     expect(getConfig(A11Y_RULES, 'docs/data/material/components/buttons/IconButtons')).to.equal(
       undefined,
     );
+  });
+
+  it('returns the radio a11y rule for a brace-glob enrolment', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/radio-buttons/RadioButtonsGroup'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/radio-buttons/UseRadioGroup'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('returns undefined for a radio demo outside the enrolment', () => {
+    // The radio-buttons enrolment omits FormControlLabelPlacement.
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'docs/data/material/components/radio-buttons/FormControlLabelPlacement',
+      ),
+    ).to.equal(undefined);
+  });
+
+  it('leaves the StandaloneToggleButton demo unenrolled', () => {
+    // StandaloneToggleButton is a docs demo that is not enrolled for axe assertions.
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/toggle-button/StandaloneToggleButton'),
+    ).to.equal(undefined);
   });
 
   it('returns the a11y rule with assertions:all for the progress brace-glob enrolment', () => {
@@ -230,7 +262,7 @@ describe('getConfig (accordion a11y)', () => {
       getConfig(A11Y_RULES, 'docs/data/material/components/accordion/AccordionUsage'),
     ).to.deep.include({ enabled: true, assertions: 'all' });
     expect(
-      getConfig(A11Y_RULES, 'docs/data/material/components/accordion/AccordionA11yNonNative'),
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/accordion/AccordionA11yNonNative'),
     ).to.deep.include({ enabled: true, assertions: 'all' });
   });
 

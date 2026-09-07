@@ -20,9 +20,9 @@ export default function AccordionA11yTextSpacing() {
       </AccordionSummary>
       <AccordionDetails>
         <Typography>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget. Vivamus auctor
-          neque a sapien fringilla, in dictum massa pretium.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+          sit amet blandit leo lobortis eget. Vivamus auctor neque a sapien fringilla, in dictum
+          massa pretium.
         </Typography>
       </AccordionDetails>
     </Accordion>
