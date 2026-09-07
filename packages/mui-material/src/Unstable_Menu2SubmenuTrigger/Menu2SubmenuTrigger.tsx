@@ -272,6 +272,10 @@ Menu2SubmenuTrigger.propTypes /* remove-proptypes */ = {
    */
   nativeButton: PropTypes.bool,
   /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
    * Whether the submenu should also open when the trigger is hovered.
    * @default true
    */
