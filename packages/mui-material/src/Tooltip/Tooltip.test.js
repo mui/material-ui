@@ -633,7 +633,17 @@ describe('<Tooltip />', () => {
   });
 
   describe('scroll', () => {
-    // JSDOM has no layout, the rects the component reads have to be provided by the test.
+    // The trigger sits away from the viewport origin so that the tooltip is never rendered
+    // under the real pointer of the browser running the test, which would fire a genuine
+    // `mouseover` and overwrite the cursor position the test is simulating.
+    const TRIGGER_RECT = { top: 100, left: 100, bottom: 120, right: 200 };
+    const TOOLTIP_RECT = { top: 130, left: 100, bottom: 160, right: 200 };
+    const SCROLLED_AWAY_RECT = { top: 20, left: 100, bottom: 40, right: 200 };
+    const CURSOR_ON_TRIGGER = { clientX: 150, clientY: 110 };
+    const CURSOR_ON_TOOLTIP = { clientX: 150, clientY: 140 };
+
+    // Neither JSDOM nor a freshly laid out popper gives the test control over the
+    // geometry the component reads, so every rect it looks at is provided here.
     function setRect(element, { top, left, bottom, right }) {
       element.getBoundingClientRect = () => ({
         top,
@@ -667,28 +677,34 @@ describe('<Tooltip />', () => {
       );
 
       const trigger = screen.getByRole('button');
-      setRect(trigger, { top: 0, left: 0, bottom: 20, right: 100 });
+      setRect(trigger, TRIGGER_RECT);
 
       return { handleClose, trigger };
     }
 
-    it('should close when a scroll moves the trigger away from the cursor', async () => {
-      const { handleClose, trigger } = renderTooltip();
-
-      fireEvent.mouseOver(trigger, { clientX: 50, clientY: 10 });
-      clock.tick(100);
-
-      expect(screen.getByRole('tooltip')).toBeVisible();
-
-      // The container scrolls under a motionless cursor: the trigger is no longer below it.
-      setRect(trigger, { top: -60, left: 0, bottom: -40, right: 100 });
-      fireEvent.scroll(screen.getByTestId('scroller'));
+    async function scroll(element) {
+      fireEvent.scroll(element);
       // Popper schedules its update in a microtask, flush it before moving on.
       await act(async () => {
         await Promise.resolve();
       });
       clock.tick(111);
       clock.tick(10);
+    }
+
+    it('should close when a scroll moves the trigger away from the cursor', async () => {
+      const { handleClose, trigger } = renderTooltip();
+
+      fireEvent.mouseOver(trigger, CURSOR_ON_TRIGGER);
+      clock.tick(100);
+
+      const tooltip = screen.getByRole('tooltip');
+      expect(tooltip).toBeVisible();
+      setRect(tooltip, TOOLTIP_RECT);
+
+      // The container scrolls under a motionless cursor: nothing is below it anymore.
+      setRect(trigger, SCROLLED_AWAY_RECT);
+      await scroll(screen.getByTestId('scroller'));
 
       expect(handleClose.callCount).to.equal(1);
       expect(screen.queryByRole('tooltip')).to.equal(null);
@@ -697,42 +713,32 @@ describe('<Tooltip />', () => {
     it('should stay open when the cursor is still over the trigger after the scroll', async () => {
       const { handleClose, trigger } = renderTooltip();
 
-      fireEvent.mouseOver(trigger, { clientX: 50, clientY: 10 });
+      fireEvent.mouseOver(trigger, CURSOR_ON_TRIGGER);
       clock.tick(100);
+      setRect(screen.getByRole('tooltip'), TOOLTIP_RECT);
 
       // Scrolled by 5px only, the cursor is still within the trigger.
-      setRect(trigger, { top: -5, left: 0, bottom: 15, right: 100 });
-      fireEvent.scroll(document);
-      // Popper schedules its update in a microtask, flush it before moving on.
-      await act(async () => {
-        await Promise.resolve();
-      });
-      clock.tick(111);
-      clock.tick(10);
+      setRect(trigger, { ...TRIGGER_RECT, top: 95, bottom: 115 });
+      await scroll(document);
 
       expect(handleClose.callCount).to.equal(0);
-      expect(screen.getByRole('tooltip')).toBeVisible();
+      expect(screen.queryByRole('tooltip')).not.to.equal(null);
     });
 
     it('should stay open when the cursor is over an interactive tooltip', async () => {
       const { handleClose, trigger } = renderTooltip();
 
-      fireEvent.mouseOver(trigger, { clientX: 50, clientY: 10 });
+      fireEvent.mouseOver(trigger, CURSOR_ON_TRIGGER);
       clock.tick(100);
 
       // The cursor moved from the trigger onto the tooltip.
       const tooltip = screen.getByRole('tooltip');
+      setRect(tooltip, TOOLTIP_RECT);
       fireEvent.mouseLeave(trigger);
-      fireEvent.mouseOver(tooltip, { clientX: 50, clientY: 60 });
-      setRect(trigger, { top: -40, left: 0, bottom: -20, right: 100 });
-      setRect(tooltip, { top: 50, left: 0, bottom: 80, right: 100 });
-      fireEvent.scroll(document);
-      // Popper schedules its update in a microtask, flush it before moving on.
-      await act(async () => {
-        await Promise.resolve();
-      });
-      clock.tick(111);
-      clock.tick(10);
+      fireEvent.mouseOver(tooltip, CURSOR_ON_TOOLTIP);
+
+      setRect(trigger, SCROLLED_AWAY_RECT);
+      await scroll(document);
 
       expect(handleClose.callCount).to.equal(0);
       expect(screen.queryByRole('tooltip')).not.to.equal(null);
@@ -745,16 +751,12 @@ describe('<Tooltip />', () => {
       fireEvent.touchStart(trigger);
       clock.tick(enterTouchDelay + 100);
 
-      expect(screen.getByRole('tooltip')).toBeVisible();
+      const tooltip = screen.getByRole('tooltip');
+      expect(tooltip).toBeVisible();
+      setRect(tooltip, TOOLTIP_RECT);
 
-      setRect(trigger, { top: -60, left: 0, bottom: -40, right: 100 });
-      fireEvent.scroll(document);
-      // Popper schedules its update in a microtask, flush it before moving on.
-      await act(async () => {
-        await Promise.resolve();
-      });
-      clock.tick(111);
-      clock.tick(10);
+      setRect(trigger, SCROLLED_AWAY_RECT);
+      await scroll(document);
 
       expect(handleClose.callCount).to.equal(0);
       expect(screen.queryByRole('tooltip')).not.to.equal(null);
