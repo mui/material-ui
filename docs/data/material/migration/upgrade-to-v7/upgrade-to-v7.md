@@ -312,6 +312,8 @@ npx @mui/codemod@latest v7.0.0/input-label-size-normal-medium <path/to/folder>
 
 The default `data-testid` prop has been removed from the icons in `@mui/icons-material` in production bundles. This change ensures that the `data-testid` prop is only defined where needed, reducing the potential for naming clashes and removing unnecessary properties in production.
 
+If your test relied on those, add it back in your tests where needed.
+
 ### TablePaginationActions types import path changed
 
 The import path for the types has changed from `@mui/material/TablePagination/TablePaginationActions` to `@mui/material/TablePaginationActions`.
