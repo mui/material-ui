@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import ListContext from '../List/ListContext';
+import Menu2SubmenuClosingContext from '../Unstable_Menu2/Menu2SubmenuClosingContext';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Menu2SubmenuTriggerRootSlot from './Menu2SubmenuTriggerRootSlot';
 import { isMenu2RootNativeButton, Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
@@ -134,6 +135,7 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
     disableRipple,
     divider = false,
     nativeButton: nativeButtonProp,
+    onFocus,
     selected = false,
     slotProps,
     slots,
@@ -158,6 +160,13 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
     [dense, disableGutters],
   );
   const RootSlot = slots?.root ?? Menu2SubmenuTriggerRootSlot;
+  const { closing, settle } = React.useContext(Menu2SubmenuClosingContext);
+  const handleFocus = (event: React.FocusEvent<HTMLDivElement>) => {
+    onFocus?.(event);
+    if (closing) {
+      settle();
+    }
+  };
 
   return (
     <ListContext.Provider value={childContext}>
@@ -166,7 +175,7 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
         render={(renderProps, state) => (
           <Menu2SubmenuTriggerRootSlot
             baseProps={renderProps}
-            ownerState={{ ...ownerState, ...state }}
+            ownerState={{ ...ownerState, ...state, open: state.open || closing }}
             component={component}
             disableRipple={disableRipple}
             slotProps={slotProps}
@@ -178,13 +187,14 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
           clsx(
             className,
             getMenu2ItemClassName(classes, ownerState, state),
-            state.open && classes.open,
+            (state.open || closing) && classes.open,
           )
         }
         disabled={disabled}
         nativeButton={nativeButtonProp ?? isMenu2RootNativeButton(RootSlot, component)}
         style={style}
         {...other}
+        onFocus={handleFocus}
       />
     </ListContext.Provider>
   );

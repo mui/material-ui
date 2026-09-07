@@ -457,6 +457,93 @@ describe('<Menu2 /> collapsed API', () => {
     expect(submenuRef.current).to.contain(screen.getByRole('menuitem', { name: 'Nested' }));
   });
 
+  it.skipIf(isJsdom())(
+    'keeps the open tint on the submenu trigger until focus returns after Escape',
+    async () => {
+      const { user } = render(
+        <Menu2 defaultOpen modal={false} trigger={<Button disableRipple>Options</Button>}>
+          <Menu2Item>One</Menu2Item>
+          <Menu2Submenu
+            trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
+          >
+            <Menu2Item>Nested</Menu2Item>
+          </Menu2Submenu>
+        </Menu2>,
+      );
+      const trigger = await screen.findByRole('menuitem', { name: 'More' });
+      await waitForPopupFocus(trigger);
+      await act(async () => trigger.focus());
+      await user.keyboard('{ArrowRight}');
+      const nested = await screen.findByRole('menuitem', { name: 'Nested' });
+      await waitForPopupFocus(nested);
+      await act(async () => nested.focus());
+      expect(trigger).to.have.class(menu2SubmenuTriggerClasses.open);
+      expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.highlighted);
+
+      // Base UI drops `data-popup-open` at once and returns focus only after
+      // the exit animation. Paints happen between mutations, so every mutation
+      // must leave the open tint or the highlight in place.
+      const records: Array<{ attribute: string; open: boolean; highlighted: boolean }> = [];
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          records.push({
+            attribute: mutation.attributeName!,
+            open: trigger.classList.contains(menu2SubmenuTriggerClasses.open),
+            highlighted: trigger.classList.contains(menu2SubmenuTriggerClasses.highlighted),
+          });
+        });
+      });
+      observer.observe(trigger, {
+        attributes: true,
+        attributeFilter: ['class', 'data-popup-open'],
+      });
+
+      await user.keyboard('{Escape}');
+      await waitFor(() => {
+        expect(trigger).to.have.class(menu2SubmenuTriggerClasses.highlighted);
+      });
+      await waitFor(() => {
+        expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.open);
+      });
+      observer.disconnect();
+
+      const popupClosed = records.find((record) => record.attribute === 'data-popup-open');
+      expect(popupClosed?.open).to.equal(true);
+      expect(records.filter((record) => !record.open && !record.highlighted)).to.deep.equal([]);
+    },
+  );
+
+  it.skipIf(isJsdom())(
+    'drops the open tint after a pointer close that returns no focus',
+    async () => {
+      const { user } = render(
+        <Menu2 defaultOpen modal={false} trigger={<Button disableRipple>Options</Button>}>
+          <Menu2Item>One</Menu2Item>
+          <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
+            <Menu2Item>Nested</Menu2Item>
+          </Menu2Submenu>
+        </Menu2>,
+      );
+      const trigger = await screen.findByRole('menuitem', { name: 'More' });
+      await waitForPopupFocus(trigger);
+      await user.click(trigger);
+      await screen.findByRole('menuitem', { name: 'Nested' });
+      expect(trigger).to.have.class(menu2SubmenuTriggerClasses.open);
+
+      // Hovering a sibling closes the submenu while focus stays on the trigger.
+      const sibling = screen.getByRole('menuitem', { name: 'One' });
+      await user.hover(sibling);
+      await waitFor(() => {
+        expect(screen.queryByRole('menuitem', { name: 'Nested' })).to.equal(null);
+      });
+      await waitFor(() => {
+        expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.open);
+      });
+      // Park the pointer, so it does not leak into the next test.
+      await user.unhover(sibling);
+    },
+  );
+
   ['object', 'callback'].forEach((slotPropsType) => {
     it(`composes trigger element and slot refs with ${slotPropsType} slot props without warning`, async () => {
       const elementRef = React.createRef<HTMLButtonElement>();
