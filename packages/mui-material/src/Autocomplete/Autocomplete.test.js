@@ -20,6 +20,7 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import Grow from '@mui/material/Grow';
 import InputAdornment from '@mui/material/InputAdornment';
+import { paperClasses } from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import Tooltip from '@mui/material/Tooltip';
 import describeConformance from '../../test/describeConformance';
@@ -144,6 +145,18 @@ describe('<Autocomplete />', () => {
     expect(document.querySelector(`.${classes.paper}`)).to.toHaveComputedStyle({
       mixBlendMode: 'darken',
     });
+  });
+
+  it('should have an elevation of 8 by default that can be overridden', () => {
+    const { setProps } = render(
+      <Autocomplete options={[]} open renderInput={(params) => <TextField {...params} />} />,
+    );
+
+    expect(document.querySelector(`.${classes.paper}`)).to.have.class(paperClasses.elevation8);
+
+    setProps({ slotProps: { paper: { elevation: 16 } } });
+
+    expect(document.querySelector(`.${classes.paper}`)).to.have.class(paperClasses.elevation16);
   });
 
   it('should not throw error when accessing ownerState in styleOverrides', () => {
