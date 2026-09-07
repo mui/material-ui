@@ -32,6 +32,7 @@ export interface Menu2SubmenuTriggerSlots {
 
 export interface Menu2SubmenuTriggerOwnerState extends Menu2ItemOwnerState {
   open: boolean;
+  closing: boolean;
   highlighted: boolean;
 }
 
@@ -135,7 +136,6 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
     disableRipple,
     divider = false,
     nativeButton: nativeButtonProp,
-    onFocus,
     selected = false,
     slotProps,
     slots,
@@ -160,13 +160,7 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
     [dense, disableGutters],
   );
   const RootSlot = slots?.root ?? Menu2SubmenuTriggerRootSlot;
-  const { closing, settle } = React.useContext(Menu2SubmenuClosingContext);
-  const handleFocus = (event: React.FocusEvent<HTMLDivElement>) => {
-    onFocus?.(event);
-    if (closing) {
-      settle();
-    }
-  };
+  const { closing } = React.useContext(Menu2SubmenuClosingContext);
 
   return (
     <ListContext.Provider value={childContext}>
@@ -175,7 +169,7 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
         render={(renderProps, state) => (
           <Menu2SubmenuTriggerRootSlot
             baseProps={renderProps}
-            ownerState={{ ...ownerState, ...state, open: state.open || closing }}
+            ownerState={{ ...ownerState, ...state, closing }}
             component={component}
             disableRipple={disableRipple}
             slotProps={slotProps}
@@ -187,14 +181,14 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
           clsx(
             className,
             getMenu2ItemClassName(classes, ownerState, state),
-            (state.open || closing) && classes.open,
+            state.open && classes.open,
+            closing && classes.closing,
           )
         }
         disabled={disabled}
         nativeButton={nativeButtonProp ?? isMenu2RootNativeButton(RootSlot, component)}
         style={style}
         {...other}
-        onFocus={handleFocus}
       />
     </ListContext.Provider>
   );
@@ -271,10 +265,6 @@ Menu2SubmenuTrigger.propTypes /* remove-proptypes */ = {
    * By default, this is inferred from the root slot and `component` prop.
    */
   nativeButton: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
   /**
    * Whether the submenu should also open when the trigger is hovered.
    * @default true

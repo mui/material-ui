@@ -1,8 +1,6 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import useForkRef from '@mui/utils/useForkRef';
-import useTimeout from '@mui/utils/useTimeout';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import Menu2SubmenuPopup, { Menu2SubmenuPopupProps } from '../Unstable_Menu2/Menu2SubmenuPopup';
 import Menu2SubmenuClosingContext from '../Unstable_Menu2/Menu2SubmenuClosingContext';
@@ -90,34 +88,8 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
   } = themedProps;
 
   // The trigger keeps its open tint while the popup animates out; see the context.
-  const rootRef = React.useRef<HTMLDivElement | null>(null);
-  const handleRef = useForkRef(ref, rootRef);
   const [closing, setClosing] = React.useState(false);
-  const settleTimeout = useTimeout();
-  const settle = React.useCallback(() => {
-    settleTimeout.clear();
-    setClosing(false);
-  }, [settleTimeout]);
-  const handleOpenChange: NonNullable<typeof onOpenChange> = (nextOpen, eventDetails) => {
-    onOpenChange?.(nextOpen, eventDetails);
-    settleTimeout.clear();
-    setClosing(!nextOpen);
-  };
-  const handleOpenChangeComplete: NonNullable<typeof onOpenChangeComplete> = (nextOpen) => {
-    onOpenChangeComplete?.(nextOpen);
-    if (nextOpen) {
-      return;
-    }
-    // Base UI returns focus to the trigger after it unmounts the popup. While
-    // focus is still inside, the trigger clears the tint when focus arrives.
-    // The timeout is the safety net when focus goes elsewhere.
-    if (rootRef.current?.contains(document.activeElement)) {
-      settleTimeout.start(100, settle);
-    } else {
-      settle();
-    }
-  };
-  const closingContext = React.useMemo(() => ({ closing, settle }), [closing, settle]);
+  const closingContext = React.useMemo(() => ({ closing, onClosingChange: setClosing }), [closing]);
 
   return (
     <BaseMenu.SubmenuRoot
@@ -127,16 +99,16 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
       disabled={disabled}
       highlightItemOnHover={highlightItemOnHover}
       loopFocus={loopFocus}
-      onOpenChange={handleOpenChange}
-      onOpenChangeComplete={handleOpenChangeComplete}
+      onOpenChange={onOpenChange}
+      onOpenChangeComplete={onOpenChangeComplete}
       open={open}
     >
       <Menu2SubmenuClosingContext.Provider value={closingContext}>
         {trigger}
+        <Menu2SubmenuPopup {...popupProps} ref={ref} slotProps={slotProps} slots={slots}>
+          {children}
+        </Menu2SubmenuPopup>
       </Menu2SubmenuClosingContext.Provider>
-      <Menu2SubmenuPopup {...popupProps} ref={handleRef} slotProps={slotProps} slots={slots}>
-        {children}
-      </Menu2SubmenuPopup>
     </BaseMenu.SubmenuRoot>
   );
 });

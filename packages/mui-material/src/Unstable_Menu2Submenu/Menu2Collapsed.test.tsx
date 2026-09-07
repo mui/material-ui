@@ -477,39 +477,37 @@ describe('<Menu2 /> collapsed API', () => {
       const nested = await screen.findByRole('menuitem', { name: 'Nested' });
       await waitForPopupFocus(nested);
       await act(async () => nested.focus());
+      await waitFor(() => {
+        expect(nested.closest('[role="menu"]')!.getAnimations()).to.have.length(0);
+      });
       expect(trigger).to.have.class(menu2SubmenuTriggerClasses.open);
       expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.highlighted);
 
-      // Base UI drops `data-popup-open` at once and returns focus only after
-      // the exit animation. Paints happen between mutations, so every mutation
-      // must leave the open tint or the highlight in place.
-      const records: Array<{ attribute: string; open: boolean; highlighted: boolean }> = [];
-      const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          records.push({
-            attribute: mutation.attributeName!,
-            open: trigger.classList.contains(menu2SubmenuTriggerClasses.open),
-            highlighted: trigger.classList.contains(menu2SubmenuTriggerClasses.highlighted),
-          });
-        });
-      });
-      observer.observe(trigger, {
-        attributes: true,
-        attributeFilter: ['class', 'data-popup-open'],
-      });
+      // Sample the rendered tint at frame boundaries. MutationObserver batches
+      // records and cannot reconstruct the state of each individual mutation.
+      const backgrounds: string[] = [];
+      let frame: number;
+      const sample = () => {
+        backgrounds.push(getComputedStyle(trigger).backgroundColor);
+        frame = requestAnimationFrame(sample);
+      };
+      frame = requestAnimationFrame(sample);
 
-      await user.keyboard('{Escape}');
-      await waitFor(() => {
-        expect(trigger).to.have.class(menu2SubmenuTriggerClasses.highlighted);
-      });
-      await waitFor(() => {
+      try {
+        await user.keyboard('{Escape}');
         expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.open);
-      });
-      observer.disconnect();
+        expect(trigger).to.have.class(menu2SubmenuTriggerClasses.closing);
+        await waitFor(() => {
+          expect(trigger).to.have.class(menu2SubmenuTriggerClasses.highlighted);
+          expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.closing);
+        });
+      } finally {
+        cancelAnimationFrame(frame);
+      }
 
-      const popupClosed = records.find((record) => record.attribute === 'data-popup-open');
-      expect(popupClosed?.open).to.equal(true);
-      expect(records.filter((record) => !record.open && !record.highlighted)).to.deep.equal([]);
+      expect(backgrounds.length).to.be.greaterThan(0);
+      expect(backgrounds).not.to.include('rgba(0, 0, 0, 0)');
+      expect(backgrounds).not.to.include('transparent');
     },
   );
 
@@ -538,6 +536,7 @@ describe('<Menu2 /> collapsed API', () => {
       });
       await waitFor(() => {
         expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.open);
+        expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.closing);
       });
       // Park the pointer, so it does not leak into the next test.
       await user.unhover(sibling);

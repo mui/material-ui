@@ -712,7 +712,7 @@ describe('enhanceHighContrast', () => {
       },
     );
 
-    test('MuiMenu2SubmenuTrigger owns its open state', () => {
+    test('MuiMenu2SubmenuTrigger owns its open and closing states', () => {
       const theme = enhanceHighContrast(createTheme());
       const rootOverrides = theme.components?.MuiMenu2SubmenuTrigger?.styleOverrides
         ?.root as Array<StyleOverride>;
@@ -720,7 +720,7 @@ describe('enhanceHighContrast', () => {
 
       expect(
         hcmOverride[
-          `&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.open}.${menu2SubmenuTriggerClasses.selected}`
+          `&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.open}.${menu2SubmenuTriggerClasses.selected}, &.${menu2SubmenuTriggerClasses.closing}, &.${menu2SubmenuTriggerClasses.closing}.${menu2SubmenuTriggerClasses.selected}`
         ],
       ).to.deep.equal({
         [HCM]: {

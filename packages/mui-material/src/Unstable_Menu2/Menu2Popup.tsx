@@ -25,7 +25,12 @@ import { getMenu2PopupUtilityClass, Menu2PopupClasses } from './menu2Classes';
 
 export interface Menu2PopupProps extends Omit<
   Menu2PopupSharedProps<Menu2PopupOwnerState>,
-  'classes' | 'defaultPositionerProps' | 'defaultSlots' | 'ownerState' | keyof Menu2PopupPublicProps
+  | 'classes'
+  | 'defaultPositionerProps'
+  | 'defaultSlots'
+  | 'ownerState'
+  | 'onClosingChange'
+  | keyof Menu2PopupPublicProps
 > {
   /**
    * The menu items.

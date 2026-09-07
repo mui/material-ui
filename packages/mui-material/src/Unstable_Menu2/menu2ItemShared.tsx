@@ -209,6 +209,7 @@ export function useMenu2ItemUtilityClasses<Classes extends object>(
     disabled: ['disabled'],
     checked: ['checked'],
     open: ['open'],
+    closing: ['closing'],
   };
 
   return {

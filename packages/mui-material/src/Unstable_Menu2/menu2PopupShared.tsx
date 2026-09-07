@@ -2,6 +2,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
+import { mergeProps } from '@base-ui/react/merge-props';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import useForkRef from '@mui/utils/useForkRef';
 import useSlotProps from '@mui/utils/useSlotProps';
@@ -12,6 +13,7 @@ import { Theme } from '../styles';
 import { PaperProps } from '../Paper';
 import { ListProps } from '../List';
 import { SlotProps } from './menu2Utils';
+import { Menu2SubmenuClosingState } from './Menu2SubmenuClosingContext';
 
 type ExternalSlotProps<Props> = Omit<Partial<Props>, 'className' | 'render' | 'style'> & {
   className?: string | undefined;
@@ -189,6 +191,7 @@ export interface Menu2PopupSharedProps<OwnerState>
   classes?:
     Partial<Record<'root' | 'backdrop' | 'positioner' | 'paper' | 'list', string>> | undefined;
   ownerState: OwnerState;
+  onClosingChange?: ((closing: boolean) => void) | undefined;
   slots?: Menu2PopupSharedSlots | undefined;
   slotProps?: Menu2PopupSharedSlotProps<OwnerState> | undefined;
   defaultSlots: {
@@ -211,6 +214,7 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     className,
     classes,
     ownerState,
+    onClosingChange,
     slots,
     slotProps,
     defaultSlots,
@@ -321,18 +325,14 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
       )}
     />
   );
-  const paperRender = (
-    <PaperSlot
-      {...getSlotProps(
-        PaperSlot,
-        appendOwnerState(
-          PaperSlot,
-          { elevation: elevation ?? 8, ...paperSlotOtherProps, sx: paperSlotSx },
-          ownerState,
-        ),
-        paperHostOmittedProps,
-      )}
-    />
+  const paperProps = getSlotProps(
+    PaperSlot,
+    appendOwnerState(
+      PaperSlot,
+      { elevation: elevation ?? 8, ...paperSlotOtherProps, sx: paperSlotSx },
+      ownerState,
+    ),
+    paperHostOmittedProps,
   );
   // The list goes through the shared slot plumbing (className merging, ref
   // forking, host-aware ownerState). Host-prop omission is layered on top.
@@ -375,7 +375,20 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
           finalFocus={finalFocus}
           {...popupHandlers}
           ref={paperSlotRef}
-          render={paperRender}
+          render={
+            onClosingChange ? (
+              (renderProps, state) => (
+                <Menu2SubmenuClosingState
+                  closing={!state.open && state.transitionStatus === 'ending'}
+                  onClosingChange={onClosingChange}
+                >
+                  <PaperSlot {...mergeProps(renderProps, paperProps)} />
+                </Menu2SubmenuClosingState>
+              )
+            ) : (
+              <PaperSlot {...paperProps} />
+            )
+          }
           className={clsx(classes?.paper, paperSlotClassName)}
         >
           <ListSlot {...listSlotProps}>{children}</ListSlot>

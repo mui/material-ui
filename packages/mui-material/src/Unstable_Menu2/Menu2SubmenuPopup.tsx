@@ -21,10 +21,16 @@ import {
   menu2PopupTransitionStyles,
 } from './menu2SharedStyles';
 import { getMenu2SubmenuPopupUtilityClass, Menu2SubmenuPopupClasses } from './menu2Classes';
+import Menu2SubmenuClosingContext from './Menu2SubmenuClosingContext';
 
 export interface Menu2SubmenuPopupProps extends Omit<
   Menu2PopupSharedProps<Menu2SubmenuPopupOwnerState>,
-  'classes' | 'defaultPositionerProps' | 'defaultSlots' | 'ownerState' | keyof Menu2PopupPublicProps
+  | 'classes'
+  | 'defaultPositionerProps'
+  | 'defaultSlots'
+  | 'ownerState'
+  | 'onClosingChange'
+  | keyof Menu2PopupPublicProps
 > {
   /**
    * The submenu items.
@@ -211,6 +217,7 @@ const Menu2SubmenuPopup = React.forwardRef(function Menu2SubmenuPopup(
 ) {
   // Internal: `MuiMenu2Submenu` defaults are applied by Menu2Submenu.
   const props = inProps;
+  const { onClosingChange } = React.useContext(Menu2SubmenuClosingContext);
 
   const ownerState: Menu2SubmenuPopupOwnerState = {
     side: 'inline-end',
@@ -224,6 +231,7 @@ const Menu2SubmenuPopup = React.forwardRef(function Menu2SubmenuPopup(
       ref={ref}
       {...props}
       ownerState={ownerState}
+      onClosingChange={onClosingChange}
       classes={classes}
       defaultSlots={{
         root: Menu2SubmenuPopupRoot,

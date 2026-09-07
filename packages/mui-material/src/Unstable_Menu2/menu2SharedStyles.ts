@@ -76,9 +76,10 @@ export function menu2SubmenuTriggerStyles(theme: Theme) {
     // An open trigger keeps a tint, because open is a state and not a focus cue.
     // `action.hover` is the lightest of the three, so an open parent stays visible
     // without competing with the item the reader is on.
-    [`&.${menu2SubmenuTriggerClasses.open}${notHighlighted}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.hover,
-    },
+    [`&.${menu2SubmenuTriggerClasses.open}${notHighlighted}, &.${menu2SubmenuTriggerClasses.closing}${notHighlighted}`]:
+      {
+        backgroundColor: (theme.vars || theme).palette.action.hover,
+      },
     // The theme ring replaces the highlight, the way it does for a plain item.
     // `:hover` is here too: Base UI highlights a submenu trigger only once its
     // submenu opens, so during the open delay the trigger would otherwise show
@@ -89,7 +90,7 @@ export function menu2SubmenuTriggerStyles(theme: Theme) {
       },
     }),
     // A selected trigger that is open blends its own tint with the open tint.
-    [`&.${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.open}${notHighlighted}`]:
+    [`&.${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.open}${notHighlighted}, &.${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.closing}${notHighlighted}`]:
       {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,

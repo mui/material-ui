@@ -500,7 +500,7 @@ export default function enhanceHighContrast<
         root: [
           c?.MuiMenu2SubmenuTrigger?.styleOverrides?.root,
           {
-            [`&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.open}.${menu2SubmenuTriggerClasses.selected}`]:
+            [`&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.open}.${menu2SubmenuTriggerClasses.selected}, &.${menu2SubmenuTriggerClasses.closing}, &.${menu2SubmenuTriggerClasses.closing}.${menu2SubmenuTriggerClasses.selected}`]:
               {
                 [HCM]: {
                   forcedColorAdjust: 'none',

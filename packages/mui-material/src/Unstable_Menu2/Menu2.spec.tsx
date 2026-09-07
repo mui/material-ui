@@ -190,6 +190,7 @@ createTheme({
   slotProps={{
     root: (state) => {
       expectType<boolean, typeof state.open>(state.open);
+      expectType<boolean, typeof state.closing>(state.closing);
       expectType<boolean, typeof state.highlighted>(state.highlighted);
       return { 'data-open': state.open };
     },
