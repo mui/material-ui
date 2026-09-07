@@ -12,6 +12,17 @@ function getStyleValue(value: string) {
   return parseInt(value, 10) || 0;
 }
 
+function getMaxHeight(value: string) {
+  // `getComputedStyle` resolves `max-height` to an absolute length, except for values that
+  // depend on the layout, for example percentages or `calc()` expressions mixing both.
+  // Those can't be compared with the computed height, so they are treated as unbounded.
+  if (!value || !value.endsWith('px')) {
+    return Infinity;
+  }
+
+  return getStyleValue(value);
+}
+
 const styles: {
   shadow: React.CSSProperties;
 } = {
@@ -123,7 +134,10 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
 
     // Take the box sizing into account for applying this value as a style.
     const outerHeightStyle = outerHeight + (boxSizing === 'border-box' ? padding + border : 0);
-    const overflowing = Math.abs(outerHeight - innerHeight) <= 1;
+    // A CSS `max-height` clips the textarea before it reaches `outerHeightStyle`, so the content
+    // has to stay scrollable, the same way it does once `maxRows` is reached.
+    const clippedByMaxHeight = outerHeightStyle > getMaxHeight(computedStyle.maxHeight);
+    const overflowing = Math.abs(outerHeight - innerHeight) <= 1 && !clippedByMaxHeight;
 
     return { outerHeightStyle, overflowing };
   }, [maxRows, minRows, props.placeholder]);
