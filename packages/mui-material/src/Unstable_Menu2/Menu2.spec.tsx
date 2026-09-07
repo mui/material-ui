@@ -39,14 +39,14 @@ function Menu2Composition() {
       keepMounted
       finalFocus
       slots={{
-        portal: 'div',
-        positioner: 'div',
         root: 'div',
+        positioner: 'div',
+        paper: 'div',
         list: 'div',
       }}
       slotProps={{
         trigger: { nativeButton: true, className: 'trigger' },
-        root: { elevation: 4 },
+        paper: { elevation: 4 },
         list: { 'data-testid': 'list' },
       }}
     >
@@ -112,6 +112,8 @@ createTheme({
       styleOverrides: {
         root: {},
         backdrop: {},
+        positioner: {},
+        paper: {},
         list: {},
       },
       variants: [
@@ -127,6 +129,8 @@ createTheme({
       },
       styleOverrides: {
         root: {},
+        positioner: {},
+        paper: {},
         list: {},
       },
     },
@@ -263,8 +267,8 @@ createTheme({
 <Menu2
   trigger={<button type="button">Open</button>}
   slots={{
-    // @ts-expect-error The popup and the Paper are one root slot.
-    paper: 'div',
+    // @ts-expect-error The popup renders as the Paper slot. There is no popup slot.
+    popup: 'div',
   }}
 >
   <Menu2Item>Item</Menu2Item>
@@ -273,8 +277,8 @@ createTheme({
 <Menu2
   trigger={<button type="button">Open</button>}
   slotProps={{
-    // @ts-expect-error The popup and the Paper are one root slot.
-    popup: { className: 'popup' },
+    // @ts-expect-error The root slot is the portal element. There is no portal slot.
+    portal: { className: 'portal' },
   }}
 >
   <Menu2Item>Item</Menu2Item>

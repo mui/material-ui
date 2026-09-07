@@ -17,6 +17,7 @@ import {
 import {
   menu2PopupListStyles,
   menu2PopupPaperStyles,
+  menu2PopupPositionerStyles,
   menu2PopupTransitionStyles,
 } from './menu2SharedStyles';
 import { getMenu2SubmenuPopupUtilityClass, Menu2SubmenuPopupClasses } from './menu2Classes';
@@ -30,11 +31,11 @@ export interface Menu2SubmenuPopupProps extends Omit<
    */
   children?: React.ReactNode;
   /**
-   * CSS class applied to the root element.
+   * CSS class applied to the root element, which wraps the menu in the portal.
    */
   className?: Menu2PopupPublicProps['className'] | undefined;
   /**
-   * Inline styles applied to the root element.
+   * Inline styles applied to the root element, which wraps the menu in the portal.
    */
   style?: Menu2PopupPublicProps['style'] | undefined;
   /**
@@ -121,6 +122,7 @@ export interface Menu2SubmenuPopupProps extends Omit<
   classes?: Partial<Menu2SubmenuPopupClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
+   * Applied to the root element. Use `slotProps.paper.sx` for the menu surface.
    */
   sx?: SxProps<Theme> | undefined;
   /**
@@ -137,20 +139,20 @@ export interface Menu2SubmenuPopupOwnerState extends Menu2SubmenuPopupProps {}
 
 export interface Menu2SubmenuPopupSlots {
   /**
-   * The component used for the portal.
-   * @default BaseMenu.Portal
+   * The component used for the root element, which wraps the menu in the portal.
+   * @default 'div'
    */
-  portal?: React.ElementType | undefined;
+  root?: React.ElementType | undefined;
   /**
    * The component used for the positioner.
-   * @default BaseMenu.Positioner
+   * @default 'div'
    */
   positioner?: React.ElementType | undefined;
   /**
-   * The component rendered as the popup. It is the root element and the visible surface.
+   * The component used for the menu surface. The popup renders as this element.
    * @default Paper
    */
-  root?: React.ElementType | undefined;
+  paper?: React.ElementType | undefined;
   /**
    * The component used for the presentational list wrapper.
    * @default List
@@ -165,16 +167,30 @@ const useUtilityClasses = (ownerState: Menu2SubmenuPopupOwnerState) => {
 
   const slots = {
     root: ['root'],
+    positioner: ['positioner'],
+    paper: ['paper'],
     list: ['list'],
   };
 
   return composeClasses(slots, getMenu2SubmenuPopupUtilityClass, classes);
 };
 
-const Menu2SubmenuPopupRoot = styled(Paper, {
+const Menu2SubmenuPopupRoot = styled('div', {
   name: 'MuiMenu2Submenu',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
+})({});
+
+const Menu2SubmenuPopupPositioner = styled('div', {
+  name: 'MuiMenu2Submenu',
+  slot: 'Positioner',
+  overridesResolver: (props, styles) => styles.positioner,
+})(menu2PopupPositionerStyles);
+
+const Menu2SubmenuPopupPaper = styled(Paper, {
+  name: 'MuiMenu2Submenu',
+  slot: 'Paper',
+  overridesResolver: (props, styles) => styles.paper,
 })({ outline: 0 }, menu2PopupPaperStyles, menu2PopupTransitionStyles);
 
 const Menu2SubmenuPopupList = styled(List, {
@@ -211,6 +227,8 @@ const Menu2SubmenuPopup = React.forwardRef(function Menu2SubmenuPopup(
       classes={classes}
       defaultSlots={{
         root: Menu2SubmenuPopupRoot,
+        positioner: Menu2SubmenuPopupPositioner,
+        paper: Menu2SubmenuPopupPaper,
         list: Menu2SubmenuPopupList,
       }}
       defaultPositionerProps={{
@@ -265,7 +283,7 @@ Menu2SubmenuPopup.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * CSS class applied to the root element.
+   * CSS class applied to the root element, which wraps the menu in the portal.
    */
   className: PropTypes.string,
   /**
@@ -386,11 +404,12 @@ Menu2SubmenuPopup.propTypes /* remove-proptypes */ = {
    */
   sticky: PropTypes.bool,
   /**
-   * Inline styles applied to the root element.
+   * Inline styles applied to the root element, which wraps the menu in the portal.
    */
   style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
+   * Applied to the root element. Use `slotProps.paper.sx` for the menu surface.
    */
   sx: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),

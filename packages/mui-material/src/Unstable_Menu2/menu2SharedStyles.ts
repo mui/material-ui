@@ -56,6 +56,12 @@ export const menu2PopupPaperStyles: CSSInterpolation = {
 
 export const menu2PopupListStyles = menuListStyles;
 
+// The classic Modal root carries `zIndex.modal`. Base UI sets no z-index, so
+// the positioner, the positioned element, carries it here.
+export const menu2PopupPositionerStyles = memoTheme(({ theme }) => ({
+  zIndex: (theme.vars || theme).zIndex.modal,
+}));
+
 export function menu2SubmenuTriggerStyles(theme: Theme) {
   // The highlight outranks the open tint. The open selector excludes both states
   // that paint the highlight, so the rules never match the same element and the

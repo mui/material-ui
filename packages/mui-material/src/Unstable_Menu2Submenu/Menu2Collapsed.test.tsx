@@ -39,15 +39,18 @@ describe('<Menu2 /> collapsed API', () => {
           ),
         getRootElement: ({ baseElement }) =>
           baseElement.querySelector(`.${menu2SubmenuPopupClasses.root}`),
-        // The public root is the semantic popup, rendered as the Paper. Its host
-        // is configured through slots.root rather than a component prop.
+        // The public root is the portal element that wraps the menu. Its host is
+        // configured through slots.root rather than a component prop.
         skip: ['componentProp'],
         refInstanceof: window.HTMLDivElement,
         muiName: 'MuiMenu2Submenu',
         testVariantProps: { align: 'center' },
         slots: {
-          root: {
-            expectedClassName: menu2SubmenuPopupClasses.root,
+          positioner: {
+            expectedClassName: menu2SubmenuPopupClasses.positioner,
+          },
+          paper: {
+            expectedClassName: menu2SubmenuPopupClasses.paper,
           },
           list: {
             expectedClassName: menu2SubmenuPopupClasses.list,
@@ -86,7 +89,7 @@ describe('<Menu2 /> collapsed API', () => {
     await user.click(trigger);
 
     const menu = await screen.findByRole('menu');
-    expect(menu).to.have.class(menu2PopupClasses.root);
+    expect(menu).to.have.class(menu2PopupClasses.paper);
     expect(screen.getByRole('menuitem', { name: 'Profile' })).to.have.class(menu2ItemClasses.root);
   });
 
@@ -145,10 +148,16 @@ describe('<Menu2 /> collapsed API', () => {
           .closest<HTMLDivElement>('[role="menu"]')!;
       }
 
-      it('applies className, style, and sx to the one root, which is the Paper', async () => {
+      function getRoot() {
+        const rootClass =
+          componentName === 'Menu2Submenu' ? menu2SubmenuPopupClasses.root : menu2PopupClasses.root;
+        return getPopup().closest<HTMLDivElement>(`.${rootClass}`)!;
+      }
+
+      it('applies className, style, and sx to the root, and keeps the surface separate', async () => {
         const { user } = render(
           <TestMenu
-            className="custom-popup"
+            className="custom-root"
             style={{ paddingTop: '3px' }}
             sx={{ paddingBottom: '7px' }}
           />,
@@ -156,17 +165,22 @@ describe('<Menu2 /> collapsed API', () => {
 
         await openSubmenu(user);
         const popup = getPopup();
-        expect(popup).to.have.class('custom-popup');
+        const root = getRoot();
+        expect(root).to.have.class('custom-root');
+        expect(root).to.contain(popup);
+        expect(popup).not.to.have.class('custom-root');
         expect(popup).to.have.class('MuiPaper-root');
-        expect(popup.style.paddingTop).to.equal('3px');
-        expect(getComputedStyle(popup).paddingBottom).to.equal('7px');
+        expect(root.style.paddingTop).to.equal('3px');
+        expect(popup.style.paddingTop).to.equal('');
+        expect(getComputedStyle(root).paddingBottom).to.equal('7px');
+        expect(getComputedStyle(popup).paddingBottom).not.to.equal('7px');
       });
 
-      it('merges the root slot className, style, and sx, and keeps the list separate', async () => {
+      it('merges the root, paper, and list slot props with the top-level props', async () => {
         const { user } = render(
           <TestMenu
-            className="custom-popup"
-            classes={{ root: 'popup-root', list: 'list-root' }}
+            className="custom-root"
+            classes={{ root: 'root-class', paper: 'paper-class', list: 'list-class' }}
             style={{ paddingLeft: '3px' }}
             sx={[{ paddingBottom: '7px' }, (theme) => ({ paddingTop: theme.spacing(1) })]}
             slotProps={{
@@ -175,9 +189,15 @@ describe('<Menu2 /> collapsed API', () => {
                 style: { paddingRight: '5px' },
                 sx: [{ paddingBottom: '9px' }],
               },
+              paper: {
+                className: 'paper-slot',
+                style: { paddingRight: '4px' },
+                sx: { paddingTop: '11px' },
+                'data-testid': 'paper',
+              },
               list: {
                 className: 'list-slot',
-                sx: { paddingTop: '11px' },
+                sx: { paddingTop: '13px' },
                 'data-testid': 'list',
               },
             }}
@@ -185,19 +205,25 @@ describe('<Menu2 /> collapsed API', () => {
         );
 
         await openSubmenu(user);
-        const popup = getPopup();
+        const root = getRoot();
+        const paper = screen.getByTestId('paper');
         const list = screen.getByTestId('list');
-        expect(popup).to.have.class('custom-popup');
-        expect(popup).to.have.class('popup-root');
-        expect(popup).to.have.class('root-slot');
-        expect(list).to.have.class('list-root');
+        expect(paper).to.equal(getPopup());
+        expect(root).to.have.class('custom-root');
+        expect(root).to.have.class('root-class');
+        expect(root).to.have.class('root-slot');
+        expect(paper).to.have.class('paper-class');
+        expect(paper).to.have.class('paper-slot');
+        expect(list).to.have.class('list-class');
         expect(list).to.have.class('list-slot');
-        expect(popup.style.paddingLeft).to.equal('3px');
-        expect(popup.style.paddingRight).to.equal('5px');
-        expect(getComputedStyle(popup).paddingTop).to.equal('8px');
-        expect(getComputedStyle(popup).paddingBottom).to.equal('9px');
-        expect(getComputedStyle(list).paddingTop).to.equal('11px');
-        expect(list.style.paddingLeft).to.equal('');
+        expect(root.style.paddingLeft).to.equal('3px');
+        expect(root.style.paddingRight).to.equal('5px');
+        expect(getComputedStyle(root).paddingTop).to.equal('8px');
+        expect(getComputedStyle(root).paddingBottom).to.equal('9px');
+        expect(paper.style.paddingRight).to.equal('4px');
+        expect(paper.style.paddingLeft).to.equal('');
+        expect(getComputedStyle(paper).paddingTop).to.equal('11px');
+        expect(getComputedStyle(list).paddingTop).to.equal('13px');
       });
 
       it('forwards a root slot ref without a public ref, including a custom root slot', async () => {
@@ -207,28 +233,36 @@ describe('<Menu2 /> collapsed API', () => {
         );
 
         await openSubmenu(user);
-        expect(slotRef.current).to.equal(getPopup());
+        expect(slotRef.current).to.equal(getRoot());
+        expect(slotRef.current).to.contain(getPopup());
 
         unmount();
         expect(slotRef.current).to.equal(null);
       });
 
-      it('composes public and slot refs on the root, which is the Paper', async () => {
+      it('composes public and slot refs on the root, and keeps the paper ref separate', async () => {
         const publicRef = vi.fn();
         const slotRef = React.createRef<HTMLDivElement>();
+        const paperRef = React.createRef<HTMLDivElement>();
         const { user, unmount } = render(
-          <TestMenu ref={publicRef} slotProps={{ root: { ref: slotRef } }} />,
+          <TestMenu
+            ref={publicRef}
+            slotProps={{ root: { ref: slotRef }, paper: { ref: paperRef } }}
+          />,
         );
 
         await openSubmenu(user);
         const popup = getPopup();
-        expect(publicRef).toHaveBeenLastCalledWith(popup);
-        expect(slotRef.current).to.equal(popup);
-        expect(popup).to.have.class('MuiPaper-root');
+        const root = getRoot();
+        expect(publicRef).toHaveBeenLastCalledWith(root);
+        expect(slotRef.current).to.equal(root);
+        expect(paperRef.current).to.equal(popup);
+        expect(root).not.to.equal(popup);
 
         unmount();
         expect(publicRef).toHaveBeenLastCalledWith(null);
         expect(slotRef.current).to.equal(null);
+        expect(paperRef.current).to.equal(null);
       });
 
       it('updates public and slot refs without replacing the popup', async () => {
@@ -254,45 +288,60 @@ describe('<Menu2 /> collapsed API', () => {
         const { user, unmount } = render(<ChangeRefs />);
         await openSubmenu(user);
         const popup = getPopup();
-        expect(firstRef.current).to.equal(popup);
-        expect(firstSlotRef).toHaveBeenLastCalledWith(popup);
+        const root = getRoot();
+        expect(firstRef.current).to.equal(root);
+        expect(firstSlotRef).toHaveBeenLastCalledWith(root);
 
         await user.click(screen.getByRole('menuitem', { name: 'Alpha' }));
         expect(getPopup()).to.equal(popup);
+        expect(getRoot()).to.equal(root);
         expect(firstRef.current).to.equal(null);
         expect(firstSlotRef).toHaveBeenLastCalledWith(null);
-        expect(nextRef.current).to.equal(popup);
-        expect(nextSlotRef).toHaveBeenLastCalledWith(popup);
+        expect(nextRef.current).to.equal(root);
+        expect(nextSlotRef).toHaveBeenLastCalledWith(root);
 
         unmount();
         expect(nextRef.current).to.equal(null);
         expect(nextSlotRef).toHaveBeenLastCalledWith(null);
       });
 
-      it('forwards HTML and ARIA attributes to the semantic popup', async () => {
+      it('forwards HTML attributes to the root, as the classic Menu does', async () => {
+        const { user } = render(
+          <TestMenu id="actions-menu" data-testid="actions-root" title="Action menu" />,
+        );
+
+        await openSubmenu(user);
+        const root = getRoot();
+        expect(root).to.equal(screen.getByTestId('actions-root'));
+        expect(root).to.have.attribute('id', 'actions-menu');
+        expect(root).to.have.attribute('title', 'Action menu');
+        expect(getPopup()).not.to.have.attribute('title');
+      });
+
+      it('reaches the semantic popup through the paper slot', async () => {
         const { user } = render(
           <React.Fragment>
             <span id="actions-description">Available actions</span>
             <TestMenu
-              id="actions-menu"
-              aria-label="Actions"
-              aria-describedby="actions-description"
-              data-testid="actions-popup"
-              title="Action menu"
+              slotProps={{
+                paper: {
+                  id: 'actions-popup',
+                  'aria-label': 'Actions',
+                  'aria-describedby': 'actions-description',
+                },
+              }}
             />
           </React.Fragment>,
         );
 
         await openSubmenu(user);
         const popup = getPopup();
-        expect(popup).to.equal(screen.getByTestId('actions-popup'));
-        expect(popup).to.have.attribute('id', 'actions-menu');
+        expect(popup).to.have.attribute('id', 'actions-popup');
         expect(popup).to.have.attribute('aria-label', 'Actions');
         expect(popup).to.have.attribute('aria-describedby', 'actions-description');
-        expect(popup).to.have.attribute('title', 'Action menu');
       });
 
-      it('preserves popup slot precedence over forwarded attributes', async () => {
+      it('preserves root slot precedence over forwarded attributes', async () => {
         const { user } = render(
           <TestMenu
             id="top-level-id"
@@ -308,10 +357,10 @@ describe('<Menu2 /> collapsed API', () => {
         );
 
         await openSubmenu(user);
-        const popup = getPopup();
-        expect(popup).to.have.attribute('id', 'slot-id');
-        expect(popup).to.have.attribute('aria-label', 'Slot label');
-        expect(popup).to.have.attribute('title', 'Forwarded title');
+        const root = getRoot();
+        expect(root).to.have.attribute('id', 'slot-id');
+        expect(root).to.have.attribute('aria-label', 'Slot label');
+        expect(root).to.have.attribute('title', 'Forwarded title');
       });
 
       it.skipIf(isJsdom())(
@@ -336,6 +385,7 @@ describe('<Menu2 /> collapsed API', () => {
 
           expect(document.activeElement).to.equal(lastItem);
           expect(onKeyDown).toHaveBeenCalledTimes(2);
+          // Handlers attach to the popup: the root is a React sibling of the menu.
           expect(currentTargets).to.deep.equal([popup, popup]);
           expect(popup).not.to.have.attribute('loopfocus');
 
@@ -356,13 +406,13 @@ describe('<Menu2 /> collapsed API', () => {
   // The type fixture advertises these slots but only typechecks them. They are
   // context providers, so swapping them for a plain element used to break the
   // tree at runtime; these render for real.
-  it('renders with the portal and positioner slots swapped', async () => {
+  it('renders with the root and positioner slots swapped', async () => {
     const { user } = render(
       <Menu2
         trigger={<Button disableRipple>Options</Button>}
-        slots={{ portal: 'div', positioner: 'div' }}
+        slots={{ root: 'div', positioner: 'div' }}
         slotProps={{
-          portal: { 'data-testid': 'portal' },
+          root: { 'data-testid': 'root' },
           positioner: { 'data-testid': 'positioner' },
         }}
       >
@@ -373,12 +423,15 @@ describe('<Menu2 /> collapsed API', () => {
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
     const menu = await screen.findByRole('menu');
-    expect(menu).to.have.class(menu2PopupClasses.root);
+    expect(menu).to.have.class(menu2PopupClasses.paper);
     expect(screen.getByTestId('positioner')).to.contain(menu);
+    expect(screen.getByTestId('positioner')).to.have.class(menu2PopupClasses.positioner);
+    expect(screen.getByTestId('root')).to.contain(screen.getByTestId('positioner'));
+    expect(screen.getByTestId('root')).to.have.class(menu2PopupClasses.root);
     expect(screen.getByRole('menuitem', { name: 'Profile' })).not.to.equal(null);
   });
 
-  it('forwards a ref to the popup surface', async () => {
+  it('forwards a ref to the root element that wraps the menu', async () => {
     const menuRef = React.createRef<HTMLDivElement>();
     const submenuRef = React.createRef<HTMLDivElement>();
     const { user } = render(
@@ -391,13 +444,17 @@ describe('<Menu2 /> collapsed API', () => {
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
     const menu = await screen.findByRole('menu');
-    expect(menuRef.current).to.equal(menu);
+    // The classic Menu ref targets the wrapper, not the surface.
+    expect(menuRef.current).to.have.class(menu2PopupClasses.root);
+    expect(menuRef.current).to.contain(menu);
+    expect(menuRef.current).not.to.equal(menu);
 
     await user.click(screen.getByRole('menuitem', { name: 'More' }));
     await waitFor(() => {
       expect(submenuRef.current).not.to.equal(null);
     });
     expect(submenuRef.current).to.have.class(menu2SubmenuPopupClasses.root);
+    expect(submenuRef.current).to.contain(screen.getByRole('menuitem', { name: 'Nested' }));
   });
 
   ['object', 'callback'].forEach((slotPropsType) => {
@@ -448,13 +505,13 @@ describe('<Menu2 /> collapsed API', () => {
       components: {
         MuiMenu2: {
           styleOverrides: {
-            root: { paddingTop: '9px' },
+            paper: { paddingTop: '9px' },
             list: { paddingBottom: '7px' },
           },
         },
         MuiMenu2Submenu: {
           styleOverrides: {
-            root: { paddingTop: '11px' },
+            paper: { paddingTop: '11px' },
           },
         },
       },
@@ -463,11 +520,11 @@ describe('<Menu2 /> collapsed API', () => {
       <ThemeProvider theme={theme}>
         <Menu2
           trigger={<Button disableRipple>Options</Button>}
-          slotProps={{ root: { 'data-testid': 'paper' } }}
+          slotProps={{ paper: { 'data-testid': 'paper' } }}
         >
           <Menu2Submenu
             trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
-            slotProps={{ root: { 'data-testid': 'submenu-paper' } }}
+            slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}
           >
             <Menu2Item>Nested</Menu2Item>
           </Menu2Submenu>
@@ -808,11 +865,11 @@ describe('<Menu2 /> collapsed API', () => {
       <Menu2
         defaultOpen
         trigger={<Button disableRipple>Options</Button>}
-        slotProps={{ root: { 'data-testid': 'paper' } }}
+        slotProps={{ paper: { 'data-testid': 'paper' } }}
       >
         <Menu2Submenu
           trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
-          slotProps={{ root: { 'data-testid': 'submenu-paper' } }}
+          slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}
         >
           <Menu2Item>Nested</Menu2Item>
         </Menu2Submenu>
@@ -847,7 +904,7 @@ describe('<Menu2 /> collapsed API', () => {
           <Menu2 defaultOpen trigger={<Button disableRipple>Options</Button>}>
             <Menu2Submenu
               trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
-              slotProps={{ root: { 'data-testid': 'submenu-paper' } }}
+              slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}
             >
               <Menu2Item>Nested</Menu2Item>
             </Menu2Submenu>
@@ -937,7 +994,7 @@ describe('<Menu2 /> collapsed API', () => {
         trigger={<Button disableRipple>Options</Button>}
         side="top"
         elevation={16}
-        slotProps={{ root: { 'data-testid': 'paper' } }}
+        slotProps={{ paper: { 'data-testid': 'paper' } }}
       >
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,

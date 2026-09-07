@@ -39,15 +39,18 @@ describe('<Menu2 />', () => {
       classes: menu2PopupClasses,
       render,
       getRootElement: ({ baseElement }) => baseElement.querySelector(`.${menu2PopupClasses.root}`),
-      // The public root is the semantic popup, rendered as the Paper. Its host
-      // is configured through slots.root rather than a component prop.
+      // The public root is the portal element that wraps the menu. Its host is
+      // configured through slots.root rather than a component prop.
       skip: ['componentProp'],
       refInstanceof: window.HTMLDivElement,
       muiName: 'MuiMenu2',
       testVariantProps: { align: 'center' },
       slots: {
-        root: {
-          expectedClassName: menu2PopupClasses.root,
+        positioner: {
+          expectedClassName: menu2PopupClasses.positioner,
+        },
+        paper: {
+          expectedClassName: menu2PopupClasses.paper,
         },
         list: {
           expectedClassName: menu2PopupClasses.list,
@@ -73,7 +76,7 @@ describe('<Menu2 />', () => {
   it('opens from the trigger and keeps Menu.Popup as the semantic menu root', async () => {
     const { user } = render(
       <Menu2
-        slotProps={{ root: { 'data-testid': 'root' } }}
+        slotProps={{ root: { 'data-testid': 'root' }, paper: { 'data-testid': 'paper' } }}
         trigger={<Button disableRipple>Options</Button>}
       >
         <Menu2Item>Profile</Menu2Item>
@@ -85,11 +88,16 @@ describe('<Menu2 />', () => {
 
     await user.click(trigger);
 
-    // One root: the semantic popup is the Paper.
+    // The classic anatomy: the root wraps the menu, and the popup is the Paper.
     const menu = await screen.findByRole('menu');
-    expect(menu).to.have.class(menu2PopupClasses.root);
+    expect(menu).to.have.class(menu2PopupClasses.paper);
     expect(menu).to.have.class(paperClasses.root);
-    expect(screen.getByTestId('root')).to.equal(menu);
+    expect(screen.getByTestId('paper')).to.equal(menu);
+    const root = screen.getByTestId('root');
+    expect(root).to.have.class(menu2PopupClasses.root);
+    expect(root).to.contain(menu);
+    expect(root).not.to.equal(menu);
+    expect(menu.parentElement).to.have.class(menu2PopupClasses.positioner);
 
     const list = menu.querySelector(`.${menu2PopupClasses.list}`);
     expect(list).not.to.equal(null);
@@ -261,13 +269,13 @@ describe('<Menu2 />', () => {
     }
   });
 
-  it('does not pass internal props to host root and list slots', async () => {
+  it('does not pass internal props to host paper and list slots', async () => {
     const { user } = render(
       <Menu2
         sx={{ minWidth: 120 }}
-        slots={{ root: 'div', list: 'div' }}
+        slots={{ paper: 'div', list: 'div' }}
         slotProps={{
-          root: {
+          paper: {
             'data-testid': 'paper',
             classes: { root: 'paper-root' },
             component: 'section',
@@ -306,7 +314,7 @@ describe('<Menu2 />', () => {
   it('defaults the popup surface elevation to 8', async () => {
     const { user } = render(
       <Menu2
-        slotProps={{ root: { 'data-testid': 'paper' } }}
+        slotProps={{ paper: { 'data-testid': 'paper' } }}
         trigger={<Button disableRipple>Options</Button>}
       >
         <Menu2Item>Profile</Menu2Item>
@@ -322,7 +330,7 @@ describe('<Menu2 />', () => {
     const { user } = render(
       <Menu2
         elevation={4}
-        slotProps={{ root: { 'data-testid': 'paper' } }}
+        slotProps={{ paper: { 'data-testid': 'paper' } }}
         trigger={<Button disableRipple>Options</Button>}
       >
         <Menu2Item>Profile</Menu2Item>
@@ -361,7 +369,7 @@ describe('<Menu2 />', () => {
     expect(emitted).to.contain('scale(0.75, 0.5625)');
     expect(emitted).to.contain('data-starting-style');
     expect(emitted).to.contain('prefers-reduced-motion');
-    expect(popup).to.have.class(menu2PopupClasses.root);
+    expect(popup).to.have.class(menu2PopupClasses.paper);
 
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       // Base UI suppresses the transition for the frame in which it applies the
@@ -433,7 +441,10 @@ describe('<Menu2 />', () => {
 
   it.skipIf(isJsdom())('lets the default animation be overridden', async () => {
     const { user } = render(
-      <Menu2 sx={{ transition: 'none' }} trigger={<Button disableRipple>Options</Button>}>
+      <Menu2
+        slotProps={{ paper: { sx: { transition: 'none' } } }}
+        trigger={<Button disableRipple>Options</Button>}
+      >
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
@@ -483,10 +494,25 @@ describe('<Menu2 />', () => {
     expect(window.getComputedStyle(backdrop).backgroundColor).to.equal('rgb(0, 0, 0)');
   });
 
+  it.skipIf(isJsdom())('stacks the positioner at theme.zIndex.modal', async () => {
+    const { user } = render(
+      <Menu2 trigger={<Button disableRipple>Options</Button>}>
+        <Menu2Item>Profile</Menu2Item>
+      </Menu2>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+
+    // Base UI sets no z-index, so a fixed AppBar would paint over the menu.
+    const positioner = (await screen.findByRole('menu')).parentElement!;
+    expect(positioner).to.have.class(menu2PopupClasses.positioner);
+    expect(window.getComputedStyle(positioner).zIndex).to.equal(String(createTheme().zIndex.modal));
+  });
+
   it.skipIf(isJsdom())('constrains the popup surface to the collision-aware height', async () => {
     const { user } = render(
       <Menu2
-        slotProps={{ root: { 'data-testid': 'paper' } }}
+        slotProps={{ paper: { 'data-testid': 'paper' } }}
         trigger={<Button disableRipple>Options</Button>}
       >
         <Menu2Item>Profile</Menu2Item>

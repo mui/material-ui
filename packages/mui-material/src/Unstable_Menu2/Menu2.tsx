@@ -33,7 +33,9 @@ export interface Menu2SlotProps extends NonNullable<Menu2PopupProps['slotProps']
  * component. `Pick` names each forwarded prop, so a prop that a later Base UI
  * version adds reaches neither the type nor the popup DOM until Menu2 supports
  * it. The mapped type also lets the proptypes generator resolve the members.
- * HTML attributes and event handlers are forwarded to the popup element.
+ * HTML attributes are forwarded to the root element, the same as the classic
+ * Menu, and event handlers attach to the popup, where the events originate.
+ * Use `slotProps.paper` for `aria-*` attributes on the `role="menu"` element.
  */
 export interface Menu2Props
   // Not picked: `handle` needs `Menu.createHandle`, which Menu2 does not
@@ -86,7 +88,8 @@ export interface Menu2Props
  */
 const Menu2 = React.forwardRef(function Menu2(
   props: Menu2Props,
-  // The public ref targets the root element, which is the Paper.
+  // The public ref targets the root element, the portal wrapper. Use
+  // slotProps.paper.ref for the surface.
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const themedProps = useDefaultProps({
@@ -194,7 +197,7 @@ Menu2.propTypes /* remove-proptypes */ = {
   slotProps: PropTypes.shape({
     backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    portal: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     positioner: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     trigger: PropTypes.oneOfType([
@@ -211,7 +214,7 @@ Menu2.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     backdrop: PropTypes.elementType,
     list: PropTypes.elementType,
-    portal: PropTypes.elementType,
+    paper: PropTypes.elementType,
     positioner: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
