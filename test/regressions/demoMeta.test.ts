@@ -128,6 +128,32 @@ describe('getConfig', () => {
     );
   });
 
+  it('returns the radio a11y rule for a brace-glob enrolment', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/radio-buttons/RadioButtonsGroup'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/radio-buttons/UseRadioGroup'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('returns undefined for a radio demo outside the enrolment', () => {
+    // The radio-buttons enrolment omits FormControlLabelPlacement.
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'docs/data/material/components/radio-buttons/FormControlLabelPlacement',
+      ),
+    ).to.equal(undefined);
+  });
+
+  it('leaves the StandaloneToggleButton demo unenrolled', () => {
+    // StandaloneToggleButton is a docs demo that is not enrolled for axe assertions.
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/toggle-button/StandaloneToggleButton'),
+    ).to.equal(undefined);
+  });
+
   it('returns the a11y rule with assertions:all for the progress brace-glob enrolment', () => {
     expect(
       getConfig(A11Y_RULES, 'docs/data/material/components/progress/LinearDeterminate'),
@@ -173,32 +199,6 @@ describe('getConfig', () => {
     // Excluded for its `aria-label` on a role-less FormGroup div (aria-prohibited-attr).
     expect(
       getConfig(A11Y_RULES, 'docs/data/material/components/switches/FormControlLabelPosition'),
-    ).to.equal(undefined);
-  });
-
-  it('returns the radio a11y rule for a brace-glob enrolment', () => {
-    expect(
-      getConfig(A11Y_RULES, 'docs/data/material/components/radio-buttons/RadioButtonsGroup'),
-    ).to.deep.include({ enabled: true, assertions: 'all' });
-    expect(
-      getConfig(A11Y_RULES, 'docs/data/material/components/radio-buttons/UseRadioGroup'),
-    ).to.deep.include({ enabled: true, assertions: 'all' });
-  });
-
-  it('returns undefined for a radio demo outside the enrolment', () => {
-    // The radio-buttons enrolment omits FormControlLabelPlacement.
-    expect(
-      getConfig(
-        A11Y_RULES,
-        'docs/data/material/components/radio-buttons/FormControlLabelPlacement',
-      ),
-    ).to.equal(undefined);
-  });
-
-  it('leaves the StandaloneToggleButton demo unenrolled', () => {
-    // StandaloneToggleButton is a docs demo that is not enrolled for axe assertions.
-    expect(
-      getConfig(A11Y_RULES, 'docs/data/material/components/toggle-button/StandaloneToggleButton'),
     ).to.equal(undefined);
   });
 
