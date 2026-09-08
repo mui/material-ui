@@ -879,6 +879,16 @@ export const DENSITY_ANNOTATIONS: Record<
               label: 'Content',
               route: { gutter: 'right' as const, at: 0.5 },
             },
+            // The connector line's floor — the vertical rule is a thin box,
+            // so it reads as a size: frame + pointer, like the step icon.
+            {
+              on: '.MuiStep-root:nth-of-type(2) .MuiStepConnector-line',
+              aspect: 'touch-target' as const,
+              pointer: true,
+              token: 'medium',
+              label: 'Connector line',
+              route: { gutter: 'right' as const },
+            },
           ]
         : []),
     ];
