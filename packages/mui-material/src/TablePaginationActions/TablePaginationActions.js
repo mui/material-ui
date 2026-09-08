@@ -9,6 +9,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import IconButton from '../IconButton';
+import Tooltip from '../Tooltip';
 import LastPageIconDefault from '../internal/svg-icons/LastPage';
 import FirstPageIconDefault from '../internal/svg-icons/FirstPage';
 import { getTablePaginationActionsUtilityClass } from './tablePaginationActionsClasses';
@@ -82,70 +83,80 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
   const NextButtonSlot = isRtl ? PreviousButton : NextButton;
   const LastButtonSlot = isRtl ? FirstButton : LastButton;
 
-  const firstButtonSlotProps = isRtl ? slotProps.lastButton : slotProps.firstButton;
-  const previousButtonSlotProps = isRtl ? slotProps.nextButton : slotProps.previousButton;
-  const nextButtonSlotProps = isRtl ? slotProps.previousButton : slotProps.nextButton;
-  const lastButtonSlotProps = isRtl ? slotProps.firstButton : slotProps.lastButton;
+  const { title: firstButtonTitle = getItemAriaLabel('first', page), ...firstButtonSlotProps } =
+    (isRtl ? slotProps.lastButton : slotProps.firstButton) ?? {};
+  const {
+    title: previousButtonTitle = getItemAriaLabel('previous', page),
+    ...previousButtonSlotProps
+  } = (isRtl ? slotProps.nextButton : slotProps.previousButton) ?? {};
+  const { title: nextButtonTitle = getItemAriaLabel('next', page), ...nextButtonSlotProps } =
+    (isRtl ? slotProps.previousButton : slotProps.nextButton) ?? {};
+  const { title: lastButtonTitle = getItemAriaLabel('last', page), ...lastButtonSlotProps } =
+    (isRtl ? slotProps.firstButton : slotProps.lastButton) ?? {};
 
   return (
     <TablePaginationActionsRoot ref={ref} className={clsx(classes.root, className)} {...other}>
       {showFirstButton && (
-        <FirstButtonSlot
-          onClick={handleFirstPageButtonClick}
-          disabled={disabled || page === 0}
-          aria-label={getItemAriaLabel('first', page)}
-          title={getItemAriaLabel('first', page)}
-          {...firstButtonSlotProps}
-        >
-          {isRtl ? (
-            <LastButtonIcon {...slotProps.lastButtonIcon} />
-          ) : (
-            <FirstButtonIcon {...slotProps.firstButtonIcon} />
-          )}
-        </FirstButtonSlot>
+        <Tooltip title={firstButtonTitle}>
+          <FirstButtonSlot
+            onClick={handleFirstPageButtonClick}
+            disabled={disabled || page === 0}
+            aria-label={getItemAriaLabel('first', page)}
+            {...firstButtonSlotProps}
+          >
+            {isRtl ? (
+              <LastButtonIcon {...slotProps.lastButtonIcon} />
+            ) : (
+              <FirstButtonIcon {...slotProps.firstButtonIcon} />
+            )}
+          </FirstButtonSlot>
+        </Tooltip>
       )}
-      <PreviousButtonSlot
-        onClick={handleBackButtonClick}
-        disabled={disabled || page === 0}
-        color="inherit"
-        aria-label={getItemAriaLabel('previous', page)}
-        title={getItemAriaLabel('previous', page)}
-        {...previousButtonSlotProps}
-      >
-        {isRtl ? (
-          <NextButtonIcon {...slotProps.nextButtonIcon} />
-        ) : (
-          <PreviousButtonIcon {...slotProps.previousButtonIcon} />
-        )}
-      </PreviousButtonSlot>
-      <NextButtonSlot
-        onClick={handleNextButtonClick}
-        disabled={disabled || (count !== -1 ? page >= Math.ceil(count / rowsPerPage) - 1 : false)}
-        color="inherit"
-        aria-label={getItemAriaLabel('next', page)}
-        title={getItemAriaLabel('next', page)}
-        {...nextButtonSlotProps}
-      >
-        {isRtl ? (
-          <PreviousButtonIcon {...slotProps.previousButtonIcon} />
-        ) : (
-          <NextButtonIcon {...slotProps.nextButtonIcon} />
-        )}
-      </NextButtonSlot>
-      {showLastButton && (
-        <LastButtonSlot
-          onClick={handleLastPageButtonClick}
-          disabled={disabled || page >= Math.ceil(count / rowsPerPage) - 1}
-          aria-label={getItemAriaLabel('last', page)}
-          title={getItemAriaLabel('last', page)}
-          {...lastButtonSlotProps}
+      <Tooltip title={previousButtonTitle}>
+        <PreviousButtonSlot
+          onClick={handleBackButtonClick}
+          disabled={disabled || page === 0}
+          color="inherit"
+          aria-label={getItemAriaLabel('previous', page)}
+          {...previousButtonSlotProps}
         >
           {isRtl ? (
-            <FirstButtonIcon {...slotProps.firstButtonIcon} />
+            <NextButtonIcon {...slotProps.nextButtonIcon} />
           ) : (
-            <LastButtonIcon {...slotProps.lastButtonIcon} />
+            <PreviousButtonIcon {...slotProps.previousButtonIcon} />
           )}
-        </LastButtonSlot>
+        </PreviousButtonSlot>
+      </Tooltip>
+      <Tooltip title={nextButtonTitle}>
+        <NextButtonSlot
+          onClick={handleNextButtonClick}
+          disabled={disabled || (count !== -1 ? page >= Math.ceil(count / rowsPerPage) - 1 : false)}
+          color="inherit"
+          aria-label={getItemAriaLabel('next', page)}
+          {...nextButtonSlotProps}
+        >
+          {isRtl ? (
+            <PreviousButtonIcon {...slotProps.previousButtonIcon} />
+          ) : (
+            <NextButtonIcon {...slotProps.nextButtonIcon} />
+          )}
+        </NextButtonSlot>
+      </Tooltip>
+      {showLastButton && (
+        <Tooltip title={lastButtonTitle}>
+          <LastButtonSlot
+            onClick={handleLastPageButtonClick}
+            disabled={disabled || page >= Math.ceil(count / rowsPerPage) - 1}
+            aria-label={getItemAriaLabel('last', page)}
+            {...lastButtonSlotProps}
+          >
+            {isRtl ? (
+              <FirstButtonIcon {...slotProps.firstButtonIcon} />
+            ) : (
+              <LastButtonIcon {...slotProps.lastButtonIcon} />
+            )}
+          </LastButtonSlot>
+        </Tooltip>
       )}
     </TablePaginationActionsRoot>
   );
