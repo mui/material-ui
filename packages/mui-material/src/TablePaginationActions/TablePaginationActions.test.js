@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
+import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TablePaginationActions, {
   tablePaginationActionsClasses as classes,
@@ -118,36 +118,171 @@ describe('<TablePaginationActions />', () => {
     expect(handlePageChange).toHaveBeenCalledWith(expect.anything(), direction === 'rtl' ? 0 : 2);
   });
 
-  it.skipIf(isJsdom())(
-    'closes the tooltip when navigating disables the focused action',
-    async () => {
+  describe.skipIf(isJsdom())('focus management', () => {
+    it.each(
+      ['ltr', 'rtl'].flatMap((direction) =>
+        ['first', 'previous', 'next', 'last'].map((type, index) => ({ direction, type, index })),
+      ),
+    )(
+      'moves focus when $type becomes disabled in $direction',
+      async ({ direction, type, index }) => {
+        function TestCase() {
+          const [page, setPage] = React.useState(1);
+          return (
+            <ThemeProvider theme={createTheme({ direction })}>
+              <div style={{ margin: 50 }}>
+                <TablePaginationActions
+                  {...defaultProps}
+                  count={30}
+                  page={page}
+                  onPageChange={(event, nextPage) => setPage(nextPage)}
+                />
+              </div>
+            </ThemeProvider>
+          );
+        }
+        const { user } = render(<TestCase />);
+
+        for (let tab = 0; tab <= index; tab += 1) {
+          // Each Tab must finish moving focus before the next one.
+          // eslint-disable-next-line no-await-in-loop
+          await user.tab();
+        }
+        const button = screen.getByRole('button', { name: `Go to ${type} page` });
+        expect(button).toHaveFocus();
+
+        await user.keyboard('{Enter}');
+
+        const target = index < 2 ? 'next' : 'previous';
+        expect(button).to.have.property('disabled', true);
+        expect(screen.getByRole('button', { name: `Go to ${target} page` })).toHaveFocus();
+        await waitFor(() => {
+          expect(screen.getByRole('tooltip')).to.have.text(`Go to ${target} page`);
+        });
+      },
+    );
+
+    it('moves focus after an external update disables a custom button', async () => {
+      let updateProps;
+      const buttonRef = React.createRef();
       function TestCase() {
-        const [page, setPage] = React.useState(0);
+        const [props, setProps] = React.useState({});
+        updateProps = setProps;
         return (
-          <div style={{ margin: 50 }}>
-            <TablePaginationActions
-              {...defaultProps}
-              count={20}
-              page={page}
-              onPageChange={(event, nextPage) => setPage(nextPage)}
-            />
-          </div>
+          <TablePaginationActions
+            {...defaultProps}
+            showFirstButton={false}
+            showLastButton={false}
+            slots={{ previousButton: 'button' }}
+            slotProps={{ previousButton: { ref: buttonRef, ...props } }}
+          />
         );
       }
       const { user } = render(<TestCase />);
-
       await user.tab();
-      expect(await screen.findByRole('tooltip')).to.have.text('Go to next page');
+      expect(buttonRef.current).toHaveFocus();
 
+      await act(async () => updateProps({ disabled: true }));
+
+      expect(screen.getByRole('button', { name: 'Go to next page' })).toHaveFocus();
+    });
+
+    it.each([
+      { disabledAction: 'previous', action: 'next', target: 'first' },
+      { disabledAction: 'next', action: 'previous', target: 'last' },
+    ])(
+      'focuses $target when $disabledAction is disabled through slotProps',
+      async ({ disabledAction, action, target }) => {
+        function TestCase() {
+          const [page, setPage] = React.useState(1);
+          return (
+            <TablePaginationActions
+              {...defaultProps}
+              count={30}
+              page={page}
+              slotProps={{ [`${disabledAction}Button`]: { disabled: true } }}
+              onPageChange={(event, nextPage) => setPage(nextPage)}
+            />
+          );
+        }
+        const { user } = render(<TestCase />);
+        await user.tab();
+        await user.tab();
+        expect(screen.getByRole('button', { name: `Go to ${action} page` })).toHaveFocus();
+
+        await user.keyboard('{Enter}');
+
+        expect(screen.getByRole('button', { name: `Go to ${target} page` })).toHaveFocus();
+      },
+    );
+
+    it('keeps focus on an action that remains enabled', async () => {
+      function TestCase() {
+        const [page, setPage] = React.useState(1);
+        return (
+          <TablePaginationActions
+            {...defaultProps}
+            page={page}
+            showFirstButton={false}
+            showLastButton={false}
+            onPageChange={(event, nextPage) => setPage(nextPage)}
+          />
+        );
+      }
+      const { user } = render(<TestCase />);
+      await user.tab();
+      await user.tab();
       await user.keyboard('{Enter}');
 
-      expect(screen.getByRole('button', { name: 'Go to next page' })).to.have.property(
-        'disabled',
-        true,
-      );
-      await waitFor(() => {
-        expect(screen.queryByRole('tooltip')).to.equal(null);
-      });
-    },
-  );
+      expect(screen.getByRole('button', { name: 'Go to next page' })).toHaveFocus();
+    });
+
+    it('does not override focus moved by onPageChange', async () => {
+      const resultsRef = React.createRef();
+      function TestCase() {
+        const [page, setPage] = React.useState(1);
+        return (
+          <React.Fragment>
+            <h2 ref={resultsRef} tabIndex={-1}>
+              Results
+            </h2>
+            <TablePaginationActions
+              {...defaultProps}
+              page={page}
+              onPageChange={(event, nextPage) => {
+                setPage(nextPage);
+                resultsRef.current.focus();
+              }}
+            />
+          </React.Fragment>
+        );
+      }
+      const { user } = render(<TestCase />);
+      await user.tab();
+      await user.keyboard('{Enter}');
+
+      expect(resultsRef.current).toHaveFocus();
+    });
+
+    it('does not move focus when every action becomes disabled', async () => {
+      function TestCase() {
+        const [disabled, setDisabled] = React.useState(false);
+        return (
+          <React.Fragment>
+            <TablePaginationActions
+              {...defaultProps}
+              disabled={disabled}
+              onPageChange={() => setDisabled(true)}
+            />
+            <button>Outside</button>
+          </React.Fragment>
+        );
+      }
+      const { user } = render(<TestCase />);
+      await user.tab();
+      await user.keyboard('{Enter}');
+
+      expect(document.activeElement).to.equal(document.body);
+    });
+  });
 });
