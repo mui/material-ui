@@ -318,23 +318,11 @@ describe('enhanceDensity', () => {
     expect(layers[layers.length - 1]).to.deep.equal({ textTransform: 'none' });
   });
 
-  test('the toolbar mixin rides the scale with the Toolbar emission', () => {
-    const theme = enhanceDensity(createTheme());
-    const toolbar = (theme as any).mixins.toolbar;
+  test('theme.mixins stays untouched — the enhancement only writes components', () => {
+    const input = createTheme();
+    const theme = enhanceDensity(input);
 
-    expect(toolbar.minHeight).to.equal('calc(32px + 2*12px)');
-    expect(toolbar[`${theme.breakpoints.up('xs')} and (orientation: landscape)`]).to.deep.equal({
-      minHeight: 'calc(32px + 2*8px)',
-    });
-    expect(toolbar[theme.breakpoints.up('sm')]).to.deep.equal({
-      minHeight: 'calc(32px + 2*12px)',
-    });
-  });
-
-  test('a scale override moves the toolbar mixin too', () => {
-    const theme = enhanceDensity(createTheme(), { 'touch-target': 40, small: 16 });
-
-    expect((theme as any).mixins.toolbar.minHeight).to.equal('calc(40px + 2*16px)');
+    expect((theme as any).mixins).to.deep.equal((input as any).mixins);
   });
 
   test('the mounted spacing rebuild still resolves sx steps', () => {
