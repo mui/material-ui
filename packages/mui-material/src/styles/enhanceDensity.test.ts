@@ -325,6 +325,146 @@ describe('enhanceDensity', () => {
     expect((theme as any).mixins).to.deep.equal((input as any).mixins);
   });
 
+  test('Chip icon size rides the ROOT variants — the icon slot cannot expand them', () => {
+    const theme = enhanceDensity(createTheme());
+    const layers = (theme.components as any).MuiChip.styleOverrides.root as any[];
+    const iconVariant = layers
+      .flatMap((layer) => layer?.variants ?? [])
+      .find(
+        (variant: any) => variant.props?.size === 'medium' && variant.style?.['& .MuiChip-icon'],
+      );
+
+    expect(iconVariant.style['& .MuiChip-icon']).to.deep.equal({ fontSize: '16px' });
+    // and no dead variants remain on the icon slot itself
+    const iconLayers = (theme.components as any).MuiChip.styleOverrides.icon as any[];
+    iconLayers.forEach((layer) => expect(layer?.variants).to.equal(undefined));
+  });
+
+  test('the InputBase gap holds without a FormControl — medium sits on the root', () => {
+    const theme = enhanceDensity(createTheme());
+    const layers = (theme.components as any).MuiInputBase.styleOverrides.root as any[];
+    const base = layers.find((layer) => layer?.gap !== undefined);
+
+    // a standalone input has no `size` in its ownerState, so only a plain
+    // root value reaches it
+    expect(base.gap).to.equal('8px');
+    expect(variantStyle(theme, 'MuiInputBase', { size: 'small' }).gap).to.equal('4px');
+  });
+
+  test('the checkbox pull-in follows the label placement', () => {
+    const theme = enhanceDensity(createTheme());
+    const layers = (theme.components as any).MuiCheckbox.styleOverrides.root as any[];
+    const base = layers.find((layer) => layer?.height !== undefined);
+
+    expect(base['.MuiFormControlLabel-labelPlacementEnd:has(&)']).to.deep.equal({
+      marginLeft: 'calc((32px - 16px) / -2)',
+    });
+    expect(base['.MuiFormControlLabel-labelPlacementStart:has(&)']).to.deep.equal({
+      marginRight: 'calc((32px - 16px) / -2)',
+    });
+    // top/bottom placements keep master margins — no unconditional pull
+    expect(base['.MuiFormControlLabel-root:has(&)']).to.equal(undefined);
+  });
+
+  test('the pagination radius only asserts the circular shape', () => {
+    const theme = enhanceDensity(createTheme());
+    const layers = (theme.components as any).MuiPaginationItem.styleOverrides.root as any[];
+
+    layers.forEach((layer) => expect(layer?.borderRadius).to.equal(undefined));
+    expect(variantStyle(theme, 'MuiPaginationItem', { shape: 'circular' })).to.deep.equal({
+      borderRadius: '50%',
+    });
+  });
+
+  test('the slider mark label offset is horizontal-only', () => {
+    const theme = enhanceDensity(createTheme());
+    const layers = (theme.components as any).MuiSlider.styleOverrides.markLabel as any[];
+
+    layers.forEach((layer) => expect(layer?.top).to.equal(undefined));
+    expect(
+      variantStyle(theme, 'MuiSlider', { orientation: 'horizontal' }, 'markLabel'),
+    ).to.deep.equal({ top: '32px' });
+  });
+
+  test('list padding respects a subheader; the secondary action respects disableGutters', () => {
+    const theme = enhanceDensity(createTheme());
+
+    const listLayers = (theme.components as any).MuiList.styleOverrides.root as any[];
+    const listVariants = listLayers.find((layer) => layer?.variants)?.variants as any[];
+    const plain = listVariants.find((variant) =>
+      variant.props({ ownerState: { disablePadding: false, subheader: null } }),
+    );
+    const withSubheader = listVariants.find((variant) =>
+      variant.props({ ownerState: { disablePadding: false, subheader: {} } }),
+    );
+    expect(plain.style).to.deep.equal({ paddingBlock: '8px' });
+    // only pads below — master's subheader `paddingTop: 0` stays
+    expect(withSubheader.style).to.deep.equal({ paddingBottom: '8px' });
+
+    expect(
+      variantStyle(theme, 'MuiListItemSecondaryAction', { disableGutters: false } as any),
+    ).to.deep.equal({ right: '8px' });
+  });
+
+  test('array spacing emits no broken values anywhere', () => {
+    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const theme = enhanceDensity(createTheme({ spacing: [0, 4, 8, 16, 32, 64] }));
+
+    const stepNames = new Set([
+      'xx-small',
+      'x-small',
+      'small',
+      'medium',
+      'large',
+      'x-large',
+      'xx-large',
+    ]);
+    const broken: string[] = [];
+    const walk = (node: unknown, path: string) => {
+      if (typeof node === 'string') {
+        if (
+          node === '' ||
+          node.includes('undefined') ||
+          node.includes('NaN') ||
+          stepNames.has(node)
+        ) {
+          broken.push(`${path}: '${node}'`);
+        }
+        return;
+      }
+      if (node && typeof node === 'object') {
+        Object.entries(node as Record<string, unknown>).forEach(([key, value]) => {
+          // variant `props` are matchers and `defaultProps` are component
+          // props, not emitted CSS — `size: 'small'` is legitimate there
+          if (key === 'props' || key === 'defaultProps') {
+            return;
+          }
+          walk(value, `${path}.${key}`);
+        });
+      }
+    };
+    walk(theme.components, 'components');
+
+    expect(broken).to.deep.equal([]);
+    expect(consoleError).not.toHaveBeenCalled();
+    consoleError.mockRestore();
+  });
+
+  test('a user slotProps default merges with the density slot defaults', () => {
+    const theme = enhanceDensity(
+      createTheme({
+        components: {
+          MuiAlert: { defaultProps: { slotProps: { icon: { 'data-user': true } } } },
+        },
+      }),
+    );
+
+    const slotProps = (theme.components as any).MuiAlert.defaultProps.slotProps;
+    expect(slotProps.icon).to.deep.equal({ 'data-user': true });
+    // the density-provided slot default survives alongside it
+    expect(Object.keys(slotProps).length).to.be.greaterThan(1);
+  });
+
   test('the mounted spacing rebuild still resolves sx steps', () => {
     // CssVarsProvider swaps `theme.spacing` for `theme.generateSpacing()` on
     // mount — mimic that swap and run the sx transform against it.

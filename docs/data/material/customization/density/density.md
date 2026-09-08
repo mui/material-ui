@@ -78,6 +78,10 @@ theme.spacing('-x-small'); // '-8px'
 // .Box-hashed-class { padding: 12px; gap: 8px; }
 ```
 
+:::warning
+Put your own `styleOverrides` in the theme **before** calling `enhanceDensity` — your overrides stay the winning layer. Composing them afterwards with `createTheme(enhancedTheme, { components: ... })` replaces each overridden slot wholesale (array values are not merged), silently dropping that slot's density emission.
+:::
+
 To use the scale in your theme component overrides, write a callback that receives the theme and calls `theme.spacing(<scale>)`:
 
 ```js
@@ -111,6 +115,8 @@ This means the scale can be read—and overridden—from plain CSS, including fo
   --mui-spacing-medium: 12px;
 }
 ```
+
+Only the ladder steps ship as CSS variables. The sizing constants (`touch-target`, `icon-target`) are emitted as literal px, so control boxes don't follow a CSS-only override — moving them requires the `scale` argument.
 
 ## All components density
 

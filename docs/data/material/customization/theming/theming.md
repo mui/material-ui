@@ -314,6 +314,39 @@ let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 
+### `enhanceDensity(theme, scale) => theme`
+
+Makes every component density-aware on one spacing scale, appends the scale keys to `theme.spacing()` and `sx`, and emits reflowed component values as theme `styleOverrides`/`defaultProps`. See the [density page](/material-ui/customization/density/) for the full guide.
+It accepts a fully-created theme and returns an enhanced version of it — apply it last, after every other theme composition step.
+
+#### Arguments
+
+1. `theme` (_object_): The theme object to enhance.
+2. `scale` (_object_ [optional]): Per-step overrides in px for the scale keys (`xx-small` through `xx-large`) and the sizing constants (`touch-target`, `icon-target`) — the `DensityScaleOverrides` shape.
+
+#### Returns
+
+`theme` (_object_): The new theme with the density scale registered and component overrides emitted.
+
+#### Examples
+
+```js
+import { createTheme, enhanceDensity } from '@mui/material/styles';
+
+// The one shipped scale
+let theme = createTheme();
+theme = enhanceDensity(theme);
+```
+
+```js
+// Move individual steps
+let theme = createTheme();
+theme = enhanceDensity(theme, {
+  small: 10,
+  'touch-target': 28,
+});
+```
+
 ### `enhanceHighContrast(theme, tokens) => theme`
 
 Applies `@media (forced-colors: active)` overrides to a theme, improving component visibility in [Windows High Contrast / Forced Colors mode](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors). Available with v9.1.0.

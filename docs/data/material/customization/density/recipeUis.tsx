@@ -409,7 +409,9 @@ function SettingsUi() {
                 primary="Profile picture"
                 slotProps={{ primary: { variant: 'body2' } }}
               />
-              <Avatar data-measure sx={{ bgcolor: pink[300] }}>JU</Avatar>
+              <Avatar data-measure sx={{ bgcolor: pink[300] }}>
+                JU
+              </Avatar>
             </ListItem>
             <Divider component="li" />
             <ListItem data-measure="left">
@@ -482,7 +484,11 @@ function SettingsUi() {
                   secondary: { id: `${id}-side-panel-desc`, variant: 'caption' },
                 }}
               />
-              <Button data-measure variant="text" aria-describedby={`${id}-side-panel-desc`}>
+              <Button
+                data-measure
+                variant="text"
+                aria-describedby={`${id}-side-panel-desc`}
+              >
                 Edit
               </Button>
             </ListItem>

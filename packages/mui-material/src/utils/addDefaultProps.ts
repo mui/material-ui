@@ -13,9 +13,21 @@ function addDefaultProps(
   defaults: Record<string, unknown>,
 ): void {
   const component = (components as any)[name];
+  const userDefaults = component?.defaultProps;
+  // `slotProps` merges one level deep — a shallow spread would let any user
+  // slotProps default silently drop every density slot default alongside it.
+  const slotProps =
+    defaults.slotProps || userDefaults?.slotProps
+      ? {
+          slotProps: {
+            ...(defaults.slotProps as Record<string, unknown>),
+            ...userDefaults?.slotProps,
+          },
+        }
+      : null;
   (components as any)[name] = {
     ...component,
-    defaultProps: { ...defaults, ...component?.defaultProps },
+    defaultProps: { ...defaults, ...userDefaults, ...slotProps },
   };
 }
 

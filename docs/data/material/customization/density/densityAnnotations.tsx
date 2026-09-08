@@ -50,7 +50,10 @@ export type Side = 'top' | 'bottom' | 'left' | 'right';
 /** The slot a reader toggles: every annotation on it goes together. */
 export const slotLabel = (annotation: { on: string; label?: string }) =>
   annotation.label ??
-  annotation.on.replace(/^\.Mui/, '').replace(/-root$/, '').replace(/-/g, ' ');
+  annotation.on
+    .replace(/^\.Mui/, '')
+    .replace(/-root$/, '')
+    .replace(/-/g, ' ');
 
 interface Edges {
   top: number;
@@ -89,8 +92,9 @@ const outset = (rect: Rect, edges: Edges): Rect => ({
  * `checkVisibility` isn't available.
  */
 function isVisible(node: Element) {
-  const check = (node as Element & { checkVisibility?: (options: object) => boolean })
-    .checkVisibility;
+  const check = (
+    node as Element & { checkVisibility?: (options: object) => boolean }
+  ).checkVisibility;
   if (typeof check === 'function') {
     return check.call(node, { visibilityProperty: true });
   }
@@ -144,7 +148,6 @@ function useStageEffect(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 }
-
 
 // ---------------------------------------------------------------------------
 // The annotation lib. A claim (`on` + aspect + token) resolves to items; the
@@ -237,7 +240,11 @@ function LabelText({
   const a = away(gutter);
   if (!sideways(gutter)) {
     return (
-      <text x={anchor} y={rail + a * (gutter === 'top' ? 16 : 26)} textAnchor="middle">
+      <text
+        x={anchor}
+        y={rail + a * (gutter === 'top' ? 16 : 26)}
+        textAnchor="middle"
+      >
         {label}
       </text>
     );
@@ -325,7 +332,13 @@ function LadderEnding({
         {runFrom !== null ? (
           <line className="leader" x1={runFrom} y1={rail} x2={anchor} y2={rail} />
         ) : null}
-        <line className="leader" x1={anchor} y1={rail} x2={anchor} y2={rail + a * REACH} />
+        <line
+          className="leader"
+          x1={anchor}
+          y1={rail}
+          x2={anchor}
+          y2={rail + a * REACH}
+        />
         <LabelText gutter={gutter} rail={rail} anchor={anchor} label={label} />
       </React.Fragment>
     );
@@ -335,7 +348,13 @@ function LadderEnding({
       {runFrom !== null ? (
         <line className="leader" x1={rail} y1={runFrom} x2={rail} y2={anchor} />
       ) : null}
-      <line className="leader" x1={rail} y1={anchor} x2={rail + a * REACH} y2={anchor} />
+      <line
+        className="leader"
+        x1={rail}
+        y1={anchor}
+        x2={rail + a * REACH}
+        y2={anchor}
+      />
       <LabelText gutter={gutter} rail={rail} anchor={anchor} label={label} />
     </React.Fragment>
   );
@@ -356,7 +375,8 @@ function BandView({
   // A stem leaves a band along the strip's own run, so it can only reach the
   // gutter pair perpendicular to the measured axis. Anywhere else the ladder
   // crosses the strip instead — a spine, ticked where it meets each band.
-  const naturalPair: Gutter[] = measures === 'x' ? ['top', 'bottom'] : ['left', 'right'];
+  const naturalPair: Gutter[] =
+    measures === 'x' ? ['top', 'bottom'] : ['left', 'right'];
   const comb = naturalPair.includes(g);
   const diagonal = (route.line ?? 'ladder') === 'diagonal';
   // `at` (0-1, default centre) picks the point along the band edge facing the
@@ -384,28 +404,29 @@ function BandView({
       d={`${ringPath(item.ring.outer)}${ringPath(item.ring.inner)}`}
     />
   ) : (
-  bands.map((b) =>
-    tone === 'gap' ? (
-      <rect
-        key={`f-${b.x}-${b.y}`}
-        className="gap-box"
-        fill={`url(#${hatchId})`}
-        x={b.x}
-        y={b.y}
-        width={b.width}
-        height={b.height}
-      />
-    ) : (
-      <rect
-        key={`f-${b.x}-${b.y}`}
-        className={`${tone}-box`}
-        x={b.x}
-        y={b.y}
-        width={b.width}
-        height={b.height}
-      />
-    ),
-  ));
+    bands.map((b) =>
+      tone === 'gap' ? (
+        <rect
+          key={`f-${b.x}-${b.y}`}
+          className="gap-box"
+          fill={`url(#${hatchId})`}
+          x={b.x}
+          y={b.y}
+          width={b.width}
+          height={b.height}
+        />
+      ) : (
+        <rect
+          key={`f-${b.x}-${b.y}`}
+          className={`${tone}-box`}
+          x={b.x}
+          y={b.y}
+          width={b.width}
+          height={b.height}
+        />
+      ),
+    )
+  );
 
   if (diagonal) {
     // Exit from the band edge facing the gutter — the exact point a ladder
@@ -494,9 +515,13 @@ function BandView({
 
   // Spine: one line crossing the strip(s), a tick where it meets each.
   const lo = Math.min(...bands.map((b) => (measures === 'x' ? b.y : b.x)));
-  const hi = Math.max(...bands.map((b) => (measures === 'x' ? b.y + b.height : b.x + b.width)));
+  const hi = Math.max(
+    ...bands.map((b) => (measures === 'x' ? b.y + b.height : b.x + b.width)),
+  );
   const cross = lo + (hi - lo) * t;
-  const marks = bands.map((b) => (measures === 'x' ? b.x + b.width / 2 : b.y + b.height / 2));
+  const marks = bands.map((b) =>
+    measures === 'x' ? b.x + b.width / 2 : b.y + b.height / 2,
+  );
   const far = away(g) < 0 ? Math.max(...marks) : Math.min(...marks);
   const TICK = 5;
   return (
@@ -509,12 +534,32 @@ function BandView({
       )}
       {marks.map((mark) =>
         sideways(g) ? (
-          <line key={mark} className="dim" x1={mark} y1={cross - TICK} x2={mark} y2={cross + TICK} />
+          <line
+            key={mark}
+            className="dim"
+            x1={mark}
+            y1={cross - TICK}
+            x2={mark}
+            y2={cross + TICK}
+          />
         ) : (
-          <line key={mark} className="dim" x1={cross - TICK} y1={mark} x2={cross + TICK} y2={mark} />
+          <line
+            key={mark}
+            className="dim"
+            x1={cross - TICK}
+            y1={mark}
+            x2={cross + TICK}
+            y2={mark}
+          />
         ),
       )}
-      <LadderEnding gutter={g} rail={rail} natural={cross} shift={route.shift} label={label} />
+      <LadderEnding
+        gutter={g}
+        rail={rail}
+        natural={cross}
+        shift={route.shift}
+        label={label}
+      />
     </g>
   );
 }
@@ -577,7 +622,13 @@ function BoundView({
         ) : (
           <line className="leader" x1={from.x} y1={from.y} x2={from.x} y2={rail} />
         )}
-        <LadderEnding gutter={g} rail={rail} natural={natural} shift={route.shift} label={label} />
+        <LadderEnding
+          gutter={g}
+          rail={rail}
+          natural={natural}
+          shift={route.shift}
+          label={label}
+        />
       </g>
     );
   }
@@ -612,13 +663,28 @@ function BoundView({
       {snug
         ? null
         : [lo, hi].map((span) => {
-            const from = vertical ? { x: edge + a * 3, y: span } : { x: span, y: edge + a * 3 };
+            const from = vertical
+              ? { x: edge + a * 3, y: span }
+              : { x: span, y: edge + a * 3 };
             const to = pt(span, a * 4);
             return (
-              <line key={`e${span}`} className="leader" x1={from.x} y1={from.y} x2={to.x} y2={to.y} />
+              <line
+                key={`e${span}`}
+                className="leader"
+                x1={from.x}
+                y1={from.y}
+                x2={to.x}
+                y2={to.y}
+              />
             );
           })}
-      <line className="dim" x1={pt(lo, 0).x} y1={pt(lo, 0).y} x2={pt(hi, 0).x} y2={pt(hi, 0).y} />
+      <line
+        className="dim"
+        x1={pt(lo, 0).x}
+        y1={pt(lo, 0).y}
+        x2={pt(hi, 0).x}
+        y2={pt(hi, 0).y}
+      />
       {[lo, hi].map((span) => (
         <line
           key={`s${span}`}
@@ -672,7 +738,13 @@ function BoundView({
   );
 }
 
-export function Annotate({ items, bounds }: { items: AnnotateItem[]; bounds: Rect }) {
+export function Annotate({
+  items,
+  bounds,
+}: {
+  items: AnnotateItem[];
+  bounds: Rect;
+}) {
   const hatchId = React.useId();
   const rendered = items.map((item, index) =>
     item.kind === 'band' ? (
@@ -721,8 +793,16 @@ export function Annotate({ items, bounds }: { items: AnnotateItem[]; bounds: Rec
           strokeDasharray: '3 3',
           opacity: 0.6,
         },
-        '& .padding-box': { fill: PADDING_COLOR, fillOpacity: 0.7, stroke: PADDING_EDGE },
-        '& .margin-box': { fill: MARGIN_COLOR, fillOpacity: 0.7, stroke: MARGIN_EDGE },
+        '& .padding-box': {
+          fill: PADDING_COLOR,
+          fillOpacity: 0.7,
+          stroke: PADDING_EDGE,
+        },
+        '& .margin-box': {
+          fill: MARGIN_COLOR,
+          fillOpacity: 0.7,
+          stroke: MARGIN_EDGE,
+        },
         '& .slot-outline': {
           fill: 'none',
           stroke: 'currentColor',
@@ -838,9 +918,13 @@ export function resolveClaims(
   // tie — broken toward top/left so a component's states don't flip labels.
   const nearestOf = (box: Rect, pair: [Gutter, Gutter]): Gutter => {
     if (pair[0] === 'top') {
-      return box.y + box.height / 2 <= bounds.y + bounds.height / 2 + 1 ? 'top' : 'bottom';
+      return box.y + box.height / 2 <= bounds.y + bounds.height / 2 + 1
+        ? 'top'
+        : 'bottom';
     }
-    return box.x + box.width / 2 <= bounds.x + bounds.width / 2 + 1 ? 'left' : 'right';
+    return box.x + box.width / 2 <= bounds.x + bounds.width / 2 + 1
+      ? 'left'
+      : 'right';
   };
   const routed = (route: Partial<Route> | undefined, fallback: Gutter): Route => ({
     gutter: fallback,
@@ -874,13 +958,15 @@ export function resolveClaims(
           claim.axis ??
           (claim.side === 'top' || claim.side === 'bottom' ? 'block' : 'inline');
         if (axis === 'all') {
-          const liveSides = (['top', 'right', 'bottom', 'left'] as (keyof Edges)[]).filter(
-            (edge) => Math.abs(edges[edge]) > 0.5,
-          );
+          const liveSides = (
+            ['top', 'right', 'bottom', 'left'] as (keyof Edges)[]
+          ).filter((edge) => Math.abs(edges[edge]) > 0.5);
           if (liveSides.length === 0) {
             return;
           }
-          const values = new Set(liveSides.map((edge) => Math.round(Math.abs(edges[edge]) * 10) / 10));
+          const values = new Set(
+            liveSides.map((edge) => Math.round(Math.abs(edges[edge]) * 10) / 10),
+          );
           const gutter = claim.route?.gutter ?? 'right';
           const lead = liveSides.includes(gutter as keyof Edges)
             ? (gutter as keyof Edges)
@@ -891,12 +977,22 @@ export function resolveClaims(
               return { x: outer.x, y: outer.y, width: size, height: outer.height };
             }
             if (side === 'right') {
-              return { x: outer.x + outer.width - size, y: outer.y, width: size, height: outer.height };
+              return {
+                x: outer.x + outer.width - size,
+                y: outer.y,
+                width: size,
+                height: outer.height,
+              };
             }
             if (side === 'top') {
               return { x: outer.x, y: outer.y, width: outer.width, height: size };
             }
-            return { x: outer.x, y: outer.y + outer.height - size, width: outer.width, height: size };
+            return {
+              x: outer.x,
+              y: outer.y + outer.height - size,
+              width: outer.width,
+              height: size,
+            };
           };
           items.push({
             kind: 'band',
@@ -906,7 +1002,7 @@ export function resolveClaims(
             // agrees on the value
             label: labelFor(
               edges[lead],
-              values.size === 1 ? claim.text ?? claim.token : undefined,
+              values.size === 1 ? (claim.text ?? claim.token) : undefined,
             ),
             bands: [outerOf(lead)],
             ring: { outer, inner: isPad ? contentBox : box },
@@ -961,7 +1057,10 @@ export function resolveClaims(
             kind: 'band',
             tone: isPad ? 'padding' : 'margin',
             measures: axis === 'inline' ? 'x' : 'y',
-            label: labelFor(signed, byValue.size === 1 ? claim.text ?? claim.token : undefined),
+            label: labelFor(
+              signed,
+              byValue.size === 1 ? (claim.text ?? claim.token) : undefined,
+            ),
             bands: group.map(bandOf),
             route: routed(claim.route, nearestOf(box, gutterPair)),
           });
@@ -981,12 +1080,16 @@ export function resolveClaims(
         if (!first) {
           return;
         }
-        const stacked = second ? second.top >= first.bottom - 0.5 : row > 0.5 && column <= 0.5;
+        const stacked = second
+          ? second.top >= first.bottom - 0.5
+          : row > 0.5 && column <= 0.5;
         let size = stacked ? row : column;
         if (size <= 0.5 && second) {
           // No flex gap declared — the space is margin-made. The distance
           // between the children is still the story the annotation tells.
-          const spacing = stacked ? second.top - first.bottom : second.left - first.right;
+          const spacing = stacked
+            ? second.top - first.bottom
+            : second.left - first.right;
           if (spacing > 0.5) {
             size = spacing;
           }
@@ -1051,7 +1154,10 @@ export function resolveClaims(
         outline: claim.pointer,
         outlined: claim.outlined,
         wrap: claim.wrap,
-        label: labelFor(measuresWidth ? box.width : box.height, claim.text ?? claim.token),
+        label: labelFor(
+          measuresWidth ? box.width : box.height,
+          claim.text ?? claim.token,
+        ),
         box,
         route,
       });

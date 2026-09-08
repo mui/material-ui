@@ -27,7 +27,12 @@ export const DENSITY_ANNOTATIONS: Record<
       token: 'x-small',
       label: 'Summary',
     },
-    { on: '.MuiAccordionSummary-content', aspect: 'gap', token: 'x-small', label: 'Summary content' },
+    {
+      on: '.MuiAccordionSummary-content',
+      aspect: 'gap',
+      token: 'x-small',
+      label: 'Summary content',
+    },
     {
       on: '.MuiAccordionDetails-root',
       aspect: 'padding',
@@ -299,7 +304,13 @@ export const DENSITY_ANNOTATIONS: Record<
         label: 'Root',
         route: { gutter: 'bottom' },
       },
-      { on: '.MuiButton-root', aspect: 'gap', token: 'x-small', label: 'Root', route: { gutter: 'top' } },
+      {
+        on: '.MuiButton-root',
+        aspect: 'gap',
+        token: 'x-small',
+        label: 'Root',
+        route: { gutter: 'top' },
+      },
       {
         on: '.MuiButton-startIcon',
         aspect: 'icon',
@@ -337,8 +348,20 @@ export const DENSITY_ANNOTATIONS: Record<
     },
     { on: '.MuiCardHeader-root', aspect: 'gap', token: 'small', label: 'Header' },
     // Negative: the action is pulled back out of the header's own padding.
-    { on: '.MuiCardHeader-action', aspect: 'margin', axis: 'inline', token: '-x-small', label: 'Header action' },
-    { on: '.MuiCardHeader-action', aspect: 'margin', axis: 'block', token: '-xx-small', label: 'Header action' },
+    {
+      on: '.MuiCardHeader-action',
+      aspect: 'margin',
+      axis: 'inline',
+      token: '-x-small',
+      label: 'Header action',
+    },
+    {
+      on: '.MuiCardHeader-action',
+      aspect: 'margin',
+      axis: 'block',
+      token: '-xx-small',
+      label: 'Header action',
+    },
     // The whole ring, one label: a single line leads from the right band.
     {
       on: '.MuiCardContent-root',
@@ -349,7 +372,13 @@ export const DENSITY_ANNOTATIONS: Record<
       route: { gutter: 'right', line: 'diagonal' },
     },
     // `padding: medium` with `paddingTop: 0` — only the bottom band is live.
-    { on: '.MuiCardActions-root', aspect: 'padding', axis: 'block', token: 'medium', label: 'Actions' },
+    {
+      on: '.MuiCardActions-root',
+      aspect: 'padding',
+      axis: 'block',
+      token: 'medium',
+      label: 'Actions',
+    },
     {
       on: '.MuiCardActions-root',
       aspect: 'padding',
@@ -427,10 +456,33 @@ export const DENSITY_ANNOTATIONS: Record<
   Dialog: () => [
     // `medium` on the left, `small` on the right — one claim per side, each
     // carrying the expression the preset authored for that band.
-    { on: '.MuiDialogTitle-root', aspect: 'padding', side: 'left', token: 'medium', label: 'Title' },
-    { on: '.MuiDialogTitle-root', aspect: 'padding', side: 'right', token: 'small', label: 'Title' },
-    { on: '.MuiDialogTitle-root', aspect: 'padding', axis: 'block', token: 'small', label: 'Title' },
-    { on: '.MuiDialogTitle-root .MuiIconButton-root', aspect: 'touch-target', token: 'touch-target', label: 'Close button' },
+    {
+      on: '.MuiDialogTitle-root',
+      aspect: 'padding',
+      side: 'left',
+      token: 'medium',
+      label: 'Title',
+    },
+    {
+      on: '.MuiDialogTitle-root',
+      aspect: 'padding',
+      side: 'right',
+      token: 'small',
+      label: 'Title',
+    },
+    {
+      on: '.MuiDialogTitle-root',
+      aspect: 'padding',
+      axis: 'block',
+      token: 'small',
+      label: 'Title',
+    },
+    {
+      on: '.MuiDialogTitle-root .MuiIconButton-root',
+      aspect: 'touch-target',
+      token: 'touch-target',
+      label: 'Close button',
+    },
     // Block padding is 0, so the inline pair is the only live one. The spine
     // crosses at 0.97 — under the text, through the content's blank bottom.
     {
@@ -718,7 +770,13 @@ export const DENSITY_ANNOTATIONS: Record<
     ];
   },
   SnackbarContent: () => [
-    { on: '.MuiSnackbarContent-root', aspect: 'padding', axis: 'inline', token: 'medium', label: 'Snackbar' },
+    {
+      on: '.MuiSnackbarContent-root',
+      aspect: 'padding',
+      axis: 'inline',
+      token: 'medium',
+      label: 'Snackbar',
+    },
     // The base unit, not `x-small` — both are 8px today and diverge on a rescale.
     {
       on: '.MuiSnackbarContent-root',
@@ -974,13 +1032,21 @@ export const DENSITY_ANNOTATIONS: Record<
   TextField: (values) => {
     const small = values.size === 'small';
     // The bare InputBase is the only root carrying none of the variant classes.
-    const base = '.MuiInputBase-root:not(.MuiInput-root):not(.MuiFilledInput-root):not(.MuiOutlinedInput-root)';
-    const baseInput = '.MuiInputBase-input:not(.MuiInput-input):not(.MuiFilledInput-input):not(.MuiOutlinedInput-input)';
+    const base =
+      '.MuiInputBase-root:not(.MuiInput-root):not(.MuiFilledInput-root):not(.MuiOutlinedInput-root)';
+    const baseInput =
+      '.MuiInputBase-input:not(.MuiInput-input):not(.MuiFilledInput-input):not(.MuiOutlinedInput-input)';
     return [
       // Measured, not emitted — four different inputs landing on one number is
       // the whole claim, so each row carries its own beam.
       { on: base, aspect: 'touch-target', label: 'InputBase' },
-      { on: baseInput, aspect: 'padding', axis: 'block', token: small ? 'xx-small' : 'x-small', label: 'InputBase' },
+      {
+        on: baseInput,
+        aspect: 'padding',
+        axis: 'block',
+        token: small ? 'xx-small' : 'x-small',
+        label: 'InputBase',
+      },
       { on: '.MuiInput-root', aspect: 'touch-target', label: 'Standard' },
       // 8px top, 6px bottom — two values, so no single token can name them.
       { on: '.MuiInput-input', aspect: 'padding', axis: 'block', label: 'Standard' },
@@ -988,8 +1054,19 @@ export const DENSITY_ANNOTATIONS: Record<
       // Asymmetric: `large` on top, `small` underneath — two captions.
       { on: '.MuiFilledInput-input', aspect: 'padding', axis: 'block', label: 'Filled' },
       { on: '.MuiOutlinedInput-root', aspect: 'touch-target', label: 'Outlined' },
-      { on: '.MuiOutlinedInput-input', aspect: 'padding', axis: 'block', token: small ? 'xx-small' : '(touch-target - 1lh) / 2', label: 'Outlined' },
-      { on: '.MuiOutlinedInput-root', aspect: 'gap', token: small ? 'xx-small' : 'x-small', label: 'Outlined' },
+      {
+        on: '.MuiOutlinedInput-input',
+        aspect: 'padding',
+        axis: 'block',
+        token: small ? 'xx-small' : '(touch-target - 1lh) / 2',
+        label: 'Outlined',
+      },
+      {
+        on: '.MuiOutlinedInput-root',
+        aspect: 'gap',
+        token: small ? 'xx-small' : 'x-small',
+        label: 'Outlined',
+      },
       // The small adornment icon, read below-left of the outlined input.
       {
         on: '.MuiOutlinedInput-root svg',
@@ -998,7 +1075,13 @@ export const DENSITY_ANNOTATIONS: Record<
         label: 'Outlined',
         route: { gutter: 'left', shift: 60, line: 'diagonal' },
       },
-      { on: '.MuiFormHelperText-root', aspect: 'margin', axis: 'block', token: 'x-small', label: 'Helper text' },
+      {
+        on: '.MuiFormHelperText-root',
+        aspect: 'margin',
+        axis: 'block',
+        token: 'x-small',
+        label: 'Helper text',
+      },
       // Contained helper text also carries an authored inline margin.
       {
         on: '.MuiFormHelperText-root',
@@ -1064,16 +1147,19 @@ export const DENSITY_ANNOTATIONS: Record<
     {
       on: '.MuiToolbar-root',
       aspect: 'touch-target',
-      token:
-        values.dense === true
-          ? 'touch-target + 2 × x-small'
-          : 'touch-target + 2 × small',
+      token: values.dense === true ? 'touch-target + 2 × x-small' : 'touch-target + 2 × small',
       wrap: true,
       label: 'Toolbar',
     },
   ],
   Tooltip: (values) => [
-    { on: '.MuiTooltip-tooltip', aspect: 'padding', axis: 'inline', token: 'small', label: 'Tooltip' },
+    {
+      on: '.MuiTooltip-tooltip',
+      aspect: 'padding',
+      axis: 'inline',
+      token: 'small',
+      label: 'Tooltip',
+    },
     // At `right` placement the side gutters belong to the arrow's beam, so
     // the drop centres below; at `bottom` the right gutter is free and the
     // pair reads there plainly.
@@ -1083,10 +1169,7 @@ export const DENSITY_ANNOTATIONS: Record<
       axis: 'block',
       token: 'x-small',
       label: 'Tooltip',
-      route:
-        values.placement === 'right'
-          ? { gutter: 'bottom', at: 0.5 }
-          : { gutter: 'right' },
+      route: values.placement === 'right' ? { gutter: 'bottom', at: 0.5 } : { gutter: 'right' },
     },
     // The offset is placement-shaped. At `bottom` it is one clean top band; at
     // `right` master's surviving 2px sits on the opposite side and would take a
@@ -1133,9 +1216,6 @@ export const DENSITY_ANNOTATIONS: Record<
 };
 
 /** What to draw for a family at the toolbar's current values. */
-export function annotationsFor(
-  family: string,
-  values: Record<string, string | boolean>,
-): Claim[] {
+export function annotationsFor(family: string, values: Record<string, string | boolean>): Claim[] {
   return DENSITY_ANNOTATIONS[family]?.(values) ?? [];
 }

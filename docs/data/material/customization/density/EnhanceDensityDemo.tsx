@@ -62,7 +62,12 @@ function claimsFor(enhanced: boolean, size: Size): Claim[] {
       token: named(tokens.bySize[size].padding),
       route: { gutter: 'bottom' },
     },
-    { on: '.MuiButton-root', aspect: 'gap', token: named(tokens.gap), route: { gutter: 'top' } },
+    {
+      on: '.MuiButton-root',
+      aspect: 'gap',
+      token: named(tokens.gap),
+      route: { gutter: 'top' },
+    },
     {
       on: '.MuiButton-startIcon svg',
       aspect: 'icon',
@@ -97,7 +102,8 @@ export default function EnhanceDensityDemo() {
     if (!stage || !demo) {
       return undefined;
     }
-    const measure = () => setState(resolveClaims(stage, demo, claimsFor(enhanced, size)));
+    const measure = () =>
+      setState(resolveClaims(stage, demo, claimsFor(enhanced, size)));
     measure();
     // A late webfont changes the label box without changing the button box.
     document.fonts?.ready.then(measure);

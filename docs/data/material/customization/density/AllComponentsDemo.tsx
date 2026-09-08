@@ -231,7 +231,8 @@ export default function AllComponentsDemo() {
                     size="small"
                     checked={!off || off.length === 0}
                     indeterminate={
-                      Boolean(off && off.length > 0) && !slots.every((slot) => off?.includes(slot))
+                      Boolean(off && off.length > 0) &&
+                      !slots.every((slot) => off?.includes(slot))
                     }
                     onChange={() =>
                       setHidden((previous) => ({
@@ -278,7 +279,9 @@ export default function AllComponentsDemo() {
           <Box ref={demoRef} data-density-demo sx={{ display: 'contents' }}>
             <ThemeProvider theme={densityTheme}>{spec.render(values)}</ThemeProvider>
           </Box>
-          {resolved ? <Annotate items={resolved.items} bounds={resolved.bounds} /> : null}
+          {resolved ? (
+            <Annotate items={resolved.items} bounds={resolved.bounds} />
+          ) : null}
         </Box>
       </Box>
     </Paper>

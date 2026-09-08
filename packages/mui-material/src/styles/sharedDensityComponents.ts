@@ -4,6 +4,7 @@ import { EnhanceableTheme } from './densityScale';
 import type { Breakpoint } from '..';
 import switchClasses from '../Switch/switchClasses';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
+import chipClasses from '../Chip/chipClasses';
 import tooltipClasses from '../Tooltip/tooltipClasses';
 import tabClasses from '../Tab/tabClasses';
 import stepLabelClasses from '../StepLabel/stepLabelClasses';
@@ -27,13 +28,12 @@ import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
 import { buttonGroupClasses } from '../ButtonGroup';
 
 /**
- * PRIVATE shared component mapping used by the three `enhance*Density` presets
- * (not re-exported from the styles barrel — presets are the public surface).
+ * PRIVATE shared component mapping used by `enhanceDensity` (not re-exported
+ * from the styles barrel — the enhancer is the public surface).
  *
- * Every block here is preset-agnostic: the same component token -> density-step
- * assignment in all three presets. Density variation comes purely from each
- * preset's scale values (`applyDensity`), never from remapping. Blocks whose
- * emissions still diverge across presets remain inline in the preset files.
+ * Every block is a component token -> density-step assignment. Density
+ * variation comes purely from the resolved scale values (`applyDensity`),
+ * never from remapping.
  */
 export default function applySharedDensity<T extends EnhanceableTheme>(
   enhanced: T & {
@@ -49,6 +49,12 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // Keyed spacing: a scale key resolves to its step (var ref under cssVariables,
   // raw px otherwise); numbers stay plain spacing units.
   const { spacing } = enhanced;
+  // Fractional multipliers land on holes with array spacing
+  // (`createTheme({ spacing: [0, 4, 8] })` has no index 0.25) — route them
+  // through the canonical 8px basis there instead of emitting ''.
+  const fraction: (multiplier: number) => string = Array.isArray((spacing as any).unit)
+    ? (multiplier) => `${multiplier * 8}px`
+    : (multiplier) => String(spacing(multiplier));
   // Sized components step off the interactive box rather than the ladder, so a
   // `touch-target` override carries all three sizes instead of only the middle
   // one. Both land on today's px at the default 32.
@@ -56,15 +62,21 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   const largeBox = `calc(${touchTarget} + ${spacing('small')})`;
   const hugeBox = `calc(${touchTarget} + ${spacing('medium')})`;
   // Icons ride the glyph constant the same way boxes ride the interactive one.
-  const iconSmall = `calc(${iconTarget} - ${spacing(0.25)})`;
-  const iconLarge = `calc(${iconTarget} + ${spacing(0.5)})`;
+  const iconSmall = `calc(${iconTarget} - ${fraction(0.25)})`;
+  const iconLarge = `calc(${iconTarget} + ${fraction(0.5)})`;
   const sharedCheckboxRadio = {
     padding: 0,
     width: touchTarget,
     height: touchTarget,
     '& svg': { fontSize: iconTarget },
-    [`.${formControlLabelClasses.root}:has(&)`]: {
+    // Pull-in follows the label placement — the control sits at the row's
+    // start for `end`, at its end for `start`; top/bottom center it, so no
+    // pull applies there.
+    [`.${formControlLabelClasses.labelPlacementEnd}:has(&)`]: {
       marginLeft: `calc((${touchTarget} - ${iconTarget}) / -2)`,
+    },
+    [`.${formControlLabelClasses.labelPlacementStart}:has(&)`]: {
+      marginRight: `calc((${touchTarget} - ${iconTarget}) / -2)`,
     },
     variants: [
       {
@@ -73,8 +85,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           width: smallBox,
           height: smallBox,
           '& svg': { fontSize: iconSmall },
-          [`.${formControlLabelClasses.root}:has(&)`]: {
+          [`.${formControlLabelClasses.labelPlacementEnd}:has(&)`]: {
             marginLeft: `calc((${smallBox} - ${iconSmall}) / -2)`,
+          },
+          [`.${formControlLabelClasses.labelPlacementStart}:has(&)`]: {
+            marginRight: `calc((${smallBox} - ${iconSmall}) / -2)`,
           },
         },
       },
@@ -176,7 +191,25 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     [`& .${listItemIconClasses.root}`]: { minWidth: 0 },
   });
   addRootOverride(enhanced.components, 'MuiList', {
-    variants: [{ props: { disablePadding: false }, style: { paddingBlock: spacing(1) } }],
+    variants: [
+      // A subheader keeps master's `paddingTop: 0` — density only pads below.
+      {
+        props: ({
+          ownerState,
+        }: {
+          ownerState: { disablePadding?: boolean | undefined; subheader?: unknown };
+        }) => !ownerState.disablePadding && !ownerState.subheader,
+        style: { paddingBlock: spacing(1) },
+      },
+      {
+        props: ({
+          ownerState,
+        }: {
+          ownerState: { disablePadding?: boolean | undefined; subheader?: unknown };
+        }) => !ownerState.disablePadding && Boolean(ownerState.subheader),
+        style: { paddingBottom: spacing(1) },
+      },
+    ],
   });
   addRootOverride(
     enhanced.components,
@@ -185,13 +218,17 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       ...enhanced.typography?.caption,
       padding: `${spacing('x-small')} ${spacing('small')}`,
       [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-        marginInlineEnd: spacing(0.5),
+        marginInlineEnd: fraction(0.5),
       },
       [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-        marginInlineStart: spacing(0.5),
+        marginInlineStart: fraction(0.5),
       },
-      [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: { marginBottom: spacing(0.5) },
-      [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: { marginTop: spacing(0.5) },
+      [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
+        marginBottom: fraction(0.5),
+      },
+      [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
+        marginTop: fraction(0.5),
+      },
     },
     'tooltip',
   );
@@ -200,7 +237,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'MuiTooltip',
     {
       // 0.71 = master's 1/sqrt(2) square-arrow projection ratio.
-      '--_arrowSize': spacing(1.375),
+      '--_arrowSize': fraction(1.375),
       [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
         marginTop: 'calc(var(--_arrowSize) * -0.71)',
       },
@@ -232,10 +269,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   );
   addRootOverride(enhanced.components, 'MuiInputBase', {
     lineHeight: enhanced.typography?.body1?.lineHeight,
-    variants: [
-      { props: { size: 'medium' }, style: { gap: spacing('x-small') } },
-      { props: { size: 'small' }, style: { gap: spacing('xx-small') } },
-    ],
+    // The medium gap sits on the root: outside a FormControl the ownerState
+    // has no `size`, so a `size: 'medium'` variant never matches and a
+    // standalone input's adornment would touch the text.
+    gap: spacing('x-small'),
+    variants: [{ props: { size: 'small' }, style: { gap: spacing('xx-small') } }],
   });
   addRootOverride(
     enhanced.components,
@@ -521,7 +559,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     display: 'inline-flex',
     alignItems: 'center',
     marginTop: spacing('x-small'),
-    gap: spacing(0.5),
+    gap: fraction(0.5),
     variants: [
       {
         props: ({ ownerState }: { ownerState: { contained: boolean } }) => ownerState.contained,
@@ -790,7 +828,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addRootOverride(enhanced.components, 'MuiStepIcon', {
     fontSize: `calc(${touchTarget} - ${spacing('small')} + 2px)`,
   });
-  addRootOverride(enhanced.components, 'MuiStepIcon', { fontSize: spacing(1.75) }, 'text');
+  addRootOverride(enhanced.components, 'MuiStepIcon', { fontSize: fraction(1.75) }, 'text');
   // Vertical-alt keeps master's marginLeft:auto — only marginRight moves.
   addRootOverride(enhanced.components, 'MuiStepConnector', {
     variants: [
@@ -973,7 +1011,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     ],
   });
   addRootOverride(enhanced.components, 'MuiListItemSecondaryAction', {
-    right: spacing('x-small'),
+    // Gutters only — master zeroes `right` under `disableGutters`.
+    variants: [{ props: { disableGutters: false }, style: { right: spacing('x-small') } }],
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     padding: spacing('medium'),
@@ -1024,7 +1063,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     gap: spacing('x-small'),
     [`& .${alertClasses.icon}`]: {
       marginRight: 0,
-      paddingBlock: spacing(0.75),
+      paddingBlock: fraction(0.75),
       fontSize: '1.1lh',
     },
     [`& .${alertClasses.action}`]: {
@@ -1036,7 +1075,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addDefaultProps(enhanced.components, 'MuiAlert', {
     slotProps: { closeButton: { size: 'medium' } },
   });
-  addRootOverride(enhanced.components, 'MuiAlert', { paddingBlock: spacing(0.875) }, 'message');
+  addRootOverride(enhanced.components, 'MuiAlert', { paddingBlock: fraction(0.875) }, 'message');
   addRootOverride(
     enhanced.components,
     'MuiAccordionSummary',
@@ -1092,7 +1131,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     height: 'var(--_size)',
     fontSize: 'calc(var(--_size) / 2)',
   });
-  addRootOverride(enhanced.components, 'MuiLinearProgress', { height: spacing(0.5) });
+  addRootOverride(enhanced.components, 'MuiLinearProgress', { height: fraction(0.5) });
   addDefaultProps(enhanced.components, 'MuiCircularProgress', { size: touchTarget });
   // Root box = the touch target (padding 0 also kills master's coarse-pointer
   // padding; the thumb keeps its frozen 42px ::after hit target). Master sizes
@@ -1119,7 +1158,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiSlider',
     {
-      top: touchTarget,
+      // Horizontal only: vertical labels position off an inline `bottom` and
+      // an unconditional `top` would over-constrain them.
+      variants: [{ props: { orientation: 'horizontal' }, style: { top: touchTarget } }],
     },
     'markLabel',
   );
@@ -1161,9 +1202,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         {
           props: { variant: 'standard' },
           style: {
-            minWidth: spacing(2.5),
-            height: spacing(2.5),
-            paddingInline: spacing(0.75),
+            minWidth: fraction(2.5),
+            height: fraction(2.5),
+            paddingInline: fraction(0.75),
             ...enhanced.typography?.caption,
           },
         },
@@ -1178,7 +1219,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // it at 2-class specificity, so a plain variant (1 class) loses there.
   addRootOverride(enhanced.components, 'MuiTableCell', {
     paddingBlock: 0,
-    [`&.${tableCellClasses.paddingCheckbox}`]: { padding: `0 0 0 ${spacing(0.5)}` },
+    [`&.${tableCellClasses.paddingCheckbox}`]: { padding: `0 0 0 ${fraction(0.5)}` },
     variants: [
       {
         props: { size: 'medium' },
@@ -1203,7 +1244,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'MuiTableSortLabel',
     {
       // One marginInline leaf: the arrow flips sides in right-aligned columns.
-      fontSize: `calc(${iconTarget} + ${spacing(0.25)})`,
+      fontSize: `calc(${iconTarget} + ${fraction(0.25)})`,
       marginInline: spacing('xx-small'),
     },
     'icon',
@@ -1281,8 +1322,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addRootOverride(enhanced.components, 'MuiPaginationItem', {
     margin: 0,
     padding: 0,
-    borderRadius: '50%',
     variants: [
+      // Circular only — an unconditional 50% would override `shape="rounded"`.
+      { props: { shape: 'circular' }, style: { borderRadius: '50%' } },
       {
         props: { size: 'small' },
         style: { height: smallBox, minWidth: smallBox },
@@ -1367,18 +1409,22 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'avatar',
   );
-  addRootOverride(
-    enhanced.components,
-    'MuiChip',
-    {
-      margin: 0,
-      variants: [
-        { props: { size: 'medium' }, style: { fontSize: iconTarget } },
-        { props: { size: 'small' }, style: { fontSize: iconSmall } },
-      ],
-    },
-    'icon',
-  );
+  addRootOverride(enhanced.components, 'MuiChip', { margin: 0 }, 'icon');
+  // Through the ROOT: Chip nests `styles.icon` under `& .MuiChip-icon` inside
+  // the root styled component, so top-level `variants` on the icon slot are
+  // never expanded — they must ride the root's own variants.
+  addRootOverride(enhanced.components, 'MuiChip', {
+    variants: [
+      {
+        props: { size: 'medium' },
+        style: { [`& .${chipClasses.icon}`]: { fontSize: iconTarget } },
+      },
+      {
+        props: { size: 'small' },
+        style: { [`& .${chipClasses.icon}`]: { fontSize: iconSmall } },
+      },
+    ],
+  });
   addRootOverride(
     enhanced.components,
     'MuiChip',

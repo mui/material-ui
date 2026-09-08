@@ -110,7 +110,11 @@ export const generateGridRowSpacingStyles = ({ theme, ownerState }: Props) => {
     theme.breakpoints,
     ownerState.rowSpacing,
     (appendStyle, value) => {
-      const spacing = typeof value === 'string' ? value : theme.spacing?.(value);
+      // a registered scale key (an enhanced theme advertises them via
+      // `spacing.keys`) resolves like sx/Stack; any other string passes raw
+      const isKey = typeof value === 'string' && (theme.spacing as any)?.keys?.has(value);
+      const spacing =
+        typeof value === 'string' && !isKey ? value : theme.spacing?.(value as string | number);
       appendStyle(styles, {
         [getSelfSpacingVar('row')]: spacing,
         '> *': {
@@ -131,7 +135,11 @@ export const generateGridColumnSpacingStyles = ({ theme, ownerState }: Props) =>
     theme.breakpoints,
     ownerState.columnSpacing,
     (appendStyle, value) => {
-      const spacing = typeof value === 'string' ? value : theme.spacing?.(value);
+      // a registered scale key (an enhanced theme advertises them via
+      // `spacing.keys`) resolves like sx/Stack; any other string passes raw
+      const isKey = typeof value === 'string' && (theme.spacing as any)?.keys?.has(value);
+      const spacing =
+        typeof value === 'string' && !isKey ? value : theme.spacing?.(value as string | number);
       appendStyle(styles, {
         [getSelfSpacingVar('column')]: spacing,
         '> *': {
