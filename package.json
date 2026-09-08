@@ -143,9 +143,7 @@
     "vitest": "^5.0.0",
     "vitest-fail-on-console": "0.10.1",
     "yargs": "18.2.0",
-    "@mui-internal/api-docs-builder": "workspace:^",
-    "@mui-internal/api-docs-builder-core": "workspace:^",
-    "@mui/internal-docs-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@6b414be"
+    "@mui/internal-docs-infra": "0.12.1-canary.45"
   },
   "config": {
     "valeVersion": "3.24.0"
