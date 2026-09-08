@@ -340,7 +340,7 @@ The numbering is preserved for existing review references. A resolved question c
 1. Behavior benchmark: **done**. The results are above.
 2. API proposal: **chosen for this draft**. Publish the RFC for maintainer review with collapsed popup wiring and the explicit submenu trigger. The seven review questions above are resolved within the proposal, not seven remaining implementation tasks.
 3. Release preparation: **pending**. Target an `Unstable_Menu2` release in a v9 minor version after review. The conformance suites cover all 13 public components, but the following work remains:
-   - Register the public components' demos through the standard docs metadata, then generate and review PropTypes and API docs. The API generator currently stops at missing `Menu2` demo registration.
+   - Register the public components' demos through the standard docs metadata, then generate and review PropTypes and API docs. Until then, the API generator skips the `Unstable_Menu2` modules, the same way it skips the internal `RovingToggleButton`, so the docs build stays green.
    - Add Menu page examples and migration guidance for the new imports and theme keys, the two trigger contracts, root versus paper customization, and the behavior differences above. Experiment pages are not a substitute for public component docs.
    - Compare the default fixed-duration CSS transition with the classic height-dependent `Grow`, and document the chosen timing.
    - Refresh the bundle measurements and run the complete release checks, including browser and visual regressions. The recorded benchmark and bundle numbers are not a substitute for validating the release revision.
