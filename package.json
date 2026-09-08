@@ -3,7 +3,7 @@
   "version": "9.4.0",
   "private": true,
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
+    "preinstall": "npx only-allow@1.2.2 pnpm",
     "proptypes": "tsx ./scripts/generateProptypes.ts",
     "deduplicate": "pnpm dedupe",
     "build": "lerna run build --ignore docs",
