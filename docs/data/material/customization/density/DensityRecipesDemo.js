@@ -47,11 +47,10 @@ export default function DensityRecipesDemo() {
     densityRecipes.find((item) => item.id === recipeId) ?? densityRecipes[1];
 
   // Only the scale changes between recipes — everything else is the default
-  // theme. With the ripple off, the ring is the only keyboard indicator left.
+  // theme.
   const theme = React.useMemo(() => {
     const base = createTheme({
       colorSchemes,
-      components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
       focusVisible: true,
     });
     return enhanceDensity(base, recipe.scale);

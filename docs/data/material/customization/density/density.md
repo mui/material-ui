@@ -152,7 +152,7 @@ The enhancer does not support a custom scale that adds new steps or removes exis
 
 ## Density recipes
 
-This recipe demonstrates a design system that needs multiple densities to support various context of applications. The densities are defined as low/medium/high, each with its own set of spacing values and target sizes — everything else stays on the default theme. The demo also disables the ripple, so the focus ring is the visible keyboard indicator.
+This recipe demonstrates a design system that needs multiple densities to support various context of applications. The densities are defined as low/medium/high, each with its own set of spacing values and target sizes — everything else stays on the default theme.
 
 Use the density select at the top to see the differences between each density. To see the actual values of each density, click the "Show code" and find the `./densityRecipes.ts` file.
 
