@@ -31,6 +31,12 @@ const items: PreviewCardItem[] = [
   },
 ];
 
+// A test page keeps the real pointer where the last test left it. When it rests
+// where an item renders, Chromium reports a hover for the new element and that
+// item takes the popover. The plain fixtures block hit-testing, and the tests
+// drive hover with `fireEvent`.
+const pointerFree = { pointerEvents: 'none' } as const;
+
 function TestPreviewCards(props: {
   cardSx?: SxProps<Theme>;
   closeSignal?: number;
@@ -49,7 +55,7 @@ function TestPreviewCards(props: {
   }, [close, closeSignal]);
 
   return (
-    <div>
+    <div style={pointerFree}>
       {items.map((item) => (
         <button key={item.id} type="button" {...getItemProps(item, handlers)}>
           {item.label}
@@ -92,7 +98,7 @@ function TestUnmountingPreviewCard() {
   const { getItemProps, popover } = useMenu2ItemPopover<PreviewCardItem>();
 
   return (
-    <div>
+    <div style={pointerFree}>
       <UnmountableItem itemProps={getItemProps(items[0])} />
       <div data-testid="state" data-open={String(popover.open)} />
       <Popper {...popover.props}>
@@ -108,7 +114,7 @@ function TestSharedValuePreviewCards() {
   const { getItemProps, popover } = useMenu2ItemPopover<string>();
 
   return (
-    <div>
+    <div style={pointerFree}>
       <button data-testid="first" type="button" {...getItemProps('Copy the link.')}>
         Copy link
       </button>
@@ -181,7 +187,7 @@ function TestAnimatedAncestor(props: { style?: React.CSSProperties }) {
   const { getItemProps, popover } = useMenu2ItemPopover<string>();
 
   return (
-    <div data-testid="ancestor" style={props.style}>
+    <div data-testid="ancestor" style={{ ...pointerFree, ...props.style }}>
       <button data-testid="item" type="button" {...getItemProps('Alpha detail.')}>
         Alpha
       </button>
@@ -343,9 +349,9 @@ describe('useMenu2ItemPopover', () => {
   });
 
   it('opens the popover from mouseenter with the hovered item as the anchor', async () => {
-    const { user } = render(<TestPreviewCards />);
+    render(<TestPreviewCards />);
 
-    await user.hover(getItem('Publish to web'));
+    fireEvent.mouseEnter(getItem('Publish to web'));
 
     expectAnchor('Publish to web');
     expect(await screen.findByTestId('preview-card')).to.have.text(items[1].description);
@@ -369,14 +375,14 @@ describe('useMenu2ItemPopover', () => {
   });
 
   it('clears the popover when the pointer leaves the item', async () => {
-    const { user } = render(<TestPreviewCards />);
+    render(<TestPreviewCards />);
 
     const item = getItem('Publish to web');
-    await user.hover(item);
+    fireEvent.mouseEnter(item);
 
     expectAnchor('Publish to web');
 
-    await user.unhover(item);
+    fireEvent.mouseLeave(item);
 
     await expectClosed();
   });
@@ -385,14 +391,14 @@ describe('useMenu2ItemPopover', () => {
   // that is not focused delivers no focus event, and the second item then owns
   // nothing. The focus path has its own tests.
   it('keeps the popover when another item already took it over', async () => {
-    const { user } = render(<TestPreviewCards />);
+    render(<TestPreviewCards />);
 
     const first = getItem('Template gallery');
-    await user.hover(first);
+    fireEvent.mouseEnter(first);
     // The second item takes the popover while the first one still holds it, so
     // the pointer leaving the first item must not close it.
     fireEvent.mouseEnter(getItem('Publish to web'));
-    await user.unhover(first);
+    fireEvent.mouseLeave(first);
 
     expectAnchor('Publish to web');
   });
@@ -492,7 +498,7 @@ describe('useMenu2ItemPopover', () => {
       const { getItemProps, popover } = useMenu2ItemPopover<string>();
 
       return (
-        <div>
+        <div style={pointerFree}>
           <Item getItemProps={getItemProps} label="first" />
           <Popper {...popover.props}>
             <Paper data-testid="preview-card">{popover.value}</Paper>
@@ -518,15 +524,15 @@ describe('useMenu2ItemPopover', () => {
       onMouseEnter: spy(),
       onMouseLeave: spy(),
     };
-    const { user } = render(<TestPreviewCards handlers={handlers} />);
+    render(<TestPreviewCards handlers={handlers} />);
 
     const item = getItem('Template gallery');
 
-    await user.hover(item);
+    fireEvent.mouseEnter(item);
     expect(handlers.onMouseEnter.callCount).to.equal(1);
     expectAnchor('Template gallery');
 
-    await user.unhover(item);
+    fireEvent.mouseLeave(item);
     expect(handlers.onMouseLeave.callCount).to.equal(1);
     await expectClosed();
 
@@ -544,9 +550,9 @@ describe('useMenu2ItemPopover', () => {
   });
 
   it('clears the popover when close runs', async () => {
-    const { setProps, user } = render(<TestPreviewCards />);
+    const { setProps } = render(<TestPreviewCards />);
 
-    await user.hover(getItem('Template gallery'));
+    fireEvent.mouseEnter(getItem('Template gallery'));
     expectAnchor('Template gallery');
 
     setProps({ closeSignal: 1 });
@@ -627,7 +633,7 @@ describe('useMenu2ItemPopover', () => {
       const { getItemProps, popover } = useMenu2ItemPopover<string>();
 
       return (
-        <div>
+        <div style={pointerFree}>
           <button
             type="button"
             data-testid="item"
