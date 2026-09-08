@@ -508,8 +508,8 @@ importers:
         specifier: 1.63.0
         version: 1.63.0
       '@types/autosuggest-highlight':
-        specifier: 3.2.3
-        version: 3.2.3
+        specifier: 3.2.4
+        version: 3.2.4
       '@types/chance':
         specifier: 1.1.8
         version: 1.1.8
@@ -4833,8 +4833,8 @@ packages:
   '@types/aria-query@5.0.4':
     resolution: {integrity: sha512-rfT93uj5s0PRL7EzccGMs3brplhcrghnDoV26NqKhCAS1hVo+WdNsPvE/yb6ilfr5hi2MEk6d5EWJTKdxg8jVw==}
 
-  '@types/autosuggest-highlight@3.2.3':
-    resolution: {integrity: sha512-8Mb21KWtpn6PvRQXjsKhrXIcxbSloGqNH50RntwGeJsGPW4xvNhfml+3kKulaKpO/7pgZfOmzsJz7VbepArlGQ==}
+  '@types/autosuggest-highlight@3.2.4':
+    resolution: {integrity: sha512-4fUICINn5L2/CI1kBIINPc0CXMLRzbSb3mnkJZtDNT7pJ56ZzCzF+GM/WwPBjU5VTAWP6TkqYQjuXYisMzvsjQ==}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -14842,7 +14842,7 @@ snapshots:
 
   '@types/aria-query@5.0.4': {}
 
-  '@types/autosuggest-highlight@3.2.3': {}
+  '@types/autosuggest-highlight@3.2.4': {}
 
   '@types/babel__core@7.20.5':
     dependencies:
