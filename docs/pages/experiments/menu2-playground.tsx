@@ -422,9 +422,12 @@ function FocusRingComparisonDemo({ settings }: { settings: PlaygroundSettings })
 
 function ControlledAnchorDemo() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [rootEvent, setRootEvent] = React.useState('None');
+  const [submenuEvent, setSubmenuEvent] = React.useState('None');
   const open = Boolean(anchorEl);
 
-  const handleOpenChange: MenuProps['onOpenChange'] = (nextOpen) => {
+  const handleOpenChange: MenuProps['onOpenChange'] = (nextOpen, details) => {
+    setRootEvent(`${nextOpen ? 'open' : 'closed'} (${details.reason})`);
     if (!nextOpen) {
       setAnchorEl(null);
     }
@@ -435,7 +438,11 @@ function ControlledAnchorDemo() {
       <Button
         variant="outlined"
         startIcon={<MoreVertRoundedIcon fontSize="small" />}
-        onClick={(event) => setAnchorEl(event.currentTarget)}
+        onClick={(event) => {
+          setAnchorEl(event.currentTarget);
+          setRootEvent('open (external button)');
+          setSubmenuEvent('None');
+        }}
       >
         Open (controlled)
       </Button>
@@ -445,10 +452,29 @@ function ControlledAnchorDemo() {
         anchor={anchorEl ?? undefined}
         sideOffset={4}
       >
-        <Menu2Item onClick={() => setAnchorEl(null)}>Profile</Menu2Item>
-        <Menu2Item onClick={() => setAnchorEl(null)}>My account</Menu2Item>
-        <Menu2Item onClick={() => setAnchorEl(null)}>Logout</Menu2Item>
+        <Menu2Item>Profile</Menu2Item>
+        <Menu2Item>My account</Menu2Item>
+        <Menu2Submenu
+          onOpenChange={(nextOpen, details) =>
+            setSubmenuEvent(`${nextOpen ? 'open' : 'closed'} (${details.reason})`)
+          }
+          trigger={
+            <Menu2SubmenuTrigger openOnHover={false}>
+              More
+              <KeyboardArrowRightRoundedIcon fontSize="small" />
+            </Menu2SubmenuTrigger>
+          }
+        >
+          <Menu2Item>Settings</Menu2Item>
+          <Menu2Item>Help</Menu2Item>
+        </Menu2Submenu>
+        <Menu2Item>Logout</Menu2Item>
       </Menu2>
+      <p>
+        Last root event: <code>{rootEvent}</code>
+        <br />
+        Last submenu event: <code>{submenuEvent}</code>
+      </p>
     </div>
   );
 }
@@ -779,8 +805,18 @@ export default function MenuRfcExperiment() {
           <section>
             <h3 id="controlled-anchor">Classic-style controlled usage</h3>
             <p>
-              No Menu2Trigger part: external anchor element plus controlled <code>open</code> /{' '}
-              <code>onOpenChange</code>, approximating the classic <code>anchorEl</code> pattern.
+              An external button controls this menu through <code>open</code>, <code>anchor</code>,
+              and <code>onOpenChange</code>. The root has no <code>trigger</code> prop.
+            </p>
+            <p>
+              Open the menu, then click More. Both menus must stay open. You can also focus More
+              with the arrow keys and press Right Arrow. Press Escape to close only the submenu.
+              Open More again, then select Settings to close both menus and return focus to the
+              external button.
+            </p>
+            <p>
+              Without the Base UI tree fix, opening More closes the root with reason{' '}
+              <code>sibling-open</code>. The local dependency patch fixes this case.
             </p>
             <ControlledAnchorDemo />
           </section>

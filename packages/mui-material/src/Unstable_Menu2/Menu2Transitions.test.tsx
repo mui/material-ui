@@ -228,10 +228,7 @@ describe.skipIf(isJsdom())('Menu2 transitions', () => {
     await waitFor(() => expect(popup.getAnimations()).to.have.length(0));
   });
 
-  // This also fails with the original CSS implementation: Base UI treats the
-  // trigger-less parent as a sibling. Keep the regression visible independently
-  // of the transition implementation.
-  it.fails('keeps a trigger-less root open when its submenu opens', async () => {
+  it('keeps a trigger-less root open when its submenu opens', async () => {
     const changes: unknown[] = [];
     const { user } = render(
       <ThemeProvider theme={createTheme({ direction: 'rtl' })}>
