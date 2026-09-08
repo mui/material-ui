@@ -2,9 +2,11 @@
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
+import useForkRef from '@mui/utils/useForkRef';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
+import { mergeProps } from '@base-ui/react/merge-props';
 import mergeSlotProps from '../utils/mergeSlotProps';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
@@ -37,6 +39,13 @@ import {
   Menu2RadioItemClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
+export interface Menu2RadioItemOwnerState extends Menu2ItemOwnerState {
+  /** Whether the item is currently checked, including uncontrolled selection. */
+  checked: boolean;
+  /** Whether Base UI currently highlights the item. */
+  highlighted: boolean;
+}
+
 export interface Menu2RadioItemSlots {
   /**
    * The component that renders the root.
@@ -50,9 +59,12 @@ export interface Menu2RadioItemSlots {
   indicator?: React.ElementType | undefined;
 }
 
-export interface Menu2RadioItemSlotProps extends Menu2RootSlotProps<Menu2ItemOwnerState> {
+export interface Menu2RadioItemSlotProps extends Menu2RootSlotProps<Menu2RadioItemOwnerState> {
   indicator?:
-    | SlotProps<Partial<Menu2RadioItemIndicatorProps> & Record<string, any>, Menu2ItemOwnerState>
+    | SlotProps<
+        Partial<Menu2RadioItemIndicatorProps> & Record<string, any>,
+        Menu2RadioItemOwnerState
+      >
     | undefined;
 }
 
@@ -119,9 +131,107 @@ const Menu2RadioItemRoot = styled(ButtonBase, {
   name: 'MuiMenu2RadioItem',
   slot: 'Root',
   overridesResolver: menu2ItemOverridesResolver,
-})<{ ownerState: Menu2ItemOwnerState }>(
+})<{ ownerState: Menu2RadioItemOwnerState }>(
   memoTheme(({ theme }) => getMenu2ItemStyles(theme, menu2RadioItemClasses)),
 );
+
+interface Menu2RadioItemRootSlotProps extends Pick<
+  Menu2RadioItemProps,
+  'component' | 'disableRipple' | 'slotProps' | 'slots' | 'sx'
+> {
+  baseProps: React.ComponentPropsWithRef<'div'>;
+  ownerState: Menu2RadioItemOwnerState;
+}
+
+function Menu2RadioItemRootSlot({
+  baseProps,
+  ownerState,
+  component,
+  disableRipple,
+  slotProps,
+  slots,
+  sx,
+}: Menu2RadioItemRootSlotProps) {
+  const RootSlot = slots?.root ?? Menu2RadioItemRoot;
+  const IndicatorSlot = slots?.indicator ?? Menu2RadioItemIndicator;
+  const externalSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), {
+    sx,
+  });
+  const indicatorProps = resolveComponentProps(slotProps?.indicator, ownerState);
+  const rootProps = mergeProps(
+    {
+      ...baseProps,
+      children: (
+        <React.Fragment>
+          {/* Reserve space even while the indicator is unchecked. */}
+          <IndicatorSlot keepMounted {...indicatorProps} />
+          {baseProps.children}
+        </React.Fragment>
+      ),
+    },
+    externalSlotProps,
+  );
+  const ref = useForkRef(baseProps.ref, externalSlotProps?.ref);
+
+  return getMenu2RootRender(
+    RootSlot,
+    ownerState,
+    {
+      ...rootProps,
+      ref,
+      component: component ?? 'div',
+      ...(disableRipple !== undefined && { disableRipple }),
+      ...suppressButtonBaseKeyboardActivation(rootProps),
+    },
+    Menu2RadioItemRoot,
+  );
+}
+
+Menu2RadioItemRootSlot.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * @ignore
+   */
+  baseProps: PropTypes.object.isRequired,
+  /**
+   * The component used for the root node.
+   */
+  component: PropTypes.elementType,
+  /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  ownerState: PropTypes.object.isRequired,
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps: PropTypes.shape({
+    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   */
+  slots: PropTypes.shape({
+    indicator: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+} as any;
 
 /**
  *
@@ -173,30 +283,21 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     [dense, disableGutters],
   );
   const RootSlot = slots?.root ?? Menu2RadioItemRoot;
-  const IndicatorSlot = slots?.indicator ?? Menu2RadioItemIndicator;
-  const resolvedIndicatorProps = resolveComponentProps(slotProps?.indicator, ownerState);
-
-  const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });
 
   return (
     <ListContext.Provider value={childContext}>
       <BaseMenu.RadioItem
         ref={ref}
-        render={getMenu2RootRender(
-          RootSlot,
-          ownerState,
-          {
-            ...rootSlotProps,
-            // ButtonBase renders a <button> by default; the items keep their element.
-            component: component ?? 'div',
-            // Pass it only when the caller sets it. An explicit prop beats the
-            // `MuiButtonBase` default props, so ButtonBase resolves the default.
-            ...(disableRipple !== undefined && { disableRipple }),
-            ownerState,
-            // Base UI owns the Enter and Space activation of the item.
-            ...suppressButtonBaseKeyboardActivation(rootSlotProps),
-          },
-          Menu2RadioItemRoot,
+        render={(renderProps, state) => (
+          <Menu2RadioItemRootSlot
+            baseProps={renderProps}
+            ownerState={{ ...ownerState, ...state }}
+            component={component}
+            disableRipple={disableRipple}
+            slotProps={slotProps}
+            slots={slots}
+            sx={sx}
+          />
         )}
         className={(state) =>
           clsx(
@@ -210,8 +311,6 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
         style={style}
         {...other}
       >
-        {/* Reserved by default: an unmounted indicator would shift the label. */}
-        <IndicatorSlot keepMounted {...resolvedIndicatorProps} />
         {children}
       </BaseMenu.RadioItem>
     </ListContext.Provider>

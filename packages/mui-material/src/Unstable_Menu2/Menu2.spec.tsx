@@ -64,6 +64,17 @@ function Menu2Composition() {
         <Menu2LinkItem href="/profile">Profile</Menu2LinkItem>
         <Menu2CheckboxItem
           defaultChecked
+          slotProps={{
+            root: (ownerState) => {
+              expectType<boolean, typeof ownerState.checked>(ownerState.checked);
+              expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+              return {};
+            },
+            indicator: (ownerState) => {
+              expectType<boolean, typeof ownerState.checked>(ownerState.checked);
+              return {};
+            },
+          }}
           nativeButton={false}
           onChange={(event, checked, eventDetails) => {
             expectType<Event, typeof event>(event);
@@ -81,7 +92,21 @@ function Menu2Composition() {
             eventDetails.cancel();
           }}
         >
-          <Menu2RadioItem value="one" nativeButton={false}>
+          <Menu2RadioItem
+            value="one"
+            nativeButton={false}
+            slotProps={{
+              root: (ownerState) => {
+                expectType<boolean, typeof ownerState.checked>(ownerState.checked);
+                expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+                return {};
+              },
+              indicator: (ownerState) => {
+                expectType<boolean, typeof ownerState.checked>(ownerState.checked);
+                return {};
+              },
+            }}
+          >
             One
           </Menu2RadioItem>
         </Menu2RadioGroup>

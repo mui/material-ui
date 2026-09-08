@@ -2,9 +2,11 @@
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
+import useForkRef from '@mui/utils/useForkRef';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
+import { mergeProps } from '@base-ui/react/merge-props';
 import mergeSlotProps from '../utils/mergeSlotProps';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
@@ -37,6 +39,13 @@ import {
   Menu2CheckboxItemClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
+export interface Menu2CheckboxItemOwnerState extends Menu2ItemOwnerState {
+  /** Whether the item is currently checked, including uncontrolled selection. */
+  checked: boolean;
+  /** Whether Base UI currently highlights the item. */
+  highlighted: boolean;
+}
+
 export interface Menu2CheckboxItemSlots {
   /**
    * The component that renders the root.
@@ -50,9 +59,12 @@ export interface Menu2CheckboxItemSlots {
   indicator?: React.ElementType | undefined;
 }
 
-export interface Menu2CheckboxItemSlotProps extends Menu2RootSlotProps<Menu2ItemOwnerState> {
+export interface Menu2CheckboxItemSlotProps extends Menu2RootSlotProps<Menu2CheckboxItemOwnerState> {
   indicator?:
-    | SlotProps<Partial<Menu2CheckboxItemIndicatorProps> & Record<string, any>, Menu2ItemOwnerState>
+    | SlotProps<
+        Partial<Menu2CheckboxItemIndicatorProps> & Record<string, any>,
+        Menu2CheckboxItemOwnerState
+      >
     | undefined;
 }
 
@@ -142,9 +154,107 @@ const Menu2CheckboxItemRoot = styled(ButtonBase, {
   name: 'MuiMenu2CheckboxItem',
   slot: 'Root',
   overridesResolver: menu2ItemOverridesResolver,
-})<{ ownerState: Menu2ItemOwnerState }>(
+})<{ ownerState: Menu2CheckboxItemOwnerState }>(
   memoTheme(({ theme }) => getMenu2ItemStyles(theme, menu2CheckboxItemClasses)),
 );
+
+interface Menu2CheckboxItemRootSlotProps extends Pick<
+  Menu2CheckboxItemProps,
+  'component' | 'disableRipple' | 'slotProps' | 'slots' | 'sx'
+> {
+  baseProps: React.ComponentPropsWithRef<'div'>;
+  ownerState: Menu2CheckboxItemOwnerState;
+}
+
+function Menu2CheckboxItemRootSlot({
+  baseProps,
+  ownerState,
+  component,
+  disableRipple,
+  slotProps,
+  slots,
+  sx,
+}: Menu2CheckboxItemRootSlotProps) {
+  const RootSlot = slots?.root ?? Menu2CheckboxItemRoot;
+  const IndicatorSlot = slots?.indicator ?? Menu2CheckboxItemIndicator;
+  const externalSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), {
+    sx,
+  });
+  const indicatorProps = resolveComponentProps(slotProps?.indicator, ownerState);
+  const rootProps = mergeProps(
+    {
+      ...baseProps,
+      children: (
+        <React.Fragment>
+          {/* Reserve space even while the indicator is unchecked. */}
+          <IndicatorSlot keepMounted {...indicatorProps} />
+          {baseProps.children}
+        </React.Fragment>
+      ),
+    },
+    externalSlotProps,
+  );
+  const ref = useForkRef(baseProps.ref, externalSlotProps?.ref);
+
+  return getMenu2RootRender(
+    RootSlot,
+    ownerState,
+    {
+      ...rootProps,
+      ref,
+      component: component ?? 'div',
+      ...(disableRipple !== undefined && { disableRipple }),
+      ...suppressButtonBaseKeyboardActivation(rootProps),
+    },
+    Menu2CheckboxItemRoot,
+  );
+}
+
+Menu2CheckboxItemRootSlot.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * @ignore
+   */
+  baseProps: PropTypes.object.isRequired,
+  /**
+   * The component used for the root node.
+   */
+  component: PropTypes.elementType,
+  /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  ownerState: PropTypes.object.isRequired,
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps: PropTypes.shape({
+    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   */
+  slots: PropTypes.shape({
+    indicator: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+} as any;
 
 /**
  *
@@ -211,30 +321,21 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
     [onChange],
   );
   const RootSlot = slots?.root ?? Menu2CheckboxItemRoot;
-  const IndicatorSlot = slots?.indicator ?? Menu2CheckboxItemIndicator;
-  const resolvedIndicatorProps = resolveComponentProps(slotProps?.indicator, ownerState);
-
-  const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });
 
   return (
     <ListContext.Provider value={childContext}>
       <BaseMenu.CheckboxItem
         ref={ref}
-        render={getMenu2RootRender(
-          RootSlot,
-          ownerState,
-          {
-            ...rootSlotProps,
-            // ButtonBase renders a <button> by default; the items keep their element.
-            component: component ?? 'div',
-            // Pass it only when the caller sets it. An explicit prop beats the
-            // `MuiButtonBase` default props, so ButtonBase resolves the default.
-            ...(disableRipple !== undefined && { disableRipple }),
-            ownerState,
-            // Base UI owns the Enter and Space activation of the item.
-            ...suppressButtonBaseKeyboardActivation(rootSlotProps),
-          },
-          Menu2CheckboxItemRoot,
+        render={(renderProps, state) => (
+          <Menu2CheckboxItemRootSlot
+            baseProps={renderProps}
+            ownerState={{ ...ownerState, ...state }}
+            component={component}
+            disableRipple={disableRipple}
+            slotProps={slotProps}
+            slots={slots}
+            sx={sx}
+          />
         )}
         className={(state) =>
           clsx(
@@ -250,8 +351,6 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
         style={style}
         {...other}
       >
-        {/* Reserved by default: an unmounted indicator would shift the label. */}
-        <IndicatorSlot keepMounted {...resolvedIndicatorProps} />
         {children}
       </BaseMenu.CheckboxItem>
     </ListContext.Provider>
