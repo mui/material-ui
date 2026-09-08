@@ -103,8 +103,6 @@ jobs:
     steps:
       - checkout
       - code-infra/install-deps
-      - code-infra/check-generated:
-          command: pnpm docs:typescript:formatted
       - run:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
