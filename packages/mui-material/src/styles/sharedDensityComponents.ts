@@ -1217,6 +1217,21 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     [`& .${tablePaginationClasses.select}`]: enhanced.typography?.body2 ?? {},
   });
+  // `theme.mixins.toolbar` drives AppBar spacers and content offsets — keep it
+  // on the same scale as the minHeights emitted below, or a `<Toolbar />`
+  // spacer stays at master's 56/48/64 while the real toolbar reflows.
+  (enhanced as any).mixins = {
+    ...(enhanced as any).mixins,
+    toolbar: {
+      minHeight: `calc(${touchTarget} + 2*${spacing('small')})`,
+      [`${enhanced.breakpoints.up('xs')} and (orientation: landscape)`]: {
+        minHeight: `calc(${touchTarget} + 2*${spacing('x-small')})`,
+      },
+      [enhanced.breakpoints.up('sm')]: {
+        minHeight: `calc(${touchTarget} + 2*${spacing('small')})`,
+      },
+    },
+  };
   addRootOverride(enhanced.components, 'MuiToolbar', {
     variants: [
       {

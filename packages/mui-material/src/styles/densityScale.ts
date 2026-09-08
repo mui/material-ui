@@ -99,7 +99,11 @@ export function applyDensity<T extends EnhanceableTheme>(
     const negated = override === undefined ? stepValue(-STEP_MULTIPLIERS[key]) : `${-override}px`;
 
     if (themeInput.vars) {
-      const ref = `var(${stepVarName(key)})`;
+      // Fallback to the computed step: the definitions only mount through
+      // `generateStyleSheets()`, which a nested provider reusing the prefix or
+      // `disableStyleSheetGeneration` skips — a bare ref would then compute
+      // to unset in every emission.
+      const ref = `var(${stepVarName(key)}, ${stepValues[key]})`;
       resolved[key] = ref;
       resolved[`-${key}`] = `calc(${ref} * -1)`;
       return;
@@ -108,37 +112,58 @@ export function applyDensity<T extends EnhanceableTheme>(
     resolved[`-${key}`] = negated;
   });
 
+  const stepKeys = new Set(Object.keys(resolved));
+
   // Key-free calls are the hot path (sx/gap/Stack route every spacing value
   // through here at style-computation time) — delegate wholesale so the
   // wrapper adds one function hop, not a second map/join pass.
-  const spacing = (...args: ReadonlyArray<number | string>): string => {
-    let keyed = false;
-    for (let i = 0; i < args.length; i += 1) {
-      const arg = args[i];
-      if (typeof arg === 'string' && resolved[arg] !== undefined) {
-        keyed = true;
-        break;
+  const makeKeyedSpacing = (
+    base: (...args: ReadonlyArray<number | string>) => string | number,
+  ): T['spacing'] => {
+    const spacing = (...args: ReadonlyArray<number | string>): string => {
+      let keyed = false;
+      for (let i = 0; i < args.length; i += 1) {
+        const arg = args[i];
+        if (typeof arg === 'string' && resolved[arg] !== undefined) {
+          keyed = true;
+          break;
+        }
       }
-    }
-    if (!keyed) {
-      return String(prevSpacing(...args));
-    }
-    let out = '';
-    for (let i = 0; i < args.length; i += 1) {
-      const arg = args[i];
-      const step = typeof arg === 'string' ? resolved[arg] : undefined;
-      out += (i === 0 ? '' : ' ') + (step === undefined ? String(prevSpacing(arg)) : step);
-    }
-    return out;
+      if (!keyed) {
+        return String(base(...args));
+      }
+      let out = '';
+      for (let i = 0; i < args.length; i += 1) {
+        const arg = args[i];
+        const step = typeof arg === 'string' ? resolved[arg] : undefined;
+        out += (i === 0 ? '' : ' ') + (step === undefined ? String(base(arg)) : step);
+      }
+      return out;
+    };
+    // `createSpacing` early-returns on this flag, so re-running createTheme
+    // over an enhanced theme keeps the wrapper.
+    (spacing as any).mui = true;
+    (spacing as any).unit = (base as any).unit;
+    // `createUnaryUnit` hands this very function to the sx spacing props, so
+    // advertising the step names is what lets `sx={{ p: 'small' }}` resolve.
+    (spacing as any).keys = stepKeys;
+    return spacing as T['spacing'];
   };
-  // `createSpacing` early-returns on this flag, so re-running createTheme over
-  // an enhanced theme keeps the wrapper.
-  (spacing as any).mui = true;
-  (spacing as any).unit = (prevSpacing as any).unit;
-  // `createUnaryUnit` hands this very function to the sx spacing props, so
-  // advertising the step names is what lets `sx={{ p: 'small' }}` resolve.
-  (spacing as any).keys = new Set(Object.keys(resolved));
-  theme.spacing = spacing;
+  theme.spacing = makeKeyedSpacing(prevSpacing);
+
+  // `CssVarsProvider` rebuilds `theme.spacing = theme.generateSpacing()` on
+  // mount — without wrapping the generator too, the rebuilt function has no
+  // `keys` and `sx={{ p: 'small' }}` emits the raw name.
+  const prevGenerateSpacing = (themeInput as any).generateSpacing;
+  if (typeof prevGenerateSpacing === 'function') {
+    (theme as any).generateSpacing = function generateSpacing(this: unknown) {
+      return makeKeyedSpacing(
+        prevGenerateSpacing.call(this ?? themeInput) as (
+          ...args: ReadonlyArray<number | string>
+        ) => string | number,
+      );
+    };
+  }
 
   if (themeInput.vars) {
     const rootVars: Record<string, string> = {};

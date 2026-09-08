@@ -10,7 +10,9 @@ import enhanceDensity from './enhanceDensity';
 /** The interactive box as emitted onto a control — it is a plain px constant, so
  * it is only observable through the component styles. */
 const controlBox = (theme: ReturnType<typeof enhanceDensity>) =>
-  ((theme.components as any).MuiCheckbox.styleOverrides.root as any[])[1].height;
+  ((theme.components as any).MuiCheckbox.styleOverrides.root as any[]).find(
+    (layer) => layer?.height !== undefined,
+  ).height;
 
 /** The style a component emits for one variant, matched on its props. */
 const variantStyle = (
@@ -36,7 +38,9 @@ const sizeStyle = (theme: ReturnType<typeof enhanceDensity>, component: string, 
 
 /** Same for the icon glyph, read off the same control. */
 const iconBox = (theme: ReturnType<typeof enhanceDensity>) =>
-  ((theme.components as any).MuiCheckbox.styleOverrides.root as any[])[1]['& svg'].fontSize;
+  ((theme.components as any).MuiCheckbox.styleOverrides.root as any[]).find(
+    (layer) => layer?.['& svg'] !== undefined,
+  )['& svg'].fontSize;
 
 describe('enhanceDensity', () => {
   test('ships the one canonical ladder (static px)', () => {
@@ -214,10 +218,10 @@ describe('enhanceDensity', () => {
       // `theme.vars.spacing`, which can't resolve names — the step must still win.
       const varsTheme = enhanceDensity(createTheme({ cssVariables: true }));
       expect(sx(varsTheme, { p: 'small' })).to.deep.equal({
-        padding: 'var(--mui-spacing-small)',
+        padding: 'var(--mui-spacing-small, calc(1.5 * var(--mui-spacing, 8px)))',
       });
       expect(sx(varsTheme, { gap: '-medium' })).to.deep.equal({
-        gap: 'calc(var(--mui-spacing-medium) * -1)',
+        gap: 'calc(var(--mui-spacing-medium, calc(2 * var(--mui-spacing, 8px))) * -1)',
       });
     });
 
@@ -296,5 +300,51 @@ describe('enhanceDensity', () => {
 
     // one shallow probe — applySharedDensity ran and wrote styleOverrides
     expect(theme.components.MuiButton?.styleOverrides?.root).to.not.equal(undefined);
+  });
+
+  test('a user styleOverride on the incoming theme stays the winning layer', () => {
+    const theme = enhanceDensity(
+      createTheme({
+        components: {
+          MuiButton: { styleOverrides: { root: { textTransform: 'none' } } },
+        },
+      }),
+    );
+
+    const layers = (theme.components as any).MuiButton.styleOverrides.root as any[];
+    // density emitted at least one layer, and the user's object is last —
+    // the style engine applies layers in order, so last wins
+    expect(layers.length).to.be.greaterThan(1);
+    expect(layers[layers.length - 1]).to.deep.equal({ textTransform: 'none' });
+  });
+
+  test('the toolbar mixin rides the scale with the Toolbar emission', () => {
+    const theme = enhanceDensity(createTheme());
+    const toolbar = (theme as any).mixins.toolbar;
+
+    expect(toolbar.minHeight).to.equal('calc(32px + 2*12px)');
+    expect(toolbar[`${theme.breakpoints.up('xs')} and (orientation: landscape)`]).to.deep.equal({
+      minHeight: 'calc(32px + 2*8px)',
+    });
+    expect(toolbar[theme.breakpoints.up('sm')]).to.deep.equal({
+      minHeight: 'calc(32px + 2*12px)',
+    });
+  });
+
+  test('a scale override moves the toolbar mixin too', () => {
+    const theme = enhanceDensity(createTheme(), { 'touch-target': 40, small: 16 });
+
+    expect((theme as any).mixins.toolbar.minHeight).to.equal('calc(40px + 2*16px)');
+  });
+
+  test('the mounted spacing rebuild still resolves sx steps', () => {
+    // CssVarsProvider swaps `theme.spacing` for `theme.generateSpacing()` on
+    // mount — mimic that swap and run the sx transform against it.
+    const theme = enhanceDensity(createTheme({ cssVariables: true }));
+    const mounted = { ...theme, spacing: (theme as any).generateSpacing() };
+
+    expect((mounted as any).unstable_sx({ p: 'small' })).to.deep.equal({
+      padding: 'var(--mui-spacing-small, calc(1.5 * var(--mui-spacing, 8px)))',
+    });
   });
 });

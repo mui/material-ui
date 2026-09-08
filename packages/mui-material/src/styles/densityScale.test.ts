@@ -70,10 +70,14 @@ describe('densityScale', () => {
     test('theme.spacing resolves scale keys to step var refs', () => {
       const theme = applyDensity(createTheme({ cssVariables: true }));
 
-      expect(theme.spacing('small')).to.equal('var(--mui-spacing-small)');
-      expect(theme.spacing('-x-small')).to.equal('calc(var(--mui-spacing-x-small) * -1)');
+      expect(theme.spacing('small')).to.equal(
+        'var(--mui-spacing-small, calc(1.5 * var(--mui-spacing, 8px)))',
+      );
+      expect(theme.spacing('-x-small')).to.equal(
+        'calc(var(--mui-spacing-x-small, var(--mui-spacing, 8px)) * -1)',
+      );
       expect(theme.spacing('small', 2)).to.equal(
-        'var(--mui-spacing-small) calc(2 * var(--mui-spacing, 8px))',
+        'var(--mui-spacing-small, calc(1.5 * var(--mui-spacing, 8px))) calc(2 * var(--mui-spacing, 8px))',
       );
     });
 
@@ -85,12 +89,42 @@ describe('densityScale', () => {
       expect(theme.spacing(1, 'auto')).to.equal('var(--mui-spacing, 8px) auto');
     });
 
-    test('every scale key resolves to its step var ref', () => {
+    test('every scale key resolves to its step var ref, fallback included', () => {
       const theme = applyDensity(createTheme({ cssVariables: true }));
 
+      const multipliers: Record<string, number> = {
+        'xx-small': 0.5,
+        'x-small': 1,
+        small: 1.5,
+        medium: 2,
+        large: 3,
+        'x-large': 4,
+        'xx-large': 6,
+      };
       DENSITY_KEYS.forEach((key) => {
-        expect(theme.spacing(key)).to.equal(`var(--mui-spacing-${key})`);
+        const multiplier = multipliers[key];
+        const fallback =
+          multiplier === 1
+            ? 'var(--mui-spacing, 8px)'
+            : `calc(${multiplier} * var(--mui-spacing, 8px))`;
+        expect(theme.spacing(key)).to.equal(`var(--mui-spacing-${key}, ${fallback})`);
       });
+    });
+
+    test('the generateSpacing rebuild keeps the scale keys — the CssVarsProvider path', () => {
+      // On mount, CssVarsProvider replaces `theme.spacing` with
+      // `theme.generateSpacing()` (createCssVarsProvider). The rebuilt function
+      // must still resolve steps and advertise `keys`, or every mounted
+      // `sx={{ p: 'small' }}` emits the raw name.
+      const theme = applyDensity(createTheme({ cssVariables: true }));
+      const rebuilt = (theme as any).generateSpacing() as typeof theme.spacing;
+
+      expect(rebuilt('small')).to.equal(
+        'var(--mui-spacing-small, calc(1.5 * var(--mui-spacing, 8px)))',
+      );
+      expect(rebuilt(2)).to.equal('calc(2 * var(--mui-spacing, 8px))');
+      expect((rebuilt as any).keys.has('small')).to.equal(true);
+      expect((rebuilt as any).mui).to.equal(true);
     });
 
     test('does not touch theme.vars — same object, no extra keys', () => {
@@ -119,14 +153,17 @@ describe('densityScale', () => {
       const rootVars = sheets[sheets.length - 1][':root'] as Record<string, string>;
 
       expect(rootVars['--mui-spacing-small']).to.equal('6px');
-      // keyed spacing still returns the REF — runtime re-mapping keeps working
-      expect(theme.spacing('small')).to.equal('var(--mui-spacing-small)');
+      // keyed spacing still returns the REF (override px as its fallback) —
+      // runtime re-mapping keeps working
+      expect(theme.spacing('small')).to.equal('var(--mui-spacing-small, 6px)');
     });
 
     test('respects a custom cssVarPrefix', () => {
       const theme = applyDensity(createTheme({ cssVariables: { cssVarPrefix: 'app' } }));
 
-      expect(theme.spacing('small')).to.equal('var(--app-spacing-small)');
+      expect(theme.spacing('small')).to.equal(
+        'var(--app-spacing-small, calc(1.5 * var(--app-spacing, 8px)))',
+      );
       expect(theme.spacing(1)).to.equal('var(--app-spacing, 8px)');
     });
   });
