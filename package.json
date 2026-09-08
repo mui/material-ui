@@ -139,7 +139,7 @@
     "serve": "14.2.6",
     "stylelint": "17.14.1",
     "supports-color": "11.0.0",
-    "tsx": "4.23.12",
+    "tsx": "4.23.13",
     "typescript": "npm:@typescript/typescript6@6.0.2",
     "vite": "^8.0.0",
     "vitest": "^4.1.0",
