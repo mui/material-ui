@@ -209,6 +209,7 @@ describe('<AccordionSummary />', () => {
           <button type="button">Before</button>
           <Accordion>
             <AccordionSummary>Summary</AccordionSummary>
+            <AccordionDetails>Details</AccordionDetails>
           </Accordion>
           <button type="button">After</button>
         </React.Fragment>,
@@ -236,6 +237,7 @@ describe('<AccordionSummary />', () => {
             <button type="button">Before</button>
             <Accordion>
               <AccordionSummary>Summary</AccordionSummary>
+              <AccordionDetails>Details</AccordionDetails>
             </Accordion>
             <button type="button">After</button>
           </React.Fragment>,
@@ -255,6 +257,7 @@ describe('<AccordionSummary />', () => {
           <React.Fragment>
             <Accordion disabled>
               <AccordionSummary>Disabled</AccordionSummary>
+              <AccordionDetails>Details</AccordionDetails>
             </Accordion>
             <button type="button">After</button>
           </React.Fragment>,
@@ -269,9 +272,14 @@ describe('<AccordionSummary />', () => {
     // JSDOM doesn't support :focus-visible
     it.skipIf(isJsdom())(
       '2.4.7 Focus Visible: applies the focus-visible state on keyboard focus',
-      function test() {
+      () => {
         const handleFocusVisible = spy();
-        render(<AccordionSummary onFocusVisible={handleFocusVisible} />);
+        render(
+          <Accordion>
+            <AccordionSummary onFocusVisible={handleFocusVisible} />
+            <AccordionDetails>Details</AccordionDetails>
+          </Accordion>,
+        );
         // simulate pointer device
         fireEvent.mouseDown(document.body);
 
@@ -291,6 +299,7 @@ describe('<AccordionSummary />', () => {
         <React.Fragment>
           <Accordion onChange={handleChange} expanded={false}>
             <AccordionSummary>Summary</AccordionSummary>
+            <AccordionDetails>Details</AccordionDetails>
           </Accordion>
           <div data-testid="outside" />
         </React.Fragment>,
@@ -316,6 +325,7 @@ describe('<AccordionSummary />', () => {
       const { user } = render(
         <Accordion onChange={handleChange} expanded={false}>
           <AccordionSummary>Summary</AccordionSummary>
+          <AccordionDetails>Details</AccordionDetails>
         </Accordion>,
       );
 
@@ -330,6 +340,7 @@ describe('<AccordionSummary />', () => {
       const { user } = render(
         <Accordion onChange={handleChange} expanded={false}>
           <AccordionSummary>Summary</AccordionSummary>
+          <AccordionDetails>Details</AccordionDetails>
         </Accordion>,
       );
 
@@ -353,6 +364,7 @@ describe('<AccordionSummary />', () => {
           >
             Billing details
           </AccordionSummary>
+          <AccordionDetails>Details</AccordionDetails>
         </Accordion>,
       );
 
@@ -366,6 +378,7 @@ describe('<AccordionSummary />', () => {
         render(
           <Accordion>
             <AccordionSummary>Shipping</AccordionSummary>
+            <AccordionDetails>Details</AccordionDetails>
           </Accordion>,
         );
 
@@ -376,6 +389,7 @@ describe('<AccordionSummary />', () => {
         const { user } = render(
           <Accordion>
             <AccordionSummary>Shipping</AccordionSummary>
+            <AccordionDetails>Details</AccordionDetails>
           </Accordion>,
         );
         const summary = screen.getByRole('button');
