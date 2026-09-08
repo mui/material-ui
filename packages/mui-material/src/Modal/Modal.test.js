@@ -400,6 +400,47 @@ describe('<Modal />', () => {
 
       expect(screen.queryByTestId('children')).to.equal(null);
     });
+
+    it('should hide a previously closed keepMounted modal when another modal opens above it', async () => {
+      function Test() {
+        const [firstOpen, setFirstOpen] = React.useState(false);
+        const [secondOpen, setSecondOpen] = React.useState(false);
+        const [thirdOpen, setThirdOpen] = React.useState(false);
+
+        return (
+          <React.Fragment>
+            <button onClick={() => setFirstOpen(true)}>Open first</button>
+            <Modal open={firstOpen}>
+              <div>
+                <button onClick={() => setSecondOpen(true)}>Open second</button>
+              </div>
+            </Modal>
+            <Modal open={secondOpen} keepMounted data-testid="second-modal">
+              <div>
+                <button onClick={() => setThirdOpen(true)}>Open third</button>
+              </div>
+            </Modal>
+            <Modal open={thirdOpen} data-testid="third-modal">
+              <div>Third modal</div>
+            </Modal>
+          </React.Fragment>
+        );
+      }
+
+      const { user } = render(<Test />);
+      const secondModal = screen.getByTestId('second-modal');
+
+      // Material UI sets this attribute itself while the modal is closed.
+      expect(secondModal).to.have.attribute('aria-hidden', 'true');
+
+      await user.click(screen.getByRole('button', { name: 'Open first' }));
+      await user.click(screen.getByRole('button', { name: 'Open second' }));
+      expect(secondModal).not.toBeInaccessible();
+
+      await user.click(screen.getByRole('button', { name: 'Open third' }));
+      expect(screen.getByTestId('third-modal')).not.toBeInaccessible();
+      expect(secondModal).toBeInaccessible();
+    });
   });
 
   describe('focus', () => {

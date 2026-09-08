@@ -92,7 +92,7 @@ function collectHiddenTargets(
 }
 
 function syncAriaHidden(containerInfo: Container): void {
-  const { container, modals, hiddenSiblings } = containerInfo;
+  const { container, modals } = containerInfo;
   const top = modals[modals.length - 1];
   const keep = top.modalRef;
 
@@ -104,7 +104,6 @@ function syncAriaHidden(containerInfo: Container): void {
       next.delete(element);
     }
   });
-  hiddenSiblings.forEach((element) => next.delete(element));
 
   // Hands the accessibility tree back to a parent dialog when a nested one closes.
   containerInfo.hiddenSet.forEach((element) => {
@@ -209,16 +208,6 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   return restore;
 }
 
-function getHiddenSiblings(container: Element) {
-  const hiddenSiblings: Container['hiddenSiblings'] = [];
-  [].forEach.call(container.children, (element: Element) => {
-    if (element.getAttribute('aria-hidden') === 'true') {
-      hiddenSiblings.push(element);
-    }
-  });
-  return hiddenSiblings;
-}
-
 interface Modal {
   mount: Element;
   modalRef: Element;
@@ -226,7 +215,6 @@ interface Modal {
 
 interface Container {
   container: HTMLElement;
-  hiddenSiblings: Element[];
   hiddenSet: Set<Element>;
   modals: Modal[];
   restore: null | (() => void);
@@ -275,7 +263,6 @@ export class ModalManager {
       modals: [modal],
       container,
       restore: null,
-      hiddenSiblings: getHiddenSiblings(container),
       hiddenSet: new Set(),
     };
     this.containers.push(containerInfo);
