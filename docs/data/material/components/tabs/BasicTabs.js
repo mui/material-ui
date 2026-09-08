@@ -11,6 +11,7 @@ function CustomTabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
+      tabIndex={0}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       {...other}

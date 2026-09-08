@@ -115,6 +115,7 @@ function useLoaded(src, srcSet, crossOrigin, referrerPolicy) {
       return undefined;
     }
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoaded(false);
 
     let active = true;

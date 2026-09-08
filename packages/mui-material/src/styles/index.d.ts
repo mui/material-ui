@@ -7,7 +7,9 @@ export {
   ThemeOptions,
   Theme,
   CssThemeVariables,
+  FocusVisible,
 } from './createTheme';
+export { default as enhanceHighContrast, HighContrastTokens } from './enhanceHighContrast';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
 export { Shadows } from './shadows';
 export { ZIndex } from './zIndex';
@@ -33,6 +35,7 @@ export {
   TypographyVariant,
 } from './createTypography';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
+export { ReducedMotionMode, Motion, MotionOptions } from './createMotion';
 export {
   Duration,
   Easing,
@@ -143,6 +146,7 @@ export type {
   PaletteColorChannel,
   PaletteCommonChannel,
   PaletteFilledInput,
+  PaletteInput,
   PaletteLinearProgress,
   PaletteSkeleton,
   PaletteSlider,

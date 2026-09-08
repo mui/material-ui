@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { getProductInfoFromUrl } from './getProductInfoFromUrl';
 
 describe('getProductInfoFromUrl', () => {
@@ -26,13 +26,6 @@ describe('getProductInfoFromUrl', () => {
     expect(getProductInfoFromUrl('/base-ui/react-button/')).to.deep.equal({
       productCategoryId: 'core',
       productId: 'base-ui',
-    });
-  });
-
-  it('should handle Joy UI', () => {
-    expect(getProductInfoFromUrl('/joy-ui/react-button/')).to.deep.equal({
-      productCategoryId: 'core',
-      productId: 'joy-ui',
     });
   });
 

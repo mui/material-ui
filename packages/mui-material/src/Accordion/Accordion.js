@@ -16,6 +16,7 @@ import useId from '../utils/useId';
 import useSlot from '../utils/useSlot';
 import mergeSlotProps from '../utils/mergeSlotProps';
 import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
+import { getTransitionStyles } from '../transitions/utils';
 
 const EMPTY = {};
 
@@ -58,7 +59,7 @@ const AccordionRoot = styled(Paper, {
 
     return {
       position: 'relative',
-      transition: theme.transitions.create(['margin'], transition),
+      ...getTransitionStyles(theme, ['margin'], transition),
       overflowAnchor: 'none', // Keep the same scrolling position
       '&::before': {
         position: 'absolute',
@@ -69,7 +70,7 @@ const AccordionRoot = styled(Paper, {
         content: '""',
         opacity: 1,
         backgroundColor: (theme.vars || theme).palette.divider,
-        transition: theme.transitions.create(['opacity', 'background-color'], transition),
+        ...getTransitionStyles(theme, ['opacity', 'background-color'], transition),
       },
       '&:first-of-type': {
         '&::before': {

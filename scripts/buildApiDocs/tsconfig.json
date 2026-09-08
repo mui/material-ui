@@ -14,7 +14,7 @@
     "strict": true,
     "jsx": "react",
 
-    "types": ["node", "vitest/globals"],
+    "types": ["node"],
     "paths": {
       "@mui/types": ["../../packages/mui-types"],
       "@mui/utils": ["../../packages/mui-utils/src"],

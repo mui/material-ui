@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, beforeEach, afterEach, expect, it } from 'vitest';
 import { isJsdom } from '@mui/internal-test-utils/env';
 import getScrollbarSize from './getScrollbarSize';
 

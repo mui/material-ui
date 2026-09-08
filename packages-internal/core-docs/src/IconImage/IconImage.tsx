@@ -52,6 +52,7 @@ export default function IconImage(props: IconImageProps) {
   const themeOptions = React.useContext(ThemeOptionsContext);
   const [firstRender, setFirstRender] = React.useState(true);
   React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setFirstRender(false);
     neverHydrated = false;
   }, []);

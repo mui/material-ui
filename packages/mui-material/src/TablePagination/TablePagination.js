@@ -101,6 +101,14 @@ const TablePaginationSelect = styled(Select, {
   },
 });
 
+const TablePaginationInputBase = styled(InputBase)(
+  memoTheme(({ theme }) => ({
+    [`& .${tablePaginationClasses.select}:focus`]: {
+      backgroundColor: (theme.vars || theme).palette.action.focus,
+    },
+  })),
+);
+
 const TablePaginationMenuItem = styled(MenuItem, {
   name: 'MuiTablePagination',
   slot: 'MenuItem',
@@ -266,7 +274,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
         {rowsPerPageOptions.length > 1 && (
           <SelectSlot
             variant="standard"
-            {...(!selectProps.variant && { input: <InputBase /> })}
+            {...(!selectProps.variant && { input: <TablePaginationInputBase /> })}
             value={rowsPerPage}
             onChange={onRowsPerPageChange}
             id={selectId}

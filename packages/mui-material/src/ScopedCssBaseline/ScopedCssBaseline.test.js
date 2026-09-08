@@ -1,3 +1,4 @@
+import { describe } from 'vitest';
 import { createRenderer } from '@mui/internal-test-utils';
 import ScopedCssBaseline, {
   scopedCssBaselineClasses as classes,

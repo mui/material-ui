@@ -3,7 +3,6 @@
 // MIT License
 // Copyright (c) 2012 - 2022 James Halliday, Josh Duff, and other contributors of deepmerge
 
-/* eslint-disable guard-for-in */
 /* eslint-disable no-else-return */
 
 /**
@@ -41,6 +40,9 @@ function cloneObject(target: any) {
   const result = {} as any;
 
   for (const key in target) {
+    if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+      continue;
+    }
     result[key] = clone(target[key]);
   }
   return result;
@@ -84,6 +86,9 @@ function clone(entry: any) {
 
 function mergeObject(target: any, source: any) {
   for (const key in source) {
+    if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+      continue;
+    }
     if (key in target) {
       target[key] = fastDeepAssign(target[key], source[key]);
     } else {

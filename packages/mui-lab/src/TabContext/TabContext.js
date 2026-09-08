@@ -13,6 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
 function useUniquePrefix() {
   const [id, setId] = React.useState(null);
   React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setId(`mui-p-${Math.round(Math.random() * 1e5)}`);
   }, []);
   return id;

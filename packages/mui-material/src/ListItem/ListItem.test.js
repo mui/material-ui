@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import ListItem, { listItemClasses as classes } from '@mui/material/ListItem';
 import ListContext from '../List/ListContext';

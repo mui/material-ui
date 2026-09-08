@@ -1,6 +1,6 @@
+import { expect, describe, it, beforeEach } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { expect } from 'chai';
 import {
   act,
   createRenderer,
@@ -23,6 +23,10 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Popper from '@mui/material/Popper';
 import Tooltip from '@mui/material/Tooltip';
 import describeConformance from '../../test/describeConformance';
+
+// Firefox reports fractional `scrollTop` values in Vitest browser mode, so the exact
+// scroll-position assertions below fail. See https://github.com/vitest-dev/vitest/issues/9223
+const isFirefox = /firefox/i.test(navigator.userAgent);
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -89,6 +93,7 @@ describe('<Autocomplete />', () => {
       slots: {
         clearIndicator: { expectedClassName: classes.clearIndicator },
         popupIndicator: { expectedClassName: classes.popupIndicator },
+        status: { expectedClassName: classes.status },
       },
       only: [
         'slotsProp',
@@ -227,6 +232,26 @@ describe('<Autocomplete />', () => {
       );
       fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
       expect(document.querySelector(`.${classes.paper}`).textContent).to.equal('Loading…');
+    });
+
+    it('should render the loading message in the status container', () => {
+      const view = render(
+        <Autocomplete
+          open
+          options={['one']}
+          loadingText="Fetching options"
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const status = screen.getByRole('status');
+      expect(status).to.have.attribute('aria-live', 'polite');
+      expect(status).to.have.attribute('aria-atomic', 'true');
+      expect(status.children).to.have.length(0);
+
+      view.setProps({ options: [], loading: true });
+
+      expect(status).to.have.text('Fetching options');
     });
 
     it('should show supplied options to the "options" prop even when loading', () => {
@@ -576,27 +601,30 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.equal('The');
     });
 
-    it('preserves listbox scroll position when clearing a mouse-created highlight', async () => {
-      const { user } = render(
-        <Autocomplete
-          resetHighlightOnMouseLeave
-          options={['one', 'two', 'three', 'four', 'five', 'six', 'seven']}
-          renderInput={(params) => <TextField {...params} />}
-          slotProps={{ listbox: { style: { maxHeight: '100px', overflow: 'auto' } } }}
-        />,
-      );
+    it.skipIf(isFirefox)(
+      'preserves listbox scroll position when clearing a mouse-created highlight',
+      async () => {
+        const { user } = render(
+          <Autocomplete
+            resetHighlightOnMouseLeave
+            options={['one', 'two', 'three', 'four', 'five', 'six', 'seven']}
+            renderInput={(params) => <TextField {...params} />}
+            slotProps={{ listbox: { style: { maxHeight: '100px', overflow: 'auto' } } }}
+          />,
+        );
 
-      const textbox = screen.getByRole('combobox');
-      await user.click(textbox);
-      const listbox = screen.getByRole('listbox');
-      listbox.scrollTop = 50;
+        const textbox = screen.getByRole('combobox');
+        await user.click(textbox);
+        const listbox = screen.getByRole('listbox');
+        listbox.scrollTop = 50;
 
-      await user.pointer({ target: screen.getByRole('option', { name: 'five' }) });
-      await user.pointer({ target: textbox });
+        await user.pointer({ target: screen.getByRole('option', { name: 'five' }) });
+        await user.pointer({ target: textbox });
 
-      expect(getActiveDescendant(textbox)).to.equal(null);
-      expect(listbox.scrollTop).to.equal(50);
-    });
+        expect(getActiveDescendant(textbox)).to.equal(null);
+        expect(listbox.scrollTop).to.equal(50);
+      },
+    );
   });
 
   describe('highlight synchronisation', () => {
@@ -1095,10 +1123,10 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
     });
 
-    it('navigates between different tags', () => {
+    it('navigates between different tags', async () => {
       const handleChange = spy();
       const options = ['one', 'two'];
-      render(
+      const { user } = render(
         <Autocomplete
           defaultValue={options}
           options={options}
@@ -1110,22 +1138,22 @@ describe('<Autocomplete />', () => {
       const textbox = screen.getByRole('combobox');
       const [firstSelectedValue, secondSelectedValue] = screen.getAllByRole('button');
 
-      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      await user.keyboard('{ArrowLeft}');
       expect(secondSelectedValue).toHaveFocus();
 
-      fireEvent.keyDown(secondSelectedValue, { key: 'ArrowLeft' });
+      await user.keyboard('{ArrowLeft}');
       expect(firstSelectedValue).toHaveFocus();
 
-      fireEvent.keyDown(firstSelectedValue, { key: 'Backspace' });
+      await user.keyboard('{Backspace}');
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([options[1]]);
       expect(textbox).toHaveFocus();
     });
 
-    it('deletes a focused tag when pressing the delete key', () => {
+    it('deletes a focused tag when pressing the delete key', async () => {
       const handleChange = spy();
       const options = ['one', 'two'];
-      render(
+      const { user } = render(
         <Autocomplete
           defaultValue={options}
           options={options}
@@ -1138,24 +1166,136 @@ describe('<Autocomplete />', () => {
       const [firstSelectedValue, secondSelectedValue] = screen.getAllByRole('button');
 
       // check that no tags get deleted when the tag is not a focused tag
-      fireEvent.keyDown(textbox, { key: 'Delete' });
+      await user.keyboard('{Delete}');
 
       expect(handleChange.callCount).to.equal(0);
       expect(textbox).toHaveFocus();
 
       // expect on focused tag to delete when pressing delete key
-      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      await user.keyboard('{ArrowLeft}');
 
       expect(secondSelectedValue).toHaveFocus();
 
-      fireEvent.keyDown(secondSelectedValue, { key: 'ArrowLeft' });
+      await user.keyboard('{ArrowLeft}');
 
       expect(firstSelectedValue).toHaveFocus();
 
-      fireEvent.keyDown(firstSelectedValue, { key: 'Delete' });
+      await user.keyboard('{Delete}');
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal([options[1]]);
+      expect(textbox).toHaveFocus();
+    });
+
+    it('can delete one tag after another', async () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      const { user } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      await user.keyboard('{ArrowLeft}');
+      await user.keyboard('{Backspace}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
+      expect(textbox).toHaveFocus();
+
+      await user.keyboard('{ArrowLeft}');
+      await user.keyboard('{Backspace}');
+
+      expect(handleChange.callCount).to.equal(2);
+      expect(handleChange.args[1][1]).to.deep.equal([]);
+      expect(textbox).toHaveFocus();
+    });
+
+    it('should remove only the focused chip when pressing the delete key', async () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      const { user } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const firstSelectedValue = screen.getByRole('button', { name: 'one' });
+
+      act(() => {
+        firstSelectedValue.focus();
+      });
+      await user.keyboard('{Delete}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(['two', 'three']);
+      expect(textbox).toHaveFocus();
+    });
+
+    it('should remove only the focused chip when pressing the backspace key', async () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      const { user } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const firstSelectedValue = screen.getByRole('button', { name: 'one' });
+
+      act(() => {
+        firstSelectedValue.focus();
+      });
+      await user.keyboard('{Backspace}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(['two', 'three']);
+      expect(textbox).toHaveFocus();
+    });
+
+    it('should suppress a spurious Backspace on the input immediately after removing a focused chip', async () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      const { user } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const firstSelectedValue = screen.getByRole('button', { name: 'one' });
+
+      await user.keyboard('{ArrowLeft}{ArrowLeft}{ArrowLeft}');
+
+      // Removing the focused chip sets the suppression flag.
+      // Use fireEvent (not user.keyboard) so the setTimeout(0) auto-clear
+      // is not flushed before the next keydown.
+      fireEvent.keyDown(firstSelectedValue, { key: 'Backspace' });
 
       expect(handleChange.callCount).to.equal(1);
       expect(textbox).toHaveFocus();
+
+      // Simulate the spurious Backspace VoiceOver synthesises on the input
+      // right after focus returns to it — should be suppressed.
+      fireEvent.keyDown(textbox, { key: 'Backspace' });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(['two', 'three']);
     });
 
     it('should keep listbox open on pressing left or right keys when inputValue is not empty', () => {
@@ -3049,6 +3189,33 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: freeSolo', () => {
+    it('should not reset a controlled inputValue on mount', () => {
+      const handleInputChange = spy();
+
+      function App() {
+        const [inputValue, setInputValue] = React.useState('Option 1');
+
+        return (
+          <Autocomplete
+            freeSolo
+            value={null}
+            inputValue={inputValue}
+            options={['Option 1', 'Option 2']}
+            onInputChange={(event, newInputValue, reason) => {
+              handleInputChange(event, newInputValue, reason);
+              setInputValue(newInputValue);
+            }}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        );
+      }
+
+      render(<App />);
+
+      expect(screen.getByRole('combobox').value).to.equal('Option 1');
+      expect(handleInputChange.callCount).to.equal(0);
+    });
+
     it('should reset input when controlled value changes to null', async () => {
       function App() {
         const [value, setValue] = React.useState('foo');
@@ -3226,6 +3393,73 @@ describe('<Autocomplete />', () => {
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal('The');
+    });
+
+    it('should prevent form submission when committing typed text over auto-highlighted match', async () => {
+      const handleChange = spy();
+      const handleSubmit = spy();
+      const options = ['The Shawshank Redemption', 'The Godfather'];
+      const { user } = render(
+        <div
+          onKeyDown={(event) => {
+            if (!event.defaultPrevented && event.key === 'Enter') {
+              handleSubmit();
+            }
+          }}
+        >
+          <Autocomplete
+            freeSolo
+            autoHighlight
+            openOnFocus
+            options={options}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />
+        </div>,
+      );
+
+      await user.type(screen.getByRole('combobox'), 'The{Enter}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('The');
+      expect(handleSubmit.callCount).to.equal(0);
+
+      await user.keyboard('{Enter}');
+
+      expect(handleSubmit.callCount).to.equal(1);
+    });
+
+    it('should prevent form submission when committing edited selected text over value-highlighted match', async () => {
+      const handleChange = spy();
+      const handleSubmit = spy();
+      const options = ['The Shawshank Redemption', 'The Godfather'];
+      const { user } = render(
+        <div
+          onKeyDown={(event) => {
+            if (!event.defaultPrevented && event.key === 'Enter') {
+              handleSubmit();
+            }
+          }}
+        >
+          <Autocomplete
+            freeSolo
+            defaultValue="The Godfather"
+            options={options}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />
+        </div>,
+      );
+
+      await user.keyboard('{Backspace}{Backspace}{Backspace}{Backspace}{Backspace}{Enter}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('The Godf');
+      expect(handleSubmit.callCount).to.equal(0);
+
+      await user.keyboard('{Enter}');
+
+      expect(handleSubmit.callCount).to.equal(1);
     });
 
     it('should prefer typed text after editing a selected value', async () => {
@@ -4398,7 +4632,7 @@ describe('<Autocomplete />', () => {
   });
 
   // https://github.com/mui/material-ui/issues/36212
-  it.skipIf(isJsdom())(
+  it.skipIf(isJsdom() || isFirefox)(
     'should preserve scrollTop position of the listbox when adding new options on mobile',
     function test() {
       function getOptions(count) {
@@ -4431,7 +4665,7 @@ describe('<Autocomplete />', () => {
   );
 
   // https://github.com/mui/material-ui/issues/40250
-  it('should preserve scrollTop when more options are added', () => {
+  it.skipIf(isFirefox)('should preserve scrollTop when more options are added', () => {
     function OptionsAutocomplete({ options }) {
       return (
         <Autocomplete
@@ -4456,36 +4690,39 @@ describe('<Autocomplete />', () => {
     expect(listbox.scrollTop).to.equal(50);
   });
 
-  it('should preserve scrollTop when filtered options grow without changing the input', async () => {
-    function OptionsAutocomplete({ options }) {
-      return (
-        <Autocomplete
-          open
-          options={options}
-          renderInput={(params) => <TextField {...params} autoFocus />}
-          slotProps={{ listbox: { style: { maxHeight: '100px', overflow: 'auto' } } }}
-        />
+  it.skipIf(isFirefox)(
+    'should preserve scrollTop when filtered options grow without changing the input',
+    async () => {
+      function OptionsAutocomplete({ options }) {
+        return (
+          <Autocomplete
+            open
+            options={options}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+            slotProps={{ listbox: { style: { maxHeight: '100px', overflow: 'auto' } } }}
+          />
+        );
+      }
+
+      const { rerender, user } = render(
+        <OptionsAutocomplete options={['aaaa1', 'aaaa2', 'aaaa3', 'aaaa4', 'aaa5', 'aaa6']} />,
       );
-    }
+      const textbox = screen.getByRole('combobox');
+      const listbox = screen.getByRole('listbox');
 
-    const { rerender, user } = render(
-      <OptionsAutocomplete options={['aaaa1', 'aaaa2', 'aaaa3', 'aaaa4', 'aaa5', 'aaa6']} />,
-    );
-    const textbox = screen.getByRole('combobox');
-    const listbox = screen.getByRole('listbox');
+      await user.type(textbox, 'aaa');
 
-    await user.type(textbox, 'aaa');
+      listbox.scrollTop = 50;
 
-    listbox.scrollTop = 50;
+      rerender(
+        <OptionsAutocomplete
+          options={['aaaa1', 'aaaa2', 'aaaa3', 'aaaa4', 'aaa5', 'aaa6', 'aaa7', 'aaa8']}
+        />,
+      );
 
-    rerender(
-      <OptionsAutocomplete
-        options={['aaaa1', 'aaaa2', 'aaaa3', 'aaaa4', 'aaa5', 'aaa6', 'aaa7', 'aaa8']}
-      />,
-    );
-
-    expect(listbox.scrollTop).to.equal(50);
-  });
+      expect(listbox.scrollTop).to.equal(50);
+    },
+  );
 
   it('should reset scrollTop when deleting input adds matching options', async () => {
     const { user } = render(
@@ -4821,6 +5058,78 @@ describe('<Autocomplete />', () => {
     expect(screen.getByTestId('label')).to.have.attribute('data-shrink', 'false');
   });
 
+  describe('prop: noOptionsText', () => {
+    it('should render the no options text when there are no options', () => {
+      render(
+        <Autocomplete
+          open
+          options={[]}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      expect(screen.getByText('No options')).not.to.equal(null);
+    });
+
+    it('should render the custom no options text when there are no options', () => {
+      render(
+        <Autocomplete
+          open
+          options={[]}
+          noOptionsText="No results"
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      expect(screen.getByText('No results')).not.to.equal(null);
+    });
+
+    it('should not render the no options text when loading and there are no options', () => {
+      render(
+        <Autocomplete
+          open
+          options={[]}
+          loading
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      expect(screen.queryByText('No options')).to.equal(null);
+    });
+
+    it('should not render the no options text when freeSolo is true and there are no options', () => {
+      render(
+        <Autocomplete
+          open
+          options={[]}
+          freeSolo
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      expect(screen.queryByText('No options')).to.equal(null);
+    });
+
+    it('should always render a status message container for no options', async () => {
+      const { user } = render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const status = screen.getByRole('status');
+      expect(status).to.have.attribute('aria-live', 'polite');
+      expect(status).to.have.attribute('aria-atomic', 'true');
+      expect(status.children).to.have.length(0);
+
+      await user.type(screen.getByRole('combobox'), 'three');
+
+      expect(status.children).to.have.length(1);
+    });
+  });
+
   // https://github.com/mui/material-ui/issues/47203
   it.skipIf(isJsdom())(
     'should not scroll the listbox to the top when listbox is scrolled down and one of the end option is clicked',
@@ -5009,6 +5318,58 @@ describe('<Autocomplete />', () => {
       } finally {
         window.ResizeObserver = originalRO;
       }
+    });
+  });
+
+  describe('theme.focusVisible', () => {
+    it.skipIf(isJsdom())('insets the curated ring on the keyboard-highlighted option', () => {
+      render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Autocomplete
+            open
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />
+        </ThemeProvider>,
+      );
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
+      const option = screen.getAllByRole('option')[0];
+      expect(option).to.have.class(classes.focusVisible);
+      expect(option).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '-2px',
+      });
+    });
+
+    it.skipIf(isJsdom())('does not add the focus tint on a selected highlighted option', () => {
+      render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Autocomplete
+            open
+            value="one"
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />
+        </ThemeProvider>,
+      );
+      const combobox = screen.getByRole('combobox');
+      // walk past "two" and "three" so the highlight lands back on the selected "one"
+      fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+      fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+      fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+
+      const option = screen.getAllByRole('option')[0];
+      expect(option).to.have.class(classes.focusVisible);
+      expect(option).to.have.attribute('aria-selected', 'true');
+
+      // The theme ring suppresses the extra focusOpacity bump, so the option keeps whatever the
+      // highlight alone gives it. That value is media-dependent: pointer devices get the blended
+      // `selectedOpacity + hoverOpacity`, while `@media (hover: none)` environments (headless
+      // Firefox on CI, touch devices) fall back to `action.selected`.
+      const backgroundColor = window.getComputedStyle(option).backgroundColor;
+      expect(backgroundColor).not.to.equal('rgba(25, 118, 210, 0.2)');
+      expect(['rgba(25, 118, 210, 0.12)', 'rgba(0, 0, 0, 0.08)']).to.contain(backgroundColor);
     });
   });
 });

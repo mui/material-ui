@@ -34,17 +34,16 @@ export function createGetInitialProps({
           : [],
       });
 
-      // All the URLs should have a leading /.
-      // This is missing in the Next.js static export.
-      let url = ctx.req?.url;
+      // `ctx.req` is undefined during the static export (`output: 'export'`), so the
+      // canonical URL fell back to the homepage on every page.
+      let url = (ctx.req?.url ?? ctx.asPath ?? '').replace(/[?#].*$/, '');
       if (url && url[url.length - 1] !== '/') {
         url += '/';
       }
 
-      const isProd =
-        process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
+      const isProd = process.env.ANALYTICS_ENV === 'production';
       const google = isProd ? 'G-5NXDQLC2ZK' : 'G-XJ83JQEK7J';
-      const apollo = isProd ? '691c2e920c5e20000d7801b6' : 'dev-id';
+      const apollo = isProd ? '6a35da279dcd68001e2385f2' : 'dev-id';
 
       return {
         ...finalProps,

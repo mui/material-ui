@@ -1,5 +1,5 @@
+import { describe, beforeAll, it, expect, beforeEach } from 'vitest';
 import PropTypes from 'prop-types';
-import { expect } from 'chai';
 import requirePropFactory from './requirePropFactory';
 
 describe('requirePropFactory', () => {

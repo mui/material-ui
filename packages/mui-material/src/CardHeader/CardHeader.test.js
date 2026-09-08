@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { createRenderer } from '@mui/internal-test-utils';
 import { typographyClasses } from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
