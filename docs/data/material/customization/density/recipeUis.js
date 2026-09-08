@@ -45,7 +45,9 @@ function PricingUi() {
   return (
     <Stack spacing="large" sx={{ alignItems: 'center', maxWidth: 420, mx: 'auto' }}>
       <Stack spacing="xx-small" sx={{ textAlign: 'center' }}>
-        <Typography variant="h2">Pricing</Typography>
+        <Typography variant="h5" component="h2">
+          Pricing
+        </Typography>
         <Typography variant="body1" sx={{ color: 'text.secondary' }}>
           Start free. Move up a plan when you need more room.
         </Typography>
@@ -63,7 +65,7 @@ function PricingUi() {
             }}
           >
             <Stack direction="row" spacing="x-small" sx={{ alignItems: 'center' }}>
-              <Typography variant="h6" component="h3">
+              <Typography variant="subtitle2" component="h3">
                 Team
               </Typography>
               <Chip
@@ -90,7 +92,7 @@ function PricingUi() {
             spacing="xx-small"
             sx={{ alignItems: 'baseline' }}
           >
-            <Typography variant="h3" component="p">
+            <Typography variant="h6" component="p">
               $18
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
@@ -166,7 +168,7 @@ function PricingUi() {
       </Card>
       <Card variant="outlined" sx={{ width: '100%' }}>
         <CardContent>
-          <Typography variant="h6" component="h3">
+          <Typography variant="subtitle2" component="h3">
             Organization
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
@@ -216,7 +218,9 @@ function ProductUi() {
             sx={{ alignItems: 'center' }}
           >
             <Chip label="TR-12" size="small" variant="outlined" />
-            <Typography variant="h3">Everyday Mineral Blend</Typography>
+            <Typography variant="h6" component="h3">
+              Everyday Mineral Blend
+            </Typography>
           </Stack>
           <Stack
             data-measure
@@ -235,7 +239,7 @@ function ProductUi() {
           </Typography>
           <Stack direction="row" spacing="x-small" sx={{ alignItems: 'center' }}>
             <Typography
-              variant="h3"
+              variant="h6"
               component="p"
               color="error"
               sx={{ fontWeight: 'bold' }}
@@ -378,7 +382,9 @@ function SettingsUi() {
 
   return (
     <Stack spacing="small" sx={{ maxWidth: 520, mx: 'auto' }}>
-      <Typography variant="h3">Preferences</Typography>
+      <Typography variant="h5" component="h2">
+        Preferences
+      </Typography>
       <TextField
         data-measure
         fullWidth

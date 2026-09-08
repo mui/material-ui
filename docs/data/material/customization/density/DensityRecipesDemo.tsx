@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { createTheme, enhanceDensity, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Checkbox from '@mui/material/Checkbox';
 import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Switch from '@mui/material/Switch';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import TextField from '@mui/material/TextField';
 import densityRecipes from './densityRecipes';
 import recipeUis from './recipeUis';
 import { Annotate, Claim, useClaims } from './densityAnnotations';
@@ -46,15 +46,12 @@ export default function DensityRecipesDemo() {
   const recipe =
     densityRecipes.find((item) => item.id === recipeId) ?? densityRecipes[1];
 
-  // The radius, typography, and focus layers are ordinary `createTheme` inputs;
-  // only the scale is the enhancer's own argument. With the ripple off, the
-  // ring is the only keyboard indicator left.
+  // Only the scale changes between recipes — everything else is the default
+  // theme. With the ripple off, the ring is the only keyboard indicator left.
   const theme = React.useMemo(() => {
     const base = createTheme({
       colorSchemes,
       components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
-      shape: recipe.shape,
-      typography: recipe.typography,
       focusVisible: true,
     });
     return enhanceDensity(base, recipe.scale);
@@ -71,33 +68,28 @@ export default function DensityRecipesDemo() {
             alignItems: 'center',
             gap: 2,
             flexWrap: 'wrap',
+            pt: 1,
             pb: 2,
           }}
         >
-          <ToggleButtonGroup
-            exclusive
+          <TextField
+            select
+            size="small"
+            label="Density"
             value={recipeId}
-            onChange={(event, next) => {
-              if (next) {
-                setRecipeId(next);
-              }
-            }}
-            aria-label="density recipe"
+            onChange={(event) => setRecipeId(event.target.value)}
+            sx={{ minWidth: 140 }}
           >
             {densityRecipes.map((item) => (
-              <ToggleButton
-                key={item.id}
-                value={item.id}
-                aria-label={`${item.label} density`}
-              >
+              <MenuItem key={item.id} value={item.id}>
                 {item.label}
-              </ToggleButton>
+              </MenuItem>
             ))}
-          </ToggleButtonGroup>
+          </TextField>
           <FormControlLabel
             sx={{ ml: 'auto', mr: 0 }}
             control={
-              <Checkbox
+              <Switch
                 checked={measured}
                 onChange={(event) => setMeasured(event.target.checked)}
               />
