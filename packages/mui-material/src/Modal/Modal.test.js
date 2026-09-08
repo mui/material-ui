@@ -906,19 +906,25 @@ describe('<Modal />', () => {
       expect(within(screen.getByTestId('parent')).getByTestId('child')).not.to.equal(null);
     });
 
-    it('should not apply aria-hidden to an ancestor of the modal', () => {
+    it('should keep the modal and its ancestors accessible while hiding their siblings', () => {
       render(
-        <div data-testid="app">
-          <div data-testid="app-content" />
-          <Modal open disablePortal>
-            <div data-testid="modal-content" />
-          </Modal>
+        <div data-testid="outer">
+          <div data-testid="outer-sibling" />
+          <div data-testid="inner">
+            <div data-testid="inner-sibling" />
+            <Modal open disablePortal>
+              <div data-testid="modal-content" />
+            </Modal>
+          </div>
         </div>,
       );
 
-      expect(screen.getByTestId('app')).not.toBeInaccessible();
+      expect(screen.getByTestId('outer')).not.toBeInaccessible();
+      expect(screen.getByTestId('inner')).not.toBeInaccessible();
       expect(screen.getByTestId('modal-content')).not.toBeInaccessible();
-      expect(screen.getByTestId('app-content')).toBeInaccessible();
+
+      expect(screen.getByTestId('outer-sibling')).toBeInaccessible();
+      expect(screen.getByTestId('inner-sibling')).toBeInaccessible();
     });
   });
 
