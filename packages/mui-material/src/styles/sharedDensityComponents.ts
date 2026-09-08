@@ -846,6 +846,12 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
     ],
   });
+  addRootOverride(
+    enhanced.components,
+    'MuiStepConnector',
+    { variants: [{ props: { orientation: 'vertical' }, style: { minHeight: spacing('medium') } }] },
+    'line',
+  );
   // margin = half box lands the border on the icon center; margin + padding
   // = the full box aligns content text with the label.
   addRootOverride(enhanced.components, 'MuiStepContent', {
