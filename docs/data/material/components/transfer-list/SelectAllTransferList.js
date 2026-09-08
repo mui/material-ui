@@ -30,6 +30,8 @@ const CustomList = React.forwardRef(function CustomList(props, ref) {
   const { title, items, checked, handleToggle, handleToggleAll, numberOfChecked } =
     props;
 
+  const ariaLabel = `Select all ${title}`;
+
   return (
     <Card>
       <CardHeader
@@ -44,7 +46,7 @@ const CustomList = React.forwardRef(function CustomList(props, ref) {
             }
             disabled={items.length === 0}
             slotProps={{
-              input: { 'aria-label': 'all items selected' },
+              input: { 'aria-label': ariaLabel },
             }}
           />
         }
@@ -53,6 +55,7 @@ const CustomList = React.forwardRef(function CustomList(props, ref) {
       />
       <Divider />
       <MenuList
+        aria-label={title}
         sx={{
           width: 200,
           height: 230,
@@ -101,7 +104,7 @@ CustomList.propTypes = {
   handleToggleAll: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.number).isRequired,
   numberOfChecked: PropTypes.func.isRequired,
-  title: PropTypes.node,
+  title: PropTypes.string.isRequired,
 };
 
 export default function SelectAllTransferList() {
@@ -159,6 +162,7 @@ export default function SelectAllTransferList() {
       sx={{ justifyContent: 'center', alignItems: 'center' }}
     >
       <CustomList
+        aria-label="select all choices"
         ref={leftListRef}
         title="Choices"
         items={left}
@@ -190,6 +194,7 @@ export default function SelectAllTransferList() {
         </Button>
       </Stack>
       <CustomList
+        aria-label="select all chosen"
         ref={rightListRef}
         title="Chosen"
         items={right}
