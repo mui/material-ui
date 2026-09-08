@@ -2,7 +2,7 @@
   "name": "@mui-internal/api-docs-builder-core",
   "version": "1.0.0",
   "description": "MUI Core-specific settings for API docs generator",
-  "private": "true",
+  "private": true,
   "main": "./index.ts",
   "scripts": {
     "test": "pnpm --workspace-root test:unit --project \"*:@mui-internal/api-docs-builder-core\"",
