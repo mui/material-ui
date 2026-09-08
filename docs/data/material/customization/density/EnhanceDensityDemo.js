@@ -4,10 +4,10 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
 import Switch from '@mui/material/Switch';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
 import { Annotate, resolveClaims } from './densityAnnotations';
 
@@ -157,23 +157,20 @@ export default function EnhanceDensityDemo() {
           }
           label="Enhance density"
         />
-        <ToggleButtonGroup
-          exclusive
+        <TextField
+          select
           size="small"
+          label="Button size"
           value={size}
-          onChange={(event, next) => {
-            if (next) {
-              setSize(next);
-            }
-          }}
-          aria-label="button size"
+          onChange={(event) => setSize(event.target.value)}
+          sx={{ minWidth: 120 }}
         >
           {SIZES.map((option) => (
-            <ToggleButton key={option} value={option} sx={{ textTransform: 'none' }}>
+            <MenuItem key={option} value={option}>
               {option}
-            </ToggleButton>
+            </MenuItem>
           ))}
-        </ToggleButtonGroup>
+        </TextField>
       </Box>
     </Paper>
   );

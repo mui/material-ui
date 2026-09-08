@@ -201,7 +201,7 @@ export const DENSITY_COMPONENTS = {
     ],
     // The IconButton rides the same size prop: same box story, icon-only.
     render: (values) => (
-      <Stack direction="row" spacing={3} alignItems="center">
+      <Stack direction="row" spacing={3} sx={{ alignItems: 'center' }}>
         <Button variant="outlined" size={values.size} startIcon={<AddIcon />}>
           Button
         </Button>
