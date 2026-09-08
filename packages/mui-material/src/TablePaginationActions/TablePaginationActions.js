@@ -282,6 +282,14 @@ TablePaginationActions.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
   onPageChange: PropTypes.func.isRequired,
   /**
    * @ignore
