@@ -3,8 +3,8 @@ import getScrollbarSize from '@mui/utils/getScrollbarSize';
 import { ModalManager } from './ModalManager';
 
 interface Modal {
-  mount: HTMLElement;
-  modalRef: HTMLElement;
+  mount: Element;
+  modalRef: Element;
 }
 
 function getDummyModal(): Modal {
@@ -411,7 +411,7 @@ describe('ModalManager', () => {
     });
 
     it('should remove aria-hidden on siblings', () => {
-      const modal = { ...getDummyModal(), modalRef: container2.children[0] as HTMLElement };
+      const modal = { ...getDummyModal(), modalRef: container2.children[0] };
 
       modalManager.add(modal, container2);
       modalManager.mount(modal, {});
@@ -421,7 +421,7 @@ describe('ModalManager', () => {
     });
 
     it('should keep previous aria-hidden siblings hidden', () => {
-      const modal = { ...getDummyModal(), modalRef: container2.children[0] as HTMLElement };
+      const modal = { ...getDummyModal(), modalRef: container2.children[0] };
       const sibling1 = document.createElement('div');
       const sibling2 = document.createElement('div');
 

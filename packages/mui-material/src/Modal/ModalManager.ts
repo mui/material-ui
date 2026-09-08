@@ -56,31 +56,28 @@ function isAriaHiddenForbiddenOnElement(element: Element): boolean {
 
 // The chain of elements from `node` up to (but not including) `container`
 // that should not be aria-hidden.
-function getKeepChain(
-  node: HTMLElement | SVGElement,
-  container: HTMLElement | SVGElement,
-): Set<HTMLElement | SVGElement> {
-  const chain = new Set<HTMLElement | SVGElement>();
-  let current: HTMLElement | SVGElement | null = node;
+function getKeepChain(node: Element, container: Element): Set<Element> {
+  const chain = new Set<Element>();
+  let current: Element | null = node;
 
   while (current && current !== container) {
     chain.add(current);
     current = current.parentElement;
   }
 
-  return current === container ? chain : new Set<HTMLElement | SVGElement>();
+  return current === container ? chain : new Set<Element>();
 }
 
 // Walk down from `parent` collecting everything that should be aria-hidden.
 // An element on the keep chain is stepped through rather than hidden, so the
 // modal's own ancestors stay readable while their other children get hidden.
 function collectHiddenTargets(
-  parent: HTMLElement | SVGElement,
-  keep: HTMLElement | SVGElement,
-  keepChain: Set<HTMLElement | SVGElement>,
-  out: Set<HTMLElement | SVGElement>,
+  parent: Element,
+  keep: Element,
+  keepChain: Set<Element>,
+  out: Set<Element>,
 ): void {
-  [].forEach.call(parent.children, (element: HTMLElement | SVGElement) => {
+  [].forEach.call(parent.children, (element: Element) => {
     if (element === keep || isAriaHiddenForbiddenOnElement(element)) {
       return;
     }
@@ -99,7 +96,7 @@ function syncAriaHidden(containerInfo: Container): void {
   const top = modals[modals.length - 1];
   const keep = top.modalRef;
 
-  const next = new Set<HTMLElement | SVGElement>();
+  const next = new Set<Element>();
   collectHiddenTargets(container, keep, getKeepChain(keep, container), next);
 
   next.forEach((element) => {
@@ -212,9 +209,9 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   return restore;
 }
 
-function getHiddenSiblings(container: HTMLElement | SVGElement) {
+function getHiddenSiblings(container: Element) {
   const hiddenSiblings: Container['hiddenSiblings'] = [];
-  [].forEach.call(container.children, (element: HTMLElement | SVGElement) => {
+  [].forEach.call(container.children, (element: Element) => {
     if (element.getAttribute('aria-hidden') === 'true') {
       hiddenSiblings.push(element);
     }
@@ -223,14 +220,14 @@ function getHiddenSiblings(container: HTMLElement | SVGElement) {
 }
 
 interface Modal {
-  mount: HTMLElement | SVGElement;
-  modalRef: HTMLElement | SVGElement;
+  mount: Element;
+  modalRef: Element;
 }
 
 interface Container {
   container: HTMLElement;
-  hiddenSiblings: (HTMLElement | SVGElement)[];
-  hiddenSet: Set<HTMLElement | SVGElement>;
+  hiddenSiblings: Element[];
+  hiddenSet: Set<Element>;
   modals: Modal[];
   restore: null | (() => void);
 }
