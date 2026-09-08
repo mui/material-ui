@@ -999,9 +999,11 @@ describe('<Menu2 /> collapsed API', () => {
   it.skipIf(isJsdom())('overlaps the parent menu by default', async () => {
     // The popup animates, so geometry has to be read after the transition ends.
     async function settle(element: HTMLElement) {
-      await Promise.all(
-        element.getAnimations().map((animation) => animation.finished.catch(() => {})),
-      );
+      await act(async () => {
+        await Promise.all(
+          element.getAnimations().map((animation) => animation.finished.catch(() => {})),
+        );
+      });
       await waitFor(() => {
         const { transform, opacity } = window.getComputedStyle(element);
         expect(transform === 'none' || transform === 'matrix(1, 0, 0, 1, 0, 0)').to.equal(true);
@@ -1265,7 +1267,7 @@ describe('<Menu2 /> collapsed API', () => {
   // open parent stays visible without reading as the focused item.
   it.skipIf(isJsdom())('tints an open trigger below the highlight', async () => {
     const { user } = render(
-      <Menu2 defaultOpen modal={false} anchor={document.body}>
+      <Menu2 defaultOpen modal={false} trigger={<button type="button">Options</button>}>
         <Menu2Item>Plain</Menu2Item>
         <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
           <Menu2Item>Nested</Menu2Item>
@@ -1283,12 +1285,15 @@ describe('<Menu2 /> collapsed API', () => {
     });
     const highlighted = window.getComputedStyle(plain).backgroundColor;
 
-    await user.click(submenuTrigger);
-    await screen.findByRole('menuitem', { name: 'Nested' });
-    const open = window.getComputedStyle(submenuTrigger).backgroundColor;
-
-    // `action.hover` against `action.focus`.
-    expect(open).to.equal('rgba(0, 0, 0, 0.04)');
+    await user.keyboard('{ArrowDown}{ArrowRight}');
+    const nested = await screen.findByRole('menuitem', { name: 'Nested' });
+    await waitFor(() => expect(nested).toHaveFocus());
+    // `action.hover` against `action.focus`, after focus moves into the submenu.
+    await waitFor(() => {
+      expect(window.getComputedStyle(submenuTrigger).backgroundColor).to.equal(
+        'rgba(0, 0, 0, 0.04)',
+      );
+    });
     expect(highlighted).to.equal('rgba(0, 0, 0, 0.12)');
   });
 

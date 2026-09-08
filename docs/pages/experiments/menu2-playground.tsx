@@ -6,6 +6,8 @@ import ClassicMenu from '@mui/material/Menu';
 import ClassicMenuItem from '@mui/material/MenuItem';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
+import Fade from '@mui/material/Fade';
+import Zoom from '@mui/material/Zoom';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
@@ -58,7 +60,8 @@ interface PlaygroundSettings {
   // Appearance
   elevation: number;
   backdrop: 'none' | 'dimmed';
-  animation: 'default' | 'off';
+  animation: 'grow' | 'fade' | 'zoom' | 'css' | 'off';
+  reducedMotion: 'never' | 'system' | 'always';
   dense: boolean;
   dividers: boolean;
   rtl: boolean;
@@ -82,7 +85,8 @@ const defaultSettings: PlaygroundSettings = {
   keepMounted: false,
   elevation: 8,
   backdrop: 'none',
-  animation: 'default',
+  animation: 'grow',
+  reducedMotion: 'never',
   dense: false,
   dividers: false,
   rtl: false,
@@ -94,40 +98,63 @@ const SIDES: PopupSide[] = ['bottom', 'top', 'left', 'right', 'inline-start', 'i
 const ALIGNS: PopupAlign[] = ['start', 'center', 'end'];
 const ELEVATIONS = [0, 1, 4, 8, 16, 24];
 
-const theme = createTheme({});
-
 // Docs demos always run through the enhancer (see `DemoInstanceThemeProvider`);
 // the highContrast toggle is here so the forced-colors rules can be compared
 // against their absence while emulating high contrast in the browser.
-function usePlaygroundTheme({ rtl, highContrast, focusVisible }: PlaygroundSettings) {
+function usePlaygroundTheme({
+  rtl,
+  highContrast,
+  focusVisible,
+  reducedMotion,
+}: PlaygroundSettings) {
   return React.useMemo(() => {
     const nextTheme = createTheme({
       direction: rtl ? 'rtl' : 'ltr',
       focusVisible,
+      motion: { reducedMotion },
       // The focus visible docs page opts out of the ripple, so only the ring shows.
       ...(focusVisible && {
         components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
       }),
     });
     return highContrast ? enhanceHighContrast(nextTheme) : nextTheme;
-  }, [rtl, highContrast, focusVisible]);
+  }, [rtl, highContrast, focusVisible, reducedMotion]);
 }
 
-// The successor animates by default (a CSS match for the classic Grow); this
-// demonstrates overriding that default away through the popup slot.
-const noAnimationSx: SxProps<Theme> = { transition: 'none' };
+// With no transition component, Base UI's state attributes drive the surface.
+// CSS examples must explicitly follow the theme's reduced-motion policy.
+const cssAnimationSx: SxProps<Theme> = (currentTheme) => ({
+  transition: currentTheme.transitions.create(['opacity', 'transform'], { duration: 250 }),
+  '&[data-starting-style], &[data-ending-style]': {
+    opacity: 0,
+    transform: 'translateY(-8px)',
+  },
+  ...(currentTheme.motion.reducedMotion === 'always' && { transition: 'none' }),
+  ...(currentTheme.motion.reducedMotion === 'system' && {
+    '@media (prefers-reduced-motion: reduce)': { transition: 'none' },
+  }),
+});
 
 function usePopupKnobProps(settings: PlaygroundSettings) {
   return React.useMemo(
-    () => ({
+    (): Partial<MenuProps> => ({
       // Top-level convenience prop (forwards to the Paper slot).
       elevation: settings.elevation,
-      ...(settings.backdrop === 'dimmed'
-        ? { slotProps: { backdrop: { sx: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } } } }
-        : null),
-      ...(settings.animation === 'off' ? { slotProps: { paper: { sx: noAnimationSx } } } : null),
+      keepMounted: settings.keepMounted,
+      slots: {
+        transition:
+          settings.animation === 'css' || settings.animation === 'off'
+            ? null
+            : { grow: undefined, fade: Fade, zoom: Zoom }[settings.animation],
+      },
+      slotProps: {
+        ...(settings.backdrop === 'dimmed' && {
+          backdrop: { sx: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } },
+        }),
+        ...(settings.animation === 'css' && { paper: { sx: cssAnimationSx } }),
+      },
     }),
-    [settings.elevation, settings.animation, settings.backdrop],
+    [settings.elevation, settings.animation, settings.backdrop, settings.keepMounted],
   );
 }
 
@@ -591,10 +618,28 @@ function SettingsPanel({
           animation{' '}
           <select
             value={settings.animation}
-            onChange={(event) => setSetting('animation', event.target.value as 'default' | 'off')}
+            onChange={(event) =>
+              setSetting('animation', event.target.value as PlaygroundSettings['animation'])
+            }
           >
-            <option value="default">default (Grow-like)</option>
-            <option value="off">off (overridden via slotProps.paper)</option>
+            <option value="grow">Grow (default, auto duration)</option>
+            <option value="fade">Fade</option>
+            <option value="zoom">Zoom</option>
+            <option value="css">CSS fade and slide</option>
+            <option value="off">None</option>
+          </select>
+        </label>
+        <label style={{ display: 'block' }}>
+          motion.reducedMotion{' '}
+          <select
+            value={settings.reducedMotion}
+            onChange={(event) =>
+              setSetting('reducedMotion', event.target.value as PlaygroundSettings['reducedMotion'])
+            }
+          >
+            <option value="never">never</option>
+            <option value="system">system</option>
+            <option value="always">always</option>
           </select>
         </label>
         <label style={{ display: 'block' }}>
@@ -628,7 +673,7 @@ export default function MenuRfcExperiment() {
   const playgroundTheme = usePlaygroundTheme(settings);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={playgroundTheme}>
       <CssBaseline />
       <Head
         title="Menu2 playground"
@@ -648,6 +693,14 @@ export default function MenuRfcExperiment() {
           </Typography>
 
           <SettingsPanel settings={settings} onChange={setSettings} />
+          <Typography>
+            Grow is the default transition. Fade and Zoom use <code>slots.transition</code>. The CSS
+            example sets <code>slots.transition</code> to <code>null</code> and styles the
+            popup&apos;s <code>data-starting-style</code> and <code>data-ending-style</code>
+            attributes through <code>slotProps.paper.sx</code>. None disables the transition
+            component without adding CSS. The reduced-motion setting applies to both the Material
+            transitions and this CSS example.
+          </Typography>
 
           <section>
             <h3 id="playground">Kitchen sink</h3>
@@ -695,7 +748,9 @@ export default function MenuRfcExperiment() {
               expose a top-level <code>elevation</code> prop; the successor forwards it to the Paper
               slot.
             </p>
-            <ClassicVersusSuccessorDemo settings={settings} />
+            <ThemeProvider theme={playgroundTheme}>
+              <ClassicVersusSuccessorDemo settings={settings} />
+            </ThemeProvider>
           </section>
 
           <section>

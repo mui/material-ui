@@ -252,9 +252,29 @@ createTheme({
 />;
 
 <Menu2
+  transitionDuration={{ enter: 200, exit: 150 }}
   slots={{
-    // @ts-expect-error Popover transition slot is intentionally not supported.
-    transition: 'div',
+    transition: null,
+  }}
+/>;
+
+<Menu2Submenu transitionDuration="auto" slotProps={{ transition: { easing: 'linear' } }} />;
+
+<Menu2
+  slotProps={{
+    transition: {
+      // @ts-expect-error Base UI owns completion; use onOpenChangeComplete.
+      onExited: () => {},
+    },
+  }}
+/>;
+
+<Menu2
+  slotProps={{
+    transition: {
+      // @ts-expect-error Base UI owns the popup mounting lifecycle.
+      unmountOnExit: true,
+    },
   }}
 />;
 

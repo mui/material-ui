@@ -124,6 +124,13 @@ export interface Menu2PopupProps extends Omit<
    */
   elevation?: Menu2PopupPublicProps['elevation'] | undefined;
   /**
+   * The transition duration in milliseconds, or separate enter and exit durations.
+   * Set to 'auto' for height-dependent Grow timing, or 0 to disable the transition.
+   * Ignored when slots.transition is null.
+   * @default 'auto'
+   */
+  transitionDuration?: Menu2PopupPublicProps['transitionDuration'] | undefined;
+  /**
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<Menu2PopupClasses> | undefined;
@@ -169,6 +176,11 @@ export interface Menu2PopupSlots {
    * @default Paper
    */
   paper?: React.ElementType | undefined;
+  /**
+   * The transition applied to the popup element. Set to null to use CSS animations instead.
+   * @default Grow
+   */
+  transition?: React.JSXElementConstructor<any> | null | undefined;
   /**
    * The component used for the presentational list wrapper.
    * @default List

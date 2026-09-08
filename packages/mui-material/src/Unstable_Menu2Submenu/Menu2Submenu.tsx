@@ -137,6 +137,7 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     positioner: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
@@ -146,6 +147,7 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
     paper: PropTypes.elementType,
     positioner: PropTypes.elementType,
     root: PropTypes.elementType,
+    transition: PropTypes.func,
   }),
   /**
    * The `Menu2SubmenuTrigger` that opens the submenu, optionally wrapped in a `Tooltip`.

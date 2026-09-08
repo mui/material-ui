@@ -352,34 +352,11 @@ describe('<Menu2 />', () => {
     await user.click(screen.getByRole('button', { name: 'Options' }));
     const popup = await screen.findByRole('menu');
 
-    // Assert the emitted rule rather than the computed style: the test runner
-    // emulates `prefers-reduced-motion`, under which the default deliberately
-    // resolves to `transition: none`.
-    const emitted = Array.from(document.styleSheets)
-      .flatMap((sheet) => {
-        try {
-          return Array.from(sheet.cssRules);
-        } catch {
-          return [];
-        }
-      })
-      .map((rule) => rule.cssText)
-      .join('\n');
-
-    expect(emitted).to.contain('scale(0.75, 0.5625)');
-    expect(emitted).to.contain('data-starting-style');
-    expect(emitted).to.contain('prefers-reduced-motion');
     expect(popup).to.have.class(menu2PopupClasses.paper);
-
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      // Base UI suppresses the transition for the frame in which it applies the
-      // starting style, so this settles a tick after the popup appears.
-      await waitFor(() => {
-        const { transitionProperty } = window.getComputedStyle(popup);
-        expect(transitionProperty).to.contain('opacity');
-        expect(transitionProperty).to.contain('transform');
-      });
-    }
+    await waitFor(() => expect(popup.getAnimations().length).to.be.greaterThan(0));
+    expect(window.getComputedStyle(popup).transitionProperty).to.contain('opacity');
+    expect(window.getComputedStyle(popup).transitionProperty).to.contain('transform');
+    await waitFor(() => expect(popup.getAnimations()).to.have.length(0));
   });
 
   it.skipIf(isJsdom())(
@@ -442,6 +419,7 @@ describe('<Menu2 />', () => {
   it.skipIf(isJsdom())('lets the default animation be overridden', async () => {
     const { user } = render(
       <Menu2
+        slots={{ transition: null }}
         slotProps={{ paper: { sx: { transition: 'none' } } }}
         trigger={<Button disableRipple>Options</Button>}
       >
@@ -811,7 +789,7 @@ describe('<Menu2 />', () => {
     async () => {
       const { user } = render(
         <ThemeProvider theme={createTheme({ direction: 'rtl' })}>
-          <Menu2 defaultOpen modal={false} anchor={document.body}>
+          <Menu2 defaultOpen modal={false} trigger={<button type="button">Options</button>}>
             <Menu2Submenu
               trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
             >

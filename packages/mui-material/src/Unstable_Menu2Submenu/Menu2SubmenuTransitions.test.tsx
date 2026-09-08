@@ -183,6 +183,7 @@ describe.skipIf(isJsdom())('Menu2 submenu transitions', () => {
       <Menu2 defaultOpen modal={false} trigger={<button type="button">Options</button>}>
         <Menu2Submenu
           keepMounted
+          slots={{ transition: null }}
           slotProps={{ paper: { sx: { '&, &[data-ending-style]': { transition: 'none' } } } }}
           trigger={
             <Menu2SubmenuTrigger openOnHover={false} onFocus={onFocus}>

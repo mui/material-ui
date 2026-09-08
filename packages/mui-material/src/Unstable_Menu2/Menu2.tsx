@@ -206,6 +206,7 @@ Menu2.propTypes /* remove-proptypes */ = {
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     positioner: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     trigger: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.shape({
@@ -223,6 +224,7 @@ Menu2.propTypes /* remove-proptypes */ = {
     paper: PropTypes.elementType,
     positioner: PropTypes.elementType,
     root: PropTypes.elementType,
+    transition: PropTypes.func,
   }),
   /**
    * The element that opens the menu, for example a `Button`.

@@ -113,45 +113,10 @@ export function menu2SubmenuTriggerStyles(theme: Theme) {
 }
 
 /**
- * Default open/close animation for the menu surface, matching the classic
- * `Grow` transition the legacy Menu uses (same scale ramp, same theme
- * durations, and the transform running at two thirds of the opacity duration).
- *
- * It has to live on the popup element: Base UI waits for animations on the
- * popup itself before unmounting, so a transition on any descendant would be
- * cut off on exit. `--transform-origin` is set by the positioner, so the menu
- * grows out of the edge it is anchored to.
+ * Grow animates the popup itself, where Base UI observes animation completion.
+ * The positioner supplies the origin so the surface grows from its anchor.
  */
-export const menu2PopupTransitionStyles = memoTheme(({ theme }) => ({
-  transformOrigin: 'var(--transform-origin)',
-  transition: [
-    theme.transitions.create('opacity', {
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    theme.transitions.create('transform', {
-      duration: theme.transitions.duration.enteringScreen * 0.666,
-    }),
-  ].join(','),
-  '&[data-starting-style], &[data-ending-style]': {
-    opacity: 0,
-    transform: 'scale(0.75, 0.5625)',
-  },
-  '&[data-ending-style]': {
-    transition: [
-      theme.transitions.create('opacity', {
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      theme.transitions.create('transform', {
-        duration: theme.transitions.duration.leavingScreen * 0.666,
-      }),
-    ].join(','),
-  },
-  '@media (prefers-reduced-motion: reduce)': {
-    '&, &[data-ending-style]': {
-      transition: 'none',
-    },
-  },
-}));
+export const menu2PopupTransitionStyles = { transformOrigin: 'var(--transform-origin)' };
 
 // The indicators render the same icons as Checkbox and Radio, so they take the
 // same colors: `text.secondary` until checked, then `primary.main`.

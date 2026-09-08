@@ -11,6 +11,7 @@ import isHostComponent from '@mui/utils/isHostComponent';
 import { SxProps } from '@mui/system';
 import mergeSlotProps from '../utils/mergeSlotProps';
 import { Theme } from '../styles';
+import Grow, { GrowProps } from '../Grow';
 import { PaperProps } from '../Paper';
 import { ListProps } from '../List';
 import { SlotProps } from './menu2Utils';
@@ -75,6 +76,11 @@ const listHostOmittedProps = [
 
 export interface Menu2PopupSharedSlots {
   /**
+   * The transition applied to the popup element. Set to null to use CSS animations instead.
+   * @default Grow
+   */
+  transition?: React.JSXElementConstructor<any> | null | undefined;
+  /**
    * The component used for the root element, which wraps the menu in the portal.
    * @default 'div'
    */
@@ -105,6 +111,19 @@ export interface Menu2PopupSharedSlots {
 type WithSx = { sx?: SxProps<Theme> | undefined };
 
 export interface Menu2PopupSharedSlotProps<OwnerState> {
+  /**
+   * Props for the transition component. Use onOpenChangeComplete for completion.
+   * Base UI owns the open state and mounting lifecycle.
+   */
+  transition?:
+    | SlotProps<
+        Omit<
+          Partial<GrowProps>,
+          'children' | 'in' | 'appear' | 'mountOnEnter' | 'unmountOnExit' | 'onEntered' | 'onExited'
+        >,
+        OwnerState
+      >
+    | undefined;
   root?: SlotProps<ExternalSlotProps<BaseMenu.Portal.Props> & WithSx, OwnerState> | undefined;
   backdrop?: SlotProps<ExternalSlotProps<BaseMenu.Backdrop.Props>, OwnerState> | undefined;
   positioner?:
@@ -151,6 +170,13 @@ export interface Menu2PopupPublicProps
     >,
     Pick<Menu2PortalProps, 'container' | 'keepMounted'>,
     Pick<BaseMenu.Popup.Props, 'finalFocus'> {
+  /**
+   * The transition duration in milliseconds, or separate enter and exit durations.
+   * Set to 'auto' for height-dependent Grow timing, or 0 to disable the transition.
+   * Ignored when slots.transition is null.
+   * @default 'auto'
+   */
+  transitionDuration?: GrowProps['timeout'] | undefined;
   /**
    * The menu items.
    */
@@ -233,6 +259,7 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     collisionAvoidance,
     finalFocus,
     elevation,
+    transitionDuration = 'auto',
     style,
     ...other
   } = props;
@@ -242,6 +269,14 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   // Swapping either for a plain element breaks the tree, so the Base parts are
   // always rendered and a slot only changes what they render, through `render`.
   const RootSlot = slots?.root ?? defaultSlots.root;
+  const TransitionSlot = slots?.transition === undefined ? Grow : slots.transition;
+  const transitionProps = resolveComponentProps(slotProps?.transition, ownerState);
+  const transitionTimeout =
+    transitionDuration === 'auto' &&
+    !(TransitionSlot as (React.ElementType & { muiSupportAuto?: boolean | undefined }) | null)
+      ?.muiSupportAuto
+      ? undefined
+      : transitionDuration;
   // Opt-in: rendering a backdrop unconditionally would hand non-modal menus a
   // full-screen layer, and modal menus already get Base UI's inert backdrop.
   const BackdropSlot = slots?.backdrop ?? (slotProps?.backdrop ? defaultSlots.backdrop : undefined);
@@ -374,20 +409,39 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
           finalFocus={finalFocus}
           {...popupHandlers}
           ref={paperSlotRef}
-          render={
-            onClosingChange ? (
-              (renderProps, state) => (
-                <Menu2SubmenuClosingState
-                  closing={!state.open && state.transitionStatus === 'ending'}
-                  onClosingChange={onClosingChange}
-                >
-                  <PaperSlot {...mergeProps(renderProps, paperProps)} />
-                </Menu2SubmenuClosingState>
-              )
+          render={(renderProps, state) => {
+            // Let Base UI apply its initial transition:none before Grow starts.
+            // The opening popup must remain focusable while Grow is still exited.
+            const paper = <PaperSlot {...mergeProps(renderProps, paperProps)} />;
+            const surface = TransitionSlot ? (
+              <TransitionSlot
+                timeout={transitionTimeout}
+                {...transitionProps}
+                appear={false}
+                in={state.open && state.transitionStatus !== 'starting'}
+                mountOnEnter={false}
+                unmountOnExit={false}
+                style={{
+                  ...transitionProps?.style,
+                  ...(state.open && { visibility: 'visible' }),
+                }}
+              >
+                {paper}
+              </TransitionSlot>
             ) : (
-              <PaperSlot {...paperProps} />
-            )
-          }
+              paper
+            );
+            return onClosingChange ? (
+              <Menu2SubmenuClosingState
+                closing={!state.open && state.transitionStatus === 'ending'}
+                onClosingChange={onClosingChange}
+              >
+                {surface}
+              </Menu2SubmenuClosingState>
+            ) : (
+              surface
+            );
+          }}
           className={clsx(classes?.paper, paperSlotClassName)}
         >
           <ListSlot {...listSlotProps}>{children}</ListSlot>

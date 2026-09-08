@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
+import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Menu2 from '@mui/material/Unstable_Menu2';
@@ -71,7 +71,11 @@ async function waitForSettled() {
   await waitForOpen();
   const popup = menuEl()!;
   if (typeof popup.getAnimations === 'function') {
-    await Promise.all(popup.getAnimations().map((animation) => animation.finished.catch(() => {})));
+    await act(async () => {
+      await Promise.all(
+        popup.getAnimations().map((animation) => animation.finished.catch(() => {})),
+      );
+    });
   }
   await waitFor(() => {
     const { transform, opacity } = window.getComputedStyle(popup);
