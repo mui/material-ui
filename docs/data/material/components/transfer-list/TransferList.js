@@ -20,11 +20,11 @@ function intersection(a, b) {
 }
 
 const CustomList = React.forwardRef(function CustomList(props, ref) {
-  const { items, checked, handleToggle } = props;
+  const { 'aria-label': ariaLabel, items, checked, handleToggle } = props;
 
   return (
     <Paper sx={{ width: 200, height: 230, overflow: 'auto' }}>
-      <MenuList dense component="div" ref={ref}>
+      <MenuList aria-label={ariaLabel} dense component="div" ref={ref}>
         {items.map((value) => {
           const labelId = `transfer-list-item-${value}-label`;
           const isChecked = checked.includes(value);
@@ -58,6 +58,7 @@ const CustomList = React.forwardRef(function CustomList(props, ref) {
 });
 
 CustomList.propTypes = {
+  'aria-label': PropTypes.string.isRequired,
   checked: PropTypes.arrayOf(PropTypes.number).isRequired,
   handleToggle: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.number).isRequired,
@@ -122,6 +123,7 @@ export default function TransferList() {
       sx={{ justifyContent: 'center', alignItems: 'center' }}
     >
       <CustomList
+        aria-label="choices"
         ref={leftListRef}
         items={left}
         checked={checked}
@@ -170,6 +172,7 @@ export default function TransferList() {
         </Button>
       </Stack>
       <CustomList
+        aria-label="chosen"
         ref={rightListRef}
         items={right}
         checked={checked}

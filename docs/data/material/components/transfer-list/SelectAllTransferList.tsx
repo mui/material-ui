@@ -26,7 +26,7 @@ function union(a: readonly number[], b: readonly number[]) {
 }
 
 type CustomListProps = {
-  title: React.ReactNode;
+  title: string;
   items: readonly number[];
   checked: readonly number[];
   handleToggle: (value: number) => () => void;
@@ -40,6 +40,8 @@ const CustomList = React.forwardRef(function CustomList(
 ) {
   const { title, items, checked, handleToggle, handleToggleAll, numberOfChecked } =
     props;
+
+  const ariaLabel = `Select all ${title}`;
 
   return (
     <Card>
@@ -55,7 +57,7 @@ const CustomList = React.forwardRef(function CustomList(
             }
             disabled={items.length === 0}
             slotProps={{
-              input: { 'aria-label': 'all items selected' },
+              input: { 'aria-label': ariaLabel },
             }}
           />
         }
@@ -64,6 +66,7 @@ const CustomList = React.forwardRef(function CustomList(
       />
       <Divider />
       <MenuList
+        aria-label={title}
         sx={{
           width: 200,
           height: 230,
@@ -162,6 +165,7 @@ export default function SelectAllTransferList() {
       sx={{ justifyContent: 'center', alignItems: 'center' }}
     >
       <CustomList
+        aria-label="select all choices"
         ref={leftListRef}
         title="Choices"
         items={left}
@@ -193,6 +197,7 @@ export default function SelectAllTransferList() {
         </Button>
       </Stack>
       <CustomList
+        aria-label="select all chosen"
         ref={rightListRef}
         title="Chosen"
         items={right}
