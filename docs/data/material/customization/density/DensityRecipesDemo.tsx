@@ -171,8 +171,8 @@ function HeightAnnotations({
 }
 
 const LAYERS = [
-  { id: 'radius', label: 'New Radius' },
-  { id: 'typography', label: 'New Typography' },
+  { id: 'radius', label: 'Custom Radius' },
+  { id: 'typography', label: 'Custom Typography' },
   { id: 'focus', label: 'Focus visible' },
 ] as const;
 

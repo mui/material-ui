@@ -77,9 +77,7 @@ function ScaleLegend() {
           >
             {rows.map(([step, value]) => (
               <React.Fragment key={step}>
-                <Typography variant="body2" sx={{ fontFamily: 'code' }}>
-                  {step}
-                </Typography>
+                <Typography variant="body2">{step}</Typography>
                 <Typography
                   variant="body2"
                   sx={{ color: 'text.secondary', textAlign: 'right' }}
@@ -226,6 +224,25 @@ export default function AllComponentsDemo() {
           >
             <FormLabel sx={{ fontSize: 13 }}>Slot annotation</FormLabel>
             <FormGroup row>
+              <FormControlLabel
+                sx={{ mr: 1.5, '& .MuiFormControlLabel-label': { fontSize: 13 } }}
+                control={
+                  <Checkbox
+                    size="small"
+                    checked={!off || off.length === 0}
+                    indeterminate={
+                      Boolean(off && off.length > 0) && !slots.every((slot) => off?.includes(slot))
+                    }
+                    onChange={() =>
+                      setHidden((previous) => ({
+                        ...previous,
+                        [component]: !off || off.length === 0 ? [...slots] : [],
+                      }))
+                    }
+                  />
+                }
+                label="All slots"
+              />
               {slots.map((slot) => (
                 <FormControlLabel
                   key={slot}

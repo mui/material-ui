@@ -693,7 +693,10 @@ export function Annotate({ items, bounds }: { items: AnnotateItem[]; bounds: Rec
         height: '100%',
         overflow: 'visible',
         pointerEvents: 'none',
-        zIndex: 1600,
+        // Over demo content (an AppBar sits at 1100) but under the toolbar's
+        // own menus (1300) — annotations must not bleed over an open Select.
+        // The Tooltip demo lowers its inline popper below this.
+        zIndex: 1200,
         color: 'text.secondary',
         fontSize: 13,
         '& text': {

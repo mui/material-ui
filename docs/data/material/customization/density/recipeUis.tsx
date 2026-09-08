@@ -404,14 +404,15 @@ function SettingsUi() {
         </Typography>
         <Paper variant="outlined" sx={{ bgcolor: 'transparent' }}>
           <List disablePadding>
-            <ListItem data-measure="left" divider>
+            <ListItem data-measure="left">
               <ListItemText
                 primary="Profile picture"
                 slotProps={{ primary: { variant: 'body2' } }}
               />
               <Avatar data-measure sx={{ bgcolor: pink[300] }}>JU</Avatar>
             </ListItem>
-            <ListItem data-measure="left" divider>
+            <Divider component="li" />
+            <ListItem data-measure="left">
               <ListItemText
                 primary="Start-up screen"
                 secondary="Choose what opens when the app launches"
@@ -432,6 +433,7 @@ function SettingsUi() {
                 <MenuItem value="Recent">Recent files</MenuItem>
               </Select>
             </ListItem>
+            <Divider component="li" />
             <ListItem data-measure="left">
               <ListItemText
                 primary="Replace shortcuts with symbols"
@@ -471,7 +473,7 @@ function SettingsUi() {
         </Typography>
         <Paper variant="outlined" sx={{ bgcolor: 'transparent' }}>
           <List disablePadding>
-            <ListItem data-measure="left" divider>
+            <ListItem data-measure="left">
               <ListItemText
                 primary="Side panel"
                 secondary="Which sections appear, and in what order"
@@ -484,7 +486,8 @@ function SettingsUi() {
                 Edit
               </Button>
             </ListItem>
-            <ListItem data-measure="left" divider>
+            <Divider component="li" />
+            <ListItem data-measure="left">
               <ListItemText
                 primary="Theme"
                 secondary="Match the system or pick one"
@@ -505,7 +508,8 @@ function SettingsUi() {
                 <MenuItem value="Dark">Dark</MenuItem>
               </Select>
             </ListItem>
-            <ListItem data-measure="left" divider>
+            <Divider component="li" />
+            <ListItem data-measure="left">
               <ListItemText
                 primary="Text size"
                 secondary="Scale text across every screen"
@@ -526,6 +530,7 @@ function SettingsUi() {
                 <MenuItem value="Large">Large</MenuItem>
               </Select>
             </ListItem>
+            <Divider component="li" />
             <ListItem data-measure="left">
               <ListItemText
                 primary="Pointer on hover"

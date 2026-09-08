@@ -166,11 +166,13 @@ export const DENSITY_ANNOTATIONS = {
           text: "Chip size='small'",
           label: 'Tag',
         },
+        // `margin: 1px` on every side — one ring, led from the top band.
         {
           on: '.MuiAutocomplete-tag',
           aspect: 'margin',
-          axis: 'inline',
+          axis: 'all',
           label: 'Tag',
+          route: { gutter: 'top' },
         },
       );
     }
@@ -299,7 +301,7 @@ export const DENSITY_ANNOTATIONS = {
         aspect: 'touch-target',
         token: height,
         label: 'Root',
-        route: { gutter: 'right' },
+        route: { gutter: 'left' },
       },
       {
         on: '.MuiButton-root',
@@ -321,18 +323,35 @@ export const DENSITY_ANNOTATIONS = {
         aspect: 'icon',
         token: '0.8lh',
         label: 'Start icon',
-        route: { gutter: 'left' },
+        route: { gutter: 'left', shift: 40, line: 'diagonal' },
+      },
+      // The icon-only box: same size ladder as the Button's own height.
+      {
+        on: '.MuiIconButton-root',
+        aspect: 'touch-target',
+        token: height,
+        outlined: true,
+        label: 'Icon button',
+        route: { gutter: 'right' },
+      },
+      {
+        on: '.MuiIconButton-root svg',
+        aspect: 'icon',
+        token: 'icon-target',
+        label: 'Icon button',
+        route: { gutter: 'top' },
       },
     ];
   },
   Card: () => [
+    // `padding: medium` on every side — one ring, one diagonal up.
     {
       on: '.MuiCardHeader-root',
       aspect: 'padding',
-      axis: 'inline',
+      axis: 'all',
       token: 'medium',
       label: 'Header',
-      route: { gutter: 'top', shift: 40 },
+      route: { gutter: 'top', shift: 40, line: 'diagonal' },
     },
     { on: '.MuiCardHeader-root', aspect: 'gap', token: 'small', label: 'Header' },
     // Negative: the action is pulled back out of the header's own padding.
@@ -366,6 +385,14 @@ export const DENSITY_ANNOTATIONS = {
       axis: 'block',
       token: 'medium',
       label: 'Actions',
+    },
+    {
+      on: '.MuiCardActions-root',
+      aspect: 'padding',
+      axis: 'inline',
+      token: 'medium',
+      label: 'Actions',
+      route: { gutter: 'bottom', shift: -175 },
     },
     {
       on: '.MuiCardActions-root',
@@ -480,7 +507,8 @@ export const DENSITY_ANNOTATIONS = {
       axis: 'inline',
       token: 'medium',
       label: 'Content',
-      route: { gutter: 'left', at: 0.97 },
+      // The crossing stays under the text; the label rides up to the row's middle.
+      route: { gutter: 'left', at: 0.97, shift: -44 },
     },
     // `padding: medium` on every side — one ring, one line to the left.
     {
@@ -688,6 +716,14 @@ export const DENSITY_ANNOTATIONS = {
         label: 'Outlined',
         route: { gutter: 'left' },
       },
+      // The adornment only — the root's other svg is the select arrow.
+      {
+        on: '.MuiOutlinedInput-root .MuiInputAdornment-root svg',
+        aspect: 'icon',
+        token: 'icon-target',
+        label: 'Outlined',
+        route: { gutter: 'top' },
+      },
       {
         on: '.MuiFilledInput-root',
         aspect: 'touch-target',
@@ -816,18 +852,26 @@ export const DENSITY_ANNOTATIONS = {
         aspect: 'icon',
         token: 'touch-target - small + 2px',
         label: 'Step icon',
-        route: { gutter: 'bottom' },
+        route: vertical ? { gutter: 'top' } : { gutter: 'bottom' },
       },
-      // The connector->label spacing: a step with a connector is a grid with
-      // master's `gap: 8`, untouched by the preset — px only. Horizontal only.
+      // Two gaps, both master's 8px, untouched by the preset — px only.
+      // Horizontal only. The root's flex gap separates the steps; a step with
+      // a connector is a grid whose gap separates connector from label. Their
+      // bands sit ~30px apart, so the labels slide apart.
       ...(vertical
         ? []
         : [
             {
+              on: '.MuiStepper-root',
+              aspect: 'gap',
+              label: 'Stepper',
+              route: { gutter: 'top', shift: -45 },
+            },
+            {
               on: '.MuiStep-root:nth-of-type(2)',
               aspect: 'gap',
               label: 'Step',
-              route: { gutter: 'top' },
+              route: { gutter: 'top', shift: 45 },
             },
           ]),
       // Vertical only: half the box lands the rule on the icon's center, and
@@ -835,6 +879,7 @@ export const DENSITY_ANNOTATIONS = {
       // left-band stories — side claims, one connector as the sample.
       ...(vertical
         ? [
+            // Both margins read left, each crossing at its band's middle.
             {
               on: '.MuiStep-root:nth-of-type(2) .MuiStepConnector-root',
               aspect: 'margin',
@@ -844,20 +889,21 @@ export const DENSITY_ANNOTATIONS = {
               route: { gutter: 'left' },
             },
             {
-              on: '.MuiStepContent-root',
+              on: '.MuiStep-root:first-of-type .MuiStepContent-root',
               aspect: 'margin',
               side: 'left',
               token: 'touch-target / 2',
               label: 'Content',
-              route: { gutter: 'top' },
+              route: { gutter: 'left' },
             },
+            // Rightward across the content text — acceptable crossing.
             {
-              on: '.MuiStepContent-root',
+              on: '.MuiStep-root:first-of-type .MuiStepContent-root',
               aspect: 'padding',
               side: 'left',
               token: 'touch-target / 2 - 1px',
               label: 'Content',
-              route: { gutter: 'bottom', shift: 300 },
+              route: { gutter: 'right', at: 0.5 },
             },
           ]
         : []),

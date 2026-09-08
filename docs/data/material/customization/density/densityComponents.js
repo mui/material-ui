@@ -133,6 +133,9 @@ export const DENSITY_COMPONENTS = {
             options={['Draft', 'In review', 'Published']}
             defaultValue={multiple ? ['Draft'] : 'Draft'}
             renderInput={(params) => <TextField {...params} label="Status" />}
+            slotProps={{
+              popper: { sx: { zIndex: 1 } },
+            }}
           />
         </Box>
       );
@@ -196,10 +199,16 @@ export const DENSITY_COMPONENTS = {
         initial: 'medium',
       },
     ],
+    // The IconButton rides the same size prop: same box story, icon-only.
     render: (values) => (
-      <Button variant="outlined" size={values.size} startIcon={<AddIcon />}>
-        Button
-      </Button>
+      <Stack direction="row" spacing={3} alignItems="center">
+        <Button variant="outlined" size={values.size} startIcon={<AddIcon />}>
+          Button
+        </Button>
+        <IconButton size={values.size}>
+          <FavoriteIcon />
+        </IconButton>
+      </Stack>
     ),
   },
   Card: {
@@ -277,7 +286,7 @@ export const DENSITY_COMPONENTS = {
           disableEnforceFocus
           disableAutoFocus
           disableScrollLock
-          sx={{ position: 'absolute' }}
+          sx={{ position: 'absolute', zIndex: 1 }}
         >
           <DialogTitle
             sx={{
@@ -538,7 +547,7 @@ export const DENSITY_COMPONENTS = {
         <Stepper
           activeStep={0}
           orientation={vertical ? 'vertical' : 'horizontal'}
-          sx={{ width: 300 }}
+          sx={{ width: vertical ? 190 : 300 }}
         >
           {['Select', 'Review', 'Confirm'].map((step) => (
             <Step key={step}>
@@ -782,7 +791,7 @@ export const DENSITY_COMPONENTS = {
           arrow
           open
           placement={values.placement}
-          slotProps={{ popper: { disablePortal: true } }}
+          slotProps={{ popper: { disablePortal: true, sx: { zIndex: 1 } } }}
         >
           <Button variant="outlined">Copy</Button>
         </Tooltip>

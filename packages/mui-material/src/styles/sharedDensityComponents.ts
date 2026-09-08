@@ -590,21 +590,21 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         props: { size: 'small' },
         style: {
           '--_size': smallBox,
-          paddingInline: `calc((var(--_size) - ${spacing(1.75)}) / 2 - 1px)`,
+          paddingInline: `calc((var(--_size) - ${iconSmall}) / 2 - 1px)`,
         },
       },
       {
         props: { size: 'medium' },
         style: {
           '--_size': touchTarget,
-          paddingInline: `calc((var(--_size) - ${spacing(2)}) / 2 - 1px)`,
+          paddingInline: `calc((var(--_size) - ${iconTarget}) / 2 - 1px)`,
         },
       },
       {
         props: { size: 'large' },
         style: {
           '--_size': largeBox,
-          paddingInline: `calc((var(--_size) - ${spacing(2.5)}) / 2 - 1px)`,
+          paddingInline: `calc((var(--_size) - ${iconLarge}) / 2 - 1px)`,
         },
       },
     ],
@@ -696,6 +696,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     [`& .${outlinedInputClasses.root}`]: {
       paddingBlock: `var(--_autocompleteInputRootPadBlock)`,
       paddingLeft: '8px',
+      gap: 0,
     },
     [`& .${outlinedInputClasses.root} .${autocompleteClasses.input}`]: {
       paddingBlock: `var(--_autocompleteInputPadBlock)`,

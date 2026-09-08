@@ -148,6 +148,9 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
             options={['Draft', 'In review', 'Published']}
             defaultValue={multiple ? ['Draft'] : 'Draft'}
             renderInput={(params) => <TextField {...params} label="Status" />}
+            slotProps={{
+              popper: { sx: { zIndex: 1 } },
+            }}
           />
         </Box>
       );
@@ -158,14 +161,23 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
   },
   Badge: {
     controls: [
-      { prop: 'variant', type: 'select', options: ['standard', 'dot'], initial: 'standard' },
+      {
+        prop: 'variant',
+        type: 'select',
+        options: ['standard', 'dot'],
+        initial: 'standard',
+      },
     ],
     // A single digit keeps the badge square, so the height the beam reads is
     // also the `minWidth` the preset authored. The padding is what the gutters
     // need to clear the badge, which hangs outside the icon it sits on.
     render: (values) => (
       <Box sx={{ p: 2 }}>
-        <Badge badgeContent={4} color="primary" variant={values.variant as 'standard' | 'dot'}>
+        <Badge
+          badgeContent={4}
+          color="primary"
+          variant={values.variant as 'standard' | 'dot'}
+        >
           <IconButton>
             <NotificationsIcon />
           </IconButton>
@@ -199,16 +211,27 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
   },
   Button: {
     controls: [
-      { prop: 'size', type: 'select', options: ['small', 'medium', 'large'], initial: 'medium' },
+      {
+        prop: 'size',
+        type: 'select',
+        options: ['small', 'medium', 'large'],
+        initial: 'medium',
+      },
     ],
+    // The IconButton rides the same size prop: same box story, icon-only.
     render: (values) => (
-      <Button
-        variant="outlined"
-        size={values.size as 'small' | 'medium' | 'large'}
-        startIcon={<AddIcon />}
-      >
-        Button
-      </Button>
+      <Stack direction="row" spacing={3} alignItems="center">
+        <Button
+          variant="outlined"
+          size={values.size as 'small' | 'medium' | 'large'}
+          startIcon={<AddIcon />}
+        >
+          Button
+        </Button>
+        <IconButton size={values.size as 'small' | 'medium' | 'large'}>
+          <FavoriteIcon />
+        </IconButton>
+      </Stack>
     ),
   },
   Card: {
@@ -235,16 +258,32 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
     ),
   },
   Checkbox: {
-    controls: [{ prop: 'size', type: 'select', options: ['small', 'medium'], initial: 'medium' }],
+    controls: [
+      {
+        prop: 'size',
+        type: 'select',
+        options: ['small', 'medium'],
+        initial: 'medium',
+      },
+    ],
     render: (values) => (
       <FormControlLabel
-        control={<Checkbox defaultChecked size={values.size as 'small' | 'medium'} />}
+        control={
+          <Checkbox defaultChecked size={values.size as 'small' | 'medium'} />
+        }
         label="Email me updates"
       />
     ),
   },
   Chip: {
-    controls: [{ prop: 'size', type: 'select', options: ['small', 'medium'], initial: 'medium' }],
+    controls: [
+      {
+        prop: 'size',
+        type: 'select',
+        options: ['small', 'medium'],
+        initial: 'medium',
+      },
+    ],
     // Avatar and delete icon together: they are what gives the root three
     // children, so its gap exists, and what the negative child offsets pull on.
     render: (values) => (
@@ -272,10 +311,14 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
           disableEnforceFocus
           disableAutoFocus
           disableScrollLock
-          sx={{ position: 'absolute' }}
+          sx={{ position: 'absolute', zIndex: 1 }}
         >
           <DialogTitle
-            sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
           >
             Use location service?
             <IconButton aria-label="close">
@@ -284,7 +327,8 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
           </DialogTitle>
           <DialogContent>
             <Typography variant="body2">
-              Let apps use your location to find nearby places. You can turn this off anytime.
+              Let apps use your location to find nearby places. You can turn this off
+              anytime.
             </Typography>
           </DialogContent>
           <DialogActions>
@@ -297,12 +341,21 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
   },
   Fab: {
     controls: [
-      { prop: 'size', type: 'select', options: ['small', 'medium', 'large'], initial: 'medium' },
+      {
+        prop: 'size',
+        type: 'select',
+        options: ['small', 'medium', 'large'],
+        initial: 'medium',
+      },
     ],
     // Circular only: the extended variant stays frozen at master, so it would
     // blank the one row this family has.
     render: (values) => (
-      <Fab color="primary" size={values.size as 'small' | 'medium' | 'large'} aria-label="add">
+      <Fab
+        color="primary"
+        size={values.size as 'small' | 'medium' | 'large'}
+        aria-label="add"
+      >
         <AddIcon />
       </Fab>
     ),
@@ -374,11 +427,18 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
   },
   Pagination: {
     controls: [
-      { prop: 'size', type: 'select', options: ['small', 'medium', 'large'], initial: 'medium' },
+      {
+        prop: 'size',
+        type: 'select',
+        options: ['small', 'medium', 'large'],
+        initial: 'medium',
+      },
     ],
     // `count={5}` keeps every page rendered: no ellipsis, whose item drops to
     // `height: auto` and would break the row of equal boxes.
-    render: (values) => <Pagination count={5} size={values.size as 'small' | 'medium' | 'large'} />,
+    render: (values) => (
+      <Pagination count={5} size={values.size as 'small' | 'medium' | 'large'} />
+    ),
   },
   Progress: {
     // Both components together: the bar's thickness and the spinner's diameter
@@ -395,7 +455,14 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
     ),
   },
   Radio: {
-    controls: [{ prop: 'size', type: 'select', options: ['small', 'medium'], initial: 'medium' }],
+    controls: [
+      {
+        prop: 'size',
+        type: 'select',
+        options: ['small', 'medium'],
+        initial: 'medium',
+      },
+    ],
     render: (values) => (
       <FormControlLabel
         control={<Radio defaultChecked size={values.size as 'small' | 'medium'} />}
@@ -405,7 +472,12 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
   },
   Select: {
     controls: [
-      { prop: 'size', type: 'select', options: ['small', 'medium'], initial: 'medium' },
+      {
+        prop: 'size',
+        type: 'select',
+        options: ['small', 'medium'],
+        initial: 'medium',
+      },
     ],
     // All three variants at once, like the TextField demo. `standard` is the
     // only shape where the Select family's own rows are the computed value —
@@ -421,15 +493,30 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
       );
       return (
         <Stack spacing={3} sx={{ width: 220 }}>
-          <Select variant="outlined" size={size} value="shipped" startAdornment={adornment}>
+          <Select
+            variant="outlined"
+            size={size}
+            value="shipped"
+            startAdornment={adornment}
+          >
             <MenuItem value="shipped">Shipped</MenuItem>
             <MenuItem value="pending">Pending</MenuItem>
           </Select>
-          <Select variant="filled" size={size} value="shipped" startAdornment={adornment}>
+          <Select
+            variant="filled"
+            size={size}
+            value="shipped"
+            startAdornment={adornment}
+          >
             <MenuItem value="shipped">Shipped</MenuItem>
             <MenuItem value="pending">Pending</MenuItem>
           </Select>
-          <Select variant="standard" size={size} value="shipped" startAdornment={adornment}>
+          <Select
+            variant="standard"
+            size={size}
+            value="shipped"
+            startAdornment={adornment}
+          >
             <MenuItem value="shipped">Shipped</MenuItem>
             <MenuItem value="pending">Pending</MenuItem>
           </Select>
@@ -439,7 +526,12 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
   },
   Slider: {
     controls: [
-      { prop: 'size', type: 'select', options: ['small', 'medium'], initial: 'medium' },
+      {
+        prop: 'size',
+        type: 'select',
+        options: ['small', 'medium'],
+        initial: 'medium',
+      },
     ],
     // The root stays 32px while the thumb shrinks — the hit area is the point.
     // `defaultValue={40}` keeps the thumb off centre so its caption and the
@@ -489,7 +581,7 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
         <Stepper
           activeStep={0}
           orientation={vertical ? 'vertical' : 'horizontal'}
-          sx={{ width: 300 }}
+          sx={{ width: vertical ? 190 : 300 }}
         >
           {['Select', 'Review', 'Confirm'].map((step) => (
             <Step key={step}>
@@ -514,10 +606,19 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
         initial: 'medium',
       },
     ],
-    render: (values) => <FavoriteIcon fontSize={values.fontSize as 'small' | 'medium' | 'large'} />,
+    render: (values) => (
+      <FavoriteIcon fontSize={values.fontSize as 'small' | 'medium' | 'large'} />
+    ),
   },
   Switch: {
-    controls: [{ prop: 'size', type: 'select', options: ['small', 'medium'], initial: 'medium' }],
+    controls: [
+      {
+        prop: 'size',
+        type: 'select',
+        options: ['small', 'medium'],
+        initial: 'medium',
+      },
+    ],
     // `defaultChecked` is what separates the two rings: unchecked, the switch
     // base sits flush with the root's left edge and they read as one box.
     render: (values) => (
@@ -529,7 +630,12 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
   },
   Table: {
     controls: [
-      { prop: 'size', type: 'select', options: ['small', 'medium'], initial: 'medium' },
+      {
+        prop: 'size',
+        type: 'select',
+        options: ['small', 'medium'],
+        initial: 'medium',
+      },
     ],
     // The checkbox tracks the table's size on purpose: a 32px box in a 28px
     // dense row would push the row past the height the cell emits.
@@ -598,7 +704,12 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
   },
   TextField: {
     controls: [
-      { prop: 'size', type: 'select', options: ['small', 'medium'], initial: 'medium' },
+      {
+        prop: 'size',
+        type: 'select',
+        options: ['small', 'medium'],
+        initial: 'medium',
+      },
       { prop: 'multiline', type: 'switch', initial: false },
     ],
     // All four inputs at once: they are tuned to land on the same box, which is
@@ -651,13 +762,22 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
   },
   ToggleButton: {
     controls: [
-      { prop: 'size', type: 'select', options: ['small', 'medium', 'large'], initial: 'medium' },
+      {
+        prop: 'size',
+        type: 'select',
+        options: ['small', 'medium', 'large'],
+        initial: 'medium',
+      },
     ],
     // Icon-only on purpose: with no label the box collapses onto
     // `padding + icon + border`, so the square the preset claims and the padding
     // that produces it are the same picture.
     render: (values) => (
-      <ToggleButtonGroup value="left" exclusive size={values.size as 'small' | 'medium' | 'large'}>
+      <ToggleButtonGroup
+        value="left"
+        exclusive
+        size={values.size as 'small' | 'medium' | 'large'}
+      >
         <ToggleButton value="left">
           <FormatAlignLeftIcon />
         </ToggleButton>
@@ -689,19 +809,28 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
     // `placement`, not `arrow`: the arrow's 11px is a width at the top and bottom
     // placements and a height at the side ones, and only a height can be drawn.
     controls: [
-      { prop: 'placement', type: 'select', options: ['bottom', 'right'], initial: 'bottom' },
+      {
+        prop: 'placement',
+        type: 'select',
+        options: ['bottom', 'right'],
+        initial: 'bottom',
+      },
     ],
     // `open` + `disablePortal` put the bubble inside the demo; the padding
     // reserves only the room the bubble is positioned into — reserving the
     // other sides would hang the gutters off dead space.
     render: (values) => (
-      <Box sx={values.placement === 'right' ? { py: 2, pl: 0, pr: 12 } : { py: 6, px: 12 }}>
+      <Box
+        sx={
+          values.placement === 'right' ? { py: 2, pl: 0, pr: 12 } : { py: 6, px: 12 }
+        }
+      >
         <Tooltip
           title="Copy to clipboard"
           arrow
           open
           placement={values.placement as 'bottom' | 'right'}
-          slotProps={{ popper: { disablePortal: true } }}
+          slotProps={{ popper: { disablePortal: true, sx: { zIndex: 1 } } }}
         >
           <Button variant="outlined">Copy</Button>
         </Tooltip>
