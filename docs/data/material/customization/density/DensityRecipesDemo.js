@@ -101,6 +101,7 @@ export default function DensityRecipesDemo() {
           value={uiIndex}
           onChange={(event, next) => setUiIndex(next)}
           aria-label="example UI"
+          slotProps={{ list: { sx: { justifyContent: 'center' } } }}
         >
           {recipeUis.map((ui) => (
             <Tab key={ui.id} label={ui.label} sx={{ textTransform: 'none' }} />
