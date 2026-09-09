@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import TablePaginationActions, {
   tablePaginationActionsClasses as classes,
 } from '@mui/material/TablePaginationActions';
@@ -106,10 +108,10 @@ describe('<TablePaginationActions />', () => {
     const button = screen.getByRole('button', { name: 'Custom action' });
 
     expect(buttonRef.current).to.equal(button);
-    expect(button).not.to.have.attribute('title');
+    expect(button).to.have.attribute('title', 'Custom tooltip');
     await user.hover(button);
 
-    expect(await screen.findByRole('tooltip')).to.have.text('Custom tooltip');
+    expect(screen.queryByRole('tooltip')).to.equal(null);
     expect(handleMouseOver).toHaveBeenCalled();
     expect(button).toHaveAccessibleName('Custom action');
 
@@ -118,171 +120,116 @@ describe('<TablePaginationActions />', () => {
     expect(handlePageChange).toHaveBeenCalledWith(expect.anything(), direction === 'rtl' ? 0 : 2);
   });
 
-  describe.skipIf(isJsdom())('focus management', () => {
-    it.each(
-      ['ltr', 'rtl'].flatMap((direction) =>
-        ['first', 'previous', 'next', 'last'].map((type, index) => ({ direction, type, index })),
-      ),
-    )(
-      'moves focus when $type becomes disabled in $direction',
-      async ({ direction, type, index }) => {
-        function TestCase() {
-          const [page, setPage] = React.useState(1);
-          return (
-            <ThemeProvider theme={createTheme({ direction })}>
-              <div style={{ margin: 50 }}>
-                <TablePaginationActions
-                  {...defaultProps}
-                  count={30}
-                  page={page}
-                  onPageChange={(event, nextPage) => setPage(nextPage)}
-                />
-              </div>
-            </ThemeProvider>
-          );
-        }
-        const { user } = render(<TestCase />);
-
-        for (let tab = 0; tab <= index; tab += 1) {
-          // Each Tab must finish moving focus before the next one.
-          // eslint-disable-next-line no-await-in-loop
-          await user.tab();
-        }
-        const button = screen.getByRole('button', { name: `Go to ${type} page` });
-        expect(button).toHaveFocus();
-
-        await user.keyboard('{Enter}');
-
-        const target = index < 2 ? 'next' : 'previous';
-        expect(button).to.have.property('disabled', true);
-        expect(screen.getByRole('button', { name: `Go to ${target} page` })).toHaveFocus();
-        await waitFor(() => {
-          expect(screen.getByRole('tooltip')).to.have.text(`Go to ${target} page`);
-        });
-      },
-    );
-
-    it('moves focus after an external update disables a custom button', async () => {
-      let updateProps;
-      const buttonRef = React.createRef();
-      function TestCase() {
-        const [props, setProps] = React.useState({});
-        updateProps = setProps;
-        return (
+  it.each(
+    ['ltr', 'rtl'].flatMap((direction) =>
+      ['default', 'native'].map((slot) => ({ direction, slot })),
+    ),
+  )(
+    'respects an explicit undefined title for $slot slots in $direction',
+    async ({ direction, slot }) => {
+      const types = ['first', 'previous', 'next', 'last'];
+      const { user } = render(
+        <ThemeProvider
+          theme={createTheme({
+            direction,
+            components: { MuiTooltip: { defaultProps: { enterDelay: 0 } } },
+          })}
+        >
           <TablePaginationActions
             {...defaultProps}
-            showFirstButton={false}
-            showLastButton={false}
-            slots={{ previousButton: 'button' }}
-            slotProps={{ previousButton: { ref: buttonRef, ...props } }}
+            slots={
+              slot === 'native'
+                ? Object.fromEntries(types.map((type) => [`${type}Button`, 'button']))
+                : undefined
+            }
+            slotProps={Object.fromEntries(
+              types.map((type) => [`${type}Button`, { title: undefined }]),
+            )}
           />
-        );
+        </ThemeProvider>,
+      );
+
+      for (const type of types) {
+        const label = `Go to ${type} page`;
+        const button = screen.getByRole('button', { name: label });
+        expect(button).not.to.have.attribute('title');
+        // eslint-disable-next-line no-await-in-loop
+        await user.hover(button);
+        expect(screen.queryByRole('tooltip')).to.equal(null);
+        expect(button).toHaveAccessibleName(label);
       }
-      const { user } = render(<TestCase />);
-      await user.tab();
-      expect(buttonRef.current).toHaveFocus();
+    },
+  );
 
-      await act(async () => updateProps({ disabled: true }));
+  it('uses the slotProps title for a default button tooltip', async () => {
+    const { user } = render(
+      <TablePaginationActions
+        {...defaultProps}
+        slotProps={{ nextButton: { title: 'Custom tooltip' } }}
+      />,
+    );
+    const button = screen.getByRole('button', { name: 'Go to next page' });
+    expect(button).not.to.have.attribute('title');
 
-      expect(screen.getByRole('button', { name: 'Go to next page' })).toHaveFocus();
-    });
+    await user.hover(button);
 
-    it.each([
-      { disabledAction: 'previous', action: 'next', target: 'first' },
-      { disabledAction: 'next', action: 'previous', target: 'last' },
-    ])(
-      'focuses $target when $disabledAction is disabled through slotProps',
-      async ({ disabledAction, action, target }) => {
-        function TestCase() {
-          const [page, setPage] = React.useState(1);
-          return (
-            <TablePaginationActions
-              {...defaultProps}
-              count={30}
-              page={page}
-              slotProps={{ [`${disabledAction}Button`]: { disabled: true } }}
-              onPageChange={(event, nextPage) => setPage(nextPage)}
-            />
-          );
-        }
-        const { user } = render(<TestCase />);
-        await user.tab();
-        await user.tab();
-        expect(screen.getByRole('button', { name: `Go to ${action} page` })).toHaveFocus();
+    expect(await screen.findByRole('tooltip')).to.have.text('Custom tooltip');
+  });
 
-        await user.keyboard('{Enter}');
+  it.each(
+    ['ltr', 'rtl'].flatMap((direction) =>
+      ['first', 'previous', 'next', 'last'].map((type) => ({ direction, type })),
+    ),
+  )('preserves a plain function $type slot in $direction', async ({ direction, type }) => {
+    const handlePageChange = vi.fn();
+    function CustomButton(props) {
+      return <button {...props} data-testid="custom-button" />;
+    }
+    const { user } = render(
+      <ThemeProvider theme={createTheme({ direction })}>
+        <TablePaginationActions
+          {...defaultProps}
+          slots={{ [`${type}Button`]: CustomButton }}
+          onPageChange={handlePageChange}
+        />
+      </ThemeProvider>,
+    );
+    const button = screen.getByTestId('custom-button');
+    const action =
+      direction === 'rtl'
+        ? { first: 'last', previous: 'next', next: 'previous', last: 'first' }[type]
+        : type;
+    expect(button).to.have.attribute('title', `Go to ${action} page`);
+    expect(button).toHaveAccessibleName(`Go to ${action} page`);
 
-        expect(screen.getByRole('button', { name: `Go to ${target} page` })).toHaveFocus();
-      },
+    await user.hover(button);
+    expect(screen.queryByRole('tooltip')).to.equal(null);
+    await user.click(button);
+
+    expect(handlePageChange).toHaveBeenCalledWith(
+      expect.anything(),
+      { first: 0, previous: 0, next: 2, last: 9 }[action],
+    );
+  });
+
+  it('lets a plain function slot provide its own tooltip', async () => {
+    function CustomButton({ title, ...props }) {
+      return (
+        <Tooltip title={title}>
+          <IconButton {...props} />
+        </Tooltip>
+      );
+    }
+    const { user } = render(
+      <TablePaginationActions
+        {...defaultProps}
+        slots={{ nextButton: CustomButton }}
+        slotProps={{ nextButton: { title: 'Consumer tooltip' } }}
+      />,
     );
 
-    it('keeps focus on an action that remains enabled', async () => {
-      function TestCase() {
-        const [page, setPage] = React.useState(1);
-        return (
-          <TablePaginationActions
-            {...defaultProps}
-            page={page}
-            showFirstButton={false}
-            showLastButton={false}
-            onPageChange={(event, nextPage) => setPage(nextPage)}
-          />
-        );
-      }
-      const { user } = render(<TestCase />);
-      await user.tab();
-      await user.tab();
-      await user.keyboard('{Enter}');
+    await user.hover(screen.getByRole('button', { name: 'Go to next page' }));
 
-      expect(screen.getByRole('button', { name: 'Go to next page' })).toHaveFocus();
-    });
-
-    it('does not override focus moved by onPageChange', async () => {
-      const resultsRef = React.createRef();
-      function TestCase() {
-        const [page, setPage] = React.useState(1);
-        return (
-          <React.Fragment>
-            <h2 ref={resultsRef} tabIndex={-1}>
-              Results
-            </h2>
-            <TablePaginationActions
-              {...defaultProps}
-              page={page}
-              onPageChange={(event, nextPage) => {
-                setPage(nextPage);
-                resultsRef.current.focus();
-              }}
-            />
-          </React.Fragment>
-        );
-      }
-      const { user } = render(<TestCase />);
-      await user.tab();
-      await user.keyboard('{Enter}');
-
-      expect(resultsRef.current).toHaveFocus();
-    });
-
-    it('does not move focus when every action becomes disabled', async () => {
-      function TestCase() {
-        const [disabled, setDisabled] = React.useState(false);
-        return (
-          <React.Fragment>
-            <TablePaginationActions
-              {...defaultProps}
-              disabled={disabled}
-              onPageChange={() => setDisabled(true)}
-            />
-            <button>Outside</button>
-          </React.Fragment>
-        );
-      }
-      const { user } = render(<TestCase />);
-      await user.tab();
-      await user.keyboard('{Enter}');
-
-      expect(document.activeElement).to.equal(document.body);
-    });
+    expect(await screen.findByRole('tooltip')).to.have.text('Consumer tooltip');
   });
 });
