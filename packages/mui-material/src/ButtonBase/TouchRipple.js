@@ -224,6 +224,23 @@ export const TouchRippleRipple = styled(Ripple, {
     transform: scale(1);
   }
 
+  /*
+   * Order matters: 'child', 'childLeaving' and 'childPulsate' apply to the same
+   * element with equal specificity, so the later rule wins. 'child' must come
+   * before 'childLeaving' so the leaving 'opacity: 0' takes precedence. A focus
+   * (pulsate) ripple keeps 'pulsateKeyframe' (no opacity animation) on exit, so
+   * it relies on this static 'opacity: 0' to disappear on blur instead of
+   * lingering until removal.
+   */
+  & .${touchRippleClasses.child} {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: currentColor;
+  }
+
   & .${touchRippleClasses.childLeaving} {
     opacity: 0;
   }
@@ -236,15 +253,6 @@ export const TouchRippleRipple = styled(Ripple, {
   }
 
   ${({ theme }) => getAnimationStyles(theme)}
-
-  & .${touchRippleClasses.child} {
-    opacity: 1;
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: currentColor;
-  }
 `;
 
 /**

@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import RtlProvider from '@mui/system/RtlProvider';
 import LinearProgress, { linearProgressClasses as classes } from '@mui/material/LinearProgress';
@@ -370,6 +370,39 @@ describe('<LinearProgress />', () => {
           'MUI: You need to provide a value prop',
           'MUI: You need to provide a valueBuffer prop',
         ]);
+      });
+    });
+  });
+
+  // Deterministic checks for the WCAG success criteria the report rates as
+  // automatable. See packages/mui-material/src/LinearProgress/accessibility.md.
+  describe('WCAG 2.2 conformance', () => {
+    describe('4.1.2 Name, Role, Value', () => {
+      it('always exposes the progressbar role', () => {
+        render(<LinearProgress />);
+
+        expect(screen.getByRole('progressbar')).not.to.equal(null);
+      });
+
+      it('exposes the value and its bounds when determinate', () => {
+        render(<LinearProgress variant="determinate" value={40} />);
+        const bar = screen.getByRole('progressbar');
+
+        expect(bar).to.have.attribute('aria-valuenow', '40');
+        expect(bar).to.have.attribute('aria-valuemin', '0');
+        expect(bar).to.have.attribute('aria-valuemax', '100');
+      });
+
+      it('omits the value when indeterminate, leaving the state unknown', () => {
+        render(<LinearProgress variant="indeterminate" />);
+
+        expect(screen.getByRole('progressbar')).not.to.have.attribute('aria-valuenow');
+      });
+
+      it('takes an author-supplied accessible name', () => {
+        render(<LinearProgress aria-label="Upload progress" />);
+
+        expect(screen.getByRole('progressbar', { name: 'Upload progress' })).not.to.equal(null);
       });
     });
   });

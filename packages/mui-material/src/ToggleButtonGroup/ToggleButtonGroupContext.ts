@@ -10,6 +10,7 @@ interface ToggleButtonGroupContextType {
   fullWidth?: ToggleButtonGroupProps['fullWidth'] | undefined;
   color?: ToggleButtonGroupProps['color'] | undefined;
   disabled?: ToggleButtonGroupProps['disabled'] | undefined;
+  isRovingTabIndex?: boolean | undefined;
 }
 
 /**

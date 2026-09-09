@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   ThemeOptions as SystemThemeOptions,
   Theme as SystemTheme,
@@ -35,6 +36,13 @@ import {
  */
 export interface CssThemeVariables {}
 
+/**
+ * CSS of the keyboard focus ring, spread onto the `Mui-focusVisible` state. An object merges
+ * over the curated default (`solid` style, `palette.primary.main` color, `2px` width, `2px`
+ * offset); set `outlineColor: 'transparent'` to drop the outline for a box-shadow-only ring.
+ */
+export type FocusVisible = React.CSSProperties;
+
 type CssVarsOptions = CssThemeVariables extends {
   enabled: true;
 }
@@ -50,10 +58,9 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   shape?: ShapeOptions | undefined;
   transitions?: TransitionsOptions | undefined;
   typography?:
-    | TypographyVariantsOptions
-    | ((palette: Palette) => TypographyVariantsOptions)
-    | undefined;
+    TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions) | undefined;
   zIndex?: ZIndexOptions | undefined;
+  focusVisible?: boolean | FocusVisible | undefined;
   unstable_strictMode?: boolean | undefined;
   unstable_sxConfig?: SxConfig | undefined;
   modularCssLayers?: boolean | string | undefined;
@@ -68,6 +75,7 @@ export interface BaseTheme extends SystemTheme {
   transitions: Transitions;
   typography: TypographyVariants;
   zIndex: ZIndex;
+  focusVisible?: FocusVisible | false | undefined;
   unstable_strictMode?: boolean | undefined;
   applyStyles: ApplyStyles<SupportedColorScheme>;
 }

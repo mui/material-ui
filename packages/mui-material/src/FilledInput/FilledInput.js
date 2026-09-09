@@ -11,6 +11,7 @@ import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
+import selectClasses from '../Select/selectClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
@@ -163,7 +164,12 @@ const FilledInputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => ownerState.endAdornment,
           style: {
-            paddingRight: 12,
+            // use CSS variable to keep specificity
+            '--_trailingPad': '12px',
+            paddingRight: 'var(--_trailingPad)',
+            [`&.${selectClasses.root}`]: {
+              '--_trailingPad': '0px',
+            },
           },
         },
         {
@@ -217,12 +223,13 @@ const FilledInputInput = styled(InputBaseInput, {
       }),
       borderTopLeftRadius: 'inherit',
       borderTopRightRadius: 'inherit',
-      ...(theme.vars &&
-        theme.applyStyles('dark', {
-          WebkitBoxShadow: '0 0 0 100px #266798 inset',
+      ...(theme.vars && {
+        WebkitBoxShadow: theme.vars.palette.Input.autofillWebkitBoxShadow,
+        ...theme.applyStyles('dark', {
           WebkitTextFillColor: '#fff',
           caretColor: '#fff',
-        })),
+        }),
+      }),
     },
     variants: [
       {

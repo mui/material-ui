@@ -154,6 +154,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
   });
   const [isClient, setIsClient] = React.useState(noSsr || !isMultiSchemes);
   React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsClient(true); // to rerender the component after hydration
   }, []);
 

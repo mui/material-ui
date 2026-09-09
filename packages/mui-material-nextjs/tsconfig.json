@@ -1,8 +1,8 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "lib": ["es2020", "es2024.promise", "dom", "dom.iterable"],
-    "types": ["react", "vitest/globals", "node", "next"]
+    "lib": ["es2021", "es2024.promise", "dom", "dom.iterable"],
+    "types": ["react", "node", "next"]
   },
   "include": ["src/**/*"]
 }

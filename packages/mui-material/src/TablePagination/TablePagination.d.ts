@@ -216,8 +216,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
    */
   onRowsPerPageChange?:
-    | React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
-    | undefined;
+    React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> | undefined;
   /**
    * The zero-based index of the current page.
    */

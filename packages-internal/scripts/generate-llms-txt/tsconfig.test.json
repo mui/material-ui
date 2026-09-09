@@ -2,7 +2,7 @@
   "compilerOptions": {
     "noEmit": true,
     "moduleResolution": "",
-    "types": ["node", "vitest/globals"],
+    "types": ["node"],
     "strict": true,
     "esModuleInterop": true,
     "isolatedModules": true

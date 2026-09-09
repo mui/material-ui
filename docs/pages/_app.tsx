@@ -31,8 +31,8 @@ import materialPages from 'docs/data/material/pages';
 import systemPages from 'docs/data/system/pages';
 import {
   MuiLogomarkIcon,
-  muiSvgLogoString,
-  muiSvgWordmarkString,
+  muiSvgLogomarkString,
+  muiSvgLogotypeString,
 } from '@mui/internal-core-docs/svgIcons';
 
 import { fontClasses as _fontClasses } from '@mui/internal-core-docs/nextFonts';
@@ -175,8 +175,8 @@ function useProductData(pageProps: { versions: VersionEntry[] }) {
         metadata: '',
         name: 'Material UI',
         logo: MuiLogomarkIcon,
-        logoSvg: muiSvgLogoString,
-        wordmarkSvg: muiSvgWordmarkString,
+        logoSvg: muiSvgLogomarkString,
+        wordmarkSvg: muiSvgLogotypeString,
         versions: buildProductVersions(
           fetchedVersions,
           'material-ui',
@@ -190,8 +190,8 @@ function useProductData(pageProps: { versions: VersionEntry[] }) {
         metadata: '',
         name: 'MUI System',
         logo: MuiLogomarkIcon,
-        logoSvg: muiSvgLogoString,
-        wordmarkSvg: muiSvgWordmarkString,
+        logoSvg: muiSvgLogomarkString,
+        wordmarkSvg: muiSvgLogotypeString,
         versions: buildProductVersions(fetchedVersions, 'system', `v${systemPkgJson.version}`),
       };
     }
@@ -202,8 +202,8 @@ function useProductData(pageProps: { versions: VersionEntry[] }) {
         metadata: '',
         name: 'MUI Core',
         logo: MuiLogomarkIcon,
-        logoSvg: muiSvgLogoString,
-        wordmarkSvg: muiSvgWordmarkString,
+        logoSvg: muiSvgLogomarkString,
+        wordmarkSvg: muiSvgLogotypeString,
         versions: buildProductVersions(
           fetchedVersions,
           'material-ui',
@@ -217,8 +217,8 @@ function useProductData(pageProps: { versions: VersionEntry[] }) {
         metadata: '',
         name: 'Docs-infra',
         logo: MuiLogomarkIcon,
-        logoSvg: muiSvgLogoString,
-        wordmarkSvg: muiSvgWordmarkString,
+        logoSvg: muiSvgLogomarkString,
+        wordmarkSvg: muiSvgLogotypeString,
         versions: [
           {
             text: 'v0.0.0',
@@ -233,8 +233,8 @@ function useProductData(pageProps: { versions: VersionEntry[] }) {
         metadata: '',
         name: 'Home docs',
         logo: MuiLogomarkIcon,
-        logoSvg: muiSvgLogoString,
-        wordmarkSvg: muiSvgWordmarkString,
+        logoSvg: muiSvgLogomarkString,
+        wordmarkSvg: muiSvgLogotypeString,
         versions: [
           {
             text: 'v0.0.0',

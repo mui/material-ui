@@ -2,9 +2,9 @@ import * as url from 'url';
 import * as path from 'path';
 import * as fs from 'node:fs/promises';
 import { chromium } from '@playwright/test';
-import { test as base } from 'vitest';
+import { describe, test as base, afterAll } from 'vitest';
 import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
-import { A11Y_RULES, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
+import { A11Y_RULES, DEFAULT_VIEWPORT, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const AXE_SCRIPT = path.resolve(currentDirectory, '../../node_modules/axe-core/axe.min.js');
@@ -28,11 +28,15 @@ async function main() {
    * @returns {Promise<import('@playwright/test').Page>}
    */
   async function newTestPage(_browser) {
-    // reuse viewport from `vrtest`
+    // Viewport is set per-acquisition in the `pooled` fixture (reset to
+    // DEFAULT_VIEWPORT) and per-route in the screenshot loop, so it's not set
+    // here. Default sizing reused from `vrtest`:
     // https://github.com/nathanmarks/vrtest/blob/1185b852a6c1813cedf5d81f6d6843d9a241c1ce/src/server/runner.js#L44
     const page = await _browser.newPage({
-      viewport: { width: 1000, height: 700 },
       reducedMotion: 'reduce',
+      // Pin the timezone so the frozen `Date` (see `index.html`) renders the
+      // same instant regardless of the CI machine's local timezone.
+      timezoneId: 'UTC',
     });
 
     // Block images since they slow down tests (need download).
@@ -46,11 +50,10 @@ async function main() {
       }
     });
 
-    // Wait for all requests to finish.
-    // This should load shared resources such as fonts.
+    // Wait for all requests to finish. That covers the font stylesheet too --
+    // `loadFonts` appends it during module evaluation -- so a stalled font host
+    // fails here instead of hanging every test.
     await page.goto(`${baseUrl}#dev`, { waitUntil: 'networkidle0' });
-    // If we still get flaky fonts after awaiting this try `document.fonts.ready`
-    await page.waitForSelector('[data-webfontloader="active"]', { state: 'attached' });
 
     // Simulate portrait mode for date pickers.
     // See `useIsLandscape`.
@@ -72,16 +75,28 @@ async function main() {
   await fs.mkdir(screenshotDir, { recursive: true });
 
   const probePage = await pool.acquire();
+  // React renders the nav, so wait for it: `$$eval` returns [] when it is
+  // missing, which registers zero route tests and still passes.
+  await probePage.waitForSelector('#tests a', { state: 'attached' });
   let routes = await probePage.$$eval('#tests a', (links) => {
     return links.map((link) => link.href);
   });
   routes = routes.map((route) => route.replace(baseUrl, ''));
+  const reactMajor = Number(
+    (await probePage.evaluate(() => window.muiFixture.reactVersion)).split('.')[0],
+  );
   pool.release(probePage);
 
   const test = base.extend({
     // eslint-disable-next-line no-empty-pattern
     pooled: async ({}, use) => {
       const page = await pool.acquire();
+      // Reset per-acquisition state. Pages are pooled and reused, so a prior
+      // test may have left a different viewport (route tests set per-route
+      // widths below); start every test from the default so tests that don't
+      // set their own viewport (the dedicated blocks at the bottom) are
+      // deterministic.
+      await page.setViewportSize(DEFAULT_VIEWPORT);
       await page.evaluate(() => {
         localStorage.clear();
       });
@@ -102,6 +117,12 @@ async function main() {
    * @param {string} route
    */
   async function renderFixture(page, route) {
+    // Screenshots taken with fallback faces look like a repo-wide text rendering
+    // change. Gate here so it happens before the fixture mounts -- components
+    // that measure text at mount would otherwise bake in fallback metrics that
+    // the later font swap does not recompute.
+    await page.evaluate(() => window.muiFixture.fontsReady);
+
     await page.evaluate((_route) => {
       // Use client-side routing which is much faster than full page navigation via page.goto().
       window.muiFixture.navigate(`${_route}#no-dev`);
@@ -118,6 +139,30 @@ async function main() {
     const testcase = await page.waitForSelector(
       `[data-testid="testcase"][data-testpath="${route}"]:not([aria-busy="true"])`,
     );
+
+    // `aria-busy` covers fonts, not images. The route handler aborts every
+    // image request, and components like Avatar only swap to their fallback
+    // after the error event triggers a re-render -- strictly later than the
+    // busy flip, so under CI contention the screenshot can catch the pending
+    // <img>: blank where every baseline has the settled fallback. Wait for
+    // each image to settle, then two frames so React commits the swap the
+    // load/error event scheduled.
+    await testcase.evaluate(async (element) => {
+      await Promise.all(
+        Array.from(element.querySelectorAll('img'), (img) => {
+          if (img.complete) {
+            return undefined;
+          }
+          return new Promise((resolve) => {
+            img.addEventListener('load', resolve, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+          });
+        }),
+      );
+      await new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      });
+    });
 
     return testcase;
   }
@@ -147,7 +192,8 @@ async function main() {
         const parsed = parseRoute(route);
         const screenshotRule = parsed ? getConfig(SCREENSHOT_RULES, parsed.path) : undefined;
         const a11yRule = parsed ? getConfig(A11Y_RULES, parsed.path) : undefined;
-        const runScreenshot = parsed ? (screenshotRule?.enabled ?? true) : true;
+        const meetsReactFloor = reactMajor >= (screenshotRule?.minReactMajor ?? 0);
+        const runScreenshot = parsed ? (screenshotRule?.enabled ?? true) && meetsReactFloor : true;
         const runA11y = a11yRule?.enabled === true;
         if (!runScreenshot && !runA11y) {
           return;
@@ -167,10 +213,26 @@ async function main() {
           { timeout: process.env.PWDEBUG ? 0 : undefined },
           async ({ pooled, task }) => {
             const { page } = pooled;
+            // Apply the per-route viewport width before rendering so the
+            // composite renders at its desktop breakpoint. Only the width
+            // varies per rule (the screenshot captures the testcase element's
+            // full height regardless); the height stays at the default. The
+            // `pooled` fixture already reset the page to DEFAULT_VIEWPORT, so
+            // only override when a rule actually sets a width — saves a CDP
+            // round-trip on the vast majority of routes.
+            if (typeof screenshotRule?.viewportWidth === 'number') {
+              await page.setViewportSize({
+                width: screenshotRule.viewportWidth,
+                height: DEFAULT_VIEWPORT.height,
+              });
+            }
             const testcase = await renderFixture(page, route);
 
+            // Scope the wait to the route's testcase element: pooled pages
+            // keep the previous route's DOM around briefly, so a page-global
+            // selector could match a leftover fixture instead of this one.
             if (screenshotRule?.waitForSelector) {
-              await page.waitForSelector(screenshotRule.waitForSelector);
+              await testcase.waitForSelector(screenshotRule.waitForSelector);
             }
 
             // Run axe before the screenshot (if any) so it observes the natural
@@ -193,6 +255,7 @@ async function main() {
               recordA11y({ task }, results, {
                 slug: parsed.slug,
                 demo: parsed.demo,
+                assertions: a11yRule.assertions,
                 skipAssertions: a11yRule.skipAssertions,
               });
             }
@@ -280,6 +343,24 @@ async function main() {
       });
     });
 
+    describe('theme.focusVisible ring', () => {
+      // The FocusVisible fixtures render already focus-visible, so the standard screenshot loop
+      // above captures the ring. Only the forced-colors variant needs Playwright here.
+      test('keeps the outline ring visible in forced-colors mode', async ({ pooled }) => {
+        const { page } = pooled;
+        await page.emulateMedia({ forcedColors: 'active' });
+        try {
+          const testcase = await renderFixture(page, '/regression-FocusVisible/InsetControls');
+          await takeScreenshot(page, {
+            testcase,
+            route: '/regression-FocusVisible/InsetControlsForcedColors',
+          });
+        } finally {
+          await page.emulateMedia({ forcedColors: 'none' });
+        }
+      });
+    });
+
     describe('TextField', () => {
       test('should render standard variant correctly in forced-colors mode', async ({ pooled }) => {
         const { page } = pooled;
@@ -322,6 +403,214 @@ async function main() {
           }
         });
       });
+    });
+    describe('Avatar', () => {
+      // Deterministic clip check for 1.4.12 Text Spacing, which axe cannot cover.
+      // Renders `LetterAvatars` and targets the two-character ("OP") avatar,
+      // whose fixed 40px box with `overflow: hidden` is the only clipping risk.
+      test('1.4.12 Text Spacing: initials stay visible under the WCAG overrides', async ({
+        pooled,
+      }) => {
+        const { page } = pooled;
+        await renderFixture(page, '/docs-components-avatars/LetterAvatars');
+        const clipped = await page.evaluate(() => {
+          const style = document.createElement('style');
+          style.textContent =
+            '* { line-height: 1.5 !important; letter-spacing: 0.12em !important; word-spacing: 0.16em !important; }';
+          document.head.appendChild(style);
+          const avatar = Array.from(document.querySelectorAll('.MuiAvatar-root')).find(
+            (node) => node.textContent === 'OP',
+          );
+          if (!avatar) {
+            throw new Error('LetterAvatars no longer renders an "OP" avatar');
+          }
+          const range = document.createRange();
+          range.selectNodeContents(avatar);
+          const text = range.getBoundingClientRect();
+          const box = avatar.getBoundingClientRect();
+          style.remove();
+          return (
+            text.left < box.left - 0.5 ||
+            text.right > box.right + 0.5 ||
+            text.top < box.top - 0.5 ||
+            text.bottom > box.bottom + 0.5
+          );
+        });
+        if (clipped) {
+          throw new Error('Avatar initials are clipped under WCAG text-spacing overrides');
+        }
+      });
+    });
+
+    registerCssLayoutSuites({ test, renderFixture, routes });
+  });
+}
+
+/**
+ * Registers the CSS-dependent WCAG criteria that axe cannot cover: they need a
+ * real layout at a real viewport. Kept out of `main` so the suite can be
+ * introduced independently of the harness it runs on.
+ */
+function registerCssLayoutSuites({ test, renderFixture, routes }) {
+  const CSS_LAYOUT_SUITES = [
+    { component: 'Accordion', route: '/docs-components-accordion/AccordionUsage' },
+    // The same demo renders the summary header, which is rated separately.
+    { component: 'AccordionSummary', route: '/docs-components-accordion/AccordionUsage' },
+    {
+      component: 'Avatar',
+      route: '/docs-components-avatars/LetterAvatars',
+      // 1.4.4 is asserted here as *text-only* resize, which the Avatar report
+      // explicitly treats as out of scope: its fixed 40px box scales under
+      // full-page zoom (the mechanism the criterion assumes) but not under
+      // text-only zoom, which the report calls an author concern. Left rated
+      // Manual rather than silently downgraded — see Avatar/accessibility.md.
+      skipCriteria: ['1.4.4'],
+    },
+    { component: 'Button', route: '/docs-components-buttons/BasicButtons' },
+    { component: 'Checkbox', route: '/docs-components-checkboxes/Checkboxes' },
+    { component: 'LinearProgress', route: '/docs-components-progress/LinearDeterminate' },
+    { component: 'Radio', route: '/docs-components-radio-buttons/RadioButtonsGroup' },
+    { component: 'Switch', route: '/docs-components-switches/BasicSwitches' },
+    { component: 'TextField', route: '/docs-components-text-fields/BasicTextFields' },
+    { component: 'ToggleButton', route: '/docs-components-toggle-button/ToggleButtons' },
+    // The same demo renders the group wrapper, which is rated separately.
+    { component: 'ToggleButtonGroup', route: '/docs-components-toggle-button/ToggleButtons' },
+  ];
+
+  /**
+   * Reports the document's horizontal overflow after applying `css`, plus any
+   * element whose own content escapes its box. Both are the failure modes the
+   * reflow, resize-text, and text-spacing criteria care about.
+   */
+  async function measureOverflow(page, css) {
+    return page.evaluate((styleText) => {
+      const style = document.createElement('style');
+      style.textContent = styleText;
+      document.head.appendChild(style);
+
+      // Force layout before measuring.
+      void document.documentElement.offsetHeight;
+
+      const root = document.documentElement;
+      const horizontalOverflow = root.scrollWidth - root.clientWidth;
+
+      // These criteria are about losing *text*, so only elements that hide
+      // overflow and actually render text count. Measuring the text range
+      // rather than scrollWidth avoids flagging boxes that deliberately clip
+      // decoration — a Switch root clipping its ripple loses no content.
+      const clipped = Array.from(document.querySelectorAll('[class*="Mui"]'))
+        .filter((node) => {
+          const { overflowX, overflowY, visibility, display } = window.getComputedStyle(node);
+          if (overflowX !== 'hidden' && overflowY !== 'hidden') {
+            return false;
+          }
+          // Deliberately hidden content — a collapsed Accordion panel — is not
+          // clipped content: these criteria are about what is on screen.
+          if (visibility === 'hidden' || display === 'none') {
+            return false;
+          }
+          const box = node.getBoundingClientRect();
+          if (box.width === 0 || box.height === 0) {
+            return false;
+          }
+          return node.textContent.trim() !== '';
+        })
+        .filter((node) => {
+          const range = document.createRange();
+          range.selectNodeContents(node);
+          const text = range.getBoundingClientRect();
+          const box = node.getBoundingClientRect();
+          return (
+            text.left < box.left - 0.5 ||
+            text.right > box.right + 0.5 ||
+            text.top < box.top - 0.5 ||
+            text.bottom > box.bottom + 0.5
+          );
+        })
+        .map((node) => node.getAttribute('class'));
+
+      style.remove();
+      return { horizontalOverflow, clipped: clipped.slice(0, 3) };
+    }, css);
+  }
+
+  const TEXT_SPACING_CSS =
+    '* { line-height: 1.5 !important; letter-spacing: 0.12em !important;' +
+    ' word-spacing: 0.16em !important; } p { margin-bottom: 2em !important; }';
+
+  CSS_LAYOUT_SUITES.forEach(({ component, route, skipCriteria = [] }) => {
+    // A slug only enters the demo bundle once its component is enrolled, so skip
+    // entries this build doesn't contain rather than waiting for a fixture that
+    // was never bundled.
+    if (!routes.includes(route)) {
+      // The slug enters the bundle only when its component enrolls (see fixtures.js).
+      describe(`${component} layout criteria`, () => {
+        test.skip(`route not bundled: ${route}`, () => {});
+      });
+      return;
+    }
+    const covers = (criterion) => !skipCriteria.includes(criterion);
+
+    describe(`${component} layout criteria`, () => {
+      test.runIf(covers('1.4.10'))(
+        '1.4.10 Reflow: no horizontal scrolling at 320 CSS pixels',
+        async ({ pooled }) => {
+          const { page } = pooled;
+          await page.setViewportSize({ width: 320, height: 512 });
+          try {
+            await renderFixture(page, route);
+            const { horizontalOverflow } = await measureOverflow(page, '');
+            if (horizontalOverflow > 1) {
+              throw new Error(
+                `${component} overflows horizontally by ${horizontalOverflow}px at 320px wide`,
+              );
+            }
+          } finally {
+            await page.setViewportSize(DEFAULT_VIEWPORT);
+          }
+        },
+      );
+
+      test.runIf(covers('1.4.4'))(
+        '1.4.4 Resize Text: content survives a 200% text size',
+        async ({ pooled }) => {
+          const { page } = pooled;
+          await renderFixture(page, route);
+          const { horizontalOverflow, clipped } = await measureOverflow(
+            page,
+            'html { font-size: 200% !important; }',
+          );
+          if (horizontalOverflow > 1) {
+            throw new Error(
+              `${component} overflows horizontally by ${horizontalOverflow}px at 200% text size`,
+            );
+          }
+          if (clipped.length > 0) {
+            throw new Error(`${component} clips its own content at 200%: ${clipped.join(', ')}`);
+          }
+        },
+      );
+
+      test.runIf(covers('1.4.12'))(
+        '1.4.12 Text Spacing: content survives the WCAG spacing overrides',
+        async ({ pooled }) => {
+          const { page } = pooled;
+          await renderFixture(page, route);
+          const { horizontalOverflow, clipped } = await measureOverflow(page, TEXT_SPACING_CSS);
+          if (horizontalOverflow > 1) {
+            throw new Error(
+              `${component} overflows horizontally by ${horizontalOverflow}px under the` +
+                ' WCAG text-spacing overrides',
+            );
+          }
+          if (clipped.length > 0) {
+            throw new Error(
+              `${component} clips its own content under the WCAG text-spacing overrides:` +
+                ` ${clipped.join(', ')}`,
+            );
+          }
+        },
+      );
     });
   });
 }

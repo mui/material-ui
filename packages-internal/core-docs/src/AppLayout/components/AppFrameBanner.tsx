@@ -25,6 +25,7 @@ export function AppFrameBanner() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   React.useEffect(() => {
     hadHydrated = true;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 

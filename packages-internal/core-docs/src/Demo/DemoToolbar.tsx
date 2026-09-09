@@ -156,6 +156,7 @@ function useToolbar(
   const [activeControlIndex, setActiveControlIndex] = React.useState(defaultActiveIndex);
 
   React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveControlIndex((currentActiveControlIndex) => {
       if (!isFocusableControl(currentActiveControlIndex)) {
         return defaultActiveIndex;

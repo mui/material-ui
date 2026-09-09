@@ -84,6 +84,12 @@
       "isGlobal": false
     },
     {
+      "key": "labelPlacementEnd",
+      "className": "MuiFormControlLabel-labelPlacementEnd",
+      "description": "Styles applied to the root element if `labelPlacement=\"end\"`.",
+      "isGlobal": false
+    },
+    {
       "key": "labelPlacementStart",
       "className": "MuiFormControlLabel-labelPlacementStart",
       "description": "Styles applied to the root element if `labelPlacement=\"start\"`.",

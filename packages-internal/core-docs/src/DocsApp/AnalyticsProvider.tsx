@@ -71,6 +71,7 @@ export function CookieConsentDialog() {
       });
       return () => cancelAnimationFrame(frame);
     }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setShow(false);
     return undefined;
   }, [needsConsent]);

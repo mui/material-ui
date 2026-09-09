@@ -700,6 +700,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   }, [scrollable, scrollButtons, updateScrollObserver, childrenProp?.length]);
 
   React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -711,6 +712,23 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     // Don't animate on the first render.
     scrollSelectedIntoView(defaultIndicatorStyle !== indicatorStyle);
   }, [scrollSelectedIntoView, indicatorStyle]);
+
+  React.useEffect(() => {
+    if (typeof ResizeObserver === 'undefined' || !scrollable || scrollButtons !== 'auto') {
+      return undefined;
+    }
+
+    // Mounting the scroll buttons shrinks the scroller after `scrollSelectedIntoView` has run,
+    // which can push the selected tab out of view without changing `indicatorStyle`.
+    const scrollerResizeObserver = new ResizeObserver(() => {
+      scrollSelectedIntoView(false);
+    });
+    scrollerResizeObserver.observe(tabsRef.current);
+
+    return () => {
+      scrollerResizeObserver.disconnect();
+    };
+  }, [scrollable, scrollButtons, scrollSelectedIntoView]);
 
   React.useImperativeHandle(
     action,

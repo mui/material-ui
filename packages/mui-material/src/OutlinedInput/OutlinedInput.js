@@ -11,6 +11,7 @@ import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
+import selectClasses from '../Select/selectClasses';
 import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
@@ -93,7 +94,12 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => ownerState.endAdornment,
           style: {
-            paddingRight: 14,
+            // use CSS variable to keep specificity
+            '--_trailingPad': '14px',
+            paddingRight: 'var(--_trailingPad)',
+            [`&.${selectClasses.root}`]: {
+              '--_trailingPad': '0px',
+            },
           },
         },
         {
@@ -142,12 +148,13 @@ const OutlinedInputInput = styled(InputBaseInput, {
         caretColor: theme.palette.mode === 'light' ? null : '#fff',
       }),
       borderRadius: 'inherit',
-      ...(theme.vars &&
-        theme.applyStyles('dark', {
-          WebkitBoxShadow: '0 0 0 100px #266798 inset',
+      ...(theme.vars && {
+        WebkitBoxShadow: theme.vars.palette.Input.autofillWebkitBoxShadow,
+        ...theme.applyStyles('dark', {
           WebkitTextFillColor: '#fff',
           caretColor: '#fff',
-        })),
+        }),
+      }),
     },
     variants: [
       {
