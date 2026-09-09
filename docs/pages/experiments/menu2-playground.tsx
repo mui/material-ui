@@ -421,6 +421,9 @@ function FocusRingComparisonDemo({ settings }: { settings: PlaygroundSettings })
 }
 
 function ControlledAnchorDemo() {
+  const id = React.useId();
+  const buttonId = `${id}-button`;
+  const menuId = `${id}-menu`;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [rootEvent, setRootEvent] = React.useState('None');
   const [submenuEvent, setSubmenuEvent] = React.useState('None');
@@ -436,6 +439,10 @@ function ControlledAnchorDemo() {
   return (
     <div>
       <Button
+        id={buttonId}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        aria-controls={open ? menuId : undefined}
         variant="outlined"
         startIcon={<MoreVertRoundedIcon fontSize="small" />}
         onClick={(event) => {
@@ -451,6 +458,7 @@ function ControlledAnchorDemo() {
         onOpenChange={handleOpenChange}
         anchor={anchorEl ?? undefined}
         sideOffset={4}
+        slotProps={{ paper: { id: menuId, 'aria-labelledby': buttonId } }}
       >
         <Menu2Item>Profile</Menu2Item>
         <Menu2Item>My account</Menu2Item>

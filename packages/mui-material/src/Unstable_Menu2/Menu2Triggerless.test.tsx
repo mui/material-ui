@@ -21,63 +21,74 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
 
   (['ltr', 'rtl'] as const).forEach((direction) => {
     [false, true].forEach((keepMounted) => {
-      it(`keeps nested keyboard navigation and Escape local, ${direction}, keepMounted=${keepMounted}`, async () => {
-        const changed = vi.fn();
-        const completed = vi.fn();
-        const { user } = render(
-          <ThemeProvider theme={createTheme({ direction })}>
-            <Menu2
-              defaultOpen
-              modal={false}
-              anchor={document.body}
-              keepMounted={keepMounted}
-              onOpenChange={changed}
-              onOpenChangeComplete={completed}
+      (['grow', 'reduced-motion', 'none'] as const).forEach((animation) => {
+        it(`keeps nested keyboard navigation and Escape local, ${direction}, keepMounted=${keepMounted}, animation=${animation}`, async () => {
+          const changed = vi.fn();
+          const completed = vi.fn();
+          const slots = animation === 'none' ? { transition: null } : undefined;
+          const { user } = render(
+            <ThemeProvider
+              theme={createTheme({
+                direction,
+                motion: { reducedMotion: animation === 'reduced-motion' ? 'always' : 'never' },
+              })}
             >
-              <Menu2Submenu
+              <Menu2
+                defaultOpen
+                modal={false}
+                anchor={document.body}
                 keepMounted={keepMounted}
-                trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
+                slots={slots}
+                onOpenChange={changed}
+                onOpenChangeComplete={completed}
               >
                 <Menu2Submenu
                   keepMounted={keepMounted}
-                  trigger={<Menu2SubmenuTrigger openOnHover={false}>Deeper</Menu2SubmenuTrigger>}
+                  slots={slots}
+                  trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
                 >
-                  <Menu2Item>Leaf</Menu2Item>
+                  <Menu2Submenu
+                    keepMounted={keepMounted}
+                    slots={slots}
+                    trigger={<Menu2SubmenuTrigger openOnHover={false}>Deeper</Menu2SubmenuTrigger>}
+                  >
+                    <Menu2Item>Leaf</Menu2Item>
+                  </Menu2Submenu>
                 </Menu2Submenu>
-              </Menu2Submenu>
-            </Menu2>
-          </ThemeProvider>,
-        );
-        const more = await focusTrigger('More');
-        const root = more.closest('[role="menu"]')!;
-        const openKey = direction === 'rtl' ? '{ArrowLeft}' : '{ArrowRight}';
-        await user.keyboard(openKey);
-        const deeper = await screen.findByRole('menuitem', { name: 'Deeper' });
-        await waitFor(() => expect(deeper).toHaveFocus());
-        await user.keyboard(openKey);
-        const leaf = await screen.findByRole('menuitem', { name: 'Leaf' });
-        await waitFor(() => expect(leaf).toHaveFocus());
-        expect(changed).not.toHaveBeenCalled();
-        expect(root).to.have.attribute('data-open');
+              </Menu2>
+            </ThemeProvider>,
+          );
+          const more = await focusTrigger('More');
+          const root = more.closest('[role="menu"]')!;
+          const openKey = direction === 'rtl' ? '{ArrowLeft}' : '{ArrowRight}';
+          await user.keyboard(openKey);
+          const deeper = await screen.findByRole('menuitem', { name: 'Deeper' });
+          await waitFor(() => expect(deeper).toHaveFocus());
+          await user.keyboard(openKey);
+          const leaf = await screen.findByRole('menuitem', { name: 'Leaf' });
+          await waitFor(() => expect(leaf).toHaveFocus());
+          expect(changed).not.toHaveBeenCalled();
+          expect(root).to.have.attribute('data-open');
 
-        await user.keyboard('{Escape}');
-        await waitFor(() =>
-          expect(screen.queryByRole('menuitem', { name: 'Leaf' })).to.equal(null),
-        );
-        expect(deeper).toHaveFocus();
-        expect(changed).not.toHaveBeenCalled();
-        await user.keyboard('{Escape}');
-        await waitFor(() =>
-          expect(screen.queryByRole('menuitem', { name: 'Deeper' })).to.equal(null),
-        );
-        expect(more).toHaveFocus();
-        expect(changed).not.toHaveBeenCalled();
-        completed.mockClear();
-        await user.keyboard('{Escape}');
-        await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(false));
-        expect(changed).toHaveBeenCalledTimes(1);
-        expect(changed.mock.calls[0][1].reason).to.equal('escape-key');
-        expect(root.isConnected).to.equal(keepMounted);
+          await user.keyboard('{Escape}');
+          await waitFor(() =>
+            expect(screen.queryByRole('menuitem', { name: 'Leaf' })).to.equal(null),
+          );
+          await waitFor(() => expect(deeper).toHaveFocus());
+          expect(changed).not.toHaveBeenCalled();
+          await user.keyboard('{Escape}');
+          await waitFor(() =>
+            expect(screen.queryByRole('menuitem', { name: 'Deeper' })).to.equal(null),
+          );
+          await waitFor(() => expect(more).toHaveFocus());
+          expect(changed).not.toHaveBeenCalled();
+          completed.mockClear();
+          await user.keyboard('{Escape}');
+          await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(false));
+          expect(changed).toHaveBeenCalledTimes(1);
+          expect(changed.mock.calls[0][1].reason).to.equal('escape-key');
+          expect(root.isConnected).to.equal(keepMounted);
+        });
       });
     });
   });
@@ -86,16 +97,27 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
     it(`supports a controlled external anchor across reopen, keepMounted=${keepMounted}`, async () => {
       const changes = vi.fn();
       function Demo() {
+        const id = React.useId();
+        const buttonId = `${id}-button`;
+        const menuId = `${id}-menu`;
         const [anchor, setAnchor] = React.useState<HTMLButtonElement | null>(null);
         return (
           <React.Fragment>
-            <button type="button" onClick={(event) => setAnchor(event.currentTarget)}>
+            <button
+              type="button"
+              id={buttonId}
+              aria-haspopup="menu"
+              aria-expanded={Boolean(anchor)}
+              aria-controls={anchor ? menuId : undefined}
+              onClick={(event) => setAnchor(event.currentTarget)}
+            >
               Open
             </button>
             <Menu2
               open={Boolean(anchor)}
               anchor={anchor}
               keepMounted={keepMounted}
+              slotProps={{ paper: { id: menuId, 'aria-labelledby': buttonId } }}
               onOpenChange={(open, details) => {
                 changes(open, details.reason);
                 if (!open) {
@@ -114,8 +136,19 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
       }
       const { user } = render(<Demo />);
       const anchor = screen.getByRole('button', { name: 'Open' });
-      async function openAndSelect() {
-        await user.click(anchor);
+      expect(anchor).to.have.attribute('aria-haspopup', 'menu');
+      expect(anchor).to.have.attribute('aria-expanded', 'false');
+      expect(anchor).not.to.have.attribute('aria-controls');
+      async function openAndSelect(method: 'pointer' | 'keyboard') {
+        if (method === 'pointer') {
+          await user.click(anchor);
+        } else {
+          await user.keyboard('{Enter}');
+        }
+        const popup = await screen.findByRole('menu', { name: 'Open' });
+        expect(anchor).to.have.attribute('aria-expanded', 'true');
+        expect(anchor).to.have.attribute('aria-controls', popup.id);
+        expect(popup).to.have.attribute('aria-labelledby', anchor.id);
         await focusTrigger('More');
         await user.keyboard('{ArrowRight}');
         const nested = await screen.findByRole('menuitem', { name: 'Nested' });
@@ -125,10 +158,12 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
         await waitFor(() => expect(screen.queryByRole('menu')).to.equal(null));
         expect(changes).toHaveBeenCalledExactlyOnceWith(false, 'item-press');
         await waitFor(() => expect(anchor).toHaveFocus());
+        expect(anchor).to.have.attribute('aria-expanded', 'false');
+        expect(anchor).not.to.have.attribute('aria-controls');
         changes.mockClear();
       }
-      await openAndSelect();
-      await openAndSelect();
+      await openAndSelect('pointer');
+      await openAndSelect('keyboard');
     });
   });
 
@@ -201,7 +236,7 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
     expect(screen.getAllByRole('menu')).to.have.length(2);
   });
 
-  it('uses the real trigger tree IDs when a trigger is added to an open menu', async () => {
+  it('keeps submenu navigation and focus return working when a trigger is added', async () => {
     const changed = vi.fn();
     function Demo() {
       const [hasTrigger, setHasTrigger] = React.useState(false);

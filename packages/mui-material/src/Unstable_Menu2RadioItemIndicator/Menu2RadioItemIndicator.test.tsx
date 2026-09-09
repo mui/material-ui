@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, isJsdom, screen } from '@mui/internal-test-utils';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
@@ -97,7 +97,10 @@ describe('<Menu2RadioItemIndicator />', () => {
     it('keeps the highlighted item on the default icons', async () => {
       const { user } = renderGroup();
 
-      await user.hover(screen.getByRole('menuitemradio', { name: 'Two' }));
+      const item = screen.getByRole('menuitemradio', { name: 'Two' });
+      await user.hover(item);
+      // user.hover() has no movement delta. Base UI ignores that event in WebKit.
+      fireEvent.mouseMove(item, { movementX: 1, movementY: 0 });
 
       const indicator = screen.getByTestId('unchecked');
       expect(indicator).to.have.class(classes.highlighted);

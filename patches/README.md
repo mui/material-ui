@@ -19,6 +19,9 @@ The original regression in `Menu2Transitions.test.tsx` is no longer an expected 
 
 ## Release requirement
 
+The fix was merged in [Base UI PR #5645](https://github.com/mui/base-ui/pull/5645).
+Keep this patch until a release includes the fix.
+
 This pnpm patch applies only within this repository.
 It does not apply to dependencies in an application that installs `@mui/material`.
 Before publishing Menu2, release the fix in Base UI and require that version in
