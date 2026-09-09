@@ -80,6 +80,9 @@ For the pagination of a large set of tabular data, you should use the `TablePagi
 Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop starts at 0 to match the requirement of zero-based JavaScript arrays that come with rendering a lot of tabular data.
 :::
 
+The default `TablePaginationActions` buttons include tooltips.
+When replacing a button through `slots.firstButton`, `slots.previousButton`, `slots.nextButton`, or `slots.lastButton`, the custom component receives a `title` prop and is responsible for rendering its own tooltip.
+
 You can learn more about this use case in the [table section](/material-ui/react-table/#custom-pagination-options) of the documentation.
 
 ## Accessibility
