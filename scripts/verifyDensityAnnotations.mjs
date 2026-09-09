@@ -22,10 +22,8 @@ import { chromium } from 'playwright';
 // Loaded by URL rather than imported: a dev script reaching into the docs
 // workspace, which a static cross-package import would not allow.
 const { DENSITY_ANNOTATIONS, annotationsFor } = await import(
-  new URL(
-    '../docs/data/material/customization/density/densityAnnotationSpecs.js',
-    import.meta.url,
-  ).href
+  new URL('../docs/data/material/customization/density/densityAnnotationSpecs.js', import.meta.url)
+    .href
 );
 
 const HOST = process.env.HOST ?? 'http://localhost:5099';
@@ -139,7 +137,8 @@ for (const family of families) {
     ),
   );
 
-  for (const annotation of annotationsFor(family, values)) {
+  const annotations = annotationsFor(family, values);
+  for (const annotation of annotations) {
     const where = `${family} · ${annotation.on} · ${annotation.aspect}${
       annotation.axis ? ` (${annotation.axis})` : ''
     }`;
@@ -161,9 +160,7 @@ for (const family of families) {
     }
     // C — it drew something
     if (result.values.length === 0) {
-      failures.push(
-        `${where}: nothing to draw — the instance does not exercise this row`,
-      );
+      failures.push(`${where}: nothing to draw — the instance does not exercise this row`);
       continue;
     }
     // B — a step token must be the number it names
@@ -184,7 +181,7 @@ for (const family of families) {
       }
     }
   }
-  console.log(`${family}: ${annotationsFor(family, values).length} annotations checked`);
+  console.log(`${family}: ${annotations.length} annotations checked`);
 }
 
 await browser.close();

@@ -17,8 +17,6 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import StarIcon from '@mui/icons-material/Star';
 import { Annotate, useClaims } from './densityAnnotations';
 
-const colorSchemes = { light: true, dark: true };
-
 // A row of body text floors at 32px (a 24px line plus its padding), so the
 // steps below that would leave the list where it is.
 const TOUCH_STEPS = [32, 36, 40, 44];
@@ -85,7 +83,7 @@ export default function TouchTargetDemo() {
 
   const theme = React.useMemo(
     () =>
-      enhanceDensity(createTheme({ colorSchemes }), {
+      enhanceDensity(createTheme({ colorSchemes: { light: true, dark: true } }), {
         'touch-target': touchTarget,
         'icon-target': iconTarget,
       }),

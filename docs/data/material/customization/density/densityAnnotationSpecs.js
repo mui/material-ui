@@ -1,3 +1,11 @@
+// The authored control height per `size` — the same ladder for every sized
+// button family (Button, Pagination, ToggleButton).
+const HEIGHT_BY_SIZE = {
+  small: 'touch-target - x-small',
+  medium: 'touch-target',
+  large: 'touch-target + small',
+};
+
 /**
  * What to measure on each family, and what the preset authored for it. Every
  * entry is cross-checked against the emit table, so a `token` is the expression
@@ -289,12 +297,8 @@ export const DENSITY_ANNOTATIONS = {
     },
   ],
   Button: (values) => {
-    const height = {
-      small: 'touch-target - x-small',
-      medium: 'touch-target',
-      large: 'touch-target + small',
-    }[values.size];
-    const inline = { small: 'small', medium: 'medium', large: 'large' }[values.size];
+    const height = HEIGHT_BY_SIZE[values.size];
+    const inline = values.size;
     return [
       {
         on: '.MuiButton-root',
@@ -649,11 +653,7 @@ export const DENSITY_ANNOTATIONS = {
     ];
   },
   Pagination: (values) => {
-    const box = {
-      small: 'touch-target - x-small',
-      medium: 'touch-target',
-      large: 'touch-target + small',
-    }[values.size];
+    const box = HEIGHT_BY_SIZE[values.size];
     return [
       // One sample box — a horizontal row's beams all share one y, so
       // multi-matching just piles identical bars and sprays ties through the
@@ -1135,11 +1135,7 @@ export const DENSITY_ANNOTATIONS = {
     ];
   },
   ToggleButton: (values) => {
-    const box = {
-      small: 'touch-target - x-small',
-      medium: 'touch-target',
-      large: 'touch-target + small',
-    }[values.size];
+    const box = HEIGHT_BY_SIZE[values.size];
     // The inner term IS the icon size now: the padding centres the glyph's
     // box inside the button, so each size pairs its box with its icon step.
     const inner = {

@@ -24,9 +24,9 @@ import {
 import { annotationsFor } from './densityAnnotationSpecs';
 import { COMPONENT_NAMES, DENSITY_COMPONENTS } from './densityComponents';
 
-const colorSchemes = { light: true, dark: true };
-
-const densityTheme = enhanceDensity(createTheme({ colorSchemes }));
+const densityTheme = enhanceDensity(
+  createTheme({ colorSchemes: { light: true, dark: true } }),
+);
 
 // Wide enough that the captions in the side gutters have room before the canvas
 // starts scrolling.
@@ -36,13 +36,13 @@ const STAGE_HEIGHT = 300;
 // Stable identity, so a family without controls doesn't re-run the memos.
 const NO_CONTROLS = [];
 
+const SCALE_ROWS = [
+  ...Object.entries(DENSITY_SCALE),
+  ...Object.entries(DENSITY_TARGETS),
+];
+
 function ScaleLegend() {
   const [anchor, setAnchor] = React.useState(null);
-  const rows = [
-    ...Object.entries(DENSITY_SCALE),
-    ...Object.entries(DENSITY_TARGETS),
-  ];
-
   return (
     <React.Fragment>
       <IconButton
@@ -71,7 +71,7 @@ function ScaleLegend() {
               rowGap: 0.5,
             }}
           >
-            {rows.map(([step, value]) => (
+            {SCALE_ROWS.map(([step, value]) => (
               <React.Fragment key={step}>
                 <Typography variant="body2">{step}</Typography>
                 <Typography
@@ -113,6 +113,7 @@ export default function AllComponentsDemo() {
     [component, values],
   );
   const off = hidden[component];
+  const allShown = !off || off.length === 0;
   // One checkbox per slot — every annotation on it hides together.
   const slots = React.useMemo(
     () => [...new Set(annotations.map(slotLabel))],
@@ -223,15 +224,14 @@ export default function AllComponentsDemo() {
                 control={
                   <Checkbox
                     size="small"
-                    checked={!off || off.length === 0}
+                    checked={allShown}
                     indeterminate={
-                      Boolean(off && off.length > 0) &&
-                      !slots.every((slot) => off?.includes(slot))
+                      !allShown && !slots.every((slot) => off?.includes(slot))
                     }
                     onChange={() =>
                       setHidden((previous) => ({
                         ...previous,
-                        [component]: !off || off.length === 0 ? [...slots] : [],
+                        [component]: allShown ? [...slots] : [],
                       }))
                     }
                   />

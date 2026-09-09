@@ -9,13 +9,7 @@ import Paper from '@mui/material/Paper';
 import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
-import {
-  Annotate,
-  AnnotateItem,
-  Claim,
-  Rect,
-  resolveClaims,
-} from './densityAnnotations';
+import { Annotate, Claim, useClaims } from './densityAnnotations';
 
 const colorSchemes = { light: true, dark: true };
 
@@ -91,27 +85,10 @@ export default function EnhanceDensityDemo() {
   const [size, setSize] = React.useState<Size>('medium');
   const stageRef = React.useRef<HTMLDivElement>(null);
   const demoRef = React.useRef<HTMLDivElement>(null);
-  const [state, setState] = React.useState<{
-    items: AnnotateItem[];
-    bounds: Rect;
-  } | null>(null);
-
-  React.useEffect(() => {
-    const stage = stageRef.current;
-    const demo = demoRef.current;
-    if (!stage || !demo) {
-      return undefined;
-    }
-    const measure = () =>
-      setState(resolveClaims(stage, demo, claimsFor(enhanced, size)));
-    measure();
-    // A late webfont changes the label box without changing the button box.
-    document.fonts?.ready.then(measure);
-    const observer = new ResizeObserver(measure);
-    observer.observe(demo);
-    demo.querySelectorAll('*').forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
-  }, [enhanced, size]);
+  const state = useClaims(stageRef, demoRef, claimsFor(enhanced, size), [
+    enhanced,
+    size,
+  ]);
 
   return (
     <Paper variant="outlined" sx={{ width: '100%' }}>

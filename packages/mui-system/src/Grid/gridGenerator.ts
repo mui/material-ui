@@ -17,6 +17,13 @@ function getParentSpacingVar(axis: 'row' | 'column') {
   return `--Grid-parent-${axis}Spacing`;
 }
 
+// a registered scale key (an enhanced theme advertises them via `spacing.keys`)
+// resolves like sx/Stack; any other string passes raw
+function resolveSpacingValue(spacing: Spacing | undefined, value: number | string) {
+  const isKey = typeof value === 'string' && (spacing as any)?.keys?.has(value);
+  return typeof value === 'string' && !isKey ? value : (spacing as any)?.(value);
+}
+
 const selfColumnsVar = '--Grid-columns';
 const parentColumnsVar = '--Grid-parent-columns';
 
@@ -110,11 +117,7 @@ export const generateGridRowSpacingStyles = ({ theme, ownerState }: Props) => {
     theme.breakpoints,
     ownerState.rowSpacing,
     (appendStyle, value) => {
-      // a registered scale key (an enhanced theme advertises them via
-      // `spacing.keys`) resolves like sx/Stack; any other string passes raw
-      const isKey = typeof value === 'string' && (theme.spacing as any)?.keys?.has(value);
-      const spacing =
-        typeof value === 'string' && !isKey ? value : theme.spacing?.(value as string | number);
+      const spacing = resolveSpacingValue(theme.spacing, value);
       appendStyle(styles, {
         [getSelfSpacingVar('row')]: spacing,
         '> *': {
@@ -135,11 +138,7 @@ export const generateGridColumnSpacingStyles = ({ theme, ownerState }: Props) =>
     theme.breakpoints,
     ownerState.columnSpacing,
     (appendStyle, value) => {
-      // a registered scale key (an enhanced theme advertises them via
-      // `spacing.keys`) resolves like sx/Stack; any other string passes raw
-      const isKey = typeof value === 'string' && (theme.spacing as any)?.keys?.has(value);
-      const spacing =
-        typeof value === 'string' && !isKey ? value : theme.spacing?.(value as string | number);
+      const spacing = resolveSpacingValue(theme.spacing, value);
       appendStyle(styles, {
         [getSelfSpacingVar('column')]: spacing,
         '> *': {

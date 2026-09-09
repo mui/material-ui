@@ -15,15 +15,19 @@ export interface DensityScale {
 
 export type DensityKey = keyof DensityScale;
 
-export const DENSITY_KEYS: DensityKey[] = [
-  'xx-small',
-  'x-small',
-  'small',
-  'medium',
-  'large',
-  'x-large',
-  'xx-large',
-];
+/** How far each step sits along the spacing unit. Internal: the ladder's
+ * shape is the enhancer's to define, not something a caller passes in. */
+const STEP_MULTIPLIERS: Record<DensityKey, number> = {
+  'xx-small': 0.5,
+  'x-small': 1,
+  small: 1.5,
+  medium: 2,
+  large: 3,
+  'x-large': 4,
+  'xx-large': 6,
+};
+
+export const DENSITY_KEYS = Object.keys(STEP_MULTIPLIERS) as DensityKey[];
 
 // Type-level only: without `enhanceDensity` the strings pass through verbatim.
 declare module '@mui/system' {
@@ -40,18 +44,6 @@ export type EnhanceableTheme = Theme &
       'rootSelector' | 'cssVarPrefix' | 'generateThemeVars' | 'generateStyleSheets'
     >
   >;
-
-/** How far each step sits along the spacing unit. Internal: the ladder's
- * shape is the enhancer's to define, not something a caller passes in. */
-const STEP_MULTIPLIERS: Record<DensityKey, number> = {
-  'xx-small': 0.5,
-  'x-small': 1,
-  small: 1.5,
-  medium: 2,
-  large: 3,
-  'x-large': 4,
-  'xx-large': 6,
-};
 
 /**
  * PRIVATE density core behind `enhanceDensity`: the keyed `theme.spacing`
@@ -96,7 +88,6 @@ export function applyDensity<T extends EnhanceableTheme>(
     // step goes back through the spacing unit.
     const override = overrides[key];
     stepValues[key] = override === undefined ? stepValue(STEP_MULTIPLIERS[key]) : `${override}px`;
-    const negated = override === undefined ? stepValue(-STEP_MULTIPLIERS[key]) : `${-override}px`;
 
     if (themeInput.vars) {
       // Fallback to the computed step: the definitions only mount through
@@ -109,7 +100,8 @@ export function applyDensity<T extends EnhanceableTheme>(
       return;
     }
     resolved[key] = stepValues[key];
-    resolved[`-${key}`] = negated;
+    resolved[`-${key}`] =
+      override === undefined ? stepValue(-STEP_MULTIPLIERS[key]) : `${-override}px`;
   });
 
   const stepKeys = new Set(Object.keys(resolved));

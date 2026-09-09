@@ -41,20 +41,26 @@ export default function DensityRecipesDemo() {
   const [uiIndex, setUiIndex] = React.useState(0);
   const stageRef = React.useRef(null);
   const demoRef = React.useRef(null);
-  const state = useClaims(stageRef, demoRef, CLAIMS, [recipeId, uiIndex]);
+  // No claims while the toggle is off — the observers have nothing to measure.
+  const state = useClaims(stageRef, demoRef, measured ? CLAIMS : [], [
+    recipeId,
+    uiIndex,
+    measured,
+  ]);
 
   const recipe =
     densityRecipes.find((item) => item.id === recipeId) ?? densityRecipes[1];
 
   // Only the scale changes between recipes — everything else is the default
   // theme.
-  const theme = React.useMemo(() => {
-    const base = createTheme({
-      colorSchemes,
-      focusVisible: true,
-    });
-    return enhanceDensity(base, recipe.scale);
-  }, [recipe]);
+  const theme = React.useMemo(
+    () =>
+      enhanceDensity(
+        createTheme({ colorSchemes, focusVisible: true }),
+        recipe.scale,
+      ),
+    [recipe],
+  );
 
   const Ui = recipeUis[uiIndex].Component;
 

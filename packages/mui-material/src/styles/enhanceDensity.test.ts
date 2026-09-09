@@ -454,13 +454,13 @@ describe('enhanceDensity', () => {
     const theme = enhanceDensity(
       createTheme({
         components: {
-          MuiAlert: { defaultProps: { slotProps: { icon: { 'data-user': true } } } },
+          MuiAlert: { defaultProps: { slotProps: { icon: { title: 'user' } } } },
         },
       }),
     );
 
     const slotProps = (theme.components as any).MuiAlert.defaultProps.slotProps;
-    expect(slotProps.icon).to.deep.equal({ 'data-user': true });
+    expect(slotProps.icon).to.deep.equal({ title: 'user' });
     // the density-provided slot default survives alongside it
     expect(Object.keys(slotProps).length).to.be.greaterThan(1);
   });

@@ -1,22 +1,22 @@
 import * as React from 'react';
+import { private_defaultDensityScale } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
-// The default scale `enhanceDensity` ships. A measured number is matched back
-// against it so a caption can name the step that produced it.
-export const DENSITY_SCALE = {
-  'xx-small': 4,
-  'x-small': 8,
-  small: 12,
-  medium: 16,
-  large: 24,
-  'x-large': 32,
-  'xx-large': 48,
-} as const;
+// The default scale `enhanceDensity` ships, split into steps and sizing
+// targets. A measured number is matched back against it so a caption can name
+// the step that produced it.
+const {
+  'touch-target': defaultTouchTarget,
+  'icon-target': defaultIconTarget,
+  ...defaultSteps
+} = private_defaultDensityScale;
+
+export const DENSITY_SCALE = defaultSteps;
 
 export const DENSITY_TARGETS = {
-  'touch-target': 32,
-  'icon-target': 16,
-} as const;
+  'touch-target': defaultTouchTarget,
+  'icon-target': defaultIconTarget,
+};
 
 // The colors browser devtools use when it highlights a box.
 const PADDING_COLOR = '#c3e5a5';
@@ -957,59 +957,6 @@ export function resolveClaims(
         const axis =
           claim.axis ??
           (claim.side === 'top' || claim.side === 'bottom' ? 'block' : 'inline');
-        if (axis === 'all') {
-          const liveSides = (
-            ['top', 'right', 'bottom', 'left'] as (keyof Edges)[]
-          ).filter((edge) => Math.abs(edges[edge]) > 0.5);
-          if (liveSides.length === 0) {
-            return;
-          }
-          const values = new Set(
-            liveSides.map((edge) => Math.round(Math.abs(edges[edge]) * 10) / 10),
-          );
-          const gutter = claim.route?.gutter ?? 'right';
-          const lead = liveSides.includes(gutter as keyof Edges)
-            ? (gutter as keyof Edges)
-            : liveSides[0];
-          const outerOf = (side: keyof Edges): Rect => {
-            const size = Math.abs(edges[side]);
-            if (side === 'left') {
-              return { x: outer.x, y: outer.y, width: size, height: outer.height };
-            }
-            if (side === 'right') {
-              return {
-                x: outer.x + outer.width - size,
-                y: outer.y,
-                width: size,
-                height: outer.height,
-              };
-            }
-            if (side === 'top') {
-              return { x: outer.x, y: outer.y, width: outer.width, height: size };
-            }
-            return {
-              x: outer.x,
-              y: outer.y + outer.height - size,
-              width: outer.width,
-              height: size,
-            };
-          };
-          items.push({
-            kind: 'band',
-            tone: isPad ? 'padding' : 'margin',
-            measures: lead === 'left' || lead === 'right' ? 'x' : 'y',
-            // one label for the whole ring — only honest when every live band
-            // agrees on the value
-            label: labelFor(
-              edges[lead],
-              values.size === 1 ? (claim.text ?? claim.token) : undefined,
-            ),
-            bands: [outerOf(lead)],
-            ring: { outer, inner: isPad ? contentBox : box },
-            route: routed(claim.route, gutter),
-          });
-          return;
-        }
         const bandOf = (side: keyof Edges): Rect => {
           const size = Math.abs(edges[side]);
           if (side === 'left') {
@@ -1033,6 +980,36 @@ export function resolveClaims(
             height: size,
           };
         };
+        if (axis === 'all') {
+          const liveSides = (
+            ['top', 'right', 'bottom', 'left'] as (keyof Edges)[]
+          ).filter((edge) => Math.abs(edges[edge]) > 0.5);
+          if (liveSides.length === 0) {
+            return;
+          }
+          const values = new Set(
+            liveSides.map((edge) => Math.round(Math.abs(edges[edge]) * 10) / 10),
+          );
+          const gutter = claim.route?.gutter ?? 'right';
+          const lead = liveSides.includes(gutter as keyof Edges)
+            ? (gutter as keyof Edges)
+            : liveSides[0];
+          items.push({
+            kind: 'band',
+            tone: isPad ? 'padding' : 'margin',
+            measures: lead === 'left' || lead === 'right' ? 'x' : 'y',
+            // one label for the whole ring — only honest when every live band
+            // agrees on the value
+            label: labelFor(
+              edges[lead],
+              values.size === 1 ? (claim.text ?? claim.token) : undefined,
+            ),
+            bands: [bandOf(lead)],
+            ring: { outer, inner: isPad ? contentBox : box },
+            route: routed(claim.route, gutter),
+          });
+          return;
+        }
         const naturalSides: (keyof Edges)[] =
           axis === 'inline' ? ['left', 'right'] : ['top', 'bottom'];
         const pair: (keyof Edges)[] = claim.side ? [claim.side] : naturalSides;
