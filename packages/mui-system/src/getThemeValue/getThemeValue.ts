@@ -9,7 +9,7 @@ import sizing from '../sizing';
 import spacing from '../spacing';
 import typography from '../typography';
 
-type StyleFunctionWithFilterProps = ((props: any) => any) & { filterProps: string[] };
+type StyleFunctionWithFilterProps = ((props: any) => any) & { filterProps: Iterable<string> };
 
 /** @internal */
 export const styleFunctionMapping: Record<string, StyleFunctionWithFilterProps> = {
