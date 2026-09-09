@@ -279,6 +279,23 @@ describe('<Pagination />', () => {
     expect(resultsRef.current).toHaveFocus();
   });
 
+  it('keeps a page reachable when both navigation buttons are hidden', () => {
+    render(
+      <Pagination
+        count={4}
+        page={3}
+        boundaryCount={0}
+        siblingCount={0}
+        hidePrevButton
+        hideNextButton
+      />,
+    );
+
+    const buttons = screen.getAllByRole('button');
+    expect(buttons).to.have.length(2);
+    expect(buttons.map((button) => button.textContent)).to.deep.equal(['3', '4']);
+  });
+
   it('renders no page button when count is zero', () => {
     render(<Pagination count={0} boundaryCount={0} siblingCount={0} />);
 
