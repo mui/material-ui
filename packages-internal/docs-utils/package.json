@@ -11,7 +11,7 @@
   "scripts": {
     "prebuild": "rimraf ./build",
     "build": "code-infra build --tsgo --flat --skip-babel-runtime-check",
-    "typescript": "tsgo -p tsconfig.json",
+    "typescript": "tsc -p tsconfig.json",
     "release:publish": "pnpm build && pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
