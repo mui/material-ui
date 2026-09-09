@@ -10,7 +10,7 @@
     // resolve subpath exports like `@mui/material/themeCssVarsAugmentation`.
     "module": "esnext",
     "moduleResolution": "bundler",
-    "types": ["vitest/globals"]
+    "types": []
   },
   "include": ["e2e/**/*", "integration/**/*", "regressions/**/*"],
   "exclude": [

@@ -17,6 +17,7 @@ import createTransitions from './createTransitions';
 import createMotion from './createMotion';
 import zIndex from './zIndex';
 import { stringifyTheme } from './stringifyTheme';
+import { resolveFocusVisible } from './focusVisible';
 
 function coefficientToPercentage(coefficient) {
   if (typeof coefficient === 'number') {
@@ -117,6 +118,16 @@ function createThemeNoVars(options = {}, ...args) {
   muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
   // `reducedMotion` is owned by `theme.motion`; remove stale values preserved by systemCreateTheme.
   delete muiTheme.transitions.reducedMotion;
+
+  // Normalize once so components read a resolved object, never the boolean. The color is a hex off
+  // this (default) scheme; `createTheme` attaches a per-scheme copy so dark mode stays reactive.
+  // Read the palette off `muiTheme` — a merge argument may have recolored it after `palette` was built.
+  if (muiTheme.focusVisible != null && muiTheme.focusVisible !== false) {
+    muiTheme.focusVisible = resolveFocusVisible(
+      muiTheme.focusVisible,
+      muiTheme.palette.primary.main,
+    );
+  }
 
   if (process.env.NODE_ENV !== 'production') {
     // TODO v6: Refactor to use globalStateClassesMapping from @mui/utils once `readOnly` state class is used in Rating component.

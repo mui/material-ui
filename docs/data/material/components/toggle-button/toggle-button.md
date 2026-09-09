@@ -101,4 +101,8 @@ The demos below show how to adjust spacing between toggle buttons in horizontal 
 
 ### Keyboard
 
-At present, toggle buttons are in DOM order. Navigate between them with the tab key. The button behavior follows standard keyboard semantics.
+The group uses a single tab stop.
+Use the left and right arrow keys to move focus in a horizontal group, or the up and down arrow keys in a vertical group.
+The <kbd>Home</kbd> and <kbd>End</kbd> keys move focus to the first and last enabled buttons.
+Focus movement wraps, skips disabled buttons, and does not change the selected value.
+Press <kbd>Space</kbd> or <kbd>Enter</kbd> to toggle the focused button.

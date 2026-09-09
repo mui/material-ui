@@ -168,7 +168,7 @@ function DemoIframe(props: DemoIframeProps) {
     // that it happens before React can attach event listeners).
     // We need to check the readyState of the document once the iframe is mounted
     // and "replay" the missed load event.
-    // See https://github.com/facebook/react/pull/13862 for ongoing effort in React
+    // See https://github.com/react/react/pull/13862 for ongoing effort in React
     // (though not with iframes in mind).
     if (document != null && document.readyState === 'complete' && !iframeLoaded) {
       onLoad();

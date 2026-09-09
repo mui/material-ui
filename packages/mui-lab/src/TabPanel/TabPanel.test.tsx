@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import TabPanel, { tabPanelClasses as classes } from '@mui/lab/TabPanel';
 import TabContext from '../TabContext';

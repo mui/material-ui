@@ -1,6 +1,6 @@
 /// <reference path="./react-transition-group.d.ts" />
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { TransitionGroup } from 'react-transition-group';
 import TransitionGroupContext from 'react-transition-group/TransitionGroupContext';
@@ -570,6 +570,91 @@ describe('<Transition />', () => {
 
   describe('interrupted transitions', () => {
     clock.withFakeTimers();
+
+    it.skipIf(!('Activity' in React))(
+      'restarts completion when effects reconnect while exiting',
+      () => {
+        const handlers = {
+          onExit: spy(),
+          onExiting: spy(),
+          onExited: spy(),
+        };
+
+        function ActivityHarness(props: { in: boolean; mode: 'hidden' | 'visible' }) {
+          return (
+            <React.Activity mode={props.mode}>
+              <TestHarness
+                in={props.in}
+                appear={false}
+                unmountOnExit
+                timeout={100}
+                handlers={handlers}
+              />
+            </React.Activity>
+          );
+        }
+
+        const { setProps } = render(<ActivityHarness in mode="visible" />);
+        setProps({ in: false, mode: 'visible' });
+        expect(screen.getByTestId('target')).to.have.attribute('data-status', 'exiting');
+        expect(handlers.onExit.callCount).to.equal(1);
+        expect(handlers.onExiting.callCount).to.equal(1);
+
+        // Activity disconnects effects while preserving state. This cancels the pending completion
+        setProps({ in: false, mode: 'hidden' });
+        clock.tick(100);
+        expect(screen.getByTestId('target')).to.have.attribute('data-status', 'exiting');
+        expect(handlers.onExited.callCount).to.equal(0);
+
+        setProps({ in: false, mode: 'visible' });
+        expect(handlers.onExit.callCount).to.equal(1);
+        expect(handlers.onExiting.callCount).to.equal(1);
+        clock.tick(100);
+
+        expect(screen.queryByTestId('target')).to.equal(null);
+        expect(handlers.onExited.callCount).to.equal(1);
+      },
+    );
+
+    it.skipIf(!('Activity' in React))(
+      'does not complete the superseded phase when in flips on reconnect',
+      () => {
+        const handlers = {
+          onEnter: spy(),
+          onEntering: spy(),
+          onEntered: spy(),
+          onExit: spy(),
+          onExiting: spy(),
+          onExited: spy(),
+        };
+
+        function ActivityHarness(props: { in: boolean; mode: 'hidden' | 'visible' }) {
+          return (
+            <React.Activity mode={props.mode}>
+              <TestHarness in={props.in} appear={false} timeout={100} handlers={handlers} />
+            </React.Activity>
+          );
+        }
+
+        const { setProps } = render(<ActivityHarness in mode="visible" />);
+        setProps({ in: false, mode: 'visible' });
+        expect(screen.getByTestId('target')).to.have.attribute('data-status', 'exiting');
+
+        // Effects disconnect mid-exit, then reconnect in the same commit that `in` flips back.
+        // The reconciliation effect starts entering before the lifecycle effect runs, so the
+        // lifecycle effect must not schedule completion for the superseded exit.
+        setProps({ in: false, mode: 'hidden' });
+        clock.tick(50);
+        setProps({ in: true, mode: 'visible' });
+        clock.tick(100);
+
+        expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entered');
+        expect(handlers.onEnter.callCount).to.equal(1);
+        expect(handlers.onEntering.callCount).to.equal(1);
+        expect(handlers.onEntered.callCount).to.equal(1);
+        expect(handlers.onExited.callCount).to.equal(0);
+      },
+    );
 
     it('cancels entering when in flips to false mid-transition', () => {
       const handlers = {

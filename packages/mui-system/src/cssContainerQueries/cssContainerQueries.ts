@@ -85,8 +85,7 @@ export function getContainerQuery(theme: CssContainerQueries, shorthand: string)
   }
   const [, containerQuery, containerName] = matches;
   const value = (Number.isNaN(+containerQuery) ? containerQuery || 0 : +containerQuery) as
-    | Breakpoint
-    | number;
+    Breakpoint | number;
   return theme.containerQueries(containerName).up(value);
 }
 

@@ -1,3 +1,4 @@
+import { describe } from 'vitest';
 import { createRenderer } from '@mui/internal-test-utils';
 import ListItemIcon, { listItemIconClasses as classes } from '@mui/material/ListItemIcon';
 import describeConformance from '../../test/describeConformance';

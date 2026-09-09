@@ -8,25 +8,27 @@
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
 - **Level**: [IC4 or above](https://mui-org.notion.site/Leveling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
 - **Team**: You'll work closely with Sales, Operations, and Product. This is a senior individual contributor role with meaningful ownership and cross-functional influence.
-- We're a **remote** company, we prefer asynchronous communication over meetings.
+- We're a **remote** company, operating mostly asynchronously.
 
 ## The company
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+This open-source project has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+We're a company of 40 people as of 2026, and we're growing steadily.
 
-Today, MUI is a fast-growing startup of 40+ people, building a world-class ecosystem of React UI libraries and tools used by millions of developers every month.
+## The products
 
-Our open-source libraries include Material UI, Base UI, and Joy UI, complemented by advanced components through MUI X (Data Grid, Charts, Date and Time Pickers, Tree View), and products such as Toolpad and Design Kits.
-
-Learn more about MUI's products in this blog post: [An introduction to the MUI ecosystem](https://mui.com/blog/mui-product-comparison/).
+MUI is best known for our flagship product, Material UI—but this is just one of the UI libraries we maintain.
+Material UI is complemented by advanced components through MUI X (Data Grid, Charts, Date and Time Pickers, Tree View) for more complex user interactions and data visualization needs.
+Base UI is our headless component library.
+We also host Design Kits and pre-built Templates.
 
 ## The culture
 
-MUI is a fully remote, globally distributed team.
-
-We rely on asynchronous communication, deep written collaboration, and a culture of ownership. Transparency is central to how we operate - almost everything we do is public.
-
-Each person at MUI defines and drives their own work, while staying tightly aligned with company goals.
+MUI is a fully remote company with a team that spans the globe.
+The majority of our work is asynchronous, and we rely on written communication to collaborate.
+We're radically transparent: a lot of our work happens in public.
+Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
 
 For additional details about the culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site).
 
@@ -38,13 +40,7 @@ We're hiring our first Senior Product Marketing Manager to build this from the g
 
 This is not a role to optimize an existing marketing engine. It's a role to design and build one at a company that moves fast, values ownership, and won't slow you down with process. You'll define how MUI X is positioned in the Enterprise market against real competitors (AG Grid, Bryntum, and in-house alternatives), equip our Sales team with the tools to win those conversations, and develop a GTM approach that turns our enormous organic developer reach into a qualified commercial pipeline.
 
-### The mandate
-
-- Establish MUI X's positioning and messaging in the Enterprise market - and ensure Sales can articulate them in every deal.
-- Generate a qualified pipeline that accelerates Enterprise growth.
-- Build the marketing foundation - processes, playbooks, and infrastructure - that will scale with the business.
-
-### Why this role is exciting
+### Why this is interesting
 
 - You'll be MUI's first Senior PMM, with a genuine blank canvas and direct influence over how one of the world's most widely used developer tools is positioned commercially.
 - You'll work at a genuinely interesting intersection: a massively loved open-source product, a growing Enterprise commercial motion, and a competitive landscape with real differentiation to develop and own.
@@ -60,7 +56,13 @@ In this role, you will own end-to-end marketing strategy, leading positioning, l
 
 This is a highly cross-functional, hands-on role for someone who thrives in ambiguity, is as comfortable writing a positioning doc as briefing an AE before a critical call, and can turn a strong product into a scalable growth engine.
 
-### Key responsibilties
+### The mandate
+
+- Establish MUI X's positioning and messaging in the Enterprise market - and ensure Sales can articulate them in every deal.
+- Generate a qualified pipeline that accelerates Enterprise growth.
+- Build the marketing foundation - processes, playbooks, and infrastructure - that will scale with the business.
+
+### Key responsibilities
 
 - Own positioning & messaging: define and evolve MUI X's positioning for the Enterprise market, with differentiated narratives across buyer personas and competitors.
 - Drive GTM & launches: lead end-to-end go-to-market strategy and execution for major MUI X releases and commercial initiatives.
@@ -92,9 +94,8 @@ This is a highly cross-functional, hands-on role for someone who thrives in ambi
 
 ## Benefits and compensation
 
-Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
-You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
+We offer competitive compensation commensurate with your experience level and location and are prepared to pay top market rates for someone who can clearly exceed the role's expectations.
+You can find the other perks and benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply
 

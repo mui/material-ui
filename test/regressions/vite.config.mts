@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 import { fileURLToPath } from 'url';
-import { defineConfig, transformWithEsbuild } from 'vite';
+import { defineConfig, transformWithOxc } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 // eslint-disable-next-line import/no-relative-packages
@@ -14,6 +14,7 @@ export default defineConfig({
     {
       // Necessary as we opted to write our jsx in js files
       name: 'treat-js-files-as-jsx',
+      enforce: 'pre',
       async transform(code, id) {
         if (/\/node_modules\//.test(id)) {
           return null;
@@ -24,11 +25,12 @@ export default defineConfig({
         if (id.startsWith('\0')) {
           return null;
         }
-        // Use the exposed transform from vite, instead of directly
-        // transforming with esbuild
-        return transformWithEsbuild(code, id, {
-          loader: 'tsx',
-          jsx: 'automatic',
+        // Use the transform exposed by Vite instead of invoking Oxc directly.
+        return transformWithOxc(code, id, {
+          lang: 'tsx',
+          jsx: {
+            runtime: 'automatic',
+          },
         });
       },
     },
@@ -60,8 +62,8 @@ export default defineConfig({
     ],
   },
   optimizeDeps: {
-    esbuildOptions: {
-      loader: {
+    rolldownOptions: {
+      moduleTypes: {
         '.js': 'tsx',
       },
     },

@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect, beforeEach, beforeAll } from 'vitest';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
