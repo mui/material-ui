@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
@@ -231,5 +231,199 @@ describe('<TablePaginationActions />', () => {
     await user.hover(screen.getByRole('button', { name: 'Go to next page' }));
 
     expect(await screen.findByRole('tooltip')).to.have.text('Consumer tooltip');
+  });
+
+  describe.skipIf(isJsdom())('focus restoration', () => {
+    it.each(
+      ['ltr', 'rtl'].flatMap((direction) =>
+        ['first', 'previous', 'next', 'last'].map((type, index) => ({ direction, type, index })),
+      ),
+    )(
+      'moves focus when $type becomes disabled in $direction',
+      async ({ direction, type, index }) => {
+        function TestCase() {
+          const [page, setPage] = React.useState(1);
+          return (
+            <ThemeProvider theme={createTheme({ direction })}>
+              <TablePaginationActions
+                {...defaultProps}
+                count={30}
+                page={page}
+                onPageChange={(event, nextPage) => setPage(nextPage)}
+              />
+            </ThemeProvider>
+          );
+        }
+        const { user } = render(<TestCase />);
+        for (let tab = 0; tab <= index; tab += 1) {
+          // eslint-disable-next-line no-await-in-loop
+          await user.tab();
+        }
+        const button = screen.getByRole('button', { name: `Go to ${type} page` });
+        expect(button).toHaveFocus();
+
+        await user.keyboard('{Enter}');
+
+        expect(button).to.have.property('disabled', true);
+        const target = index < 2 ? 'next' : 'previous';
+        expect(screen.getByRole('button', { name: `Go to ${target} page` })).toHaveFocus();
+      },
+    );
+
+    it.each(['button', 'link'])(
+      'restores focus for a plain function %s slot after an external update',
+      async (element) => {
+        let disablePrevious;
+        function CustomButton({ disabled, children, ...props }) {
+          return element === 'button' ? (
+            <button {...props} disabled={disabled}>
+              {children}
+            </button>
+          ) : (
+            <a {...props} href="#next-page" aria-disabled={disabled}>
+              {children}
+            </a>
+          );
+        }
+        function TestCase() {
+          const [disabled, setDisabled] = React.useState(false);
+          disablePrevious = () => setDisabled(true);
+          return (
+            <TablePaginationActions
+              {...defaultProps}
+              showFirstButton={false}
+              showLastButton={false}
+              slots={{ previousButton: CustomButton, nextButton: CustomButton }}
+              slotProps={{ previousButton: { disabled } }}
+            />
+          );
+        }
+        const { user } = render(<TestCase />);
+        await user.tab();
+        expect(screen.getByRole(element, { name: 'Go to previous page' })).toHaveFocus();
+
+        await act(async () => disablePrevious());
+
+        expect(screen.getByRole(element, { name: 'Go to next page' })).toHaveFocus();
+      },
+    );
+
+    it.each([{ disabled: true }, { 'aria-disabled': true }, { tabIndex: -1 }])(
+      'skips an ineligible action (%j) when searching backward',
+      async (previousButtonProps) => {
+        function TestCase() {
+          const [page, setPage] = React.useState(1);
+          return (
+            <TablePaginationActions
+              {...defaultProps}
+              count={30}
+              page={page}
+              slotProps={{ previousButton: previousButtonProps }}
+              onPageChange={(event, nextPage) => setPage(nextPage)}
+            />
+          );
+        }
+        const { user } = render(<TestCase />);
+        await user.click(screen.getByRole('button', { name: 'Go to next page' }));
+
+        expect(screen.getByRole('button', { name: 'Go to first page' })).toHaveFocus();
+      },
+    );
+
+    it('preserves consumer focus and blur handlers and focus moved by onPageChange', async () => {
+      const handleFocus = vi.fn();
+      const handleBlur = vi.fn();
+      const resultsRef = React.createRef();
+      function TestCase() {
+        const [page, setPage] = React.useState(1);
+        return (
+          <React.Fragment>
+            <h2 ref={resultsRef} tabIndex={-1}>
+              Results
+            </h2>
+            <TablePaginationActions
+              {...defaultProps}
+              page={page}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              onPageChange={(event, nextPage) => {
+                setPage(nextPage);
+                resultsRef.current.focus();
+              }}
+            />
+          </React.Fragment>
+        );
+      }
+      const { user } = render(<TestCase />);
+      await user.tab();
+      await user.keyboard('{Enter}');
+
+      expect(resultsRef.current).toHaveFocus();
+      expect(handleFocus).toHaveBeenCalled();
+      expect(handleBlur).toHaveBeenCalled();
+    });
+
+    it('does not move focus when all actions become disabled', async () => {
+      function TestCase() {
+        const [disabled, setDisabled] = React.useState(false);
+        return (
+          <TablePaginationActions
+            {...defaultProps}
+            disabled={disabled}
+            onPageChange={() => setDisabled(true)}
+          />
+        );
+      }
+      const { user } = render(<TestCase />);
+      await user.tab();
+      await user.keyboard('{Enter}');
+
+      expect(document.activeElement).to.equal(document.body);
+    });
+
+    it('keeps focus on an action that remains enabled', async () => {
+      function TestCase() {
+        const [page, setPage] = React.useState(1);
+        return (
+          <TablePaginationActions
+            {...defaultProps}
+            page={page}
+            onPageChange={(event, nextPage) => setPage(nextPage)}
+          />
+        );
+      }
+      const { user } = render(<TestCase />);
+      const nextButton = screen.getByRole('button', { name: 'Go to next page' });
+      await user.click(nextButton);
+
+      expect(nextButton).toHaveFocus();
+    });
+
+    it('does not restore focus for a custom slot that omits the data attribute', async () => {
+      function CustomButton({ 'data-mui-pagination-action': action, ...props }) {
+        return <button {...props} />;
+      }
+      function TestCase() {
+        const [page, setPage] = React.useState(1);
+        return (
+          <TablePaginationActions
+            {...defaultProps}
+            page={page}
+            slots={{ firstButton: CustomButton }}
+            onPageChange={(event, nextPage) => setPage(nextPage)}
+          />
+        );
+      }
+      const { user } = render(<TestCase />);
+      await user.tab();
+      await user.keyboard('{Enter}');
+
+      expect(screen.getByRole('button', { name: 'Go to first page' })).to.have.property(
+        'disabled',
+        true,
+      );
+      expect(screen.getByRole('button', { name: 'Go to next page' })).not.toHaveFocus();
+      expect(screen.getByRole('button', { name: 'Go to last page' })).not.toHaveFocus();
+    });
   });
 });

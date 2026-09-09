@@ -83,6 +83,16 @@ Note that the `Pagination` page prop starts at 1 to match the requirement of inc
 The default `TablePaginationActions` buttons include tooltips.
 When replacing a button through `slots.firstButton`, `slots.previousButton`, `slots.nextButton`, or `slots.lastButton`, the custom component receives a `title` prop and is responsible for rendering its own tooltip.
 
+When an update to pagination props or `slotProps` disables the focused action, `TablePaginationActions` moves focus to the next enabled action in DOM order, or searches backward if none follows.
+Actions with `tabIndex={-1}` are skipped.
+Focus stays where it is if no action is available or your application has already moved focus elsewhere.
+
+Custom button slots participate in focus restoration by forwarding the supplied `data-mui-pagination-action` prop to their focusable element.
+Forward the `disabled` prop to native buttons, or use `aria-disabled` for other elements.
+You don't need to forward a ref.
+Custom slots that omit the data attribute continue to work, but don't participate in focus restoration.
+If a custom slot disables itself through its own state without re-rendering `TablePaginationActions`, it must handle focus restoration itself.
+
 You can learn more about this use case in the [table section](/material-ui/react-table/#custom-pagination-options) of the documentation.
 
 ## Accessibility
