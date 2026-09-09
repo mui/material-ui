@@ -14,9 +14,6 @@ import accordionSummaryClasses, {
   getAccordionSummaryUtilityClass,
 } from './accordionSummaryClasses';
 import useSlot from '../utils/useSlot';
-import mergeSlotProps from '../utils/mergeSlotProps';
-
-const EMPTY = {};
 
 const useUtilityClasses = (ownerState) => {
   const { classes, expanded, disabled, disableGutters } = ownerState;

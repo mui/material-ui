@@ -15,7 +15,6 @@ import AccordionContext from './AccordionContext';
 import useControlled from '../utils/useControlled';
 import useId from '../utils/useId';
 import useSlot from '../utils/useSlot';
-import mergeSlotProps from '../utils/mergeSlotProps';
 import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
 import { getTransitionStyles } from '../transitions/utils';
 
