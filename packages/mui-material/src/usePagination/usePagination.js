@@ -71,7 +71,11 @@ export default function usePagination(props = {}) {
   const itemList = [
     ...(showFirstButton ? ['first'] : []),
     ...(hidePrevButton ? [] : ['previous']),
-    ...(boundaryCount === 0 && siblingCount === 0
+    ...(boundaryCount === 0 &&
+    siblingCount === 0 &&
+    page >= 1 &&
+    page <= count &&
+    (siblingsStart > boundaryCount + 2 || siblingsEnd < count - boundaryCount - 1)
       ? [page]
       : [
           ...startPages,
