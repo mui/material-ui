@@ -19,7 +19,7 @@ export const styleFunctionMapping: Record<string, StyleFunctionWithFilterProps> 
   grid,
   positions,
   palette,
-  shadows: shadows as any,
+  shadows,
   sizing,
   spacing,
   typography,
@@ -29,8 +29,9 @@ export const styleFunctionMapping: Record<string, StyleFunctionWithFilterProps> 
 export const propToStyleFunction: Record<string, (props: any) => any> = Object.keys(
   styleFunctionMapping,
 ).reduce<Record<string, (props: any) => any>>((acc, styleFnName) => {
-  for (const propName of styleFunctionMapping[styleFnName].filterProps) {
-    acc[propName] = styleFunctionMapping[styleFnName];
+  const styleFunction = styleFunctionMapping[styleFnName];
+  for (const propName of styleFunction.filterProps) {
+    acc[propName] = styleFunction;
   }
 
   return acc;
