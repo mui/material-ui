@@ -34,7 +34,7 @@ describe('getTextDecoration', () => {
       expect(getTextDecoration({ theme, ownerState: { color: 'rgb(1, 1, 1)' } })).to.equal(
         'rgba(1, 1, 1, 0.4)',
       );
-      expect(getTextDecoration({ theme, ownerState: { color: 'rgba(1, 1, 1, 0.4)' } })).to.equal(
+      expect(getTextDecoration({ theme, ownerState: { color: 'rgba(1, 1, 1, 0.8)' } })).to.equal(
         'rgba(1, 1, 1, 0.4)',
       );
       expect(getTextDecoration({ theme, ownerState: { color: 'yellow' } })).to.equal(

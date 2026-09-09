@@ -1,4 +1,4 @@
-import { describe, it, expect, afterEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -54,13 +54,6 @@ describe('<Link />', () => {
   });
 
   describe('underline color', () => {
-    let reference;
-
-    afterEach(() => {
-      reference?.remove();
-      reference = undefined;
-    });
-
     it('using a named CSS color should not crash', () => {
       expect(() =>
         render(
@@ -78,14 +71,8 @@ describe('<Link />', () => {
         </Link>,
       );
       const link = screen.getByRole('link');
-      reference = document.createElement('span');
-      reference.style.textDecorationColor = 'color-mix(in srgb, white 40%, transparent)';
-      expect(reference.style.textDecorationColor).not.to.equal('');
-      document.body.appendChild(reference);
 
-      expect(getComputedStyle(link).textDecorationColor).to.equal(
-        getComputedStyle(reference).textDecorationColor,
-      );
+      expect(getComputedStyle(link).textDecorationColor).to.equal('color(srgb 1 1 1 / 0.4)');
     });
 
     it.skipIf(isJsdom())('should derive the underline color from the color prop', () => {
@@ -106,15 +93,9 @@ describe('<Link />', () => {
         </ThemeProvider>,
       );
       const link = screen.getByRole('link');
-      reference = document.createElement('span');
-      reference.style.color = '#ff5252';
-      reference.style.textDecorationColor = theme.alpha(theme.palette.primary.main, 0.4);
-      document.body.appendChild(reference);
 
-      expect(getComputedStyle(link).color).to.equal(getComputedStyle(reference).color);
-      expect(getComputedStyle(link).textDecorationColor).to.equal(
-        getComputedStyle(reference).textDecorationColor,
-      );
+      expect(getComputedStyle(link).color).to.equal('rgb(255, 82, 82)');
+      expect(getComputedStyle(link).textDecorationColor).to.equal('rgba(25, 118, 210, 0.4)');
     });
   });
 
