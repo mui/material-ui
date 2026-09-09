@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -241,14 +242,11 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     usesGeneratedRegionId &&
     (isRegionAlwaysMounted || (isDefaultTransition && expanded) || isRegionMounted);
 
-  const regionExternalSlotProps = slotProps.region;
-  const regionSlotProps = mergeSlotProps(
-    {
-      id: regionId,
-      'aria-labelledby': summaryId,
-    },
-    regionExternalSlotProps ?? EMPTY,
-  );
+  const regionSlotProps = {
+    ...resolveComponentProps(slotProps.region, ownerState),
+    id: regionId,
+    'aria-labelledby': summaryId,
+  };
 
   const [RegionSlot, regionProps] = useSlot('region', {
     elementType: AccordionRegion,

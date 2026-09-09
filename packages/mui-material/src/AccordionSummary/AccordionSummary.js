@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -139,13 +140,11 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootSlotProps = mergeSlotProps(
-    {
-      id: summaryId,
-      'aria-controls': ariaControls,
-    },
-    slotProps?.root ?? EMPTY,
-  );
+  const rootSlotProps = {
+    ...resolveComponentProps(slotProps?.root, ownerState),
+    id: summaryId,
+    'aria-controls': ariaControls,
+  };
 
   const externalForwardedProps = {
     slots,
