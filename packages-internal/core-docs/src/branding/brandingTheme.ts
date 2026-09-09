@@ -1554,9 +1554,10 @@ export function getThemedComponents(): ThemeOptions {
         },
         styleOverrides: {
           html: {
-            // Keep both: the scroll lock only locks <html> instead of <body> when the
-            // computed overflow-y is `scroll`, and the gutter is what stops the page from
-            // shifting while it is locked.
+            // Forcing the scrollbar keeps the page from shifting between short and long
+            // pages, and is the fallback where `scrollbar-gutter` isn't supported. The
+            // gutter supersedes it elsewhere, and also holds the space while a modal
+            // blocks the scroll.
             overflowY: 'scroll',
             scrollbarGutter: 'stable',
           },

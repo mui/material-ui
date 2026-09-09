@@ -16,7 +16,8 @@ function isOverflowing(container: Element): boolean {
   const doc = ownerDocument(container);
 
   if (isDocumentScroller(container, doc)) {
-    return ownerWindow(container).innerWidth > doc.documentElement.clientWidth;
+    // The viewport scrollbar is visible exactly when it takes up width.
+    return getScrollbarSize(ownerWindow(container)) > 0;
   }
 
   return container.scrollHeight > container.clientHeight;
@@ -96,10 +97,11 @@ function hasStableScrollbarGutter(scrollContainer: HTMLElement): boolean {
   }
 
   const containerStyle = win.getComputedStyle(scrollContainer);
+  const { overflowY } = containerStyle;
   // The gutter only takes effect on a scroll container, so on a `visible` or `clip` container
   // the declaration is inert. Blocking the scroll below turns it into a scroll container,
   // which would create the gutter and shrink the content instead of leaving it in place.
-  if (containerStyle.overflowY === 'visible' || containerStyle.overflowY === 'clip') {
+  if (overflowY === 'visible' || overflowY === 'clip') {
     return false;
   }
 
@@ -123,7 +125,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     if (container.parentNode instanceof DocumentFragment) {
       scrollContainer = ownerDocument(container).body;
     } else {
-      // Support html overflow-y: auto for scroll stability between pages
+      // Support html overflow-y: scroll for scroll stability between pages
       // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
       const parent = container.parentElement;
       const containerWindow = ownerWindow(container);
@@ -134,7 +136,8 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
           : container;
     }
 
-    // Compute the size before applying overflow hidden to avoid any scroll jumps.
+    // Read the size while the scrollbar is still there, so applying overflow hidden below
+    // can't jump the scroll position.
     const scrollbarSize = getScrollbarSize(ownerWindow(scrollContainer));
 
     // Overlay scrollbars (e.g. macOS, Windows 11) have zero width — there is nothing to
