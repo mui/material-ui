@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { act, createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
@@ -378,7 +378,9 @@ describe('<TablePaginationActions />', () => {
       await user.tab();
       await user.keyboard('{Enter}');
 
-      expect(document.activeElement).to.equal(document.body);
+      await waitFor(() => {
+        expect(document.activeElement).to.equal(document.body);
+      });
     });
 
     it('keeps focus on an action that remains enabled', async () => {
