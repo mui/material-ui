@@ -6,11 +6,16 @@ export interface ManagedModalProps {
   disableScrollLock?: boolean | undefined;
 }
 
+// Both <body> and <html> scroll the viewport rather than themselves.
+function isDocumentScroller(element: Element, doc: Document): boolean {
+  return element === doc.body || element === doc.documentElement;
+}
+
 // Is a vertical scrollbar displayed?
 function isOverflowing(container: Element): boolean {
   const doc = ownerDocument(container);
 
-  if (container === doc.body || container === doc.documentElement) {
+  if (isDocumentScroller(container, doc)) {
     return ownerWindow(container).innerWidth > doc.documentElement.clientWidth;
   }
 
@@ -80,7 +85,7 @@ function hasStableScrollbarGutter(scrollContainer: HTMLElement): boolean {
   const doc = ownerDocument(scrollContainer);
   const win = ownerWindow(scrollContainer);
 
-  if (scrollContainer === doc.body || scrollContainer === doc.documentElement) {
+  if (isDocumentScroller(scrollContainer, doc)) {
     // Locking the document scroller locks the viewport scrollbar. The viewport is always a
     // scroll container, and only the root element's gutter propagates to it — unlike
     // overflow, which propagates from <body> too.

@@ -8,11 +8,6 @@ interface Modal {
   modalRef: Element;
 }
 
-// The gutter tests are useless without support, so fail loudly rather than pass vacuously.
-function expectStableGutterSupport() {
-  expect(CSS.supports('scrollbar-gutter', 'stable')).to.equal(true);
-}
-
 function getDummyModal(): Modal {
   return {
     mount: document.createElement('div'),
@@ -131,7 +126,6 @@ describe('ModalManager', () => {
 
     afterEach(() => {
       document.body.removeChild(fixedNode);
-      container1.style.removeProperty('scrollbar-gutter');
       window.innerWidth -= 1;
     });
 
@@ -150,101 +144,101 @@ describe('ModalManager', () => {
       expect(fixedNode.style.paddingRight).to.equal('14.4px');
     });
 
-    // A stable scrollbar gutter keeps the scrollbar space reserved while the scroll is locked,
-    // so compensating for it would shift the content instead of keeping it in place.
     describe.skipIf(isJsdom())('with a stable scrollbar gutter', () => {
       beforeEach(() => {
-        expectStableGutterSupport();
+        // These tests are useless without support, so fail loudly rather than pass vacuously.
+        if (!CSS.supports('scrollbar-gutter', 'stable')) {
+          throw new Error('This browser does not support scrollbar-gutter.');
+        }
         fixedNode.style.paddingRight = '14.4px';
       });
 
-      afterEach(() => {
-        container1.style.removeProperty('overflow');
+      describe('on the scroll container', () => {
+        afterEach(() => {
+          container1.style.removeProperty('overflow');
+          container1.style.removeProperty('scrollbar-gutter');
+        });
+
+        it('should not compensate the scrollbar when the scroll container has a stable gutter', () => {
+          container1.style.overflow = 'auto';
+          container1.style.setProperty('scrollbar-gutter', 'stable');
+
+          const modal = getDummyModal();
+          modalManager.add(modal, container1);
+          modalManager.mount(modal, {});
+          expect(container1.style.overflow).to.equal('hidden');
+          expect(container1.style.paddingRight).to.equal('20px');
+          expect(fixedNode.style.paddingRight).to.equal('14.4px');
+          modalManager.remove(modal);
+          expect(container1.style.overflow).to.equal('auto');
+          expect(container1.style.paddingRight).to.equal('20px');
+          expect(fixedNode.style.paddingRight).to.equal('14.4px');
+        });
+
+        // The gutter is inert until the element is a scroll container, and blocking the scroll
+        // is what turns it into one, so the space it then reserves still has to be compensated.
+        it('should compensate the scrollbar when the container is not a scroll container', () => {
+          const scrollbarSize = getScrollbarSize(window);
+          container1.style.setProperty('scrollbar-gutter', 'stable');
+
+          const modal = getDummyModal();
+          modalManager.add(modal, container1);
+          modalManager.mount(modal, {});
+          expect(container1.style.overflow).to.equal('hidden');
+          expect(container1.style.paddingRight).to.equal(`${20 + scrollbarSize}px`);
+          expect(fixedNode.style.paddingRight).to.equal(`${14.4 + scrollbarSize}px`);
+          modalManager.remove(modal);
+          expect(container1.style.paddingRight).to.equal('20px');
+          expect(fixedNode.style.paddingRight).to.equal('14.4px');
+        });
       });
 
-      it('should not compensate the scrollbar when the scroll container has a stable gutter', () => {
-        container1.style.overflow = 'auto';
-        container1.style.setProperty('scrollbar-gutter', 'stable');
+      describe('when locking the body', () => {
+        // A dedicated manager per test, so the document-wide styles these mutate can't leak
+        // into the shared one when an assertion fails before the modal is removed.
+        let bodyModalManager: ModalManager;
 
-        const modal = getDummyModal();
-        modalManager.add(modal, container1);
-        modalManager.mount(modal, {});
-        expect(container1.style.overflow).to.equal('hidden');
-        expect(container1.style.paddingRight).to.equal('20px');
-        expect(fixedNode.style.paddingRight).to.equal('14.4px');
-        modalManager.remove(modal);
-        expect(container1.style.overflow).to.equal('auto');
-        expect(container1.style.paddingRight).to.equal('20px');
-        expect(fixedNode.style.paddingRight).to.equal('14.4px');
-      });
+        beforeEach(() => {
+          bodyModalManager = new ModalManager();
+        });
 
-      // The gutter is inert until the element is a scroll container, and blocking the scroll
-      // is what turns it into one, so the space it then reserves still has to be compensated.
-      it('should compensate the scrollbar when the container is not a scroll container', () => {
-        const scrollbarSize = getScrollbarSize(window);
-        container1.style.setProperty('scrollbar-gutter', 'stable');
+        afterEach(() => {
+          document.documentElement.style.removeProperty('scrollbar-gutter');
+          document.body.style.removeProperty('scrollbar-gutter');
+          document.body.style.removeProperty('padding-right');
+          document.body.style.removeProperty('overflow');
+        });
 
-        const modal = getDummyModal();
-        modalManager.add(modal, container1);
-        modalManager.mount(modal, {});
-        expect(container1.style.overflow).to.equal('hidden');
-        expect(container1.style.paddingRight).to.equal(`${20 + scrollbarSize}px`);
-        expect(fixedNode.style.paddingRight).to.equal(`${14.4 + scrollbarSize}px`);
-        modalManager.remove(modal);
-        expect(container1.style.paddingRight).to.equal('20px');
-        expect(fixedNode.style.paddingRight).to.equal('14.4px');
-      });
-    });
+        it('should not compensate the scrollbar when the root element has a stable gutter', () => {
+          document.documentElement.style.setProperty('scrollbar-gutter', 'stable');
 
-    // Locking <body> is the default: the scroll container only resolves to <html> when its
-    // overflow-y computes to `scroll`.
-    describe.skipIf(isJsdom())('when locking the body', () => {
-      // A dedicated manager per test, so the document-wide styles these mutate can't leak
-      // into the shared one when an assertion fails before the modal is removed.
-      let bodyModalManager: ModalManager;
+          const modal = getDummyModal();
+          bodyModalManager.add(modal, document.body);
+          bodyModalManager.mount(modal, {});
+          expect(document.body.style.overflow).to.equal('hidden');
+          expect(document.body.style.paddingRight).to.equal('');
+          expect(fixedNode.style.paddingRight).to.equal('14.4px');
+          bodyModalManager.remove(modal);
+          expect(document.body.style.overflow).to.equal('');
+        });
 
-      beforeEach(() => {
-        expectStableGutterSupport();
-        bodyModalManager = new ModalManager();
-        fixedNode.style.paddingRight = '14.4px';
-      });
+        // scrollbar-gutter propagates to the viewport from the root element only, so a gutter
+        // on <body> reserves nothing and the compensation is still needed.
+        it('should compensate the scrollbar when only the body has a stable gutter', () => {
+          // Read before mounting: locking <body> propagates to the viewport, so the scrollbar
+          // is gone by the time the assertions run.
+          const scrollbarSize = getScrollbarSize(window);
+          document.body.style.setProperty('scrollbar-gutter', 'stable');
 
-      afterEach(() => {
-        document.documentElement.style.removeProperty('scrollbar-gutter');
-        document.body.style.removeProperty('scrollbar-gutter');
-        document.body.style.removeProperty('padding-right');
-        document.body.style.removeProperty('overflow');
-      });
-
-      it('should not compensate the scrollbar when the root element has a stable gutter', () => {
-        document.documentElement.style.setProperty('scrollbar-gutter', 'stable');
-
-        const modal = getDummyModal();
-        bodyModalManager.add(modal, document.body);
-        bodyModalManager.mount(modal, {});
-        expect(document.body.style.overflow).to.equal('hidden');
-        expect(document.body.style.paddingRight).to.equal('');
-        expect(fixedNode.style.paddingRight).to.equal('14.4px');
-        bodyModalManager.remove(modal);
-        expect(document.body.style.overflow).to.equal('');
-      });
-
-      // scrollbar-gutter propagates to the viewport from the root element only, so a gutter
-      // on <body> reserves nothing and the compensation is still needed.
-      it('should compensate the scrollbar when only the body has a stable gutter', () => {
-        // Read before mounting: locking <body> propagates to the viewport, so the scrollbar
-        // is gone by the time the assertions run.
-        const scrollbarSize = getScrollbarSize(window);
-        document.body.style.setProperty('scrollbar-gutter', 'stable');
-
-        const modal = getDummyModal();
-        bodyModalManager.add(modal, document.body);
-        bodyModalManager.mount(modal, {});
-        expect(document.body.style.overflow).to.equal('hidden');
-        expect(document.body.style.paddingRight).to.equal(`${scrollbarSize}px`);
-        expect(fixedNode.style.paddingRight).to.equal(`${14.4 + scrollbarSize}px`);
-        bodyModalManager.remove(modal);
-        expect(document.body.style.paddingRight).to.equal('');
+          const modal = getDummyModal();
+          bodyModalManager.add(modal, document.body);
+          bodyModalManager.mount(modal, {});
+          expect(document.body.style.overflow).to.equal('hidden');
+          expect(document.body.style.paddingRight).to.equal(`${scrollbarSize}px`);
+          expect(fixedNode.style.paddingRight).to.equal(`${14.4 + scrollbarSize}px`);
+          bodyModalManager.remove(modal);
+          expect(document.body.style.paddingRight).to.equal('');
+        });
       });
     });
 
