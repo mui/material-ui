@@ -165,11 +165,15 @@ describe('ModalManager', () => {
       it('should not compensate the scrollbar when the scroll container has a stable gutter', () => {
         container1.style.overflow = 'auto';
         container1.style.setProperty('scrollbar-gutter', 'stable');
+        // The premise of skipping the compensation: the gutter holds the width across the
+        // lock. Assert it rather than only asserting the decision it leads to.
+        const widthBefore = container1.clientWidth;
 
         const modal = getDummyModal();
         modalManager.add(modal, container1);
         modalManager.mount(modal, {});
         expect(container1.style.overflow).to.equal('hidden');
+        expect(container1.clientWidth).to.equal(widthBefore);
         expect(container1.style.paddingRight).to.equal('20px');
         expect(fixedNode.style.paddingRight).to.equal('14.4px');
         modalManager.remove(modal);
@@ -200,11 +204,13 @@ describe('ModalManager', () => {
         // shared one when an assertion fails before the modal is removed.
         const bodyModalManager = new ModalManager();
         document.documentElement.style.setProperty('scrollbar-gutter', 'stable');
+        const widthBefore = document.documentElement.clientWidth;
 
         const modal = getDummyModal();
         bodyModalManager.add(modal, document.body);
         bodyModalManager.mount(modal, {});
         expect(document.body.style.overflow).to.equal('hidden');
+        expect(document.documentElement.clientWidth).to.equal(widthBefore);
         expect(document.body.style.paddingRight).to.equal('');
         expect(fixedNode.style.paddingRight).to.equal('14.4px');
         bodyModalManager.remove(modal);
@@ -231,33 +237,37 @@ describe('ModalManager', () => {
       });
     });
 
-    // jsdom reports a clientWidth of 0, which makes every scrollbar look wide, so a zero-width
-    // one only exists in a browser.
-    describe.skipIf(isJsdom())('with a zero-width scrollbar', () => {
-      beforeEach(() => {
-        window.innerWidth -= 1; // undo the simulated scrollbar
-        // Leave the padding to the stylesheet, so that writing it at all is observable.
-        container1.style.removeProperty('padding-right');
-      });
+    // jsdom reports a clientWidth of 0, which makes every scrollbar look wide, and an engine
+    // rendering a classic scrollbar has no zero-width case to exercise. Measured before the
+    // hooks below adjust `innerWidth`, so this is the ambient width either way.
+    describe.skipIf(isJsdom() || getScrollbarSize(window) !== 0)(
+      'with a zero-width scrollbar',
+      () => {
+        beforeEach(() => {
+          window.innerWidth -= 1; // undo the simulated scrollbar
+          // Leave the padding to the stylesheet, so that writing it at all is observable.
+          container1.style.removeProperty('padding-right');
+        });
 
-      afterEach(() => {
-        window.innerWidth += 1;
-      });
+        afterEach(() => {
+          window.innerWidth += 1;
+        });
 
-      // Overlay scrollbars (macOS, Windows 11) take no width, so there is nothing to
-      // compensate and writing the padding would only freeze what the theme had set.
-      it('should not compensate the scrollbar when it has no width', () => {
-        expect(getScrollbarSize(window)).to.equal(0);
+        // Overlay scrollbars (macOS, Windows 11) take no width, so there is nothing to
+        // compensate and writing the padding would only freeze what the theme had set.
+        it('should not compensate the scrollbar when it has no width', () => {
+          expect(getScrollbarSize(window)).to.equal(0);
 
-        const modal = getDummyModal();
-        modalManager.add(modal, container1);
-        modalManager.mount(modal, {});
-        expect(container1.style.overflow).to.equal('hidden');
-        expect(container1.style.paddingRight).to.equal('');
-        expect(fixedNode.style.paddingRight).to.equal('');
-        modalManager.remove(modal);
-      });
-    });
+          const modal = getDummyModal();
+          modalManager.add(modal, container1);
+          modalManager.mount(modal, {});
+          expect(container1.style.overflow).to.equal('hidden');
+          expect(container1.style.paddingRight).to.equal('');
+          expect(fixedNode.style.paddingRight).to.equal('');
+          modalManager.remove(modal);
+        });
+      },
+    );
 
     it('should disable the scroll even when not overflowing', () => {
       // simulate non-overflowing container
