@@ -309,6 +309,9 @@ async function main() {
       // three below stale.
       test(`should render /regression-AppSearch/${fixture} correctly`, async ({ pooled }) => {
         const { page } = pooled;
+        // Move the pointer to the backdrop so that hover state does not get into a capture.
+        // The top-right corner is outside the modal at both widths.
+        const parkPointer = () => page.mouse.move(page.viewportSize().width - 1, 0);
         // Seed from here rather than from the fixture. The `pooled` fixture
         // clears storage on acquisition, and navigating to a route the pooled
         // page already rendered does not remount it, so a seed written on mount
@@ -357,6 +360,7 @@ async function main() {
             style.textContent = '@layer docsearch, mui;';
             document.head.prepend(style);
           });
+          await parkPointer();
           await takeScreenshot(page, {
             testcase: modal,
             route: `/regression-AppSearch/${fixture}Open`,
@@ -368,6 +372,7 @@ async function main() {
           await stubAlgoliaSearch(page);
           await page.locator('.DocSearch-Input').fill(QUERY);
           await page.waitForSelector('.DocSearch-Hit mark');
+          await parkPointer();
           await takeScreenshot(page, {
             testcase: modal,
             route: `/regression-AppSearch/${fixture}Results`,
@@ -381,6 +386,7 @@ async function main() {
           // fixture resets the viewport on acquisition, so this does not leak.
           await page.setViewportSize({ width: 767, height: DEFAULT_VIEWPORT.height });
           await page.waitForFunction(() => window.matchMedia('(max-width: 768px)').matches);
+          await parkPointer();
           await takeScreenshot(page, {
             testcase: modal,
             route: `/regression-AppSearch/${fixture}ResultsNarrow`,
