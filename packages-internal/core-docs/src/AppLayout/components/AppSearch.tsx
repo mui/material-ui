@@ -742,6 +742,10 @@ export function AppSearch(props: AppSearchProps) {
               '& .DocSearch-Commands': {
                 display: 'none',
               },
+              // v5 removed the footer's `row-reverse`, which kept the logo on the right.
+              '& .DocSearch-Footer-Actions': {
+                marginInlineStart: 'auto',
+              },
             },
           },
         })}
