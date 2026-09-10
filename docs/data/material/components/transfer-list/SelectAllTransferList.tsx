@@ -28,7 +28,7 @@ function union(a: readonly number[], b: readonly number[]) {
 type CustomListProps = {
   title: string;
   items: readonly number[];
-  checked: readonly number[];
+  selected: readonly number[];
   handleToggle: (value: number) => () => void;
   handleToggleAll: (items: readonly number[]) => () => void;
   numberOfChecked: (items: readonly number[]) => number;
@@ -38,7 +38,7 @@ const CustomList = React.forwardRef(function CustomList(
   props: CustomListProps,
   ref: React.Ref<HTMLDivElement & { focus: () => void }>,
 ) {
-  const { title, items, checked, handleToggle, handleToggleAll, numberOfChecked } =
+  const { title, items, selected, handleToggle, handleToggleAll, numberOfChecked } =
     props;
 
   const ariaLabel = `Select all ${title}`;
@@ -67,6 +67,7 @@ const CustomList = React.forwardRef(function CustomList(
       <Divider />
       <MenuList
         aria-label={title}
+        aria-multiselectable="true"
         sx={{
           width: 200,
           height: 230,
@@ -75,26 +76,27 @@ const CustomList = React.forwardRef(function CustomList(
         }}
         dense
         component="div"
+        role="listbox"
         ref={ref}
       >
         {items.map((value: number) => {
           const labelId = `transfer-list-all-item-${value}-label`;
-          const isChecked = checked.includes(value);
-          const SelectionIcon = isChecked ? CheckBoxIcon : CheckBoxOutlineBlankIcon;
+          const isSelected = selected.includes(value);
+          const SelectionIcon = isSelected ? CheckBoxIcon : CheckBoxOutlineBlankIcon;
 
           return (
             <MenuItem
               component="div"
               key={value}
-              role="menuitemcheckbox"
-              aria-checked={isChecked}
+              role="option"
+              aria-selected={isSelected}
               aria-labelledby={labelId}
               onClick={handleToggle(value)}
             >
               <ListItemIcon>
                 <SelectionIcon
                   sx={{
-                    color: isChecked ? 'primary.main' : 'text.secondary',
+                    color: isSelected ? 'primary.main' : 'text.secondary',
                     padding: '9px',
                     boxSizing: 'content-box',
                   }}
@@ -110,51 +112,51 @@ const CustomList = React.forwardRef(function CustomList(
 });
 
 export default function SelectAllTransferList() {
-  const [checked, setChecked] = React.useState<readonly number[]>([]);
+  const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [left, setLeft] = React.useState<readonly number[]>([0, 1, 2, 3]);
   const [right, setRight] = React.useState<readonly number[]>([4, 5, 6, 7]);
 
-  const leftChecked = intersection(checked, left);
-  const rightChecked = intersection(checked, right);
+  const leftSelected = intersection(selected, left);
+  const rightSelected = intersection(selected, right);
 
   const leftListRef = React.useRef<HTMLDivElement & { focus: () => void }>(null);
   const rightListRef = React.useRef<HTMLDivElement & { focus: () => void }>(null);
 
   const handleToggle = (value: number) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+    const currentIndex = selected.indexOf(value);
+    const newSelected = [...selected];
 
     if (currentIndex === -1) {
-      newChecked.push(value);
+      newSelected.push(value);
     } else {
-      newChecked.splice(currentIndex, 1);
+      newSelected.splice(currentIndex, 1);
     }
 
-    setChecked(newChecked);
+    setSelected(newSelected);
   };
 
   const numberOfChecked = (items: readonly number[]) =>
-    intersection(checked, items).length;
+    intersection(selected, items).length;
 
   const handleToggleAll = (items: readonly number[]) => () => {
     if (numberOfChecked(items) === items.length) {
-      setChecked(not(checked, items));
+      setSelected(not(selected, items));
     } else {
-      setChecked(union(checked, items));
+      setSelected(union(selected, items));
     }
   };
 
-  const handleCheckedRight = () => {
-    setRight(right.concat(leftChecked));
-    setLeft(not(left, leftChecked));
-    setChecked(not(checked, leftChecked));
+  const handleSelectedRight = () => {
+    setRight(right.concat(leftSelected));
+    setLeft(not(left, leftSelected));
+    setSelected(not(selected, leftSelected));
     rightListRef.current?.focus();
   };
 
-  const handleCheckedLeft = () => {
-    setLeft(left.concat(rightChecked));
-    setRight(not(right, rightChecked));
-    setChecked(not(checked, rightChecked));
+  const handleSelectedLeft = () => {
+    setLeft(left.concat(rightSelected));
+    setRight(not(right, rightSelected));
+    setSelected(not(selected, rightSelected));
     leftListRef.current?.focus();
   };
 
@@ -169,7 +171,7 @@ export default function SelectAllTransferList() {
         ref={leftListRef}
         title="Choices"
         items={left}
-        checked={checked}
+        selected={selected}
         handleToggle={handleToggle}
         handleToggleAll={handleToggleAll}
         numberOfChecked={numberOfChecked}
@@ -179,8 +181,8 @@ export default function SelectAllTransferList() {
           sx={{ my: 0.5 }}
           variant="outlined"
           size="small"
-          onClick={handleCheckedRight}
-          disabled={leftChecked.length === 0}
+          onClick={handleSelectedRight}
+          disabled={leftSelected.length === 0}
           aria-label="move selected right"
         >
           &gt;
@@ -189,8 +191,8 @@ export default function SelectAllTransferList() {
           sx={{ my: 0.5 }}
           variant="outlined"
           size="small"
-          onClick={handleCheckedLeft}
-          disabled={rightChecked.length === 0}
+          onClick={handleSelectedLeft}
+          disabled={rightSelected.length === 0}
           aria-label="move selected left"
         >
           &lt;
@@ -201,7 +203,7 @@ export default function SelectAllTransferList() {
         ref={rightListRef}
         title="Chosen"
         items={right}
-        checked={checked}
+        selected={selected}
         handleToggle={handleToggle}
         handleToggleAll={handleToggleAll}
         numberOfChecked={numberOfChecked}
