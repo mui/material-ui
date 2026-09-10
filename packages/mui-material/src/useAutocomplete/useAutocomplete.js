@@ -224,6 +224,8 @@ function useAutocomplete(props) {
   const ignoreFocus = React.useRef(false);
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
+  // Preserve user edits when an async option resolves, including edits back to an empty input.
+  const inputValueEditedRef = React.useRef(false);
   const listboxRef = React.useRef(null);
   // VoiceOver synthesises a spurious Backspace on the input after a chip
   // deletion moves DOM focus back to it. This flag suppresses that one event.
@@ -293,6 +295,8 @@ function useAutocomplete(props) {
         renderValue,
         getOptionFromValue,
       );
+
+      inputValueEditedRef.current = false;
 
       if (inputValue === newInputValue) {
         return;
@@ -389,25 +393,44 @@ function useAutocomplete(props) {
     filteredOptions,
     value,
     inputValue,
+    selectedOption,
   });
 
   React.useEffect(() => {
     const valueChange = value !== previousProps.value;
+    const shouldSyncResolvedOption =
+      getOptionValueProp !== undefined &&
+      previousProps.selectedOption === null &&
+      selectedOption != null &&
+      inputValue === '' &&
+      !inputValueEditedRef.current;
 
-    if (focused && !valueChange) {
+    if (focused && !valueChange && !shouldSyncResolvedOption) {
       return;
     }
 
-    // In freeSolo mode, only reset the input after a real value change.
+    // In freeSolo mode, reset after a value change or when async options resolve an untouched input.
     // Also prevent the initial default value of `null` from clearing controlled values.
     const shouldSkipFreeSoloReset =
-      freeSolo && (!valueChange || (value == null && previousProps.value === undefined));
+      freeSolo &&
+      ((!valueChange && !shouldSyncResolvedOption) ||
+        (value == null && previousProps.value === undefined));
     if (shouldSkipFreeSoloReset) {
       return;
     }
 
     resetInputValue(null, value, 'reset');
-  }, [value, resetInputValue, focused, previousProps.value, freeSolo]);
+  }, [
+    value,
+    resetInputValue,
+    focused,
+    previousProps.value,
+    previousProps.selectedOption,
+    freeSolo,
+    getOptionValueProp,
+    selectedOption,
+    inputValue,
+  ]);
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
 
@@ -1021,6 +1044,7 @@ function useAutocomplete(props) {
   };
 
   const handleClear = (event) => {
+    inputValueEditedRef.current = true;
     setInputValueState('');
 
     if (onInputChange) {
@@ -1319,6 +1343,7 @@ function useAutocomplete(props) {
     const valueChanged = inputValue !== newValue;
 
     if (valueChanged) {
+      inputValueEditedRef.current = true;
       setInputValueState(newValue);
       touchScrolledRef.current = false;
 
