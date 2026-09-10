@@ -1398,6 +1398,28 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
     });
 
+    it('should use isOptionEqualToValue to deduplicate multiple freeSolo values without getOptionValue', async () => {
+      const handleChange = spy();
+      const { user } = render(
+        <Autocomplete
+          multiple
+          freeSolo
+          defaultValue={['Foo']}
+          options={[]}
+          isOptionEqualToValue={(option, value) => option.toLowerCase() === value.toLowerCase()}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      await user.type(screen.getByRole('combobox'), 'foo');
+      await user.keyboard('{Enter}');
+
+      expect(handleChange.callCount).to.equal(0);
+      expect(screen.getAllByRole('button', { name: /^foo$/i })).to.have.lengthOf(1);
+      expect(screen.getByRole('button', { name: 'Foo' })).to.have.text('Foo');
+    });
+
     it('has no textbox value', () => {
       render(
         <Autocomplete
