@@ -1,6 +1,12 @@
+import { CSSInterpolation } from '@mui/system';
+import { Theme } from '../styles';
+import { MenuItemProps } from './MenuItem';
 import menuItemClasses from './menuItemClasses';
 
-export const menuItemOverridesResolver = (props, styles) => {
+export function menuItemOverridesResolver(
+  props: { ownerState: Pick<MenuItemProps, 'dense' | 'divider' | 'disableGutters'> },
+  styles: Record<string, CSSInterpolation>,
+): CSSInterpolation {
   const { ownerState } = props;
 
   return [
@@ -9,11 +15,14 @@ export const menuItemOverridesResolver = (props, styles) => {
     ownerState.divider && styles.divider,
     !ownerState.disableGutters && styles.gutters,
   ];
-};
+}
 
 // Each family supplies its own public state class. Keep selected hover after
 // selected highlight so their precedence stays the same as the classic item.
-export function getMenuItemHighlightStyles(theme, highlightedClass) {
+export function getMenuItemHighlightStyles(
+  theme: Theme,
+  highlightedClass: string,
+): CSSInterpolation {
   return {
     ...(!theme.focusVisible && {
       [`&.${menuItemClasses.selected}.${highlightedClass}`]: {

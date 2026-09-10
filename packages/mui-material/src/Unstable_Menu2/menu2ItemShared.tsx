@@ -1,7 +1,7 @@
 'use client';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { CSSInterpolation, SxProps } from '@mui/system';
+import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import {
   Menu2RootSlotProps,
@@ -153,20 +153,6 @@ export interface Menu2SubmenuTriggerBaseProps {
 export interface Menu2BaseItemState {
   disabled?: boolean | undefined;
   highlighted?: boolean | undefined;
-}
-
-export function menu2ItemOverridesResolver(
-  props: { ownerState: Menu2ItemOwnerState },
-  styles: Record<string, CSSInterpolation>,
-) {
-  const { ownerState } = props;
-
-  return [
-    styles.root,
-    ownerState.dense && styles.dense,
-    ownerState.divider && styles.divider,
-    !ownerState.disableGutters && styles.gutters,
-  ] as CSSInterpolation;
 }
 
 export function getMenu2ItemOwnerState(

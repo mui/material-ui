@@ -12,7 +12,6 @@ import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenuUtilityClass } from './menuClasses';
 import useSlot from '../utils/useSlot';
-import { menuListStyles, menuPaperStyles } from './menuStyles';
 
 const RTL_ORIGIN = {
   vertical: 'top',
@@ -45,12 +44,20 @@ const MenuRoot = styled(Popover, {
 export const MenuPaper = styled(PopoverPaper, {
   name: 'MuiMenu',
   slot: 'Paper',
-})(menuPaperStyles);
+})({
+  // Leave space outside the menu for a press that closes it.
+  maxHeight: 'calc(100% - 96px)',
+  // Support momentum scrolling on iOS versions before 13.
+  WebkitOverflowScrolling: 'touch',
+});
 
 const MenuMenuList = styled(MenuList, {
   name: 'MuiMenu',
   slot: 'List',
-})(menuListStyles);
+})({
+  // The items, not the list, show focus.
+  outline: 0,
+});
 
 const Menu = React.forwardRef(function Menu(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiMenu' });

@@ -13,7 +13,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import MenuItemBase from '../MenuItem/MenuItemBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { getMenuItemHighlightStyles } from '../MenuItem/menuItemStyles';
+import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import Menu2CheckboxItemIndicator, {
   Menu2CheckboxItemIndicatorProps,
 } from '../Unstable_Menu2CheckboxItemIndicator';
@@ -30,7 +30,6 @@ import {
   Menu2ItemBaseProps,
   Menu2ItemOwnerState,
   Menu2ItemVisualProps,
-  menu2ItemOverridesResolver,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
 import {
@@ -153,7 +152,7 @@ export type Menu2CheckboxItemProps<
 const Menu2CheckboxItemRoot = styled(MenuItemBase, {
   name: 'MuiMenu2CheckboxItem',
   slot: 'Root',
-  overridesResolver: menu2ItemOverridesResolver,
+  overridesResolver: menuItemOverridesResolver,
 })<{ ownerState: Menu2CheckboxItemOwnerState }>(
   memoTheme(({ theme }) => getMenuItemHighlightStyles(theme, menu2CheckboxItemClasses.highlighted)),
 );

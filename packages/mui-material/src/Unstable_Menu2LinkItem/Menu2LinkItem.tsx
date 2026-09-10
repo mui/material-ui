@@ -10,7 +10,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import MenuItemBase from '../MenuItem/MenuItemBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { getMenuItemHighlightStyles } from '../MenuItem/menuItemStyles';
+import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import {
   getMenu2RootRender,
   Menu2RootSlotProps,
@@ -21,7 +21,6 @@ import {
   Menu2LinkItemBaseProps,
   Menu2ItemOwnerState,
   Menu2ItemVisualProps,
-  menu2ItemOverridesResolver,
   mergeMenu2ItemClassName,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
@@ -98,7 +97,7 @@ export type Menu2LinkItemProps<
 const Menu2LinkItemRoot = styled(MenuItemBase, {
   name: 'MuiMenu2LinkItem',
   slot: 'Root',
-  overridesResolver: menu2ItemOverridesResolver,
+  overridesResolver: menuItemOverridesResolver,
 })<{ ownerState: Menu2ItemOwnerState }>(
   memoTheme(({ theme }) => getMenuItemHighlightStyles(theme, menu2LinkItemClasses.highlighted)),
 );

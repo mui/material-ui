@@ -13,7 +13,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import MenuItemBase from '../MenuItem/MenuItemBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { getMenuItemHighlightStyles } from '../MenuItem/menuItemStyles';
+import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import Menu2RadioItemIndicator, {
   Menu2RadioItemIndicatorProps,
 } from '../Unstable_Menu2RadioItemIndicator';
@@ -30,7 +30,6 @@ import {
   Menu2ItemBaseProps,
   Menu2ItemOwnerState,
   Menu2ItemVisualProps,
-  menu2ItemOverridesResolver,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
 import {
@@ -130,7 +129,7 @@ export type Menu2RadioItemProps<
 const Menu2RadioItemRoot = styled(MenuItemBase, {
   name: 'MuiMenu2RadioItem',
   slot: 'Root',
-  overridesResolver: menu2ItemOverridesResolver,
+  overridesResolver: menuItemOverridesResolver,
 })<{ ownerState: Menu2RadioItemOwnerState }>(
   memoTheme(({ theme }) => getMenuItemHighlightStyles(theme, menu2RadioItemClasses.highlighted)),
 );

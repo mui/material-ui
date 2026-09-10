@@ -7,13 +7,12 @@ import mergeSlotProps from '../utils/mergeSlotProps';
 import MenuItemBase from '../MenuItem/MenuItemBase';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import { getMenuItemHighlightStyles } from '../MenuItem/menuItemStyles';
+import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import { Theme } from '../styles';
 import {
   getMenu2RootRender,
   suppressButtonBaseKeyboardActivation,
 } from '../Unstable_Menu2/menu2Utils';
-import { menu2ItemOverridesResolver } from '../Unstable_Menu2/menu2ItemShared';
 import { menu2SubmenuTriggerClasses } from '../Unstable_Menu2/menu2Classes';
 import type {
   Menu2SubmenuTriggerProps,
@@ -73,7 +72,7 @@ function menu2SubmenuTriggerStyles(theme: Theme) {
 const Menu2SubmenuTriggerRoot = styled(MenuItemBase, {
   name: 'MuiMenu2SubmenuTrigger',
   slot: 'Root',
-  overridesResolver: menu2ItemOverridesResolver,
+  overridesResolver: menuItemOverridesResolver,
 })<{ ownerState: Menu2SubmenuTriggerOwnerState }>(
   memoTheme(({ theme }) =>
     getMenuItemHighlightStyles(theme, menu2SubmenuTriggerClasses.highlighted),
