@@ -126,6 +126,44 @@ describe.skipIf(isJsdom())('Menu2 transitions', () => {
     await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(false));
   });
   [false, true].forEach((keepMounted) => {
+    it(`shows a defaultOpen popup without an enter animation, keepMounted=${keepMounted}`, async () => {
+      const entering = vi.fn();
+      const completed = vi.fn();
+      const { user } = render(
+        <Menu2
+          defaultOpen
+          keepMounted={keepMounted}
+          onOpenChangeComplete={completed}
+          slotProps={{ transition: { onEnter: entering } }}
+          trigger={<button type="button">Options</button>}
+        >
+          <Menu2Item>Item</Menu2Item>
+        </Menu2>,
+      );
+
+      // Base UI 1.7 skips the starting state on initial open. Review this after an update.
+      const popup = screen.getByRole('menu');
+      expect(popup).not.to.have.attribute('data-starting-style');
+      expect(popup).toHaveComputedStyle({ opacity: '1', transform: 'none', visibility: 'visible' });
+      expect(popup.getAnimations()).to.have.length(0);
+      await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(true));
+      expect(entering).not.toHaveBeenCalled();
+
+      await user.keyboard('{Escape}');
+      await waitFor(() => expect(popup.getAnimations().length).to.be.greaterThan(0));
+      await waitFor(() => expect(completed.mock.calls).to.deep.equal([[true], [false]]));
+      expect(popup.isConnected).to.equal(keepMounted);
+
+      await user.click(screen.getByRole('button', { name: 'Options' }));
+      const reopenedPopup = await screen.findByRole('menu');
+      await waitFor(() => expect(reopenedPopup.getAnimations().length).to.be.greaterThan(0));
+      expect(entering).toHaveBeenCalledTimes(1);
+      await waitFor(() => {
+        expect(reopenedPopup.getAnimations()).to.have.length(0);
+        expect(completed.mock.calls).to.deep.equal([[true], [false], [true]]);
+      });
+    });
+
     it(`animates enter and Escape exit on the actual popup, keepMounted=${keepMounted}`, async () => {
       const completed = vi.fn();
       const { user } = render(
