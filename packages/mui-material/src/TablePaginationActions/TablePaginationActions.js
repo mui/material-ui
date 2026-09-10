@@ -97,7 +97,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     other.onBlur?.(event);
   };
 
-  // Check after every render: pagination props and slotProps can both disable the focused action.
+  // Check if focused button is disabled and move focus to the next available button.
   useEnhancedEffect(() => {
     const focusedButton = focusedButtonRef.current;
     if (!focusedButton || !isDisabled(focusedButton)) {
