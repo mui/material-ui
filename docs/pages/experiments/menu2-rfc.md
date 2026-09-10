@@ -215,9 +215,10 @@ The hook does not assume fixed Grow timing. `onOpenChangeComplete` would wait fo
 
 ### Resolved review questions
 
-Keep the numbering for existing review references. “Resolved” means chosen in this proposal, not release-complete.
+Keep the numbering for existing review references. "Resolved" means chosen in this proposal, not release-complete.
 
 1. ✅ **Context menu:** a separate component. Virtual-anchor recipes remain available.
+
 2. ✅ **Accessibility ownership:** Base UI supplies semantics and interaction; Material UI remains responsible for the composed result, styles, and public customization.
 
    The default light-theme focus tint has approximately 1.3:1 contrast against white. Sharing it with the classic item does not resolve the [non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html) gap. A library-wide state-style review remains separate work. Under `theme.focusVisible`, the item uses the classic inset ring instead of the focus tint; the inset avoids clipping in a scrolling popup. Shared styles do not imply identical keyboard-to-pointer behavior; see the caveat above.
@@ -225,9 +226,13 @@ Keep the numbering for existing review references. “Resolved” means chosen i
    Interaction tests and conformance are not a screen-reader audit. The generic axe loop checks enrolled fixtures without opening menus for them; Menu2 has no dedicated open-menu axe coverage. Validate the open, nested, and closing states before release.
 
 3. ✅ **Other defaults:** retain Base UI behavior with the documented Material presentation choices.
+
 4. ✅ **SSR, client directive, and refs:** public modules have `'use client'`. The trigger can render on the server, but the portal popup is client-rendered, including with `defaultOpen` or `keepMounted`. Caller-rendered parts have polymorphic refs; collapsed roots use the portal wrapper.
+
 5. ✅ **Base UI API exposure:** explicitly pick supported root and positioning props. Detached triggers (`handle`, `triggerId`, `defaultTriggerId`, and `Menu.createHandle`) and horizontal `orientation` are outside this API. Upstream changes to exposed types still require review.
+
 6. ✅ **Open parent tint:** use `action.hover` through logical open and visual exit. Keep `Mui-open` separate from `MuiMenu2SubmenuTrigger-closing`. A new open-state color token would be a separate design choice.
+
 7. ✅ **Explicit submenu trigger:** keep one behavioral owner per trigger and the popup wiring internal. The root decorates a supplied button; the submenu renders an explicit part. Accept this asymmetry. A Material Menubar remains separate work.
 
 ### Rollout plan
