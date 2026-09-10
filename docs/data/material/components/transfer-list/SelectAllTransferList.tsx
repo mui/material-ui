@@ -167,7 +167,6 @@ export default function SelectAllTransferList() {
       sx={{ justifyContent: 'center', alignItems: 'center' }}
     >
       <CustomList
-        aria-label="select all choices"
         ref={leftListRef}
         title="Choices"
         items={left}
@@ -199,7 +198,6 @@ export default function SelectAllTransferList() {
         </Button>
       </Stack>
       <CustomList
-        aria-label="select all chosen"
         ref={rightListRef}
         title="Chosen"
         items={right}
