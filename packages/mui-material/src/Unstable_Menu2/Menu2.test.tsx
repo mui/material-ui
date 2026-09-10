@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import { buttonBaseClasses } from '@mui/material/ButtonBase';
-import { listClasses } from '@mui/material/List';
+import List, { listClasses, ListProps } from '@mui/material/List';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ClassicMenuItem, { menuItemClasses } from '@mui/material/MenuItem';
@@ -269,6 +269,80 @@ describe('<Menu2 />', () => {
     }
   });
 
+  it('keeps List styles and props when the list component changes', async () => {
+    const listRef = React.createRef<HTMLUListElement>();
+    const handleClick = vi.fn();
+    const { user } = render(
+      <Menu2
+        align="end"
+        slotProps={{
+          list: (ownerState) => ({
+            component: 'ul',
+            ref: listRef,
+            'data-testid': 'list',
+            'data-align': ownerState.align,
+            className: 'custom-list',
+            dense: true,
+            disablePadding: true,
+            sx: { paddingLeft: '13px' },
+            onClick: handleClick,
+          }),
+        }}
+        trigger={<Button disableRipple>Options</Button>}
+      >
+        <Menu2Item closeOnClick={false}>Profile</Menu2Item>
+      </Menu2>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+
+    const list = await screen.findByTestId('list');
+    expect(list.tagName).to.equal('UL');
+    expect(listRef.current).to.equal(list);
+    expect(list).to.have.attribute('data-align', 'end');
+    expect(list).to.have.class('custom-list');
+    expect(list).to.have.class(menu2PopupClasses.list);
+    expect(list).to.have.class(listClasses.root);
+    expect(list).to.have.class(listClasses.dense);
+    expect(list).not.to.have.class(listClasses.padding);
+    expect(list).toHaveComputedStyle({ paddingLeft: '13px' });
+
+    await user.click(screen.getByRole('menuitem', { name: 'Profile' }));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('passes the list component, owner state, and ref to a custom slot', async () => {
+    const listRef = React.createRef<HTMLUListElement>();
+    const CustomList = React.forwardRef<
+      HTMLUListElement,
+      ListProps & { ownerState: { align?: string | undefined } }
+    >(function CustomList({ ownerState, ...props }, ref) {
+      return (
+        <List {...props} ref={ref} data-align={ownerState.align} data-component={props.component} />
+      );
+    });
+    const { user } = render(
+      <Menu2
+        align="end"
+        slots={{ list: CustomList }}
+        slotProps={{ list: { component: 'ul', ref: listRef, 'data-testid': 'list' } }}
+        trigger={<Button disableRipple>Options</Button>}
+      >
+        <Menu2Item>Profile</Menu2Item>
+      </Menu2>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+
+    const list = await screen.findByTestId('list');
+    expect(list.tagName).to.equal('UL');
+    expect(listRef.current).to.equal(list);
+    expect(list).to.have.attribute('data-align', 'end');
+    expect(list).to.have.class(menu2PopupClasses.list);
+    expect(list).to.have.attribute('data-component', 'ul');
+    expect(list).to.have.class(listClasses.padding);
+  });
+
   it('does not pass internal props to host paper and list slots', async () => {
     const { user } = render(
       <Menu2
@@ -304,6 +378,7 @@ describe('<Menu2 />', () => {
     expect(paper).not.to.have.attribute('sx');
 
     const list = screen.getByTestId('list');
+    expect(list.tagName).to.equal('DIV');
     expect(list).not.to.have.attribute('classes');
     expect(list).not.to.have.attribute('component');
     expect(list).not.to.have.attribute('disablePadding');

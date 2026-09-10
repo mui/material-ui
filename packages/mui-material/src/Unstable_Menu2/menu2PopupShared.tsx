@@ -5,11 +5,11 @@ import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { mergeProps } from '@base-ui/react/merge-props';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import useForkRef from '@mui/utils/useForkRef';
-import useSlotProps from '@mui/utils/useSlotProps';
 import appendOwnerState from '@mui/utils/appendOwnerState';
 import isHostComponent from '@mui/utils/isHostComponent';
 import { SxProps } from '@mui/system';
 import mergeSlotProps from '../utils/mergeSlotProps';
+import useSlot from '../utils/useSlot';
 import { Theme } from '../styles';
 import Grow, { GrowProps } from '../Grow';
 import { PaperProps } from '../Paper';
@@ -228,7 +228,7 @@ export interface Menu2PopupSharedProps<OwnerState>
   sx?: SxProps<Theme> | undefined;
 }
 
-export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerState>(
+export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerState extends object>(
   props: Menu2PopupSharedProps<OwnerState>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
@@ -282,7 +282,6 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   const BackdropSlot = slots?.backdrop ?? (slotProps?.backdrop ? defaultSlots.backdrop : undefined);
   const PositionerSlot = slots?.positioner ?? defaultSlots.positioner;
   const PaperSlot = slots?.paper ?? defaultSlots.paper;
-  const ListSlot = slots?.list ?? defaultSlots.list;
 
   const resolvedRootProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), {
     sx,
@@ -290,7 +289,6 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   const resolvedBackdropProps = resolveComponentProps(slotProps?.backdrop, ownerState);
   const resolvedPositionerProps = resolveComponentProps(slotProps?.positioner, ownerState);
   const resolvedPaperProps = resolveComponentProps(slotProps?.paper, ownerState);
-  const resolvedListProps = resolveComponentProps(slotProps?.list, ownerState);
   // Base UI merges className, style, and ref into the element that `render`
   // gives a part, so those go through the part. `sx` and the Paper props go on
   // the element. HTML attributes go to the root, the same as the classic Menu.
@@ -368,14 +366,13 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     ),
     paperHostOmittedProps,
   );
-  // The list goes through the shared slot plumbing (className merging, ref
-  // forking, host-aware ownerState). Host-prop omission is layered on top.
-  const mergedListProps = useSlotProps({
-    elementType: ListSlot,
-    externalSlotProps: resolvedListProps,
+  const [ListSlot, mergedListProps] = useSlot('list', {
+    elementType: defaultSlots.list,
+    externalForwardedProps: { slots, slotProps },
     ownerState,
     additionalProps: { component: 'div', disablePadding: false },
     className: classes?.list,
+    shouldForwardComponentProp: true,
   });
 
   const listSlotProps = getSlotProps(ListSlot, mergedListProps, listHostOmittedProps);
@@ -449,6 +446,6 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
       </BaseMenu.Positioner>
     </BaseMenu.Portal>
   );
-}) as <OwnerState>(
+}) as <OwnerState extends object>(
   props: Menu2PopupSharedProps<OwnerState> & React.RefAttributes<HTMLDivElement>,
 ) => React.JSX.Element;
