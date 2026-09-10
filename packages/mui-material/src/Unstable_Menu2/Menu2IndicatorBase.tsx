@@ -10,6 +10,8 @@ const Menu2IndicatorBase = styled('span', { slot: 'Root' })(
     alignItems: 'center',
     justifyContent: 'center',
     minWidth: 36,
+    // Keep custom icons inside their column when the label needs more space.
+    flexShrink: 0,
     color: (theme.vars || theme).palette.text.secondary,
     '&[data-checked]': {
       color: (theme.vars || theme).palette.primary.main,
