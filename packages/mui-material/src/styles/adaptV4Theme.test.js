@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import defaultTheme from '@mui/material/styles/defaultTheme';
 import adaptV4Theme from './adaptV4Theme';
 

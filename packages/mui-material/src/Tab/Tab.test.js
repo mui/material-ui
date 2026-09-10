@@ -1,6 +1,13 @@
+import { describe, it, expect, vi } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
-import { createRenderer, simulatePointerDevice, screen, isJsdom } from '@mui/internal-test-utils';
+import {
+  createRenderer,
+  simulatePointerDevice,
+  focusVisible,
+  screen,
+  isJsdom,
+} from '@mui/internal-test-utils';
 import Tab, { tabClasses as classes } from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -298,6 +305,45 @@ describe('<Tab />', () => {
       // would warn about a non-button host with nativeButton omitted.
       expect(errorSpy.mock.calls.length).to.equal(0);
       errorSpy.mockRestore();
+    });
+  });
+
+  describe('theme.focusVisible', () => {
+    it.skipIf(isJsdom())('insets the focus ring so a Tabs scroller cannot clip it', () => {
+      const theme = createTheme({
+        focusVisible: true,
+        components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Tabs value={0}>
+            <Tab label="One" />
+          </Tabs>
+        </ThemeProvider>,
+      );
+      const tab = screen.getByRole('tab');
+      simulatePointerDevice();
+      focusVisible(tab);
+      // Tab insets deeper than the default mirror (offset 3 → −3 × the 2px outlineOffset).
+      expect(tab).toHaveComputedStyle({ outlineOffset: '-6px' });
+    });
+
+    it.skipIf(isJsdom())('insets a user box-shadow automatically on clip-prone components', () => {
+      const theme = createTheme({
+        focusVisible: { boxShadow: '0 0 0 3px rgb(255, 0, 0)' },
+        components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Tabs value={0}>
+            <Tab label="One" />
+          </Tabs>
+        </ThemeProvider>,
+      );
+      const tab = screen.getByRole('tab');
+      simulatePointerDevice();
+      focusVisible(tab);
+      expect(window.getComputedStyle(tab).boxShadow).to.match(/inset/);
     });
   });
 });

@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import palette from './palette';
 
 const theme = {

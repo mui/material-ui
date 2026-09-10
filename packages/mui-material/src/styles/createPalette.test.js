@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { darken, lighten } from '@mui/system/colorManipulator';
 import { deepOrange, blue, purple, indigo } from '../colors';
 import createPalette, { dark, light } from './createPalette';

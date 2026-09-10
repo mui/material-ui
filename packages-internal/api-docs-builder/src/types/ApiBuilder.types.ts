@@ -1,5 +1,5 @@
 import type { Documentation } from 'react-docgen';
-import { JSDocTagInfo } from 'typescript';
+import { JSDocTagInfo } from '@typescript/typescript6';
 import { ComponentInfo, Slot, HookInfo, SeeMore, ApiItemDescription } from './utils.types';
 
 export type AdditionalPropsInfo = {

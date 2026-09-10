@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import Skeleton, { skeletonClasses as classes } from '@mui/material/Skeleton';
 import { createTheme, ThemeProvider } from '@mui/material/styles';

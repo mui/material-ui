@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Typography, { typographyClasses as classes } from '@mui/material/Typography';
 import describeConformance from '../../test/describeConformance';

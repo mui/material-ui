@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import path from 'path';
 import { jscodeshift } from '../../../testUtils';
 import transform from './theme-v6';

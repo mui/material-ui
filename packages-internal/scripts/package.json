@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "3.0.10",
+  "version": "3.0.11",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "license": "MIT",
@@ -25,7 +25,7 @@
     "release:publish": "pnpm build && pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\"",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/internal-scripts\"",
-    "typescript": "tsgo -b tsconfig.typecheck.json"
+    "typescript": "tsc -b tsconfig.typecheck.json"
   },
   "dependencies": {
     "@babel/core": "^7.29.7",
@@ -34,9 +34,9 @@
     "@babel/plugin-syntax-typescript": "^7.29.7",
     "@babel/types": "^7.29.8",
     "@mui/internal-docs-utils": "workspace:^",
+    "@typescript/typescript6": "^6.0.2",
     "doctrine": "^3.0.0",
-    "es-toolkit": "^1.51.0",
-    "typescript": "^6.0.3"
+    "es-toolkit": "^1.52.0"
   },
   "devDependencies": {
     "@babel/register": "7.29.7",

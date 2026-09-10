@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Paper, { paperClasses } from '@mui/material/Paper';
 import Button from '@mui/material/Button';

@@ -1,3 +1,4 @@
+import { beforeEach, expect, it, describe } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
@@ -5,6 +6,7 @@ import {
   act,
   createRenderer,
   fireEvent,
+  focusVisible,
   screen,
   supportsTouch,
   isJsdom,
@@ -1898,4 +1900,22 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
       expect(handleChange.callCount).to.be.greaterThan(changesAfterDown);
     },
   );
+
+  describe('theme.focusVisible', () => {
+    it.skipIf(isJsdom())('renders the curated ring on the thumb when set', () => {
+      const { container } = render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Slider defaultValue={30} />
+        </ThemeProvider>,
+      );
+      focusVisible(screen.getByRole('slider'));
+      const thumb = container.querySelector(`.${classes.thumb}`);
+      expect(thumb).to.have.class(classes.focusVisible);
+      expect(thumb).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+    });
+  });
 });

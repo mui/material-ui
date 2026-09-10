@@ -1,4 +1,10 @@
-import { Symbol, isPropertySignature, isEnumDeclaration, forEachChild, Node } from 'typescript';
+import {
+  Symbol,
+  isPropertySignature,
+  isEnumDeclaration,
+  forEachChild,
+  Node,
+} from '@typescript/typescript6';
 import { TypeScriptProject } from './createTypeScriptProject';
 import { ParsedProperty } from '../types/ApiBuilder.types';
 import { getSymbolDescription, getSymbolJSDocTags, stringifySymbol } from '../buildApiUtils';

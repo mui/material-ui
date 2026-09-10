@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { ThemeProvider, createTheme } from '@mui/material/styles/';

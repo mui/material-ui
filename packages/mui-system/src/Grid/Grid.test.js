@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createTheme from '@mui/system/createTheme';
