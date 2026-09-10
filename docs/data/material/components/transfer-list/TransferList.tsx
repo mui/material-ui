@@ -21,7 +21,7 @@ function intersection(a: readonly number[], b: readonly number[]) {
 type CustomListProps = {
   'aria-label': string;
   items: readonly number[];
-  checked: readonly number[];
+  selected: readonly number[];
   handleToggle: (value: number) => () => void;
 };
 
@@ -29,29 +29,36 @@ const CustomList = React.forwardRef(function CustomList(
   props: CustomListProps,
   ref: React.Ref<HTMLDivElement & { focus: () => void }>,
 ) {
-  const { 'aria-label': ariaLabel, items, checked, handleToggle } = props;
+  const { 'aria-label': ariaLabel, items, selected, handleToggle } = props;
 
   return (
     <Paper sx={{ width: 200, height: 230, overflow: 'auto' }}>
-      <MenuList aria-label={ariaLabel} dense component="div" ref={ref}>
+      <MenuList
+        aria-label={ariaLabel}
+        aria-multiselectable="true"
+        role="listbox"
+        dense
+        component="div"
+        ref={ref}
+      >
         {items.map((value: number) => {
           const labelId = `transfer-list-item-${value}-label`;
-          const isChecked = checked.includes(value);
-          const SelectionIcon = isChecked ? CheckBoxIcon : CheckBoxOutlineBlankIcon;
+          const isSelected = selected.includes(value);
+          const SelectionIcon = isSelected ? CheckBoxIcon : CheckBoxOutlineBlankIcon;
 
           return (
             <MenuItem
               component="div"
               key={value}
-              role="menuitemcheckbox"
-              aria-checked={isChecked}
+              role="option"
+              aria-selected={isSelected}
               aria-labelledby={labelId}
               onClick={handleToggle(value)}
             >
               <ListItemIcon>
                 <SelectionIcon
                   sx={{
-                    color: isChecked ? 'primary.main' : 'text.secondary',
+                    color: isSelected ? 'primary.main' : 'text.secondary',
                     padding: '9px',
                     boxSizing: 'content-box',
                   }}
@@ -67,54 +74,54 @@ const CustomList = React.forwardRef(function CustomList(
 });
 
 export default function TransferList() {
-  const [checked, setChecked] = React.useState<readonly number[]>([]);
+  const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [left, setLeft] = React.useState<readonly number[]>([0, 1, 2, 3]);
   const [right, setRight] = React.useState<readonly number[]>([4, 5, 6, 7]);
 
-  const leftChecked = intersection(checked, left);
-  const rightChecked = intersection(checked, right);
+  const leftSelected = intersection(selected, left);
+  const rightSelected = intersection(selected, right);
 
   const leftListRef = React.useRef<HTMLDivElement & { focus: () => void }>(null);
   const rightListRef = React.useRef<HTMLDivElement & { focus: () => void }>(null);
 
   const handleToggle = (value: number) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+    const currentIndex = selected.indexOf(value);
+    const newSelected = [...selected];
 
     if (currentIndex === -1) {
-      newChecked.push(value);
+      newSelected.push(value);
     } else {
-      newChecked.splice(currentIndex, 1);
+      newSelected.splice(currentIndex, 1);
     }
 
-    setChecked(newChecked);
+    setSelected(newSelected);
   };
 
   const handleAllRight = () => {
     setRight(right.concat(left));
     setLeft([]);
-    setChecked(not(checked, left));
+    setSelected(not(selected, left));
     rightListRef.current?.focus();
   };
 
-  const handleCheckedRight = () => {
-    setRight(right.concat(leftChecked));
-    setLeft(not(left, leftChecked));
-    setChecked(not(checked, leftChecked));
+  const handleSelectedRight = () => {
+    setRight(right.concat(leftSelected));
+    setLeft(not(left, leftSelected));
+    setSelected(not(selected, leftSelected));
     rightListRef.current?.focus();
   };
 
-  const handleCheckedLeft = () => {
-    setLeft(left.concat(rightChecked));
-    setRight(not(right, rightChecked));
-    setChecked(not(checked, rightChecked));
+  const handleSelectedLeft = () => {
+    setLeft(left.concat(rightSelected));
+    setRight(not(right, rightSelected));
+    setSelected(not(selected, rightSelected));
     leftListRef.current?.focus();
   };
 
   const handleAllLeft = () => {
     setLeft(left.concat(right));
     setRight([]);
-    setChecked(not(checked, right));
+    setSelected(not(selected, right));
     leftListRef.current?.focus();
   };
 
@@ -128,7 +135,7 @@ export default function TransferList() {
         aria-label="choices"
         ref={leftListRef}
         items={left}
-        checked={checked}
+        selected={selected}
         handleToggle={handleToggle}
       />
       <Stack>
@@ -146,8 +153,8 @@ export default function TransferList() {
           sx={{ my: 0.5 }}
           variant="outlined"
           size="small"
-          onClick={handleCheckedRight}
-          disabled={leftChecked.length === 0}
+          onClick={handleSelectedRight}
+          disabled={leftSelected.length === 0}
           aria-label="move selected right"
         >
           &gt;
@@ -156,8 +163,8 @@ export default function TransferList() {
           sx={{ my: 0.5 }}
           variant="outlined"
           size="small"
-          onClick={handleCheckedLeft}
-          disabled={rightChecked.length === 0}
+          onClick={handleSelectedLeft}
+          disabled={rightSelected.length === 0}
           aria-label="move selected left"
         >
           &lt;
@@ -177,7 +184,7 @@ export default function TransferList() {
         aria-label="chosen"
         ref={rightListRef}
         items={right}
-        checked={checked}
+        selected={selected}
         handleToggle={handleToggle}
       />
     </Grid>
