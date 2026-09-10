@@ -315,13 +315,13 @@ function CustomStatusSlot() {
   renderInput={() => null}
 />;
 
-<Autocomplete
-  freeSolo
-  options={options}
-  // @ts-expect-error String option values are indistinguishable from freeSolo values.
-  getOptionValue={(option) => option.value}
-  renderInput={() => null}
-/>;
+const stringMappedProps = {
+  options,
+  getOptionValue: (option: Option) => option.value,
+  renderInput: () => null,
+};
+// @ts-expect-error String option values are indistinguishable from freeSolo values.
+<Autocomplete {...stringMappedProps} freeSolo />;
 
 // Existing explicit generic arguments retain their meaning: the second argument is Multiple.
 <Autocomplete<Option, true>
@@ -334,25 +334,42 @@ function CustomStatusSlot() {
 />;
 
 // value cannot change the selected value type without getOptionValue
-<Autocomplete
-  options={options}
-  // @ts-expect-error Without getOptionValue, value must have the same type as an option.
-  value="1"
-  renderInput={() => null}
-/>;
+// @ts-expect-error Without getOptionValue, value must have the same type as an option.
+<Autocomplete options={options} value="1" renderInput={() => null} />;
 
-<Autocomplete
-  options={options}
-  // @ts-expect-error getOptionValue must return a primitive value.
-  getOptionValue={(option) => ({ value: option.value })}
-  renderInput={() => null}
-/>;
+const nonPrimitiveMappedProps = {
+  options,
+  getOptionValue: (option: Option) => ({ value: option.value }),
+  renderInput: () => null,
+};
+// @ts-expect-error getOptionValue must return a primitive value.
+<Autocomplete {...nonPrimitiveMappedProps} />;
 
 <Autocomplete<Option, false, false, false, ChipTypeMap['defaultComponent'], string>
   options={options}
   getOptionValue={(option) => option.value}
   // @ts-expect-error value must match the getOptionValue return type.
   value={1}
+  renderInput={() => null}
+/>;
+
+// Selected values must not widen the type inferred from getOptionValue.
+const literalMappedProps = {
+  options: [{ id: 'foo' as const }],
+  getOptionValue: (option: { id: 'foo' }) => option.id,
+};
+// @ts-expect-error value must match the inferred getOptionValue return type.
+<Autocomplete {...literalMappedProps} value="bar" renderInput={() => null} />;
+// @ts-expect-error defaultValue must match the inferred getOptionValue return type.
+<Autocomplete {...literalMappedProps} defaultValue="bar" renderInput={() => null} />;
+
+<Autocomplete
+  {...literalMappedProps}
+  value="foo"
+  defaultValue="foo"
+  onChange={(event, value) => {
+    expectType<'foo' | null, typeof value>(value);
+  }}
   renderInput={() => null}
 />;
 
