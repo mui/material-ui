@@ -920,7 +920,7 @@ function useAutocomplete(props) {
       }
 
       const itemIndex =
-        origin === 'freeSolo'
+        getOptionValueProp !== undefined && origin === 'freeSolo'
           ? newValue.indexOf(optionValue)
           : newValue.findIndex((valueItem) => isOptionEqualToValue(option, valueItem));
 
