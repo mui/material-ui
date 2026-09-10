@@ -301,11 +301,8 @@ function Component() {
   expectType<string | null | undefined, typeof mappedProps.value>(mappedProps.value);
 
   // `value` alone must not opt an object-option Autocomplete into mapped-value mode
-  useAutocomplete({
-    options: persons,
-    // @ts-expect-error Without getOptionValue, value must have the same type as an option.
-    value: persons[0].id,
-  });
+  // @ts-expect-error Without getOptionValue, value must have the same type as an option.
+  useAutocomplete({ options: persons, value: persons[0].id });
 
   useAutocomplete({
     options: persons,
@@ -318,6 +315,25 @@ function Component() {
     getOptionValue: (option) => option.id,
     // @ts-expect-error value must match the getOptionValue return type.
     value: 1,
+  });
+
+  // Selected values must not widen the type inferred from getOptionValue.
+  const literalMappedProps = {
+    options: [{ id: 'foo' as const }],
+    getOptionValue: (option: { id: 'foo' }) => option.id,
+  };
+  // @ts-expect-error value must match the inferred getOptionValue return type.
+  useAutocomplete({ ...literalMappedProps, value: 'bar' });
+  // @ts-expect-error defaultValue must match the inferred getOptionValue return type.
+  useAutocomplete({ ...literalMappedProps, defaultValue: 'bar' });
+
+  useAutocomplete({
+    ...literalMappedProps,
+    value: 'foo',
+    defaultValue: 'foo',
+    onChange(event, value) {
+      expectType<'foo' | null, typeof value>(value);
+    },
   });
 
   const ungroupedAutocomplete = useAutocomplete({ options: persons });
