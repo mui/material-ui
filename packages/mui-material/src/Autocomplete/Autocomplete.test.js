@@ -4157,6 +4157,89 @@ describe('<Autocomplete />', () => {
       expect(screen.getByText('Bar')).not.to.equal(null);
     });
 
+    describe('async options in freeSolo mode', () => {
+      const loadedOptions = [{ id: 2, label: 'Bar' }];
+
+      it.each([false, true])(
+        'resolves the selected label when options arrive with focused=%s',
+        async (focused) => {
+          const handleInputChange = spy();
+          const handleChange = spy();
+          const props = {
+            freeSolo: true,
+            value: 2,
+            onInputChange: handleInputChange,
+            onChange: handleChange,
+          };
+          const { rerender, user } = render(<Test {...props} options={[]} />);
+          const textbox = screen.getByRole('combobox');
+
+          expect(textbox).to.have.value('');
+          if (focused) {
+            await user.click(textbox);
+          }
+
+          rerender(<Test {...props} options={loadedOptions} />);
+
+          expect(textbox).to.have.value('Bar');
+          expect(handleInputChange.callCount).to.equal(1);
+          expect(handleInputChange.firstCall.args).to.deep.equal([null, 'Bar', 'reset']);
+          expect(handleChange.callCount).to.equal(0);
+        },
+      );
+
+      it('resolves an uncontrolled default value when options arrive', () => {
+        const { rerender } = render(<Test freeSolo defaultValue={2} options={[]} />);
+
+        expect(screen.getByRole('combobox')).to.have.value('');
+
+        rerender(<Test freeSolo defaultValue={2} options={loadedOptions} />);
+
+        expect(screen.getByRole('combobox')).to.have.value('Bar');
+      });
+
+      it.each(['draft', ''])(
+        'preserves edited input "%s" when options arrive after blur',
+        async (draft) => {
+          const handleInputChange = spy();
+          const props = { freeSolo: true, value: 2, onInputChange: handleInputChange };
+          const { rerender, user } = render(<Test {...props} options={[]} />);
+          const textbox = screen.getByRole('combobox');
+
+          await user.type(textbox, 'draft');
+          if (draft === '') {
+            await user.clear(textbox);
+          }
+          await user.keyboard('{Escape}{ArrowDown}');
+          await user.tab();
+          handleInputChange.resetHistory();
+
+          rerender(<Test {...props} options={loadedOptions} />);
+
+          expect(textbox).to.have.value(draft);
+          expect(handleInputChange.callCount).to.equal(0);
+        },
+      );
+
+      it('preserves a controlled input value when options arrive', () => {
+        const props = { freeSolo: true, value: 2, inputValue: 'Custom label' };
+        const { rerender } = render(<Test {...props} options={[]} />);
+
+        rerender(<Test {...props} options={loadedOptions} />);
+
+        expect(screen.getByRole('combobox')).to.have.value('Custom label');
+      });
+
+      it('does not restore a cleared selection when options arrive', () => {
+        const { rerender } = render(<Test freeSolo value={2} options={[]} />);
+
+        rerender(<Test freeSolo value={null} options={[]} />);
+        rerender(<Test freeSolo value={null} options={loadedOptions} />);
+
+        expect(screen.getByRole('combobox')).to.have.value('');
+      });
+    });
+
     it('uses freeSolo text for a chip when it collides with a mapped option value', () => {
       const collidingOptions = [{ id: 'draft', label: 'Published' }];
       const expectedError =
