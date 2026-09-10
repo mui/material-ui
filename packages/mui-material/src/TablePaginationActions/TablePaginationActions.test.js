@@ -177,6 +177,54 @@ describe('<TablePaginationActions />', () => {
   });
 
   it.each(
+    [undefined, null].flatMap((ariaLabel) =>
+      ['default', 'custom', 'removed'].map((title) => ({ ariaLabel, title })),
+    ),
+  )('falls back to the $title title when aria-label is $ariaLabel', ({ ariaLabel, title }) => {
+    const types = ['first', 'previous', 'next', 'last'];
+    render(
+      <TablePaginationActions
+        {...defaultProps}
+        slotProps={Object.fromEntries(
+          types.map((type) => [
+            `${type}Button`,
+            {
+              'aria-label': ariaLabel,
+              ...(title === 'custom' && { title: `Custom ${type} action` }),
+              ...(title === 'removed' && { title: undefined }),
+            },
+          ]),
+        )}
+      />,
+    );
+
+    screen.getAllByRole('button').forEach((button, index) => {
+      const type = types[index];
+      const label = {
+        default: `Go to ${type} page`,
+        custom: `Custom ${type} action`,
+        removed: '',
+      }[title];
+      expect(button).toHaveAccessibleName(label);
+    });
+  });
+
+  it('preserves an explicit accessible name independently of the tooltip title', async () => {
+    const { user } = render(
+      <TablePaginationActions
+        {...defaultProps}
+        slotProps={{ nextButton: { 'aria-label': 'Custom action', title: 'Custom tooltip' } }}
+      />,
+    );
+    const button = screen.getByRole('button', { name: 'Custom action' });
+
+    await user.hover(button);
+
+    expect(await screen.findByRole('tooltip')).to.have.text('Custom tooltip');
+    expect(button).toHaveAccessibleName('Custom action');
+  });
+
+  it.each(
     ['ltr', 'rtl'].flatMap((direction) =>
       ['first', 'previous', 'next', 'last'].map((type) => ({ direction, type })),
     ),
