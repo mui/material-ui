@@ -357,6 +357,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       // create a new object with ClientRect class props + scrollLeft
       tabsMeta = {
         clientWidth: tabsNode.clientWidth,
+        clientHeight: tabsNode.clientHeight,
         scrollLeft: tabsNode.scrollLeft,
         scrollTop: tabsNode.scrollTop,
         scrollWidth: tabsNode.scrollWidth,
@@ -592,7 +593,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     }
 
     const scrollerComputedStyle = ownerWindow(tabsRef.current).getComputedStyle(tabsRef.current);
-    const scrollportSize = tabsRef.current[clientSize];
+    const scrollportSize = vertical ? tabsMeta.clientHeight : tabsMeta.clientWidth;
     const scrollPaddingStart = resolveScrollPadding(
       scrollerComputedStyle[vertical ? 'scrollPaddingTop' : 'scrollPaddingLeft'],
       scrollportSize,
@@ -602,16 +603,25 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       scrollportSize,
     );
 
-    if (tabMeta[start] - scrollPaddingStart < tabsMeta[start]) {
-      // left side of button is out of view
-      const nextScrollStart =
-        tabsMeta[scrollStart] + (tabMeta[start] - scrollPaddingStart - tabsMeta[start]);
-      scroll(nextScrollStart, { animation });
-    } else if (tabMeta[end] + scrollPaddingEnd > tabsMeta[end]) {
-      // right side of button is out of view
-      const nextScrollStart =
-        tabsMeta[scrollStart] + (tabMeta[end] + scrollPaddingEnd - tabsMeta[end]);
-      scroll(nextScrollStart, { animation });
+    // The edges the tab has to sit between: the scrollport shrunk by its scroll-padding.
+    const scrollportStart = tabsMeta[start] + scrollPaddingStart;
+    const scrollportEnd = tabsMeta[end] - scrollPaddingEnd;
+    const startAlignedScroll = tabsMeta[scrollStart] + (tabMeta[start] - scrollportStart);
+
+    if (tabMeta[start] < scrollportStart) {
+      // start edge is out of view, or covered by the scroll-padding
+      scroll(startAlignedScroll, { animation });
+    } else if (tabMeta[end] > scrollportEnd) {
+      if (tabMeta[end] - tabMeta[start] > scrollportEnd - scrollportStart) {
+        // The tab doesn't fit between the scroll-padding edges, so both can't be satisfied.
+        // Align the start edge, like `scrollIntoView({ block: 'nearest' })` does for a target
+        // larger than the scrollport; otherwise the two branches take turns on every call and
+        // the scroller oscillates between them.
+        scroll(startAlignedScroll, { animation });
+      } else {
+        // end edge is out of view, or covered by the scroll-padding
+        scroll(tabsMeta[scrollStart] + (tabMeta[end] - scrollportEnd), { animation });
+      }
     }
   });
 
