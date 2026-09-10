@@ -14,7 +14,7 @@ import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
-import { menu2IndicatorStyles } from '../Unstable_Menu2/menu2SharedStyles';
+import Menu2IndicatorBase from '../Unstable_Menu2/Menu2IndicatorBase';
 import { getMenu2RootRender, Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2CheckboxItemIndicatorUtilityClass,
@@ -100,11 +100,11 @@ const useUtilityClasses = (ownerState: Menu2CheckboxItemIndicatorProps) => {
   };
 };
 
-const Menu2CheckboxItemIndicatorRoot = styled('span', {
+const Menu2CheckboxItemIndicatorRoot = styled(Menu2IndicatorBase, {
   name: 'MuiMenu2CheckboxItemIndicator',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(menu2IndicatorStyles) as any;
+})({}) as any;
 
 // `small` keeps the 1.25rem box the menu row is built around.
 const defaultCheckedIcon = <CheckBoxIcon fontSize="small" />;

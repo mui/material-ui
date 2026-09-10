@@ -13,7 +13,7 @@ import { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import RadioButtonIcon from '../Radio/RadioButtonIcon';
-import { menu2IndicatorStyles } from '../Unstable_Menu2/menu2SharedStyles';
+import Menu2IndicatorBase from '../Unstable_Menu2/Menu2IndicatorBase';
 import { getMenu2RootRender, Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2RadioItemIndicatorUtilityClass,
@@ -96,11 +96,11 @@ const useUtilityClasses = (ownerState: Menu2RadioItemIndicatorProps) => {
   };
 };
 
-const Menu2RadioItemIndicatorRoot = styled('span', {
+const Menu2RadioItemIndicatorRoot = styled(Menu2IndicatorBase, {
   name: 'MuiMenu2RadioItemIndicator',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(menu2IndicatorStyles) as any;
+})({}) as any;
 
 // The same icon the real Radio uses, so the dot keeps its scale transition.
 // `small` keeps the 1.25rem box the menu row is built around.

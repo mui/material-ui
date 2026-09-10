@@ -5,8 +5,6 @@ import composeClasses from '@mui/utils/composeClasses';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import { SxProps } from '@mui/system';
-import Paper from '../Paper';
-import List from '../List';
 import { styled } from '../zero-styled';
 import { Theme } from '../styles';
 import {
@@ -15,12 +13,7 @@ import {
   Menu2PopupSharedProps,
   Menu2PopupSharedSlotProps,
 } from './menu2PopupShared';
-import {
-  menu2PopupListStyles,
-  menu2PopupPaperStyles,
-  menu2PopupPositionerStyles,
-  menu2PopupTransitionStyles,
-} from './menu2SharedStyles';
+import { Menu2ListBase, Menu2PaperBase, Menu2PositionerBase } from './Menu2PopupSlotBases';
 import { getMenu2PopupUtilityClass, Menu2PopupClasses } from './menu2Classes';
 import type { Menu2Props } from './Menu2';
 
@@ -210,17 +203,17 @@ const Menu2PopupRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })({});
 
-const Menu2PopupPositioner = styled('div', {
+const Menu2PopupPositioner = styled(Menu2PositionerBase, {
   name: 'MuiMenu2',
   slot: 'Positioner',
   overridesResolver: (props, styles) => styles.positioner,
-})(menu2PopupPositionerStyles);
+})({});
 
-const Menu2PopupPaper = styled(Paper, {
+const Menu2PopupPaper = styled(Menu2PaperBase, {
   name: 'MuiMenu2',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
-})({ outline: 0 }, menu2PopupPaperStyles, menu2PopupTransitionStyles);
+})({});
 
 const Menu2PopupBackdrop = styled(BaseMenu.Backdrop, {
   name: 'MuiMenu2',
@@ -238,11 +231,11 @@ const Menu2PopupBackdrop = styled(BaseMenu.Backdrop, {
   WebkitTapHighlightColor: 'transparent',
 }) as any;
 
-const Menu2PopupList = styled(List, {
+const Menu2PopupList = styled(Menu2ListBase, {
   name: 'MuiMenu2',
   slot: 'List',
   overridesResolver: (props, styles) => styles.list,
-})(menu2PopupListStyles);
+})({});
 
 /**
  *

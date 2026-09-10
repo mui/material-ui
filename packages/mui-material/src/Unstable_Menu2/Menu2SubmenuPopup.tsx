@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import { SxProps } from '@mui/system';
-import Paper from '../Paper';
-import List from '../List';
 import { styled } from '../zero-styled';
 import { Theme } from '../styles';
 import {
@@ -14,12 +12,7 @@ import {
   Menu2PopupSharedProps,
   Menu2PopupSharedSlotProps,
 } from './menu2PopupShared';
-import {
-  menu2PopupListStyles,
-  menu2PopupPaperStyles,
-  menu2PopupPositionerStyles,
-  menu2PopupTransitionStyles,
-} from './menu2SharedStyles';
+import { Menu2ListBase, Menu2PaperBase, Menu2PositionerBase } from './Menu2PopupSlotBases';
 import { getMenu2SubmenuPopupUtilityClass, Menu2SubmenuPopupClasses } from './menu2Classes';
 import Menu2SubmenuClosingContext from './Menu2SubmenuClosingContext';
 import type { Menu2SubmenuProps } from '../Unstable_Menu2Submenu/Menu2Submenu';
@@ -204,23 +197,23 @@ const Menu2SubmenuPopupRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })({});
 
-const Menu2SubmenuPopupPositioner = styled('div', {
+const Menu2SubmenuPopupPositioner = styled(Menu2PositionerBase, {
   name: 'MuiMenu2Submenu',
   slot: 'Positioner',
   overridesResolver: (props, styles) => styles.positioner,
-})(menu2PopupPositionerStyles);
+})({});
 
-const Menu2SubmenuPopupPaper = styled(Paper, {
+const Menu2SubmenuPopupPaper = styled(Menu2PaperBase, {
   name: 'MuiMenu2Submenu',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
-})({ outline: 0 }, menu2PopupPaperStyles, menu2PopupTransitionStyles);
+})({});
 
-const Menu2SubmenuPopupList = styled(List, {
+const Menu2SubmenuPopupList = styled(Menu2ListBase, {
   name: 'MuiMenu2Submenu',
   slot: 'List',
   overridesResolver: (props, styles) => styles.list,
-})(menu2PopupListStyles);
+})({});
 
 /**
  *

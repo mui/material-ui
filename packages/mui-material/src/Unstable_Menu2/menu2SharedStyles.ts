@@ -1,7 +1,5 @@
-import { CSSInterpolation, CSSObject } from '@mui/system';
-import memoTheme from '../utils/memoTheme';
+import { CSSInterpolation } from '@mui/system';
 import { Theme } from '../styles';
-import { menuListStyles, menuPaperStyles } from '../Menu/menuStyles';
 import { getMenuItemRootStyles } from '../MenuItem/menuItemStyles';
 import { menu2SubmenuTriggerClasses } from './menu2Classes';
 
@@ -40,27 +38,6 @@ export function getMenu2ItemStyles(
     }),
   };
 }
-
-export const menu2PopupPaperStyles: CSSInterpolation = {
-  // The classic module types its exports as CSSInterpolation via JSDoc; the
-  // value is a plain style object, narrowed here so it can be spread.
-  ...(menuPaperStyles as CSSObject),
-  // In the classic Menu the Paper sits in a full-viewport Modal, so its
-  // `maxHeight: calc(100% - 96px)` means "viewport minus 96px". Inside the
-  // content-sized Base UI popup that percentage resolves against the popup
-  // itself (browser-dependent), clipping the end of the menu. Use the
-  // collision-aware space provided by the positioner instead.
-  maxHeight: 'min(calc(100vh - 96px), var(--available-height))',
-  overflowY: 'auto',
-};
-
-export const menu2PopupListStyles = menuListStyles;
-
-// The classic Modal root carries `zIndex.modal`. Base UI sets no z-index, so
-// the positioner, the positioned element, carries it here.
-export const menu2PopupPositionerStyles = memoTheme(({ theme }) => ({
-  zIndex: (theme.vars || theme).zIndex.modal,
-}));
 
 export function menu2SubmenuTriggerStyles(theme: Theme) {
   // The highlight outranks the open tint. The open selector excludes both states
@@ -111,22 +88,3 @@ export function menu2SubmenuTriggerStyles(theme: Theme) {
     }),
   };
 }
-
-/**
- * Grow animates the popup itself, where Base UI observes animation completion.
- * The positioner supplies the origin so the surface grows from its anchor.
- */
-export const menu2PopupTransitionStyles = { transformOrigin: 'var(--transform-origin)' };
-
-// The indicators render the same icons as Checkbox and Radio, so they take the
-// same colors: `text.secondary` until checked, then `primary.main`.
-export const menu2IndicatorStyles = memoTheme(({ theme }) => ({
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  minWidth: 36,
-  color: (theme.vars || theme).palette.text.secondary,
-  '&[data-checked]': {
-    color: (theme.vars || theme).palette.primary.main,
-  },
-}));
