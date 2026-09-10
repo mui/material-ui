@@ -322,7 +322,7 @@ It accepts a fully-created theme and returns an enhanced version of it — apply
 #### Arguments
 
 1. `theme` (_object_): The theme object to enhance.
-2. `scale` (_object_ [optional]): Per-step overrides in px for the scale keys (`xx-small` through `xx-large`) and the sizing constants (`touch-target`, `icon-target`) — the `DensityScaleOverrides` shape.
+2. `scale` (_object_ [optional]): Per-step overrides in px for the scale keys (`xx-small` through `xx-large`) and the sizing constants (`touch-target`, `icon-size`) — the `DensityScaleOverrides` shape.
 
 #### Returns
 

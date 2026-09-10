@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 // the step that produced it.
 const {
   'touch-target': defaultTouchTarget,
-  'icon-target': defaultIconTarget,
+  'icon-size': defaultIconTarget,
   ...defaultSteps
 } = private_defaultDensityScale;
 
@@ -16,7 +16,7 @@ export const DENSITY_SCALE = defaultSteps;
 
 export const DENSITY_TARGETS = {
   'touch-target': defaultTouchTarget,
-  'icon-target': defaultIconTarget,
+  'icon-size': defaultIconTarget,
 };
 
 // The colors browser devtools use when it highlights a box.

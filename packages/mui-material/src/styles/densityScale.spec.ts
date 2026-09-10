@@ -32,7 +32,7 @@ takesKey('tiny');
 // @ts-expect-error — sizing constant, not a spacing key
 takesKey('touch-target');
 // @ts-expect-error — sizing constant, not a spacing key
-takesKey('icon-target');
+takesKey('icon-size');
 
 // Keys, negated keys, numbers, raw CSS and mixed args all type-check on
 // theme.spacing() — with or without a density preset applied — and return string.
@@ -51,7 +51,7 @@ takesString(theme.spacing('small', 2, 'auto', '3px'));
 // The scale is closed: every key of the override object must be one the
 // enhancer already knows, so a misspelling is a compile error rather than a
 // value that silently never reaches a component.
-enhanceDensity(createTheme(), { small: 8, 'touch-target': 40, 'icon-target': 20 });
+enhanceDensity(createTheme(), { small: 8, 'touch-target': 40, 'icon-size': 20 });
 // @ts-expect-error — misspelled step
 enhanceDensity(createTheme(), { smal: 8 });
 // @ts-expect-error — the scale cannot be extended with new names

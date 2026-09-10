@@ -110,8 +110,8 @@ describe('enhanceDensity', () => {
     expect(svgIcon('large')).to.equal('calc(16px + 4px)');
   });
 
-  test('an icon-target override carries the whole ramp', () => {
-    const theme = enhanceDensity(createTheme(), { 'icon-target': 20 });
+  test('an icon-size override carries the whole ramp', () => {
+    const theme = enhanceDensity(createTheme(), { 'icon-size': 20 });
 
     expect(variantStyle(theme, 'MuiSvgIcon', { fontSize: 'small' }).fontSize).to.equal(
       'calc(20px - 2px)',
@@ -135,7 +135,7 @@ describe('enhanceDensity', () => {
   test('the icon glyph is its own sizing constant', () => {
     expect(iconBox(enhanceDensity(createTheme()))).to.equal('16px');
 
-    const theme = enhanceDensity(createTheme(), { 'icon-target': 20 });
+    const theme = enhanceDensity(createTheme(), { 'icon-size': 20 });
     expect(iconBox(theme)).to.equal('20px');
     // moving the glyph leaves the box it sits in alone
     expect(controlBox(theme)).to.equal('32px');
@@ -283,15 +283,15 @@ describe('enhanceDensity', () => {
   });
 
   test('the icon glyph is a sizing constant too', () => {
-    const theme = enhanceDensity(createTheme({ cssVariables: true }), { 'icon-target': 20 });
+    const theme = enhanceDensity(createTheme({ cssVariables: true }), { 'icon-size': 20 });
     const sheets = theme.generateStyleSheets();
     const stepVars = sheets[sheets.length - 1][':root'] as Record<string, string>;
 
     expect(iconBox(theme)).to.equal('20px');
-    expect(stepVars).to.not.have.property('--mui-spacing-icon-target');
-    expect(theme.spacing('icon-target')).to.equal('icon-target');
-    expect((theme as any).unstable_sx({ m: 'icon-target' })).to.deep.equal({
-      margin: 'icon-target',
+    expect(stepVars).to.not.have.property('--mui-spacing-icon-size');
+    expect(theme.spacing('icon-size')).to.equal('icon-size');
+    expect((theme as any).unstable_sx({ m: 'icon-size' })).to.deep.equal({
+      margin: 'icon-size',
     });
   });
 
@@ -403,7 +403,7 @@ describe('enhanceDensity', () => {
 
     expect(
       variantStyle(theme, 'MuiListItemSecondaryAction', { disableGutters: false } as any),
-    ).to.deep.equal({ right: '8px' });
+    ).to.deep.equal({ right: '12px' });
   });
 
   test('array spacing emits no broken values anywhere', () => {

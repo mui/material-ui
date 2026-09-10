@@ -41,12 +41,12 @@ The enhancer also modernizes components like Button that use the margin-based sp
 The enhancer lets you set 2 target sizes:
 
 - the touch-target size: apply to every interactive control to create consistent sizing across the library.
-- the icon-target size: apply to the `SvgIcon` component.
+- the icon-size size: apply to the `SvgIcon` component.
 
 ```ts
 const theme = enhanceDensity(createTheme(), {
   'touch-target': 40,
-  'icon-target': 20,
+  'icon-size': 20,
 });
 ```
 
@@ -116,7 +116,7 @@ This means the scale can be read—and overridden—from plain CSS, including fo
 }
 ```
 
-Only the ladder steps ship as CSS variables. The sizing constants (`touch-target`, `icon-target`) are emitted as literal px, so control boxes don't follow a CSS-only override — moving them requires the `scale` argument.
+Only the ladder steps ship as CSS variables. The sizing constants (`touch-target`, `icon-size`) are emitted as literal px, so control boxes don't follow a CSS-only override — moving them requires the `scale` argument.
 
 ## All components density
 
@@ -140,7 +140,7 @@ const theme = enhanceDensity(createTheme(), {
   'x-large': 24,
   'xx-large': 32,
   'touch-target': 24,
-  'icon-target': 14,
+  'icon-size': 14,
 });
 ```
 

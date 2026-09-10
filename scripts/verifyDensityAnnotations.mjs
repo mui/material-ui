@@ -39,7 +39,7 @@ const SCALE = {
   'x-large': 32,
   'xx-large': 48,
   'touch-target': 32,
-  'icon-target': 16,
+  'icon-size': 16,
 };
 
 /** Only a bare step (or its negation) is a claim we can settle; anything with

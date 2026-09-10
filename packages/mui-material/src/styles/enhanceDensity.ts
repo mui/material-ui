@@ -7,7 +7,7 @@ import applySharedDensity from './sharedDensityComponents';
  * not resolve them. They ride the same override object because apps need to
  * move them with the rest of the scale.
  */
-export type DensitySizingKey = 'touch-target' | 'icon-target';
+export type DensitySizingKey = 'touch-target' | 'icon-size';
 
 /**
  * Per-value override in px — same shape as `defaultDensityScale`, so the two
@@ -30,7 +30,7 @@ export const defaultDensityScale: Record<DensityKey | DensitySizingKey, number> 
   'x-large': 32,
   'xx-large': 48,
   'touch-target': 32,
-  'icon-target': 16,
+  'icon-size': 16,
 };
 
 /**
@@ -46,6 +46,6 @@ export default function enhanceDensity<T extends EnhanceableTheme>(
   // Sizing constants rather than ladder steps: they emit as plain px, so
   // neither becomes a spacing key or a CSS variable.
   const sizing = (key: DensitySizingKey) => `${scale?.[key] ?? defaultDensityScale[key]}px`;
-  applySharedDensity(enhanced, sizing('touch-target'), sizing('icon-target'));
+  applySharedDensity(enhanced, sizing('touch-target'), sizing('icon-size'));
   return enhanced;
 }

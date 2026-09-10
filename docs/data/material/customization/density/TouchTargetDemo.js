@@ -42,7 +42,7 @@ const CLAIMS = [
   {
     on: '.MuiListItemIcon-root',
     aspect: 'icon',
-    token: 'icon-target',
+    token: 'icon-size',
     route: { gutter: 'left' },
   },
 ];
@@ -76,18 +76,18 @@ Knob.propTypes = {
 
 export default function TouchTargetDemo() {
   const [touchTarget, setTouchTarget] = React.useState(32);
-  const [iconTarget, setIconTarget] = React.useState(16);
+  const [iconSize, setIconTarget] = React.useState(16);
   const stageRef = React.useRef(null);
   const demoRef = React.useRef(null);
-  const state = useClaims(stageRef, demoRef, CLAIMS, [touchTarget, iconTarget]);
+  const state = useClaims(stageRef, demoRef, CLAIMS, [touchTarget, iconSize]);
 
   const theme = React.useMemo(
     () =>
       enhanceDensity(createTheme({ colorSchemes: { light: true, dark: true } }), {
         'touch-target': touchTarget,
-        'icon-target': iconTarget,
+        'icon-size': iconSize,
       }),
-    [touchTarget, iconTarget],
+    [touchTarget, iconSize],
   );
 
   return (
@@ -122,8 +122,8 @@ export default function TouchTargetDemo() {
       <Divider />
       <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
         <Knob
-          label="icon-target"
-          value={iconTarget}
+          label="icon-size"
+          value={iconSize}
           steps={ICON_STEPS}
           onChange={setIconTarget}
         />

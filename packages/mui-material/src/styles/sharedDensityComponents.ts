@@ -46,7 +46,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   touchTarget: string,
   /** The default icon glyph size in px, on the same terms as `touchTarget`.
    * Anchor cells only — the small and large icon sizes stay on the ladder. */
-  iconTarget: string,
+  iconSize: string,
 ): void {
   // Keyed spacing: a scale key resolves to its step (var ref under cssVariables,
   // raw px otherwise); numbers stay plain spacing units.
@@ -64,21 +64,21 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   const largeBox = `calc(${touchTarget} + ${spacing('small')})`;
   const hugeBox = `calc(${touchTarget} + ${spacing('medium')})`;
   // Icons ride the glyph constant the same way boxes ride the interactive one.
-  const iconSmall = `calc(${iconTarget} - ${fraction(0.25)})`;
-  const iconLarge = `calc(${iconTarget} + ${fraction(0.5)})`;
+  const iconSmall = `calc(${iconSize} - ${fraction(0.25)})`;
+  const iconLarge = `calc(${iconSize} + ${fraction(0.5)})`;
   const sharedCheckboxRadio = {
     padding: 0,
     width: touchTarget,
     height: touchTarget,
-    '& svg': { fontSize: iconTarget },
+    '& svg': { fontSize: iconSize },
     // Pull-in follows the label placement — the control sits at the row's
     // start for `end`, at its end for `start`; top/bottom center it, so no
     // pull applies there.
     [`.${formControlLabelClasses.labelPlacementEnd}:has(&)`]: {
-      marginLeft: `calc((${touchTarget} - ${iconTarget}) / -2)`,
+      marginLeft: `calc((${touchTarget} - ${iconSize}) / -2)`,
     },
     [`.${formControlLabelClasses.labelPlacementStart}:has(&)`]: {
-      marginRight: `calc((${touchTarget} - ${iconTarget}) / -2)`,
+      marginRight: `calc((${touchTarget} - ${iconSize}) / -2)`,
     },
     variants: [
       {
@@ -184,7 +184,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   );
   addRootOverride(enhanced.components, 'MuiIconButton', {
     padding: 0,
-    fontSize: iconTarget,
+    fontSize: iconSize,
     variants: [
       { props: { size: 'small' }, style: { width: smallBox, height: smallBox } },
       {
@@ -206,7 +206,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addRootOverride(enhanced.components, 'MuiSvgIcon', {
     variants: [
       { props: { fontSize: 'small' }, style: { fontSize: iconSmall } },
-      { props: { fontSize: 'medium' }, style: { fontSize: iconTarget } },
+      { props: { fontSize: 'medium' }, style: { fontSize: iconSize } },
       { props: { fontSize: 'large' }, style: { fontSize: iconLarge } },
     ],
   });
@@ -653,7 +653,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         props: { size: 'medium' },
         style: {
           '--_size': touchTarget,
-          paddingInline: `calc((var(--_size) - ${iconTarget}) / 2 - 1px)`,
+          paddingInline: `calc((var(--_size) - ${iconSize}) / 2 - 1px)`,
         },
       },
       {
@@ -1000,7 +1000,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addRootOverride(
     enhanced.components,
     'MuiListSubheader',
-    { paddingLeft: `calc(${spacing('small')} + ${iconTarget} + ${spacing('x-small')})` },
+    { paddingLeft: `calc(${spacing('small')} + ${iconSize} + ${spacing('x-small')})` },
     'inset', // cannot use variants due to legacy overridesResolver
   );
   // No sm-up re-assert: ListItemButton has no master minHeight media reset.
@@ -1031,7 +1031,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     variants: [
       {
         props: { inset: true },
-        style: { paddingLeft: `calc(${iconTarget} + ${spacing('x-small')})` },
+        style: { paddingLeft: `calc(${iconSize} + ${spacing('x-small')})` },
       },
     ],
   });
@@ -1108,9 +1108,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     {
       minHeight: 'auto',
       // master writes per-variant --_caret/--_endAdornment on these same :has hooks
-      [`.${inputBaseClasses.root}:has(> &)`]: { '--_caret': iconTarget },
+      [`.${inputBaseClasses.root}:has(> &)`]: { '--_caret': iconSize },
       [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
-        '--_endAdornment': iconTarget,
+        '--_endAdornment': iconSize,
       },
     },
     'select',
@@ -1282,7 +1282,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'MuiTableSortLabel',
     {
       // One marginInline leaf: the arrow flips sides in right-aligned columns.
-      fontSize: `calc(${iconTarget} + ${fraction(0.25)})`,
+      fontSize: `calc(${iconSize} + ${fraction(0.25)})`,
       marginInline: spacing('xx-small'),
     },
     'icon',
@@ -1445,7 +1445,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     variants: [
       {
         props: { size: 'medium' },
-        style: { [`& .${chipClasses.icon}`]: { fontSize: iconTarget } },
+        style: { [`& .${chipClasses.icon}`]: { fontSize: iconSize } },
       },
       {
         props: { size: 'small' },

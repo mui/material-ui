@@ -19,7 +19,7 @@ const densityRecipes: DensityRecipe[] = [
       'x-large': 48,
       'xx-large': 64,
       'touch-target': 44,
-      'icon-target': 24,
+      'icon-size': 24,
     },
   },
   {

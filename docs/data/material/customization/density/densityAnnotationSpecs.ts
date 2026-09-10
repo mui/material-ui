@@ -334,7 +334,7 @@ export const DENSITY_ANNOTATIONS: Record<
       {
         on: '.MuiIconButton-root svg',
         aspect: 'icon',
-        token: 'icon-target',
+        token: 'icon-size',
         label: 'Icon button',
         route: { gutter: 'top' },
       },
@@ -402,11 +402,11 @@ export const DENSITY_ANNOTATIONS: Record<
         token: small ? 'touch-target - x-small' : 'touch-target',
         label: 'Checkbox',
       },
-      // The preset sizes the glyph `fontSize: iconTarget`, so `medium` names it.
+      // The preset sizes the glyph `fontSize: iconSize`, so `medium` names it.
       {
         on: '.MuiCheckbox-root',
         aspect: 'icon',
-        token: small ? 'icon-target - 0.25 × spacing' : 'icon-target',
+        token: small ? 'icon-size - 0.25 × spacing' : 'icon-size',
         label: 'Checkbox icon',
         route: { gutter: 'top' },
       },
@@ -677,7 +677,7 @@ export const DENSITY_ANNOTATIONS: Record<
       {
         on: '.MuiRadio-root',
         aspect: 'icon',
-        token: small ? 'icon-target - 0.25 × spacing' : 'icon-target',
+        token: small ? 'icon-size - 0.25 × spacing' : 'icon-size',
         label: 'Radio icon',
         route: { gutter: 'top' },
       },
@@ -699,7 +699,7 @@ export const DENSITY_ANNOTATIONS: Record<
       {
         on: '.MuiOutlinedInput-root .MuiInputAdornment-root svg',
         aspect: 'icon',
-        token: 'icon-target',
+        token: 'icon-size',
         label: 'Outlined',
         route: { gutter: 'top' },
       },
@@ -894,15 +894,15 @@ export const DENSITY_ANNOTATIONS: Record<
     ];
   },
   // One prop, three variants: `fontSize` is the icon aspect here because the
-  // slot is the `svg` itself, and `medium` lands on `icon-target` unaided.
+  // slot is the `svg` itself, and `medium` lands on `icon-size` unaided.
   SvgIcon: (values) => [
     {
       on: '.MuiSvgIcon-root',
       aspect: 'icon',
       token: {
-        small: 'icon-target - 0.25 × spacing',
-        medium: 'icon-target',
-        large: 'icon-target + 0.5 × spacing',
+        small: 'icon-size - 0.25 × spacing',
+        medium: 'icon-size',
+        large: 'icon-size + 0.5 × spacing',
       }[values.fontSize as string],
       label: 'Icon',
     },
@@ -970,7 +970,7 @@ export const DENSITY_ANNOTATIONS: Record<
       {
         on: '.MuiTableSortLabel-icon',
         aspect: 'icon',
-        token: 'icon-target + spacing / 4',
+        token: 'icon-size + spacing / 4',
         label: 'Sort icon',
         route: { gutter: 'top', line: 'diagonal', shift: 230 },
       },
@@ -1081,7 +1081,7 @@ export const DENSITY_ANNOTATIONS: Record<
       {
         on: '.MuiOutlinedInput-root svg',
         aspect: 'icon',
-        token: 'icon-target',
+        token: 'icon-size',
         label: 'Outlined',
         route: { gutter: 'left', shift: 60, line: 'diagonal' },
       },
@@ -1108,9 +1108,9 @@ export const DENSITY_ANNOTATIONS: Record<
     // The inner term IS the icon size now: the padding centres the glyph's
     // box inside the button, so each size pairs its box with its icon step.
     const inner = {
-      small: '(icon-target - 0.25 × spacing)',
-      medium: 'icon-target',
-      large: '(icon-target + 0.5 × spacing)',
+      small: '(icon-size - 0.25 × spacing)',
+      medium: 'icon-size',
+      large: '(icon-size + 0.5 × spacing)',
     }[values.size as string];
     // First button only — the group's two buttons double every label.
     return [
@@ -1132,7 +1132,7 @@ export const DENSITY_ANNOTATIONS: Record<
       {
         on: '.MuiToggleButton-root:first-of-type .MuiSvgIcon-root',
         aspect: 'icon',
-        token: 'icon-target',
+        token: 'icon-size',
         label: 'Icon',
         route: { gutter: 'top' },
       },
