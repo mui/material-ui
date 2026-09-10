@@ -161,7 +161,7 @@ Other behavior and caveats:
 - **Escape:** closes the innermost submenu and returns focus to its trigger. Set `closeParentOnEsc` on the submenu to request closure of the parent menus too.
 - **Open tint:** an open submenu trigger uses `action.hover`, blended with selected styling when needed. A separate `closing` state keeps the tint through exit without extending logical `open`.
 - **Focus outline after keyboard navigation:** with `theme.focusVisible`, the outline can follow the pointer after keyboard navigation. Base UI moves focus on hover, and the browser can preserve `:focus-visible`. We confirmed this in Chromium with real input. The classic Menu keeps focus and its outline on the keyboard-selected item. Accept this difference; no local focus override is planned.
-- **Focus guards:** Base UI inserts guards near an open submenu trigger. Adjacency and child-position selectors can therefore match different elements. New parts own their spacing; a plain `Divider` still uses the classic adjacency rules. An upstream discussion of guard placement remains separate work.
+- **Focus guards:** Base UI inserts guards beside root and submenu triggers while menus are open. Adjacency and child-position selectors can therefore match different elements. The guards use fixed positioning, so they do not add flex or grid gaps by themselves. New parts own their spacing; a plain `Divider` still uses the classic adjacency rules. An upstream discussion of guard placement remains separate work.
 - **Height:** the popup uses the smaller of the viewport limit and Base UI's available height, with internal scrolling.
 
 ### Compatibility
@@ -169,6 +169,8 @@ Other behavior and caveats:
 Keep item presentation props, `keepMounted`, `container`, and Material's customization mechanisms. Theme keys change to `MuiMenu2*`; classic `MuiMenu` and `MuiMenuItem` overrides do not reach the successor.
 
 Migration also changes open/close callbacks, positioning, initial focus, and transition completion. There is no direct equivalent for selected-item initial focus, independent scroll-lock control, or disabling the portal. The [prop map](#appendix-full-prop-mapping) records these limits. This is not a drop-in replacement.
+
+Unlike a classic `MenuItem` with `href`, `Menu2LinkItem` does not support `disabled`. There is no direct replacement for a disabled link item.
 
 ### New capabilities
 
@@ -355,7 +357,7 @@ This example follows the system preference. The playground also shows the theme 
 | `dense`, `disableGutters`, `divider`                               | Same props                              | Presentation remains Material-owned.                                                                                                              |
 | `<Divider />`                                                      | `Menu2Separator`                        | Owns its margins, including beside submenu focus guards.                                                                                          |
 | `selected`                                                         | Visual selection                        | Use dedicated checkbox and radio items for checked semantics.                                                                                     |
-| `disabled`                                                         | Same prop on supported item parts       | Disabled items remain focusable. Link items have a separate contract.                                                                             |
+| `disabled`                                                         | Same prop on supported item parts       | Disabled items remain focusable. `Menu2LinkItem` does not support `disabled`.                                                                     |
 | No equivalent                                                      | `closeOnClick`                          | Defaults to `true` on Menu2Item; `false` on link, checkbox, and radio items. Submenu triggers open the submenu instead of activating a leaf item. |
 | `href` / `LinkComponent`                                           | `Menu2LinkItem`                         | Renders an anchor by default; use `component` for a routing link.                                                                                 |
 | Item `autoFocus`                                                   | No dedicated equivalent                 | Base UI owns initial menu focus.                                                                                                                  |
@@ -373,3 +375,5 @@ This example follows the system preference. The playground also shows the theme 
 - Main requests: [nested menus #11723](https://github.com/mui/material-ui/issues/11723), [packaged Menubar #48336](https://github.com/mui/material-ui/issues/48336), and [nested menu docs #45790](https://github.com/mui/material-ui/issues/45790).
 - [Base UI Menu](https://base-ui.com/react/components/menu), [release history](https://base-ui.com/react/overview/releases), and [initial-focus discussion](https://github.com/mui/base-ui/issues/2143).
 - Historical bundle result from #48823: **+3.54 KB parsed, +685 B gzip** on the measured Material bundle. The earlier **+77 B** result belongs to the proof of concept. Neither describes the current release revision. Measure both classic-only and Menu2 imports before release; the latter also includes the required Base UI code.
+
+These whole-barrel measurements are not a fixed cost for apps that do not import Menu2. Menu2 parts are available only through subpath imports.
