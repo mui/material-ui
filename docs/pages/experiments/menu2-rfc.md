@@ -74,7 +74,7 @@ import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 ```
 
-The classic `Menu` keeps its API. The experiment extracts shared styles into `Menu/menuStyles.js` and `MenuItem/menuItemStyles.js`. It also adds a `defaultMuiPrevented` check to `useButtonBase`, so Base UI can own Enter and Space activation without ButtonBase activating the item again.
+The classic `Menu` keeps its API. Classic and successor items share `MenuItemBase`, with separate focus and highlight selectors. Menu2 popups and indicators also share styled bases. The bases have no theme key; each component keeps its own overrides. The experiment also adds a `defaultMuiPrevented` check to `useButtonBase`, so Base UI can own Enter and Space activation without ButtonBase activating the item again.
 
 ### Rules for Base UI-backed components (Menu is the first)
 

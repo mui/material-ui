@@ -11,9 +11,9 @@ import mergeSlotProps from '../utils/mergeSlotProps';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import ButtonBase from '../ButtonBase';
+import MenuItemBase from '../MenuItem/MenuItemBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { getMenu2ItemStyles } from '../Unstable_Menu2/menu2SharedStyles';
+import { getMenuItemHighlightStyles } from '../MenuItem/menuItemStyles';
 import Menu2CheckboxItemIndicator, {
   Menu2CheckboxItemIndicatorProps,
 } from '../Unstable_Menu2CheckboxItemIndicator';
@@ -150,12 +150,12 @@ export type Menu2CheckboxItemProps<
   component?: React.ElementType | undefined;
 };
 
-const Menu2CheckboxItemRoot = styled(ButtonBase, {
+const Menu2CheckboxItemRoot = styled(MenuItemBase, {
   name: 'MuiMenu2CheckboxItem',
   slot: 'Root',
   overridesResolver: menu2ItemOverridesResolver,
 })<{ ownerState: Menu2CheckboxItemOwnerState }>(
-  memoTheme(({ theme }) => getMenu2ItemStyles(theme, menu2CheckboxItemClasses)),
+  memoTheme(({ theme }) => getMenuItemHighlightStyles(theme, menu2CheckboxItemClasses.highlighted)),
 );
 
 interface Menu2CheckboxItemRootSlotProps extends Pick<

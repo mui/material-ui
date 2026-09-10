@@ -8,7 +8,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ListContext from '../List/ListContext';
-import ButtonBase from '../ButtonBase';
+import MenuItemBase from './MenuItemBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import focusWithVisible from '../utils/focusWithVisible';
 import useForkRef from '../utils/useForkRef';
@@ -17,7 +17,7 @@ import { useRovingTabIndexItem } from '../utils/useRovingTabIndex';
 import { useMenuListContext } from '../MenuList/MenuListContext';
 import { useSelectFocusSource } from '../Select/utils';
 import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
-import { getMenuItemRootStyles, menuItemOverridesResolver } from './menuItemStyles';
+import { getMenuItemHighlightStyles, menuItemOverridesResolver } from './menuItemStyles';
 
 export const overridesResolver = menuItemOverridesResolver;
 
@@ -42,12 +42,12 @@ const useUtilityClasses = (ownerState) => {
   };
 };
 
-const MenuItemRoot = styled(ButtonBase, {
+const MenuItemRoot = styled(MenuItemBase, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiMenuItem',
   slot: 'Root',
   overridesResolver,
-})(memoTheme(({ theme }) => getMenuItemRootStyles(theme, menuItemClasses)));
+})(memoTheme(({ theme }) => getMenuItemHighlightStyles(theme, menuItemClasses.focusVisible)));
 
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiMenuItem' });

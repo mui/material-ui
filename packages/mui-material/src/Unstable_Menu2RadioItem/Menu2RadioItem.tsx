@@ -11,9 +11,9 @@ import mergeSlotProps from '../utils/mergeSlotProps';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import ButtonBase from '../ButtonBase';
+import MenuItemBase from '../MenuItem/MenuItemBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { getMenu2ItemStyles } from '../Unstable_Menu2/menu2SharedStyles';
+import { getMenuItemHighlightStyles } from '../MenuItem/menuItemStyles';
 import Menu2RadioItemIndicator, {
   Menu2RadioItemIndicatorProps,
 } from '../Unstable_Menu2RadioItemIndicator';
@@ -127,12 +127,12 @@ export type Menu2RadioItemProps<
   component?: React.ElementType | undefined;
 };
 
-const Menu2RadioItemRoot = styled(ButtonBase, {
+const Menu2RadioItemRoot = styled(MenuItemBase, {
   name: 'MuiMenu2RadioItem',
   slot: 'Root',
   overridesResolver: menu2ItemOverridesResolver,
 })<{ ownerState: Menu2RadioItemOwnerState }>(
-  memoTheme(({ theme }) => getMenu2ItemStyles(theme, menu2RadioItemClasses)),
+  memoTheme(({ theme }) => getMenuItemHighlightStyles(theme, menu2RadioItemClasses.highlighted)),
 );
 
 interface Menu2RadioItemRootSlotProps extends Pick<

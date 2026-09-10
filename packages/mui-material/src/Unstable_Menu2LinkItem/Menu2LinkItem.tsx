@@ -8,9 +8,9 @@ import mergeSlotProps from '../utils/mergeSlotProps';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import ButtonBase from '../ButtonBase';
+import MenuItemBase from '../MenuItem/MenuItemBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { getMenu2ItemStyles } from '../Unstable_Menu2/menu2SharedStyles';
+import { getMenuItemHighlightStyles } from '../MenuItem/menuItemStyles';
 import {
   getMenu2RootRender,
   Menu2RootSlotProps,
@@ -95,12 +95,12 @@ export type Menu2LinkItemProps<
   component?: React.ElementType | undefined;
 };
 
-const Menu2LinkItemRoot = styled(ButtonBase, {
+const Menu2LinkItemRoot = styled(MenuItemBase, {
   name: 'MuiMenu2LinkItem',
   slot: 'Root',
   overridesResolver: menu2ItemOverridesResolver,
 })<{ ownerState: Menu2ItemOwnerState }>(
-  memoTheme(({ theme }) => getMenu2ItemStyles(theme, menu2LinkItemClasses)),
+  memoTheme(({ theme }) => getMenuItemHighlightStyles(theme, menu2LinkItemClasses.highlighted)),
 );
 
 /**
