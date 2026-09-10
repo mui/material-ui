@@ -1,8 +1,7 @@
 import response from './algoliaSearchResponse.json' with { type: 'json' };
 
 // A recorded `/1/indexes/*/queries` response, replayed so the results screen is
-// deterministic and offline. Refresh it with `pnpm test:regressions:record`;
-// see `recordSearchFixture.mjs`.
+// deterministic and offline. See `README.md` for the curl command to refresh it.
 const [result] = response.results;
 
 /**

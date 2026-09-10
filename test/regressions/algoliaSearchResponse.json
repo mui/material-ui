@@ -27,11 +27,7 @@
           },
           "_highlightResult": {
             "hierarchy": {
-              "lvl0": {
-                "value": "Customization",
-                "matchLevel": "none",
-                "matchedWords": []
-              },
+              "lvl0": { "value": "Customization", "matchLevel": "none", "matchedWords": [] },
               "lvl1": {
                 "value": "<mark>Container</mark> <mark>queries</mark>",
                 "matchLevel": "full",
@@ -62,30 +58,19 @@
                 "value": "<mark>Container</mark> <mark>queries</mark>",
                 "matchLevel": "full"
               },
-              "lvl2": {
-                "value": "Usage",
-                "matchLevel": "none"
-              }
+              "lvl2": { "value": "Usage", "matchLevel": "none" }
             }
           },
           "_highlightResult": {
             "hierarchy": {
-              "lvl0": {
-                "value": "Customization",
-                "matchLevel": "none",
-                "matchedWords": []
-              },
+              "lvl0": { "value": "Customization", "matchLevel": "none", "matchedWords": [] },
               "lvl1": {
                 "value": "<mark>Container</mark> <mark>queries</mark>",
                 "matchLevel": "full",
                 "fullyHighlighted": true,
                 "matchedWords": ["container", "query"]
               },
-              "lvl2": {
-                "value": "Usage",
-                "matchLevel": "none",
-                "matchedWords": []
-              }
+              "lvl2": { "value": "Usage", "matchLevel": "none", "matchedWords": [] }
             }
           }
         },
@@ -110,30 +95,19 @@
                 "value": "<mark>Container</mark> <mark>queries</mark>",
                 "matchLevel": "full"
               },
-              "lvl2": {
-                "value": "Shorthand syntax",
-                "matchLevel": "none"
-              }
+              "lvl2": { "value": "Shorthand syntax", "matchLevel": "none" }
             }
           },
           "_highlightResult": {
             "hierarchy": {
-              "lvl0": {
-                "value": "Customization",
-                "matchLevel": "none",
-                "matchedWords": []
-              },
+              "lvl0": { "value": "Customization", "matchLevel": "none", "matchedWords": [] },
               "lvl1": {
                 "value": "<mark>Container</mark> <mark>queries</mark>",
                 "matchLevel": "full",
                 "fullyHighlighted": true,
                 "matchedWords": ["container", "query"]
               },
-              "lvl2": {
-                "value": "Shorthand syntax",
-                "matchLevel": "none",
-                "matchedWords": []
-              }
+              "lvl2": { "value": "Shorthand syntax", "matchLevel": "none", "matchedWords": [] }
             }
           }
         },
@@ -158,30 +132,19 @@
                 "value": "<mark>Container</mark> <mark>queries</mark>",
                 "matchLevel": "full"
               },
-              "lvl2": {
-                "value": "API",
-                "matchLevel": "none"
-              }
+              "lvl2": { "value": "API", "matchLevel": "none" }
             }
           },
           "_highlightResult": {
             "hierarchy": {
-              "lvl0": {
-                "value": "Customization",
-                "matchLevel": "none",
-                "matchedWords": []
-              },
+              "lvl0": { "value": "Customization", "matchLevel": "none", "matchedWords": [] },
               "lvl1": {
                 "value": "<mark>Container</mark> <mark>queries</mark>",
                 "matchLevel": "full",
                 "fullyHighlighted": true,
                 "matchedWords": ["container", "query"]
               },
-              "lvl2": {
-                "value": "API",
-                "matchLevel": "none",
-                "matchedWords": []
-              }
+              "lvl2": { "value": "API", "matchLevel": "none", "matchedWords": [] }
             }
           }
         },
@@ -206,34 +169,20 @@
                 "value": "<mark>Container</mark> <mark>queries</mark>",
                 "matchLevel": "full"
               },
-              "lvl2": {
-                "value": "Usage",
-                "matchLevel": "none"
-              },
-              "lvl3": {
-                "value": "Named containment contexts",
-                "matchLevel": "none"
-              }
+              "lvl2": { "value": "Usage", "matchLevel": "none" },
+              "lvl3": { "value": "Named containment contexts", "matchLevel": "none" }
             }
           },
           "_highlightResult": {
             "hierarchy": {
-              "lvl0": {
-                "value": "Customization",
-                "matchLevel": "none",
-                "matchedWords": []
-              },
+              "lvl0": { "value": "Customization", "matchLevel": "none", "matchedWords": [] },
               "lvl1": {
                 "value": "<mark>Container</mark> <mark>queries</mark>",
                 "matchLevel": "full",
                 "fullyHighlighted": true,
                 "matchedWords": ["container", "query"]
               },
-              "lvl2": {
-                "value": "Usage",
-                "matchLevel": "none",
-                "matchedWords": []
-              },
+              "lvl2": { "value": "Usage", "matchLevel": "none", "matchedWords": [] },
               "lvl3": {
                 "value": "Named containment contexts",
                 "matchLevel": "none",
@@ -263,39 +212,21 @@
                 "value": "<mark>Container</mark> <mark>queries</mark>",
                 "matchLevel": "full"
               },
-              "lvl2": {
-                "value": "Shorthand syntax",
-                "matchLevel": "none"
-              },
-              "lvl3": {
-                "value": "Caveats",
-                "matchLevel": "none"
-              }
+              "lvl2": { "value": "Shorthand syntax", "matchLevel": "none" },
+              "lvl3": { "value": "Caveats", "matchLevel": "none" }
             }
           },
           "_highlightResult": {
             "hierarchy": {
-              "lvl0": {
-                "value": "Customization",
-                "matchLevel": "none",
-                "matchedWords": []
-              },
+              "lvl0": { "value": "Customization", "matchLevel": "none", "matchedWords": [] },
               "lvl1": {
                 "value": "<mark>Container</mark> <mark>queries</mark>",
                 "matchLevel": "full",
                 "fullyHighlighted": true,
                 "matchedWords": ["container", "query"]
               },
-              "lvl2": {
-                "value": "Shorthand syntax",
-                "matchLevel": "none",
-                "matchedWords": []
-              },
-              "lvl3": {
-                "value": "Caveats",
-                "matchLevel": "none",
-                "matchedWords": []
-              }
+              "lvl2": { "value": "Shorthand syntax", "matchLevel": "none", "matchedWords": [] },
+              "lvl3": { "value": "Caveats", "matchLevel": "none", "matchedWords": [] }
             }
           }
         },
@@ -320,18 +251,9 @@
               "matchLevel": "full"
             },
             "hierarchy": {
-              "lvl1": {
-                "value": "Upgrade to v6",
-                "matchLevel": "none"
-              },
-              "lvl2": {
-                "value": "Why you should upgrade to Material UI v6",
-                "matchLevel": "none"
-              },
-              "lvl3": {
-                "value": "Quality-of-life improvements",
-                "matchLevel": "none"
-              }
+              "lvl1": { "value": "Upgrade to v6", "matchLevel": "none" },
+              "lvl2": { "value": "Why you should upgrade to Material UI v6", "matchLevel": "none" },
+              "lvl3": { "value": "Quality-of-life improvements", "matchLevel": "none" }
             }
           },
           "_highlightResult": {
@@ -342,16 +264,8 @@
               "matchedWords": ["container", "query"]
             },
             "hierarchy": {
-              "lvl0": {
-                "value": "Migration",
-                "matchLevel": "none",
-                "matchedWords": []
-              },
-              "lvl1": {
-                "value": "Upgrade to v6",
-                "matchLevel": "none",
-                "matchedWords": []
-              },
+              "lvl0": { "value": "Migration", "matchLevel": "none", "matchedWords": [] },
+              "lvl1": { "value": "Upgrade to v6", "matchLevel": "none", "matchedWords": [] },
               "lvl2": {
                 "value": "Why you should upgrade to Material UI v6",
                 "matchLevel": "none",
@@ -385,12 +299,7 @@
               "value": "… size and orientation, ensuring consistency across layouts.\r\n<mark>Container</mark>: The <mark>container</mark> centers your content horizontally. It …",
               "matchLevel": "partial"
             },
-            "hierarchy": {
-              "lvl1": {
-                "value": "Responsive UI",
-                "matchLevel": "none"
-              }
-            }
+            "hierarchy": { "lvl1": { "value": "Responsive UI", "matchLevel": "none" } }
           },
           "_highlightResult": {
             "content": {
@@ -400,16 +309,8 @@
               "matchedWords": ["container", "query"]
             },
             "hierarchy": {
-              "lvl0": {
-                "value": "How-to guides",
-                "matchLevel": "none",
-                "matchedWords": []
-              },
-              "lvl1": {
-                "value": "Responsive UI",
-                "matchLevel": "none",
-                "matchedWords": []
-              }
+              "lvl0": { "value": "How-to guides", "matchLevel": "none", "matchedWords": [] },
+              "lvl1": { "value": "Responsive UI", "matchLevel": "none", "matchedWords": [] }
             }
           }
         }
@@ -420,13 +321,18 @@
       "hitsPerPage": 8,
       "exhaustiveNbHits": true,
       "exhaustiveTypo": true,
-      "exhaustive": {
-        "nbHits": true,
-        "typo": true
-      },
+      "exhaustive": { "nbHits": true, "typo": true },
       "query": "container query",
-      "index": "material-ui-regressions",
-      "renderingContent": {}
+      "params": "query=container+query&hitsPerPage=8&facetFilters=%5B%22version%3Amaster%22%2C%22language%3Aen%22%5D&filters=NOT+productId%3Abase-ui&optionalFilters=%5B%22productId%3Amaterial-ui%22%5D&attributesToRetrieve=%5B%22hierarchy.lvl0%22%2C%22hierarchy.lvl1%22%2C%22hierarchy.lvl2%22%2C%22hierarchy.lvl3%22%2C%22hierarchy.lvl4%22%2C%22hierarchy.lvl5%22%2C%22content%22%2C%22type%22%2C%22url%22%2C%22productId%22%2C%22productCategoryId%22%5D&attributesToSnippet=%5B%22hierarchy.lvl1%3A15%22%2C%22hierarchy.lvl2%3A15%22%2C%22hierarchy.lvl3%3A15%22%2C%22hierarchy.lvl4%3A15%22%2C%22hierarchy.lvl5%3A15%22%2C%22content%3A15%22%5D&snippetEllipsisText=%E2%80%A6&highlightPreTag=%3Cmark%3E&highlightPostTag=%3C%2Fmark%3E",
+      "index": "material-ui-v9",
+      "renderingContent": {},
+      "processingTimeMS": 1,
+      "processingTimingsMS": {
+        "_request": { "roundTrip": 45 },
+        "fetch": { "total": 1 },
+        "total": 1
+      },
+      "serverTimeMS": 2
     }
   ]
 }
