@@ -41,17 +41,18 @@ const TablePaginationActionsRoot = styled('div', {
 })({});
 
 const TablePaginationActionsButton = React.forwardRef(function TablePaginationActionsButton(
-  { title, ...other },
+  { 'aria-label': ariaLabel, title, ...other },
   ref,
 ) {
   return (
     <Tooltip title={title}>
-      <IconButton {...other} ref={ref} />
+      <IconButton aria-label={ariaLabel ?? title} {...other} ref={ref} />
     </Tooltip>
   );
 });
 
 TablePaginationActionsButton.propTypes /* remove-proptypes */ = {
+  'aria-label': PropTypes.string,
   title: PropTypes.node,
 };
 
