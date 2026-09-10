@@ -5,6 +5,8 @@ import { chromium } from '@playwright/test';
 import { describe, test as base, afterAll } from 'vitest';
 import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
 import { A11Y_RULES, DEFAULT_VIEWPORT, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
+import { RECENT_SEARCHES, stubAlgoliaSearch, unstubAlgoliaSearch } from './algoliaSearchStub';
+import { favoriteSearchesKey, QUERY, recentSearchesKey } from './docsearchFixtureData';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const AXE_SCRIPT = path.resolve(currentDirectory, '../../node_modules/axe-core/axe.min.js');
@@ -82,6 +84,9 @@ async function main() {
     return links.map((link) => link.href);
   });
   routes = routes.map((route) => route.replace(baseUrl, ''));
+  const reactMajor = Number(
+    (await probePage.evaluate(() => window.muiFixture.reactVersion)).split('.')[0],
+  );
   pool.release(probePage);
 
   const test = base.extend({
@@ -137,6 +142,30 @@ async function main() {
       `[data-testid="testcase"][data-testpath="${route}"]:not([aria-busy="true"])`,
     );
 
+    // `aria-busy` covers fonts, not images. The route handler aborts every
+    // image request, and components like Avatar only swap to their fallback
+    // after the error event triggers a re-render -- strictly later than the
+    // busy flip, so under CI contention the screenshot can catch the pending
+    // <img>: blank where every baseline has the settled fallback. Wait for
+    // each image to settle, then two frames so React commits the swap the
+    // load/error event scheduled.
+    await testcase.evaluate(async (element) => {
+      await Promise.all(
+        Array.from(element.querySelectorAll('img'), (img) => {
+          if (img.complete) {
+            return undefined;
+          }
+          return new Promise((resolve) => {
+            img.addEventListener('load', resolve, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+          });
+        }),
+      );
+      await new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      });
+    });
+
     return testcase;
   }
 
@@ -165,7 +194,8 @@ async function main() {
         const parsed = parseRoute(route);
         const screenshotRule = parsed ? getConfig(SCREENSHOT_RULES, parsed.path) : undefined;
         const a11yRule = parsed ? getConfig(A11Y_RULES, parsed.path) : undefined;
-        const runScreenshot = parsed ? (screenshotRule?.enabled ?? true) : true;
+        const meetsReactFloor = reactMajor >= (screenshotRule?.minReactMajor ?? 0);
+        const runScreenshot = parsed ? (screenshotRule?.enabled ?? true) && meetsReactFloor : true;
         const runA11y = a11yRule?.enabled === true;
         if (!runScreenshot && !runA11y) {
           return;
@@ -272,6 +302,102 @@ async function main() {
       });
     });
 
+    describe.each(['SearchModal', 'SearchModalDark'])('AppSearch/%s', (fixture) => {
+      // The route belongs in the name so the `-t` filter documented in
+      // `AGENTS.md` reaches this test. Without it a scoped run refreshes only
+      // the closed-button capture the route loop generates, and leaves the
+      // three below stale.
+      test(`should render /regression-AppSearch/${fixture} correctly`, async ({ pooled }) => {
+        const { page } = pooled;
+        // Seed from here rather than from the fixture. The `pooled` fixture
+        // clears storage on acquisition, and navigating to a route the pooled
+        // page already rendered does not remount it, so a seed written on mount
+        // would be gone by the time the modal reads it.
+        await page.evaluate(
+          ([key, favoriteKey, hits]) => {
+            localStorage.setItem(key, JSON.stringify(hits));
+            localStorage.setItem(favoriteKey, '[]');
+          },
+          [recentSearchesKey, favoriteSearchesKey, RECENT_SEARCHES],
+        );
+        await renderFixture(page, `/regression-AppSearch/${fixture}`);
+        // The modal portals to `document.body`, so it lands outside the
+        // testcase element and has to be screenshotted on its own.
+        await page.getByRole('button', { name: /search/i }).click();
+        const modal = await page.waitForSelector('.DocSearch-Modal');
+        // `useLazyCSS` fetches the DocSearch stylesheet and injects it as a
+        // `<style data-href>`. Without it the modal is unstyled.
+        await page.waitForFunction(() =>
+          Boolean(document.querySelector('style[data-href*="docsearch"]')),
+        );
+        // Neither of the waits above says anything about the two areas this
+        // screenshot is for. The stylesheet request starts when `AppSearch`
+        // mounts, well before the modal opens, so that wait can already be
+        // satisfied. The stored searches arrive through autocomplete's async
+        // source pipeline, and the custom start screen is portalled in from an
+        // effect. Wait for one sentinel from each.
+        await page.waitForSelector('.DocSearch-Modal .DocSearch-Hit');
+        await page.waitForSelector('.DocSearch-Modal .DocSearch-NewStartScreenItem');
+        // Rank `docsearch` below `mui`, the way the layer order that
+        // `BrandingCssVarsProvider` declares does in the docs. Without it the
+        // DocSearch stylesheet wins and none of the `AppSearch` overrides
+        // apply. It has to happen here rather than in the fixture: a layer's
+        // position is fixed by where it is first named, emotion prepends its
+        // tags above everything in `<head>`, and it keeps doing so as
+        // components mount — so the only stable point is once the modal has
+        // finished rendering.
+        //
+        // It only inserts `docsearch`: `mui` already ranks first here, because
+        // emotion prepends its tags above the bundle stylesheet and outranks the
+        // order `global.css` declares. Every other layer keeps its position.
+        try {
+          await page.evaluate(() => {
+            const style = document.createElement('style');
+            style.id = 'docsearch-layer-order';
+            style.textContent = '@layer docsearch, mui;';
+            document.head.prepend(style);
+          });
+          await takeScreenshot(page, {
+            testcase: modal,
+            route: `/regression-AppSearch/${fixture}Open`,
+          });
+
+          // The results screen carries the markup the start screen never shows:
+          // highlighted matches, breadcrumbs, and the tree connector between a
+          // section and its children.
+          await stubAlgoliaSearch(page);
+          await page.locator('.DocSearch-Input').fill(QUERY);
+          await page.waitForSelector('.DocSearch-Hit mark');
+          await takeScreenshot(page, {
+            testcase: modal,
+            route: `/regression-AppSearch/${fixture}Results`,
+          });
+
+          // Below 768px DocSearch lets the hit title and path wrap. Cropping to
+          // the modal does not reach that rule -- media queries read the
+          // viewport -- so the width has to change. 767px keeps the modal at
+          // the same width our `max-width` override gives it on desktop, which
+          // leaves the typography as the only thing that differs. The `pooled`
+          // fixture resets the viewport on acquisition, so this does not leak.
+          await page.setViewportSize({ width: 767, height: DEFAULT_VIEWPORT.height });
+          await page.waitForFunction(() => window.matchMedia('(max-width: 768px)').matches);
+          await takeScreenshot(page, {
+            testcase: modal,
+            route: `/regression-AppSearch/${fixture}ResultsNarrow`,
+          });
+        } finally {
+          // Pages are pooled and only the viewport and storage are reset between
+          // tests, so undo the rest ourselves. The layer declaration is inert for
+          // fixtures that put nothing in `docsearch`, but leaving it behind makes
+          // their layer order depend on which test ran first.
+          await unstubAlgoliaSearch(page);
+          await page.evaluate(() => {
+            document.getElementById('docsearch-layer-order')?.remove();
+          });
+        }
+      });
+    });
+
     describe('Autocomplete', () => {
       test('should not close immediately when textbox expands', async ({ pooled }) => {
         const { page } = pooled;
@@ -308,6 +434,24 @@ async function main() {
           await takeScreenshot(page, {
             testcase,
             route: '/regression-Switch/SimpleSwitchForcedColors',
+          });
+        } finally {
+          await page.emulateMedia({ forcedColors: 'none' });
+        }
+      });
+    });
+
+    describe('theme.focusVisible ring', () => {
+      // The FocusVisible fixtures render already focus-visible, so the standard screenshot loop
+      // above captures the ring. Only the forced-colors variant needs Playwright here.
+      test('keeps the outline ring visible in forced-colors mode', async ({ pooled }) => {
+        const { page } = pooled;
+        await page.emulateMedia({ forcedColors: 'active' });
+        try {
+          const testcase = await renderFixture(page, '/regression-FocusVisible/InsetControls');
+          await takeScreenshot(page, {
+            testcase,
+            route: '/regression-FocusVisible/InsetControlsForcedColors',
           });
         } finally {
           await page.emulateMedia({ forcedColors: 'none' });
@@ -358,6 +502,44 @@ async function main() {
         });
       });
     });
+    describe('Avatar', () => {
+      // Deterministic clip check for 1.4.12 Text Spacing, which axe cannot cover.
+      // Renders `LetterAvatars` and targets the two-character ("OP") avatar,
+      // whose fixed 40px box with `overflow: hidden` is the only clipping risk.
+      test('1.4.12 Text Spacing: initials stay visible under the WCAG overrides', async ({
+        pooled,
+      }) => {
+        const { page } = pooled;
+        await renderFixture(page, '/docs-components-avatars/LetterAvatars');
+        const clipped = await page.evaluate(() => {
+          const style = document.createElement('style');
+          style.textContent =
+            '* { line-height: 1.5 !important; letter-spacing: 0.12em !important; word-spacing: 0.16em !important; }';
+          document.head.appendChild(style);
+          const avatar = Array.from(document.querySelectorAll('.MuiAvatar-root')).find(
+            (node) => node.textContent === 'OP',
+          );
+          if (!avatar) {
+            throw new Error('LetterAvatars no longer renders an "OP" avatar');
+          }
+          const range = document.createRange();
+          range.selectNodeContents(avatar);
+          const text = range.getBoundingClientRect();
+          const box = avatar.getBoundingClientRect();
+          style.remove();
+          return (
+            text.left < box.left - 0.5 ||
+            text.right > box.right + 0.5 ||
+            text.top < box.top - 0.5 ||
+            text.bottom > box.bottom + 0.5
+          );
+        });
+        if (clipped) {
+          throw new Error('Avatar initials are clipped under WCAG text-spacing overrides');
+        }
+      });
+    });
+
     registerCssLayoutSuites({ test, renderFixture, routes });
   });
 }

@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "9.3.0",
+  "version": "9.4.0",
   "author": "MUI Team",
   "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "build": "code-infra build --tsgo --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/system\"",
-    "typescript": "tsgo -p tsconfig.json",
+    "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
     "attw": "attw --pack ./build --entrypoints \".\" \"Box\" \"styled\" \"useTheme\""
   },
@@ -48,7 +48,7 @@
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.18",
     "@types/sinon": "22.0.0",
-    "es-toolkit": "1.51.0",
+    "es-toolkit": "1.52.0",
     "fast-glob": "3.3.3",
     "react": "19.2.8",
     "sinon": "22.1.0",

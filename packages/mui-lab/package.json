@@ -1,7 +1,7 @@
 {
   "name": "@mui/lab",
   "//": "version should be 'alpha' at all time",
-  "version": "9.0.0-beta.8",
+  "version": "9.0.0-beta.9",
   "author": "MUI Team",
   "description": "Laboratory for new Material UI modules.",
   "license": "MIT",
@@ -30,7 +30,7 @@
     "build": "code-infra build --tsgo --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/lab\"",
-    "typescript": "tsgo -p tsconfig.json"
+    "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
     "@babel/runtime": "^7.29.7",
@@ -44,7 +44,7 @@
     "@mui/material": "workspace:^",
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.4",
+    "@types/react-dom": "19.2.5",
     "@types/sinon": "22.0.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",

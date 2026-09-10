@@ -14,7 +14,7 @@ export default function ColorRadioButtons() {
     onChange: handleChange,
     value: item,
     name: 'color-radio-button-demo',
-    inputProps: { 'aria-label': item },
+    slotProps: { input: { 'aria-label': item } },
   });
 
   return (

@@ -42,6 +42,10 @@ window.muiFixture = {
       { family: 'Font Awesome 5 Free', weight: 900 },
     ],
   }),
+  // Read by `index.test.js` to evaluate `ScreenshotRule.minReactMajor`. Taken
+  // from the bundle rather than the test process's own `react` so the two can
+  // never disagree about which React the demos actually render with.
+  reactVersion: React.version,
 };
 
 function FixtureRenderer({ component: FixtureComponent, path }) {

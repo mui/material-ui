@@ -39,9 +39,11 @@ const AccordionSummaryRoot = styled(ButtonBase, {
     ...getTransitionStyles(theme, ['min-height', 'background-color'], {
       duration: theme.transitions.duration.shortest,
     }),
-    [`&.${accordionSummaryClasses.focusVisible}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.focus,
-    },
+    ...(!theme.focusVisible && {
+      [`&.${accordionSummaryClasses.focusVisible}`]: {
+        backgroundColor: (theme.vars || theme).palette.action.focus,
+      },
+    }),
     [`&.${accordionSummaryClasses.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },

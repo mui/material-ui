@@ -50,7 +50,7 @@ const StyledSwitch = styled(Switch)(({ theme }) => [
       backgroundColor: grey[400],
       boxSizing: 'border-box',
     },
-    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+    [`*:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& .MuiSwitch-switchBase': {
         '&.Mui-checked': {
           '& + .MuiSwitch-track': {

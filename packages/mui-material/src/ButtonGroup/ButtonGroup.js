@@ -12,6 +12,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 import ButtonGroupContext from './ButtonGroupContext';
 import ButtonGroupButtonContext from './ButtonGroupButtonContext';
+import buttonClasses from '../Button/buttonClasses';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -65,6 +66,12 @@ const ButtonGroupRoot = styled('div', {
   memoTheme(({ theme }) => ({
     display: 'inline-flex',
     borderRadius: (theme.vars || theme).shape.borderRadius,
+    ...(theme.focusVisible && {
+      // paint the focused item above its siblings so they cannot cover the ring edges
+      [`& .${buttonGroupClasses.grouped}.${buttonClasses.focusVisible}`]: {
+        zIndex: 1,
+      },
+    }),
     variants: [
       {
         props: { variant: 'contained' },
@@ -76,6 +83,11 @@ const ButtonGroupRoot = styled('div', {
               boxShadow: 'none',
             },
           },
+          ...(theme.focusVisible && {
+            [`& .${buttonGroupClasses.grouped}.${buttonClasses.focusVisible}`]: {
+              boxShadow: theme.focusVisible.boxShadow,
+            },
+          }),
         },
       },
       {

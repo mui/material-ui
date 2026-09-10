@@ -38,7 +38,10 @@ const TimelineItemRoot = styled('li', {
   display: 'flex',
   position: 'relative',
   minHeight: 70,
-  [`&:not(:has(.${timelineOppositeContentClasses.root}))::before`]: {
+  // Spacer that keeps content centred when there is no opposite content,
+  // nested or not. `:where()` keeps the specificity at (0,1,1) so user
+  // overrides on `::before` win.
+  [`&:where(:not(:has(.${timelineOppositeContentClasses.root})))::before`]: {
     content: '""',
     flex: 1,
     padding: '6px 16px',

@@ -361,4 +361,93 @@ describe('<Rating />', () => {
       });
     });
   });
+
+  describe('theme.focusVisible', () => {
+    it.skipIf(isJsdom())('draws the curated ring on the active icon only', () => {
+      const { container } = render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Rating defaultValue={3} name="rating-focus-visible" />
+        </ThemeProvider>,
+      );
+
+      const checkedRadio = screen
+        .getAllByRole('radio')
+        .find((radio) => radio.checked && radio.value === '3');
+
+      act(() => {
+        checkedRadio.focus();
+      });
+
+      const root = container.querySelector(`.${classes.focusVisible}`);
+      expect(root).not.to.equal(null);
+
+      const activeIcon = root.querySelector(`.${classes.iconActive}`);
+      expect(activeIcon).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+    });
+
+    it.skipIf(isJsdom())('falls back to the legacy outline when unset', () => {
+      const { container } = render(<Rating defaultValue={3} name="rating-focus-visible-legacy" />);
+
+      const checkedRadio = screen
+        .getAllByRole('radio')
+        .find((radio) => radio.checked && radio.value === '3');
+
+      act(() => {
+        checkedRadio.focus();
+      });
+
+      const root = container.querySelector(`.${classes.focusVisible}`);
+      const activeIcon = root.querySelector(`.${classes.iconActive}`);
+      expect(activeIcon).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '1px',
+      });
+    });
+
+    it.skipIf(isJsdom())('draws the curated ring on the empty-value label', () => {
+      const { container } = render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Rating value={null} name="rating-empty-focus-visible" />
+        </ThemeProvider>,
+      );
+
+      const noValueRadio = screen.getAllByRole('radio').find((radio) => radio.checked);
+
+      act(() => {
+        noValueRadio.focus();
+      });
+
+      const label = container.querySelector(`.${classes.labelEmptyValueActive}`);
+      expect(label).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+    });
+
+    it.skipIf(isJsdom())(
+      'falls back to the legacy outline on the empty-value label when unset',
+      () => {
+        const { container } = render(
+          <Rating value={null} name="rating-empty-focus-visible-legacy" />,
+        );
+
+        const noValueRadio = screen.getAllByRole('radio').find((radio) => radio.checked);
+
+        act(() => {
+          noValueRadio.focus();
+        });
+
+        const label = container.querySelector(`.${classes.labelEmptyValueActive}`);
+        expect(label).toHaveComputedStyle({
+          outlineStyle: 'solid',
+          outlineWidth: '1px',
+        });
+      },
+    );
+  });
 });
