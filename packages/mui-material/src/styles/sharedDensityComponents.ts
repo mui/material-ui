@@ -1,7 +1,13 @@
+import type { Breakpoint } from '..';
+import type { PaginationItemOwnerState } from '../PaginationItem';
+import type { TabProps } from '../Tab';
+import type { ListOwnProps } from '../List';
+import type { ListItemOwnerState } from '../ListItem';
+import type { BottomNavigationActionOwnerState } from '../BottomNavigationAction';
+import type { InputBaseProps } from '../InputBase';
+import type { EnhanceableTheme } from './densityScale';
 import addDefaultProps from '../utils/addDefaultProps';
 import addRootOverride from '../utils/addRootOverride';
-import { EnhanceableTheme } from './densityScale';
-import type { Breakpoint } from '..';
 import switchClasses from '../Switch/switchClasses';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import chipClasses from '../Chip/chipClasses';
@@ -10,22 +16,18 @@ import tabClasses from '../Tab/tabClasses';
 import stepLabelClasses from '../StepLabel/stepLabelClasses';
 import tablePaginationClasses from '../TablePagination/tablePaginationClasses';
 import tableCellClasses from '../TableCell/tableCellClasses';
-import type { PaginationItemOwnerState } from '../PaginationItem';
-import type { TabProps } from '../Tab';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import alertClasses from '../Alert/alertClasses';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
 import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import inputBaseClasses from '../InputBase/inputBaseClasses';
-import type { AccordionSummaryOwnerState } from '../AccordionSummary';
 import formControlClasses from '../FormControl/formControlClasses';
 import formControlLabelClasses from '../FormControlLabel/formControlLabelClasses';
 import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import listItemIconClasses from '../ListItemIcon/listItemIconClasses';
-import { ListItemOwnerState } from '../ListItem';
 import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
-import { buttonGroupClasses } from '../ButtonGroup';
+import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
 
 /**
  * PRIVATE shared component mapping used by `enhanceDensity` (not re-exported
@@ -93,18 +95,62 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           },
         },
       },
-      { props: { edge: 'start' }, style: { marginLeft: `calc(${touchTarget} / -8)` } },
+      { props: { edge: 'start' }, style: { marginLeft: `calc(${touchTarget} / -4)` } },
       {
         props: { edge: 'start', size: 'small' },
         style: { marginLeft: `calc(${smallBox} / -8)` },
       },
-      { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -8)` } },
+      { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -4)` } },
       {
         props: { edge: 'end', size: 'small' },
         style: { marginRight: `calc(${smallBox} / -8)` },
       },
     ],
   };
+  addRootOverride(
+    enhanced.components,
+    'MuiChip',
+    {
+      margin: 0,
+      width: 'var(--_childSize)',
+      height: 'var(--_childSize)',
+      marginRight: 'var(--_offset)',
+    },
+    'deleteIcon',
+  );
+  addRootOverride(enhanced.components, 'MuiAccordionSummary', {
+    minHeight: touchTarget,
+    padding: `0 ${spacing('x-small')}`,
+    variants: [
+      {
+        props: ({ ownerState }: { ownerState: { disableGutters?: boolean | undefined } }) =>
+          !ownerState.disableGutters,
+        // scoped to expanded: wins master's 64px literal on specificity
+        style: {
+          [`&.${accordionSummaryClasses.expanded}`]: { minHeight: touchTarget },
+        },
+      },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiAccordionSummary',
+    {
+      marginBlock: '0px',
+      alignItems: 'center',
+      gap: spacing('x-small'),
+      variants: [
+        {
+          props: { disableGutters: false },
+          style: { [`&.${accordionSummaryClasses.expanded}`]: { marginBlock: '0px' } },
+        },
+      ],
+    },
+    'content',
+  );
+  addRootOverride(enhanced.components, 'MuiAccordionDetails', {
+    padding: `${spacing('xx-small')} ${spacing('small')} ${spacing('small')}`,
+  });
   addRootOverride(enhanced.components, 'MuiButton', {
     ...enhanced.typography?.button,
     paddingBlock: 0,
@@ -149,8 +195,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         props: { size: 'large' },
         style: { width: largeBox, height: largeBox },
       },
-      { props: { edge: 'start' }, style: { marginLeft: `calc(${touchTarget} / -8)` } },
-      { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -8)` } },
+      { props: { edge: 'start' }, style: { marginLeft: `calc(${touchTarget} / -4)` } },
+      { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -4)` } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiButtonGroup', {
@@ -190,27 +236,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     ],
     [`& .${listItemIconClasses.root}`]: { minWidth: 0 },
   });
-  addRootOverride(enhanced.components, 'MuiList', {
-    variants: [
-      // A subheader keeps master's `paddingTop: 0` — density only pads below.
-      {
-        props: ({
-          ownerState,
-        }: {
-          ownerState: { disablePadding?: boolean | undefined; subheader?: unknown };
-        }) => !ownerState.disablePadding && !ownerState.subheader,
-        style: { paddingBlock: spacing(1) },
-      },
-      {
-        props: ({
-          ownerState,
-        }: {
-          ownerState: { disablePadding?: boolean | undefined; subheader?: unknown };
-        }) => !ownerState.disablePadding && Boolean(ownerState.subheader),
-        style: { paddingBottom: spacing(1) },
-      },
-    ],
-  });
+
   addRootOverride(
     enhanced.components,
     'MuiTooltip',
@@ -324,13 +350,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         },
       },
       {
-        props: ({ ownerState }: { ownerState: { startAdornment?: unknown } }) =>
-          Boolean(ownerState.startAdornment),
+        props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.startAdornment,
         style: { paddingLeft: spacing('small') },
       },
       {
-        props: ({ ownerState }: { ownerState: { endAdornment?: unknown } }) =>
-          Boolean(ownerState.endAdornment),
+        props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.endAdornment,
         style: { '--_trailingPad': spacing('small') },
       },
     ],
@@ -351,13 +375,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           style: { paddingBlock: 0, paddingInline: 0 },
         },
         {
-          props: ({ ownerState }: { ownerState: { startAdornment?: unknown } }) =>
-            Boolean(ownerState.startAdornment),
+          props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.startAdornment,
           style: { paddingLeft: 0 },
         },
         {
-          props: ({ ownerState }: { ownerState: { endAdornment?: unknown } }) =>
-            Boolean(ownerState.endAdornment),
+          props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.endAdornment,
           style: { paddingRight: 0 },
         },
       ],
@@ -385,13 +407,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           style: { paddingBlock: 0, paddingInline: 0 },
         },
         {
-          props: ({ ownerState }: { ownerState: { startAdornment?: unknown } }) =>
-            Boolean(ownerState.startAdornment),
+          props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.startAdornment,
           style: { paddingLeft: 0 },
         },
         {
-          props: ({ ownerState }: { ownerState: { endAdornment?: unknown } }) =>
-            Boolean(ownerState.endAdornment),
+          props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.endAdornment,
           style: { paddingRight: 0 },
         },
       ],
@@ -446,13 +466,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         style: { paddingTop: 8, paddingBottom: 9 },
       },
       {
-        props: ({ ownerState }: { ownerState: { startAdornment?: unknown } }) =>
-          Boolean(ownerState.startAdornment),
+        props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.startAdornment,
         style: { paddingLeft: spacing('small') },
       },
       {
-        props: ({ ownerState }: { ownerState: { endAdornment?: unknown } }) =>
-          Boolean(ownerState.endAdornment),
+        props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.endAdornment,
         style: { '--_trailingPad': spacing('small') },
       },
     ],
@@ -527,7 +545,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     variants: [
       {
         props: ({ ownerState }: { ownerState: { formControl?: object | undefined } }) =>
-          Boolean(ownerState.formControl),
+          !!ownerState.formControl,
         style: { transform: 'translate(0, var(--_restY)) scale(1)' },
       },
       {
@@ -562,7 +580,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     gap: fraction(0.5),
     variants: [
       {
-        props: ({ ownerState }: { ownerState: { contained: boolean } }) => ownerState.contained,
+        props: { contained: true },
         style: { marginInline: spacing('x-small') },
       },
     ],
@@ -902,8 +920,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     padding: spacing('medium'),
     variants: [
       {
-        props: ({ ownerState }: { ownerState: { disableSpacing?: boolean | undefined } }) =>
-          !ownerState.disableSpacing,
+        props: { disableSpacing: false },
         style: { gap: spacing('small'), '& > :not(style) ~ :not(style)': { marginLeft: 0 } },
       },
     ],
@@ -923,11 +940,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           style: { maxHeight: 'calc(100% - var(--_dialogMargin) * 2)' },
         },
         {
-          props: ({
-            ownerState,
-          }: {
-            ownerState: { maxWidth?: string | false | undefined; fullScreen?: boolean | undefined };
-          }) => !ownerState.maxWidth && !ownerState.fullScreen,
+          props: { maxWidth: false, fullScreen: false },
           style: { maxWidth: 'calc(100% - var(--_dialogMargin) * 2)' },
         },
         {
@@ -959,6 +972,37 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'paper',
   );
+  addRootOverride(enhanced.components, 'MuiList', {
+    variants: [
+      // A subheader keeps master's `paddingTop: 0` — density only pads below.
+      {
+        props: ({ ownerState }: { ownerState: ListOwnProps }) =>
+          !ownerState.disablePadding && !ownerState.subheader,
+        style: { paddingBlock: spacing(1) },
+      },
+      {
+        props: ({ ownerState }: { ownerState: ListOwnProps }) =>
+          !ownerState.disablePadding && !!ownerState.subheader,
+        style: { paddingBottom: spacing(1) },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiListSubheader', {
+    fontSize: enhanced.typography?.body2?.fontSize,
+    lineHeight: touchTarget,
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiListSubheader',
+    { paddingInline: spacing('small') },
+    'gutters', // cannot use variants due to legacy overridesResolver
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiListSubheader',
+    { paddingLeft: `calc(${spacing('small')} + ${iconTarget} + ${spacing('x-small')})` },
+    'inset', // cannot use variants due to legacy overridesResolver
+  );
   // No sm-up re-assert: ListItemButton has no master minHeight media reset.
   addRootOverride(enhanced.components, 'MuiListItemButton', {
     gap: spacing('x-small'),
@@ -982,7 +1026,15 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // minWidth 0 kills master's 56px column floors — the row gap owns spacing.
   addRootOverride(enhanced.components, 'MuiListItemIcon', { minWidth: 0 });
   addRootOverride(enhanced.components, 'MuiListItemAvatar', { minWidth: 0 });
-  addRootOverride(enhanced.components, 'MuiListItemText', { margin: 0 });
+  addRootOverride(enhanced.components, 'MuiListItemText', {
+    margin: 0,
+    variants: [
+      {
+        props: { inset: true },
+        style: { paddingLeft: `calc(${iconTarget} + ${spacing('x-small')})` },
+      },
+    ],
+  });
   // disablePadding:false scoping keeps rows owned by a ListItemButton unpadded.
   addRootOverride(enhanced.components, 'MuiListItem', {
     gap: spacing('x-small'),
@@ -1018,7 +1070,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   });
   addRootOverride(enhanced.components, 'MuiListItemSecondaryAction', {
     // Gutters only — master zeroes `right` under `disableGutters`.
-    variants: [{ props: { disableGutters: false }, style: { right: spacing('x-small') } }],
+    variants: [{ props: { disableGutters: false }, style: { right: spacing('small') } }],
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     padding: spacing('medium'),
@@ -1082,26 +1134,6 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     slotProps: { closeButton: { size: 'medium' } },
   });
   addRootOverride(enhanced.components, 'MuiAlert', { paddingBlock: fraction(0.875) }, 'message');
-  addRootOverride(
-    enhanced.components,
-    'MuiAccordionSummary',
-    {
-      marginBlock: '0px',
-      alignItems: 'center',
-      gap: spacing('x-small'),
-      variants: [
-        {
-          props: ({
-            ownerState,
-          }: {
-            ownerState: AccordionSummaryOwnerState & { disableGutters?: boolean | undefined };
-          }) => !ownerState.disableGutters,
-          style: { [`&.${accordionSummaryClasses.expanded}`]: { marginBlock: '0px' } },
-        },
-      ],
-    },
-    'content',
-  );
   addRootOverride(enhanced.components, 'MuiTab', {
     minHeight: touchTarget,
     lineHeight: enhanced.typography?.button?.lineHeight,
@@ -1354,22 +1386,12 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     height: spacing('xx-large'),
   });
   addRootOverride(enhanced.components, 'MuiBottomNavigationAction', {
-    // Selected label 12→14 stays master (state axis, not size).
     gap: spacing('xx-small'),
     paddingInline: spacing('small'),
     variants: [
       {
-        // Net master condition (pT14 unless the no-label rule zeroes it) — one
-        // matcher, so master's paddingTop:0 no-label state stays untouched.
-        props: ({
-          ownerState,
-        }: {
-          ownerState: {
-            showLabel?: boolean | undefined;
-            selected?: boolean | undefined;
-            label?: unknown;
-          };
-        }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
+        props: ({ ownerState }: { ownerState: BottomNavigationActionOwnerState }) =>
+          !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
         style: { paddingTop: spacing('medium') },
       },
     ],
@@ -1430,36 +1452,5 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         style: { [`& .${chipClasses.icon}`]: { fontSize: iconSmall } },
       },
     ],
-  });
-  addRootOverride(
-    enhanced.components,
-    'MuiChip',
-    {
-      margin: 0,
-      width: 'var(--_childSize)',
-      height: 'var(--_childSize)',
-      marginRight: 'var(--_offset)',
-    },
-    'deleteIcon',
-  );
-  addRootOverride(enhanced.components, 'MuiAccordionSummary', {
-    minHeight: touchTarget,
-    padding: `0 ${spacing('x-small')}`,
-    variants: [
-      {
-        props: ({
-          ownerState,
-        }: {
-          ownerState: AccordionSummaryOwnerState & { disableGutters?: boolean | undefined };
-        }) => !ownerState.disableGutters,
-        // scoped to expanded: wins master's 64px literal on specificity
-        style: {
-          [`&.${accordionSummaryClasses.expanded}`]: { minHeight: touchTarget },
-        },
-      },
-    ],
-  });
-  addRootOverride(enhanced.components, 'MuiAccordionDetails', {
-    padding: `${spacing('xx-small')} ${spacing('small')} ${spacing('small')}`,
   });
 }
