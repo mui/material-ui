@@ -191,8 +191,8 @@ describe('<SpeedDial />', () => {
     [
       ['up', 'tooltipPlacementLeft'],
       ['down', 'tooltipPlacementLeft'],
-      ['left', 'tooltipPlacementBottom'],
-      ['right', 'tooltipPlacementBottom'],
+      ['left', 'tooltipPlacementTop'],
+      ['right', 'tooltipPlacementTop'],
     ].forEach(([direction, className]) => {
       it(`should place the tooltip in the correct position when direction=${direction}`, () => {
         render(
