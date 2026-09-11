@@ -199,22 +199,43 @@ describe('<SpeedDialAction />', () => {
     expect(staticToolTipLabel).to.have.class(classes.staticTooltipLabel);
   });
 
-  [
-    ['top', { bottom: '100%', marginBottom: '8px' }],
-    ['bottom', { top: '100%', marginTop: '8px' }],
-  ].forEach(([placement, styles]) => {
-    it(`positions a static tooltip label when placement is ${placement}`, () => {
-      const { container } = render(
+  it.skipIf(isJsdom())(
+    'places the static tooltip label above the Fab when placement is top',
+    () => {
+      render(
         <SpeedDialAction
           icon={<Icon>add</Icon>}
           open
-          slotProps={{ tooltip: { open: true, placement, title: 'placeholder' } }}
+          slotProps={{ tooltip: { open: true, placement: 'top', title: 'placeholder' } }}
         />,
       );
 
-      expect(container.querySelector(`.${classes.staticTooltipLabel}`)).toHaveComputedStyle(styles);
-    });
-  });
+      const label = screen.getByText('placeholder').getBoundingClientRect();
+      const fab = screen.getByRole('menuitem').getBoundingClientRect();
+
+      expect(label.bottom).to.be.at.most(fab.top);
+      expect(Math.abs(label.left + label.width / 2 - (fab.left + fab.width / 2))).to.be.lessThan(1);
+    },
+  );
+
+  it.skipIf(isJsdom())(
+    'places the static tooltip label below the Fab when placement is bottom',
+    () => {
+      render(
+        <SpeedDialAction
+          icon={<Icon>add</Icon>}
+          open
+          slotProps={{ tooltip: { open: true, placement: 'bottom', title: 'placeholder' } }}
+        />,
+      );
+
+      const label = screen.getByText('placeholder').getBoundingClientRect();
+      const fab = screen.getByRole('menuitem').getBoundingClientRect();
+
+      expect(label.top).to.be.at.least(fab.bottom);
+      expect(Math.abs(label.left + label.width / 2 - (fab.left + fab.width / 2))).to.be.lessThan(1);
+    },
+  );
 
   it('should have staticToolTip and staticToolTipLabel classes if slotProps.tooltip.open is true and custom slots are provided', () => {
     const CustomStaticTooltip = React.forwardRef(({ ownerState, ...props }, ref) => (
