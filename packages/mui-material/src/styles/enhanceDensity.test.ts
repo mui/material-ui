@@ -398,8 +398,8 @@ describe('enhanceDensity', () => {
     expect(consoleError).toHaveBeenCalledTimes(1);
     expect(consoleError.mock.calls[0][0]).to.include('does not support an array `theme.spacing`');
 
-    // no emission, and the spacing function is the untouched original
-    expect(theme.components).to.deep.equal(base.components);
+    // the very same theme comes back — not a copy of it
+    expect(theme).to.equal(base);
     expect(theme.spacing).to.equal(base.spacing);
     expect(theme.spacing(1)).to.equal('4px');
     // the scale never registered, so a step name passes through as raw CSS

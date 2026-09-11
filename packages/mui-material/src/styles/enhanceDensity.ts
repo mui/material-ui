@@ -59,14 +59,16 @@ export default function enhanceDensity<T extends EnhanceableTheme>(
         ].join('\n'),
       );
     }
-    return { ...theme, components: { ...theme.components } } as T & {
-      components: NonNullable<EnhanceableTheme['components']>;
-    };
+    // Same reference in and out: nothing was emitted, so there is nothing to copy.
+    return theme as T & { components: NonNullable<EnhanceableTheme['components']> };
   }
   const enhanced = applyDensity(theme, scale);
   // Sizing constants rather than ladder steps: they emit as plain px, so
   // neither becomes a spacing key or a CSS variable.
-  const sizing = (key: DensitySizingKey) => `${scale?.[key] ?? defaultDensityScale[key]}px`;
-  applySharedDensity(enhanced, sizing('touchTarget'), sizing('iconSize'));
+  applySharedDensity(
+    enhanced,
+    `${scale?.touchTarget ?? defaultDensityScale.touchTarget}px`,
+    `${scale?.iconSize ?? defaultDensityScale.iconSize}px`,
+  );
   return enhanced;
 }
