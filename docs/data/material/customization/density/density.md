@@ -2,9 +2,9 @@
 
 <p class="description">Apply consistent, adjustable sizing across Material UI components.</p>
 
-Material UI's default sizes follow the Material Design guidelines, which are comfortable by design. Data-dense interfaces—dashboards, admin consoles, design tools—usually need something tighter, and some products need something roomier.
+Material UI's default sizes follow the Material Design guidelines, which are comfortable by design. Data-dense interfaces—dashboards, admin consoles, design tools—usually need something more compact, and some products need something more spacious.
 
-At the defaults, sizes are also set per component rather than from a shared scale, so controls of the same size don't line up: a medium Button is 36.5px tall next to a 40px IconButton, a 42px Checkbox, a 48px ToggleButton, and a 56px outlined TextField.
+Each component also sets its own sizes instead of following a shared scale. There's no single way to change the density of the whole library, and controls that should be the same height often aren't.
 
 Starting from v9.5, Material UI provides `enhanceDensity`, an opt-in theme enhancer that maps every component onto one shared spacing scale. Same-size controls end up on the same box, and one scale controls the whole set.
 
@@ -31,7 +31,7 @@ With the enhancer, the Button's CSS implementation switches from raw pixel value
 The enhancer also modernizes components like Button that use the margin-based spacing between children to use the `gap` property instead. This makes the component more resilient and easier to customize.
 
 :::info
-`enhanceDensity` changes nothing until you call it. A theme that doesn't go through the enhancer renders exactly as it does today.
+`enhanceDensity` is fully opt-in: themes that skip the enhancer render exactly as they did before.
 :::
 
 ## Benefits
@@ -40,8 +40,8 @@ The enhancer also modernizes components like Button that use the margin-based sp
 
 The enhancer lets you set 2 target sizes:
 
-- the touch-target size: apply to every interactive control to create consistent sizing across the library.
-- the icon-size size: apply to the `SvgIcon` component.
+- the touch-target size: applied to every interactive control to create consistent sizing across the library.
+- the icon size: applied to the `SvgIcon` component.
 
 ```ts
 const theme = enhanceDensity(createTheme(), {
@@ -105,7 +105,7 @@ On a theme created with [CSS theme variables](/material-ui/customization/css-the
 ```js
 const theme = enhanceDensity(createTheme({ cssVariables: true }));
 
-theme.spacing('small'); // 'var(--mui-spacing-small)'
+theme.spacing('small'); // 'var(--mui-spacing-small, 12px)'
 ```
 
 This means the scale can be read—and overridden—from plain CSS, including for one region of the page:
@@ -118,9 +118,9 @@ This means the scale can be read—and overridden—from plain CSS, including fo
 
 Only the ladder steps ship as CSS variables. The sizing constants (`touch-target`, `icon-size`) are emitted as literal px, so control boxes don't follow a CSS-only override — moving them requires the `scale` argument.
 
-## All components density
+## All components
 
-`enhanceDensity` is not a Button feature — one call maps every component in the library onto the same scale. Pick a component below to see the boxes it lands on: the padding ring, the gap between children, and the height the control settles at, each measured off the rendered element and named back to the step that produced it.
+`enhanceDensity` applies to all components. Select a component in the demo below to see how its dimensions map to the spacing scale: the padding ring, the gap between children, and the height the control settles at, each measured off the rendered element and named back to the step that produced it.
 
 {{"demo": "AllComponentsDemo.js"}}
 
@@ -146,7 +146,7 @@ const theme = enhanceDensity(createTheme(), {
 
 The scale is a closed set of seven steps, plus the two targets. The values must be numbers, which are interpreted as pixels.
 
-:::info
+:::warning
 The enhancer does not support a custom scale that adds new steps or removes existing ones. The seven steps and two targets are fixed.
 :::
 
