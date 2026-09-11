@@ -4289,8 +4289,8 @@ describe('<Autocomplete />', () => {
     it('uses freeSolo text for a chip when it collides with a mapped option value', () => {
       const collidingOptions = [{ id: 'draft', label: 'Published' }];
       const expectedError =
-        'MUI: The `getOptionValue` method of Autocomplete returned the string value "draft" while `freeSolo` is enabled.\n' +
-        'Autocomplete cannot distinguish string option values from free-solo values. ' +
+        'MUI: The `getOptionValue` method of useAutocomplete returned the string value "draft" while `freeSolo` is enabled.\n' +
+        'useAutocomplete cannot distinguish string option values from free-solo values. ' +
         'Return a number, bigint, or boolean from `getOptionValue`, or disable `freeSolo`.';
 
       expect(() => {
@@ -4304,7 +4304,7 @@ describe('<Autocomplete />', () => {
           />,
           { strict: false },
         );
-      }).toErrorDev([expectedError, expectedError]);
+      }).toErrorDev(expectedError);
 
       expect(screen.getByRole('button', { name: 'draft' })).not.to.equal(null);
     });

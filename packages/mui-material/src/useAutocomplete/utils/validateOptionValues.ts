@@ -1,15 +1,15 @@
 type OptionValueTypeValidationParams<Option> = {
   options: readonly Option[];
-  componentName: string;
   freeSolo: boolean;
   getOptionValueProp: ((option: Option) => unknown) | undefined;
+  duplicatedErrorMessages: Set<string>;
 };
 
 export default function validateOptionValues<Option>({
   options,
-  componentName,
   freeSolo,
   getOptionValueProp,
+  duplicatedErrorMessages,
 }: OptionValueTypeValidationParams<Option>) {
   if (!getOptionValueProp) {
     return;
@@ -22,12 +22,13 @@ export default function validateOptionValues<Option>({
     const value = getOptionValueProp(option);
 
     if (freeSolo && typeof value === 'string') {
-      console.error(
-        `MUI: The \`getOptionValue\` method of ${componentName} returned the string value ${getOptionValueDescription(
+      tryShowErrorMessage(
+        `MUI: The \`getOptionValue\` method of useAutocomplete returned the string value ${getOptionValueDescription(
           value,
         )} while \`freeSolo\` is enabled.\n` +
-          `${componentName} cannot distinguish string option values from free-solo values. ` +
+          `useAutocomplete cannot distinguish string option values from free-solo values. ` +
           'Return a number, bigint, or boolean from `getOptionValue`, or disable `freeSolo`.',
+        duplicatedErrorMessages,
       );
       continue;
     }
@@ -39,21 +40,23 @@ export default function validateOptionValues<Option>({
           ? getOptionValueDescription(value)
           : `a value of type ${typeof value}`;
 
-      console.error(
-        `MUI: The \`getOptionValue\` method of ${componentName} returned ${invalidValue}, which is not a valid option value.\n` +
-          `${componentName} uses this value to identify and match options. ` +
+      tryShowErrorMessage(
+        `MUI: The \`getOptionValue\` method of useAutocomplete returned ${invalidValue}, which is not a valid option value.\n` +
+          `useAutocomplete uses this value to identify and match options. ` +
           'Return a unique string, number, bigint, or boolean for every option.',
+        duplicatedErrorMessages,
       );
     }
 
     // Report a duplicated key once even when more than two options share it.
     if (seenOptionValues.has(value) && !reportedDuplicateValues.has(value)) {
-      console.error(
-        `MUI: The \`getOptionValue\` method of ${componentName} returned the duplicate value ${getOptionValueDescription(
+      tryShowErrorMessage(
+        `MUI: The \`getOptionValue\` method of useAutocomplete returned the duplicate value ${getOptionValueDescription(
           value,
         )} for multiple options.\n` +
-          `${componentName} uses these values to identify options. ` +
+          `useAutocomplete uses these values to identify options. ` +
           'Change `getOptionValue` or the options so that every option has a unique value.',
+        duplicatedErrorMessages,
       );
       reportedDuplicateValues.add(value);
     }
@@ -81,4 +84,13 @@ function getOptionValueDescription(value: unknown) {
     return `${value.toString()}n`;
   }
   return String(value);
+}
+
+function tryShowErrorMessage(message: string, duplicatedErrorMessages: Set<string>) {
+  if (duplicatedErrorMessages.has(message)) {
+    return;
+  }
+
+  console.error(message);
+  duplicatedErrorMessages.add(message);
 }
