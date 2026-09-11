@@ -366,6 +366,89 @@ describe('<TextareaAutosize />', () => {
       expect(input.style).to.have.property('overflow', '');
     });
 
+    it('should show scrollbar when the content is taller than the CSS "max-height"', () => {
+      const lineHeight = 15;
+      const maxHeight = lineHeight * 3;
+      const { forceUpdate } = render(<TextareaAutosize style={{ maxHeight }} />);
+      const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+        hidden: false,
+      });
+      const shadow = screen.getAllByRole<HTMLTextAreaElement>('textbox', {
+        hidden: true,
+      })[1];
+      setLayout(input, shadow, {
+        getComputedStyle: {
+          boxSizing: 'content-box',
+          maxHeight: `${maxHeight}px`,
+        },
+        scrollHeight: lineHeight * 2,
+        lineHeight,
+      });
+      forceUpdate();
+      expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
+      expect(input.style).to.have.property('overflow', 'hidden');
+
+      setLayout(input, shadow, {
+        getComputedStyle: {
+          boxSizing: 'content-box',
+          maxHeight: `${maxHeight}px`,
+        },
+        scrollHeight: lineHeight * 4,
+        lineHeight,
+      });
+      forceUpdate();
+      expect(input.style).to.have.property('overflow', '');
+    });
+
+    it('should take the box sizing into account when comparing with the CSS "max-height"', () => {
+      const border = 5;
+      const lineHeight = 15;
+      // The content on its own fits, the border pushes the border box past the limit.
+      const maxHeight = lineHeight * 2 + border - 1;
+      const { forceUpdate } = render(<TextareaAutosize style={{ maxHeight }} />);
+      const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+        hidden: false,
+      });
+      const shadow = screen.getAllByRole<HTMLTextAreaElement>('textbox', {
+        hidden: true,
+      })[1];
+      setLayout(input, shadow, {
+        getComputedStyle: {
+          boxSizing: 'border-box',
+          borderBottomWidth: `${border}px`,
+          maxHeight: `${maxHeight}px`,
+        },
+        scrollHeight: lineHeight * 2,
+        lineHeight,
+      });
+      forceUpdate();
+      expect(input.style).to.have.property('height', `${lineHeight * 2 + border}px`);
+      expect(input.style).to.have.property('overflow', '');
+    });
+
+    it('should keep hiding the overflow when the CSS "max-height" is not an absolute length', () => {
+      const lineHeight = 15;
+      const { forceUpdate } = render(<TextareaAutosize style={{ maxHeight: '50%' }} />);
+      const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+        hidden: false,
+      });
+      const shadow = screen.getAllByRole<HTMLTextAreaElement>('textbox', {
+        hidden: true,
+      })[1];
+      setLayout(input, shadow, {
+        getComputedStyle: {
+          boxSizing: 'content-box',
+          // `getComputedStyle` does not resolve percentages for `max-height`.
+          maxHeight: '50%',
+        },
+        scrollHeight: lineHeight * 4,
+        lineHeight,
+      });
+      forceUpdate();
+      expect(input.style).to.have.property('height', `${lineHeight * 4}px`);
+      expect(input.style).to.have.property('overflow', 'hidden');
+    });
+
     it('should update its height when the "maxRows" prop changes', () => {
       const lineHeight = 15;
       const { forceUpdate, setProps } = render(<TextareaAutosize maxRows={3} />);
