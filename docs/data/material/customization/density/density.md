@@ -123,6 +123,34 @@ This means the scale can be read—and overridden—from plain CSS, including fo
 
 Only the ladder steps ship as CSS variables. The sizing constants (`touchTarget`, `iconSize`) are emitted as literal px, so control boxes don't follow a CSS-only override — moving them requires the `scale` argument.
 
+## Caveat: array spacing is not supported
+
+`enhanceDensity` does not work on a theme whose `spacing` is an array. Every step is a fraction of the spacing unit—`small` is 1.5 units, `xxSmall` is half of one—and an array defines no unit, only positions. `theme.spacing(1.5)` on an array theme is already an empty string, so there is nothing for the scale to build on.
+
+When the enhancer sees an array it logs an error in development and returns the theme unchanged, so the components keep rendering at their default sizes.
+
+```js
+// ❌ No effect: the theme comes back unenhanced.
+const theme = enhanceDensity(createTheme({ spacing: [0, 4, 8, 16] }));
+```
+
+Move the array values onto the scale instead. Keep `spacing` as a number for `theme.spacing(2)` and the `sx` numeric shorthand, and name the steps you were indexing:
+
+```js
+// ✅ The values live on the scale, and the components follow them.
+const theme = enhanceDensity(createTheme(), {
+  xxSmall: 4,
+  xSmall: 8,
+  small: 16,
+});
+
+theme.spacing('small'); // '16px'
+
+<Box sx={{ p: 'small' }} />;
+```
+
+Any call site that indexed the array moves to the matching step name—`sx={{ p: 2 }}` reading `spacing[2]` becomes `sx={{ p: 'small' }}`.
+
 ## All components
 
 `enhanceDensity` applies to all components. Select a component in the demo below to see how its dimensions map to the spacing scale: the padding ring, the gap between children, and the height the control settles at, each measured off the rendered element and named back to the step that produced it.

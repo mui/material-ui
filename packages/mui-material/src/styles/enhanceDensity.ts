@@ -42,6 +42,27 @@ export default function enhanceDensity<T extends EnhanceableTheme>(
   theme: T,
   scale?: DensityScaleOverrides,
 ) {
+  // Every step is a fractional multiple of the spacing unit, and an array
+  // spacing defines no unit — only indices, which fractions cannot address
+  // (`theme.spacing(0.5)` is already an empty string there). Enhancing would
+  // emit holes, so the theme comes back untouched instead.
+  if (Array.isArray((theme.spacing as { unit?: unknown }).unit)) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.error(
+        [
+          'MUI: `enhanceDensity` does not support an array `theme.spacing`, and returned the theme unchanged.',
+          'The scale derives each step from the spacing unit, which an array does not define.',
+          'Define `spacing` as a number and move the array values onto the scale instead:',
+          '',
+          'createTheme({ spacing: [0, 4, 8, 16] })',
+          '  ->  enhanceDensity(createTheme(), { xxSmall: 4, xSmall: 8, small: 16 })',
+        ].join('\n'),
+      );
+    }
+    return { ...theme, components: { ...theme.components } } as T & {
+      components: NonNullable<EnhanceableTheme['components']>;
+    };
+  }
   const enhanced = applyDensity(theme, scale);
   // Sizing constants rather than ladder steps: they emit as plain px, so
   // neither becomes a spacing key or a CSS variable.

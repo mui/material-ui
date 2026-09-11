@@ -183,22 +183,6 @@ describe('enhanceDensity', () => {
       const { stepVars } = lastSheets(enhanceDensity(createTheme({ cssVariables: true, spacing })));
       expect(stepVars['--mui-spacing-xLarge']).to.equal('1rem');
     });
-
-    test('array: fractional multipliers have no index — canonical px fallback', () => {
-      // Component emissions make fractional spacing() calls, which array
-      // spacing warns about upstream (same as `sx={{ p: 0.5 }}` would).
-      const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
-      const spacing = [0, 4, 8, 16, 32, 64, 128, 256];
-      const staticTheme = enhanceDensity(createTheme({ spacing }));
-      expect(staticTheme.spacing('small')).to.equal('12px');
-      expect(staticTheme.spacing('-small')).to.equal('-12px');
-      expect(staticTheme.spacing(2)).to.equal('8px'); // plain array lookups untouched
-
-      const { stepVars } = lastSheets(enhanceDensity(createTheme({ cssVariables: true, spacing })));
-      expect(stepVars['--mui-spacing-small']).to.equal('12px');
-      expect(stepVars['--mui-spacing-medium']).to.equal('16px');
-      consoleError.mockRestore();
-    });
   });
 
   describe('sx spacing props', () => {
@@ -406,47 +390,35 @@ describe('enhanceDensity', () => {
     ).to.deep.equal({ right: '12px' });
   });
 
-  test('array spacing emits no broken values anywhere', () => {
+  test('array spacing is refused: warns once and returns the theme unenhanced', () => {
     const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
-    const theme = enhanceDensity(createTheme({ spacing: [0, 4, 8, 16, 32, 64] }));
+    const base = createTheme({ spacing: [0, 4, 8, 16, 32, 64] });
+    const theme = enhanceDensity(base, { small: 10 });
 
-    const stepNames = new Set([
-      'xxSmall',
-      'xSmall',
-      'small',
-      'medium',
-      'large',
-      'xLarge',
-      'xxLarge',
-    ]);
-    const broken: string[] = [];
-    const walk = (node: unknown, path: string) => {
-      if (typeof node === 'string') {
-        if (
-          node === '' ||
-          node.includes('undefined') ||
-          node.includes('NaN') ||
-          stepNames.has(node)
-        ) {
-          broken.push(`${path}: '${node}'`);
-        }
-        return;
-      }
-      if (node && typeof node === 'object') {
-        Object.entries(node as Record<string, unknown>).forEach(([key, value]) => {
-          // variant `props` are matchers and `defaultProps` are component
-          // props, not emitted CSS — `size: 'small'` is legitimate there
-          if (key === 'props' || key === 'defaultProps') {
-            return;
-          }
-          walk(value, `${path}.${key}`);
-        });
-      }
-    };
-    walk(theme.components, 'components');
+    expect(consoleError).toHaveBeenCalledTimes(1);
+    expect(consoleError.mock.calls[0][0]).to.include('does not support an array `theme.spacing`');
 
-    expect(broken).to.deep.equal([]);
-    expect(consoleError).not.toHaveBeenCalled();
+    // no emission, and the spacing function is the untouched original
+    expect(theme.components).to.deep.equal(base.components);
+    expect(theme.spacing).to.equal(base.spacing);
+    expect(theme.spacing(1)).to.equal('4px');
+    // the scale never registered, so a step name passes through as raw CSS
+    expect(theme.spacing('small' as any)).to.equal('small');
+    consoleError.mockRestore();
+  });
+
+  test('array spacing on a vars theme emits no step variables', () => {
+    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const theme = enhanceDensity(
+      createTheme({ cssVariables: true, spacing: [0, 4, 8, 16, 32, 64] }),
+    );
+    const sheets = (theme as any).generateStyleSheets();
+    const emitted: string[] = [];
+    sheets.forEach((sheet: Record<string, Record<string, string>>) => {
+      Object.values(sheet).forEach((decls) => emitted.push(...Object.keys(decls ?? {})));
+    });
+
+    expect(emitted.filter((name) => /^--mui-spacing-[a-zA-Z]/.test(name))).to.deep.equal([]);
     consoleError.mockRestore();
   });
 

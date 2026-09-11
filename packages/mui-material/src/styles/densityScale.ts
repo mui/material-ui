@@ -70,11 +70,7 @@ export function applyDensity<T extends EnhanceableTheme>(
 
   const stepVarName = (key: DensityKey) => cssVar(`spacing-${key}`);
 
-  // Array spacing indexes whole steps — fractional multipliers land on holes
-  // (empty values) — so the ladder falls back to its canonical 8px basis.
-  const stepValue: (multiplier: number) => string = Array.isArray((prevSpacing as any).unit)
-    ? (multiplier) => `${multiplier * 8}px`
-    : (multiplier) => String(prevSpacing(multiplier));
+  const stepValue = (multiplier: number) => String(prevSpacing(multiplier));
 
   const overrides = scaleOverrides ?? {};
 
