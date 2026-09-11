@@ -12,13 +12,13 @@ export interface SpeedDialActionClasses {
   staticTooltipClosed: string;
   /** Styles applied to the static tooltip label if `tooltipOpen={true}`. */
   staticTooltipLabel: string;
-  /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="left"`` */
+  /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="left"`. */
   tooltipPlacementLeft: string;
-  /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="right"`` */
+  /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="right"`. */
   tooltipPlacementRight: string;
-  /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="top"`` */
+  /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="top"`. */
   tooltipPlacementTop: string;
-  /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="bottom"`` */
+  /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="bottom"`. */
   tooltipPlacementBottom: string;
 }
 

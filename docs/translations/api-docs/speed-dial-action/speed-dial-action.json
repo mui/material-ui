@@ -27,11 +27,25 @@
       "nodeName": "the root element",
       "conditions": "<code>tooltipOpen={true}</code> and <code>open={false}</code>"
     },
+    "tooltipPlacementBottom": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>tooltipOpen={true}</code> and <code>tooltipPlacement=\"bottom\"</code>"
+    },
     "tooltipPlacementLeft": {
-      "description": "Styles applied to the root element if <code>tooltipOpen={true}</code> and `tooltipPlacement=&quot;left&quot;``"
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>tooltipOpen={true}</code> and <code>tooltipPlacement=\"left\"</code>"
     },
     "tooltipPlacementRight": {
-      "description": "Styles applied to the root element if <code>tooltipOpen={true}</code> and `tooltipPlacement=&quot;right&quot;``"
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>tooltipOpen={true}</code> and <code>tooltipPlacement=\"right\"</code>"
+    },
+    "tooltipPlacementTop": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>tooltipOpen={true}</code> and <code>tooltipPlacement=\"top\"</code>"
     }
   },
   "slotDescriptions": {

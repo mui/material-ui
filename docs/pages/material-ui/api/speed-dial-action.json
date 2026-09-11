@@ -72,15 +72,27 @@
       "isGlobal": false
     },
     {
+      "key": "tooltipPlacementBottom",
+      "className": "MuiSpeedDialAction-tooltipPlacementBottom",
+      "description": "Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement=\"bottom\"`.",
+      "isGlobal": false
+    },
+    {
       "key": "tooltipPlacementLeft",
       "className": "MuiSpeedDialAction-tooltipPlacementLeft",
-      "description": "Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement=\"left\"``",
+      "description": "Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement=\"left\"`.",
       "isGlobal": false
     },
     {
       "key": "tooltipPlacementRight",
       "className": "MuiSpeedDialAction-tooltipPlacementRight",
-      "description": "Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement=\"right\"``",
+      "description": "Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement=\"right\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "tooltipPlacementTop",
+      "className": "MuiSpeedDialAction-tooltipPlacementTop",
+      "description": "Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement=\"top\"`.",
       "isGlobal": false
     }
   ],
