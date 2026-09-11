@@ -633,6 +633,86 @@ describe('useAutocomplete', () => {
       expect(resolveOptionValue('foo')).to.equal(updatedOptions[0]);
     });
 
+    describe('cached custom equality resolutions', () => {
+      const resolverOptions = [
+        { id: 'foo', label: 'First Foo' },
+        { id: 'FOO', label: 'Second Foo' },
+      ];
+      const compare = (option, value) => option.id.toLowerCase() === value.toLowerCase();
+      let resolveOptionValue;
+
+      function ResolverTest({
+        options: optionsProp = resolverOptions,
+        isOptionEqualToValue = compare,
+      }) {
+        const { getInputProps, getOptionFromValue } = useAutocomplete({
+          options: optionsProp,
+          getOptionValue,
+          isOptionEqualToValue,
+        });
+        resolveOptionValue = getOptionFromValue;
+        return <input {...getInputProps()} />;
+      }
+
+      it('reuses the first match and cached misses across input rerenders', async () => {
+        const isOptionEqualToValue = spy(compare);
+        const { user } = render(<ResolverTest isOptionEqualToValue={isOptionEqualToValue} />);
+
+        expect(resolveOptionValue('FoO')).to.equal(resolverOptions[0]);
+        expect(resolveOptionValue('missing')).to.equal(null);
+        isOptionEqualToValue.resetHistory();
+
+        expect(resolveOptionValue('FoO')).to.equal(resolverOptions[0]);
+        expect(resolveOptionValue('missing')).to.equal(null);
+        expect(isOptionEqualToValue.callCount).to.equal(0);
+
+        await user.type(screen.getByRole('combobox'), 'Foo');
+
+        expect(resolveOptionValue('FoO')).to.equal(resolverOptions[0]);
+        expect(resolveOptionValue('missing')).to.equal(null);
+        expect(isOptionEqualToValue.callCount).to.equal(0);
+      });
+
+      it('refreshes cached matches and misses when options change', () => {
+        const { rerender } = render(<ResolverTest />);
+
+        expect(resolveOptionValue('FoO')).to.equal(resolverOptions[0]);
+        expect(resolveOptionValue('missing')).to.equal(null);
+
+        const updatedOptions = [
+          { id: 'foo', label: 'Updated Foo' },
+          { id: 'missing', label: 'Loaded option' },
+        ];
+        rerender(<ResolverTest options={updatedOptions} />);
+
+        expect(resolveOptionValue('FoO')).to.equal(updatedOptions[0]);
+        expect(resolveOptionValue('missing')).to.equal(updatedOptions[1]);
+
+        rerender(<ResolverTest options={[]} />);
+
+        expect(resolveOptionValue('FoO')).to.equal(null);
+        expect(resolveOptionValue('missing')).to.equal(null);
+      });
+
+      it('refreshes cached matches and misses when the comparator changes', () => {
+        const { rerender } = render(
+          <ResolverTest isOptionEqualToValue={(option, value) => option.id === value} />,
+        );
+
+        expect(resolveOptionValue('foo')).to.equal(resolverOptions[0]);
+        expect(resolveOptionValue('FoO')).to.equal(null);
+
+        rerender(
+          <ResolverTest
+            isOptionEqualToValue={(option, value) => option.id === value.toUpperCase()}
+          />,
+        );
+
+        expect(resolveOptionValue('foo')).to.equal(resolverOptions[1]);
+        expect(resolveOptionValue('FoO')).to.equal(resolverOptions[1]);
+      });
+    });
+
     it('returns the mapped option value when selecting a single option', async () => {
       const onChange = spy();
 

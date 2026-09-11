@@ -188,6 +188,7 @@ function useAutocomplete(props) {
     };
 
     if (isOptionEqualToValueProp) {
+      const resolvedOptions = new Map();
       // Custom equality defines matching behavior, so resolve the first matching option.
       return (value) => {
         if (freeSolo && typeof value === 'string') {
@@ -195,7 +196,15 @@ function useAutocomplete(props) {
           return value;
         }
 
-        return resolveOption(options.find((option) => isOptionEqualToValueProp(option, value)));
+        // Cache misses as well as matches so unchanged selections do not rescan the options.
+        if (!resolvedOptions.has(value)) {
+          resolvedOptions.set(
+            value,
+            resolveOption(options.find((option) => isOptionEqualToValueProp(option, value))),
+          );
+        }
+
+        return resolvedOptions.get(value);
       };
     }
 

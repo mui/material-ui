@@ -4321,6 +4321,28 @@ describe('<Autocomplete />', () => {
       expect(screen.getByText('Foo')).not.to.equal(null);
     });
 
+    it('reuses custom chip resolutions while typing with the popup closed', async () => {
+      const getOptionValue = (option) => option.id;
+      const isOptionEqualToValue = spy((option, value) => option.id.toUpperCase() === value);
+      const { user } = render(
+        <Test
+          multiple
+          open={false}
+          value={['FOO', 'missing', 'BAR']}
+          getOptionValue={getOptionValue}
+          isOptionEqualToValue={isOptionEqualToValue}
+        />,
+      );
+      isOptionEqualToValue.resetHistory();
+
+      await user.type(screen.getByRole('combobox'), 'search');
+
+      expect(screen.getByRole('button', { name: 'Foo' })).to.have.text('Foo');
+      expect(screen.getByRole('button', { name: 'missing' })).to.have.text('missing');
+      expect(screen.getByRole('button', { name: 'Bar' })).to.have.text('Bar');
+      expect(isOptionEqualToValue.callCount).to.equal(0);
+    });
+
     it('passes mapped values to renderValue', () => {
       const renderValue = spy((value) => <span>{value}</span>);
 
