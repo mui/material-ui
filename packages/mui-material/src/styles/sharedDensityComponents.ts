@@ -1243,7 +1243,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
             minWidth: fraction(2.5),
             height: fraction(2.5),
             paddingInline: fraction(0.75),
-            ...enhanced.typography?.caption,
+            fontSize: enhanced.typography?.caption?.fontSize,
           },
         },
         { props: { variant: 'dot' }, style: { minWidth: spacing(1), height: spacing(1) } },
