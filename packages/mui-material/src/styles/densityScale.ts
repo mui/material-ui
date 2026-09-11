@@ -54,7 +54,7 @@ export function applyDensity<T extends EnhanceableTheme>(
   /** Per-step replacement in px. Numbers keep every step resolvable in JS too
    * (MUI X derives virtualized heights off the same ladder). */
   scaleOverrides?: Partial<Record<DensityKey, number>>,
-): T & { components: NonNullable<EnhanceableTheme['components']> } {
+) {
   const theme = { ...themeInput } as T & {
     components: NonNullable<EnhanceableTheme['components']>;
   };

@@ -38,9 +38,7 @@ import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
  * never from remapping.
  */
 export default function applySharedDensity<T extends EnhanceableTheme>(
-  enhanced: T & {
-    components: NonNullable<EnhanceableTheme['components']>;
-  },
+  enhanced: T & { components: NonNullable<EnhanceableTheme['components']> },
   /** The interactive box height in px. A sizing constant rather than a spacing
    * key, so it is emitted literally and has no CSS variable. */
   touchTarget: string,

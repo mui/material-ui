@@ -283,7 +283,7 @@ describe('enhanceDensity', () => {
     const theme = enhanceDensity(createTheme());
 
     // one shallow probe — applySharedDensity ran and wrote styleOverrides
-    expect(theme.components.MuiButton?.styleOverrides?.root).to.not.equal(undefined);
+    expect(theme.components?.MuiButton?.styleOverrides?.root).to.not.equal(undefined);
   });
 
   test('a user styleOverride on the incoming theme stays the winning layer', () => {

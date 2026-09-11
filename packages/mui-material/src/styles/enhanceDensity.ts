@@ -60,7 +60,7 @@ export default function enhanceDensity<T extends EnhanceableTheme>(
       );
     }
     // Same reference in and out: nothing was emitted, so there is nothing to copy.
-    return theme as T & { components: NonNullable<EnhanceableTheme['components']> };
+    return theme;
   }
   const enhanced = applyDensity(theme, scale);
   // Sizing constants rather than ladder steps: they emit as plain px, so
