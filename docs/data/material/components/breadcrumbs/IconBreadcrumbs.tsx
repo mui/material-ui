@@ -13,7 +13,7 @@ function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 
 export default function IconBreadcrumbs() {
   return (
-    <div role="presentation" onClick={handleClick}>
+    <div role="none" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
         <Link
           underline="hover"
