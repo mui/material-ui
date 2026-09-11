@@ -6,12 +6,18 @@ export interface ManagedModalProps {
   disableScrollLock?: boolean | undefined;
 }
 
+// Both <body> and <html> scroll the viewport rather than themselves.
+function isDocumentScroller(element: Element, doc: Document): boolean {
+  return element === doc.body || element === doc.documentElement;
+}
+
 // Is a vertical scrollbar displayed?
 function isOverflowing(container: Element): boolean {
   const doc = ownerDocument(container);
 
-  if (container === doc.body || container === doc.documentElement) {
-    return ownerWindow(container).innerWidth > doc.documentElement.clientWidth;
+  if (isDocumentScroller(container, doc)) {
+    // The viewport scrollbar is visible exactly when it takes up width.
+    return getScrollbarSize(ownerWindow(container)) > 0;
   }
 
   return container.scrollHeight > container.clientHeight;
@@ -72,6 +78,36 @@ function ariaHiddenSiblings(
   });
 }
 
+// A stable scrollbar gutter keeps the scrollbar space reserved while the scroll is locked,
+// so there is no layout shift to compensate for.
+// Reading the computed value doubles as a feature detection: browsers that don't support
+// scrollbar-gutter resolve it to an empty string.
+function hasStableScrollbarGutter(scrollContainer: HTMLElement): boolean {
+  const doc = ownerDocument(scrollContainer);
+  const win = ownerWindow(scrollContainer);
+
+  if (isDocumentScroller(scrollContainer, doc)) {
+    // Locking the document scroller locks the viewport scrollbar. The viewport is always a
+    // scroll container, and only the root element's gutter propagates to it — unlike
+    // overflow, which propagates from <body> too.
+    return win
+      .getComputedStyle(doc.documentElement)
+      .getPropertyValue('scrollbar-gutter')
+      .includes('stable');
+  }
+
+  const containerStyle = win.getComputedStyle(scrollContainer);
+  const { overflowY } = containerStyle;
+  // The gutter only takes effect on a scroll container, so on a `visible` or `clip` container
+  // the declaration is inert. Blocking the scroll below turns it into a scroll container,
+  // which would create the gutter and shrink the content instead of leaving it in place.
+  if (overflowY === 'visible' || overflowY === 'clip') {
+    return false;
+  }
+
+  return containerStyle.getPropertyValue('scrollbar-gutter').includes('stable');
+}
+
 function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   const restoreStyle: Array<{
     /**
@@ -89,7 +125,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     if (container.parentNode instanceof DocumentFragment) {
       scrollContainer = ownerDocument(container).body;
     } else {
-      // Support html overflow-y: auto for scroll stability between pages
+      // Support html overflow-y: scroll for scroll stability between pages
       // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
       const parent = container.parentElement;
       const containerWindow = ownerWindow(container);
@@ -100,10 +136,18 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
           : container;
     }
 
-    if (isOverflowing(scrollContainer)) {
-      // Compute the size before applying overflow hidden to avoid any scroll jumps.
-      const scrollbarSize = getScrollbarSize(ownerWindow(scrollContainer));
+    // Read the size while the scrollbar is still there, so applying overflow hidden below
+    // can't jump the scroll position.
+    const scrollbarSize = getScrollbarSize(ownerWindow(scrollContainer));
 
+    // Overlay scrollbars (e.g. macOS, Windows 11) have zero width — there is nothing to
+    // compensate for, and writing the inline styles anyway would freeze the current padding,
+    // overriding later theme/CSS changes.
+    if (
+      scrollbarSize > 0 &&
+      isOverflowing(scrollContainer) &&
+      !hasStableScrollbarGutter(scrollContainer)
+    ) {
       restoreStyle.push({
         value: scrollContainer.style.paddingRight,
         property: 'padding-right',

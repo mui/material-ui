@@ -28,6 +28,12 @@ Scrolling is blocked as soon as a modal is opened.
 This prevents interacting with the background when the modal should be the only interactive content. However, removing the scrollbar can make your **fixed positioned elements** move.
 In this situation, you can apply a global `.mui-fixed` class name to tell Material UI to handle those elements.
 
+Alternatively, set `scrollbar-gutter: stable` on the scroll container.
+For page scrolling that is the root `html` element—a gutter on `body` isn't propagated to the viewport, so it reserves nothing.
+The scrollbar space then stays reserved while the scroll is blocked, so nothing moves—fixed positioned elements included, whether or not they carry `.mui-fixed`—and the compensation is skipped.
+The container has to be scrollable already, since a gutter on a non-scrolling element is inert.
+Browsers without support for `scrollbar-gutter` keep the `.mui-fixed` behavior.
+
 ## How can I disable the ripple effect globally?
 
 The ripple effect is exclusively coming from the `BaseButton` component.
