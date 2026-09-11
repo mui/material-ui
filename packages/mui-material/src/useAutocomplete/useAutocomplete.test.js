@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import * as React from 'react';
 import {
   createRenderer,
@@ -724,17 +724,7 @@ describe('useAutocomplete', () => {
       );
       const input = screen.getByRole('combobox');
 
-      // The invalid string mapping is already asserted during the initial render above.
-      // Suppress the same validation error from the input-driven rerenders in this interaction test.
-      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-      try {
-        await user.type(input, 'draft{Enter}');
-        expect(
-          errorSpy.mock.calls.every(([message]) => message === freeSoloStringMappingError),
-        ).to.equal(true);
-      } finally {
-        errorSpy.mockRestore();
-      }
+      await user.type(input, 'draft{Enter}');
 
       expect(onChange.callCount).to.equal(1);
       expect(onChange.args[0][1]).to.equal('draft');
@@ -891,10 +881,94 @@ describe('useAutocomplete', () => {
       );
     });
 
-    function ValidationTest({ options: optionsProp, getOptionValue, freeSolo }) {
-      const { getInputProps } = useAutocomplete({ options: optionsProp, getOptionValue, freeSolo });
+    function ValidationTest({
+      options: optionsProp,
+      getOptionValue,
+      freeSolo,
+      isOptionEqualToValue,
+    }) {
+      const { getInputProps } = useAutocomplete({
+        options: optionsProp,
+        getOptionValue,
+        freeSolo,
+        isOptionEqualToValue,
+      });
       return <input {...getInputProps()} />;
     }
+
+    it.each([undefined, (option, value) => option.id === value])(
+      'does not remap unchanged options while typing with custom equality=%s',
+      async (isOptionEqualToValue) => {
+        const getValue = spy((option) => option.id);
+        const props = { getOptionValue: getValue, isOptionEqualToValue };
+        const { rerender, user } = render(<ValidationTest {...props} options={options} />, {
+          strict: false,
+        });
+
+        getValue.resetHistory();
+
+        await user.type(screen.getByRole('combobox'), 'Foo');
+
+        expect(getValue.callCount).to.equal(0);
+
+        const newOption = { id: 'baz', label: 'Baz' };
+        const updatedOptions = [...options, newOption];
+        rerender(<ValidationTest {...props} options={updatedOptions} />);
+
+        expect(getValue.calledWithExactly(newOption)).to.equal(true);
+      },
+    );
+
+    it('reports a validation error once per instance across StrictMode renders and new prop identities', () => {
+      let rerender;
+      expect(() => {
+        ({ rerender } = render(
+          <ValidationTest
+            options={[{ id: 'draft' }, { id: 'draft' }]}
+            getOptionValue={(option) => option.id}
+            freeSolo
+          />,
+          { strict: true },
+        ));
+      }).toErrorDev(freeSoloStringMappingError);
+
+      expect(() => {
+        rerender(
+          <ValidationTest
+            options={[{ id: 'draft' }, { id: 'draft' }]}
+            getOptionValue={(option) => option.id}
+            freeSolo
+          />,
+        );
+      }).not.toErrorDev();
+
+      // A separate instance should still report the same invalid configuration.
+      renderWithFreeSoloStringMapping(
+        <ValidationTest
+          options={[{ id: 'draft' }]}
+          getOptionValue={(option) => option.id}
+          freeSolo
+        />,
+      );
+    });
+
+    it('validates changed mappers and reports newly introduced duplicate values with custom equality', () => {
+      const isOptionEqualToValue = (option, value) => option.id === value;
+      const props = { options, isOptionEqualToValue };
+      const { rerender } = render(
+        <ValidationTest {...props} getOptionValue={(option) => option.id} />,
+      );
+
+      for (const duplicateValue of ['duplicate', 'another']) {
+        expect(() => {
+          rerender(<ValidationTest {...props} getOptionValue={() => duplicateValue} />);
+        }).toErrorDev(
+          `MUI: The \`getOptionValue\` method of useAutocomplete returned the duplicate value "${duplicateValue}" for multiple options.\n` +
+            'useAutocomplete uses these values to identify options. ' +
+            'Change `getOptionValue` or the options so that every option has a unique value.',
+        );
+      }
+    });
 
     it('warns when getOptionValue returns a string in freeSolo mode', () => {
       renderWithFreeSoloStringMapping(
