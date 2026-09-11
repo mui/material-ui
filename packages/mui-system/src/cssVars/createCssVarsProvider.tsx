@@ -4,18 +4,176 @@ import PropTypes from 'prop-types';
 import { GlobalStyles } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import type InitColorSchemeScript from '../InitColorSchemeScript';
 import ThemeProvider from '../ThemeProvider';
 import {
   buildInitColorSchemeScript,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
   DEFAULT_MODE_STORAGE_KEY,
 } from '../InitColorSchemeScript/InitColorSchemeScript';
-import useCurrentColorScheme from './useCurrentColorScheme';
+import useCurrentColorScheme, { type Result } from './useCurrentColorScheme';
+import type { StorageManager } from './localStorageManager';
 
+export interface ColorSchemeContextValue<
+  SupportedColorScheme extends string,
+> extends Result<SupportedColorScheme> {
+  allColorSchemes: SupportedColorScheme[];
+}
+
+export interface CssVarsProviderConfig<ColorScheme extends string> {
+  /**
+   * DOM attribute for applying color scheme
+   * @default 'data-color-scheme'
+   */
+  attribute?: string | undefined;
+  /**
+   * localStorage key used to store application `mode`
+   * @default 'mode'
+   */
+  modeStorageKey?: string | undefined;
+  /**
+   * localStorage key used to store `colorScheme`
+   * @default 'color-scheme'
+   */
+  colorSchemeStorageKey?: string | undefined;
+  /**
+   * Design system default color scheme.
+   * - provides string if the design system has one default color scheme (either light or dark)
+   * - provides object if the design system has default light & dark color schemes
+   */
+  defaultColorScheme: ColorScheme | { light: ColorScheme; dark: ColorScheme };
+  /**
+   * Disable CSS transitions when switching between modes or color schemes
+   * @default false
+   */
+  disableTransitionOnChange?: boolean | undefined;
+  /**
+   * If `true`, theme values are recalculated when the mode changes.
+   * The `theme.colorSchemes.{mode}.*` nodes will be shallow merged to the top-level of the theme.
+   * @default false
+   */
+  forceThemeRerender?: boolean | undefined;
+}
+
+type Identify<I extends string | undefined, T> = I extends string ? T | { [k in I]: T } : T;
+
+export interface CreateCssVarsProviderResult<
+  ColorScheme extends string,
+  Identifier extends string | undefined = undefined,
+> {
+  CssVarsProvider: (
+    props: React.PropsWithChildren<
+      Partial<CssVarsProviderConfig<ColorScheme>> & {
+        theme?:
+          | Identify<
+              Identifier,
+              {
+                cssVariables?: false | undefined;
+                cssVarPrefix?: string | undefined;
+                colorSchemes: Partial<Record<ColorScheme, any>>;
+                colorSchemeSelector?: 'media' | 'class' | 'data' | string | undefined;
+              }
+            >
+          | undefined;
+        /**
+         * The default mode when the storage is empty,
+         * require the theme to have `colorSchemes` with light and dark.
+         * @default 'system'
+         */
+        defaultMode?: 'light' | 'dark' | 'system' | undefined;
+        /**
+         * The document used to perform `disableTransitionOnChange` feature
+         * @default document
+         */
+        documentNode?: Document | null | undefined;
+        /**
+         * The node used to attach the color-scheme attribute
+         * @default document
+         */
+        colorSchemeNode?: Element | null | undefined;
+        /**
+         * The storage manager to be used for storing the mode and color scheme.
+         * @default using `window.localStorage`
+         */
+        storageManager?: StorageManager | null | undefined;
+        /**
+         * The window that attaches the 'storage' event listener
+         * @default window
+         */
+        storageWindow?: Window | null | undefined;
+        /**
+         * If `true`, the provider creates its own context and generate stylesheet as if it is a root `CssVarsProvider`.
+         */
+        disableNestedContext?: boolean | undefined;
+        /**
+         * If `true`, the style sheet won't be generated.
+         *
+         * This is useful for controlling nested CssVarsProvider behavior.
+         * @default false
+         */
+        disableStyleSheetGeneration?: boolean | undefined;
+      }
+    >,
+  ) => React.JSX.Element;
+  useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
+  getInitColorSchemeScript: typeof InitColorSchemeScript;
+}
+
+/**
+ * @internal
+ */
 export const DISABLE_CSS_TRANSITION =
   '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
 
-export default function createCssVarsProvider(options) {
+export default function createCssVarsProvider<
+  ColorScheme extends string,
+  Identifier extends string | undefined = undefined,
+>(
+  options: CssVarsProviderConfig<ColorScheme> & {
+    /**
+     * The design system's unique id for getting the corresponded theme when there are multiple design systems.
+     */
+    themeId?: Identifier | undefined;
+    /**
+     * Design system default theme
+     *
+     * - The structure inside `theme.colorSchemes[colorScheme]` should be exactly the same in all color schemes because
+     * those object of the color scheme will be used when the color scheme is active.
+     *
+     *  {
+     *    colorSchemes: {
+     *      light: { ...lightColorSchemeValues },
+     *      dark: { ...darkColorSchemeValues }
+     *    }
+     *  }
+     *
+     * - If colorScheme is 'light', the `lightColorSchemeValues` will be merged to theme as `{ ...theme, ...lightColorSchemeValues }`
+     *   likewise, if colorScheme is 'dark', the `darkColorSchemeValues` will be merged to theme as `{ ...theme, ...darkColorSchemeValues }`
+     *
+     * - If the theme contains the same keys as the color scheme, their values will be merged.
+     *  Ex. {
+     *    colorSchemes: {
+     *      light: { palette: { primary: { ... } } },
+     *      dark: { palette: { primary: { ...} } }
+     *    },
+     *    palette: { shared: { ... } }
+     *  }
+     *
+     *  becomes: {
+     *    colorSchemes: { ... },
+     *    palette: { shared: { ... }, primary: { ... } }
+     *  }
+     */
+    theme: any;
+    /**
+     * A function to be called after the CSS variables are attached. The result of this function will be the final theme pass to ThemeProvider.
+     *
+     * The example usage is the variant generation in Joy. We need to combine the token from user-input and the default theme first, then generate
+     * variants from those tokens.
+     */
+    resolveTheme?: ((theme: any) => any) | undefined; // the type is any because it depends on the design system.
+  },
+): CreateCssVarsProviderResult<ColorScheme, Identifier> {
   const {
     themeId,
     /**
@@ -43,7 +201,7 @@ export default function createCssVarsProvider(options) {
     systemMode: undefined,
   };
 
-  const ColorSchemeContext = React.createContext(undefined);
+  const ColorSchemeContext = React.createContext<any>(undefined);
 
   if (process.env.NODE_ENV !== 'production') {
     ColorSchemeContext.displayName = 'ColorSchemeContext';
@@ -54,7 +212,7 @@ export default function createCssVarsProvider(options) {
   const defaultColorSchemes = {};
   const defaultComponents = {};
 
-  function CssVarsProvider(props) {
+  function CssVarsProvider(props: any) {
     const {
       children,
       theme: themeProp,
@@ -239,7 +397,7 @@ export default function createCssVarsProvider(options) {
     // 5.2 Remove the CSS transition when color scheme changes to create instant experience.
     // credit: https://github.com/pacocoursey/next-themes/blob/b5c2bad50de2d61ad7b52a9c5cdc801a78507d7a/index.tsx#L313
     React.useEffect(() => {
-      let timer;
+      let timer: any;
       if (disableTransitionOnChange && hasMounted.current && documentNode) {
         const css = documentNode.createElement('style');
         css.appendChild(documentNode.createTextNode(DISABLE_CSS_TRANSITION));
@@ -274,7 +432,7 @@ export default function createCssVarsProvider(options) {
         setMode:
           process.env.NODE_ENV === 'production'
             ? setMode
-            : (newMode) => {
+            : (newMode: any) => {
                 if (memoTheme.colorSchemeSelector === 'media') {
                   // #host-reference
                   console.error(
@@ -306,7 +464,7 @@ export default function createCssVarsProvider(options) {
     if (
       disableStyleSheetGeneration ||
       restThemeProp.cssVariables === false ||
-      (nested && upperTheme?.cssVarPrefix === cssVarPrefix)
+      (nested && (upperTheme as any)?.cssVarPrefix === cssVarPrefix)
     ) {
       shouldGenerateStyleSheet = false;
     }
@@ -401,7 +559,7 @@ export default function createCssVarsProvider(options) {
   const defaultDarkColorScheme =
     typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
 
-  const getInitColorSchemeScript = (params) =>
+  const getInitColorSchemeScript = (params: any) =>
     buildInitColorSchemeScript({
       colorSchemeStorageKey: defaultColorSchemeStorageKey,
       defaultLightColorScheme,
@@ -410,5 +568,9 @@ export default function createCssVarsProvider(options) {
       ...params,
     });
 
-  return { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
+  return {
+    CssVarsProvider,
+    useColorScheme,
+    getInitColorSchemeScript,
+  } as unknown as CreateCssVarsProviderResult<ColorScheme, Identifier>;
 }
