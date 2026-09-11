@@ -25,27 +25,27 @@
     "staticTooltipClosed": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>tooltipOpen={true}</code> and <code>open={false}</code>"
+      "conditions": "<code>slotProps.tooltip.open={true}</code> and <code>open={false}</code>"
     },
     "tooltipPlacementBottom": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>tooltipOpen={true}</code> and <code>tooltipPlacement=\"bottom\"</code>"
+      "conditions": "<code>slotProps.tooltip.open={true}</code> and <code>slotProps.tooltip.placement</code> contains &quot;bottom&quot;"
     },
     "tooltipPlacementLeft": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>tooltipOpen={true}</code> and <code>tooltipPlacement=\"left\"</code>"
+      "conditions": "<code>slotProps.tooltip.open={true}</code> and <code>slotProps.tooltip.placement</code> contains &quot;left&quot;"
     },
     "tooltipPlacementRight": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>tooltipOpen={true}</code> and <code>tooltipPlacement=\"right\"</code>"
+      "conditions": "<code>slotProps.tooltip.open={true}</code> and <code>slotProps.tooltip.placement</code> contains &quot;right&quot;"
     },
     "tooltipPlacementTop": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>tooltipOpen={true}</code> and <code>tooltipPlacement=\"top\"</code>"
+      "conditions": "<code>slotProps.tooltip.open={true}</code> and <code>slotProps.tooltip.placement</code> contains &quot;top&quot;"
     }
   },
   "slotDescriptions": {

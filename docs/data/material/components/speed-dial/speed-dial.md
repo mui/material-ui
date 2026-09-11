@@ -41,9 +41,12 @@ of the `SpeedDialIcon` component.
 
 ## Persistent action tooltips
 
-The SpeedDialActions tooltips can be displayed persistently so that users don't have to long-press to see the tooltip on touch devices.
+The SpeedDialActions tooltips can be displayed persistently with `slotProps.tooltip.open` so that users don't have to long-press to see the tooltip on touch devices.
 
-It is enabled here across all devices for demo purposes, but in production it could use the `isTouch` logic to conditionally set the prop.
+It is enabled here across all devices for demo purposes, but in production it could use the `isTouch` logic to conditionally set it.
+
+The labels are placed to the left of the actions for the `up` and `down` directions, and above them for `left` and `right`.
+Use `slotProps.tooltip.placement` to place them on another side.
 
 {{"demo": "SpeedDialTooltipOpen.js"}}
 
