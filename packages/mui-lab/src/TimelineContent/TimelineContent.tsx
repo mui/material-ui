@@ -2,14 +2,37 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { styled, useThemeProps } from '@mui/material/styles';
+import { styled, useThemeProps, type Theme } from '@mui/material/styles';
 import composeClasses from '@mui/utils/composeClasses';
-import Typography from '@mui/material/Typography';
+import Typography, { type TypographyProps } from '@mui/material/Typography';
+import type { InternalStandardProps as StandardProps } from '@mui/material/internal';
+import type { SxProps } from '@mui/system';
 import TimelineContext from '../Timeline/TimelineContext';
-import { getTimelineContentUtilityClass } from './timelineContentClasses';
+import {
+  getTimelineContentUtilityClass,
+  type TimelineContentClasses,
+  type TimelineContentClassKey,
+} from './timelineContentClasses';
 import convertTimelinePositionToClass from '../internal/convertTimelinePositionToClass';
 
-const useUtilityClasses = (ownerState) => {
+export interface TimelineContentProps extends StandardProps<TypographyProps> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<TimelineContentClasses> | undefined;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+}
+
+type OwnerState = TimelineContentProps & { position: string };
+
+const useUtilityClasses = (ownerState: OwnerState) => {
   const { position, classes } = ownerState;
 
   const slots = {
@@ -24,9 +47,12 @@ const TimelineContentRoot = styled(Typography, {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    return [styles.root, styles[convertTimelinePositionToClass(ownerState.position)]];
+    return [
+      styles.root,
+      styles[convertTimelinePositionToClass(ownerState.position) as TimelineContentClassKey],
+    ];
   },
-})(({ ownerState }) => ({
+})<{ ownerState: OwnerState }>(({ ownerState }) => ({
   flex: 1,
   padding: '6px 16px',
   textAlign: 'left',
@@ -35,11 +61,27 @@ const TimelineContentRoot = styled(Typography, {
   }),
 }));
 
-const TimelineContent = React.forwardRef(function TimelineContent(inProps, ref) {
+/**
+ *
+ * Demos:
+ *
+ * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ *
+ * API:
+ *
+ * - [TimelineContent API](https://mui.com/material-ui/api/timeline-content/)
+ * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
+ */
+const TimelineContent = React.forwardRef(function TimelineContent(
+  inProps: TimelineContentProps,
+  ref: React.Ref<HTMLDivElement>,
+) {
   const props = useThemeProps({ props: inProps, name: 'MuiTimelineContent' });
   const { className, ...other } = props;
 
-  const { position: positionContext } = React.useContext(TimelineContext);
+  const { position: positionContext } = React.useContext(TimelineContext) as {
+    position?: string | undefined;
+  };
 
   const ownerState = {
     ...props,
@@ -54,15 +96,15 @@ const TimelineContent = React.forwardRef(function TimelineContent(inProps, ref) 
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       ref={ref}
-      {...other}
+      {...(other as Omit<typeof other, 'ref'>)}
     />
   );
-});
+}) as React.ForwardRefExoticComponent<TimelineContentProps & React.RefAttributes<HTMLDivElement>>;
 
 TimelineContent.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
-  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
@@ -84,6 +126,6 @@ TimelineContent.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
 
 export default TimelineContent;

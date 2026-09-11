@@ -3,10 +3,34 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, useThemeProps } from '@mui/material/styles';
-import { getTimelineConnectorUtilityClass } from './timelineConnectorClasses';
+import { styled, useThemeProps, type Theme } from '@mui/material/styles';
+import type { InternalStandardProps as StandardProps } from '@mui/material/internal';
+import type { SxProps } from '@mui/system';
+import {
+  getTimelineConnectorUtilityClass,
+  type TimelineConnectorClasses,
+} from './timelineConnectorClasses';
 
-const useUtilityClasses = (ownerState) => {
+export interface TimelineConnectorProps extends StandardProps<
+  React.HTMLAttributes<HTMLSpanElement>
+> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<TimelineConnectorClasses> | undefined;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+}
+
+type OwnerState = TimelineConnectorProps;
+
+const useUtilityClasses = (ownerState: OwnerState) => {
   const { classes } = ownerState;
 
   const slots = {
@@ -19,7 +43,7 @@ const useUtilityClasses = (ownerState) => {
 const TimelineConnectorRoot = styled('span', {
   name: 'MuiTimelineConnector',
   slot: 'Root',
-})(({ theme }) => {
+})<{ ownerState: OwnerState }>(({ theme }) => {
   return {
     width: 2,
     backgroundColor: (theme.vars || theme).palette.grey[400],
@@ -27,7 +51,20 @@ const TimelineConnectorRoot = styled('span', {
   };
 });
 
-const TimelineConnector = React.forwardRef(function TimelineConnector(inProps, ref) {
+/**
+ *
+ * Demos:
+ *
+ * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ *
+ * API:
+ *
+ * - [TimelineConnector API](https://mui.com/material-ui/api/timeline-connector/)
+ */
+const TimelineConnector = React.forwardRef(function TimelineConnector(
+  inProps: TimelineConnectorProps,
+  ref: React.Ref<HTMLSpanElement>,
+) {
   const props = useThemeProps({
     props: inProps,
     name: 'MuiTimelineConnector',
@@ -44,15 +81,17 @@ const TimelineConnector = React.forwardRef(function TimelineConnector(inProps, r
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       ref={ref}
-      {...other}
+      {...(other as Omit<typeof other, 'ref'>)}
     />
   );
-});
+}) as React.ForwardRefExoticComponent<
+  TimelineConnectorProps & React.RefAttributes<HTMLSpanElement>
+>;
 
 TimelineConnector.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
-  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
@@ -74,6 +113,6 @@ TimelineConnector.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
 
 export default TimelineConnector;

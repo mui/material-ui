@@ -3,15 +3,45 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { isMuiElement } from '@mui/material/utils';
-import { styled, useThemeProps } from '@mui/material/styles';
+import { styled, useThemeProps, type Theme } from '@mui/material/styles';
 import composeClasses from '@mui/utils/composeClasses';
+import type { InternalStandardProps as StandardProps } from '@mui/material/internal';
+import type { SxProps } from '@mui/system';
 import { timelineContentClasses } from '../TimelineContent';
 import { timelineOppositeContentClasses } from '../TimelineOppositeContent';
 import TimelineContext from '../Timeline/TimelineContext';
-import { getTimelineItemUtilityClass } from './timelineItemClasses';
+import {
+  getTimelineItemUtilityClass,
+  type TimelineItemClasses,
+  type TimelineItemClassKey,
+} from './timelineItemClasses';
 import convertTimelinePositionToClass from '../internal/convertTimelinePositionToClass';
 
-const useUtilityClasses = (ownerState) => {
+export interface TimelineItemProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+  /**
+   * The position where the timeline's item should appear.
+   */
+  position?: 'left' | 'right' | 'alternate' | 'alternate-reverse' | undefined;
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<TimelineItemClasses> | undefined;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+}
+
+type OwnerState = TimelineItemProps & {
+  position: NonNullable<TimelineItemProps['position']>;
+  hasOppositeContent: boolean;
+};
+
+const useUtilityClasses = (ownerState: OwnerState) => {
   const { position, classes, hasOppositeContent } = ownerState;
 
   const slots = {
@@ -31,9 +61,12 @@ const TimelineItemRoot = styled('li', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [styles.root, styles[convertTimelinePositionToClass(ownerState.position)]];
+    return [
+      styles.root,
+      styles[convertTimelinePositionToClass(ownerState.position) as TimelineItemClassKey],
+    ];
   },
-})(({ ownerState }) => ({
+})<{ ownerState: OwnerState }>(({ ownerState }) => ({
   listStyle: 'none',
   display: 'flex',
   position: 'relative',
@@ -62,10 +95,25 @@ const TimelineItemRoot = styled('li', {
   }),
 }));
 
-const TimelineItem = React.forwardRef(function TimelineItem(inProps, ref) {
+/**
+ *
+ * Demos:
+ *
+ * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ *
+ * API:
+ *
+ * - [TimelineItem API](https://mui.com/material-ui/api/timeline-item/)
+ */
+const TimelineItem = React.forwardRef(function TimelineItem(
+  inProps: TimelineItemProps,
+  ref: React.Ref<HTMLLIElement>,
+) {
   const props = useThemeProps({ props: inProps, name: 'MuiTimelineItem' });
   const { position: positionProp, className, ...other } = props;
-  const { position: positionContext } = React.useContext(TimelineContext);
+  const { position: positionContext } = React.useContext(TimelineContext) as {
+    position?: TimelineItemProps['position'] | undefined;
+  };
 
   let hasOppositeContent = false;
 
@@ -94,16 +142,16 @@ const TimelineItem = React.forwardRef(function TimelineItem(inProps, ref) {
         className={clsx(classes.root, className)}
         ownerState={ownerState}
         ref={ref}
-        {...other}
+        {...(other as any)}
       />
     </TimelineContext.Provider>
   );
-});
+}) as React.ForwardRefExoticComponent<TimelineItemProps & React.RefAttributes<HTMLLIElement>>;
 
 TimelineItem.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
-  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
@@ -129,6 +177,6 @@ TimelineItem.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
 
 export default TimelineItem;

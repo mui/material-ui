@@ -3,10 +3,34 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, useThemeProps } from '@mui/material/styles';
-import { getTimelineSeparatorUtilityClass } from './timelineSeparatorClasses';
+import { styled, useThemeProps, type Theme } from '@mui/material/styles';
+import type { InternalStandardProps as StandardProps } from '@mui/material/internal';
+import type { SxProps } from '@mui/system';
+import {
+  getTimelineSeparatorUtilityClass,
+  type TimelineSeparatorClasses,
+} from './timelineSeparatorClasses';
 
-const useUtilityClasses = (ownerState) => {
+export interface TimelineSeparatorProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>
+> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<TimelineSeparatorClasses> | undefined;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+}
+
+type OwnerState = TimelineSeparatorProps;
+
+const useUtilityClasses = (ownerState: OwnerState) => {
   const { classes } = ownerState;
 
   const slots = {
@@ -19,14 +43,27 @@ const useUtilityClasses = (ownerState) => {
 const TimelineSeparatorRoot = styled('div', {
   name: 'MuiTimelineSeparator',
   slot: 'Root',
-})({
+})<{ ownerState: OwnerState }>({
   display: 'flex',
   flexDirection: 'column',
   flex: 0,
   alignItems: 'center',
 });
 
-const TimelineSeparator = React.forwardRef(function TimelineSeparator(inProps, ref) {
+/**
+ *
+ * Demos:
+ *
+ * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ *
+ * API:
+ *
+ * - [TimelineSeparator API](https://mui.com/material-ui/api/timeline-separator/)
+ */
+const TimelineSeparator = React.forwardRef(function TimelineSeparator(
+  inProps: TimelineSeparatorProps,
+  ref: React.Ref<HTMLDivElement>,
+) {
   const props = useThemeProps({
     props: inProps,
     name: 'MuiTimelineSeparator',
@@ -43,15 +80,15 @@ const TimelineSeparator = React.forwardRef(function TimelineSeparator(inProps, r
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       ref={ref}
-      {...other}
+      {...(other as Omit<typeof other, 'ref'>)}
     />
   );
-});
+}) as React.ForwardRefExoticComponent<TimelineSeparatorProps & React.RefAttributes<HTMLDivElement>>;
 
 TimelineSeparator.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
-  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
@@ -73,6 +110,6 @@ TimelineSeparator.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
 
 export default TimelineSeparator;

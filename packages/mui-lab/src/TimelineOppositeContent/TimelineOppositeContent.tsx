@@ -2,14 +2,37 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { styled, useThemeProps } from '@mui/material/styles';
+import { styled, useThemeProps, type Theme } from '@mui/material/styles';
 import composeClasses from '@mui/utils/composeClasses';
-import Typography from '@mui/material/Typography';
+import Typography, { type TypographyProps } from '@mui/material/Typography';
+import type { InternalStandardProps as StandardProps } from '@mui/material/internal';
+import type { SxProps } from '@mui/system';
 import TimelineContext from '../Timeline/TimelineContext';
-import { getTimelineOppositeContentUtilityClass } from './timelineOppositeContentClasses';
+import {
+  getTimelineOppositeContentUtilityClass,
+  type TimelineOppositeContentClasses,
+  type TimelineOppositeContentClassKey,
+} from './timelineOppositeContentClasses';
 import convertTimelinePositionToClass from '../internal/convertTimelinePositionToClass';
 
-const useUtilityClasses = (ownerState) => {
+export interface TimelineOppositeContentProps extends StandardProps<TypographyProps> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<TimelineOppositeContentClasses> | undefined;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+}
+
+type OwnerState = TimelineOppositeContentProps & { position: string };
+
+const useUtilityClasses = (ownerState: OwnerState) => {
   const { position, classes } = ownerState;
 
   const slots = {
@@ -24,9 +47,14 @@ const TimelineOppositeContentRoot = styled(Typography, {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    return [styles.root, styles[convertTimelinePositionToClass(ownerState.position)]];
+    return [
+      styles.root,
+      styles[
+        convertTimelinePositionToClass(ownerState.position) as TimelineOppositeContentClassKey
+      ],
+    ];
   },
-})(({ ownerState }) => ({
+})<{ ownerState: OwnerState }>(({ ownerState }) => ({
   padding: '6px 16px',
   marginRight: 'auto',
   textAlign: 'right',
@@ -36,11 +64,27 @@ const TimelineOppositeContentRoot = styled(Typography, {
   }),
 }));
 
-const TimelineOppositeContent = React.forwardRef(function TimelineOppositeContent(inProps, ref) {
+/**
+ *
+ * Demos:
+ *
+ * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ *
+ * API:
+ *
+ * - [TimelineOppositeContent API](https://mui.com/material-ui/api/timeline-opposite-content/)
+ * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
+ */
+const TimelineOppositeContent = React.forwardRef(function TimelineOppositeContent(
+  inProps: TimelineOppositeContentProps,
+  ref: React.Ref<HTMLDivElement>,
+) {
   const props = useThemeProps({ props: inProps, name: 'MuiTimelineOppositeContent' });
   const { className, ...other } = props;
 
-  const { position: positionContext } = React.useContext(TimelineContext);
+  const { position: positionContext } = React.useContext(TimelineContext) as {
+    position?: string | undefined;
+  };
 
   const ownerState = {
     ...props,
@@ -55,15 +99,17 @@ const TimelineOppositeContent = React.forwardRef(function TimelineOppositeConten
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       ref={ref}
-      {...other}
+      {...(other as Omit<typeof other, 'ref'>)}
     />
   );
-});
+}) as React.ForwardRefExoticComponent<
+  TimelineOppositeContentProps & React.RefAttributes<HTMLDivElement>
+> & { muiName: string };
 
 TimelineOppositeContent.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
-  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
@@ -85,7 +131,7 @@ TimelineOppositeContent.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
 
 TimelineOppositeContent.muiName = 'TimelineOppositeContent';
 

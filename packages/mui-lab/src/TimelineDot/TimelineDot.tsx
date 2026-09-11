@@ -2,16 +2,60 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { styled, useThemeProps } from '@mui/material/styles';
+import { styled, useThemeProps, type Theme } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
 import composeClasses from '@mui/utils/composeClasses';
-import { getTimelineDotUtilityClass } from './timelineDotClasses';
+import type { OverridableStringUnion } from '@mui/types';
+import type { InternalStandardProps as StandardProps } from '@mui/material/internal';
+import type { SxProps } from '@mui/system';
+import {
+  getTimelineDotUtilityClass,
+  type TimelineDotClasses,
+  type TimelineDotClassKey,
+} from './timelineDotClasses';
 
-const useUtilityClasses = (ownerState) => {
+export interface TimelineDotPropsVariantOverrides {}
+
+export interface TimelineDotPropsColorOverrides {}
+
+export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTMLSpanElement>> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<TimelineDotClasses> | undefined;
+  /**
+   * The dot can have a different colors.
+   * @default 'grey'
+   */
+  color?:
+    | OverridableStringUnion<
+        'inherit' | 'grey' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+        TimelineDotPropsColorOverrides
+      >
+    | undefined;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+  /**
+   * The dot can appear filled or outlined.
+   * @default 'filled'
+   */
+  variant?:
+    OverridableStringUnion<'filled' | 'outlined', TimelineDotPropsVariantOverrides> | undefined;
+}
+
+type OwnerState = TimelineDotProps;
+
+const useUtilityClasses = (ownerState: OwnerState) => {
   const { color, variant, classes } = ownerState;
 
   const slots = {
-    root: ['root', variant, color !== 'inherit' && `${variant}${capitalize(color)}`],
+    root: ['root', variant, color !== 'inherit' && `${variant}${capitalize(color as string)}`],
   };
 
   return composeClasses(slots, getTimelineDotUtilityClass, classes);
@@ -26,12 +70,13 @@ const TimelineDotRoot = styled('span', {
     return [
       styles.root,
       styles[
-        ownerState.color !== 'inherit' && `${ownerState.variant}${capitalize(ownerState.color)}`
+        (ownerState.color !== 'inherit' &&
+          `${ownerState.variant}${capitalize(ownerState.color as string)}`) as TimelineDotClassKey
       ],
-      styles[ownerState.variant],
+      styles[ownerState.variant as TimelineDotClassKey],
     ];
   },
-})(({ ownerState, theme }) => ({
+})<{ ownerState: OwnerState }>(({ ownerState, theme }) => ({
   display: 'flex',
   alignSelf: 'baseline',
   borderStyle: 'solid',
@@ -49,8 +94,8 @@ const TimelineDotRoot = styled('span', {
             backgroundColor: (theme.vars || theme).palette.grey[400],
           }
         : {
-            color: (theme.vars || theme).palette[ownerState.color].contrastText,
-            backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
+            color: (theme.vars || theme).palette[ownerState.color as 'primary'].contrastText,
+            backgroundColor: (theme.vars || theme).palette[ownerState.color as 'primary'].main,
           }),
     }),
   }),
@@ -63,13 +108,26 @@ const TimelineDotRoot = styled('span', {
             borderColor: (theme.vars || theme).palette.grey[400],
           }
         : {
-            borderColor: (theme.vars || theme).palette[ownerState.color].main,
+            borderColor: (theme.vars || theme).palette[ownerState.color as 'primary'].main,
           }),
     }),
   }),
 }));
 
-const TimelineDot = React.forwardRef(function TimelineDot(inProps, ref) {
+/**
+ *
+ * Demos:
+ *
+ * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ *
+ * API:
+ *
+ * - [TimelineDot API](https://mui.com/material-ui/api/timeline-dot/)
+ */
+const TimelineDot = React.forwardRef(function TimelineDot(
+  inProps: TimelineDotProps,
+  ref: React.Ref<HTMLSpanElement>,
+) {
   const props = useThemeProps({ props: inProps, name: 'MuiTimelineDot' });
   const { className, color = 'grey', variant = 'filled', ...other } = props;
 
@@ -86,15 +144,15 @@ const TimelineDot = React.forwardRef(function TimelineDot(inProps, ref) {
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       ref={ref}
-      {...other}
+      {...(other as Omit<typeof other, 'ref'>)}
     />
   );
-});
+}) as React.ForwardRefExoticComponent<TimelineDotProps & React.RefAttributes<HTMLSpanElement>>;
 
 TimelineDot.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
-  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
@@ -141,6 +199,6 @@ TimelineDot.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['filled', 'outlined']),
     PropTypes.string,
   ]),
-};
+} as any;
 
 export default TimelineDot;

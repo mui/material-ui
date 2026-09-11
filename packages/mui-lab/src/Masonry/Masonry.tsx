@@ -14,9 +14,65 @@ import deepmerge from '@mui/utils/deepmerge';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { getMasonryUtilityClass } from './masonryClasses';
+import type { ResponsiveStyleValue, SxProps } from '@mui/system';
+import type { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
+import type { Theme } from '@mui/material/styles';
+import { getMasonryUtilityClass, type MasonryClasses } from './masonryClasses';
 
-export const parseToNumber = (val) => {
+export interface MasonryOwnProps {
+  /**
+   * The content of the component.
+   */
+  children: NonNullable<React.ReactNode>;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<MasonryClasses> | undefined;
+  /**
+   * Number of columns.
+   * @default 4
+   */
+  columns?: ResponsiveStyleValue<number | string> | undefined;
+  /**
+   * The default number of columns of the component. This is provided for server-side rendering.
+   */
+  defaultColumns?: number | undefined;
+  /**
+   * The default height of the component in px. This is provided for server-side rendering.
+   */
+  defaultHeight?: number | undefined;
+  /**
+   * The default spacing of the component. Like `spacing`, it is a factor of the theme's spacing. This is provided for server-side rendering.
+   */
+  defaultSpacing?: number | undefined;
+  /**
+   * Defines the space between children. It is a factor of the theme's spacing.
+   * @default 1
+   */
+  spacing?: ResponsiveStyleValue<number | string> | undefined;
+  /**
+   * Allows using sequential order rather than adding to shortest column
+   * @default false
+   */
+  sequential?: boolean | undefined;
+  /**
+   * Allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+}
+
+export interface MasonryTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & MasonryOwnProps;
+  defaultComponent: RootComponent;
+}
+
+type OwnerState = MasonryOwnProps & Record<string, any>;
+
+/** @internal */
+export const parseToNumber = (val: string) => {
   return Number(val.replace('px', ''));
 };
 
@@ -27,7 +83,7 @@ const lineBreakStyle = {
   padding: 0,
 };
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: OwnerState) => {
   const { classes } = ownerState;
 
   const slots = {
@@ -37,8 +93,9 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getMasonryUtilityClass, classes);
 };
 
-export const getStyle = ({ ownerState, theme }) => {
-  let styles = {
+/** @internal */
+export const getStyle = ({ ownerState, theme }: any) => {
+  let styles: any = {
     width: '100%',
     display: 'flex',
     flexFlow: 'column wrap',
@@ -49,10 +106,10 @@ export const getStyle = ({ ownerState, theme }) => {
     },
   };
 
-  const stylesSSR = {};
+  const stylesSSR: any = {};
   // Only applicable for Server-Side Rendering
   if (ownerState.isSSR) {
-    const orderStyleSSR = {};
+    const orderStyleSSR: any = {};
     const defaultSpacing = parseToNumber(theme.spacing(ownerState.defaultSpacing));
     for (let i = 1; i <= ownerState.defaultColumns; i += 1) {
       orderStyleSSR[
@@ -82,8 +139,8 @@ export const getStyle = ({ ownerState, theme }) => {
   });
 
   const transformer = createUnarySpacing(theme);
-  const spacingStyleFromPropValue = (propValue) => {
-    let spacing;
+  const spacingStyleFromPropValue = (propValue: any) => {
+    let spacing: any;
     // in case of string/number value
     if (
       (typeof propValue === 'string' && !Number.isNaN(Number(propValue))) ||
@@ -103,7 +160,7 @@ export const getStyle = ({ ownerState, theme }) => {
       ...(ownerState.maxColumnHeight && {
         height:
           typeof spacing === 'number'
-            ? Math.ceil(ownerState.maxColumnHeight + parseToNumber(spacing))
+            ? Math.ceil(ownerState.maxColumnHeight + parseToNumber(spacing as any))
             : `calc(${ownerState.maxColumnHeight}px + ${spacing})`,
       }),
     };
@@ -119,7 +176,7 @@ export const getStyle = ({ ownerState, theme }) => {
     breakpoints: theme.breakpoints.values,
   });
 
-  const columnStyleFromPropValue = (propValue) => {
+  const columnStyleFromPropValue = (propValue: any) => {
     const columnValue = Number(propValue);
     const width = `${(100 / columnValue).toFixed(2)}%`;
     const spacing =
@@ -138,14 +195,14 @@ export const getStyle = ({ ownerState, theme }) => {
   if (typeof spacingValues === 'object') {
     styles = deepmerge(
       styles,
-      handleBreakpoints({ theme }, spacingValues, (propValue, breakpoint) => {
+      handleBreakpoints({ theme }, spacingValues, (propValue: any, breakpoint: any) => {
         if (breakpoint) {
           const themeSpacingValue = Number(propValue);
           const lastBreakpoint = Object.keys(columnValues).pop();
           const spacing = getValue(transformer, themeSpacingValue);
           const column =
             typeof columnValues === 'object'
-              ? columnValues[breakpoint] || columnValues[lastBreakpoint]
+              ? columnValues[breakpoint] || columnValues[lastBreakpoint as string]
               : columnValues;
           const width = `${(100 / column).toFixed(2)}%`;
           return {
@@ -163,9 +220,24 @@ export const getStyle = ({ ownerState, theme }) => {
 const MasonryRoot = styled('div', {
   name: 'MuiMasonry',
   slot: 'Root',
-})(getStyle);
-
-const Masonry = React.forwardRef(function Masonry(inProps, ref) {
+})<{ ownerState: OwnerState }>(getStyle);
+/**
+ *
+ * Demos:
+ *
+ * - [Masonry](https://mui.com/material-ui/react-masonry/)
+ *
+ * API:
+ *
+ * - [Masonry API](https://mui.com/material-ui/api/masonry/)
+ */
+const Masonry = React.forwardRef(function Masonry(
+  inProps: MasonryOwnProps & {
+    component?: React.ElementType | undefined;
+    className?: string | undefined;
+  },
+  ref: React.Ref<HTMLDivElement>,
+) {
   const props = useThemeProps({
     props: inProps,
     name: 'MuiMasonry',
@@ -184,8 +256,8 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     ...other
   } = props;
 
-  const masonryRef = React.useRef();
-  const [maxColumnHeight, setMaxColumnHeight] = React.useState();
+  const masonryRef = React.useRef<any>(undefined);
+  const [maxColumnHeight, setMaxColumnHeight] = React.useState<number | undefined>();
   const isSSR =
     !maxColumnHeight &&
     defaultHeight &&
@@ -214,7 +286,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     }
 
     const masonry = masonryRef.current;
-    const firstVisibleChild = Array.from(masonry.childNodes).find(
+    const firstVisibleChild = Array.from<any>(masonry.childNodes).find(
       (child) =>
         child.nodeType === Node.ELEMENT_NODE &&
         child.dataset.class !== 'line-break' &&
@@ -243,7 +315,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     const columnHeights = new Array(currentNumberOfColumns).fill(0);
     let skip = false;
     let nextOrder = 1;
-    masonry.childNodes.forEach((child) => {
+    masonry.childNodes.forEach((child: any) => {
       if (child.nodeType !== Node.ELEMENT_NODE || child.dataset.class === 'line-break' || skip) {
         return;
       }
@@ -305,7 +377,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       return undefined;
     }
 
-    let resizeTimeout;
+    let resizeTimeout: any;
     const debouncedHandleResize = () => {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(handleResize, 16); // ~60fps
@@ -369,12 +441,12 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       {lineBreaks}
     </MasonryRoot>
   );
-});
+}) as OverridableComponent<MasonryTypeMap>;
 
 Masonry.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
-  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
@@ -438,6 +510,11 @@ Masonry.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
+
+export type MasonryProps<
+  RootComponent extends React.ElementType = MasonryTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<MasonryTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export default Masonry;

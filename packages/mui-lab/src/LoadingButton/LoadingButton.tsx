@@ -22,8 +22,11 @@ const warn = () => {
 /**
  * @ignore - do not document.
  */
-export default React.forwardRef(function DeprecatedLoadingButton(props, ref) {
+export default React.forwardRef(function DeprecatedLoadingButton(
+  props: React.ComponentProps<typeof Button>,
+  ref: React.Ref<HTMLButtonElement>,
+) {
   warn();
 
   return <Button ref={ref} {...props} />;
-});
+}) as unknown as typeof Button;
