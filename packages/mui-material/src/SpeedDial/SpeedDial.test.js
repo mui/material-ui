@@ -224,42 +224,75 @@ describe('<SpeedDial />', () => {
       });
     });
 
+    ['left', 'right'].forEach((direction) => {
+      it.skipIf(isJsdom())(
+        `should lay out persistent tooltips side by side when direction=${direction}`,
+        () => {
+          const titles = ['Copy', 'Save', 'Print this page', 'Large'];
+          const { setProps } = render(
+            <SpeedDial {...defaultProps} direction={direction}>
+              {titles.map((title) => (
+                <SpeedDialAction
+                  key={title}
+                  icon={icon}
+                  slotProps={{
+                    fab: title === 'Large' ? { size: 'large' } : {},
+                    tooltip: { open: true, title },
+                  }}
+                />
+              ))}
+            </SpeedDial>,
+          );
+
+          const fabs = screen.getAllByRole('menuitem').map((fab) => fab.getBoundingClientRect());
+          const labels = titles.map((title) => screen.getByText(title).getBoundingClientRect());
+          const verticalCenter = (rect) => rect.top + rect.height / 2;
+
+          // Each label sits 16px above its own Fab, on a single line.
+          labels.forEach((label, index) => {
+            expect(Math.abs(fabs[index].top - label.bottom - 16)).to.be.lessThan(1);
+            expect(label.height).to.equal(labels[0].height);
+          });
+          // Labels stay 16px apart, in whichever order the direction shows them.
+          const labelsFromLeft = [...labels].sort((a, b) => a.left - b.left);
+          for (let i = 1; i < labelsFromLeft.length; i += 1) {
+            expect(Math.round(labelsFromLeft[i].left - labelsFromLeft[i - 1].right)).to.be.at.least(
+              16,
+            );
+          }
+          // Fabs of different sizes stay on one center line.
+          expect(fabs[3].height).to.be.greaterThan(fabs[0].height);
+          fabs.forEach((fab) => {
+            expect(Math.abs(verticalCenter(fab) - verticalCenter(fabs[0]))).to.be.lessThan(1);
+          });
+
+          // The labels keep their space while the speed dial is closed, so closing it moves nothing.
+          const openActions = screen.getByRole('menu').getBoundingClientRect();
+          setProps({ open: false });
+          const closedActions = screen.getByRole('menu').getBoundingClientRect();
+          expect(closedActions.left).to.equal(openActions.left);
+          expect(closedActions.width).to.equal(openActions.width);
+        },
+      );
+    });
+
     it.skipIf(isJsdom())(
-      'should lay out persistent tooltips side by side when direction is horizontal',
+      'should line up persistent tooltips when direction is vertical and action sizes differ',
       () => {
-        const titles = ['Copy', 'Save', 'Print this page', 'Large'];
         render(
-          <SpeedDial {...defaultProps} direction="right">
-            {titles.map((title) => (
-              <SpeedDialAction
-                key={title}
-                icon={icon}
-                slotProps={{
-                  fab: title === 'Large' ? { size: 'large' } : {},
-                  tooltip: { open: true, title },
-                }}
-              />
-            ))}
+          <SpeedDial {...defaultProps} direction="up">
+            <SpeedDialAction icon={icon} slotProps={{ tooltip: { open: true, title: 'Small' } }} />
+            <SpeedDialAction
+              icon={icon}
+              slotProps={{ fab: { size: 'large' }, tooltip: { open: true, title: 'Large' } }}
+            />
           </SpeedDial>,
         );
 
-        const fabs = screen.getAllByRole('menuitem').map((fab) => fab.getBoundingClientRect());
-        const labels = titles.map((title) => screen.getByText(title).getBoundingClientRect());
-        const verticalCenter = (rect) => rect.top + rect.height / 2;
+        const small = screen.getByText('Small').getBoundingClientRect();
+        const large = screen.getByText('Large').getBoundingClientRect();
 
-        // Each label sits 16px above its own Fab, on a single line.
-        labels.forEach((label, index) => {
-          expect(Math.abs(fabs[index].top - label.bottom - 16)).to.be.lessThan(1);
-          expect(label.height).to.equal(labels[0].height);
-        });
-        // Labels don't overlap their neighbors.
-        for (let i = 1; i < labels.length; i += 1) {
-          expect(labels[i].left).to.be.at.least(labels[i - 1].right);
-        }
-        // Fabs of different sizes stay on one center line.
-        fabs.forEach((fab) => {
-          expect(Math.abs(verticalCenter(fab) - verticalCenter(fabs[0]))).to.be.lessThan(1);
-        });
+        expect(Math.abs(small.right - large.right)).to.be.lessThan(1);
       },
     );
   });

@@ -85,8 +85,6 @@ const SpeedDialActionStaticTooltip = styled('span', {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    // Stay as tall as the Fab when a sibling action is larger.
-    alignSelf: 'center',
     [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
       ...getTransitionStyles(theme, ['transform', 'opacity'], {
         duration: theme.transitions.duration.shorter,
@@ -137,6 +135,8 @@ const SpeedDialActionStaticTooltip = styled('span', {
           display: 'grid',
           gridTemplateRows: '0 auto',
           justifyItems: 'center',
+          // Stay as tall as the Fab when a sibling action is larger.
+          alignSelf: 'center',
           [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
             position: 'static',
             alignSelf: 'end',
@@ -155,6 +155,7 @@ const SpeedDialActionStaticTooltip = styled('span', {
           display: 'grid',
           gridTemplateRows: 'auto 0',
           justifyItems: 'center',
+          alignSelf: 'center',
           [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
             position: 'static',
             gridRow: 2,
@@ -194,8 +195,12 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
 
   const resolvedTooltipSlotProps =
     typeof slotProps.tooltip === 'function' ? slotProps.tooltip(props) : (slotProps.tooltip ?? {});
-  // Compound placements like `top-start` are styled like their side.
-  const tooltipPlacement = (resolvedTooltipSlotProps.placement ?? 'left').split('-')[0];
+  // The label is styled per side: compound placements like `top-start` use their side,
+  // and placements without one, like `auto`, fall back to the left.
+  const placementSide = String(resolvedTooltipSlotProps.placement).split('-')[0];
+  const tooltipPlacement = ['top', 'right', 'bottom', 'left'].includes(placementSide)
+    ? placementSide
+    : 'left';
 
   const ownerState = { ...props, tooltipPlacement };
   const classes = useUtilityClasses(ownerState);
