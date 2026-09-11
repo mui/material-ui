@@ -9,11 +9,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Fade from '@mui/material/Fade';
 
 export default function AccordionTransition() {
-  const id = React.useId();
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpansion = () => {
-    setExpanded((prevExpanded) => !prevExpanded);
+  const handleExpansion = (_event, isExpanded) => {
+    setExpanded(isExpanded);
   };
 
   return (
@@ -43,32 +42,24 @@ export default function AccordionTransition() {
               },
         ]}
       >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls={`${id}-panel1-content`}
-          id={`${id}-panel1-header`}
-        >
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography component="span">Custom transition using Fade</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            The Fade transition animates opacity when the details are shown or
+            hidden.
           </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls={`${id}-panel2-content`}
-          id={`${id}-panel2-header`}
-        >
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography component="span">Default transition using Collapse</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            Collapse animates the panel height and is the default transition used by
+            the Accordion.
           </Typography>
         </AccordionDetails>
       </Accordion>
