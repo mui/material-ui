@@ -72,7 +72,6 @@ const pages: MuiPage[] = [
         subheader: 'feedback',
         children: [
           { pathname: '/material-ui/react-alert' },
-          { pathname: '/material-ui/react-backdrop' },
           { pathname: '/material-ui/react-dialog' },
           { pathname: '/material-ui/react-progress' },
           { pathname: '/material-ui/react-skeleton' },
@@ -130,6 +129,7 @@ const pages: MuiPage[] = [
             title: 'InitColorSchemeScript',
           },
           { pathname: '/material-ui/react-modal' },
+          { pathname: '/material-ui/react-backdrop' },
           { pathname: '/material-ui/react-no-ssr', title: 'No SSR' },
           { pathname: '/material-ui/react-popover' },
           { pathname: '/material-ui/react-popper' },
