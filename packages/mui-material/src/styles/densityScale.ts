@@ -158,6 +158,10 @@ export function applyDensity<T extends EnhanceableTheme>(
   }
 
   if (themeInput.vars) {
+    // Steps ship as raw declarations only, never onto `theme.vars.spacing`:
+    // that stays the unit `getPath` reads straight through — a string, or an
+    // array for array spacing — and re-keying it by step name would break
+    // every consumer of both shapes.
     const rootVars: Record<string, string> = {};
     DENSITY_KEYS.forEach((key) => {
       rootVars[stepVarName(key)] = stepValues[key];
