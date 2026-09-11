@@ -1,6 +1,6 @@
 # Base UI menu tree patch
 
-`@base-ui__react@1.7.0.patch` fixes menus that have no trigger.
+`@base-ui__react@1.8.0.patch` fixes menus that have no trigger.
 It changes the CommonJS and ES module builds of `MenuRoot`.
 
 Without an active trigger, the root does not set its tree IDs.

@@ -11,7 +11,7 @@ describe.skipIf(isJsdom())('Menu2 animation origin', () => {
   for (const direction of ['ltr', 'rtl'] as const) {
     for (const align of ['start', 'end'] as const) {
       for (const flip of [false, true]) {
-        it(`uses the anchor center for ${direction} ${align}, flip=${flip}`, async () => {
+        it(`uses the aligned edge for ${direction} ${align}, flip=${flip}`, async () => {
           const completed = vi.fn();
           const { user } = render(
             <ThemeProvider theme={createTheme({ direction })}>
@@ -64,8 +64,8 @@ describe.skipIf(isJsdom())('Menu2 animation origin', () => {
             flip ? anchorRect.top - positionerRect.bottom : positionerRect.top - anchorRect.bottom,
           ).to.be.closeTo(8, 1);
 
-          // Base UI 1.7 points the origin at the anchor center, not the aligned popup edge.
-          const expectedX = anchorRect.left + anchorRect.width / 2 - positionerRect.left;
+          // Base UI 1.8 uses the aligned popup edge when there is no arrow or collision shift.
+          const expectedX = alignsLeft ? 0 : positionerRect.width;
           const expectedY = (flip ? anchorRect.top : anchorRect.bottom) - positionerRect.top;
           const expectOrigin = () => {
             const [x, y] = getComputedStyle(popup).transformOrigin.split(' ').map(parseFloat);

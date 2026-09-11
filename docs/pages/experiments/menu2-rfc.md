@@ -225,7 +225,7 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 
    The default light-theme focus tint has approximately 1.3:1 contrast against white. Sharing it with the classic item does not resolve the [non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html) gap. A library-wide state-style review remains separate work. Under `theme.focusVisible`, the item uses the classic inset ring instead of the focus tint; the inset avoids clipping in a scrolling popup. Shared styles do not imply identical keyboard-to-pointer behavior; see the caveat above.
 
-   Interaction tests and conformance are not a screen-reader audit. The generic axe loop checks enrolled fixtures without opening menus for them; Menu2 has no dedicated open-menu axe coverage. Validate the open, nested, and closing states before release.
+   Dedicated axe fixtures check open and nested menus. Base UI 1.8.0 [fixes the portal owner role](https://github.com/mui/base-ui/pull/5058); `aria-required-children` now passes without an exception. The `menus.a11y.json` report still marks focus guards and trigger references for review. These two checks have fixture-specific assertion exceptions; interaction tests verify the reference IDs. Screen-reader checks and a closing-state audit remain required.
 
 3. ✅ **Other defaults:** retain Base UI behavior with the documented Material presentation choices.
 

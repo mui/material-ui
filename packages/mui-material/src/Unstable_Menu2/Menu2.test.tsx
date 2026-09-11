@@ -89,7 +89,9 @@ describe('<Menu2 />', () => {
     await user.click(trigger);
 
     // The classic anatomy: the root wraps the menu, and the popup is the Paper.
-    const menu = await screen.findByRole('menu');
+    const menu = await screen.findByRole('menu', { name: 'Options' });
+    expect(trigger).to.have.attribute('aria-controls', menu.id);
+    expect(menu).to.have.attribute('aria-labelledby', trigger.id);
     expect(menu).to.have.class(menu2PopupClasses.paper);
     expect(menu).to.have.class(paperClasses.root);
     expect(screen.getByTestId('paper')).to.equal(menu);
@@ -1140,7 +1142,10 @@ describe('<Menu2 />', () => {
     expect(await screen.findByText('Account')).not.to.equal(null);
     expect(screen.getByRole('separator')).not.to.equal(null);
     expect(screen.getByRole('menuitem', { name: 'Profile' })).to.have.attribute('href', '/profile');
-    expect(screen.getByRole('menuitem', { name: 'More' })).to.not.equal(null);
+    const submenuTrigger = screen.getByRole('menuitem', { name: 'More' });
+    const submenu = screen.getByRole('menu', { name: 'More' });
+    expect(submenuTrigger).to.have.attribute('aria-controls', submenu.id);
+    expect(submenu).to.have.attribute('aria-labelledby', submenuTrigger.id);
     expect(screen.getByRole('menuitem', { name: 'Archive' })).to.not.equal(null);
   });
 
