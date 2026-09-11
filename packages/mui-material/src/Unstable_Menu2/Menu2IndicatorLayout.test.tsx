@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { describe, expect, it } from 'vitest';
 import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeOptions, ThemeProvider } from '@mui/material/styles';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Menu2 from '@mui/material/Unstable_Menu2';
@@ -18,6 +18,7 @@ interface FixtureProps {
   width?: number | undefined;
   iconWidth?: number | undefined;
   mode?: 'light' | 'dark' | undefined;
+  palette?: ThemeOptions['palette'];
 }
 
 const label = 'A long menu label that must not reduce the space for the icon';
@@ -35,8 +36,9 @@ function IndicatorFixture({
   width = 180,
   iconWidth,
   mode = 'light',
+  palette,
 }: FixtureProps) {
-  const theme = createTheme({ direction, spacing, palette: { mode } });
+  const theme = createTheme({ direction, spacing, palette: { mode, ...palette } });
   function item(checked: boolean) {
     const id = checked ? 'checked' : 'unchecked';
     const itemProps = {
@@ -179,6 +181,29 @@ describe.skipIf(isJsdom())('Menu2 indicator layout', () => {
             mode === 'light' ? 'rgba(0, 0, 0, 0.6)' : 'rgba(255, 255, 255, 0.7)',
           );
         });
+      });
+
+      it('uses selection-control colors when the theme changes decorative icon colors', () => {
+        render(
+          <IndicatorFixture
+            kind={kind}
+            palette={{
+              text: { secondary: 'rgb(12, 34, 56)' },
+              action: { active: 'rgb(98, 76, 54)' },
+              primary: { main: 'rgb(65, 43, 21)' },
+            }}
+          />,
+        );
+
+        expect(getComputedStyle(screen.getByTestId('reference-icon')).color).to.equal(
+          'rgb(98, 76, 54)',
+        );
+        expect(getComputedStyle(screen.getByTestId('unchecked-indicator')).color).to.equal(
+          'rgb(12, 34, 56)',
+        );
+        expect(getComputedStyle(screen.getByTestId('checked-indicator')).color).to.equal(
+          'rgb(65, 43, 21)',
+        );
       });
     });
   });
