@@ -1311,19 +1311,19 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
       {
         props: { variant: 'dense' },
-        style: { minHeight: `calc(${touchTarget} + 2*${spacing('x-small')})` },
+        style: { minHeight: `calc(${touchTarget} + 2*${spacing('xx-small')})` },
       },
       {
         props: { variant: 'regular' },
         style: {
-          minHeight: `calc(${touchTarget} + 2*${spacing('small')})`,
+          minHeight: `calc(${touchTarget} + 2*${spacing('x-small')})`,
           [enhanced.breakpoints.up('xs')]: {
             '@media (orientation: landscape)': {
-              minHeight: `calc(${touchTarget} + 2*${spacing('x-small')})`,
+              minHeight: `calc(${touchTarget} + 2*${spacing('xx-small')})`,
             },
           },
           [enhanced.breakpoints.up('sm')]: {
-            minHeight: `calc(${touchTarget} + 2*${spacing('small')})`,
+            minHeight: `calc(${touchTarget} + 2*${spacing('x-small')})`,
           },
         },
       },
