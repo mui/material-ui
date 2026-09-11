@@ -244,6 +244,9 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
    - Require a Base UI release with the merged [menu tree fix](https://github.com/mui/base-ui/pull/5645), then remove the local pnpm patch and keep its regression tests. The current patch fixes submenu closure in menus without a trigger, but it does not reach applications that install `@mui/material`.
    - Register public demos, remove the Menu2 API-generator skip, then generate and review PropTypes and API docs. Public demos are separate work.
    - Add migration guidance for imports, theme keys, trigger contracts, customization targets, and behavior differences.
+     Give these changes dedicated sections in the public migration guide, not just prop-table notes:
+     - **Pointer-open focus:** focus starts on the popup, not an item. Explain the difference from the classic Menu and the APG pattern, and the lack of a public initial-focus override.
+     - **Scroll locking:** `disableScrollLock` has no independent equivalent. Explain that `modal={false}` also permits outside interaction, and include the touch and hover exceptions described above.
    - Validate accessibility in open and nested menus. Record known inherited gaps rather than treating shared styles as proof of compliance.
    - Refresh bundle measurements and run release checks, including browser and visual regressions. Historical results do not validate the release revision.
 3. **Stabilize after feedback:** remove `Unstable_` when the API settles. Replacing the classic `Menu` requires a separate migration and release decision.
