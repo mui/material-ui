@@ -566,6 +566,36 @@ describe('@mui/codemod', () => {
       });
     });
 
+    describe('bugs - #30801 keyframes', () => {
+      it('transforms as needed', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-styled.test/keyframes.actual.js'),
+            path: require.resolve('./jss-to-styled.test/keyframes.actual.js'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-styled.test/keyframes.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-styled.test/keyframes.expected.js'),
+            path: require.resolve('./jss-to-styled.test/keyframes.expected.js'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-styled.test/keyframes.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
+
     describe('bugs - #29363 multiple makeStyles with the same classKeys', () => {
       it('transforms as needed', () => {
         const actual = transform(

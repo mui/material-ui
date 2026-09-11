@@ -135,6 +135,39 @@ export default function transformer(file, api, options) {
     return tagName === 'React.Suspense' || tagName === 'Suspense';
   }
 
+  const KEYFRAMES_KEY = /^@keyframes\s+(.+)$/;
+
+  /**
+   * JSS declares keyframes with a string key, for example `'@keyframes pulse'`.
+   * It is not a class name, and the percentages it nests are not class names either, so the
+   * whole property has to be carried over untouched. Emotion reads it from the style object as is.
+   *
+   * Other at-rules such as `@media` do nest class names, so they need a different treatment and
+   * are deliberately left alone here.
+   *
+   * @param {import('jscodeshift').ObjectProperty} prop
+   */
+  function isKeyframes(prop) {
+    const key = prop.key;
+    return (
+      !!key &&
+      (key.type === 'StringLiteral' || key.type === 'Literal') &&
+      typeof key.value === 'string' &&
+      KEYFRAMES_KEY.test(key.value.trim())
+    );
+  }
+
+  /**
+   * `'@keyframes pulse'` -> `'pulse'`
+   *
+   * @param {import('jscodeshift').ObjectExpression} objectExpression
+   */
+  function getKeyframeNames(objectExpression) {
+    return objectExpression.properties
+      .filter(isKeyframes)
+      .map((prop) => KEYFRAMES_KEY.exec(prop.key.value.trim())[1].trim());
+  }
+
   function createStyledComponent(componentName, styledComponentName, stylesFn) {
     let styleArg = null;
     const rootIsFragment = isTagNameFragment(componentName);
@@ -176,6 +209,9 @@ export default function transformer(file, api, options) {
   function createClasses(objExpression, prevObj) {
     const classes = prevObj || j.objectExpression([]);
     objExpression.properties.forEach((prop) => {
+      if (isKeyframes(prop)) {
+        return;
+      }
       if (!classesCount[prop.key.name]) {
         classesCount[prop.key.name] = 1;
       } else {
@@ -276,27 +312,44 @@ export default function transformer(file, api, options) {
     const objectExpression = getObjectExpression(functionExpression);
 
     if (objectExpression) {
-      objectExpression.properties.forEach((prop) => {
-        if (!stylesCount[prop.key.name]) {
-          stylesCount[prop.key.name] = 1;
-        } else {
-          stylesCount[prop.key.name] += 1;
-        }
-        const resolvedKey =
-          stylesCount[prop.key.name] === 1
-            ? prop.key.name
-            : `${prop.key.name}${stylesCount[prop.key.name]}`;
-        const selector = rootKeys.includes(resolvedKey) ? '&.' : '& .';
-        prop.key = j.templateLiteral(
-          [
-            j.templateElement({ raw: selector, cooked: selector }, false),
-            j.templateElement({ raw: '', cooked: '' }, true),
-          ],
-          [j.identifier(`classes.${resolvedKey}`)],
-        );
-        prop.computed = true;
-        return prop;
-      });
+      // JSS refers to a keyframe with `$name`, emotion refers to it by its bare name.
+      const keyframeNames = getKeyframeNames(objectExpression);
+      if (keyframeNames.length > 0) {
+        j(objectExpression)
+          .find(j.Literal)
+          .forEach(({ node }) => {
+            if (typeof node.value !== 'string') {
+              return;
+            }
+            keyframeNames.forEach((name) => {
+              node.value = node.value.replace(new RegExp(`\\$${name}\\b`, 'g'), name);
+            });
+          });
+      }
+
+      objectExpression.properties
+        .filter((prop) => !isKeyframes(prop))
+        .forEach((prop) => {
+          if (!stylesCount[prop.key.name]) {
+            stylesCount[prop.key.name] = 1;
+          } else {
+            stylesCount[prop.key.name] += 1;
+          }
+          const resolvedKey =
+            stylesCount[prop.key.name] === 1
+              ? prop.key.name
+              : `${prop.key.name}${stylesCount[prop.key.name]}`;
+          const selector = rootKeys.includes(resolvedKey) ? '&.' : '& .';
+          prop.key = j.templateLiteral(
+            [
+              j.templateElement({ raw: selector, cooked: selector }, false),
+              j.templateElement({ raw: '', cooked: '' }, true),
+            ],
+            [j.identifier(`classes.${resolvedKey}`)],
+          );
+          prop.computed = true;
+          return prop;
+        });
     }
 
     if (functionExpression.params) {
@@ -385,22 +438,24 @@ export default function transformer(file, api, options) {
           withStylesComponents.push({
             variableName: path.parent.parent.node.id.name,
             classes: j.objectExpression(
-              objectExpression.properties.map((prop) => {
-                if (!componentClassesCount[prop.key.name]) {
-                  componentClassesCount[prop.key.name] = 1;
-                } else {
-                  componentClassesCount[prop.key.name] += 1;
-                }
-                const resolvedKey =
-                  componentClassesCount[prop.key.name] === 1
-                    ? prop.key.name
-                    : `${prop.key.name}${componentClassesCount[prop.key.name]}`;
-                return j.property(
-                  'init',
-                  j.identifier(prop.key.name),
-                  j.memberExpression(j.identifier('classes'), j.identifier(resolvedKey)),
-                );
-              }),
+              objectExpression.properties
+                .filter((prop) => !isKeyframes(prop))
+                .map((prop) => {
+                  if (!componentClassesCount[prop.key.name]) {
+                    componentClassesCount[prop.key.name] = 1;
+                  } else {
+                    componentClassesCount[prop.key.name] += 1;
+                  }
+                  const resolvedKey =
+                    componentClassesCount[prop.key.name] === 1
+                      ? prop.key.name
+                      : `${prop.key.name}${componentClassesCount[prop.key.name]}`;
+                  return j.property(
+                    'init',
+                    j.identifier(prop.key.name),
+                    j.memberExpression(j.identifier('classes'), j.identifier(resolvedKey)),
+                  );
+                }),
             ),
           });
         }
