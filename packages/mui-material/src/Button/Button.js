@@ -7,16 +7,13 @@ import composeClasses from '@mui/utils/composeClasses';
 import { unstable_useId as useId } from '../utils';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
-import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import CircularProgress from '../CircularProgress';
 import capitalize from '../utils/capitalize';
-import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
-import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
+import { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
-import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { color, disableElevation, fullWidth, size, variant, loading, loadingPosition, classes } =
@@ -36,6 +33,7 @@ const useUtilityClasses = (ownerState) => {
     startIcon: ['icon', 'startIcon'],
     endIcon: ['icon', 'endIcon'],
     loadingIndicator: ['loadingIndicator'],
+    loadingIconPlaceholder: ['loadingIconPlaceholder'],
     loadingWrapper: ['loadingWrapper'],
   };
 
@@ -47,33 +45,11 @@ const useUtilityClasses = (ownerState) => {
   };
 };
 
-const commonIconStyles = [
-  {
-    props: { size: 'small' },
-    style: {
-      '& > *:nth-of-type(1)': {
-        fontSize: 18,
-      },
-    },
-  },
-  {
-    props: { size: 'medium' },
-    style: {
-      '& > *:nth-of-type(1)': {
-        fontSize: 20,
-      },
-    },
-  },
-  {
-    props: { size: 'large' },
-    style: {
-      '& > *:nth-of-type(1)': {
-        fontSize: 22,
-      },
-    },
-  },
-];
-
+/**
+ * This PoC deliberately leaves component styling out of JavaScript. The styled wrappers still
+ * provide slot identity, prop filtering, overrides metadata, and the existing DOM structure.
+ * Foundational and theme styles are supplied by the static CSS distribution.
+ */
 const ButtonRoot = styled(ButtonBase, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiButton',
@@ -91,236 +67,7 @@ const ButtonRoot = styled(ButtonBase, {
       ownerState.loading && styles.loading,
     ];
   },
-})(
-  memoTheme(({ theme }) => {
-    const inheritContainedBackgroundColor =
-      theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800];
-
-    const inheritContainedHoverBackgroundColor =
-      theme.palette.mode === 'light' ? theme.palette.grey.A100 : theme.palette.grey[700];
-    return {
-      ...theme.typography.button,
-      minWidth: 64,
-      padding: '6px 16px',
-      border: 0,
-      borderRadius: (theme.vars || theme).shape.borderRadius,
-      ...getTransitionStyles(theme, ['background-color', 'box-shadow', 'border-color', 'color'], {
-        duration: theme.transitions.duration.short,
-      }),
-      '&:hover': {
-        textDecoration: 'none',
-      },
-      [`&.${buttonClasses.disabled}`]: {
-        color: (theme.vars || theme).palette.action.disabled,
-      },
-      variants: [
-        {
-          props: { variant: 'contained' },
-          style: {
-            color: `var(--variant-containedColor)`,
-            backgroundColor: `var(--variant-containedBg)`,
-            boxShadow: (theme.vars || theme).shadows[2],
-            '&:hover': {
-              boxShadow: (theme.vars || theme).shadows[4],
-              // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
-                boxShadow: (theme.vars || theme).shadows[2],
-              },
-            },
-            '&:active': {
-              boxShadow: (theme.vars || theme).shadows[8],
-            },
-            [`&.${buttonClasses.focusVisible}`]: {
-              ...theme.focusVisible,
-              boxShadow: theme.focusVisible?.boxShadow
-                ? `${(theme.vars || theme).shadows[6]}, ${theme.focusVisible.boxShadow}`
-                : (theme.vars || theme).shadows[6],
-            },
-            [`&.${buttonClasses.disabled}`]: {
-              color: (theme.vars || theme).palette.action.disabled,
-              boxShadow: (theme.vars || theme).shadows[0],
-              backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
-            },
-          },
-        },
-        {
-          props: { variant: 'outlined' },
-          style: {
-            padding: '5px 15px',
-            border: '1px solid currentColor',
-            borderColor: `var(--variant-outlinedBorder, currentColor)`,
-            backgroundColor: `var(--variant-outlinedBg)`,
-            color: `var(--variant-outlinedColor)`,
-            [`&.${buttonClasses.disabled}`]: {
-              border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
-            },
-          },
-        },
-        {
-          props: { variant: 'text' },
-          style: {
-            padding: '6px 8px',
-            color: `var(--variant-textColor)`,
-            backgroundColor: `var(--variant-textBg)`,
-          },
-        },
-        ...Object.entries(theme.palette)
-          .filter(createSimplePaletteValueFilter())
-          .map(([color]) => ({
-            props: { color },
-            style: {
-              '--variant-textColor': (theme.vars || theme).palette[color].main,
-              '--variant-outlinedColor': (theme.vars || theme).palette[color].main,
-              '--variant-outlinedBorder': theme.alpha(
-                (theme.vars || theme).palette[color].main,
-                0.5,
-              ),
-              '--variant-containedColor': (theme.vars || theme).palette[color].contrastText,
-              '--variant-containedBg': (theme.vars || theme).palette[color].main,
-              '@media (hover: hover)': {
-                '&:hover': {
-                  '--variant-containedBg': (theme.vars || theme).palette[color].dark,
-                  '--variant-textBg': theme.alpha(
-                    (theme.vars || theme).palette[color].main,
-                    (theme.vars || theme).palette.action.hoverOpacity,
-                  ),
-                  '--variant-outlinedBorder': (theme.vars || theme).palette[color].main,
-                  '--variant-outlinedBg': theme.alpha(
-                    (theme.vars || theme).palette[color].main,
-                    (theme.vars || theme).palette.action.hoverOpacity,
-                  ),
-                },
-              },
-            },
-          })),
-        {
-          props: {
-            color: 'inherit',
-          },
-          style: {
-            color: 'inherit',
-            borderColor: 'currentColor',
-            '--variant-containedBg': theme.vars
-              ? theme.vars.palette.Button.inheritContainedBg
-              : inheritContainedBackgroundColor,
-            '@media (hover: hover)': {
-              '&:hover': {
-                '--variant-containedBg': theme.vars
-                  ? theme.vars.palette.Button.inheritContainedHoverBg
-                  : inheritContainedHoverBackgroundColor,
-                '--variant-textBg': theme.alpha(
-                  (theme.vars || theme).palette.text.primary,
-                  (theme.vars || theme).palette.action.hoverOpacity,
-                ),
-                '--variant-outlinedBg': theme.alpha(
-                  (theme.vars || theme).palette.text.primary,
-                  (theme.vars || theme).palette.action.hoverOpacity,
-                ),
-              },
-            },
-          },
-        },
-        {
-          props: {
-            size: 'small',
-            variant: 'text',
-          },
-          style: {
-            padding: '4px 5px',
-            fontSize: theme.typography.pxToRem(13),
-          },
-        },
-        {
-          props: {
-            size: 'large',
-            variant: 'text',
-          },
-          style: {
-            padding: '8px 11px',
-            fontSize: theme.typography.pxToRem(15),
-          },
-        },
-        {
-          props: {
-            size: 'small',
-            variant: 'outlined',
-          },
-          style: {
-            padding: '3px 9px',
-            fontSize: theme.typography.pxToRem(13),
-          },
-        },
-        {
-          props: {
-            size: 'large',
-            variant: 'outlined',
-          },
-          style: {
-            padding: '7px 21px',
-            fontSize: theme.typography.pxToRem(15),
-          },
-        },
-        {
-          props: {
-            size: 'small',
-            variant: 'contained',
-          },
-          style: {
-            padding: '4px 10px',
-            fontSize: theme.typography.pxToRem(13),
-          },
-        },
-        {
-          props: {
-            size: 'large',
-            variant: 'contained',
-          },
-          style: {
-            padding: '8px 22px',
-            fontSize: theme.typography.pxToRem(15),
-          },
-        },
-        {
-          props: {
-            disableElevation: true,
-          },
-          style: {
-            boxShadow: 'none',
-            '&:hover': {
-              boxShadow: 'none',
-            },
-            [`&.${buttonClasses.focusVisible}`]: {
-              boxShadow: theme.focusVisible?.boxShadow ?? 'none',
-            },
-            '&:active': {
-              boxShadow: 'none',
-            },
-            [`&.${buttonClasses.disabled}`]: {
-              boxShadow: 'none',
-            },
-          },
-        },
-        {
-          props: { fullWidth: true },
-          style: { width: '100%' },
-        },
-        {
-          props: {
-            loadingPosition: 'center',
-          },
-          style: {
-            ...getTransitionStyles(theme, ['background-color', 'box-shadow', 'border-color'], {
-              duration: theme.transitions.duration.short,
-            }),
-            [`&.${buttonClasses.loading}`]: {
-              color: 'transparent',
-            },
-          },
-        },
-      ],
-    };
-  }),
-);
+})({});
 
 const ButtonStartIcon = styled('span', {
   name: 'MuiButton',
@@ -330,41 +77,7 @@ const ButtonStartIcon = styled('span', {
 
     return [styles.startIcon, ownerState.loading && styles.startIconLoadingStart];
   },
-})(({ theme }) => ({
-  display: 'inherit',
-  alignItems: 'center',
-  marginRight: 8,
-  marginLeft: -4,
-  '&::before': {
-    content: '"\\200b"',
-    width: 0,
-    overflow: 'hidden',
-  },
-  variants: [
-    {
-      props: { size: 'small' },
-      style: {
-        marginLeft: -2,
-      },
-    },
-    {
-      props: { loadingPosition: 'start', loading: true },
-      style: {
-        ...getTransitionStyles(theme, ['opacity'], {
-          duration: theme.transitions.duration.short,
-        }),
-        opacity: 0,
-      },
-    },
-    {
-      props: { loadingPosition: 'start', loading: true, fullWidth: true },
-      style: {
-        marginRight: -8,
-      },
-    },
-    ...commonIconStyles,
-  ],
-}));
+})({});
 
 const ButtonEndIcon = styled('span', {
   name: 'MuiButton',
@@ -374,128 +87,17 @@ const ButtonEndIcon = styled('span', {
 
     return [styles.endIcon, ownerState.loading && styles.endIconLoadingEnd];
   },
-})(({ theme }) => ({
-  display: 'inherit',
-  marginRight: -4,
-  marginLeft: 8,
-  variants: [
-    {
-      props: { size: 'small' },
-      style: {
-        marginRight: -2,
-      },
-    },
-    {
-      props: { loadingPosition: 'end', loading: true },
-      style: {
-        ...getTransitionStyles(theme, ['opacity'], {
-          duration: theme.transitions.duration.short,
-        }),
-        opacity: 0,
-      },
-    },
-    {
-      props: { loadingPosition: 'end', loading: true, fullWidth: true },
-      style: {
-        marginLeft: -8,
-      },
-    },
-    ...commonIconStyles,
-  ],
-}));
+})({});
 
 const ButtonLoadingIndicator = styled('span', {
   name: 'MuiButton',
   slot: 'LoadingIndicator',
-})(({ theme }) => ({
-  display: 'none',
-  position: 'absolute',
-  visibility: 'visible',
-  variants: [
-    { props: { loading: true }, style: { display: 'flex' } },
-    {
-      props: { loadingPosition: 'start' },
-      style: {
-        left: 14,
-      },
-    },
-    {
-      props: {
-        loadingPosition: 'start',
-        size: 'small',
-      },
-      style: {
-        left: 10,
-      },
-    },
-    {
-      props: {
-        variant: 'text',
-        loadingPosition: 'start',
-      },
-      style: {
-        left: 6,
-      },
-    },
-    {
-      props: {
-        loadingPosition: 'center',
-      },
-      style: {
-        left: '50%',
-        transform: 'translate(-50%)',
-        color: (theme.vars || theme).palette.action.disabled,
-      },
-    },
-    {
-      props: { loadingPosition: 'end' },
-      style: {
-        right: 14,
-      },
-    },
-    {
-      props: {
-        loadingPosition: 'end',
-        size: 'small',
-      },
-      style: {
-        right: 10,
-      },
-    },
-    {
-      props: {
-        variant: 'text',
-        loadingPosition: 'end',
-      },
-      style: {
-        right: 6,
-      },
-    },
-    {
-      props: { loadingPosition: 'start', fullWidth: true },
-      style: {
-        position: 'relative',
-        left: -10,
-      },
-    },
-    {
-      props: { loadingPosition: 'end', fullWidth: true },
-      style: {
-        position: 'relative',
-        right: -10,
-      },
-    },
-  ],
-}));
+})({});
 
 const ButtonLoadingIconPlaceholder = styled('span', {
   name: 'MuiButton',
   slot: 'LoadingIconPlaceholder',
-})({
-  display: 'inline-block',
-  width: '1em',
-  height: '1em',
-});
+})({});
 
 const Button = React.forwardRef(function Button(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`

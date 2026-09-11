@@ -1,0 +1,9 @@
+/*
+ * This file is deliberately unlayered and imported before every theme. Unlayered author CSS
+ * outranks all normal declarations in mui.theme, so no specificity tricks or !important needed.
+ */
+.MuiButton-root.consumer-override {
+  letter-spacing: 0.12em;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
