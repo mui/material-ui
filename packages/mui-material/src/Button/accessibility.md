@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 4     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 28    |
-| 🚩 Flagged            | 8/27  |
+| 🚩 Flagged            | 7/27  |
 
 ## Known gaps
 
@@ -223,10 +223,10 @@ Every other `variant` × `color` combination clears `4.5:1`; the closest pass is
 
 #### 2.4.7 Focus Visible · AA
 
-`🚩` · `⚠️ Partially Supports` · `● Component`
+`⚠️ Partially Supports` · `● Component`
 
 - Keyboard focus shows the `.Mui-focusVisible` indicator (suppressed for mouse); `contained` adds a box-shadow on focus.
-- `disableRipple`/`disableFocusRipple` remove the ripple and `disableElevation` the `contained` box-shadow, so `text`/`outlined` lose the indicator with either ripple prop, and `contained` only when a ripple prop and `disableElevation` are both set.
+- `disableRipple`/`disableFocusRipple` remove the ripple and `disableElevation` the `contained` box-shadow, so `text`/`outlined` lose the indicator with either ripple prop, and `contained` only when a ripple prop and `disableElevation` are both set. Covered by a Playwright test that compares the control focused and unfocused.
 
 **Manual testing steps**
 
@@ -319,7 +319,7 @@ Every other `variant` × `color` combination clears `4.5:1`; the closest pass is
 
 `✅ Supports` · `◐ Shared`
 
-- The visible text is the accessible name: the children become the name, decorative MUI icons are hidden (a custom icon node is not, unless the author hides it), and `loadingPosition="center"` keeps the label in the name despite `color: transparent`.
+- The visible text is the accessible name: the children become the name, decorative MUI icons are hidden (a custom icon node is not, unless the author hides it), and `loadingPosition="center"` keeps the label in the name despite `color: transparent`. Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (the visible text is the accessible name, with and without a decorative icon).
 - An `aria-label` that omits or reorders the visible words breaks this. Compare the visible text to the computed name.
 
 #### 2.5.8 Target Size (Minimum) · AA
