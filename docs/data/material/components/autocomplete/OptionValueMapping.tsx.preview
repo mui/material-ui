@@ -3,7 +3,7 @@
 <Autocomplete
   options={films}
   getOptionLabel={(option) => option.label}
-  getOptionValue={(option) => option.id}
+  getOptionValue={getFilmValue}
   value={value}
   onChange={(_event, newValue) => {
     setValue(newValue);

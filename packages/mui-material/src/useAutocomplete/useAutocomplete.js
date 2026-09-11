@@ -136,6 +136,8 @@ function useAutocomplete(props) {
   } = props;
 
   const getOptionValue = getOptionValueProp ?? defaultGetOptionValue;
+  const hasOptionValueMapping = getOptionValueProp !== undefined;
+  const hasCustomEquality = Boolean(isOptionEqualToValueProp);
 
   const id = useId(idProp);
 
@@ -162,17 +164,25 @@ function useAutocomplete(props) {
       }
 
       // Custom equality takes precedence over comparing the option's mapped value.
-      if (isOptionEqualToValueProp) {
+      if (hasCustomEquality) {
         return isOptionEqualToValueProp(option, value);
       }
 
       return getOptionValue(option) === value;
     },
-    [freeSolo, getOptionValue, getOptionValueProp, isOptionEqualToValueProp],
+    [freeSolo, getOptionValue, getOptionValueProp, hasCustomEquality, isOptionEqualToValueProp],
   );
 
+  const optionValueMap = React.useMemo(() => {
+    if (getOptionValueProp === undefined || hasCustomEquality) {
+      return null;
+    }
+
+    return new Map(options.map((option) => [getOptionValueProp(option), option]));
+  }, [getOptionValueProp, hasCustomEquality, options]);
+
   const getOptionFromValue = React.useMemo(() => {
-    if (getOptionValueProp === undefined) {
+    if (!hasOptionValueMapping) {
       // Without value mapping, selected values are already options, so return them unchanged.
       return defaultGetOptionFromValue;
     }
@@ -187,7 +197,7 @@ function useAutocomplete(props) {
       return null;
     };
 
-    if (isOptionEqualToValueProp) {
+    if (hasCustomEquality) {
       const resolvedOptions = new Map();
       // Custom equality defines matching behavior, so resolve the first matching option.
       return (value) => {
@@ -208,8 +218,6 @@ function useAutocomplete(props) {
       };
     }
 
-    const optionValueMap = new Map(options.map((option) => [getOptionValueProp(option), option]));
-
     // Default equality uses mapped values as keys, so resolve them through the lookup map.
     return (value) => {
       if (freeSolo && typeof value === 'string') {
@@ -219,7 +227,14 @@ function useAutocomplete(props) {
 
       return resolveOption(optionValueMap.get(value));
     };
-  }, [freeSolo, getOptionValueProp, isOptionEqualToValueProp, options]);
+  }, [
+    freeSolo,
+    hasOptionValueMapping,
+    hasCustomEquality,
+    isOptionEqualToValueProp,
+    optionValueMap,
+    options,
+  ]);
 
   let getOptionLabel = getOptionLabelProp;
 
@@ -368,16 +383,16 @@ function useAutocomplete(props) {
   }, [multiple, value]);
   const selectedValuesSet = React.useMemo(() => {
     // Fast path for the default equality behavior to avoid O(n^2) option checks.
-    if (isOptionEqualToValueProp || selectedValues.length === 0) {
+    if (hasCustomEquality || selectedValues.length === 0) {
       return null;
     }
 
     return new Set(
-      getOptionValueProp !== undefined && freeSolo
+      hasOptionValueMapping && freeSolo
         ? selectedValues.filter((selectedValue) => typeof selectedValue !== 'string')
         : selectedValues,
     );
-  }, [freeSolo, getOptionValueProp, isOptionEqualToValueProp, selectedValues]);
+  }, [freeSolo, hasOptionValueMapping, hasCustomEquality, selectedValues]);
   const isOptionSelected = React.useCallback(
     (option) => {
       if (selectedValuesSet) {

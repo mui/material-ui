@@ -633,6 +633,30 @@ describe('useAutocomplete', () => {
       expect(resolveOptionValue('foo')).to.equal(updatedOptions[0]);
     });
 
+    it('refreshes mapped keys when the mapper changes with the same options', () => {
+      const resolverOptions = [{ id: 'foo', alternateId: 'bar', label: 'Foo' }];
+      let resolveOptionValue;
+
+      function ResolverTest({ getOptionValue: getValue }) {
+        const { getInputProps, getOptionFromValue } = useAutocomplete({
+          options: resolverOptions,
+          getOptionValue: getValue,
+        });
+        resolveOptionValue = getOptionFromValue;
+        return <input {...getInputProps()} />;
+      }
+
+      const { rerender } = render(<ResolverTest getOptionValue={(option) => option.id} />);
+
+      expect(resolveOptionValue('foo')).to.equal(resolverOptions[0]);
+      expect(resolveOptionValue('bar')).to.equal(null);
+
+      rerender(<ResolverTest getOptionValue={(option) => option.alternateId} />);
+
+      expect(resolveOptionValue('foo')).to.equal(null);
+      expect(resolveOptionValue('bar')).to.equal(resolverOptions[0]);
+    });
+
     describe('cached custom equality resolutions', () => {
       const resolverOptions = [
         { id: 'foo', label: 'First Foo' },
@@ -644,11 +668,13 @@ describe('useAutocomplete', () => {
       function ResolverTest({
         options: optionsProp = resolverOptions,
         isOptionEqualToValue = compare,
+        ...other
       }) {
         const { getInputProps, getOptionFromValue } = useAutocomplete({
           options: optionsProp,
           getOptionValue,
           isOptionEqualToValue,
+          ...other,
         });
         resolveOptionValue = getOptionFromValue;
         return <input {...getInputProps()} />;
@@ -671,6 +697,42 @@ describe('useAutocomplete', () => {
         expect(resolveOptionValue('FoO')).to.equal(resolverOptions[0]);
         expect(resolveOptionValue('missing')).to.equal(null);
         expect(isOptionEqualToValue.callCount).to.equal(0);
+      });
+
+      it('preserves custom resolutions when only the mapper changes, but resets when mapping is disabled', () => {
+        const isOptionEqualToValue = spy(compare);
+        const { rerender } = render(
+          <ResolverTest
+            getOptionValue={(option) => option.id}
+            isOptionEqualToValue={isOptionEqualToValue}
+          />,
+        );
+
+        expect(resolveOptionValue('FoO')).to.equal(resolverOptions[0]);
+        expect(resolveOptionValue('missing')).to.equal(null);
+        isOptionEqualToValue.resetHistory();
+
+        rerender(
+          <ResolverTest
+            getOptionValue={(option) => option.label}
+            isOptionEqualToValue={isOptionEqualToValue}
+          />,
+        );
+
+        expect(resolveOptionValue('FoO')).to.equal(resolverOptions[0]);
+        expect(resolveOptionValue('missing')).to.equal(null);
+        expect(isOptionEqualToValue.callCount).to.equal(0);
+
+        rerender(
+          <ResolverTest getOptionValue={undefined} isOptionEqualToValue={isOptionEqualToValue} />,
+        );
+
+        expect(resolveOptionValue('FoO')).to.equal('FoO');
+
+        rerender(<ResolverTest isOptionEqualToValue={isOptionEqualToValue} />);
+
+        expect(resolveOptionValue('FoO')).to.equal(resolverOptions[0]);
+        expect(isOptionEqualToValue.callCount).to.equal(1);
       });
 
       it('refreshes cached matches and misses when options change', () => {
