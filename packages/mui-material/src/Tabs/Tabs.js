@@ -231,6 +231,15 @@ const TabsScrollbarSize = styled(ScrollbarSize)({
 
 const defaultIndicatorStyle = {};
 
+// scroll-padding computes to 'auto', a <length>, or a <percentage> of the scrollport
+function resolveScrollPadding(value, scrollportSize) {
+  const number = parseFloat(value);
+  if (Number.isNaN(number)) {
+    return 0;
+  }
+  return value.endsWith('%') ? (number / 100) * scrollportSize : number;
+}
+
 // Dev-only: tracks per-`Tabs` instance (keyed by its ref) whether the invalid-value warning was
 // already logged, so it isn't repeated across the several effects that call `getTabsMeta`.
 // Only referenced from `process.env.NODE_ENV !== 'production'` blocks; the `@__PURE__` annotation
@@ -348,6 +357,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       // create a new object with ClientRect class props + scrollLeft
       tabsMeta = {
         clientWidth: tabsNode.clientWidth,
+        clientHeight: tabsNode.clientHeight,
         scrollLeft: tabsNode.scrollLeft,
         scrollTop: tabsNode.scrollTop,
         scrollWidth: tabsNode.scrollWidth,
@@ -582,14 +592,36 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       return;
     }
 
-    if (tabMeta[start] < tabsMeta[start]) {
-      // left side of button is out of view
-      const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[start] - tabsMeta[start]);
-      scroll(nextScrollStart, { animation });
-    } else if (tabMeta[end] > tabsMeta[end]) {
-      // right side of button is out of view
-      const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[end] - tabsMeta[end]);
-      scroll(nextScrollStart, { animation });
+    const scrollerComputedStyle = ownerWindow(tabsRef.current).getComputedStyle(tabsRef.current);
+    const scrollportSize = vertical ? tabsMeta.clientHeight : tabsMeta.clientWidth;
+    const scrollPaddingStart = resolveScrollPadding(
+      scrollerComputedStyle[vertical ? 'scrollPaddingTop' : 'scrollPaddingLeft'],
+      scrollportSize,
+    );
+    const scrollPaddingEnd = resolveScrollPadding(
+      scrollerComputedStyle[vertical ? 'scrollPaddingBottom' : 'scrollPaddingRight'],
+      scrollportSize,
+    );
+
+    // The edges the tab has to sit between: the scrollport shrunk by its scroll-padding.
+    const scrollportStart = tabsMeta[start] + scrollPaddingStart;
+    const scrollportEnd = tabsMeta[end] - scrollPaddingEnd;
+    const startAlignedScroll = tabsMeta[scrollStart] + (tabMeta[start] - scrollportStart);
+
+    if (tabMeta[start] < scrollportStart) {
+      // start edge is out of view, or covered by the scroll-padding
+      scroll(startAlignedScroll, { animation });
+    } else if (tabMeta[end] > scrollportEnd) {
+      if (tabMeta[end] - tabMeta[start] > scrollportEnd - scrollportStart) {
+        // The tab doesn't fit between the scroll-padding edges, so both can't be satisfied.
+        // Align the start edge, like `scrollIntoView({ block: 'nearest' })` does for a target
+        // larger than the scrollport; otherwise the two branches take turns on every call and
+        // the scroller oscillates between them.
+        scroll(startAlignedScroll, { animation });
+      } else {
+        // end edge is out of view, or covered by the scroll-padding
+        scroll(tabsMeta[scrollStart] + (tabMeta[end] - scrollportEnd), { animation });
+      }
     }
   });
 
