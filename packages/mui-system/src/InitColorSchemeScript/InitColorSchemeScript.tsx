@@ -56,6 +56,22 @@ const maybeReactUseSyncExternalStore: undefined | any = safeReact.useSyncExterna
 
 const subscribe = () => () => {};
 
+// Insert a runtime scheme variable (`light`, `dark`, or `colorScheme`) into every `%s` placeholder
+// of an attribute/selector template.
+function interpolateScheme(template: string, variable: string) {
+  const segments = template.split('%s');
+  const tokens: string[] = [];
+  for (let index = 0; index < segments.length; index += 1) {
+    if (index > 0) {
+      tokens.push(variable);
+    }
+    if (segments[index]) {
+      tokens.push(JSON.stringify(segments[index]));
+    }
+  }
+  return tokens.join(' + ') || '""';
+}
+
 /**
  * `true` during the server render and the matching hydration render, `false`
  * on every client render afterwards. React warns when a `<script>` is
@@ -96,20 +112,23 @@ export function buildInitColorSchemeScript(options?: InitColorSchemeScriptProps)
   }
   if (attribute.startsWith('.')) {
     const selector = attribute.substring(1);
-    setter += `${colorSchemeNode}.classList.remove('${selector}'.replace('%s', light), '${selector}'.replace('%s', dark));
-      ${colorSchemeNode}.classList.add('${selector}'.replace('%s', colorScheme));`;
+    setter += `${colorSchemeNode}.classList.remove(${interpolateScheme(selector, 'light')}, ${interpolateScheme(selector, 'dark')});
+      ${colorSchemeNode}.classList.add(${interpolateScheme(selector, 'colorScheme')});`;
   }
   const matches = attribute.match(/\[([^[\]]+)\]/); // case [data-color-scheme='%s'] or [data-color-scheme]
   if (matches) {
     const [attr, value] = matches[1].split('=');
     if (!value) {
-      setter += `${colorSchemeNode}.removeAttribute('${attr}'.replace('%s', light));
-      ${colorSchemeNode}.removeAttribute('${attr}'.replace('%s', dark));`;
+      setter += `${colorSchemeNode}.removeAttribute(${interpolateScheme(attr, 'light')});
+      ${colorSchemeNode}.removeAttribute(${interpolateScheme(attr, 'dark')});`;
     }
+    const attributeValue = value
+      ? interpolateScheme(value.replace(/^(['"])(.*)\1$/, '$2'), 'colorScheme')
+      : '""';
     setter += `
-      ${colorSchemeNode}.setAttribute('${attr}'.replace('%s', colorScheme), ${value ? `${value}.replace('%s', colorScheme)` : '""'});`;
-  } else if (attribute !== '.%s') {
-    setter += `${colorSchemeNode}.setAttribute('${attribute}', colorScheme);`;
+      ${colorSchemeNode}.setAttribute(${interpolateScheme(attr, 'colorScheme')}, ${attributeValue});`;
+  } else if (!attribute.startsWith('.')) {
+    setter += `${colorSchemeNode}.setAttribute(${JSON.stringify(attribute)}, colorScheme);`;
   }
 
   return (
