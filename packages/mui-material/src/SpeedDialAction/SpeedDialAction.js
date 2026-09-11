@@ -85,6 +85,8 @@ const SpeedDialActionStaticTooltip = styled('span', {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
+    // Stay as tall as the Fab when a sibling action is larger.
+    alignSelf: 'center',
     [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
       ...getTransitionStyles(theme, ['transform', 'opacity'], {
         duration: theme.transitions.duration.shorter,
@@ -130,11 +132,18 @@ const SpeedDialActionStaticTooltip = styled('span', {
           tooltipPlacement: 'top',
         },
         style: {
-          flexDirection: 'column-reverse',
+          // The label sits in a zero-height row, so it widens the action to keep
+          // neighboring labels apart without making the action taller.
+          display: 'grid',
+          gridTemplateRows: '0 auto',
+          justifyItems: 'center',
           [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
+            position: 'static',
+            alignSelf: 'end',
             transformOrigin: '50% 100%',
-            bottom: '100%',
             marginBottom: 8,
+            marginLeft: 8,
+            marginRight: 8,
           },
         },
       },
@@ -143,11 +152,17 @@ const SpeedDialActionStaticTooltip = styled('span', {
           tooltipPlacement: 'bottom',
         },
         style: {
-          flexDirection: 'column',
+          display: 'grid',
+          gridTemplateRows: 'auto 0',
+          justifyItems: 'center',
           [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
+            position: 'static',
+            gridRow: 2,
+            alignSelf: 'start',
             transformOrigin: '50% 0%',
-            top: '100%',
             marginTop: 8,
+            marginLeft: 8,
+            marginRight: 8,
           },
         },
       },
@@ -179,7 +194,8 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
 
   const resolvedTooltipSlotProps =
     typeof slotProps.tooltip === 'function' ? slotProps.tooltip(props) : (slotProps.tooltip ?? {});
-  const tooltipPlacement = resolvedTooltipSlotProps.placement ?? 'left';
+  // Compound placements like `top-start` are styled like their side.
+  const tooltipPlacement = (resolvedTooltipSlotProps.placement ?? 'left').split('-')[0];
 
   const ownerState = { ...props, tooltipPlacement };
   const classes = useUtilityClasses(ownerState);

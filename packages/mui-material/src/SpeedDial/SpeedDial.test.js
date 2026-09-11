@@ -11,7 +11,7 @@ import {
 } from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import SpeedDial, { speedDialClasses as classes } from '@mui/material/SpeedDial';
-import SpeedDialAction from '@mui/material/SpeedDialAction';
+import SpeedDialAction, { speedDialActionClasses } from '@mui/material/SpeedDialAction';
 import { tooltipClasses } from '@mui/material/Tooltip';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
@@ -207,7 +207,61 @@ describe('<SpeedDial />', () => {
         clock.runAll();
         expect(screen.getByRole('tooltip').firstChild).to.have.class(tooltipClasses[className]);
       });
+
+      it(`should place the persistent tooltip in the correct position when direction=${direction}`, () => {
+        const { container } = render(
+          <SpeedDial {...defaultProps} direction={direction}>
+            <SpeedDialAction
+              icon={icon}
+              slotProps={{ tooltip: { open: true, title: 'action1' } }}
+            />
+          </SpeedDial>,
+        );
+
+        expect(container.querySelector(`.${speedDialActionClasses.staticTooltip}`)).to.have.class(
+          speedDialActionClasses[className],
+        );
+      });
     });
+
+    it.skipIf(isJsdom())(
+      'should lay out persistent tooltips side by side when direction is horizontal',
+      () => {
+        const titles = ['Copy', 'Save', 'Print this page', 'Large'];
+        render(
+          <SpeedDial {...defaultProps} direction="right">
+            {titles.map((title) => (
+              <SpeedDialAction
+                key={title}
+                icon={icon}
+                slotProps={{
+                  fab: title === 'Large' ? { size: 'large' } : {},
+                  tooltip: { open: true, title },
+                }}
+              />
+            ))}
+          </SpeedDial>,
+        );
+
+        const fabs = screen.getAllByRole('menuitem').map((fab) => fab.getBoundingClientRect());
+        const labels = titles.map((title) => screen.getByText(title).getBoundingClientRect());
+        const verticalCenter = (rect) => rect.top + rect.height / 2;
+
+        // Each label sits 16px above its own Fab, on a single line.
+        labels.forEach((label, index) => {
+          expect(Math.abs(fabs[index].top - label.bottom - 16)).to.be.lessThan(1);
+          expect(label.height).to.equal(labels[0].height);
+        });
+        // Labels don't overlap their neighbors.
+        for (let i = 1; i < labels.length; i += 1) {
+          expect(labels[i].left).to.be.at.least(labels[i - 1].right);
+        }
+        // Fabs of different sizes stay on one center line.
+        fabs.forEach((fab) => {
+          expect(Math.abs(verticalCenter(fab) - verticalCenter(fabs[0]))).to.be.lessThan(1);
+        });
+      },
+    );
   });
 
   describe('keyboard', () => {

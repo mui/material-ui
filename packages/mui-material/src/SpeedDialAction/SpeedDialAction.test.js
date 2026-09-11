@@ -199,43 +199,53 @@ describe('<SpeedDialAction />', () => {
     expect(staticToolTipLabel).to.have.class(classes.staticTooltipLabel);
   });
 
-  it.skipIf(isJsdom())(
-    'places the static tooltip label above the Fab when placement is top',
-    () => {
-      render(
-        <SpeedDialAction
-          icon={<Icon>add</Icon>}
-          open
-          slotProps={{ tooltip: { open: true, placement: 'top', title: 'placeholder' } }}
-        />,
-      );
+  it('styles compound placements like their side', () => {
+    const { container } = render(
+      <SpeedDialAction
+        icon={<Icon>add</Icon>}
+        slotProps={{ tooltip: { open: true, placement: 'top-start', title: 'placeholder' } }}
+      />,
+    );
 
-      const label = screen.getByText('placeholder').getBoundingClientRect();
-      const fab = screen.getByRole('menuitem').getBoundingClientRect();
+    expect(container.querySelector(`.${classes.staticTooltip}`)).to.have.class(
+      classes.tooltipPlacementTop,
+    );
+  });
 
-      expect(label.bottom).to.be.at.most(fab.top);
-      expect(Math.abs(label.left + label.width / 2 - (fab.left + fab.width / 2))).to.be.lessThan(1);
-    },
-  );
+  describe.skipIf(isJsdom())('static tooltip label layout', () => {
+    function center(rect, axis) {
+      return axis === 'x' ? rect.left + rect.width / 2 : rect.top + rect.height / 2;
+    }
 
-  it.skipIf(isJsdom())(
-    'places the static tooltip label below the Fab when placement is bottom',
-    () => {
-      render(
-        <SpeedDialAction
-          icon={<Icon>add</Icon>}
-          open
-          slotProps={{ tooltip: { open: true, placement: 'bottom', title: 'placeholder' } }}
-        />,
-      );
+    [
+      ['top', 'x', (label, fab) => fab.top - label.bottom],
+      ['bottom', 'x', (label, fab) => label.top - fab.bottom],
+      ['left', 'y', (label, fab) => fab.left - label.right],
+      ['right', 'y', (label, fab) => label.left - fab.right],
+      ['top-start', 'x', (label, fab) => fab.top - label.bottom],
+      ['left-end', 'y', (label, fab) => fab.left - label.right],
+    ].forEach(([placement, axis, getGap]) => {
+      it(`places the label next to the Fab when placement is ${placement}`, () => {
+        // SpeedDial lays out its actions in a flex container.
+        render(
+          <div style={{ display: 'flex' }}>
+            <SpeedDialAction
+              icon={<Icon>add</Icon>}
+              open
+              slotProps={{ tooltip: { open: true, placement, title: 'placeholder' } }}
+            />
+          </div>,
+        );
 
-      const label = screen.getByText('placeholder').getBoundingClientRect();
-      const fab = screen.getByRole('menuitem').getBoundingClientRect();
+        const label = screen.getByText('placeholder').getBoundingClientRect();
+        const fab = screen.getByRole('menuitem').getBoundingClientRect();
 
-      expect(label.top).to.be.at.least(fab.bottom);
-      expect(Math.abs(label.left + label.width / 2 - (fab.left + fab.width / 2))).to.be.lessThan(1);
-    },
-  );
+        // 8px margin on the label plus 8px margin on the Fab.
+        expect(Math.abs(getGap(label, fab) - 16)).to.be.lessThan(1);
+        expect(Math.abs(center(label, axis) - center(fab, axis))).to.be.lessThan(1);
+      });
+    });
+  });
 
   it('should have staticToolTip and staticToolTipLabel classes if slotProps.tooltip.open is true and custom slots are provided', () => {
     const CustomStaticTooltip = React.forwardRef(({ ownerState, ...props }, ref) => (
