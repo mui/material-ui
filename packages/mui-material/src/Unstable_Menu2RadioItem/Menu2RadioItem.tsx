@@ -2,12 +2,12 @@
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
-import useForkRef from '@mui/utils/useForkRef';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { mergeProps } from '@base-ui/react/merge-props';
 import mergeSlotProps from '../utils/mergeSlotProps';
+import useSlot from '../utils/useSlot';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -151,33 +151,42 @@ function Menu2RadioItemRootSlot({
   slots,
   sx,
 }: Menu2RadioItemRootSlotProps) {
-  const RootSlot = slots?.root ?? Menu2RadioItemRoot;
-  const IndicatorSlot = slots?.indicator ?? Menu2RadioItemIndicator;
   const externalSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), {
     sx,
   });
-  const indicatorProps = resolveComponentProps(slotProps?.indicator, ownerState);
-  const rootProps = mergeProps(
-    {
-      ...baseProps,
+  const [IndicatorSlot, indicatorProps] = useSlot('indicator', {
+    elementType: Menu2RadioItemIndicator,
+    externalForwardedProps: { slots, slotProps },
+    ownerState,
+    className: undefined,
+    additionalProps: { keepMounted: true },
+    shouldForwardComponentProp: true,
+  });
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: Menu2RadioItemRoot,
+    externalForwardedProps: { slots, slotProps: { root: externalSlotProps } },
+    ownerState,
+    className: undefined,
+    ref: null,
+    // Base UI lets an external handler cancel its internal handler.
+    getSlotProps: (handlers): React.ComponentPropsWithRef<'div'> => mergeProps(baseProps, handlers),
+    additionalProps: {
       children: (
         <React.Fragment>
           {/* Reserve space even while the indicator is unchecked. */}
-          <IndicatorSlot keepMounted {...indicatorProps} />
+          <IndicatorSlot {...indicatorProps} />
           {baseProps.children}
         </React.Fragment>
       ),
     },
-    externalSlotProps,
-  );
-  const ref = useForkRef(baseProps.ref, externalSlotProps?.ref);
+    shouldForwardComponentProp: true,
+  });
 
   return getMenu2RootRender(
     RootSlot,
     ownerState,
     {
       ...rootProps,
-      ref,
       component: component ?? 'div',
       ...(disableRipple !== undefined && { disableRipple }),
       ...suppressButtonBaseKeyboardActivation(rootProps),

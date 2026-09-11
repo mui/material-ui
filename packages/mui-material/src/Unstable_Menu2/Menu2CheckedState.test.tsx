@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
+import { BaseUIEvent } from '@base-ui/react/types';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
@@ -174,6 +175,104 @@ describe('Menu2 live checked ownerState', () => {
         unmount();
         expect(itemRef.current).to.equal(null);
         expect(slotRef.current).to.equal(null);
+      });
+
+      for (const cancel of [false, true]) {
+        it(`preserves root slot event order, cancel=${cancel}`, async () => {
+          const calls: string[] = [];
+          const itemProps = {
+            onClick: () => calls.push('item'),
+            slotProps: {
+              root: {
+                onClick: (event: BaseUIEvent<React.MouseEvent<HTMLElement>>) => {
+                  calls.push('slot');
+                  if (cancel) {
+                    event.preventBaseUIHandler();
+                  }
+                },
+              },
+            },
+          };
+          const { user } = render(
+            <Menu2 defaultOpen modal={false} anchor={document.body}>
+              {kind === 'checkbox' ? (
+                <Menu2CheckboxItem {...itemProps}>One</Menu2CheckboxItem>
+              ) : (
+                <Menu2RadioGroup>
+                  <Menu2RadioItem value="one" {...itemProps}>
+                    One
+                  </Menu2RadioItem>
+                </Menu2RadioGroup>
+              )}
+            </Menu2>,
+          );
+
+          const item = screen.getByRole(role, { name: 'One' });
+          await user.click(item);
+          expect(calls).to.deep.equal(cancel ? ['slot'] : ['slot', 'item']);
+          expect(item).to.have.attribute('aria-checked', String(!cancel));
+        });
+      }
+
+      it('passes live state, component props, and refs to a custom indicator slot', async () => {
+        const indicatorRef = React.createRef<HTMLElement>();
+        const Indicator = React.forwardRef<
+          HTMLElement,
+          React.HTMLAttributes<HTMLElement> & {
+            component: React.ElementType;
+            keepMounted: boolean;
+            ownerState: { checked: boolean };
+          }
+        >(function Indicator({ component: Component, keepMounted, ownerState, ...props }, ref) {
+          return (
+            <Component
+              {...props}
+              ref={ref}
+              data-checked={String(ownerState.checked)}
+              data-keep-mounted={String(keepMounted)}
+            />
+          );
+        });
+        const itemProps = {
+          slots: { indicator: Indicator },
+          slotProps: {
+            indicator: {
+              component: 'strong' as const,
+              ref: indicatorRef,
+              'data-testid': 'indicator',
+              className: 'custom-indicator',
+              style: { marginLeft: '7px' },
+            },
+          },
+        };
+        const { user, unmount } = render(
+          <Menu2 defaultOpen modal={false} anchor={document.body}>
+            {kind === 'checkbox' ? (
+              <Menu2CheckboxItem {...itemProps}>One</Menu2CheckboxItem>
+            ) : (
+              <Menu2RadioGroup>
+                <Menu2RadioItem value="one" {...itemProps}>
+                  One
+                </Menu2RadioItem>
+              </Menu2RadioGroup>
+            )}
+          </Menu2>,
+        );
+
+        const indicator = screen.getByTestId('indicator');
+        expect(indicator.tagName).to.equal('STRONG');
+        expect(indicator).to.have.class('custom-indicator');
+        expect(indicator.style.marginLeft).to.equal('7px');
+        expect(indicator).to.have.attribute('data-keep-mounted', 'true');
+        expect(indicator).to.have.attribute('data-checked', 'false');
+        expect(indicatorRef.current).to.equal(indicator);
+
+        await user.click(screen.getByRole(role, { name: 'One' }));
+        expect(indicator).to.have.attribute('data-checked', 'true');
+        expect(indicatorRef.current).to.equal(indicator);
+
+        unmount();
+        expect(indicatorRef.current).to.equal(null);
       });
     });
   });
