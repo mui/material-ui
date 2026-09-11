@@ -8,6 +8,10 @@ const films = [
   { id: 3, label: 'The Dark Knight' },
 ];
 
+function getFilmValue(film) {
+  return film.id;
+}
+
 export default function OptionValueMapping() {
   const [value, setValue] = React.useState(2);
 
@@ -18,7 +22,7 @@ export default function OptionValueMapping() {
       <Autocomplete
         options={films}
         getOptionLabel={(option) => option.label}
-        getOptionValue={(option) => option.id}
+        getOptionValue={getFilmValue}
         value={value}
         onChange={(_event, newValue) => {
           setValue(newValue);

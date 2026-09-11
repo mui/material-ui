@@ -4321,6 +4321,29 @@ describe('<Autocomplete />', () => {
       expect(screen.getByText('Foo')).not.to.equal(null);
     });
 
+    it('does not remap options while typing with an inline mapper prop', async () => {
+      const getValue = spy((option) => option.id);
+
+      function InlineMapperTest() {
+        return (
+          <Test
+            multiple
+            open={false}
+            defaultValue={['foo']}
+            getOptionValue={(option) => getValue(option)}
+          />
+        );
+      }
+
+      const { user } = render(<InlineMapperTest />);
+      getValue.resetHistory();
+
+      await user.type(screen.getByRole('combobox'), 'search');
+
+      expect(screen.getByRole('button', { name: 'Foo' })).to.have.text('Foo');
+      expect(getValue.callCount).to.equal(0);
+    });
+
     it('reuses custom chip resolutions while typing with the popup closed', async () => {
       const getOptionValue = (option) => option.id;
       const isOptionEqualToValue = spy((option, value) => option.id.toUpperCase() === value);
