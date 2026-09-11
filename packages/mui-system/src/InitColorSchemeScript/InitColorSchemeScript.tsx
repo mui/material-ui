@@ -23,6 +23,8 @@ export interface InitColorSchemeScriptProps {
   defaultDarkColorScheme?: string | undefined;
   /**
    * The node (provided as string) used to attach the color-scheme attribute.
+   *
+   * Requires a static value, do not derive from user input.
    * @default 'document.documentElement'
    */
   colorSchemeNode?: string | undefined;
@@ -38,6 +40,8 @@ export interface InitColorSchemeScriptProps {
   colorSchemeStorageKey?: string | undefined;
   /**
    * DOM attribute for applying color scheme.
+   *
+   * Requires a static value, do not derive from user input.
    * @default 'data-color-scheme'
    * @example '.mode-%s' // for class based color scheme
    * @example '[data-mode-%s]' // for data-attribute without '='
@@ -55,6 +59,19 @@ const safeReact = { ...React };
 const maybeReactUseSyncExternalStore: undefined | any = safeReact.useSyncExternalStore;
 
 const subscribe = () => () => {};
+
+// Serialize a configuration string into a JS string literal for the inline script. The storage
+// keys and default scheme names are the values an app is most likely to derive from
+// user/tenant-controlled config, so treat them as data: `JSON.stringify` handles quotes and
+// backslashes, and the extra escapes cover what it leaves intact but the HTML/JS parser does
+// not — `<` (so `</script>` can't break out of the element) and the U+2028/U+2029 line
+// separators (invalid raw inside a JS string).
+function serializeScriptValue(value: string) {
+  return JSON.stringify(value)
+    .replace(/</g, '\\u003c')
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029');
+}
 
 /**
  * `true` during the server render and the matching hydration render, `false`
@@ -122,9 +139,9 @@ export function buildInitColorSchemeScript(options?: InitColorSchemeScriptProps)
         __html: `(function() {
 try {
   let colorScheme = '';
-  const mode = localStorage.getItem('${modeStorageKey}') || '${defaultMode}';
-  const dark = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
-  const light = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
+  const mode = localStorage.getItem(${serializeScriptValue(modeStorageKey)}) || ${serializeScriptValue(defaultMode)};
+  const dark = localStorage.getItem(${serializeScriptValue(`${colorSchemeStorageKey}-dark`)}) || ${serializeScriptValue(defaultDarkColorScheme)};
+  const light = localStorage.getItem(${serializeScriptValue(`${colorSchemeStorageKey}-light`)}) || ${serializeScriptValue(defaultLightColorScheme)};
   if (mode === 'system') {
     // handle system mode
     const mql = window.matchMedia('(prefers-color-scheme: dark)');

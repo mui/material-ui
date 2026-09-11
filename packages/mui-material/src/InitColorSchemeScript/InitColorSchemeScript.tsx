@@ -27,6 +27,8 @@ export interface InitColorSchemeScriptProps {
   defaultDarkColorScheme?: string | undefined;
   /**
    * The node (provided as string) used to attach the color-scheme attribute.
+   *
+   * Requires a static value, do not derive from user input.
    * @default 'document.documentElement'
    */
   colorSchemeNode?: string | undefined;
@@ -42,6 +44,8 @@ export interface InitColorSchemeScriptProps {
   colorSchemeStorageKey?: string | undefined;
   /**
    * DOM attribute for applying a color scheme.
+   *
+   * Requires a static value, do not derive from user input.
    * @default 'data-mui-color-scheme'
    * @example '.mode-%s' // for class based color scheme
    * @example '[data-mode-%s]' // for data-attribute without '='
@@ -94,6 +98,8 @@ InitColorSchemeScript.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * DOM attribute for applying a color scheme.
+   *
+   * Requires a static value, do not derive from user input.
    * @default 'data-mui-color-scheme'
    * @example '.mode-%s' // for class based color scheme
    * @example '[data-mode-%s]' // for data-attribute without '='
@@ -101,6 +107,8 @@ InitColorSchemeScript.propTypes /* remove-proptypes */ = {
   attribute: PropTypes.string,
   /**
    * The node (provided as string) used to attach the color-scheme attribute.
+   *
+   * Requires a static value, do not derive from user input.
    * @default 'document.documentElement'
    */
   colorSchemeNode: PropTypes.string,
