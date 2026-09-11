@@ -11,6 +11,8 @@ import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 
 function not(a, b) {
   return a.filter((value) => !b.includes(value));
@@ -25,8 +27,10 @@ function union(a, b) {
 }
 
 const CustomList = React.forwardRef(function CustomList(props, ref) {
-  const { title, items, checked, handleToggle, handleToggleAll, numberOfChecked } =
+  const { title, items, selected, handleToggle, handleToggleAll, numberOfChecked } =
     props;
+
+  const ariaLabel = `Select all ${title}`;
 
   return (
     <Card>
@@ -42,7 +46,7 @@ const CustomList = React.forwardRef(function CustomList(props, ref) {
             }
             disabled={items.length === 0}
             slotProps={{
-              input: { 'aria-label': 'all items selected' },
+              input: { 'aria-label': ariaLabel },
             }}
           />
         }
@@ -51,6 +55,8 @@ const CustomList = React.forwardRef(function CustomList(props, ref) {
       />
       <Divider />
       <MenuList
+        aria-label={title}
+        aria-multiselectable="true"
         sx={{
           width: 200,
           height: 230,
@@ -59,26 +65,29 @@ const CustomList = React.forwardRef(function CustomList(props, ref) {
         }}
         dense
         component="div"
-        role="list"
+        role="listbox"
         ref={ref}
       >
         {items.map((value) => {
           const labelId = `transfer-list-all-item-${value}-label`;
+          const isSelected = selected.includes(value);
+          const SelectionIcon = isSelected ? CheckBoxIcon : CheckBoxOutlineBlankIcon;
 
           return (
             <MenuItem
               component="div"
               key={value}
-              role="listitem"
+              role="option"
+              aria-selected={isSelected}
+              aria-labelledby={labelId}
               onClick={handleToggle(value)}
             >
               <ListItemIcon>
-                <Checkbox
-                  checked={checked.includes(value)}
-                  tabIndex={-1}
-                  disableRipple
-                  slotProps={{
-                    input: { 'aria-labelledby': labelId },
+                <SelectionIcon
+                  sx={{
+                    color: isSelected ? 'primary.main' : 'text.secondary',
+                    padding: '9px',
+                    boxSizing: 'content-box',
                   }}
                 />
               </ListItemIcon>
@@ -92,59 +101,59 @@ const CustomList = React.forwardRef(function CustomList(props, ref) {
 });
 
 CustomList.propTypes = {
-  checked: PropTypes.arrayOf(PropTypes.number).isRequired,
   handleToggle: PropTypes.func.isRequired,
   handleToggleAll: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.number).isRequired,
   numberOfChecked: PropTypes.func.isRequired,
-  title: PropTypes.node,
+  selected: PropTypes.arrayOf(PropTypes.number).isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default function SelectAllTransferList() {
-  const [checked, setChecked] = React.useState([]);
+  const [selected, setSelected] = React.useState([]);
   const [left, setLeft] = React.useState([0, 1, 2, 3]);
   const [right, setRight] = React.useState([4, 5, 6, 7]);
 
-  const leftChecked = intersection(checked, left);
-  const rightChecked = intersection(checked, right);
+  const leftSelected = intersection(selected, left);
+  const rightSelected = intersection(selected, right);
 
   const leftListRef = React.useRef(null);
   const rightListRef = React.useRef(null);
 
   const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+    const currentIndex = selected.indexOf(value);
+    const newSelected = [...selected];
 
     if (currentIndex === -1) {
-      newChecked.push(value);
+      newSelected.push(value);
     } else {
-      newChecked.splice(currentIndex, 1);
+      newSelected.splice(currentIndex, 1);
     }
 
-    setChecked(newChecked);
+    setSelected(newSelected);
   };
 
-  const numberOfChecked = (items) => intersection(checked, items).length;
+  const numberOfChecked = (items) => intersection(selected, items).length;
 
   const handleToggleAll = (items) => () => {
     if (numberOfChecked(items) === items.length) {
-      setChecked(not(checked, items));
+      setSelected(not(selected, items));
     } else {
-      setChecked(union(checked, items));
+      setSelected(union(selected, items));
     }
   };
 
-  const handleCheckedRight = () => {
-    setRight(right.concat(leftChecked));
-    setLeft(not(left, leftChecked));
-    setChecked(not(checked, leftChecked));
+  const handleSelectedRight = () => {
+    setRight(right.concat(leftSelected));
+    setLeft(not(left, leftSelected));
+    setSelected(not(selected, leftSelected));
     rightListRef.current?.focus();
   };
 
-  const handleCheckedLeft = () => {
-    setLeft(left.concat(rightChecked));
-    setRight(not(right, rightChecked));
-    setChecked(not(checked, rightChecked));
+  const handleSelectedLeft = () => {
+    setLeft(left.concat(rightSelected));
+    setRight(not(right, rightSelected));
+    setSelected(not(selected, rightSelected));
     leftListRef.current?.focus();
   };
 
@@ -158,7 +167,7 @@ export default function SelectAllTransferList() {
         ref={leftListRef}
         title="Choices"
         items={left}
-        checked={checked}
+        selected={selected}
         handleToggle={handleToggle}
         handleToggleAll={handleToggleAll}
         numberOfChecked={numberOfChecked}
@@ -168,8 +177,8 @@ export default function SelectAllTransferList() {
           sx={{ my: 0.5 }}
           variant="outlined"
           size="small"
-          onClick={handleCheckedRight}
-          disabled={leftChecked.length === 0}
+          onClick={handleSelectedRight}
+          disabled={leftSelected.length === 0}
           aria-label="move selected right"
         >
           &gt;
@@ -178,8 +187,8 @@ export default function SelectAllTransferList() {
           sx={{ my: 0.5 }}
           variant="outlined"
           size="small"
-          onClick={handleCheckedLeft}
-          disabled={rightChecked.length === 0}
+          onClick={handleSelectedLeft}
+          disabled={rightSelected.length === 0}
           aria-label="move selected left"
         >
           &lt;
@@ -189,7 +198,7 @@ export default function SelectAllTransferList() {
         ref={rightListRef}
         title="Chosen"
         items={right}
-        checked={checked}
+        selected={selected}
         handleToggle={handleToggle}
         handleToggleAll={handleToggleAll}
         numberOfChecked={numberOfChecked}
