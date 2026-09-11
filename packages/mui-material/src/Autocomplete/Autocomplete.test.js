@@ -4157,6 +4157,52 @@ describe('<Autocomplete />', () => {
       expect(screen.getByText('Bar')).not.to.equal(null);
     });
 
+    describe('unresolved mapped chips', () => {
+      it('uses the mapped value as a label until its option arrives', () => {
+        const props = { multiple: true, value: ['foo', 'missing'] };
+        const { rerender } = render(<Test {...props} options={[]} />);
+        const loadingChip = screen.getByRole('button', { name: 'foo' });
+        const staleChip = screen.getByRole('button', { name: 'missing' });
+
+        expect(loadingChip).to.have.text('foo');
+        expect(staleChip).to.have.text('missing');
+
+        rerender(<Test {...props} options={options} />);
+
+        expect(loadingChip).to.have.text('Foo');
+        expect(staleChip).to.have.text('missing');
+      });
+
+      it('stringifies falsy and bigint mapped values for chip labels', () => {
+        render(<Test multiple value={[0, false, 3n]} options={[]} />);
+
+        expect(screen.getByRole('button', { name: '0' })).to.have.text('0');
+        expect(screen.getByRole('button', { name: 'false' })).to.have.text('false');
+        expect(screen.getByRole('button', { name: '3' })).to.have.text('3');
+      });
+
+      it('removes an unresolved chip at its original index among resolved chips', async () => {
+        const handleChange = spy();
+        const { user } = render(
+          <Test multiple defaultValue={['foo', 'missing', 'bar']} onChange={handleChange} />,
+        );
+        const staleChip = screen.getByRole('button', { name: 'missing' });
+
+        expect(staleChip).to.have.attribute('data-item-index', '1');
+        await user.click(screen.getAllByTestId('CancelIcon')[1]);
+
+        expect(handleChange.callCount).to.equal(1);
+        expect(handleChange.firstCall.args.slice(1)).to.deep.equal([
+          ['foo', 'bar'],
+          'removeOption',
+          undefined,
+        ]);
+        expect(screen.queryByRole('button', { name: 'missing' })).to.equal(null);
+        expect(screen.getByRole('button', { name: 'Foo' })).to.have.text('Foo');
+        expect(screen.getByRole('button', { name: 'Bar' })).to.have.text('Bar');
+      });
+    });
+
     describe('async options in freeSolo mode', () => {
       const loadedOptions = [{ id: 2, label: 'Bar' }];
 
