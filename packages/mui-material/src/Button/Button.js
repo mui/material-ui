@@ -75,7 +75,8 @@ const commonIconStyles = [
 ];
 
 const ButtonRoot = styled(ButtonBase, {
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  shouldForwardProp: (prop) =>
+    (rootShouldForwardProp(prop) && prop !== 'focusableWhenDisabled') || prop === 'classes',
   name: 'MuiButton',
   slot: 'Root',
   overridesResolver: (props, styles) => {
