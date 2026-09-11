@@ -96,7 +96,6 @@ function LinkMenuExample() {
             component="a"
             href="https://mui.com/material-ui/react-menu/"
             target="_blank"
-            rel="noreferrer"
             onClick={handleClose}
           >
             Plain external anchor

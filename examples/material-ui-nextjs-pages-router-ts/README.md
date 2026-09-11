@@ -41,6 +41,7 @@ If you prefer, you can [use styled-components instead](https://mui.com/material-
 ## The link component
 
 <!-- #target-branch-reference -->
+
 <!-- #host-reference -->
 
 The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs-pages-router-ts) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/pages/api-reference/components/link) with Material UI.

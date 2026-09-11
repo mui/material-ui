@@ -97,6 +97,7 @@ export default function FreeSoloCreateOptionDialog() {
         }}
         sx={{ width: 300 }}
         freeSolo
+        resetHighlightOnMouseLeave
         renderInput={(params) => <TextField {...params} label="Free solo dialog" />}
       />
       <Dialog open={open} onClose={handleClose}>

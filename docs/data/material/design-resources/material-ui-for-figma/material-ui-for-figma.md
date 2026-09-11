@@ -72,7 +72,7 @@ You can use the [Similayer](https://www.figma.com/community/plugin/7357332678833
 
 The video below shows how to add new columns by detaching cells from their row components, allowing you to freely move content around.
 
-<iframe src="https://www.loom.com/embed/6dd71cc374bc4d84af35ebb75d107d38?sid=1d3a4790-4c28-433e-94ce-97dd969601dd" webkitallowfullscreen mozallowfullscreen allowfullscreen style="width: 100%; height: 500px; border: 0"></iframe>
+<iframe src="https://www.loom.com/embed/6dd71cc374bc4d84af35ebb75d107d38?sid=1d3a4790-4c28-433e-94ce-97dd969601dd" title="Adding new columns by detaching cells from row components" webkitallowfullscreen mozallowfullscreen allowfullscreen style="width: 100%; height: 500px; border: 0"></iframe>
 
 #### Adding new columns in the main component
 

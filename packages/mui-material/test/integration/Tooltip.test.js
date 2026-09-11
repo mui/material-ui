@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, expect, it } from 'vitest';
 import { createRenderer, screen, isJsdom, act, fireEvent } from '@mui/internal-test-utils';
 import Tooltip from '@mui/material/Tooltip';
 import Input from '@mui/material/Input';

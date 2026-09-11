@@ -65,6 +65,32 @@ This example also demonstrates how to delay the enter transition.
 
 {{"demo": "SimpleZoom.js", "bg": true}}
 
+## Reduced motion
+
+Transitions can opt in to reduced-motion support through the theme:
+
+```tsx
+const theme = createTheme({
+  motion: {
+    reducedMotion: 'system',
+  },
+});
+```
+
+When enabled, Material UI transition components preserve lifecycle callbacks and mount/unmount
+behavior. When reduced motion is active, entering content appears in its final state and exiting
+content disappears without the normal animation. Components still run the same callbacks, so code
+that waits for `onEntered` or `onExited` continues to work.
+
+Use `disablePrefersReducedMotion` only when a specific transition should intentionally keep its
+normal motion:
+
+```tsx
+<Fade in disablePrefersReducedMotion>
+  <div />
+</Fade>
+```
+
 ## Child requirement
 
 - **Forward the style**: To better support server rendering, Material UI provides a `style` prop to the children of some transition components (Fade, Grow, Zoom, Slide).

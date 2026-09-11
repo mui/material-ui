@@ -19,11 +19,11 @@ export default function ShortcutHintsMenubar() {
           <MenuPositioner sideOffset={4} alignOffset={-2}>
             <MenuPopup>
               <MenuItem hint="⌘N">New</MenuItem>
-              <MenuItem hint="⌘O">Open...</MenuItem>
+              <MenuItem hint="⌘O">Open…</MenuItem>
               <MenuItem hint="⌘S">Save</MenuItem>
-              <MenuItem hint="⇧⌘S">Save As...</MenuItem>
+              <MenuItem hint="⇧⌘S">Save As…</MenuItem>
               <MenuSeparator />
-              <MenuItem hint="⌘P">Print...</MenuItem>
+              <MenuItem hint="⌘P">Print…</MenuItem>
             </MenuPopup>
           </MenuPositioner>
         </MenuPortal>

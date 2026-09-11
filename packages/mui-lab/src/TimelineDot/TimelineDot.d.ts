@@ -37,8 +37,7 @@ export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTM
    * @default 'filled'
    */
   variant?:
-    | OverridableStringUnion<'filled' | 'outlined', TimelineDotPropsVariantOverrides>
-    | undefined;
+    OverridableStringUnion<'filled' | 'outlined', TimelineDotPropsVariantOverrides> | undefined;
 }
 
 /**

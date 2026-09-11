@@ -11,6 +11,7 @@ import ListContext from '../List/ListContext';
 import { getListItemUtilityClass } from './listItemClasses';
 import { listItemButtonClasses } from '../ListItemButton';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
+import { getTransitionStyles } from '../transitions/utils';
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -113,7 +114,7 @@ export const ListItemRoot = styled('div', {
       {
         props: ({ ownerState }) => ownerState.button,
         style: {
-          transition: theme.transitions.create('background-color', {
+          ...getTransitionStyles(theme, 'background-color', {
             duration: theme.transitions.duration.shortest,
           }),
           '&:hover': {
@@ -270,7 +271,7 @@ ListItem.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    root: PropTypes.object,
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     secondaryAction: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**

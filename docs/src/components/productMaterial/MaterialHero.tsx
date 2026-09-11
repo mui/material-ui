@@ -274,7 +274,7 @@ export default function MaterialHero() {
       }}
       right={
         <CssVarsProvider theme={customTheme}>
-          <Paper sx={{ maxWidth: 780, p: 2, mb: 4 }}>
+          <Paper sx={{ maxWidth: 772, p: 2, mb: 4 }}>
             <Stepper activeStep={1}>
               <Step>
                 <StepLabel>Search for React UI libraries</StepLabel>

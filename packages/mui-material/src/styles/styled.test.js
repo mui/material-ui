@@ -1,5 +1,5 @@
+import { describe, it, expect, beforeAll } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import createTheme from './createTheme';
 import styled from './styled';

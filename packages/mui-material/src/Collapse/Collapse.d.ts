@@ -42,6 +42,15 @@ export type CollapseSlotsAndSlotProps = CreateSlotsAndSlotProps<
 export interface CollapseProps
   extends StandardProps<TransitionProps, 'timeout'>, CollapseSlotsAndSlotProps {
   /**
+   * Add a custom transition end trigger.
+   * Use it when you need custom logic to decide when the transition has ended.
+   * Note: Timeouts are still used as a fallback if provided.
+   *
+   * @param {HTMLElement} node The transitioning DOM node.
+   * @param {Function} done Call this when the transition has finished.
+   */
+  addEndListener?: TransitionProps['addEndListener'] | undefined;
+  /**
    * The content node to be collapsed.
    */
   children?: React.ReactNode;
@@ -60,6 +69,11 @@ export interface CollapseProps
    * Either a string to use a HTML element or a component.
    */
   component?: React.ElementType<TransitionProps> | undefined;
+  /**
+   * If `true`, the transition ignores `theme.motion.reducedMotion` and keeps its normal timing.
+   * @default false
+   */
+  disablePrefersReducedMotion?: boolean | undefined;
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.

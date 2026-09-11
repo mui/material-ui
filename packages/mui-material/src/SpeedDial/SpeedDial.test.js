@@ -1,4 +1,5 @@
-import { expect } from 'chai';
+import * as React from 'react';
+import { describe, it, expect } from 'vitest';
 import { spy } from 'sinon';
 import {
   createRenderer,
@@ -72,6 +73,21 @@ describe('<SpeedDial />', () => {
 
     expect(screen.getByRole('menu').children).to.have.lengthOf(2);
     expect(screen.getAllByRole('menuitem')).to.have.lengthOf(2);
+  });
+
+  it('should preserve object refs passed to action fab slots', () => {
+    const actionRef = React.createRef();
+
+    render(
+      <SpeedDial {...defaultProps}>
+        <SpeedDialAction
+          icon={icon}
+          slotProps={{ fab: { ref: actionRef }, tooltip: { title: 'Action' } }}
+        />
+      </SpeedDial>,
+    );
+
+    expect(actionRef.current).to.equal(screen.getByRole('menuitem'));
   });
 
   it('should pass the open prop to its children', () => {
@@ -680,6 +696,53 @@ describe('<SpeedDial />', () => {
 
       const child = screen.getByTestId('speedDial').firstChild;
       expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
+    });
+
+    it('enters on the next task when reduced motion is always', () => {
+      const handleEntered = spy();
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <SpeedDial
+            data-testid="speedDial"
+            {...defaultProps}
+            hidden={false}
+            transitionDuration={250}
+            slotProps={{ transition: { onEntered: handleEntered } }}
+          />
+        </ThemeProvider>,
+      );
+
+      expect(handleEntered.callCount).to.equal(0);
+      clock.tick(0);
+      expect(handleEntered.callCount).to.equal(1);
+      expect(screen.getByTestId('speedDial')).not.to.equal(null);
+    });
+
+    it.skipIf(isJsdom())('disables actions CSS transition when reduced motion is always', () => {
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <SpeedDial data-testid="speedDial" {...defaultProps} open={false}>
+            <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'action1' } }} />
+          </SpeedDial>
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByRole('menu')).toHaveComputedStyle({
+        transitionDuration: '0s',
+        transitionDelay: '0s',
+      });
     });
   });
 });

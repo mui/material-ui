@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   ThemeOptions as SystemThemeOptions,
   Theme as SystemTheme,
@@ -10,6 +11,7 @@ import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
 import { TypographyVariants, TypographyVariantsOptions } from './createTypography';
 import { Shadows } from './shadows';
+import { Motion, MotionOptions } from './createMotion';
 import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Components } from './components';
@@ -34,6 +36,13 @@ import {
  */
 export interface CssThemeVariables {}
 
+/**
+ * CSS of the keyboard focus ring, spread onto the `Mui-focusVisible` state. An object merges
+ * over the curated default (`solid` style, `palette.primary.main` color, `2px` width, `2px`
+ * offset); set `outlineColor: 'transparent'` to drop the outline for a box-shadow-only ring.
+ */
+export type FocusVisible = React.CSSProperties;
+
 type CssVarsOptions = CssThemeVariables extends {
   enabled: true;
 }
@@ -43,15 +52,15 @@ type CssVarsOptions = CssThemeVariables extends {
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
   mixins?: MixinsOptions | undefined;
   components?: Components<Omit<Theme, 'components'>> | undefined;
+  motion?: MotionOptions | undefined;
   palette?: PaletteOptions | undefined;
   shadows?: Shadows | undefined;
   shape?: ShapeOptions | undefined;
   transitions?: TransitionsOptions | undefined;
   typography?:
-    | TypographyVariantsOptions
-    | ((palette: Palette) => TypographyVariantsOptions)
-    | undefined;
+    TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions) | undefined;
   zIndex?: ZIndexOptions | undefined;
+  focusVisible?: boolean | FocusVisible | undefined;
   unstable_strictMode?: boolean | undefined;
   unstable_sxConfig?: SxConfig | undefined;
   modularCssLayers?: boolean | string | undefined;
@@ -59,12 +68,14 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
 
 export interface BaseTheme extends SystemTheme {
   mixins: Mixins;
+  motion: Motion;
   palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
   shadows: Shadows;
   shape: Shape;
   transitions: Transitions;
   typography: TypographyVariants;
   zIndex: ZIndex;
+  focusVisible?: FocusVisible | false | undefined;
   unstable_strictMode?: boolean | undefined;
   applyStyles: ApplyStyles<SupportedColorScheme>;
 }

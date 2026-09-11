@@ -6,7 +6,7 @@ import TestViewer from './TestViewer';
 
 const fixtures = [];
 
-const importFixtures = import.meta.glob('./fixtures/**/*.(js|ts|tsx)');
+const importFixtures = import.meta.glob('./fixtures/**/*.{js,ts,tsx}');
 
 Object.keys(importFixtures).forEach((path) => {
   const [suite, name] = path

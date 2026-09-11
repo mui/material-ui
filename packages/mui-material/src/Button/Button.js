@@ -16,6 +16,7 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { color, disableElevation, fullWidth, size, variant, loading, loadingPosition, classes } =
@@ -104,12 +105,9 @@ const ButtonRoot = styled(ButtonBase, {
       padding: '6px 16px',
       border: 0,
       borderRadius: (theme.vars || theme).shape.borderRadius,
-      transition: theme.transitions.create(
-        ['background-color', 'box-shadow', 'border-color', 'color'],
-        {
-          duration: theme.transitions.duration.short,
-        },
-      ),
+      ...getTransitionStyles(theme, ['background-color', 'box-shadow', 'border-color', 'color'], {
+        duration: theme.transitions.duration.short,
+      }),
       '&:hover': {
         textDecoration: 'none',
       },
@@ -117,17 +115,6 @@ const ButtonRoot = styled(ButtonBase, {
         color: (theme.vars || theme).palette.action.disabled,
       },
       variants: [
-        {
-          props: ({ ownerState }) =>
-            ownerState.startIcon || (ownerState.loading && ownerState.loadingPosition === 'start'),
-          style: {
-            '&::before': {
-              content: '"\\200b"',
-              width: 0,
-              overflow: 'hidden',
-            },
-          },
-        },
         {
           props: { variant: 'contained' },
           style: {
@@ -145,7 +132,10 @@ const ButtonRoot = styled(ButtonBase, {
               boxShadow: (theme.vars || theme).shadows[8],
             },
             [`&.${buttonClasses.focusVisible}`]: {
-              boxShadow: (theme.vars || theme).shadows[6],
+              ...theme.focusVisible,
+              boxShadow: theme.focusVisible?.boxShadow
+                ? `${(theme.vars || theme).shadows[6]}, ${theme.focusVisible.boxShadow}`
+                : (theme.vars || theme).shadows[6],
             },
             [`&.${buttonClasses.disabled}`]: {
               color: (theme.vars || theme).palette.action.disabled,
@@ -301,7 +291,7 @@ const ButtonRoot = styled(ButtonBase, {
               boxShadow: 'none',
             },
             [`&.${buttonClasses.focusVisible}`]: {
-              boxShadow: 'none',
+              boxShadow: theme.focusVisible?.boxShadow ?? 'none',
             },
             '&:active': {
               boxShadow: 'none',
@@ -320,12 +310,9 @@ const ButtonRoot = styled(ButtonBase, {
             loadingPosition: 'center',
           },
           style: {
-            transition: theme.transitions.create(
-              ['background-color', 'box-shadow', 'border-color'],
-              {
-                duration: theme.transitions.duration.short,
-              },
-            ),
+            ...getTransitionStyles(theme, ['background-color', 'box-shadow', 'border-color'], {
+              duration: theme.transitions.duration.short,
+            }),
             [`&.${buttonClasses.loading}`]: {
               color: 'transparent',
             },
@@ -346,8 +333,14 @@ const ButtonStartIcon = styled('span', {
   },
 })(({ theme }) => ({
   display: 'inherit',
+  alignItems: 'center',
   marginRight: 8,
   marginLeft: -4,
+  '&::before': {
+    content: '"\\200b"',
+    width: 0,
+    overflow: 'hidden',
+  },
   variants: [
     {
       props: { size: 'small' },
@@ -358,7 +351,7 @@ const ButtonStartIcon = styled('span', {
     {
       props: { loadingPosition: 'start', loading: true },
       style: {
-        transition: theme.transitions.create(['opacity'], {
+        ...getTransitionStyles(theme, ['opacity'], {
           duration: theme.transitions.duration.short,
         }),
         opacity: 0,
@@ -396,7 +389,7 @@ const ButtonEndIcon = styled('span', {
     {
       props: { loadingPosition: 'end', loading: true },
       style: {
-        transition: theme.transitions.create(['opacity'], {
+        ...getTransitionStyles(theme, ['opacity'], {
           duration: theme.transitions.duration.short,
         }),
         opacity: 0,

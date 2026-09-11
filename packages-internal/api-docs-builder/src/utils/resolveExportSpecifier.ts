@@ -1,4 +1,4 @@
-import * as ts from 'typescript';
+import * as ts from '@typescript/typescript6';
 import { TypeScriptProject } from './createTypeScriptProject';
 
 function shouldAliasSymbol(symbol: ts.Symbol) {

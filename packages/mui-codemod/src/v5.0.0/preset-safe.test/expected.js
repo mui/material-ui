@@ -136,7 +136,7 @@ function App() {
                 <Avatar variant="circular" classes={{ circular: classes.avatar }} />
               </Badge>
               <Box ml={2}>
-                <Typography>My name is ...</Typography>
+                <Typography>My name is Foo</Typography>
                 <Typography variant="h5">
                   <b>siriwatknp</b>
                 </Typography>

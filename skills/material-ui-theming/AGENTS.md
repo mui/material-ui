@@ -25,7 +25,8 @@ A Material UI theme is a single object of design tokens (palette, typography, s
 7. [Composing and merging themes](#composing-and-merging-themes)
 8. [Nesting `ThemeProvider`](#nesting-themeprovider)
 9. [Custom tokens (brand-specific design keys)](#custom-tokens-brand-specific-design-keys)
-10. [Further reading](#further-reading)
+10. [Windows High Contrast mode (`enhanceHighContrast`)](#windows-high-contrast-mode-enhancehighcontrast)
+11. [Further reading](#further-reading)
 
 ---
 
@@ -112,6 +113,32 @@ Do not use `theme.vars` as a custom property name; it is private to CSS variable
 
 ---
 
+## Windows High Contrast mode (`enhanceHighContrast`)
+
+`enhanceHighContrast` is a theme enhancer (same pattern as `responsiveFontSizes`) that adds `@media (forced-colors: active)` overrides to MUI components, improving visibility in Windows High Contrast / Forced Colors mode.
+
+```js
+import { createTheme, enhanceHighContrast } from '@mui/material/styles';
+
+const theme = enhanceHighContrast(createTheme());
+```
+
+- It accepts a fully-created theme and returns an enhanced copy — call it **after** `createTheme`, not inside it.
+- By default it uses CSS system color keywords (`Highlight`, `HighlightText`, `ButtonBorder`, etc.).
+- Override individual tokens via the second argument to align with your brand:
+
+```js
+const theme = enhanceHighContrast(createTheme(), {
+  activeBackground: 'SelectedItem', // e.g. toggled/active controls
+  activeText: 'SelectedItemText',
+});
+```
+
+- Only pass [CSS system color keywords](https://www.w3.org/TR/css-color-4/#css-system-colors) as token values — those are the values the browser guarantees will contrast with their paired tokens.
+- See [Palette—Windows High Contrast mode](https://mui.com/material-ui/customization/palette.md#windows-high-contrast-mode) for the full token list and a live demo.
+
+---
+
 ## Further reading
 
 | Topic                          | Link                                                                                                           |
@@ -119,6 +146,7 @@ Do not use `theme.vars` as a custom property name; it is private to CSS variable
 | Theming overview & API         | [Theming](https://mui.com/material-ui/customization/theming.md)                                                |
 | Dark mode & toggling           | [Dark mode](https://mui.com/material-ui/customization/dark-mode.md)                                            |
 | CSS variables overview         | [CSS theme variables](https://mui.com/material-ui/customization/css-theme-variables/overview.md)               |
+| Windows High Contrast mode     | [Palette—High Contrast mode](https://mui.com/material-ui/customization/palette.md#windows-high-contrast-mode)  |
 | Color tool / brand hues        | [Color](https://mui.com/material-ui/customization/color.md)                                                    |
 | TypeScript theme customization | [TypeScript—Customization of `Theme`](https://mui.com/material-ui/guides/typescript.md#customization-of-theme) |
 

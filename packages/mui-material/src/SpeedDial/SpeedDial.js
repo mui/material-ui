@@ -6,11 +6,13 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import useTimeout from '@mui/utils/useTimeout';
 import clamp from '@mui/utils/clamp';
+import setRef from '@mui/utils/setRef';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Zoom from '../Zoom';
 import Fab from '../Fab';
+import { getReducedMotionStyles } from '../transitions/utils';
 import capitalize from '../utils/capitalize';
 import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
@@ -129,19 +131,22 @@ const SpeedDialActions = styled('div', {
 
     return [styles.actions, !ownerState.open && styles.actionsClosed];
   },
-})({
-  display: 'flex',
-  pointerEvents: 'auto',
-  variants: [
-    {
-      props: ({ ownerState }) => !ownerState.open,
-      style: {
-        transition: 'top 0s linear 0.2s',
-        pointerEvents: 'none',
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    pointerEvents: 'auto',
+    variants: [
+      {
+        props: ({ ownerState }) => !ownerState.open,
+        style: {
+          transition: 'top 0s linear 0.2s',
+          ...getReducedMotionStyles(theme),
+          pointerEvents: 'none',
+        },
       },
-    },
-  ],
-});
+    ],
+  })),
+);
 
 const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDial' });
@@ -223,9 +228,8 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   const createHandleSpeedDialActionButtonRef = (dialActionIndex, fabSlotOrigButtonRef) => {
     return (buttonRef) => {
       actions.current[dialActionIndex + 1] = buttonRef;
-      if (fabSlotOrigButtonRef) {
-        fabSlotOrigButtonRef(buttonRef);
-      }
+
+      setRef(fabSlotOrigButtonRef, buttonRef);
     };
   };
 

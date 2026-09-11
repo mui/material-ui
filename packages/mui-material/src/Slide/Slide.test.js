@@ -1,5 +1,5 @@
+import { describe, expect, it } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import { act, createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -71,6 +71,18 @@ describe('<Slide />', () => {
           );
         },
       },
+    },
+    reducedMotion: {
+      assertReducedTiming: (node) => {
+        if (isJsdom()) {
+          expect(node.style.transition).to.include('0ms');
+        } else {
+          expect(node.style.transitionDuration).to.equal('0ms');
+        }
+      },
+      testReflow: true,
+      testOptOut: true,
+      testNoDomPropLeak: true,
     },
   }));
 

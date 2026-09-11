@@ -9,6 +9,7 @@
       }
     },
     "appear": { "type": { "name": "bool" }, "default": "true" },
+    "disablePrefersReducedMotion": { "type": { "name": "bool" }, "default": "false" },
     "easing": {
       "type": {
         "name": "union",

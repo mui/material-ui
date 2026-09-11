@@ -9,12 +9,7 @@ export interface TransitionActions {
 }
 
 export type TransitionHandlerKeys =
-  | 'onEnter'
-  | 'onEntering'
-  | 'onEntered'
-  | 'onExit'
-  | 'onExiting'
-  | 'onExited';
+  'onEnter' | 'onEntering' | 'onEntered' | 'onExit' | 'onExiting' | 'onExited';
 
 export type EnterHandler = (node: HTMLElement, isAppearing: boolean) => void;
 
@@ -58,6 +53,7 @@ export type TransitionKeys =
   | 'timeout'
   | 'easing'
   | 'addEndListener'
+  | 'disablePrefersReducedMotion'
   | TransitionHandlerKeys;
 
 interface ConsumerTransitionProps extends TransitionHandlerProps {
@@ -81,6 +77,11 @@ interface ConsumerTransitionProps extends TransitionHandlerProps {
    * @param {Function} done Call this when the transition has finished.
    */
   addEndListener?: ((node: HTMLElement, done: () => void) => void) | undefined;
+  /**
+   * If `true`, the transition ignores `theme.motion.reducedMotion` and keeps its normal timing.
+   * @default false
+   */
+  disablePrefersReducedMotion?: boolean | undefined;
 }
 
 export interface TransitionProps
