@@ -239,6 +239,16 @@ jobs:
           # pnpm-workspace.yaml (overrides) and may touch pnpm-lock.yaml. Exclude those so
           # this check still verifies the a11y results without tripping on the pinned deps.
           command: git add -A -- . ':(exclude)pnpm-*.yaml' && git diff --exit-code --staged
+      - when:
+          condition:
+            not:
+              equal: [stable, << parameters.react-version >>]
+          steps:
+            - run:
+                name: Use a separate Argos build name
+                # Argos compares only builds with the same name, so this keeps the
+                # react@17/18/next runs out of the baseline that PRs compare against.
+                command: echo 'export ARGOS_BUILD_NAME="$CIRCLE_JOB"' >> "$BASH_ENV"
       - code-infra/argos-push
   test_bundling_prepare:
     <<: *default-job
