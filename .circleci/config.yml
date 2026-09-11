@@ -245,10 +245,10 @@ jobs:
               equal: [stable, << parameters.react-version >>]
           steps:
             - run:
-                name: Use a separate Argos build name
-                # Argos compares only builds with the same name, so this keeps the
-                # react@17/18/next runs out of the baseline that PRs compare against.
-                command: echo 'export ARGOS_BUILD_NAME="$CIRCLE_JOB"' >> "$BASH_ENV"
+                name: Mark the Argos upload as a subset build
+                # Argos never uses subset builds as baselines, and it ignores the
+                # screenshots that the react@17/18/next runs skip.
+                command: echo 'export ARGOS_SUBSET=true' >> "$BASH_ENV"
       - code-infra/argos-push
   test_bundling_prepare:
     <<: *default-job
