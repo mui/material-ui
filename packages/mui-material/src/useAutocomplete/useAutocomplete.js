@@ -140,8 +140,18 @@ function useAutocomplete(props) {
   const id = useId(idProp);
 
   if (process.env.NODE_ENV !== 'production') {
-    // Mapped values identify options and must therefore be valid, unique primitive keys.
-    validateOptionValues({ options, componentName, freeSolo, getOptionValueProp });
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const duplicatedErrorMessages = React.useMemo(() => new Set(), []);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      // Mapped values identify options and must therefore be valid, unique primitive keys.
+      validateOptionValues({
+        options,
+        freeSolo,
+        getOptionValueProp,
+        duplicatedErrorMessages,
+      });
+    }, [options, freeSolo, getOptionValueProp, duplicatedErrorMessages]);
   }
 
   const isOptionEqualToValue = React.useCallback(
