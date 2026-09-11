@@ -60,7 +60,8 @@ export function useAnalyticsConsent() {
 }
 
 export function CookieConsentDialog() {
-  const { needsConsent, setAnalyticsConsent, setEssentialOnly } = useAnalyticsConsent();
+  const { consentStatus, needsConsent, setAnalyticsConsent, setEssentialOnly } =
+    useAnalyticsConsent();
   const [show, setShow] = React.useState(false);
 
   React.useEffect(() => {
@@ -144,7 +145,13 @@ export function CookieConsentDialog() {
                     sx={{ textAlign: { xs: 'center', sm: 'start' } }}
                   >
                     We use cookies to understand site usage and improve our content. This includes
-                    third-party analytics.
+                    third-party analytics.{' '}
+                    {consentStatus !== null && (
+                      <Box component="span" sx={{ display: 'block', mt: 1 }}>
+                        Current preference:{' '}
+                        {consentStatus === 'analytics' ? 'Analytics allowed' : 'Essential only'}
+                      </Box>
+                    )}
                   </Typography>
                 </Stack>
               </Stack>

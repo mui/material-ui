@@ -38,6 +38,9 @@ describe('AnalyticsProvider', () => {
     const { user } = render(<AnalyticsProvider>{null}</AnalyticsProvider>);
 
     await screen.findByRole('dialog');
+    expect(screen.getByRole('dialog')).toHaveAccessibleDescription(
+      `We use cookies to understand site usage and improve our content. This includes third-party analytics. Current preference: ${consent === 'analytics' ? 'Analytics allowed' : 'Essential only'}`,
+    );
     expect(window.localStorage.getItem('docs-cookie-consent')).to.equal(consent);
     await user.click(screen.getByRole('button', { name: 'Essential only' }));
 
@@ -54,6 +57,12 @@ describe('AnalyticsProvider', () => {
     });
   });
 
+  it('does not show a current preference before the first choice', async () => {
+    render(<AnalyticsProvider>{null}</AnalyticsProvider>);
+    await screen.findByRole('dialog');
+    expect(screen.queryByText(/Current preference:/)).to.equal(null);
+  });
+
   it('allows reopening repeatedly through a hash link', async () => {
     window.localStorage.setItem('docs-cookie-consent', 'essential');
     const { user } = render(
@@ -63,15 +72,16 @@ describe('AnalyticsProvider', () => {
     );
     expect(screen.queryByRole('dialog')).to.equal(null);
 
-    const reopenAndAccept = async () => {
+    const reopenAndAccept = async (currentPreference: string) => {
       await user.click(screen.getByRole('link', { name: 'Cookie settings' }));
       await screen.findByRole('dialog');
+      expect(screen.getByText(`Current preference: ${currentPreference}`)).not.to.equal(null);
       await user.click(screen.getByRole('button', { name: 'Allow analytics' }));
       await waitFor(() => expect(screen.queryByRole('dialog')).to.equal(null));
       expect(window.localStorage.getItem('docs-cookie-consent')).to.equal('analytics');
     };
-    await reopenAndAccept();
-    await reopenAndAccept();
+    await reopenAndAccept('Essential only');
+    await reopenAndAccept('Analytics allowed');
   });
 
   it.each(['hashChangeComplete', 'routeChangeComplete'] as const)(
