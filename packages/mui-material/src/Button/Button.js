@@ -110,9 +110,16 @@ const ButtonRoot = styled(ButtonBase, {
       '&:hover': {
         textDecoration: 'none',
       },
-      [`&.${buttonClasses.disabled}`]: {
-        color: (theme.vars || theme).palette.action.disabled,
-      },
+      // Disabled is a whole-theme treatment, not a per-colour one: when the state
+      // layer is active it decides how disabled reads (fade vs recolour), so the
+      // fixed disabled colours here are omitted for every variant below too.
+      ...(theme.states?.default
+        ? null
+        : {
+            [`&.${buttonClasses.disabled}`]: {
+              color: (theme.vars || theme).palette.action.disabled,
+            },
+          }),
       variants: [
         {
           props: { variant: 'contained' },
@@ -136,11 +143,15 @@ const ButtonRoot = styled(ButtonBase, {
                 ? `${(theme.vars || theme).shadows[6]}, ${theme.focusVisible.boxShadow}`
                 : (theme.vars || theme).shadows[6],
             },
-            [`&.${buttonClasses.disabled}`]: {
-              color: (theme.vars || theme).palette.action.disabled,
-              boxShadow: (theme.vars || theme).shadows[0],
-              backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
-            },
+            ...(theme.states?.default
+              ? null
+              : {
+                  [`&.${buttonClasses.disabled}`]: {
+                    color: (theme.vars || theme).palette.action.disabled,
+                    boxShadow: (theme.vars || theme).shadows[0],
+                    backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
+                  },
+                }),
           },
         },
         {
@@ -151,9 +162,13 @@ const ButtonRoot = styled(ButtonBase, {
             borderColor: `var(--variant-outlinedBorder, currentColor)`,
             backgroundColor: `var(--variant-outlinedBg)`,
             color: `var(--variant-outlinedColor)`,
-            [`&.${buttonClasses.disabled}`]: {
-              border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
-            },
+            ...(theme.states?.default
+              ? null
+              : {
+                  [`&.${buttonClasses.disabled}`]: {
+                    border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
+                  },
+                }),
           },
         },
         {
@@ -177,18 +192,33 @@ const ButtonRoot = styled(ButtonBase, {
               ),
               '--variant-containedColor': (theme.vars || theme).palette[color].contrastText,
               '--variant-containedBg': (theme.vars || theme).palette[color].main,
+              // Each fixed per-state colour is gated on the entry that would REPLACE
+              // it, not on the feature as a whole: the fill and the border come
+              // from `states[color]`, the text/outlined tints from the
+              // colour-independent `states.default`. Those are configured
+              // separately, so gating them together would drop a value nothing
+              // puts back. Rest values above are always emitted, so a colour the
+              // state layer does not cover degrades to "no hover", never "no fill".
               '@media (hover: hover)': {
                 '&:hover': {
-                  '--variant-containedBg': (theme.vars || theme).palette[color].dark,
-                  '--variant-textBg': theme.alpha(
-                    (theme.vars || theme).palette[color].main,
-                    (theme.vars || theme).palette.action.hoverOpacity,
-                  ),
-                  '--variant-outlinedBorder': (theme.vars || theme).palette[color].main,
-                  '--variant-outlinedBg': theme.alpha(
-                    (theme.vars || theme).palette[color].main,
-                    (theme.vars || theme).palette.action.hoverOpacity,
-                  ),
+                  ...(theme.states?.[color]
+                    ? null
+                    : {
+                        '--variant-containedBg': (theme.vars || theme).palette[color].dark,
+                        '--variant-outlinedBorder': (theme.vars || theme).palette[color].main,
+                      }),
+                  ...(theme.states?.default
+                    ? null
+                    : {
+                        '--variant-textBg': theme.alpha(
+                          (theme.vars || theme).palette[color].main,
+                          (theme.vars || theme).palette.action.hoverOpacity,
+                        ),
+                        '--variant-outlinedBg': theme.alpha(
+                          (theme.vars || theme).palette[color].main,
+                          (theme.vars || theme).palette.action.hoverOpacity,
+                        ),
+                      }),
                 },
               },
             },
