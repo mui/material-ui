@@ -46,7 +46,12 @@ The SpeedDialActions tooltips can be displayed persistently with `slotProps.tool
 It is enabled here across all devices for demo purposes, but in production it could use the `isTouch` logic to conditionally set it.
 
 The labels are placed to the left of the actions for the `up` and `down` directions, and above them for `left` and `right`.
-Use `slotProps.tooltip.placement` to place them on another side.
+Use `slotProps.tooltip.placement` to move them to the opposite side: `right` for vertical speed dials, or `bottom` for horizontal ones.
+Other combinations make the labels cover the neighboring actions.
+Compound placements like `top-start` are centered like `top`.
+
+In horizontal speed dials, each action is as wide as its label so that the labels don't overlap.
+The actions keep that space while the speed dial is closed.
 
 {{"demo": "SpeedDialTooltipOpen.js"}}
 
@@ -69,7 +74,7 @@ Use `transitionDuration` to control the timing.
 
 - The Fab has `aria-haspopup`, `aria-expanded` and `aria-controls` attributes.
 - The speed dial actions container has `role="menu"` and `aria-orientation` set according to the direction.
-- The speed dial actions have `role="menuitem"`, and an `aria-describedby` attribute that references the associated tooltip.
+- The speed dial actions have `role="menuitem"` and are labeled by their tooltip title.
 
 ### Keyboard
 

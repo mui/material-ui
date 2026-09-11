@@ -6,19 +6,19 @@ export interface SpeedDialActionClasses {
   fab: string;
   /** Styles applied to the Fab component if `open={false}`. */
   fabClosed: string;
-  /** Styles applied to the root element if `slotProps.tooltip.open={true}`. */
+  /** Styles applied to the root element if `slotProps.tooltip.open` is `true`. */
   staticTooltip: string;
-  /** Styles applied to the root element if `slotProps.tooltip.open={true}` and `open={false}`. */
+  /** Styles applied to the root element if `slotProps.tooltip.open` is `true` and `open` is `false`. */
   staticTooltipClosed: string;
-  /** Styles applied to the static tooltip label if `slotProps.tooltip.open={true}`. */
+  /** Styles applied to the static tooltip label if `slotProps.tooltip.open` is `true`. */
   staticTooltipLabel: string;
-  /** Styles applied to the root element if `slotProps.tooltip.open={true}` and `slotProps.tooltip.placement` contains "left". */
+  /** Styles applied to the root element if `slotProps.tooltip.open` is `true` and `slotProps.tooltip.placement` contains "left". */
   tooltipPlacementLeft: string;
-  /** Styles applied to the root element if `slotProps.tooltip.open={true}` and `slotProps.tooltip.placement` contains "right". */
+  /** Styles applied to the root element if `slotProps.tooltip.open` is `true` and `slotProps.tooltip.placement` contains "right". */
   tooltipPlacementRight: string;
-  /** Styles applied to the root element if `slotProps.tooltip.open={true}` and `slotProps.tooltip.placement` contains "top". */
+  /** Styles applied to the root element if `slotProps.tooltip.open` is `true` and `slotProps.tooltip.placement` contains "top". */
   tooltipPlacementTop: string;
-  /** Styles applied to the root element if `slotProps.tooltip.open={true}` and `slotProps.tooltip.placement` contains "bottom". */
+  /** Styles applied to the root element if `slotProps.tooltip.open` is `true` and `slotProps.tooltip.placement` contains "bottom". */
   tooltipPlacementBottom: string;
 }
 
