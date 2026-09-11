@@ -1,9 +1,9 @@
 // The authored control height per `size` — the same ladder for every sized
 // button family (Button, Pagination, ToggleButton).
 const HEIGHT_BY_SIZE = {
-  small: 'touch-target - x-small',
-  medium: 'touch-target',
-  large: 'touch-target + small',
+  small: 'touchTarget - xSmall',
+  medium: 'touchTarget',
+  large: 'touchTarget + small',
 };
 
 /**
@@ -20,20 +20,20 @@ export const DENSITY_ANNOTATIONS = {
     {
       on: '.MuiAccordionSummary-root',
       aspect: 'touch-target',
-      token: 'touch-target',
+      token: 'touchTarget',
       label: 'Summary',
     },
     {
       on: '.MuiAccordionSummary-root',
       aspect: 'padding',
       axis: 'inline',
-      token: 'x-small',
+      token: 'xSmall',
       label: 'Summary',
     },
     {
       on: '.MuiAccordionSummary-content',
       aspect: 'gap',
-      token: 'x-small',
+      token: 'xSmall',
       label: 'Summary content',
     },
     {
@@ -43,13 +43,13 @@ export const DENSITY_ANNOTATIONS = {
       token: 'small',
       label: 'Details',
     },
-    // `xx-small` on top, `small` underneath — one claim per side, each
+    // `xxSmall` on top, `small` underneath — one claim per side, each
     // carrying the expression the preset authored for that band.
     {
       on: '.MuiAccordionDetails-root',
       aspect: 'padding',
       side: 'top',
-      token: 'xx-small',
+      token: 'xxSmall',
       label: 'Details',
     },
     {
@@ -75,11 +75,11 @@ export const DENSITY_ANNOTATIONS = {
       on: '.MuiAlert-root',
       aspect: 'padding',
       axis: 'block',
-      token: 'x-small',
+      token: 'xSmall',
       label: 'Alert',
       route: { gutter: 'left' },
     },
-    { on: '.MuiAlert-root', aspect: 'gap', token: 'x-small', label: 'Alert' },
+    { on: '.MuiAlert-root', aspect: 'gap', token: 'xSmall', label: 'Alert' },
     // `1.1lh` off the alert's own line-height, not a scale step — the icon box
     // reflows with it because the severity svg is `fontSize="inherit"`.
     {
@@ -112,7 +112,7 @@ export const DENSITY_ANNOTATIONS = {
     {
       on: '.MuiAlert-action .MuiIconButton-root',
       aspect: 'touch-target',
-      token: 'touch-target',
+      token: 'touchTarget',
       outlined: true,
       label: 'Close button',
     },
@@ -126,7 +126,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: sample,
         aspect: 'touch-target',
-        token: 'touch-target',
+        token: 'touchTarget',
         label: 'Option',
         route: { gutter: 'left' },
       },
@@ -134,7 +134,7 @@ export const DENSITY_ANNOTATIONS = {
         on: sample,
         aspect: 'padding',
         axis: 'inline',
-        token: 'x-small',
+        token: 'xSmall',
         label: 'Option',
         route: { gutter: 'bottom' },
       },
@@ -142,7 +142,7 @@ export const DENSITY_ANNOTATIONS = {
         on: sample,
         aspect: 'padding',
         axis: 'block',
-        token: 'xx-small',
+        token: 'xxSmall',
         label: 'Option',
         route: { gutter: 'right' },
       },
@@ -159,7 +159,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiAutocomplete-popupIndicator',
         aspect: 'touch-target',
-        token: 'touch-target',
+        token: 'touchTarget',
         label: 'Popup indicator',
         route: { gutter: 'top' },
       },
@@ -170,7 +170,7 @@ export const DENSITY_ANNOTATIONS = {
         {
           on: '.MuiAutocomplete-tag',
           aspect: 'touch-target',
-          token: 'touch-target - x-small',
+          token: 'touchTarget - xSmall',
           text: "Chip size='small'",
           label: 'Tag',
         },
@@ -192,7 +192,7 @@ export const DENSITY_ANNOTATIONS = {
     {
       on: '.MuiAvatar-root',
       aspect: 'touch-target',
-      token: 'touch-target',
+      token: 'touchTarget',
       label: 'Avatar',
     },
   ],
@@ -203,7 +203,7 @@ export const DENSITY_ANNOTATIONS = {
     {
       on: '.MuiIconButton-root',
       aspect: 'touch-target',
-      token: 'touch-target',
+      token: 'touchTarget',
       outlined: true,
       label: 'Button',
     },
@@ -235,7 +235,7 @@ export const DENSITY_ANNOTATIONS = {
     {
       on: '.MuiBottomNavigation-root',
       aspect: 'touch-target',
-      token: 'xx-large',
+      token: 'xxLarge',
       outlined: true,
       label: 'Bar',
       route: { gutter: 'left' },
@@ -253,7 +253,7 @@ export const DENSITY_ANNOTATIONS = {
     {
       on: '.MuiBottomNavigationAction-root:nth-of-type(2)',
       aspect: 'gap',
-      token: 'xx-small',
+      token: 'xxSmall',
       label: 'Action',
       route: { gutter: 'right' },
     },
@@ -267,7 +267,7 @@ export const DENSITY_ANNOTATIONS = {
     {
       on: '.MuiBreadcrumbs-ol',
       aspect: 'gap',
-      token: 'x-small',
+      token: 'xSmall',
       label: 'Ol',
       route: { gutter: 'top', shift: -40 },
     },
@@ -275,7 +275,7 @@ export const DENSITY_ANNOTATIONS = {
       on: '.MuiBreadcrumbs-ol',
       aspect: 'gap',
       after: 1,
-      token: 'x-small',
+      token: 'xSmall',
       label: 'Ol',
       route: { gutter: 'top', shift: 40 },
     },
@@ -283,7 +283,7 @@ export const DENSITY_ANNOTATIONS = {
       on: '.MuiBreadcrumbs-ol li:first-child a',
       aspect: 'padding',
       axis: 'inline',
-      token: 'x-small',
+      token: 'xSmall',
       label: 'Crumb link',
       route: { gutter: 'bottom', shift: -40 },
     },
@@ -291,7 +291,7 @@ export const DENSITY_ANNOTATIONS = {
       on: '.MuiBreadcrumbs-ol li:nth-child(3) a',
       aspect: 'padding',
       axis: 'inline',
-      token: 'x-small',
+      token: 'xSmall',
       label: 'Crumb link',
       route: { gutter: 'bottom', shift: 40 },
     },
@@ -318,7 +318,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiButton-root',
         aspect: 'gap',
-        token: 'x-small',
+        token: 'xSmall',
         label: 'Root',
         route: { gutter: 'top' },
       },
@@ -341,7 +341,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiIconButton-root svg',
         aspect: 'icon',
-        token: 'icon-size',
+        token: 'iconSize',
         label: 'Icon button',
         route: { gutter: 'top' },
       },
@@ -363,14 +363,14 @@ export const DENSITY_ANNOTATIONS = {
       on: '.MuiCardHeader-action',
       aspect: 'margin',
       axis: 'inline',
-      token: '-x-small',
+      token: '-xSmall',
       label: 'Header action',
     },
     {
       on: '.MuiCardHeader-action',
       aspect: 'margin',
       axis: 'block',
-      token: '-xx-small',
+      token: '-xxSmall',
       label: 'Header action',
     },
     // The whole ring, one label: a single line leads from the right band.
@@ -398,12 +398,7 @@ export const DENSITY_ANNOTATIONS = {
       label: 'Actions',
       route: { gutter: 'bottom', shift: -175 },
     },
-    {
-      on: '.MuiCardActions-root',
-      aspect: 'gap',
-      token: 'x-small',
-      label: 'Actions',
-    },
+    { on: '.MuiCardActions-root', aspect: 'gap', token: 'xSmall', label: 'Actions' },
   ],
   Checkbox: (values) => {
     const small = values.size === 'small';
@@ -411,14 +406,14 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiCheckbox-root',
         aspect: 'touch-target',
-        token: small ? 'touch-target - x-small' : 'touch-target',
+        token: small ? 'touchTarget - xSmall' : 'touchTarget',
         label: 'Checkbox',
       },
       // The preset sizes the glyph `fontSize: iconSize`, so `medium` names it.
       {
         on: '.MuiCheckbox-root',
         aspect: 'icon',
-        token: small ? 'icon-size - 0.25 × spacing' : 'icon-size',
+        token: small ? 'iconSize - 0.25 × spacing' : 'iconSize',
         label: 'Checkbox icon',
         route: { gutter: 'top' },
       },
@@ -432,7 +427,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiChip-root',
         aspect: 'touch-target',
-        token: small ? 'touch-target - xx-small' : 'touch-target',
+        token: small ? 'touchTarget - xxSmall' : 'touchTarget',
         label: 'Chip',
         route: { gutter: 'right' },
       },
@@ -440,14 +435,14 @@ export const DENSITY_ANNOTATIONS = {
         on: '.MuiChip-root',
         aspect: 'padding',
         axis: 'inline',
-        token: small ? 'x-small' : 'small',
+        token: small ? 'xSmall' : 'small',
         label: 'Chip',
         route: { gutter: 'bottom' },
       },
       {
         on: '.MuiChip-root',
         aspect: 'gap',
-        token: small ? 'xx-small' : 'x-small',
+        token: small ? 'xxSmall' : 'xSmall',
         label: 'Chip',
         route: { gutter: 'top' },
       },
@@ -455,9 +450,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiChip-avatar',
         aspect: 'touch-target',
-        token: small
-          ? 'touch-target - xx-small - x-small'
-          : 'touch-target - x-small',
+        token: small ? 'touchTarget - xxSmall - xSmall' : 'touchTarget - xSmall',
         label: 'Avatar',
         route: { gutter: 'left' },
       },
@@ -465,9 +458,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiChip-deleteIcon',
         aspect: 'icon',
-        token: small
-          ? 'touch-target - xx-small - x-small'
-          : 'touch-target - x-small',
+        token: small ? 'touchTarget - xxSmall - xSmall' : 'touchTarget - xSmall',
         label: 'Delete icon',
         route: { gutter: 'top', shift: 60 },
       },
@@ -500,7 +491,7 @@ export const DENSITY_ANNOTATIONS = {
     {
       on: '.MuiDialogTitle-root .MuiIconButton-root',
       aspect: 'touch-target',
-      token: 'touch-target',
+      token: 'touchTarget',
       label: 'Close button',
     },
     // Block padding is 0, so the inline pair is the only live one. The spine
@@ -538,8 +529,8 @@ export const DENSITY_ANNOTATIONS = {
       aspect: 'touch-target',
       token: {
         small: 'large + small',
-        medium: 'touch-target + x-small',
-        large: 'xx-large + xx-small',
+        medium: 'touchTarget + xSmall',
+        large: 'xxLarge + xxSmall',
       }[values.size],
       label: 'Fab',
     },
@@ -547,7 +538,7 @@ export const DENSITY_ANNOTATIONS = {
   List: (values) => {
     const dense = values.dense === true;
     return [
-      // `spacing(1)`, the base unit — not the `x-small` step that shares its
+      // `spacing(1)`, the base unit — not the `xSmall` step that shares its
       // px. The spine drops at 0.85 — right of the gap label sharing the top.
       {
         on: '.MuiList-root',
@@ -557,19 +548,19 @@ export const DENSITY_ANNOTATIONS = {
         label: 'List',
         route: { gutter: 'top', at: 0.85 },
       },
-      // Dense names the authored floor (`minHeight: touch-target - x-small`);
+      // Dense names the authored floor (`minHeight: touchTarget - xSmall`);
       // the box measures above it because the content outgrows 24px.
       {
         on: '.MuiListItem-root:nth-of-type(2) .MuiListItemButton-root',
         aspect: 'touch-target',
-        token: dense ? 'touch-target - x-small' : 'touch-target',
+        token: dense ? 'touchTarget - xSmall' : 'touchTarget',
         label: 'Item',
       },
       {
         on: '.MuiListItem-root:nth-of-type(2) .MuiListItemButton-root',
         aspect: 'padding',
         axis: 'block',
-        token: 'xx-small',
+        token: 'xxSmall',
         label: 'Item',
         route: { gutter: 'right' },
       },
@@ -577,14 +568,14 @@ export const DENSITY_ANNOTATIONS = {
         on: '.MuiListItem-root:nth-of-type(2) .MuiListItemButton-root',
         aspect: 'padding',
         axis: 'inline',
-        token: dense ? 'x-small' : 'small',
+        token: dense ? 'xSmall' : 'small',
         label: 'Item',
         route: { gutter: 'bottom' },
       },
       {
         on: '.MuiListItem-root:nth-of-type(2) .MuiListItemButton-root',
         aspect: 'gap',
-        token: 'x-small',
+        token: 'xSmall',
         label: 'Item',
         route: { gutter: 'top' },
       },
@@ -593,7 +584,7 @@ export const DENSITY_ANNOTATIONS = {
   Menu: (values) => {
     const dense = values.dense === true;
     return [
-      // `spacing(1)`, the base unit — not the `x-small` step that shares its
+      // `spacing(1)`, the base unit — not the `xSmall` step that shares its
       // px. The spine drops at 0.85 — right of the gap label sharing the top.
       {
         on: '.MuiList-root',
@@ -612,7 +603,7 @@ export const DENSITY_ANNOTATIONS = {
             {
               on: '.MuiMenuItem-root:nth-of-type(2)',
               aspect: 'touch-target',
-              token: 'touch-target',
+              token: 'touchTarget',
               label: 'Item',
             },
           ]),
@@ -620,7 +611,7 @@ export const DENSITY_ANNOTATIONS = {
         on: '.MuiMenuItem-root:nth-of-type(2)',
         aspect: 'padding',
         axis: 'block',
-        token: 'xx-small',
+        token: 'xxSmall',
         label: 'Item',
         route: { gutter: 'right' },
       },
@@ -628,14 +619,14 @@ export const DENSITY_ANNOTATIONS = {
         on: '.MuiMenuItem-root:nth-of-type(2)',
         aspect: 'padding',
         axis: 'inline',
-        token: 'x-small',
+        token: 'xSmall',
         label: 'Item',
         route: { gutter: 'bottom' },
       },
       {
         on: '.MuiMenuItem-root:nth-of-type(2)',
         aspect: 'gap',
-        token: 'x-small',
+        token: 'xSmall',
         label: 'Item',
         route: { gutter: 'top' },
       },
@@ -666,12 +657,12 @@ export const DENSITY_ANNOTATIONS = {
         route: { gutter: 'left' },
       },
       // The items' own margin is zeroed, so the list's gap is the whole story.
-      { on: '.MuiPagination-ul', aspect: 'gap', token: 'x-small', label: 'Ul' },
+      { on: '.MuiPagination-ul', aspect: 'gap', token: 'xSmall', label: 'Ul' },
     ];
   },
   Progress: () => [
     // `spacing / 2` is a multiplier off the base unit, not a scale step — left
-    // unnamed the caption would claim `xx-small`.
+    // unnamed the caption would claim `xxSmall`.
     {
       on: '.MuiLinearProgress-root',
       aspect: 'touch-target',
@@ -681,7 +672,7 @@ export const DENSITY_ANNOTATIONS = {
     {
       on: '.MuiCircularProgress-root',
       aspect: 'touch-target',
-      token: 'touch-target',
+      token: 'touchTarget',
       label: 'Circular',
     },
   ],
@@ -692,13 +683,13 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiRadio-root',
         aspect: 'touch-target',
-        token: small ? 'touch-target - x-small' : 'touch-target',
+        token: small ? 'touchTarget - xSmall' : 'touchTarget',
         label: 'Radio',
       },
       {
         on: '.MuiRadio-root',
         aspect: 'icon',
-        token: small ? 'icon-size - 0.25 × spacing' : 'icon-size',
+        token: small ? 'iconSize - 0.25 × spacing' : 'iconSize',
         label: 'Radio icon',
         route: { gutter: 'top' },
       },
@@ -720,7 +711,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiOutlinedInput-root .MuiInputAdornment-root svg',
         aspect: 'icon',
-        token: 'icon-size',
+        token: 'iconSize',
         label: 'Outlined',
         route: { gutter: 'top' },
       },
@@ -746,14 +737,14 @@ export const DENSITY_ANNOTATIONS = {
         on: '.MuiInput-root .MuiInputBase-input',
         aspect: 'padding',
         axis: 'block',
-        token: small ? undefined : 'x-small',
+        token: small ? undefined : 'xSmall',
         label: 'Select value',
         route: { gutter: 'right' },
       },
       {
         on: '.MuiInput-root',
         aspect: 'gap',
-        token: small ? 'xx-small' : 'x-small',
+        token: small ? 'xxSmall' : 'xSmall',
         label: 'Input root',
         route: { gutter: 'bottom' },
       },
@@ -767,7 +758,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiSlider-root',
         aspect: 'touch-target',
-        token: 'touch-target',
+        token: 'touchTarget',
         label: 'Root',
         route: { gutter: 'left' },
       },
@@ -784,7 +775,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiSlider-rail',
         aspect: 'touch-target',
-        token: small ? 'x-small / 4' : 'small / 4',
+        token: small ? 'xSmall / 4' : 'small / 4',
         label: 'Rail',
         route: { gutter: 'right' },
       },
@@ -798,7 +789,7 @@ export const DENSITY_ANNOTATIONS = {
       token: 'medium',
       label: 'Snackbar',
     },
-    // The base unit, not `x-small` — both are 8px today and diverge on a rescale.
+    // The base unit, not `xSmall` — both are 8px today and diverge on a rescale.
     {
       on: '.MuiSnackbarContent-root',
       aspect: 'padding',
@@ -818,7 +809,7 @@ export const DENSITY_ANNOTATIONS = {
       on: '.MuiSnackbarContent-message',
       aspect: 'padding',
       axis: 'block',
-      token: 'x-small',
+      token: 'xSmall',
       label: 'Message',
       route: { gutter: 'bottom', at: 0.9 },
     },
@@ -827,7 +818,7 @@ export const DENSITY_ANNOTATIONS = {
       on: '.MuiSnackbarContent-action',
       aspect: 'margin',
       axis: 'inline',
-      token: '-x-small',
+      token: '-xSmall',
       label: 'Action',
       route: { gutter: 'right', line: 'diagonal' },
     },
@@ -842,7 +833,7 @@ export const DENSITY_ANNOTATIONS = {
         on: '.MuiStep-root:first-of-type .MuiStepLabel-iconContainer',
         aspect: 'touch-target',
         pointer: true,
-        token: 'touch-target',
+        token: 'touchTarget',
         label: 'Icon container',
         route: { gutter: 'left' },
       },
@@ -850,7 +841,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiStep-root:first-of-type .MuiStepIcon-root',
         aspect: 'icon',
-        token: 'touch-target - small + 2px',
+        token: 'touchTarget - small + 2px',
         label: 'Step icon',
         route: vertical ? { gutter: 'top' } : { gutter: 'bottom' },
       },
@@ -884,7 +875,7 @@ export const DENSITY_ANNOTATIONS = {
               on: '.MuiStep-root:nth-of-type(2) .MuiStepConnector-root',
               aspect: 'margin',
               side: 'left',
-              token: 'touch-target / 2',
+              token: 'touchTarget / 2',
               label: 'Connector',
               route: { gutter: 'left' },
             },
@@ -892,7 +883,7 @@ export const DENSITY_ANNOTATIONS = {
               on: '.MuiStep-root:first-of-type .MuiStepContent-root',
               aspect: 'margin',
               side: 'left',
-              token: 'touch-target / 2',
+              token: 'touchTarget / 2',
               label: 'Content',
               route: { gutter: 'left' },
             },
@@ -901,7 +892,7 @@ export const DENSITY_ANNOTATIONS = {
               on: '.MuiStep-root:first-of-type .MuiStepContent-root',
               aspect: 'padding',
               side: 'left',
-              token: 'touch-target / 2 - 1px',
+              token: 'touchTarget / 2 - 1px',
               label: 'Content',
               route: { gutter: 'right', at: 0.5 },
             },
@@ -920,15 +911,15 @@ export const DENSITY_ANNOTATIONS = {
     ];
   },
   // One prop, three variants: `fontSize` is the icon aspect here because the
-  // slot is the `svg` itself, and `medium` lands on `icon-size` unaided.
+  // slot is the `svg` itself, and `medium` lands on `iconSize` unaided.
   SvgIcon: (values) => [
     {
       on: '.MuiSvgIcon-root',
       aspect: 'icon',
       token: {
-        small: 'icon-size - 0.25 × spacing',
-        medium: 'icon-size',
-        large: 'icon-size + 0.5 × spacing',
+        small: 'iconSize - 0.25 × spacing',
+        medium: 'iconSize',
+        large: 'iconSize + 0.5 × spacing',
       }[values.fontSize],
       label: 'Icon',
     },
@@ -939,7 +930,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiSwitch-root',
         aspect: 'touch-target',
-        token: small ? 'touch-target - x-small' : 'touch-target',
+        token: small ? 'touchTarget - xSmall' : 'touchTarget',
         label: 'Switch',
         route: { gutter: 'left' },
       },
@@ -964,7 +955,7 @@ export const DENSITY_ANNOTATIONS = {
         on: `${cell}:last-child`,
         aspect: 'touch-target',
         // Clear of the checkbox column and of the checkbox's own dimension.
-        token: small ? 'large + xx-small' : 'x-large + x-small',
+        token: small ? 'large + xxSmall' : 'xLarge + xSmall',
         label: 'Cell',
         route: { gutter: 'right' },
       },
@@ -973,7 +964,7 @@ export const DENSITY_ANNOTATIONS = {
         on: 'tbody .MuiTableCell-root:nth-child(2)',
         aspect: 'padding',
         axis: 'inline',
-        token: small ? 'x-small' : 'small',
+        token: small ? 'xSmall' : 'small',
         label: 'Cell',
         route: { gutter: 'bottom' },
       },
@@ -989,14 +980,14 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: 'tbody .MuiCheckbox-root',
         aspect: 'touch-target',
-        token: small ? 'touch-target - x-small' : 'touch-target',
+        token: small ? 'touchTarget - xSmall' : 'touchTarget',
         label: 'Checkbox',
         route: { gutter: 'left' },
       },
       {
         on: '.MuiTableSortLabel-icon',
         aspect: 'icon',
-        token: 'icon-size + spacing / 4',
+        token: 'iconSize + spacing / 4',
         label: 'Sort icon',
         route: { gutter: 'top', line: 'diagonal', shift: 230 },
       },
@@ -1004,7 +995,7 @@ export const DENSITY_ANNOTATIONS = {
         on: '.MuiTableSortLabel-icon',
         aspect: 'margin',
         axis: 'inline',
-        token: 'xx-small',
+        token: 'xxSmall',
         label: 'Sort icon',
         route: { gutter: 'top', shift: 70 },
       },
@@ -1020,7 +1011,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiTab-root:nth-of-type(2)',
         aspect: 'touch-target',
-        token: icon ? undefined : 'touch-target',
+        token: icon ? undefined : 'touchTarget',
         label: 'Tab',
         route: { gutter: 'left' },
       },
@@ -1037,7 +1028,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiTabScrollButton-root',
         aspect: 'touch-target',
-        token: 'touch-target',
+        token: 'touchTarget',
         label: 'Scroll button',
         route: { gutter: 'top', out: 1 },
       },
@@ -1050,14 +1041,14 @@ export const DENSITY_ANNOTATIONS = {
               on: '.MuiTab-root:nth-of-type(2)',
               aspect: 'padding',
               axis: 'block',
-              token: 'xx-small',
+              token: 'xxSmall',
               label: 'Tab',
               route: { gutter: 'bottom', shift: -170, line: 'diagonal' },
             },
             {
               on: '.MuiTab-root:nth-of-type(2)',
               aspect: 'gap',
-              token: 'xx-small',
+              token: 'xxSmall',
               label: 'Tab',
               route: { gutter: 'bottom', shift: 130, line: 'diagonal' },
             },
@@ -1080,7 +1071,7 @@ export const DENSITY_ANNOTATIONS = {
         on: baseInput,
         aspect: 'padding',
         axis: 'block',
-        token: small ? 'xx-small' : 'x-small',
+        token: small ? 'xxSmall' : 'xSmall',
         label: 'InputBase',
       },
       { on: '.MuiInput-root', aspect: 'touch-target', label: 'Standard' },
@@ -1099,20 +1090,20 @@ export const DENSITY_ANNOTATIONS = {
         on: '.MuiOutlinedInput-input',
         aspect: 'padding',
         axis: 'block',
-        token: small ? 'xx-small' : '(touch-target - 1lh) / 2',
+        token: small ? 'xxSmall' : '(touchTarget - 1lh) / 2',
         label: 'Outlined',
       },
       {
         on: '.MuiOutlinedInput-root',
         aspect: 'gap',
-        token: small ? 'xx-small' : 'x-small',
+        token: small ? 'xxSmall' : 'xSmall',
         label: 'Outlined',
       },
       // The small adornment icon, read below-left of the outlined input.
       {
         on: '.MuiOutlinedInput-root svg',
         aspect: 'icon',
-        token: 'icon-size',
+        token: 'iconSize',
         label: 'Outlined',
         route: { gutter: 'left', shift: 60, line: 'diagonal' },
       },
@@ -1120,7 +1111,7 @@ export const DENSITY_ANNOTATIONS = {
         on: '.MuiFormHelperText-root',
         aspect: 'margin',
         axis: 'block',
-        token: 'x-small',
+        token: 'xSmall',
         label: 'Helper text',
       },
       // Contained helper text also carries an authored inline margin.
@@ -1128,7 +1119,7 @@ export const DENSITY_ANNOTATIONS = {
         on: '.MuiFormHelperText-root',
         aspect: 'margin',
         axis: 'inline',
-        token: 'x-small',
+        token: 'xSmall',
         label: 'Helper text',
         route: { gutter: 'right' },
       },
@@ -1139,9 +1130,9 @@ export const DENSITY_ANNOTATIONS = {
     // The inner term IS the icon size now: the padding centres the glyph's
     // box inside the button, so each size pairs its box with its icon step.
     const inner = {
-      small: '(icon-size - 0.25 × spacing)',
-      medium: 'icon-size',
-      large: '(icon-size + 0.5 × spacing)',
+      small: '(iconSize - 0.25 × spacing)',
+      medium: 'iconSize',
+      large: '(iconSize + 0.5 × spacing)',
     }[values.size];
     // First button only — the group's two buttons double every label.
     return [
@@ -1163,7 +1154,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiToggleButton-root:first-of-type .MuiSvgIcon-root',
         aspect: 'icon',
-        token: 'icon-size',
+        token: 'iconSize',
         label: 'Icon',
         route: { gutter: 'top' },
       },
@@ -1186,8 +1177,8 @@ export const DENSITY_ANNOTATIONS = {
       aspect: 'touch-target',
       token:
         values.dense === true
-          ? 'touch-target + 2 × x-small'
-          : 'touch-target + 2 × small',
+          ? 'touchTarget + 2 × xxSmall'
+          : 'touchTarget + 2 × xSmall',
       wrap: true,
       label: 'Toolbar',
     },
@@ -1207,7 +1198,7 @@ export const DENSITY_ANNOTATIONS = {
       on: '.MuiTooltip-tooltip',
       aspect: 'padding',
       axis: 'block',
-      token: 'x-small',
+      token: 'xSmall',
       label: 'Tooltip',
       route:
         values.placement === 'right'

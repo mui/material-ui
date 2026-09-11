@@ -4,13 +4,13 @@ import { CssVarsTheme } from './createThemeWithVars';
 /** Named steps of the spacing scale, surfaced as `--<prefix>-spacing-*` CSS
  * vars and resolvable through `theme.spacing('<key>')`. */
 export interface DensityScale {
-  'xx-small': string;
-  'x-small': string;
+  xxSmall: string;
+  xSmall: string;
   small: string;
   medium: string;
   large: string;
-  'x-large': string;
-  'xx-large': string;
+  xLarge: string;
+  xxLarge: string;
 }
 
 export type DensityKey = keyof DensityScale;
@@ -18,13 +18,13 @@ export type DensityKey = keyof DensityScale;
 /** How far each step sits along the spacing unit. Internal: the ladder's
  * shape is the enhancer's to define, not something a caller passes in. */
 const STEP_MULTIPLIERS: Record<DensityKey, number> = {
-  'xx-small': 0.5,
-  'x-small': 1,
+  xxSmall: 0.5,
+  xSmall: 1,
   small: 1.5,
   medium: 2,
   large: 3,
-  'x-large': 4,
-  'xx-large': 6,
+  xLarge: 4,
+  xxLarge: 6,
 };
 
 export const DENSITY_KEYS = Object.keys(STEP_MULTIPLIERS) as DensityKey[];

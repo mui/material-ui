@@ -25,12 +25,12 @@ const chromeTheme = enhanceDensity(createTheme({ colorSchemes }));
 const CLAIMS: Claim[] = [
   {
     on: '[data-measure]:not([data-measure="left"])',
-    aspect: 'touch-target',
+    aspect: 'touchTarget',
     route: { gutter: 'right' },
   },
   {
     on: '[data-measure="left"]',
-    aspect: 'touch-target',
+    aspect: 'touchTarget',
     route: { gutter: 'left' },
   },
 ];

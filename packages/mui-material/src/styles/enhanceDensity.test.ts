@@ -47,28 +47,28 @@ describe('enhanceDensity', () => {
     const theme = enhanceDensity(createTheme());
 
     expect(theme.spacing('small')).to.equal('12px');
-    expect(theme.spacing('xx-large')).to.equal('48px');
+    expect(theme.spacing('xxLarge')).to.equal('48px');
   });
 
   test('a full ladder override re-scales every step (the docs-recipe path)', () => {
     const compact = enhanceDensity(createTheme(), {
-      'xx-small': 2,
-      'x-small': 4,
+      xxSmall: 2,
+      xSmall: 4,
       small: 8,
       medium: 12,
       large: 16,
-      'x-large': 24,
-      'xx-large': 32,
-      'touch-target': 24,
+      xLarge: 24,
+      xxLarge: 32,
+      touchTarget: 24,
     });
 
     expect(compact.spacing('small')).to.equal('8px');
-    expect(compact.spacing('xx-large')).to.equal('32px');
+    expect(compact.spacing('xxLarge')).to.equal('32px');
     expect(controlBox(compact)).to.equal('24px');
   });
 
   test('a partial override keeps the canonical ladder elsewhere', () => {
-    const theme = enhanceDensity(createTheme(), { 'touch-target': 40 });
+    const theme = enhanceDensity(createTheme(), { touchTarget: 40 });
 
     expect(controlBox(theme)).to.equal('40px');
     expect(iconBox(theme)).to.equal('16px');
@@ -83,8 +83,8 @@ describe('enhanceDensity', () => {
     expect(sizeStyle(theme, 'MuiButton', 'large').height).to.equal('calc(32px + 12px)');
   });
 
-  test('a touch-target override carries small and large with it', () => {
-    const theme = enhanceDensity(createTheme(), { 'touch-target': 44 });
+  test('a touchTarget override carries small and large with it', () => {
+    const theme = enhanceDensity(createTheme(), { touchTarget: 44 });
 
     // the whole ramp moves; before, small and large sat on fixed ladder steps
     expect(sizeStyle(theme, 'MuiButton', 'small').height).to.equal('calc(44px - 8px)');
@@ -110,8 +110,8 @@ describe('enhanceDensity', () => {
     expect(svgIcon('large')).to.equal('calc(16px + 4px)');
   });
 
-  test('an icon-size override carries the whole ramp', () => {
-    const theme = enhanceDensity(createTheme(), { 'icon-size': 20 });
+  test('an iconSize override carries the whole ramp', () => {
+    const theme = enhanceDensity(createTheme(), { iconSize: 20 });
 
     expect(variantStyle(theme, 'MuiSvgIcon', { fontSize: 'small' }).fontSize).to.equal(
       'calc(20px - 2px)',
@@ -135,7 +135,7 @@ describe('enhanceDensity', () => {
   test('the icon glyph is its own sizing constant', () => {
     expect(iconBox(enhanceDensity(createTheme()))).to.equal('16px');
 
-    const theme = enhanceDensity(createTheme(), { 'icon-size': 20 });
+    const theme = enhanceDensity(createTheme(), { iconSize: 20 });
     expect(iconBox(theme)).to.equal('20px');
     // moving the glyph leaves the box it sits in alone
     expect(controlBox(theme)).to.equal('32px');
@@ -181,7 +181,7 @@ describe('enhanceDensity', () => {
       expect(staticTheme.spacing('-small')).to.equal('-0.375rem');
 
       const { stepVars } = lastSheets(enhanceDensity(createTheme({ cssVariables: true, spacing })));
-      expect(stepVars['--mui-spacing-x-large']).to.equal('1rem');
+      expect(stepVars['--mui-spacing-xLarge']).to.equal('1rem');
     });
 
     test('array: fractional multipliers have no index — canonical px fallback', () => {
@@ -212,7 +212,7 @@ describe('enhanceDensity', () => {
         marginLeft: '-12px',
         marginRight: '-12px',
       });
-      expect(sx(staticTheme, { gap: 'x-large' })).to.deep.equal({ gap: '32px' });
+      expect(sx(staticTheme, { gap: 'xLarge' })).to.deep.equal({ gap: '32px' });
 
       // On a CSS variables theme the sx transformer is built from
       // `theme.vars.spacing`, which can't resolve names — the step must still win.
@@ -273,25 +273,25 @@ describe('enhanceDensity', () => {
 
     // emitted literally, even on a vars theme — no variable to override
     expect(controlBox(theme)).to.equal('32px');
-    expect(stepVars).to.not.have.property('--mui-spacing-touch-target');
+    expect(stepVars).to.not.have.property('--mui-spacing-touchTarget');
 
     // and it never became a spacing key: both channels pass it through as raw CSS
-    expect(theme.spacing('touch-target')).to.equal('touch-target');
-    expect((theme as any).unstable_sx({ m: 'touch-target' })).to.deep.equal({
-      margin: 'touch-target',
+    expect(theme.spacing('touchTarget')).to.equal('touchTarget');
+    expect((theme as any).unstable_sx({ m: 'touchTarget' })).to.deep.equal({
+      margin: 'touchTarget',
     });
   });
 
   test('the icon glyph is a sizing constant too', () => {
-    const theme = enhanceDensity(createTheme({ cssVariables: true }), { 'icon-size': 20 });
+    const theme = enhanceDensity(createTheme({ cssVariables: true }), { iconSize: 20 });
     const sheets = theme.generateStyleSheets();
     const stepVars = sheets[sheets.length - 1][':root'] as Record<string, string>;
 
     expect(iconBox(theme)).to.equal('20px');
-    expect(stepVars).to.not.have.property('--mui-spacing-icon-size');
-    expect(theme.spacing('icon-size')).to.equal('icon-size');
-    expect((theme as any).unstable_sx({ m: 'icon-size' })).to.deep.equal({
-      margin: 'icon-size',
+    expect(stepVars).to.not.have.property('--mui-spacing-iconSize');
+    expect(theme.spacing('iconSize')).to.equal('iconSize');
+    expect((theme as any).unstable_sx({ m: 'iconSize' })).to.deep.equal({
+      margin: 'iconSize',
     });
   });
 
@@ -411,13 +411,13 @@ describe('enhanceDensity', () => {
     const theme = enhanceDensity(createTheme({ spacing: [0, 4, 8, 16, 32, 64] }));
 
     const stepNames = new Set([
-      'xx-small',
-      'x-small',
+      'xxSmall',
+      'xSmall',
       'small',
       'medium',
       'large',
-      'x-large',
-      'xx-large',
+      'xLarge',
+      'xxLarge',
     ]);
     const broken: string[] = [];
     const walk = (node: unknown, path: string) => {

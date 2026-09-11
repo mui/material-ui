@@ -24,17 +24,17 @@ const STAGE_HEIGHT = 240;
 // With the enhancer on, every dimension is a value you can name; with it off
 // they are the component's own built-in numbers.
 const tokens = {
-  gap: 'x-small',
+  gap: 'xSmall',
   icon: '0.8lh',
   // Only the box and its padding step up with the size prop.
   bySize: {
     small: {
-      height: 'touch-target - x-small',
+      height: 'touchTarget - xSmall',
       padding: 'small',
     },
-    medium: { height: 'touch-target', padding: 'medium' },
+    medium: { height: 'touchTarget', padding: 'medium' },
     large: {
-      height: 'touch-target + small',
+      height: 'touchTarget + small',
       padding: 'large',
     },
   },
@@ -71,7 +71,7 @@ function claimsFor(enhanced, size) {
   if (enhanced) {
     claims.push({
       on: '.MuiButton-root',
-      aspect: 'touch-target',
+      aspect: 'touchTarget',
       token: tokens.bySize[size].height,
       route: { gutter: 'right' },
     });

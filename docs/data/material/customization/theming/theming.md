@@ -322,7 +322,7 @@ It accepts a fully-created theme and returns an enhanced version of it — apply
 #### Arguments
 
 1. `theme` (_object_): The theme object to enhance.
-2. `scale` (_object_ [optional]): Per-step overrides in px for the scale keys (`xx-small` through `xx-large`) and the sizing constants (`touch-target`, `icon-size`) — the `DensityScaleOverrides` shape.
+2. `scale` (_object_ [optional]): Per-step overrides in px for the scale keys (`xxSmall` through `xxLarge`) and the sizing constants (`touchTarget`, `iconSize`) — the `DensityScaleOverrides` shape.
 
 #### Returns
 
@@ -343,7 +343,7 @@ theme = enhanceDensity(theme);
 let theme = createTheme();
 theme = enhanceDensity(theme, {
   small: 10,
-  'touch-target': 28,
+  touchTarget: 28,
 });
 ```
 

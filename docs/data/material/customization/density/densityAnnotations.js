@@ -7,16 +7,16 @@ import Box from '@mui/material/Box';
 // targets. A measured number is matched back against it so a caption can name
 // the step that produced it.
 const {
-  'touch-target': defaultTouchTarget,
-  'icon-size': defaultIconTarget,
+  touchTarget: defaultTouchTarget,
+  iconSize: defaultIconTarget,
   ...defaultSteps
 } = private_defaultDensityScale;
 
 export const DENSITY_SCALE = defaultSteps;
 
 export const DENSITY_TARGETS = {
-  'touch-target': defaultTouchTarget,
-  'icon-size': defaultIconTarget,
+  touchTarget: defaultTouchTarget,
+  iconSize: defaultIconTarget,
 };
 
 // The colors browser devtools use when it highlights a box.
@@ -1059,7 +1059,7 @@ export function resolveClaims(stage, demo, claims) {
         const gutterPair = axis === 'inline' ? ['top', 'bottom'] : ['left', 'right'];
         byValue.forEach((group) => {
           // grouped by magnitude, captioned with the signed value — a pulled-
-          // back action margin prints -8px, matching its -x-small token
+          // back action margin prints -8px, matching its -xSmall token
           const signed = edges[group[0]];
           items.push({
             kind: 'band',

@@ -44,7 +44,7 @@ const CONTROL_MIN_WIDTH = 140;
 function PricingUi() {
   return (
     <Stack spacing="large" sx={{ alignItems: 'center', maxWidth: 420, mx: 'auto' }}>
-      <Stack spacing="xx-small" sx={{ textAlign: 'center' }}>
+      <Stack spacing="xxSmall" sx={{ textAlign: 'center' }}>
         <Typography variant="h5" component="h2">
           Pricing
         </Typography>
@@ -57,14 +57,14 @@ function PricingUi() {
           <Stack
             data-measure
             direction="row"
-            spacing="x-small"
+            spacing="xSmall"
             sx={{
               alignItems: 'center',
               justifyContent: 'space-between',
               flexWrap: 'wrap',
             }}
           >
-            <Stack direction="row" spacing="x-small" sx={{ alignItems: 'center' }}>
+            <Stack direction="row" spacing="xSmall" sx={{ alignItems: 'center' }}>
               <Typography variant="subtitle2" component="h3">
                 Team
               </Typography>
@@ -89,7 +89,7 @@ function PricingUi() {
           <Stack
             data-measure
             direction="row"
-            spacing="xx-small"
+            spacing="xxSmall"
             sx={{ alignItems: 'baseline' }}
           >
             <Typography variant="h6" component="p">
@@ -197,8 +197,8 @@ function ProductUi() {
           aria-label="Product photography placeholder"
           sx={(theme) => ({
             flexShrink: 0,
-            width: `calc(${theme.spacing('xx-large')} * 3)`,
-            height: `calc(${theme.spacing('xx-large')} * 3)`,
+            width: `calc(${theme.spacing('xxLarge')} * 3)`,
+            height: `calc(${theme.spacing('xxLarge')} * 3)`,
             borderRadius: 1,
             border: '1px solid',
             borderColor: 'divider',
@@ -208,13 +208,13 @@ function ProductUi() {
             color: 'text.disabled',
           })}
         >
-          <ScienceIcon sx={(theme) => ({ fontSize: theme.spacing('x-large') })} />
+          <ScienceIcon sx={(theme) => ({ fontSize: theme.spacing('xLarge') })} />
         </Box>
-        <Stack spacing="x-small" sx={{ flexGrow: 1 }}>
+        <Stack spacing="xSmall" sx={{ flexGrow: 1 }}>
           <Stack
             data-measure
             direction="row"
-            spacing="x-small"
+            spacing="xSmall"
             sx={{ alignItems: 'center' }}
           >
             <Chip label="TR-12" size="small" variant="outlined" />
@@ -225,7 +225,7 @@ function ProductUi() {
           <Stack
             data-measure
             direction="row"
-            spacing="x-small"
+            spacing="xSmall"
             sx={{ alignItems: 'center' }}
           >
             <Rating value={4.5} precision={0.5} size="small" readOnly />
@@ -237,7 +237,7 @@ function ProductUi() {
             A once-daily capsule that tops up the minerals a mixed diet usually
             misses, in forms the body absorbs easily.
           </Typography>
-          <Stack direction="row" spacing="x-small" sx={{ alignItems: 'center' }}>
+          <Stack direction="row" spacing="xSmall" sx={{ alignItems: 'center' }}>
             <Typography
               variant="h6"
               component="p"
@@ -399,7 +399,7 @@ function SettingsUi() {
           },
         }}
       />
-      <Stack component="section" aria-labelledby={`${id}-general`} spacing="x-small">
+      <Stack component="section" aria-labelledby={`${id}-general`} spacing="xSmall">
         <Typography
           variant="overline"
           component="h4"
@@ -469,7 +469,7 @@ function SettingsUi() {
       <Stack
         component="section"
         aria-labelledby={`${id}-interface`}
-        spacing="x-small"
+        spacing="xSmall"
       >
         <Typography
           variant="overline"

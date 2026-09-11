@@ -24,7 +24,7 @@ function App() {
 
 The demo below demonstrates the effect of `enhanceDensity` on a Button between sizes.
 
-With the enhancer, the Button's CSS implementation switches from raw pixel values to the new spacing scale and the touch-target size.
+With the enhancer, the Button's CSS implementation switches from raw pixel values to the new spacing scale and the `touchTarget` size.
 
 {{"demo": "EnhanceDensityDemo.js"}}
 
@@ -40,13 +40,13 @@ The enhancer also modernizes components like Button that use the margin-based sp
 
 The enhancer lets you set 2 target sizes:
 
-- the touch-target size: applied to every interactive control to create consistent sizing across the library.
-- the icon size: applied to the `SvgIcon` component.
+- `touchTarget`: applied to every interactive control to create consistent sizing across the library.
+- `iconSize`: applied to the `SvgIcon` component.
 
 ```ts
 const theme = enhanceDensity(createTheme(), {
-  'touch-target': 40,
-  'icon-size': 20,
+  touchTarget: 40,
+  iconSize: 20,
 });
 ```
 
@@ -56,15 +56,15 @@ const theme = enhanceDensity(createTheme(), {
 
 Every component draws its spacing and sizing from one fixed set of steps, so nothing is sized on its own terms and values that should match do match:
 
-| Step       | Default value | Typical use                           |
-| :--------- | :------------ | :------------------------------------ |
-| `xx-small` | 4px           | Icon-to-label gaps, tight insets      |
-| `x-small`  | 8px           | Compact padding, small control insets |
-| `small`    | 12px          | Default inline padding                |
-| `medium`   | 16px          | Container padding                     |
-| `large`    | 24px          | Section spacing, small control height |
-| `x-large`  | 32px          | Large control height                  |
-| `xx-large` | 48px          | Large surfaces                        |
+| Step      | Default value | Typical use                           |
+| :-------- | :------------ | :------------------------------------ |
+| `xxSmall` | 4px           | Icon-to-label gaps, tight insets      |
+| `xSmall`  | 8px           | Compact padding, small control insets |
+| `small`   | 12px          | Default inline padding                |
+| `medium`  | 16px          | Container padding                     |
+| `large`   | 24px          | Section spacing, small control height |
+| `xLarge`  | 32px          | Large control height                  |
+| `xxLarge` | 48px          | Large surfaces                        |
 
 The scale rides the spacing API you already use—there's no new function to learn and no new theme node. [`theme.spacing()`](/material-ui/customization/spacing/) resolves step names alongside the numbers and raw CSS values it already accepts, and a leading dash negates a step:
 
@@ -72,9 +72,9 @@ The scale rides the spacing API you already use—there's no new function to lea
 const theme = enhanceDensity(createTheme());
 
 theme.spacing('small'); // '12px'
-theme.spacing('-x-small'); // '-8px'
+theme.spacing('-xSmall'); // '-8px'
 
-<Box sx={{ p: 'small', gap: 'x-small' }} />;
+<Box sx={{ p: 'small', gap: 'xSmall' }} />;
 // .Box-hashed-class { padding: 12px; gap: 8px; }
 ```
 
@@ -121,7 +121,7 @@ This means the scale can be read—and overridden—from plain CSS, including fo
 }
 ```
 
-Only the ladder steps ship as CSS variables. The sizing constants (`touch-target`, `icon-size`) are emitted as literal px, so control boxes don't follow a CSS-only override — moving them requires the `scale` argument.
+Only the ladder steps ship as CSS variables. The sizing constants (`touchTarget`, `iconSize`) are emitted as literal px, so control boxes don't follow a CSS-only override — moving them requires the `scale` argument.
 
 ## All components
 
@@ -137,15 +137,15 @@ Below is an example of a full scale overrides for a very dense application:
 
 ```js
 const theme = enhanceDensity(createTheme(), {
-  'xx-small': 2,
-  'x-small': 4,
+  xxSmall: 2,
+  xSmall: 4,
   small: 8,
   medium: 12,
   large: 16,
-  'x-large': 24,
-  'xx-large': 32,
-  'touch-target': 24,
-  'icon-size': 14,
+  xLarge: 24,
+  xxLarge: 32,
+  touchTarget: 24,
+  iconSize: 14,
 });
 ```
 

@@ -5,7 +5,7 @@ describe('grid', () => {
   describe('named scale values', () => {
     // Same contract as the padding/margin props: a spacing function may advertise
     // named values through `keys`; every other string stays raw CSS.
-    const scaled = { small: '12px', 'x-large': '32px' };
+    const scaled = { small: '12px', xLarge: '32px' };
     const keyedSpacing = (...args) => args.map((arg) => scaled[arg] ?? `${arg * 8}px`).join(' ');
     keyedSpacing.keys = new Set(Object.keys(scaled));
 
@@ -13,7 +13,7 @@ describe('grid', () => {
       const theme = { spacing: keyedSpacing };
 
       expect(grid({ theme, gap: 'small' })).to.deep.equal({ gap: '12px' });
-      expect(grid({ theme, rowGap: 'x-large' })).to.deep.equal({ rowGap: '32px' });
+      expect(grid({ theme, rowGap: 'xLarge' })).to.deep.equal({ rowGap: '32px' });
       expect(grid({ theme, columnGap: 'small' })).to.deep.equal({ columnGap: '12px' });
     });
 

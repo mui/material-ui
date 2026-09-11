@@ -12,7 +12,7 @@ describe('styleFunctionSx', () => {
     // advertised; `mui: true` is what makes `createSpacing` hand the function
     // through untouched, so those names survive `createTheme`.
     const createScaleSpacing = () => {
-      const scaled = { small: '12px', '-small': '-12px', 'x-large': '32px' };
+      const scaled = { small: '12px', '-small': '-12px', xLarge: '32px' };
       const fn = (...args) => args.map((arg) => scaled[arg] ?? `${arg * 8}px`).join(' ');
       fn.mui = true;
       fn.keys = new Set(Object.keys(scaled));
@@ -25,7 +25,7 @@ describe('styleFunctionSx', () => {
     it('resolves the names on every spacing prop', () => {
       const result = styleFunctionSx({
         theme: keyedTheme,
-        sx: { p: 'small', mt: '-small', px: 'x-large', gap: 'small' },
+        sx: { p: 'small', mt: '-small', px: 'xLarge', gap: 'small' },
       });
 
       expect(result).to.deep.equal({
@@ -40,7 +40,7 @@ describe('styleFunctionSx', () => {
     it('resolves the names inside responsive values', () => {
       const result = styleFunctionSx({
         theme: keyedTheme,
-        sx: { p: { xs: 'small', md: 'x-large' } },
+        sx: { p: { xs: 'small', md: 'xLarge' } },
       });
 
       expect(result).to.deep.equal({

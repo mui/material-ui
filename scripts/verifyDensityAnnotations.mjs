@@ -9,7 +9,7 @@
  *      matching, or a slot inside a closed container, draws nothing silently;
  *   B. an annotation whose token names a scale step measures that step — the
  *      caption is a claim about a number, and it has been wrong before
- *      (`x-small` printed on a band measuring 6px);
+ *      (`xSmall` printed on a band measuring 6px);
  *   C. every annotation produced a caption — specs list drawable rows only, so
  *      one that drew nothing is either a bad spec or an instance that doesn't
  *      exercise it (a `gap` needs children to put a gap between).
@@ -31,15 +31,15 @@ const only = process.argv.slice(2);
 
 // The scale `enhanceDensity` ships. A token naming one of these is checkable.
 const SCALE = {
-  'xx-small': 4,
-  'x-small': 8,
+  xxSmall: 4,
+  xSmall: 8,
   small: 12,
   medium: 16,
   large: 24,
-  'x-large': 32,
-  'xx-large': 48,
-  'touch-target': 32,
-  'icon-size': 16,
+  xLarge: 32,
+  xxLarge: 48,
+  touchTarget: 32,
+  iconSize: 16,
 };
 
 /** Only a bare step (or its negation) is a claim we can settle; anything with

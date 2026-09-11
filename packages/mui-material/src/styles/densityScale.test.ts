@@ -7,24 +7,24 @@ describe('densityScale', () => {
     test('theme.spacing resolves scale keys to raw px off the 8px unit', () => {
       const theme = applyDensity(createTheme());
 
-      expect(theme.spacing('xx-small')).to.equal('4px');
+      expect(theme.spacing('xxSmall')).to.equal('4px');
       expect(theme.spacing('small')).to.equal('12px');
       const steps = Object.fromEntries(DENSITY_KEYS.map((key) => [key, theme.spacing(key)]));
       expect(steps).to.deep.equal({
-        'xx-small': '4px',
-        'x-small': '8px',
+        xxSmall: '4px',
+        xSmall: '8px',
         small: '12px',
         medium: '16px',
         large: '24px',
-        'x-large': '32px',
-        'xx-large': '48px',
+        xLarge: '32px',
+        xxLarge: '48px',
       });
     });
 
     test('negated keys resolve to negative px; numbers and raw CSS stay untouched', () => {
       const theme = applyDensity(createTheme());
 
-      expect(theme.spacing('-x-small')).to.equal('-8px');
+      expect(theme.spacing('-xSmall')).to.equal('-8px');
       expect(theme.spacing(2)).to.equal('16px');
       expect(theme.spacing('small', 2)).to.equal('12px 16px');
       expect(theme.spacing('auto')).to.equal('auto');
@@ -73,8 +73,8 @@ describe('densityScale', () => {
       expect(theme.spacing('small')).to.equal(
         'var(--mui-spacing-small, calc(1.5 * var(--mui-spacing, 8px)))',
       );
-      expect(theme.spacing('-x-small')).to.equal(
-        'calc(var(--mui-spacing-x-small, var(--mui-spacing, 8px)) * -1)',
+      expect(theme.spacing('-xSmall')).to.equal(
+        'calc(var(--mui-spacing-xSmall, var(--mui-spacing, 8px)) * -1)',
       );
       expect(theme.spacing('small', 2)).to.equal(
         'var(--mui-spacing-small, calc(1.5 * var(--mui-spacing, 8px))) calc(2 * var(--mui-spacing, 8px))',
@@ -93,13 +93,13 @@ describe('densityScale', () => {
       const theme = applyDensity(createTheme({ cssVariables: true }));
 
       const multipliers: Record<string, number> = {
-        'xx-small': 0.5,
-        'x-small': 1,
+        xxSmall: 0.5,
+        xSmall: 1,
         small: 1.5,
         medium: 2,
         large: 3,
-        'x-large': 4,
-        'xx-large': 6,
+        xLarge: 4,
+        xxLarge: 6,
       };
       DENSITY_KEYS.forEach((key) => {
         const multiplier = multipliers[key];

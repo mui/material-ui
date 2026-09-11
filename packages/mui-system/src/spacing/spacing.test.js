@@ -8,7 +8,7 @@ describe('system spacing', () => {
     // through `keys`, the contract these props read; everything it does not
     // name must stay raw CSS.
     const createScaleSpacing = () => {
-      const scaled = { small: '12px', '-small': '-12px', 'x-large': '32px' };
+      const scaled = { small: '12px', '-small': '-12px', xLarge: '32px' };
       const fn = (...args) => args.map((arg) => scaled[arg] ?? `${arg * 8}px`).join(' ');
       fn.keys = new Set(Object.keys(scaled));
       return fn;
@@ -20,7 +20,7 @@ describe('system spacing', () => {
 
       expect(spacing({ theme, p: 'small' })).to.deep.equal({ padding: '12px' });
       expect(spacing({ theme, mt: '-small' })).to.deep.equal({ marginTop: '-12px' });
-      expect(spacing({ theme, px: 'x-large' })).to.deep.equal({
+      expect(spacing({ theme, px: 'xLarge' })).to.deep.equal({
         paddingLeft: '32px',
         paddingRight: '32px',
       });
@@ -65,7 +65,7 @@ describe('system spacing', () => {
         },
       };
 
-      expect(spacing({ theme, p: { xs: 'small', md: 'x-large' } })).to.deep.equal({
+      expect(spacing({ theme, p: { xs: 'small', md: 'xLarge' } })).to.deep.equal({
         '@media (min-width:0px)': { padding: '12px' },
         '@media (min-width:900px)': { padding: '32px' },
       });

@@ -30,19 +30,19 @@ const ITEMS = [
 ];
 
 // Both selectors match every row, and that is the point: the row beams tile
-// into a ruler on the right — the rows really are `touch-target` tall — and
+// into a ruler on the right — the rows really are `touchTarget` tall — and
 // each icon carries its own frame on the left.
 const CLAIMS = [
   {
     on: '.MuiListItemButton-root',
-    aspect: 'touch-target',
-    token: 'touch-target',
+    aspect: 'touchTarget',
+    token: 'touchTarget',
     route: { gutter: 'right' },
   },
   {
     on: '.MuiListItemIcon-root',
     aspect: 'icon',
-    token: 'icon-size',
+    token: 'iconSize',
     route: { gutter: 'left' },
   },
 ];
@@ -84,8 +84,8 @@ export default function TouchTargetDemo() {
   const theme = React.useMemo(
     () =>
       enhanceDensity(createTheme({ colorSchemes: { light: true, dark: true } }), {
-        'touch-target': touchTarget,
-        'icon-size': iconSize,
+        touchTarget,
+        iconSize,
       }),
     [touchTarget, iconSize],
   );
@@ -122,14 +122,14 @@ export default function TouchTargetDemo() {
       <Divider />
       <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
         <Knob
-          label="icon-size"
+          label="iconSize"
           value={iconSize}
           steps={ICON_STEPS}
           onChange={setIconTarget}
         />
         <Box sx={{ borderLeft: '1px solid', borderColor: 'divider' }}>
           <Knob
-            label="touch-target"
+            label="touchTarget"
             value={touchTarget}
             steps={TOUCH_STEPS}
             onChange={setTouchTarget}
