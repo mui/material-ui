@@ -75,3 +75,90 @@ For development `pnpm test:regressions:dev` and `pnpm test:regressions:run --wat
 | `pnpm test:regressions:run`    | Runs the tests (requires `pnpm test:regressions:dev` or `pnpm test:regressions:build`+`pnpm test:regressions:server`) |
 | `pnpm test:regressions:build`  | Builds the vite bundle for viewing the fixtures                                                                       |
 | `pnpm test:regressions:server` | Serves the fixture bundle.                                                                                            |
+
+## DocSearch search fixture
+
+`algoliaSearchResponse.json` records a response from the live Algolia index.
+The screenshot tests replay it without querying the index. Recent searches are
+derived from the first two recorded hits.
+
+To refresh the response, run this command from the repository root. The credentials
+are the public search-only credentials used by `AppSearch`.
+
+```bash
+curl --fail-with-body --silent --show-error \
+  'https://tzgz85b9tb-dsn.algolia.net/1/indexes/*/queries' \
+  -H 'x-algolia-application-id: TZGZ85B9TB' \
+  -H 'x-algolia-api-key: 8177dfb3e2be72b241ffb8c5abafa899' \
+  -H 'content-type: application/json' \
+  --data-binary @- \
+  --output test/regressions/algoliaSearchResponse.json <<'JSON'
+{
+  "requests": [
+    {
+      "indexName": "material-ui-v9",
+      "query": "container query",
+      "hitsPerPage": 8,
+      "facetFilters": [
+        "version:master",
+        "language:en"
+      ],
+      "filters": "NOT productId:base-ui",
+      "optionalFilters": [
+        "productId:material-ui"
+      ],
+      "attributesToRetrieve": [
+        "hierarchy.lvl0",
+        "hierarchy.lvl1",
+        "hierarchy.lvl2",
+        "hierarchy.lvl3",
+        "hierarchy.lvl4",
+        "hierarchy.lvl5",
+        "content",
+        "type",
+        "url",
+        "productId",
+        "productCategoryId"
+      ],
+      "attributesToSnippet": [
+        "hierarchy.lvl1:15",
+        "hierarchy.lvl2:15",
+        "hierarchy.lvl3:15",
+        "hierarchy.lvl4:15",
+        "hierarchy.lvl5:15",
+        "content:15"
+      ],
+      "snippetEllipsisText": "…",
+      "highlightPreTag": "<mark>",
+      "highlightPostTag": "</mark>"
+    }
+  ]
+}
+JSON
+pnpm exec prettier --write test/regressions/algoliaSearchResponse.json
+```
+
+The request uses the Material UI English search filters from `AppSearch` and
+DocSearch's snippet settings. It limits the response to eight hits to keep the
+fixture small. If the index or search settings change, update the request above
+from the browser's Network panel while searching the Material UI docs. Keep the
+query in `docsearchFixtureData.js` in sync with this request.
+
+After refreshing, check that the results still include multiple sections, a
+parent with children, highlighted matches, and a content snippet long enough to
+exercise wrapping at 767px. Review the light and dark screenshots, including the
+recent-search screen. Refresh recordings deliberately; do not query the live
+index during screenshot tests.
+
+Build and serve the regression bundle:
+
+```bash
+pnpm test:regressions:build
+pnpm test:regressions:server
+```
+
+In another terminal, run the search captures:
+
+```bash
+pnpm test:regressions:run -t '/regression-AppSearch/'
+```
