@@ -324,9 +324,6 @@ async function main() {
         // The modal portals to `document.body`, so it lands outside the
         // testcase element and has to be screenshotted on its own.
         await page.getByRole('button', { name: /search/i }).click();
-        // The click leaves the pointer on the button. Move it to the top-right corner,
-        // outside the modal at both widths, so that no hover state gets into a capture.
-        await page.mouse.move(page.viewportSize().width - 1, 0);
         const modal = await page.waitForSelector('.DocSearch-Modal');
         // `useLazyCSS` fetches the DocSearch stylesheet and injects it as a
         // `<style data-href>`. Without it the modal is unstyled.
