@@ -4,12 +4,14 @@ import { act, createRenderer, screen, waitFor } from '@mui/internal-test-utils';
 import Router from 'next/router';
 import { AnalyticsProvider } from './AnalyticsProvider';
 
-vi.mock('../branding/BrandingCssVarsProvider', () => ({
+vi.mock('../branding/BrandingCssVarsProvider', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('../branding/BrandingCssVarsProvider')>()),
   BrandingCssThemeProvider: ({ children }: { children: React.ReactNode }) => children,
 }));
 
 describe('AnalyticsProvider', () => {
   const { render } = createRenderer();
+  const doNotTrackDescriptor = Object.getOwnPropertyDescriptor(navigator, 'doNotTrack');
 
   beforeEach(() => {
     const storage = new Map<string, string>();
@@ -18,9 +20,7 @@ describe('AnalyticsProvider', () => {
       setItem: (key: string, value: string) => storage.set(key, value),
       removeItem: (key: string) => storage.delete(key),
     });
-    vi.spyOn(window, 'navigator', 'get').mockReturnValue(
-      Object.create(navigator, { doNotTrack: { value: '0' } }),
-    );
+    Object.defineProperty(navigator, 'doNotTrack', { configurable: true, value: '0' });
     window.history.replaceState(null, '', '/');
     vi.stubGlobal('gtag', vi.fn());
   });
@@ -28,6 +28,11 @@ describe('AnalyticsProvider', () => {
   afterEach(() => {
     window.localStorage.removeItem('docs-cookie-consent');
     window.history.replaceState(null, '', '/');
+    if (doNotTrackDescriptor) {
+      Object.defineProperty(navigator, 'doNotTrack', doNotTrackDescriptor);
+    } else {
+      Reflect.deleteProperty(navigator, 'doNotTrack');
+    }
     vi.restoreAllMocks();
     vi.unstubAllGlobals();
   });
@@ -105,9 +110,7 @@ describe('AnalyticsProvider', () => {
   });
 
   it('continues to respect Do Not Track', () => {
-    vi.spyOn(window, 'navigator', 'get').mockReturnValue(
-      Object.create(navigator, { doNotTrack: { value: '1' } }),
-    );
+    Object.defineProperty(navigator, 'doNotTrack', { configurable: true, value: '1' });
     window.history.replaceState(null, '', '/#cookie-preferences');
     render(<AnalyticsProvider>{null}</AnalyticsProvider>);
     expect(screen.queryByRole('dialog')).to.equal(null);
