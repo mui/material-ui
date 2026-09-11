@@ -100,12 +100,17 @@ const customTheme = enhanceDensity(
 
 ### CSS variables support
 
-On a theme created with [CSS theme variables](/material-ui/customization/css-theme-variables/overview/), the steps also ship as global CSS variables, and `theme.spacing()` returns a reference to them:
+On a theme created with [CSS theme variables](/material-ui/customization/css-theme-variables/overview/), the steps also ship as global CSS variables, and `theme.spacing()` returns a reference to them, with the computed value as a fallback:
 
 ```js
 const theme = enhanceDensity(createTheme({ cssVariables: true }));
 
-theme.spacing('small'); // 'var(--mui-spacing-small, 12px)'
+theme.spacing('small'); // 'var(--mui-spacing-small, calc(1.5 * var(--mui-spacing, 8px)))'
+
+// A step given an explicit value falls back to that length:
+const dense = enhanceDensity(createTheme({ cssVariables: true }), { small: 8 });
+
+dense.spacing('small'); // 'var(--mui-spacing-small, 8px)'
 ```
 
 This means the scale can be read—and overridden—from plain CSS, including for one region of the page:
