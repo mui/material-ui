@@ -193,6 +193,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const hasSelectedItemInListRef = React.useRef(false);
   const openingMouseUpListenerCleanupRef = React.useRef(null);
   const didPointerDownOnItemRef = React.useRef(false);
+  const didPointerMoveToItemRef = React.useRef(false);
   const selectionRef = React.useRef({
     allowSelectedMouseUp: false,
     allowUnselectedMouseUp: false,
@@ -257,6 +258,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const resetMouseUpSelection = React.useCallback(() => {
     clearSelectionTimers();
     didPointerDownOnItemRef.current = false;
+    didPointerMoveToItemRef.current = false;
     selectionRef.current = {
       allowSelectedMouseUp: false,
       allowUnselectedMouseUp: false,
@@ -529,6 +531,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       return;
     }
 
+    if (!didPointerMoveToItemRef.current) {
+      return;
+    }
+
     const disallowSelectedMouseUp = !selectionRef.current.allowSelectedMouseUp && selected;
     const disallowUnselectedMouseUp = !selectionRef.current.allowUnselectedMouseUp && !selected;
 
@@ -721,6 +727,14 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       onPointerDown: (event) => {
         didPointerDownOnItemRef.current = true;
         child.props.onPointerDown?.(event);
+      },
+      onMouseMove: (event) => {
+        didPointerMoveToItemRef.current = true;
+        child.props.onMouseMove?.(event);
+      },
+      onPointerMove: (event) => {
+        didPointerMoveToItemRef.current = true;
+        child.props.onPointerMove?.(event);
       },
       onClick: handleItemClick(child),
       onMouseUp: handleItemMouseUp(child, selected),
