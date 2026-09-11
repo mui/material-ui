@@ -1,3 +1,4 @@
+import { OverridableStringUnion } from '@mui/types';
 import { createUnarySpacing } from '../spacing';
 
 export type SpacingOptions =
@@ -8,11 +9,25 @@ export type SpacingOptions =
   | ((abs: number | string) => number | string)
   | ReadonlyArray<string | number>;
 
-export type SpacingArgument = number | string;
+/**
+ * Augment this interface to register named keys accepted by `theme.spacing()`
+ * so they surface in autocompletion (e.g. a preset's spacing-scale steps).
+ * Type-level only: unregistered strings remain valid and pass through as raw CSS.
+ * Same convention as `BreakpointOverrides` — a key registered `false` is excluded.
+ */
+export interface SpacingKeyOverrides {}
+
+export type SpacingKey = OverridableStringUnion<never, SpacingKeyOverrides>;
+
+// `(string & {})` keeps any raw CSS string valid while letting registered
+// SpacingKey literals surface in autocompletion.
+export type SpacingArgument = number | SpacingKey | (string & {});
 
 // The different signatures imply different meaning for their arguments that can't be expressed structurally.
 // We express the difference with variable names.
 export interface Spacing {
+  /** The raw `spacing` theme option this function was created from. */
+  unit?: SpacingOptions | undefined;
   (): string;
   (value: SpacingArgument): string;
   (topBottom: SpacingArgument, rightLeft: SpacingArgument): string;
@@ -59,6 +74,7 @@ export default function createSpacing(
   };
 
   spacing.mui = true;
+  spacing.unit = spacingInput;
 
   return spacing;
 }

@@ -203,7 +203,7 @@ const pages: MuiPage[] = [
             pathname: '/material-ui/customization/container-queries',
             newFeature: true,
           },
-          { pathname: '/material-ui/customization/density' },
+          { pathname: '/material-ui/customization/density', newFeature: true },
           {
             pathname: '/material-ui/customization/focus-visible',
             title: 'Focus visible',
