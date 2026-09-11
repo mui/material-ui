@@ -20,6 +20,11 @@ The default focus indicator is a two-pixel solid outline with `palette.primary.m
 
 :::info
 
+Buttons kept in the tab order with [`focusableWhenDisabled`](/material-ui/react-button/#focusable-when-disabled) rely on this indicator: the disabled styles suppress Material Design's default focus affordance, so the theme focus ring is what makes a focused disabled button visible.
+:::
+
+:::info
+
 Why an outline
 
 CSS `outline` is the most common indicator found in the web standard that works in most environment including high-contrast color mode.

@@ -33,6 +33,7 @@ export default function LoadingButtonsTransition() {
           loading={loading}
           variant="outlined"
           disabled
+          focusableWhenDisabled
         >
           Disabled
         </Button>
@@ -42,6 +43,7 @@ export default function LoadingButtonsTransition() {
           loading={loading}
           loadingIndicator="Loading…"
           variant="outlined"
+          focusableWhenDisabled
         >
           Fetch data
         </Button>
@@ -52,6 +54,7 @@ export default function LoadingButtonsTransition() {
           loading={loading}
           loadingPosition="end"
           variant="contained"
+          focusableWhenDisabled
         >
           Send
         </Button>
@@ -63,12 +66,19 @@ export default function LoadingButtonsTransition() {
           loadingPosition="start"
           startIcon={<SaveIcon />}
           variant="contained"
+          focusableWhenDisabled
         >
           Save
         </Button>
       </Box>
       <Box sx={{ '& > button': { m: 1 } }}>
-        <Button onClick={handleClick} loading={loading} variant="outlined" disabled>
+        <Button
+          onClick={handleClick}
+          loading={loading}
+          variant="outlined"
+          disabled
+          focusableWhenDisabled
+        >
           Disabled
         </Button>
         <Button
@@ -76,6 +86,7 @@ export default function LoadingButtonsTransition() {
           loading={loading}
           loadingIndicator="Loading…"
           variant="outlined"
+          focusableWhenDisabled
         >
           Fetch data
         </Button>
@@ -85,6 +96,7 @@ export default function LoadingButtonsTransition() {
           loading={loading}
           loadingPosition="end"
           variant="contained"
+          focusableWhenDisabled
         >
           Send
         </Button>
@@ -95,6 +107,7 @@ export default function LoadingButtonsTransition() {
           loadingPosition="start"
           startIcon={<SaveIcon />}
           variant="contained"
+          focusableWhenDisabled
         >
           Save
         </Button>

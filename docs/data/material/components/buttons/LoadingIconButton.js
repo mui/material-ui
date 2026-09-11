@@ -13,7 +13,11 @@ export default function LoadingIconButton() {
   });
   return (
     <Tooltip title="Click to see loading">
-      <IconButton onClick={() => setLoading(true)} loading={loading}>
+      <IconButton
+        onClick={() => setLoading(true)}
+        loading={loading}
+        focusableWhenDisabled
+      >
         <ShoppingCartIcon />
       </IconButton>
     </Tooltip>

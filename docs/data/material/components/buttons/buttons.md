@@ -21,6 +21,10 @@ Buttons communicate actions that users can take. They are typically placed throu
 
 {{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
+## Usage guidelines
+
+- **Keep disabled buttons discoverable**: Use `focusableWhenDisabled` to keep disabled `Button`s and `IconButton`s in the tab order. This makes unavailable actions discoverable to screen reader users while still preventing activation.
+
 ## Basic button
 
 The `Button` comes with three variants: text (default), contained, and outlined.
@@ -115,6 +119,7 @@ Use `color` prop to apply theme color palette to component.
 ### Loading
 
 Starting from v6.4.0, use `loading` prop to set icon buttons in a loading state and disable interactions.
+For icon buttons that enter a loading state after being clicked, set `focusableWhenDisabled` to retain focus and maintain tab order while disabled.
 
 {{"demo": "LoadingIconButton.js"}}
 
@@ -133,6 +138,7 @@ To create a file upload button, turn the button into a label using `component="l
 ## Loading
 
 Starting from v6.4.0, use the `loading` prop to set buttons in a loading state and disable interactions.
+For buttons that enter a loading state after being clicked, set `focusableWhenDisabled` to retain focus and maintain tab order while disabled.
 
 {{"demo": "LoadingButtons.js"}}
 
@@ -147,6 +153,36 @@ The `loading` value should always be `null` or `boolean`. The pattern below is n
 
 ```jsx
 <Button {...(isFetching && { loading: true })}> // ❌ Don't do this
+```
+
+:::
+
+## Focusable when disabled
+
+By default, a disabled button is removed from the tab order and ignores pointer events, so keyboard and screen reader users cannot reach it to find out why the action is unavailable.
+
+Set `focusableWhenDisabled` on `Button` or `IconButton` to keep a disabled button reachable while activation stays blocked.
+The button is exposed as `aria-disabled="true"` instead of using the native `disabled` attribute, so it stays in the tab order and still receives hover and focus events—which lets a [Tooltip](/material-ui/react-tooltip/) explain the reason without a wrapper element:
+
+```jsx
+<Tooltip title="You don't have permission to do this">
+  <Button disabled focusableWhenDisabled>
+    Disabled
+  </Button>
+</Tooltip>
+```
+
+Clicks, Enter, and Space are prevented and do not bubble, and no hover, active, or ripple styles are applied.
+Disabled buttons rendered as links (`href` or `to`) remain non-focusable and pointer-inert.
+
+:::warning
+Pair this prop with a visible focus indicator.
+The disabled styles suppress Material Design's default focus affordance, so a disabled button that receives keyboard focus can be impossible to locate on screen—a failure of [WCAG 2.4.7 Focus Visible](https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html).
+
+Enable the [focus ring](/material-ui/customization/focus-visible/) at the theme level so every focused control—disabled or not—draws one:
+
+```js
+createTheme({ focusVisible: true });
 ```
 
 :::
@@ -191,23 +227,20 @@ Here is a [more detailed guide](/material-ui/integrations/routing/#button).
 
 ### Cursor not-allowed
 
-The ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
+The ButtonBase component sets `pointer-events: none;` on disabled buttons by default, which prevents the appearance of a disabled cursor.
 
 If you wish to use `not-allowed`, you have two options:
 
-1. **CSS only**. You can remove the pointer-events style on the disabled state of the `<button>` element:
+1. **CSS only**. You can remove the pointer-events style on the disabled state:
 
 ```css
-.MuiButtonBase-root:disabled {
+.MuiButtonBase-root.Mui-disabled {
   cursor: not-allowed;
   pointer-events: auto;
 }
 ```
 
-However:
-
-- You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/material-ui/react-tooltip/#disabled-elements).
-- The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
+For disabled `Button` and `IconButton` components that need to trigger a Tooltip, use the [`focusableWhenDisabled`](#focusable-when-disabled) prop instead.
 
 2. **DOM change**. You can wrap the button:
 
