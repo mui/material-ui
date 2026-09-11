@@ -13,7 +13,18 @@ describe('AnalyticsProvider', () => {
   const { render } = createRenderer();
   const doNotTrackDescriptor = Object.getOwnPropertyDescriptor(navigator, 'doNotTrack');
 
+  async function findDialog() {
+    return waitFor(async () => {
+      await act(async () => {
+        await vi.advanceTimersByTimeAsync(32);
+      });
+      return screen.getByRole('dialog');
+    });
+  }
+
   beforeEach(() => {
+    // Advance the opening animation explicitly, including in background browser tabs.
+    vi.useFakeTimers({ toFake: ['requestAnimationFrame', 'cancelAnimationFrame'] });
     const storage = new Map<string, string>();
     vi.stubGlobal('localStorage', {
       getItem: (key: string) => storage.get(key) ?? null,
@@ -33,6 +44,7 @@ describe('AnalyticsProvider', () => {
     } else {
       Reflect.deleteProperty(navigator, 'doNotTrack');
     }
+    vi.useRealTimers();
     vi.restoreAllMocks();
     vi.unstubAllGlobals();
   });
@@ -42,7 +54,7 @@ describe('AnalyticsProvider', () => {
     window.history.replaceState({ existing: true }, '', '/material-ui/?test=1#cookie-preferences');
     const { user } = render(<AnalyticsProvider>{null}</AnalyticsProvider>);
 
-    await screen.findByRole('dialog');
+    await findDialog();
     expect(screen.getByRole('dialog')).toHaveAccessibleDescription(
       `We use cookies to understand site usage and improve our content. This includes third-party analytics. Current preference: ${consent === 'analytics' ? 'Analytics allowed' : 'Essential only'}`,
     );
@@ -64,7 +76,7 @@ describe('AnalyticsProvider', () => {
 
   it('does not show a current preference before the first choice', async () => {
     render(<AnalyticsProvider>{null}</AnalyticsProvider>);
-    await screen.findByRole('dialog');
+    await findDialog();
     expect(screen.queryByText(/Current preference:/)).to.equal(null);
   });
 
@@ -79,7 +91,7 @@ describe('AnalyticsProvider', () => {
 
     const reopenAndAccept = async (currentPreference: string) => {
       await user.click(screen.getByRole('link', { name: 'Cookie settings' }));
-      await screen.findByRole('dialog');
+      await findDialog();
       expect(screen.getByText(`Current preference: ${currentPreference}`)).not.to.equal(null);
       await user.click(screen.getByRole('button', { name: 'Allow analytics' }));
       await waitFor(() => expect(screen.queryByRole('dialog')).to.equal(null));
@@ -98,7 +110,7 @@ describe('AnalyticsProvider', () => {
         window.history.pushState(null, '', '/#cookie-preferences');
         Router.events.emit(event, '/#cookie-preferences', { shallow: false });
       });
-      await screen.findByRole('dialog');
+      await findDialog();
     },
   );
 
