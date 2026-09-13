@@ -43,8 +43,8 @@
     "@emotion/styled": "11.14.1",
     "@mui/styled-engine": "workspace:*",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.18",
-    "react": "19.2.8"
+    "@types/react": "19.3.0",
+    "react": "19.3.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.4.1",

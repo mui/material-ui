@@ -46,11 +46,11 @@
     "@emotion/styled": "11.14.1",
     "@mui/system": "workspace:*",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.18",
+    "@types/react": "19.3.0",
     "@types/sinon": "22.0.0",
     "es-toolkit": "1.52.0",
     "fast-glob": "3.3.3",
-    "react": "19.2.8",
+    "react": "19.3.0",
     "sinon": "22.1.0",
     "styled-components": "6.5.3"
   },

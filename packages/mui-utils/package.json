@@ -36,17 +36,17 @@
     "@types/prop-types": "^15.7.15",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
-    "react-is": "^19.2.8"
+    "react-is": "^19.3.0"
   },
   "devDependencies": {
     "@mui/types": "workspace:^",
     "@types/node": "20.19.43",
-    "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.5",
-    "@types/react-is": "19.2.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/react-is": "19.3.0",
     "@types/sinon": "22.0.0",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "sinon": "22.1.0"
   },
   "peerDependencies": {
