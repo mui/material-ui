@@ -119,7 +119,16 @@ This means the scale can be read—and overridden—from plain CSS, including fo
 }
 ```
 
-Only the ladder steps ship as CSS variables. The sizing constants (`touchTarget`, `iconSize`) are emitted as literal px, so control boxes don't follow a CSS-only override — moving them requires the `scale` argument.
+The two sizing constants ship as variables too, under their own names rather than the spacing namespace—they size a box rather than space one, and `theme.spacing()` doesn't resolve them:
+
+```css
+.compact-region {
+  --mui-touchTarget: 28px;
+  --mui-iconSize: 14px;
+}
+```
+
+That moves every control box and glyph in the region, the same way a step override moves the padding around them.
 
 ## All components
 

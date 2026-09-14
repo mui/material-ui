@@ -41,8 +41,9 @@ import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
  */
 export default function applySharedDensity<T extends EnhanceableTheme>(
   enhanced: T & { components: NonNullable<EnhanceableTheme['components']> },
-  /** The interactive box height in px. A sizing constant rather than a spacing
-   * key, so it is emitted literally and has no CSS variable. */
+  /** The interactive box height, already resolved: `var(--<prefix>-touchTarget,
+   * <px>)` on a vars theme, the literal px otherwise. A sizing constant rather
+   * than a spacing key, so it sits outside the spacing namespace. */
   touchTarget: string,
   /** The default icon glyph size in px, on the same terms as `touchTarget`.
    * Anchor cells only — the small and large icon sizes stay on the ladder. */

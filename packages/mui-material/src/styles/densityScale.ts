@@ -27,6 +27,38 @@ export const DEFAULT_STEP_PX: Record<DensityKey, number> = {
 
 export const DENSITY_KEYS = Object.keys(DEFAULT_STEP_PX) as DensityKey[];
 
+/** Values that size a box rather than space one, so they are not spacing keys:
+ * `theme.spacing()` does not resolve them and they ship under their own
+ * `--<prefix>-<key>` variable, not the spacing namespace. */
+export const DEFAULT_SIZING_PX = {
+  touchTarget: 32,
+  iconSize: 16,
+};
+
+export type DensitySizingKey = keyof typeof DEFAULT_SIZING_PX;
+
+export const SIZING_KEYS = Object.keys(DEFAULT_SIZING_PX) as DensitySizingKey[];
+
+/** `--<prefix>-<name>`, with the theme's own prefix. */
+const cssVarName = (theme: EnhanceableTheme, name: string) => {
+  const prefix = theme.cssVarPrefix ?? 'mui';
+  return `--${prefix ? `${prefix}-` : ''}${name}`;
+};
+
+/**
+ * What a component emits for a sizing constant: a variable reference on a vars
+ * theme, so plain CSS can move every control box at once, and the literal px
+ * otherwise. The px stays the fallback either way.
+ */
+export function densitySizing(
+  theme: EnhanceableTheme,
+  key: DensitySizingKey,
+  overrides?: Partial<Record<DensityKey | DensitySizingKey, number>>,
+): string {
+  const px = `${overrides?.[key] ?? DEFAULT_SIZING_PX[key]}px`;
+  return theme.vars ? `var(${cssVarName(theme, key)}, ${px})` : px;
+}
+
 // Type-level only: without `enhanceDensity` the strings pass through verbatim.
 declare module '@mui/system' {
   interface SpacingKeyOverrides extends Record<DensityKey | `-${DensityKey}`, true> {}
@@ -65,24 +97,22 @@ function toPxUnit(unit: unknown): number | null {
  */
 export function applyDensity<T extends EnhanceableTheme>(
   themeInput: T,
-  /** Per-step replacement in px. Numbers keep every step resolvable in JS too
+  /** Per-value replacement in px. Numbers keep every step resolvable in JS too
    * (MUI X derives virtualized heights off the same ladder). */
-  scaleOverrides?: Partial<Record<DensityKey, number>>,
+  scaleOverrides?: Partial<Record<DensityKey | DensitySizingKey, number>>,
 ) {
   const theme = { ...themeInput } as T & {
     components: NonNullable<EnhanceableTheme['components']>;
   };
   theme.components = { ...themeInput.components };
 
-  const prefix = themeInput.cssVarPrefix ?? 'mui';
-  const cssVar = (name: string) => `--${prefix ? `${prefix}-` : ''}${name}`;
   // The Spacing interface is overloaded (0-4 fixed args) — widen to the rest
   // shape once so per-arg delegation and whole-call spreads both type.
   const prevSpacing = themeInput.spacing as (
     ...args: ReadonlyArray<number | string>
   ) => string | number;
 
-  const stepVarName = (key: DensityKey) => cssVar(`spacing-${key}`);
+  const stepVarName = (key: DensityKey) => cssVarName(themeInput, `spacing-${key}`);
 
   // The ladder is absolute px: a `scale` override is a number, which can only
   // mean px (MUI X reads those same numbers to derive sizes in JS), so every
@@ -179,6 +209,11 @@ export function applyDensity<T extends EnhanceableTheme>(
     const rootVars: Record<string, string> = {};
     DENSITY_KEYS.forEach((key) => {
       rootVars[stepVarName(key)] = stepValues[key];
+    });
+    // The sizing constants sit outside the spacing namespace: they size boxes
+    // rather than space them, and `theme.spacing()` does not resolve them.
+    SIZING_KEYS.forEach((key) => {
+      rootVars[cssVarName(themeInput, key)] = `${overrides[key] ?? DEFAULT_SIZING_PX[key]}px`;
     });
     const prevStyleSheets = themeInput.generateStyleSheets;
     const rootSelector = themeInput.rootSelector || ':root';

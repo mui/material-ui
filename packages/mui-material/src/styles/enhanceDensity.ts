@@ -1,13 +1,15 @@
-import { applyDensity, DEFAULT_STEP_PX, DensityKey, EnhanceableTheme } from './densityScale';
+import {
+  applyDensity,
+  DEFAULT_SIZING_PX,
+  DEFAULT_STEP_PX,
+  densitySizing,
+  DensityKey,
+  DensitySizingKey,
+  EnhanceableTheme,
+} from './densityScale';
 import applySharedDensity from './sharedDensityComponents';
 
-/**
- * Values that size a box rather than space one, so they are not spacing keys:
- * they emit as plain lengths, get no CSS variable, and `theme.spacing()` does
- * not resolve them. They ride the same override object because apps need to
- * move them with the rest of the scale.
- */
-export type DensitySizingKey = 'touchTarget' | 'iconSize';
+export type { DensitySizingKey };
 
 /**
  * Per-value override in px — same shape as `defaultDensityScale`, so the two
@@ -23,8 +25,7 @@ export type DensityScaleOverrides = Partial<Record<DensityKey | DensitySizingKey
  */
 export const defaultDensityScale: Record<DensityKey | DensitySizingKey, number> = {
   ...DEFAULT_STEP_PX,
-  touchTarget: 32,
-  iconSize: 16,
+  ...DEFAULT_SIZING_PX,
 };
 
 /**
@@ -37,12 +38,12 @@ export default function enhanceDensity<T extends EnhanceableTheme>(
   scale?: DensityScaleOverrides,
 ) {
   const enhanced = applyDensity(theme, scale);
-  // Sizing constants rather than ladder steps: they emit as plain px, so
-  // neither becomes a spacing key or a CSS variable.
+  // Sizing constants rather than ladder steps: their own variables, outside the
+  // spacing namespace, and never spacing keys.
   applySharedDensity(
     enhanced,
-    `${scale?.touchTarget ?? defaultDensityScale.touchTarget}px`,
-    `${scale?.iconSize ?? defaultDensityScale.iconSize}px`,
+    densitySizing(enhanced, 'touchTarget', scale),
+    densitySizing(enhanced, 'iconSize', scale),
   );
   return enhanced;
 }

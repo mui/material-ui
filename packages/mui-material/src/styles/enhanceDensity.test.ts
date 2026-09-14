@@ -297,9 +297,10 @@ describe('enhanceDensity', () => {
     const sheets = theme.generateStyleSheets();
     const stepVars = sheets[sheets.length - 1][':root'] as Record<string, string>;
 
-    // emitted literally, even on a vars theme — no variable to override
-    expect(controlBox(theme)).to.equal('32px');
+    // its own variable, outside the spacing namespace, px as the fallback
+    expect(stepVars['--mui-touchTarget']).to.equal('32px');
     expect(stepVars).to.not.have.property('--mui-spacing-touchTarget');
+    expect(controlBox(theme)).to.equal('var(--mui-touchTarget, 32px)');
 
     // and it never became a spacing key: both channels pass it through as raw CSS
     expect(theme.spacing('touchTarget')).to.equal('touchTarget');
@@ -308,13 +309,21 @@ describe('enhanceDensity', () => {
     });
   });
 
+  test('a static theme keeps the sizing constants literal', () => {
+    const theme = enhanceDensity(createTheme());
+    expect(controlBox(theme)).to.equal('32px');
+    expect(iconBox(theme)).to.equal('16px');
+  });
+
   test('the icon glyph is a sizing constant too', () => {
     const theme = enhanceDensity(createTheme({ cssVariables: true }), { iconSize: 20 });
     const sheets = theme.generateStyleSheets();
     const stepVars = sheets[sheets.length - 1][':root'] as Record<string, string>;
 
-    expect(iconBox(theme)).to.equal('20px');
+    // a `scale` override moves the variable and the fallback together
+    expect(stepVars['--mui-iconSize']).to.equal('20px');
     expect(stepVars).to.not.have.property('--mui-spacing-iconSize');
+    expect(iconBox(theme)).to.equal('var(--mui-iconSize, 20px)');
     expect(theme.spacing('iconSize')).to.equal('iconSize');
     expect((theme as any).unstable_sx({ m: 'iconSize' })).to.deep.equal({
       margin: 'iconSize',
