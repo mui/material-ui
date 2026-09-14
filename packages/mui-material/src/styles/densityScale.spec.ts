@@ -51,8 +51,8 @@ takesString(theme.spacing('small', 2, 'auto', '3px'));
 // The scale is closed: every key of the override object must be one the
 // enhancer already knows, so a misspelling is a compile error rather than a
 // value that silently never reaches a component.
-enhanceDensity(createTheme(), { small: 8, touchTarget: 40, iconSize: 20 });
+enhanceDensity(createTheme(), { spacing: { small: 8 }, touchTarget: 40, iconSize: 20 });
 // @ts-expect-error — misspelled step
-enhanceDensity(createTheme(), { smal: 8 });
+enhanceDensity(createTheme(), { spacing: { smal: 8 } });
 // @ts-expect-error — the scale cannot be extended with new names
 enhanceDensity(createTheme(), { huge: 64 });

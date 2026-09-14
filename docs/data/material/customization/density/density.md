@@ -106,7 +106,9 @@ const theme = enhanceDensity(createTheme({ cssVariables: true }));
 theme.spacing('small'); // 'var(--mui-spacing-small, calc(1.5 * var(--mui-spacing, 8px)))'
 
 // A step given an explicit value falls back to that length:
-const dense = enhanceDensity(createTheme({ cssVariables: true }), { small: 8 });
+const dense = enhanceDensity(createTheme({ cssVariables: true }), {
+  spacing: { small: 8 },
+});
 
 dense.spacing('small'); // 'var(--mui-spacing-small, 8px)'
 ```
@@ -140,19 +142,30 @@ These two variables are not part of the spacing scale so using `theme.spacing()`
 
 ## Customizing the scale
 
-To override the default steps, pass a second argument to `enhanceDensity`. If the object is a partial scale, the missing steps keep their default values.
+To override the defaults, pass a second argument to `enhanceDensity`. The seven steps go under `spacing`, the two sizing constants beside it—they size a box rather than space one, so they sit apart:
+
+```js
+enhanceDensity(theme, {
+  spacing: { small: 10 },
+  touchTarget: 28,
+});
+```
+
+Anything left out keeps its default value.
 
 Below is an example of a full scale overrides for a very dense application:
 
 ```js
 const theme = enhanceDensity(createTheme(), {
-  xxSmall: 2,
-  xSmall: 4,
-  small: 8,
-  medium: 12,
-  large: 16,
-  xLarge: 24,
-  xxLarge: 32,
+  spacing: {
+    xxSmall: 2,
+    xSmall: 4,
+    small: 8,
+    medium: 12,
+    large: 16,
+    xLarge: 24,
+    xxLarge: 32,
+  },
   touchTarget: 24,
   iconSize: 14,
 });

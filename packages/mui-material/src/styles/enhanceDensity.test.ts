@@ -52,13 +52,15 @@ describe('enhanceDensity', () => {
 
   test('a full ladder override re-scales every step (the docs-recipe path)', () => {
     const compact = enhanceDensity(createTheme(), {
-      xxSmall: 2,
-      xSmall: 4,
-      small: 8,
-      medium: 12,
-      large: 16,
-      xLarge: 24,
-      xxLarge: 32,
+      spacing: {
+        xxSmall: 2,
+        xSmall: 4,
+        small: 8,
+        medium: 12,
+        large: 16,
+        xLarge: 24,
+        xxLarge: 32,
+      },
       touchTarget: 24,
     });
 
@@ -196,7 +198,7 @@ describe('enhanceDensity', () => {
     });
 
     test('non-px string: an override lands in the same family as every other step', () => {
-      const theme = enhanceDensity(createTheme({ spacing: '0.5rem' }), { small: 6 });
+      const theme = enhanceDensity(createTheme({ spacing: '0.5rem' }), { spacing: { small: 6 } });
       expect(theme.spacing('small')).to.equal('6px');
       expect(theme.spacing('medium')).to.equal('16px');
     });
@@ -453,7 +455,9 @@ describe('enhanceDensity', () => {
   });
 
   test('array spacing: a scale override still moves the ladder', () => {
-    const theme = enhanceDensity(createTheme({ spacing: [0, 4, 8, 16] }), { small: 10 });
+    const theme = enhanceDensity(createTheme({ spacing: [0, 4, 8, 16] }), {
+      spacing: { small: 10 },
+    });
 
     expect(theme.spacing('small')).to.equal('10px');
     expect(theme.spacing('-small')).to.equal('-10px');

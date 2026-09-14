@@ -4,6 +4,7 @@ import {
   DEFAULT_STEP_PX,
   densitySizing,
   DensityKey,
+  DensityScaleOverrides,
   DensitySizingKey,
   EnhanceableTheme,
 } from './densityScale';
@@ -11,14 +12,12 @@ import applySharedDensity from './sharedDensityComponents';
 
 export type { DensitySizingKey };
 
-/**
- * Per-value override in px — same shape as `defaultDensityScale`, so the two
- * merge by spread and every value stays resolvable in JS as well as CSS.
- */
-export type DensityScaleOverrides = Partial<Record<DensityKey | DensitySizingKey, number>>;
+export type { DensityScaleOverrides };
 
 /**
- * The ONE shipped ladder in px + the sizing keys. Internal —
+ * The ONE shipped ladder in px + the sizing keys, flat — this is the resolved
+ * table, not the override shape (`DensityScaleOverrides` nests the steps).
+ * Internal —
  * barrel-exported as `private_defaultDensityScale` (the `private_*`
  * convention, like `private_createTypography`) so sibling enhancers (MUI X)
  * can merge user recipes over the canonical numbers for JS-gated derivations.

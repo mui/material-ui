@@ -41,8 +41,7 @@ describe('densityScale', () => {
 
     test('scale overrides replace a step wholesale (number = px)', () => {
       const theme = applyDensity(createTheme(), {
-        small: 6,
-        large: 40,
+        spacing: { small: 6, large: 40 },
       });
 
       expect(theme.spacing('small')).to.equal('6px');
@@ -147,7 +146,7 @@ describe('densityScale', () => {
 
     test('scale overrides land as the step var VALUE on a vars theme', () => {
       const theme = applyDensity(createTheme({ cssVariables: true }), {
-        small: 6,
+        spacing: { small: 6 },
       });
       const sheets = theme.generateStyleSheets();
       const rootVars = sheets[sheets.length - 1][':root'] as Record<string, string>;

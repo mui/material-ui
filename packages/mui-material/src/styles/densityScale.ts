@@ -39,6 +39,16 @@ export type DensitySizingKey = keyof typeof DEFAULT_SIZING_PX;
 
 export const SIZING_KEYS = Object.keys(DEFAULT_SIZING_PX) as DensitySizingKey[];
 
+/**
+ * What `enhanceDensity` accepts as its second argument. The steps nest under
+ * `spacing` because that is the surface they land on — `theme.spacing('small')`
+ * resolves them — while the sizing constants size a box and sit at the top
+ * level. Values are px; anything left out keeps its default.
+ */
+export type DensityScaleOverrides = Partial<Record<DensitySizingKey, number>> & {
+  spacing?: Partial<Record<DensityKey, number>> | undefined;
+};
+
 /** `--<prefix>-<name>`, with the theme's own prefix. */
 const cssVarName = (theme: EnhanceableTheme, name: string) => {
   const prefix = theme.cssVarPrefix ?? 'mui';
@@ -53,7 +63,7 @@ const cssVarName = (theme: EnhanceableTheme, name: string) => {
 export function densitySizing(
   theme: EnhanceableTheme,
   key: DensitySizingKey,
-  overrides?: Partial<Record<DensityKey | DensitySizingKey, number>>,
+  overrides?: DensityScaleOverrides,
 ): string {
   const px = `${overrides?.[key] ?? DEFAULT_SIZING_PX[key]}px`;
   return theme.vars ? `var(${cssVarName(theme, key)}, ${px})` : px;
@@ -99,7 +109,7 @@ export function applyDensity<T extends EnhanceableTheme>(
   themeInput: T,
   /** Per-value replacement in px. Numbers keep every step resolvable in JS too
    * (MUI X derives virtualized heights off the same ladder). */
-  scaleOverrides?: Partial<Record<DensityKey | DensitySizingKey, number>>,
+  scaleOverrides?: DensityScaleOverrides,
 ) {
   const theme = { ...themeInput } as T & {
     components: NonNullable<EnhanceableTheme['components']>;
@@ -131,7 +141,7 @@ export function applyDensity<T extends EnhanceableTheme>(
   const resolved: Record<string, string> = Object.create(null);
   DENSITY_KEYS.forEach((key) => {
     // An override simply moves the step's px anchor; both take the same path.
-    const px = overrides[key] ?? DEFAULT_STEP_PX[key];
+    const px = overrides.spacing?.[key] ?? DEFAULT_STEP_PX[key];
     stepValues[key] = stepValue(px);
 
     if (themeInput.vars) {
