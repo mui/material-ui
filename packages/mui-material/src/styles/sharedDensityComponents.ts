@@ -11,7 +11,6 @@ import addRootOverride from '../utils/addRootOverride';
 import switchClasses from '../Switch/switchClasses';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import chipClasses from '../Chip/chipClasses';
-import tooltipClasses from '../Tooltip/tooltipClasses';
 import tabClasses from '../Tab/tabClasses';
 import stepLabelClasses from '../StepLabel/stepLabelClasses';
 import tablePaginationClasses from '../TablePagination/tablePaginationClasses';
@@ -238,54 +237,14 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     {
       ...enhanced.typography?.caption,
       padding: `${spacing('xSmall')} ${spacing('small')}`,
-      [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-        marginInlineEnd: spacing(0.5),
-      },
-      [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-        marginInlineStart: spacing(0.5),
-      },
-      [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
-        marginBottom: spacing(0.5),
-      },
-      [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
-        marginTop: spacing(0.5),
-      },
+      '--_spacing': '4px',
     },
     'tooltip',
   );
   addRootOverride(
     enhanced.components,
     'MuiTooltip',
-    {
-      // 0.71 = master's 1/sqrt(2) square-arrow projection ratio.
-      '--_arrowSize': spacing(1.375),
-      [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
-        marginTop: 'calc(var(--_arrowSize) * -0.71)',
-      },
-      [`&[data-popper-placement*="top"] .${tooltipClasses.arrow}`]: {
-        marginBottom: 'calc(var(--_arrowSize) * -0.71)',
-      },
-      [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-        // re-assert: master's placement rules hit these selectors at equal specificity
-        height: 'var(--_arrowSize)',
-        width: 'calc(var(--_arrowSize) * 0.71)',
-        marginInlineStart: 'calc(var(--_arrowSize) * -0.71)',
-      },
-      [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-        height: 'var(--_arrowSize)',
-        width: 'calc(var(--_arrowSize) * 0.71)',
-        marginInlineEnd: 'calc(var(--_arrowSize) * -0.71)',
-      },
-    },
-    'popper',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiTooltip',
-    {
-      width: 'var(--_arrowSize)',
-      height: 'calc(var(--_arrowSize) * 0.71)',
-    },
+    { width: 'var(--_arrowSize)', height: 'calc(var(--_arrowSize) * 0.71)' },
     'arrow',
   );
   addRootOverride(enhanced.components, 'MuiInputBase', {
