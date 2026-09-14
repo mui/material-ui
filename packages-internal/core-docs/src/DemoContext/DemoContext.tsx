@@ -1,4 +1,5 @@
 import * as React from 'react';
+import type { Direction } from '@mui/system';
 import type { MuiProductId } from '../utils/getProductInfoFromUrl';
 
 export type CodeVariant = 'TS' | 'JS';
@@ -80,7 +81,7 @@ export interface StyleEngineWrapperProps {
    */
   container?: HTMLElement;
   /** The reading direction to render for. */
-  direction: 'ltr' | 'rtl';
+  direction: Direction;
 }
 
 export interface DemoContextValue {

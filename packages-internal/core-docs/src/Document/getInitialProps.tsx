@@ -18,17 +18,17 @@ export type DocumentStyleEngine = () => {
 };
 
 export function createGetInitialProps({
-  styleEngines = [],
+  styleEngine,
 }: {
-  styleEngines?: DocumentStyleEngine[];
+  styleEngine?: DocumentStyleEngine;
 } = {}) {
   async function getInitialPropsDocument(ctx: DocumentContext) {
-    const engines = styleEngines.map((createEngine) => createEngine());
+    const engine = styleEngine?.();
 
     try {
       const finalProps = await documentGetInitialProps(ctx, {
         emotionCache: createEmotionCache(),
-        plugins: engines.map((engine) => engine.plugin),
+        plugins: engine ? [engine.plugin] : [],
       });
 
       // `ctx.req` is undefined during the static export (`output: 'export'`), so the
@@ -60,7 +60,7 @@ export function createGetInitialProps({
         ],
       };
     } finally {
-      engines.forEach((engine) => engine.dispose?.());
+      engine?.dispose?.();
     }
   }
 

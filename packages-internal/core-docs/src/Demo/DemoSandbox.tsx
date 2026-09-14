@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { once } from 'es-toolkit/function';
 import { prefixer } from 'stylis';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
@@ -13,15 +14,9 @@ import { useDemoContext } from '../DemoContext/DemoContext';
 import { DemoErrorBoundary } from './DemoErrorBoundary';
 import { DemoInstanceThemeProvider } from './DemoThemeProviders';
 
-type RtlModule = typeof import('../utils/rtlPlugin');
+type RtlModule = typeof import('@mui/stylis-plugin-rtl');
 
-let rtlModulePromise: Promise<RtlModule> | undefined;
-function loadRtlModule() {
-  if (!rtlModulePromise) {
-    rtlModulePromise = import('../utils/rtlPlugin');
-  }
-  return rtlModulePromise;
-}
+const loadRtlModule = once(() => import('@mui/stylis-plugin-rtl'));
 
 const SRC_DOC = `<!DOCTYPE html>
 <html>
@@ -100,7 +95,7 @@ function FramedDemo(props: FramedDemoProps) {
         key: `iframe-demo-${theme.direction}`,
         prepend: true,
         container: document.head,
-        stylisPlugins: rtl && rtlModule ? [prefixer, rtlModule.rtlPlugin] : [prefixer],
+        stylisPlugins: rtl && rtlModule ? [prefixer, rtlModule.default] : [prefixer],
       }),
     [document, theme.direction, rtl, rtlModule],
   );
@@ -127,7 +122,7 @@ function FramedDemo(props: FramedDemoProps) {
     </CacheProvider>
   );
 
-  if (rtl && rtlModule && StyleEngineWrapper) {
+  if (rtl && StyleEngineWrapper) {
     return (
       <StyleEngineWrapper container={document.head} direction="rtl">
         {tree}

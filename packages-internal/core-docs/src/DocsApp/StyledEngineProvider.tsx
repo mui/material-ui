@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import { createEmotionCache as createCache } from '@mui/material-nextjs/v15-pagesRouter';
+import { once } from 'es-toolkit/function';
 import { prefixer } from 'stylis';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { ThemeOptionsContext } from '../ThemeContext';
@@ -14,20 +15,16 @@ type StyledEngineProviderProps = {
   StyleEngineWrapper?: React.ComponentType<StyleEngineWrapperProps>;
 };
 
-let rtlCachePromise: Promise<EmotionCache> | undefined;
-function loadRtlCache() {
-  if (!rtlCachePromise) {
-    rtlCachePromise = import('../utils/rtlPlugin').then(({ rtlPlugin }) =>
-      createCache({
-        key: 'rtl',
-        prepend: true,
-        enableCssLayer: true,
-        stylisPlugins: [prefixer, rtlPlugin],
-      }),
-    );
-  }
-  return rtlCachePromise;
-}
+const loadRtlCache = once(() =>
+  import('@mui/stylis-plugin-rtl').then(({ default: rtlPlugin }) =>
+    createCache({
+      key: 'rtl',
+      prepend: true,
+      enableCssLayer: true,
+      stylisPlugins: [prefixer, rtlPlugin],
+    }),
+  ),
+);
 
 export default function StyledEngineProvider(props: StyledEngineProviderProps) {
   const { children, cacheLtr, StyleEngineWrapper } = props;
@@ -41,22 +38,15 @@ export default function StyledEngineProvider(props: StyledEngineProviderProps) {
     }
   }, [rtl, cacheRtl]);
 
-  if (rtl && cacheRtl) {
-    const tree = (
-      <CacheProvider value={cacheRtl}>
-        <GlobalStyles styles="@layer theme, docsearch, mui, utilities;" />
-        {children}
-      </CacheProvider>
-    );
-    if (StyleEngineWrapper) {
-      return <StyleEngineWrapper direction="rtl">{tree}</StyleEngineWrapper>;
-    }
-    return tree;
-  }
-  return (
-    <CacheProvider value={cacheLtr}>
+  const tree = (
+    <CacheProvider value={rtl && cacheRtl ? cacheRtl : cacheLtr}>
       <GlobalStyles styles="@layer theme, docsearch, mui, utilities;" />
       {children}
     </CacheProvider>
   );
+
+  if (rtl && StyleEngineWrapper) {
+    return <StyleEngineWrapper direction="rtl">{tree}</StyleEngineWrapper>;
+  }
+  return tree;
 }
