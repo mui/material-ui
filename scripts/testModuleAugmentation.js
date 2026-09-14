@@ -1,26 +1,22 @@
-const { execFile } = require('child_process');
+const childProcess = require('child_process');
 const path = require('path');
 const { promisify } = require('util');
 const { chunk } = require('es-toolkit/array');
 const glob = require('fast-glob');
 
-const exec = promisify(execFile);
+// Windows needs a shell to start the pnpm.cmd shim.
+const exec = promisify(childProcess.exec);
+const execFile = promisify(childProcess.execFile);
 const root = path.resolve(__dirname, '..');
 
 async function main(packages = ['@mui/material', '@mui/system']) {
   // Use the release build to copy authored declarations and emit TypeScript declarations.
   await exec(
-    'pnpm',
     [
-      'lerna',
-      'run',
-      'build',
-      ...packages.flatMap((name) => ['--scope', name]),
-      '--include-dependencies',
-      '--skip-nx-cache',
-      '--concurrency',
-      '3',
-    ],
+      'pnpm lerna run build',
+      ...packages.map((name) => `--scope ${name}`),
+      '--include-dependencies --skip-nx-cache --concurrency 3',
+    ].join(' '),
     { cwd: root, maxBuffer: 20 * 1024 * 1024 },
   );
   const configs = await glob(
@@ -38,7 +34,7 @@ async function main(packages = ['@mui/material', '@mui/system']) {
     await Promise.all(
       group.map(async (config) => {
         try {
-          await exec(
+          await execFile(
             process.execPath,
             [path.join(root, 'test/moduleAugmentation/compile.js'), config],
             {

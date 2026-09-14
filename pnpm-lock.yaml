@@ -1213,9 +1213,6 @@ importers:
       es-toolkit:
         specifier: 1.52.0
         version: 1.52.0
-      fast-glob:
-        specifier: 3.3.3
-        version: 3.3.3
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -1437,12 +1434,6 @@ importers:
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
-      es-toolkit:
-        specifier: 1.52.0
-        version: 1.52.0
-      fast-glob:
-        specifier: 3.3.3
-        version: 3.3.3
       react:
         specifier: 19.2.8
         version: 19.2.8

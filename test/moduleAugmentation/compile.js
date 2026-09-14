@@ -1,20 +1,17 @@
-const { execFileSync } = require('child_process');
+const { execSync } = require('child_process');
 const path = require('path');
 
-const configPath = process.argv[2];
+const configPath = path.resolve(process.argv[2]);
 const packagesRoot = path.resolve(__dirname, '../../packages');
 const fixtureRoot = path.dirname(configPath);
 let output;
 let failed = false;
 try {
-  output = execFileSync(
-    'pnpm',
-    ['tsc', '--project', configPath, '--listFiles', '--pretty', 'false'],
-    {
-      encoding: 'utf8',
-      maxBuffer: 10 * 1024 * 1024,
-    },
-  );
+  // Windows needs a shell to start the pnpm.cmd shim.
+  output = execSync(`pnpm tsc --project "${configPath}" --listFiles --pretty false`, {
+    encoding: 'utf8',
+    maxBuffer: 10 * 1024 * 1024,
+  });
 } catch (error) {
   output = error.stdout || '';
   failed = true;
