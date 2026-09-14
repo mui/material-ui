@@ -119,7 +119,7 @@ This means the scale can be read—and overridden—from plain CSS, including fo
 }
 ```
 
-The two sizing constants ship as variables too, under their own names rather than the spacing namespace—they size a box rather than space one, and `theme.spacing()` doesn't resolve them:
+The two sizing constants also ship as variables:
 
 ```css
 .compact-region {
@@ -128,7 +128,9 @@ The two sizing constants ship as variables too, under their own names rather tha
 }
 ```
 
-That moves every control box and glyph in the region, the same way a step override moves the padding around them.
+:::info
+These two variables are not part of the spacing scale so using `theme.spacing()` will not resolve them.
+:::
 
 ## All components
 
