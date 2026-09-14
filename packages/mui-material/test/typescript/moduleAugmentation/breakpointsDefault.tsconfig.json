@@ -1,4 +1,4 @@
 {
   "extends": "../../../../../test/moduleAugmentation/tsconfig.json",
-  "files": ["autocompleteCustomSlotProps.spec.tsx"]
+  "files": ["breakpointsDefault.spec.tsx"]
 }

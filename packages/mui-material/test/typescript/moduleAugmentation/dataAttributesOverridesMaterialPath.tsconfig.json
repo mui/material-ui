@@ -1,4 +1,4 @@
 {
-  "extends": "../../../../../tsconfig.json",
+  "extends": "../../../../../test/moduleAugmentation/tsconfig.json",
   "files": ["dataAttributesOverridesMaterialPath.spec.tsx"]
 }

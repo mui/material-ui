@@ -122,6 +122,9 @@ jobs:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
       - run:
+          name: Test module augmentation
+          command: pnpm typescript:module-augmentation
+      - run:
           name: Build declaration files
           command: |
             pnpm lerna run --scope "@mui/*" build

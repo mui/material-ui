@@ -48,3 +48,9 @@ function MyContainer() {
     </ThemeProvider>
   );
 }
+
+theme.breakpoints.up('tablet');
+// @ts-expect-error The augmentation removes this breakpoint.
+theme.breakpoints.up('sm');
+// @ts-expect-error This breakpoint does not exist.
+theme.breakpoints.up('unknown');

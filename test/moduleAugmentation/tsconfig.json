@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@mui/material": ["../../packages/mui-material/build/index.d.ts"],
+      "@mui/material/*": ["../../packages/mui-material/build/*"],
+      "@mui/system": ["../../packages/mui-system/build/index.d.ts"],
+      "@mui/system/*": ["../../packages/mui-system/build/*"],
+      "@mui/utils": ["../../packages/mui-utils/build/index.d.ts"],
+      "@mui/utils/*": ["../../packages/mui-utils/build/*"],
+      "@mui/types": ["../../packages/mui-types/build/index.d.ts"],
+      "@mui/types/*": ["../../packages/mui-types/build/*"],
+      "@mui/private-theming": ["../../packages/mui-private-theming/build/index.d.ts"],
+      "@mui/private-theming/*": ["../../packages/mui-private-theming/build/*"],
+      "@mui/styled-engine": ["../../packages/mui-styled-engine/build/index.d.ts"],
+      "@mui/styled-engine/*": ["../../packages/mui-styled-engine/build/*"]
+    }
+  }
+}
