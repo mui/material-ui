@@ -43,7 +43,9 @@ const BEAM_GAP = 10;
 const INK = { padding: '#4f7a35', margin: '#a8641c', gap: '#6c3fb0' };
 const INK_DARK = { padding: '#a9d18a', margin: '#f0b47a', gap: '#c9adf0' };
 
-export type Aspect = 'padding' | 'margin' | 'gap' | 'icon' | 'touch-target';
+/** The measurement kinds a claim can ask for. Derived so the vocabulary and
+ * the fields each kind accepts stay one declaration. */
+export type Aspect = Claim['aspect'];
 
 export type Side = 'top' | 'bottom' | 'left' | 'right';
 
@@ -838,42 +840,67 @@ export function Annotate({
   );
 }
 
-/** A claim: what is measured and what the theme authored for it. */
-export interface Claim {
+/** Common to every claim: what to find, how to caption it, where to put it. */
+interface ClaimBase {
   /** selector, resolved inside the demo. Every match is annotated. */
   on: string;
-  aspect: Aspect;
   /** the expression the theme authored; omitted -> plain px caption. */
   token?: string;
   /** printed instead of the token — to name the measured thing when the
    * expression is private or the component identity matters more. The token,
    * when also given, still drives the value gate's check. */
   text?: string;
-  /** 'all' paints the full ring (every live band) with ONE label, led by a
-   * single line from the band facing the route's gutter. */
-  axis?: 'inline' | 'block' | 'all';
-  /** gap only: which child boundary the band follows (0 = after the first
-   * child). A row with separators has several gaps; this picks one. */
-  after?: number;
-  /** touch-target only: also draw the dashed target box, inset inside the
-   * element — makes the interactive area visible, not just its length. */
-  outlined?: boolean;
-  /** touch-target only: draw as a frame + pointer line (the icon device)
-   * instead of a beam — for a small box whose area matters more than a
-   * bracketed length. */
-  pointer?: boolean;
-  /** render the caption's `(px)` part on its own line — for long expressions
-   * whose one-line label would reach too far into the demo. */
-  wrap?: boolean;
-  /** one band only. The way to name a pair whose values differ: the presets
-   * author each side's expression separately (details: `xxSmall` top,
-   * `small` bottom), so each side gets its own claim carrying its own token. */
-  side?: 'top' | 'right' | 'bottom' | 'left';
   /** shown in the slot toggle list; derived from the selector when absent. */
   label?: string;
   /** authored position; anything omitted falls back to nearest-side defaults. */
   route?: Partial<Route>;
 }
+
+/**
+ * A claim: what is measured and what the theme authored for it. The aspect
+ * picks the branch, and each branch carries only the knobs that branch reads —
+ * `resolveClaims` ignores anything else, so a union beats optional fields.
+ */
+export type Claim =
+  | (ClaimBase & {
+      /** a strip of space around the element, shown by filling it. */
+      aspect: 'padding' | 'margin';
+      /** 'all' paints the full ring (every live band) with ONE label, led by a
+       * single line from the band facing the route's gutter. */
+      axis?: 'inline' | 'block' | 'all';
+      /** one band only. The way to name a pair whose values differ: the presets
+       * author each side's expression separately (details: `xxSmall` top,
+       * `small` bottom), so each side gets its own claim carrying its own
+       * token. */
+      side?: Side;
+    })
+  | (ClaimBase & {
+      /** the space between two children, shown by filling it. */
+      aspect: 'gap';
+      /** which child boundary the band follows (0 = after the first child). A
+       * row with separators has several gaps; this picks one. */
+      after?: number;
+    })
+  | (ClaimBase & {
+      /** the glyph's own box, framed with a pointer line to its label. */
+      aspect: 'icon';
+    })
+  | (ClaimBase & {
+      /** the element's own box, bracketed end to end by a beam. */
+      aspect: 'touch-target';
+      /** which dimension the beam reads; the route's gutter decides when
+       * omitted — a side reads height, top/bottom reads width. */
+      axis?: 'inline' | 'block';
+      /** also draw the dashed target box, inset inside the element — makes the
+       * interactive area visible, not just its length. */
+      outlined?: boolean;
+      /** draw as a frame + pointer line (the icon device) instead of a beam —
+       * for a small box whose area matters more than a bracketed length. */
+      pointer?: boolean;
+      /** render the caption's `(px)` part on its own line — for long
+       * expressions whose one-line label would reach too far into the demo. */
+      wrap?: boolean;
+    });
 
 function labelFor(value: number, token?: string) {
   const measured = round(value);
@@ -1121,9 +1148,13 @@ export function resolveClaims(
         return;
       }
 
-      // touch-target: the element's own box, bracketed by a beam. The gutter
-      // decides the dimension — a side reads height, top/bottom reads width —
-      // unless `axis` names it (a pointer's label can sit anywhere).
+      if (claim.aspect !== 'touch-target') {
+        return;
+      }
+
+      // The element's own box, bracketed by a beam. The gutter decides the
+      // dimension — a side reads height, top/bottom reads width — unless
+      // `axis` names it (a pointer's label can sit anywhere).
       const route = routed(claim.route, nearestOf(box, ['left', 'right']));
       const measuresWidth = claim.axis
         ? claim.axis === 'inline'

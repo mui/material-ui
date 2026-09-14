@@ -44,6 +44,9 @@ const BEAM_GAP = 10;
 const INK = { padding: '#4f7a35', margin: '#a8641c', gap: '#6c3fb0' };
 const INK_DARK = { padding: '#a9d18a', margin: '#f0b47a', gap: '#c9adf0' };
 
+/** The measurement kinds a claim can ask for. Derived so the vocabulary and
+ * the fields each kind accepts stay one declaration. */
+
 /** The slot a reader toggles: every annotation on it goes together. */
 export const slotLabel = (annotation) =>
   annotation.label ??
@@ -830,7 +833,13 @@ function Annotate({ items, bounds }) {
   );
 }
 
-/** A claim: what is measured and what the theme authored for it. */
+/** Common to every claim: what to find, how to caption it, where to put it. */
+
+/**
+ * A claim: what is measured and what the theme authored for it. The aspect
+ * picks the branch, and each branch carries only the knobs that branch reads —
+ * `resolveClaims` ignores anything else, so a union beats optional fields.
+ */
 
 Annotate.propTypes = {
   bounds: PropTypes.shape({
@@ -1152,9 +1161,13 @@ export function resolveClaims(stage, demo, claims) {
         return;
       }
 
-      // touch-target: the element's own box, bracketed by a beam. The gutter
-      // decides the dimension — a side reads height, top/bottom reads width —
-      // unless `axis` names it (a pointer's label can sit anywhere).
+      if (claim.aspect !== 'touch-target') {
+        return;
+      }
+
+      // The element's own box, bracketed by a beam. The gutter decides the
+      // dimension — a side reads height, top/bottom reads width — unless
+      // `axis` names it (a pointer's label can sit anywhere).
       const route = routed(claim.route, nearestOf(box, ['left', 'right']));
       const measuresWidth = claim.axis
         ? claim.axis === 'inline'
