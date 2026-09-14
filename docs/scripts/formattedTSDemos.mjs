@@ -24,9 +24,11 @@ import CORE_TYPESCRIPT_PROJECTS from '../../scripts/coreTypeScriptProjects.mjs';
 
 /**
  * List of demos or folders to ignore when transpiling.
- * Only ignore files that aren't used in the UI.
+ * Only ignore files that aren't used in the UI, or that a demo imports rather
+ * than displays — those resolve straight from TypeScript, so a JS twin is dead
+ * weight the two copies can drift apart on.
  */
-const ignoreList = ['/pages.ts'];
+const ignoreList = ['/pages.ts', '/densityAnnotations.tsx', '/densityAnnotationSpecs.ts'];
 
 const babelConfig = {
   presets: ['@babel/preset-typescript'],
