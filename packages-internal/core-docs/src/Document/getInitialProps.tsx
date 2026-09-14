@@ -4,34 +4,31 @@ import { documentGetInitialProps } from '@mui/material-nextjs/v13-pagesRouter';
 import createEmotionCache from '../DocsApp/createEmotionCache';
 import { pathnameToLanguage } from '../helpers/helpers';
 
+type DocumentOptions = NonNullable<Parameters<typeof documentGetInitialProps>[1]>;
+
+export type DocumentPlugin = NonNullable<DocumentOptions['plugins']>[number];
+
+/**
+ * Server-side counterpart of `DemoContextValue['StyleEngineWrapper']`. Called
+ * once per request; `dispose` runs after the response props are resolved.
+ */
+export type DocumentStyleEngine = () => {
+  plugin: DocumentPlugin;
+  dispose?: () => void;
+};
+
 export function createGetInitialProps({
-  setupStyledComponents = false,
+  styleEngines = [],
 }: {
-  setupStyledComponents: boolean;
-}) {
+  styleEngines?: DocumentStyleEngine[];
+} = {}) {
   async function getInitialPropsDocument(ctx: DocumentContext) {
-    const styledComponentsSheet = setupStyledComponents
-      ? new (await import('styled-components')).ServerStyleSheet()
-      : null;
+    const engines = styleEngines.map((createEngine) => createEngine());
 
     try {
       const finalProps = await documentGetInitialProps(ctx, {
         emotionCache: createEmotionCache(),
-        plugins: styledComponentsSheet
-          ? [
-              {
-                enhanceApp: (App) => (props) =>
-                  styledComponentsSheet.collectStyles(<App {...props} />),
-                resolveProps: async (initialProps) => ({
-                  ...initialProps,
-                  styles: [
-                    styledComponentsSheet.getStyleElement(),
-                    ...React.Children.toArray(initialProps.styles),
-                  ],
-                }),
-              },
-            ]
-          : [],
+        plugins: engines.map((engine) => engine.plugin),
       });
 
       // `ctx.req` is undefined during the static export (`output: 'export'`), so the
@@ -63,9 +60,7 @@ export function createGetInitialProps({
         ],
       };
     } finally {
-      if (styledComponentsSheet) {
-        styledComponentsSheet.seal();
-      }
+      engines.forEach((engine) => engine.dispose?.());
     }
   }
 

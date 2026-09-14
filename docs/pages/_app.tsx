@@ -25,6 +25,7 @@ import { LicenseInfo } from '@mui/x-license';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
+import StyleEngineWrapper from 'docs/src/modules/styledComponents/StyleEngineWrapper';
 import docsInfraPages from 'docs/data/docs-infra/pages';
 import generalDocsPages from 'docs/data/docs/pages';
 import materialPages from 'docs/data/material/pages';
@@ -329,6 +330,7 @@ export default function MyApp(props: AppProps) {
       demoDisplayName={demoDisplayName}
       csbConfig={CSB_CONFIG}
       docsConfig={docsConfig}
+      StyleEngineWrapper={StyleEngineWrapper}
     />
   );
 }

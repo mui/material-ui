@@ -13,14 +13,14 @@ import { useDemoContext } from '../DemoContext/DemoContext';
 import { DemoErrorBoundary } from './DemoErrorBoundary';
 import { DemoInstanceThemeProvider } from './DemoThemeProviders';
 
-type RtlBundle = typeof import('../utils/rtlBundle');
+type RtlModule = typeof import('../utils/rtlPlugin');
 
-let rtlBundlePromise: Promise<RtlBundle> | undefined;
-function loadRtlBundle() {
-  if (!rtlBundlePromise) {
-    rtlBundlePromise = import('../utils/rtlBundle');
+let rtlModulePromise: Promise<RtlModule> | undefined;
+function loadRtlModule() {
+  if (!rtlModulePromise) {
+    rtlModulePromise = import('../utils/rtlPlugin');
   }
-  return rtlBundlePromise;
+  return rtlModulePromise;
 }
 
 const SRC_DOC = `<!DOCTYPE html>
@@ -74,17 +74,17 @@ interface FramedDemoProps {
 function FramedDemo(props: FramedDemoProps) {
   const { children, document, isolated } = props;
   const themeOptions = React.useContext(ThemeOptionsContext);
-  const { IframeWrapper } = useDemoContext();
+  const { IframeWrapper, StyleEngineWrapper } = useDemoContext();
 
   const theme = useTheme();
   const rtl = theme.direction === 'rtl';
-  const [rtlBundle, setRtlBundle] = React.useState<RtlBundle | null>(null);
+  const [rtlModule, setRtlModule] = React.useState<RtlModule | null>(null);
 
   React.useEffect(() => {
-    if (rtl && !rtlBundle) {
-      loadRtlBundle().then(setRtlBundle);
+    if (rtl && !rtlModule) {
+      loadRtlModule().then(setRtlModule);
     }
-  }, [rtl, rtlBundle]);
+  }, [rtl, rtlModule]);
 
   React.useEffect(() => {
     if (!isolated) {
@@ -100,9 +100,9 @@ function FramedDemo(props: FramedDemoProps) {
         key: `iframe-demo-${theme.direction}`,
         prepend: true,
         container: document.head,
-        stylisPlugins: rtl && rtlBundle ? [prefixer, rtlBundle.rtlPlugin] : [prefixer],
+        stylisPlugins: rtl && rtlModule ? [prefixer, rtlModule.rtlPlugin] : [prefixer],
       }),
-    [document, theme.direction, rtl, rtlBundle],
+    [document, theme.direction, rtl, rtlModule],
   );
 
   const getWindow = React.useCallback(() => document.defaultView, [document]);
@@ -127,12 +127,11 @@ function FramedDemo(props: FramedDemoProps) {
     </CacheProvider>
   );
 
-  if (rtl && rtlBundle) {
-    const { StyleSheetManager, rtlPlugin } = rtlBundle;
+  if (rtl && rtlModule && StyleEngineWrapper) {
     return (
-      <StyleSheetManager target={document.head} stylisPlugins={[rtlPlugin]}>
+      <StyleEngineWrapper container={document.head} direction="rtl">
         {tree}
-      </StyleSheetManager>
+      </StyleEngineWrapper>
     );
   }
   return tree;

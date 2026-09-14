@@ -4,5 +4,6 @@ export type {
   DemoData,
   SandboxConfig,
   IframeWrapperProps,
+  StyleEngineWrapperProps,
   DemoContextValue,
 } from './DemoContext';

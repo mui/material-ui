@@ -4,56 +4,54 @@ import { createEmotionCache as createCache } from '@mui/material-nextjs/v15-page
 import { prefixer } from 'stylis';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { ThemeOptionsContext } from '../ThemeContext';
+import type { StyleEngineWrapperProps } from '../DemoContext/DemoContext';
+
+type EmotionCache = ReturnType<typeof createCache>;
 
 type StyledEngineProviderProps = {
-  cacheLtr: ReturnType<typeof createCache>;
+  cacheLtr: EmotionCache;
   children: React.ReactNode;
+  StyleEngineWrapper?: React.ComponentType<StyleEngineWrapperProps>;
 };
 
-type RtlBundle = typeof import('../utils/rtlBundle');
-type RtlState = {
-  bundle: RtlBundle;
-  cacheRtl: ReturnType<typeof createCache>;
-};
-
-let rtlPromise: Promise<RtlState> | undefined;
-function loadRtl() {
-  if (!rtlPromise) {
-    rtlPromise = import('../utils/rtlBundle').then((bundle) => ({
-      bundle,
-      cacheRtl: createCache({
+let rtlCachePromise: Promise<EmotionCache> | undefined;
+function loadRtlCache() {
+  if (!rtlCachePromise) {
+    rtlCachePromise = import('../utils/rtlPlugin').then(({ rtlPlugin }) =>
+      createCache({
         key: 'rtl',
         prepend: true,
         enableCssLayer: true,
-        stylisPlugins: [prefixer, bundle.rtlPlugin],
+        stylisPlugins: [prefixer, rtlPlugin],
       }),
-    }));
+    );
   }
-  return rtlPromise;
+  return rtlCachePromise;
 }
 
 export default function StyledEngineProvider(props: StyledEngineProviderProps) {
-  const { children, cacheLtr } = props;
+  const { children, cacheLtr, StyleEngineWrapper } = props;
   const { direction } = React.useContext(ThemeOptionsContext);
   const rtl = direction === 'rtl';
-  const [rtlState, setRtlState] = React.useState<RtlState | null>(null);
+  const [cacheRtl, setCacheRtl] = React.useState<EmotionCache | null>(null);
 
   React.useEffect(() => {
-    if (rtl && !rtlState) {
-      loadRtl().then(setRtlState);
+    if (rtl && !cacheRtl) {
+      loadRtlCache().then(setCacheRtl);
     }
-  }, [rtl, rtlState]);
+  }, [rtl, cacheRtl]);
 
-  if (rtl && rtlState) {
-    const { bundle, cacheRtl } = rtlState;
-    return (
-      <bundle.StyleSheetManager stylisPlugins={[bundle.rtlPlugin]}>
-        <CacheProvider value={cacheRtl}>
-          <GlobalStyles styles="@layer theme, docsearch, mui, utilities;" />
-          {children}
-        </CacheProvider>
-      </bundle.StyleSheetManager>
+  if (rtl && cacheRtl) {
+    const tree = (
+      <CacheProvider value={cacheRtl}>
+        <GlobalStyles styles="@layer theme, docsearch, mui, utilities;" />
+        {children}
+      </CacheProvider>
     );
+    if (StyleEngineWrapper) {
+      return <StyleEngineWrapper direction="rtl">{tree}</StyleEngineWrapper>;
+    }
+    return tree;
   }
   return (
     <CacheProvider value={cacheLtr}>

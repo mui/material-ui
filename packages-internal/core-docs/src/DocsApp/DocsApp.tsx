@@ -91,6 +91,11 @@ export interface DocsAppProps {
    * Optional wrapper component for theming
    */
   ThemeWrapper?: React.ComponentType<{ children: React.ReactNode }>;
+  /**
+   * Optional wrapper for a style engine that the docs infrastructure does not
+   * configure itself. See `DemoContextValue['StyleEngineWrapper']`.
+   */
+  StyleEngineWrapper?: DemoContextValue['StyleEngineWrapper'];
 }
 
 function DocsApp(props: DocsAppProps) {
@@ -110,6 +115,7 @@ function DocsApp(props: DocsAppProps) {
     csbConfig,
     adConfig,
     ThemeWrapper = ThemeProvider,
+    StyleEngineWrapper,
   } = props;
 
   const pageContextValue: MuiPageContext = React.useMemo(
@@ -128,8 +134,9 @@ function DocsApp(props: DocsAppProps) {
     () => ({
       productDisplayName: demoDisplayName,
       csb: csbConfig,
+      StyleEngineWrapper,
     }),
-    [demoDisplayName, csbConfig],
+    [demoDisplayName, csbConfig, StyleEngineWrapper],
   );
 
   const getLayout = Component.getLayout ?? ((page: React.ReactElement) => page);
@@ -165,7 +172,10 @@ function DocsApp(props: DocsAppProps) {
                 <PageContext.Provider value={pageContextValue}>
                   <DemoContext.Provider value={demoContextValue}>
                     <ThemeWrapper>
-                      <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                      <DocsStyledEngineProvider
+                        cacheLtr={emotionCache}
+                        StyleEngineWrapper={StyleEngineWrapper}
+                      >
                         <AnalyticsProvider>
                           {getLayout(<Component {...pageProps} />)}
                           <GoogleAnalytics />
