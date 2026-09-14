@@ -2,7 +2,7 @@
 
 Run both suites from the repository root:
 
-```sh
+```bash
 pnpm typescript:module-augmentation
 ```
 
