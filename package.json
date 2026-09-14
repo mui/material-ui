@@ -3,7 +3,7 @@
   "version": "9.4.0",
   "private": true,
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
+    "preinstall": "npx only-allow@1.2.2 pnpm",
     "proptypes": "tsx ./scripts/generateProptypes.ts",
     "deduplicate": "pnpm dedupe",
     "build": "lerna run build --ignore docs",
@@ -77,7 +77,7 @@
   },
   "dependencies": {
     "@netlify/functions": "^6.0.0",
-    "@slack/bolt": "^5.0.0",
+    "@slack/bolt": "^5.1.0",
     "execa": "^10.0.1"
   },
   "devDependencies": {
@@ -88,17 +88,17 @@
     "@eslint/compat": "2.1.0",
     "@mui/internal-babel-plugin-minify-errors": "2.0.8-canary.31",
     "@mui/internal-bundle-size-checker": "1.0.9-canary.91",
-    "@mui/internal-code-infra": "0.0.4-canary.113",
+    "@mui/internal-code-infra": "0.0.4-canary.114",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.0.3-canary.7",
     "@mui/internal-scripts": "workspace:^",
-    "@mui/internal-test-utils": "2.0.18-canary.35",
+    "@mui/internal-test-utils": "2.0.18-canary.36",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "16.3.3",
+    "@next/eslint-plugin-next": "16.3.4",
     "@octokit/rest": "22.0.1",
     "@pigment-css/react": "0.0.31",
-    "@playwright/test": "1.62.1",
+    "@playwright/test": "1.63.0",
     "@pnpm/find-workspace-dir": "1000.1.5",
     "@types/babel__core": "7.20.5",
     "@types/babel__register": "7.17.3",
@@ -129,7 +129,7 @@
     "minimatch": "10.2.6",
     "nx": "22.7.6",
     "pkg-pr-new": "0.0.88",
-    "playwright": "1.62.1",
+    "playwright": "1.63.0",
     "prettier": "3.9.6",
     "pretty-quick": "4.2.2",
     "process": "0.11.10",
@@ -139,7 +139,7 @@
     "serve": "14.2.6",
     "stylelint": "17.14.1",
     "supports-color": "11.0.0",
-    "tsx": "4.23.12",
+    "tsx": "4.23.13",
     "typescript": "npm:@typescript/typescript6@6.0.2",
     "vite": "^8.0.0",
     "vitest": "^4.1.0",
@@ -149,9 +149,9 @@
   "config": {
     "valeVersion": "3.19.0"
   },
-  "packageManager": "pnpm@11.24.0",
+  "packageManager": "pnpm@12.3.4",
   "engines": {
-    "pnpm": "11.24.0",
+    "pnpm": "12.3.4",
     "node": ">=22.23.2"
   }
 }
