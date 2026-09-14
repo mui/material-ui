@@ -36,6 +36,9 @@ import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
  * Every block is a component token -> density-step assignment. Density
  * variation comes purely from the resolved scale values (`applyDensity`),
  * never from remapping.
+ *
+ * Note:
+ * - Badge is not included, it's a tiny size component and doesn't need density adjustments.
  */
 export default function applySharedDensity<T extends EnhanceableTheme>(
   enhanced: T & { components: NonNullable<EnhanceableTheme['components']> },
@@ -1223,25 +1226,6 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
     },
     'thumb',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiBadge',
-    {
-      variants: [
-        {
-          props: { variant: 'standard' },
-          style: {
-            minWidth: spacing(2.5),
-            height: spacing(2.5),
-            paddingInline: spacing(0.75),
-            fontSize: enhanced.typography?.caption?.fontSize,
-          },
-        },
-        { props: { variant: 'dot' }, style: { minWidth: spacing(1), height: spacing(1) } },
-      ],
-    },
-    'badge',
   );
 
   // td height acts as a min-height (cells grow with wrapped content). The
