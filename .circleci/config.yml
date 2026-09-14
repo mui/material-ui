@@ -245,10 +245,14 @@ jobs:
               equal: [stable, << parameters.react-version >>]
           steps:
             - run:
-                name: Mark the Argos upload as a subset build
-                # Argos never uses subset builds as baselines, and it ignores the
-                # screenshots that the react@17/18/next runs skip.
-                command: echo 'export ARGOS_SUBSET=true' >> "$BASH_ENV"
+                name: Configure the Argos upload for a non-stable React run
+                # Argos never uses a subset build as a baseline or reports its skipped screenshots.
+                # A branch other than master stops the auto-approval, so React changes fail.
+                # The reference commit compares the build with the stable run of the same commit.
+                command: |
+                  echo 'export ARGOS_SUBSET=true' >> "$BASH_ENV"
+                  echo 'export ARGOS_BRANCH="$CIRCLE_JOB"' >> "$BASH_ENV"
+                  echo 'export ARGOS_REFERENCE_COMMIT="$CIRCLE_SHA1"' >> "$BASH_ENV"
       - code-infra/argos-push
   test_bundling_prepare:
     <<: *default-job
