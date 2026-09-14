@@ -72,7 +72,7 @@ function claimsFor(enhanced: boolean, size: Size): Claim[] {
   if (enhanced) {
     claims.push({
       on: '.MuiButton-root',
-      aspect: 'touchTarget',
+      aspect: 'touch-target',
       token: tokens.bySize[size].height,
       route: { gutter: 'right' },
     });

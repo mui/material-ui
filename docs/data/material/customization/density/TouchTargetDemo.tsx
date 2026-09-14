@@ -34,7 +34,7 @@ const ITEMS = [
 const CLAIMS: Claim[] = [
   {
     on: '.MuiListItemButton-root',
-    aspect: 'touchTarget',
+    aspect: 'touch-target',
     token: 'touchTarget',
     route: { gutter: 'right' },
   },
