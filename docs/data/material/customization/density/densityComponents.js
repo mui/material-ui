@@ -6,7 +6,6 @@ import Alert from '@mui/material/Alert';
 import AppBar from '@mui/material/AppBar';
 import Autocomplete from '@mui/material/Autocomplete';
 import Avatar from '@mui/material/Avatar';
-import Badge from '@mui/material/Badge';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Box from '@mui/material/Box';
@@ -78,7 +77,6 @@ import InboxIcon from '@mui/icons-material/Inbox';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import MenuIcon from '@mui/icons-material/Menu';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonIcon from '@mui/icons-material/Person';
 import RestoreIcon from '@mui/icons-material/Restore';
 import SearchIcon from '@mui/icons-material/Search';
@@ -143,28 +141,6 @@ export const DENSITY_COMPONENTS = {
   },
   Avatar: {
     render: () => <Avatar>M</Avatar>,
-  },
-  Badge: {
-    controls: [
-      {
-        prop: 'variant',
-        type: 'select',
-        options: ['standard', 'dot'],
-        initial: 'standard',
-      },
-    ],
-    // A single digit keeps the badge square, so the height the beam reads is
-    // also the `minWidth` the preset authored. The padding is what the gutters
-    // need to clear the badge, which hangs outside the icon it sits on.
-    render: (values) => (
-      <Box sx={{ p: 2 }}>
-        <Badge badgeContent={4} color="primary" variant={values.variant}>
-          <IconButton>
-            <NotificationsIcon />
-          </IconButton>
-        </Badge>
-      </Box>
-    ),
   },
   BottomNavigation: {
     render: () => (

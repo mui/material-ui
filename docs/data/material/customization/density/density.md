@@ -2,10 +2,6 @@
 
 <p class="description">Apply consistent, adjustable sizing across Material UI components.</p>
 
-Material UI's default sizes follow the Material Design guidelines, which are comfortable by design. Data-dense interfaces—dashboards, admin consoles, design tools—usually need something more compact, and some products need something more spacious.
-
-Each component also sets its own sizes instead of following a shared scale. There's no single way to change the density of the whole library, and controls that should be the same height often aren't.
-
 Starting from v9.5, Material UI provides `enhanceDensity`, an opt-in theme enhancer that maps every component onto one shared spacing scale. Same-size controls end up on the same box, and one scale controls the whole set.
 
 ## Usage
@@ -56,15 +52,17 @@ const theme = enhanceDensity(createTheme(), {
 
 Every component draws its spacing and sizing from one fixed set of steps, so nothing is sized on its own terms and values that should match do match:
 
-| Step      | Default value | Typical use                           |
-| :-------- | :------------ | :------------------------------------ |
-| `xxSmall` | 4px           | Icon-to-label gaps, tight insets      |
-| `xSmall`  | 8px           | Compact padding, small control insets |
-| `small`   | 12px          | Default inline padding                |
-| `medium`  | 16px          | Container padding                     |
-| `large`   | 24px          | Section spacing, small control height |
-| `xLarge`  | 32px          | Large control height                  |
-| `xxLarge` | 48px          | Large surfaces                        |
+| Step      | Value | Typical use                           |
+| :-------- | :---- | :------------------------------------ |
+| `xxSmall` | 4px   | Icon-to-label gaps, tight insets      |
+| `xSmall`  | 8px   | Compact padding, small control insets |
+| `small`   | 12px  | Default inline padding                |
+| `medium`  | 16px  | Container padding                     |
+| `large`   | 24px  | Section spacing, small control height |
+| `xLarge`  | 32px  | Large control height                  |
+| `xxLarge` | 48px  | Large surfaces                        |
+
+These are absolute values rather than multiples of the theme's spacing unit—`small` is 12px whatever `spacing` is set to. To move them, pass a [custom scale](#customizing-the-scale).
 
 The scale rides the spacing API you already use—there's no new function to learn and no new theme node. [`theme.spacing()`](/material-ui/customization/spacing/) resolves step names alongside the numbers and raw CSS values it already accepts, and a leading dash negates a step:
 
@@ -122,34 +120,6 @@ This means the scale can be read—and overridden—from plain CSS, including fo
 ```
 
 Only the ladder steps ship as CSS variables. The sizing constants (`touchTarget`, `iconSize`) are emitted as literal px, so control boxes don't follow a CSS-only override — moving them requires the `scale` argument.
-
-## Caveat: array spacing is not supported
-
-`enhanceDensity` does not work on a theme whose `spacing` is an array. Every step is a fraction of the spacing unit—`small` is 1.5 units, `xxSmall` is half of one—and an array defines no unit, only positions. `theme.spacing(1.5)` on an array theme is already an empty string, so there is nothing for the scale to build on.
-
-When the enhancer sees an array it logs an error in development and returns the theme unchanged, so the components keep rendering at their default sizes.
-
-```js
-// ❌ No effect: the theme comes back unenhanced.
-const theme = enhanceDensity(createTheme({ spacing: [0, 4, 8, 16] }));
-```
-
-Move the array values onto the scale instead. Keep `spacing` as a number for `theme.spacing(2)` and the `sx` numeric shorthand, and name the steps you were indexing:
-
-```js
-// ✅ The values live on the scale, and the components follow them.
-const theme = enhanceDensity(createTheme(), {
-  xxSmall: 4,
-  xSmall: 8,
-  small: 16,
-});
-
-theme.spacing('small'); // '16px'
-
-<Box sx={{ p: 'small' }} />;
-```
-
-Any call site that indexed the array moves to the matching step name—`sx={{ p: 2 }}` reading `spacing[2]` becomes `sx={{ p: 'small' }}`.
 
 ## All components
 

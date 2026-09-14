@@ -22,6 +22,7 @@ export const DENSITY_ANNOTATIONS = {
       aspect: 'touch-target',
       token: 'touchTarget',
       label: 'Summary',
+      route: { gutter: 'right' },
     },
     {
       on: '.MuiAccordionSummary-root',
@@ -96,7 +97,7 @@ export const DENSITY_ANNOTATIONS = {
       on: '.MuiAlert-icon',
       aspect: 'padding',
       axis: 'block',
-      token: '0.75 × spacing',
+      token: '6px',
       label: 'Icon',
       route: { gutter: 'bottom' },
     },
@@ -104,7 +105,7 @@ export const DENSITY_ANNOTATIONS = {
       on: '.MuiAlert-message',
       aspect: 'padding',
       axis: 'block',
-      token: '0.875 × spacing',
+      token: '7px',
       label: 'Message',
       route: { gutter: 'bottom', at: 0.85 },
     },
@@ -195,39 +196,6 @@ export const DENSITY_ANNOTATIONS = {
       token: 'touchTarget',
       label: 'Avatar',
     },
-  ],
-  Badge: (values) => [
-    // The anchor. Outlining it is what makes the badge read as hanging off a
-    // control rather than floating beside a stray glyph — and the 32px box is
-    // the shared-density touch target, not decoration.
-    {
-      on: '.MuiIconButton-root',
-      aspect: 'touch-target',
-      token: 'touchTarget',
-      outlined: true,
-      label: 'Button',
-    },
-    // Not `root`: the dashed outline is what makes a 20px chip floating over an
-    // icon legible as the box being measured.
-    {
-      on: '.MuiBadge-badge',
-      aspect: 'touch-target',
-      token: values.variant === 'dot' ? 'spacing' : '2.5 × spacing',
-      outlined: true,
-      label: 'Badge',
-    },
-    // The dot has no padding at all — master zeroes it and the preset emits none.
-    ...(values.variant === 'dot'
-      ? []
-      : [
-          {
-            on: '.MuiBadge-badge',
-            aspect: 'padding',
-            axis: 'inline',
-            token: '0.75 × spacing',
-            label: 'Badge',
-          },
-        ]),
   ],
   BottomNavigation: () => [
     // Not `root`: the bar paints nothing of its own, so the dashed outline is
@@ -413,7 +381,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiCheckbox-root',
         aspect: 'icon',
-        token: small ? 'iconSize - 0.25 × spacing' : 'iconSize',
+        token: small ? 'iconSize - 2px' : 'iconSize',
         label: 'Checkbox icon',
         route: { gutter: 'top' },
       },
@@ -503,7 +471,7 @@ export const DENSITY_ANNOTATIONS = {
       token: 'medium',
       label: 'Content',
       // The crossing stays under the text; the label rides up to the row's middle.
-      route: { gutter: 'left', at: 0.97, shift: -44 },
+      route: { gutter: 'left' },
     },
     // `padding: medium` on every side — one ring, one line to the left.
     {
@@ -538,13 +506,13 @@ export const DENSITY_ANNOTATIONS = {
   List: (values) => {
     const dense = values.dense === true;
     return [
-      // `spacing(1)`, the base unit — not the `xSmall` step that shares its
-      // px. The spine drops at 0.85 — right of the gap label sharing the top.
+      // A literal 8px, not the `xSmall` step that shares its value. The spine
+      // drops at 0.85 — right of the gap label sharing the top.
       {
         on: '.MuiList-root',
         aspect: 'padding',
         axis: 'block',
-        token: 'spacing',
+        token: '8px',
         label: 'List',
         route: { gutter: 'top', at: 0.85 },
       },
@@ -584,13 +552,13 @@ export const DENSITY_ANNOTATIONS = {
   Menu: (values) => {
     const dense = values.dense === true;
     return [
-      // `spacing(1)`, the base unit — not the `xSmall` step that shares its
-      // px. The spine drops at 0.85 — right of the gap label sharing the top.
+      // A literal 8px, not the `xSmall` step that shares its value. The spine
+      // drops at 0.85 — right of the gap label sharing the top.
       {
         on: '.MuiList-root',
         aspect: 'padding',
         axis: 'block',
-        token: 'spacing',
+        token: '8px',
         label: 'MenuList',
         route: { gutter: 'top', at: 0.85 },
       },
@@ -661,12 +629,12 @@ export const DENSITY_ANNOTATIONS = {
     ];
   },
   Progress: () => [
-    // `spacing / 2` is a multiplier off the base unit, not a scale step — left
-    // unnamed the caption would claim `xxSmall`.
+    // A literal 4px, not a scale step — left unnamed the caption would claim
+    // `xxSmall`.
     {
       on: '.MuiLinearProgress-root',
       aspect: 'touch-target',
-      token: 'spacing / 2',
+      token: '4px',
       label: 'Linear bar',
     },
     {
@@ -689,7 +657,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiRadio-root',
         aspect: 'icon',
-        token: small ? 'iconSize - 0.25 × spacing' : 'iconSize',
+        token: small ? 'iconSize - 2px' : 'iconSize',
         label: 'Radio icon',
         route: { gutter: 'top' },
       },
@@ -789,12 +757,12 @@ export const DENSITY_ANNOTATIONS = {
       token: 'medium',
       label: 'Snackbar',
     },
-    // The base unit, not `xSmall` — both are 8px today and diverge on a rescale.
+    // A literal 8px, not the `xSmall` step that happens to match it.
     {
       on: '.MuiSnackbarContent-root',
       aspect: 'padding',
       axis: 'block',
-      token: 'spacing',
+      token: '8px',
       label: 'Snackbar',
       route: { gutter: 'left' },
     },
@@ -917,9 +885,9 @@ export const DENSITY_ANNOTATIONS = {
       on: '.MuiSvgIcon-root',
       aspect: 'icon',
       token: {
-        small: 'iconSize - 0.25 × spacing',
+        small: 'iconSize - 2px',
         medium: 'iconSize',
-        large: 'iconSize + 0.5 × spacing',
+        large: 'iconSize + 4px',
       }[values.fontSize],
       label: 'Icon',
     },
@@ -973,7 +941,7 @@ export const DENSITY_ANNOTATIONS = {
         on: 'thead .MuiTableCell-paddingCheckbox',
         aspect: 'padding',
         axis: 'inline',
-        token: 'spacing / 2',
+        token: '4px',
         label: 'Checkbox cell',
         route: { gutter: 'top' },
       },
@@ -987,7 +955,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiTableSortLabel-icon',
         aspect: 'icon',
-        token: 'iconSize + spacing / 4',
+        token: 'iconSize + 2px',
         label: 'Sort icon',
         route: { gutter: 'top', line: 'diagonal', shift: 230 },
       },
@@ -1130,9 +1098,9 @@ export const DENSITY_ANNOTATIONS = {
     // The inner term IS the icon size now: the padding centres the glyph's
     // box inside the button, so each size pairs its box with its icon step.
     const inner = {
-      small: '(iconSize - 0.25 × spacing)',
+      small: '(iconSize - 2px)',
       medium: 'iconSize',
-      large: '(iconSize + 0.5 × spacing)',
+      large: '(iconSize + 4px)',
     }[values.size];
     // First button only — the group's two buttons double every label.
     return [
@@ -1214,7 +1182,7 @@ export const DENSITY_ANNOTATIONS = {
             on: '.MuiTooltip-tooltip',
             aspect: 'margin',
             axis: 'block',
-            token: '0.5 × spacing',
+            token: '4px',
             label: 'Tooltip',
           },
         ]
@@ -1240,7 +1208,7 @@ export const DENSITY_ANNOTATIONS = {
             on: '.MuiTooltip-tooltip',
             aspect: 'margin',
             side: 'left',
-            token: '0.5 × spacing',
+            token: '4px',
             label: 'Tooltip',
             route: { gutter: 'bottom', shift: -70 },
           },

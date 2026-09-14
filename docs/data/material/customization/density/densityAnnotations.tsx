@@ -876,7 +876,10 @@ export interface Claim {
 }
 
 function labelFor(value: number, token?: string) {
-  return token ? `${token} (${round(value)})` : round(value);
+  const measured = round(value);
+  // A raw-px token already states the measurement — `6px (6px)` says it twice.
+  // A token that differs (`iconSize - 2px`) still earns the resolved value.
+  return token && token !== measured ? `${token} (${measured})` : measured;
 }
 
 /**
