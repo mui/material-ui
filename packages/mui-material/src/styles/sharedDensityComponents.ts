@@ -58,8 +58,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   const largeBox = `calc(${touchTarget} + ${spacing('small')})`;
   const hugeBox = `calc(${touchTarget} + ${spacing('medium')})`;
   // Icons ride the glyph constant the same way boxes ride the interactive one.
-  const iconSmall = `calc(${iconSize} - ${spacing(0.25)})`;
-  const iconLarge = `calc(${iconSize} + ${spacing(0.5)})`;
+  const iconSmall = `calc(${iconSize} - 2px)`;
+  const iconLarge = `calc(${iconSize} + 4px)`;
   const sharedCheckboxRadio = {
     padding: 0,
     width: touchTarget,
@@ -531,7 +531,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     display: 'inline-flex',
     alignItems: 'center',
     marginTop: spacing('xSmall'),
-    gap: spacing(0.5),
+    gap: 4,
     variants: [
       {
         props: { contained: true },
@@ -800,7 +800,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addRootOverride(enhanced.components, 'MuiStepIcon', {
     fontSize: `calc(${touchTarget} - ${spacing('small')} + 2px)`,
   });
-  addRootOverride(enhanced.components, 'MuiStepIcon', { fontSize: spacing(1.75) }, 'text');
+  addRootOverride(enhanced.components, 'MuiStepIcon', { fontSize: 14 }, 'text');
   // Vertical-alt keeps master's marginLeft:auto — only marginRight moves.
   addRootOverride(enhanced.components, 'MuiStepConnector', {
     variants: [
@@ -845,7 +845,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     ],
   });
   addRootOverride(enhanced.components, 'MuiSnackbarContent', {
-    padding: `${spacing(1)} ${spacing('medium')}`,
+    padding: `8px ${spacing('medium')}`,
     gap: spacing('small'),
   });
   addRootOverride(
@@ -891,12 +891,12 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: ({ ownerState }: { ownerState: ListOwnProps }) =>
           !ownerState.disablePadding && !ownerState.subheader,
-        style: { paddingBlock: spacing(1) },
+        style: { paddingBlock: 8 },
       },
       {
         props: ({ ownerState }: { ownerState: ListOwnProps }) =>
           !ownerState.disablePadding && !!ownerState.subheader,
-        style: { paddingBottom: spacing(1) },
+        style: { paddingBottom: 8 },
       },
     ],
   });
@@ -1034,7 +1034,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     gap: spacing('xSmall'),
     [`& .${alertClasses.icon}`]: {
       marginRight: 0,
-      paddingBlock: spacing(0.75),
+      paddingBlock: 6,
       fontSize: '1.1lh',
     },
     [`& .${alertClasses.action}`]: {
@@ -1046,7 +1046,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addDefaultProps(enhanced.components, 'MuiAlert', {
     slotProps: { closeButton: { size: 'medium' } },
   });
-  addRootOverride(enhanced.components, 'MuiAlert', { paddingBlock: spacing(0.875) }, 'message');
+  addRootOverride(enhanced.components, 'MuiAlert', { paddingBlock: 7 }, 'message');
   addRootOverride(enhanced.components, 'MuiTab', {
     minHeight: touchTarget,
     lineHeight: enhanced.typography?.button?.lineHeight,
@@ -1082,7 +1082,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     height: 'var(--_size)',
     fontSize: 'calc(var(--_size) / 2)',
   });
-  addRootOverride(enhanced.components, 'MuiLinearProgress', { height: spacing(0.5) });
+  addRootOverride(enhanced.components, 'MuiLinearProgress', { height: 4 });
   addDefaultProps(enhanced.components, 'MuiCircularProgress', { size: touchTarget });
   // Root box = the touch target (padding 0 also kills master's coarse-pointer
   // padding; the thumb keeps its frozen 42px ::after hit target). Master sizes
@@ -1151,7 +1151,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // it at 2-class specificity, so a plain variant (1 class) loses there.
   addRootOverride(enhanced.components, 'MuiTableCell', {
     paddingBlock: 0,
-    [`&.${tableCellClasses.paddingCheckbox}`]: { padding: `0 0 0 ${spacing(0.5)}` },
+    [`&.${tableCellClasses.paddingCheckbox}`]: { padding: '0 0 0 4px' },
     variants: [
       {
         props: { size: 'medium' },
@@ -1176,7 +1176,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'MuiTableSortLabel',
     {
       // One marginInline leaf: the arrow flips sides in right-aligned columns.
-      fontSize: `calc(${iconSize} + ${spacing(0.25)})`,
+      fontSize: `calc(${iconSize} + 2px)`,
       marginInline: spacing('xxSmall'),
     },
     'icon',

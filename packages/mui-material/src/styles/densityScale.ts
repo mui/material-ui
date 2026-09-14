@@ -15,19 +15,17 @@ export interface DensityScale {
 
 export type DensityKey = keyof DensityScale;
 
-/** How far each step sits along the spacing unit. Internal: the ladder's
- * shape is the enhancer's to define, not something a caller passes in. */
-const STEP_MULTIPLIERS: Record<DensityKey, number> = {
-  xxSmall: 0.5,
-  xSmall: 1,
-  small: 1.5,
-  medium: 2,
-  large: 3,
-  xLarge: 4,
-  xxLarge: 6,
+export const DEFAULT_STEP_PX: Record<DensityKey, number> = {
+  xxSmall: 4,
+  xSmall: 8,
+  small: 12,
+  medium: 16,
+  large: 24,
+  xLarge: 32,
+  xxLarge: 48,
 };
 
-export const DENSITY_KEYS = Object.keys(STEP_MULTIPLIERS) as DensityKey[];
+export const DENSITY_KEYS = Object.keys(DEFAULT_STEP_PX) as DensityKey[];
 
 // Type-level only: without `enhanceDensity` the strings pass through verbatim.
 declare module '@mui/system' {
@@ -44,6 +42,22 @@ export type EnhanceableTheme = Theme &
       'rootSelector' | 'cssVarPrefix' | 'generateThemeVars' | 'generateStyleSheets'
     >
   >;
+
+/** The spacing unit as a px number, or `null` when a step cannot be restated as
+ * a multiple of it. Only a number or a `<number>px` string qualifies: an array
+ * has no unit, `rem`/`em`/`%` have no px equivalent, and a function need not be
+ * linear, so multiplying its unit would not land back on the step's value. */
+function toPxUnit(unit: unknown): number | null {
+  if (typeof unit === 'number') {
+    return unit;
+  }
+  if (typeof unit !== 'string' || !unit.endsWith('px')) {
+    return null;
+  }
+  const value = Number(unit.slice(0, -2));
+  // `Number` yields NaN for anything else ending in px, `calc(1px)` included.
+  return Number.isFinite(value) ? value : null;
+}
 
 /**
  * PRIVATE density core behind `enhanceDensity`: the keyed `theme.spacing`
@@ -70,7 +84,13 @@ export function applyDensity<T extends EnhanceableTheme>(
 
   const stepVarName = (key: DensityKey) => cssVar(`spacing-${key}`);
 
-  const stepValue = (multiplier: number) => String(prevSpacing(multiplier));
+  // The ladder is absolute px: a `scale` override is a number, which can only
+  // mean px (MUI X reads those same numbers to derive sizes in JS), so every
+  // step has to be on those terms. A vars theme restates that px as a multiple
+  // of the unit variable — the same length, but reachable from plain CSS; a
+  // static theme, or a unit with no px equivalent, emits the length itself.
+  const unitPx = themeInput.vars ? toPxUnit((prevSpacing as { unit?: unknown }).unit) : null;
+  const stepValue = (px: number) => (unitPx ? String(prevSpacing(px / unitPx)) : `${px}px`);
 
   const overrides = scaleOverrides ?? {};
 
@@ -80,10 +100,9 @@ export function applyDensity<T extends EnhanceableTheme>(
   // inherited members (`toString`) would read as steps.
   const resolved: Record<string, string> = Object.create(null);
   DENSITY_KEYS.forEach((key) => {
-    // An override is px, so both directions stay plain lengths; an unoverridden
-    // step goes back through the spacing unit.
-    const override = overrides[key];
-    stepValues[key] = override === undefined ? stepValue(STEP_MULTIPLIERS[key]) : `${override}px`;
+    // An override simply moves the step's px anchor; both take the same path.
+    const px = overrides[key] ?? DEFAULT_STEP_PX[key];
+    stepValues[key] = stepValue(px);
 
     if (themeInput.vars) {
       // Fallback to the computed step: the definitions only mount through
@@ -96,8 +115,7 @@ export function applyDensity<T extends EnhanceableTheme>(
       return;
     }
     resolved[key] = stepValues[key];
-    resolved[`-${key}`] =
-      override === undefined ? stepValue(-STEP_MULTIPLIERS[key]) : `${-override}px`;
+    resolved[`-${key}`] = stepValue(-px);
   });
 
   const stepKeys = new Set(Object.keys(resolved));
@@ -153,7 +171,7 @@ export function applyDensity<T extends EnhanceableTheme>(
     };
   }
 
-  if (themeInput.vars) {
+  if (theme.generateStyleSheets) {
     // Steps ship as raw declarations only, never onto `theme.vars.spacing`:
     // that stays the unit `getPath` reads straight through — a string, or an
     // array for array spacing — and re-keying it by step name would break

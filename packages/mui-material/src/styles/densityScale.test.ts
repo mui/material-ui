@@ -152,10 +152,13 @@ describe('densityScale', () => {
       const sheets = theme.generateStyleSheets();
       const rootVars = sheets[sheets.length - 1][':root'] as Record<string, string>;
 
-      expect(rootVars['--mui-spacing-small']).to.equal('6px');
-      // keyed spacing still returns the REF (override px as its fallback) —
-      // runtime re-mapping keeps working
-      expect(theme.spacing('small')).to.equal('var(--mui-spacing-small, 6px)');
+      // an override takes the same path as a built-in step: 6px restated
+      // against the unit, so it scales with its neighbours rather than freezing
+      expect(rootVars['--mui-spacing-small']).to.equal('calc(0.75 * var(--mui-spacing, 8px))');
+      // keyed spacing still returns the REF — runtime re-mapping keeps working
+      expect(theme.spacing('small')).to.equal(
+        'var(--mui-spacing-small, calc(0.75 * var(--mui-spacing, 8px)))',
+      );
     });
 
     test('respects a custom cssVarPrefix', () => {

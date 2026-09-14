@@ -27,6 +27,7 @@ export const DENSITY_ANNOTATIONS: Record<
       aspect: 'touch-target',
       token: 'touchTarget',
       label: 'Summary',
+      route: { gutter: 'right' },
     },
     {
       on: '.MuiAccordionSummary-root',
@@ -496,7 +497,7 @@ export const DENSITY_ANNOTATIONS: Record<
       token: 'medium',
       label: 'Content',
       // The crossing stays under the text; the label rides up to the row's middle.
-      route: { gutter: 'left', at: 0.97, shift: -44 },
+      route: { gutter: 'left' },
     },
     // `padding: medium` on every side — one ring, one line to the left.
     {
