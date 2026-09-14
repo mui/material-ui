@@ -328,8 +328,10 @@ describe('<Dialog />', () => {
         </Dialog>,
       );
 
+      // JSDOM does not resolve custom properties, so this reads the authored
+      // text; `--_dialogMargin` is 32px, which is the 64px the browser computes.
       expect(screen.getByTestId('paper')).toHaveComputedStyle({
-        maxWidth: 'calc(100% - 64px)',
+        maxWidth: 'calc(100% - 2*var(--_dialogMargin))',
       });
     });
   });

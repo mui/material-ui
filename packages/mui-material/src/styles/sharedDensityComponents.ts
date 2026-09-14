@@ -882,48 +882,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addRootOverride(
     enhanced.components,
     'MuiDialog',
-    {
-      // Media-query GUARDS stay at master's 32*2 boundaries (media can't read
-      // vars); everything scopes fullScreen:false — master's fullScreen zeroes
-      // these and an unscoped rule would clobber it.
-      '--_dialogMargin': spacing('large'),
-      variants: [
-        { props: { fullScreen: false }, style: { margin: 'var(--_dialogMargin)' } },
-        {
-          props: { scroll: 'paper', fullScreen: false },
-          style: { maxHeight: 'calc(100% - var(--_dialogMargin) * 2)' },
-        },
-        {
-          props: { maxWidth: false, fullScreen: false },
-          style: { maxWidth: 'calc(100% - var(--_dialogMargin) * 2)' },
-        },
-        {
-          props: { maxWidth: 'xs', scroll: 'body', fullScreen: false },
-          style: {
-            [enhanced.breakpoints.down(Math.max(enhanced.breakpoints.values.xs, 444) + 32 * 2)]: {
-              maxWidth: 'calc(100% - var(--_dialogMargin) * 2)',
-            },
-          },
-        },
-        ...Object.keys(enhanced.breakpoints.values)
-          .filter((maxWidth) => maxWidth !== 'xs')
-          .map((maxWidth) => ({
-            props: { maxWidth, scroll: 'body', fullScreen: false },
-            style: {
-              [enhanced.breakpoints.down(
-                enhanced.breakpoints.values[maxWidth as keyof typeof enhanced.breakpoints.values] +
-                  32 * 2,
-              )]: {
-                maxWidth: 'calc(100% - var(--_dialogMargin) * 2)',
-              },
-            },
-          })),
-        {
-          props: { fullWidth: true, fullScreen: false },
-          style: { width: 'calc(100% - var(--_dialogMargin) * 2)' },
-        },
-      ],
-    },
+    { '--_dialogMargin': spacing('large') },
     'paper',
   );
   addRootOverride(enhanced.components, 'MuiList', {
