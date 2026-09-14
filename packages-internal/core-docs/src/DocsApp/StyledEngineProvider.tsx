@@ -5,14 +5,13 @@ import { once } from 'es-toolkit/function';
 import { prefixer } from 'stylis';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { ThemeOptionsContext } from '../ThemeContext';
-import type { StyleEngineWrapperProps } from '../DemoContext/DemoContext';
+import { StyleEngineContext } from '../styleEngine';
 
 type EmotionCache = ReturnType<typeof createCache>;
 
 type StyledEngineProviderProps = {
   cacheLtr: EmotionCache;
   children: React.ReactNode;
-  StyleEngineWrapper?: React.ComponentType<StyleEngineWrapperProps>;
 };
 
 const loadRtlCache = once(() =>
@@ -27,8 +26,9 @@ const loadRtlCache = once(() =>
 );
 
 export default function StyledEngineProvider(props: StyledEngineProviderProps) {
-  const { children, cacheLtr, StyleEngineWrapper } = props;
+  const { children, cacheLtr } = props;
   const { direction } = React.useContext(ThemeOptionsContext);
+  const styleEngine = React.useContext(StyleEngineContext);
   const rtl = direction === 'rtl';
   const [cacheRtl, setCacheRtl] = React.useState<EmotionCache | null>(null);
 
@@ -45,6 +45,7 @@ export default function StyledEngineProvider(props: StyledEngineProviderProps) {
     </CacheProvider>
   );
 
+  const StyleEngineWrapper = styleEngine?.Wrapper;
   if (rtl && StyleEngineWrapper) {
     return <StyleEngineWrapper direction="rtl">{tree}</StyleEngineWrapper>;
   }

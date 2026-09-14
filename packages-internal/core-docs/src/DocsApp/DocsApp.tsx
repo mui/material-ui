@@ -4,6 +4,8 @@ import type { AdConfig } from '../Ad';
 import { CodeCopyProvider } from '../CodeCopy';
 import type { DemoContextValue } from '../DemoContext';
 import DemoContext from '../DemoContext';
+import type { StyleEngine } from '../styleEngine';
+import { StyleEngineContext } from '../styleEngine';
 import type { DocsConfig, VersionEntry } from '../DocsProvider';
 import { DEFAULT_DOCS_CONFIG, DocsProvider } from '../DocsProvider';
 import type { MuiPageContext } from '../PageContext';
@@ -92,10 +94,10 @@ export interface DocsAppProps {
    */
   ThemeWrapper?: React.ComponentType<{ children: React.ReactNode }>;
   /**
-   * Optional wrapper for a style engine that the docs infrastructure does not
-   * configure itself. See `DemoContextValue['StyleEngineWrapper']`.
+   * A style engine the docs infrastructure does not configure itself. The same
+   * object goes to the document's `createGetInitialProps` for the server half.
    */
-  StyleEngineWrapper?: DemoContextValue['StyleEngineWrapper'];
+  styleEngine?: StyleEngine;
 }
 
 function DocsApp(props: DocsAppProps) {
@@ -115,7 +117,7 @@ function DocsApp(props: DocsAppProps) {
     csbConfig,
     adConfig,
     ThemeWrapper = ThemeProvider,
-    StyleEngineWrapper,
+    styleEngine,
   } = props;
 
   const pageContextValue: MuiPageContext = React.useMemo(
@@ -134,9 +136,8 @@ function DocsApp(props: DocsAppProps) {
     () => ({
       productDisplayName: demoDisplayName,
       csb: csbConfig,
-      StyleEngineWrapper,
     }),
-    [demoDisplayName, csbConfig, StyleEngineWrapper],
+    [demoDisplayName, csbConfig],
   );
 
   const getLayout = Component.getLayout ?? ((page: React.ReactElement) => page);
@@ -171,17 +172,16 @@ function DocsApp(props: DocsAppProps) {
               <CodeVariantProvider>
                 <PageContext.Provider value={pageContextValue}>
                   <DemoContext.Provider value={demoContextValue}>
-                    <ThemeWrapper>
-                      <DocsStyledEngineProvider
-                        cacheLtr={emotionCache}
-                        StyleEngineWrapper={StyleEngineWrapper}
-                      >
-                        <AnalyticsProvider>
-                          {getLayout(<Component {...pageProps} />)}
-                          <GoogleAnalytics />
-                        </AnalyticsProvider>
-                      </DocsStyledEngineProvider>
-                    </ThemeWrapper>
+                    <StyleEngineContext.Provider value={styleEngine}>
+                      <ThemeWrapper>
+                        <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                          <AnalyticsProvider>
+                            {getLayout(<Component {...pageProps} />)}
+                            <GoogleAnalytics />
+                          </AnalyticsProvider>
+                        </DocsStyledEngineProvider>
+                      </ThemeWrapper>
+                    </StyleEngineContext.Provider>
                   </DemoContext.Provider>
                 </PageContext.Provider>
               </CodeVariantProvider>

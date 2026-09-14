@@ -11,6 +11,7 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { useTranslate } from '../i18n';
 import { ThemeOptionsContext } from '../ThemeContext/ThemeContext';
 import { useDemoContext } from '../DemoContext/DemoContext';
+import { StyleEngineContext } from '../styleEngine';
 import { DemoErrorBoundary } from './DemoErrorBoundary';
 import { DemoInstanceThemeProvider } from './DemoThemeProviders';
 
@@ -69,7 +70,8 @@ interface FramedDemoProps {
 function FramedDemo(props: FramedDemoProps) {
   const { children, document, isolated } = props;
   const themeOptions = React.useContext(ThemeOptionsContext);
-  const { IframeWrapper, StyleEngineWrapper } = useDemoContext();
+  const { IframeWrapper } = useDemoContext();
+  const styleEngine = React.useContext(StyleEngineContext);
 
   const theme = useTheme();
   const rtl = theme.direction === 'rtl';
@@ -122,6 +124,7 @@ function FramedDemo(props: FramedDemoProps) {
     </CacheProvider>
   );
 
+  const StyleEngineWrapper = styleEngine?.Wrapper;
   if (rtl && StyleEngineWrapper) {
     return (
       <StyleEngineWrapper container={document.head} direction="rtl">

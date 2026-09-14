@@ -1,5 +1,4 @@
 import * as React from 'react';
-import type { Direction } from '@mui/system';
 import type { MuiProductId } from '../utils/getProductInfoFromUrl';
 
 export type CodeVariant = 'TS' | 'JS';
@@ -72,18 +71,6 @@ export interface IframeWrapperProps {
   isolated?: boolean;
 }
 
-export interface StyleEngineWrapperProps {
-  /** The subtree whose styles the engine controls. */
-  children: React.ReactNode;
-  /**
-   * Where the engine emits its styles: an iframe's `<head>` for framed demos,
-   * `undefined` for the page itself.
-   */
-  container?: HTMLElement;
-  /** The reading direction to render for. */
-  direction: Direction;
-}
-
 export interface DemoContextValue {
   /**
    * Display name shown in demo titles, e.g., "Material UI", "Joy UI", "MUI X"
@@ -100,16 +87,6 @@ export interface DemoContextValue {
    * Pass `null` explicitly to disable iframe wrapping entirely.
    */
   IframeWrapper?: React.ComponentType<IframeWrapperProps> | null;
-
-  /**
-   * Optional wrapper for a style engine that the docs infrastructure does not
-   * configure itself. Emotion is set up directly; a product whose demos use
-   * another engine provides a wrapper that points that engine at `container`
-   * and `direction`.
-   *
-   * If not provided, only Emotion is configured.
-   */
-  StyleEngineWrapper?: React.ComponentType<StyleEngineWrapperProps>;
 
   /**
    * Configuration for CodeSandbox/StackBlitz sandbox generation.
