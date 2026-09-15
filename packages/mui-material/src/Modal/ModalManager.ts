@@ -78,34 +78,25 @@ function ariaHiddenSiblings(
   });
 }
 
-// A stable scrollbar gutter keeps the scrollbar space reserved while the scroll is locked,
-// so there is no layout shift to compensate for.
+// The viewport takes its gutter from the root element. Any other scroll container uses its own.
+// Unlike overflow, a gutter on <body> is not propagated to the viewport.
+function getGutterElement(scrollContainer: HTMLElement, doc: Document): HTMLElement {
+  return isDocumentScroller(scrollContainer, doc) ? doc.documentElement : scrollContainer;
+}
+
+// A stable gutter keeps the scrollbar space reserved while the scroll is locked, so there is
+// no layout shift to compensate for.
 // Reading the computed value doubles as a feature detection: browsers that don't support
 // scrollbar-gutter resolve it to an empty string.
-function hasStableScrollbarGutter(scrollContainer: HTMLElement): boolean {
-  const doc = ownerDocument(scrollContainer);
-  const win = ownerWindow(scrollContainer);
+function hasStableScrollbarGutter(element: HTMLElement, win: Window): boolean {
+  return win.getComputedStyle(element).getPropertyValue('scrollbar-gutter').includes('stable');
+}
 
-  if (isDocumentScroller(scrollContainer, doc)) {
-    // Locking the document scroller locks the viewport scrollbar. The viewport is always a
-    // scroll container, and only the root element's gutter propagates to it — unlike
-    // overflow, which propagates from <body> too.
-    return win
-      .getComputedStyle(doc.documentElement)
-      .getPropertyValue('scrollbar-gutter')
-      .includes('stable');
-  }
-
-  const containerStyle = win.getComputedStyle(scrollContainer);
-  const { overflowY } = containerStyle;
-  // The gutter only takes effect on a scroll container, so on a `visible` or `clip` container
-  // the declaration is inert. Blocking the scroll below turns it into a scroll container,
-  // which would create the gutter and shrink the content instead of leaving it in place.
-  if (overflowY === 'visible' || overflowY === 'clip') {
-    return false;
-  }
-
-  return containerStyle.getPropertyValue('scrollbar-gutter').includes('stable');
+// A gutter is only reserved on a scroll container, so it is inert while the overflow is
+// `visible` or `clip`.
+function isScrollContainer(element: HTMLElement, win: Window): boolean {
+  const { overflowY } = win.getComputedStyle(element);
+  return overflowY !== 'visible' && overflowY !== 'clip';
 }
 
 function handleContainer(containerInfo: Container, props: ManagedModalProps) {
@@ -136,18 +127,33 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
           : container;
     }
 
+    const scrollWindow = ownerWindow(scrollContainer);
+    const gutterElement = getGutterElement(scrollContainer, ownerDocument(scrollContainer));
+    const gutterIsStable = hasStableScrollbarGutter(gutterElement, scrollWindow);
+
+    // Blocking the scroll below makes the container a scroll container, which would start
+    // reserving a gutter that is inert right now. Hold it at `auto` for the duration.
+    if (
+      gutterIsStable &&
+      gutterElement === scrollContainer &&
+      !isScrollContainer(scrollContainer, scrollWindow)
+    ) {
+      restoreStyle.push({
+        value: scrollContainer.style.scrollbarGutter,
+        property: 'scrollbar-gutter',
+        el: scrollContainer,
+      });
+      scrollContainer.style.setProperty('scrollbar-gutter', 'auto');
+    }
+
     // Read the size while the scrollbar is still there, so applying overflow hidden below
     // can't jump the scroll position.
-    const scrollbarSize = getScrollbarSize(ownerWindow(scrollContainer));
+    const scrollbarSize = getScrollbarSize(scrollWindow);
 
-    // Overlay scrollbars (e.g. macOS, Windows 11) have zero width — there is nothing to
+    // Overlay scrollbars (e.g. macOS, Windows 11) have zero width. There is nothing to
     // compensate for, and writing the inline styles anyway would freeze the current padding,
     // overriding later theme/CSS changes.
-    if (
-      scrollbarSize > 0 &&
-      isOverflowing(scrollContainer) &&
-      !hasStableScrollbarGutter(scrollContainer)
-    ) {
+    if (scrollbarSize > 0 && isOverflowing(scrollContainer) && !gutterIsStable) {
       restoreStyle.push({
         value: scrollContainer.style.paddingRight,
         property: 'padding-right',

@@ -182,19 +182,22 @@ describe('ModalManager', () => {
         expect(fixedNode.style.paddingRight).to.equal('14.4px');
       });
 
-      // The gutter is inert until the element is a scroll container, and blocking the scroll
-      // is what turns it into one, so the space it then reserves still has to be compensated.
-      it('should compensate the scrollbar when the container is not a scroll container', () => {
-        const scrollbarSize = getScrollbarSize(window);
+      // The gutter is inert on a container that does not scroll yet, and blocking the scroll
+      // is what would start reserving it.
+      it('should hold the gutter at auto when the container is not a scroll container', () => {
         container1.style.setProperty('scrollbar-gutter', 'stable');
+        const widthBefore = container1.clientWidth;
 
         const modal = getDummyModal();
         modalManager.add(modal, container1);
         modalManager.mount(modal, {});
         expect(container1.style.overflow).to.equal('hidden');
-        expect(container1.style.paddingRight).to.equal(`${20 + scrollbarSize}px`);
-        expect(fixedNode.style.paddingRight).to.equal(`${14.4 + scrollbarSize}px`);
+        expect(container1.style.getPropertyValue('scrollbar-gutter')).to.equal('auto');
+        expect(container1.clientWidth).to.equal(widthBefore);
+        expect(container1.style.paddingRight).to.equal('20px');
+        expect(fixedNode.style.paddingRight).to.equal('14.4px');
         modalManager.remove(modal);
+        expect(container1.style.getPropertyValue('scrollbar-gutter')).to.equal('stable');
         expect(container1.style.paddingRight).to.equal('20px');
         expect(fixedNode.style.paddingRight).to.equal('14.4px');
       });
