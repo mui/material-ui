@@ -328,8 +328,10 @@ describe('<Dialog />', () => {
         </Dialog>,
       );
 
+      // JSDOM hands back the authored text; a real engine substitutes
+      // `--_dialogMargin` (32px) and folds the arithmetic.
       expect(screen.getByTestId('paper')).toHaveComputedStyle({
-        maxWidth: 'calc(100% - 64px)',
+        maxWidth: isJsdom() ? 'calc(100% - 2*var(--_dialogMargin))' : 'calc(100% - 64px)',
       });
     });
   });

@@ -67,6 +67,10 @@ export interface BottomNavigationActionOwnProps extends BottomNavigationActionSl
    */
   showLabel?: boolean | undefined;
   /**
+   * If `true`, the `BottomNavigationAction` will appear selected.
+   */
+  selected?: boolean | undefined;
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme> | undefined;

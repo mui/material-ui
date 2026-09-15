@@ -85,7 +85,9 @@ function expectRtlRightPlacementStyles() {
 
   expect(popper).to.have.attribute('data-popper-placement', 'right');
   expect(tooltip).toHaveComputedStyle({ direction: 'rtl' });
-  expect(hasInjectedStyle('margin-inline-start: 14px')).to.equal(true);
+  // The gap is authored through `--_spacing` (14px at rest), so the injected
+  // rule names the variable rather than the length.
+  expect(hasInjectedStyle('margin-inline-start: var(--_spacing)')).to.equal(true);
   expect(hasInjectedStyle('inset-inline-start: 0')).to.equal(true);
   expectArrowOnInlineEnd(tooltip, arrow);
 }

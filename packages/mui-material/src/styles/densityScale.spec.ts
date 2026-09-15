@@ -1,0 +1,75 @@
+import { createTheme, enhanceDensity } from '@mui/material/styles';
+import { SpacingKey } from '@mui/system';
+
+// densityScale.ts augments @mui/system's SpacingKeyOverrides with the scale keys
+// (+ their negated pulls) so `theme.spacing()` surfaces them in autocompletion.
+// If the module augmentation ever stops merging, SpacingKey collapses to `never`
+// and every call below fails to compile.
+function takesKey(key: SpacingKey) {
+  return key;
+}
+const keys: SpacingKey[] = [
+  'xxSmall',
+  'xSmall',
+  'small',
+  'medium',
+  'large',
+  'xLarge',
+  'xxLarge',
+  '-xxSmall',
+  '-xSmall',
+  '-small',
+  '-medium',
+  '-large',
+  '-xLarge',
+  '-xxLarge',
+];
+keys.forEach((key) => takesKey(key));
+// @ts-expect-error — not a registered spacing key
+takesKey('tiny');
+// The sizing constants get their own variables, not `--mui-spacing-*`, and are
+// deliberately NOT spacing keys, so neither ever reaches theme.spacing() or sx.
+// @ts-expect-error — sizing constant, not a spacing key
+takesKey('touchTarget');
+// @ts-expect-error — sizing constant, not a spacing key
+takesKey('iconSize');
+
+// Keys, negated keys, numbers, raw CSS and mixed args all type-check on
+// theme.spacing() — with or without a density preset applied — and return string.
+function takesString(value: string) {
+  return value;
+}
+const theme = createTheme();
+takesString(theme.spacing('small'));
+takesString(theme.spacing('-xSmall'));
+takesString(theme.spacing('xLarge', 2));
+takesString(theme.spacing(1, 'auto'));
+// raw CSS stays first-class — unregistered strings pass through by design
+takesString(theme.spacing('12px'));
+takesString(theme.spacing('small', 2, 'auto', '3px'));
+
+// The scale is closed: every key of the override object must be one the
+// enhancer already knows, so a misspelling is a compile error rather than a
+// value that silently never reaches a component.
+enhanceDensity(createTheme(), { spacing: { small: 8 }, touchTarget: 40, iconSize: 20 });
+// @ts-expect-error — misspelled step
+enhanceDensity(createTheme(), { spacing: { smal: 8 } });
+// @ts-expect-error — the scale cannot be extended with new names
+enhanceDensity(createTheme(), { huge: 64 });
+
+// The two sizing constants are readable off the theme, through the same
+// `(theme.vars || theme)` channel the rest of the theme uses: the vars node on a
+// CSS-variables theme, the theme itself otherwise. Both are declared optional
+// because density is opt-in — a theme that never met the enhancer has neither.
+const varsTheme = createTheme({ cssVariables: true });
+takesOptionalString((varsTheme.vars || varsTheme).touchTarget);
+takesOptionalString((varsTheme.vars || varsTheme).iconSize);
+takesOptionalString((theme.vars || theme).touchTarget);
+function takesOptionalString(value: string | undefined) {
+  return value;
+}
+// `enhanceDensity` resolves them, so its result reads them as plain strings.
+takesString(enhanceDensity(createTheme()).touchTarget);
+takesString(enhanceDensity(createTheme()).iconSize);
+// @ts-expect-error — not a theme member; the scale keys stay on theme.spacing()
+takesOptionalString((theme.vars || theme).xxSmall);
