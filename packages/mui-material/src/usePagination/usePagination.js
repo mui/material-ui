@@ -66,33 +66,39 @@ export default function usePagination(props = {}) {
     count - boundaryCount - 1,
   );
 
+  // Start ellipsis
+  const startEllipsis = [];
+  if (siblingsStart > boundaryCount + 2) {
+    startEllipsis.push('start-ellipsis');
+  } else if (boundaryCount + 1 < count - boundaryCount) {
+    startEllipsis.push(boundaryCount + 1);
+  }
+
+  // End ellipsis
+  const endEllipsis = [];
+  if (siblingsEnd < count - boundaryCount - 1) {
+    endEllipsis.push('end-ellipsis');
+  } else if (count - boundaryCount > boundaryCount) {
+    endEllipsis.push(count - boundaryCount);
+  }
+
+  const body =
+    count > 0 && page >= 1 && page <= count && boundaryCount === 0 && siblingCount === 0
+      ? [page]
+      : [
+          ...startPages,
+          ...startEllipsis,
+          ...range(siblingsStart, siblingsEnd),
+          ...endEllipsis,
+          ...endPages,
+        ];
+
   // Basic list of items to render
   // for example itemList = ['first', 'previous', 1, 'ellipsis', 4, 5, 6, 'ellipsis', 10, 'next', 'last']
   const itemList = [
     ...(showFirstButton ? ['first'] : []),
     ...(hidePrevButton ? [] : ['previous']),
-    ...startPages,
-
-    // Start ellipsis
-    // eslint-disable-next-line no-nested-ternary
-    ...(siblingsStart > boundaryCount + 2
-      ? ['start-ellipsis']
-      : boundaryCount + 1 < count - boundaryCount
-        ? [boundaryCount + 1]
-        : []),
-
-    // Sibling pages
-    ...range(siblingsStart, siblingsEnd),
-
-    // End ellipsis
-    // eslint-disable-next-line no-nested-ternary
-    ...(siblingsEnd < count - boundaryCount - 1
-      ? ['end-ellipsis']
-      : count - boundaryCount > boundaryCount
-        ? [count - boundaryCount]
-        : []),
-
-    ...endPages,
+    ...body,
     ...(hideNextButton ? [] : ['next']),
     ...(showLastButton ? ['last'] : []),
   ];
