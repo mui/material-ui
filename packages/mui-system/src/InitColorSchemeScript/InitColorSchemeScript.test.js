@@ -186,6 +186,17 @@ describe('InitColorSchemeScript', () => {
     });
   });
 
+  it('should resolve the %s placeholder at build time, not with a runtime replace', () => {
+    // The generated script uses string concatenation (`"mode-" + colorScheme`); no `%s` template
+    // or `.replace('%s', …)` call should survive into the browser.
+    ['class', 'data', '.mode-%s', '[data-mode-%s]', "[data-mode='%s']"].forEach((attribute) => {
+      const { container } = renderToString(<InitColorSchemeScript attribute={attribute} />);
+      const script = container.firstChild.textContent;
+      expect(script).not.to.include("replace('%s'");
+      expect(script).not.to.include('%s');
+    });
+  });
+
   // Client renders must stay script-free (#48595).
   it('should not render the script on the client', () => {
     const { container } = render(<InitColorSchemeScript />);
