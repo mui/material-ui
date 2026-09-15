@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { once } from 'es-toolkit/function';
-import type { StyleEngineScopeProps } from '@mui/internal-core-docs/styleEngine';
+import type { StyleEngine, StyleEngineScopeProps } from '@mui/internal-core-docs/styleEngine';
 
 type Bundle = [typeof import('styled-components'), typeof import('@mui/stylis-plugin-rtl')];
 
@@ -39,11 +39,7 @@ function StyleEngineScope(props: StyleEngineScopeProps) {
   );
 }
 
-/**
- * Points styled-components at `container` and `direction` for the docs demos that use it.
- * `styled-components` and the RTL stylis plugin stay in a chunk fetched on first use.
- */
-export default function StyleEngineWrapper(props: StyleEngineScopeProps) {
+function StyleEngineWrapper(props: StyleEngineScopeProps) {
   // `children` as the fallback keeps the subtree visible while the chunk loads. There is no
   // Suspense boundary anywhere above either render position, so this one is required.
   return (
@@ -52,3 +48,27 @@ export default function StyleEngineWrapper(props: StyleEngineScopeProps) {
     </React.Suspense>
   );
 }
+
+/**
+ * The styled-components engine for the docs. Both halves reach `styled-components` only through
+ * `import()`, so it stays out of the app bundle.
+ */
+const styledComponentsEngine: StyleEngine = {
+  Wrapper: StyleEngineWrapper,
+  createDocumentPlugin: async () => {
+    const { ServerStyleSheet } = await import('styled-components');
+    const sheet = new ServerStyleSheet();
+
+    return {
+      enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+      resolveProps: async (initialProps) => {
+        const styles = [sheet.getStyleElement(), ...React.Children.toArray(initialProps.styles)];
+        // After `getStyleElement()`, which throws once the sheet is sealed.
+        sheet.seal();
+        return { ...initialProps, styles };
+      },
+    };
+  },
+};
+
+export default styledComponentsEngine;
