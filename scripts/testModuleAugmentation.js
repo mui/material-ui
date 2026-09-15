@@ -11,14 +11,20 @@ const root = path.resolve(__dirname, '..');
 
 async function main(packages = ['@mui/material', '@mui/system']) {
   // Use the release build to copy authored declarations and emit TypeScript declarations.
-  await exec(
-    [
-      'pnpm lerna run build',
-      ...packages.map((name) => `--scope ${name}`),
-      '--include-dependencies --skip-nx-cache --concurrency 3',
-    ].join(' '),
-    { cwd: root, maxBuffer: 20 * 1024 * 1024 },
-  );
+  try {
+    await exec(
+      [
+        'pnpm lerna run build',
+        ...packages.map((name) => `--scope ${name}`),
+        '--include-dependencies --skip-nx-cache --concurrency 3',
+      ].join(' '),
+      { cwd: root, maxBuffer: 20 * 1024 * 1024 },
+    );
+  } catch (error) {
+    // `console.error(error)` cuts long strings, so print the full build log.
+    console.error(`${error.stdout}${error.stderr}`);
+    throw new Error(`The declaration build failed with exit code ${error.code}.`);
+  }
   const configs = await glob(
     packages.map(
       (name) =>

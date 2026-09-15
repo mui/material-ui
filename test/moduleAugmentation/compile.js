@@ -16,8 +16,9 @@ try {
   output = error.stdout || '';
   failed = true;
 }
+const lines = output.split(/\r?\n/);
 let declarations = 0;
-for (const line of output.split(/\r?\n/)) {
+for (const line of lines) {
   if (!path.isAbsolute(line)) {
     continue;
   }
@@ -33,7 +34,8 @@ if (declarations === 0) {
   throw new Error(`Consumer test did not load built declarations.\n${output}`);
 }
 if (failed) {
+  // Print the diagnostics without the --listFiles paths.
   // eslint-disable-next-line no-console -- compiler diagnostics
-  console.log(output);
+  console.log(lines.filter((line) => !path.isAbsolute(line)).join('\n'));
   process.exitCode = 1;
 }
