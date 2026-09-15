@@ -6,16 +6,16 @@ type Bundle = {
   stylisPlugins: [(typeof import('@mui/stylis-plugin-rtl'))['default']];
 };
 
-// Resolving to `null` rather than rejecting keeps a failed chunk load degrading to an
-// unstyled-by-this-engine page. `use()` rethrows a rejection, and neither render position has an
-// error boundary that recovers: the page shell would be replaced by Next's error page.
+// Resolves to `null` instead of rejecting when the chunk fails to load, so the page keeps working
+// with these styles missing. `use()` rethrows a rejection, and nothing above either render spot
+// catches it, so the page would be replaced by Next's error page.
 let bundlePromise: Promise<Bundle | null> | undefined;
 function loadBundle() {
   bundlePromise ??= Promise.all([import('styled-components'), import('@mui/stylis-plugin-rtl')])
     .then(([{ StyleSheetManager }, { default: rtlPlugin }]): Bundle => ({
       StyleSheetManager,
-      // Built once so `StyleSheetManager` sees a stable `stylisPlugins` identity; a fresh array
-      // would make it rebuild its stylis instance on every render.
+      // Built once so `StyleSheetManager` gets the same array every render. A new one each time
+      // makes it rebuild its stylis instance.
       stylisPlugins: [rtlPlugin],
     }))
     .catch((error) => {
@@ -42,14 +42,14 @@ function StyleEngineScope(props: StyleEngineScopeProps) {
 }
 
 function StyleEngineWrapper(props: StyleEngineScopeProps) {
-  // No demo in these docs uses styled-components inside an iframe, so the engine only has work to
-  // do when it has to flip. Framing a styled-components demo would need this relaxed to also run
-  // when `container` is set, otherwise the demo injects into the parent document.
+  // No demo in these docs uses styled-components inside an iframe, so there is only work to do
+  // when the direction flips. If a styled-components demo is ever framed, run this when
+  // `container` is set too, or that demo injects its styles into the parent document.
   if (props.direction !== 'rtl') {
     return props.children;
   }
-  // `children` as the fallback keeps the subtree visible while the chunk loads. There is no
-  // Suspense boundary anywhere above either render position, so this one is required.
+  // Rendering `children` as the fallback keeps them visible while the chunk loads. Nothing above
+  // either render spot provides a Suspense boundary, so this one is needed.
   return (
     <React.Suspense fallback={props.children}>
       <StyleEngineScope {...props} />
