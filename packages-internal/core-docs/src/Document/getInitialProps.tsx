@@ -3,11 +3,19 @@ import type { DocumentContext } from 'next/document';
 import { documentGetInitialProps } from '@mui/material-nextjs/v13-pagesRouter';
 import createEmotionCache from '../DocsApp/createEmotionCache';
 import { pathnameToLanguage } from '../helpers/helpers';
-import type { StyleEngine } from '../styleEngine';
 
-export function createGetInitialProps({ styleEngine }: { styleEngine?: StyleEngine } = {}) {
+type DocumentOptions = NonNullable<Parameters<typeof documentGetInitialProps>[1]>;
+
+export type DocumentPlugin = NonNullable<DocumentOptions['plugins']>[number];
+
+export function createGetInitialProps({
+  createPlugin,
+}: {
+  /** Collects a style engine's server-rendered styles. Called once per request. */
+  createPlugin?: () => DocumentPlugin;
+} = {}) {
   async function getInitialPropsDocument(ctx: DocumentContext) {
-    const plugin = await styleEngine?.createDocumentPlugin?.();
+    const plugin = createPlugin?.();
 
     const finalProps = await documentGetInitialProps(ctx, {
       emotionCache: createEmotionCache(),

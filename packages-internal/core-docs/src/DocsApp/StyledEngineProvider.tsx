@@ -4,7 +4,6 @@ import { createEmotionCache as createCache } from '@mui/material-nextjs/v15-page
 import { prefixer } from 'stylis';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { ThemeOptionsContext } from '../ThemeContext';
-import { StyleEngineContext } from '../styleEngine';
 
 type EmotionCache = ReturnType<typeof createCache>;
 
@@ -29,7 +28,6 @@ function loadRtlCache() {
 export default function StyledEngineProvider(props: StyledEngineProviderProps) {
   const { children, cacheLtr } = props;
   const { direction } = React.useContext(ThemeOptionsContext);
-  const styleEngine = React.useContext(StyleEngineContext);
   const rtl = direction === 'rtl';
   const [cacheRtl, setCacheRtl] = React.useState<EmotionCache | null>(null);
 
@@ -39,16 +37,10 @@ export default function StyledEngineProvider(props: StyledEngineProviderProps) {
     }
   }, [rtl, cacheRtl]);
 
-  const tree = (
+  return (
     <CacheProvider value={rtl && cacheRtl ? cacheRtl : cacheLtr}>
       <GlobalStyles styles="@layer theme, docsearch, mui, utilities;" />
       {children}
     </CacheProvider>
   );
-
-  const StyleEngineWrapper = styleEngine?.Wrapper;
-  if (StyleEngineWrapper) {
-    return <StyleEngineWrapper direction={direction}>{tree}</StyleEngineWrapper>;
-  }
-  return tree;
 }

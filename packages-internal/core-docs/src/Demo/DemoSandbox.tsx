@@ -10,7 +10,6 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { useTranslate } from '../i18n';
 import { ThemeOptionsContext } from '../ThemeContext/ThemeContext';
 import { useDemoContext } from '../DemoContext/DemoContext';
-import { StyleEngineContext } from '../styleEngine';
 import { DemoErrorBoundary } from './DemoErrorBoundary';
 import { DemoInstanceThemeProvider } from './DemoThemeProviders';
 
@@ -74,7 +73,6 @@ function FramedDemo(props: FramedDemoProps) {
   const { children, document, isolated } = props;
   const themeOptions = React.useContext(ThemeOptionsContext);
   const { IframeWrapper } = useDemoContext();
-  const styleEngine = React.useContext(StyleEngineContext);
 
   const theme = useTheme();
   const rtl = theme.direction === 'rtl';
@@ -115,7 +113,7 @@ function FramedDemo(props: FramedDemoProps) {
   // Pass `null` explicitly via context to disable wrapper entirely
   const Wrapper = IframeWrapper === undefined ? MaterialIframeWrapper : IframeWrapper;
 
-  const tree = (
+  return (
     <CacheProvider value={cache}>
       {Wrapper ? (
         <Wrapper document={document} isolated={isolated}>
@@ -126,16 +124,6 @@ function FramedDemo(props: FramedDemoProps) {
       )}
     </CacheProvider>
   );
-
-  const StyleEngineWrapper = styleEngine?.Wrapper;
-  if (StyleEngineWrapper) {
-    return (
-      <StyleEngineWrapper container={document.head} direction={theme.direction}>
-        {tree}
-      </StyleEngineWrapper>
-    );
-  }
-  return tree;
 }
 
 const Iframe = styled('iframe')(({ theme }) => ({

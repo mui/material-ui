@@ -4,8 +4,6 @@ import type { AdConfig } from '../Ad';
 import { CodeCopyProvider } from '../CodeCopy';
 import type { DemoContextValue } from '../DemoContext';
 import DemoContext from '../DemoContext';
-import type { StyleEngine } from '../styleEngine';
-import { StyleEngineContext } from '../styleEngine';
 import type { DocsConfig, VersionEntry } from '../DocsProvider';
 import { DEFAULT_DOCS_CONFIG, DocsProvider } from '../DocsProvider';
 import type { MuiPageContext } from '../PageContext';
@@ -93,11 +91,6 @@ export interface DocsAppProps {
    * Optional wrapper component for theming
    */
   ThemeWrapper?: React.ComponentType<{ children: React.ReactNode }>;
-  /**
-   * A style engine the docs infrastructure does not configure itself. The same
-   * object goes to the document's `createGetInitialProps` for the server half.
-   */
-  styleEngine?: StyleEngine;
 }
 
 function DocsApp(props: DocsAppProps) {
@@ -117,7 +110,6 @@ function DocsApp(props: DocsAppProps) {
     csbConfig,
     adConfig,
     ThemeWrapper = ThemeProvider,
-    styleEngine,
   } = props;
 
   const pageContextValue: MuiPageContext = React.useMemo(
@@ -172,16 +164,14 @@ function DocsApp(props: DocsAppProps) {
               <CodeVariantProvider>
                 <PageContext.Provider value={pageContextValue}>
                   <DemoContext.Provider value={demoContextValue}>
-                    <StyleEngineContext.Provider value={styleEngine}>
-                      <ThemeWrapper>
-                        <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                          <AnalyticsProvider>
-                            {getLayout(<Component {...pageProps} />)}
-                            <GoogleAnalytics />
-                          </AnalyticsProvider>
-                        </DocsStyledEngineProvider>
-                      </ThemeWrapper>
-                    </StyleEngineContext.Provider>
+                    <ThemeWrapper>
+                      <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                        <AnalyticsProvider>
+                          {getLayout(<Component {...pageProps} />)}
+                          <GoogleAnalytics />
+                        </AnalyticsProvider>
+                      </DocsStyledEngineProvider>
+                    </ThemeWrapper>
                   </DemoContext.Provider>
                 </PageContext.Provider>
               </CodeVariantProvider>
