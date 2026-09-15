@@ -1,28 +1,24 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import { describe, expect, it } from 'vitest';
+import synonyms from '../data/material/components/material-icons/demos/search-icons/synonyms';
 
 // The script runs `fetch` on import, so assert on its source instead.
-const scriptPath = path.join(__dirname, 'updateIconSynonyms.js');
-const SYNONYMS_FILE = path.resolve(
-  __dirname,
-  '../data/material/components/material-icons/demos/search-icons/synonyms.js',
-);
+const source = Object.values(
+  import.meta.glob('./updateIconSynonyms.js', { query: '?raw', import: 'default', eager: true }),
+)[0];
+
+const SYNONYMS_PATH = 'docs/data/material/components/material-icons/demos/search-icons/synonyms';
 
 describe('updateIconSynonyms', () => {
-  const source = fs.readFileSync(scriptPath, 'utf8');
-
   it('reads the relocated synonyms file', () => {
     const [, specifier] = source.match(/import synonyms from '([^']+)'/);
-    const resolved = path.resolve(__dirname, '../..', `${specifier}.js`);
 
-    expect(resolved).to.equal(SYNONYMS_FILE);
-    expect(fs.existsSync(resolved)).to.equal(true);
+    expect(specifier).to.equal(SYNONYMS_PATH);
+    expect(Object.keys(synonyms).length).to.be.greaterThan(0);
   });
 
   it('writes to the relocated synonyms file', () => {
     const [, relative] = source.match(/SYNONYMS_FILE = path\.join\(\s*__dirname,\s*'([^']+)'/);
 
-    expect(path.resolve(__dirname, relative)).to.equal(SYNONYMS_FILE);
+    expect(`docs/scripts/${relative}`.replace('scripts/../', '')).to.equal(`${SYNONYMS_PATH}.js`);
   });
 });
