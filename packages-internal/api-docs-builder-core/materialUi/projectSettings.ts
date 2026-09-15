@@ -38,9 +38,12 @@ export const projectSettings: ProjectSettings = {
   getComponentInfo: getMaterialUiComponentInfo,
   translationLanguages: LANGUAGES,
   skipComponent(filename: string) {
+    // The `Unstable_Menu2` parts have no docs page yet, so the generator finds no
+    // demos for them. Skip them until the release registers the demos.
     return (
-      filename.match(/(ThemeProvider|CssVarsProvider|DefaultPropsProvider|RovingToggleButton)/) !==
-      null
+      filename.match(
+        /(ThemeProvider|CssVarsProvider|DefaultPropsProvider|RovingToggleButton|Unstable_Menu2)/,
+      ) !== null
     );
   },
   translationPagesDirectory: 'docs/translations/api-docs',

@@ -1,0 +1,44 @@
+diff --git a/menu/root/MenuRoot.js b/menu/root/MenuRoot.js
+index dde04eddca58a7c55b4a997708628cb37c2f06d4..ccc66ec0e11ecb7a8ca48e76979136dcef9248fe 100644
+--- a/menu/root/MenuRoot.js
++++ b/menu/root/MenuRoot.js
+@@ -213,13 +213,15 @@ const MenuRoot = exports.MenuRoot = (0, _fastHooks.fastComponent)(function MenuR
+         floatingNodeId: floatingNodeIdFromContext,
+         floatingParentNodeId: floatingParentNodeIdFromContext
+       });
+-    } else if (parentMenuRootContext) {
++    } else if (parentMenuRootContext || !store.select('activeTriggerElement')) {
++      // Without an active trigger, the root must supply its own tree IDs.
++      // Read the store here: a trigger can register after render, before this effect.
+       store.update({
+         floatingNodeId: floatingNodeIdFromContext,
+         floatingParentNodeId: floatingParentNodeIdFromContext
+       });
+     }
+-  }, [contextMenuContext, parentMenuRootContext, floatingNodeIdFromContext, floatingParentNodeIdFromContext, store]);
++  }, [contextMenuContext, parentMenuRootContext, floatingNodeIdFromContext, floatingParentNodeIdFromContext, activeTriggerElement, store]);
+   React.useEffect(() => {
+     if (!open) {
+       openEventRef.current = null;
+diff --git a/menu/root/MenuRoot.mjs b/menu/root/MenuRoot.mjs
+index 96dc92bb57451320ab8b68b6dfa028748ddda088..95cbd8ad182da0ca1655695dc4a93581beefeb41 100644
+--- a/menu/root/MenuRoot.mjs
++++ b/menu/root/MenuRoot.mjs
+@@ -208,13 +208,15 @@ export const MenuRoot = fastComponent(function MenuRoot(props) {
+         floatingNodeId: floatingNodeIdFromContext,
+         floatingParentNodeId: floatingParentNodeIdFromContext
+       });
+-    } else if (parentMenuRootContext) {
++    } else if (parentMenuRootContext || !store.select('activeTriggerElement')) {
++      // Without an active trigger, the root must supply its own tree IDs.
++      // Read the store here: a trigger can register after render, before this effect.
+       store.update({
+         floatingNodeId: floatingNodeIdFromContext,
+         floatingParentNodeId: floatingParentNodeIdFromContext
+       });
+     }
+-  }, [contextMenuContext, parentMenuRootContext, floatingNodeIdFromContext, floatingParentNodeIdFromContext, store]);
++  }, [contextMenuContext, parentMenuRootContext, floatingNodeIdFromContext, floatingParentNodeIdFromContext, activeTriggerElement, store]);
+   React.useEffect(() => {
+     if (!open) {
+       openEventRef.current = null;
