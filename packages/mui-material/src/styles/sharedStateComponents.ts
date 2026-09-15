@@ -58,24 +58,29 @@ export default function applySharedStates<T extends StatefulTheme>(theme: T): vo
   // those variable names still exist in the component's output.
   addRootOverride(components, 'MuiButton', ({ theme: t }) => ({
     '&.Mui-disabled': t.states?.default?.disabled,
+    // The ghost tints are COLOUR-INDEPENDENT, so they are supplied colour-
+    // independently — at the root, not inside the per-colour variants below.
+    // The component gates them on `states.default` alone; emitting them per
+    // colour would close the gate for every colour while supplying only the
+    // configured ones, which silently deletes hover from the rest.
+    ...(t.states?.default
+      ? {
+          '@media (hover: hover)': {
+            '&:hover': {
+              '--variant-textBg': t.states.default.hover.backgroundColor,
+              '--variant-outlinedBg': t.states.default.hover.backgroundColor,
+            },
+          },
+          '&:active': {
+            '--variant-textBg': t.states.default.active.backgroundColor,
+            '--variant-outlinedBg': t.states.default.active.backgroundColor,
+          },
+        }
+      : null),
     variants: Object.keys(t.states ?? {})
       .filter((key) => key !== 'default')
       .map((color) => {
         const state = t.states?.[color] as ColorStates;
-        // Text and outlined fills tint toward the pole whatever the button's
-        // color, so they come from the color-independent entry.
-        const ghost = t.states?.default;
-        // The ghost properties are emitted ONLY when `default` was configured.
-        // Writing them as `undefined` would blank the value the component still
-        // emits for itself when `default` is absent — the two are gated
-        // independently, so they must be applied independently too.
-        const ghostAt = (level: 'hover' | 'active') =>
-          ghost
-            ? {
-                '--variant-textBg': ghost[level].backgroundColor,
-                '--variant-outlinedBg': ghost[level].backgroundColor,
-              }
-            : null;
         return {
           props: { color },
           style: {
@@ -83,13 +88,11 @@ export default function applySharedStates<T extends StatefulTheme>(theme: T): vo
               '&:hover': {
                 '--variant-containedBg': state.hover.backgroundColor,
                 '--variant-outlinedBorder': state.hover.borderColor,
-                ...ghostAt('hover'),
               },
             },
             '&:active': {
               '--variant-containedBg': state.active.backgroundColor,
               '--variant-outlinedBorder': state.active.borderColor,
-              ...ghostAt('active'),
             },
           },
         };

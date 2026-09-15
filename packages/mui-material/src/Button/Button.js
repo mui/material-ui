@@ -238,14 +238,21 @@ const ButtonRoot = styled(ButtonBase, {
                 '--variant-containedBg': theme.vars
                   ? theme.vars.palette.Button.inheritContainedHoverBg
                   : inheritContainedHoverBackgroundColor,
-                '--variant-textBg': theme.alpha(
-                  (theme.vars || theme).palette.text.primary,
-                  (theme.vars || theme).palette.action.hoverOpacity,
-                ),
-                '--variant-outlinedBg': theme.alpha(
-                  (theme.vars || theme).palette.text.primary,
-                  (theme.vars || theme).palette.action.hoverOpacity,
-                ),
+                // Gated like every other ghost tint: `color="inherit"` is not a
+                // palette colour, but its text/outlined fills come from the same
+                // colour-independent ramp, so it follows the same entry.
+                ...(theme.states?.default
+                  ? null
+                  : {
+                      '--variant-textBg': theme.alpha(
+                        (theme.vars || theme).palette.text.primary,
+                        (theme.vars || theme).palette.action.hoverOpacity,
+                      ),
+                      '--variant-outlinedBg': theme.alpha(
+                        (theme.vars || theme).palette.text.primary,
+                        (theme.vars || theme).palette.action.hoverOpacity,
+                      ),
+                    }),
               },
             },
           },
