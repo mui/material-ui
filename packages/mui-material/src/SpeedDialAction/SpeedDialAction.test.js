@@ -199,6 +199,63 @@ describe('<SpeedDialAction />', () => {
     expect(staticToolTipLabel).to.have.class(classes.staticTooltipLabel);
   });
 
+  [
+    ['top-start', 'tooltipPlacementTop'],
+    ['auto', 'tooltipPlacementLeft'],
+  ].forEach(([placement, className]) => {
+    it(`styles the static tooltip with ${className} when placement is ${placement}`, () => {
+      const { container } = render(
+        <SpeedDialAction
+          icon={<Icon>add</Icon>}
+          slotProps={{ tooltip: { open: true, placement, title: 'placeholder' } }}
+        />,
+      );
+
+      expect(container.querySelector(`.${classes.staticTooltip}`)).to.have.class(
+        classes[className],
+      );
+    });
+  });
+
+  describe.skipIf(isJsdom())('static tooltip label layout', () => {
+    function center(rect, axis) {
+      return axis === 'x' ? rect.left + rect.width / 2 : rect.top + rect.height / 2;
+    }
+
+    [
+      ['top', 'x', (label, fab) => fab.top - label.bottom],
+      ['bottom', 'x', (label, fab) => label.top - fab.bottom],
+      ['left', 'y', (label, fab) => fab.left - label.right],
+      ['right', 'y', (label, fab) => label.left - fab.right],
+      ['top-start', 'x', (label, fab) => fab.top - label.bottom],
+      ['left-end', 'y', (label, fab) => fab.left - label.right],
+      ['auto', 'y', (label, fab) => fab.left - label.right],
+    ].forEach(([placement, axis, getGap]) => {
+      it(`places the label next to the Fab when placement is ${placement}`, () => {
+        // SpeedDial lays out its actions in a flex container.
+        const { container } = render(
+          <div style={{ display: 'flex' }}>
+            <SpeedDialAction
+              icon={<Icon>add</Icon>}
+              open
+              slotProps={{ tooltip: { open: true, placement, title: 'placeholder' } }}
+            />
+          </div>,
+        );
+
+        const root = container.querySelector(`.${classes.staticTooltip}`).getBoundingClientRect();
+        const label = screen.getByText('placeholder').getBoundingClientRect();
+        const fab = screen.getByRole('menuitem').getBoundingClientRect();
+
+        // 8px margin on the label plus 8px margin on the Fab.
+        expect(Math.abs(getGap(label, fab) - 16)).to.be.lessThan(1);
+        expect(Math.abs(center(label, axis) - center(fab, axis))).to.be.lessThan(1);
+        // The label doesn't make the action taller.
+        expect(Math.abs(root.height - (fab.height + 16))).to.be.lessThan(1);
+      });
+    });
+  });
+
   it('should have staticToolTip and staticToolTipLabel classes if slotProps.tooltip.open is true and custom slots are provided', () => {
     const CustomStaticTooltip = React.forwardRef(({ ownerState, ...props }, ref) => (
       <div {...props} ref={ref}>
