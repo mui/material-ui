@@ -6,7 +6,9 @@ export interface ManagedModalProps {
   disableScrollLock?: boolean | undefined;
 }
 
-// Both <body> and <html> scroll the viewport rather than themselves.
+// Overflow set on <html> is propagated to the viewport, and set on <body> when <html> is
+// `visible`. The element it comes from is left with a used value of `visible`.
+// https://drafts.csswg.org/css-overflow-3/#overflow-propagation
 function isDocumentScroller(element: Element, doc: Document): boolean {
   return element === doc.body || element === doc.documentElement;
 }
@@ -79,7 +81,8 @@ function ariaHiddenSiblings(
 }
 
 // The viewport takes its gutter from the root element. Any other scroll container uses its own.
-// Unlike overflow, a gutter on <body> is not propagated to the viewport.
+// Unlike overflow, scrollbar-gutter is never propagated from <body>.
+// https://drafts.csswg.org/css-overflow-3/#scrollbar-gutter-property
 function getGutterElement(scrollContainer: HTMLElement, doc: Document): HTMLElement {
   return isDocumentScroller(scrollContainer, doc) ? doc.documentElement : scrollContainer;
 }
