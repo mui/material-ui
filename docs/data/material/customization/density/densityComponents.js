@@ -743,8 +743,9 @@ export const DENSITY_COMPONENTS = {
     ),
   },
   Tooltip: {
-    // `placement`, not `arrow`: the arrow's 12px is a width at the top and bottom
-    // placements and a height at the side ones, and only a height can be drawn.
+    // `placement`, not `arrow`: density's fixed 10px arrow reads as a height only
+    // at the side placements — at top and bottom the arrow still rides the
+    // bubble's own 1em — and only a height can be drawn.
     controls: [
       {
         prop: 'placement',

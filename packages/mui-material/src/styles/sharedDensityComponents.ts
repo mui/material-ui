@@ -243,6 +243,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     'tooltip',
   );
+  // Fixed arrow size due to fixed spacing between tooltip and target
   addRootOverride(enhanced.components, 'MuiTooltip', { '--_arrowSize': '10px' }, 'arrow');
   addRootOverride(enhanced.components, 'MuiInputBase', {
     lineHeight: enhanced.typography?.body1?.lineHeight,
