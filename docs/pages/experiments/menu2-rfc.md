@@ -174,11 +174,11 @@ Unlike a classic `MenuItem` with `href`, `Menu2LinkItem` does not support `disab
 
 ### New capabilities
 
-Submenus, checkbox and radio items with indicators, labeled groups, a supplied trigger with ARIA wiring, per-item typeahead labels, hover-open delays, cancelable open changes with reasons, and a shared item-description hook.
+Submenus, checkbox and radio items with indicators, labeled groups, a supplied trigger with ARIA wiring, per-item typeahead labels, hover-open delays, and cancelable open changes with reasons.
 
 ### Where the experiment stands
 
-The experiment implements the API above, shared styles, theme registration, RTL integration, live item state, ref composition, Grow transitions, and preview cards. Tests cover conformance and the main interaction paths, including controlled state, canceled changes, nested Escape, and menus without a trigger.
+The experiment implements the API above, shared styles, theme registration, RTL integration, live item state, ref composition, and Grow transitions. Tests cover conformance and the main interaction paths, including controlled state, canceled changes, nested Escape, and menus without a trigger.
 
 The playground compares classic Menu and Menu2, focus indicators, transition choices, and reduced motion. These experiments do not replace public component demos or API docs. The API generator still skips the `Unstable_Menu2` modules until docs registration is complete.
 
@@ -196,24 +196,11 @@ These choices are proposed for maintainer review.
 | Backdrop           | Opt-in through the root menu's backdrop slot or slot props. The default styled backdrop is transparent and click-through; Base UI handles outside dismissal. Submenus expose no backdrop slot.     |
 | Imperative actions | Keep Base UI's `actionsRef`, which exposes `close()` and `unmount()`. There is no `action.updatePosition()` equivalent.                                                                            |
 | Theme and refs     | Use the customization targets above. Caller-rendered parts use `OverridableComponent`; their refs and HTML props follow `component`. Collapsed roots use `HTMLDivElement` refs.                    |
-| Preview cards      | Release `useMenu2ItemPopover` for non-interactive descriptions. Use Popper, not a modal Popover. See the contract below.                                                                           |
+| Item descriptions  | Use Material UI Tooltip for supplementary text or images, without links, buttons, or other controls. Preview Card is outside the initial release.                                                  |
 | Context menu       | A separate component later. Virtual anchors support right-click placement today, but callers own labeling and focus return. A Base UI ContextMenu integration would also provide touch long-press. |
 | Behavior defaults  | Keep Base UI behavior unless an integration requirement needs a change. Material presentation adds start alignment, submenu offsets, Grow, and an opt-in backdrop.                                 |
 | Open tint on close | Read the popup's public ending state. Clear the trigger's closing state when exit ends or the popup unmounts; do not add a timer or wait for focus return.                                         |
 | Forced colors      | `enhanceHighContrast` styles the item parts and indicators. Disabled cues take precedence over highlight styling.                                                                                  |
-
-#### Item preview card contract
-
-`useMenu2ItemPopover` shares one description card between items. It supplies the anchor, active value, handlers, and `aria-describedby`.
-
-- Pass a unique value to `getItemProps(value, handlers)`. Caller handlers run first. The hook clears ownership when the active item leaves the DOM.
-- Spread `popover.props` onto a `Popper` and render the surface, such as Paper, yourself. A modal `Popover` can hide the menu from assistive technology.
-- Preserve `popover.props.keepMounted` and render the active content even while `popover.open` is false. The hidden card must supply the accessible description before its visual appearance.
-- Connect `close()` to menu closure. The card has inline `pointer-events: none`. Interactive cards need a separate interaction and accessibility design; `interactive: true` is not a supported option.
-
-The visual card waits for the menu's starting state and ancestor animations that can move its anchor. It checks once per frame, ignores color and opacity-only transitions, and stops waiting after 500 ms. It also excludes paused or non-terminating animations. Thus a long custom animation can still move the anchor after the card appears.
-
-The hook does not assume fixed Grow timing. `onOpenChangeComplete` would wait for all popup animations, including fades that do not affect placement. The hook avoids undocumented Base UI internals.
 
 ### Resolved review questions
 

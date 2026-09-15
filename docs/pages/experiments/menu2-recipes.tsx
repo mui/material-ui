@@ -3,9 +3,6 @@ import NextLink from 'next/link';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
-import Grow from '@mui/material/Grow';
-import Paper from '@mui/material/Paper';
-import Popper from '@mui/material/Popper';
 import Stack from '@mui/material/Stack';
 import Tooltip, { type TooltipProps } from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
@@ -14,10 +11,7 @@ import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRigh
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 // The Unstable_ subpaths use default exports, so the local bindings drop the
 // prefix and the JSX mirrors the future stable names.
-import Menu2, {
-  useMenu2ItemPopover,
-  type UseMenu2ItemPopoverPopover,
-} from '@mui/material/Unstable_Menu2';
+import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
@@ -57,49 +51,6 @@ function createVirtualAnchor(mouseX: number, mouseY: number) {
   };
 }
 
-interface PreviewCardItem {
-  id: string;
-  label: string;
-  description: string;
-  footer: string;
-}
-
-const rootPreviewCardItems: PreviewCardItem[] = [
-  {
-    id: 'template-gallery',
-    label: 'Template gallery',
-    description: 'Start from a polished document layout for notes, proposals, and project plans.',
-    footer: 'Opens the template picker',
-  },
-  {
-    id: 'publish-web',
-    label: 'Publish to web',
-    description: 'Create a public read-only page that updates when this document changes.',
-    footer: 'Requires sharing permission',
-  },
-];
-
-const versionHistoryPreviewCardItems: PreviewCardItem[] = [
-  {
-    id: 'named-versions',
-    label: 'Named versions',
-    description: 'Create and manage named checkpoints for important document milestones.',
-    footer: 'Keeps the current version history',
-  },
-  {
-    id: 'compare-changes',
-    label: 'Compare changes',
-    description: 'Review edits between two versions and inspect who changed each section.',
-    footer: 'Opens in a side-by-side view',
-  },
-  {
-    id: 'restore-version',
-    label: 'Restore version',
-    description: 'Replace the current document with a selected earlier version.',
-    footer: 'Creates a new restore checkpoint',
-  },
-];
-
 const horizontalTooltipProps = {
   placement: 'right',
   slotProps: {
@@ -129,7 +80,7 @@ interface MenuTooltipChildProps {
 const MenuTooltip = React.forwardRef<
   HTMLElement,
   {
-    title: string;
+    title: React.ReactNode;
     children: React.ReactElement<MenuTooltipChildProps>;
     tooltipProps?: Partial<TooltipProps>;
   } & Record<string, any>
@@ -168,37 +119,6 @@ const MenuTooltip = React.forwardRef<
   );
 });
 
-// The hook supplies the position, the id, and the non-interactive style. A
-// Popper has no Paper, so the card renders its own.
-function MaterialPreviewCard(props: { popover: UseMenu2ItemPopoverPopover<PreviewCardItem> }) {
-  const item = props.popover.value;
-
-  return (
-    // `transition` keeps the Grow that the Popover gave the card before.
-    <Popper {...props.popover.props} transition sx={{ zIndex: 'tooltip' }}>
-      {({ TransitionProps }) => (
-        <Grow {...TransitionProps} timeout="auto">
-          <Paper elevation={8} sx={{ width: 256, p: 1.5 }}>
-            {item ? (
-              <React.Fragment>
-                <Typography variant="subtitle2" aria-hidden>
-                  {item.label}
-                </Typography>
-                <Typography color="text.secondary" sx={{ mt: 0.5 }} variant="body2">
-                  {item.description}
-                </Typography>
-                <Typography color="text.secondary" sx={{ mt: 1 }} variant="caption">
-                  {item.footer}
-                </Typography>
-              </React.Fragment>
-            ) : null}
-          </Paper>
-        </Grow>
-      )}
-    </Popper>
-  );
-}
-
 function DisabledTooltip(props: { title: string; children: React.ReactElement }) {
   const { title, children } = props;
 
@@ -208,48 +128,6 @@ function DisabledTooltip(props: { title: string; children: React.ReactElement })
           is attached to the wrapper, not the disabled menuitem itself. */}
       <span>{children}</span>
     </Tooltip>
-  );
-}
-
-function Menu2WithPreviewCardsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: boolean }) {
-  const { getItemProps, popover, close } = useMenu2ItemPopover<PreviewCardItem>();
-
-  return (
-    <Menu2
-      onOpenChange={(open) => {
-        if (!open) {
-          close();
-        }
-      }}
-      trigger={
-        <Button variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
-          Help cards
-        </Button>
-      }
-      sideOffset={8}
-    >
-      <Menu2Item label={rootPreviewCardItems[0].label} {...getItemProps(rootPreviewCardItems[0])}>
-        {rootPreviewCardItems[0].label}
-      </Menu2Item>
-      <Menu2Submenu
-        trigger={
-          <Menu2SubmenuTrigger openOnHover={submenusOpenOnHover}>
-            Version history
-            <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </Menu2SubmenuTrigger>
-        }
-      >
-        {versionHistoryPreviewCardItems.map((item) => (
-          <Menu2Item key={item.id} label={item.label} {...getItemProps(item)}>
-            {item.label}
-          </Menu2Item>
-        ))}
-      </Menu2Submenu>
-      <Menu2Item label={rootPreviewCardItems[1].label} {...getItemProps(rootPreviewCardItems[1])}>
-        {rootPreviewCardItems[1].label}
-      </Menu2Item>
-      <MaterialPreviewCard popover={popover} />
-    </Menu2>
   );
 }
 
@@ -397,7 +275,18 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
       <MenuTooltip title="Open recently edited documents">
         <Menu2Item>Open recent</Menu2Item>
       </MenuTooltip>
-      <MenuTooltip title="Copy this document to your Drive">
+      <MenuTooltip
+        title={
+          <React.Fragment>
+            <Typography component="p" variant="inherit" sx={{ mb: 1 }}>
+              Create a <strong>separate copy</strong> in your Drive.
+            </Typography>
+            <Typography component="p" variant="inherit">
+              Your edits <em>do not change</em> the original document.
+            </Typography>
+          </React.Fragment>
+        }
+      >
         <Menu2Item>Make a copy</Menu2Item>
       </MenuTooltip>
       <DisabledTooltip title="Import is disabled while offline">
@@ -563,10 +452,7 @@ export default function Menu2Experiment() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Head
-        title="Menu2 recipes"
-        description="Menu2 integrations with Tooltip, Popover, and context menus"
-      />
+      <Head title="Menu2 recipes" description="Menu2 integrations with Tooltip and context menus" />
       <Container maxWidth="md" sx={{ pt: 4 }}>
         <Stack spacing={4}>
           <Typography component="h2" variant="h4">
@@ -619,16 +505,12 @@ export default function Menu2Experiment() {
           </section>
           <section>
             <h3 id="menu2-tooltips">Menu2 + Tooltip</h3>
-            <p>Material UI Tooltip integrated with every menu item.</p>
-            <Menu2WithTooltipsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
-          </section>
-          <section>
-            <h3 id="menu2-popover-preview-card">Menu2 + preview card popover</h3>
             <p>
-              The <code>useMenu2ItemPopover</code> hook builds a PreviewCard-style menu item help
-              card on a Popper.
+              Material UI Tooltip adds descriptions to menu items. Hover over or focus Make a copy
+              to see paragraphs with bold and italic text. Tooltip content has no links, buttons, or
+              other controls.
             </p>
-            <Menu2WithPreviewCardsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
+            <Menu2WithTooltipsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
           </section>
           <section>
             <h3 id="menu2-context-menu-recipe">Menu2 as ContextMenu recipe</h3>
