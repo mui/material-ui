@@ -27,8 +27,8 @@ const keys: SpacingKey[] = [
 keys.forEach((key) => takesKey(key));
 // @ts-expect-error — not a registered spacing key
 takesKey('tiny');
-// The sizing constants are emitted as plain px and are deliberately NOT
-// spacing keys, so neither ever reaches theme.spacing() or sx.
+// The sizing constants get their own variables, not `--mui-spacing-*`, and are
+// deliberately NOT spacing keys, so neither ever reaches theme.spacing() or sx.
 // @ts-expect-error — sizing constant, not a spacing key
 takesKey('touchTarget');
 // @ts-expect-error — sizing constant, not a spacing key
