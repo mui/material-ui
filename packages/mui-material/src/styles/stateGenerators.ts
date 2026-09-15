@@ -55,6 +55,13 @@ export interface ColorMixOptions {
    * gaining chroma rather than losing it.
    */
   target?: string | undefined;
+  /**
+   * Alpha per level for a tint of the colour ITSELF, producing
+   * `softBackgroundColor` — the quiet fill used by text and outlined variants.
+   * Omit it and those variants fall back to the colour-independent `default`
+   * ramp, which tints with the page pole instead.
+   */
+  softStep?: string | undefined;
   levels?: StateLevels | undefined;
   disabled?: DisabledStyle | undefined;
 }
@@ -67,7 +74,7 @@ export interface ColorMixOptions {
  * purple — while oklab desaturates and keeps the colour's identity.
  */
 export function colorMix(options: ColorMixOptions = {}): StateGenerator {
-  const { step, overlayStep, target, levels, disabled = DISABLED } = options;
+  const { step, overlayStep, target, softStep, levels, disabled = DISABLED } = options;
   const lv = resolveLevels(levels);
 
   return ({ color, theme }: GeneratorContext): ColorStates => {
@@ -110,6 +117,11 @@ export function colorMix(options: ColorMixOptions = {}): StateGenerator {
     const forLevel = (level: number) => ({
       backgroundColor: mix(color, pole, times(level, step)),
       borderColor: mix(theme.alpha(color, 0.5), color, times(level, '100%')),
+      // A tint of the colour itself, not of the pole — which is what makes a
+      // quiet variant read as "primary" rather than as grey.
+      ...(softStep
+        ? { softBackgroundColor: mix('transparent', color, times(level, softStep)) }
+        : null),
     });
     return {
       hover: forLevel(lv.hover),

@@ -32,8 +32,22 @@ import type { Theme } from './createThemeNoVars';
  * `CSSObject` would give. Still spreads into `styled()` / `styleOverrides`.
  */
 export interface StateStyle {
+  /** solid fill — what a filled/contained variant paints */
   backgroundColor?: string | undefined;
+  /** outline — what an outlined variant paints on its border */
   borderColor?: string | undefined;
+  /**
+   * Tinted fill for the quiet variants — text and outlined buttons, selected
+   * rows. Optional: when a colour does not provide one, those variants fall back
+   * to the colour-independent `states.default` ramp.
+   *
+   * It exists because the two are genuinely different treatments. Material UI
+   * tints a quiet variant with the control's OWN colour
+   * (`alpha(main, hoverOpacity)`), while a neutral overlay tints with the page
+   * pole; a design system may want either, and before this channel only the
+   * neutral one could be expressed.
+   */
+  softBackgroundColor?: string | undefined;
 }
 
 /** `disabled` is the one state that may fade rather than recolour. */

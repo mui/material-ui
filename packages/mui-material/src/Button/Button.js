@@ -207,7 +207,11 @@ const ButtonRoot = styled(ButtonBase, {
                         '--variant-containedBg': (theme.vars || theme).palette[color].dark,
                         '--variant-outlinedBorder': (theme.vars || theme).palette[color].main,
                       }),
-                  ...(theme.states?.default
+                  // Gated on whatever would REPLACE it for THIS colour: either the
+                  // colour's own soft tint, or the colour-independent ramp. A
+                  // global gate here would drop the value for colours that have
+                  // neither.
+                  ...(theme.states?.[color]?.hover?.softBackgroundColor || theme.states?.default
                     ? null
                     : {
                         '--variant-textBg': theme.alpha(

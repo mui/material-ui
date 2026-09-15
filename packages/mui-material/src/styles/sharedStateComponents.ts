@@ -81,6 +81,17 @@ export default function applySharedStates<T extends StatefulTheme>(theme: T): vo
       .filter((key) => key !== 'default')
       .map((color) => {
         const state = t.states?.[color] as ColorStates;
+        // A colour carrying `softBackgroundColor` tints its quiet variants with
+        // ITSELF; these entries land after the root block above, so they override
+        // the colour-independent ramp for this colour only. A colour without one
+        // simply inherits the root values.
+        const soft = (level: 'hover' | 'active') =>
+          state[level].softBackgroundColor
+            ? {
+                '--variant-textBg': state[level].softBackgroundColor,
+                '--variant-outlinedBg': state[level].softBackgroundColor,
+              }
+            : null;
         return {
           props: { color },
           style: {
@@ -88,11 +99,13 @@ export default function applySharedStates<T extends StatefulTheme>(theme: T): vo
               '&:hover': {
                 '--variant-containedBg': state.hover.backgroundColor,
                 '--variant-outlinedBorder': state.hover.borderColor,
+                ...soft('hover'),
               },
             },
             '&:active': {
               '--variant-containedBg': state.active.backgroundColor,
               '--variant-outlinedBorder': state.active.borderColor,
+              ...soft('active'),
             },
           },
         };
