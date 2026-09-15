@@ -22,7 +22,7 @@ for (const line of output.split(/\r?\n/)) {
     continue;
   }
   const relative = path.relative(packagesRoot, line);
-  if (!relative.startsWith('..') && path.dirname(line) !== fixtureRoot) {
+  if (!relative.startsWith('..') && path.relative(fixtureRoot, path.dirname(line)) !== '') {
     if (!line.endsWith('.d.ts') || relative.split(path.sep)[1] !== 'build') {
       throw new Error(`Consumer test loaded library source: ${line}`);
     }
