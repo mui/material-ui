@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { once } from 'es-toolkit/function';
 import { prefixer } from 'stylis';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
@@ -17,7 +16,11 @@ import { DemoInstanceThemeProvider } from './DemoThemeProviders';
 
 type RtlModule = typeof import('@mui/stylis-plugin-rtl');
 
-const loadRtlModule = once(() => import('@mui/stylis-plugin-rtl'));
+let rtlModulePromise: Promise<RtlModule> | undefined;
+function loadRtlModule() {
+  rtlModulePromise ??= import('@mui/stylis-plugin-rtl');
+  return rtlModulePromise;
+}
 
 const SRC_DOC = `<!DOCTYPE html>
 <html>
@@ -125,9 +128,9 @@ function FramedDemo(props: FramedDemoProps) {
   );
 
   const StyleEngineWrapper = styleEngine?.Wrapper;
-  if (rtl && StyleEngineWrapper) {
+  if (StyleEngineWrapper) {
     return (
-      <StyleEngineWrapper container={document.head} direction="rtl">
+      <StyleEngineWrapper container={document.head} direction={theme.direction}>
         {tree}
       </StyleEngineWrapper>
     );

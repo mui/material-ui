@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import { createEmotionCache as createCache } from '@mui/material-nextjs/v15-pagesRouter';
-import { once } from 'es-toolkit/function';
 import { prefixer } from 'stylis';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { ThemeOptionsContext } from '../ThemeContext';
@@ -14,16 +13,18 @@ type StyledEngineProviderProps = {
   children: React.ReactNode;
 };
 
-const loadRtlCache = once(() =>
-  import('@mui/stylis-plugin-rtl').then(({ default: rtlPlugin }) =>
+let rtlCachePromise: Promise<EmotionCache> | undefined;
+function loadRtlCache() {
+  rtlCachePromise ??= import('@mui/stylis-plugin-rtl').then(({ default: rtlPlugin }) =>
     createCache({
       key: 'rtl',
       prepend: true,
       enableCssLayer: true,
       stylisPlugins: [prefixer, rtlPlugin],
     }),
-  ),
-);
+  );
+  return rtlCachePromise;
+}
 
 export default function StyledEngineProvider(props: StyledEngineProviderProps) {
   const { children, cacheLtr } = props;
@@ -46,8 +47,8 @@ export default function StyledEngineProvider(props: StyledEngineProviderProps) {
   );
 
   const StyleEngineWrapper = styleEngine?.Wrapper;
-  if (rtl && StyleEngineWrapper) {
-    return <StyleEngineWrapper direction="rtl">{tree}</StyleEngineWrapper>;
+  if (StyleEngineWrapper) {
+    return <StyleEngineWrapper direction={direction}>{tree}</StyleEngineWrapper>;
   }
   return tree;
 }

@@ -1,37 +1,49 @@
 import * as React from 'react';
-import { once } from 'es-toolkit/function';
 import type { StyleEngine, StyleEngineScopeProps } from '@mui/internal-core-docs/styleEngine';
 
-type Bundle = [typeof import('styled-components'), typeof import('@mui/stylis-plugin-rtl')];
+type StyledComponents = typeof import('styled-components');
+type RtlStylisPlugins = [(typeof import('@mui/stylis-plugin-rtl'))['default']];
 
 // Resolving to `null` rather than rejecting keeps a failed chunk load degrading to an
 // unstyled-by-this-engine page. `use()` rethrows a rejection, and neither render position has an
 // error boundary that recovers: the page shell would be replaced by Next's error page.
-const loadBundle = once((): Promise<Bundle | null> =>
-  Promise.all([import('styled-components'), import('@mui/stylis-plugin-rtl')]).catch((error) => {
+let enginePromise: Promise<StyledComponents | null> | undefined;
+function loadEngine() {
+  enginePromise ??= import('styled-components').catch((error) => {
     console.error('Failed to load the styled-components style engine.', error);
     return null;
-  }),
-);
+  });
+  return enginePromise;
+}
+
+// Resolves to the plugin array rather than the module so its identity is stable: a fresh array
+// would make `StyleSheetManager` rebuild its stylis instance on every render.
+let stylisPluginsPromise: Promise<RtlStylisPlugins | null> | undefined;
+function loadRtlStylisPlugins() {
+  stylisPluginsPromise ??= import('@mui/stylis-plugin-rtl')
+    .then(({ default: rtlPlugin }): RtlStylisPlugins => [rtlPlugin])
+    .catch((error) => {
+      console.error('Failed to load the RTL stylis plugin.', error);
+      return null;
+    });
+  return stylisPluginsPromise;
+}
 
 function StyleEngineScope(props: StyleEngineScopeProps) {
   const { children, container, direction } = props;
-  const bundle = React.use(loadBundle());
+  const engine = React.use(loadEngine());
 
-  // `undefined` reuses the parent stylis instance; `[]` would rebuild it on every render.
-  const stylisPlugins = React.useMemo(() => {
-    if (!bundle || direction !== 'rtl') {
-      return undefined;
-    }
-    const [, { default: rtlPlugin }] = bundle;
-    return [rtlPlugin];
-  }, [bundle, direction]);
+  let stylisPlugins;
+  if (direction === 'rtl') {
+    // `undefined` reuses the parent stylis instance.
+    stylisPlugins = React.use(loadRtlStylisPlugins()) ?? undefined;
+  }
 
-  if (!bundle) {
+  if (!engine) {
     return children;
   }
 
-  const [{ StyleSheetManager }] = bundle;
+  const { StyleSheetManager } = engine;
   return (
     <StyleSheetManager target={container} stylisPlugins={stylisPlugins}>
       {children}
@@ -40,6 +52,11 @@ function StyleEngineScope(props: StyleEngineScopeProps) {
 }
 
 function StyleEngineWrapper(props: StyleEngineScopeProps) {
+  // On the page in LTR there is nothing to retarget and nothing to flip, so the engine is never
+  // fetched. Framed demos always need it: without it they inject into the parent document.
+  if (props.container === undefined && props.direction !== 'rtl') {
+    return props.children;
+  }
   // `children` as the fallback keeps the subtree visible while the chunk loads. There is no
   // Suspense boundary anywhere above either render position, so this one is required.
   return (
