@@ -12,8 +12,10 @@ const theme = createTheme({
 
 export default function FocusVisibleRecolor() {
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <Button variant="outlined">Tab to me</Button>
     </ThemeProvider>
+    // @focus-end
   );
 }

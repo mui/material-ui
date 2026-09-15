@@ -84,6 +84,7 @@ function TightCircleCheckedIcon(props: SvgIconProps) {
 
 export default function FocusVisibleCustomIcons() {
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <Stack spacing={2}>
         <Typography variant="body2" color="text.secondary">
@@ -165,5 +166,6 @@ export default function FocusVisibleCustomIcons() {
         </Stack>
       </Stack>
     </ThemeProvider>
+    // @focus-end
   );
 }
