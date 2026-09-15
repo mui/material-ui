@@ -32,7 +32,7 @@
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
-    "es-toolkit": "^1.51.0",
+    "es-toolkit": "^1.52.0",
     "fg-loadcss": "^3.1.0",
     "lz-string": "^1.5.0",
     "nprogress": "^0.2.0",
@@ -49,7 +49,7 @@
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.5",
-    "next": "16.3.3"
+    "next": "16.3.4"
   },
   "peerDependencies": {
     "@base-ui/react": "^1",
