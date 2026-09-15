@@ -30,9 +30,18 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import SvgIcon from '@mui/material/SvgIcon';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Autocomplete from '@mui/material/Autocomplete';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import LinearProgress from '@mui/material/LinearProgress';
+import Slider from '@mui/material/Slider';
 import AddIcon from '@mui/icons-material/Add';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import enhanceDensity from './enhanceDensity';
+import { DEFAULT_SIZING_PX, DEFAULT_STEP_PX, type DensityKey } from './densityScale';
 
 /* eslint-disable vitest/valid-title -- one case per level x component x size, so
    every title is generated from the matrix rather than written out. */
@@ -48,15 +57,8 @@ import enhanceDensity from './enhanceDensity';
  * move with the mapping; pinning them would make this a change-detector.
  */
 
-type Steps = {
-  xxSmall: number;
-  xSmall: number;
-  small: number;
-  medium: number;
-  large: number;
-  xLarge: number;
-  xxLarge: number;
-};
+/** The ladder's shape comes from the implementation, not a second list. */
+type Steps = Record<DensityKey, number>;
 type Level = {
   id: string;
   step: Steps;
@@ -98,10 +100,12 @@ const LEVELS: Level[] = [
     },
   ),
   level(
+    // The shipped ladder itself — an input to the enhancer, so it is read from
+    // the implementation; the expectations below stay computed independently.
     'medium',
-    { xxSmall: 4, xSmall: 8, small: 12, medium: 16, large: 24, xLarge: 32, xxLarge: 48 },
-    32,
-    16,
+    DEFAULT_STEP_PX,
+    DEFAULT_SIZING_PX.touchTarget,
+    DEFAULT_SIZING_PX.iconSize,
     {
       h1: { fontSize: '1.75rem', lineHeight: '36px' },
       h2: { fontSize: '1.5rem', lineHeight: '30px' },
@@ -154,12 +158,12 @@ const THEMES = new Map(LEVELS.map((l) => [l.id, themeFor(l)]));
  * the bounding rect: the rect adds borders the box itself doesn't own — a
  * collapsed table border lands half a pixel on each cell.
  */
-const heightOf = (selector: string) => {
+const sideOf = (selector: string, axis: Spec['axis'] | 'height' = 'height') => {
   const el = document.querySelector(selector);
   if (!el) {
     throw new Error(`no element for ${selector}`);
   }
-  return Math.round(parseFloat(getComputedStyle(el).height) * 100) / 100;
+  return Math.round(parseFloat(getComputedStyle(el)[axis]) * 100) / 100;
 };
 
 type Spec = {
@@ -167,6 +171,8 @@ type Spec = {
   sizes?: (string | undefined)[];
   render: (size?: any) => React.ReactElement;
   selector: string;
+  /** Which computed box property the contract names; height unless stated. */
+  axis?: 'width' | 'minWidth' | 'minHeight';
   /** Expected box height in px, from the level's own numbers. */
   height: (l: Level, size: string | undefined) => number;
 };
@@ -368,6 +374,89 @@ const CONTROLS: Record<string, Spec> = {
     selector: '.MuiBottomNavigation-root',
     height: (l) => l.step.xxLarge,
   },
+
+  // --- boxes outside the control ramp
+  ButtonGroup: {
+    render: () => (
+      <ButtonGroup>
+        <Button>A</Button>
+        <Button>B</Button>
+      </ButtonGroup>
+    ),
+    selector: '.MuiButtonGroup-grouped',
+    axis: 'minWidth',
+    height: (l) => l.touchTarget,
+  },
+  Breadcrumbs: {
+    // `maxItems` forces the collapsed button, which is the box density sizes.
+    render: () => (
+      <Breadcrumbs maxItems={2}>
+        <span>One</span>
+        <span>Two</span>
+        <span>Three</span>
+        <span>Four</span>
+      </Breadcrumbs>
+    ),
+    selector: `.MuiBreadcrumbs-ol li > .MuiButtonBase-root`,
+    height: (l) => l.touchTarget,
+  },
+  Autocomplete: {
+    render: () => (
+      <Autocomplete
+        open
+        options={['One', 'Two']}
+        renderInput={(params) => <TextField {...params} />}
+      />
+    ),
+    selector: '.MuiAutocomplete-option',
+    height: (l) => l.touchTarget,
+  },
+  StepLabel: {
+    render: () => (
+      <Stepper activeStep={0}>
+        <Step>
+          <StepLabel>One</StepLabel>
+        </Step>
+      </Stepper>
+    ),
+    selector: '.MuiStepLabel-iconContainer',
+    height: (l) => l.touchTarget,
+  },
+  StepConnector: {
+    render: () => (
+      <Stepper orientation="vertical" activeStep={0}>
+        <Step>
+          <StepLabel>One</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Two</StepLabel>
+        </Step>
+      </Stepper>
+    ),
+    selector: '.MuiStepConnector-line',
+    height: (l) => l.step.medium,
+  },
+  TabScrollButton: {
+    render: () => (
+      <Tabs value={0} variant="scrollable" scrollButtons>
+        <Tab label="One" />
+      </Tabs>
+    ),
+    selector: '.MuiTabScrollButton-root',
+    axis: 'width',
+    height: (l) => l.touchTarget,
+  },
+  LinearProgress: {
+    // A fixed bar thickness, not a scale step — asserted so it stays deliberate.
+    render: () => <LinearProgress />,
+    selector: '.MuiLinearProgress-root',
+    height: () => 4,
+  },
+  Slider: {
+    render: () => <Slider value={50} />,
+    selector: '.MuiSlider-root',
+    height: (l) => l.touchTarget,
+  },
   MenuItem: {
     render: () => (
       <MenuList>
@@ -407,69 +496,45 @@ const ICONS: Record<
   },
 };
 
-/**
- * Components the enhancer writes that own no box: it spaces them (padding,
- * margin, gap) or only resets a min-width, so there is nothing for this file to
- * measure. Listed rather than omitted — the coverage test below fails on any
- * emitted component that appears in neither table, so a component that gains a
- * height cannot slip through unasserted.
- */
-const NO_BOX = [
-  'MuiAccordionDetails',
-  'MuiAlert',
-  'MuiAutocomplete',
-  'MuiBottomNavigationAction',
-  'MuiBreadcrumbs',
-  'MuiButtonGroup',
-  'MuiCardActions',
-  'MuiCardContent',
-  'MuiCardHeader',
-  'MuiCircularProgress',
-  'MuiDialog',
-  'MuiDialogActions',
-  'MuiDialogContent',
-  'MuiDialogTitle',
-  'MuiFilledInput',
-  'MuiFormControlLabel',
-  'MuiFormHelperText',
-  'MuiFormLabel',
-  'MuiInputAdornment',
-  'MuiInputLabel',
-  'MuiLinearProgress',
-  'MuiList',
-  'MuiListItem',
-  'MuiListItemAvatar',
-  'MuiListItemIcon',
-  'MuiListItemSecondaryAction',
-  'MuiListItemText',
-  'MuiListSubheader',
-  'MuiPagination',
-  'MuiSlider',
-  'MuiSnackbarContent',
-  'MuiStep',
-  'MuiStepConnector',
-  'MuiStepContent',
-  'MuiStepIcon',
-  'MuiStepLabel',
-  'MuiTabScrollButton',
-  'MuiTableSortLabel',
-  'MuiTooltip',
-];
+/** Properties that state a box rather than space one. */
+const BOX_PROPS = ['height', 'minHeight', 'width', 'minWidth', '--_size', '--_height'];
+
+/** `0`, `auto` and the like reset a box; they don't claim one. */
+const claimsABox = (value: unknown) =>
+  value !== 0 && value !== 'auto' && value !== '0' && value !== 'none' && value !== '100%';
+
+/** Does anything in this component's emission set a box? Walks nested variants,
+ * selectors and slots, since a size variant is where most boxes are written. */
+function emitsABox(node: unknown): boolean {
+  if (Array.isArray(node)) {
+    return node.some(emitsABox);
+  }
+  if (node === null || typeof node !== 'object') {
+    return false;
+  }
+  return Object.entries(node as Record<string, unknown>).some(([key, value]) => {
+    if (BOX_PROPS.includes(key)) {
+      return claimsABox(value);
+    }
+    return emitsABox(value);
+  });
+}
 
 describe.skipIf(isJsdom())('density contract', () => {
   const { render } = createRenderer();
 
-  test('every component the enhancer writes is classified', () => {
-    const emitted = Object.keys(THEMES.get('medium')!.components ?? {});
+  test('every component that sizes a box has a spec', () => {
+    const components = (THEMES.get('medium')!.components ?? {}) as Record<string, any>;
     const asserted = new Set([
       ...Object.keys(CONTROLS).map((name) => `Mui${name}`),
       ...Object.keys(ICONS).map((name) => `Mui${name}`),
-      ...NO_BOX,
     ]);
-    const unclassified = emitted.filter((name) => !asserted.has(name));
-    // A component that gains a height must be given a spec (or explicitly
-    // parked in NO_BOX) rather than silently going unmeasured.
-    expect(unclassified).to.deep.equal([]);
+    // Derived, not listed: a component that gains a height starts owing a spec
+    // the moment it emits one, which a hand-kept exemption list would not catch.
+    const unmeasured = Object.entries(components)
+      .filter(([name, value]) => !asserted.has(name) && emitsABox(value?.styleOverrides))
+      .map(([name]) => name);
+    expect(unmeasured).to.deep.equal([]);
   });
 
   LEVELS.forEach((l) => {
@@ -489,7 +554,7 @@ describe.skipIf(isJsdom())('density contract', () => {
         sizes.forEach((size) => {
           test(`${name}${size ? ` ${size}` : ''}`, () => {
             render(<ThemeProvider theme={THEMES.get(l.id)!}>{spec.render(size)}</ThemeProvider>);
-            expect(heightOf(spec.selector)).to.equal(spec.height(l, size));
+            expect(sideOf(spec.selector, spec.axis)).to.equal(spec.height(l, size));
           });
         });
       });
