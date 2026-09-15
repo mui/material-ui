@@ -55,14 +55,14 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // Sized components step off the interactive box rather than the ladder, so a
   // `touchTarget` override carries all three sizes instead of only the middle
   // one. Both land on today's px at the default 32.
-  const smallBox = `calc(${touchTarget} - ${spacing('xSmall')})`;
-  const largeBox = `calc(${touchTarget} + ${spacing('small')})`;
-  const hugeBox = `calc(${touchTarget} + ${spacing('medium')})`;
+  const smallBox = `calc(${touchTarget} - ${spacing('xxSmall')})`; // 28px
+  const largeBox = `calc(${touchTarget} + ${spacing('small')})`; // 44px
+  const hugeBox = `calc(${touchTarget} + ${spacing('medium')})`; // 48px
   // Icons ride the glyph constant the same way boxes ride the interactive one.
   const iconSmall = `calc(${iconSize} - 2px)`;
   const iconLarge = `calc(${iconSize} + 4px)`;
   const inputMediumPadBlock = `calc((${touchTarget} - 1lh) / 2)`;
-  const inputSmallPadBlock = `calc((${touchTarget} - 1lh) / 4)`;
+  const inputSmallPadBlock = `calc((${touchTarget} - ${spacing('xxSmall')} - 1lh) / 2)`;
   const sharedCheckboxRadio = {
     padding: 0,
     width: touchTarget,
@@ -212,7 +212,6 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   const smUp = enhanced.breakpoints.up('sm' as Breakpoint);
   addRootOverride(enhanced.components, 'MuiMenuItem', {
     paddingBlock: spacing('xxSmall'),
-    minHeight: 'auto',
     variants: [
       {
         props: { dense: false },
@@ -227,6 +226,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         props: { dense: true },
         style: {
           gap: spacing('xSmall'),
+          minHeight: smallBox,
           [`& .${listItemIconClasses.root} svg`]: { fontSize: '0.8lh' },
         },
       },

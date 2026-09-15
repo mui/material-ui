@@ -3,7 +3,7 @@ import { Claim } from './densityAnnotations';
 // The authored control height per `size` — the same ladder for every sized
 // button family (Button, Pagination, ToggleButton).
 const HEIGHT_BY_SIZE: Record<string, string> = {
-  small: 'touchTarget - xSmall',
+  small: 'touchTarget - xxSmall',
   medium: 'touchTarget',
   large: 'touchTarget + small',
 };
@@ -367,7 +367,7 @@ export const DENSITY_ANNOTATIONS: Record<
       {
         on: '.MuiCheckbox-root',
         aspect: 'touch-target',
-        token: small ? 'touchTarget - xSmall' : 'touchTarget',
+        token: small ? 'touchTarget - xxSmall' : 'touchTarget',
         label: 'Checkbox',
       },
       // The preset sizes the glyph `fontSize: iconSize`, so `medium` names it.
@@ -504,12 +504,12 @@ export const DENSITY_ANNOTATIONS: Record<
         label: 'List',
         route: { gutter: 'top', at: 0.85 },
       },
-      // Dense names the authored floor (`minHeight: touchTarget - xSmall`);
+      // Dense names the authored floor (`minHeight: touchTarget - xxSmall`);
       // the box measures above it because the content outgrows 24px.
       {
         on: '.MuiListItem-root:nth-of-type(2) .MuiListItemButton-root',
         aspect: 'touch-target',
-        token: dense ? 'touchTarget - xSmall' : 'touchTarget',
+        token: dense ? 'touchTarget - xxSmall' : 'touchTarget',
         label: 'Item',
       },
       {
@@ -550,19 +550,13 @@ export const DENSITY_ANNOTATIONS: Record<
         label: 'MenuList',
         route: { gutter: 'top', at: 0.85 },
       },
-      // Dense replaces the floor with `auto`: the item is content-sized, so
-      // there is no box to name.
-      // Dense has no box to name at all — the preset sets `minHeight: auto`.
-      ...(dense
-        ? []
-        : ([
-            {
-              on: '.MuiMenuItem-root:nth-of-type(2)',
-              aspect: 'touch-target',
-              token: 'touchTarget',
-              label: 'Item',
-            },
-          ] as Claim[])),
+      // Dense has a floor of its own now — the small box, not `auto`.
+      {
+        on: '.MuiMenuItem-root:nth-of-type(2)',
+        aspect: 'touch-target',
+        token: dense ? 'touchTarget - xxSmall' : 'touchTarget',
+        label: 'Item',
+      },
       {
         on: '.MuiMenuItem-root:nth-of-type(2)',
         aspect: 'padding',
@@ -639,7 +633,7 @@ export const DENSITY_ANNOTATIONS: Record<
       {
         on: '.MuiRadio-root',
         aspect: 'touch-target',
-        token: small ? 'touchTarget - xSmall' : 'touchTarget',
+        token: small ? 'touchTarget - xxSmall' : 'touchTarget',
         label: 'Radio',
       },
       {
@@ -692,7 +686,9 @@ export const DENSITY_ANNOTATIONS: Record<
         on: '.MuiInput-root .MuiInputBase-input',
         aspect: 'padding',
         axis: 'block',
-        token: small ? '(touchTarget - 1lh) / 4' : '(touchTarget - 1lh) / 2',
+        token: small
+          ? '(touchTarget - xxSmall - 1lh) / 2'
+          : '(touchTarget - 1lh) / 2',
         label: 'Select value',
         route: { gutter: 'right' },
       },
@@ -880,7 +876,7 @@ export const DENSITY_ANNOTATIONS: Record<
       {
         on: '.MuiSwitch-root',
         aspect: 'touch-target',
-        token: small ? 'touchTarget - xSmall' : 'touchTarget',
+        token: small ? 'touchTarget - xxSmall' : 'touchTarget',
         label: 'Switch',
         route: { gutter: 'left' },
       },
@@ -930,7 +926,7 @@ export const DENSITY_ANNOTATIONS: Record<
       {
         on: 'tbody .MuiCheckbox-root',
         aspect: 'touch-target',
-        token: small ? 'touchTarget - xSmall' : 'touchTarget',
+        token: small ? 'touchTarget - xxSmall' : 'touchTarget',
         label: 'Checkbox',
         route: { gutter: 'left' },
       },
@@ -1011,7 +1007,9 @@ export const DENSITY_ANNOTATIONS: Record<
     const multiline = values.multiline === true;
     // Every input variant now centres one line in the touch target, so the
     // block padding is the leftover split in half — a quarter at `small`.
-    const padBlock = small ? '(touchTarget - 1lh) / 4' : '(touchTarget - 1lh) / 2';
+    const padBlock = small
+      ? '(touchTarget - xxSmall - 1lh) / 2'
+      : '(touchTarget - 1lh) / 2';
     // Multiline moves that padding off the input slot and onto the root, where
     // the box grows with the text — claim it wherever it currently lives, or the
     // band measures zero and drops out.

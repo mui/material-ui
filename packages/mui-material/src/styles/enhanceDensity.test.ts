@@ -80,7 +80,7 @@ describe('enhanceDensity', () => {
   test('every size steps off the interactive box, not the ladder', () => {
     const theme = enhanceDensity(createTheme());
 
-    expect(sizeStyle(theme, 'MuiButton', 'small').height).to.equal('calc(32px - 8px)');
+    expect(sizeStyle(theme, 'MuiButton', 'small').height).to.equal('calc(32px - 4px)');
     expect(sizeStyle(theme, 'MuiButton', 'medium').height).to.equal('32px');
     expect(sizeStyle(theme, 'MuiButton', 'large').height).to.equal('calc(32px + 12px)');
   });
@@ -89,16 +89,17 @@ describe('enhanceDensity', () => {
     const theme = enhanceDensity(createTheme(), { touchTarget: 44 });
 
     // the whole ramp moves; before, small and large sat on fixed ladder steps
-    expect(sizeStyle(theme, 'MuiButton', 'small').height).to.equal('calc(44px - 8px)');
+    expect(sizeStyle(theme, 'MuiButton', 'small').height).to.equal('calc(44px - 4px)');
     expect(sizeStyle(theme, 'MuiButton', 'large').height).to.equal('calc(44px + 12px)');
-    expect(sizeStyle(theme, 'MuiIconButton', 'small').width).to.equal('calc(44px - 8px)');
+    expect(sizeStyle(theme, 'MuiIconButton', 'small').width).to.equal('calc(44px - 4px)');
     expect(sizeStyle(theme, 'MuiToggleButton', 'large')['--_size']).to.equal('calc(44px + 12px)');
   });
 
-  test('Chip holds its own small, one step nearer the box', () => {
+  test('Chip authors its own small, on the same box the shared ramp lands on', () => {
     const theme = enhanceDensity(createTheme());
 
-    // 28px, which no shared derivation reaches — see the block comment
+    // Written out rather than shared: the two agree at 28px today, but Chip's
+    // height is its own contract, not a consequence of the control ramp.
     expect(sizeStyle(theme, 'MuiChip', 'small')['--_height']).to.equal('calc(32px - 4px)');
   });
 
@@ -129,8 +130,8 @@ describe('enhanceDensity', () => {
     const small = sizeStyle(enhanceDensity(createTheme()), 'MuiCheckbox', 'small');
 
     // written straight onto the variant — nothing indirects through a var
-    expect(small.width).to.equal('calc(32px - 8px)');
-    expect(small.height).to.equal('calc(32px - 8px)');
+    expect(small.width).to.equal('calc(32px - 4px)');
+    expect(small.height).to.equal('calc(32px - 4px)');
     expect(small['& svg'].fontSize).to.equal('calc(16px - 2px)');
   });
 
