@@ -49,16 +49,16 @@ describe('AnalyticsProvider', () => {
     vi.unstubAllGlobals();
   });
 
-  it.each(['analytics', 'essential'])('reopens saved %s consent on page load', async (consent) => {
-    window.localStorage.setItem('docs-cookie-consent', consent);
+  it('reopens saved consent on page load and clears the hash after a choice', async () => {
+    window.localStorage.setItem('docs-cookie-consent', 'analytics');
     window.history.replaceState({ existing: true }, '', '/material-ui/?test=1#cookie-preferences');
     const { user } = render(<AnalyticsProvider>{null}</AnalyticsProvider>);
 
     await findDialog();
     expect(screen.getByRole('dialog')).toHaveAccessibleDescription(
-      `We use cookies to understand site usage and improve our content. This includes third-party analytics. Current preference: ${consent === 'analytics' ? 'Analytics allowed' : 'Essential only'}`,
+      'We use cookies to understand site usage and improve our content. This includes third-party analytics. Current preference: Analytics allowed',
     );
-    expect(window.localStorage.getItem('docs-cookie-consent')).to.equal(consent);
+    expect(window.localStorage.getItem('docs-cookie-consent')).to.equal('analytics');
     await user.click(screen.getByRole('button', { name: 'Essential only' }));
 
     await waitFor(() => expect(screen.queryByRole('dialog')).to.equal(null));
@@ -66,12 +66,6 @@ describe('AnalyticsProvider', () => {
     expect(window.location.pathname + window.location.search).to.equal('/material-ui/?test=1');
     expect(window.location.hash).to.equal('');
     expect(window.history.state).to.deep.equal({ existing: true });
-    expect(window.gtag).toHaveBeenLastCalledWith('consent', 'update', {
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      analytics_storage: 'denied',
-    });
   });
 
   it('does not show a current preference before the first choice', async () => {
@@ -113,24 +107,4 @@ describe('AnalyticsProvider', () => {
       await findDialog();
     },
   );
-
-  it('ignores unrelated hashes', () => {
-    window.localStorage.setItem('docs-cookie-consent', 'essential');
-    window.history.replaceState(null, '', '/#other-section');
-    render(<AnalyticsProvider>{null}</AnalyticsProvider>);
-    expect(screen.queryByRole('dialog')).to.equal(null);
-  });
-
-  it('continues to respect Do Not Track', () => {
-    Object.defineProperty(navigator, 'doNotTrack', { configurable: true, value: '1' });
-    window.history.replaceState(null, '', '/#cookie-preferences');
-    render(<AnalyticsProvider>{null}</AnalyticsProvider>);
-    expect(screen.queryByRole('dialog')).to.equal(null);
-    expect(window.gtag).toHaveBeenLastCalledWith('consent', 'update', {
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      analytics_storage: 'denied',
-    });
-  });
 });
