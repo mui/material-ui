@@ -180,6 +180,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     internalNativeButton,
     allowInferredHostMismatch: isLink || typeof ComponentProp === 'string',
     disabled,
+    focusableWhenDisabled,
     type,
     hasFormAction,
     tabIndex,
@@ -268,7 +269,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   const linkProps = {};
   if (isLink) {
-    linkProps.tabIndex = disabled ? -1 : tabIndex;
+    linkProps.tabIndex = disabled && !focusableWhenDisabled ? -1 : tabIndex;
     if (disabled) {
       linkProps['aria-disabled'] = disabled;
     }
