@@ -1588,8 +1588,8 @@ importers:
         specifier: 8.3.1
         version: 8.3.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       react-window:
-        specifier: 2.3.0
-        version: 2.3.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        specifier: 2.3.1
+        version: 2.3.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       sinon:
         specifier: 22.1.0
         version: 22.1.0
@@ -9906,12 +9906,6 @@ packages:
     peerDependencies:
       react: '>=16 || >=17 || >= 18 || >= 19'
       react-dom: '>=16 || >=17 || >= 18 || >=19'
-
-  react-window@2.3.0:
-    resolution: {integrity: sha512-FW6TIpaOH646k51X7yE+LSCWGkt5Pfsnc1fVyq/sCI9h0pTqmMiBXM04pzFKg3Bt7NGkeV6kqbU8d/QjmFS7Ug==}
-    peerDependencies:
-      react: ^18.0.0 || ^19.0.0
-      react-dom: ^18.0.0 || ^19.0.0
 
   react-window@2.3.1:
     resolution: {integrity: sha512-x/+N6b7FNVtlKE7ZQlfOY2bYdA7VXvT2B1Emo/ndAsFsSQ98FBIO88MsatNELbSIlYJgkCd7unBps5XMfv0Eyg==}
@@ -20913,11 +20907,6 @@ snapshots:
       react-dom: 19.2.8(react@19.2.8)
 
   react-virtuoso@4.18.13(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
-    dependencies:
-      react: 19.2.8
-      react-dom: 19.2.8(react@19.2.8)
-
-  react-window@2.3.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
     dependencies:
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
