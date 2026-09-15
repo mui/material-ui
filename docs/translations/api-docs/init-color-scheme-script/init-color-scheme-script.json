@@ -1,9 +1,11 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "attribute": { "description": "DOM attribute for applying a color scheme." },
+    "attribute": {
+      "description": "DOM attribute for applying a color scheme.<br>Requires a static value, do not derive from user input."
+    },
     "colorSchemeNode": {
-      "description": "The node (provided as string) used to attach the color-scheme attribute."
+      "description": "The node (provided as string) used to attach the color-scheme attribute.<br>Requires a static value, do not derive from user input."
     },
     "colorSchemeStorageKey": {
       "description": "localStorage key used to store <code>colorScheme</code>."

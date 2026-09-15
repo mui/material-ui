@@ -186,6 +186,46 @@ describe('InitColorSchemeScript', () => {
     });
   });
 
+  // `attribute` and `colorSchemeNode` are intentionally not serialized — they are documented as
+  // static, developer-defined values (see the prop docs), so only the storage keys and default
+  // scheme names are covered here.
+  it('should serialize storage keys and default scheme names before embedding them in the script', () => {
+    const payload = `';globalThis.muiScriptInjection = true;//</script><script>globalThis.muiScriptInjection = true</script>`;
+    const configurations = [
+      { modeStorageKey: payload },
+      { colorSchemeStorageKey: payload },
+      { defaultMode: payload },
+      { defaultLightColorScheme: payload },
+      { defaultDarkColorScheme: payload },
+    ];
+
+    configurations.forEach((configuration) => {
+      delete globalThis.muiScriptInjection;
+      const { container } = renderToString(<InitColorSchemeScript {...configuration} />);
+
+      expect(container.querySelectorAll('script')).to.have.length(1);
+      eval(container.firstChild.textContent);
+      expect(globalThis.muiScriptInjection).to.equal(undefined);
+    });
+  });
+
+  it('should read back serialized keys and default values with special characters', () => {
+    // Serialization must round-trip, not just neutralize: a storage key or default scheme name
+    // with `<`, a quote, and a line separator has to resolve to the exact same string at runtime.
+    // A mangled key would miss the mode lookup (applying the wrong scheme) and a mangled value
+    // would land altered - both fail this assertion.
+    const modeStorageKey = "a<b'c\u2028d";
+    const darkScheme = "x<y'z\u2029";
+    storage[modeStorageKey] = 'dark';
+
+    const { container } = renderToString(
+      <InitColorSchemeScript modeStorageKey={modeStorageKey} defaultDarkColorScheme={darkScheme} />,
+    );
+    eval(container.firstChild.textContent);
+
+    expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal(darkScheme);
+  });
+
   // Client renders must stay script-free (#48595).
   it('should not render the script on the client', () => {
     const { container } = render(<InitColorSchemeScript />);
