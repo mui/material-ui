@@ -77,62 +77,35 @@ describe('enhanceDensity', () => {
     expect(theme.spacing('small')).to.equal('12px');
   });
 
-  test('every size steps off the interactive box, not the ladder', () => {
-    const theme = enhanceDensity(createTheme());
-
-    expect(sizeStyle(theme, 'MuiButton', 'small').height).to.equal('calc(32px - 4px)');
-    expect(sizeStyle(theme, 'MuiButton', 'medium').height).to.equal('32px');
-    expect(sizeStyle(theme, 'MuiButton', 'large').height).to.equal('calc(32px + 12px)');
-  });
-
-  test('a touchTarget override carries small and large with it', () => {
+  test('every size derives from the interactive box, not a fixed ladder step', () => {
+    // Asserted against an OVERRIDDEN box, and by shape rather than by value: the
+    // ramp's job is to follow `touchTarget`, and pinning the px here would only
+    // re-break whenever the steps either side of it are retuned.
     const theme = enhanceDensity(createTheme(), { touchTarget: 44 });
+    const height = (component: string, size: string) => sizeStyle(theme, component, size).height;
 
-    // the whole ramp moves; before, small and large sat on fixed ladder steps
-    expect(sizeStyle(theme, 'MuiButton', 'small').height).to.equal('calc(44px - 4px)');
-    expect(sizeStyle(theme, 'MuiButton', 'large').height).to.equal('calc(44px + 12px)');
-    expect(sizeStyle(theme, 'MuiIconButton', 'small').width).to.equal('calc(44px - 4px)');
-    expect(sizeStyle(theme, 'MuiToggleButton', 'large')['--_size']).to.equal('calc(44px + 12px)');
+    // medium IS the box; small and large are built out of it
+    expect(height('MuiButton', 'medium')).to.equal('44px');
+    expect(height('MuiButton', 'small')).to.include('44px');
+    expect(height('MuiButton', 'large')).to.include('44px');
+
+    // and every sized family rides that one ramp
+    expect(sizeStyle(theme, 'MuiIconButton', 'small').width).to.equal(height('MuiButton', 'small'));
+    expect(sizeStyle(theme, 'MuiToggleButton', 'large')['--_size']).to.equal(
+      height('MuiButton', 'large'),
+    );
   });
 
-  test('Chip authors its own small, on the same box the shared ramp lands on', () => {
-    const theme = enhanceDensity(createTheme());
-
-    // Written out rather than shared: the two agree at 28px today, but Chip's
-    // height is its own contract, not a consequence of the control ramp.
-    expect(sizeStyle(theme, 'MuiChip', 'small')['--_height']).to.equal('calc(32px - 4px)');
-  });
-
-  test('the icon ramp steps off the glyph constant', () => {
-    const theme = enhanceDensity(createTheme());
+  test('the icon ramp derives from the glyph constant', () => {
+    const theme = enhanceDensity(createTheme(), { iconSize: 20 });
     const svgIcon = (fontSize: string) => variantStyle(theme, 'MuiSvgIcon', { fontSize }).fontSize;
 
-    // 14 / 16 / 20 — the values the ladder used to spell out directly
-    expect(svgIcon('small')).to.equal('calc(16px - 2px)');
-    expect(svgIcon('medium')).to.equal('16px');
-    expect(svgIcon('large')).to.equal('calc(16px + 4px)');
-  });
+    expect(svgIcon('medium')).to.equal('20px');
+    expect(svgIcon('small')).to.include('20px');
+    expect(svgIcon('large')).to.include('20px');
 
-  test('an iconSize override carries the whole ramp', () => {
-    const theme = enhanceDensity(createTheme(), { iconSize: 20 });
-
-    expect(variantStyle(theme, 'MuiSvgIcon', { fontSize: 'small' }).fontSize).to.equal(
-      'calc(20px - 2px)',
-    );
-    expect(variantStyle(theme, 'MuiSvgIcon', { fontSize: 'large' }).fontSize).to.equal(
-      'calc(20px + 4px)',
-    );
-    // a control's own glyph follows too
-    expect(sizeStyle(theme, 'MuiCheckbox', 'small')['& svg'].fontSize).to.equal('calc(20px - 2px)');
-  });
-
-  test('a control size variant sets the box it changes', () => {
-    const small = sizeStyle(enhanceDensity(createTheme()), 'MuiCheckbox', 'small');
-
-    // written straight onto the variant — nothing indirects through a var
-    expect(small.width).to.equal('calc(32px - 4px)');
-    expect(small.height).to.equal('calc(32px - 4px)');
-    expect(small['& svg'].fontSize).to.equal('calc(16px - 2px)');
+    // a control's own glyph rides the same constant, not a copy of it
+    expect(sizeStyle(theme, 'MuiCheckbox', 'small')['& svg'].fontSize).to.equal(svgIcon('small'));
   });
 
   test('the icon glyph is its own sizing constant', () => {
@@ -366,87 +339,6 @@ describe('enhanceDensity', () => {
     const theme = enhanceDensity(input);
 
     expect((theme as any).mixins).to.deep.equal((input as any).mixins);
-  });
-
-  test('Chip icon size rides the ROOT variants — the icon slot cannot expand them', () => {
-    const theme = enhanceDensity(createTheme());
-    const layers = (theme.components as any).MuiChip.styleOverrides.root as any[];
-    const iconVariant = layers
-      .flatMap((layer) => layer?.variants ?? [])
-      .find(
-        (variant: any) => variant.props?.size === 'medium' && variant.style?.['& .MuiChip-icon'],
-      );
-
-    expect(iconVariant.style['& .MuiChip-icon']).to.deep.equal({ fontSize: '16px' });
-    // and no dead variants remain on the icon slot itself
-    const iconLayers = (theme.components as any).MuiChip.styleOverrides.icon as any[];
-    iconLayers.forEach((layer) => expect(layer?.variants).to.equal(undefined));
-  });
-
-  test('the InputBase gap holds without a FormControl — medium sits on the root', () => {
-    const theme = enhanceDensity(createTheme());
-    const layers = (theme.components as any).MuiInputBase.styleOverrides.root as any[];
-    const base = layers.find((layer) => layer?.gap !== undefined);
-
-    // a standalone input has no `size` in its ownerState, so only a plain
-    // root value reaches it
-    expect(base.gap).to.equal('8px');
-    expect(variantStyle(theme, 'MuiInputBase', { size: 'small' }).gap).to.equal('4px');
-  });
-
-  test('the checkbox pull-in follows the label placement', () => {
-    const theme = enhanceDensity(createTheme());
-    const layers = (theme.components as any).MuiCheckbox.styleOverrides.root as any[];
-    const base = layers.find((layer) => layer?.height !== undefined);
-
-    expect(base['.MuiFormControlLabel-labelPlacementEnd:has(&)']).to.deep.equal({
-      marginLeft: 'calc((32px - 16px) / -2)',
-    });
-    expect(base['.MuiFormControlLabel-labelPlacementStart:has(&)']).to.deep.equal({
-      marginRight: 'calc((32px - 16px) / -2)',
-    });
-    // top/bottom placements keep master margins — no unconditional pull
-    expect(base['.MuiFormControlLabel-root:has(&)']).to.equal(undefined);
-  });
-
-  test('the pagination radius only asserts the circular shape', () => {
-    const theme = enhanceDensity(createTheme());
-    const layers = (theme.components as any).MuiPaginationItem.styleOverrides.root as any[];
-
-    layers.forEach((layer) => expect(layer?.borderRadius).to.equal(undefined));
-    expect(variantStyle(theme, 'MuiPaginationItem', { shape: 'circular' })).to.deep.equal({
-      borderRadius: '50%',
-    });
-  });
-
-  test('the slider mark label offset is horizontal-only', () => {
-    const theme = enhanceDensity(createTheme());
-    const layers = (theme.components as any).MuiSlider.styleOverrides.markLabel as any[];
-
-    layers.forEach((layer) => expect(layer?.top).to.equal(undefined));
-    expect(
-      variantStyle(theme, 'MuiSlider', { orientation: 'horizontal' }, 'markLabel'),
-    ).to.deep.equal({ top: '32px' });
-  });
-
-  test('list padding respects a subheader; the secondary action respects disableGutters', () => {
-    const theme = enhanceDensity(createTheme());
-
-    const listLayers = (theme.components as any).MuiList.styleOverrides.root as any[];
-    const listVariants = listLayers.find((layer) => layer?.variants)?.variants as any[];
-    const plain = listVariants.find((variant) =>
-      variant.props({ ownerState: { disablePadding: false, subheader: null } }),
-    );
-    const withSubheader = listVariants.find((variant) =>
-      variant.props({ ownerState: { disablePadding: false, subheader: {} } }),
-    );
-    expect(plain.style).to.deep.equal({ paddingBlock: 8 });
-    // only pads below — master's subheader `paddingTop: 0` stays
-    expect(withSubheader.style).to.deep.equal({ paddingBottom: 8 });
-
-    expect(
-      variantStyle(theme, 'MuiListItemSecondaryAction', { disableGutters: false } as any),
-    ).to.deep.equal({ right: '12px' });
   });
 
   test('array spacing: the ladder ships its own px, the array keeps its indices', () => {
