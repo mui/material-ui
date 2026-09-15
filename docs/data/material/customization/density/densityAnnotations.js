@@ -1195,15 +1195,27 @@ export function resolveClaims(stage, demo, claims) {
  * have moved — a resize, a late webfont, a popper mounting a frame later. */
 export function useClaims(stageRef, demoRef, claims, deps) {
   const [state, setState] = React.useState(null);
+  // Compared by value, not identity: the measurement re-runs on every observer
+  // tick, and handing back a fresh object would re-render the demo. A
+  // re-rendered TextareaAutosize re-writes its own height, which trips the
+  // ResizeObserver that started the tick — a multiline demo never settles.
+  const measured = React.useRef(null);
   useStageEffect(
     stageRef,
     (stage) => {
       const demo = demoRef.current;
       if (!demo) {
+        measured.current = null;
         setState(null);
         return;
       }
-      setState(resolveClaims(stage, demo, claims));
+      const next = resolveClaims(stage, demo, claims);
+      const key = JSON.stringify(next);
+      if (key === measured.current) {
+        return;
+      }
+      measured.current = key;
+      setState(next);
     },
     deps,
   );
