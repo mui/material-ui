@@ -34,7 +34,7 @@ The enhancer also modernizes components like Button that use the margin-based sp
 
 ### Consistent sizing
 
-The enhancer lets you set 2 target sizes:
+The enhancer lets you set 2 sizing variables:
 
 - `touchTarget`: applied to every interactive control to create consistent sizing across the library.
 - `iconSize`: applied to the `SvgIcon` component.
@@ -152,16 +152,7 @@ On a CSS theme variables theme, `theme.vars` gives the variable reference, so th
 
 ## Customizing the scale
 
-To override the defaults, pass a second argument to `enhanceDensity`. The seven steps go under `spacing`, the two sizing constants beside it—they size a box rather than space one, so they sit apart:
-
-```js
-enhanceDensity(theme, {
-  spacing: { small: 10 },
-  touchTarget: 28,
-});
-```
-
-Anything left out keeps its default value.
+To override the defaults, pass a second argument to `enhanceDensity`.
 
 Below is an example of a full scale overrides for a very dense application:
 
@@ -181,10 +172,10 @@ const theme = enhanceDensity(createTheme(), {
 });
 ```
 
-The scale is a closed set of seven steps, plus the two targets. The values must be numbers, which are interpreted as pixels.
+The scale is a closed set of seven steps, plus the two sizings. The values must be numbers, which are interpreted as pixels. Anything left out keeps its default value.
 
 :::warning
-The enhancer does not support a custom scale that adds new steps or removes existing ones. The seven steps and two targets are fixed.
+The enhancer does not support adding new steps or removing existing ones. The seven steps and two sizings are fixed.
 :::
 
 ## Density recipes

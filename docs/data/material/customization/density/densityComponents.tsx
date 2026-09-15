@@ -476,6 +476,7 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
           </Select>
           <Select
             variant="filled"
+            hiddenLabel
             size={size}
             value="shipped"
             startAdornment={adornment}

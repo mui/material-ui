@@ -450,6 +450,7 @@ export const DENSITY_COMPONENTS = {
           </Select>
           <Select
             variant="filled"
+            hiddenLabel
             size={size}
             value="shipped"
             startAdornment={adornment}
