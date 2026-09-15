@@ -19,9 +19,8 @@ const variantStyle = (
   theme: ReturnType<typeof enhanceDensity>,
   component: string,
   props: Record<string, string>,
-  slot = 'root',
 ) => {
-  const layers = (theme.components as any)[component].styleOverrides[slot] as any[];
+  const layers = (theme.components as any)[component].styleOverrides.root as any[];
   for (const layer of layers) {
     const match = layer?.variants?.find((variant: any) =>
       Object.entries(props).every(([key, value]) => variant.props?.[key] === value),
@@ -84,10 +83,13 @@ describe('enhanceDensity', () => {
     const theme = enhanceDensity(createTheme(), { touchTarget: 44 });
     const height = (component: string, size: string) => sizeStyle(theme, component, size).height;
 
-    // medium IS the box; small and large are built out of it
+    // medium IS the box; small and large are built out of it rather than out of
+    // a literal, and they land either side of it
     expect(height('MuiButton', 'medium')).to.equal('44px');
     expect(height('MuiButton', 'small')).to.include('44px');
     expect(height('MuiButton', 'large')).to.include('44px');
+    expect(height('MuiButton', 'small')).to.not.equal(height('MuiButton', 'medium'));
+    expect(height('MuiButton', 'large')).to.not.equal(height('MuiButton', 'medium'));
 
     // and every sized family rides that one ramp
     expect(sizeStyle(theme, 'MuiIconButton', 'small').width).to.equal(height('MuiButton', 'small'));

@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { describe, test, expect, vi } from 'vitest';
-import { createRenderer, isJsdom } from '@mui/internal-test-utils';
+import { createRenderer, ignoreActWarnings, isJsdom } from '@mui/internal-test-utils';
 import AllComponentsDemo from 'docs/data/material/customization/density/AllComponentsDemo';
+import {
+  DENSITY_SCALE,
+  DENSITY_TARGETS,
+} from 'docs/data/material/customization/density/densityAnnotations';
 import { DENSITY_COMPONENTS } from 'docs/data/material/customization/density/densityComponents';
 import {
   DENSITY_ANNOTATIONS,
@@ -19,18 +23,9 @@ import {
  * whose token drifts from its emission fails, with no per-claim upkeep.
  */
 
-// The shipped ladder the demo renders on.
-const SCALE: Record<string, number> = {
-  xxSmall: 4,
-  xSmall: 8,
-  small: 12,
-  medium: 16,
-  large: 24,
-  xLarge: 32,
-  xxLarge: 48,
-  touchTarget: 32,
-  iconSize: 16,
-};
+// The ladder the demo renders on, read from the module it renders with — a
+// second copy here would grade the labels against a scale the page isn't using.
+const SCALE: Record<string, number> = { ...DENSITY_SCALE, ...DENSITY_TARGETS };
 
 /**
  * Evaluate a token: scale names and `<n>lh` become numbers, then the arithmetic
@@ -41,9 +36,7 @@ function evaluateToken(token: string, lineHeight: number): number | null {
   const normalised = token
     .replace(/×/g, '*')
     .replace(/([\d.]+)lh/g, (_, n) => String(parseFloat(n) * lineHeight))
-    .replace(/\b([a-zA-Z][a-zA-Z0-9]*)\b/g, (name) =>
-      SCALE[name] !== undefined ? String(SCALE[name]) : name,
-    )
+    .replace(/\b([a-zA-Z][a-zA-Z0-9]*)\b/g, (name) => String(SCALE[name] ?? name))
     .replace(/px/g, '');
   if (!/^[\d\s.+\-*/()]+$/.test(normalised)) {
     return null; // not an arithmetic token (a prose note) — skipped
@@ -60,34 +53,58 @@ function evaluateToken(token: string, lineHeight: number): number | null {
 /** `token (12px)` → the two halves; labels without a token render px only. */
 const LABEL = /^(.*?)\s*\(([\d.]+)px\)$/;
 
-const settle = () =>
-  new Promise((resolve) => {
-    setTimeout(resolve, 250);
+/**
+ * The annotations redraw a frame or two after a re-render, so wait for the
+ * drawing to stop changing rather than sleeping past the longest case.
+ */
+async function settledLabels(): Promise<string[]> {
+  const read = () =>
+    Array.from(document.querySelectorAll('[data-annotations] text')).map(
+      (node) => node.textContent ?? '',
+    );
+  let previous: string[] = [];
+  return vi.waitFor(() => {
+    const current = read();
+    const stable = current.length > 0 && current.join('|') === previous.join('|');
+    previous = current;
+    if (!stable) {
+      throw new Error('annotations still settling');
+    }
+    return current;
   });
+}
 
 /** The toolbar values a family opens on — what the drawn claims were built from. */
-function controlDefaults(family: string): Record<string, string | boolean> {
-  const values: Record<string, string | boolean> = {};
-  (DENSITY_COMPONENTS[family].controls ?? []).forEach((control: any) => {
-    values[control.prop] = control.initial;
-  });
-  return values;
-}
+const controlDefaults = (family: string): Record<string, string | boolean> =>
+  Object.fromEntries(
+    (DENSITY_COMPONENTS[family].controls ?? []).map((control: any) => [
+      control.prop,
+      control.initial,
+    ]),
+  );
 
 /** Drive the demo's Component select, the way a reader would. */
 async function selectFamily(family: string) {
-  const trigger = document.querySelectorAll('.MuiSelect-select')[0] as HTMLElement;
-  trigger.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
-  await settle();
-  const option = Array.from(document.querySelectorAll('li.MuiMenuItem-root')).find(
-    (node) => node.textContent === family,
-  ) as HTMLElement | undefined;
-  if (!option) {
-    throw new Error(`no option for ${family}`);
+  const trigger = document.querySelector('.MuiSelect-select') as HTMLElement;
+  if (trigger.textContent === family) {
+    return;
   }
-  option.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+  trigger.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+  const option = await vi.waitFor(() => {
+    const found = Array.from(document.querySelectorAll('li.MuiMenuItem-root')).find(
+      (node) => node.textContent === family,
+    );
+    if (!found) {
+      throw new Error(`no option for ${family}`);
+    }
+    return found as HTMLElement;
+  });
   option.click();
-  await settle();
+  await vi.waitFor(() => {
+    if ((document.querySelector('.MuiSelect-select') as HTMLElement).textContent !== family) {
+      throw new Error('selection not applied');
+    }
+  });
 }
 
 describe.skipIf(isJsdom())('density annotation parity', () => {
@@ -104,48 +121,43 @@ describe.skipIf(isJsdom())('density annotation parity', () => {
   // walk stays well inside the default timeout.
   Object.keys(DENSITY_COMPONENTS).forEach((family) => {
     test(`${family} tokens equal the values they label`, async () => {
-      vi.spyOn(console, 'error').mockImplementation(() => {});
+      ignoreActWarnings();
       render(<AllComponentsDemo />);
-      await settle();
       await selectFamily(family);
+      const labels = await settledLabels();
 
-      const svg = document.querySelector('[data-annotations]');
-      expect(svg, 'the demo drew no annotations').not.to.equal(null);
-
-      // `1lh` is the claimed element's line box, not the page's, so each token
-      // is evaluated against the element the claim points at.
+      const claims = annotationsFor(family, controlDefaults(family));
+      // `1lh` is the claimed element's line box, not the page's. Only a handful
+      // of tokens use it, so the element is resolved on demand.
       const lineHeightFor = (token: string) => {
-        const claim = annotationsFor(family, controlDefaults(family)).find(
-          (candidate) => candidate.token === token,
-        );
+        const claim = claims.find((candidate) => candidate.token === token);
         const target = claim ? (document.querySelector(claim.on) as HTMLElement | null) : null;
         if (!target) {
           return 16;
         }
         // An icon claim sizes the glyph, so its `lh` is the line box the element
-        // inherits — reading the element's own would resolve against the very
-        // font-size the token is setting.
+        // inherits — the element's own resolves against the font-size being set.
         const source = claim?.aspect === 'icon' ? (target.parentElement ?? target) : target;
         return parseFloat(getComputedStyle(source).lineHeight) || 16;
       };
 
       const mismatches: string[] = [];
       let checked = 0;
-      Array.from(svg!.querySelectorAll('text')).forEach((node) => {
-        const match = LABEL.exec((node.textContent ?? '').trim());
+      labels.forEach((label) => {
+        const match = LABEL.exec(label.trim());
         if (!match) {
           return;
         }
         const [, token, px] = match;
-        const expected = evaluateToken(token, lineHeightFor(token));
+        const expected = evaluateToken(token, /lh/.test(token) ? lineHeightFor(token) : 0);
         if (expected === null) {
           return;
         }
         checked += 1;
         const measured = parseFloat(px);
-        // The engine measures rendered boxes, so a border rides along with the
-        // value; the tolerance stays well under one scale step.
-        if (Math.abs(expected - measured) > 1.5) {
+        // The engine measures rendered boxes, so a border can ride along with
+        // the value; the tolerance stays well under the smallest scale step.
+        if (Math.abs(expected - measured) > 1.1) {
           mismatches.push(`"${token}" labels ${measured}px but evaluates to ${expected}px`);
         }
       });

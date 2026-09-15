@@ -32,7 +32,6 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import SvgIcon from '@mui/material/SvgIcon';
 import AddIcon from '@mui/icons-material/Add';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import type { DensityScaleOverrides } from '@mui/material/styles';
 import enhanceDensity from './enhanceDensity';
 
 /* eslint-disable vitest/valid-title -- one case per level x component x size, so
@@ -60,12 +59,9 @@ type Steps = {
 };
 type Level = {
   id: string;
-  scale: DensityScaleOverrides & { spacing: Steps };
+  step: Steps;
   touchTarget: number;
   iconSize: number;
-  step: Steps;
-  /** `1lh` of the control text, which several boxes are built around. */
-  bodyLineHeight: number;
   typography: Record<string, Record<string, string | number>>;
 };
 
@@ -75,16 +71,7 @@ const level = (
   touchTarget: number,
   iconSize: number,
   typography: Record<string, Record<string, string | number>>,
-  bodyLineHeight: number,
-): Level => ({
-  id,
-  scale: { spacing: step, touchTarget, iconSize },
-  touchTarget,
-  iconSize,
-  step,
-  bodyLineHeight,
-  typography,
-});
+): Level => ({ id, step, touchTarget, iconSize, typography });
 
 // The three published recipes, each paired with the type ramp a design system
 // would compose alongside it — heights derive from `1lh`, so the ramp is part
@@ -109,7 +96,6 @@ const LEVELS: Level[] = [
       caption: { fontSize: '0.6875rem', lineHeight: '14px' },
       button: { fontSize: '0.75rem', lineHeight: '16px', textTransform: 'initial', letterSpacing: 0 },
     },
-    16,
   ),
   level(
     'medium',
@@ -130,7 +116,6 @@ const LEVELS: Level[] = [
       caption: { fontSize: '0.75rem', lineHeight: '16px' },
       button: { fontSize: '0.875rem', lineHeight: '20px', textTransform: 'initial', letterSpacing: 0 },
     },
-    20,
   ),
   level(
     'low',
@@ -151,34 +136,36 @@ const LEVELS: Level[] = [
       caption: { fontSize: '0.875rem', lineHeight: '20px' },
       button: { fontSize: '1rem', lineHeight: '22px', textTransform: 'initial', letterSpacing: 0 },
     },
-    22,
   ),
 ];
 
 const themeFor = (l: Level) =>
-  enhanceDensity(createTheme({ typography: l.typography, shape: { borderRadius: 4 } }), l.scale);
+  enhanceDensity(createTheme({ typography: l.typography, shape: { borderRadius: 4 } }), {
+    spacing: l.step,
+    touchTarget: l.touchTarget,
+    iconSize: l.iconSize,
+  });
+
+// Three themes, not one per case: `enhanceDensity` walks the whole emission map.
+const THEMES = new Map(LEVELS.map((l) => [l.id, themeFor(l)]));
 
 /**
  * The used height of the first match. Read off `getComputedStyle` rather than
  * the bounding rect: the rect adds borders the box itself doesn't own — a
  * collapsed table border lands half a pixel on each cell.
  */
-const boxOf = (selector: string) => {
-  const el = document.querySelector(selector) as HTMLElement | null;
+const heightOf = (selector: string) => {
+  const el = document.querySelector(selector);
   if (!el) {
     throw new Error(`no element for ${selector}`);
   }
-  const cs = getComputedStyle(el);
-  return {
-    height: Math.round(parseFloat(cs.height) * 100) / 100,
-    width: Math.round(parseFloat(cs.width) * 100) / 100,
-  };
+  return Math.round(parseFloat(getComputedStyle(el).height) * 100) / 100;
 };
 
 type Spec = {
   /** Sizes this family ships; `undefined` renders once, unsized. */
-  sizes?: string[];
-  render: (size: string | undefined, l: Level) => React.ReactElement;
+  sizes?: (string | undefined)[];
+  render: (size?: any) => React.ReactElement;
   selector: string;
   /** Expected box height in px, from the level's own numbers. */
   height: (l: Level, size: string | undefined) => number;
@@ -199,14 +186,14 @@ const ramp = (l: Level, size: string | undefined) => {
 const CONTROLS: Record<string, Spec> = {
   Button: {
     sizes: SIZED,
-    render: (size) => <Button size={size as any}>Label</Button>,
+    render: (size) => <Button size={size}>Label</Button>,
     selector: '.MuiButton-root',
     height: ramp,
   },
   IconButton: {
     sizes: SIZED,
     render: (size) => (
-      <IconButton size={size as any}>
+      <IconButton size={size}>
         <AddIcon />
       </IconButton>
     ),
@@ -215,20 +202,20 @@ const CONTROLS: Record<string, Spec> = {
   },
   Checkbox: {
     sizes: ['small', 'medium'],
-    render: (size) => <Checkbox size={size as any} />,
+    render: (size) => <Checkbox size={size} />,
     selector: '.MuiCheckbox-root',
     height: ramp,
   },
   Radio: {
     sizes: ['small', 'medium'],
-    render: (size) => <Radio size={size as any} />,
+    render: (size) => <Radio size={size} />,
     selector: '.MuiRadio-root',
     height: ramp,
   },
   ToggleButton: {
     sizes: SIZED,
     render: (size) => (
-      <ToggleButton size={size as any} value="a">
+      <ToggleButton size={size} value="a">
         A
       </ToggleButton>
     ),
@@ -237,13 +224,13 @@ const CONTROLS: Record<string, Spec> = {
   },
   PaginationItem: {
     sizes: SIZED,
-    render: (size) => <PaginationItem size={size as any} page={1} />,
+    render: (size) => <PaginationItem size={size} page={1} />,
     selector: '.MuiPaginationItem-root',
     height: ramp,
   },
   Switch: {
     sizes: ['small', 'medium'],
-    render: (size) => <Switch size={size as any} />,
+    render: (size) => <Switch size={size} />,
     selector: '.MuiSwitch-root',
     height: ramp,
   },
@@ -256,7 +243,7 @@ const CONTROLS: Record<string, Spec> = {
     // Circular only — the extended variant is width-led, not a box.
     sizes: SIZED,
     render: (size) => (
-      <Fab size={size as any}>
+      <Fab size={size}>
         <AddIcon />
       </Fab>
     ),
@@ -273,7 +260,7 @@ const CONTROLS: Record<string, Spec> = {
   },
   Chip: {
     sizes: ['small', 'medium'],
-    render: (size) => <Chip size={size as any} label="Chip" />,
+    render: (size) => <Chip size={size} label="Chip" />,
     selector: '.MuiChip-root',
     // Chip authors its own small box; medium sits on the target itself.
     height: (l, size) => (size === 'small' ? l.touchTarget - l.step.xxSmall : l.touchTarget),
@@ -282,26 +269,26 @@ const CONTROLS: Record<string, Spec> = {
   // --- input boxes: the headline claim is that every variant lands on one box
   InputBase: {
     sizes: ['small', 'medium'],
-    render: (size) => <InputBase size={size as any} defaultValue="Ada" />,
+    render: (size) => <InputBase size={size} defaultValue="Ada" />,
     selector: '.MuiInputBase-root',
     height: ramp,
   },
-  StandardInput: {
+  Input: {
     sizes: ['small', 'medium'],
-    render: (size) => <TextField variant="standard" size={size as any} defaultValue="Ada" />,
+    render: (size) => <TextField variant="standard" size={size} defaultValue="Ada" />,
     selector: '.MuiInput-root',
     height: ramp,
   },
   OutlinedInput: {
     sizes: ['small', 'medium'],
-    render: (size) => <TextField variant="outlined" size={size as any} defaultValue="Ada" />,
+    render: (size) => <TextField variant="outlined" size={size} defaultValue="Ada" />,
     selector: '.MuiOutlinedInput-root',
     height: ramp,
   },
   Select: {
     sizes: ['small', 'medium'],
     render: (size) => (
-      <Select variant="outlined" size={size as any} value="a">
+      <Select variant="outlined" size={size} value="a">
         <MenuItem value="a">a</MenuItem>
       </Select>
     ),
@@ -321,7 +308,7 @@ const CONTROLS: Record<string, Spec> = {
   },
   Toolbar: {
     sizes: ['regular', 'dense'],
-    render: (size) => <Toolbar variant={size as any}>Title</Toolbar>,
+    render: (size) => <Toolbar variant={size}>Title</Toolbar>,
     selector: '.MuiToolbar-root',
     height: (l, size) =>
       size === 'dense' ? l.touchTarget + 2 * l.step.xxSmall : l.touchTarget + 2 * l.step.xSmall,
@@ -350,7 +337,7 @@ const CONTROLS: Record<string, Spec> = {
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell size={size as any}>Cell</TableCell>
+            <TableCell size={size}>Cell</TableCell>
           </TableRow>
         </TableBody>
       </Table>
@@ -397,12 +384,14 @@ const CONTROLS: Record<string, Spec> = {
   },
 };
 
-
 /** The glyph ramp, read as a used font-size. */
-const ICONS: Record<string, { render: (size: string) => React.ReactElement; expect: (l: Level, size: string) => number }> = {
+const ICONS: Record<
+  string,
+  { render: (size: any) => React.ReactElement; expect: (l: Level, size: string) => number }
+> = {
   SvgIcon: {
     render: (size) => (
-      <SvgIcon fontSize={size as any}>
+      <SvgIcon fontSize={size}>
         <path d="M0 0h24v24H0z" />
       </SvgIcon>
     ),
@@ -444,7 +433,6 @@ const NO_BOX = [
   'MuiFormControlLabel',
   'MuiFormHelperText',
   'MuiFormLabel',
-  'MuiInput',
   'MuiInputAdornment',
   'MuiInputLabel',
   'MuiLinearProgress',
@@ -468,20 +456,13 @@ const NO_BOX = [
   'MuiTooltip',
 ];
 
-/** Theme key each spec above stands for, where the name differs. */
-const SPEC_COMPONENT: Record<string, string> = {
-  StandardInput: 'MuiInput',
-  OutlinedInput: 'MuiOutlinedInput',
-  TablePagination: 'MuiTablePagination',
-};
-
 describe.skipIf(isJsdom())('density contract', () => {
   const { render } = createRenderer();
 
   test('every component the enhancer writes is classified', () => {
-    const emitted = Object.keys(themeFor(LEVELS[1]).components ?? {});
+    const emitted = Object.keys(THEMES.get('medium')!.components ?? {});
     const asserted = new Set([
-      ...Object.keys(CONTROLS).map((name) => SPEC_COMPONENT[name] ?? `Mui${name}`),
+      ...Object.keys(CONTROLS).map((name) => `Mui${name}`),
       ...Object.keys(ICONS).map((name) => `Mui${name}`),
       ...NO_BOX,
     ]);
@@ -494,21 +475,21 @@ describe.skipIf(isJsdom())('density contract', () => {
   LEVELS.forEach((l) => {
     describe(l.id, () => {
       Object.entries(ICONS).forEach(([name, spec]) => {
-        ['small', 'medium', 'large'].forEach((size) => {
+        SIZED.forEach((size) => {
           const title = `${name} ${size}`;
           test(title, () => {
-            render(<ThemeProvider theme={themeFor(l)}>{spec.render(size)}</ThemeProvider>);
+            render(<ThemeProvider theme={THEMES.get(l.id)!}>{spec.render(size)}</ThemeProvider>);
             const el = document.querySelector('.MuiSvgIcon-root') as HTMLElement;
             expect(parseFloat(getComputedStyle(el).fontSize)).to.equal(spec.expect(l, size));
           });
         });
       });
       Object.entries(CONTROLS).forEach(([name, spec]) => {
-        const sizes = spec.sizes ?? [undefined as unknown as string];
+        const sizes = spec.sizes ?? [undefined];
         sizes.forEach((size) => {
           test(`${name}${size ? ` ${size}` : ''}`, () => {
-            render(<ThemeProvider theme={themeFor(l)}>{spec.render(size, l)}</ThemeProvider>);
-            expect(boxOf(spec.selector).height).to.equal(spec.height(l, size));
+            render(<ThemeProvider theme={THEMES.get(l.id)!}>{spec.render(size)}</ThemeProvider>);
+            expect(heightOf(spec.selector)).to.equal(spec.height(l, size));
           });
         });
       });
