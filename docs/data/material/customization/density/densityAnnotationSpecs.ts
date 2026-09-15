@@ -686,14 +686,13 @@ export const DENSITY_ANNOTATIONS: Record<
         route: { gutter: 'left' },
       },
       // Standard only: the one variant whose own rows are the computed value.
-      // At `small` both bands come off different rows that agree on 4px, so the
-      // reverse lookup names the step and an explicit token would only be able
-      // to lie once they diverge.
+      // The two bands are equal now — half the touch target's leftover each at
+      // `medium`, a quarter at `small` — so one token names them either way.
       {
         on: '.MuiInput-root .MuiInputBase-input',
         aspect: 'padding',
         axis: 'block',
-        token: small ? undefined : 'xSmall',
+        token: small ? '(touchTarget - 1lh) / 4' : '(touchTarget - 1lh) / 2',
         label: 'Select value',
         route: { gutter: 'right' },
       },
@@ -1009,6 +1008,9 @@ export const DENSITY_ANNOTATIONS: Record<
   },
   TextField: (values) => {
     const small = values.size === 'small';
+    // Every input variant now centres one line in the touch target, so the
+    // block padding is the leftover split in half — a quarter at `small`.
+    const padBlock = small ? '(touchTarget - 1lh) / 4' : '(touchTarget - 1lh) / 2';
     // The bare InputBase is the only root carrying none of the variant classes.
     const base =
       '.MuiInputBase-root:not(.MuiInput-root):not(.MuiFilledInput-root):not(.MuiOutlinedInput-root)';
@@ -1022,21 +1024,27 @@ export const DENSITY_ANNOTATIONS: Record<
         on: baseInput,
         aspect: 'padding',
         axis: 'block',
-        token: small ? 'xxSmall' : 'xSmall',
+        token: padBlock,
         label: 'InputBase',
       },
       { on: '.MuiInput-root', aspect: 'touch-target', label: 'Standard' },
-      // 8px top, 6px bottom — two values, so no single token can name them.
-      { on: '.MuiInput-input', aspect: 'padding', axis: 'block', label: 'Standard' },
+      // Symmetric: both bands come off the same remainder, so one token names them.
+      {
+        on: '.MuiInput-input',
+        aspect: 'padding',
+        axis: 'block',
+        token: padBlock,
+        label: 'Standard',
+      },
       { on: '.MuiFilledInput-root', aspect: 'touch-target', label: 'Filled' },
-      // Asymmetric: `large` on top, `small` underneath — two captions.
+      // Asymmetric: `large` on top, `xxSmall` underneath — two captions.
       { on: '.MuiFilledInput-input', aspect: 'padding', axis: 'block', label: 'Filled' },
       { on: '.MuiOutlinedInput-root', aspect: 'touch-target', label: 'Outlined' },
       {
         on: '.MuiOutlinedInput-input',
         aspect: 'padding',
         axis: 'block',
-        token: small ? 'xxSmall' : '(touchTarget - 1lh) / 2',
+        token: padBlock,
         label: 'Outlined',
       },
       {
@@ -1057,7 +1065,7 @@ export const DENSITY_ANNOTATIONS: Record<
         on: '.MuiFormHelperText-root',
         aspect: 'margin',
         axis: 'block',
-        token: 'xSmall',
+        token: small ? 'xxSmall' : 'xSmall',
         label: 'Helper text',
       },
       // Contained helper text also carries an authored inline margin.
