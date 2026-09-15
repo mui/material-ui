@@ -56,3 +56,22 @@ enhanceDensity(createTheme(), { spacing: { small: 8 }, touchTarget: 40, iconSize
 enhanceDensity(createTheme(), { spacing: { smal: 8 } });
 // @ts-expect-error — the scale cannot be extended with new names
 enhanceDensity(createTheme(), { huge: 64 });
+
+// The two sizing constants are readable off the theme, through the same
+// `(theme.vars || theme)` channel the rest of the theme uses: the vars node on a
+// CSS-variables theme, the theme itself otherwise. Both are declared optional
+// because density is opt-in — a theme that never met the enhancer has neither.
+const varsTheme = createTheme({ cssVariables: true });
+takesOptionalString((varsTheme.vars || varsTheme).touchTarget);
+takesOptionalString((varsTheme.vars || varsTheme).iconSize);
+takesOptionalString((theme.vars || theme).touchTarget);
+function takesOptionalString(value: string | undefined) {
+  return value;
+}
+// `enhanceDensity` resolves them, so its result reads them as plain strings.
+takesString(enhanceDensity(createTheme()).touchTarget);
+takesString(enhanceDensity(createTheme()).iconSize);
+// @ts-expect-error — not a theme member; the scale keys stay on theme.spacing()
+takesOptionalString((theme.vars || theme).xxSmall);
+// @ts-expect-error — no such sizing constant
+takesOptionalString((theme.vars || theme).iconTarget);

@@ -150,8 +150,13 @@ describe('enhanceDensity', () => {
     const stepVars = sheets[sheets.length - 1][':root'] as Record<string, string>;
 
     expect(stepVars['--mui-spacing-medium']).to.equal('calc(2 * var(--mui-spacing, 8px))');
-    // no vars-node additions — consistent with density having none
-    expect(theme.vars).to.equal(input.vars);
+    // the steps stay off the vars node; only the two sizing constants join it
+    expect(theme.vars).to.not.equal(input.vars);
+    expect(theme.vars.spacing).to.equal(input.vars.spacing);
+    expect(Object.keys(theme.vars!).filter((key) => !(key in input.vars))).to.deep.equal([
+      'touchTarget',
+      'iconSize',
+    ]);
   });
 
   describe('spacing theme option forms', () => {

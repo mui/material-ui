@@ -11,6 +11,21 @@ import {
 import applySharedDensity from './sharedDensityComponents';
 
 /**
+ * The two sizing constants are readable off the theme, so a component can size
+ * a box the way the enhancer does: `(theme.vars || theme).touchTarget` gives the
+ * variable reference on a CSS-variables theme and the length itself otherwise.
+ *
+ * Declared here rather than on the core theme types because density is opt-in —
+ * both are `undefined` until `enhanceDensity` runs, which is what `?` says.
+ * Neither is a spacing key: `theme.spacing()` does not resolve them.
+ */
+declare module '@mui/material/styles' {
+  interface Theme extends Partial<Record<DensitySizingKey, string>> {}
+
+  interface ThemeVars extends Partial<Record<DensitySizingKey, string>> {}
+}
+
+/**
  * The ONE shipped ladder in px + the sizing keys, flat — this is the resolved
  * table, not the override shape (`DensityScaleOverrides` nests the steps).
  * Internal —

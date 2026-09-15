@@ -55,6 +55,11 @@ const cssVarName = (theme: EnhanceableTheme, name: string) => {
   return `--${prefix ? `${prefix}-` : ''}${name}`;
 };
 
+/** The resolved length of a sizing constant — what the theme node carries, and
+ * the fallback every reference to it falls back to. */
+const sizingPx = (key: DensitySizingKey, overrides?: DensityScaleOverrides) =>
+  `${overrides?.[key] ?? DEFAULT_SIZING_PX[key]}px`;
+
 /**
  * What a component emits for a sizing constant: a variable reference on a vars
  * theme, so plain CSS can move every control box at once, and the literal px
@@ -65,7 +70,7 @@ export function densitySizing(
   key: DensitySizingKey,
   overrides?: DensityScaleOverrides,
 ): string {
-  const px = `${overrides?.[key] ?? DEFAULT_SIZING_PX[key]}px`;
+  const px = sizingPx(key, overrides);
   return theme.vars ? `var(${cssVarName(theme, key)}, ${px})` : px;
 }
 
@@ -113,7 +118,7 @@ export function applyDensity<T extends EnhanceableTheme>(
 ) {
   const theme = { ...themeInput } as T & {
     components: NonNullable<EnhanceableTheme['components']>;
-  };
+  } & Record<DensitySizingKey, string>;
   theme.components = { ...themeInput.components };
 
   // The Spacing interface is overloaded (0-4 fixed args) — widen to the rest
@@ -211,6 +216,27 @@ export function applyDensity<T extends EnhanceableTheme>(
     };
   }
 
+  // Read as `(theme.vars || theme).touchTarget`: the plain theme carries the
+  // resolved length, the vars node the reference to it. Own keys, not spacing
+  // ones — `theme.spacing()` still does not resolve them.
+  SIZING_KEYS.forEach((key) => {
+    theme[key] = sizingPx(key, scaleOverrides);
+  });
+
+  if (themeInput.vars) {
+    const sizingVars = {} as Record<DensitySizingKey, string>;
+    SIZING_KEYS.forEach((key) => {
+      sizingVars[key] = densitySizing(themeInput, key, scaleOverrides);
+    });
+    theme.vars = { ...themeInput.vars, ...sizingVars };
+    // `CssVarsProvider` swaps `theme.vars` for `generateThemeVars()` on mount,
+    // so the generator has to carry them too or they vanish once mounted.
+    const prevGenerateThemeVars = themeInput.generateThemeVars;
+    if (prevGenerateThemeVars) {
+      theme.generateThemeVars = () => ({ ...prevGenerateThemeVars(), ...sizingVars });
+    }
+  }
+
   if (theme.generateStyleSheets) {
     // Steps ship as raw declarations only, never onto `theme.vars.spacing`:
     // that stays the unit `getPath` reads straight through — a string, or an
@@ -223,7 +249,7 @@ export function applyDensity<T extends EnhanceableTheme>(
     // The sizing constants sit outside the spacing namespace: they size boxes
     // rather than space them, and `theme.spacing()` does not resolve them.
     SIZING_KEYS.forEach((key) => {
-      rootVars[cssVarName(themeInput, key)] = `${overrides[key] ?? DEFAULT_SIZING_PX[key]}px`;
+      rootVars[cssVarName(themeInput, key)] = sizingPx(key, scaleOverrides);
     });
     const prevStyleSheets = themeInput.generateStyleSheets;
     const rootSelector = themeInput.rootSelector || ':root';

@@ -130,8 +130,18 @@ The two sizing constants also ship as variables:
 }
 ```
 
+Because they size a box rather than space one, they are not spacing keys—read them off the theme instead:
+
+```js
+const Control = styled('div')(({ theme }) => ({
+  height: (theme.vars || theme).touchTarget,
+}));
+```
+
+On a CSS theme variables theme, `theme.vars` gives the variable reference, so the value still follows a CSS override; otherwise the theme carries the length itself.
+
 :::info
-These two variables are not part of the spacing scale so using `theme.spacing()` will not resolve them.
+`theme.spacing()` does not resolve `touchTarget` or `iconSize`, and both are `undefined` until `enhanceDensity` has been applied.
 :::
 
 ## All components
