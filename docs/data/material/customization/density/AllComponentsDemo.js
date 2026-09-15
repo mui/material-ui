@@ -36,10 +36,9 @@ const STAGE_HEIGHT = 300;
 // Stable identity, so a family without controls doesn't re-run the memos.
 const NO_CONTROLS = [];
 
-const SCALE_ROWS = [
-  ...Object.entries(DENSITY_SCALE),
-  ...Object.entries(DENSITY_TARGETS),
-];
+// Two groups, not one list: the steps space a box, the targets size it, and the
+// override object splits them the same way.
+const SCALE_GROUPS = [Object.entries(DENSITY_SCALE), Object.entries(DENSITY_TARGETS)];
 
 function ScaleLegend() {
   const [anchor, setAnchor] = React.useState(null);
@@ -71,15 +70,21 @@ function ScaleLegend() {
               rowGap: 0.5,
             }}
           >
-            {SCALE_ROWS.map(([step, value]) => (
-              <React.Fragment key={step}>
-                <Typography variant="body2">{step}</Typography>
-                <Typography
-                  variant="body2"
-                  sx={{ color: 'text.secondary', textAlign: 'right' }}
-                >
-                  {value}px
-                </Typography>
+            {SCALE_GROUPS.map((rows, group) => (
+              // One grid across both groups, so the value column stays aligned.
+              <React.Fragment key={rows[0][0]}>
+                {group > 0 && <Divider sx={{ gridColumn: '1 / -1', my: 0.5 }} />}
+                {rows.map(([step, value]) => (
+                  <React.Fragment key={step}>
+                    <Typography variant="body2">{step}</Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: 'text.secondary', textAlign: 'right' }}
+                    >
+                      {value}px
+                    </Typography>
+                  </React.Fragment>
+                ))}
               </React.Fragment>
             ))}
           </Box>
