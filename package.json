@@ -88,7 +88,6 @@
     "@mui/internal-bundle-size-checker": "1.0.9-canary.91",
     "@mui/internal-code-infra": "0.0.4-canary.115",
     "@mui/internal-docs-infra": "0.12.1-canary.45",
-
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.0.3-canary.7",
     "@mui/internal-scripts": "workspace:^",
