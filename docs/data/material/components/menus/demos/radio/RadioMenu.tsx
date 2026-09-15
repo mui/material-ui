@@ -10,6 +10,7 @@ import RadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked';
 const options = ['Name', 'Date modified', 'Size'];
 
 export default function RadioMenu() {
+  // @focus-start @padding 1
   const [selected, setSelected] = React.useState('Name');
 
   return (
@@ -35,4 +36,5 @@ export default function RadioMenu() {
       </MenuList>
     </Paper>
   );
+  // @focus-end
 }
