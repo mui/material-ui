@@ -484,9 +484,9 @@ export const DENSITY_ANNOTATIONS: Record<
       on: '.MuiFab-root',
       aspect: 'touch-target',
       token: {
-        small: 'large + small',
+        small: 'touchTarget + xxSmall',
         medium: 'touchTarget + xSmall',
-        large: 'xxLarge + xxSmall',
+        large: 'touchTarget + medium',
       }[values.size as string],
       label: 'Fab',
     },

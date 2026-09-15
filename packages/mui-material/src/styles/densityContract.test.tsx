@@ -249,10 +249,10 @@ const CONTROLS: Record<string, Spec> = {
     selector: '.MuiFab-root',
     height: (density, size) => {
       if (size === 'small') {
-        return density.step.large + density.step.small;
+        return density.touchTarget + density.step.xxSmall;
       }
       if (size === 'large') {
-        return density.step.xxLarge + density.step.xxSmall;
+        return density.touchTarget + density.step.medium;
       }
       return density.touchTarget + density.step.xSmall;
     },

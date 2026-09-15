@@ -72,6 +72,78 @@ async function settledLabels(): Promise<string[]> {
   });
 }
 
+/**
+ * Every toolbar state a family can be read in. Size-dependent tokens are only
+ * true at the size they were written for, so defaults alone would leave the
+ * other sizes unchecked.
+ */
+function toolbarStates(family: string): Record<string, string | boolean>[] {
+  const controls = (DENSITY_COMPONENTS[family].controls ?? []) as any[];
+  return controls.reduce<Record<string, string | boolean>[]>(
+    (states, control) => {
+      const options = control.type === 'select' ? control.options : [false, true];
+      return states.flatMap((state) =>
+        options.map((option: string | boolean) => ({ ...state, [control.prop]: option })),
+      );
+    },
+    [{}],
+  );
+}
+
+/** Put the toolbar into one of those states. */
+async function applyState(family: string, state: Record<string, string | boolean>) {
+  const controls = (DENSITY_COMPONENTS[family].controls ?? []) as any[];
+  const selects = controls.filter((control) => control.type === 'select');
+  for (const [prop, value] of Object.entries(state)) {
+    if (typeof value === 'boolean') {
+      const label = Array.from(document.querySelectorAll('.MuiFormControlLabel-root')).find(
+        (node) => node.textContent === prop,
+      );
+      const input = label?.querySelector('input[type="checkbox"]') as HTMLInputElement | null;
+      if (input && input.checked !== value) {
+        input.click();
+        // eslint-disable-next-line no-await-in-loop
+        await vi.waitFor(() => {
+          if (input.checked !== value) {
+            throw new Error(`${prop} not toggled`);
+          }
+        });
+      }
+    } else {
+      // The toolbar's own selects come first in the DOM: the component picker,
+      // then one per select control, before anything the demo renders.
+      const position = 1 + selects.findIndex((control) => control.prop === prop);
+      const trigger = document.querySelectorAll('.MuiSelect-select')[position] as
+        | HTMLElement
+        | undefined;
+      if (!trigger || trigger.textContent === value) {
+        continue;
+      }
+      trigger.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+      // eslint-disable-next-line no-await-in-loop
+      const option = await vi.waitFor(() => {
+        const found = Array.from(document.querySelectorAll('li.MuiMenuItem-root')).find(
+          (node) => node.textContent === value,
+        );
+        if (!found) {
+          throw new Error(`no ${prop} option ${value}`);
+        }
+        return found as HTMLElement;
+      });
+      option.click();
+      // The labels are read straight after this, so the toolbar has to have
+      // taken the value first — otherwise the previous state's drawing is
+      // still on screen and reads as settled.
+      // eslint-disable-next-line no-await-in-loop
+      await vi.waitFor(() => {
+        if (trigger.textContent !== value) {
+          throw new Error(`${prop} not applied`);
+        }
+      });
+    }
+  }
+}
+
 /** Drive the demo's Component select, the way a reader would. */
 async function selectFamily(family: string) {
   const trigger = document.querySelector('.MuiSelect-select') as HTMLElement;
@@ -106,57 +178,63 @@ describe.skipIf(isJsdom())('density annotation parity', () => {
     expect(unannotated).to.deep.equal([]);
   });
 
-  // One test per family: a mismatch names the family it came from, and each
-  // walk stays well inside the default timeout.
+  // One test per family, walking every toolbar state it can be read in: a
+  // mismatch names the family and the state it came from.
   Object.keys(DENSITY_COMPONENTS).forEach((family) => {
     test(`${family} tokens equal the values they label`, async () => {
       ignoreActWarnings();
       render(<AllComponentsDemo />);
       await selectFamily(family);
-      const labels = await settledLabels();
-
-      // The claims as drawn: the toolbar values a family opens on.
-      const values = Object.fromEntries(
-        (DENSITY_COMPONENTS[family].controls ?? []).map((control: any) => [
-          control.prop,
-          control.initial,
-        ]),
-      );
-      const claims = annotationsFor(family, values);
-      // `1lh` is the claimed element's line box, not the page's. Only a handful
-      // of tokens use it, so the element is resolved on demand.
-      const lineHeightFor = (token: string) => {
-        const claim = claims.find((candidate) => candidate.token === token);
-        const target = claim ? (document.querySelector(claim.on) as HTMLElement | null) : null;
-        if (!target) {
-          return 16;
-        }
-        // An icon claim sizes the glyph, so its `lh` is the line box the element
-        // inherits — the element's own resolves against the font-size being set.
-        const source = claim?.aspect === 'icon' ? (target.parentElement ?? target) : target;
-        return parseFloat(getComputedStyle(source).lineHeight) || 16;
-      };
 
       const mismatches: string[] = [];
       let checked = 0;
-      labels.forEach((label) => {
-        const match = LABEL.exec(label.trim());
-        if (!match) {
-          return;
+
+      for (const state of toolbarStates(family)) {
+        /* eslint-disable no-await-in-loop -- the toolbar is driven in sequence */
+        await applyState(family, state);
+        const labels = await settledLabels();
+        /* eslint-enable no-await-in-loop */
+        const claims = annotationsFor(family, state);
+
+        // `1lh` is the claimed element's line box, not the page's. Only a
+        // handful of tokens use it, so the element is resolved on demand.
+        const lineHeightFor = (token: string) => {
+          const claim = claims.find((candidate) => candidate.token === token);
+          const target = claim ? (document.querySelector(claim.on) as HTMLElement | null) : null;
+          if (!target) {
+            return 16;
+          }
+          // An icon claim sizes the glyph, so its `lh` is the line box the
+          // element inherits — its own resolves against the font-size being set.
+          const source = claim?.aspect === 'icon' ? (target.parentElement ?? target) : target;
+          return parseFloat(getComputedStyle(source).lineHeight) || 16;
+        };
+
+        for (const label of labels) {
+          const match = LABEL.exec(label.trim());
+          const token = match?.[1];
+          const expected =
+            token === undefined
+              ? null
+              : evaluateToken(token, /lh/.test(token) ? lineHeightFor(token) : 0);
+          if (match === null || token === undefined || expected === null) {
+            continue;
+          }
+          const px = match[2];
+          checked += 1;
+          const measured = parseFloat(px);
+          // The engine measures rendered boxes, so a border can ride along with
+          // the value; the tolerance stays well under the smallest scale step.
+          if (Math.abs(expected - measured) > 1.1) {
+            const where = Object.entries(state)
+              .map(([prop, value]) => `${prop}=${value}`)
+              .join(' ');
+            mismatches.push(
+              `${where || 'default'}: "${token}" labels ${measured}px but evaluates to ${expected}px`,
+            );
+          }
         }
-        const [, token, px] = match;
-        const expected = evaluateToken(token, /lh/.test(token) ? lineHeightFor(token) : 0);
-        if (expected === null) {
-          return;
-        }
-        checked += 1;
-        const measured = parseFloat(px);
-        // The engine measures rendered boxes, so a border can ride along with
-        // the value; the tolerance stays well under the smallest scale step.
-        if (Math.abs(expected - measured) > 1.1) {
-          mismatches.push(`"${token}" labels ${measured}px but evaluates to ${expected}px`);
-        }
-      });
+      }
 
       expect(mismatches).to.deep.equal([]);
       // Guards the walk: a selector change that stopped finding labels would

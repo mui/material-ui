@@ -1244,8 +1244,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { variant: 'circular', size: 'small' },
         style: {
-          width: `calc(${spacing('large')} + ${spacing('small')})`,
-          height: `calc(${spacing('large')} + ${spacing('small')})`,
+          width: `calc(${touchTarget} + ${spacing('xxSmall')})`,
+          height: `calc(${touchTarget} + ${spacing('xxSmall')})`,
         },
       },
       {
@@ -1258,8 +1258,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { variant: 'circular', size: 'large' },
         style: {
-          width: `calc(${spacing('xxLarge')} + ${spacing('xxSmall')})`,
-          height: `calc(${spacing('xxLarge')} + ${spacing('xxSmall')})`,
+          width: `calc(${touchTarget} + ${spacing('medium')})`,
+          height: `calc(${touchTarget} + ${spacing('medium')})`,
         },
       },
     ],
