@@ -10,10 +10,6 @@ import {
 } from './densityScale';
 import applySharedDensity from './sharedDensityComponents';
 
-export type { DensitySizingKey };
-
-export type { DensityScaleOverrides };
-
 /**
  * The ONE shipped ladder in px + the sizing keys, flat — this is the resolved
  * table, not the override shape (`DensityScaleOverrides` nests the steps).
