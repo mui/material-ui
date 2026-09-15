@@ -57,11 +57,11 @@ To use a selected menu item without impacting the initial focus, set the `varian
 To build a menu of toggleable options, set each item's `role` to `menuitemcheckbox` for independent toggles, or `menuitemradio` for a single choice within a group.
 For these roles, the `selected` prop drives `aria-checked`, so assistive technologies announce the checked state.
 
-{{"demo": "CheckboxMenu.js", "bg": true}}
+{{"component": "file://./demos/checkbox/index.ts", "bg": true}}
 
 For a single choice within a group, use `menuitemradio`:
 
-{{"demo": "RadioMenu.js", "bg": true}}
+{{"component": "file://./demos/radio/index.ts", "bg": true}}
 
 ## Positioned menu
 

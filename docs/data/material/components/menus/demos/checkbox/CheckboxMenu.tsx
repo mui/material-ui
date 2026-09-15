@@ -4,13 +4,19 @@ import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import RadioButtonChecked from '@mui/icons-material/RadioButtonChecked';
-import RadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked';
+import Check from '@mui/icons-material/Check';
 
-const options = ['Name', 'Date modified', 'Size'];
+const options = ['Show toolbar', 'Show sidebar', 'Show status bar'];
 
-export default function RadioMenu() {
-  const [selected, setSelected] = React.useState('Name');
+export default function CheckboxMenu() {
+  // @focus-start @padding 1
+  const [checked, setChecked] = React.useState<Record<string, boolean>>({
+    'Show toolbar': true,
+  });
+
+  const handleToggle = (option: string) => () => {
+    setChecked((prev) => ({ ...prev, [option]: !prev[option] }));
+  };
 
   return (
     <Paper sx={{ width: 320, maxWidth: '100%' }}>
@@ -18,16 +24,12 @@ export default function RadioMenu() {
         {options.map((option) => (
           <MenuItem
             key={option}
-            role="menuitemradio"
-            selected={selected === option}
-            onClick={() => setSelected(option)}
+            role="menuitemcheckbox"
+            selected={Boolean(checked[option])}
+            onClick={handleToggle(option)}
           >
             <ListItemIcon>
-              {selected === option ? (
-                <RadioButtonChecked fontSize="small" />
-              ) : (
-                <RadioButtonUnchecked fontSize="small" />
-              )}
+              {checked[option] ? <Check fontSize="small" /> : null}
             </ListItemIcon>
             <ListItemText>{option}</ListItemText>
           </MenuItem>
@@ -35,4 +37,5 @@ export default function RadioMenu() {
       </MenuList>
     </Paper>
   );
+  // @focus-end
 }

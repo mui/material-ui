@@ -402,20 +402,14 @@ export default function DemoContent(props: DemoContentProps) {
   const demoSourceId = `demo-source-${anchorName ?? demo.slug ?? demoName ?? 'demo'}`;
 
   // GitHub "view source" link for the file currently shown in the viewer.
-  // `selectedFileUrl` is the demo's local source URL rewritten to a hosted Git
-  // URL by `createDemo`'s `projectUrl` (it's empty when no repository URL is
-  // configured, e.g. local dev — the menu item is then disabled). The rewrite
-  // yields a `/tree/<ref>/` prefix; swap it for `/blob/<ref>/` so the link
-  // opens the file view rather than a directory listing.
-  // `selectedFileUrl` keeps the authored `.tsx` name, so swap in the selected
-  // file name to follow both the active tab and the JavaScript/TypeScript choice.
-  const githubLocation = React.useMemo(() => {
-    if (!demo.selectedFileUrl) {
-      return undefined;
-    }
-    const blobUrl = demo.selectedFileUrl.replace('/tree/', '/blob/');
-    return demo.selectedFileName ? blobUrl.replace(/[^/]+$/, demo.selectedFileName) : blobUrl;
-  }, [demo.selectedFileUrl, demo.selectedFileName]);
+  // `selectedFileUrl` follows the active file tab and is the demo's local
+  // source URL rewritten to a hosted Git URL by `createDemo`'s `projectUrl`
+  // (empty when no repository URL is configured, e.g. local dev — the menu
+  // item is then disabled). The rewrite yields a `/tree/<ref>/` prefix; swap
+  // it for `/blob/<ref>/` so the link opens the file view rather than a
+  // directory listing. The URL keeps the authored `.tsx` name regardless of
+  // the JavaScript/TypeScript view — there are no `.jsx` files to link to.
+  const githubLocation = demo.selectedFileUrl?.replace('/tree/', '/blob/');
 
   // Copy-link anchors for the demo's ROOT file: its TS source name and its JS twin
   // (e.g. `ButtonBaseDemo.tsx` / `ButtonBaseDemo.jsx`) — the ids rendered above, so
