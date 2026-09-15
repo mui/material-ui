@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material UI no-bundler CSS fixture</title>
+    <!-- Plain CDN-style consumption: the browser receives one flattened theme file. -->
+    <link
+      rel="stylesheet"
+      href="../../packages/mui-material/build/css/themes/polished/index.bundle.css"
+    />
+    <style>
+      body {
+        max-width: 720px;
+        margin: 48px auto;
+        padding: 0 24px;
+        color: #202334;
+        background: #f5f7fb;
+        font-family: Inter, system-ui, sans-serif;
+      }
+
+      main {
+        display: grid;
+        gap: 36px;
+        padding: 32px;
+        background: white;
+        border: 1px solid #dfe3ec;
+        border-radius: 18px;
+      }
+
+      .slider-frame {
+        width: min(100%, 520px);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>No-bundler theme CSS</h1>
+        <p>This page uses plain HTML and one stylesheet link. No CSS bundler runs here.</p>
+      </header>
+
+      <section>
+        <h2>Button</h2>
+        <button
+          class="MuiButton-root MuiButton-contained MuiButton-colorPrimary MuiButton-sizeMedium"
+          type="button"
+        >
+          CDN action
+        </button>
+      </section>
+
+      <section class="slider-frame">
+        <h2>Slider</h2>
+        <span
+          class="MuiSlider-root MuiSlider-horizontal MuiSlider-colorPrimary MuiSlider-sizeMedium"
+        >
+          <span class="MuiSlider-rail MuiSlider-horizontal"></span>
+          <span
+            class="MuiSlider-track MuiSlider-horizontal MuiSlider-colorPrimary MuiSlider-sizeMedium"
+            style="left: 0%; width: 62%"
+          ></span>
+          <span
+            class="MuiSlider-thumb MuiSlider-horizontal MuiSlider-thumbColorPrimary MuiSlider-thumbSizeMedium"
+            style="left: 62%"
+          ></span>
+        </span>
+      </section>
+    </main>
+  </body>
+</html>

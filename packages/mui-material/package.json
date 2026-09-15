@@ -25,7 +25,9 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --tsgo --flat",
+    "build": "code-infra build --tsgo --flat --no-expand && pnpm build:css",
+    "build:css": "node scripts/buildCss.mjs && pnpm build:css-bundles",
+    "build:css-bundles": "node scripts/buildCssBundles.mjs",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
     "typescript": "tsc -p tsconfig.json",
@@ -54,6 +56,7 @@
     "css-mediaquery": "0.1.2",
     "es-toolkit": "1.52.0",
     "fast-glob": "3.3.3",
+    "lightningcss": "1.32.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-router": "8.3.1",
@@ -81,7 +84,13 @@
       "optional": true
     }
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css",
+    "./themes/*/index.js",
+    "./themes/*/index.mjs",
+    "./themes/*/*/index.js",
+    "./themes/*/*/index.mjs"
+  ],
   "publishConfig": {
     "access": "public",
     "directory": "build"
@@ -97,6 +106,8 @@
     "./ButtonBase/TouchRipple": "./src/ButtonBase/TouchRipple.js",
     "./zero-styled": "./src/zero-styled/index.tsx",
     "./className": "./src/className/index.ts",
+    "./css/*": "./build/css/*",
+    "./themes/*": "./build/themes/*",
     "./ClickAwayListener": "./src/ClickAwayListener/index.ts",
     "./darkScrollbar": "./src/darkScrollbar/index.ts",
     "./DefaultPropsProvider": "./src/DefaultPropsProvider/index.ts",
