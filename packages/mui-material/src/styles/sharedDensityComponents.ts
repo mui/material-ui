@@ -237,17 +237,13 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'MuiTooltip',
     {
       ...enhanced.typography?.caption,
+      lineHeight: 16 / 12,
       padding: `${spacing('xSmall')} ${spacing('small')}`,
       '--_spacing': '4px',
     },
     'tooltip',
   );
-  addRootOverride(
-    enhanced.components,
-    'MuiTooltip',
-    { width: 'var(--_arrowSize)', height: 'calc(var(--_arrowSize) * 0.71)' },
-    'arrow',
-  );
+  addRootOverride(enhanced.components, 'MuiTooltip', { '--_arrowSize': '10px' }, 'arrow');
   addRootOverride(enhanced.components, 'MuiInputBase', {
     lineHeight: enhanced.typography?.body1?.lineHeight,
     // The medium gap sits on the root: outside a FormControl the ownerState
