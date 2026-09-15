@@ -1159,7 +1159,7 @@ export const DENSITY_ANNOTATIONS: Record<
           },
         ]
       : []),
-    // Only at a side placement is the arrow's 11px its height.
+    // Only at a side placement is the arrow's 12px its height.
     ...(values.placement === 'right'
       ? [
           // A pointer up to the button's top — a beam's ties here would run
@@ -1169,10 +1169,10 @@ export const DENSITY_ANNOTATIONS: Record<
             on: '.MuiTooltip-arrow',
             aspect: 'touch-target' as const,
             pointer: true,
-            // `block`: the 11px is the arrow's height even though the label
+            // `block`: the 12px is the arrow's height even though the label
             // sits on the top gutter.
             axis: 'block' as const,
-            token: '1.375 × spacing',
+            token: '12px',
             label: 'Arrow',
             route: { gutter: 'top' as const, line: 'diagonal' as const, shift: -60 },
           },

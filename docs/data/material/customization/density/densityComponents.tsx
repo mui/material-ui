@@ -778,7 +778,7 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
     ),
   },
   Tooltip: {
-    // `placement`, not `arrow`: the arrow's 11px is a width at the top and bottom
+    // `placement`, not `arrow`: the arrow's 12px is a width at the top and bottom
     // placements and a height at the side ones, and only a height can be drawn.
     controls: [
       {
