@@ -129,8 +129,7 @@ async function applyState(family: string, state: Record<string, string | boolean
       // then one per select control, before anything the demo renders.
       const position = 1 + selects.findIndex((control) => control.prop === prop);
       const trigger = document.querySelectorAll('.MuiSelect-select')[position] as
-        | HTMLElement
-        | undefined;
+        HTMLElement | undefined;
       if (!trigger || trigger.textContent === value) {
         continue;
       }

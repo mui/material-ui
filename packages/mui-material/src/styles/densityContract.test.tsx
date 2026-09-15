@@ -88,7 +88,12 @@ const DENSITIES: Density[] = [
       body1: { fontSize: '0.75rem', lineHeight: '16px' },
       body2: { fontSize: '0.6875rem', lineHeight: '14px' },
       caption: { fontSize: '0.6875rem', lineHeight: '14px' },
-      button: { fontSize: '0.75rem', lineHeight: '16px', textTransform: 'initial', letterSpacing: 0 },
+      button: {
+        fontSize: '0.75rem',
+        lineHeight: '16px',
+        textTransform: 'initial',
+        letterSpacing: 0,
+      },
     },
   },
   {
@@ -110,7 +115,12 @@ const DENSITIES: Density[] = [
       body1: { fontSize: '0.875rem', lineHeight: '20px' },
       body2: { fontSize: '0.8125rem', lineHeight: '18px' },
       caption: { fontSize: '0.75rem', lineHeight: '16px' },
-      button: { fontSize: '0.875rem', lineHeight: '20px', textTransform: 'initial', letterSpacing: 0 },
+      button: {
+        fontSize: '0.875rem',
+        lineHeight: '20px',
+        textTransform: 'initial',
+        letterSpacing: 0,
+      },
     },
   },
   {
@@ -262,7 +272,8 @@ const CONTROLS: Record<string, Spec> = {
     render: (size) => <Chip size={size} label="Chip" />,
     selector: '.MuiChip-root',
     // Chip authors its own small box; medium sits on the target itself.
-    height: (density, size) => (size === 'small' ? density.touchTarget - density.step.xxSmall : density.touchTarget),
+    height: (density, size) =>
+      size === 'small' ? density.touchTarget - density.step.xxSmall : density.touchTarget,
   },
 
   // --- input boxes: the headline claim is that every variant lands on one box
@@ -310,7 +321,9 @@ const CONTROLS: Record<string, Spec> = {
     render: (size) => <Toolbar variant={size}>Title</Toolbar>,
     selector: '.MuiToolbar-root',
     height: (density, size) =>
-      size === 'dense' ? density.touchTarget + 2 * density.step.xxSmall : density.touchTarget + 2 * density.step.xSmall,
+      size === 'dense'
+        ? density.touchTarget + 2 * density.step.xxSmall
+        : density.touchTarget + 2 * density.step.xSmall,
   },
   Tabs: {
     render: () => (
@@ -343,7 +356,9 @@ const CONTROLS: Record<string, Spec> = {
     ),
     selector: '.MuiTableCell-root',
     height: (density, size) =>
-      size === 'small' ? density.step.large + density.step.xxSmall : density.step.xLarge + density.step.xSmall,
+      size === 'small'
+        ? density.step.large + density.step.xxSmall
+        : density.step.xLarge + density.step.xSmall,
   },
   TablePagination: {
     render: () => (
@@ -536,9 +551,13 @@ describe.skipIf(isJsdom())('density contract', () => {
         ['small', 'medium', 'large'].forEach((size) => {
           const title = `${name} ${size}`;
           test(title, () => {
-            render(<ThemeProvider theme={THEMES.get(density.id)!}>{spec.render(size)}</ThemeProvider>);
+            render(
+              <ThemeProvider theme={THEMES.get(density.id)!}>{spec.render(size)}</ThemeProvider>,
+            );
             const icon = document.querySelector('.MuiSvgIcon-root') as HTMLElement;
-            expect(parseFloat(getComputedStyle(icon).fontSize)).to.equal(spec.expect(density, size));
+            expect(parseFloat(getComputedStyle(icon).fontSize)).to.equal(
+              spec.expect(density, size),
+            );
           });
         });
       });
@@ -546,7 +565,9 @@ describe.skipIf(isJsdom())('density contract', () => {
         const sizes = spec.sizes ?? [undefined];
         sizes.forEach((size) => {
           test(`${name}${size ? ` ${size}` : ''}`, () => {
-            render(<ThemeProvider theme={THEMES.get(density.id)!}>{spec.render(size)}</ThemeProvider>);
+            render(
+              <ThemeProvider theme={THEMES.get(density.id)!}>{spec.render(size)}</ThemeProvider>,
+            );
             expect(sideOf(spec.selector, spec.axis)).to.equal(spec.height(density, size));
           });
         });

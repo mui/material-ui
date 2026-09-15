@@ -43,7 +43,10 @@ const NO_CONTROLS: Control[] = [];
 
 // Two groups, not one list: the steps space a box, the targets size it, and the
 // override object splits them the same way.
-const SCALE_GROUPS = [Object.entries(DENSITY_SCALE), Object.entries(DENSITY_TARGETS)];
+const SCALE_GROUPS = [
+  Object.entries(DENSITY_SCALE),
+  Object.entries(DENSITY_TARGETS),
+];
 
 function ScaleLegend() {
   const [anchor, setAnchor] = React.useState<HTMLButtonElement | null>(null);

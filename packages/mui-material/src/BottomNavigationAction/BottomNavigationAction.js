@@ -102,7 +102,6 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     label,
     onChange,
     onClick,
-    // eslint-disable-next-line react/prop-types -- private, always overridden by BottomNavigation
     selected,
     showLabel,
     value,

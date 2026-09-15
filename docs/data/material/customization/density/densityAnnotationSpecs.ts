@@ -686,9 +686,7 @@ export const DENSITY_ANNOTATIONS: Record<
         on: '.MuiInput-root .MuiInputBase-input',
         aspect: 'padding',
         axis: 'block',
-        token: small
-          ? '(touchTarget - xxSmall - 1lh) / 2'
-          : '(touchTarget - 1lh) / 2',
+        token: small ? '(touchTarget - xxSmall - 1lh) / 2' : '(touchTarget - 1lh) / 2',
         label: 'Select value',
         route: { gutter: 'right' },
       },
@@ -1007,9 +1005,7 @@ export const DENSITY_ANNOTATIONS: Record<
     const multiline = values.multiline === true;
     // Every input variant now centres one line in the touch target, so the
     // block padding is the leftover split in half — a quarter at `small`.
-    const padBlock = small
-      ? '(touchTarget - xxSmall - 1lh) / 2'
-      : '(touchTarget - 1lh) / 2';
+    const padBlock = small ? '(touchTarget - xxSmall - 1lh) / 2' : '(touchTarget - 1lh) / 2';
     // Multiline moves that padding off the input slot and onto the root, where
     // the box grows with the text — claim it wherever it currently lives, or the
     // band measures zero and drops out.
