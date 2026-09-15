@@ -1008,9 +1008,14 @@ export const DENSITY_ANNOTATIONS: Record<
   },
   TextField: (values) => {
     const small = values.size === 'small';
+    const multiline = values.multiline === true;
     // Every input variant now centres one line in the touch target, so the
     // block padding is the leftover split in half — a quarter at `small`.
     const padBlock = small ? '(touchTarget - 1lh) / 4' : '(touchTarget - 1lh) / 2';
+    // Multiline moves that padding off the input slot and onto the root, where
+    // the box grows with the text — claim it wherever it currently lives, or the
+    // band measures zero and drops out.
+    const padOn = (root: string, input: string) => (multiline ? root : input);
     // The bare InputBase is the only root carrying none of the variant classes.
     const base =
       '.MuiInputBase-root:not(.MuiInput-root):not(.MuiFilledInput-root):not(.MuiOutlinedInput-root)';
@@ -1021,27 +1026,35 @@ export const DENSITY_ANNOTATIONS: Record<
       // the whole claim, so each row carries its own beam.
       { on: base, aspect: 'touch-target', label: 'InputBase' },
       {
-        on: baseInput,
+        on: padOn(base, baseInput),
         aspect: 'padding',
         axis: 'block',
-        token: padBlock,
+        // The bare root's multiline rule carries no size branch, so it stays a
+        // step rather than the size-dependent remainder.
+        token: multiline ? 'xxSmall' : padBlock,
         label: 'InputBase',
       },
       { on: '.MuiInput-root', aspect: 'touch-target', label: 'Standard' },
       // Symmetric: both bands come off the same remainder, so one token names them.
       {
-        on: '.MuiInput-input',
+        on: padOn('.MuiInput-root', '.MuiInput-input'),
         aspect: 'padding',
         axis: 'block',
         token: padBlock,
         label: 'Standard',
       },
       { on: '.MuiFilledInput-root', aspect: 'touch-target', label: 'Filled' },
-      // Asymmetric: `large` on top, `xxSmall` underneath — two captions.
-      { on: '.MuiFilledInput-input', aspect: 'padding', axis: 'block', label: 'Filled' },
+      // Asymmetric — a label's worth on top, a step underneath — so two captions
+      // and no single token, at either size and on either slot.
+      {
+        on: padOn('.MuiFilledInput-root', '.MuiFilledInput-input'),
+        aspect: 'padding',
+        axis: 'block',
+        label: 'Filled',
+      },
       { on: '.MuiOutlinedInput-root', aspect: 'touch-target', label: 'Outlined' },
       {
-        on: '.MuiOutlinedInput-input',
+        on: padOn('.MuiOutlinedInput-root', '.MuiOutlinedInput-input'),
         aspect: 'padding',
         axis: 'block',
         token: padBlock,
