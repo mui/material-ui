@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 2     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 30    |
-| 🚩 Flagged            | 3/25  |
+| 🚩 Flagged            | 2/25  |
 
 ## Known gaps
 
@@ -196,9 +196,9 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.7 Focus Visible · AA
 
-`🚩` · `⚠️ Partially Supports` · `● Component`
+`⚠️ Partially Supports` · `● Component`
 
-- `ButtonBase` removes the user-agent outline (`outline: 0`). In the default configuration keyboard focus adds the `.Mui-focusVisible` class plus a centered focus ripple, so an indicator is shown.
+- `ButtonBase` removes the user-agent outline (`outline: 0`). In the default configuration keyboard focus adds the `.Mui-focusVisible` class plus a centered focus ripple, so an indicator is shown. Covered by a Playwright test that compares the control focused and unfocused.
 - `disableRipple` or `disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styles. The `CustomizedSwitches` iOS demo does this, re-styling the thumb on focus.
 
 **Manual testing steps**
