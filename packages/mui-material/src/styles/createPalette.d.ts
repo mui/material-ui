@@ -112,6 +112,7 @@ export interface Palette {
   background: TypeBackground;
   getContrastText: (background: string) => string;
   augmentColor: (options: PaletteAugmentColorOptions) => PaletteColor;
+  states?: PaletteStateLevers | undefined;
 }
 
 export interface Channels {
@@ -123,7 +124,25 @@ export interface Channels {
 
 export type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };
 
+/**
+ * Per-scheme input levers for `enhanceColorStates`.
+ *
+ * These ride the palette so the existing color-scheme variable emitter ships them
+ * per scheme; the generator then references them as `var()`, which is how ONE set
+ * of generated styles stays correct in every scheme. Plain CSS strings — the
+ * generated OUTPUT lives on `theme.states`, never here.
+ */
+export interface PaletteStateLevers {
+  /** distance per level for opaque bases, e.g. `'4.5%'` */
+  step?: string | undefined;
+  /** overlay alpha per level for transparent bases, e.g. `'5%'` */
+  overlayStep?: string | undefined;
+  /** per-colour magnitudes, e.g. `{ error: { step: '3.7%' } }` */
+  [color: string]: string | { step?: string; overlayStep?: string } | undefined;
+}
+
 export interface PaletteOptions {
+  states?: PaletteStateLevers | undefined;
   primary?: PaletteColorOptions | undefined;
   secondary?: PaletteColorOptions | undefined;
   error?: PaletteColorOptions | undefined;
