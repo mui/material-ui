@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -66,7 +65,7 @@ const theme = createTheme({
 
 const noop = () => {};
 
-function Row({ label, children }) {
+function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <React.Fragment>
       <Typography variant="body2" sx={{ fontWeight: 600, alignSelf: 'center' }}>
@@ -83,12 +82,15 @@ function Row({ label, children }) {
   );
 }
 
-Row.propTypes = {
-  children: PropTypes.node,
-  label: PropTypes.string.isRequired,
-};
-
-function Bucket({ title, hint, children }) {
+function Bucket({
+  title,
+  hint,
+  children,
+}: {
+  title: string;
+  hint: string;
+  children: React.ReactNode;
+}) {
   return (
     <div>
       <Typography variant="overline" sx={{ fontWeight: 700 }}>
@@ -116,24 +118,22 @@ function Bucket({ title, hint, children }) {
   );
 }
 
-Bucket.propTypes = {
-  children: PropTypes.node,
-  hint: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-};
-
 export default function FullFocusVisibleDemo() {
+  // @focus-start @padding 1
   const [tab, setTab] = React.useState(0);
-  const handleTabChange = (event, newValue) => {
+  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setTab(newValue);
   };
-  const [alignment, setAlignment] = React.useState('left');
-  const handleAlignmentChange = (event, newAlignment) => {
+  const [alignment, setAlignment] = React.useState<string | null>('left');
+  const handleAlignmentChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string | null,
+  ) => {
     setAlignment(newAlignment);
   };
   const [orderBy, setOrderBy] = React.useState('name');
-  const [order, setOrder] = React.useState('asc');
-  const createSortHandler = (column) => () => {
+  const [order, setOrder] = React.useState<'asc' | 'desc'>('asc');
+  const createSortHandler = (column: string) => () => {
     if (orderBy === column) {
       setOrder(order === 'asc' ? 'desc' : 'asc');
     } else {
@@ -142,7 +142,7 @@ export default function FullFocusVisibleDemo() {
     }
   };
   const [activeStep, setActiveStep] = React.useState(0);
-  const handleStep = (step) => () => {
+  const handleStep = (step: number) => () => {
     setActiveStep(step);
   };
   return (
@@ -292,6 +292,7 @@ export default function FullFocusVisibleDemo() {
         </Bucket>
 
         <Divider />
+
         <Bucket
           title="inner-ring"
           hint="Inside a scrollable or overflow-clipped container — the ring is inset (outlineOffset -2) so it cannot be clipped."
@@ -353,4 +354,5 @@ export default function FullFocusVisibleDemo() {
       </Stack>
     </ThemeProvider>
   );
+  // @focus-end
 }
