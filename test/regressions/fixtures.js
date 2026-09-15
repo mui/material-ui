@@ -9,6 +9,8 @@
 // clock. Keeping them here, imported *after* `./fakeDateSetup`, guarantees the
 // override is in place first.
 
+import assertUniqueFixtures from './assertUniqueFixtures';
+
 // Get all the fixtures specifically written for preventing visual regressions.
 const importRegressionFixtures = import.meta.glob(['./fixtures/**/*.{js,ts,tsx}'], {
   import: 'default',
@@ -80,8 +82,10 @@ const importDemos = import.meta.glob(
   [
     // Migrated docs-infra demos: `<area>/demos/<slug>/<Name>.{js,tsx}`.
     'docs/data/**/demos/*/[A-Z]*.{js,tsx}',
-    // Templates: flat `templates/<name>/<Name>.{js,tsx}` layout (not yet migrated).
-    'docs/data/material/getting-started/templates/*/[A-Z]*.{js,tsx}',
+    // Templates: flat `templates/<name>/<Name>.{js,tsx}` layout (not yet
+    // migrated). Each template ships both files; only `.js` is enrolled so a
+    // template can't register the same route/screenshot path twice.
+    'docs/data/material/getting-started/templates/*/[A-Z]*.js',
     // Legacy Base UI variants (not yet migrated to the docs-infra demo layout).
     'docs/data/base/**/[A-Z]*/css/index.js',
     'docs/data/base/**/[A-Z]*/tailwind/index.js',
@@ -219,9 +223,8 @@ Object.keys(importComposites).forEach((path) => {
   });
 }, []);
 
-const fixtures = regressionFixtures
-  .concat(a11yFixtures)
-  .concat(demoFixtures)
-  .concat(compositeFixtures);
+const fixtures = assertUniqueFixtures(
+  regressionFixtures.concat(a11yFixtures).concat(demoFixtures).concat(compositeFixtures),
+);
 
 export default fixtures;

@@ -23,12 +23,13 @@ const theme = createTheme({
 });
 
 export default function FocusVisibleBoxShadow() {
+  // @focus-start @padding 1
   const [cardTab, setCardTab] = React.useState(0);
   const [appBarTab, setAppBarTab] = React.useState(0);
-  const handleCardChange = (event, newValue) => {
+  const handleCardChange = (event: React.SyntheticEvent, newValue: number) => {
     setCardTab(newValue);
   };
-  const handleAppBarChange = (event, newValue) => {
+  const handleAppBarChange = (event: React.SyntheticEvent, newValue: number) => {
     setAppBarTab(newValue);
   };
   return (
@@ -72,4 +73,5 @@ export default function FocusVisibleBoxShadow() {
       </Stack>
     </ThemeProvider>
   );
+  // @focus-end
 }

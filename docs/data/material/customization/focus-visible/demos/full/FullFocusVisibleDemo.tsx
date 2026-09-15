@@ -139,6 +139,7 @@ function Bucket({
 }
 
 export default function FullFocusVisibleDemo() {
+  // @focus-start @padding 1
   const [tab, setTab] = React.useState(0);
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setTab(newValue);
@@ -390,4 +391,5 @@ export default function FullFocusVisibleDemo() {
       </Stack>
     </ThemeProvider>
   );
+  // @focus-end
 }

@@ -347,7 +347,7 @@ export default function BasicButtons() {
       await page.goto(BUTTONS_PATH);
     });
 
-    test('opens the selected source language on GitHub from the overflow menu', async ({
+    test('links the authored .tsx file on GitHub regardless of source language', async ({
       page,
     }) => {
       const demo = getDemo(page, 'BasicButtons');
@@ -374,9 +374,10 @@ export default function BasicButtons() {
       await demo.getByRole('button', { name: 'Expand code' }).click();
       await demo.getByRole('button', { name: 'Show JavaScript source' }).click();
       await demo.getByRole('button', { name: 'See more' }).click();
+      // The JS view is a transform of the `.tsx` source; no `.jsx` file exists.
       await expect(sourceLink).toHaveAttribute(
         'href',
-        /github\.com\/[^/]+\/material-ui\/blob\/[^/]+\/docs\/data\/material\/components\/buttons\/demos\/basic\/BasicButtons\.jsx$/,
+        /github\.com\/[^/]+\/material-ui\/blob\/[^/]+\/docs\/data\/material\/components\/buttons\/demos\/basic\/BasicButtons\.tsx$/,
       );
     });
 
