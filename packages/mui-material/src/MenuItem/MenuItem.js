@@ -8,7 +8,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ListContext from '../List/ListContext';
-import MenuItemBase from './MenuItemBase';
+import MenuItemBase from '../internal/MenuItemBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import focusWithVisible from '../utils/focusWithVisible';
 import useForkRef from '../utils/useForkRef';

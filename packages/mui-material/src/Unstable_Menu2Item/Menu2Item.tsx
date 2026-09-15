@@ -8,7 +8,7 @@ import mergeSlotProps from '../utils/mergeSlotProps';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import MenuItemBase from '../MenuItem/MenuItemBase';
+import MenuItemBase from '../internal/MenuItemBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import {

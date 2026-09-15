@@ -4,7 +4,7 @@ import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import useForkRef from '@mui/utils/useForkRef';
 import { mergeProps } from '@base-ui/react/merge-props';
 import mergeSlotProps from '../utils/mergeSlotProps';
-import MenuItemBase from '../MenuItem/MenuItemBase';
+import MenuItemBase from '../internal/MenuItemBase';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';

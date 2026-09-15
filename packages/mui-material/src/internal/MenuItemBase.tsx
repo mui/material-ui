@@ -2,12 +2,13 @@
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import ButtonBase from '../ButtonBase';
+import type { Breakpoint } from '../styles';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import { applyInsetFocusVisible } from '../styles/focusVisible';
 import { dividerClasses } from '../Divider';
 import { listItemIconClasses } from '../ListItemIcon';
 import { listItemTextClasses } from '../ListItemText';
-import menuItemClasses from './menuItemClasses';
+import menuItemClasses from '../MenuItem/menuItemClasses';
 
 interface MenuItemBaseOwnerState {
   dense: boolean;
@@ -21,6 +22,9 @@ interface MenuItemBaseProps {
 
 // ButtonBase supplies the element resets. Keep the shared variants after them.
 // The slot assigns the components CSS layer without a shared theme key.
+/**
+ * @ignore - internal component.
+ */
 const MenuItemBase = styled(ButtonBase, {
   slot: 'Root',
   shouldForwardProp: slotShouldForwardProp,
@@ -93,7 +97,8 @@ const MenuItemBase = styled(ButtonBase, {
         {
           props: ({ ownerState }: MenuItemBaseProps) => !ownerState?.dense,
           style: {
-            [theme.breakpoints.up('sm')]: {
+            // Keep the built-in key when module augmentation removes it from the public type.
+            [theme.breakpoints.up('sm' as Breakpoint)]: {
               minHeight: 'auto',
             },
           },
