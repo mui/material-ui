@@ -87,7 +87,7 @@ Reference the demo from the page's markdown via the `component` field. Use a `fi
 {{"component": "file://./demos/basic/index.ts"}}
 ```
 
-Demo options (`bg`, `hideToolbar`, `isolated`, `iframe`, `defaultCodeOpen`, `maxWidth`, `height`, `disableAd`, `disableLiveEdit`, `hideEditButton`, `aiSuggestion`, `anchorId`) are defined by the `DemoOptions` interface in `packages-internal/core-docs/src/DemoContent/DemoContent.tsx`. Use `{/* @focus-start */}` / `{/* @focus-end */}` JSX comments inside the demo to highlight regions in the rendered code viewer.
+Demo options (`bg`, `hideToolbar`, `initialExpanded`, `collapseToEmpty`, `isolated`, `iframe`, `maxWidth`, `height`, `disableAd`, `disableLiveEdit`, `hideEditButton`, `aiSuggestion`, `anchorId`; `defaultCodeOpen` is a legacy alias for `initialExpanded`/`collapseToEmpty`) are defined by the `DemoOptions` interface in `packages-internal/core-docs/src/DemoContent/DemoContent.tsx`. Use `{/* @focus-start */}` / `{/* @focus-end */}` JSX comments inside the demo to highlight regions in the rendered code viewer.
 
 The demo infrastructure itself is documented at <https://mui-internal.netlify.app/docs-infra/>.
 
