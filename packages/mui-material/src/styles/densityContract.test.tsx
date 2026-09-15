@@ -43,7 +43,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import enhanceDensity from './enhanceDensity';
 import { DEFAULT_SIZING_PX, DEFAULT_STEP_PX, type DensityKey } from './densityScale';
 
-/* eslint-disable vitest/valid-title -- one case per level x component x size, so
+/* eslint-disable vitest/valid-title -- one case per density x component x size, so
    every title is generated from the matrix rather than written out. */
 
 /**
@@ -59,7 +59,7 @@ import { DEFAULT_SIZING_PX, DEFAULT_STEP_PX, type DensityKey } from './densitySc
 
 /** The ladder's shape comes from the implementation, not a second list. */
 type Steps = Record<DensityKey, number>;
-type Level = {
+type Density = {
   id: string;
   step: Steps;
   touchTarget: number;
@@ -67,24 +67,16 @@ type Level = {
   typography: Record<string, Record<string, string | number>>;
 };
 
-const level = (
-  id: string,
-  step: Steps,
-  touchTarget: number,
-  iconSize: number,
-  typography: Record<string, Record<string, string | number>>,
-): Level => ({ id, step, touchTarget, iconSize, typography });
-
 // The three published recipes, each paired with the type ramp a design system
 // would compose alongside it — heights derive from `1lh`, so the ramp is part
 // of the contract rather than decoration.
-const LEVELS: Level[] = [
-  level(
-    'high',
-    { xxSmall: 2, xSmall: 4, small: 8, medium: 12, large: 16, xLarge: 24, xxLarge: 32 },
-    24,
-    16,
-    {
+const DENSITIES: Density[] = [
+  {
+    id: 'high',
+    step: { xxSmall: 2, xSmall: 4, small: 8, medium: 12, large: 16, xLarge: 24, xxLarge: 32 },
+    touchTarget: 24,
+    iconSize: 16,
+    typography: {
       h1: { fontSize: '1.5rem', lineHeight: '30px' },
       h2: { fontSize: '1.25rem', lineHeight: '26px' },
       h3: { fontSize: '0.875rem', lineHeight: '22px' },
@@ -98,15 +90,15 @@ const LEVELS: Level[] = [
       caption: { fontSize: '0.6875rem', lineHeight: '14px' },
       button: { fontSize: '0.75rem', lineHeight: '16px', textTransform: 'initial', letterSpacing: 0 },
     },
-  ),
-  level(
+  },
+  {
     // The shipped ladder itself — an input to the enhancer, so it is read from
     // the implementation; the expectations below stay computed independently.
-    'medium',
-    DEFAULT_STEP_PX,
-    DEFAULT_SIZING_PX.touchTarget,
-    DEFAULT_SIZING_PX.iconSize,
-    {
+    id: 'medium',
+    step: DEFAULT_STEP_PX,
+    touchTarget: DEFAULT_SIZING_PX.touchTarget,
+    iconSize: DEFAULT_SIZING_PX.iconSize,
+    typography: {
       h1: { fontSize: '1.75rem', lineHeight: '36px' },
       h2: { fontSize: '1.5rem', lineHeight: '30px' },
       h3: { fontSize: '1rem', lineHeight: '26px' },
@@ -120,13 +112,13 @@ const LEVELS: Level[] = [
       caption: { fontSize: '0.75rem', lineHeight: '16px' },
       button: { fontSize: '0.875rem', lineHeight: '20px', textTransform: 'initial', letterSpacing: 0 },
     },
-  ),
-  level(
-    'low',
-    { xxSmall: 8, xSmall: 12, small: 16, medium: 24, large: 32, xLarge: 48, xxLarge: 64 },
-    44,
-    24,
-    {
+  },
+  {
+    id: 'low',
+    step: { xxSmall: 8, xSmall: 12, small: 16, medium: 24, large: 32, xLarge: 48, xxLarge: 64 },
+    touchTarget: 44,
+    iconSize: 24,
+    typography: {
       h1: { fontSize: '1.875rem', lineHeight: '38px' },
       h2: { fontSize: '1.625rem', lineHeight: '32px' },
       h3: { fontSize: '1.25rem', lineHeight: '28px' },
@@ -140,18 +132,20 @@ const LEVELS: Level[] = [
       caption: { fontSize: '0.875rem', lineHeight: '20px' },
       button: { fontSize: '1rem', lineHeight: '22px', textTransform: 'initial', letterSpacing: 0 },
     },
-  ),
+  },
 ];
 
-const themeFor = (l: Level) =>
-  enhanceDensity(createTheme({ typography: l.typography, shape: { borderRadius: 4 } }), {
-    spacing: l.step,
-    touchTarget: l.touchTarget,
-    iconSize: l.iconSize,
-  });
-
 // Three themes, not one per case: `enhanceDensity` walks the whole emission map.
-const THEMES = new Map(LEVELS.map((l) => [l.id, themeFor(l)]));
+const THEMES = new Map(
+  DENSITIES.map((density) => [
+    density.id,
+    enhanceDensity(createTheme({ typography: density.typography }), {
+      spacing: density.step,
+      touchTarget: density.touchTarget,
+      iconSize: density.iconSize,
+    }),
+  ]),
+);
 
 /**
  * The used height of the first match. Read off `getComputedStyle` rather than
@@ -159,11 +153,11 @@ const THEMES = new Map(LEVELS.map((l) => [l.id, themeFor(l)]));
  * collapsed table border lands half a pixel on each cell.
  */
 const sideOf = (selector: string, axis: Spec['axis'] | 'height' = 'height') => {
-  const el = document.querySelector(selector);
-  if (!el) {
+  const element = document.querySelector(selector);
+  if (!element) {
     throw new Error(`no element for ${selector}`);
   }
-  return Math.round(parseFloat(getComputedStyle(el)[axis]) * 100) / 100;
+  return Math.round(parseFloat(getComputedStyle(element)[axis]) * 100) / 100;
 };
 
 type Spec = {
@@ -173,31 +167,30 @@ type Spec = {
   selector: string;
   /** Which computed box property the contract names; height unless stated. */
   axis?: 'width' | 'minWidth' | 'minHeight';
-  /** Expected box height in px, from the level's own numbers. */
-  height: (l: Level, size: string | undefined) => number;
+  /** Expected box height in px, from the density's own numbers. */
+  height: (density: Density, size: string | undefined) => number;
 };
 
-const SIZED = ['small', 'medium', 'large'];
 /** The shared control ramp: one step under the box, the box, one step over. */
-const ramp = (l: Level, size: string | undefined) => {
+const ramp = (density: Density, size: string | undefined) => {
   if (size === 'small') {
-    return l.touchTarget - l.step.xxSmall;
+    return density.touchTarget - density.step.xxSmall;
   }
   if (size === 'large') {
-    return l.touchTarget + l.step.small;
+    return density.touchTarget + density.step.small;
   }
-  return l.touchTarget;
+  return density.touchTarget;
 };
 
 const CONTROLS: Record<string, Spec> = {
   Button: {
-    sizes: SIZED,
+    sizes: ['small', 'medium', 'large'],
     render: (size) => <Button size={size}>Label</Button>,
     selector: '.MuiButton-root',
     height: ramp,
   },
   IconButton: {
-    sizes: SIZED,
+    sizes: ['small', 'medium', 'large'],
     render: (size) => (
       <IconButton size={size}>
         <AddIcon />
@@ -219,7 +212,7 @@ const CONTROLS: Record<string, Spec> = {
     height: ramp,
   },
   ToggleButton: {
-    sizes: SIZED,
+    sizes: ['small', 'medium', 'large'],
     render: (size) => (
       <ToggleButton size={size} value="a">
         A
@@ -229,7 +222,7 @@ const CONTROLS: Record<string, Spec> = {
     height: ramp,
   },
   PaginationItem: {
-    sizes: SIZED,
+    sizes: ['small', 'medium', 'large'],
     render: (size) => <PaginationItem size={size} page={1} />,
     selector: '.MuiPaginationItem-root',
     height: ramp,
@@ -243,25 +236,25 @@ const CONTROLS: Record<string, Spec> = {
   Avatar: {
     render: () => <Avatar>A</Avatar>,
     selector: '.MuiAvatar-root',
-    height: (l) => l.touchTarget,
+    height: (density) => density.touchTarget,
   },
   Fab: {
     // Circular only — the extended variant is width-led, not a box.
-    sizes: SIZED,
+    sizes: ['small', 'medium', 'large'],
     render: (size) => (
       <Fab size={size}>
         <AddIcon />
       </Fab>
     ),
     selector: '.MuiFab-root',
-    height: (l, size) => {
+    height: (density, size) => {
       if (size === 'small') {
-        return l.step.large + l.step.small;
+        return density.step.large + density.step.small;
       }
       if (size === 'large') {
-        return l.step.xxLarge + l.step.xxSmall;
+        return density.step.xxLarge + density.step.xxSmall;
       }
-      return l.touchTarget + l.step.xSmall;
+      return density.touchTarget + density.step.xSmall;
     },
   },
   Chip: {
@@ -269,7 +262,7 @@ const CONTROLS: Record<string, Spec> = {
     render: (size) => <Chip size={size} label="Chip" />,
     selector: '.MuiChip-root',
     // Chip authors its own small box; medium sits on the target itself.
-    height: (l, size) => (size === 'small' ? l.touchTarget - l.step.xxSmall : l.touchTarget),
+    height: (density, size) => (size === 'small' ? density.touchTarget - density.step.xxSmall : density.touchTarget),
   },
 
   // --- input boxes: the headline claim is that every variant lands on one box
@@ -310,14 +303,14 @@ const CONTROLS: Record<string, Spec> = {
       </Accordion>
     ),
     selector: '.MuiAccordionSummary-root',
-    height: (l) => l.touchTarget,
+    height: (density) => density.touchTarget,
   },
   Toolbar: {
     sizes: ['regular', 'dense'],
     render: (size) => <Toolbar variant={size}>Title</Toolbar>,
     selector: '.MuiToolbar-root',
-    height: (l, size) =>
-      size === 'dense' ? l.touchTarget + 2 * l.step.xxSmall : l.touchTarget + 2 * l.step.xSmall,
+    height: (density, size) =>
+      size === 'dense' ? density.touchTarget + 2 * density.step.xxSmall : density.touchTarget + 2 * density.step.xSmall,
   },
   Tabs: {
     render: () => (
@@ -326,7 +319,7 @@ const CONTROLS: Record<string, Spec> = {
       </Tabs>
     ),
     selector: '.MuiTabs-root',
-    height: (l) => l.touchTarget,
+    height: (density) => density.touchTarget,
   },
   Tab: {
     render: () => (
@@ -335,7 +328,7 @@ const CONTROLS: Record<string, Spec> = {
       </Tabs>
     ),
     selector: '.MuiTab-root',
-    height: (l) => l.touchTarget,
+    height: (density) => density.touchTarget,
   },
   TableCell: {
     sizes: ['small', 'medium'],
@@ -349,8 +342,8 @@ const CONTROLS: Record<string, Spec> = {
       </Table>
     ),
     selector: '.MuiTableCell-root',
-    height: (l, size) =>
-      size === 'small' ? l.step.large + l.step.xxSmall : l.step.xLarge + l.step.xSmall,
+    height: (density, size) =>
+      size === 'small' ? density.step.large + density.step.xxSmall : density.step.xLarge + density.step.xSmall,
   },
   TablePagination: {
     render: () => (
@@ -363,7 +356,7 @@ const CONTROLS: Record<string, Spec> = {
       </Table>
     ),
     selector: '.MuiTablePagination-toolbar',
-    height: (l) => l.touchTarget + l.step.medium,
+    height: (density) => density.touchTarget + density.step.medium,
   },
   BottomNavigation: {
     render: () => (
@@ -372,7 +365,7 @@ const CONTROLS: Record<string, Spec> = {
       </BottomNavigation>
     ),
     selector: '.MuiBottomNavigation-root',
-    height: (l) => l.step.xxLarge,
+    height: (density) => density.step.xxLarge,
   },
 
   // --- boxes outside the control ramp
@@ -385,7 +378,7 @@ const CONTROLS: Record<string, Spec> = {
     ),
     selector: '.MuiButtonGroup-grouped',
     axis: 'minWidth',
-    height: (l) => l.touchTarget,
+    height: (density) => density.touchTarget,
   },
   Breadcrumbs: {
     // `maxItems` forces the collapsed button, which is the box density sizes.
@@ -398,7 +391,7 @@ const CONTROLS: Record<string, Spec> = {
       </Breadcrumbs>
     ),
     selector: `.MuiBreadcrumbs-ol li > .MuiButtonBase-root`,
-    height: (l) => l.touchTarget,
+    height: (density) => density.touchTarget,
   },
   Autocomplete: {
     render: () => (
@@ -409,7 +402,7 @@ const CONTROLS: Record<string, Spec> = {
       />
     ),
     selector: '.MuiAutocomplete-option',
-    height: (l) => l.touchTarget,
+    height: (density) => density.touchTarget,
   },
   StepLabel: {
     render: () => (
@@ -420,7 +413,7 @@ const CONTROLS: Record<string, Spec> = {
       </Stepper>
     ),
     selector: '.MuiStepLabel-iconContainer',
-    height: (l) => l.touchTarget,
+    height: (density) => density.touchTarget,
   },
   StepConnector: {
     render: () => (
@@ -434,7 +427,7 @@ const CONTROLS: Record<string, Spec> = {
       </Stepper>
     ),
     selector: '.MuiStepConnector-line',
-    height: (l) => l.step.medium,
+    height: (density) => density.step.medium,
   },
   TabScrollButton: {
     render: () => (
@@ -444,7 +437,7 @@ const CONTROLS: Record<string, Spec> = {
     ),
     selector: '.MuiTabScrollButton-root',
     axis: 'width',
-    height: (l) => l.touchTarget,
+    height: (density) => density.touchTarget,
   },
   LinearProgress: {
     // A fixed bar thickness, not a scale step — asserted so it stays deliberate.
@@ -455,7 +448,7 @@ const CONTROLS: Record<string, Spec> = {
   Slider: {
     render: () => <Slider value={50} />,
     selector: '.MuiSlider-root',
-    height: (l) => l.touchTarget,
+    height: (density) => density.touchTarget,
   },
   MenuItem: {
     render: () => (
@@ -464,19 +457,19 @@ const CONTROLS: Record<string, Spec> = {
       </MenuList>
     ),
     selector: '.MuiMenuItem-root',
-    height: (l) => l.touchTarget,
+    height: (density) => density.touchTarget,
   },
   ListItemButton: {
     render: () => <ListItemButton>Item</ListItemButton>,
     selector: '.MuiListItemButton-root',
-    height: (l) => l.touchTarget,
+    height: (density) => density.touchTarget,
   },
 };
 
 /** The glyph ramp, read as a used font-size. */
 const ICONS: Record<
   string,
-  { render: (size: any) => React.ReactElement; expect: (l: Level, size: string) => number }
+  { render: (size: any) => React.ReactElement; expect: (density: Density, size: string) => number }
 > = {
   SvgIcon: {
     render: (size) => (
@@ -484,14 +477,14 @@ const ICONS: Record<
         <path d="M0 0h24v24H0z" />
       </SvgIcon>
     ),
-    expect: (l, size) => {
+    expect: (density, size) => {
       if (size === 'small') {
-        return l.iconSize - 2;
+        return density.iconSize - 2;
       }
       if (size === 'large') {
-        return l.iconSize + 4;
+        return density.iconSize + 4;
       }
-      return l.iconSize;
+      return density.iconSize;
     },
   },
 };
@@ -537,15 +530,15 @@ describe.skipIf(isJsdom())('density contract', () => {
     expect(unmeasured).to.deep.equal([]);
   });
 
-  LEVELS.forEach((l) => {
-    describe(l.id, () => {
+  DENSITIES.forEach((density) => {
+    describe(density.id, () => {
       Object.entries(ICONS).forEach(([name, spec]) => {
-        SIZED.forEach((size) => {
+        ['small', 'medium', 'large'].forEach((size) => {
           const title = `${name} ${size}`;
           test(title, () => {
-            render(<ThemeProvider theme={THEMES.get(l.id)!}>{spec.render(size)}</ThemeProvider>);
-            const el = document.querySelector('.MuiSvgIcon-root') as HTMLElement;
-            expect(parseFloat(getComputedStyle(el).fontSize)).to.equal(spec.expect(l, size));
+            render(<ThemeProvider theme={THEMES.get(density.id)!}>{spec.render(size)}</ThemeProvider>);
+            const icon = document.querySelector('.MuiSvgIcon-root') as HTMLElement;
+            expect(parseFloat(getComputedStyle(icon).fontSize)).to.equal(spec.expect(density, size));
           });
         });
       });
@@ -553,8 +546,8 @@ describe.skipIf(isJsdom())('density contract', () => {
         const sizes = spec.sizes ?? [undefined];
         sizes.forEach((size) => {
           test(`${name}${size ? ` ${size}` : ''}`, () => {
-            render(<ThemeProvider theme={THEMES.get(l.id)!}>{spec.render(size)}</ThemeProvider>);
-            expect(sideOf(spec.selector, spec.axis)).to.equal(spec.height(l, size));
+            render(<ThemeProvider theme={THEMES.get(density.id)!}>{spec.render(size)}</ThemeProvider>);
+            expect(sideOf(spec.selector, spec.axis)).to.equal(spec.height(density, size));
           });
         });
       });

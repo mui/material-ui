@@ -35,7 +35,7 @@ const SCALE: Record<string, number> = { ...DENSITY_SCALE, ...DENSITY_TARGETS };
 function evaluateToken(token: string, lineHeight: number): number | null {
   const normalised = token
     .replace(/×/g, '*')
-    .replace(/([\d.]+)lh/g, (_, n) => String(parseFloat(n) * lineHeight))
+    .replace(/([\d.]+)lh/g, (_, multiple) => String(parseFloat(multiple) * lineHeight))
     .replace(/\b([a-zA-Z][a-zA-Z0-9]*)\b/g, (name) => String(SCALE[name] ?? name))
     .replace(/px/g, '');
   if (!/^[\d\s.+\-*/()]+$/.test(normalised)) {
@@ -58,13 +58,11 @@ const LABEL = /^(.*?)\s*\(([\d.]+)px\)$/;
  * drawing to stop changing rather than sleeping past the longest case.
  */
 async function settledLabels(): Promise<string[]> {
-  const read = () =>
-    Array.from(document.querySelectorAll('[data-annotations] text')).map(
-      (node) => node.textContent ?? '',
-    );
   let previous: string[] = [];
   return vi.waitFor(() => {
-    const current = read();
+    const current = Array.from(document.querySelectorAll('[data-annotations] text')).map(
+      (node) => node.textContent ?? '',
+    );
     const stable = current.length > 0 && current.join('|') === previous.join('|');
     previous = current;
     if (!stable) {
@@ -73,15 +71,6 @@ async function settledLabels(): Promise<string[]> {
     return current;
   });
 }
-
-/** The toolbar values a family opens on — what the drawn claims were built from. */
-const controlDefaults = (family: string): Record<string, string | boolean> =>
-  Object.fromEntries(
-    (DENSITY_COMPONENTS[family].controls ?? []).map((control: any) => [
-      control.prop,
-      control.initial,
-    ]),
-  );
 
 /** Drive the demo's Component select, the way a reader would. */
 async function selectFamily(family: string) {
@@ -126,7 +115,14 @@ describe.skipIf(isJsdom())('density annotation parity', () => {
       await selectFamily(family);
       const labels = await settledLabels();
 
-      const claims = annotationsFor(family, controlDefaults(family));
+      // The claims as drawn: the toolbar values a family opens on.
+      const values = Object.fromEntries(
+        (DENSITY_COMPONENTS[family].controls ?? []).map((control: any) => [
+          control.prop,
+          control.initial,
+        ]),
+      );
+      const claims = annotationsFor(family, values);
       // `1lh` is the claimed element's line box, not the page's. Only a handful
       // of tokens use it, so the element is resolved on demand.
       const lineHeightFor = (token: string) => {
