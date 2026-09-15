@@ -47,11 +47,22 @@ import { buildExportConfig } from './exportConfig';
 export interface DemoOptions {
   /** Hide the action toolbar entirely. Disables most other interactive features. */
   hideToolbar?: boolean;
+  /** Start with the source expanded. Also a docs-infra `ContentProps` field. */
+  initialExpanded?: boolean;
+  /**
+   * Collapse the source to an empty block (no focused lines) until the reader
+   * expands it. Also a docs-infra `ContentProps` field.
+   */
+  collapseToEmpty?: boolean;
   /** Suppress the inline Carbon ad even when ads are enabled globally. */
   disableAd?: boolean;
   /** Disable in-place editing of the demo source. */
   disableLiveEdit?: boolean;
-  /** Legacy source display option. Normalized by `createDemo` before rendering. */
+  /**
+   * Legacy alias: `true` -> `initialExpanded`, `false` -> `collapseToEmpty`.
+   * Rewritten by `createDemo`'s `normalizeDemoOptions`; docs pages use the
+   * target options directly, only `docs/pages/experiments` still sets it.
+   */
   defaultCodeOpen?: boolean;
   /** Prompt string shown in the "Customize with AI" hero. When unset, the hero is omitted. */
   aiSuggestion?: string;
