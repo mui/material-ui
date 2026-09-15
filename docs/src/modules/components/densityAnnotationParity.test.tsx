@@ -50,26 +50,41 @@ function evaluateToken(token: string, lineHeight: number): number | null {
   }
 }
 
+/**
+ * Everything here waits on a condition rather than a duration, so the cadence
+ * is what the walk costs: the default 50ms poll spends most of the run asleep
+ * between a re-render and the check that notices it.
+ */
+const POLL = { interval: 5, timeout: 3000 };
+
 /** `token (12px)` → the two halves; labels without a token render px only. */
 const LABEL = /^(.*?)\s*\(([\d.]+)px\)$/;
 
 /**
- * The annotations redraw a frame or two after a re-render, so wait for the
- * drawing to stop changing rather than sleeping past the longest case.
+ * The annotations redraw on an animation frame after a re-render, so the wait
+ * runs on that same clock: sample per frame and accept once the drawing has
+ * held still for three of them. A timer-based poll can take both its samples
+ * inside the gap before the redraw starts and call the previous state settled.
  */
 async function settledLabels(): Promise<string[]> {
-  let previous: string[] = [];
-  return vi.waitFor(() => {
-    const current = Array.from(document.querySelectorAll('[data-annotations] text')).map(
+  const read = () =>
+    Array.from(document.querySelectorAll('[data-annotations] text')).map(
       (node) => node.textContent ?? '',
     );
-    const stable = current.length > 0 && current.join('|') === previous.join('|');
-    previous = current;
-    if (!stable) {
-      throw new Error('annotations still settling');
+  let previous = '';
+  let held = 0;
+  for (let frame = 0; frame < 90; frame += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    await new Promise(requestAnimationFrame);
+    const current = read();
+    const key = current.join('|');
+    held = key === previous && current.length > 0 ? held + 1 : 0;
+    previous = key;
+    if (held >= 3) {
+      return current;
     }
-    return current;
-  });
+  }
+  throw new Error('annotations never settled');
 }
 
 /**
@@ -107,7 +122,7 @@ async function applyState(family: string, state: Record<string, string | boolean
           if (input.checked !== value) {
             throw new Error(`${prop} not toggled`);
           }
-        });
+        }, POLL);
       }
     } else {
       // The toolbar's own selects come first in the DOM: the component picker,
@@ -129,7 +144,7 @@ async function applyState(family: string, state: Record<string, string | boolean
           throw new Error(`no ${prop} option ${value}`);
         }
         return found as HTMLElement;
-      });
+      }, POLL);
       option.click();
       // The labels are read straight after this, so the toolbar has to have
       // taken the value first — otherwise the previous state's drawing is
@@ -139,7 +154,7 @@ async function applyState(family: string, state: Record<string, string | boolean
         if (trigger.textContent !== value) {
           throw new Error(`${prop} not applied`);
         }
-      });
+      }, POLL);
     }
   }
 }
@@ -159,13 +174,13 @@ async function selectFamily(family: string) {
       throw new Error(`no option for ${family}`);
     }
     return found as HTMLElement;
-  });
+  }, POLL);
   option.click();
   await vi.waitFor(() => {
     if ((document.querySelector('.MuiSelect-select') as HTMLElement).textContent !== family) {
       throw new Error('selection not applied');
     }
-  });
+  }, POLL);
 }
 
 describe.skipIf(isJsdom())('density annotation parity', () => {
