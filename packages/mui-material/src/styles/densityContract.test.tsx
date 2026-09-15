@@ -175,7 +175,11 @@ type Spec = {
   sizes?: (string | undefined)[];
   render: (size?: any) => React.ReactElement;
   selector: string;
-  /** Which computed box property the contract names; height unless stated. */
+  /**
+   * Which computed box property the contract names; height unless stated. A
+   * component that declares a floor is asserted on that floor: its used height
+   * also answers to the text inside it, which differs between engines.
+   */
   axis?: 'width' | 'minWidth' | 'minHeight';
   /** Expected box height in px, from the density's own numbers. */
   height: (density: Density, size: string | undefined) => number;
@@ -314,12 +318,14 @@ const CONTROLS: Record<string, Spec> = {
       </Accordion>
     ),
     selector: '.MuiAccordionSummary-root',
+    axis: 'minHeight',
     height: (density) => density.touchTarget,
   },
   Toolbar: {
     sizes: ['regular', 'dense'],
     render: (size) => <Toolbar variant={size}>Title</Toolbar>,
     selector: '.MuiToolbar-root',
+    axis: 'minHeight',
     height: (density, size) =>
       size === 'dense'
         ? density.touchTarget + 2 * density.step.xxSmall
@@ -332,6 +338,7 @@ const CONTROLS: Record<string, Spec> = {
       </Tabs>
     ),
     selector: '.MuiTabs-root',
+    axis: 'minHeight',
     height: (density) => density.touchTarget,
   },
   Tab: {
@@ -341,6 +348,7 @@ const CONTROLS: Record<string, Spec> = {
       </Tabs>
     ),
     selector: '.MuiTab-root',
+    axis: 'minHeight',
     height: (density) => density.touchTarget,
   },
   TableCell: {
@@ -371,6 +379,7 @@ const CONTROLS: Record<string, Spec> = {
       </Table>
     ),
     selector: '.MuiTablePagination-toolbar',
+    axis: 'minHeight',
     height: (density) => density.touchTarget + density.step.medium,
   },
   BottomNavigation: {
@@ -417,6 +426,7 @@ const CONTROLS: Record<string, Spec> = {
       />
     ),
     selector: '.MuiAutocomplete-option',
+    axis: 'minHeight',
     height: (density) => density.touchTarget,
   },
   StepLabel: {
@@ -428,6 +438,7 @@ const CONTROLS: Record<string, Spec> = {
       </Stepper>
     ),
     selector: '.MuiStepLabel-iconContainer',
+    axis: 'minHeight',
     height: (density) => density.touchTarget,
   },
   StepConnector: {
@@ -472,11 +483,13 @@ const CONTROLS: Record<string, Spec> = {
       </MenuList>
     ),
     selector: '.MuiMenuItem-root',
+    axis: 'minHeight',
     height: (density) => density.touchTarget,
   },
   ListItemButton: {
     render: () => <ListItemButton>Item</ListItemButton>,
     selector: '.MuiListItemButton-root',
+    axis: 'minHeight',
     height: (density) => density.touchTarget,
   },
 };

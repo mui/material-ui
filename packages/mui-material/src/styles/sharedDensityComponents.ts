@@ -1214,7 +1214,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         props: { disableGutters: false },
         style: {
           paddingInline: spacing('medium'),
-          [enhanced.breakpoints.up('sm')]: { paddingInline: spacing('medium') },
+          [smUp]: { paddingInline: spacing('medium') },
         },
       },
       {
@@ -1225,12 +1225,12 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         props: { variant: 'regular' },
         style: {
           minHeight: `calc(${touchTarget} + 2*${spacing('xSmall')})`,
-          [enhanced.breakpoints.up('xs')]: {
+          [enhanced.breakpoints.up('xs' as Breakpoint)]: {
             '@media (orientation: landscape)': {
               minHeight: `calc(${touchTarget} + 2*${spacing('xxSmall')})`,
             },
           },
-          [enhanced.breakpoints.up('sm')]: {
+          [smUp]: {
             minHeight: `calc(${touchTarget} + 2*${spacing('xSmall')})`,
           },
         },
