@@ -15,6 +15,7 @@
     "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
     "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "endIcon": { "type": { "name": "node" } },
+    "focusableWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "href": { "type": { "name": "string" } },
     "loading": { "type": { "name": "bool" }, "default": "null" },

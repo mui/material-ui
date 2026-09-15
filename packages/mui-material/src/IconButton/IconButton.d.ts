@@ -42,6 +42,12 @@ export interface IconButtonOwnProps {
    */
   disableFocusRipple?: boolean | undefined;
   /**
+   * When `true`, disabled buttons can be focused with the keyboard or programmatically while activation is prevented.
+   * Disabled buttons rendered as links remain non-focusable.
+   * @default false
+   */
+  focusableWhenDisabled?: boolean | undefined;
+  /**
    * If given, uses a negative margin to counteract the padding on one
    * side (this is often helpful for aligning the left or right
    * side of the icon with content above or below, without ruining the border
