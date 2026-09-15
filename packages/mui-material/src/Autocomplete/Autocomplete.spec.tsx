@@ -3,7 +3,9 @@ import { expectType } from '@mui/types';
 import Autocomplete, {
   AutocompleteOwnerState,
   AutocompleteProps,
+  AutocompleteMappedProps,
   AutocompleteRenderGetTagProps,
+  AutocompleteMappedValue,
 } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { ChipTypeMap } from '@mui/material/Chip';
@@ -117,20 +119,77 @@ const options: Option[] = [
   { label: '1', value: '1' },
   { label: '2', value: '2' },
 ];
-const mappedProps: AutocompleteProps<
-  Option,
-  false,
-  false,
-  false,
-  ChipTypeMap['defaultComponent'],
-  string
-> = {
+const mappedProps: AutocompleteMappedProps<Option, string> = {
   options,
   getOptionValue: (option) => option.value,
   value: '1',
   renderInput: () => null,
 };
 expectType<string | null | undefined, typeof mappedProps.value>(mappedProps.value);
+
+function MappedAutocomplete(props: typeof mappedProps) {
+  return (
+    <Autocomplete
+      {...props}
+      onChange={(event, value) => {
+        expectType<string | null, typeof value>(value);
+      }}
+      renderValue={(value) => {
+        expectType<string, typeof value>(value);
+        return value;
+      }}
+    />
+  );
+}
+
+<MappedAutocomplete {...mappedProps} />;
+
+interface MyMappedAutocompleteProps<
+  T,
+  Value extends AutocompleteMappedValue<false>,
+> extends AutocompleteMappedProps<T, Value> {
+  myProp?: string;
+}
+
+function GenericMappedAutocomplete<T, Value extends AutocompleteMappedValue<false>>(
+  props: MyMappedAutocompleteProps<T, Value>,
+) {
+  return <Autocomplete {...props} />;
+}
+
+<GenericMappedAutocomplete {...mappedProps} />;
+
+// A mapped value type requires a mapper, even before a value has been selected.
+// @ts-expect-error Mapped props must include getOptionValue.
+const missingMapperProps: typeof mappedProps = { options, renderInput: () => null };
+const undefinedMapperProps: typeof mappedProps = {
+  ...mappedProps,
+  // @ts-expect-error A mapped getOptionValue cannot be undefined.
+  getOptionValue: undefined,
+};
+
+// @ts-expect-error String mappings are incompatible with freeSolo.
+const stringFreeSoloProps: AutocompleteMappedProps<Option, string, false, false, true> = {
+  options,
+  getOptionValue: (option) => option.value,
+  renderInput: () => null,
+};
+
+// @ts-expect-error Explicit mapped type arguments must include getOptionValue.
+<Autocomplete<Option, false, false, false, ChipTypeMap['defaultComponent'], string>
+  options={options}
+  renderInput={() => null}
+/>;
+
+// Raw values still infer the option type before options have loaded.
+<Autocomplete
+  options={[]}
+  value={options[0]}
+  onChange={(event, value) => {
+    expectType<Option | null, typeof value>(value);
+  }}
+  renderInput={() => null}
+/>;
 
 const defaultOptions = [options[0], options[1]];
 <MyAutocomplete

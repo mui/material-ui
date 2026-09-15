@@ -54,6 +54,23 @@ export interface UseAutocompleteProps<
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
+> extends UseAutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo> {}
+
+export interface UseAutocompleteMappedProps<
+  Option,
+  Value extends AutocompleteMappedValue<FreeSolo>,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
+> extends UseAutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo, Value> {
+  getOptionValue: (option: Option) => Value;
+}
+
+export interface UseAutocompleteBaseProps<
+  Option,
+  Multiple extends boolean | undefined,
+  DisableClearable extends boolean | undefined,
+  FreeSolo extends boolean | undefined,
   Value extends AutocompleteMappedValue<FreeSolo> = never,
 > {
   /**
@@ -379,8 +396,7 @@ export interface UseAutocompleteParameters<
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-  Value extends AutocompleteMappedValue<FreeSolo> = never,
-> extends UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, Value> {}
+> extends UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo> {}
 
 export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'touch';
 
@@ -422,11 +438,9 @@ export function useAutocomplete<
   Value extends AutocompleteMappedValue<FreeSolo> = AutocompleteMappedValue<FreeSolo>,
 >(
   props: PartiallyRequired<
-    UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, Value>,
+    UseAutocompleteMappedProps<Option, Value, Multiple, DisableClearable, FreeSolo>,
     'groupBy'
-  > & {
-    getOptionValue: (option: Option) => Value;
-  },
+  >,
 ): UseAutocompleteReturnValue<Option, Multiple, DisableClearable, FreeSolo, true, Value>;
 export function useAutocomplete<
   Option,
@@ -436,11 +450,9 @@ export function useAutocomplete<
   Value extends AutocompleteMappedValue<FreeSolo> = AutocompleteMappedValue<FreeSolo>,
 >(
   props: Omit<
-    UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, Value>,
+    UseAutocompleteMappedProps<Option, Value, Multiple, DisableClearable, FreeSolo>,
     'groupBy'
-  > & {
-    getOptionValue: (option: Option) => Value;
-  },
+  >,
 ): UseAutocompleteReturnValue<Option, Multiple, DisableClearable, FreeSolo, false, Value>;
 export function useAutocomplete<
   Option,

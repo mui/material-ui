@@ -4,6 +4,9 @@ import {
   FilterOptionsState,
   AutocompleteGroupedOption,
   UseAutocompleteProps,
+  UseAutocompleteMappedProps,
+  UseAutocompleteParameters,
+  AutocompleteMappedValue,
 } from '@mui/material/useAutocomplete';
 
 interface Person {
@@ -17,6 +20,19 @@ const persons: Person[] = [
   { id: '3', name: 'Ben' },
   { id: '4', name: 'Matt' },
 ];
+
+interface MyMappedAutocompleteProps<
+  Option,
+  Value extends AutocompleteMappedValue<false>,
+> extends UseAutocompleteMappedProps<Option, Value> {
+  myProp?: string;
+}
+
+function useMappedAutocomplete<Option, Value extends AutocompleteMappedValue<false>>(
+  props: MyMappedAutocompleteProps<Option, Value>,
+) {
+  return useAutocomplete<Option, false, false, false, Value>(props);
+}
 
 function Component() {
   // value type is inferred correctly when multiple is undefined
@@ -281,6 +297,9 @@ function Component() {
   };
   expectType<Person | null | undefined, typeof existingProps.value>(existingProps.value);
 
+  const rawAutocomplete = useAutocomplete({ ...existingProps, getOptionValue: undefined });
+  expectType<Person | null, typeof rawAutocomplete.value>(rawAutocomplete.value);
+
   const inferredFromRawValue = useAutocomplete({ options: [], value: persons[0] });
   expectType<Person | null, typeof inferredFromRawValue.value>(inferredFromRawValue.value);
 
@@ -292,13 +311,74 @@ function Component() {
     },
   });
 
-  // Appending OptionValue allows explicitly typed mapped wrappers
-  const mappedProps: UseAutocompleteProps<Person, false, false, false, string> = {
+  // Mapped props require a mapper and can be forwarded by wrappers.
+  const mappedProps: UseAutocompleteMappedProps<Person, string> = {
     options: persons,
     getOptionValue: (option) => option.id,
     value: persons[0].id,
   };
   expectType<string | null | undefined, typeof mappedProps.value>(mappedProps.value);
+
+  const wrappedAutocomplete = useMappedAutocomplete(mappedProps);
+  expectType<string | null, typeof wrappedAutocomplete.value>(wrappedAutocomplete.value);
+
+  const forwardedAutocomplete = useAutocomplete(mappedProps);
+  expectType<string | null, typeof forwardedAutocomplete.value>(forwardedAutocomplete.value);
+  expectType<Person[], typeof forwardedAutocomplete.groupedOptions>(
+    forwardedAutocomplete.groupedOptions,
+  );
+
+  const forwardedGroupedAutocomplete = useAutocomplete({
+    ...mappedProps,
+    groupBy: (option) => option.name[0],
+  });
+  expectType<string | null, typeof forwardedGroupedAutocomplete.value>(
+    forwardedGroupedAutocomplete.value,
+  );
+  expectType<
+    AutocompleteGroupedOption<Person>[],
+    typeof forwardedGroupedAutocomplete.groupedOptions
+  >(forwardedGroupedAutocomplete.groupedOptions);
+
+  const multipleFreeSoloProps: UseAutocompleteMappedProps<Person, number, true, false, true> = {
+    options: persons,
+    multiple: true,
+    freeSolo: true,
+    getOptionValue: (option) => Number(option.id),
+    defaultValue: [1, 'custom'],
+  };
+  const multipleFreeSoloAutocomplete = useAutocomplete(multipleFreeSoloProps);
+  expectType<Array<number | string>, typeof multipleFreeSoloAutocomplete.value>(
+    multipleFreeSoloAutocomplete.value,
+  );
+
+  // @ts-expect-error Mapped props must include getOptionValue.
+  const missingMapperProps: UseAutocompleteMappedProps<Person, string> = {
+    options: persons,
+  };
+  const undefinedMapperProps: typeof mappedProps = {
+    ...mappedProps,
+    // @ts-expect-error A mapped getOptionValue cannot be undefined.
+    getOptionValue: undefined,
+  };
+
+  // @ts-expect-error String mappings are incompatible with freeSolo.
+  const stringFreeSoloProps: UseAutocompleteMappedProps<Person, string, false, false, true> = {
+    options: persons,
+    getOptionValue: (option) => option.id,
+  };
+
+  const rawParameters: UseAutocompleteParameters<Person, false, false, false> = {
+    options: persons,
+    value: persons[0],
+  };
+  const rawParametersAutocomplete = useAutocomplete(rawParameters);
+  expectType<Person | null, typeof rawParametersAutocomplete.value>(
+    rawParametersAutocomplete.value,
+  );
+
+  // @ts-expect-error Explicit mapped type arguments must include getOptionValue.
+  useAutocomplete<Person, false, false, false, string>({ options: persons });
 
   // `value` alone must not opt an object-option Autocomplete into mapped-value mode
   // @ts-expect-error Without getOptionValue, value must have the same type as an option.

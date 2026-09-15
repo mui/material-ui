@@ -17,7 +17,9 @@ import useAutocomplete, {
   AutocompletePrimitiveValue,
   AutocompleteValue,
   createFilterOptions,
+  UseAutocompleteBaseProps,
   UseAutocompleteProps,
+  UseAutocompleteMappedProps,
   AutocompleteFreeSoloValueMapping,
   AutocompleteValueOrFreeSoloValueMapping,
 } from '../useAutocomplete';
@@ -47,7 +49,9 @@ export type AutocompleteOwnerState<
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
   Value extends AutocompleteMappedValue<FreeSolo> = never,
-> = AutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, ChipComponent, Value> & {
+> = ([Value] extends [never]
+  ? AutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, ChipComponent>
+  : AutocompleteMappedProps<Option, Value, Multiple, DisableClearable, FreeSolo, ChipComponent>) & {
   disablePortal: boolean;
   expanded: boolean;
   focused: boolean;
@@ -235,10 +239,35 @@ export interface AutocompleteProps<
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
+>
+  extends
+    AutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+    UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo> {}
+
+export interface AutocompleteMappedProps<
+  Option,
+  Value extends AutocompleteMappedValue<FreeSolo>,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
+>
+  extends
+    AutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo, ChipComponent, Value>,
+    UseAutocompleteMappedProps<Option, Value, Multiple, DisableClearable, FreeSolo> {
+  getOptionValue: (option: Option) => Value;
+}
+
+export interface AutocompleteBaseProps<
+  Option,
+  Multiple extends boolean | undefined,
+  DisableClearable extends boolean | undefined,
+  FreeSolo extends boolean | undefined,
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
   Value extends AutocompleteMappedValue<FreeSolo> = never,
 >
   extends
-    UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, Value>,
+    UseAutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo, Value>,
     StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'>,
     AutocompleteSlotsAndSlotProps<
       Option,
@@ -437,9 +466,14 @@ export default function Autocomplete<
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
   Value extends AutocompleteMappedValue<FreeSolo> = AutocompleteMappedValue<FreeSolo>,
 >(
-  props: AutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, ChipComponent, Value> & {
-    getOptionValue: (option: Option) => Value;
-  },
+  props: AutocompleteMappedProps<
+    Option,
+    Value,
+    Multiple,
+    DisableClearable,
+    FreeSolo,
+    ChipComponent
+  >,
 ): React.JSX.Element;
 /**
  *

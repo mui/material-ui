@@ -80,6 +80,10 @@ for free-solo values.
 Callbacks that operate on options, such as `getOptionLabel` and `renderOption`, continue to receive the original option object.
 The `details.option` passed to `onChange` also contains the original option.
 
+For typed wrappers, use `AutocompleteMappedProps<Option, Value>` or `UseAutocompleteMappedProps<Option, Value>`.
+These interfaces require `getOptionValue`.
+The existing `AutocompleteProps` and `UseAutocompleteProps` interfaces describe raw option values.
+
 Keep `getOptionValue` and any custom `isOptionEqualToValue` callback stable between renders to reuse cached option lookups.
 Define them outside the component, as in the demo below, or use `React.useCallback` with all dependencies.
 Changing a callback that determines matching rebuilds its lookup so the results reflect the new behavior.
