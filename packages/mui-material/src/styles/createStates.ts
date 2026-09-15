@@ -70,6 +70,8 @@ export interface ThemeStates {
   [color: string]: ColorStates | undefined;
 }
 
+const STATE_NAMES = ['hover', 'active', 'selected', 'selectedHover', 'disabled'] as const;
+
 /** A theme that may carry the generated states. */
 export type StatefulTheme = Theme & {
   states?: ThemeStates | undefined;
@@ -93,11 +95,24 @@ export type StateGenerator = (context: GeneratorContext) => ColorStates;
 
 /**
  * The whole public config: FLAT, one entry per palette colour, plus the optional
- * `default` key for the colour-independent ramp. Every value names its generator
- * explicitly, so the CSS backend a colour uses — and therefore the browser
- * support it needs — is readable at the call site.
+ * `default` key for the colour-independent ramp.
+ *
+ * A value is either:
+ *
+ *   - **a plain `ColorStates` object** — states a design system already has as
+ *     tokens. Nothing is derived; the values are used as authored. This is the
+ *     lowest-risk way to adopt the feature: it still gets a pressed state and one
+ *     place to define interaction colour, with no colour maths and no dependency
+ *     on any modern CSS feature.
+ *   - **a generator** — `colorMix()`, `relativeColor()`, or one of your own, for
+ *     colours you would rather derive than enumerate.
+ *
+ * The two mix freely, which is the realistic case: most systems have tokens for
+ * their core palette and want derivation only for what they did not enumerate.
+ * When a generator is used, naming it here is what makes the CSS backend a colour
+ * relies on — and therefore the browser support it needs — readable at the call site.
  */
-export type ColorStatesConfig = Record<string, StateGenerator>;
+export type ColorStatesConfig = Record<string, StateGenerator | ColorStates>;
 
 /**
  * Run each configured generator once and collect the output. All of the logic
@@ -129,7 +144,19 @@ export default function createStates(
           'with a `main` value.',
       );
     }
-    states[name] = config[name]({ name, color, theme });
+    const entry = config[name];
+    const resolved = typeof entry === 'function' ? entry({ name, color, theme }) : entry;
+    // Every state must be present: the components have already given up their own
+    // values for this colour, so a missing one would leave nothing to apply — the
+    // same silent "no hover" failure a half-applied gate produces.
+    const missing = STATE_NAMES.filter((state) => !resolved?.[state]);
+    if (missing.length) {
+      throw new Error(
+        `MUI: enhanceColorStates() got states for \`${name}\` with no ${missing.join(', ')}. ` +
+          `All of ${STATE_NAMES.join(', ')} must be provided.`,
+      );
+    }
+    states[name] = resolved;
   });
   return states;
 }
