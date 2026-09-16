@@ -4157,6 +4157,93 @@ describe('<Autocomplete />', () => {
       expect(screen.getByText('Bar')).not.to.equal(null);
     });
 
+    describe('options created by filterOptions', () => {
+      const filterOptions = (optionsToFilter, { inputValue }) =>
+        inputValue ? [{ id: inputValue.toLowerCase(), label: inputValue }] : optionsToFilter;
+
+      it.each([false, true])(
+        'keeps the selected label after closing the popup with controlled=%s',
+        async (controlled) => {
+          const handleChange = spy();
+
+          function GeneratedOptionTest() {
+            const [value, setValue] = React.useState(null);
+
+            return (
+              <Test
+                filterOptions={filterOptions}
+                value={controlled ? value : undefined}
+                onChange={(event, newValue, reason, details) => {
+                  handleChange(event, newValue, reason, details);
+                  if (controlled) {
+                    setValue(newValue);
+                  }
+                }}
+              />
+            );
+          }
+
+          const { user } = render(<GeneratedOptionTest />);
+          const textbox = screen.getByRole('combobox');
+
+          await user.type(textbox, 'Baz');
+          await user.click(screen.getByRole('option', { name: 'Baz' }));
+
+          expect(handleChange.callCount).to.equal(1);
+          expect(handleChange.firstCall.args.slice(1)).to.deep.equal([
+            'baz',
+            'selectOption',
+            { option: { id: 'baz', label: 'Baz' } },
+          ]);
+          expect(screen.queryByRole('listbox')).to.equal(null);
+          expect(textbox).to.have.value('Baz');
+
+          await user.tab();
+
+          expect(textbox).to.have.value('Baz');
+        },
+      );
+
+      it('keeps generated chip labels across searches and exposes the option on removal', async () => {
+        const handleChange = spy();
+        const { user } = render(
+          <Test
+            multiple
+            defaultValue={['foo']}
+            filterOptions={filterOptions}
+            onChange={handleChange}
+          />,
+        );
+        const textbox = screen.getByRole('combobox');
+
+        await user.type(textbox, 'Baz');
+        await user.click(screen.getByRole('option', { name: 'Baz' }));
+
+        expect(screen.getByRole('button', { name: 'Baz' })).to.have.text('Baz');
+        expect(screen.queryByRole('listbox')).to.equal(null);
+
+        await user.type(textbox, 'Qux');
+
+        expect(screen.getByRole('button', { name: 'Baz' })).to.have.text('Baz');
+        await user.click(screen.getByRole('option', { name: 'Qux' }));
+
+        expect(screen.getByRole('button', { name: 'Foo' })).to.have.text('Foo');
+        expect(screen.getByRole('button', { name: 'Baz' })).to.have.text('Baz');
+        expect(screen.getByRole('button', { name: 'Qux' })).to.have.text('Qux');
+        expect(handleChange.lastCall.args[1]).to.deep.equal(['foo', 'baz', 'qux']);
+
+        await user.keyboard('{Backspace}');
+
+        expect(handleChange.lastCall.args.slice(1)).to.deep.equal([
+          ['foo', 'baz'],
+          'removeOption',
+          { option: { id: 'qux', label: 'Qux' } },
+        ]);
+        expect(screen.queryByRole('button', { name: 'Qux' })).to.equal(null);
+        expect(screen.getByRole('button', { name: 'Baz' })).to.have.text('Baz');
+      });
+    });
+
     describe('unresolved mapped chips', () => {
       it('uses the mapped value as a label until its option arrives', () => {
         const props = { multiple: true, value: ['foo', 'missing'] };

@@ -572,6 +572,126 @@ describe('useAutocomplete', () => {
       expect(resolveOptionValue('missing')).to.equal(null);
     });
 
+    describe('options created by filterOptions', () => {
+      const generatedOption = { id: 'baz', alternateId: 'new-baz', label: 'Baz' };
+      const compare = (option, value) => option.id.toLowerCase() === value.toLowerCase();
+      let autocomplete;
+
+      function GeneratedOptionTest(props) {
+        autocomplete = useAutocomplete({
+          options,
+          getOptionValue,
+          filterOptions: (optionsToFilter, { inputValue }) =>
+            inputValue === 'Baz' ? [generatedOption] : optionsToFilter,
+          ...props,
+        });
+        const { getRootProps, getInputProps, getListboxProps, getOptionProps, groupedOptions } =
+          autocomplete;
+
+        return (
+          <div {...getRootProps()}>
+            <input {...getInputProps()} />
+            {groupedOptions.length > 0 && (
+              <ul {...getListboxProps()}>
+                {groupedOptions.map((option, index) => {
+                  const { key, ...optionProps } = getOptionProps({ option, index });
+                  return (
+                    <li key={key} {...optionProps}>
+                      {option.label}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+        );
+      }
+
+      it('resolves a generated option after a cached custom equality miss and prefers updated options', async () => {
+        const { user, rerender } = render(<GeneratedOptionTest isOptionEqualToValue={compare} />);
+
+        expect(autocomplete.getOptionFromValue('BAZ')).to.equal(null);
+
+        await user.type(screen.getByRole('combobox'), 'Baz');
+        await user.keyboard('{ArrowDown}{Enter}');
+
+        expect(autocomplete.value).to.equal('baz');
+        expect(autocomplete.getOptionFromValue('BAZ')).to.equal(generatedOption);
+        expect(screen.getByRole('combobox')).to.have.value('Baz');
+
+        const updatedOption = { id: 'baz', label: 'Updated Baz' };
+        rerender(
+          <GeneratedOptionTest
+            isOptionEqualToValue={compare}
+            options={[...options, updatedOption]}
+          />,
+        );
+
+        expect(autocomplete.getOptionFromValue('BAZ')).to.equal(updatedOption);
+
+        await user.tab();
+
+        expect(screen.getByRole('combobox')).to.have.value('Updated Baz');
+      });
+
+      it.each([
+        { name: 'default equality', isOptionEqualToValue: undefined },
+        { name: 'custom equality', isOptionEqualToValue: compare },
+      ])('forgets deselected generated options with $name', async ({ isOptionEqualToValue }) => {
+        const { user } = render(
+          <GeneratedOptionTest multiple isOptionEqualToValue={isOptionEqualToValue} />,
+        );
+
+        await user.type(screen.getByRole('combobox'), 'Baz');
+        await user.keyboard('{ArrowDown}{Enter}');
+
+        expect(autocomplete.getOptionFromValue('baz')).to.equal(generatedOption);
+
+        await user.keyboard('{Backspace}');
+
+        expect(autocomplete.value).to.deep.equal([]);
+        expect(autocomplete.getOptionFromValue('baz')).to.equal(null);
+      });
+
+      it('uses the current mapper to resolve retained options', async () => {
+        const { user, rerender } = render(<GeneratedOptionTest value="baz" />);
+
+        await user.type(screen.getByRole('combobox'), 'Baz');
+        await user.keyboard('{ArrowDown}{Enter}');
+
+        expect(autocomplete.getOptionFromValue('baz')).to.equal(generatedOption);
+
+        rerender(
+          <GeneratedOptionTest
+            value="new-baz"
+            getOptionValue={(option) => option.alternateId ?? option.id}
+          />,
+        );
+
+        expect(autocomplete.getOptionFromValue('baz')).to.equal(null);
+        expect(autocomplete.getOptionFromValue('new-baz')).to.equal(generatedOption);
+        expect(screen.getByRole('combobox')).to.have.value('Baz');
+
+        // The selected value no longer matches under the original mapper.
+        rerender(<GeneratedOptionTest value="new-baz" />);
+
+        expect(autocomplete.getOptionFromValue('new-baz')).to.equal(null);
+        expect(autocomplete.getOptionFromValue('baz')).to.equal(null);
+      });
+
+      it('forgets generated options rejected by a controlled value', async () => {
+        const onChange = spy();
+        const { user } = render(<GeneratedOptionTest value={null} onChange={onChange} />);
+
+        await user.type(screen.getByRole('combobox'), 'Baz');
+        await user.keyboard('{ArrowDown}{Enter}');
+
+        expect(onChange.firstCall.args[1]).to.equal('baz');
+        expect(autocomplete.value).to.equal(null);
+        expect(autocomplete.getOptionFromValue('baz')).to.equal(null);
+      });
+    });
+
     it('gives freeSolo strings precedence over colliding mapped option values', () => {
       let resolveOptionValue;
       const collidingOptions = [{ id: 'draft', label: 'Published' }];

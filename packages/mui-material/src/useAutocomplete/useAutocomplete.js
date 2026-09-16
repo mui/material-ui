@@ -7,7 +7,7 @@ import useEventCallback from '@mui/utils/useEventCallback';
 import useControlled from '@mui/utils/useControlled';
 import useId from '@mui/utils/useId';
 import usePreviousProps from '@mui/utils/usePreviousProps';
-import validateOptionValues from './utils/validateOptionValues';
+import useOptionValue from './utils/useOptionValue';
 
 function areArraysSame({ array1, array2, parser = (value) => value }) {
   return (
@@ -68,9 +68,7 @@ const pageSize = 5;
 const defaultIsActiveElementInListbox = (listboxRef) =>
   listboxRef.current !== null && contains(listboxRef.current.parentElement, document.activeElement);
 
-const defaultGetOptionValue = (option) => option;
 const defaultGetOptionLabel = (option) => option.label ?? option;
-const defaultGetOptionFromValue = (value) => value;
 
 const MULTIPLE_DEFAULT_VALUE = [];
 
@@ -135,106 +133,28 @@ function useAutocomplete(props) {
     value: valueProp,
   } = props;
 
-  const getOptionValue = getOptionValueProp ?? defaultGetOptionValue;
-  const hasOptionValueMapping = getOptionValueProp !== undefined;
-  const hasCustomEquality = Boolean(isOptionEqualToValueProp);
+  const [value, setValueState] = useControlled({
+    controlled: valueProp,
+    default: defaultValue,
+    name: componentName,
+  });
+
+  const {
+    getOptionValue,
+    isOptionEqualToValue,
+    isOptionSelected,
+    getOptionFromValue,
+    rememberSelectedOption,
+  } = useOptionValue({
+    options,
+    getOptionValue: getOptionValueProp,
+    isOptionEqualToValue: isOptionEqualToValueProp,
+    freeSolo,
+    multiple,
+    value,
+  });
 
   const id = useId(idProp);
-
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const duplicatedErrorMessages = React.useMemo(() => new Set(), []);
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      // Mapped values identify options and must therefore be valid, unique primitive keys.
-      validateOptionValues({
-        options,
-        freeSolo,
-        getOptionValueProp,
-        duplicatedErrorMessages,
-      });
-    }, [options, freeSolo, getOptionValueProp, duplicatedErrorMessages]);
-  }
-
-  const isOptionEqualToValue = React.useCallback(
-    (option, value) => {
-      // With value mapping, strings are reserved for free-solo values and cannot identify options.
-      if (getOptionValueProp !== undefined && freeSolo && typeof value === 'string') {
-        return false;
-      }
-
-      // Custom equality takes precedence over comparing the option's mapped value.
-      if (hasCustomEquality) {
-        return isOptionEqualToValueProp(option, value);
-      }
-
-      return getOptionValue(option) === value;
-    },
-    [freeSolo, getOptionValue, getOptionValueProp, hasCustomEquality, isOptionEqualToValueProp],
-  );
-
-  const optionValueMap = React.useMemo(() => {
-    if (getOptionValueProp === undefined || hasCustomEquality) {
-      return null;
-    }
-
-    return new Map(options.map((option) => [getOptionValueProp(option), option]));
-  }, [getOptionValueProp, hasCustomEquality, options]);
-
-  const getOptionFromValue = React.useMemo(() => {
-    if (!hasOptionValueMapping) {
-      // Without value mapping, selected values are already options, so return them unchanged.
-      return defaultGetOptionFromValue;
-    }
-
-    const resolveOption = (option) => {
-      if (option !== undefined) {
-        // Return the matched option for labels and other option-facing callbacks.
-        return option;
-      }
-
-      // A mapped value without a matching option cannot be resolved.
-      return null;
-    };
-
-    if (hasCustomEquality) {
-      const resolvedOptions = new Map();
-      // Custom equality defines matching behavior, so resolve the first matching option.
-      return (value) => {
-        if (freeSolo && typeof value === 'string') {
-          // Strings always represent free-solo values when mapping is enabled.
-          return value;
-        }
-
-        // Cache misses as well as matches so unchanged selections do not rescan the options.
-        if (!resolvedOptions.has(value)) {
-          resolvedOptions.set(
-            value,
-            resolveOption(options.find((option) => isOptionEqualToValueProp(option, value))),
-          );
-        }
-
-        return resolvedOptions.get(value);
-      };
-    }
-
-    // Default equality uses mapped values as keys, so resolve them through the lookup map.
-    return (value) => {
-      if (freeSolo && typeof value === 'string') {
-        // Check before the map because a mapped string and free-solo text are indistinguishable.
-        return value;
-      }
-
-      return resolveOption(optionValueMap.get(value));
-    };
-  }, [
-    freeSolo,
-    hasOptionValueMapping,
-    hasCustomEquality,
-    isOptionEqualToValueProp,
-    optionValueMap,
-    options,
-  ]);
 
   let getOptionLabel = getOptionLabelProp;
 
@@ -298,11 +218,6 @@ function useAutocomplete(props) {
     ),
   ).current;
 
-  const [value, setValueState] = useControlled({
-    controlled: valueProp,
-    default: defaultValue,
-    name: componentName,
-  });
   const [inputValue, setInputValueState] = useControlled({
     controlled: inputValueProp,
     default: initialInputValue,
@@ -370,42 +285,6 @@ function useAutocomplete(props) {
     selectedOption != null && inputValue === getOptionLabel(selectedOption);
 
   const popupOpen = open && !readOnly;
-  const selectedValues = React.useMemo(() => {
-    if (multiple) {
-      return value;
-    }
-
-    if (value != null) {
-      return [value];
-    }
-
-    return [];
-  }, [multiple, value]);
-  const selectedValuesSet = React.useMemo(() => {
-    // Fast path for the default equality behavior to avoid O(n^2) option checks.
-    if (hasCustomEquality || selectedValues.length === 0) {
-      return null;
-    }
-
-    return new Set(
-      hasOptionValueMapping && freeSolo
-        ? selectedValues.filter((selectedValue) => typeof selectedValue !== 'string')
-        : selectedValues,
-    );
-  }, [freeSolo, hasOptionValueMapping, hasCustomEquality, selectedValues]);
-  const isOptionSelected = React.useCallback(
-    (option) => {
-      if (selectedValuesSet) {
-        return selectedValuesSet.has(getOptionValue(option));
-      }
-
-      return selectedValues.some(
-        (value2) => value2 != null && isOptionEqualToValue(option, value2),
-      );
-    },
-    [getOptionValue, isOptionEqualToValue, selectedValues, selectedValuesSet],
-  );
-
   const filteredOptions = popupOpen
     ? filterOptions(
         options.filter((option) => {
@@ -987,6 +866,11 @@ function useAutocomplete(props) {
         newValue.splice(itemIndex, 1);
         reason = 'removeOption';
       }
+    }
+
+    if (origin === 'options' && reason !== 'removeOption') {
+      // The input reset already needs to resolve the selected option's label.
+      rememberSelectedOption(option, optionValue);
     }
 
     resetInputValue(event, newValue, reason);
