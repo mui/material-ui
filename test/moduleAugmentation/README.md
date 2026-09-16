@@ -12,10 +12,10 @@ You can also use the workspace command:
 pnpm -F @mui-internal/test-module-augmentation typescript:module-augmentation
 ```
 
-The package script uses pnpm to build this workspace and its dependencies before
-it tests the fixtures. The workspace has a no-op build script; its dependencies
-run their usual build scripts. The release build clears the output folders,
-copies authored `.d.ts` files, and emits declarations from TypeScript source.
+The package script uses pnpm to build the workspace dependencies before it tests
+the fixtures. pnpm skips packages without a build script, including this test
+workspace. The dependencies run their usual build scripts, which clear the output
+folders, copy authored `.d.ts` files, and emit declarations from TypeScript source.
 pnpm runs the build scripts directly, without the Nx cache. This adds build time
 but prevents stale declarations from hiding errors. Shared dependencies are
 built once.

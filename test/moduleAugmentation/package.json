@@ -3,7 +3,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node -e \"\"",
     "typescript:module-augmentation": "pnpm --filter \"@mui-internal/test-module-augmentation...\" -r run build && node testModuleAugmentation.ts"
   },
   "devDependencies": {
