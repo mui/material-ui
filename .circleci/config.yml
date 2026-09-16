@@ -239,6 +239,20 @@ jobs:
           # pnpm-workspace.yaml (overrides) and may touch pnpm-lock.yaml. Exclude those so
           # this check still verifies the a11y results without tripping on the pinned deps.
           command: git add -A -- . ':(exclude)pnpm-*.yaml' && git diff --exit-code --staged
+      - when:
+          condition:
+            not:
+              equal: [stable, << parameters.react-version >>]
+          steps:
+            - run:
+                name: Configure the Argos upload for a non-stable React run
+                # Argos never uses a subset build as a baseline or reports its skipped screenshots.
+                # A branch other than master stops the auto-approval, so React changes fail.
+                # The reference commit compares the build with the stable run of the same commit.
+                command: |
+                  echo 'export ARGOS_SUBSET=true' >> "$BASH_ENV"
+                  echo 'export ARGOS_BRANCH="$CIRCLE_JOB"' >> "$BASH_ENV"
+                  echo 'export ARGOS_REFERENCE_COMMIT="$CIRCLE_SHA1"' >> "$BASH_ENV"
       - code-infra/argos-push
   test_bundling_prepare:
     <<: *default-job
