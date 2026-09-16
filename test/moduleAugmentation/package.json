@@ -2,7 +2,8 @@
   "name": "@mui-internal/test-module-augmentation",
   "private": true,
   "scripts": {
-    "typescript:module-augmentation": "node testModuleAugmentation.js"
+    "build": "node -e \"\"",
+    "typescript:module-augmentation": "pnpm --filter \"@mui-internal/test-module-augmentation...\" -r run build && node testModuleAugmentation.js"
   },
   "devDependencies": {
     "@emotion/react": "11.14.0",
@@ -11,7 +12,6 @@
     "@mui/system": "workspace:^",
     "@mui/utils": "workspace:^",
     "@types/react": "19.2.18",
-    "es-toolkit": "1.52.0",
     "fast-glob": "3.3.3",
     "react": "19.2.8"
   }

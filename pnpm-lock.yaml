@@ -1647,9 +1647,6 @@ importers:
       '@types/react':
         specifier: 19.2.18
         version: 19.2.18
-      es-toolkit:
-        specifier: 1.52.0
-        version: 1.52.0
       fast-glob:
         specifier: 3.3.3
         version: 3.3.3
