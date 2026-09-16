@@ -1,6 +1,6 @@
 # Module augmentation tests
 
-Run both suites from the repository root:
+Run the suite from the repository root:
 
 ```bash
 pnpm typescript:module-augmentation
@@ -15,10 +15,10 @@ pnpm -F @mui-internal/test-module-augmentation typescript:module-augmentation
 The package script uses pnpm to build this workspace and its dependencies before
 it tests the fixtures. The workspace has a no-op build script; its dependencies
 run their usual build scripts. The release build clears the output folders,
-copies authored
-`.d.ts` files, and emits declarations from TypeScript source. pnpm runs the
-build scripts directly, without the Nx cache. This adds build time but prevents
-stale declarations from hiding errors. Shared dependencies are built once.
+copies authored `.d.ts` files, and emits declarations from TypeScript source.
+pnpm runs the build scripts directly, without the Nx cache. This adds build time
+but prevents stale declarations from hiding errors. Shared dependencies are
+built once.
 
 This workspace has its own dependencies and a standalone TypeScript configuration.
 It does not inherit the root source aliases. pnpm links the MUI dependencies to
@@ -35,10 +35,9 @@ pnpm typescript:module-augmentation --concurrency 2
 
 Build concurrency is separate and uses pnpm's workspace concurrency setting.
 
-The compiler uses the installed
-`tsc`, including the version selected by CI. The runner checks the compiler's file
-list and rejects library files outside the build folders or files that are not
-`.d.ts`, `.d.mts`, or `.d.cts` declarations.
+The compiler uses the installed `tsc`, including the version selected by CI. The
+runner checks the compiler's file list and rejects library files outside the
+build folders or files that are not `.d.ts`, `.d.mts`, or `.d.cts` declarations.
 
 Keep implementation checks separate with `pnpm typescript`. Do not apply consumer
 augmentations to library source or suppress declaration diagnostics. The

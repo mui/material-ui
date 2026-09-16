@@ -1641,9 +1641,6 @@ importers:
       '@mui/system':
         specifier: workspace:^
         version: link:../../packages/mui-system/build
-      '@mui/utils':
-        specifier: workspace:^
-        version: link:../../packages/mui-utils/build
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0

@@ -1,4 +1,6 @@
 {
+  // The fixture configs set their own "files". This base config compiles nothing.
+  "files": [],
   "compilerOptions": {
     "target": "es2022",
     "lib": ["es2020", "dom", "dom.iterable"],
