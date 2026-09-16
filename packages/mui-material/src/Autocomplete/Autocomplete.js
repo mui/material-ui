@@ -551,13 +551,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   // groupedOptions, but they are non-interactive while closing and reset on next open.
   const previousGroupedOptionsRef = React.useRef([]);
   const prevPopupOpenRef = React.useRef(false);
-  const prevGroupByRef = React.useRef(groupBy);
+  const previousGroupByRef = React.useRef(groupBy);
 
-  // Toggling groupBy changes the shape of the options, so the cached ones can no longer be rendered.
-  if (Boolean(prevGroupByRef.current) !== Boolean(groupBy)) {
+  // Toggling groupBy changes the shape of the cached options. They have to be dropped during render,
+  // since the grouped branch below maps over option.options before an effect could clear them.
+  if (Boolean(previousGroupByRef.current) !== Boolean(groupBy)) {
     previousGroupedOptionsRef.current = [];
   }
-  prevGroupByRef.current = groupBy;
+  previousGroupByRef.current = groupBy;
 
   const renderedOptions = popupOpen ? groupedOptions : previousGroupedOptionsRef.current;
 

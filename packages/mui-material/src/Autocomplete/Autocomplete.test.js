@@ -5277,7 +5277,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      expect(screen.queryAllByRole('option')).to.have.length(0);
+      expect(document.querySelectorAll('[role="option"]')).to.have.length(0);
     });
 
     it('should disable pointer events on Popper when closing', async () => {
