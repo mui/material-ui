@@ -258,19 +258,11 @@ export interface DemoToolbarProps {
    */
   githubLocation?: string;
   /**
-   * Anchor id for the TypeScript source of the currently-shown file (e.g.
-   * `ComboBox.tsx`), used by the "copy TypeScript link" item. The matching
-   * `<DemoAnchorLink>` is rendered alongside the demo; the item is disabled when
-   * unset.
+   * Anchor id of the demo's root source file (e.g. `ComboBox.tsx`), used by the
+   * "copy link to source" item. The matching `<DemoAnchorLink>` is rendered
+   * alongside the demo; the item is disabled when unset.
    */
-  tsSourceAnchor?: string;
-  /**
-   * Anchor id for the JavaScript twin of the currently-shown file (e.g.
-   * `ComboBox.jsx`), used by the "copy JavaScript link" item. Landing on it swaps
-   * to the JS transform. Unset when there's no JS transform — the item is then
-   * omitted entirely rather than shown disabled.
-   */
-  jsSourceAnchor?: string;
+  sourceAnchor?: string;
   /** Deploy permalinks shown on staging and pull-request builds. */
   deploymentLinks?: DemoDeploymentLinks | null;
 }
@@ -305,8 +297,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
     onResetFocus,
     onReset,
     githubLocation,
-    tsSourceAnchor,
-    jsSourceAnchor,
+    sourceAnchor,
     deploymentLinks,
   } = props;
   const t = useTranslate();
@@ -357,30 +348,25 @@ export function DemoToolbar(props: DemoToolbarProps) {
     [onCopySource],
   );
 
-  // "Copy source link" handlers. Copies a permalink to the current page that
-  // targets the selected file's `.tsx` (TS) or `.jsx`/`.js` (JS) source anchor —
-  // the per-file ids rendered next to the demo. The anchor already carries the
-  // extension, and landing on the JS one swaps to the JS transform. Built from
-  // `window.location` at click time so it reflects the page the user is on.
-  const createHandleCodeSourceLink = React.useCallback(
-    (target: 'js' | 'tsx') => async () => {
-      handleMoreClose();
-      const anchor = target === 'tsx' ? tsSourceAnchor : jsSourceAnchor;
-      if (!anchor || typeof window === 'undefined') {
-        return;
-      }
-      const base = window.location.href.split('#')[0];
-      const link = `${base}#${anchor}`;
-      try {
-        await copy(link);
-        setSnackbarMessage(t('copiedSourceLink'));
-        setSnackbarOpen(true);
-      } catch {
-        // Swallow — clipboard access may be denied by the user agent.
-      }
-    },
-    [t, handleMoreClose, tsSourceAnchor, jsSourceAnchor],
-  );
+  // "Copy link to source": a permalink to the current page targeting the root
+  // file's `.tsx` anchor — one of the per-file ids rendered next to the demo.
+  // Built from `window.location` at click time so it reflects the page the
+  // user is on.
+  const handleCopySourceLink = React.useCallback(async () => {
+    handleMoreClose();
+    if (!sourceAnchor || typeof window === 'undefined') {
+      return;
+    }
+    const base = window.location.href.split('#')[0];
+    const link = `${base}#${sourceAnchor}`;
+    try {
+      await copy(link);
+      setSnackbarMessage(t('copiedSourceLink'));
+      setSnackbarOpen(true);
+    } catch {
+      // Swallow — clipboard access may be denied by the user agent.
+    }
+  }, [t, handleMoreClose, sourceAnchor]);
 
   const hasNonSystemDemos = variants.length > 1;
 
@@ -564,24 +550,14 @@ export function DemoToolbar(props: DemoToolbarProps) {
           >
             {t('viewGitHub')}
           </MenuItem>
-          {jsSourceAnchor ? (
-            <MenuItem
-              onClick={createHandleCodeSourceLink('js')}
-              data-ga-event-category="demo"
-              data-ga-event-label={gaLabel}
-              data-ga-event-action="copy-js-source-link"
-            >
-              {t('copySourceLinkJS')}
-            </MenuItem>
-          ) : null}
           <MenuItem
-            onClick={createHandleCodeSourceLink('tsx')}
-            disabled={!tsSourceAnchor}
+            onClick={handleCopySourceLink}
+            disabled={!sourceAnchor}
             data-ga-event-category="demo"
             data-ga-event-label={gaLabel}
-            data-ga-event-action="copy-ts-source-link"
+            data-ga-event-action="copy-source-link"
           >
-            {t('copySourceLinkTS')}
+            {t('copySourceLink')}
           </MenuItem>
           {deploymentLinks?.pullRequest ? (
             <MenuItem
