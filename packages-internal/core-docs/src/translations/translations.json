@@ -95,6 +95,7 @@
   "copiedSource": "The source code has been copied to your clipboard.",
   "copiedSourceLink": "Link to the source code has been copied to your clipboard.",
   "copySource": "Copy the source",
+  "copySourceLink": "Copy link to source",
   "copySourceLinkJS": "Copy link to JavaScript source",
   "copySourceLinkTS": "Copy link to TypeScript source",
   "dashboardDescr": "A complex data visualization dashboard featuring the MUI X Data Grid and Charts.",
