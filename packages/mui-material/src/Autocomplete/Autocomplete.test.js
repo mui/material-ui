@@ -5244,6 +5244,42 @@ describe('<Autocomplete />', () => {
       expect(screen.queryAllByRole('option')).to.have.length(0);
     });
 
+    it('should not render stale options after groupBy is enabled', async () => {
+      const options = [
+        { label: 'one', group: 'Group' },
+        { label: 'two', group: 'Group' },
+      ];
+
+      const { user, rerender } = render(
+        <Autocomplete
+          options={options}
+          getOptionLabel={(option) => option.label}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{ popper: { keepMounted: true } }}
+        />,
+      );
+
+      // Open popup and verify options
+      await user.click(screen.getByRole('combobox'));
+      expect(screen.getAllByRole('option')).to.have.length(2);
+
+      // Close popup
+      await user.keyboard('{Escape}');
+
+      // Enable grouping while the closed Popper still renders the cached options
+      rerender(
+        <Autocomplete
+          options={options}
+          getOptionLabel={(option) => option.label}
+          groupBy={(option) => option.group}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{ popper: { keepMounted: true } }}
+        />,
+      );
+
+      expect(screen.queryAllByRole('option')).to.have.length(0);
+    });
+
     it('should disable pointer events on Popper when closing', async () => {
       const { user } = render(
         <Autocomplete
