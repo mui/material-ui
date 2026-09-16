@@ -92,15 +92,19 @@ function FramedDemo(props: FramedDemoProps) {
     }
   }, [document, isolated, theme.direction, themeOptions.paletteMode]);
 
+  // Two caches sharing a key generate the same class names, so the key tracks the plugins. Rules
+  // inserted while the RTL plugin is still loading would otherwise keep winning the cascade.
+  const flipped = rtl ? rtlModule : null;
+
   const cache = React.useMemo(
     () =>
       createCache({
-        key: `iframe-demo-${theme.direction}`,
+        key: `iframe-demo-${flipped ? 'rtl' : 'ltr'}`,
         prepend: true,
         container: document.head,
-        stylisPlugins: rtl && rtlModule ? [prefixer, rtlModule.default] : [prefixer],
+        stylisPlugins: flipped ? [prefixer, flipped.default] : [prefixer],
       }),
-    [document, theme.direction, rtl, rtlModule],
+    [document, flipped],
   );
 
   const getWindow = React.useCallback(() => document.defaultView, [document]);
