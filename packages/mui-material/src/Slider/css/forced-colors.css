@@ -1,0 +1,57 @@
+/* Material UI-owned Slider colors for forced-colors mode. */
+@media (forced-colors: active) {
+  .MuiSlider-root {
+    color: var(--mui-forced-colors-button-text);
+  }
+
+  .MuiSlider-rail {
+    background-color: var(--mui-forced-colors-disabled);
+    border-color: var(--mui-forced-colors-disabled);
+  }
+
+  .MuiSlider-track {
+    background-color: var(--mui-forced-colors-button-text);
+    border-color: var(--mui-forced-colors-button-text);
+  }
+
+  .MuiSlider-rail,
+  .MuiSlider-track,
+  .MuiSlider-mark {
+    forced-color-adjust: none;
+  }
+
+  .MuiSlider-thumb {
+    color: var(--mui-forced-colors-button-text);
+    background-color: var(--mui-forced-colors-canvas);
+    border-color: var(--mui-forced-colors-button-border);
+  }
+
+  .MuiSlider-mark {
+    background-color: var(--mui-forced-colors-button-text);
+  }
+
+  .MuiSlider-mark.MuiSlider-markActive {
+    background-color: var(--mui-forced-colors-canvas);
+  }
+
+  .MuiSlider-markLabel,
+  .MuiSlider-markLabel.MuiSlider-markLabelActive {
+    color: var(--mui-forced-colors-button-text);
+  }
+
+  .MuiSlider-root.Mui-disabled {
+    color: var(--mui-forced-colors-disabled);
+  }
+
+  .MuiSlider-root.Mui-disabled .MuiSlider-rail,
+  .MuiSlider-root.Mui-disabled .MuiSlider-track {
+    background-color: var(--mui-forced-colors-disabled);
+    border-color: var(--mui-forced-colors-disabled);
+  }
+
+  .MuiSlider-root.Mui-disabled .MuiSlider-thumb {
+    color: var(--mui-forced-colors-disabled);
+    background-color: var(--mui-forced-colors-canvas);
+    border-color: var(--mui-forced-colors-disabled);
+  }
+}

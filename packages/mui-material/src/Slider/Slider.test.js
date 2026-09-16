@@ -723,6 +723,8 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
     it('should render the track classes for false', () => {
       const { container } = render(<Slider track={false} value={50} />);
       expect(container.firstChild).to.have.class(classes.trackFalse);
+      expect(container.querySelector(`.${classes.track}`)).to.have.class(classes.trackFalse);
+      expect(container.querySelector(`.${classes.track}`)).to.have.class('MuiSlider-horizontal');
     });
 
     it('should render the track classes for inverted', () => {

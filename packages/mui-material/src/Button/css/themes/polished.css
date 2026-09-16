@@ -1,0 +1,94 @@
+/* Polished Button visual treatment. */
+.MuiButton-root {
+  min-width: 64px;
+  padding: 10px 18px;
+  overflow: hidden;
+  color: var(--mui-palette-text-primary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--mui-shape-radius-pill);
+  font-family: var(--mui-font-family);
+  font-size: 0.875rem;
+  font-weight: 720;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  box-shadow: none;
+  transition:
+    color var(--mui-duration-short) var(--mui-easing-standard),
+    background-color var(--mui-duration-short) var(--mui-easing-standard),
+    border-color var(--mui-duration-short) var(--mui-easing-standard),
+    box-shadow var(--mui-duration-short) var(--mui-easing-standard),
+    transform var(--mui-duration-short) var(--mui-easing-standard);
+}
+
+.MuiButton-root::after {
+  position: absolute;
+  top: -50%;
+  left: -35%;
+  width: 24%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 48%), transparent);
+  content: '';
+  pointer-events: none;
+  transform: translateX(-180%) rotate(18deg);
+  transition: transform 360ms ease;
+}
+
+.MuiButton-root:hover {
+  transform: translateY(-1px);
+}
+
+.MuiButton-root:hover::after {
+  transform: translateX(650%) rotate(18deg);
+}
+
+.MuiButton-contained.MuiButton-colorPrimary {
+  color: var(--mui-palette-common-white);
+  background: linear-gradient(
+    135deg,
+    var(--mui-palette-primary-light),
+    var(--mui-palette-primary-main)
+  );
+  box-shadow: var(--mui-elevation-soft);
+}
+
+.MuiButton-contained.MuiButton-colorPrimary:hover {
+  background: linear-gradient(
+    135deg,
+    var(--mui-palette-primary-main),
+    var(--mui-palette-primary-dark)
+  );
+}
+
+.MuiButton-outlined.MuiButton-colorPrimary {
+  color: var(--mui-palette-primary-dark);
+  background: var(--mui-palette-background-paper);
+  border-color: var(--mui-palette-primary-light);
+}
+
+.MuiButton-text.MuiButton-colorPrimary {
+  color: var(--mui-palette-text-secondary);
+}
+
+.MuiButton-text.MuiButton-colorPrimary:hover {
+  color: var(--mui-palette-primary-dark);
+  background: rgb(101 88 211 / 8%);
+}
+
+.MuiButton-sizeSmall {
+  padding: 7px 13px;
+  font-size: 0.8125rem;
+}
+
+.MuiButton-root.Mui-focusVisible {
+  box-shadow: 0 0 0 4px rgb(101 88 211 / 28%);
+}
+
+.MuiButton-root.Mui-disabled {
+  color: var(--mui-palette-action-disabled);
+  background: var(--mui-palette-action-disabled-background);
+  border-color: transparent;
+  box-shadow: none;
+  transform: none;
+}

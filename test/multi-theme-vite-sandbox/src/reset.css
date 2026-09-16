@@ -1,0 +1,15 @@
+/* Browser normalization only. Material UI component structure lives in its base CSS files. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
