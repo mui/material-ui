@@ -381,9 +381,7 @@ export default function BasicButtons() {
       );
     });
 
-    test('copies JavaScript and TypeScript source links from the overflow menu', async ({
-      browser,
-    }) => {
+    test('copies a link to the .tsx source from the overflow menu', async ({ browser }) => {
       test.setTimeout(60_000);
       const context = await browser.newContext({
         baseURL: process.env.PLAYWRIGHT_TEST_BASE_URL || 'https://mui.com',
@@ -396,22 +394,12 @@ export default function BasicButtons() {
       const demo = getDemo(page, 'BasicButtons');
       const more = demo.getByRole('button', { name: 'See more' });
       await more.click();
-      await page.getByRole('menuitem', { name: 'Copy link to JavaScript source' }).click();
-      await expect
-        .poll(async () => page.evaluate(() => navigator.clipboard.readText()))
-        .toMatch(/\/material-ui\/react-button\/#BasicButtons\.jsx$/);
-
-      await expect(page.getByRole('menu')).toBeHidden();
-      await page.evaluate(() =>
-        document.querySelector<HTMLElement>('[aria-label="See more"]')?.click(),
-      );
-      await expect(
-        page.getByRole('menuitem', { name: 'Copy link to TypeScript source' }),
-      ).toBeVisible();
-      await page.getByRole('menuitem', { name: 'Copy link to TypeScript source' }).click();
+      await expect(page.getByRole('menuitem', { name: /Copy link to .*source/ })).toHaveCount(1);
+      await page.getByRole('menuitem', { name: 'Copy link to source' }).click();
       await expect
         .poll(async () => page.evaluate(() => navigator.clipboard.readText()))
         .toMatch(/\/material-ui\/react-button\/#BasicButtons\.tsx$/);
+      await expect(page.getByRole('menu')).toBeHidden();
 
       await context.close();
     });
