@@ -24,6 +24,7 @@ import {
   colorMix,
   relativeColor,
 } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -347,6 +348,105 @@ function Section({ title, cases }: { title: string; cases: Case[] }) {
   );
 }
 
+/**
+ * The quiet-variant channel. Text and outlined Buttons paint
+ * `softBackgroundColor` when the colour supplies one, and fall back to the
+ * colour-independent `default` ramp when it does not — so the same component
+ * reads as "primary" or as grey depending only on configuration.
+ */
+const QUIET_BASE = {
+  palette: { mode: 'light' as const, primary: { main: '#006DA2' }, error: { main: '#D13F3F' } },
+};
+
+const QUIET_CONFIGS = [
+  {
+    label: 'today',
+    note: 'alpha(main, hoverOpacity) — tinted with the colour',
+    theme: createTheme(QUIET_BASE),
+  },
+  {
+    label: 'default only',
+    note: 'states.default — one neutral overlay for every colour',
+    theme: enhanceColorStates(createTheme(QUIET_BASE), {
+      default: colorMix({ overlayStep: '5%' }),
+    }),
+  },
+  {
+    label: 'with softStep',
+    note: 'states[color].hover.softBackgroundColor — tinted again, per colour',
+    theme: enhanceColorStates(createTheme(QUIET_BASE), {
+      default: colorMix({ overlayStep: '5%' }),
+      primary: colorMix({ step: '4.4%', softStep: '4%' }),
+      error: colorMix({ step: '3.7%', softStep: '6%' }),
+    }),
+  },
+];
+
+function QuietSwatch({ colorKey }: { colorKey: 'primary' | 'error' }) {
+  const theme = useTheme();
+  const soft = theme.states?.[colorKey]?.hover?.softBackgroundColor;
+  const neutral = theme.states?.default?.hover?.backgroundColor;
+  const legacy = theme.alpha(
+    (theme.palette as any)[colorKey].main,
+    theme.palette.action.hoverOpacity,
+  );
+  return <Cell value={soft ?? neutral ?? legacy} />;
+}
+
+function QuietSection() {
+  return (
+    <Box sx={{ bgcolor: '#fff', color: '#111', p: 3, borderRadius: 2 }}>
+      <Typography sx={{ fontSize: 15, fontWeight: 600, mb: 0.5 }}>
+        Quiet variants — the softBackgroundColor channel
+      </Typography>
+      <Typography sx={{ fontSize: 12, opacity: 0.7, maxWidth: 720, mb: 2 }}>
+        Text and outlined Buttons do not paint the solid ramp. They paint a quiet tint, and which
+        one depends entirely on configuration. Hover the buttons; the swatches show the resolved
+        hover value without hovering.
+      </Typography>
+      {QUIET_CONFIGS.map((cfg) => (
+        <ThemeProvider key={cfg.label} theme={cfg.theme}>
+          <Stack
+            direction="row"
+            spacing={3}
+            sx={{
+              alignItems: 'center',
+              py: 1.5,
+              borderBottom: '1px solid',
+              borderColor: 'divider',
+            }}
+          >
+            <Box sx={{ width: 230, flexShrink: 0 }}>
+              <Typography sx={{ fontSize: 13, fontWeight: 600 }}>{cfg.label}</Typography>
+              <Typography sx={{ fontFamily: 'monospace', fontSize: 10, opacity: 0.6, mt: 0.25 }}>
+                {cfg.note}
+              </Typography>
+            </Box>
+            <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+              <QuietSwatch colorKey="primary" />
+              <Button variant="text" color="primary">
+                text
+              </Button>
+              <Button variant="outlined" color="primary">
+                outlined
+              </Button>
+            </Stack>
+            <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+              <QuietSwatch colorKey="error" />
+              <Button variant="text" color="error">
+                text
+              </Button>
+              <Button variant="outlined" color="error">
+                outlined
+              </Button>
+            </Stack>
+          </Stack>
+        </ThemeProvider>
+      ))}
+    </Box>
+  );
+}
+
 export default function ColorStates() {
   // Computed after mount: deriving it during render differs between server and
   // client and trips hydration.
@@ -380,6 +480,7 @@ export default function ColorStates() {
           <ThemeProvider theme={darkTheme}>
             <Section title="Dark scheme" cases={DARK_CASES} />
           </ThemeProvider>
+          <QuietSection />
         </Stack>
       </Box>
     </React.Fragment>
