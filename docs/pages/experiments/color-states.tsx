@@ -163,7 +163,7 @@ const darkTheme = enhanceColorStates(
  */
 const SENTINEL = '#123456';
 
-function toBytes(cssColor: string): [number, number, number] | 'unparsed' | null {
+function toBytes(cssColor: string): [number, number, number, number] | 'unparsed' | null {
   const canvas = document.createElement('canvas');
   canvas.width = 1;
   canvas.height = 1;
@@ -179,14 +179,19 @@ function toBytes(cssColor: string): [number, number, number] | 'unparsed' | null
   ctx.clearRect(0, 0, 1, 1);
   ctx.fillRect(0, 0, 1, 1);
   const [r, g, b, a] = ctx.getImageData(0, 0, 1, 1).data;
-  return a === 0 ? null : [r, g, b];
+  return a === 0 ? null : [r, g, b, a];
 }
 
-const hex = (b: [number, number, number]) =>
-  `#${b
+const hex = (b: [number, number, number, number]) => {
+  const rgb = `#${b
+    .slice(0, 3)
     .map((c) => c.toString(16).padStart(2, '0'))
     .join('')
     .toUpperCase()}`;
+  // A quiet tint's alpha IS the difference between its hover and its active, so
+  // dropping it would make the two read as the same colour.
+  return b[3] === 255 ? rgb : `${rgb} ${Math.round((b[3] / 255) * 100)}%`;
+};
 
 const refBytes = (h: string): [number, number, number] => [
   parseInt(h.slice(1, 3), 16),
@@ -251,7 +256,7 @@ function Cell({ value, reference }: { value: string; reference?: string }) {
       setResolved(hex(bytes));
       if (reference) {
         const r = refBytes(reference);
-        setDelta(Math.max(...bytes.map((c, i) => Math.abs(c - r[i]))));
+        setDelta(Math.max(...bytes.slice(0, 3).map((c, i) => Math.abs(c - r[i]))));
       }
     };
     raf = requestAnimationFrame(read);
@@ -356,6 +361,9 @@ function Section({ title, cases }: { title: string; cases: Case[] }) {
  */
 const QUIET_BASE = {
   palette: { mode: 'light' as const, primary: { main: '#006DA2' }, error: { main: '#D13F3F' } },
+  // The ripple paints over the active background, which is the one state this
+  // section exists to show.
+  components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
 };
 
 const QUIET_CONFIGS = [
@@ -382,15 +390,50 @@ const QUIET_CONFIGS = [
   },
 ];
 
-function QuietSwatch({ colorKey }: { colorKey: 'primary' | 'error' }) {
+function QuietSwatch({
+  colorKey,
+  state,
+}: {
+  colorKey: 'primary' | 'error';
+  state: 'hover' | 'active';
+}) {
   const theme = useTheme();
-  const soft = theme.states?.[colorKey]?.hover?.softBackgroundColor;
-  const neutral = theme.states?.default?.hover?.backgroundColor;
-  const legacy = theme.alpha(
-    (theme.palette as any)[colorKey].main,
-    theme.palette.action.hoverOpacity,
-  );
-  return <Cell value={soft ?? neutral ?? legacy} />;
+  const soft = theme.states?.[colorKey]?.[state]?.softBackgroundColor;
+  const neutral = theme.states?.default?.[state]?.backgroundColor;
+  // Today there IS no pressed background — that gap is the point, so the cell
+  // says so rather than borrowing the hover value.
+  const legacy =
+    state === 'hover'
+      ? theme.alpha((theme.palette as any)[colorKey].main, theme.palette.action.hoverOpacity)
+      : undefined;
+  const value = soft ?? neutral ?? legacy;
+
+  if (!value) {
+    return (
+      <Stack spacing={0.5} sx={{ width: 96 }}>
+        <Box
+          sx={{
+            height: 36,
+            borderRadius: 1,
+            border: '1px dashed',
+            borderColor: 'divider',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: 10,
+            opacity: 0.45,
+          }}
+        >
+          none
+        </Box>
+        <Typography sx={{ fontFamily: 'monospace', fontSize: 10, opacity: 0.45 }}>
+          no pressed state
+        </Typography>
+        <Typography sx={{ fontFamily: 'monospace', fontSize: 10, opacity: 0 }}>-</Typography>
+      </Stack>
+    );
+  }
+  return <Cell value={value} />;
 }
 
 function QuietSection() {
@@ -401,8 +444,9 @@ function QuietSection() {
       </Typography>
       <Typography sx={{ fontSize: 12, opacity: 0.7, maxWidth: 720, mb: 2 }}>
         Text and outlined Buttons do not paint the solid ramp. They paint a quiet tint, and which
-        one depends entirely on configuration. Hover the buttons; the swatches show the resolved
-        hover value without hovering.
+        one depends entirely on configuration. The two swatches per colour are the resolved hover
+        and active values; the buttons are live with the ripple disabled, so pressing one shows the
+        active background instead of the ripple covering it.
       </Typography>
       {QUIET_CONFIGS.map((cfg) => (
         <ThemeProvider key={cfg.label} theme={cfg.theme}>
@@ -422,24 +466,20 @@ function QuietSection() {
                 {cfg.note}
               </Typography>
             </Box>
-            <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
-              <QuietSwatch colorKey="primary" />
-              <Button variant="text" color="primary">
-                text
-              </Button>
-              <Button variant="outlined" color="primary">
-                outlined
-              </Button>
-            </Stack>
-            <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
-              <QuietSwatch colorKey="error" />
-              <Button variant="text" color="error">
-                text
-              </Button>
-              <Button variant="outlined" color="error">
-                outlined
-              </Button>
-            </Stack>
+            {(['primary', 'error'] as const).map((key) => (
+              <Stack key={key} direction="row" spacing={1} sx={{ alignItems: 'flex-start' }}>
+                <QuietSwatch colorKey={key} state="hover" />
+                <QuietSwatch colorKey={key} state="active" />
+                <Stack direction="row" spacing={1} sx={{ alignItems: 'center', height: 36 }}>
+                  <Button variant="text" color={key}>
+                    text
+                  </Button>
+                  <Button variant="outlined" color={key}>
+                    outlined
+                  </Button>
+                </Stack>
+              </Stack>
+            ))}
           </Stack>
         </ThemeProvider>
       ))}
