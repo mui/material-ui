@@ -845,9 +845,6 @@ importers:
       react-simple-code-editor:
         specifier: ^0.14.1
         version: 0.14.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      styled-components:
-        specifier: ^5.3.0 || ^6.0.0
-        version: 6.5.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       stylis:
         specifier: catalog:docs
         version: 4.2.0
