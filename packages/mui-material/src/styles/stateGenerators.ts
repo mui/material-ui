@@ -38,6 +38,30 @@ function resolveLevels(levels: StateLevels | undefined) {
   return { ...LEVELS, ...levels };
 }
 
+const times = (n: number, unit: string) => (n === 1 ? unit : `calc(${n} * ${unit})`);
+
+const mix = (base: string, to: string, amount: string) =>
+  `color-mix(in oklab, ${base}, ${to} ${amount})`;
+
+/**
+ * The quiet-variant tint, shared by BOTH generators.
+ *
+ * It is the colour itself at a low alpha — L, C and hue untouched — so the ramp
+ * deepens by opacity rather than by lightness. That is why it needs no relative
+ * colour syntax even when the solid ramp does: raising chroma and rotating hue
+ * are the only things `color-mix` cannot do, and an alpha tint does neither.
+ * `oklch(from C l c h / a)` and `color-mix(in oklab, transparent, C a)` resolve
+ * to the identical colour, verified to six decimal places.
+ *
+ * Tinting uses the BASE colour at every level, matching Material UI's own
+ * `alpha(main, hoverOpacity)` model, rather than the already-shifted colour.
+ */
+function softTint(color: string, softStep: string | undefined, level: number) {
+  return softStep
+    ? { softBackgroundColor: mix('transparent', color, times(level, softStep)) }
+    : null;
+}
+
 export interface ColorMixOptions {
   /**
    * Distance travelled per level, e.g. `'4.5%'`. Required — there is no house
@@ -86,10 +110,6 @@ export function colorMix(options: ColorMixOptions = {}): StateGenerator {
     // token carries anyway: black on a light ground, white on a dark one.
     const pole =
       target ?? palette.common?.onBackground ?? (theme.palette?.mode === 'dark' ? '#fff' : '#000');
-    const times = (n: number, unit: string) => (n === 1 ? unit : `calc(${n} * ${unit})`);
-    const mix = (base: string, to: string, amount: string) =>
-      `color-mix(in oklab, ${base}, ${to} ${amount})`;
-
     // No colour: the `default` key — a ghost ramp that tints whatever sits under
     // it. It never references a palette colour, which is why one entry serves a
     // text Button and a list row alike.
@@ -119,9 +139,7 @@ export function colorMix(options: ColorMixOptions = {}): StateGenerator {
       borderColor: mix(theme.alpha(color, 0.5), color, times(level, '100%')),
       // A tint of the colour itself, not of the pole — which is what makes a
       // quiet variant read as "primary" rather than as grey.
-      ...(softStep
-        ? { softBackgroundColor: mix('transparent', color, times(level, softStep)) }
-        : null),
+      ...softTint(color, softStep, level),
     });
     return {
       hover: forLevel(lv.hover),
@@ -144,6 +162,13 @@ export interface RelativeColorOptions {
    * the hue is carried along.
    */
   hue?: number | undefined;
+  /**
+   * Alpha per level for the quiet-variant tint, exactly as in `colorMix`. It
+   * emits `color-mix()`, not relative colour syntax, because an alpha tint needs
+   * neither of the two things this generator exists for — so this channel costs
+   * nothing in browser support even on a colour whose solid ramp does.
+   */
+  softStep?: string | undefined;
   levels?: StateLevels | undefined;
   disabled?: DisabledStyle | undefined;
 }
@@ -157,7 +182,7 @@ export interface RelativeColorOptions {
  * floor; every other colour stays on `colorMix`.
  */
 export function relativeColor(options: RelativeColorOptions): StateGenerator {
-  const { lightness, chroma = 0, hue = 0, levels, disabled = DISABLED } = options;
+  const { lightness, chroma = 0, hue = 0, softStep, levels, disabled = DISABLED } = options;
   const lv = resolveLevels(levels);
 
   return ({ color, name }: GeneratorContext): ColorStates => {
@@ -173,7 +198,11 @@ export function relativeColor(options: RelativeColorOptions): StateGenerator {
       const h = hue ? `calc(h + ${(hue * level).toFixed(3)})` : 'h';
       return `oklch(from ${color} ${l} ${c} ${h})`;
     };
-    const forLevel = (level: number) => ({ backgroundColor: at(level), borderColor: at(level) });
+    const forLevel = (level: number) => ({
+      backgroundColor: at(level),
+      borderColor: at(level),
+      ...softTint(color, softStep, level),
+    });
     return {
       hover: forLevel(lv.hover),
       active: forLevel(lv.active),
