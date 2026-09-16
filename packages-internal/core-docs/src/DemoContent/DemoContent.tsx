@@ -26,12 +26,7 @@ import {
   toggleDemoExpanded,
 } from './DemoContent.helpers';
 import { buildDemoDeploymentLinks } from './demoDeploymentLinks';
-import {
-  demoAnchorId,
-  fileSourceAnchorIds,
-  sourceAnchorTransform,
-  toJavascriptFileName,
-} from './sourceAnchors';
+import { demoAnchorId, fileSourceAnchorIds, sourceAnchorTransform } from './sourceAnchors';
 import { useMuiChatExporter } from './useMuiChatExporter';
 import { buildExportConfig } from './exportConfig';
 
@@ -422,13 +417,6 @@ export default function DemoContent(props: DemoContentProps) {
   // the JavaScript/TypeScript view — there are no `.jsx` files to link to.
   const githubLocation = demo.selectedFileUrl?.replace('/tree/', '/blob/');
 
-  // Copy-link anchors for the demo's ROOT file: its TS source name and its JS twin
-  // (e.g. `ButtonBaseDemo.tsx` / `ButtonBaseDemo.jsx`) — the ids rendered above, so
-  // pasting the link opens the demo source in that language.
-  const tsSourceAnchor = rootFileName;
-  const jsSourceAnchor =
-    rootFileName && hasJsTransform ? toJavascriptFileName(rootFileName) : undefined;
-
   const router = useRouter();
   const deploymentLinks = React.useMemo(
     () =>
@@ -470,8 +458,7 @@ export default function DemoContent(props: DemoContentProps) {
       onResetFocus={handleResetFocus}
       onReset={handleReset}
       githubLocation={githubLocation}
-      tsSourceAnchor={tsSourceAnchor}
-      jsSourceAnchor={jsSourceAnchor}
+      sourceAnchor={rootFileName}
       deploymentLinks={deploymentLinks}
     />
   );
