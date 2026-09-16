@@ -3,7 +3,7 @@ import path from 'node:path';
 import { runInNewContext } from 'node:vm';
 import { describe, it, expect } from 'vitest';
 
-const compiler = readFileSync(new URL('./compile.js', import.meta.url), 'utf8');
+const compiler = readFileSync(new URL('./compile.cjs', import.meta.url), 'utf8');
 
 describe.each([
   { name: 'POSIX', paths: path.posix, root: '/repo/material-ui' },
@@ -23,7 +23,7 @@ describe.each([
     runInNewContext(compiler, {
       __dirname: paths.join(root, 'test/moduleAugmentation'),
       process: {
-        argv: ['node', 'compile.js', paths.join(fixtureRoot, 'breakpointsDefault.tsconfig.json')],
+        argv: ['node', 'compile.cjs', paths.join(fixtureRoot, 'breakpointsDefault.tsconfig.json')],
       },
       require(name) {
         if (name === 'path') {
