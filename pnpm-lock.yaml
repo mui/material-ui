@@ -1627,6 +1627,36 @@ importers:
 
   test/e2e: {}
 
+  test/moduleAugmentation:
+    devDependencies:
+      '@emotion/react':
+        specifier: 11.14.0
+        version: 11.14.0(@types/react@19.2.18)(react@19.2.8)(supports-color@11.0.0)
+      '@emotion/styled':
+        specifier: 11.14.1
+        version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.18)(react@19.2.8)(supports-color@11.0.0))(@types/react@19.2.18)(react@19.2.8)(supports-color@11.0.0)
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../packages/mui-material/build
+      '@mui/system':
+        specifier: workspace:^
+        version: link:../../packages/mui-system/build
+      '@mui/utils':
+        specifier: workspace:^
+        version: link:../../packages/mui-utils/build
+      '@types/react':
+        specifier: 19.2.18
+        version: 19.2.18
+      es-toolkit:
+        specifier: 1.52.0
+        version: 1.52.0
+      fast-glob:
+        specifier: 3.3.3
+        version: 3.3.3
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
+
   test/moduleResolution:
     dependencies:
       '@mui/icons-material':

@@ -1,4 +1,0 @@
-{
-  "extends": "../../../../../test/moduleAugmentation/tsconfig.json",
-  "files": ["gridCustomBreakpoints.spec.tsx"]
-}

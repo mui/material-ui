@@ -3,7 +3,6 @@ const path = require('path');
 
 const configPath = path.resolve(process.argv[2]);
 const packagesRoot = path.resolve(__dirname, '../../packages');
-const fixtureRoot = path.dirname(configPath);
 let output;
 let failed = false;
 try {
@@ -23,8 +22,8 @@ for (const line of lines) {
     continue;
   }
   const relative = path.relative(packagesRoot, line);
-  if (!relative.startsWith('..') && path.relative(fixtureRoot, path.dirname(line)) !== '') {
-    if (!line.endsWith('.d.ts') || relative.split(path.sep)[1] !== 'build') {
+  if (!relative.startsWith('..')) {
+    if (!/\.d\.(?:ts|mts|cts)$/.test(line) || relative.split(path.sep)[1] !== 'build') {
       throw new Error(`Consumer test loaded library source: ${line}`);
     }
     declarations += 1;
