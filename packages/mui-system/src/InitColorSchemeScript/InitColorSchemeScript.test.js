@@ -135,6 +135,21 @@ describe('InitColorSchemeScript', () => {
     expect(document.documentElement.getAttribute('data-mode')).to.equal('bar');
   });
 
+  it('should keep an `=` inside a bracketed attribute value', () => {
+    storage[DEFAULT_MODE_STORAGE_KEY] = 'dark';
+    storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`] = 'bar';
+
+    let { container } = renderToString(<InitColorSchemeScript attribute="[data-mode='a=b']" />);
+    eval(container.firstChild.textContent);
+    expect(document.documentElement.getAttribute('data-mode')).to.equal('a=b');
+
+    ({ container } = renderToString(<InitColorSchemeScript attribute="[data-mode='v=%s']" />));
+    eval(container.firstChild.textContent);
+    expect(document.documentElement.getAttribute('data-mode')).to.equal('v=bar');
+
+    document.documentElement.removeAttribute('data-mode'); // cleanup
+  });
+
   it('should set `dark` color scheme to body', () => {
     storage[DEFAULT_MODE_STORAGE_KEY] = 'dark';
     storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`] = 'bar';
@@ -183,6 +198,17 @@ describe('InitColorSchemeScript', () => {
       );
       eval(container.firstChild.textContent);
       expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('yellow');
+    });
+  });
+
+  it('should resolve the %s placeholder at build time, not with a runtime replace', () => {
+    // The generated script uses string concatenation (`"mode-" + colorScheme`); no `%s` template
+    // or `.replace('%s', …)` call should survive into the browser.
+    ['class', 'data', '.mode-%s', '[data-mode-%s]', "[data-mode='%s']"].forEach((attribute) => {
+      const { container } = renderToString(<InitColorSchemeScript attribute={attribute} />);
+      const script = container.firstChild.textContent;
+      expect(script).not.to.include("replace('%s'");
+      expect(script).not.to.include('%s');
     });
   });
 

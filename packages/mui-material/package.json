@@ -29,7 +29,6 @@
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
     "typescript": "tsc -p tsconfig.json",
-    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
     "attw": "attw --pack ./build --entrypoints \".\" \"Button\" \"styles\" \"utils\""
   },
   "dependencies": {
@@ -53,7 +52,6 @@
     "@types/sinon": "22.0.0",
     "css-mediaquery": "0.1.2",
     "es-toolkit": "1.52.0",
-    "fast-glob": "3.3.3",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-router": "8.3.1",
