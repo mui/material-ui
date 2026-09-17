@@ -218,7 +218,7 @@ export default function FullFocusVisibleDemo() {
           <Row label="Switch">
             <FormControlLabel control={<Switch defaultChecked />} label="Switch" />
           </Row>
-          <Row label="InputBase" secondary="(no indicator of its own)">
+          <Row label="InputBase">
             <InputBase placeholder="Test" />
           </Row>
           <Row label="TextField" secondary="(filled + disableUnderline)">

@@ -263,7 +263,6 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
       )}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
-      // The notched outline recolors on focus, so it is already the focus indicator.
       internalDisabledThemeFocusVisible
       multiline={multiline}
       ref={ref}
