@@ -234,15 +234,15 @@ export type AutocompleteSlotsAndSlotProps<
 >;
 
 export interface AutocompleteProps<
-  Option,
+  Value,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 >
   extends
-    AutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo, ChipComponent>,
-    UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo> {}
+    AutocompleteBaseProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+    UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo> {}
 
 export interface AutocompleteMappedProps<
   Option,

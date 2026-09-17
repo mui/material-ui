@@ -1,25 +1,25 @@
 import * as React from 'react';
 import { PartiallyRequired } from '@mui/types';
 
-export interface CreateFilterOptionsConfig<Option> {
+export interface CreateFilterOptionsConfig<Value> {
   ignoreAccents?: boolean | undefined;
   ignoreCase?: boolean | undefined;
   limit?: number | undefined;
   matchFrom?: 'any' | 'start' | undefined;
-  stringify?: ((option: Option) => string) | undefined;
+  stringify?: ((option: Value) => string) | undefined;
   trim?: boolean | undefined;
 }
 
-export interface FilterOptionsState<Option> {
+export interface FilterOptionsState<Value> {
   inputValue: string;
-  getOptionLabel: (option: Option) => string;
+  getOptionLabel: (option: Value) => string;
 }
 
-export interface AutocompleteGroupedOption<Option = string> {
+export interface AutocompleteGroupedOption<Value = string> {
   key: number;
   index: number;
   group: string;
-  options: Option[];
+  options: Value[];
 }
 
 export function createFilterOptions<Option>(
@@ -50,11 +50,11 @@ export type AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo> = Mul
     : Value | null | AutocompleteFreeSoloValueMapping<FreeSolo>;
 
 export interface UseAutocompleteProps<
-  Option,
+  Value,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-> extends UseAutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo> {}
+> extends UseAutocompleteBaseProps<Value, Multiple, DisableClearable, FreeSolo> {}
 
 export interface UseAutocompleteMappedProps<
   Option,
@@ -392,18 +392,18 @@ export interface UseAutocompleteBaseProps<
 }
 
 export interface UseAutocompleteParameters<
-  Option,
+  Value,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-> extends UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo> {}
+> extends UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo> {}
 
 export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'touch';
 
 export type AutocompleteChangeReason =
   'createOption' | 'selectOption' | 'removeOption' | 'clear' | 'blur';
-export interface AutocompleteChangeDetails<Option = string> {
-  option: Option;
+export interface AutocompleteChangeDetails<Value = string> {
+  option: Value;
 }
 export type AutocompleteCloseReason =
   'createOption' | 'toggleInput' | 'escape' | 'selectOption' | 'removeOption' | 'blur';
@@ -474,18 +474,18 @@ export function useAutocomplete<
   props: Omit<UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo>, 'groupBy'>,
 ): UseAutocompleteReturnValue<Option, Multiple, DisableClearable, FreeSolo, false>;
 
-export interface UseAutocompleteRenderedOption<Option> {
-  option: Option;
+export interface UseAutocompleteRenderedOption<Value> {
+  option: Value;
   index: number;
 }
 
 export interface UseAutocompleteReturnValue<
-  Option,
+  Value,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
   HasGroupBy extends boolean = false,
-  Value extends AutocompletePrimitiveValue = never,
+  MappedValue extends AutocompletePrimitiveValue = never,
 > {
   /**
    * Resolver for the root slot's props.
@@ -531,17 +531,17 @@ export interface UseAutocompleteReturnValue<
    */
   getOptionFromValue: (
     value: AutocompleteValueOrFreeSoloValueMapping<
-      AutocompleteResolvedValue<Option, Value>,
+      AutocompleteResolvedValue<Value, MappedValue>,
       FreeSolo
     >,
-  ) => AutocompleteValueOrFreeSoloValueMapping<Option, FreeSolo> | null;
+  ) => AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> | null;
   /**
    * Resolver for the rendered option element's props.
    * @param renderedOption option rendered on the Autocomplete
    * @returns props that should be spread on the li element
    */
   getOptionProps: (
-    renderedOption: UseAutocompleteRenderedOption<Option>,
+    renderedOption: UseAutocompleteRenderedOption<Value>,
   ) => React.HTMLAttributes<HTMLLIElement> & { key: React.Key };
   /**
    * Id for the Autocomplete.
@@ -555,7 +555,7 @@ export interface UseAutocompleteReturnValue<
    * The value of the autocomplete.
    */
   value: AutocompleteValue<
-    AutocompleteResolvedValue<Option, Value>,
+    AutocompleteResolvedValue<Value, MappedValue>,
     Multiple,
     DisableClearable,
     FreeSolo
@@ -591,10 +591,10 @@ export interface UseAutocompleteReturnValue<
   focusedItem: number;
   /**
    * The options to render.
-   * - If `groupBy` is provided, the options are grouped and represented as `AutocompleteGroupedOption<Option>[]`.
-   * - Otherwise, the options are represented as a flat array of `Option[]`.
+   * - If `groupBy` is provided, the options are grouped and represented as `AutocompleteGroupedOption<Value>[]`.
+   * - Otherwise, the options are represented as a flat array of `Value[]`.
    */
-  groupedOptions: HasGroupBy extends true ? AutocompleteGroupedOption<Option>[] : Option[];
+  groupedOptions: HasGroupBy extends true ? AutocompleteGroupedOption<Value>[] : Value[];
 }
 
 export default useAutocomplete;
