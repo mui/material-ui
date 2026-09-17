@@ -41,7 +41,7 @@ describe.skipIf(isJsdom())('Slider with theme2', () => {
 
   it('styles the rail as the groove', () => {
     const style = styleOf(`.${sliderClasses.rail}`, {});
-    expect(style.backgroundColor).toBe('rgb(250, 249, 251)');
+    expect(style.backgroundColor).toBe('rgb(233, 232, 236)');
     expect(style.position).toBe('absolute');
   });
 
@@ -54,7 +54,7 @@ describe.skipIf(isJsdom())('Slider with theme2', () => {
 
   it('reacts to the size class', () => {
     const style = styleOf(`.${sliderClasses.thumb}`, { size: 'small' });
-    expect(style.width).toBe('16px');
+    expect(style.width).toBe('14px');
   });
 
   it('gives the track a gradient rather than a flat colour', () => {
@@ -69,10 +69,10 @@ describe.skipIf(isJsdom())('Slider with theme2', () => {
 
   it('reacts to the orientation class', () => {
     const vertical = styleOf(`.${sliderClasses.root}`, { orientation: 'vertical' });
-    expect(vertical.width).toBe('8px');
+    expect(vertical.width).toBe('6px');
 
     const horizontal = styleOf(`.${sliderClasses.root}`, {});
-    expect(horizontal.height).toBe('8px');
+    expect(horizontal.height).toBe('6px');
   });
 
   it('reacts to the disabled class', () => {
@@ -98,6 +98,19 @@ describe.skipIf(isJsdom())('Slider with theme2', () => {
     const active = colours.filter((c) => c.startsWith('true'))[0];
     const inactive = colours.filter((c) => c.startsWith('false'))[0];
     expect(active.split(':')[1]).not.toBe(inactive.split(':')[1]);
+  });
+
+  it('switches colour scheme from an attribute on the root element', () => {
+    // What the toggle on the experiment page drives.
+    const light = styleOf(`.${sliderClasses.rail}`, {}).backgroundColor;
+
+    document.documentElement.dataset.theme2 = 'dark';
+    try {
+      const dark = styleOf(`.${sliderClasses.rail}`, {}).backgroundColor;
+      expect(dark).not.toBe(light);
+    } finally {
+      delete document.documentElement.dataset.theme2;
+    }
   });
 
   it('shows the value label only when open', () => {
