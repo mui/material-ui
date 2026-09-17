@@ -225,15 +225,7 @@ export default function FullFocusVisibleDemo() {
             <FormControlLabel control={<Switch defaultChecked />} label="Switch" />
           </Row>
           <Row label="InputBase" secondary="(no indicator of its own)">
-            <InputBase
-              placeholder="Test"
-              sx={{
-                px: 1,
-                border: '1px dashed',
-                borderColor: 'divider',
-                borderRadius: 1,
-              }}
-            />
+            <InputBase placeholder="Test" />
           </Row>
           <Row label="TextField" secondary="(filled + disableUnderline)">
             <TextField
