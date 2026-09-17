@@ -58,7 +58,7 @@ function Code({ children, block }) {
     <code
       style={{
         display: block ? 'block' : 'inline',
-        margin: block ? '12px 0 0' : 0,
+        margin: block ? '14px 0 0' : 0,
         padding: block ? '8px 12px' : '1px 5px',
         borderRadius: 6,
         background: 'var(--theme2-surface)',
@@ -74,7 +74,7 @@ function Code({ children, block }) {
 
 function Row({ title, note, code, children }) {
   return (
-    <section style={{ marginBottom: 44 }}>
+    <section style={{ marginBottom: 80 }}>
       <h2 style={{ fontSize: 15, fontWeight: 600, margin: '0 0 4px' }}>{title}</h2>
       {note ? (
         <p style={{ fontSize: 13, color: 'var(--theme2-page-muted)', margin: '0 0 14px' }}>
@@ -92,9 +92,9 @@ function Row({ title, note, code, children }) {
 /** A slider labelled with the prop that produced it. */
 function Labelled({ label, children }) {
   return (
-    <div style={{ marginBottom: 24 }}>
+    <div style={{ marginBottom: 48 }}>
       {children}
-      <div style={{ marginTop: 8 }}>
+      <div style={{ marginTop: 10 }}>
         <Code>{label}</Code>
       </div>
     </div>
