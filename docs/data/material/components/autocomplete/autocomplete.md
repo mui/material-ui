@@ -77,6 +77,9 @@ The prop must return a unique, non-null string, number, bigint, or boolean for e
 When `freeSolo` is enabled, it must return a number, bigint, or boolean because strings are reserved
 for free-solo values.
 
+This requirement also applies to options created by `filterOptions`.
+Include the fields that `getOptionValue` reads in every generated option.
+
 Callbacks that operate on options, such as `getOptionLabel` and `renderOption`, continue to receive the original option object.
 The `details.option` passed to `onChange` also contains the original option.
 

@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import * as React from 'react';
 import {
   createRenderer,
@@ -633,6 +633,64 @@ describe('useAutocomplete', () => {
 
         expect(screen.getByRole('combobox')).to.have.value('Updated Baz');
       });
+
+      it.each([
+        {
+          description: 'undefined',
+          generated: { label: 'Baz' },
+          returned: 'a value of type undefined',
+        },
+        { description: 'null', generated: { id: null, label: 'Baz' }, returned: 'null' },
+        { description: 'NaN', generated: { id: NaN, label: 'Baz' }, returned: 'NaN' },
+        {
+          description: 'an object',
+          generated: { id: {}, label: 'Baz' },
+          returned: 'a value of type object',
+        },
+        {
+          description: 'a symbol',
+          generated: { id: Symbol('id'), label: 'Baz' },
+          returned: 'a value of type symbol',
+        },
+        {
+          description: 'a freeSolo string',
+          generated: { id: 'draft', label: 'Baz' },
+          freeSolo: true,
+        },
+      ])(
+        'warns once when a generated option maps to $description',
+        async ({ generated, returned, freeSolo = false }) => {
+          const { user } = render(
+            <GeneratedOptionTest
+              options={[]}
+              value={null}
+              freeSolo={freeSolo}
+              filterOptions={() => [generated]}
+            />,
+          );
+          const textbox = screen.getByRole('combobox');
+          const expectedError = freeSolo
+            ? freeSoloStringMappingError
+            : `MUI: The \`getOptionValue\` method of useAutocomplete returned ${returned}, which is not a valid option value.\n` +
+              'useAutocomplete uses this value to identify and match options. ' +
+              'Return a unique string, number, bigint, or boolean for every option.';
+          const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+          try {
+            await user.type(textbox, 'Baz');
+            expect(consoleError).not.toHaveBeenCalled();
+
+            await user.click(screen.getByRole('option', { name: 'Baz' }));
+            expect(consoleError).toHaveBeenCalledExactlyOnceWith(expectedError);
+
+            await user.type(textbox, 'Baz');
+            await user.click(screen.getByRole('option', { name: 'Baz' }));
+            expect(consoleError).toHaveBeenCalledExactlyOnceWith(expectedError);
+          } finally {
+            consoleError.mockRestore();
+          }
+        },
+      );
 
       it.each([
         { name: 'default equality', isOptionEqualToValue: undefined },

@@ -21,31 +21,10 @@ export default function validateOptionValues<Option>({
   for (const option of options) {
     const value = getOptionValueProp(option);
 
+    validateOptionValue(value, freeSolo, duplicatedErrorMessages);
+
     if (freeSolo && typeof value === 'string') {
-      tryShowErrorMessage(
-        `MUI: The \`getOptionValue\` method of useAutocomplete returned the string value ${getOptionValueDescription(
-          value,
-        )} while \`freeSolo\` is enabled.\n` +
-          `useAutocomplete cannot distinguish string option values from free-solo values. ` +
-          'Return a number, bigint, or boolean from `getOptionValue`, or disable `freeSolo`.',
-        duplicatedErrorMessages,
-      );
       continue;
-    }
-
-    // Only primitive keys can safely identify options in comparisons and lookup maps.
-    if (!isValidOptionValue(value)) {
-      const invalidValue =
-        value === null || Number.isNaN(value)
-          ? getOptionValueDescription(value)
-          : `a value of type ${typeof value}`;
-
-      tryShowErrorMessage(
-        `MUI: The \`getOptionValue\` method of useAutocomplete returned ${invalidValue}, which is not a valid option value.\n` +
-          `useAutocomplete uses this value to identify and match options. ` +
-          'Return a unique string, number, bigint, or boolean for every option.',
-        duplicatedErrorMessages,
-      );
     }
 
     // Report a duplicated key once even when more than two options share it.
@@ -62,6 +41,39 @@ export default function validateOptionValues<Option>({
     }
 
     seenOptionValues.add(value);
+  }
+}
+
+export function validateOptionValue(
+  value: unknown,
+  freeSolo: boolean,
+  duplicatedErrorMessages: Set<string>,
+) {
+  if (freeSolo && typeof value === 'string') {
+    tryShowErrorMessage(
+      `MUI: The \`getOptionValue\` method of useAutocomplete returned the string value ${getOptionValueDescription(
+        value,
+      )} while \`freeSolo\` is enabled.\n` +
+        `useAutocomplete cannot distinguish string option values from free-solo values. ` +
+        'Return a number, bigint, or boolean from `getOptionValue`, or disable `freeSolo`.',
+      duplicatedErrorMessages,
+    );
+    return;
+  }
+
+  // Only primitive keys can safely identify options in comparisons and lookup maps.
+  if (!isValidOptionValue(value)) {
+    const invalidValue =
+      value === null || Number.isNaN(value)
+        ? getOptionValueDescription(value)
+        : `a value of type ${typeof value}`;
+
+    tryShowErrorMessage(
+      `MUI: The \`getOptionValue\` method of useAutocomplete returned ${invalidValue}, which is not a valid option value.\n` +
+        `useAutocomplete uses this value to identify and match options. ` +
+        'Return a unique string, number, bigint, or boolean for every option.',
+      duplicatedErrorMessages,
+    );
   }
 }
 
