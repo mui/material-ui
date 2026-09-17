@@ -212,8 +212,9 @@ describe('<Menu2SubmenuTrigger />', () => {
     const indicatorRef = React.createRef<HTMLSpanElement>();
     const onClick = vi.fn();
     const onSlotClick = vi.fn();
+    // A page-sized anchor leaves no space for the popup and can cause resize loops.
     const { user } = render(
-      <Menu2 defaultOpen modal={false} anchor={document.body}>
+      <Menu2 defaultOpen modal={false} trigger={<button type="button">Options</button>}>
         <Menu2Submenu
           trigger={
             <Menu2SubmenuTrigger
