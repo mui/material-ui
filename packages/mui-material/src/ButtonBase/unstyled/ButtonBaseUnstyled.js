@@ -221,11 +221,8 @@ const ButtonBaseUnstyled = React.forwardRef(function ButtonBase(props, ref) {
       {children}
       {RippleSlot && !disableRipple && !disabled ? (
         <RippleSlot
+          ownerState={ownerState}
           rootRef={buttonRef}
-          center={centerRipple}
-          focusRipple={focusRipple}
-          focusVisible={focusVisible}
-          disableTouchRipple={disableTouchRipple}
           touchRippleRef={touchRippleRef}
           {...TouchRippleProps}
         />

@@ -20,15 +20,8 @@ import TouchRipple from './TouchRipple';
  * consumer's `onMouseDown` rather than after it.
  */
 const ButtonBaseRipple = React.forwardRef(function ButtonBaseRipple(props, ref) {
-  const {
-    rootRef,
-    center = false,
-    focusRipple = false,
-    focusVisible = false,
-    disableTouchRipple = false,
-    touchRippleRef,
-    ...other
-  } = props;
+  const { ownerState, rootRef, touchRippleRef, ...other } = props;
+  const { centerRipple, focusRipple, focusVisible, disableTouchRipple } = ownerState;
 
   const ripple = useLazyRipple();
   const handleRippleRef = useForkRef(ref, ripple.ref, touchRippleRef);
@@ -135,26 +128,15 @@ const ButtonBaseRipple = React.forwardRef(function ButtonBaseRipple(props, ref) 
     return null;
   }
 
-  return <TouchRipple ref={handleRippleRef} center={center} {...other} />;
+  return <TouchRipple ref={handleRippleRef} center={centerRipple} {...other} />;
 });
 
 ButtonBaseRipple.propTypes = {
   /**
-   * If `true`, the ripples are centered.
+   * ButtonBase's state, which carries `centerRipple`, `focusRipple`,
+   * `focusVisible` and `disableTouchRipple`.
    */
-  center: PropTypes.bool,
-  /**
-   * If `true`, pointer and touch interactions do not produce a ripple.
-   */
-  disableTouchRipple: PropTypes.bool,
-  /**
-   * If `true`, keyboard focus produces a ripple.
-   */
-  focusRipple: PropTypes.bool,
-  /**
-   * Whether the element it sits inside currently has visible focus.
-   */
-  focusVisible: PropTypes.bool,
+  ownerState: PropTypes.object.isRequired,
   /**
    * A ref to the element this slot renders inside, to bind listeners to.
    */
