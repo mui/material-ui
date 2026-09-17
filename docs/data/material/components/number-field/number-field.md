@@ -57,6 +57,15 @@ This is ideal for touch devices and narrow ranges of values.
 
 {{"demo": "SpinnerDemo.js"}}
 
+## Units and currency
+
+Both fields above use the input's end adornment for the increment and decrement buttons, so that slot is not available for a unit or currency symbol.
+Use the [`format`](https://base-ui.com/react/components/number-field#api-reference) prop instead—it accepts [`Intl.NumberFormatOptions`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options) and is forwarded to the Base UI `NumberField.Root`:
+
+```jsx
+<NumberField label="Price" format={{ style: 'currency', currency: 'USD' }} />
+```
+
 ## Base UI API
 
 See the documentation below for a complete reference to all of the props.
