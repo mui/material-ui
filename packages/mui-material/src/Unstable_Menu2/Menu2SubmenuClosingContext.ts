@@ -7,11 +7,13 @@ export interface Menu2SubmenuClosingContextValue {
    * Whether the popup is closed and running its exit transition.
    */
   closing: boolean;
+  retainClosingTint: boolean;
   onClosingChange?: ((closing: boolean) => void) | undefined;
 }
 
 const Menu2SubmenuClosingContext = React.createContext<Menu2SubmenuClosingContextValue>({
   closing: false,
+  retainClosingTint: true,
 });
 
 export interface Menu2SubmenuClosingStateProps {

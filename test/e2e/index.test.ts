@@ -127,6 +127,47 @@ describe('e2e', () => {
       await expect(child).toHaveCSS('background-color', 'rgba(0, 0, 0, 0.04)');
       await expect(parent).toHaveCSS('background-color', 'rgba(0, 0, 0, 0.04)');
     });
+
+    [false, true].forEach((focusVisible) => {
+      [false, true].forEach((selected) => {
+        it(`clears the submenu trigger tint during a pointer exit, focusVisible=${focusVisible}, selected=${selected}`, async () => {
+          await renderFixture('Menu2/SubmenuPointerExit');
+          await page.getByRole('checkbox', { name: 'Focus ring' }).setChecked(focusVisible);
+          await page.getByRole('checkbox', { name: 'Selected trigger' }).setChecked(selected);
+          await page.getByRole('button', { name: 'Options' }).click();
+          const trigger = page.getByRole('menuitem', { name: 'More', exact: true });
+          await trigger.hover();
+          await expect(trigger).toHaveClass(/Mui-open/);
+          // Move through Base UI's safe-travel pointer blocking without waiting for it to end.
+          await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover({ force: true });
+          await expect(trigger).toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
+          expect(
+            await trigger.evaluate((element) => getComputedStyle(element).backgroundColor),
+          ).toBe(selected ? 'rgba(25, 118, 210, 0.08)' : 'rgba(0, 0, 0, 0)');
+        });
+      });
+    });
+
+    it('restores the exit tint for keyboard navigation after a pointer close', async () => {
+      await renderFixture('Menu2/SubmenuPointerExit');
+      await page.getByRole('button', { name: 'Options' }).click();
+      const trigger = page.getByRole('menuitem', { name: 'More', exact: true });
+      await trigger.hover();
+      await expect(trigger).toHaveClass(/Mui-open/);
+      await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover({ force: true });
+      await expect(trigger).not.toHaveClass(/Mui-open/);
+      await expect(trigger).not.toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
+      await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover();
+      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('ArrowRight');
+      await expect(page.getByRole('menuitem', { name: 'Nested' })).toBeFocused();
+      await page.keyboard.press('Escape');
+      await expect(trigger).toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
+      expect(await trigger.evaluate((element) => getComputedStyle(element).backgroundColor)).toBe(
+        'rgba(0, 0, 0, 0.04)',
+      );
+      await expect(trigger).toBeFocused();
+    });
   });
 
   describe('<FocusTrap />', () => {

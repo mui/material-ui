@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
+import useEventCallback from '@mui/utils/useEventCallback';
 import Menu2SubmenuPopup, { Menu2SubmenuPopupProps } from '../Unstable_Menu2/Menu2SubmenuPopup';
 import Menu2SubmenuClosingContext from '../Unstable_Menu2/Menu2SubmenuClosingContext';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -87,9 +88,27 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
     ...popupProps
   } = themedProps;
 
-  // The trigger keeps its open tint while the popup animates out; see the context.
+  // Keep the exit tint for focus return, but clear it when the pointer leaves.
   const [closing, setClosing] = React.useState(false);
-  const closingContext = React.useMemo(() => ({ closing, onClosingChange: setClosing }), [closing]);
+  const [retainClosingTint, setRetainClosingTint] = React.useState(true);
+  const handleOpenChange = useEventCallback<NonNullable<Menu2SubmenuProps['onOpenChange']>>(
+    (nextOpen, details) => {
+      onOpenChange?.(nextOpen, details);
+      if (!details.isCanceled) {
+        setRetainClosingTint(nextOpen || details.reason !== 'trigger-hover');
+      }
+    },
+  );
+  const handleClosingChange = useEventCallback((nextClosing: boolean) => {
+    setClosing(nextClosing);
+    if (closing && !nextClosing) {
+      setRetainClosingTint(true);
+    }
+  });
+  const closingContext = React.useMemo(
+    () => ({ closing, retainClosingTint, onClosingChange: handleClosingChange }),
+    [closing, retainClosingTint, handleClosingChange],
+  );
 
   return (
     <BaseMenu.SubmenuRoot
@@ -99,7 +118,7 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
       disabled={disabled}
       highlightItemOnHover={highlightItemOnHover}
       loopFocus={loopFocus}
-      onOpenChange={onOpenChange}
+      onOpenChange={handleOpenChange}
       onOpenChangeComplete={onOpenChangeComplete}
       open={open}
     >

@@ -161,7 +161,7 @@ Other behavior and caveats:
 - **Submenu indicator:** triggers include a trailing chevron that points left in RTL. Use `slotProps.indicator` to change its content or styles, or `slots.indicator` to replace or omit it.
 - **Placement:** a submenu overlaps its parent by 4 px and starts 8 px above the trigger to account for list padding. Collisions can change the resolved placement.
 - **Escape:** closes the innermost submenu and returns focus to its trigger. Set `closeParentOnEsc` on the submenu to request closure of the parent menus too.
-- **Open tint:** an open submenu trigger uses `action.hover`, blended with selected styling when needed. A separate `closing` state keeps the tint through exit without extending logical `open`.
+- **Open tint:** an open submenu trigger uses `action.hover`, blended with selected styling when needed. Hover-driven closes clear this tint when exit starts. Other closes keep it through exit to prevent a gap before focus returns. The `closing` state remains separate from logical `open`.
 - **Focus outline after keyboard navigation:** with `theme.focusVisible`, the outline can follow the pointer after keyboard navigation. Base UI moves focus on hover, and the browser can preserve `:focus-visible`. We confirmed this in Chromium with real input. The classic Menu keeps focus and its outline on the keyboard-selected item. Accept this difference; no local focus override is planned.
 - **Focus guards:** Base UI inserts guards beside root and submenu triggers while menus are open. Adjacency and child-position selectors can therefore match different elements. The guards use fixed positioning, so they do not add flex or grid gaps by themselves. New parts own their spacing; a plain `Divider` still uses the classic adjacency rules. An upstream discussion of guard placement remains separate work.
 - **Height:** the popup uses the smaller of the viewport limit and Base UI's available height, with internal scrolling.
@@ -222,7 +222,7 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 
 5. ✅ **Base UI API exposure:** explicitly pick supported root and positioning props. Detached triggers (`handle`, `triggerId`, `defaultTriggerId`, and `Menu.createHandle`) and horizontal `orientation` are outside this API. Upstream changes to exposed types still require review.
 
-6. ✅ **Open parent tint:** use `action.hover` through logical open and visual exit. Keep `Mui-open` separate from `MuiMenu2SubmenuTrigger-closing`. A new open-state color token would be a separate design choice.
+6. ✅ **Open parent tint:** use `action.hover` while open. Keep it through exit except for hover-driven closes. Keep `Mui-open` separate from `MuiMenu2SubmenuTrigger-closing`. A new open-state color token would be a separate design choice.
 
 7. ✅ **Explicit submenu trigger:** keep one behavioral owner per trigger and the popup wiring internal. The root decorates a supplied button; the submenu renders an explicit part. Accept this asymmetry. A Material Menubar remains separate work.
 
