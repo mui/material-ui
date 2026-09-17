@@ -4409,27 +4409,55 @@ describe('<Autocomplete />', () => {
       expect(screen.getByText('Foo')).not.to.equal(null);
     });
 
-    it('does not remap options while typing with an inline mapper prop', async () => {
+    it('reuses the mapped value lookup while the mapper identity is stable', async () => {
       const getValue = spy((option) => option.id);
 
-      function InlineMapperTest() {
-        return (
-          <Test
-            multiple
-            open={false}
-            defaultValue={['foo']}
-            getOptionValue={(option) => getValue(option)}
-          />
-        );
-      }
-
-      const { user } = render(<InlineMapperTest />);
+      const { user } = render(
+        <Test multiple open={false} defaultValue={['foo']} getOptionValue={getValue} />,
+      );
       getValue.resetHistory();
 
       await user.type(screen.getByRole('combobox'), 'search');
 
       expect(screen.getByRole('button', { name: 'Foo' })).to.have.text('Foo');
       expect(getValue.callCount).to.equal(0);
+    });
+
+    it('rebuilds the mapped value lookup when typing rerenders the parent with a fresh inline mapper', async () => {
+      const mapperOptions = [
+        { id: 'foo', alternateId: 'bar', label: 'Foo' },
+        { id: 'bar', alternateId: 'foo', label: 'Bar' },
+      ];
+      const getValue = spy((option, inputValue) => (inputValue ? option.alternateId : option.id));
+
+      function InlineMapperTest() {
+        const [inputValue, setInputValue] = React.useState('');
+
+        return (
+          <Test
+            multiple
+            open={false}
+            options={mapperOptions}
+            defaultValue={['foo']}
+            inputValue={inputValue}
+            onInputChange={(event, nextInputValue) => setInputValue(nextInputValue)}
+            getOptionValue={(option) => getValue(option, inputValue)}
+          />
+        );
+      }
+
+      const { user } = render(<InlineMapperTest />);
+      expect(screen.getByRole('button', { name: 'Foo' })).to.have.text('Foo');
+      getValue.resetHistory();
+
+      await user.type(screen.getByRole('combobox'), 'search');
+
+      mapperOptions.forEach((option) => {
+        expect(getValue.calledWithExactly(option, 'search')).to.equal(true);
+      });
+      // A changed label proves the lookup refreshed, beyond the mapper calls made by validation.
+      expect(screen.getByRole('button', { name: 'Bar' })).to.have.text('Bar');
+      expect(screen.queryByRole('button', { name: 'Foo' })).to.equal(null);
     });
 
     it('reuses custom chip resolutions while typing with the popup closed', async () => {
