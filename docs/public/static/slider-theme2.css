@@ -10,65 +10,94 @@
  * component ships none. Anything marked "structure" below is required for the
  * component to work at all, and any theme would have to repeat it.
  *
- * Colour scheme follows the system preference, and the page can override it by
- * setting `data-theme2="light"` or `data-theme2="dark"` on the root element.
+ * Tokens come in two layers: a palette that changes with the colour scheme,
+ * and component tokens that refer to it. Scheme follows the system preference,
+ * and the page can override it with `data-theme2="light"` or `"dark"` on the
+ * root element.
  */
+
+/* ============================================================== palette ==== */
 
 :root {
   --theme2-page-bg: #ffffff;
   --theme2-page-fg: #1c1c1e;
   --theme2-page-muted: #6e6e6e;
 
-  --theme2-groove: #e9e8ec;
-  --theme2-thumb-from: #ffffff;
-  --theme2-thumb-to: #f4f4f6;
-  --theme2-thumb-from-active: #ffffff;
-  --theme2-thumb-to-active: #e8e8ec;
-  --theme2-thumb-outline: rgb(0 0 0 / 0.14);
-  --theme2-mark: #b4b4bb;
+  --theme2-surface: #e9e8ec;
+  --theme2-raised-from: #ffffff;
+  --theme2-raised-to: #f4f4f6;
+  --theme2-raised-from-hover: #ffffff;
+  --theme2-raised-to-hover: #e8e8ec;
+  --theme2-edge: rgb(0 0 0 / 0.14);
+  --theme2-tick: #b4b4bb;
   --theme2-label: #6e6e6e;
 
-  --theme2-fill-from: hsl(252deg 67% 62%);
-  --theme2-fill-to: hsl(252deg 62% 46%);
-  --theme2-fill-from-disabled: hsl(248deg 15% 90%);
-  --theme2-fill-to-disabled: hsl(245deg 14% 85%);
+  /* Accents run light to dark, because on a pale surface the darker end
+     reads as depth. */
+  --theme2-primary-from: hsl(252deg 67% 62%);
+  --theme2-primary-to: hsl(252deg 62% 46%);
+  --theme2-neutral-from: hsl(252deg 7% 62%);
+  --theme2-neutral-to: hsl(252deg 6% 46%);
+  --theme2-success-from: hsl(127deg 62% 42%);
+  --theme2-success-to: hsl(127deg 66% 30%);
+  --theme2-danger-from: hsl(358deg 70% 55%);
+  --theme2-danger-to: hsl(358deg 68% 42%);
+  --theme2-warning-from: hsl(35deg 85% 52%);
+  --theme2-warning-to: hsl(35deg 85% 40%);
+  --theme2-info-from: hsl(205deg 75% 52%);
+  --theme2-info-to: hsl(205deg 72% 40%);
 
-  --theme2-radius-pill: 9999px;
+  --theme2-muted-from: hsl(248deg 15% 90%);
+  --theme2-muted-to: hsl(245deg 14% 85%);
+
   --theme2-shadow-tint: 215deg 22% 17%;
   --theme2-shadow:
     0 1px 1px 0px hsl(var(--theme2-shadow-tint) / 12%),
     0 2px 6px -1px hsl(var(--theme2-shadow-tint) / 10%),
     0 6px 12px -3px hsl(var(--theme2-shadow-tint) / 8%);
-  --theme2-groove-shadow:
-    inset 0 1px 2px 0 rgb(0 0 0 / 0.08), inset 0 2px 4px -1px rgb(0 0 0 / 0.03);
-
-  /* Medium is the default size. */
-  --theme2-groove-thickness: 6px;
-  --theme2-thumb-size: 20px;
-  --theme2-mark-size: 6px;
+  --theme2-inset: inset 0 1px 2px 0 rgb(0 0 0 / 0.08), inset 0 2px 4px -1px rgb(0 0 0 / 0.03);
 }
 
-/* Dark values, applied by system preference unless the page has explicitly
-   asked for light, and always when the page asks for dark. */
+/* Dark is derived from light rather than inverted. The surface recedes, the
+   raised thumb stays light because a lit object does not darken, and the
+   accents gain lightness so they keep their punch against a dark ground. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme2='light']) {
     --theme2-page-bg: #0e0e10;
     --theme2-page-fg: #f2f2f4;
     --theme2-page-muted: #9a9aa2;
 
-    --theme2-groove: #26262b;
-    --theme2-thumb-from: #ffffff;
-    --theme2-thumb-to: #d8d8de;
-    --theme2-thumb-from-active: #ffffff;
-    --theme2-thumb-to-active: #c8c8d0;
-    --theme2-thumb-outline: rgb(0 0 0 / 0.4);
-    --theme2-mark: #5a5a62;
+    --theme2-surface: #26262b;
+    --theme2-raised-from: #ffffff;
+    --theme2-raised-to: #dcdce2;
+    --theme2-raised-from-hover: #ffffff;
+    --theme2-raised-to-hover: #cbcbd3;
+    --theme2-edge: rgb(0 0 0 / 0.5);
+    --theme2-tick: #5a5a62;
     --theme2-label: #9a9aa2;
 
-    --theme2-fill-from-disabled: #34343c;
-    --theme2-fill-to-disabled: #2a2a31;
+    --theme2-primary-from: hsl(252deg 80% 74%);
+    --theme2-primary-to: hsl(252deg 68% 58%);
+    --theme2-neutral-from: hsl(252deg 9% 72%);
+    --theme2-neutral-to: hsl(252deg 7% 56%);
+    --theme2-success-from: hsl(127deg 52% 60%);
+    --theme2-success-to: hsl(127deg 54% 44%);
+    --theme2-danger-from: hsl(358deg 82% 70%);
+    --theme2-danger-to: hsl(358deg 70% 55%);
+    --theme2-warning-from: hsl(35deg 90% 66%);
+    --theme2-warning-to: hsl(35deg 85% 52%);
+    --theme2-info-from: hsl(205deg 85% 68%);
+    --theme2-info-to: hsl(205deg 78% 54%);
+
+    --theme2-muted-from: #3a3a43;
+    --theme2-muted-to: #2e2e36;
+
     --theme2-shadow-tint: 0deg 0% 0%;
-    --theme2-groove-shadow: inset 0 1px 2px 0 rgb(0 0 0 / 0.5);
+    --theme2-shadow:
+      0 1px 1px 0px hsl(var(--theme2-shadow-tint) / 40%),
+      0 2px 6px -1px hsl(var(--theme2-shadow-tint) / 35%),
+      0 6px 14px -3px hsl(var(--theme2-shadow-tint) / 30%);
+    --theme2-inset: inset 0 1px 2px 0 rgb(0 0 0 / 0.5);
   }
 }
 
@@ -77,22 +106,40 @@
   --theme2-page-fg: #f2f2f4;
   --theme2-page-muted: #9a9aa2;
 
-  --theme2-groove: #26262b;
-  --theme2-thumb-from: #ffffff;
-  --theme2-thumb-to: #d8d8de;
-  --theme2-thumb-from-active: #ffffff;
-  --theme2-thumb-to-active: #c8c8d0;
-  --theme2-thumb-outline: rgb(0 0 0 / 0.4);
-  --theme2-mark: #5a5a62;
+  --theme2-surface: #26262b;
+  --theme2-raised-from: #ffffff;
+  --theme2-raised-to: #dcdce2;
+  --theme2-raised-from-hover: #ffffff;
+  --theme2-raised-to-hover: #cbcbd3;
+  --theme2-edge: rgb(0 0 0 / 0.5);
+  --theme2-tick: #5a5a62;
   --theme2-label: #9a9aa2;
 
-  --theme2-fill-from-disabled: #34343c;
-  --theme2-fill-to-disabled: #2a2a31;
+  --theme2-primary-from: hsl(252deg 80% 74%);
+  --theme2-primary-to: hsl(252deg 68% 58%);
+  --theme2-neutral-from: hsl(252deg 9% 72%);
+  --theme2-neutral-to: hsl(252deg 7% 56%);
+  --theme2-success-from: hsl(127deg 52% 60%);
+  --theme2-success-to: hsl(127deg 54% 44%);
+  --theme2-danger-from: hsl(358deg 82% 70%);
+  --theme2-danger-to: hsl(358deg 70% 55%);
+  --theme2-warning-from: hsl(35deg 90% 66%);
+  --theme2-warning-to: hsl(35deg 85% 52%);
+  --theme2-info-from: hsl(205deg 85% 68%);
+  --theme2-info-to: hsl(205deg 78% 54%);
+
+  --theme2-muted-from: #3a3a43;
+  --theme2-muted-to: #2e2e36;
+
   --theme2-shadow-tint: 0deg 0% 0%;
-  --theme2-groove-shadow: inset 0 1px 2px 0 rgb(0 0 0 / 0.5);
+  --theme2-shadow:
+    0 1px 1px 0px hsl(var(--theme2-shadow-tint) / 40%),
+    0 2px 6px -1px hsl(var(--theme2-shadow-tint) / 35%),
+    0 6px 14px -3px hsl(var(--theme2-shadow-tint) / 30%);
+  --theme2-inset: inset 0 1px 2px 0 rgb(0 0 0 / 0.5);
 }
 
-/* ---------------------------------------------------------------- root ---- */
+/* ============================================================== slider ==== */
 
 /* structure */
 .MuiSlider-root {
@@ -106,6 +153,13 @@
   color: var(--theme2-label);
   font-family: system-ui, sans-serif;
   font-size: 0.8125rem;
+
+  --theme2-radius-pill: 9999px;
+  --theme2-groove-thickness: 6px;
+  --theme2-thumb-size: 20px;
+  --theme2-mark-size: 6px;
+  --theme2-fill-from: var(--theme2-primary-from);
+  --theme2-fill-to: var(--theme2-primary-to);
 }
 
 /* There is no `MuiSlider-horizontal` class, only the absence of the vertical
@@ -122,12 +176,6 @@
   padding-inline: 12px;
 }
 
-.MuiSlider-root.Mui-disabled {
-  cursor: not-allowed;
-  --theme2-fill-from: var(--theme2-fill-from-disabled);
-  --theme2-fill-to: var(--theme2-fill-to-disabled);
-}
-
 /* ---------------------------------------------------------------- sizes ---- */
 
 .MuiSlider-root.MuiSlider-sizeSmall {
@@ -139,28 +187,36 @@
 /* --------------------------------------------------------------- colours ---- */
 
 .MuiSlider-root.MuiSlider-colorSecondary {
-  --theme2-fill-from: hsl(252deg 7% 62%);
-  --theme2-fill-to: hsl(252deg 6% 46%);
+  --theme2-fill-from: var(--theme2-neutral-from);
+  --theme2-fill-to: var(--theme2-neutral-to);
 }
 
 .MuiSlider-root.MuiSlider-colorSuccess {
-  --theme2-fill-from: hsl(127deg 72% 36%);
-  --theme2-fill-to: hsl(127deg 72% 26%);
+  --theme2-fill-from: var(--theme2-success-from);
+  --theme2-fill-to: var(--theme2-success-to);
 }
 
 .MuiSlider-root.MuiSlider-colorError {
-  --theme2-fill-from: hsl(358deg 70% 55%);
-  --theme2-fill-to: hsl(358deg 68% 42%);
+  --theme2-fill-from: var(--theme2-danger-from);
+  --theme2-fill-to: var(--theme2-danger-to);
 }
 
 .MuiSlider-root.MuiSlider-colorWarning {
-  --theme2-fill-from: hsl(35deg 85% 52%);
-  --theme2-fill-to: hsl(35deg 85% 40%);
+  --theme2-fill-from: var(--theme2-warning-from);
+  --theme2-fill-to: var(--theme2-warning-to);
 }
 
 .MuiSlider-root.MuiSlider-colorInfo {
-  --theme2-fill-from: hsl(205deg 75% 52%);
-  --theme2-fill-to: hsl(205deg 72% 40%);
+  --theme2-fill-from: var(--theme2-info-from);
+  --theme2-fill-to: var(--theme2-info-to);
+}
+
+/* After the colours, so that a disabled slider is grey whatever colour it
+   was asked for. Both selectors weigh the same, so order is what decides. */
+.MuiSlider-root.Mui-disabled {
+  cursor: not-allowed;
+  --theme2-fill-from: var(--theme2-muted-from);
+  --theme2-fill-to: var(--theme2-muted-to);
 }
 
 /* ------------------------------------------------- rail: the empty groove ---- */
@@ -172,8 +228,8 @@
   display: block;
   position: absolute;
   border-radius: var(--theme2-radius-pill);
-  background-color: var(--theme2-groove);
-  box-shadow: var(--theme2-groove-shadow);
+  background-color: var(--theme2-surface);
+  box-shadow: var(--theme2-inset);
 }
 
 .MuiSlider-root:not(.MuiSlider-vertical) .MuiSlider-rail {
@@ -229,8 +285,8 @@
   width: var(--theme2-thumb-size);
   height: var(--theme2-thumb-size);
   border-radius: 50%;
-  outline: 1px solid var(--theme2-thumb-outline);
-  background: linear-gradient(to bottom, var(--theme2-thumb-from), var(--theme2-thumb-to));
+  outline: 1px solid var(--theme2-edge);
+  background: linear-gradient(to bottom, var(--theme2-raised-from), var(--theme2-raised-to));
   box-shadow: var(--theme2-shadow);
   transition:
     box-shadow 120ms ease,
@@ -251,8 +307,8 @@
 .MuiSlider-thumb.Mui-active {
   background: linear-gradient(
     to bottom,
-    var(--theme2-thumb-from-active),
-    var(--theme2-thumb-to-active)
+    var(--theme2-raised-from-hover),
+    var(--theme2-raised-to-hover)
   );
 }
 
@@ -261,6 +317,7 @@
   outline-offset: 2px;
 }
 
+/* A disabled control is not raised, so it loses its shadow. */
 .MuiSlider-thumb.Mui-disabled {
   box-shadow: none;
 }
@@ -271,7 +328,7 @@
    the groove, so they are offset from its centre line by half its thickness. */
 .MuiSlider-mark {
   position: absolute;
-  background-color: var(--theme2-mark);
+  background-color: var(--theme2-tick);
   border-radius: var(--theme2-radius-pill);
 }
 
@@ -291,7 +348,7 @@
 
 /* Kept as its own rule so a theme can distinguish an active mark. */
 .MuiSlider-mark.MuiSlider-markActive {
-  background-color: var(--theme2-mark);
+  background-color: var(--theme2-tick);
 }
 
 /* ----------------------------------------------------------- mark labels ---- */

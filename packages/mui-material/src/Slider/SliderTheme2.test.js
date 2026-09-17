@@ -63,8 +63,23 @@ describe.skipIf(isJsdom())('Slider with theme2', () => {
   });
 
   it('reacts to the colour class', () => {
-    const root = styleOf(`.${sliderClasses.root}`, { color: 'success' });
-    expect(root.getPropertyValue('--theme2-fill-from').trim()).toBe('hsl(127deg 72% 36%)');
+    const fill = (props) =>
+      styleOf(`.${sliderClasses.root}`, props).getPropertyValue('--theme2-fill-from').trim();
+
+    const primary = fill({});
+    expect(fill({ color: 'success' })).not.toBe(primary);
+    expect(fill({ color: 'error' })).not.toBe(primary);
+    expect(fill({ color: 'secondary' })).not.toBe(primary);
+  });
+
+  it('greys out a disabled slider whatever colour it was given', () => {
+    // `Mui-disabled` and the colour classes weigh the same, so this only works
+    // because the disabled rule comes after them in the stylesheet.
+    const fill = (props) =>
+      styleOf(`.${sliderClasses.root}`, props).getPropertyValue('--theme2-fill-from').trim();
+
+    expect(fill({ color: 'success', disabled: true })).toBe(fill({ disabled: true }));
+    expect(fill({ color: 'success', disabled: true })).not.toBe(fill({ color: 'success' }));
   });
 
   it('reacts to the orientation class', () => {
