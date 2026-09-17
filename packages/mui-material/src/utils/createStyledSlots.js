@@ -12,24 +12,30 @@ import capitalize from './capitalize';
  * @param {object} def the slot declaration from the unstyled component
  * @param {(slot: string) => string} getUtilityClass resolves a class key to its full name
  * @param {object} styles style bodies, keyed by slot name
+ * @param {object} [appearance] this styling layer's vocabulary, from
+ *   `createAppearance`. Its class keys are override keys too, so they have to be
+ *   resolvable even though the unstyled component knows nothing about them.
  */
-export default function createStyledSlots(def, getUtilityClass, styles = {}) {
+export default function createStyledSlots(def, getUtilityClass, styles, appearance) {
   const result = {};
 
   Object.entries(def.slots).forEach(([slotName, slot]) => {
+    const appearanceClasses = appearance?.classes?.[slotName] ?? [];
+    const slotStyles = styles?.[slotName];
+
     // A slot with no classes and no styles has nothing for a shell to do, and
     // wrapping it would give it an Emotion class it does not have today.
-    if (slot.classes.length === 0 && !styles[slotName]) {
+    if (slot.classes.length === 0 && appearanceClasses.length === 0 && !slotStyles) {
       return;
     }
 
-    const declared = new Set(slot.classes);
+    const declared = new Set([...slot.classes, ...appearanceClasses]);
 
-    // A prefix only applies to a slot that already declares a class using it —
-    // the root declares `colorPrimary`, so a theme adding `palette.brand` can
-    // also override `colorBrand` there, but the thumb carries no colour class.
-    const prefixes = (def.dynamicPrefixes || []).filter((prefix) =>
-      slot.classes.some((cls) => cls.startsWith(prefix)),
+    // A prefix only applies to a slot that already declares a class using it,
+    // so a theme adding `palette.brand` can override `colorBrand` on the root
+    // while the thumb, which carries no colour class, is left alone.
+    const prefixes = (appearance?.prefixes ?? []).filter((prefix) =>
+      appearanceClasses.some((cls) => cls.startsWith(prefix)),
     );
     const isDynamic = (key) =>
       prefixes.some((prefix) => key.startsWith(prefix) && key.length > prefix.length);
@@ -48,7 +54,7 @@ export default function createStyledSlots(def, getUtilityClass, styles = {}) {
           )
           .map((key) => ({ [`&.${getUtilityClass(key)}`]: themeStyles[key] })),
       ],
-    })(styles[slotName] ?? {});
+    })(slotStyles ?? {});
   });
 
   return result;

@@ -11,8 +11,24 @@ import * as React from 'react';
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import theme2Css from 'docs/public/static/slider-theme2.css?raw';
+import createAppearance, { prefixed, bare } from '../utils/createAppearance';
 import SliderUnstyled from './unstyled/SliderUnstyled';
 import sliderClasses from './sliderClasses';
+
+// theme2's appearance vocabulary, which is not Material's. Different prop
+// names, different values, and a different class naming rule.
+const appearance = createAppearance({
+  tone: {
+    default: 'brand',
+    className: bare,
+    values: ['brand', 'neutral', 'positive', 'critical', 'caution', 'accent'],
+  },
+  scale: {
+    default: 'regular',
+    className: prefixed('scale'),
+    values: ['compact', 'regular'],
+  },
+});
 
 const MARKS = [
   { value: 0, label: '0' },
@@ -34,8 +50,14 @@ describe.skipIf(isJsdom())('Slider with theme2', () => {
     styleElement.remove();
   });
 
-  function styleOf(selector, props) {
-    const { container } = render(<SliderUnstyled defaultValue={40} {...props} />);
+  function styleOf(selector, { tone, scale, ...props } = {}) {
+    const { container } = render(
+      <SliderUnstyled
+        defaultValue={40}
+        appearance={appearance.resolve({ tone, scale })}
+        {...props}
+      />,
+    );
     return window.getComputedStyle(container.querySelector(selector));
   }
 
@@ -52,8 +74,8 @@ describe.skipIf(isJsdom())('Slider with theme2', () => {
     expect(style.height).toBe('20px');
   });
 
-  it('reacts to the size class', () => {
-    const style = styleOf(`.${sliderClasses.thumb}`, { size: 'small' });
+  it("reacts to theme2's own scale vocabulary", () => {
+    const style = styleOf(`.${sliderClasses.thumb}`, { scale: 'compact' });
     expect(style.width).toBe('14px');
   });
 
@@ -62,24 +84,34 @@ describe.skipIf(isJsdom())('Slider with theme2', () => {
     expect(style.backgroundImage).toContain('linear-gradient');
   });
 
-  it('reacts to the colour class', () => {
+  it("reacts to theme2's own tone vocabulary", () => {
     const fill = (props) =>
       styleOf(`.${sliderClasses.root}`, props).getPropertyValue('--theme2-fill-from').trim();
 
-    const primary = fill({});
-    expect(fill({ color: 'success' })).not.toBe(primary);
-    expect(fill({ color: 'error' })).not.toBe(primary);
-    expect(fill({ color: 'secondary' })).not.toBe(primary);
+    const brand = fill({});
+    expect(fill({ tone: 'positive' })).not.toBe(brand);
+    expect(fill({ tone: 'critical' })).not.toBe(brand);
+    expect(fill({ tone: 'neutral' })).not.toBe(brand);
   });
 
-  it('greys out a disabled slider whatever colour it was given', () => {
-    // `Mui-disabled` and the colour classes weigh the same, so this only works
+  it('ignores Material vocabulary, which belongs to a different styling layer', () => {
+    // `color` and `size` mean nothing here: the component has no such props, and
+    // theme2 never declared them.
+    const fill = (props) =>
+      styleOf(`.${sliderClasses.root}`, props).getPropertyValue('--theme2-fill-from').trim();
+
+    expect(fill({ color: 'success' })).toBe(fill({}));
+    expect(styleOf(`.${sliderClasses.thumb}`, { size: 'small' }).width).toBe('20px');
+  });
+
+  it('greys out a disabled slider whatever tone it was given', () => {
+    // `Mui-disabled` and the tone classes weigh the same, so this only works
     // because the disabled rule comes after them in the stylesheet.
     const fill = (props) =>
       styleOf(`.${sliderClasses.root}`, props).getPropertyValue('--theme2-fill-from').trim();
 
-    expect(fill({ color: 'success', disabled: true })).toBe(fill({ disabled: true }));
-    expect(fill({ color: 'success', disabled: true })).not.toBe(fill({ color: 'success' }));
+    expect(fill({ tone: 'positive', disabled: true })).toBe(fill({ disabled: true }));
+    expect(fill({ tone: 'positive', disabled: true })).not.toBe(fill({ tone: 'positive' }));
   });
 
   it('reacts to the orientation class', () => {

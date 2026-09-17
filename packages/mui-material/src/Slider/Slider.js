@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import memoTheme from '../utils/memoTheme';
 import createStyledSlots from '../utils/createStyledSlots';
+import createAppearance, { prefixed } from '../utils/createAppearance';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { getTransitionStyles } from '../transitions/utils';
 import { outsetFocusRing } from '../styles/focusVisible';
@@ -430,7 +431,24 @@ const styles = {
   })),
 };
 
-const styledSlots = createStyledSlots(sliderSlots, getSliderUtilityClass, styles);
+// Material Design's appearance vocabulary. The unstyled component knows none of
+// this; it only receives the class keys and ownerState this produces.
+const appearance = createAppearance({
+  color: {
+    default: 'primary',
+    className: prefixed('color'),
+    values: ['primary', 'secondary', 'error', 'info', 'success', 'warning'],
+    // A theme can add palette colours, so the values cannot all be listed.
+    prefix: 'color',
+  },
+  size: {
+    default: 'medium',
+    className: prefixed('size'),
+    values: ['small', 'medium'],
+  },
+});
+
+const styledSlots = createStyledSlots(sliderSlots, getSliderUtilityClass, styles, appearance);
 
 export const SliderRoot = styledSlots.root;
 export const SliderRail = styledSlots.rail;
@@ -467,11 +485,40 @@ SliderValueLabel.propTypes /* remove-proptypes */ = {
 export { SliderValueLabel };
 
 const Slider = React.forwardRef(function Slider(props, ref) {
-  const { slots, ...other } = props;
-  // Material's shells are the defaults; anything the user passes wins.
-  return <SliderUnstyled {...other} ref={ref} slots={{ ...styledSlots, ...slots }} />;
+  const { color, size, slots, ...other } = props;
+  return (
+    <SliderUnstyled
+      {...other}
+      ref={ref}
+      // Translated here rather than inside the component, so the appearance
+      // props never reach it and never reach the DOM.
+      appearance={appearance.resolve({ color, size })}
+      // Material's shells are the defaults; anything the user passes wins.
+      slots={{ ...styledSlots, ...slots }}
+    />
+  );
 });
 
-Slider.propTypes = SliderUnstyled.propTypes;
+Slider.propTypes = {
+  ...SliderUnstyled.propTypes,
+  /**
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+   * @default 'primary'
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.string,
+  ]),
+  /**
+   * The size of the slider.
+   * @default 'medium'
+   */
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['small', 'medium']),
+    PropTypes.string,
+  ]),
+};
 
 export default Slider;

@@ -12,6 +12,10 @@ import SliderValueLabel from '../SliderValueLabel';
  *
  * `@mui/material` reads this to generate a styled shell and an overridesResolver
  * per slot. It is the only thing it needs to know about the structure.
+ *
+ * Note what is absent: no `color`, no `size`. Those select an appearance rather
+ * than describing state, so the vocabulary for them belongs to whichever
+ * styling layer is in use, and reaches this component through `appearance`.
  */
 export interface SliderSlotDefinition {
   /**
@@ -27,11 +31,6 @@ export interface SliderSlotDefinition {
 export interface SliderSlotsDefinition {
   name: string;
   slots: Record<string, SliderSlotDefinition>;
-  /**
-   * Class-name prefixes generated from an open-ended value, such as a palette
-   * colour the theme adds. These cannot be enumerated ahead of time.
-   */
-  dynamicPrefixes: readonly string[];
 }
 
 const sliderSlots = {
@@ -47,16 +46,6 @@ const sliderSlots = {
         'vertical',
         'trackInverted',
         'trackFalse',
-        'sizeSmall',
-        // `useUtilityClasses` emits `sizeMedium` too, but `sliderClasses` does
-        // not list it, so it is absent from the public class object today.
-        'sizeMedium',
-        'colorPrimary',
-        'colorSecondary',
-        'colorError',
-        'colorInfo',
-        'colorSuccess',
-        'colorWarning',
       ],
     },
     rail: { elementType: 'span', classes: ['rail'] },
@@ -70,7 +59,6 @@ const sliderSlots = {
     },
     input: { elementType: 'input', classes: [] },
   },
-  dynamicPrefixes: ['color'],
 } satisfies SliderSlotsDefinition;
 
 export default sliderSlots;

@@ -11,7 +11,6 @@ import isHostComponent from '@mui/utils/isHostComponent';
 import { useRtl } from '@mui/system/RtlProvider';
 import { useDefaultProps } from '../../DefaultPropsProvider';
 import useSlot from '../../utils/useSlot';
-import capitalize from '../../utils/capitalize';
 import { useSlider, valueToPercent } from '../useSlider';
 import { getSliderUtilityClass } from '../sliderClasses';
 import sliderSlots from './sliderSlots';
@@ -22,8 +21,8 @@ function Identity(x) {
   return x;
 }
 
-const useUtilityClasses = (ownerState) => {
-  const { disabled, dragging, marked, orientation, track, classes, color, size } = ownerState;
+const useUtilityClasses = (ownerState, appearanceClasses) => {
+  const { disabled, dragging, marked, orientation, track, classes } = ownerState;
 
   const slots = {
     root: [
@@ -34,8 +33,6 @@ const useUtilityClasses = (ownerState) => {
       orientation === 'vertical' && 'vertical',
       track === 'inverted' && 'trackInverted',
       track === false && 'trackFalse',
-      color && `color${capitalize(color)}`,
-      size && `size${capitalize(size)}`,
     ],
     rail: ['rail'],
     track: ['track'],
@@ -49,6 +46,17 @@ const useUtilityClasses = (ownerState) => {
     disabled: ['disabled'],
     focusVisible: ['focusVisible'],
   };
+
+  // Class keys contributed by the styling layer, appended per slot. They are
+  // keys rather than finished class names so that `composeClasses` still does
+  // the prefixing and still applies the user's `classes` overrides to them.
+  if (appearanceClasses) {
+    Object.entries(appearanceClasses).forEach(([slotName, keys]) => {
+      if (slots[slotName]) {
+        slots[slotName].push(...keys);
+      }
+    });
+  }
 
   return composeClasses(slots, getSliderUtilityClass, classes);
 };
@@ -64,7 +72,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     'aria-label': ariaLabel,
     'aria-valuetext': ariaValuetext,
     'aria-labelledby': ariaLabelledby,
-    color = 'primary',
+    appearance,
     classes: classesProp,
     className,
     disableSwap = false,
@@ -79,7 +87,6 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     onChangeCommitted,
     orientation = 'horizontal',
     shiftStep = 10,
-    size = 'medium',
     step = 1,
     scale = Identity,
     slotProps = {},
@@ -102,8 +109,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     disableSwap,
     orientation,
     marks: marksProp,
-    color,
-    size,
+    ...appearance?.ownerState,
     step,
     shiftStep,
     scale,
@@ -134,7 +140,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   ownerState.dragging = dragging;
   ownerState.focusedThumbIndex = focusedThumbIndex;
 
-  const classes = useUtilityClasses(ownerState);
+  const classes = useUtilityClasses(ownerState, appearance?.classes);
 
   const externalForwardedProps = {
     slots,
@@ -360,19 +366,21 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
+   * Contributed by the styling layer. `classes` are class keys appended per
+   * slot; `ownerState` is merged into this component's own so that existing
+   * `styleOverrides` callbacks and theme `variants` keep matching.
+   *
+   * The `ownerState` half exists only for that compatibility and is expected to
+   * be phased out in userland; `classes` is the part that should survive.
+   */
+  appearance: PropTypes.shape({
+    classes: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)),
+    ownerState: PropTypes.object,
+  }),
+  /**
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The color of the component.
-   * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
-   * @default 'primary'
-   */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
-    PropTypes.string,
-  ]),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -469,14 +477,6 @@ Slider.propTypes /* remove-proptypes */ = {
    * @default 10
    */
   shiftStep: PropTypes.number,
-  /**
-   * The size of the slider.
-   * @default 'medium'
-   */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['small', 'medium']),
-    PropTypes.string,
-  ]),
   /**
    * The props used for each slot inside.
    * @default {}

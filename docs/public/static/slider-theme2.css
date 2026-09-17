@@ -178,7 +178,9 @@
 
 /* ---------------------------------------------------------------- sizes ---- */
 
-.MuiSlider-root.MuiSlider-sizeSmall {
+/* theme2 calls this `scale`, not `size`, and its values are `compact` and
+   `regular`. The class names come from theme2's own declaration. */
+.MuiSlider-root.MuiSlider-scaleCompact {
   --theme2-groove-thickness: 4px;
   --theme2-thumb-size: 14px;
   --theme2-mark-size: 4px;
@@ -186,27 +188,30 @@
 
 /* --------------------------------------------------------------- colours ---- */
 
-.MuiSlider-root.MuiSlider-colorSecondary {
+/* theme2 calls this `tone`, and names its classes after the value alone rather
+   than prefixing them, so `tone="positive"` gives `MuiSlider-positive`. Neither
+   the vocabulary nor the naming is Material's. */
+.MuiSlider-root.MuiSlider-neutral {
   --theme2-fill-from: var(--theme2-neutral-from);
   --theme2-fill-to: var(--theme2-neutral-to);
 }
 
-.MuiSlider-root.MuiSlider-colorSuccess {
+.MuiSlider-root.MuiSlider-positive {
   --theme2-fill-from: var(--theme2-success-from);
   --theme2-fill-to: var(--theme2-success-to);
 }
 
-.MuiSlider-root.MuiSlider-colorError {
+.MuiSlider-root.MuiSlider-critical {
   --theme2-fill-from: var(--theme2-danger-from);
   --theme2-fill-to: var(--theme2-danger-to);
 }
 
-.MuiSlider-root.MuiSlider-colorWarning {
+.MuiSlider-root.MuiSlider-caution {
   --theme2-fill-from: var(--theme2-warning-from);
   --theme2-fill-to: var(--theme2-warning-to);
 }
 
-.MuiSlider-root.MuiSlider-colorInfo {
+.MuiSlider-root.MuiSlider-accent {
   --theme2-fill-from: var(--theme2-info-from);
   --theme2-fill-to: var(--theme2-info-to);
 }

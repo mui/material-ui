@@ -2,8 +2,10 @@ import * as React from 'react';
 import Head from 'next/head';
 // Two levels deep only because the split is a prototype living inside
 // `@mui/material`. Were it a package of its own this would be one level.
-// eslint-disable-next-line no-restricted-imports
+/* eslint-disable no-restricted-imports */
 import SliderUnstyled from '@mui/material/Slider/unstyled';
+import createAppearance, { prefixed, bare } from '@mui/material/utils/createAppearance';
+/* eslint-enable no-restricted-imports */
 
 /**
  * The unstyled Slider dressed by `theme2`, a plain CSS file.
@@ -17,6 +19,27 @@ import SliderUnstyled from '@mui/material/Slider/unstyled';
  * carries the same class names and would be restyled too.
  */
 
+// theme2's own appearance vocabulary. Different prop names, different values,
+// and a different class naming rule from Material's.
+const appearance = createAppearance({
+  tone: {
+    default: 'brand',
+    // Named after the value alone, so `tone="positive"` is `MuiSlider-positive`.
+    className: bare,
+    values: ['brand', 'neutral', 'positive', 'critical', 'caution', 'accent'],
+  },
+  scale: {
+    default: 'regular',
+    className: prefixed('scale'),
+    values: ['compact', 'regular'],
+  },
+});
+
+/** theme2's wrapper. All it does is translate its vocabulary. */
+function Slider({ tone, scale, ...other }) {
+  return <SliderUnstyled {...other} appearance={appearance.resolve({ tone, scale })} />;
+}
+
 const MARKS = [
   { value: 0, label: '0' },
   { value: 25, label: '25' },
@@ -24,6 +47,72 @@ const MARKS = [
   { value: 75, label: '75' },
   { value: 100, label: '100' },
 ];
+
+const MATERIAL_SNIPPET = `// @mui/material declares Material Design's vocabulary
+const appearance = createAppearance({
+  color: {
+    default: 'primary',
+    className: prefixed('color'),          // -> MuiSlider-colorPrimary
+    values: ['primary', 'secondary', 'error', 'info', 'success', 'warning'],
+    prefix: 'color',                       // a theme may add palette colours
+  },
+  size: {
+    default: 'medium',
+    className: prefixed('size'),           // -> MuiSlider-sizeMedium
+    values: ['small', 'medium'],
+  },
+});
+
+function Slider({ color, size, ...other }) {
+  return <SliderUnstyled {...other} appearance={appearance.resolve({ color, size })} />;
+}`;
+
+const THEME2_SNIPPET = `// theme2 declares something else entirely
+const appearance = createAppearance({
+  tone: {
+    default: 'brand',
+    className: bare,                       // -> MuiSlider-positive
+    values: ['brand', 'neutral', 'positive', 'critical', 'caution', 'accent'],
+  },
+  scale: {
+    default: 'regular',
+    className: prefixed('scale'),          // -> MuiSlider-scaleCompact
+    values: ['compact', 'regular'],
+  },
+});
+
+function Slider({ tone, scale, ...other }) {
+  return <SliderUnstyled {...other} appearance={appearance.resolve({ tone, scale })} />;
+}`;
+
+const RESOLVE_SNIPPET = `appearance.resolve({ tone: 'positive', scale: 'compact' })
+
+// { ownerState: { tone: 'positive', scale: 'compact' },
+//   classes:    { root: ['positive', 'scaleCompact'] } }
+
+// The component merges ownerState into its own and appends the class keys to
+// the root slot. It never learns what "tone" means. The ownerState half exists
+// only so existing styleOverrides callbacks and theme variants keep matching,
+// and is meant to be phased out.`;
+
+function Snippet({ children }) {
+  return (
+    <pre
+      style={{
+        margin: '0 0 16px',
+        padding: 16,
+        borderRadius: 8,
+        background: 'var(--theme2-surface)',
+        color: 'var(--theme2-page-fg)',
+        fontSize: 12,
+        lineHeight: 1.55,
+        overflowX: 'auto',
+      }}
+    >
+      <code>{children}</code>
+    </pre>
+  );
+}
 
 function Row({ title, note, children }) {
   return (
@@ -71,7 +160,7 @@ export default function SliderTheme2() {
       >
         <main
           style={{
-            maxWidth: 680,
+            maxWidth: 720,
             margin: '0 auto',
             padding: '48px 24px 96px',
             fontFamily: 'system-ui, sans-serif',
@@ -120,53 +209,74 @@ export default function SliderTheme2() {
             </button>
           </div>
 
+          <Row
+            title="The appearance vocabulary belongs to the styling layer"
+            note="Props like color and size select an appearance and have no behaviour, so the
+              component underneath does not define them. Each styling layer declares its own."
+          >
+            <Snippet>{MATERIAL_SNIPPET}</Snippet>
+            <Snippet>{THEME2_SNIPPET}</Snippet>
+            <p
+              style={{
+                fontSize: 13,
+                color: 'var(--theme2-page-muted)',
+                margin: '0 0 18px',
+                lineHeight: 1.6,
+              }}
+            >
+              Same component, two vocabularies. Different prop names, different values, and two
+              different class naming rules. Everything below uses theme2&apos;s.
+            </p>
+            <Snippet>{RESOLVE_SNIPPET}</Snippet>
+          </Row>
+
           <Row title="Default">
-            <SliderUnstyled defaultValue={40} />
+            <Slider defaultValue={40} />
           </Row>
 
-          <Row title="Sizes" note="Small and the default medium.">
-            <SliderUnstyled defaultValue={30} size="small" />
+          <Row title="Scale" note="compact and the default regular.">
+            <Slider defaultValue={30} scale="compact" />
             <div style={{ height: 28 }} />
-            <SliderUnstyled defaultValue={30} />
+            <Slider defaultValue={30} />
           </Row>
 
-          <Row title="Colours" note="Driven by the colour classes on the root.">
-            {['primary', 'secondary', 'success', 'error', 'warning', 'info'].map((color) => (
-              <div key={color} style={{ marginBottom: 22 }}>
-                <SliderUnstyled defaultValue={55} color={color} />
+          <Row title="Tone" note="theme2's accents, which are not Material's palette.">
+            {['brand', 'neutral', 'positive', 'critical', 'caution', 'accent'].map((tone) => (
+              <div key={tone} style={{ marginBottom: 22 }}>
+                <Slider defaultValue={55} tone={tone} />
               </div>
             ))}
           </Row>
 
           <Row title="Marks and labels">
-            <SliderUnstyled defaultValue={60} marks={MARKS} step={25} />
+            <Slider defaultValue={60} marks={MARKS} step={25} />
           </Row>
 
           <Row title="Range" note="Two thumbs.">
-            <SliderUnstyled defaultValue={[20, 70]} />
+            <Slider defaultValue={[20, 70]} />
           </Row>
 
           <Row title="Value label" note="Shown while dragging, and always when set to on.">
-            <SliderUnstyled defaultValue={45} valueLabelDisplay="on" />
+            <Slider defaultValue={45} valueLabelDisplay="on" />
             <div style={{ height: 44 }} />
-            <SliderUnstyled defaultValue={45} valueLabelDisplay="auto" />
+            <Slider defaultValue={45} valueLabelDisplay="auto" />
           </Row>
 
           <Row title="Track variations" note="Inverted, and no track at all.">
-            <SliderUnstyled defaultValue={40} track="inverted" />
+            <Slider defaultValue={40} track="inverted" />
             <div style={{ height: 28 }} />
-            <SliderUnstyled defaultValue={40} track={false} marks={MARKS} step={25} />
+            <Slider defaultValue={40} track={false} marks={MARKS} step={25} />
           </Row>
 
           <Row title="Disabled">
-            <SliderUnstyled defaultValue={40} disabled />
+            <Slider defaultValue={40} disabled tone="positive" />
           </Row>
 
           <Row title="Vertical">
             <div style={{ display: 'flex', gap: 64, height: 220 }}>
-              <SliderUnstyled defaultValue={40} orientation="vertical" />
-              <SliderUnstyled defaultValue={[20, 70]} orientation="vertical" />
-              <SliderUnstyled defaultValue={60} orientation="vertical" marks={MARKS} step={25} />
+              <Slider defaultValue={40} orientation="vertical" />
+              <Slider defaultValue={[20, 70]} orientation="vertical" tone="positive" />
+              <Slider defaultValue={60} orientation="vertical" marks={MARKS} step={25} />
             </div>
           </Row>
         </main>
