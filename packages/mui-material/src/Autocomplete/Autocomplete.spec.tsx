@@ -6,6 +6,7 @@ import Autocomplete, {
   AutocompleteMappedProps,
   AutocompleteRenderGetTagProps,
   AutocompleteMappedValue,
+  AutocompleteRenderOptionState,
 } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { ChipTypeMap } from '@mui/material/Chip';
@@ -128,6 +129,21 @@ createTheme({
       defaultProps: {
         options,
         getOptionLabel: (option: Option) => option.label,
+        renderOption: (props, option, state, ownerState) => {
+          expectType<React.HTMLAttributes<HTMLLIElement> & { key: React.Key }, typeof props>(props);
+          expectType<AutocompleteRenderOptionState, typeof state>(state);
+          expectType<boolean, typeof ownerState.fullWidth>(ownerState.fullWidth);
+          const { key, ...optionProps } = props;
+          return (
+            <li key={key} {...optionProps}>
+              {ownerState.getOptionLabel(option)}
+            </li>
+          );
+        },
+        renderValue: (value, getItemProps, ownerState) => {
+          expectType<boolean, typeof ownerState.fullWidth>(ownerState.fullWidth);
+          return <span {...getItemProps({ index: 0 })}>{ownerState.getOptionLabel(value)}</span>;
+        },
       },
     },
   },

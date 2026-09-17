@@ -125,8 +125,9 @@ export interface ComponentsPropsList {
   MuiAlert: AlertProps;
   MuiAlertTitle: AlertTitleProps;
   MuiAppBar: AppBarProps;
-  MuiAutocomplete:
-    AutocompleteProps<any, any, any, any> | AutocompleteMappedProps<any, any, any, any, any>;
+  // Preserve contextual typing for callbacks by widening only the mapper, instead of unioning props.
+  MuiAutocomplete: Omit<AutocompleteProps<any, any, any, any>, 'getOptionValue'> &
+    Partial<Pick<AutocompleteMappedProps<any, any, any, any, any>, 'getOptionValue'>>;
   MuiAvatar: AvatarProps;
   MuiAvatarGroup: AvatarGroupProps;
   MuiBackdrop: BackdropProps;
