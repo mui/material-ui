@@ -1,10 +1,11 @@
 /**
  * theme2: an alternative theme for the unstyled components.
  *
- * A plain CSS file. It styles the unstyled Slider entirely through its stable
- * `MuiSlider-*` class names, with its own tokens and no relationship to
- * Material Design. Nothing here is generated and there is no styling engine
- * involved: drop the file in and the component looks like this.
+ * A plain CSS file. It styles the unstyled Slider and Button entirely through
+ * their stable `MuiSlider-*` and `MuiButton-*` class names, with its own tokens
+ * and no relationship to Material Design. Nothing here is generated and there
+ * is no styling engine involved: drop the file in and the components look like
+ * this.
  *
  * It has to supply structural CSS as well as appearance, because the unstyled
  * component ships none. Anything marked "structure" below is required for the
@@ -13,139 +14,74 @@
  * Tokens come in two layers: a palette that changes with the colour scheme,
  * and component tokens that refer to it. Scheme follows the system preference,
  * and the page can override it with `data-theme2="light"` or `"dark"` on the
- * root element.
+ * root element, which sets `color-scheme` and nothing else.
  */
 
 /* ============================================================== palette ==== */
 
+/* Each token carries both schemes at once. `color-scheme` decides which half
+   `light-dark()` returns, so the override is one declaration rather than a
+   second copy of the palette, and the UA follows along for scrollbars and
+   native controls. */
 :root {
-  --theme2-page-bg: #ffffff;
-  --theme2-page-fg: #1c1c1e;
-  --theme2-page-muted: #6e6e6e;
+  color-scheme: light dark;
+}
 
-  --theme2-surface: #e9e8ec;
-  --theme2-raised-from: #ffffff;
-  --theme2-raised-to: #f4f4f6;
-  --theme2-raised-from-hover: #ffffff;
-  --theme2-raised-to-hover: #e8e8ec;
-  --theme2-raised-from-disabled: #f2f2f4;
-  --theme2-raised-to-disabled: #e2e2e6;
-  --theme2-edge: rgb(0 0 0 / 0.14);
-  --theme2-border: rgb(0 0 0 / 0.12);
-  --theme2-tick: #b4b4bb;
-  --theme2-label: #6e6e6e;
+:root[data-theme2='light'] {
+  color-scheme: light;
+}
 
-  /* Accents run light to dark, because on a pale surface the darker end
-     reads as depth. */
-  --theme2-primary-from: hsl(252deg 67% 62%);
-  --theme2-primary-to: hsl(252deg 62% 46%);
-  --theme2-neutral-from: hsl(252deg 7% 62%);
-  --theme2-neutral-to: hsl(252deg 6% 46%);
-  --theme2-success-from: hsl(127deg 62% 42%);
-  --theme2-success-to: hsl(127deg 66% 30%);
-  --theme2-danger-from: hsl(358deg 70% 55%);
-  --theme2-danger-to: hsl(358deg 68% 42%);
-  --theme2-warning-from: hsl(35deg 85% 52%);
-  --theme2-warning-to: hsl(35deg 85% 40%);
-  --theme2-info-from: hsl(205deg 75% 52%);
-  --theme2-info-to: hsl(205deg 72% 40%);
-
-  --theme2-muted-from: hsl(248deg 15% 90%);
-  --theme2-muted-to: hsl(245deg 14% 85%);
-
-  --theme2-shadow-tint: 215deg 22% 17%;
-  --theme2-shadow:
-    0 1px 1px 0px hsl(var(--theme2-shadow-tint) / 12%),
-    0 2px 6px -1px hsl(var(--theme2-shadow-tint) / 10%),
-    0 6px 12px -3px hsl(var(--theme2-shadow-tint) / 8%);
-  --theme2-inset: inset 0 1px 2px 0 rgb(0 0 0 / 0.08), inset 0 2px 4px -1px rgb(0 0 0 / 0.03);
+:root[data-theme2='dark'] {
+  color-scheme: dark;
 }
 
 /* Dark is derived from light rather than inverted. The surface recedes, the
    raised thumb stays light because a lit object does not darken, and the
    accents gain lightness so they keep their punch against a dark ground. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme2='light']) {
-    --theme2-page-bg: #0e0e10;
-    --theme2-page-fg: #f2f2f4;
-    --theme2-page-muted: #9a9aa2;
+:root {
+  --theme2-page-bg: light-dark(#ffffff, #0e0e10);
+  --theme2-page-fg: light-dark(#1c1c1e, #f2f2f4);
+  --theme2-page-muted: light-dark(#6e6e6e, #9a9aa2);
 
-    --theme2-surface: #26262b;
-    --theme2-raised-from: #ffffff;
-    --theme2-raised-to: #dcdce2;
-    --theme2-raised-from-hover: #ffffff;
-    --theme2-raised-to-hover: #cbcbd3;
-    --theme2-raised-from-disabled: #85858e;
-    --theme2-raised-to-disabled: #6e6e78;
-    --theme2-edge: rgb(0 0 0 / 0.5);
-    --theme2-border: rgb(255 255 255 / 0.16);
-    --theme2-tick: #5a5a62;
-    --theme2-label: #9a9aa2;
+  --theme2-surface: light-dark(#e9e8ec, #26262b);
+  --theme2-raised-from: light-dark(#ffffff, #ffffff);
+  --theme2-raised-to: light-dark(#f4f4f6, #dcdce2);
+  --theme2-raised-from-hover: light-dark(#ffffff, #ffffff);
+  --theme2-raised-to-hover: light-dark(#e8e8ec, #cbcbd3);
+  --theme2-raised-from-disabled: light-dark(#f2f2f4, #85858e);
+  --theme2-raised-to-disabled: light-dark(#e2e2e6, #6e6e78);
+  --theme2-edge: light-dark(rgb(0 0 0 / 0.14), rgb(0 0 0 / 0.5));
+  --theme2-border: light-dark(rgb(0 0 0 / 0.12), rgb(255 255 255 / 0.16));
+  --theme2-tick: light-dark(#b4b4bb, #5a5a62);
+  --theme2-label: light-dark(#6e6e6e, #9a9aa2);
 
-    --theme2-primary-from: hsl(252deg 80% 74%);
-    --theme2-primary-to: hsl(252deg 68% 58%);
-    --theme2-neutral-from: hsl(252deg 9% 72%);
-    --theme2-neutral-to: hsl(252deg 7% 56%);
-    --theme2-success-from: hsl(127deg 52% 60%);
-    --theme2-success-to: hsl(127deg 54% 44%);
-    --theme2-danger-from: hsl(358deg 82% 70%);
-    --theme2-danger-to: hsl(358deg 70% 55%);
-    --theme2-warning-from: hsl(35deg 90% 66%);
-    --theme2-warning-to: hsl(35deg 85% 52%);
-    --theme2-info-from: hsl(205deg 85% 68%);
-    --theme2-info-to: hsl(205deg 78% 54%);
+  /* Accents run light to dark, because on a pale surface the darker end
+     reads as depth. */
+  --theme2-primary-from: light-dark(hsl(252deg 67% 62%), hsl(252deg 80% 74%));
+  --theme2-primary-to: light-dark(hsl(252deg 62% 46%), hsl(252deg 68% 58%));
+  --theme2-neutral-from: light-dark(hsl(252deg 7% 62%), hsl(252deg 9% 72%));
+  --theme2-neutral-to: light-dark(hsl(252deg 6% 46%), hsl(252deg 7% 56%));
+  --theme2-success-from: light-dark(hsl(127deg 62% 42%), hsl(127deg 52% 60%));
+  --theme2-success-to: light-dark(hsl(127deg 66% 30%), hsl(127deg 54% 44%));
+  --theme2-danger-from: light-dark(hsl(358deg 70% 55%), hsl(358deg 82% 70%));
+  --theme2-danger-to: light-dark(hsl(358deg 68% 42%), hsl(358deg 70% 55%));
+  --theme2-warning-from: light-dark(hsl(35deg 85% 52%), hsl(35deg 90% 66%));
+  --theme2-warning-to: light-dark(hsl(35deg 85% 40%), hsl(35deg 85% 52%));
+  --theme2-info-from: light-dark(hsl(205deg 75% 52%), hsl(205deg 85% 68%));
+  --theme2-info-to: light-dark(hsl(205deg 72% 40%), hsl(205deg 78% 54%));
 
-    --theme2-muted-from: #3a3a43;
-    --theme2-muted-to: #2e2e36;
+  --theme2-muted-from: light-dark(hsl(248deg 15% 90%), #3a3a43);
+  --theme2-muted-to: light-dark(hsl(245deg 14% 85%), #2e2e36);
 
-    --theme2-shadow-tint: 0deg 0% 0%;
-    --theme2-shadow:
-      0 1px 1px 0px hsl(var(--theme2-shadow-tint) / 40%),
-      0 2px 6px -1px hsl(var(--theme2-shadow-tint) / 35%),
-      0 6px 14px -3px hsl(var(--theme2-shadow-tint) / 30%);
-    --theme2-inset: inset 0 1px 2px 0 rgb(0 0 0 / 0.5);
-  }
-}
-
-:root[data-theme2='dark'] {
-  --theme2-page-bg: #0e0e10;
-  --theme2-page-fg: #f2f2f4;
-  --theme2-page-muted: #9a9aa2;
-
-  --theme2-surface: #26262b;
-  --theme2-raised-from: #ffffff;
-  --theme2-raised-to: #dcdce2;
-  --theme2-raised-from-hover: #ffffff;
-  --theme2-raised-to-hover: #cbcbd3;
-  --theme2-raised-from-disabled: #85858e;
-  --theme2-raised-to-disabled: #6e6e78;
-  --theme2-edge: rgb(0 0 0 / 0.5);
-  --theme2-border: rgb(255 255 255 / 0.16);
-  --theme2-tick: #5a5a62;
-  --theme2-label: #9a9aa2;
-
-  --theme2-primary-from: hsl(252deg 80% 74%);
-  --theme2-primary-to: hsl(252deg 68% 58%);
-  --theme2-neutral-from: hsl(252deg 9% 72%);
-  --theme2-neutral-to: hsl(252deg 7% 56%);
-  --theme2-success-from: hsl(127deg 52% 60%);
-  --theme2-success-to: hsl(127deg 54% 44%);
-  --theme2-danger-from: hsl(358deg 82% 70%);
-  --theme2-danger-to: hsl(358deg 70% 55%);
-  --theme2-warning-from: hsl(35deg 90% 66%);
-  --theme2-warning-to: hsl(35deg 85% 52%);
-  --theme2-info-from: hsl(205deg 85% 68%);
-  --theme2-info-to: hsl(205deg 78% 54%);
-
-  --theme2-muted-from: #3a3a43;
-  --theme2-muted-to: #2e2e36;
-
-  --theme2-shadow-tint: 0deg 0% 0%;
+  /* `light-dark()` resolves a colour, not a whole shadow, so the alpha rides
+     along inside each layer's colour. */
   --theme2-shadow:
-    0 1px 1px 0px hsl(var(--theme2-shadow-tint) / 40%),
-    0 2px 6px -1px hsl(var(--theme2-shadow-tint) / 35%),
-    0 6px 14px -3px hsl(var(--theme2-shadow-tint) / 30%);
-  --theme2-inset: inset 0 1px 2px 0 rgb(0 0 0 / 0.5);
+    0 1px 1px 0px light-dark(hsl(215deg 22% 17% / 12%), hsl(0deg 0% 0% / 40%)),
+    0 2px 6px -1px light-dark(hsl(215deg 22% 17% / 10%), hsl(0deg 0% 0% / 35%)),
+    0 6px 12px -3px light-dark(hsl(215deg 22% 17% / 8%), hsl(0deg 0% 0% / 30%));
+  --theme2-inset:
+    inset 0 1px 2px 0 light-dark(rgb(0 0 0 / 0.08), rgb(0 0 0 / 0.5)),
+    inset 0 2px 4px -1px light-dark(rgb(0 0 0 / 0.03), transparent);
 }
 
 /* ============================================================== slider ==== */
@@ -508,7 +444,7 @@
   box-shadow: var(--theme2-shadow);
 }
 
-.MuiButton-root.MuiButton-solid:hover {
+.MuiButton-root.MuiButton-solid:not(:disabled, .Mui-disabled):hover {
   background: linear-gradient(to bottom, var(--theme2-fill-to), var(--theme2-fill-to));
 }
 
@@ -519,11 +455,11 @@
 
 /* The tint is mixed in CSS rather than precomputed, which is the sort of thing
    a styling engine is usually reached for. */
-.MuiButton-root.MuiButton-quiet:hover {
+.MuiButton-root.MuiButton-quiet:not(:disabled, .Mui-disabled):hover {
   background-color: color-mix(in oklab, var(--theme2-fill-from) 14%, transparent);
 }
 
-.MuiButton-root.MuiButton-quiet:active {
+.MuiButton-root.MuiButton-quiet:not(:disabled, .Mui-disabled):active {
   background-color: color-mix(in oklab, var(--theme2-fill-from) 22%, transparent);
 }
 
@@ -552,7 +488,7 @@
 
 /* ----------------------------------------------------------------- focus ---- */
 
-.MuiButton-root:focus-visible {
+.MuiButton-root:not(:disabled, .Mui-disabled):focus-visible {
   outline: 2px solid var(--theme2-fill-from);
   outline-offset: 2px;
 }
@@ -574,10 +510,26 @@
   display: contents;
 }
 
+/* An explicit colour, not `inherit`: the root goes transparent to hide the
+   label while loading, and the spinner draws itself with `currentColor`. */
 .MuiButton-loadingIndicator {
   display: inline-flex;
   align-items: center;
-  color: inherit;
+  color: var(--theme2-loading-color, var(--theme2-page-fg));
+}
+
+.MuiButton-root.MuiButton-solid {
+  --theme2-loading-color: #ffffff;
+}
+
+.MuiButton-root.MuiButton-quiet {
+  --theme2-loading-color: var(--theme2-fill-to);
+}
+
+/* Loading also disables, so the fill is the muted gradient and the spinner
+   takes the disabled label colour rather than the solid one. */
+.MuiButton-root.MuiButton-loading {
+  --theme2-loading-color: var(--theme2-page-muted);
 }
 
 /* Centred loading covers the label rather than displacing it. */
@@ -589,6 +541,30 @@
 
 .MuiButton-root.MuiButton-loading.MuiButton-loadingPositionCenter {
   color: transparent;
+}
+
+/* Start and end loading sit over the icon slot, which holds the space. In flow
+   the spinner would be a third flex item and push the label by an icon width
+   plus two gaps. */
+.MuiButton-root.MuiButton-loadingPositionStart .MuiButton-loadingIndicator,
+.MuiButton-root.MuiButton-loadingPositionEnd .MuiButton-loadingIndicator {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.MuiButton-root.MuiButton-loadingPositionStart .MuiButton-loadingIndicator {
+  left: var(--theme2-button-pad);
+}
+
+.MuiButton-root.MuiButton-loadingPositionEnd .MuiButton-loadingIndicator {
+  right: var(--theme2-button-pad);
+}
+
+/* A real icon under the spinner keeps its space but not its ink. */
+.MuiButton-root.MuiButton-loading.MuiButton-loadingPositionStart .MuiButton-startIcon > *,
+.MuiButton-root.MuiButton-loading.MuiButton-loadingPositionEnd .MuiButton-endIcon > * {
+  visibility: hidden;
 }
 
 /* theme2's own spinner, injected through the `loadingSpinner` slot. Material

@@ -25,6 +25,8 @@ const ENTRIES = [
   path.join(SRC, 'Slider/unstyled/sliderSlots.ts'),
   path.join(SRC, 'Button/unstyled/ButtonUnstyled.js'),
   path.join(SRC, 'Button/unstyled/buttonSlots.ts'),
+  path.join(SRC, 'ButtonBase/unstyled/ButtonBaseUnstyled.js'),
+  path.join(SRC, 'ButtonBase/unstyled/buttonBaseSlots.ts'),
 ];
 
 /** Importing any of these means the unstyled layer depends on styling. */

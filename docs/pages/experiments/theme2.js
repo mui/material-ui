@@ -137,7 +137,7 @@ function Labelled({ label, children }) {
     <div style={{ marginBottom: 48 }}>
       {children}
       <div style={{ marginTop: 10 }}>
-        <Code>{label}</Code>
+        <Code block={label.includes('\n')}>{label}</Code>
       </div>
     </div>
   );
@@ -214,7 +214,7 @@ export default function SliderTheme2() {
             }}
           >
             <div>
-              <h1 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 8px' }}>Slider, theme2</h1>
+              <h1 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 8px' }}>theme2</h1>
               <p
                 style={{
                   fontSize: 14,
@@ -223,9 +223,9 @@ export default function SliderTheme2() {
                   lineHeight: 1.6,
                 }}
               >
-                The unstyled Slider with a plain CSS file over it. No styling engine, no theme
-                provider, no Material Design. Every rule targets a stable <code>MuiSlider-*</code>{' '}
-                class.
+                The unstyled Slider and Button with a plain CSS file over them. No styling engine,
+                no theme provider, no Material Design. Every rule targets a stable{' '}
+                <code>MuiSlider-*</code> or <code>MuiButton-*</code> class.
               </p>
             </div>
             <button
@@ -364,7 +364,10 @@ export default function SliderTheme2() {
 
           <Row title="Emphasis" note="Two, where Material has three variants.">
             {['solid', 'quiet'].map((emphasis) => (
-              <Labelled key={emphasis} label={`<Button emphasis="${emphasis}" />`}>
+              <Labelled
+                key={emphasis}
+                label={`<Button emphasis="${emphasis}">Save changes</Button>`}
+              >
                 <Button emphasis={emphasis}>Save changes</Button>
               </Labelled>
             ))}
@@ -372,7 +375,10 @@ export default function SliderTheme2() {
 
           <Row title="Tone" note="The same tones the Slider uses.">
             {TONES.map((tone) => (
-              <Labelled key={tone} label={`<Button tone="${tone}" />`}>
+              <Labelled
+                key={tone}
+                label={`<Button tone="${tone}">Solid</Button>\n<Button tone="${tone}" emphasis="quiet">Quiet</Button>`}
+              >
                 <span style={{ display: 'inline-flex', gap: 12 }}>
                   <Button tone={tone}>Solid</Button>
                   <Button tone={tone} emphasis="quiet">
@@ -385,17 +391,24 @@ export default function SliderTheme2() {
 
           <Row title="Scale">
             {SCALES.map((scale) => (
-              <Labelled key={scale} label={`<Button scale="${scale}" />`}>
+              <Labelled key={scale} label={`<Button scale="${scale}">Save changes</Button>`}>
                 <Button scale={scale}>Save changes</Button>
               </Labelled>
             ))}
           </Row>
 
-          <Row title="Block" note="What Material calls fullWidth." code={`<Button block />`}>
+          <Row
+            title="Block"
+            note="What Material calls fullWidth."
+            code={`<Button block>Save changes</Button>`}
+          >
             <Button block>Save changes</Button>
           </Row>
 
-          <Row title="Disabled" code={`<Button disabled />`}>
+          <Row
+            title="Disabled"
+            code={`<Button disabled>Solid</Button>\n<Button disabled emphasis="quiet">Quiet</Button>`}
+          >
             <span style={{ display: 'inline-flex', gap: 12 }}>
               <Button disabled>Solid</Button>
               <Button disabled emphasis="quiet">
@@ -408,10 +421,10 @@ export default function SliderTheme2() {
             title="Loading"
             note="The spinner comes through the loadingSpinner slot. Material puts a CircularProgress there; theme2 supplies a few lines of CSS."
           >
-            <Labelled label={`<Button loading />`}>
+            <Labelled label={`<Button loading>Save changes</Button>`}>
               <Button loading>Save changes</Button>
             </Labelled>
-            <Labelled label={`<Button loading loadingPosition="start" />`}>
+            <Labelled label={`<Button loading loadingPosition="start">Save changes</Button>`}>
               <Button loading loadingPosition="start">
                 Save changes
               </Button>
