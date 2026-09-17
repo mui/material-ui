@@ -21,12 +21,12 @@ const appearance = createAppearance({
   tone: {
     default: 'brand',
     className: bare,
-    values: ['brand', 'neutral', 'positive', 'critical', 'caution', 'accent'],
+    values: ['brand', 'muted', 'positive', 'critical', 'caution'],
   },
   scale: {
     default: 'regular',
     className: prefixed('scale'),
-    values: ['compact', 'regular'],
+    values: ['compact', 'regular', 'roomy'],
   },
 });
 
@@ -91,7 +91,7 @@ describe.skipIf(isJsdom())('Slider with theme2', () => {
     const brand = fill({});
     expect(fill({ tone: 'positive' })).not.toBe(brand);
     expect(fill({ tone: 'critical' })).not.toBe(brand);
-    expect(fill({ tone: 'neutral' })).not.toBe(brand);
+    expect(fill({ tone: 'muted' })).not.toBe(brand);
   });
 
   it('ignores Material vocabulary, which belongs to a different styling layer', () => {

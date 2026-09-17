@@ -186,12 +186,18 @@
   --theme2-mark-size: 4px;
 }
 
+.MuiSlider-root.MuiSlider-scaleRoomy {
+  --theme2-groove-thickness: 10px;
+  --theme2-thumb-size: 28px;
+  --theme2-mark-size: 8px;
+}
+
 /* --------------------------------------------------------------- colours ---- */
 
 /* theme2 calls this `tone`, and names its classes after the value alone rather
    than prefixing them, so `tone="positive"` gives `MuiSlider-positive`. Neither
    the vocabulary nor the naming is Material's. */
-.MuiSlider-root.MuiSlider-neutral {
+.MuiSlider-root.MuiSlider-muted {
   --theme2-fill-from: var(--theme2-neutral-from);
   --theme2-fill-to: var(--theme2-neutral-to);
 }
@@ -209,11 +215,6 @@
 .MuiSlider-root.MuiSlider-caution {
   --theme2-fill-from: var(--theme2-warning-from);
   --theme2-fill-to: var(--theme2-warning-to);
-}
-
-.MuiSlider-root.MuiSlider-accent {
-  --theme2-fill-from: var(--theme2-info-from);
-  --theme2-fill-to: var(--theme2-info-to);
 }
 
 /* After the colours, so that a disabled slider is grey whatever colour it

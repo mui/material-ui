@@ -19,23 +19,25 @@ import createAppearance, { prefixed, bare } from '@mui/material/utils/createAppe
  * carries the same class names and would be restyled too.
  */
 
-// theme2's own appearance vocabulary. Different prop names, different values,
-// and a different class naming rule from Material's.
+// theme2's appearance vocabulary. Deliberately a different shape from Material's
+// rather than a renaming of it: five tones against six colours, no `secondary`
+// and no `info`, a `muted` that Material has no equivalent for, and three scales
+// where Material has two.
 const appearance = createAppearance({
   tone: {
     default: 'brand',
     // Named after the value alone, so `tone="positive"` is `MuiSlider-positive`.
     className: bare,
-    values: ['brand', 'neutral', 'positive', 'critical', 'caution', 'accent'],
+    values: ['brand', 'muted', 'positive', 'critical', 'caution'],
   },
   scale: {
     default: 'regular',
     className: prefixed('scale'),
-    values: ['compact', 'regular'],
+    values: ['compact', 'regular', 'roomy'],
   },
 });
 
-/** theme2's wrapper. All it does is translate its vocabulary. */
+/** theme2's wrapper. All it does is translate its own vocabulary. */
 function Slider({ tone, scale, ...other }) {
   return <SliderUnstyled {...other} appearance={appearance.resolve({ tone, scale })} />;
 }
@@ -48,85 +50,79 @@ const MARKS = [
   { value: 100, label: '100' },
 ];
 
-const MATERIAL_SNIPPET = `// @mui/material declares Material Design's vocabulary
-const appearance = createAppearance({
-  color: {
-    default: 'primary',
-    className: prefixed('color'),          // -> MuiSlider-colorPrimary
-    values: ['primary', 'secondary', 'error', 'info', 'success', 'warning'],
-    prefix: 'color',                       // a theme may add palette colours
-  },
-  size: {
-    default: 'medium',
-    className: prefixed('size'),           // -> MuiSlider-sizeMedium
-    values: ['small', 'medium'],
-  },
-});
+const TONES = ['brand', 'muted', 'positive', 'critical', 'caution'];
+const SCALES = ['compact', 'regular', 'roomy'];
 
-function Slider({ color, size, ...other }) {
-  return <SliderUnstyled {...other} appearance={appearance.resolve({ color, size })} />;
-}`;
-
-const THEME2_SNIPPET = `// theme2 declares something else entirely
-const appearance = createAppearance({
-  tone: {
-    default: 'brand',
-    className: bare,                       // -> MuiSlider-positive
-    values: ['brand', 'neutral', 'positive', 'critical', 'caution', 'accent'],
-  },
-  scale: {
-    default: 'regular',
-    className: prefixed('scale'),          // -> MuiSlider-scaleCompact
-    values: ['compact', 'regular'],
-  },
-});
-
-function Slider({ tone, scale, ...other }) {
-  return <SliderUnstyled {...other} appearance={appearance.resolve({ tone, scale })} />;
-}`;
-
-const RESOLVE_SNIPPET = `appearance.resolve({ tone: 'positive', scale: 'compact' })
-
-// { ownerState: { tone: 'positive', scale: 'compact' },
-//   classes:    { root: ['positive', 'scaleCompact'] } }
-
-// The component merges ownerState into its own and appends the class keys to
-// the root slot. It never learns what "tone" means. The ownerState half exists
-// only so existing styleOverrides callbacks and theme variants keep matching,
-// and is meant to be phased out.`;
-
-function Snippet({ children }) {
+function Code({ children, block }) {
   return (
-    <pre
+    <code
       style={{
-        margin: '0 0 16px',
-        padding: 16,
-        borderRadius: 8,
+        display: block ? 'block' : 'inline',
+        margin: block ? '0 0 14px' : 0,
+        padding: block ? '8px 12px' : '1px 5px',
+        borderRadius: 6,
         background: 'var(--theme2-surface)',
         color: 'var(--theme2-page-fg)',
-        fontSize: 12,
-        lineHeight: 1.55,
-        overflowX: 'auto',
+        fontSize: 12.5,
+        whiteSpace: 'pre',
       }}
     >
-      <code>{children}</code>
-    </pre>
+      {children}
+    </code>
   );
 }
 
-function Row({ title, note, children }) {
+function Row({ title, note, code, children }) {
   return (
     <section style={{ marginBottom: 44 }}>
       <h2 style={{ fontSize: 15, fontWeight: 600, margin: '0 0 4px' }}>{title}</h2>
       {note ? (
-        <p style={{ fontSize: 13, color: 'var(--theme2-page-muted)', margin: '0 0 18px' }}>
+        <p style={{ fontSize: 13, color: 'var(--theme2-page-muted)', margin: '0 0 14px' }}>
           {note}
         </p>
       ) : (
         <div style={{ height: 10 }} />
       )}
+      {code ? <Code block>{code}</Code> : null}
       {children}
     </section>
+  );
+}
+
+/** A slider labelled with the prop that produced it. */
+function Labelled({ label, children }) {
+  return (
+    <div style={{ marginBottom: 20 }}>
+      <div style={{ marginBottom: 6 }}>
+        <Code>{label}</Code>
+      </div>
+      {children}
+    </div>
+  );
+}
+
+function Vocabulary({ heading, rows, muted }) {
+  return (
+    <div style={{ flex: '1 1 260px' }}>
+      <div
+        style={{
+          fontSize: 12,
+          fontWeight: 600,
+          letterSpacing: 0.3,
+          textTransform: 'uppercase',
+          color: muted ? 'var(--theme2-page-muted)' : 'var(--theme2-page-fg)',
+          marginBottom: 8,
+        }}
+      >
+        {heading}
+      </div>
+      {rows.map(([prop, values]) => (
+        <div key={prop} style={{ fontSize: 12.5, marginBottom: 6, lineHeight: 1.6 }}>
+          <span style={{ color: 'var(--theme2-page-muted)' }}>{prop}</span>{' '}
+          <span style={{ fontFamily: 'ui-monospace, monospace' }}>{values}</span>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -172,7 +168,7 @@ export default function SliderTheme2() {
               alignItems: 'flex-start',
               justifyContent: 'space-between',
               gap: 24,
-              marginBottom: 40,
+              marginBottom: 36,
             }}
           >
             <div>
@@ -209,13 +205,17 @@ export default function SliderTheme2() {
             </button>
           </div>
 
-          <Row
-            title="The appearance vocabulary belongs to the styling layer"
-            note="Props like color and size select an appearance and have no behaviour, so the
-              component underneath does not define them. Each styling layer declares its own."
+          <section
+            style={{
+              marginBottom: 48,
+              padding: 20,
+              borderRadius: 10,
+              border: '1px solid var(--theme2-edge)',
+            }}
           >
-            <Snippet>{MATERIAL_SNIPPET}</Snippet>
-            <Snippet>{THEME2_SNIPPET}</Snippet>
+            <h2 style={{ fontSize: 15, fontWeight: 600, margin: '0 0 6px' }}>
+              A different vocabulary, not a renaming
+            </h2>
             <p
               style={{
                 fontSize: 13,
@@ -224,55 +224,87 @@ export default function SliderTheme2() {
                 lineHeight: 1.6,
               }}
             >
-              Same component, two vocabularies. Different prop names, different values, and two
-              different class naming rules. Everything below uses theme2&apos;s.
+              Props that select an appearance belong to the styling layer, so the component
+              underneath does not define them. theme2 declares its own, and they do not line up with
+              Material&apos;s: five tones against six colours, no <code>secondary</code> and no{' '}
+              <code>info</code>, a <code>muted</code> Material has no equivalent for, and three
+              scales where Material has two.
             </p>
-            <Snippet>{RESOLVE_SNIPPET}</Snippet>
-          </Row>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 28 }}>
+              <Vocabulary
+                muted
+                heading="Material Design"
+                rows={[
+                  ['color', 'primary secondary error info success warning'],
+                  ['size', 'small medium'],
+                ]}
+              />
+              <Vocabulary
+                heading="theme2"
+                rows={[
+                  ['tone', TONES.join(' ')],
+                  ['scale', SCALES.join(' ')],
+                ]}
+              />
+            </div>
+          </section>
 
-          <Row title="Default">
+          <Row title="Default" code={`<Slider defaultValue={40} />`}>
             <Slider defaultValue={40} />
           </Row>
 
-          <Row title="Scale" note="compact and the default regular.">
-            <Slider defaultValue={30} scale="compact" />
-            <div style={{ height: 28 }} />
-            <Slider defaultValue={30} />
-          </Row>
-
-          <Row title="Tone" note="theme2's accents, which are not Material's palette.">
-            {['brand', 'neutral', 'positive', 'critical', 'caution', 'accent'].map((tone) => (
-              <div key={tone} style={{ marginBottom: 22 }}>
+          <Row title="Tone" note="theme2's accents. Material has no tone prop at all.">
+            {TONES.map((tone) => (
+              <Labelled key={tone} label={`<Slider tone="${tone}" />`}>
                 <Slider defaultValue={55} tone={tone} />
-              </div>
+              </Labelled>
             ))}
           </Row>
 
-          <Row title="Marks and labels">
+          <Row title="Scale">
+            {SCALES.map((scale) => (
+              <Labelled key={scale} label={`<Slider scale="${scale}" />`}>
+                <Slider defaultValue={30} scale={scale} />
+              </Labelled>
+            ))}
+          </Row>
+
+          <Row
+            title="Marks and labels"
+            code={`<Slider defaultValue={60} marks={marks} step={25} />`}
+          >
             <Slider defaultValue={60} marks={MARKS} step={25} />
           </Row>
 
-          <Row title="Range" note="Two thumbs.">
+          <Row title="Range" code={`<Slider defaultValue={[20, 70]} />`}>
             <Slider defaultValue={[20, 70]} />
           </Row>
 
-          <Row title="Value label" note="Shown while dragging, and always when set to on.">
+          <Row title="Value label" code={`<Slider defaultValue={45} valueLabelDisplay="on" />`}>
             <Slider defaultValue={45} valueLabelDisplay="on" />
-            <div style={{ height: 44 }} />
-            <Slider defaultValue={45} valueLabelDisplay="auto" />
           </Row>
 
-          <Row title="Track variations" note="Inverted, and no track at all.">
-            <Slider defaultValue={40} track="inverted" />
-            <div style={{ height: 28 }} />
-            <Slider defaultValue={40} track={false} marks={MARKS} step={25} />
+          <Row title="Track variations">
+            <Labelled label={`<Slider track="inverted" />`}>
+              <Slider defaultValue={40} track="inverted" />
+            </Labelled>
+            <Labelled label={`<Slider track={false} marks={marks} step={25} />`}>
+              <Slider defaultValue={40} track={false} marks={MARKS} step={25} />
+            </Labelled>
           </Row>
 
-          <Row title="Disabled">
-            <Slider defaultValue={40} disabled tone="positive" />
+          <Row
+            title="Disabled"
+            note="The tone gives way to the disabled styling, whichever tone was asked for."
+            code={`<Slider defaultValue={40} tone="positive" disabled />`}
+          >
+            <Slider defaultValue={40} tone="positive" disabled />
           </Row>
 
-          <Row title="Vertical">
+          <Row
+            title="Vertical"
+            code={`<Slider defaultValue={40} orientation="vertical" tone="positive" />`}
+          >
             <div style={{ display: 'flex', gap: 64, height: 220 }}>
               <Slider defaultValue={40} orientation="vertical" />
               <Slider defaultValue={[20, 70]} orientation="vertical" tone="positive" />
