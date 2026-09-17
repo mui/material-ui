@@ -15,6 +15,21 @@ import describeConformance from '../../test/describeConformance';
 describe('<Menu2SubmenuTrigger />', () => {
   const { render } = createRenderer();
 
+  it('renders a decorative submenu indicator by default', () => {
+    render(
+      <Menu2 defaultOpen modal={false} anchor={document.body}>
+        <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2Submenu>
+      </Menu2>,
+    );
+    const trigger = screen.getByRole('menuitem', { name: 'More' });
+    const indicator = trigger.querySelector(`.${classes.indicator}`);
+    expect(indicator).not.to.equal(null);
+    expect(indicator).to.have.attribute('aria-hidden', 'true');
+    expect(indicator!.querySelector('svg')).not.to.equal(null);
+  });
+
   describeConformance(<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>, () => ({
     classes,
     render: (node) =>
@@ -31,7 +46,86 @@ describe('<Menu2SubmenuTrigger />', () => {
     testComponentPropWith: 'span',
     muiName: 'MuiMenu2SubmenuTrigger',
     testVariantProps: { dense: true },
+    slots: {
+      indicator: { expectedClassName: classes.indicator },
+    },
+    testDeepOverrides: { slotName: 'indicator', slotClassName: classes.indicator },
   }));
+
+  (['ltr', 'rtl'] as const).forEach((direction) => {
+    it.skipIf(isJsdom())(`aligns the indicator at the trailing edge in ${direction}`, () => {
+      render(
+        <ThemeProvider theme={createTheme({ direction })}>
+          <Menu2
+            defaultOpen
+            modal={false}
+            anchor={document.body}
+            slots={{ transition: null }}
+            slotProps={{ list: { dir: direction } }}
+          >
+            <Menu2Submenu
+              trigger={
+                <Menu2SubmenuTrigger sx={{ width: 240 }}>
+                  <span data-testid="label">More</span>
+                </Menu2SubmenuTrigger>
+              }
+            >
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2Submenu>
+          </Menu2>
+        </ThemeProvider>,
+      );
+      const trigger = screen.getByRole('menuitem', { name: 'More' });
+      const indicator = trigger.querySelector(`.${classes.indicator}`)!;
+      expect(
+        indicator.querySelector(
+          `[data-testid="KeyboardArrow${direction === 'rtl' ? 'Left' : 'Right'}Icon"]`,
+        ),
+      ).not.to.equal(null);
+      const triggerRect = trigger.getBoundingClientRect();
+      const iconRect = indicator.querySelector('svg')!.getBoundingClientRect();
+      const labelRect = screen.getByTestId('label').getBoundingClientRect();
+      if (direction === 'rtl') {
+        expect(iconRect.left - triggerRect.left).to.be.closeTo(16, 0.1);
+        expect(labelRect.left - iconRect.right).to.be.greaterThan(8);
+      } else {
+        expect(triggerRect.right - iconRect.right).to.be.closeTo(16, 0.1);
+        expect(iconRect.left - labelRect.right).to.be.greaterThan(8);
+      }
+    });
+  });
+
+  it('can replace the icon or hide the indicator', () => {
+    function NoIndicator() {
+      return null;
+    }
+    render(
+      <Menu2 defaultOpen modal={false} anchor={document.body}>
+        <Menu2Submenu
+          trigger={
+            <Menu2SubmenuTrigger slotProps={{ indicator: { children: <span>+</span> } }}>
+              Custom
+            </Menu2SubmenuTrigger>
+          }
+        >
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2Submenu>
+        <Menu2Submenu
+          trigger={
+            <Menu2SubmenuTrigger slots={{ indicator: NoIndicator }}>Hidden</Menu2SubmenuTrigger>
+          }
+        >
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2Submenu>
+      </Menu2>,
+    );
+    const custom = screen.getByRole('menuitem', { name: 'Custom' });
+    expect(custom.querySelector(`.${classes.indicator}`)).to.have.text('+');
+    expect(custom.querySelector('svg')).to.equal(null);
+    expect(
+      screen.getByRole('menuitem', { name: 'Hidden' }).querySelector(`.${classes.indicator}`),
+    ).to.equal(null);
+  });
 
   it.skipIf(isJsdom())(
     'preserves Tooltip-wrapped label overrides and a single keyboard position',
@@ -115,6 +209,7 @@ describe('<Menu2SubmenuTrigger />', () => {
   it('composes public and slot refs and provides live slot state', async () => {
     const forwardedRef = React.createRef<HTMLDivElement>();
     const slotRef = React.createRef<HTMLDivElement>();
+    const indicatorRef = React.createRef<HTMLSpanElement>();
     const onClick = vi.fn();
     const onSlotClick = vi.fn();
     const { user } = render(
@@ -132,6 +227,11 @@ describe('<Menu2SubmenuTrigger />', () => {
                   'data-open-state': String(state.open),
                   'data-highlighted-state': String(state.highlighted),
                 }),
+                indicator: (state) => ({
+                  ref: indicatorRef,
+                  'data-open-state': String(state.open),
+                  sx: { color: state.open ? 'rgb(1, 2, 3)' : 'rgb(4, 5, 6)' },
+                }),
               }}
             >
               More
@@ -145,6 +245,9 @@ describe('<Menu2SubmenuTrigger />', () => {
     const trigger = screen.getByRole('menuitem', { name: 'More' });
     expect(forwardedRef.current).to.equal(trigger);
     expect(slotRef.current).to.equal(trigger);
+    expect(indicatorRef.current).to.equal(trigger.querySelector(`.${classes.indicator}`));
+    expect(indicatorRef.current).to.have.attribute('data-open-state', 'false');
+    expect(getComputedStyle(indicatorRef.current!).color).to.equal('rgb(4, 5, 6)');
     expect(trigger).to.have.attribute('data-open-state', 'false');
     // Let the parent popup take its initial focus before opening a child popup.
     await waitFor(() =>
@@ -152,6 +255,8 @@ describe('<Menu2SubmenuTrigger />', () => {
     );
     await user.click(trigger);
     await waitFor(() => expect(trigger).to.have.attribute('data-open-state', 'true'));
+    expect(indicatorRef.current).to.have.attribute('data-open-state', 'true');
+    expect(getComputedStyle(indicatorRef.current!).color).to.equal('rgb(1, 2, 3)');
     expect(onClick).toHaveBeenCalledTimes(1);
     expect(onSlotClick).toHaveBeenCalledTimes(1);
   });

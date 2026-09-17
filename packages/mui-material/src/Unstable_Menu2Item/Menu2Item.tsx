@@ -25,11 +25,7 @@ import {
   Menu2RootSlotProps,
   suppressButtonBaseKeyboardActivation,
 } from '../Unstable_Menu2/menu2Utils';
-import {
-  getMenu2ItemUtilityClass,
-  menu2ItemClasses,
-  Menu2ItemClasses,
-} from '../Unstable_Menu2/menu2Classes';
+import { getMenu2ItemUtilityClass, Menu2ItemClasses } from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2ItemSlots {
   /**
@@ -101,7 +97,7 @@ const Menu2ItemRoot = styled(MenuItemBase, {
   slot: 'Root',
   overridesResolver: menuItemOverridesResolver,
 })<{ ownerState: Menu2ItemOwnerState }>(
-  memoTheme(({ theme }) => getMenuItemHighlightStyles(theme, menu2ItemClasses.highlighted)),
+  memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
 );
 
 /**

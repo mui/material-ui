@@ -34,7 +34,6 @@ import {
 } from '../Unstable_Menu2/menu2ItemShared';
 import {
   getMenu2RadioItemUtilityClass,
-  menu2RadioItemClasses,
   Menu2RadioItemClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
@@ -131,7 +130,7 @@ const Menu2RadioItemRoot = styled(MenuItemBase, {
   slot: 'Root',
   overridesResolver: menuItemOverridesResolver,
 })<{ ownerState: Menu2RadioItemOwnerState }>(
-  memoTheme(({ theme }) => getMenuItemHighlightStyles(theme, menu2RadioItemClasses.highlighted)),
+  memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
 );
 
 interface Menu2RadioItemRootSlotProps extends Pick<

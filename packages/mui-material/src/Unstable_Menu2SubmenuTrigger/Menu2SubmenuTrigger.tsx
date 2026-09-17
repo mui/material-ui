@@ -7,6 +7,7 @@ import { Menu as BaseMenu } from '@base-ui/react/menu';
 import ListContext from '../List/ListContext';
 import Menu2SubmenuClosingContext from '../Unstable_Menu2/Menu2SubmenuClosingContext';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { SlotProps } from '../utils/types';
 import Menu2SubmenuTriggerRootSlot from './Menu2SubmenuTriggerRootSlot';
 import { isMenu2RootNativeButton, Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
@@ -28,6 +29,11 @@ export interface Menu2SubmenuTriggerSlots {
    * @default 'div'
    */
   root?: React.ElementType | undefined;
+  /**
+   * The component that renders the submenu indicator.
+   * @default 'span'
+   */
+  indicator?: React.ElementType | undefined;
 }
 
 export interface Menu2SubmenuTriggerOwnerState extends Menu2ItemOwnerState {
@@ -36,7 +42,9 @@ export interface Menu2SubmenuTriggerOwnerState extends Menu2ItemOwnerState {
   highlighted: boolean;
 }
 
-export interface Menu2SubmenuTriggerSlotProps extends Menu2RootSlotProps<Menu2SubmenuTriggerOwnerState> {}
+export interface Menu2SubmenuTriggerSlotProps extends Menu2RootSlotProps<Menu2SubmenuTriggerOwnerState> {
+  indicator?: SlotProps<'span', {}, Menu2SubmenuTriggerOwnerState> | undefined;
+}
 
 export interface Menu2SubmenuTriggerOwnProps
   extends
@@ -279,12 +287,14 @@ Menu2SubmenuTrigger.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    */
   slotProps: PropTypes.shape({
+    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    */
   slots: PropTypes.shape({
+    indicator: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
   /**

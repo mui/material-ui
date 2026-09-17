@@ -596,11 +596,7 @@ describe('enhanceHighContrast', () => {
 
   describe('Menu2 item overrides', () => {
     const itemCases: Array<
-      [
-        component: string,
-        classes: { disabled: string; highlighted: string; selected: string },
-        slot: string,
-      ]
+      [component: string, classes: { disabled: string; selected: string }, slot: string]
     > = [
       ['MuiMenu2Item', menu2ItemClasses, 'root'],
       ['MuiMenu2LinkItem', menu2LinkItemClasses, 'root'],
@@ -609,15 +605,15 @@ describe('enhanceHighContrast', () => {
     ];
 
     test.each(itemCases)(
-      '%s keys the active state off `highlighted`',
-      (component, classes, slot) => {
+      '%s uses keyboard focus and hover for the active state',
+      (component, _classes, slot) => {
         const theme = enhanceHighContrast(createTheme());
         const rootOverrides = (theme.components as any)[component].styleOverrides[
           slot
         ] as Array<StyleOverride>;
         const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
-        expect(hcmOverride[`&.${classes.highlighted}, &:hover`]).to.deep.equal({
+        expect(hcmOverride[`&.${menuItemClasses.focusVisible}, &:hover`]).to.deep.equal({
           [HCM]: {
             forcedColorAdjust: 'none',
             color: 'HighlightText',
@@ -645,7 +641,7 @@ describe('enhanceHighContrast', () => {
           backgroundColor: 'SelectedItem',
         },
       });
-      const selectedActiveKey = `&.${classes.selected}.${classes.highlighted}, &.${classes.selected}:hover`;
+      const selectedActiveKey = `&.${classes.selected}.${menuItemClasses.focusVisible}, &.${classes.selected}:hover`;
       expect(hcmOverride[selectedActiveKey]).to.deep.equal({
         [HCM]: { color: 'HighlightText', backgroundColor: 'Highlight' },
       });
@@ -665,7 +661,7 @@ describe('enhanceHighContrast', () => {
       expect(hcmOverride[`&.${classes.disabled}`]).to.deep.equal({
         [HCM]: { color: 'ButtonText', opacity: 1 },
       });
-      expect(hcmOverride[`&.${classes.highlighted}, &:hover`]).to.deep.equal({
+      expect(hcmOverride[`&.${menuItemClasses.focusVisible}, &:hover`]).to.deep.equal({
         [HCM]: {
           forcedColorAdjust: 'none',
           color: 'Canvas',
@@ -676,7 +672,7 @@ describe('enhanceHighContrast', () => {
     });
 
     test.each(itemCases)(
-      '%s keeps the disabled cue when highlighted',
+      '%s keeps the disabled cue during keyboard focus',
       (component, classes, slot) => {
         // Base UI keeps disabled items focusable, so this combination is
         // reachable here even though it is not on the classic item.
@@ -686,7 +682,7 @@ describe('enhanceHighContrast', () => {
         ] as Array<StyleOverride>;
         const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
-        expect(hcmOverride[`&.${classes.disabled}.${classes.highlighted}`]).to.deep.equal({
+        expect(hcmOverride[`&.${classes.disabled}.${menuItemClasses.focusVisible}`]).to.deep.equal({
           [HCM]: {
             forcedColorAdjust: 'none',
             color: 'GrayText',
@@ -698,7 +694,7 @@ describe('enhanceHighContrast', () => {
     );
 
     test.each(itemCases)(
-      '%s orders the disabled rules after the highlight',
+      '%s orders the disabled rules after the focus styles',
       (component, classes, slot) => {
         const theme = enhanceHighContrast(createTheme());
         const rootOverrides = (theme.components as any)[component].styleOverrides[
@@ -707,7 +703,7 @@ describe('enhanceHighContrast', () => {
         const keys = Object.keys(rootOverrides[rootOverrides.length - 1]);
 
         expect(keys.indexOf(`&.${classes.disabled}`)).to.be.greaterThan(
-          keys.indexOf(`&.${classes.highlighted}, &:hover`),
+          keys.indexOf(`&.${menuItemClasses.focusVisible}, &:hover`),
         );
       },
     );

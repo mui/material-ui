@@ -114,10 +114,10 @@ describe.skipIf(isJsdom())('MenuItem shared styled base', () => {
             highlightedColor,
           );
           expect(getComputedStyle(screen.getByTestId('focus-only')).backgroundColor).to.equal(
-            selectedColor,
+            highlightedColor,
           );
           expect(getComputedStyle(screen.getByTestId('highlighted')).backgroundColor).to.equal(
-            highlightedColor,
+            selectedColor,
           );
         });
       });

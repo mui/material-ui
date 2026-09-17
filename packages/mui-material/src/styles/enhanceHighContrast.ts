@@ -85,15 +85,13 @@ const defaultHcTokens: Required<HighContrastTokens> = {
 
 const HCM = '@media (forced-colors: active)';
 
-// The Menu2 parts reuse the classic item styles, but Base UI marks the active
-// item with `data-highlighted` for keyboard and pointer alike, so the state
-// class is `highlighted` where the classic item has `focusVisible`.
+// Menu2 uses the same focus and hover cues as the classic items.
 function menu2ItemOverrides(
-  classes: { disabled: string; highlighted: string; selected: string },
+  classes: { disabled: string; selected: string },
   hcTokens: Required<HighContrastTokens>,
 ) {
   return {
-    [`&.${classes.highlighted}, &:hover`]: {
+    [`&.${menuItemClasses.focusVisible}, &:hover`]: {
       [HCM]: {
         forcedColorAdjust: 'none',
         color: hcTokens.activeText,
@@ -108,23 +106,21 @@ function menu2ItemOverrides(
         backgroundColor: hcTokens.selectedBackground,
       },
     },
-    [`&.${classes.selected}.${classes.highlighted}, &.${classes.selected}:hover`]: {
+    [`&.${classes.selected}.${menuItemClasses.focusVisible}, &.${classes.selected}:hover`]: {
       [HCM]: {
         color: hcTokens.activeText,
         backgroundColor: hcTokens.activeBackground,
       },
     },
-    // Base UI keeps disabled items focusable, so unlike the classic item a
-    // disabled one can be highlighted. The disabled cue has to outrank the
-    // highlight, so it comes last, and the combination gets its own rule to
-    // keep the cue off the highlight background while still showing focus.
+    // Base UI keeps disabled items focusable. Keep their disabled colors
+    // and use an outline to show keyboard focus.
     [`&.${classes.disabled}`]: {
       [HCM]: {
         color: hcTokens.disabled,
         opacity: 1,
       },
     },
-    [`&.${classes.disabled}.${classes.highlighted}`]: {
+    [`&.${classes.disabled}.${menuItemClasses.focusVisible}`]: {
       [HCM]: {
         forcedColorAdjust: 'none',
         color: hcTokens.disabled,

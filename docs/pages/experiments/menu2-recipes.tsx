@@ -7,7 +7,6 @@ import Stack from '@mui/material/Stack';
 import Tooltip, { type TooltipProps } from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 // The Unstable_ subpaths use default exports, so the local bindings drop the
 // prefix and the JSX mirrors the future stable names.
@@ -167,7 +166,6 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
         trigger={
           <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
             View options
-            <KeyboardArrowRightRoundedIcon fontSize="small" />
           </Menu2SubmenuTrigger>
         }
       >
@@ -199,7 +197,6 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
           trigger={
             <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
               More tools
-              <KeyboardArrowRightRoundedIcon fontSize="small" />
             </Menu2SubmenuTrigger>
           }
         >
@@ -213,7 +210,6 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
         trigger={
           <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
             Download
-            <KeyboardArrowRightRoundedIcon fontSize="small" />
           </Menu2SubmenuTrigger>
         }
       >
@@ -227,7 +223,6 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
         trigger={
           <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover} disabled>
             Add-ons unavailable
-            <KeyboardArrowRightRoundedIcon fontSize="small" />
           </Menu2SubmenuTrigger>
         }
       >
@@ -302,7 +297,6 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
           <MenuTooltip title="Open view settings" tooltipProps={submenuTriggerTooltipProps}>
             <Menu2SubmenuTrigger openOnHover={submenusOpenOnHover}>
               View options
-              <KeyboardArrowRightRoundedIcon fontSize="small" />
             </Menu2SubmenuTrigger>
           </MenuTooltip>
         }

@@ -10,8 +10,9 @@ import Fade from '@mui/material/Fade';
 import Zoom from '@mui/material/Zoom';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import {
   ThemeProvider,
@@ -48,6 +49,7 @@ interface PlaygroundSettings {
   highlightItemOnHover: boolean;
   // Submenu behavior
   submenusOpenOnHover: boolean;
+  submenuIndicator: 'default' | 'custom';
   submenuDelay: number;
   submenuCloseDelay: number;
   closeParentOnEsc: boolean;
@@ -75,6 +77,7 @@ const defaultSettings: PlaygroundSettings = {
   loopFocus: true,
   highlightItemOnHover: true,
   submenusOpenOnHover: true,
+  submenuIndicator: 'default',
   submenuDelay: 100,
   submenuCloseDelay: 0,
   closeParentOnEsc: false,
@@ -151,10 +154,13 @@ function usePopupKnobProps(settings: PlaygroundSettings) {
         ...(settings.backdrop === 'dimmed' && {
           backdrop: { sx: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } },
         }),
-        ...(settings.animation === 'css' && { paper: { sx: cssAnimationSx } }),
+        paper: {
+          dir: settings.rtl ? 'rtl' : 'ltr',
+          ...(settings.animation === 'css' && { sx: cssAnimationSx }),
+        },
       },
     }),
-    [settings.elevation, settings.animation, settings.backdrop, settings.keepMounted],
+    [settings.elevation, settings.animation, settings.backdrop, settings.keepMounted, settings.rtl],
   );
 }
 
@@ -172,6 +178,18 @@ function PlaygroundDemo({
     openOnHover: settings.submenusOpenOnHover,
     delay: settings.submenuDelay,
     closeDelay: settings.submenuCloseDelay,
+    slotProps: {
+      indicator:
+        settings.submenuIndicator === 'custom'
+          ? {
+              children: settings.rtl ? (
+                <ArrowBackRoundedIcon fontSize="small" />
+              ) : (
+                <ArrowForwardRoundedIcon fontSize="small" />
+              ),
+            }
+          : undefined,
+    },
   };
   // No sideOffset here: submenus use their own default, which overlaps the parent.
   const submenuPopupProps = { ...popupKnobProps };
@@ -227,7 +245,6 @@ function PlaygroundDemo({
         trigger={
           <Menu2SubmenuTrigger {...submenuTriggerProps} {...itemProps}>
             Share
-            <KeyboardArrowRightRoundedIcon fontSize="small" />
           </Menu2SubmenuTrigger>
         }
         {...submenuPopupProps}
@@ -243,7 +260,6 @@ function PlaygroundDemo({
           trigger={
             <Menu2SubmenuTrigger {...submenuTriggerProps} {...itemProps}>
               Export as
-              <KeyboardArrowRightRoundedIcon fontSize="small" />
             </Menu2SubmenuTrigger>
           }
           {...submenuPopupProps}
@@ -267,7 +283,6 @@ function PlaygroundDemo({
         trigger={
           <Menu2SubmenuTrigger {...submenuTriggerProps} {...itemProps}>
             View
-            <KeyboardArrowRightRoundedIcon fontSize="small" />
           </Menu2SubmenuTrigger>
         }
         {...submenuPopupProps}
@@ -317,6 +332,7 @@ function ClassicVersusSuccessorDemo({ settings }: { settings: PlaygroundSettings
           anchorEl={classicAnchorEl}
           onClose={() => setClassicAnchorEl(null)}
           elevation={settings.elevation}
+          slotProps={{ paper: { dir: settings.rtl ? 'rtl' : 'ltr' } }}
         >
           {parityItems.map((item) => (
             <ClassicMenuItem
@@ -466,12 +482,7 @@ function ControlledAnchorDemo() {
           onOpenChange={(nextOpen, details) =>
             setSubmenuEvent(`${nextOpen ? 'open' : 'closed'} (${details.reason})`)
           }
-          trigger={
-            <Menu2SubmenuTrigger openOnHover={false}>
-              More
-              <KeyboardArrowRightRoundedIcon fontSize="small" />
-            </Menu2SubmenuTrigger>
-          }
+          trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
         >
           <Menu2Item>Settings</Menu2Item>
           <Menu2Item>Help</Menu2Item>
@@ -600,6 +611,21 @@ function SettingsPanel({
         {renderNumber('submenuDelay', 'delay (ms)')}
         {renderNumber('submenuCloseDelay', 'closeDelay (ms)')}
         {renderCheckbox('closeParentOnEsc', 'closeParentOnEsc')}
+        <label style={{ display: 'block' }}>
+          indicator{' '}
+          <select
+            value={settings.submenuIndicator}
+            onChange={(event) =>
+              setSetting(
+                'submenuIndicator',
+                event.target.value as PlaygroundSettings['submenuIndicator'],
+              )
+            }
+          >
+            <option value="default">Default chevron</option>
+            <option value="custom">Custom arrow</option>
+          </select>
+        </label>
       </div>
       <div>
         <strong>Positioning</strong>

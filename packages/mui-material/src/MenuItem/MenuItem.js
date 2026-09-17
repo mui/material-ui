@@ -16,7 +16,7 @@ import useId from '../utils/useId';
 import { useRovingTabIndexItem } from '../utils/useRovingTabIndex';
 import { useMenuListContext } from '../MenuList/MenuListContext';
 import { useSelectFocusSource } from '../Select/utils';
-import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
+import { getMenuItemUtilityClass } from './menuItemClasses';
 import { getMenuItemHighlightStyles, menuItemOverridesResolver } from './menuItemStyles';
 
 export const overridesResolver = menuItemOverridesResolver;
@@ -47,7 +47,7 @@ const MenuItemRoot = styled(MenuItemBase, {
   name: 'MuiMenuItem',
   slot: 'Root',
   overridesResolver,
-})(memoTheme(({ theme }) => getMenuItemHighlightStyles(theme, menuItemClasses.focusVisible)));
+})(memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)));
 
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiMenuItem' });

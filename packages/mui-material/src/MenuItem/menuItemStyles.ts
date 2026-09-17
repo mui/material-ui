@@ -17,15 +17,11 @@ export function menuItemOverridesResolver(
   ];
 }
 
-// Each family supplies its own public state class. Keep selected hover after
-// selected highlight so their precedence stays the same as the classic item.
-export function getMenuItemHighlightStyles(
-  theme: Theme,
-  highlightedClass: string,
-): CSSInterpolation {
+// Keep selected hover after selected focus to preserve the classic precedence.
+export function getMenuItemHighlightStyles(theme: Theme): CSSInterpolation {
   return {
     ...(!theme.focusVisible && {
-      [`&.${menuItemClasses.selected}.${highlightedClass}`]: {
+      [`&.${menuItemClasses.selected}.${menuItemClasses.focusVisible}`]: {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,
           `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
@@ -48,7 +44,7 @@ export function getMenuItemHighlightStyles(
       },
     },
     ...(!theme.focusVisible && {
-      [`&.${highlightedClass}`]: {
+      [`&.${menuItemClasses.focusVisible}`]: {
         backgroundColor: (theme.vars || theme).palette.action.focus,
       },
     }),

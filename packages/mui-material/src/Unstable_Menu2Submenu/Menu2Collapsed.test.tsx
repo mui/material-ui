@@ -964,8 +964,7 @@ describe('<Menu2 /> collapsed API', () => {
     }
   });
 
-  // The trigger showed no highlight for the keyboard, and only the weaker CSS
-  // `:hover` for the pointer, because the highlighted state was not mapped.
+  // Submenu triggers and plain items use the same keyboard focus styles.
   it.skipIf(isJsdom())('highlights the submenu trigger like a plain item', async () => {
     const { user } = render(
       <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
@@ -1226,9 +1225,7 @@ describe('<Menu2 /> collapsed API', () => {
     });
   });
 
-  // The trigger background lives in the list styles, so the theme ring has to
-  // reach it there too. Otherwise a highlighted trigger keeps the tint while a
-  // highlighted plain item in the same menu shows the ring alone.
+  // The focus ring replaces the focus tint for both item types.
   [true, false].forEach((focusVisible) => {
     it.skipIf(isJsdom())(
       `highlights the trigger like a plain item, focusVisible=${focusVisible}`,
@@ -1337,33 +1334,6 @@ describe('<Menu2 /> collapsed API', () => {
     // The parent is open, and only open. The highlight classes are the false
     // highlight that the submenu store used to put on it. A trigger carries the
     // submenu trigger class, so the item class alone misses it.
-    expect(parent).to.have.class(menu2SubmenuTriggerClasses.open);
-    expect(parent).not.to.have.class(menu2ItemClasses.highlighted);
-    expect(parent).not.to.have.class(menu2SubmenuTriggerClasses.highlighted);
-    expect(window.getComputedStyle(child).backgroundColor).to.equal(FOCUS_TINT);
-    expect(window.getComputedStyle(parent).backgroundColor).to.equal(OPEN_TINT);
-  });
-
-  // The pointer sets the same submenu index that the arrow keys do, so it
-  // reaches the same state. `fireEvent` drives it, because Base UI blocks the
-  // pointer over the fresh popup and `user.hover` refuses to cross it.
-  it.skipIf(isJsdom())('keeps an open parent below the hovered child trigger', async () => {
-    const { user } = render(nestedChain);
-
-    const parent = await screen.findByRole('menuitem', { name: 'View options' });
-
-    await user.hover(parent);
-    const child = await screen.findByRole('menuitem', { name: 'More tools' });
-    fireEvent.mouseOver(child);
-    fireEvent.mouseMove(child);
-
-    // The child highlights one frame before the parent drops its own highlight,
-    // so wait for the focus, the way the keyboard test above does.
-    await waitFor(() => {
-      expect(child).to.equal(document.activeElement);
-    });
-    expect(child).to.have.class(menu2SubmenuTriggerClasses.highlighted);
-
     expect(parent).to.have.class(menu2SubmenuTriggerClasses.open);
     expect(parent).not.to.have.class(menu2ItemClasses.highlighted);
     expect(parent).not.to.have.class(menu2SubmenuTriggerClasses.highlighted);

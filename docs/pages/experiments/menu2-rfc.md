@@ -74,7 +74,7 @@ import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 ```
 
-The classic `Menu` keeps its API. Classic and successor items share `MenuItemBase`, with separate focus and highlight selectors. Menu2 popups and indicators also share styled bases. The bases have no theme key; each component keeps its own overrides. The experiment also adds a `defaultMuiPrevented` check to `useButtonBase`, so Base UI can own Enter and Space activation without ButtonBase activating the item again.
+The classic `Menu` keeps its API. Classic and successor items share `MenuItemBase` and the focus and hover styles. Menu2 popups and indicators also share styled bases. The bases have no theme key; each component keeps its own overrides. The experiment also adds a `defaultMuiPrevented` check to `useButtonBase`, so Base UI can own Enter and Space activation without ButtonBase activating the item again.
 
 ### Rules for Base UI-backed components (Menu is the first)
 
@@ -157,6 +157,8 @@ Keep these differences and document them:
 Other behavior and caveats:
 
 - **Hover:** submenus open on hover by default, with a 100 ms delay and safe pointer travel. These defaults are configurable.
+- **Item styles:** CSS `:hover` uses `action.hover`; `Mui-focusVisible` uses `action.focus`, or the ring under `theme.focusVisible`. Base UI's `highlighted` state remains a customization hook, but does not set the default focus tint.
+- **Submenu indicator:** triggers include a trailing chevron that points left in RTL. Use `slotProps.indicator` to change its content or styles, or `slots.indicator` to replace or omit it.
 - **Placement:** a submenu overlaps its parent by 4 px and starts 8 px above the trigger to account for list padding. Collisions can change the resolved placement.
 - **Escape:** closes the innermost submenu and returns focus to its trigger. Set `closeParentOnEsc` on the submenu to request closure of the parent menus too.
 - **Open tint:** an open submenu trigger uses `action.hover`, blended with selected styling when needed. A separate `closing` state keeps the tint through exit without extending logical `open`.

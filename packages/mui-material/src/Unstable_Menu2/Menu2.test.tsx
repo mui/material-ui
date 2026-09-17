@@ -476,8 +476,13 @@ describe('<Menu2 />', () => {
       expect(menu2ForcedColorsRules.join('\n').toLowerCase()).to.contain('highlighttext');
       const matches = (needle: string) =>
         menu2ForcedColorsRules.some((text) => text.includes(needle));
-      expect(matches(menu2ItemClasses.highlighted)).to.equal(true);
-      expect(matches(menu2CheckboxItemClasses.highlighted)).to.equal(true);
+      for (const componentName of ['MuiMenu2Item', 'MuiMenu2CheckboxItem']) {
+        expect(
+          menu2ForcedColorsRules.some(
+            (text) => text.includes(componentName) && text.includes('.Mui-focusVisible'),
+          ),
+        ).to.equal(true);
+      }
       expect(matches(menu2SubmenuTriggerClasses.open)).to.equal(true);
       expect(matches(menu2CheckboxItemIndicatorClasses.root)).to.equal(true);
       // The indicator's own `[data-checked]` colour is (0,2,0). The override has

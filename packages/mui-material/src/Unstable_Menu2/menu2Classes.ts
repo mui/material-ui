@@ -265,6 +265,8 @@ export const menu2SeparatorClasses: Menu2SeparatorClasses = generateUtilityClass
 );
 
 export interface Menu2SubmenuTriggerClasses extends Menu2ItemClasses {
+  /** Styles applied to the submenu indicator. */
+  indicator: string;
   /** State class applied to the root element if the submenu is open. */
   open: string;
   /** Class applied to the root element while the submenu animates out. */
@@ -279,7 +281,18 @@ export function getMenu2SubmenuTriggerUtilityClass(slot: string): string {
 
 export const menu2SubmenuTriggerClasses: Menu2SubmenuTriggerClasses = generateUtilityClasses(
   'MuiMenu2SubmenuTrigger',
-  ['root', 'highlighted', 'disabled', 'dense', 'divider', 'gutters', 'selected', 'open', 'closing'],
+  [
+    'root',
+    'highlighted',
+    'disabled',
+    'dense',
+    'divider',
+    'gutters',
+    'selected',
+    'open',
+    'closing',
+    'indicator',
+  ],
 );
 
 /**

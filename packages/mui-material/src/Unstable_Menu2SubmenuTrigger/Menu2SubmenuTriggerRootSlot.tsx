@@ -1,10 +1,16 @@
 'use client';
 import * as React from 'react';
+import clsx from 'clsx';
+import { useRtl } from '@mui/system/RtlProvider';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import useForkRef from '@mui/utils/useForkRef';
 import { mergeProps } from '@base-ui/react/merge-props';
 import mergeSlotProps from '../utils/mergeSlotProps';
 import MenuItemBase from '../internal/MenuItemBase';
+import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
+import menuItemClasses from '../MenuItem/menuItemClasses';
+import useSlot from '../utils/useSlot';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
@@ -20,34 +26,17 @@ import type {
 } from './Menu2SubmenuTrigger';
 
 function menu2SubmenuTriggerStyles(theme: Theme) {
-  // The highlight outranks the open tint. The open selector excludes both states
-  // that paint the highlight, so the rules never match the same element and the
-  // insertion order cannot decide the winner. Under `theme.focusVisible` the
-  // highlight paints no background, so the tint stays.
-  const notHighlighted = theme.focusVisible
-    ? ''
-    : `:not(.${menu2SubmenuTriggerClasses.highlighted}):not(:hover)`;
+  // Keyboard focus takes precedence over the open tint. With a focus ring,
+  // the tint stays because it shows the open state, not focus.
+  const notFocused = theme.focusVisible ? '' : `:not(.${menuItemClasses.focusVisible})`;
 
   return {
-    // The trigger owns its state styling, independently of its parent list.
-    // An open trigger keeps a tint, because open is a state and not a focus cue.
-    // `action.hover` is the lightest of the three, so an open parent stays visible
-    // without competing with the item the reader is on.
-    [`&.${menu2SubmenuTriggerClasses.open}${notHighlighted}, &.${menu2SubmenuTriggerClasses.closing}${notHighlighted}`]:
+    [`&.${menu2SubmenuTriggerClasses.open}${notFocused}, &.${menu2SubmenuTriggerClasses.closing}${notFocused}`]:
       {
         backgroundColor: (theme.vars || theme).palette.action.hover,
       },
-    // The theme ring replaces the highlight, the way it does for a plain item.
-    // `:hover` is here too: Base UI highlights a submenu trigger only once its
-    // submenu opens, so during the open delay the trigger would otherwise show
-    // the weaker hover tint while its neighbours show the full highlight.
-    ...(!theme.focusVisible && {
-      [`&.${menu2SubmenuTriggerClasses.root}:hover, &.${menu2SubmenuTriggerClasses.highlighted}`]: {
-        backgroundColor: (theme.vars || theme).palette.action.focus,
-      },
-    }),
     // A selected trigger that is open blends its own tint with the open tint.
-    [`&.${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.open}${notHighlighted}, &.${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.closing}${notHighlighted}`]:
+    [`&.${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.open}${notFocused}, &.${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.closing}${notFocused}`]:
       {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,
@@ -56,16 +45,6 @@ function menu2SubmenuTriggerStyles(theme: Theme) {
           }`,
         ),
       },
-    ...(!theme.focusVisible && {
-      [`&.${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.highlighted}`]: {
-        backgroundColor: theme.alpha(
-          (theme.vars || theme).palette.primary.main,
-          `${(theme.vars || theme).palette.action.selectedOpacity} + ${
-            (theme.vars || theme).palette.action.focusOpacity
-          }`,
-        ),
-      },
-    }),
   };
 }
 
@@ -74,11 +53,20 @@ const Menu2SubmenuTriggerRoot = styled(MenuItemBase, {
   slot: 'Root',
   overridesResolver: menuItemOverridesResolver,
 })<{ ownerState: Menu2SubmenuTriggerOwnerState }>(
-  memoTheme(({ theme }) =>
-    getMenuItemHighlightStyles(theme, menu2SubmenuTriggerClasses.highlighted),
-  ),
+  memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
   memoTheme(({ theme }) => menu2SubmenuTriggerStyles(theme)),
 );
+
+const Menu2SubmenuTriggerIndicator = styled('span', {
+  name: 'MuiMenu2SubmenuTrigger',
+  slot: 'Indicator',
+})({
+  display: 'inline-flex',
+  alignItems: 'center',
+  flexShrink: 0,
+  marginInlineStart: 'auto',
+  paddingInlineStart: 8,
+});
 
 function Menu2SubmenuTriggerRootSlot({
   baseProps,
@@ -90,7 +78,7 @@ function Menu2SubmenuTriggerRootSlot({
   sx,
 }: Pick<Menu2SubmenuTriggerProps, 'component' | 'disableRipple' | 'slotProps' | 'slots' | 'sx'> & {
   baseProps: React.ComponentPropsWithRef<'div'>;
-  ownerState: Menu2SubmenuTriggerOwnerState;
+  ownerState: Menu2SubmenuTriggerOwnerState & Pick<Menu2SubmenuTriggerProps, 'classes'>;
 }) {
   const RootSlot = slots?.root ?? Menu2SubmenuTriggerRoot;
   const externalSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), {
@@ -98,6 +86,21 @@ function Menu2SubmenuTriggerRootSlot({
   });
   const rootProps = mergeProps(baseProps, externalSlotProps);
   const ref = useForkRef(baseProps.ref, externalSlotProps?.ref);
+  const isRtl = useRtl();
+  const [IndicatorSlot, indicatorProps] = useSlot('indicator', {
+    elementType: Menu2SubmenuTriggerIndicator,
+    externalForwardedProps: { slots, slotProps },
+    ownerState,
+    className: clsx(menu2SubmenuTriggerClasses.indicator, ownerState.classes?.indicator),
+    additionalProps: {
+      'aria-hidden': true,
+      children: isRtl ? (
+        <KeyboardArrowLeft fontSize="small" />
+      ) : (
+        <KeyboardArrowRight fontSize="small" />
+      ),
+    },
+  });
 
   return getMenu2RootRender(
     RootSlot,
@@ -109,6 +112,12 @@ function Menu2SubmenuTriggerRootSlot({
       ...(disableRipple !== undefined && { disableRipple }),
       ownerState,
       ...suppressButtonBaseKeyboardActivation(rootProps),
+      children: (
+        <React.Fragment>
+          {rootProps.children}
+          <IndicatorSlot {...indicatorProps} />
+        </React.Fragment>
+      ),
     },
     Menu2SubmenuTriggerRoot,
   );

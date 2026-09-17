@@ -34,7 +34,6 @@ import {
 } from '../Unstable_Menu2/menu2ItemShared';
 import {
   getMenu2CheckboxItemUtilityClass,
-  menu2CheckboxItemClasses,
   Menu2CheckboxItemClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
@@ -154,7 +153,7 @@ const Menu2CheckboxItemRoot = styled(MenuItemBase, {
   slot: 'Root',
   overridesResolver: menuItemOverridesResolver,
 })<{ ownerState: Menu2CheckboxItemOwnerState }>(
-  memoTheme(({ theme }) => getMenuItemHighlightStyles(theme, menu2CheckboxItemClasses.highlighted)),
+  memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
 );
 
 interface Menu2CheckboxItemRootSlotProps extends Pick<
