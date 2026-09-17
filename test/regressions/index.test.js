@@ -624,6 +624,10 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
  * The check is a pixel comparison rather than a computed-style diff because
  * MUI's focus indicator is usually the ripple — a child element that appears in
  * the DOM. Diffing styles on the control itself would miss it entirely.
+ *
+ * The `KeyboardRing` fixture repeats the check with `focusVisible: true` and
+ * the ripple disabled. There the outline ring is the only possible pixel
+ * change, so the themed variant asserts the ring itself.
  */
 function registerFocusVisibleSuites({ test, renderFixture, routes }) {
   const FOCUS_VISIBLE_TARGETS = [
@@ -664,6 +668,18 @@ function registerFocusVisibleSuites({ test, renderFixture, routes }) {
     },
   ];
 
+  // TextField is absent: it has no ring, and the demo suite above already
+  // covers its border-change indicator.
+  const RING_ROUTE = '/regression-FocusVisible/KeyboardRing';
+  const FOCUS_RING_TARGETS = [
+    { component: 'AccordionSummary', route: RING_ROUTE, selector: '.MuiAccordionSummary-root' },
+    { component: 'Button', route: RING_ROUTE, selector: '.MuiButton-root' },
+    { component: 'Checkbox', route: RING_ROUTE, selector: '.MuiCheckbox-root' },
+    { component: 'Radio', route: RING_ROUTE, selector: '.MuiRadio-root' },
+    { component: 'Switch', route: RING_ROUTE, selector: '.MuiSwitch-root' },
+    { component: 'ToggleButton', route: RING_ROUTE, selector: '.MuiToggleButton-root' },
+  ];
+
   /** An outline or ring can paint outside the control, so capture a padded box. */
   const PADDING = 8;
 
@@ -697,14 +713,12 @@ function registerFocusVisibleSuites({ test, renderFixture, routes }) {
     return false;
   }
 
-  FOCUS_VISIBLE_TARGETS.forEach(({ component, route, selector }) => {
+  function registerTarget({ component, route, selector }, title) {
     if (!routes.includes(route)) {
       return;
     }
 
-    test(`${component} 2.4.7 Focus Visible: keyboard focus changes how the control looks`, async ({
-      pooled,
-    }) => {
+    test(`${component} ${title}`, async ({ pooled }) => {
       const { page } = pooled;
       const testcase = await renderFixture(page, route);
       const handle = await testcase.$(selector);
@@ -724,6 +738,16 @@ function registerFocusVisibleSuites({ test, renderFixture, routes }) {
         );
       }
     });
+  }
+
+  FOCUS_VISIBLE_TARGETS.forEach((target) => {
+    registerTarget(target, '2.4.7 Focus Visible: keyboard focus changes how the control looks');
+  });
+  FOCUS_RING_TARGETS.forEach((target) => {
+    registerTarget(
+      target,
+      '2.4.7 Focus Visible: keyboard focus paints the theme.focusVisible ring',
+    );
   });
 }
 
