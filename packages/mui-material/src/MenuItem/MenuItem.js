@@ -55,7 +55,8 @@ const useUtilityClasses = (ownerState) => {
 };
 
 const MenuItemRoot = styled(ButtonBase, {
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  shouldForwardProp: (prop) =>
+    (rootShouldForwardProp(prop) && prop !== 'focusableWhenDisabled') || prop === 'classes',
   name: 'MuiMenuItem',
   slot: 'Root',
   overridesResolver,
