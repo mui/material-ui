@@ -476,6 +476,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       // https://github.com/mui/material-ui/issues/13485#issuecomment-676048492
       // Clone the event to not override `target` of the original event.
       const nativeEvent = event.nativeEvent || event;
+      // eslint-disable-next-line new-cap
       const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
 
       Object.defineProperty(clonedEvent, 'target', {
