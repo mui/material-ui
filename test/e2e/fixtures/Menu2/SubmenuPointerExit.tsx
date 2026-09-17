@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, enhanceHighContrast, ThemeProvider } from '@mui/material/styles';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
@@ -9,7 +9,10 @@ import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 export default function SubmenuPointerExit() {
   const [selected, setSelected] = React.useState(false);
   const [focusVisible, setFocusVisible] = React.useState(false);
-  const theme = React.useMemo(() => createTheme({ focusVisible }), [focusVisible]);
+  const theme = React.useMemo(
+    () => enhanceHighContrast(createTheme({ focusVisible })),
+    [focusVisible],
+  );
 
   return (
     <ThemeProvider theme={theme}>

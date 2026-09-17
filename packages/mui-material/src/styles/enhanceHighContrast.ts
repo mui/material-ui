@@ -496,7 +496,7 @@ export default function enhanceHighContrast<
         root: [
           c?.MuiMenu2SubmenuTrigger?.styleOverrides?.root,
           {
-            [`&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.open}.${menu2SubmenuTriggerClasses.selected}, &.${menu2SubmenuTriggerClasses.closing}, &.${menu2SubmenuTriggerClasses.closing}.${menu2SubmenuTriggerClasses.selected}`]:
+            [`&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.open}.${menu2SubmenuTriggerClasses.selected}`]:
               {
                 [HCM]: {
                   forcedColorAdjust: 'none',
@@ -505,6 +505,22 @@ export default function enhanceHighContrast<
                 },
               },
             ...menu2ItemOverrides(menu2SubmenuTriggerClasses, hcTokens),
+            variants: [
+              {
+                props: ({ ownerState }) =>
+                  'retainClosingTint' in ownerState && ownerState.retainClosingTint === true,
+                style: {
+                  [`&.${menu2SubmenuTriggerClasses.closing}, &.${menu2SubmenuTriggerClasses.closing}.${menu2SubmenuTriggerClasses.selected}`]:
+                    {
+                      [HCM]: {
+                        forcedColorAdjust: 'none',
+                        color: hcTokens.activeText,
+                        backgroundColor: hcTokens.activeBackground,
+                      },
+                    },
+                },
+              },
+            ],
           },
         ],
       },

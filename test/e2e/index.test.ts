@@ -1,5 +1,5 @@
 import { Page, Browser, chromium, expect } from '@playwright/test';
-import { describe, it, beforeAll, afterAll, beforeEach } from 'vitest';
+import { describe, it, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
 import '@mui/internal-test-utils/initPlaywrightMatchers';
 
 const BASE_URL = 'http://localhost:5001';
@@ -70,6 +70,10 @@ describe('e2e', () => {
       await page.goto('about:blank');
     });
 
+    afterEach(async () => {
+      await page.emulateMedia({ forcedColors: 'none' });
+    });
+
     [false, true].forEach((focusVisible) => {
       it(`separates pointer and keyboard styles, focusVisible=${focusVisible}`, async () => {
         await renderFixture('Menu2/ItemStates');
@@ -130,43 +134,59 @@ describe('e2e', () => {
 
     [false, true].forEach((focusVisible) => {
       [false, true].forEach((selected) => {
-        it(`clears the submenu trigger tint during a pointer exit, focusVisible=${focusVisible}, selected=${selected}`, async () => {
-          await renderFixture('Menu2/SubmenuPointerExit');
-          await page.getByRole('checkbox', { name: 'Focus ring' }).setChecked(focusVisible);
-          await page.getByRole('checkbox', { name: 'Selected trigger' }).setChecked(selected);
-          await page.getByRole('button', { name: 'Options' }).click();
-          const trigger = page.getByRole('menuitem', { name: 'More', exact: true });
-          await trigger.hover();
-          await expect(trigger).toHaveClass(/Mui-open/);
-          // Move through Base UI's safe-travel pointer blocking without waiting for it to end.
-          await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover({ force: true });
-          await expect(trigger).toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
-          expect(
-            await trigger.evaluate((element) => getComputedStyle(element).backgroundColor),
-          ).toBe(selected ? 'rgba(25, 118, 210, 0.08)' : 'rgba(0, 0, 0, 0)');
+        [false, true].forEach((forcedColors) => {
+          it(`clears the submenu trigger tint during a pointer exit, focusVisible=${focusVisible}, selected=${selected}, forcedColors=${forcedColors}`, async () => {
+            await page.emulateMedia({ forcedColors: forcedColors ? 'active' : 'none' });
+            await renderFixture('Menu2/SubmenuPointerExit');
+            await page.getByRole('checkbox', { name: 'Focus ring' }).setChecked(focusVisible);
+            await page.getByRole('checkbox', { name: 'Selected trigger' }).setChecked(selected);
+            await page.getByRole('button', { name: 'Options' }).click();
+            const trigger = page.getByRole('menuitem', { name: 'More', exact: true });
+            const idleColors = await trigger.evaluate((element) => {
+              const style = getComputedStyle(element);
+              return { color: style.color, backgroundColor: style.backgroundColor };
+            });
+            await trigger.hover();
+            await expect(trigger).toHaveClass(/Mui-open/);
+            // Move through Base UI's safe-travel pointer blocking without waiting for it to end.
+            await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover({ force: true });
+            await expect(trigger).toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
+            expect(
+              await trigger.evaluate((element) => {
+                const style = getComputedStyle(element);
+                return { color: style.color, backgroundColor: style.backgroundColor };
+              }),
+            ).toEqual(idleColors);
+          });
         });
       });
     });
 
-    it('restores the exit tint for keyboard navigation after a pointer close', async () => {
-      await renderFixture('Menu2/SubmenuPointerExit');
-      await page.getByRole('button', { name: 'Options' }).click();
-      const trigger = page.getByRole('menuitem', { name: 'More', exact: true });
-      await trigger.hover();
-      await expect(trigger).toHaveClass(/Mui-open/);
-      await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover({ force: true });
-      await expect(trigger).not.toHaveClass(/Mui-open/);
-      await expect(trigger).not.toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
-      await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover();
-      await page.keyboard.press('ArrowDown');
-      await page.keyboard.press('ArrowRight');
-      await expect(page.getByRole('menuitem', { name: 'Nested' })).toBeFocused();
-      await page.keyboard.press('Escape');
-      await expect(trigger).toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
-      expect(await trigger.evaluate((element) => getComputedStyle(element).backgroundColor)).toBe(
-        'rgba(0, 0, 0, 0.04)',
-      );
-      await expect(trigger).toBeFocused();
+    [false, true].forEach((forcedColors) => {
+      it(`restores the exit tint for keyboard navigation after a pointer close, forcedColors=${forcedColors}`, async () => {
+        await page.emulateMedia({ forcedColors: forcedColors ? 'active' : 'none' });
+        await renderFixture('Menu2/SubmenuPointerExit');
+        await page.getByRole('button', { name: 'Options' }).click();
+        const trigger = page.getByRole('menuitem', { name: 'More', exact: true });
+        await trigger.hover();
+        await expect(trigger).toHaveClass(/Mui-open/);
+        await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover({ force: true });
+        await expect(trigger).not.toHaveClass(/Mui-open/);
+        await expect(trigger).not.toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
+        await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover();
+        await page.keyboard.press('ArrowDown');
+        await page.keyboard.press('ArrowRight');
+        await expect(page.getByRole('menuitem', { name: 'Nested' })).toBeFocused();
+        const openColor = await trigger.evaluate(
+          (element) => getComputedStyle(element).backgroundColor,
+        );
+        await page.keyboard.press('Escape');
+        await expect(trigger).toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
+        expect(await trigger.evaluate((element) => getComputedStyle(element).backgroundColor)).toBe(
+          openColor,
+        );
+        await expect(trigger).toBeFocused();
+      });
     });
   });
 

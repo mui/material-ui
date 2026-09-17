@@ -708,7 +708,7 @@ describe('enhanceHighContrast', () => {
       },
     );
 
-    test('MuiMenu2SubmenuTrigger owns its open and closing states', () => {
+    test('MuiMenu2SubmenuTrigger owns its open state', () => {
       const theme = enhanceHighContrast(createTheme());
       const rootOverrides = theme.components?.MuiMenu2SubmenuTrigger?.styleOverrides
         ?.root as Array<StyleOverride>;
@@ -716,7 +716,7 @@ describe('enhanceHighContrast', () => {
 
       expect(
         hcmOverride[
-          `&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.open}.${menu2SubmenuTriggerClasses.selected}, &.${menu2SubmenuTriggerClasses.closing}, &.${menu2SubmenuTriggerClasses.closing}.${menu2SubmenuTriggerClasses.selected}`
+          `&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.open}.${menu2SubmenuTriggerClasses.selected}`
         ],
       ).to.deep.equal({
         [HCM]: {
@@ -724,6 +724,31 @@ describe('enhanceHighContrast', () => {
           color: 'HighlightText',
           backgroundColor: 'Highlight',
         },
+      });
+    });
+
+    test('MuiMenu2SubmenuTrigger retains the closing tint only when requested', () => {
+      const theme = enhanceHighContrast(createTheme());
+      const rootOverrides = theme.components?.MuiMenu2SubmenuTrigger?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1];
+      const [closingVariant] = hcmOverride.variants as Array<{
+        props: (props: { ownerState: Record<string, unknown> }) => boolean;
+        style: StyleOverride;
+      }>;
+
+      expect(closingVariant.props({ ownerState: { retainClosingTint: true } })).to.equal(true);
+      expect(closingVariant.props({ ownerState: { retainClosingTint: false } })).to.equal(false);
+      expect(closingVariant.props({ ownerState: {} })).to.equal(false);
+      expect(closingVariant.style).to.deep.equal({
+        [`&.${menu2SubmenuTriggerClasses.closing}, &.${menu2SubmenuTriggerClasses.closing}.${menu2SubmenuTriggerClasses.selected}`]:
+          {
+            [HCM]: {
+              forcedColorAdjust: 'none',
+              color: 'HighlightText',
+              backgroundColor: 'Highlight',
+            },
+          },
       });
     });
   });
