@@ -463,6 +463,16 @@ export interface AutocompleteBaseProps<
   sx?: SxProps<Theme> | undefined;
 }
 
+/**
+ *
+ * Demos:
+ *
+ * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ *
+ * API:
+ *
+ * - [Autocomplete API](https://mui.com/material-ui/api/autocomplete/)
+ */
 export default function Autocomplete<
   Option,
   Multiple extends boolean | undefined = false,
