@@ -52,6 +52,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import InputBase from '@mui/material/InputBase';
 import AddIcon from '@mui/icons-material/Add';
 import StarIcon from '@mui/icons-material/Star';
 import HomeIcon from '@mui/icons-material/Home';
@@ -222,6 +223,17 @@ export default function FullFocusVisibleDemo() {
           </Row>
           <Row label="Switch">
             <FormControlLabel control={<Switch defaultChecked />} label="Switch" />
+          </Row>
+          <Row label="InputBase" secondary="(no indicator of its own)">
+            <InputBase
+              placeholder="Test"
+              sx={{
+                px: 1,
+                border: '1px dashed',
+                borderColor: 'divider',
+                borderRadius: 1,
+              }}
+            />
           </Row>
           <Row label="TextField" secondary="(filled + disableUnderline)">
             <TextField

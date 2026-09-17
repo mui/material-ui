@@ -111,6 +111,14 @@ export const InputBaseRoot = styled('div', {
     },
     variants: [
       {
+        // A bare input has no focus indicator of its own, so the theme ring is it. Wrappers that
+        // draw their own (the underline, the notched outline) opt out via the private prop.
+        props: { internalDisabledThemeFocusVisible: false },
+        style: theme.focusVisible && {
+          [`&.${inputBaseClasses.focused}`]: theme.focusVisible,
+        },
+      },
+      {
         props: ({ ownerState }) => ownerState.multiline,
         style: {
           padding: '4px 0 5px',
@@ -278,6 +286,10 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     inputComponent = 'input',
     inputProps: inputPropsProp = {},
     inputRef: inputRefProp,
+    /* eslint-disable react/prop-types */
+    // private prop to let a wrapper (like OutlinedInput) draw its own focus indicator instead
+    internalDisabledThemeFocusVisible = false,
+    /* eslint-enable react/prop-types */
     margin,
     maxRows,
     minRows,
@@ -530,6 +542,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     color: fcs.color || 'primary',
     disabled: fcs.disabled,
     endAdornment,
+    internalDisabledThemeFocusVisible,
     error: fcs.error,
     focused: fcs.focused,
     formControl: muiFormControl,

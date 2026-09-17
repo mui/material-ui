@@ -90,13 +90,6 @@ const FilledInputRoot = styled(InputBaseRoot, {
       },
       variants: [
         {
-          props: ({ ownerState }) => ownerState.disableUnderline,
-          // `disableUnderline` drops the only focus indicator, so the theme ring takes its place.
-          style: theme.focusVisible && {
-            [`&.${filledInputClasses.focused}`]: theme.focusVisible,
-          },
-        },
-        {
           props: ({ ownerState }) => !ownerState.disableUnderline,
           style: {
             '&::after': {
@@ -328,6 +321,8 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
       slotProps={componentsProps}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
+      // The underline is the focus indicator; without it, fall back to the theme ring.
+      internalDisabledThemeFocusVisible={!disableUnderline}
       multiline={multiline}
       ref={ref}
       type={type}
