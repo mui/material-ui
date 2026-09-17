@@ -8,7 +8,6 @@ import refType from '@mui/utils/refType';
 // `memoTheme` and `SvgIcon`, so importing one thing from it pulls in styling.
 import useId from '../../utils/useId';
 import useForkRef from '../../utils/useForkRef';
-import capitalize from '../../utils/capitalize';
 import useButtonBase from '../../ButtonBase/useButtonBase';
 import { getButtonUtilityClass } from '../buttonClasses';
 import buttonSlots from './buttonSlots';
@@ -16,8 +15,7 @@ import buttonSlots from './buttonSlots';
 const slotDefs = buttonSlots.slots;
 
 const useUtilityClasses = (ownerState, appearanceClasses) => {
-  const { disabled, focusVisible, loading, loadingPosition, suppressFocusVisible, classes } =
-    ownerState;
+  const { disabled, focusVisible, loading, suppressFocusVisible, classes } = ownerState;
 
   const slots = {
     root: [
@@ -27,12 +25,12 @@ const useUtilityClasses = (ownerState, appearanceClasses) => {
       disabled && 'disabled',
       focusVisible && !suppressFocusVisible && 'focusVisible',
       loading && 'loading',
-      loading && `loadingPosition${capitalize(loadingPosition)}`,
     ],
     startIcon: ['icon', 'startIcon'],
     endIcon: ['icon', 'endIcon'],
     loadingIndicator: ['loadingIndicator'],
     loadingWrapper: ['loadingWrapper'],
+    loadingIconPlaceholder: ['loadingIconPlaceholder'],
   };
 
   // Class keys contributed by the styling layer, appended per slot.
@@ -78,7 +76,6 @@ const ButtonUnstyled = React.forwardRef(function Button(props, ref) {
     LinkComponent = 'a',
     loading = null,
     loadingIndicator: loadingIndicatorProp,
-    loadingPosition = 'center',
     nativeButton: nativeButtonProp,
     onBlur,
     onClick: onClickProp,
@@ -173,8 +170,6 @@ const ButtonUnstyled = React.forwardRef(function Button(props, ref) {
     startIcon: StartIconSlot = slotDefs.startIcon.elementType,
     endIcon: EndIconSlot = slotDefs.endIcon.elementType,
     loadingIndicator: LoadingIndicatorWrapperSlot = slotDefs.loadingIndicator.elementType,
-    loadingIconPlaceholder: LoadingIconPlaceholderSlot = slotDefs.loadingIconPlaceholder
-      .elementType,
     // The spinner rendered when no `loadingIndicator` is given. Material's is a
     // CircularProgress; this layer has no opinion and renders an empty span.
     loadingSpinner: LoadingSpinnerSlot = slotDefs.loadingSpinner.elementType,
@@ -192,7 +187,6 @@ const ButtonUnstyled = React.forwardRef(function Button(props, ref) {
     focusVisible,
     loading,
     loadingIndicator,
-    loadingPosition,
     suppressFocusVisible,
     tabIndex,
     type,
@@ -223,25 +217,25 @@ const ButtonUnstyled = React.forwardRef(function Button(props, ref) {
     ? {}
     : { ownerState, component: ComponentProp, classes: forwardedClasses };
 
-  const startIcon = (startIconProp || (loading && loadingPosition === 'start')) && (
-    <StartIconSlot className={classes.startIcon} ownerState={slotOwnerState(StartIconSlot)}>
-      {startIconProp || (
-        <LoadingIconPlaceholderSlot
-          className={classes.loadingIconPlaceholder}
-          ownerState={slotOwnerState(LoadingIconPlaceholderSlot)}
-        />
-      )}
+  // An icon slot with no icon in it is a spacer, there to keep the label from
+  // shifting when the indicator appears. Which side needs one is an appearance
+  // question, so both are rendered and marked, and the styling layer collapses
+  // the one it does not want.
+  const startIcon = (startIconProp || loading) && (
+    <StartIconSlot
+      className={clsx(classes.startIcon, !startIconProp && classes.loadingIconPlaceholder)}
+      ownerState={slotOwnerState(StartIconSlot)}
+    >
+      {startIconProp || <span />}
     </StartIconSlot>
   );
 
-  const endIcon = (endIconProp || (loading && loadingPosition === 'end')) && (
-    <EndIconSlot className={classes.endIcon} ownerState={slotOwnerState(EndIconSlot)}>
-      {endIconProp || (
-        <LoadingIconPlaceholderSlot
-          className={classes.loadingIconPlaceholder}
-          ownerState={slotOwnerState(LoadingIconPlaceholderSlot)}
-        />
-      )}
+  const endIcon = (endIconProp || loading) && (
+    <EndIconSlot
+      className={clsx(classes.endIcon, !endIconProp && classes.loadingIconPlaceholder)}
+      ownerState={slotOwnerState(EndIconSlot)}
+    >
+      {endIconProp || <span />}
     </EndIconSlot>
   );
 
@@ -276,9 +270,8 @@ const ButtonUnstyled = React.forwardRef(function Button(props, ref) {
       {...other}
     >
       {startIcon}
-      {loadingPosition !== 'end' && loader}
+      {loader}
       {children}
-      {loadingPosition === 'end' && loader}
       {endIcon}
     </RootElement>
   );
@@ -371,11 +364,6 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
    * @default <CircularProgress color="inherit" size={16} />
    */
   loadingIndicator: PropTypes.node,
-  /**
-   * The loading indicator can be positioned on the start, end, or the center of the button.
-   * @default 'center'
-   */
-  loadingPosition: PropTypes.oneOf(['center', 'end', 'start']),
   /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.

@@ -257,6 +257,16 @@ const styles = {
   }),
   startIcon: ({ theme }) => ({
     display: 'inherit',
+    // An icon slot with no icon in it is a loading spacer. It only takes
+    // space on the side the indicator is on.
+    [`&.${buttonClasses.loadingIconPlaceholder}`]: {
+      display: 'none',
+    },
+    [`&.${buttonClasses.loadingIconPlaceholder} > *`]: {
+      display: 'inline-block',
+      width: '1em',
+      height: '1em',
+    },
     alignItems: 'center',
     marginRight: 8,
     marginLeft: -4,
@@ -270,6 +280,14 @@ const styles = {
         props: { size: 'small' },
         style: {
           marginLeft: -2,
+        },
+      },
+      {
+        props: { loadingPosition: 'start' },
+        style: {
+          [`&.${buttonClasses.loadingIconPlaceholder}`]: {
+            display: 'inherit',
+          },
         },
       },
       {
@@ -292,6 +310,16 @@ const styles = {
   }),
   endIcon: ({ theme }) => ({
     display: 'inherit',
+    // An icon slot with no icon in it is a loading spacer. It only takes
+    // space on the side the indicator is on.
+    [`&.${buttonClasses.loadingIconPlaceholder}`]: {
+      display: 'none',
+    },
+    [`&.${buttonClasses.loadingIconPlaceholder} > *`]: {
+      display: 'inline-block',
+      width: '1em',
+      height: '1em',
+    },
     marginRight: -4,
     marginLeft: 8,
     variants: [
@@ -299,6 +327,14 @@ const styles = {
         props: { size: 'small' },
         style: {
           marginRight: -2,
+        },
+      },
+      {
+        props: { loadingPosition: 'end' },
+        style: {
+          [`&.${buttonClasses.loadingIconPlaceholder}`]: {
+            display: 'inherit',
+          },
         },
       },
       {
@@ -395,15 +431,13 @@ const styles = {
         style: {
           position: 'relative',
           right: -10,
+          // The indicator is always rendered before the children, so an
+          // in-flow one at the end has to be moved by the layout.
+          order: 1,
         },
       },
     ],
   }),
-  loadingIconPlaceholder: {
-    display: 'inline-block',
-    width: '1em',
-    height: '1em',
-  },
 };
 
 // Material Design's appearance vocabulary. Button needs every naming rule there
@@ -426,6 +460,14 @@ const appearance = createAppearance({
     prefix: 'color',
   },
   fullWidth: { default: false, className: whenTrue('fullWidth'), values: [true] },
+  // Only classed while loading, as before, so a button that is not loading does
+  // not carry a position class.
+  loadingPosition: {
+    default: 'center',
+    className: (value, props) => (props.loading ? prefixed('loadingPosition')(value) : null),
+    values: ['start', 'center', 'end'],
+    classKeys: ['loadingPositionStart', 'loadingPositionCenter', 'loadingPositionEnd'],
+  },
   disableElevation: { default: false, className: whenTrue('disableElevation'), values: [true] },
 });
 
@@ -480,6 +522,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     fullWidth,
     disableElevation,
     disableFocusRipple = false,
+    loadingPosition = 'center',
     className,
     slots: slotsProp,
     ...other
@@ -490,7 +533,16 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       {...other}
       ref={ref}
       className={clsx(contextProps.className, className, positionClassName)}
-      appearance={appearance.resolve({ color, size, variant, fullWidth, disableElevation })}
+      appearance={appearance.resolve({
+        color,
+        size,
+        variant,
+        fullWidth,
+        disableElevation,
+        loadingPosition,
+        // Not part of the vocabulary; read by `loadingPosition`'s `className`.
+        loading: other.loading,
+      })}
       slots={{ ...slots, ...slotsProp }}
       // A ripple is Material Design, so the logic half knows nothing about it.
       // This rides through on `...other` to the root slot.
@@ -506,6 +558,11 @@ Button.propTypes = {
    * @default false
    */
   disableFocusRipple: PropTypes.bool,
+  /**
+   * The loading indicator can be positioned on the start, end, or the center of the button.
+   * @default 'center'
+   */
+  loadingPosition: PropTypes.oneOf(['start', 'center', 'end']),
   /**
    * The color of the component.
    * @default 'primary'

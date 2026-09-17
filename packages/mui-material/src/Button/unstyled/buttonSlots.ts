@@ -14,6 +14,10 @@ import * as React from 'react';
  * The same is true of `loadingIndicator`, whose Material default is a
  * `CircularProgress`. It is a slot here so the component does not have to
  * import one.
+ *
+ * There is no slot for the loading spacer. An icon slot with no icon in it is
+ * the spacer, marked with the `loadingIconPlaceholder` class so the styling
+ * layer can collapse the side it does not want.
  */
 export interface ButtonSlotDefinition {
   elementType: React.ElementType;
@@ -29,13 +33,9 @@ const buttonSlots = {
   name: 'MuiButton',
   slots: {
     root: { elementType: 'button', classes: ['root', 'disabled', 'focusVisible', 'loading'] },
-    startIcon: { elementType: 'span', classes: ['icon', 'startIcon'] },
-    endIcon: { elementType: 'span', classes: ['icon', 'endIcon'] },
+    startIcon: { elementType: 'span', classes: ['icon', 'startIcon', 'loadingIconPlaceholder'] },
+    endIcon: { elementType: 'span', classes: ['icon', 'endIcon', 'loadingIconPlaceholder'] },
     loadingIndicator: { elementType: 'span', classes: ['loadingIndicator'] },
-    // `buttonClasses` documents a `loadingIconPlaceholder` class, but
-    // `useUtilityClasses` has never emitted it, so it does not reach the DOM.
-    // Left as it is rather than fixed here, since this is a structural split.
-    loadingIconPlaceholder: { elementType: 'span', classes: [] },
     // The spinner shown when no `loadingIndicator` is given. Material's is a
     // CircularProgress; this layer has no opinion and renders an empty span.
     loadingSpinner: { elementType: 'span', classes: [] },

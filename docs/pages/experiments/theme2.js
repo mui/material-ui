@@ -44,6 +44,16 @@ const buttonAppearance = createAppearance({
   scale: { default: 'regular', className: prefixed('scale'), values: SCALES },
   emphasis: { default: 'solid', className: bare, values: ['solid', 'quiet'] },
   block: { default: false, className: whenTrue('block'), values: [true] },
+  // Where the spinner sits. Material calls this `loadingPosition` and says
+  // start/center/end; theme2 says leading/over/trailing. The component has no
+  // opinion either way: it renders the spinner in one place and a spacer on
+  // each side, and the class decides the rest.
+  spinner: {
+    default: 'over',
+    className: (value, props) => (props.loading ? prefixed('spinner')(value) : null),
+    values: ['leading', 'over', 'trailing'],
+    classKeys: ['spinnerLeading', 'spinnerOver', 'spinnerTrailing'],
+  },
 });
 
 /** theme2's spinner, a few lines of CSS rather than a CircularProgress. */
@@ -58,12 +68,19 @@ function Slider({ tone, scale, ...other }) {
   return <SliderUnstyled {...other} appearance={sliderAppearance.resolve({ tone, scale })} />;
 }
 
-function Button({ tone, scale, emphasis, block, ...other }) {
+function Button({ tone, scale, emphasis, block, spinner, ...other }) {
   return (
     <ButtonUnstyled
       {...other}
       slots={buttonSlots}
-      appearance={buttonAppearance.resolve({ tone, scale, emphasis, block })}
+      appearance={buttonAppearance.resolve({
+        tone,
+        scale,
+        emphasis,
+        block,
+        spinner,
+        loading: other.loading,
+      })}
     />
   );
 }
@@ -281,6 +298,7 @@ export default function SliderTheme2() {
                   ['size', 'small medium large'],
                   ['variant', 'text outlined contained'],
                   ['fullWidth', 'boolean'],
+                  ['loadingPosition', 'start center end'],
                 ]}
               />
               <Vocabulary
@@ -290,6 +308,7 @@ export default function SliderTheme2() {
                   ['scale', SCALES.join(' ')],
                   ['emphasis', 'solid quiet'],
                   ['block', 'boolean'],
+                  ['spinner', 'leading over trailing'],
                 ]}
               />
             </div>
@@ -419,13 +438,18 @@ export default function SliderTheme2() {
 
           <Row
             title="Loading"
-            note="The spinner comes through the loadingSpinner slot. Material puts a CircularProgress there; theme2 supplies a few lines of CSS."
+            note="The spinner comes through the loadingSpinner slot, and where it sits is theme2's own prop. Material calls that loadingPosition with start/center/end; theme2 calls it spinner with leading/over/trailing."
           >
             <Labelled label={`<Button loading>Save changes</Button>`}>
               <Button loading>Save changes</Button>
             </Labelled>
-            <Labelled label={`<Button loading loadingPosition="start">Save changes</Button>`}>
-              <Button loading loadingPosition="start">
+            <Labelled label={`<Button loading spinner="leading">Save changes</Button>`}>
+              <Button loading spinner="leading">
+                Save changes
+              </Button>
+            </Labelled>
+            <Labelled label={`<Button loading spinner="trailing">Save changes</Button>`}>
+              <Button loading spinner="trailing">
                 Save changes
               </Button>
             </Labelled>
