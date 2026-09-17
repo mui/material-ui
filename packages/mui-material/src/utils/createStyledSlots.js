@@ -43,6 +43,10 @@ export default function createStyledSlots(def, getUtilityClass, styles, appearan
     result[slotName] = styled(slot.elementType, {
       name: def.name,
       slot: capitalize(slotName),
+      // Escape hatch for slots whose root is another component that takes props
+      // of its own. Button's is `ButtonBase`, which needs `classes` forwarded to
+      // it rather than filtered off as a styling prop.
+      ...slot.styledOptions,
       overridesResolver: (props, themeStyles) => [
         themeStyles[slotName],
         // Resolve the class name rather than reading it off the classes object:

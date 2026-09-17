@@ -23,6 +23,8 @@ const SRC = path.resolve(HERE, '../src');
 const ENTRIES = [
   path.join(SRC, 'Slider/unstyled/SliderUnstyled.js'),
   path.join(SRC, 'Slider/unstyled/sliderSlots.ts'),
+  path.join(SRC, 'Button/unstyled/ButtonUnstyled.js'),
+  path.join(SRC, 'Button/unstyled/buttonSlots.ts'),
 ];
 
 /** Importing any of these means the unstyled layer depends on styling. */

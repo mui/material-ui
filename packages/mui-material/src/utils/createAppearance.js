@@ -14,12 +14,18 @@ import capitalize from './capitalize';
  *
  * Each entry describes one prop:
  *
- *   className  value -> class key, or null for no class. This is what lets one
- *              vocabulary produce `colorPrimary`, another produce `contained`,
- *              and a boolean produce `fullWidth` or nothing.
+ *   className  (value, props) -> class key, or null for no class. This is what
+ *              lets one vocabulary produce `colorPrimary`, another produce
+ *              `contained`, and a boolean produce `fullWidth` or nothing. It
+ *              also receives all the props, because a class is not always a
+ *              function of one of them: Alert's colour class is
+ *              `color${capitalize(color || severity)}`.
  *   values     the known values, used to tell the styled layer which
  *              `styleOverrides` keys exist. Open-ended props give a `prefix`
- *              instead.
+ *              instead, and a class built from more than one prop gives
+ *              `classKeys` directly.
+ *   classKeys  the class keys this prop can produce, when they cannot be
+ *              derived by mapping `className` over `values`.
  *   prefix     for values that cannot be listed, such as a palette colour a
  *              theme adds.
  *   default    applied when the prop is absent.
@@ -35,12 +41,16 @@ export default function createAppearance(modifiers) {
   entries.forEach(([, modifier]) => {
     const slot = modifier.slot ?? 'root';
     classes[slot] ??= [];
-    (modifier.values ?? []).forEach((value) => {
-      const key = modifier.className(value);
-      if (key) {
-        classes[slot].push(key);
-      }
-    });
+    if (modifier.classKeys) {
+      classes[slot].push(...modifier.classKeys);
+    } else {
+      (modifier.values ?? []).forEach((value) => {
+        const key = modifier.className(value);
+        if (key) {
+          classes[slot].push(key);
+        }
+      });
+    }
     if (modifier.prefix) {
       prefixes.push(modifier.prefix);
     }
@@ -63,7 +73,7 @@ export default function createAppearance(modifiers) {
       // match. Expected to be phased out in userland.
       ownerState[name] = value;
 
-      const key = modifier.className(value);
+      const key = modifier.className(value, props);
       if (key) {
         const slot = modifier.slot ?? 'root';
         slotClasses[slot] ??= [];
@@ -77,7 +87,7 @@ export default function createAppearance(modifiers) {
   return { resolve, classes, prefixes, propNames: entries.map(([name]) => name) };
 }
 
-/** The two naming patterns Material uses most: `colorPrimary`, and a bare value. */
-export const prefixed = (prop) => (value) => `${prop}${capitalize(value)}`;
-export const bare = (value) => value;
+/** The naming patterns Material uses. Button needs all four. */
+export const prefixed = (prop) => (value) => (value ? `${prop}${capitalize(value)}` : null);
+export const bare = (value) => value ?? null;
 export const whenTrue = (key) => (value) => (value ? key : null);

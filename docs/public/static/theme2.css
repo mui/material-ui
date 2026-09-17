@@ -1,5 +1,5 @@
 /**
- * theme2: an alternative Slider theme.
+ * theme2: an alternative theme for the unstyled components.
  *
  * A plain CSS file. It styles the unstyled Slider entirely through its stable
  * `MuiSlider-*` class names, with its own tokens and no relationship to
@@ -420,4 +420,191 @@
 .MuiSlider-valueLabel.MuiSlider-valueLabelOpen {
   opacity: 1;
   transform: translate(-50%, -100%) scale(1);
+}
+
+/* ============================================================== button ==== */
+
+/* structure. `all: unset` because the unstyled Button renders a plain
+   `button`, with none of the user-agent styling wanted. */
+.MuiButton-root {
+  all: unset;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  font-family: system-ui, sans-serif;
+  font-weight: 500;
+  line-height: 1;
+
+  height: var(--theme2-button-height);
+  padding-inline: var(--theme2-button-pad);
+  border-radius: var(--theme2-button-radius);
+  font-size: var(--theme2-button-font);
+
+  --theme2-button-height: 36px;
+  --theme2-button-pad: 14px;
+  --theme2-button-radius: 8px;
+  --theme2-button-font: 0.875rem;
+  --theme2-fill-from: var(--theme2-primary-from);
+  --theme2-fill-to: var(--theme2-primary-to);
+
+  transition:
+    background-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+/* ---------------------------------------------------------------- scale ---- */
+
+.MuiButton-root.MuiButton-scaleCompact {
+  --theme2-button-height: 28px;
+  --theme2-button-pad: 10px;
+  --theme2-button-radius: 6px;
+  --theme2-button-font: 0.8125rem;
+}
+
+.MuiButton-root.MuiButton-scaleRoomy {
+  --theme2-button-height: 44px;
+  --theme2-button-pad: 20px;
+  --theme2-button-radius: 10px;
+  --theme2-button-font: 0.9375rem;
+}
+
+/* ----------------------------------------------------------------- tone ---- */
+
+.MuiButton-root.MuiButton-muted {
+  --theme2-fill-from: var(--theme2-neutral-from);
+  --theme2-fill-to: var(--theme2-neutral-to);
+}
+
+.MuiButton-root.MuiButton-positive {
+  --theme2-fill-from: var(--theme2-success-from);
+  --theme2-fill-to: var(--theme2-success-to);
+}
+
+.MuiButton-root.MuiButton-critical {
+  --theme2-fill-from: var(--theme2-danger-from);
+  --theme2-fill-to: var(--theme2-danger-to);
+}
+
+.MuiButton-root.MuiButton-caution {
+  --theme2-fill-from: var(--theme2-warning-from);
+  --theme2-fill-to: var(--theme2-warning-to);
+}
+
+/* ------------------------------------------------------------- emphasis ---- */
+
+/* theme2 has two emphases where Material has three variants, and neither name
+   lines up: `solid` and `quiet` against `text`, `outlined` and `contained`. */
+.MuiButton-root.MuiButton-solid {
+  background: linear-gradient(to bottom, var(--theme2-fill-from), var(--theme2-fill-to));
+  color: #ffffff;
+  box-shadow: var(--theme2-shadow);
+}
+
+.MuiButton-root.MuiButton-solid:hover {
+  background: linear-gradient(to bottom, var(--theme2-fill-to), var(--theme2-fill-to));
+}
+
+.MuiButton-root.MuiButton-quiet {
+  background-color: transparent;
+  color: var(--theme2-fill-to);
+}
+
+/* The tint is mixed in CSS rather than precomputed, which is the sort of thing
+   a styling engine is usually reached for. */
+.MuiButton-root.MuiButton-quiet:hover {
+  background-color: color-mix(in oklab, var(--theme2-fill-from) 14%, transparent);
+}
+
+.MuiButton-root.MuiButton-quiet:active {
+  background-color: color-mix(in oklab, var(--theme2-fill-from) 22%, transparent);
+}
+
+/* ---------------------------------------------------------------- block ---- */
+
+/* theme2 calls it `block`; Material calls it `fullWidth`. */
+.MuiButton-root.MuiButton-block {
+  display: flex;
+  width: 100%;
+}
+
+/* -------------------------------------------------------------- disabled ---- */
+
+.MuiButton-root:disabled,
+.MuiButton-root.Mui-disabled {
+  cursor: not-allowed;
+  box-shadow: none;
+  background: linear-gradient(to bottom, var(--theme2-muted-from), var(--theme2-muted-to));
+  color: var(--theme2-page-muted);
+}
+
+.MuiButton-root.MuiButton-quiet:disabled,
+.MuiButton-root.MuiButton-quiet.Mui-disabled {
+  background: transparent;
+}
+
+/* ----------------------------------------------------------------- focus ---- */
+
+.MuiButton-root:focus-visible {
+  outline: 2px solid var(--theme2-fill-from);
+  outline-offset: 2px;
+}
+
+/* ----------------------------------------------------------------- icons ---- */
+
+.MuiButton-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.MuiButton-icon > *:first-of-type {
+  width: 1em;
+  height: 1em;
+}
+
+.MuiButton-loadingWrapper {
+  display: contents;
+}
+
+.MuiButton-loadingIndicator {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+}
+
+/* Centred loading covers the label rather than displacing it. */
+.MuiButton-root.MuiButton-loadingPositionCenter .MuiButton-loadingIndicator {
+  position: absolute;
+  inset: 0;
+  justify-content: center;
+}
+
+.MuiButton-root.MuiButton-loading.MuiButton-loadingPositionCenter {
+  color: transparent;
+}
+
+/* theme2's own spinner, injected through the `loadingSpinner` slot. Material
+   puts a CircularProgress there; this is a few lines of CSS. */
+.theme2-spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  animation: theme2-spin 600ms linear infinite;
+}
+
+@keyframes theme2-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

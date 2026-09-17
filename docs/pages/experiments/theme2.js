@@ -4,7 +4,8 @@ import Head from 'next/head';
 // `@mui/material`. Were it a package of its own this would be one level.
 /* eslint-disable no-restricted-imports */
 import SliderUnstyled from '@mui/material/Slider/unstyled';
-import createAppearance, { prefixed, bare } from '@mui/material/utils/createAppearance';
+import ButtonUnstyled from '@mui/material/Button/unstyled';
+import createAppearance, { prefixed, bare, whenTrue } from '@mui/material/utils/createAppearance';
 /* eslint-enable no-restricted-imports */
 
 /**
@@ -19,27 +20,52 @@ import createAppearance, { prefixed, bare } from '@mui/material/utils/createAppe
  * carries the same class names and would be restyled too.
  */
 
+const TONES = ['brand', 'muted', 'positive', 'critical', 'caution'];
+const SCALES = ['compact', 'regular', 'roomy'];
+
 // theme2's appearance vocabulary. Deliberately a different shape from Material's
 // rather than a renaming of it: five tones against six colours, no `secondary`
 // and no `info`, a `muted` that Material has no equivalent for, and three scales
-// where Material has two.
-const appearance = createAppearance({
+// where Material has two. `tone` and `scale` are shared across components.
+const sliderAppearance = createAppearance({
   tone: {
     default: 'brand',
     // Named after the value alone, so `tone="positive"` is `MuiSlider-positive`.
     className: bare,
-    values: ['brand', 'muted', 'positive', 'critical', 'caution'],
+    values: TONES,
   },
-  scale: {
-    default: 'regular',
-    className: prefixed('scale'),
-    values: ['compact', 'regular', 'roomy'],
-  },
+  scale: { default: 'regular', className: prefixed('scale'), values: SCALES },
 });
 
-/** theme2's wrapper. All it does is translate its own vocabulary. */
+// Button adds two more. `emphasis` has two values where Material's `variant` has
+// three, and `block` is what Material calls `fullWidth`.
+const buttonAppearance = createAppearance({
+  tone: { default: 'brand', className: bare, values: TONES },
+  scale: { default: 'regular', className: prefixed('scale'), values: SCALES },
+  emphasis: { default: 'solid', className: bare, values: ['solid', 'quiet'] },
+  block: { default: false, className: whenTrue('block'), values: [true] },
+});
+
+/** theme2's spinner, a few lines of CSS rather than a CircularProgress. */
+function Theme2Spinner(props) {
+  return <span {...props} className="theme2-spinner" />;
+}
+
+const buttonSlots = { loadingSpinner: Theme2Spinner };
+
+/** theme2's wrappers. All they do is translate its own vocabulary. */
 function Slider({ tone, scale, ...other }) {
-  return <SliderUnstyled {...other} appearance={appearance.resolve({ tone, scale })} />;
+  return <SliderUnstyled {...other} appearance={sliderAppearance.resolve({ tone, scale })} />;
+}
+
+function Button({ tone, scale, emphasis, block, ...other }) {
+  return (
+    <ButtonUnstyled
+      {...other}
+      slots={buttonSlots}
+      appearance={buttonAppearance.resolve({ tone, scale, emphasis, block })}
+    />
+  );
 }
 
 const MARKS = [
@@ -49,9 +75,6 @@ const MARKS = [
   { value: 75, label: '75' },
   { value: 100, label: '100' },
 ];
-
-const TONES = ['brand', 'muted', 'positive', 'critical', 'caution'];
-const SCALES = ['compact', 'regular', 'roomy'];
 
 function Code({ children, block }) {
   return (
@@ -69,6 +92,25 @@ function Code({ children, block }) {
     >
       {children}
     </code>
+  );
+}
+
+function ComponentHeading({ children }) {
+  return (
+    <h2
+      style={{
+        fontSize: 13,
+        fontWeight: 600,
+        letterSpacing: 0.6,
+        textTransform: 'uppercase',
+        color: 'var(--theme2-page-muted)',
+        borderBottom: '1px solid var(--theme2-border)',
+        paddingBottom: 8,
+        margin: '0 0 32px',
+      }}
+    >
+      {children}
+    </h2>
   );
 }
 
@@ -145,7 +187,7 @@ export default function SliderTheme2() {
         {/* Linked rather than imported on purpose: the point is that a plain
             CSS file is enough, with no bundler or styling engine involved. */}
         {/* eslint-disable-next-line @next/next/no-css-tags */}
-        <link rel="stylesheet" href="/static/slider-theme2.css" />
+        <link rel="stylesheet" href="/static/theme2.css" />
       </Head>
       <div
         style={{
@@ -236,7 +278,9 @@ export default function SliderTheme2() {
                 heading="Material Design"
                 rows={[
                   ['color', 'primary secondary error info success warning'],
-                  ['size', 'small medium'],
+                  ['size', 'small medium large'],
+                  ['variant', 'text outlined contained'],
+                  ['fullWidth', 'boolean'],
                 ]}
               />
               <Vocabulary
@@ -244,10 +288,14 @@ export default function SliderTheme2() {
                 rows={[
                   ['tone', TONES.join(' ')],
                   ['scale', SCALES.join(' ')],
+                  ['emphasis', 'solid quiet'],
+                  ['block', 'boolean'],
                 ]}
               />
             </div>
           </section>
+
+          <ComponentHeading>Slider</ComponentHeading>
 
           <Row title="Default" code={`<Slider defaultValue={40} />`}>
             <Slider defaultValue={40} />
@@ -310,6 +358,64 @@ export default function SliderTheme2() {
               <Slider defaultValue={[20, 70]} orientation="vertical" tone="positive" />
               <Slider defaultValue={60} orientation="vertical" marks={MARKS} step={25} />
             </div>
+          </Row>
+
+          <ComponentHeading>Button</ComponentHeading>
+
+          <Row title="Emphasis" note="Two, where Material has three variants.">
+            {['solid', 'quiet'].map((emphasis) => (
+              <Labelled key={emphasis} label={`<Button emphasis="${emphasis}" />`}>
+                <Button emphasis={emphasis}>Save changes</Button>
+              </Labelled>
+            ))}
+          </Row>
+
+          <Row title="Tone" note="The same tones the Slider uses.">
+            {TONES.map((tone) => (
+              <Labelled key={tone} label={`<Button tone="${tone}" />`}>
+                <span style={{ display: 'inline-flex', gap: 12 }}>
+                  <Button tone={tone}>Solid</Button>
+                  <Button tone={tone} emphasis="quiet">
+                    Quiet
+                  </Button>
+                </span>
+              </Labelled>
+            ))}
+          </Row>
+
+          <Row title="Scale">
+            {SCALES.map((scale) => (
+              <Labelled key={scale} label={`<Button scale="${scale}" />`}>
+                <Button scale={scale}>Save changes</Button>
+              </Labelled>
+            ))}
+          </Row>
+
+          <Row title="Block" note="What Material calls fullWidth." code={`<Button block />`}>
+            <Button block>Save changes</Button>
+          </Row>
+
+          <Row title="Disabled" code={`<Button disabled />`}>
+            <span style={{ display: 'inline-flex', gap: 12 }}>
+              <Button disabled>Solid</Button>
+              <Button disabled emphasis="quiet">
+                Quiet
+              </Button>
+            </span>
+          </Row>
+
+          <Row
+            title="Loading"
+            note="The spinner comes through the loadingSpinner slot. Material puts a CircularProgress there; theme2 supplies a few lines of CSS."
+          >
+            <Labelled label={`<Button loading />`}>
+              <Button loading>Save changes</Button>
+            </Labelled>
+            <Labelled label={`<Button loading loadingPosition="start" />`}>
+              <Button loading loadingPosition="start">
+                Save changes
+              </Button>
+            </Labelled>
           </Row>
         </main>
       </div>

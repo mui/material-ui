@@ -10,7 +10,7 @@
 import * as React from 'react';
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
-import theme2Css from 'docs/public/static/slider-theme2.css?raw';
+import theme2Css from 'docs/public/static/theme2.css?raw';
 import createAppearance, { prefixed, bare } from '../utils/createAppearance';
 import SliderUnstyled from './unstyled/SliderUnstyled';
 import sliderClasses from './sliderClasses';
