@@ -67,12 +67,17 @@ export function CookieConsentDialog() {
   React.useEffect(() => {
     if (needsConsent) {
       // Double rAF to ensure the initial opacity: 0 state is painted before transitioning
+      let innerFrame = 0;
       const frame = requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
+        innerFrame = requestAnimationFrame(() => {
           setShow(true);
         });
       });
-      return () => cancelAnimationFrame(frame);
+      return () => {
+        cancelAnimationFrame(frame);
+        // The second frame outlives the first one, so it needs its own cancel.
+        cancelAnimationFrame(innerFrame);
+      };
     }
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setShow(false);
