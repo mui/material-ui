@@ -1,7 +1,7 @@
 import { AlertProps } from '../Alert';
 import { AlertTitleProps } from '../AlertTitle';
 import { AppBarProps } from '../AppBar';
-import { AutocompleteProps } from '../Autocomplete';
+import { AutocompleteMappedProps, AutocompleteProps } from '../Autocomplete';
 import { AvatarProps } from '../Avatar';
 import { AvatarGroupProps } from '../AvatarGroup';
 import { BackdropProps } from '../Backdrop';
@@ -125,7 +125,8 @@ export interface ComponentsPropsList {
   MuiAlert: AlertProps;
   MuiAlertTitle: AlertTitleProps;
   MuiAppBar: AppBarProps;
-  MuiAutocomplete: AutocompleteProps<any, any, any, any>;
+  MuiAutocomplete:
+    AutocompleteProps<any, any, any, any> | AutocompleteMappedProps<any, any, any, any, any>;
   MuiAvatar: AvatarProps;
   MuiAvatarGroup: AvatarGroupProps;
   MuiBackdrop: BackdropProps;

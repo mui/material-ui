@@ -9,6 +9,7 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { ChipTypeMap } from '@mui/material/Chip';
+import { createTheme } from '@mui/material/styles';
 import { AutocompleteValueOrFreeSoloValueMapping } from '../useAutocomplete';
 
 interface MyAutocompleteProps<
@@ -119,6 +120,40 @@ const options: Option[] = [
   { label: '1', value: '1' },
   { label: '2', value: '2' },
 ];
+
+// Theme defaults support both raw options and mapped values.
+createTheme({
+  components: {
+    MuiAutocomplete: {
+      defaultProps: {
+        options,
+        getOptionLabel: (option: Option) => option.label,
+      },
+    },
+  },
+});
+
+createTheme({
+  components: {
+    MuiAutocomplete: {
+      defaultProps: {
+        getOptionValue: (option: Option) => option.value,
+      },
+    },
+  },
+});
+
+createTheme({
+  components: {
+    MuiAutocomplete: {
+      defaultProps: {
+        freeSolo: true,
+        getOptionValue: (option: Option) => Number(option.value),
+      },
+    },
+  },
+});
+
 const mappedProps: AutocompleteMappedProps<Option, string> = {
   options,
   getOptionValue: (option) => option.value,
