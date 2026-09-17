@@ -66,12 +66,23 @@ const theme = createTheme({
 
 const noop = () => {};
 
-function Row({ label, children }) {
+function Row({ label, secondary, children }) {
   return (
     <React.Fragment>
-      <Typography variant="body2" sx={{ fontWeight: 600, alignSelf: 'center' }}>
-        {label}
-      </Typography>
+      <Box sx={{ alignSelf: 'center' }}>
+        <Typography variant="body2" sx={{ fontWeight: 600 }}>
+          {label}
+        </Typography>
+        {secondary ? (
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ display: 'block' }}
+          >
+            {secondary}
+          </Typography>
+        ) : null}
+      </Box>
       <Stack
         direction="row"
         spacing={1.5}
@@ -86,6 +97,7 @@ function Row({ label, children }) {
 Row.propTypes = {
   children: PropTypes.node,
   label: PropTypes.string.isRequired,
+  secondary: PropTypes.string,
 };
 
 function Bucket({ title, hint, children }) {
@@ -204,6 +216,13 @@ export default function FullFocusVisibleDemo() {
           </Row>
           <Row label="Switch">
             <FormControlLabel control={<Switch defaultChecked />} label="Switch" />
+          </Row>
+          <Row label="TextField" secondary="(filled + disableUnderline)">
+            <TextField
+              label="Test"
+              variant="filled"
+              slotProps={{ input: { disableUnderline: true } }}
+            />
           </Row>
           <Row label="Pagination">
             <Pagination count={3} />

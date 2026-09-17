@@ -33,6 +33,14 @@ Some components, for example `Tab`, render the focus indicator from the inside t
 
 To see the full list of components that show inner focus indicator, check out the [full demo](#full-focus-visible-demo) below.
 
+### Components without a `ButtonBase`
+
+A few components that are not built on `ButtonBase` render the ring when they would otherwise have no keyboard focus indicator at all — the `FilledInput` with `disableUnderline`, which drops the underline that normally marks focus:
+
+```jsx
+<TextField variant="filled" slotProps={{ input: { disableUnderline: true } }} />
+```
+
 ### Colored surface container
 
 Components that support keyboard focus visible will show another layer of box-shadow indicator when they render within `AppBar`, `Alert`, and `SnackbarContent`. This comes by default when the focus visible feature is enabled, unless a custom box-shadow is provided.
