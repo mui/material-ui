@@ -70,6 +70,13 @@ const InputRoot = styled(InputBaseRoot, {
           },
         },
         {
+          props: ({ ownerState }) => ownerState.disableUnderline,
+          // `disableUnderline` drops the only focus indicator, so the theme ring takes its place.
+          style: theme.focusVisible && {
+            [`&.${inputClasses.focused}`]: theme.focusVisible,
+          },
+        },
+        {
           props: ({ ownerState }) => !ownerState.disableUnderline,
           style: {
             '&::after': {

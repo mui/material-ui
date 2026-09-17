@@ -35,11 +35,18 @@ To see the full list of components that show inner focus indicator, check out th
 
 ### Components without a `ButtonBase`
 
-A few components that are not built on `ButtonBase` render the ring when they would otherwise have no keyboard focus indicator at all — the `FilledInput` with `disableUnderline`, which drops the underline that normally marks focus:
+A few components that are not built on `ButtonBase` render the ring when they would otherwise have no keyboard focus indicator at all. The filled and standard text fields mark focus with an underline, so `disableUnderline` leaves them with nothing — the ring takes its place:
 
 ```jsx
 <TextField variant="filled" slotProps={{ input: { disableUnderline: true } }} />
+<TextField variant="standard" slotProps={{ input: { disableUnderline: true } }} />
 ```
+
+The outlined text field is unaffected: its border already recolors on focus.
+
+:::info
+On the standard text field the ring is the only box the field has, so a focused field reads close to the outlined variant. That is the trade-off of `disableUnderline` — pass a custom `focusVisible` if a different indicator suits the design better.
+:::
 
 ### Colored surface container
 

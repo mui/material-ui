@@ -19,7 +19,6 @@ import {
   InputBaseInput,
 } from '../InputBase/InputBase';
 import { capitalize } from '../utils';
-import { outsetFocusRing } from '../styles/focusVisible';
 import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
@@ -94,7 +93,6 @@ const FilledInputRoot = styled(InputBaseRoot, {
           props: ({ ownerState }) => ownerState.disableUnderline,
           // `disableUnderline` drops the only focus indicator, so the theme ring takes its place.
           style: theme.focusVisible && {
-            ...outsetFocusRing,
             [`&.${filledInputClasses.focused}`]: theme.focusVisible,
           },
         },

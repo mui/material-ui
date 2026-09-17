@@ -125,7 +125,7 @@ function Bucket({
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: '150px 1fr',
+          gridTemplateColumns: '180px 1fr',
           alignItems: 'center',
           columnGap: 3,
           rowGap: 2,
@@ -227,6 +227,13 @@ export default function FullFocusVisibleDemo() {
             <TextField
               label="Test"
               variant="filled"
+              slotProps={{ input: { disableUnderline: true } }}
+            />
+          </Row>
+          <Row label="TextField" secondary="(standard + disableUnderline)">
+            <TextField
+              label="Test"
+              variant="standard"
               slotProps={{ input: { disableUnderline: true } }}
             />
           </Row>
