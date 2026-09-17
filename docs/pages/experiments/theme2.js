@@ -1,89 +1,18 @@
 import * as React from 'react';
 import Head from 'next/head';
-// Two levels deep only because the split is a prototype living inside
-// `@mui/material`. Were it a package of its own this would be one level.
-/* eslint-disable no-restricted-imports */
-import SliderUnstyled from '@mui/material/Slider/unstyled';
-import ButtonUnstyled from '@mui/material/Button/unstyled';
-import createAppearance, { prefixed, bare, whenTrue } from '@mui/material/utils/createAppearance';
-/* eslint-enable no-restricted-imports */
+import { Slider, Button, TONES, SCALES } from './lib';
 
 /**
- * The unstyled Slider dressed by `theme2`, a plain CSS file.
+ * theme2 on show: the unstyled Slider and Button with a plain CSS file over
+ * them. Nothing here uses Emotion, the theme, or any Material Design style.
  *
- * Nothing on this page uses Emotion, the theme, or any Material Design style.
- * The component emits its stable `MuiSlider-*` class names and the stylesheet
- * at /static/slider-theme2.css does the rest.
+ * The components come from ./lib, which is the whole styling layer. This file
+ * is only demos.
  *
- * The stylesheet is global on purpose, so every Slider on the page picks it up.
- * That is also why there is no Material Slider here to compare against: it
- * carries the same class names and would be restyled too.
+ * The stylesheet is global on purpose, so every Slider and Button on the page
+ * picks it up. That is also why there is no Material component here to compare
+ * against: it carries the same class names and would be restyled too.
  */
-
-const TONES = ['brand', 'muted', 'positive', 'critical', 'caution'];
-const SCALES = ['compact', 'regular', 'roomy'];
-
-// theme2's appearance vocabulary. Deliberately a different shape from Material's
-// rather than a renaming of it: five tones against six colours, no `secondary`
-// and no `info`, a `muted` that Material has no equivalent for, and three scales
-// where Material has two. `tone` and `scale` are shared across components.
-const sliderAppearance = createAppearance({
-  tone: {
-    default: 'brand',
-    // Named after the value alone, so `tone="positive"` is `MuiSlider-positive`.
-    className: bare,
-    values: TONES,
-  },
-  scale: { default: 'regular', className: prefixed('scale'), values: SCALES },
-});
-
-// Button adds two more. `emphasis` has two values where Material's `variant` has
-// three, and `block` is what Material calls `fullWidth`.
-const buttonAppearance = createAppearance({
-  tone: { default: 'brand', className: bare, values: TONES },
-  scale: { default: 'regular', className: prefixed('scale'), values: SCALES },
-  emphasis: { default: 'solid', className: bare, values: ['solid', 'quiet'] },
-  block: { default: false, className: whenTrue('block'), values: [true] },
-  // Where the spinner sits. Material calls this `loadingPosition` and says
-  // start/center/end; theme2 says leading/over/trailing. The component has no
-  // opinion either way: it renders the spinner in one place and a spacer on
-  // each side, and the class decides the rest.
-  spinner: {
-    default: 'over',
-    className: (value, props) => (props.loading ? prefixed('spinner')(value) : null),
-    values: ['leading', 'over', 'trailing'],
-    classKeys: ['spinnerLeading', 'spinnerOver', 'spinnerTrailing'],
-  },
-});
-
-/** theme2's spinner, a few lines of CSS rather than a CircularProgress. */
-function Theme2Spinner(props) {
-  return <span {...props} className="theme2-spinner" />;
-}
-
-const buttonSlots = { loadingSpinner: Theme2Spinner };
-
-/** theme2's wrappers. All they do is translate its own vocabulary. */
-function Slider({ tone, scale, ...other }) {
-  return <SliderUnstyled {...other} appearance={sliderAppearance.resolve({ tone, scale })} />;
-}
-
-function Button({ tone, scale, emphasis, block, spinner, ...other }) {
-  return (
-    <ButtonUnstyled
-      {...other}
-      slots={buttonSlots}
-      appearance={buttonAppearance.resolve({
-        tone,
-        scale,
-        emphasis,
-        block,
-        spinner,
-        loading: other.loading,
-      })}
-    />
-  );
-}
 
 const MARKS = [
   { value: 0, label: '0' },
