@@ -1,0 +1,315 @@
+/**
+ * theme2: an alternative Slider theme.
+ *
+ * A plain CSS file. It styles the unstyled Slider entirely through its stable
+ * `MuiSlider-*` class names, with its own tokens and no relationship to
+ * Material Design. Nothing here is generated and there is no styling engine
+ * involved: drop the file in and the component looks like this.
+ *
+ * It has to supply structural CSS as well as appearance, because the unstyled
+ * component ships none. Anything marked "structure" below is required for the
+ * component to work at all, and any theme would have to repeat it.
+ */
+
+:root {
+  --theme2-groove: #faf9fb;
+  --theme2-thumb-from: #ffffff;
+  --theme2-thumb-to: #f9f9f9;
+  --theme2-thumb-from-active: #fcfcfc;
+  --theme2-thumb-to-active: #f0f0f0;
+  --theme2-thumb-outline: rgb(0 0 0 / 0.1);
+  --theme2-mark: #bbbbbb;
+  --theme2-label: #8d8d8d;
+
+  --theme2-fill-from: hsl(252deg 67% 62%);
+  --theme2-fill-to: hsl(252deg 62% 46%);
+  --theme2-fill-from-disabled: hsl(248deg 15% 90%);
+  --theme2-fill-to-disabled: hsl(245deg 14% 85%);
+
+  --theme2-radius-pill: 9999px;
+  --theme2-shadow-tint: 215deg 22% 17%;
+  --theme2-shadow:
+    0 1px 1px 0px hsl(var(--theme2-shadow-tint) / 5%),
+    0 2px 6px -1px hsl(var(--theme2-shadow-tint) / 5%),
+    0 6px 12px -3px hsl(var(--theme2-shadow-tint) / 5%),
+    0 8px 16px -4px hsl(var(--theme2-shadow-tint) / 5%);
+  --theme2-groove-shadow:
+    inset 0 1px 2px 0 rgb(0 0 0 / 0.08), inset 0 2px 4px -1px rgb(0 0 0 / 0.03),
+    inset 0 3px 6px -2px rgb(0 0 0 / 0.03), inset 0 3px 8px -2px rgb(0 0 0 / 0.03);
+
+  /* Medium is the default size. */
+  --theme2-groove-thickness: 8px;
+  --theme2-thumb-size: 20px;
+  --theme2-mark-size: 6px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --theme2-groove: #1a191b;
+    --theme2-thumb-from: #222222;
+    --theme2-thumb-to: #191919;
+    --theme2-thumb-from-active: #191919;
+    --theme2-thumb-to-active: #111111;
+    --theme2-thumb-outline: rgb(255 255 255 / 0.12);
+    --theme2-mark: #606060;
+    --theme2-label: #6e6e6e;
+    --theme2-fill-from-disabled: #2a2a2e;
+    --theme2-fill-to-disabled: #222226;
+    --theme2-shadow-tint: 0deg 0% 0%;
+  }
+}
+
+/* ---------------------------------------------------------------- root ---- */
+
+/* structure */
+.MuiSlider-root {
+  position: relative;
+  display: inline-block;
+  box-sizing: content-box;
+  cursor: pointer;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  color: var(--theme2-label);
+  font-family: system-ui, sans-serif;
+  font-size: 0.8125rem;
+}
+
+/* There is no `MuiSlider-horizontal` class, only the absence of the vertical
+   one, so horizontal rules have to be written as a negation. */
+.MuiSlider-root:not(.MuiSlider-vertical) {
+  width: 100%;
+  height: var(--theme2-groove-thickness);
+  padding-block: 12px;
+}
+
+.MuiSlider-root.MuiSlider-vertical {
+  height: 100%;
+  width: var(--theme2-groove-thickness);
+  padding-inline: 12px;
+}
+
+.MuiSlider-root.Mui-disabled {
+  cursor: not-allowed;
+  --theme2-fill-from: var(--theme2-fill-from-disabled);
+  --theme2-fill-to: var(--theme2-fill-to-disabled);
+}
+
+/* ---------------------------------------------------------------- sizes ---- */
+
+.MuiSlider-root.MuiSlider-sizeSmall {
+  --theme2-groove-thickness: 4px;
+  --theme2-thumb-size: 16px;
+  --theme2-mark-size: 4px;
+}
+
+/* --------------------------------------------------------------- colours ---- */
+
+.MuiSlider-root.MuiSlider-colorSecondary {
+  --theme2-fill-from: hsl(252deg 7% 62%);
+  --theme2-fill-to: hsl(252deg 6% 46%);
+}
+
+.MuiSlider-root.MuiSlider-colorSuccess {
+  --theme2-fill-from: hsl(127deg 72% 36%);
+  --theme2-fill-to: hsl(127deg 72% 26%);
+}
+
+.MuiSlider-root.MuiSlider-colorError {
+  --theme2-fill-from: hsl(358deg 70% 55%);
+  --theme2-fill-to: hsl(358deg 68% 42%);
+}
+
+.MuiSlider-root.MuiSlider-colorWarning {
+  --theme2-fill-from: hsl(35deg 85% 52%);
+  --theme2-fill-to: hsl(35deg 85% 40%);
+}
+
+.MuiSlider-root.MuiSlider-colorInfo {
+  --theme2-fill-from: hsl(205deg 75% 52%);
+  --theme2-fill-to: hsl(205deg 72% 40%);
+}
+
+/* ------------------------------------------------- rail: the empty groove ---- */
+
+/* structure */
+.MuiSlider-rail {
+  display: block;
+  position: absolute;
+  border-radius: var(--theme2-radius-pill);
+  background-color: var(--theme2-groove);
+  box-shadow: var(--theme2-groove-shadow);
+}
+
+.MuiSlider-root:not(.MuiSlider-vertical) .MuiSlider-rail {
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.MuiSlider-root.MuiSlider-vertical .MuiSlider-rail {
+  height: 100%;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ------------------------------------------------ track: the filled part ---- */
+
+/* structure: the component sets left/width (or bottom/height) inline */
+.MuiSlider-track {
+  display: block;
+  position: absolute;
+  border-radius: var(--theme2-radius-pill);
+}
+
+.MuiSlider-root:not(.MuiSlider-vertical) .MuiSlider-track {
+  height: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(to bottom, var(--theme2-fill-from), var(--theme2-fill-to));
+}
+
+.MuiSlider-root.MuiSlider-vertical .MuiSlider-track {
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, var(--theme2-fill-from), var(--theme2-fill-to));
+}
+
+.MuiSlider-root.MuiSlider-trackFalse .MuiSlider-track {
+  display: none;
+}
+
+/* ---------------------------------------------------------------- thumb ---- */
+
+/* structure: the component sets left (or bottom) inline */
+.MuiSlider-thumb {
+  position: absolute;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--theme2-thumb-size);
+  height: var(--theme2-thumb-size);
+  border-radius: 50%;
+  outline: 1px solid var(--theme2-thumb-outline);
+  background: linear-gradient(to bottom, var(--theme2-thumb-from), var(--theme2-thumb-to));
+  box-shadow:
+    inset 0 0 1px 1px var(--theme2-thumb-from),
+    var(--theme2-shadow);
+}
+
+.MuiSlider-root:not(.MuiSlider-vertical) .MuiSlider-thumb {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.MuiSlider-root.MuiSlider-vertical .MuiSlider-thumb {
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.MuiSlider-thumb.Mui-active,
+.MuiSlider-thumb:hover {
+  background: linear-gradient(
+    to bottom,
+    var(--theme2-thumb-from-active),
+    var(--theme2-thumb-to-active)
+  );
+}
+
+.MuiSlider-thumb.Mui-focusVisible {
+  outline: 2px solid var(--theme2-fill-from);
+  outline-offset: 2px;
+}
+
+.MuiSlider-thumb.Mui-disabled {
+  box-shadow: var(--theme2-shadow);
+  background: linear-gradient(
+    to bottom,
+    var(--theme2-thumb-from-active),
+    var(--theme2-thumb-to-active)
+  );
+}
+
+/* ---------------------------------------------------------------- marks ---- */
+
+/* structure: the component sets left (or bottom) inline */
+.MuiSlider-mark {
+  position: absolute;
+  background-color: var(--theme2-mark);
+  border-radius: var(--theme2-radius-pill);
+}
+
+.MuiSlider-root:not(.MuiSlider-vertical) .MuiSlider-mark {
+  width: 1px;
+  height: var(--theme2-mark-size);
+  bottom: calc(100% + 4px);
+  transform: translateX(-50%);
+}
+
+.MuiSlider-root.MuiSlider-vertical .MuiSlider-mark {
+  height: 1px;
+  width: var(--theme2-mark-size);
+  right: calc(100% + 4px);
+  transform: translateY(50%);
+}
+
+/* The mark sits above the groove, so it does not need to change when active.
+   Kept as its own rule so a theme can distinguish the two. */
+.MuiSlider-mark.MuiSlider-markActive {
+  background-color: var(--theme2-mark);
+}
+
+/* ----------------------------------------------------------- mark labels ---- */
+
+/* structure: the component sets left (or bottom) inline */
+.MuiSlider-markLabel {
+  position: absolute;
+  white-space: nowrap;
+  color: var(--theme2-label);
+}
+
+.MuiSlider-root:not(.MuiSlider-vertical) .MuiSlider-markLabel {
+  top: calc(100% + 6px);
+  transform: translateX(-50%);
+}
+
+.MuiSlider-root.MuiSlider-vertical .MuiSlider-markLabel {
+  left: calc(100% + 8px);
+  transform: translateY(50%);
+}
+
+.MuiSlider-markLabel.MuiSlider-markLabelActive {
+  color: var(--theme2-fill-to);
+}
+
+/* ---------------------------------------------------------- value label ---- */
+
+.MuiSlider-valueLabel {
+  position: absolute;
+  z-index: 1;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: linear-gradient(to bottom, var(--theme2-fill-from), var(--theme2-fill-to));
+  color: #ffffff;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  box-shadow: var(--theme2-shadow);
+  opacity: 0;
+  transform: translate(-50%, -100%) scale(0.8);
+  transform-origin: bottom center;
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+  pointer-events: none;
+  bottom: calc(100% + 8px);
+  left: 50%;
+}
+
+.MuiSlider-valueLabel.MuiSlider-valueLabelOpen {
+  opacity: 1;
+  transform: translate(-50%, -100%) scale(1);
+}
