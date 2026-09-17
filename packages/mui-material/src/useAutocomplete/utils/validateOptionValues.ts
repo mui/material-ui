@@ -5,6 +5,10 @@ type OptionValueTypeValidationParams<Option> = {
   duplicatedErrorMessages: Set<string>;
 };
 
+/**
+ * Validates the option values returned by the `getOptionValue` method of `useAutocomplete`.
+ * Ensures that each option has a unique and valid value, and reports errors for duplicates or invalid types.
+ */
 export default function validateOptionValues<Option>({
   options,
   freeSolo,

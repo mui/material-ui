@@ -88,16 +88,6 @@ export default function useOptionValue<Option, Value = never>({
       return defaultGetOptionFromValue;
     }
 
-    const resolveOption = (option: Option | undefined) => {
-      if (option !== undefined) {
-        // Return the matched option for labels and other option-facing callbacks.
-        return option;
-      }
-
-      // A mapped value without a matching option cannot be resolved.
-      return null;
-    };
-
     if (isOptionEqualToValueProp) {
       const resolvedOptions = new Map<OptionValue<Option, Value>, Option | null>();
       // Custom equality defines matching behavior, so resolve the first matching option.
@@ -111,7 +101,7 @@ export default function useOptionValue<Option, Value = never>({
         if (!resolvedOptions.has(value)) {
           resolvedOptions.set(
             value,
-            resolveOption(options.find((option) => isOptionEqualToValueProp(option, value))),
+            options.find((option) => isOptionEqualToValueProp(option, value)) ?? null,
           );
         }
 
@@ -126,7 +116,7 @@ export default function useOptionValue<Option, Value = never>({
         return value;
       }
 
-      return resolveOption(optionValueMap!.get(value));
+      return optionValueMap!.get(value) ?? null;
     };
   }, [freeSolo, hasOptionValueMapping, isOptionEqualToValueProp, optionValueMap, options]);
 

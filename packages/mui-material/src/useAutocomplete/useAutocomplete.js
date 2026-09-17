@@ -586,9 +586,9 @@ function useAutocomplete(props) {
   });
 
   const getPreviousHighlightedOptionIndex = () => {
+    // Values may be mapped primitives, but getOptionLabel only accepts options.
+    // Resolve both sides first and fall back to direct equality when either cannot be resolved.
     const isSameValue = (value1, value2) => {
-      // Values may be mapped primitives, but getOptionLabel only accepts options.
-      // Resolve both sides first and fall back to direct equality when either cannot be resolved.
       if (value1 == null || value2 == null) {
         return value1 === value2;
       }
