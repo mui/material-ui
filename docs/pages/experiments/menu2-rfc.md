@@ -230,7 +230,7 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 
 1. **Review the proposal:** the benchmark and API experiment are ready for maintainer feedback.
 2. **Prepare an unstable release:** target a v9 minor release after review.
-   - Require a Base UI release with the merged [menu tree fix](https://github.com/mui/base-ui/pull/5645), then remove the local pnpm patch and keep its regression tests. The current patch fixes submenu closure in menus without a trigger, but it does not reach applications that install `@mui/material`.
+   - Require a Base UI release with the merged [menu tree fix](https://github.com/mui/base-ui/pull/5645) and a fix for the transition state on retained menus. The latter needs an upstream PR: an open update can reach the popup before its starting state, which starts Grow twice in Firefox. The local pnpm patch fixes both issues but does not reach applications that install `@mui/material`. Remove the patch after both fixes are released, and keep the regression tests.
    - Register public demos, remove the Menu2 API-generator skip, then generate and review PropTypes and API docs. Public demos are separate work.
    - Add migration guidance for imports, theme keys, trigger contracts, customization targets, and behavior differences.
      Give these changes dedicated sections in the public migration guide, not just prop-table notes:

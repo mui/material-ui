@@ -141,7 +141,7 @@ overrides:
   '@pigment-css/vite-plugin': 0.0.31
 
 patchedDependencies:
-  '@base-ui/react@1.8.0': e3a3de001fc737fd99b790e1f6e45a12721984b7fd74cd11560e39dfbc0d6fe1
+  '@base-ui/react@1.8.0': 0be70a490a882888973fa7ae326fa9723f01ef41222f32bfcdb0a6de00bd6ba1
 
 importers:
 
@@ -360,7 +360,7 @@ importers:
         version: 7.29.7
       '@base-ui/react':
         specifier: catalog:docs
-        version: 1.8.0(patch_hash=e3a3de001fc737fd99b790e1f6e45a12721984b7fd74cd11560e39dfbc0d6fe1)(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 1.8.0(patch_hash=0be70a490a882888973fa7ae326fa9723f01ef41222f32bfcdb0a6de00bd6ba1)(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@docsearch/react':
         specifier: catalog:docs
         version: 4.7.0(@algolia/client-search@5.56.0)(@types/react@19.3.0)(algoliasearch@5.56.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(search-insights@2.17.3)
@@ -784,7 +784,7 @@ importers:
         version: 7.29.7
       '@base-ui/react':
         specifier: ^1.8.0
-        version: 1.8.0(patch_hash=e3a3de001fc737fd99b790e1f6e45a12721984b7fd74cd11560e39dfbc0d6fe1)(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 1.8.0(patch_hash=0be70a490a882888973fa7ae326fa9723f01ef41222f32bfcdb0a6de00bd6ba1)(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@docsearch/react':
         specifier: catalog:docs
         version: 4.7.0(@algolia/client-search@5.56.0)(@types/react@19.3.0)(algoliasearch@5.56.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(search-insights@2.17.3)
@@ -1154,7 +1154,7 @@ importers:
         version: 7.29.7
       '@base-ui/react':
         specifier: ^1.8.0
-        version: 1.8.0(patch_hash=e3a3de001fc737fd99b790e1f6e45a12721984b7fd74cd11560e39dfbc0d6fe1)(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 1.8.0(patch_hash=0be70a490a882888973fa7ae326fa9723f01ef41222f32bfcdb0a6de00bd6ba1)(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@emotion/react':
         specifier: ^11.5.0
         version: 11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0)
@@ -12589,7 +12589,7 @@ snapshots:
       '@babel/helper-string-parser': 7.29.7
       '@babel/helper-validator-identifier': 7.29.7
 
-  '@base-ui/react@1.8.0(patch_hash=e3a3de001fc737fd99b790e1f6e45a12721984b7fd74cd11560e39dfbc0d6fe1)(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@base-ui/react@1.8.0(patch_hash=0be70a490a882888973fa7ae326fa9723f01ef41222f32bfcdb0a6de00bd6ba1)(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
       '@babel/runtime': 7.29.7
       '@base-ui/utils': 0.4.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)

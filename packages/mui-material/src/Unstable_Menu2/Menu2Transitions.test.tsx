@@ -149,26 +149,37 @@ describe.skipIf(isJsdom())('Menu2 transitions', () => {
       await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(true));
       expect(entering).not.toHaveBeenCalled();
 
-      await user.keyboard('{Escape}');
-      await waitFor(() => expect(popup.getAnimations().length).to.be.greaterThan(0));
-      await waitFor(() => expect(completed.mock.calls).to.deep.equal([[true], [false]]));
-      expect(popup.isConnected).to.equal(keepMounted);
+      async function closeAndReopen() {
+        const closingPopup = screen.getByRole('menu');
+        completed.mockClear();
+        entering.mockClear();
+        await user.keyboard('{Escape}');
+        await waitFor(() => expect(closingPopup.getAnimations().length).to.be.greaterThan(0));
+        await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(false));
+        expect(closingPopup.isConnected).to.equal(keepMounted);
 
-      await user.click(screen.getByRole('button', { name: 'Options' }));
-      const reopenedPopup = await screen.findByRole('menu');
-      await waitFor(() => expect(reopenedPopup.getAnimations().length).to.be.greaterThan(0));
-      expect(entering).toHaveBeenCalledTimes(1);
-      await waitFor(() => {
-        expect(reopenedPopup.getAnimations()).to.have.length(0);
-        expect(completed.mock.calls).to.deep.equal([[true], [false], [true]]);
-      });
+        await user.click(screen.getByRole('button', { name: 'Options' }));
+        const reopenedPopup = await screen.findByRole('menu');
+        await waitFor(() => expect(reopenedPopup.getAnimations().length).to.be.greaterThan(0));
+        expect(entering).toHaveBeenCalledTimes(1);
+        expect(completed.mock.calls).to.deep.equal([[false]]);
+        await waitFor(() => {
+          expect(reopenedPopup.getAnimations()).to.have.length(0);
+          expect(completed.mock.calls).to.deep.equal([[false], [true]]);
+        });
+        expect(entering).toHaveBeenCalledTimes(1);
+      }
+      await closeAndReopen();
+      await closeAndReopen();
     });
 
     it(`animates enter and Escape exit on the actual popup, keepMounted=${keepMounted}`, async () => {
       const completed = vi.fn();
+      const entering = vi.fn();
       const { user } = render(
         <Menu2
           keepMounted={keepMounted}
+          slotProps={{ transition: { onEnter: entering } }}
           onOpenChangeComplete={completed}
           trigger={<button type="button">Options</button>}
         >
@@ -178,6 +189,7 @@ describe.skipIf(isJsdom())('Menu2 transitions', () => {
       await user.click(screen.getByRole('button', { name: 'Options' }));
       const popup = await screen.findByRole('menu');
       await waitFor(() => expect(popup.getAnimations().length).to.be.greaterThan(0));
+      expect(entering).toHaveBeenCalledTimes(1);
       expect(completed).not.toHaveBeenCalledWith(true);
       await waitFor(() => {
         expect(popup.getAnimations()).to.have.length(0);
