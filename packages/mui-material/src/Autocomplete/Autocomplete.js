@@ -709,7 +709,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           return (
             <Chip
               key={key}
-              label={option == null ? String(valueItem ?? '') : getOptionLabel(option)}
+              label={option == null ? '' : getOptionLabel(option)}
               size={size}
               {...customItemProps}
               {...externalForwardedProps.slotProps.chip}

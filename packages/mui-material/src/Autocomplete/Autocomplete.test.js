@@ -4245,27 +4245,28 @@ describe('<Autocomplete />', () => {
     });
 
     describe('unresolved mapped chips', () => {
-      it('uses the mapped value as a label until its option arrives', () => {
+      it('leaves chip labels empty until their options arrive', () => {
         const props = { multiple: true, value: ['foo', 'missing'] };
         const { rerender } = render(<Test {...props} options={[]} />);
-        const loadingChip = screen.getByRole('button', { name: 'foo' });
-        const staleChip = screen.getByRole('button', { name: 'missing' });
+        const [loadingChip, staleChip] = screen.getAllByRole('button', { name: '' });
 
-        expect(loadingChip).to.have.text('foo');
-        expect(staleChip).to.have.text('missing');
+        expect(loadingChip).to.have.text('');
+        expect(staleChip).to.have.text('');
 
         rerender(<Test {...props} options={options} />);
 
         expect(loadingChip).to.have.text('Foo');
-        expect(staleChip).to.have.text('missing');
+        expect(staleChip).to.have.text('');
       });
 
-      it('stringifies falsy and bigint mapped values for chip labels', () => {
-        render(<Test multiple value={[0, false, 3n]} options={[]} />);
+      it('does not expose unresolved numeric, boolean, or bigint values as chip labels', () => {
+        render(<Test multiple value={[42, 87, 0, false, 3n]} options={[]} />);
 
-        expect(screen.getByRole('button', { name: '0' })).to.have.text('0');
-        expect(screen.getByRole('button', { name: 'false' })).to.have.text('false');
-        expect(screen.getByRole('button', { name: '3' })).to.have.text('3');
+        const chips = screen.getAllByRole('button', { name: '' });
+        expect(chips).to.have.length(5);
+        chips.forEach((chip) => {
+          expect(chip).to.have.text('');
+        });
       });
 
       it('removes an unresolved chip at its original index among resolved chips', async () => {
@@ -4273,7 +4274,7 @@ describe('<Autocomplete />', () => {
         const { user } = render(
           <Test multiple defaultValue={['foo', 'missing', 'bar']} onChange={handleChange} />,
         );
-        const staleChip = screen.getByRole('button', { name: 'missing' });
+        const staleChip = screen.getByRole('button', { name: '' });
 
         expect(staleChip).to.have.attribute('data-item-index', '1');
         await user.click(screen.getAllByTestId('CancelIcon')[1]);
@@ -4284,7 +4285,7 @@ describe('<Autocomplete />', () => {
           'removeOption',
           undefined,
         ]);
-        expect(screen.queryByRole('button', { name: 'missing' })).to.equal(null);
+        expect(screen.queryByRole('button', { name: '' })).to.equal(null);
         expect(screen.getByRole('button', { name: 'Foo' })).to.have.text('Foo');
         expect(screen.getByRole('button', { name: 'Bar' })).to.have.text('Bar');
       });
@@ -4448,7 +4449,7 @@ describe('<Autocomplete />', () => {
       await user.type(screen.getByRole('combobox'), 'search');
 
       expect(screen.getByRole('button', { name: 'Foo' })).to.have.text('Foo');
-      expect(screen.getByRole('button', { name: 'missing' })).to.have.text('missing');
+      expect(screen.getByRole('button', { name: '' })).to.have.text('');
       expect(screen.getByRole('button', { name: 'Bar' })).to.have.text('Bar');
       expect(isOptionEqualToValue.callCount).to.equal(0);
     });
