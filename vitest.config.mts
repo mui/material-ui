@@ -9,7 +9,7 @@ const NODE_TESTS = [
   {
     test: {
       name: 'node:module-augmentation',
-      include: ['test/moduleAugmentation/*.test.js'],
+      include: ['test/moduleAugmentation/*.test.ts'],
     },
   },
 ];

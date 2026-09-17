@@ -6,7 +6,7 @@ describe.each([
   { name: 'Windows', paths: path.win32, root: 'C:\\repo\\material-ui' },
 ])('module augmentation file guard on $name', ({ paths, root }) => {
   const fixtureRoot = paths.join(root, 'test/moduleAugmentation/material');
-  let assertBuiltDeclarations;
+  let assertBuiltDeclarations: typeof import('./compile').assertBuiltDeclarations;
 
   beforeAll(async () => {
     vi.resetModules();
@@ -19,7 +19,7 @@ describe.each([
     vi.resetModules();
   });
 
-  function compile(libraryFile) {
+  function compile(libraryFile: string) {
     // TypeScript lists files with forward slashes, including on Windows.
     const output = [
       paths.join(root, libraryFile),

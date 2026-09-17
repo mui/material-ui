@@ -1,22 +1,36 @@
-import childProcess from 'node:child_process';
+import type { ExecFileOptions } from 'node:child_process';
 import path from 'node:path';
-import glob from 'fast-glob';
-import { afterEach, beforeEach, describe, it, expect, vi } from 'vitest';
+import { afterEach, beforeEach, describe, it, expect, vi, type MockInstance } from 'vitest';
 import main from './testModuleAugmentation';
 
-vi.mock('node:child_process', () => ({ default: { execFile: vi.fn() } }));
-vi.mock('fast-glob', () => ({ default: vi.fn() }));
+type CompilerCallback = (error: Error | null) => void;
+
+const { execFile, glob } = vi.hoisted(() => ({
+  execFile:
+    vi.fn<
+      (
+        command: string,
+        args: string[],
+        options: ExecFileOptions,
+        callback: CompilerCallback,
+      ) => void
+    >(),
+  glob: vi.fn<() => Promise<string[]>>(),
+}));
+
+vi.mock('node:child_process', () => ({ default: { execFile } }));
+vi.mock('fast-glob', () => ({ default: glob }));
 
 describe('module augmentation runner', () => {
   const configs = ['first', 'second', 'third'].map((name) =>
     path.join(import.meta.dirname, 'material', `${name}.tsconfig.json`),
   );
-  let exitCode;
-  let log;
+  let exitCode: typeof process.exitCode;
+  let log: MockInstance<typeof console.log>;
 
   beforeEach(() => {
     exitCode = process.exitCode;
-    vi.mocked(glob).mockResolvedValue(configs);
+    glob.mockResolvedValue(configs);
     log = vi.spyOn(console, 'log').mockImplementation(() => {});
     vi.spyOn(console, 'error').mockImplementation(() => {});
   });
@@ -28,10 +42,10 @@ describe('module augmentation runner', () => {
   });
 
   it('limits compiler processes and starts the next fixture as soon as one finishes', async () => {
-    const callbacks = [];
-    const twoStarted = Promise.withResolvers();
-    const threeStarted = Promise.withResolvers();
-    vi.mocked(childProcess.execFile).mockImplementation((command, args, options, callback) => {
+    const callbacks: CompilerCallback[] = [];
+    const twoStarted = Promise.withResolvers<void>();
+    const threeStarted = Promise.withResolvers<void>();
+    execFile.mockImplementation((command, args, options, callback) => {
       callbacks.push(callback);
       if (callbacks.length === 2) {
         twoStarted.resolve();
@@ -42,8 +56,8 @@ describe('module augmentation runner', () => {
 
     const run = main(['--concurrency', '2']);
     await twoStarted.promise;
-    expect(childProcess.execFile).toHaveBeenCalledTimes(2);
-    expect(childProcess.execFile).toHaveBeenNthCalledWith(
+    expect(execFile).toHaveBeenCalledTimes(2);
+    expect(execFile).toHaveBeenNthCalledWith(
       1,
       process.execPath,
       [path.join(import.meta.dirname, 'compile.ts'), configs[0]],
@@ -60,7 +74,7 @@ describe('module augmentation runner', () => {
 
   it('reports a compiler failure and continues with the remaining fixtures', async () => {
     const error = Object.assign(new Error('Compiler failed'), { stdout: 'Type error' });
-    vi.mocked(childProcess.execFile)
+    execFile
       .mockImplementationOnce((command, args, options, callback) => callback(error))
       .mockImplementation((command, args, options, callback) => callback(null));
 
@@ -70,14 +84,14 @@ describe('module augmentation runner', () => {
     expect(console.error).toHaveBeenCalledWith(
       `FAIL ${path.join('test/moduleAugmentation/material/first.tsconfig.json')}\nType error`,
     );
-    expect(childProcess.execFile).toHaveBeenCalledTimes(3);
+    expect(execFile).toHaveBeenCalledTimes(3);
     expect(log).toHaveBeenCalledTimes(2);
   });
 
   it('rejects a run with no fixtures', async () => {
-    vi.mocked(glob).mockResolvedValue([]);
+    glob.mockResolvedValue([]);
     await expect(main([])).rejects.toThrow('No module augmentation fixtures found.');
-    expect(childProcess.execFile).not.toHaveBeenCalled();
+    expect(execFile).not.toHaveBeenCalled();
   });
 
   it.each(['0', '-1', '1.5', 'NaN', 'Infinity'])(
@@ -86,7 +100,7 @@ describe('module augmentation runner', () => {
       await expect(main([`--concurrency=${concurrency}`])).rejects.toThrow(
         'Concurrency must be a positive integer.',
       );
-      expect(childProcess.execFile).not.toHaveBeenCalled();
+      expect(execFile).not.toHaveBeenCalled();
     },
   );
 });
