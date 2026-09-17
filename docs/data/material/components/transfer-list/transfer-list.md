@@ -32,3 +32,14 @@ The component comes with a couple of limitations:
   If mobile support is important for you, have a look at [#27579](https://github.com/mui/material-ui/issues/27579).
 - There are no high-level components exported from npm. The demos are based on composition.
   If this is important for you, have a look at [#27579](https://github.com/mui/material-ui/issues/27579).
+
+## Accessibility
+
+The demos partially follow the multi-select [ARIA Listboxes with Rearrangeable Options example](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/examples/listbox-rearrangeable/).
+They move focus directly to list items instead of using `aria-activedescendant` on the listbox.
+
+When composing a transfer list:
+
+- Give each list an accessible name using `aria-labelledby` to reference a visible label, or `aria-label`.
+- Label transfer buttons clearly and ensure focus remains predictable after moving items, including when a list becomes empty.
+- If a focused button becomes disabled, explicitly move focus to a logical target so keyboard users can continue.
