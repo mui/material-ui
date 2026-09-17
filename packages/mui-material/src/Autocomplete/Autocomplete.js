@@ -554,8 +554,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const isGrouped = Boolean(groupBy);
   const previousOptionsRef = React.useRef({ options: [], isGrouped: false });
   const prevPopupOpenRef = React.useRef(false);
-  const renderedOptions = popupOpen ? groupedOptions : previousOptionsRef.current.options;
-  const renderedIsGrouped = popupOpen ? isGrouped : previousOptionsRef.current.isGrouped;
+  const rendered = popupOpen ? { options: groupedOptions, isGrouped } : previousOptionsRef.current;
 
   useEnhancedEffect(() => {
     if (popupOpen && !prevPopupOpenRef.current) {
@@ -662,7 +661,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   // Uses renderedOptions (not groupedOptions) so Popper stays during exit transitions.
   // Respect keepMounted from resolved popperProps (handles both object and callback slotProps forms).
   const hasPopupContent =
-    renderedOptions.length > 0 || loading || !freeSolo || popperProps.keepMounted === true;
+    rendered.options.length > 0 || loading || !freeSolo || popperProps.keepMounted === true;
 
   const [ClearIndicatorSlot, clearIndicatorProps] = useSlot('clearIndicator', {
     elementType: AutocompleteClearIndicator,
@@ -824,12 +823,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
         <AutocompletePopper as={PopperSlot} {...popperProps}>
           <AutocompletePaper as={PaperSlot} {...paperProps}>
             <StatusSlot {...statusProps}>
-              {loading && renderedOptions.length === 0 ? (
+              {loading && rendered.options.length === 0 ? (
                 <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
                   {loadingText}
                 </AutocompleteLoading>
               ) : null}
-              {renderedOptions.length === 0 && !freeSolo && !loading ? (
+              {rendered.options.length === 0 && !freeSolo && !loading ? (
                 <AutocompleteNoOptions
                   className={classes.noOptions}
                   ownerState={ownerState}
@@ -842,10 +841,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                 </AutocompleteNoOptions>
               ) : null}
             </StatusSlot>
-            {renderedOptions.length > 0 ? (
+            {rendered.options.length > 0 ? (
               <ListboxSlot {...listboxProps}>
-                {renderedOptions.map((option, index) => {
-                  if (renderedIsGrouped) {
+                {rendered.options.map((option, index) => {
+                  if (rendered.isGrouped) {
                     return renderGroup({
                       key: option.key,
                       group: option.group,
