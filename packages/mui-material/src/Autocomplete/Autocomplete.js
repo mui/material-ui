@@ -549,19 +549,23 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   // the last open-state options instead of flashing "No options" or an empty Paper.
   // These options are stale because they no longer reflect the hook's current
   // groupedOptions, but they are non-interactive while closing and reset on next open.
-  const previousGroupedOptionsRef = React.useRef([]);
+  // Keep the grouping mode with the options so changes to groupBy cannot change
+  // how the cached options are interpreted during the exit transition.
+  const isGrouped = Boolean(groupBy);
+  const previousOptionsRef = React.useRef({ options: [], isGrouped: false });
   const prevPopupOpenRef = React.useRef(false);
-  const renderedOptions = popupOpen ? groupedOptions : previousGroupedOptionsRef.current;
+  const renderedOptions = popupOpen ? groupedOptions : previousOptionsRef.current.options;
+  const renderedIsGrouped = popupOpen ? isGrouped : previousOptionsRef.current.isGrouped;
 
   useEnhancedEffect(() => {
     if (popupOpen && !prevPopupOpenRef.current) {
-      previousGroupedOptionsRef.current = [];
+      previousOptionsRef.current = { options: [], isGrouped };
     }
     prevPopupOpenRef.current = popupOpen;
     if (popupOpen && groupedOptions.length > 0) {
-      previousGroupedOptionsRef.current = groupedOptions;
+      previousOptionsRef.current = { options: groupedOptions, isGrouped };
     }
-  }, [popupOpen, groupedOptions]);
+  }, [popupOpen, groupedOptions, isGrouped]);
 
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
@@ -841,7 +845,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             {renderedOptions.length > 0 ? (
               <ListboxSlot {...listboxProps}>
                 {renderedOptions.map((option, index) => {
-                  if (groupBy) {
+                  if (renderedIsGrouped) {
                     return renderGroup({
                       key: option.key,
                       group: option.group,
