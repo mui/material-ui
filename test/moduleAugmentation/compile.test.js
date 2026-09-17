@@ -1,15 +1,23 @@
-import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { runInNewContext } from 'node:vm';
-import { describe, it, expect } from 'vitest';
-
-const compiler = readFileSync(new URL('./compile.cjs', import.meta.url), 'utf8');
+import { afterAll, beforeAll, describe, it, expect, vi } from 'vitest';
 
 describe.each([
   { name: 'POSIX', paths: path.posix, root: '/repo/material-ui' },
   { name: 'Windows', paths: path.win32, root: 'C:\\repo\\material-ui' },
 ])('module augmentation file guard on $name', ({ paths, root }) => {
   const fixtureRoot = paths.join(root, 'test/moduleAugmentation/material');
+  let assertBuiltDeclarations;
+
+  beforeAll(async () => {
+    vi.resetModules();
+    vi.doMock('node:path', () => ({ default: paths }));
+    ({ assertBuiltDeclarations } = await import('./compile'));
+  });
+
+  afterAll(() => {
+    vi.doUnmock('node:path');
+    vi.resetModules();
+  });
 
   function compile(libraryFile) {
     // TypeScript lists files with forward slashes, including on Windows.
@@ -20,21 +28,7 @@ describe.each([
       .map((file) => file.replaceAll('\\', '/'))
       .join('\r\n');
 
-    runInNewContext(compiler, {
-      __dirname: paths.join(root, 'test/moduleAugmentation'),
-      process: {
-        argv: ['node', 'compile.cjs', paths.join(fixtureRoot, 'breakpointsDefault.tsconfig.json')],
-      },
-      require(name) {
-        if (name === 'path') {
-          return paths;
-        }
-        if (name === 'child_process') {
-          return { execSync: () => output };
-        }
-        throw new Error(`Unexpected module: ${name}`);
-      },
-    });
+    assertBuiltDeclarations(output, paths.join(root, 'packages'));
   }
 
   it.each(['ts', 'mts', 'cts'])(

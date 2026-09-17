@@ -46,7 +46,7 @@ describe('module augmentation runner', () => {
     expect(childProcess.execFile).toHaveBeenNthCalledWith(
       1,
       process.execPath,
-      [path.join(import.meta.dirname, 'compile.cjs'), configs[0]],
+      [path.join(import.meta.dirname, 'compile.ts'), configs[0]],
       { cwd: import.meta.dirname, maxBuffer: 10 * 1024 * 1024 },
       expect.any(Function),
     );

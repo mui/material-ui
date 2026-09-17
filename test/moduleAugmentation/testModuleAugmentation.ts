@@ -32,7 +32,7 @@ export default async function main(args = process.argv.slice(2)) {
     configs,
     async (config) => {
       try {
-        await execFile(process.execPath, [path.join(import.meta.dirname, 'compile.cjs'), config], {
+        await execFile(process.execPath, [path.join(import.meta.dirname, 'compile.ts'), config], {
           cwd: import.meta.dirname,
           maxBuffer: 10 * 1024 * 1024,
         });
