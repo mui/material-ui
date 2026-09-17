@@ -12,7 +12,7 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
-import ButtonBase from '../ButtonBase';
+import ButtonSurface from '../ButtonBase/ButtonSurface';
 import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import buttonSlots from './unstyled/buttonSlots';
@@ -429,19 +429,22 @@ const appearance = createAppearance({
   disableElevation: { default: false, className: whenTrue('disableElevation'), values: [true] },
 });
 
-// Material's root is `ButtonBase`, which is itself a styled Material component,
-// so the logic half defaults to a plain `button` and it is injected here.
+// The root is `ButtonSurface`, the reset styles and the ripple, and not
+// `ButtonBase`. `ButtonUnstyled` already calls `useButtonBase`, so a root that
+// called it again would apply the semantics twice: two `role="button"`, two
+// tabIndex computations, and two `focusVisible` states feeding one class.
 const materialSlots = {
   ...buttonSlots,
   slots: {
     ...buttonSlots.slots,
     root: {
       ...buttonSlots.slots.root,
-      elementType: ButtonBase,
-      // `ButtonBase` takes a `classes` prop of its own, so it has to pass
-      // through rather than being filtered off as a styling prop.
+      elementType: ButtonSurface,
+      // `ButtonSurface` reads `classes` and `ownerState` itself, so both have to
+      // pass through rather than being filtered off as styling props.
       styledOptions: {
-        shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+        shouldForwardProp: (prop) =>
+          rootShouldForwardProp(prop) || prop === 'classes' || prop === 'ownerState',
       },
     },
   },
@@ -476,6 +479,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant,
     fullWidth,
     disableElevation,
+    disableFocusRipple = false,
     className,
     slots: slotsProp,
     ...other
@@ -488,12 +492,20 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       className={clsx(contextProps.className, className, positionClassName)}
       appearance={appearance.resolve({ color, size, variant, fullWidth, disableElevation })}
       slots={{ ...slots, ...slotsProp }}
+      // A ripple is Material Design, so the logic half knows nothing about it.
+      // This rides through on `...other` to the root slot.
+      focusRipple={!disableFocusRipple}
     />
   );
 });
 
 Button.propTypes = {
   ...ButtonUnstyled.propTypes,
+  /**
+   * If `true`, the keyboard focus ripple is disabled.
+   * @default false
+   */
+  disableFocusRipple: PropTypes.bool,
   /**
    * The color of the component.
    * @default 'primary'

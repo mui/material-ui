@@ -3,21 +3,29 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import refType from '@mui/utils/refType';
 // Imported directly rather than through `../../utils`: that barrel re-exports
 // `memoTheme` and `SvgIcon`, so importing one thing from it pulls in styling.
 import useId from '../../utils/useId';
+import useForkRef from '../../utils/useForkRef';
 import capitalize from '../../utils/capitalize';
+import useButtonBase from '../../ButtonBase/useButtonBase';
 import { getButtonUtilityClass } from '../buttonClasses';
 import buttonSlots from './buttonSlots';
 
 const slotDefs = buttonSlots.slots;
 
 const useUtilityClasses = (ownerState, appearanceClasses) => {
-  const { loading, loadingPosition, classes } = ownerState;
+  const { disabled, focusVisible, loading, loadingPosition, suppressFocusVisible, classes } =
+    ownerState;
 
   const slots = {
     root: [
       'root',
+      // Global state classes. This layer tracks the state, so it emits them,
+      // whatever is in the root slot.
+      disabled && 'disabled',
+      focusVisible && !suppressFocusVisible && 'focusVisible',
       loading && 'loading',
       loading && `loadingPosition${capitalize(loadingPosition)}`,
     ],
@@ -46,23 +54,119 @@ const useUtilityClasses = (ownerState, appearanceClasses) => {
 
 const ButtonUnstyled = React.forwardRef(function Button(props, ref) {
   const {
+    action,
     appearance,
     children,
+    // Read from `ownerState` by `useUtilityClasses`; destructured only to keep
+    // it out of the spread.
+    classes: classesProp,
     component = 'button',
     className,
     slots = {},
     disabled = false,
-    disableFocusRipple = false,
     endIcon: endIconProp,
+    /* eslint-disable react/prop-types */
+    // replaces internal handling in Chip, other components can opt-in individually to use this in the future
+    focusableWhenDisabled,
+    // private prop to allow native vs non-native button props to be resolved before mount
+    internalNativeButton: internalNativeButtonProp,
+    // escape hatch to suppress the focusVisible state and callback
+    suppressFocusVisible = false,
+    /* eslint-enable react/prop-types */
     focusVisibleClassName,
     id: idProp,
+    LinkComponent = 'a',
     loading = null,
     loadingIndicator: loadingIndicatorProp,
     loadingPosition = 'center',
+    nativeButton: nativeButtonProp,
+    onBlur,
+    onClick: onClickProp,
+    onFocus,
+    onFocusVisible,
+    onKeyDown: onKeyDownProp,
+    onKeyUp: onKeyUpProp,
+    onMouseLeave,
     startIcon: startIconProp,
+    tabIndex = 0,
     type,
     ...other
   } = props;
+
+  // Loading is a form of disabled: the button must not activate, and it reads
+  // as disabled to assistive technology.
+  const isDisabled = disabled || loading;
+
+  const isLink = Boolean(other.href || other.to);
+  const hasFormAction = Boolean(other.formAction);
+
+  let ComponentProp = component;
+  if (ComponentProp === 'button' && isLink) {
+    ComponentProp = LinkComponent;
+  }
+
+  const internalNativeButton =
+    typeof ComponentProp === 'string'
+      ? ComponentProp === 'button'
+      : (internalNativeButtonProp ?? true);
+  const nativeButton = nativeButtonProp ?? internalNativeButton;
+
+  const {
+    getButtonProps,
+    rootRef: buttonRef,
+    focusVisible,
+    setFocusVisible,
+  } = useButtonBase({
+    nativeButton,
+    nativeButtonProp,
+    internalNativeButton,
+    allowInferredHostMismatch: isLink || typeof ComponentProp === 'string',
+    disabled: isDisabled,
+    type,
+    hasFormAction,
+    tabIndex,
+    suppressFocusVisible,
+    onFocusVisible,
+  });
+
+  const {
+    onClick,
+    onKeyDown,
+    onKeyUp,
+    onFocus: handleFocus,
+    onBlur: handleBlur,
+    onMouseLeave: handleMouseLeave,
+    ...buttonProps
+  } = getButtonProps({
+    onClick: onClickProp,
+    onKeyDown: onKeyDownProp,
+    onKeyUp: onKeyUpProp,
+    onFocus,
+    onBlur,
+    onMouseLeave,
+  });
+
+  React.useImperativeHandle(
+    action,
+    () => ({
+      focusVisible: () => {
+        setFocusVisible(true);
+        buttonRef.current.focus();
+      },
+    }),
+    [buttonRef, setFocusVisible],
+  );
+
+  const linkProps = {};
+  if (isLink) {
+    linkProps.tabIndex = isDisabled ? -1 : tabIndex;
+    if (isDisabled) {
+      linkProps['aria-disabled'] = isDisabled;
+    }
+    linkProps.type = type;
+  }
+
+  const handleRef = useForkRef(ref, buttonRef);
 
   const {
     root: RootSlot = slotDefs.root.elementType,
@@ -84,34 +188,58 @@ const ButtonUnstyled = React.forwardRef(function Button(props, ref) {
   const ownerState = {
     ...props,
     component,
-    disabled,
-    disableFocusRipple,
+    disabled: isDisabled,
+    focusVisible,
     loading,
     loadingIndicator,
     loadingPosition,
+    suppressFocusVisible,
+    tabIndex,
     type,
     ...appearance?.ownerState,
   };
 
   const classes = useUtilityClasses(ownerState, appearance?.classes);
+  const rootClassName = clsx(
+    classes.root,
+    focusVisible && !suppressFocusVisible && focusVisibleClassName,
+    className,
+  );
+
+  // The root's own class is already on `className`, so forwarding it as well
+  // would duplicate it.
+  const { root, ...forwardedClasses } = classes;
+
+  // A host element cannot read `ownerState`, and React puts any prop it does not
+  // recognise on the DOM. `undefined` is dropped instead.
+  const slotOwnerState = (Slot) => (typeof Slot === 'string' ? undefined : ownerState);
+
+  // A host element root takes none of the props that only a component can read.
+  // Without this they land on the DOM as `ownerstate="[object Object]"` and the
+  // like.
+  const isHostRoot = typeof RootSlot === 'string';
+  const RootElement = isHostRoot ? ComponentProp : RootSlot;
+  const rootComponentProps = isHostRoot
+    ? {}
+    : { ownerState, component: ComponentProp, classes: forwardedClasses };
 
   const startIcon = (startIconProp || (loading && loadingPosition === 'start')) && (
-    <StartIconSlot className={classes.startIcon} ownerState={ownerState}>
+    <StartIconSlot className={classes.startIcon} ownerState={slotOwnerState(StartIconSlot)}>
       {startIconProp || (
         <LoadingIconPlaceholderSlot
           className={classes.loadingIconPlaceholder}
-          ownerState={ownerState}
+          ownerState={slotOwnerState(LoadingIconPlaceholderSlot)}
         />
       )}
     </StartIconSlot>
   );
 
   const endIcon = (endIconProp || (loading && loadingPosition === 'end')) && (
-    <EndIconSlot className={classes.endIcon} ownerState={ownerState}>
+    <EndIconSlot className={classes.endIcon} ownerState={slotOwnerState(EndIconSlot)}>
       {endIconProp || (
         <LoadingIconPlaceholderSlot
           className={classes.loadingIconPlaceholder}
-          ownerState={ownerState}
+          ownerState={slotOwnerState(LoadingIconPlaceholderSlot)}
         />
       )}
     </EndIconSlot>
@@ -122,37 +250,37 @@ const ButtonUnstyled = React.forwardRef(function Button(props, ref) {
       // use plain HTML span to minimize the runtime overhead
       <span className={classes.loadingWrapper} style={{ display: 'contents' }}>
         {loading && (
-          <LoadingIndicatorWrapperSlot className={classes.loadingIndicator} ownerState={ownerState}>
+          <LoadingIndicatorWrapperSlot
+            className={classes.loadingIndicator}
+            ownerState={slotOwnerState(LoadingIndicatorWrapperSlot)}
+          >
             {loadingIndicator}
           </LoadingIndicatorWrapperSlot>
         )}
       </span>
     ) : null;
 
-  // Don't forward the 'root' classes to the ButtonBase, as they will get duplicated with the one passed to the className prop.
-  const { root, ...forwardedClasses } = classes;
-
   return (
-    <RootSlot
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      component={component}
-      disabled={disabled || loading}
-      focusRipple={!disableFocusRipple}
-      focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
-      ref={ref}
-      internalNativeButton
-      type={type}
+    <RootElement
+      {...rootComponentProps}
+      className={rootClassName}
+      ref={handleRef}
       id={loading ? loadingId : idProp}
+      onClick={onClick}
+      onKeyDown={onKeyDown}
+      onKeyUp={onKeyUp}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      onMouseLeave={handleMouseLeave}
+      {...(isLink ? linkProps : buttonProps)}
       {...other}
-      classes={forwardedClasses}
     >
       {startIcon}
       {loadingPosition !== 'end' && loader}
       {children}
       {loadingPosition === 'end' && loader}
       {endIcon}
-    </RootSlot>
+    </RootElement>
   );
 });
 
@@ -205,11 +333,6 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disabled: PropTypes.bool,
-  /**
-   * If `true`, the  keyboard focus ripple is disabled.
-   * @default false
-   */
-  disableFocusRipple: PropTypes.bool,
   /**
    * If `true`, the ripple effect is disabled.
    *
@@ -286,6 +409,51 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['contained', 'outlined', 'text']),
     PropTypes.string,
   ]),
+  /**
+   * A ref for imperative actions. It supports `focusVisible()`.
+   */
+  action: refType,
+  /**
+   * The component used to render a link when the `href` prop is provided.
+   * @default 'a'
+   */
+  LinkComponent: PropTypes.elementType,
+  /**
+   * Whether the custom component is expected to render a native `<button>`.
+   */
+  nativeButton: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * Callback fired when the component is focused with a keyboard.
+   */
+  onFocusVisible: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyUp: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onMouseLeave: PropTypes.func,
+  /**
+   * @default 0
+   */
+  tabIndex: PropTypes.number,
 };
 
 export default ButtonUnstyled;

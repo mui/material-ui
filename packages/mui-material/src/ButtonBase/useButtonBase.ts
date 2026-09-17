@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import isFocusVisible from '@mui/utils/isFocusVisible';
 import useFocusableWhenDisabled from '../utils/useFocusableWhenDisabled';
 
 export interface UseButtonBaseParameters {
@@ -65,6 +66,16 @@ export interface UseButtonBaseParameters {
    * to control the ripple effect in `<ButtonBase>`.
    */
   onBeforeKeyUp?: React.KeyboardEventHandler<HTMLElement> | undefined;
+  /**
+   * When `true`, the focus visible state is never entered and `onFocusVisible`
+   * never fires. Used by anchored menus, which open with a pointer.
+   * @default false
+   */
+  suppressFocusVisible?: boolean | undefined;
+  /**
+   * Called when the element is focused by a means that should show a focus ring.
+   */
+  onFocusVisible?: React.FocusEventHandler<HTMLElement> | undefined;
 }
 
 export interface ButtonBaseButtonProps {
@@ -85,6 +96,9 @@ export interface ButtonBaseEventHandlers {
   onClick: React.MouseEventHandler<HTMLElement>;
   onKeyDown: React.KeyboardEventHandler<HTMLElement>;
   onKeyUp: React.KeyboardEventHandler<HTMLElement>;
+  onFocus: React.FocusEventHandler<HTMLElement>;
+  onBlur: React.FocusEventHandler<HTMLElement>;
+  onMouseLeave: React.MouseEventHandler<HTMLElement>;
 }
 
 export interface UseButtonBaseReturnValue {
@@ -98,6 +112,14 @@ export interface UseButtonBaseReturnValue {
     ButtonBaseButtonProps &
     ButtonBaseEventHandlers;
   rootRef: React.RefObject<HTMLElement | null>;
+  /**
+   * Whether the element is focused by a means that should show a focus ring.
+   */
+  focusVisible: boolean;
+  /**
+   * Set the focus visible state, for an imperative `focusVisible()` action.
+   */
+  setFocusVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const EMPTY = {};
@@ -118,9 +140,16 @@ export default function useButtonBase(
     stopEventPropagation = false,
     onBeforeKeyDown,
     onBeforeKeyUp,
+    suppressFocusVisible = false,
+    onFocusVisible,
   } = parameters;
 
   const rootRef = React.useRef<HTMLElement | null>(null);
+
+  const [focusVisible, setFocusVisible] = React.useState(false);
+  if ((disabled || suppressFocusVisible) && focusVisible) {
+    setFocusVisible(false);
+  }
   const focusableWhenDisabled = focusableWhenDisabledParam === true;
   const focusableWhenDisabledProps = useFocusableWhenDisabled({
     focusableWhenDisabled,
@@ -250,6 +279,9 @@ export default function useButtonBase(
         onClick: externalOnClick,
         onKeyDown: externalOnKeyDown,
         onKeyUp: externalOnKeyUp,
+        onFocus: externalOnFocus,
+        onBlur: externalOnBlur,
+        onMouseLeave: externalOnMouseLeave,
         ...otherExternalProps
       } = externalProps;
 
@@ -311,12 +343,47 @@ export default function useButtonBase(
         }
       };
 
+      const handleFocus: React.FocusEventHandler<HTMLElement> = (event) => {
+        // Fix for https://github.com/facebook/react/issues/7769
+        if (!rootRef.current) {
+          rootRef.current = event.currentTarget;
+        }
+
+        if (!suppressFocusVisible && isFocusVisible(event.target)) {
+          setFocusVisible(true);
+          onFocusVisible?.(event);
+        }
+
+        externalOnFocus?.(event);
+      };
+
+      const handleBlur: React.FocusEventHandler<HTMLElement> = (event) => {
+        if (!isFocusVisible(event.target)) {
+          setFocusVisible(false);
+        }
+
+        externalOnBlur?.(event);
+      };
+
+      const handleMouseLeave: React.MouseEventHandler<HTMLElement> = (event) => {
+        // Keyboard focus survives the pointer leaving, so the browser must not
+        // also treat this as losing focus.
+        if (focusVisible) {
+          event.preventDefault();
+        }
+
+        externalOnMouseLeave?.(event);
+      };
+
       return {
         ...buttonProps,
         ...otherExternalProps,
         onClick: handleClick,
         onKeyDown: handleKeyDown,
         onKeyUp: handleKeyUp,
+        onFocus: handleFocus,
+        onBlur: handleBlur,
+        onMouseLeave: handleMouseLeave,
       };
     },
     [
@@ -324,15 +391,20 @@ export default function useButtonBase(
       disabled,
       focusableWhenDisabled,
       focusableWhenDisabledProps,
+      focusVisible,
       hasNativeKeyboardActivation,
       onBeforeKeyDown,
       onBeforeKeyUp,
+      onFocusVisible,
       stopEventPropagation,
+      suppressFocusVisible,
     ],
   );
 
   return {
     getButtonProps,
     rootRef,
+    focusVisible,
+    setFocusVisible,
   };
 }
