@@ -58,7 +58,7 @@ function Code({ children, block }) {
     <code
       style={{
         display: block ? 'block' : 'inline',
-        margin: block ? '0 0 14px' : 0,
+        margin: block ? '12px 0 0' : 0,
         padding: block ? '8px 12px' : '1px 5px',
         borderRadius: 6,
         background: 'var(--theme2-surface)',
@@ -83,8 +83,8 @@ function Row({ title, note, code, children }) {
       ) : (
         <div style={{ height: 10 }} />
       )}
-      {code ? <Code block>{code}</Code> : null}
       {children}
+      {code ? <Code block>{code}</Code> : null}
     </section>
   );
 }
@@ -92,11 +92,11 @@ function Row({ title, note, code, children }) {
 /** A slider labelled with the prop that produced it. */
 function Labelled({ label, children }) {
   return (
-    <div style={{ marginBottom: 20 }}>
-      <div style={{ marginBottom: 6 }}>
+    <div style={{ marginBottom: 24 }}>
+      {children}
+      <div style={{ marginTop: 8 }}>
         <Code>{label}</Code>
       </div>
-      {children}
     </div>
   );
 }
@@ -193,7 +193,7 @@ export default function SliderTheme2() {
                 flex: 'none',
                 padding: '6px 12px',
                 borderRadius: 6,
-                border: '1px solid var(--theme2-edge)',
+                border: '1px solid var(--theme2-border)',
                 background: 'var(--theme2-surface)',
                 color: 'var(--theme2-page-fg)',
                 font: 'inherit',
@@ -210,7 +210,7 @@ export default function SliderTheme2() {
               marginBottom: 48,
               padding: 20,
               borderRadius: 10,
-              border: '1px solid var(--theme2-edge)',
+              border: '1px solid var(--theme2-border)',
             }}
           >
             <h2 style={{ fontSize: 15, fontWeight: 600, margin: '0 0 6px' }}>

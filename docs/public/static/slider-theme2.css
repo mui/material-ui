@@ -28,7 +28,10 @@
   --theme2-raised-to: #f4f4f6;
   --theme2-raised-from-hover: #ffffff;
   --theme2-raised-to-hover: #e8e8ec;
+  --theme2-raised-from-disabled: #f2f2f4;
+  --theme2-raised-to-disabled: #e2e2e6;
   --theme2-edge: rgb(0 0 0 / 0.14);
+  --theme2-border: rgb(0 0 0 / 0.12);
   --theme2-tick: #b4b4bb;
   --theme2-label: #6e6e6e;
 
@@ -72,7 +75,10 @@
     --theme2-raised-to: #dcdce2;
     --theme2-raised-from-hover: #ffffff;
     --theme2-raised-to-hover: #cbcbd3;
+    --theme2-raised-from-disabled: #85858e;
+    --theme2-raised-to-disabled: #6e6e78;
     --theme2-edge: rgb(0 0 0 / 0.5);
+    --theme2-border: rgb(255 255 255 / 0.16);
     --theme2-tick: #5a5a62;
     --theme2-label: #9a9aa2;
 
@@ -111,7 +117,10 @@
   --theme2-raised-to: #dcdce2;
   --theme2-raised-from-hover: #ffffff;
   --theme2-raised-to-hover: #cbcbd3;
+  --theme2-raised-from-disabled: #85858e;
+  --theme2-raised-to-disabled: #6e6e78;
   --theme2-edge: rgb(0 0 0 / 0.5);
+  --theme2-border: rgb(255 255 255 / 0.16);
   --theme2-tick: #5a5a62;
   --theme2-label: #9a9aa2;
 
@@ -323,9 +332,14 @@
   outline-offset: 2px;
 }
 
-/* A disabled control is not raised, so it loses its shadow. */
+/* Still a raised control, just an inert one, so it keeps its shadow and greys
+   out instead. */
 .MuiSlider-thumb.Mui-disabled {
-  box-shadow: none;
+  background: linear-gradient(
+    to bottom,
+    var(--theme2-raised-from-disabled),
+    var(--theme2-raised-to-disabled)
+  );
 }
 
 /* ---------------------------------------------------------------- marks ---- */
