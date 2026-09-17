@@ -1,12 +1,12 @@
-import childProcess from 'node:child_process';
 import path from 'node:path';
 import { availableParallelism } from 'node:os';
-import { promisify, parseArgs } from 'node:util';
+import { parseArgs } from 'node:util';
 import { pathToFileURL } from 'node:url';
 import glob from 'fast-glob';
 import { mapAsync } from 'es-toolkit/array';
+// eslint-disable-next-line import/extensions -- Node executes this TypeScript module directly.
+import compile from './compile.ts';
 
-const execFile = promisify(childProcess.execFile);
 const root = path.resolve(import.meta.dirname, '../..');
 
 export default async function main(args = process.argv.slice(2)) {
@@ -32,15 +32,11 @@ export default async function main(args = process.argv.slice(2)) {
     configs,
     async (config) => {
       try {
-        await execFile(process.execPath, [path.join(import.meta.dirname, 'compile.ts'), config], {
-          cwd: import.meta.dirname,
-          maxBuffer: 10 * 1024 * 1024,
-        });
+        await compile(config);
         // eslint-disable-next-line no-console -- test runner feedback
         console.log(`PASS ${path.relative(root, config)}`);
       } catch (error) {
-        const { stdout, message } = error as childProcess.ExecException & { stdout?: string };
-        console.error(`FAIL ${path.relative(root, config)}\n${stdout || message}`);
+        console.error(`FAIL ${path.relative(root, config)}\n${(error as Error).message}`);
         process.exitCode = 1;
       }
     },

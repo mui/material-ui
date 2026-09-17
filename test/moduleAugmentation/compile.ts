@@ -1,6 +1,8 @@
-import { execSync } from 'node:child_process';
+import { exec } from 'node:child_process';
 import path from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { promisify } from 'node:util';
+
+const execAsync = promisify(exec);
 
 export function assertBuiltDeclarations(output: string, packagesRoot: string) {
   let declarations = 0;
@@ -21,35 +23,35 @@ export function assertBuiltDeclarations(output: string, packagesRoot: string) {
   }
 }
 
-export default function compile(config: string) {
+export default async function compile(config: string) {
   const configPath = path.resolve(config);
   const packagesRoot = path.resolve(import.meta.dirname, '../../packages');
   let output: string;
-  let failed = false;
+  let failure: Error | undefined;
   try {
     // Windows needs a shell to start the pnpm.cmd shim.
-    output = execSync(`pnpm tsc --project "${configPath}" --listFiles --pretty false`, {
-      encoding: 'utf8',
-      maxBuffer: 10 * 1024 * 1024,
-    });
+    const { stdout } = await execAsync(
+      `pnpm tsc --project "${configPath}" --listFiles --pretty false`,
+      {
+        cwd: import.meta.dirname,
+        encoding: 'utf8',
+        maxBuffer: 10 * 1024 * 1024,
+      },
+    );
+    output = stdout;
   } catch (error) {
-    output = (error as { stdout?: string }).stdout || '';
-    failed = true;
+    const compilerError = error as Error & { stdout?: string };
+    output = compilerError.stdout || '';
+    failure = compilerError;
   }
   assertBuiltDeclarations(output, packagesRoot);
-  if (failed) {
-    // Print the diagnostics without the --listFiles paths.
-    // eslint-disable-next-line no-console -- compiler diagnostics
-    console.log(
-      output
-        .split(/\r?\n/)
-        .filter((line) => !path.isAbsolute(line))
-        .join('\n'),
-    );
-    process.exitCode = 1;
+  if (failure) {
+    // Report the diagnostics without the --listFiles paths.
+    const diagnostics = output
+      .split(/\r?\n/)
+      .filter((line) => !path.isAbsolute(line))
+      .join('\n')
+      .trim();
+    throw new Error(diagnostics || failure.message, { cause: failure });
   }
-}
-
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  compile(process.argv[2]);
 }
