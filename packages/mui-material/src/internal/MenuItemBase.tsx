@@ -2,7 +2,6 @@
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import ButtonBase from '../ButtonBase';
-import type { Breakpoint } from '../styles';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import { applyInsetFocusVisible } from '../styles/focusVisible';
 import { dividerClasses } from '../Divider';
@@ -97,8 +96,7 @@ const MenuItemBase = styled(ButtonBase, {
         {
           props: ({ ownerState }: MenuItemBaseProps) => !ownerState?.dense,
           style: {
-            // Keep the built-in key when module augmentation removes it from the public type.
-            [theme.breakpoints.up('sm' as Breakpoint)]: {
+            [theme.breakpoints.up('sm')]: {
               minHeight: 'auto',
             },
           },

@@ -37,10 +37,6 @@ const theme = createTheme({
   },
 });
 
-theme.breakpoints.up('tablet');
-// @ts-expect-error The removed breakpoint must remain invalid in the public API.
-theme.breakpoints.up('sm');
-
 function MyContainer() {
   return (
     <ThemeProvider theme={theme}>
