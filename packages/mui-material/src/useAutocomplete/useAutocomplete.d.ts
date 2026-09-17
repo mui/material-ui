@@ -56,13 +56,20 @@ export interface UseAutocompleteProps<
   FreeSolo extends boolean | undefined,
 > extends UseAutocompleteBaseProps<Value, Multiple, DisableClearable, FreeSolo> {}
 
+// Preserve existing module augmentations; the base supplies the built-in props with mapped types.
 export interface UseAutocompleteMappedProps<
   Option,
   Value extends AutocompleteMappedValue<FreeSolo>,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
-> extends UseAutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo, Value> {
+>
+  extends
+    Omit<
+      UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo>,
+      keyof UseAutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo>
+    >,
+    UseAutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo, Value> {
   getOptionValue: (option: Option) => Value;
 }
 

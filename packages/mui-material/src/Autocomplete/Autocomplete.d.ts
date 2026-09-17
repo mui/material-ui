@@ -244,6 +244,7 @@ export interface AutocompleteProps<
     AutocompleteBaseProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
     UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo> {}
 
+// Preserve existing module augmentations; the base supplies the built-in props with mapped types.
 export interface AutocompleteMappedProps<
   Option,
   Value extends AutocompleteMappedValue<FreeSolo>,
@@ -253,6 +254,10 @@ export interface AutocompleteMappedProps<
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 >
   extends
+    Omit<
+      AutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+      keyof AutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo, ChipComponent>
+    >,
     AutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo, ChipComponent, Value>,
     UseAutocompleteMappedProps<Option, Value, Multiple, DisableClearable, FreeSolo> {
   getOptionValue: (option: Option) => Value;
