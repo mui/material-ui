@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url';
 import glob from 'fast-glob';
 import { mapAsync } from 'es-toolkit/array';
 // eslint-disable-next-line import/extensions -- Node executes this TypeScript module directly.
-import compile from './compile.ts';
+import compile, { modes, type Mode } from './compile.ts';
 
 const root = path.resolve(import.meta.dirname, '../..');
 
@@ -27,16 +27,21 @@ export default async function main(args = process.argv.slice(2)) {
   if (configs.length === 0) {
     throw new Error('No module augmentation fixtures found.');
   }
+  // Each consumer resolution mode reads its own declaration files.
+  const runs = configs.flatMap((config) =>
+    (Object.keys(modes) as Mode[]).map((mode) => ({ config, mode })),
+  );
   // Each worker runs fixtures in separate compiler processes.
   await mapAsync(
-    configs,
-    async (config) => {
+    runs,
+    async ({ config, mode }) => {
+      const name = `${mode} ${path.relative(root, config)}`;
       try {
-        await compile(config);
+        await compile(config, mode);
         // eslint-disable-next-line no-console -- test runner feedback
-        console.log(`PASS ${path.relative(root, config)}`);
+        console.log(`PASS ${name}`);
       } catch (error) {
-        console.error(`FAIL ${path.relative(root, config)}\n${(error as Error).message}`);
+        console.error(`FAIL ${name}\n${(error as Error).message}`);
         process.exitCode = 1;
       }
     },

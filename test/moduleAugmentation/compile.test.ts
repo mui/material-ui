@@ -8,12 +8,19 @@ vi.mock('node:child_process', async () => {
   return { exec: Object.assign(vi.fn(), { [promisify.custom]: execute }) };
 });
 
+const options = { cwd: import.meta.dirname, encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 };
+
+function command(flags = '') {
+  const project = path.resolve('fixture.tsconfig.json');
+  return `pnpm tsc --project "${project}" --listFiles --pretty false ${flags}`.trim();
+}
+
+function built(extension: string) {
+  return path.resolve(import.meta.dirname, `../../packages/mui-material/build/index.${extension}`);
+}
+
 describe('module augmentation compiler', () => {
   let compile: typeof import('./compile').default;
-  const declaration = path.resolve(
-    import.meta.dirname,
-    '../../packages/mui-material/build/index.d.ts',
-  );
 
   beforeAll(async () => {
     ({ default: compile } = await import('./compile'));
@@ -31,25 +38,51 @@ describe('module augmentation compiler', () => {
 
     await Promise.resolve();
     expect(completed).not.toHaveBeenCalled();
-    result.resolve({ stdout: declaration, stderr: '' });
+    result.resolve({ stdout: built('d.mts'), stderr: '' });
     await run;
     expect(completed).toHaveBeenCalledTimes(1);
-    expect(execute).toHaveBeenCalledWith(
-      `pnpm tsc --project "${path.resolve('fixture.tsconfig.json')}" --listFiles --pretty false`,
-      { cwd: import.meta.dirname, encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 },
+    expect(execute).toHaveBeenCalledWith(command(), options);
+  });
+
+  it('reads the require condition in the commonjs mode', async () => {
+    execute.mockResolvedValue({ stdout: built('d.ts'), stderr: '' });
+
+    await compile('fixture.tsconfig.json', 'cjs');
+
+    expect(execute).toHaveBeenCalledWith(command('--module commonjs --esModuleInterop'), options);
+  });
+
+  it.each([
+    { mode: 'esm', extension: 'd.ts' },
+    { mode: 'cjs', extension: 'd.mts' },
+  ] as const)('rejects the .$extension files in the $mode mode', async ({ mode, extension }) => {
+    execute.mockResolvedValue({ stdout: built(extension), stderr: '' });
+
+    await expect(compile('fixture.tsconfig.json', mode)).rejects.toThrow(
+      'Consumer test loaded another declaration flavor:',
     );
   });
 
   it('rejects compiler failures with diagnostics without the file list', async () => {
     execute.mockRejectedValue(
       Object.assign(new Error('Command failed'), {
-        stdout: `fixture.tsx(1,1): error TS2345: Invalid breakpoint.\n${declaration}\n`,
+        stdout: `fixture.tsx(1,1): error TS2345: Invalid breakpoint.\n${built('d.mts')}\n`,
       }),
     );
 
     await expect(compile('fixture.tsconfig.json')).rejects.toThrow(
       /^fixture\.tsx\(1,1\): error TS2345: Invalid breakpoint\.$/,
     );
+  });
+
+  it('reports the compiler error when the compiler writes nothing', async () => {
+    execute.mockRejectedValue(
+      Object.assign(new Error('Command failed: pnpm tsc\n/bin/sh: pnpm: command not found'), {
+        stdout: '',
+      }),
+    );
+
+    await expect(compile('fixture.tsconfig.json')).rejects.toThrow('pnpm: command not found');
   });
 });
 
@@ -71,7 +104,7 @@ describe.each([
     vi.resetModules();
   });
 
-  function compile(libraryFile: string) {
+  function check(libraryFile: string, extensions: string[] = ['.d.mts']) {
     // TypeScript lists files with forward slashes, including on Windows.
     const output = [
       paths.join(root, libraryFile),
@@ -80,17 +113,24 @@ describe.each([
       .map((file) => file.replaceAll('\\', '/'))
       .join('\r\n');
 
-    assertBuiltDeclarations(output, paths.join(root, 'packages'));
+    assertBuiltDeclarations(output, paths.join(root, 'packages'), extensions);
   }
 
-  it.each(['ts', 'mts', 'cts'])(
-    'accepts the fixture with built .d.%s declarations',
-    (extension) => {
-      expect(() =>
-        compile(`packages/mui-material/build/styles/index.d.${extension}`),
-      ).not.to.throw();
-    },
-  );
+  it.each([
+    { extension: 'd.mts', extensions: ['.d.mts'] },
+    { extension: 'd.ts', extensions: ['.d.ts', '.d.cts'] },
+    { extension: 'd.cts', extensions: ['.d.ts', '.d.cts'] },
+  ])('accepts the built .$extension declarations', ({ extension, extensions }) => {
+    expect(() =>
+      check(`packages/mui-material/build/styles/index.${extension}`, extensions),
+    ).not.to.throw();
+  });
+
+  it('rejects the built declarations of another flavor', () => {
+    expect(() => check('packages/mui-material/build/styles/index.d.ts')).to.throw(
+      'Consumer test loaded another declaration flavor:',
+    );
+  });
 
   it.each([
     'packages/mui-material/src/styles/index.d.ts',
@@ -98,6 +138,6 @@ describe.each([
     'packages/mui-material/src/Grid/Grid.tsx',
     'packages/mui-material/build/Grid/Grid.tsx',
   ])('rejects library source: %s', (file) => {
-    expect(() => compile(file)).to.throw('Consumer test loaded library source:');
+    expect(() => check(file)).to.throw('Consumer test loaded library source:');
   });
 });

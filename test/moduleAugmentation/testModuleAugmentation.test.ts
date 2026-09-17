@@ -3,23 +3,31 @@ import { afterEach, beforeEach, describe, it, expect, vi, type MockInstance } fr
 import main from './testModuleAugmentation';
 
 const { compile, glob } = vi.hoisted(() => ({
-  compile: vi.fn<(config: string) => Promise<void>>(),
+  compile: vi.fn<(config: string, mode: string) => Promise<void>>(),
   glob: vi.fn<() => Promise<string[]>>(),
 }));
 
-vi.mock('./compile', () => ({ default: compile }));
+vi.mock('./compile', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('./compile')>()),
+  default: compile,
+}));
 vi.mock('fast-glob', () => ({ default: glob }));
 
 describe('module augmentation runner', () => {
   const configs = ['first', 'second', 'third'].map((name) =>
     path.join(import.meta.dirname, 'material', `${name}.tsconfig.json`),
   );
+  const started: string[] = [];
   let exitCode: typeof process.exitCode;
   let log: MockInstance<typeof console.log>;
 
   beforeEach(() => {
     exitCode = process.exitCode;
+    started.length = 0;
     glob.mockResolvedValue(configs);
+    compile.mockImplementation(async (config, mode) => {
+      started.push(`${mode} ${path.basename(config)}`);
+    });
     log = vi.spyOn(console, 'log').mockImplementation(() => {});
     vi.spyOn(console, 'error').mockImplementation(() => {});
   });
@@ -30,43 +38,63 @@ describe('module augmentation runner', () => {
     vi.resetAllMocks();
   });
 
-  it('limits compiler processes and starts the next fixture as soon as one finishes', async () => {
-    const tasks = configs.map(() => Promise.withResolvers<void>());
+  it('runs every fixture in both resolution modes', async () => {
+    await main(['--concurrency', '4']);
+
+    expect(started).toEqual([
+      'esm first.tsconfig.json',
+      'cjs first.tsconfig.json',
+      'esm second.tsconfig.json',
+      'cjs second.tsconfig.json',
+      'esm third.tsconfig.json',
+      'cjs third.tsconfig.json',
+    ]);
+    expect(log).toHaveBeenCalledTimes(6);
+  });
+
+  it('limits compiler processes and starts the next run as soon as one finishes', async () => {
+    const pending: PromiseWithResolvers<void>[] = [];
     const twoStarted = Promise.withResolvers<void>();
     const threeStarted = Promise.withResolvers<void>();
-    compile.mockImplementation((config) => {
-      const index = configs.indexOf(config);
-      if (index === 1) {
+    compile.mockImplementation((config, mode) => {
+      started.push(`${mode} ${path.basename(config)}`);
+      if (pending.length >= 3) {
+        return Promise.resolve();
+      }
+      const task = Promise.withResolvers<void>();
+      pending.push(task);
+      if (pending.length === 2) {
         twoStarted.resolve();
-      } else if (index === 2) {
+      } else if (pending.length === 3) {
         threeStarted.resolve();
       }
-      return tasks[index].promise;
+      return task.promise;
     });
 
     const run = main(['--concurrency', '2']);
     await twoStarted.promise;
-    expect(compile).toHaveBeenCalledTimes(2);
-    expect(compile).toHaveBeenNthCalledWith(1, configs[0]);
-    tasks[1].resolve();
+    expect(started).toEqual(['esm first.tsconfig.json', 'cjs first.tsconfig.json']);
+
+    pending[1].resolve();
     await threeStarted.promise;
-    tasks[2].resolve();
-    tasks[0].resolve();
+    expect(started).toHaveLength(3);
+
+    pending.forEach((task) => task.resolve());
     await run;
-    expect(log).toHaveBeenCalledTimes(3);
+    expect(log).toHaveBeenCalledTimes(6);
   });
 
-  it('reports a compiler failure and continues with the remaining fixtures', async () => {
-    compile.mockRejectedValueOnce(new Error('Type error')).mockResolvedValue(undefined);
+  it('reports a failed run and continues with the remaining runs', async () => {
+    compile.mockRejectedValueOnce(new Error('Type error'));
 
     await main(['--concurrency', '1']);
 
     expect(process.exitCode).to.equal(1);
     expect(console.error).toHaveBeenCalledWith(
-      `FAIL ${path.join('test/moduleAugmentation/material/first.tsconfig.json')}\nType error`,
+      `FAIL esm ${path.join('test/moduleAugmentation/material/first.tsconfig.json')}\nType error`,
     );
-    expect(compile).toHaveBeenCalledTimes(3);
-    expect(log).toHaveBeenCalledTimes(2);
+    expect(compile).toHaveBeenCalledTimes(6);
+    expect(log).toHaveBeenCalledTimes(5);
   });
 
   it('rejects a run with no fixtures', async () => {
