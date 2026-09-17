@@ -967,8 +967,6 @@ importers:
         specifier: 6.1.3
         version: 6.1.3
 
-  packages-internal/waterfall: {}
-
   packages/mui-codemod:
     dependencies:
       '@babel/core':
@@ -1047,9 +1045,6 @@ importers:
       '@mui/icons-material':
         specifier: workspace:*
         version: link:build
-      '@mui/internal-waterfall':
-        specifier: workspace:^
-        version: link:../../packages-internal/waterfall
       '@mui/material':
         specifier: workspace:^
         version: link:../mui-material/build
