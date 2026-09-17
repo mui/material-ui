@@ -347,8 +347,12 @@ export default function SliderTheme2() {
             <Slider defaultValue={[20, 70]} />
           </Row>
 
-          <Row title="Value label" code={`<Slider defaultValue={45} valueLabelDisplay="on" />`}>
-            <Slider defaultValue={45} valueLabelDisplay="on" />
+          <Row
+            title="Value label"
+            note="Shown on hover, while dragging and on keyboard focus. The component tracks that and says so with a class; theme2 only says what open looks like."
+            code={`<Slider defaultValue={45} valueLabelDisplay="auto" />`}
+          >
+            <Slider defaultValue={45} valueLabelDisplay="auto" />
           </Row>
 
           <Row title="Track variations">

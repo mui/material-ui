@@ -383,19 +383,24 @@
   line-height: 1.4;
   box-shadow: var(--theme2-shadow);
   opacity: 0;
-  transform: translate(-50%, -100%) scale(0.8);
+  /* Only the horizontal half-width is translated. `bottom` already lifts the
+     label clear of the thumb, so translating the full height as well pushed it
+     a whole label further up than intended. */
+  transform: translateX(-50%) scale(0.8);
   transform-origin: bottom center;
   transition:
     opacity 120ms ease,
     transform 120ms ease;
   pointer-events: none;
-  bottom: calc(100% + 4px);
+  bottom: calc(100% + 6px);
   left: 50%;
 }
 
+/* The component decides when the label is open: on hover, while dragging and
+   on keyboard focus. This only says what open looks like. */
 .MuiSlider-valueLabel.MuiSlider-valueLabelOpen {
   opacity: 1;
-  transform: translate(-50%, -100%) scale(1);
+  transform: translateX(-50%) scale(1);
 }
 
 /* ============================================================== button ==== */
