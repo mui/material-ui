@@ -30,6 +30,10 @@ matches bundler and ESM consumers. They read the `import` condition, which point
 at `.d.mts` files. The `cjs` mode sets `module: commonjs`, so TypeScript reads the
 `require` condition, which points at `.d.ts` files.
 
+Both modes keep `moduleResolution: bundler`. The suite checks the two declaration
+flavors that the build emits. It does not check the Node16 or NodeNext resolution
+algorithms. The module resolution suite covers package export resolution.
+
 Fixture workers start the next run as soon as a worker is free. Each run uses a
 separate compiler process. The worker count defaults to Node's
 `os.availableParallelism()`. Set `--concurrency` to limit memory use:
