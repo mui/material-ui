@@ -141,7 +141,7 @@ describe.skipIf(isJsdom())('Menu2 transitions', () => {
         </Menu2>,
       );
 
-      // Base UI 1.7 skips the starting state on initial open. Review this after an update.
+      // An initially open root popup has no starting state or enter animation.
       const popup = screen.getByRole('menu');
       expect(popup).not.to.have.attribute('data-starting-style');
       expect(popup).toHaveComputedStyle({ opacity: '1', transform: 'none', visibility: 'visible' });

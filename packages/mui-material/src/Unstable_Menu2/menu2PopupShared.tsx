@@ -135,23 +135,13 @@ export interface Menu2PopupSharedSlotProps<OwnerState> {
 type Menu2PositionerProps = BaseMenu.Positioner.Props;
 type Menu2PortalProps = BaseMenu.Portal.Props;
 
-export type Menu2PopupState = BaseMenu.Popup.State;
 export type Menu2PopupSide = NonNullable<Menu2PositionerProps['side']>;
 export type Menu2PopupAlign = NonNullable<Menu2PositionerProps['align']>;
-export type Menu2PopupOffset = NonNullable<Menu2PositionerProps['sideOffset']>;
-export type Menu2PopupAnchor = Menu2PositionerProps['anchor'];
-export type Menu2PopupPositionMethod = Menu2PositionerProps['positionMethod'];
-export type Menu2PopupCollisionBoundary = Menu2PositionerProps['collisionBoundary'];
-export type Menu2PopupCollisionPadding = Menu2PositionerProps['collisionPadding'];
-export type Menu2PopupCollisionAvoidance = Menu2PositionerProps['collisionAvoidance'];
-export type Menu2PopupContainer = Menu2PortalProps['container'];
-export type Menu2PopupFinalFocus = BaseMenu.Popup.Props['finalFocus'];
 
 /**
- * The flattened positioning/portal surface hoisted onto the popup, inherited
- * from the Base UI parts via Pick so new Base UI props flow through types
- * automatically. Only props that Material UI adds, or whose defaults differ
- * from Base UI, are declared locally.
+ * These positioning and portal props use Base UI types.
+ * Pick limits the public API to the listed props.
+ * Material UI additions and different defaults are declared below.
  */
 export interface Menu2PopupPublicProps
   extends

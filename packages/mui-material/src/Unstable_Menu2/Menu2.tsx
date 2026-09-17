@@ -122,7 +122,6 @@ const Menu2 = React.forwardRef(function Menu2(
     ...popupProps
   } = themedProps;
 
-  const popupSlots = slots;
   const { trigger: triggerSlotProps, ...popupSlotProps } = slotProps ?? {};
   const resolvedTriggerProps = resolveComponentProps(triggerSlotProps, themedProps);
 
@@ -179,7 +178,7 @@ const Menu2 = React.forwardRef(function Menu2(
           ref={ref}
           ownerState={themedProps}
           slotProps={popupSlotProps}
-          slots={popupSlots}
+          slots={slots}
         >
           {children}
         </Menu2Popup>
