@@ -37,7 +37,7 @@ function handleClick(event) {
 
 export default function CustomizedBreadcrumbs() {
   return (
-    <div role="presentation" onClick={handleClick}>
+    <div role="none" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
         <StyledBreadcrumb
           component="a"

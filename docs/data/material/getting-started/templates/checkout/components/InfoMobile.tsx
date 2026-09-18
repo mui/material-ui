@@ -19,7 +19,7 @@ export default function InfoMobile({ totalPrice }: InfoProps) {
   };
 
   const DrawerList = (
-    <Box sx={{ width: 'auto', px: 3, pb: 3, pt: 8 }} role="presentation">
+    <Box sx={{ width: 'auto', px: 3, pb: 3, pt: 8 }} role="none">
       <IconButton
         onClick={toggleDrawer(false)}
         sx={{ position: 'absolute', right: 8, top: 8 }}
