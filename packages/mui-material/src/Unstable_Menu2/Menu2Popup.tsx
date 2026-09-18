@@ -6,6 +6,7 @@ import { Menu as BaseMenu } from '@base-ui/react/menu';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import { SxProps } from '@mui/system';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { Theme } from '../styles';
 import {
   Menu2PopupBase,
@@ -219,17 +220,22 @@ const Menu2PopupBackdrop = styled(BaseMenu.Backdrop, {
   name: 'MuiMenu2',
   slot: 'Backdrop',
   overridesResolver: (props, styles) => styles.backdrop,
-})({
-  position: 'fixed',
-  inset: 0,
-  // Invisible and inert by default, matching the classic Menu's backdrop.
-  // Dismissal is handled by Base UI's outside-press listener, so the backdrop
-  // does not need to capture clicks; set `pointerEvents` in `slotProps` to
-  // change that when dimming.
-  backgroundColor: 'transparent',
-  pointerEvents: 'none',
-  WebkitTapHighlightColor: 'transparent',
-}) as any;
+})(
+  memoTheme(({ theme }) => ({
+    position: 'fixed',
+    inset: 0,
+    // The classic backdrop sits in the Modal root at this level. The positioner
+    // has the same value and comes later, so the menu stays above.
+    zIndex: (theme.vars || theme).zIndex.modal,
+    // Invisible and inert by default, matching the classic Menu's backdrop.
+    // Dismissal is handled by Base UI's outside-press listener, so the backdrop
+    // does not need to capture clicks; set `pointerEvents` in `slotProps` to
+    // change that when dimming.
+    backgroundColor: 'transparent',
+    pointerEvents: 'none',
+    WebkitTapHighlightColor: 'transparent',
+  })),
+) as any;
 
 const Menu2PopupList = styled(Menu2ListBase, {
   name: 'MuiMenu2',

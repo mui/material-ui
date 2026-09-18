@@ -554,6 +554,45 @@ describe('<Menu2 />', () => {
     expect(window.getComputedStyle(backdrop).backgroundColor).to.equal('rgb(0, 0, 0)');
   });
 
+  it.skipIf(isJsdom())('puts the backdrop above an element at the app bar level', async () => {
+    const { user } = render(
+      <React.Fragment>
+        <div
+          data-testid="bar"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 56,
+            zIndex: createTheme().zIndex.appBar,
+          }}
+        />
+        <div style={{ paddingTop: 96 }}>
+          <Menu2
+            slotProps={{ backdrop: { 'data-testid': 'backdrop', sx: { pointerEvents: 'auto' } } }}
+            trigger={<Button disableRipple>Options</Button>}
+          >
+            <Menu2Item>Profile</Menu2Item>
+          </Menu2>
+        </div>
+      </React.Fragment>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+    await screen.findByRole('menu');
+
+    // The classic backdrop sits in the Modal root, so it covers an AppBar.
+    expect(document.elementFromPoint(10, 10)).to.equal(screen.getByTestId('backdrop'));
+    // The menu stays above its own backdrop.
+    const item = screen.getByRole('menuitem', { name: 'Profile' }).getBoundingClientRect();
+    expect(
+      screen
+        .getByRole('menu')
+        .contains(document.elementFromPoint(item.left + 8, item.top + item.height / 2)),
+    ).to.equal(true);
+  });
+
   it.skipIf(isJsdom())('stacks the positioner at theme.zIndex.modal', async () => {
     const { user } = render(
       <Menu2 trigger={<Button disableRipple>Options</Button>}>
