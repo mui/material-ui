@@ -154,6 +154,7 @@ export type {
   PaletteColorChannel,
   PaletteCommonChannel,
   PaletteFilledInput,
+  PaletteInput,
   PaletteLinearProgress,
   PaletteSkeleton,
   PaletteSlider,
@@ -180,3 +181,8 @@ export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 // Private methods for creating parts of the theme
 export { default as private_createTypography } from './createTypography';
 export { default as private_excludeVariablesFromRoot } from './excludeVariablesFromRoot';
+export {
+  applyInsetFocusVisible as private_applyInsetFocusVisible,
+  applyChildrenFocusVisible as private_applyChildrenFocusVisible,
+  outsetFocusRing as private_outsetFocusRing,
+} from './focusVisible';
