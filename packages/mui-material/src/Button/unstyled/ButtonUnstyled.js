@@ -231,24 +231,13 @@ const ButtonUnstyled = React.forwardRef(function Button(props, ref) {
     className: [classes.endIcon, !endIconProp && classes.loadingIconPlaceholder],
   });
 
-  const [LoadingIndicatorWrapperSlot, loadingIndicatorProps] = useSlot('loadingIndicator', {
+  const [LoadingIndicatorSlot, loadingIndicatorProps] = useSlot('loadingIndicator', {
     elementType: slotDefs.loadingIndicator.elementType,
     externalForwardedProps,
     ownerState,
     className: classes.loadingIndicator,
-  });
-
-  // The spinner shown when no `loadingIndicator` is given. Material's is a
-  // CircularProgress; this layer has no opinion and renders an empty span.
-  const [LoadingSpinnerSlot, loadingSpinnerProps] = useSlot('loadingSpinner', {
-    elementType: slotDefs.loadingSpinner.elementType,
-    externalForwardedProps,
-    ownerState,
-    className: undefined,
     additionalProps: { 'aria-labelledby': loadingId },
   });
-
-  const loadingIndicator = loadingIndicatorProp ?? <LoadingSpinnerSlot {...loadingSpinnerProps} />;
 
   // An icon slot with no icon in it is a spacer, there to keep the label from
   // shifting when the indicator appears. Which side needs one is an appearance
@@ -267,9 +256,9 @@ const ButtonUnstyled = React.forwardRef(function Button(props, ref) {
       // use plain HTML span to minimize the runtime overhead
       <span className={classes.loadingWrapper} style={{ display: 'contents' }}>
         {loading && (
-          <LoadingIndicatorWrapperSlot {...loadingIndicatorProps}>
-            {loadingIndicator}
-          </LoadingIndicatorWrapperSlot>
+          <LoadingIndicatorSlot {...loadingIndicatorProps}>
+            {loadingIndicatorProp}
+          </LoadingIndicatorSlot>
         )}
       </span>
     ) : null;

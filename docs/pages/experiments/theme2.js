@@ -371,7 +371,7 @@ export default function SliderTheme2() {
 
           <Row
             title="Loading"
-            note="The spinner comes through the loadingSpinner slot, and where it sits is theme2's own prop. Material calls that loadingPosition with start/center/end; theme2 calls it spinner with leading/over/trailing."
+            note="theme2 fills the loadingIndicator slot with its own spinner, and where it sits is its own prop. Material calls that loadingPosition with start/center/end; theme2 calls it spinner with leading/over/trailing."
           >
             <Labelled label={`<Button loading>Save changes</Button>`}>
               <Button loading>Save changes</Button>

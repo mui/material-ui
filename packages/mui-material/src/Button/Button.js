@@ -497,12 +497,30 @@ export const ButtonRoot = styledSlots.root;
 export const ButtonStartIcon = styledSlots.startIcon;
 export const ButtonEndIcon = styledSlots.endIcon;
 
-/** Material's default spinner, with its own appearance props bound. */
-function ButtonLoadingSpinner(props) {
-  return <CircularProgress color="inherit" size={16} {...props} />;
-}
+/**
+ * The loading indicator slot, with Material's default content. The `loading
+ * Indicator` prop arrives as children; when it is absent this fills in a
+ * `CircularProgress`, so the logic half never imports one.
+ */
+const ButtonLoadingIndicatorRoot = styledSlots.loadingIndicator;
 
-const slots = { ...styledSlots, loadingSpinner: ButtonLoadingSpinner };
+const ButtonLoadingIndicator = React.forwardRef(function ButtonLoadingIndicator(props, ref) {
+  // `aria-labelledby` belongs on the spinner, which is the element with
+  // `role="progressbar"`, not on the wrapper around it.
+  const { children, 'aria-labelledby': labelledBy, ...other } = props;
+  return (
+    <ButtonLoadingIndicatorRoot ref={ref} {...other}>
+      {children ?? <CircularProgress color="inherit" size={16} aria-labelledby={labelledBy} />}
+    </ButtonLoadingIndicatorRoot>
+  );
+});
+
+ButtonLoadingIndicator.propTypes = {
+  'aria-labelledby': PropTypes.string,
+  children: PropTypes.node,
+};
+
+const slots = { ...styledSlots, loadingIndicator: ButtonLoadingIndicator };
 
 const Button = React.forwardRef(function Button(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`.

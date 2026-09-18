@@ -11,9 +11,6 @@ import * as React from 'react';
  * focus-visible tracking, therefore sits on the styled side today and would
  * have to be split as well for this to be complete.
  *
- * The same is true of `loadingIndicator`, whose Material default is a
- * `CircularProgress`. It is a slot here so the component does not have to
- * import one.
  *
  * There is no slot for the loading spacer. An icon slot with no icon in it is
  * the spacer, marked with the `loadingIconPlaceholder` class so the styling
@@ -35,10 +32,11 @@ const buttonSlots = {
     root: { elementType: 'button', classes: ['root', 'disabled', 'focusVisible', 'loading'] },
     startIcon: { elementType: 'span', classes: ['icon', 'startIcon', 'loadingIconPlaceholder'] },
     endIcon: { elementType: 'span', classes: ['icon', 'endIcon', 'loadingIconPlaceholder'] },
+    // Wraps whatever the `loadingIndicator` prop holds. When that prop is
+    // absent the slot gets no children, and the styling layer's own component
+    // supplies its default. That is how Material puts a `CircularProgress`
+    // there without this layer importing one.
     loadingIndicator: { elementType: 'span', classes: ['loadingIndicator'] },
-    // The spinner shown when no `loadingIndicator` is given. Material's is a
-    // CircularProgress; this layer has no opinion and renders an empty span.
-    loadingSpinner: { elementType: 'span', classes: [] },
   },
 } satisfies ButtonSlotsDefinition;
 

@@ -54,12 +54,25 @@ const buttonAppearance = createAppearance({
   },
 });
 
-/** theme2's spinner, a few lines of CSS rather than a CircularProgress. */
-function Theme2Spinner(props) {
-  return <span {...props} className="theme2-spinner" />;
+/**
+ * theme2's loading indicator. The `loadingIndicator` prop arrives as children;
+ * with none, it fills in a spinner that is a few lines of CSS rather than a
+ * CircularProgress.
+ *
+ * `ownerState` is dropped rather than spread, because the element underneath is
+ * a plain `span` and React would put it on the DOM.
+ */
+function Theme2LoadingIndicator({ children, ownerState, 'aria-labelledby': labelledBy, ...other }) {
+  return (
+    <span {...other}>
+      {children ?? (
+        <span className="theme2-spinner" role="progressbar" aria-labelledby={labelledBy} />
+      )}
+    </span>
+  );
 }
 
-const buttonSlots = { loadingSpinner: Theme2Spinner };
+const buttonSlots = { loadingIndicator: Theme2LoadingIndicator };
 
 export function Slider({ tone, scale, ...other }) {
   return <SliderUnstyled {...other} appearance={sliderAppearance.resolve({ tone, scale })} />;
