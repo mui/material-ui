@@ -23,8 +23,10 @@ it instead copies hand-written `.d.ts` verbatim.
 
 ## The contract (in priority order)
 
-1. **Exported types stay 100% identical** — this is the real, non-negotiable
-   acceptance criterion. Prove it with a tsc probe (see Verification).
+1. **Exported types stay 100% identical *and still usable*** — this is the real,
+   non-negotiable acceptance criterion. Prove both with a tsc probe (see
+   Verification): identity assertions alone pass happily while the component
+   built from those identical props is unusable.
 2. **Emitted JS stays byte-identical** modulo whitespace/comments/mangling.
 3. `.d.ts` ideally identical; where true-TS emission forces a different *form*,
    it is acceptable **only if the resolved exported types are identical** —
@@ -52,6 +54,17 @@ prioritize (1), then (2), document (3), and say so plainly.
 - Port the hand-written type block **verbatim**; only adjust what's required to
   compile. Add casts that Babel strips (`as any`, `as unknown as T`) rather than
   restructuring runtime logic — runtime JS must not change.
+- **Not every cast is equal, and a repeated one is evidence.** A cast *inside*
+  runtime logic is the expected cost of conversion. A cast needed to make the
+  package's *public* type usable is a **defect in the conversion, not a cost of
+  it** — most of all a cast on the props you spread into the root element
+  (`{...(other as any)}`, `{...(other as Omit<typeof other, 'ref'>)}`), which
+  means the props type and the component type now contradict each other. **If
+  the same cast appears in more than two files, stop and find the shared root
+  cause instead of repeating it.** On `@mui/lab` the identical ref-omitting
+  spread cast was written into all seven `forwardRef` components and read as
+  incidental noise; it was in fact one upstream type bug (see the
+  `ForwardRefExoticComponent` finding), and a reviewer had to find it.
 - Convert test `.js` → `.ts`/`.tsx` too (required: `allowJs:false`). Typical
   fixes: `let x;`→ explicit type; theme callbacks → `(theme: any)`;
   `delete obj.prop` needs `prop?:` optional.
@@ -82,7 +95,7 @@ prioritize (1), then (2), document (3), and say so plainly.
   rather than formalizing). **Also wire the reverse direction:** every *downstream* package that
   builds via `tsc` and imports this one must add
   `{ "path": "../<this-pkg-dir>/tsconfig.build.json" }` to *its*
-  `tsconfig.build.json` `references` (see Verification step 6 — skipping this is
+  `tsconfig.build.json` `references` (see Verification step 7 — skipping this is
   a guaranteed CI failure). **`tsconfig.build.json` is mandatory** once
   `--skipTsc` is gone or
   the build throws.
@@ -259,7 +272,7 @@ Re-run the type-equivalence probe after any lint/format fix that touches source.
   literal key in a `PartiallyRequired<T, K>` constraint, or anywhere `keyof`
   the stripped surface is consumed), turning on `stripInternal` will break the
   downstream consumer's declaration build — *not* the converted package's own
-  build, which makes the failure easy to miss locally if Verification step 6
+  build, which makes the failure easy to miss locally if Verification step 7
   is skipped. Before enabling: `git grep "@internal" packages/<pkg>/src/`,
   and for each match check whether the symbol is reachable through the
   public type surface anyway. If it is — as `Grid.unstable_level` was via
@@ -270,6 +283,44 @@ Re-run the type-equivalence probe after any lint/format fix that touches source.
   are identical in a declaration file — document, don't chase.
 - A subpath component's props type may never be exported at the package root if
   the baseline `index.d.ts` had no `export *` for it — verify, don't assume.
+- **A converted `forwardRef` component: `ForwardRefExoticComponent<XProps>`,
+  and derive `ref` from the element it renders — never intersect
+  `& React.RefAttributes<El>`.** Hand-written `.d.ts` often declares a
+  `forwardRef` component as `export default function X(props: XProps):
+  React.JSX.Element`, which is not what it is. Every hand-authored TS component
+  in the repo uses the exotic-component form instead (`Portal.tsx:69`,
+  `Popper.tsx:93`, `TextareaAutosize.tsx:253`, `mui-lab`'s `Timeline.tsx:68`),
+  so match it:
+  ```tsx
+  const X = React.forwardRef(function X(inProps: XProps, ref: React.Ref<HTMLSpanElement>) {
+    /* … */
+  }) as React.ForwardRefExoticComponent<XProps>;
+  ```
+  `propTypes` needs no extra member — `ForwardRefExoticComponent` declares it.
+  **The trap is where `ref` comes from.** `InternalStandardProps<C>` infers it
+  from `C` (`C extends { ref?: infer R } ? R : React.Ref<unknown>`), and
+  `React.HTMLAttributes<T>` carries no `ref`, so the fallback `Ref<unknown>`
+  wins. Appending `& React.RefAttributes<El>` then puts *two* incompatible
+  `ref`s on the props: intersecting the callback halves destroys contextual
+  inference (`ref={(node) => …}` becomes an implicit-any error) and a wrapper
+  taking `XProps` can no longer spread them back into the component. **Fix the
+  base, not the cast:** declare the props from what the component actually
+  renders —
+  ```ts
+  export interface XProps extends StandardProps<React.ComponentPropsWithRef<'span'>> {}
+  ```
+  — and drop the `RefAttributes` half. `ComponentPropsWithRef` adds exactly one
+  name, `key`, which every MUI props type built on `OverrideProps` already has
+  (`TypographyProps`, `ButtonProps`, …), and drops nothing; `ref` narrows from
+  `Ref<unknown>` to the real element, which is the point. Where the base is
+  already a ref-carrying MUI props type (`StandardProps<TypographyProps>`),
+  removing `& RefAttributes<El>` is the whole fix. Check the *rendered* element,
+  not the declared one: `mui-lab`'s `TimelineItem` declared
+  `HTMLAttributes<HTMLDivElement>` while rendering an `li`, which is why its
+  spread needed `as any` until the base became `ComponentPropsWithRef<'li'>`.
+  Surfaced on `@mui/lab` PR #49140 review; roughly 110 component directories in
+  `@mui/material` use the `StandardProps<React.HTMLAttributes<…>>` pattern, so
+  this recurs at scale.
 
 ## Verification (all must pass before claiming done)
 
@@ -291,9 +342,30 @@ Re-run the type-equivalence probe after any lint/format fix that touches source.
    ```
    `tsc -p` it with `strict`, `moduleResolution:bundler`. **Exit 0 = exported
    types provably identical.** A failure pinpoints the exact divergence.
-4. `pnpm -F <pkg> typescript` (includes converted tests + `.spec.tsx`).
-5. `pnpm -F <pkg> test` (node + browser projects).
-6. **Build every downstream consumer, not just typecheck it.** `pnpm -F
+4. **Prove the types are *usable*, not just *identical*.** Identity assertions
+   are necessary but not sufficient: a props interface can be byte-for-byte
+   equal to the baseline while the component built from it is unusable. For
+   every converted React component the probe must also exercise it *in use* —
+   these three cases, which identity checks cannot reach:
+   ```tsx
+   // 1. JSX with the baseline props spread in.
+   function Wrapper(props: XProps) { return <X {...props} />; }
+   // 2. A callback ref, asserting the parameter type.
+   <X ref={(node) => expectType<HTMLSpanElement | null, typeof node>(node)} />;
+   // 3. An object ref of the wrong element, asserting it is rejected.
+   { /* @ts-expect-error X renders a span. */ }
+   <X ref={React.createRef<HTMLDivElement>()} />;
+   ```
+   Case 1 is the one that catches variance bugs: if a wrapper that accepts the
+   component's own props can no longer spread them back into it, the conversion
+   is broken however equal the interfaces look. **Commit this as
+   `src/refs.spec.tsx`** so `pnpm -F <pkg> typescript` enforces it afterwards;
+   a type test that lives only in a review thread guards nothing. (Type tests
+   are otherwise out of scope for a migration — this one is in scope because it
+   covers exactly the surface the migration changes.)
+5. `pnpm -F <pkg> typescript` (includes converted tests + `.spec.tsx`).
+6. `pnpm -F <pkg> test` (node + browser projects).
+7. **Build every downstream consumer, not just typecheck it.** `pnpm -F
    <consumer> typescript` uses `tsconfig.json` and will *not* catch the failure
    that matters here: once the converted package's `exports` point at
    `./src/index.ts`, a consumer's *declaration build*
@@ -316,7 +388,7 @@ Re-run the type-equivalence probe after any lint/format fix that touches source.
    that needs it. `TS6305 "Output file … has not been built"` when verifying
    locally just means a referenced project's `build/` is stale — build deps
    first; it is not a defect.
-7. Remove all scratch dirs/probes before finishing.
+8. Remove all scratch dirs/probes before finishing.
 
 ## Reporting
 
