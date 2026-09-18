@@ -13,6 +13,7 @@ export interface Components<Theme = unknown> {
         defaultProps?: ComponentsProps['MuiAlert'] | undefined;
         styleOverrides?: ComponentsOverrides<Theme>['MuiAlert'] | undefined;
         variants?: ComponentsVariants<Theme>['MuiAlert'] | undefined;
+        stateVariants?: { [variant: string]: string } | undefined;
       }
     | undefined;
   MuiAlertTitle?:
@@ -90,6 +91,7 @@ export interface Components<Theme = unknown> {
         defaultProps?: ComponentsProps['MuiButton'] | undefined;
         styleOverrides?: ComponentsOverrides<Theme>['MuiButton'] | undefined;
         variants?: ComponentsVariants<Theme>['MuiButton'] | undefined;
+        stateVariants?: { [variant: string]: string } | undefined;
       }
     | undefined;
   MuiButtonBase?:
@@ -160,6 +162,7 @@ export interface Components<Theme = unknown> {
         defaultProps?: ComponentsProps['MuiChip'] | undefined;
         styleOverrides?: ComponentsOverrides<Theme>['MuiChip'] | undefined;
         variants?: ComponentsVariants<Theme>['MuiChip'] | undefined;
+        stateVariants?: { [variant: string]: string } | undefined;
       }
     | undefined;
   MuiCircularProgress?:
@@ -468,6 +471,7 @@ export interface Components<Theme = unknown> {
         defaultProps?: ComponentsProps['MuiMenuItem'] | undefined;
         styleOverrides?: ComponentsOverrides<Theme>['MuiMenuItem'] | undefined;
         variants?: ComponentsVariants<Theme>['MuiMenuItem'] | undefined;
+        stateVariants?: { [variant: string]: string } | undefined;
       }
     | undefined;
   MuiMenuList?:

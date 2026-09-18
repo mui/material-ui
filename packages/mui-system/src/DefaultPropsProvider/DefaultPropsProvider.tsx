@@ -30,7 +30,10 @@ DefaultPropsProvider.propTypes /* remove-proptypes */ = {
 function getThemeProps<
   Theme extends {
     components?:
-      | (Record<string, { defaultProps?: any; styleOverrides?: any; variants?: any }> & {
+      | (Record<
+          string,
+          { defaultProps?: any; styleOverrides?: any; variants?: any; stateVariants?: any }
+        > & {
           mergeClassNameAndStyle?: boolean | undefined;
         })
       | undefined;
@@ -50,7 +53,7 @@ function getThemeProps<
     return resolveProps(config.defaultProps, props, theme.components.mergeClassNameAndStyle);
   }
 
-  if (!config.styleOverrides && !config.variants) {
+  if (!config.styleOverrides && !config.variants && !config.stateVariants) {
     // v6 signature, no property 'defaultProps'
     return resolveProps(config as any, props, theme.components.mergeClassNameAndStyle);
   }

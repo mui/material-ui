@@ -8,6 +8,7 @@ import {
   ApplyStyles,
 } from '@mui/system';
 import { Mixins, MixinsOptions } from './createMixins';
+import { ThemeState } from './createCssState';
 import { Palette, PaletteOptions } from './createPalette';
 import { TypographyVariants, TypographyVariantsOptions } from './createTypography';
 import { Shadows } from './shadows';
@@ -61,6 +62,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
     TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions) | undefined;
   zIndex?: ZIndexOptions | undefined;
   focusVisible?: boolean | FocusVisible | undefined;
+  state?: ThemeState | undefined;
   unstable_strictMode?: boolean | undefined;
   unstable_sxConfig?: SxConfig | undefined;
   modularCssLayers?: boolean | string | undefined;
@@ -76,6 +78,7 @@ export interface BaseTheme extends SystemTheme {
   typography: TypographyVariants;
   zIndex: ZIndex;
   focusVisible?: FocusVisible | false | undefined;
+  state?: ThemeState | undefined;
   unstable_strictMode?: boolean | undefined;
   applyStyles: ApplyStyles<SupportedColorScheme>;
 }
@@ -107,12 +110,6 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
 export interface Theme extends BaseTheme, CssVarsProperties {
   cssVariables?: false | undefined;
   components?: Components<BaseTheme> | undefined;
-  /**
-   * Ready-to-use interaction styles keyed by state name. Present only after
-   * `enhanceColorStates()` — absent on every theme that does not call it, which
-   * is exactly what the converted components gate on.
-   */
-  states?: import('./createStates').ThemeStates | undefined;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
   alpha: (color: string, value: number | string) => string;

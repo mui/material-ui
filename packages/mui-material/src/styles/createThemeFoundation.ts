@@ -9,6 +9,7 @@ import {
   ShapeOptions as SystemShapeOptions,
 } from '@mui/system';
 import { ExtractTypographyTokens } from '@mui/system/cssVars';
+import { ThemeState } from './createCssState';
 import { Palette, PaletteOptions } from './createPalette';
 import { Shadows } from './shadows';
 import { Motion } from './createMotion';
@@ -252,6 +253,7 @@ export interface ColorSystemOptions {
     | undefined;
   opacity?: Partial<Opacity> | undefined;
   overlays?: Overlays | undefined;
+  state?: ThemeState | undefined;
 }
 
 export interface CssVarsPalette {
@@ -288,6 +290,7 @@ export interface ColorSystem {
   palette: Palette & CssVarsPalette;
   opacity: Opacity;
   overlays: Overlays;
+  state?: ThemeState | undefined;
 }
 
 // should not include keys defined in `shouldSkipGeneratingVar` and have value typeof function
@@ -307,6 +310,7 @@ export interface ThemeVars {
   shadows: Shadows;
   shape: Shape;
   spacing: string;
+  state?: ThemeState | undefined;
   zIndex: ZIndex;
 }
 

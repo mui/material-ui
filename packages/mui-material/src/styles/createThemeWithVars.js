@@ -26,6 +26,7 @@ import defaultGetSelector from './createGetSelector';
 import { stringifyTheme } from './stringifyTheme';
 import { light, dark } from './createPalette';
 import { resolveFocusVisible, mergeFocusVisibleInput } from './focusVisible';
+import createCssState from './createCssState';
 
 function assignNode(obj, keys) {
   keys.forEach((k) => {
@@ -137,6 +138,9 @@ export default function createThemeWithVars(options = {}, ...args) {
       ? 'media'
       : undefined,
     rootSelector = ':root',
+    // Pulled out so it does not reach the per-scheme `createThemeNoVars` calls:
+    // the top-level config applies to EVERY scheme, resolved per scheme below.
+    state: stateInput,
     ...input
   } = options;
   const firstColorScheme = Object.keys(colorSchemesInput)[0];
@@ -962,6 +966,25 @@ export default function createThemeWithVars(options = {}, ...args) {
   const focusVisibleInput = mergeFocusVisibleInput(options.focusVisible, args);
   if (focusVisibleInput != null && focusVisibleInput !== false) {
     theme.focusVisible = resolveFocusVisible(focusVisibleInput, getCssVar('palette-primary-main'));
+  }
+
+  // Validate `state` per scheme against that scheme's palette: the groups land
+  // on `colorSchemes[scheme].state`, ship as `--mui-state-*` variables, and
+  // mirror onto `theme.vars.state`, exactly like `palette`. A scheme's own
+  // `state` groups override the top-level config per group.
+  Object.keys(theme.colorSchemes).forEach((scheme) => {
+    const node = theme.colorSchemes[scheme];
+    const config = { ...stateInput, ...node.state };
+    if (Object.keys(config).length) {
+      node.state = createCssState({ ...theme, vars: undefined, palette: node.palette }, config);
+    } else {
+      delete node.state;
+    }
+  });
+  // The `:root` variables come from the root-level theme keys, not the default
+  // scheme's node, so the default scheme's state must sit on both.
+  if (theme.colorSchemes[defaultColorScheme]?.state) {
+    theme.state = theme.colorSchemes[defaultColorScheme].state;
   }
 
   const parserConfig = {
