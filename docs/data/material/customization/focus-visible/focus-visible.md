@@ -33,6 +33,26 @@ Some components, for example `Tab`, render the focus indicator from the inside t
 
 To see the full list of components that show inner focus indicator, check out the [full demo](#full-focus-visible-demo) below.
 
+### Text fields
+
+`ButtonBase` covers the buttons; [`InputBase`](/material-ui/api/input-base/) covers the fields. A bare `InputBase` has no focus indicator of its own, so it renders the ring:
+
+```jsx
+<InputBase placeholder="Search" />
+```
+
+The components built on it each decide for themselves, based on whether they already draw an indicator:
+
+| Component                                      | On focus                                               |
+| :--------------------------------------------- | :----------------------------------------------------- |
+| `OutlinedInput`                                | Its notched outline recolors — no ring.                |
+| `Input`, `FilledInput`                         | The underline marks focus — no ring.                   |
+| `Input`, `FilledInput` with `disableUnderline` | No underline to mark focus — the ring takes its place. |
+
+:::info
+On the standard text field the ring is the only box the field has, so a focused field reads close to the outlined variant. That is the trade-off of `disableUnderline` — pass a custom `focusVisible` if a different indicator suits the design better.
+:::
+
 ### Colored surface container
 
 Components that support keyboard focus visible will show another layer of box-shadow indicator when they render within `AppBar`, `Alert`, and `SnackbarContent`. This comes by default when the focus visible feature is enabled, unless a custom box-shadow is provided.
