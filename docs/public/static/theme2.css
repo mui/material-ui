@@ -591,16 +591,10 @@
   height: 1em;
 }
 
-/* An icon slot with no icon in it is a loading spacer, there so the label does
-   not shift when the indicator appears. The component renders one on each side
-   and leaves the choice here. */
+/* An icon slot with no icon in it holds space for an indicator beside the
+   label. theme2 puts its spinner over the label instead, so both collapse. */
 .MuiButton-icon.MuiButton-loadingIconPlaceholder {
   display: none;
-}
-
-.MuiButton-spinnerLeading .MuiButton-startIcon.MuiButton-loadingIconPlaceholder,
-.MuiButton-spinnerTrailing .MuiButton-endIcon.MuiButton-loadingIconPlaceholder {
-  display: inline-flex;
 }
 
 .MuiButton-loadingWrapper {
@@ -615,43 +609,19 @@
   color: var(--theme2-loading-color, var(--theme2-page-fg));
 }
 
-/* Centred loading covers the label rather than displacing it. */
-.MuiButton-root.MuiButton-spinnerOver .MuiButton-loadingIndicator {
+/* The spinner covers the label rather than displacing it. */
+.MuiButton-root .MuiButton-loadingIndicator {
   position: absolute;
   inset: 0;
   justify-content: center;
 }
 
-.MuiButton-root.MuiButton-loading.MuiButton-spinnerOver {
+.MuiButton-root.MuiButton-loading {
   color: transparent;
 }
 
-/* Start and end loading sit over the icon slot, which holds the space. In flow
-   the spinner would be a third flex item and push the label by an icon width
-   plus two gaps. */
-.MuiButton-root.MuiButton-spinnerLeading .MuiButton-loadingIndicator,
-.MuiButton-root.MuiButton-spinnerTrailing .MuiButton-loadingIndicator {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-}
-
-.MuiButton-root.MuiButton-spinnerLeading .MuiButton-loadingIndicator {
-  left: var(--theme2-button-pad);
-}
-
-.MuiButton-root.MuiButton-spinnerTrailing .MuiButton-loadingIndicator {
-  right: var(--theme2-button-pad);
-}
-
-/* A real icon under the spinner keeps its space but not its ink. */
-.MuiButton-root.MuiButton-loading.MuiButton-spinnerLeading .MuiButton-startIcon > *,
-.MuiButton-root.MuiButton-loading.MuiButton-spinnerTrailing .MuiButton-endIcon > * {
-  visibility: hidden;
-}
-
-/* theme2's own spinner, injected through the `loadingSpinner` slot. Material
-   puts a CircularProgress there; this is a few lines of CSS. */
+/* theme2's own spinner, filled into the `loadingIndicator` slot. Material puts
+   a CircularProgress there; this is a few lines of CSS. */
 .theme2-spinner {
   display: inline-block;
   width: 1em;

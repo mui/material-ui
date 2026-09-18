@@ -60,6 +60,25 @@ function ComponentHeading({ children }) {
   );
 }
 
+/** Loads for two seconds when clicked, so the transition is visible. */
+function LoadingDemo() {
+  const [loading, setLoading] = React.useState(false);
+  const timer = React.useRef(undefined);
+
+  React.useEffect(() => () => clearTimeout(timer.current), []);
+
+  const save = () => {
+    setLoading(true);
+    timer.current = setTimeout(() => setLoading(false), 2000);
+  };
+
+  return (
+    <Button loading={loading} onClick={save}>
+      Save changes
+    </Button>
+  );
+}
+
 function Row({ title, note, code, children }) {
   return (
     <section style={{ marginBottom: 80 }}>
@@ -237,7 +256,6 @@ export default function SliderTheme2() {
                   ['scale', SCALES.join(' ')],
                   ['emphasis', 'solid quiet'],
                   ['block', 'boolean'],
-                  ['spinner', 'leading over trailing'],
                 ]}
               />
             </div>
@@ -371,21 +389,10 @@ export default function SliderTheme2() {
 
           <Row
             title="Loading"
-            note="theme2 fills the loadingIndicator slot with its own spinner, and where it sits is its own prop. Material calls that loadingPosition with start/center/end; theme2 calls it spinner with leading/over/trailing."
+            note="theme2 fills the loadingIndicator slot with its own spinner. Click to see it."
+            code={`<Button loading={loading} onClick={save}>Save changes</Button>`}
           >
-            <Labelled label={`<Button loading>Save changes</Button>`}>
-              <Button loading>Save changes</Button>
-            </Labelled>
-            <Labelled label={`<Button loading spinner="leading">Save changes</Button>`}>
-              <Button loading spinner="leading">
-                Save changes
-              </Button>
-            </Labelled>
-            <Labelled label={`<Button loading spinner="trailing">Save changes</Button>`}>
-              <Button loading spinner="trailing">
-                Save changes
-              </Button>
-            </Labelled>
+            <LoadingDemo />
           </Row>
         </main>
       </div>

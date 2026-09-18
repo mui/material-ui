@@ -42,16 +42,6 @@ const buttonAppearance = createAppearance({
   scale: { default: 'regular', className: prefixed('scale'), values: SCALES },
   emphasis: { default: 'solid', className: bare, values: ['solid', 'quiet'] },
   block: { default: false, className: whenTrue('block'), values: [true] },
-  // Where the spinner sits. Material calls this `loadingPosition` and says
-  // start/center/end; theme2 says leading/over/trailing. The component has no
-  // opinion either way: it renders the spinner in one place and a spacer on
-  // each side, and the class decides the rest.
-  spinner: {
-    default: 'over',
-    className: (value, props) => (props.loading ? prefixed('spinner')(value) : null),
-    values: ['leading', 'over', 'trailing'],
-    classKeys: ['spinnerLeading', 'spinnerOver', 'spinnerTrailing'],
-  },
 });
 
 /**
@@ -78,19 +68,12 @@ export function Slider({ tone, scale, ...other }) {
   return <SliderUnstyled {...other} appearance={sliderAppearance.resolve({ tone, scale })} />;
 }
 
-export function Button({ tone, scale, emphasis, block, spinner, ...other }) {
+export function Button({ tone, scale, emphasis, block, ...other }) {
   return (
     <ButtonUnstyled
       {...other}
       slots={buttonSlots}
-      appearance={buttonAppearance.resolve({
-        tone,
-        scale,
-        emphasis,
-        block,
-        spinner,
-        loading: other.loading,
-      })}
+      appearance={buttonAppearance.resolve({ tone, scale, emphasis, block })}
     />
   );
 }
