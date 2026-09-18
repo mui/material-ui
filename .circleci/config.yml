@@ -94,6 +94,12 @@ jobs:
       - code-infra/check-static-changes
       - code-infra/check-generated:
           command: pnpm proptypes
+      - run:
+          # Fails when a conformance report changes without its rollup being
+          # regenerated, and when a report rates a criterion ⚙️ Automated
+          # without citing the test or axe rule that proves it.
+          name: Accessibility scorecard up to date?
+          command: pnpm a11y:scorecard:check
       - code-infra/check-generated:
           command: pnpm docs:api
       - code-infra/extract-error-codes
