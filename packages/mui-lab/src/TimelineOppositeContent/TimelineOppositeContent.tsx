@@ -99,12 +99,10 @@ const TimelineOppositeContent = React.forwardRef(function TimelineOppositeConten
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       ref={ref}
-      {...(other as Omit<typeof other, 'ref'>)}
+      {...other}
     />
   );
-}) as React.ForwardRefExoticComponent<
-  TimelineOppositeContentProps & React.RefAttributes<HTMLDivElement>
-> & { muiName: string };
+}) as React.ForwardRefExoticComponent<TimelineOppositeContentProps> & { muiName: string };
 
 TimelineOppositeContent.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

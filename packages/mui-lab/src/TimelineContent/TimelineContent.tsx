@@ -96,10 +96,10 @@ const TimelineContent = React.forwardRef(function TimelineContent(
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       ref={ref}
-      {...(other as Omit<typeof other, 'ref'>)}
+      {...other}
     />
   );
-}) as React.ForwardRefExoticComponent<TimelineContentProps & React.RefAttributes<HTMLDivElement>>;
+}) as React.ForwardRefExoticComponent<TimelineContentProps>;
 
 TimelineContent.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

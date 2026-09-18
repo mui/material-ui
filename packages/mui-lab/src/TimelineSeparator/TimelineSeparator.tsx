@@ -11,9 +11,7 @@ import {
   type TimelineSeparatorClasses,
 } from './timelineSeparatorClasses';
 
-export interface TimelineSeparatorProps extends StandardProps<
-  React.HTMLAttributes<HTMLDivElement>
-> {
+export interface TimelineSeparatorProps extends StandardProps<React.ComponentPropsWithRef<'div'>> {
   /**
    * The content of the component.
    */
@@ -80,10 +78,10 @@ const TimelineSeparator = React.forwardRef(function TimelineSeparator(
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       ref={ref}
-      {...(other as Omit<typeof other, 'ref'>)}
+      {...other}
     />
   );
-}) as React.ForwardRefExoticComponent<TimelineSeparatorProps & React.RefAttributes<HTMLDivElement>>;
+}) as React.ForwardRefExoticComponent<TimelineSeparatorProps>;
 
 TimelineSeparator.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

@@ -9,7 +9,7 @@ import type { SxProps } from '@mui/system';
 import { getTabPanelUtilityClass, type TabPanelClasses } from './tabPanelClasses';
 import { getPanelId, getTabId, useTabContext } from '../TabContext';
 
-export interface TabPanelProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface TabPanelProps extends StandardProps<React.ComponentPropsWithRef<'div'>> {
   /**
    * The content of the component.
    */
@@ -93,12 +93,12 @@ const TabPanel = React.forwardRef(function TabPanel(
       ref={ref}
       role="tabpanel"
       ownerState={ownerState}
-      {...(other as Omit<typeof other, 'ref'>)}
+      {...other}
     >
       {(keepMounted || value === context.value) && children}
     </TabPanelRoot>
   );
-}) as React.ForwardRefExoticComponent<TabPanelProps & React.RefAttributes<HTMLDivElement>>;
+}) as React.ForwardRefExoticComponent<TabPanelProps>;
 
 TabPanel.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

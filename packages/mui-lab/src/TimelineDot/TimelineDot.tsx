@@ -18,7 +18,7 @@ export interface TimelineDotPropsVariantOverrides {}
 
 export interface TimelineDotPropsColorOverrides {}
 
-export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTMLSpanElement>> {
+export interface TimelineDotProps extends StandardProps<React.ComponentPropsWithRef<'span'>> {
   /**
    * The content of the component.
    */
@@ -144,10 +144,10 @@ const TimelineDot = React.forwardRef(function TimelineDot(
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       ref={ref}
-      {...(other as Omit<typeof other, 'ref'>)}
+      {...other}
     />
   );
-}) as React.ForwardRefExoticComponent<TimelineDotProps & React.RefAttributes<HTMLSpanElement>>;
+}) as React.ForwardRefExoticComponent<TimelineDotProps>;
 
 TimelineDot.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

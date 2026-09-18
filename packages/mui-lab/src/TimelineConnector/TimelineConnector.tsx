@@ -11,9 +11,7 @@ import {
   type TimelineConnectorClasses,
 } from './timelineConnectorClasses';
 
-export interface TimelineConnectorProps extends StandardProps<
-  React.HTMLAttributes<HTMLSpanElement>
-> {
+export interface TimelineConnectorProps extends StandardProps<React.ComponentPropsWithRef<'span'>> {
   /**
    * The content of the component.
    */
@@ -81,12 +79,10 @@ const TimelineConnector = React.forwardRef(function TimelineConnector(
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       ref={ref}
-      {...(other as Omit<typeof other, 'ref'>)}
+      {...other}
     />
   );
-}) as React.ForwardRefExoticComponent<
-  TimelineConnectorProps & React.RefAttributes<HTMLSpanElement>
->;
+}) as React.ForwardRefExoticComponent<TimelineConnectorProps>;
 
 TimelineConnector.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

@@ -17,7 +17,7 @@ import {
 } from './timelineItemClasses';
 import convertTimelinePositionToClass from '../internal/convertTimelinePositionToClass';
 
-export interface TimelineItemProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface TimelineItemProps extends StandardProps<React.ComponentPropsWithRef<'li'>> {
   /**
    * The position where the timeline's item should appear.
    */
@@ -142,11 +142,11 @@ const TimelineItem = React.forwardRef(function TimelineItem(
         className={clsx(classes.root, className)}
         ownerState={ownerState}
         ref={ref}
-        {...(other as any)}
+        {...other}
       />
     </TimelineContext.Provider>
   );
-}) as React.ForwardRefExoticComponent<TimelineItemProps & React.RefAttributes<HTMLLIElement>>;
+}) as React.ForwardRefExoticComponent<TimelineItemProps>;
 
 TimelineItem.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
