@@ -1,7 +1,7 @@
 import { AlertProps } from '../Alert';
 import { AlertTitleProps } from '../AlertTitle';
 import { AppBarProps } from '../AppBar';
-import { AutocompleteProps } from '../Autocomplete';
+import { AutocompleteMappedProps, AutocompleteProps } from '../Autocomplete';
 import { AvatarProps } from '../Avatar';
 import { AvatarGroupProps } from '../AvatarGroup';
 import { BackdropProps } from '../Backdrop';
@@ -125,7 +125,9 @@ export interface ComponentsPropsList {
   MuiAlert: AlertProps;
   MuiAlertTitle: AlertTitleProps;
   MuiAppBar: AppBarProps;
-  MuiAutocomplete: AutocompleteProps<any, any, any, any>;
+  // Preserve contextual typing for callbacks by widening only the mapper, instead of unioning props.
+  MuiAutocomplete: Omit<AutocompleteProps<any, any, any, any>, 'getOptionValue'> &
+    Partial<Pick<AutocompleteMappedProps<any, any, any, any, any>, 'getOptionValue'>>;
   MuiAvatar: AvatarProps;
   MuiAvatarGroup: AvatarGroupProps;
   MuiBackdrop: BackdropProps;

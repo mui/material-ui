@@ -12,9 +12,14 @@ import useAutocomplete, {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
+  AutocompleteMappedValue,
+  AutocompleteResolvedValue,
+  AutocompletePrimitiveValue,
   AutocompleteValue,
   createFilterOptions,
+  UseAutocompleteBaseProps,
   UseAutocompleteProps,
+  UseAutocompleteMappedProps,
   AutocompleteFreeSoloValueMapping,
   AutocompleteValueOrFreeSoloValueMapping,
 } from '../useAutocomplete';
@@ -30,22 +35,28 @@ export {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
+  AutocompleteMappedValue,
+  AutocompleteResolvedValue,
+  AutocompletePrimitiveValue,
   AutocompleteValue,
   createFilterOptions,
 };
 
 export type AutocompleteOwnerState<
-  Value,
+  Option,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
-> = AutocompleteProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent> & {
+  Value extends AutocompleteMappedValue<FreeSolo> = never,
+> = ([Value] extends [never]
+  ? AutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, ChipComponent>
+  : AutocompleteMappedProps<Option, Value, Multiple, DisableClearable, FreeSolo, ChipComponent>) & {
   disablePortal: boolean;
   expanded: boolean;
   focused: boolean;
   fullWidth: boolean;
-  getOptionLabel: (option: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>) => string;
+  getOptionLabel: (option: AutocompleteValueOrFreeSoloValueMapping<Option, FreeSolo>) => string;
   hasClearIcon: boolean;
   hasPopupIcon: boolean;
   inputFocused: boolean;
@@ -80,9 +91,16 @@ export type AutocompleteRenderValueGetItemProps<Multiple extends boolean | undef
         onDelete: (event: any) => void;
       };
 
-export type AutocompleteRenderValue<Value, Multiple, FreeSolo> = Multiple extends true
-  ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
-  : NonNullable<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>;
+export type AutocompleteRenderValue<
+  Option,
+  Multiple,
+  FreeSolo,
+  Value extends AutocompletePrimitiveValue = never,
+> = Multiple extends true
+  ? Array<AutocompleteResolvedValue<Option, Value> | AutocompleteFreeSoloValueMapping<FreeSolo>>
+  : NonNullable<
+      AutocompleteResolvedValue<Option, Value> | AutocompleteFreeSoloValueMapping<FreeSolo>
+    >;
 
 export interface AutocompleteRenderOptionState {
   inputValue: string;
@@ -155,28 +173,29 @@ export interface AutocompleteSlots {
 }
 
 export type AutocompleteSlotsAndSlotProps<
-  Value,
+  Option,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
+  Value extends AutocompleteMappedValue<FreeSolo> = never,
 > = CreateSlotsAndSlotProps<
   AutocompleteSlots,
   {
     root: SlotProps<
       'div',
       {},
-      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+      AutocompleteOwnerState<Option, Multiple, DisableClearable, FreeSolo, ChipComponent, Value>
     >;
     chip: SlotProps<
       React.ElementType<Partial<ChipProps<ChipComponent>>>,
       {},
-      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+      AutocompleteOwnerState<Option, Multiple, DisableClearable, FreeSolo, ChipComponent, Value>
     >;
     clearIndicator: SlotProps<
       React.ElementType<Partial<IconButtonProps>>,
       {},
-      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+      AutocompleteOwnerState<Option, Multiple, DisableClearable, FreeSolo, ChipComponent, Value>
     >;
     /**
      * Props applied to the Listbox element.
@@ -189,27 +208,27 @@ export type AutocompleteSlotsAndSlotProps<
         }
       >,
       {},
-      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+      AutocompleteOwnerState<Option, Multiple, DisableClearable, FreeSolo, ChipComponent, Value>
     >;
     status: SlotProps<
       'div',
       AutocompleteStatusSlotPropsOverrides,
-      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+      AutocompleteOwnerState<Option, Multiple, DisableClearable, FreeSolo, ChipComponent, Value>
     >;
     paper: SlotProps<
       React.ElementType<Partial<PaperProps>>,
       AutocompletePaperSlotPropsOverrides,
-      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+      AutocompleteOwnerState<Option, Multiple, DisableClearable, FreeSolo, ChipComponent, Value>
     >;
     popper: SlotProps<
       React.ElementType<Partial<PopperProps>>,
       AutocompletePopperSlotPropsOverrides,
-      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+      AutocompleteOwnerState<Option, Multiple, DisableClearable, FreeSolo, ChipComponent, Value>
     >;
     popupIndicator: SlotProps<
       React.ElementType<Partial<IconButtonProps>>,
       {},
-      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+      AutocompleteOwnerState<Option, Multiple, DisableClearable, FreeSolo, ChipComponent, Value>
     >;
   }
 >;
@@ -222,9 +241,47 @@ export interface AutocompleteProps<
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 >
   extends
-    UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
+    AutocompleteBaseProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+    UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo> {}
+
+// Preserve existing module augmentations; the base supplies the built-in props with mapped types.
+export interface AutocompleteMappedProps<
+  Option,
+  Value extends AutocompleteMappedValue<FreeSolo>,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
+>
+  extends
+    Omit<
+      AutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+      keyof AutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo, ChipComponent>
+    >,
+    AutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo, ChipComponent, Value>,
+    UseAutocompleteMappedProps<Option, Value, Multiple, DisableClearable, FreeSolo> {
+  getOptionValue: (option: Option) => Value;
+}
+
+export interface AutocompleteBaseProps<
+  Option,
+  Multiple extends boolean | undefined,
+  DisableClearable extends boolean | undefined,
+  FreeSolo extends boolean | undefined,
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
+  Value extends AutocompleteMappedValue<FreeSolo> = never,
+>
+  extends
+    UseAutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo, Value>,
     StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'>,
-    AutocompleteSlotsAndSlotProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent> {
+    AutocompleteSlotsAndSlotProps<
+      Option,
+      Multiple,
+      DisableClearable,
+      FreeSolo,
+      ChipComponent,
+      Value
+    > {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -353,7 +410,7 @@ export interface AutocompleteProps<
    * Render the option, use `getOptionLabel` by default.
    *
    * @param {object} props The props to apply on the li element.
-   * @param {Value} option The option to render.
+   * @param {Option} option The option to render.
    * @param {object} state The state of each option.
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
@@ -361,35 +418,37 @@ export interface AutocompleteProps<
   renderOption?:
     | ((
         props: React.HTMLAttributes<HTMLLIElement> & { key: React.Key },
-        option: Value,
+        option: Option,
         state: AutocompleteRenderOptionState,
         ownerState: AutocompleteOwnerState<
-          Value,
+          Option,
           Multiple,
           DisableClearable,
           FreeSolo,
-          ChipComponent
+          ChipComponent,
+          Value
         >,
       ) => React.ReactNode)
     | undefined;
   /**
    * Renders the selected value(s) as rich content in the input for both single and multiple selections.
    *
-   * @param {AutocompleteRenderValue<Value, Multiple, FreeSolo>} value The `value` provided to the component.
+   * @param {AutocompleteRenderValue<Option, Multiple, FreeSolo, Value>} value The `value` provided to the component.
    * @param {function} getItemProps The value item props.
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
   renderValue?:
     | ((
-        value: AutocompleteRenderValue<Value, Multiple, FreeSolo>,
+        value: AutocompleteRenderValue<Option, Multiple, FreeSolo, Value>,
         getItemProps: AutocompleteRenderValueGetItemProps<Multiple>,
         ownerState: AutocompleteOwnerState<
-          Value,
+          Option,
           Multiple,
           DisableClearable,
           FreeSolo,
-          ChipComponent
+          ChipComponent,
+          Value
         >,
       ) => React.ReactNode)
     | undefined;
@@ -415,11 +474,38 @@ export interface AutocompleteProps<
  * - [Autocomplete API](https://mui.com/material-ui/api/autocomplete/)
  */
 export default function Autocomplete<
-  Value,
+  Option,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
+  Value extends AutocompleteMappedValue<FreeSolo> = AutocompleteMappedValue<FreeSolo>,
+>(
+  props: AutocompleteMappedProps<
+    Option,
+    Value,
+    Multiple,
+    DisableClearable,
+    FreeSolo,
+    ChipComponent
+  >,
+): React.JSX.Element;
+/**
+ *
+ * Demos:
+ *
+ * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ *
+ * API:
+ *
+ * - [Autocomplete API](https://mui.com/material-ui/api/autocomplete/)
+ */
+export default function Autocomplete<
+  Option,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 >(
-  props: AutocompleteProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+  props: AutocompleteProps<Option, Multiple, DisableClearable, FreeSolo, ChipComponent>,
 ): React.JSX.Element;

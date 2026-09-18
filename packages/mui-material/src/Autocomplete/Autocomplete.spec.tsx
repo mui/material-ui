@@ -3,10 +3,14 @@ import { expectType } from '@mui/types';
 import Autocomplete, {
   AutocompleteOwnerState,
   AutocompleteProps,
+  AutocompleteMappedProps,
   AutocompleteRenderGetTagProps,
+  AutocompleteMappedValue,
+  AutocompleteRenderOptionState,
 } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { ChipTypeMap } from '@mui/material/Chip';
+import { createTheme } from '@mui/material/styles';
 import { AutocompleteValueOrFreeSoloValueMapping } from '../useAutocomplete';
 
 interface MyAutocompleteProps<
@@ -117,6 +121,127 @@ const options: Option[] = [
   { label: '1', value: '1' },
   { label: '2', value: '2' },
 ];
+
+// Theme defaults support both raw options and mapped values.
+createTheme({
+  components: {
+    MuiAutocomplete: {
+      defaultProps: {
+        options,
+        getOptionLabel: (option: Option) => option.label,
+        renderOption: (props, option, state, ownerState) => {
+          expectType<React.HTMLAttributes<HTMLLIElement> & { key: React.Key }, typeof props>(props);
+          expectType<AutocompleteRenderOptionState, typeof state>(state);
+          expectType<boolean, typeof ownerState.fullWidth>(ownerState.fullWidth);
+          const { key, ...optionProps } = props;
+          return (
+            <li key={key} {...optionProps}>
+              {ownerState.getOptionLabel(option)}
+            </li>
+          );
+        },
+        renderValue: (value, getItemProps, ownerState) => {
+          expectType<boolean, typeof ownerState.fullWidth>(ownerState.fullWidth);
+          return <span {...getItemProps({ index: 0 })}>{ownerState.getOptionLabel(value)}</span>;
+        },
+      },
+    },
+  },
+});
+
+createTheme({
+  components: {
+    MuiAutocomplete: {
+      defaultProps: {
+        getOptionValue: (option: Option) => option.value,
+      },
+    },
+  },
+});
+
+createTheme({
+  components: {
+    MuiAutocomplete: {
+      defaultProps: {
+        freeSolo: true,
+        getOptionValue: (option: Option) => Number(option.value),
+      },
+    },
+  },
+});
+
+const mappedProps: AutocompleteMappedProps<Option, string> = {
+  options,
+  getOptionValue: (option) => option.value,
+  value: '1',
+  renderInput: () => null,
+};
+expectType<string | null | undefined, typeof mappedProps.value>(mappedProps.value);
+
+function MappedAutocomplete(props: typeof mappedProps) {
+  return (
+    <Autocomplete
+      {...props}
+      onChange={(event, value) => {
+        expectType<string | null, typeof value>(value);
+      }}
+      renderValue={(value) => {
+        expectType<string, typeof value>(value);
+        return value;
+      }}
+    />
+  );
+}
+
+<MappedAutocomplete {...mappedProps} />;
+
+interface MyMappedAutocompleteProps<
+  T,
+  Value extends AutocompleteMappedValue<false>,
+> extends AutocompleteMappedProps<T, Value> {
+  myProp?: string;
+}
+
+function GenericMappedAutocomplete<T, Value extends AutocompleteMappedValue<false>>(
+  props: MyMappedAutocompleteProps<T, Value>,
+) {
+  return <Autocomplete {...props} />;
+}
+
+<GenericMappedAutocomplete {...mappedProps} />;
+
+// A mapped value type requires a mapper, even before a value has been selected.
+// @ts-expect-error Mapped props must include getOptionValue.
+const missingMapperProps: typeof mappedProps = { options, renderInput: () => null };
+const undefinedMapperProps: typeof mappedProps = {
+  ...mappedProps,
+  // @ts-expect-error A mapped getOptionValue cannot be undefined.
+  getOptionValue: undefined,
+};
+
+// @ts-expect-error String mappings are incompatible with freeSolo.
+const stringFreeSoloProps: AutocompleteMappedProps<Option, string, false, false, true> = {
+  options,
+  getOptionValue: (option) => option.value,
+  renderInput: () => null,
+};
+
+// @ts-expect-error Explicit mapped type arguments must include getOptionValue.
+<Autocomplete<Option, false, false, false, ChipTypeMap['defaultComponent'], string>
+  options={options}
+  renderInput={() => null}
+/>;
+
+// Raw values still infer the option type before options have loaded.
+<Autocomplete
+  options={[]}
+  value={options[0]}
+  onChange={(event, value) => {
+    expectType<Option | null, typeof value>(value);
+  }}
+  renderInput={() => null}
+/>;
+
 const defaultOptions = [options[0], options[1]];
 <MyAutocomplete
   multiple
@@ -217,6 +342,145 @@ function CustomStatusSlot() {
 
     return typeof value === 'string' ? option.label === value : option.label === value.label;
   }}
+/>;
+
+// getOptionValue separates option-facing callbacks from the selected value
+<Autocomplete
+  options={options}
+  getOptionValue={(option) => {
+    expectType<Option, typeof option>(option);
+    return option.value;
+  }}
+  getOptionLabel={(option) => {
+    expectType<Option, typeof option>(option);
+    return option.label;
+  }}
+  value="1"
+  onChange={(event, value, reason, details) => {
+    expectType<string | null, typeof value>(value);
+    if (details) {
+      expectType<Option, typeof details.option>(details.option);
+    }
+  }}
+  isOptionEqualToValue={(option, value) => {
+    expectType<Option, typeof option>(option);
+    expectType<string, typeof value>(value);
+    return option.value === value;
+  }}
+  onHighlightChange={(event, option) => {
+    expectType<Option | null, typeof option>(option);
+  }}
+  renderOption={(props, option) => {
+    expectType<Option, typeof option>(option);
+    return <li {...props}>{option.label}</li>;
+  }}
+  renderValue={(value) => {
+    expectType<string, typeof value>(value);
+    return value;
+  }}
+  renderInput={() => null}
+/>;
+
+// multiple mapped values are inferred as arrays of the getOptionValue return type
+<Autocomplete
+  multiple
+  options={options}
+  getOptionValue={(option) => Number(option.value)}
+  value={[1, 2]}
+  defaultValue={[1]}
+  onChange={(event, value) => {
+    expectType<number[], typeof value>(value);
+  }}
+  renderValue={(value) => {
+    expectType<number[], typeof value>(value);
+    return value.join(', ');
+  }}
+  renderInput={() => null}
+/>;
+
+// disableClearable removes null from a mapped single value
+<Autocomplete
+  disableClearable
+  options={options}
+  getOptionValue={(option) => Number(option.value)}
+  onChange={(event, value) => {
+    expectType<number, typeof value>(value);
+  }}
+  renderInput={() => null}
+/>;
+
+// freeSolo adds strings to a non-string mapped value
+<Autocomplete
+  freeSolo
+  options={options}
+  getOptionValue={(option) => Number(option.value)}
+  onChange={(event, value) => {
+    expectType<string | number | null, typeof value>(value);
+  }}
+  isOptionEqualToValue={(option, value) => {
+    expectType<Option, typeof option>(option);
+    expectType<string | number, typeof value>(value);
+    return typeof value === 'number' && Number(option.value) === value;
+  }}
+  renderInput={() => null}
+/>;
+
+const stringMappedProps = {
+  options,
+  getOptionValue: (option: Option) => option.value,
+  renderInput: () => null,
+};
+// @ts-expect-error String option values are indistinguishable from freeSolo values.
+<Autocomplete {...stringMappedProps} freeSolo />;
+
+// Existing explicit generic arguments retain their meaning: the second argument is Multiple.
+<Autocomplete<Option, true>
+  multiple
+  options={options}
+  onChange={(event, value) => {
+    expectType<Option[], typeof value>(value);
+  }}
+  renderInput={() => null}
+/>;
+
+// value cannot change the selected value type without getOptionValue
+// @ts-expect-error Without getOptionValue, value must have the same type as an option.
+<Autocomplete options={options} value="1" renderInput={() => null} />;
+
+const nonPrimitiveMappedProps = {
+  options,
+  getOptionValue: (option: Option) => ({ value: option.value }),
+  renderInput: () => null,
+};
+// @ts-expect-error getOptionValue must return a primitive value.
+<Autocomplete {...nonPrimitiveMappedProps} />;
+
+<Autocomplete<Option, false, false, false, ChipTypeMap['defaultComponent'], string>
+  options={options}
+  getOptionValue={(option) => option.value}
+  // @ts-expect-error value must match the getOptionValue return type.
+  value={1}
+  renderInput={() => null}
+/>;
+
+// Selected values must not widen the type inferred from getOptionValue.
+const literalMappedProps = {
+  options: [{ id: 'foo' as const }],
+  getOptionValue: (option: { id: 'foo' }) => option.id,
+};
+// @ts-expect-error value must match the inferred getOptionValue return type.
+<Autocomplete {...literalMappedProps} value="bar" renderInput={() => null} />;
+// @ts-expect-error defaultValue must match the inferred getOptionValue return type.
+<Autocomplete {...literalMappedProps} defaultValue="bar" renderInput={() => null} />;
+
+<Autocomplete
+  {...literalMappedProps}
+  value="foo"
+  defaultValue="foo"
+  onChange={(event, value) => {
+    expectType<'foo' | null, typeof value>(value);
+  }}
+  renderInput={() => null}
 />;
 
 // getOptionLabel and isOptionEqualToValue value argument type should not include string when freeSolo is false
