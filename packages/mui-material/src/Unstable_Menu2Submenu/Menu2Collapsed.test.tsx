@@ -575,37 +575,57 @@ describe('<Menu2 /> collapsed API', () => {
     },
   );
 
-  it.skipIf(isJsdom())(
-    'drops the open tint after a pointer close that returns no focus',
-    async () => {
-      const { user } = render(
-        <Menu2 defaultOpen modal={false} trigger={<Button disableRipple>Options</Button>}>
-          <Menu2Item>One</Menu2Item>
-          <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
-            <Menu2Item>Nested</Menu2Item>
-          </Menu2Submenu>
-        </Menu2>,
-      );
-      const trigger = await screen.findByRole('menuitem', { name: 'More' });
-      await waitForPopupFocus(trigger);
-      await user.click(trigger);
-      await screen.findByRole('menuitem', { name: 'Nested' });
-      expect(trigger).to.have.class(menu2SubmenuTriggerClasses.open);
+  // Base UI reports `trigger-hover` for a pointer-opened submenu and
+  // `sibling-open` for a keyboard-opened one.
+  (['pointer', 'keyboard'] as const).forEach((openMethod) => {
+    it.skipIf(isJsdom())(
+      `drops the open tint when a sibling hover closes a ${openMethod}-opened submenu`,
+      async () => {
+        const { user } = render(
+          <Menu2 defaultOpen modal={false} trigger={<Button disableRipple>Options</Button>}>
+            <Menu2Item>One</Menu2Item>
+            <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2Submenu>
+          </Menu2>,
+        );
+        const trigger = await screen.findByRole('menuitem', { name: 'More' });
+        await waitForPopupFocus(trigger);
+        if (openMethod === 'pointer') {
+          await user.click(trigger);
+        } else {
+          await act(async () => trigger.focus());
+          await user.keyboard('{ArrowRight}');
+        }
+        await screen.findByRole('menuitem', { name: 'Nested' });
+        expect(trigger).to.have.class(menu2SubmenuTriggerClasses.open);
 
-      // Hovering a sibling closes the submenu while focus stays on the trigger.
-      const sibling = screen.getByRole('menuitem', { name: 'One' });
-      await user.hover(sibling);
-      await waitFor(() => {
-        expect(screen.queryByRole('menuitem', { name: 'Nested' })).to.equal(null);
-      });
-      await waitFor(() => {
-        expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.open);
-        expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.closing);
-      });
-      // Park the pointer, so it does not leak into the next test.
-      await user.unhover(sibling);
-    },
-  );
+        const closingBackgrounds: string[] = [];
+        const observer = new MutationObserver(() => {
+          if (trigger.classList.contains(menu2SubmenuTriggerClasses.closing)) {
+            closingBackgrounds.push(window.getComputedStyle(trigger).backgroundColor);
+          }
+        });
+        observer.observe(trigger, { attributes: true, attributeFilter: ['class'] });
+        const sibling = screen.getByRole('menuitem', { name: 'One' });
+        await user.hover(sibling);
+        await waitFor(() => {
+          expect(screen.queryByRole('menuitem', { name: 'Nested' })).to.equal(null);
+        });
+        observer.disconnect();
+        // The sibling shows the highlight, so the trigger must not keep its tint.
+        expect(closingBackgrounds).not.to.have.length(0);
+        expect(new Set(closingBackgrounds)).to.deep.equal(new Set(['rgba(0, 0, 0, 0)']));
+
+        await waitFor(() => {
+          expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.open);
+          expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.closing);
+        });
+        // Park the pointer, so it does not leak into the next test.
+        await user.unhover(sibling);
+      },
+    );
+  });
 
   ['object', 'callback'].forEach((slotPropsType) => {
     it(`composes trigger element and slot refs with ${slotPropsType} slot props without warning`, async () => {

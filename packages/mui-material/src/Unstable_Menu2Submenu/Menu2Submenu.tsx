@@ -55,6 +55,9 @@ export interface Menu2SubmenuProps
   slotProps?: Menu2SubmenuSlotProps | undefined;
 }
 
+// With these close reasons the pointer is on another row, so focus does not return.
+const pointerLeaveReasons = new Set<string>(['trigger-hover', 'sibling-open']);
+
 /**
  *
  * Demos:
@@ -95,7 +98,7 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
     (nextOpen, details) => {
       onOpenChange?.(nextOpen, details);
       if (!details.isCanceled) {
-        setRetainClosingTint(nextOpen || details.reason !== 'trigger-hover');
+        setRetainClosingTint(nextOpen || !pointerLeaveReasons.has(details.reason));
       }
     },
   );
