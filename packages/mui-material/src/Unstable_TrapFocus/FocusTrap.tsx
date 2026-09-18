@@ -197,8 +197,15 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     return () => {
       // restoreLastFocus()
       if (!disableRestoreFocus && nodeToRestore.current) {
-        ignoreNextEnforceFocus.current = true;
-        (nodeToRestore.current as HTMLElement).focus();
+        // `nodeToRestore` is captured from `event.relatedTarget`, which is not
+        // guaranteed to expose a `focus` method in every DOM implementation
+        // (e.g. jsdom >= 30.1.0 can resolve it to a truthy value without one).
+        // Guard against that instead of throwing.
+        // https://github.com/mui/material-ui/issues/49159
+        if (typeof (nodeToRestore.current as HTMLElement).focus === 'function') {
+          ignoreNextEnforceFocus.current = true;
+          (nodeToRestore.current as HTMLElement).focus();
+        }
         nodeToRestore.current = null;
       }
     };
