@@ -282,6 +282,7 @@ export interface Components<Theme = unknown> {
         defaultProps?: ComponentsProps['MuiFilledInput'] | undefined;
         styleOverrides?: ComponentsOverrides<Theme>['MuiFilledInput'] | undefined;
         variants?: ComponentsVariants<Theme>['MuiFilledInput'] | undefined;
+        stateVariants?: { [variant: string]: string } | undefined;
       }
     | undefined;
   MuiFormControl?:
@@ -366,6 +367,7 @@ export interface Components<Theme = unknown> {
         defaultProps?: ComponentsProps['MuiInput'] | undefined;
         styleOverrides?: ComponentsOverrides<Theme>['MuiInput'] | undefined;
         variants?: ComponentsVariants<Theme>['MuiInput'] | undefined;
+        stateVariants?: { [variant: string]: string } | undefined;
       }
     | undefined;
   MuiInputAdornment?:
@@ -507,6 +509,7 @@ export interface Components<Theme = unknown> {
         defaultProps?: ComponentsProps['MuiOutlinedInput'] | undefined;
         styleOverrides?: ComponentsOverrides<Theme>['MuiOutlinedInput'] | undefined;
         variants?: ComponentsVariants<Theme>['MuiOutlinedInput'] | undefined;
+        stateVariants?: { [variant: string]: string } | undefined;
       }
     | undefined;
   MuiPagination?:

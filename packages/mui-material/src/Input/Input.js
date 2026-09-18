@@ -13,6 +13,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import { getTransitionStyles } from '../transitions/utils';
+import { resolveStateGroup } from '../styles/resolveColorStates';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
@@ -58,6 +59,26 @@ const InputRoot = styled(InputBaseRoot, {
         theme.vars.opacity.inputUnderline,
       );
     }
+    const fieldStates = resolveStateGroup(theme, 'MuiInput');
+    const underlineLegacy = (color) => ({
+      '&::before': {
+        borderBottomColor: bottomLineColor,
+      },
+      [`&:hover:not(.${inputClasses.disabled}, .${inputClasses.error}):before`]: {
+        borderBottom: `2px solid ${(theme.vars || theme).palette.text.primary}`,
+        '@media (hover: none)': {
+          borderBottom: `1px solid ${bottomLineColor}`,
+        },
+      },
+      '&::after': {
+        borderBottom: `2px solid ${(theme.vars || theme).palette[color].main}`,
+      },
+      [`&.${inputClasses.error}`]: {
+        '&::before, &::after': {
+          borderBottomColor: (theme.vars || theme).palette.error.main,
+        },
+      },
+    });
     return {
       position: 'relative',
       variants: [
@@ -90,13 +111,15 @@ const InputRoot = styled(InputBaseRoot, {
               // See https://github.com/mui/material-ui/issues/31766
               transform: 'scaleX(1) translateX(0)',
             },
-            [`&.${inputClasses.error}`]: {
-              '&::before, &::after': {
-                borderBottomColor: (theme.vars || theme).palette.error.main,
+            ...(!fieldStates && {
+              [`&.${inputClasses.error}`]: {
+                '&::before, &::after': {
+                  borderBottomColor: (theme.vars || theme).palette.error.main,
+                },
               },
-            },
+            }),
             '&::before': {
-              borderBottom: `1px solid ${bottomLineColor}`,
+              borderBottom: fieldStates ? '1px solid' : `1px solid ${bottomLineColor}`,
               left: 0,
               bottom: 0,
               content: '""',
@@ -107,28 +130,87 @@ const InputRoot = styled(InputBaseRoot, {
               }),
               pointerEvents: 'none', // Transparent to the hover style.
             },
-            [`&:hover:not(.${inputClasses.disabled}, .${inputClasses.error}):before`]: {
-              borderBottom: `2px solid ${(theme.vars || theme).palette.text.primary}`,
-              // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
-                borderBottom: `1px solid ${bottomLineColor}`,
+            ...(!fieldStates && {
+              [`&:hover:not(.${inputClasses.disabled}, .${inputClasses.error}):before`]: {
+                borderBottom: `2px solid ${(theme.vars || theme).palette.text.primary}`,
+                // Reset on touch devices, it doesn't add specificity
+                '@media (hover: none)': {
+                  borderBottom: `1px solid ${bottomLineColor}`,
+                },
               },
-            },
+            }),
             [`&.${inputClasses.disabled}:before`]: {
               borderBottomStyle: 'dotted',
             },
           },
         },
+        ...(fieldStates
+          ? []
+          : Object.entries(theme.palette)
+              .filter(createSimplePaletteValueFilter())
+              .map(([color]) => ({
+                props: { color, disableUnderline: false },
+                style: {
+                  '&::after': {
+                    borderBottom: `2px solid ${(theme.vars || theme).palette[color].main}`,
+                  },
+                },
+              }))),
         ...Object.entries(theme.palette)
           .filter(createSimplePaletteValueFilter())
-          .map(([color]) => ({
-            props: { color, disableUnderline: false },
-            style: {
-              '&::after': {
-                borderBottom: `2px solid ${(theme.vars || theme).palette[color].main}`,
+          .flatMap(([color]) => {
+            if (!fieldStates) {
+              return [];
+            }
+            const colorStates = fieldStates[color];
+            const errorStates = fieldStates.error;
+            if (!colorStates) {
+              return [
+                {
+                  props: { color },
+                  style: underlineLegacy(color),
+                },
+              ];
+            }
+            return [
+              {
+                props: { color },
+                style: {
+                  ...colorStates.initial,
+                  border: 'none',
+                  '&::before': {
+                    borderBottomColor: colorStates.initial?.borderColor,
+                  },
+                  ...(colorStates.hover && {
+                    '@media (hover: hover)': {
+                      [`&:hover:not(.${inputClasses.disabled}, .${inputClasses.error}):before`]: {
+                        borderBottom: '2px solid',
+                        borderBottomColor: colorStates.hover.borderColor,
+                      },
+                    },
+                  }),
+                  ...(colorStates.focused && {
+                    '&::after': {
+                      borderBottom: '2px solid',
+                      borderBottomColor: colorStates.focused.borderColor,
+                    },
+                  }),
+                  ...(colorStates.disabled && {
+                    [`&.${inputClasses.disabled}:before`]: {
+                      borderBottomColor: colorStates.disabled.borderColor,
+                    },
+                  }),
+                  ...(errorStates && {
+                    [`&.${inputClasses.error}`]: {
+                      '&::before, &::after': {
+                        borderBottomColor: errorStates.initial?.borderColor,
+                      },
+                    },
+                  }),
+                },
               },
-            },
-          })),
+            ];
+          }),
       ],
     };
   }),
