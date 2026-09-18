@@ -15,6 +15,7 @@ export interface ColorStates {
   initial?: StateStyle | undefined;
   hover?: StateStyle | undefined;
   active?: StateStyle | undefined;
+  focused?: StateStyle | undefined;
   selected?: StateStyle | undefined;
   /** selected AND hovered — enumerated so no consumer composes it */
   selectedHover?: StateStyle | undefined;
