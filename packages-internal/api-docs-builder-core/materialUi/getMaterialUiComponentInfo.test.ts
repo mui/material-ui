@@ -5,6 +5,19 @@ import sinon from 'sinon';
 import { getMaterialUiComponentInfo } from './getMaterialUiComponentInfo';
 
 describe('getMaterialUiComponentInfo', () => {
+  it.each([
+    ['internal/MenuItemBase.tsx', true],
+    ['Popper/BasePopper.tsx', true],
+    ['MenuItem/MenuItem.js', false],
+    ['Menu/Menu.js', false],
+  ] as const)('sets shouldSkip for %s to %s', (filename, shouldSkip) => {
+    const componentInfo = getMaterialUiComponentInfo(
+      path.join(process.cwd(), 'packages/mui-material/src', filename),
+    );
+
+    expect(componentInfo.readFile().shouldSkip).to.equal(shouldSkip);
+  });
+
   it('return correct info for material component file', () => {
     const componentInfo = getMaterialUiComponentInfo(
       path.join(process.cwd(), `/packages/mui-material/src/Button/Button.js`),
