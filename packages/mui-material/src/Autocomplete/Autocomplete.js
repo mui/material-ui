@@ -658,7 +658,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   // Don't render the Popper when there's no content to show.
   // In freeSolo mode, "No options" text is suppressed, so if there are also no
   // matching options and loading is false, the Paper would be empty.
-  // Uses renderedOptions (not groupedOptions) so Popper stays during exit transitions.
+  // Uses rendered.options (not groupedOptions) so Popper stays during exit transitions.
   // Respect keepMounted from resolved popperProps (handles both object and callback slotProps forms).
   const hasPopupContent =
     rendered.options.length > 0 || loading || !freeSolo || popperProps.keepMounted === true;
