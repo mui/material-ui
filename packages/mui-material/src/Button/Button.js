@@ -99,6 +99,11 @@ const ButtonRoot = styled(ButtonBase, {
 
     const inheritContainedHoverBackgroundColor =
       theme.palette.mode === 'light' ? theme.palette.grey.A100 : theme.palette.grey[700];
+
+    const defaultStates = resolveColorStates(theme, 'MuiButton');
+    const containedStates = resolveColorStates(theme, 'MuiButton', 'contained');
+    const outlinedStates = resolveColorStates(theme, 'MuiButton', 'outlined');
+    const textStates = resolveColorStates(theme, 'MuiButton', 'text');
     return {
       ...theme.typography.button,
       minWidth: 64,
@@ -111,12 +116,14 @@ const ButtonRoot = styled(ButtonBase, {
       '&:hover': {
         textDecoration: 'none',
       },
-      [`&.${buttonClasses.disabled}`]: {
-        color: (theme.vars || theme).palette.action.disabled,
-      },
+      ...(!defaultStates && {
+        [`&.${buttonClasses.disabled}`]: {
+          color: (theme.vars || theme).palette.action.disabled,
+        },
+      }),
       variants: [
         {
-          props: { variant: 'contained' },
+          props: ({ ownerState }) => ownerState.variant === 'contained' && !containedStates,
           style: {
             color: `var(--variant-containedColor)`,
             backgroundColor: `var(--variant-containedBg)`,
@@ -145,7 +152,7 @@ const ButtonRoot = styled(ButtonBase, {
           },
         },
         {
-          props: { variant: 'outlined' },
+          props: ({ ownerState }) => ownerState.variant === 'outlined' && !outlinedStates,
           style: {
             padding: '5px 15px',
             border: '1px solid currentColor',
@@ -158,7 +165,7 @@ const ButtonRoot = styled(ButtonBase, {
           },
         },
         {
-          props: { variant: 'text' },
+          props: ({ ownerState }) => ownerState.variant === 'text' && !textStates,
           style: {
             padding: '6px 8px',
             color: `var(--variant-textColor)`,
@@ -204,6 +211,9 @@ const ButtonRoot = styled(ButtonBase, {
                     {
                       props: { variant, color },
                       style: {
+                        ...(variant === 'outlined' && {
+                          border: '1px solid currentColor',
+                        }),
                         ...colorStates.initial,
                         ...(colorStates.hover && {
                           '@media (hover: hover)': {
