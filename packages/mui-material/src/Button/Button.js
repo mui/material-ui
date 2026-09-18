@@ -17,6 +17,7 @@ import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
 import { getTransitionStyles } from '../transitions/utils';
+import resolveColorStates from '../styles/resolveColorStates';
 
 const useUtilityClasses = (ownerState) => {
   const { color, disableElevation, fullWidth, size, variant, loading, loadingPosition, classes } =
@@ -193,6 +194,34 @@ const ButtonRoot = styled(ButtonBase, {
               },
             },
           })),
+        ...Object.entries(theme.palette)
+          .filter(createSimplePaletteValueFilter())
+          .flatMap(([color]) =>
+            ['text', 'outlined', 'contained'].flatMap((variant) => {
+              const colorStates = resolveColorStates(theme, 'MuiButton', variant, color);
+              return colorStates
+                ? [
+                    {
+                      props: { variant, color },
+                      style: {
+                        ...colorStates.initial,
+                        ...(colorStates.hover && {
+                          '@media (hover: hover)': {
+                            '&:hover': colorStates.hover,
+                          },
+                        }),
+                        ...(colorStates.active && {
+                          '&:active': colorStates.active,
+                        }),
+                        ...(colorStates.disabled && {
+                          [`&.${buttonClasses.disabled}`]: colorStates.disabled,
+                        }),
+                      },
+                    },
+                  ]
+                : [];
+            }),
+          ),
         {
           props: {
             color: 'inherit',
