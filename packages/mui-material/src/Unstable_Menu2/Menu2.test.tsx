@@ -313,6 +313,40 @@ describe('<Menu2 />', () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
+  // The classic `MenuListProps={{ dense: true }}` makes each row dense.
+  it('passes the dense state of the list to each item part', async () => {
+    const { user } = render(
+      <Menu2 slotProps={{ list: { dense: true } }} trigger={<Button disableRipple>Options</Button>}>
+        <Menu2Item>
+          <ListItemText data-testid="text">Item</ListItemText>
+        </Menu2Item>
+        <Menu2LinkItem href="/docs">Link</Menu2LinkItem>
+        <Menu2CheckboxItem>Checkbox</Menu2CheckboxItem>
+        <Menu2RadioGroup defaultValue="a">
+          <Menu2RadioItem value="a">Radio</Menu2RadioItem>
+        </Menu2RadioGroup>
+        <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2Submenu>
+      </Menu2>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+    await screen.findByRole('menu');
+
+    [
+      screen.getByRole('menuitem', { name: 'Item' }),
+      screen.getByRole('menuitem', { name: 'Link' }),
+      screen.getByRole('menuitemcheckbox', { name: 'Checkbox' }),
+      screen.getByRole('menuitemradio', { name: 'Radio' }),
+      screen.getByRole('menuitem', { name: 'More' }),
+    ].forEach((row) => {
+      expect(row.className).to.match(/MuiMenu2\w+-dense/);
+    });
+    // The item gives the resolved value to its children, not its own prop.
+    expect(screen.getByTestId('text')).to.have.class('MuiListItemText-dense');
+  });
+
   it('passes the list component, owner state, and ref to a custom slot', async () => {
     const listRef = React.createRef<HTMLUListElement>();
     const CustomList = React.forwardRef<

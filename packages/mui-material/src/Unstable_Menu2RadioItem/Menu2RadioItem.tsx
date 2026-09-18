@@ -30,6 +30,7 @@ import {
   Menu2ItemBaseProps,
   Menu2ItemOwnerState,
   Menu2ItemVisualProps,
+  useMenu2ItemListContext,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
 import {
@@ -260,7 +261,7 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     className,
     classes: classesProp,
     component,
-    dense = false,
+    dense: denseProp = false,
     disabled = false,
     disableGutters = false,
     disableRipple,
@@ -273,6 +274,8 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     style,
     ...other
   } = props;
+  const childContext = useMenu2ItemListContext(denseProp, disableGutters);
+  const { dense } = childContext;
   const ownerState = {
     ...props,
     ...getMenu2ItemOwnerState({ dense, disabled, disableGutters, divider, selected }),
@@ -281,13 +284,6 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
   const classes = useMenu2ItemUtilityClasses<Menu2RadioItemClasses>(
     ownerState,
     getMenu2RadioItemUtilityClass,
-  );
-  const childContext = React.useMemo(
-    () => ({
-      dense,
-      disableGutters,
-    }),
-    [dense, disableGutters],
   );
   const RootSlot = slots?.root ?? Menu2RadioItemRoot;
 

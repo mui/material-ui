@@ -1,8 +1,10 @@
 'use client';
+import * as React from 'react';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
+import ListContext from '../List/ListContext';
 import {
   Menu2RootSlotProps,
   Menu2RootSlots,
@@ -153,6 +155,13 @@ export interface Menu2SubmenuTriggerBaseProps {
 export interface Menu2BaseItemState {
   disabled?: boolean | undefined;
   highlighted?: boolean | undefined;
+}
+
+// Like the classic MenuItem: the item prop wins, then the `dense` of the list.
+export function useMenu2ItemListContext(denseProp: boolean, disableGutters: boolean) {
+  const context = React.useContext(ListContext);
+  const dense = denseProp || context.dense || false;
+  return React.useMemo(() => ({ dense, disableGutters }), [dense, disableGutters]);
 }
 
 export function getMenu2ItemOwnerState(

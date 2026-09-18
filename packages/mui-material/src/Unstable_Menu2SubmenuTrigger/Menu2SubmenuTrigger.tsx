@@ -16,6 +16,7 @@ import {
   Menu2ItemOwnerState,
   Menu2ItemVisualProps,
   Menu2SubmenuTriggerBaseProps,
+  useMenu2ItemListContext,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
 import {
@@ -138,7 +139,7 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
     className,
     classes: classesProp,
     component,
-    dense = false,
+    dense: denseProp = false,
     disabled = false,
     disableGutters = false,
     disableRipple,
@@ -151,6 +152,8 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
     style,
     ...other
   } = props;
+  const childContext = useMenu2ItemListContext(denseProp, disableGutters);
+  const { dense } = childContext;
   const ownerState = {
     ...props,
     ...getMenu2ItemOwnerState({ dense, disabled, disableGutters, divider, selected }),
@@ -159,13 +162,6 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
   const classes = useMenu2ItemUtilityClasses<Menu2SubmenuTriggerClasses>(
     ownerState,
     getMenu2SubmenuTriggerUtilityClass,
-  );
-  const childContext = React.useMemo(
-    () => ({
-      dense,
-      disableGutters,
-    }),
-    [dense, disableGutters],
   );
   const RootSlot = slots?.root ?? Menu2SubmenuTriggerRootSlot;
   const { closing } = React.useContext(Menu2SubmenuClosingContext);

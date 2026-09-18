@@ -22,6 +22,7 @@ import {
   Menu2ItemOwnerState,
   Menu2ItemVisualProps,
   mergeMenu2ItemClassName,
+  useMenu2ItemListContext,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
 import { getMenu2LinkItemUtilityClass, Menu2LinkItemClasses } from '../Unstable_Menu2/menu2Classes';
@@ -117,7 +118,7 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
     className,
     classes: classesProp,
     component,
-    dense = false,
+    dense: denseProp = false,
     disableGutters = false,
     disableRipple,
     divider = false,
@@ -128,6 +129,8 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
     style,
     ...other
   } = props;
+  const childContext = useMenu2ItemListContext(denseProp, disableGutters);
+  const { dense } = childContext;
   const ownerState = {
     ...props,
     ...getMenu2ItemOwnerState({
@@ -142,13 +145,6 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
   const classes = useMenu2ItemUtilityClasses<Menu2LinkItemClasses>(
     ownerState,
     getMenu2LinkItemUtilityClass,
-  );
-  const childContext = React.useMemo(
-    () => ({
-      dense,
-      disableGutters,
-    }),
-    [dense, disableGutters],
   );
 
   const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });

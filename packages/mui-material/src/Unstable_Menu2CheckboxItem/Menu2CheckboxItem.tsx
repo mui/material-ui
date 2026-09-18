@@ -30,6 +30,7 @@ import {
   Menu2ItemBaseProps,
   Menu2ItemOwnerState,
   Menu2ItemVisualProps,
+  useMenu2ItemListContext,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
 import {
@@ -284,7 +285,7 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
     className,
     classes: classesProp,
     component,
-    dense = false,
+    dense: denseProp = false,
     disabled = false,
     disableGutters = false,
     disableRipple,
@@ -298,6 +299,8 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
     style,
     ...other
   } = props;
+  const childContext = useMenu2ItemListContext(denseProp, disableGutters);
+  const { dense } = childContext;
   const ownerState = {
     ...props,
     ...getMenu2ItemOwnerState({
@@ -313,13 +316,6 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
   const classes = useMenu2ItemUtilityClasses<Menu2CheckboxItemClasses>(
     ownerState,
     getMenu2CheckboxItemUtilityClass,
-  );
-  const childContext = React.useMemo(
-    () => ({
-      dense,
-      disableGutters,
-    }),
-    [dense, disableGutters],
   );
   const handleCheckedChange = React.useCallback(
     (newChecked: boolean, eventDetails: BaseMenu.CheckboxItem.ChangeEventDetails) => {
