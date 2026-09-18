@@ -482,11 +482,10 @@ const materialSlots = {
     root: {
       ...buttonSlots.slots.root,
       elementType: ButtonSurface,
-      // `ButtonSurface` reads `classes` and `ownerState` itself, so both have to
-      // pass through rather than being filtered off as styling props.
+      // `ButtonSurface` reads `ownerState` itself, so it has to pass through
+      // rather than being filtered off as a styling prop.
       styledOptions: {
-        shouldForwardProp: (prop) =>
-          rootShouldForwardProp(prop) || prop === 'classes' || prop === 'ownerState',
+        shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'ownerState',
       },
     },
   },

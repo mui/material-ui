@@ -1,13 +1,14 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import isHostComponent from '@mui/utils/isHostComponent';
 import refType from '@mui/utils/refType';
 // Imported directly rather than through `../../utils`: that barrel re-exports
 // `memoTheme` and `SvgIcon`, so importing one thing from it pulls in styling.
 import useId from '../../utils/useId';
 import useForkRef from '../../utils/useForkRef';
+import useSlot from '../../utils/useSlot';
 import useButtonBase from '../../ButtonBase/useButtonBase';
 import { getButtonUtilityClass } from '../buttonClasses';
 import buttonSlots from './buttonSlots';
@@ -61,6 +62,7 @@ const ButtonUnstyled = React.forwardRef(function Button(props, ref) {
     component = 'button',
     className,
     slots = {},
+    slotProps = {},
     disabled = false,
     endIcon: endIconProp,
     /* eslint-disable react/prop-types */
@@ -165,20 +167,7 @@ const ButtonUnstyled = React.forwardRef(function Button(props, ref) {
 
   const handleRef = useForkRef(ref, buttonRef);
 
-  const {
-    root: RootSlot = slotDefs.root.elementType,
-    startIcon: StartIconSlot = slotDefs.startIcon.elementType,
-    endIcon: EndIconSlot = slotDefs.endIcon.elementType,
-    loadingIndicator: LoadingIndicatorWrapperSlot = slotDefs.loadingIndicator.elementType,
-    // The spinner rendered when no `loadingIndicator` is given. Material's is a
-    // CircularProgress; this layer has no opinion and renders an empty span.
-    loadingSpinner: LoadingSpinnerSlot = slotDefs.loadingSpinner.elementType,
-  } = slots;
-
   const loadingId = useId(idProp);
-  const loadingIndicator = loadingIndicatorProp ?? (
-    <LoadingSpinnerSlot aria-labelledby={loadingId} />
-  );
 
   const ownerState = {
     ...props,
@@ -186,7 +175,6 @@ const ButtonUnstyled = React.forwardRef(function Button(props, ref) {
     disabled: isDisabled,
     focusVisible,
     loading,
-    loadingIndicator,
     suppressFocusVisible,
     tabIndex,
     type,
@@ -194,49 +182,84 @@ const ButtonUnstyled = React.forwardRef(function Button(props, ref) {
   };
 
   const classes = useUtilityClasses(ownerState, appearance?.classes);
-  const rootClassName = clsx(
-    classes.root,
-    focusVisible && !suppressFocusVisible && focusVisibleClassName,
-    className,
-  );
 
-  // The root's own class is already on `className`, so forwarding it as well
-  // would duplicate it.
-  const { root, ...forwardedClasses } = classes;
+  const externalForwardedProps = { slots, slotProps };
 
-  // A host element cannot read `ownerState`, and React puts any prop it does not
-  // recognise on the DOM. `undefined` is dropped instead.
-  const slotOwnerState = (Slot) => (typeof Slot === 'string' ? undefined : ownerState);
+  // A host element root is the element, so it takes neither `component` nor
+  // `as`; both would land on the DOM. A component root renders an element of
+  // its own, so `component` has to reach it rather than replace it.
+  const rootIsHost = isHostComponent(slots.root ?? slotDefs.root.elementType);
 
-  // A host element root takes none of the props that only a component can read.
-  // Without this they land on the DOM as `ownerstate="[object Object]"` and the
-  // like.
-  const isHostRoot = typeof RootSlot === 'string';
-  const RootElement = isHostRoot ? ComponentProp : RootSlot;
-  const rootComponentProps = isHostRoot
-    ? {}
-    : { ownerState, component: ComponentProp, classes: forwardedClasses };
+  const [RootSlot, rootProps] = useSlot('root', {
+    ref: handleRef,
+    elementType: rootIsHost ? ComponentProp : slotDefs.root.elementType,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+      ...(rootIsHost ? {} : { component: ComponentProp }),
+    },
+    shouldForwardComponentProp: !rootIsHost,
+    ownerState,
+    className: [
+      classes.root,
+      focusVisible && !suppressFocusVisible && focusVisibleClassName,
+      className,
+    ],
+    additionalProps: {
+      id: loading ? loadingId : idProp,
+      onClick,
+      onKeyDown,
+      onKeyUp,
+      onFocus: handleFocus,
+      onBlur: handleBlur,
+      onMouseLeave: handleMouseLeave,
+      ...(isLink ? linkProps : buttonProps),
+    },
+  });
+
+  const [StartIconSlot, startIconProps] = useSlot('startIcon', {
+    elementType: slotDefs.startIcon.elementType,
+    externalForwardedProps,
+    ownerState,
+    className: [classes.startIcon, !startIconProp && classes.loadingIconPlaceholder],
+  });
+
+  const [EndIconSlot, endIconProps] = useSlot('endIcon', {
+    elementType: slotDefs.endIcon.elementType,
+    externalForwardedProps,
+    ownerState,
+    className: [classes.endIcon, !endIconProp && classes.loadingIconPlaceholder],
+  });
+
+  const [LoadingIndicatorWrapperSlot, loadingIndicatorProps] = useSlot('loadingIndicator', {
+    elementType: slotDefs.loadingIndicator.elementType,
+    externalForwardedProps,
+    ownerState,
+    className: classes.loadingIndicator,
+  });
+
+  // The spinner shown when no `loadingIndicator` is given. Material's is a
+  // CircularProgress; this layer has no opinion and renders an empty span.
+  const [LoadingSpinnerSlot, loadingSpinnerProps] = useSlot('loadingSpinner', {
+    elementType: slotDefs.loadingSpinner.elementType,
+    externalForwardedProps,
+    ownerState,
+    className: undefined,
+    additionalProps: { 'aria-labelledby': loadingId },
+  });
+
+  const loadingIndicator = loadingIndicatorProp ?? <LoadingSpinnerSlot {...loadingSpinnerProps} />;
 
   // An icon slot with no icon in it is a spacer, there to keep the label from
   // shifting when the indicator appears. Which side needs one is an appearance
   // question, so both are rendered and marked, and the styling layer collapses
   // the one it does not want.
   const startIcon = (startIconProp || loading) && (
-    <StartIconSlot
-      className={clsx(classes.startIcon, !startIconProp && classes.loadingIconPlaceholder)}
-      ownerState={slotOwnerState(StartIconSlot)}
-    >
-      {startIconProp || <span />}
-    </StartIconSlot>
+    <StartIconSlot {...startIconProps}>{startIconProp || <span />}</StartIconSlot>
   );
 
   const endIcon = (endIconProp || loading) && (
-    <EndIconSlot
-      className={clsx(classes.endIcon, !endIconProp && classes.loadingIconPlaceholder)}
-      ownerState={slotOwnerState(EndIconSlot)}
-    >
-      {endIconProp || <span />}
-    </EndIconSlot>
+    <EndIconSlot {...endIconProps}>{endIconProp || <span />}</EndIconSlot>
   );
 
   const loader =
@@ -244,10 +267,7 @@ const ButtonUnstyled = React.forwardRef(function Button(props, ref) {
       // use plain HTML span to minimize the runtime overhead
       <span className={classes.loadingWrapper} style={{ display: 'contents' }}>
         {loading && (
-          <LoadingIndicatorWrapperSlot
-            className={classes.loadingIndicator}
-            ownerState={slotOwnerState(LoadingIndicatorWrapperSlot)}
-          >
+          <LoadingIndicatorWrapperSlot {...loadingIndicatorProps}>
             {loadingIndicator}
           </LoadingIndicatorWrapperSlot>
         )}
@@ -255,25 +275,12 @@ const ButtonUnstyled = React.forwardRef(function Button(props, ref) {
     ) : null;
 
   return (
-    <RootElement
-      {...rootComponentProps}
-      className={rootClassName}
-      ref={handleRef}
-      id={loading ? loadingId : idProp}
-      onClick={onClick}
-      onKeyDown={onKeyDown}
-      onKeyUp={onKeyUp}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      onMouseLeave={handleMouseLeave}
-      {...(isLink ? linkProps : buttonProps)}
-      {...other}
-    >
+    <RootSlot {...rootProps}>
       {startIcon}
       {loader}
       {children}
       {endIcon}
-    </RootElement>
+    </RootSlot>
   );
 });
 
@@ -302,6 +309,11 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.object,
+  /**
+   * Props forwarded to each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.object,
   /**
    * @ignore
    */
