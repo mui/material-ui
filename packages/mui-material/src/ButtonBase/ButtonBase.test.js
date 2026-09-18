@@ -19,6 +19,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ButtonBase, { buttonBaseClasses as classes } from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
+import { LazyRipple } from '../useLazyRipple/useLazyRipple';
 
 /** @typedef {import('./ButtonBase').ButtonBaseActions} ButtonBaseActions */
 
@@ -247,6 +248,32 @@ describe('<ButtonBase />', () => {
 
       fireEvent.mouseLeave(button);
       expect(onMouseLeave.callCount).to.equal(1);
+    });
+
+    // https://github.com/mui/material-ui/issues/48999
+    it('does not queue ripple actions that would never settle when disableRipple is set', async () => {
+      const mountSpy = spy(LazyRipple.prototype, 'mount');
+      try {
+        render(<ButtonBase disableRipple>Hello</ButtonBase>);
+
+        const button = screen.getByText('Hello');
+
+        await ripple.startTouch(button);
+        await ripple.stopTouch(button);
+        fireEvent.touchStart(button);
+        fireEvent.touchEnd(button);
+        fireEvent.touchMove(button);
+        fireEvent.contextMenu(button);
+        fireEvent.mouseLeave(button);
+        fireEvent.blur(button);
+
+        // The TouchRipple never mounts when `disableRipple` is set, so each ripple
+        // action would create a promise that never settles and retain the event
+        // (including its relatedTarget DOM tree) forever.
+        expect(mountSpy.callCount).to.equal(0);
+      } finally {
+        mountSpy.restore();
+      }
     });
 
     it('should propagate click events when Enter is pressed on non-native button', async () => {
