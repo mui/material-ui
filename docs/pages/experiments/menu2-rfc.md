@@ -226,6 +226,15 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 
 7. ✅ **Explicit submenu trigger:** keep one behavioral owner per trigger and the popup wiring internal. The root decorates a supplied button; the submenu renders an explicit part. Accept this asymmetry. A Material Menubar remains separate work.
 
+### Open questions
+
+1. **TypeScript floor.** The shared theme types import the Menu2 part types, and those import `@base-ui/react/menu`. Base UI declarations use `const` type parameters, which need TypeScript 5.0. A file that only imports `createTheme` from the built package fails under TypeScript 4.9.5 with `skipLibCheck`, and passes under 5.0.4. Therefore the change reaches each `@mui/material` user, not only Menu2 users. The docs promise TypeScript 4.9, and CI does not test that version. Three options:
+   - **Raise the floor to 5.0.** This is a support change in a v9 minor version.
+   - **Keep the Menu2 theme types out of the shared `styles` files.** An opt-in augmentation import, as `@mui/lab/themeAugmentation` does, keeps 4.9 for users who do not import Menu2. Menu2 users still need 5.0.
+   - **Ask Base UI for declarations that TypeScript 4.9 can parse.** A Base UI release then gates Menu2.
+
+   The same choice applies to each later Base UI-backed component.
+
 ### Rollout plan
 
 1. **Review the proposal:** the benchmark and API experiment are ready for maintainer feedback.
