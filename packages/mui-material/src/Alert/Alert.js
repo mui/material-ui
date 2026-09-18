@@ -13,7 +13,7 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import Paper from '../Paper';
 import alertClasses, { getAlertUtilityClass } from './alertClasses';
 import IconButton from '../IconButton';
-import resolveColorStates, { resolveStateGroup } from '../styles/resolveColorStates';
+import { resolveStateGroup } from '../styles/resolveColorStates';
 import SuccessOutlinedIcon from '../internal/svg-icons/SuccessOutlined';
 import ReportProblemOutlinedIcon from '../internal/svg-icons/ReportProblemOutlined';
 import ErrorOutlineIcon from '../internal/svg-icons/ErrorOutline';
@@ -48,6 +48,45 @@ const AlertRoot = styled(Paper, {
     const standardStates = resolveStateGroup(theme, 'MuiAlert', 'standard');
     const outlinedStates = resolveStateGroup(theme, 'MuiAlert', 'outlined');
     const filledStates = resolveStateGroup(theme, 'MuiAlert', 'filled');
+    const standardLegacy = (color) => ({
+      color: theme.vars
+        ? theme.vars.palette.Alert[`${color}Color`]
+        : getColor(theme.palette[color].light, 0.6),
+      backgroundColor: theme.vars
+        ? theme.vars.palette.Alert[`${color}StandardBg`]
+        : getBackgroundColor(theme.palette[color].light, 0.9),
+      [`& .${alertClasses.icon}`]: theme.vars
+        ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+        : {
+            color: theme.palette[color].main,
+          },
+    });
+    const outlinedLegacy = (color) => ({
+      color: theme.vars
+        ? theme.vars.palette.Alert[`${color}Color`]
+        : getColor(theme.palette[color].light, 0.6),
+      border: `1px solid ${(theme.vars || theme).palette[color].light}`,
+      [`& .${alertClasses.icon}`]: theme.vars
+        ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+        : {
+            color: theme.palette[color].main,
+          },
+    });
+    const filledLegacy = (color) => ({
+      ...(theme.focusVisible &&
+        applyChildrenFocusVisible(`0 0 0 4px ${(theme.vars || theme).palette.background.default}`)),
+      fontWeight: theme.typography.fontWeightMedium,
+      ...(theme.vars
+        ? {
+            color: theme.vars.palette.Alert[`${color}FilledColor`],
+            backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`],
+          }
+        : {
+            backgroundColor:
+              theme.palette.mode === 'dark' ? theme.palette[color].dark : theme.palette[color].main,
+            color: theme.palette.getContrastText(theme.palette[color].main),
+          }),
+    });
     return {
       ...theme.typography.body2,
       backgroundColor: 'transparent',
@@ -60,19 +99,7 @@ const AlertRoot = styled(Paper, {
               .filter(createSimplePaletteValueFilter(['light']))
               .map(([color]) => ({
                 props: { colorSeverity: color, variant: 'standard' },
-                style: {
-                  color: theme.vars
-                    ? theme.vars.palette.Alert[`${color}Color`]
-                    : getColor(theme.palette[color].light, 0.6),
-                  backgroundColor: theme.vars
-                    ? theme.vars.palette.Alert[`${color}StandardBg`]
-                    : getBackgroundColor(theme.palette[color].light, 0.9),
-                  [`& .${alertClasses.icon}`]: theme.vars
-                    ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
-                    : {
-                        color: theme.palette[color].main,
-                      },
-                },
+                style: standardLegacy(color),
               }))),
         ...(outlinedStates
           ? []
@@ -80,17 +107,7 @@ const AlertRoot = styled(Paper, {
               .filter(createSimplePaletteValueFilter(['light']))
               .map(([color]) => ({
                 props: { colorSeverity: color, variant: 'outlined' },
-                style: {
-                  color: theme.vars
-                    ? theme.vars.palette.Alert[`${color}Color`]
-                    : getColor(theme.palette[color].light, 0.6),
-                  border: `1px solid ${(theme.vars || theme).palette[color].light}`,
-                  [`& .${alertClasses.icon}`]: theme.vars
-                    ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
-                    : {
-                        color: theme.palette[color].main,
-                      },
-                },
+                style: outlinedLegacy(color),
               }))),
         ...(filledStates
           ? []
@@ -98,50 +115,50 @@ const AlertRoot = styled(Paper, {
               .filter(createSimplePaletteValueFilter(['dark']))
               .map(([color]) => ({
                 props: { colorSeverity: color, variant: 'filled' },
-                style: {
-                  ...(theme.focusVisible &&
-                    applyChildrenFocusVisible(
-                      `0 0 0 4px ${(theme.vars || theme).palette.background.default}`,
-                    )),
-                  fontWeight: theme.typography.fontWeightMedium,
-                  ...(theme.vars
-                    ? {
-                        color: theme.vars.palette.Alert[`${color}FilledColor`],
-                        backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`],
-                      }
-                    : {
-                        backgroundColor:
-                          theme.palette.mode === 'dark'
-                            ? theme.palette[color].dark
-                            : theme.palette[color].main,
-                        color: theme.palette.getContrastText(theme.palette[color].main),
-                      }),
-                },
+                style: filledLegacy(color),
               }))),
         ...Object.entries(theme.palette)
           .filter(createSimplePaletteValueFilter())
           .flatMap(([color]) =>
             ['standard', 'outlined', 'filled'].flatMap((variant) => {
-              const colorStates = resolveColorStates(theme, 'MuiAlert', variant, color);
-              return colorStates
-                ? [
-                    {
-                      props: { colorSeverity: color, variant },
-                      style: {
-                        ...(variant === 'outlined'
-                          ? { border: '1px solid', ...colorStates.initial }
-                          : { ...colorStates.initial, border: 'none' }),
-                        ...(variant === 'filled' && {
-                          ...(theme.focusVisible &&
-                            applyChildrenFocusVisible(
-                              `0 0 0 4px ${(theme.vars || theme).palette.background.default}`,
-                            )),
-                          fontWeight: theme.typography.fontWeightMedium,
-                        }),
-                      },
-                    },
-                  ]
-                : [];
+              const variantStates = {
+                standard: standardStates,
+                outlined: outlinedStates,
+                filled: filledStates,
+              }[variant];
+              if (!variantStates) {
+                return [];
+              }
+              const colorStates = variantStates[color];
+              if (!colorStates) {
+                return [
+                  {
+                    props: { colorSeverity: color, variant },
+                    style: {
+                      standard: standardLegacy,
+                      outlined: outlinedLegacy,
+                      filled: filledLegacy,
+                    }[variant](color),
+                  },
+                ];
+              }
+              return [
+                {
+                  props: { colorSeverity: color, variant },
+                  style: {
+                    ...(variant === 'outlined'
+                      ? { border: '1px solid', ...colorStates.initial }
+                      : { ...colorStates.initial, border: 'none' }),
+                    ...(variant === 'filled' && {
+                      ...(theme.focusVisible &&
+                        applyChildrenFocusVisible(
+                          `0 0 0 4px ${(theme.vars || theme).palette.background.default}`,
+                        )),
+                      fontWeight: theme.typography.fontWeightMedium,
+                    }),
+                  },
+                },
+              ];
             }),
           ),
       ],
