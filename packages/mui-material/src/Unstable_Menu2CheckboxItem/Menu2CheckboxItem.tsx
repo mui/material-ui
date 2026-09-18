@@ -159,7 +159,7 @@ const Menu2CheckboxItemRoot = styled(MenuItemBase, {
 
 interface Menu2CheckboxItemRootSlotProps extends Pick<
   Menu2CheckboxItemProps,
-  'component' | 'disableRipple' | 'slotProps' | 'slots' | 'sx'
+  'component' | 'disableRipple' | 'nativeButton' | 'slotProps' | 'slots' | 'sx'
 > {
   baseProps: React.ComponentPropsWithRef<'div'>;
   ownerState: Menu2CheckboxItemOwnerState;
@@ -170,6 +170,7 @@ function Menu2CheckboxItemRootSlot({
   ownerState,
   component,
   disableRipple,
+  nativeButton,
   slotProps,
   slots,
   sx,
@@ -212,6 +213,8 @@ function Menu2CheckboxItemRootSlot({
       ...rootProps,
       component: component ?? 'div',
       ...(disableRipple !== undefined && { disableRipple }),
+      // ButtonBase cannot infer it from a custom `component`.
+      ...(nativeButton !== undefined && { nativeButton }),
       ...suppressButtonBaseKeyboardActivation(rootProps),
     },
     Menu2CheckboxItemRoot,
@@ -236,6 +239,12 @@ Menu2CheckboxItemRootSlot.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableRipple: PropTypes.bool,
+  /**
+   * Whether the component is rendered as a native button.
+   *
+   * By default, this is inferred from the root slot and `component` prop.
+   */
+  nativeButton: PropTypes.bool,
   /**
    * @ignore
    */
@@ -335,6 +344,7 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
             ownerState={{ ...ownerState, ...state }}
             component={component}
             disableRipple={disableRipple}
+            nativeButton={nativeButtonProp}
             slotProps={slotProps}
             slots={slots}
             sx={sx}

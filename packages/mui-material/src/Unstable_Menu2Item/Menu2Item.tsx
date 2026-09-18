@@ -162,6 +162,8 @@ const Menu2Item = React.forwardRef(function Menu2Item(
             // Pass it only when the caller sets it. An explicit prop beats the
             // `MuiButtonBase` default props, so ButtonBase resolves the default.
             ...(disableRipple !== undefined && { disableRipple }),
+            // ButtonBase cannot infer it from a custom `component`.
+            ...(nativeButtonProp !== undefined && { nativeButton: nativeButtonProp }),
             ownerState,
             // Base UI owns the Enter and Space activation of the item.
             ...suppressButtonBaseKeyboardActivation(rootSlotProps),

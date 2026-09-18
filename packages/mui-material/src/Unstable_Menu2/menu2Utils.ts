@@ -114,6 +114,7 @@ export function getMenu2RootRender<OwnerState>(
   // so a custom slot would spread them onto the DOM and React would warn.
   if (defaultRootSlot != null && RootSlot !== defaultRootSlot) {
     delete rootProps.disableRipple;
+    delete rootProps.nativeButton;
   }
 
   if (isHostComponent(RootSlot)) {

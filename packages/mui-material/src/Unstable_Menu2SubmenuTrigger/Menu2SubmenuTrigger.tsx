@@ -176,6 +176,7 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
             ownerState={{ ...ownerState, ...state, closing }}
             component={component}
             disableRipple={disableRipple}
+            nativeButton={nativeButtonProp}
             slotProps={slotProps}
             slots={slots}
             sx={sx}

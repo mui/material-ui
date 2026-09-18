@@ -84,10 +84,14 @@ function Menu2SubmenuTriggerRootSlot({
   ownerState,
   component,
   disableRipple,
+  nativeButton,
   slotProps,
   slots,
   sx,
-}: Pick<Menu2SubmenuTriggerProps, 'component' | 'disableRipple' | 'slotProps' | 'slots' | 'sx'> & {
+}: Pick<
+  Menu2SubmenuTriggerProps,
+  'component' | 'disableRipple' | 'nativeButton' | 'slotProps' | 'slots' | 'sx'
+> & {
   baseProps: React.ComponentPropsWithRef<'div'>;
   ownerState: Menu2SubmenuTriggerOwnerState & Pick<Menu2SubmenuTriggerProps, 'classes'>;
 }) {
@@ -122,6 +126,8 @@ function Menu2SubmenuTriggerRootSlot({
       ref,
       component: component ?? 'div',
       ...(disableRipple !== undefined && { disableRipple }),
+      // ButtonBase cannot infer it from a custom `component`.
+      ...(nativeButton !== undefined && { nativeButton }),
       ownerState: { ...ownerState, retainClosingTint },
       ...suppressButtonBaseKeyboardActivation(rootProps),
       children: (

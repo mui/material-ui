@@ -144,6 +144,57 @@ describe('<Menu2 />', () => {
     await user.unhover(trigger);
   });
 
+  it('passes an explicit nativeButton to the ButtonBase root, not to a custom root slot', async () => {
+    const NativeButton = React.forwardRef<HTMLButtonElement, React.ComponentProps<'button'>>(
+      function NativeButton(props, ref) {
+        return <button type="button" ref={ref} {...props} />;
+      },
+    );
+    const error = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    try {
+      const { user } = render(
+        <Menu2 trigger={<Button disableRipple>Options</Button>}>
+          <Menu2Item component={NativeButton} nativeButton>
+            Item
+          </Menu2Item>
+          <Menu2CheckboxItem component={NativeButton} nativeButton>
+            Checkbox
+          </Menu2CheckboxItem>
+          <Menu2RadioGroup defaultValue="a">
+            <Menu2RadioItem component={NativeButton} nativeButton value="a">
+              Radio
+            </Menu2RadioItem>
+          </Menu2RadioGroup>
+          <Menu2Submenu
+            trigger={
+              <Menu2SubmenuTrigger component={NativeButton} nativeButton>
+                More
+              </Menu2SubmenuTrigger>
+            }
+          >
+            <Menu2Item>Nested</Menu2Item>
+          </Menu2Submenu>
+          <Menu2Item nativeButton slots={{ root: 'button' }}>
+            Host slot
+          </Menu2Item>
+        </Menu2>,
+      );
+
+      await user.click(screen.getByRole('button', { name: 'Options' }));
+      await screen.findByRole('menu');
+
+      // ButtonBase asks for `nativeButton` when it cannot infer a <button>.
+      expect(error).not.toHaveBeenCalled();
+      expect(screen.getByRole('menuitem', { name: 'Item' }).tagName).to.equal('BUTTON');
+      expect(screen.getByRole('menuitem', { name: 'Host slot' })).not.to.have.attribute(
+        'nativebutton',
+      );
+    } finally {
+      error.mockRestore();
+    }
+  });
+
   it('derives native button behavior from host root slots', async () => {
     const error = vi.spyOn(console, 'error').mockImplementation(() => {});
 

@@ -136,7 +136,7 @@ const Menu2RadioItemRoot = styled(MenuItemBase, {
 
 interface Menu2RadioItemRootSlotProps extends Pick<
   Menu2RadioItemProps,
-  'component' | 'disableRipple' | 'slotProps' | 'slots' | 'sx'
+  'component' | 'disableRipple' | 'nativeButton' | 'slotProps' | 'slots' | 'sx'
 > {
   baseProps: React.ComponentPropsWithRef<'div'>;
   ownerState: Menu2RadioItemOwnerState;
@@ -147,6 +147,7 @@ function Menu2RadioItemRootSlot({
   ownerState,
   component,
   disableRipple,
+  nativeButton,
   slotProps,
   slots,
   sx,
@@ -189,6 +190,8 @@ function Menu2RadioItemRootSlot({
       ...rootProps,
       component: component ?? 'div',
       ...(disableRipple !== undefined && { disableRipple }),
+      // ButtonBase cannot infer it from a custom `component`.
+      ...(nativeButton !== undefined && { nativeButton }),
       ...suppressButtonBaseKeyboardActivation(rootProps),
     },
     Menu2RadioItemRoot,
@@ -213,6 +216,12 @@ Menu2RadioItemRootSlot.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableRipple: PropTypes.bool,
+  /**
+   * Whether the component is rendered as a native button.
+   *
+   * By default, this is inferred from the root slot and `component` prop.
+   */
+  nativeButton: PropTypes.bool,
   /**
    * @ignore
    */
@@ -297,6 +306,7 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
             ownerState={{ ...ownerState, ...state }}
             component={component}
             disableRipple={disableRipple}
+            nativeButton={nativeButtonProp}
             slotProps={slotProps}
             slots={slots}
             sx={sx}
