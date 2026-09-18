@@ -537,6 +537,30 @@ describe('<FocusTrap />', () => {
         setProps({ open: false });
         expect(screen.getByTestId('outside-input')).toHaveFocus();
       });
+
+      it('should not throw when the node to restore focus to has no focus method', () => {
+        const { unmount } = render(
+          <FocusTrap open disableAutoFocus>
+            <div tabIndex={-1} data-testid="root" />
+          </FocusTrap>,
+          // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
+          { strictEffects: false },
+        );
+
+        // jsdom >= 30.1.0 can resolve `relatedTarget` to a truthy value that does
+        // not expose a `focus` method. https://github.com/mui/material-ui/issues/49159
+        const focusInEvent = new FocusEvent('focusin', { bubbles: true });
+        Object.defineProperty(focusInEvent, 'relatedTarget', { value: {} });
+        act(() => {
+          screen.getByTestId('root').dispatchEvent(focusInEvent);
+        });
+
+        expect(() => {
+          act(() => {
+            unmount();
+          });
+        }).not.toThrow();
+      });
     });
   });
 });
