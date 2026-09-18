@@ -362,11 +362,13 @@ const ChipRoot = styled('div', {
                   {
                     props: { variant, color },
                     style: {
-                      ...(variant === 'outlined' && {
-                        backgroundColor: 'transparent',
-                        border: '1px solid',
-                      }),
-                      ...colorStates.initial,
+                      ...(variant === 'outlined'
+                        ? {
+                            backgroundColor: 'transparent',
+                            border: '1px solid',
+                            ...colorStates.initial,
+                          }
+                        : { ...colorStates.initial, border: 'none' }),
                       ...(colorStates.hover && {
                         '@media (hover: hover)': {
                           [`&.${chipClasses.clickable}:hover`]: colorStates.hover,

@@ -211,10 +211,9 @@ const ButtonRoot = styled(ButtonBase, {
                     {
                       props: { variant, color },
                       style: {
-                        ...(variant === 'outlined' && {
-                          border: '1px solid currentColor',
-                        }),
-                        ...colorStates.initial,
+                        ...(variant === 'outlined'
+                          ? { border: '1px solid currentColor', ...colorStates.initial }
+                          : { ...colorStates.initial, border: 'none' }),
                         ...(colorStates.hover && {
                           '@media (hover: hover)': {
                             '&:hover': colorStates.hover,

@@ -128,9 +128,9 @@ const AlertRoot = styled(Paper, {
                     {
                       props: { colorSeverity: color, variant },
                       style: {
-                        ...(variant === 'outlined' && {
-                          border: '1px solid',
-                        }),
+                        ...(variant === 'outlined'
+                          ? { border: '1px solid', ...colorStates.initial }
+                          : { ...colorStates.initial, border: 'none' }),
                         ...(variant === 'filled' && {
                           ...(theme.focusVisible &&
                             applyChildrenFocusVisible(
@@ -138,7 +138,6 @@ const AlertRoot = styled(Paper, {
                             )),
                           fontWeight: theme.typography.fontWeightMedium,
                         }),
-                        ...colorStates.initial,
                       },
                     },
                   ]
