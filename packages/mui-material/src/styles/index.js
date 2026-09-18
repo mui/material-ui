@@ -16,18 +16,9 @@ export {
   keyframes,
 } from '@mui/system';
 export { unstable_createBreakpoints } from '@mui/system/createBreakpoints';
-// TODO: Remove this function in v6.
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export function experimental_sx() {
-  throw /* minify-error */ new Error(
-    'MUI: The `experimental_sx` has been moved to `theme.unstable_sx`.' +
-      'For more details, see https://github.com/mui/material-ui/pull/35150.',
-  );
-}
 export { default as createTheme } from './createTheme';
 export { default as enhanceHighContrast } from './enhanceHighContrast';
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
-export { default as createStyles } from './createStyles';
 export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
 export { default as createTransitions, duration, easing } from './createTransitions';
@@ -45,7 +36,6 @@ export { default as withTheme } from './withTheme';
 
 export * from './ThemeProviderWithVars';
 export { default as extendTheme } from './createThemeWithVars';
-export { default as experimental_extendTheme } from './experimental_extendTheme'; // TODO: Remove in v7
 export { default as getOverlayAlpha } from './getOverlayAlpha';
 export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 
