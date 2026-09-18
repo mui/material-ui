@@ -226,4 +226,73 @@ describe('usePagination', () => {
     ).result.current.items;
     expect(serialize(items)).to.deep.equal([1, 2, 3]);
   });
+
+  it('should link a neighbouring page when the current page is near an edge', () => {
+    [4, 5, 8, 11].forEach((count) => {
+      [1, 2, count - 1, count].forEach((page) => {
+        const items = renderHook(() =>
+          usePagination({ count, page, boundaryCount: 0, siblingCount: 0 }),
+        ).result.current.items;
+        const pages = serialize(items).filter((item) => typeof item === 'number');
+        expect(pages.length, `count=${count} page=${page}`).to.be.at.least(2);
+      });
+    });
+  });
+
+  it('should keep the neighbouring page linked when count is 4', () => {
+    let items;
+
+    items = renderHook(() =>
+      usePagination({ count: 4, page: 2, boundaryCount: 0, siblingCount: 0 }),
+    ).result.current.items;
+    expect(serialize(items)).to.deep.equal(['previous', 1, 2, 'end-ellipsis', 'next']);
+
+    items = renderHook(() =>
+      usePagination({ count: 4, page: 3, boundaryCount: 0, siblingCount: 0 }),
+    ).result.current.items;
+    expect(serialize(items)).to.deep.equal(['previous', 'start-ellipsis', 3, 4, 'next']);
+
+    items = renderHook(() =>
+      usePagination({ count: 4, page: 4, boundaryCount: 0, siblingCount: 0 }),
+    ).result.current.items;
+    expect(serialize(items)).to.deep.equal(['previous', 'start-ellipsis', 3, 4, 'next']);
+  });
+
+  it('should keep the neighbouring page linked on the first & last pages', () => {
+    let items;
+
+    items = renderHook(() =>
+      usePagination({ count: 11, page: 1, boundaryCount: 0, siblingCount: 0 }),
+    ).result.current.items;
+    expect(serialize(items)).to.deep.equal(['previous', 1, 2, 'end-ellipsis', 'next']);
+
+    items = renderHook(() =>
+      usePagination({ count: 11, page: 2, boundaryCount: 0, siblingCount: 0 }),
+    ).result.current.items;
+    expect(serialize(items)).to.deep.equal(['previous', 1, 2, 'end-ellipsis', 'next']);
+
+    items = renderHook(() =>
+      usePagination({ count: 11, page: 10, boundaryCount: 0, siblingCount: 0 }),
+    ).result.current.items;
+    expect(serialize(items)).to.deep.equal(['previous', 'start-ellipsis', 10, 11, 'next']);
+
+    items = renderHook(() =>
+      usePagination({ count: 11, page: 11, boundaryCount: 0, siblingCount: 0 }),
+    ).result.current.items;
+    expect(serialize(items)).to.deep.equal(['previous', 'start-ellipsis', 10, 11, 'next']);
+  });
+
+  it('should stay navigable without previous & next buttons when count is 4', () => {
+    const items = renderHook(() =>
+      usePagination({
+        count: 4,
+        page: 3,
+        boundaryCount: 0,
+        siblingCount: 0,
+        hidePrevButton: true,
+        hideNextButton: true,
+      }),
+    ).result.current.items;
+    expect(serialize(items)).to.deep.equal(['start-ellipsis', 3, 4]);
+  });
 });
