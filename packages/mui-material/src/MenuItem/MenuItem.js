@@ -74,39 +74,49 @@ const MenuItemRoot = styled(ButtonBase, {
     whiteSpace: 'nowrap',
     '&:hover': {
       textDecoration: 'none',
-      backgroundColor: (theme.vars || theme).palette.action.hover,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
+      // Only the state COLOURS are gated; the touch reset and text-decoration are
+      // component behaviour, not state colour, so they always apply.
+      ...(theme.states?.default
+        ? null
+        : {
+            backgroundColor: (theme.vars || theme).palette.action.hover,
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          }),
     },
-    [`&.${menuItemClasses.selected}`]: {
-      backgroundColor: theme.alpha(
-        (theme.vars || theme).palette.primary.main,
-        (theme.vars || theme).palette.action.selectedOpacity,
-      ),
-      ...(!theme.focusVisible && {
-        [`&.${menuItemClasses.focusVisible}`]: {
-          backgroundColor: theme.alpha(
-            (theme.vars || theme).palette.primary.main,
-            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
-          ),
-        },
-      }),
-    },
-    [`&.${menuItemClasses.selected}:hover`]: {
-      backgroundColor: theme.alpha(
-        (theme.vars || theme).palette.primary.main,
-        `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
-      ),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.alpha(
-          (theme.vars || theme).palette.primary.main,
-          (theme.vars || theme).palette.action.selectedOpacity,
-        ),
-      },
-    },
+    ...(theme.states?.default
+      ? null
+      : {
+          [`&.${menuItemClasses.selected}`]: {
+            backgroundColor: theme.alpha(
+              (theme.vars || theme).palette.primary.main,
+              (theme.vars || theme).palette.action.selectedOpacity,
+            ),
+            ...(!theme.focusVisible && {
+              [`&.${menuItemClasses.focusVisible}`]: {
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette.primary.main,
+                  `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+                ),
+              },
+            }),
+          },
+          [`&.${menuItemClasses.selected}:hover`]: {
+            backgroundColor: theme.alpha(
+              (theme.vars || theme).palette.primary.main,
+              `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
+            ),
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette.primary.main,
+                (theme.vars || theme).palette.action.selectedOpacity,
+              ),
+            },
+          },
+        }),
     ...(theme.focusVisible
       ? // Inset the ring: a scrolling Menu/MenuList clips an outset ring.
         applyInsetFocusVisible(1)
