@@ -1,5 +1,6 @@
 import * as React from 'react';
 import NextLink from 'next/link';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -273,6 +274,14 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
       <MenuTooltip
         title={
           <React.Fragment>
+            <Box
+              component="img"
+              src="/static/images/menu2/document-copy.svg"
+              alt=""
+              width={240}
+              height={112}
+              sx={{ display: 'block', maxWidth: '100%', height: 'auto', mb: 1, borderRadius: 1 }}
+            />
             <Typography component="p" variant="inherit" sx={{ mb: 1 }}>
               Create a <strong>separate copy</strong> in your Drive.
             </Typography>
@@ -500,9 +509,9 @@ export default function Menu2Experiment() {
           <section>
             <h3 id="menu2-tooltips">Menu2 + Tooltip</h3>
             <p>
-              Material UI Tooltip adds descriptions to menu items. Hover over or focus Make a copy
-              to see paragraphs with bold and italic text. Tooltip content has no links, buttons, or
-              other controls.
+              Material UI Tooltip adds descriptions to menu items. Hover over or focus Make a copy
+              to see an image and paragraphs with bold and italic text. Tooltip content has no
+              links, buttons, or other controls.
             </p>
             <Menu2WithTooltipsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
           </section>
