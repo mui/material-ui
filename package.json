@@ -16,6 +16,8 @@
     "release:build": "lerna run --concurrency 8 --no-private build --skip-nx-cache",
     "release:changelog": "node scripts/releaseChangelog.mjs",
     "release:pack": "tsx scripts/releasePack.mts",
+    "a11y:scorecard": "node scripts/a11yScorecard.mjs",
+    "a11y:scorecard:check": "node scripts/a11yScorecard.mjs --check",
     "docs:api": "rimraf --glob ./docs/pages/**/api-docs ./docs/pages/**/api && pnpm docs:api:build",
     "docs:api:build": "tsx ./scripts/buildApiDocs/index.ts",
     "docs:llms:build": "rimraf --glob ./docs/public/material-ui/ && tsx ./scripts/buildLlmsDocs/index.ts --projectSettings ./packages-internal/api-docs-builder-core/materialUi/projectSettings.ts",
