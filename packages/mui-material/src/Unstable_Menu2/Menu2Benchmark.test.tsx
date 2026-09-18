@@ -43,12 +43,15 @@ function ClassicMenuHarness(props: { withSelected?: boolean; variant?: 'menu' | 
   );
 }
 
-function Menu2Harness(props: { withSelected?: boolean }) {
-  const { withSelected = false } = props;
+function Menu2Harness(props: {
+  withSelected?: boolean;
+  onOpenChange?: React.ComponentProps<typeof Menu2>['onOpenChange'];
+}) {
+  const { withSelected = false, onOpenChange } = props;
 
   return (
     <div>
-      <Menu2 trigger={<button type="button">Options</button>}>
+      <Menu2 trigger={<button type="button">Options</button>} onOpenChange={onOpenChange}>
         <Menu2Item>Alpha</Menu2Item>
         <Menu2Item disabled>Beta</Menu2Item>
         <Menu2Item selected={withSelected}>Gamma</Menu2Item>
@@ -59,6 +62,18 @@ function Menu2Harness(props: { withSelected?: boolean }) {
 }
 
 const menuEl = () => document.querySelector('[role="menu"]');
+
+function describeNode(node: EventTarget | null) {
+  if (!(node instanceof Element)) {
+    return 'null';
+  }
+  const guard = node.hasAttribute('data-base-ui-focus-guard')
+    ? `[guard ${node.getAttribute('data-type') ?? 'trigger'}]`
+    : '';
+  const role = node.getAttribute('role') ? `[role=${node.getAttribute('role')}]` : '';
+  const testId = node.getAttribute('data-testid') ? `#${node.getAttribute('data-testid')}` : '';
+  return `${node.tagName.toLowerCase()}${role}${guard}${testId}`;
+}
 const openTrigger = () => screen.getByRole('button', { name: 'Options' });
 const waitForOpen = () => waitFor(() => expect(menuEl()).not.to.equal(null));
 
@@ -239,9 +254,18 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
       expect(classicTrigger).toHaveFocus();
       unmountClassic();
 
+      // This half fails only on the legacy Firefox job, and not locally. The
+      // failure message reports the focus chain and the open-change reasons.
+      const openChanges: string[] = [];
+      const focusChain: string[] = [];
+      const onFocusIn = (event: FocusEvent) => {
+        focusChain.push(`${describeNode(event.relatedTarget)} > ${describeNode(event.target)}`);
+      };
       const { user: successorUser } = render(
         <React.Fragment>
-          <Menu2Harness />
+          <Menu2Harness
+            onOpenChange={(open, details) => openChanges.push(`${open}:${details.reason}`)}
+          />
           <button type="button" data-testid="next">
             Next
           </button>
@@ -249,8 +273,19 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
       );
       await successorUser.click(openTrigger());
       await waitForOpen();
-      await successorUser.tab();
-      await waitFor(() => expect(menuEl()).to.equal(null));
+      document.addEventListener('focusin', onFocusIn, true);
+      try {
+        await successorUser.tab();
+        await waitFor(() => expect(menuEl()).to.equal(null));
+      } catch (error) {
+        (error as Error).message +=
+          `\nopen changes: ${openChanges.join(', ')}` +
+          `\nfocus chain: ${focusChain.join(' | ')}` +
+          `\nactive: ${describeNode(document.activeElement)}`;
+        throw error;
+      } finally {
+        document.removeEventListener('focusin', onFocusIn, true);
+      }
       // The successor lets the Tab through, so focus advances as the user asked.
       expect(screen.getByTestId('next')).toHaveFocus();
     });
