@@ -157,7 +157,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   const handleBeforeKeyDown = useEventCallback((event) => {
     // Check if key is already down to avoid repeats being counted as multiple activations
-    if (focusRipple && !event.repeat && focusVisible && event.key === ' ') {
+    if (focusRipple && !disableRipple && !event.repeat && focusVisible && event.key === ' ') {
       ripple.stop(event, () => {
         ripple.start(event);
       });
@@ -167,7 +167,13 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const handleBeforeKeyUp = useEventCallback((event) => {
     // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
     // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
-    if (focusRipple && event.key === ' ' && focusVisible && !event.defaultPrevented) {
+    if (
+      focusRipple &&
+      !disableRipple &&
+      event.key === ' ' &&
+      focusVisible &&
+      !event.defaultPrevented
+    ) {
       ripple.stop(event, () => {
         ripple.pulsate(event);
       });
@@ -212,10 +218,30 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     }
   }, [disableRipple, focusRipple, focusVisible, ripple]);
 
-  const handleMouseDown = useRippleHandler(ripple, 'start', onMouseDown, disableTouchRipple);
-  const handleContextMenu = useRippleHandler(ripple, 'stop', onContextMenu, disableTouchRipple);
-  const handleDragLeave = useRippleHandler(ripple, 'stop', onDragLeave, disableTouchRipple);
-  const handleMouseUp = useRippleHandler(ripple, 'stop', onMouseUp, disableTouchRipple);
+  const handleMouseDown = useRippleHandler(
+    ripple,
+    'start',
+    onMouseDown,
+    disableTouchRipple || disableRipple,
+  );
+  const handleContextMenu = useRippleHandler(
+    ripple,
+    'stop',
+    onContextMenu,
+    disableTouchRipple || disableRipple,
+  );
+  const handleDragLeave = useRippleHandler(
+    ripple,
+    'stop',
+    onDragLeave,
+    disableTouchRipple || disableRipple,
+  );
+  const handleMouseUp = useRippleHandler(
+    ripple,
+    'stop',
+    onMouseUp,
+    disableTouchRipple || disableRipple,
+  );
   const handleMouseLeave = useRippleHandler(
     ripple,
     'stop',
@@ -227,11 +253,26 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
         onMouseLeave(event);
       }
     },
-    disableTouchRipple,
+    disableTouchRipple || disableRipple,
   );
-  const handleTouchStart = useRippleHandler(ripple, 'start', onTouchStart, disableTouchRipple);
-  const handleTouchEnd = useRippleHandler(ripple, 'stop', onTouchEnd, disableTouchRipple);
-  const handleTouchMove = useRippleHandler(ripple, 'stop', onTouchMove, disableTouchRipple);
+  const handleTouchStart = useRippleHandler(
+    ripple,
+    'start',
+    onTouchStart,
+    disableTouchRipple || disableRipple,
+  );
+  const handleTouchEnd = useRippleHandler(
+    ripple,
+    'stop',
+    onTouchEnd,
+    disableTouchRipple || disableRipple,
+  );
+  const handleTouchMove = useRippleHandler(
+    ripple,
+    'stop',
+    onTouchMove,
+    disableTouchRipple || disableRipple,
+  );
 
   const handleBlur = useRippleHandler(
     ripple,
@@ -244,7 +285,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
         onBlur(event);
       }
     },
-    false,
+    disableRipple,
   );
 
   const handleFocus = useEventCallback((event) => {
