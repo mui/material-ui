@@ -16,6 +16,7 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import useSlot from '../utils/useSlot';
 import { getTransitionStyles } from '../transitions/utils';
+import resolveColorStates, { resolveStateGroup } from '../styles/resolveColorStates';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, size, color, onDelete, clickable, variant } = ownerState;
@@ -66,6 +67,9 @@ const ChipRoot = styled('div', {
   memoTheme(({ theme }) => {
     const textColor =
       theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300];
+    const defaultStates = resolveColorStates(theme, 'MuiChip');
+    const filledStates = resolveStateGroup(theme, 'MuiChip', 'filled');
+    const outlinedStates = resolveStateGroup(theme, 'MuiChip', 'outlined');
     return {
       maxWidth: '100%',
       fontFamily: theme.typography.fontFamily,
@@ -75,8 +79,10 @@ const ChipRoot = styled('div', {
       justifyContent: 'center',
       height: 32,
       lineHeight: 1.5,
-      color: (theme.vars || theme).palette.text.primary,
-      backgroundColor: (theme.vars || theme).palette.action.selected,
+      ...(!filledStates && {
+        color: (theme.vars || theme).palette.text.primary,
+        backgroundColor: (theme.vars || theme).palette.action.selected,
+      }),
       borderRadius: 32 / 2,
       whiteSpace: 'nowrap',
       ...getTransitionStyles(theme, ['background-color', 'box-shadow']),
@@ -90,7 +96,9 @@ const ChipRoot = styled('div', {
       verticalAlign: 'middle',
       boxSizing: 'border-box',
       [`&.${chipClasses.disabled}`]: {
-        opacity: (theme.vars || theme).palette.action.disabledOpacity,
+        ...(!defaultStates && {
+          opacity: (theme.vars || theme).palette.action.disabledOpacity,
+        }),
         pointerEvents: 'none',
       },
       [`& .${chipClasses.avatar}`]: {
@@ -161,23 +169,25 @@ const ChipRoot = styled('div', {
             },
           },
         },
-        ...Object.entries(theme.palette)
-          .filter(createSimplePaletteValueFilter(['contrastText']))
-          .map(([color]) => {
-            return {
-              props: { color },
-              style: {
-                backgroundColor: (theme.vars || theme).palette[color].main,
-                color: (theme.vars || theme).palette[color].contrastText,
-                [`& .${chipClasses.deleteIcon}`]: {
-                  color: theme.alpha((theme.vars || theme).palette[color].contrastText, 0.7),
-                  '&:hover, &:active': {
+        ...(filledStates
+          ? []
+          : Object.entries(theme.palette)
+              .filter(createSimplePaletteValueFilter(['contrastText']))
+              .map(([color]) => {
+                return {
+                  props: { color },
+                  style: {
+                    backgroundColor: (theme.vars || theme).palette[color].main,
                     color: (theme.vars || theme).palette[color].contrastText,
+                    [`& .${chipClasses.deleteIcon}`]: {
+                      color: theme.alpha((theme.vars || theme).palette[color].contrastText, 0.7),
+                      '&:hover, &:active': {
+                        color: (theme.vars || theme).palette[color].contrastText,
+                      },
+                    },
                   },
-                },
-              },
-            };
-          }),
+                };
+              })),
         {
           props: (props) => props.iconColor === props.color,
           style: {
@@ -223,12 +233,14 @@ const ChipRoot = styled('div', {
             userSelect: 'none',
             WebkitTapHighlightColor: 'transparent',
             cursor: 'pointer',
-            '&:hover': {
-              backgroundColor: theme.alpha(
-                (theme.vars || theme).palette.action.selected,
-                `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
-              ),
-            },
+            ...(!filledStates && {
+              '&:hover': {
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette.action.selected,
+                  `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
+                ),
+              },
+            }),
             ...(!theme.focusVisible && {
               [`&.${chipClasses.focusVisible}`]: {
                 backgroundColor: theme.alpha(
@@ -242,37 +254,43 @@ const ChipRoot = styled('div', {
             },
           },
         },
-        ...Object.entries(theme.palette)
-          .filter(createSimplePaletteValueFilter(['dark']))
-          .map(([color]) => ({
-            props: { color, clickable: true },
-            style: {
-              '&:hover': {
-                backgroundColor: (theme.vars || theme).palette[color].dark,
-              },
-              ...(!theme.focusVisible && {
-                [`&.${chipClasses.focusVisible}`]: {
-                  backgroundColor: (theme.vars || theme).palette[color].dark,
+        ...(filledStates
+          ? []
+          : Object.entries(theme.palette)
+              .filter(createSimplePaletteValueFilter(['dark']))
+              .map(([color]) => ({
+                props: { color, clickable: true },
+                style: {
+                  '&:hover': {
+                    backgroundColor: (theme.vars || theme).palette[color].dark,
+                  },
+                  ...(!theme.focusVisible && {
+                    [`&.${chipClasses.focusVisible}`]: {
+                      backgroundColor: (theme.vars || theme).palette[color].dark,
+                    },
+                  }),
                 },
-              }),
-            },
-          })),
+              }))),
         {
           props: { variant: 'outlined' },
           style: {
-            backgroundColor: 'transparent',
-            border: theme.vars
-              ? `1px solid ${theme.vars.palette.Chip.defaultBorder}`
-              : `1px solid ${
-                  theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[700]
-                }`,
-            [`&.${chipClasses.clickable}:hover`]: {
-              backgroundColor: (theme.vars || theme).palette.action.hover,
-            },
-            ...(!theme.focusVisible && {
-              [`&.${chipClasses.focusVisible}`]: {
-                backgroundColor: (theme.vars || theme).palette.action.focus,
+            ...(!outlinedStates && {
+              backgroundColor: 'transparent',
+              border: theme.vars
+                ? `1px solid ${theme.vars.palette.Chip.defaultBorder}`
+                : `1px solid ${
+                    theme.palette.mode === 'light'
+                      ? theme.palette.grey[400]
+                      : theme.palette.grey[700]
+                  }`,
+              [`&.${chipClasses.clickable}:hover`]: {
+                backgroundColor: (theme.vars || theme).palette.action.hover,
               },
+              ...(!theme.focusVisible && {
+                [`&.${chipClasses.focusVisible}`]: {
+                  backgroundColor: (theme.vars || theme).palette.action.focus,
+                },
+              }),
             }),
             [`& .${chipClasses.avatar}`]: {
               marginLeft: 4,
@@ -299,35 +317,73 @@ const ChipRoot = styled('div', {
             },
           },
         },
-        ...Object.entries(theme.palette)
-          .filter(createSimplePaletteValueFilter()) // no need to check for mainChannel as it's calculated from main
-          .map(([color]) => ({
-            props: { variant: 'outlined', color },
-            style: {
-              color: (theme.vars || theme).palette[color].main,
-              border: `1px solid ${theme.alpha((theme.vars || theme).palette[color].main, 0.7)}`,
-              [`&.${chipClasses.clickable}:hover`]: {
-                backgroundColor: theme.alpha(
-                  (theme.vars || theme).palette[color].main,
-                  (theme.vars || theme).palette.action.hoverOpacity,
-                ),
-              },
-              ...(!theme.focusVisible && {
-                [`&.${chipClasses.focusVisible}`]: {
-                  backgroundColor: theme.alpha(
-                    (theme.vars || theme).palette[color].main,
-                    (theme.vars || theme).palette.action.focusOpacity,
-                  ),
-                },
-              }),
-              [`& .${chipClasses.deleteIcon}`]: {
-                color: theme.alpha((theme.vars || theme).palette[color].main, 0.7),
-                '&:hover, &:active': {
+        ...(outlinedStates
+          ? []
+          : Object.entries(theme.palette)
+              // no need to check for mainChannel as it's calculated from main
+              .filter(createSimplePaletteValueFilter())
+              .map(([color]) => ({
+                props: { variant: 'outlined', color },
+                style: {
                   color: (theme.vars || theme).palette[color].main,
+                  border: `1px solid ${theme.alpha((theme.vars || theme).palette[color].main, 0.7)}`,
+                  [`&.${chipClasses.clickable}:hover`]: {
+                    backgroundColor: theme.alpha(
+                      (theme.vars || theme).palette[color].main,
+                      (theme.vars || theme).palette.action.hoverOpacity,
+                    ),
+                  },
+                  ...(!theme.focusVisible && {
+                    [`&.${chipClasses.focusVisible}`]: {
+                      backgroundColor: theme.alpha(
+                        (theme.vars || theme).palette[color].main,
+                        (theme.vars || theme).palette.action.focusOpacity,
+                      ),
+                    },
+                  }),
+                  [`& .${chipClasses.deleteIcon}`]: {
+                    color: theme.alpha((theme.vars || theme).palette[color].main, 0.7),
+                    '&:hover, &:active': {
+                      color: (theme.vars || theme).palette[color].main,
+                    },
+                  },
                 },
-              },
-            },
-          })),
+              }))),
+        ...[
+          'default',
+          ...Object.entries(theme.palette)
+            .filter(createSimplePaletteValueFilter())
+            .map(([color]) => color),
+        ].flatMap((color) =>
+          ['filled', 'outlined'].flatMap((variant) => {
+            const colorStates = resolveColorStates(theme, 'MuiChip', variant, color);
+            return colorStates
+              ? [
+                  {
+                    props: { variant, color },
+                    style: {
+                      ...(variant === 'outlined' && {
+                        backgroundColor: 'transparent',
+                        border: '1px solid',
+                      }),
+                      ...colorStates.initial,
+                      ...(colorStates.hover && {
+                        '@media (hover: hover)': {
+                          [`&.${chipClasses.clickable}:hover`]: colorStates.hover,
+                        },
+                      }),
+                      ...(colorStates.active && {
+                        [`&.${chipClasses.clickable}:active`]: colorStates.active,
+                      }),
+                      ...(colorStates.disabled && {
+                        [`&.${chipClasses.disabled}`]: colorStates.disabled,
+                      }),
+                    },
+                  },
+                ]
+              : [];
+          }),
+        ),
       ],
     };
   }),
