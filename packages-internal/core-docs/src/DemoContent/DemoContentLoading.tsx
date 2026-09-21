@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type { ContentLoadingProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import { useCodeFallback } from '@mui/internal-docs-infra/CodeHighlighter';
+import { useUrlHashState } from '@mui/internal-docs-infra/useUrlHashState';
 import { CodeSource } from './CodeSource';
 import { DemoContainer, DemoFileTabBarSkeleton } from './DemoContainer';
 import { DemoToolbar } from './DemoToolbar';
@@ -20,7 +21,8 @@ import { loadDemoContent } from './loadDemoContent';
 //     HTML (which would otherwise fail HTML validation), matching the live
 //     `DemoContent`.
 //   - the toolbar buttons, inert (the handlers need `useDemo` state)
-//   - the SSR'd `source` (initial file) in the code slot when expanded
+//   - the SSR'd `source` (initial file) in the code slot when expanded, which
+//     includes landing on a source deep link (see `expanded` below)
 // ---------------------------------------------------------------------------
 
 export type DemoContentLoadingProps = ContentLoadingProps<DemoOptions>;
@@ -67,17 +69,30 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
   const previewStyle = maxWidth == null && height == null ? undefined : { maxWidth, height };
   const themeName = name ?? slug ?? 'demo';
   const resolvedBg = bg ?? (iframe ? true : undefined);
-  const { sourceVisible, hasSourceFocus } = resolveDemoSourceView({
-    expanded: initialExpanded === true,
-    focusedLines,
-    collapsible,
-    hasFocusProjection: collapsible,
-  });
 
   // The root file is the first entry in `fileNames`, used both for the demo's
   // deep-link anchor (its base name, e.g. `#ContainedButtons`) and the per-file
   // source anchors below.
   const rootFileName = fileNames?.[0];
+
+  // Root-file deep-link ids: `#<RootFile>.{tsx,ts,js,jsx}`, matching the live
+  // `DemoContent`, so a `#<RootFile>.tsx`/`.jsx` link resolves before hydration.
+  const sourceAnchorIds = rootFileName ? fileSourceAnchorIds([rootFileName]) : undefined;
+
+  // Landing on a source deep link expands the skeleton at hydration, so the
+  // page settles before the live content arrives (master expands on hydration
+  // too). The hash reads `null` on the server and while hydrating, so this is a
+  // post-hydration re-render, never a mismatch. The `.js`/`.jsx` language swap
+  // needs the transform and still waits for the live demo.
+  const [hash] = useUrlHashState();
+  const expanded =
+    initialExpanded === true || (hash != null && sourceAnchorIds?.includes(hash) === true);
+  const { sourceVisible, hasSourceFocus } = resolveDemoSourceView({
+    expanded,
+    focusedLines,
+    collapsible,
+    hasFocusProjection: collapsible,
+  });
 
   // Match the live `DemoContent` anchor (the root file's base name) so a deep
   // link resolves against the skeleton before the demo hydrates. An explicit
@@ -106,7 +121,6 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
   // Render the same buttons here, inert and `aria-busy`, so they are visible
   // from first paint and the swap to the live toolbar changes nothing visually.
   // The label mirrors `DemoContent`'s `showCodeLabel` for the initial state.
-  const expanded = initialExpanded === true;
   const showCodeLabel = hasSourceFocus
     ? t(expanded ? 'hideFullSource' : 'showFullSource')
     : t(expanded ? 'hideSource' : 'showSource');
@@ -136,19 +150,17 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
   );
 
   const tabs =
-    initialExpanded && fileNames && fileNames.length > 1 ? (
-      <DemoFileTabBarSkeleton aria-hidden />
-    ) : null;
+    expanded && fileNames && fileNames.length > 1 ? <DemoFileTabBarSkeleton aria-hidden /> : null;
 
   // Reuse the live `CodeSource` wrapper so the SSR'd code panel matches the
   // hydrated demo exactly (dark background, rounded bottom corners, padding,
   // and the `enhanceCodeEmphasis` styles). `fallbackCode` is the ready `<code>`
   // (with the `data-*` attributes the collapse CSS keys off), so it only needs
   // wrapping in `<pre>` to satisfy `CodeSource`'s descendant selectors. The
-  // shared `initialExpanded` value keeps its frame visibility aligned with the
+  // shared `expanded` value keeps its frame visibility aligned with the
   // hydrated source.
   const code = fallbackCode ? (
-    <CodeSource expanded={initialExpanded}>
+    <CodeSource expanded={expanded}>
       {/* `fallbackCode` is a bare `<code>` (from `useCodeFallback`); wrap it in
             `<pre>` so `CodeSource`'s `& pre > code` selectors apply — the live
             render gets its `<pre>` from `<Pre>`. Without it the panel is
@@ -156,11 +168,6 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
       <pre>{fallbackCode}</pre>
     </CodeSource>
   ) : null;
-
-  // Root-file deep-link ids for the SSR skeleton: `#<RootFile>.{tsx,ts,js,jsx}`,
-  // matching the live `DemoContent`, so a `#<RootFile>.tsx`/`.jsx` link resolves
-  // before hydration.
-  const sourceAnchorIds = rootFileName ? fileSourceAnchorIds([rootFileName]) : undefined;
 
   return (
     <DemoContainer
@@ -175,7 +182,7 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
       toolbar={toolbar}
       toolbarLabel={t('demoToolbarLabel')}
       toolbarBusy
-      expanded={initialExpanded}
+      expanded={expanded}
       sourceVisible={sourceVisible}
       tabs={tabs}
       code={code}
