@@ -17,7 +17,7 @@ import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
 import { getTransitionStyles } from '../transitions/utils';
-import resolveColorStates, { resolveStateGroup } from '../styles/resolveColorStates';
+import resolveColorStates, { authorsBorder, resolveStateGroup } from '../styles/resolveColorStates';
 
 const useUtilityClasses = (ownerState) => {
   const { color, disableElevation, fullWidth, size, variant, loading, loadingPosition, classes } =
@@ -235,7 +235,10 @@ const ButtonRoot = styled(ButtonBase, {
                   style: {
                     ...(variant === 'outlined'
                       ? { border: '1px solid currentColor', ...colorStates.initial }
-                      : { ...colorStates.initial, border: 'none' }),
+                      : {
+                          ...colorStates.initial,
+                          ...(authorsBorder(colorStates.initial) ? null : { border: 'none' }),
+                        }),
                     ...(colorStates.hover && {
                       '@media (hover: hover)': {
                         '&:hover': colorStates.hover,

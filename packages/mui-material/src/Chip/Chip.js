@@ -16,7 +16,7 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import useSlot from '../utils/useSlot';
 import { getTransitionStyles } from '../transitions/utils';
-import resolveColorStates, { resolveStateGroup } from '../styles/resolveColorStates';
+import resolveColorStates, { authorsBorder, resolveStateGroup } from '../styles/resolveColorStates';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, size, color, onDelete, clickable, variant } = ownerState;
@@ -398,7 +398,10 @@ const ChipRoot = styled('div', {
                         border: '1px solid',
                         ...colorStates.initial,
                       }
-                    : { ...colorStates.initial, border: 'none' }),
+                    : {
+                        ...colorStates.initial,
+                        ...(authorsBorder(colorStates.initial) ? null : { border: 'none' }),
+                      }),
                   ...(colorStates.hover && {
                     '@media (hover: hover)': {
                       [`&.${chipClasses.clickable}:hover`]: colorStates.hover,

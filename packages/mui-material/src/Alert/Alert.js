@@ -13,7 +13,7 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import Paper from '../Paper';
 import alertClasses, { getAlertUtilityClass } from './alertClasses';
 import IconButton from '../IconButton';
-import { resolveStateGroup } from '../styles/resolveColorStates';
+import { authorsBorder, resolveStateGroup } from '../styles/resolveColorStates';
 import SuccessOutlinedIcon from '../internal/svg-icons/SuccessOutlined';
 import ReportProblemOutlinedIcon from '../internal/svg-icons/ReportProblemOutlined';
 import ErrorOutlineIcon from '../internal/svg-icons/ErrorOutline';
@@ -148,7 +148,10 @@ const AlertRoot = styled(Paper, {
                   style: {
                     ...(variant === 'outlined'
                       ? { border: '1px solid', ...colorStates.initial }
-                      : { ...colorStates.initial, border: 'none' }),
+                      : {
+                          ...colorStates.initial,
+                          ...(authorsBorder(colorStates.initial) ? null : { border: 'none' }),
+                        }),
                     ...(variant === 'filled' && {
                       ...(theme.focusVisible &&
                         applyChildrenFocusVisible(
