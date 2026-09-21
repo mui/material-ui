@@ -50,8 +50,8 @@ const ToggleButtonRoot = styled(ButtonBase, {
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     color: (theme.vars || theme).palette.action.active,
     [`&.${toggleButtonClasses.selected}`]: {
-      // Settles the sibling border overlap by paint order rather than by border
-      // colors, so the selected borders survive any background customization.
+      // Settles the sibling border overlap by paint order rather than by border colors,
+      // so the selected borders survive any background customization.
       zIndex: 1,
     },
     [`&.${toggleButtonClasses.disabled}`]: {
