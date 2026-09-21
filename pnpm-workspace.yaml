@@ -66,3 +66,5 @@ allowBuilds:
   '@mui/x-telemetry': false
   core-js: false
   core-js-pure: false
+patchedDependencies:
+  '@mui/internal-docs-infra@0.12.1-canary.50': patches/@mui__internal-docs-infra@0.12.1-canary.50.patch
