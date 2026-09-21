@@ -49,12 +49,12 @@ overrides:
   # TEMP: pin to mui-public#1875's pkg.pr.new build until it merges and publishes a real
   # Babel-8 @mui/internal-code-infra. Remove this whole block (and blockExoticSubdeps below)
   # once that lands and this repo's own @mui/internal-* versions are bumped normally.
-  '@mui/internal-code-infra': 'https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@23e0bbb0a'
-  '@mui/internal-netlify-cache': 'https://pkg.pr.new/mui/mui-public/@mui/internal-netlify-cache@23e0bbb0a'
-  '@mui/internal-test-utils': 'https://pkg.pr.new/mui/mui-public/@mui/internal-test-utils@23e0bbb0a'
-  '@mui/internal-babel-plugin-display-name': 'https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@23e0bbb0a'
-  '@mui/internal-babel-plugin-minify-errors': 'https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@23e0bbb0a'
-  '@mui/internal-babel-plugin-resolve-imports': 'https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@23e0bbb0a'
+  '@mui/internal-code-infra': 'https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@18a123a1f'
+  '@mui/internal-netlify-cache': 'https://pkg.pr.new/mui/mui-public/@mui/internal-netlify-cache@18a123a1f'
+  '@mui/internal-test-utils': 'https://pkg.pr.new/mui/mui-public/@mui/internal-test-utils@18a123a1f'
+  '@mui/internal-babel-plugin-display-name': 'https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@18a123a1f'
+  '@mui/internal-babel-plugin-minify-errors': 'https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@18a123a1f'
+  '@mui/internal-babel-plugin-resolve-imports': 'https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@18a123a1f'
   # Both were bundled twice in the docs build
   'docs>stylis': '4.2.0'
   'docs>react-is': '19.3.0'

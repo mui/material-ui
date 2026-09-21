@@ -7,11 +7,11 @@ interface Iterator<T> {
   (appendStyle: (responsiveStyles: Record<string, any>, style: object) => void, value: T): void;
 }
 
-export const traverseBreakpoints = <T = unknown,>(
+export function traverseBreakpoints<T = unknown>(
   breakpoints: Breakpoints,
   responsive: T | T[] | Record<string, any> | undefined,
   iterator: Iterator<T>,
-) => {
+) {
   const smallestBreakpoint = breakpoints.keys[0]; // the keys is sorted from smallest to largest by `createBreakpoints`.
 
   if (Array.isArray(responsive)) {
@@ -55,4 +55,4 @@ export const traverseBreakpoints = <T = unknown,>(
       Object.assign(responsiveStyles, style);
     }, responsive);
   }
-};
+}
