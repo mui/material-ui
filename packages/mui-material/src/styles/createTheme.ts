@@ -5,7 +5,7 @@ import {
   mergeFocusVisibleInput,
   isResolvedFocusVisible,
 } from './focusVisible';
-import { ColorSystemOptions } from './createThemeFoundation';
+import { type ColorSystemOptions } from './createThemeFoundation';
 import createThemeWithVars, {
   CssVarsThemeOptions,
   ColorSystem,
