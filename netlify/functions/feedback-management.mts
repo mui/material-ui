@@ -1,6 +1,16 @@
 import querystring from 'node:querystring';
 import { App, AwsLambdaReceiver, BlockAction, ButtonAction } from '@slack/bolt';
-import { Handler } from '@netlify/functions';
+import { Handler, type Config } from '@netlify/functions';
+
+// Rate-limit this public, unauthenticated endpoint so one client can't flood Slack with posts.
+export const config: Config = {
+  path: ['/.netlify/functions/feedback-management', '/.netlify/functions/feedback-management/'],
+  rateLimit: {
+    windowLimit: 6,
+    windowSize: 60,
+    aggregateBy: 'ip',
+  },
+};
 
 const X_FEEBACKS_CHANNEL_ID = 'C04U3R2V9UK';
 const JOY_FEEBACKS_CHANNEL_ID = 'C050VE13HDL';
