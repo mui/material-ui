@@ -247,12 +247,10 @@ export default function DemoContent(props: DemoContentProps) {
     ? t(demo.expanded ? 'hideFullSource' : 'showFullSource')
     : t(demo.expanded ? 'hideSource' : 'showSource');
 
-  // Track whether the source viewer has ever been opened so the Carbon ad
-  // only appears once the user actually engages with the demo.
+  // The Carbon ad appears once the reader toggles the source viewer (see
+  // `handleToggleFrames`), not when a source deep link or `initialExpanded`
+  // opens it — matching master, where only the toggle sets `showAd`.
   const [adShown, setAdShown] = React.useState(false);
-  if (demo.expanded && !adShown) {
-    setAdShown(true);
-  }
   const showAd = adShown && !pageDisableAd && !demoDisableAd;
 
   // Build the file list for the AI hero from the current variant's source
@@ -331,6 +329,7 @@ export default function DemoContent(props: DemoContentProps) {
     resetDemo(demo.reset, remountPreview);
   }, [demo]);
   const handleToggleFrames = React.useCallback(() => {
+    setAdShown(true);
     toggleDemoExpanded(
       expandedRef.current,
       expandWithEditingPreload,
