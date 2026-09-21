@@ -7,7 +7,7 @@ interface Iterator<T> {
   (appendStyle: (responsiveStyles: Record<string, any>, style: object) => void, value: T): void;
 }
 
-export const traverseBreakpoints = <T = unknown,>(
+export const traverseBreakpoints = <T = unknown>(
   breakpoints: Breakpoints,
   responsive: T | T[] | Record<string, any> | undefined,
   iterator: Iterator<T>,
