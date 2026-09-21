@@ -315,10 +315,11 @@
       calc(attr(data-focused-lines type(<number>), 0) * var(--docs-infra-syntax-line-height));
   }
 
-  /* Expanded (`data-code-open` on the demo root reveals the full source):
+  /* Expanded (`data-code-expanded` on the demo root reveals the full source):
    * reserve every line again. Same specificity as the collapsed rule above but
-   * later in source order, so it wins while the source is open. */
-  [data-code-open] pre > code[data-collapsible] {
+   * later in source order, so it wins while the source is expanded. Not
+   * `data-code-open` — that is also set for the collapsed focus window. */
+  [data-code-expanded] pre > code[data-collapsible] {
     contain-intrinsic-height: auto
       calc(attr(data-total-lines type(<number>), 0) * var(--docs-infra-syntax-line-height));
   }
