@@ -1,4 +1,4 @@
 {
-  "extends": "../../../../../tsconfig.json",
+  "extends": "../tsconfig.json",
   "files": ["autocompleteProps.spec.tsx"]
 }
