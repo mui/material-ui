@@ -2,7 +2,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
-import { Menu as BaseMenu } from '@base-ui/react/menu';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import { SxProps } from '@mui/system';
 import { styled } from '../zero-styled';
@@ -216,7 +215,7 @@ const Menu2PopupPaper = styled(Menu2PaperBase, {
   overridesResolver: (props, styles) => styles.paper,
 })({});
 
-const Menu2PopupBackdrop = styled(BaseMenu.Backdrop, {
+const Menu2PopupBackdrop = styled('div', {
   name: 'MuiMenu2',
   slot: 'Backdrop',
   overridesResolver: (props, styles) => styles.backdrop,

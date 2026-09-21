@@ -297,6 +297,7 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     sx: rootSlotSx,
     ...rootSlotOtherProps
   } = resolvedRootProps ?? {};
+  const { sx: backdropSlotSx, ...backdropSlotOtherProps } = resolvedBackdropProps ?? {};
   const {
     className: positionerSlotClassName,
     ref: positionerSlotRef,
@@ -379,10 +380,18 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
       style={rootStyle}
     >
       {BackdropSlot ? (
-        <BackdropSlot
-          {...appendOwnerState(BackdropSlot, {}, ownerState)}
-          {...resolvedBackdropProps}
-          className={clsx(classes?.backdrop, resolvedBackdropProps?.className)}
+        <BaseMenu.Backdrop
+          {...backdropSlotOtherProps}
+          render={
+            <BackdropSlot
+              {...getSlotProps(
+                BackdropSlot,
+                appendOwnerState(BackdropSlot, { sx: backdropSlotSx }, ownerState),
+                sxHostOmittedProps,
+              )}
+            />
+          }
+          className={clsx(classes?.backdrop, backdropSlotOtherProps.className)}
         />
       ) : null}
       <BaseMenu.Positioner
