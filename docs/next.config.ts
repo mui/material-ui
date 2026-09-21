@@ -13,6 +13,11 @@ import { findPages } from './src/modules/utils/find';
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const require = createRequire(import.meta.url);
 
+// Longest focus region rendered as a collapsed snippet. Matches the 16-line
+// `maxLines` of the legacy `babel-plugin-jsx-preview`; a longer region is hidden
+// (`oversizedFocus: 'hide'`) rather than truncated.
+const DEMO_FOCUS_MAX_LINES = 16;
+
 const workspaceRoot = path.join(currentDirectory, '../');
 
 const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 'utf8');
@@ -100,7 +105,7 @@ export default withDeploymentConfig({
               deferPrecompute: true,
               emphasisOptions: {
                 emitFrameIndent: true,
-                focusFramesMaxSize: 12,
+                focusFramesMaxSize: DEMO_FOCUS_MAX_LINES,
                 oversizedFocus: 'hide',
               },
               requireClient: '@mui/internal-core-docs/utils/createDemoClient',
@@ -260,7 +265,7 @@ export default withDeploymentConfig({
                   // shift highlighted/focus frames left when collapsed.
                   emphasisOptions: {
                     emitFrameIndent: true,
-                    focusFramesMaxSize: 12,
+                    focusFramesMaxSize: DEMO_FOCUS_MAX_LINES,
                     oversizedFocus: 'hide',
                   },
                   requireClient: '@mui/internal-core-docs/utils/createDemoClient',
