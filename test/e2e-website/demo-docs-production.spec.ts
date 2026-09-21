@@ -151,10 +151,14 @@ export default function BasicButtons() {
 
       const demo = await reveal(getDemo(page, 'ControlledCheckbox'));
       // The checkbox is server-rendered, so it accepts clicks before the demo
-      // hydrates and silently drops them. The toolbar mounts with the live demo,
-      // so waiting for it gates the click on a hydrated tree. Retrying the click
-      // is not an option here: a second one would toggle the box back.
-      await expect(demo.getByRole('button', { name: 'Reset demo' })).toBeVisible();
+      // hydrates and silently drops them. The skeleton toolbar is `aria-busy`
+      // until the live demo mounts, so waiting for it to clear gates the click
+      // on a hydrated tree. Retrying the click is not an option here: a second
+      // one would toggle the box back.
+      await expect(demo.getByRole('toolbar', { name: 'demo source' })).not.toHaveAttribute(
+        'aria-busy',
+        'true',
+      );
 
       const checkbox = demo.getByRole('checkbox', { name: 'controlled' });
       await expect(checkbox).toBeChecked();

@@ -3,6 +3,8 @@ import type { ContentLoadingProps } from '@mui/internal-docs-infra/CodeHighlight
 import { useCodeFallback } from '@mui/internal-docs-infra/CodeHighlighter';
 import { CodeSource } from './CodeSource';
 import { DemoContainer, DemoFileTabBarSkeleton } from './DemoContainer';
+import { DemoToolbar } from './DemoToolbar';
+import { useTranslate } from '../i18n';
 import type { DemoOptions } from './DemoContent';
 import { demoAnchorId, fileSourceAnchorIds } from './sourceAnchors';
 import { resolveDemoSourceView } from './DemoContent.helpers';
@@ -17,11 +19,16 @@ import { loadDemoContent } from './loadDemoContent';
 //     mount the demo in the client-only portal — never inline in the static
 //     HTML (which would otherwise fail HTML validation), matching the live
 //     `DemoContent`.
-//   - an empty toolbar shell (interactive buttons need `useDemo` state)
+//   - the toolbar buttons, inert (the handlers need `useDemo` state)
 //   - the SSR'd `source` (initial file) in the code slot when expanded
 // ---------------------------------------------------------------------------
 
 export type DemoContentLoadingProps = ContentLoadingProps<DemoOptions>;
+
+// The skeleton toolbar has no demo state to act on; its buttons only hold the
+// layout (and the accessible names) until the live toolbar takes over.
+const noop = () => {};
+const noopAsync = async () => {};
 
 export default function DemoContentLoading(props: DemoContentLoadingProps) {
   // `code` is the ready `<code>` for the displayed file — the hook applies
@@ -53,12 +60,14 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
     name,
     slug,
     anchorId: anchorIdOption,
+    hideEditButton,
   } = props;
+  const t = useTranslate();
 
   const previewStyle = maxWidth == null && height == null ? undefined : { maxWidth, height };
   const themeName = name ?? slug ?? 'demo';
   const resolvedBg = bg ?? (iframe ? true : undefined);
-  const { sourceVisible } = resolveDemoSourceView({
+  const { sourceVisible, hasSourceFocus } = resolveDemoSourceView({
     expanded: initialExpanded === true,
     focusedLines,
     collapsible,
@@ -91,15 +100,40 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
     );
   }
 
-  // The toolbar buttons need `useDemo` state, so render an empty placeholder
-  // sized to match the live toolbar's content height. The tallest interactive
-  // element is the default-size `IconButton`, which renders at 42px once MUI's
-  // medium-size padding is applied. `DemoToolbarRoot` then adds 2px of
-  // vertical padding plus a 1px bottom border, for a rendered toolbar of
-  // 47px total. Sizing the placeholder to 42px keeps the layout from jumping
-  // when the interactive `DemoContent` takes over. Matches the
-  // `DemoToolbarFallback` value in master's `Demo.tsx`.
-  const toolbar = <div style={{ minHeight: 42 }} />;
+  // The live toolbar ships in the code-split `DemoContent` chunk, behind the
+  // highlighter runtime and the demo's precompute (~30kB gz on a 4Mbps link
+  // that is ~0.5s after hydration, vs ~0.2s for master's 8kB lazy toolbar).
+  // Render the same buttons here, inert and `aria-busy`, so they are visible
+  // from first paint and the swap to the live toolbar changes nothing visually.
+  // The label mirrors `DemoContent`'s `showCodeLabel` for the initial state.
+  const expanded = initialExpanded === true;
+  const showCodeLabel = hasSourceFocus
+    ? t(expanded ? 'hideFullSource' : 'showFullSource')
+    : t(expanded ? 'hideSource' : 'showSource');
+  const toolbar = (
+    <DemoToolbar
+      gaLabel={slug ?? name ?? ''}
+      demoSourceId={demoSourceId}
+      expanded={expanded}
+      onToggleExpand={noop}
+      toggleRef={null}
+      showCodeLabel={showCodeLabel}
+      hasJsTransform={false}
+      isJsSelected={false}
+      onLanguageClick={noop}
+      variants={[]}
+      selectedVariant=""
+      onSelectVariant={noop}
+      openMuiChat={noopAsync}
+      hideEditButton={hideEditButton}
+      onOpenStackBlitz={noop}
+      onOpenCodeSandbox={noop}
+      onCopySource={noopAsync}
+      onResetFocus={noop}
+      onReset={noop}
+      sourceAnchor={rootFileName}
+    />
+  );
 
   const tabs =
     initialExpanded && fileNames && fileNames.length > 1 ? (
@@ -139,6 +173,8 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
       hideToolbar={hideToolbar}
       previewStyle={previewStyle}
       toolbar={toolbar}
+      toolbarLabel={t('demoToolbarLabel')}
+      toolbarBusy
       expanded={initialExpanded}
       sourceVisible={sourceVisible}
       tabs={tabs}
