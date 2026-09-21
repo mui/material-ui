@@ -643,4 +643,14 @@ export default function BasicButtons() {
     const demo = getDemo(page, 'BasicButtons');
     await expect(demo.getByRole('toolbar', { name: 'demo source' })).toBeHidden();
   });
+
+  // The legacy docs previewed a demo's JSX up to 16 lines long; a focus region
+  // in that range must still render as the collapsed snippet.
+  test('shows a focused snippet longer than twelve lines', async ({ page }) => {
+    await page.goto('/material-ui/react-select/');
+
+    const demo = getDemo(page, 'BasicSelect');
+    await expect(demo.locator('pre > code')).toHaveAttribute('data-focused-lines', '14');
+    await expect(demo.locator('textarea')).toHaveValue(/^<FormControl fullWidth>/);
+  });
 });
