@@ -649,9 +649,6 @@ export function DemoContainer(props: DemoContainerProps) {
     >
       {anchorId != null ? <DemoAnchorLink id={anchorId} /> : null}
       {anchors}
-      {sourceAnchorIds?.map((id) => (
-        <DemoAnchorLink key={`source-${id}`} id={id} />
-      ))}
       <DemoPreviewArea
         ref={previewRef}
         className="demo-preview"
@@ -666,6 +663,11 @@ export function DemoContainer(props: DemoContainerProps) {
         )}
       </DemoPreviewArea>
 
+      {/* Source deep links land on the source, so their anchors sit just above
+          the toolbar (as on master) rather than at the demo top. */}
+      {sourceAnchorIds?.map((id) => (
+        <DemoAnchorLink key={`source-${id}`} id={id} />
+      ))}
       {toolbar != null ? (
         <React.Fragment>
           <DemoToolbarRoot
