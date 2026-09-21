@@ -45,8 +45,19 @@ async function clickForEffect(target: Locator, expectation: () => Promise<void>)
   }).toPass({ timeout: 15_000 });
 }
 
+// The textarea editor mounts on the reader's first pointer-down or keyboard
+// entry on the code (`editActivation: 'interaction'`), so activate it first.
+async function editor(demo: Locator) {
+  const textarea = demo.locator('textarea:visible');
+  if ((await textarea.count()) === 0) {
+    await demo.getByRole('group', { name: 'Editable code' }).first().click();
+  }
+  await textarea.waitFor();
+  return textarea;
+}
+
 async function expectButtonsPreview(demo: Locator) {
-  await expect(demo.locator('textarea')).toHaveValue(BUTTONS_PREVIEW_SOURCE);
+  await expect(await editor(demo)).toHaveValue(BUTTONS_PREVIEW_SOURCE);
 }
 
 test.describe('Demo docs', () => {
@@ -79,10 +90,8 @@ test.describe('Demo docs', () => {
       await demo.getByRole('button', { name: 'Expand code' }).click();
 
       await expect(demo.getByRole('button', { name: 'Collapse code' })).toBeVisible();
-      await expect(demo.locator('textarea')).toHaveValue(
-        /import Stack from '@mui\/material\/Stack'/,
-      );
-      await expect(demo.locator('textarea')).toHaveValue(/export default function BasicButtons/);
+      await expect(await editor(demo)).toHaveValue(/import Stack from '@mui\/material\/Stack'/);
+      await expect(await editor(demo)).toHaveValue(/export default function BasicButtons/);
 
       await demo.getByRole('button', { name: 'Collapse code' }).click();
 
@@ -92,7 +101,7 @@ test.describe('Demo docs', () => {
 
     test('runs edited preview source in place', async ({ page }) => {
       const demo = getDemo(page, 'BasicButtons');
-      await demo.locator('textarea').fill('<Button variant="contained">Edited live</Button>');
+      await (await editor(demo)).fill('<Button variant="contained">Edited live</Button>');
 
       await expect(demo.getByRole('button', { name: 'Edited live' })).toBeVisible();
       await expect(demo.locator('pre code')).toContainText('Edited live');
@@ -100,15 +109,15 @@ test.describe('Demo docs', () => {
 
     test('resets preview edits when expanding, then runs full-source edits', async ({ page }) => {
       const demo = getDemo(page, 'BasicButtons');
-      await demo.locator('textarea').fill('<Button>Preview edit</Button>');
+      await (await editor(demo)).fill('<Button>Preview edit</Button>');
       await expect(demo.getByRole('button', { name: 'Preview edit' })).toBeVisible();
 
       await demo.getByRole('button', { name: 'Expand code' }).click();
 
-      const editor = demo.locator('textarea');
-      await expect(editor).not.toHaveValue(/Preview edit/);
-      await expect(editor).toHaveValue(/export default function BasicButtons/);
-      await editor.fill(`import Button from '@mui/material/Button';
+      const textarea = await editor(demo);
+      await expect(textarea).not.toHaveValue(/Preview edit/);
+      await expect(textarea).toHaveValue(/export default function BasicButtons/);
+      await textarea.fill(`import Button from '@mui/material/Button';
 
 export default function BasicButtons() {
   return <Button variant="contained">Full source edit</Button>;
@@ -123,11 +132,11 @@ export default function BasicButtons() {
 
     test('reports live syntax errors without replacing the last valid render', async ({ page }) => {
       const demo = getDemo(page, 'BasicButtons');
-      const editor = demo.locator('textarea');
-      await editor.fill('<Button>Last valid render</Button>');
+      const textarea = await editor(demo);
+      await textarea.fill('<Button>Last valid render</Button>');
       await expect(demo.getByRole('button', { name: 'Last valid render' })).toBeVisible();
 
-      await editor.fill('<Button>');
+      await textarea.fill('<Button>');
 
       await expect(demo.getByRole('alert').filter({ hasText: 'SyntaxError' })).toBeVisible();
       await expect(demo.getByRole('button', { name: 'Last valid render' })).toBeVisible();
@@ -135,7 +144,7 @@ export default function BasicButtons() {
 
     test('resets edited source and remounts the bundled demo', async ({ page }) => {
       const demo = getDemo(page, 'BasicButtons');
-      await demo.locator('textarea').fill('<Button>Edited live</Button>');
+      await (await editor(demo)).fill('<Button>Edited live</Button>');
       await expect(demo.getByRole('button', { name: 'Edited live' })).toBeVisible();
 
       await demo.getByRole('button', { name: 'Reset demo' }).click();
@@ -174,13 +183,13 @@ export default function BasicButtons() {
       const demo = getDemo(page, 'BasicButtons');
       // The editable region itself is the tab stop; the hint is its description.
       const editorHint = demo.getByRole('group', { name: 'Editable code' });
-      const editor = demo.locator('textarea');
+      const textarea = demo.locator('textarea');
 
       // The demo surface is code-split, so retry until its key handler is live.
       await expect(async () => {
         await editorHint.focus();
         await page.keyboard.press('Enter');
-        await expect(editor).toBeFocused({ timeout: 1000 });
+        await expect(textarea).toBeFocused({ timeout: 1000 });
       }).toPass();
 
       await page.keyboard.press('Escape');
@@ -193,7 +202,7 @@ export default function BasicButtons() {
       await page.goto(BUTTONS_PATH);
 
       const previewDemo = getDemo(page, 'BasicButtons');
-      await expect(previewDemo.locator('textarea')).toBeVisible();
+      await expect(previewDemo.locator('pre code')).toBeVisible();
       await expect(previewDemo.getByRole('button', { name: 'Expand code' })).toBeVisible();
       await previewDemo.getByRole('button', { name: 'Expand code' }).click();
       await expect(previewDemo.getByRole('button', { name: 'Collapse code' })).toBeVisible();
@@ -202,7 +211,7 @@ export default function BasicButtons() {
       await expect(closedDemo.locator('textarea')).toHaveCount(0);
       await expect(closedDemo.getByRole('button', { name: 'Show code' })).toBeVisible();
       await closedDemo.getByRole('button', { name: 'Show code' }).click();
-      await expect(closedDemo.locator('textarea')).toHaveValue(
+      await expect(await editor(closedDemo)).toHaveValue(
         /export default function CustomizedButtons/,
       );
       await expect(closedDemo.getByRole('button', { name: 'Hide code' })).toBeVisible();
@@ -246,8 +255,8 @@ export default function BasicButtons() {
         'aria-pressed',
         'true',
       );
-      await expect(demo.locator('textarea')).toHaveValue(/export default function BasicButtons/);
-      await expect(demo.locator('textarea')).not.toHaveValue(/BasicButtons\.propTypes/);
+      await expect(await editor(demo)).toHaveValue(/export default function BasicButtons/);
+      await expect(await editor(demo)).not.toHaveValue(/BasicButtons\.propTypes/);
     });
 
     test('switches source languages, resets edits, and persists the preference', async ({
@@ -256,13 +265,13 @@ export default function BasicButtons() {
       await page.goto('/material-ui/react-checkbox/#ControlledCheckbox.js');
 
       const demo = getDemo(page, 'ControlledCheckbox');
-      const editor = demo.locator('textarea');
+      const textarea = await editor(demo);
       const javascript = demo.getByRole('button', { name: 'Show JavaScript source' });
       const typescript = demo.getByRole('button', { name: 'Show TypeScript source' });
 
       await expect(javascript).toHaveAttribute('aria-pressed', 'true');
-      await expect(editor).toHaveValue(/const handleChange = \(event\) =>/);
-      await editor.fill(
+      await expect(textarea).toHaveValue(/const handleChange = \(event\) =>/);
+      await textarea.fill(
         'export default function ControlledCheckbox() { return <div>JavaScript edit</div>; }',
       );
       await expect(demo.getByText('JavaScript edit', { exact: true })).toBeVisible();
@@ -270,8 +279,8 @@ export default function BasicButtons() {
       await typescript.click();
 
       await expect(typescript).toHaveAttribute('aria-pressed', 'true');
-      await expect(editor).not.toHaveValue(/JavaScript edit/);
-      await expect(editor).toHaveValue(/event: React\.ChangeEvent<HTMLInputElement>/);
+      await expect(textarea).not.toHaveValue(/JavaScript edit/);
+      await expect(textarea).toHaveValue(/event: React\.ChangeEvent<HTMLInputElement>/);
       await expect
         .poll(
           async () =>
@@ -285,7 +294,7 @@ export default function BasicButtons() {
       await expect(
         reloadedDemo.getByRole('button', { name: 'Show TypeScript source' }),
       ).toHaveAttribute('aria-pressed', 'true');
-      await expect(reloadedDemo.locator('textarea')).toHaveValue(
+      await expect(await editor(reloadedDemo)).toHaveValue(
         /event: React\.ChangeEvent<HTMLInputElement>/,
       );
     });
@@ -299,12 +308,14 @@ export default function BasicButtons() {
       await expect(tabs).toHaveCount(2);
       await expect(tabs.first()).toHaveText('FieldDemo.jsx');
       await expect(tabs.nth(1)).toHaveText('NumberField.jsx');
+      await editor(demo);
       await expect(demo.locator('textarea:visible')).toHaveCount(1);
 
       await tabs.nth(1).click();
 
       await expect(tabs.nth(1)).toHaveAttribute('data-active', '');
       // Unlike production, docs-infra also makes related files editable.
+      await editor(demo);
       await expect(demo.locator('textarea:visible')).toHaveCount(1);
       await expect(demo.locator('pre code:visible')).toContainText('NumberField');
     });
@@ -319,7 +330,7 @@ export default function BasicButtons() {
       await page.goto('/material-ui/react-number-field/#FieldDemo.js');
 
       const demo = getDemo(page, 'FieldDemo');
-      await demo.locator('textarea').fill('export default function FieldDemo() { return null; }');
+      await (await editor(demo)).fill('export default function FieldDemo() { return null; }');
       await demo.getByRole('button', { name: 'Copy the source' }).click();
       await expect
         .poll(async () => page.evaluate(() => navigator.clipboard.readText()))
@@ -556,7 +567,7 @@ export default function BasicButtons() {
     test('shows runtime evaluation errors and recovers on reset', async ({ page }) => {
       const demo = getDemo(page, 'BasicButtons');
       await demo.getByRole('button', { name: 'Expand code' }).click();
-      await demo.locator('textarea').fill("throw new Error('Runtime crash');");
+      await (await editor(demo)).fill("throw new Error('Runtime crash');");
 
       await expect(demo.getByRole('alert').filter({ hasText: 'Runtime crash' })).toBeVisible();
       await demo.getByRole('button', { name: 'Reset demo' }).click();
@@ -691,6 +702,6 @@ export default function BasicButtons() {
 
     const demo = getDemo(page, 'BasicSelect');
     await expect(demo.locator('pre > code')).toHaveAttribute('data-focused-lines', '14');
-    await expect(demo.locator('textarea')).toHaveValue(/^<FormControl fullWidth>/);
+    await expect(await editor(demo)).toHaveValue(/^<FormControl fullWidth>/);
   });
 });
