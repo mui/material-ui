@@ -660,6 +660,30 @@ export default function BasicButtons() {
     await expect(demo.getByRole('toolbar', { name: 'demo source' })).toBeHidden();
   });
 
+  test('lands a source link on the toolbar with the source expanded', async ({ page }) => {
+    await page.goto('/material-ui/react-button/#BasicButtons.jsx');
+
+    const demo = getDemo(page, 'BasicButtons');
+    await expect(demo.getByRole('button', { name: 'Collapse code' })).toBeVisible();
+    // The anchor sits just above the toolbar, so the toolbar lands under the
+    // app bar with the preview scrolled out above it.
+    const toolbar = demo.getByRole('toolbar', { name: 'demo source' });
+    await expect.poll(async () => (await toolbar.boundingBox())?.y).toBeGreaterThan(40);
+    await expect.poll(async () => (await toolbar.boundingBox())?.y).toBeLessThan(90);
+
+    await expect(demo.getByRole('toolbar', { name: 'demo source' })).not.toHaveAttribute(
+      'aria-busy',
+      'true',
+    );
+    await expect(demo.getByRole('button', { name: 'Show JavaScript source' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    );
+    // A deep link opens the source without the reader engaging the demo, so
+    // the inline ad stays hidden, as on master.
+    await expect(demo.locator('.carbonads')).toHaveCount(0);
+  });
+
   // The legacy docs previewed a demo's JSX up to 16 lines long; a focus region
   // in that range must still render as the collapsed snippet.
   test('shows a focused snippet longer than twelve lines', async ({ page }) => {
