@@ -242,7 +242,7 @@ function neoState(scheme: 'light' | 'dark') {
   };
 }
 
-const neoBindings = {
+const stateBindings = {
   MuiButton: {
     stateVariants: {
       default: 'input',
@@ -341,7 +341,7 @@ function makeNeoTheme(bindings: boolean): Theme {
   };
   const boundComponents = bindings
     ? (Object.fromEntries(
-        Object.entries(neoBindings).map(([key, value]) => [
+        Object.entries(stateBindings).map(([key, value]) => [
           key,
           { ...(staticComponents as Record<string, object>)[key], ...value },
         ]),
@@ -372,6 +372,326 @@ function makeNeoTheme(bindings: boolean): Theme {
   });
 }
 
+// ---------------------------------------------------------------------------
+// Radix look. Reference values: Radix Themes / Radix Colors (radix-ui/themes,
+// radix-ui/colors) — 12-step scales; states use the documented steps:
+// solid rest/hover = 9/10 (+ active filter), soft rest/hover/active = a3/a4/a5,
+// surface ring = a7 -> a8, disabled = grayA3 bg + grayA8 text.
+// ---------------------------------------------------------------------------
+
+const rx = {
+  light: {
+    blue9: '#0090ff',
+    blue10: '#0588f0',
+    blue11: '#0d74ce',
+    blue8: '#5eb1ef',
+    blueA2: '#008cff0b',
+    blueA3: '#008ff519',
+    blueA4: '#009eff2a',
+    blueA5: '#0093ff3d',
+    blueA7: '#0083eb71',
+    blueA8: '#0084e6a1',
+    blueA11: '#006dcbf2',
+    slate1: '#fcfcfd',
+    slate11: '#60646c',
+    slate12: '#1c2024',
+    slateA3: '#0000330f',
+    slateA4: '#00002d17',
+    slateA5: '#0009321f',
+    slateA6: '#00002f26',
+    slateA7: '#00062e32',
+    slateA8: '#00083046',
+    red11: '#ce2c31',
+    redA2: '#ff000008',
+    redA3: '#f3000d14',
+    redA4: '#ff000824',
+    redA7: '#df000356',
+    redA8: '#d2000571',
+    redA11: '#c40006d3',
+    amber11: '#ab6400',
+    amberA3: '#ffde003d',
+    green11: '#218358',
+    greenA3: '#00a43319',
+    surface: '#ffffff',
+    activeFilter: 'brightness(0.92) saturate(1.1)',
+  },
+  dark: {
+    blue9: '#0090ff',
+    blue10: '#3b9eff',
+    blue11: '#70b8ff',
+    blue8: '#2870bd',
+    blueA2: '#1166fb18',
+    blueA3: '#0077ff3a',
+    blueA4: '#0075ff57',
+    blueA5: '#0081fd6b',
+    blueA7: '#2a91fe98',
+    blueA8: '#3094feb9',
+    blueA11: '#70b8ff',
+    slate1: '#111113',
+    slate11: '#b0b4ba',
+    slate12: '#edeef0',
+    slateA3: '#ddeaf814',
+    slateA4: '#d3edf81d',
+    slateA5: '#d9edfe25',
+    slateA6: '#d9edff36',
+    slateA7: '#d9edff40',
+    slateA8: '#d9edff5d',
+    red11: '#ff9592',
+    redA2: '#f22f3e11',
+    redA3: '#ff173f2d',
+    redA4: '#fe0a3b44',
+    redA7: '#ff536184',
+    redA8: '#ff5d61b0',
+    redA11: '#ff9592',
+    amber11: '#ffca16',
+    amberA3: '#fa820022',
+    green11: '#3dd68c',
+    greenA3: '#22ff991e',
+    surface: '#18191b',
+    activeFilter: 'brightness(1.08)',
+  },
+};
+
+function radixState(scheme: 'light' | 'dark') {
+  const s = rx[scheme];
+  const disabled = { backgroundColor: s.slateA3, color: s.slateA8 };
+  return {
+    // solid: Button contained, Chip filled — accent 9 -> 10 -> 10 + filter
+    input: {
+      primary: {
+        initial: { backgroundColor: s.blue9, color: '#ffffff' },
+        hover: { backgroundColor: s.blue10 },
+        active: { backgroundColor: s.blue10, filter: s.activeFilter },
+        disabled,
+      },
+      default: {
+        initial: { backgroundColor: s.slateA3, color: s.slate12 },
+        hover: { backgroundColor: s.slateA4 },
+        active: { backgroundColor: s.slateA5 },
+        disabled,
+      },
+    },
+    // surface: Button outlined, Chip outlined — a7 ring -> a8, soft press fill
+    ghost: {
+      primary: {
+        initial: { backgroundColor: s.surface, borderColor: s.blueA7, color: s.blueA11 },
+        hover: { borderColor: s.blueA8, backgroundColor: s.blueA2 },
+        active: { backgroundColor: s.blueA3, borderColor: s.blueA8 },
+        disabled: { ...disabled, borderColor: s.slateA7 },
+      },
+      error: {
+        initial: { backgroundColor: s.surface, borderColor: s.redA7, color: s.redA11 },
+        hover: { borderColor: s.redA8, backgroundColor: s.redA2 },
+        active: { backgroundColor: s.redA3, borderColor: s.redA8 },
+        disabled: { ...disabled, borderColor: s.slateA7 },
+      },
+      default: {
+        initial: { backgroundColor: s.surface, borderColor: s.slateA7, color: s.slate12 },
+        hover: { borderColor: s.slateA8, backgroundColor: s.slateA3 },
+        active: { backgroundColor: s.slateA4, borderColor: s.slateA8 },
+        disabled: { ...disabled, borderColor: s.slateA7 },
+      },
+    },
+    // ghost: Button text — transparent -> a3 -> a4
+    plain: {
+      primary: {
+        initial: { color: s.blueA11 },
+        hover: { backgroundColor: s.blueA3 },
+        active: { backgroundColor: s.blueA4 },
+        disabled: { color: s.slateA8 },
+      },
+      error: {
+        initial: { color: s.redA11 },
+        hover: { backgroundColor: s.redA3 },
+        active: { backgroundColor: s.redA4 },
+        disabled: { color: s.slateA8 },
+      },
+    },
+    // menu highlight: solid accent + contrast text; selection: soft a5
+    navigation: {
+      default: {
+        hover: { backgroundColor: s.blue9, color: '#ffffff' },
+        active: { backgroundColor: s.blue10, color: '#ffffff' },
+        selected: { backgroundColor: s.blueA5 },
+        selectedHover: { backgroundColor: s.blue9, color: '#ffffff' },
+        selectedActive: { backgroundColor: s.blue10, color: '#ffffff' },
+      },
+    },
+    // rows, toggles, pagination: gray wash hover, soft accent selection
+    dataDisplay: {
+      default: {
+        hover: { backgroundColor: s.slateA3 },
+        selected: { backgroundColor: s.blueA5 },
+        selectedHover: { backgroundColor: s.blueA5 },
+        disabled: { color: s.slateA8 },
+      },
+    },
+    // text fields: surface + gray a7 ring; focus = 2px accent-8 ring
+    field: {
+      primary: {
+        initial: { backgroundColor: s.surface, border: `1px solid ${s.slateA7}`, color: s.slate12 },
+        hover: { backgroundColor: s.surface },
+        focused: { outline: `2px solid ${s.blue8}`, outlineOffset: -1 },
+        disabled,
+      },
+      error: {
+        initial: { backgroundColor: s.surface, border: `1px solid ${s.redA8}`, color: s.red11 },
+        focused: { outline: `2px solid ${s.redA8}`, outlineOffset: -1 },
+      },
+    },
+    // callouts: soft a3 fill + step-11 text, no border
+    feedback: {
+      warning: { initial: { backgroundColor: s.amberA3, color: s.amber11 } },
+      error: { initial: { backgroundColor: s.redA3, color: s.red11 } },
+      success: { initial: { backgroundColor: s.greenA3, color: s.green11 } },
+      info: { initial: { backgroundColor: s.blueA3, color: s.blue11 } },
+    },
+  };
+}
+
+const radixFont =
+  '-apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto, "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif';
+
+function makeRadixTheme(bound: boolean): Theme {
+  const staticComponents: ThemeOptions['components'] = {
+    MuiPaper: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          border: `1px solid ${(theme.vars || theme).palette.divider}`,
+          boxShadow: 'none',
+          borderRadius: 8,
+          backgroundImage: 'none',
+        }),
+      },
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+        }),
+        head: { fontWeight: 500 },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: { fontWeight: 500, borderRadius: 6 },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: { fontWeight: 500, borderRadius: 6 },
+      },
+    },
+    MuiFilledInput: {
+      defaultProps: { disableUnderline: true },
+      styleOverrides: {
+        root: { borderRadius: 6 },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          '&.Mui-focused': { color: (theme.vars || theme).palette.text.primary },
+        }),
+      },
+    },
+    MuiAlert: {
+      styleOverrides: {
+        root: { borderRadius: 8 },
+      },
+    },
+    MuiMenu: {
+      styleOverrides: {
+        paper: {
+          boxShadow: '0px 12px 32px -16px rgba(0, 0, 60, 0.2), 0px 8px 40px rgba(0, 0, 0, 0.05)',
+          borderRadius: 8,
+        },
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: { borderRadius: 6, margin: '0 4px' },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: { borderRadius: 6, margin: '0 8px', width: 'auto' },
+      },
+    },
+    MuiToggleButtonGroup: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          backgroundColor: theme.palette.mode === 'dark' ? rx.dark.slateA3 : rx.light.slateA3,
+          borderRadius: 6,
+          padding: 2,
+        }),
+      },
+    },
+    MuiToggleButton: {
+      styleOverrides: {
+        root: { border: 'none', borderRadius: 4, fontWeight: 500 },
+      },
+    },
+    MuiPaginationItem: {
+      styleOverrides: {
+        root: { fontWeight: 500, borderRadius: 6 },
+      },
+    },
+  };
+  const boundComponents = bound
+    ? (Object.fromEntries(
+        Object.entries(stateBindings).map(([key, value]) => [
+          key,
+          { ...(staticComponents as Record<string, object>)[key], ...value },
+        ]),
+      ) as ThemeOptions['components'])
+    : {};
+  return createTheme({
+    cssVariables: { colorSchemeSelector: 'class' },
+    colorSchemes: {
+      light: {
+        palette: {
+          primary: { main: rx.light.blue9, contrastText: '#ffffff' },
+          error: { main: '#e5484d' },
+          warning: { main: '#ffc53d' },
+          success: { main: '#30a46c' },
+          info: { main: rx.light.blue9 },
+          background: { default: rx.light.slate1, paper: '#ffffff' },
+          text: { primary: rx.light.slate12, secondary: rx.light.slate11 },
+          divider: rx.light.slateA6,
+        },
+        state: radixState('light'),
+      },
+      dark: {
+        palette: {
+          primary: { main: rx.dark.blue9, contrastText: '#ffffff' },
+          error: { main: '#e5484d' },
+          warning: { main: '#ffc53d' },
+          success: { main: '#30a46c' },
+          info: { main: rx.dark.blue9 },
+          background: { default: rx.dark.slate1, paper: rx.dark.surface },
+          text: { primary: rx.dark.slate12, secondary: rx.dark.slate11 },
+          divider: rx.dark.slateA6,
+        },
+        state: radixState('dark'),
+      },
+    },
+    shape: { borderRadius: 6 },
+    typography: {
+      fontFamily: radixFont,
+      button: { textTransform: 'none', fontWeight: 500 },
+      subtitle2: { fontWeight: 500 },
+      h6: { fontWeight: 600 },
+    },
+    focusVisible: {
+      outlineWidth: 2,
+      outlineColor: rx.light.blue8,
+      outlineOffset: 2,
+    },
+    components: { ...staticComponents, ...boundComponents },
+  });
+}
+
 const themes: Record<string, { label: string; bound: Theme; unbound: Theme }> = {
   material: {
     label: 'Material',
@@ -388,6 +708,11 @@ const themes: Record<string, { label: string; bound: Theme; unbound: Theme }> = 
     label: 'Neobrutalism',
     bound: makeNeoTheme(true),
     unbound: makeNeoTheme(false),
+  },
+  radix: {
+    label: 'Radix',
+    bound: makeRadixTheme(true),
+    unbound: makeRadixTheme(false),
   },
 };
 
@@ -711,7 +1036,7 @@ function ConfigViewer({ theme }: { theme: Theme }) {
 }
 
 export default function StatesShowcase() {
-  const [look, setLook] = React.useState<'material' | 'neo'>('neo');
+  const [look, setLook] = React.useState<'material' | 'neo' | 'radix'>('neo');
   const [bindings, setBindings] = React.useState(true);
   const theme = bindings ? themes[look].bound : themes[look].unbound;
 
@@ -731,7 +1056,7 @@ export default function StatesShowcase() {
         <Box sx={{ maxWidth: 1080, mx: 'auto' }}>
           <Stack direction="row" sx={{ gap: 2, alignItems: 'center', flexWrap: 'wrap', mb: 1 }}>
             <Typography variant="h6" sx={{ mr: 'auto' }}>
-              One mail app, two design systems
+              One mail app, three design systems
             </Typography>
             <ToggleButtonGroup
               exclusive
