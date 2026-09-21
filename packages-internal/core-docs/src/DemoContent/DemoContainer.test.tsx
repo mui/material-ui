@@ -5,6 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { brandingLightTheme } from '../branding';
 import { UserLanguageProvider } from '../i18n';
 import { DemoContainer, DemoFileTabBarSkeleton } from './DemoContainer';
+import '../ThemeContext/syntax.css';
 
 // Stand-in demo that records the isolation props injected by `IsolatedDemo` via
 // `React.cloneElement`. The real demos forward these to `CssVarsProvider`, which
@@ -92,6 +93,52 @@ describe('DemoContainer', () => {
       marginTop: '8px',
       borderTopWidth: '1px',
     });
+  });
+
+  // Regression: the off-screen height reservation for a collapsible block keyed
+  // its expanded (`data-total-lines`) branch on `data-code-open`, which is set
+  // for any visible source — the collapsed focus window included. Every
+  // collapsed demo below the fold reserved its full-source height and shrank
+  // once scrolled into view, shifting the page after anchor navigation.
+  it.skipIf(isJsdom())('reserves the focus window height for collapsed source', () => {
+    function renderSource(expanded: boolean) {
+      return (
+        <UserLanguageProvider defaultUserLanguage="en">
+          <ThemeProvider theme={brandingLightTheme}>
+            <DemoContainer
+              preview={<div />}
+              toolbar={<div />}
+              expanded={expanded}
+              sourceVisible
+              code={
+                <pre>
+                  <code
+                    data-testid="source"
+                    data-collapsible=""
+                    data-total-lines="12"
+                    data-focused-lines="3"
+                  >
+                    source
+                  </code>
+                </pre>
+              }
+            />
+          </ThemeProvider>
+        </UserLanguageProvider>
+      );
+    }
+
+    const { rerender } = render(renderSource(false));
+    // 3 focused lines × 19.5px line height.
+    expect(getComputedStyle(screen.getByTestId('source')).containIntrinsicHeight).to.equal(
+      'auto 58.5px',
+    );
+
+    rerender(renderSource(true));
+    // 12 total lines × 19.5px line height.
+    expect(getComputedStyle(screen.getByTestId('source')).containIntrinsicHeight).to.equal(
+      'auto 234px',
+    );
   });
 
   it('reserves the full file tab bar height while loading', () => {
