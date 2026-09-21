@@ -131,7 +131,7 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
       onCopySource={noopAsync}
       onResetFocus={noop}
       onReset={noop}
-      sourceAnchor={rootFileName}
+      tsSourceAnchor={rootFileName}
     />
   );
 
