@@ -60,7 +60,7 @@ const InputRoot = styled(InputBaseRoot, {
       );
     }
     const fieldStates = resolveStateGroup(theme, 'MuiInput');
-    const underlineLegacy = (color) => ({
+    const mdUnderline = (color) => ({
       '&::before': {
         borderBottomColor: bottomLineColor,
       },
@@ -168,7 +168,7 @@ const InputRoot = styled(InputBaseRoot, {
               return [
                 {
                   props: { color },
-                  style: underlineLegacy(color),
+                  style: mdUnderline(color),
                 },
               ];
             }

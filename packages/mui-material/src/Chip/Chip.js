@@ -70,17 +70,17 @@ const ChipRoot = styled('div', {
     const defaultStates = resolveColorStates(theme, 'MuiChip');
     const filledStates = resolveStateGroup(theme, 'MuiChip', 'filled');
     const outlinedStates = resolveStateGroup(theme, 'MuiChip', 'outlined');
-    const filledRestLegacy = {
+    const mdFilledRest = {
       color: (theme.vars || theme).palette.text.primary,
       backgroundColor: (theme.vars || theme).palette.action.selected,
     };
-    const filledHoverLegacy = {
+    const mdFilledHover = {
       backgroundColor: theme.alpha(
         (theme.vars || theme).palette.action.selected,
         `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
       ),
     };
-    const filledColorLegacy = (color) => ({
+    const mdFilledColor = (color) => ({
       backgroundColor: (theme.vars || theme).palette[color].main,
       color: (theme.vars || theme).palette[color].contrastText,
       [`& .${chipClasses.deleteIcon}`]: {
@@ -90,10 +90,10 @@ const ChipRoot = styled('div', {
         },
       },
     });
-    const filledColorHoverLegacy = (color) => ({
+    const mdFilledColorHover = (color) => ({
       backgroundColor: (theme.vars || theme).palette[color].dark,
     });
-    const outlinedDefaultLegacy = {
+    const mdOutlinedDefault = {
       backgroundColor: 'transparent',
       border: theme.vars
         ? `1px solid ${theme.vars.palette.Chip.defaultBorder}`
@@ -109,7 +109,7 @@ const ChipRoot = styled('div', {
         },
       }),
     };
-    const outlinedColorLegacy = (color) => ({
+    const mdOutlinedColor = (color) => ({
       color: (theme.vars || theme).palette[color].main,
       border: `1px solid ${theme.alpha((theme.vars || theme).palette[color].main, 0.7)}`,
       [`&.${chipClasses.clickable}:hover`]: {
@@ -133,24 +133,23 @@ const ChipRoot = styled('div', {
         },
       },
     });
-    const filledLegacy = (color) =>
+    const mdFilled = (color) =>
       color === 'default'
         ? {
-            ...filledRestLegacy,
-            [`&.${chipClasses.clickable}:hover`]: filledHoverLegacy,
+            ...mdFilledRest,
+            [`&.${chipClasses.clickable}:hover`]: mdFilledHover,
           }
         : {
-            ...filledColorLegacy(color),
-            [`&.${chipClasses.clickable}:hover`]: filledColorHoverLegacy(color),
+            ...mdFilledColor(color),
+            [`&.${chipClasses.clickable}:hover`]: mdFilledColorHover(color),
             ...(!theme.focusVisible && {
-              [`&.${chipClasses.clickable}.${chipClasses.focusVisible}`]:
-                filledColorHoverLegacy(color),
+              [`&.${chipClasses.clickable}.${chipClasses.focusVisible}`]: mdFilledColorHover(color),
             }),
           };
-    const outlinedLegacy = (color) =>
+    const mdOutlined = (color) =>
       color === 'default'
-        ? outlinedDefaultLegacy
-        : { backgroundColor: 'transparent', ...outlinedColorLegacy(color) };
+        ? mdOutlinedDefault
+        : { backgroundColor: 'transparent', ...mdOutlinedColor(color) };
     return {
       maxWidth: '100%',
       fontFamily: theme.typography.fontFamily,
@@ -160,7 +159,7 @@ const ChipRoot = styled('div', {
       justifyContent: 'center',
       height: 32,
       lineHeight: 1.5,
-      ...(!filledStates && filledRestLegacy),
+      ...(!filledStates && mdFilledRest),
       borderRadius: 32 / 2,
       whiteSpace: 'nowrap',
       ...getTransitionStyles(theme, ['background-color', 'box-shadow']),
@@ -254,7 +253,7 @@ const ChipRoot = styled('div', {
               .map(([color]) => {
                 return {
                   props: { color },
-                  style: filledColorLegacy(color),
+                  style: mdFilledColor(color),
                 };
               })),
         {
@@ -303,7 +302,7 @@ const ChipRoot = styled('div', {
             WebkitTapHighlightColor: 'transparent',
             cursor: 'pointer',
             ...(!filledStates && {
-              '&:hover': filledHoverLegacy,
+              '&:hover': mdFilledHover,
               '&:active': {
                 boxShadow: (theme.vars || theme).shadows[1],
               },
@@ -325,16 +324,16 @@ const ChipRoot = styled('div', {
               .map(([color]) => ({
                 props: { color, clickable: true },
                 style: {
-                  '&:hover': filledColorHoverLegacy(color),
+                  '&:hover': mdFilledColorHover(color),
                   ...(!theme.focusVisible && {
-                    [`&.${chipClasses.focusVisible}`]: filledColorHoverLegacy(color),
+                    [`&.${chipClasses.focusVisible}`]: mdFilledColorHover(color),
                   }),
                 },
               }))),
         {
           props: { variant: 'outlined' },
           style: {
-            ...(!outlinedStates && outlinedDefaultLegacy),
+            ...(!outlinedStates && mdOutlinedDefault),
             [`& .${chipClasses.avatar}`]: {
               marginLeft: 4,
             },
@@ -367,7 +366,7 @@ const ChipRoot = styled('div', {
               .filter(createSimplePaletteValueFilter())
               .map(([color]) => ({
                 props: { variant: 'outlined', color },
-                style: outlinedColorLegacy(color),
+                style: mdOutlinedColor(color),
               }))),
         ...[
           'default',
@@ -385,7 +384,7 @@ const ChipRoot = styled('div', {
               return [
                 {
                   props: { variant, color },
-                  style: { filled: filledLegacy, outlined: outlinedLegacy }[variant](color),
+                  style: { filled: mdFilled, outlined: mdOutlined }[variant](color),
                 },
               ];
             }

@@ -66,10 +66,10 @@ const FilledInputRoot = styled(InputBaseRoot, {
     const hoverBackground = light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.13)';
     const disabledBackground = light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)';
     const fieldStates = resolveStateGroup(theme, 'MuiFilledInput');
-    const legacyUnderlineColor = theme.vars
+    const mdUnderlineColor = theme.vars
       ? theme.alpha(theme.vars.palette.common.onBackground, theme.vars.opacity.inputUnderline)
       : bottomLineColor;
-    const filledLegacy = (color) => ({
+    const mdFilled = (color) => ({
       backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
       '&:hover': {
         backgroundColor: theme.vars ? theme.vars.palette.FilledInput.hoverBg : hoverBackground,
@@ -86,7 +86,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
           : disabledBackground,
       },
       '&::before': {
-        borderBottomColor: legacyUnderlineColor,
+        borderBottomColor: mdUnderlineColor,
       },
       [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]: {
         borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
@@ -216,7 +216,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
               return [
                 {
                   props: { color },
-                  style: filledLegacy(color),
+                  style: mdFilled(color),
                 },
               ];
             }

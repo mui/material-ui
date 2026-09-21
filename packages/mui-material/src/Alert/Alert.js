@@ -48,7 +48,7 @@ const AlertRoot = styled(Paper, {
     const standardStates = resolveStateGroup(theme, 'MuiAlert', 'standard');
     const outlinedStates = resolveStateGroup(theme, 'MuiAlert', 'outlined');
     const filledStates = resolveStateGroup(theme, 'MuiAlert', 'filled');
-    const standardLegacy = (color) => ({
+    const mdStandard = (color) => ({
       color: theme.vars
         ? theme.vars.palette.Alert[`${color}Color`]
         : getColor(theme.palette[color].light, 0.6),
@@ -61,7 +61,7 @@ const AlertRoot = styled(Paper, {
             color: theme.palette[color].main,
           },
     });
-    const outlinedLegacy = (color) => ({
+    const mdOutlined = (color) => ({
       color: theme.vars
         ? theme.vars.palette.Alert[`${color}Color`]
         : getColor(theme.palette[color].light, 0.6),
@@ -72,7 +72,7 @@ const AlertRoot = styled(Paper, {
             color: theme.palette[color].main,
           },
     });
-    const filledLegacy = (color) => ({
+    const mdFilled = (color) => ({
       ...(theme.focusVisible &&
         applyChildrenFocusVisible(`0 0 0 4px ${(theme.vars || theme).palette.background.default}`)),
       fontWeight: theme.typography.fontWeightMedium,
@@ -99,7 +99,7 @@ const AlertRoot = styled(Paper, {
               .filter(createSimplePaletteValueFilter(['light']))
               .map(([color]) => ({
                 props: { colorSeverity: color, variant: 'standard' },
-                style: standardLegacy(color),
+                style: mdStandard(color),
               }))),
         ...(outlinedStates
           ? []
@@ -107,7 +107,7 @@ const AlertRoot = styled(Paper, {
               .filter(createSimplePaletteValueFilter(['light']))
               .map(([color]) => ({
                 props: { colorSeverity: color, variant: 'outlined' },
-                style: outlinedLegacy(color),
+                style: mdOutlined(color),
               }))),
         ...(filledStates
           ? []
@@ -115,7 +115,7 @@ const AlertRoot = styled(Paper, {
               .filter(createSimplePaletteValueFilter(['dark']))
               .map(([color]) => ({
                 props: { colorSeverity: color, variant: 'filled' },
-                style: filledLegacy(color),
+                style: mdFilled(color),
               }))),
         ...Object.entries(theme.palette)
           .filter(createSimplePaletteValueFilter())
@@ -135,9 +135,9 @@ const AlertRoot = styled(Paper, {
                   {
                     props: { colorSeverity: color, variant },
                     style: {
-                      standard: standardLegacy,
-                      outlined: outlinedLegacy,
-                      filled: filledLegacy,
+                      standard: mdStandard,
+                      outlined: mdOutlined,
+                      filled: mdFilled,
                     }[variant](color),
                   },
                 ];

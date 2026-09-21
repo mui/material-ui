@@ -75,7 +75,6 @@ const MenuItemRoot = styled(ButtonBase, {
       paddingBottom: 6,
       boxSizing: 'border-box',
       whiteSpace: 'nowrap',
-      ...colorStates?.initial,
       '&:hover': {
         textDecoration: 'none',
         ...(!colorStates && {
@@ -88,6 +87,7 @@ const MenuItemRoot = styled(ButtonBase, {
       },
       ...(colorStates
         ? {
+            ...colorStates.initial,
             '@media (hover: hover)': {
               '&:hover': colorStates.hover,
             },

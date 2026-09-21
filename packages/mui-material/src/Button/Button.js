@@ -104,7 +104,7 @@ const ButtonRoot = styled(ButtonBase, {
     const containedStates = resolveStateGroup(theme, 'MuiButton', 'contained');
     const outlinedStates = resolveStateGroup(theme, 'MuiButton', 'outlined');
     const textStates = resolveStateGroup(theme, 'MuiButton', 'text');
-    const containedLegacy = {
+    const mdContained = {
       color: `var(--variant-containedColor)`,
       backgroundColor: `var(--variant-containedBg)`,
       boxShadow: (theme.vars || theme).shadows[2],
@@ -130,7 +130,7 @@ const ButtonRoot = styled(ButtonBase, {
         backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
       },
     };
-    const outlinedLegacy = {
+    const mdOutlined = {
       padding: '5px 15px',
       border: '1px solid currentColor',
       borderColor: `var(--variant-outlinedBorder, currentColor)`,
@@ -140,7 +140,7 @@ const ButtonRoot = styled(ButtonBase, {
         border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
       },
     };
-    const textLegacy = {
+    const mdText = {
       padding: '6px 8px',
       color: `var(--variant-textColor)`,
       backgroundColor: `var(--variant-textBg)`,
@@ -165,15 +165,15 @@ const ButtonRoot = styled(ButtonBase, {
       variants: [
         {
           props: ({ ownerState }) => ownerState.variant === 'contained' && !containedStates,
-          style: containedLegacy,
+          style: mdContained,
         },
         {
           props: ({ ownerState }) => ownerState.variant === 'outlined' && !outlinedStates,
-          style: outlinedLegacy,
+          style: mdOutlined,
         },
         {
           props: ({ ownerState }) => ownerState.variant === 'text' && !textStates,
-          style: textLegacy,
+          style: mdText,
         },
         ...Object.entries(theme.palette)
           .filter(createSimplePaletteValueFilter())
@@ -222,9 +222,9 @@ const ButtonRoot = styled(ButtonBase, {
                   {
                     props: { variant, color },
                     style: {
-                      text: textLegacy,
-                      outlined: outlinedLegacy,
-                      contained: containedLegacy,
+                      text: mdText,
+                      outlined: mdOutlined,
+                      contained: mdContained,
                     }[variant],
                   },
                 ];

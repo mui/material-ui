@@ -48,19 +48,19 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
     const borderColor =
       theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
     const fieldStates = resolveStateGroup(theme, 'MuiOutlinedInput');
-    const legacyBorderColor = theme.vars
+    const mdBorderColor = theme.vars
       ? theme.alpha(theme.vars.palette.common.onBackground, 0.23)
       : borderColor;
-    const outlinedLegacy = (color) => ({
+    const mdOutlined = (color) => ({
       [`& .${outlinedInputClasses.notchedOutline}`]: {
-        borderColor: legacyBorderColor,
+        borderColor: mdBorderColor,
       },
       [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
         borderColor: (theme.vars || theme).palette.text.primary,
       },
       '@media (hover: none)': {
         [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-          borderColor: legacyBorderColor,
+          borderColor: mdBorderColor,
         },
       },
       [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
@@ -133,7 +133,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
               return [
                 {
                   props: { color },
-                  style: outlinedLegacy(color),
+                  style: mdOutlined(color),
                 },
               ];
             }
