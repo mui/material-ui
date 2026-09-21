@@ -14,12 +14,6 @@ minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - '@mui/*'
   - '@base-ui/*'
-  # Renovate security update: @babel/core@7.29.6
-  - '@babel/core@7.29.6'
-  # Renovate security update: react-router@8.3.0
-  - react-router@8.3.0
-  # Renovate security update: next@16.2.11
-  - next@16.2.11
   # Renovate security update: postcss@8.5.23
   - postcss@8.5.23
 # Drop exemptions from minimumReleaseAgeExclude once the lockfile stops resolving them,
