@@ -166,6 +166,10 @@ Other behavior and caveats:
 - **Focus guards:** Base UI inserts guards beside root and submenu triggers while menus are open. Adjacency and child-position selectors can therefore match different elements. The guards use fixed positioning, so they do not add flex or grid gaps by themselves. New parts own their spacing; a plain `Divider` still uses the classic adjacency rules. An upstream discussion of guard placement remains separate work.
 - **Height:** the popup uses the smaller of the viewport limit and Base UI's available height, with internal scrolling.
 
+### Known issues
+
+- **Retained menus in dialogs:** a Menu2 with `keepMounted` inside a kept-mounted Material Dialog can remain under `aria-hidden="true"` when it uses the default portal container. The menu is visible, but can be hidden from assistive technology. Leave Menu2's `keepMounted` disabled in this configuration. Automatic integration is deferred. [Base UI issue #5577](https://github.com/mui/base-ui/issues/5577) describes a related portal limitation, but not this exact composition: Material's modal manager hides the retained Menu2 portal.
+
 ### Compatibility
 
 Keep item presentation props, `keepMounted`, `container`, and Material's customization mechanisms. Theme keys change to `MuiMenu2*`; classic `MuiMenu` and `MuiMenuItem` overrides do not reach the successor.
