@@ -1,4 +1,5 @@
-import createPalette, { PaletteOptions } from './createPalette';
+import createPalette from './createPalette';
+import type { PaletteOptions } from './createPalette';
 import {
   resolveFocusVisible,
   mergeFocusVisibleInput,
