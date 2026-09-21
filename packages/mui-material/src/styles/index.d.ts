@@ -14,6 +14,9 @@ export {
   ColorStates,
   StateGroup,
   ThemeState,
+  StateGroupOverrides,
+  StateGroupKey,
+  StateVariants,
   PaletteStateColor,
   StateStyle,
 } from './createCssState';

@@ -1,10 +1,12 @@
-import type { ColorStates, StateGroup, ThemeState } from './createCssState';
+import type { ColorStates, StateGroup } from './createCssState';
+
+type StateRecord = Record<string, StateGroup | undefined>;
 
 interface ThemeLike {
   components?:
     Record<string, { stateVariants?: Record<string, string> | undefined } | undefined> | undefined;
-  vars?: { state?: ThemeState | undefined } | undefined;
-  state?: ThemeState | undefined;
+  vars?: { state?: StateRecord | undefined } | undefined;
+  state?: StateRecord | undefined;
 }
 
 export function resolveStateGroup(
