@@ -516,6 +516,11 @@ export interface DemoContainerProps {
   toolbarRef?: React.Ref<HTMLDivElement>;
   /** Accessible label for the toolbar landmark. */
   toolbarLabel?: string;
+  /**
+   * Set while the skeleton renders placeholder buttons: the toolbar is `inert`
+   * (no clicks, focus, or AT exposure) and `aria-busy` until the live one mounts.
+   */
+  toolbarBusy?: boolean;
   /** Keydown handler for ARIA toolbar keyboard navigation. */
   onToolbarKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
   /** Focus handler used to maintain the toolbar's roving tab stop. */
@@ -567,6 +572,7 @@ export function DemoContainer(props: DemoContainerProps) {
     toolbar,
     toolbarRef,
     toolbarLabel,
+    toolbarBusy,
     onToolbarKeyDown,
     onToolbarFocus,
     expanded,
@@ -667,6 +673,8 @@ export function DemoContainer(props: DemoContainerProps) {
             bg={resolvedBg}
             role="toolbar"
             aria-label={toolbarLabel}
+            aria-busy={toolbarBusy || undefined}
+            inert={toolbarBusy || undefined}
             onKeyDown={onToolbarKeyDown}
             onFocus={onToolbarFocus}
           >

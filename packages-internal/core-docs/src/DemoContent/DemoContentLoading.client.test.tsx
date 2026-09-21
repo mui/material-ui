@@ -1,6 +1,6 @@
 import { describe, beforeEach, it, expect, vi } from 'vitest';
 import * as React from 'react';
-import { createRenderer, waitFor } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/material/styles';
 import { brandingLightTheme } from '../branding';
 import { UserLanguageProvider } from '../i18n';
@@ -35,6 +35,28 @@ describe('DemoContentLoading client behavior', () => {
   beforeEach(() => {
     mocks.canLoadContent = false;
     mocks.loadDemoContent.mockClear();
+  });
+
+  // The live toolbar arrives with the code-split `DemoContent` chunk. The
+  // skeleton renders the same buttons, inert, so they are visible from first
+  // paint instead of popping in once the chunk lands.
+  // Skipped in jsdom: without media queries the toolbar stays `display: none`
+  // (it shows from the `sm` breakpoint up), which empties the accessible names.
+  it.skipIf(isJsdom())('renders the toolbar buttons before the live content mounts', () => {
+    render(
+      <UserLanguageProvider defaultUserLanguage="en">
+        <ThemeProvider theme={brandingLightTheme}>
+          <DemoContentLoading component={null} />
+        </ThemeProvider>
+      </UserLanguageProvider>,
+    );
+
+    expect(screen.getByRole('toolbar', { name: 'demo source' })).to.have.attribute(
+      'aria-busy',
+      'true',
+    );
+    expect(screen.getByRole('button', { name: 'Show code' })).not.to.equal(null);
+    expect(screen.getByRole('button', { name: 'Copy the source' })).not.to.equal(null);
   });
 
   it('starts loading content only when deferred precompute starts', async () => {
