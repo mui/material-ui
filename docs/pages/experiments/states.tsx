@@ -413,6 +413,9 @@ const rx = {
     green11: '#218358',
     greenA3: '#00a43319',
     surface: '#ffffff',
+    blueSurface: '#f1f9ffcc',
+    redSurface: '#fff5f5cc',
+    graySurface: '#ffffffcc',
     activeFilter: 'brightness(0.92) saturate(1.1)',
   },
   dark: {
@@ -448,6 +451,9 @@ const rx = {
     green11: '#3dd68c',
     greenA3: '#22ff991e',
     surface: '#18191b',
+    blueSurface: '#11213d80',
+    redSurface: '#2f151780',
+    graySurface: '#21212180',
     activeFilter: 'brightness(1.08)',
   },
 };
@@ -474,20 +480,20 @@ function radixState(scheme: 'light' | 'dark') {
     // surface: Button outlined, Chip outlined — a7 ring -> a8, soft press fill
     ghost: {
       primary: {
-        initial: { backgroundColor: s.surface, borderColor: s.blueA7, color: s.blueA11 },
-        hover: { borderColor: s.blueA8, backgroundColor: s.blueA2 },
+        initial: { backgroundColor: s.blueSurface, borderColor: s.blueA7, color: s.blueA11 },
+        hover: { borderColor: s.blueA8 },
         active: { backgroundColor: s.blueA3, borderColor: s.blueA8 },
         disabled: { ...disabled, borderColor: s.slateA7 },
       },
       error: {
-        initial: { backgroundColor: s.surface, borderColor: s.redA7, color: s.redA11 },
-        hover: { borderColor: s.redA8, backgroundColor: s.redA2 },
+        initial: { backgroundColor: s.redSurface, borderColor: s.redA7, color: s.redA11 },
+        hover: { borderColor: s.redA8 },
         active: { backgroundColor: s.redA3, borderColor: s.redA8 },
         disabled: { ...disabled, borderColor: s.slateA7 },
       },
       default: {
-        initial: { backgroundColor: s.surface, borderColor: s.slateA7, color: s.slate12 },
-        hover: { borderColor: s.slateA8, backgroundColor: s.slateA3 },
+        initial: { backgroundColor: s.graySurface, borderColor: s.slateA7, color: s.slate12 },
+        hover: { borderColor: s.slateA8 },
         active: { backgroundColor: s.slateA4, borderColor: s.slateA8 },
         disabled: { ...disabled, borderColor: s.slateA7 },
       },
@@ -574,18 +580,23 @@ function makeRadixTheme(bound: boolean): Theme {
     },
     MuiButton: {
       styleOverrides: {
-        root: { fontWeight: 500, borderRadius: 6 },
+        root: {
+          fontWeight: 500,
+          borderRadius: 4,
+          padding: '4px 12px',
+          minHeight: 32,
+        },
       },
     },
     MuiChip: {
       styleOverrides: {
-        root: { fontWeight: 500, borderRadius: 6 },
+        root: { fontWeight: 500, borderRadius: 4 },
       },
     },
     MuiFilledInput: {
       defaultProps: { disableUnderline: true },
       styleOverrides: {
-        root: { borderRadius: 6 },
+        root: { borderRadius: 4 },
       },
     },
     MuiInputLabel: {
@@ -610,12 +621,12 @@ function makeRadixTheme(bound: boolean): Theme {
     },
     MuiMenuItem: {
       styleOverrides: {
-        root: { borderRadius: 6, margin: '0 4px' },
+        root: { borderRadius: 4, margin: '0 4px' },
       },
     },
     MuiListItemButton: {
       styleOverrides: {
-        root: { borderRadius: 6, margin: '0 8px', width: 'auto' },
+        root: { borderRadius: 4, margin: '0 8px', width: 'auto' },
       },
     },
     MuiToggleButtonGroup: {
@@ -629,12 +640,12 @@ function makeRadixTheme(bound: boolean): Theme {
     },
     MuiToggleButton: {
       styleOverrides: {
-        root: { border: 'none', borderRadius: 4, fontWeight: 500 },
+        root: { border: 'none', borderRadius: 3, fontWeight: 500 },
       },
     },
     MuiPaginationItem: {
       styleOverrides: {
-        root: { fontWeight: 500, borderRadius: 6 },
+        root: { fontWeight: 500, borderRadius: 4 },
       },
     },
   };
@@ -676,7 +687,7 @@ function makeRadixTheme(bound: boolean): Theme {
         state: radixState('dark'),
       },
     },
-    shape: { borderRadius: 6 },
+    shape: { borderRadius: 4 },
     typography: {
       fontFamily: radixFont,
       button: { textTransform: 'none', fontWeight: 500 },
