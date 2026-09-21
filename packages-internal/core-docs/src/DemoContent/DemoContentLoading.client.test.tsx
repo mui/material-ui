@@ -59,6 +59,26 @@ describe('DemoContentLoading client behavior', () => {
     expect(screen.getByRole('button', { name: 'Copy the source' })).not.to.equal(null);
   });
 
+  // Landing on a source deep link expands the skeleton at hydration, so the
+  // page settles before the live content (and its language swap) arrives.
+  it('expands the skeleton when the hash targets its source anchor', () => {
+    window.location.hash = '#Probe.jsx';
+    try {
+      const { container } = render(
+        <UserLanguageProvider defaultUserLanguage="en">
+          <ThemeProvider theme={brandingLightTheme}>
+            <DemoContentLoading component={null} fileNames={['Probe.tsx']} />
+          </ThemeProvider>
+        </UserLanguageProvider>,
+      );
+
+      expect(container.querySelector('[data-code-expanded]')).not.to.equal(null);
+      expect(screen.getByRole('button', { name: 'Hide code', hidden: true })).not.to.equal(null);
+    } finally {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+  });
+
   it('starts loading content only when deferred precompute starts', async () => {
     const { rerender } = render(renderLoading());
 
