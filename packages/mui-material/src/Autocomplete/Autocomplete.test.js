@@ -4044,6 +4044,20 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: getOptionLabel', () => {
+    it.each([null, undefined])('preserves the chip label for a raw %s option', (value) => {
+      render(
+        <Autocomplete
+          multiple
+          options={[value, 'Other']}
+          value={[value]}
+          getOptionLabel={(option) => (option == null ? 'Any' : option)}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      expect(screen.getByRole('button', { name: 'Any' })).to.have.text('Any');
+    });
+
     it('is considered for falsy values when filtering the list of options', () => {
       render(
         <Autocomplete
