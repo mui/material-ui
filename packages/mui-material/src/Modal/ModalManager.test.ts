@@ -1,5 +1,6 @@
 import { describe, beforeAll, afterAll, it, expect, beforeEach, afterEach } from 'vitest';
 import getScrollbarSize from '@mui/utils/getScrollbarSize';
+import { waitFor } from '@mui/internal-test-utils';
 import { ModalManager } from './ModalManager';
 
 interface Modal {
@@ -281,6 +282,120 @@ describe('ModalManager', () => {
         expect(container2.style.overflow).to.equal('');
         expect(container2.style.overflowX).to.equal('hidden');
       });
+    });
+  });
+
+  describe('existing scroll locks', () => {
+    let container: HTMLDivElement;
+    let manager: ModalManager;
+    let modals: Modal[];
+
+    function mountModal(disableScrollLock = false) {
+      const modal = getDummyModal();
+      modals.push(modal);
+      manager.add(modal, container);
+      manager.mount(modal, { disableScrollLock });
+      return modal;
+    }
+
+    beforeEach(() => {
+      container = document.createElement('div');
+      container.style.overflow = 'hidden';
+      document.body.appendChild(container);
+      manager = new ModalManager();
+      modals = [];
+    });
+
+    afterEach(() => {
+      modals.forEach((modal) => manager.remove(modal));
+      container.remove();
+    });
+
+    it('takes over a released lock and restores the styles from before its own lock', async () => {
+      container.style.paddingRight = '12px';
+      const modal = mountModal();
+      expect(container.style.paddingRight).to.equal('12px');
+
+      container.style.overflow = 'scroll';
+      container.style.paddingRight = '20px';
+      await waitFor(() => expect(container.style.overflow).to.equal('hidden'));
+
+      manager.remove(modal);
+      expect(container.style.overflow).to.equal('scroll');
+      expect(container.style.paddingRight).to.equal('20px');
+    });
+
+    ['hidden', 'clip'].forEach((overflow) => {
+      it(`preserves an existing overflow=${overflow} lock`, () => {
+        container.style.overflow = overflow;
+        const originalStyle = container.style.cssText;
+        const modal = mountModal();
+        expect(container.style.cssText).to.equal(originalStyle);
+
+        manager.remove(modal);
+        expect(container.style.cssText).to.equal(originalStyle);
+      });
+    });
+
+    it('does not take over after the modal closes', async () => {
+      const modal = mountModal();
+      manager.remove(modal);
+      container.style.overflow = '';
+      await Promise.resolve();
+
+      expect(container.style.overflow).to.equal('');
+    });
+
+    it('keeps a deferred lock until the last modal closes', async () => {
+      const first = mountModal();
+      const second = mountModal();
+      manager.remove(first);
+      container.style.overflow = '';
+      await waitFor(() => expect(container.style.overflow).to.equal('hidden'));
+
+      manager.remove(second);
+      expect(container.style.overflow).to.equal('');
+    });
+
+    it('does not take over when scroll locking is disabled', async () => {
+      mountModal(true);
+      container.style.overflow = '';
+      await Promise.resolve();
+
+      expect(container.style.overflow).to.equal('');
+    });
+
+    it('locks both axes when only vertical scrolling is hidden', () => {
+      container.style.overflow = 'scroll hidden';
+      const modal = mountModal();
+      expect(container.style.overflow).to.equal('hidden');
+
+      manager.remove(modal);
+      expect(container.style.overflow).to.equal('scroll hidden');
+    });
+
+    it('keeps its own lock when a stylesheet lock is removed from an ancestor', () => {
+      const parent = document.createElement('div');
+      const stylesheet = document.createElement('style');
+      stylesheet.textContent = '.modal-manager-lock > div { overflow: hidden; }';
+      parent.className = 'modal-manager-lock';
+      container.style.overflow = '';
+      document.head.appendChild(stylesheet);
+      document.body.appendChild(parent);
+      parent.appendChild(container);
+
+      try {
+        expect(window.getComputedStyle(container).overflow).to.equal('hidden');
+        const modal = mountModal();
+        parent.className = '';
+        expect(window.getComputedStyle(container).overflow).to.equal('hidden');
+
+        manager.remove(modal);
+        expect(container.style.overflow).to.equal('');
+      } finally {
+        stylesheet.remove();
+        parent.remove();
+      }
     });
   });
 
