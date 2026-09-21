@@ -146,6 +146,36 @@ describe('DemoContainer', () => {
     );
   });
 
+  // Source deep links (`#<File>.tsx` / `.jsx`) land on the source, so their
+  // anchors sit just above the toolbar like master's, not at the demo top.
+  it('places source anchors between the preview and the toolbar', () => {
+    render(
+      <UserLanguageProvider defaultUserLanguage="en">
+        <ThemeProvider theme={brandingLightTheme}>
+          <DemoContainer
+            anchorId="Probe"
+            sourceAnchorIds={['Probe.tsx', 'Probe.jsx']}
+            preview={<div data-testid="preview" />}
+            toolbar={<div />}
+            toolbarLabel="Demo actions"
+          />
+        </ThemeProvider>
+      </UserLanguageProvider>,
+    );
+
+    const preview = screen.getByTestId('preview');
+    const toolbar = screen.getByRole('toolbar', { hidden: true });
+    // All siblings under the demo root, so the position is exactly FOLLOWING.
+    const follows = (a: Node, b: Node) =>
+      a.compareDocumentPosition(b) === Node.DOCUMENT_POSITION_FOLLOWING;
+    for (const id of ['Probe.tsx', 'Probe.jsx']) {
+      const anchor = document.getElementById(id)!;
+      expect(follows(preview, anchor)).to.equal(true);
+      expect(follows(anchor, toolbar)).to.equal(true);
+    }
+    expect(follows(document.getElementById('Probe')!, preview)).to.equal(true);
+  });
+
   it('reserves the full file tab bar height while loading', () => {
     render(
       <ThemeProvider theme={brandingLightTheme}>
