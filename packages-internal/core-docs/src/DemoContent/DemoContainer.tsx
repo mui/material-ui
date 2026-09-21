@@ -637,7 +637,10 @@ export function DemoContainer(props: DemoContainerProps) {
   );
 
   return (
-    <DemoRoot data-code-open={sourceVisible ? '' : undefined}>
+    <DemoRoot
+      data-code-open={sourceVisible ? '' : undefined}
+      data-code-expanded={expanded ? '' : undefined}
+    >
       {anchorId != null ? <DemoAnchorLink id={anchorId} /> : null}
       {anchors}
       {sourceAnchorIds?.map((id) => (
