@@ -49,6 +49,11 @@ const ToggleButtonRoot = styled(ButtonBase, {
     padding: 11,
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     color: (theme.vars || theme).palette.action.active,
+    [`&.${toggleButtonClasses.selected}`]: {
+      // Sibling buttons overlap borders by a negative margin, so a later sibling with an
+      // opaque background would paint over the selected button's border.
+      zIndex: 1,
+    },
     [`&.${toggleButtonClasses.disabled}`]: {
       color: (theme.vars || theme).palette.action.disabled,
       border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
