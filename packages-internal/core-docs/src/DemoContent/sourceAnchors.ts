@@ -41,3 +41,15 @@ export function fileSourceAnchorIds(fileNames: Iterable<string>): string[] {
 export function sourceAnchorTransform(id: string): 'js' | null {
   return id.endsWith('.js') || id.endsWith('.jsx') ? 'js' : null;
 }
+
+// The JS transform rewrites a TS source name to its JS twin: `.tsx` -> `.jsx`,
+// `.ts` -> `.js`. Used to build the copy-link JS anchor for the root file.
+export function toJavascriptFileName(fileName: string): string {
+  if (fileName.endsWith('.tsx')) {
+    return `${fileName.slice(0, -4)}.jsx`;
+  }
+  if (fileName.endsWith('.ts')) {
+    return `${fileName.slice(0, -3)}.js`;
+  }
+  return fileName;
+}
