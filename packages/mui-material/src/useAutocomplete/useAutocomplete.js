@@ -826,6 +826,10 @@ function useAutocomplete(props) {
 
   // State stores mapped values; change details expose the raw option when it can be resolved.
   const getRemovalDetails = (valueToRemove) => {
+    if (getOptionValueProp === undefined) {
+      return { option: valueToRemove };
+    }
+
     const option = getOptionFromValue(valueToRemove);
 
     return option == null ? undefined : { option };

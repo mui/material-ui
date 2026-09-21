@@ -485,6 +485,46 @@ describe('useAutocomplete', () => {
     });
   });
 
+  describe('removing nullish raw values', () => {
+    [null, undefined].forEach((valueToRemove) => {
+      ['Backspace', 'delete button'].forEach((method) => {
+        it(`preserves details.option for ${valueToRemove} removed with ${method}`, async () => {
+          const onChange = spy();
+
+          function Test() {
+            const { getRootProps, getInputProps, getItemProps } = useAutocomplete({
+              options: [],
+              multiple: true,
+              defaultValue: [valueToRemove],
+              onChange,
+            });
+
+            return (
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <button onClick={getItemProps({ index: 0 }).onDelete}>Remove</button>
+              </div>
+            );
+          }
+
+          const { user } = render(<Test />);
+
+          if (method === 'Backspace') {
+            await user.click(screen.getByRole('combobox'));
+            await user.keyboard('{Backspace}');
+          } else {
+            await user.click(screen.getByRole('button', { name: 'Remove' }));
+          }
+
+          expect(onChange.callCount).to.equal(1);
+          expect(onChange.args[0][1]).to.deep.equal([]);
+          expect(onChange.args[0][2]).to.equal('removeOption');
+          expect(onChange.args[0][3]).to.deep.equal({ option: valueToRemove });
+        });
+      });
+    });
+  });
+
   describe('prop: getOptionValue', () => {
     const options = [
       { id: 'foo', label: 'Foo' },
