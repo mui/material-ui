@@ -17,6 +17,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTransitionStyles } from '../transitions/utils';
+import resolveColorStates, { resolveStateGroup } from '../styles/resolveColorStates';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -107,174 +108,293 @@ const PaginationItemPage = styled(ButtonBase, {
   slot: 'Root',
   overridesResolver,
 })(
-  memoTheme(({ theme }) => ({
-    ...theme.typography.body2,
-    borderRadius: 32 / 2,
-    textAlign: 'center',
-    boxSizing: 'border-box',
-    minWidth: 32,
-    height: 32,
-    padding: '0 6px',
-    margin: '0 3px',
-    color: (theme.vars || theme).palette.text.primary,
-    ...(!theme.focusVisible && {
-      [`&.${paginationItemClasses.focusVisible}`]: {
-        backgroundColor: (theme.vars || theme).palette.action.focus,
+  memoTheme(({ theme }) => {
+    const defaultStates = resolveColorStates(theme, 'MuiPaginationItem');
+    const textStates = resolveStateGroup(theme, 'MuiPaginationItem', 'text');
+    const outlinedStates = resolveStateGroup(theme, 'MuiPaginationItem', 'outlined');
+    const mdTextSelected = (color) => ({
+      color: (theme.vars || theme).palette[color].contrastText,
+      backgroundColor: (theme.vars || theme).palette[color].main,
+      '&:hover': {
+        backgroundColor: (theme.vars || theme).palette[color].dark,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: (theme.vars || theme).palette[color].main,
+        },
       },
-    }),
-    [`&.${paginationItemClasses.disabled}`]: {
-      opacity: (theme.vars || theme).palette.action.disabledOpacity,
-    },
-    ...getTransitionStyles(theme, ['color', 'background-color'], {
-      duration: theme.transitions.duration.short,
-    }),
-    '&:hover': {
-      backgroundColor: (theme.vars || theme).palette.action.hover,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
+      ...(!theme.focusVisible && {
+        [`&.${paginationItemClasses.focusVisible}`]: {
+          backgroundColor: (theme.vars || theme).palette[color].dark,
+        },
+      }),
+      [`&.${paginationItemClasses.disabled}`]: {
+        color: (theme.vars || theme).palette.action.disabled,
       },
-    },
-    [`&.${paginationItemClasses.selected}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.selected,
+    });
+    const mdOutlinedSelected = (color) => ({
+      color: (theme.vars || theme).palette[color].main,
+      border: `1px solid ${theme.alpha((theme.vars || theme).palette[color].main, 0.5)}`,
+      backgroundColor: theme.alpha(
+        (theme.vars || theme).palette[color].main,
+        (theme.vars || theme).palette.action.activatedOpacity,
+      ),
       '&:hover': {
         backgroundColor: theme.alpha(
-          (theme.vars || theme).palette.action.selected,
-          `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
+          (theme.vars || theme).palette[color].main,
+          `${(theme.vars || theme).palette.action.activatedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
         ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: (theme.vars || theme).palette.action.selected,
+          backgroundColor: 'transparent',
         },
       },
       ...(!theme.focusVisible && {
         [`&.${paginationItemClasses.focusVisible}`]: {
           backgroundColor: theme.alpha(
-            (theme.vars || theme).palette.action.selected,
-            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+            (theme.vars || theme).palette[color].main,
+            `${(theme.vars || theme).palette.action.activatedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
           ),
         },
       }),
-      [`&.${paginationItemClasses.disabled}`]: {
-        opacity: 1,
-        color: (theme.vars || theme).palette.action.disabled,
-        backgroundColor: (theme.vars || theme).palette.action.selected,
-      },
-    },
-    variants: [
-      {
-        props: { size: 'small' },
-        style: {
-          minWidth: 26,
-          height: 26,
-          borderRadius: 26 / 2,
-          margin: '0 1px',
-          padding: '0 4px',
+    });
+    const mdOutlinedVariant = {
+      border: theme.vars
+        ? `1px solid ${theme.alpha(theme.vars.palette.common.onBackground, 0.23)}`
+        : `1px solid ${
+            theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+          }`,
+      [`&.${paginationItemClasses.selected}`]: {
+        [`&.${paginationItemClasses.disabled}`]: {
+          borderColor: (theme.vars || theme).palette.action.disabledBackground,
+          color: (theme.vars || theme).palette.action.disabled,
         },
       },
-      {
-        props: { size: 'large' },
-        style: {
-          minWidth: 40,
-          height: 40,
-          borderRadius: 40 / 2,
-          padding: '0 10px',
-          fontSize: theme.typography.pxToRem(15),
+    };
+    const mdTextVariant = {
+      [`&.${paginationItemClasses.selected}`]: {
+        [`&.${paginationItemClasses.disabled}`]: {
+          color: (theme.vars || theme).palette.action.disabled,
         },
       },
-      {
-        props: { shape: 'rounded' },
-        style: {
-          borderRadius: (theme.vars || theme).shape.borderRadius,
-        },
-      },
-      {
-        props: { variant: 'outlined' },
-        style: {
-          border: theme.vars
-            ? `1px solid ${theme.alpha(theme.vars.palette.common.onBackground, 0.23)}`
-            : `1px solid ${
-                theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-              }`,
-          [`&.${paginationItemClasses.selected}`]: {
-            [`&.${paginationItemClasses.disabled}`]: {
-              borderColor: (theme.vars || theme).palette.action.disabledBackground,
-              color: (theme.vars || theme).palette.action.disabled,
-            },
+    };
+    const configuredRow = (variant, color, colorStates) => ({
+      props: { variant, color },
+      style: {
+        ...(variant === 'outlined'
+          ? { border: '1px solid', ...colorStates.initial }
+          : { ...colorStates.initial, border: 'none' }),
+        ...(colorStates.hover && {
+          '@media (hover: hover)': {
+            '&:hover': colorStates.hover,
           },
-        },
-      },
-      {
-        props: { variant: 'text' },
-        style: {
-          [`&.${paginationItemClasses.selected}`]: {
-            [`&.${paginationItemClasses.disabled}`]: {
-              color: (theme.vars || theme).palette.action.disabled,
+        }),
+        ...(colorStates.active && {
+          '&:active': colorStates.active,
+        }),
+        [`&.${paginationItemClasses.selected}`]: {
+          ...colorStates.selected,
+          ...(colorStates.selectedHover && {
+            '@media (hover: hover)': {
+              '&:hover': colorStates.selectedHover,
             },
-          },
+          }),
+          ...(colorStates.selectedActive && {
+            '&:active': colorStates.selectedActive,
+          }),
         },
+        ...(colorStates.disabled && {
+          [`&.${paginationItemClasses.disabled}`]: colorStates.disabled,
+        }),
       },
-      ...Object.entries(theme.palette)
-        .filter(createSimplePaletteValueFilter(['dark', 'contrastText']))
-        .map(([color]) => ({
-          props: { variant: 'text', color },
-          style: {
-            [`&.${paginationItemClasses.selected}`]: {
-              color: (theme.vars || theme).palette[color].contrastText,
-              backgroundColor: (theme.vars || theme).palette[color].main,
-              '&:hover': {
-                backgroundColor: (theme.vars || theme).palette[color].dark,
-                // Reset on touch devices, it doesn't add specificity
-                '@media (hover: none)': {
-                  backgroundColor: (theme.vars || theme).palette[color].main,
-                },
+    });
+    return {
+      ...theme.typography.body2,
+      borderRadius: 32 / 2,
+      textAlign: 'center',
+      boxSizing: 'border-box',
+      minWidth: 32,
+      height: 32,
+      padding: '0 6px',
+      margin: '0 3px',
+      ...(defaultStates
+        ? defaultStates.initial
+        : { color: (theme.vars || theme).palette.text.primary }),
+      ...(!theme.focusVisible && {
+        [`&.${paginationItemClasses.focusVisible}`]: {
+          backgroundColor: (theme.vars || theme).palette.action.focus,
+        },
+      }),
+      [`&.${paginationItemClasses.disabled}`]: defaultStates
+        ? defaultStates.disabled
+        : {
+            opacity: (theme.vars || theme).palette.action.disabledOpacity,
+          },
+      ...getTransitionStyles(theme, ['color', 'background-color'], {
+        duration: theme.transitions.duration.short,
+      }),
+      ...(defaultStates
+        ? {
+            ...(defaultStates.hover && {
+              '@media (hover: hover)': {
+                '&:hover': defaultStates.hover,
               },
-              ...(!theme.focusVisible && {
-                [`&.${paginationItemClasses.focusVisible}`]: {
-                  backgroundColor: (theme.vars || theme).palette[color].dark,
+            }),
+            ...(defaultStates.active && {
+              '&:active': defaultStates.active,
+            }),
+            [`&.${paginationItemClasses.selected}`]: {
+              ...defaultStates.selected,
+              ...(defaultStates.selectedHover && {
+                '@media (hover: hover)': {
+                  '&:hover': defaultStates.selectedHover,
                 },
               }),
-              [`&.${paginationItemClasses.disabled}`]: {
-                color: (theme.vars || theme).palette.action.disabled,
+              ...(defaultStates.selectedActive && {
+                '&:active': defaultStates.selectedActive,
+              }),
+            },
+          }
+        : {
+            '&:hover': {
+              backgroundColor: (theme.vars || theme).palette.action.hover,
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                backgroundColor: 'transparent',
               },
             },
-          },
-        })),
-      ...Object.entries(theme.palette)
-        .filter(createSimplePaletteValueFilter(['light']))
-        .map(([color]) => ({
-          props: { variant: 'outlined', color },
-          style: {
             [`&.${paginationItemClasses.selected}`]: {
-              color: (theme.vars || theme).palette[color].main,
-              border: `1px solid ${theme.alpha((theme.vars || theme).palette[color].main, 0.5)}`,
-              backgroundColor: theme.alpha(
-                (theme.vars || theme).palette[color].main,
-                (theme.vars || theme).palette.action.activatedOpacity,
-              ),
+              backgroundColor: (theme.vars || theme).palette.action.selected,
               '&:hover': {
                 backgroundColor: theme.alpha(
-                  (theme.vars || theme).palette[color].main,
-                  `${(theme.vars || theme).palette.action.activatedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+                  (theme.vars || theme).palette.action.selected,
+                  `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
                 ),
                 // Reset on touch devices, it doesn't add specificity
                 '@media (hover: none)': {
-                  backgroundColor: 'transparent',
+                  backgroundColor: (theme.vars || theme).palette.action.selected,
                 },
               },
               ...(!theme.focusVisible && {
                 [`&.${paginationItemClasses.focusVisible}`]: {
                   backgroundColor: theme.alpha(
-                    (theme.vars || theme).palette[color].main,
-                    `${(theme.vars || theme).palette.action.activatedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+                    (theme.vars || theme).palette.action.selected,
+                    `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
                   ),
                 },
               }),
+              [`&.${paginationItemClasses.disabled}`]: {
+                opacity: 1,
+                color: (theme.vars || theme).palette.action.disabled,
+                backgroundColor: (theme.vars || theme).palette.action.selected,
+              },
             },
+          }),
+      variants: [
+        {
+          props: { size: 'small' },
+          style: {
+            minWidth: 26,
+            height: 26,
+            borderRadius: 26 / 2,
+            margin: '0 1px',
+            padding: '0 4px',
           },
-        })),
-    ],
-  })),
+        },
+        {
+          props: { size: 'large' },
+          style: {
+            minWidth: 40,
+            height: 40,
+            borderRadius: 40 / 2,
+            padding: '0 10px',
+            fontSize: theme.typography.pxToRem(15),
+          },
+        },
+        {
+          props: { shape: 'rounded' },
+          style: {
+            borderRadius: (theme.vars || theme).shape.borderRadius,
+          },
+        },
+        ...(outlinedStates
+          ? []
+          : [
+              {
+                props: { variant: 'outlined' },
+                style: mdOutlinedVariant,
+              },
+            ]),
+        ...(textStates
+          ? []
+          : [
+              {
+                props: { variant: 'text' },
+                style: mdTextVariant,
+              },
+            ]),
+        ...(textStates
+          ? []
+          : Object.entries(theme.palette)
+              .filter(createSimplePaletteValueFilter(['dark', 'contrastText']))
+              .map(([color]) => ({
+                props: { variant: 'text', color },
+                style: {
+                  [`&.${paginationItemClasses.selected}`]: mdTextSelected(color),
+                },
+              }))),
+        ...(outlinedStates
+          ? []
+          : Object.entries(theme.palette)
+              .filter(createSimplePaletteValueFilter(['light']))
+              .map(([color]) => ({
+                props: { variant: 'outlined', color },
+                style: {
+                  [`&.${paginationItemClasses.selected}`]: mdOutlinedSelected(color),
+                },
+              }))),
+        ...['text', 'outlined'].flatMap((variant) => {
+          const variantStates = { text: textStates, outlined: outlinedStates }[variant];
+          if (!variantStates) {
+            return [];
+          }
+          const mdVariant = { text: mdTextVariant, outlined: mdOutlinedVariant }[variant];
+          const mdSelected = { text: mdTextSelected, outlined: mdOutlinedSelected }[variant];
+          const mdFilter =
+            variant === 'text'
+              ? createSimplePaletteValueFilter(['dark', 'contrastText'])
+              : createSimplePaletteValueFilter(['light']);
+          return [
+            variantStates.default
+              ? configuredRow(variant, 'standard', variantStates.default)
+              : { props: { variant, color: 'standard' }, style: mdVariant },
+            ...Object.entries(theme.palette)
+              .filter(createSimplePaletteValueFilter())
+              .flatMap(([color]) => {
+                const colorStates = variantStates[color];
+                if (colorStates) {
+                  return [configuredRow(variant, color, colorStates)];
+                }
+                if (!mdFilter([color, theme.palette[color]])) {
+                  return [];
+                }
+                return [
+                  {
+                    props: { variant, color },
+                    style: {
+                      ...mdVariant,
+                      [`&.${paginationItemClasses.selected}`]: {
+                        ...mdVariant[`&.${paginationItemClasses.selected}`],
+                        ...mdSelected(color),
+                      },
+                    },
+                  },
+                ];
+              }),
+          ];
+        }),
+      ],
+    };
+  }),
 );
 
 const PaginationItemPageIcon = styled('div', {

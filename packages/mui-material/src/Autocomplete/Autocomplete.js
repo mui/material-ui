@@ -24,6 +24,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
 import { applyInsetFocusVisible } from '../styles/focusVisible';
+import resolveColorStates from '../styles/resolveColorStates';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
@@ -333,78 +334,96 @@ const AutocompleteListbox = styled('ul', {
   name: 'MuiAutocomplete',
   slot: 'Listbox',
 })(
-  memoTheme(({ theme }) => ({
-    listStyle: 'none',
-    margin: 0,
-    padding: '8px 0',
-    maxHeight: '40vh',
-    overflow: 'auto',
-    isolation: 'isolate', // Prevent overlap with iOS overlay scrollbars.
-    position: 'relative',
-    [`& .${autocompleteClasses.option}`]: {
-      minHeight: 48,
-      display: 'flex',
-      overflow: 'hidden',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      cursor: 'pointer',
-      paddingTop: 6,
-      boxSizing: 'border-box',
-      outline: '0',
-      WebkitTapHighlightColor: 'transparent',
-      paddingBottom: 6,
-      paddingLeft: 16,
-      paddingRight: 16,
-      [theme.breakpoints.up('sm')]: {
-        minHeight: 'auto',
-      },
-      [`&.${autocompleteClasses.focused}`]: {
-        backgroundColor: (theme.vars || theme).palette.action.hover,
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
+  memoTheme(({ theme }) => {
+    const colorStates = resolveColorStates(theme, 'MuiAutocomplete');
+    return {
+      listStyle: 'none',
+      margin: 0,
+      padding: '8px 0',
+      maxHeight: '40vh',
+      overflow: 'auto',
+      isolation: 'isolate', // Prevent overlap with iOS overlay scrollbars.
+      position: 'relative',
+      [`& .${autocompleteClasses.option}`]: {
+        minHeight: 48,
+        display: 'flex',
+        overflow: 'hidden',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        cursor: 'pointer',
+        paddingTop: 6,
+        boxSizing: 'border-box',
+        outline: '0',
+        WebkitTapHighlightColor: 'transparent',
+        paddingBottom: 6,
+        paddingLeft: 16,
+        paddingRight: 16,
+        [theme.breakpoints.up('sm')]: {
+          minHeight: 'auto',
         },
-      },
-      '&[aria-disabled="true"]': {
-        opacity: (theme.vars || theme).palette.action.disabledOpacity,
-        pointerEvents: 'none',
-      },
-      [`&.${autocompleteClasses.focusVisible}`]: theme.focusVisible
-        ? {
-            // Options are plain <li> (not ButtonBase), so add the ring here, keyed to the
-            // keyboard-navigation state. It insets: the listbox scrolls and would clip an outset ring.
-            ...applyInsetFocusVisible(1),
-            ...theme.focusVisible,
-          }
-        : {
-            backgroundColor: (theme.vars || theme).palette.action.focus,
-          },
-      '&[aria-selected="true"]': {
-        backgroundColor: theme.alpha(
-          (theme.vars || theme).palette.primary.main,
-          (theme.vars || theme).palette.action.selectedOpacity,
-        ),
-        [`&.${autocompleteClasses.focused}`]: {
-          backgroundColor: theme.alpha(
-            (theme.vars || theme).palette.primary.main,
-            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
-          ),
-          // Reset on touch devices, it doesn't add specificity
-          '@media (hover: none)': {
-            backgroundColor: (theme.vars || theme).palette.action.selected,
-          },
+        ...(colorStates && colorStates.initial),
+        [`&.${autocompleteClasses.focused}`]: colorStates
+          ? colorStates.hover
+          : {
+              backgroundColor: (theme.vars || theme).palette.action.hover,
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                backgroundColor: 'transparent',
+              },
+            },
+        '&[aria-disabled="true"]': {
+          ...(colorStates
+            ? colorStates.disabled
+            : {
+                opacity: (theme.vars || theme).palette.action.disabledOpacity,
+              }),
+          pointerEvents: 'none',
         },
-        ...(!theme.focusVisible && {
-          [`&.${autocompleteClasses.focusVisible}`]: {
-            backgroundColor: theme.alpha(
-              (theme.vars || theme).palette.primary.main,
-              `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
-            ),
-          },
-        }),
+        [`&.${autocompleteClasses.focusVisible}`]: theme.focusVisible
+          ? {
+              // Options are plain <li> (not ButtonBase), so add the ring here, keyed to the
+              // keyboard-navigation state. It insets: the listbox scrolls and would clip an outset ring.
+              ...applyInsetFocusVisible(1),
+              ...theme.focusVisible,
+            }
+          : {
+              backgroundColor: (theme.vars || theme).palette.action.focus,
+            },
+        '&[aria-selected="true"]': colorStates
+          ? {
+              ...colorStates.selected,
+              [`&.${autocompleteClasses.focused}`]: colorStates.selectedHover,
+              ...(colorStates.selectedActive && {
+                '&:active': colorStates.selectedActive,
+              }),
+            }
+          : {
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette.primary.main,
+                (theme.vars || theme).palette.action.selectedOpacity,
+              ),
+              [`&.${autocompleteClasses.focused}`]: {
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette.primary.main,
+                  `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
+                ),
+                // Reset on touch devices, it doesn't add specificity
+                '@media (hover: none)': {
+                  backgroundColor: (theme.vars || theme).palette.action.selected,
+                },
+              },
+              ...(!theme.focusVisible && {
+                [`&.${autocompleteClasses.focusVisible}`]: {
+                  backgroundColor: theme.alpha(
+                    (theme.vars || theme).palette.primary.main,
+                    `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+                  ),
+                },
+              }),
+            },
       },
-    },
-  })),
+    };
+  }),
 );
 
 const AutocompleteGroupLabel = styled(ListSubheader, {
