@@ -979,7 +979,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     const node = theme.colorSchemes[scheme];
     const config = { ...stateInput, ...node.state };
     if (Object.keys(config).length) {
-      node.state = createCssState({ ...theme, vars: undefined, palette: node.palette }, config);
+      node.state = createCssState(config);
     } else {
       delete node.state;
     }

@@ -206,7 +206,7 @@ function createThemeNoVars(options = {}, ...args) {
   attachColorManipulators(muiTheme);
 
   if (muiTheme.state) {
-    muiTheme.state = createCssState(muiTheme, muiTheme.state);
+    muiTheme.state = createCssState(muiTheme.state);
   }
 
   return muiTheme;

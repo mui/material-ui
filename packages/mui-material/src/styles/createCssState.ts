@@ -1,5 +1,4 @@
 import type * as React from 'react';
-import type { Theme } from './createThemeNoVars';
 import type { Palette, PaletteColor } from './createPalette';
 
 /** Spreadable CSS, exactly like `FocusVisible`. */
@@ -54,25 +53,9 @@ export type StateVariants<Variant extends string = never> = {
   [K in Variant | 'default']?: StateGroupKey | undefined;
 };
 
-export default function createCssState(
-  theme: Theme,
-  config: ThemeState = {},
-): ThemeState | undefined {
-  const record = config as Record<string, StateGroup | undefined>;
-  const groups = Object.keys(record);
-  if (!groups.length) {
+export default function createCssState(config: ThemeState = {}): ThemeState | undefined {
+  if (!Object.keys(config).length) {
     return undefined;
   }
-  const palette = theme.palette as unknown as Record<string, PaletteColor | undefined>;
-  groups.forEach((group) => {
-    Object.keys(record[group] ?? {}).forEach((name) => {
-      if (name !== 'default' && typeof palette?.[name]?.main !== 'string') {
-        throw new Error(
-          `MUI: the \`state.${group}.${name}\` entry does not match a palette colour ` +
-            'with a `main` value.',
-        );
-      }
-    });
-  });
   return config;
 }
