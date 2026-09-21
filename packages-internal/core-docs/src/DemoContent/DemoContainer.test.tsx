@@ -100,7 +100,12 @@ describe('DemoContainer', () => {
   // for any visible source — the collapsed focus window included. Every
   // collapsed demo below the fold reserved its full-source height and shrank
   // once scrolled into view, shifting the page after anchor navigation.
-  it.skipIf(isJsdom())('reserves the focus window height for collapsed source', () => {
+  // The reservation is gated behind `@supports` for typed `attr()` (Chromium
+  // 133+); older engines skip the optimisation and this test.
+  const supportsTypedAttr = () =>
+    !isJsdom() && CSS.supports('contain-intrinsic-size', 'calc(attr(x type(<number>), 0) * 1px)');
+
+  it.skipIf(!supportsTypedAttr())('reserves the focus window height for collapsed source', () => {
     function renderSource(expanded: boolean) {
       return (
         <UserLanguageProvider defaultUserLanguage="en">
