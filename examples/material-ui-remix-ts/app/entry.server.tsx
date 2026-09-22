@@ -9,9 +9,9 @@ import createEmotionServer from '@emotion/server/create-instance';
 import theme from './src/theme';
 import createEmotionCache from './src/createEmotionCache';
 
-// Inside a `<style>` element the HTML tokenizer stays in RAWTEXT state until it reaches `</style`,
-// so a style value containing one closes the element and the rest of the stylesheet is parsed as
-// HTML. `\3c` is the CSS escape for `<` and parses back to the same value.
+// The browser ends a `<style>` element at the first `</style>` it sees, even one sitting inside a
+// CSS value, and reads whatever follows as HTML. `\3c` is the CSS escape for `<`, so the rule keeps
+// its meaning but the text can no longer close the element.
 function escapeHtmlInCss(css: string) {
   if (!css.includes('<')) {
     return css;

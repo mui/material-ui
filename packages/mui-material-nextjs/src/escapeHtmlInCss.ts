@@ -1,7 +1,7 @@
-// Inside a `<style>` element the HTML tokenizer stays in RAWTEXT state until it reaches `</style`,
-// so a style value containing one closes the element and the rest of the stylesheet is parsed as
-// HTML. `\3c` is the CSS escape for `<` and parses back to the same value, leaving the rule
-// unchanged. `<!--` is escaped as well because it opens a comment in a few legacy parsing modes.
+// The browser ends a `<style>` element at the first `</style>` it sees, even one sitting inside a
+// CSS value, and reads whatever follows as HTML. `\3c` is the CSS escape for `<`, so the rule keeps
+// its meaning but the text can no longer close the element. `<!--` is escaped for the same reason,
+// as some parsers treat it as the start of a comment.
 const STYLE_TAG = /(<)(\/?style\b)/gi;
 const COMMENT_OPEN = /(<)(!--)/g;
 
