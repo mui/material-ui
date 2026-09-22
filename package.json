@@ -72,7 +72,6 @@
     "use-react-version": "node ./scripts/useReactVersion.mjs",
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
-    "canary:release": "tsx ./scripts/canaryRelease.mts",
     "clean": "pnpm -r exec rm -rf build"
   },
   "dependencies": {
