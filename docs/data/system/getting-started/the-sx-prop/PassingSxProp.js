@@ -11,9 +11,9 @@ function ListHeader({ sx = [], children }) {
           width: 'auto',
           textDecoration: 'underline',
         },
-        // SxProps (typeof sx) can be an array so we use the `.flat()` array method, which inlines `sx` whether it is a single style or an array of styles.
-        sx,
-      ].flat()}
+        // `sx` can itself be an array, so flatten it before spreading.
+        ...[sx].flat(),
+      ]}
     >
       <FormLabel sx={{ color: 'inherit' }}>{children}</FormLabel>
     </ListItem>
