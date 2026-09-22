@@ -56,7 +56,9 @@ export default function handleRequest(
               const styles = constructStyleTagsFromChunks(extractCriticalToChunks(html));
 
               if (styles) {
-                const injectedHtml = html.replace('</head>', `${styles}</head>`);
+                // The replacement is a function so that `$&` and friends inside the stylesheet are
+                // not expanded as replacement patterns.
+                const injectedHtml = html.replace('</head>', () => `${styles}</head>`);
                 this.push(injectedHtml);
               } else {
                 this.push(html);
