@@ -420,12 +420,47 @@ function generateLlmsTxt(
   return content.trim();
 }
 
+const GENERATED_EXTENSIONS = new Set(['.md', '.txt']);
+
+/**
+ * Deletes the files written by a previous run, plus any directory left empty by
+ * that deletion. Files with another extension are kept. Returns whether `dir`
+ * still holds anything.
+ */
+function removeGeneratedFiles(dir: string): boolean {
+  if (!fs.existsSync(dir)) {
+    return false;
+  }
+
+  let hasRemainingFiles = false;
+
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const entryPath = path.join(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      if (removeGeneratedFiles(entryPath)) {
+        hasRemainingFiles = true;
+      } else {
+        fs.rmdirSync(entryPath);
+      }
+    } else if (GENERATED_EXTENSIONS.has(path.extname(entry.name))) {
+      fs.rmSync(entryPath);
+    } else {
+      hasRemainingFiles = true;
+    }
+  }
+
+  return hasRemainingFiles;
+}
+
 /**
  * Main build function
  */
 async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<void> {
   const grep = argv.grep ? new RegExp(argv.grep) : null;
   const outputDir = argv.outputDir || path.join(process.cwd(), 'docs/public');
+
+  removeGeneratedFiles(path.join(outputDir, 'material-ui'));
 
   // Load project settings from the specified path
   if (!argv.projectSettings) {
