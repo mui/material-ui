@@ -318,7 +318,6 @@ export default function MyApp(props: AppProps) {
       {...props}
       Component={Component}
       pageProps={pageProps}
-      serviceWorkerPath="/sw.js"
       adConfig={GA_AD_CONFIG}
       activePage={activePage}
       activePageParents={activePageParents}
