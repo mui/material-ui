@@ -32,6 +32,8 @@ declare module '@mui/material/styles' {
   interface StateGroupOverrides {
     solid: true;
     sub: true;
+    input: true;
+    ghost: true;
     plain: true;
     navigation: true;
     dataDisplay: true;
@@ -500,6 +502,28 @@ function makeNeoTheme(bound: boolean): Theme {
 function makeCustomTheme(bound: boolean): Theme {
   return createTheme({
     focusVisible: true,
+    shape: {
+      borderRadius: 6,
+    },
+    typography: {
+      h1: { fontSize: '1.75rem', lineHeight: '36px' },
+      h2: { fontSize: '1.5rem', lineHeight: '30px' },
+      h3: { fontSize: '1rem', lineHeight: '26px' },
+      h4: { fontSize: '0.9375rem', lineHeight: '24px' },
+      h5: { fontSize: '0.875rem', lineHeight: '22px' },
+      h6: { fontSize: '0.8125rem', lineHeight: '20px' },
+      subtitle1: { fontSize: '0.875rem', lineHeight: '22px' },
+      subtitle2: { fontSize: '0.8125rem', lineHeight: '20px' },
+      body1: { fontSize: '0.875rem', lineHeight: '20px' },
+      body2: { fontSize: '0.8125rem', lineHeight: '18px' },
+      caption: { fontSize: '0.75rem', lineHeight: '16px' },
+      button: {
+        fontSize: '0.875rem',
+        lineHeight: '20px',
+        textTransform: 'initial',
+        letterSpacing: 0,
+      },
+    },
     cssVariables: { colorSchemeSelector: 'class' },
     colorSchemes: {
       light: {
@@ -509,7 +533,7 @@ function makeCustomTheme(bound: boolean): Theme {
           error: { main: '#D13F3F' },
         },
         state: {
-          solid: {
+          input: {
             default: {
               initial: {
                 backgroundColor: 'rgba(0, 0, 0, 0.04)',
@@ -558,7 +582,7 @@ function makeCustomTheme(bound: boolean): Theme {
               },
             },
           },
-          sub: {
+          ghost: {
             default: {
               initial: {
                 color: '#363636',
@@ -738,7 +762,7 @@ function makeCustomTheme(bound: boolean): Theme {
           error: { main: '#F18888' },
         },
         state: {
-          solid: {
+          input: {
             primary: {
               initial: {
                 backgroundColor: '#38ABDF',
@@ -758,7 +782,7 @@ function makeCustomTheme(bound: boolean): Theme {
               active: { backgroundColor: '#F39999' },
             },
           },
-          sub: {
+          ghost: {
             default: {
               initial: {
                 color: '#FFFFFF',
@@ -899,10 +923,10 @@ function makeCustomTheme(bound: boolean): Theme {
         defaultProps: { disableElevation: true },
         ...(bound && {
           stateVariants: {
-            default: 'sub',
-            contained: 'solid',
-            outlined: 'sub',
-            text: 'sub',
+            default: 'ghost',
+            contained: 'input',
+            outlined: 'ghost',
+            text: 'ghost',
           },
         }),
       },
@@ -913,7 +937,7 @@ function makeCustomTheme(bound: boolean): Theme {
         ...(bound && {
           stateVariants: {
             default: 'dataDisplay',
-            filled: 'solid',
+            filled: 'input',
             outlined: 'dataDisplay',
           },
         }),
