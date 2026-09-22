@@ -107,7 +107,7 @@ export default function AppRouterCacheProvider(props: AppRouterCacheProviderProp
             nonce={options?.nonce}
             key={name}
             data-emotion={`${registry.cache.key}-global ${name}`}
-            // eslint-disable-next-line react/no-danger
+            // eslint-disable-next-line react/no-danger -- Emotion CSS, escaped by escapeHtmlInCss
             dangerouslySetInnerHTML={{ __html: escapeHtmlInCss(style) }}
           />
         ))}
@@ -115,7 +115,7 @@ export default function AppRouterCacheProvider(props: AppRouterCacheProviderProp
           <style
             nonce={options?.nonce}
             data-emotion={dataEmotionAttribute}
-            // eslint-disable-next-line react/no-danger
+            // eslint-disable-next-line react/no-danger -- Emotion CSS, escaped by escapeHtmlInCss
             dangerouslySetInnerHTML={{ __html: escapeHtmlInCss(styles) }}
           />
         )}

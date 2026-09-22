@@ -114,7 +114,7 @@ export async function documentGetInitialProps(
                 // Otherwise, Emotion will hydrate only the non-global styles and they will override the layer order rule.
                 data-emotion={`${isLayerOrderRule ? `${cache.key} ` : ''}${style.key} ${style.ids.join(' ')}`}
                 key={style.key}
-                // eslint-disable-next-line react/no-danger
+                // eslint-disable-next-line react/no-danger -- Emotion CSS, escaped by escapeHtmlInCss
                 dangerouslySetInnerHTML={{ __html: escapeHtmlInCss(style.css) }}
                 nonce={cache.nonce}
               />
