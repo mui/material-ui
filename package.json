@@ -20,7 +20,6 @@
     "docs:api:build": "tsx ./scripts/buildApiDocs/index.ts",
     "docs:llms:build": "tsx ./scripts/buildLlmsDocs/index.ts --projectSettings ./packages-internal/api-docs-builder-core/materialUi/projectSettings.ts",
     "docs:build": "pnpm docs:llms:build && pnpm --filter docs build",
-    "docs:build-sw": "pnpm --filter docs build-sw",
     "docs:build-color-preview": "babel-node scripts/buildColorTypes",
     "docs:deploy": "pnpm --filter docs run deploy",
     "docs:dev": "pnpm --filter docs dev",

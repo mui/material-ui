@@ -420,21 +420,14 @@ function generateLlmsTxt(
   return content.trim();
 }
 
-const GENERATED_EXTENSIONS = new Set(['.md', '.txt']);
+const GENERATED_PATTERNS = ['*/', '*.md', '*.txt'];
 
 /**
- * Deletes the output of a previous run: every subdirectory, and the files with
- * a generated extension. Any other file in `dir` is kept.
+ * Deletes the output of a previous run. Any other file in `dir` is kept.
  */
 function removeGeneratedFiles(dir: string): void {
-  if (!fs.existsSync(dir)) {
-    return;
-  }
-
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (entry.isDirectory() || GENERATED_EXTENSIONS.has(path.extname(entry.name))) {
-      fs.rmSync(path.join(dir, entry.name), { recursive: true });
-    }
+  for (const entry of fs.globSync(GENERATED_PATTERNS, { cwd: dir })) {
+    fs.rmSync(path.join(dir, entry), { recursive: true });
   }
 }
 
