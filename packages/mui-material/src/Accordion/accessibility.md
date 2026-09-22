@@ -100,7 +100,7 @@ This doc covers the root `<Accordion>` together with `AccordionDetails` and `Acc
 `✅ Supports` · `◐ Shared`
 
 - The summary button is wrapped in an `<h3>` heading (the `heading` slot, overridable), and the panel takes `role="region"` named by `aria-labelledby` from the summary's `id`, so the header-to-panel relationship is programmatic.
-- `Accordion` generates the summary and panel `id` values itself and wires `aria-controls` and `aria-labelledby` between them, so the relationship holds with no authoring step; an `id` or `aria-controls` set on the summary is used in place of a generated value.
+- `Accordion` generates the summary and panel `id` values itself and wires `aria-controls` and `aria-labelledby` between them, so the relationship holds with no authoring step. A generated value is only a default: an `id` or `aria-controls` set on the summary, through `slotProps.root`, or through `slotProps.region` is kept and used for the pairing, so ids referenced elsewhere in the author's code keep working.
 - axe-core `aria-valid-attr-value`, `duplicate-id-aria`, and `aria-allowed-attr` pass across the demos; whether `<h3>` is the right level in the page outline is the author's responsibility.
 
 **Manual testing steps**
@@ -142,7 +142,8 @@ This doc covers the root `<Accordion>` together with `AccordionDetails` and `Acc
 `✅ Supports` · `◐ Shared`
 
 - The summary's `aria-expanded` (set by the component) exposes the required open or closed state; the panel takes `role="region"` named by `aria-labelledby`, and `aria-controls` links the header to it.
-- The region name needs no authoring step: `Accordion` generates both `id` values and wires the pair, so every region is named by its own header. `aria-controls` is omitted while the panel is unmounted (`slotProps.transition.unmountOnExit`, or a custom transition that has not mounted it yet) so that it never points at a missing element. axe-core `aria-valid-attr-value` and `duplicate-id-aria` pass.
+- The region name needs no authoring step: `Accordion` generates both `id` values and wires the pair, so every region is named by its own header. Ids the author supplies take precedence over the generated ones and are used for the pairing. `aria-controls` is omitted while the panel is unmounted (`slotProps.transition.unmountOnExit`, or a custom transition that has not mounted it yet) so that it never points at a missing element. axe-core `aria-valid-attr-value` and `duplicate-id-aria` pass.
+- An `id` declared inside a wrapper component around `AccordionSummary` is not visible on `Accordion`'s child, so the summary reports it back and the panel is paired with it after mount. Server-rendered markup carries the generated `id` for that case until hydration; every other source, including a callback `slotProps.root`, is resolved during render and pairs correctly on the server too.
 
 **Manual testing steps**
 
