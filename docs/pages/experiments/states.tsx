@@ -69,9 +69,12 @@ function makeNeoTheme(bound: boolean): Theme {
                 color: '#000000',
                 border: '2px solid #000000',
                 boxShadow: '4px 4px 0 0 #000000',
+                transition: '0.15s',
               },
-              hover: { transform: 'translate(2px, 2px)', boxShadow: '2px 2px 0 0 #000000' },
-              active: { transform: 'translate(4px, 4px)', boxShadow: 'none' },
+              hover: {
+                transform: 'translate(4px, 4px)',
+                boxShadow: 'none',
+              },
               disabled: { opacity: 0.5 },
             },
             default: {
@@ -80,9 +83,12 @@ function makeNeoTheme(bound: boolean): Theme {
                 color: '#000000',
                 border: '2px solid #000000',
                 boxShadow: '2px 2px 0 0 #000000',
+                transition: '0.15s',
               },
-              hover: { transform: 'translate(1px, 1px)', boxShadow: '1px 1px 0 0 #000000' },
-              active: { transform: 'translate(2px, 2px)', boxShadow: 'none' },
+              hover: {
+                transform: 'translate(2px, 2px)',
+                boxShadow: 'none',
+              },
               disabled: { opacity: 0.5 },
             },
           },
@@ -94,9 +100,12 @@ function makeNeoTheme(bound: boolean): Theme {
                 color: '#000000',
                 border: '2px solid #000000',
                 boxShadow: '4px 4px 0 0 #000000',
+                transition: '0.15s',
               },
-              hover: { transform: 'translate(2px, 2px)', boxShadow: '2px 2px 0 0 #000000' },
-              active: { transform: 'translate(4px, 4px)', boxShadow: 'none' },
+              hover: {
+                transform: 'translate(4px, 4px)',
+                boxShadow: 'none',
+              },
               disabled: { opacity: 0.5 },
             },
             error: {
@@ -105,9 +114,12 @@ function makeNeoTheme(bound: boolean): Theme {
                 color: '#FF4D50',
                 border: '2px solid #000000',
                 boxShadow: '4px 4px 0 0 #000000',
+                transition: '0.15s',
               },
-              hover: { transform: 'translate(2px, 2px)', boxShadow: '2px 2px 0 0 #000000' },
-              active: { transform: 'translate(4px, 4px)', boxShadow: 'none' },
+              hover: {
+                transform: 'translate(4px, 4px)',
+                boxShadow: 'none',
+              },
               disabled: { opacity: 0.5 },
             },
             default: {
@@ -116,9 +128,12 @@ function makeNeoTheme(bound: boolean): Theme {
                 color: '#000000',
                 border: '2px solid #000000',
                 boxShadow: '2px 2px 0 0 #000000',
+                transition: '0.15s',
               },
-              hover: { transform: 'translate(1px, 1px)', boxShadow: '1px 1px 0 0 #000000' },
-              active: { transform: 'translate(2px, 2px)', boxShadow: 'none' },
+              hover: {
+                transform: 'translate(2px, 2px)',
+                boxShadow: 'none',
+              },
               disabled: { opacity: 0.5 },
             },
           },
@@ -127,13 +142,11 @@ function makeNeoTheme(bound: boolean): Theme {
             primary: {
               initial: { color: '#000000' },
               hover: { backgroundColor: 'rgba(82, 148, 255, 0.25)' },
-              active: { backgroundColor: 'rgba(82, 148, 255, 0.45)' },
               disabled: { opacity: 0.5 },
             },
             error: {
               initial: { color: '#FF4D50' },
               hover: { backgroundColor: 'rgba(255, 77, 80, 0.2)' },
-              active: { backgroundColor: 'rgba(255, 77, 80, 0.35)' },
               disabled: { opacity: 0.5 },
             },
           },
@@ -236,7 +249,6 @@ function makeNeoTheme(bound: boolean): Theme {
                 boxShadow: '4px 4px 0 0 #000000',
               },
               hover: { transform: 'translate(2px, 2px)', boxShadow: '2px 2px 0 0 #000000' },
-              active: { transform: 'translate(4px, 4px)', boxShadow: 'none' },
               disabled: { opacity: 0.5 },
             },
             default: {
@@ -245,9 +257,12 @@ function makeNeoTheme(bound: boolean): Theme {
                 color: '#F5F5F5',
                 border: '2px solid #000000',
                 boxShadow: '2px 2px 0 0 #000000',
+                transition: '0.15s',
               },
-              hover: { transform: 'translate(1px, 1px)', boxShadow: '1px 1px 0 0 #000000' },
-              active: { transform: 'translate(2px, 2px)', boxShadow: 'none' },
+              hover: {
+                transform: 'translate(2px, 2px)',
+                boxShadow: 'none',
+              },
               disabled: { opacity: 0.5 },
             },
           },
@@ -258,9 +273,12 @@ function makeNeoTheme(bound: boolean): Theme {
                 color: '#F5F5F5',
                 border: '2px solid #000000',
                 boxShadow: '4px 4px 0 0 #000000',
+                transition: '0.15s',
               },
-              hover: { transform: 'translate(2px, 2px)', boxShadow: '2px 2px 0 0 #000000' },
-              active: { transform: 'translate(4px, 4px)', boxShadow: 'none' },
+              hover: {
+                transform: 'translate(4px, 4px)',
+                boxShadow: 'none',
+              },
               disabled: { opacity: 0.5 },
             },
             error: {
@@ -269,9 +287,12 @@ function makeNeoTheme(bound: boolean): Theme {
                 color: '#FF4D50',
                 border: '2px solid #000000',
                 boxShadow: '4px 4px 0 0 #000000',
+                transition: '0.15s',
               },
-              hover: { transform: 'translate(2px, 2px)', boxShadow: '2px 2px 0 0 #000000' },
-              active: { transform: 'translate(4px, 4px)', boxShadow: 'none' },
+              hover: {
+                transform: 'translate(4px, 4px)',
+                boxShadow: 'none',
+              },
               disabled: { opacity: 0.5 },
             },
             default: {
@@ -280,9 +301,12 @@ function makeNeoTheme(bound: boolean): Theme {
                 color: '#F5F5F5',
                 border: '2px solid #000000',
                 boxShadow: '2px 2px 0 0 #000000',
+                transition: '0.15s',
               },
-              hover: { transform: 'translate(1px, 1px)', boxShadow: '1px 1px 0 0 #000000' },
-              active: { transform: 'translate(2px, 2px)', boxShadow: 'none' },
+              hover: {
+                transform: 'translate(2px, 2px)',
+                boxShadow: 'none',
+              },
               disabled: { opacity: 0.5 },
             },
           },
@@ -290,13 +314,11 @@ function makeNeoTheme(bound: boolean): Theme {
             primary: {
               initial: { color: '#F5F5F5' },
               hover: { backgroundColor: 'rgba(82, 148, 255, 0.35)' },
-              active: { backgroundColor: 'rgba(82, 148, 255, 0.45)' },
               disabled: { opacity: 0.5 },
             },
             error: {
               initial: { color: '#FF4D50' },
               hover: { backgroundColor: 'rgba(255, 77, 80, 0.2)' },
-              active: { backgroundColor: 'rgba(255, 77, 80, 0.35)' },
               disabled: { opacity: 0.5 },
             },
           },
@@ -410,7 +432,6 @@ function makeNeoTheme(bound: boolean): Theme {
         styleOverrides: {
           root: {
             border: '2px solid #000000',
-            boxShadow: '2px 2px 0 0 #000000',
             borderRadius: 5,
           },
         },
@@ -436,9 +457,12 @@ function makeNeoTheme(bound: boolean): Theme {
       },
       MuiChip: {
         styleOverrides: {
-          root: { fontWeight: 700, borderRadius: 5 },
+          root: {
+            fontWeight: 700,
+            borderRadius: 999,
+            border: '2px solid #000000',
+          },
         },
-        ...(bound && { stateVariants: { default: 'input', filled: 'input', outlined: 'ghost' } }),
       },
       MuiFilledInput: {
         defaultProps: { disableUnderline: true },
