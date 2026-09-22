@@ -614,7 +614,9 @@ describe('<Accordion />', () => {
       });
     });
 
-    it('ignores relationship props declared inside a wrapped AccordionSummary', async () => {
+    // Accordion cannot read ids declared inside a wrapper off its child, so AccordionSummary
+    // reports them back and Accordion pairs the region with them.
+    it('keeps relationship props declared inside a wrapped AccordionSummary', async () => {
       function WrappedSummaryWithRelationshipProps() {
         return (
           <AccordionSummary id="inner-summary" aria-controls="inner-region">
@@ -634,13 +636,59 @@ describe('<Accordion />', () => {
       const region = screen.getByRole('region', { hidden: true });
 
       await waitFor(() => {
-        expect(summary).to.have.attribute('aria-controls', region.getAttribute('id'));
-        expect(region).to.have.attribute('aria-labelledby', summary.getAttribute('id'));
+        expect(region).to.have.attribute('id', 'inner-region');
       });
 
-      expect(summary).not.to.have.attribute('id', 'inner-summary');
-      expect(summary).not.to.have.attribute('aria-controls', 'inner-region');
-      expect(region).not.to.have.attribute('id', 'inner-region');
+      expect(summary).to.have.attribute('id', 'inner-summary');
+      expect(summary).to.have.attribute('aria-controls', 'inner-region');
+      expect(region).to.have.attribute('aria-labelledby', 'inner-summary');
+    });
+
+    it('pairs the region with an id declared inside a wrapper when only the id is set', async () => {
+      function WrappedSummaryWithId() {
+        return <AccordionSummary id="inner-summary">Summary</AccordionSummary>;
+      }
+
+      render(
+        <Accordion>
+          <WrappedSummaryWithId />
+          <AccordionDetails>Details</AccordionDetails>
+        </Accordion>,
+      );
+
+      const summary = screen.getByRole('button');
+      const region = screen.getByRole('region', { hidden: true });
+
+      await waitFor(() => {
+        expect(region).to.have.attribute('aria-labelledby', 'inner-summary');
+      });
+
+      expect(summary).to.have.attribute('id', 'inner-summary');
+      expect(summary).to.have.attribute('aria-controls', region.getAttribute('id'));
+    });
+
+    it('pairs the region with ids from a callback slotProps.root on the summary', async () => {
+      render(
+        <Accordion>
+          <AccordionSummary
+            slotProps={{ root: () => ({ id: 'fn-summary', 'aria-controls': 'fn-region' }) }}
+          >
+            Summary
+          </AccordionSummary>
+          <AccordionDetails>Details</AccordionDetails>
+        </Accordion>,
+      );
+
+      const summary = screen.getByRole('button');
+      const region = screen.getByRole('region', { hidden: true });
+
+      await waitFor(() => {
+        expect(region).to.have.attribute('id', 'fn-region');
+      });
+
+      expect(summary).to.have.attribute('id', 'fn-summary');
+      expect(summary).to.have.attribute('aria-controls', 'fn-region');
+      expect(region).to.have.attribute('aria-labelledby', 'fn-summary');
     });
 
     it('generates unique ids for multiple accordions', async () => {
@@ -692,7 +740,7 @@ describe('<Accordion />', () => {
         },
       );
 
-      it('does not emit a dangling aria-controls for wrapped summaries with incomplete custom region ids', () => {
+      it('uses a custom region id from slotProps for a wrapped summary', () => {
         const { container } = renderToString(
           <Accordion slotProps={{ region: { id: 'custom-region' } }}>
             <WrappedAccordionSummary>Summary</WrappedAccordionSummary>
@@ -703,17 +751,16 @@ describe('<Accordion />', () => {
         const summary = container.querySelector('button');
         const region = container.querySelector('[role="region"]');
 
-        expect(region).not.to.have.attribute('id', 'custom-region');
-        expect(summary).to.have.attribute('aria-controls', region.getAttribute('id'));
+        expect(region).to.have.attribute('id', 'custom-region');
+        expect(summary).to.have.attribute('aria-controls', 'custom-region');
       });
 
-      it('does not emit dangling relationship ids from conflicting slot props', () => {
+      it('keeps the ids supplied through slot props on both sides', () => {
         const { container } = renderToString(
           <Accordion
             slotProps={{
               region: {
                 id: 'slot-region',
-                'aria-labelledby': 'slot-summary',
               },
             }}
           >
@@ -734,11 +781,10 @@ describe('<Accordion />', () => {
         const summary = container.querySelector('button');
         const region = container.querySelector('[role="region"]');
 
-        expect(summary).not.to.have.attribute('id', 'slot-summary');
-        expect(summary).not.to.have.attribute('aria-controls', 'slot-region');
-        expect(region).not.to.have.attribute('id', 'slot-region');
-        expect(region).not.to.have.attribute('aria-labelledby', 'slot-summary');
-        expect(summary).to.have.attribute('aria-controls', region.getAttribute('id'));
+        expect(summary).to.have.attribute('id', 'slot-summary');
+        expect(summary).to.have.attribute('aria-controls', 'slot-region');
+        expect(region).to.have.attribute('id', 'slot-region');
+        expect(region).to.have.attribute('aria-labelledby', 'slot-summary');
       });
 
       it('emits generated aria-controls when unmountOnExit starts expanded', () => {
@@ -756,13 +802,12 @@ describe('<Accordion />', () => {
       });
     });
 
-    it('does not allow slotProps ids to break the relationship', async () => {
+    it('uses the ids supplied through slot props', async () => {
       render(
         <Accordion
           slotProps={{
             region: {
               id: 'slot-region',
-              'aria-labelledby': 'slot-summary',
               'data-testid': 'region',
             },
           }}
@@ -786,24 +831,41 @@ describe('<Accordion />', () => {
       const region = screen.getByTestId('region');
 
       await waitFor(() => {
-        expect(region).to.have.attribute('aria-labelledby', summary.getAttribute('id'));
+        expect(region).to.have.attribute('aria-labelledby', 'slot-summary');
       });
 
-      expect(summary).not.to.have.attribute('id', 'slot-summary');
-      expect(summary).not.to.have.attribute('aria-controls', 'slot-region');
-      expect(region).not.to.have.attribute('id', 'slot-region');
-      expect(region).not.to.have.attribute('aria-labelledby', 'slot-summary');
+      expect(summary).to.have.attribute('id', 'slot-summary');
+      expect(summary).to.have.attribute('aria-controls', 'slot-region');
+      expect(region).to.have.attribute('id', 'slot-region');
       expect(summary.getAttribute('aria-controls')).to.equal(region.getAttribute('id'));
     });
 
-    it('supports function slotProps without letting them replace generated relationships', async () => {
+    it('derives the relationship from an id supplied through slotProps.region alone', async () => {
+      render(
+        <Accordion slotProps={{ region: { id: 'slot-region', 'data-testid': 'region' } }}>
+          <AccordionSummary>Summary</AccordionSummary>
+          <AccordionDetails>Details</AccordionDetails>
+        </Accordion>,
+      );
+
+      const summary = screen.getByRole('button');
+      const region = screen.getByTestId('region');
+
+      await waitFor(() => {
+        expect(summary).to.have.attribute('aria-controls', 'slot-region');
+      });
+
+      expect(region).to.have.attribute('id', 'slot-region');
+      expect(region).to.have.attribute('aria-labelledby', summary.getAttribute('id'));
+    });
+
+    it('supports function slotProps without replacing the ids they supply', async () => {
       render(
         <Accordion
           expanded
           slotProps={{
             region: ({ expanded: isExpanded }) => ({
               id: 'slot-region',
-              'aria-labelledby': 'slot-summary',
               className: isExpanded ? 'expanded-region' : undefined,
               'data-testid': 'region',
             }),
@@ -830,15 +892,31 @@ describe('<Accordion />', () => {
 
       await waitFor(() => {
         expect(summary).to.have.attribute('aria-controls', region.getAttribute('id'));
-        expect(region).to.have.attribute('aria-labelledby', summary.getAttribute('id'));
       });
 
-      expect(summary).not.to.have.attribute('id', 'slot-summary');
-      expect(summary).not.to.have.attribute('aria-controls', 'slot-region');
+      expect(summary).to.have.attribute('id', 'slot-summary');
+      expect(summary).to.have.attribute('aria-controls', 'slot-region');
       expect(summary).to.have.class('expanded-summary');
-      expect(region).not.to.have.attribute('id', 'slot-region');
-      expect(region).not.to.have.attribute('aria-labelledby', 'slot-summary');
+      expect(region).to.have.attribute('id', 'slot-region');
       expect(region).to.have.class('expanded-region');
+    });
+
+    it('does not leak the root className onto the region for function slotProps', () => {
+      render(
+        <Accordion
+          className="accordion-root-class"
+          expanded
+          slotProps={{ region: () => ({ className: 'region-class', 'data-testid': 'region' }) }}
+        >
+          <AccordionSummary>Summary</AccordionSummary>
+          <AccordionDetails>Details</AccordionDetails>
+        </Accordion>,
+      );
+
+      const region = screen.getByTestId('region');
+
+      expect(region).to.have.class('region-class');
+      expect(region).not.to.have.class('accordion-root-class');
     });
 
     it('preserves non-relationship slot props', async () => {
