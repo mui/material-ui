@@ -36,6 +36,7 @@ import {
 import {
   getMenu2CheckboxItemUtilityClass,
   Menu2CheckboxItemClasses,
+  menu2CheckboxItemClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2CheckboxItemOwnerState extends Menu2ItemOwnerState {
@@ -152,7 +153,10 @@ export type Menu2CheckboxItemProps<
 const Menu2CheckboxItemRoot = styled(MenuItemBase, {
   name: 'MuiMenu2CheckboxItem',
   slot: 'Root',
-  overridesResolver: menuItemOverridesResolver,
+  overridesResolver: (props, styles) => [
+    menuItemOverridesResolver(props, styles),
+    { [`&.${menu2CheckboxItemClasses.highlighted}`]: styles.highlighted },
+  ],
 })<{ ownerState: Menu2CheckboxItemOwnerState }>(
   memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
 );

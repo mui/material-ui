@@ -25,7 +25,11 @@ import {
   useMenu2ItemListContext,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
-import { getMenu2LinkItemUtilityClass, Menu2LinkItemClasses } from '../Unstable_Menu2/menu2Classes';
+import {
+  getMenu2LinkItemUtilityClass,
+  Menu2LinkItemClasses,
+  menu2LinkItemClasses,
+} from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2LinkItemSlots {
   /**
@@ -94,7 +98,10 @@ export type Menu2LinkItemProps<
 const Menu2LinkItemRoot = styled(MenuItemBase, {
   name: 'MuiMenu2LinkItem',
   slot: 'Root',
-  overridesResolver: menuItemOverridesResolver,
+  overridesResolver: (props, styles) => [
+    menuItemOverridesResolver(props, styles),
+    { [`&.${menu2LinkItemClasses.highlighted}`]: styles.highlighted },
+  ],
 })<{ ownerState: Menu2ItemOwnerState }>(
   memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
 );

@@ -36,6 +36,7 @@ import {
 import {
   getMenu2RadioItemUtilityClass,
   Menu2RadioItemClasses,
+  menu2RadioItemClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2RadioItemOwnerState extends Menu2ItemOwnerState {
@@ -129,7 +130,10 @@ export type Menu2RadioItemProps<
 const Menu2RadioItemRoot = styled(MenuItemBase, {
   name: 'MuiMenu2RadioItem',
   slot: 'Root',
-  overridesResolver: menuItemOverridesResolver,
+  overridesResolver: (props, styles) => [
+    menuItemOverridesResolver(props, styles),
+    { [`&.${menu2RadioItemClasses.highlighted}`]: styles.highlighted },
+  ],
 })<{ ownerState: Menu2RadioItemOwnerState }>(
   memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
 );

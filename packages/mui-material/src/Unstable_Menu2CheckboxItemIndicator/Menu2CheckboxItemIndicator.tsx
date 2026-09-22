@@ -19,6 +19,7 @@ import { getMenu2RootRender, Menu2RootSlotProps } from '../Unstable_Menu2/menu2U
 import {
   getMenu2CheckboxItemIndicatorUtilityClass,
   Menu2CheckboxItemIndicatorClasses,
+  menu2CheckboxItemIndicatorClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2CheckboxItemIndicatorSlots {
@@ -103,7 +104,10 @@ const useUtilityClasses = (ownerState: Menu2CheckboxItemIndicatorProps) => {
 const Menu2CheckboxItemIndicatorRoot = styled(Menu2IndicatorBase, {
   name: 'MuiMenu2CheckboxItemIndicator',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
+  overridesResolver: (props, styles) => [
+    styles.root,
+    { [`&.${menu2CheckboxItemIndicatorClasses.highlighted}`]: styles.highlighted },
+  ],
 })({}) as any;
 
 // `small` keeps the 1.25rem box the menu row is built around.

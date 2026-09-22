@@ -26,7 +26,11 @@ import {
   Menu2RootSlotProps,
   suppressButtonBaseKeyboardActivation,
 } from '../Unstable_Menu2/menu2Utils';
-import { getMenu2ItemUtilityClass, Menu2ItemClasses } from '../Unstable_Menu2/menu2Classes';
+import {
+  getMenu2ItemUtilityClass,
+  Menu2ItemClasses,
+  menu2ItemClasses,
+} from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2ItemSlots {
   /**
@@ -96,7 +100,10 @@ export type Menu2ItemProps<
 const Menu2ItemRoot = styled(MenuItemBase, {
   name: 'MuiMenu2Item',
   slot: 'Root',
-  overridesResolver: menuItemOverridesResolver,
+  overridesResolver: (props, styles) => [
+    menuItemOverridesResolver(props, styles),
+    { [`&.${menu2ItemClasses.highlighted}`]: styles.highlighted },
+  ],
 })<{ ownerState: Menu2ItemOwnerState }>(
   memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
 );

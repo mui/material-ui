@@ -33,7 +33,8 @@ interface Menu2SubmenuTriggerStyleOwnerState extends Menu2SubmenuTriggerOwnerSta
 function menu2SubmenuTriggerStyles(theme: Theme, stateClass: string) {
   // Keyboard focus takes precedence over the open tint. With a focus ring,
   // the tint stays because it shows the open state, not focus.
-  const notFocused = theme.focusVisible ? '' : `:not(.${menuItemClasses.focusVisible})`;
+  // Keep the focus guard at zero specificity so state style overrides can win.
+  const notFocused = theme.focusVisible ? '' : `:where(:not(.${menuItemClasses.focusVisible}))`;
 
   return {
     [`&.${stateClass}${notFocused}`]: {
@@ -54,7 +55,11 @@ function menu2SubmenuTriggerStyles(theme: Theme, stateClass: string) {
 const Menu2SubmenuTriggerRoot = styled(MenuItemBase, {
   name: 'MuiMenu2SubmenuTrigger',
   slot: 'Root',
-  overridesResolver: menuItemOverridesResolver,
+  overridesResolver: (props, styles) => [
+    menuItemOverridesResolver(props, styles),
+    { [`&.${menu2SubmenuTriggerClasses.highlighted}`]: styles.highlighted },
+    { [`&.${menu2SubmenuTriggerClasses.closing}`]: styles.closing },
+  ],
 })<{ ownerState: Menu2SubmenuTriggerStyleOwnerState }>(
   memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
   memoTheme(({ theme }) => ({

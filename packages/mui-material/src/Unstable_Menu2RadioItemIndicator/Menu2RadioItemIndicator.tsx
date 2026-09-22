@@ -18,6 +18,7 @@ import { getMenu2RootRender, Menu2RootSlotProps } from '../Unstable_Menu2/menu2U
 import {
   getMenu2RadioItemIndicatorUtilityClass,
   Menu2RadioItemIndicatorClasses,
+  menu2RadioItemIndicatorClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2RadioItemIndicatorSlots {
@@ -99,7 +100,10 @@ const useUtilityClasses = (ownerState: Menu2RadioItemIndicatorProps) => {
 const Menu2RadioItemIndicatorRoot = styled(Menu2IndicatorBase, {
   name: 'MuiMenu2RadioItemIndicator',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
+  overridesResolver: (props, styles) => [
+    styles.root,
+    { [`&.${menu2RadioItemIndicatorClasses.highlighted}`]: styles.highlighted },
+  ],
 })({}) as any;
 
 // The same icon the real Radio uses, so the dot keeps its scale transition.
