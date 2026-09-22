@@ -242,6 +242,10 @@ AccordionSummary.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  id: PropTypes.string,
+  /**
+   * @ignore
+   */
   onClick: PropTypes.func,
   /**
    * The props used for each slot inside.
