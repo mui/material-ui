@@ -178,12 +178,6 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
 
   const [summary, ...regionChildren] = React.Children.toArray(childrenProp);
   const summaryProps = React.isValidElement(summary) ? summary.props : EMPTY;
-  const summaryIdProp = summaryProps.id;
-  const regionIdProp = summaryProps['aria-controls'];
-  const summaryId = useId(summaryIdProp);
-  const regionId = useId(regionIdProp);
-  const hasRegionIdProp = regionIdProp != null;
-  const [isRegionMounted, setIsRegionMounted] = React.useState(false);
 
   const ownerState = {
     ...props,
@@ -191,6 +185,39 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     disableGutters,
     expanded,
   };
+
+  // Ids the consumer supplied always win, so that ids used elsewhere in their code keep working.
+  // They can come from the summary's own props, from either side's `slotProps`, or from a wrapper
+  // around the summary, which only AccordionSummary itself can resolve and reports back below.
+  const [registeredSummaryProps, setRegisteredSummaryProps] = React.useState(EMPTY);
+  const summaryRootSlotProps = resolveComponentProps(summaryProps.slotProps?.root, {
+    ...summaryProps,
+    disabled,
+    disableGutters,
+    expanded,
+  });
+  // Resolved once and forwarded as an object so a callback `slotProps.region` is not called twice.
+  const resolvedRegionSlotProps = resolveComponentProps(slotProps.region, ownerState);
+  const summaryIdProp = registeredSummaryProps.id ?? summaryRootSlotProps?.id ?? summaryProps.id;
+  const regionIdProp =
+    resolvedRegionSlotProps?.id ??
+    registeredSummaryProps.ariaControls ??
+    summaryRootSlotProps?.['aria-controls'] ??
+    summaryProps['aria-controls'];
+  // `useId` returns the supplied id unchanged, so everything below stays in sync with it.
+  const summaryId = useId(summaryIdProp);
+  const regionId = useId(regionIdProp);
+  const hasRegionIdProp = regionIdProp != null;
+  const [isRegionMounted, setIsRegionMounted] = React.useState(false);
+
+  // A wrapper can supply summary props that are not visible on the first child.
+  const registerSummary = React.useCallback((id, ariaControls) => {
+    setRegisteredSummaryProps((previous) =>
+      previous.id === id && previous.ariaControls === ariaControls
+        ? previous
+        : { id, ariaControls },
+    );
+  }, []);
 
   const classes = useUtilityClasses(ownerState);
 
@@ -241,25 +268,22 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     usesGeneratedRegionId &&
     (isRegionAlwaysMounted || (isDefaultTransition && expanded) || isRegionMounted);
 
-  const regionSlotProps = {
-    ...resolveComponentProps(slotProps.region, ownerState),
-    id: regionId,
-    'aria-labelledby': summaryId,
-  };
-
   const [RegionSlot, regionProps] = useSlot('region', {
     elementType: AccordionRegion,
     externalForwardedProps: {
       ...externalForwardedProps,
       slotProps: {
         ...slotProps,
-        region: regionSlotProps,
+        region: resolvedRegionSlotProps,
       },
     },
     ownerState,
     className: classes.region,
     ref: shouldTrackRegionMount ? handleRegionMountRef : undefined,
+    // Defaults, so anything set through `slotProps.region` takes precedence.
     additionalProps: {
+      id: regionId,
+      'aria-labelledby': summaryId,
       role: 'region',
     },
   });
@@ -274,8 +298,9 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
       toggle: handleChange,
       summaryId,
       ariaControls,
+      registerSummary,
     }),
-    [expanded, disabled, disableGutters, handleChange, summaryId, ariaControls],
+    [expanded, disabled, disableGutters, handleChange, summaryId, ariaControls, registerSummary],
   );
 
   return (

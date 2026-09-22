@@ -8,9 +8,15 @@ interface AccordionContextValue {
   toggle: (event: React.SyntheticEvent) => void;
   summaryId?: string | undefined;
   ariaControls?: string | undefined;
+  /**
+   * Lets AccordionSummary report the ids it actually resolved, for the ones Accordion cannot
+   * read off its child: ids declared inside a wrapper component, or returned from a callback
+   * `slotProps.root`.
+   */
+  registerSummary?: ((id?: string, ariaControls?: string) => void) | undefined;
 }
 
-export const NOOP = () => {};
+const NOOP = () => {};
 
 const DEFAULT_CONTEXT_VALUE: AccordionContextValue = {
   expanded: false,
