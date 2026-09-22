@@ -420,14 +420,12 @@ function generateLlmsTxt(
   return content.trim();
 }
 
-const GENERATED_PATTERNS = ['**/*.md', '**/*.txt'];
-
 /**
  * Deletes the markdown and txt files a previous run wrote anywhere under `dir`.
  * Files of any other type are kept, and emptied directories stay behind.
  */
 function removeGeneratedFiles(dir: string): void {
-  for (const entry of fs.globSync(GENERATED_PATTERNS, { cwd: dir })) {
+  for (const entry of fs.globSync(['**/*.md', '**/*.txt'], { cwd: dir })) {
     fs.rmSync(path.join(dir, entry));
   }
 }
