@@ -9,13 +9,6 @@ import createEmotionServer from '@emotion/server/create-instance';
 import theme from './src/theme';
 import createEmotionCache from './src/createEmotionCache';
 
-// The browser ends a `<style>` element at the first `</style>` it sees, even one sitting inside a
-// CSS value, and reads whatever follows as HTML. `\3c` is the CSS escape for `<`, so the rule keeps
-// its meaning but the text can no longer close the element.
-function escapeHtmlInCss(css: string) {
-  return css.replace(/<(?=\/?style\b)/gi, '\\3c ');
-}
-
 export default function handleRequest(
   request: Request,
   responseStatusCode: number,
@@ -47,7 +40,11 @@ export default function handleRequest(
 
   styles.forEach(({ key, ids, css }) => {
     const emotionKey = `${key} ${ids.join(' ')}`;
-    const newStyleTag = `<style data-emotion="${emotionKey}">${escapeHtmlInCss(css)}</style>`;
+    // The CSS goes into a <style> verbatim, and the browser ends that element at the first
+    // `</style>` it sees, even one sitting inside a CSS value. `\3c` is the CSS escape for `<`, so
+    // the rule keeps its meaning but the text can no longer close the element.
+    const escapedCss = css.replace(/<(?=\/?style\b)/gi, '\\3c ');
+    const newStyleTag = `<style data-emotion="${emotionKey}">${escapedCss}</style>`;
     stylesHTML = `${stylesHTML}${newStyleTag}`;
   });
 
