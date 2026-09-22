@@ -38,10 +38,13 @@ export type AutocompleteMappedValue<FreeSolo> = true extends FreeSolo
   ? Exclude<AutocompletePrimitiveValue, string>
   : AutocompletePrimitiveValue;
 
-// Defer mapped-value inference to getOptionValue without requiring TypeScript 5.4's NoInfer.
+// Compatible with TypeScript versions before the built-in NoInfer was introduced in 5.4.
+type NoInfer<T> = [T][T extends unknown ? 0 : never];
+
+// Defer mapped-value inference to getOptionValue.
 export type AutocompleteResolvedValue<Option, Value> = [Value] extends [never]
   ? Option
-  : [Value][Value extends unknown ? 0 : never];
+  : NoInfer<Value>;
 
 export type AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo> = Multiple extends true
   ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
