@@ -77,20 +77,6 @@ function makeNeoTheme(bound: boolean): Theme {
               },
               disabled: { opacity: 0.5 },
             },
-            default: {
-              initial: {
-                backgroundColor: '#FFFFFF',
-                color: '#000000',
-                border: '2px solid #000000',
-                boxShadow: '2px 2px 0 0 #000000',
-                transition: '0.15s',
-              },
-              hover: {
-                transform: 'translate(2px, 2px)',
-                boxShadow: 'none',
-              },
-              disabled: { opacity: 0.5 },
-            },
           },
           // outlined quiet controls: Button outlined, Chip outlined
           ghost: {
@@ -249,20 +235,6 @@ function makeNeoTheme(bound: boolean): Theme {
                 boxShadow: '4px 4px 0 0 #000000',
               },
               hover: { transform: 'translate(2px, 2px)', boxShadow: '2px 2px 0 0 #000000' },
-              disabled: { opacity: 0.5 },
-            },
-            default: {
-              initial: {
-                backgroundColor: '#2E2E2E',
-                color: '#F5F5F5',
-                border: '2px solid #000000',
-                boxShadow: '2px 2px 0 0 #000000',
-                transition: '0.15s',
-              },
-              hover: {
-                transform: 'translate(2px, 2px)',
-                boxShadow: 'none',
-              },
               disabled: { opacity: 0.5 },
             },
           },
@@ -543,12 +515,6 @@ function makeRadixTheme(bound: boolean): Theme {
               active: { backgroundColor: '#0588f0', filter: 'brightness(0.92) saturate(1.1)' },
               disabled: { backgroundColor: '#0000330f', color: '#00083046' },
             },
-            default: {
-              initial: { backgroundColor: '#0000330f', color: '#1c2024' },
-              hover: { backgroundColor: '#00002d17' },
-              active: { backgroundColor: '#0009321f' },
-              disabled: { backgroundColor: '#0000330f', color: '#00083046' },
-            },
           },
           // surface: Button outlined, Chip outlined — a7 ring -> a8, soft press fill
           ghost: {
@@ -672,12 +638,6 @@ function makeRadixTheme(bound: boolean): Theme {
               initial: { backgroundColor: '#0090ff', color: '#ffffff' },
               hover: { backgroundColor: '#3b9eff' },
               active: { backgroundColor: '#3b9eff', filter: 'brightness(1.08)' },
-              disabled: { backgroundColor: '#ddeaf814', color: '#d9edff5d' },
-            },
-            default: {
-              initial: { backgroundColor: '#ddeaf814', color: '#edeef0' },
-              hover: { backgroundColor: '#d3edf81d' },
-              active: { backgroundColor: '#d9edfe25' },
               disabled: { backgroundColor: '#ddeaf814', color: '#d9edff5d' },
             },
           },
