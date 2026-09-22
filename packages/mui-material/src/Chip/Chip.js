@@ -80,15 +80,18 @@ const ChipRoot = styled('div', {
         `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
       ),
     };
-    const mdFilledColor = (color) => ({
-      backgroundColor: (theme.vars || theme).palette[color].main,
-      color: (theme.vars || theme).palette[color].contrastText,
+    const mdDeleteIconFilledColor = (color) => ({
       [`& .${chipClasses.deleteIcon}`]: {
         color: theme.alpha((theme.vars || theme).palette[color].contrastText, 0.7),
         '&:hover, &:active': {
           color: (theme.vars || theme).palette[color].contrastText,
         },
       },
+    });
+    const mdFilledColor = (color) => ({
+      backgroundColor: (theme.vars || theme).palette[color].main,
+      color: (theme.vars || theme).palette[color].contrastText,
+      ...mdDeleteIconFilledColor(color),
     });
     const mdFilledColorHover = (color) => ({
       backgroundColor: (theme.vars || theme).palette[color].dark,
@@ -109,6 +112,14 @@ const ChipRoot = styled('div', {
         },
       }),
     };
+    const mdDeleteIconOutlinedColor = (color) => ({
+      [`& .${chipClasses.deleteIcon}`]: {
+        color: theme.alpha((theme.vars || theme).palette[color].main, 0.7),
+        '&:hover, &:active': {
+          color: (theme.vars || theme).palette[color].main,
+        },
+      },
+    });
     const mdOutlinedColor = (color) => ({
       color: (theme.vars || theme).palette[color].main,
       border: `1px solid ${theme.alpha((theme.vars || theme).palette[color].main, 0.7)}`,
@@ -126,12 +137,7 @@ const ChipRoot = styled('div', {
           ),
         },
       }),
-      [`& .${chipClasses.deleteIcon}`]: {
-        color: theme.alpha((theme.vars || theme).palette[color].main, 0.7),
-        '&:hover, &:active': {
-          color: (theme.vars || theme).palette[color].main,
-        },
-      },
+      ...mdDeleteIconOutlinedColor(color),
     });
     const mdFilled = (color) =>
       color === 'default'
@@ -397,10 +403,12 @@ const ChipRoot = styled('div', {
                         backgroundColor: 'transparent',
                         border: '1px solid',
                         ...colorStates.initial,
+                        ...(color !== 'default' && mdDeleteIconOutlinedColor(color)),
                       }
                     : {
                         ...colorStates.initial,
-                        ...(colorStates.initial?.border === undefined && { border: 'none' }),
+                        border: 'none',
+                        ...(color !== 'default' && mdDeleteIconFilledColor(color)),
                       }),
                   ...(colorStates.hover && {
                     '@media (hover: hover)': {
