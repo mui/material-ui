@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { describe, it, expect } from 'vitest';
 import { spy } from 'sinon';
 import {
@@ -72,6 +73,21 @@ describe('<SpeedDial />', () => {
 
     expect(screen.getByRole('menu').children).to.have.lengthOf(2);
     expect(screen.getAllByRole('menuitem')).to.have.lengthOf(2);
+  });
+
+  it('should preserve object refs passed to action fab slots', () => {
+    const actionRef = React.createRef();
+
+    render(
+      <SpeedDial {...defaultProps}>
+        <SpeedDialAction
+          icon={icon}
+          slotProps={{ fab: { ref: actionRef }, tooltip: { title: 'Action' } }}
+        />
+      </SpeedDial>,
+    );
+
+    expect(actionRef.current).to.equal(screen.getByRole('menuitem'));
   });
 
   it('should pass the open prop to its children', () => {

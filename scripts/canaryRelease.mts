@@ -188,6 +188,8 @@ function buildPackages() {
 
 async function publishPackages(packages: PackageInfo[], dryRun: boolean) {
   console.log(`\nPublishing packages${dryRun ? ' (dry run)' : ''}`);
+  const failed: string[] = [];
+
   const tasks = packages.map(async (pkg) => {
     try {
       const args = [pkg.path, '--tag', 'canary', '--no-git-checks'];
@@ -197,10 +199,14 @@ async function publishPackages(packages: PackageInfo[], dryRun: boolean) {
       await $$`pnpm publish ${args}`;
     } catch (error: any) {
       console.error(chalk.red(`❌ ${pkg.name}`), error.shortMessage);
+      failed.push(pkg.name);
     }
   });
 
   await Promise.allSettled(tasks);
+  if (failed.length > 0) {
+    throw new Error(`Failed to publish packages: ${failed.join(', ')}`);
+  }
 }
 
 async function cleanUp() {
