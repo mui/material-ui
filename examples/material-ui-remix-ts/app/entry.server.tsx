@@ -13,10 +13,7 @@ import createEmotionCache from './src/createEmotionCache';
 // CSS value, and reads whatever follows as HTML. `\3c` is the CSS escape for `<`, so the rule keeps
 // its meaning but the text can no longer close the element.
 function escapeHtmlInCss(css: string) {
-  if (!css.includes('<')) {
-    return css;
-  }
-  return css.replace(/(<)(\/?style\b)/gi, '\\3c $2');
+  return css.replace(/<(?=\/?style\b)/gi, '\\3c ');
 }
 
 export default function handleRequest(

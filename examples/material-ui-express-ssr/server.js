@@ -56,7 +56,7 @@ function handleRender(req, res) {
   // the rule keeps its meaning but the text can no longer close the element.
   emotionChunks.styles = emotionChunks.styles.map((style) => ({
     ...style,
-    css: style.css.replace(/(<)(\/?style\b)/gi, '\\3c $2'),
+    css: style.css.replace(/<(?=\/?style\b)/gi, '\\3c '),
   }));
   const emotionCss = constructStyleTagsFromChunks(emotionChunks);
 

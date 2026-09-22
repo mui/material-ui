@@ -6,6 +6,20 @@ describe('escapeHtmlInCss', () => {
     expect(escapeHtmlInCss('.a{content:"</style>"}')).to.equal('.a{content:"\\3c /style>"}');
   });
 
+  it('escapes every end tag, not only the first', () => {
+    expect(escapeHtmlInCss('.a{content:"</style></style>"}')).to.equal(
+      '.a{content:"\\3c /style>\\3c /style>"}',
+    );
+  });
+
+  it('escapes the end tag whatever terminates it', () => {
+    // A browser ends the element on `</style` followed by whitespace, `/` or `>`.
+    expect(escapeHtmlInCss('.a{content:"</style\n>"}')).to.equal('.a{content:"\\3c /style\n>"}');
+    expect(escapeHtmlInCss('.a{content:"</style\t>"}')).to.equal('.a{content:"\\3c /style\t>"}');
+    expect(escapeHtmlInCss('.a{content:"</style/>"}')).to.equal('.a{content:"\\3c /style/>"}');
+    expect(escapeHtmlInCss('.a{content:"</style')).to.equal('.a{content:"\\3c /style');
+  });
+
   it('escapes the end tag whatever its case', () => {
     expect(escapeHtmlInCss('.a{content:"</STYLE>"}')).to.equal('.a{content:"\\3c /STYLE>"}');
     expect(escapeHtmlInCss('.a{content:"</StYlE>"}')).to.equal('.a{content:"\\3c /StYlE>"}');
@@ -41,7 +55,9 @@ describe('escapeHtmlInCss', () => {
   });
 
   it('escapes only once', () => {
-    const escaped = escapeHtmlInCss('.a{content:"</style>"}');
+    // The input still holds a `<`, so the second pass reaches the replace rather than returning early.
+    const escaped = escapeHtmlInCss('.a{content:"</style><div>"}');
+    expect(escaped).to.equal('.a{content:"\\3c /style><div>"}');
     expect(escapeHtmlInCss(escaped)).to.equal(escaped);
   });
 });
