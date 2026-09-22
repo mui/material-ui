@@ -9,6 +9,16 @@ import createEmotionServer from '@emotion/server/create-instance';
 import theme from './src/theme';
 import createEmotionCache from './src/createEmotionCache';
 
+// Inside a `<style>` element the HTML tokenizer stays in RAWTEXT state until it reaches `</style`,
+// so a style value containing one closes the element and the rest of the stylesheet is parsed as
+// HTML. `\3c` is the CSS escape for `<` and parses back to the same value.
+function escapeHtmlInCss(css: string) {
+  if (!css.includes('<')) {
+    return css;
+  }
+  return css.replace(/(<)(\/?style\b)/gi, '\\3c $2').replace(/(<)(!--)/g, '\\3c $2');
+}
+
 export default function handleRequest(
   request: Request,
   responseStatusCode: number,
@@ -40,14 +50,15 @@ export default function handleRequest(
 
   styles.forEach(({ key, ids, css }) => {
     const emotionKey = `${key} ${ids.join(' ')}`;
-    const newStyleTag = `<style data-emotion="${emotionKey}">${css}</style>`;
+    const newStyleTag = `<style data-emotion="${emotionKey}">${escapeHtmlInCss(css)}</style>`;
     stylesHTML = `${stylesHTML}${newStyleTag}`;
   });
 
-  // Add the Emotion style tags after the insertion point meta tag
+  // Add the Emotion style tags after the insertion point meta tag. The replacement is a function so
+  // that `$&` and friends inside the stylesheet are not expanded as replacement patterns.
   const markup = html.replace(
     /<meta(\s)*name="emotion-insertion-point"(\s)*content="emotion-insertion-point"(\s)*\/>/,
-    `<meta name="emotion-insertion-point" content="emotion-insertion-point"/>${stylesHTML}`,
+    () => `<meta name="emotion-insertion-point" content="emotion-insertion-point"/>${stylesHTML}`,
   );
 
   responseHeaders.set('Content-Type', 'text/html');
