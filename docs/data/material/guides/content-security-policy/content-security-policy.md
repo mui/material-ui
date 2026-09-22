@@ -83,14 +83,6 @@ You should pass the nonce in the `<style>` tags on the server.
 />
 ```
 
-:::warning
-The body of a `<style>` element is written to the page verbatim, so only render style values you control.
-
-A value containing `</style>` closes the element early and the rest of the stylesheet is parsed as HTML, which allows script execution. A value containing `}` closes the rule early and injects arbitrary CSS, which can be used to load external resources or read page content through attribute selectors. Neither a nonce nor a `@layer` wrapper prevents either one.
-
-The `<style>` tags emitted by `@mui/material-nextjs` escape the first case for you. Nothing can escape the second on your behalf, because a style value is CSS by definition: never pass user-supplied data to `sx`, a theme token, or `GlobalStyles`. Validate it against an allowlist first, or use [`CSS.escape`](https://developer.mozilla.org/en-US/docs/Web/API/CSS/escape).
-:::
-
 Then, you must pass this nonce to Emotion's cache so it can add it to subsequent `<style>`.
 
 :::warning
