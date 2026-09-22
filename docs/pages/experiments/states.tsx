@@ -30,7 +30,7 @@ import Divider from '@mui/material/Divider';
 
 declare module '@mui/material/styles' {
   interface StateGroupOverrides {
-    input: true;
+    solid: true;
     ghost: true;
     plain: true;
     navigation: true;
@@ -62,7 +62,7 @@ function makeNeoTheme(bound: boolean): Theme {
         },
         state: {
           // solid controls: Button contained, Chip filled
-          input: {
+          solid: {
             primary: {
               initial: {
                 backgroundColor: '#5294FF',
@@ -240,7 +240,7 @@ function makeNeoTheme(bound: boolean): Theme {
           divider: '#000000',
         },
         state: {
-          input: {
+          solid: {
             primary: {
               initial: {
                 backgroundColor: '#5294FF',
@@ -448,8 +448,8 @@ function makeNeoTheme(bound: boolean): Theme {
         },
         ...(bound && {
           stateVariants: {
-            default: 'input',
-            contained: 'input',
+            default: 'solid',
+            contained: 'solid',
             outlined: 'ghost',
             text: 'plain',
           },
@@ -536,7 +536,7 @@ function makeRadixTheme(bound: boolean): Theme {
         },
         state: {
           // solid: Button contained, Chip filled — accent 9 -> 10 -> 10 + filter
-          input: {
+          solid: {
             primary: {
               initial: { backgroundColor: '#0090ff', color: '#ffffff' },
               hover: { backgroundColor: '#0588f0' },
@@ -667,7 +667,7 @@ function makeRadixTheme(bound: boolean): Theme {
           divider: '#d9edff36',
         },
         state: {
-          input: {
+          solid: {
             primary: {
               initial: { backgroundColor: '#0090ff', color: '#ffffff' },
               hover: { backgroundColor: '#3b9eff' },
@@ -816,8 +816,8 @@ function makeRadixTheme(bound: boolean): Theme {
         },
         ...(bound && {
           stateVariants: {
-            default: 'input',
-            contained: 'input',
+            default: 'solid',
+            contained: 'solid',
             outlined: 'ghost',
             text: 'plain',
           },
@@ -827,7 +827,7 @@ function makeRadixTheme(bound: boolean): Theme {
         styleOverrides: {
           root: { fontWeight: 500, borderRadius: 4 },
         },
-        ...(bound && { stateVariants: { default: 'input', filled: 'input', outlined: 'ghost' } }),
+        ...(bound && { stateVariants: { default: 'solid', filled: 'solid', outlined: 'ghost' } }),
       },
       MuiFilledInput: {
         defaultProps: { disableUnderline: true },
