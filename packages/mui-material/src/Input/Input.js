@@ -19,6 +19,7 @@ import {
   InputBaseRoot,
   InputBaseInput,
 } from '../InputBase/InputBase';
+import { applyInsetFocusVisible } from '../styles/focusVisible';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableUnderline } = ownerState;
@@ -67,6 +68,13 @@ const InputRoot = styled(InputBaseRoot, {
             [`label + &, .${inputLabelClasses.root} + &`]: {
               marginTop: 16,
             },
+          },
+        },
+        {
+          props: ({ ownerState }) => ownerState.disableUnderline && theme.focusVisible,
+          style: {
+            ...applyInsetFocusVisible(1),
+            paddingInline: 4,
           },
         },
         {
