@@ -107,7 +107,7 @@ export default function AppRouterCacheProvider(props: AppRouterCacheProviderProp
             nonce={options?.nonce}
             key={name}
             data-emotion={`${registry.cache.key}-global ${name}`}
-            // eslint-disable-next-line react/no-danger -- comes from Emotion's `cache.inserted`, which carries `sx`/theme/`GlobalStyles` values that Emotion serializes without escaping HTML
+            // eslint-disable-next-line react/no-danger -- cache.inserted holds sx, theme and GlobalStyles values that Emotion serialized without escaping HTML
             dangerouslySetInnerHTML={{ __html: escapeHtmlInCss(style) }}
           />
         ))}
@@ -115,7 +115,7 @@ export default function AppRouterCacheProvider(props: AppRouterCacheProviderProp
           <style
             nonce={options?.nonce}
             data-emotion={dataEmotionAttribute}
-            // eslint-disable-next-line react/no-danger -- comes from Emotion's `cache.inserted`, which carries `sx`/theme/`GlobalStyles` values that Emotion serializes without escaping HTML
+            // eslint-disable-next-line react/no-danger -- cache.inserted holds sx, theme and GlobalStyles values that Emotion serialized without escaping HTML
             dangerouslySetInnerHTML={{ __html: escapeHtmlInCss(styles) }}
           />
         )}
