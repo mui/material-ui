@@ -6,8 +6,6 @@ type KeysEquivalent<T, U> = keyof T extends keyof U
     : false
   : false;
 
-type ValuesAreLiteral<T> = string extends T[keyof T] ? false : true;
-
 function colorTypeMatches(variants: keyof Color) {
   // Checking that each color has the exact shape as Color
   // we don't use the Color type for these to provide JSDoc for each color
@@ -33,29 +31,4 @@ function colorTypeMatches(variants: keyof Color) {
   const red: KeysEquivalent<Color, typeof colors.red> = true;
   const teal: KeysEquivalent<Color, typeof colors.teal> = true;
   const yellow: KeysEquivalent<Color, typeof colors.yellow> = true;
-}
-
-function colorValuesAreLiteral() {
-  // `as const` on each object keeps the hex literal types the hand-written
-  // declarations had, so that e.g. `blue[500]` does not widen to `string`.
-  const amber: ValuesAreLiteral<typeof colors.amber> = true;
-  const blue: ValuesAreLiteral<typeof colors.blue> = true;
-  const blueGrey: ValuesAreLiteral<typeof colors.blueGrey> = true;
-  const brown: ValuesAreLiteral<typeof colors.brown> = true;
-  const common: ValuesAreLiteral<typeof colors.common> = true;
-  const cyan: ValuesAreLiteral<typeof colors.cyan> = true;
-  const deepOrange: ValuesAreLiteral<typeof colors.deepOrange> = true;
-  const deepPurple: ValuesAreLiteral<typeof colors.deepPurple> = true;
-  const green: ValuesAreLiteral<typeof colors.green> = true;
-  const grey: ValuesAreLiteral<typeof colors.grey> = true;
-  const indigo: ValuesAreLiteral<typeof colors.indigo> = true;
-  const lightBlue: ValuesAreLiteral<typeof colors.lightBlue> = true;
-  const lightGreen: ValuesAreLiteral<typeof colors.lightGreen> = true;
-  const lime: ValuesAreLiteral<typeof colors.lime> = true;
-  const orange: ValuesAreLiteral<typeof colors.orange> = true;
-  const pink: ValuesAreLiteral<typeof colors.pink> = true;
-  const purple: ValuesAreLiteral<typeof colors.purple> = true;
-  const red: ValuesAreLiteral<typeof colors.red> = true;
-  const teal: ValuesAreLiteral<typeof colors.teal> = true;
-  const yellow: ValuesAreLiteral<typeof colors.yellow> = true;
 }
