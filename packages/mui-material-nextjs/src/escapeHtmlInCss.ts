@@ -6,6 +6,8 @@ const STYLE_TAG = /(<)(\/?style\b)/gi;
 const COMMENT_OPEN = /(<)(!--)/g;
 
 export default function escapeHtmlInCss(css: string) {
+  // Runs over the whole stylesheet on every server render, and almost no CSS holds a `<` at all,
+  // so the common case skips both scans below.
   if (!css.includes('<')) {
     return css;
   }
