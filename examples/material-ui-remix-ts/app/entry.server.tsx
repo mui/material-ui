@@ -16,7 +16,7 @@ function escapeHtmlInCss(css: string) {
   if (!css.includes('<')) {
     return css;
   }
-  return css.replace(/(<)(\/?style\b)/gi, '\\3c $2').replace(/(<)(!--)/g, '\\3c $2');
+  return css.replace(/(<)(\/?style\b)/gi, '\\3c $2');
 }
 
 export default function handleRequest(
