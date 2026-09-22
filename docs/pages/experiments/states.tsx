@@ -24,8 +24,6 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
 import Divider from '@mui/material/Divider';
 
 declare module '@mui/material/styles' {
@@ -46,7 +44,7 @@ declare module '@mui/material/styles' {
 // Neobrutalism look. Reference values: neobrutalism.dev (ekmas/neobrutalism-components)
 // ---------------------------------------------------------------------------
 
-function makeNeoTheme(bound: boolean): Theme {
+function makeNeoTheme(): Theme {
   return createTheme({
     cssVariables: { colorSchemeSelector: 'class' },
     colorSchemes: {
@@ -403,20 +401,18 @@ function makeNeoTheme(bound: boolean): Theme {
         },
       },
       MuiToggleButton: {
-        ...(bound && { stateVariants: { default: 'plain' } }),
+        stateVariants: { default: 'plain' },
       },
       MuiButton: {
         styleOverrides: {
           root: { fontWeight: 700 },
         },
-        ...(bound && {
-          stateVariants: {
-            default: 'solid',
-            contained: 'solid',
-            outlined: 'sub',
-            text: 'plain',
-          },
-        }),
+        stateVariants: {
+          default: 'solid',
+          contained: 'solid',
+          outlined: 'sub',
+          text: 'plain',
+        },
       },
       MuiChip: {
         styleOverrides: {
@@ -432,7 +428,7 @@ function makeNeoTheme(bound: boolean): Theme {
         styleOverrides: {
           root: ({ theme }) => ({ borderRadius: (theme.vars || theme).shape.borderRadius }),
         },
-        ...(bound && { stateVariants: { default: 'field' } }),
+        stateVariants: { default: 'field' },
       },
       MuiInputLabel: {
         styleOverrides: {
@@ -446,7 +442,7 @@ function makeNeoTheme(bound: boolean): Theme {
         styleOverrides: {
           root: { fontWeight: 500 },
         },
-        ...(bound && { stateVariants: { standard: 'solid' } }),
+        stateVariants: { standard: 'solid' },
       },
       MuiMenu: {
         styleOverrides: {
@@ -458,7 +454,7 @@ function makeNeoTheme(bound: boolean): Theme {
         styleOverrides: {
           root: ({ theme }) => ({ borderRadius: (theme.vars || theme).shape.borderRadius }),
         },
-        ...(bound && { stateVariants: { default: 'navigation' } }),
+        stateVariants: { default: 'navigation' },
       },
       MuiListItemButton: {
         styleOverrides: {
@@ -468,7 +464,7 @@ function makeNeoTheme(bound: boolean): Theme {
             width: 'auto',
           }),
         },
-        ...(bound && { stateVariants: { default: 'navigation' } }),
+        stateVariants: { default: 'navigation' },
       },
       MuiPaginationItem: {
         styleOverrides: {
@@ -477,17 +473,17 @@ function makeNeoTheme(bound: boolean): Theme {
             borderRadius: (theme.vars || theme).shape.borderRadius,
           }),
         },
-        ...(bound && { stateVariants: { default: 'plain', text: 'plain' } }),
+        stateVariants: { default: 'plain', text: 'plain' },
       },
       MuiAutocomplete: {
         styleOverrides: {
           listbox: { padding: 8 },
           option: ({ theme }) => ({ borderRadius: (theme.vars || theme).shape.borderRadius }),
         },
-        ...(bound && { stateVariants: { default: 'navigation' } }),
+        stateVariants: { default: 'navigation' },
       },
       MuiTableRow: {
-        ...(bound && { stateVariants: { default: 'plain' } }),
+        stateVariants: { default: 'plain' },
       },
     },
   });
@@ -499,7 +495,7 @@ function makeNeoTheme(bound: boolean): Theme {
 // every interaction color comes from the state groups.
 // ---------------------------------------------------------------------------
 
-function makeCustomTheme(bound: boolean): Theme {
+function makeCustomTheme(): Theme {
   return createTheme({
     focusVisible: true,
     shape: {
@@ -921,103 +917,79 @@ function makeCustomTheme(bound: boolean): Theme {
       MuiButtonBase: { defaultProps: { disableRipple: true } },
       MuiButton: {
         defaultProps: { disableElevation: true },
-        ...(bound && {
-          stateVariants: {
-            default: 'ghost',
-            contained: 'input',
-            outlined: 'ghost',
-            text: 'ghost',
-          },
-        }),
+        stateVariants: {
+          default: 'ghost',
+          contained: 'input',
+          outlined: 'ghost',
+          text: 'ghost',
+        },
       },
       MuiMenuItem: {
-        ...(bound && { stateVariants: { default: 'navigation' } }),
+        stateVariants: { default: 'navigation' },
       },
       MuiChip: {
-        ...(bound && {
-          stateVariants: {
-            default: 'dataDisplay',
-            filled: 'input',
-            outlined: 'dataDisplay',
-          },
-        }),
+        stateVariants: {
+          default: 'dataDisplay',
+          filled: 'input',
+          outlined: 'dataDisplay',
+        },
       },
       MuiFilledInput: {
-        ...(bound && {
-          stateVariants: {
-            default: 'field',
-          },
-        }),
+        stateVariants: {
+          default: 'field',
+        },
       },
       MuiListItemButton: {
-        ...(bound && {
-          stateVariants: {
-            default: 'navigation',
-          },
-        }),
+        stateVariants: {
+          default: 'navigation',
+        },
       },
       MuiTableRow: {
-        ...(bound && {
-          stateVariants: {
-            default: 'dataDisplay',
-          },
-        }),
+        stateVariants: {
+          default: 'dataDisplay',
+        },
       },
       MuiAutocomplete: {
-        ...(bound && {
-          stateVariants: {
-            default: 'navigation',
-          },
-        }),
+        stateVariants: {
+          default: 'navigation',
+        },
       },
       MuiPaginationItem: {
-        ...(bound && {
-          stateVariants: {
-            default: 'navigation',
-            text: 'navigation',
-          },
-        }),
+        stateVariants: {
+          default: 'navigation',
+          text: 'navigation',
+        },
       },
       MuiToggleButton: {
-        ...(bound && {
-          stateVariants: {
-            default: 'dataDisplay',
-          },
-        }),
+        stateVariants: {
+          default: 'dataDisplay',
+        },
       },
       MuiAlert: {
-        ...(bound && {
-          stateVariants: {
-            standard: 'feedback',
-            outlined: 'feedback',
-          },
-        }),
+        stateVariants: {
+          standard: 'feedback',
+          outlined: 'feedback',
+        },
       },
     },
   });
 }
 
-const themes: Record<string, { label: string; bound: Theme; unbound: Theme }> = {
+const themes: Record<string, { label: string; theme: Theme }> = {
   material: {
     label: 'Material',
-    bound: createTheme({
-      cssVariables: { colorSchemeSelector: 'class' },
-      colorSchemes: { light: true, dark: true },
-    }),
-    unbound: createTheme({
+    theme: createTheme({
       cssVariables: { colorSchemeSelector: 'class' },
       colorSchemes: { light: true, dark: true },
     }),
   },
   neo: {
     label: 'Neobrutalism',
-    bound: makeNeoTheme(true),
-    unbound: makeNeoTheme(false),
+    theme: makeNeoTheme(),
   },
   custom: {
     label: 'Custom',
-    bound: makeCustomTheme(true),
-    unbound: makeCustomTheme(false),
+    theme: makeCustomTheme(),
   },
 };
 
@@ -1353,8 +1325,7 @@ function ConfigViewer({ theme }: { theme: Theme }) {
 
 export default function StatesShowcase() {
   const [look, setLook] = React.useState<'material' | 'neo' | 'custom'>('neo');
-  const [bindings, setBindings] = React.useState(true);
-  const theme = bindings ? themes[look].bound : themes[look].unbound;
+  const theme = themes[look].theme;
 
   return (
     <ThemeProvider theme={theme} defaultMode="light" disableTransitionOnChange>
@@ -1387,23 +1358,11 @@ export default function StatesShowcase() {
               ))}
             </ToggleButtonGroup>
             <ModeToggle />
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={bindings}
-                  disabled={look === 'material'}
-                  onChange={(event) => setBindings(event.target.checked)}
-                />
-              }
-              label="State bindings"
-            />
           </Stack>
           <Typography variant="body2" sx={{ color: 'text.secondary', mb: 3 }}>
             Every component below is unmodified <code>@mui/material</code>. The look — including
             every hover, press, selection, focus, and disabled — comes from the theme: user-defined{' '}
-            <code>state</code> groups bound per variant with <code>stateVariants</code>. Turn
-            &ldquo;State bindings&rdquo; off to remove only the bindings: typography and radius
-            stay, and every interaction falls back to Material.
+            <code>state</code> groups bound per variant with <code>stateVariants</code>.
           </Typography>
           <MailPane />
           <ConfigViewer theme={theme} />
