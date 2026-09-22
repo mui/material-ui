@@ -31,7 +31,7 @@ import Divider from '@mui/material/Divider';
 declare module '@mui/material/styles' {
   interface StateGroupOverrides {
     solid: true;
-    ghost: true;
+    sub: true;
     plain: true;
     navigation: true;
     dataDisplay: true;
@@ -61,7 +61,6 @@ function makeNeoTheme(bound: boolean): Theme {
           divider: '#000000',
         },
         state: {
-          // solid controls: Button contained, Chip filled
           solid: {
             primary: {
               initial: {
@@ -77,107 +76,6 @@ function makeNeoTheme(bound: boolean): Theme {
               },
               disabled: { opacity: 0.5 },
             },
-          },
-          // outlined quiet controls: Button outlined, Chip outlined
-          ghost: {
-            primary: {
-              initial: {
-                backgroundColor: '#FFFFFF',
-                color: '#000000',
-                border: '2px solid #000000',
-                boxShadow: '4px 4px 0 0 #000000',
-                transition: '0.15s',
-              },
-              hover: {
-                transform: 'translate(4px, 4px)',
-                boxShadow: 'none',
-              },
-              disabled: { opacity: 0.5 },
-            },
-            error: {
-              initial: {
-                backgroundColor: '#FFFFFF',
-                color: '#FF4D50',
-                border: '2px solid #000000',
-                boxShadow: '4px 4px 0 0 #000000',
-                transition: '0.15s',
-              },
-              hover: {
-                transform: 'translate(4px, 4px)',
-                boxShadow: 'none',
-              },
-              disabled: { opacity: 0.5 },
-            },
-            default: {
-              initial: {
-                backgroundColor: '#FFFFFF',
-                color: '#000000',
-                border: '2px solid #000000',
-                boxShadow: '2px 2px 0 0 #000000',
-                transition: '0.15s',
-              },
-              hover: {
-                transform: 'translate(2px, 2px)',
-                boxShadow: 'none',
-              },
-              disabled: { opacity: 0.5 },
-            },
-          },
-          // borderless quiet controls: Button text
-          plain: {
-            primary: {
-              initial: { color: '#000000' },
-              hover: { backgroundColor: 'rgba(82, 148, 255, 0.25)' },
-              disabled: { opacity: 0.5 },
-            },
-            error: {
-              initial: { color: '#FF4D50' },
-              hover: { backgroundColor: 'rgba(255, 77, 80, 0.2)' },
-              disabled: { opacity: 0.5 },
-            },
-          },
-          // list rows: ListItemButton, MenuItem, Autocomplete options
-          navigation: {
-            default: {
-              hover: { backgroundColor: 'rgba(82, 148, 255, 0.25)' },
-              active: { backgroundColor: 'rgba(82, 148, 255, 0.45)' },
-              selected: { backgroundColor: '#5294FF', color: '#000000' },
-              selectedHover: { backgroundColor: '#3D82F6' },
-              selectedActive: { backgroundColor: '#2F74E8' },
-            },
-          },
-          // data selection: TableRow, ToggleButton, PaginationItem
-          dataDisplay: {
-            default: {
-              hover: { backgroundColor: 'rgba(82, 148, 255, 0.15)' },
-              selected: { backgroundColor: '#000000', color: '#FFFFFF' },
-              selectedHover: { backgroundColor: '#26262B' },
-              disabled: { opacity: 0.5 },
-            },
-          },
-          // text fields: FilledInput (resolved by the input's color prop — primary by default)
-          field: {
-            primary: {
-              initial: {
-                backgroundColor: '#FFFFFF',
-                color: '#000000',
-                border: '2px solid #000000',
-              },
-              hover: { backgroundColor: '#FFFFFF' },
-              focused: { boxShadow: '4px 4px 0 0 #000000' },
-              disabled: { opacity: 0.5 },
-            },
-            error: {
-              initial: {
-                backgroundColor: '#FFFFFF',
-                color: '#FF4D50',
-                border: '2px solid #FF4D50',
-              },
-              focused: { boxShadow: '4px 4px 0 0 #FF4D50' },
-            },
-          },
-          // alerts
-          feedback: {
             warning: {
               initial: {
                 backgroundColor: '#FACC00',
@@ -209,6 +107,101 @@ function makeNeoTheme(bound: boolean): Theme {
                 border: '2px solid #000000',
                 boxShadow: '4px 4px 0 0 #000000',
               },
+            },
+          },
+          sub: {
+            primary: {
+              initial: {
+                backgroundColor: '#FFFFFF',
+                border: '2px solid #000000',
+                boxShadow: '4px 4px 0 0 #000000',
+                transition: '0.15s',
+              },
+              hover: {
+                transform: 'translate(4px, 4px)',
+                boxShadow: 'none',
+              },
+              disabled: { opacity: 0.5 },
+            },
+            error: {
+              initial: {
+                backgroundColor: '#FFFFFF',
+                color: '#FF4D50',
+                border: '2px solid #000000',
+                boxShadow: '4px 4px 0 0 #000000',
+                transition: '0.15s',
+              },
+              hover: {
+                transform: 'translate(4px, 4px)',
+                boxShadow: 'none',
+              },
+              disabled: { opacity: 0.5 },
+            },
+            default: {
+              initial: {
+                backgroundColor: '#FFFFFF',
+                border: '2px solid #000000',
+                boxShadow: '2px 2px 0 0 #000000',
+                transition: '0.15s',
+              },
+              hover: {
+                transform: 'translate(2px, 2px)',
+                boxShadow: 'none',
+              },
+              disabled: { opacity: 0.5 },
+            },
+          },
+          plain: {
+            default: {
+              initial: { borderWidth: '2px', borderColor: '#000000' },
+              selected: { backgroundColor: '#000000', color: '#FFFFFF' },
+              selectedHover: { backgroundColor: '#26262B' },
+              disabled: { opacity: 0.5 },
+            },
+            primary: {
+              initial: { borderWidth: '2px', borderColor: '#000000' },
+              hover: { backgroundColor: 'rgba(82, 148, 255, 0.25)' },
+              disabled: { opacity: 0.5 },
+            },
+            error: {
+              initial: { color: '#FF4D50' },
+              hover: { backgroundColor: 'rgba(255, 77, 80, 0.2)' },
+              disabled: { opacity: 0.5 },
+            },
+          },
+          navigation: {
+            default: {
+              initial: {
+                border: '2px solid transparent',
+              },
+              hover: { backgroundColor: 'rgba(82, 148, 255, 0.25)' },
+              active: { backgroundColor: 'rgba(82, 148, 255, 0.45)' },
+              selected: {
+                backgroundColor: '#5294FF',
+                color: '#000000',
+                border: '2px solid #000000',
+              },
+              selectedHover: { backgroundColor: '#3D82F6' },
+              selectedActive: { backgroundColor: '#2F74E8' },
+            },
+          },
+          field: {
+            primary: {
+              initial: {
+                backgroundColor: '#FFFFFF',
+                border: '2px solid #000000',
+              },
+              hover: { backgroundColor: '#FFFFFF' },
+              focused: { boxShadow: '0 0 0 2px #FFFFFF, 0 0 0 4px #000000' },
+              disabled: { opacity: 0.5 },
+            },
+            error: {
+              initial: {
+                backgroundColor: '#FFFFFF',
+                color: '#FF4D50',
+                border: '2px solid #FF4D50',
+              },
+              focused: { boxShadow: '0 0 0 2px #FFFFFF, 0 0 0 4px #FF4D50' },
             },
           },
         },
@@ -223,7 +216,7 @@ function makeNeoTheme(bound: boolean): Theme {
           info: { main: '#7A83FF', contrastText: '#000000' },
           background: { default: '#1D1F27', paper: '#212121' },
           text: { primary: '#F5F5F5', secondary: '#B8B8B8' },
-          divider: '#000000',
+          divider: 'rgba(255, 255, 255, 0.2)',
         },
         state: {
           solid: {
@@ -233,18 +226,6 @@ function makeNeoTheme(bound: boolean): Theme {
                 color: '#000000',
                 border: '2px solid #000000',
                 boxShadow: '4px 4px 0 0 #000000',
-              },
-              hover: { transform: 'translate(2px, 2px)', boxShadow: '2px 2px 0 0 #000000' },
-              disabled: { opacity: 0.5 },
-            },
-          },
-          ghost: {
-            primary: {
-              initial: {
-                backgroundColor: '#2E2E2E',
-                color: '#F5F5F5',
-                border: '2px solid #000000',
-                boxShadow: '4px 4px 0 0 #000000',
                 transition: '0.15s',
               },
               hover: {
@@ -253,85 +234,6 @@ function makeNeoTheme(bound: boolean): Theme {
               },
               disabled: { opacity: 0.5 },
             },
-            error: {
-              initial: {
-                backgroundColor: '#2E2E2E',
-                color: '#FF4D50',
-                border: '2px solid #000000',
-                boxShadow: '4px 4px 0 0 #000000',
-                transition: '0.15s',
-              },
-              hover: {
-                transform: 'translate(4px, 4px)',
-                boxShadow: 'none',
-              },
-              disabled: { opacity: 0.5 },
-            },
-            default: {
-              initial: {
-                backgroundColor: '#2E2E2E',
-                color: '#F5F5F5',
-                border: '2px solid #000000',
-                boxShadow: '2px 2px 0 0 #000000',
-                transition: '0.15s',
-              },
-              hover: {
-                transform: 'translate(2px, 2px)',
-                boxShadow: 'none',
-              },
-              disabled: { opacity: 0.5 },
-            },
-          },
-          plain: {
-            primary: {
-              initial: { color: '#F5F5F5' },
-              hover: { backgroundColor: 'rgba(82, 148, 255, 0.35)' },
-              disabled: { opacity: 0.5 },
-            },
-            error: {
-              initial: { color: '#FF4D50' },
-              hover: { backgroundColor: 'rgba(255, 77, 80, 0.2)' },
-              disabled: { opacity: 0.5 },
-            },
-          },
-          navigation: {
-            default: {
-              hover: { backgroundColor: 'rgba(82, 148, 255, 0.35)' },
-              active: { backgroundColor: 'rgba(82, 148, 255, 0.45)' },
-              selected: { backgroundColor: '#5294FF', color: '#000000' },
-              selectedHover: { backgroundColor: '#3D82F6' },
-              selectedActive: { backgroundColor: '#2F74E8' },
-            },
-          },
-          dataDisplay: {
-            default: {
-              hover: { backgroundColor: 'rgba(82, 148, 255, 0.25)' },
-              selected: { backgroundColor: '#F5F5F5', color: '#000000' },
-              selectedHover: { backgroundColor: '#D6D6D6' },
-              disabled: { opacity: 0.5 },
-            },
-          },
-          field: {
-            primary: {
-              initial: {
-                backgroundColor: '#2E2E2E',
-                color: '#F5F5F5',
-                border: '2px solid #000000',
-              },
-              hover: { backgroundColor: '#2E2E2E' },
-              focused: { boxShadow: '4px 4px 0 0 #000000' },
-              disabled: { opacity: 0.5 },
-            },
-            error: {
-              initial: {
-                backgroundColor: '#2E2E2E',
-                color: '#FF4D50',
-                border: '2px solid #FF4D50',
-              },
-              focused: { boxShadow: '4px 4px 0 0 #FF4D50' },
-            },
-          },
-          feedback: {
             warning: {
               initial: {
                 backgroundColor: '#FACC00',
@@ -363,6 +265,101 @@ function makeNeoTheme(bound: boolean): Theme {
                 border: '2px solid #000000',
                 boxShadow: '4px 4px 0 0 #000000',
               },
+            },
+          },
+          sub: {
+            primary: {
+              initial: {
+                backgroundColor: '#2E2E2E',
+                border: '2px solid rgba(255, 255, 255, 0.2)',
+                boxShadow: '4px 4px 0 0 #000000',
+                transition: '0.15s',
+              },
+              hover: {
+                transform: 'translate(4px, 4px)',
+                boxShadow: 'none',
+              },
+              disabled: { opacity: 0.5 },
+            },
+            error: {
+              initial: {
+                backgroundColor: '#2E2E2E',
+                color: '#FF4D50',
+                border: '2px solid rgba(255, 255, 255, 0.2)',
+                boxShadow: '4px 4px 0 0 #000000',
+                transition: '0.15s',
+              },
+              hover: {
+                transform: 'translate(4px, 4px)',
+                boxShadow: 'none',
+              },
+              disabled: { opacity: 0.5 },
+            },
+            default: {
+              initial: {
+                backgroundColor: '#2E2E2E',
+                border: '2px solid rgba(255, 255, 255, 0.2)',
+                boxShadow: '2px 2px 0 0 #000000',
+                transition: '0.15s',
+              },
+              hover: {
+                transform: 'translate(2px, 2px)',
+                boxShadow: 'none',
+              },
+              disabled: { opacity: 0.5 },
+            },
+          },
+          plain: {
+            default: {
+              initial: { borderWidth: '2px', borderColor: 'rgba(255, 255, 255, 0.2)' },
+              selected: { backgroundColor: '#F5F5F5', color: '#000000' },
+              selectedHover: { backgroundColor: '#D6D6D6' },
+              disabled: { opacity: 0.5 },
+            },
+            primary: {
+              initial: { borderWidth: '2px', borderColor: 'rgba(255, 255, 255, 0.2)' },
+              hover: { backgroundColor: 'rgba(82, 148, 255, 0.35)' },
+              disabled: { opacity: 0.5 },
+            },
+            error: {
+              initial: { color: '#FF4D50' },
+              hover: { backgroundColor: 'rgba(255, 77, 80, 0.2)' },
+              disabled: { opacity: 0.5 },
+            },
+          },
+          navigation: {
+            default: {
+              initial: {
+                border: '2px solid transparent',
+              },
+              hover: { backgroundColor: 'rgba(82, 148, 255, 0.35)' },
+              active: { backgroundColor: 'rgba(82, 148, 255, 0.45)' },
+              selected: {
+                backgroundColor: '#5294FF',
+                color: '#000000',
+                border: '2px solid #000000',
+              },
+              selectedHover: { backgroundColor: '#3D82F6' },
+              selectedActive: { backgroundColor: '#2F74E8' },
+            },
+          },
+          field: {
+            primary: {
+              initial: {
+                backgroundColor: '#2E2E2E',
+                border: '2px solid rgba(255, 255, 255, 0.2)',
+              },
+              hover: { backgroundColor: '#2E2E2E' },
+              focused: { boxShadow: '0 0 0 2px #212121, 0 0 0 4px #FFFFFF' },
+              disabled: { opacity: 0.5 },
+            },
+            error: {
+              initial: {
+                backgroundColor: '#2E2E2E',
+                color: '#FF4D50',
+                border: '2px solid #FF4D50',
+              },
+              focused: { boxShadow: '0 0 0 2px #212121, 0 0 0 4px #FF4D50' },
             },
           },
         },
@@ -378,16 +375,17 @@ function makeNeoTheme(bound: boolean): Theme {
       subtitle2: { fontWeight: 700 },
       button: { textTransform: 'none', fontWeight: 700 },
     },
-    focusVisible: {
-      outlineWidth: 2,
-      outlineColor: 'var(--mui-palette-text-primary)',
-      outlineOffset: 2,
-    },
+    focusVisible: true,
     components: {
+      MuiButtonBase: {
+        defaultProps: {
+          disableRipple: true,
+        },
+      },
       MuiPaper: {
         styleOverrides: {
           root: ({ theme }) => ({
-            border: '2px solid #000000',
+            border: `2px solid ${(theme.vars || theme).palette.divider}`,
             boxShadow: '4px 4px 0 0 #000000',
             borderRadius: theme.shape.borderRadius,
             backgroundImage: 'none',
@@ -396,50 +394,41 @@ function makeNeoTheme(bound: boolean): Theme {
       },
       MuiTableCell: {
         styleOverrides: {
-          root: { borderBottom: '2px solid #000000' },
+          root: ({ theme }) => ({
+            borderBottom: `2px solid ${(theme.vars || theme).palette.divider}`,
+          }),
           head: { fontWeight: 700 },
         },
       },
-      MuiToggleButtonGroup: {
-        styleOverrides: {
-          root: {
-            border: '2px solid #000000',
-            borderRadius: 5,
-          },
-        },
-      },
       MuiToggleButton: {
-        styleOverrides: {
-          root: { border: 'none', borderRadius: 0, fontWeight: 700 },
-        },
-        ...(bound && { stateVariants: { default: 'dataDisplay' } }),
+        ...(bound && { stateVariants: { default: 'plain' } }),
       },
       MuiButton: {
         styleOverrides: {
-          root: { fontWeight: 700, borderRadius: 5 },
+          root: { fontWeight: 700 },
         },
         ...(bound && {
           stateVariants: {
             default: 'solid',
             contained: 'solid',
-            outlined: 'ghost',
+            outlined: 'sub',
             text: 'plain',
           },
         }),
       },
       MuiChip: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             fontWeight: 700,
             borderRadius: 999,
-            border: '2px solid #000000',
-          },
+            border: `2px solid ${(theme.vars || theme).palette.divider}`,
+          }),
         },
       },
       MuiFilledInput: {
         defaultProps: { disableUnderline: true },
         styleOverrides: {
-          root: { borderRadius: 5 },
+          root: ({ theme }) => ({ borderRadius: (theme.vars || theme).shape.borderRadius }),
         },
         ...(bound && { stateVariants: { default: 'field' } }),
       },
@@ -453,32 +442,51 @@ function makeNeoTheme(bound: boolean): Theme {
       },
       MuiAlert: {
         styleOverrides: {
-          root: { borderRadius: 5, fontWeight: 500 },
+          root: { fontWeight: 500 },
         },
-        ...(bound && { stateVariants: { standard: 'feedback' } }),
+        ...(bound && { stateVariants: { standard: 'solid' } }),
       },
       MuiMenu: {
         styleOverrides: {
           paper: { boxShadow: '4px 4px 0 0 #000000' },
+          list: { padding: 8 },
         },
+      },
+      MuiMenuItem: {
+        styleOverrides: {
+          root: ({ theme }) => ({ borderRadius: (theme.vars || theme).shape.borderRadius }),
+        },
+        ...(bound && { stateVariants: { default: 'navigation' } }),
       },
       MuiListItemButton: {
         styleOverrides: {
-          root: { borderRadius: 5, margin: '0 8px', width: 'auto' },
+          root: ({ theme }) => ({
+            borderRadius: (theme.vars || theme).shape.borderRadius,
+            margin: '0 8px',
+            width: 'auto',
+          }),
         },
         ...(bound && { stateVariants: { default: 'navigation' } }),
       },
       MuiPaginationItem: {
         styleOverrides: {
-          root: { fontWeight: 700, borderRadius: 5 },
+          root: ({ theme }) => ({
+            fontWeight: 700,
+            borderRadius: (theme.vars || theme).shape.borderRadius,
+          }),
         },
-        ...(bound && { stateVariants: { default: 'dataDisplay', text: 'dataDisplay' } }),
+        ...(bound && { stateVariants: { default: 'plain', text: 'plain' } }),
       },
-      ...(bound && {
-        MuiMenuItem: { stateVariants: { default: 'navigation' } },
-        MuiAutocomplete: { stateVariants: { default: 'navigation' } },
-        MuiTableRow: { stateVariants: { default: 'dataDisplay' } },
-      }),
+      MuiAutocomplete: {
+        styleOverrides: {
+          listbox: { padding: 8 },
+          option: ({ theme }) => ({ borderRadius: (theme.vars || theme).shape.borderRadius }),
+        },
+        ...(bound && { stateVariants: { default: 'navigation' } }),
+      },
+      MuiTableRow: {
+        ...(bound && { stateVariants: { default: 'plain' } }),
+      },
     },
   });
 }
@@ -517,7 +525,7 @@ function makeRadixTheme(bound: boolean): Theme {
             },
           },
           // surface: Button outlined, Chip outlined — a7 ring -> a8, soft press fill
-          ghost: {
+          sub: {
             primary: {
               initial: {
                 backgroundColor: '#f1f9ffcc',
@@ -641,7 +649,7 @@ function makeRadixTheme(bound: boolean): Theme {
               disabled: { backgroundColor: '#ddeaf814', color: '#d9edff5d' },
             },
           },
-          ghost: {
+          sub: {
             primary: {
               initial: { backgroundColor: '#11213d80', borderColor: '#2a91fe98', color: '#70b8ff' },
               hover: { borderColor: '#3094feb9' },
@@ -778,7 +786,7 @@ function makeRadixTheme(bound: boolean): Theme {
           stateVariants: {
             default: 'solid',
             contained: 'solid',
-            outlined: 'ghost',
+            outlined: 'sub',
             text: 'plain',
           },
         }),
@@ -787,7 +795,7 @@ function makeRadixTheme(bound: boolean): Theme {
         styleOverrides: {
           root: { fontWeight: 500, borderRadius: 4 },
         },
-        ...(bound && { stateVariants: { default: 'solid', filled: 'solid', outlined: 'ghost' } }),
+        ...(bound && { stateVariants: { default: 'solid', filled: 'solid', outlined: 'sub' } }),
       },
       MuiFilledInput: {
         defaultProps: { disableUnderline: true },
@@ -850,10 +858,12 @@ function makeRadixTheme(bound: boolean): Theme {
         },
         ...(bound && { stateVariants: { default: 'dataDisplay', text: 'dataDisplay' } }),
       },
-      ...(bound && {
-        MuiAutocomplete: { stateVariants: { default: 'navigation' } },
-        MuiTableRow: { stateVariants: { default: 'dataDisplay' } },
-      }),
+      MuiAutocomplete: {
+        ...(bound && { stateVariants: { default: 'navigation' } }),
+      },
+      MuiTableRow: {
+        ...(bound && { stateVariants: { default: 'dataDisplay' } }),
+      },
     },
   });
 }
@@ -1053,7 +1063,16 @@ function MailPane() {
           })}
         </Stack>
 
-        <Alert severity="warning">Your mailbox is 90% full — archive old mail to free space.</Alert>
+        <Alert
+          severity="warning"
+          action={
+            <Button color="inherit" size="small" variant="text">
+              Upgrade
+            </Button>
+          }
+        >
+          Your mailbox is 90% full — archive old mail to free space.
+        </Alert>
         {sent ? <Alert severity="success">Reply sent.</Alert> : null}
 
         <Table size={view === 'compact' ? 'small' : 'medium'}>
@@ -1115,6 +1134,8 @@ function MailPane() {
                 multiline
                 minRows={2}
                 value={replyBody}
+                error={replyBody.trim().length === 0}
+                helperText={replyBody.trim().length === 0 ? 'Message is required' : ' '}
                 onChange={(event) => {
                   setReplyBody(event.target.value);
                   setSent(false);
