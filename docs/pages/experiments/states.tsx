@@ -492,377 +492,482 @@ function makeNeoTheme(bound: boolean): Theme {
 }
 
 // ---------------------------------------------------------------------------
-// Radix look. Reference values: Radix Themes / Radix Colors (radix-ui/themes,
-// radix-ui/colors) — 12-step scales; states use the documented steps:
-// solid rest/hover = 9/10 (+ active filter), soft rest/hover/active = a3/a4/a5,
-// surface = accent-surface bg + a7 ring -> a8 on hover,
-// disabled = grayA3 bg + grayA8 text.
+// Custom look: a design system driven purely by tokens — palette + state
+// groups + bindings, no styleOverrides. Structure stays stock Material;
+// every interaction color comes from the state groups.
 // ---------------------------------------------------------------------------
 
-function makeRadixTheme(bound: boolean): Theme {
+function makeCustomTheme(bound: boolean): Theme {
   return createTheme({
+    focusVisible: true,
     cssVariables: { colorSchemeSelector: 'class' },
     colorSchemes: {
       light: {
         palette: {
-          primary: { main: '#0090ff', contrastText: '#ffffff' },
-          error: { main: '#e5484d' },
-          warning: { main: '#ffc53d' },
-          success: { main: '#30a46c' },
-          info: { main: '#0090ff' },
-          background: { default: '#fcfcfd', paper: '#ffffff' },
-          text: { primary: '#1c2024', secondary: '#60646c' },
-          divider: '#00002f26',
+          primary: { main: '#006DA2' },
+          secondary: { main: '#363636' },
+          error: { main: '#D13F3F' },
         },
         state: {
-          // solid: Button contained, Chip filled — accent 9 -> 10 -> 10 + filter
           solid: {
-            primary: {
-              initial: { backgroundColor: '#0090ff', color: '#ffffff' },
-              hover: { backgroundColor: '#0588f0' },
-              active: { backgroundColor: '#0588f0', filter: 'brightness(0.92) saturate(1.1)' },
-              disabled: { backgroundColor: '#0000330f', color: '#00083046' },
-            },
-          },
-          // surface: Button outlined, Chip outlined — a7 ring -> a8, soft press fill
-          sub: {
-            primary: {
-              initial: {
-                backgroundColor: '#f1f9ffcc',
-                borderColor: '#0083eb71',
-                color: '#006dcbf2',
-              },
-              hover: { borderColor: '#0084e6a1' },
-              active: { backgroundColor: '#008ff519', borderColor: '#0084e6a1' },
-              disabled: {
-                backgroundColor: '#0000330f',
-                color: '#00083046',
-                borderColor: '#00062e32',
-              },
-            },
-            error: {
-              initial: {
-                backgroundColor: '#fff5f5cc',
-                borderColor: '#df000356',
-                color: '#c40006d3',
-              },
-              hover: { borderColor: '#d2000571' },
-              active: { backgroundColor: '#f3000d14', borderColor: '#d2000571' },
-              disabled: {
-                backgroundColor: '#0000330f',
-                color: '#00083046',
-                borderColor: '#00062e32',
-              },
-            },
             default: {
-              initial: { backgroundColor: '#ffffffcc', borderColor: '#00062e32', color: '#1c2024' },
-              hover: { borderColor: '#00083046' },
-              active: { backgroundColor: '#00002d17', borderColor: '#00083046' },
+              initial: {
+                backgroundColor: 'rgba(0, 0, 0, 0.04)',
+              },
+            },
+            primary: {
+              initial: {
+                backgroundColor: '#006DA2',
+                color: '#FFFFFF',
+                borderColor: 'rgba(0, 0, 0, 0.15)',
+              },
+              hover: { backgroundColor: '#006698' },
+              active: {
+                backgroundColor: '#005F8E',
+              },
               disabled: {
-                backgroundColor: '#0000330f',
-                color: '#00083046',
-                borderColor: '#00062e32',
+                opacity: 0.5,
+              },
+            },
+            secondary: {
+              initial: {
+                backgroundColor: 'rgba(255, 255, 255, 0)',
+                color: '#363636',
+                borderColor: 'rgba(0, 0, 0, 0.15)',
+              },
+              hover: { backgroundColor: 'rgba(0, 0, 0, 0.05)' },
+              active: {
+                backgroundColor: 'rgba(0, 0, 0, 0.1)',
+              },
+              disabled: {
+                opacity: 0.5,
+              },
+            },
+            error: {
+              initial: {
+                backgroundColor: '#D13F3F',
+                color: '#FFFFFF',
+                borderColor: 'rgba(0, 0, 0, 0.15)',
+              },
+              hover: { backgroundColor: '#C83838' },
+              active: {
+                backgroundColor: '#BE3232',
+              },
+              disabled: {
+                opacity: 0.5,
               },
             },
           },
-          // ghost: Button text — transparent -> a3 -> a4
-          plain: {
+          sub: {
+            default: {
+              initial: {
+                color: '#363636',
+                borderColor: 'rgba(0, 0, 0, 0.15)',
+              },
+              hover: { backgroundColor: 'rgba(0, 0, 0, 0.05)' },
+              active: {
+                backgroundColor: 'rgba(0, 0, 0, 0.1)',
+              },
+              disabled: {
+                opacity: 0.5,
+              },
+            },
             primary: {
-              initial: { color: '#006dcbf2' },
-              hover: { backgroundColor: '#008ff519' },
-              active: { backgroundColor: '#009eff2a' },
-              disabled: { color: '#00083046' },
+              initial: {
+                color: '#006DA2',
+                borderColor: 'rgba(0, 0, 0, 0.15)',
+              },
+              hover: { backgroundColor: 'rgba(0, 0, 0, 0.05)' },
+              active: {
+                backgroundColor: 'rgba(0, 0, 0, 0.1)',
+              },
+              disabled: {
+                opacity: 0.5,
+              },
+            },
+            secondary: {
+              initial: {
+                color: '#363636',
+                borderColor: 'rgba(0, 0, 0, 0.15)',
+              },
+              hover: { backgroundColor: 'rgba(0, 0, 0, 0.05)' },
+              active: {
+                backgroundColor: 'rgba(0, 0, 0, 0.1)',
+              },
+              disabled: {
+                opacity: 0.5,
+              },
             },
             error: {
-              initial: { color: '#c40006d3' },
-              hover: { backgroundColor: '#f3000d14' },
-              active: { backgroundColor: '#ff000824' },
-              disabled: { color: '#00083046' },
+              initial: {
+                color: '#D13F3F',
+                borderColor: 'rgba(0, 0, 0, 0.15)',
+              },
+              hover: { backgroundColor: 'rgba(0, 0, 0, 0.05)' },
+              active: {
+                backgroundColor: 'rgba(0, 0, 0, 0.1)',
+              },
+              disabled: {
+                opacity: 0.5,
+              },
             },
           },
-          // menu highlight: solid accent + contrast text; selection: soft a5
           navigation: {
             default: {
-              hover: { backgroundColor: '#0090ff', color: '#ffffff' },
-              active: { backgroundColor: '#0588f0', color: '#ffffff' },
-              selected: { backgroundColor: '#0093ff3d' },
-              selectedHover: { backgroundColor: '#0090ff', color: '#ffffff' },
-              selectedActive: { backgroundColor: '#0588f0', color: '#ffffff' },
+              hover: { backgroundColor: 'rgba(0, 0, 0, 0.05)' },
+              active: { backgroundColor: 'rgba(0, 0, 0, 0.1)' },
+              selected: {
+                boxShadow: 'inset 0 0 0 1px rgba(0, 109, 162, 0.7)',
+                backgroundColor: 'rgba(205, 234, 247, 0.4)',
+              },
+              selectedHover: {
+                backgroundColor: 'rgba(155, 213, 239, 0.35)',
+              },
+              selectedActive: {
+                backgroundColor: 'rgba(106, 192, 231, 0.35)',
+              },
+              disabled: { opacity: 50 / 100 },
             },
           },
-          // rows, toggles, pagination: gray wash hover, soft accent selection
-          dataDisplay: {
-            default: {
-              hover: { backgroundColor: '#0000330f' },
-              selected: { backgroundColor: '#0093ff3d' },
-              selectedHover: { backgroundColor: '#0093ff3d' },
-              disabled: { color: '#00083046' },
-            },
-          },
-          // text fields: surface + gray a7 ring; focus = 2px accent-8 ring
           field: {
             primary: {
               initial: {
-                backgroundColor: '#ffffff',
-                border: '1px solid #00062e32',
-                color: '#1c2024',
+                backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                borderColor: 'rgba(0, 0, 0, 0.15)',
               },
-              hover: { backgroundColor: '#ffffff' },
-              focused: { outline: '2px solid #5eb1ef', outlineOffset: -1 },
-              disabled: { backgroundColor: '#0000330f', color: '#00083046' },
+              hover: {
+                backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                borderColor: 'rgba(0, 0, 0, 0.4)',
+              },
+              focused: {
+                backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                borderColor: '#006DA2',
+              },
+              disabled: {
+                borderColor: 'rgba(0, 0, 0, 0.1)',
+                backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                opacity: 0.5,
+              },
+            },
+            error: {
+              initial: { borderColor: '#D13F3F' },
+              focused: { borderColor: '#D13F3F' },
+            },
+          },
+          dataDisplay: {
+            default: {
+              initial: {
+                backgroundColor: '#FFFFFF',
+                color: '#363636',
+                borderColor: 'rgba(0, 0, 0, 0.15)',
+              },
+              hover: {
+                backgroundColor: '#F0F0F0',
+              },
+              active: {
+                backgroundColor: '#E5E5E5',
+              },
+              selected: {
+                borderColor: 'rgba(0, 109, 162, 0.7)',
+                backgroundColor: 'rgba(205, 234, 247, 0.4)',
+              },
+              selectedHover: {
+                backgroundColor: 'rgba(155, 213, 239, 0.35)',
+              },
+              selectedActive: {
+                backgroundColor: 'rgba(106, 192, 231, 0.35)',
+              },
+              disabled: {
+                opacity: 0.5,
+              },
+            },
+            primary: {
+              initial: {
+                backgroundColor: 'rgba(205, 234, 247, 0.4)',
+                color: '#363636',
+                borderColor: 'rgba(0, 109, 162, 0.7)',
+              },
+              hover: {
+                backgroundColor: 'rgba(155, 213, 239, 0.35)',
+              },
+              active: {
+                backgroundColor: 'rgba(106, 192, 231, 0.35)',
+              },
+            },
+          },
+          feedback: {
+            success: {
+              initial: {
+                backgroundColor: '#F3F7EC',
+                color: '#547919',
+                borderColor: 'rgba(84, 121, 25, 0.2)',
+                borderLeft: '6px solid #547919',
+              },
+            },
+            info: {
+              initial: {
+                backgroundColor: '#E6F5FB',
+                color: '#006698',
+                borderColor: 'rgba(0, 109, 162, 0.2)',
+                borderLeft: '6px solid #006DA2',
+              },
+            },
+            warning: {
+              initial: {
+                backgroundColor: '#FFF9E8',
+                color: '#8C530E',
+                borderColor: 'rgba(140, 83, 14, 0.2)',
+                borderLeft: '6px solid #FFC21A',
+              },
             },
             error: {
               initial: {
-                backgroundColor: '#ffffff',
-                border: '1px solid #d2000571',
-                color: '#ce2c31',
+                backgroundColor: '#FDEEEE',
+                color: '#A62626',
+                borderColor: 'rgba(209, 63, 63, 0.2)',
+                borderLeft: '6px solid #D13F3F',
               },
-              focused: { outline: '2px solid #d2000571', outlineOffset: -1 },
             },
-          },
-          // callouts: soft a3 fill + step-11 text, no border
-          feedback: {
-            warning: { initial: { backgroundColor: '#ffde003d', color: '#ab6400' } },
-            error: { initial: { backgroundColor: '#f3000d14', color: '#ce2c31' } },
-            success: { initial: { backgroundColor: '#00a43319', color: '#218358' } },
-            info: { initial: { backgroundColor: '#008ff519', color: '#0d74ce' } },
           },
         },
       },
       dark: {
         palette: {
-          primary: { main: '#0090ff', contrastText: '#ffffff' },
-          error: { main: '#e5484d' },
-          warning: { main: '#ffc53d' },
-          success: { main: '#30a46c' },
-          info: { main: '#0090ff' },
-          background: { default: '#111113', paper: '#18191b' },
-          text: { primary: '#edeef0', secondary: '#b0b4ba' },
-          divider: '#d9edff36',
+          primary: { main: '#38ABDF' },
+          secondary: { main: '#FFFFFF' },
+          error: { main: '#F18888' },
         },
         state: {
           solid: {
             primary: {
-              initial: { backgroundColor: '#0090ff', color: '#ffffff' },
-              hover: { backgroundColor: '#3b9eff' },
-              active: { backgroundColor: '#3b9eff', filter: 'brightness(1.08)' },
-              disabled: { backgroundColor: '#ddeaf814', color: '#d9edff5d' },
+              initial: {
+                backgroundColor: '#38ABDF',
+                color: '#080808',
+              },
+              hover: { backgroundColor: '#44B0E1' },
+              active: {
+                backgroundColor: '#51B6E3',
+              },
+            },
+            error: {
+              initial: {
+                backgroundColor: '#F18888',
+                color: '#080808',
+              },
+              hover: { backgroundColor: '#F29191' },
+              active: { backgroundColor: '#F39999' },
             },
           },
           sub: {
-            primary: {
-              initial: { backgroundColor: '#11213d80', borderColor: '#2a91fe98', color: '#70b8ff' },
-              hover: { borderColor: '#3094feb9' },
-              active: { backgroundColor: '#0077ff3a', borderColor: '#3094feb9' },
-              disabled: {
-                backgroundColor: '#ddeaf814',
-                color: '#d9edff5d',
-                borderColor: '#d9edff40',
-              },
-            },
-            error: {
-              initial: { backgroundColor: '#2f151780', borderColor: '#ff536184', color: '#ff9592' },
-              hover: { borderColor: '#ff5d61b0' },
-              active: { backgroundColor: '#ff173f2d', borderColor: '#ff5d61b0' },
-              disabled: {
-                backgroundColor: '#ddeaf814',
-                color: '#d9edff5d',
-                borderColor: '#d9edff40',
-              },
-            },
             default: {
-              initial: { backgroundColor: '#21212180', borderColor: '#d9edff40', color: '#edeef0' },
-              hover: { borderColor: '#d9edff5d' },
-              active: { backgroundColor: '#d3edf81d', borderColor: '#d9edff5d' },
-              disabled: {
-                backgroundColor: '#ddeaf814',
-                color: '#d9edff5d',
-                borderColor: '#d9edff40',
+              initial: {
+                color: '#FFFFFF',
+                borderColor: 'rgba(255, 255, 255, 0.3)',
+              },
+              hover: {
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              },
+              active: {
+                backgroundColor: 'rgba(255, 255, 255, 0.2)',
               },
             },
-          },
-          plain: {
             primary: {
-              initial: { color: '#70b8ff' },
-              hover: { backgroundColor: '#0077ff3a' },
-              active: { backgroundColor: '#0075ff57' },
-              disabled: { color: '#d9edff5d' },
+              initial: {
+                color: '#38ABDF',
+                borderColor: '#38ABDF',
+              },
+              hover: {
+                backgroundColor: '#081B34',
+              },
             },
             error: {
-              initial: { color: '#ff9592' },
-              hover: { backgroundColor: '#ff173f2d' },
-              active: { backgroundColor: '#fe0a3b44' },
-              disabled: { color: '#d9edff5d' },
+              initial: { color: '#F18888' },
+              hover: {
+                backgroundColor: '#330505',
+              },
             },
           },
           navigation: {
             default: {
-              hover: { backgroundColor: '#0090ff', color: '#ffffff' },
-              active: { backgroundColor: '#3b9eff', color: '#ffffff' },
-              selected: { backgroundColor: '#0081fd6b' },
-              selectedHover: { backgroundColor: '#0090ff', color: '#ffffff' },
-              selectedActive: { backgroundColor: '#3b9eff', color: '#ffffff' },
-            },
-          },
-          dataDisplay: {
-            default: {
-              hover: { backgroundColor: '#ddeaf814' },
-              selected: { backgroundColor: '#0081fd6b' },
-              selectedHover: { backgroundColor: '#0081fd6b' },
-              disabled: { color: '#d9edff5d' },
+              hover: {
+                backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              },
+              active: {
+                backgroundColor: 'rgba(255, 255, 255, 0.3)',
+              },
+              selected: {
+                backgroundColor: 'rgba(56, 171, 223, 0.3)',
+              },
+              selectedHover: {
+                backgroundColor: 'rgba(56, 171, 223, 0.4)',
+              },
+              selectedActive: {
+                backgroundColor: 'rgba(56, 171, 223, 0.5)',
+              },
+              disabled: { opacity: 50 / 100 },
             },
           },
           field: {
             primary: {
               initial: {
-                backgroundColor: '#18191b',
-                border: '1px solid #d9edff40',
-                color: '#edeef0',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                borderColor: 'rgba(255, 255, 255, 0.3)',
               },
-              hover: { backgroundColor: '#18191b' },
-              focused: { outline: '2px solid #2870bd', outlineOffset: -1 },
-              disabled: { backgroundColor: '#ddeaf814', color: '#d9edff5d' },
+              hover: {
+                backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                borderColor: 'rgba(255, 255, 255, 0.5)',
+              },
+              focused: { borderColor: '#38ABDF' },
+              disabled: { borderColor: 'rgba(255, 255, 255, 0.2)' },
             },
             error: {
+              initial: { borderColor: '#F18888' },
+              focused: { borderColor: '#F18888' },
+            },
+          },
+          dataDisplay: {
+            default: {
               initial: {
-                backgroundColor: '#18191b',
-                border: '1px solid #ff5d61b0',
-                color: '#ff9592',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                color: '#FFFFFF',
               },
-              focused: { outline: '2px solid #ff5d61b0', outlineOffset: -1 },
+              hover: {
+                backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              },
+              active: {
+                backgroundColor: 'rgba(255, 255, 255, 0.3)',
+              },
+              selected: {
+                backgroundColor: 'rgba(56, 171, 223, 0.3)',
+              },
+              selectedHover: {
+                backgroundColor: 'rgba(56, 171, 223, 0.4)',
+              },
+              selectedActive: {
+                backgroundColor: 'rgba(56, 171, 223, 0.5)',
+              },
+            },
+            primary: {
+              initial: {
+                backgroundColor: 'rgba(56, 171, 223, 0.3)',
+                color: '#FFFFFF',
+              },
+              hover: {
+                backgroundColor: 'rgba(56, 171, 223, 0.4)',
+              },
+              active: {
+                backgroundColor: 'rgba(56, 171, 223, 0.5)',
+              },
             },
           },
           feedback: {
-            warning: { initial: { backgroundColor: '#fa820022', color: '#ffca16' } },
-            error: { initial: { backgroundColor: '#ff173f2d', color: '#ff9592' } },
-            success: { initial: { backgroundColor: '#22ff991e', color: '#3dd68c' } },
-            info: { initial: { backgroundColor: '#0077ff3a', color: '#70b8ff' } },
+            success: {
+              initial: {
+                backgroundColor: '#1D2D04',
+                color: '#CFE1B3',
+                borderColor: 'rgba(171, 202, 121, 0.3)',
+              },
+            },
+            info: {
+              initial: {
+                backgroundColor: '#081B34',
+                color: '#C1E5F5',
+                borderColor: 'rgba(56, 171, 223, 0.3)',
+              },
+            },
+            warning: {
+              initial: {
+                backgroundColor: '#331805',
+                color: '#FFEDBA',
+                borderColor: 'rgba(255, 209, 83, 0.3)',
+              },
+            },
+            error: {
+              initial: {
+                backgroundColor: '#330505',
+                color: '#FAD5D5',
+                borderColor: 'rgba(241, 136, 136, 0.3)',
+              },
+            },
           },
         },
       },
-    },
-    shape: { borderRadius: 4 },
-    typography: {
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto, "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif',
-      button: { textTransform: 'none', fontWeight: 500 },
-      subtitle2: { fontWeight: 500 },
-      h6: { fontWeight: 600 },
-    },
-    focusVisible: {
-      outlineWidth: 2,
-      outlineColor: '#5eb1ef',
-      outlineOffset: 2,
     },
     components: {
-      MuiPaper: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            border: `1px solid ${(theme.vars || theme).palette.divider}`,
-            boxShadow: 'none',
-            borderRadius: 8,
-            backgroundImage: 'none',
-          }),
-        },
-      },
-      MuiTableCell: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-          }),
-          head: { fontWeight: 500 },
-        },
-      },
+      MuiButtonBase: { defaultProps: { disableRipple: true } },
       MuiButton: {
-        styleOverrides: {
-          root: {
-            fontWeight: 500,
-            borderRadius: 4,
-            padding: '4px 12px',
-            minHeight: 32,
-          },
-        },
+        defaultProps: { disableElevation: true },
         ...(bound && {
           stateVariants: {
-            default: 'solid',
+            default: 'sub',
             contained: 'solid',
             outlined: 'sub',
-            text: 'plain',
+            text: 'sub',
           },
         }),
       },
+      MuiMenuItem: {
+        ...(bound && { stateVariants: { default: 'navigation' } }),
+      },
       MuiChip: {
-        styleOverrides: {
-          root: { fontWeight: 500, borderRadius: 4 },
-        },
-        ...(bound && { stateVariants: { default: 'solid', filled: 'solid', outlined: 'sub' } }),
+        ...(bound && {
+          stateVariants: {
+            default: 'dataDisplay',
+            filled: 'solid',
+            outlined: 'dataDisplay',
+          },
+        }),
       },
       MuiFilledInput: {
-        defaultProps: { disableUnderline: true },
-        styleOverrides: {
-          root: { borderRadius: 4 },
-        },
-        ...(bound && { stateVariants: { default: 'field' } }),
-      },
-      MuiInputLabel: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            '&.Mui-focused': { color: (theme.vars || theme).palette.text.primary },
-          }),
-        },
-      },
-      MuiAlert: {
-        styleOverrides: {
-          root: { borderRadius: 8 },
-        },
-        ...(bound && { stateVariants: { standard: 'feedback' } }),
-      },
-      MuiMenu: {
-        styleOverrides: {
-          paper: {
-            boxShadow: '0px 12px 32px -16px rgba(0, 0, 60, 0.2), 0px 8px 40px rgba(0, 0, 0, 0.05)',
-            borderRadius: 8,
+        ...(bound && {
+          stateVariants: {
+            default: 'field',
           },
-        },
-      },
-      MuiMenuItem: {
-        styleOverrides: {
-          root: { borderRadius: 4, margin: '0 4px' },
-        },
-        ...(bound && { stateVariants: { default: 'navigation' } }),
+        }),
       },
       MuiListItemButton: {
-        styleOverrides: {
-          root: { borderRadius: 4, margin: '0 8px', width: 'auto' },
-        },
-        ...(bound && { stateVariants: { default: 'navigation' } }),
-      },
-      MuiToggleButtonGroup: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            backgroundColor: theme.palette.mode === 'dark' ? '#ddeaf814' : '#0000330f',
-            borderRadius: 4,
-            padding: 2,
-          }),
-        },
-      },
-      MuiToggleButton: {
-        styleOverrides: {
-          root: { border: 'none', borderRadius: 3, fontWeight: 500 },
-        },
-        ...(bound && { stateVariants: { default: 'dataDisplay' } }),
-      },
-      MuiPaginationItem: {
-        styleOverrides: {
-          root: { fontWeight: 500, borderRadius: 4 },
-        },
-        ...(bound && { stateVariants: { default: 'dataDisplay', text: 'dataDisplay' } }),
-      },
-      MuiAutocomplete: {
-        ...(bound && { stateVariants: { default: 'navigation' } }),
+        ...(bound && {
+          stateVariants: {
+            default: 'navigation',
+          },
+        }),
       },
       MuiTableRow: {
-        ...(bound && { stateVariants: { default: 'dataDisplay' } }),
+        ...(bound && {
+          stateVariants: {
+            default: 'dataDisplay',
+          },
+        }),
+      },
+      MuiAutocomplete: {
+        ...(bound && {
+          stateVariants: {
+            default: 'navigation',
+          },
+        }),
+      },
+      MuiPaginationItem: {
+        ...(bound && {
+          stateVariants: {
+            default: 'navigation',
+            text: 'navigation',
+          },
+        }),
+      },
+      MuiToggleButton: {
+        ...(bound && {
+          stateVariants: {
+            default: 'dataDisplay',
+          },
+        }),
+      },
+      MuiAlert: {
+        ...(bound && {
+          stateVariants: {
+            standard: 'feedback',
+            outlined: 'feedback',
+          },
+        }),
       },
     },
   });
@@ -885,10 +990,10 @@ const themes: Record<string, { label: string; bound: Theme; unbound: Theme }> = 
     bound: makeNeoTheme(true),
     unbound: makeNeoTheme(false),
   },
-  radix: {
-    label: 'Radix',
-    bound: makeRadixTheme(true),
-    unbound: makeRadixTheme(false),
+  custom: {
+    label: 'Custom',
+    bound: makeCustomTheme(true),
+    unbound: makeCustomTheme(false),
   },
 };
 
@@ -1223,7 +1328,7 @@ function ConfigViewer({ theme }: { theme: Theme }) {
 }
 
 export default function StatesShowcase() {
-  const [look, setLook] = React.useState<'material' | 'neo' | 'radix'>('neo');
+  const [look, setLook] = React.useState<'material' | 'neo' | 'custom'>('neo');
   const [bindings, setBindings] = React.useState(true);
   const theme = bindings ? themes[look].bound : themes[look].unbound;
 
