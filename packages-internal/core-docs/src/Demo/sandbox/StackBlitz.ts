@@ -20,10 +20,8 @@ function ensureExtension(file: string, extension: string): string {
 }
 
 const VITE_DEV_DEPENDENCIES = {
-  // Pinned to major versions instead of `latest` to work around
-  // https://github.com/stackblitz/webcontainer-core/issues/2104
-  '@vitejs/plugin-react': '^5',
-  vite: '^7',
+  '@vitejs/plugin-react': 'latest',
+  vite: 'latest',
 };
 
 function openStackBlitz({

@@ -41,8 +41,10 @@ catalogs:
     '@emotion/react': '^11.14.0'
     '@emotion/server': '^11.11.0'
     '@emotion/styled': '^11.14.1'
+    '@mui/internal-docs-infra': '0.12.1-canary.50'
 
 overrides:
+  '@mui/internal-docs-infra': '0.12.1-canary.50'
   # Both were bundled twice in the docs build
   'docs>stylis': '4.2.0'
   'docs>react-is': '19.3.0'
@@ -64,3 +66,5 @@ allowBuilds:
   '@mui/x-telemetry': false
   core-js: false
   core-js-pure: false
+patchedDependencies:
+  '@mui/internal-docs-infra@0.12.1-canary.50': patches/@mui__internal-docs-infra@0.12.1-canary.50.patch

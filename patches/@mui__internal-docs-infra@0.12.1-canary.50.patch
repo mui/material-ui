@@ -1,0 +1,91 @@
+diff --git a/CodeHighlighter/buildStringFallback.mjs b/CodeHighlighter/buildStringFallback.mjs
+index 7abc0a0cf029715ee98695f6f292085aa3ce95b5..4d31ea928a942c04b358a35cc0fd359b7bd7dfc8 100644
+--- a/CodeHighlighter/buildStringFallback.mjs
++++ b/CodeHighlighter/buildStringFallback.mjs
+@@ -1,5 +1,5 @@
+ import { buildRootFallback } from "./fallbackFormat.mjs";
+-import { parsePlainText } from "../pipeline/parseSource/index.mjs";
++import { parsePlainText } from "../pipeline/parseSource/createPlainTextRoot.mjs";
+ function isPromiseLike(value) {
+   return typeof value === 'object' && value !== null && typeof value.then === 'function';
+ }
+diff --git apipeline/parseSource/createPlainTextRoot.mjs b/pipeline/parseSource/createPlainTextRoot.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..7f5a791aa0c7c413a4722ef31fb85934fea587e6
+--- /dev/null
++++ b/pipeline/parseSource/createPlainTextRoot.mjs
+@@ -0,0 +1,22 @@
++import { starryNightGutter } from "./addLineGutters.mjs";
++
++// Builds the plain-text HAST fallback used for unsupported file types and for a
++// mapped-but-not-yet-registered scope. Line gutters are still added so the
++// enhancer pipeline (e.g. auto-focus frames) can operate on the result.
++//
++// Lives apart from `parseSource.mjs` so callers that only need plain text (the
++// server fallback in `buildStringFallback`) don't statically pull the Starry
++// Night engine (vscode-textmate + oniguruma + grammars) into the page bundle.
++export function createPlainTextRoot(source) {
++  const root = {
++    type: 'root',
++    children: [{
++      type: 'text',
++      value: source
++    }]
++  };
++  const sourceLines = source.split(/\r?\n|\r/);
++  starryNightGutter(root, sourceLines);
++  return root;
++}
++export const parsePlainText = source => createPlainTextRoot(source);
+diff --git a/pipeline/parseSource/parseSource.mjs b/pipeline/parseSource/parseSource.mjs
+index 84304fc5140a51e4d4cfe77545adb63796eaf689..ed34aa7ce7a19e6d83836af0d7464d3a61260d3e 100644
+--- a/pipeline/parseSource/parseSource.mjs
++++ b/pipeline/parseSource/parseSource.mjs
+@@ -2,6 +2,7 @@ import { createStarryNight } from '@wooorm/starry-night';
+ import { resolveGrammarScope } from "./grammarMaps.mjs";
+ import { grammarLoaders } from "./grammarLoaders.mjs";
+ import { starryNightGutter } from "./addLineGutters.mjs";
++import { createPlainTextRoot } from "./createPlainTextRoot.mjs";
+ import { extendSyntaxTokens } from "./extendSyntaxTokens.mjs";
+ const STARRY_NIGHT_KEY = '__docs_infra_starry_night_instance__';
+ const STARRY_NIGHT_STATE_KEY = '__docs_infra_starry_night_state__';
+@@ -25,38 +26,7 @@ function getState() {
+   return state;
+ }
+ 
+-// Builds the plain-text HAST fallback used for unsupported file types and for a
+-// mapped-but-not-yet-registered scope. Line gutters are still added so the
+-// enhancer pipeline (e.g. auto-focus frames) can operate on the result.
+-function createPlainTextRoot(source) {
+-  const root = {
+-    type: 'root',
+-    children: [{
+-      type: 'text',
+-      value: source
+-    }]
+-  };
+-  const sourceLines = source.split(/\r?\n|\r/);
+-  starryNightGutter(root, sourceLines);
+-  return root;
+-}
+-
+-/**
+- * Parses source into a line-guttered HAST **without** syntax highlighting — the
+- * raw text wrapped in the same `.line`/`.frame` structure `parseSource` produces,
+- * just no starry-night tokenization. It is a `ParseSource` so it can be dropped
+- * into the loader in place of the highlighting parser.
+- *
+- * Used for the deferred (un-highlighted) fallback: the enhancer pipeline needs the
+- * line/frame structure to compute focus windows and truncation, but the syntax
+- * colors are exactly the part being deferred — so we skip them. Cheap (no grammar,
+- * no `getInstance`); the frames it produces collapse back to text via `buildRootFallback`.
+- *
+- * Takes only `source` (it ignores file name / language since it never highlights) but
+- * stays structurally assignable to `ParseSource`, so it drops into the loader in place
+- * of the highlighting parser.
+- */
+-export const parsePlainText = source => createPlainTextRoot(source);
++export { parsePlainText } from "./createPlainTextRoot.mjs";
+ 
+ /**
+  * Parses source code into a HAST tree with syntax highlighting.
