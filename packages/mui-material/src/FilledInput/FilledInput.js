@@ -20,7 +20,7 @@ import {
 } from '../InputBase/InputBase';
 import { capitalize } from '../utils';
 import { getTransitionStyles } from '../transitions/utils';
-import { authorsBorder, resolveStateGroup } from '../styles/resolveColorStates';
+import { resolveStateGroup } from '../styles/resolveColorStates';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableUnderline, startAdornment, endAdornment, size, hiddenLabel, multiline } =
@@ -225,7 +225,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
                 props: { color },
                 style: {
                   ...colorStates.initial,
-                  ...(authorsBorder(colorStates.initial) ? null : { border: 'none' }),
+                  ...(colorStates.initial?.border === undefined && { border: 'none' }),
                   '&::before': {
                     borderBottomColor: colorStates.initial?.borderColor,
                   },

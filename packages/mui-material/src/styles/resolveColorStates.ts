@@ -21,12 +21,6 @@ export function resolveStateGroup(
   return (theme.vars || theme).state?.[group];
 }
 
-export function authorsBorder(style: Record<string, unknown> | undefined): boolean {
-  return Object.keys(style ?? {}).some(
-    (key) => key.startsWith('border') && !key.includes('Radius'),
-  );
-}
-
 export default function resolveColorStates(
   theme: ThemeLike,
   componentName: string,

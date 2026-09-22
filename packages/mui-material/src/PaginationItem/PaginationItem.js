@@ -17,7 +17,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTransitionStyles } from '../transitions/utils';
-import resolveColorStates, { authorsBorder, resolveStateGroup } from '../styles/resolveColorStates';
+import resolveColorStates, { resolveStateGroup } from '../styles/resolveColorStates';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -184,7 +184,7 @@ const PaginationItemPage = styled(ButtonBase, {
           ? { border: '1px solid', ...colorStates.initial }
           : {
               ...colorStates.initial,
-              ...(authorsBorder(colorStates.initial) ? null : { border: 'none' }),
+              ...(colorStates.initial?.border === undefined && { border: 'none' }),
             }),
         ...(colorStates.hover && {
           '@media (hover: hover)': {
