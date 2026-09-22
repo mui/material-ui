@@ -96,6 +96,7 @@
     "./zero-styled": "./src/zero-styled/index.tsx",
     "./className": "./src/className/index.ts",
     "./ClickAwayListener": "./src/ClickAwayListener/index.ts",
+    "./colors": "./src/colors/index.ts",
     "./darkScrollbar": "./src/darkScrollbar/index.ts",
     "./DefaultPropsProvider": "./src/DefaultPropsProvider/index.ts",
     "./generateUtilityClass": "./src/generateUtilityClass/index.ts",
