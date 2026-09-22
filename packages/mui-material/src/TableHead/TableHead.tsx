@@ -3,12 +3,48 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import type { SxProps } from '@mui/system';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTableHeadUtilityClass } from './tableHeadClasses';
+import type { Theme } from '../styles';
+import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import type { TableHeadClasses } from './tableHeadClasses';
 
-const useUtilityClasses = (ownerState) => {
+export interface TableHeadOwnProps {
+  /**
+   * The content of the component, normally `TableRow`.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<TableHeadClasses> | undefined;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+}
+
+export interface TableHeadTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'thead',
+> {
+  props: AdditionalProps & TableHeadOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type TableHeadProps<
+  RootComponent extends React.ElementType = TableHeadTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TableHeadTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType | undefined;
+};
+
+type OwnerState = TableHeadProps;
+
+const useUtilityClasses = (ownerState: OwnerState) => {
   const { classes } = ownerState;
 
   const slots = {
@@ -21,17 +57,30 @@ const useUtilityClasses = (ownerState) => {
 const TableHeadRoot = styled('thead', {
   name: 'MuiTableHead',
   slot: 'Root',
-})({
+})<{ ownerState: OwnerState }>({
   display: 'table-header-group',
 });
 
 const tablelvl2 = {
   variant: 'head',
-};
+} as const;
 
 const defaultComponent = 'thead';
 
-const TableHead = React.forwardRef(function TableHead(inProps, ref) {
+/**
+ *
+ * Demos:
+ *
+ * - [Table](https://mui.com/material-ui/react-table/)
+ *
+ * API:
+ *
+ * - [TableHead API](https://mui.com/material-ui/api/table-head/)
+ */
+const TableHead = React.forwardRef(function TableHead(
+  inProps: TableHeadProps,
+  ref: React.Ref<HTMLTableSectionElement>,
+) {
   const props = useDefaultProps({ props: inProps, name: 'MuiTableHead' });
   const { className, component = defaultComponent, ...other } = props;
 
@@ -48,18 +97,18 @@ const TableHead = React.forwardRef(function TableHead(inProps, ref) {
         as={component}
         className={clsx(classes.root, className)}
         ref={ref}
-        role={component === defaultComponent ? null : 'rowgroup'}
+        role={(component === defaultComponent ? null : 'rowgroup') as React.AriaRole | undefined}
         ownerState={ownerState}
         {...other}
       />
     </Tablelvl2Context.Provider>
   );
-});
+}) as OverridableComponent<TableHeadTypeMap>;
 
 TableHead.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
-  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component, normally `TableRow`.
@@ -86,6 +135,6 @@ TableHead.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
 
 export default TableHead;

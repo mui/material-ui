@@ -3,13 +3,50 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import type { SxProps } from '@mui/system';
 import Typography from '../Typography';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDialogTitleUtilityClass } from './dialogTitleClasses';
 import DialogContext from '../Dialog/DialogContext';
+import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import type { Theme } from '../styles';
+import type { TypographyTypeMap } from '../Typography';
+import type { DialogTitleClasses } from './dialogTitleClasses';
 
-const useUtilityClasses = (ownerState) => {
+export interface DialogTitleOwnProps extends Omit<TypographyTypeMap['props'], 'classes'> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<DialogTitleClasses> | undefined;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+}
+
+export interface DialogTitleTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = TypographyTypeMap['defaultComponent'],
+> {
+  props: AdditionalProps & DialogTitleOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type DialogTitleProps<
+  RootComponent extends React.ElementType = DialogTitleTypeMap['defaultComponent'],
+  AdditionalProps = { component?: React.ElementType | undefined },
+> = OverrideProps<DialogTitleTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType | undefined;
+};
+
+type OwnerState = DialogTitleProps;
+
+const useUtilityClasses = (ownerState: OwnerState) => {
   const { classes } = ownerState;
 
   const slots = {
@@ -22,12 +59,26 @@ const useUtilityClasses = (ownerState) => {
 const DialogTitleRoot = styled(Typography, {
   name: 'MuiDialogTitle',
   slot: 'Root',
-})({
+})<{ ownerState: OwnerState }>({
   padding: '16px 24px',
   flex: '0 0 auto',
 });
 
-const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
+/**
+ *
+ * Demos:
+ *
+ * - [Dialog](https://mui.com/material-ui/react-dialog/)
+ *
+ * API:
+ *
+ * - [DialogTitle API](https://mui.com/material-ui/api/dialog-title/)
+ * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
+ */
+const DialogTitle = React.forwardRef(function DialogTitle(
+  inProps: DialogTitleProps,
+  ref: React.Ref<HTMLElement>,
+) {
   const props = useDefaultProps({
     props: inProps,
     name: 'MuiDialogTitle',
@@ -50,12 +101,12 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
       {...other}
     />
   );
-});
+}) as OverridableComponent<DialogTitleTypeMap>;
 
 DialogTitle.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
-  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
@@ -81,6 +132,6 @@ DialogTitle.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
 
 export default DialogTitle;

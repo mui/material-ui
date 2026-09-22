@@ -34,7 +34,7 @@
   "themeDefaultProps": true,
   "muiName": "MuiDialogContent",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-material/src/DialogContent/DialogContent.js",
+  "filename": "/packages/mui-material/src/DialogContent/DialogContent.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-dialog/\">Dialog</a></li></ul>"
 }

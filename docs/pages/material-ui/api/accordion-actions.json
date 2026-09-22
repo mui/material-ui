@@ -34,7 +34,7 @@
   "themeDefaultProps": true,
   "muiName": "MuiAccordionActions",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-material/src/AccordionActions/AccordionActions.js",
+  "filename": "/packages/mui-material/src/AccordionActions/AccordionActions.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-accordion/\">Accordion</a></li></ul>"
 }

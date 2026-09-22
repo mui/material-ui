@@ -3,11 +3,37 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import type { SxProps } from '@mui/system';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getAccordionActionsUtilityClass } from './accordionActionsClasses';
+import type { Theme } from '../styles';
+import type { InternalStandardProps as StandardProps } from '../internal';
+import type { AccordionActionsClasses } from './accordionActionsClasses';
 
-const useUtilityClasses = (ownerState) => {
+export interface AccordionActionsProps extends StandardProps<React.ComponentPropsWithRef<'div'>> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<AccordionActionsClasses> | undefined;
+  /**
+   * If `true`, the actions do not have additional margin.
+   * @default false
+   */
+  disableSpacing?: boolean | undefined;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+}
+
+type OwnerState = AccordionActionsProps;
+
+const useUtilityClasses = (ownerState: OwnerState) => {
   const { classes, disableSpacing } = ownerState;
 
   const slots = {
@@ -25,7 +51,7 @@ const AccordionActionsRoot = styled('div', {
 
     return [styles.root, !ownerState.disableSpacing && styles.spacing];
   },
-})({
+})<{ ownerState: OwnerState }>({
   display: 'flex',
   alignItems: 'center',
   padding: 8,
@@ -42,7 +68,20 @@ const AccordionActionsRoot = styled('div', {
   ],
 });
 
-const AccordionActions = React.forwardRef(function AccordionActions(inProps, ref) {
+/**
+ *
+ * Demos:
+ *
+ * - [Accordion](https://mui.com/material-ui/react-accordion/)
+ *
+ * API:
+ *
+ * - [AccordionActions API](https://mui.com/material-ui/api/accordion-actions/)
+ */
+const AccordionActions = React.forwardRef(function AccordionActions(
+  inProps: AccordionActionsProps,
+  ref: React.Ref<HTMLDivElement>,
+) {
   const props = useDefaultProps({ props: inProps, name: 'MuiAccordionActions' });
   const { className, disableSpacing = false, ...other } = props;
   const ownerState = { ...props, disableSpacing };
@@ -57,12 +96,12 @@ const AccordionActions = React.forwardRef(function AccordionActions(inProps, ref
       {...other}
     />
   );
-});
+}) as React.ForwardRefExoticComponent<AccordionActionsProps>;
 
 AccordionActions.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
-  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
@@ -89,6 +128,6 @@ AccordionActions.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
 
 export default AccordionActions;

@@ -3,13 +3,34 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import type { SxProps } from '@mui/system';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
+import type { TypographyProps } from '../Typography';
+import type { Theme } from '../styles';
 import { getAlertTitleUtilityClass } from './alertTitleClasses';
+import type { AlertTitleClasses } from './alertTitleClasses';
 
-const useUtilityClasses = (ownerState) => {
+export interface AlertTitleProps extends TypographyProps<'div'> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<AlertTitleClasses> | undefined;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+}
+
+type OwnerState = AlertTitleProps;
+
+const useUtilityClasses = (ownerState: OwnerState) => {
   const { classes } = ownerState;
 
   const slots = {
@@ -22,7 +43,7 @@ const useUtilityClasses = (ownerState) => {
 const AlertTitleRoot = styled(Typography, {
   name: 'MuiAlertTitle',
   slot: 'Root',
-})(
+})<{ ownerState: OwnerState }>(
   memoTheme(({ theme }) => {
     return {
       fontWeight: theme.typography.fontWeightMedium,
@@ -31,7 +52,21 @@ const AlertTitleRoot = styled(Typography, {
   }),
 );
 
-const AlertTitle = React.forwardRef(function AlertTitle(inProps, ref) {
+/**
+ *
+ * Demos:
+ *
+ * - [Alert](https://mui.com/material-ui/react-alert/)
+ *
+ * API:
+ *
+ * - [AlertTitle API](https://mui.com/material-ui/api/alert-title/)
+ * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
+ */
+const AlertTitle = React.forwardRef(function AlertTitle(
+  inProps: AlertTitleProps,
+  ref: React.Ref<HTMLDivElement>,
+) {
   const props = useDefaultProps({
     props: inProps,
     name: 'MuiAlertTitle',
@@ -52,12 +87,12 @@ const AlertTitle = React.forwardRef(function AlertTitle(inProps, ref) {
       {...other}
     />
   );
-});
+}) as React.ForwardRefExoticComponent<AlertTitleProps>;
 
 AlertTitle.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
-  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
@@ -79,6 +114,6 @@ AlertTitle.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
 
 export default AlertTitle;
