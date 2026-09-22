@@ -4276,7 +4276,7 @@ describe('<Autocomplete />', () => {
       it('does not expose unresolved numeric, boolean, or bigint values as chip labels', () => {
         render(<Test multiple value={[42, 87, 0, false, 3n]} options={[]} />);
 
-        const chips = screen.getAllByRole('button', {name: ''});
+        const chips = screen.getAllByRole('button', { name: '' });
         expect(chips).to.have.length(5);
       });
 

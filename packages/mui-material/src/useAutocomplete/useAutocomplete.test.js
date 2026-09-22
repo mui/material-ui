@@ -614,11 +614,12 @@ describe('useAutocomplete', () => {
 
     describe('options created by filterOptions', () => {
       const generatedOption = { id: 'baz', alternateId: 'new-baz', label: 'Baz' };
-      const compare = (option, value) => option.id.toLowerCase() === value.toLowerCase();
-      let autocomplete;
+      const customIsOptionEqualToValue = (option, value) =>
+        option.id.toLowerCase() === value.toLowerCase();
+      let useAutocompleteResult;
 
       function GeneratedOptionTest(props) {
-        autocomplete = useAutocomplete({
+        useAutocompleteResult = useAutocomplete({
           options,
           getOptionValue,
           filterOptions: (optionsToFilter, { inputValue }) =>
@@ -626,7 +627,7 @@ describe('useAutocomplete', () => {
           ...props,
         });
         const { getRootProps, getInputProps, getListboxProps, getOptionProps, groupedOptions } =
-          autocomplete;
+          useAutocompleteResult;
 
         return (
           <div {...getRootProps()}>
@@ -648,26 +649,28 @@ describe('useAutocomplete', () => {
       }
 
       it('resolves a generated option after a cached custom equality miss and prefers updated options', async () => {
-        const { user, rerender } = render(<GeneratedOptionTest isOptionEqualToValue={compare} />);
+        const { user, rerender } = render(
+          <GeneratedOptionTest isOptionEqualToValue={customIsOptionEqualToValue} />,
+        );
 
-        expect(autocomplete.getOptionFromValue('BAZ')).to.equal(null);
+        expect(useAutocompleteResult.getOptionFromValue('BAZ')).to.equal(null);
 
         await user.type(screen.getByRole('combobox'), 'Baz');
         await user.keyboard('{ArrowDown}{Enter}');
 
-        expect(autocomplete.value).to.equal('baz');
-        expect(autocomplete.getOptionFromValue('BAZ')).to.equal(generatedOption);
+        expect(useAutocompleteResult.value).to.equal('baz');
+        expect(useAutocompleteResult.getOptionFromValue('BAZ')).to.equal(generatedOption);
         expect(screen.getByRole('combobox')).to.have.value('Baz');
 
         const updatedOption = { id: 'baz', label: 'Updated Baz' };
         rerender(
           <GeneratedOptionTest
-            isOptionEqualToValue={compare}
+            isOptionEqualToValue={customIsOptionEqualToValue}
             options={[...options, updatedOption]}
           />,
         );
 
-        expect(autocomplete.getOptionFromValue('BAZ')).to.equal(updatedOption);
+        expect(useAutocompleteResult.getOptionFromValue('BAZ')).to.equal(updatedOption);
 
         await user.tab();
 
@@ -734,7 +737,7 @@ describe('useAutocomplete', () => {
 
       it.each([
         { name: 'default equality', isOptionEqualToValue: undefined },
-        { name: 'custom equality', isOptionEqualToValue: compare },
+        { name: 'custom equality', isOptionEqualToValue: customIsOptionEqualToValue },
       ])('forgets deselected generated options with $name', async ({ isOptionEqualToValue }) => {
         const { user } = render(
           <GeneratedOptionTest multiple isOptionEqualToValue={isOptionEqualToValue} />,
@@ -743,12 +746,12 @@ describe('useAutocomplete', () => {
         await user.type(screen.getByRole('combobox'), 'Baz');
         await user.keyboard('{ArrowDown}{Enter}');
 
-        expect(autocomplete.getOptionFromValue('baz')).to.equal(generatedOption);
+        expect(useAutocompleteResult.getOptionFromValue('baz')).to.equal(generatedOption);
 
         await user.keyboard('{Backspace}');
 
-        expect(autocomplete.value).to.deep.equal([]);
-        expect(autocomplete.getOptionFromValue('baz')).to.equal(null);
+        expect(useAutocompleteResult.value).to.deep.equal([]);
+        expect(useAutocompleteResult.getOptionFromValue('baz')).to.equal(null);
       });
 
       it('uses the current mapper to resolve retained options', async () => {
@@ -757,7 +760,7 @@ describe('useAutocomplete', () => {
         await user.type(screen.getByRole('combobox'), 'Baz');
         await user.keyboard('{ArrowDown}{Enter}');
 
-        expect(autocomplete.getOptionFromValue('baz')).to.equal(generatedOption);
+        expect(useAutocompleteResult.getOptionFromValue('baz')).to.equal(generatedOption);
 
         rerender(
           <GeneratedOptionTest
@@ -766,15 +769,15 @@ describe('useAutocomplete', () => {
           />,
         );
 
-        expect(autocomplete.getOptionFromValue('baz')).to.equal(null);
-        expect(autocomplete.getOptionFromValue('new-baz')).to.equal(generatedOption);
+        expect(useAutocompleteResult.getOptionFromValue('baz')).to.equal(null);
+        expect(useAutocompleteResult.getOptionFromValue('new-baz')).to.equal(generatedOption);
         expect(screen.getByRole('combobox')).to.have.value('Baz');
 
         // The selected value no longer matches under the original mapper.
         rerender(<GeneratedOptionTest value="new-baz" />);
 
-        expect(autocomplete.getOptionFromValue('new-baz')).to.equal(null);
-        expect(autocomplete.getOptionFromValue('baz')).to.equal(null);
+        expect(useAutocompleteResult.getOptionFromValue('new-baz')).to.equal(null);
+        expect(useAutocompleteResult.getOptionFromValue('baz')).to.equal(null);
       });
 
       it('forgets generated options rejected by a controlled value', async () => {
@@ -785,8 +788,8 @@ describe('useAutocomplete', () => {
         await user.keyboard('{ArrowDown}{Enter}');
 
         expect(onChange.firstCall.args[1]).to.equal('baz');
-        expect(autocomplete.value).to.equal(null);
-        expect(autocomplete.getOptionFromValue('baz')).to.equal(null);
+        expect(useAutocompleteResult.value).to.equal(null);
+        expect(useAutocompleteResult.getOptionFromValue('baz')).to.equal(null);
       });
     });
 
@@ -904,6 +907,8 @@ describe('useAutocomplete', () => {
 
         expect(resolveOptionValue('FoO')).to.equal(resolverOptions[0]);
         expect(resolveOptionValue('missing')).to.equal(null);
+        // The first three calls to isOptionEqualToValue are expected: two for 'FoO' and one for 'missing'.
+        expect(isOptionEqualToValue.callCount).to.equal(3);
         isOptionEqualToValue.resetHistory();
 
         expect(resolveOptionValue('FoO')).to.equal(resolverOptions[0]);
@@ -928,6 +933,8 @@ describe('useAutocomplete', () => {
 
         expect(resolveOptionValue('FoO')).to.equal(resolverOptions[0]);
         expect(resolveOptionValue('missing')).to.equal(null);
+        // The first three calls to isOptionEqualToValue are expected: two for 'FoO' and one for 'missing'.
+        expect(isOptionEqualToValue.callCount).to.equal(3);
         isOptionEqualToValue.resetHistory();
 
         rerender(

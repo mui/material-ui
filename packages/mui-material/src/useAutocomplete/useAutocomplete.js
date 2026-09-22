@@ -872,8 +872,8 @@ function useAutocomplete(props) {
       }
     }
 
+    // Remember the selected option if it comes from the available options and is not being removed.
     if (origin === 'options' && reason !== 'removeOption') {
-      // The input reset already needs to resolve the selected option's label.
       rememberSelectedOption(option, optionValue);
     }
 
