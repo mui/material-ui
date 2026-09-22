@@ -581,10 +581,14 @@ describe('<Menu2 /> collapsed API', () => {
     it.skipIf(isJsdom())(
       `drops the open tint when a sibling hover closes a ${openMethod}-opened submenu`,
       async () => {
+        const onOpenChangeComplete = vi.fn();
         const { user } = render(
           <Menu2 defaultOpen modal={false} trigger={<Button disableRipple>Options</Button>}>
             <Menu2Item>One</Menu2Item>
-            <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
+            <Menu2Submenu
+              onOpenChangeComplete={onOpenChangeComplete}
+              trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
+            >
               <Menu2Item>Nested</Menu2Item>
             </Menu2Submenu>
           </Menu2>,
@@ -597,32 +601,47 @@ describe('<Menu2 /> collapsed API', () => {
           await act(async () => trigger.focus());
           await user.keyboard('{ArrowRight}');
         }
-        await screen.findByRole('menuitem', { name: 'Nested' });
+        const nested = await screen.findByRole('menuitem', { name: 'Nested' });
+        if (openMethod === 'keyboard') {
+          await waitFor(() => expect(nested).toHaveFocus());
+        }
+        // Let enter finish so the test checks an exit animation, not a canceled enter.
+        await waitFor(() => expect(onOpenChangeComplete).toHaveBeenCalledWith(true));
         expect(trigger).to.have.class(menu2SubmenuTriggerClasses.open);
 
         const closingBackgrounds: string[] = [];
-        const observer = new MutationObserver(() => {
+        let frame: number;
+        const sample = () => {
           if (trigger.classList.contains(menu2SubmenuTriggerClasses.closing)) {
             closingBackgrounds.push(window.getComputedStyle(trigger).backgroundColor);
           }
-        });
-        observer.observe(trigger, { attributes: true, attributeFilter: ['class'] });
+          frame = requestAnimationFrame(sample);
+        };
+        frame = requestAnimationFrame(sample);
         const sibling = screen.getByRole('menuitem', { name: 'One' });
-        await user.hover(sibling);
-        await waitFor(() => {
-          expect(screen.queryByRole('menuitem', { name: 'Nested' })).to.equal(null);
-        });
-        observer.disconnect();
+        try {
+          await user.hover(sibling);
+          // user.hover() has no movement delta. Base UI ignores it for focus in WebKit.
+          fireEvent.mouseMove(sibling, { movementX: 1, movementY: 0 });
+          await waitFor(() => {
+            expect(sibling).toHaveFocus();
+            expect(sibling).to.have.class(menu2ItemClasses.highlighted);
+          });
+          await waitFor(() => {
+            expect(screen.queryByRole('menuitem', { name: 'Nested' })).to.equal(null);
+            expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.open);
+            expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.closing);
+          });
+          expect(sibling).toHaveFocus();
+          expect(window.getComputedStyle(trigger).backgroundColor).to.equal('rgba(0, 0, 0, 0)');
+        } finally {
+          cancelAnimationFrame(frame);
+          // Park the pointer, so it does not leak into the next test.
+          await user.unhover(sibling);
+        }
         // The sibling shows the highlight, so the trigger must not keep its tint.
         expect(closingBackgrounds).not.to.have.length(0);
         expect(new Set(closingBackgrounds)).to.deep.equal(new Set(['rgba(0, 0, 0, 0)']));
-
-        await waitFor(() => {
-          expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.open);
-          expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.closing);
-        });
-        // Park the pointer, so it does not leak into the next test.
-        await user.unhover(sibling);
       },
     );
   });
