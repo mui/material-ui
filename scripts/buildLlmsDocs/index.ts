@@ -423,34 +423,19 @@ function generateLlmsTxt(
 const GENERATED_EXTENSIONS = new Set(['.md', '.txt']);
 
 /**
- * Deletes the files written by a previous run, plus any directory left empty by
- * that deletion. Files with another extension are kept. Returns whether `dir`
- * still holds anything.
+ * Deletes the output of a previous run: every subdirectory, and the files with
+ * a generated extension. Any other file in `dir` is kept.
  */
-function removeGeneratedFiles(dir: string): boolean {
+function removeGeneratedFiles(dir: string): void {
   if (!fs.existsSync(dir)) {
-    return false;
+    return;
   }
-
-  let hasRemainingFiles = false;
 
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const entryPath = path.join(dir, entry.name);
-
-    if (entry.isDirectory()) {
-      if (removeGeneratedFiles(entryPath)) {
-        hasRemainingFiles = true;
-      } else {
-        fs.rmdirSync(entryPath);
-      }
-    } else if (GENERATED_EXTENSIONS.has(path.extname(entry.name))) {
-      fs.rmSync(entryPath);
-    } else {
-      hasRemainingFiles = true;
+    if (entry.isDirectory() || GENERATED_EXTENSIONS.has(path.extname(entry.name))) {
+      fs.rmSync(path.join(dir, entry.name), { recursive: true });
     }
   }
-
-  return hasRemainingFiles;
 }
 
 /**
