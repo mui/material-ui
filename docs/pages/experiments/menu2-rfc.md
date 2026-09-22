@@ -379,6 +379,36 @@ This example follows the system preference. The playground also shows the theme 
 - [Proof of concept #48663](https://github.com/mui/material-ui/pull/48663) and [experiment #48823](https://github.com/mui/material-ui/pull/48823).
 - Main requests: [nested menus #11723](https://github.com/mui/material-ui/issues/11723), [packaged Menubar #48336](https://github.com/mui/material-ui/issues/48336), and [nested menu docs #45790](https://github.com/mui/material-ui/issues/45790).
 - [Base UI Menu](https://base-ui.com/react/components/menu), [release history](https://base-ui.com/react/overview/releases), and [initial-focus discussion](https://github.com/mui/base-ui/issues/2143).
-- Historical bundle result from #48823: **+3.54 KB parsed, +685 B gzip** on the measured Material bundle. The earlier **+77 B** result belongs to the proof of concept. Neither describes the current release revision. Measure both classic-only and Menu2 imports before release; the latter also includes the required Base UI code.
 
-These whole-barrel measurements are not a fixed cost for apps that do not import Menu2. Menu2 parts are available only through subpath imports.
+### Bundle cost
+
+Measured at `baef34b637`, against the merge base `1d829b8c9d9`, with the same installed dependencies and build tools.
+Both revisions use production ESM builds, Vite 8.3.0, and gzip level 9.
+React, React DOM, `@emotion/react`, and `@emotion/styled` are external.
+The Menu2 measurements include Base UI 1.8.0 with the local patch.
+These are import bundles, not complete applications. Sizes use decimal kB.
+
+Each menu case includes Button. The classic case adds Menu and MenuItem; the Menu2 case adds Menu2 and Menu2Item.
+The submenu case also adds Menu2Submenu and Menu2SubmenuTrigger.
+
+| Imports                             | Minified kB | Gzip kB |
+| :---------------------------------- | ----------: | ------: |
+| Classic Menu, merge base            |     125.864 |  40.204 |
+| Classic Menu, this PR               |     126.411 |  40.442 |
+| Menu2                               |     232.977 |  76.450 |
+| Menu2 with submenu                  |     241.466 |  78.790 |
+| Classic Menu and Menu2              |     261.846 |  85.727 |
+| Classic Menu and Menu2 with submenu |     270.326 |  88.130 |
+
+The classic subpath case grows by **238 B gzip**. Named barrel imports grow by **243 B gzip**.
+Neither retains Base UI or Floating UI modules. Button-only imports grow by 14 B gzip through either import path.
+This supports the low-cost goal for existing users, but Menu2 is not a size reduction:
+it costs **36.008 kB gzip** more than the classic case.
+Adding Menu2 alongside classic Menu costs **45.285 kB gzip** in this fixture.
+Adding submenu support to the Menu2 case costs a further **2.340 kB gzip**.
+Application results depend on the components and dependencies already in use.
+
+Run `pnpm -r --filter @mui/material... build`, then `pnpm exec node test/bundle-size/menu2.mjs` to repeat the current measurements.
+The script also accepts a path to a baseline Material package build. Use the same installed dependencies for that build.
+It checks the retained module graph and fails if classic imports include Base UI or Floating UI code, or if the selected Material build is not used.
+Two runs of each revision produced identical results. Repeat the check on the release revision.
