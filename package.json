@@ -2,6 +2,7 @@
   "name": "@mui/monorepo",
   "version": "9.4.0",
   "private": true,
+  "//": "#target-branch-reference: scripts.prettier",
   "scripts": {
     "preinstall": "npx only-allow@1.2.2 pnpm",
     "proptypes": "tsx ./scripts/generateProptypes.ts",
