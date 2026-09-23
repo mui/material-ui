@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/428843a303d23c4c904fc740058e33e1a8b95c85/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/c6471a4fe98cb2e52efe7397ff8362569f2ddada/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
@@ -128,6 +128,9 @@ jobs:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
       - run:
+          name: Test module augmentation
+          command: pnpm typescript:module-augmentation
+      - run:
           name: Build declaration files
           command: |
             pnpm lerna run --scope "@mui/*" build
@@ -178,7 +181,7 @@ jobs:
     resource_class: medium+.gen2
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     steps:
       - checkout
       - code-infra/install-deps:
@@ -203,7 +206,7 @@ jobs:
     resource_class: medium
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     steps:
       - checkout
       - code-infra/install-deps:
@@ -217,7 +220,7 @@ jobs:
     resource_class: medium
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     steps:
       - checkout
       - code-infra/install-deps
@@ -231,7 +234,7 @@ jobs:
     resource_class: medium+
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     steps:
       - checkout
       - code-infra/install-deps:
@@ -245,6 +248,20 @@ jobs:
           # pnpm-workspace.yaml (overrides) and may touch pnpm-lock.yaml. Exclude those so
           # this check still verifies the a11y results without tripping on the pinned deps.
           command: git add -A -- . ':(exclude)pnpm-*.yaml' && git diff --exit-code --staged
+      - when:
+          condition:
+            not:
+              equal: [stable, << parameters.react-version >>]
+          steps:
+            - run:
+                name: Configure the Argos upload for a non-stable React run
+                # Argos never uses a subset build as a baseline or reports its skipped screenshots.
+                # A branch other than master stops the auto-approval, so React changes fail.
+                # The reference commit compares the build with the stable run of the same commit.
+                command: |
+                  echo 'export ARGOS_SUBSET=true' >> "$BASH_ENV"
+                  echo 'export ARGOS_BRANCH="$CIRCLE_JOB"' >> "$BASH_ENV"
+                  echo 'export ARGOS_REFERENCE_COMMIT="$CIRCLE_SHA1"' >> "$BASH_ENV"
       - code-infra/argos-push
   test_bundling_prepare:
     <<: *default-job
@@ -292,7 +309,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     steps:
       - checkout:
@@ -308,7 +325,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     steps:
       - checkout:
@@ -324,7 +341,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
       - checkout:
@@ -340,7 +357,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     steps:
       - checkout:
@@ -356,7 +373,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     steps:
       - checkout:
@@ -371,7 +388,7 @@ jobs:
   test_bundling_esbuild:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.62.1-noble
+      - image: mcr.microsoft.com/playwright:v1.63.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     steps:
       - checkout:
@@ -387,7 +404,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
       environment:
         GATSBY_CPU_COUNT: '3'
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
