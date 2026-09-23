@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/1a52cef604c255c13aaad0383a48d19c02519418/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/c6471a4fe98cb2e52efe7397ff8362569f2ddada/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
@@ -121,6 +121,9 @@ jobs:
       - run:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
+      - run:
+          name: Test module augmentation
+          command: pnpm typescript:module-augmentation
       - run:
           name: Build declaration files
           command: |

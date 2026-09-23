@@ -68,11 +68,10 @@
     "test:argos": "code-infra argos-push --folder test/regressions/screenshots/chrome",
     "typescript": "lerna run --no-bail typescript",
     "typescript:ci": "lerna run --concurrency 3 --no-bail typescript",
-    "typescript:module-augmentation": "lerna run --concurrency 1 --no-bail typescript:module-augmentation",
+    "typescript:module-augmentation": "pnpm -F @mui-internal/test-module-augmentation typescript:module-augmentation",
     "use-react-version": "node ./scripts/useReactVersion.mjs",
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
-    "canary:release": "tsx ./scripts/canaryRelease.mts",
     "clean": "pnpm -r exec rm -rf build"
   },
   "dependencies": {
@@ -88,14 +87,14 @@
     "@eslint/compat": "2.1.1",
     "@mui/internal-babel-plugin-minify-errors": "2.0.8-canary.31",
     "@mui/internal-bundle-size-checker": "1.0.9-canary.92",
-    "@mui/internal-code-infra": "0.0.4-canary.117",
+    "@mui/internal-code-infra": "0.0.4-canary.119",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.0.3-canary.8",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "2.0.18-canary.38",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "16.3.4",
+    "@next/eslint-plugin-next": "16.3.5",
     "@octokit/rest": "22.0.1",
     "@pigment-css/react": "0.0.31",
     "@playwright/test": "1.63.0",
@@ -130,7 +129,7 @@
     "nx": "22.7.6",
     "pkg-pr-new": "0.0.88",
     "playwright": "1.63.0",
-    "prettier": "3.9.6",
+    "prettier": "3.9.8",
     "pretty-quick": "4.2.2",
     "process": "0.11.10",
     "react": "19.3.0",
@@ -147,11 +146,11 @@
     "yargs": "18.1.0"
   },
   "config": {
-    "valeVersion": "3.21.0"
+    "valeVersion": "3.22.0"
   },
-  "packageManager": "pnpm@12.3.4",
+  "packageManager": "pnpm@12.4.2",
   "engines": {
-    "pnpm": "12.3.4",
+    "pnpm": "12.4.2",
     "node": ">=22.23.2"
   }
 }

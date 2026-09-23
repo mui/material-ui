@@ -22,7 +22,7 @@
     "doctrine": "^3.0.0",
     "es-toolkit": "^1.52.0",
     "fast-glob": "^3.3.3",
-    "prettier": "^3.9.6",
+    "prettier": "^3.9.8",
     "react-docgen": "^8.0.3",
     "recast": "^0.24.0",
     "remark": "^15.0.1",
