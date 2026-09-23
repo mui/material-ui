@@ -23,12 +23,11 @@ body:
   - type: textarea
     attributes:
       label: Steps to reproduce
-      # #target-branch-reference
       description: |
         **⚠️ Issues that we can't reproduce can't be fixed.**
 
         Please provide a link to a live example and an unambiguous set of steps to reproduce this bug. See our [documentation](https://mui.com/material-ui/getting-started/support/#bug-reproductions) on how to build a reproduction case.
-        You can use this StackBlitz template as a starting point: [material-ui-vite-ts](https://stackblitz.com/github/mui/material-ui/tree/v9.x/examples/material-ui-vite-ts)
+        You can use this StackBlitz template as a starting point: [material-ui-vite-ts](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-vite-ts)
       value: |
         Steps:
         1. Open this link to live example: (required)
