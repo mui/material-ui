@@ -4,7 +4,7 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
-import { Plugin, transformWithEsbuild } from 'vite';
+import { Plugin, transformWithOxc } from 'vite';
 import { playwright } from '@vitest/browser-playwright';
 import { BrowserInstanceOption } from 'vitest/node';
 
@@ -21,8 +21,10 @@ function forceJsxForJsFiles(): Plugin {
         return null;
       }
 
-      const result = await transformWithEsbuild(code, id, {
-        loader: 'jsx',
+      const result = await transformWithOxc(code, id, {
+        lang: 'jsx',
+        // oxc resolves the closest tsconfig otherwise, and `docs/tsconfig.json` sets `jsx: 'preserve'`.
+        jsx: { runtime: 'classic' },
       });
 
       // @vitejs/plugin-react only adds the React import for .jsx files.
@@ -148,23 +150,22 @@ export default async function create(
     },
     optimizeDeps: {
       include: ['@mui/internal-test-utils/setupVitest'],
-      esbuildOptions: {
+      rolldownOptions: {
         plugins: [
           {
             name: 'js-as-jsx',
-            setup(build) {
-              build.onLoad({ filter: /\.js$/ }, async (args) => {
-                if (args.path.includes('/node_modules/')) {
+            load: {
+              filter: { id: /\.js$/ },
+              async handler(id) {
+                if (id.includes('/node_modules/')) {
                   return null;
                 }
 
-                const contents = await fs.readFile(args.path, 'utf8');
-
                 return {
-                  contents,
-                  loader: 'jsx',
+                  code: await fs.readFile(id, 'utf8'),
+                  moduleType: 'jsx',
                 };
-              });
+              },
             },
           },
         ],
