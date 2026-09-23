@@ -50,12 +50,14 @@ export interface TypeFeatures {}
 
 /**
  * Replaces `Components` in the theme when `TypeFeatures['optimizedTheme']` is enabled.
- * Augment it to bring back type safety for the components you customize
+ * Use `satisfies` at the callsite to bring back type safety for the components you customize
  *
  * @example
- * declare module '@mui/material/styles' {
- *   interface ThemeComponents extends Pick<Components<Theme>, 'MuiButton'> {}
- * }
+ * createTheme({
+ *   components: {
+ *     MuiButton: {},
+ *   } satisfies Components<Theme>,
+ * });
  */
 export interface ThemeComponents {
   /**

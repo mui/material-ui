@@ -117,23 +117,28 @@ declare module '@mui/material/styles' {
 No import changes are required, and the flag cannot be turned off by other imports or by dependencies—it applies to the whole program.
 
 With the flag enabled, `theme.components` accepts any value without type checking.
-To bring back type safety and autocompletion for the components you customize, augment the `ThemeComponents` interface:
+To bring back type safety and autocompletion for the components you customize, use `satisfies` at the callsite:
 
 ```ts
-import { Components, Theme } from '@mui/material/styles';
+import { createTheme, type Components, type Theme } from '@mui/material/styles';
 
-declare module '@mui/material/styles' {
-  interface TypeFeatures {
-    optimizedTheme: true;
-  }
-  interface ThemeComponents extends Pick<
-    Components<Theme>,
-    'MuiButton' | 'MuiTextField'
-  > {}
-}
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      defaultProps: {
+        variant: 'contained',
+      },
+    },
+    MuiTextField: {
+      defaultProps: {
+        variant: 'outlined',
+      },
+    },
+  } satisfies Components<Theme>,
+});
 ```
 
 :::warning
-If you are building a reusable library, do not include this augmentation in the type declarations you publish.
+If you are building a reusable library, do not include the `optimizedTheme` augmentation in the type declarations you publish.
 It would enable the optimization for all consumers of your library.
 :::

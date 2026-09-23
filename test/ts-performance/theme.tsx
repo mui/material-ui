@@ -301,13 +301,6 @@ export default createTheme({
       styleOverrides: {},
       variants: [],
     },
-    MuiGridLegacy: {
-      defaultProps: {
-        spacing: 2,
-      },
-      styleOverrides: {},
-      variants: [],
-    },
     MuiIcon: {
       defaultProps: {
         baseClassName: 'material-icons',
@@ -761,11 +754,6 @@ export default createTheme({
       defaultProps: {
         placement: 'bottom',
       },
-      styleOverrides: {},
-      variants: [],
-    },
-    MuiTouchRipple: {
-      defaultProps: {},
       styleOverrides: {},
       variants: [],
     },

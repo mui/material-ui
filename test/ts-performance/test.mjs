@@ -47,10 +47,38 @@ const optimized = runTsc('tsconfig.optimized.json');
 // eslint-disable-next-line no-console -- report the numbers even when passing
 console.info(`optimized (flag on): ${optimized} instantiations (limit ${OPTIMIZED_LIMIT})`);
 
+const satisfiesLoose = runTsc('tsconfig.satisfies-loose.json');
+// eslint-disable-next-line no-console -- report the numbers even when passing
+console.info(`satisfies baseline (loose): ${satisfiesLoose} instantiations`);
+
+const satisfiesPick = runTsc('tsconfig.satisfies-pick.json');
+// eslint-disable-next-line no-console -- report the numbers even when passing
+console.info(`satisfies Pick: ${satisfiesPick} instantiations (limit ${OPTIMIZED_LIMIT})`);
+
+const satisfiesFull = runTsc('tsconfig.satisfies-full.json');
+// eslint-disable-next-line no-console -- report the numbers even when passing
+console.info(`satisfies Components: ${satisfiesFull} instantiations`);
+
 if (optimized >= OPTIMIZED_LIMIT) {
   console.error(
     `Optimized instantiations (${optimized}) exceeded the limit of ${OPTIMIZED_LIMIT}. ` +
       'The optimizedTheme type feature may have regressed.',
+  );
+  process.exit(1);
+}
+
+if (satisfiesPick >= OPTIMIZED_LIMIT) {
+  console.error(
+    `Selective satisfies instantiations (${satisfiesPick}) exceeded the limit of ${OPTIMIZED_LIMIT}. ` +
+      'Using Pick with Components<Theme> may be instantiating the full component catalog.',
+  );
+  process.exit(1);
+}
+
+if (satisfiesFull >= OPTIMIZED_LIMIT) {
+  console.error(
+    `Full satisfies instantiations (${satisfiesFull}) exceeded the limit of ${OPTIMIZED_LIMIT}. ` +
+      'Using Components<Theme> may be instantiating the full component catalog.',
   );
   process.exit(1);
 }
