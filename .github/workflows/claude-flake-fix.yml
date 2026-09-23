@@ -15,9 +15,8 @@ on:
         type: boolean
         default: false
       model:
-        description: The Claude model the agent runs on.
+        description: Optional model override; leave blank to use mui-public's default.
         type: string
-        default: claude-opus-4-8
 
 permissions: {}
 
@@ -29,8 +28,8 @@ jobs:
       contents: write # push the fix branch (publish job)
       pull-requests: write # open the draft PR (publish job)
       issues: write # rolling tracking issue (publish job)
-    uses: mui/mui-public/.github/workflows/claude-flake-fix.yml@c6471a4fe98cb2e52efe7397ff8362569f2ddada # master
+    uses: mui/mui-public/.github/workflows/claude-flake-fix.yml@8fc8d4a7c561f6c41a039d3d87b6e215867aca6a # master
     with:
       report-only: ${{ inputs.report-only || false }}
-      model: ${{ inputs.model || 'claude-opus-4-8' }}
+      model: ${{ inputs.model }} # blank falls through to mui-public's central default
       debug: true # always surface the agent's full output in the run log
