@@ -6,7 +6,7 @@
 
 <!-- #target-branch-reference -->
 
-The following integration examples are available in the [`/examples`](https://github.com/mui/material-ui/tree/master/examples) folder of the Material UI GitHub repository.
+The following integration examples are available in the [`/examples`](https://github.com/mui/material-ui/tree/v9.x/examples) folder of the Material UI GitHub repository.
 These examples feature Material UI paired with other popular React libraries and frameworks, so you can skip the initial setup steps and jump straight into building.
 
 :::success

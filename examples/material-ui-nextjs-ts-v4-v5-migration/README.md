@@ -7,7 +7,7 @@ Download the example [or clone the repo](https://github.com/mui/material-ui):
 <!-- #target-branch-reference -->
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/material-ui-nextjs-ts-v4-v5-migration
+curl https://codeload.github.com/mui/material-ui/tar.gz/v9.x | tar -xz --strip=2  material-ui-9.x/examples/material-ui-nextjs-ts-v4-v5-migration
 cd material-ui-nextjs-ts-v4-v5-migration
 ```
 
@@ -22,9 +22,9 @@ or:
 
 <!-- #target-branch-reference -->
 
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-nextjs-ts-v4-v5-migration)
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/v9.x/examples/material-ui-nextjs-ts-v4-v5-migration)
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/master/examples/material-ui-nextjs-ts-v4-v5-migration)
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/v9.x/examples/material-ui-nextjs-ts-v4-v5-migration)
 
 ## The idea behind the example
 

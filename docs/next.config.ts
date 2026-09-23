@@ -257,7 +257,7 @@ export default withDocsInfra({
     LIB_VERSION: pkg.version,
     SEARCH_INDEX: `material-ui-v${semver.major(pkg.version)}`,
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
-    SOURCE_GITHUB_BRANCH: 'master', // #target-branch-reference
+    SOURCE_GITHUB_BRANCH: 'v9.x', // #target-branch-reference
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
     // MUI Core related
     GITHUB_AUTH: process.env.GITHUB_AUTH,

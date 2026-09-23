@@ -11,7 +11,7 @@ import type { NotificationMessage } from '../AppLayout/layout/Notifications';
 
 // #target-branch-reference
 const NOTIFICATIONS_URL =
-  'https://raw.githubusercontent.com/mui/material-ui/master/docs/notifications.json';
+  'https://raw.githubusercontent.com/mui/material-ui/v9.x/docs/notifications.json';
 
 async function defaultFetchNotifications(): Promise<NotificationMessage[]> {
   const response = await fetch(NOTIFICATIONS_URL);
@@ -21,7 +21,7 @@ async function defaultFetchNotifications(): Promise<NotificationMessage[]> {
 export type VersionEntry = { version: string; url: string };
 
 // #target-branch-reference
-const VERSIONS_URL = 'https://raw.githubusercontent.com/mui/material-ui/master/docs/versions.json';
+const VERSIONS_URL = 'https://raw.githubusercontent.com/mui/material-ui/v9.x/docs/versions.json';
 
 async function defaultFetchVersions(): Promise<VersionEntry[]> {
   const response = await fetch(VERSIONS_URL);
