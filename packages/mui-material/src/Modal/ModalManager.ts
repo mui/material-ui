@@ -91,6 +91,12 @@ function collectHiddenTargets(
   });
 }
 
+/**
+ * Hides every element of the container from assistive technology except the
+ * topmost modal and the ancestors it sits inside, and unhides what no longer
+ * needs hiding. Elements that were already `aria-hidden` before the manager
+ * touched them are left untouched.
+ */
 function syncAriaHidden(containerInfo: Container): void {
   const { container, modals } = containerInfo;
   const top = modals[modals.length - 1];
