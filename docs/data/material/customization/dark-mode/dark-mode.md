@@ -253,7 +253,7 @@ We recommend using this function over checking `theme.palette.mode` to switch be
 
 <!-- #target-branch-reference -->
 
-- It can be used with [Pigment CSS](https://github.com/mui/material-ui/tree/master/packages/pigment-css-react), our in-house zero-runtime CSS-in-JS solution.
+- It can be used with [Pigment CSS](https://github.com/mui/material-ui/tree/v9.x/packages/pigment-css-react), our in-house zero-runtime CSS-in-JS solution.
 - It is generally more readable and maintainable.
 - It is slightly more performant as it doesn't require to do style recalculation but the bundle size of SSR generated styles is larger.
 

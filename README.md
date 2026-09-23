@@ -101,7 +101,7 @@ For how-to questions that don't involve making changes to the code base, please 
 
 <!-- #target-branch-reference -->
 
-Our documentation features [a collection of example projects](https://github.com/mui/material-ui/tree/master/examples).
+Our documentation features [a collection of example projects](https://github.com/mui/material-ui/tree/v9.x/examples).
 
 ## Premium templates
 

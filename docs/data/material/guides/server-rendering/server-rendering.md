@@ -213,5 +213,7 @@ ReactDOM.hydrateRoot(document.querySelector('#root'), <Main />);
 
 ## Reference implementations
 
-Here is [the reference implementation of this tutorial](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-express-ssr).
+<!-- #target-branch-reference -->
+
+Here is [the reference implementation of this tutorial](https://github.com/mui/material-ui/tree/v9.x/examples/material-ui-express-ssr).
 You can more SSR implementations in the GitHub repository under the `/examples` folder, see [the other examples](/material-ui/getting-started/example-projects/).

@@ -7,7 +7,7 @@ Download the example [or clone the repo](https://github.com/mui/material-ui):
 <!-- #target-branch-reference -->
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/material-ui-via-cdn
+curl https://codeload.github.com/mui/material-ui/tar.gz/v9.x | tar -xz --strip=2  material-ui-9.x/examples/material-ui-via-cdn
 cd material-ui-via-cdn
 ```
 
@@ -28,7 +28,7 @@ The client has to download the entire library, regardless of which components ar
 
 <!-- #target-branch-reference -->
 
-[The live preview.](https://raw.githack.com/mui/material-ui/master/examples/material-ui-via-cdn/index.html)
+[The live preview.](https://raw.githack.com/mui/material-ui/v9.x/examples/material-ui-via-cdn/index.html)
 
 ## What's next?
 

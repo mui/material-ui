@@ -27,6 +27,7 @@ default-job: &default-job
       type: string
       default: << pipeline.parameters.e2e-base-url >>
   environment: &default-environment
+    BASE_BRANCH: v9.x # #target-branch-reference
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     DANGER_DISABLE_TRANSPILATION: 'true'
@@ -616,7 +617,7 @@ workflows:
             branches:
               only:
                 # #target-branch-reference
-                - master
+                - v9.x
                 - v5.x
                 - v6.x
                 - v7.x

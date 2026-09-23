@@ -191,7 +191,7 @@ For framework or language specific setup, see [this](/material-ui/customization/
 
 <!-- #target-branch-reference -->
 
-See the complete usage of `createCssVarsProvider` in [Material UI](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/ThemeProviderWithVars.tsx).
+See the complete usage of `createCssVarsProvider` in [Material UI](https://github.com/mui/material-ui/blob/v9.x/packages/mui-material/src/styles/ThemeProviderWithVars.tsx).
 
 ## API
 

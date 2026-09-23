@@ -5,7 +5,7 @@ on:
   push:
     branches:
       # #target-branch-reference
-      - master
+      - v9.x
       - v6.x
   # So that the `dirtyLabel` is removed if conflicts are resolved
   # Could put too much strain on rate limit
@@ -13,7 +13,7 @@ on:
   pull_request_target:
     branches:
       # #target-branch-reference
-      - master
+      - v9.x
       - v6.x
     types: [synchronize]
 
