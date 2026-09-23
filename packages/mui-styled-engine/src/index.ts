@@ -8,6 +8,7 @@ import emStyled, {
 import { serializeStyles as emSerializeStyles } from '@emotion/serialize';
 import type * as CSS from 'csstype';
 import { type PropsOf } from '@emotion/react';
+import escapeStyleValues from './escapeStyleValues';
 
 // Re-export the public type surface of `@emotion/styled`. Explicit names rather
 // than `export type *`: an `export *` (even type-only) is disallowed by the
@@ -63,10 +64,11 @@ export function internal_mutateStyles(
 const wrapper: any[] = [];
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_serializeStyles<P>(styles: Interpolation<P>): object {
-  wrapper[0] = styles;
+  wrapper[0] = escapeStyleValues(styles);
   return emSerializeStyles(wrapper);
 }
 
+export { default as internal_escapeStyleValues } from './escapeStyleValues';
 export { ThemeContext, keyframes, css } from '@emotion/react';
 export { default as StyledEngineProvider } from './StyledEngineProvider';
 export { default as GlobalStyles } from './GlobalStyles';

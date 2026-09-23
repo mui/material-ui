@@ -2,6 +2,7 @@
 import type * as React from 'react';
 import PropTypes from 'prop-types';
 import { Global, type Interpolation } from '@emotion/react';
+import escapeStyleValues from '../escapeStyleValues';
 
 export interface GlobalStylesProps<Theme = {}> {
   defaultTheme?: object | undefined;
@@ -20,10 +21,12 @@ export default function GlobalStyles<Theme = {}>(
   const globalStyles =
     typeof styles === 'function'
       ? (themeInput: Theme) =>
-          (styles as (theme: Theme) => Interpolation<Theme>)(
-            isEmpty(themeInput as object) ? (defaultTheme as Theme) : themeInput,
+          escapeStyleValues(
+            (styles as (theme: Theme) => Interpolation<Theme>)(
+              isEmpty(themeInput as object) ? (defaultTheme as Theme) : themeInput,
+            ),
           )
-      : styles;
+      : escapeStyleValues(styles);
 
   return <Global styles={globalStyles as any} />;
 }

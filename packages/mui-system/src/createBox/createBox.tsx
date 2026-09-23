@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import clsx from 'clsx';
-import styled from '@mui/styled-engine';
+import styled, { internal_escapeStyleValues as escapeStyleValues } from '@mui/styled-engine';
 import type { OverridableComponent } from '@mui/types';
 import styleFunctionSx from '../styleFunctionSx';
 import useTheme from '../useTheme';
@@ -22,7 +22,7 @@ export default function createBox<
   const { themeId, defaultTheme, defaultClassName = 'MuiBox-root', generateClassName } = options;
   const BoxRoot: any = (styled as any)('div', {
     shouldForwardProp: (prop: string) => prop !== 'theme' && prop !== 'sx' && prop !== 'as',
-  })(styleFunctionSx);
+  })((props: any) => escapeStyleValues(styleFunctionSx(props)));
 
   const Box = React.forwardRef(function Box(inProps: any, ref) {
     const theme: any = useTheme(defaultTheme);

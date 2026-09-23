@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { createRenderer, screen } from '@mui/internal-test-utils';
-import { styled, ThemeProvider } from '@mui/system';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
+import { styled, ThemeProvider, unstable_memoTheme as memoTheme } from '@mui/system';
 
 import createTheme from '@mui/system/createTheme';
 
@@ -688,6 +688,44 @@ describe('styled', () => {
       });
 
       expect(containsValidClass).to.equal(true);
+    });
+  });
+
+  describe('property values', () => {
+    const theme = createTheme({ custom: { color: 'red;} span{color:rgb(0, 0, 255)} .x{' } });
+
+    it.skipIf(isJsdom())('should not let a value from a style function add rules', function test() {
+      const Div = styled('div')(({ theme: t }) => ({ color: t.custom.color }));
+
+      render(
+        <ThemeProvider theme={theme}>
+          <div style={{ color: 'rgb(0, 128, 0)' }}>
+            <Div />
+            <span data-testid="text">Green text</span>
+          </div>
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByTestId('text')).toHaveComputedStyle({
+        color: 'rgb(0, 128, 0)',
+      });
+    });
+
+    it.skipIf(isJsdom())('should not let a value from a memoized style add rules', function test() {
+      const Div = styled('div')(memoTheme(({ theme: t }) => ({ color: t.custom.color })));
+
+      render(
+        <ThemeProvider theme={theme}>
+          <div style={{ color: 'rgb(0, 128, 0)' }}>
+            <Div />
+            <span data-testid="text">Green text</span>
+          </div>
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByTestId('text')).toHaveComputedStyle({
+        color: 'rgb(0, 128, 0)',
+      });
     });
   });
 });

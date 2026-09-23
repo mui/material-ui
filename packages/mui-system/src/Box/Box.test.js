@@ -295,4 +295,17 @@ describe('<Box />', () => {
       });
     });
   });
+
+  it.skipIf(isJsdom())('should not let an `sx` value add rules', function test() {
+    render(
+      <div style={{ color: 'rgb(0, 128, 0)' }}>
+        <Box sx={{ color: 'red;} span{color:rgb(0, 0, 255)} .x{' }} />
+        <span data-testid="text">Green text</span>
+      </div>,
+    );
+
+    expect(screen.getByTestId('text')).toHaveComputedStyle({
+      color: 'rgb(0, 128, 0)',
+    });
+  });
 });

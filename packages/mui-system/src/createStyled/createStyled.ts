@@ -1,5 +1,6 @@
 import type * as React from 'react';
 import styledEngineStyled, {
+  internal_escapeStyleValues as escapeStyleValues,
   internal_mutateStyles as mutateStyles,
   internal_serializeStyles as serializeStyles,
   type CreateMUIStyled as CreateMUIStyledStyledEngine,
@@ -326,7 +327,12 @@ export default function createStyled<Theme extends object = DefaultTheme>(
         expressionsHead.unshift(outputStrings);
       }
 
-      const expressions = [...expressionsHead, ...expressionsBody, ...expressionsTail];
+      const expressions = [...expressionsHead, ...expressionsBody, ...expressionsTail].map(
+        (expression) =>
+          typeof expression === 'function' && expression.__emotion_real !== expression
+            ? (props: any) => escapeStyleValues(expression(props))
+            : expression,
+      );
 
       const Component: any = defaultStyledResolver(...expressions);
       if (tag.muiName) {

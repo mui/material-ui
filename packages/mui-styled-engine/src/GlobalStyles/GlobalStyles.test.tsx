@@ -90,4 +90,17 @@ describe('GlobalStyles', () => {
       color: 'rgb(255, 0, 0)',
     });
   });
+
+  it.skipIf(isJsdom())('should not let a property value add rules', function test() {
+    render(
+      <div style={{ color: 'rgb(0, 128, 0)' }}>
+        <GlobalStyles styles={{ '.unused': { color: 'red;} span{color:rgb(0, 0, 255)} .x{' } }} />
+        <span data-testid="text">Green text</span>
+      </div>,
+    );
+
+    expect(screen.getByTestId('text')).toHaveComputedStyle({
+      color: 'rgb(0, 128, 0)',
+    });
+  });
 });
