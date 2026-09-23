@@ -13,16 +13,18 @@ import useAutocomplete, {
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
   AutocompleteMappedValue,
-  AutocompleteResolvedValue,
-  AutocompletePrimitiveValue,
   AutocompleteValue,
   createFilterOptions,
-  UseAutocompleteBaseProps,
   UseAutocompleteProps,
   UseAutocompleteMappedProps,
   AutocompleteFreeSoloValueMapping,
   AutocompleteValueOrFreeSoloValueMapping,
 } from '../useAutocomplete';
+import {
+  AutocompleteResolvedValue,
+  AutocompletePrimitiveValue,
+  UseAutocompleteBaseProps,
+} from '../useAutocomplete/useAutocomplete';
 import { AutocompleteClasses } from './autocompleteClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
@@ -36,8 +38,6 @@ export {
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
   AutocompleteMappedValue,
-  AutocompleteResolvedValue,
-  AutocompletePrimitiveValue,
   AutocompleteValue,
   createFilterOptions,
 };
@@ -263,7 +263,7 @@ export interface AutocompleteMappedProps<
   getOptionValue: (option: Option) => Value;
 }
 
-export interface AutocompleteBaseProps<
+interface AutocompleteBaseProps<
   Option,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,

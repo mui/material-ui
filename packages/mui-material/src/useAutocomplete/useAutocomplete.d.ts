@@ -32,6 +32,7 @@ export type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo 
   ? Value | string
   : Value;
 
+/** @internal */
 export type AutocompletePrimitiveValue = string | number | bigint | boolean;
 
 export type AutocompleteMappedValue<FreeSolo> = true extends FreeSolo
@@ -42,6 +43,7 @@ export type AutocompleteMappedValue<FreeSolo> = true extends FreeSolo
 type NoInfer<T> = [T][T extends unknown ? 0 : never];
 
 // Defer mapped-value inference to getOptionValue.
+/** @internal */
 export type AutocompleteResolvedValue<Option, Value> = [Value] extends [never]
   ? Option
   : NoInfer<Value>;
@@ -76,6 +78,7 @@ export interface UseAutocompleteMappedProps<
   getOptionValue: (option: Option) => Value;
 }
 
+/** @internal */
 export interface UseAutocompleteBaseProps<
   Option,
   Multiple extends boolean | undefined,

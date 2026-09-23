@@ -231,10 +231,10 @@ function useAutocomplete(props) {
     (event, newValue, reason) => {
       // Retain the current `inputValue` when no new option is selected and `clearOnBlur` is false.
       // In `multiple` mode, `newValue` is the next value array, so only length growth counts as a selection.
-      const isOptionSelected = multiple ? value.length < newValue.length : newValue !== null;
+      const hasNewSelection = multiple ? value.length < newValue.length : newValue !== null;
       // A controlled single-value `freeSolo` reset to `null` should still clear the input.
       const shouldClearOnReset = reason === 'reset' && freeSolo && !multiple && newValue === null;
-      if (!isOptionSelected && !clearOnBlur && !shouldClearOnReset) {
+      if (!hasNewSelection && !clearOnBlur && !shouldClearOnReset) {
         return;
       }
       const newInputValue = getInputValue(
