@@ -1493,7 +1493,6 @@ describe('<ButtonBase />', () => {
 
       expect(() => {
         PropTypes.checkPropTypes(
-          // @ts-expect-error ExtendButtonBase<ButtonBaseTypeMap<{}, "button">> does not contain the property 'propTypes'.
           ButtonBase.propTypes,
           { classes: {}, component: Component },
           'prop',
