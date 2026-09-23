@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { spy } from 'sinon';
 import { fireEvent, createRenderer, screen } from '@mui/internal-test-utils';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';

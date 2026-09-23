@@ -23,6 +23,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
+import { applyInsetFocusVisible } from '../styles/focusVisible';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
@@ -368,9 +369,16 @@ const AutocompleteListbox = styled('ul', {
         opacity: (theme.vars || theme).palette.action.disabledOpacity,
         pointerEvents: 'none',
       },
-      [`&.${autocompleteClasses.focusVisible}`]: {
-        backgroundColor: (theme.vars || theme).palette.action.focus,
-      },
+      [`&.${autocompleteClasses.focusVisible}`]: theme.focusVisible
+        ? {
+            // Options are plain <li> (not ButtonBase), so add the ring here, keyed to the
+            // keyboard-navigation state. It insets: the listbox scrolls and would clip an outset ring.
+            ...applyInsetFocusVisible(1),
+            ...theme.focusVisible,
+          }
+        : {
+            backgroundColor: (theme.vars || theme).palette.action.focus,
+          },
       '&[aria-selected="true"]': {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,
@@ -386,12 +394,14 @@ const AutocompleteListbox = styled('ul', {
             backgroundColor: (theme.vars || theme).palette.action.selected,
           },
         },
-        [`&.${autocompleteClasses.focusVisible}`]: {
-          backgroundColor: theme.alpha(
-            (theme.vars || theme).palette.primary.main,
-            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
-          ),
-        },
+        ...(!theme.focusVisible && {
+          [`&.${autocompleteClasses.focusVisible}`]: {
+            backgroundColor: theme.alpha(
+              (theme.vars || theme).palette.primary.main,
+              `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+            ),
+          },
+        }),
       },
     },
   })),
@@ -539,19 +549,22 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   // the last open-state options instead of flashing "No options" or an empty Paper.
   // These options are stale because they no longer reflect the hook's current
   // groupedOptions, but they are non-interactive while closing and reset on next open.
-  const previousGroupedOptionsRef = React.useRef([]);
+  // Keep the grouping mode with the options so changes to groupBy cannot change
+  // how the cached options are interpreted during the exit transition.
+  const isGrouped = Boolean(groupBy);
+  const previousOptionsRef = React.useRef({ options: [], isGrouped: false });
   const prevPopupOpenRef = React.useRef(false);
-  const renderedOptions = popupOpen ? groupedOptions : previousGroupedOptionsRef.current;
+  const rendered = popupOpen ? { options: groupedOptions, isGrouped } : previousOptionsRef.current;
 
   useEnhancedEffect(() => {
     if (popupOpen && !prevPopupOpenRef.current) {
-      previousGroupedOptionsRef.current = [];
+      previousOptionsRef.current = { options: [], isGrouped };
     }
     prevPopupOpenRef.current = popupOpen;
     if (popupOpen && groupedOptions.length > 0) {
-      previousGroupedOptionsRef.current = groupedOptions;
+      previousOptionsRef.current = { options: groupedOptions, isGrouped };
     }
-  }, [popupOpen, groupedOptions]);
+  }, [popupOpen, groupedOptions, isGrouped]);
 
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
@@ -645,10 +658,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   // Don't render the Popper when there's no content to show.
   // In freeSolo mode, "No options" text is suppressed, so if there are also no
   // matching options and loading is false, the Paper would be empty.
-  // Uses renderedOptions (not groupedOptions) so Popper stays during exit transitions.
+  // Uses rendered.options (not groupedOptions) so Popper stays during exit transitions.
   // Respect keepMounted from resolved popperProps (handles both object and callback slotProps forms).
   const hasPopupContent =
-    renderedOptions.length > 0 || loading || !freeSolo || popperProps.keepMounted === true;
+    rendered.options.length > 0 || loading || !freeSolo || popperProps.keepMounted === true;
 
   const [ClearIndicatorSlot, clearIndicatorProps] = useSlot('clearIndicator', {
     elementType: AutocompleteClearIndicator,
@@ -810,12 +823,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
         <AutocompletePopper as={PopperSlot} {...popperProps}>
           <AutocompletePaper as={PaperSlot} {...paperProps}>
             <StatusSlot {...statusProps}>
-              {loading && renderedOptions.length === 0 ? (
+              {loading && rendered.options.length === 0 ? (
                 <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
                   {loadingText}
                 </AutocompleteLoading>
               ) : null}
-              {renderedOptions.length === 0 && !freeSolo && !loading ? (
+              {rendered.options.length === 0 && !freeSolo && !loading ? (
                 <AutocompleteNoOptions
                   className={classes.noOptions}
                   ownerState={ownerState}
@@ -828,10 +841,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                 </AutocompleteNoOptions>
               ) : null}
             </StatusSlot>
-            {renderedOptions.length > 0 ? (
+            {rendered.options.length > 0 ? (
               <ListboxSlot {...listboxProps}>
-                {renderedOptions.map((option, index) => {
-                  if (groupBy) {
+                {rendered.options.map((option, index) => {
+                  if (rendered.isGrouped) {
                     return renderGroup({
                       key: option.key,
                       group: option.group,

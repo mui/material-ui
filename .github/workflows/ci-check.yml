@@ -18,10 +18,6 @@ on:
 permissions: {}
 
 jobs:
-  continuous-releases:
-    name: Continuous releases
-    uses: mui/mui-public/.github/workflows/ci-base.yml@0534c1cc1a7f0f170d927199ec407192a656e81f # master
-
   test-dev:
     if: ${{ github.actor != 'l10nbot' }}
     runs-on: ${{ matrix.os }}

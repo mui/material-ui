@@ -11,7 +11,6 @@ import { fixupPluginRules } from '@eslint/compat';
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
 import * as path from 'node:path';
-import vitestPlugin from '@vitest/eslint-plugin';
 import { fileURLToPath } from 'url';
 import remarkConfig from './.remarkrc.mjs';
 
@@ -157,15 +156,7 @@ export default defineConfig(
   // Test start
   {
     files: [`**/*${EXTENSION_TEST_FILE}`],
-    extends: createTestConfig({
-      useMocha: false,
-      useVitest: true,
-    }),
-    languageOptions: {
-      globals: {
-        ...vitestPlugin.environments.env.globals,
-      },
-    },
+    extends: createTestConfig(),
     rules: {
       'mui/material-ui-no-empty-box': 'off',
       // Disabled temporarily. Enable one by one.
@@ -398,6 +389,14 @@ export default defineConfig(
       'testing-library/prefer-screen-queries': 'off', // Enable usage of playwright queries
       'testing-library/no-await-sync-queries': 'off',
       'testing-library/render-result-naming-convention': 'off', // inconsequential in regression tests
+    },
+  },
+  {
+    // `test/e2e` uses Playwright's `expect` (for matchers like `toBeFocused()`),
+    // not Vitest's, so this rule reports false positives here.
+    files: [`test/e2e/**/*${EXTENSION_TS}`],
+    rules: {
+      'vitest/prefer-importing-vitest-globals': 'off',
     },
   },
 );

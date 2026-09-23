@@ -1,4 +1,4 @@
-import ts from 'typescript';
+import ts from '@typescript/typescript6';
 import { uniqBy } from 'es-toolkit/array';
 import {
   PropType,

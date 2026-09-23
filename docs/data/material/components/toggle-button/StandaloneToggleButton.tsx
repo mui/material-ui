@@ -10,6 +10,7 @@ export default function StandaloneToggleButton() {
       value="check"
       selected={selected}
       onChange={() => setSelected((prevSelected) => !prevSelected)}
+      aria-label="mark as done"
     >
       <CheckIcon />
     </ToggleButton>

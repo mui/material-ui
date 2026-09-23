@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import * as StackBlitz from './StackBlitz';
 
 const testCase = `import * as React from 'react';
@@ -71,8 +72,8 @@ describe('StackBlitz', () => {
     "@emotion/styled": "latest"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "latest",
-    "vite": "latest"
+    "@vitejs/plugin-react": "^5",
+    "vite": "^7"
   }
 }`,
         'src/Demo.jsx': `import * as React from 'react';
@@ -120,8 +121,8 @@ export default defineConfig({
         '@emotion/styled': 'latest',
       },
       devDependencies: {
-        '@vitejs/plugin-react': 'latest',
-        vite: 'latest',
+        '@vitejs/plugin-react': '^5',
+        vite: '^7',
       },
     });
   });
@@ -182,8 +183,8 @@ export default defineConfig({
     "typescript": "latest"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "latest",
-    "vite": "latest",
+    "@vitejs/plugin-react": "^5",
+    "vite": "^7",
     "@types/react": "latest",
     "@types/react-dom": "latest"
   }
@@ -268,8 +269,8 @@ export default defineConfig({
       devDependencies: {
         '@types/react': 'latest',
         '@types/react-dom': 'latest',
-        '@vitejs/plugin-react': 'latest',
-        vite: 'latest',
+        '@vitejs/plugin-react': '^5',
+        vite: '^7',
       },
     });
   });

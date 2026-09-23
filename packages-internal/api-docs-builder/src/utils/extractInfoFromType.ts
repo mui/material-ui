@@ -1,4 +1,4 @@
-import { Symbol, isPropertySignature } from 'typescript';
+import { Symbol, isPropertySignature } from '@typescript/typescript6';
 import { TypeScriptProject } from './createTypeScriptProject';
 import { ParsedProperty } from '../types/ApiBuilder.types';
 import { getSymbolDescription, getSymbolJSDocTags, stringifySymbol } from '../buildApiUtils';

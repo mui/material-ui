@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'vitest';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
 import checkboxClasses from '../Checkbox/checkboxClasses';

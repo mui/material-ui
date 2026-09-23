@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';

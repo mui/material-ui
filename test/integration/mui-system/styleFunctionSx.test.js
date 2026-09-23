@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import styleFunctionSx from '@mui/system/styleFunctionSx';
 import {
   private_createMixins as createMixins,

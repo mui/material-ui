@@ -1,3 +1,4 @@
+import { describe, beforeAll, it, expect, beforeEach } from 'vitest';
 import PropTypes from 'prop-types';
 import requirePropFactory from './requirePropFactory';
 

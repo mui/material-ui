@@ -7,12 +7,13 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
-import StepLabel from '../StepLabel';
+import StepLabel, { stepLabelClasses } from '../StepLabel';
 import isMuiElement from '../utils/isMuiElement';
 import { useRovingTabIndexItem } from '../utils/useRovingTabIndex';
 import { useStepperContext } from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import stepButtonClasses, { getStepButtonUtilityClass } from './stepButtonClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation } = ownerState;
@@ -49,6 +50,12 @@ const StepButtonRoot = styled(ButtonBase, {
         color: 'rgba(255, 255, 255, 0.3)',
       }),
     },
+    ...(theme.focusVisible && {
+      [`&.${buttonBaseClasses.focusVisible} .${stepLabelClasses.root}`]: {
+        borderRadius: (theme.vars || theme).shape.borderRadius,
+        ...theme.focusVisible,
+      },
+    }),
     variants: [
       {
         props: { orientation: 'vertical' },
@@ -112,6 +119,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
     'aria-posinset': index + 1,
     'aria-setsize': totalSteps,
     role: 'tab',
+    internalDisabledThemeFocusVisible: true,
     ...other,
   };
 

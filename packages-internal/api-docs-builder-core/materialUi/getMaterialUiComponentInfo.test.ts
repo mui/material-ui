@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import path from 'path';
 import fs from 'fs';
 import sinon from 'sinon';

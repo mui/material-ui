@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import getReactElementRef from '@mui/utils/getReactElementRef';
 import * as React from 'react';
 

@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import appendOwnerState from '@mui/utils/appendOwnerState';
 
 const ownerState = {

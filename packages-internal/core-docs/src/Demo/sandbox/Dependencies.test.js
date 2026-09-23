@@ -1,3 +1,4 @@
+import { describe, beforeAll, afterAll, it, expect } from 'vitest';
 import { SandboxDependencies } from './Dependencies';
 
 describe('Dependencies', () => {

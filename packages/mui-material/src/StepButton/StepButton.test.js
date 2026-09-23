@@ -1,3 +1,4 @@
+import { describe, it, expect, vi } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
 import { createRenderer, screen, fireEvent, supportsTouch } from '@mui/internal-test-utils';

@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
@@ -276,5 +277,15 @@ describe('<Pagination />', () => {
     await user.keyboard('{Enter}');
 
     expect(resultsRef.current).toHaveFocus();
+  });
+
+  it('renders no page button when count is zero', () => {
+    render(<Pagination count={0} boundaryCount={0} siblingCount={0} />);
+
+    const buttons = screen.getAllByRole('button');
+    expect(buttons).to.have.length(2);
+    buttons.forEach((button) => {
+      expect(button).to.have.attribute('disabled');
+    });
   });
 });

@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { spy } from 'sinon';
 import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import BottomNavigation, {

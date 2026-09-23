@@ -1,3 +1,4 @@
+import { describe, beforeAll, it, expect } from 'vitest';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import SvgIcon, { svgIconClasses as classes } from '@mui/material/SvgIcon';
 import { createTheme, ThemeProvider } from '@mui/material/styles';

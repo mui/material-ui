@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import PropTypes from 'prop-types';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import { ClassNames } from '@emotion/react';

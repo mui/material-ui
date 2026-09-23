@@ -1,4 +1,4 @@
-import { expect } from 'vitest';
+import { expect, describe, beforeEach, afterEach, it, vi } from 'vitest';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';

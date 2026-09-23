@@ -138,6 +138,9 @@ const nextRolesData = [
   },
 ] as typeof openRolesData;
 
+const openRolesCount = openRolesData.reduce((acc, item) => acc + item.roles.length, 0);
+const nextRolesCount = nextRolesData.reduce((acc, item) => acc + item.roles.length, 0);
+
 export default function Careers() {
   return (
     <BrandingCssVarsProvider>
@@ -174,69 +177,28 @@ export default function Careers() {
               <Typography variant="h2" id="open-roles" gutterBottom>
                 Open roles
                 <Badge
-                  badgeContent={openRolesData.reduce((acc, item) => acc + item.roles.length, 0)}
+                  badgeContent={openRolesCount}
                   color="success"
-                  showZero
                   sx={{ ml: 3, '& .MuiBadge-badge': { fontWeight: 'bold' } }}
                 />
               </Typography>
             }
-            description="We are actively hiring for the following roles:"
+            description={
+              openRolesCount > 0
+                ? 'We are actively hiring for the following roles:'
+                : `We don't have any open roles at the moment. Consider applying to the Next roles below.`
+            }
           />
-          <Divider sx={{ borderStyle: 'dashed', my: { xs: 2, sm: 6 } }} />
-          <Stack spacing={2} divider={<Divider />}>
-            {openRolesData
-              .filter((category) => category.roles.length > 0)
-              .map((category) => {
-                return (
-                  <React.Fragment key={category.title}>
-                    <Typography component="h3" variant="h5" sx={{ fontWeight: 'semiBold' }}>
-                      {category.title}
-                    </Typography>
-                    {category.roles.map((role) => (
-                      <RoleEntry
-                        key={role.title}
-                        title={role.title}
-                        description={role.description}
-                        url={role.url}
-                      />
-                    ))}
-                  </React.Fragment>
-                );
-              })}
-          </Stack>
-        </Section>
-        <Divider />
-        {/* Next roles */}
-        {nextRolesData.length > 0 && (
-          <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
-            <Section bg="transparent" cozy>
-              <SectionHeadline
-                title={
-                  <Typography variant="h2" id="next-roles" gutterBottom>
-                    Next roles
-                  </Typography>
-                }
-                description={
-                  <React.Fragment>
-                    We&apos;re not actively hiring for these roles yet, but you&apos;re welcome to
-                    apply for future consideration. If none of these roles match your profile, you
-                    can apply to{' '}
-                    <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
-                      the dream job
-                    </Link>{' '}
-                    and tell us more about what you bring to the table.
-                  </React.Fragment>
-                }
-              />
+          {openRolesCount > 0 ? (
+            <React.Fragment>
               <Divider sx={{ borderStyle: 'dashed', my: { xs: 2, sm: 6 } }} />
               <Stack spacing={2} divider={<Divider />}>
-                {nextRolesData
+                {openRolesData
                   .filter((category) => category.roles.length > 0)
                   .map((category) => {
                     return (
                       <React.Fragment key={category.title}>
-                        <Typography component="h3" variant="h5" sx={{ fontWeight: 'extraBold' }}>
+                        <Typography component="h3" variant="h5" sx={{ fontWeight: 'semiBold' }}>
                           {category.title}
                         </Typography>
                         {category.roles.map((role) => (
@@ -251,9 +213,69 @@ export default function Careers() {
                     );
                   })}
               </Stack>
-            </Section>
-          </Box>
-        )}
+            </React.Fragment>
+          ) : null}
+        </Section>
+        <Divider />
+        {/* Next roles */}
+        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
+          <Section bg="transparent" cozy>
+            <SectionHeadline
+              title={
+                <Typography variant="h2" id="next-roles" gutterBottom>
+                  Next roles
+                </Typography>
+              }
+              description={
+                nextRolesCount > 0 ? (
+                  <React.Fragment>
+                    We&apos;re not actively hiring for these roles yet, but you&apos;re welcome to
+                    apply for future consideration. If none of these roles match your profile, you
+                    can apply to{' '}
+                    <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
+                      the dream job
+                    </Link>{' '}
+                    and tell us more about what you bring to the table.
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    You&apos;re welcome to apply for future consideration. You can apply to{' '}
+                    <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
+                      the dream job
+                    </Link>{' '}
+                    and tell us more about what you bring to the table.
+                  </React.Fragment>
+                )
+              }
+            />
+            {nextRolesCount > 0 ? (
+              <React.Fragment>
+                <Divider sx={{ borderStyle: 'dashed', my: { xs: 2, sm: 6 } }} />
+                <Stack spacing={2} divider={<Divider />}>
+                  {nextRolesData
+                    .filter((category) => category.roles.length > 0)
+                    .map((category) => {
+                      return (
+                        <React.Fragment key={category.title}>
+                          <Typography component="h3" variant="h5" sx={{ fontWeight: 'extraBold' }}>
+                            {category.title}
+                          </Typography>
+                          {category.roles.map((role) => (
+                            <RoleEntry
+                              key={role.title}
+                              title={role.title}
+                              description={role.description}
+                              url={role.url}
+                            />
+                          ))}
+                        </React.Fragment>
+                      );
+                    })}
+                </Stack>
+              </React.Fragment>
+            ) : null}
+          </Section>
+        </Box>
         <Divider />
         <CareersFaq />
       </main>

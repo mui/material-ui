@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { act, createRenderer, RenderCounter, screen, isJsdom } from '@mui/internal-test-utils';

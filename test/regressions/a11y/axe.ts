@@ -1,4 +1,5 @@
 import type { AxeResults } from 'axe-core';
+import { expect } from 'vitest';
 import type { TestContext } from 'vitest';
 
 export const VISUAL_RULES = ['color-contrast', 'link-in-text-block'];

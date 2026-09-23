@@ -1,3 +1,4 @@
+import { describe, beforeEach, afterEach, it, expect } from 'vitest';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { act, createRenderer, fireEvent, reactMajor, screen } from '@mui/internal-test-utils';
