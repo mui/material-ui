@@ -207,8 +207,8 @@ function useAutocomplete(props) {
   const isTouchRef = React.useRef(false);
 
   // Calculate the initial inputValue on mount only.
-  // useRef ensures it doesn't update dynamically with defaultValue or value props.
-  const initialInputValue = React.useRef(
+  // Lazy state ensures it doesn't update dynamically with defaultValue or value props.
+  const [initialInputValue] = React.useState(() =>
     getInputValue(
       defaultValue ?? valueProp,
       multiple,
@@ -216,7 +216,7 @@ function useAutocomplete(props) {
       undefined,
       getOptionFromValue,
     ),
-  ).current;
+  );
 
   const [inputValue, setInputValueState] = useControlled({
     controlled: inputValueProp,
