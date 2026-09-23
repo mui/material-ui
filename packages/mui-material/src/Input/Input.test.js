@@ -71,7 +71,8 @@ describe('<Input />', () => {
       expect(root).toHaveComputedStyle({
         outlineStyle: 'solid',
         outlineWidth: '2px',
-        outlineOffset: '2px',
+        // inset, so the ring does not crowd the TextField label
+        outlineOffset: '-2px',
       });
     });
 
