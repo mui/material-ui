@@ -1,0 +1,8 @@
+<Menu2 trigger={<Button>Options</Button>}>
+  <Menu2Item dense>Single</Menu2Item>
+  <Menu2Item dense>1.15</Menu2Item>
+  <Menu2Item dense>Double</Menu2Item>
+  <Menu2Separator />
+  <Menu2Item dense>Custom: 1.2</Menu2Item>
+  <Menu2Item dense>Add space before paragraph</Menu2Item>
+</Menu2>

@@ -1,0 +1,11 @@
+<Menu2 trigger={<Button>View</Button>}>
+  <Menu2CheckboxItem checked={shown.ruler} onChange={toggle('ruler')}>
+    Ruler
+  </Menu2CheckboxItem>
+  <Menu2CheckboxItem checked={shown.outline} onChange={toggle('outline')}>
+    Outline
+  </Menu2CheckboxItem>
+  <Menu2CheckboxItem checked={shown.grid} onChange={toggle('grid')}>
+    Grid
+  </Menu2CheckboxItem>
+</Menu2>

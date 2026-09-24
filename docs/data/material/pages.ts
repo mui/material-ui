@@ -98,6 +98,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/react-drawer' },
           { pathname: '/material-ui/react-link' },
           { pathname: '/material-ui/react-menu' },
+          { pathname: '/material-ui/react-menu2', title: 'Menu v2', newFeature: true },
           { pathname: '/material-ui/react-menubar', newFeature: true },
           { pathname: '/material-ui/react-pagination' },
           { pathname: '/material-ui/react-speed-dial', title: 'Speed Dial' },
@@ -310,6 +311,10 @@ const pages: MuiPage[] = [
       {
         pathname: '/material-ui/migration/upgrade-to-grid-v2',
         title: 'Upgrade to Grid v2',
+      },
+      {
+        pathname: '/material-ui/migration/upgrade-to-menu-v2',
+        title: 'Upgrade to Menu v2',
       },
       {
         pathname: '/material-ui/migration/pickers-migration',

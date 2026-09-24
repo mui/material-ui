@@ -1,0 +1,10 @@
+<Menu2
+  trigger={<Button>Country</Button>}
+  slotProps={{ paper: { sx: { maxHeight: 320, width: 240 } } }}
+>
+  {countries.map((country) => (
+    <Menu2Item key={country} dense>
+      {country}
+    </Menu2Item>
+  ))}
+</Menu2>
