@@ -986,6 +986,42 @@ describe('<Accordion />', () => {
       expect(screen.queryByRole('region')).to.equal(null);
     });
 
+    it('does not emit generated aria-controls when unmountOnExit comes from the theme', () => {
+      const theme = createTheme({
+        components: { MuiCollapse: { defaultProps: { unmountOnExit: true } } },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <Accordion>
+            <AccordionSummary>Summary</AccordionSummary>
+            <AccordionDetails>Details</AccordionDetails>
+          </Accordion>
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByRole('button')).not.to.have.attribute('aria-controls');
+      expect(screen.queryByRole('region')).to.equal(null);
+    });
+
+    it('does not emit generated aria-controls when mountOnEnter comes from the theme', () => {
+      const theme = createTheme({
+        components: { MuiCollapse: { defaultProps: { mountOnEnter: true } } },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <Accordion>
+            <AccordionSummary>Summary</AccordionSummary>
+            <AccordionDetails>Details</AccordionDetails>
+          </Accordion>
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByRole('button')).not.to.have.attribute('aria-controls');
+      expect(screen.queryByRole('region')).to.equal(null);
+    });
+
     it('preserves provided aria-controls when unmountOnExit keeps the region unmounted', () => {
       render(
         <Accordion slotProps={{ transition: { unmountOnExit: true } }}>

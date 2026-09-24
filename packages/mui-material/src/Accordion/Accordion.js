@@ -251,13 +251,20 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     ownerState,
   });
 
+  const resolvedCollapseProps = useDefaultProps({
+    props: transitionProps,
+    name: 'MuiCollapse',
+  });
+
   // The default Collapse keeps its child mounted unless mounting is explicitly deferred.
   const isDefaultTransition = TransitionSlot === Collapse;
   // Mount tracking is only needed when generated aria-controls could point at an unmounted region.
   // Custom transitions are opaque, so they are treated as unknown until the region ref is set.
   const usesGeneratedRegionId = !hasRegionIdProp;
   const isRegionAlwaysMounted =
-    isDefaultTransition && !transitionProps.unmountOnExit && !transitionProps.mountOnEnter;
+    isDefaultTransition &&
+    !resolvedCollapseProps.unmountOnExit &&
+    !resolvedCollapseProps.mountOnEnter;
   const shouldTrackRegionMount = usesGeneratedRegionId && !isRegionAlwaysMounted;
 
   const handleRegionMountRef = React.useCallback((node) => {
