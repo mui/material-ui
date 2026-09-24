@@ -21,7 +21,6 @@ export default function validateOptionValues<Option>({
   }
 
   const seenOptionValues = new Set();
-  const reportedDuplicateValues = new Set();
 
   for (const option of options) {
     const value = getOptionValueProp(option);
@@ -32,8 +31,7 @@ export default function validateOptionValues<Option>({
       continue;
     }
 
-    // Report a duplicated key once even when more than two options share it.
-    if (seenOptionValues.has(value) && !reportedDuplicateValues.has(value)) {
+    if (seenOptionValues.has(value)) {
       tryShowErrorMessage(
         `MUI: The \`getOptionValue\` method of useAutocomplete returned the duplicate value ${getOptionValueDescription(
           value,
@@ -42,7 +40,6 @@ export default function validateOptionValues<Option>({
           'Change `getOptionValue` or the options so that every option has a unique value.',
         duplicatedErrorMessages,
       );
-      reportedDuplicateValues.add(value);
     }
 
     seenOptionValues.add(value);
