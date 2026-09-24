@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy } from 'sinon';
-import { createRenderer, isJsdom, reactMajor, screen, waitFor } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom, reactMajor, screen } from '@mui/internal-test-utils';
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
 import Paper from '@mui/material/Paper';
 import Collapse, { collapseClasses } from '@mui/material/Collapse';
@@ -575,7 +575,7 @@ describe('<Accordion />', () => {
       expect(region).to.have.attribute('aria-labelledby', 'panel-header');
     });
 
-    it('generates linked ids when id and aria-controls are not provided', async () => {
+    it('generates linked ids when id and aria-controls are not provided', () => {
       render(
         <Accordion>
           <AccordionSummary>Summary</AccordionSummary>
@@ -586,18 +586,16 @@ describe('<Accordion />', () => {
       const summary = screen.getByRole('button');
       const region = screen.getByRole('region', { hidden: true });
 
-      await waitFor(() => {
-        expect(summary).to.have.attribute('id');
-        expect(summary).to.have.attribute('aria-controls');
-        expect(region).to.have.attribute('id');
-        expect(region).to.have.attribute('aria-labelledby');
-      });
+      expect(summary).to.have.attribute('id');
+      expect(summary).to.have.attribute('aria-controls');
+      expect(region).to.have.attribute('id');
+      expect(region).to.have.attribute('aria-labelledby');
 
       expect(summary.getAttribute('id')).to.equal(region.getAttribute('aria-labelledby'));
       expect(summary.getAttribute('aria-controls')).to.equal(region.getAttribute('id'));
     });
 
-    it('generates linked ids for a wrapped AccordionSummary', async () => {
+    it('generates linked ids for a wrapped AccordionSummary', () => {
       render(
         <Accordion>
           <WrappedAccordionSummary>Summary</WrappedAccordionSummary>
@@ -608,15 +606,13 @@ describe('<Accordion />', () => {
       const summary = screen.getByRole('button');
       const region = screen.getByRole('region', { hidden: true });
 
-      await waitFor(() => {
-        expect(summary).to.have.attribute('aria-controls', region.getAttribute('id'));
-        expect(region).to.have.attribute('aria-labelledby', summary.getAttribute('id'));
-      });
+      expect(summary).to.have.attribute('aria-controls', region.getAttribute('id'));
+      expect(region).to.have.attribute('aria-labelledby', summary.getAttribute('id'));
     });
 
     // Accordion cannot read ids declared inside a wrapper off its child, so AccordionSummary
     // reports them back and Accordion pairs the region with them.
-    it('keeps relationship props declared inside a wrapped AccordionSummary', async () => {
+    it('keeps relationship props declared inside a wrapped AccordionSummary', () => {
       function WrappedSummaryWithRelationshipProps() {
         return (
           <AccordionSummary id="inner-summary" aria-controls="inner-region">
@@ -635,16 +631,14 @@ describe('<Accordion />', () => {
       const summary = screen.getByRole('button');
       const region = screen.getByRole('region', { hidden: true });
 
-      await waitFor(() => {
-        expect(region).to.have.attribute('id', 'inner-region');
-      });
+      expect(region).to.have.attribute('id', 'inner-region');
 
       expect(summary).to.have.attribute('id', 'inner-summary');
       expect(summary).to.have.attribute('aria-controls', 'inner-region');
       expect(region).to.have.attribute('aria-labelledby', 'inner-summary');
     });
 
-    it('pairs the region with an id declared inside a wrapper when only the id is set', async () => {
+    it('pairs the region with an id declared inside a wrapper when only the id is set', () => {
       function WrappedSummaryWithId() {
         return <AccordionSummary id="inner-summary">Summary</AccordionSummary>;
       }
@@ -659,15 +653,13 @@ describe('<Accordion />', () => {
       const summary = screen.getByRole('button');
       const region = screen.getByRole('region', { hidden: true });
 
-      await waitFor(() => {
-        expect(region).to.have.attribute('aria-labelledby', 'inner-summary');
-      });
+      expect(region).to.have.attribute('aria-labelledby', 'inner-summary');
 
       expect(summary).to.have.attribute('id', 'inner-summary');
       expect(summary).to.have.attribute('aria-controls', region.getAttribute('id'));
     });
 
-    it('pairs the region with ids from a callback slotProps.root on the summary', async () => {
+    it('pairs the region with ids from a callback slotProps.root on the summary', () => {
       render(
         <Accordion>
           <AccordionSummary
@@ -682,16 +674,14 @@ describe('<Accordion />', () => {
       const summary = screen.getByRole('button');
       const region = screen.getByRole('region', { hidden: true });
 
-      await waitFor(() => {
-        expect(region).to.have.attribute('id', 'fn-region');
-      });
+      expect(region).to.have.attribute('id', 'fn-region');
 
       expect(summary).to.have.attribute('id', 'fn-summary');
       expect(summary).to.have.attribute('aria-controls', 'fn-region');
       expect(region).to.have.attribute('aria-labelledby', 'fn-summary');
     });
 
-    it('generates unique ids for multiple accordions', async () => {
+    it('generates unique ids for multiple accordions', () => {
       render(
         <div>
           <Accordion>
@@ -707,12 +697,10 @@ describe('<Accordion />', () => {
 
       const [summary1, summary2] = screen.getAllByRole('button');
 
-      await waitFor(() => {
-        expect(summary1).to.have.attribute('id');
-        expect(summary1).to.have.attribute('aria-controls');
-        expect(summary2).to.have.attribute('id');
-        expect(summary2).to.have.attribute('aria-controls');
-      });
+      expect(summary1).to.have.attribute('id');
+      expect(summary1).to.have.attribute('aria-controls');
+      expect(summary2).to.have.attribute('id');
+      expect(summary2).to.have.attribute('aria-controls');
 
       expect(summary1.getAttribute('id')).not.to.equal(summary2.getAttribute('id'));
       expect(summary1.getAttribute('aria-controls')).not.to.equal(
@@ -802,7 +790,7 @@ describe('<Accordion />', () => {
       });
     });
 
-    it('uses the ids supplied through slot props', async () => {
+    it('uses the ids supplied through slot props', () => {
       render(
         <Accordion
           slotProps={{
@@ -830,9 +818,7 @@ describe('<Accordion />', () => {
       const summary = screen.getByTestId('summary');
       const region = screen.getByTestId('region');
 
-      await waitFor(() => {
-        expect(region).to.have.attribute('aria-labelledby', 'slot-summary');
-      });
+      expect(region).to.have.attribute('aria-labelledby', 'slot-summary');
 
       expect(summary).to.have.attribute('id', 'slot-summary');
       expect(summary).to.have.attribute('aria-controls', 'slot-region');
@@ -840,7 +826,7 @@ describe('<Accordion />', () => {
       expect(summary.getAttribute('aria-controls')).to.equal(region.getAttribute('id'));
     });
 
-    it('derives the relationship from an id supplied through slotProps.region alone', async () => {
+    it('derives the relationship from an id supplied through slotProps.region alone', () => {
       render(
         <Accordion slotProps={{ region: { id: 'slot-region', 'data-testid': 'region' } }}>
           <AccordionSummary>Summary</AccordionSummary>
@@ -851,15 +837,13 @@ describe('<Accordion />', () => {
       const summary = screen.getByRole('button');
       const region = screen.getByTestId('region');
 
-      await waitFor(() => {
-        expect(summary).to.have.attribute('aria-controls', 'slot-region');
-      });
+      expect(summary).to.have.attribute('aria-controls', 'slot-region');
 
       expect(region).to.have.attribute('id', 'slot-region');
       expect(region).to.have.attribute('aria-labelledby', summary.getAttribute('id'));
     });
 
-    it('supports function slotProps without replacing the ids they supply', async () => {
+    it('supports function slotProps without replacing the ids they supply', () => {
       render(
         <Accordion
           expanded
@@ -890,9 +874,7 @@ describe('<Accordion />', () => {
       const summary = screen.getByTestId('summary');
       const region = screen.getByTestId('region');
 
-      await waitFor(() => {
-        expect(summary).to.have.attribute('aria-controls', region.getAttribute('id'));
-      });
+      expect(summary).to.have.attribute('aria-controls', region.getAttribute('id'));
 
       expect(summary).to.have.attribute('id', 'slot-summary');
       expect(summary).to.have.attribute('aria-controls', 'slot-region');
@@ -957,9 +939,7 @@ describe('<Accordion />', () => {
       const summary = screen.getByTestId('summary');
       const region = screen.getByTestId('region');
 
-      await waitFor(() => {
-        expect(regionRef.current).to.equal(region);
-      });
+      expect(regionRef.current).to.equal(region);
 
       expect(summary).to.have.class('custom-summary');
       expect(summary).to.have.attribute('style').that.includes('margin-top: 2px');
@@ -1050,17 +1030,13 @@ describe('<Accordion />', () => {
 
       await user.click(summary);
 
-      await waitFor(() => {
-        expect(summary).to.have.attribute('aria-controls');
-      });
+      expect(summary).to.have.attribute('aria-controls');
 
       const ariaControls = summary.getAttribute('aria-controls');
 
       await user.click(summary);
 
-      await waitFor(() => {
-        expect(summary).to.have.attribute('aria-controls', ariaControls);
-      });
+      expect(summary).to.have.attribute('aria-controls', ariaControls);
     });
 
     it('emits generated aria-controls immediately when mountOnEnter starts expanded', () => {
@@ -1101,9 +1077,7 @@ describe('<Accordion />', () => {
 
       await user.click(summary);
 
-      await waitFor(() => {
-        expect(summary).to.have.attribute('aria-controls');
-      });
+      expect(summary).to.have.attribute('aria-controls');
 
       expect(summary.getAttribute('aria-controls')).to.equal(
         screen.getByRole('region').getAttribute('id'),
@@ -1120,15 +1094,11 @@ describe('<Accordion />', () => {
 
       const summary = screen.getByRole('button');
 
-      await waitFor(() => {
-        expect(summary).to.have.attribute('aria-controls');
-      });
+      expect(summary).to.have.attribute('aria-controls');
 
       await user.click(summary);
 
-      await waitFor(() => {
-        expect(summary).not.to.have.attribute('aria-controls');
-      });
+      expect(summary).not.to.have.attribute('aria-controls');
 
       expect(screen.queryByRole('region')).to.equal(null);
     });
@@ -1199,11 +1169,9 @@ describe('<Accordion />', () => {
       const summary = screen.getByRole('button');
       const region = screen.getByTestId('region');
 
-      await waitFor(() => {
-        expect(regionRef.current).to.equal(region);
-        expect(summary).to.have.attribute('aria-controls', region.getAttribute('id'));
-        expect(region).to.have.attribute('aria-labelledby', summary.getAttribute('id'));
-      });
+      expect(regionRef.current).to.equal(region);
+      expect(summary).to.have.attribute('aria-controls', region.getAttribute('id'));
+      expect(region).to.have.attribute('aria-labelledby', summary.getAttribute('id'));
 
       expect(region).to.have.tagName('SECTION');
       expect(region).to.have.class('custom-region');
