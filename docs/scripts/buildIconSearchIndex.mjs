@@ -12,12 +12,12 @@ import synonyms from '../data/material/components/material-icons/synonyms.js';
  * embedding model (https://huggingface.co/minishlab/potion-base-8M).
  *
  * A static embedding model is a lookup table with one vector per token, so the browser does not
- * need the model or a tokenizer: this script precomputes one vector per word (common English
- * words plus every word in the icon texts) and one vector per icon. The search page averages the
+ * need the model or a tokenizer: this script precomputes one vector per word in the model's
+ * vocabulary and one vector per icon (its name and synonyms). The search page adds up the
  * vectors of the words in the query and ranks icons by cosine similarity.
  *
  * Usage: `pnpm docs:mdicons:search-index`
- * Rerun after `iconDescriptions.json` or `synonyms.js` change.
+ * Rerun after `synonyms.js` changes.
  */
 
 const MODEL_ID = 'minishlab/potion-base-8M';
@@ -28,10 +28,6 @@ const MODEL_REVISION = 'bf8b056651a2c21b8d2565580b8569da283cab23';
 const DIMS = 64;
 
 const ROOT = path.join(import.meta.dirname, '../..');
-const DESCRIPTIONS_PATH = path.join(
-  ROOT,
-  'docs/data/material/components/material-icons/iconDescriptions.json',
-);
 const OUT_DIR = path.join(ROOT, 'docs/public/static/material-icons');
 const CACHE_DIR = path.join(os.tmpdir(), 'mui-icon-search-model', MODEL_REVISION);
 
@@ -116,16 +112,8 @@ async function run() {
     return normalize(vector);
   };
 
-  const descriptions = JSON.parse(fs.readFileSync(DESCRIPTIONS_PATH, 'utf8'));
-  const icons = Object.keys(descriptions).sort();
-  const iconTexts = icons.map((name) =>
-    [
-      nameWords(name).join(' '),
-      synonyms[name] ?? '',
-      descriptions[name].keywords.join(' '),
-      descriptions[name].visual,
-    ].join(' '),
-  );
+  const icons = Object.keys(synonyms).sort();
+  const iconTexts = icons.map((name) => `${nameWords(name).join(' ')} ${synonyms[name]}`);
 
   // Only words that are a single token in the model. Other words would get a vector built from
   // word pieces ("cog" becomes "co" + "g"), which is noise; keyword search covers those.
