@@ -1,6 +1,8 @@
 # Material UI and Tailwind CSS
 
-Version 1.0.0
+Version 1.0.0 (Material UI v9)
+
+> **Version notice:** This skill targets Material UI v9 (`>=9.0.0 <10.0.0`). If you are using a different major version, verify the API details before following this guidance.
 
 > Note: For agents and LLMs combining Material UI with Tailwind CSS. Primary source for v4: `docs/data/material/integrations/tailwindcss/tailwindcss-v4.md`. v3: `docs/data/material/integrations/interoperability/interoperability.md` (Tailwind CSS v3).
 

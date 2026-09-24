@@ -32,7 +32,7 @@ For example, in the element below, the `title` acts as an accessible description
 
 If you want the tooltip to act as an accessible description, you can pass the `describeChild` prop.
 You shouldn't use `describeChild` if the tooltip provides the only visual label.
-In that case, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
+In that case, the child would have no accessible name and the tooltip would violate [WCAG 2.2 Success Criterion 2.5.3](https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html).
 If the trigger already has either visible text or an `aria-label`, use the tooltip as a description and pass the `describeChild` prop.
 Otherwise, you can use the default behavior and let the tooltip label the trigger.
 
@@ -60,7 +60,7 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 
 ## Distance from anchor
 
-To adjust the distance between the tooltip and its anchor, you can use the `slotProps` prop to modify the [offset](https://popper.js.org/docs/v2/modifiers/offset/) of the popper.
+To adjust the distance between the tooltip and its anchor, you can use the `slotProps` prop to modify the [offset](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/modifiers/offset.md) of the popper.
 
 {{"demo": "TooltipOffset.js"}}
 
@@ -139,9 +139,9 @@ The `Tooltip` wraps long text by default to make it readable.
 
 ## Interactive
 
-Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)).
+Tooltips are interactive by default (to pass [WCAG 2.2 Success Criterion 1.4.13](https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html)).
 It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
-You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
+You can disable this behavior (thus failing the success criterion which is required to reach Level AA) by passing `disableInteractive`.
 
 {{"demo": "NonInteractiveTooltips.js"}}
 
@@ -171,7 +171,7 @@ If you're not wrapping a Material UI component that inherits from `ButtonBase`,
 
 ## Transitions
 
-Use a different transition.
+Use `slots.transition` and `slotProps.transition` to use a different transition.
 
 {{"demo": "TransitionsTooltips.js"}}
 
@@ -185,7 +185,7 @@ You can enable the tooltip to follow the cursor by setting `followCursor={true}`
 
 In the event you need to implement a custom placement, you can use the `anchorEl` prop:
 The value of the `anchorEl` prop can be a reference to a fake DOM element.
-You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+You need to create an object shaped like the [`VirtualElement`](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/virtual-elements.md).
 
 {{"demo": "AnchorElTooltips.js"}}
 

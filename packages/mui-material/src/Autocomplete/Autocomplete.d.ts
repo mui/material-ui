@@ -23,6 +23,7 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface AutocompletePaperSlotPropsOverrides {}
 export interface AutocompletePopperSlotPropsOverrides {}
+export interface AutocompleteStatusSlotPropsOverrides {}
 
 export {
   AutocompleteChangeDetails,
@@ -137,6 +138,11 @@ export interface AutocompleteSlots {
    */
   listbox: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
+   * The component used to render the status message container.
+   * @default 'div'
+   */
+  status: React.ElementType;
+  /**
    * The component used to render the body of the popup.
    * @default Paper
    */
@@ -183,6 +189,11 @@ export type AutocompleteSlotsAndSlotProps<
         }
       >,
       {},
+      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+    >;
+    status: SlotProps<
+      'div',
+      AutocompleteStatusSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
     paper: SlotProps<
@@ -253,7 +264,11 @@ export interface AutocompleteProps<
    */
   forcePopupIcon?: true | false | 'auto' | undefined;
   /**
-   * If `true`, the input will take up the full width of its container.
+   * If `true`, the input takes up the full width of its container.
+   *
+   * `Autocomplete` treats `undefined` and `false` differently.
+   * If `undefined`, the inner input takes up the full width of its container.
+   * If `false`, the inner input is restricted to its intrinsic width.
    * @default false
    */
   fullWidth?: boolean | undefined;

@@ -1,11 +1,10 @@
+import { it, expect, describe, beforeAll, afterAll } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   act,
   createRenderer,
   fireEvent,
-  reactMajor,
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
@@ -49,7 +48,46 @@ function hasRightScrollButton(container) {
   return !scrollButton.parentElement.classList.contains('Mui-disabled');
 }
 
+// jsdom has no ResizeObserver and no layout, so observed elements are mapped to their callback
+// to let tests fire resizes by hand.
+function mockResizeObserver() {
+  const callbacks = new Map();
+  const original = globalThis.ResizeObserver;
+
+  globalThis.ResizeObserver = class {
+    constructor(callback) {
+      this.callback = callback;
+      this.elements = new Set();
+    }
+
+    observe(element) {
+      this.elements.add(element);
+      callbacks.set(element, this.callback);
+    }
+
+    unobserve(element) {
+      this.elements.delete(element);
+      callbacks.delete(element);
+    }
+
+    disconnect() {
+      this.elements.forEach((element) => {
+        callbacks.delete(element);
+      });
+      this.elements.clear();
+    }
+  };
+
+  return {
+    callbacks,
+    restore() {
+      globalThis.ResizeObserver = original;
+    },
+  };
+}
+
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+const isFirefox = /firefox/i.test(navigator.userAgent);
 
 describe.skipIf(isSafari)('<Tabs />', () => {
   const { clock, render, renderToString } = createRenderer();
@@ -488,16 +526,8 @@ describe.skipIf(isSafari)('<Tabs />', () => {
               <Tab value={3} />
             </Tabs>,
           );
-        }).toErrorDev([
-          'You can provide one of the following values: 1, 3',
-          // React Strict Mode runs mount effects twice
-          reactMajor >= 18 && 'You can provide one of the following values: 1, 3',
-          'You can provide one of the following values: 1, 3',
-          // React Strict Mode runs mount effects twice
-          reactMajor >= 18 && 'You can provide one of the following values: 1, 3',
-          'You can provide one of the following values: 1, 3',
-          'You can provide one of the following values: 1, 3',
-        ]);
+          // The warning is logged only once (see `warnedTabValueInvalid`).
+        }).toErrorDev(['You can provide one of the following values: 1, 3']);
       });
 
       describe.skipIf(!isJsdom())('hidden tab / tabs', () => {
@@ -812,7 +842,10 @@ describe.skipIf(isSafari)('<Tabs />', () => {
     });
   });
 
-  describe('scroll button behavior', () => {
+  // Firefox reports fractional `scrollLeft`/`scrollTop` in Vitest browser mode, so the
+  // exact integer assertions in these scroll tests fail.
+  // See https://github.com/vitest-dev/vitest/issues/9223
+  describe.skipIf(isFirefox)('scroll button behavior', () => {
     clock.withFakeTimers();
 
     it.skipIf(isJSDOM)('should scroll visible items', async function test() {
@@ -864,6 +897,34 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       tablistContainer.scrollLeft = 0;
       fireEvent.click(findScrollButton(container, 'right'));
       clock.tick(1000);
+      expect(tablistContainer.scrollLeft).equal(200);
+    });
+
+    it('should not animate scroll buttons when reduced motion is always', () => {
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
+            <Tab style={{ width: 220, minWidth: 'auto' }} />
+            <Tab style={{ width: 200, minWidth: 'auto' }} />
+            <Tab style={{ width: 200, minWidth: 'auto' }} />
+          </Tabs>
+        </ThemeProvider>,
+      );
+      const tablistContainer = screen.getByRole('tablist').parentElement;
+      const tabs = screen.getAllByRole('tab');
+      Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 });
+      Object.defineProperty(tabs[0], 'clientWidth', { value: 220 });
+      Object.defineProperty(tabs[1], 'clientWidth', { value: 200 });
+      Object.defineProperty(tabs[2], 'clientWidth', { value: 200 });
+      Object.defineProperty(tablistContainer, 'scrollWidth', { value: 620 });
+
+      tablistContainer.scrollLeft = 0;
+      fireEvent.click(findScrollButton(container, 'right'));
       expect(tablistContainer.scrollLeft).equal(200);
     });
 
@@ -927,6 +988,333 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       clock.tick(1000);
       expect(tablistContainer.scrollLeft).to.equal(0);
     });
+
+    // Firefox reports fractional `scrollLeft` in Vitest browser mode.
+    // See https://github.com/vitest-dev/vitest/issues/9223
+    it.skipIf(isFirefox)(
+      'should scroll the selected tab into view when the scroller resizes (scrollButtons="auto")',
+      () => {
+        const { callbacks, restore } = mockResizeObserver();
+
+        try {
+          render(
+            <Tabs value={2} variant="scrollable" scrollButtons="auto" style={{ width: 200 }}>
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+            </Tabs>,
+          );
+
+          const tablist = screen.getByRole('tablist');
+          const tablistContainer = tablist.parentElement;
+          const selectedTab = tablist.children[2];
+
+          // Mounting the scroll buttons narrows the scroller, leaving the selected tab
+          // overhanging its right edge by 110px.
+          tablistContainer.getBoundingClientRect = () => ({ left: 40, right: 160 });
+          selectedTab.getBoundingClientRect = () => ({ left: 150, right: 270 });
+          tablistContainer.scrollLeft = 0;
+
+          const scrollerCallback = callbacks.get(tablistContainer);
+          expect(scrollerCallback).not.to.equal(undefined);
+
+          scrollerCallback([]);
+
+          expect(tablistContainer.scrollLeft).to.equal(110);
+        } finally {
+          restore();
+        }
+      },
+    );
+
+    it('should not observe the scroller when scrollButtons is not "auto"', () => {
+      const { callbacks, restore } = mockResizeObserver();
+
+      try {
+        render(
+          <Tabs value={2} variant="scrollable" scrollButtons style={{ width: 200 }}>
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+          </Tabs>,
+        );
+
+        const tablistContainer = screen.getByRole('tablist').parentElement;
+
+        expect(callbacks.has(tablistContainer)).to.equal(false);
+      } finally {
+        restore();
+      }
+    });
+
+    it('should stop observing the scroller on unmount', () => {
+      const { callbacks, restore } = mockResizeObserver();
+
+      try {
+        const { unmount } = render(
+          <Tabs value={2} variant="scrollable" scrollButtons="auto" style={{ width: 200 }}>
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+          </Tabs>,
+        );
+
+        const tablistContainer = screen.getByRole('tablist').parentElement;
+        expect(callbacks.has(tablistContainer)).to.equal(true);
+
+        unmount();
+
+        expect(callbacks.has(tablistContainer)).to.equal(false);
+      } finally {
+        restore();
+      }
+    });
+
+    // Firefox reports fractional `scrollLeft`/`scrollTop` in Vitest browser mode, so the exact
+    // integer assertions in the scroll-padding tests fail there.
+    // See https://github.com/vitest-dev/vitest/issues/9223
+    it.skipIf(isFirefox)(
+      'should account for scroll-padding-left when scrolling a tab into view on the left',
+      function test() {
+        const { forceUpdate } = render(
+          <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+          </Tabs>,
+        );
+        const tablist = screen.getByRole('tablist');
+        const tablistContainer = tablist.parentElement;
+        const tab = tablist.children[0];
+
+        tablistContainer.style.scrollPaddingLeft = '15px';
+        Object.defineProperty(tablistContainer, 'clientWidth', { value: 100 });
+        tablistContainer.scrollLeft = 100;
+        tablistContainer.getBoundingClientRect = () => ({
+          left: 0,
+          right: 100,
+        });
+        tab.getBoundingClientRect = () => ({
+          left: 10,
+          width: 50,
+          right: 60,
+        });
+        forceUpdate();
+        clock.tick(1000);
+        expect(tablistContainer.scrollLeft).to.equal(95);
+      },
+    );
+
+    it.skipIf(isFirefox)(
+      'should account for scroll-padding-right when scrolling a tab into view on the right',
+      function test() {
+        const { forceUpdate } = render(
+          <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+          </Tabs>,
+        );
+        const tablist = screen.getByRole('tablist');
+        const tablistContainer = tablist.parentElement;
+        const tab = tablist.children[0];
+
+        tablistContainer.style.scrollPaddingRight = '20px';
+        Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 });
+        tablistContainer.scrollLeft = 0;
+        tablistContainer.getBoundingClientRect = () => ({
+          left: 0,
+          right: 100,
+        });
+        tab.getBoundingClientRect = () => ({
+          left: 100,
+          width: 50,
+          right: 150,
+        });
+        forceUpdate();
+        clock.tick(1000);
+        expect(tablistContainer.scrollLeft).to.equal(70);
+      },
+    );
+
+    it.skipIf(isFirefox)(
+      'should resolve a percentage scroll-padding against the scroller clientWidth',
+      function test() {
+        const { forceUpdate } = render(
+          <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+          </Tabs>,
+        );
+        const tablist = screen.getByRole('tablist');
+        const tablistContainer = tablist.parentElement;
+        const tab = tablist.children[0];
+
+        tablistContainer.style.scrollPaddingRight = '10%';
+        // Deliberately wider than the 100px bounding rect below: the expected 70 only holds if
+        // the percentage resolves against `clientWidth` (the scrollport) and not against the rect.
+        Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 });
+        tablistContainer.scrollLeft = 0;
+        tablistContainer.getBoundingClientRect = () => ({
+          left: 0,
+          right: 100,
+        });
+        tab.getBoundingClientRect = () => ({
+          left: 100,
+          width: 50,
+          right: 150,
+        });
+        forceUpdate();
+        clock.tick(1000);
+        expect(tablistContainer.scrollLeft).to.equal(70);
+      },
+    );
+
+    it.skipIf(isFirefox)(
+      'should account for scroll-padding-bottom when scrolling a vertical tab into view',
+      function test() {
+        const { forceUpdate } = render(
+          <Tabs value={0} variant="scrollable" orientation="vertical" style={{ height: 200 }}>
+            <Tab style={{ height: 120 }} />
+            <Tab style={{ height: 120 }} />
+            <Tab style={{ height: 120 }} />
+          </Tabs>,
+        );
+        const tablist = screen.getByRole('tablist');
+        const tablistContainer = tablist.parentElement;
+        const tab = tablist.children[0];
+
+        tablistContainer.style.scrollPaddingBottom = '20px';
+        Object.defineProperty(tablistContainer, 'clientHeight', { value: 200 });
+        tablistContainer.scrollTop = 0;
+        tablistContainer.getBoundingClientRect = () => ({
+          top: 0,
+          bottom: 100,
+        });
+        tab.getBoundingClientRect = () => ({
+          top: 100,
+          height: 50,
+          bottom: 150,
+        });
+        forceUpdate();
+        clock.tick(1000);
+        expect(tablistContainer.scrollTop).to.equal(70);
+      },
+    );
+
+    it.skipIf(isFirefox)(
+      'should account for scroll-padding-top when scrolling a vertical tab into view',
+      function test() {
+        const { forceUpdate } = render(
+          <Tabs value={0} variant="scrollable" orientation="vertical" style={{ height: 200 }}>
+            <Tab style={{ height: 120 }} />
+            <Tab style={{ height: 120 }} />
+            <Tab style={{ height: 120 }} />
+          </Tabs>,
+        );
+        const tablist = screen.getByRole('tablist');
+        const tablistContainer = tablist.parentElement;
+        const tab = tablist.children[0];
+
+        tablistContainer.style.scrollPaddingTop = '15px';
+        Object.defineProperty(tablistContainer, 'clientHeight', { value: 100 });
+        tablistContainer.scrollTop = 100;
+        tablistContainer.getBoundingClientRect = () => ({
+          top: 0,
+          bottom: 100,
+        });
+        tab.getBoundingClientRect = () => ({
+          top: 10,
+          height: 50,
+          bottom: 60,
+        });
+        forceUpdate();
+        clock.tick(1000);
+        expect(tablistContainer.scrollTop).to.equal(95);
+      },
+    );
+
+    it.skipIf(isFirefox)('should treat a scroll-padding of `auto` as no padding', function test() {
+      const { forceUpdate } = render(
+        <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+        </Tabs>,
+      );
+      const tablist = screen.getByRole('tablist');
+      const tablistContainer = tablist.parentElement;
+      const tab = tablist.children[0];
+
+      tablistContainer.style.scrollPaddingRight = 'auto';
+      Object.defineProperty(tablistContainer, 'clientWidth', { value: 100 });
+      tablistContainer.scrollLeft = 0;
+      tablistContainer.getBoundingClientRect = () => ({
+        left: 0,
+        right: 100,
+      });
+      tab.getBoundingClientRect = () => ({
+        left: 100,
+        width: 50,
+        right: 150,
+      });
+      forceUpdate();
+      clock.tick(1000);
+      expect(tablistContainer.scrollLeft).to.equal(50);
+    });
+
+    it.skipIf(isFirefox)(
+      'should align the start edge when the tab is larger than the padded scrollport',
+      function test() {
+        const { callbacks, restore } = mockResizeObserver();
+
+        try {
+          const { forceUpdate } = render(
+            <Tabs value={0} variant="scrollable" scrollButtons="auto" style={{ width: 200 }}>
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+            </Tabs>,
+          );
+          const tablist = screen.getByRole('tablist');
+          const tablistContainer = tablist.parentElement;
+          const tab = tablist.children[0];
+
+          // 60 + 120 + 60 doesn't fit in the 200px scrollport, so neither edge can clear its
+          // scroll-padding: aligning the end edge would push the start edge back out.
+          tablistContainer.style.scrollPaddingLeft = '60px';
+          tablistContainer.style.scrollPaddingRight = '60px';
+          Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 });
+          tablistContainer.scrollLeft = 0;
+          tablistContainer.getBoundingClientRect = () => ({
+            left: 0,
+            right: 200,
+          });
+          tab.getBoundingClientRect = () => ({
+            left: 120,
+            width: 120,
+            right: 240,
+          });
+          forceUpdate();
+          clock.tick(1000);
+          expect(tablistContainer.scrollLeft).to.equal(60);
+
+          // The tab now sits at [60, 180] and still overhangs the padded end edge. A second pass
+          // has to leave it alone instead of scrolling it back.
+          tab.getBoundingClientRect = () => ({
+            left: 60,
+            width: 120,
+            right: 180,
+          });
+          callbacks.get(tablistContainer)([]);
+          clock.tick(1000);
+          expect(tablistContainer.scrollLeft).to.equal(60);
+        } finally {
+          restore();
+        }
+      },
+    );
   });
 
   describe('slotProps: indicator', () => {

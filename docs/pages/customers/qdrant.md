@@ -40,7 +40,7 @@ After starting with MUI's open-source components, Qdrant upgraded to a perpetual
   Having built a date range picker from scratch before, I know firsthand how challenging and time-consuming it can be—it's truly a nightmare. I decided to use the MUI X date range picker. I simply read the documentation, plugged it in, and it worked seamlessly. Honestly, it was a delight.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
-    – <a href="https://www.linkedin.com/in/josep-fornies-escola/" target="_blank" rel="noopener">Josep Fornies</a>, Senior Frontend Developer
+    – <a href="https://www.linkedin.com/in/josep-fornies-escola/" target="_blank">Josep Fornies</a>, Senior Frontend Developer
   </span>
 </blockquote>
 </span>
@@ -50,7 +50,7 @@ After starting with MUI's open-source components, Qdrant upgraded to a perpetual
   Having built a date range picker from scratch before, I know firsthand how challenging and time-consuming it can be—it's truly a nightmare. I decided to use the MUI X date range picker. I simply read the documentation, plugged it in, and it worked seamlessly. Honestly, it was a delight.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
-    – <a href="https://www.linkedin.com/in/josep-fornies-escola/" target="_blank" rel="noopener">Josep Fornies</a>, Senior Frontend Developer
+    – <a href="https://www.linkedin.com/in/josep-fornies-escola/" target="_blank">Josep Fornies</a>, Senior Frontend Developer
   </span>
 </blockquote>
 </span>

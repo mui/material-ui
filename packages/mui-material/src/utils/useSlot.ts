@@ -132,8 +132,7 @@ export default function useSlot<
   const ref = useForkRef(internalRef, resolvedComponentsProps?.ref, parameters.ref);
 
   const LeafComponent = (name === 'root' ? slotComponent || rootComponent : slotComponent) as
-    | React.ElementType
-    | undefined;
+    React.ElementType | undefined;
 
   const props = appendOwnerState(
     elementType,

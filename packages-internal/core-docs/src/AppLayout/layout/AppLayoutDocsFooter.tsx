@@ -82,7 +82,6 @@ async function submitFeedback(
     currentLocationURL: window.location.href,
     commentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
     commentSectionTitle: commentedSection.text,
-    githubRepo: process.env.SOURCE_CODE_REPO,
     productId,
   };
   if (!comment || comment.length < 10) {
@@ -131,6 +130,10 @@ const EMPTY_SECTION = { hash: '', text: '' };
 const SPEACIAL_FEEDBACK_HASH = [{ hash: 'new-docs-api-feedback', text: 'New API content design' }];
 
 const iconColor = 'grey.500';
+
+// Keep feedback comments within the Slack message limit. The server enforces the real
+// bound; this is the browser-side hint so a long comment isn't silently truncated.
+const MAX_COMMENT_LENGTH = 1000;
 
 export interface AppLayoutDocsFooterProps {
   tableOfContents?: TocItem[];
@@ -354,11 +357,16 @@ export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
                   rows={2}
                   value={comment}
                   onChange={handleChangeTextfield}
+                  helperText={`${comment.length}/${MAX_COMMENT_LENGTH}`}
                   slotProps={{
                     htmlInput: {
                       'aria-label': t('feedbackCommentLabel'),
                       'aria-describedby': 'feedback-description',
+                      maxLength: MAX_COMMENT_LENGTH,
                       ref: inputRef,
+                    },
+                    formHelperText: {
+                      sx: { textAlign: 'right', mx: 0 },
                     },
                   }}
                 />
@@ -440,18 +448,17 @@ export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
               <MuiLogotypeIcon height={28} width={64} />
             </Link>
             <Typography sx={{ color: 'grey.500', fontSize: 13, opacity: '70%' }}>&bull;</Typography>
-            <FooterLink href="https://mui.com/blog/" target="_blank" rel="noopener">
+            <FooterLink href="https://mui.com/blog/" target="_blank">
               Blog <ArrowOutwardRoundedIcon />
             </FooterLink>
             <Typography sx={{ color: 'grey.500', fontSize: 13, opacity: '70%' }}>&bull;</Typography>
-            <FooterLink href="https://mui.com/store/" target="_blank" rel="noopener">
+            <FooterLink href="https://mui.com/store/" target="_blank">
               Store <ArrowOutwardRoundedIcon />
             </FooterLink>
           </Stack>
           <Stack spacing={1} direction="row" useFlexGap>
             <IconButton
               target="_blank"
-              rel="noopener"
               href="https://x.com/MUI_hq"
               aria-label="X/twitter"
               title="X"
@@ -461,7 +468,6 @@ export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener"
               href="https://www.youtube.com/@MUI_hq"
               aria-label="YouTube"
               title="YouTube"
@@ -471,7 +477,6 @@ export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener"
               href="https://mui.com/feed/blog/rss.xml"
               aria-label="RSS Feed"
               title="RSS Feed"

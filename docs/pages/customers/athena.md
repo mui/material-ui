@@ -47,7 +47,7 @@ manualCard: true
   We started using MUI components from day one to provide a wide range of UIs that support data workflows for enterprise teams. MUI X enabled us to iterate faster by offering complex UI components like data grids.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
-    – <a href="https://www.linkedin.com/in/brendongeils/" target="_blank" rel="noopener">Brendon Geils</a>, Founder & CEO
+    – <a href="https://www.linkedin.com/in/brendongeils/" target="_blank">Brendon Geils</a>, Founder & CEO
   </span>
 </blockquote>
 </span>
@@ -56,7 +56,7 @@ manualCard: true
   We started using MUI components from day one to provide a wide range of UIs that support data workflows for enterprise teams. MUI X enabled us to iterate faster by offering complex UI components like data grids.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
-    – <a href="https://www.linkedin.com/in/brendongeils/" target="_blank" rel="noopener">Brendon Geils</a>, Founder & CEO
+    – <a href="https://www.linkedin.com/in/brendongeils/" target="_blank">Brendon Geils</a>, Founder & CEO
   </span>
 </blockquote>
 </span>

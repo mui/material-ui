@@ -45,6 +45,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           EMAIL: form.email,
           email_address_check: '',
           locale: 'en',
+          SOURCE: 'Home form newsletter',
         }),
       });
       setForm((current) => ({ ...current, status: 'sent' }));

@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "allowJs": false,
-    "types": ["react", "vitest/globals", "node"]
+    "types": ["react", "node"]
   },
   "include": ["src/**/*"]
 }

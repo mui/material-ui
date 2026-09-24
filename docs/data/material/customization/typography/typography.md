@@ -29,11 +29,10 @@ const theme = createTheme({
 
 ### Self-hosted fonts
 
-To self-host fonts, download the font files in `ttf`, `woff`, and/or `woff2` formats and import them into your code.
+To self-host fonts, download the font files in the `woff2` format and import them into your code.
 
 :::warning
-This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and
-`woff2` files. Fonts will _not_ be embedded within your bundle. They will be loaded from your webserver instead of a CDN.
+This requires that you have a plugin or loader in your build process that can handle loading `woff2` files. Fonts will _not_ be embedded within your bundle. They will be loaded from your webserver instead of a CDN.
 :::
 
 ```js

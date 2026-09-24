@@ -393,6 +393,7 @@ export interface DemoProps {
     disableLiveEdit?: boolean;
     aiSuggestion?: string;
     hideEditButton?: boolean;
+    anchorId?: string | null;
   };
   disableAd: boolean;
   githubLocation: string;
@@ -407,7 +408,8 @@ export interface DemoProps {
 export function Demo(props: DemoProps) {
   const { demo, demoOptions, disableAd, githubLocation, demoToolbarSlot: DemoToolbar } = props;
 
-  if (process.env.NODE_ENV !== 'production') {
+  // Guard with NEXT_RUNTIME so this check is dead-code-eliminated from client bundles.
+  if (process.env.NEXT_RUNTIME) {
     if (demoOptions.hideToolbar === false) {
       throw new Error(
         [
@@ -467,6 +469,8 @@ export function Demo(props: DemoProps) {
   );
 
   const demoName = getDemoName(demoData.githubLocation);
+  const anchorIdOption = demoOptions.anchorId;
+  const anchorName = anchorIdOption === undefined ? demoName : anchorIdOption;
   const demoSandboxedStyle = React.useMemo(
     () => ({
       maxWidth: demoOptions.maxWidth,
@@ -491,10 +495,14 @@ export function Demo(props: DemoProps) {
 
   React.useEffect(() => {
     const navigatedDemoName = getDemoName(window.location.hash);
-    if (navigatedDemoName && demoName === navigatedDemoName) {
+    if (
+      navigatedDemoName &&
+      (demoName === navigatedDemoName || (anchorName !== null && anchorName === navigatedDemoName))
+    ) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCodeOpen(true);
     }
-  }, [demoName]);
+  }, [demoName, anchorName]);
 
   const showPreview =
     !demoOptions.hideToolbar &&
@@ -525,25 +533,29 @@ export function Demo(props: DemoProps) {
     initialEditorCode,
   });
 
-  const resetDemo = React.useMemo(
-    () => () => {
-      setEditorCode({
-        value: initialEditorCode,
-        isPreview,
-        initialEditorCode,
-      });
-      setDemoKey();
-    },
-    [setEditorCode, setDemoKey, initialEditorCode, isPreview],
-  );
-
-  React.useEffect(() => {
+  const resetDemo = React.useCallback(() => {
     setEditorCode({
       value: initialEditorCode,
       isPreview,
       initialEditorCode,
     });
-  }, [initialEditorCode, isPreview]);
+    setDemoKey();
+  }, [setEditorCode, setDemoKey, initialEditorCode, isPreview]);
+
+  // Reset the (user-editable) editor code whenever the demo's source or preview
+  // mode changes. Adjusting state during render is preferred over an effect.
+  const [editorCodeSource, setEditorCodeSource] = React.useState({ initialEditorCode, isPreview });
+  if (
+    editorCodeSource.initialEditorCode !== initialEditorCode ||
+    editorCodeSource.isPreview !== isPreview
+  ) {
+    setEditorCodeSource({ initialEditorCode, isPreview });
+    setEditorCode({
+      value: initialEditorCode,
+      isPreview,
+      initialEditorCode,
+    });
+  }
 
   const [debouncedError, setDebouncedError] = React.useState<string | null>(null);
 
@@ -600,7 +612,7 @@ export function Demo(props: DemoProps) {
 
   return (
     <Root>
-      <AnchorLink id={demoName} />
+      {anchorName !== null && <AnchorLink id={anchorName} />}
       <DemoRoot
         hideToolbar={demoOptions.hideToolbar}
         bg={demoOptions.bg}
@@ -622,18 +634,19 @@ export function Demo(props: DemoProps) {
       </DemoRoot>
       {demoOptions.hideToolbar ? null : (
         <React.Fragment>
-          {Object.keys(stylingSolutionMapping).map((key) => (
-            <React.Fragment key={key}>
-              <AnchorLink
-                id={`${stylingSolutionMapping[key as keyof typeof stylingSolutionMapping]}-${demoName}.js`}
-              />
-              <AnchorLink
-                id={`${stylingSolutionMapping[key as keyof typeof stylingSolutionMapping]}-${demoName}.tsx`}
-              />
-            </React.Fragment>
-          ))}
-          <AnchorLink id={`${demoName}.js`} />
-          <AnchorLink id={`${demoName}.tsx`} />
+          {anchorName !== null &&
+            Object.keys(stylingSolutionMapping).map((key) => (
+              <React.Fragment key={key}>
+                <AnchorLink
+                  id={`${stylingSolutionMapping[key as keyof typeof stylingSolutionMapping]}-${anchorName}.js`}
+                />
+                <AnchorLink
+                  id={`${stylingSolutionMapping[key as keyof typeof stylingSolutionMapping]}-${anchorName}.tsx`}
+                />
+              </React.Fragment>
+            ))}
+          {anchorName !== null && <AnchorLink id={`${anchorName}.js`} />}
+          {anchorName !== null && <AnchorLink id={`${anchorName}.tsx`} />}
           <DemoToolbarRoot demoOptions={demoOptions} openDemoSource={openDemoSource}>
             {DemoToolbar ? (
               <NoSsr fallback={<DemoToolbarFallback />}>

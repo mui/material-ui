@@ -57,7 +57,7 @@ export function DiamondSponsors() {
           data-ga-event-action="docs-premium"
           data-ga-event-label="doit.com"
           href="https://www.doit.com/?utm_source=mui.com&utm_medium=referral"
-          rel="noopener sponsored"
+          rel="sponsored"
           target="_blank"
         >
           <Box
@@ -74,33 +74,6 @@ export function DiamondSponsors() {
               (theme) =>
                 theme.applyDarkStyles({
                   content: `url(/static/sponsors/doit-dark.svg)`,
-                }),
-            ]}
-          />
-        </NativeLink>
-        <NativeLink
-          data-ga-event-category="sponsor"
-          data-ga-event-action="docs-premium"
-          data-ga-event-label="formengine.io"
-          href="https://formengine.io/lightweight-react-json-schema-form-builder-library-for-mui?utm_source=mui&utm_medium=sponsor&utm_campaign=mui&utm_content=stop-manually&utm_term=smartway"
-          rel="noopener sponsored"
-          target="_blank"
-        >
-          <Box
-            component="img"
-            src="/static/sponsors/formengine-light.svg"
-            alt="formengine"
-            title="Build forms with MUI the smart way!"
-            loading="lazy"
-            sx={[
-              {
-                height: '23.2px',
-                width: 'auto',
-                maxWidth: '100%',
-              },
-              (theme) =>
-                theme.applyDarkStyles({
-                  content: `url(/static/sponsors/formengine-dark.svg)`,
                 }),
             ]}
           />

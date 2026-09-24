@@ -180,30 +180,36 @@ function mixedCardHeaderComponentAndTypographyTest() {
       // @ts-expect-error
       title: { component: CustomComponent, stringProp: 'stringProp' },
       subheader: {
+        // @ts-expect-error Before tsgo, this error was merged with line 180 ignore
         component: CustomComponent,
         stringProp: 'stringProp',
         numberProp: 2,
       },
     }}
   />;
-  // @ts-expect-error
   <CardHeader
     component={CustomComponent}
     stringProp="string"
     numberProp={1}
     slotProps={{
+      // @ts-expect-error
       title: { component: CustomComponent, stringProp: 'stringProp' },
-      subheader: { component: CustomComponent, stringProp: 'stringProp' },
+      subheader: {
+        // @ts-expect-error
+        component: CustomComponent,
+        stringProp: 'stringProp',
+      },
     }}
   />;
   <CardHeader
-    // @ts-expect-error
     component="incorrectComponent"
     stringProp="string"
     numberProp={1}
     slotProps={{
+      // @ts-expect-error
       title: { component: CustomComponent, stringProp: 'stringProp', numberProp: 2 },
       subheader: {
+        // @ts-expect-error
         component: CustomComponent,
         stringProp: 'stringProp',
         numberProp: 2,
@@ -232,10 +238,10 @@ function titleTypographyPropsTest() {
       },
     }}
   />;
-  // @ts-expect-error
   <CardHeader
     slotProps={{
       title: {
+        // @ts-expect-error
         component: CustomComponent,
         stringProp: 'stringProp',
         numberProp: '',
@@ -294,10 +300,23 @@ function subheaderTypographyPropsTest() {
       },
     }}
   />;
-  // @ts-expect-error
-  <CardHeader slotProps={{ subheader: { component: 'incorrectComponent' } }} />;
-  // @ts-expect-error
-  <CardHeader slotProps={{ subheader: { component: CustomComponent, numberProp: 2 } }} />;
+  <CardHeader
+    slotProps={{
+      subheader: {
+        // @ts-expect-error
+        component: 'incorrectComponent',
+      },
+    }}
+  />;
+  <CardHeader
+    slotProps={{
+      subheader: {
+        // @ts-expect-error
+        component: CustomComponent,
+        numberProp: 2,
+      },
+    }}
+  />;
 }
 
 function mixedTypographyPropsTest() {
@@ -317,11 +336,14 @@ function mixedTypographyPropsTest() {
       },
     }}
   />;
-  // @ts-expect-error
   <CardHeader
     slotProps={{
+      // @ts-expect-error
       title: { component: 'incorrectComponent' },
-      subheader: { component: 'incorrectComponent' },
+      subheader: {
+        // @ts-expect-error
+        component: 'incorrectComponent',
+      },
     }}
   />;
   <CardHeader
@@ -338,25 +360,48 @@ function mixedTypographyPropsTest() {
       },
     }}
   />;
-  // @ts-expect-error
   <CardHeader
     slotProps={{
-      title: { component: CustomComponent, numberProp: 2 },
-      subheader: { component: CustomComponent, numberProp: 2 },
+      title: {
+        // @ts-expect-error
+        component: CustomComponent,
+        numberProp: 2,
+      },
+      subheader: {
+        // @ts-expect-error
+        component: CustomComponent,
+        numberProp: 2,
+      },
     }}
   />;
   <CardHeader
     slotProps={{
-      // @ts-expect-error
-      title: { component: CustomComponent, numberProp: 2 },
-      subheader: { component: CustomComponent, numberProp: 2, stringProp: 'yada' },
+      title: {
+        // @ts-expect-error
+        component: CustomComponent,
+        numberProp: 2,
+      },
+      subheader: {
+        // @ts-expect-error
+        component: CustomComponent,
+        numberProp: 2,
+        stringProp: 'yada',
+      },
     }}
   />;
   <CardHeader
     slotProps={{
-      title: { component: CustomComponent, numberProp: 2, stringProp: 'yada' },
-      // @ts-expect-error
-      subheader: { component: CustomComponent, numberProp: 2 },
+      title: {
+        // @ts-expect-error
+        component: CustomComponent,
+        numberProp: 2,
+        stringProp: 'yada',
+      },
+      subheader: {
+        // @ts-expect-error
+        component: CustomComponent,
+        numberProp: 2,
+      },
     }}
   />;
 }

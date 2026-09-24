@@ -38,7 +38,7 @@ As their platform evolved over the years, they accumulated a mix of legacy techn
   Searching in the grid is an absolute killer feature for us. Everything loads to the client-side, and now you can search anything—and the search is so fast and amazing.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
-    – <a href="https://www.linkedin.com/in/ronen-akiva-2881303/" target="_blank" rel="noopener">Ronen Akiva</a>, Senior Director of Engineering
+    – <a href="https://www.linkedin.com/in/ronen-akiva-2881303/" target="_blank">Ronen Akiva</a>, Senior Director of Engineering
   </span>
 </blockquote>
 </span>
@@ -47,7 +47,7 @@ As their platform evolved over the years, they accumulated a mix of legacy techn
   Searching in the grid is an absolute killer feature for us. Everything loads to the client-side, and now you can search anything—and the search is so fast and amazing.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
-    – <a href="https://www.linkedin.com/in/ronen-akiva-2881303/" target="_blank" rel="noopener">Ronen Akiva</a>, Senior Director of Engineering
+    – <a href="https://www.linkedin.com/in/ronen-akiva-2881303/" target="_blank">Ronen Akiva</a>, Senior Director of Engineering
   </span>
 </blockquote>
 </span>

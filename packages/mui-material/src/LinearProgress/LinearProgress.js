@@ -9,9 +9,25 @@ import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
+import { getReducedMotionStyles, getTransitionStyles } from '../transitions/utils';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
 
 const TRANSITION_DURATION = 4; // seconds
+const EMPTY_STYLE = {};
+
+let warnedMinMaxWithoutVariant = false;
+let warnedInvalidMinMaxValue = false;
+let warnedValueRequired = false;
+let warnedInvalidMinMaxValueBuffer = false;
+let warnedValueBufferRequired = false;
+
+export function resetWarningFlags() {
+  warnedMinMaxWithoutVariant = false;
+  warnedInvalidMinMaxValue = false;
+  warnedValueRequired = false;
+  warnedInvalidMinMaxValueBuffer = false;
+  warnedValueBufferRequired = false;
+}
 const indeterminate1Keyframe = keyframes`
   0% {
     left: -35%;
@@ -203,6 +219,7 @@ const LinearProgressDashed = styled('span', {
     // At runtime for Pigment CSS, `bufferAnimation` will be null and the generated keyframe will be used.
     animation: `${bufferKeyframe} 3s infinite linear`,
   },
+  memoTheme(({ theme }) => getReducedMotionStyles(theme, { animation: 'none' }) || EMPTY_STYLE),
 );
 
 const LinearProgressBar1 = styled('span', {
@@ -212,64 +229,91 @@ const LinearProgressBar1 = styled('span', {
     return [styles.bar, styles.bar1];
   },
 })(
-  memoTheme(({ theme }) => ({
-    width: '100%',
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    top: 0,
-    transition: 'transform 0.2s linear',
-    transformOrigin: 'left',
-    variants: [
-      {
-        props: {
-          color: 'inherit',
-        },
-        style: {
-          backgroundColor: 'currentColor',
-        },
-      },
-      ...Object.entries(theme.palette)
-        .filter(createSimplePaletteValueFilter())
-        .map(([color]) => ({
-          props: { color },
-          style: {
-            backgroundColor: (theme.vars || theme).palette[color].main,
+  memoTheme(({ theme }) => {
+    const reducedMotionIndeterminateStyles = getReducedMotionStyles(theme, {
+      animation: 'none',
+      left: '30%',
+      right: 'auto',
+      width: '40%',
+    });
+
+    return {
+      width: '100%',
+      position: 'absolute',
+      left: 0,
+      bottom: 0,
+      top: 0,
+      ...getTransitionStyles(theme, 'transform', {
+        duration: '0.2s',
+        easing: 'linear',
+      }),
+      transformOrigin: 'left',
+      variants: [
+        {
+          props: {
+            color: 'inherit',
           },
-        })),
-      {
-        props: {
-          variant: 'determinate',
+          style: {
+            backgroundColor: 'currentColor',
+          },
         },
-        style: {
-          transition: `transform .${TRANSITION_DURATION}s linear`,
+        ...Object.entries(theme.palette)
+          .filter(createSimplePaletteValueFilter())
+          .map(([color]) => ({
+            props: { color },
+            style: {
+              backgroundColor: (theme.vars || theme).palette[color].main,
+            },
+          })),
+        {
+          props: {
+            variant: 'determinate',
+          },
+          style: {
+            ...getTransitionStyles(theme, 'transform', {
+              duration: `.${TRANSITION_DURATION}s`,
+              easing: 'linear',
+            }),
+          },
         },
-      },
-      {
-        props: {
-          variant: 'buffer',
+        {
+          props: {
+            variant: 'buffer',
+          },
+          style: {
+            zIndex: 1,
+            ...getTransitionStyles(theme, 'transform', {
+              duration: `.${TRANSITION_DURATION}s`,
+              easing: 'linear',
+            }),
+          },
         },
-        style: {
-          zIndex: 1,
-          transition: `transform .${TRANSITION_DURATION}s linear`,
+        {
+          props: ({ ownerState }) =>
+            ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
+          style: {
+            width: 'auto',
+          },
         },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
-        style: {
-          width: 'auto',
+        {
+          props: ({ ownerState }) =>
+            ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
+          style: indeterminate1Animation || {
+            animation: `${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite`,
+          },
         },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
-        style: indeterminate1Animation || {
-          animation: `${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite`,
-        },
-      },
-    ],
-  })),
+        ...(reducedMotionIndeterminateStyles
+          ? [
+              {
+                props: ({ ownerState }) =>
+                  ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
+                style: reducedMotionIndeterminateStyles,
+              },
+            ]
+          : []),
+      ],
+    };
+  }),
 );
 
 const LinearProgressBar2 = styled('span', {
@@ -279,70 +323,92 @@ const LinearProgressBar2 = styled('span', {
     return [styles.bar, styles.bar2];
   },
 })(
-  memoTheme(({ theme }) => ({
-    width: '100%',
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    top: 0,
-    transition: 'transform 0.2s linear',
-    transformOrigin: 'left',
-    variants: [
-      ...Object.entries(theme.palette)
-        .filter(createSimplePaletteValueFilter())
-        .map(([color]) => ({
-          props: { color },
+  memoTheme(({ theme }) => {
+    const reducedMotionIndeterminateStyles = getReducedMotionStyles(theme, {
+      animation: 'none',
+      display: 'none',
+    });
+
+    return {
+      width: '100%',
+      position: 'absolute',
+      left: 0,
+      bottom: 0,
+      top: 0,
+      ...getTransitionStyles(theme, 'transform', {
+        duration: '0.2s',
+        easing: 'linear',
+      }),
+      transformOrigin: 'left',
+      variants: [
+        ...Object.entries(theme.palette)
+          .filter(createSimplePaletteValueFilter())
+          .map(([color]) => ({
+            props: { color },
+            style: {
+              '--LinearProgressBar2-barColor': (theme.vars || theme).palette[color].main,
+            },
+          })),
+        {
+          props: ({ ownerState }) =>
+            ownerState.variant !== 'buffer' && ownerState.color !== 'inherit',
           style: {
-            '--LinearProgressBar2-barColor': (theme.vars || theme).palette[color].main,
+            backgroundColor: 'var(--LinearProgressBar2-barColor, currentColor)',
           },
-        })),
-      {
-        props: ({ ownerState }) =>
-          ownerState.variant !== 'buffer' && ownerState.color !== 'inherit',
-        style: {
-          backgroundColor: 'var(--LinearProgressBar2-barColor, currentColor)',
         },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.variant !== 'buffer' && ownerState.color === 'inherit',
-        style: {
-          backgroundColor: 'currentColor',
-        },
-      },
-      {
-        props: {
-          color: 'inherit',
-        },
-        style: {
-          opacity: 0.3,
-        },
-      },
-      ...Object.entries(theme.palette)
-        .filter(createSimplePaletteValueFilter())
-        .map(([color]) => ({
-          props: { color, variant: 'buffer' },
+        {
+          props: ({ ownerState }) =>
+            ownerState.variant !== 'buffer' && ownerState.color === 'inherit',
           style: {
-            backgroundColor: getColorShade(theme, color),
-            transition: `transform .${TRANSITION_DURATION}s linear`,
+            backgroundColor: 'currentColor',
           },
-        })),
-      {
-        props: ({ ownerState }) =>
-          ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
-        style: {
-          width: 'auto',
         },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
-        style: indeterminate2Animation || {
-          animation: `${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite`,
+        {
+          props: {
+            color: 'inherit',
+          },
+          style: {
+            opacity: 0.3,
+          },
         },
-      },
-    ],
-  })),
+        ...Object.entries(theme.palette)
+          .filter(createSimplePaletteValueFilter())
+          .map(([color]) => ({
+            props: { color, variant: 'buffer' },
+            style: {
+              backgroundColor: getColorShade(theme, color),
+              ...getTransitionStyles(theme, 'transform', {
+                duration: `.${TRANSITION_DURATION}s`,
+                easing: 'linear',
+              }),
+            },
+          })),
+        {
+          props: ({ ownerState }) =>
+            ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
+          style: {
+            width: 'auto',
+          },
+        },
+        {
+          props: ({ ownerState }) =>
+            ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
+          style: indeterminate2Animation || {
+            animation: `${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite`,
+          },
+        },
+        ...(reducedMotionIndeterminateStyles
+          ? [
+              {
+                props: ({ ownerState }) =>
+                  ownerState.variant === 'indeterminate' || ownerState.variant === 'query',
+                style: reducedMotionIndeterminateStyles,
+              },
+            ]
+          : []),
+      ],
+    };
+  }),
 );
 
 /**
@@ -372,12 +438,14 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
 
   if (process.env.NODE_ENV !== 'production') {
     if (
+      !warnedMinMaxWithoutVariant &&
       ['indeterminate', 'query'].includes(variant) &&
       (minProp !== undefined || maxProp !== undefined)
     ) {
       console.warn(
         `MUI: You have provided the \`min\` or \`max\` props with an 'indeterminate' or 'query' variant. These props will have no effect.`,
       );
+      warnedMinMaxWithoutVariant = true;
     }
   }
 
@@ -393,10 +461,11 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
       if (process.env.NODE_ENV !== 'production') {
-        if (value < min || value > max || min >= max) {
+        if (!warnedInvalidMinMaxValue && (value < min || value > max || min >= max)) {
           console.error(
             `MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=${min}, max=${max}, value=${value}.`,
           );
+          warnedInvalidMinMaxValue = true;
         }
       }
 
@@ -411,19 +480,25 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       rootProps['aria-valuemin'] = min;
       rootProps['aria-valuemax'] = max;
     } else if (process.env.NODE_ENV !== 'production') {
-      console.error(
-        'MUI: You need to provide a value prop ' +
-          'when using the determinate or buffer variant of LinearProgress.',
-      );
+      if (!warnedValueRequired) {
+        console.error(
+          'MUI: You need to provide a value prop when using the determinate or buffer variant of LinearProgress.',
+        );
+        warnedValueRequired = true;
+      }
     }
   }
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
       if (process.env.NODE_ENV !== 'production') {
-        if (valueBuffer < min || valueBuffer > max || valueBuffer < value || min >= max) {
+        if (
+          !warnedInvalidMinMaxValueBuffer &&
+          (valueBuffer < min || valueBuffer > max || valueBuffer < value || min >= max)
+        ) {
           console.error(
             `MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=${min}, max=${max}, value=${value}, valueBuffer=${valueBuffer}.`,
           );
+          warnedInvalidMinMaxValueBuffer = true;
         }
       }
 
@@ -434,10 +509,12 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       }
       inlineStyles.bar2.transform = range > 0 ? `translateX(${transform}%)` : 'translateX(-100%)'; // empty-state fallback when range is invalid
     } else if (process.env.NODE_ENV !== 'production') {
-      console.error(
-        'MUI: You need to provide a valueBuffer prop ' +
-          'when using the buffer variant of LinearProgress.',
-      );
+      if (!warnedValueBufferRequired) {
+        console.error(
+          'MUI: You need to provide a valueBuffer prop when using the buffer variant of LinearProgress.',
+        );
+        warnedValueBufferRequired = true;
+      }
     }
   }
 

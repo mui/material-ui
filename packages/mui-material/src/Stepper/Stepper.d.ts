@@ -17,6 +17,8 @@ export interface StepperOwnProps extends Pick<PaperProps, 'elevation' | 'square'
   /**
    * If set to 'true' and orientation is horizontal,
    * then the step label will be positioned under the icon.
+   * If set to 'true' and orientation is vertical,
+   * it reverses the position of the label and content.
    * @default false
    */
   alternativeLabel?: boolean | undefined;

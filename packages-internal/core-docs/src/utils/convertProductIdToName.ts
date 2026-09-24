@@ -1,6 +1,5 @@
 const productNameProductId: Record<string, string> = {
   'material-ui': 'Material UI',
-  'joy-ui': 'Joy UI',
   'base-ui': 'MUI Base',
   x: 'MUI X',
   system: 'MUI System',

@@ -69,6 +69,7 @@ export function CodeStylingProvider(props: { children: React.ReactNode }) {
 
   React.useEffect(() => {
     if (codeStyling !== noSsrCodeStyling) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCodeStyling(noSsrCodeStyling);
     }
   }, [codeStyling, noSsrCodeStyling]);

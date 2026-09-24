@@ -9,8 +9,7 @@ export interface Localization {
             }
           | undefined;
         MuiBreadcrumbs?:
-          | { defaultProps: Pick<ComponentsPropsList['MuiBreadcrumbs'], 'expandText'> }
-          | undefined;
+          { defaultProps: Pick<ComponentsPropsList['MuiBreadcrumbs'], 'expandText'> } | undefined;
         MuiTablePagination?:
           | {
               defaultProps: Pick<

@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, beforeEach, afterEach, it, expect } from 'vitest';
 import sinon from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
@@ -213,6 +213,24 @@ describe('extendTheme', () => {
     expect(theme.colorSchemes.light.palette.secondary.mainChannel).to.equal('0 230 118');
   });
 
+  describe('motion', () => {
+    it('should provide the default values', () => {
+      const theme = extendTheme();
+
+      expect(theme.motion.reducedMotion).to.equal('never');
+    });
+
+    it('should provide custom values', () => {
+      const theme = extendTheme({
+        motion: {
+          reducedMotion: 'system',
+        },
+      });
+
+      expect(theme.motion.reducedMotion).to.equal('system');
+    });
+  });
+
   describe('transitions', () => {
     it('[`easing`]: should provide the default values', () => {
       const theme = extendTheme();
@@ -330,6 +348,35 @@ describe('extendTheme', () => {
       expect(theme.colorSchemes.dark.opacity).to.deep.include({
         inputPlaceholder: 0.2,
         inputUnderline: 0.7,
+      });
+    });
+  });
+
+  describe('Input palette', () => {
+    it('should provide the default autofill tokens', () => {
+      const theme = extendTheme({ colorSchemes: { light: true, dark: true } });
+      expect(theme.colorSchemes.light.palette.Input).to.deep.equal({
+        autofillWebkitBoxShadow: 'none',
+      });
+      expect(theme.colorSchemes.dark.palette.Input).to.deep.equal({
+        autofillWebkitBoxShadow: '0 0 0 100px #266798 inset',
+      });
+    });
+
+    it('should allow overriding the autofill tokens', () => {
+      const theme = extendTheme({
+        colorSchemes: {
+          light: {
+            palette: {
+              Input: {
+                autofillWebkitBoxShadow: '0 0 0 100px #e8f0fe inset',
+              },
+            },
+          },
+        },
+      });
+      expect(theme.colorSchemes.light.palette.Input).to.deep.equal({
+        autofillWebkitBoxShadow: '0 0 0 100px #e8f0fe inset',
       });
     });
   });

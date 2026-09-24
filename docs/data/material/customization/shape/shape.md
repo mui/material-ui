@@ -23,7 +23,7 @@ const theme = createTheme({
 });
 ```
 
-### Typescript
+### TypeScript
 
 If you're using TypeScript you need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) to extend **new** shape properties to the theme.
 

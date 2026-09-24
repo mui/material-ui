@@ -1,6 +1,6 @@
 ---
 title: MUI X Data Grid v9.0
-description: 'MUI X Data Grid v9.0: stronger dynamic data and lazy loading, stable Charts in the grid, and AI Assistant with Console and bring your own key.'
+description: 'MUI X Data Grid v9.0: stronger dynamic data and lazy loading, stable Charts in the grid, and AI Assistant with Console and bring-your-own-key support.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
@@ -33,7 +33,7 @@ This new major is part of a coordinated effort across the entire product suite; 
 
 ## Charts integrated with Data Grid
 
-Charts inside the grid is stable in v9: you can ship dashboards that mix tables and visuals without treating the integration as experimental.
+The Charts integration inside the grid is stable in v9: you can ship dashboards that mix tables and visuals without treating the integration as experimental.
 We also kept the implementation in step with Material UI v9 so the grid and charts don't drift as both packages evolve.
 
 <figure>
@@ -88,10 +88,10 @@ The [Server‑side data](/x/react-data-grid/server-side-data/) guide covers lazy
 
 The Data Grid AI Assistant remains a flagship example of AI‑native design in MUI X: users describe what they want in natural language, and the grid applies structured changes (filters, sorting, grouping, aggregations, pivoting) that stay visible and editable in the UI.
 
-Turning that on in production is not only a front‑end story.
+Turning that on in production is not only a frontend story.
 The [MUI Console](https://console.mui.com) brings licensing, service API keys, and billing into one place so teams can create and rotate keys without routing every request through support.
-Where governance matters, bring your own key lets you supply your own provider credentials so traffic and policies stay under your control, while the same assistant flows apply to the grid;
-[more details](/blog/introducing-mui-v9/#new-mui-console-application).
+Where governance matters, bring-your-own-key support lets you supply your own provider credentials so traffic and policies stay under your control, while the same assistant flows apply to the grid.
+See [more details](/blog/introducing-mui-v9/#new-mui-console-application).
 
 Together, Console, clearer onboarding documentation, and the assistant docs make a stronger end‑to‑end path: from trying the feature in docs, to provisioning keys and billing, to shipping the same flows in your product without stitching together separate tools.
 

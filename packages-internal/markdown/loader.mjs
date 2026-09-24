@@ -660,9 +660,19 @@ export default async function demoLoader() {
   );
 
   componentNames.forEach((componentName) => {
-    const moduleID = componentName.startsWith('@mui/internal-core-docs/')
-      ? componentName
-      : path.join(this.rootContext, 'src', componentName).replace(/\\/g, '/');
+    let moduleID;
+    if (componentName.startsWith('@mui/internal-core-docs/')) {
+      moduleID = componentName;
+    } else {
+      // Emit a relative path from the markdown file's directory. Turbopack
+      // rejects absolute paths emitted by loaders (interpreted as server-relative
+      // URLs); relative paths resolve correctly under both webpack and turbopack.
+      const componentAbsolute = path.join(this.rootContext, 'src', componentName);
+      const relative = path
+        .relative(path.dirname(this.resourcePath), componentAbsolute)
+        .replace(/\\/g, '/');
+      moduleID = relative.startsWith('.') ? relative : `./${relative}`;
+    }
 
     components[moduleID] = componentName;
     componentModuleIDs.add(moduleID);

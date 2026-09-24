@@ -47,7 +47,6 @@ function Header(props) {
                     color: 'common.white',
                   },
                 }}
-                rel="noopener noreferrer"
                 target="_blank"
               >
                 Go to docs

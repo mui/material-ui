@@ -97,6 +97,6 @@
     "container": "The component that renders the container.",
     "paper": "The component that renders the paper.",
     "root": "The component that renders the root.",
-    "transition": "The component that renders the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
+    "transition": "The component that renders the transition. <a href=\"/material-ui/transitions/#transition-slots\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

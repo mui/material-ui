@@ -1,8 +1,8 @@
+import { describe, expect, it } from 'vitest';
 import { isJsdom } from '@mui/internal-test-utils/env';
 
 const { execFileSync } = require('child_process');
 const path = require('path');
-const { expect } = require('chai');
 
 describe('@mui/envinfo', () => {
   const packagePath = __dirname;

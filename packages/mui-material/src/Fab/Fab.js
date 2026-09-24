@@ -11,6 +11,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { color, variant, classes, size } = ownerState;
@@ -52,7 +53,7 @@ const FabRoot = styled(ButtonBase, {
   memoTheme(({ theme }) => ({
     ...theme.typography.button,
     minHeight: 36,
-    transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
+    ...getTransitionStyles(theme, ['background-color', 'box-shadow', 'border-color'], {
       duration: theme.transitions.duration.short,
     }),
     borderRadius: '50%',
@@ -78,7 +79,10 @@ const FabRoot = styled(ButtonBase, {
       textDecoration: 'none',
     },
     [`&.${fabClasses.focusVisible}`]: {
-      boxShadow: (theme.vars || theme).shadows[6],
+      ...theme.focusVisible,
+      boxShadow: theme.focusVisible?.boxShadow
+        ? `${(theme.vars || theme).shadows[6]}, ${theme.focusVisible.boxShadow}`
+        : (theme.vars || theme).shadows[6],
     },
     variants: [
       {

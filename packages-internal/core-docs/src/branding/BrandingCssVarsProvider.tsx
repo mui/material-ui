@@ -28,19 +28,22 @@ const themeOptions = {
     },
   },
   ...designTokens,
+  motion: {
+    reducedMotion: 'system' as const,
+  },
   typography: deepmerge(typography, {
     h1: {
-      ':where([data-mui-color-scheme="dark"]) &': {
+      '*:where([data-mui-color-scheme="dark"]) &': {
         color: 'var(--muidocs-palette-common-white)',
       },
     },
     h2: {
-      ':where([data-mui-color-scheme="dark"]) &': {
+      '*:where([data-mui-color-scheme="dark"]) &': {
         color: 'var(--muidocs-palette-grey-100)',
       },
     },
     h5: {
-      ':where([data-mui-color-scheme="dark"]) &': {
+      '*:where([data-mui-color-scheme="dark"]) &': {
         color: 'var(--muidocs-palette-primary-300)',
       },
     },
@@ -183,6 +186,7 @@ export function BrandingCssVarsProvider(props: {
   }, [direction]);
   return (
     <BrandingCssThemeProvider
+      direction={direction}
       forceThemeRerender={canonicalAs.startsWith('/x/') || canonicalAs.startsWith('/toolpad/')}
     >
       <NextNProgressBar />

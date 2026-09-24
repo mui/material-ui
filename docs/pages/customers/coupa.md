@@ -37,7 +37,7 @@ manualCard: true
   We had very strict and aggressive deadlines, and we were able to meet them. If we had done it using our own components, it probably would have been at least six to eight months over the deadline. So, with MUI we got 50% faster. But when you put that on a longer horizon, I think that number is bigger because of [the benefits when tackling] maintenance, and shifting paradigms and business needs.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
-    – <a href="https://www.linkedin.com/in/ali-sipahi/" target="_blank" rel="noopener">Ali Sipahi</a>, Engineering Manager
+    – <a href="https://www.linkedin.com/in/ali-sipahi/" target="_blank">Ali Sipahi</a>, Engineering Manager
   </span>
 </blockquote>
 </span>
@@ -46,7 +46,7 @@ manualCard: true
   We had very strict and aggressive deadlines, and we were able to meet them. If we had done it using our own components, it probably would have been at least six to eight months over the deadline. So, with MUI we got 50% faster. But when you put that on a longer horizon, I think that number is bigger because of [the benefits when tackling] maintenance, and shifting paradigms and business needs.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
-    – <a href="https://www.linkedin.com/in/ali-sipahi/" target="_blank" rel="noopener">Ali Sipahi</a>,  Engineering Manager
+    – <a href="https://www.linkedin.com/in/ali-sipahi/" target="_blank">Ali Sipahi</a>,  Engineering Manager
   </span>
 </blockquote>
 </span>

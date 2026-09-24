@@ -29,8 +29,6 @@ export const ROUTES = {
   baseDocs: 'https://base-ui.com/',
   baseComponents: 'https://base-ui.com/react/components',
   baseQuickstart: 'https://base-ui.com/react/overview/quick-start',
-  // Joy UI doc pages
-  joyDocs: '/joy-ui/getting-started/',
   // System pages
   systemDocs: '/system/getting-started/',
   // X general pages

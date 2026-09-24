@@ -45,6 +45,27 @@ const StepContentRoot = styled('div', {
           borderLeft: 'none',
         },
       },
+      {
+        props: { alternativeLabel: true },
+        style: {
+          marginLeft: 0,
+          marginRight: 12, // half icon
+          paddingLeft: 8,
+          paddingRight: 8 + 12, // margin + half icon
+          borderLeft: 'none',
+          borderRight: theme.vars
+            ? `1px solid ${theme.vars.palette.StepContent.border}`
+            : `1px solid ${
+                theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
+              }`,
+        },
+      },
+      {
+        props: { alternativeLabel: true, last: true },
+        style: {
+          borderRight: 'none',
+        },
+      },
     ],
   })),
 );
@@ -65,10 +86,10 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
     ...other
   } = props;
 
-  const { orientation } = useStepperContext();
+  const { orientation, alternativeLabel } = useStepperContext();
   const { active, last, expanded } = React.useContext(StepContext);
 
-  const ownerState = { ...props, last };
+  const ownerState = { ...props, last, alternativeLabel };
   const classes = useUtilityClasses(ownerState);
 
   if (process.env.NODE_ENV !== 'production') {

@@ -47,6 +47,12 @@ It is enabled here across all devices for demo purposes, but in production it co
 
 {{"demo": "SpeedDialTooltipOpen.js"}}
 
+## Transitions
+
+Speed Dial uses [Zoom](/material-ui/transitions/#zoom) by default.
+Use `slots.transition` and `slotProps.transition` to replace it with another transition or to pass transition props.
+Use `transitionDuration` to control the timing.
+
 ## Accessibility
 
 ### ARIA

@@ -520,7 +520,7 @@ export function buildTheme(): ThemeOptions {
 
 const { palette: lightPalette, typography, ...designTokens } = getDesignTokens('light');
 const { palette: darkPalette } = getDesignTokens('dark');
-const defaultTheme = extendTheme({
+export const defaultTheme = extendTheme({
   colorSchemes: { light: true, dark: true },
   colorSchemeSelector: 'data-mui-color-scheme',
 });

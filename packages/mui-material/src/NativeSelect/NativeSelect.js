@@ -4,8 +4,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import NativeSelectInput from './NativeSelectInput';
-import formControlState from '../FormControl/formControlState';
-import useFormControl from '../FormControl/useFormControl';
+import { useFormControlState } from '../FormControl/useFormControl';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -38,10 +37,8 @@ const NativeSelect = React.forwardRef(function NativeSelect(inProps, ref) {
     ...other
   } = props;
 
-  const muiFormControl = useFormControl();
-  const fcs = formControlState({
+  const [fcs] = useFormControlState({
     props,
-    muiFormControl,
     states: ['variant'],
   });
 

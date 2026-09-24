@@ -1,10 +1,18 @@
 import { defineConfig, coverageConfigDefaults } from 'vitest/config';
 import * as path from 'path';
 
-const MONOREPO_ROOT = path.resolve(__dirname, '.');
+const MONOREPO_ROOT = path.resolve(import.meta.dirname, '.');
 
 const BROWSER_TESTS = ['{docs,packages{-internal,}/*}/vitest.config.browser.mts'];
-const NODE_TESTS = ['{docs,packages{-internal,}/*}/vitest.config.mts'];
+const NODE_TESTS = [
+  '{docs,packages{-internal,}/*}/vitest.config.mts',
+  {
+    test: {
+      name: 'node:module-augmentation',
+      include: ['test/moduleAugmentation/*.test.ts'],
+    },
+  },
+];
 
 function getProjects() {
   if (process.env.TEST_SCOPE === 'browser') {

@@ -32,7 +32,7 @@ export default function SponsorCard(props: {
       data-ga-event-label={new URL(item.href).hostname}
       href={item.href}
       target="_blank"
-      rel="sponsored noopener"
+      rel="sponsored"
       variant="outlined"
       sx={{
         p: 2,

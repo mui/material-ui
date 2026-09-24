@@ -1,10 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { prefixer } from 'stylis';
-import rtlPlugin from '@mui/stylis-plugin-rtl';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
-import { StyleSheetManager } from 'styled-components';
 import { ThemeProvider as SystemThemeProvider } from '@mui/system';
 import { createTheme, useTheme, styled } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
@@ -14,6 +12,14 @@ import { ThemeOptionsContext } from '../ThemeContext/ThemeContext';
 import { useDemoContext } from '../DemoContext/DemoContext';
 import { DemoErrorBoundary } from './DemoErrorBoundary';
 import { DemoInstanceThemeProvider } from './DemoThemeProviders';
+
+type RtlModule = typeof import('@mui/stylis-plugin-rtl');
+
+let rtlModulePromise: Promise<RtlModule> | undefined;
+function loadRtlModule() {
+  rtlModulePromise ??= import('@mui/stylis-plugin-rtl');
+  return rtlModulePromise;
+}
 
 const SRC_DOC = `<!DOCTYPE html>
 <html>
@@ -69,6 +75,14 @@ function FramedDemo(props: FramedDemoProps) {
   const { IframeWrapper } = useDemoContext();
 
   const theme = useTheme();
+  const rtl = theme.direction === 'rtl';
+  const [rtlModule, setRtlModule] = React.useState<RtlModule | null>(null);
+
+  React.useEffect(() => {
+    if (rtl && !rtlModule) {
+      loadRtlModule().then(setRtlModule);
+    }
+  }, [rtl, rtlModule]);
 
   React.useEffect(() => {
     if (!isolated) {
@@ -78,15 +92,19 @@ function FramedDemo(props: FramedDemoProps) {
     }
   }, [document, isolated, theme.direction, themeOptions.paletteMode]);
 
+  // Two caches sharing a key generate the same class names, so the key tracks the plugins. Rules
+  // inserted while the RTL plugin is still loading would otherwise keep winning the cascade.
+  const flipped = rtl ? rtlModule : null;
+
   const cache = React.useMemo(
     () =>
       createCache({
-        key: `iframe-demo-${theme.direction}`,
+        key: `iframe-demo-${flipped ? 'rtl' : 'ltr'}`,
         prepend: true,
         container: document.head,
-        stylisPlugins: theme.direction === 'rtl' ? [prefixer, rtlPlugin] : [prefixer],
+        stylisPlugins: flipped ? [prefixer, flipped.default] : [prefixer],
       }),
-    [document, theme.direction],
+    [document, flipped],
   );
 
   const getWindow = React.useCallback(() => document.defaultView, [document]);
@@ -100,20 +118,15 @@ function FramedDemo(props: FramedDemoProps) {
   const Wrapper = IframeWrapper === undefined ? MaterialIframeWrapper : IframeWrapper;
 
   return (
-    <StyleSheetManager
-      target={document.head}
-      stylisPlugins={theme.direction === 'rtl' ? [rtlPlugin] : []}
-    >
-      <CacheProvider value={cache}>
-        {Wrapper ? (
-          <Wrapper document={document} isolated={isolated}>
-            {clonedChildren}
-          </Wrapper>
-        ) : (
-          clonedChildren
-        )}
-      </CacheProvider>
-    </StyleSheetManager>
+    <CacheProvider value={cache}>
+      {Wrapper ? (
+        <Wrapper document={document} isolated={isolated}>
+          {clonedChildren}
+        </Wrapper>
+      ) : (
+        clonedChildren
+      )}
+    </CacheProvider>
   );
 }
 
@@ -147,7 +160,7 @@ function DemoIframe(props: DemoIframeProps) {
     // that it happens before React can attach event listeners).
     // We need to check the readyState of the document once the iframe is mounted
     // and "replay" the missed load event.
-    // See https://github.com/facebook/react/pull/13862 for ongoing effort in React
+    // See https://github.com/react/react/pull/13862 for ongoing effort in React
     // (though not with iframes in mind).
     if (document != null && document.readyState === 'complete' && !iframeLoaded) {
       onLoad();
@@ -222,6 +235,7 @@ function DemoSandboxInner(props: DemoSandboxProps) {
   const [root, setRoot] = React.useState<HTMLElement | null>(null);
 
   React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setRoot(document.getElementById(id));
   }, [id]);
 
@@ -250,7 +264,7 @@ function DemoSandboxInner(props: DemoSandboxProps) {
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
       {isolated ? (
-        // Place ThemeProvider from MUI System here to disconnect the theme inheritance for Material UI and Joy UI
+        // Place ThemeProvider from MUI System here to disconnect the theme inheritance for Material UI
         // The demo will need to handle the ThemeProvider itself.
         <SystemThemeProvider
           theme={(upperTheme) => ({

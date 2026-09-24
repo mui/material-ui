@@ -10,12 +10,10 @@ const linkStyleOverrides = (theme: Theme) => ({
   '&:hover': {
     color: (theme.vars || theme).palette.primary[200],
   },
-  ...theme.applyDarkStyles({
-    color: 'inherit',
-    '&:hover': {
-      color: (theme.vars || theme).palette.primary[200],
-    },
-  }),
+  '&:focus-visible': {
+    outline: '3px solid #fff',
+    outlineOffset: '2px',
+  },
 });
 
 function getCustomMessage() {
@@ -26,7 +24,6 @@ function getCustomMessage() {
       <Link
         href="/blog/introducing-mui-v9/"
         target="_blank"
-        rel="noopener"
         underline="always"
         sx={linkStyleOverrides}
       >
@@ -45,7 +42,6 @@ function getDefaultHiringMessage() {
         // Fix me!
         href={ROUTES.careers}
         target="_blank"
-        rel="noopener"
         underline="always"
         sx={linkStyleOverrides}
       >

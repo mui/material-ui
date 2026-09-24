@@ -64,6 +64,11 @@ The usage of a virtual element for the Popover component requires the `nodeType`
 This is different from virtual elements used for the [`Popper`](/material-ui/react-popper/#virtual-element) or [`Tooltip`](/material-ui/react-tooltip/#virtual-element) components, both of which don't require the property.
 :::
 
+## Transitions
+
+Popover uses [Grow](/material-ui/transitions/#grow) by default.
+Use `slots.transition` and `slotProps.transition` to replace it with another transition or to pass transition props.
+
 ## Supplementary projects
 
 For more advanced use cases, you might be able to take advantage of:

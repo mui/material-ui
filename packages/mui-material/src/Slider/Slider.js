@@ -16,6 +16,8 @@ import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import BaseSliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
+import { getTransitionStyles } from '../transitions/utils';
+import { outsetFocusRing } from '../styles/focusVisible';
 
 function Identity(x) {
   return x;
@@ -174,7 +176,7 @@ export const SliderTrack = styled('span', {
       borderRadius: 'inherit',
       border: '1px solid currentColor',
       backgroundColor: 'currentColor',
-      transition: theme.transitions.create(['left', 'width', 'bottom', 'height'], {
+      ...getTransitionStyles(theme, ['left', 'width', 'bottom', 'height'], {
         duration: theme.transitions.duration.shortest,
       }),
       variants: [
@@ -250,7 +252,7 @@ export const SliderThumb = styled('span', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    transition: theme.transitions.create(['box-shadow', 'left', 'bottom'], {
+    ...getTransitionStyles(theme, ['box-shadow', 'left', 'bottom'], {
       duration: theme.transitions.duration.shortest,
     }),
     '@media (forced-colors: active)': {
@@ -280,6 +282,9 @@ export const SliderThumb = styled('span', {
         boxShadow: 'none',
       },
     },
+    ...(theme.focusVisible && {
+      [`&.${sliderClasses.focusVisible}`]: { ...outsetFocusRing, ...theme.focusVisible },
+    }),
     variants: [
       {
         props: { size: 'small' },
@@ -310,12 +315,20 @@ export const SliderThumb = styled('span', {
         .map(([color]) => ({
           props: { color },
           style: {
-            [`&:hover, &.${sliderClasses.focusVisible}`]: {
+            '&:hover': {
               boxShadow: `0px 0px 0px 8px ${theme.alpha((theme.vars || theme).palette[color].main, 0.16)}`,
               '@media (hover: none)': {
                 boxShadow: 'none',
               },
             },
+            ...(!theme.focusVisible && {
+              [`&.${sliderClasses.focusVisible}`]: {
+                boxShadow: `0px 0px 0px 8px ${theme.alpha((theme.vars || theme).palette[color].main, 0.16)}`,
+                '@media (hover: none)': {
+                  boxShadow: 'none',
+                },
+              },
+            }),
             [`&.${sliderClasses.active}`]: {
               boxShadow: `0px 0px 0px 14px ${theme.alpha((theme.vars || theme).palette[color].main, 0.16)}`,
             },
@@ -334,7 +347,7 @@ const SliderValueLabel = styled(BaseSliderValueLabel, {
     whiteSpace: 'nowrap',
     ...theme.typography.body2,
     fontWeight: 500,
-    transition: theme.transitions.create(['transform'], {
+    ...getTransitionStyles(theme, ['transform'], {
       duration: theme.transitions.duration.shortest,
     }),
     position: 'absolute',

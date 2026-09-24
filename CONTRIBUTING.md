@@ -208,12 +208,15 @@ The log of the failed build should list which browsers failed.
 If Chrome failed then `pnpm test:browser` should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well.
 If other browsers failed, you can debug using `VITEST_BROWSERS=firefox,webkit pnpm test:browser`.
 
-#### ci/circleci: test_regression
+#### ci/circleci: test_regressions
 
-This renders tests in `test/regressions/tests` and takes screenshots.
-This step shouldn't fail if the others pass.
-Otherwise, a maintainer will take a look.
-The screenshots are evaluated in another step.
+This builds the regression fixture app and runs Playwright in a real browser.
+It checks for visual regressions with screenshots and accessibility regressions with axe-core.
+
+If it fails, check the log for the exact error.
+If generated accessibility results are stale, run `pnpm test:regressions` locally and commit the updated files.
+
+Screenshots are uploaded and compared by Argos in a separate step.
 
 #### ci/circleci: test_types
 

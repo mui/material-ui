@@ -75,6 +75,20 @@ For example, the code snippet below shows how to add a custom `data-testid` to t
 <Autocomplete slotProps={{ popper: { 'data-testid': 'my-popper' } }} />
 ```
 
+Each slot prop can also be a callback that receives the component's `ownerState` and returns the props for that slot.
+Use this when you need slot props to depend on the component's props or internal state.
+
+```jsx
+<Popover
+  open={open}
+  slotProps={{
+    paper: (ownerState) => ({
+      elevation: ownerState.open ? 8 : 0,
+    }),
+  }}
+/>
+```
+
 All additional props placed on the primary component are also propagated into the root slot (just as if they were placed in `slotProps.root`).
 These two examples are equivalent:
 

@@ -14,28 +14,17 @@ export default function HorizontalNonLinearStepper() {
     [k: number]: boolean;
   }>({});
 
-  const totalSteps = () => {
-    return steps.length;
-  };
-
-  const completedSteps = () => {
-    return Object.keys(completed).length;
-  };
-
-  const isLastStep = () => {
-    return activeStep === totalSteps() - 1;
-  };
-
-  const allStepsCompleted = () => {
-    return completedSteps() === totalSteps();
-  };
+  const totalSteps = steps.length;
+  const completedSteps = Object.keys(completed).length;
+  const isLastStep = activeStep === totalSteps - 1;
+  const allStepsCompleted = completedSteps === totalSteps;
 
   const handleNext = () => {
     const newActiveStep =
-      isLastStep() && !allStepsCompleted()
+      isLastStep && !allStepsCompleted
         ? // It's the last step, but not all steps have been completed,
-          // find the first step that has been completed
-          steps.findIndex((step, i) => !(i in completed))
+          // find the first step that has not been completed
+          steps.findIndex((_step, i) => !(i in completed))
         : activeStep + 1;
     setActiveStep(newActiveStep);
   };
@@ -61,6 +50,41 @@ export default function HorizontalNonLinearStepper() {
     setCompleted({});
   };
 
+  const resetButtonRef = React.useRef<HTMLButtonElement>(null);
+  const nextButtonRef = React.useRef<HTMLButtonElement>(null);
+  const previousActiveStepRef = React.useRef(activeStep);
+  const previousCompletedRef = React.useRef(completed);
+
+  // Manage focus when the completed steps change.
+  React.useEffect(() => {
+    const previousCompleted = previousCompletedRef.current;
+    previousCompletedRef.current = completed;
+
+    if (allStepsCompleted) {
+      // If the user has completed all steps and hits "Finish", focus the "Reset" button.
+      resetButtonRef.current!.focus();
+      return;
+    }
+
+    if (
+      Object.keys(completed).length === 0 &&
+      Object.keys(previousCompleted).length !== 0
+    ) {
+      // If the user has completed all steps and hits "Reset", focus the "Next" button.
+      nextButtonRef.current!.focus();
+    }
+  }, [completed, allStepsCompleted]);
+
+  // Manage focus when the active step changes.
+  React.useEffect(() => {
+    if (activeStep === 0 && previousActiveStepRef.current === 1) {
+      // If the user navigated to first step via "Back" button, focus the "Next" button.
+      nextButtonRef.current!.focus();
+    }
+
+    previousActiveStepRef.current = activeStep;
+  }, [activeStep]);
+
   return (
     <Box sx={{ width: '100%' }}>
       <Stepper nonLinear activeStep={activeStep}>
@@ -77,14 +101,16 @@ export default function HorizontalNonLinearStepper() {
         ))}
       </Stepper>
       <div id="stepper-content">
-        {allStepsCompleted() ? (
+        {allStepsCompleted ? (
           <React.Fragment>
             <Typography sx={{ mt: 2, mb: 1 }}>
               All steps completed - you&apos;re finished
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
               <Box sx={{ flex: '1 1 auto' }} />
-              <Button onClick={handleReset}>Reset</Button>
+              <Button onClick={handleReset} ref={resetButtonRef}>
+                Reset
+              </Button>
             </Box>
           </React.Fragment>
         ) : (
@@ -102,7 +128,7 @@ export default function HorizontalNonLinearStepper() {
                 Back
               </Button>
               <Box sx={{ flex: '1 1 auto' }} />
-              <Button onClick={handleNext} sx={{ mr: 1 }}>
+              <Button onClick={handleNext} sx={{ mr: 1 }} ref={nextButtonRef}>
                 Next
               </Button>
               {activeStep !== steps.length &&
@@ -112,9 +138,7 @@ export default function HorizontalNonLinearStepper() {
                   </Typography>
                 ) : (
                   <Button onClick={handleComplete}>
-                    {completedSteps() === totalSteps() - 1
-                      ? 'Finish'
-                      : 'Complete Step'}
+                    {completedSteps === totalSteps - 1 ? 'Finish' : 'Complete Step'}
                   </Button>
                 ))}
             </Box>
