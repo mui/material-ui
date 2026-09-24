@@ -258,7 +258,8 @@ export interface UseAutocompleteProps<
   inputValue?: string | undefined;
   /**
    * Used to determine if the option represents the given value.
-   * Uses strict equality by default.
+   * Uses strict equality against the option by default, or against the value returned by
+   * `getOptionValue` when that prop is provided.
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
    * @param {Value} option The option to test.

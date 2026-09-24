@@ -110,7 +110,7 @@
     },
     "inputValue": { "description": "The input value." },
     "isOptionEqualToValue": {
-      "description": "Used to determine if the option represents the given value. Uses strict equality by default. ⚠️ Both arguments need to be handled, an option can only match with one value.",
+      "description": "Used to determine if the option represents the given value. Uses strict equality against the option by default, or against the value returned by <code>getOptionValue</code> when that prop is provided. ⚠️ Both arguments need to be handled, an option can only match with one value.",
       "typeDescriptions": {
         "option": { "name": "option", "description": "The option to test." },
         "value": {
@@ -220,7 +220,7 @@
       "typeDescriptions": {
         "value": {
           "name": "value",
-          "description": "The <code>value</code> provided to the component."
+          "description": "The <code>value</code> provided to the component. When <code>getOptionValue</code> is provided, this contains mapped values."
         },
         "getItemProps": { "name": "getItemProps", "description": "The value item props." },
         "ownerState": {

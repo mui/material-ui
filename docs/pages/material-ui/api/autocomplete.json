@@ -149,7 +149,7 @@
     "renderValue": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(value: AutocompleteRenderValue<AutocompleteResolvedValue<Value, MappedValue>, Multiple, FreeSolo>, getItemProps: function, ownerState: object) => ReactNode",
+        "type": "function(value: AutocompleteRenderValue<Value | MappedValue, Multiple, FreeSolo>, getItemProps: function, ownerState: object) => ReactNode",
         "describedArgs": ["value", "getItemProps", "ownerState"]
       }
     },

@@ -1099,7 +1099,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   inputValue: PropTypes.string,
   /**
    * Used to determine if the option represents the given value.
-   * Uses strict equality by default.
+   * Uses strict equality against the option by default, or against the value returned by
+   * `getOptionValue` when that prop is provided.
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
    * @param {Value} option The option to test.
@@ -1248,7 +1249,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Renders the selected value(s) as rich content in the input for both single and multiple selections.
    *
-   * @param {AutocompleteRenderValue<AutocompleteResolvedValue<Value, MappedValue>, Multiple, FreeSolo>} value The `value` provided to the component.
+   * @param {AutocompleteRenderValue<Value|MappedValue, Multiple, FreeSolo>} value The `value` provided to the component.
+   * When `getOptionValue` is provided, this contains mapped values.
    * @param {function} getItemProps The value item props.
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
