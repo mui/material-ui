@@ -27,6 +27,7 @@ default-job: &default-job
       type: string
       default: << pipeline.parameters.e2e-base-url >>
   environment: &default-environment
+    BASE_BRANCH: master # #target-branch-reference
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     DANGER_DISABLE_TRANSPILATION: 'true'

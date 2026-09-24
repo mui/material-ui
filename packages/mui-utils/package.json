@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@mui/types": "workspace:^",
-    "@types/node": "20.19.43",
+    "@types/node": "22.20.4",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "@types/react-is": "19.3.0",
