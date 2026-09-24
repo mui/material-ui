@@ -101,6 +101,7 @@
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "7.29.7",
     "@babel/preset-typescript": "7.29.7",
+    "@huggingface/tokenizers": "^0.2.0",
     "@mui/internal-api-docs-builder": "workspace:^",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",

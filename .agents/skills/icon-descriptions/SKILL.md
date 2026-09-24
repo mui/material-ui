@@ -66,6 +66,12 @@ pnpm prettier --write docs/data/material/components/material-icons/iconDescripti
 
 `merge` adds or replaces the processed icons, drops keywords that are filler or repeat the name or synonyms, removes icons that no longer exist in `@mui/icons-material`, and sorts the file.
 
+Then rebuild the semantic search index, which embeds the icon texts:
+
+```bash
+pnpm docs:mdicons:search-index
+```
+
 ### 6. Review
 
 - Pick two or three sheets and compare the new entries against the images. Look for invented details (parts that are not drawn) and keywords that belong to a neighbouring icon.

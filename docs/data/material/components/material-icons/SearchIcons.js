@@ -50,6 +50,7 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import synonyms from './synonyms';
 import iconDescriptions from './iconDescriptions.json';
+import { loadSemanticIndex, rankIcons } from './semanticSearch';
 
 const FlexSearchIndex = flexsearch.Index;
 
@@ -570,6 +571,12 @@ const allIcons = Object.keys(mui)
     return icon;
   });
 
+const allIconsByTheme = {};
+for (const icon of allIcons) {
+  allIconsByTheme[icon.theme] ??= {};
+  allIconsByTheme[icon.theme][icon.name] = icon;
+}
+
 /**
  * Returns the last defined value that has been passed in [value]
  */
@@ -599,12 +606,29 @@ export default function SearchIcons() {
     setSelectedIcon('');
   }, [setSelectedIcon]);
 
+  const [semanticIndex, setSemanticIndex] = React.useState(null);
+  React.useEffect(() => {
+    if (query !== '' && !semanticIndex) {
+      // Keyword search keeps working if the index fails to load.
+      loadSemanticIndex().then(setSemanticIndex, () => {});
+    }
+  }, [query, semanticIndex]);
+
   const icons = React.useMemo(() => {
-    const keys = query === '' ? null : searchIndex.search(query, { limit: 3000 });
-    return (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
-      (icon) => theme === icon.theme,
-    );
-  }, [query, theme]);
+    if (query === '') {
+      return allIcons.filter((icon) => theme === icon.theme);
+    }
+    const keywordMatches = [
+      ...new Set(
+        searchIndex
+          .search(query, { limit: 3000 })
+          .map((key) => allIconsMap[key].name),
+      ),
+    ];
+    return rankIcons(query, keywordMatches, semanticIndex)
+      .map((name) => allIconsByTheme[theme][name])
+      .filter(Boolean);
+  }, [query, theme, semanticIndex]);
 
   const deferredIcons = React.useDeferredValue(icons);
 
