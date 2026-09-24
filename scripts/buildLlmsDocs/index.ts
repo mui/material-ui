@@ -421,11 +421,23 @@ function generateLlmsTxt(
 }
 
 /**
+ * Deletes the markdown and txt files a previous run wrote anywhere under `dir`.
+ * Files of any other type are kept, and emptied directories stay behind.
+ */
+function removeGeneratedFiles(dir: string): void {
+  for (const entry of fs.globSync(['**/*.md', '**/*.txt'], { cwd: dir })) {
+    fs.rmSync(path.join(dir, entry));
+  }
+}
+
+/**
  * Main build function
  */
 async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<void> {
   const grep = argv.grep ? new RegExp(argv.grep) : null;
   const outputDir = argv.outputDir || path.join(process.cwd(), 'docs/public');
+
+  removeGeneratedFiles(path.join(outputDir, 'material-ui'));
 
   // Load project settings from the specified path
   if (!argv.projectSettings) {
