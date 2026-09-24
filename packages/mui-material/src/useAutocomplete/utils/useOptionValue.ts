@@ -150,9 +150,8 @@ export default function useOptionValue<Value, MappedValue = never>({
 
     return [];
   }, [multiple, value]);
-  // Creates a set of selected values for fast lookup when using custom equality.
+  // Default equality supports set lookups; custom equality must compare options and values.
   const selectedValuesSet = React.useMemo(() => {
-    // Fast path for the default equality behavior to avoid O(n^2) option checks.
     if (isOptionEqualToValueProp || selectedValues.length === 0) {
       return null;
     }
