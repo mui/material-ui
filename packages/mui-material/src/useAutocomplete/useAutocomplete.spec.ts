@@ -344,7 +344,7 @@ function Component() {
   // @ts-expect-error String IDs are invalid when freeSolo might be true.
   useAutocomplete(dynamicStringMapping);
 
-  // Boolean and bigint IDs retain their own types rather than widening to all primitive IDs.
+  // Boolean IDs retain their own type rather than widening to all primitive IDs.
   const booleanMappedAutocomplete = useAutocomplete({
     options: persons.slice(0, 2),
     getOptionValue: (option) => option.id === '1',
@@ -352,11 +352,11 @@ function Component() {
   expectType<boolean | null, typeof booleanMappedAutocomplete.value>(
     booleanMappedAutocomplete.value,
   );
-  const bigintMappedAutocomplete = useAutocomplete({
+  useAutocomplete({
     options: persons,
+    // @ts-expect-error bigint IDs are not supported.
     getOptionValue: (option) => BigInt(option.id),
   });
-  expectType<bigint | null, typeof bigintMappedAutocomplete.value>(bigintMappedAutocomplete.value);
 
   useAutocomplete({
     options: persons,

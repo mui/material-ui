@@ -34,8 +34,8 @@ export type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo 
 
 /** Allowed IDs; strings are reserved for free-solo input, including when freeSolo is boolean. */
 export type AutocompleteMappedValue<FreeSolo = false> = true extends FreeSolo
-  ? number | bigint | boolean
-  : string | number | bigint | boolean;
+  ? number | boolean
+  : string | number | boolean;
 
 /**
  * Prevents this occurrence of T from contributing inference, including before TypeScript 5.4.

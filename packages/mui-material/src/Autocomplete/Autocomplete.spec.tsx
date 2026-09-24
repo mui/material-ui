@@ -322,7 +322,7 @@ for (const wrapperProps of [
 }
 
 // Uncast wrappers accept a mapper returning a union of supported primitive IDs.
-for (const value of ['1', 1, true, BigInt(1)]) {
+for (const value of ['1', 1, true]) {
   const mappedWrapperProps = {
     options,
     getOptionValue: () => value,
@@ -625,14 +625,19 @@ function CustomStatusSlot() {
   }}
   renderInput={() => null}
 />;
-<Autocomplete
-  options={options}
-  getOptionValue={(option) => BigInt(option.value)}
-  onChange={(event, value) => {
-    expectType<bigint | null, typeof value>(value);
-  }}
-  renderInput={() => null}
-/>;
+const bigintMappedProps = {
+  options,
+  getOptionValue: (option: Option) => BigInt(option.value),
+  renderInput: () => null,
+};
+// @ts-expect-error bigint IDs are not supported.
+<Autocomplete {...bigintMappedProps} />;
+for (const WrappedAutocomplete of [UncastStyledAutocomplete, UncastMemoAutocomplete]) {
+  // @ts-expect-error Wrappers must also reject bigint IDs.
+  <WrappedAutocomplete {...bigintMappedProps} />;
+}
+// @ts-expect-error createElement must also reject bigint IDs.
+React.createElement(Autocomplete, bigintMappedProps);
 
 // freeSolo adds strings to a non-string mapped value
 <Autocomplete

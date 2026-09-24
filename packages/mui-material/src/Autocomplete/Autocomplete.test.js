@@ -4413,11 +4413,11 @@ describe('<Autocomplete />', () => {
         expect(staleChip).to.have.text('');
       });
 
-      it('does not expose unresolved numeric, boolean, or bigint values as chip labels', () => {
-        render(<Test multiple value={[42, 87, 0, false, 3n]} options={[]} />);
+      it('does not expose unresolved numeric or boolean values as chip labels', () => {
+        render(<Test multiple value={[42, 87, 0, false]} options={[]} />);
 
         const chips = screen.getAllByRole('button', { name: '' });
-        expect(chips).to.have.length(5);
+        expect(chips).to.have.length(4);
       });
 
       it('removes an unresolved chip at its original index among resolved chips', async () => {
@@ -4530,7 +4530,7 @@ describe('<Autocomplete />', () => {
       const expectedError =
         'MUI: The `getOptionValue` method of useAutocomplete returned the string value "draft" while `freeSolo` is enabled.\n' +
         'useAutocomplete cannot distinguish string option values from free-solo values. ' +
-        'Return a number, bigint, or boolean from `getOptionValue`, or disable `freeSolo`.';
+        'Return a number or boolean from `getOptionValue`, or disable `freeSolo`.';
 
       expect(() => {
         render(

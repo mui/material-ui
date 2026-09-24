@@ -60,7 +60,7 @@ export function validateOptionValue(
         value,
       )} while \`freeSolo\` is enabled.\n` +
         `useAutocomplete cannot distinguish string option values from free-solo values. ` +
-        'Return a number, bigint, or boolean from `getOptionValue`, or disable `freeSolo`.',
+        'Return a number or boolean from `getOptionValue`, or disable `freeSolo`.',
       duplicatedErrorMessages,
     );
     return;
@@ -76,7 +76,7 @@ export function validateOptionValue(
     tryShowErrorMessage(
       `MUI: The \`getOptionValue\` method of useAutocomplete returned ${invalidValue}, which is not a valid option value.\n` +
         `useAutocomplete uses this value to identify and match options. ` +
-        'Return a unique string, number, bigint, or boolean for every option.',
+        'Return a unique string, number, or boolean for every option.',
       duplicatedErrorMessages,
     );
   }
@@ -85,10 +85,7 @@ export function validateOptionValue(
 function isValidOptionValue(value: unknown) {
   const valueType = typeof value;
   return (
-    (valueType === 'string' ||
-      valueType === 'number' ||
-      valueType === 'bigint' ||
-      valueType === 'boolean') &&
+    (valueType === 'string' || valueType === 'number' || valueType === 'boolean') &&
     !Number.isNaN(value)
   );
 }
@@ -96,9 +93,6 @@ function isValidOptionValue(value: unknown) {
 function getOptionValueDescription(value: unknown) {
   if (typeof value === 'string') {
     return JSON.stringify(value);
-  }
-  if (typeof value === 'bigint') {
-    return `${value.toString()}n`;
   }
   return String(value);
 }

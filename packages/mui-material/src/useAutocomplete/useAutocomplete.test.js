@@ -538,7 +538,7 @@ describe('useAutocomplete', () => {
     const freeSoloStringMappingError =
       'MUI: The `getOptionValue` method of useAutocomplete returned the string value "draft" while `freeSolo` is enabled.\n' +
       'useAutocomplete cannot distinguish string option values from free-solo values. ' +
-      'Return a number, bigint, or boolean from `getOptionValue`, or disable `freeSolo`.';
+      'Return a number or boolean from `getOptionValue`, or disable `freeSolo`.';
 
     const getOptionValue = (option) => option.id;
 
@@ -747,7 +747,7 @@ describe('useAutocomplete', () => {
             ? freeSoloStringMappingError
             : `MUI: The \`getOptionValue\` method of useAutocomplete returned ${returned}, which is not a valid option value.\n` +
               'useAutocomplete uses this value to identify and match options. ' +
-              'Return a unique string, number, bigint, or boolean for every option.';
+              'Return a unique string, number, or boolean for every option.';
           const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
 
           try {
@@ -1394,6 +1394,7 @@ describe('useAutocomplete', () => {
         returnedValue: 'a value of type symbol',
       },
       { description: 'NaN', optionValue: NaN, returnedValue: 'NaN' },
+      { description: 'a bigint', optionValue: 1n, returnedValue: 'a value of type bigint' },
     ])('warns when getOptionValue returns $description', ({ optionValue, returnedValue }) => {
       expect(() => {
         render(<ValidationTest options={[{}]} getOptionValue={() => optionValue} />, {
@@ -1402,7 +1403,7 @@ describe('useAutocomplete', () => {
       }).toErrorDev(
         `MUI: The \`getOptionValue\` method of useAutocomplete returned ${returnedValue}, which is not a valid option value.\n` +
           'useAutocomplete uses this value to identify and match options. ' +
-          'Return a unique string, number, bigint, or boolean for every option.',
+          'Return a unique string, number, or boolean for every option.',
       );
     });
 
@@ -1425,7 +1426,7 @@ describe('useAutocomplete', () => {
     it('accepts supported primitive option values', () => {
       expect(() => {
         render(
-          <ValidationTest options={['string', 1, 2n, true]} getOptionValue={(option) => option} />,
+          <ValidationTest options={['string', 1, true]} getOptionValue={(option) => option} />,
           { strict: false },
         );
       }).not.toErrorDev();
