@@ -318,7 +318,7 @@ Visit the [Content Security Policy guide](/material-ui/guides/content-security-p
 :::warning
 Values in `sx` are written into the stylesheet as they are, so a value containing `}` can end the rule and add CSS of its own.
 If a value comes from user input, check it against the format you expect before using it, for example `/^#[0-9a-f]{6}$/i` for a color from a color picker, or `Number()` for a size.
-The same applies to theme values and `GlobalStyles`.
+The same applies to [theme values](/material-ui/customization/theming/#theme-configuration-variables) and [`GlobalStyles`](/material-ui/customization/how-to-customize/#4-global-css-override).
 :::
 
 ## TypeScript usage
