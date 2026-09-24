@@ -177,9 +177,8 @@ async function prepare(workDir, args) {
 
 function context(workDir) {
   fs.mkdirSync(path.join(workDir, 'context'), { recursive: true });
-  const fixes = readFixes(workDir);
   for (const sheet of readManifest(workDir)) {
-    const visual = { ...readOutput(workDir, 'visual', sheet.id), ...fixes };
+    const visual = readOutput(workDir, 'visual', sheet.id) ?? {};
     const ctx = Object.fromEntries(
       sheet.names.map((name) => [
         name,
@@ -197,7 +196,6 @@ function context(workDir) {
 function check(workDir, kind) {
   const prefix = kind === 'visual' ? 'visual' : 'kw';
   const problems = [];
-  const toFix = {};
   let count = 0;
   for (const sheet of readManifest(workDir)) {
     const data = readOutput(workDir, prefix, sheet.id);
@@ -217,7 +215,7 @@ function check(workDir, kind) {
         if (typeof value !== 'string' || !value.trim()) {
           problems.push(`${name}: empty description`);
         } else if (BANNED_VISUAL_WORDS.test(value)) {
-          toFix[name] = value;
+          problems.push(`${name}: style or filler word in "${value}"`);
         }
       } else if (!Array.isArray(value) || value.length === 0) {
         problems.push(`${name}: no keywords`);
@@ -226,30 +224,16 @@ function check(workDir, kind) {
   }
   console.log(`${kind}: checked ${count} icons, ${problems.length} problems`);
   problems.forEach((problem) => console.log(`  ${problem}`));
-
-  const fixFile = path.join(workDir, 'out', 'visual_to_fix.json');
-  const pending = Object.keys(toFix).filter((name) => !readFixes(workDir)[name]);
-  if (kind === 'visual' && pending.length) {
-    fs.writeFileSync(fixFile, JSON.stringify(toFix, null, 2));
-    console.log(`${pending.length} descriptions use style or filler words, see ${fixFile}`);
-  }
-  if (problems.length || (kind === 'visual' && pending.length)) {
+  if (problems.length) {
     process.exitCode = 1;
   }
 }
 
-// Rewritten descriptions from the cleanup pass, applied on merge.
-function readFixes(workDir) {
-  const file = path.join(workDir, 'out', 'visual_fixed.json');
-  return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
-}
-
 function merge(workDir) {
   const descriptions = readDescriptions();
-  const fixes = readFixes(workDir);
   let dropped = 0;
   for (const sheet of readManifest(workDir)) {
-    const visual = { ...readOutput(workDir, 'visual', sheet.id), ...fixes };
+    const visual = readOutput(workDir, 'visual', sheet.id) ?? {};
     const keywords = readOutput(workDir, 'kw', sheet.id) ?? {};
     for (const name of sheet.names) {
       if (!visual[name] || !keywords[name]) {

@@ -41,7 +41,9 @@ pnpm docs:mdicons:descriptions check <workDir> visual
 ```
 
 - Missing or invalid files: rerun the visual pass for those sheets only.
-- Descriptions using style or filler words ("outline", "filled", ...) are written to `<workDir>/out/visual_to_fix.json`. Subagents use these words in roughly 1 in 8 descriptions despite the instructions. Launch one subagent with [prompts/fix.md](prompts/fix.md) (`{{WORK_DIR}}` replaced) to rewrite them into `<workDir>/out/visual_fixed.json`, then run the check again. It must pass before continuing.
+- Descriptions using style or filler words ("outline", "filled", ...): subagents use these in roughly 1 in 8 descriptions despite the instructions. Edit those sentences directly in `<workDir>/out/visual_XXX.json` with a minimal change: drop the style word ("house outline with a badge" becomes "house with a badge"), or rephrase when it carries meaning ("one dashed and one solid line" becomes "one dashed and one continuous line").
+
+Run the check again. It must pass before continuing.
 
 ### 4. Keyword pass
 
