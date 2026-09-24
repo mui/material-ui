@@ -550,9 +550,6 @@ importers:
       final-form:
         specifier: ^5.0.1
         version: 5.0.1
-      flexsearch:
-        specifier: ^0.8.212
-        version: 0.8.212
       json2mq:
         specifier: ^0.2.0
         version: 0.2.0
@@ -565,6 +562,9 @@ importers:
       material-ui-popup-state:
         specifier: ^5.3.7
         version: 5.3.7(@mui/material@packages+mui-material+build)(@types/react@19.3.0)(react@19.3.0)
+      minisearch:
+        specifier: ^7.2.0
+        version: 7.2.0
       next:
         specifier: 16.3.5
         version: 16.3.5(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.4)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -7491,9 +7491,6 @@ packages:
   flatted@3.4.4:
     resolution: {integrity: sha512-5+ybhBZANEJxaH3X5evAFatUxLfEHSr7n6kYJ+1Qd0mUqr4eu9gIf6GDbWHf8RJijHrjjO8G+la14SlL2SeS1Q==}
 
-  flexsearch@0.8.212:
-    resolution: {integrity: sha512-wSyJr1GUWoOOIISRu+X2IXiOcVfg9qqBRyCPRUdLMIGJqPzMo+jMRlvE83t14v1j0dRMEaBbER/adQjp6Du2pw==}
-
   flow-estree@0.328.0:
     resolution: {integrity: sha512-uMB3dC4nfZYn+dd7/PYkyAK1mqBR4TJ4TWRdOjubpb/ObrLvPFdFSmMTq55fqttCCTygQ4NtD1Zdd+wcjC5t0g==}
     engines: {node: '>=18'}
@@ -9135,6 +9132,9 @@ packages:
   minipass@7.1.3:
     resolution: {integrity: sha512-tEBHqDnIoM/1rXME1zgka9g6Q2lcoCkxHLuc7ODJ5BxbP5d4c2Z5cGgtXAku59200Cx7diuHTOYfSBD8n6mm8A==}
     engines: {node: '>=16 || 14 >=14.17'}
+
+  minisearch@7.2.0:
+    resolution: {integrity: sha512-dqT2XBYUOZOiC5t2HRnwADjhNS2cecp9u+TJRiJ1Qp/f5qjkeT5APcGPjHw+bz89Ms8Jp+cG4AlE+QZ/QnDglg==}
 
   minizlib@3.1.0:
     resolution: {integrity: sha512-KZxYo1BUkWD2TVFLr0MQoM8vUUigWD3LlD83a/75BqC+4qE0Hb1Vo5v1FgcfaNXvfXzr+5EhQ6ing/CaBijTlw==}
@@ -17991,8 +17991,6 @@ snapshots:
 
   flatted@3.4.4: {}
 
-  flexsearch@0.8.212: {}
-
   flow-estree@0.328.0: {}
 
   flow-parser@0.328.0:
@@ -19918,6 +19916,8 @@ snapshots:
   minipass@4.2.8: {}
 
   minipass@7.1.3: {}
+
+  minisearch@7.2.0: {}
 
   minizlib@3.1.0:
     dependencies:
