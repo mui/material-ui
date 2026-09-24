@@ -84,9 +84,15 @@ async function run() {
             .filter(Boolean)
         : [];
 
+      // The words of the icon name (ArrowBack -> arrow back), for search engines that match
+      // whole words
+      const nameStrings = (icon.match(/[A-Z]?[a-z]+|[A-Z]+(?![a-z])|\d+/g) ?? [])
+        .map((word) => word.toLowerCase())
+        .filter((word) => word.length > 1);
+
       let mergedStrings = union(
-        union(synonymsIconStrings, materialIconStrings),
-        descriptionStrings,
+        union(union(synonymsIconStrings, materialIconStrings), descriptionStrings),
+        nameStrings,
       );
       mergedStrings = mergedStrings
         // remove strings that are substrings of others
