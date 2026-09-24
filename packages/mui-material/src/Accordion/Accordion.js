@@ -251,9 +251,9 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     ownerState,
   });
 
-  // eslint-disable-next-line mui/material-ui-name-matches-component-name
   const resolvedCollapseProps = useDefaultProps({
     props: transitionProps,
+    // eslint-disable-next-line mui/material-ui-name-matches-component-name
     name: 'MuiCollapse',
   });
 
