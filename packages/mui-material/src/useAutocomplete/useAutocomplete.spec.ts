@@ -1,10 +1,9 @@
-import { expectType } from '@mui/types';
+import { expectType, PartiallyRequired } from '@mui/types';
 import {
   useAutocomplete,
   FilterOptionsState,
   AutocompleteGroupedOption,
   UseAutocompleteProps,
-  UseAutocompleteMappedProps,
   UseAutocompleteParameters,
   AutocompleteMappedValue,
 } from '@mui/material/useAutocomplete';
@@ -22,16 +21,25 @@ const persons: Person[] = [
 ];
 
 interface MyMappedAutocompleteProps<
-  Option,
-  Value extends AutocompleteMappedValue<false>,
-> extends UseAutocompleteMappedProps<Option, Value> {
+  Value,
+  MappedValue extends AutocompleteMappedValue<FreeSolo>,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
+> extends UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo, MappedValue> {
   myProp?: string;
+  getOptionValue: (option: Value) => MappedValue;
 }
 
-function useMappedAutocomplete<Option, Value extends AutocompleteMappedValue<false>>(
-  props: MyMappedAutocompleteProps<Option, Value>,
-) {
-  return useAutocomplete<Option, false, false, false, Value>(props);
+function useMappedAutocomplete<
+  Value,
+  MappedValue extends AutocompleteMappedValue<FreeSolo>,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
+>(props: MyMappedAutocompleteProps<Value, MappedValue, Multiple, DisableClearable, FreeSolo>) {
+  // Forward generic mapped props without spelling out the hook's type arguments.
+  return useAutocomplete(props);
 }
 
 function Component() {
@@ -214,6 +222,19 @@ function Component() {
       expectType<Person, typeof option>(option);
       return option.name;
     },
+    getOptionDisabled(option) {
+      expectType<Person, typeof option>(option);
+      return false;
+    },
+    getOptionKey(option) {
+      expectType<Person, typeof option>(option);
+      return option.id;
+    },
+    filterOptions(items, state) {
+      expectType<Person[], typeof items>(items);
+      expectType<(option: Person) => string, typeof state.getOptionLabel>(state.getOptionLabel);
+      return items;
+    },
     isOptionEqualToValue(option, value) {
       expectType<Person, typeof option>(option);
       expectType<string, typeof value>(value);
@@ -234,6 +255,10 @@ function Component() {
   const mappedOption = mappedAutocomplete.getOptionFromValue(persons[0].id);
   expectType<Person | null, typeof mappedOption>(mappedOption);
   expectType<Person[], typeof mappedAutocomplete.groupedOptions>(mappedAutocomplete.groupedOptions);
+  // Rendering still takes an option, even though selection and resolution use its ID.
+  mappedAutocomplete.getOptionProps({ option: persons[0], index: 0 });
+  // @ts-expect-error A rendered option must not be replaced with its mapped ID.
+  mappedAutocomplete.getOptionProps({ option: persons[0].id, index: 0 });
 
   const mappedGroupedAutocomplete = useAutocomplete({
     options: persons,
@@ -269,7 +294,7 @@ function Component() {
   });
 
   // freeSolo adds strings to a non-string mapped value
-  useAutocomplete({
+  const freeSoloMappedAutocomplete = useAutocomplete({
     options: persons,
     getOptionValue: (option) => Number(option.id),
     freeSolo: true,
@@ -282,6 +307,42 @@ function Component() {
       return typeof value === 'number' && Number(option.id) === value;
     },
   });
+  const freeSoloOption = freeSoloMappedAutocomplete.getOptionFromValue('custom');
+  expectType<Person | string | null, typeof freeSoloOption>(freeSoloOption);
+  // @ts-expect-error The resolver accepts mapped IDs or free-solo text, not options.
+  freeSoloMappedAutocomplete.getOptionFromValue(persons[0]);
+
+  // A runtime boolean can enable freeSolo, so string IDs are unsafe even before it becomes true.
+  const dynamicFreeSolo = Math.random() > 0.5;
+  const dynamicMappedAutocomplete = useAutocomplete({
+    options: persons,
+    freeSolo: dynamicFreeSolo,
+    getOptionValue: (option) => Number(option.id),
+  });
+  expectType<number | string | null, typeof dynamicMappedAutocomplete.value>(
+    dynamicMappedAutocomplete.value,
+  );
+  const dynamicStringMapping = {
+    options: persons,
+    freeSolo: dynamicFreeSolo,
+    getOptionValue: (option: Person) => option.id,
+  };
+  // @ts-expect-error String IDs are invalid when freeSolo might be true.
+  useAutocomplete(dynamicStringMapping);
+
+  // Boolean and bigint IDs retain their own types rather than widening to all primitive IDs.
+  const booleanMappedAutocomplete = useAutocomplete({
+    options: persons.slice(0, 2),
+    getOptionValue: (option) => option.id === '1',
+  });
+  expectType<boolean | null, typeof booleanMappedAutocomplete.value>(
+    booleanMappedAutocomplete.value,
+  );
+  const bigintMappedAutocomplete = useAutocomplete({
+    options: persons,
+    getOptionValue: (option) => BigInt(option.id),
+  });
+  expectType<bigint | null, typeof bigintMappedAutocomplete.value>(bigintMappedAutocomplete.value);
 
   useAutocomplete({
     options: persons,
@@ -312,7 +373,10 @@ function Component() {
   });
 
   // Mapped props require a mapper and can be forwarded by wrappers.
-  const mappedProps: UseAutocompleteMappedProps<Person, string> = {
+  const mappedProps: PartiallyRequired<
+    UseAutocompleteProps<Person, false, false, false, string>,
+    'getOptionValue'
+  > = {
     options: persons,
     getOptionValue: (option) => option.id,
     value: persons[0].id,
@@ -340,7 +404,10 @@ function Component() {
     typeof forwardedGroupedAutocomplete.groupedOptions
   >(forwardedGroupedAutocomplete.groupedOptions);
 
-  const multipleFreeSoloProps: UseAutocompleteMappedProps<Person, number, true, false, true> = {
+  const multipleFreeSoloProps: PartiallyRequired<
+    UseAutocompleteProps<Person, true, false, true, number>,
+    'getOptionValue'
+  > = {
     options: persons,
     multiple: true,
     freeSolo: true,
@@ -351,22 +418,29 @@ function Component() {
   expectType<Array<number | string>, typeof multipleFreeSoloAutocomplete.value>(
     multipleFreeSoloAutocomplete.value,
   );
+  // Forwarding must also preserve inferred selection flags through generic wrappers.
+  const wrappedFreeSoloAutocomplete = useMappedAutocomplete(multipleFreeSoloProps);
+  expectType<Array<number | string>, typeof wrappedFreeSoloAutocomplete.value>(
+    wrappedFreeSoloAutocomplete.value,
+  );
 
-  // @ts-expect-error Mapped props must include getOptionValue.
-  const missingMapperProps: UseAutocompleteMappedProps<Person, string> = {
+  const missingMapperProps: UseAutocompleteProps<Person, false, false, false, string> = {
     options: persons,
   };
-  const undefinedMapperProps: typeof mappedProps = {
-    ...mappedProps,
-    // @ts-expect-error A mapped getOptionValue cannot be undefined.
-    getOptionValue: undefined,
-  };
+  // @ts-expect-error Mapped calls must include getOptionValue.
+  useAutocomplete(missingMapperProps);
+  // @ts-expect-error An undefined mapper must not enable mapped selections.
+  useAutocomplete({ ...mappedProps, getOptionValue: undefined });
 
-  // @ts-expect-error String mappings are incompatible with freeSolo.
-  const stringFreeSoloProps: UseAutocompleteMappedProps<Person, string, false, false, true> = {
+  const stringFreeSoloProps: PartiallyRequired<
+    UseAutocompleteProps<Person, false, false, true, string>,
+    'getOptionValue'
+  > = {
     options: persons,
     getOptionValue: (option) => option.id,
   };
+  // @ts-expect-error String mappings are incompatible with freeSolo.
+  useAutocomplete(stringFreeSoloProps);
 
   const rawParameters: UseAutocompleteParameters<Person, false, false, false> = {
     options: persons,

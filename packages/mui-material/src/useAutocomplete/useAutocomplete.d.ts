@@ -22,9 +22,9 @@ export interface AutocompleteGroupedOption<Value = string> {
   options: Value[];
 }
 
-export function createFilterOptions<Option>(
-  config?: CreateFilterOptionsConfig<Option>,
-): (options: Option[], state: FilterOptionsState<Option>) => Option[];
+export function createFilterOptions<Value>(
+  config?: CreateFilterOptionsConfig<Value>,
+): (options: Value[], state: FilterOptionsState<Value>) => Value[];
 
 export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ? string : never;
 
@@ -32,21 +32,26 @@ export type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo 
   ? Value | string
   : Value;
 
-/** @internal */
-export type AutocompletePrimitiveValue = string | number | bigint | boolean;
+/** Allowed IDs; strings are reserved for free-solo input, including when freeSolo is boolean. */
+export type AutocompleteMappedValue<FreeSolo = false> = true extends FreeSolo
+  ? number | bigint | boolean
+  : string | number | bigint | boolean;
 
-export type AutocompleteMappedValue<FreeSolo> = true extends FreeSolo
-  ? Exclude<AutocompletePrimitiveValue, string>
-  : AutocompletePrimitiveValue;
+/**
+ * Prevents this occurrence of T from contributing inference, including before TypeScript 5.4.
+ * @internal
+ */
+export type NoInfer<T> = [T][T extends unknown ? 0 : never];
 
-// Compatible with TypeScript versions before the built-in NoInfer was introduced in 5.4.
-type NoInfer<T> = [T][T extends unknown ? 0 : never];
-
-// Defer mapped-value inference to getOptionValue.
-/** @internal */
-export type AutocompleteResolvedValue<Option, Value> = [Value] extends [never]
-  ? Option
-  : NoInfer<Value>;
+/**
+ * undefined marks an absent mapper; otherwise selections use MappedValue.
+ * Distributing includes both modes when wrappers erase generics. NoInfer keeps selected
+ * values and callbacks from widening the type inferred from getOptionValue.
+ * @internal
+ */
+export type AutocompleteResolvedValue<Value, MappedValue> = MappedValue extends undefined
+  ? Value
+  : NoInfer<MappedValue>;
 
 export type AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo> = Multiple extends true
   ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
@@ -54,37 +59,16 @@ export type AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo> = Mul
     ? NonNullable<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
     : Value | null | AutocompleteFreeSoloValueMapping<FreeSolo>;
 
+/**
+ * Value retains the original option type for compatibility with module augmentation.
+ * MappedValue is inferred from getOptionValue; its default keeps selections as options.
+ */
 export interface UseAutocompleteProps<
   Value,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-> extends UseAutocompleteBaseProps<Value, Multiple, DisableClearable, FreeSolo> {}
-
-// Preserve existing module augmentations; the base supplies the built-in props with mapped types.
-export interface UseAutocompleteMappedProps<
-  Option,
-  Value extends AutocompleteMappedValue<FreeSolo>,
-  Multiple extends boolean | undefined = false,
-  DisableClearable extends boolean | undefined = false,
-  FreeSolo extends boolean | undefined = false,
->
-  extends
-    Omit<
-      UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo>,
-      keyof UseAutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo>
-    >,
-    UseAutocompleteBaseProps<Option, Multiple, DisableClearable, FreeSolo, Value> {
-  getOptionValue: (option: Option) => Value;
-}
-
-/** @internal */
-export interface UseAutocompleteBaseProps<
-  Option,
-  Multiple extends boolean | undefined,
-  DisableClearable extends boolean | undefined,
-  FreeSolo extends boolean | undefined,
-  Value extends AutocompleteMappedValue<FreeSolo> = never,
+  MappedValue extends AutocompleteMappedValue | undefined = undefined,
 > {
   /**
    * @internal The prefix of the state class name, temporary for Joy UI
@@ -152,7 +136,7 @@ export interface UseAutocompleteBaseProps<
    */
   defaultValue?:
     | AutocompleteValue<
-        AutocompleteResolvedValue<Option, Value>,
+        AutocompleteResolvedValue<Value, MappedValue>,
         Multiple,
         DisableClearable,
         FreeSolo
@@ -187,11 +171,11 @@ export interface UseAutocompleteBaseProps<
    * A function that determines the filtered options to be rendered on search.
    *
    * @default createFilterOptions()
-   * @param {Option[]} options The options to render.
+   * @param {Value[]} options The options to render.
    * @param {object} state The state of the component.
-   * @returns {Option[]}
+   * @returns {Value[]}
    */
-  filterOptions?: ((options: Option[], state: FilterOptionsState<Option>) => Option[]) | undefined;
+  filterOptions?: ((options: Value[], state: FilterOptionsState<Value>) => Value[]) | undefined;
   /**
    * If `true`, hide the selected options from the list box.
    * @default false
@@ -205,20 +189,20 @@ export interface UseAutocompleteBaseProps<
   /**
    * Used to determine the disabled state for a given option.
    *
-   * @param {Option} option The option to test.
-   * @template Option The option shape. Will be the same shape as an item of the options.
+   * @param {Value} option The option to test.
+   * @template Value The option shape. Will be the same shape as an item of the options.
    * @returns {boolean}
    */
-  getOptionDisabled?: ((option: Option) => boolean) | undefined;
+  getOptionDisabled?: ((option: Value) => boolean) | undefined;
   /**
    * Used to determine the key for a given option.
    * This can be useful when the labels of options are not unique (since labels are used as keys by default).
    *
-   * @param {Option} option The option to get the key for.
+   * @param {Value} option The option to get the key for.
    * @returns {string | number}
    */
   getOptionKey?:
-    ((option: Option | AutocompleteFreeSoloValueMapping<FreeSolo>) => string | number) | undefined;
+    ((option: Value | AutocompleteFreeSoloValueMapping<FreeSolo>) => string | number) | undefined;
   /**
    * Used to determine the selected value for a given option.
    *
@@ -227,30 +211,30 @@ export interface UseAutocompleteBaseProps<
    * When `freeSolo` is enabled, it must not return a string because strings are reserved for
    * free-solo values.
    *
-   * @param {Option} option The option to get the value for.
-   * @returns {Value}
+   * @param {Value} option The option to get the value for.
+   * @returns {MappedValue}
    */
-  getOptionValue?: ((option: Option) => Value) | undefined;
+  getOptionValue?: ((option: Value) => Exclude<MappedValue, undefined>) | undefined;
   /**
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
    *
    * If used in free solo mode, it must accept both the type of the options and a string.
    *
-   * @param {Option|string} option
+   * @param {Value|string} option
    * @returns {string}
    * @default (option) => option.label ?? option
    */
   getOptionLabel?:
-    ((option: AutocompleteValueOrFreeSoloValueMapping<Option, FreeSolo>) => string) | undefined;
+    ((option: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>) => string) | undefined;
   /**
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {Option} option The Autocomplete option.
+   * @param {Value} option The Autocomplete option.
    * @returns {string}
    */
-  groupBy?: ((option: Option) => string) | undefined;
+  groupBy?: ((option: Value) => string) | undefined;
 
   /**
    * If `true`, the component handles the "Home" and "End" keys when the popup is open.
@@ -277,16 +261,16 @@ export interface UseAutocompleteBaseProps<
    * Uses strict equality by default.
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
-   * @param {Option} option The option to test.
-   * @param {Option|Value|string} value The selected value to test against. When `getOptionValue` is
+   * @param {Value} option The option to test.
+   * @param {Value|MappedValue|string} value The selected value to test against. When `getOptionValue` is
    * provided, this is the value returned by `getOptionValue` (or a free-solo string).
    * @returns {boolean}
    */
   isOptionEqualToValue?:
     | ((
-        option: Option,
+        option: Value,
         value: AutocompleteValueOrFreeSoloValueMapping<
-          AutocompleteResolvedValue<Option, Value>,
+          AutocompleteResolvedValue<Value, MappedValue>,
           FreeSolo
         >,
       ) => boolean)
@@ -300,7 +284,7 @@ export interface UseAutocompleteBaseProps<
    * Callback fired when the value changes.
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
-   * @param {Option|Value|Array<Option|Value>} value The new selected value of the component. When `getOptionValue` is
+   * @param {Value|MappedValue|Array<Value|MappedValue>} value The new selected value of the component. When `getOptionValue` is
    * provided, this contains the value(s) returned by `getOptionValue`.
    * @param {string} reason One of "createOption", "selectOption", "removeOption", "blur" or "clear".
    * @param {string} [details]
@@ -309,13 +293,13 @@ export interface UseAutocompleteBaseProps<
     | ((
         event: React.SyntheticEvent,
         value: AutocompleteValue<
-          AutocompleteResolvedValue<Option, Value>,
+          AutocompleteResolvedValue<Value, MappedValue>,
           Multiple,
           DisableClearable,
           FreeSolo
         >,
         reason: AutocompleteChangeReason,
-        details?: AutocompleteChangeDetails<Option>,
+        details?: AutocompleteChangeDetails<Value>,
       ) => void)
     | undefined;
   /**
@@ -330,13 +314,13 @@ export interface UseAutocompleteBaseProps<
    * Callback fired when the highlight option changes.
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
-   * @param {Option} option The highlighted option.
+   * @param {Value} option The highlighted option.
    * @param {string} reason Can be: `"keyboard"`, `"mouse"`, `"touch"`.
    */
   onHighlightChange?:
     | ((
         event: React.SyntheticEvent,
-        option: Option | null,
+        option: Value | null,
         reason: AutocompleteHighlightChangeReason,
       ) => void)
     | undefined;
@@ -369,7 +353,7 @@ export interface UseAutocompleteBaseProps<
   /**
    * A list of options that will be shown in the Autocomplete.
    */
-  options: ReadonlyArray<Option>;
+  options: ReadonlyArray<Value>;
   /**
    * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
    * @default false
@@ -396,7 +380,7 @@ export interface UseAutocompleteBaseProps<
    */
   value?:
     | AutocompleteValue<
-        AutocompleteResolvedValue<Option, Value>,
+        AutocompleteResolvedValue<Value, MappedValue>,
         Multiple,
         DisableClearable,
         FreeSolo
@@ -409,7 +393,8 @@ export interface UseAutocompleteParameters<
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-> extends UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo> {}
+  MappedValue extends AutocompleteMappedValue | undefined = undefined,
+> extends UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo, MappedValue> {}
 
 export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'touch';
 
@@ -443,62 +428,77 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   onDelete: (event: any) => void;
 };
 
+// With getOptionValue and groupBy: selections use mapped values; groupedOptions contains option groups.
 export function useAutocomplete<
-  Option,
+  Value,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
-  Value extends AutocompleteMappedValue<FreeSolo> = AutocompleteMappedValue<FreeSolo>,
+  MappedValue extends AutocompleteMappedValue<FreeSolo> = AutocompleteMappedValue<FreeSolo>,
 >(
   props: PartiallyRequired<
-    UseAutocompleteMappedProps<Option, Value, Multiple, DisableClearable, FreeSolo>,
-    'groupBy'
-  >,
-): UseAutocompleteReturnValue<Option, Multiple, DisableClearable, FreeSolo, true, Value>;
+    // Infer FreeSolo from its prop only, so generic mapped values cannot widen it to boolean.
+    UseAutocompleteProps<Value, Multiple, DisableClearable, NoInfer<FreeSolo>, MappedValue>,
+    'groupBy' | 'getOptionValue'
+  > & { freeSolo?: FreeSolo | undefined },
+): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, true, MappedValue>;
+
+// With getOptionValue, without groupBy: selections use mapped values; groupedOptions contains options.
 export function useAutocomplete<
-  Option,
+  Value,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
-  Value extends AutocompleteMappedValue<FreeSolo> = AutocompleteMappedValue<FreeSolo>,
+  MappedValue extends AutocompleteMappedValue<FreeSolo> = AutocompleteMappedValue<FreeSolo>,
 >(
-  props: Omit<
-    UseAutocompleteMappedProps<Option, Value, Multiple, DisableClearable, FreeSolo>,
-    'groupBy'
-  >,
-): UseAutocompleteReturnValue<Option, Multiple, DisableClearable, FreeSolo, false, Value>;
+  props: PartiallyRequired<
+    Omit<
+      UseAutocompleteProps<Value, Multiple, DisableClearable, NoInfer<FreeSolo>, MappedValue>,
+      'groupBy'
+    >,
+    'getOptionValue'
+  > & { freeSolo?: FreeSolo | undefined },
+): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, false, MappedValue>;
+
+// Without getOptionValue, with groupBy: selections use original options; groupedOptions contains option groups.
 export function useAutocomplete<
-  Option,
+  Value,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
 >(
   props: PartiallyRequired<
-    UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo>,
+    UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
     'groupBy'
   >,
-): UseAutocompleteReturnValue<Option, Multiple, DisableClearable, FreeSolo, true>;
+): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, true>;
+
+// Without getOptionValue or groupBy: selections use original options; groupedOptions contains options.
 export function useAutocomplete<
-  Option,
+  Value,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
 >(
-  props: Omit<UseAutocompleteProps<Option, Multiple, DisableClearable, FreeSolo>, 'groupBy'>,
-): UseAutocompleteReturnValue<Option, Multiple, DisableClearable, FreeSolo, false>;
+  props: Omit<UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>, 'groupBy'>,
+): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, false>;
 
 export interface UseAutocompleteRenderedOption<Value> {
   option: Value;
   index: number;
 }
 
+/**
+ * Value retains its original meaning of option type for compatibility.
+ * MappedValue changes selections and resolver inputs; groupedOptions still contains options.
+ */
 export interface UseAutocompleteReturnValue<
   Value,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
   HasGroupBy extends boolean = false,
-  MappedValue extends AutocompletePrimitiveValue = never,
+  MappedValue extends AutocompleteMappedValue | undefined = undefined,
 > {
   /**
    * Resolver for the root slot's props.

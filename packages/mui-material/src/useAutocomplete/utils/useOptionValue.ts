@@ -2,6 +2,7 @@
 import * as React from 'react';
 import validateOptionValues, { validateOptionValue } from './validateOptionValues';
 
+// The runtime helper handles all modes; public props enforce the narrower per-mode value types.
 type OptionValue<Option, Value> = Option | Value | string;
 
 interface UseOptionValueParameters<Option, Value> {

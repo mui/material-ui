@@ -9,7 +9,6 @@ export type {
   AutocompleteMappedValue,
   AutocompleteValue,
   UseAutocompleteProps,
-  UseAutocompleteMappedProps,
   UseAutocompleteParameters,
   AutocompleteHighlightChangeReason,
   AutocompleteChangeReason,

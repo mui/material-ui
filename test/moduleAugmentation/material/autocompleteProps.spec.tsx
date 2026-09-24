@@ -2,7 +2,8 @@ import * as React from 'react';
 import { expectType } from '@mui/types';
 import Autocomplete from '@mui/material/Autocomplete';
 import { ChipTypeMap } from '@mui/material/Chip';
-import useAutocomplete, { AutocompleteMappedValue } from '@mui/material/useAutocomplete';
+import { styled } from '@mui/material/styles';
+import useAutocomplete from '@mui/material/useAutocomplete';
 
 declare module '@mui/material/useAutocomplete' {
   interface UseAutocompleteProps<
@@ -12,16 +13,6 @@ declare module '@mui/material/useAutocomplete' {
     FreeSolo extends boolean | undefined,
   > {
     hookLabel?: string;
-  }
-
-  interface UseAutocompleteMappedProps<
-    Option,
-    Value extends AutocompleteMappedValue<FreeSolo>,
-    Multiple extends boolean | undefined = false,
-    DisableClearable extends boolean | undefined = false,
-    FreeSolo extends boolean | undefined = false,
-  > {
-    mappedHookLabel?: string;
   }
 }
 
@@ -38,6 +29,20 @@ declare module '@mui/material/Autocomplete' {
 }
 
 const options = [{ id: 1, label: 'One' }];
+
+const WrappedAutocomplete = styled(Autocomplete)({});
+
+<WrappedAutocomplete
+  options={options}
+  getOptionValue={() => 1}
+  hookLabel="Custom"
+  componentLabel="Custom"
+  onChange={(event, value) => {
+    expectType<React.SyntheticEvent, typeof event>(event);
+    expectType<unknown, typeof value>(value);
+  }}
+  renderInput={() => null}
+/>;
 
 // Hook prop augmentations also reach the component props and owner state.
 <Autocomplete
@@ -57,7 +62,6 @@ const options = [{ id: 1, label: 'One' }];
   getOptionValue={(option) => option.id}
   hookLabel="Custom"
   componentLabel="Custom"
-  mappedHookLabel="Custom"
   renderInput={() => null}
   onChange={(event, value) => {
     expectType<number | null, typeof value>(value);
@@ -82,7 +86,6 @@ const options = [{ id: 1, label: 'One' }];
     expectType<number, typeof value>(value);
     expectType<string | undefined, typeof ownerState.hookLabel>(ownerState.hookLabel);
     expectType<string | undefined, typeof ownerState.componentLabel>(ownerState.componentLabel);
-    expectType<string | undefined, typeof ownerState.mappedHookLabel>(ownerState.mappedHookLabel);
     return value;
   }}
 />;
@@ -92,7 +95,6 @@ function MappedHook() {
     options,
     getOptionValue: (option) => option.id,
     hookLabel: 'Custom',
-    mappedHookLabel: 'Custom',
     onChange: (event, newValue) => {
       expectType<number | null, typeof newValue>(newValue);
     },

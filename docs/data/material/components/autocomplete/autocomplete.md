@@ -82,9 +82,11 @@ Include the fields that `getOptionValue` reads in every generated option.
 Callbacks that operate on options, such as `getOptionLabel` and `renderOption`, continue to receive the original option object.
 The `details.option` passed to `onChange` also contains the original option.
 
-For typed wrappers, use `AutocompleteMappedProps<Option, Value>` or `UseAutocompleteMappedProps<Option, Value>`.
-These interfaces require `getOptionValue`.
-The existing `AutocompleteProps` and `UseAutocompleteProps` interfaces describe raw option values.
+For typed wrappers, supply the mapped value type as the final generic argument of `AutocompleteProps` or `UseAutocompleteProps`.
+`Value` is the original option type, and `MappedValue` is the type returned by `getOptionValue`.
+For example, `UseAutocompleteProps<Value, false, false, false, number>` describes single-selection props with numeric IDs.
+Wrappers that use mapped values must require `getOptionValue` when extending these interfaces.
+Omitting the final generic argument preserves the original option values.
 
 Keep `getOptionValue` and any custom `isOptionEqualToValue` callback stable between renders to reuse cached option lookups.
 Define them outside the component, as in the demo below, or use `React.useCallback` with all dependencies.

@@ -73,7 +73,7 @@
         "option": {
           "name": "option",
           "description": "The option to test.",
-          "argType": "Option",
+          "argType": "Value",
           "argTypeDescription": "The option shape. Will be the same shape as an item of the options."
         }
       }

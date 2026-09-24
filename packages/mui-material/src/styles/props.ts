@@ -1,7 +1,7 @@
 import { AlertProps } from '../Alert';
 import { AlertTitleProps } from '../AlertTitle';
 import { AppBarProps } from '../AppBar';
-import { AutocompleteMappedProps, AutocompleteProps } from '../Autocomplete';
+import { AutocompleteProps } from '../Autocomplete';
 import { AvatarProps } from '../Avatar';
 import { AvatarGroupProps } from '../AvatarGroup';
 import { BackdropProps } from '../Backdrop';
@@ -125,9 +125,8 @@ export interface ComponentsPropsList {
   MuiAlert: AlertProps;
   MuiAlertTitle: AlertTitleProps;
   MuiAppBar: AppBarProps;
-  // Preserve contextual typing for callbacks by widening only the mapper, instead of unioning props.
-  MuiAutocomplete: Omit<AutocompleteProps<any, any, any, any>, 'getOptionValue'> &
-    Partial<Pick<AutocompleteMappedProps<any, any, any, any, any>, 'getOptionValue'>>;
+  // Theme defaults can configure either option values or mapped IDs.
+  MuiAutocomplete: AutocompleteProps<any, any, any, any, any, any>;
   MuiAvatar: AvatarProps;
   MuiAvatarGroup: AvatarGroupProps;
   MuiBackdrop: BackdropProps;

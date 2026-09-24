@@ -1,6 +1,7 @@
 type OptionValueTypeValidationParams<Option> = {
   options: readonly Option[];
   freeSolo: boolean;
+  // Invalid mapper results must reach this validator, so its return type is deliberately unknown.
   getOptionValueProp: ((option: Option) => unknown) | undefined;
   duplicatedErrorMessages: Set<string>;
 };
