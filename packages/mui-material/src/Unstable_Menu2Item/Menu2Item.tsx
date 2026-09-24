@@ -1,10 +1,8 @@
 'use client';
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '@mui/types';
-import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
-import mergeSlotProps from '../utils/mergeSlotProps';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -13,24 +11,25 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import {
   getMenu2ItemOwnerState,
+  Menu2ItemBaseOwnerState,
   Menu2ItemBaseProps,
-  Menu2ItemOwnerState,
+  Menu2ItemRootSlot,
   Menu2ItemVisualProps,
   mergeMenu2ItemClassName,
   useMenu2ItemListContext,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
-import {
-  getMenu2RootRender,
-  isMenu2RootNativeButton,
-  Menu2RootSlotProps,
-  suppressButtonBaseKeyboardActivation,
-} from '../Unstable_Menu2/menu2Utils';
+import { isMenu2RootNativeButton, Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2ItemUtilityClass,
   Menu2ItemClasses,
   menu2ItemClasses,
 } from '../Unstable_Menu2/menu2Classes';
+
+export interface Menu2ItemOwnerState extends Menu2ItemBaseOwnerState {
+  /** Whether Base UI currently highlights the item. */
+  highlighted: boolean;
+}
 
 export interface Menu2ItemSlots {
   /**
@@ -153,29 +152,22 @@ const Menu2Item = React.forwardRef(function Menu2Item(
   );
   const RootSlot = slots?.root ?? Menu2ItemRoot;
 
-  const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });
-
   return (
     <ListContext.Provider value={childContext}>
       <BaseMenu.Item
         ref={ref}
-        render={getMenu2RootRender(
-          RootSlot,
-          ownerState,
-          {
-            ...rootSlotProps,
-            // ButtonBase renders a <button> by default; the items keep their element.
-            component: component ?? 'div',
-            // Pass it only when the caller sets it. An explicit prop beats the
-            // `MuiButtonBase` default props, so ButtonBase resolves the default.
-            ...(disableRipple !== undefined && { disableRipple }),
-            // ButtonBase cannot infer it from a custom `component`.
-            ...(nativeButtonProp !== undefined && { nativeButton: nativeButtonProp }),
-            ownerState,
-            // Base UI owns the Enter and Space activation of the item.
-            ...suppressButtonBaseKeyboardActivation(rootSlotProps),
-          },
-          Menu2ItemRoot,
+        render={(renderProps, state) => (
+          <Menu2ItemRootSlot<Menu2ItemOwnerState>
+            baseProps={renderProps}
+            ownerState={{ ...ownerState, ...state }}
+            elementType={Menu2ItemRoot}
+            component={component}
+            disableRipple={disableRipple}
+            nativeButton={nativeButtonProp}
+            slotProps={slotProps}
+            slots={slots}
+            sx={sx}
+          />
         )}
         className={mergeMenu2ItemClassName(className, classes, ownerState)}
         disabled={disabled}

@@ -1,12 +1,10 @@
 'use client';
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '@mui/types';
-import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
-import { mergeProps } from '@base-ui/react/merge-props';
-import mergeSlotProps from '../utils/mergeSlotProps';
+import type { HTMLProps } from '@base-ui/react/types';
 import useSlot from '../utils/useSlot';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
@@ -18,17 +16,16 @@ import Menu2CheckboxItemIndicator, {
   Menu2CheckboxItemIndicatorProps,
 } from '../Unstable_Menu2CheckboxItemIndicator';
 import {
-  getMenu2RootRender,
   isMenu2RootNativeButton,
   Menu2RootSlotProps,
   SlotProps,
-  suppressButtonBaseKeyboardActivation,
 } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2ItemClassName,
   getMenu2ItemOwnerState,
+  Menu2ItemBaseOwnerState,
   Menu2ItemBaseProps,
-  Menu2ItemOwnerState,
+  Menu2ItemRootSlot,
   Menu2ItemVisualProps,
   useMenu2ItemListContext,
   useMenu2ItemUtilityClasses,
@@ -39,7 +36,7 @@ import {
   menu2CheckboxItemClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
-export interface Menu2CheckboxItemOwnerState extends Menu2ItemOwnerState {
+export interface Menu2CheckboxItemOwnerState extends Menu2ItemBaseOwnerState {
   /** Whether the item is currently checked, including uncontrolled selection. */
   checked: boolean;
   /** Whether Base UI currently highlights the item. */
@@ -165,63 +162,28 @@ interface Menu2CheckboxItemRootSlotProps extends Pick<
   Menu2CheckboxItemProps,
   'component' | 'disableRipple' | 'nativeButton' | 'slotProps' | 'slots' | 'sx'
 > {
-  baseProps: React.ComponentPropsWithRef<'div'>;
+  baseProps: HTMLProps;
   ownerState: Menu2CheckboxItemOwnerState;
 }
 
-function Menu2CheckboxItemRootSlot({
-  baseProps,
-  ownerState,
-  component,
-  disableRipple,
-  nativeButton,
-  slotProps,
-  slots,
-  sx,
-}: Menu2CheckboxItemRootSlotProps) {
-  const externalSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), {
-    sx,
-  });
+function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
+  const { ownerState, slotProps, slots } = props;
   const [IndicatorSlot, indicatorProps] = useSlot('indicator', {
     elementType: Menu2CheckboxItemIndicator,
     externalForwardedProps: { slots, slotProps },
     ownerState,
     className: undefined,
+    // Reserve space even while the indicator is unchecked.
     additionalProps: { keepMounted: true },
     shouldForwardComponentProp: true,
   });
-  const [RootSlot, rootProps] = useSlot('root', {
-    elementType: Menu2CheckboxItemRoot,
-    externalForwardedProps: { slots, slotProps: { root: externalSlotProps } },
-    ownerState,
-    className: undefined,
-    ref: null,
-    // Base UI lets an external handler cancel its internal handler.
-    getSlotProps: (handlers): React.ComponentPropsWithRef<'div'> => mergeProps(baseProps, handlers),
-    additionalProps: {
-      children: (
-        <React.Fragment>
-          {/* Reserve space even while the indicator is unchecked. */}
-          <IndicatorSlot {...indicatorProps} />
-          {baseProps.children}
-        </React.Fragment>
-      ),
-    },
-    shouldForwardComponentProp: true,
-  });
 
-  return getMenu2RootRender(
-    RootSlot,
-    ownerState,
-    {
-      ...rootProps,
-      component: component ?? 'div',
-      ...(disableRipple !== undefined && { disableRipple }),
-      // ButtonBase cannot infer it from a custom `component`.
-      ...(nativeButton !== undefined && { nativeButton }),
-      ...suppressButtonBaseKeyboardActivation(rootProps),
-    },
-    Menu2CheckboxItemRoot,
+  return (
+    <Menu2ItemRootSlot
+      {...props}
+      elementType={Menu2CheckboxItemRoot}
+      startIndicator={<IndicatorSlot {...indicatorProps} />}
+    />
   );
 }
 
@@ -244,12 +206,6 @@ Menu2CheckboxItemRootSlot.propTypes /* remove-proptypes */ = {
    */
   disableRipple: PropTypes.bool,
   /**
-   * Whether the component is rendered as a native button.
-   *
-   * By default, this is inferred from the root slot and `component` prop.
-   */
-  nativeButton: PropTypes.bool,
-  /**
    * @ignore
    */
   ownerState: PropTypes.object.isRequired,
@@ -267,14 +223,6 @@ Menu2CheckboxItemRootSlot.propTypes /* remove-proptypes */ = {
     indicator: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
 } as any;
 
 /**

@@ -2,17 +2,25 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import { SxProps } from '@mui/system';
+import { mergeProps } from '@base-ui/react/merge-props';
+import type { HTMLProps } from '@base-ui/react/types';
 import { Theme } from '../styles';
 import ListContext from '../List/ListContext';
+import type { MuiKeyboardEvent } from '../ButtonBase/useButtonBase';
+import mergeSlotProps from '../utils/mergeSlotProps';
+import useSlot from '../utils/useSlot';
 import {
+  getMenu2RootRender,
   Menu2RootSlotProps,
   Menu2RootSlots,
   StateClassName,
   mergeStateClassName,
 } from './menu2Utils';
 
-export interface Menu2ItemOwnerState {
+// The owner state from the props. Each part adds the live Base UI state.
+export interface Menu2ItemBaseOwnerState {
   checked?: boolean | undefined;
   dense: boolean;
   disabled: boolean;
@@ -24,7 +32,7 @@ export interface Menu2ItemOwnerState {
 export interface Menu2ItemVisualProps<
   Classes,
   Slots = Menu2RootSlots,
-  SlotProps = Menu2RootSlotProps<Menu2ItemOwnerState>,
+  SlotProps = Menu2RootSlotProps<Menu2ItemBaseOwnerState>,
 > {
   /**
    * Override or extend the styles applied to the component.
@@ -164,12 +172,122 @@ export function useMenu2ItemListContext(denseProp: boolean, disableGutters: bool
   return React.useMemo(() => ({ dense, disableGutters }), [dense, disableGutters]);
 }
 
+// Base UI owns the Enter and Space activation of a menu item. The item root is
+// a ButtonBase rendered as a div, so ButtonBase would emulate a second one.
+// `defaultMuiPrevented` is the MUI convention that turns that emulation off.
+function suppressButtonBaseKeyboardActivation(props?: {
+  onKeyDown?: React.KeyboardEventHandler<HTMLElement> | undefined;
+  onKeyUp?: React.KeyboardEventHandler<HTMLElement> | undefined;
+}) {
+  const externalOnKeyDown = props?.onKeyDown;
+  const externalOnKeyUp = props?.onKeyUp;
+
+  return {
+    onKeyDown: (event: MuiKeyboardEvent) => {
+      externalOnKeyDown?.(event);
+      event.defaultMuiPrevented = true;
+    },
+    onKeyUp: (event: MuiKeyboardEvent) => {
+      externalOnKeyUp?.(event);
+      event.defaultMuiPrevented = true;
+    },
+  };
+}
+
+export interface Menu2ItemRootSlotProps<OwnerState extends object> {
+  /**
+   * The props that Base UI passes to the `render` function of the item.
+   */
+  baseProps: HTMLProps;
+  /**
+   * The owner state, merged with the live Base UI state.
+   */
+  ownerState: OwnerState;
+  /**
+   * The styled default root.
+   */
+  elementType: React.ElementType;
+  /**
+   * The element that the default root renders when `component` is not set.
+   * @default 'div'
+   */
+  defaultComponent?: React.ElementType | undefined;
+  component?: React.ElementType | undefined;
+  disableRipple?: boolean | undefined;
+  nativeButton?: boolean | undefined;
+  slots?: Menu2RootSlots | undefined;
+  slotProps?: Menu2RootSlotProps<OwnerState> | undefined;
+  sx?: SxProps<Theme> | undefined;
+  startIndicator?: React.ReactNode;
+  endIndicator?: React.ReactNode;
+}
+
+// All item parts resolve their root here, from the live Base UI state, so slot
+// callbacks and theme variants see the same state as the state classes.
+export function Menu2ItemRootSlot<OwnerState extends object>(
+  props: Menu2ItemRootSlotProps<OwnerState>,
+) {
+  const {
+    baseProps,
+    component,
+    defaultComponent = 'div',
+    disableRipple,
+    elementType,
+    endIndicator,
+    nativeButton,
+    ownerState,
+    slotProps,
+    slots,
+    startIndicator,
+    sx,
+  } = props;
+  const rootSlotProps: Record<string, any> | undefined = mergeSlotProps(
+    resolveComponentProps(slotProps?.root, ownerState),
+    { sx },
+  );
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType,
+    externalForwardedProps: { slots, slotProps: { root: rootSlotProps } },
+    ownerState,
+    className: undefined,
+    ref: null,
+    // Base UI lets an external handler cancel its internal handler.
+    getSlotProps: (handlers): HTMLProps => mergeProps(baseProps, handlers),
+    shouldForwardComponentProp: true,
+  });
+
+  return getMenu2RootRender(
+    RootSlot,
+    ownerState,
+    {
+      ...rootProps,
+      // ButtonBase renders a <button> by default; the items keep their element.
+      component: component ?? defaultComponent,
+      // Pass it only when the caller sets it. An explicit prop beats the
+      // `MuiButtonBase` default props, so ButtonBase resolves the default.
+      ...(disableRipple !== undefined && { disableRipple }),
+      // ButtonBase cannot infer it from a custom `component`.
+      ...(nativeButton !== undefined && { nativeButton }),
+      // Base UI owns the Enter and Space activation of the item.
+      ...suppressButtonBaseKeyboardActivation(rootProps),
+      children: (
+        <React.Fragment>
+          {startIndicator}
+          {rootProps.children}
+          {endIndicator}
+        </React.Fragment>
+      ),
+    },
+    elementType,
+  );
+}
+
 export function getMenu2ItemOwnerState(
   props: Menu2ItemVisualProps<unknown> & {
     checked?: boolean | undefined;
     disabled?: boolean | undefined;
   },
-): Menu2ItemOwnerState {
+): Menu2ItemBaseOwnerState {
   return {
     checked: props.checked,
     dense: props.dense ?? false,
@@ -181,7 +299,7 @@ export function getMenu2ItemOwnerState(
 }
 
 export function useMenu2ItemUtilityClasses<Classes extends object>(
-  ownerState: Menu2ItemOwnerState & {
+  ownerState: Menu2ItemBaseOwnerState & {
     classes?: Partial<Classes> | undefined;
     checked?: boolean | undefined;
     open?: boolean | undefined;
@@ -215,7 +333,7 @@ export function useMenu2ItemUtilityClasses<Classes extends object>(
 
 export function getMenu2ItemClassName<State extends Menu2BaseItemState>(
   classes: Partial<Record<'root' | 'highlighted' | 'disabled', string>>,
-  ownerState: Menu2ItemOwnerState,
+  ownerState: Menu2ItemBaseOwnerState,
   state: State,
 ) {
   return clsx(
@@ -228,7 +346,7 @@ export function getMenu2ItemClassName<State extends Menu2BaseItemState>(
 export function mergeMenu2ItemClassName<State extends Menu2BaseItemState>(
   className: StateClassName<State>,
   classes: Partial<Record<'root' | 'highlighted' | 'disabled', string>>,
-  ownerState: Menu2ItemOwnerState,
+  ownerState: Menu2ItemBaseOwnerState,
 ) {
   return mergeStateClassName(className, (state) =>
     getMenu2ItemClassName(classes, ownerState, state),

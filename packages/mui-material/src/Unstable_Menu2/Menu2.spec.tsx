@@ -58,10 +58,30 @@ function Menu2Composition() {
     >
       <Menu2Group>
         <Menu2GroupLabel>Menu2Group</Menu2GroupLabel>
-        <Menu2Item dense selected nativeButton={false}>
+        <Menu2Item
+          dense
+          selected
+          nativeButton={false}
+          slotProps={{
+            root: (ownerState) => {
+              expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+              return {};
+            },
+          }}
+        >
           Menu2Item
         </Menu2Item>
-        <Menu2LinkItem href="/profile">Profile</Menu2LinkItem>
+        <Menu2LinkItem
+          href="/profile"
+          slotProps={{
+            root: (ownerState) => {
+              expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+              return {};
+            },
+          }}
+        >
+          Profile
+        </Menu2LinkItem>
         <Menu2CheckboxItem
           defaultChecked
           slotProps={{

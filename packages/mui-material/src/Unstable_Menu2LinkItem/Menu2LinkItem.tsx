@@ -1,25 +1,20 @@
 'use client';
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '@mui/types';
-import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
-import mergeSlotProps from '../utils/mergeSlotProps';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import MenuItemBase from '../internal/MenuItemBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
-import {
-  getMenu2RootRender,
-  Menu2RootSlotProps,
-  suppressButtonBaseKeyboardActivation,
-} from '../Unstable_Menu2/menu2Utils';
+import { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2ItemOwnerState,
+  Menu2ItemBaseOwnerState,
+  Menu2ItemRootSlot,
   Menu2LinkItemBaseProps,
-  Menu2ItemOwnerState,
   Menu2ItemVisualProps,
   mergeMenu2ItemClassName,
   useMenu2ItemListContext,
@@ -31,6 +26,11 @@ import {
   menu2LinkItemClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
+export interface Menu2LinkItemOwnerState extends Menu2ItemBaseOwnerState {
+  /** Whether Base UI currently highlights the item. */
+  highlighted: boolean;
+}
+
 export interface Menu2LinkItemSlots {
   /**
    * The component that renders the root.
@@ -39,7 +39,7 @@ export interface Menu2LinkItemSlots {
   root?: React.ElementType | undefined;
 }
 
-export interface Menu2LinkItemSlotProps extends Menu2RootSlotProps<Menu2ItemOwnerState> {}
+export interface Menu2LinkItemSlotProps extends Menu2RootSlotProps<Menu2LinkItemOwnerState> {}
 
 export interface Menu2LinkItemOwnProps
   extends
@@ -102,7 +102,7 @@ const Menu2LinkItemRoot = styled(MenuItemBase, {
     menuItemOverridesResolver(props, styles),
     { [`&.${menu2LinkItemClasses.highlighted}`]: styles.highlighted },
   ],
-})<{ ownerState: Menu2ItemOwnerState }>(
+})<{ ownerState: Menu2LinkItemOwnerState }>(
   memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
 );
 
@@ -154,27 +154,22 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
     getMenu2LinkItemUtilityClass,
   );
 
-  const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });
-
   return (
     <ListContext.Provider value={childContext}>
       <BaseMenu.LinkItem
         ref={ref}
-        render={getMenu2RootRender(
-          slots?.root ?? Menu2LinkItemRoot,
-          ownerState,
-          {
-            ...rootSlotProps,
-            // ButtonBase renders a <button> by default; the items keep their element.
-            component: component ?? 'a',
-            // Pass it only when the caller sets it. An explicit prop beats the
-            // `MuiButtonBase` default props, so ButtonBase resolves the default.
-            ...(disableRipple !== undefined && { disableRipple }),
-            ownerState,
-            // Base UI owns the Enter and Space activation of the item.
-            ...suppressButtonBaseKeyboardActivation(rootSlotProps),
-          },
-          Menu2LinkItemRoot,
+        render={(renderProps, state) => (
+          <Menu2ItemRootSlot<Menu2LinkItemOwnerState>
+            baseProps={renderProps}
+            ownerState={{ ...ownerState, ...state }}
+            elementType={Menu2LinkItemRoot}
+            defaultComponent="a"
+            component={component}
+            disableRipple={disableRipple}
+            slotProps={slotProps}
+            slots={slots}
+            sx={sx}
+          />
         )}
         className={mergeMenu2ItemClassName(className, classes, ownerState)}
         style={style}

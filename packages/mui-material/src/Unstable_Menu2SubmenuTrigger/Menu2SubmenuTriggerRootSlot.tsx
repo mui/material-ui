@@ -2,10 +2,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { useRtl } from '@mui/system/RtlProvider';
-import resolveComponentProps from '@mui/utils/resolveComponentProps';
-import useForkRef from '@mui/utils/useForkRef';
-import { mergeProps } from '@base-ui/react/merge-props';
-import mergeSlotProps from '../utils/mergeSlotProps';
+import type { HTMLProps } from '@base-ui/react/types';
 import MenuItemBase from '../internal/MenuItemBase';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
@@ -15,18 +12,14 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import { Theme } from '../styles';
-import {
-  getMenu2RootRender,
-  suppressButtonBaseKeyboardActivation,
-} from '../Unstable_Menu2/menu2Utils';
+import { Menu2ItemRootSlot } from '../Unstable_Menu2/menu2ItemShared';
 import { menu2SubmenuTriggerClasses } from '../Unstable_Menu2/menu2Classes';
-import Menu2SubmenuClosingContext from '../Unstable_Menu2/Menu2SubmenuClosingContext';
 import type {
   Menu2SubmenuTriggerProps,
   Menu2SubmenuTriggerOwnerState,
 } from './Menu2SubmenuTrigger';
 
-interface Menu2SubmenuTriggerStyleOwnerState extends Menu2SubmenuTriggerOwnerState {
+export interface Menu2SubmenuTriggerStyleOwnerState extends Menu2SubmenuTriggerOwnerState {
   retainClosingTint: boolean;
 }
 
@@ -84,30 +77,17 @@ const Menu2SubmenuTriggerIndicator = styled('span', {
   paddingInlineStart: 8,
 });
 
-function Menu2SubmenuTriggerRootSlot({
-  baseProps,
-  ownerState,
-  component,
-  disableRipple,
-  nativeButton,
-  slotProps,
-  slots,
-  sx,
-}: Pick<
-  Menu2SubmenuTriggerProps,
-  'component' | 'disableRipple' | 'nativeButton' | 'slotProps' | 'slots' | 'sx'
-> & {
-  baseProps: React.ComponentPropsWithRef<'div'>;
-  ownerState: Menu2SubmenuTriggerOwnerState & Pick<Menu2SubmenuTriggerProps, 'classes'>;
-}) {
-  const RootSlot = slots?.root ?? Menu2SubmenuTriggerRoot;
-  const externalSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), {
-    sx,
-  });
-  const rootProps = mergeProps(baseProps, externalSlotProps);
-  const ref = useForkRef(baseProps.ref, externalSlotProps?.ref);
+function Menu2SubmenuTriggerRootSlot(
+  props: Pick<
+    Menu2SubmenuTriggerProps,
+    'component' | 'disableRipple' | 'nativeButton' | 'slotProps' | 'slots' | 'sx'
+  > & {
+    baseProps: HTMLProps;
+    ownerState: Menu2SubmenuTriggerStyleOwnerState & Pick<Menu2SubmenuTriggerProps, 'classes'>;
+  },
+) {
+  const { ownerState, slotProps, slots } = props;
   const isRtl = useRtl();
-  const { retainClosingTint } = React.useContext(Menu2SubmenuClosingContext);
   const [IndicatorSlot, indicatorProps] = useSlot('indicator', {
     elementType: Menu2SubmenuTriggerIndicator,
     externalForwardedProps: { slots, slotProps },
@@ -123,26 +103,12 @@ function Menu2SubmenuTriggerRootSlot({
     },
   });
 
-  return getMenu2RootRender(
-    RootSlot,
-    ownerState,
-    {
-      ...rootProps,
-      ref,
-      component: component ?? 'div',
-      ...(disableRipple !== undefined && { disableRipple }),
-      // ButtonBase cannot infer it from a custom `component`.
-      ...(nativeButton !== undefined && { nativeButton }),
-      ownerState: { ...ownerState, retainClosingTint },
-      ...suppressButtonBaseKeyboardActivation(rootProps),
-      children: (
-        <React.Fragment>
-          {rootProps.children}
-          <IndicatorSlot {...indicatorProps} />
-        </React.Fragment>
-      ),
-    },
-    Menu2SubmenuTriggerRoot,
+  return (
+    <Menu2ItemRootSlot
+      {...props}
+      elementType={Menu2SubmenuTriggerRoot}
+      endIndicator={<IndicatorSlot {...indicatorProps} />}
+    />
   );
 }
 

@@ -13,7 +13,7 @@ import { isMenu2RootNativeButton, Menu2RootSlotProps } from '../Unstable_Menu2/m
 import {
   getMenu2ItemClassName,
   getMenu2ItemOwnerState,
-  Menu2ItemOwnerState,
+  Menu2ItemBaseOwnerState,
   Menu2ItemVisualProps,
   Menu2SubmenuTriggerBaseProps,
   useMenu2ItemListContext,
@@ -37,7 +37,7 @@ export interface Menu2SubmenuTriggerSlots {
   indicator?: React.ElementType | undefined;
 }
 
-export interface Menu2SubmenuTriggerOwnerState extends Menu2ItemOwnerState {
+export interface Menu2SubmenuTriggerOwnerState extends Menu2ItemBaseOwnerState {
   open: boolean;
   closing: boolean;
   highlighted: boolean;
@@ -164,7 +164,7 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
     getMenu2SubmenuTriggerUtilityClass,
   );
   const RootSlot = slots?.root ?? Menu2SubmenuTriggerRootSlot;
-  const { closing } = React.useContext(Menu2SubmenuClosingContext);
+  const { closing, retainClosingTint } = React.useContext(Menu2SubmenuClosingContext);
 
   return (
     <ListContext.Provider value={childContext}>
@@ -173,7 +173,7 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
         render={(renderProps, state) => (
           <Menu2SubmenuTriggerRootSlot
             baseProps={renderProps}
-            ownerState={{ ...ownerState, ...state, closing }}
+            ownerState={{ ...ownerState, ...state, closing, retainClosingTint }}
             component={component}
             disableRipple={disableRipple}
             nativeButton={nativeButtonProp}

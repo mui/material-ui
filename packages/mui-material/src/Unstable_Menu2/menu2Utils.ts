@@ -2,7 +2,6 @@ import * as React from 'react';
 import clsx from 'clsx';
 import appendOwnerState from '@mui/utils/appendOwnerState';
 import isHostComponent from '@mui/utils/isHostComponent';
-import type { MuiKeyboardEvent } from '../ButtonBase/useButtonBase';
 
 // One log per component for each warning, so a bad trigger does not spam the
 // console on every render.
@@ -78,28 +77,6 @@ export interface Menu2RootSlots {
 
 export interface Menu2RootSlotProps<OwnerState> {
   root?: SlotProps<Record<string, any>, OwnerState>;
-}
-
-// Base UI owns the Enter and Space activation of a menu item. The item root is
-// a ButtonBase rendered as a div, so ButtonBase would emulate a second one.
-// `defaultMuiPrevented` is the MUI convention that turns that emulation off.
-export function suppressButtonBaseKeyboardActivation(props?: {
-  onKeyDown?: React.KeyboardEventHandler<HTMLElement> | undefined;
-  onKeyUp?: React.KeyboardEventHandler<HTMLElement> | undefined;
-}) {
-  const externalOnKeyDown = props?.onKeyDown;
-  const externalOnKeyUp = props?.onKeyUp;
-
-  return {
-    onKeyDown: (event: MuiKeyboardEvent) => {
-      externalOnKeyDown?.(event);
-      event.defaultMuiPrevented = true;
-    },
-    onKeyUp: (event: MuiKeyboardEvent) => {
-      externalOnKeyUp?.(event);
-      event.defaultMuiPrevented = true;
-    },
-  };
 }
 
 export function getMenu2RootRender<OwnerState>(
