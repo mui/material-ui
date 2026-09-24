@@ -76,7 +76,7 @@ This also fetches the latest tags from Google's Material Symbols metadata, so th
 
 ### 6. Review
 
-- Pick two or three sheets and compare the new entries against the images. Look for invented details (parts that are not drawn) and keywords that belong to a neighbouring icon.
+- Pick two or three sheets and compare the new entries against the images. Look for invented details (parts that are not drawn) and keywords that belong to a neighboring icon.
 - Report to the user: how many icons were added or updated, how many descriptions needed the cleanup pass, and anything that looked wrong.
 
 ## Notes

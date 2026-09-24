@@ -15,7 +15,7 @@ Your sheets: {{SHEETS}}
 One sentence, 8–20 words:
 
 - Start with what the drawing represents when you can recognize it: say "door", "face", "person", "hand", "house", "speech bubble", not "rectangle with a circle". Use the icon name to understand what it represents.
-- Then add the details that set it apart from similar icons: modifiers (diagonal slash through it, small plus badge, circle around it), arrow direction, position of parts, and any text or letters shown. Neighbouring icons are often variants of each other (Man, Man2, Man3); make sure each sentence captures what is specific to that icon.
+- Then add the details that set it apart from similar icons: modifiers (diagonal slash through it, small plus badge, circle around it), arrow direction, position of parts, and any text or letters shown. Neighboring icons are often variants of each other (Man, Man2, Man3); make sure each sentence captures what is specific to that icon.
 - Only mention parts you can actually see. Do not add parts that are not drawn (a doorknob, window, face or person that isn't there).
 - Give counts only when they are small and obvious at a glance ("three dots", "two arrows"). Otherwise say "several" or leave the count out.
 - Do not say "filled", "outline", "outlined", "solid", "hollow" or "black": the same description is used for the filled, outlined, rounded, sharp and two-tone versions of the icon.

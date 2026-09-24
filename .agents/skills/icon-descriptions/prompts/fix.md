@@ -8,7 +8,7 @@ Rewrite each sentence with a minimal edit so none of those words remain, keeping
 
 - Style adjectives: drop them. "house outline with a plus badge" → "house with a plus badge"; "filled circle with a pale arrow" → "circle with an arrow"; "small solid triangle pointing down" → "small triangle pointing down".
 - When the word carries real meaning, rephrase instead of dropping: "one dashed and one solid" → "one dashed and one continuous"; "area beneath it filled in" → "area beneath it shaded"; "side view outline of a seat" → "side view of a seat"; "hands showing a time" → "hands pointing to a time".
-- Colour words that only exist because of the fill (a pale arrow inside a filled circle) can go: "arrow inside".
+- Color words that only exist because of the fill (a pale arrow inside a filled circle) can go: "arrow inside".
 - Keep a lowercase start, no trailing period, 5–20 words.
 
 Write `{{WORK_DIR}}/out/visual_fixed.json` with the Write tool: the same keys, each mapped to the rewritten sentence. Include every key. Valid JSON. Do not write anywhere else. You do not need to view any images.
