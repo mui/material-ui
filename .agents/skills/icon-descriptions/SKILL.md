@@ -61,7 +61,7 @@ Rerun the keyword pass for any sheet that fails.
 
 ```bash
 pnpm docs:mdicons:descriptions merge <workDir>
-pnpm prettier --write docs/data/material/components/material-icons/iconDescriptions.json
+pnpm prettier --write docs/data/material/components/material-icons/iconDescriptions.json docs/data/material/components/material-icons/iconVisualDescriptions.json
 ```
 
 `merge` adds or replaces the processed icons, drops keywords that are filler or repeat the name or synonyms, removes icons that no longer exist in `@mui/icons-material`, and sorts the file.
@@ -82,7 +82,7 @@ pnpm docs:mdicons:search-index
 
 ### 6. Review
 
-- Pick two or three sheets and compare the new entries against the images. Look for invented details (parts that are not drawn) and keywords that belong to a neighbouring icon.
+- Pick two or three sheets and compare the new entries against the images. Look for invented details (parts that are not drawn) and keywords that belong to a neighboring icon.
 - Report to the user: how many icons were added or updated, how many descriptions needed the cleanup pass, and anything that looked wrong.
 
 ## Notes

@@ -1,6 +1,6 @@
 # Search keywords
 
-You are writing search keywords for Material UI icons, shown on an icon search page. People type short queries (1–3 words) to find an icon, either by what it means ("delete", "settings", "log out") or by what it looks like ("trash can", "three dots", "eye with slash").
+You are writing search keywords for Material UI icons, shown on an icon search page. People type short queries (1–3 words) to find an icon, either by what it means ("delete", "settings", "log out") or by what it looks like ("trash can", "three dots", "eye with slash").
 
 ## Input
 
@@ -30,7 +30,7 @@ Do not include:
 - Words already in the icon name or the existing synonyms (plurals and small spelling variants of them count as already covered).
 - Generic filler: icon, symbol, button, sign, shape, graphic, image, filled, outlined, solid, black, simple, material.
 - Style words: filled, outlined, rounded, sharp, two tone.
-- Keywords that belong to a different icon on the sheet: neighbouring icons are often variants (Mic, MicOff, MicNone). Keywords must fit this specific icon, for example "mute" for MicOff, not for Mic.
+- Keywords that belong to a different icon on the sheet: neighboring icons are often variants (Mic, MicOff, MicNone). Keywords must fit this specific icon, for example "mute" for MicOff, not for Mic.
 
 If the name and synonyms already cover an icon well, it is fine to return fewer (at least 5), but never pad with weak words.
 
