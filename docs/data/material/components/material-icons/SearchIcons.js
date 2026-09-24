@@ -577,22 +577,31 @@ const allIcons = Object.keys(mui)
         break;
       }
     }
-    let searchable = name;
-    if (synonyms[searchable]) {
-      searchable += ` ${synonyms[searchable]}`;
-    }
-
     const icon = {
-      id: importName, // used by MiniSearch
       importName,
       name,
       theme,
-      searchable,
       Component: mui[importName],
     };
     allIconsMap[importName] = icon;
     return icon;
   });
+
+// Theme -> icon name -> icon, to map search results to the selected theme.
+const allIconsByTheme = {};
+for (const icon of allIcons) {
+  allIconsByTheme[icon.theme] ??= {};
+  allIconsByTheme[icon.theme][icon.name] = icon;
+}
+
+// The five themes of an icon share the same name and synonyms, so each icon is indexed once.
+const searchDocuments = [...new Set(allIcons.map((icon) => icon.name))].map(
+  (name) => ({
+    id: name,
+    name,
+    searchable: synonyms[name] ? `${name} ${synonyms[name]}` : name,
+  }),
+);
 
 function addSuffixes(term, minLength) {
   if (term == null) {
@@ -641,13 +650,13 @@ function yieldToMain() {
 // https://calendar.perfplanet.com/2024/breaking-up-with-long-tasks-or-how-i-learned-to-group-loops-and-wield-the-yield/
 async function indexIcons() {
   let deadline = performance.now() + WORK_BUDGET_MS;
-  for (const icon of allIcons) {
+  for (const document of searchDocuments) {
     if (performance.now() > deadline) {
       // eslint-disable-next-line no-await-in-loop -- yielding between batches is the point
       await yieldToMain();
       deadline = performance.now() + WORK_BUDGET_MS;
     }
-    miniSearch.add(icon);
+    miniSearch.add(document);
   }
 }
 
@@ -713,9 +722,7 @@ export default function SearchIcons() {
       }
       const results = miniSearch.search(query);
       setIcons(
-        results
-          .map((result) => allIconsMap[result.id])
-          .filter((icon) => theme === icon.theme),
+        results.map((result) => allIconsByTheme[theme][result.id]).filter(Boolean),
       );
     });
     return () => {
