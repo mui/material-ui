@@ -4,12 +4,11 @@ You are writing search keywords for Material UI icons, shown on an icon search 
 
 ## Input
 
-- Sheet images in `{{WORK_DIR}}/sheets/`: each `sheet_XXX.png` is a 4×4 grid of up to 16 icons, each cell labeled `<number>. <IconName>`.
-- For each sheet, a context file `{{WORK_DIR}}/context/ctx_XXX.json` mapping each exact icon name to:
-  - `synonyms`: the search keywords that already exist for this icon (chosen by people, may be empty or noisy).
-  - `visual`: a short description of what the icon looks like, written earlier.
+- Sheet images in `{{WORK_DIR}}/sheets/`: each `sheet_XXX.png` is a 4×4 grid of up to 16 icons, each cell labeled `<number>. <IconName>`. The exact icon names per sheet are in `{{WORK_DIR}}/manifest.json` (array of `{ id, file, names }`).
+- `{{WORK_DIR}}/synonyms.json` maps each icon name to the search keywords that already exist for it (chosen by people, may be empty or noisy).
+- For each sheet, `{{WORK_DIR}}/out/visual_XXX.json` maps each icon name to a short description of what the icon looks like, written earlier.
 
-For each sheet, read the context file and view the sheet image with the Read tool. Do not crop, zoom or otherwise process the images, and do not open icon source files. Only use Read and Write.
+Read the manifest and `synonyms.json` once. Then, for each sheet, read its visual descriptions and view the sheet image with the Read tool. Do not crop, zoom or otherwise process the images, and do not open icon source files. Only use Read and Write.
 
 Your sheets: {{SHEETS}}
 
@@ -36,7 +35,7 @@ If the name and synonyms already cover an icon well, it is fine to return fewer 
 
 ## Output
 
-For each of your sheets, write `{{WORK_DIR}}/out/kw_XXX.json` (same `XXX` as the sheet) with the Write tool: one JSON object mapping each exact icon name to its keyword array, for example `{"Mail": ["envelope", "..."], "MailLock": ["..."]}`. Every icon in the context file must appear exactly once. The file must be valid JSON.
+For each of your sheets, write `{{WORK_DIR}}/out/kw_XXX.json` (same `XXX` as the sheet) with the Write tool: one JSON object mapping each exact icon name to its keyword array, for example `{"Mail": ["envelope", "..."], "MailLock": ["..."]}`. Every icon on the sheet must appear exactly once. The file must be valid JSON.
 
 Work through your sheets one at a time. Do not write anywhere else.
 

@@ -15,9 +15,8 @@ import synonyms from '../data/material/components/material-icons/synonyms.js';
  *
  * Usage:
  * - `node docs/scripts/iconDescriptions.mjs prepare <workDir> [--all] [--icons=A,B]`
- *   render sheets for icons missing from iconDescriptions.json (or all of them)
- * - `node docs/scripts/iconDescriptions.mjs context <workDir>`
- *   write the per-sheet context (existing synonyms + visual description) for the keyword pass
+ *   render sheets for icons missing from iconDescriptions.json (or all of them), and write their
+ *   existing synonyms to synonyms.json for the keyword pass
  * - `node docs/scripts/iconDescriptions.mjs check <workDir> visual|keywords`
  *   validate the LLM output files
  * - `node docs/scripts/iconDescriptions.mjs merge <workDir>`
@@ -172,25 +171,12 @@ async function prepare(workDir, args) {
     sheets.push({ id, file, names: sheetNames });
   }
   fs.writeFileSync(path.join(workDir, 'manifest.json'), JSON.stringify(sheets, null, 2));
+  // Kept out of the manifest: only the keyword pass may see the existing synonyms.
+  fs.writeFileSync(
+    path.join(workDir, 'synonyms.json'),
+    JSON.stringify(Object.fromEntries(names.map((name) => [name, synonyms[name] ?? ''])), null, 2),
+  );
   console.log(`${names.length} icons, ${sheets.length} sheets in ${workDir}`);
-}
-
-function context(workDir) {
-  fs.mkdirSync(path.join(workDir, 'context'), { recursive: true });
-  for (const sheet of readManifest(workDir)) {
-    const visual = readOutput(workDir, 'visual', sheet.id) ?? {};
-    const ctx = Object.fromEntries(
-      sheet.names.map((name) => [
-        name,
-        { synonyms: synonyms[name] ?? '', visual: visual[name] ?? '' },
-      ]),
-    );
-    fs.writeFileSync(
-      path.join(workDir, 'context', `ctx_${sheet.id}.json`),
-      JSON.stringify(ctx, null, 2),
-    );
-  }
-  console.log(`wrote context for ${readManifest(workDir).length} sheets`);
 }
 
 function check(workDir, kind) {
@@ -264,14 +250,11 @@ function merge(workDir) {
 
 const [command, workDir, ...rest] = process.argv.slice(2);
 if (!workDir) {
-  throw new Error('Usage: iconDescriptions.mjs <prepare|context|check|merge> <workDir> [...]');
+  throw new Error('Usage: iconDescriptions.mjs <prepare|check|merge> <workDir> [...]');
 }
 switch (command) {
   case 'prepare':
     await prepare(workDir, rest);
-    break;
-  case 'context':
-    context(workDir);
     break;
   case 'check':
     check(workDir, rest[0]);
