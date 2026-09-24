@@ -3,13 +3,18 @@
 import { readFile, realpath } from 'node:fs/promises';
 import path from 'node:path';
 import { gzipSync, constants } from 'node:zlib';
-import { build, version as viteVersion } from 'vite';
+import { build, normalizePath, version as viteVersion } from 'vite';
 
 const root = path.resolve(import.meta.dirname, '../..');
 // eslint-disable-next-line mui/consistent-production-guard -- The bundler must use production package exports.
 process.env.NODE_ENV = 'production';
-const workspaceBuild = await realpath(path.join(root, 'packages/mui-material/build'));
-const materialBuild = await realpath(path.resolve(process.argv[2] ?? workspaceBuild));
+// Vite module IDs use forward slashes on every platform.
+const workspaceBuild = normalizePath(
+  await realpath(path.join(root, 'packages/mui-material/build')),
+);
+const materialBuild = normalizePath(
+  await realpath(path.resolve(process.argv[2] ?? workspaceBuild)),
+);
 const materialPackage = JSON.parse(
   await readFile(path.join(materialBuild, 'package.json'), 'utf8'),
 );
