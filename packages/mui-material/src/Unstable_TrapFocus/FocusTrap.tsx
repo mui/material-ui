@@ -198,7 +198,13 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       // restoreLastFocus()
       if (!disableRestoreFocus && nodeToRestore.current) {
         ignoreNextEnforceFocus.current = true;
-        (nodeToRestore.current as HTMLElement).focus();
+        // `nodeToRestore` is recorded from `relatedTarget` which is typed `EventTarget`, so it
+        // isn't necessarily a node that can be focused, e.g. the document when the previously
+        // focused element was removed.
+        const restoreTarget = nodeToRestore.current as HTMLElement;
+        if (typeof restoreTarget.focus === 'function') {
+          restoreTarget.focus();
+        }
         nodeToRestore.current = null;
       }
     };
