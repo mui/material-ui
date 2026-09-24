@@ -37,6 +37,10 @@ describe('escapeHtmlInCss', () => {
     expect(escapeHtmlInCss('.a{content:"</script>"}')).to.equal('.a{content:"</script>"}');
   });
 
+  it('leaves a space after the slash alone', () => {
+    expect(escapeHtmlInCss('.a{content:"</ style>"}')).to.equal('.a{content:"</ style>"}');
+  });
+
   it('leaves the CSS comment open token alone', () => {
     // `<!--` is a CDO token that a stylesheet ignores at the top level. Escaping it turns it into
     // an ident, which makes the parser consume the rule that follows.
@@ -54,8 +58,7 @@ describe('escapeHtmlInCss', () => {
     expect(escapeHtmlInCss('')).to.equal('');
   });
 
-  it('escapes only once', () => {
-    // The input still holds a `<`, so the second pass reaches the replace rather than returning early.
+  it('is idempotent', () => {
     const escaped = escapeHtmlInCss('.a{content:"</style><div>"}');
     expect(escaped).to.equal('.a{content:"\\3c /style><div>"}');
     expect(escapeHtmlInCss(escaped)).to.equal(escaped);
