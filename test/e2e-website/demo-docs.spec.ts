@@ -315,6 +315,9 @@ test.describe('Demo docs', () => {
       });
       const buttons = toolbar.locator('button:visible');
 
+      // The skeleton toolbar is inert until the live one mounts; a focus
+      // attempt before that lands nowhere, so wait for `aria-busy` to clear.
+      await expect(toolbar).not.toHaveAttribute('aria-busy', 'true');
       await buttons.first().focus();
       await page.keyboard.press('End');
       await expect(toolbar.getByRole('button', { name: 'See more' })).toBeFocused();
