@@ -374,6 +374,36 @@ describe('ModalManager', () => {
       expect(container.style.overflow).to.equal('scroll hidden');
     });
 
+    // Base UI's inset-scrollbar fallback locks body and gives html `overflow-y: scroll`.
+    it('waits for a lock on body while html only scrolls', async () => {
+      const html = document.documentElement;
+      const body = document.body;
+      const initialStyles = { html: html.style.cssText, body: body.style.cssText };
+      html.style.overflowY = 'scroll';
+      body.style.overflow = 'hidden';
+      const bodyModal = getDummyModal();
+      modals.push(bodyModal);
+
+      try {
+        manager.add(bodyModal, body);
+        manager.mount(bodyModal, {});
+        expect(html.style.overflowY).to.equal('scroll');
+        expect(body.style.overflow).to.equal('hidden');
+
+        html.style.cssText = initialStyles.html;
+        body.style.cssText = initialStyles.body;
+        await waitFor(() => expect(body.style.overflow).to.equal('hidden'));
+        expect(html.style.overflowY).to.equal('');
+
+        manager.remove(bodyModal);
+        expect(body.style.overflow).to.equal('');
+        expect(html.style.overflowY).to.equal('');
+      } finally {
+        html.style.cssText = initialStyles.html;
+        body.style.cssText = initialStyles.body;
+      }
+    });
+
     it('keeps its own lock when a stylesheet lock is removed from an ancestor', () => {
       const parent = document.createElement('div');
       const stylesheet = document.createElement('style');

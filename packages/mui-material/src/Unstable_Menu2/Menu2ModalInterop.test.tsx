@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Dialog from '../Dialog';
 import Menu2Item from '../Unstable_Menu2Item';
@@ -82,6 +82,62 @@ describe.skipIf(isJsdom())('Menu2 and Material Modal scroll locking', () => {
         afterDialogClose: initialOverflow,
       });
     });
+  });
+
+  // Without `scrollbar-gutter: stable` and with inset scrollbars, Base UI locks
+  // body and gives html `overflow-y: scroll`. The Material lock must wait for
+  // the release of that body lock, not for html.
+  it('transfers the scroll lock to a dialog under the inset-scrollbar fallback', async () => {
+    const innerWidth = Object.getOwnPropertyDescriptor(window, 'innerWidth');
+    Object.defineProperty(window, 'innerWidth', {
+      configurable: true,
+      get: () => document.documentElement.clientWidth + 15,
+    });
+    const supports = CSS.supports.bind(CSS);
+    vi.spyOn(CSS, 'supports').mockImplementation((property: string, value?: string) =>
+      property === 'scrollbar-gutter' ? false : supports(property, value as string),
+    );
+
+    function Demo() {
+      const [dialogOpen, setDialogOpen] = React.useState(false);
+
+      return (
+        <div style={{ minHeight: '200vh' }}>
+          <Menu2 trigger={<button type="button">Options</button>}>
+            <Menu2Item onClick={() => setDialogOpen(true)}>Open dialog</Menu2Item>
+          </Menu2>
+          <Dialog open={dialogOpen} transitionDuration={0}>
+            <button type="button" onClick={() => setDialogOpen(false)}>
+              Close dialog
+            </button>
+          </Dialog>
+        </div>
+      );
+    }
+
+    try {
+      const { user } = render(<Demo />);
+      await user.click(screen.getByRole('button', { name: 'Options' }));
+      const menu = await screen.findByRole('menu');
+      await waitFor(() => expect(document.body.style.overflowY).to.equal('hidden'));
+      expect(document.documentElement.style.overflowY).to.equal('scroll');
+
+      await user.click(screen.getByRole('menuitem', { name: 'Open dialog' }));
+      await screen.findByRole('dialog');
+      await waitFor(() => expect(menu.isConnected).to.equal(false));
+      await waitFor(() => expect(document.body.style.overflow).to.equal('hidden'));
+      expect(document.documentElement.style.overflow).to.equal('');
+
+      await user.click(screen.getByRole('button', { name: 'Close dialog' }));
+      await waitFor(() => expect(screen.queryByRole('dialog')).to.equal(null));
+      expect(document.body.style.overflow).to.equal('');
+      expect(document.documentElement.style.overflow).to.equal('');
+    } finally {
+      vi.mocked(CSS.supports).mockRestore();
+      if (innerWidth) {
+        Object.defineProperty(window, 'innerWidth', innerWidth);
+      }
+    }
   });
 
   it('keeps an existing dialog locked while its nested menu opens and closes', async () => {

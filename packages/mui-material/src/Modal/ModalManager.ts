@@ -101,16 +101,23 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
 
     const containerDocument = ownerDocument(scrollContainer);
     const containerWindow = containerDocument.defaultView || window;
-    const isScrollLocked = () => {
-      const isHidden = (overflow: string) => overflow === 'hidden' || overflow === 'clip';
-      return [scrollContainer.style, containerWindow.getComputedStyle(scrollContainer)].every(
-        (styles) =>
-          isHidden(styles.overflow) || [styles.overflowX, styles.overflowY].every(isHidden),
+    // Another overlay can lock either viewport element. Base UI's inset-scrollbar
+    // fallback locks body and gives html `overflow-y: scroll`.
+    const viewportElements = [containerDocument.documentElement, containerDocument.body];
+    const lockCandidates = viewportElements.includes(scrollContainer)
+      ? viewportElements
+      : [scrollContainer];
+    const isHidden = (overflow: string) => overflow === 'hidden' || overflow === 'clip';
+    const isScrollLocked = () =>
+      lockCandidates.some((element) =>
+        [element.style, containerWindow.getComputedStyle(element)].every(
+          (styles) =>
+            isHidden(styles.overflow) || [styles.overflowX, styles.overflowY].every(isHidden),
+        ),
       );
-    };
 
-    // Another overlay can own an inline lock. Wait for it to release that lock,
-    // then read the restored styles before we apply ours.
+    // Wait for the other overlay to release its inline lock, then read the
+    // restored styles before we apply ours.
     if (isScrollLocked()) {
       let restore: (() => void) | undefined;
       const observer = new containerWindow.MutationObserver(() => {
@@ -119,7 +126,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
           restore = handleContainer(containerInfo, props);
         }
       });
-      observer.observe(scrollContainer, { attributes: true });
+      lockCandidates.forEach((element) => observer.observe(element, { attributes: true }));
 
       return () => {
         observer.disconnect();
