@@ -342,37 +342,12 @@ const ContextComponent = styled('div', {
   ],
 }));
 
-let visualDescriptionsPromise = null;
-
-// Loaded on first use so the descriptions don't add to the page's initial download.
-function loadVisualDescriptions() {
-  visualDescriptionsPromise ??= import('./iconVisualDescriptions.json')
-    .then((module) => module.default)
-    .catch((error) => {
-      visualDescriptionsPromise = null;
-      throw error;
-    });
-  return visualDescriptionsPromise;
-}
-
 const DialogDetails = React.memo(function DialogDetails(props) {
   const { open, selectedIcon, handleClose } = props;
 
   const t = useTranslate();
   const [copied1, setCopied1] = React.useState(false);
   const [copied2, setCopied2] = React.useState(false);
-  const [visualDescriptions, setVisualDescriptions] = React.useState(null);
-
-  React.useEffect(() => {
-    if (open && !visualDescriptions) {
-      // The dialog works without the description if it fails to load.
-      loadVisualDescriptions().then(setVisualDescriptions, () => {});
-    }
-  }, [open, visualDescriptions]);
-
-  const visualDescription = selectedIcon
-    ? visualDescriptions?.[selectedIcon.name]
-    : undefined;
 
   const handleClick = (tooltip) => async (event) => {
     await copy(event.currentTarget.textContent);
@@ -413,14 +388,6 @@ const DialogDetails = React.memo(function DialogDetails(props) {
               </Title>
             </Tooltip>
           </DialogTitle>
-          {visualDescription ? (
-            <Typography
-              variant="body2"
-              sx={{ color: 'text.secondary', px: 3, mt: -1.5, pb: 2 }}
-            >
-              {visualDescription}
-            </Typography>
-          ) : null}
           <Tooltip
             placement="top"
             title={copied2 ? t('copied') : t('clickToCopy')}
