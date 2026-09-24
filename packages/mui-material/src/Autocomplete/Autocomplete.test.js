@@ -5244,6 +5244,62 @@ describe('<Autocomplete />', () => {
       expect(screen.queryAllByRole('option')).to.have.length(0);
     });
 
+    it.each([false, true])(
+      'should preserve cached grouping when toggling groupBy with initial grouping %s',
+      async (initialGrouping) => {
+        function Test() {
+          const [grouping, setGrouping] = React.useState(initialGrouping);
+
+          return (
+            <React.Fragment>
+              <input
+                type="checkbox"
+                aria-label="Group options"
+                checked={grouping}
+                onChange={(event) => setGrouping(event.target.checked)}
+              />
+              <Autocomplete
+                options={['one', 'two']}
+                groupBy={grouping ? () => 'Group' : undefined}
+                renderInput={(params) => <TextField {...params} />}
+                slotProps={{ popper: { keepMounted: true } }}
+              />
+            </React.Fragment>
+          );
+        }
+
+        const { user } = render(<Test />);
+        const input = screen.getByRole('combobox');
+
+        await user.click(input);
+        const listbox = screen.getByRole('listbox');
+        const previousContent = listbox.textContent;
+        expect(screen.getAllByRole('option').map((option) => option.textContent)).to.deep.equal([
+          'one',
+          'two',
+        ]);
+
+        // Clicking the checkbox closes the popup before changing the grouping mode.
+        await user.click(screen.getByRole('checkbox'));
+
+        expect(input).to.have.attribute('aria-expanded', 'false');
+        expect(document.querySelector('[role="listbox"]')).to.equal(listbox);
+        expect(listbox).to.have.text(previousContent);
+        expect(listbox.querySelectorAll('[role="option"]')).to.have.length(2);
+        expect(listbox.querySelectorAll(`.${classes.groupLabel}`)).to.have.length(
+          initialGrouping ? 1 : 0,
+        );
+
+        // Reopening uses the new grouping mode and keeps the options selectable.
+        await user.click(input);
+        expect(
+          screen.getByRole('listbox').querySelectorAll(`.${classes.groupLabel}`),
+        ).to.have.length(initialGrouping ? 0 : 1);
+        await user.click(screen.getByRole('option', { name: 'two' }));
+        expect(input).to.have.value('two');
+      },
+    );
+
     it('should disable pointer events on Popper when closing', async () => {
       const { user } = render(
         <Autocomplete
@@ -5318,6 +5374,58 @@ describe('<Autocomplete />', () => {
       } finally {
         window.ResizeObserver = originalRO;
       }
+    });
+  });
+
+  describe('theme.focusVisible', () => {
+    it.skipIf(isJsdom())('insets the curated ring on the keyboard-highlighted option', () => {
+      render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Autocomplete
+            open
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />
+        </ThemeProvider>,
+      );
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
+      const option = screen.getAllByRole('option')[0];
+      expect(option).to.have.class(classes.focusVisible);
+      expect(option).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '-2px',
+      });
+    });
+
+    it.skipIf(isJsdom())('does not add the focus tint on a selected highlighted option', () => {
+      render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Autocomplete
+            open
+            value="one"
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />
+        </ThemeProvider>,
+      );
+      const combobox = screen.getByRole('combobox');
+      // walk past "two" and "three" so the highlight lands back on the selected "one"
+      fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+      fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+      fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+
+      const option = screen.getAllByRole('option')[0];
+      expect(option).to.have.class(classes.focusVisible);
+      expect(option).to.have.attribute('aria-selected', 'true');
+
+      // The theme ring suppresses the extra focusOpacity bump, so the option keeps whatever the
+      // highlight alone gives it. That value is media-dependent: pointer devices get the blended
+      // `selectedOpacity + hoverOpacity`, while `@media (hover: none)` environments (headless
+      // Firefox on CI, touch devices) fall back to `action.selected`.
+      const backgroundColor = window.getComputedStyle(option).backgroundColor;
+      expect(backgroundColor).not.to.equal('rgba(25, 118, 210, 0.2)');
+      expect(['rgba(25, 118, 210, 0.12)', 'rgba(0, 0, 0, 0.08)']).to.contain(backgroundColor);
     });
   });
 });

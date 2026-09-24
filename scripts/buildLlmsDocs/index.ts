@@ -262,14 +262,20 @@ function findNonComponentMarkdownFiles(
       pathname.startsWith('/material-ui/') &&
       !ignoredPaths.some((ignored) => pathname.startsWith(ignored))
     ) {
-      // Match by filename basename to avoid pathname collisions when multiple files
-      // exist in the same directory (e.g., upgrade-to-v7.md and upgrade-to-native-color.md)
-      const lastSegment = parsedPathname.split('/').filter(Boolean).pop();
-      const page = allMarkdownFiles.find((p) => {
-        const fileBasename = path.basename(p.filename).replace(/\.mdx?$/, '');
-        // p.pathname already has the parent path (from findPagesMarkdown which strips the filename)
-        return fileBasename === lastSegment && p.pathname === parsedPathname;
-      });
+      // findPagesMarkdown returns the file's parent directory as its pathname. Match the
+      // filename too to avoid collisions between files in the same directory (for example,
+      // upgrade-to-v7.md and upgrade-to-native-color.md).
+      const lastSegment = path.posix.basename(parsedPathname);
+      const findPage = (expectedPathname: string) =>
+        allMarkdownFiles.find((page) => {
+          const fileBasename = path.basename(page.filename).replace(/\.mdx?$/, '');
+          return fileBasename === lastSegment && page.pathname === expectedPathname;
+        });
+
+      // First support the directory-named layout, where nextjs/nextjs.md has the pathname
+      // /material/integrations/nextjs. Then support the sibling-file layout, where
+      // css-theme-variables/overview.md has the pathname /material/customization/css-theme-variables.
+      const page = findPage(parsedPathname) ?? findPage(path.posix.dirname(parsedPathname));
 
       if (page) {
         files.push({
@@ -415,11 +421,23 @@ function generateLlmsTxt(
 }
 
 /**
+ * Deletes the markdown and txt files a previous run wrote anywhere under `dir`.
+ * Files of any other type are kept, and emptied directories stay behind.
+ */
+function removeGeneratedFiles(dir: string): void {
+  for (const entry of fs.globSync(['**/*.md', '**/*.txt'], { cwd: dir })) {
+    fs.rmSync(path.join(dir, entry));
+  }
+}
+
+/**
  * Main build function
  */
 async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<void> {
   const grep = argv.grep ? new RegExp(argv.grep) : null;
   const outputDir = argv.outputDir || path.join(process.cwd(), 'docs/public');
+
+  removeGeneratedFiles(path.join(outputDir, 'material-ui'));
 
   // Load project settings from the specified path
   if (!argv.projectSettings) {
