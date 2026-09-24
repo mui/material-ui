@@ -61,7 +61,7 @@ Rerun the keyword pass for any sheet that fails.
 
 ```bash
 pnpm docs:mdicons:descriptions merge <workDir>
-pnpm prettier --write docs/data/material/components/material-icons/iconDescriptions.json
+pnpm prettier --write docs/data/material/components/material-icons/iconDescriptions.json docs/data/material/components/material-icons/iconVisualDescriptions.json
 ```
 
 `merge` adds or replaces the processed icons, drops keywords that are filler or repeat the name or synonyms, removes icons that no longer exist in `@mui/icons-material`, and sorts the file.
