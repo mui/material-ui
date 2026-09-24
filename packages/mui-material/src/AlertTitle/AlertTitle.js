@@ -22,7 +22,6 @@ const useUtilityClasses = (ownerState) => {
 const AlertTitleRoot = styled(Typography, {
   name: 'MuiAlertTitle',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })(
   memoTheme(({ theme }) => {
     return {

@@ -1,15 +1,17 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { SpeedDialIconClasses } from './speedDialIconClasses';
 
-export interface SpeedDialIconProps
-  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
+export interface SpeedDialIconProps extends StandardProps<
+  React.HTMLAttributes<HTMLSpanElement>,
+  'children'
+> {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<SpeedDialIconClasses>;
+  classes?: Partial<SpeedDialIconClasses> | undefined;
   /**
    * The icon to display.
    */
@@ -22,11 +24,11 @@ export interface SpeedDialIconProps
    * @ignore
    * If `true`, the component is shown.
    */
-  open?: boolean;
+  open?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**

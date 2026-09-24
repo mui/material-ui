@@ -8,7 +8,7 @@ import Radio from '@mui/material/Radio';
 import Grid from '@mui/system/Grid';
 import Stack from '@mui/system/Stack';
 import { styled } from '@mui/system';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 
 const Item = styled('div')(({ theme }) => ({
   backgroundColor: '#fff',

@@ -1,8 +1,8 @@
 ---
-title: Material UI 2024 end-of-year updates
-description: Recapping our biggest accomplishments for Material UI this year; plus, a look at what's to come in 2025.
+title: Material UI 2024 end-of-year updates
+description: Recapping our biggest accomplishments for Material UI this year; plus, a look at what's to come in 2025.
 date: 2024-12-11T00:00:00.000Z
-authors: ['diegoandai']
+authors: ['diegoandai', 'alelthomas']
 tags: ['Material UI', 'Product']
 manualCard: true
 ---

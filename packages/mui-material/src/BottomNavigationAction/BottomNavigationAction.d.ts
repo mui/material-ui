@@ -1,11 +1,46 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '..';
-import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { Theme } from '../styles';
+import {
+  ButtonBaseProps,
+  ButtonBaseTypeMap,
+  ExtendButtonBase,
+  ExtendButtonBaseTypeMap,
+} from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { BottomNavigationActionClasses } from './bottomNavigationActionClasses';
 
-export interface BottomNavigationActionOwnProps {
+export interface BottomNavigationActionSlots {
+  /**
+   * The component that renders the root.
+   * @default ButtonBase
+   */
+  root: React.ElementType;
+  /**
+   * The component that renders the label.
+   * @default span
+   */
+  label: React.ElementType;
+}
+
+export type BottomNavigationActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  BottomNavigationActionSlots,
+  {
+    /**
+     * Props forwarded to the root slot.
+     * By default, the available props are based on the ButtonBase element.
+     */
+    root: SlotProps<React.ElementType<ButtonBaseProps>, {}, BottomNavigationActionOwnerState>;
+    /**
+     * Props forwarded to the label slot.
+     * By default, the available props are based on the span element.
+     */
+    label: SlotProps<'span', {}, BottomNavigationActionOwnerState>;
+  }
+>;
+
+export interface BottomNavigationActionOwnProps extends BottomNavigationActionSlotsAndSlotProps {
   /**
    * This prop isn't supported.
    * Use the `component` prop if you need to change the children structure.
@@ -14,7 +49,7 @@ export interface BottomNavigationActionOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<BottomNavigationActionClasses>;
+  classes?: Partial<BottomNavigationActionClasses> | undefined;
   /**
    * The icon to display.
    */
@@ -24,17 +59,23 @@ export interface BottomNavigationActionOwnProps {
    */
   label?: React.ReactNode;
   /**
+   * If `true`, the component appears selected.
+   *
+   * `BottomNavigation` sets this on each child from its own `value`.
+   */
+  selected?: boolean | undefined;
+  /**
    * If `true`, the `BottomNavigationAction` will show its label.
    * By default, only the selected `BottomNavigationAction`
    * inside `BottomNavigation` will show its label.
    *
    * The prop defaults to the value (`false`) inherited from the parent BottomNavigation component.
    */
-  showLabel?: boolean;
+  showLabel?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */
@@ -68,7 +109,12 @@ export type BottomNavigationActionProps<
   RootComponent extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<BottomNavigationActionTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
+
+export interface BottomNavigationActionOwnerState extends Omit<
+  BottomNavigationActionProps,
+  'slots' | 'slotProps'
+> {}
 
 export default BottomNavigationAction;

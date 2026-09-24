@@ -16,6 +16,9 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
+import { outsetFocusRing } from '../styles/focusVisible';
+import useSlot from '../utils/useSlot';
+import { getTransitionStyles } from '../transitions/utils';
 
 function getDecimalPrecision(num) {
   const decimalPart = num.toString().split('.')[1];
@@ -86,7 +89,11 @@ const RatingRoot = styled('span', {
       pointerEvents: 'none',
     },
     [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
-      outline: '1px solid #999',
+      // Legacy default, superseded when the curated ring is opted in.
+      ...(!theme.focusVisible && {
+        outline: '1px solid #999',
+      }),
+      ...(theme.focusVisible && { ...outsetFocusRing, ...theme.focusVisible }),
     },
     [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
     variants: [
@@ -124,21 +131,27 @@ const RatingLabel = styled('label', {
     styles.label,
     ownerState.emptyValueFocused && styles.labelEmptyValueActive,
   ],
-})({
-  cursor: 'inherit',
-  variants: [
-    {
-      props: ({ ownerState }) => ownerState.emptyValueFocused,
-      style: {
-        top: 0,
-        bottom: 0,
-        position: 'absolute',
-        outline: '1px solid #999',
-        width: '100%',
+})(
+  memoTheme(({ theme }) => ({
+    cursor: 'inherit',
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.emptyValueFocused,
+        style: {
+          top: 0,
+          bottom: 0,
+          position: 'absolute',
+          width: '100%',
+          // Legacy default, superseded when the curated ring is opted in.
+          ...(!theme.focusVisible && {
+            outline: '1px solid #999',
+          }),
+          ...(theme.focusVisible && { ...outsetFocusRing, ...theme.focusVisible }),
+        },
       },
-    },
-  ],
-});
+    ],
+  })),
+);
 
 const RatingIcon = styled('span', {
   name: 'MuiRating',
@@ -159,11 +172,11 @@ const RatingIcon = styled('span', {
   memoTheme(({ theme }) => ({
     // Fit wrapper to actual icon size.
     display: 'flex',
-    transition: theme.transitions.create('transform', {
+    ...getTransitionStyles(theme, 'transform', {
       duration: theme.transitions.duration.shortest,
     }),
     // Fix mouseLeave issue.
-    // https://github.com/facebook/react/issues/4492
+    // https://github.com/react/react/issues/4492
     pointerEvents: 'none',
     variants: [
       {
@@ -222,7 +235,6 @@ function RatingItem(props) {
     highlightSelectedOnly,
     hover,
     icon,
-    IconContainerComponent,
     isActive,
     itemValue,
     labelProps,
@@ -235,6 +247,8 @@ function RatingItem(props) {
     ownerState,
     ratingValue,
     ratingValueRounded,
+    slots = {},
+    slotProps = {},
   } = props;
 
   const isFilled = highlightSelectedOnly ? itemValue === ratingValue : itemValue <= ratingValue;
@@ -248,28 +262,49 @@ function RatingItem(props) {
   // More details: https://github.com/mui/material-ui/issues/40997
   const id = `${name}-${useId()}`;
 
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
+  const [IconSlot, iconSlotProps] = useSlot('icon', {
+    elementType: RatingIcon,
+    className: clsx(classes.icon, {
+      [classes.iconEmpty]: !isFilled,
+      [classes.iconFilled]: isFilled,
+      [classes.iconHover]: isHovered,
+      [classes.iconFocus]: isFocused,
+      [classes.iconActive]: isActive,
+    }),
+    externalForwardedProps,
+    ownerState: {
+      ...ownerState,
+      iconEmpty: !isFilled,
+      iconFilled: isFilled,
+      iconHover: isHovered,
+      iconFocus: isFocused,
+      iconActive: isActive,
+    },
+    additionalProps: {
+      value: itemValue,
+    },
+    internalForwardedProps: {
+      as: IconContainer,
+    },
+  });
+
+  const [LabelSlot, labelSlotProps] = useSlot('label', {
+    elementType: RatingLabel,
+    externalForwardedProps,
+    ownerState: { ...ownerState, emptyValueFocused: undefined },
+    additionalProps: {
+      style: labelProps?.style,
+      htmlFor: id,
+    },
+  });
+
   const container = (
-    <RatingIcon
-      as={IconContainerComponent}
-      value={itemValue}
-      className={clsx(classes.icon, {
-        [classes.iconEmpty]: !isFilled,
-        [classes.iconFilled]: isFilled,
-        [classes.iconHover]: isHovered,
-        [classes.iconFocus]: isFocused,
-        [classes.iconActive]: isActive,
-      })}
-      ownerState={{
-        ...ownerState,
-        iconEmpty: !isFilled,
-        iconFilled: isFilled,
-        iconHover: isHovered,
-        iconFocus: isFocused,
-        iconActive: isActive,
-      }}
-    >
-      {emptyIcon && !isFilled ? emptyIcon : icon}
-    </RatingIcon>
+    <IconSlot {...iconSlotProps}>{emptyIcon && !isFilled ? emptyIcon : icon}</IconSlot>
   );
 
   if (readOnly) {
@@ -278,14 +313,10 @@ function RatingItem(props) {
 
   return (
     <React.Fragment>
-      <RatingLabel
-        ownerState={{ ...ownerState, emptyValueFocused: undefined }}
-        htmlFor={id}
-        {...labelProps}
-      >
+      <LabelSlot {...labelSlotProps}>
         {container}
         <span className={classes.visuallyHidden}>{getLabelText(itemValue)}</span>
-      </RatingLabel>
+      </LabelSlot>
       <input
         className={classes.visuallyHidden}
         onFocus={onFocus}
@@ -312,7 +343,6 @@ RatingItem.propTypes = {
   highlightSelectedOnly: PropTypes.bool.isRequired,
   hover: PropTypes.number.isRequired,
   icon: PropTypes.node,
-  IconContainerComponent: PropTypes.elementType.isRequired,
   isActive: PropTypes.bool.isRequired,
   itemValue: PropTypes.number.isRequired,
   labelProps: PropTypes.object,
@@ -325,6 +355,8 @@ RatingItem.propTypes = {
   ratingValue: PropTypes.number,
   ratingValueRounded: PropTypes.number,
   readOnly: PropTypes.bool.isRequired,
+  slotProps: PropTypes.object,
+  slots: PropTypes.object,
 };
 
 const defaultIcon = <Star fontSize="inherit" />;
@@ -346,7 +378,6 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     getLabelText = defaultLabelText,
     highlightSelectedOnly = false,
     icon = defaultIcon,
-    IconContainerComponent = IconContainer,
     max = 5,
     name: nameProp,
     onChange,
@@ -357,6 +388,8 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     readOnly = false,
     size = 'medium',
     value: valueProp,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -457,7 +490,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const handleClear = (event) => {
     // Ignore keyboard events
-    // https://github.com/facebook/react/issues/7407
+    // https://github.com/react/react/issues/7407
     if (event.clientX === 0 && event.clientY === 0) {
       return;
     }
@@ -515,7 +548,6 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     focusVisible,
     getLabelText,
     icon,
-    IconContainerComponent,
     max,
     precision,
     readOnly,
@@ -524,25 +556,54 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref: handleRef,
+    className: clsx(classes.root, className),
+    elementType: RatingRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+      component,
+    },
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onMouseMove: (event) => {
+        handleMouseMove(event);
+        handlers.onMouseMove?.(event);
+      },
+      onMouseLeave: (event) => {
+        handleMouseLeave(event);
+        handlers.onMouseLeave?.(event);
+      },
+    }),
+    ownerState,
+    additionalProps: {
+      role: readOnly ? 'img' : null,
+      'aria-label': readOnly ? getLabelText(value) : null,
+    },
+  });
+
+  const [LabelSlot, labelSlotProps] = useSlot('label', {
+    className: clsx(classes.label, classes.labelEmptyValue),
+    elementType: RatingLabel,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [DecimalSlot, decimalSlotProps] = useSlot('decimal', {
+    className: classes.decimal,
+    elementType: RatingDecimal,
+    externalForwardedProps,
+    ownerState,
+  });
+
   return (
-    <RatingRoot
-      as={component}
-      ref={handleRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={clsx(
-        classes.root,
-        {
-          // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
-          'MuiRating-readOnly': readOnly,
-        },
-        className,
-      )}
-      ownerState={ownerState}
-      role={readOnly ? 'img' : null}
-      aria-label={readOnly ? getLabelText(value) : null}
-      {...other}
-    >
+    <RootSlot {...rootSlotProps}>
       {Array.from(new Array(max)).map((_, index) => {
         const itemValue = index + 1;
 
@@ -555,7 +616,6 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
           highlightSelectedOnly,
           hover,
           icon,
-          IconContainerComponent,
           name,
           onBlur: handleBlur,
           onChange: handleChange,
@@ -565,16 +625,18 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
           ratingValueRounded: valueRounded,
           readOnly,
           ownerState,
+          slots,
+          slotProps,
         };
 
         const isActive = itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1);
         if (precision < 1) {
           const items = Array.from(new Array(1 / precision));
           return (
-            <RatingDecimal
+            <DecimalSlot
+              {...decimalSlotProps}
               key={itemValue}
-              className={clsx(classes.decimal, { [classes.iconActive]: isActive })}
-              ownerState={ownerState}
+              className={clsx(decimalSlotProps.className, { [classes.iconActive]: isActive })}
               iconActive={isActive}
             >
               {items.map(($, indexDecimal) => {
@@ -606,7 +668,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
                   />
                 );
               })}
-            </RatingDecimal>
+            </DecimalSlot>
           );
         }
 
@@ -620,10 +682,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
         );
       })}
       {!readOnly && !disabled && (
-        <RatingLabel
-          className={clsx(classes.label, classes.labelEmptyValue)}
-          ownerState={ownerState}
-        >
+        <LabelSlot {...labelSlotProps}>
           <input
             className={classes.visuallyHidden}
             value=""
@@ -636,9 +695,9 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
             onChange={handleChange}
           />
           <span className={classes.visuallyHidden}>{emptyLabelText}</span>
-        </RatingLabel>
+        </LabelSlot>
       )}
-    </RatingRoot>
+    </RootSlot>
   );
 });
 
@@ -707,14 +766,6 @@ Rating.propTypes /* remove-proptypes */ = {
    */
   icon: PropTypes.node,
   /**
-   * The component containing the icon.
-   * @default function IconContainer(props) {
-   *   const { value, ...other } = props;
-   *   return <span {...other} />;
-   * }
-   */
-  IconContainerComponent: PropTypes.elementType,
-  /**
    * Maximum rating.
    * @default 5
    */
@@ -773,6 +824,26 @@ Rating.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['small', 'medium', 'large']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    decimal: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    icon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    decimal: PropTypes.elementType,
+    icon: PropTypes.elementType,
+    label: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -3,7 +3,6 @@ productId: material-ui
 title: React Popper component
 components: Popper
 githubLabel: 'component: Popper'
-unstyled: /base-ui/react-popper/
 githubSource: packages/mui-material/src/Popper
 ---
 
@@ -13,17 +12,17 @@ githubSource: packages/mui-material/src/Popper
 
 Some important features of the Popper component:
 
-- 🕷 Popper relies on the 3rd party library ([Popper.js](https://popper.js.org/)) for perfect positioning.
+- 🕷 Popper relies on the 3rd party library ([Popper.js](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/index.md)) for perfect positioning.
 - 💄 It's an alternative API to react-popper. It aims for simplicity.
-- Its child element is a [Base UI Portal](/base-ui/react-portal/) on the body of the document to avoid rendering problems.
+- Its child element is a [Portal](/material-ui/react-portal/) on the body of the document to avoid rendering problems.
   You can disable this behavior with `disablePortal`.
 - The scroll isn't blocked like with the [Popover](/material-ui/react-popover/) component.
   The placement of the popper updates with the available area in the viewport.
 - Clicking away does not hide the Popper component.
-  If you need this behavior, you can use the [Base UI Click-Away Listener](/base-ui/react-click-away-listener/) - see the example in the [menu documentation section](/material-ui/react-menu/#menulist-composition).
+  If you need this behavior, you can use the [Click-Away Listener](/material-ui/react-click-away-listener/) - see the example in the [menu documentation section](/material-ui/react-menu/#composition-with-menu-list).
 - The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
 
-{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader", "design": false}}
 
 ## Basic Popper
 
@@ -58,7 +57,7 @@ Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring
 ## Virtual element
 
 The value of the `anchorEl` prop can be a reference to a fake DOM element.
-You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+You need to create an object shaped like the [`VirtualElement`](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/virtual-elements.md).
 
 Highlight part of the text to see the popper:
 

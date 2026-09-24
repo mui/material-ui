@@ -1,1 +1,1 @@
-<LinearProgressWithLabel value={progress} />
+<LinearProgressWithLabelAndValue value={progress} />

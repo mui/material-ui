@@ -3,10 +3,11 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
+import { unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
 import { keyframes, css, styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { getReducedMotionStyles } from '../transitions/utils';
 import { getSkeletonUtilityClass } from './skeletonClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -93,13 +94,20 @@ const SkeletonRoot = styled('span', {
   memoTheme(({ theme }) => {
     const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
     const radiusValue = toUnitless(theme.shape.borderRadius);
+    const reducedMotionPulseStyles = getReducedMotionStyles(theme, { animation: 'none' });
+    const reducedMotionWaveStyles = getReducedMotionStyles(theme, {
+      '&::after': {
+        animation: 'none',
+        display: 'none',
+      },
+    });
 
     return {
       display: 'block',
       // Create a "on paper" color with sufficient contrast retaining the color
       backgroundColor: theme.vars
         ? theme.vars.palette.Skeleton.bg
-        : alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
+        : theme.alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
       height: '1.2em',
       variants: [
         {
@@ -164,6 +172,16 @@ const SkeletonRoot = styled('span', {
             animation: `${pulseKeyframe} 2s ease-in-out 0.5s infinite`,
           },
         },
+        ...(reducedMotionPulseStyles
+          ? [
+              {
+                props: {
+                  animation: 'pulse',
+                },
+                style: reducedMotionPulseStyles,
+              },
+            ]
+          : []),
         {
           props: {
             animation: 'wave',
@@ -200,6 +218,16 @@ const SkeletonRoot = styled('span', {
             },
           },
         },
+        ...(reducedMotionWaveStyles
+          ? [
+              {
+                props: {
+                  animation: 'wave',
+                },
+                style: reducedMotionWaveStyles,
+              },
+            ]
+          : []),
       ],
     };
   }),

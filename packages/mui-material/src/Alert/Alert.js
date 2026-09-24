@@ -3,10 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { darken, lighten } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { applyChildrenFocusVisible } from '../styles/focusVisible';
 import useSlot from '../utils/useSlot';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
@@ -23,12 +23,7 @@ const useUtilityClasses = (ownerState) => {
   const { variant, color, severity, classes } = ownerState;
 
   const slots = {
-    root: [
-      'root',
-      `color${capitalize(color || severity)}`,
-      `${variant}${capitalize(color || severity)}`,
-      `${variant}`,
-    ],
+    root: ['root', `color${capitalize(color || severity)}`, `${variant}`],
     icon: ['icon'],
     message: ['message'],
     action: ['action'],
@@ -43,16 +38,12 @@ const AlertRoot = styled(Paper, {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [
-      styles.root,
-      styles[ownerState.variant],
-      styles[`${ownerState.variant}${capitalize(ownerState.color || ownerState.severity)}`],
-    ];
+    return [styles.root, styles[ownerState.variant]];
   },
 })(
   memoTheme(({ theme }) => {
-    const getColor = theme.palette.mode === 'light' ? darken : lighten;
-    const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
+    const getColor = theme.palette.mode === 'light' ? theme.darken : theme.lighten;
+    const getBackgroundColor = theme.palette.mode === 'light' ? theme.lighten : theme.darken;
     return {
       ...theme.typography.body2,
       backgroundColor: 'transparent',
@@ -98,6 +89,10 @@ const AlertRoot = styled(Paper, {
           .map(([color]) => ({
             props: { colorSeverity: color, variant: 'filled' },
             style: {
+              ...(theme.focusVisible &&
+                applyChildrenFocusVisible(
+                  `0 0 0 4px ${(theme.vars || theme).palette.background.default}`,
+                )),
               fontWeight: theme.typography.fontWeightMedium,
               ...(theme.vars
                 ? {
@@ -121,7 +116,6 @@ const AlertRoot = styled(Paper, {
 const AlertIcon = styled('div', {
   name: 'MuiAlert',
   slot: 'Icon',
-  overridesResolver: (props, styles) => styles.icon,
 })({
   marginRight: 12,
   padding: '7px 0',
@@ -133,7 +127,6 @@ const AlertIcon = styled('div', {
 const AlertMessage = styled('div', {
   name: 'MuiAlert',
   slot: 'Message',
-  overridesResolver: (props, styles) => styles.message,
 })({
   padding: '8px 0',
   minWidth: 0,
@@ -143,7 +136,6 @@ const AlertMessage = styled('div', {
 const AlertAction = styled('div', {
   name: 'MuiAlert',
   slot: 'Action',
-  overridesResolver: (props, styles) => styles.action,
 })({
   display: 'flex',
   alignItems: 'flex-start',
@@ -167,8 +159,6 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     className,
     closeText = 'Close',
     color,
-    components = {},
-    componentsProps = {},
     icon,
     iconMapping = defaultIconMapping,
     onClose,
@@ -191,16 +181,46 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const externalForwardedProps = {
-    slots: {
-      closeButton: components.CloseButton,
-      closeIcon: components.CloseIcon,
-      ...slots,
-    },
-    slotProps: {
-      ...componentsProps,
-      ...slotProps,
-    },
+    slots,
+    slotProps,
   };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    shouldForwardComponentProp: true,
+    className: clsx(classes.root, className),
+    elementType: AlertRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+    additionalProps: {
+      role,
+      elevation: 0,
+    },
+  });
+
+  const [IconSlot, iconSlotProps] = useSlot('icon', {
+    className: classes.icon,
+    elementType: AlertIcon,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [MessageSlot, messageSlotProps] = useSlot('message', {
+    className: classes.message,
+    elementType: AlertMessage,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [ActionSlot, actionSlotProps] = useSlot('action', {
+    className: classes.action,
+    elementType: AlertAction,
+    externalForwardedProps,
+    ownerState,
+  });
 
   const [CloseButtonSlot, closeButtonProps] = useSlot('closeButton', {
     elementType: IconButton,
@@ -215,29 +235,16 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   });
 
   return (
-    <AlertRoot
-      role={role}
-      elevation={0}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
+    <RootSlot {...rootSlotProps}>
       {icon !== false ? (
-        <AlertIcon ownerState={ownerState} className={classes.icon}>
+        <IconSlot {...iconSlotProps}>
           {icon || iconMapping[severity] || defaultIconMapping[severity]}
-        </AlertIcon>
+        </IconSlot>
       ) : null}
-      <AlertMessage ownerState={ownerState} className={classes.message}>
-        {children}
-      </AlertMessage>
-      {action != null ? (
-        <AlertAction ownerState={ownerState} className={classes.action}>
-          {action}
-        </AlertAction>
-      ) : null}
+      <MessageSlot {...messageSlotProps}>{children}</MessageSlot>
+      {action != null ? <ActionSlot {...actionSlotProps}>{action}</ActionSlot> : null}
       {action == null && onClose ? (
-        <AlertAction ownerState={ownerState} className={classes.action}>
+        <ActionSlot {...actionSlotProps}>
           <CloseButtonSlot
             size="small"
             aria-label={closeText}
@@ -248,9 +255,9 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
           >
             <CloseIconSlot fontSize="small" {...closeIconProps} />
           </CloseButtonSlot>
-        </AlertAction>
+        </ActionSlot>
       ) : null}
-    </AlertRoot>
+    </RootSlot>
   );
 });
 
@@ -291,29 +298,6 @@ Alert.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The components used for each slot inside.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    CloseButton: PropTypes.elementType,
-    CloseIcon: PropTypes.elementType,
-  }),
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    closeButton: PropTypes.object,
-    closeIcon: PropTypes.object,
-  }),
   /**
    * Override the icon displayed before the children.
    * Unless provided, the icon is mapped to the value of the `severity` prop.
@@ -356,16 +340,24 @@ Alert.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     closeButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     closeIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    icon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    message: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({
+    action: PropTypes.elementType,
     closeButton: PropTypes.elementType,
     closeIcon: PropTypes.elementType,
+    icon: PropTypes.elementType,
+    message: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

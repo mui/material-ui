@@ -1,5 +1,9 @@
-import * as React from 'react';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import {
+  DataGrid,
+  GridCell,
+  type GridCellProps,
+  type GridColDef,
+} from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
 
 const columns: GridColDef[] = [
@@ -36,6 +40,15 @@ const rows = [
 
 const paginationModel = { page: 0, pageSize: 5 };
 
+function renderRowHeaderCell(props: GridCellProps) {
+  return (
+    <GridCell
+      {...props}
+      role={props.column.field === 'fullName' ? 'rowheader' : 'gridcell'}
+    />
+  );
+}
+
 export default function DataTable() {
   return (
     <Paper sx={{ height: 400, width: '100%' }}>
@@ -45,6 +58,7 @@ export default function DataTable() {
         initialState={{ pagination: { paginationModel } }}
         pageSizeOptions={[5, 10]}
         checkboxSelection
+        slots={{ cell: renderRowHeaderCell }}
         sx={{ border: 0 }}
       />
     </Paper>

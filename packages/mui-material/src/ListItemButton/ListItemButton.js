@@ -3,9 +3,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import { applyInsetFocusVisible } from '../styles/focusVisible';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import ButtonBase from '../ButtonBase';
@@ -13,6 +13,7 @@ import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
+import { getTransitionStyles } from '../transitions/utils';
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -67,7 +68,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
     textAlign: 'left',
     paddingTop: 8,
     paddingBottom: 8,
-    transition: theme.transitions.create('background-color', {
+    ...getTransitionStyles(theme, 'background-color', {
       duration: theme.transitions.duration.shortest,
     }),
     '&:hover': {
@@ -79,35 +80,40 @@ const ListItemButtonRoot = styled(ButtonBase, {
       },
     },
     [`&.${listItemButtonClasses.selected}`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-      [`&.${listItemButtonClasses.focusVisible}`]: {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-          : alpha(
-              theme.palette.primary.main,
-              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-            ),
-      },
+      backgroundColor: theme.alpha(
+        (theme.vars || theme).palette.primary.main,
+        (theme.vars || theme).palette.action.selectedOpacity,
+      ),
+      ...(!theme.focusVisible && {
+        [`&.${listItemButtonClasses.focusVisible}`]: {
+          backgroundColor: theme.alpha(
+            (theme.vars || theme).palette.primary.main,
+            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+          ),
+        },
+      }),
     },
     [`&.${listItemButtonClasses.selected}:hover`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-          ),
+      backgroundColor: theme.alpha(
+        (theme.vars || theme).palette.primary.main,
+        `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
+      ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        backgroundColor: theme.alpha(
+          (theme.vars || theme).palette.primary.main,
+          (theme.vars || theme).palette.action.selectedOpacity,
+        ),
       },
     },
-    [`&.${listItemButtonClasses.focusVisible}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.focus,
-    },
+    ...(theme.focusVisible
+      ? // Inset the ring: a scrolling List (drawers, long lists) clips an outset ring.
+        applyInsetFocusVisible(1)
+      : {
+          [`&.${listItemButtonClasses.focusVisible}`]: {
+            backgroundColor: (theme.vars || theme).palette.action.focus,
+          },
+        }),
     [`&.${listItemButtonClasses.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },
@@ -195,6 +201,9 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  // Don't forward the 'root' class to the ButtonBase, as it will get duplicated with the one passed to the className prop.
+  const { root, ...forwardedClasses } = classes;
+
   const handleRef = useForkRef(listItemRef, ref);
 
   return (
@@ -204,11 +213,12 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
         href={other.href || other.to}
         // `ButtonBase` processes `href` or `to` if `component` is set to 'button'
         component={(other.href || other.to) && component === 'div' ? 'button' : component}
+        internalNativeButton={false}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
         {...other}
-        classes={classes}
+        classes={forwardedClasses}
       >
         {children}
       </ListItemButtonRoot>
@@ -233,8 +243,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   autoFocus: PropTypes.bool,
   /**
-   * The content of the component if a `ListItemSecondaryAction` is used it must
-   * be the last child.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**

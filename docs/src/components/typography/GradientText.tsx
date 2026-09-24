@@ -1,10 +1,12 @@
-import { styled } from '@mui/material/styles';
+import { PaletteColor, styled } from '@mui/material/styles';
+
+type Color = 'primary' | 'error' | 'success' | 'warning';
 
 const GradientText = styled('span')<{
-  color?: 'primary' | 'error' | 'success' | 'warning';
+  color?: Color;
 }>(({ theme }) => ({
   variants: [
-    ...Object.entries((theme.vars || theme).palette as Record<string, any>)
+    ...(Object.entries((theme.vars || theme).palette) as Array<[Color, PaletteColor]>)
       .filter(([color, value]) => color !== 'primary' && value && value[400])
       .map(([color, value]) => ({
         props: { color },

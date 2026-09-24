@@ -66,7 +66,7 @@ const Anchor = styled('a')(({ theme }) => [
 
 const DesignToolLink = React.forwardRef<
   HTMLAnchorElement,
-  React.PropsWithChildren<{ brand: 'figma' | 'sketch' | 'adobexd' }>
+  React.PropsWithChildren<{ brand: 'figma' | 'sketch' }>
 >(function DesignToolLink(props, ref) {
   const { brand, ...other } = props;
   return (
@@ -79,8 +79,6 @@ const DesignToolLink = React.forwardRef<
             'https://mui.com/store/items/figma-react/?utm_source=marketing&utm_medium=referral&utm_campaign=home-products',
           sketch:
             'https://mui.com/store/items/sketch-react/?utm_source=marketing&utm_medium=referral&utm_campaign=home-products',
-          adobexd:
-            'https://mui.com/store/items/adobe-xd-react/?utm_source=marketing&utm_medium=referral&utm_campaign=home-products',
         }[brand]
       }
       target="_blank"
@@ -91,7 +89,7 @@ const DesignToolLink = React.forwardRef<
 
 const DesignToolLogo = React.forwardRef<
   HTMLImageElement,
-  { brand: 'figma' | 'sketch' | 'adobexd' } & AvatarProps
+  { brand: 'figma' | 'sketch' } & AvatarProps
 >(function DesignToolLogo({ brand, ...props }, ref) {
   return (
     <Box
@@ -197,7 +195,7 @@ export function DesignKitImagesSet2({
 }
 
 export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolean } & BoxProps) {
-  function renderTool(brand: 'figma' | 'sketch' | 'adobexd') {
+  function renderTool(brand: 'figma' | 'sketch') {
     if (disableLink) {
       return <DesignToolLogo brand={brand} />;
     }
@@ -219,7 +217,7 @@ export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolea
         display: 'grid',
         gap: { xs: 3, lg: 6 },
         py: 4,
-        gridTemplateColumns: '1fr 1fr 1fr',
+        gridTemplateColumns: '1fr 1fr',
         '& .MuiAvatar-root': {
           width: { xs: 80, sm: 100 },
           height: { xs: 80, sm: 100 },
@@ -229,7 +227,6 @@ export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolea
     >
       <FadeDelay delay={200}>{renderTool('figma')}</FadeDelay>
       <FadeDelay delay={400}>{renderTool('sketch')}</FadeDelay>
-      <FadeDelay delay={600}>{renderTool('adobexd')}</FadeDelay>
     </Box>
   );
 }

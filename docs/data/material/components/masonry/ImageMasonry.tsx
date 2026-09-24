@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Masonry from '@mui/lab/Masonry';
@@ -9,7 +8,7 @@ const Label = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(0.5),
   textAlign: 'center',
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   borderBottomLeftRadius: 0,
   borderBottomRightRadius: 0,
   ...theme.applyStyles('dark', {

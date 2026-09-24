@@ -10,8 +10,8 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
-
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { color, variant, classes, size } = ownerState;
@@ -53,7 +53,7 @@ const FabRoot = styled(ButtonBase, {
   memoTheme(({ theme }) => ({
     ...theme.typography.button,
     minHeight: 36,
-    transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
+    ...getTransitionStyles(theme, ['background-color', 'box-shadow', 'border-color'], {
       duration: theme.transitions.duration.short,
     }),
     borderRadius: '50%',
@@ -67,7 +67,7 @@ const FabRoot = styled(ButtonBase, {
       boxShadow: (theme.vars || theme).shadows[12],
     },
     color: theme.vars
-      ? theme.vars.palette.text.primary
+      ? theme.vars.palette.grey[900]
       : theme.palette.getContrastText?.(theme.palette.grey[300]),
     backgroundColor: (theme.vars || theme).palette.grey[300],
     '&:hover': {
@@ -79,7 +79,10 @@ const FabRoot = styled(ButtonBase, {
       textDecoration: 'none',
     },
     [`&.${fabClasses.focusVisible}`]: {
-      boxShadow: (theme.vars || theme).shadows[6],
+      ...theme.focusVisible,
+      boxShadow: theme.focusVisible?.boxShadow
+        ? `${(theme.vars || theme).shadows[6]}, ${theme.focusVisible.boxShadow}`
+        : (theme.vars || theme).shadows[6],
     },
     variants: [
       {
@@ -191,17 +194,21 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  // Don't forward the 'root' class to the ButtonBase, as it will get duplicated with the one passed to the className prop.
+  const { root, ...forwardedClasses } = classes;
+
   return (
     <FabRoot
       className={clsx(classes.root, className)}
       component={component}
+      internalNativeButton
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ownerState={ownerState}
       ref={ref}
       {...other}
-      classes={classes}
+      classes={forwardedClasses}
     >
       {children}
     </FabRoot>

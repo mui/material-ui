@@ -120,7 +120,7 @@ export default function MusicPlayerSlider() {
           min={0}
           step={1}
           max={duration}
-          onChange={(_, value) => setPosition(value as number)}
+          onChange={(_, value) => setPosition(value)}
           sx={(t) => ({
             color: 'rgba(0,0,0,0.87)',
             height: 4,
@@ -196,6 +196,7 @@ export default function MusicPlayerSlider() {
           spacing={2}
           direction="row"
           sx={(theme) => ({
+            alignItems: 'center',
             mb: 1,
             px: 1,
             '& > svg': {
@@ -205,7 +206,6 @@ export default function MusicPlayerSlider() {
               }),
             },
           })}
-          alignItems="center"
         >
           <VolumeDownRounded />
           <Slider

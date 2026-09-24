@@ -1,6 +1,5 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
@@ -80,8 +79,10 @@ export default function SessionsChart() {
               scaleType: 'point',
               data,
               tickInterval: (index, i) => (i + 1) % 5 === 0,
+              height: 24,
             },
           ]}
+          yAxis={[{ width: 50 }]}
           series={[
             {
               id: 'direct',
@@ -127,7 +128,7 @@ export default function SessionsChart() {
             },
           ]}
           height={250}
-          margin={{ left: 50, right: 20, top: 20, bottom: 20 }}
+          margin={{ left: 0, right: 20, top: 20, bottom: 0 }}
           grid={{ horizontal: true }}
           sx={{
             '& .MuiAreaElement-series-organic': {
@@ -140,11 +141,7 @@ export default function SessionsChart() {
               fill: "url('#direct')",
             },
           }}
-          slotProps={{
-            legend: {
-              hidden: true,
-            },
-          }}
+          hideLegend
         >
           <AreaGradient color={theme.palette.primary.dark} id="organic" />
           <AreaGradient color={theme.palette.primary.main} id="referral" />

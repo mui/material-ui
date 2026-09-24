@@ -1,2 +1,0 @@
-<CustomButton onClick={() => console.log('click!')}>Button</CustomButton>
-<CustomButton disabled>Disabled</CustomButton>

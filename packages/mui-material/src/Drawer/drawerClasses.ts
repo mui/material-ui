@@ -8,22 +8,14 @@ export interface DrawerClasses {
   docked: string;
   /** Styles applied to the Paper component. */
   paper: string;
-  /** Styles applied to the Paper component if `anchor="left"`. */
-  paperAnchorLeft: string;
-  /** Styles applied to the Paper component if `anchor="right"`. */
-  paperAnchorRight: string;
-  /** Styles applied to the Paper component if `anchor="top"`. */
-  paperAnchorTop: string;
-  /** Styles applied to the Paper component if `anchor="bottom"`. */
-  paperAnchorBottom: string;
-  /** Styles applied to the Paper component if `anchor="left"` and `variant` is not "temporary". */
-  paperAnchorDockedLeft: string;
-  /** Styles applied to the Paper component if `anchor="top"` and `variant` is not "temporary". */
-  paperAnchorDockedTop: string;
-  /** Styles applied to the Paper component if `anchor="right"` and `variant` is not "temporary". */
-  paperAnchorDockedRight: string;
-  /** Styles applied to the Paper component if `anchor="bottom"` and `variant` is not "temporary". */
-  paperAnchorDockedBottom: string;
+  /** Styles applied to the root element if `anchor="left"`. */
+  anchorLeft: string;
+  /** Styles applied to the root element if `anchor="right"`. */
+  anchorRight: string;
+  /** Styles applied to the root element if `anchor="top"`. */
+  anchorTop: string;
+  /** Styles applied to the root element if `anchor="bottom"`. */
+  anchorBottom: string;
   /** Styles applied to the Modal component. */
   modal: string;
 }
@@ -38,14 +30,10 @@ const drawerClasses: DrawerClasses = generateUtilityClasses('MuiDrawer', [
   'root',
   'docked',
   'paper',
-  'paperAnchorLeft',
-  'paperAnchorRight',
-  'paperAnchorTop',
-  'paperAnchorBottom',
-  'paperAnchorDockedLeft',
-  'paperAnchorDockedRight',
-  'paperAnchorDockedTop',
-  'paperAnchorDockedBottom',
+  'anchorLeft',
+  'anchorRight',
+  'anchorTop',
+  'anchorBottom',
   'modal',
 ]);
 

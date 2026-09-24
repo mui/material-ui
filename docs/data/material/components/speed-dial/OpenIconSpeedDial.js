@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
@@ -28,7 +27,11 @@ export default function OpenIconSpeedDial() {
           <SpeedDialAction
             key={action.name}
             icon={action.icon}
-            tooltipTitle={action.name}
+            slotProps={{
+              tooltip: {
+                title: action.name,
+              },
+            }}
           />
         ))}
       </SpeedDial>

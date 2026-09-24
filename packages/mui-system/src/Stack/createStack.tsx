@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -7,7 +8,6 @@ import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import composeClasses from '@mui/utils/composeClasses';
 import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
-import { extendSxProp } from '../styleFunctionSx';
 import createTheme from '../createTheme';
 import { CreateMUIStyled } from '../createStyled';
 import { StackTypeMap, StackOwnerState } from './StackProps';
@@ -32,7 +32,6 @@ interface StyleFunctionProps {
 const defaultCreateStyledComponent = (systemStyled as CreateMUIStyled<any>)('div', {
   name: 'MuiStack',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 });
 
 function useThemePropsDefault<T extends {}>(props: T) {
@@ -155,9 +154,9 @@ export const style = ({ ownerState, theme }: StyleFunctionProps) => {
 
 export default function createStack(
   options: {
-    createStyledComponent?: typeof defaultCreateStyledComponent;
-    useThemeProps?: typeof useThemePropsDefault;
-    componentName?: string;
+    createStyledComponent?: typeof defaultCreateStyledComponent | undefined;
+    useThemeProps?: typeof useThemePropsDefault | undefined;
+    componentName?: string | undefined;
   } = {},
 ) {
   const {
@@ -180,8 +179,9 @@ export default function createStack(
   }>(style);
 
   const Stack = React.forwardRef(function Grid(inProps, ref) {
-    const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
-    const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'>; // `color` type conflicts with html color attribute.
+    const themeProps = useThemeProps<
+      typeof inProps & { component?: React.ElementType | undefined }
+    >(inProps);
     const {
       component = 'div',
       direction = 'column',
@@ -191,7 +191,7 @@ export default function createStack(
       className,
       useFlexGap = false,
       ...other
-    } = props;
+    } = themeProps;
 
     const ownerState = {
       direction,

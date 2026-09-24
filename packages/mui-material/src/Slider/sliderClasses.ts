@@ -48,20 +48,6 @@ export interface SliderClasses {
   markLabelActive: string;
   /** Styles applied to the root element if `size="small"`. */
   sizeSmall: string;
-  /** Styles applied to the thumb element if `color="primary"`. */
-  thumbColorPrimary: string;
-  /** Styles applied to the thumb element if `color="secondary"`. */
-  thumbColorSecondary: string;
-  /** Styles applied to the thumb element if `color="error"`. */
-  thumbColorError: string;
-  /** Styles applied to the thumb element if `color="info"`. */
-  thumbColorInfo: string;
-  /** Styles applied to the thumb element if `color="success"`. */
-  thumbColorSuccess: string;
-  /** Styles applied to the thumb element if `color="warning"`. */
-  thumbColorWarning: string;
-  /** Styles applied to the thumb element if `size="small"`. */
-  thumbSizeSmall: string;
   /** Styles applied to the thumb label element. */
   valueLabel: string;
   /** Styles applied to the thumb label element if it's open. */
@@ -98,16 +84,9 @@ const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'rail',
   'sizeSmall',
   'thumb',
-  'thumbColorPrimary',
-  'thumbColorSecondary',
-  'thumbColorError',
-  'thumbColorSuccess',
-  'thumbColorInfo',
-  'thumbColorWarning',
   'track',
   'trackInverted',
   'trackFalse',
-  'thumbSizeSmall',
   'valueLabel',
   'valueLabelOpen',
   'valueLabelCircle',

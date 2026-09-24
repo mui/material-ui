@@ -31,8 +31,8 @@ export default function EditProgress(props: GridRenderEditCellParams) {
     [updateCellEditProps],
   );
 
-  const handleChange = (event: Event, newValue: number | number[]) => {
-    setValueState(newValue as number);
+  const handleChange = (event: Event, newValue: number) => {
+    setValueState(newValue);
     debouncedUpdateCellEditProps(newValue);
   };
 

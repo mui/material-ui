@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
+import { outsetFocusRing } from '../styles/focusVisible';
 import SwitchBase from '../internal/SwitchBase';
 import RadioButtonIcon from './RadioButtonIcon';
 import capitalize from '../utils/capitalize';
@@ -16,7 +16,7 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
-
+import useSlot from '../utils/useSlot';
 import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
@@ -48,6 +48,13 @@ const RadioRoot = styled(SwitchBase, {
 })(
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
+    ...(theme.focusVisible && {
+      [`&.${buttonBaseClasses.focusVisible} svg:first-of-type`]: {
+        ...outsetFocusRing,
+        borderRadius: 99,
+        ...theme.focusVisible,
+      },
+    }),
     [`&.${radioClasses.disabled}`]: {
       color: (theme.vars || theme).palette.action.disabled,
     },
@@ -56,9 +63,10 @@ const RadioRoot = styled(SwitchBase, {
         props: { color: 'default', disabled: false, disableRipple: false },
         style: {
           '&:hover': {
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-              : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+            backgroundColor: theme.alpha(
+              (theme.vars || theme).palette.action.active,
+              (theme.vars || theme).palette.action.hoverOpacity,
+            ),
           },
         },
       },
@@ -68,9 +76,10 @@ const RadioRoot = styled(SwitchBase, {
           props: { color, disabled: false, disableRipple: false },
           style: {
             '&:hover': {
-              backgroundColor: theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette[color].main,
+                (theme.vars || theme).palette.action.hoverOpacity,
+              ),
             },
           },
         })),
@@ -125,6 +134,8 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     className,
     disabled: disabledProp,
     disableRipple = false,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -164,24 +175,50 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     }
   }
 
-  return (
-    <RadioRoot
-      type="radio"
-      icon={React.cloneElement(icon, { fontSize: defaultIcon.props.fontSize ?? size })}
-      checkedIcon={React.cloneElement(checkedIcon, {
-        fontSize: defaultCheckedIcon.props.fontSize ?? size,
-      })}
-      disabled={disabled}
-      ownerState={ownerState}
-      classes={classes}
-      name={name}
-      checked={checked}
-      onChange={onChange}
-      ref={ref}
-      className={clsx(classes.root, className)}
-      {...other}
-    />
-  );
+  const externalInputProps = slotProps.input;
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    elementType: RadioRoot,
+    className: clsx(classes.root, className),
+    shouldForwardComponentProp: true,
+    externalForwardedProps: {
+      slots,
+      slotProps,
+      ...other,
+    },
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onChange: (event, ...args) => {
+        handlers.onChange?.(event, ...args);
+        onChange(event, ...args);
+      },
+    }),
+    ownerState,
+    additionalProps: {
+      type: 'radio',
+      icon: React.cloneElement(icon, { fontSize: icon.props.fontSize ?? size }),
+      checkedIcon: React.cloneElement(checkedIcon, {
+        fontSize: checkedIcon.props.fontSize ?? size,
+      }),
+      disabled,
+      name,
+      checked,
+      // Forward the raw prop so an unset value stays `undefined` and ButtonBase resolves its
+      // own default — letting a global `MuiButtonBase.defaultProps.disableRipple` apply here.
+      disableRipple: props.disableRipple,
+      slots,
+      slotProps: {
+        // Do not forward `slotProps.root` again because it's already handled by the `RootSlot` in this file.
+        input:
+          typeof externalInputProps === 'function'
+            ? externalInputProps(ownerState)
+            : externalInputProps,
+      },
+    },
+  });
+
+  return <RootSlot {...rootSlotProps} classes={classes} />;
 });
 
 Radio.propTypes /* remove-proptypes */ = {
@@ -235,14 +272,6 @@ Radio.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   */
-  inputProps: PropTypes.object,
-  /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef: refType,
-  /**
    * Name attribute of the `input` element.
    */
   name: PropTypes.string,
@@ -268,6 +297,22 @@ Radio.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

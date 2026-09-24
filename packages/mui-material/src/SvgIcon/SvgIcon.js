@@ -8,6 +8,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getSvgIconUtilityClass } from './svgIconClasses';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { color, fontSize, classes } = ownerState;
@@ -42,7 +43,7 @@ const SvgIconRoot = styled('svg', {
     height: '1em',
     display: 'inline-block',
     flexShrink: 0,
-    transition: theme.transitions?.create?.('fill', {
+    ...getTransitionStyles(theme, 'fill', {
       duration: (theme.vars ?? theme).transitions?.duration?.shorter,
     }),
     variants: [
@@ -214,7 +215,7 @@ SvgIcon.propTypes /* remove-proptypes */ = {
   inheritViewBox: PropTypes.bool,
   /**
    * The shape-rendering attribute. The behavior of the different options is described on the
-   * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
+   * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/shape-rendering).
    * If you are having issues with blurry icons you should investigate this prop.
    */
   shapeRendering: PropTypes.string,

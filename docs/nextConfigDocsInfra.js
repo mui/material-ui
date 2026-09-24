@@ -1,3 +1,5 @@
+const os = require('os');
+
 /**
  * See the docs of the Netlify environment variables:
  * https://docs.netlify.com/configure-builds/environment-variables/#build-metadata.
@@ -50,12 +52,15 @@ function withDocsInfra(nextConfig) {
   return {
     trailingSlash: true,
     reactStrictMode: true,
+    productionBrowserSourceMaps: true,
     ...nextConfig,
     env: {
-      BUILD_ONLY_ENGLISH_LOCALE: 'true', // disable translations by default
       // production | staging | pull-request | development
       DEPLOY_ENV,
-      FEEDBACK_URL: process.env.FEEDBACK_URL,
+      // Selects the analytics target (Google Analytics + Apollo). Provided per
+      // deployment via the environment; production analytics requires
+      // `ANALYTICS_ENV=production` to be set explicitly.
+      ANALYTICS_ENV: process.env.ANALYTICS_ENV,
       ...nextConfig.env,
       // https://docs.netlify.com/configure-builds/environment-variables/#git-metadata
       // reference ID (also known as "SHA" or "hash") of the commit we're building.
@@ -74,14 +79,15 @@ function withDocsInfra(nextConfig) {
     },
     experimental: {
       scrollRestoration: true,
-      esmExternals: false,
       workerThreads: false,
-      cpus: 3,
+      ...(process.env.CI
+        ? {
+            cpus: process.env.NEXT_PARALLELISM
+              ? parseInt(process.env.NEXT_PARALLELISM, 10)
+              : os.availableParallelism(),
+          }
+        : {}),
       ...nextConfig.experimental,
-    },
-    eslint: {
-      ignoreDuringBuilds: true,
-      ...nextConfig.eslint,
     },
     typescript: {
       // Motivated by https://github.com/vercel/next.js/issues/7687

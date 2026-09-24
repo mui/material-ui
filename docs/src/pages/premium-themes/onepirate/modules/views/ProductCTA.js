@@ -22,7 +22,7 @@ function ProductCTA() {
   return (
     <Container component="section" sx={{ mt: 10, display: 'flex' }}>
       <Grid container>
-        <Grid item xs={12} md={6} sx={{ zIndex: 1 }}>
+        <Grid size={{ xs: 12, md: 6 }} sx={{ zIndex: 1 }}>
           <Box
             sx={{
               display: 'flex',
@@ -57,9 +57,7 @@ function ProductCTA() {
           </Box>
         </Grid>
         <Grid
-          item
-          xs={12}
-          md={6}
+          size={{ xs: 12, md: 6 }}
           sx={{ display: { md: 'block', xs: 'none' }, position: 'relative' }}
         >
           <Box

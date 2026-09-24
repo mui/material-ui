@@ -1,3 +1,4 @@
+import { describe } from 'vitest';
 import { describeJscodeshiftTransform } from '../../../testUtils';
 import transform from './grid-v2-props';
 
@@ -16,6 +17,11 @@ describe('@mui/codemod', () => {
           actual: '/test-cases/custom-breakpoints.actual.js',
           expected: '/test-cases/custom-breakpoints.expected.js',
           options: { muiBreakpoints: 'customXs,customSm,customMd' },
+        },
+        {
+          actual: '/test-cases/package.actual.js',
+          expected: '/test-cases/package.expected.js',
+          options: { packageName: '@org/ui/material' },
         },
       ],
     });

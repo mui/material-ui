@@ -1,130 +1,107 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "automerge": false,
-  "commitMessageAction": "Bump",
-  "commitMessageExtra": "to {{newValue}}",
-  "commitMessageTopic": "{{depName}}",
-  "dependencyDashboard": true,
-  "rebaseWhen": "conflicted",
-  "ignoreDeps": [],
-  "labels": ["dependencies"],
+  "extends": ["github>mui/mui-public//renovate/default"],
+  "schedule": "* 0-4 * * 7",
   "lockFileMaintenance": {
-    "enabled": true,
-    "schedule": "before 6:00am on the first day of the month"
+    "schedule": "* 0-4 1 * *"
   },
-  "packageRules": [
+  "customManagers": [
     {
-      "matchDepTypes": ["peerDependencies"],
-      "rangeStrategy": "widen"
+      "description": "Update Node.js versions in CircleCI download URLs",
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.circleci\\/config\\.yml$/"],
+      "matchStrings": [
+        "curl -fsSL https://nodejs\\.org/dist/v(?<currentValue>\\d+\\.\\d+\\.\\d+)/node-v\\d+\\.\\d+\\.\\d+-linux-x64\\.tar\\.gz"
+      ],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "node-version",
+      "versioningTemplate": "node",
+      "autoReplaceStringTemplate": "curl -fsSL https://nodejs.org/dist/v{{{newValue}}}/node-v{{{newValue}}}-linux-x64.tar.gz"
     },
     {
-      "groupName": "babel",
-      "matchPackagePatterns": ["^@babel/", "^@types/babel"]
+      "description": "Track the @docsearch/css version pinned in the jsDelivr CDN URL as an npm dependency so Renovate bumps it (grouped with @docsearch/react).",
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^packages-internal\\/core-docs\\/src\\/AppLayout\\/components\\/AppSearch\\.tsx$/"
+      ],
+      "matchStrings": ["@docsearch/css@(?<currentValue>[\\d.]+)/dist/"],
+      "depNameTemplate": "@docsearch/css",
+      "datasourceTemplate": "npm"
+    }
+  ],
+  "packageRules": [
+    {
+      "groupName": "Pigment CSS",
+      "matchPackageNames": ["@pigment-css/*"]
     },
     {
       "groupName": "Emotion",
-      "matchPackagePatterns": "@emotion/*"
+      "description": "Keep stylis in sync with emotion to avoid duplicated stylis versions in the bundle.",
+      "matchPackageNames": ["@emotion/*", "stylis", "@types/stylis"]
     },
     {
-      "groupName": "Pigment CSS",
-      "matchPackagePatterns": ["@pigment-css/*"]
+      "groupName": "DocSearch",
+      "description": "Keep the pinned @docsearch/css CDN link (AppSearch.tsx, tracked via customManagers) in lockstep with the @docsearch/react package.",
+      "matchPackageNames": ["@docsearch/react", "@docsearch/css"]
     },
     {
       "groupName": "Font awesome SVG icons",
-      "matchPackagePatterns": "@fortawesome/*"
-    },
-    {
-      "groupName": "core-js",
-      "matchPackageNames": ["core-js"],
-      "allowedVersions": "< 2.0.0"
-    },
-    {
-      "groupName": "JSS",
-      "matchPackageNames": [
-        "css-jss",
-        "jss-plugin-cache",
-        "jss-plugin-camel-case",
-        "jss-plugin-compose",
-        "jss-plugin-default-unit",
-        "jss-plugin-expand",
-        "jss-plugin-extend",
-        "jss-plugin-global",
-        "jss-plugin-isolate",
-        "jss-plugin-nested",
-        "jss-plugin-props-sort",
-        "jss-plugin-rule-value-function",
-        "jss-plugin-rule-value-observable",
-        "jss-plugin-template",
-        "jss-plugin-vendor-prefixer",
-        "jss-preset-default",
-        "jss-starter-kit",
-        "jss",
-        "react-jss"
-      ]
+      "matchPackageNames": "@fortawesome/*"
     },
     {
       "groupName": "MUI X",
-      "matchPackagePatterns": ["@mui/x-*"]
+      "matchPackageNames": ["@mui/x-*"]
     },
     {
-      "groupName": "React",
-      "matchPackageNames": ["react", "react-dom", "react-is"]
-    },
-    {
-      "groupName": "typescript-eslint",
-      "matchPackagePatterns": "@typescript-eslint/*"
-    },
-    {
-      "groupName": "@types/node",
-      "matchPackageNames": ["@types/node"],
-      "allowedVersions": "< 21.0.0"
+      "groupName": "nx",
+      "description": "FIXME: Seems to cause never-ending windows builds in CI (e.g. https://github.com/mui/material-ui/actions/runs/16268045027/job/45928292854)",
+      "matchPackageNames": ["nx"],
+      "allowedVersions": "<= 20"
     },
     {
       "groupName": "bundling fixtures",
-      "matchPaths": ["test/bundling/fixtures/**/package.json"],
-      "schedule": "every 6 months on the first day of the month"
+      "matchFileNames": ["test/bundling/fixtures/**/package.json"],
+      "schedule": "* * 1 1,7 *"
     },
     {
-      "groupName": "node",
-      "matchPackageNames": ["node"],
+      "description": "Prevent major version updates of bundler/framework packages in bundling fixtures",
+      "matchFileNames": ["test/bundling/fixtures/**/package.json"],
+      "matchPackageNames": [
+        "esbuild",
+        "gatsby",
+        "next",
+        "rollup",
+        "snowpack",
+        "vite",
+        "webpack",
+        "@types/react**",
+        "react**"
+      ],
+      "matchUpdateTypes": ["major"],
       "enabled": false
     },
     {
       "groupName": "examples",
-      "matchPaths": ["examples/**/package.json"],
+      "matchFileNames": ["examples/**/package.json"],
       "enabled": false
-    },
-    {
-      "groupName": "Playwright",
-      "matchPackageNames": ["playwright", "@playwright/test", "mcr.microsoft.com/playwright"]
-    },
-    {
-      "matchDepTypes": ["action"],
-      "pinDigests": true
-    },
-    {
-      "groupName": "GitHub Actions",
-      "matchManagers": ["github-actions"]
-    },
-    {
-      "groupName": "@definitelytyped tools",
-      "matchPackagePatterns": ["@definitelytyped/*"]
-    },
-    {
-      "groupName": "Testing libraries",
-      "matchPackagePatterns": ["@testing-library/*"]
     },
     {
       "groupName": "envinfo tests",
-      "matchPaths": ["packages/mui-envinfo/test/package.json"],
-      "matchPackagePatterns": ["@mui/*"],
+      "matchFileNames": ["packages/mui-envinfo/test/package.json"],
+      "matchPackageNames": ["@mui/*"],
+      "enabled": false
+    },
+    {
+      "groupName": "codemod tests",
+      "description": "Prevent renovate from renaming @material-ui/core to @mui/material in the codemod tests.",
+      "matchFileNames": ["packages/mui-codemod/package.json"],
+      "matchPackageNames": ["@material-ui/core"],
+      "enabled": false
+    },
+    {
+      "matchPackageNames": ["mcr.microsoft.com/playwright"],
+      "matchCurrentVersion": "v1.49.1-noble",
       "enabled": false
     }
-  ],
-  "postUpdateOptions": ["pnpmDedupe"],
-  "prConcurrentLimit": 30,
-  "prHourlyLimit": 0,
-  "rangeStrategy": "bump",
-  "schedule": "on sunday before 6:00am",
-  "timezone": "UTC"
+  ]
 }

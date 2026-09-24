@@ -6,8 +6,10 @@ import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
 import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSelectClasses';
+import inputBaseClasses from '../InputBase/inputBaseClasses';
 import { styled } from '../zero-styled';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, disabled, multiple, open, error } = ownerState;
@@ -20,7 +22,9 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getNativeSelectUtilityClasses, classes);
 };
 
-export const StyledSelectSelect = styled('select')(({ theme }) => ({
+export const StyledSelectSelect = styled('select', {
+  name: 'MuiNativeSelect',
+})(({ theme }) => ({
   // Reset
   MozAppearance: 'none',
   // Reset
@@ -44,14 +48,29 @@ export const StyledSelectSelect = styled('select')(({ theme }) => ({
   '&:not([multiple]) option, &:not([multiple]) optgroup': {
     backgroundColor: (theme.vars || theme).palette.background.paper,
   },
+  [`& ~ .${inputAdornmentClasses.root}`]: {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    right: 'calc(var(--_caret, 24px) + (var(--_endAdornment, 28px) - 1.5rem)/2)', // 1.5rem is the default icon size
+  },
+  [`.${inputBaseClasses.root}:has(> &)`]: {
+    '--_endAdornment': '0px',
+  },
   variants: [
     {
       props: ({ ownerState }) =>
         ownerState.variant !== 'filled' && ownerState.variant !== 'outlined',
       style: {
+        [`.${inputBaseClasses.root}:has(> &)`]: {
+          '--_caret': '24px',
+        },
+        [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
+          '--_endAdornment': '28px',
+        },
         // Bump specificity to allow extending custom inputs
         '&&&': {
-          paddingRight: 24,
+          paddingRight: 'calc(var(--_caret, 24px) + var(--_endAdornment, 0px))',
           minWidth: 16, // So it doesn't collapse.
         },
       },
@@ -61,8 +80,14 @@ export const StyledSelectSelect = styled('select')(({ theme }) => ({
         variant: 'filled',
       },
       style: {
+        [`.${inputBaseClasses.root}:has(> &)`]: {
+          '--_caret': '32px',
+        },
+        [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
+          '--_endAdornment': '28px',
+        },
         '&&&': {
-          paddingRight: 32,
+          paddingRight: 'calc(var(--_caret, 32px) + var(--_endAdornment, 0px))',
         },
       },
     },
@@ -71,12 +96,18 @@ export const StyledSelectSelect = styled('select')(({ theme }) => ({
         variant: 'outlined',
       },
       style: {
+        [`.${inputBaseClasses.root}:has(> &)`]: {
+          '--_caret': '32px',
+        },
+        [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
+          '--_endAdornment': '28px',
+        },
         borderRadius: (theme.vars || theme).shape.borderRadius,
         '&:focus': {
           borderRadius: (theme.vars || theme).shape.borderRadius, // Reset the reset for Chrome style
         },
         '&&&': {
-          paddingRight: 32,
+          paddingRight: 'calc(var(--_caret, 32px) + var(--_endAdornment, 0px))',
         },
       },
     },
@@ -99,7 +130,9 @@ const NativeSelectSelect = styled(StyledSelectSelect, {
   },
 })({});
 
-export const StyledSelectIcon = styled('svg')(({ theme }) => ({
+export const StyledSelectIcon = styled('svg', {
+  name: 'MuiNativeSelect',
+})(({ theme }) => ({
   // We use a position absolute over a flexbox in order to forward the pointer events
   // to the input and to support wrapping tags..
   position: 'absolute',

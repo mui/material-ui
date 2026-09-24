@@ -7,13 +7,13 @@ export interface MenuListOwnProps {
    * If `true`, will focus the `[role="menu"]` container and move into tab order.
    * @default false
    */
-  autoFocus?: boolean;
+  autoFocus?: boolean | undefined;
   /**
    * If `true`, will focus the first menuitem if `variant="menu"` or selected item
    * if `variant="selectedMenu"`.
    * @default false
    */
-  autoFocusItem?: boolean;
+  autoFocusItem?: boolean | undefined;
   /**
    * MenuList contents, normally `MenuItem`s.
    */
@@ -22,18 +22,18 @@ export interface MenuListOwnProps {
    * If `true`, will allow focus on disabled items.
    * @default false
    */
-  disabledItemsFocusable?: boolean;
+  disabledItemsFocusable?: boolean | undefined;
   /**
    * If `true`, the menu items will not wrap focus.
    * @default false
    */
-  disableListWrap?: boolean;
+  disableListWrap?: boolean | undefined;
   /**
    * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
    * and the vertical alignment relative to the anchor element.
    * @default 'selectedMenu'
    */
-  variant?: 'menu' | 'selectedMenu';
+  variant?: 'menu' | 'selectedMenu' | undefined;
 }
 
 export type MenuListTypeMap<
@@ -67,7 +67,7 @@ export type MenuListProps<
   RootComponent extends React.ElementType = MenuListTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<MenuListTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default MenuList;

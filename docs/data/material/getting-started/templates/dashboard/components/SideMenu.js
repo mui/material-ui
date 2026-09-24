@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import MuiDrawer, { drawerClasses } from '@mui/material/Drawer';
@@ -45,8 +44,17 @@ export default function SideMenu() {
         <SelectContent />
       </Box>
       <Divider />
-      <MenuContent />
-      <CardAlert />
+      <Box
+        sx={{
+          overflow: 'auto',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <MenuContent />
+        <CardAlert />
+      </Box>
       <Stack
         direction="row"
         sx={{

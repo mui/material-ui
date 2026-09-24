@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
 import Box from '@mui/material/Box';
@@ -27,7 +26,7 @@ function ProductValues() {
           sx={{ pointerEvents: 'none', position: 'absolute', top: -180 }}
         />
         <Grid container spacing={5}>
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Box sx={item}>
               <Box
                 component="img"
@@ -48,7 +47,7 @@ function ProductValues() {
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Box sx={item}>
               <Box
                 component="img"
@@ -67,7 +66,7 @@ function ProductValues() {
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Box sx={item}>
               <Box
                 component="img"

@@ -1,8 +1,0 @@
-{
-  "name": "@types/react-docgen",
-  "version": "1.0.0",
-  "private": true,
-  "devDependencies": {
-    "ast-types": "0.14.2"
-  }
-}

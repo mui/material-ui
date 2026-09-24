@@ -2,7 +2,7 @@
 productId: material-ui
 title: Toggle Button React component
 components: ToggleButton, ToggleButtonGroup
-githubLabel: 'component: toggle button'
+githubLabel: 'scope: toggle button'
 materialDesign: https://m2.material.io/components/buttons#toggle-button
 githubSource: packages/mui-material/src/ToggleButton
 ---
@@ -15,7 +15,7 @@ To emphasize groups of related Toggle buttons,
 a group should share a common container.
 The `ToggleButtonGroup` controls the selected state of its child buttons when given its own `value` prop.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Exclusive selection
 
@@ -80,6 +80,18 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 {{"demo": "CustomizedDividers.js", "bg": true}}
 
+### Spacing
+
+The demos below show how to adjust spacing between toggle buttons in horizontal and vertical orientations.
+
+#### Horizontal Spacing
+
+{{"demo": "HorizontalSpacingToggleButton.js"}}
+
+#### Vertical Spacing
+
+{{"demo": "VerticalSpacingToggleButton.js"}}
+
 ## Accessibility
 
 ### ARIA
@@ -89,4 +101,8 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 ### Keyboard
 
-At present, toggle buttons are in DOM order. Navigate between them with the tab key. The button behavior follows standard keyboard semantics.
+The group uses a single tab stop.
+Use the left and right arrow keys to move focus in a horizontal group, or the up and down arrow keys in a vertical group.
+The <kbd>Home</kbd> and <kbd>End</kbd> keys move focus to the first and last enabled buttons.
+Focus movement wraps, skips disabled buttons, and does not change the selected value.
+Press <kbd>Space</kbd> or <kbd>Enter</kbd> to toggle the focused button.

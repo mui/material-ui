@@ -1,10 +1,11 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
-import { CssVarsProvider, extendTheme, styled } from '@mui/material/styles';
+import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 
-const defaultTheme = extendTheme({
+const defaultTheme = createTheme({
+  cssVariables: {
+    colorSchemeSelector: 'data-mui-color-scheme',
+  },
   colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: 'data-mui-color-scheme',
 });
 
 const traverseObject = (palette) => {
@@ -80,7 +81,13 @@ export default function TemplateCarousel() {
   const shape = ['--mui-shape-borderRadius'];
   const zIndex = Object.keys(defaultTheme.vars.zIndex).map((key) => `--mui-zIndex-${key}`);
   return (
-    <CssVarsProvider theme={defaultTheme}>
+    <ThemeProvider
+      theme={
+        // Use a function to ensure that the theme context does not inherit the upper branding theme.
+        // It's required because this demo needs to show default tokens of Material UI theme.
+        () => defaultTheme
+      }
+    >
       <Box
         sx={(theme) => ({
           mb: 4,
@@ -168,6 +175,6 @@ export default function TemplateCarousel() {
           </Table>
         </Box>
       </Box>
-    </CssVarsProvider>
+    </ThemeProvider>
   );
 }

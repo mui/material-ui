@@ -21,7 +21,6 @@ const useUtilityClasses = (ownerState) => {
 const TableFooterRoot = styled('tfoot', {
   name: 'MuiTableFooter',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   display: 'table-footer-group',
 });

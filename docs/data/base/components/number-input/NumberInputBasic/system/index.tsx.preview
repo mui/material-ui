@@ -1,6 +1,0 @@
-<NumberInput
-  aria-label="Demo number input"
-  placeholder="Type a number…"
-  value={value}
-  onChange={(event, val) => setValue(val)}
-/>

@@ -30,7 +30,7 @@ To use styled-components, you need to configure your bundler to replace it with 
 
 If you're using yarn, you can configure it using a package resolution:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```diff title="package.json"
  {
@@ -93,19 +93,7 @@ For TypeScript, you must also update the `tsconfig.json` as shown here:
 ```
 
 :::info
-**Versions compatibility**: To ensure compatibility, it's essential to align the major version of `@mui/styled-engine-sc` with that of the `styled-components` package you're using. For instance, if you opt for `styled-components` version 5, it's necessary to use `@mui/styled-engine-sc` version 5. Similarly, if your preference is `styled-components` version 6, you'll need to upgrade `@mui/styled-engine-sc` to its version 6, which is currently in an alpha state.
-:::
+**Versions compatibility**: Use the same major version of `@mui/styled-engine-sc` as your Material UI packages—for example, `@mui/styled-engine-sc@9.x` with `@mui/material@9.x`.
 
-## Ready-to-use examples
-
-We provide boilerplate examples of Create React App with Material UI and styled-components in both JavaScript and TypeScript:
-
-<!-- #default-branch-switch -->
-
-- [Material UI + CRA + styled-components (JavaScript)](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components)
-- [Material UI + CRA + styled-components (TypeScript)](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)
-
-:::warning
-`@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself.
-See the [Installation guide](/material-ui/getting-started/installation/) for more info.
+The installed `styled-components` version only needs to satisfy the peer dependency of `@mui/styled-engine-sc`. For Material UI v7 and v9, this is `styled-components@^6.0.0`.
 :::

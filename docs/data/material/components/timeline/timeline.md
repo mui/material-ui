@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Timeline component
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
-githubLabel: 'component: timeline'
+githubLabel: 'scope: timeline'
 packageName: '@mui/lab'
 ---
 
@@ -14,7 +14,7 @@ packageName: '@mui/lab'
 This component is not documented in the [Material Design guidelines](https://m2.material.io/), but it is available in Material UI.
 :::
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic timeline
 

@@ -22,12 +22,6 @@ export interface SelectClasses {
   icon: string;
   /** Styles applied to the icon component if the popup is open. */
   iconOpen: string;
-  /** Styles applied to the icon component if `variant="filled"`. */
-  iconFilled: string;
-  /** Styles applied to the icon component if `variant="outlined"`. */
-  iconOutlined: string;
-  /** Styles applied to the icon component if `variant="standard"`. */
-  iconStandard: string;
   /** Styles applied to the underlying native input component. */
   nativeInput: string;
   /** State class applied to the root element if `error={true}`. */
@@ -51,9 +45,6 @@ const selectClasses: SelectClasses = generateUtilityClasses('MuiSelect', [
   'focused',
   'icon',
   'iconOpen',
-  'iconFilled',
-  'iconOutlined',
-  'iconStandard',
   'nativeInput',
   'error',
 ]);

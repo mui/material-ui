@@ -9,6 +9,7 @@ export default function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
   const printOptions = options.printOptions;
+  const { packageName = '@mui/material' } = options;
 
   const defaultPropsPathCollection = findComponentDefaultProps(j, {
     root,
@@ -56,7 +57,7 @@ export default function transformer(file, api, options) {
   const openTaggedHavingButtonProp = new Set();
   let addedListItemButton = false;
   // Rename components that have ListItem button to ListItemButton
-  findComponentJSX(j, { root, componentName: 'ListItem' }, (elementPath) => {
+  findComponentJSX(j, { root, packageName, componentName: 'ListItem' }, (elementPath) => {
     const index = elementPath.node.openingElement.attributes.findIndex(
       (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'button',
     );
@@ -77,7 +78,7 @@ export default function transformer(file, api, options) {
 
   root
     .find(j.ImportDeclaration)
-    .filter((path) => path.node.source.value === '@mui/material/ListItem')
+    .filter((path) => path.node.source.value.match(new RegExp(`^${packageName}(/ListItem)?$`)))
     .filter((path) => {
       path.node.specifiers.forEach((specifier) => {
         if (specifier.type === 'ImportDefaultSpecifier') {
@@ -95,7 +96,7 @@ export default function transformer(file, api, options) {
 
   root
     .find(j.ImportDeclaration)
-    .filter((path) => path.node.source.value === '@mui/material')
+    .filter((path) => path.node.source.value.match(new RegExp(`^${packageName}$`)))
     .filter((path) => {
       path.node.specifiers.forEach((specifier) => {
         if (
@@ -116,7 +117,7 @@ export default function transformer(file, api, options) {
   // If ListItemButton import does not already exist, add it at the end
   const imports = root
     .find(j.ImportDeclaration)
-    .filter((path) => path.node.source.value === '@mui/material/ListItemButton');
+    .filter((path) => path.node.source.value.match(new RegExp(`^${packageName}/ListItemButton$`)));
 
   if (addedListItemButton && imports.length === 0) {
     const lastImport = root.find(j.ImportDeclaration).at(-1);
@@ -125,7 +126,7 @@ export default function transformer(file, api, options) {
     lastImport.insertAfter(
       j.importDeclaration(
         [j.importDefaultSpecifier(j.identifier('ListItemButton'))],
-        j.stringLiteral('@mui/material/ListItemButton'),
+        j.stringLiteral(`${packageName}/ListItemButton`),
       ),
     );
   }

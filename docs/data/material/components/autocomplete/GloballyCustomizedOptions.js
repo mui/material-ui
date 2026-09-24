@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -8,6 +7,9 @@ import { createTheme, useTheme, ThemeProvider } from '@mui/material/styles';
 // Theme.ts
 const customTheme = (outerTheme) =>
   createTheme({
+    cssVariables: {
+      colorSchemeSelector: 'class',
+    },
     palette: {
       mode: outerTheme.palette.mode,
     },

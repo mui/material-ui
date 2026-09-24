@@ -20,7 +20,6 @@ const useUtilityClasses = (ownerState) => {
 const TableContainerRoot = styled('div', {
   name: 'MuiTableContainer',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   width: '100%',
   overflowX: 'auto',

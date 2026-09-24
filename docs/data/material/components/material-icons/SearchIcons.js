@@ -5,7 +5,7 @@ import copy from 'clipboard-copy';
 import InputBase from '@mui/material/InputBase';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import Grid2 from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -23,8 +23,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import SvgIcon from '@mui/material/SvgIcon';
 import * as mui from '@mui/icons-material';
-import { Link } from '@mui/docs/Link';
-import { useTranslate } from '@mui/docs/i18n';
+import { Link } from '@mui/internal-core-docs/Link';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
 
 // For Debugging
@@ -48,7 +48,7 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 // import DeleteForeverRounded from '@mui/icons-material/DeleteForeverRounded';
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import synonyms from './synonyms';
 
 // const mui = {
@@ -97,10 +97,10 @@ const iconWidth = 35;
 
 const SVG_ICON_CLASS = 'svg-icon';
 
-const StyledIcon = styled('span')(({ theme }) => ({
+const StyledIcon = styled('div')(({ theme }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
-  color: theme.palette.text.secondary,
+  color: (theme.vars ?? theme).palette.text.secondary,
   margin: '0 4px',
   '& > div': {
     flexGrow: 1,
@@ -115,7 +115,7 @@ const StyledIcon = styled('span')(({ theme }) => ({
     height: iconWidth,
     boxSizing: 'content-box',
     cursor: 'pointer',
-    color: theme.palette.text.primary,
+    color: (theme.vars ?? theme).palette.text.primary,
     border: '1px solid transparent',
     fontSize: iconWidth,
     borderRadius: '12px',
@@ -125,8 +125,8 @@ const StyledIcon = styled('span')(({ theme }) => ({
     padding: theme.spacing(2),
     margin: theme.spacing(0.5, 0),
     '&:hover': {
-      backgroundColor: theme.palette.background.default,
-      borderColor: theme.palette.primary.light,
+      backgroundColor: (theme.vars ?? theme).palette.background.default,
+      borderColor: (theme.vars ?? theme).palette.primary.light,
     },
   },
 }));
@@ -205,7 +205,7 @@ function Icon(props) {
   );
 }
 
-const SearchIconsIcons = React.memo(function SearchIconsIcons(props) {
+const Icons = React.memo(function Icons(props) {
   const { icons, handleOpenClick } = props;
 
   return (
@@ -222,6 +222,11 @@ const SearchIconsIcons = React.memo(function SearchIconsIcons(props) {
     </div>
   );
 });
+
+Icons.propTypes = {
+  handleOpenClick: PropTypes.func.isRequired,
+  icons: PropTypes.array.isRequired,
+};
 
 const ImportLink = styled(Link)(({ theme }) => ({
   textAlign: 'right',
@@ -257,7 +262,7 @@ const Title = styled(Typography)(({ theme }) => ({
 
 const CanvasComponent = styled('div')(({ theme }) => ({
   fontSize: 210,
-  color: theme.palette.text.primary,
+  color: (theme.vars ?? theme).palette.text.primary,
   backgroundSize: '30px 30px',
   backgroundColor: 'transparent',
   backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
@@ -286,7 +291,7 @@ const ContextComponent = styled('div', {
         contextColor: 'primary',
       },
       style: {
-        color: theme.palette.primary.main,
+        color: (theme.vars ?? theme).palette.primary.main,
       },
     },
     {
@@ -294,8 +299,8 @@ const ContextComponent = styled('div', {
         contextColor: 'primaryInverse',
       },
       style: {
-        color: theme.palette.primary.contrastText,
-        backgroundColor: theme.palette.primary.main,
+        color: (theme.vars ?? theme).palette.primary.contrastText,
+        backgroundColor: (theme.vars ?? theme).palette.primary.main,
       },
     },
     {
@@ -303,7 +308,7 @@ const ContextComponent = styled('div', {
         contextColor: 'textPrimary',
       },
       style: {
-        color: theme.palette.text.primary,
+        color: (theme.vars ?? theme).palette.text.primary,
       },
     },
     {
@@ -311,8 +316,8 @@ const ContextComponent = styled('div', {
         contextColor: 'textPrimaryInverse',
       },
       style: {
-        color: theme.palette.background.paper,
-        backgroundColor: theme.palette.text.primary,
+        color: (theme.vars ?? theme).palette.background.paper,
+        backgroundColor: (theme.vars ?? theme).palette.text.primary,
       },
     },
     {
@@ -320,7 +325,7 @@ const ContextComponent = styled('div', {
         contextColor: 'textSecondary',
       },
       style: {
-        color: theme.palette.text.secondary,
+        color: (theme.vars ?? theme).palette.text.secondary,
       },
     },
     {
@@ -328,8 +333,8 @@ const ContextComponent = styled('div', {
         contextColor: 'textSecondaryInverse',
       },
       style: {
-        color: theme.palette.background.paper,
-        backgroundColor: theme.palette.text.secondary,
+        color: (theme.vars ?? theme).palette.background.paper,
+        backgroundColor: (theme.vars ?? theme).palette.text.secondary,
       },
     },
   ],
@@ -393,6 +398,12 @@ const DialogDetails = React.memo(function DialogDetails(props) {
               onClick={handleClick(2)}
               code={`import ${selectedIcon.importName}Icon from '@mui/icons-material/${selectedIcon.importName}';`}
               language="js"
+              sx={{
+                '& pre': {
+                  whiteSpace: 'pre-wrap',
+                  wordBreak: 'break-all',
+                },
+              }}
             />
           </Tooltip>
           <ImportLink
@@ -403,38 +414,47 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             {t('searchIcons.learnMore')}
           </ImportLink>
           <DialogContent>
-            <Grid2 container>
-              <Grid2 size={{ xs: 6 }} container sx={{ justifyContent: 'center' }}>
-                <CanvasComponent as={selectedIcon.Component} />
-              </Grid2>
-              <Grid2 size={{ xs: 6 }}>
-                <Grid2
+            <Grid container spacing={2} sx={{ rowGap: { xs: 3, sm: 0 } }}>
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <Grid
+                  container
+                  sx={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100%',
+                  }}
+                >
+                  <CanvasComponent as={selectedIcon.Component} />
+                </Grid>
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <Grid
                   container
                   sx={{ alignItems: 'flex-end', justifyContent: 'center' }}
                 >
-                  <Grid2>
+                  <Grid>
                     <Tooltip title={`fontSize="small"`}>
                       <FontSizeComponent
                         as={selectedIcon.Component}
                         fontSize="small"
                       />
                     </Tooltip>
-                  </Grid2>
-                  <Grid2>
+                  </Grid>
+                  <Grid>
                     <Tooltip title={`fontSize="medium"`}>
                       <FontSizeComponent as={selectedIcon.Component} />
                     </Tooltip>
-                  </Grid2>
-                  <Grid2>
+                  </Grid>
+                  <Grid>
                     <Tooltip title={`fontSize="large"`}>
                       <FontSizeComponent
                         as={selectedIcon.Component}
                         fontSize="large"
                       />
                     </Tooltip>
-                  </Grid2>
-                </Grid2>
-                <Grid2 container sx={{ justifyContent: 'center' }}>
+                  </Grid>
+                </Grid>
+                <Grid container sx={{ justifyContent: 'center', mt: 1 }}>
                   <ContextComponent
                     as={selectedIcon.Component}
                     contextColor="primary"
@@ -443,8 +463,8 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     as={selectedIcon.Component}
                     contextColor="primaryInverse"
                   />
-                </Grid2>
-                <Grid2 container sx={{ justifyContent: 'center' }}>
+                </Grid>
+                <Grid container sx={{ justifyContent: 'center' }}>
                   <ContextComponent
                     as={selectedIcon.Component}
                     contextColor="textPrimary"
@@ -453,8 +473,8 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     as={selectedIcon.Component}
                     contextColor="textPrimaryInverse"
                   />
-                </Grid2>
-                <Grid2 container sx={{ justifyContent: 'center' }}>
+                </Grid>
+                <Grid container sx={{ justifyContent: 'center' }}>
                   <ContextComponent
                     as={selectedIcon.Component}
                     contextColor="textSecondary"
@@ -463,9 +483,9 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     as={selectedIcon.Component}
                     contextColor="textSecondaryInverse"
                   />
-                </Grid2>
-              </Grid2>
-            </Grid2>
+                </Grid>
+              </Grid>
+            </Grid>
           </DialogContent>
           <DialogActions sx={{ borderTop: '1px solid', borderColor: 'divider' }}>
             <Button onClick={handleClose}>{t('close')}</Button>
@@ -494,9 +514,7 @@ const SearchIconsFilter = React.memo(function SearchIconsFilter(props) {
   const { theme, setTheme } = props;
   return (
     <Form>
-      <Typography fontWeight={500} sx={{ mb: 1 }}>
-        Filter the style
-      </Typography>
+      <Typography sx={{ fontWeight: 500, mb: 1 }}>Filter the style</Typography>
       <RadioGroup
         value={theme}
         onChange={(event) => setTheme(event.target.value)}
@@ -519,6 +537,11 @@ const SearchIconsFilter = React.memo(function SearchIconsFilter(props) {
   );
 });
 
+SearchIconsFilter.propTypes = {
+  setTheme: PropTypes.func.isRequired,
+  theme: PropTypes.string.isRequired,
+};
+
 const Paper = styled(MuiPaper)(({ theme }) => ({
   position: 'sticky',
   top: 80,
@@ -528,7 +551,7 @@ const Paper = styled(MuiPaper)(({ theme }) => ({
   width: '100%',
   borderRadius: '12px',
   border: '1px solid',
-  borderColor: theme.palette.divider,
+  borderColor: (theme.vars ?? theme).palette.divider,
   boxShadow: 'none',
 }));
 
@@ -541,18 +564,18 @@ const Input = styled(InputBase)({
 });
 
 const allIconsMap = {};
-const themeRegEx = /(Outlined|Rounded|TwoTone|Sharp)$/g;
-
 const allIcons = Object.keys(mui)
-  .sort() // Show ASC
+  .sort()
   .map((importName) => {
     let theme = 'Filled';
     let name = importName;
 
-    const matchTheme = importName.match(themeRegEx);
-    if (matchTheme !== null) {
-      theme = matchTheme[0] === 'TwoTone' ? 'Two tone' : matchTheme[0];
-      name = importName.slice(0, -matchTheme[0].length);
+    for (const currentTheme of ['Outlined', 'Rounded', 'TwoTone', 'Sharp']) {
+      if (importName.endsWith(currentTheme)) {
+        theme = currentTheme === 'TwoTone' ? 'Two tone' : currentTheme;
+        name = importName.slice(0, -currentTheme.length);
+        break;
+      }
     }
     let searchable = name;
     if (synonyms[searchable]) {
@@ -560,7 +583,7 @@ const allIcons = Object.keys(mui)
     }
 
     const icon = {
-      id: importName, // used by miniSearch
+      id: importName, // used by MiniSearch
       importName,
       name,
       theme,
@@ -587,7 +610,7 @@ function addSuffixes(term, minLength) {
 const miniSearch = new MiniSearch({
   fields: ['searchable'], // fields to index for full-text search
   processTerm: (term) => addSuffixes(term, 4),
-  storeFields: ['name', 'Component'],
+  storeFields: ['name'],
   searchOptions: {
     processTerm: MiniSearch.getDefault('processTerm'),
     prefix: true,
@@ -600,7 +623,7 @@ const miniSearch = new MiniSearch({
 });
 
 // Copied from mui-x/packages/x-data-grid-generator/src/services/asyncWorker.ts
-// https://lucaong.github.io/minisearch/classes/MiniSearch.MiniSearch.html#addAllAsync is crap.
+// https://lucaong.github.io/minisearch/classes/MiniSearch.MiniSearch.html#addAllAsync blocks the main thread for too long.
 function asyncWorker({ work, tasks, done }) {
   const myNonEssentialWork = (deadline) => {
     // If there is a surplus time in the frame, or timeout
@@ -629,11 +652,12 @@ function asyncWorker({ work, tasks, done }) {
   }
 }
 
+// Indexes the icons in idle time so it doesn't block hydration.
 const indexation = new Promise((resolve) => {
   const tasks = { current: allIcons.length };
 
   function work() {
-    miniSearch.addAll([allIcons[tasks.current - 1]]);
+    miniSearch.add(allIcons[tasks.current - 1]);
     tasks.current -= 1;
   }
 
@@ -683,20 +707,25 @@ export default function SearchIcons() {
   React.useEffect(() => {
     if (query === '') {
       setIcons(allThemeIcons);
-      return;
+      return undefined;
     }
 
-    async function search() {
-      await indexation;
-      const keys = miniSearch.search(query);
-
+    let active = true;
+    indexation.then(() => {
+      // Ignore results for a query that has changed in the meantime.
+      if (!active) {
+        return;
+      }
+      const results = miniSearch.search(query);
       setIcons(
-        keys
-          .map((key) => allIconsMap[key.id])
+        results
+          .map((result) => allIconsMap[result.id])
           .filter((icon) => theme === icon.theme),
       );
-    }
-    search();
+    });
+    return () => {
+      active = false;
+    };
   }, [query, theme, allThemeIcons]);
 
   const deferredIcons = React.useDeferredValue(icons);
@@ -718,11 +747,11 @@ export default function SearchIcons() {
   );
 
   return (
-    <Grid2 container sx={{ minHeight: 500, width: '100%' }}>
-      <Grid2 size={{ xs: 12, sm: 4, md: 3 }}>
+    <Grid container sx={{ minHeight: 500, width: '100%' }}>
+      <Grid size={{ xs: 12, sm: 4, md: 3 }}>
         <SearchIconsFilter theme={theme} setTheme={setTheme} />
-      </Grid2>
-      <Grid2 size={{ xs: 12, sm: 8, md: 9 }} sx={{ height: '100%' }}>
+      </Grid>
+      <Grid size={{ xs: 12, sm: 8, md: 9 }}>
         <Paper>
           <IconButton sx={{ padding: '10px' }} aria-label="search">
             <SearchIcon />
@@ -730,21 +759,18 @@ export default function SearchIcons() {
           <Input
             autoFocus
             value={query}
-            onChange={(event) => {
-              setQuery(event.target.value);
-            }}
+            onChange={(event) => setQuery(event.target.value)}
             placeholder="Search icons…"
             inputProps={{ 'aria-label': 'search icons' }}
             endAdornment={
               isPending ? (
                 <Fade
                   in={isPending}
-                  style={{
-                    transitionDelay: '100ms',
-                  }}
+                  style={{ transitionDelay: '100ms' }}
                   unmountOnExit
                 >
                   <InputAdornment position="end">
+                    {/* disableShrink reduces CPU load while the main thread is busy */}
                     <CircularProgress disableShrink size={16} sx={{ mr: 2 }} />
                   </InputAdornment>
                 </Fade>
@@ -752,16 +778,16 @@ export default function SearchIcons() {
             }
           />
         </Paper>
-        <Typography sx={{ mb: 1 }}>
-          {`${formatNumber(icons.length)} matching results`}
-        </Typography>
-        <SearchIconsIcons icons={deferredIcons} handleOpenClick={handleOpenClick} />
-      </Grid2>
+        <Typography sx={{ mb: 1 }}>{`${formatNumber(
+          icons.length,
+        )} matching results`}</Typography>
+        <Icons icons={deferredIcons} handleOpenClick={handleOpenClick} />
+      </Grid>
       <DialogDetails
-        open={!!selectedIcon}
+        open={Boolean(selectedIcon)}
         selectedIcon={dialogSelectedIcon}
         handleClose={handleClose}
       />
-    </Grid2>
+    </Grid>
   );
 }

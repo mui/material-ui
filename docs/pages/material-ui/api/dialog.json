@@ -10,15 +10,8 @@
       },
       "default": "true"
     },
-    "BackdropComponent": {
-      "type": { "name": "elementType" },
-      "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})",
-      "deprecated": true,
-      "deprecationInfo": "Use <code>slots.backdrop</code> instead. While this prop currently works, it will be removed in the next major version."
-    },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
-    "disableEscapeKeyDown": { "type": { "name": "bool" }, "default": "false" },
     "fullScreen": { "type": { "name": "bool" }, "default": "false" },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "maxWidth": {
@@ -28,11 +21,6 @@
       },
       "default": "'sm'"
     },
-    "onBackdropClick": {
-      "type": { "name": "func" },
-      "deprecated": true,
-      "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events."
-    },
     "onClose": {
       "type": { "name": "func" },
       "signature": {
@@ -41,10 +29,27 @@
       }
     },
     "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
-    "PaperProps": { "type": { "name": "object" }, "default": "{}" },
+    "role": {
+      "type": { "name": "enum", "description": "'alertdialog'<br>&#124;&nbsp;'dialog'" },
+      "default": "'dialog'"
+    },
     "scroll": {
       "type": { "name": "enum", "description": "'body'<br>&#124;&nbsp;'paper'" },
       "default": "'paper'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, container?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: elementType, container?: elementType, paper?: elementType, root?: elementType, transition?: elementType }"
+      },
+      "default": "{}"
     },
     "sx": {
       "type": {
@@ -53,34 +58,49 @@
       },
       "additionalInfo": { "sx": true }
     },
-    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Fade" },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
-    },
-    "TransitionProps": { "type": { "name": "object" } }
+    }
   },
   "name": "Dialog",
   "imports": [
     "import Dialog from '@mui/material/Dialog';",
     "import { Dialog } from '@mui/material';"
   ],
+  "slots": [
+    {
+      "name": "transition",
+      "description": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transition-slots) to learn more about the requirements for this component.",
+      "default": "Collapse",
+      "class": null
+    },
+    {
+      "name": "paper",
+      "description": "The component that renders the paper.",
+      "default": "Paper",
+      "class": "MuiDialog-paper"
+    },
+    {
+      "name": "container",
+      "description": "The component that renders the container.",
+      "class": "MuiDialog-container"
+    },
+    {
+      "name": "backdrop",
+      "description": "The component that renders the backdrop.",
+      "class": "MuiDialog-backdrop"
+    },
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "class": "MuiDialog-root"
+    }
+  ],
   "classes": [
-    {
-      "key": "container",
-      "className": "MuiDialog-container",
-      "description": "Styles applied to the container element.",
-      "isGlobal": false
-    },
-    {
-      "key": "paper",
-      "className": "MuiDialog-paper",
-      "description": "Styles applied to the Paper component.",
-      "isGlobal": false
-    },
     {
       "key": "paperFullScreen",
       "className": "MuiDialog-paperFullScreen",
@@ -91,18 +111,6 @@
       "key": "paperFullWidth",
       "className": "MuiDialog-paperFullWidth",
       "description": "Styles applied to the Paper component if `fullWidth={true}`.",
-      "isGlobal": false
-    },
-    {
-      "key": "paperScrollBody",
-      "className": "MuiDialog-paperScrollBody",
-      "description": "Styles applied to the Paper component if `scroll=\"body\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "paperScrollPaper",
-      "className": "MuiDialog-paperScrollPaper",
-      "description": "Styles applied to the Paper component if `scroll=\"paper\"`.",
       "isGlobal": false
     },
     {
@@ -142,12 +150,6 @@
       "isGlobal": false
     },
     {
-      "key": "root",
-      "className": "MuiDialog-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
-    },
-    {
       "key": "scrollBody",
       "className": "MuiDialog-scrollBody",
       "description": "Styles applied to the container element if `scroll=\"body\"`.",
@@ -166,6 +168,5 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Dialog/Dialog.js",
   "inheritance": { "component": "Modal", "pathname": "/material-ui/api/modal/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-dialog/\">Dialog</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-dialog/\">Dialog</a></li></ul>"
 }

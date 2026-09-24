@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Paper component
 components: Paper
-githubLabel: 'component: Paper'
+githubLabel: 'scope: paper'
 materialDesign: https://m2.material.io/design/environment/elevation.html
 githubSource: packages/mui-material/src/Paper
 ---
@@ -11,7 +11,7 @@ githubSource: packages/mui-material/src/Paper
 
 <p class="description">The Paper component is a container for displaying content on an elevated surface.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 

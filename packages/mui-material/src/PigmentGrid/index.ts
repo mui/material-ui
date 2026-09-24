@@ -1,3 +1,3 @@
 export { default } from './PigmentGrid';
 export * from './PigmentGrid';
-export { default as grid2Classes } from '../Grid2/grid2Classes';
+export { default as gridClasses } from '../Grid/gridClasses';

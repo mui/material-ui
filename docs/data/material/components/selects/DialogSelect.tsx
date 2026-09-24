@@ -12,6 +12,8 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 export default function DialogSelect() {
+  const nativeId = React.useId();
+  const selectId = React.useId();
   const [open, setOpen] = React.useState(false);
   const [age, setAge] = React.useState<number | string>('');
 
@@ -23,26 +25,33 @@ export default function DialogSelect() {
     setOpen(true);
   };
 
-  const handleClose = (event: React.SyntheticEvent<unknown>, reason?: string) => {
-    if (reason !== 'backdropClick') {
+  const handleDialogClose = (
+    _event: React.SyntheticEvent<unknown>,
+    reason: string,
+  ) => {
+    if (!['backdropClick', 'escapeKeyDown'].includes(reason)) {
       setOpen(false);
     }
+  };
+
+  const handleActionButtonClick = () => {
+    setOpen(false);
   };
 
   return (
     <div>
       <Button onClick={handleClickOpen}>Open select dialog</Button>
-      <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleDialogClose}>
         <DialogTitle>Fill the form</DialogTitle>
         <DialogContent>
           <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
             <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel htmlFor="demo-dialog-native">Age</InputLabel>
+              <InputLabel htmlFor={`${nativeId}-select`}>Age</InputLabel>
               <Select
                 native
                 value={age}
                 onChange={handleChange}
-                input={<OutlinedInput label="Age" id="demo-dialog-native" />}
+                input={<OutlinedInput label="Age" id={`${nativeId}-select`} />}
               >
                 <option aria-label="None" value="" />
                 <option value={10}>Ten</option>
@@ -51,10 +60,10 @@ export default function DialogSelect() {
               </Select>
             </FormControl>
             <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-dialog-select-label">Age</InputLabel>
+              <InputLabel id={`${selectId}-label`}>Age</InputLabel>
               <Select
-                labelId="demo-dialog-select-label"
-                id="demo-dialog-select"
+                labelId={`${selectId}-label`}
+                id={`${selectId}-select`}
                 value={age}
                 onChange={handleChange}
                 input={<OutlinedInput label="Age" />}
@@ -70,8 +79,8 @@ export default function DialogSelect() {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Ok</Button>
+          <Button onClick={handleActionButtonClick}>Cancel</Button>
+          <Button onClick={handleActionButtonClick}>Ok</Button>
         </DialogActions>
       </Dialog>
     </div>

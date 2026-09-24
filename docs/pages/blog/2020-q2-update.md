@@ -27,7 +27,7 @@ Here are the most significant improvements since March 2020:
 
   Adobe XD and Framer support are also up for consideration if they attract a significant audience, but not until we've polished the Sketch and Figma assets.
 
-- 🔄 `LoadingButton` – [a new component in the lab](https://mui.com/material-ui/react-button/#loading-button). This work is influenced by the [concurrent UI patterns](https://17.reactjs.org/docs/concurrent-mode-patterns.html) presented by the React team.
+- 🔄 `LoadingButton` – [a new component in the lab](https://v5.mui.com/material-ui/react-button/#loading-button). This work is influenced by the [concurrent UI patterns](https://17.reactjs.org/docs/concurrent-mode-patterns.html) presented by the React team.
 
   <img src="/static/blog/2020-q2-update/loading.gif" alt="loading" style="margin-bottom: 24px;" />
 
@@ -65,7 +65,6 @@ Here are the most significant improvements since March 2020:
 ```
 
 - 📆 On the [date picker](https://mui.com/x/react-date-pickers/):
-
   - A new `renderInput` API which matches that of the autocomplete component has been added.
   - The input mask UX has been improved.
   - Support for `value={null}` has been added.
@@ -102,7 +101,6 @@ We'll do our best, no guarantee!
 These are objectives, no guarantees:
 
 - 🏢 We will [hire](/careers/) 3 full-time roles in the team.
-
   - One person on the open-source side to focus on the design system problem (unstyled, theming, styling, etc.): ✅ starting in two months.
   - One person on the enterprise side to consolidate the development of the advanced components: 🚧 Work in progress.
   - One person on a role yet to defined: 🚧 Work in progress.

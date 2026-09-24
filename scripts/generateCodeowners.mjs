@@ -1,4 +1,4 @@
-/* eslint-disable no-console, no-restricted-syntax, no-continue */
+/* eslint-disable no-console */
 import * as fs from 'fs';
 import * as path from 'path';
 import * as url from 'url';
@@ -56,8 +56,8 @@ const componentAreas = {
   formhelpertext: 'inputs',
   formlabel: 'inputs',
   globalstyles: 'utils',
+  gridlegacy: 'layout',
   grid: 'layout',
-  grid2: 'layout',
   grow: 'utils',
   hidden: 'layout',
   icon: 'dataDisplay',
@@ -173,20 +173,18 @@ const areaMaintainers = {
 
 const packageOwners = {
   base: ['michaldudak'],
-  joy: ['siriwatknp'],
   material: ['mnajdova'],
 };
 
 const packageMaintainers = {
   base: ['michaldudak', 'mnajdova'],
   'icons-material': ['michaldudak', 'siriwatknp'],
-  joy: ['siriwatknp', 'danilo-leal'],
-  material: ['mnajdova', 'danilo-leal'],
+  material: ['mnajdova'],
   system: ['mnajdova', 'siriwatknp'],
 };
 
 const additionalRules = {
-  '/scripts/': ['michaldudak', 'm4theushw'],
+  '/scripts/': ['michaldudak'],
 };
 
 const thisDirectory = url.fileURLToPath(new URL('.', import.meta.url));
@@ -338,10 +336,6 @@ function run() {
   write('\n# Components - Base UI\n');
   write(processComponents('base'));
   write(processDocs('base'));
-
-  write('\n# Components - Joy UI\n');
-  write(processComponents('joy'));
-  write(processDocs('joy'));
 
   save();
 }

@@ -1,5 +1,5 @@
+import { describe, it, expect, beforeEach } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import {
   createRenderer,
   screen,
@@ -7,6 +7,8 @@ import {
   act,
   fireEvent,
   reactMajor,
+  isJsdom,
+  flushEffects,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import useAutocomplete, { createFilterOptions } from '@mui/material/useAutocomplete';
@@ -51,9 +53,9 @@ describe('useAutocomplete', () => {
       );
     }
 
-    const { rerender } = render(<Test options={['foo', 'bar']} />);
+    const view = render(<Test options={['foo', 'bar']} />);
     const [fooOptionAsFirst, barOptionAsSecond] = screen.getAllByRole('option');
-    rerender(<Test options={['bar', 'foo']} />);
+    view.rerender(<Test options={['bar', 'foo']} />);
     const [barOptionAsFirst, fooOptionAsSecond] = screen.getAllByRole('option');
 
     // If the DOM nodes are not preserved VO will not read the first option again since it thinks it didn't change.
@@ -240,14 +242,10 @@ describe('useAutocomplete', () => {
     });
   });
 
-  it('should warn if the input is not binded', function test() {
-    // TODO is this fixed?
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      // can't catch render errors in the browser for unknown reason
-      // tried try-catch + error boundary + window onError preventDefault
-      this.skip();
-    }
-
+  // can't catch render errors in the browser for unknown reason
+  // tried try-catch + error boundary + window onError preventDefault
+  // TODO is this fixed?
+  it.skipIf(!isJsdom())('should warn if the input is not bound', async () => {
     function Test(props) {
       const { options } = props;
       const {
@@ -313,6 +311,14 @@ describe('useAutocomplete', () => {
         aboveErrorTestComponentMessage,
         aboveErrorTestComponentMessage,
       ],
+      19: [
+        muiErrorMessage,
+        muiErrorMessage,
+        nodeErrorMessage,
+        nodeErrorMessage,
+        nodeErrorMessage,
+        nodeErrorMessage,
+      ],
     };
 
     const devErrorMessages = errorMessagesByReactMajor[reactMajor] || defaultErrorMessages;
@@ -324,6 +330,49 @@ describe('useAutocomplete', () => {
         </ErrorBoundary>,
       );
     }).toErrorDev(devErrorMessages);
+
+    await flushEffects();
+  });
+
+  it('should not crash when the input ref is cleared before a pending highlighted index sync', async () => {
+    function Test() {
+      const [showAutocomplete, setShowAutocomplete] = React.useState(true);
+      const options = showAutocomplete ? ['foo', 'bar'] : [];
+      const { getRootProps, getInputProps, getListboxProps, getOptionProps, groupedOptions } =
+        useAutocomplete({ options, open: true });
+
+      return (
+        <React.Fragment>
+          <button type="button" onClick={() => setShowAutocomplete(false)}>
+            Hide
+          </button>
+          <div {...getRootProps()}>
+            {showAutocomplete ? <input {...getInputProps()} /> : null}
+            {groupedOptions.length > 0 ? (
+              <ul {...getListboxProps()}>
+                {groupedOptions.map((option, index) => {
+                  const { key, ...optionProps } = getOptionProps({ option, index });
+                  return (
+                    <li key={key} {...optionProps}>
+                      {option}
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : null}
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    const { user } = render(<Test />);
+
+    // This hides the input/listbox while the hook stays mounted. A full unmount
+    // doesn't run the highlighted index sync after refs are cleared; this state
+    // update does, so it exercises the problematic ordering.
+    await user.click(screen.getByRole('button', { name: 'Hide' }));
+
+    await flushEffects();
   });
 
   describe('prop: freeSolo', () => {
@@ -337,8 +386,8 @@ describe('useAutocomplete', () => {
       render(<Test options={['foo', 'bar']} />);
       const input = screen.getByRole('combobox');
 
+      fireEvent.change(input, { target: { value: 'free' } });
       act(() => {
-        fireEvent.change(input, { target: { value: 'free' } });
         input.blur();
       });
 
@@ -387,12 +436,140 @@ describe('useAutocomplete', () => {
       );
     }
 
-    const { getByTestId } = render(<Test />);
+    render(<Test />);
 
-    const button = getByTestId('button');
+    const button = screen.getByTestId('button');
 
     expect(() => {
       fireEvent.click(button);
     }).not.to.throw();
+  });
+
+  describe('prop: isOptionEqualToValue', () => {
+    it('should respect custom equality even when option is referentially equal to value', () => {
+      const option = { id: 1, label: 'foo' };
+
+      function Test() {
+        const { groupedOptions, getInputProps, getListboxProps, getOptionProps } = useAutocomplete({
+          options: [option],
+          open: true,
+          multiple: true,
+          value: [option],
+          filterSelectedOptions: true,
+          getOptionLabel: (optionParam) => optionParam.label,
+          isOptionEqualToValue: () => false,
+        });
+
+        return (
+          <div>
+            <input {...getInputProps()} />
+            <ul {...getListboxProps()}>
+              {groupedOptions.map((optionParam, index) => {
+                const { key, ...optionProps } = getOptionProps({ option: optionParam, index });
+                return (
+                  <li key={key} {...optionProps}>
+                    {optionParam.label}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      }
+
+      render(<Test />);
+
+      const renderedOption = screen.getByRole('option');
+      expect(renderedOption).to.have.text('foo');
+      expect(renderedOption).to.have.attribute('aria-selected', 'false');
+    });
+  });
+
+  describe('prop: defaultValue', () => {
+    it('should not trigger onInputChange when defaultValue is provided', () => {
+      const onInputChange = spy();
+      const defaultValue = 'foo';
+
+      function Test() {
+        const { getInputProps } = useAutocomplete({
+          defaultValue,
+          onInputChange,
+          options: ['foo', 'bar'],
+        });
+
+        return <input {...getInputProps()} />;
+      }
+
+      render(<Test />);
+      expect(onInputChange.callCount).to.equal(0);
+    });
+  });
+
+  describe('prop: value', () => {
+    it('should not trigger onInputChange when value is provided', () => {
+      const onInputChange = spy();
+
+      function Test() {
+        const [value, setValue] = React.useState('foo');
+        const { getInputProps } = useAutocomplete({
+          value,
+          onChange: (event, valueParam) => setValue(valueParam),
+          onInputChange,
+          options: ['foo', 'bar'],
+        });
+
+        return <input {...getInputProps()} />;
+      }
+
+      render(<Test />);
+      expect(onInputChange.callCount).to.equal(0);
+    });
+  });
+
+  describe('prop: multiple', () => {
+    it('should set aria-multiselectable on the listbox when multiple prop is true', () => {
+      function Test(props) {
+        const { options } = props;
+        const { getListboxProps, getInputProps } = useAutocomplete({
+          options,
+          open: true,
+          multiple: true,
+        });
+        return (
+          <div>
+            <input {...getInputProps()} />
+            <ul {...getListboxProps()} />;
+          </div>
+        );
+      }
+
+      render(<Test options={['foo', 'bar']} />);
+
+      const listbox = screen.getByRole('listbox');
+
+      expect(listbox).to.have.attribute('aria-multiselectable', 'true');
+    });
+
+    it('should not set aria-multiselectable on the listbox when multiple prop is false', () => {
+      function Test(props) {
+        const { options } = props;
+        const { getListboxProps, getInputProps } = useAutocomplete({
+          options,
+          open: true,
+          multiple: false,
+        });
+        return (
+          <div>
+            <input {...getInputProps()} />
+            <ul {...getListboxProps()} />;
+          </div>
+        );
+      }
+
+      render(<Test options={['foo', 'bar']} />);
+      const listbox = screen.getByRole('listbox');
+
+      expect(listbox).to.not.have.attribute('aria-multiselectable');
+    });
   });
 });

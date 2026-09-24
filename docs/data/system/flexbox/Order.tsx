@@ -1,8 +1,7 @@
-import * as React from 'react';
 import Box, { BoxProps } from '@mui/material/Box';
 
 function Item(props: BoxProps) {
-  const { sx, ...other } = props;
+  const { sx = [], ...other } = props;
   return (
     <Box
       sx={[
@@ -22,7 +21,7 @@ function Item(props: BoxProps) {
             borderColor: 'grey.800',
           }),
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
+        ...[sx].flat(),
       ]}
       {...other}
     />

@@ -1,13 +1,10 @@
 import * as React from 'react';
-
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-
 import CloseIcon from '@mui/icons-material/Close';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
-
 import Info from './Info';
 
 interface InfoProps {
@@ -46,11 +43,13 @@ export default function InfoMobile({ totalPrice }: InfoProps) {
         open={open}
         anchor="top"
         onClose={toggleDrawer(false)}
-        PaperProps={{
-          sx: {
-            top: 'var(--template-frame-height, 0px)',
-            backgroundImage: 'none',
-            backgroundColor: 'background.paper',
+        slotProps={{
+          paper: {
+            sx: {
+              top: 'var(--template-frame-height, 0px)',
+              backgroundImage: 'none',
+              backgroundColor: 'background.paper',
+            },
           },
         }}
       >

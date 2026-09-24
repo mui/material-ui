@@ -17,65 +17,71 @@ export default function StressNestedGrid() {
       }}
     >
       <Grid container spacing={1}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Paper>xs=12</Paper>
         </Grid>
-        <Grid item xs={6}>
+        <Grid size={6}>
           <Paper>xs=6</Paper>
         </Grid>
-        <Grid item xs={6}>
+        <Grid size={6}>
           <Paper>xs=6</Paper>
         </Grid>
-        <Grid item container direction="column-reverse" xs={6} spacing={3}>
-          <Grid item xs={6}>
-            <Paper>xs=6</Paper>
-          </Grid>
-          <Grid item container spacing={2} xs={6}>
-            <Grid item container spacing={1} xs={6}>
-              <Grid item xs={7}>
-                <Paper>xs=7</Paper>
-              </Grid>
-              <Grid item xs={5}>
-                <Paper>xs=5</Paper>
-              </Grid>
-            </Grid>
-            <Grid item xs={6}>
+        <Box sx={{ p: 2, width: '100%' }}>
+          {/* This grid should start as a new root grid (doesn't inherit spacing from the top) */}
+          <Grid container spacing={3}>
+            <Grid size={6}>
               <Paper>xs=6</Paper>
             </Grid>
+            <Grid container size={6}>
+              {/* nested spacing can be override by the explicit `spacing` prop */}
+              <Grid container spacing={1} size={6}>
+                <Grid size={7}>
+                  <Paper>xs=7</Paper>
+                </Grid>
+                <Grid size={5}>
+                  <Paper>xs=5</Paper>
+                </Grid>
+              </Grid>
+              <Grid size={6}>
+                <Paper>xs=6</Paper>
+              </Grid>
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid item container direction="column" xs={6} spacing={3}>
-          <Grid item xs={6}>
+        </Box>
+        <Grid container spacing={3} size={6}>
+          <Grid size={6}>
             <Paper>xs=6</Paper>
           </Grid>
-          <Grid item xs={6}>
+          <Grid size={6}>
             <Paper>xs=6</Paper>
           </Grid>
         </Grid>
-        <Grid item container xs={6} spacing={3}>
-          <Grid item xs={8}>
+        <Grid container spacing={3} size={6}>
+          <Grid size={8}>
             <Paper>xs=8</Paper>
           </Grid>
-          <Grid item xs={4}>
+          <Grid size={4}>
             <Paper>xs=4</Paper>
           </Grid>
         </Grid>
-        <Grid item container xs={6} spacing={2}>
-          <Grid item xs={4}>
+
+        {/* The grids below should inherit spacing from the top */}
+        <Grid container size={6}>
+          <Grid size={4}>
             <Paper>xs=4</Paper>
           </Grid>
-          <Grid item xs={4}>
+          <Grid size={4}>
             <Paper>xs=4</Paper>
           </Grid>
-          <Grid item xs={4}>
+          <Grid size={4}>
             <Paper>xs=4</Paper>
           </Grid>
         </Grid>
-        <Grid item container xs={6} spacing={5}>
-          <Grid item xs={6}>
+        <Grid container size={6}>
+          <Grid size={6}>
             <Paper>xs=6</Paper>
           </Grid>
-          <Grid item xs={6}>
+          <Grid size={6}>
             <Paper>xs=6</Paper>
           </Grid>
         </Grid>

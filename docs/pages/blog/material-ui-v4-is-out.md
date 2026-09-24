@@ -28,7 +28,7 @@ Material UI v4 has finally arrived. We are so excited about this release, as it
 
 Material UI v1 was [released](https://medium.com/material-ui/material-ui-v1-is-out-e73ce13463eb) one year ago. Version 4 is our most important major release since then. For those unfamiliar with the history of the project, we didn't release a v2, and v3 only introduced a slight browsers support change.
 
-This release happens within our [fixed frequency](https://mui.com/versions/#release-frequency) release strategy. We try to release a major at least every 12 months and at most every 6 months. The migration from v0 to v1 was painful, it almost felt like using two different UI libraries. We've done our best to minimize the time needed to migrate from v3 to v4. To help ease the transition, you can follow this [migration guide](/material-ui/migration/migration-v3/) 📚. It shouldn't take more than a few hours.
+This release happens within our [fixed frequency](https://mui.com/material-ui/getting-started/versions/#release-frequency) release strategy. We try to release a major at least every 12 months and at most every 6 months. The migration from v0 to v1 was painful, it almost felt like using two different UI libraries. We've done our best to minimize the time needed to migrate from v3 to v4. To help ease the transition, you can follow this [migration guide](/material-ui/migration/migration-v3/) 📚. It shouldn't take more than a few hours.
 
 This release is influenced by two major factors. First, following the Developer Survey we ran in March, we have [analyzed the results](/blog/2019-developer-survey-results/) and used them to change [our priorities](/material-ui/discover-more/roadmap/) for the coming year. Secondly, we needed to be up to date with the latest best practices in the React community and with the Material Design Specification.
 
@@ -46,7 +46,7 @@ The Material Design team at Google has made the customization of their design sy
 
 ![Demo3](/static/blog/material-ui-v4-is-out/demo3.png)
 
-<p class="blog-description"><a href="https://mui-treasury.com/?path=/story/button-github--github">live demo</a></p>
+<p class="blog-description"><a href="https://mui-treasury.com/primitive/button">live demo</a></p>
 
 After listening to v3 customization experiences of hundreds of developers, we realized that we could do better. We have found 4 classes of common problems.
 
@@ -67,7 +67,7 @@ import { StylesProvider } from '@mui/styles';
 
 - **classes boilerplate**. Early in the v1 effort, we [decided](https://github.com/oliviertassinari/a-journey-toward-better-style) to use a CSS-in-JS styling solution: [JSS](https://cssinjs.org/). The large majority of the CSS-in-JS solutions output non-deterministic class names, for example `.fHmkjM`. This design decision helps the isolation of the style of each component, however, it makes the overrides harder. We introduced a `classes` API in v1 to target all our elements as an attempt to mitigate this problem.
   We have observed the use of this API for months and have seen many people struggling with it. It can be challenging to apply the class name on the right element and requires boilerplate as well.
-  As an attempt to further improve the situation, we have changed the class name generation to [output global class names](/system/styles/advanced/), while keeping the `classes` API working as before 💅.
+  As an attempt to further improve the situation, we have changed the class name generation to [output global class names](https://v6.mui.com/system/styles/advanced/), while keeping the `classes` API working as before 💅.
 
 ![styled-components](/static/blog/material-ui-v4-is-out/styled-components.png)
 
@@ -143,7 +143,7 @@ Documentation was reported as the 3rd most critical pain point in the Developer 
 
 You may be afraid that using Material UI's components will bloat and slow down your website/application. Would you be better off writing your own components? Well, it's our mission to make this cost as minimal as possible 🚀.
 
-- **Tree shaking**. Material UI v4 is the first version to support native tree shaking with ES modules. This has one important DX benefit—you can now use destructured imports when importing multiple components:
+- **Tree shaking**. Material UI v4 is the first version to support native tree shaking with ES modules. This has one important DX benefit—you can now use destructured imports when importing multiple components:
 
 ```js
 import {
@@ -254,7 +254,7 @@ An example of the new spacing helper API.
 
 <p class="blog-description">Inline mode</p>
 
-- A new [@mui/styles](/system/styles/basics/) package that isolates our styling solution. It can be used independently of the core components. It comes with a hooks API that requires less boilerplate 😍
+- A new [@mui/styles](https://v6.mui.com/system/styles/basics/) package that isolates our styling solution. It can be used independently of the core components. It comes with a hooks API that requires less boilerplate 😍
 
 ```jsx
 import * as React from 'react';

@@ -27,6 +27,7 @@ export default function AlertDialog() {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        role="alertdialog"
       >
         <DialogTitle id="alert-dialog-title">
           {"Use Google's location service?"}
@@ -38,10 +39,10 @@ export default function AlertDialog() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
           <Button onClick={handleClose} autoFocus>
-            Agree
+            Disagree
           </Button>
+          <Button onClick={handleClose}>Agree</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

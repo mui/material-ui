@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Masonry from '@mui/lab/Masonry';
@@ -13,7 +12,7 @@ const heights = [150, 30, 90, 70, 90, 100, 150, 30, 50, 80];
 
 const StyledAccordion = styled(Accordion)(({ theme }) => ({
   backgroundColor: '#fff',
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   ...theme.applyStyles('dark', {
     backgroundColor: '#1A2027',
   }),

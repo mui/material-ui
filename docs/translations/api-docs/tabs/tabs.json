@@ -23,28 +23,24 @@
     "onChange": {
       "description": "Callback fired when the value changes.",
       "typeDescriptions": {
-        "event": "The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event.",
-        "value": "We default to the index of the child (number)"
+        "event": {
+          "name": "event",
+          "description": "The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event."
+        },
+        "value": { "name": "value", "description": "We default to the index of the child (number)" }
       }
     },
     "orientation": { "description": "The component orientation (layout flow direction)." },
-    "ScrollButtonComponent": { "description": "The component used to render the scroll buttons." },
     "scrollButtons": {
       "description": "<p>Determine behavior of scroll buttons when tabs are set to scroll:</p>\n<ul>\n<li><code>auto</code> will only present them when not all the items are visible.</li>\n<li><code>true</code> will always present them.</li>\n<li><code>false</code> will never present them.</li>\n</ul>\n<p>By default the scroll buttons are hidden on mobile.\nThis behavior can be disabled with <code>allowScrollButtonsMobile</code>.</p>\n"
     },
     "selectionFollowsFocus": {
       "description": "If <code>true</code> the selected tab changes on focus. Otherwise it only changes on activation."
     },
-    "slotProps": {
-      "description": "The extra props for the slot components. You can override the existing props or add new ones."
-    },
+    "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
-    },
-    "TabIndicatorProps": { "description": "Props applied to the tab indicator element." },
-    "TabScrollButtonProps": {
-      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/tab-scroll-button/\"><code>TabScrollButton</code></a> element."
     },
     "textColor": { "description": "Determines the color of the <code>Tab</code>." },
     "value": {
@@ -68,25 +64,11 @@
       "nodeName": "the tablist element",
       "conditions": "<code>!variant=\"scrollable\"</code>\b\b\b"
     },
-    "flexContainer": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the flex container element"
-    },
-    "flexContainerVertical": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the flex container element",
-      "conditions": "<code>orientation=\"vertical\"</code>"
-    },
     "hideScrollbar": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tablist element",
       "conditions": "<code>variant=\"scrollable\"</code> and <code>visibleScrollbar={false}</code>"
     },
-    "indicator": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the TabIndicator component"
-    },
-    "root": { "description": "Styles applied to the root element." },
     "scrollableX": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tablist element",
@@ -97,23 +79,25 @@
       "nodeName": "the tablist element",
       "conditions": "<code>variant=\"scrollable\"</code> and <code>orientation=\"vertical\"</code>"
     },
-    "scrollButtons": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the ScrollButtonComponent component"
-    },
     "scrollButtonsHideMobile": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the ScrollButtonComponent component",
       "conditions": "<code>allowScrollButtonsMobile={true}</code>"
-    },
-    "scroller": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the tablist element"
     },
     "vertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>orientation=\"vertical\"</code>"
     }
+  },
+  "slotDescriptions": {
+    "endScrollButtonIcon": "The component used for the end scroll button icon.",
+    "indicator": "The component used for the tab indicator.",
+    "list": "The component used for the flex container.",
+    "root": "The component used for the popper.",
+    "scrollbar": "The component used for the scroller.",
+    "scrollButtons": "The component used for the scroll button.",
+    "scroller": "The component used for the scroller.",
+    "startScrollButtonIcon": "The component used for the start scroll button icon."
   }
 }

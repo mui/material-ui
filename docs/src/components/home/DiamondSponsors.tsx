@@ -1,20 +1,13 @@
-import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AddRounded from '@mui/icons-material/AddRounded';
-import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/internal-core-docs/Link';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 
 const DIAMONDs = [
-  {
-    src: '/static/sponsors/octopus-square.svg',
-    name: 'Octopus Deploy',
-    description: 'A unified DevOps automation platform for your team.',
-    href: 'https://octopus.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
   {
     src: '/static/sponsors/doit-square.svg',
     name: 'Doit International',
@@ -76,7 +69,6 @@ export default function DiamondSponsors() {
                 component="a"
                 href="mailto:sales@mui.com"
                 target="_blank"
-                rel="noopener"
                 color="primary"
                 sx={(theme) => ({
                   mr: 2,
@@ -95,7 +87,7 @@ export default function DiamondSponsors() {
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   To join us, contact us at{' '}
-                  <Link href="mailto:sales@mui.com" target="_blank" rel="noopener">
+                  <Link href="mailto:sales@mui.com" target="_blank">
                     sales@mui.com
                   </Link>{' '}
                   for pre-approval.

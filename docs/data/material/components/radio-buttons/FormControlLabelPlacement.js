@@ -6,12 +6,13 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
 export default function FormControlLabelPlacement() {
+  const id = React.useId();
   return (
     <FormControl>
-      <FormLabel id="demo-form-control-label-placement">Label placement</FormLabel>
+      <FormLabel id={`${id}-label`}>Label placement</FormLabel>
       <RadioGroup
         row
-        aria-labelledby="demo-form-control-label-placement"
+        aria-labelledby={`${id}-label`}
         name="position"
         defaultValue="top"
       >

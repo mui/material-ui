@@ -26,7 +26,7 @@ You can [search the full list of these icons](/material-ui/material-icons/).
 
 Run one of the following commands to install it and save it to your `package.json` dependencies:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 <codeblock storageKey="package-manager">
 ```bash npm
@@ -65,7 +65,7 @@ Import icons using one of these two options:
   ```
 
 The safest for bundle size is Option 1, but some developers prefer Option 2.
-Make sure you follow the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/#option-two-use-a-babel-plugin) before using the second approach.
+Make sure you read the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/) before using the second approach.
 
 Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-tone, and Sharp. To import the icon component with a theme other than the default, append the theme name to the icon name. For example `@mui/icons-material/Delete` icon with:
 
@@ -80,20 +80,6 @@ The Material Design guidelines name the icons using "snake_case" naming (for exa
 :::
 
 {{"demo": "SvgMaterialIcons.js"}}
-
-### Testing
-
-For testing purposes, each icon exposed from `@mui/icons-material` has a `data-testid` attribute with the name of the icon. For instance:
-
-```jsx
-import DeleteIcon from '@mui/icons-material/Delete';
-```
-
-has the following attribute once mounted:
-
-```html
-<svg data-testid="DeleteIcon"></svg>
-```
 
 ## SvgIcon
 
@@ -152,7 +138,7 @@ import { ReactComponent as StarIcon } from './star.svg';
 
 ### createSvgIcon
 
-The `createSvgIcon` utility component is used to create the [Material Icons](#material-icons). It can be used to wrap an `<svg>` element or an SVG path which is passed as a child to the [`SvgIcon`](#svgicon) component.
+The `createSvgIcon` utility component is used to create the [Material Icons](#material-svg-icons). It can be used to wrap an `<svg>` element or an SVG path which is passed as a child to the [`SvgIcon`](#svgicon) component.
 
 ```jsx
 const HomeIcon = createSvgIcon(
@@ -163,7 +149,6 @@ const HomeIcon = createSvgIcon(
 // or with custom SVG
 const PlusIcon = createSvgIcon(
   <svg
-    xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
     strokeWidth={1.5}
@@ -177,16 +162,6 @@ const PlusIcon = createSvgIcon(
 ```
 
 {{"demo": "CreateSvgIcon.js"}}
-
-### Font Awesome
-
-If you find that there are layout issues when using FontAwesomeIcon from `@fortawesome/react-fontawesome`, you can try passing the Font Awesome SVG data directly to SvgIcon.
-
-Below is a comparison of the `FontAwesomeIcon` component and a wrapped `SvgIcon` component.
-
-{{"demo": "FontAwesomeSvgIconDemo.js"}}
-
-FontAwesomeIcon's `fullWidth` prop can also be used to approximate the correct dimensions, but it isn't perfect.
 
 ### Other libraries
 

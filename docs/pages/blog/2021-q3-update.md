@@ -31,7 +31,6 @@ Here are the most significant improvements since early July 2021.
   You can read more about it in the [release blog post](/blog/mui-core-v5/).
 - ✨ We also introduced a brand new [product page](/core/) this quarter to better present what the Core is about.
 - 🔎 We've reworked the search experience in the docs:
-
   - The component pages now rank before the API pages.
   - Instead of only displaying up to 5 results, you can scroll for more results.
   - An icon illustrates the nature of the match; either a page, a header, or a paragraph.
@@ -45,50 +44,49 @@ Here are the most significant improvements since early July 2021.
 
   <p class="blog-description">After</p>
 
-- [Masonry](/material-ui/react-masonry/). We introduced a new component for use when the `Grid` component leads to wasted space. It's frequently used in dashboards.
+- [Masonry](https://v5.mui.com/material-ui/react-masonry/). We introduced a new component for use when the `Grid` component leads to wasted space. It's frequently used in dashboards.
 
   <a href="/material-ui/react-masonry/"><img loading="lazy" src="/static/blog/2021-q3-update/masonry.png" style="width: 700px;" width="1400" height="906" alt="react-masonry" /></a>
 
 - We introduced a new [package of components without styles](https://www.npmjs.com/package/@mui/base), laying the foundations for supporting multiple design systems with headless components.
   While it was tough to balance the time between working on v5 stable and developing the unstyled components, we still managed to introduce the first few:
-
-  - [Autocomplete](/material-ui/react-autocomplete/#useautocomplete)
+  - [Autocomplete](https://v5.mui.com/material-ui/react-autocomplete/#useautocomplete)
 
   ```jsx
   import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
   ```
 
-  - [Button](/material-ui/react-button/#unstyled)
+  - [Button](https://v5.mui.com/material-ui/react-button/#unstyled)
 
   ```jsx
   import { useButton } from '@mui/base/ButtonUnstyled';
   ```
 
-  - [Modal](/material-ui/react-modal/#unstyled)
+  - [Modal](https://v5.mui.com/material-ui/react-modal/#unstyled)
 
   ```jsx
   import { ModalUnstyled } from '@mui/base/ModalUnstyled';
   ```
 
-  - [Slider](/material-ui/react-slider/#unstyled)
+  - [Slider](https://v5.mui.com/material-ui/react-slider/#unstyled)
 
   ```jsx
   import { SliderUnstyled } from '@mui/base/SliderUnstyled';
   ```
 
-  - [Switch](/material-ui/react-switch/#unstyled)
+  - [Switch](https://v5.mui.com/material-ui/react-switch/#unstyled)
 
   ```jsx
   import { useSwitch } from '@mui/base/SwitchUnstyled';
   ```
 
-  - [Portal](/material-ui/react-portal/#unstyled)
+  - [Portal](https://v5.mui.com/material-ui/react-portal/#unstyled)
 
   ```jsx
   import { Portal } from '@mui/base/Portal';
   ```
 
-  - [FocusTrap](/base-ui/react-focus-trap/)
+  - [FocusTrap](https://v6.mui.com/base-ui/react-focus-trap/)
 
   ```jsx
   import { FocusTrap } from '@mui/base/FocusTrap';
@@ -196,7 +194,7 @@ We'll do our best, no guarantee!
   In the last few weeks, we have seen a strong influx of feedback from the community.
   We need to make the most of this feedback to solve regressions, improve the documentation for the new APIs, adjust the tradeoffs we took in the light of more information, and more.
   [15%](https://npm-stat.com/charts.html?package=%40material-ui%2Fcore&package=%40mui%2Fmaterial&from=2020-10-25&to=2021-10-15) of the community has migrated, so far.
-- 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Button](https://mui.com/base-ui/react-button/).
+- 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Button](https://v6.mui.com/base-ui/react-button/).
   You can follow our progress in the [umbrella issue](https://github.com/mui/base-ui/issues/10).
 - 🎨 We are [exploring](https://github.com/mui/material-ui/discussions/29024) the introduction of CSS variables.
   Since v5, Material UI is no longer actively supporting IE 11. Dropping this browser requirement unlocks new capabilities of the web platform.

@@ -1,4 +1,4 @@
-import type { MuiPage } from 'docs/src/MuiPage';
+import type { MuiPage } from '@mui/internal-core-docs/MuiPage';
 
 const pages: readonly MuiPage[] = [
   {
@@ -17,8 +17,14 @@ const pages: readonly MuiPage[] = [
       { pathname: '/experiments/docs/codeblock' },
       { pathname: '/experiments/docs/custom-components' },
       { pathname: '/experiments/docs/demos' },
+      { pathname: '/experiments/docs/pro-feature', title: 'Pro feature', plan: 'pro' },
       { pathname: '/experiments/docs/data-grid-premium', title: 'API DataGridPremium' },
     ],
+  },
+  {
+    pathname: '/experiments/docs/layout',
+    title: 'Layout',
+    children: [{ pathname: '/experiments/docs/docs-layout', title: 'Docs layout' }],
   },
   {
     pathname: '/experiments/docs/main-parent',
@@ -95,7 +101,7 @@ const pages: readonly MuiPage[] = [
     title: 'Test: Data Grid e2e',
     children: [
       { pathname: '/x/react-data-grid', title: 'Overview' },
-      { pathname: '/x/react-data-grid/demo' },
+      { pathname: '/x/react-data-grid/features' },
       { pathname: '/x/react-data-grid/getting-started' },
       { pathname: '/x/react-data-grid/layout' },
       {

@@ -1,1 +1,0 @@
-<Button slots={{ root: 'div' }}>Button</Button>

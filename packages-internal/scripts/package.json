@@ -1,13 +1,17 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "1.0.31",
+  "version": "3.0.11",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
-  "main": "build/index.js",
+  "license": "MIT",
   "exports": {
     "./typescript-to-proptypes": {
       "types": "./build/typescript-to-proptypes/index.d.ts",
       "default": "./build/typescript-to-proptypes/index.js"
+    },
+    "./generate-llms-txt": {
+      "types": "./build/generate-llms-txt/index.d.ts",
+      "default": "./build/generate-llms-txt/index.js"
     }
   },
   "repository": {
@@ -15,40 +19,35 @@
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages-internal/scripts"
   },
-  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf ./build",
-    "build": "tsc --build tsconfig.json",
+    "build": "tsc -b tsconfig.json",
     "release:publish": "pnpm build && pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\"",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha --config packages-internal/scripts/typescript-to-proptypes/test/.mocharc.js 'packages-internal/scripts/typescript-to-proptypes/**/*.test.?(c|m)[jt]s?(x)'",
-    "typescript": "tsc --build tsconfig.typecheck.json"
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/internal-scripts\"",
+    "typescript": "tsc -b tsconfig.typecheck.json"
   },
   "dependencies": {
-    "@babel/core": "^7.26.0",
+    "@babel/core": "^7.29.7",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
-    "@babel/plugin-syntax-jsx": "^7.25.9",
-    "@babel/plugin-syntax-typescript": "^7.25.9",
-    "@babel/types": "^7.26.3",
+    "@babel/plugin-syntax-jsx": "^7.29.7",
+    "@babel/plugin-syntax-typescript": "^7.29.7",
+    "@babel/types": "^7.29.8",
     "@mui/internal-docs-utils": "workspace:^",
+    "@typescript/typescript6": "^6.0.2",
     "doctrine": "^3.0.0",
-    "lodash": "^4.17.21",
-    "typescript": "^5.7.2",
-    "uuid": "^11.0.3"
+    "es-toolkit": "^1.52.0"
   },
   "devDependencies": {
-    "@babel/register": "^7.25.9",
-    "@types/babel__core": "^7.20.5",
-    "@types/chai": "^4.3.20",
-    "@types/doctrine": "^0.0.9",
-    "@types/lodash": "^4.17.13",
-    "@types/node": "^20.17.10",
-    "@types/react": "^19.0.2",
-    "@types/uuid": "^10.0.0",
-    "chai": "^4.5.0",
-    "fast-glob": "^3.3.2",
-    "prettier": "^3.4.2",
-    "rimraf": "^6.0.1"
+    "@babel/register": "7.29.7",
+    "@types/babel__core": "7.20.5",
+    "@types/doctrine": "0.0.9",
+    "@types/node": "22.20.4",
+    "@types/react": "19.3.0",
+    "@types/uuid": "11.0.0",
+    "fast-glob": "3.3.3",
+    "prettier": "3.9.8",
+    "rimraf": "6.1.3"
   },
   "publishConfig": {
     "access": "public"

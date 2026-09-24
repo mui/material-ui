@@ -5,13 +5,21 @@
     "color": {
       "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>."
     },
+    "max": {
+      "description": "The maximum value for the progress indicator for the determinate and buffer variants."
+    },
+    "min": {
+      "description": "The minimum value for the progress indicator for the determinate and buffer variants."
+    },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "value": {
-      "description": "The value of the progress indicator for the determinate and buffer variants. Value between 0 and 100."
+      "description": "The value of the progress indicator for the determinate and buffer variants. Value between <code>min</code> and <code>max</code>."
     },
-    "valueBuffer": { "description": "The value for the buffer variant. Value between 0 and 100." },
+    "valueBuffer": {
+      "description": "The value for the buffer variant. Value between <code>min</code> and <code>max</code>."
+    },
     "variant": {
       "description": "The variant to use. Use indeterminate or query when there is no progress value."
     }
@@ -21,41 +29,8 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the layered bar1 and bar2 elements"
     },
-    "bar1Buffer": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the bar1 element",
-      "conditions": "<code>variant=\"buffer\"</code>"
-    },
-    "bar1Determinate": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the bar1 element",
-      "conditions": "<code>variant=\"determinate\"</code>"
-    },
-    "bar1Indeterminate": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the bar1 element",
-      "conditions": "<code>variant=\"indeterminate or query\"</code>"
-    },
-    "bar2Buffer": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the bar2 element",
-      "conditions": "<code>variant=\"buffer\"</code>"
-    },
-    "bar2Indeterminate": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the bar2 element",
-      "conditions": "<code>variant=\"indeterminate or query\"</code>"
-    },
-    "barColorPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the bar elements",
-      "conditions": "<code>color=\"primary\"</code>; bar2 if <code>variant</code> not &quot;buffer&quot;"
-    },
-    "barColorSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the bar elements",
-      "conditions": "<code>color=\"secondary\"</code>; bar2 if <code>variant</code> not &quot;buffer&quot;"
-    },
+    "bar1": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the bar1 element" },
+    "bar2": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the bar2 element" },
     "buffer": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -75,16 +50,6 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the additional bar element",
       "conditions": "<code>variant=\"buffer\"</code>"
-    },
-    "dashedColorPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the additional bar element",
-      "conditions": "<code>variant=\"buffer\"</code> and <code>color=\"primary\"</code>"
-    },
-    "dashedColorSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the additional bar element",
-      "conditions": "<code>variant=\"buffer\"</code> and <code>color=\"secondary\"</code>"
     },
     "determinate": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

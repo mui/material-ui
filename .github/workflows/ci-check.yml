@@ -6,11 +6,14 @@ name: CI Check
 on:
   push:
     branches-ignore:
-      - 'renovate/**'
+      # should sync with ci.yml as a workaround to bypass github checks
+      - master
+      - next
+      - v*.x
   pull_request:
     paths:
+      # should sync with ci.yml as a workaround to bypass github checks
       - 'docs/**'
-      - 'examples/**'
 
 permissions: {}
 

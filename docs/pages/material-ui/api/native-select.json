@@ -128,6 +128,5 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/NativeSelect/NativeSelect.js",
   "inheritance": { "component": "Input", "pathname": "/material-ui/api/input/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-select/\">Select</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-select/\">Select</a></li></ul>"
 }

@@ -2,6 +2,10 @@
 
 <p class="description">Material UI comes with two palette modes: light (the default) and dark.</p>
 
+:::success
+Use the [Material UI theming agent skill](https://github.com/mui/material-ui/tree/master/skills/material-ui-theming) to give your AI coding assistant full context on dark mode, color schemes, and SSR behavior.
+:::
+
 ## Dark mode only
 
 You can make your application use the dark theme as the default—regardless of the user's preference—by adding `mode: 'dark'` to the `createTheme()` helper:
@@ -55,7 +59,7 @@ Learn more about palette structure in the [Palette documentation](/material-ui/c
 
 ## System preference
 
-Some users sets a preference for light or dark mode through their operation system—either systemwide, or for individual user agents.
+Some users set a preference for light or dark mode through their operating system—either systemwide, or for individual user agents.
 The following sections explain how to apply these preferences to an app's theme.
 
 ### Built-in support
@@ -96,7 +100,7 @@ To test the system preference feature, follow the guide on [emulating the CSS me
 
 ### Accessing media prefers-color-scheme
 
-You can make use of this preference with the [`useMediaQuery`](/material-ui/react-use-media-query/) hook and the [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query.
+You can make use of this preference with the [`useMediaQuery`](/material-ui/react-use-media-query/) hook and the [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme) media query.
 
 The following demo shows how to check the user's preference in their OS or browser settings:
 
@@ -121,6 +125,78 @@ The `mode` is always `undefined` on first render, so make sure to handle this ca
 :::
 
 {{"demo": "ToggleColorMode.js", "defaultCodeOpen": false}}
+
+## Storage manager
+
+By default, the [built-in support](#built-in-support) for color schemes uses the browser's `localStorage` API to store the user's mode and scheme preference.
+
+To use a different storage manager, create a custom function with this signature:
+
+```ts
+type Unsubscribe = () => void;
+
+function storageManager(params: { key: string }): {
+  get: (defaultValue: any) => any;
+  set: (value: any) => void;
+  subscribe: (handler: (value: any) => void) => Unsubscribe;
+};
+```
+
+Then pass it to the `storageManager` prop of the `ThemeProvider` component:
+
+```tsx
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import type { StorageManager } from '@mui/material/styles';
+
+const theme = createTheme({
+  colorSchemes: {
+    dark: true,
+  },
+});
+
+function storageManager(params): StorageManager {
+  return {
+    get: (defaultValue) => {
+      // Your implementation
+    },
+    set: (value) => {
+      // Your implementation
+    },
+    subscribe: (handler) => {
+      // Your implementation
+      return () => {
+        // cleanup
+      };
+    },
+  };
+}
+
+function App() {
+  return (
+    <ThemeProvider theme={theme} storageManager={storageManager}>
+      ...
+    </ThemeProvider>
+  );
+}
+```
+
+:::warning
+If you are using the `InitColorSchemeScript` component to [prevent SSR flickering](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering), you have to include the `localStorage` implementation in your custom storage manager.
+:::
+
+### Disable storage
+
+To disable the storage manager, pass `null` to the `storageManager` prop:
+
+```tsx
+<ThemeProvider theme={theme} storageManager={null}>
+  ...
+</ThemeProvider>
+```
+
+:::warning
+Disabling the storage manager will cause the app to reset to its default mode whenever the user refreshes the page.
+:::
 
 ## Disable transitions
 
@@ -174,6 +250,8 @@ If you are using the `InitColorSchemeScript` component to [prevent SSR flicker](
 Use the `theme.applyStyles()` utility to apply styles for a specific mode.
 
 We recommend using this function over checking `theme.palette.mode` to switch between styles as it has more benefits:
+
+<!-- #target-branch-reference -->
 
 - It can be used with [Pigment CSS](https://github.com/mui/material-ui/tree/master/packages/pigment-css-react), our in-house zero-runtime CSS-in-JS solution.
 - It is generally more readable and maintainable.
@@ -331,7 +409,7 @@ It can strain your eyes and disrupt your experience, particularly if you interac
 
 To better understand this issue, take a look at the animated image below:
 
-<img src="/static/joy-ui/dark-mode/dark-mode-flicker.gif" style="width: 814px; border-radius: 8px;" alt="An example video that shows a page that initially loads correctly in dark mode but quickly flickers to light mode." width="1628" height="400" />
+<img src="/static/material-ui/dark-mode/dark-mode-flicker.gif" style="width: 814px; border-radius: 8px;" alt="An example video that shows a page that initially loads correctly in dark mode but quickly flickers to light mode." width="1628" height="400" />
 
 ### The solution: CSS variables
 

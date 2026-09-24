@@ -1,1 +1,1 @@
-<LinearProgress />
+<LinearProgress aria-label="Loading…" />

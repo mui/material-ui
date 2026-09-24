@@ -2,7 +2,7 @@
 productId: material-ui
 title: React List component
 components: Collapse, Divider, List, ListItem, ListItemButton, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
-githubLabel: 'component: list'
+githubLabel: 'scope: list'
 materialDesign: https://m2.material.io/components/lists
 githubSource: packages/mui-material/src/List
 ---
@@ -13,7 +13,7 @@ githubSource: packages/mui-material/src/List
 
 Lists are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -80,7 +80,10 @@ You should set the `alignItems="flex-start"` prop to align the avatar at the top
 
 A checkbox can either be a primary action or a secondary action.
 
-The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
+For the primary action, the `ListItemButton` acts as a checkbox using `role="checkbox"` and `aria-checked`.
+The `CheckBox` and `CheckBoxOutlineBlank` icons display its checked state.
+Click the row or press <kbd>Space</kbd> while it is focused to toggle its state.
+The comment button is a secondary action and a separate target.
 
 {{"demo": "CheckboxList.js", "bg": true}}
 

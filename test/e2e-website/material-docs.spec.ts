@@ -1,5 +1,5 @@
 import { test as base, expect, Page } from '@playwright/test';
-import kebabCase from 'lodash/kebabCase';
+import { kebabCase } from 'es-toolkit/string';
 import { TestFixture } from './playwright.config';
 
 const test = base.extend<TestFixture>({});
@@ -17,6 +17,18 @@ test.describe('Material docs', () => {
       'href',
       `/material-ui/getting-started/installation/#${kebabCase(textContent || '')}`,
     );
+  });
+
+  test('should move the focus to the main content with the skip link', async ({ page }) => {
+    await page.goto('/material-ui/getting-started/installation/');
+
+    await page.keyboard.press('Tab');
+
+    await expect(page.locator('a[href="#main-content"]')).toBeFocused();
+
+    await page.keyboard.press('Enter');
+
+    await expect(page.locator('#main-content')).toBeFocused();
   });
 
   test('[zh] should have correct link with hash in the TOC', async ({ page }) => {
@@ -109,27 +121,6 @@ test.describe('Material docs', () => {
 
       await expect(textContent).toEqual('<Button />');
       await expect(firstAnchor).toHaveAttribute('href', '/material-ui/api/button/');
-    });
-
-    ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'].forEach((component) => {
-      test(`should have correct API link when linking Base UI component ${component}`, async ({
-        page,
-      }) => {
-        await page.goto(`/material-ui/react-${kebabCase(component || '')}/`);
-
-        const anchors = page.locator('div > h2#api ~ ul a');
-
-        const firstAnchor = anchors.first();
-        const textContent = await firstAnchor.textContent();
-
-        await expect(textContent).toEqual(`<${component} />`);
-        await expect(firstAnchor).toHaveAttribute(
-          'href',
-          `/base-ui/react-${kebabCase(component || '')}/components-api/#${kebabCase(
-            component || '',
-          )}`,
-        );
-      });
     });
   });
 

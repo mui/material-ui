@@ -3,9 +3,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha, darken, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import SwitchBase from '../internal/SwitchBase';
@@ -13,6 +11,11 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
+import { outsetFocusRing } from '../styles/focusVisible';
+import { mergeSlotProps } from '../utils';
+import useSlot from '../utils/useSlot';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, edge, size, color, checked, disabled } = ownerState;
@@ -115,7 +118,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
     color: theme.vars
       ? theme.vars.palette.Switch.defaultColor
       : `${theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.grey[300]}`,
-    transition: theme.transitions.create(['left', 'transform'], {
+    ...getTransitionStyles(theme, ['left', 'transform'], {
       duration: theme.transitions.duration.shortest,
     }),
     [`&.${switchClasses.checked}`]: {
@@ -126,14 +129,44 @@ const SwitchSwitchBase = styled(SwitchBase, {
         ? theme.vars.palette.Switch.defaultDisabledColor
         : `${theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600]}`,
     },
-    [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
-      opacity: 0.5,
-    },
-    [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
-      opacity: theme.vars
-        ? theme.vars.opacity.switchTrackDisabled
-        : `${theme.palette.mode === 'light' ? 0.12 : 0.2}`,
-    },
+    ...(theme.focusVisible
+      ? {
+          // when focusVisible is enabled, the styles must not rely on `opacity` so that the ring is visible on the track slot.
+          [`&.${buttonBaseClasses.focusVisible} ~ .${switchClasses.track}`]: {
+            ...outsetFocusRing,
+            ...theme.focusVisible,
+          },
+          // mirrors the non-focusVisible `opacity: 0.5`; must stay BEFORE the disabled rule so
+          // disabled wins the checked+disabled combination at equal specificity.
+          [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
+            backgroundColor: theme.alpha(
+              theme.vars
+                ? theme.vars.palette.common.onBackground
+                : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
+              0.5,
+            ),
+          },
+          [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
+            backgroundColor: theme.alpha(
+              theme.vars
+                ? theme.vars.palette.common.onBackground
+                : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
+              theme.vars
+                ? theme.vars.opacity.switchTrackDisabled
+                : `${theme.palette.mode === 'light' ? 0.12 : 0.2}`,
+            ),
+          },
+        }
+      : {
+          [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
+            opacity: 0.5,
+          },
+          [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
+            opacity: theme.vars
+              ? theme.vars.opacity.switchTrackDisabled
+              : `${theme.palette.mode === 'light' ? 0.12 : 0.2}`,
+          },
+        }),
     [`& .${switchClasses.input}`]: {
       left: '-100%',
       width: '300%',
@@ -141,9 +174,10 @@ const SwitchSwitchBase = styled(SwitchBase, {
   })),
   memoTheme(({ theme }) => ({
     '&:hover': {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-        : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+      backgroundColor: theme.alpha(
+        (theme.vars || theme).palette.action.active,
+        (theme.vars || theme).palette.action.hoverOpacity,
+      ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -158,9 +192,10 @@ const SwitchSwitchBase = styled(SwitchBase, {
             [`&.${switchClasses.checked}`]: {
               color: (theme.vars || theme).palette[color].main,
               '&:hover': {
-                backgroundColor: theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                  : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette[color].main,
+                  (theme.vars || theme).palette.action.hoverOpacity,
+                ),
                 '@media (hover: none)': {
                   backgroundColor: 'transparent',
                 },
@@ -170,14 +205,37 @@ const SwitchSwitchBase = styled(SwitchBase, {
                   ? theme.vars.palette.Switch[`${color}DisabledColor`]
                   : `${
                       theme.palette.mode === 'light'
-                        ? lighten(theme.palette[color].main, 0.62)
-                        : darken(theme.palette[color].main, 0.55)
+                        ? theme.lighten(theme.palette[color].main, 0.62)
+                        : theme.darken(theme.palette[color].main, 0.55)
                     }`,
               },
             },
             [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
               backgroundColor: (theme.vars || theme).palette[color].main,
             },
+            ...(theme.focusVisible && {
+              [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
+                backgroundColor: theme.alpha((theme.vars || theme).palette[color].main, 0.5),
+              },
+              [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
+                backgroundColor: theme.alpha(
+                  theme.vars
+                    ? theme.vars.palette.common.onBackground
+                    : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
+                  theme.vars
+                    ? theme.vars.opacity.switchTrackDisabled
+                    : `${theme.palette.mode === 'light' ? 0.12 : 0.2}`,
+                ),
+              },
+              [`&.${switchClasses.checked}.${switchClasses.disabled} + .${switchClasses.track}`]: {
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette[color].main,
+                  theme.vars
+                    ? theme.vars.opacity.switchTrackDisabled
+                    : `${theme.palette.mode === 'light' ? 0.12 : 0.2}`,
+                ),
+              },
+            }),
           },
         })),
     ],
@@ -187,33 +245,50 @@ const SwitchSwitchBase = styled(SwitchBase, {
 const SwitchTrack = styled('span', {
   name: 'MuiSwitch',
   slot: 'Track',
-  overridesResolver: (props, styles) => styles.track,
 })(
   memoTheme(({ theme }) => ({
     height: '100%',
     width: '100%',
     borderRadius: 14 / 2,
     zIndex: -1,
-    transition: theme.transitions.create(['opacity', 'background-color'], {
+    ...getTransitionStyles(theme, ['opacity', 'background-color'], {
       duration: theme.transitions.duration.shortest,
     }),
-    backgroundColor: theme.vars
-      ? theme.vars.palette.common.onBackground
-      : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
-    opacity: theme.vars
-      ? theme.vars.opacity.switchTrack
-      : `${theme.palette.mode === 'light' ? 0.38 : 0.3}`,
+    '@media (forced-colors: active)': {
+      boxSizing: 'border-box',
+      border: '1px solid ButtonBorder',
+    },
+    ...(theme.focusVisible
+      ? {
+          backgroundColor: theme.alpha(
+            theme.vars
+              ? theme.vars.palette.common.onBackground
+              : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
+            theme.vars
+              ? theme.vars.opacity.switchTrack
+              : `${theme.palette.mode === 'light' ? 0.38 : 0.3}`,
+          ),
+        }
+      : {
+          backgroundColor: theme.vars
+            ? theme.vars.palette.common.onBackground
+            : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
+          opacity: theme.vars
+            ? theme.vars.opacity.switchTrack
+            : `${theme.palette.mode === 'light' ? 0.38 : 0.3}`,
+        }),
   })),
 );
 
 const SwitchThumb = styled('span', {
   name: 'MuiSwitch',
   slot: 'Thumb',
-  overridesResolver: (props, styles) => styles.thumb,
 })(
   memoTheme(({ theme }) => ({
     boxShadow: (theme.vars || theme).shadows[1],
     backgroundColor: 'currentColor',
+    boxSizing: 'border-box',
+    border: '1px solid transparent',
     width: 20,
     height: 20,
     borderRadius: '50%',
@@ -222,7 +297,16 @@ const SwitchThumb = styled('span', {
 
 const Switch = React.forwardRef(function Switch(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSwitch' });
-  const { className, color = 'primary', edge = false, size = 'medium', sx, ...other } = props;
+  const {
+    className,
+    color = 'primary',
+    edge = false,
+    size = 'medium',
+    sx,
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
 
   const ownerState = {
     ...props,
@@ -232,10 +316,41 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const icon = <SwitchThumb className={classes.thumb} ownerState={ownerState} />;
+  const externalInputProps = slotProps.input;
+
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    className: clsx(classes.root, className),
+    elementType: SwitchRoot,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      sx,
+    },
+  });
+
+  const [ThumbSlot, thumbSlotProps] = useSlot('thumb', {
+    className: classes.thumb,
+    elementType: SwitchThumb,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const icon = <ThumbSlot {...thumbSlotProps} />;
+
+  const [TrackSlot, trackSlotProps] = useSlot('track', {
+    className: classes.track,
+    elementType: SwitchTrack,
+    externalForwardedProps,
+    ownerState,
+  });
 
   return (
-    <SwitchRoot className={clsx(classes.root, className)} sx={sx} ownerState={ownerState}>
+    <RootSlot {...rootSlotProps}>
       <SwitchSwitchBase
         type="checkbox"
         icon={icon}
@@ -247,9 +362,29 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
           ...classes,
           root: classes.switchBase,
         }}
+        slots={{
+          ...(slots.switchBase && { root: slots.switchBase }),
+          ...(slots.input && { input: slots.input }),
+        }}
+        slotProps={{
+          ...(slotProps.switchBase && {
+            root:
+              typeof slotProps.switchBase === 'function'
+                ? slotProps.switchBase(ownerState)
+                : slotProps.switchBase,
+          }),
+          input: mergeSlotProps(
+            typeof externalInputProps === 'function'
+              ? externalInputProps(ownerState)
+              : externalInputProps,
+            {
+              role: 'switch',
+            },
+          ),
+        }}
       />
-      <SwitchTrack className={classes.track} ownerState={ownerState} />
-    </SwitchRoot>
+      <TrackSlot {...trackSlotProps} />
+    </RootSlot>
   );
 });
 
@@ -314,14 +449,6 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   */
-  inputProps: PropTypes.object,
-  /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef: refType,
-  /**
    * Callback fired when the state is changed.
    *
    * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
@@ -343,6 +470,28 @@ Switch.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    switchBase: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+    switchBase: PropTypes.elementType,
+    thumb: PropTypes.elementType,
+    track: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

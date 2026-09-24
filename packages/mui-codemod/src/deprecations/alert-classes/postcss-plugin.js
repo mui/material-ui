@@ -17,7 +17,7 @@ const classes = variants.reduce((acc, variant) => {
 
 const plugin = () => {
   return {
-    postcssPlugin: `Replace deperecated Alert classes with new classes`,
+    postcssPlugin: `Replace deprecated Alert classes with new classes`,
     Rule(rule) {
       const { selector } = rule;
 

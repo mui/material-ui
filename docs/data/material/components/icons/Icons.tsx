@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import { green } from '@mui/material/colors';
 import Icon from '@mui/material/Icon';

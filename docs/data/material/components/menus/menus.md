@@ -2,10 +2,9 @@
 productId: material-ui
 title: React Menu component
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
-githubLabel: 'component: menu'
+githubLabel: 'scope: menu'
 materialDesign: https://m2.material.io/components/menus
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
-unstyled: /base-ui/react-menu/
 githubSource: packages/mui-material/src/Menu
 ---
 
@@ -15,15 +14,21 @@ githubSource: packages/mui-material/src/Menu
 
 A menu displays a list of choices on a temporary surface. It appears when the user interacts with a button, or other control.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
+
+## Introduction
+
+Menus are implemented using a collection of related components:
+
+- Menu: The container/surface of the menu.
+- Menu Item: An option for users to select from the menu.
+- Menu List (optional): Alternative composable container for Menu Items—see [Composition with Menu List](#composition-with-menu-list) for details.
 
 ## Basic menu
 
-A basic menu opens over the anchor element by default (this option can be [changed](#menu-positioning) via props). When close to a screen edge, a basic menu vertically realigns to make sure that all menu items are completely visible.
+A basic menu opens over the anchor element by default (this option can be [changed](#positioned-menu) via props). When close to a screen edge, a basic menu vertically realigns to make sure that all menu items are completely visible.
 
-Choosing an option should immediately ideally commit the option and close the menu.
-
-**Disambiguation**: In contrast to simple menus, simple dialogs can present additional detail related to the options available for a list item or provide navigational or orthogonal actions related to the primary task. Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user's current context.
+You should configure the component so that selecting an option immediately confirms it and closes the menu, as shown in the demo below.
 
 {{"demo": "BasicMenu.js"}}
 
@@ -41,11 +46,22 @@ For the menu that has long list and long text, you can use the `dense` prop to r
 
 ## Selected menu
 
-If used for item selection, when opened, simple menus places the initial focus on the selected menu item.
-The currently selected menu item is set using the `selected` prop (from [ListItem](/material-ui/api/list-item/)).
+If used for item selection, when opened, simple menus place the initial focus on the selected menu item.
+The currently selected menu item is set using the `selected` prop available on `MenuItem`.
 To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
 
 {{"demo": "SimpleListMenu.js"}}
+
+## Checkbox and radio menu items
+
+To build a menu of toggleable options, set each item's `role` to `menuitemcheckbox` for independent toggles, or `menuitemradio` for a single choice within a group.
+For these roles, the `selected` prop drives `aria-checked`, so assistive technologies announce the checked state.
+
+{{"demo": "CheckboxMenu.js", "bg": true}}
+
+For a single choice within a group, use `menuitemradio`:
+
+{{"demo": "RadioMenu.js", "bg": true}}
 
 ## Positioned menu
 
@@ -54,13 +70,13 @@ For instance, you can display the menu on top of the anchor:
 
 {{"demo": "PositionedMenu.js"}}
 
-## MenuList composition
+## Composition with Menu List
 
-The `Menu` component uses the `Popover` component internally.
-However, you might want to use a different positioning strategy, or not blocking the scroll.
-For answering those needs, we expose a `MenuList` component that you can compose, with `Popper` in this example.
+The Menu component uses the Popover component internally.
+But you might want to use a different positioning strategy, or prefer not to block scrolling, for example.
 
-The primary responsibility of the `MenuList` component is to handle the focus.
+The Menu List component lets you compose your own menu for these kinds of use cases—its primary purpose is to handle focus.
+See the demo below for an example of composition that uses Menu List and replaces the Menu's default Popover with a Popper component instead:
 
 {{"demo": "MenuListComposition.js", "bg": true}}
 
@@ -80,7 +96,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 The `MenuItem` is a wrapper around `ListItem` with some additional styles.
 You can use the same list composition features with the `MenuItem` component:
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/menu-introduction--docs).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/menu).
 
 ## Max height menu
 
@@ -97,7 +113,7 @@ You can use the `Typography` component with `noWrap` to workaround this issue:
 
 ## Change transition
 
-Use a different transition.
+Use `slots.transition` and `slotProps.transition` to use a different transition.
 
 {{"demo": "FadeMenu.js"}}
 
@@ -106,6 +122,12 @@ Use a different transition.
 Here is an example of a context menu. (Right click to open.)
 
 {{"demo": "ContextMenu.js"}}
+
+## Grouped Menu
+
+Display categories with the `ListSubheader` component.
+
+{{"demo": "GroupedMenu.js"}}
 
 ## Supplementary projects
 

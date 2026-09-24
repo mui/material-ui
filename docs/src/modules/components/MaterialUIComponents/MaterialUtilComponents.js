@@ -1,6 +1,5 @@
-import * as React from 'react';
-import Grid from '@mui/material/Grid2';
-import { InfoCard } from '@mui/docs/InfoCard';
+import Grid from '@mui/material/Grid';
+import { InfoCard } from '@mui/internal-core-docs/InfoCard';
 import HighlightAltRoundedIcon from '@mui/icons-material/HighlightAltRounded';
 import CssRoundedIcon from '@mui/icons-material/CssRounded';
 import DnsRoundedIcon from '@mui/icons-material/DnsRounded';

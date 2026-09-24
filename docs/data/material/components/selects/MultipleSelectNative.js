@@ -17,6 +17,7 @@ const names = [
 ];
 
 export default function MultipleSelectNative() {
+  const id = React.useId();
   const [personName, setPersonName] = React.useState([]);
   const handleChangeMultiple = (event) => {
     const { options } = event.target;
@@ -32,17 +33,18 @@ export default function MultipleSelectNative() {
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 120, maxWidth: 300 }}>
-        <InputLabel shrink htmlFor="select-multiple-native">
+        <InputLabel shrink htmlFor={`${id}-select`}>
           Native
         </InputLabel>
         <Select
           multiple
           native
           value={personName}
+
           onChange={handleChangeMultiple}
           label="Native"
           inputProps={{
-            id: 'select-multiple-native',
+            id: `${id}-select`,
           }}
         >
           {names.map((name) => (

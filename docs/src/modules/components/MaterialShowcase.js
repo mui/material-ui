@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Card from '@mui/material/Card';
@@ -10,8 +10,8 @@ import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import { alpha } from '@mui/material/styles';
-import { Link } from '@mui/docs/Link';
-import { useTranslate } from '@mui/docs/i18n';
+import { Link } from '@mui/internal-core-docs/Link';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 
 /**
  * The app structure:
@@ -83,7 +83,7 @@ const appList = [
     title: 'BARKS',
     description: 'Japan Music Network. 🇯🇵',
     image: 'barks.jpg',
-    link: 'https://www.barks.jp/',
+    link: 'https://barks.jp/',
     similarWebVisits: 3000,
     dateAdded: '2019-01-01',
   },
@@ -450,7 +450,6 @@ export default function MaterialShowcase() {
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
         <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 'semiBold' }}>
-          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {'Sort by:'}
         </Typography>
         <ToggleButtonGroup
@@ -470,7 +469,7 @@ export default function MaterialShowcase() {
           .filter((item) => item[sortFunctionName] !== undefined)
           .sort(sortFunction)
           .map((app) => (
-            <Grid key={app.title} item size={{ xs: 12, sm: 6 }}>
+            <Grid key={app.title} size={{ xs: 12, sm: 6 }}>
               {app.image ? (
                 <Card
                   variant="outlined"

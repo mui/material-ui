@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/system';
 
 interface MyThemeComponentProps {

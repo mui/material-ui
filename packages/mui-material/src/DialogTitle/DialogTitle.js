@@ -22,7 +22,6 @@ const useUtilityClasses = (ownerState) => {
 const DialogTitleRoot = styled(Typography, {
   name: 'MuiDialogTitle',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   padding: '16px 24px',
   flex: '0 0 auto',

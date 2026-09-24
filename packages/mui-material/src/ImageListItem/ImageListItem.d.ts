@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ImageListItemClasses } from './imageListItemClasses';
 
@@ -12,21 +12,21 @@ export interface ImageListItemOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<ImageListItemClasses>;
+  classes?: Partial<ImageListItemClasses> | undefined;
   /**
    * Width of the item in number of grid columns.
    * @default 1
    */
-  cols?: number;
+  cols?: number | undefined;
   /**
    * Height of the item in number of grid rows.
    * @default 1
    */
-  rows?: number;
+  rows?: number | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface ImageListItemTypeMap<
@@ -52,7 +52,7 @@ export type ImageListItemProps<
   RootComponent extends React.ElementType = ImageListItemTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<ImageListItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default ImageListItem;

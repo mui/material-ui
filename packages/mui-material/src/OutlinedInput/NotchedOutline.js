@@ -1,11 +1,14 @@
 'use client';
-import * as React from 'react';
 import PropTypes from 'prop-types';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import { getTransitionStyles } from '../transitions/utils';
 
-const NotchedOutlineRoot = styled('fieldset', { shouldForwardProp: rootShouldForwardProp })({
+const NotchedOutlineRoot = styled('fieldset', {
+  name: 'MuiNotchedOutlined',
+  shouldForwardProp: rootShouldForwardProp,
+})({
   textAlign: 'left',
   position: 'absolute',
   bottom: 0,
@@ -22,7 +25,10 @@ const NotchedOutlineRoot = styled('fieldset', { shouldForwardProp: rootShouldFor
   minWidth: '0%',
 });
 
-const NotchedOutlineLegend = styled('legend', { shouldForwardProp: rootShouldForwardProp })(
+const NotchedOutlineLegend = styled('legend', {
+  name: 'MuiNotchedOutlined',
+  shouldForwardProp: rootShouldForwardProp,
+})(
   memoTheme(({ theme }) => ({
     float: 'unset', // Fix conflict with bootstrap
     width: 'auto', // Fix conflict with bootstrap
@@ -33,7 +39,7 @@ const NotchedOutlineLegend = styled('legend', { shouldForwardProp: rootShouldFor
         style: {
           padding: 0,
           lineHeight: '11px', // sync with `height` in `legend` styles
-          transition: theme.transitions.create('width', {
+          ...getTransitionStyles(theme, 'width', {
             duration: 150,
             easing: theme.transitions.easing.easeOut,
           }),
@@ -48,7 +54,7 @@ const NotchedOutlineLegend = styled('legend', { shouldForwardProp: rootShouldFor
           fontSize: '0.75em',
           visibility: 'hidden',
           maxWidth: 0.01,
-          transition: theme.transitions.create('max-width', {
+          ...getTransitionStyles(theme, 'max-width', {
             duration: 50,
             easing: theme.transitions.easing.easeOut,
           }),
@@ -66,7 +72,7 @@ const NotchedOutlineLegend = styled('legend', { shouldForwardProp: rootShouldFor
         props: ({ ownerState }) => ownerState.withLabel && ownerState.notched,
         style: {
           maxWidth: '100%',
-          transition: theme.transitions.create('max-width', {
+          ...getTransitionStyles(theme, 'max-width', {
             duration: 100,
             easing: theme.transitions.easing.easeOut,
             delay: 50,

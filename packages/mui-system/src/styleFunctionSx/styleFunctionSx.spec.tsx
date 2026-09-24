@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { SxProps } from '@mui/system';
 
 interface Theme {
@@ -22,4 +21,5 @@ function Text(props: { sx?: SxProps<Theme> }) {
 <Text sx={{ m: null, transform: null, typography: undefined }} />;
 
 // array contains boolean
+// eslint-disable-next-line no-constant-binary-expression
 <Text sx={[false && { p: 2 }, { m: 2 }]} />;

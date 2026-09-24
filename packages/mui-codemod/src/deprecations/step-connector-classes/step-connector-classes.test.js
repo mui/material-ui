@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import path from 'path';
-import { expect } from 'chai';
 import postcss from 'postcss';
 import { jscodeshift } from '../../../testUtils';
 import jsTransform from './step-connector-classes';
@@ -35,6 +35,33 @@ describe('@mui/codemod', () => {
           );
 
           const expected = read('./test-cases/expected.js');
+          expect(actual).to.equal(expected, 'The transformed version should be correct');
+        });
+      });
+
+      describe('[package] js-transform', () => {
+        it('transforms props as needed', () => {
+          const actual = jsTransform(
+            { source: read('./test-cases/package.actual.js') },
+            { jscodeshift },
+            {
+              printOptions: { quote: 'double', trailingComma: true },
+              packageName: '@org/ui/material',
+            },
+          );
+
+          const expected = read('./test-cases/package.expected.js');
+          expect(actual).to.equal(expected, 'The transformed version should be correct');
+        });
+
+        it('should be idempotent', () => {
+          const actual = jsTransform(
+            { source: read('./test-cases/package.expected.js') },
+            { jscodeshift },
+            { packageName: '@org/ui/material' },
+          );
+
+          const expected = read('./test-cases/package.expected.js');
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
       });

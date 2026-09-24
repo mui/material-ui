@@ -20,7 +20,7 @@ export default function themeV6(file, api, options) {
       args = [path.node];
     }
 
-    // 1. collecting styles that should be tranformed
+    // 1. collecting styles that should be transformed
     args.forEach((arg) => {
       if (
         arg.type === 'ArrowFunctionExpression' &&
@@ -81,10 +81,11 @@ export default function themeV6(file, api, options) {
   if (shouldTransform) {
     // recast adds extra newlines that we don't want, https://github.com/facebook/jscodeshift/issues/249
     // need to remove them manually
+    const lineTerminator = transformed.includes('\r\n') ? '\r\n' : '\n';
     const lines = [];
     let isInStyled = false;
     let spaceMatch;
-    transformed.split('\n').forEach((line) => {
+    transformed.split(lineTerminator).forEach((line) => {
       if (!isInStyled) {
         lines.push(line);
       } else if (line !== '') {
@@ -99,7 +100,7 @@ export default function themeV6(file, api, options) {
         spaceMatch = line.match(/^\s+/);
       }
     });
-    return lines.join('\n');
+    return lines.join(lineTerminator);
   }
 
   return transformed;

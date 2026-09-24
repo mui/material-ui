@@ -26,13 +26,13 @@ function FakeIcon() {
 const props1: ButtonProps<'div'> = {
   component: 'div',
   onChange: (event) => {
-    expectType<React.FormEvent<HTMLDivElement>, typeof event>(event);
+    expectType<React.ChangeEvent<HTMLDivElement>, typeof event>(event);
   },
 };
 
 const props2: ButtonProps = {
   onChange: (event) => {
-    expectType<React.FormEvent<HTMLButtonElement>, typeof event>(event);
+    expectType<React.ChangeEvent<HTMLButtonElement>, typeof event>(event);
   },
 };
 
@@ -145,3 +145,17 @@ const ReactRouterLinkTest = () => {
     </Button>
   );
 };
+
+function ClassesTest() {
+  return (
+    <Button
+      classes={{
+        outlined: 'extra-outlined',
+        loadingIndicator: 'extra-loading-indicator',
+        disabled: 'extra-disabled',
+      }}
+    >
+      Button
+    </Button>
+  );
+}

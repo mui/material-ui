@@ -10,13 +10,15 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import tableSortLabelClasses, { getTableSortLabelUtilityClass } from './tableSortLabelClasses';
+import useSlot from '../utils/useSlot';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, direction, active } = ownerState;
 
   const slots = {
     root: ['root', active && 'active', `direction${capitalize(direction)}`],
-    icon: ['icon', `iconDirection${capitalize(direction)}`],
+    icon: ['icon'],
   };
 
   return composeClasses(slots, getTableSortLabelUtilityClass, classes);
@@ -59,18 +61,13 @@ const TableSortLabelRoot = styled(ButtonBase, {
 const TableSortLabelIcon = styled('span', {
   name: 'MuiTableSortLabel',
   slot: 'Icon',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [styles.icon, styles[`iconDirection${capitalize(ownerState.direction)}`]];
-  },
 })(
   memoTheme(({ theme }) => ({
     fontSize: 18,
     marginRight: 4,
     marginLeft: 4,
     opacity: 0,
-    transition: theme.transitions.create(['opacity', 'transform'], {
+    ...getTransitionStyles(theme, ['opacity', 'transform'], {
       duration: theme.transitions.duration.shorter,
     }),
     userSelect: 'none',
@@ -107,6 +104,8 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
     direction = 'asc',
     hideSortIcon = false,
     IconComponent = ArrowDownwardIcon,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -120,24 +119,34 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: TableSortLabelRoot,
+    externalForwardedProps,
+    ownerState,
+    className: clsx(classes.root, className),
+    ref,
+    additionalProps: {
+      internalNativeButton: false,
+    },
+  });
+
+  const [IconSlot, iconProps] = useSlot('icon', {
+    elementType: TableSortLabelIcon,
+    externalForwardedProps,
+    ownerState,
+    className: classes.icon,
+  });
+
   return (
-    <TableSortLabelRoot
-      className={clsx(classes.root, className)}
-      component="span"
-      disableRipple
-      ownerState={ownerState}
-      ref={ref}
-      {...other}
-    >
+    <RootSlot disableRipple component="span" {...rootProps} {...other}>
       {children}
-      {hideSortIcon && !active ? null : (
-        <TableSortLabelIcon
-          as={IconComponent}
-          className={clsx(classes.icon)}
-          ownerState={ownerState}
-        />
-      )}
-    </TableSortLabelRoot>
+      {hideSortIcon && !active ? null : <IconSlot as={IconComponent} {...iconProps} />}
+    </RootSlot>
   );
 });
 
@@ -178,6 +187,22 @@ TableSortLabel.propTypes /* remove-proptypes */ = {
    * @default ArrowDownwardIcon
    */
   IconComponent: PropTypes.elementType,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    icon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    icon: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

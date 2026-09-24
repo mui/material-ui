@@ -1,4 +1,3 @@
-import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Icon, { IconProps } from '@mui/material/Icon';
 

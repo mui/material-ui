@@ -14,15 +14,6 @@
       "nodeName": "the tablist element",
       "conditions": "<code>!variant=\"scrollable\"</code>\b\b\b"
     },
-    "flexContainer": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the flex container element"
-    },
-    "flexContainerVertical": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the flex container element",
-      "conditions": "<code>orientation=\"vertical\"</code>"
-    },
     "hideScrollbar": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tablist element",
@@ -32,6 +23,7 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the TabIndicator component"
     },
+    "list": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the list element" },
     "root": { "description": "Styles applied to the root element." },
     "scrollableX": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

@@ -17,15 +17,13 @@ import { useDemoData } from '@mui/x-data-grid-generator';
 import GradientText from 'docs/src/components/typography/GradientText';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
-import IconImage from 'docs/src/components/icon/IconImage';
+import IconImage from '@mui/internal-core-docs/IconImage';
 import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
-import ROUTES from 'docs/src/route';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 import dayjs from 'dayjs';
 
-const startDate = dayjs();
-startDate.date(10);
-const endDate = dayjs();
-endDate.date(endDate.date() + 28);
+const startDate = dayjs().date(10);
+const endDate = dayjs().add(28, 'day');
 
 const visibleFields = [
   'commodity',
@@ -170,6 +168,9 @@ export default function XHero() {
                         fontSize: '1.25rem',
                       },
                     },
+                    [`& .MuiDataGrid-aggregationColumnHeaderLabel`]: {
+                      fontWeight: 'normal',
+                    },
                     [`& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-columnHeader:focus-within`]:
                       {
                         outline: 'none',
@@ -237,7 +238,6 @@ export default function XHero() {
                       '& .MuiDataGrid-pinnedRows': {
                         backgroundColor: alpha(theme.palette.primaryDark[800], 1),
                         backgroundImage: 'none',
-                        boxShadow: '0px -6px 12px rgba(0 0 0 /  0.5)',
                         '& .MuiDataGrid-footerCell': {
                           color: 'primary.light',
                         },
@@ -305,9 +305,13 @@ export default function XHero() {
                   '& .MuiTypography-subtitle1': {
                     fontSize: '0.875rem',
                   },
-                  '& .MuiTypography-caption': {
-                    width: { xs: 28, xl: 32 },
+                  '& .MuiDayCalendar-weekDayLabel': {
+                    width: { xs: 32, xl: 36 },
                     height: 32,
+                    margin: 0,
+                  },
+                  '& .MuiDayCalendar-root': {
+                    minWidth: { xs: 268, xl: 300 },
                   },
                   '& .MuiPickersSlideTransition-root': {
                     minWidth: { xs: 268, xl: 300 },
@@ -320,19 +324,15 @@ export default function XHero() {
                     padding: 1,
                   },
                   '& .MuiDateRangePickerDay-root': {
-                    lineHeight: 0,
-                    margin: 0,
-                  },
-                  '& .MuiPickersDay-root': {
-                    width: { xs: 28, xl: 32 },
-                    height: { xs: 28, xl: 32 },
+                    '--PickerDay-horizontalMargin': '0px',
+                    '--PickerDay-size': { xs: '32px', xl: '36px' },
                     fontWeight: 400,
                   },
-                  '& .MuiDateRangePickerDay-day.Mui-selected': {
+                  '& .MuiDateRangePickerDay-selected': {
                     fontWeight: 600,
                   },
-                  '& .MuiDateRangePickerDay-day:not(.Mui-selected)': {
-                    borderColor: 'primary.300',
+                  '& .MuiDateRangePickerDay-today': {
+                    outlineColor: 'primary.300',
                   },
                 },
                 (theme) =>
@@ -340,7 +340,7 @@ export default function XHero() {
                     borderColor: 'primaryDark.700',
                     boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
                     backgroundColor: 'primaryDark.900',
-                    '& .MuiDateRangePickerDay-day.Mui-selected': {
+                    '& .MuiDateRangePickerDay-selected': {
                       color: '#FFF',
                     },
                   }),
@@ -349,7 +349,7 @@ export default function XHero() {
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <StaticDateRangePicker
                   displayStaticWrapperAs="desktop"
-                  value={[startDate, endDate]}
+                  defaultValue={[startDate, endDate]}
                 />
               </LocalizationProvider>
             </Paper>

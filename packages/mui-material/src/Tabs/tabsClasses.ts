@@ -6,10 +6,8 @@ export interface TabsClasses {
   root: string;
   /** Styles applied to the root element if `orientation="vertical"`. */
   vertical: string;
-  /** Styles applied to the flex container element. */
-  flexContainer: string;
-  /** Styles applied to the flex container element if `orientation="vertical"`. */
-  flexContainerVertical: string;
+  /** Styles applied to the list element. */
+  list: string;
   /** Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`. */
   centered: string;
   /** Styles applied to the tablist element. */
@@ -39,8 +37,7 @@ export function getTabsUtilityClass(slot: string): string {
 const tabsClasses: TabsClasses = generateUtilityClasses('MuiTabs', [
   'root',
   'vertical',
-  'flexContainer',
-  'flexContainerVertical',
+  'list',
   'centered',
   'scroller',
   'fixed',

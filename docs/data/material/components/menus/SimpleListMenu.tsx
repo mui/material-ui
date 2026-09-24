@@ -44,7 +44,7 @@ export default function SimpleListMenu() {
           aria-haspopup="listbox"
           aria-controls="lock-menu"
           aria-label="when device is locked"
-          aria-expanded={open ? 'true' : undefined}
+          aria-expanded={open}
           onClick={handleClickListItem}
         >
           <ListItemText
@@ -58,9 +58,11 @@ export default function SimpleListMenu() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'lock-button',
-          role: 'listbox',
+        slotProps={{
+          list: {
+            'aria-labelledby': 'lock-button',
+            role: 'listbox',
+          },
         }}
       >
         {options.map((option, index) => (

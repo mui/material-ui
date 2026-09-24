@@ -14,8 +14,8 @@ const Input = styled(MuiInput)`
 export default function InputSlider() {
   const [value, setValue] = React.useState(30);
 
-  const handleSliderChange = (event: Event, newValue: number | number[]) => {
-    setValue(newValue as number);
+  const handleSliderChange = (event: Event, newValue: number) => {
+    setValue(newValue);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,17 +36,17 @@ export default function InputSlider() {
         Volume
       </Typography>
       <Grid container spacing={2} sx={{ alignItems: 'center' }}>
-        <Grid item>
+        <Grid>
           <VolumeUp />
         </Grid>
-        <Grid item xs>
+        <Grid size="grow">
           <Slider
             value={typeof value === 'number' ? value : 0}
             onChange={handleSliderChange}
             aria-labelledby="input-slider"
           />
         </Grid>
-        <Grid item>
+        <Grid>
           <Input
             value={value}
             size="small"

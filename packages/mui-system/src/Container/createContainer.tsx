@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -58,11 +59,15 @@ type RequiredThemeStructure = Pick<DefaultTheme, 'breakpoints' | 'spacing'>;
 
 export default function createContainer<Theme extends RequiredThemeStructure = DefaultTheme>(
   options: {
-    createStyledComponent?: (
-      ...styles: Array<Interpolation<StyleFnProps<Theme>>>
-    ) => StyledComponent<ContainerProps>;
-    useThemeProps?: (inProps: ContainerProps) => ContainerProps & { component?: React.ElementType };
-    componentName?: string;
+    createStyledComponent?:
+      | ((...styles: Array<Interpolation<StyleFnProps<Theme>>>) => StyledComponent<ContainerProps>)
+      | undefined;
+    useThemeProps?:
+      | ((
+          inProps: ContainerProps,
+        ) => ContainerProps & { component?: React.ElementType | undefined })
+      | undefined;
+    componentName?: string | undefined;
   } = {},
 ) {
   const {
@@ -125,7 +130,8 @@ export default function createContainer<Theme extends RequiredThemeStructure = D
   );
 
   const Container = React.forwardRef(function Container(inProps, ref) {
-    const props: ContainerProps & { component?: React.ElementType } = useThemeProps(inProps);
+    const props: ContainerProps & { component?: React.ElementType | undefined } =
+      useThemeProps(inProps);
     const {
       className,
       component = 'div',

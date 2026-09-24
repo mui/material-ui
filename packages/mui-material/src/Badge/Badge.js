@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import usePreviousProps from '@mui/utils/usePreviousProps';
 import composeClasses from '@mui/utils/composeClasses';
-import useSlotProps from '@mui/utils/useSlotProps';
 import useBadge from './useBadge';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -12,6 +11,8 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
+import useSlot from '../utils/useSlot';
+import { getTransitionStyles } from '../transitions/utils';
 
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
@@ -40,7 +41,6 @@ const useUtilityClasses = (ownerState) => {
 const BadgeRoot = styled('span', {
   name: 'MuiBadge',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   position: 'relative',
   display: 'inline-flex',
@@ -86,7 +86,10 @@ const BadgeBadge = styled('span', {
     height: RADIUS_STANDARD * 2,
     borderRadius: RADIUS_STANDARD,
     zIndex: 1, // Render the badge on top of potential ripples.
-    transition: theme.transitions.create('transform', {
+    '@media (forced-colors: active)': {
+      border: '1px solid ButtonBorder',
+    },
+    ...getTransitionStyles(theme, 'transform', {
       easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -110,132 +113,22 @@ const BadgeBadge = styled('span', {
         },
       },
       {
-        props: ({ ownerState }) =>
-          ownerState.anchorOrigin.vertical === 'top' &&
-          ownerState.anchorOrigin.horizontal === 'right' &&
-          ownerState.overlap === 'rectangular',
-        style: {
-          top: 0,
-          right: 0,
-          transform: 'scale(1) translate(50%, -50%)',
-          transformOrigin: '100% 0%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(50%, -50%)',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.anchorOrigin.vertical === 'bottom' &&
-          ownerState.anchorOrigin.horizontal === 'right' &&
-          ownerState.overlap === 'rectangular',
-        style: {
-          bottom: 0,
-          right: 0,
-          transform: 'scale(1) translate(50%, 50%)',
-          transformOrigin: '100% 100%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(50%, 50%)',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.anchorOrigin.vertical === 'top' &&
-          ownerState.anchorOrigin.horizontal === 'left' &&
-          ownerState.overlap === 'rectangular',
-        style: {
-          top: 0,
-          left: 0,
-          transform: 'scale(1) translate(-50%, -50%)',
-          transformOrigin: '0% 0%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(-50%, -50%)',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.anchorOrigin.vertical === 'bottom' &&
-          ownerState.anchorOrigin.horizontal === 'left' &&
-          ownerState.overlap === 'rectangular',
-        style: {
-          bottom: 0,
-          left: 0,
-          transform: 'scale(1) translate(-50%, 50%)',
-          transformOrigin: '0% 100%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(-50%, 50%)',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.anchorOrigin.vertical === 'top' &&
-          ownerState.anchorOrigin.horizontal === 'right' &&
-          ownerState.overlap === 'circular',
-        style: {
-          top: '14%',
-          right: '14%',
-          transform: 'scale(1) translate(50%, -50%)',
-          transformOrigin: '100% 0%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(50%, -50%)',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.anchorOrigin.vertical === 'bottom' &&
-          ownerState.anchorOrigin.horizontal === 'right' &&
-          ownerState.overlap === 'circular',
-        style: {
-          bottom: '14%',
-          right: '14%',
-          transform: 'scale(1) translate(50%, 50%)',
-          transformOrigin: '100% 100%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(50%, 50%)',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.anchorOrigin.vertical === 'top' &&
-          ownerState.anchorOrigin.horizontal === 'left' &&
-          ownerState.overlap === 'circular',
-        style: {
-          top: '14%',
-          left: '14%',
-          transform: 'scale(1) translate(-50%, -50%)',
-          transformOrigin: '0% 0%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(-50%, -50%)',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.anchorOrigin.vertical === 'bottom' &&
-          ownerState.anchorOrigin.horizontal === 'left' &&
-          ownerState.overlap === 'circular',
-        style: {
-          bottom: '14%',
-          left: '14%',
-          transform: 'scale(1) translate(-50%, 50%)',
-          transformOrigin: '0% 100%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(-50%, 50%)',
-          },
-        },
-      },
-      {
         props: { invisible: true },
         style: {
-          transition: theme.transitions.create('transform', {
+          ...getTransitionStyles(theme, 'transform', {
             easing: theme.transitions.easing.easeInOut,
             duration: theme.transitions.duration.leavingScreen,
           }),
+        },
+      },
+      {
+        style: {
+          inset: 'var(--Badge-inset)',
+          transform: 'scale(1) translate(var(--Badge-translate))',
+          transformOrigin: 'var(--Badge-origin)',
+          [`&.${badgeClasses.invisible}`]: {
+            transform: 'scale(0) translate(var(--Badge-translate))',
+          },
         },
       },
     ],
@@ -256,8 +149,6 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     className,
     classes: classesProp,
     component,
-    components = {},
-    componentsProps = {},
     children,
     overlap: overlapProp = 'rectangular',
     color: colorProp = 'default',
@@ -318,30 +209,44 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  // support both `slots` and `components` for backward compatibility
-  const RootSlot = slots?.root ?? components.Root ?? BadgeRoot;
-  const BadgeSlot = slots?.badge ?? components.Badge ?? BadgeBadge;
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
 
-  const rootSlotProps = slotProps?.root ?? componentsProps.root;
-  const badgeSlotProps = slotProps?.badge ?? componentsProps.badge;
-
-  const rootProps = useSlotProps({
-    elementType: RootSlot,
-    externalSlotProps: rootSlotProps,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: BadgeRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
     },
     ownerState,
-    className: clsx(rootSlotProps?.className, classes.root, className),
+    className: clsx(classes.root, className),
+    ref,
+    additionalProps: {
+      as: component,
+    },
   });
 
-  const badgeProps = useSlotProps({
-    elementType: BadgeSlot,
-    externalSlotProps: badgeSlotProps,
+  const { vertical, horizontal } = anchorOrigin;
+  const offset = overlap === 'circular' ? '14%' : '0';
+  const top = vertical === 'top' ? offset : 'auto';
+  const bottom = vertical === 'bottom' ? offset : 'auto';
+  const right = horizontal === 'right' ? offset : 'auto';
+  const left = horizontal === 'left' ? offset : 'auto';
+  const [BadgeSlot, badgeProps] = useSlot('badge', {
+    elementType: BadgeBadge,
+    externalForwardedProps,
     ownerState,
-    className: clsx(classes.badge, badgeSlotProps?.className),
+    className: classes.badge,
+    additionalProps: {
+      'aria-hidden': true,
+      style: {
+        '--Badge-translate': `${horizontal === 'right' ? '50%' : '-50%'}, ${vertical === 'top' ? '-50%' : '50%'}`,
+        '--Badge-inset': `${top} ${right} ${bottom} ${left}`,
+        '--Badge-origin': `${horizontal === 'right' ? '100%' : '0%'} ${vertical === 'top' ? '0%' : '100%'}`,
+      },
+    },
   });
 
   return (
@@ -400,29 +305,6 @@ Badge.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Badge: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * If `true`, the badge is invisible.
    * @default false
    */
@@ -443,7 +325,7 @@ Badge.propTypes /* remove-proptypes */ = {
    */
   showZero: PropTypes.bool,
   /**
-   * The props used for each slot inside the Badge.
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -451,8 +333,7 @@ Badge.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the Badge.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({

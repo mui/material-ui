@@ -14,29 +14,62 @@ CSP mitigates cross-site scripting (XSS) attacks by requiring developers to whit
 
 This vulnerability would allow the attacker to execute anything. However, with a secure CSP header, the browser will not load this script.
 
-You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
+You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP).
 
-## How does one implement CSP?
+:::info
+CSP is optional. Material UI works without any CSP configuration. If your project doesn't require CSP, you can skip this guide entirely.
+:::
 
-### Server-Side Rendering (SSR)
+## Static websites
 
-To use CSP with Material UI (and Emotion), you need to use a nonce.
-A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request.
+If you host your site statically (for example, S3 or any CDN-only setup), you cannot use nonces because there is no server to generate a unique value per request. In that case, `'unsafe-inline'` is the only option:
 
-A CSP nonce is a Base 64 encoded string. You can generate one like this:
-
-```js
-import uuidv4 from 'uuid/v4';
-
-const nonce = new Buffer(uuidv4()).toString('base64');
+```text
+Content-Security-Policy:
+  default-src 'self';
+  style-src 'self' 'unsafe-inline';
+  script-src 'self' 'unsafe-inline';
 ```
 
-You must use UUID version 4, as it generates an **unpredictable** string.
-You then apply this nonce to the CSP header. A CSP header might look like this with the nonce applied:
+## Server-Side Rendering (SSR)
+
+With a server, you can generate a unique nonce per request for tighter security. Material UI requires the following CSP directives:
+
+- **`style-src-elem 'nonce-<base64>'`** — Material UI uses [Emotion](https://emotion.sh/) to inject `<style>` tags. Each tag needs a matching nonce.
+- **`style-src-attr 'unsafe-inline'`** — Some components apply inline `style` attributes for dynamic values (CSS custom properties, dimensions, positioning).
+- **`script-src 'nonce-<base64>'`** — Only needed if you use `InitColorSchemeScript`, which renders an inline `<script>`.
+
+A complete CSP header might look like this:
+
+```text
+Content-Security-Policy:
+  default-src 'self';
+  style-src-elem 'self' 'nonce-<base64>';
+  style-src-attr 'unsafe-inline';
+  script-src 'self' 'nonce-<base64>';
+```
+
+:::info
+Some security scanners flag `style-src-attr 'unsafe-inline'` as a vulnerability. Inline styles can in theory be used to [exfiltrate data through CSS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/style-src#unsafe_inline_styles), but this only works if an attacker can already inject markup into your page. That injection can come from unescaped user input, a malicious or compromised third-party script, or a vulnerable dependency. On its own, `style-src-attr 'unsafe-inline'` doesn't open a new attack vector; it only reduces one layer of defense when such an injection already exists. To prevent that, sanitize user input and only load third-party scripts you trust.
+:::
+
+### Setting up the nonce
+
+A nonce is a randomly generated string that is only used once. You need to add server middleware to generate a new one on each request. A CSP nonce is a Base 64 encoded string. You can generate one like this:
+
+```js
+import crypto from 'node:crypto';
+
+const nonce = crypto.randomBytes(16).toString('base64'); // 128 bits of entropy
+```
+
+This generates a value that satisfies the [W3C CSP specification](https://w3c.github.io/webappsec-csp/#security-nonces) guidelines.
+
+You then apply this nonce to the CSP header:
 
 ```js
 header('Content-Security-Policy').set(
-  `default-src 'self'; style-src 'self' 'nonce-${nonce}';`,
+  `default-src 'self'; style-src-elem 'self' 'nonce-${nonce}'; style-src-attr 'unsafe-inline'; script-src 'self' 'nonce-${nonce}';`,
 );
 ```
 
@@ -72,13 +105,107 @@ function App(props) {
 }
 ```
 
-### Create React App (CRA)
+### Vite
 
-According to the [Create React App Docs](https://create-react-app.dev/docs/advanced-configuration/), a Create React App will dynamically embed the runtime script into index.html during the production build by default.
-This will require a new hash to be set in your CSP during each deployment.
+When deploying a CSP using Vite, there are specific configurations you must set up due to Vite's internal handling of assets and modules.
+See [Vite Features—Content Security Policy](https://vite.dev/guide/features.html#content-security-policy-csp) for complete details.
 
-To use a CSP with a project initialized as a Create React App, you will need to set the `INLINE_RUNTIME_CHUNK=false` variable in the `.env` file used for your production build.
-This will import the runtime script as usual instead of embedding it, avoiding the need to set a new hash during each deployment.
+### Next.js Pages Router
+
+For the Next.js Pages Router, after [setting up a nonce](https://nextjs.org/docs/app/guides/content-security-policy#nonces), pass it to the Emotion cache in two places:
+
+1. In `_document.tsx`:
+
+```tsx
+import {
+  DocumentHeadTags,
+  documentGetInitialProps,
+  createEmotionCache,
+} from '@mui/material-nextjs/v15-pagesRouter';
+// other imports
+
+type Props = DocumentInitialProps & DocumentHeadTagsProps & { nonce?: string };
+
+export default function MyDocument(props: Props) {
+  const { nonce } = props;
+
+  return (
+    <Html lang="en" className={roboto.className}>
+      <Head>
+        {/*...*/}
+        <meta name="csp-nonce" content={nonce} />
+        <DocumentHeadTags {...props} nonce={nonce} />
+      </Head>
+      <body>
+        {/*...*/}
+        <NextScript nonce={nonce} />
+      </body>
+    </Html>
+  );
+}
+
+MyDocument.getInitialProps = async (ctx: DocumentContext) => {
+  const { req } = ctx;
+  const nonce = req?.headers['x-nonce'];
+  if (typeof nonce !== 'string') {
+    throw new Error('"nonce" header is missing');
+  }
+
+  const emotionCache = createEmotionCache({ nonce });
+  const finalProps = await documentGetInitialProps(ctx, {
+    emotionCache,
+  });
+
+  return { ...finalProps, nonce };
+};
+```
+
+2. In `_app.tsx` (if you're setting up the `AppCacheProvider`):
+
+```tsx
+import { createEmotionCache } from '@mui/material-nextjs/v15-pagesRouter';
+// other imports
+
+export default function MyApp(props: AppProps & { nonce: string }) {
+  const { Component, pageProps, nonce } = props;
+
+  const emotionCache = useMemo(() => {
+    const nonce = props.nonce || getNonce();
+
+    return createEmotionCache({ nonce });
+  }, [props.nonce]);
+
+  return (
+    <AppCacheProvider {...props} emotionCache={emotionCache}>
+      {/* ... */}
+    </AppCacheProvider>
+  );
+}
+
+function getNonce(headers?: Record<string, string | string[] | undefined>) {
+  if (headers) {
+    return headers['x-nonce'] as string;
+  }
+
+  if (typeof document !== 'undefined') {
+    const nonceMeta = document.querySelector('meta[name="csp-nonce"]');
+    if (nonceMeta) {
+      return nonceMeta.getAttribute('content') || undefined;
+    }
+  }
+
+  return undefined;
+}
+
+MyApp.getInitialProps = async (appContext: AppContext) => {
+  const nonce = getNonce(appContext.ctx?.req?.headers);
+  if (typeof nonce !== 'string') {
+    throw new Error('"nonce" header is missing');
+  }
+
+  return { ...otherProps, nonce };
+};
+```
 
 ### styled-components
 

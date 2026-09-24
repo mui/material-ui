@@ -1,8 +1,7 @@
-import * as React from 'react';
-import { createRenderer } from '@mui/internal-test-utils';
+import { describe, expect, it } from 'vitest';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import CardActions, { cardActionsClasses as classes } from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
-import { expect } from 'chai';
 import describeConformance from '../../test/describeConformance';
 
 describe('<CardActions />', () => {
@@ -15,14 +14,10 @@ describe('<CardActions />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiCardActions',
     testVariantProps: { disableSpacing: true },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
-  it('should apply margin to all children but the first one', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should apply margin to all children but the first one', function test() {
     const { container } = render(
       <CardActions>
         <Button data-testid="child-1">Agree</Button>

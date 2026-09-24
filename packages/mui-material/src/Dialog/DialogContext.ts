@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 
 interface DialogContextValue {
-  titleId?: string;
+  titleId?: string | undefined;
 }
 
 const DialogContext = React.createContext<DialogContextValue>({});

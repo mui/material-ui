@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -219,7 +218,10 @@ export default function CustomizedSwitches() {
       />
       <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
         <Typography>Off</Typography>
-        <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
+        <AntSwitch
+          defaultChecked
+          slotProps={{ input: { 'aria-label': 'ant design' } }}
+        />
         <Typography>On</Typography>
       </Stack>
     </FormGroup>

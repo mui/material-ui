@@ -1,5 +1,4 @@
 'use client';
-import * as React from 'react';
 import PropTypes from 'prop-types';
 import { emphasize } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
@@ -7,7 +6,9 @@ import memoTheme from '../utils/memoTheme';
 import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 import ButtonBase from '../ButtonBase';
 
-const BreadcrumbCollapsedButton = styled(ButtonBase)(
+const BreadcrumbCollapsedButton = styled(ButtonBase, {
+  name: 'MuiBreadcrumbCollapsed',
+})(
   memoTheme(({ theme }) => ({
     display: 'flex',
     marginLeft: `calc(${theme.spacing(1)} * 0.5)`,
@@ -40,11 +41,12 @@ const BreadcrumbCollapsedIcon = styled(MoreHorizIcon)({
  */
 function BreadcrumbCollapsed(props) {
   const { slots = {}, slotProps = {}, ...otherProps } = props;
+  const { nativeButton, ...buttonBaseProps } = otherProps;
   const ownerState = props;
 
   return (
     <li>
-      <BreadcrumbCollapsedButton focusRipple {...otherProps} ownerState={ownerState}>
+      <BreadcrumbCollapsedButton focusRipple {...buttonBaseProps} ownerState={ownerState}>
         <BreadcrumbCollapsedIcon
           as={slots.CollapsedIcon}
           ownerState={ownerState}

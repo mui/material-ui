@@ -22,3 +22,13 @@ import ListItem from '@mui/material/ListItem';
     ...componentsRootProps,
     ...slotsRootProps
   } }} />;
+<ListItem
+  slots={{
+    root: Container
+  }}
+  slotProps={{
+    root: {
+      id: 'test',
+    }
+  }}
+/>;

@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
-import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
+import { describe, beforeEach, afterEach, it, expect } from 'vitest';
+import { createRenderer, renderHook, screen } from '@mui/internal-test-utils';
+import { ThemeProvider, createTheme, useColorScheme, useTheme } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 
 describe('ThemeProvider', () => {
   const { render } = createRenderer();
@@ -12,7 +12,7 @@ describe('ThemeProvider', () => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
     storage = {};
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(window, 'localStorage', {
       value: {
         getItem: (key: string) => storage[key],
         setItem: (key: string, value: string) => {
@@ -43,6 +43,22 @@ describe('ThemeProvider', () => {
         </ThemeProvider>,
       ),
     ).not.toWarnDev();
+  });
+
+  it('theme should be stable between renders if created outside of component', () => {
+    const theme = createTheme();
+    const { result, rerender } = renderHook(
+      () => {
+        return useTheme();
+      },
+      {
+        wrapper: ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>,
+      },
+    );
+    const firstRender = result.current;
+    rerender();
+    const secondRender = result.current;
+    expect(firstRender).to.equal(secondRender);
   });
 
   describe('light & dark', () => {
@@ -83,30 +99,92 @@ describe('ThemeProvider', () => {
       const theme = createTheme({
         colorSchemes: { dark: true },
       });
-      const { getByTestId, user } = render(
+      const { user } = render(
         <ThemeProvider theme={theme}>
           <ModeSwitcher />
         </ThemeProvider>,
       );
 
-      expect(getByTestId('mode-switcher')).to.have.property('value', 'system');
+      expect(screen.getByTestId('mode-switcher')).to.have.property('value', 'system');
 
-      await user.selectOptions(getByTestId('mode-switcher'), 'dark');
+      await user.selectOptions(screen.getByTestId('mode-switcher'), 'dark');
 
-      expect(getByTestId('mode-switcher')).to.have.property('value', 'dark');
+      expect(screen.getByTestId('mode-switcher')).to.have.property('value', 'dark');
     });
 
     it('allows default mode to be changed', () => {
       const theme = createTheme({
         colorSchemes: { dark: true },
       });
-      const { getByTestId } = render(
+
+      render(
         <ThemeProvider theme={theme} defaultMode="dark">
           <ModeSwitcher />
         </ThemeProvider>,
       );
 
-      expect(getByTestId('mode-switcher')).to.have.property('value', 'dark');
+      expect(screen.getByTestId('mode-switcher')).to.have.property('value', 'dark');
+    });
+  });
+
+  describe('focus visible', () => {
+    it('outline color follows the active scheme on mode change', async () => {
+      function Probe() {
+        const theme = useTheme();
+        const { setMode } = useColorScheme();
+        return (
+          <button type="button" onClick={() => setMode('dark')}>
+            {theme.focusVisible && theme.focusVisible.outlineColor}
+          </button>
+        );
+      }
+      const theme = createTheme({ focusVisible: true, colorSchemes: { light: true, dark: true } });
+      const { user } = render(
+        <ThemeProvider theme={theme}>
+          <Probe />
+        </ThemeProvider>,
+      );
+
+      const button = screen.getByRole('button');
+      expect(button.textContent).to.equal(createTheme().palette.primary.main);
+
+      await user.click(button);
+      expect(button.textContent).to.equal(
+        createTheme({ palette: { mode: 'dark' } }).palette.primary.main,
+      );
+    });
+  });
+
+  describe('nested ThemeProvider', () => {
+    it('should have `vars` as null for nested non-vars theme', () => {
+      const upperTheme = createTheme({
+        cssVariables: true,
+      });
+      const nestedTheme = createTheme({
+        palette: {
+          // @ts-ignore
+          ochre: {
+            main: '#E3D026',
+            light: '#E9DB5D',
+            dark: '#A29415',
+            contrastText: '#242105',
+          },
+        },
+      });
+      let theme: any;
+      function Component() {
+        theme = useTheme();
+        return <Button>Button</Button>;
+      }
+      render(
+        <ThemeProvider theme={upperTheme}>
+          <ThemeProvider theme={nestedTheme}>
+            <Component />
+          </ThemeProvider>
+        </ThemeProvider>,
+      );
+
+      expect(theme.vars).to.equal(null);
     });
   });
 });

@@ -4,6 +4,7 @@ description: Explore the planned features and our roadmap to the next major vers
 date: 2024-11-20T00:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
+manualCard: false
 ---
 
 We're kicking off the development of [MUI X v8](https://github.com/mui/mui-x/releases/tag/v8.0.0-alpha.0).
@@ -63,7 +64,7 @@ It contains the highlights we aim to include in the first versions:
 
 ### Tree View
 
-- [Parent/chidren selection propagation](https://github.com/mui/mui-x/issues/12883)
+- [Parent/children selection propagation](https://github.com/mui/mui-x/issues/12883)
 - [Lazy loading](https://github.com/mui/mui-x/issues/9687)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Virtualization](https://github.com/mui/mui-x/issues/9685)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 

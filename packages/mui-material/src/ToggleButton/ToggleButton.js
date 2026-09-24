@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveProps from '@mui/utils/resolveProps';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
@@ -16,6 +15,7 @@ import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButton
 import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
 import ToggleButtonGroupButtonContext from '../ToggleButtonGroup/ToggleButtonGroupButtonContext';
 import isValueSelected from '../ToggleButtonGroup/isValueSelected';
+import RovingToggleButton from './RovingToggleButton';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, fullWidth, selected, disabled, size, color } = ownerState;
@@ -56,9 +56,10 @@ const ToggleButtonRoot = styled(ButtonBase, {
     '&:hover': {
       textDecoration: 'none',
       // Reset on mouse devices
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
-        : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+      backgroundColor: theme.alpha(
+        (theme.vars || theme).palette.text.primary,
+        (theme.vars || theme).palette.action.hoverOpacity,
+      ),
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
@@ -69,21 +70,21 @@ const ToggleButtonRoot = styled(ButtonBase, {
         style: {
           [`&.${toggleButtonClasses.selected}`]: {
             color: (theme.vars || theme).palette.text.primary,
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.selectedOpacity})`
-              : alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity),
+            backgroundColor: theme.alpha(
+              (theme.vars || theme).palette.text.primary,
+              (theme.vars || theme).palette.action.selectedOpacity,
+            ),
             '&:hover': {
-              backgroundColor: theme.vars
-                ? `rgba(${theme.vars.palette.text.primaryChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-                : alpha(
-                    theme.palette.text.primary,
-                    theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-                  ),
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette.text.primary,
+                `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
+              ),
               // Reset on touch devices, it doesn't add specificity
               '@media (hover: none)': {
-                backgroundColor: theme.vars
-                  ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.selectedOpacity})`
-                  : alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity),
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette.text.primary,
+                  (theme.vars || theme).palette.action.selectedOpacity,
+                ),
               },
             },
           },
@@ -96,21 +97,21 @@ const ToggleButtonRoot = styled(ButtonBase, {
           style: {
             [`&.${toggleButtonClasses.selected}`]: {
               color: (theme.vars || theme).palette[color].main,
-              backgroundColor: theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-                : alpha(theme.palette[color].main, theme.palette.action.selectedOpacity),
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette[color].main,
+                (theme.vars || theme).palette.action.selectedOpacity,
+              ),
               '&:hover': {
-                backgroundColor: theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-                  : alpha(
-                      theme.palette[color].main,
-                      theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-                    ),
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette[color].main,
+                  `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
+                ),
                 // Reset on touch devices, it doesn't add specificity
                 '@media (hover: none)': {
-                  backgroundColor: theme.vars
-                    ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-                    : alpha(theme.palette[color].main, theme.palette.action.selectedOpacity),
+                  backgroundColor: theme.alpha(
+                    (theme.vars || theme).palette[color].main,
+                    (theme.vars || theme).palette.action.selectedOpacity,
+                  ),
                 },
               },
             },
@@ -142,7 +143,11 @@ const ToggleButtonRoot = styled(ButtonBase, {
 
 const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`
-  const { value: contextValue, ...contextProps } = React.useContext(ToggleButtonGroupContext);
+  const {
+    value: contextValue,
+    isRovingTabIndex,
+    ...contextProps
+  } = React.useContext(ToggleButtonGroupContext);
   const toggleButtonGroupButtonContextPositionClassName = React.useContext(
     ToggleButtonGroupButtonContext,
   );
@@ -191,13 +196,13 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
   };
 
   const positionClassName = toggleButtonGroupButtonContextPositionClassName || '';
-
-  return (
+  const button = (
     <ToggleButtonRoot
       className={clsx(contextProps.className, classes.root, className, positionClassName)}
+      internalNativeButton
       disabled={disabled}
       focusRipple={!disableFocusRipple}
-      ref={ref}
+      ref={isRovingTabIndex ? undefined : ref}
       onClick={handleChange}
       onChange={onChange}
       value={value}
@@ -208,6 +213,16 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
       {children}
     </ToggleButtonRoot>
   );
+
+  if (isRovingTabIndex) {
+    return (
+      <RovingToggleButton disabled={disabled} selected={selected} ref={ref} value={value}>
+        {button}
+      </RovingToggleButton>
+    );
+  }
+
+  return button;
 });
 
 ToggleButton.propTypes /* remove-proptypes */ = {

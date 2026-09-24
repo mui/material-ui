@@ -1,26 +1,95 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { FabProps } from '../Fab';
 import { TooltipProps } from '../Tooltip';
 import { SpeedDialActionClasses } from './speedDialActionClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
-export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps>, 'children'> {
+export interface SpeedDialActionSlots {
+  /**
+   * The component that renders the fab.
+   * @default Fab
+   */
+  fab?: React.ElementType | undefined;
+  /**
+   * The component that renders the tooltip.
+   * @default Tooltip
+   */
+  tooltip?: React.ElementType | undefined;
+  /**
+   * The component that renders the static tooltip.
+   * @default 'span'
+   */
+  staticTooltip?: React.ElementType | undefined;
+  /**
+   * The component that renders the static tooltip label.
+   * @default 'span'
+   */
+  staticTooltipLabel?: React.ElementType | undefined;
+}
+
+export interface SpeedDialActionFabSlotPropsOverrides {}
+export interface SpeedDialActionTooltipSlotPropsOverrides {}
+export interface SpeedDialActionStaticTooltipSlotPropsOverrides {}
+export interface SpeedDialActionStaticTooltipLabelSlotPropsOverrides {}
+
+export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SpeedDialActionSlots,
+  {
+    /**
+     * Props forwarded to the fab slot.
+     * By default, the available props are based on the [Fab](https://mui.com/material-ui/api/fab/#props) component.
+     */
+    fab: SlotProps<
+      React.ElementType<FabProps>,
+      SpeedDialActionFabSlotPropsOverrides,
+      SpeedDialActionOwnerState
+    >;
+    /**
+     * Props forwarded to the tooltip slot.
+     * By default, the available props are based on the [Tooltip](https://mui.com/material-ui/api/tooltip/#props) component.
+     */
+    tooltip: SlotProps<
+      React.ElementType<TooltipProps>,
+      SpeedDialActionTooltipSlotPropsOverrides,
+      SpeedDialActionOwnerState
+    >;
+    /**
+     * Props forwarded to the static tooltip slot.
+     * By default, the available props are based on a span element.
+     */
+    staticTooltip: SlotProps<
+      'span',
+      SpeedDialActionStaticTooltipSlotPropsOverrides,
+      SpeedDialActionOwnerState
+    >;
+    /**
+     * Props forwarded to the static tooltip label slot.
+     * By default, the available props are based on a span element.
+     */
+    staticTooltipLabel: SlotProps<
+      'span',
+      SpeedDialActionStaticTooltipLabelSlotPropsOverrides,
+      SpeedDialActionOwnerState
+    >;
+  }
+>;
+
+export interface SpeedDialActionProps
+  extends
+    Omit<StandardProps<Partial<TooltipProps>, 'children'>, 'slotProps' | 'slots'>,
+    SpeedDialActionSlotsAndSlotProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<SpeedDialActionClasses>;
-  /**
-   * Props applied to the [`Fab`](https://mui.com/material-ui/api/fab/) component.
-   * @default {}
-   */
-  FabProps?: Partial<FabProps>;
+  classes?: Partial<SpeedDialActionClasses> | undefined;
   /**
    * Adds a transition delay, to allow a series of SpeedDialActions to be animated.
    * @default 0
    */
-  delay?: number;
+  delay?: number | undefined;
   /**
    * The icon to display in the SpeedDial Fab.
    */
@@ -28,25 +97,7 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
-  /**
-   * `classes` prop applied to the [`Tooltip`](https://mui.com/material-ui/api/tooltip/) element.
-   */
-  TooltipClasses?: TooltipProps['classes'];
-  /**
-   * Placement of the tooltip.
-   * @default 'left'
-   */
-  tooltipPlacement?: TooltipProps['placement'];
-  /**
-   * Label to display in the tooltip.
-   */
-  tooltipTitle?: React.ReactNode;
-  /**
-   * Make the tooltip always visible when the SpeedDial is open.
-   * @default false
-   */
-  tooltipOpen?: boolean;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**
@@ -61,3 +112,8 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
  * - inherits [Tooltip API](https://mui.com/material-ui/api/tooltip/)
  */
 export default function SpeedDialAction(props: SpeedDialActionProps): React.JSX.Element;
+
+export interface SpeedDialActionOwnerState extends Omit<
+  SpeedDialActionProps,
+  'slots' | 'slotProps'
+> {}

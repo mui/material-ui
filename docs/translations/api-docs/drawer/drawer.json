@@ -12,17 +12,16 @@
     "onClose": {
       "description": "Callback fired when the component requests to be closed. The <code>reason</code> parameter can optionally be used to control the response to <code>onClose</code>.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "reason": "Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "reason": {
+          "name": "reason",
+          "description": "Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>."
+        }
       }
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
-    "PaperProps": {
-      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/paper/\"><code>Paper</code></a> element."
-    },
-    "SlideProps": {
-      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/slide/\"><code>Slide</code></a> element."
-    },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -32,59 +31,33 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "docked": {
+    "anchorBottom": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"permanent or persistent\"</code>"
-    },
-    "modal": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Modal component"
-    },
-    "paper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Paper component"
-    },
-    "paperAnchorBottom": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"bottom\"</code>"
     },
-    "paperAnchorDockedBottom": {
+    "anchorLeft": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
-      "conditions": "<code>anchor=\"bottom\"</code> and <code>variant</code> is not &quot;temporary&quot;"
-    },
-    "paperAnchorDockedLeft": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
-      "conditions": "<code>anchor=\"left\"</code> and <code>variant</code> is not &quot;temporary&quot;"
-    },
-    "paperAnchorDockedRight": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
-      "conditions": "<code>anchor=\"right\"</code> and <code>variant</code> is not &quot;temporary&quot;"
-    },
-    "paperAnchorDockedTop": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
-      "conditions": "<code>anchor=\"top\"</code> and <code>variant</code> is not &quot;temporary&quot;"
-    },
-    "paperAnchorLeft": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
+      "nodeName": "the root element",
       "conditions": "<code>anchor=\"left\"</code>"
     },
-    "paperAnchorRight": {
+    "anchorRight": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
+      "nodeName": "the root element",
       "conditions": "<code>anchor=\"right\"</code>"
     },
-    "paperAnchorTop": {
+    "anchorTop": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Paper component",
+      "nodeName": "the root element",
       "conditions": "<code>anchor=\"top\"</code>"
     },
-    "root": { "description": "Styles applied to the root element." }
+    "modal": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Modal component" }
+  },
+  "slotDescriptions": {
+    "backdrop": "The component used for the Modal backdrop.",
+    "docked": "The component used for the root element when the variant is <code>permanent</code> or <code>persistent</code>.",
+    "paper": "The component used for the paper.",
+    "root": "The component used for the root when the variant is <code>temporary</code>.",
+    "transition": "The component used for the transition. <a href=\"/material-ui/transitions/#transition-slots\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

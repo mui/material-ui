@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Slider from '@mui/material/Slider';
 import { alpha, styled } from '@mui/material/styles';
 

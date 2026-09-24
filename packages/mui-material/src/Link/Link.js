@@ -2,7 +2,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { alpha } from '@mui/system/colorManipulator';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
 import isFocusVisible from '@mui/utils/isFocusVisible';
@@ -14,6 +13,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import getTextDecoration from './getTextDecoration';
+import { outsetFocusRing } from '../styles/focusVisible';
 
 const v6Colors = {
   primary: true,
@@ -57,6 +57,9 @@ const LinkRoot = styled(Typography, {
 })(
   memoTheme(({ theme }) => {
     return {
+      ...(theme.focusVisible && {
+        [`&.${linkClasses.focusVisible}`]: { ...outsetFocusRing, ...theme.focusVisible },
+      }),
       variants: [
         {
           props: {
@@ -95,30 +98,33 @@ const LinkRoot = styled(Typography, {
             textDecorationColor: 'var(--Link-underlineColor)',
           },
         },
+        {
+          props: ({ underline, ownerState }) =>
+            underline === 'always' && ownerState.color === 'inherit',
+          style: theme.colorSpace
+            ? {
+                textDecorationColor: theme.alpha('currentColor', 0.4),
+              }
+            : null,
+        },
         ...Object.entries(theme.palette)
           .filter(createSimplePaletteValueFilter())
           .map(([color]) => ({
             props: { underline: 'always', color },
             style: {
-              '--Link-underlineColor': theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / 0.4)`
-                : alpha(theme.palette[color].main, 0.4),
+              '--Link-underlineColor': theme.alpha((theme.vars || theme).palette[color].main, 0.4),
             },
           })),
         {
           props: { underline: 'always', color: 'textPrimary' },
           style: {
-            '--Link-underlineColor': theme.vars
-              ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
-              : alpha(theme.palette.text.primary, 0.4),
+            '--Link-underlineColor': theme.alpha((theme.vars || theme).palette.text.primary, 0.4),
           },
         },
         {
           props: { underline: 'always', color: 'textSecondary' },
           style: {
-            '--Link-underlineColor': theme.vars
-              ? `rgba(${theme.vars.palette.text.secondaryChannel} / 0.4)`
-              : alpha(theme.palette.text.secondary, 0.4),
+            '--Link-underlineColor': theme.alpha((theme.vars || theme).palette.text.secondary, 0.4),
           },
         },
         {
@@ -149,9 +155,12 @@ const LinkRoot = styled(Typography, {
             '&::-moz-focus-inner': {
               borderStyle: 'none', // Remove Firefox dotted outline.
             },
-            [`&.${linkClasses.focusVisible}`]: {
-              outline: 'auto',
-            },
+            // Browser default focus ring, unless the curated ring is opted in (spread at the root).
+            ...(!theme.focusVisible && {
+              [`&.${linkClasses.focusVisible}`]: {
+                outline: 'auto',
+              },
+            }),
           },
         },
       ],

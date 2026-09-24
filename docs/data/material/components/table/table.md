@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Table component
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
-githubLabel: 'component: table'
+githubLabel: 'scope: table'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 materialDesign: https://m2.material.io/components/data-tables
 githubSource: packages/mui-material/src/Table
@@ -18,7 +18,7 @@ Tables display information in a way that's easy to scan, so that users can look 
 - Navigation
 - Tools to query and manipulate data
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -31,8 +31,8 @@ Tables are implemented using a collection of related components:
 - `<TableRow />`: A row in a table. Can be used in `<TableHead />`, `<TableBody />`, or `<TableFooter />`. Renders as a `<tr>` by default.
 - `<TableCell />`: A cell in a table. Can be used in `<TableRow />` . Renders as a `<th>` in `<TableHead />` and `<td>` in `<TableBody />` by default.
 - `<TableFooter />`: An optional container for the footer row(s) of the table. Renders as a `<tfoot>` by default.
-- `<TablePagination />`: A component that provides controls for paginating table data. See the ['Sorting & selecting' example](#sorting-amp-selecting) and ['Custom Table Pagination Action' example](#custom-pagination-actions).
-- `<TableSortLabel />`: A component used to display sorting controls for column headers, allowing users to sort data in ascending or descending order. See the ['Sorting & selecting' example](#sorting-amp-selecting).
+- `<TablePagination />`: A component that provides controls for paginating table data. See the ['Sorting & selecting' example](#sorting-selecting) and ['Custom Table Pagination Action' example](#custom-pagination-actions).
+- `<TableSortLabel />`: A component used to display sorting controls for column headers, allowing users to sort data in ascending or descending order. See the ['Sorting & selecting' example](#sorting-selecting).
 
 ## Basic table
 
@@ -91,8 +91,25 @@ You should either provide an array of:
 ### Custom pagination actions
 
 The `ActionsComponent` prop of the `TablePagination` component allows the implementation of custom actions.
+A replacement action component is responsible for its own tooltips and focus management, unless it composes the built-in `TablePaginationActions` component.
 
 {{"demo": "CustomPaginationActionsTable.js", "bg": true}}
+
+#### Customizing individual action buttons
+
+To customize individual buttons while keeping the built-in `TablePaginationActions`, use `slots.actions` and `slotProps.actions` on `TablePagination`.
+The default buttons include tooltips.
+When replacing `firstButton`, `previousButton`, `nextButton`, or `lastButton` through `slots.actions`, the custom component receives a `title` prop and is responsible for rendering its own tooltip.
+
+When an update to pagination props or action slot props disables the focused action, `TablePaginationActions` moves focus to the next enabled action in DOM order, or searches backward if none follows.
+Actions with `tabIndex={-1}` are skipped.
+Focus stays where it is if no action is available or your application has already moved focus elsewhere.
+
+Custom button slots participate in focus restoration by forwarding the supplied `data-mui-pagination-action` prop to their focusable element.
+Forward the `disabled` prop to native buttons, or use `aria-disabled` for other elements.
+You don't need to forward a ref.
+Custom slots that omit the data attribute continue to work, but don't participate in focus restoration.
+If a custom slot disables itself through its own state without re-rendering `TablePaginationActions`, it must handle focus restoration itself.
 
 ## Sticky header
 
@@ -139,13 +156,30 @@ Virtualization helps with performance issues.
 
 (WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)
 
+### Row and column headers
+
+Header cells identify the data in each row or column.
+Screen readers use these associations to provide context as users navigate the table.
+
+`TableCell` renders as a `<th>` automatically when it is placed inside a `TableHead`, but it renders as a `<td>` inside a `TableBody`.
+When a body cell contains the label that identifies its row, render it as a row header with `component="th"` and `scope="row"`:
+
+```jsx
+<TableRow>
+  <TableCell component="th" scope="row">
+    {row.name}
+  </TableCell>
+  <TableCell>{row.calories}</TableCell>
+</TableRow>
+```
+
+Choose a meaningful value for the row header, such as a person's name or a product name, rather than an arbitrary index. Multiple cells could be marked as row headers, for example when the table contains both first name and last name columns.
+
+The Data Grid uses ARIA roles instead of native table elements.
+See the [Data Grid row headers guide](/x/react-data-grid/accessibility/#row-headers) to learn how to identify its row header columns.
+
 ### Caption
 
 A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
 {{"demo": "AccessibleTable.js", "bg": true}}
-
-## Unstyled
-
-If you would like to use an unstyled Table, you can use the primitive HTML elements and enhance the table with the TablePaginationUnstyled component.
-See the demos in the [unstyled table pagination docs](/base-ui/react-table-pagination/)

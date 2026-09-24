@@ -18,3 +18,9 @@ import Modal from '@mui/material/Modal';
   slotProps={{ root: slotsRootProps }}
   componentsProps={{ root: componentsRootProps }}
 />;
+<Modal
+  BackdropComponent={Backdrop}
+  BackdropProps={{
+    timeout: 500,
+  }}
+/>;

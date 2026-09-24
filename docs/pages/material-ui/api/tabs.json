@@ -26,7 +26,6 @@
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
     },
-    "ScrollButtonComponent": { "type": { "name": "elementType" }, "default": "TabScrollButton" },
     "scrollButtons": {
       "type": { "name": "enum", "description": "'auto'<br>&#124;&nbsp;false<br>&#124;&nbsp;true" },
       "default": "'auto'"
@@ -35,14 +34,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ endScrollButtonIcon?: func<br>&#124;&nbsp;object, startScrollButtonIcon?: func<br>&#124;&nbsp;object }"
+        "description": "{ endScrollButtonIcon?: func<br>&#124;&nbsp;object, indicator?: func<br>&#124;&nbsp;object, list?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, scrollbar?: func<br>&#124;&nbsp;object, scrollButtons?: func<br>&#124;&nbsp;object, scroller?: func<br>&#124;&nbsp;object, startScrollButtonIcon?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ EndScrollButtonIcon?: elementType, StartScrollButtonIcon?: elementType }"
+        "description": "{ endScrollButtonIcon?: elementType, indicator?: elementType, list?: elementType, root?: elementType, scrollbar?: elementType, scrollButtons?: elementType, scroller?: elementType, startScrollButtonIcon?: elementType }"
       },
       "default": "{}"
     },
@@ -53,8 +52,6 @@
       },
       "additionalInfo": { "sx": true }
     },
-    "TabIndicatorProps": { "type": { "name": "object" }, "default": "{}" },
-    "TabScrollButtonProps": { "type": { "name": "object" }, "default": "{}" },
     "textColor": {
       "type": {
         "name": "enum",
@@ -74,6 +71,56 @@
   },
   "name": "Tabs",
   "imports": ["import Tabs from '@mui/material/Tabs';", "import { Tabs } from '@mui/material';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component used for the popper.",
+      "default": "div",
+      "class": "MuiTabs-root"
+    },
+    {
+      "name": "scroller",
+      "description": "The component used for the scroller.",
+      "default": "div",
+      "class": "MuiTabs-scroller"
+    },
+    {
+      "name": "list",
+      "description": "The component used for the flex container.",
+      "default": "div",
+      "class": "MuiTabs-list"
+    },
+    {
+      "name": "scrollbar",
+      "description": "The component used for the scroller.",
+      "default": "ScrollbarSize",
+      "class": null
+    },
+    {
+      "name": "indicator",
+      "description": "The component used for the tab indicator.",
+      "default": "span",
+      "class": "MuiTabs-indicator"
+    },
+    {
+      "name": "scrollButtons",
+      "description": "The component used for the scroll button.",
+      "default": "TabScrollButton",
+      "class": "MuiTabs-scrollButtons"
+    },
+    {
+      "name": "startScrollButtonIcon",
+      "description": "The component used for the start scroll button icon.",
+      "default": "KeyboardArrowLeft",
+      "class": null
+    },
+    {
+      "name": "endScrollButtonIcon",
+      "description": "The component used for the end scroll button icon.",
+      "default": "KeyboardArrowRight",
+      "class": null
+    }
+  ],
   "classes": [
     {
       "key": "centered",
@@ -88,33 +135,9 @@
       "isGlobal": false
     },
     {
-      "key": "flexContainer",
-      "className": "MuiTabs-flexContainer",
-      "description": "Styles applied to the flex container element.",
-      "isGlobal": false
-    },
-    {
-      "key": "flexContainerVertical",
-      "className": "MuiTabs-flexContainerVertical",
-      "description": "Styles applied to the flex container element if `orientation=\"vertical\"`.",
-      "isGlobal": false
-    },
-    {
       "key": "hideScrollbar",
       "className": "MuiTabs-hideScrollbar",
       "description": "Styles applied to the tablist element if `variant=\"scrollable\"` and `visibleScrollbar={false}`.",
-      "isGlobal": false
-    },
-    {
-      "key": "indicator",
-      "className": "MuiTabs-indicator",
-      "description": "Styles applied to the TabIndicator component.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiTabs-root",
-      "description": "Styles applied to the root element.",
       "isGlobal": false
     },
     {
@@ -130,21 +153,9 @@
       "isGlobal": false
     },
     {
-      "key": "scrollButtons",
-      "className": "MuiTabs-scrollButtons",
-      "description": "Styles applied to the ScrollButtonComponent component.",
-      "isGlobal": false
-    },
-    {
       "key": "scrollButtonsHideMobile",
       "className": "MuiTabs-scrollButtonsHideMobile",
       "description": "Styles applied to the ScrollButtonComponent component if `allowScrollButtonsMobile={true}`.",
-      "isGlobal": false
-    },
-    {
-      "key": "scroller",
-      "className": "MuiTabs-scroller",
-      "description": "Styles applied to the tablist element.",
       "isGlobal": false
     },
     {
@@ -160,6 +171,5 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Tabs/Tabs.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-tabs/\">Tabs</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-tabs/\">Tabs</a></li></ul>"
 }

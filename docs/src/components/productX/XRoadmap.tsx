@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
@@ -10,14 +10,14 @@ import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
 import BarChartRounded from '@mui/icons-material/BarChartRounded';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
-import PendingActionsRounded from '@mui/icons-material/PendingActions';
 import FormatSizeRoundedIcon from '@mui/icons-material/FormatSizeRounded';
-import AutoGraphRoundedIcon from '@mui/icons-material/AutoGraphRounded';
-import SpeedRounded from '@mui/icons-material/SpeedRounded';
+import ViewTimelineIcon from '@mui/icons-material/ViewTimeline';
+import EventNoteRoundedIcon from '@mui/icons-material/EventNoteRounded';
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import { alpha } from '@mui/material/styles';
-import ROUTES from 'docs/src/route';
-import { Link } from '@mui/docs/Link';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import { ROUTES } from '@mui/internal-core-docs/constants';
+import { Link } from '@mui/internal-core-docs/Link';
+import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import Section from 'docs/src/layouts/Section';
 import GradientText from 'docs/src/components/typography/GradientText';
 
@@ -41,7 +41,7 @@ function RoadmapStatusDot({ color }: RoadmapStatusDotProps) {
 }
 
 export default function XRoadmap() {
-  function renderList(content: React.ReactElement<unknown>, nested?: boolean) {
+  function renderList(content: React.ReactElement<unknown>) {
     return (
       <Box
         sx={{
@@ -50,43 +50,13 @@ export default function XRoadmap() {
           alignItems: 'center',
           gap: 1.5,
           gridTemplateColumns: 'max-content 1fr',
-          position: 'relative',
           fontWeight: 'semiBold',
-          ...(nested && {
-            '&::before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              width: 1.5,
-              bgcolor: 'primaryDark.600',
-              top: 24,
-              bottom: 10,
-              left: 8,
-            },
-          }),
         }}
       >
         {content}
       </Box>
     );
   }
-  const bullet = (
-    <Box
-      sx={{
-        ml: 1,
-        mr: -2,
-        display: 'flex',
-        alignItems: 'center',
-        '&::before': {
-          content: '""',
-          display: 'block',
-          height: 1.5,
-          width: 15,
-          bgcolor: 'primaryDark.600',
-        },
-      }}
-    />
-  );
   return (
     <Section
       cozy
@@ -100,7 +70,7 @@ export default function XRoadmap() {
         }`,
       }}
     >
-      <Grid container spacing={2} alignItems="center" justifyContent="space-between">
+      <Grid container spacing={2} sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
         <Grid size={{ xs: 12, md: 5 }}>
           <SectionHeadline
             overline="Roadmap"
@@ -168,58 +138,16 @@ export default function XRoadmap() {
                 variant="body2"
                 sx={{ fontWeight: 'bold', color: 'text.primary' }}
               >
-                Work in progress
+                Preview
                 <RoadmapStatusDot color="warning.main" />
               </Typography>
               {renderList(
                 <React.Fragment>
-                  <Box sx={{ lineHeight: 0 }}>
-                    <PivotTableChartRoundedIcon sx={{ fontSize: 16 }} />
-                  </Box>
-                  Data Grid
-                  {bullet}
-                  <Typography
-                    variant="body2"
-                    sx={{ color: 'text.secondary', fontWeight: 'medium' }}
-                  >
-                    Pivoting
-                  </Typography>
-                  {bullet}
-                  <Typography
-                    variant="body2"
-                    sx={{ color: 'text.secondary', fontWeight: 'medium' }}
-                  >
-                    Charts integration
-                  </Typography>
-                  {bullet}
-                  <Link href={ROUTES.dataGridFeaturesComparison} sx={{ color: 'primary.300' }}>
-                    And more!
-                  </Link>
+                  <EventNoteRoundedIcon sx={{ fontSize: 16 }} />
+                  Scheduler
+                  <ForumRoundedIcon sx={{ fontSize: 16 }} />
+                  Chat
                 </React.Fragment>,
-                true,
-              )}
-              {renderList(
-                <React.Fragment>
-                  <Box sx={{ lineHeight: 0 }}>
-                    <AccountTreeRounded sx={{ fontSize: 16 }} />
-                  </Box>
-                  Tree View
-                  {bullet}
-                  <Typography
-                    variant="body2"
-                    sx={{ color: 'text.secondary', fontWeight: 'medium' }}
-                  >
-                    Virtualization
-                  </Typography>
-                  {bullet}
-                  <Typography
-                    variant="body2"
-                    sx={{ color: 'text.secondary', fontWeight: 'medium' }}
-                  >
-                    Drag and Drop
-                  </Typography>
-                </React.Fragment>,
-                true,
               )}
             </Paper>
           </Grid>
@@ -235,16 +163,12 @@ export default function XRoadmap() {
               </Typography>
               {renderList(
                 <React.Fragment>
-                  <AutoGraphRoundedIcon sx={{ fontSize: 16 }} />
-                  Sparkline
                   <FormatSizeRoundedIcon sx={{ fontSize: 16 }} />
                   Rich Text Editor
                   <FileUploadRounded sx={{ fontSize: 16 }} />
                   Upload
-                  <PendingActionsRounded sx={{ fontSize: 16 }} />
-                  Scheduler
-                  <SpeedRounded sx={{ fontSize: 16 }} />
-                  Gauge
+                  <ViewTimelineIcon sx={{ fontSize: 16 }} />
+                  Gantt
                 </React.Fragment>,
               )}
             </Paper>

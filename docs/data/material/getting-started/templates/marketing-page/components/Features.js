@@ -6,7 +6,6 @@ import Card from '@mui/material/Card';
 import MuiChip from '@mui/material/Chip';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-
 import { styled } from '@mui/material/styles';
 
 import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
@@ -43,7 +42,7 @@ const items = [
 const Chip = styled(MuiChip)(({ theme }) => ({
   variants: [
     {
-      props: ({ selected }) => selected,
+      props: ({ selected }) => !!selected,
       style: {
         background:
           'linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))',

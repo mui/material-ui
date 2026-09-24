@@ -21,7 +21,6 @@ const useUtilityClasses = (ownerState) => {
 const TableHeadRoot = styled('thead', {
   name: 'MuiTableHead',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   display: 'table-header-group',
 });

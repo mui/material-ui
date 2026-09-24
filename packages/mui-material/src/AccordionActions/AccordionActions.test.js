@@ -1,10 +1,9 @@
-import * as React from 'react';
-import { createRenderer } from '@mui/internal-test-utils';
+import { describe, expect, it } from 'vitest';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import AccordionActions, {
   accordionActionsClasses as classes,
 } from '@mui/material/AccordionActions';
 import Button from '@mui/material/Button';
-import { expect } from 'chai';
 import describeConformance from '../../test/describeConformance';
 
 describe('<AccordionActions />', () => {
@@ -17,14 +16,10 @@ describe('<AccordionActions />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAccordionActions',
     testVariantProps: { disableSpacing: true },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
-  it('should apply margin to all children but the first one', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should apply margin to all children but the first one', function test() {
     const { container } = render(
       <AccordionActions>
         <Button data-testid="child-1">Agree</Button>

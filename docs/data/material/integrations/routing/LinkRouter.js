@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Link as RouterLink, MemoryRouter, StaticRouter } from 'react-router';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import Divider from '@mui/material/Divider';
 import MenuList from '@mui/material/MenuList';
@@ -35,7 +34,7 @@ export default function DenseMenu() {
         </MenuItem>
         <Divider />
         <MenuItem>
-          <ListItemText>Custom spacing...</ListItemText>
+          <ListItemText>Custom spacing…</ListItemText>
         </MenuItem>
       </MenuList>
     </Paper>

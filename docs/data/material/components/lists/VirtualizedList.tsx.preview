@@ -1,9 +1,11 @@
-<FixedSizeList
-  height={400}
-  width={360}
-  itemSize={46}
-  itemCount={200}
+<List
+  rowHeight={46}
+  rowCount={200}
+  style={{
+    height: 400,
+    width: 360,
+  }}
+  rowProps={{}}
   overscanCount={5}
->
-  {renderRow}
-</FixedSizeList>
+  rowComponent={renderRow}
+/>

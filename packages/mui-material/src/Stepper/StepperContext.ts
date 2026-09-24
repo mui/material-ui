@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 
 export interface StepperContextType {
@@ -6,6 +7,8 @@ export interface StepperContextType {
   connector: React.ReactNode;
   nonLinear: boolean;
   orientation: 'horizontal' | 'vertical';
+  totalSteps: number;
+  isTabList: boolean;
 }
 
 /**

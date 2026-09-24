@@ -12,7 +12,7 @@ const styles = ({ theme }: { theme: Theme }) =>
   ({
     [`& .${snackbarContentClasses.root}`]: {
       backgroundColor: theme.palette.secondary.light,
-      color: theme.palette.text.primary,
+      color: (theme.vars || theme).palette.text.primary,
       flexWrap: 'inherit',
       [theme.breakpoints.up('md')]: {
         borderTopLeftRadius: 0,
@@ -63,7 +63,7 @@ function Snackbar(props: SnackbarProps & ExtraSnackbarProps) {
     <MuiSnackbar
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       autoHideDuration={6000}
-      TransitionComponent={Transition}
+      slots={{ transition: Transition }}
       message={
         <React.Fragment>
           <InfoIcon className={classes.info} />

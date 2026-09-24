@@ -35,3 +35,14 @@ fn({
     },
   },
 });
+
+fn({
+  MuiListItem: {
+    defaultProps: {
+      ContainerComponent: Container,
+      ContainerProps: {
+        id: 'test',
+      },
+    },
+  },
+});

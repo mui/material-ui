@@ -1,0 +1,35 @@
+.MuiLinearProgress-root.MuiLinearProgress-buffer > .MuiLinearProgress-bar1 {
+  color: red;
+}
+
+.MuiLinearProgress-root.MuiLinearProgress-determinate > .MuiLinearProgress-bar1 {
+  color: red;
+}
+
+.MuiLinearProgress-root.MuiLinearProgress-indeterminate > .MuiLinearProgress-bar1 {
+  color: red;
+}
+
+.MuiLinearProgress-root.MuiLinearProgress-buffer > .MuiLinearProgress-bar2 {
+  color: red;
+}
+
+.MuiLinearProgress-root.MuiLinearProgress-indeterminate > .MuiLinearProgress-bar2 {
+  color: red;
+}
+
+.MuiLinearProgress-root.MuiLinearProgress-colorPrimary > .MuiLinearProgress-bar {
+  color: red;
+}
+
+.MuiLinearProgress-root.MuiLinearProgress-colorSecondary > .MuiLinearProgress-bar {
+  color: red;
+}
+
+.MuiLinearProgress-root.MuiLinearProgress-colorPrimary > .MuiLinearProgress-dashed {
+  color: red;
+}
+
+.MuiLinearProgress-root.MuiLinearProgress-colorSecondary > .MuiLinearProgress-dashed {
+  color: red;
+}

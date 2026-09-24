@@ -6,11 +6,13 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import useTimeout from '@mui/utils/useTimeout';
 import clamp from '@mui/utils/clamp';
+import setRef from '@mui/utils/setRef';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Zoom from '../Zoom';
 import Fab from '../Fab';
+import { getReducedMotionStyles } from '../transitions/utils';
 import capitalize from '../utils/capitalize';
 import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
@@ -117,7 +119,6 @@ const SpeedDialRoot = styled('div', {
 const SpeedDialFab = styled(Fab, {
   name: 'MuiSpeedDial',
   slot: 'Fab',
-  overridesResolver: (props, styles) => styles.fab,
 })({
   pointerEvents: 'auto',
 });
@@ -130,19 +131,22 @@ const SpeedDialActions = styled('div', {
 
     return [styles.actions, !ownerState.open && styles.actionsClosed];
   },
-})({
-  display: 'flex',
-  pointerEvents: 'auto',
-  variants: [
-    {
-      props: ({ ownerState }) => !ownerState.open,
-      style: {
-        transition: 'top 0s linear 0.2s',
-        pointerEvents: 'none',
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    pointerEvents: 'auto',
+    variants: [
+      {
+        props: ({ ownerState }) => !ownerState.open,
+        style: {
+          transition: 'top 0s linear 0.2s',
+          ...getReducedMotionStyles(theme),
+          pointerEvents: 'none',
+        },
       },
-    },
-  ],
-});
+    ],
+  })),
+);
 
 const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDial' });
@@ -171,8 +175,6 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     openIcon,
     slots = {},
     slotProps = {},
-    TransitionComponent: TransitionComponentProp,
-    TransitionProps: TransitionPropsProp,
     transitionDuration = defaultTransitionDuration,
     ...other
   } = props;
@@ -221,14 +223,13 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
    * Is called before the original ref callback for Button that was set in buttonProps
    *
    * @param dialActionIndex {number}
-   * @param origButtonRef {React.RefObject?}
+   * @param fabSlotOrigButtonRef {React.RefObject?}
    */
-  const createHandleSpeedDialActionButtonRef = (dialActionIndex, origButtonRef) => {
+  const createHandleSpeedDialActionButtonRef = (dialActionIndex, fabSlotOrigButtonRef) => {
     return (buttonRef) => {
       actions.current[dialActionIndex + 1] = buttonRef;
-      if (origButtonRef) {
-        origButtonRef(buttonRef);
-      }
+
+      setRef(fabSlotOrigButtonRef, buttonRef);
     };
   };
 
@@ -368,32 +369,75 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   });
 
   const children = allItems.map((child, index) => {
-    const {
-      FabProps: { ref: origButtonRef, ...ChildFabProps } = {},
-      tooltipPlacement: tooltipPlacementProp,
-    } = child.props;
+    const { slotProps: childSlotProps = {} } = child.props;
 
-    const tooltipPlacement =
-      tooltipPlacementProp || (getOrientation(direction) === 'vertical' ? 'left' : 'top');
+    const { fab: { ref: fabSlotOrigButtonRef, ...fabSlotProps } = {}, ...restOfSlotProps } =
+      childSlotProps;
+
+    const defaultPlacement = getOrientation(direction) === 'vertical' ? 'left' : 'top';
 
     return React.cloneElement(child, {
-      FabProps: {
-        ...ChildFabProps,
-        ref: createHandleSpeedDialActionButtonRef(index, origButtonRef),
+      slotProps: {
+        ...restOfSlotProps,
+        fab: {
+          ...fabSlotProps,
+          ref: createHandleSpeedDialActionButtonRef(index, fabSlotOrigButtonRef),
+        },
+        tooltip:
+          typeof restOfSlotProps.tooltip === 'function'
+            ? (state) => ({
+                placement: defaultPlacement,
+                ...restOfSlotProps.tooltip(state),
+              })
+            : { placement: defaultPlacement, ...restOfSlotProps.tooltip },
       },
       delay: 30 * (open ? index : allItems.length - index),
       open,
-      tooltipPlacement,
       id: `${id}-action-${index}`,
     });
   });
 
-  const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
-  const backwardCompatibleSlotProps = { transition: TransitionPropsProp, ...slotProps };
   const externalForwardedProps = {
-    slots: backwardCompatibleSlots,
-    slotProps: backwardCompatibleSlotProps,
+    slots,
+    slotProps,
   };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    elementType: SpeedDialRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+    ref,
+    className: clsx(classes.root, className),
+    additionalProps: {
+      role: 'presentation',
+    },
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onKeyDown: (event) => {
+        handlers.onKeyDown?.(event);
+        handleKeyDown(event);
+      },
+      onBlur: (event) => {
+        handlers.onBlur?.(event);
+        handleClose(event);
+      },
+      onFocus: (event) => {
+        handlers.onFocus?.(event);
+        handleOpen(event);
+      },
+      onMouseEnter: (event) => {
+        handlers.onMouseEnter?.(event);
+        handleOpen(event);
+      },
+      onMouseLeave: (event) => {
+        handlers.onMouseLeave?.(event);
+        handleClose(event);
+      },
+    }),
+  });
 
   const [TransitionSlot, transitionProps] = useSlot('transition', {
     elementType: Zoom,
@@ -402,18 +446,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   });
 
   return (
-    <SpeedDialRoot
-      className={clsx(classes.root, className)}
-      ref={ref}
-      role="presentation"
-      onKeyDown={handleKeyDown}
-      onBlur={handleClose}
-      onFocus={handleOpen}
-      onMouseEnter={handleOpen}
-      onMouseLeave={handleClose}
-      ownerState={ownerState}
-      {...other}
-    >
+    <RootSlot {...rootSlotProps}>
       <TransitionSlot in={!hidden} timeout={transitionDuration} unmountOnExit {...transitionProps}>
         <SpeedDialFab
           color="primary"
@@ -441,7 +474,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       >
         {children}
       </SpeedDialActions>
-    </SpeedDialRoot>
+    </RootSlot>
   );
 });
 
@@ -534,6 +567,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -541,6 +575,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    root: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
   /**
@@ -551,13 +586,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  /**
-   * The component used for the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default Zoom
-   * * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
-   */
-  TransitionComponent: PropTypes.elementType,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -574,12 +602,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
       exit: PropTypes.number,
     }),
   ]),
-  /**
-   * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
-   */
-  TransitionProps: PropTypes.object,
 };
 
 export default SpeedDial;
