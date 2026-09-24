@@ -6,7 +6,7 @@ You are writing short visual descriptions of UI icons for an icon search page. P
 
 Sheet images are in `{{WORK_DIR}}/sheets/`. Each `sheet_XXX.png` is a 4×4 grid of up to 16 icons, each cell labeled `<number>. <IconName>`. The exact icon names per sheet are in `{{WORK_DIR}}/manifest.json` (array of `{ id, file, names }`). Read the manifest once, then view each of your sheets with the Read tool.
 
-Look at the sheet images as they are. Do not crop, zoom, re-render or otherwise process them, and do not open icon source files. Only use Read and Write.
+Look at the sheet images as they are. Do not crop, zoom, re-render or otherwise process them, and do not open icon source files or `{{WORK_DIR}}/synonyms.json`. Only use Read and Write.
 
 Your sheets: {{SHEETS}}
 

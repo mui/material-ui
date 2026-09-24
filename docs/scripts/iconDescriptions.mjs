@@ -15,9 +15,8 @@ import synonyms from '../data/material/components/material-icons/synonyms.js';
  *
  * Usage:
  * - `node docs/scripts/iconDescriptions.mjs prepare <workDir> [--all] [--icons=A,B]`
- *   render sheets for icons missing from iconDescriptions.json (or all of them)
- * - `node docs/scripts/iconDescriptions.mjs context <workDir>`
- *   write the per-sheet context (existing synonyms + visual description) for the keyword pass
+ *   render sheets for icons missing from iconDescriptions.json (or all of them), and write their
+ *   existing synonyms to synonyms.json for the keyword pass
  * - `node docs/scripts/iconDescriptions.mjs check <workDir> visual|keywords`
  *   validate the LLM output files
  * - `node docs/scripts/iconDescriptions.mjs merge <workDir>`
@@ -172,32 +171,17 @@ async function prepare(workDir, args) {
     sheets.push({ id, file, names: sheetNames });
   }
   fs.writeFileSync(path.join(workDir, 'manifest.json'), JSON.stringify(sheets, null, 2));
+  // Kept out of the manifest: only the keyword pass may see the existing synonyms.
+  fs.writeFileSync(
+    path.join(workDir, 'synonyms.json'),
+    JSON.stringify(Object.fromEntries(names.map((name) => [name, synonyms[name] ?? ''])), null, 2),
+  );
   console.log(`${names.length} icons, ${sheets.length} sheets in ${workDir}`);
-}
-
-function context(workDir) {
-  fs.mkdirSync(path.join(workDir, 'context'), { recursive: true });
-  const fixes = readFixes(workDir);
-  for (const sheet of readManifest(workDir)) {
-    const visual = { ...readOutput(workDir, 'visual', sheet.id), ...fixes };
-    const ctx = Object.fromEntries(
-      sheet.names.map((name) => [
-        name,
-        { synonyms: synonyms[name] ?? '', visual: visual[name] ?? '' },
-      ]),
-    );
-    fs.writeFileSync(
-      path.join(workDir, 'context', `ctx_${sheet.id}.json`),
-      JSON.stringify(ctx, null, 2),
-    );
-  }
-  console.log(`wrote context for ${readManifest(workDir).length} sheets`);
 }
 
 function check(workDir, kind) {
   const prefix = kind === 'visual' ? 'visual' : 'kw';
   const problems = [];
-  const toFix = {};
   let count = 0;
   for (const sheet of readManifest(workDir)) {
     const data = readOutput(workDir, prefix, sheet.id);
@@ -217,7 +201,7 @@ function check(workDir, kind) {
         if (typeof value !== 'string' || !value.trim()) {
           problems.push(`${name}: empty description`);
         } else if (BANNED_VISUAL_WORDS.test(value)) {
-          toFix[name] = value;
+          problems.push(`${name}: style or filler word in "${value}"`);
         }
       } else if (!Array.isArray(value) || value.length === 0) {
         problems.push(`${name}: no keywords`);
@@ -226,30 +210,16 @@ function check(workDir, kind) {
   }
   console.log(`${kind}: checked ${count} icons, ${problems.length} problems`);
   problems.forEach((problem) => console.log(`  ${problem}`));
-
-  const fixFile = path.join(workDir, 'out', 'visual_to_fix.json');
-  const pending = Object.keys(toFix).filter((name) => !readFixes(workDir)[name]);
-  if (kind === 'visual' && pending.length) {
-    fs.writeFileSync(fixFile, JSON.stringify(toFix, null, 2));
-    console.log(`${pending.length} descriptions use style or filler words, see ${fixFile}`);
-  }
-  if (problems.length || (kind === 'visual' && pending.length)) {
+  if (problems.length) {
     process.exitCode = 1;
   }
 }
 
-// Rewritten descriptions from the cleanup pass, applied on merge.
-function readFixes(workDir) {
-  const file = path.join(workDir, 'out', 'visual_fixed.json');
-  return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
-}
-
 function merge(workDir) {
   const descriptions = readDescriptions();
-  const fixes = readFixes(workDir);
   let dropped = 0;
   for (const sheet of readManifest(workDir)) {
-    const visual = { ...readOutput(workDir, 'visual', sheet.id), ...fixes };
+    const visual = readOutput(workDir, 'visual', sheet.id) ?? {};
     const keywords = readOutput(workDir, 'kw', sheet.id) ?? {};
     for (const name of sheet.names) {
       if (!visual[name] || !keywords[name]) {
@@ -280,14 +250,11 @@ function merge(workDir) {
 
 const [command, workDir, ...rest] = process.argv.slice(2);
 if (!workDir) {
-  throw new Error('Usage: iconDescriptions.mjs <prepare|context|check|merge> <workDir> [...]');
+  throw new Error('Usage: iconDescriptions.mjs <prepare|check|merge> <workDir> [...]');
 }
 switch (command) {
   case 'prepare':
     await prepare(workDir, rest);
-    break;
-  case 'context':
-    context(workDir);
     break;
   case 'check':
     check(workDir, rest[0]);

@@ -24,7 +24,7 @@ Use a work directory outside the repository, for example `$TMPDIR/mui-icon-descr
 pnpm docs:mdicons:descriptions prepare <workDir> [--all | --icons=A,B]
 ```
 
-This renders the icons into 4×4 labeled sheets (`<workDir>/sheets/sheet_XXX.png`) and writes `<workDir>/manifest.json`. If it reports 0 icons, there is nothing to do: tell the user and stop.
+This renders the icons into 4×4 labeled sheets (`<workDir>/sheets/sheet_XXX.png`), writes `<workDir>/manifest.json`, and writes the icons' existing synonyms to `<workDir>/synonyms.json` for the keyword pass. If it reports 0 icons, there is nothing to do: tell the user and stop.
 
 View one sheet yourself to confirm the icons render correctly before continuing.
 
@@ -41,15 +41,13 @@ pnpm docs:mdicons:descriptions check <workDir> visual
 ```
 
 - Missing or invalid files: rerun the visual pass for those sheets only.
-- Descriptions using style or filler words ("outline", "filled", ...) are written to `<workDir>/out/visual_to_fix.json`. Subagents use these words in roughly 1 in 8 descriptions despite the instructions. Launch one subagent with [prompts/fix.md](prompts/fix.md) (`{{WORK_DIR}}` replaced) to rewrite them into `<workDir>/out/visual_fixed.json`, then run the check again. It must pass before continuing.
+- Descriptions using style or filler words ("outline", "filled", ...): subagents use these in roughly 1 in 8 descriptions despite the instructions. Edit those sentences directly in `<workDir>/out/visual_XXX.json` with a minimal change: drop the style word ("house outline with a badge" becomes "house with a badge"), or rephrase when it carries meaning ("one dashed and one solid line" becomes "one dashed and one continuous line").
+
+Run the check again. It must pass before continuing.
 
 ### 4. Keyword pass
 
-```bash
-pnpm docs:mdicons:descriptions context <workDir>
-```
-
-This writes `<workDir>/context/ctx_XXX.json` with each icon's existing synonyms and its visual description. Then launch subagents (Sonnet) in the same batches with [prompts/keywords.md](prompts/keywords.md), placeholders replaced as in step 2, and wait for all of them.
+Launch subagents (Sonnet) in the same batches with [prompts/keywords.md](prompts/keywords.md), placeholders replaced as in step 2, and wait for all of them. They read the existing synonyms and the checked visual descriptions from the work directory.
 
 ```bash
 pnpm docs:mdicons:descriptions check <workDir> keywords
@@ -61,18 +59,12 @@ Rerun the keyword pass for any sheet that fails.
 
 ```bash
 pnpm docs:mdicons:descriptions merge <workDir>
-pnpm prettier --write docs/data/material/components/material-icons/iconDescriptions.json
-```
-
-`merge` adds or replaces the processed icons, drops keywords that are filler or repeat the name or synonyms, removes icons that no longer exist in `@mui/icons-material`, and sorts the file.
-
-Then merge the new words into `synonyms.js`:
-
-```bash
 pnpm docs:mdicons:synonyms
 ```
 
-This also fetches the latest tags from Google's Material Symbols metadata, so the diff can include changes that are not from this workflow. Mention them when reporting.
+`merge` adds or replaces the processed icons in `iconDescriptions.json`, drops keywords that are filler or repeat the name or synonyms, removes icons that no longer exist in `@mui/icons-material`, and sorts the file. `docs:mdicons:synonyms` then merges the new words into `synonyms.js` and formats the changed files with Prettier.
+
+`docs:mdicons:synonyms` also fetches the latest tags from Google's Material Symbols metadata, so the diff can include changes that are not from this workflow. Mention them when reporting.
 
 Then rebuild the semantic search index, which embeds the icon texts:
 
