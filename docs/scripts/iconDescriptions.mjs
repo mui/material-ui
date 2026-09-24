@@ -21,18 +21,12 @@ import synonyms from '../data/material/components/material-icons/synonyms.js';
  * - `node docs/scripts/iconDescriptions.mjs check <workDir> visual|keywords`
  *   validate the LLM output files
  * - `node docs/scripts/iconDescriptions.mjs merge <workDir>`
- *   merge the output into iconDescriptions.json and drop icons that no longer exist, then write
- *   iconVisualDescriptions.json (only the visual descriptions) for the icon details dialog
+ *   merge the output into iconDescriptions.json and drop icons that no longer exist
  */
 
 const DESCRIPTIONS_PATH = path.join(
   import.meta.dirname,
   '../data/material/components/material-icons/iconDescriptions.json',
-);
-// Only the visual descriptions, loaded by the icon details dialog.
-const VISUAL_DESCRIPTIONS_PATH = path.join(
-  import.meta.dirname,
-  '../data/material/components/material-icons/iconVisualDescriptions.json',
 );
 // The committed CommonJS build of every icon, so no package build is needed.
 const ICONS_LIB = path.join(import.meta.dirname, '../../packages/mui-icons-material/lib');
@@ -278,10 +272,6 @@ function merge(workDir) {
       .map((name) => [name, descriptions[name]]),
   );
   fs.writeFileSync(DESCRIPTIONS_PATH, `${JSON.stringify(sorted, null, 2)}\n`);
-  const visual = Object.fromEntries(
-    Object.entries(sorted).map(([name, description]) => [name, description.visual]),
-  );
-  fs.writeFileSync(VISUAL_DESCRIPTIONS_PATH, `${JSON.stringify(visual, null, 2)}\n`);
   console.log(
     `${Object.keys(sorted).length} icons in iconDescriptions.json, ` +
       `dropped ${dropped} weak keywords, removed ${removed.length} stale icons`,
