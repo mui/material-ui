@@ -16,7 +16,15 @@ async function main() {
   const screenshotDir = path.resolve(currentDirectory, './screenshots/chrome');
 
   const browser = await chromium.launch({
-    args: ['--font-render-hinting=none'],
+    args: [
+      '--font-render-hinting=none',
+      // Keep rasterization independent of the host CPU and GPU.
+      '--disable-skia-runtime-opts',
+      '--disable-lcd-text',
+      '--disable-font-subpixel-positioning',
+      '--force-color-profile=srgb',
+      '--disable-gpu',
+    ],
     // otherwise the loaded google Roboto font isn't applied
     headless: false,
   });
