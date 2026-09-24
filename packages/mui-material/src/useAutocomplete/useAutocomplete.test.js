@@ -1109,6 +1109,26 @@ describe('useAutocomplete', () => {
       expect(onChange.args[0][3]).to.deep.equal({ option: 'custom' });
     });
 
+    it('does not add a duplicate freeSolo string when option values are mapped', async () => {
+      const onChange = spy();
+      const { user } = render(
+        <Test
+          options={freeSoloOptions}
+          multiple
+          freeSolo
+          value={['custom']}
+          getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
+          onChange={onChange}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      await user.type(textbox, 'custom{Enter}');
+
+      expect(onChange.callCount).to.equal(0);
+      expect(textbox).to.have.value('custom');
+    });
+
     it('preserves freeSolo text that collides with a mapped option value', async () => {
       const onChange = spy();
       const collidingOptions = [{ id: 'draft', label: 'Published' }];
@@ -1177,9 +1197,13 @@ describe('useAutocomplete', () => {
     it.each([
       { description: 'a single selection', multiple: false, value: 'foo' },
       { description: 'multiple selections', multiple: true, value: ['foo'] },
+      { description: 'an unresolved single selection', multiple: false, value: 'missing' },
+      { description: 'unresolved multiple selections', multiple: true, value: ['missing'] },
+      { description: 'no selection', multiple: false, value: null },
+      { description: 'a nullable raw selection', multiple: true, value: [null], mapped: false },
     ])(
-      'does not pass mapped values to getOptionLabel when preserving the highlight for $description',
-      async ({ multiple, value }) => {
+      'preserves the highlighted option when options change with $description',
+      async ({ multiple, value, mapped = true }) => {
         const initialOptions = [
           { id: 'foo', label: 'Foo' },
           { id: 'bar', label: 'Bar' },
@@ -1193,12 +1217,13 @@ describe('useAutocomplete', () => {
             multiple={multiple}
             value={value}
             getOptionLabel={getOptionLabel}
+            getOptionValue={mapped ? getOptionValue : undefined}
           />,
         );
         const input = screen.getByRole('combobox');
 
         await user.click(input);
-        await user.keyboard('{ArrowDown}');
+        await user.keyboard('{Home}{ArrowDown}');
 
         expect(input).to.have.attribute(
           'aria-activedescendant',
@@ -1211,6 +1236,7 @@ describe('useAutocomplete', () => {
             multiple={multiple}
             value={value}
             getOptionLabel={getOptionLabel}
+            getOptionValue={mapped ? getOptionValue : undefined}
           />,
         );
 

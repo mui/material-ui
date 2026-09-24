@@ -4171,6 +4171,28 @@ describe('<Autocomplete />', () => {
       expect(screen.getByText('Bar')).not.to.equal(null);
     });
 
+    it('commits the mapped value and original option on autoSelect blur', async () => {
+      const onChange = spy();
+      const { user } = render(<Test autoSelect openOnFocus onChange={onChange} />);
+      const textbox = screen.getByRole('combobox');
+
+      await user.click(textbox);
+      await user.keyboard('{ArrowDown}');
+      expect(textbox).to.have.attribute(
+        'aria-activedescendant',
+        screen.getByRole('option', { name: 'Foo' }).id,
+      );
+      await user.tab();
+
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.firstCall.args.slice(1)).to.deep.equal([
+        'foo',
+        'blur',
+        { option: options[0] },
+      ]);
+      expect(textbox).to.have.value('Foo');
+    });
+
     describe.each([null, undefined])('nullable mapped option: %s', (nullableOption) => {
       const nullableOptions = [nullableOption, 'Other'];
       const getOptionValue = (option) => (option == null ? 0 : 1);
@@ -4515,13 +4537,37 @@ describe('<Autocomplete />', () => {
         expect(screen.getByRole('combobox')).to.have.value('Custom label');
       });
 
-      it('does not restore a cleared selection when options arrive', () => {
+      it('keeps the input empty when the controlled value becomes null before options arrive', () => {
         const { rerender } = render(<Test freeSolo value={2} options={[]} />);
 
         rerender(<Test freeSolo value={null} options={[]} />);
         rerender(<Test freeSolo value={null} options={loadedOptions} />);
 
         expect(screen.getByRole('combobox')).to.have.value('');
+      });
+
+      it('keeps the input empty after clicking Clear before options arrive', async () => {
+        const onChange = spy();
+        const onInputChange = spy();
+        // Keep the controlled selection unchanged so the Clear action alone prevents label sync.
+        const props = { freeSolo: true, value: 2, onChange, onInputChange };
+        const { rerender, user } = render(<Test {...props} options={[]} />);
+        const textbox = screen.getByRole('combobox');
+
+        await user.click(textbox);
+        await user.click(screen.getByRole('button', { name: 'Clear' }));
+
+        expect(textbox).to.have.value('');
+        expect(onChange.callCount).to.equal(1);
+        expect(onChange.firstCall.args.slice(1)).to.deep.equal([null, 'clear', undefined]);
+        expect(onInputChange.lastCall.args.slice(1)).to.deep.equal(['', 'clear']);
+        onInputChange.resetHistory();
+
+        rerender(<Test {...props} options={loadedOptions} />);
+
+        expect(textbox).to.have.value('');
+        expect(onInputChange.callCount).to.equal(0);
+        expect(onChange.callCount).to.equal(1);
       });
     });
 
@@ -4640,6 +4686,15 @@ describe('<Autocomplete />', () => {
 
       expect(renderValue.lastCall.args[0]).to.equal('foo');
       expect(screen.getByText('foo')).not.to.equal(null);
+    });
+
+    it('passes the mapped array to renderValue for multiple selections', () => {
+      const renderValue = spy((value) => <span>{value.join(', ')}</span>);
+
+      render(<Test multiple value={['foo', 'bar']} renderValue={renderValue} />);
+
+      expect(renderValue.lastCall.args[0]).to.deep.equal(['foo', 'bar']);
+      expect(screen.getByText('foo, bar')).not.to.equal(null);
     });
 
     it('provides the raw option when deleting a mapped chip', async () => {
