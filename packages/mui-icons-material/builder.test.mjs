@@ -4,6 +4,7 @@ import os from 'os';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { RENAME_FILTER_MUI, RENAME_FILTER_DEFAULT, getComponentName, handler } from './builder.mjs';
+import { LEGACY_OUTLINE_ICONS } from './legacyOutlineIcons.mjs';
 
 const currentDirectory = path.dirname(fileURLToPath(new URL(import.meta.url)));
 
@@ -190,36 +191,7 @@ describe('builder', () => {
   });
 });
 
-// These 23 legacy *Outline icons were removed in v9 because they were
-// exact SVG-path duplicates of their *Outlined counterparts.
-// This test prevents them from being silently reintroduced.
-// eslint-disable-next-line import/prefer-default-export
-export const LEGACY_OUTLINE_ICONS = [
-  'AddCircleOutline',
-  'ChatBubbleOutline',
-  'CheckCircleOutline',
-  'DeleteOutline',
-  'DoneOutline',
-  'DriveFileMoveOutline',
-  'ErrorOutline',
-  'HelpOutline',
-  'InfoOutline',
-  'LabelImportantOutline',
-  'LightbulbOutline',
-  'LockOutline',
-  'MailOutline',
-  'ModeEditOutline',
-  'PauseCircleOutline',
-  'PeopleOutline',
-  'PersonOutline',
-  'PieChartOutline',
-  'PlayCircleOutline',
-  'RemoveCircleOutline',
-  'StarOutline',
-  'WorkOutline',
-  'WorkspacesOutline',
-];
-
+// This test prevents the legacy *Outline icons from being silently reintroduced.
 describe('Legacy *Outline icon removal', () => {
   let indexContent;
 

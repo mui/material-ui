@@ -49,7 +49,6 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
 import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import synonyms from './synonyms';
-import iconDescriptions from './iconDescriptions.json';
 import { loadSemanticIndex, rankIcons } from './semanticSearch';
 
 const FlexSearchIndex = flexsearch.Index;
@@ -554,10 +553,6 @@ const allIcons = Object.keys(mui)
     let searchable = name;
     if (synonyms[searchable]) {
       searchable += ` ${synonyms[searchable]}`;
-    }
-    const description = iconDescriptions[name];
-    if (description) {
-      searchable += ` ${description.keywords.join(' ')} ${description.visual}`;
     }
     searchIndex.add(importName, searchable);
 
