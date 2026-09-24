@@ -613,6 +613,8 @@ const miniSearch = new MiniSearch({
   storeFields: ['name'],
   searchOptions: {
     processTerm: MiniSearch.getDefault('processTerm'),
+    // Every word of the query must match, like the previous search.
+    combineWith: 'AND',
     prefix: true,
     fuzzy: 0.1, // Allow some typo
     boostDocument: (documentId, term, storedFields) => {
@@ -622,51 +624,40 @@ const miniSearch = new MiniSearch({
   },
 });
 
-// Copied from mui-x/packages/x-data-grid-generator/src/services/asyncWorker.ts
-// https://lucaong.github.io/minisearch/classes/MiniSearch.MiniSearch.html#addAllAsync blocks the main thread for too long.
-function asyncWorker({ work, tasks, done }) {
-  const myNonEssentialWork = (deadline) => {
-    // If there is a surplus time in the frame, or timeout
-    while (
-      (deadline.timeRemaining() > 0 || deadline.didTimeout) &&
-      tasks.current > 0
-    ) {
-      work();
-    }
+// Longest stretch of indexing work before giving the main thread back.
+const WORK_BUDGET_MS = 10;
 
-    if (tasks.current > 0) {
-      requestIdleCallback(myNonEssentialWork);
-    } else {
-      done();
-    }
-  };
+function yieldToMain() {
+  if (globalThis.scheduler?.yield) {
+    return globalThis.scheduler.yield();
+  }
+  return new Promise((resolve) => {
+    setTimeout(resolve, 0);
+  });
+}
 
-  // Don't use requestIdleCallback if the time is mock, better to run synchronously in such case.
-  if (typeof requestIdleCallback === 'function' && !requestIdleCallback.clock) {
-    requestIdleCallback(myNonEssentialWork);
-  } else {
-    while (tasks.current > 0) {
-      work();
+// Indexes the icons in short batches, so the page stays responsive.
+// MiniSearch's addAllAsync() blocks the main thread for too long.
+// https://calendar.perfplanet.com/2024/breaking-up-with-long-tasks-or-how-i-learned-to-group-loops-and-wield-the-yield/
+async function indexIcons() {
+  let deadline = performance.now() + WORK_BUDGET_MS;
+  for (const icon of allIcons) {
+    if (performance.now() > deadline) {
+      // eslint-disable-next-line no-await-in-loop -- yielding between batches is the point
+      await yieldToMain();
+      deadline = performance.now() + WORK_BUDGET_MS;
     }
-    done();
+    miniSearch.add(icon);
   }
 }
 
-// Indexes the icons in idle time so it doesn't block hydration.
-const indexation = new Promise((resolve) => {
-  const tasks = { current: allIcons.length };
+let indexation = null;
 
-  function work() {
-    miniSearch.add(allIcons[tasks.current - 1]);
-    tasks.current -= 1;
-  }
-
-  asyncWorker({
-    tasks,
-    work,
-    done: () => resolve(),
-  });
-});
+// Started once the page is interactive, so indexing doesn't compete with hydration.
+function getIndexation() {
+  indexation ??= indexIcons();
+  return indexation;
+}
 
 /**
  * Returns the last defined value that has been passed in [value]
@@ -705,13 +696,17 @@ export default function SearchIcons() {
   }, [setSelectedIcon]);
 
   React.useEffect(() => {
+    getIndexation();
+  }, []);
+
+  React.useEffect(() => {
     if (query === '') {
       setIcons(allThemeIcons);
       return undefined;
     }
 
     let active = true;
-    indexation.then(() => {
+    getIndexation().then(() => {
       // Ignore results for a query that has changed in the meantime.
       if (!active) {
         return;
