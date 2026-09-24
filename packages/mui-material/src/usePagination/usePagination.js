@@ -73,8 +73,8 @@ export default function usePagination(props = {}) {
     ...(hidePrevButton ? [] : ['previous']),
     ...(boundaryCount === 0 &&
     siblingCount === 0 &&
-    page >= 1 &&
-    page <= count &&
+    page > 2 &&
+    page < count - 1 &&
     (siblingsStart > boundaryCount + 2 || siblingsEnd < count - boundaryCount - 1)
       ? [page]
       : [
