@@ -6,27 +6,14 @@ on:
       - 'v*.x'
       - 'master'
     types: ['closed', 'labeled']
-  workflow_dispatch:
-    inputs:
-      target_branch:
-        description: 'The target branch (e.g. `v7.x`)'
-        required: true
-        type: string
-      pr_number:
-        description: 'The PR number to cherry-pick from'
-        required: true
-        type: string
 
 permissions: {}
 
 jobs:
   create_pr:
     name: Create cherry-pick PR
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged && (github.event.action == 'closed' || github.event.label.name == 'needs cherry-pick')) }}
+    if: ${{ github.event.pull_request.merged && (github.event.action == 'closed' || github.event.label.name == 'needs cherry-pick') }}
     uses: mui/mui-public/.github/workflows/prs_create-cherry-pick-pr.yml@c6471a4fe98cb2e52efe7397ff8362569f2ddada # master
     permissions:
       contents: write
       pull-requests: write
-    with:
-      target_branch: ${{ inputs.target_branch }}
-      pr_number: ${{ inputs.pr_number }}
