@@ -220,7 +220,7 @@ export default function AllComponentsDemo() {
         </Box>
       </Box>
       <Divider />
-      {slots.length > 1 ? (
+      {slots.length > 0 ? (
         <React.Fragment>
           <Box
             sx={{
@@ -234,25 +234,27 @@ export default function AllComponentsDemo() {
           >
             <FormLabel sx={{ fontSize: 13 }}>Slot annotation</FormLabel>
             <FormGroup row>
-              <FormControlLabel
-                sx={{ mr: 1.5, '& .MuiFormControlLabel-label': { fontSize: 13 } }}
-                control={
-                  <Checkbox
-                    size="small"
-                    checked={allShown}
-                    indeterminate={
-                      !allShown && !slots.every((slot) => off?.includes(slot))
-                    }
-                    onChange={() =>
-                      setHidden((previous) => ({
-                        ...previous,
-                        [component]: allShown ? [...slots] : [],
-                      }))
-                    }
-                  />
-                }
-                label="All slots"
-              />
+              {slots.length > 1 ? (
+                <FormControlLabel
+                  sx={{ mr: 1.5, '& .MuiFormControlLabel-label': { fontSize: 13 } }}
+                  control={
+                    <Checkbox
+                      size="small"
+                      checked={allShown}
+                      indeterminate={
+                        !allShown && !slots.every((slot) => off?.includes(slot))
+                      }
+                      onChange={() =>
+                        setHidden((previous) => ({
+                          ...previous,
+                          [component]: allShown ? [...slots] : [],
+                        }))
+                      }
+                    />
+                  }
+                  label="All slots"
+                />
+              ) : null}
               {slots.map((slot) => (
                 <FormControlLabel
                   key={slot}
