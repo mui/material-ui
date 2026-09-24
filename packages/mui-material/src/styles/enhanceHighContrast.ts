@@ -85,6 +85,18 @@ const defaultHcTokens: Required<HighContrastTokens> = {
 
 const HCM = '@media (forced-colors: active)';
 
+// A `highlighted` override comes after the root rules in the cascade, so it
+// could replace the system colors while `forcedColorAdjust: none` stays active.
+function menu2HighlightedOverrides(hcTokens: Required<HighContrastTokens>) {
+  return {
+    [HCM]: {
+      forcedColorAdjust: 'none',
+      color: hcTokens.activeText,
+      backgroundColor: hcTokens.activeBackground,
+    },
+  };
+}
+
 // Menu2 uses the same focus and hover cues as the classic items.
 function menu2ItemOverrides(
   classes: { disabled: string; selected: string },
@@ -457,6 +469,10 @@ export default function enhanceHighContrast<
           c?.MuiMenu2Item?.styleOverrides?.root,
           menu2ItemOverrides(menu2ItemClasses, hcTokens),
         ],
+        highlighted: [
+          c?.MuiMenu2Item?.styleOverrides?.highlighted,
+          menu2HighlightedOverrides(hcTokens),
+        ],
       },
     },
     MuiMenu2LinkItem: {
@@ -466,6 +482,10 @@ export default function enhanceHighContrast<
         root: [
           c?.MuiMenu2LinkItem?.styleOverrides?.root,
           menu2ItemOverrides(menu2LinkItemClasses, hcTokens),
+        ],
+        highlighted: [
+          c?.MuiMenu2LinkItem?.styleOverrides?.highlighted,
+          menu2HighlightedOverrides(hcTokens),
         ],
       },
     },
@@ -477,6 +497,10 @@ export default function enhanceHighContrast<
           c?.MuiMenu2CheckboxItem?.styleOverrides?.root,
           menu2ItemOverrides(menu2CheckboxItemClasses, hcTokens),
         ],
+        highlighted: [
+          c?.MuiMenu2CheckboxItem?.styleOverrides?.highlighted,
+          menu2HighlightedOverrides(hcTokens),
+        ],
       },
     },
     MuiMenu2RadioItem: {
@@ -486,6 +510,10 @@ export default function enhanceHighContrast<
         root: [
           c?.MuiMenu2RadioItem?.styleOverrides?.root,
           menu2ItemOverrides(menu2RadioItemClasses, hcTokens),
+        ],
+        highlighted: [
+          c?.MuiMenu2RadioItem?.styleOverrides?.highlighted,
+          menu2HighlightedOverrides(hcTokens),
         ],
       },
     },
@@ -522,6 +550,10 @@ export default function enhanceHighContrast<
               },
             ],
           },
+        ],
+        highlighted: [
+          c?.MuiMenu2SubmenuTrigger?.styleOverrides?.highlighted,
+          menu2HighlightedOverrides(hcTokens),
         ],
       },
     },

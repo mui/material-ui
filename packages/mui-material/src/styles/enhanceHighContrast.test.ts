@@ -708,6 +708,33 @@ describe('enhanceHighContrast', () => {
       },
     );
 
+    // A `highlighted` override comes after the root rules in the cascade.
+    test.each([
+      'MuiMenu2Item',
+      'MuiMenu2LinkItem',
+      'MuiMenu2CheckboxItem',
+      'MuiMenu2RadioItem',
+      'MuiMenu2SubmenuTrigger',
+    ])('%s keeps the active system colors after a highlighted override', (component) => {
+      const custom = { color: '#111', backgroundColor: '#222' };
+      const theme = enhanceHighContrast(
+        createTheme({ components: { [component]: { styleOverrides: { highlighted: custom } } } }),
+      );
+      const highlightedOverrides = (theme.components as any)[component].styleOverrides
+        .highlighted as Array<StyleOverride>;
+
+      expect(highlightedOverrides).to.deep.equal([
+        custom,
+        {
+          [HCM]: {
+            forcedColorAdjust: 'none',
+            color: 'HighlightText',
+            backgroundColor: 'Highlight',
+          },
+        },
+      ]);
+    });
+
     test('MuiMenu2SubmenuTrigger owns its open state', () => {
       const theme = enhanceHighContrast(createTheme());
       const rootOverrides = theme.components?.MuiMenu2SubmenuTrigger?.styleOverrides

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { StyledEngineProvider } from '@mui/styled-engine';
-import { createTheme, ThemeOptions, ThemeProvider } from '../styles';
+import { createTheme, enhanceHighContrast, ThemeOptions, ThemeProvider } from '../styles';
 import menuItemClasses from '../MenuItem/menuItemClasses';
 import Menu2CheckboxItem from '../Unstable_Menu2CheckboxItem';
 import Menu2Item from '../Unstable_Menu2Item';
@@ -77,6 +77,57 @@ const highlightedCases = [
 
 describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
   const { render } = createRenderer();
+
+  // The rules of one class name are listed in cascade order.
+  function getRulesFor(className: string) {
+    const rules: Array<{ selector: string; media: string; declarations: string }> = [];
+    const walk = (list: CSSRuleList, media: string) => {
+      Array.from(list).forEach((rule) => {
+        if (rule instanceof CSSMediaRule) {
+          walk(rule.cssRules, rule.conditionText);
+        } else if (rule instanceof CSSStyleRule && rule.selectorText.includes(className)) {
+          rules.push({ selector: rule.selectorText, media, declarations: rule.style.cssText });
+        }
+      });
+    };
+    Array.from(document.styleSheets).forEach((sheet) => walk(sheet.cssRules, ''));
+    return rules;
+  }
+
+  it('keeps the forced-colors active rule after a highlighted override', async () => {
+    const theme = enhanceHighContrast(
+      createTheme({
+        components: {
+          MuiMenu2Item: {
+            styleOverrides: { highlighted: { color: '#111', backgroundColor: '#222' } },
+          },
+        },
+      }),
+    );
+    render(
+      <ThemeProvider theme={theme}>
+        <Menu2 defaultOpen modal={false} anchor={document.body}>
+          <Menu2Item>Target</Menu2Item>
+        </Menu2>
+      </ThemeProvider>,
+    );
+    const item = await screen.findByRole('menuitem', { name: 'Target' });
+    // The generated class name carries the styles; the utility class does not.
+    const rootClassName = Array.from(item.classList).find(
+      (name) => name !== menu2ItemClasses.root && name.endsWith('MuiMenu2Item-root'),
+    )!;
+    const highlightedRules = getRulesFor(rootClassName).filter((rule) =>
+      rule.selector.endsWith(`.${menu2ItemClasses.highlighted}`),
+    );
+
+    // The last highlighted rule restores the system colors under forced colors.
+    expect(highlightedRules.length).to.be.greaterThan(1);
+    expect(highlightedRules[highlightedRules.length - 1]).to.deep.equal({
+      selector: `.${rootClassName}.${menu2ItemClasses.highlighted}`,
+      media: '(forced-colors: active)',
+      declarations: 'forced-color-adjust: none; color: highlighttext; background-color: highlight;',
+    });
+  });
 
   [false, true].forEach((modularCssLayers) => {
     describe(`modularCssLayers: ${modularCssLayers}`, () => {
