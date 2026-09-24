@@ -201,7 +201,9 @@ BottomNavigationAction.propTypes /* remove-proptypes */ = {
    */
   onClick: PropTypes.func,
   /**
-   * If `true`, the `BottomNavigationAction` will appear selected.
+   * If `true`, the component appears selected.
+   *
+   * `BottomNavigation` sets this on each child from its own `value`.
    */
   selected: PropTypes.bool,
   /**

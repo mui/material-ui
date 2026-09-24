@@ -59,6 +59,12 @@ export interface BottomNavigationActionOwnProps extends BottomNavigationActionSl
    */
   label?: React.ReactNode;
   /**
+   * If `true`, the component appears selected.
+   *
+   * `BottomNavigation` sets this on each child from its own `value`.
+   */
+  selected?: boolean | undefined;
+  /**
    * If `true`, the `BottomNavigationAction` will show its label.
    * By default, only the selected `BottomNavigationAction`
    * inside `BottomNavigation` will show its label.
@@ -66,10 +72,6 @@ export interface BottomNavigationActionOwnProps extends BottomNavigationActionSl
    * The prop defaults to the value (`false`) inherited from the parent BottomNavigation component.
    */
   showLabel?: boolean | undefined;
-  /**
-   * If `true`, the `BottomNavigationAction` will appear selected.
-   */
-  selected?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
