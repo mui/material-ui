@@ -564,72 +564,59 @@ const Input = styled(InputBase)({
 });
 
 const allIconsMap = {};
-const allIcons = Object.keys(mui)
-  .sort()
-  .map((importName) => {
-    let theme = 'Filled';
-    let name = importName;
-
-    for (const currentTheme of ['Outlined', 'Rounded', 'TwoTone', 'Sharp']) {
-      if (importName.endsWith(currentTheme)) {
-        theme = currentTheme === 'TwoTone' ? 'Two tone' : currentTheme;
-        name = importName.slice(0, -currentTheme.length);
-        break;
-      }
-    }
-    const icon = {
-      importName,
-      name,
-      theme,
-      Component: mui[importName],
-    };
-    allIconsMap[importName] = icon;
-    return icon;
-  });
-
 // Theme -> icon name -> icon, to map search results to the selected theme.
 const allIconsByTheme = {};
-for (const icon of allIcons) {
-  allIconsByTheme[icon.theme] ??= {};
-  allIconsByTheme[icon.theme][icon.name] = icon;
+// The five themes of an icon share the same name and synonyms, so each icon is indexed once.
+const searchDocuments = [];
+for (const importName of Object.keys(mui).sort()) {
+  let theme = 'Filled';
+  let name = importName;
+
+  for (const currentTheme of ['Outlined', 'Rounded', 'TwoTone', 'Sharp']) {
+    if (importName.endsWith(currentTheme)) {
+      theme = currentTheme === 'TwoTone' ? 'Two tone' : currentTheme;
+      name = importName.slice(0, -currentTheme.length);
+      break;
+    }
+  }
+  const icon = {
+    importName,
+    name,
+    theme,
+    Component: mui[importName],
+  };
+  allIconsMap[importName] = icon;
+  allIconsByTheme[theme] ??= {};
+  allIconsByTheme[theme][name] = icon;
+  if (theme === 'Filled') {
+    searchDocuments.push({
+      id: name,
+      searchable: synonyms[name] ? `${name} ${synonyms[name]}` : name,
+    });
+  }
 }
 
-// The five themes of an icon share the same name and synonyms, so each icon is indexed once.
-const searchDocuments = [...new Set(allIcons.map((icon) => icon.name))].map(
-  (name) => ({
-    id: name,
-    name,
-    searchable: synonyms[name] ? `${name} ${synonyms[name]}` : name,
-  }),
-);
-
 function addSuffixes(term, minLength) {
-  if (term == null) {
-    return undefined;
-  }
+  const lowerCaseTerm = term.toLowerCase();
+  const tokens = [lowerCaseTerm];
 
-  const tokens = [term.toLowerCase()];
-
-  for (let i = 0; i <= term.length - minLength; i += 1) {
-    tokens.push(term.slice(i).toLowerCase());
+  for (let i = 0; i <= lowerCaseTerm.length - minLength; i += 1) {
+    tokens.push(lowerCaseTerm.slice(i));
   }
   return tokens;
 }
 
 const miniSearch = new MiniSearch({
-  fields: ['searchable'], // fields to index for full-text search
+  fields: ['searchable'],
   processTerm: (term) => addSuffixes(term, 4),
-  storeFields: ['name'],
   searchOptions: {
     processTerm: MiniSearch.getDefault('processTerm'),
     // Every word of the query must match, like the previous search.
     combineWith: 'AND',
     prefix: true,
     fuzzy: 0.1, // Allow some typo
-    boostDocument: (documentId, term, storedFields) => {
-      // Show exact match first
-      return term.toLowerCase() === storedFields.name.toLowerCase() ? 2 : 1;
-    },
+    // Show exact match first
+    boostDocument: (documentId, term) => (term === documentId.toLowerCase() ? 2 : 1),
   },
 });
 
@@ -686,12 +673,8 @@ export default function SearchIcons() {
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
   const [query, setQuery] = useQueryParameterState('query', '');
 
-  const allThemeIcons = React.useMemo(
-    () => allIcons.filter((icon) => theme === icon.theme),
-    [theme],
-  );
-
-  const [icons, setIcons] = React.useState(allThemeIcons);
+  // Names of the icons matching the query, null while there is no query.
+  const [matchedNames, setMatchedNames] = React.useState(null);
 
   const handleOpenClick = React.useCallback(
     (event) => {
@@ -710,25 +693,29 @@ export default function SearchIcons() {
 
   React.useEffect(() => {
     if (query === '') {
-      setIcons(allThemeIcons);
+      setMatchedNames(null);
       return undefined;
     }
 
     let active = true;
     getIndexation().then(() => {
       // Ignore results for a query that has changed in the meantime.
-      if (!active) {
-        return;
+      if (active) {
+        setMatchedNames(miniSearch.search(query).map((result) => result.id));
       }
-      const results = miniSearch.search(query);
-      setIcons(
-        results.map((result) => allIconsByTheme[theme][result.id]).filter(Boolean),
-      );
     });
     return () => {
       active = false;
     };
-  }, [query, theme, allThemeIcons]);
+  }, [query]);
+
+  const icons = React.useMemo(() => {
+    const themeIcons = allIconsByTheme[theme];
+    if (query === '' || matchedNames === null) {
+      return Object.values(themeIcons);
+    }
+    return matchedNames.map((name) => themeIcons[name]).filter(Boolean);
+  }, [query, theme, matchedNames]);
 
   const deferredIcons = React.useDeferredValue(icons);
 
@@ -766,11 +753,7 @@ export default function SearchIcons() {
             inputProps={{ 'aria-label': 'search icons' }}
             endAdornment={
               isPending ? (
-                <Fade
-                  in={isPending}
-                  style={{ transitionDelay: '100ms' }}
-                  unmountOnExit
-                >
+                <Fade in style={{ transitionDelay: '100ms' }}>
                   <InputAdornment position="end">
                     {/* disableShrink reduces CPU load while the main thread is busy */}
                     <CircularProgress disableShrink size={16} sx={{ mr: 2 }} />
