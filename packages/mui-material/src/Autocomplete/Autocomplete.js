@@ -707,12 +707,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       } else {
         startAdornment = value.map((valueItem, index) => {
           const { key, ...customItemProps } = getCustomizedItemProps({ index });
-          const option = getOptionFromValue(valueItem);
+          const resolved = getOptionFromValue(valueItem);
 
           return (
             <Chip
               key={key}
-              label={getOptionValue !== undefined && option == null ? '' : getOptionLabel(option)}
+              label={resolved === null ? '' : getOptionLabel(resolved.option)}
               size={size}
               {...customItemProps}
               {...externalForwardedProps.slotProps.chip}

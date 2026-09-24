@@ -3,20 +3,20 @@ import * as React from 'react';
 import validateOptionValues, { validateOptionValue } from './validateOptionValues';
 
 // The runtime helper handles all modes; public props enforce the narrower per-mode value types.
-type OptionValue<Option, Value> = Option | Value | string;
+type OptionValue<Value, MappedValue> = Value | MappedValue | string;
 
-interface UseOptionValueParameters<Option, Value> {
-  options: readonly Option[];
-  getOptionValue?: ((option: Option) => Value) | undefined;
+interface UseOptionValueParameters<Value, MappedValue> {
+  options: readonly Value[];
+  getOptionValue?: ((option: Value) => MappedValue) | undefined;
   isOptionEqualToValue?:
-    ((option: Option, value: OptionValue<Option, Value>) => boolean) | undefined;
+    ((option: Value, value: OptionValue<Value, MappedValue>) => boolean) | undefined;
   freeSolo: boolean;
   multiple: boolean;
-  value: OptionValue<Option, Value> | readonly OptionValue<Option, Value>[] | null;
+  value: OptionValue<Value, MappedValue> | readonly OptionValue<Value, MappedValue>[] | null;
 }
 
-const defaultGetOptionValue = <Option>(option: Option) => option;
-const defaultGetOptionFromValue = <Value>(value: Value) => value;
+const defaultGetOptionValue = <Value>(option: Value) => option;
+const defaultGetOptionFromValue = <Value>(option: Value) => ({ option });
 
 /**
  * Maps and matches Autocomplete values using cached option lookups and custom equality when supplied.
@@ -24,16 +24,16 @@ const defaultGetOptionFromValue = <Value>(value: Value) => value;
  *
  * Call `rememberSelectedOption` before resetting the input or publishing an option selection.
  * Retained options survive popup closure and are discarded once no longer selected.
- * Raw values and mapped free-solo strings pass through; unresolved mapped values return `null`.
+ * Matches wrap the original option or free-solo string; unresolved mapped values return `null`.
  */
-export default function useOptionValue<Option, Value = never>({
+export default function useOptionValue<Value, MappedValue = never>({
   options,
   getOptionValue: getOptionValueProp,
   isOptionEqualToValue: isOptionEqualToValueProp,
   freeSolo,
   multiple,
   value,
-}: UseOptionValueParameters<Option, Value>) {
+}: UseOptionValueParameters<Value, MappedValue>) {
   const getOptionValue = getOptionValueProp ?? defaultGetOptionValue;
   const hasOptionValueMapping = getOptionValueProp !== undefined;
   const duplicatedErrorMessages = React.useMemo(() => new Set<string>(), []);
@@ -53,7 +53,7 @@ export default function useOptionValue<Option, Value = never>({
 
   // Determines if an option is equal to a value, considering custom equality and free-solo scenarios.
   const isOptionEqualToValue = React.useCallback(
-    (option: Option, value: OptionValue<Option, Value>) => {
+    (option: Value, value: OptionValue<Value, MappedValue>) => {
       // With value mapping, strings are reserved for free-solo values and cannot identify options.
       if (getOptionValueProp !== undefined && freeSolo && typeof value === 'string') {
         return false;
@@ -75,35 +75,33 @@ export default function useOptionValue<Option, Value = never>({
       return null;
     }
 
-    return new Map<OptionValue<Option, Value>, Option>(
+    return new Map<OptionValue<Value, MappedValue>, Value>(
       options.map((option) => [getOptionValueProp(option), option]),
     );
   }, [getOptionValueProp, isOptionEqualToValueProp, options]);
 
-  // Resolves a value to its corresponding option, considering free-solo and custom equality scenarios.
+  // Wrap matches so null/undefined options remain distinct from lookup misses.
   const resolveFromOptions = React.useMemo<
-    (value: OptionValue<Option, Value>) => OptionValue<Option, Value> | null
+    (value: OptionValue<Value, MappedValue>) => { option: OptionValue<Value, MappedValue> } | null
   >(() => {
     if (!hasOptionValueMapping) {
-      // Without value mapping, selected values are already options, so return them unchanged.
+      // Without value mapping, selected values are already options.
       return defaultGetOptionFromValue;
     }
 
     if (isOptionEqualToValueProp) {
-      const resolvedOptions = new Map<OptionValue<Option, Value>, Option | null>();
+      const resolvedOptions = new Map<OptionValue<Value, MappedValue>, { option: Value } | null>();
       // Custom equality defines matching behavior, so resolve the first matching option.
       return (value) => {
         if (freeSolo && typeof value === 'string') {
           // Strings always represent free-solo values when mapping is enabled.
-          return value;
+          return { option: value };
         }
 
         // Cache misses as well as matches so unchanged selections do not rescan the options.
         if (!resolvedOptions.has(value)) {
-          resolvedOptions.set(
-            value,
-            options.find((option) => isOptionEqualToValueProp(option, value)) ?? null,
-          );
+          const index = options.findIndex((option) => isOptionEqualToValueProp(option, value));
+          resolvedOptions.set(value, index === -1 ? null : { option: options[index] });
         }
 
         return resolvedOptions.get(value)!;
@@ -114,41 +112,40 @@ export default function useOptionValue<Option, Value = never>({
     return (value) => {
       if (freeSolo && typeof value === 'string') {
         // Check before the map because a mapped string and free-solo text are indistinguishable.
-        return value;
+        return { option: value };
       }
 
-      return optionValueMap!.get(value) ?? null;
+      return optionValueMap!.has(value) ? { option: optionValueMap!.get(value)! } : null;
     };
   }, [freeSolo, hasOptionValueMapping, isOptionEqualToValueProp, optionValueMap, options]);
 
   // Maintains a ref to selected options generated by filterOptions to ensure they persist across renders.
-  const selectedGeneratedOptionsRef = React.useRef<Option[]>([]);
+  const selectedGeneratedOptionsRef = React.useRef<Value[]>([]);
   const getOptionFromValue = React.useCallback(
-    (value: OptionValue<Option, Value>) => {
-      const option = resolveFromOptions(value);
-      if (!hasOptionValueMapping || option !== null) {
-        return option;
+    (value: OptionValue<Value, MappedValue>) => {
+      const resolved = resolveFromOptions(value);
+      if (resolved !== null) {
+        return resolved;
       }
 
       // A selected option created by filterOptions must survive popup closure and later searches.
       // Keep this fallback outside the options cache so cached misses cannot hide new selections.
-      return (
-        selectedGeneratedOptionsRef.current.find((selectedOption) =>
-          isOptionEqualToValue(selectedOption, value),
-        ) ?? null
+      const index = selectedGeneratedOptionsRef.current.findIndex((selectedOption) =>
+        isOptionEqualToValue(selectedOption, value),
       );
+      return index === -1 ? null : { option: selectedGeneratedOptionsRef.current[index] };
     },
-    [resolveFromOptions, hasOptionValueMapping, isOptionEqualToValue],
+    [resolveFromOptions, isOptionEqualToValue],
   );
 
-  const selectedValues = React.useMemo<readonly OptionValue<Option, Value>[]>(() => {
+  const selectedValues = React.useMemo<readonly OptionValue<Value, MappedValue>[]>(() => {
     // `multiple` distinguishes a list of selections from an option that is itself an array.
     if (multiple) {
-      return value as readonly OptionValue<Option, Value>[];
+      return value as readonly OptionValue<Value, MappedValue>[];
     }
 
     if (value != null) {
-      return [value as OptionValue<Option, Value>];
+      return [value as OptionValue<Value, MappedValue>];
     }
 
     return [];
@@ -160,14 +157,14 @@ export default function useOptionValue<Option, Value = never>({
       return null;
     }
 
-    return new Set<OptionValue<Option, Value>>(
+    return new Set<OptionValue<Value, MappedValue>>(
       hasOptionValueMapping && freeSolo
         ? selectedValues.filter((selectedValue) => typeof selectedValue !== 'string')
         : selectedValues,
     );
   }, [freeSolo, hasOptionValueMapping, isOptionEqualToValueProp, selectedValues]);
   const isOptionSelected = React.useCallback(
-    (option: Option) => {
+    (option: Value) => {
       if (selectedValuesSet) {
         return selectedValuesSet.has(getOptionValue(option));
       }
@@ -191,7 +188,7 @@ export default function useOptionValue<Option, Value = never>({
 
   // Remembers a selected option that was generated by filterOptions but not present in the current options.
   const rememberSelectedOption = React.useCallback(
-    (option: Option, optionValue: OptionValue<Option, Value>) => {
+    (option: Value, optionValue: OptionValue<Value, MappedValue>) => {
       if (process.env.NODE_ENV !== 'production') {
         if (hasOptionValueMapping) {
           // filterOptions can synthesize options that were not covered by options-prop validation.

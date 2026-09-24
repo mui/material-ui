@@ -77,11 +77,11 @@ function getInputValue(value, multiple, getOptionLabel, renderValue, getOptionFr
     return '';
   }
   // `getOptionLabel` remains option-facing, so resolve a mapped value before calling it.
-  const option = getOptionFromValue(value);
-  if (option == null) {
+  const resolved = getOptionFromValue(value);
+  if (resolved === null) {
     return '';
   }
-  const optionLabel = getOptionLabel(option);
+  const optionLabel = getOptionLabel(resolved.option);
   return typeof optionLabel === 'string' ? optionLabel : '';
 }
 
@@ -281,8 +281,9 @@ function useAutocomplete(props) {
   const [inputPristine, setInputPristine] = React.useState(true);
 
   const selectedOption = !multiple && value != null ? getOptionFromValue(value) : null;
+  const hasSelectedOption = selectedOption !== null;
   const inputValueIsSelectedValue =
-    selectedOption != null && inputValue === getOptionLabel(selectedOption);
+    selectedOption !== null && inputValue === getOptionLabel(selectedOption.option);
 
   const popupOpen = open && !readOnly;
   const filteredOptions = popupOpen
@@ -306,15 +307,15 @@ function useAutocomplete(props) {
     filteredOptions,
     value,
     inputValue,
-    selectedOption,
+    hasSelectedOption,
   });
 
   React.useEffect(() => {
     const valueChange = value !== previousProps.value;
     const shouldSyncResolvedOption =
       getOptionValueProp !== undefined &&
-      previousProps.selectedOption === null &&
-      selectedOption != null &&
+      previousProps.hasSelectedOption === false &&
+      hasSelectedOption &&
       inputValue === '' &&
       !inputValueEditedRef.current;
 
@@ -338,10 +339,10 @@ function useAutocomplete(props) {
     resetInputValue,
     focused,
     previousProps.value,
-    previousProps.selectedOption,
+    previousProps.hasSelectedOption,
     freeSolo,
     getOptionValueProp,
-    selectedOption,
+    hasSelectedOption,
     inputValue,
   ]);
 
@@ -593,14 +594,14 @@ function useAutocomplete(props) {
         return value1 === value2;
       }
 
-      const option1 = getOptionFromValue(value1);
-      const option2 = getOptionFromValue(value2);
+      const resolved1 = getOptionFromValue(value1);
+      const resolved2 = getOptionFromValue(value2);
 
-      if (option1 == null || option2 == null) {
+      if (resolved1 === null || resolved2 === null) {
         return value1 === value2;
       }
 
-      return getOptionLabel(option1) === getOptionLabel(option2);
+      return getOptionLabel(resolved1.option) === getOptionLabel(resolved2.option);
     };
 
     if (
@@ -826,13 +827,8 @@ function useAutocomplete(props) {
 
   // State stores mapped values; change details expose the raw option when it can be resolved.
   const getRemovalDetails = (valueToRemove) => {
-    if (getOptionValueProp === undefined) {
-      return { option: valueToRemove };
-    }
-
-    const option = getOptionFromValue(valueToRemove);
-
-    return option == null ? undefined : { option };
+    const resolved = getOptionFromValue(valueToRemove);
+    return resolved === null ? undefined : { option: resolved.option };
   };
 
   const selectNewValue = (event, option, reasonProp = 'selectOption', origin = 'options') => {

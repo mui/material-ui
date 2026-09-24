@@ -4171,6 +4171,146 @@ describe('<Autocomplete />', () => {
       expect(screen.getByText('Bar')).not.to.equal(null);
     });
 
+    describe.each([null, undefined])('nullable mapped option: %s', (nullableOption) => {
+      const nullableOptions = [nullableOption, 'Other'];
+      const getOptionValue = (option) => (option == null ? 0 : 1);
+      const getOptionLabel = (option) => (option == null ? 'Any' : option);
+
+      describe.each([false, true])('custom equality: %s', (customEquality) => {
+        const isOptionEqualToValue = customEquality
+          ? (option, value) => getOptionValue(option) === value
+          : undefined;
+
+        function NullableOptionTest(props) {
+          return (
+            <Test
+              options={nullableOptions}
+              getOptionValue={getOptionValue}
+              getOptionLabel={getOptionLabel}
+              isOptionEqualToValue={isOptionEqualToValue}
+              {...props}
+            />
+          );
+        }
+
+        it('uses the label for initial and newly selected single values', async () => {
+          const handleChange = spy();
+          const { user } = render(<NullableOptionTest defaultValue={0} onChange={handleChange} />);
+          const textbox = screen.getByRole('combobox');
+
+          expect(textbox).to.have.value('Any');
+          await user.click(screen.getByLabelText('Open'));
+          expect(screen.getByRole('option', { name: 'Any' })).to.have.attribute(
+            'aria-selected',
+            'true',
+          );
+          await user.click(screen.getByRole('option', { name: 'Other' }));
+          expect(textbox).to.have.value('Other');
+
+          await user.click(screen.getByLabelText('Open'));
+          await user.click(screen.getByRole('option', { name: 'Any' }));
+          expect(textbox).to.have.value('Any');
+          expect(handleChange.lastCall.args.slice(1)).to.deep.equal([
+            0,
+            'selectOption',
+            { option: nullableOption },
+          ]);
+
+          await user.click(screen.getByLabelText('Clear'));
+          expect(textbox).to.have.value('');
+        });
+
+        it.each(['delete icon', 'Backspace'])(
+          'labels the chip and includes the nullable option when removing with %s',
+          async (method) => {
+            const handleChange = spy();
+            const { user } = render(
+              <NullableOptionTest multiple defaultValue={[0]} onChange={handleChange} />,
+            );
+
+            expect(screen.getByRole('button', { name: 'Any' })).to.have.text('Any');
+            if (method === 'delete icon') {
+              await user.click(screen.getByTestId('CancelIcon'));
+            } else {
+              await user.click(screen.getByRole('combobox'));
+              await user.keyboard('{Backspace}');
+            }
+
+            expect(handleChange.callCount).to.equal(1);
+            expect(handleChange.firstCall.args.slice(1)).to.deep.equal([
+              [],
+              'removeOption',
+              { option: nullableOption },
+            ]);
+            expect(screen.queryByRole('button', { name: 'Any' })).to.equal(null);
+          },
+        );
+
+        it.each([
+          { multiple: false, freeSolo: false, focused: false },
+          { multiple: true, freeSolo: false, focused: false },
+          { multiple: false, freeSolo: true, focused: false },
+          { multiple: false, freeSolo: true, focused: true },
+        ])(
+          'updates labels when options arrive with multiple=$multiple, freeSolo=$freeSolo, focused=$focused',
+          async ({ multiple, freeSolo, focused }) => {
+            const props = { multiple, freeSolo, value: multiple ? [0] : 0 };
+            const { rerender, user } = render(<NullableOptionTest {...props} options={[]} />);
+            const selection = multiple
+              ? screen.getByRole('button', { name: '' })
+              : screen.getByRole('combobox');
+
+            if (multiple) {
+              expect(selection).to.have.text('');
+            } else {
+              expect(selection).to.have.value('');
+            }
+            if (focused) {
+              await user.click(screen.getByRole('combobox'));
+            }
+
+            rerender(<NullableOptionTest {...props} />);
+
+            if (multiple) {
+              expect(selection).to.have.text('Any');
+            } else {
+              expect(selection).to.have.value('Any');
+            }
+          },
+        );
+
+        it('retains nullable options created by filterOptions for labels and removal', async () => {
+          const handleChange = spy();
+          const { user } = render(
+            <NullableOptionTest
+              multiple
+              options={['Other']}
+              filterOptions={(optionsToFilter, { inputValue }) =>
+                inputValue === 'Any' ? [nullableOption] : optionsToFilter
+              }
+              onChange={handleChange}
+            />,
+          );
+          const textbox = screen.getByRole('combobox');
+
+          await user.type(textbox, 'Any');
+          await user.click(screen.getByRole('option', { name: 'Any' }));
+          expect(screen.getByRole('button', { name: 'Any' })).to.have.text('Any');
+
+          await user.type(textbox, 'Other');
+          await user.click(screen.getByRole('option', { name: 'Other' }));
+          expect(screen.getByRole('button', { name: 'Any' })).to.have.text('Any');
+          await user.click(screen.getAllByTestId('CancelIcon')[0]);
+
+          expect(handleChange.lastCall.args.slice(1)).to.deep.equal([
+            [1],
+            'removeOption',
+            { option: nullableOption },
+          ]);
+        });
+      });
+    });
+
     describe('options created by filterOptions', () => {
       const filterOptions = (optionsToFilter, { inputValue }) =>
         inputValue ? [{ id: inputValue.toLowerCase(), label: inputValue }] : optionsToFilter;

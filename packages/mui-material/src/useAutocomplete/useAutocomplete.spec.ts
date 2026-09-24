@@ -253,7 +253,21 @@ function Component() {
   });
   expectType<string | null, typeof mappedAutocomplete.value>(mappedAutocomplete.value);
   const mappedOption = mappedAutocomplete.getOptionFromValue(persons[0].id);
-  expectType<Person | null, typeof mappedOption>(mappedOption);
+  expectType<{ option: Person } | null, typeof mappedOption>(mappedOption);
+  // A successful lookup can still contain a nullable option.
+  const nullableAutocomplete = useAutocomplete({
+    options: [...persons, null, undefined],
+    getOptionValue: (option) => {
+      if (option === null) {
+        return 'any';
+      }
+      return option === undefined ? 'unset' : option.id;
+    },
+  });
+  const nullableOption = nullableAutocomplete.getOptionFromValue('any');
+  if (nullableOption !== null) {
+    expectType<Person | null | undefined, typeof nullableOption.option>(nullableOption.option);
+  }
   expectType<Person[], typeof mappedAutocomplete.groupedOptions>(mappedAutocomplete.groupedOptions);
   // Rendering still takes an option, even though selection and resolution use its ID.
   mappedAutocomplete.getOptionProps({ option: persons[0], index: 0 });
@@ -308,7 +322,7 @@ function Component() {
     },
   });
   const freeSoloOption = freeSoloMappedAutocomplete.getOptionFromValue('custom');
-  expectType<Person | string | null, typeof freeSoloOption>(freeSoloOption);
+  expectType<{ option: Person | string } | null, typeof freeSoloOption>(freeSoloOption);
   // @ts-expect-error The resolver accepts mapped IDs or free-solo text, not options.
   freeSoloMappedAutocomplete.getOptionFromValue(persons[0]);
 
