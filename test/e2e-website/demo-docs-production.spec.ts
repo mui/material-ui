@@ -541,6 +541,12 @@ export default function BasicButtons() {
       const stackBlitz = demo.getByRole('button', { name: 'Edit in StackBlitz' });
       const more = demo.getByRole('button', { name: 'See more' });
 
+      // The skeleton toolbar is inert until the live one mounts; a focus
+      // attempt before that lands nowhere, so wait for `aria-busy` to clear.
+      await expect(demo.getByRole('toolbar', { name: 'demo source' })).not.toHaveAttribute(
+        'aria-busy',
+        'true',
+      );
       await expand.focus();
       await page.keyboard.press('ArrowRight');
       await expect(stackBlitz).toBeFocused();
