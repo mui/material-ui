@@ -4,10 +4,11 @@ import fs from 'node:fs';
 import fetch from 'cross-fetch';
 import * as mui from '@mui/icons-material';
 import synonyms from 'docs/data/material/components/material-icons/synonyms';
+import iconDescriptions from 'docs/data/material/components/material-icons/iconDescriptions.json';
 // eslint-disable-next-line import/no-relative-packages
 import myDestRewriter from '../../packages/mui-icons-material/renameFilters/material-design-icons';
 // eslint-disable-next-line import/no-relative-packages, import/extensions
-import { LEGACY_OUTLINE_ICONS } from '../../packages/mui-icons-material/builder.test.mjs';
+import { LEGACY_OUTLINE_ICONS } from '../../packages/mui-icons-material/legacyOutlineIcons.mjs';
 
 function not(a, b) {
   return a.filter((value) => !b.includes(value));
@@ -54,7 +55,10 @@ async function run() {
       return acc;
     }, {});
 
-    const iconList = union(Object.keys(materialIcons), Object.keys(synonyms))
+    const iconList = union(
+      union(Object.keys(materialIcons), Object.keys(synonyms)),
+      Object.keys(iconDescriptions),
+    )
       .filter((icon) => {
         // The icon is not in @mui/material so no point in having synonyms.
         // Also exclude legacy *Outline duplicates removed in v9.
@@ -71,7 +75,19 @@ async function run() {
         ? materialIcons[icon].reduce((tags, tag) => tags.concat(tag.split(' ')), [])
         : [];
 
-      let mergedStrings = union(synonymsIconStrings, materialIconStrings);
+      // Generated keywords and visual description, see the icon-descriptions skill
+      const description = iconDescriptions[icon];
+      const descriptionStrings = description
+        ? `${description.keywords.join(' ')} ${description.visual}`
+            .toLowerCase()
+            .split(/[^a-z0-9-]+/)
+            .filter(Boolean)
+        : [];
+
+      let mergedStrings = union(
+        union(synonymsIconStrings, materialIconStrings),
+        descriptionStrings,
+      );
       mergedStrings = mergedStrings
         // remove strings that are substrings of others
         .filter((tag) => !mergedStrings.some((one) => one.includes(tag) && one !== tag))
