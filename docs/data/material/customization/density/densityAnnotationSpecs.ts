@@ -1027,6 +1027,7 @@ export const DENSITY_ANNOTATIONS: Record<
         // step rather than the size-dependent remainder.
         token: multiline ? 'xxSmall' : padBlock,
         label: 'InputBase',
+        route: { gutter: 'right' },
       },
       { on: '.MuiInput-root', aspect: 'touch-target', label: 'Standard' },
       // Symmetric: both bands come off the same remainder, so one token names them.
@@ -1036,6 +1037,7 @@ export const DENSITY_ANNOTATIONS: Record<
         axis: 'block',
         token: padBlock,
         label: 'Standard',
+        route: { gutter: 'right' },
       },
       { on: '.MuiFilledInput-root', aspect: 'touch-target', label: 'Filled' },
       // Asymmetric — a label's worth on top, a step underneath — so two captions
@@ -1045,6 +1047,7 @@ export const DENSITY_ANNOTATIONS: Record<
         aspect: 'padding',
         axis: 'block',
         label: 'Filled',
+        route: { gutter: 'right' },
       },
       { on: '.MuiOutlinedInput-root', aspect: 'touch-target', label: 'Outlined' },
       {
@@ -1053,6 +1056,7 @@ export const DENSITY_ANNOTATIONS: Record<
         axis: 'block',
         token: padBlock,
         label: 'Outlined',
+        route: { gutter: 'right' },
       },
       {
         on: '.MuiOutlinedInput-root',
