@@ -41,7 +41,7 @@ export type AutocompleteMappedValue<FreeSolo = false> = true extends FreeSolo
  * Prevents this occurrence of T from contributing inference, including before TypeScript 5.4.
  * @internal
  */
-export type NoInfer<T> = [T][T extends unknown ? 0 : never];
+type NoInfer<T> = [T][T extends unknown ? 0 : never];
 
 /**
  * undefined marks an absent mapper; otherwise selections use MappedValue.
