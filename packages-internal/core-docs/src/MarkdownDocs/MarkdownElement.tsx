@@ -49,9 +49,10 @@ const Root = styled('div')(
     '& :not(pre) > code': {
       padding: '2px 4px',
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
-      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
+      // Translucent, so the pill is a shade of whatever background it sits on.
+      backgroundColor: alpha(lightTheme.palette.grey[900], 0.035),
       border: '1px solid',
-      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+      borderColor: alpha(lightTheme.palette.grey[900], 0.125),
       borderRadius: 6,
       fontSize: lightTheme.typography.pxToRem(13),
       direction: 'ltr /*! @noflip */',
@@ -331,8 +332,6 @@ const Root = styled('div')(
       },
       '& code': {
         height: 'fit-content',
-        backgroundColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
-        borderColor: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
       },
       '& p': {
         marginBottom: '8px',
@@ -672,8 +671,8 @@ const Root = styled('div')(
       '& :not(pre) > code': {
         // inline code block
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
-        borderColor: alpha(darkTheme.palette.primaryDark[600], 0.6),
-        backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,
+        borderColor: alpha(darkTheme.palette.grey[50], 0.1),
+        backgroundColor: alpha(darkTheme.palette.grey[50], 0.055),
       },
       '& strong': {
         color: `var(--muidocs-palette-grey-200, ${darkTheme.palette.grey[200]})`,
@@ -734,10 +733,6 @@ const Root = styled('div')(
       },
       '& .MuiCallout-root': {
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
-        '& code': {
-          backgroundColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
-          borderColor: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
-        },
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
           backgroundColor: alpha(darkTheme.palette.error[700], 0.15),
