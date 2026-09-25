@@ -1,4 +1,4 @@
-import { type CSSObject, type CSSInterpolation, type Interpolation } from '@mui/system';
+import type { CSSObject, CSSInterpolation, Interpolation } from '@mui/system';
 import { PopperClassKey } from '../Popper';
 import { ComponentsPropsList } from './props';
 import { AccordionActionsClassKey } from '../AccordionActions';

@@ -1,6 +1,6 @@
-import { type Interpolation } from '@mui/system';
+import type { Interpolation } from '@mui/system';
 import { extendSxProp } from '@mui/system/styleFunctionSx';
-import { type Theme } from '../styles/createTheme';
+import type { Theme } from '../styles/createTheme';
 import useTheme from '../styles/useTheme';
 import GlobalStyles, { type GlobalStylesProps } from '../GlobalStyles';
 
