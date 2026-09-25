@@ -16,7 +16,15 @@ async function main() {
   const screenshotDir = path.resolve(currentDirectory, './screenshots/chrome');
 
   const browser = await chromium.launch({
-    args: ['--font-render-hinting=none'],
+    args: [
+      '--font-render-hinting=none',
+      // Skia otherwise picks SIMD code paths per host CPU, which shifts glyph edges.
+      '--disable-skia-runtime-opts',
+      // Text renders with grayscale anti-aliasing at whole-pixel positions so it
+      // does not depend on the host. Changing these flags requires a full Argos rebaseline.
+      '--disable-lcd-text',
+      '--disable-font-subpixel-positioning',
+    ],
     // otherwise the loaded google Roboto font isn't applied
     headless: false,
   });
