@@ -6,6 +6,7 @@ import Alert from '@mui/material/Alert';
 import AppBar from '@mui/material/AppBar';
 import Autocomplete from '@mui/material/Autocomplete';
 import Avatar from '@mui/material/Avatar';
+import Badge from '@mui/material/Badge';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Box from '@mui/material/Box';
@@ -156,6 +157,25 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
   },
   Avatar: {
     render: () => <Avatar>M</Avatar>,
+  },
+  Badge: {
+    controls: [
+      {
+        prop: 'variant',
+        type: 'select',
+        options: ['standard', 'dot'],
+        initial: 'standard',
+      },
+    ],
+    render: (values) => (
+      <Badge
+        badgeContent={4}
+        variant={values.variant as 'standard' | 'dot'}
+        color="primary"
+      >
+        <Avatar>M</Avatar>
+      </Badge>
+    ),
   },
   BottomNavigation: {
     render: () => (

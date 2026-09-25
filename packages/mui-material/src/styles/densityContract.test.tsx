@@ -10,6 +10,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import Chip from '@mui/material/Chip';
 import Fab from '@mui/material/Fab';
 import Avatar from '@mui/material/Avatar';
+import Badge from '@mui/material/Badge';
 import PaginationItem from '@mui/material/PaginationItem';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
@@ -251,6 +252,17 @@ const CONTROLS: Record<string, Spec> = {
     render: () => <Avatar>A</Avatar>,
     selector: '.MuiAvatar-root',
     height: (density) => density.touchTarget,
+  },
+  Badge: {
+    sizes: ['standard', 'dot'],
+    render: (variant) => (
+      <Badge badgeContent={4} variant={variant} color="primary">
+        <Avatar>A</Avatar>
+      </Badge>
+    ),
+    selector: '.MuiBadge-badge',
+    height: (density, variant) =>
+      variant === 'dot' ? density.step.small : density.touchTarget - density.step.xSmall,
   },
   Fab: {
     // Circular only — the extended variant is width-led, not a box.

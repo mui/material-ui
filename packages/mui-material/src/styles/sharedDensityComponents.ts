@@ -35,9 +35,6 @@ import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
  * Every block is a component token -> density-step assignment. Density
  * variation comes purely from the resolved scale values (`applyDensity`),
  * never from remapping.
- *
- * Note:
- * - Badge is not included, it's a tiny size component and doesn't need density adjustments.
  */
 export default function applySharedDensity<T extends EnhanceableTheme>(
   enhanced: T & { components: NonNullable<EnhanceableTheme['components']> },
@@ -55,6 +52,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // Sized components step off the interactive box rather than the ladder, so a
   // `touchTarget` override carries all three sizes instead of only the middle
   // one. Both land on today's px at the default 32.
+  const tinyBox = `calc(${touchTarget} - ${spacing('xSmall')})`; // 24px
   const smallBox = `calc(${touchTarget} - ${spacing('xxSmall')})`; // 28px
   const largeBox = `calc(${touchTarget} + ${spacing('small')})`; // 44px
   const hugeBox = `calc(${touchTarget} + ${spacing('medium')})`; // 48px
@@ -1304,6 +1302,31 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
     ],
   });
+  addRootOverride(
+    enhanced.components,
+    'MuiBadge',
+    {
+      borderRadius: 99,
+      variants: [
+        {
+          props: { variant: 'standard' },
+          style: {
+            height: tinyBox,
+            minWidth: tinyBox,
+            paddingInline: spacing('xSmall'),
+          },
+        },
+        {
+          props: { variant: 'dot' },
+          style: {
+            height: spacing('small'),
+            minWidth: spacing('small'),
+          },
+        },
+      ],
+    },
+    'badge',
+  );
   // Child-margin clears sit at slot level: slot rules render after master's
   // size re-asserts and win by order at equal specificity.
   addRootOverride(enhanced.components, 'MuiChip', {

@@ -197,6 +197,30 @@ export const DENSITY_ANNOTATIONS = {
       label: 'Avatar',
     },
   ],
+  Badge: (values) => {
+    const dot = values.variant === 'dot';
+    return [
+      {
+        on: '.MuiBadge-badge',
+        aspect: 'touch-target',
+        token: dot ? 'small' : 'touchTarget - xSmall',
+        label: 'Badge',
+        outlined: true,
+      },
+      // The dot carries no text, so master zeroes its padding.
+      ...(dot
+        ? []
+        : [
+            {
+              on: '.MuiBadge-badge',
+              aspect: 'padding',
+              axis: 'inline',
+              token: 'xSmall',
+              label: 'Badge',
+            },
+          ]),
+    ];
+  },
   BottomNavigation: () => [
     // Not `root`: the bar paints nothing of its own, so the dashed outline is
     // the only thing showing which box the 48px belongs to.
