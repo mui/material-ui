@@ -383,6 +383,27 @@ describe('<FocusTrap />', () => {
     expect(initialFocus).toHaveFocus();
   });
 
+  it('does not restore focus to a node that cannot be focused', () => {
+    function Test(props: GenericProps) {
+      return (
+        <FocusTrap open disableAutoFocus {...props}>
+          <div data-testid="focus-root" tabIndex={-1}>
+            <input />
+          </div>
+        </FocusTrap>
+      );
+    }
+    const { setProps } = render(<Test />);
+
+    // The node to restore is taken from `relatedTarget` which is typed `EventTarget`, so it
+    // doesn't have to be focusable. The document is reported when the focused element is
+    // removed in some environments, and `Document` has no `focus()`.
+    fireEvent.focusIn(screen.getByRole('textbox'), { relatedTarget: document });
+
+    expect(() => setProps({ open: false })).to.not.throw();
+    expect(initialFocus).not.toHaveFocus();
+  });
+
   it('undesired: enabling restore-focus logic when closing has no effect', () => {
     function Test(props: GenericProps) {
       return (
