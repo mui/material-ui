@@ -43,6 +43,43 @@ export interface CssThemeVariables {}
  */
 export type FocusVisible = React.CSSProperties;
 
+/**
+ * To opt in to the optimized theme types (skips the deep `theme.components` type
+ * instantiation that slows down type checking in large projects), use module augmentation
+ *
+ * @example
+ * declare module '@mui/material/styles' {
+ *   interface TypeFeatures {
+ *     optimizedTheme: true;
+ *   }
+ * }
+ */
+export interface TypeFeatures {}
+
+/**
+ * Replaces `Components` in the theme when `TypeFeatures['optimizedTheme']` is enabled.
+ * Use `satisfies` at the callsite to bring back type safety for the components you customize
+ *
+ * @example
+ * createTheme({
+ *   components: {
+ *     MuiButton: {},
+ *   } satisfies Components<Theme>,
+ * });
+ */
+export interface ThemeComponents {
+  /**
+   * Whether to merge the className and style coming from the component props with the default props.
+   * @default false
+   */
+  mergeClassNameAndStyle?: boolean | undefined;
+  [componentName: string]: any;
+}
+
+export type ResolvedComponents<ThemeInput> = TypeFeatures extends { optimizedTheme: true }
+  ? ThemeComponents
+  : Components<ThemeInput>;
+
 type CssVarsOptions = CssThemeVariables extends {
   enabled: true;
 }
@@ -51,7 +88,7 @@ type CssVarsOptions = CssThemeVariables extends {
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
   mixins?: MixinsOptions | undefined;
-  components?: Components<Omit<Theme, 'components'>> | undefined;
+  components?: ResolvedComponents<Omit<Theme, 'components'>> | undefined;
   motion?: MotionOptions | undefined;
   palette?: PaletteOptions | undefined;
   shadows?: Shadows | undefined;
@@ -106,7 +143,7 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
  */
 export interface Theme extends BaseTheme, CssVarsProperties {
   cssVariables?: false | undefined;
-  components?: Components<BaseTheme> | undefined;
+  components?: ResolvedComponents<BaseTheme> | undefined;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
   alpha: (color: string, value: number | string) => string;
