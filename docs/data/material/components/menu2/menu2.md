@@ -1,7 +1,6 @@
 ---
 productId: material-ui
 title: React Menu v2 component
-components: Menu2, Menu2CheckboxItem, Menu2CheckboxItemIndicator, Menu2Group, Menu2GroupLabel, Menu2Item, Menu2LinkItem, Menu2RadioGroup, Menu2RadioItem, Menu2RadioItemIndicator, Menu2Separator, Menu2Submenu
 githubLabel: 'scope: menu'
 materialDesign: https://m2.material.io/components/menus
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
@@ -15,9 +14,9 @@ githubSource: packages/mui-material/src/Unstable_Menu2
 {{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 :::warning
-Menu v2 is published as an unstable component, so it's imported from the `Unstable_Menu2` subpaths and its API can still change in a minor release.
+Menu v2 is an unstable component. Import it from the `Unstable_Menu2` subpaths. Its API can change in a minor release.
 
-The [current Menu](/material-ui/react-menu/) is unaffected—it keeps working exactly as before. Menu v2 becomes the canonical `Menu` in the next major version.
+The [current Menu](/material-ui/react-menu/) doesn't change, and both components can be used in the same app.
 :::
 
 ## Introduction
@@ -26,51 +25,49 @@ Menu v2 is a set of components that compose into a menu:
 
 - **Menu 2**: the trigger and the menu surface. One component configures both.
 - **Item**: an option for users to select.
-- **Submenu**: a nested menu, opened from an item.
-- **Checkbox Item** and **Radio Item**: items that carry a checked state.
-- **Group**, **Group Label**, and **Separator**: structure within a menu.
 - **Link Item**: an item that navigates.
+- **Checkbox Item**, **Radio Group**, and **Radio Item**: items with a checked state.
+- **Submenu** and **Submenu Trigger**: a nested menu and the item that opens it.
+- **Group**, **Group Label**, and **Separator**: the structure in a menu.
 
 ```jsx
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 ```
 
-Each component lives in its own subpath and is exported as a default export, so you can drop the `Unstable_` prefix from the local name and your JSX already matches the future stable API.
+Each component is the default export of its own subpath.
 
 ## Why a new menu component
 
-Submenus have been [the most requested Menu feature since 2018](https://github.com/mui/material-ui/issues/11723), but they aren't possible in the current Menu: every open menu is a full `Modal`, and nesting modals breaks the backdrop, the focus traps, the arrow keys, and the accessibility tree all at once.
+Submenus are [the most requested Menu feature since 2018](https://github.com/mui/material-ui/issues/11723), but the current Menu can't support them. Each open menu is a full `Modal`, and nested modals break the backdrop, the focus traps, the arrow keys, and the accessibility tree.
 
-Menu v2 is built on [Base UI](https://base-ui.com/react/components/menu), which already solves that behavior. Material UI supplies the visuals, the theming, and the API.
+Menu v2 uses [Base UI](https://base-ui.com/react/components/menu) for this behavior. Material UI supplies the visuals, the theming, and the API.
 
-- **Nothing extra to install.** Base UI is a dependency of `@mui/material`, the way `@popperjs/core` is. You never import from it, and apps that don't use Menu v2 don't pay for it.
-- **No change to existing code.** The current Menu is untouched and isn't deprecated. Both can coexist, so you can adopt Menu v2 one menu at a time.
-- **The same theming you already use.** `sx`, `classes`, `slots`/`slotProps`, and theme `defaultProps`/`styleOverrides`/`variants`, under `MuiMenu2*` keys.
-
-Menu v2 becomes the canonical `Menu` in the next major version, at which point today's Menu is renamed `MenuLegacy` and a codemod handles the rename.
+- **Nothing extra to install.** Base UI is a dependency of `@mui/material`, the same as `@popperjs/core`. You don't import from it, and apps that don't import Menu v2 don't bundle it.
+- **No change to existing code.** The current Menu doesn't change and isn't deprecated. You can adopt Menu v2 one menu at a time.
+- **The same theming.** `sx`, `classes`, `slots`, `slotProps`, and the theme `defaultProps`, `styleOverrides`, and `variants` work with the `MuiMenu2*` keys.
 
 For the full reasoning and a step-by-step guide, see [Upgrade to Menu v2](/material-ui/migration/upgrade-to-menu-v2/).
 
 ## Major changes
 
-Beyond submenus, Menu v2 adds checkbox and radio items, groups with labels, link items, per-level typeahead, and collision-aware positioning that flips and follows the anchor. The trigger is part of the component, so there's no anchor state to manage and no ARIA attributes to wire up.
+Menu v2 adds submenus, checkbox and radio items, groups with labels, link items, typeahead on each level, and positioning that flips on collision and follows the anchor. The trigger is part of the component, so you don't manage anchor state or ARIA attributes.
 
-Three changes are worth knowing before you start:
+Three changes are important before you start:
 
-- **Opening with a pointer highlights nothing**, so pressing Enter can't fire an item the user didn't choose. Opening with the keyboard highlights the first item. `variant="selectedMenu"` is gone—use radio items to show a current value.
-- **`onClose` becomes `onOpenChange`**, and positioning moves from `anchorOrigin`/`transformOrigin` to `side`/`align`. Transitions are CSS instead of a transition component.
-- **Disabled items stay focusable** and sibling content stays in the accessibility tree, both per the [WAI-ARIA menu pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
+- **Opening with a pointer highlights no item**, so Enter can't activate an item that the user didn't choose. Opening with the keyboard highlights the first item. `variant="selectedMenu"` is removed. Use radio items to show a current value.
+- **`onClose` becomes `onOpenChange`**, and `side` and `align` replace `anchorOrigin` and `transformOrigin`.
+- **Disabled items stay focusable**, and the content next to the menu stays in the accessibility tree, as the [WAI-ARIA menu pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/) specifies.
 
-[Upgrade to Menu v2](/material-ui/migration/upgrade-to-menu-v2/) covers every prop mapping, the removed props, and the full list of behavior changes.
+[Upgrade to Menu v2](/material-ui/migration/upgrade-to-menu-v2/) covers every prop mapping, the removed props, and all the behavior changes.
 
 ## Basic menu
 
-Pass the element that opens the menu to the `trigger` prop, and the items as children. There's no anchor state to manage and no ARIA attributes to wire up.
+Pass the element that opens the menu to the `trigger` prop, and the items as children.
 
 {{"demo": "BasicMenu2.js"}}
 
-`trigger` takes an element, and the trigger behavior is merged into it—so the element keeps whatever component you passed. There's no default trigger, which means the menu never renders a button you didn't ask for:
+Menu v2 merges the trigger behavior into the element, so the element keeps the component that you passed. There's no default trigger:
 
 ```jsx
 <Menu2 trigger={<Button>Dashboard</Button>}>
@@ -80,124 +77,146 @@ Pass the element that opens the menu to the `trigger` prop, and the items as chi
 <Menu2 trigger={<IconButton aria-label="More actions"><MoreVertIcon /></IconButton>}>
 ```
 
-Two rules follow from the trigger being your element:
+Two rules apply to the trigger element:
 
-- **A wrapper must forward props and ref** to the element it renders, the way [Tooltip](/material-ui/react-tooltip/) does. The trigger behavior is merged through props, so a component that drops them opens nothing.
-- **Declare `nativeButton={false}`** when the element isn't a native `<button>`, so the keyboard behavior stays correct.
+- **A wrapper must forward props and ref** to the element that it renders, the same as [Tooltip](/material-ui/react-tooltip/). Menu v2 merges the trigger behavior through props, so a component that drops them doesn't open the menu. In development, Menu v2 logs an error when the trigger doesn't receive the ref.
+- **Set `slotProps.trigger.nativeButton` to `false`** when the element doesn't render a native `<button>`, so the keyboard behavior stays correct.
 
-Selecting an item closes the menu. Set `closeOnClick={false}` on an item to keep it open.
+Selecting an item closes the menu. Set `closeOnClick={false}` on an item to keep the menu open.
+
+## Account menu
+
+The trigger can be a composed element, such as an `IconButton` in a `Tooltip`. `align="end"` aligns the menu with the end of the trigger.
+
+{{"demo": "AccountMenu2.js"}}
 
 ## Submenu
 
-Nest a `Menu2Submenu` anywhere in the item list. Its `trigger` is the item that opens it, and its children are the submenu's own items—the same shape as the root menu, one level down.
-
-Submenus open on hover after a short delay as well as on click, flip when they run out of room, and can nest to any depth. Escape closes the innermost submenu and returns focus to its trigger.
+Nest a `Menu2Submenu` in the item list, and pass a `Menu2SubmenuTrigger` to its `trigger` prop. The children of the submenu are its items, the same shape as the root menu one level down.
 
 {{"demo": "SubmenuMenu2.js"}}
 
-A submenu trigger is a menu item, so pass a `Menu2Item` rather than a button:
+A submenu opens on hover after a short delay, on click, and with the ArrowRight key. In right-to-left text, ArrowLeft opens it. A submenu flips when it runs out of room, and submenus nest to any depth. Escape closes the innermost submenu and returns focus to its trigger.
 
-```jsx
-<Menu2Submenu trigger={<Menu2Item>Share</Menu2Item>}>
-```
-
-The submenu keeps that item from closing the menu, so you don't need to set `closeOnClick` yourself.
-
-Hover behavior is configured through `slotProps.trigger`:
+`Menu2SubmenuTrigger` renders the item row and an arrow indicator that follows the text direction. Set the hover behavior on the trigger:
 
 ```jsx
 <Menu2Submenu
-  trigger={<Menu2Item>Share</Menu2Item>}
-  slotProps={{ trigger: { openOnHover: true, delay: 100, closeDelay: 0 } }}
+  trigger={
+    <Menu2SubmenuTrigger delay={300} closeDelay={100}>
+      Share
+    </Menu2SubmenuTrigger>
+  }
 >
 ```
 
-By default Escape closes only the submenu. Pass `closeParentOnEsc` to close the whole tree.
+Set `openOnHover={false}` to open the submenu only on click and with the keyboard. To replace the arrow, pass your own component to `slots.indicator`.
 
-:::warning
-While a submenu is open, Base UI keeps focus-guard elements next to its trigger so the tab order stays correct. CSS that relies on sibling selectors (`+`, `~`, `:last-child`) near a submenu trigger won't match what you expect—style each part directly instead. The guards carry a `data-base-ui-focus-guard` attribute.
-:::
+By default, Escape closes only the submenu. Pass `closeParentOnEsc` to `Menu2Submenu` to close the whole menu.
 
 ## Icon menu
 
-Compose the same list primitives you use with the current Menu—`ListItemIcon`, `ListItemText`, and `Typography` for a shortcut hint.
+Compose the same list primitives that you use with the current Menu: `ListItemIcon`, `ListItemText`, and `Typography` for a shortcut hint.
 
 {{"demo": "IconMenu2.js"}}
 
 ## Dense menu
 
-Use the `dense` prop on items to reduce padding and text size.
+Set `dense` on the `list` slot to make all the items compact. An item can also set its own `dense` prop.
 
 {{"demo": "DenseMenu2.js"}}
 
-Items also accept `disableGutters`, `divider`, `selected`, and `disabled`, the same as the current `MenuItem`. They ripple on click like the rest of Material UI; pass `disableRipple` to turn that off.
+Items also accept `disableGutters`, `divider`, `selected`, and `disabled`, the same as the current `MenuItem`. Items show a ripple on click, the same as other Material UI buttons. Set `disableRipple` to remove it.
 
 ## Checkbox and radio items
 
-`Menu2CheckboxItem` renders `role="menuitemcheckbox"` with `aria-checked` and its own indicator—there's no separate indicator component to add.
+`Menu2CheckboxItem` renders `role="menuitemcheckbox"` with `aria-checked` and its own indicator. You don't add a separate indicator component.
 
-Toggling an item doesn't close the menu, so several options can be changed in one visit.
+A click on a checkbox item doesn't close the menu, so users can change several options in one visit.
 
 {{"demo": "CheckboxMenu2.js"}}
 
-For a single choice within a set, wrap `Menu2RadioItem` components in a `Menu2RadioGroup`:
+For a single choice in a set, put `Menu2RadioItem` components in a `Menu2RadioGroup`:
 
 {{"demo": "RadioMenu2.js"}}
 
-Both components report changes through `onChange(event, value, eventDetails)`, and both accept an uncontrolled counterpart (`defaultChecked` and `defaultValue`). To replace the tick or the dot, pass your own component to `slots.indicator`.
+Both components report changes with `onChange(event, value, eventDetails)`. For an uncontrolled item or group, use `defaultChecked` or `defaultValue`. To replace the indicator, pass your own component to `slots.indicator`.
 
 :::info
-Use radio items to show a current value. The `selected` prop still exists on `Menu2Item`, but it's visual only.
+Use radio items to show a current value. The `selected` prop still exists on `Menu2Item`, but it only changes the appearance.
 :::
+
+## Composed menu
+
+The parts compose freely. This menu combines checkbox items with shortcut hints, a submenu with a radio group, icon items, and a disabled item. The item indicators and `ListItemIcon` have the same width, so the labels align.
+
+{{"demo": "ComposedMenu2.js"}}
 
 ## Grouped menu
 
-`Menu2Group` and `Menu2GroupLabel` label a set of related items, and connect the label to the group with `aria-labelledby`. Use `Menu2Separator` between groups.
+`Menu2Group` and `Menu2GroupLabel` label a set of related items. The group refers to its label with `aria-labelledby`. Use `Menu2Separator` between groups.
 
 {{"demo": "GroupedMenu2.js"}}
 
 ## Link items
 
-`Menu2LinkItem` renders a real anchor with `role="menuitem"`, so links behave like links—middle click, right click, and keyboard activation all work.
+`Menu2LinkItem` renders a real anchor with `role="menuitem"`, so links behave like links. Middle click, right click, and keyboard activation all work.
 
 {{"demo": "LinkItemsMenu2.js"}}
 
+A link item doesn't close the menu on click by default. Set `closeOnClick` to close the menu, for example with client-side routing.
+
 ## Positioned menu
 
-`side` and `align` place the menu relative to its anchor, and `sideOffset` and `alignOffset` nudge it. The defaults are `side="bottom"` and `align="start"`.
+`side` and `align` place the menu relative to its anchor, and `sideOffset` and `alignOffset` move it. The defaults are `side="bottom"` and `align="start"`.
 
-Use the logical `inline-start` and `inline-end` sides to get the correct direction in RTL automatically.
+Use the logical `inline-start` and `inline-end` sides to get the correct direction in right-to-left text.
 
 {{"demo": "PositionedMenu2.js"}}
 
-The menu flips when it would collide with the edge of its container, and follows its anchor on scroll and resize. Pass `disableAnchorTracking` to opt out.
+The menu flips when it collides with the edge of its container, and it follows its anchor on scroll and resize. Set `disableAnchorTracking` to stop tracking layout shifts of the anchor.
+
+## Open on hover
+
+Set `openOnHover` to open the menu when the pointer rests on the trigger. `delay` and `closeDelay` set the timing in milliseconds.
+
+{{"demo": "HoverMenu2.js"}}
+
+A menu that opens on hover isn't modal, so the rest of the page stays interactive.
 
 ## Controlled menu
 
-Omit `trigger` and drive the menu with `open`, `onOpenChange`, and `anchor` to keep the pattern you use today with `anchorEl`.
+Pass `open` and `onOpenChange` to control the open state. The trigger still sets the ARIA attributes and receives focus when the menu closes.
 
 {{"demo": "ControlledMenu2.js"}}
 
-`onOpenChange` receives the reason the menu is closing—`escape-key`, `outside-press`, `focus-out`, `trigger-press`, or `item-press`—along with the native event, and lets you cancel the change:
+`onOpenChange` receives the reason for the change, such as `trigger-press`, `item-press`, `escape-key`, `outside-press`, or `focus-out`, and the native event. Call `eventDetails.cancel()` to prevent the change:
 
 ```jsx
 <Menu2
-  open={open}
-  onOpenChange={(nextOpen, eventDetails) => {
-    if (!nextOpen && eventDetails.reason === 'outside-press') {
+  trigger={<Button>Options</Button>}
+  onOpenChange={(open, eventDetails) => {
+    if (!open && eventDetails.reason === 'outside-press') {
       eventDetails.cancel();
-      return;
     }
-    setOpen(nextOpen);
   }}
 >
 ```
 
+### Without a trigger
+
+Omit `trigger` and pass `anchor` to position the menu against an element that you control, the same as `anchorEl` in the current Menu. The menu can't connect to that element, so you do the wiring:
+
+- Add `aria-haspopup="menu"`, `aria-expanded`, and `aria-controls` to the element. Set the matching `id` on the menu with `slotProps.paper`.
+- Pass `finalFocus` to return focus to the element when the menu closes.
+
+The [context menu](#context-menu) uses this pattern.
+
 ## Max height menu
 
-The menu limits its height to the space available and scrolls internally. Set an explicit limit through the `paper` slot.
+The menu limits its height to the viewport and to the space available at the anchor, and scrolls its content. Set a smaller limit on the `paper` slot.
 
-Type while the menu is open to jump to an item.
+Type a letter while the menu is open to move to the matching item.
 
 {{"demo": "LongMenu2.js"}}
 
@@ -208,20 +227,24 @@ Pass a virtual anchor to place the menu at the pointer.
 {{"demo": "ContextMenu2.js"}}
 
 :::warning
-A menu with no trigger has no element to return focus to when it closes. Always pass `finalFocus` pointing at the surface the user invoked, otherwise focus can land on an unrelated element.
+A menu with no trigger has no element to return focus to when it closes. Always pass `finalFocus` with the surface that the user invoked. Otherwise, focus can move to an unrelated element.
 :::
 
 ## Customization
 
-`sx` and `styled` target the popup, and each part keeps its own class hook, so you can reach the surface and the items from one place.
+`className`, `style`, `sx`, and the other HTML attributes go to the root element, which wraps the menu in the portal. This is the same as the current Menu. Event handlers go to the menu surface. Use a descendant selector or `slotProps.paper` to style the surface:
 
 {{"demo": "CustomizedMenu2.js"}}
 
-The slots are `portal`, `positioner`, `popup`, `paper`, `list`, and `backdrop`. `elevation` is a top-level prop that forwards to the `paper` slot, so the common case doesn't need `slotProps`.
+The slots are `root`, `backdrop`, `positioner`, `paper`, `list`, and `transition`. `elevation` is a top-level prop for the `paper` slot. Use `slotProps.paper` for `aria-*` attributes on the element with `role="menu"`.
 
-The trigger isn't a slot, because you supply the element yourself—style it directly, or pass props to it through `slotProps.trigger`. It still carries a `.MuiMenu2Trigger-root` class, and a `.MuiMenu2Trigger-open` class while the menu is open.
+The trigger isn't a slot, because you supply the element. Style it directly. It has the `.MuiMenu2Trigger-root` class, and the `.MuiMenu2Trigger-open` class while the menu is open. `slotProps.trigger` accepts only `nativeButton`, `className`, and `ref`.
 
-Theme-level customization uses two keys—`MuiMenu2`, with the slots `root`, `backdrop`, `paper`, and `list`, and `MuiMenu2Submenu`, with `root`, `paper`, and `list`. Each item has its own key, such as `MuiMenu2Item`:
+:::warning
+While a menu or a submenu is open, Base UI renders hidden `span` elements next to its trigger. They keep the tab order and the accessibility tree correct. CSS sibling selectors (`+`, `~`, `:last-child`) near a trigger can match these elements. Style each part directly instead. The focus guards among them have a `data-base-ui-focus-guard` attribute.
+:::
+
+The theme has two keys for the menu surfaces. `MuiMenu2` has the slots `root`, `backdrop`, `positioner`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `positioner`, `paper`, and `list`. Each item part has its own key, such as `MuiMenu2Item`:
 
 ```js
 const theme = createTheme({
@@ -241,38 +264,55 @@ const theme = createTheme({
 });
 ```
 
+The item parts have state classes, such as `.MuiMenu2Item-highlighted`, `.MuiMenu2CheckboxItem-checked`, and `.MuiMenu2SubmenuTrigger-open`. Slot callbacks and theme `variants` receive the same state.
+
 ### Transitions
 
-Menu v2 animates with CSS rather than a transition component. The default matches the current `Grow`, and stops under `prefers-reduced-motion`. Override it through the `popup` slot:
+The menu uses the `Grow` transition, the same as the current Menu. With the default `transitionDuration="auto"`, the duration depends on the height of the menu. Pass a different transition component to `slots.transition`, and its props to `slotProps.transition`:
 
-```jsx
-<Menu2 trigger="Options" slotProps={{ popup: { sx: { transition: 'none' } } }}>
-```
+{{"demo": "FadeMenu2.js"}}
 
-The popup carries `data-starting-style` and `data-ending-style` attributes while it enters and leaves, which is what you hook your own animation onto.
-
-### Backdrop
-
-There's no backdrop by default—the menu closes on an outside press without one. Opt in through the `backdrop` slot when you want to dim the page:
+Set `transitionDuration={0}` to remove the animation. To animate with CSS, set `slots.transition` to `null`. The menu surface has the `data-starting-style` attribute while it enters and the `data-ending-style` attribute while it leaves:
 
 ```jsx
 <Menu2
-  trigger="Options"
+  trigger={<Button>Options</Button>}
+  slots={{ transition: null }}
+  slotProps={{
+    paper: {
+      sx: {
+        transition: 'opacity 150ms',
+        '&[data-starting-style], &[data-ending-style]': { opacity: 0 },
+      },
+    },
+  }}
+>
+```
+
+`Grow` and the other Material UI transitions follow [`theme.motion.reducedMotion`](/material-ui/customization/transitions/#reduced-motion).
+
+### Backdrop
+
+There's no backdrop by default. An outside press closes the menu without one. To dim the page, opt in with the `backdrop` slot. The default backdrop is transparent and doesn't catch pointer events:
+
+```jsx
+<Menu2
+  trigger={<Button>Options</Button>}
   slotProps={{ backdrop: { sx: { bgcolor: 'rgba(0, 0, 0, 0.5)' } } }}
 >
 ```
 
 ## Accessibility
 
-Menu v2 follows the [WAI-ARIA menu button pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/). The trigger, the roles, the keyboard behavior, focus management, and dismissal are all handled for you:
+Menu v2 follows the [WAI-ARIA menu button pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/). It handles the trigger, the roles, the keyboard behavior, focus management, and dismissal:
 
 - The trigger gets `aria-haspopup`, `aria-expanded`, and `aria-controls`.
-- Arrow keys move between items and respect RTL. Home and End jump to the ends.
+- Arrow keys move between items and respect right-to-left text. Home and End move to the first and the last item.
 - Typeahead matches items by their text content, or by the `label` prop when the content isn't plain text.
-- Disabled items stay focusable and are announced as disabled, so they aren't silently skipped.
+- Disabled items stay focusable, and screen readers announce them as disabled.
 - Escape closes one level at a time and returns focus to the trigger of that level.
 
 Two things stay your responsibility:
 
-- **Label an icon-only trigger.** Pass `aria-label` to the element you supply as `trigger`.
-- **Keep custom item content readable.** Anything you compose inside an item—icons, secondary text, shortcut hints—needs sufficient contrast on its own.
+- **Label an icon-only trigger.** Pass `aria-label` to the element that you supply as `trigger`.
+- **Keep custom item content readable.** Icons, secondary text, and shortcut hints in an item need sufficient contrast.

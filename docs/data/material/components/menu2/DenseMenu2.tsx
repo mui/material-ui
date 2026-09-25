@@ -6,13 +6,13 @@ import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
 
 export default function DenseMenu2() {
   return (
-    <Menu2 trigger={<Button>Options</Button>}>
-      <Menu2Item dense>Single</Menu2Item>
-      <Menu2Item dense>1.15</Menu2Item>
-      <Menu2Item dense>Double</Menu2Item>
+    <Menu2 trigger={<Button>Options</Button>} slotProps={{ list: { dense: true } }}>
+      <Menu2Item>Single</Menu2Item>
+      <Menu2Item>1.15</Menu2Item>
+      <Menu2Item>Double</Menu2Item>
       <Menu2Separator />
-      <Menu2Item dense>Custom: 1.2</Menu2Item>
-      <Menu2Item dense>Add space before paragraph</Menu2Item>
+      <Menu2Item>Custom: 1.2</Menu2Item>
+      <Menu2Item>Add space before paragraph</Menu2Item>
     </Menu2>
   );
 }
