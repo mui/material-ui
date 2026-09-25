@@ -2,7 +2,7 @@
 
 <p class="description">Apply consistent, adjustable sizing across Material UI components.</p>
 
-Starting from v9.5, Material UI provides `enhanceDensity`, an opt-in theme enhancer that maps every component onto one shared spacing scale. Same-size controls end up on the same box, and one scale controls the whole set.
+Starting from v9.5, Material UI provides an opt-in theme enhancer that maps most components onto one shared spacing scale. Same-size controls end up on the same box, and one scale controls the whole set.
 
 :::warning
 This API is at an unstable stage and is subject to change in the future.
