@@ -85,7 +85,7 @@
     "@babel/node": "7.29.7",
     "@babel/plugin-transform-react-constant-elements": "7.29.7",
     "@eslint/compat": "2.1.1",
-    "@mui/internal-babel-plugin-minify-errors": "2.0.8-canary.31",
+    "@mui/internal-babel-plugin-minify-errors": "3.0.1-canary.0",
     "@mui/internal-bundle-size-checker": "1.0.9-canary.92",
     "@mui/internal-code-infra": "0.0.4-canary.119",
     "@mui/internal-docs-utils": "workspace:^",
