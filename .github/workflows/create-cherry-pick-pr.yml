@@ -12,7 +12,13 @@ permissions: {}
 jobs:
   create_pr:
     name: Create cherry-pick PR
-    if: ${{ github.event.pull_request.merged && (github.event.action == 'closed' || github.event.label.name == 'needs cherry-pick') }}
+    if: >-
+      ${{ github.event.pull_request.merged &&
+        contains(github.event.pull_request.labels.*.name, 'needs cherry-pick') && (
+          github.event.action == 'closed' ||
+          github.event.label.name == 'needs cherry-pick' ||
+          (startsWith(github.event.label.name, 'v') && endsWith(github.event.label.name, '.x'))
+        ) }}
     uses: mui/mui-public/.github/workflows/prs_create-cherry-pick-pr.yml@c6471a4fe98cb2e52efe7397ff8362569f2ddada # master
     permissions:
       contents: write
