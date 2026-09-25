@@ -1,0 +1,639 @@
+/**
+ * theme2: an alternative theme for the unstyled components.
+ *
+ * A plain CSS file. It styles the unstyled Slider and Button entirely through
+ * their stable `MuiSlider-*` and `MuiButton-*` class names, with its own tokens
+ * and no relationship to Material Design. Nothing here is generated and there
+ * is no styling engine involved: drop the file in and the components look like
+ * this.
+ *
+ * It has to supply structural CSS as well as appearance, because the unstyled
+ * component ships none. Anything marked "structure" below is required for the
+ * component to work at all, and any theme would have to repeat it.
+ *
+ * Tokens come in two layers: a palette that changes with the colour scheme,
+ * and component tokens that refer to it. Scheme follows the system preference,
+ * and the page can override it with `data-theme2="light"` or `"dark"` on the
+ * root element, which sets `color-scheme` and nothing else.
+ */
+
+/* ============================================================== palette ==== */
+
+/* Each token carries both schemes at once. `color-scheme` decides which half
+   `light-dark()` returns, so the override is one declaration rather than a
+   second copy of the palette, and the UA follows along for scrollbars and
+   native controls. */
+:root[data-theme2='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme2='dark'] {
+  color-scheme: dark;
+}
+
+/* Dark is derived from light rather than inverted. The surface recedes, the
+   raised thumb stays light because a lit object does not darken, and the
+   accents gain lightness so they keep their punch against a dark ground. */
+:root {
+  color-scheme: light dark;
+
+  --theme2-page-bg: light-dark(#ffffff, #0e0e10);
+  --theme2-page-fg: light-dark(#1c1c1e, #f2f2f4);
+  --theme2-page-muted: light-dark(#6e6e6e, #9a9aa2);
+
+  --theme2-surface: light-dark(#e9e8ec, #26262b);
+  --theme2-raised-from: light-dark(#ffffff, #ffffff);
+  --theme2-raised-to: light-dark(#f4f4f6, #dcdce2);
+  --theme2-raised-from-hover: light-dark(#ffffff, #ffffff);
+  --theme2-raised-to-hover: light-dark(#e8e8ec, #cbcbd3);
+  --theme2-raised-from-disabled: light-dark(#f2f2f4, #85858e);
+  --theme2-raised-to-disabled: light-dark(#e2e2e6, #6e6e78);
+  --theme2-edge: light-dark(rgb(0 0 0 / 0.14), rgb(0 0 0 / 0.5));
+  --theme2-border: light-dark(rgb(0 0 0 / 0.12), rgb(255 255 255 / 0.16));
+  --theme2-tick: light-dark(#b4b4bb, #5a5a62);
+  --theme2-label: light-dark(#6e6e6e, #9a9aa2);
+
+  /* Accents run light to dark, because on a pale surface the darker end
+     reads as depth. */
+  --theme2-primary-from: light-dark(hsl(252deg 67% 62%), hsl(252deg 80% 74%));
+  --theme2-primary-to: light-dark(hsl(252deg 62% 46%), hsl(252deg 68% 58%));
+  --theme2-neutral-from: light-dark(hsl(252deg 7% 62%), hsl(252deg 9% 72%));
+  --theme2-neutral-to: light-dark(hsl(252deg 6% 46%), hsl(252deg 7% 56%));
+  --theme2-success-from: light-dark(hsl(127deg 62% 42%), hsl(127deg 52% 60%));
+  --theme2-success-to: light-dark(hsl(127deg 66% 30%), hsl(127deg 54% 44%));
+  --theme2-danger-from: light-dark(hsl(358deg 70% 55%), hsl(358deg 82% 70%));
+  --theme2-danger-to: light-dark(hsl(358deg 68% 42%), hsl(358deg 70% 55%));
+  --theme2-warning-from: light-dark(hsl(35deg 85% 52%), hsl(35deg 90% 66%));
+  --theme2-warning-to: light-dark(hsl(35deg 85% 40%), hsl(35deg 85% 52%));
+  --theme2-info-from: light-dark(hsl(205deg 75% 52%), hsl(205deg 85% 68%));
+  --theme2-info-to: light-dark(hsl(205deg 72% 40%), hsl(205deg 78% 54%));
+
+  --theme2-muted-from: light-dark(hsl(248deg 15% 90%), #3a3a43);
+  --theme2-muted-to: light-dark(hsl(245deg 14% 85%), #2e2e36);
+
+  /* Flat steps, used by the Button. A tone gives a fill, a hover one step
+     along, two tints for the quiet emphasis, and a text colour. The pressed
+     colour is not a step: it is computed, further down, so that every tone
+     darkens by the same amount. The Slider's gradients above are a separate
+     pair of tokens: it is a raised control and the Button is not. */
+  --theme2-brand-solid: light-dark(#6e56cf, #6e56cf);
+  --theme2-brand-solid-hover: light-dark(#654dc4, #7d66d9);
+  --theme2-brand-text: light-dark(#6550b9, #baa7ff);
+  --theme2-brand-tint: light-dark(#ebe4ff, #33255b);
+  --theme2-brand-tint-active: light-dark(#e1d9ff, #3c2e69);
+
+  --theme2-positive-solid: light-dark(#29a383, #29a383);
+  --theme2-positive-solid-hover: light-dark(#26997b, #27b08b);
+  --theme2-positive-text: light-dark(#208368, #1fd8a4);
+  --theme2-positive-tint: light-dark(#d6f1e3, #0b3b2c);
+  --theme2-positive-tint-active: light-dark(#c3e9d7, #114837);
+
+  --theme2-critical-solid: light-dark(#e5484d, #e5484d);
+  --theme2-critical-solid-hover: light-dark(#dc3e42, #ec5d5e);
+  --theme2-critical-text: light-dark(#ce2c31, #ff9592);
+  --theme2-critical-tint: light-dark(#ffdbdc, #500f1c);
+  --theme2-critical-tint-active: light-dark(#ffcdce, #611623);
+
+  /* No warm hue in the reference, so caution's steps are built to the same
+     shape: a fill, one step down for hover, two for active. */
+  --theme2-caution-solid: light-dark(hsl(35deg 90% 56%), hsl(35deg 90% 56%));
+  --theme2-caution-solid-hover: light-dark(hsl(35deg 88% 50%), hsl(35deg 88% 62%));
+  --theme2-caution-text: light-dark(hsl(32deg 85% 32%), hsl(38deg 95% 68%));
+  --theme2-caution-tint: light-dark(hsl(38deg 95% 90%), hsl(32deg 60% 18%));
+  --theme2-caution-tint-active: light-dark(hsl(38deg 92% 84%), hsl(32deg 58% 23%));
+
+  /* The neutral tone's fill is a pale chip rather than a mid grey, so its
+     label is the page's ink rather than white. */
+  --theme2-muted-solid: light-dark(#f2eff3, #232225);
+  --theme2-muted-solid-hover: light-dark(#eae7ec, #2b292d);
+  --theme2-muted-text: light-dark(#211f26, #eeeef0);
+  --theme2-muted-tint: light-dark(#eae7ec, #2b292d);
+  --theme2-muted-tint-active: light-dark(#e3dfe6, #323035);
+
+  --theme2-disabled-bg: light-dark(#eae7ec, #2b292d);
+  --theme2-disabled-fg: light-dark(#84828e, #7c7a85);
+
+  /* `light-dark()` resolves a colour, not a whole shadow, so the alpha rides
+     along inside each layer's colour. */
+  --theme2-shadow:
+    0 1px 1px 0px light-dark(hsl(215deg 22% 17% / 12%), hsl(0deg 0% 0% / 40%)),
+    0 2px 6px -1px light-dark(hsl(215deg 22% 17% / 10%), hsl(0deg 0% 0% / 35%)),
+    0 6px 12px -3px light-dark(hsl(215deg 22% 17% / 8%), hsl(0deg 0% 0% / 30%));
+  --theme2-inset:
+    inset 0 1px 2px 0 light-dark(rgb(0 0 0 / 0.08), rgb(0 0 0 / 0.5)),
+    inset 0 2px 4px -1px light-dark(rgb(0 0 0 / 0.03), transparent);
+}
+
+/* ============================================================== slider ==== */
+
+/* structure */
+.MuiSlider-root {
+  position: relative;
+  display: inline-block;
+  box-sizing: content-box;
+  cursor: pointer;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  color: var(--theme2-label);
+  font-family: system-ui, sans-serif;
+  font-size: 0.8125rem;
+
+  --theme2-radius-pill: 9999px;
+  --theme2-groove-thickness: 6px;
+  --theme2-thumb-size: 20px;
+  --theme2-mark-size: 6px;
+  --theme2-fill-from: var(--theme2-primary-from);
+  --theme2-fill-to: var(--theme2-primary-to);
+}
+
+/* There is no `MuiSlider-horizontal` class, only the absence of the vertical
+   one, so horizontal rules have to be written as a negation. */
+.MuiSlider-root:not(.MuiSlider-vertical) {
+  width: 100%;
+  height: var(--theme2-groove-thickness);
+  padding-block: 12px;
+}
+
+.MuiSlider-root.MuiSlider-vertical {
+  height: 100%;
+  width: var(--theme2-groove-thickness);
+  padding-inline: 12px;
+}
+
+/* ---------------------------------------------------------------- sizes ---- */
+
+/* theme2 calls this `scale`, not `size`, and its values are `compact` and
+   `regular`. The class names come from theme2's own declaration. */
+.MuiSlider-root.MuiSlider-scaleCompact {
+  --theme2-groove-thickness: 4px;
+  --theme2-thumb-size: 14px;
+  --theme2-mark-size: 4px;
+}
+
+.MuiSlider-root.MuiSlider-scaleRoomy {
+  --theme2-groove-thickness: 10px;
+  --theme2-thumb-size: 28px;
+  --theme2-mark-size: 8px;
+}
+
+/* --------------------------------------------------------------- colours ---- */
+
+/* theme2 calls this `tone`, and names its classes after the value alone rather
+   than prefixing them, so `tone="positive"` gives `MuiSlider-positive`. Neither
+   the vocabulary nor the naming is Material's. */
+.MuiSlider-root.MuiSlider-muted {
+  --theme2-fill-from: var(--theme2-neutral-from);
+  --theme2-fill-to: var(--theme2-neutral-to);
+}
+
+.MuiSlider-root.MuiSlider-positive {
+  --theme2-fill-from: var(--theme2-success-from);
+  --theme2-fill-to: var(--theme2-success-to);
+}
+
+.MuiSlider-root.MuiSlider-critical {
+  --theme2-fill-from: var(--theme2-danger-from);
+  --theme2-fill-to: var(--theme2-danger-to);
+}
+
+.MuiSlider-root.MuiSlider-caution {
+  --theme2-fill-from: var(--theme2-warning-from);
+  --theme2-fill-to: var(--theme2-warning-to);
+}
+
+/* After the colours, so that a disabled slider is grey whatever colour it
+   was asked for. Both selectors weigh the same, so order is what decides. */
+.MuiSlider-root.Mui-disabled {
+  cursor: not-allowed;
+  --theme2-fill-from: var(--theme2-muted-from);
+  --theme2-fill-to: var(--theme2-muted-to);
+}
+
+/* ------------------------------------------------- rail: the empty groove ---- */
+
+/* structure. Note `inherit` rather than `100%`: an absolutely positioned box
+   resolves a percentage against the padding box, which includes the root's
+   padding, so `100%` would make the groove as tall as the hit area. */
+.MuiSlider-rail {
+  display: block;
+  position: absolute;
+  border-radius: var(--theme2-radius-pill);
+  background-color: var(--theme2-surface);
+  box-shadow: var(--theme2-inset);
+}
+
+.MuiSlider-root:not(.MuiSlider-vertical) .MuiSlider-rail {
+  width: 100%;
+  height: inherit;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.MuiSlider-root.MuiSlider-vertical .MuiSlider-rail {
+  height: 100%;
+  width: inherit;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ------------------------------------------------ track: the filled part ---- */
+
+/* structure: the component sets left/width (or bottom/height) inline */
+.MuiSlider-track {
+  display: block;
+  position: absolute;
+  border-radius: var(--theme2-radius-pill);
+}
+
+.MuiSlider-root:not(.MuiSlider-vertical) .MuiSlider-track {
+  height: inherit;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(to bottom, var(--theme2-fill-from), var(--theme2-fill-to));
+}
+
+.MuiSlider-root.MuiSlider-vertical .MuiSlider-track {
+  width: inherit;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, var(--theme2-fill-from), var(--theme2-fill-to));
+}
+
+.MuiSlider-root.MuiSlider-trackFalse .MuiSlider-track {
+  display: none;
+}
+
+/* ---------------------------------------------------------------- thumb ---- */
+
+/* structure: the component sets left (or bottom) inline */
+.MuiSlider-thumb {
+  position: absolute;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--theme2-thumb-size);
+  height: var(--theme2-thumb-size);
+  border-radius: 50%;
+  outline: 1px solid var(--theme2-edge);
+  background: linear-gradient(to bottom, var(--theme2-raised-from), var(--theme2-raised-to));
+  box-shadow: var(--theme2-shadow);
+  transition:
+    box-shadow 120ms ease,
+    background 120ms ease;
+}
+
+.MuiSlider-root:not(.MuiSlider-vertical) .MuiSlider-thumb {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.MuiSlider-root.MuiSlider-vertical .MuiSlider-thumb {
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.MuiSlider-thumb:hover,
+.MuiSlider-thumb.Mui-active {
+  background: linear-gradient(
+    to bottom,
+    var(--theme2-raised-from-hover),
+    var(--theme2-raised-to-hover)
+  );
+}
+
+.MuiSlider-thumb.Mui-focusVisible {
+  outline: 2px solid var(--theme2-fill-from);
+  outline-offset: 2px;
+}
+
+/* Still a raised control, just an inert one, so it keeps its shadow and greys
+   out instead. */
+.MuiSlider-thumb.Mui-disabled {
+  background: linear-gradient(
+    to bottom,
+    var(--theme2-raised-from-disabled),
+    var(--theme2-raised-to-disabled)
+  );
+}
+
+/* ---------------------------------------------------------------- marks ---- */
+
+/* structure: the component sets left (or bottom) inline. Marks sit just off
+   the groove, so they are offset from its centre line by half its thickness. */
+.MuiSlider-mark {
+  position: absolute;
+  background-color: var(--theme2-tick);
+  border-radius: var(--theme2-radius-pill);
+}
+
+.MuiSlider-root:not(.MuiSlider-vertical) .MuiSlider-mark {
+  width: 2px;
+  height: var(--theme2-mark-size);
+  bottom: calc(50% + var(--theme2-groove-thickness) / 2 + 4px);
+  transform: translateX(-50%);
+}
+
+.MuiSlider-root.MuiSlider-vertical .MuiSlider-mark {
+  height: 2px;
+  width: var(--theme2-mark-size);
+  right: calc(50% + var(--theme2-groove-thickness) / 2 + 4px);
+  transform: translateY(50%);
+}
+
+/* Kept as its own rule so a theme can distinguish an active mark. */
+.MuiSlider-mark.MuiSlider-markActive {
+  background-color: var(--theme2-tick);
+}
+
+/* ----------------------------------------------------------- mark labels ---- */
+
+/* structure: the component sets left (or bottom) inline */
+.MuiSlider-markLabel {
+  position: absolute;
+  white-space: nowrap;
+  color: var(--theme2-label);
+}
+
+.MuiSlider-root:not(.MuiSlider-vertical) .MuiSlider-markLabel {
+  top: calc(50% + var(--theme2-groove-thickness) / 2 + 8px);
+  transform: translateX(-50%);
+}
+
+.MuiSlider-root.MuiSlider-vertical .MuiSlider-markLabel {
+  left: calc(50% + var(--theme2-groove-thickness) / 2 + 10px);
+  transform: translateY(50%);
+}
+
+.MuiSlider-markLabel.MuiSlider-markLabelActive {
+  color: var(--theme2-fill-from);
+}
+
+/* ---------------------------------------------------------- value label ---- */
+
+.MuiSlider-valueLabel {
+  position: absolute;
+  z-index: 1;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: linear-gradient(to bottom, var(--theme2-fill-from), var(--theme2-fill-to));
+  color: #ffffff;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  box-shadow: var(--theme2-shadow);
+  opacity: 0;
+  /* Only the horizontal half-width is translated. `bottom` already lifts the
+     label clear of the thumb, so translating the full height as well pushed it
+     a whole label further up than intended. */
+  transform: translateX(-50%) scale(0.8);
+  transform-origin: bottom center;
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+  pointer-events: none;
+  bottom: calc(100% + 6px);
+  left: 50%;
+}
+
+/* The component decides when the label is open: on hover, while dragging and
+   on keyboard focus. This only says what open looks like. */
+.MuiSlider-valueLabel.MuiSlider-valueLabelOpen {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* ============================================================== button ==== */
+
+/* structure. `all: unset` because the unstyled Button renders a plain
+   `button`, with none of the user-agent styling wanted. */
+.MuiButton-root {
+  all: unset;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+  user-select: none;
+  vertical-align: top;
+  text-align: center;
+  background-clip: padding-box;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  font-family: system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1;
+
+  height: var(--theme2-button-height);
+  padding-inline: var(--theme2-button-pad);
+  border-radius: var(--theme2-button-radius);
+  font-size: var(--theme2-button-font);
+  letter-spacing: var(--theme2-button-tracking);
+  gap: var(--theme2-button-gap);
+
+  --theme2-button-height: 32px;
+  --theme2-button-pad: 12px;
+  --theme2-button-radius: 6px;
+  --theme2-button-font: 14px;
+  --theme2-button-tracking: 0.02em;
+  --theme2-button-gap: 8px;
+
+  --theme2-solid: var(--theme2-brand-solid);
+  --theme2-solid-hover: var(--theme2-brand-solid-hover);
+  --theme2-tint: var(--theme2-brand-tint);
+  --theme2-tint-active: var(--theme2-brand-tint-active);
+  --theme2-text: var(--theme2-brand-text);
+  --theme2-on-solid: #ffffff;
+
+  /* Loading also disables, so the spinner takes the disabled label colour. */
+  --theme2-loading-color: var(--theme2-disabled-fg);
+
+  transition: background-color 120ms ease;
+}
+
+/* ---------------------------------------------------------------- scale ---- */
+
+/* Everything scales together: height, text, padding, corner and gap. */
+.MuiButton-root.MuiButton-scaleCompact {
+  --theme2-button-height: 24px;
+  --theme2-button-pad: 8px;
+  --theme2-button-radius: 4px;
+  --theme2-button-font: 12px;
+  --theme2-button-tracking: 0.025em;
+  --theme2-button-gap: 4px;
+}
+
+.MuiButton-root.MuiButton-scaleRoomy {
+  --theme2-button-height: 40px;
+  --theme2-button-pad: 16px;
+  --theme2-button-radius: 8px;
+  --theme2-button-font: 16px;
+  --theme2-button-tracking: 0.016em;
+  --theme2-button-gap: 12px;
+}
+
+/* ----------------------------------------------------------------- tone ---- */
+
+.MuiButton-root.MuiButton-muted {
+  --theme2-solid: var(--theme2-muted-solid);
+  --theme2-solid-hover: var(--theme2-muted-solid-hover);
+  --theme2-tint: var(--theme2-muted-tint);
+  --theme2-tint-active: var(--theme2-muted-tint-active);
+  --theme2-text: var(--theme2-muted-text);
+  --theme2-on-solid: var(--theme2-muted-text);
+}
+
+.MuiButton-root.MuiButton-positive {
+  --theme2-solid: var(--theme2-positive-solid);
+  --theme2-solid-hover: var(--theme2-positive-solid-hover);
+  --theme2-tint: var(--theme2-positive-tint);
+  --theme2-tint-active: var(--theme2-positive-tint-active);
+  --theme2-text: var(--theme2-positive-text);
+}
+
+.MuiButton-root.MuiButton-critical {
+  --theme2-solid: var(--theme2-critical-solid);
+  --theme2-solid-hover: var(--theme2-critical-solid-hover);
+  --theme2-tint: var(--theme2-critical-tint);
+  --theme2-tint-active: var(--theme2-critical-tint-active);
+  --theme2-text: var(--theme2-critical-text);
+}
+
+/* A light fill, so its label is dark rather than white. */
+.MuiButton-root.MuiButton-caution {
+  --theme2-solid: var(--theme2-caution-solid);
+  --theme2-solid-hover: var(--theme2-caution-solid-hover);
+  --theme2-tint: var(--theme2-caution-tint);
+  --theme2-tint-active: var(--theme2-caution-tint-active);
+  --theme2-text: var(--theme2-caution-text);
+  --theme2-on-solid: light-dark(#4a2c06, #2b1a03);
+}
+
+/* ------------------------------------------------------------- emphasis ---- */
+
+/* theme2 has two emphases where Material has three variants, and neither name
+   lines up: `solid` and `quiet` against `text`, `outlined` and `contained`. */
+.MuiButton-root.MuiButton-solid {
+  background-color: var(--theme2-solid);
+  color: var(--theme2-on-solid);
+}
+
+.MuiButton-root.MuiButton-quiet {
+  background-color: transparent;
+  color: var(--theme2-text);
+}
+
+/* Hover is a pointer idea. A touch device would otherwise keep the hover fill
+   until the next tap somewhere else. */
+@media (hover: hover) {
+  .MuiButton-root.MuiButton-solid:not(:disabled, .Mui-disabled):hover {
+    background-color: var(--theme2-solid-hover);
+  }
+
+  .MuiButton-root.MuiButton-quiet:not(:disabled, .Mui-disabled):hover {
+    background-color: var(--theme2-tint);
+  }
+}
+
+/* Pressed is a fixed step down in perceptual lightness rather than another
+   tabulated colour. Read off a scale it is uneven: for some hues the text step
+   sits almost on top of the hover step, and those tones read as not responding
+   to a click at all. */
+.MuiButton-root.MuiButton-solid:not(:disabled, .Mui-disabled):active {
+  background-color: oklch(from var(--theme2-solid-hover) calc(l - 0.05) c h);
+}
+
+.MuiButton-root.MuiButton-quiet:not(:disabled, .Mui-disabled):active {
+  background-color: var(--theme2-tint-active);
+}
+
+/* ---------------------------------------------------------------- block ---- */
+
+/* theme2 calls it `block`; Material calls it `fullWidth`. */
+.MuiButton-root.MuiButton-block {
+  display: flex;
+  width: 100%;
+}
+
+/* -------------------------------------------------------------- disabled ---- */
+
+/* One disabled appearance for both emphases, and it wins over hover and active
+   because those are matched by `:not(:disabled, .Mui-disabled)`. */
+.MuiButton-root:disabled,
+.MuiButton-root.Mui-disabled {
+  cursor: not-allowed;
+  background-color: var(--theme2-disabled-bg);
+  color: var(--theme2-disabled-fg);
+}
+
+/* ----------------------------------------------------------------- focus ---- */
+
+/* A neutral ring rather than the tone's own colour, so it reads as focus and
+   not as another piece of the button. */
+.MuiButton-root:not(:disabled, .Mui-disabled):focus-visible {
+  outline: 2px solid var(--theme2-page-fg);
+  outline-offset: 2px;
+}
+
+/* ----------------------------------------------------------------- icons ---- */
+
+.MuiButton-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.MuiButton-icon > *:first-of-type {
+  width: 1em;
+  height: 1em;
+}
+
+/* An icon slot with no icon in it holds space for an indicator beside the
+   label. theme2 puts its spinner over the label instead, so both collapse. */
+.MuiButton-icon.MuiButton-loadingIconPlaceholder {
+  display: none;
+}
+
+.MuiButton-loadingWrapper {
+  display: contents;
+}
+
+/* An explicit colour, not `inherit`: the root goes transparent to hide the
+   label while loading, and the spinner draws itself with `currentColor`. */
+.MuiButton-loadingIndicator {
+  display: inline-flex;
+  align-items: center;
+  color: var(--theme2-loading-color, var(--theme2-page-fg));
+}
+
+/* The spinner covers the label rather than displacing it. */
+.MuiButton-root .MuiButton-loadingIndicator {
+  position: absolute;
+  inset: 0;
+  justify-content: center;
+}
+
+.MuiButton-root.MuiButton-loading {
+  color: transparent;
+}
+
+/* theme2's own spinner, filled into the `loadingIndicator` slot. Material puts
+   a CircularProgress there; this is a few lines of CSS. */
+.theme2-spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  animation: theme2-spin 600ms linear infinite;
+}
+
+@keyframes theme2-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
