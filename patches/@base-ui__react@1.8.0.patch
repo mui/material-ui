@@ -1,0 +1,70 @@
+diff --git a/menu/root/MenuRoot.js b/menu/root/MenuRoot.js
+index 4db022db54dcc00c1ed16003f45b88868fb91422..9d23fad5066a0a11356fe001507e651bc6400d54 100644
+--- a/menu/root/MenuRoot.js
++++ b/menu/root/MenuRoot.js
+@@ -213,13 +213,15 @@ const MenuRoot = exports.MenuRoot = (0, _fastHooks.fastComponent)(function MenuR
+         floatingNodeId: floatingNodeIdFromContext,
+         floatingParentNodeId: floatingParentNodeIdFromContext
+       });
+-    } else if (parentMenuRootContext) {
++    } else if (parentMenuRootContext || !store.select('activeTriggerElement')) {
++      // Without an active trigger, the root must supply its own tree IDs.
++      // Read the store here: a trigger can register after render, before this effect.
+       store.update({
+         floatingNodeId: floatingNodeIdFromContext,
+         floatingParentNodeId: floatingParentNodeIdFromContext
+       });
+     }
+-  }, [contextMenuContext, parentMenuRootContext, floatingNodeIdFromContext, floatingParentNodeIdFromContext, store]);
++  }, [contextMenuContext, parentMenuRootContext, floatingNodeIdFromContext, floatingParentNodeIdFromContext, activeTriggerElement, store]);
+   React.useEffect(() => {
+     if (!open) {
+       openEventRef.current = null;
+diff --git a/menu/root/MenuRoot.mjs b/menu/root/MenuRoot.mjs
+index dc2a000cd5854aaef53e72ed53207d4bcca7a62c..fdf7b858ab1d6ebec3ee68d16eff54019c02e984 100644
+--- a/menu/root/MenuRoot.mjs
++++ b/menu/root/MenuRoot.mjs
+@@ -208,13 +208,15 @@ export const MenuRoot = fastComponent(function MenuRoot(props) {
+         floatingNodeId: floatingNodeIdFromContext,
+         floatingParentNodeId: floatingParentNodeIdFromContext
+       });
+-    } else if (parentMenuRootContext) {
++    } else if (parentMenuRootContext || !store.select('activeTriggerElement')) {
++      // Without an active trigger, the root must supply its own tree IDs.
++      // Read the store here: a trigger can register after render, before this effect.
+       store.update({
+         floatingNodeId: floatingNodeIdFromContext,
+         floatingParentNodeId: floatingParentNodeIdFromContext
+       });
+     }
+-  }, [contextMenuContext, parentMenuRootContext, floatingNodeIdFromContext, floatingParentNodeIdFromContext, store]);
++  }, [contextMenuContext, parentMenuRootContext, floatingNodeIdFromContext, floatingParentNodeIdFromContext, activeTriggerElement, store]);
+   React.useEffect(() => {
+     if (!open) {
+       openEventRef.current = null;
+diff --git a/menu/store/MenuStore.js b/menu/store/MenuStore.js
+index 1d6eb8b960b4ef6bbd972b13b2825431ed8cc3f9..c621395ab0f53f0318fa2c881f0872252903557c 100644
+--- a/menu/store/MenuStore.js
++++ b/menu/store/MenuStore.js
+@@ -14,6 +14,8 @@ var _NullStore = require("../../utils/NullStore");
+ var _popups = require("../../utils/popups");
+ const selectors = {
+   ..._popups.popupStoreSelectors,
++  // An open update can reach a retained popup before the root sets its transition status.
++  transitionStatus: state => _popups.popupStoreSelectors.open(state) && !state.mounted ? 'starting' : state.transitionStatus,
+   disabled: state => state.parent.type === 'menubar' ? state.parent.context.disabled || state.disabled : state.disabled,
+   modal: state => (state.parent.type === undefined || state.parent.type === 'context-menu') && (state.modal ?? true),
+   openMethod: state => state.openMethod,
+diff --git a/menu/store/MenuStore.mjs b/menu/store/MenuStore.mjs
+index 8139927b78836a848b88e87ba704b12e1f782c16..2b165bbad01fcf672a8e8cd28b220ed731feee92 100644
+--- a/menu/store/MenuStore.mjs
++++ b/menu/store/MenuStore.mjs
+@@ -6,6 +6,8 @@ import { NullStore } from "../../utils/NullStore.mjs";
+ import { createInitialPopupStoreState, popupStoreSelectors, PopupTriggerMap } from "../../utils/popups/index.mjs";
+ const selectors = {
+   ...popupStoreSelectors,
++  // An open update can reach a retained popup before the root sets its transition status.
++  transitionStatus: state => popupStoreSelectors.open(state) && !state.mounted ? 'starting' : state.transitionStatus,
+   disabled: state => state.parent.type === 'menubar' ? state.parent.context.disabled || state.disabled : state.disabled,
+   modal: state => (state.parent.type === undefined || state.parent.type === 'context-menu') && (state.modal ?? true),
+   openMethod: state => state.openMethod,

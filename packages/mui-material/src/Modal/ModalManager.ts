@@ -143,15 +143,49 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     if (container.parentNode instanceof DocumentFragment) {
       scrollContainer = ownerDocument(container).body;
     } else {
-      // Support html overflow-y: auto for scroll stability between pages
-      // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
+      // Lock html when it is the viewport's scroll container.
       const parent = container.parentElement;
       const containerWindow = ownerWindow(container);
       scrollContainer =
         parent?.nodeName === 'HTML' &&
-        containerWindow.getComputedStyle(parent).overflowY === 'scroll'
+        /auto|scroll|hidden|clip/.test(containerWindow.getComputedStyle(parent).overflowY)
           ? parent
           : container;
+    }
+
+    const containerDocument = ownerDocument(scrollContainer);
+    const containerWindow = containerDocument.defaultView || window;
+    // Another overlay can lock either viewport element. Base UI's inset-scrollbar
+    // fallback locks body and gives html `overflow-y: scroll`.
+    const viewportElements = [containerDocument.documentElement, containerDocument.body];
+    const lockCandidates = viewportElements.includes(scrollContainer)
+      ? viewportElements
+      : [scrollContainer];
+    const isHidden = (overflow: string) => overflow === 'hidden' || overflow === 'clip';
+    const isScrollLocked = () =>
+      lockCandidates.some((element) =>
+        [element.style, containerWindow.getComputedStyle(element)].every(
+          (styles) =>
+            isHidden(styles.overflow) || [styles.overflowX, styles.overflowY].every(isHidden),
+        ),
+      );
+
+    // Wait for the other overlay to release its inline lock, then read the
+    // restored styles before we apply ours.
+    if (isScrollLocked()) {
+      let restore: (() => void) | undefined;
+      const observer = new containerWindow.MutationObserver(() => {
+        if (!isScrollLocked()) {
+          observer.disconnect();
+          restore = handleContainer(containerInfo, props);
+        }
+      });
+      lockCandidates.forEach((element) => observer.observe(element, { attributes: true }));
+
+      return () => {
+        observer.disconnect();
+        restore?.();
+      };
     }
 
     if (isOverflowing(scrollContainer)) {

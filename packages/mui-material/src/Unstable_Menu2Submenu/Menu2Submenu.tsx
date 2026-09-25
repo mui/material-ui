@@ -1,0 +1,182 @@
+'use client';
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import { Menu as BaseMenu } from '@base-ui/react/menu';
+import useEventCallback from '@mui/utils/useEventCallback';
+import Menu2SubmenuPopup, { Menu2SubmenuPopupProps } from '../Unstable_Menu2/Menu2SubmenuPopup';
+import Menu2SubmenuClosingContext from '../Unstable_Menu2/Menu2SubmenuClosingContext';
+import { useDefaultProps } from '../DefaultPropsProvider';
+
+export interface Menu2SubmenuSlots extends NonNullable<Menu2SubmenuPopupProps['slots']> {}
+
+export interface Menu2SubmenuSlotProps extends NonNullable<Menu2SubmenuPopupProps['slotProps']> {}
+
+/**
+ * The submenu counterpart of `Menu2`, with the same shape: a prop-only root,
+ * the trigger passed as a prop, and the children forming the popup.
+ * HTML attributes are forwarded to the root element, the same as the classic
+ * Menu, and event handlers attach to the popup, where the events originate.
+ * Use `slotProps.paper` for `aria-*` attributes on the `role="menu"` element.
+ */
+export interface Menu2SubmenuProps
+  // `Pick` names each prop the submenu forwards, the same way `Menu2` does.
+  // `orientation` is not picked: a submenu is always vertical.
+  extends
+    Pick<
+      BaseMenu.SubmenuRoot.Props,
+      | 'actionsRef'
+      | 'closeParentOnEsc'
+      | 'defaultOpen'
+      | 'disabled'
+      | 'highlightItemOnHover'
+      | 'loopFocus'
+      | 'onOpenChange'
+      | 'onOpenChangeComplete'
+      | 'open'
+    >,
+    Omit<Menu2SubmenuPopupProps, 'children' | 'slots' | 'slotProps'> {
+  /**
+   * The submenu items.
+   */
+  children?: React.ReactNode;
+  /**
+   * The `Menu2SubmenuTrigger` that opens the submenu, optionally wrapped in a `Tooltip`.
+   *
+   * The element is rendered as-is. Put trigger props on `Menu2SubmenuTrigger`.
+   */
+  trigger?: React.ReactElement | undefined;
+  /**
+   * The components used for each slot inside.
+   */
+  slots?: Menu2SubmenuSlots | undefined;
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps?: Menu2SubmenuSlotProps | undefined;
+}
+
+// With these close reasons the pointer is on another row, so focus does not return.
+const pointerLeaveReasons = new Set<string>(['trigger-hover', 'sibling-open']);
+
+/**
+ *
+ * Demos:
+ *
+ * - [Menu](https://mui.com/material-ui/react-menu/)
+ */
+const Menu2Submenu = React.forwardRef(function Menu2Submenu(
+  props: Menu2SubmenuProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
+  const themedProps = useDefaultProps({
+    props,
+    name: 'MuiMenu2Submenu',
+  });
+
+  const {
+    children,
+    trigger,
+    slots,
+    slotProps,
+    // Keep behavior on the renderless root and forward the rest to the popup.
+    actionsRef,
+    closeParentOnEsc,
+    defaultOpen,
+    disabled,
+    highlightItemOnHover,
+    loopFocus,
+    onOpenChange,
+    onOpenChangeComplete,
+    open,
+    ...popupProps
+  } = themedProps;
+
+  // Keep the exit tint for focus return, but clear it when the pointer leaves.
+  const [closing, setClosing] = React.useState(false);
+  const [retainClosingTint, setRetainClosingTint] = React.useState(true);
+  const handleOpenChange = useEventCallback<NonNullable<Menu2SubmenuProps['onOpenChange']>>(
+    (nextOpen, details) => {
+      onOpenChange?.(nextOpen, details);
+      if (!details.isCanceled) {
+        setRetainClosingTint(nextOpen || !pointerLeaveReasons.has(details.reason));
+      }
+    },
+  );
+  const handleClosingChange = useEventCallback((nextClosing: boolean) => {
+    setClosing(nextClosing);
+    if (closing && !nextClosing) {
+      setRetainClosingTint(true);
+    }
+  });
+  const closingContext = React.useMemo(
+    () => ({ closing, retainClosingTint, onClosingChange: handleClosingChange }),
+    [closing, retainClosingTint, handleClosingChange],
+  );
+
+  return (
+    <BaseMenu.SubmenuRoot
+      actionsRef={actionsRef}
+      closeParentOnEsc={closeParentOnEsc}
+      defaultOpen={defaultOpen}
+      disabled={disabled}
+      highlightItemOnHover={highlightItemOnHover}
+      loopFocus={loopFocus}
+      onOpenChange={handleOpenChange}
+      onOpenChangeComplete={onOpenChangeComplete}
+      open={open}
+    >
+      <Menu2SubmenuClosingContext.Provider value={closingContext}>
+        {trigger}
+        <Menu2SubmenuPopup
+          {...popupProps}
+          ref={ref}
+          ownerState={themedProps}
+          slotProps={slotProps}
+          slots={slots}
+        >
+          {children}
+        </Menu2SubmenuPopup>
+      </Menu2SubmenuClosingContext.Provider>
+    </BaseMenu.SubmenuRoot>
+  );
+});
+
+Menu2Submenu.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * The submenu items.
+   */
+  children: PropTypes.node,
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    positioner: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   */
+  slots: PropTypes.shape({
+    list: PropTypes.elementType,
+    paper: PropTypes.elementType,
+    positioner: PropTypes.elementType,
+    root: PropTypes.elementType,
+    transition: PropTypes.func,
+  }),
+  /**
+   * The `Menu2SubmenuTrigger` that opens the submenu, optionally wrapped in a `Tooltip`.
+   *
+   * The element is rendered as-is. Put trigger props on `Menu2SubmenuTrigger`.
+   */
+  trigger: PropTypes.element,
+} as any;
+
+export default Menu2Submenu;

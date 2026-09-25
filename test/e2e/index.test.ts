@@ -1,5 +1,5 @@
 import { Page, Browser, chromium, expect } from '@playwright/test';
-import { describe, it, beforeAll, afterAll } from 'vitest';
+import { describe, it, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
 import '@mui/internal-test-utils/initPlaywrightMatchers';
 
 const BASE_URL = 'http://localhost:5001';
@@ -62,6 +62,132 @@ describe('e2e', () => {
 
   afterAll(async () => {
     await browser.close();
+  });
+
+  describe('<Menu2 />', () => {
+    beforeEach(async () => {
+      // Reload the fixture even when successive cases use the same URL and hash.
+      await page.goto('about:blank');
+    });
+
+    afterEach(async () => {
+      await page.emulateMedia({ forcedColors: 'none' });
+    });
+
+    [false, true].forEach((focusVisible) => {
+      it(`separates pointer and keyboard styles, focusVisible=${focusVisible}`, async () => {
+        await renderFixture('Menu2/ItemStates');
+        await page.getByRole('checkbox', { name: 'Focus ring' }).setChecked(focusVisible);
+        await page.getByRole('button', { name: 'Options' }).click();
+
+        const items = [
+          page.getByRole('menuitem', { name: 'Plain', exact: true }),
+          page.getByRole('menuitem', { name: 'Link', exact: true }),
+          page.getByRole('menuitemcheckbox', { name: 'Checkbox' }),
+          page.getByRole('menuitemradio', { name: 'Radio' }),
+        ];
+        /* eslint-disable no-await-in-loop -- Test each pointer move in order. */
+        for (const item of items) {
+          await item.hover();
+          await expect(item).toBeFocused();
+          await expect(item).toHaveCSS('background-color', 'rgba(0, 0, 0, 0.04)');
+          await expect(item).not.toHaveClass(/Mui-focusVisible/);
+        }
+        /* eslint-enable no-await-in-loop */
+
+        const selected = page.getByRole('menuitem', { name: 'Selected' });
+        await selected.hover();
+        await expect(selected).toBeFocused();
+        await expect(selected).toHaveCSS('background-color', 'rgba(25, 118, 210, 0.12)');
+        await Promise.all(
+          items.map((item) => expect(item).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)')),
+        );
+
+        await page.keyboard.press('ArrowUp');
+        const trigger = page.getByRole('menuitem', { name: 'More', exact: true });
+        await expect(trigger).toBeFocused();
+        await expect(trigger).toHaveClass(/Mui-focusVisible/);
+        await expect(trigger).toHaveCSS(
+          'background-color',
+          focusVisible ? 'rgba(0, 0, 0, 0)' : 'rgba(0, 0, 0, 0.12)',
+        );
+        if (focusVisible) {
+          await expect(trigger).toHaveCSS('outline-width', '2px');
+        }
+      });
+    });
+
+    it('uses hover tint for the open parent and hovered child', async () => {
+      await renderFixture('Menu2/ItemStates');
+      await page.getByRole('button', { name: 'Options' }).click();
+      const parent = page.getByRole('menuitem', { name: 'More', exact: true });
+      await parent.hover();
+      const child = page.getByRole('menuitem', { name: 'More tools' });
+      await child.hover();
+      await expect(child).toBeFocused();
+      await expect(parent).toHaveClass(/Mui-open/);
+      await expect(parent).not.toHaveClass(/MuiMenu2SubmenuTrigger-highlighted/);
+      await expect(child).not.toHaveClass(/Mui-focusVisible/);
+      await expect(child).toHaveCSS('background-color', 'rgba(0, 0, 0, 0.04)');
+      await expect(parent).toHaveCSS('background-color', 'rgba(0, 0, 0, 0.04)');
+    });
+
+    [false, true].forEach((focusVisible) => {
+      [false, true].forEach((selected) => {
+        [false, true].forEach((forcedColors) => {
+          it(`clears the submenu trigger tint during a pointer exit, focusVisible=${focusVisible}, selected=${selected}, forcedColors=${forcedColors}`, async () => {
+            await page.emulateMedia({ forcedColors: forcedColors ? 'active' : 'none' });
+            await renderFixture('Menu2/SubmenuPointerExit');
+            await page.getByRole('checkbox', { name: 'Focus ring' }).setChecked(focusVisible);
+            await page.getByRole('checkbox', { name: 'Selected trigger' }).setChecked(selected);
+            await page.getByRole('button', { name: 'Options' }).click();
+            const trigger = page.getByRole('menuitem', { name: 'More', exact: true });
+            const idleColors = await trigger.evaluate((element) => {
+              const style = getComputedStyle(element);
+              return { color: style.color, backgroundColor: style.backgroundColor };
+            });
+            await trigger.hover();
+            await expect(trigger).toHaveClass(/Mui-open/);
+            // Move through Base UI's safe-travel pointer blocking without waiting for it to end.
+            await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover({ force: true });
+            await expect(trigger).toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
+            expect(
+              await trigger.evaluate((element) => {
+                const style = getComputedStyle(element);
+                return { color: style.color, backgroundColor: style.backgroundColor };
+              }),
+            ).toEqual(idleColors);
+          });
+        });
+      });
+    });
+
+    [false, true].forEach((forcedColors) => {
+      it(`restores the exit tint for keyboard navigation after a pointer close, forcedColors=${forcedColors}`, async () => {
+        await page.emulateMedia({ forcedColors: forcedColors ? 'active' : 'none' });
+        await renderFixture('Menu2/SubmenuPointerExit');
+        await page.getByRole('button', { name: 'Options' }).click();
+        const trigger = page.getByRole('menuitem', { name: 'More', exact: true });
+        await trigger.hover();
+        await expect(trigger).toHaveClass(/Mui-open/);
+        await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover({ force: true });
+        await expect(trigger).not.toHaveClass(/Mui-open/);
+        await expect(trigger).not.toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
+        await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover();
+        await page.keyboard.press('ArrowDown');
+        await page.keyboard.press('ArrowRight');
+        await expect(page.getByRole('menuitem', { name: 'Nested' })).toBeFocused();
+        const openColor = await trigger.evaluate(
+          (element) => getComputedStyle(element).backgroundColor,
+        );
+        await page.keyboard.press('Escape');
+        await expect(trigger).toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
+        expect(await trigger.evaluate((element) => getComputedStyle(element).backgroundColor)).toBe(
+          openColor,
+        );
+        await expect(trigger).toBeFocused();
+      });
+    });
   });
 
   describe('<FocusTrap />', () => {
