@@ -39,7 +39,8 @@ expects one `onEnter` call for each open.
 
 - Fix 1 was merged in [Base UI PR #5645](https://github.com/mui/base-ui/pull/5645).
   Base UI 1.8.0 does not include it.
-- Fix 2 is open as [Base UI PR #5738](https://github.com/mui/base-ui/pull/5738).
+- Fix 2 was merged in [Base UI PR #5738](https://github.com/mui/base-ui/pull/5738).
+  Base UI 1.8.0 does not include it.
   The upstream change is in the shared `popupStoreSelectors`, not in `MenuStore`.
 
 Keep this patch until a Base UI release includes both fixes.
