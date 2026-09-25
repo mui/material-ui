@@ -19,7 +19,7 @@ import useAutocomplete, {
   AutocompleteFreeSoloValueMapping,
   AutocompleteValueOrFreeSoloValueMapping,
 } from '../useAutocomplete';
-import { AutocompleteResolvedValue, NoInfer } from '../useAutocomplete/useAutocomplete';
+import { AutocompleteResolvedValue } from '../useAutocomplete/useAutocomplete';
 import { AutocompleteClasses } from './autocompleteClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
@@ -556,8 +556,7 @@ export default function Autocomplete<
     DisableClearable,
     FreeSolo,
     ChipComponent,
-    // Keep direct calls on the mapped or unmapped overload above by blocking inference here.
-    NoInfer<MappedValue>
+    MappedValue
   > &
     // Explicit mapped types require a mapper; raw and erased types allow it to be absent.
     (undefined extends MappedValue ? {} : { getOptionValue: (option: Value) => MappedValue }) &
@@ -566,10 +565,7 @@ export default function Autocomplete<
       ? {
           freeSolo?: FreeSolo | undefined;
           getOptionValue?:
-            | ((
-                option: Value,
-              ) => Exclude<NoInfer<MappedValue>, undefined> & AutocompleteMappedValue<FreeSolo>)
-            | undefined;
+            ((option: Value) => MappedValue & AutocompleteMappedValue<FreeSolo>) | undefined;
         }
       : never),
 ): React.JSX.Element;

@@ -156,7 +156,7 @@ export default function useOptionValue<Value, MappedValue = never>({
       return null;
     }
 
-    return new Set<OptionValue<Value, MappedValue>>(
+    return new Set(
       hasOptionValueMapping && freeSolo
         ? selectedValues.filter((selectedValue) => typeof selectedValue !== 'string')
         : selectedValues,

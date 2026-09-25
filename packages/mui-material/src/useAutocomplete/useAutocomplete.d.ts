@@ -438,10 +438,9 @@ export function useAutocomplete<
   MappedValue extends AutocompleteMappedValue<FreeSolo> = AutocompleteMappedValue<FreeSolo>,
 >(
   props: PartiallyRequired<
-    // Infer FreeSolo from its prop only, so generic mapped values cannot widen it to boolean.
-    UseAutocompleteProps<Value, Multiple, DisableClearable, NoInfer<FreeSolo>, MappedValue>,
+    UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo, MappedValue>,
     'groupBy' | 'getOptionValue'
-  > & { freeSolo?: FreeSolo | undefined },
+  >,
 ): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, true, MappedValue>;
 
 // With getOptionValue, without groupBy: selections use mapped values; groupedOptions contains options.
@@ -453,12 +452,9 @@ export function useAutocomplete<
   MappedValue extends AutocompleteMappedValue<FreeSolo> = AutocompleteMappedValue<FreeSolo>,
 >(
   props: PartiallyRequired<
-    Omit<
-      UseAutocompleteProps<Value, Multiple, DisableClearable, NoInfer<FreeSolo>, MappedValue>,
-      'groupBy'
-    >,
+    Omit<UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo, MappedValue>, 'groupBy'>,
     'getOptionValue'
-  > & { freeSolo?: FreeSolo | undefined },
+  >,
 ): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, false, MappedValue>;
 
 // Without getOptionValue, with groupBy: selections use original options; groupedOptions contains option groups.
