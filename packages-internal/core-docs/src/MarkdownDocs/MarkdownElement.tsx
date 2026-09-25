@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { alpha, darken, styled } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
 import useForkRef from '@mui/utils/useForkRef';
 import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../branding';
 
@@ -152,7 +152,7 @@ const Root = styled('div')(
       },
     },
     '& a code': {
-      color: darken(lightTheme.palette.primary.main, 0.2),
+      color: 'inherit',
     },
     '& h1, & h2, & h3, & h4': {
       display: 'flex',
@@ -387,7 +387,6 @@ const Root = styled('div')(
         },
         '& a': {
           color: `var(--muidocs-palette-error-800, ${lightTheme.palette.error[800]})`,
-          '& code': { color: 'inherit' },
           textDecorationColor: alpha(lightTheme.palette.error.main, 0.4),
           '&:hover': {
             textDecorationColor: 'inherit',
@@ -404,6 +403,9 @@ const Root = styled('div')(
         '& svg': {
           fill: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
         },
+        '& a': {
+          color: `var(--muidocs-palette-primary-700, ${lightTheme.palette.primary[700]})`,
+        },
       },
       '&.MuiCallout-success': {
         color: `var(--muidocs-palette-success-900, ${lightTheme.palette.success[900]})`,
@@ -417,7 +419,6 @@ const Root = styled('div')(
         },
         '& a': {
           color: `var(--muidocs-palette-success-900, ${lightTheme.palette.success[900]})`,
-          '& code': { color: 'inherit' },
           textDecorationColor: alpha(lightTheme.palette.success.main, 0.4),
           '&:hover': {
             textDecorationColor: 'inherit',
@@ -436,7 +437,6 @@ const Root = styled('div')(
         },
         '& a': {
           color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
-          '& code': { color: 'inherit' },
           textDecorationColor: alpha(lightTheme.palette.warning.main, 0.4),
           '&:hover': {
             textDecorationColor: 'inherit',
@@ -685,7 +685,7 @@ const Root = styled('div')(
         color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primary[300]})`,
       },
       '& a code': {
-        color: `var(--muidocs-palette-primary-light, ${darkTheme.palette.primary.light})`,
+        color: 'inherit',
       },
       '& h1, & h2, & h3, & h4, & h5': {
         color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
@@ -750,7 +750,6 @@ const Root = styled('div')(
           },
           '& a': {
             color: `var(--muidocs-palette-error-200, ${darkTheme.palette.error[200]})`,
-            '& code': { color: 'inherit' },
           },
         },
         '&.MuiCallout-info': {
@@ -762,6 +761,9 @@ const Root = styled('div')(
           },
           '& svg': {
             fill: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
+          },
+          '& a': {
+            color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primary[300]})`,
           },
         },
         '&.MuiCallout-success': {
@@ -776,7 +778,6 @@ const Root = styled('div')(
           },
           '& a': {
             color: `var(--muidocs-palette-success-100, ${darkTheme.palette.success[100]})`,
-            '& code': { color: 'inherit' },
           },
         },
         '&.MuiCallout-warning': {
@@ -791,7 +792,6 @@ const Root = styled('div')(
           },
           '& a': {
             color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
-            '& code': { color: 'inherit' },
           },
         },
       },
