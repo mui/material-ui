@@ -10,6 +10,17 @@ export {
   FocusVisible,
 } from './createTheme';
 export { default as enhanceHighContrast, HighContrastTokens } from './enhanceHighContrast';
+export {
+  ColorStates,
+  StateGroup,
+  ThemeState,
+  StateGroupOverrides,
+  StateGroupKey,
+  StateVariants,
+  PaletteStateColor,
+  StateStyle,
+} from './createCssState';
+export { default as resolveColorStates, resolveStateGroup } from './resolveColorStates';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
 export { Shadows } from './shadows';
 export { ZIndex } from './zIndex';

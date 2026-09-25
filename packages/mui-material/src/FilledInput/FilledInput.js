@@ -20,6 +20,7 @@ import {
 } from '../InputBase/InputBase';
 import { capitalize } from '../utils';
 import { getTransitionStyles } from '../transitions/utils';
+import { resolveStateGroup } from '../styles/resolveColorStates';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableUnderline, startAdornment, endAdornment, size, hiddenLabel, multiline } =
@@ -64,18 +65,14 @@ const FilledInputRoot = styled(InputBaseRoot, {
     const backgroundColor = light ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.09)';
     const hoverBackground = light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.13)';
     const disabledBackground = light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)';
-    return {
-      position: 'relative',
+    const fieldStates = resolveStateGroup(theme, 'MuiFilledInput');
+    const mdUnderlineColor = theme.vars
+      ? theme.alpha(theme.vars.palette.common.onBackground, theme.vars.opacity.inputUnderline)
+      : bottomLineColor;
+    const mdFilled = (color) => ({
       backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
-      borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
-      borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
-      ...getTransitionStyles(theme, 'background-color', {
-        duration: theme.transitions.duration.shorter,
-        easing: theme.transitions.easing.easeOut,
-      }),
       '&:hover': {
         backgroundColor: theme.vars ? theme.vars.palette.FilledInput.hoverBg : hoverBackground,
-        // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
         },
@@ -88,6 +85,49 @@ const FilledInputRoot = styled(InputBaseRoot, {
           ? theme.vars.palette.FilledInput.disabledBg
           : disabledBackground,
       },
+      '&::before': {
+        borderBottomColor: mdUnderlineColor,
+      },
+      [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]: {
+        borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
+      },
+      '&::after': {
+        borderBottom: `2px solid ${(theme.vars || theme).palette[color]?.main}`,
+      },
+      [`&.${filledInputClasses.error}`]: {
+        '&::before, &::after': {
+          borderBottomColor: (theme.vars || theme).palette.error.main,
+        },
+      },
+    });
+    return {
+      position: 'relative',
+      ...(!fieldStates && {
+        backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
+      }),
+      borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+      borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+      ...getTransitionStyles(theme, 'background-color', {
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.easeOut,
+      }),
+      ...(!fieldStates && {
+        '&:hover': {
+          backgroundColor: theme.vars ? theme.vars.palette.FilledInput.hoverBg : hoverBackground,
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
+          },
+        },
+        [`&.${filledInputClasses.focused}`]: {
+          backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
+        },
+        [`&.${filledInputClasses.disabled}`]: {
+          backgroundColor: theme.vars
+            ? theme.vars.palette.FilledInput.disabledBg
+            : disabledBackground,
+        },
+      }),
       variants: [
         {
           props: ({ ownerState }) => !ownerState.disableUnderline,
@@ -110,20 +150,24 @@ const FilledInputRoot = styled(InputBaseRoot, {
               // See https://github.com/mui/material-ui/issues/31766
               transform: 'scaleX(1) translateX(0)',
             },
-            [`&.${filledInputClasses.error}`]: {
-              '&::before, &::after': {
-                borderBottomColor: (theme.vars || theme).palette.error.main,
+            ...(!fieldStates && {
+              [`&.${filledInputClasses.error}`]: {
+                '&::before, &::after': {
+                  borderBottomColor: (theme.vars || theme).palette.error.main,
+                },
               },
-            },
+            }),
             '&::before': {
-              borderBottom: `1px solid ${
-                theme.vars
-                  ? theme.alpha(
-                      theme.vars.palette.common.onBackground,
-                      theme.vars.opacity.inputUnderline,
-                    )
-                  : bottomLineColor
-              }`,
+              borderBottom: fieldStates
+                ? '1px solid'
+                : `1px solid ${
+                    theme.vars
+                      ? theme.alpha(
+                          theme.vars.palette.common.onBackground,
+                          theme.vars.opacity.inputUnderline,
+                        )
+                      : bottomLineColor
+                  }`,
               left: 0,
               bottom: 0,
               content: '""',
@@ -134,27 +178,95 @@ const FilledInputRoot = styled(InputBaseRoot, {
               }),
               pointerEvents: 'none', // Transparent to the hover style.
             },
-            [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]: {
-              borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
-            },
+            ...(!fieldStates && {
+              [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]:
+                {
+                  borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
+                },
+            }),
             [`&.${filledInputClasses.disabled}:before`]: {
               borderBottomStyle: 'dotted',
             },
           },
         },
+        ...(fieldStates
+          ? []
+          : Object.entries(theme.palette)
+              .filter(createSimplePaletteValueFilter()) // check all the used fields in the style below
+              .map(([color]) => ({
+                props: {
+                  disableUnderline: false,
+                  color,
+                },
+                style: {
+                  '&::after': {
+                    borderBottom: `2px solid ${(theme.vars || theme).palette[color]?.main}`,
+                  },
+                },
+              }))),
         ...Object.entries(theme.palette)
-          .filter(createSimplePaletteValueFilter()) // check all the used fields in the style below
-          .map(([color]) => ({
-            props: {
-              disableUnderline: false,
-              color,
-            },
-            style: {
-              '&::after': {
-                borderBottom: `2px solid ${(theme.vars || theme).palette[color]?.main}`,
+          .filter(createSimplePaletteValueFilter())
+          .flatMap(([color]) => {
+            if (!fieldStates) {
+              return [];
+            }
+            const colorStates = fieldStates[color];
+            const errorStates = fieldStates.error;
+            if (!colorStates) {
+              return [
+                {
+                  props: { color },
+                  style: mdFilled(color),
+                },
+              ];
+            }
+            return [
+              {
+                props: { color },
+                style: {
+                  ...colorStates.initial,
+                  ...(colorStates.initial?.border === undefined && { border: 'none' }),
+                  '&::before': {
+                    borderBottomColor: colorStates.initial?.borderColor,
+                  },
+                  ...(colorStates.hover && {
+                    '@media (hover: hover)': {
+                      '&:hover': colorStates.hover,
+                      [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]:
+                        {
+                          borderBottom: '1px solid',
+                          borderBottomColor: colorStates.hover.borderColor,
+                        },
+                    },
+                  }),
+                  ...(colorStates.focused && {
+                    [`&.${filledInputClasses.focused}`]: colorStates.focused,
+                    '&::after': {
+                      borderBottom: '2px solid',
+                      borderBottomColor: colorStates.focused.borderColor,
+                    },
+                  }),
+                  ...(colorStates.disabled && {
+                    [`&.${filledInputClasses.disabled}`]: colorStates.disabled,
+                    [`&.${filledInputClasses.disabled}:before`]: {
+                      borderBottomColor: colorStates.disabled.borderColor,
+                    },
+                  }),
+                  ...(errorStates && {
+                    [`&.${filledInputClasses.error}`]: {
+                      ...errorStates.initial,
+                      '&::before, &::after': {
+                        borderBottomColor: errorStates.initial?.borderColor,
+                      },
+                      ...(errorStates.focused && {
+                        [`&.${filledInputClasses.focused}`]: errorStates.focused,
+                      }),
+                    },
+                  }),
+                },
               },
-            },
-          })),
+            ];
+          }),
         {
           props: ({ ownerState }) => ownerState.startAdornment,
           style: {

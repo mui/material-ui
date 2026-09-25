@@ -18,6 +18,7 @@ import createMotion from './createMotion';
 import zIndex from './zIndex';
 import { stringifyTheme } from './stringifyTheme';
 import { resolveFocusVisible } from './focusVisible';
+import createCssState from './createCssState';
 
 function coefficientToPercentage(coefficient) {
   if (typeof coefficient === 'number') {
@@ -203,6 +204,10 @@ function createThemeNoVars(options = {}, ...args) {
   muiTheme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
 
   attachColorManipulators(muiTheme);
+
+  if (muiTheme.state) {
+    muiTheme.state = createCssState(muiTheme.state);
+  }
 
   return muiTheme;
 }

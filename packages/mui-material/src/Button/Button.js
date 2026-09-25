@@ -17,6 +17,7 @@ import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
 import { getTransitionStyles } from '../transitions/utils';
+import resolveColorStates, { resolveStateGroup } from '../styles/resolveColorStates';
 
 const useUtilityClasses = (ownerState) => {
   const { color, disableElevation, fullWidth, size, variant, loading, loadingPosition, classes } =
@@ -98,6 +99,52 @@ const ButtonRoot = styled(ButtonBase, {
 
     const inheritContainedHoverBackgroundColor =
       theme.palette.mode === 'light' ? theme.palette.grey.A100 : theme.palette.grey[700];
+
+    const defaultStates = resolveColorStates(theme, 'MuiButton');
+    const containedStates = resolveStateGroup(theme, 'MuiButton', 'contained');
+    const outlinedStates = resolveStateGroup(theme, 'MuiButton', 'outlined');
+    const textStates = resolveStateGroup(theme, 'MuiButton', 'text');
+    const mdContained = {
+      color: `var(--variant-containedColor)`,
+      backgroundColor: `var(--variant-containedBg)`,
+      boxShadow: (theme.vars || theme).shadows[2],
+      '&:hover': {
+        boxShadow: (theme.vars || theme).shadows[4],
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          boxShadow: (theme.vars || theme).shadows[2],
+        },
+      },
+      '&:active': {
+        boxShadow: (theme.vars || theme).shadows[8],
+      },
+      [`&.${buttonClasses.focusVisible}`]: {
+        ...theme.focusVisible,
+        boxShadow: theme.focusVisible?.boxShadow
+          ? `${(theme.vars || theme).shadows[6]}, ${theme.focusVisible.boxShadow}`
+          : (theme.vars || theme).shadows[6],
+      },
+      [`&.${buttonClasses.disabled}`]: {
+        color: (theme.vars || theme).palette.action.disabled,
+        boxShadow: (theme.vars || theme).shadows[0],
+        backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
+      },
+    };
+    const mdOutlined = {
+      padding: '5px 15px',
+      border: '1px solid currentColor',
+      borderColor: `var(--variant-outlinedBorder, currentColor)`,
+      backgroundColor: `var(--variant-outlinedBg)`,
+      color: `var(--variant-outlinedColor)`,
+      [`&.${buttonClasses.disabled}`]: {
+        border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
+      },
+    };
+    const mdText = {
+      padding: '6px 8px',
+      color: `var(--variant-textColor)`,
+      backgroundColor: `var(--variant-textBg)`,
+    };
     return {
       ...theme.typography.button,
       minWidth: 64,
@@ -110,59 +157,23 @@ const ButtonRoot = styled(ButtonBase, {
       '&:hover': {
         textDecoration: 'none',
       },
-      [`&.${buttonClasses.disabled}`]: {
-        color: (theme.vars || theme).palette.action.disabled,
-      },
+      ...(!defaultStates && {
+        [`&.${buttonClasses.disabled}`]: {
+          color: (theme.vars || theme).palette.action.disabled,
+        },
+      }),
       variants: [
         {
-          props: { variant: 'contained' },
-          style: {
-            color: `var(--variant-containedColor)`,
-            backgroundColor: `var(--variant-containedBg)`,
-            boxShadow: (theme.vars || theme).shadows[2],
-            '&:hover': {
-              boxShadow: (theme.vars || theme).shadows[4],
-              // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
-                boxShadow: (theme.vars || theme).shadows[2],
-              },
-            },
-            '&:active': {
-              boxShadow: (theme.vars || theme).shadows[8],
-            },
-            [`&.${buttonClasses.focusVisible}`]: {
-              ...theme.focusVisible,
-              boxShadow: theme.focusVisible?.boxShadow
-                ? `${(theme.vars || theme).shadows[6]}, ${theme.focusVisible.boxShadow}`
-                : (theme.vars || theme).shadows[6],
-            },
-            [`&.${buttonClasses.disabled}`]: {
-              color: (theme.vars || theme).palette.action.disabled,
-              boxShadow: (theme.vars || theme).shadows[0],
-              backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
-            },
-          },
+          props: ({ ownerState }) => ownerState.variant === 'contained' && !containedStates,
+          style: mdContained,
         },
         {
-          props: { variant: 'outlined' },
-          style: {
-            padding: '5px 15px',
-            border: '1px solid currentColor',
-            borderColor: `var(--variant-outlinedBorder, currentColor)`,
-            backgroundColor: `var(--variant-outlinedBg)`,
-            color: `var(--variant-outlinedColor)`,
-            [`&.${buttonClasses.disabled}`]: {
-              border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
-            },
-          },
+          props: ({ ownerState }) => ownerState.variant === 'outlined' && !outlinedStates,
+          style: mdOutlined,
         },
         {
-          props: { variant: 'text' },
-          style: {
-            padding: '6px 8px',
-            color: `var(--variant-textColor)`,
-            backgroundColor: `var(--variant-textBg)`,
-          },
+          props: ({ ownerState }) => ownerState.variant === 'text' && !textStates,
+          style: mdText,
         },
         ...Object.entries(theme.palette)
           .filter(createSimplePaletteValueFilter())
@@ -193,6 +204,57 @@ const ButtonRoot = styled(ButtonBase, {
               },
             },
           })),
+        ...Object.entries(theme.palette)
+          .filter(createSimplePaletteValueFilter())
+          .flatMap(([color]) =>
+            ['text', 'outlined', 'contained'].flatMap((variant) => {
+              const variantStates = {
+                text: textStates,
+                outlined: outlinedStates,
+                contained: containedStates,
+              }[variant];
+              if (!variantStates) {
+                return [];
+              }
+              const colorStates = variantStates[color];
+              if (!colorStates) {
+                return [
+                  {
+                    props: { variant, color },
+                    style: {
+                      text: mdText,
+                      outlined: mdOutlined,
+                      contained: mdContained,
+                    }[variant],
+                  },
+                ];
+              }
+              return [
+                {
+                  props: { variant, color },
+                  style: {
+                    ...(variant === 'outlined'
+                      ? { border: '1px solid currentColor', ...colorStates.initial }
+                      : {
+                          ...colorStates.initial,
+                          ...(colorStates.initial?.border === undefined && { border: 'none' }),
+                        }),
+                    ...(colorStates.hover && {
+                      '@media (hover: hover)': {
+                        '&:hover': colorStates.hover,
+                      },
+                    }),
+                    ...(colorStates.active && {
+                      '&:active': colorStates.active,
+                    }),
+                    ...(colorStates.disabled && {
+                      [`&.${buttonClasses.disabled}`]: colorStates.disabled,
+                    }),
+                  },
+                },
+              ];
+            }),
+          ),
         {
           props: {
             color: 'inherit',

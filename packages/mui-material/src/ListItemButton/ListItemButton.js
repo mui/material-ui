@@ -14,6 +14,7 @@ import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
 import { getTransitionStyles } from '../transitions/utils';
+import resolveColorStates from '../styles/resolveColorStates';
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -56,99 +57,131 @@ const ListItemButtonRoot = styled(ButtonBase, {
   slot: 'Root',
   overridesResolver,
 })(
-  memoTheme(({ theme }) => ({
-    display: 'flex',
-    flexGrow: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    position: 'relative',
-    textDecoration: 'none',
-    minWidth: 0,
-    boxSizing: 'border-box',
-    textAlign: 'left',
-    paddingTop: 8,
-    paddingBottom: 8,
-    ...getTransitionStyles(theme, 'background-color', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    '&:hover': {
+  memoTheme(({ theme }) => {
+    const colorStates = resolveColorStates(theme, 'MuiListItemButton');
+    return {
+      display: 'flex',
+      flexGrow: 1,
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      position: 'relative',
       textDecoration: 'none',
-      backgroundColor: (theme.vars || theme).palette.action.hover,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
-    [`&.${listItemButtonClasses.selected}`]: {
-      backgroundColor: theme.alpha(
-        (theme.vars || theme).palette.primary.main,
-        (theme.vars || theme).palette.action.selectedOpacity,
-      ),
-      ...(!theme.focusVisible && {
-        [`&.${listItemButtonClasses.focusVisible}`]: {
-          backgroundColor: theme.alpha(
-            (theme.vars || theme).palette.primary.main,
-            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
-          ),
-        },
+      minWidth: 0,
+      boxSizing: 'border-box',
+      textAlign: 'left',
+      paddingTop: 8,
+      paddingBottom: 8,
+      ...getTransitionStyles(theme, 'background-color', {
+        duration: theme.transitions.duration.shortest,
       }),
-    },
-    [`&.${listItemButtonClasses.selected}:hover`]: {
-      backgroundColor: theme.alpha(
-        (theme.vars || theme).palette.primary.main,
-        `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
-      ),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.alpha(
-          (theme.vars || theme).palette.primary.main,
-          (theme.vars || theme).palette.action.selectedOpacity,
-        ),
-      },
-    },
-    ...(theme.focusVisible
-      ? // Inset the ring: a scrolling List (drawers, long lists) clips an outset ring.
-        applyInsetFocusVisible(1)
-      : {
-          [`&.${listItemButtonClasses.focusVisible}`]: {
-            backgroundColor: (theme.vars || theme).palette.action.focus,
+      '&:hover': {
+        textDecoration: 'none',
+        ...(!colorStates && {
+          backgroundColor: (theme.vars || theme).palette.action.hover,
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: 'transparent',
           },
         }),
-    [`&.${listItemButtonClasses.disabled}`]: {
-      opacity: (theme.vars || theme).palette.action.disabledOpacity,
-    },
-    variants: [
-      {
-        props: ({ ownerState }) => ownerState.divider,
-        style: {
-          borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-          backgroundClip: 'padding-box',
-        },
       },
-      {
-        props: {
-          alignItems: 'flex-start',
+      ...(colorStates
+        ? {
+            ...colorStates.initial,
+            ...(colorStates.hover && {
+              '@media (hover: hover)': {
+                '&:hover': colorStates.hover,
+              },
+            }),
+            ...(colorStates.active && {
+              '&:active': colorStates.active,
+            }),
+            [`&.${listItemButtonClasses.selected}`]: {
+              ...colorStates.selected,
+              ...(colorStates.selectedHover && {
+                '@media (hover: hover)': {
+                  '&:hover': colorStates.selectedHover,
+                },
+              }),
+              ...(colorStates.selectedActive && {
+                '&:active': colorStates.selectedActive,
+              }),
+            },
+          }
+        : {
+            [`&.${listItemButtonClasses.selected}`]: {
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette.primary.main,
+                (theme.vars || theme).palette.action.selectedOpacity,
+              ),
+              ...(!theme.focusVisible && {
+                [`&.${listItemButtonClasses.focusVisible}`]: {
+                  backgroundColor: theme.alpha(
+                    (theme.vars || theme).palette.primary.main,
+                    `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+                  ),
+                },
+              }),
+            },
+            [`&.${listItemButtonClasses.selected}:hover`]: {
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette.primary.main,
+                `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
+              ),
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette.primary.main,
+                  (theme.vars || theme).palette.action.selectedOpacity,
+                ),
+              },
+            },
+          }),
+      ...(theme.focusVisible
+        ? // Inset the ring: a scrolling List (drawers, long lists) clips an outset ring.
+          applyInsetFocusVisible(1)
+        : {
+            [`&.${listItemButtonClasses.focusVisible}`]: {
+              backgroundColor: (theme.vars || theme).palette.action.focus,
+            },
+          }),
+      [`&.${listItemButtonClasses.disabled}`]: colorStates
+        ? colorStates.disabled
+        : {
+            opacity: (theme.vars || theme).palette.action.disabledOpacity,
+          },
+      variants: [
+        {
+          props: ({ ownerState }) => ownerState.divider,
+          style: {
+            borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+            backgroundClip: 'padding-box',
+          },
         },
-        style: {
-          alignItems: 'flex-start',
+        {
+          props: {
+            alignItems: 'flex-start',
+          },
+          style: {
+            alignItems: 'flex-start',
+          },
         },
-      },
-      {
-        props: ({ ownerState }) => !ownerState.disableGutters,
-        style: {
-          paddingLeft: 16,
-          paddingRight: 16,
+        {
+          props: ({ ownerState }) => !ownerState.disableGutters,
+          style: {
+            paddingLeft: 16,
+            paddingRight: 16,
+          },
         },
-      },
-      {
-        props: ({ ownerState }) => ownerState.dense,
-        style: {
-          paddingTop: 4,
-          paddingBottom: 4,
+        {
+          props: ({ ownerState }) => ownerState.dense,
+          style: {
+            paddingTop: 4,
+            paddingBottom: 4,
+          },
         },
-      },
-    ],
-  })),
+      ],
+    };
+  }),
 );
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {

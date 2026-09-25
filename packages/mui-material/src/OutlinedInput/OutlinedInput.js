@@ -19,6 +19,7 @@ import InputBase, {
   InputBaseInput,
 } from '../InputBase/InputBase';
 import useSlot from '../utils/useSlot';
+import { resolveStateGroup } from '../styles/resolveColorStates';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -46,45 +47,140 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
   memoTheme(({ theme }) => {
     const borderColor =
       theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
-    return {
-      position: 'relative',
-      borderRadius: (theme.vars || theme).shape.borderRadius,
+    const fieldStates = resolveStateGroup(theme, 'MuiOutlinedInput');
+    const mdBorderColor = theme.vars
+      ? theme.alpha(theme.vars.palette.common.onBackground, 0.23)
+      : borderColor;
+    const mdOutlined = (color) => ({
+      [`& .${outlinedInputClasses.notchedOutline}`]: {
+        borderColor: mdBorderColor,
+      },
       [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
         borderColor: (theme.vars || theme).palette.text.primary,
       },
-      // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-          borderColor: theme.vars
-            ? theme.alpha(theme.vars.palette.common.onBackground, 0.23)
-            : borderColor,
+          borderColor: mdBorderColor,
         },
       },
       [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
         borderWidth: 2,
+        borderColor: (theme.vars || theme).palette[color].main,
       },
-      variants: [
-        ...Object.entries(theme.palette)
-          .filter(createSimplePaletteValueFilter())
-          .map(([color]) => ({
-            props: { color },
-            style: {
-              [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
-                borderColor: (theme.vars || theme).palette[color].main,
-              },
-            },
-          })),
-        {
-          props: {}, // to override the above style
-          style: {
-            [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: (theme.vars || theme).palette.error.main,
-            },
-            [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: (theme.vars || theme).palette.action.disabled,
-            },
+      [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
+        borderColor: (theme.vars || theme).palette.error.main,
+      },
+      [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]: {
+        borderColor: (theme.vars || theme).palette.action.disabled,
+      },
+    });
+    return {
+      position: 'relative',
+      borderRadius: (theme.vars || theme).shape.borderRadius,
+      ...(!fieldStates && {
+        [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+          borderColor: (theme.vars || theme).palette.text.primary,
+        },
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+            borderColor: theme.vars
+              ? theme.alpha(theme.vars.palette.common.onBackground, 0.23)
+              : borderColor,
           },
         },
+        [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
+          borderWidth: 2,
+        },
+      }),
+      variants: [
+        ...(fieldStates
+          ? []
+          : Object.entries(theme.palette)
+              .filter(createSimplePaletteValueFilter())
+              .map(([color]) => ({
+                props: { color },
+                style: {
+                  [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
+                    borderColor: (theme.vars || theme).palette[color].main,
+                  },
+                },
+              }))),
+        ...(fieldStates
+          ? []
+          : [
+              {
+                props: {}, // to override the above style
+                style: {
+                  [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
+                    borderColor: (theme.vars || theme).palette.error.main,
+                  },
+                  [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]: {
+                    borderColor: (theme.vars || theme).palette.action.disabled,
+                  },
+                },
+              },
+            ]),
+        ...Object.entries(theme.palette)
+          .filter(createSimplePaletteValueFilter())
+          .flatMap(([color]) => {
+            if (!fieldStates) {
+              return [];
+            }
+            const colorStates = fieldStates[color];
+            const errorStates = fieldStates.error;
+            if (!colorStates) {
+              return [
+                {
+                  props: { color },
+                  style: mdOutlined(color),
+                },
+              ];
+            }
+            return [
+              {
+                props: { color },
+                style: {
+                  ...colorStates.initial,
+                  border: 'none',
+                  [`& .${outlinedInputClasses.notchedOutline}`]: {
+                    borderColor: colorStates.initial?.borderColor,
+                  },
+                  ...(colorStates.hover && {
+                    '@media (hover: hover)': {
+                      [`&:hover:not(.${outlinedInputClasses.disabled}, .${outlinedInputClasses.error}, .${outlinedInputClasses.focused}) .${outlinedInputClasses.notchedOutline}`]:
+                        {
+                          borderColor: colorStates.hover.borderColor,
+                        },
+                    },
+                  }),
+                  ...(colorStates.focused && {
+                    [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
+                      borderColor: colorStates.focused.borderColor,
+                      borderWidth: colorStates.focused.borderWidth,
+                    },
+                  }),
+                  ...(colorStates.disabled && {
+                    [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]:
+                      {
+                        borderColor: colorStates.disabled.borderColor,
+                      },
+                  }),
+                  ...(errorStates && {
+                    [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
+                      borderColor: errorStates.initial?.borderColor,
+                    },
+                    ...(errorStates.focused && {
+                      [`&.${outlinedInputClasses.error}.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]:
+                        {
+                          borderColor: errorStates.focused.borderColor,
+                        },
+                    }),
+                  }),
+                },
+              },
+            ];
+          }),
         {
           props: ({ ownerState }) => ownerState.startAdornment,
           style: {
@@ -127,9 +223,11 @@ const NotchedOutlineRoot = styled(NotchedOutline, {
     const borderColor =
       theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
     return {
-      borderColor: theme.vars
-        ? theme.alpha(theme.vars.palette.common.onBackground, 0.23)
-        : borderColor,
+      ...(!resolveStateGroup(theme, 'MuiOutlinedInput') && {
+        borderColor: theme.vars
+          ? theme.alpha(theme.vars.palette.common.onBackground, 0.23)
+          : borderColor,
+      }),
     };
   }),
 );

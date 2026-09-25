@@ -8,6 +8,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
+import resolveColorStates from '../styles/resolveColorStates';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, selected, hover, head, footer } = ownerState;
@@ -28,28 +29,53 @@ const TableRowRoot = styled('tr', {
     return [styles.root, ownerState.head && styles.head, ownerState.footer && styles.footer];
   },
 })(
-  memoTheme(({ theme }) => ({
-    color: 'inherit',
-    display: 'table-row',
-    verticalAlign: 'middle',
-    // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 0,
-    [`&.${tableRowClasses.hover}:hover`]: {
-      backgroundColor: (theme.vars || theme).palette.action.hover,
-    },
-    [`&.${tableRowClasses.selected}`]: {
-      backgroundColor: theme.alpha(
-        (theme.vars || theme).palette.primary.main,
-        (theme.vars || theme).palette.action.selectedOpacity,
-      ),
-      '&:hover': {
-        backgroundColor: theme.alpha(
-          (theme.vars || theme).palette.primary.main,
-          `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
-        ),
-      },
-    },
-  })),
+  memoTheme(({ theme }) => {
+    const colorStates = resolveColorStates(theme, 'MuiTableRow');
+    return {
+      color: 'inherit',
+      display: 'table-row',
+      verticalAlign: 'middle',
+      // We disable the focus ring for mouse, touch and keyboard users.
+      outline: 0,
+      ...(colorStates
+        ? {
+            ...colorStates.initial,
+            ...(colorStates.hover && {
+              '@media (hover: hover)': {
+                [`&.${tableRowClasses.hover}:hover`]: colorStates.hover,
+              },
+            }),
+            [`&.${tableRowClasses.selected}`]: {
+              ...colorStates.selected,
+              ...(colorStates.selectedHover && {
+                '@media (hover: hover)': {
+                  '&:hover': colorStates.selectedHover,
+                },
+              }),
+              ...(colorStates.selectedActive && {
+                '&:active': colorStates.selectedActive,
+              }),
+            },
+          }
+        : {
+            [`&.${tableRowClasses.hover}:hover`]: {
+              backgroundColor: (theme.vars || theme).palette.action.hover,
+            },
+            [`&.${tableRowClasses.selected}`]: {
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette.primary.main,
+                (theme.vars || theme).palette.action.selectedOpacity,
+              ),
+              '&:hover': {
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette.primary.main,
+                  `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
+                ),
+              },
+            },
+          }),
+    };
+  }),
 );
 
 const defaultComponent = 'tr';

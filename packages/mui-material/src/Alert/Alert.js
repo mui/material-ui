@@ -13,6 +13,7 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import Paper from '../Paper';
 import alertClasses, { getAlertUtilityClass } from './alertClasses';
 import IconButton from '../IconButton';
+import { resolveStateGroup } from '../styles/resolveColorStates';
 import SuccessOutlinedIcon from '../internal/svg-icons/SuccessOutlined';
 import ReportProblemOutlinedIcon from '../internal/svg-icons/ReportProblemOutlined';
 import ErrorOutlineIcon from '../internal/svg-icons/ErrorOutline';
@@ -44,70 +45,125 @@ const AlertRoot = styled(Paper, {
   memoTheme(({ theme }) => {
     const getColor = theme.palette.mode === 'light' ? theme.darken : theme.lighten;
     const getBackgroundColor = theme.palette.mode === 'light' ? theme.lighten : theme.darken;
+    const standardStates = resolveStateGroup(theme, 'MuiAlert', 'standard');
+    const outlinedStates = resolveStateGroup(theme, 'MuiAlert', 'outlined');
+    const filledStates = resolveStateGroup(theme, 'MuiAlert', 'filled');
+    const mdStandard = (color) => ({
+      color: theme.vars
+        ? theme.vars.palette.Alert[`${color}Color`]
+        : getColor(theme.palette[color].light, 0.6),
+      backgroundColor: theme.vars
+        ? theme.vars.palette.Alert[`${color}StandardBg`]
+        : getBackgroundColor(theme.palette[color].light, 0.9),
+      [`& .${alertClasses.icon}`]: theme.vars
+        ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+        : {
+            color: theme.palette[color].main,
+          },
+    });
+    const mdOutlined = (color) => ({
+      color: theme.vars
+        ? theme.vars.palette.Alert[`${color}Color`]
+        : getColor(theme.palette[color].light, 0.6),
+      border: `1px solid ${(theme.vars || theme).palette[color].light}`,
+      [`& .${alertClasses.icon}`]: theme.vars
+        ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+        : {
+            color: theme.palette[color].main,
+          },
+    });
+    const mdFilled = (color) => ({
+      ...(theme.focusVisible &&
+        applyChildrenFocusVisible(`0 0 0 4px ${(theme.vars || theme).palette.background.default}`)),
+      fontWeight: theme.typography.fontWeightMedium,
+      ...(theme.vars
+        ? {
+            color: theme.vars.palette.Alert[`${color}FilledColor`],
+            backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`],
+          }
+        : {
+            backgroundColor:
+              theme.palette.mode === 'dark' ? theme.palette[color].dark : theme.palette[color].main,
+            color: theme.palette.getContrastText(theme.palette[color].main),
+          }),
+    });
     return {
       ...theme.typography.body2,
       backgroundColor: 'transparent',
       display: 'flex',
       padding: '6px 16px',
       variants: [
+        ...(standardStates
+          ? []
+          : Object.entries(theme.palette)
+              .filter(createSimplePaletteValueFilter(['light']))
+              .map(([color]) => ({
+                props: { colorSeverity: color, variant: 'standard' },
+                style: mdStandard(color),
+              }))),
+        ...(outlinedStates
+          ? []
+          : Object.entries(theme.palette)
+              .filter(createSimplePaletteValueFilter(['light']))
+              .map(([color]) => ({
+                props: { colorSeverity: color, variant: 'outlined' },
+                style: mdOutlined(color),
+              }))),
+        ...(filledStates
+          ? []
+          : Object.entries(theme.palette)
+              .filter(createSimplePaletteValueFilter(['dark']))
+              .map(([color]) => ({
+                props: { colorSeverity: color, variant: 'filled' },
+                style: mdFilled(color),
+              }))),
         ...Object.entries(theme.palette)
-          .filter(createSimplePaletteValueFilter(['light']))
-          .map(([color]) => ({
-            props: { colorSeverity: color, variant: 'standard' },
-            style: {
-              color: theme.vars
-                ? theme.vars.palette.Alert[`${color}Color`]
-                : getColor(theme.palette[color].light, 0.6),
-              backgroundColor: theme.vars
-                ? theme.vars.palette.Alert[`${color}StandardBg`]
-                : getBackgroundColor(theme.palette[color].light, 0.9),
-              [`& .${alertClasses.icon}`]: theme.vars
-                ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
-                : {
-                    color: theme.palette[color].main,
+          .filter(createSimplePaletteValueFilter())
+          .flatMap(([color]) =>
+            ['standard', 'outlined', 'filled'].flatMap((variant) => {
+              const variantStates = {
+                standard: standardStates,
+                outlined: outlinedStates,
+                filled: filledStates,
+              }[variant];
+              if (!variantStates) {
+                return [];
+              }
+              const colorStates = variantStates[color];
+              if (!colorStates) {
+                return [
+                  {
+                    props: { colorSeverity: color, variant },
+                    style: {
+                      standard: mdStandard,
+                      outlined: mdOutlined,
+                      filled: mdFilled,
+                    }[variant](color),
                   },
-            },
-          })),
-        ...Object.entries(theme.palette)
-          .filter(createSimplePaletteValueFilter(['light']))
-          .map(([color]) => ({
-            props: { colorSeverity: color, variant: 'outlined' },
-            style: {
-              color: theme.vars
-                ? theme.vars.palette.Alert[`${color}Color`]
-                : getColor(theme.palette[color].light, 0.6),
-              border: `1px solid ${(theme.vars || theme).palette[color].light}`,
-              [`& .${alertClasses.icon}`]: theme.vars
-                ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
-                : {
-                    color: theme.palette[color].main,
+                ];
+              }
+              return [
+                {
+                  props: { colorSeverity: color, variant },
+                  style: {
+                    ...(variant === 'outlined'
+                      ? { border: '1px solid', ...colorStates.initial }
+                      : {
+                          ...colorStates.initial,
+                          ...(colorStates.initial?.border === undefined && { border: 'none' }),
+                        }),
+                    ...(variant === 'filled' && {
+                      ...(theme.focusVisible &&
+                        applyChildrenFocusVisible(
+                          `0 0 0 4px ${(theme.vars || theme).palette.background.default}`,
+                        )),
+                      fontWeight: theme.typography.fontWeightMedium,
+                    }),
                   },
-            },
-          })),
-        ...Object.entries(theme.palette)
-          .filter(createSimplePaletteValueFilter(['dark']))
-          .map(([color]) => ({
-            props: { colorSeverity: color, variant: 'filled' },
-            style: {
-              ...(theme.focusVisible &&
-                applyChildrenFocusVisible(
-                  `0 0 0 4px ${(theme.vars || theme).palette.background.default}`,
-                )),
-              fontWeight: theme.typography.fontWeightMedium,
-              ...(theme.vars
-                ? {
-                    color: theme.vars.palette.Alert[`${color}FilledColor`],
-                    backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`],
-                  }
-                : {
-                    backgroundColor:
-                      theme.palette.mode === 'dark'
-                        ? theme.palette[color].dark
-                        : theme.palette[color].main,
-                    color: theme.palette.getContrastText(theme.palette[color].main),
-                  }),
-            },
-          })),
+                },
+              ];
+            }),
+          ),
       ],
     };
   }),

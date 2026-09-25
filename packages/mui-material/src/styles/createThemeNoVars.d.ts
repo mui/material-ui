@@ -8,6 +8,7 @@ import {
   ApplyStyles,
 } from '@mui/system';
 import { Mixins, MixinsOptions } from './createMixins';
+import { ThemeState } from './createCssState';
 import { Palette, PaletteOptions } from './createPalette';
 import { TypographyVariants, TypographyVariantsOptions } from './createTypography';
 import { Shadows } from './shadows';
@@ -61,6 +62,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
     TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions) | undefined;
   zIndex?: ZIndexOptions | undefined;
   focusVisible?: boolean | FocusVisible | undefined;
+  state?: ThemeState | undefined;
   unstable_strictMode?: boolean | undefined;
   unstable_sxConfig?: SxConfig | undefined;
   modularCssLayers?: boolean | string | undefined;
@@ -76,6 +78,7 @@ export interface BaseTheme extends SystemTheme {
   typography: TypographyVariants;
   zIndex: ZIndex;
   focusVisible?: FocusVisible | false | undefined;
+  state?: ThemeState | undefined;
   unstable_strictMode?: boolean | undefined;
   applyStyles: ApplyStyles<SupportedColorScheme>;
 }
