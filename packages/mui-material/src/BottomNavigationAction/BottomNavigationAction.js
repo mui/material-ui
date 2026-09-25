@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import { applyInsetFocusVisible } from '../styles/focusVisible';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
@@ -47,6 +48,7 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
     [`&.${bottomNavigationActionClasses.selected}`]: {
       color: (theme.vars || theme).palette.primary.main,
     },
+    ...(theme.focusVisible && applyInsetFocusVisible(1)),
     variants: [
       {
         props: ({ showLabel, selected }) => !showLabel && !selected,
@@ -100,7 +102,6 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     label,
     onChange,
     onClick,
-    // eslint-disable-next-line react/prop-types -- private, always overridden by BottomNavigation
     selected,
     showLabel,
     value,
@@ -199,6 +200,12 @@ BottomNavigationAction.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onClick: PropTypes.func,
+  /**
+   * If `true`, the component appears selected.
+   *
+   * `BottomNavigation` sets this on each child from its own `value`.
+   */
+  selected: PropTypes.bool,
   /**
    * If `true`, the `BottomNavigationAction` will show its label.
    * By default, only the selected `BottomNavigationAction`

@@ -1,5 +1,5 @@
 import { Page, Browser, chromium, expect } from '@playwright/test';
-import { describe, it, beforeAll } from 'vitest';
+import { describe, it, beforeAll, afterAll } from 'vitest';
 import '@mui/internal-test-utils/initPlaywrightMatchers';
 
 const BASE_URL = 'http://localhost:5001';

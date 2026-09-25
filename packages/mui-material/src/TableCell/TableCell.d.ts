@@ -65,8 +65,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
    * The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components.
    */
   variant?:
-    | OverridableStringUnion<'head' | 'body' | 'footer', TableCellPropsVariantOverrides>
-    | undefined;
+    OverridableStringUnion<'head' | 'body' | 'footer', TableCellPropsVariantOverrides> | undefined;
 }
 
 export type TableCellBaseProps = React.ThHTMLAttributes<HTMLTableCellElement> &

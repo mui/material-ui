@@ -113,6 +113,11 @@ export interface UseModalReturnValue {
    */
   portalRef: React.RefCallback<Element> | null;
   /**
+   * The container used by the portal. While a transition is exiting, this remains the last
+   * resolved mount node so changing containers does not remount the transition.
+   */
+  portalContainer: PortalProps['container'];
+  /**
    * If `true`, the modal is the top most one.
    */
   isTopModal: () => boolean;

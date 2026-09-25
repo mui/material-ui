@@ -71,8 +71,7 @@ export interface PaginationProps
    * @default 'medium'
    */
   size?:
-    | OverridableStringUnion<'small' | 'medium' | 'large', PaginationPropsSizeOverrides>
-    | undefined;
+    OverridableStringUnion<'small' | 'medium' | 'large', PaginationPropsSizeOverrides> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -82,8 +81,7 @@ export interface PaginationProps
    * @default 'text'
    */
   variant?:
-    | OverridableStringUnion<'text' | 'outlined', PaginationPropsVariantOverrides>
-    | undefined;
+    OverridableStringUnion<'text' | 'outlined', PaginationPropsVariantOverrides> | undefined;
 }
 
 /**

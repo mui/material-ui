@@ -1,10 +1,11 @@
 import { resolve } from 'path';
 import { fileURLToPath } from 'url';
-import { defineConfig, transformWithEsbuild } from 'vite';
+import { defineConfig, transformWithOxc } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 // eslint-disable-next-line import/no-relative-packages
 import { alias } from '../../vitest.shared.mts';
+import { INDEX_NAME } from './docsearchFixtureData';
 
 const stubsDir = resolve(fileURLToPath(new URL('.', import.meta.url)), 'stubs');
 
@@ -14,6 +15,7 @@ export default defineConfig({
     {
       // Necessary as we opted to write our jsx in js files
       name: 'treat-js-files-as-jsx',
+      enforce: 'pre',
       async transform(code, id) {
         if (/\/node_modules\//.test(id)) {
           return null;
@@ -24,11 +26,12 @@ export default defineConfig({
         if (id.startsWith('\0')) {
           return null;
         }
-        // Use the exposed transform from vite, instead of directly
-        // transforming with esbuild
-        return transformWithEsbuild(code, id, {
-          loader: 'tsx',
-          jsx: 'automatic',
+        // Use the transform exposed by Vite instead of invoking Oxc directly.
+        return transformWithOxc(code, id, {
+          lang: 'tsx',
+          jsx: {
+            runtime: 'automatic',
+          },
         });
       },
     },
@@ -37,6 +40,9 @@ export default defineConfig({
   ],
   define: {
     'process.env.NODE_ENV': JSON.stringify('production'),
+    // `AppSearch` reads it for the Algolia index name, which also keys the
+    // stored recent searches `index.test.js` seeds for the `AppSearch` fixtures.
+    'process.env.SEARCH_INDEX': JSON.stringify(INDEX_NAME),
     // Seed `@mui/x-data-grid-generator`'s Chance instances deterministically so
     // the Data Grid composites (XHero/XGridFullDemo/XDataGrid/XTheming via
     // `useDemoData`) render identical rows on every load. Without this the
@@ -60,8 +66,8 @@ export default defineConfig({
     ],
   },
   optimizeDeps: {
-    esbuildOptions: {
-      loader: {
+    rolldownOptions: {
+      moduleTypes: {
         '.js': 'tsx',
       },
     },

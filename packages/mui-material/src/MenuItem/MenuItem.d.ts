@@ -39,6 +39,7 @@ export interface MenuItemOwnProps {
   divider?: boolean | undefined;
   /**
    * If `true`, the component is selected.
+   * For `menuitemcheckbox` and `menuitemradio` roles, this also drives `aria-checked`.
    * @default false
    */
   selected?: boolean | undefined;

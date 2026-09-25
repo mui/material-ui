@@ -30,6 +30,8 @@ dist
 node_modules
 .nyc_output
 pnpm-lock.yaml
+.claude/worktrees
+.nx
 
 # These come from crowdin.
 # If we would commit changes crowdin would immediately try to revert.

@@ -7,6 +7,9 @@ export type {
   WithOptionalOwnerState,
   SlotComponentProps,
   SlotComponentPropsWithSlotState,
+  // Augment `DataAttributesOverrides` to opt in to typed `data-*` attributes on slot props.
+  DataAttributesOverrides,
+  WithDataAttributes,
 } from '@mui/utils/types';
 
 export type SlotCommonProps = {

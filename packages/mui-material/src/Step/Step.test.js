@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Step, { stepClasses as classes } from '@mui/material/Step';
 import Stepper, { StepperContext } from '@mui/material/Stepper';

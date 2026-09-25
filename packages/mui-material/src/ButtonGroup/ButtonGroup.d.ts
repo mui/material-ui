@@ -66,8 +66,7 @@ export interface ButtonGroupOwnProps {
    * @default 'medium'
    */
   size?:
-    | OverridableStringUnion<'small' | 'medium' | 'large', ButtonGroupPropsSizeOverrides>
-    | undefined;
+    OverridableStringUnion<'small' | 'medium' | 'large', ButtonGroupPropsSizeOverrides> | undefined;
   /**
    * The variant to use.
    * @default 'outlined'

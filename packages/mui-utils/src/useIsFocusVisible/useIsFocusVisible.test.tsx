@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, beforeAll, beforeEach, afterEach, it, expect } from 'vitest';
 import * as React from 'react';
 import * as ReactDOMClient from 'react-dom/client';
 import {

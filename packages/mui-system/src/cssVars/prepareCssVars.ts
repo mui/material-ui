@@ -14,8 +14,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     disableCssColorScheme?: boolean | undefined;
     enableContrastVars?: boolean | undefined;
     shouldSkipGeneratingVar?:
-      | ((objectPathKeys: Array<string>, value: string | number) => boolean)
-      | undefined;
+      ((objectPathKeys: Array<string>, value: string | number) => boolean) | undefined;
     getSelector?:
       | ((
           colorScheme: keyof T['colorSchemes'] | undefined,

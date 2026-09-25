@@ -12,7 +12,7 @@ export default function Custom404() {
       <Head title="404: This page could not be found - MUI" description="" />
       <AppHeaderBanner />
       <AppHeader />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <NotFoundHero />
         <Divider />
       </main>

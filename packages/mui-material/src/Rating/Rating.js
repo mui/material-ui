@@ -16,6 +16,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
+import { outsetFocusRing } from '../styles/focusVisible';
 import useSlot from '../utils/useSlot';
 import { getTransitionStyles } from '../transitions/utils';
 
@@ -88,7 +89,11 @@ const RatingRoot = styled('span', {
       pointerEvents: 'none',
     },
     [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
-      outline: '1px solid #999',
+      // Legacy default, superseded when the curated ring is opted in.
+      ...(!theme.focusVisible && {
+        outline: '1px solid #999',
+      }),
+      ...(theme.focusVisible && { ...outsetFocusRing, ...theme.focusVisible }),
     },
     [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
     variants: [
@@ -126,21 +131,27 @@ const RatingLabel = styled('label', {
     styles.label,
     ownerState.emptyValueFocused && styles.labelEmptyValueActive,
   ],
-})({
-  cursor: 'inherit',
-  variants: [
-    {
-      props: ({ ownerState }) => ownerState.emptyValueFocused,
-      style: {
-        top: 0,
-        bottom: 0,
-        position: 'absolute',
-        outline: '1px solid #999',
-        width: '100%',
+})(
+  memoTheme(({ theme }) => ({
+    cursor: 'inherit',
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.emptyValueFocused,
+        style: {
+          top: 0,
+          bottom: 0,
+          position: 'absolute',
+          width: '100%',
+          // Legacy default, superseded when the curated ring is opted in.
+          ...(!theme.focusVisible && {
+            outline: '1px solid #999',
+          }),
+          ...(theme.focusVisible && { ...outsetFocusRing, ...theme.focusVisible }),
+        },
       },
-    },
-  ],
-});
+    ],
+  })),
+);
 
 const RatingIcon = styled('span', {
   name: 'MuiRating',
@@ -165,7 +176,7 @@ const RatingIcon = styled('span', {
       duration: theme.transitions.duration.shortest,
     }),
     // Fix mouseLeave issue.
-    // https://github.com/facebook/react/issues/4492
+    // https://github.com/react/react/issues/4492
     pointerEvents: 'none',
     variants: [
       {
@@ -479,7 +490,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const handleClear = (event) => {
     // Ignore keyboard events
-    // https://github.com/facebook/react/issues/7407
+    // https://github.com/react/react/issues/7407
     if (event.clientX === 0 && event.clientY === 0) {
       return;
     }

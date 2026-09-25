@@ -1,5 +1,5 @@
+import { beforeEach, afterEach, describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import Collapse from '@mui/material/Collapse';

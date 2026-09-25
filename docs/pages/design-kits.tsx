@@ -21,7 +21,7 @@ export default function DesignKits() {
       />
       <AppHeaderBanner />
       <AppHeader gitHubRepository="https://github.com/mui/mui-design-kits" />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <DesignKitHero />
         <References companies={DESIGNKITS_CUSTOMERS} />
         <Divider />

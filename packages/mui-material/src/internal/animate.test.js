@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { beforeAll, afterAll, it, expect, describe } from 'vitest';
 import { isJsdom } from '@mui/internal-test-utils/env';
 import animate from './animate';
 

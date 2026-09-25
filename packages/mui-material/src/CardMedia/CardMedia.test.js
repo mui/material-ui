@@ -1,6 +1,6 @@
+import { describe, it, expect, beforeEach } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import CardMedia, { cardMediaClasses as classes } from '@mui/material/CardMedia';
 import describeConformance from '../../test/describeConformance';

@@ -35,12 +35,7 @@ export function getProductInfoFromUrl(asPath: string): MuiProductInfo {
   let productCategoryId = 'null';
   let productId = 'null';
 
-  if (
-    firstFolder === 'material-ui' ||
-    firstFolder === 'joy-ui' ||
-    firstFolder === 'base-ui' ||
-    firstFolder === 'system'
-  ) {
+  if (firstFolder === 'material-ui' || firstFolder === 'base-ui' || firstFolder === 'system') {
     productCategoryId = 'core';
     productId = firstFolder;
   }

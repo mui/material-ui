@@ -10,12 +10,13 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import Fade from '@mui/material/Fade';
 import CircularProgress from '@mui/material/CircularProgress';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
-import flexsearch from 'flexsearch';
+import MiniSearch from 'minisearch';
 import SearchIcon from '@mui/icons-material/Search';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -49,8 +50,6 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
 import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import synonyms from './synonyms';
-
-const FlexSearchIndex = flexsearch.Index;
 
 // const mui = {
 //   ExitToApp,
@@ -399,6 +398,12 @@ const DialogDetails = React.memo(function DialogDetails(props) {
               onClick={handleClick(2)}
               code={`import ${selectedIcon.importName}Icon from '@mui/icons-material/${selectedIcon.importName}';`}
               language="js"
+              sx={{
+                '& pre': {
+                  whiteSpace: 'pre-wrap',
+                  wordBreak: 'break-all',
+                },
+              }}
             />
           </Tooltip>
           <ImportLink
@@ -409,19 +414,26 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             {t('searchIcons.learnMore')}
           </ImportLink>
           <DialogContent>
-            <Grid container>
-              <Grid size="grow">
-                <Grid container sx={{ justifyContent: 'center' }}>
+            <Grid container spacing={2} sx={{ rowGap: { xs: 3, sm: 0 } }}>
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <Grid
+                  container
+                  sx={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100%',
+                  }}
+                >
                   <CanvasComponent as={selectedIcon.Component} />
                 </Grid>
               </Grid>
-              <Grid size="grow">
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <Grid
                   container
                   sx={{ alignItems: 'flex-end', justifyContent: 'center' }}
                 >
                   <Grid>
-                    <Tooltip title="fontSize small">
+                    <Tooltip title={`fontSize="small"`}>
                       <FontSizeComponent
                         as={selectedIcon.Component}
                         fontSize="small"
@@ -429,12 +441,12 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     </Tooltip>
                   </Grid>
                   <Grid>
-                    <Tooltip title="fontSize medium">
+                    <Tooltip title={`fontSize="medium"`}>
                       <FontSizeComponent as={selectedIcon.Component} />
                     </Tooltip>
                   </Grid>
                   <Grid>
-                    <Tooltip title="fontSize large">
+                    <Tooltip title={`fontSize="large"`}>
                       <FontSizeComponent
                         as={selectedIcon.Component}
                         fontSize="large"
@@ -442,7 +454,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     </Tooltip>
                   </Grid>
                 </Grid>
-                <Grid container sx={{ justifyContent: 'center' }}>
+                <Grid container sx={{ justifyContent: 'center', mt: 1 }}>
                   <ContextComponent
                     as={selectedIcon.Component}
                     contextColor="primary"
@@ -492,10 +504,43 @@ DialogDetails.propTypes = {
   selectedIcon: PropTypes.object,
 };
 
-const Form = styled('form')({
+const Form = styled('form')(({ theme }) => ({
   position: 'sticky',
   top: 80,
+  marginBottom: theme.spacing(2),
+}));
+
+const SearchIconsFilter = React.memo(function SearchIconsFilter(props) {
+  const { theme, setTheme } = props;
+  return (
+    <Form>
+      <Typography sx={{ fontWeight: 500, mb: 1 }}>Filter the style</Typography>
+      <RadioGroup
+        value={theme}
+        onChange={(event) => setTheme(event.target.value)}
+        sx={{ ml: 0.5 }}
+      >
+        {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
+          (currentTheme) => {
+            return (
+              <FormControlLabel
+                key={currentTheme}
+                value={currentTheme}
+                control={<Radio size="small" />}
+                label={currentTheme}
+              />
+            );
+          },
+        )}
+      </RadioGroup>
+    </Form>
+  );
 });
+
+SearchIconsFilter.propTypes = {
+  setTheme: PropTypes.func.isRequired,
+  theme: PropTypes.string.isRequired,
+};
 
 const Paper = styled(MuiPaper)(({ theme }) => ({
   position: 'sticky',
@@ -518,39 +563,97 @@ const Input = styled(InputBase)({
   flex: 1,
 });
 
-const searchIndex = new FlexSearchIndex({
-  tokenize: 'full',
+const allIconsMap = {};
+// Theme -> icon name -> icon, to map search results to the selected theme.
+const allIconsByTheme = {};
+// The five themes of an icon share the same name and synonyms, so each icon is indexed once.
+const searchDocuments = [];
+for (const importName of Object.keys(mui).sort()) {
+  let theme = 'Filled';
+  let name = importName;
+
+  for (const currentTheme of ['Outlined', 'Rounded', 'TwoTone', 'Sharp']) {
+    if (importName.endsWith(currentTheme)) {
+      theme = currentTheme === 'TwoTone' ? 'Two tone' : currentTheme;
+      name = importName.slice(0, -currentTheme.length);
+      break;
+    }
+  }
+  const icon = {
+    importName,
+    name,
+    theme,
+    Component: mui[importName],
+  };
+  allIconsMap[importName] = icon;
+  allIconsByTheme[theme] ??= {};
+  allIconsByTheme[theme][name] = icon;
+  if (theme === 'Filled') {
+    searchDocuments.push({
+      id: name,
+      searchable: synonyms[name] ? `${name} ${synonyms[name]}` : name,
+    });
+  }
+}
+
+function addSuffixes(term, minLength) {
+  const lowerCaseTerm = term.toLowerCase();
+  const tokens = [lowerCaseTerm];
+
+  for (let i = 0; i <= lowerCaseTerm.length - minLength; i += 1) {
+    tokens.push(lowerCaseTerm.slice(i));
+  }
+  return tokens;
+}
+
+const miniSearch = new MiniSearch({
+  fields: ['searchable'],
+  processTerm: (term) => addSuffixes(term, 4),
+  searchOptions: {
+    processTerm: MiniSearch.getDefault('processTerm'),
+    // Every word of the query must match, like the previous search.
+    combineWith: 'AND',
+    prefix: true,
+    fuzzy: 0.1, // Allow some typo
+    // Show exact match first
+    boostDocument: (documentId, term) => (term === documentId.toLowerCase() ? 2 : 1),
+  },
 });
 
-const allIconsMap = {};
-const allIcons = Object.keys(mui)
-  .sort()
-  .map((importName) => {
-    let theme = 'Filled';
-    let name = importName;
+// Longest stretch of indexing work before giving the main thread back.
+const WORK_BUDGET_MS = 10;
 
-    for (const currentTheme of ['Outlined', 'Rounded', 'TwoTone', 'Sharp']) {
-      if (importName.endsWith(currentTheme)) {
-        theme = currentTheme === 'TwoTone' ? 'Two tone' : currentTheme;
-        name = importName.slice(0, -currentTheme.length);
-        break;
-      }
-    }
-    let searchable = name;
-    if (synonyms[searchable]) {
-      searchable += ` ${synonyms[searchable]}`;
-    }
-    searchIndex.add(importName, searchable);
-
-    const icon = {
-      importName,
-      name,
-      theme,
-      Component: mui[importName],
-    };
-    allIconsMap[importName] = icon;
-    return icon;
+function yieldToMain() {
+  if (globalThis.scheduler?.yield) {
+    return globalThis.scheduler.yield();
+  }
+  return new Promise((resolve) => {
+    setTimeout(resolve, 0);
   });
+}
+
+// Indexes the icons in short batches, so the page stays responsive.
+// MiniSearch's addAllAsync() blocks the main thread for too long.
+// https://calendar.perfplanet.com/2024/breaking-up-with-long-tasks-or-how-i-learned-to-group-loops-and-wield-the-yield/
+async function indexIcons() {
+  let deadline = performance.now() + WORK_BUDGET_MS;
+  for (const document of searchDocuments) {
+    if (performance.now() > deadline) {
+      // eslint-disable-next-line no-await-in-loop -- yielding between batches is the point
+      await yieldToMain();
+      deadline = performance.now() + WORK_BUDGET_MS;
+    }
+    miniSearch.add(document);
+  }
+}
+
+let indexation = null;
+
+// Started once the page is interactive, so indexing doesn't compete with hydration.
+function getIndexation() {
+  indexation ??= indexIcons();
+  return indexation;
+}
 
 /**
  * Returns the last defined value that has been passed in [value]
@@ -570,6 +673,9 @@ export default function SearchIcons() {
   const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
   const [query, setQuery] = useQueryParameterState('query', '');
 
+  // Names of the icons matching the query, null while there is no query.
+  const [matchedNames, setMatchedNames] = React.useState(null);
+
   const handleOpenClick = React.useCallback(
     (event) => {
       setSelectedIcon(event.currentTarget.getAttribute('title'));
@@ -581,12 +687,35 @@ export default function SearchIcons() {
     setSelectedIcon('');
   }, [setSelectedIcon]);
 
+  React.useEffect(() => {
+    getIndexation();
+  }, []);
+
+  React.useEffect(() => {
+    if (query === '') {
+      setMatchedNames(null);
+      return undefined;
+    }
+
+    let active = true;
+    getIndexation().then(() => {
+      // Ignore results for a query that has changed in the meantime.
+      if (active) {
+        setMatchedNames(miniSearch.search(query).map((result) => result.id));
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, [query]);
+
   const icons = React.useMemo(() => {
-    const keys = query === '' ? null : searchIndex.search(query, { limit: 3000 });
-    return (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
-      (icon) => theme === icon.theme,
-    );
-  }, [query, theme]);
+    const themeIcons = allIconsByTheme[theme];
+    if (query === '' || matchedNames === null) {
+      return Object.values(themeIcons);
+    }
+    return matchedNames.map((name) => themeIcons[name]).filter(Boolean);
+  }, [query, theme, matchedNames]);
 
   const deferredIcons = React.useDeferredValue(icons);
 
@@ -608,39 +737,10 @@ export default function SearchIcons() {
 
   return (
     <Grid container sx={{ minHeight: 500, width: '100%' }}>
-      <Grid
-        size={{
-          xs: 12,
-          sm: 3,
-        }}
-      >
-        <Form>
-          <Typography sx={{ fontWeight: 500, mb: 1 }}>Filter the style</Typography>
-          <RadioGroup
-            value={theme}
-            onChange={(event) => setTheme(event.target.value)}
-          >
-            {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
-              (currentTheme) => {
-                return (
-                  <FormControlLabel
-                    key={currentTheme}
-                    value={currentTheme}
-                    control={<Radio size="small" />}
-                    label={currentTheme}
-                  />
-                );
-              },
-            )}
-          </RadioGroup>
-        </Form>
+      <Grid size={{ xs: 12, sm: 4, md: 3 }}>
+        <SearchIconsFilter theme={theme} setTheme={setTheme} />
       </Grid>
-      <Grid
-        size={{
-          xs: 12,
-          sm: 9,
-        }}
-      >
+      <Grid size={{ xs: 12, sm: 8, md: 9 }}>
         <Paper>
           <IconButton sx={{ padding: '10px' }} aria-label="search">
             <SearchIcon />
@@ -653,9 +753,12 @@ export default function SearchIcons() {
             inputProps={{ 'aria-label': 'search icons' }}
             endAdornment={
               isPending ? (
-                <InputAdornment position="end">
-                  <CircularProgress size={16} sx={{ mr: 2 }} />
-                </InputAdornment>
+                <Fade in style={{ transitionDelay: '100ms' }}>
+                  <InputAdornment position="end">
+                    {/* disableShrink reduces CPU load while the main thread is busy */}
+                    <CircularProgress disableShrink size={16} sx={{ mr: 2 }} />
+                  </InputAdornment>
+                </Fade>
               ) : null
             }
           />

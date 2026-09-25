@@ -387,6 +387,7 @@ const Root = styled('div')(
         },
         '& a': {
           color: `var(--muidocs-palette-error-800, ${lightTheme.palette.error[800]})`,
+          '& code': { color: 'inherit' },
           textDecorationColor: alpha(lightTheme.palette.error.main, 0.4),
           '&:hover': {
             textDecorationColor: 'inherit',
@@ -416,6 +417,7 @@ const Root = styled('div')(
         },
         '& a': {
           color: `var(--muidocs-palette-success-900, ${lightTheme.palette.success[900]})`,
+          '& code': { color: 'inherit' },
           textDecorationColor: alpha(lightTheme.palette.success.main, 0.4),
           '&:hover': {
             textDecorationColor: 'inherit',
@@ -434,6 +436,7 @@ const Root = styled('div')(
         },
         '& a': {
           color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
+          '& code': { color: 'inherit' },
           textDecorationColor: alpha(lightTheme.palette.warning.main, 0.4),
           '&:hover': {
             textDecorationColor: 'inherit',
@@ -664,7 +667,7 @@ const Root = styled('div')(
     },
   }),
   ({ theme }) => ({
-    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+    [`*:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       color: 'rgb(255, 255, 255)',
       '& :not(pre) > code': {
         // inline code block
@@ -747,6 +750,7 @@ const Root = styled('div')(
           },
           '& a': {
             color: `var(--muidocs-palette-error-200, ${darkTheme.palette.error[200]})`,
+            '& code': { color: 'inherit' },
           },
         },
         '&.MuiCallout-info': {
@@ -772,6 +776,7 @@ const Root = styled('div')(
           },
           '& a': {
             color: `var(--muidocs-palette-success-100, ${darkTheme.palette.success[100]})`,
+            '& code': { color: 'inherit' },
           },
         },
         '&.MuiCallout-warning': {
@@ -786,6 +791,7 @@ const Root = styled('div')(
           },
           '& a': {
             color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
+            '& code': { color: 'inherit' },
           },
         },
       },
@@ -852,7 +858,7 @@ export const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementP
     const more: React.ComponentProps<typeof Root> = {};
 
     if (typeof renderedMarkdown === 'string') {
-      // workaround for https://github.com/facebook/react/issues/17170
+      // workaround for https://github.com/react/react/issues/17170
       // otherwise we could just set `dangerouslySetInnerHTML={undefined}`
       more.dangerouslySetInnerHTML = { __html: renderedMarkdown };
     }

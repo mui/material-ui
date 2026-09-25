@@ -61,8 +61,7 @@ The rendered HTML input will look like this:
 
 ## Validation
 
-The `error` prop toggles the error state.
-The `helperText` prop can then be used to provide feedback to the user about the error.
+Use the `error` prop to toggle a visual error state, and pair it with a `helperText` message describing the error.
 
 {{"demo": "ValidationTextFields.js"}}
 

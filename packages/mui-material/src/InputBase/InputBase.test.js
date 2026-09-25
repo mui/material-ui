@@ -1,6 +1,6 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   act,
@@ -16,7 +16,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import InputBase, { inputBaseClasses as classes } from '@mui/material/InputBase';
-import { createTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<InputBase />', () => {
@@ -946,5 +946,49 @@ describe('<InputBase />', () => {
         });
       },
     );
+  });
+  describe('theme.focusVisible', () => {
+    const focusVisibleTheme = createTheme({ focusVisible: true });
+
+    it.skipIf(isJsdom())('renders the ring on focus', async () => {
+      render(
+        <MuiThemeProvider theme={focusVisibleTheme}>
+          <InputBase data-testid="root" />
+        </MuiThemeProvider>,
+      );
+      const root = screen.getByTestId('root');
+
+      expect(root).toHaveComputedStyle({ outlineStyle: 'none' });
+
+      await act(async () => {
+        root.querySelector('input').focus();
+      });
+
+      expect(root).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+    });
+
+    it.skipIf(isJsdom())('lets a wrapper opt out and draw its own indicator', async () => {
+      render(
+        <MuiThemeProvider theme={focusVisibleTheme}>
+          <InputBase internalDisabledThemeFocusVisible data-testid="root" />
+        </MuiThemeProvider>,
+      );
+      const root = screen.getByTestId('root');
+
+      await act(async () => {
+        root.querySelector('input').focus();
+      });
+
+      expect(root).toHaveComputedStyle({ outlineStyle: 'none' });
+    });
+
+    it('does not forward the private opt-out prop to the DOM', () => {
+      render(<InputBase internalDisabledThemeFocusVisible data-testid="root" />);
+      expect(screen.getByTestId('root')).not.to.have.attribute('internalDisabledThemeFocusVisible');
+    });
   });
 });

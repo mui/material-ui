@@ -1,4 +1,4 @@
-import * as ts from 'typescript';
+import * as ts from '@typescript/typescript6';
 import type { ComponentClassDefinition } from '../types/ApiBuilder.types';
 import { renderMarkdown } from '../buildApi';
 import { getSymbolDescription, getSymbolJSDocTags } from '../buildApiUtils';

@@ -1,5 +1,5 @@
+import { describe, beforeEach, it, expect, vi } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
   ErrorBoundary,
@@ -138,6 +138,24 @@ describe('<Select />', () => {
       expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
     });
 
+    it('does not throw when the display ref is unavailable during mouse down', () => {
+      const handleMouseDown = spy();
+
+      render(
+        <Select value="one" onMouseDown={handleMouseDown} SelectDisplayProps={{ ref: () => {} }}>
+          <MenuItem value="one">One</MenuItem>
+          <MenuItem value="two">Two</MenuItem>
+        </Select>,
+      );
+
+      expect(() => {
+        fireEvent.mouseDown(screen.getByRole('combobox'));
+      }).not.to.throw();
+
+      expect(handleMouseDown.callCount).to.equal(1);
+      expect(screen.queryByRole('listbox')).to.equal(null);
+    });
+
     it('keeps the menu open when releasing the opening mouse gesture inside the trigger bounds', async () => {
       const { user } = render(
         <Select
@@ -239,7 +257,8 @@ describe('<Select />', () => {
       await user.pointer({ keys: '[MouseLeft>]', target: trigger });
 
       await act(async () => {
-        await sleep(450);
+        // Well past the 400ms selected-item window; a tight margin flakes on slow CI.
+        await sleep(700);
       });
 
       await user.pointer({
@@ -266,7 +285,8 @@ describe('<Select />', () => {
       await user.pointer({ keys: '[MouseLeft>]', target: trigger });
 
       await act(async () => {
-        await sleep(250);
+        // Well past the 200ms drag window; a tight margin flakes on slow CI.
+        await sleep(400);
       });
       await user.pointer({
         keys: '[/MouseLeft]',
@@ -315,7 +335,8 @@ describe('<Select />', () => {
       await user.pointer({ keys: '[MouseLeft>]', target: trigger });
 
       await act(async () => {
-        await sleep(250);
+        // Well past the 200ms drag window; a tight margin flakes on slow CI.
+        await sleep(400);
       });
       await user.pointer({
         keys: '[/MouseLeft]',

@@ -9,12 +9,7 @@ export interface TransitionActions {
 }
 
 export type TransitionHandlerKeys =
-  | 'onEnter'
-  | 'onEntering'
-  | 'onEntered'
-  | 'onExit'
-  | 'onExiting'
-  | 'onExited';
+  'onEnter' | 'onEntering' | 'onEntered' | 'onExit' | 'onExiting' | 'onExited';
 
 export type EnterHandler = (node: HTMLElement, isAppearing: boolean) => void;
 

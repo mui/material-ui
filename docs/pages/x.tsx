@@ -23,7 +23,7 @@ export default function X() {
       />
       <AppHeaderBanner />
       <AppHeader gitHubRepository="https://github.com/mui/mui-x" />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <XHero />
         <References companies={ADVANCED_CUSTOMERS} />
         <Divider />

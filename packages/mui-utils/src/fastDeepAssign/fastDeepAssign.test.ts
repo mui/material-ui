@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect, afterEach } from 'vitest';
 import fastDeepAssign from './fastDeepAssign';
 
 describe('fastDeepAssign', () => {

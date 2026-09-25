@@ -49,5 +49,26 @@ export const zhCN: Localization = {
         closeText: '关闭',
       },
     },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': '分页导航',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : '转到'}第 ${page} 页`;
+          }
+          if (type === 'first') {
+            return '转到第一页';
+          }
+          if (type === 'last') {
+            return '转到最后一页';
+          }
+          if (type === 'next') {
+            return '转到下一页';
+          }
+          // if (type === 'previous')
+          return '转到上一页';
+        },
+      },
+    },
   },
 };

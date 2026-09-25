@@ -50,7 +50,7 @@ Content-Security-Policy:
 ```
 
 :::info
-Some security scanners flag `style-src-attr 'unsafe-inline'` as a vulnerability. While inline styles can theoretically be used for [CSS-based data exfiltration](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/style-src#unsafe_inline_styles), this requires an attacker to already be able to inject HTML into your page. If your application properly sanitizes user input, `style-src-attr 'unsafe-inline'` does not introduce a meaningful security risk on its own.
+Some security scanners flag `style-src-attr 'unsafe-inline'` as a vulnerability. Inline styles can in theory be used to [exfiltrate data through CSS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/style-src#unsafe_inline_styles), but this only works if an attacker can already inject markup into your page. That injection can come from unescaped user input, a malicious or compromised third-party script, or a vulnerable dependency. On its own, `style-src-attr 'unsafe-inline'` doesn't open a new attack vector; it only reduces one layer of defense when such an injection already exists. To prevent that, sanitize user input and only load third-party scripts you trust.
 :::
 
 ### Setting up the nonce
