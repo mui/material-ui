@@ -125,7 +125,8 @@ export interface ComponentsPropsList {
   MuiAlert: AlertProps;
   MuiAlertTitle: AlertTitleProps;
   MuiAppBar: AppBarProps;
-  MuiAutocomplete: AutocompleteProps<any, any, any, any>;
+  // Theme defaults can configure either option values or mapped IDs.
+  MuiAutocomplete: AutocompleteProps<any, any, any, any, any, any>;
   MuiAvatar: AvatarProps;
   MuiAvatarGroup: AvatarGroupProps;
   MuiBackdrop: BackdropProps;

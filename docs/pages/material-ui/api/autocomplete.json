@@ -68,6 +68,10 @@
       "default": "(option) => option.label ?? option",
       "signature": { "type": "function(option: Value | string) => string", "describedArgs": [] }
     },
+    "getOptionValue": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(option: Value) => MappedValue", "describedArgs": ["option"] }
+    },
     "groupBy": {
       "type": { "name": "func" },
       "signature": { "type": "function(option: Value) => string", "describedArgs": ["option"] }
@@ -79,7 +83,7 @@
     "isOptionEqualToValue": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(option: Value, value: Value | string) => boolean",
+        "type": "function(option: Value, value: Value | MappedValue | string) => boolean",
         "describedArgs": ["option", "value"]
       }
     },
@@ -91,7 +95,7 @@
     "onChange": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(event: React.SyntheticEvent, value: Value | Array<Value>, reason: string, details?: string) => void",
+        "type": "function(event: React.SyntheticEvent, value: Value | MappedValue | Array<Value | MappedValue>, reason: string, details?: string) => void",
         "describedArgs": ["event", "value", "reason"]
       }
     },
@@ -145,7 +149,7 @@
     "renderValue": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(value: AutocompleteRenderValue<Value, Multiple, FreeSolo>, getItemProps: function, ownerState: object) => ReactNode",
+        "type": "function(value: AutocompleteRenderValue<Value | MappedValue, Multiple, FreeSolo>, getItemProps: function, ownerState: object) => ReactNode",
         "describedArgs": ["value", "getItemProps", "ownerState"]
       }
     },
