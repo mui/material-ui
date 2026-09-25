@@ -187,12 +187,6 @@ catalogs:
       version: 4.2.0
 
 overrides:
-  '@mui/internal-code-infra': https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@08eb27e8b
-  '@mui/internal-netlify-cache': https://pkg.pr.new/mui/mui-public/@mui/internal-netlify-cache@08eb27e8b
-  '@mui/internal-test-utils': https://pkg.pr.new/mui/mui-public/@mui/internal-test-utils@08eb27e8b
-  '@mui/internal-babel-plugin-display-name': https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@08eb27e8b
-  '@mui/internal-babel-plugin-minify-errors': https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@08eb27e8b
-  '@mui/internal-babel-plugin-resolve-imports': https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@08eb27e8b
   docs>stylis: 4.2.0
   docs>react-is: 19.3.0
   caniuse-lite: ^1.0.30001810
@@ -233,26 +227,26 @@ importers:
         specifier: 2.1.1
         version: 2.1.1(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))
       '@mui/internal-babel-plugin-minify-errors':
-        specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@08eb27e8b
-        version: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@08eb27e8b(@babel/core@8.0.5)
+        specifier: 3.0.1-canary.0
+        version: 3.0.1-canary.0(@babel/core@8.0.5)
       '@mui/internal-bundle-size-checker':
-        specifier: 1.0.9-canary.92
-        version: 1.0.9-canary.92(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(rolldown@1.2.4)(terser@5.50.0)(tsx@4.23.13)(yaml@2.9.0)
+        specifier: 1.1.1-canary.0
+        version: 1.1.1-canary.0(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(rolldown@1.2.4)(terser@5.50.0)(tsx@4.23.13)(yaml@2.9.0)
       '@mui/internal-code-infra':
-        specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@08eb27e8b
-        version: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@08eb27e8b(@next/eslint-plugin-next@16.3.5(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0)))(@types/node@22.20.4)(@typescript-eslint/eslint-plugin@8.68.0(@typescript-eslint/parser@8.70.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.70.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.28)(prettier@3.9.8)(stylelint@17.15.0(@typescript/typescript6@6.0.2)(supports-color@11.0.0))(supports-color@11.0.0)(vitest@5.0.0)
+        specifier: 0.1.1-canary.0
+        version: 0.1.1-canary.0(@next/eslint-plugin-next@16.3.5(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0)))(@types/node@22.20.4)(@typescript-eslint/eslint-plugin@8.68.0(@typescript-eslint/parser@8.70.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.70.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.28)(prettier@3.9.8)(stylelint@17.15.0(@typescript/typescript6@6.0.2)(supports-color@11.0.0))(supports-color@11.0.0)(vitest@5.0.0)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils/build
       '@mui/internal-netlify-cache':
-        specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-netlify-cache@08eb27e8b
-        version: https://pkg.pr.new/mui/mui-public/@mui/internal-netlify-cache@08eb27e8b
+        specifier: 0.1.1-canary.0
+        version: 0.1.1-canary.0
       '@mui/internal-scripts':
         specifier: workspace:^
         version: link:packages-internal/scripts
       '@mui/internal-test-utils':
-        specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-test-utils@08eb27e8b
-        version: https://pkg.pr.new/mui/mui-public/@mui/internal-test-utils@08eb27e8b(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/react-dom@19.2.5(@types/react@19.3.0))(@types/react@19.3.0)(@vitest/utils@5.0.0)(chai@6.2.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.0(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.13)(yaml@2.9.0))(vitest@5.0.0)
+        specifier: 2.1.1-canary.0
+        version: 2.1.1-canary.0(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/react-dom@19.2.5(@types/react@19.3.0))(@types/react@19.3.0)(@vitest/utils@5.0.0)(chai@6.2.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.0(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.13)(yaml@2.9.0))(vitest@5.0.0)
       '@mui/material':
         specifier: workspace:^
         version: link:packages/mui-material/build
@@ -3965,35 +3959,31 @@ packages:
   '@mui/core-downloads-tracker@9.3.1':
     resolution: {integrity: sha512-IAyAFNQbT7hysJ9HXphiOmWJF7G1OglzHanqCgvQgH9LA2ydxtmaTBDbcBqw6euZesyShiwvpvbnYO1GY1AyXQ==}
 
-  '@mui/internal-babel-plugin-display-name@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@08eb27e8b':
-    resolution: {integrity: sha512-Mn7Ne2pi+zDCLP7dsltpszohFilRO5tpVyn8p+GkWVP78v6VliF0TeDEKHAnG84GIx1vUtFaeFixLAyCSNu+4Q==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@08eb27e8b}
-    version: 1.0.2
+  '@mui/internal-babel-plugin-display-name@2.0.1-canary.0':
+    resolution: {integrity: sha512-BAt6ZSsjJ52hWE1zNZp6mWCdAwcg2WXKnE4Qg/GAi1bBykhdfSrnNDsISq4CZYWUwQHEcN+u/ofiObuPYTZhaw==}
     engines: {node: '>=22.12.0'}
     peerDependencies:
       '@babel/core': ^8.0.0
       '@babel/preset-react': ^8.0.0
 
-  '@mui/internal-babel-plugin-minify-errors@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@08eb27e8b':
-    resolution: {integrity: sha512-JwrkuuCjPvf/mf8DzdV+GMuE67vHFbdwDMvGuLRzp5lQIR7OkL+abSzjCCVhJOkGaN4dHhs0aDXkfVBeZkBUMQ==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@08eb27e8b}
-    version: 2.0.6
+  '@mui/internal-babel-plugin-minify-errors@3.0.1-canary.0':
+    resolution: {integrity: sha512-bweQjk8Gpz45qJxQBIQeYqvVN1HURUfdbHyiVuHcLqS4bkShHFThBpb8tNQV54rwIRfJnGOk6QypxbLLBDvbJw==}
     engines: {node: '>=22.12.0'}
     peerDependencies:
       '@babel/core': ^8.0.0
 
-  '@mui/internal-babel-plugin-resolve-imports@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@08eb27e8b':
-    resolution: {integrity: sha512-vwfa7z5SkpeD6Ing0cgYvi/R20oNqcRe1UeRWR9zXPqAsS9VEsA837xrvlRANhrHZFtxcAXKwmPDX3svxOdN2Q==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@08eb27e8b}
-    version: 2.0.5
+  '@mui/internal-babel-plugin-resolve-imports@3.0.1-canary.0':
+    resolution: {integrity: sha512-cRzHcsdzrgRI0UmNHSkq4A+Z6LqnyXmWWu50kVd+WTQPFH/QivigkaEfvtojeeDhnNPOTNjxdnyqQuIElMPIwA==}
     engines: {node: '>=22.12.0'}
     peerDependencies:
       '@babel/core': ^8.0.0
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.92':
-    resolution: {integrity: sha512-wK6AZ/J3py7/EN1vDoPHbJRd1rp4hS/yrCzk8cWaNppDvXb+ELQQY+vhaBiRp/WYNMdtuFmo9rcPd+YCDjcCNw==}
+  '@mui/internal-bundle-size-checker@1.1.1-canary.0':
+    resolution: {integrity: sha512-jPAMqC6aBEnrFalmrZeGnGzk+QG9/PRr/8V8xXgEo07fyCMc4c+zrgj8SNyNww2oujo6d46ek0ZdaHldwrBV7Q==}
     hasBin: true
 
-  '@mui/internal-code-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@08eb27e8b':
-    resolution: {integrity: sha512-yWMN74XirBx/SycBg/6QJVKyFboKm1ekrAcAztm48b4/qe8158B/s7FIkQm+fgCnEdDeRXTMfnNWMBk5CUE+Xg==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@08eb27e8b}
-    version: 0.0.3
+  '@mui/internal-code-infra@0.1.1-canary.0':
+    resolution: {integrity: sha512-lzoC5z8E5pmKpA9StGFVeQ7MU6hAnTZzI6F+uH/1g7R5kogwIQoOYu6/D6PCIvux7XKHef545tbifYIMnqa1XQ==}
     hasBin: true
     peerDependencies:
       '@next/eslint-plugin-next': '*'
@@ -4004,13 +3994,11 @@ packages:
       typescript:
         optional: true
 
-  '@mui/internal-netlify-cache@https://pkg.pr.new/mui/mui-public/@mui/internal-netlify-cache@08eb27e8b':
-    resolution: {integrity: sha512-EWkWSyNmrDN2IlyWSsz/2GntFH6QVwlm2M6kSAuPwn4/ioAvtD8DPmgO+PPiiNhDMp3d6SJsYXCNbqZK5UqvxQ==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-netlify-cache@08eb27e8b}
-    version: 0.0.2
+  '@mui/internal-netlify-cache@0.1.1-canary.0':
+    resolution: {integrity: sha512-EFqzKoYjwE4zaygM0Bs+K2NcyJH4tB7GQKeHutrz+OgPixcLcfYkBmPqjIwbQ9n5awZwvFnFQbX2osqK1EK+Ng==}
 
-  '@mui/internal-test-utils@https://pkg.pr.new/mui/mui-public/@mui/internal-test-utils@08eb27e8b':
-    resolution: {integrity: sha512-1BunsTtDZUja7nSAGGtpYHISpI5L4UkcymsKajPlMVbffsGv1APY0XKERr2kt8y0At7ymeBVErH04WdYpFbITA==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-test-utils@08eb27e8b}
-    version: 2.0.17
+  '@mui/internal-test-utils@2.1.1-canary.0':
+    resolution: {integrity: sha512-ZXPjpvD+q292EFc79NrfhrY2QuOoBtq9gWByY95/eYXavPXxUajjXIfzrtpJbqv9C1hTkmT8UEGxlAD6r/Dq/w==}
     peerDependencies:
       '@emotion/cache': '11'
       '@emotion/react': '11'
@@ -14641,23 +14629,23 @@ snapshots:
 
   '@mui/core-downloads-tracker@9.3.1': {}
 
-  '@mui/internal-babel-plugin-display-name@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@08eb27e8b(@babel/core@8.0.5)(@babel/preset-react@8.0.1(@babel/core@8.0.5))':
+  '@mui/internal-babel-plugin-display-name@2.0.1-canary.0(@babel/core@8.0.5)(@babel/preset-react@8.0.1(@babel/core@8.0.5))':
     dependencies:
       '@babel/core': 8.0.5
       '@babel/preset-react': 8.0.1(@babel/core@8.0.5)
 
-  '@mui/internal-babel-plugin-minify-errors@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@08eb27e8b(@babel/core@8.0.5)':
+  '@mui/internal-babel-plugin-minify-errors@3.0.1-canary.0(@babel/core@8.0.5)':
     dependencies:
       '@babel/core': 8.0.5
       '@babel/helper-module-imports': 8.0.0
       find-package-json: 1.2.0
 
-  '@mui/internal-babel-plugin-resolve-imports@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@08eb27e8b(@babel/core@8.0.5)':
+  '@mui/internal-babel-plugin-resolve-imports@3.0.1-canary.0(@babel/core@8.0.5)':
     dependencies:
       '@babel/core': 8.0.5
       resolve: 1.22.12
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.92(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(rolldown@1.2.4)(terser@5.50.0)(tsx@4.23.13)(yaml@2.9.0)':
+  '@mui/internal-bundle-size-checker@1.1.1-canary.0(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(rolldown@1.2.4)(terser@5.50.0)(tsx@4.23.13)(yaml@2.9.0)':
     dependencies:
       '@octokit/rest': 22.0.1
       chalk: 6.0.0
@@ -14686,7 +14674,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@mui/internal-code-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@08eb27e8b(@next/eslint-plugin-next@16.3.5(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0)))(@types/node@22.20.4)(@typescript-eslint/eslint-plugin@8.68.0(@typescript-eslint/parser@8.70.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.70.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.28)(prettier@3.9.8)(stylelint@17.15.0(@typescript/typescript6@6.0.2)(supports-color@11.0.0))(supports-color@11.0.0)(vitest@5.0.0)':
+  '@mui/internal-code-infra@0.1.1-canary.0(@next/eslint-plugin-next@16.3.5(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0)))(@types/node@22.20.4)(@typescript-eslint/eslint-plugin@8.68.0(@typescript-eslint/parser@8.70.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.70.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.28)(prettier@3.9.8)(stylelint@17.15.0(@typescript/typescript6@6.0.2)(supports-color@11.0.0))(supports-color@11.0.0)(vitest@5.0.0)':
     dependencies:
       '@argos-ci/core': 6.8.4(@types/node@22.20.4)(supports-color@11.0.0)
       '@babel/cli': 8.0.5(@babel/core@8.0.5)
@@ -14702,9 +14690,9 @@ snapshots:
       '@eslint/json': 2.1.0
       '@inquirer/confirm': 6.3.2(@types/node@22.20.4)
       '@inquirer/select': 5.2.5(@types/node@22.20.4)
-      '@mui/internal-babel-plugin-display-name': https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@08eb27e8b(@babel/core@8.0.5)(@babel/preset-react@8.0.1(@babel/core@8.0.5))
-      '@mui/internal-babel-plugin-minify-errors': https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@08eb27e8b(@babel/core@8.0.5)
-      '@mui/internal-babel-plugin-resolve-imports': https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@08eb27e8b(@babel/core@8.0.5)
+      '@mui/internal-babel-plugin-display-name': 2.0.1-canary.0(@babel/core@8.0.5)(@babel/preset-react@8.0.1(@babel/core@8.0.5))
+      '@mui/internal-babel-plugin-minify-errors': 3.0.1-canary.0(@babel/core@8.0.5)
+      '@mui/internal-babel-plugin-resolve-imports': 3.0.1-canary.0(@babel/core@8.0.5)
       '@napi-rs/keyring': 2.0.0
       '@next/eslint-plugin-next': 16.3.5(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))
       '@octokit/auth-action': 6.0.3
@@ -14796,9 +14784,9 @@ snapshots:
       - supports-color
       - vitest
 
-  '@mui/internal-netlify-cache@https://pkg.pr.new/mui/mui-public/@mui/internal-netlify-cache@08eb27e8b': {}
+  '@mui/internal-netlify-cache@0.1.1-canary.0': {}
 
-  '@mui/internal-test-utils@https://pkg.pr.new/mui/mui-public/@mui/internal-test-utils@08eb27e8b(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/react-dom@19.2.5(@types/react@19.3.0))(@types/react@19.3.0)(@vitest/utils@5.0.0)(chai@6.2.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.0(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.13)(yaml@2.9.0))(vitest@5.0.0)':
+  '@mui/internal-test-utils@2.1.1-canary.0(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/react-dom@19.2.5(@types/react@19.3.0))(@types/react@19.3.0)(@vitest/utils@5.0.0)(chai@6.2.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.0(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.13)(yaml@2.9.0))(vitest@5.0.0)':
     dependencies:
       '@babel/runtime': 8.0.5
       '@playwright/test': 1.63.0
