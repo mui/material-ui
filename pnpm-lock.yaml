@@ -410,8 +410,8 @@ importers:
         specifier: ^7.29.7
         version: 7.29.7(supports-color@11.0.0)
       '@babel/runtime':
-        specifier: ^7.29.7
-        version: 7.29.7
+        specifier: ^8.0.0
+        version: 8.0.5
       '@base-ui/react':
         specifier: catalog:docs
         version: 1.8.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -834,8 +834,8 @@ importers:
   packages-internal/core-docs:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.29.7
-        version: 7.29.7
+        specifier: ^8.0.0
+        version: 8.0.5
       '@base-ui/react':
         specifier: ^1
         version: 1.8.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -954,8 +954,8 @@ importers:
   packages-internal/markdown:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.29.7
-        version: 7.29.7
+        specifier: ^8.0.0
+        version: 8.0.5
       es-toolkit:
         specifier: ^1.52.0
         version: 1.52.0
@@ -1030,8 +1030,8 @@ importers:
         specifier: ^7.29.7
         version: 7.29.7(supports-color@11.0.0)
       '@babel/runtime':
-        specifier: ^7.29.7
-        version: 7.29.7
+        specifier: ^8.0.0
+        version: 8.0.5
       '@babel/traverse':
         specifier: ^7.29.8
         version: 7.29.8(supports-color@11.0.0)
@@ -1096,8 +1096,8 @@ importers:
   packages/mui-icons-material:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.29.7
-        version: 7.29.7
+        specifier: ^8.0.0
+        version: 8.0.5
     devDependencies:
       '@mui/icons-material':
         specifier: workspace:*
@@ -1143,8 +1143,8 @@ importers:
   packages/mui-lab:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.29.7
-        version: 7.29.7
+        specifier: ^8.0.0
+        version: 8.0.5
       '@emotion/react':
         specifier: ^11.5.0
         version: 11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0)
@@ -1199,8 +1199,8 @@ importers:
   packages/mui-material:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.29.7
-        version: 7.29.7
+        specifier: ^8.0.0
+        version: 8.0.5
       '@emotion/react':
         specifier: ^11.5.0
         version: 11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0)
@@ -1279,8 +1279,8 @@ importers:
   packages/mui-material-nextjs:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.29.7
-        version: 7.29.7
+        specifier: ^8.0.0
+        version: 8.0.5
     devDependencies:
       '@emotion/cache':
         specifier: 11.14.0
@@ -1305,8 +1305,8 @@ importers:
   packages/mui-material-pigment-css:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.29.7
-        version: 7.29.7
+        specifier: ^8.0.0
+        version: 8.0.5
       '@mui/system':
         specifier: workspace:*
         version: link:../mui-system/build
@@ -1322,8 +1322,8 @@ importers:
   packages/mui-private-theming:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.29.7
-        version: 7.29.7
+        specifier: ^8.0.0
+        version: 8.0.5
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
@@ -1348,8 +1348,8 @@ importers:
   packages/mui-styled-engine:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.29.7
-        version: 7.29.7
+        specifier: ^8.0.0
+        version: 8.0.5
       '@emotion/cache':
         specifier: ^11.14.0
         version: 11.14.0
@@ -1389,8 +1389,8 @@ importers:
   packages/mui-styled-engine-sc:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.29.7
-        version: 7.29.7
+        specifier: ^8.0.0
+        version: 8.0.5
       '@types/hoist-non-react-statics':
         specifier: ^3.3.7
         version: 3.3.7(@types/react@19.3.0)
@@ -1421,8 +1421,8 @@ importers:
   packages/mui-stylis-plugin-rtl:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.29.7
-        version: 7.29.7
+        specifier: ^8.0.0
+        version: 8.0.5
       cssjanus:
         specifier: ^2.3.1
         version: 2.3.1
@@ -1441,8 +1441,8 @@ importers:
   packages/mui-system:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.29.7
-        version: 7.29.7
+        specifier: ^8.0.0
+        version: 8.0.5
       '@mui/private-theming':
         specifier: workspace:^
         version: link:../mui-private-theming/build
@@ -1497,8 +1497,8 @@ importers:
   packages/mui-types:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.29.7
-        version: 7.29.7
+        specifier: ^8.0.0
+        version: 8.0.5
     devDependencies:
       '@mui/types':
         specifier: workspace:*
@@ -1511,8 +1511,8 @@ importers:
   packages/mui-utils:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.29.7
-        version: 7.29.7
+        specifier: ^8.0.0
+        version: 8.0.5
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
@@ -1562,8 +1562,8 @@ importers:
         version: 10.1.2(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
     devDependencies:
       '@babel/runtime':
-        specifier: 7.29.7
-        version: 7.29.7
+        specifier: 8.0.5
+        version: 8.0.5
       '@emotion/cache':
         specifier: 11.14.0
         version: 11.14.0
