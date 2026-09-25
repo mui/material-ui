@@ -35,6 +35,11 @@ The following sections cover the most important theme variables:
 
 You can check out the [default theme section](/material-ui/customization/default-theme/) to view the default theme in full.
 
+:::warning
+Theme values are written into the stylesheet as they are.
+If you build a theme from user input, validate those values first, see [dynamic values in `sx`](/system/getting-started/the-sx-prop/#dynamic-values).
+:::
+
 ### Custom variables
 
 When using Material UI's theme with [MUI System](/system/getting-started/) or [any other styling solution](/material-ui/integrations/interoperability/), it can be convenient to add additional variables to the theme so you can use them everywhere.

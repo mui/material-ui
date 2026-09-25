@@ -54,6 +54,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import InputBase from '@mui/material/InputBase';
 import AddIcon from '@mui/icons-material/Add';
 import StarIcon from '@mui/icons-material/Star';
 import HomeIcon from '@mui/icons-material/Home';
@@ -67,12 +68,31 @@ const theme = createTheme({
 
 const noop = () => {};
 
-function Row({ label, children }: { label: string; children: React.ReactNode }) {
+function Row({
+  label,
+  secondary,
+  children,
+}: {
+  label: string;
+  secondary?: string;
+  children: React.ReactNode;
+}) {
   return (
     <React.Fragment>
-      <Typography variant="body2" sx={{ fontWeight: 600, alignSelf: 'center' }}>
-        {label}
-      </Typography>
+      <Box sx={{ alignSelf: 'center' }}>
+        <Typography variant="body2" sx={{ fontWeight: 600 }}>
+          {label}
+        </Typography>
+        {secondary ? (
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ display: 'block' }}
+          >
+            {secondary}
+          </Typography>
+        ) : null}
+      </Box>
       <Stack
         direction="row"
         spacing={1.5}
@@ -108,7 +128,7 @@ function Bucket({
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: '150px 1fr',
+          gridTemplateColumns: '180px 1fr',
           alignItems: 'center',
           columnGap: 3,
           rowGap: 2,
@@ -205,6 +225,23 @@ export default function FullFocusVisibleDemo() {
           </Row>
           <Row label="Switch">
             <FormControlLabel control={<Switch defaultChecked />} label="Switch" />
+          </Row>
+          <Row label="InputBase">
+            <InputBase placeholder="Test" />
+          </Row>
+          <Row label="TextField" secondary="(filled + disableUnderline)">
+            <TextField
+              label="Test"
+              variant="filled"
+              slotProps={{ input: { disableUnderline: true } }}
+            />
+          </Row>
+          <Row label="TextField" secondary="(standard + disableUnderline)">
+            <TextField
+              label="Test"
+              variant="standard"
+              slotProps={{ input: { disableUnderline: true } }}
+            />
           </Row>
           <Row label="Pagination">
             <Pagination count={3} />

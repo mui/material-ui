@@ -31,7 +31,7 @@ export const projectSettings: ProjectSettings = {
     {
       name: 'lab',
       rootPath: path.join(process.cwd(), 'packages/mui-lab'),
-      entryPointPath: 'src/index.d.ts',
+      entryPointPath: 'src/index.ts',
     },
   ],
   getApiPages: () => findApiPages('docs/pages/material-ui/api'),
