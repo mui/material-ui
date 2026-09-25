@@ -19,6 +19,7 @@
       },
       "default": "false"
     },
+    "focusableWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
     "loading": { "type": { "name": "bool" }, "default": "null" },
     "loadingIndicator": {
       "type": { "name": "node" },
