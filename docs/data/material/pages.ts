@@ -264,6 +264,10 @@ const pages: MuiPage[] = [
         pathname: '/material-ui/guides/content-security-policy',
         title: 'Content Security Policy',
       },
+      {
+        pathname: '/material-ui/guides/configuring-bundlers-for-css-imports',
+        title: 'Configuring bundlers for CSS imports',
+      },
     ],
   },
   {
