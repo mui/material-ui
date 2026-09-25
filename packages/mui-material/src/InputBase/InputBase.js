@@ -111,6 +111,12 @@ export const InputBaseRoot = styled('div', {
     },
     variants: [
       {
+        props: { internalDisabledThemeFocusVisible: false },
+        style: theme.focusVisible && {
+          [`&.${inputBaseClasses.focused}`]: theme.focusVisible,
+        },
+      },
+      {
         props: ({ ownerState }) => ownerState.multiline,
         style: {
           padding: '4px 0 5px',
@@ -278,6 +284,9 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     inputComponent = 'input',
     inputProps: inputPropsProp = {},
     inputRef: inputRefProp,
+    /* eslint-disable react/prop-types */
+    internalDisabledThemeFocusVisible = false,
+    /* eslint-enable react/prop-types */
     margin,
     maxRows,
     minRows,
@@ -530,6 +539,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     color: fcs.color || 'primary',
     disabled: fcs.disabled,
     endAdornment,
+    internalDisabledThemeFocusVisible,
     error: fcs.error,
     focused: fcs.focused,
     formControl: muiFormControl,
