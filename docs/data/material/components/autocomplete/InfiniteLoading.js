@@ -103,7 +103,7 @@ const VirtualListbox = React.forwardRef(
         {/* This spacer gives the <ul> its scroll height without nesting a div inside the listbox. */}
         <li
           aria-hidden
-          role="presentation"
+          role="none"
           style={{
             height: virtualizer.getTotalSize(),
             pointerEvents: 'none',
