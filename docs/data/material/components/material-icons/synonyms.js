@@ -2009,7 +2009,7 @@ const synonyms = {
   Pool: 'athlete athletic beach body entertainment exercise hobby human ocean people person places sea sports swimming water',
   PortableWifiOff:
     'connected connection data device disabled enabled internet network offline service signal slash usage wireless',
-  Portrait: 'account face human people person photo picture profile user',
+  Portrait: 'account face frame human people person photo picture profile user',
   PostAdd:
     '+ data document drive file folders item page paper plus sheet slide text writing',
   Power: 'charge cord electrical online outlet plug socket',
