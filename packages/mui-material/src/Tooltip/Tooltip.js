@@ -68,34 +68,35 @@ const TooltipPopper = styled(Popper, {
       {
         props: ({ ownerState }) => ownerState.arrow,
         style: {
+          '--_arrowSize': '1em',
           [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
             top: 0,
-            marginTop: '-0.71em',
+            marginTop: 'calc(-0.71 * var(--_arrowSize))',
             '&::before': {
               transformOrigin: '0 100%',
             },
           },
           [`&[data-popper-placement*="top"] .${tooltipClasses.arrow}`]: {
             bottom: 0,
-            marginBottom: '-0.71em',
+            marginBottom: 'calc(-0.71 * var(--_arrowSize))',
             '&::before': {
               transformOrigin: '100% 0',
             },
           },
           [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-            height: '1em',
-            width: '0.71em',
+            height: 'var(--_arrowSize)',
+            width: 'calc(0.71 * var(--_arrowSize))',
             insetInlineStart: 0,
-            marginInlineStart: '-0.71em',
+            marginInlineStart: 'calc(-0.71 * var(--_arrowSize))',
             '&::before': {
               transformOrigin: '100% 100%',
             },
           },
           [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-            height: '1em',
-            width: '0.71em',
+            height: 'var(--_arrowSize)',
+            width: 'calc(0.71 * var(--_arrowSize))',
             insetInlineEnd: 0,
-            marginInlineEnd: '-0.71em',
+            marginInlineEnd: 'calc(-0.71 * var(--_arrowSize))',
             '&::before': {
               transformOrigin: '0 0',
             },
@@ -133,21 +134,22 @@ const TooltipTooltip = styled('div', {
     margin: 2,
     wordWrap: 'break-word',
     fontWeight: theme.typography.fontWeightMedium,
+    '--_spacing': '14px',
     [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
       transformOrigin: 'right center',
-      marginInlineEnd: '14px',
+      marginInlineEnd: 'var(--_spacing)',
     },
     [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
       transformOrigin: 'left center',
-      marginInlineStart: '14px',
+      marginInlineStart: 'var(--_spacing)',
     },
     [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
       transformOrigin: 'center bottom',
-      marginBottom: '14px',
+      marginBottom: 'var(--_spacing)',
     },
     [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
       transformOrigin: 'center top',
-      marginTop: '14px',
+      marginTop: 'var(--_spacing)',
     },
     variants: [
       {
@@ -169,17 +171,18 @@ const TooltipTooltip = styled('div', {
       {
         props: ({ ownerState }) => ownerState.touch,
         style: {
+          '--_spacing': '24px',
           [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-            marginInlineEnd: '24px',
+            marginInlineEnd: 'var(--_spacing)',
           },
           [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-            marginInlineStart: '24px',
+            marginInlineStart: 'var(--_spacing)',
           },
           [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
-            marginBottom: '24px',
+            marginBottom: 'var(--_spacing)',
           },
           [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
-            marginTop: '24px',
+            marginTop: 'var(--_spacing)',
           },
         },
       },

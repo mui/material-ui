@@ -1,0 +1,1387 @@
+import type { Breakpoint } from '..';
+import type { PaginationItemOwnerState } from '../PaginationItem';
+import type { TabProps } from '../Tab';
+import type { ListOwnProps } from '../List';
+import type { ListItemOwnerState } from '../ListItem';
+import type { BottomNavigationActionOwnerState } from '../BottomNavigationAction';
+import type { InputBaseProps } from '../InputBase';
+import type { EnhanceableTheme } from './densityScale';
+import addDefaultProps from '../utils/addDefaultProps';
+import addRootOverride from '../utils/addRootOverride';
+import switchClasses from '../Switch/switchClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
+import chipClasses from '../Chip/chipClasses';
+import tabClasses from '../Tab/tabClasses';
+import stepLabelClasses from '../StepLabel/stepLabelClasses';
+import tablePaginationClasses from '../TablePagination/tablePaginationClasses';
+import tableCellClasses from '../TableCell/tableCellClasses';
+import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
+import alertClasses from '../Alert/alertClasses';
+import inputLabelClasses from '../InputLabel/inputLabelClasses';
+import autocompleteClasses from '../Autocomplete/autocompleteClasses';
+import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
+import inputBaseClasses from '../InputBase/inputBaseClasses';
+import formControlClasses from '../FormControl/formControlClasses';
+import formControlLabelClasses from '../FormControlLabel/formControlLabelClasses';
+import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
+import listItemIconClasses from '../ListItemIcon/listItemIconClasses';
+import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
+import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
+
+/**
+ * PRIVATE shared component mapping used by `enhanceDensity` (not re-exported
+ * from the styles barrel — the enhancer is the public surface).
+ *
+ * Every block is a component token -> density-step assignment. Density
+ * variation comes purely from the resolved scale values (`applyDensity`),
+ * never from remapping.
+ */
+export default function applySharedDensity<T extends EnhanceableTheme>(
+  enhanced: T & { components: NonNullable<EnhanceableTheme['components']> },
+  /** The interactive box height, already resolved: `var(--<prefix>-touchTarget,
+   * <px>)` on a vars theme, the literal px otherwise. A sizing constant rather
+   * than a spacing key, so it sits outside the spacing namespace. */
+  touchTarget: string,
+  /** The default icon glyph size in px, on the same terms as `touchTarget`.
+   * Anchor cells only — the small and large icon sizes stay on the ladder. */
+  iconSize: string,
+): void {
+  // Keyed spacing: a scale key resolves to its step (var ref under cssVariables,
+  // raw px otherwise); numbers stay plain spacing units.
+  const { spacing } = enhanced;
+  // Sized components step off the interactive box rather than the ladder, so a
+  // `touchTarget` override carries all three sizes instead of only the middle
+  // one. Both land on today's px at the default 32.
+  const tinyBox = `calc(${touchTarget} - ${spacing('xSmall')})`; // 24px
+  const smallBox = `calc(${touchTarget} - ${spacing('xxSmall')})`; // 28px
+  const largeBox = `calc(${touchTarget} + ${spacing('small')})`; // 44px
+  const hugeBox = `calc(${touchTarget} + ${spacing('medium')})`; // 48px
+  // Icons ride the glyph constant the same way boxes ride the interactive one.
+  const iconSmall = `calc(${iconSize} - 2px)`;
+  const iconLarge = `calc(${iconSize} + 4px)`;
+  const inputMediumPadBlock = `calc((${touchTarget} - 1lh) / 2)`;
+  const inputSmallPadBlock = `calc((${touchTarget} - ${spacing('xxSmall')} - 1lh) / 2)`;
+  const sharedCheckboxRadio = {
+    padding: 0,
+    width: touchTarget,
+    height: touchTarget,
+    '& svg': { fontSize: iconSize },
+    // Pull-in follows the label placement — the control sits at the row's
+    // start for `end`, at its end for `start`; top/bottom center it, so no
+    // pull applies there.
+    [`.${formControlLabelClasses.labelPlacementEnd}:has(&)`]: {
+      marginLeft: `calc((${touchTarget} - ${iconSize}) / -2)`,
+    },
+    [`.${formControlLabelClasses.labelPlacementStart}:has(&)`]: {
+      marginRight: `calc((${touchTarget} - ${iconSize}) / -2)`,
+    },
+    variants: [
+      {
+        props: { size: 'small' },
+        style: {
+          width: smallBox,
+          height: smallBox,
+          '& svg': { fontSize: iconSmall },
+          [`.${formControlLabelClasses.labelPlacementEnd}:has(&)`]: {
+            marginLeft: `calc((${smallBox} - ${iconSmall}) / -2)`,
+          },
+          [`.${formControlLabelClasses.labelPlacementStart}:has(&)`]: {
+            marginRight: `calc((${smallBox} - ${iconSmall}) / -2)`,
+          },
+        },
+      },
+      { props: { edge: 'start' }, style: { marginLeft: `calc(${touchTarget} / -4)` } },
+      {
+        props: { edge: 'start', size: 'small' },
+        style: { marginLeft: `calc(${smallBox} / -8)` },
+      },
+      { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -4)` } },
+      {
+        props: { edge: 'end', size: 'small' },
+        style: { marginRight: `calc(${smallBox} / -8)` },
+      },
+    ],
+  };
+  addRootOverride(
+    enhanced.components,
+    'MuiChip',
+    {
+      margin: 0,
+      width: 'var(--_childSize)',
+      height: 'var(--_childSize)',
+      marginRight: 'var(--_offset)',
+    },
+    'deleteIcon',
+  );
+  addRootOverride(enhanced.components, 'MuiAccordionSummary', {
+    minHeight: touchTarget,
+    padding: `0 ${spacing('xSmall')}`,
+    variants: [
+      {
+        props: ({ ownerState }: { ownerState: { disableGutters?: boolean | undefined } }) =>
+          !ownerState.disableGutters,
+        // scoped to expanded: wins master's 64px literal on specificity
+        style: {
+          [`&.${accordionSummaryClasses.expanded}`]: { minHeight: touchTarget },
+        },
+      },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiAccordionSummary',
+    {
+      marginBlock: '0px',
+      alignItems: 'center',
+      gap: spacing('xSmall'),
+      variants: [
+        {
+          props: { disableGutters: false },
+          style: { [`&.${accordionSummaryClasses.expanded}`]: { marginBlock: '0px' } },
+        },
+      ],
+    },
+    'content',
+  );
+  addRootOverride(enhanced.components, 'MuiAccordionDetails', {
+    padding: `${spacing('xxSmall')} ${spacing('small')} ${spacing('small')}`,
+  });
+  addRootOverride(enhanced.components, 'MuiButton', {
+    ...enhanced.typography?.button,
+    paddingBlock: 0,
+    gap: spacing('xSmall'),
+    variants: [
+      {
+        props: { size: 'small' },
+        style: { height: smallBox, paddingInline: spacing('small') },
+      },
+      {
+        props: { size: 'medium' },
+        style: { height: touchTarget, paddingInline: spacing('medium') },
+      },
+      {
+        props: { size: 'large' },
+        style: { height: largeBox, paddingInline: spacing('large') },
+      },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiButton',
+    { margin: 0, '& > *:nth-of-type(1)': { fontSize: '0.8lh' } }, // '& > *:nth-of-type(1)' is the same as Button's implementation
+    'startIcon',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiButton',
+    { margin: 0, '& > *:nth-of-type(1)': { fontSize: '0.8lh' } }, // '& > *:nth-of-type(1)' is the same as Button's implementation
+    'endIcon',
+  );
+  addRootOverride(enhanced.components, 'MuiIconButton', {
+    padding: 0,
+    fontSize: iconSize,
+    variants: [
+      { props: { size: 'small' }, style: { width: smallBox, height: smallBox } },
+      {
+        props: { size: 'medium' },
+        style: { width: touchTarget, height: touchTarget },
+      },
+      {
+        props: { size: 'large' },
+        style: { width: largeBox, height: largeBox },
+      },
+      { props: { edge: 'start' }, style: { marginLeft: `calc(${touchTarget} / -4)` } },
+      { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -4)` } },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiButtonGroup', {
+    [`& .${buttonGroupClasses.grouped}`]: { minWidth: touchTarget },
+  });
+
+  addRootOverride(enhanced.components, 'MuiSvgIcon', {
+    variants: [
+      { props: { fontSize: 'small' }, style: { fontSize: iconSmall } },
+      { props: { fontSize: 'medium' }, style: { fontSize: iconSize } },
+      { props: { fontSize: 'large' }, style: { fontSize: iconLarge } },
+    ],
+  });
+  // Mirrors MenuItem's own sm-up reset, which hardcodes the same key. Cast so
+  // the file still compiles against an augmented BreakpointOverrides.
+  const smUp = enhanced.breakpoints.up('sm' as Breakpoint);
+  addRootOverride(enhanced.components, 'MuiMenuItem', {
+    paddingBlock: spacing('xxSmall'),
+    variants: [
+      {
+        props: { dense: false },
+        style: {
+          minHeight: touchTarget,
+          gap: spacing('xSmall'),
+          [smUp]: { minHeight: touchTarget },
+        },
+      },
+      { props: { disableGutters: false }, style: { paddingInline: spacing('xSmall') } },
+      {
+        props: { dense: true },
+        style: {
+          gap: spacing('xSmall'),
+          minHeight: smallBox,
+          [`& .${listItemIconClasses.root} svg`]: { fontSize: '0.8lh' },
+        },
+      },
+    ],
+    [`& .${listItemIconClasses.root}`]: { minWidth: 0 },
+  });
+
+  addRootOverride(
+    enhanced.components,
+    'MuiTooltip',
+    {
+      ...enhanced.typography?.caption,
+      lineHeight: 16 / 12,
+      padding: `${spacing('xSmall')} ${spacing('small')}`,
+      '--_spacing': '4px',
+    },
+    'tooltip',
+  );
+  // Fixed arrow size due to fixed spacing between tooltip and target
+  addRootOverride(enhanced.components, 'MuiTooltip', { '--_arrowSize': '10px' }, 'arrow');
+  addRootOverride(enhanced.components, 'MuiInputBase', {
+    lineHeight: enhanced.typography?.body1?.lineHeight,
+    // The medium gap sits on the root: outside a FormControl the ownerState
+    // has no `size`, so a `size: 'medium'` variant never matches and a
+    // standalone input's adornment would touch the text.
+    gap: spacing('xSmall'),
+    variants: [
+      { props: { size: 'small' }, style: { gap: spacing('xxSmall') } },
+      {
+        props: { multiline: true },
+        style: {
+          paddingBlock: spacing('xxSmall'),
+          [`:has(.${inputAdornmentClasses.positionStart})`]: { alignItems: 'flex-start' },
+        },
+      },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiInputBase',
+    {
+      height: 'auto',
+      paddingBlock: inputMediumPadBlock,
+      variants: [
+        { props: { size: 'small' }, style: { paddingBlock: inputSmallPadBlock } },
+        {
+          props: { multiline: true },
+          style: { paddingBlock: 0 },
+        },
+      ],
+    },
+    'input',
+  );
+  // --_outlinedInputPadBlock broadcasts to the FormControl via :has(); the
+  // label consumes it as --_restY. Re-assert chain mirrors master.
+  addRootOverride(enhanced.components, 'MuiOutlinedInput', {
+    [`.${formControlClasses.root}:has(> &)`]: {
+      '--_outlinedInputPadBlock': inputMediumPadBlock,
+    },
+    [`.${inputLabelClasses.root}:has(~ &)`]: {
+      '--_restY': 'var(--_outlinedInputPadBlock)',
+      '--_inlinePad': spacing('small'),
+    },
+    variants: [
+      {
+        props: { size: 'small' },
+        style: {
+          [`.${formControlClasses.root}:has(> &)`]: {
+            '--_outlinedInputPadBlock': inputSmallPadBlock,
+          },
+        },
+      },
+      {
+        props: { multiline: true },
+        style: {
+          paddingBlock: `var(--_outlinedInputPadBlock, ${inputMediumPadBlock})`,
+          paddingInline: spacing('small'),
+        },
+      },
+      {
+        props: { multiline: true, size: 'small' },
+        style: {
+          paddingBlock: `var(--_outlinedInputPadBlock, ${inputSmallPadBlock})`,
+        },
+      },
+      {
+        props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.startAdornment,
+        style: { paddingLeft: spacing('small') },
+      },
+      {
+        props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.endAdornment,
+        style: { '--_trailingPad': spacing('small') },
+      },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiOutlinedInput',
+    {
+      paddingBlock: `var(--_outlinedInputPadBlock, ${inputMediumPadBlock})`,
+      paddingInline: spacing('small'),
+      variants: [
+        {
+          props: { size: 'small' },
+          style: { paddingBlock: `var(--_outlinedInputPadBlock, ${inputSmallPadBlock})` },
+        },
+        {
+          props: { multiline: true },
+          style: { paddingBlock: 0, paddingInline: 0 },
+        },
+        {
+          props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.startAdornment,
+          style: { paddingLeft: 0 },
+        },
+        {
+          props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.endAdornment,
+          style: { paddingRight: 0 },
+        },
+      ],
+    },
+    'input',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiFilledInput',
+    {
+      paddingTop: `var(--_filledInputPadTop, ${spacing('large')})`,
+      paddingBottom: `var(--_filledInputPadBottom, ${spacing('xxSmall')})`,
+      paddingInline: spacing('small'),
+      variants: [
+        {
+          props: { hiddenLabel: true },
+          style: { paddingBlock: inputMediumPadBlock },
+        },
+        {
+          props: { hiddenLabel: true, size: 'small' },
+          style: { paddingBlock: inputSmallPadBlock },
+        },
+        {
+          props: { multiline: true },
+          style: { paddingBlock: 0, paddingInline: 0 },
+        },
+        {
+          props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.startAdornment,
+          style: { paddingLeft: 0 },
+        },
+        {
+          props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.endAdornment,
+          style: { paddingRight: 0 },
+        },
+      ],
+    },
+    'input',
+  );
+  addRootOverride(enhanced.components, 'MuiFilledInput', {
+    [`.${formControlClasses.root}:has(> &)`]: {
+      '--_filledInputPadTop': `calc(${spacing('medium')} + (${touchTarget} - 1lh) / 2)`, // medium represent the label
+      '--_filledInputPadBottom': inputMediumPadBlock,
+    },
+    [`.${inputLabelClasses.root}:has(~ &)`]: {
+      '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
+      '--_shrinkY': '6px',
+      '--_inlinePad': spacing('small'),
+    },
+    variants: [
+      {
+        props: { size: 'small' },
+        style: {
+          [`.${formControlClasses.root}:has(> &)`]: {
+            '--_filledInputPadTop': `calc(${spacing('medium')} + (${touchTarget} - 1lh) / 4)`, // medium represent the label
+            '--_filledInputPadBottom': inputSmallPadBlock,
+          },
+          [`.${inputLabelClasses.root}:has(~ &)`]: {
+            '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
+            '--_shrinkY': '4px',
+          },
+        },
+      },
+      {
+        props: { multiline: true },
+        style: {
+          paddingTop: `var(--_filledInputPadTop, calc(${spacing('medium')} + (${touchTarget} - 1lh) / 2))`, // medium represent the label
+          paddingBottom: `var(--_filledInputPadBottom, ${inputMediumPadBlock})`,
+          paddingInline: spacing('small'),
+        },
+      },
+      {
+        props: { multiline: true, size: 'small' },
+        style: {
+          paddingTop: `var(--_filledInputPadTop, calc(${spacing('medium')} + (${touchTarget} - 1lh) / 4))`, // medium represent the label
+          paddingBottom: `var(--_filledInputPadBottom, ${inputSmallPadBlock})`,
+        },
+      },
+      {
+        props: { multiline: true, hiddenLabel: true },
+        style: { paddingTop: 16, paddingBottom: 17 },
+      },
+      {
+        props: { multiline: true, hiddenLabel: true, size: 'small' },
+        style: { paddingTop: 8, paddingBottom: 9 },
+      },
+      {
+        props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.startAdornment,
+        style: { paddingLeft: spacing('small') },
+      },
+      {
+        props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.endAdornment,
+        style: { '--_trailingPad': spacing('small') },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiInput', {
+    [`.${formControlClasses.root}:has(> &)`]: {
+      '--_inputPadBlock': inputMediumPadBlock,
+      '--_inputMarginTop': spacing('small'),
+    },
+    [`.${inputLabelClasses.root}:has(~ &)`]: {
+      '--_restY': `calc(var(--_inputMarginTop, ${spacing('small')}) + var(--_inputPadBlock, ${inputMediumPadBlock}))`,
+    },
+    [`label + &, .${inputLabelClasses.root} + &`]: {
+      marginTop: `var(--_inputMarginTop, ${spacing('small')})`,
+    },
+    variants: [
+      {
+        props: { size: 'small' },
+        style: {
+          [`.${formControlClasses.root}:has(> &)`]: {
+            '--_inputPadBlock': inputSmallPadBlock,
+          },
+          [`.${inputLabelClasses.root}:has(~ &)`]: {
+            '--_restY': `calc(var(--_inputMarginTop, ${spacing('small')}) + var(--_inputPadBlock, ${inputSmallPadBlock}))`,
+          },
+        },
+      },
+      {
+        props: { multiline: true },
+        style: {
+          paddingBlock: `var(--_inputPadBlock, ${inputMediumPadBlock})`,
+        },
+      },
+      {
+        props: { multiline: true, size: 'small' },
+        style: {
+          paddingBlock: `var(--_inputPadBlock, ${inputSmallPadBlock})`,
+        },
+      },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiInput',
+    {
+      paddingBlock: `var(--_inputPadBlock, ${inputMediumPadBlock})`,
+      variants: [
+        {
+          props: { size: 'small' },
+          style: {
+            paddingBlock: `var(--_inputPadBlock, ${inputSmallPadBlock})`,
+          },
+        },
+        {
+          props: { multiline: true },
+          style: { paddingBlock: 0 },
+        },
+      ],
+    },
+    'input',
+  );
+  // Label Y rides --_restY/--_shrinkY consumed BARE (a missing writer must
+  // break visibly); each shrink state must re-assert or the rest rules here,
+  // landing after master's shrink, would leak the rest transform.
+  addRootOverride(enhanced.components, 'MuiInputLabel', {
+    variants: [
+      {
+        props: ({ ownerState }: { ownerState: { formControl?: object | undefined } }) =>
+          !!ownerState.formControl,
+        style: { transform: 'translate(0, var(--_restY)) scale(1)' },
+      },
+      {
+        props: { shrink: true },
+        style: { transform: 'translate(0, -1.5px) scale(0.75)' },
+      },
+      {
+        props: { variant: 'filled' },
+        style: { transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)' },
+      },
+      {
+        props: { variant: 'filled', shrink: true },
+        style: { transform: 'translate(var(--_inlinePad), var(--_shrinkY)) scale(0.75)' },
+      },
+      {
+        props: { variant: 'outlined' },
+        style: { transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)' },
+      },
+      {
+        props: { variant: 'outlined', shrink: true },
+        style: { transform: 'translate(14px, -0.375lh) scale(0.75)' }, // 0.375 = 50% * 0.75 scale factor
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiFormLabel', {
+    lineHeight: enhanced.typography?.body1?.lineHeight,
+  });
+  addRootOverride(enhanced.components, 'MuiFormHelperText', {
+    display: 'inline-flex',
+    alignItems: 'center',
+    marginTop: spacing('xSmall'),
+    gap: 4,
+    variants: [
+      {
+        props: { contained: true },
+        style: { marginInline: spacing('xSmall') },
+      },
+      {
+        props: { size: 'small' },
+        style: { marginTop: spacing('xxSmall') },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiInputAdornment', {
+    variants: [
+      { props: { position: 'start' }, style: { margin: 0 } },
+      { props: { position: 'end' }, style: { margin: 0 } },
+      {
+        props: { variant: 'filled' },
+        style: {
+          [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
+            {
+              marginTop:
+                'calc(var(--_filledInputPadTop, 18px) - var(--_filledInputPadBottom, 2px))',
+            },
+          [`.${inputBaseClasses.multiline} &.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
+            {
+              marginTop: 0,
+            },
+        },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiFormControlLabel', { margin: 0 });
+  addRootOverride(enhanced.components, 'MuiCheckbox', sharedCheckboxRadio);
+  addRootOverride(enhanced.components, 'MuiRadio', sharedCheckboxRadio);
+  // The floor sits on the `ol` (the centering flex row), not the nav root.
+  addRootOverride(
+    enhanced.components,
+    'MuiBreadcrumbs',
+    {
+      gap: spacing('xSmall'),
+      '& a': {
+        display: 'inline-flex',
+        lineHeight: touchTarget,
+        paddingInline: spacing('xSmall'),
+      },
+      [`& li>.${buttonBaseClasses.root}`]: {
+        // BreadcrumbCollapsed
+        paddingInline: spacing('xSmall'),
+        height: touchTarget,
+        margin: 0,
+        '& svg': { width: '1em', height: '1em' },
+      },
+    },
+    'ol',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiBreadcrumbs',
+    {
+      '&:not(:has(a))': {
+        paddingInline: spacing('xSmall'),
+      },
+    },
+    'li',
+  );
+  addRootOverride(enhanced.components, 'MuiBreadcrumbs', { marginInline: 0 }, 'separator'); // use gap on `ol` instead
+  addRootOverride(enhanced.components, 'MuiToggleButton', {
+    ...enhanced.typography?.button,
+    paddingBlock: 0,
+    height: 'var(--_size)',
+    minWidth: 'var(--_size)',
+    variants: [
+      {
+        props: { size: 'small' },
+        style: {
+          '--_size': smallBox,
+          paddingInline: `calc((var(--_size) - ${iconSmall}) / 2 - 1px)`,
+        },
+      },
+      {
+        props: { size: 'medium' },
+        style: {
+          '--_size': touchTarget,
+          paddingInline: `calc((var(--_size) - ${iconSize}) / 2 - 1px)`,
+        },
+      },
+      {
+        props: { size: 'large' },
+        style: {
+          '--_size': largeBox,
+          paddingInline: `calc((var(--_size) - ${iconLarge}) / 2 - 1px)`,
+        },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiSwitch', {
+    // Var declarations sit on size variants so a knob edit rebuilds
+    // size-scoped; consumers are base.
+    '--_pad': `calc((var(--_height) - var(--_thumbHeight)/1.4285714286) / 2)`, // to maintain the original ratio
+    '--_width': `calc(var(--_thumbHeight)*1.7 + var(--_pad)*2)`, // to maintain the original ratio
+    '--_offset': 'calc(-1 * (var(--_height)/2 - var(--_thumbHeight)/2))',
+    width: 'var(--_width)',
+    height: 'var(--_height)',
+    padding: 'var(--_pad)',
+    [`.${formControlLabelClasses.labelPlacementEnd} &`]: {
+      marginLeft: 'var(--_offset)',
+    },
+    [`.${formControlLabelClasses.labelPlacementStart} &`]: {
+      marginRight: 'var(--_offset)',
+    },
+    variants: [
+      {
+        props: { size: 'medium' },
+        style: {
+          '--_height': touchTarget,
+          '--_touchSize': touchTarget,
+          '--_thumbHeight': spacing('medium'),
+          '--_thumbWidth': spacing('medium'),
+        },
+      },
+      {
+        props: { size: 'small' },
+        style: {
+          '--_height': smallBox,
+          // Invariant: --_touchSize >= --_thumbHeight (see medium — padding clips).
+          '--_touchSize': smallBox,
+          '--_thumbHeight': `calc(${spacing('medium')} - 4px)`,
+          '--_thumbWidth': `calc(${spacing('medium')} - 4px)`,
+          // Master's small rules sit nested under the root variant at higher
+          // specificity — re-assert the derivations there or they lose for small.
+          [`& .${switchClasses.thumb}`]: {
+            width: 'var(--_thumbWidth)',
+            height: 'var(--_thumbHeight)',
+          },
+          [`& .${switchClasses.switchBase}`]: {
+            padding: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
+            [`&.${switchClasses.checked}`]: {
+              transform:
+                'translateX(calc(var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight))))',
+            },
+          },
+        },
+      },
+      { props: { edge: 'start' }, style: { marginLeft: 'var(--_offset)' } },
+      { props: { edge: 'end' }, style: { marginRight: 'var(--_offset)' } },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiSwitch',
+    {
+      top: 'calc((var(--_height) - var(--_touchSize)) / 2)',
+      padding: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
+      // Touch target taller than the root: re-anchor on the track's end caps
+      // (0 when touch <= height).
+      left: 'calc((var(--_height) - var(--_touchSize)) / 2)',
+      [`&.${switchClasses.checked}`]: {
+        transform:
+          'translateX(calc(var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight))))',
+      },
+    },
+    'switchBase',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiSwitch',
+    {
+      width: 'var(--_thumbWidth)',
+      height: 'var(--_thumbHeight)',
+      borderRadius: 'var(--_touchSize)',
+    },
+    'thumb',
+  );
+  addRootOverride(enhanced.components, 'MuiSwitch', { borderRadius: 'var(--_height)' }, 'track');
+  addRootOverride(enhanced.components, 'MuiAutocomplete', {
+    // Root block pad 0: the INPUT carries the whole per-side pad, so chips
+    // stack in an unpadded root while the input still sets the row rhythm.
+    '--_autocompleteInputRootPadBlock': '3px',
+    '--_autocompleteInputPadBlock': `max(0px, (${touchTarget} - 1lh) / 2 - var(--_autocompleteInputRootPadBlock))`,
+    [`& .${outlinedInputClasses.root}`]: {
+      paddingBlock: `var(--_autocompleteInputRootPadBlock)`,
+      paddingLeft: '8px',
+      gap: 0,
+    },
+    [`& .${outlinedInputClasses.root} .${autocompleteClasses.input}`]: {
+      paddingBlock: `var(--_autocompleteInputPadBlock)`,
+      paddingLeft: '4px',
+    },
+    [`& .${formControlClasses.root}:has(> .${outlinedInputClasses.root})`]: {
+      '--_outlinedInputPadBlock':
+        'calc(var(--_autocompleteInputRootPadBlock) + var(--_autocompleteInputPadBlock))',
+    },
+    [`&:has(.${inputBaseClasses.sizeSmall})`]: {
+      '--_autocompleteInputRootPadBlock': '0px',
+      '--_autocompleteInputPadBlock': spacing('xxSmall'),
+    },
+    [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
+      paddingBlock: `var(--_autocompleteInputRootPadBlock)`,
+    },
+    [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall} .${autocompleteClasses.input}`]:
+      {
+        paddingBlock: `var(--_autocompleteInputPadBlock)`,
+      },
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiAutocomplete',
+    {
+      // The option list renders in a Popper — emit on the listbox slot.
+      [`& .${autocompleteClasses.option}`]: {
+        minHeight: touchTarget,
+        paddingBlock: spacing('xxSmall'),
+        paddingInline: spacing('xSmall'),
+      },
+    },
+    'listbox',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiAutocomplete',
+    {
+      margin: '1px',
+      '--_height': `calc(${touchTarget} - ${spacing('xSmall')})`,
+    },
+    'tag',
+  );
+  // hasConnector:false = the first step; end nodes sit flush with the edge.
+  addRootOverride(enhanced.components, 'MuiStep', {
+    variants: [
+      {
+        props: { orientation: 'horizontal', alternativeLabel: false, hasConnector: false },
+        style: { paddingLeft: '0px' },
+      },
+      {
+        props: { orientation: 'horizontal', alternativeLabel: false, last: true },
+        style: { paddingRight: '0px' },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiStepLabel', {
+    variants: [{ props: { orientation: 'vertical' }, style: { paddingBlock: '0px' } }],
+  });
+  // Master sets the alternativeLabel gap at 2-class specificity — the nested
+  // selector must be re-emitted to win. Horizontal-only: master already zeroes
+  // vertical, an unscoped emission would stomp that reset.
+  addRootOverride(
+    enhanced.components,
+    'MuiStepLabel',
+    {
+      variants: [
+        {
+          props: { orientation: 'horizontal', alternativeLabel: true },
+          style: { [`&.${stepLabelClasses.alternativeLabel}`]: { marginTop: '0px' } },
+        },
+      ],
+    },
+    'label',
+  );
+  // Icon→label spacing falls out of centering the circle in the touch box.
+  addRootOverride(
+    enhanced.components,
+    'MuiStepLabel',
+    {
+      padding: '0px',
+      justifyContent: 'center',
+      minWidth: touchTarget,
+      minHeight: touchTarget,
+      alignItems: 'center',
+    },
+    'iconContainer',
+  );
+  // Circle must land on MuiStepIcon root: an SvgIcon sizes off its OWN
+  // fontSize (w/h = 1em) — a parent iconContainer fontSize can't reach it.
+  addRootOverride(enhanced.components, 'MuiStepIcon', {
+    fontSize: `calc(${touchTarget} - ${spacing('small')} + 2px)`,
+  });
+  addRootOverride(enhanced.components, 'MuiStepIcon', { fontSize: 14 }, 'text');
+  // Vertical-alt keeps master's marginLeft:auto — only marginRight moves.
+  addRootOverride(enhanced.components, 'MuiStepConnector', {
+    variants: [
+      {
+        props: { orientation: 'horizontal', alternativeLabel: true },
+        style: { top: `calc(${touchTarget} / 2)` },
+      },
+      {
+        props: { orientation: 'vertical', alternativeLabel: false },
+        style: { marginLeft: `calc(${touchTarget} / 2)` },
+      },
+      {
+        props: { orientation: 'vertical', alternativeLabel: true },
+        style: { marginRight: `calc(${touchTarget} / 2)` },
+      },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiStepConnector',
+    { variants: [{ props: { orientation: 'vertical' }, style: { minHeight: spacing('medium') } }] },
+    'line',
+  );
+  // margin = half box lands the border on the icon center; margin + padding
+  // = the full box aligns content text with the label.
+  addRootOverride(enhanced.components, 'MuiStepContent', {
+    variants: [
+      {
+        props: { alternativeLabel: false },
+        style: {
+          marginLeft: `calc(${touchTarget} / 2)`,
+          paddingLeft: `calc(${touchTarget} / 2 - 1px)`, // 1px account for the border
+        },
+      },
+      {
+        props: { alternativeLabel: true },
+        style: {
+          marginRight: `calc(${touchTarget} / 2)`,
+          paddingRight: `calc(${touchTarget} / 2 - 1px)`, // 1px account for the border
+        },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiSnackbarContent', {
+    padding: `8px ${spacing('medium')}`,
+    gap: spacing('small'),
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiSnackbarContent',
+    { paddingBlock: spacing('xSmall') },
+    'message',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiSnackbarContent',
+    { paddingLeft: 0, marginRight: spacing('-xSmall') },
+    'action',
+  );
+  addRootOverride(enhanced.components, 'MuiDialogTitle', {
+    padding: `${spacing('small')} ${spacing('small')} ${spacing('small')} ${spacing('medium')}`,
+  });
+  // Two variants = one knob per dividers state (true overrides master's 16 24).
+  addRootOverride(enhanced.components, 'MuiDialogContent', {
+    variants: [
+      { props: { dividers: false }, style: { padding: `0 ${spacing('medium')}` } },
+      { props: { dividers: true }, style: { padding: `0 ${spacing('medium')}` } },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiDialogActions', {
+    padding: spacing('medium'),
+    variants: [
+      {
+        props: { disableSpacing: false },
+        style: { gap: spacing('small'), '& > :not(style) ~ :not(style)': { marginLeft: 0 } },
+      },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiDialog',
+    { '--_dialogMargin': spacing('large') },
+    'paper',
+  );
+  addRootOverride(enhanced.components, 'MuiList', {
+    variants: [
+      // A subheader keeps master's `paddingTop: 0` — density only pads below.
+      {
+        props: ({ ownerState }: { ownerState: ListOwnProps }) =>
+          !ownerState.disablePadding && !ownerState.subheader,
+        style: { paddingBlock: 8 },
+      },
+      {
+        props: ({ ownerState }: { ownerState: ListOwnProps }) =>
+          !ownerState.disablePadding && !!ownerState.subheader,
+        style: { paddingBottom: 8 },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiListSubheader', {
+    fontSize: enhanced.typography?.body2?.fontSize,
+    lineHeight: touchTarget,
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiListSubheader',
+    { paddingInline: spacing('small') },
+    'gutters', // cannot use variants due to legacy overridesResolver
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiListSubheader',
+    { paddingLeft: `calc(${spacing('small')} + ${iconSize} + ${spacing('xSmall')})` },
+    'inset', // cannot use variants due to legacy overridesResolver
+  );
+  // No sm-up re-assert: ListItemButton has no master minHeight media reset.
+  addRootOverride(enhanced.components, 'MuiListItemButton', {
+    gap: spacing('xSmall'),
+    paddingBlock: spacing('xxSmall'),
+    variants: [
+      {
+        props: { dense: false },
+        style: { minHeight: touchTarget },
+      },
+      { props: { dense: true }, style: { minHeight: smallBox } },
+      {
+        props: { dense: false, disableGutters: false },
+        style: { paddingInline: spacing('small') },
+      },
+      {
+        props: { dense: true, disableGutters: false },
+        style: { paddingInline: spacing('xSmall') },
+      },
+    ],
+  });
+  // minWidth 0 kills master's 56px column floors — the row gap owns spacing.
+  addRootOverride(enhanced.components, 'MuiListItemIcon', { minWidth: 0 });
+  addRootOverride(enhanced.components, 'MuiListItemAvatar', { minWidth: 0 });
+  addRootOverride(enhanced.components, 'MuiListItemText', {
+    margin: 0,
+    variants: [
+      {
+        props: { inset: true },
+        style: { paddingLeft: `calc(${iconSize} + ${spacing('xSmall')})` },
+      },
+    ],
+  });
+  // disablePadding:false scoping keeps rows owned by a ListItemButton unpadded.
+  addRootOverride(enhanced.components, 'MuiListItem', {
+    gap: spacing('xSmall'),
+    variants: [
+      {
+        props: { disablePadding: false },
+        style: { paddingBlock: spacing('xSmall') },
+      },
+      {
+        props: { dense: false, disableGutters: false, disablePadding: false },
+        style: { paddingInline: spacing('small') },
+      },
+      {
+        props: { dense: true, disableGutters: false, disablePadding: false },
+        style: { paddingInline: spacing('xSmall') },
+      },
+      {
+        props: ({ ownerState }: { ownerState: ListItemOwnerState }) =>
+          !ownerState.disablePadding && !!ownerState.secondaryAction,
+        style: {
+          paddingRight: `calc(${touchTarget} + ${spacing('xSmall')})`,
+        },
+      },
+      {
+        props: ({ ownerState }: { ownerState: ListItemOwnerState }) => !!ownerState.secondaryAction,
+        style: {
+          [`& > .${listItemButtonClasses.root}`]: {
+            paddingRight: `calc(${touchTarget} + ${spacing('xSmall')})`,
+          },
+        },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiListItemSecondaryAction', {
+    // Gutters only — master zeroes `right` under `disableGutters`.
+    variants: [{ props: { disableGutters: false }, style: { right: spacing('small') } }],
+  });
+  addRootOverride(enhanced.components, 'MuiCardContent', {
+    padding: spacing('medium'),
+    '&:last-child': { paddingBottom: spacing('medium') },
+  });
+  addRootOverride(enhanced.components, 'MuiCardActions', {
+    padding: spacing('medium'),
+    paddingTop: 0,
+    variants: [
+      {
+        props: { disableSpacing: false },
+        style: { gap: spacing('xSmall'), '& > :not(style) ~ :not(style)': { marginLeft: 0 } },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiCardHeader', {
+    padding: spacing('medium'),
+    gap: spacing('small'),
+  });
+  // Avatar→content spacing stays a one-sided margin: a root gap would also
+  // open space between the flex-1 content and the action (master has none).
+  addRootOverride(enhanced.components, 'MuiCardHeader', { marginRight: 0 }, 'avatar');
+  addRootOverride(
+    enhanced.components,
+    'MuiCardHeader',
+    {
+      marginBlock: spacing('-xxSmall'),
+      marginRight: spacing('-xSmall'),
+    },
+    'action',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiSelect',
+    {
+      minHeight: 'auto',
+      // master writes per-variant --_caret/--_endAdornment on these same :has hooks
+      [`.${inputBaseClasses.root}:has(> &)`]: {
+        '--_caret': `calc(${iconSize} + ${spacing('small')})`,
+      },
+      [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
+        '--_endAdornment': iconSize,
+      },
+    },
+    'select',
+  );
+  addRootOverride(enhanced.components, 'MuiSelect', { right: spacing('xSmall') }, 'icon');
+  addRootOverride(enhanced.components, 'MuiAlert', {
+    paddingBlock: spacing('xSmall'),
+    paddingInline: spacing('small'),
+    gap: spacing('xSmall'),
+    [`& .${alertClasses.icon}`]: {
+      marginRight: 0,
+      paddingBlock: 6,
+      fontSize: '1.1lh',
+    },
+    [`& .${alertClasses.action}`]: {
+      padding: 0,
+      marginRight: 0,
+      alignSelf: 'center',
+    },
+  });
+  addDefaultProps(enhanced.components, 'MuiAlert', {
+    slotProps: { closeButton: { size: 'medium' } },
+  });
+  addRootOverride(enhanced.components, 'MuiAlert', { paddingBlock: 7 }, 'message');
+  addRootOverride(enhanced.components, 'MuiTab', {
+    minHeight: touchTarget,
+    lineHeight: enhanced.typography?.button?.lineHeight,
+    paddingBlock: 0,
+    paddingInline: spacing('small'),
+    gap: spacing('xxSmall'),
+    [`& > .${tabClasses.icon}`]: { margin: 0 },
+    variants: [
+      {
+        props: ({ ownerState }: { ownerState: TabProps }) =>
+          ownerState.icon &&
+          ownerState.label &&
+          (ownerState.iconPosition === 'top' || ownerState.iconPosition === 'bottom'),
+        style: {
+          minHeight: hugeBox,
+          paddingBlock: spacing('xxSmall'),
+        },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiTabs', { minHeight: touchTarget });
+  addRootOverride(enhanced.components, 'MuiTabScrollButton', {
+    variants: [
+      { props: { orientation: 'horizontal' }, style: { width: touchTarget } },
+      { props: { orientation: 'vertical' }, style: { height: touchTarget } },
+    ],
+  });
+  // AvatarGroup overlap is untouchable: an inline --AvatarGroup-spacing style
+  // from the spacing prop (px numbers only) outranks any styleOverride.
+  addRootOverride(enhanced.components, 'MuiAvatar', {
+    '--_size': touchTarget,
+    width: 'var(--_size)',
+    height: 'var(--_size)',
+    fontSize: 'calc(var(--_size) / 2)',
+  });
+  addRootOverride(enhanced.components, 'MuiLinearProgress', { height: 4 });
+  addDefaultProps(enhanced.components, 'MuiCircularProgress', { size: touchTarget });
+  // Root box = the touch target (padding 0 also kills master's coarse-pointer
+  // padding; the thumb keeps its frozen 42px ::after hit target). Master sizes
+  // rail/track via height:inherit off the root, so their thickness is
+  // re-emitted explicitly from --_trackSize. markLabel offsets stay master.
+  addRootOverride(enhanced.components, 'MuiSlider', {
+    padding: 0,
+    '--_trackSize': `calc(${spacing('small')} / 4)`,
+    variants: [
+      { props: { orientation: 'horizontal' }, style: { height: touchTarget } },
+      { props: { orientation: 'vertical' }, style: { width: touchTarget } },
+      { props: { size: 'small' }, style: { '--_trackSize': `calc(${spacing('xSmall')} / 4)` } },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiSlider',
+    {
+      padding: `${spacing('xxSmall')} ${spacing('xSmall')}`,
+    },
+    'valueLabel',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiSlider',
+    {
+      // Horizontal only: vertical labels position off an inline `bottom` and
+      // an unconditional `top` would over-constrain them.
+      variants: [{ props: { orientation: 'horizontal' }, style: { top: touchTarget } }],
+    },
+    'markLabel',
+  );
+  for (const slot of ['rail', 'track'] as const) {
+    addRootOverride(
+      enhanced.components,
+      'MuiSlider',
+      {
+        variants: [
+          { props: { orientation: 'horizontal' }, style: { height: 'var(--_trackSize)' } },
+          { props: { orientation: 'vertical' }, style: { width: 'var(--_trackSize)' } },
+        ],
+      },
+      slot,
+    );
+  }
+  addRootOverride(
+    enhanced.components,
+    'MuiSlider',
+    {
+      // The 42px ::after hit target stays frozen.
+      width: spacing('medium'),
+      height: spacing('medium'),
+      variants: [
+        { props: { size: 'small' }, style: { width: spacing('small'), height: spacing('small') } },
+      ],
+      '&::after': {
+        width: touchTarget,
+        height: touchTarget,
+      },
+    },
+    'thumb',
+  );
+
+  // td height acts as a min-height (cells grow with wrapped content). The
+  // checkbox re-assert nests &.paddingCheckbox: master's small-size rule pads
+  // it at 2-class specificity, so a plain variant (1 class) loses there.
+  addRootOverride(enhanced.components, 'MuiTableCell', {
+    paddingBlock: 0,
+    [`&.${tableCellClasses.paddingCheckbox}`]: { padding: '0 0 0 4px' },
+    variants: [
+      {
+        props: { size: 'medium' },
+        style: {
+          height: `calc(${spacing('xLarge')} + ${spacing('xSmall')})`,
+          paddingInline: spacing('small'),
+        },
+      },
+      {
+        props: { size: 'small' },
+        style: {
+          height: `calc(${spacing('large')} + ${spacing('xxSmall')})`,
+          paddingInline: spacing('xSmall'),
+        },
+      },
+      { props: { variant: 'footer' }, style: { ...enhanced.typography?.subtitle2 } },
+      { props: { padding: 'none' }, style: { padding: 0 } },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiTableSortLabel',
+    {
+      // One marginInline leaf: the arrow flips sides in right-aligned columns.
+      fontSize: `calc(${iconSize} + 2px)`,
+      marginInline: spacing('xxSmall'),
+    },
+    'icon',
+  );
+  addRootOverride(enhanced.components, 'MuiTablePagination', {
+    // Everything rides the ROOT slot: the toolbar/select overridesResolvers
+    // SPREAD the theme styleOverride, so an array-form slot silently drops;
+    // root-class nesting outranks the slot rules.
+    [`& .${tablePaginationClasses.toolbar}`]: {
+      minHeight: hugeBox,
+    },
+    [`& .${tablePaginationClasses.select}`]: enhanced.typography?.body2 ?? {},
+  });
+  // `theme.mixins.toolbar` is deliberately NOT synced: the enhancement only
+  // touches component styleOverrides and defaultProps (RFC scope). Apps using
+  // the mixin spacer pattern with density should offset off the toolbar
+  // itself.
+  addRootOverride(enhanced.components, 'MuiToolbar', {
+    variants: [
+      {
+        props: { disableGutters: false },
+        style: {
+          paddingInline: spacing('medium'),
+          [smUp]: { paddingInline: spacing('medium') },
+        },
+      },
+      {
+        props: { variant: 'dense' },
+        style: { minHeight: `calc(${touchTarget} + 2*${spacing('xxSmall')})` },
+      },
+      {
+        props: { variant: 'regular' },
+        style: {
+          minHeight: `calc(${touchTarget} + 2*${spacing('xSmall')})`,
+          [enhanced.breakpoints.up('xs' as Breakpoint)]: {
+            '@media (orientation: landscape)': {
+              minHeight: `calc(${touchTarget} + 2*${spacing('xxSmall')})`,
+            },
+          },
+          [smUp]: {
+            minHeight: `calc(${touchTarget} + 2*${spacing('xSmall')})`,
+          },
+        },
+      },
+    ],
+  });
+  // Circular-scoped: the extended variant stays frozen at master.
+  addRootOverride(enhanced.components, 'MuiFab', {
+    minHeight: 0,
+    variants: [
+      {
+        props: { variant: 'circular', size: 'small' },
+        style: {
+          width: `calc(${touchTarget} + ${spacing('xxSmall')})`,
+          height: `calc(${touchTarget} + ${spacing('xxSmall')})`,
+        },
+      },
+      {
+        props: { variant: 'circular', size: 'medium' },
+        style: {
+          width: `calc(${touchTarget} + ${spacing('xSmall')})`,
+          height: `calc(${touchTarget} + ${spacing('xSmall')})`,
+        },
+      },
+      {
+        props: { variant: 'circular', size: 'large' },
+        style: {
+          width: `calc(${touchTarget} + ${spacing('medium')})`,
+          height: `calc(${touchTarget} + ${spacing('medium')})`,
+        },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiPagination', { gap: spacing('xSmall') }, 'ul');
+  addRootOverride(enhanced.components, 'MuiPaginationItem', {
+    margin: 0,
+    padding: 0,
+    variants: [
+      // Circular only — an unconditional 50% would override `shape="rounded"`.
+      { props: { shape: 'circular' }, style: { borderRadius: '50%' } },
+      {
+        props: { size: 'small' },
+        style: { height: smallBox, minWidth: smallBox },
+      },
+      {
+        props: { size: 'medium' },
+        style: { height: touchTarget, minWidth: touchTarget },
+      },
+      {
+        props: { size: 'large' },
+        style: { height: largeBox, minWidth: largeBox },
+      },
+      {
+        props: ({ ownerState }: { ownerState: PaginationItemOwnerState }) =>
+          ownerState.type === 'start-ellipsis' || ownerState.type === 'end-ellipsis',
+        style: { height: 'auto' },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiBottomNavigation', {
+    height: spacing('xxLarge'),
+  });
+  addRootOverride(enhanced.components, 'MuiBottomNavigationAction', {
+    gap: spacing('xxSmall'),
+    paddingInline: spacing('small'),
+    variants: [
+      {
+        props: ({ ownerState }: { ownerState: BottomNavigationActionOwnerState }) =>
+          !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
+        style: { paddingTop: spacing('medium') },
+      },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiBadge',
+    {
+      borderRadius: 99,
+      variants: [
+        {
+          props: { variant: 'standard' },
+          style: {
+            height: tinyBox,
+            minWidth: tinyBox,
+            paddingInline: spacing('xSmall'),
+          },
+        },
+        {
+          props: { variant: 'dot' },
+          style: {
+            height: spacing('small'),
+            minWidth: spacing('small'),
+          },
+        },
+      ],
+    },
+    'badge',
+  );
+  // Child-margin clears sit at slot level: slot rules render after master's
+  // size re-asserts and win by order at equal specificity.
+  addRootOverride(enhanced.components, 'MuiChip', {
+    '--_childSize': `calc(var(--_height) - ${spacing('xSmall')})`,
+    '--_offset': `calc(var(--_height)/2 - var(--_childSize)/2 - var(--_paddingInline))`,
+    height: 'var(--_height)', // use private variable to be controlled by Autocomplete
+    paddingInline: 'var(--_paddingInline)',
+    borderRadius: 'var(--_height)', // pill shape
+    ...enhanced.typography?.body1,
+    variants: [
+      {
+        props: { size: 'medium' },
+        style: {
+          '--_height': touchTarget,
+          '--_paddingInline': spacing('small'),
+          gap: spacing('xSmall'),
+        },
+      },
+      {
+        props: { size: 'small' },
+        style: {
+          '--_height': `calc(${touchTarget} - ${spacing('xxSmall')})`,
+          '--_paddingInline': spacing('xSmall'),
+          gap: spacing('xxSmall'),
+          ...enhanced.typography?.body2,
+        },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiChip', { paddingInline: 0 }, 'label');
+  addRootOverride(
+    enhanced.components,
+    'MuiChip',
+    {
+      margin: 0,
+      width: 'var(--_childSize)',
+      height: 'var(--_childSize)',
+      marginLeft: 'var(--_offset)',
+    },
+    'avatar',
+  );
+  addRootOverride(enhanced.components, 'MuiChip', { margin: 0 }, 'icon');
+  // Through the ROOT: Chip nests `styles.icon` under `& .MuiChip-icon` inside
+  // the root styled component, so top-level `variants` on the icon slot are
+  // never expanded — they must ride the root's own variants.
+  addRootOverride(enhanced.components, 'MuiChip', {
+    variants: [
+      {
+        props: { size: 'medium' },
+        style: { [`& .${chipClasses.icon}`]: { fontSize: iconSize } },
+      },
+      {
+        props: { size: 'small' },
+        style: { [`& .${chipClasses.icon}`]: { fontSize: iconSmall } },
+      },
+    ],
+  });
+}
