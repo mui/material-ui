@@ -37,7 +37,7 @@ export {
   createFilterOptions,
 };
 
-/** Value describes list items; MappedValue, when supplied, describes the selected IDs. */
+/** Value describes list items; MappedValue, when supplied, describes the mapped selections. */
 export type AutocompleteOwnerState<
   Value,
   Multiple extends boolean | undefined,
@@ -279,7 +279,7 @@ export type AutocompleteSlotsAndSlotProps<
 
 /**
  * Value retains the original option type and generic name for module augmentation.
- * MappedValue changes selections to IDs; omitting it keeps selections as options.
+ * MappedValue is the type returned by getOptionValue; omitting it keeps selections as options.
  */
 export interface AutocompleteProps<
   Value,

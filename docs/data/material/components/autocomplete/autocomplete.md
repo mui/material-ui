@@ -82,17 +82,46 @@ Include the fields that `getOptionValue` reads in every generated option.
 Callbacks that operate on options, such as `getOptionLabel` and `renderOption`, continue to receive the original option object.
 The `details.option` passed to `onChange` also contains the original option.
 
-For typed wrappers, supply the mapped value type as the final generic argument of `AutocompleteProps` or `UseAutocompleteProps`.
-`Value` is the original option type, and `MappedValue` is the type returned by `getOptionValue`.
-For example, `UseAutocompleteProps<Value, false, false, false, number>` describes single-selection props with numeric IDs.
-Wrappers that use mapped values must require `getOptionValue` when extending these interfaces.
-Omitting the final generic argument preserves the original option values.
-
 Keep `getOptionValue` and any custom `isOptionEqualToValue` callback stable between renders to reuse cached option lookups.
 Define them outside the component, as in the demo below, or use `React.useCallback` with all dependencies.
 Changing a callback that determines matching rebuilds its lookup so the results reflect the new behavior.
 
 {{"demo": "OptionValueMapping.js"}}
+
+#### Typed wrappers
+
+For typed wrappers, supply the mapped value type as the final generic argument of `AutocompleteProps` or `UseAutocompleteProps`.
+`Value` is the original option type, and `MappedValue` is the type returned by `getOptionValue`.
+This wrapper accepts film options and uses `number | null` for selected values.
+It makes `getOptionValue` required so callers must provide the mapping:
+
+```tsx
+import Autocomplete, { AutocompleteProps } from '@mui/material/Autocomplete';
+import { ChipTypeMap } from '@mui/material/Chip';
+
+interface Film {
+  id: number;
+  label: string;
+}
+
+interface FilmAutocompleteProps extends AutocompleteProps<
+  Film, // Value: the original option type
+  false, // Multiple
+  false, // DisableClearable
+  false, // FreeSolo
+  ChipTypeMap['defaultComponent'], // ChipComponent
+  number // MappedValue: the type returned by getOptionValue
+> {
+  getOptionValue: (option: Film) => number;
+}
+
+function FilmAutocomplete(props: FilmAutocompleteProps) {
+  return <Autocomplete {...props} />;
+}
+```
+
+For a wrapper around `useAutocomplete`, use `UseAutocompleteProps<Film, false, false, false, number>` and require `getOptionValue` in the same way.
+Omitting the final generic argument preserves the original option values.
 
 ### Playground
 
