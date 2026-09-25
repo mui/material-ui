@@ -121,11 +121,15 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
     );
 
     // The last highlighted rule restores the system colors under forced colors.
+    // WebKit has no forced colors mode, so it drops `forced-color-adjust`.
+    const forcedColorAdjust = CSS.supports('forced-color-adjust', 'none')
+      ? 'forced-color-adjust: none; '
+      : '';
     expect(highlightedRules.length).to.be.greaterThan(1);
     expect(highlightedRules[highlightedRules.length - 1]).to.deep.equal({
       selector: `.${rootClassName}.${menu2ItemClasses.highlighted}`,
       media: '(forced-colors: active)',
-      declarations: 'forced-color-adjust: none; color: highlighttext; background-color: highlight;',
+      declarations: `${forcedColorAdjust}color: highlighttext; background-color: highlight;`,
     });
   });
 
