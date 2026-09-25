@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { createTheme, enhanceDensity, ThemeProvider } from '@mui/material/styles';
+import {
+  createTheme,
+  unstable_enhanceDensity as enhanceDensity,
+  ThemeProvider,
+} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -10,7 +14,7 @@ import Tabs from '@mui/material/Tabs';
 import TextField from '@mui/material/TextField';
 import densityRecipes from './densityRecipes';
 import recipeUis from './recipeUis';
-import { Annotate, Claim, useClaims } from './densityAnnotations';
+import { Annotate, useClaims } from './densityAnnotations';
 
 const colorSchemes = { light: true, dark: true };
 
@@ -22,7 +26,7 @@ const chromeTheme = enhanceDensity(createTheme({ colorSchemes }));
 // claims a token — every caption is the measured height. `data-measure` on an
 // element sends its beam left; the plain attribute reads right (the default
 // side), which is what keeps a row and the control inside it apart.
-const CLAIMS: Claim[] = [
+const CLAIMS = [
   {
     on: '[data-measure]:not([data-measure="left"])',
     aspect: 'touch-target',
@@ -39,8 +43,8 @@ export default function DensityRecipesDemo() {
   const [recipeId, setRecipeId] = React.useState('medium');
   const [measured, setMeasured] = React.useState(false);
   const [uiIndex, setUiIndex] = React.useState(0);
-  const stageRef = React.useRef<HTMLDivElement>(null);
-  const demoRef = React.useRef<HTMLDivElement>(null);
+  const stageRef = React.useRef(null);
+  const demoRef = React.useRef(null);
   // No claims while the toggle is off — the observers have nothing to measure.
   const state = useClaims(stageRef, demoRef, measured ? CLAIMS : [], [
     recipeId,

@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { createTheme, enhanceDensity, ThemeProvider } from '@mui/material/styles';
+import {
+  createTheme,
+  unstable_enhanceDensity as enhanceDensity,
+  ThemeProvider,
+} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -22,7 +26,12 @@ import {
   useClaims,
 } from './densityAnnotations';
 import { annotationsFor } from './densityAnnotationSpecs';
-import { COMPONENT_NAMES, DENSITY_COMPONENTS } from './densityComponents';
+import {
+  COMPONENT_NAMES,
+  Control,
+  ControlValue,
+  DENSITY_COMPONENTS,
+} from './densityComponents';
 
 const densityTheme = enhanceDensity(
   createTheme({ colorSchemes: { light: true, dark: true } }),
@@ -34,7 +43,7 @@ const STAGE_WIDTH = 620;
 const STAGE_HEIGHT = 300;
 
 // Stable identity, so a family without controls doesn't re-run the memos.
-const NO_CONTROLS = [];
+const NO_CONTROLS: Control[] = [];
 
 // Two groups, not one list: the steps space a box, the targets size it, and the
 // override object splits them the same way.
@@ -44,7 +53,7 @@ const SCALE_GROUPS = [
 ];
 
 function ScaleLegend() {
-  const [anchor, setAnchor] = React.useState(null);
+  const [anchor, setAnchor] = React.useState<HTMLButtonElement | null>(null);
   return (
     <React.Fragment>
       <IconButton
@@ -100,16 +109,18 @@ function ScaleLegend() {
 export default function AllComponentsDemo() {
   const [component, setComponent] = React.useState(COMPONENT_NAMES[0]);
   // One set of values per component, so switching away and back keeps the choice.
-  const [byComponent, setByComponent] = React.useState({});
+  const [byComponent, setByComponent] = React.useState<
+    Record<string, Record<string, ControlValue>>
+  >({});
   // Annotations the reader has switched off, per family.
-  const [hidden, setHidden] = React.useState({});
-  const stageRef = React.useRef(null);
-  const demoRef = React.useRef(null);
+  const [hidden, setHidden] = React.useState<Record<string, string[]>>({});
+  const stageRef = React.useRef<HTMLDivElement>(null);
+  const demoRef = React.useRef<HTMLDivElement>(null);
 
   const spec = DENSITY_COMPONENTS[component];
   const controls = spec.controls ?? NO_CONTROLS;
   const values = React.useMemo(() => {
-    const initial = {};
+    const initial: Record<string, ControlValue> = {};
     controls.forEach((control) => {
       initial[control.prop] = control.initial;
     });
@@ -133,7 +144,7 @@ export default function AllComponentsDemo() {
   );
   const resolved = useClaims(stageRef, demoRef, shown, [component, values, shown]);
 
-  const toggle = (slot) =>
+  const toggle = (slot: string) =>
     setHidden((previous) => {
       const current = previous[component] ?? [];
       return {
@@ -144,7 +155,7 @@ export default function AllComponentsDemo() {
       };
     });
 
-  const setValue = (prop, next) =>
+  const setValue = (prop: string, next: ControlValue) =>
     setByComponent((previous) => ({
       ...previous,
       [component]: { ...previous[component], [prop]: next },
@@ -184,7 +195,7 @@ export default function AllComponentsDemo() {
               select
               size="small"
               label={control.prop}
-              value={values[control.prop]}
+              value={values[control.prop] as string}
               onChange={(event) => setValue(control.prop, event.target.value)}
               sx={{ minWidth: 140 }}
             >

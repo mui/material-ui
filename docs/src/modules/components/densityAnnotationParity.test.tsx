@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { describe, test, expect, vi } from 'vitest';
 import { createRenderer, ignoreActWarnings, isJsdom } from '@mui/internal-test-utils';
-import AllComponentsDemo from 'docs/data/material/customization/density/AllComponentsDemo';
+import AllComponentsDemo from 'docs/data/material/experimental-api/enhance-density/AllComponentsDemo';
 import {
   DENSITY_SCALE,
   DENSITY_TARGETS,
-} from 'docs/data/material/customization/density/densityAnnotations';
-import { DENSITY_COMPONENTS } from 'docs/data/material/customization/density/densityComponents';
+} from 'docs/data/material/experimental-api/enhance-density/densityAnnotations';
+import { DENSITY_COMPONENTS } from 'docs/data/material/experimental-api/enhance-density/densityComponents';
 import {
   DENSITY_ANNOTATIONS,
   annotationsFor,
-} from 'docs/data/material/customization/density/densityAnnotationSpecs';
+} from 'docs/data/material/experimental-api/enhance-density/densityAnnotationSpecs';
 
 /**
  * The annotation page names every measured band with a token (`xSmall`,

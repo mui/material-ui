@@ -1,6 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { createTheme, enhanceDensity, ThemeProvider } from '@mui/material/styles';
+import {
+  createTheme,
+  unstable_enhanceDensity as enhanceDensity,
+  ThemeProvider,
+} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';

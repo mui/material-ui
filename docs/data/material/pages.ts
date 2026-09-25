@@ -203,7 +203,7 @@ const pages: MuiPage[] = [
             pathname: '/material-ui/customization/container-queries',
             newFeature: true,
           },
-          { pathname: '/material-ui/customization/density', newFeature: true },
+          { pathname: '/material-ui/customization/density' },
           {
             pathname: '/material-ui/customization/focus-visible',
             title: 'Focus visible',
@@ -299,6 +299,11 @@ const pages: MuiPage[] = [
       {
         pathname: '/material-ui/experimental-api/classname-generator',
         title: 'ClassName generator',
+      },
+      {
+        pathname: '/material-ui/experimental-api/enhance-density',
+        title: 'Enhance density',
+        newFeature: true,
       },
       { pathname: '/material-ui/experimental-api/pigment-css', title: 'Pigment CSS' },
     ],

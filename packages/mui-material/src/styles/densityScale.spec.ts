@@ -1,4 +1,4 @@
-import { createTheme, enhanceDensity } from '@mui/material/styles';
+import { createTheme, unstable_enhanceDensity as enhanceDensity } from '@mui/material/styles';
 import { SpacingKey } from '@mui/system';
 
 // densityScale.ts augments @mui/system's SpacingKeyOverrides with the scale keys
