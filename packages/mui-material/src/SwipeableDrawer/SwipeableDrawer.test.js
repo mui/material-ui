@@ -174,60 +174,74 @@ describe('<SwipeableDrawer />', () => {
 
     tests.forEach((params) => {
       describe(`anchor=${params.anchor}`, () => {
-        it('should open and close when swiping', () => {
-          const handleClose = spy();
-          const handleOpen = spy();
-          const { setProps } = render(
-            <SwipeableDrawer
-              anchor={params.anchor}
-              onOpen={handleOpen}
-              onClose={handleClose}
-              open={false}
-              slotProps={{
-                paper: { component: FakePaper },
-              }}
-            >
-              <div data-testid="drawer">SwipeableDrawer</div>
-            </SwipeableDrawer>,
-          );
+        [undefined, 'object', 'callback'].forEach((refType) => {
+          it(`should open and close when swiping with ${refType || 'no external'} paper ref`, () => {
+            const paperRef = React.createRef();
+            let ref;
+            if (refType === 'object') {
+              ref = paperRef;
+            } else if (refType === 'callback') {
+              ref = (node) => {
+                paperRef.current = node;
+              };
+            }
+            const handleClose = spy();
+            const handleOpen = spy();
+            const { setProps } = render(
+              <SwipeableDrawer
+                anchor={params.anchor}
+                onOpen={handleOpen}
+                onClose={handleClose}
+                open={false}
+                slotProps={{
+                  paper: { component: FakePaper, ref },
+                }}
+              >
+                <div data-testid="drawer">SwipeableDrawer</div>
+              </SwipeableDrawer>,
+            );
 
-          const swipeArea = document.querySelector('[class*=PrivateSwipeArea-root]');
+            if (refType) {
+              expect(paperRef.current).to.not.equal(null);
+            }
+            const swipeArea = document.querySelector('[class*=PrivateSwipeArea-root]');
 
-          fireEvent.touchStart(swipeArea, {
-            touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[0] })],
-          });
-          fireEvent.touchMove(swipeArea, {
-            touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[1] })],
-          });
-          fireEvent.touchMove(swipeArea, {
-            touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[2] })],
-          });
-          fireEvent.touchEnd(swipeArea, {
-            changedTouches: [
-              new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[2] }),
-            ],
-          });
-          expect(handleOpen.callCount).to.equal(1);
+            fireEvent.touchStart(swipeArea, {
+              touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[0] })],
+            });
+            fireEvent.touchMove(swipeArea, {
+              touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[1] })],
+            });
+            fireEvent.touchMove(swipeArea, {
+              touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[2] })],
+            });
+            fireEvent.touchEnd(swipeArea, {
+              changedTouches: [
+                new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[2] }),
+              ],
+            });
+            expect(handleOpen.callCount).to.equal(1);
 
-          setProps({ open: true });
+            setProps({ open: true });
 
-          const drawer = screen.getByTestId('drawer');
+            const drawer = screen.getByTestId('drawer');
 
-          fireEvent.touchStart(drawer, {
-            touches: [new Touch({ identifier: 0, target: drawer, ...params.closeTouches[0] })],
+            fireEvent.touchStart(drawer, {
+              touches: [new Touch({ identifier: 0, target: drawer, ...params.closeTouches[0] })],
+            });
+            fireEvent.touchMove(drawer, {
+              touches: [new Touch({ identifier: 0, target: drawer, ...params.closeTouches[1] })],
+            });
+            fireEvent.touchMove(drawer, {
+              touches: [new Touch({ identifier: 0, target: drawer, ...params.closeTouches[2] })],
+            });
+            fireEvent.touchEnd(drawer, {
+              changedTouches: [
+                new Touch({ identifier: 0, target: drawer, ...params.closeTouches[2] }),
+              ],
+            });
+            expect(handleClose.callCount).to.equal(1);
           });
-          fireEvent.touchMove(drawer, {
-            touches: [new Touch({ identifier: 0, target: drawer, ...params.closeTouches[1] })],
-          });
-          fireEvent.touchMove(drawer, {
-            touches: [new Touch({ identifier: 0, target: drawer, ...params.closeTouches[2] })],
-          });
-          fireEvent.touchEnd(drawer, {
-            changedTouches: [
-              new Touch({ identifier: 0, target: drawer, ...params.closeTouches[2] }),
-            ],
-          });
-          expect(handleClose.callCount).to.equal(1);
         });
 
         // Need layout

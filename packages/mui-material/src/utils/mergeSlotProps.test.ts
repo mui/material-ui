@@ -25,6 +25,70 @@ describe('utils/index.js', () => {
       });
     });
 
+    describe('refs', () => {
+      [false, true].forEach((callbacks) => {
+        it(`merges refs from ${callbacks ? 'callback' : 'object'} slot props`, () => {
+          const externalRef = React.createRef<HTMLDivElement>();
+          const defaultRef = React.createRef<HTMLDivElement>();
+          const external = { ref: externalRef };
+          const defaults = { ref: defaultRef };
+          const props = callbacks
+            ? mergeSlotProps(
+                () => external,
+                () => defaults,
+              )()
+            : mergeSlotProps(external, defaults);
+          const ref = props.ref as unknown as React.RefCallback<HTMLDivElement>;
+          const node = document.createElement('div');
+
+          ref(node);
+          expect(externalRef.current).to.equal(node);
+          expect(defaultRef.current).to.equal(node);
+          ref(null);
+          expect(externalRef.current).to.equal(null);
+          expect(defaultRef.current).to.equal(null);
+        });
+      });
+
+      it('cleans up callback refs and clears object refs', () => {
+        const cleanup = spy();
+        const externalRef = spy(() => cleanup);
+        const defaultRef = React.createRef<HTMLDivElement>();
+        const props = mergeSlotProps({ ref: externalRef }, { ref: defaultRef });
+        const ref = props.ref as unknown as React.RefCallback<HTMLDivElement>;
+        const node = document.createElement('div');
+
+        ref(node);
+        expect(externalRef.callCount).to.equal(1);
+        expect(externalRef.firstCall.args).to.deep.equal([node]);
+        expect(defaultRef.current).to.equal(node);
+        ref(null);
+        expect(cleanup.callCount).to.equal(1);
+        expect(externalRef.callCount).to.equal(1);
+        expect(defaultRef.current).to.equal(null);
+      });
+
+      it('calls legacy callback refs with null on detach', () => {
+        const externalRef = spy();
+        const defaultRef = spy();
+        const { ref } = mergeSlotProps({ ref: externalRef }, { ref: defaultRef });
+        const node = document.createElement('div');
+
+        ref(node);
+        ref(null);
+        expect(externalRef.lastCall.args).to.deep.equal([null]);
+        expect(defaultRef.lastCall.args).to.deep.equal([null]);
+      });
+
+      it('preserves a single ref and does not duplicate identical refs', () => {
+        const ref = React.createRef<HTMLDivElement>();
+        expect(mergeSlotProps({ ref }, {}).ref).to.equal(ref);
+        expect(mergeSlotProps({}, { ref })).to.deep.equal({ ref });
+        expect(mergeSlotProps({ ref: null }, { ref }).ref).to.equal(ref);
+        expect(mergeSlotProps({ ref }, { ref }).ref).to.equal(ref);
+      });
+    });
+
     it('merge styles', () => {
       expect(
         mergeSlotProps<{ style: React.CSSProperties }>(

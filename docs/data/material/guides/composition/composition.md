@@ -69,6 +69,7 @@ Special properties that merged between the two arguments are listed below:
 
 - `style`: object are shallow merged rather than replacing one another. The style keys from the first argument have higher priority.
 - `sx`: values are concatenated into an array.
+- `ref`: refs are merged so both receive the element and are cleaned up when it is detached.
 - `^on[A-Z]` event handlers: these functions are composed between the two arguments.
 
   ```js

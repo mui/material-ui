@@ -2,6 +2,36 @@ import { SlotComponentProps } from '@mui/utils/types';
 import isEventHandler from '@mui/utils/isEventHandler';
 import clsx from 'clsx';
 
+function mergeRefs<T>(externalRef: React.Ref<T> | undefined, defaultRef: React.Ref<T> | undefined) {
+  if (externalRef == null || externalRef === defaultRef) {
+    return defaultRef;
+  }
+  if (defaultRef == null) {
+    return externalRef;
+  }
+
+  let cleanup: (() => void) | undefined;
+  return (instance: T | null) => {
+    cleanup?.();
+    cleanup = undefined;
+    if (instance === null) {
+      return;
+    }
+
+    const cleanups = [externalRef, defaultRef].map((ref) => {
+      if (typeof ref === 'function') {
+        const refCleanup = ref(instance);
+        return typeof refCleanup === 'function' ? refCleanup : () => ref(null);
+      }
+      ref.current = instance;
+      return () => {
+        ref.current = null;
+      };
+    });
+    cleanup = () => cleanups.forEach((refCleanup) => refCleanup());
+  };
+}
+
 export default function mergeSlotProps<
   T extends SlotComponentProps<React.ElementType, {}, {}>,
   K = T,
@@ -52,6 +82,9 @@ export default function mergeSlotProps<
         ...externalSlotPropsValue,
         ...handlers,
       };
+      if (defaultSlotPropsValue?.ref || externalSlotPropsValue?.ref) {
+        result.ref = mergeRefs(externalSlotPropsValue?.ref, defaultSlotPropsValue?.ref);
+      }
       if (className) {
         result.className = className;
       }
@@ -79,6 +112,9 @@ export default function mergeSlotProps<
     ...externalSlotProps,
     ...handlers,
   };
+  if (typedDefaultSlotProps?.ref || externalSlotProps?.ref) {
+    result.ref = mergeRefs(externalSlotProps?.ref, typedDefaultSlotProps?.ref);
+  }
   if (className) {
     result.className = className;
   }
