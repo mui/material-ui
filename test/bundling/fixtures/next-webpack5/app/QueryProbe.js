@@ -15,7 +15,7 @@ function Probe() {
   return <p id="mq">{String(matches)}</p>;
 }
 
-export function QueryProbe() {
+export default function QueryProbe() {
   return (
     <ThemeProvider theme={theme}>
       <Probe />
