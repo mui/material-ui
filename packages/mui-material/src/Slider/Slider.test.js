@@ -1579,6 +1579,17 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
       expect(document.activeElement).to.have.attribute('data-index', '1');
     });
 
+    it('should bound the value when the neighbour thumb is at 0', () => {
+      const handleChange = spy();
+
+      render(<Slider defaultValue={[-10, 0]} min={-50} disableSwap onChange={handleChange} />);
+
+      const [slider1] = screen.getAllByRole('slider');
+
+      fireEvent.change(slider1, { target: { value: '10' } });
+      expect(handleChange.args[0][1]).to.deep.equal([0, 0]);
+    });
+
     it('should bound the value when using the mouse', () => {
       const handleChange = spy();
       const { container } = render(
