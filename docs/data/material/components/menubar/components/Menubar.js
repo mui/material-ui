@@ -109,15 +109,10 @@ MenuPopup.propTypes = {
 export { MenuPopup };
 
 function MenuItem(props) {
-  const { sx, icon, hint, children, secondary, ...other } = props;
+  const { sx = [], icon, hint, children, secondary, ...other } = props;
   return (
     <Menu.Item
-      render={
-        <ListItemButton
-          dense
-          sx={[{ gap: 1.5 }, ...(Array.isArray(sx) ? sx : [sx])]}
-        />
-      }
+      render={<ListItemButton dense sx={[{ gap: 1.5 }, ...[sx].flat()]} />}
       {...other}
     >
       {icon && <ListItemIcon sx={{ minWidth: 'unset' }}>{icon}</ListItemIcon>}
@@ -192,10 +187,10 @@ MenuSubmenuTrigger.propTypes = {
 export { MenuSubmenuTrigger };
 
 function MenuSeparator(props) {
-  const { sx, ...other } = props;
+  const { sx = [], ...other } = props;
   return (
     <Menu.Separator
-      render={<Divider sx={[{ my: 0.5 }, ...(Array.isArray(sx) ? sx : [sx])]} />}
+      render={<Divider sx={[{ my: 0.5 }, ...[sx].flat()]} />}
       {...other}
     />
   );
