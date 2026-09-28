@@ -108,21 +108,20 @@ component report. Edit the reports, not this table.
 
 <!-- scorecard:start -->
 
-| Component                                                 | ✅ Supports | ⚠️ Partially Supports | ❌ Does Not Support | ➖ Not Applicable | 🚩 Flagged |
-| :-------------------------------------------------------- | :---------- | :-------------------- | :------------------ | :---------------- | :--------- |
-| [Accordion](./Accordion/accessibility.md)                 | 19          | 0                     | 0                   | 31                | 3/19       |
-| [AccordionSummary](./AccordionSummary/accessibility.md)   | 23          | 1                     | 0                   | 31                | 4/24       |
-| [Avatar](./Avatar/accessibility.md)                       | 9           | 2                     | 0                   | 44                | 5/11       |
-| [Button](./Button/accessibility.md)                       | 23          | 4                     | 0                   | 28                | 8/27       |
-| [Checkbox](./Checkbox/accessibility.md)                   | 23          | 2                     | 0                   | 30                | 4/25       |
-| [LinearProgress](./LinearProgress/accessibility.md)       | 8           | 3                     | 0                   | 44                | 5/11       |
-| [Radio](./Radio/accessibility.md)                         | 23          | 2                     | 0                   | 30                | 3/25       |
-| [RadioGroup](./RadioGroup/accessibility.md)               | 7           | 0                     | 0                   | 30                | 3/7        |
-| [Switch](./Switch/accessibility.md)                       | 23          | 2                     | 0                   | 30                | 3/25       |
-| [TextField](./TextField/accessibility.md)                 | 25          | 3                     | 0                   | 27                | 5/28       |
-| [ToggleButton](./ToggleButton/accessibility.md)           | 20          | 4                     | 0                   | 31                | 2/24       |
-| [ToggleButtonGroup](./ToggleButtonGroup/accessibility.md) | 4           | 0                     | 0                   | 31                | 1/4        |
-| **12 components**                                         | **207**     | **23**                | **0**               | **387**           | **46**     |
+| Component                                                 | ✅ Supports | ⚠️ Partially Supports | ❌ Does Not Support | ➖ Not Applicable | ↗ Inherited | 🚩 Flagged |
+| :-------------------------------------------------------- | :---------- | :-------------------- | :------------------ | :---------------- | :---------- | :--------- |
+| [Accordion](./Accordion/accessibility.md)                 | 19          | 0                     | 0                   | 31                | 5           | 3/19       |
+| [AccordionSummary](./AccordionSummary/accessibility.md)   | 23          | 1                     | 0                   | 31                | —           | 4/24       |
+| [Avatar](./Avatar/accessibility.md)                       | 9           | 2                     | 0                   | 44                | —           | 5/11       |
+| [Button](./Button/accessibility.md)                       | 23          | 4                     | 0                   | 28                | —           | 8/27       |
+| [Checkbox](./Checkbox/accessibility.md)                   | 23          | 2                     | 0                   | 30                | —           | 4/25       |
+| [LinearProgress](./LinearProgress/accessibility.md)       | 8           | 3                     | 0                   | 44                | —           | 5/11       |
+| [Radio](./Radio/accessibility.md)                         | 23          | 2                     | 0                   | 30                | —           | 3/25       |
+| [RadioGroup](./RadioGroup/accessibility.md)               | 7           | 0                     | 0                   | 30                | 18          | 3/7        |
+| [Switch](./Switch/accessibility.md)                       | 23          | 2                     | 0                   | 30                | —           | 3/25       |
+| [TextField](./TextField/accessibility.md)                 | 25          | 3                     | 0                   | 27                | —           | 5/28       |
+| [ToggleButton](./ToggleButton/accessibility.md)           | 20          | 4                     | 0                   | 31                | —           | 2/24       |
+| [ToggleButtonGroup](./ToggleButtonGroup/accessibility.md) | 4           | 0                     | 0                   | 31                | 20          | 1/4        |
 
 <!-- scorecard:end -->
 
