@@ -23,8 +23,6 @@ function forceJsxForJsFiles(): Plugin {
 
       const result = await transformWithOxc(code, id, {
         lang: 'jsx',
-        // oxc resolves the closest tsconfig otherwise, and `docs/tsconfig.json` sets `jsx: 'preserve'`.
-        jsx: { runtime: 'classic' },
       });
 
       // @vitejs/plugin-react only adds the React import for .jsx files.
