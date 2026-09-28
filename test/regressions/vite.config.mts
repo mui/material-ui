@@ -29,6 +29,9 @@ export default defineConfig({
         // Use the transform exposed by Vite instead of invoking Oxc directly.
         return transformWithOxc(code, id, {
           lang: 'tsx',
+          jsx: {
+            runtime: 'automatic',
+          },
         });
       },
     },
