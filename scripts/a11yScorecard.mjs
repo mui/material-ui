@@ -112,6 +112,7 @@ function parseCriteria(markdown) {
       conformanceToken?.startsWith(candidate),
     );
     const responsibilityToken = tokens.find((token) => /^[●◐○]/.test(token));
+    const body = bodyAfter(index);
 
     criteria.push({
       number,
@@ -121,8 +122,8 @@ function parseCriteria(markdown) {
       responsibility: responsibilityToken?.replace(/^[●◐○]\s*/, '') ?? null,
       group,
       flagged,
-      body: bodyAfter(index),
-      pass: bodyAfter(index).match(/^\*\*Pass:\*\* (.+)$/m)?.[1] ?? null,
+      body,
+      pass: body.match(/^\*\*Pass:\*\* (.+)$/m)?.[1] ?? null,
     });
   });
 
@@ -175,8 +176,14 @@ function parseReport(markdown) {
     }
     const [, label, value] = match;
     const field = FIELDS.find(([symbol]) => label.startsWith(symbol));
-    if (field) {
-      counts[field[1]] = value;
+    if (!field) {
+      continue;
+    }
+    // Flagged is reported as "8/27": flagged criteria out of the rated ones.
+    const [count, rated] = value.split('/').map(Number);
+    counts[field[1]] = count;
+    if (rated !== undefined) {
+      counts.rated = rated;
     }
   }
 
@@ -216,14 +223,6 @@ function summarize(criteria) {
   };
 }
 
-function toNumber(value) {
-  if (value === undefined) {
-    return 0;
-  }
-  // Flagged is reported as "12/27"; only the numerator is a count.
-  return Number.parseInt(String(value).split('/')[0], 10);
-}
-
 async function collectReports() {
   const entries = await fs.readdir(componentsDirectory, { withFileTypes: true });
 
@@ -248,26 +247,40 @@ async function collectReports() {
   return reports.filter(Boolean).sort((a, b) => a.component.localeCompare(b.component));
 }
 
+/**
+ * No totals row: every component rates the same WCAG criteria, so a sum across
+ * components counts each criterion once per component. The per-criterion
+ * rollup in `scorecard.json` is the library-level view.
+ */
 function renderTable(reports) {
   const header = [
-    '| Component | ✅ Supports | ⚠️ Partially Supports | ❌ Does Not Support | ➖ Not Applicable | 🚩 Flagged |',
-    '| :-------- | :---------- | :-------------------- | :------------------ | :---------------- | :--------- |',
+    '| Component | ✅ Supports | ⚠️ Partially Supports | ❌ Does Not Support | ➖ Not Applicable | ↗ Inherited | 🚩 Flagged |',
+    '| :-------- | :---------- | :-------------------- | :------------------ | :---------------- | :---------- | :--------- |',
   ];
 
-  const rows = reports.map((report) => {
-    const link = `[${report.component}](./${report.component}/accessibility.md)`;
-    const cell = (key) => report.counts[key] ?? '—';
-    return `| ${link} | ${cell('supports')} | ${cell('partiallySupports')} | ${cell('doesNotSupport')} | ${cell('notApplicable')} | ${cell('flagged')} |`;
+  const rows = reports.map(({ component, counts }) => {
+    const link = `[${component}](./${component}/accessibility.md)`;
+    const cell = (key) => counts[key] ?? '—';
+    const flagged = counts.flagged === undefined ? '—' : `${counts.flagged}/${counts.rated}`;
+    return `| ${link} | ${cell('supports')} | ${cell('partiallySupports')} | ${cell('doesNotSupport')} | ${cell('notApplicable')} | ${cell('inherited')} | ${flagged} |`;
   });
 
-  const totals = FIELDS.reduce((accumulator, [, field]) => {
-    accumulator[field] = reports.reduce((sum, report) => sum + toNumber(report.counts[field]), 0);
-    return accumulator;
-  }, {});
+  return [...header, ...rows].join('\n');
+}
 
-  const totalRow = `| **${reports.length} components** | **${totals.supports}** | **${totals.partiallySupports}** | **${totals.doesNotSupport}** | **${totals.notApplicable}** | **${totals.flagged}** |`;
+/** Counts the rolled-up criteria by their library-level (worst) rating. */
+function summarizeRollup(criteria) {
+  const count = (conformance) =>
+    criteria.filter((criterion) => criterion.conformance === conformance).length;
+  const rated = criteria.filter((criterion) => criterion.conformance !== 'Not Applicable');
 
-  return { table: [...header, ...rows, totalRow].join('\n'), totals };
+  return {
+    rated: rated.length,
+    supports: count('Supports'),
+    partiallySupports: count('Partially Supports'),
+    doesNotSupport: count('Does Not Support'),
+    flagged: rated.filter((criterion) => criterion.flagged).length,
+  };
 }
 
 /** Formats generated output the way Prettier would, so `test_static` stays green. */
@@ -382,10 +395,7 @@ function renderDocsTable(reports) {
     return `| ${link} | ${summary.levelA} | ${summary.levelAA} | ${summary.rated} | ${summary.supports} | ${summary.partiallySupports} | ${summary.verified}/${summary.rated} | ${summary.automated} |`;
   });
 
-  const sum = (key) => reports.reduce((total, report) => total + report.summary[key], 0);
-  const totalRow = `| **${reports.length} components** | **${sum('levelA')}** | **${sum('levelAA')}** | **${sum('rated')}** | **${sum('supports')}** | **${sum('partiallySupports')}** | **${sum('verified')}/${sum('rated')}** | **${sum('automated')}** |`;
-
-  return [...header, ...rows, totalRow].join('\n');
+  return [...header, ...rows].join('\n');
 }
 
 /**
@@ -442,7 +452,9 @@ async function run(argv) {
     throw new Error('No accessibility.md reports found under packages/mui-material/src');
   }
 
-  const { table, totals } = renderTable(reports);
+  const table = renderTable(reports);
+  const criteria = rollUpCriteria(reports);
+  const totals = summarizeRollup(criteria);
 
   const currentIndex = await fs.readFile(indexPath, 'utf8');
 
@@ -451,7 +463,7 @@ async function run(argv) {
     standard: 'WCAG 2.2 Level A and AA',
     componentCount: reports.length,
     totals,
-    criteria: rollUpCriteria(reports),
+    criteria,
     // `body` is only needed for the evidence check, not by consumers.
     components: reports.map((report) => ({
       ...report,
@@ -540,7 +552,7 @@ async function run(argv) {
 
   console.log(`Scorecard updated for ${reports.length} components:`);
   console.log(
-    `  ✅ ${totals.supports}  ⚠️ ${totals.partiallySupports}  ❌ ${totals.doesNotSupport}  ➖ ${totals.notApplicable}  🚩 ${totals.flagged}`,
+    `  ${totals.rated} criteria rated: ✅ ${totals.supports}  ⚠️ ${totals.partiallySupports}  ❌ ${totals.doesNotSupport}  🚩 ${totals.flagged}`,
   );
 }
 
