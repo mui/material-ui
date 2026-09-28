@@ -169,7 +169,7 @@ const DialogPaper = styled(Paper, {
         },
         style: {
           [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
-            maxWidth: 'calc(100% - 2*var(--_dialogMargin))',
+            maxWidth: 'calc(100% - 64px)',
           },
         },
       },
@@ -187,7 +187,7 @@ const DialogPaper = styled(Paper, {
           props: { maxWidth, scroll: 'body' },
           style: {
             [theme.breakpoints.down(theme.breakpoints.values[maxWidth] + 32 * 2)]: {
-              maxWidth: 'calc(100% - 2*var(--_dialogMargin))',
+              maxWidth: 'calc(100% - 64px)',
             },
           },
         })),
