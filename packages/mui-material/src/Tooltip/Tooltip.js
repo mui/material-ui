@@ -68,7 +68,6 @@ const TooltipPopper = styled(Popper, {
       {
         props: ({ ownerState }) => ownerState.arrow,
         style: {
-          '--_arrowSize': '1em',
           [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
             top: 0,
             marginTop: 'calc(-0.71 * var(--_arrowSize))',
@@ -135,6 +134,9 @@ const TooltipTooltip = styled('div', {
     wordWrap: 'break-word',
     fontWeight: theme.typography.fontWeightMedium,
     '--_spacing': '14px',
+    [`&.${tooltipClasses.touch}`]: {
+      '--_spacing': '24px',
+    },
     [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
       transformOrigin: 'right center',
       marginInlineEnd: 'var(--_spacing)',
@@ -168,24 +170,6 @@ const TooltipTooltip = styled('div', {
           fontWeight: theme.typography.fontWeightRegular,
         },
       },
-      {
-        props: ({ ownerState }) => ownerState.touch,
-        style: {
-          '--_spacing': '24px',
-          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-            marginInlineEnd: 'var(--_spacing)',
-          },
-          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-            marginInlineStart: 'var(--_spacing)',
-          },
-          [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
-            marginBottom: 'var(--_spacing)',
-          },
-          [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
-            marginTop: 'var(--_spacing)',
-          },
-        },
-      },
     ],
   })),
 );
@@ -197,8 +181,9 @@ const TooltipArrow = styled('span', {
   memoTheme(({ theme }) => ({
     overflow: 'hidden',
     position: 'absolute',
-    width: '1em',
-    height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
+    '--_arrowSize': '1em',
+    width: 'var(--_arrowSize)',
+    height: 'calc(0.71 * var(--_arrowSize))' /* = width / sqrt(2) = (length of the hypotenuse) */,
     boxSizing: 'border-box',
     color: theme.vars ? theme.vars.palette.Tooltip.bg : theme.alpha(theme.palette.grey[700], 0.9),
     '&::before': {

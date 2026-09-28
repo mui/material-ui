@@ -168,9 +168,11 @@ const DialogPaper = styled(Paper, {
           scroll: 'body',
         },
         style: {
-          [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
-            maxWidth: 'calc(100% - 2*var(--_dialogMargin))',
-          },
+          maxWidth: `min(${
+            theme.breakpoints.unit === 'px'
+              ? `${Math.max(theme.breakpoints.values.xs, 444)}px`
+              : `max(${theme.breakpoints.values.xs}${theme.breakpoints.unit}, 444px)`
+          }, calc(100% - 2*var(--_dialogMargin)))`,
         },
       },
       ...Object.keys(theme.breakpoints.values)
@@ -186,9 +188,7 @@ const DialogPaper = styled(Paper, {
         .map((maxWidth) => ({
           props: { maxWidth, scroll: 'body' },
           style: {
-            [theme.breakpoints.down(theme.breakpoints.values[maxWidth] + 32 * 2)]: {
-              maxWidth: 'calc(100% - 2*var(--_dialogMargin))',
-            },
+            maxWidth: `min(${theme.breakpoints.values[maxWidth]}${theme.breakpoints.unit}, calc(100% - 2*var(--_dialogMargin)))`,
           },
         })),
       {

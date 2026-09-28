@@ -85,9 +85,8 @@ function expectRtlRightPlacementStyles() {
 
   expect(popper).to.have.attribute('data-popper-placement', 'right');
   expect(tooltip).toHaveComputedStyle({ direction: 'rtl' });
-  // The gap is authored through `--_spacing` (14px at rest), so the injected
-  // rule names the variable rather than the length.
   expect(hasInjectedStyle('margin-inline-start: var(--_spacing)')).to.equal(true);
+  expect(hasInjectedStyle('--_spacing: 14px')).to.equal(true);
   expect(hasInjectedStyle('inset-inline-start: 0')).to.equal(true);
   expectArrowOnInlineEnd(tooltip, arrow);
 }
@@ -573,6 +572,28 @@ describe('<Tooltip />', () => {
   });
 
   describe('touch screen', () => {
+    it('keeps the touch offset when the tooltip slot overrides --_spacing', () => {
+      const theme = createTheme({
+        components: { MuiTooltip: { styleOverrides: { tooltip: { '--_spacing': '4px' } } } },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Tooltip enterTouchDelay={700} enterDelay={100} title="Hello World">
+            <button type="submit">Hello World</button>
+          </Tooltip>
+        </ThemeProvider>,
+      );
+      fireEvent.touchStart(screen.getByRole('button'));
+      clock.tick(700 + 100);
+
+      const tooltip = screen.getByRole('tooltip').querySelector(`.${classes.tooltip}`);
+      expect(tooltip).to.have.class(classes.touch);
+      expect(hasInjectedStyle(`.${classes.touch}{--_spacing: 24px`)).to.equal(true);
+      if (!isJsdom()) {
+        expect(getComputedStyle(tooltip).getPropertyValue('--_spacing').trim()).to.equal('24px');
+      }
+    });
+
     it('should not respond to quick events', () => {
       render(
         <Tooltip title="Hello World">
