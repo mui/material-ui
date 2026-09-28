@@ -1,10 +1,4 @@
 import type { Breakpoint } from '..';
-import type { PaginationItemOwnerState } from '../PaginationItem';
-import type { TabProps } from '../Tab';
-import type { ListOwnProps } from '../List';
-import type { ListItemOwnerState } from '../ListItem';
-import type { BottomNavigationActionOwnerState } from '../BottomNavigationAction';
-import type { InputBaseProps } from '../InputBase';
 import type { EnhanceableTheme } from './densityScale';
 import addDefaultProps from '../utils/addDefaultProps';
 import addRootOverride from '../utils/addRootOverride';
@@ -118,8 +112,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     padding: `0 ${spacing('xSmall')}`,
     variants: [
       {
-        props: ({ ownerState }: { ownerState: { disableGutters?: boolean | undefined } }) =>
-          !ownerState.disableGutters,
+        props: ({ ownerState }) => !ownerState.disableGutters,
         // scoped to expanded: wins master's 64px literal on specificity
         style: {
           [`&.${accordionSummaryClasses.expanded}`]: { minHeight: touchTarget },
@@ -313,11 +306,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         },
       },
       {
-        props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.startAdornment,
+        props: ({ ownerState }) => !!ownerState.startAdornment,
         style: { paddingLeft: spacing('small') },
       },
       {
-        props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.endAdornment,
+        props: ({ ownerState }) => !!ownerState.endAdornment,
         style: { '--_trailingPad': spacing('small') },
       },
     ],
@@ -338,11 +331,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           style: { paddingBlock: 0, paddingInline: 0 },
         },
         {
-          props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.startAdornment,
+          props: ({ ownerState }) => !!ownerState.startAdornment,
           style: { paddingLeft: 0 },
         },
         {
-          props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.endAdornment,
+          props: ({ ownerState }) => !!ownerState.endAdornment,
           style: { paddingRight: 0 },
         },
       ],
@@ -370,11 +363,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           style: { paddingBlock: 0, paddingInline: 0 },
         },
         {
-          props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.startAdornment,
+          props: ({ ownerState }) => !!ownerState.startAdornment,
           style: { paddingLeft: 0 },
         },
         {
-          props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.endAdornment,
+          props: ({ ownerState }) => !!ownerState.endAdornment,
           style: { paddingRight: 0 },
         },
       ],
@@ -429,11 +422,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         style: { paddingTop: 8, paddingBottom: 9 },
       },
       {
-        props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.startAdornment,
+        props: ({ ownerState }) => !!ownerState.startAdornment,
         style: { paddingLeft: spacing('small') },
       },
       {
-        props: ({ ownerState }: { ownerState: InputBaseProps }) => !!ownerState.endAdornment,
+        props: ({ ownerState }) => !!ownerState.endAdornment,
         style: { '--_trailingPad': spacing('small') },
       },
     ],
@@ -501,8 +494,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addRootOverride(enhanced.components, 'MuiInputLabel', {
     variants: [
       {
-        props: ({ ownerState }: { ownerState: { formControl?: object | undefined } }) =>
-          !!ownerState.formControl,
+        props: ({ ownerState }) => !!ownerState.formControl,
         style: { transform: 'translate(0, var(--_restY)) scale(1)' },
       },
       {
@@ -900,13 +892,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     variants: [
       // A subheader keeps master's `paddingTop: 0` — density only pads below.
       {
-        props: ({ ownerState }: { ownerState: ListOwnProps }) =>
-          !ownerState.disablePadding && !ownerState.subheader,
+        props: ({ ownerState }) => !ownerState.disablePadding && !ownerState.subheader,
         style: { paddingBlock: 8 },
       },
       {
-        props: ({ ownerState }: { ownerState: ListOwnProps }) =>
-          !ownerState.disablePadding && !!ownerState.subheader,
+        props: ({ ownerState }) => !ownerState.disablePadding && !!ownerState.subheader,
         style: { paddingBottom: 8 },
       },
     ],
@@ -976,14 +966,13 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         style: { paddingInline: spacing('xSmall') },
       },
       {
-        props: ({ ownerState }: { ownerState: ListItemOwnerState }) =>
-          !ownerState.disablePadding && !!ownerState.secondaryAction,
+        props: ({ ownerState }) => !ownerState.disablePadding && !!ownerState.secondaryAction,
         style: {
           paddingRight: `calc(${touchTarget} + ${spacing('xSmall')})`,
         },
       },
       {
-        props: ({ ownerState }: { ownerState: ListItemOwnerState }) => !!ownerState.secondaryAction,
+        props: ({ ownerState }) => !!ownerState.secondaryAction,
         style: {
           [`& > .${listItemButtonClasses.root}`]: {
             paddingRight: `calc(${touchTarget} + ${spacing('xSmall')})`,
@@ -1070,9 +1059,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     [`& > .${tabClasses.icon}`]: { margin: 0 },
     variants: [
       {
-        props: ({ ownerState }: { ownerState: TabProps }) =>
-          ownerState.icon &&
-          ownerState.label &&
+        props: ({ ownerState }) =>
+          !!ownerState.icon &&
+          !!ownerState.label &&
           (ownerState.iconPosition === 'top' || ownerState.iconPosition === 'bottom'),
         style: {
           minHeight: hugeBox,
@@ -1284,7 +1273,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         style: { height: largeBox, minWidth: largeBox },
       },
       {
-        props: ({ ownerState }: { ownerState: PaginationItemOwnerState }) =>
+        props: ({ ownerState }) =>
           ownerState.type === 'start-ellipsis' || ownerState.type === 'end-ellipsis',
         style: { height: 'auto' },
       },
@@ -1298,7 +1287,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     paddingInline: spacing('small'),
     variants: [
       {
-        props: ({ ownerState }: { ownerState: BottomNavigationActionOwnerState }) =>
+        props: ({ ownerState }) =>
           !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
         style: { paddingTop: spacing('medium') },
       },
