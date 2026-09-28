@@ -5,73 +5,24 @@ import createBreakpoints from '../createBreakpoints/createBreakpoints';
 import createTheme from '../createTheme';
 
 describe('styleFunctionSx', () => {
-  describe('spacing scale names', () => {
-    // Stands in for a userland spacing function — what an enhancer such as
-    // `enhanceDensity` installs on the theme — so this suite locks the sx
-    // contract without depending on `@mui/material`. `keys` is how names are
-    // advertised; `mui: true` is what makes `createSpacing` hand the function
-    // through untouched, so those names survive `createTheme`.
-    const createScaleSpacing = () => {
-      const scaled = { small: '12px', '-small': '-12px', xLarge: '32px' };
-      const fn = (...args) => args.map((arg) => scaled[arg] ?? `${arg * 8}px`).join(' ');
-      fn.mui = true;
-      fn.keys = new Set(Object.keys(scaled));
-      return fn;
-    };
-    const keyedSpacing = createScaleSpacing();
+  it('keeps a spacing function that registers names through createTheme, and sx resolves them', () => {
+    // The contract an enhancer relies on from @mui/system: `mui: true` makes
+    // `createSpacing` pass the function through, `keys` tells `getValue` which
+    // strings to resolve. Everything else about names is covered by spacing.test.js.
+    const scaled = { small: '12px', '-small': '-12px' };
+    const spacing = (...args) => args.map((arg) => scaled[arg] ?? `${arg * 8}px`).join(' ');
+    spacing.mui = true;
+    spacing.keys = new Set(Object.keys(scaled));
+    const theme = createTheme({ spacing });
 
-    const keyedTheme = createTheme({ spacing: keyedSpacing });
-
-    it('resolves the names on every spacing prop', () => {
-      const result = styleFunctionSx({
-        theme: keyedTheme,
-        sx: { p: 'small', mt: '-small', px: 'xLarge', gap: 'small' },
-      });
-
-      expect(result).to.deep.equal({
-        padding: '12px',
-        marginTop: '-12px',
-        paddingLeft: '32px',
-        paddingRight: '32px',
-        gap: '12px',
-      });
-    });
-
-    it('resolves the names inside responsive values', () => {
-      const result = styleFunctionSx({
-        theme: keyedTheme,
-        sx: { p: { xs: 'small', md: 'xLarge' } },
-      });
-
-      expect(result).to.deep.equal({
-        '@media (min-width:0px)': { padding: '12px' },
-        '@media (min-width:900px)': { padding: '32px' },
-      });
-    });
-
-    it('leaves raw CSS, unregistered names and multipliers alone', () => {
-      const result = styleFunctionSx({
-        theme: keyedTheme,
-        sx: { m: 'auto', pt: '2rem', pb: 'smal', pl: 2, width: '50%' },
-      });
-
-      expect(result).to.deep.equal({
-        margin: 'auto',
-        paddingTop: '2rem',
-        // a typo stays untouched rather than silently resolving
-        paddingBottom: 'smal',
-        paddingLeft: '16px',
-        width: '50%',
-      });
-    });
-
-    it('changes nothing for a theme that registers no names', () => {
-      const result = styleFunctionSx({
-        theme: createTheme({ spacing: 8 }),
-        sx: { p: 'small', m: 2 },
-      });
-
-      expect(result).to.deep.equal({ padding: 'small', margin: '16px' });
+    expect(theme.spacing).to.equal(spacing);
+    expect(
+      styleFunctionSx({ theme, sx: { p: 'small', mt: '-small', gap: 'small', m: 2 } }),
+    ).to.deep.equal({
+      padding: '12px',
+      marginTop: '-12px',
+      gap: '12px',
+      margin: '16px',
     });
   });
 
