@@ -80,6 +80,24 @@ function Knob({
   );
 }
 
+// A slider drag revisits the same few marks; build each theme once.
+const themes = new Map<string, ReturnType<typeof enhanceDensity>>();
+function themeFor(touchTarget: number, iconSize: number) {
+  const key = `${touchTarget}:${iconSize}`;
+  let theme = themes.get(key);
+  if (!theme) {
+    theme = enhanceDensity(
+      createTheme({ colorSchemes: { light: true, dark: true } }),
+      {
+        touchTarget,
+        iconSize,
+      },
+    );
+    themes.set(key, theme);
+  }
+  return theme;
+}
+
 export default function TouchTargetDemo() {
   const [touchTarget, setTouchTarget] = React.useState(32);
   const [iconSize, setIconTarget] = React.useState(16);
@@ -88,11 +106,7 @@ export default function TouchTargetDemo() {
   const state = useClaims(stageRef, demoRef, CLAIMS, [touchTarget, iconSize]);
 
   const theme = React.useMemo(
-    () =>
-      enhanceDensity(createTheme({ colorSchemes: { light: true, dark: true } }), {
-        touchTarget,
-        iconSize,
-      }),
+    () => themeFor(touchTarget, iconSize),
     [touchTarget, iconSize],
   );
 

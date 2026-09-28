@@ -95,7 +95,7 @@ function isVisible(node) {
 
 /** Re-run `read` whenever the stage could have moved: a resize, a late webfont,
  * or a popper that mounts a frame after the demo does. */
-function useStageEffect(stageRef, read, deps) {
+function useStageEffect(stageRef, selectors, read, deps) {
   React.useEffect(() => {
     const stage = stageRef.current;
     if (!stage) {
@@ -107,10 +107,14 @@ function useStageEffect(stageRef, read, deps) {
       frame = requestAnimationFrame(() => read(stage));
     };
     const resize = new ResizeObserver(schedule);
+    // Only the measured elements: observing every descendant made each ripple
+    // span re-observe the whole subtree.
     const observeAll = () => {
       resize.disconnect();
       resize.observe(stage);
-      stage.querySelectorAll('*').forEach((node) => resize.observe(node));
+      selectors.forEach((selector) => {
+        stage.querySelectorAll(selector).forEach((node) => resize.observe(node));
+      });
     };
     let cancelled = false;
     observeAll();
@@ -120,7 +124,12 @@ function useStageEffect(stageRef, read, deps) {
         schedule();
       }
     });
-    const mutation = new MutationObserver(() => {
+    const mutation = new MutationObserver((records) => {
+      if (
+        records.every((record) => record.target.closest?.('.MuiTouchRipple-root'))
+      ) {
+        return;
+      }
       observeAll();
       schedule();
     });
@@ -1208,6 +1217,7 @@ export function useClaims(stageRef, demoRef, claims, deps) {
   const measured = React.useRef(null);
   useStageEffect(
     stageRef,
+    claims.map((claim) => claim.on),
     (stage) => {
       const demo = demoRef.current;
       if (!demo) {

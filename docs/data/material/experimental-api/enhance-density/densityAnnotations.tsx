@@ -115,6 +115,7 @@ function isVisible(node: Element) {
  * or a popper that mounts a frame after the demo does. */
 function useStageEffect(
   stageRef: React.RefObject<HTMLElement | null>,
+  selectors: string[],
   read: (stage: HTMLElement) => void,
   deps: React.DependencyList,
 ) {
@@ -129,10 +130,14 @@ function useStageEffect(
       frame = requestAnimationFrame(() => read(stage));
     };
     const resize = new ResizeObserver(schedule);
+    // Only the measured elements: observing every descendant made each ripple
+    // span re-observe the whole subtree.
     const observeAll = () => {
       resize.disconnect();
       resize.observe(stage);
-      stage.querySelectorAll('*').forEach((node) => resize.observe(node));
+      selectors.forEach((selector) => {
+        stage.querySelectorAll(selector).forEach((node) => resize.observe(node));
+      });
     };
     let cancelled = false;
     observeAll();
@@ -142,7 +147,14 @@ function useStageEffect(
         schedule();
       }
     });
-    const mutation = new MutationObserver(() => {
+    const mutation = new MutationObserver((records) => {
+      if (
+        records.every((record) =>
+          (record.target as Element).closest?.('.MuiTouchRipple-root'),
+        )
+      ) {
+        return;
+      }
       observeAll();
       schedule();
     });
@@ -1203,6 +1215,7 @@ export function useClaims(
   const measured = React.useRef<string | null>(null);
   useStageEffect(
     stageRef,
+    claims.map((claim) => claim.on),
     (stage) => {
       const demo = demoRef.current;
       if (!demo) {

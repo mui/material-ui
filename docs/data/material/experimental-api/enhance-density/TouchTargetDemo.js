@@ -71,12 +71,31 @@ function Knob({ label, value, steps, onChange }) {
   );
 }
 
+// A slider drag revisits the same few marks; build each theme once.
+
 Knob.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   steps: PropTypes.arrayOf(PropTypes.number).isRequired,
   value: PropTypes.number.isRequired,
 };
+
+const themes = new Map();
+function themeFor(touchTarget, iconSize) {
+  const key = `${touchTarget}:${iconSize}`;
+  let theme = themes.get(key);
+  if (!theme) {
+    theme = enhanceDensity(
+      createTheme({ colorSchemes: { light: true, dark: true } }),
+      {
+        touchTarget,
+        iconSize,
+      },
+    );
+    themes.set(key, theme);
+  }
+  return theme;
+}
 
 export default function TouchTargetDemo() {
   const [touchTarget, setTouchTarget] = React.useState(32);
@@ -86,11 +105,7 @@ export default function TouchTargetDemo() {
   const state = useClaims(stageRef, demoRef, CLAIMS, [touchTarget, iconSize]);
 
   const theme = React.useMemo(
-    () =>
-      enhanceDensity(createTheme({ colorSchemes: { light: true, dark: true } }), {
-        touchTarget,
-        iconSize,
-      }),
+    () => themeFor(touchTarget, iconSize),
     [touchTarget, iconSize],
   );
 
