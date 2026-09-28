@@ -35,9 +35,6 @@ export default defineConfig({
         // transforming with esbuild
         return transformWithOxc(code, id, {
           lang: 'tsx',
-          jsx: {
-            runtime: 'automatic',
-          },
         });
       },
     },
