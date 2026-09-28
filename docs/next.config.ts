@@ -61,6 +61,12 @@ const markdownLoaderBase = {
 };
 
 export default withDocsInfra({
+  experimental: {
+    // The TS7 side-by-side alias (@typescript/typescript6) ships no `tsc` bin,
+    // which the Next.js >= 16.3 setup check requires even with
+    // `typescript.ignoreBuildErrors` set. Use the TS6 JS API instead.
+    useTypeScriptCli: false,
+  },
   turbopack: {
     resolveAlias: turbopackResolveAlias,
     resolveExtensions: ['.mjs', '.tsx', '.ts', '.jsx', '.js', '.json'],

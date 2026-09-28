@@ -148,12 +148,13 @@ const OutlinedInputInput = styled(InputBaseInput, {
         caretColor: theme.palette.mode === 'light' ? null : '#fff',
       }),
       borderRadius: 'inherit',
-      ...(theme.vars &&
-        theme.applyStyles('dark', {
-          WebkitBoxShadow: '0 0 0 100px #266798 inset',
+      ...(theme.vars && {
+        WebkitBoxShadow: theme.vars.palette.Input.autofillWebkitBoxShadow,
+        ...theme.applyStyles('dark', {
           WebkitTextFillColor: '#fff',
           caretColor: '#fff',
-        })),
+        }),
+      }),
     },
     variants: [
       {
@@ -262,6 +263,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
       )}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
+      internalDisabledThemeFocusVisible
       multiline={multiline}
       ref={ref}
       type={type}
