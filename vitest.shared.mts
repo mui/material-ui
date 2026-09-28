@@ -23,6 +23,9 @@ function forceJsxForJsFiles(): Plugin {
 
       const result = await transformWithOxc(code, id, {
         lang: 'jsx',
+        jsx: {
+          runtime: 'automatic',
+        },
       });
 
       // @vitejs/plugin-react only adds the React import for .jsx files.
