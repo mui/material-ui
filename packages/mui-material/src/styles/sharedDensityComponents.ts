@@ -1334,6 +1334,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           '--_height': touchTarget,
           '--_paddingInline': spacing('small'),
           gap: spacing('xSmall'),
+          [`& .${chipClasses.icon}`]: { fontSize: iconSize },
         },
       },
       {
@@ -1343,6 +1344,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           '--_paddingInline': spacing('xSmall'),
           gap: spacing('xxSmall'),
           ...enhanced.typography?.body2,
+          [`& .${chipClasses.icon}`]: { fontSize: iconSmall },
         },
       },
     ],
@@ -1360,19 +1362,4 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'avatar',
   );
   addRootOverride(enhanced.components, 'MuiChip', { margin: 0 }, 'icon');
-  // Through the ROOT: Chip nests `styles.icon` under `& .MuiChip-icon` inside
-  // the root styled component, so top-level `variants` on the icon slot are
-  // never expanded — they must ride the root's own variants.
-  addRootOverride(enhanced.components, 'MuiChip', {
-    variants: [
-      {
-        props: { size: 'medium' },
-        style: { [`& .${chipClasses.icon}`]: { fontSize: iconSize } },
-      },
-      {
-        props: { size: 'small' },
-        style: { [`& .${chipClasses.icon}`]: { fontSize: iconSmall } },
-      },
-    ],
-  });
 }
