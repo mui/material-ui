@@ -90,22 +90,6 @@ export type EnhanceableTheme = Theme &
     >
   >;
 
-/** The spacing unit as a px number, or `null` when a step cannot be restated as
- * a multiple of it. Only a number or a `<number>px` string qualifies: an array
- * has no unit, `rem`/`em`/`%` have no px equivalent, and a function need not be
- * linear, so multiplying its unit would not land back on the step's value. */
-function toPxUnit(unit: unknown): number | null {
-  if (typeof unit === 'number') {
-    return unit;
-  }
-  if (typeof unit !== 'string' || !unit.endsWith('px')) {
-    return null;
-  }
-  const value = Number(unit.slice(0, -2));
-  // `Number` yields NaN for anything else ending in px, `calc(1px)` included.
-  return Number.isFinite(value) ? value : null;
-}
-
 /**
  * PRIVATE density core behind `enhanceDensity`: the keyed `theme.spacing`
  * wrapper + the `--<prefix>-spacing-*` step emission. No `theme.density` node.
@@ -130,12 +114,11 @@ export function applyDensity<T extends EnhanceableTheme>(
   const stepVarName = (key: DensityKey) => cssVarName(themeInput, `spacing-${key}`);
 
   // The ladder is absolute px: a `scale` override is a number, which can only
-  // mean px (MUI X reads those same numbers to derive sizes in JS), so every
-  // step has to be on those terms. A vars theme restates that px as a multiple
-  // of the unit variable — the same length, but reachable from plain CSS; a
-  // static theme, or a unit with no px equivalent, emits the length itself.
-  const unitPx = themeInput.vars ? toPxUnit((prevSpacing as { unit?: unknown }).unit) : null;
-  const stepValue = (px: number) => (unitPx ? String(prevSpacing(px / unitPx)) : `${px}px`);
+  // mean px (MUI X reads those same numbers to derive sizes in JS), so a step
+  // never rides the spacing unit — not even on a vars theme, where restating
+  // it against `--<prefix>-spacing` would let a CSS-level unit override move
+  // every step despite the documented "12px whatever `spacing` is".
+  const stepValue = (px: number) => `${px}px`;
 
   const overrides = scaleOverrides ?? {};
 
@@ -194,7 +177,6 @@ export function applyDensity<T extends EnhanceableTheme>(
     // `createSpacing` early-returns on this flag, so re-running createTheme
     // over an enhanced theme keeps the wrapper.
     (spacing as any).mui = true;
-    (spacing as any).unit = (base as any).unit;
     // `createUnaryUnit` hands this very function to the sx spacing props, so
     // advertising the step names is what lets `sx={{ p: 'small' }}` resolve.
     (spacing as any).keys = stepKeys;

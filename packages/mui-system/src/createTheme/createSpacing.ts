@@ -26,8 +26,6 @@ export type SpacingArgument = number | SpacingKey | (string & {});
 // The different signatures imply different meaning for their arguments that can't be expressed structurally.
 // We express the difference with variable names.
 export interface Spacing {
-  /** The raw `spacing` theme option this function was created from. */
-  unit?: SpacingOptions | undefined;
   (): string;
   (value: SpacingArgument): string;
   (topBottom: SpacingArgument, rightLeft: SpacingArgument): string;
@@ -74,7 +72,6 @@ export default function createSpacing(
   };
 
   spacing.mui = true;
-  spacing.unit = spacingInput;
 
   return spacing;
 }

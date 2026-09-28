@@ -125,7 +125,7 @@ describe('enhanceDensity', () => {
     const sheets = theme.generateStyleSheets();
     const stepVars = sheets[sheets.length - 1][':root'] as Record<string, string>;
 
-    expect(stepVars['--mui-spacing-medium']).to.equal('calc(2 * var(--mui-spacing, 8px))');
+    expect(stepVars['--mui-spacing-medium']).to.equal('16px');
     // the steps stay off the vars node; only the two sizing constants join it
     expect(theme.vars).to.not.equal(input.vars);
     expect(theme.vars.spacing).to.equal(input.vars.spacing);
@@ -147,66 +147,37 @@ describe('enhanceDensity', () => {
       expect(theme.spacing(2)).to.equal('8px');
     });
 
-    test('px string: folds to a plain length rather than a calc()', () => {
-      const theme = enhanceDensity(createTheme({ spacing: '8px' }));
-      expect(theme.spacing('small')).to.equal('12px');
-      expect(theme.spacing('-small')).to.equal('-12px');
-    });
-
-    test('the multiple of the unit is only built for a vars theme', () => {
-      // Same `8px` unit both ways: a static theme emits the length itself, a
-      // vars theme restates it against the unit variable so plain CSS reaches it.
-      expect(enhanceDensity(createTheme({ spacing: '8px' })).spacing('small')).to.equal('12px');
-
-      const { stepVars } = lastSheets(
-        enhanceDensity(createTheme({ cssVariables: true, spacing: '8px' })),
+    test('non-px string and function units: the ladder still ships its own px', () => {
+      // A `scale` override is a number and can only mean px, so no unit form
+      // gets to restate a step in another family.
+      expect(enhanceDensity(createTheme({ spacing: '0.5rem' })).spacing('small')).to.equal('12px');
+      expect(enhanceDensity(createTheme({ spacing: '0.5rem' })).spacing('-small')).to.equal(
+        '-12px',
       );
-      expect(stepVars['--mui-spacing-small']).to.equal('calc(1.5 * var(--mui-spacing, 8px))');
+      const rem = (factor: number) => `${0.25 * factor}rem`;
+      expect(enhanceDensity(createTheme({ spacing: rem })).spacing('small')).to.equal('12px');
+      const square = (factor: number) => `${factor * factor * 8}px`;
+      expect(enhanceDensity(createTheme({ spacing: square })).spacing('small')).to.equal('12px');
     });
 
-    test('non-px string: the ladder ships its own px instead of riding the unit', () => {
-      // A `scale` override is a number and can only mean px, so a rem unit would
-      // leave an overridden step in a different family from its neighbours.
-      const staticTheme = enhanceDensity(createTheme({ spacing: '0.5rem' }));
-      expect(staticTheme.spacing('small')).to.equal('12px');
-      expect(staticTheme.spacing('medium')).to.equal('16px');
-      expect(staticTheme.spacing('-small')).to.equal('-12px');
-
-      const { stepVars } = lastSheets(
-        enhanceDensity(createTheme({ cssVariables: true, spacing: '0.5rem' })),
-      );
-      expect(stepVars['--mui-spacing-small']).to.equal('12px');
-    });
-
-    test('non-px string: an override lands in the same family as every other step', () => {
+    test('an override lands in the same family as every other step', () => {
       const theme = enhanceDensity(createTheme({ spacing: '0.5rem' }), { spacing: { small: 6 } });
       expect(theme.spacing('small')).to.equal('6px');
       expect(theme.spacing('medium')).to.equal('16px');
     });
 
-    test('function returning a non-px length: the ladder ships px', () => {
-      const spacing = (factor: number) => `${0.25 * factor}rem`;
-      const theme = enhanceDensity(createTheme({ spacing }));
-      expect(theme.spacing('small')).to.equal('12px');
-      expect(theme.spacing('-small')).to.equal('-12px');
-    });
-
-    test('function unit: the steps stay absolute px', () => {
-      // A function need not be linear, so a step cannot be restated against it.
-      const spacing = (factor: number) => `${factor * factor * 8}px`;
-      const theme = enhanceDensity(createTheme({ spacing }));
-      expect(theme.spacing('small')).to.equal('12px');
-    });
-
-    test('css variables: a px unit keeps the var() reference, restated per unit', () => {
-      const { stepVars } = lastSheets(enhanceDensity(createTheme({ cssVariables: true })));
-      expect(stepVars['--mui-spacing-small']).to.equal('calc(1.5 * var(--mui-spacing, 8px))');
-
-      // same 12px, restated against a different unit
-      const { stepVars: four } = lastSheets(
-        enhanceDensity(createTheme({ cssVariables: true, spacing: 4 })),
-      );
-      expect(four['--mui-spacing-small']).to.equal('calc(3 * var(--mui-spacing, 4px))');
+    test('css variables: the step definitions are px, whatever the unit', () => {
+      // Restating a step against `--mui-spacing` would let a CSS-level unit
+      // override move every step, contradicting "12px whatever `spacing` is".
+      expect(lastSheets(enhanceDensity(createTheme({ cssVariables: true }))).stepVars).to.include({
+        '--mui-spacing-small': '12px',
+      });
+      expect(
+        lastSheets(enhanceDensity(createTheme({ cssVariables: true, spacing: 4 }))).stepVars,
+      ).to.include({ '--mui-spacing-small': '12px' });
+      expect(
+        lastSheets(enhanceDensity(createTheme({ cssVariables: true, spacing: '0.5rem' }))).stepVars,
+      ).to.include({ '--mui-spacing-small': '12px' });
     });
   });
 
@@ -227,10 +198,10 @@ describe('enhanceDensity', () => {
       // `theme.vars.spacing`, which can't resolve names — the step must still win.
       const varsTheme = enhanceDensity(createTheme({ cssVariables: true }));
       expect(sx(varsTheme, { p: 'small' })).to.deep.equal({
-        padding: 'var(--mui-spacing-small, calc(1.5 * var(--mui-spacing, 8px)))',
+        padding: 'var(--mui-spacing-small, 12px)',
       });
       expect(sx(varsTheme, { gap: '-medium' })).to.deep.equal({
-        gap: 'calc(var(--mui-spacing-medium, calc(2 * var(--mui-spacing, 8px))) * -1)',
+        gap: 'calc(var(--mui-spacing-medium, 16px) * -1)',
       });
     });
 
@@ -397,7 +368,7 @@ describe('enhanceDensity', () => {
     const mounted = { ...theme, spacing: (theme as any).generateSpacing() };
 
     expect((mounted as any).unstable_sx({ p: 'small' })).to.deep.equal({
-      padding: 'var(--mui-spacing-small, calc(1.5 * var(--mui-spacing, 8px)))',
+      padding: 'var(--mui-spacing-small, 12px)',
     });
   });
 });

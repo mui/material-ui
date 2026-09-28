@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import createTheme from './createTheme';
-import { applyDensity, DENSITY_KEYS } from './densityScale';
+import { applyDensity, DEFAULT_STEP_PX, DENSITY_KEYS } from './densityScale';
 
 describe('densityScale', () => {
   describe('applyDensity on a static theme', () => {
@@ -87,14 +87,10 @@ describe('densityScale', () => {
     test('theme.spacing resolves scale keys to step var refs', () => {
       const theme = applyDensity(createTheme({ cssVariables: true }));
 
-      expect(theme.spacing('small')).to.equal(
-        'var(--mui-spacing-small, calc(1.5 * var(--mui-spacing, 8px)))',
-      );
-      expect(theme.spacing('-xSmall')).to.equal(
-        'calc(var(--mui-spacing-xSmall, var(--mui-spacing, 8px)) * -1)',
-      );
+      expect(theme.spacing('small')).to.equal('var(--mui-spacing-small, 12px)');
+      expect(theme.spacing('-xSmall')).to.equal('calc(var(--mui-spacing-xSmall, 8px) * -1)');
       expect(theme.spacing('small', 2)).to.equal(
-        'var(--mui-spacing-small, calc(1.5 * var(--mui-spacing, 8px))) calc(2 * var(--mui-spacing, 8px))',
+        'var(--mui-spacing-small, 12px) calc(2 * var(--mui-spacing, 8px))',
       );
     });
 
@@ -106,26 +102,28 @@ describe('densityScale', () => {
       expect(theme.spacing(1, 'auto')).to.equal('var(--mui-spacing, 8px) auto');
     });
 
-    test('every scale key resolves to its step var ref, fallback included', () => {
+    test('every scale key resolves to its step var ref, with the px as fallback', () => {
       const theme = applyDensity(createTheme({ cssVariables: true }));
 
-      const multipliers: Record<string, number> = {
-        xxSmall: 0.5,
-        xSmall: 1,
-        small: 1.5,
-        medium: 2,
-        large: 3,
-        xLarge: 4,
-        xxLarge: 6,
-      };
       DENSITY_KEYS.forEach((key) => {
-        const multiplier = multipliers[key];
-        const fallback =
-          multiplier === 1
-            ? 'var(--mui-spacing, 8px)'
-            : `calc(${multiplier} * var(--mui-spacing, 8px))`;
-        expect(theme.spacing(key)).to.equal(`var(--mui-spacing-${key}, ${fallback})`);
+        expect(theme.spacing(key)).to.equal(`var(--mui-spacing-${key}, ${DEFAULT_STEP_PX[key]}px)`);
       });
+    });
+
+    test('the steps do not ride the spacing unit — a unit override leaves them in place', () => {
+      // `spacing: 4` halves every plain number; the named steps are absolute
+      // and keep their px, so a CSS-level `--mui-spacing` override cannot move
+      // them either (the definitions carry no reference to it).
+      const theme = applyDensity(createTheme({ cssVariables: true, spacing: 4 }));
+      const sheets = theme.generateStyleSheets();
+      const rootVars = sheets[sheets.length - 1][':root'] as Record<string, string>;
+
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 4px))');
+      expect(theme.spacing('small')).to.equal('var(--mui-spacing-small, 12px)');
+      expect(rootVars['--mui-spacing-small']).to.equal('12px');
+      expect(Object.values(rootVars).some((value) => value.includes('--mui-spacing,'))).to.equal(
+        false,
+      );
     });
 
     test('the generateSpacing rebuild keeps the scale keys — the CssVarsProvider path', () => {
@@ -136,9 +134,7 @@ describe('densityScale', () => {
       const theme = applyDensity(createTheme({ cssVariables: true }));
       const rebuilt = (theme as any).generateSpacing() as typeof theme.spacing;
 
-      expect(rebuilt('small')).to.equal(
-        'var(--mui-spacing-small, calc(1.5 * var(--mui-spacing, 8px)))',
-      );
+      expect(rebuilt('small')).to.equal('var(--mui-spacing-small, 12px)');
       expect(rebuilt(2)).to.equal('calc(2 * var(--mui-spacing, 8px))');
       expect((rebuilt as any).keys.has('small')).to.equal(true);
       expect((rebuilt as any).mui).to.equal(true);
@@ -191,8 +187,8 @@ describe('densityScale', () => {
       const sheets = theme.generateStyleSheets();
       const rootVars = sheets[sheets.length - 1][':root'] as Record<string, string>;
 
-      expect(rootVars['--mui-spacing-medium']).to.equal('calc(2 * var(--mui-spacing, 8px))');
-      expect(rootVars['--mui-spacing-small']).to.equal('calc(1.5 * var(--mui-spacing, 8px))');
+      expect(rootVars['--mui-spacing-medium']).to.equal('16px');
+      expect(rootVars['--mui-spacing-small']).to.equal('12px');
     });
 
     test('scale overrides land as the step var VALUE on a vars theme', () => {
@@ -202,21 +198,15 @@ describe('densityScale', () => {
       const sheets = theme.generateStyleSheets();
       const rootVars = sheets[sheets.length - 1][':root'] as Record<string, string>;
 
-      // an override takes the same path as a built-in step: 6px restated
-      // against the unit, so it scales with its neighbours rather than freezing
-      expect(rootVars['--mui-spacing-small']).to.equal('calc(0.75 * var(--mui-spacing, 8px))');
+      expect(rootVars['--mui-spacing-small']).to.equal('6px');
       // keyed spacing still returns the REF — runtime re-mapping keeps working
-      expect(theme.spacing('small')).to.equal(
-        'var(--mui-spacing-small, calc(0.75 * var(--mui-spacing, 8px)))',
-      );
+      expect(theme.spacing('small')).to.equal('var(--mui-spacing-small, 6px)');
     });
 
     test('respects a custom cssVarPrefix', () => {
       const theme = applyDensity(createTheme({ cssVariables: { cssVarPrefix: 'app' } }));
 
-      expect(theme.spacing('small')).to.equal(
-        'var(--app-spacing-small, calc(1.5 * var(--app-spacing, 8px)))',
-      );
+      expect(theme.spacing('small')).to.equal('var(--app-spacing-small, 12px)');
       expect(theme.spacing(1)).to.equal('var(--app-spacing, 8px)');
       expect(theme.vars!.touchTarget).to.equal('var(--app-touchTarget, 32px)');
     });
