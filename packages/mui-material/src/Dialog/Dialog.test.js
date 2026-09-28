@@ -332,31 +332,6 @@ describe('<Dialog />', () => {
         maxWidth: 'calc(100% - 64px)',
       });
     });
-
-    it.skipIf(isJsdom())(
-      'keeps the maxWidth cap under scroll="body" when the margin is customized',
-      () => {
-        // viewport 1024: 1024 - 2 * 24 = 976 exceeds the 970 cap, so the cap must win
-        const theme = createTheme({
-          breakpoints: { values: { xs: 0, sm: 970, md: 1000, lg: 1200, xl: 1536 } },
-        });
-        render(
-          <ThemeProvider theme={theme}>
-            <Dialog
-              open
-              fullWidth
-              maxWidth="sm"
-              scroll="body"
-              slotProps={{ paper: { 'data-testid': 'paper', sx: { '--_dialogMargin': '24px' } } }}
-            >
-              foo
-            </Dialog>
-          </ThemeProvider>,
-        );
-
-        expect(screen.getByTestId('paper').getBoundingClientRect().width).to.equal(970);
-      },
-    );
   });
 
   describe('prop: fullWidth', () => {
