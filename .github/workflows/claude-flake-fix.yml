@@ -1,0 +1,35 @@
+name: Claude CI flake fix
+
+# Runs mui-public's reusable flake-fix workflow against this repo's CircleCI: it triages recent
+# failures and, unless report-only, opens a draft PR proposing a fix. Runs weekly, and can be
+# dispatched by hand. This repo already has the four ANTHROPIC_* variables set; Actions must also be
+# allowed to create pull requests (Settings → Actions → General).
+
+on:
+  schedule:
+    - cron: '0 7 * * 1' # Monday 07:00 UTC
+  workflow_dispatch:
+    inputs:
+      report-only:
+        description: Classify and report, but never open a PR.
+        type: boolean
+        default: false
+      model:
+        description: Optional model override; leave blank to use mui-public's default.
+        type: string
+
+permissions: {}
+
+jobs:
+  flake-fix:
+    permissions:
+      actions: read # read this run's referenced_workflows (resolve-ref job)
+      id-token: write # Anthropic WIF (triage job)
+      contents: write # push the fix branch (publish job)
+      pull-requests: write # open the draft PR (publish job)
+      issues: write # rolling tracking issue (publish job)
+    uses: mui/mui-public/.github/workflows/claude-flake-fix.yml@8fc8d4a7c561f6c41a039d3d87b6e215867aca6a # master
+    with:
+      report-only: ${{ inputs.report-only || false }}
+      model: ${{ inputs.model }} # blank falls through to mui-public's central default
+      debug: true # always surface the agent's full output in the run log
