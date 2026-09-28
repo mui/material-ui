@@ -47,7 +47,6 @@ It is enabled here across all devices for demo purposes, but in production it co
 
 The labels are placed to the left of the actions for the `up` and `down` directions, and above them for `left` and `right`.
 Use `slotProps.tooltip.placement` to move them to the opposite side: `right` for vertical speed dials, or `bottom` for horizontal ones.
-Other combinations make the labels cover the neighboring actions.
 Compound placements like `top-start` are centered like `top`.
 
 In horizontal speed dials, each action is as wide as its label so that the labels don't overlap.
