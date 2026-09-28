@@ -239,7 +239,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       ...enhanced.typography?.caption,
       lineHeight: 16 / 12,
       padding: `${spacing('xSmall')} ${spacing('small')}`,
-      '--_spacing': '4px',
+      // Touch keeps its own 24px clearance; an unconditional value would land
+      // after the component's touch variant and override it.
+      variants: [{ props: ({ ownerState }) => !ownerState.touch, style: { '--_spacing': '4px' } }],
     },
     'tooltip',
   );

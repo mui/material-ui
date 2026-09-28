@@ -15,7 +15,11 @@ import {
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import {
+  ThemeProvider,
+  createTheme,
+  unstable_enhanceDensity as enhanceDensity,
+} from '@mui/material/styles';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
 
@@ -572,10 +576,8 @@ describe('<Tooltip />', () => {
   });
 
   describe('touch screen', () => {
-    it('keeps the touch offset when the tooltip slot overrides --_spacing', () => {
-      const theme = createTheme({
-        components: { MuiTooltip: { styleOverrides: { tooltip: { '--_spacing': '4px' } } } },
-      });
+    it('keeps the touch offset under enhanceDensity', () => {
+      const theme = enhanceDensity(createTheme());
       render(
         <ThemeProvider theme={theme}>
           <Tooltip enterTouchDelay={700} enterDelay={100} title="Hello World">
@@ -588,7 +590,7 @@ describe('<Tooltip />', () => {
 
       const tooltip = screen.getByRole('tooltip').querySelector(`.${classes.tooltip}`);
       expect(tooltip).to.have.class(classes.touch);
-      expect(hasInjectedStyle(`.${classes.touch}{--_spacing: 24px`)).to.equal(true);
+      expect(hasInjectedStyle('--_spacing: 24px')).to.equal(true);
       if (!isJsdom()) {
         expect(getComputedStyle(tooltip).getPropertyValue('--_spacing').trim()).to.equal('24px');
       }

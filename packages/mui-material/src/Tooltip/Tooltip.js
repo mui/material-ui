@@ -134,9 +134,6 @@ const TooltipTooltip = styled('div', {
     wordWrap: 'break-word',
     fontWeight: theme.typography.fontWeightMedium,
     '--_spacing': '14px',
-    [`&.${tooltipClasses.touch}`]: {
-      '--_spacing': '24px',
-    },
     [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
       transformOrigin: 'right center',
       marginInlineEnd: 'var(--_spacing)',
@@ -164,6 +161,7 @@ const TooltipTooltip = styled('div', {
       {
         props: ({ ownerState }) => ownerState.touch,
         style: {
+          '--_spacing': '24px',
           padding: '8px 16px',
           fontSize: theme.typography.pxToRem(14),
           lineHeight: `${round(16 / 14)}em`,
