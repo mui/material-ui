@@ -13,7 +13,8 @@ export type SpacingOptions =
  * Augment this interface to register named keys accepted by `theme.spacing()`
  * so they surface in autocompletion (e.g. a preset's spacing-scale steps).
  * Type-level only: unregistered strings remain valid and pass through as raw CSS.
- * Same convention as `BreakpointOverrides` — a key registered `false` is excluded.
+ * Unlike `BreakpointOverrides`, a registered key cannot be removed again by a
+ * later `false` — interface merging requires one type per member.
  */
 export interface SpacingKeyOverrides {}
 

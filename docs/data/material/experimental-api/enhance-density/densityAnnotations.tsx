@@ -134,15 +134,21 @@ function useStageEffect(
       resize.observe(stage);
       stage.querySelectorAll('*').forEach((node) => resize.observe(node));
     };
+    let cancelled = false;
     observeAll();
     schedule();
-    document.fonts?.ready.then(schedule);
+    document.fonts?.ready.then(() => {
+      if (!cancelled) {
+        schedule();
+      }
+    });
     const mutation = new MutationObserver(() => {
       observeAll();
       schedule();
     });
     mutation.observe(stage, { childList: true, subtree: true });
     return () => {
+      cancelled = true;
       cancelAnimationFrame(frame);
       resize.disconnect();
       mutation.disconnect();

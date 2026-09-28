@@ -2,7 +2,6 @@ import {
   applyDensity,
   DEFAULT_SIZING_PX,
   DEFAULT_STEP_PX,
-  densitySizing,
   DensityKey,
   DensityScaleOverrides,
   DensitySizingKey,
@@ -48,12 +47,10 @@ export default function enhanceDensity<T extends EnhanceableTheme>(
   scale?: DensityScaleOverrides,
 ) {
   const enhanced = applyDensity(theme, scale);
-  // Sizing constants rather than ladder steps: their own variables, outside the
-  // spacing namespace, and never spacing keys.
   applySharedDensity(
     enhanced,
-    densitySizing(enhanced, 'touchTarget', scale),
-    densitySizing(enhanced, 'iconSize', scale),
+    enhanced.vars?.touchTarget ?? enhanced.touchTarget,
+    enhanced.vars?.iconSize ?? enhanced.iconSize,
   );
   return enhanced;
 }

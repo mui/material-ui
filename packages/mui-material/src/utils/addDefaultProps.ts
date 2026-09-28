@@ -1,3 +1,4 @@
+import deepmerge from '@mui/utils/deepmerge';
 import { Theme } from '../styles/createTheme';
 
 type ThemeComponents = NonNullable<Theme['components']>;
@@ -13,21 +14,11 @@ function addDefaultProps(
   defaults: Record<string, unknown>,
 ): void {
   const component = (components as any)[name];
-  const userDefaults = component?.defaultProps;
-  // `slotProps` merges one level deep — a shallow spread would let any user
-  // slotProps default silently drop every density slot default alongside it.
-  const slotProps =
-    defaults.slotProps || userDefaults?.slotProps
-      ? {
-          slotProps: {
-            ...(defaults.slotProps as Record<string, unknown>),
-            ...userDefaults?.slotProps,
-          },
-        }
-      : null;
+  // Same merge as `createTheme` itself, so a user `slotProps.<slot>` keeps the
+  // density keys it does not name instead of replacing the slot wholesale.
   (components as any)[name] = {
     ...component,
-    defaultProps: { ...defaults, ...userDefaults, ...slotProps },
+    defaultProps: deepmerge(defaults, component?.defaultProps ?? {}),
   };
 }
 

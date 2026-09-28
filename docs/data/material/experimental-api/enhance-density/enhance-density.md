@@ -156,7 +156,7 @@ On a CSS theme variables theme, `theme.vars` gives the variable reference, so th
 
 ## All components
 
-`enhanceDensity` applies to all components. Select a component in the demo below to see how its dimensions map to the spacing scale: the padding ring, the gap between children, and the height the control settles at, each measured off the rendered element and named back to the step that produced it.
+`enhanceDensity` applies to every component in the table below—components outside it are left untouched. Select a component in the demo below to see how its dimensions map to the spacing scale: the padding ring, the gap between children, and the height the control settles at, each measured off the rendered element and named back to the step that produced it.
 
 {{"demo": "AllComponentsDemo.js"}}
 

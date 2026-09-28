@@ -3,19 +3,7 @@ import { CssVarsTheme } from './createThemeWithVars';
 
 /** Named steps of the spacing scale, surfaced as `--<prefix>-spacing-*` CSS
  * vars and resolvable through `theme.spacing('<key>')`. */
-export interface DensityScale {
-  xxSmall: string;
-  xSmall: string;
-  small: string;
-  medium: string;
-  large: string;
-  xLarge: string;
-  xxLarge: string;
-}
-
-export type DensityKey = keyof DensityScale;
-
-export const DEFAULT_STEP_PX: Record<DensityKey, number> = {
+export const DEFAULT_STEP_PX = {
   xxSmall: 4,
   xSmall: 8,
   small: 12,
@@ -24,6 +12,8 @@ export const DEFAULT_STEP_PX: Record<DensityKey, number> = {
   xLarge: 32,
   xxLarge: 48,
 };
+
+export type DensityKey = keyof typeof DEFAULT_STEP_PX;
 
 export const DENSITY_KEYS = Object.keys(DEFAULT_STEP_PX) as DensityKey[];
 
@@ -49,7 +39,6 @@ export type DensityScaleOverrides = Partial<Record<DensitySizingKey, number>> & 
   spacing?: Partial<Record<DensityKey, number>> | undefined;
 };
 
-/** `--<prefix>-<name>`, with the theme's own prefix. */
 const cssVarName = (theme: EnhanceableTheme, name: string) => {
   const prefix = theme.cssVarPrefix ?? 'mui';
   return `--${prefix ? `${prefix}-` : ''}${name}`;
@@ -65,7 +54,7 @@ const sizingPx = (key: DensitySizingKey, overrides?: DensityScaleOverrides) =>
  * theme, so plain CSS can move every control box at once, and the literal px
  * otherwise. The px stays the fallback either way.
  */
-export function densitySizing(
+function densitySizing(
   theme: EnhanceableTheme,
   key: DensitySizingKey,
   overrides?: DensityScaleOverrides,
@@ -128,7 +117,6 @@ export function applyDensity<T extends EnhanceableTheme>(
   // inherited members (`toString`) would read as steps.
   const resolved: Record<string, string> = Object.create(null);
   DENSITY_KEYS.forEach((key) => {
-    // An override simply moves the step's px anchor; both take the same path.
     const px = overrides.spacing?.[key] ?? DEFAULT_STEP_PX[key];
     stepValues[key] = stepValue(px);
 
@@ -199,8 +187,7 @@ export function applyDensity<T extends EnhanceableTheme>(
   }
 
   // Read as `(theme.vars || theme).touchTarget`: the plain theme carries the
-  // resolved length, the vars node the reference to it. Own keys, not spacing
-  // ones — `theme.spacing()` still does not resolve them.
+  // resolved length, the vars node the reference to it.
   SIZING_KEYS.forEach((key) => {
     theme[key] = sizingPx(key, scaleOverrides);
   });
@@ -228,8 +215,6 @@ export function applyDensity<T extends EnhanceableTheme>(
     DENSITY_KEYS.forEach((key) => {
       rootVars[stepVarName(key)] = stepValues[key];
     });
-    // The sizing constants sit outside the spacing namespace: they size boxes
-    // rather than space them, and `theme.spacing()` does not resolve them.
     SIZING_KEYS.forEach((key) => {
       rootVars[cssVarName(themeInput, key)] = sizingPx(key, scaleOverrides);
     });

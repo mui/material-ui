@@ -1,3 +1,7 @@
+import { private_defaultDensityScale as defaultScale } from '@mui/material/styles';
+
+const { touchTarget, iconSize, ...defaultSteps } = defaultScale;
+
 const densityRecipes = [
   {
     id: 'low',
@@ -19,18 +23,8 @@ const densityRecipes = [
   {
     id: 'medium',
     label: 'Medium',
-    scale: {
-      spacing: {
-        xxSmall: 4,
-        xSmall: 8,
-        small: 12,
-        medium: 16,
-        large: 24,
-        xLarge: 32,
-        xxLarge: 48,
-      },
-      touchTarget: 32,
-    },
+    // the shipped defaults, read from the enhancer rather than restated
+    scale: { spacing: defaultSteps, touchTarget, iconSize },
   },
   {
     id: 'high',

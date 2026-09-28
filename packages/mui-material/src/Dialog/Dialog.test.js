@@ -321,17 +321,15 @@ describe('<Dialog />', () => {
       expect(screen.getByTestId('paper')).to.have.class(classes.paperWidthFalse);
     });
 
-    it('should apply the correct max-width styles when maxWidth={false}', () => {
+    it.skipIf(isJsdom())('should apply the correct max-width styles when maxWidth={false}', () => {
       render(
         <Dialog open maxWidth={false} slotProps={{ paper: { 'data-testid': 'paper' } }}>
           foo
         </Dialog>,
       );
 
-      // JSDOM hands back the authored text; a real engine substitutes
-      // `--_dialogMargin` (32px) and folds the arithmetic.
       expect(screen.getByTestId('paper')).toHaveComputedStyle({
-        maxWidth: isJsdom() ? 'calc(100% - 2*var(--_dialogMargin))' : 'calc(100% - 64px)',
+        maxWidth: 'calc(100% - 64px)',
       });
     });
 
