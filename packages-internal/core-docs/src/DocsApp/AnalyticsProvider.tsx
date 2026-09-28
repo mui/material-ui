@@ -66,9 +66,10 @@ export function CookieConsentDialog() {
 
   React.useEffect(() => {
     if (needsConsent) {
-      // Double rAF to ensure the initial opacity: 0 state is painted before transitioning
-      const frame = requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
+      // Double rAF to ensure the initial opacity: 0 state is painted before transitioning.
+      // The first callback replaces the handle, so the cleanup cancels whichever frame is pending.
+      let frame = requestAnimationFrame(() => {
+        frame = requestAnimationFrame(() => {
           setShow(true);
         });
       });

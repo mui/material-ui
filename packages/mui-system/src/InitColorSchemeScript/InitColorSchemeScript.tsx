@@ -23,6 +23,8 @@ export interface InitColorSchemeScriptProps {
   defaultDarkColorScheme?: string | undefined;
   /**
    * The node (provided as string) used to attach the color-scheme attribute.
+   *
+   * Requires a static value, do not derive from user input.
    * @default 'document.documentElement'
    */
   colorSchemeNode?: string | undefined;
@@ -56,6 +58,16 @@ const maybeReactUseSyncExternalStore: undefined | any = safeReact.useSyncExterna
 
 const subscribe = () => () => {};
 
+// Serialize a value into a JS string literal safe to embed in the inline script. JSON.stringify
+// escapes quotes and backslashes; the extra replaces handle what it does not: `<` (so `</script>`
+// can't close the element) and the U+2028/U+2029 line separators, invalid raw inside a JS string.
+function serializeScriptValue(value: string) {
+  return JSON.stringify(value)
+    .replace(/</g, '\\u003c')
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029');
+}
+
 // Insert a runtime scheme variable (`light`, `dark`, or `colorScheme`) into every `%s` placeholder
 // of an attribute/selector template.
 function interpolateScheme(template: string, variable: string) {
@@ -66,7 +78,7 @@ function interpolateScheme(template: string, variable: string) {
       tokens.push(variable);
     }
     if (segments[index]) {
-      tokens.push(JSON.stringify(segments[index]));
+      tokens.push(serializeScriptValue(segments[index]));
     }
   }
   return tokens.join(' + ') || '""';
@@ -130,7 +142,7 @@ export function buildInitColorSchemeScript(options?: InitColorSchemeScriptProps)
     setter += `
       ${colorSchemeNode}.setAttribute(${interpolateScheme(attr, 'colorScheme')}, ${attributeValue});`;
   } else if (!attribute.startsWith('.')) {
-    setter += `${colorSchemeNode}.setAttribute(${JSON.stringify(attribute)}, colorScheme);`;
+    setter += `${colorSchemeNode}.setAttribute(${serializeScriptValue(attribute)}, colorScheme);`;
   }
 
   return (
@@ -143,9 +155,9 @@ export function buildInitColorSchemeScript(options?: InitColorSchemeScriptProps)
         __html: `(function() {
 try {
   let colorScheme = '';
-  const mode = localStorage.getItem('${modeStorageKey}') || '${defaultMode}';
-  const dark = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
-  const light = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
+  const mode = localStorage.getItem(${serializeScriptValue(modeStorageKey)}) || ${serializeScriptValue(defaultMode)};
+  const dark = localStorage.getItem(${serializeScriptValue(`${colorSchemeStorageKey}-dark`)}) || ${serializeScriptValue(defaultDarkColorScheme)};
+  const light = localStorage.getItem(${serializeScriptValue(`${colorSchemeStorageKey}-light`)}) || ${serializeScriptValue(defaultLightColorScheme)};
   if (mode === 'system') {
     // handle system mode
     const mql = window.matchMedia('(prefers-color-scheme: dark)');
