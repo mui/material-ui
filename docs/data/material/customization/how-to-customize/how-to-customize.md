@@ -195,6 +195,11 @@ The `styles` prop in the `GlobalStyles` component supports a callback in case yo
 
 {{"demo": "GlobalCssOverrideTheme.js", "iframe": true, "height": 100}}
 
+:::warning
+Values in `GlobalStyles` are written into the stylesheet as they are.
+If one comes from user input, validate it first, see [dynamic values in `sx`](/system/getting-started/the-sx-prop/#dynamic-values).
+:::
+
 If you are already using the [CssBaseline](/material-ui/react-css-baseline/) component for setting baseline styles, you can also add these global styles as overrides for this component. Here is how you can achieve the same by using this approach.
 
 {{"demo": "OverrideCssBaseline.js", "iframe": true, "height": 100}}

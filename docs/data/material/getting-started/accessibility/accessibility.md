@@ -31,21 +31,20 @@ Each row counts only the criteria that **apply** to that component; criteria tha
 
 <!-- scorecard:start -->
 
-| Component                                                                                                                        | Level A | Level AA |   Rated | ✅ Supports | ⚠️ Partially Supports |    Verified | Automated |
-| :------------------------------------------------------------------------------------------------------------------------------- | ------: | -------: | ------: | ----------: | --------------------: | ----------: | --------: |
-| [Accordion](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Accordion/accessibility.md)                 |      11 |        8 |      19 |          19 |                     0 |       16/19 |         9 |
-| [AccordionSummary](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/AccordionSummary/accessibility.md)   |      13 |       11 |      24 |          23 |                     1 |       21/24 |        11 |
-| [Avatar](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Avatar/accessibility.md)                       |       5 |        6 |      11 |           9 |                     2 |        6/11 |         2 |
-| [Button](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Button/accessibility.md)                       |      15 |       12 |      27 |          23 |                     4 |       20/27 |        11 |
-| [Checkbox](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Checkbox/accessibility.md)                   |      14 |       11 |      25 |          23 |                     2 |       22/25 |        11 |
-| [LinearProgress](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/LinearProgress/accessibility.md)       |       6 |        5 |      11 |           8 |                     3 |        6/11 |         1 |
-| [Radio](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Radio/accessibility.md)                         |      14 |       11 |      25 |          23 |                     2 |       23/25 |        11 |
-| [RadioGroup](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/RadioGroup/accessibility.md)               |       6 |        1 |       7 |           7 |                     0 |         4/7 |         2 |
-| [Switch](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Switch/accessibility.md)                       |      14 |       11 |      25 |          23 |                     2 |       23/25 |        11 |
-| [TextField](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/TextField/accessibility.md)                 |      14 |       14 |      28 |          25 |                     3 |       24/28 |        12 |
-| [ToggleButton](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/ToggleButton/accessibility.md)           |      13 |       11 |      24 |          20 |                     4 |       22/24 |        11 |
-| [ToggleButtonGroup](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/ToggleButtonGroup/accessibility.md) |       2 |        2 |       4 |           4 |                     0 |         3/4 |         1 |
-| **12 components**                                                                                                                | **127** |  **103** | **230** |     **207** |                **23** | **190/230** |    **93** |
+| Component                                                                                                                        | Level A | Level AA | Rated | ✅ Supports | ⚠️ Partially Supports | Verified | Automated |
+| :------------------------------------------------------------------------------------------------------------------------------- | ------: | -------: | ----: | ----------: | --------------------: | -------: | --------: |
+| [Accordion](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Accordion/accessibility.md)                 |      11 |        8 |    19 |          19 |                     0 |    16/19 |         9 |
+| [AccordionSummary](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/AccordionSummary/accessibility.md)   |      13 |       11 |    24 |          23 |                     1 |    21/24 |        11 |
+| [Avatar](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Avatar/accessibility.md)                       |       5 |        6 |    11 |           9 |                     2 |     6/11 |         2 |
+| [Button](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Button/accessibility.md)                       |      15 |       12 |    27 |          23 |                     4 |    20/27 |        11 |
+| [Checkbox](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Checkbox/accessibility.md)                   |      14 |       11 |    25 |          23 |                     2 |    22/25 |        11 |
+| [LinearProgress](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/LinearProgress/accessibility.md)       |       6 |        5 |    11 |           8 |                     3 |     6/11 |         1 |
+| [Radio](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Radio/accessibility.md)                         |      14 |       11 |    25 |          23 |                     2 |    23/25 |        11 |
+| [RadioGroup](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/RadioGroup/accessibility.md)               |       6 |        1 |     7 |           7 |                     0 |      4/7 |         2 |
+| [Switch](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Switch/accessibility.md)                       |      14 |       11 |    25 |          23 |                     2 |    23/25 |        11 |
+| [TextField](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/TextField/accessibility.md)                 |      14 |       14 |    28 |          25 |                     3 |    24/28 |        12 |
+| [ToggleButton](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/ToggleButton/accessibility.md)           |      13 |       11 |    24 |          20 |                     4 |    22/24 |        11 |
+| [ToggleButtonGroup](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/ToggleButtonGroup/accessibility.md) |       2 |        2 |     4 |           4 |                     0 |      3/4 |         1 |
 
 <!-- scorecard:end -->
 
