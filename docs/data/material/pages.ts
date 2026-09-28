@@ -119,6 +119,7 @@ const pages: MuiPage[] = [
         pathname: '/material-ui/components/utils',
         subheader: 'utils',
         children: [
+          { pathname: '/material-ui/react-backdrop' },
           {
             pathname: '/material-ui/react-click-away-listener',
             title: 'Click-Away Listener',
@@ -129,7 +130,6 @@ const pages: MuiPage[] = [
             title: 'InitColorSchemeScript',
           },
           { pathname: '/material-ui/react-modal' },
-          { pathname: '/material-ui/react-backdrop' },
           { pathname: '/material-ui/react-no-ssr', title: 'No SSR' },
           { pathname: '/material-ui/react-popover' },
           { pathname: '/material-ui/react-popper' },
