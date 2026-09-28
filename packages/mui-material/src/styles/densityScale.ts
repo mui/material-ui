@@ -143,6 +143,11 @@ export function applyDensity<T extends EnhanceableTheme>(
     base: (...args: ReadonlyArray<number | string>) => string | number,
   ): T['spacing'] => {
     const spacing = (...args: ReadonlyArray<number | string>): string => {
+      if (args.length === 1) {
+        const only = args[0];
+        const step = typeof only === 'string' ? resolved[only] : undefined;
+        return step === undefined ? String(base(only)) : step;
+      }
       let keyed = false;
       for (let i = 0; i < args.length; i += 1) {
         const arg = args[i];

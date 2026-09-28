@@ -199,6 +199,8 @@ function createBaseUnit<Spacing>(
   return (() => undefined) as any;
 }
 
+const keyedTransformers = new WeakMap<SpacingTransformer, Record<string, SpacingTransformer>>();
+
 export function createUnaryUnit<Spacing>(
   theme: { spacing: Spacing },
   themeKey: string,
@@ -218,12 +220,21 @@ export function createUnaryUnit<Spacing>(
   // which cannot resolve names. Keep that transformer for every numeric value and
   // route only registered names back through the scale-aware function.
   if (typeof scale === 'function' && scale.keys && (base as unknown) !== scale) {
-    const keyed = ((value: SpacingValueType) =>
-      typeof value === 'string' && scale.keys!.has(value)
-        ? scale(value)
-        : (base as SpacingTransformer)(value)) as SpacingTransformer;
-    keyed.keys = scale.keys;
-    return keyed as any;
+    // Built once per scale: this runs for every spacing prop of every render.
+    let byProp = keyedTransformers.get(scale);
+    if (!byProp) {
+      byProp = {};
+      keyedTransformers.set(scale, byProp);
+    }
+    if (!byProp[propName]) {
+      const keyed = ((value: SpacingValueType) =>
+        typeof value === 'string' && scale.keys!.has(value)
+          ? scale(value)
+          : (base as SpacingTransformer)(value)) as SpacingTransformer;
+      keyed.keys = scale.keys;
+      byProp[propName] = keyed;
+    }
+    return byProp[propName] as any;
   }
 
   return base;
