@@ -1,7 +1,7 @@
+import deepmerge from '@mui/utils/deepmerge';
 import type { Breakpoint } from '..';
+import type { Theme } from './createTheme';
 import type { EnhanceableTheme } from './densityScale';
-import addDefaultProps from '../utils/addDefaultProps';
-import addRootOverride from '../utils/addRootOverride';
 import switchClasses from '../Switch/switchClasses';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import chipClasses from '../Chip/chipClasses';
@@ -21,6 +21,74 @@ import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import listItemIconClasses from '../ListItemIcon/listItemIconClasses';
 import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
 import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
+
+type ThemeComponents = NonNullable<Theme['components']>;
+
+/** A component the theme knows how to style, e.g. `'MuiButton'`. */
+type ThemeComponentName = Exclude<keyof ThemeComponents, 'mergeClassNameAndStyle'>;
+
+type StyleOverridesOf<Name extends ThemeComponentName> =
+  NonNullable<ThemeComponents[Name]> extends { styleOverrides?: infer Overrides | undefined }
+    ? NonNullable<Overrides>
+    : never;
+
+/** The slots (class keys) a component's `styleOverrides` accepts. */
+type ThemeComponentSlot<Name extends ThemeComponentName> = Extract<
+  keyof StyleOverridesOf<Name>,
+  string
+>;
+
+/**
+ * Attach a `styleOverrides` object to a component slot as the first layer,
+ * with any override the incoming theme already had as the last (winning) one:
+ * enhancement provides defaults, it does not beat explicit customization.
+ * Call it once per slot — a second call would wrap the first, putting the
+ * user's layer between the two emissions. **Mutates `components` in place** —
+ * pass a `components` object the caller owns.
+ */
+function addRootOverride<
+  Name extends ThemeComponentName,
+  Slot extends ThemeComponentSlot<Name> = Extract<ThemeComponentSlot<Name>, 'root'>,
+>(
+  components: ThemeComponents,
+  name: Name,
+  overrides: NonNullable<StyleOverridesOf<Name>[Slot]>,
+  slot: Slot = 'root' as Slot,
+): void {
+  const component = components[name] as Record<string, any> | undefined;
+  const existing = component?.styleOverrides?.[slot];
+  (components as Record<string, any>)[name] = {
+    ...component,
+    styleOverrides: {
+      ...component?.styleOverrides,
+      [slot]: existing === undefined ? [overrides] : [overrides, existing],
+    },
+  };
+}
+
+type DefaultPropsOf<Name extends ThemeComponentName> =
+  NonNullable<ThemeComponents[Name]> extends { defaultProps?: infer Props | undefined }
+    ? NonNullable<Props>
+    : never;
+
+/**
+ * Attach theme `defaultProps`, the consuming theme's own defaults winning — for
+ * values CSS cannot reach (those that feed component JS). **Mutates
+ * `components` in place** — same contract as `addRootOverride`.
+ */
+function addDefaultProps<Name extends ThemeComponentName>(
+  components: ThemeComponents,
+  name: Name,
+  defaults: DefaultPropsOf<Name>,
+): void {
+  const component = components[name] as Record<string, any> | undefined;
+  // Same merge as `createTheme` itself, so a user `slotProps.<slot>` keeps the
+  // density keys it does not name instead of replacing the slot wholesale.
+  (components as Record<string, any>)[name] = {
+    ...component,
+    defaultProps: deepmerge(defaults, component?.defaultProps ?? {}),
+  };
+}
 
 /**
  * PRIVATE shared component mapping used by `enhanceDensity` (not re-exported
