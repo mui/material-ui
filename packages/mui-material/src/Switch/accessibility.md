@@ -4,16 +4,15 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 23    |
-| ⚠️ Partially Supports | 2     |
+| ✅ Supports           | 24    |
+| ⚠️ Partially Supports | 1     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 30    |
 | 🚩 Flagged            | 2/25  |
 
 ## Known gaps
 
-- ⚠️ **1.4.11 Non-text Contrast.** In light mode the thumb and track stay under 3:1. The off-state white thumb is about 2.7:1 on the gray track, and the track is about 2.7:1 on the page. Each checked color measures 1.8:1 to 2.6:1 thumb-on-track. The focus indicator is untested, and `disableRipple` removes it.
-- ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styling.
+- ⚠️ **1.4.11 Non-text Contrast.** In light mode the thumb and track stay under 3:1. The off-state white thumb is about 2.7:1 on the gray track, and the track is about 2.7:1 on the page. Each checked color measures 1.8:1 to 2.6:1 thumb-on-track. The focus indicator is untested, and `disableRipple` removes it unless the theme enables `focusVisible`.
 
 ## Success criteria
 
@@ -196,18 +195,19 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.7 Focus Visible · AA
 
-`⚠️ Partially Supports` · `● Component`
+`✅ Supports` · `◐ Shared`
 
 - `ButtonBase` removes the user-agent outline (`outline: 0`). In the default configuration keyboard focus adds the `.Mui-focusVisible` class plus a centered focus ripple, so an indicator is shown. Covered by a Playwright test that compares the control focused and unfocused.
 - `disableRipple` or `disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styles. The `CustomizedSwitches` iOS demo does this, re-styling the thumb on focus.
+- With `focusVisible: true` on the theme, keyboard focus draws an outline ring that does not depend on the ripple (see [Focus visible](https://mui.com/material-ui/customization/focus-visible/)). The indicator stays visible under `disableRipple` and `disableFocusRipple`. Removing the ripple without the ring is the author's choice. Covered by a Playwright test that compares the control focused and unfocused with the ring enabled and the ripple disabled.
 
 **Manual testing steps**
 
 1. Press <kbd>Tab</kbd> to a default `<Switch />` and confirm a visible focus indicator appears.
-2. Press <kbd>Tab</kbd> to a `<Switch disableRipple />` (or `disableFocusRipple`) with no custom styles and confirm none appears.
+2. With `focusVisible: true` on the theme, press <kbd>Tab</kbd> to a `<Switch disableRipple />` (or `disableFocusRipple`) and confirm the ring appears.
 3. Click with the mouse and confirm the indicator is keyboard-only.
 
-**Pass:** every keyboard-focused switch shows a visible indicator, including `disableRipple` via author-supplied styles. Today a bare `disableRipple` switch shows none.
+**Pass:** every keyboard-focused switch shows a visible indicator. Under `disableRipple`, the indicator comes from the `focusVisible` theme ring or from author styles.
 
 #### 4.1.2 Name, Role, Value · A
 

@@ -75,7 +75,7 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **1.4.11 Non-text Contrast** — border, focus indicator, and any meaningful icon are each at least `3:1`. Disabled and purely decorative parts are exempt.
 - [ ] 🔁 **2.4.4 Link Purpose (In Context)** — a user can tell where the link goes. Replace vague labels like "Learn more" or "click here".
 - [ ] 🔁 **2.4.6 Headings and Labels** — every label describes its action ("Submit order", not "OK").
-- [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused button shows a visible indicator, including under `disableRipple`, `disableFocusRipple`, and `disableElevation`.
+- [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused button shows a visible indicator. Under `disableRipple`, `disableFocusRipple`, and `disableElevation`, the indicator comes from the `focusVisible` theme ring or from author styles.
 - [ ] 🔁 **3.3.2 Labels or Instructions** — the label clearly tells the user what to upload, not just "Upload".
 - [ ] 🔁 **4.1.2 Name, Role, Value** — name, role, and state are correct for every variant, and state changes are announced.
 
@@ -89,7 +89,7 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **1.4.3 Contrast (Minimum)** — label and helper/error text meet `4.5:1` (`3:1` for large text) against the actual background.
 - [ ] 🔁 **1.4.11 Non-text Contrast** — the indicator in every active state (unchecked outline, checked fill, indeterminate dash) and the focus indicator are `3:1` against adjacent colors; disabled is exempt.
 - [ ] 🔁 **2.4.6 Headings and Labels** — every provided label and legend describes its purpose.
-- [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused checkbox shows a visible indicator, including `disableRipple` via author-supplied styles. Today a bare `disableRipple` checkbox shows none.
+- [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused checkbox shows a visible indicator. Under `disableRipple`, the indicator comes from the `focusVisible` theme ring or from author styles.
 - [ ] 🔁 **3.3.2 Labels or Instructions** — every checkbox has a label or instruction presented to all users, via `FormControlLabel`, adjacent text, or clear context.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — the role, the checked/unchecked/mixed/disabled state with change notification, and an author-supplied accessible name are all programmatically determinable.
 
@@ -116,7 +116,7 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **1.4.3 Contrast (Minimum)** — label and helper or error text meet `4.5:1` (`3:1` for large text) against the actual background.
 - [ ] 🔁 **1.4.11 Non-text Contrast** — the dot and circle in every active state and the focus indicator are `3:1` against adjacent colors; disabled is exempt.
 - [ ] 🔁 **2.4.6 Headings and Labels** — every provided label describes its purpose.
-- [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused radio shows a visible indicator, including `disableRipple` via author-supplied styles.
+- [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused radio shows a visible indicator. Under `disableRipple`, the indicator comes from the `focusVisible` theme ring or from author styles.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — the role, the checked or unchecked and disabled state with change notification, and an author-supplied accessible name are all programmatically determinable.
 
 ## RadioGroup
@@ -139,7 +139,7 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **1.4.3 Contrast (Minimum)** — label and helper text meet `4.5:1` (`3:1` for large text) against the actual background.
 - [ ] 🔁 **1.4.11 Non-text Contrast** — the thumb against the track, the track against the page, and the focus indicator are each at least `3:1`; disabled is exempt. Today the default thumb and track are the known failures.
 - [ ] 🔁 **2.4.6 Headings and Labels** — every provided label and legend describes its purpose.
-- [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused switch shows a visible indicator, including `disableRipple` via author-supplied styles. Today a bare `disableRipple` switch shows none.
+- [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused switch shows a visible indicator. Under `disableRipple`, the indicator comes from the `focusVisible` theme ring or from author styles.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — the role, the on/off state with change notification, and an author-supplied accessible name are all programmatically determinable.
 
 ## TextField
@@ -166,7 +166,7 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **1.4.3 Contrast (Minimum)** — at least 4.5:1, or 3:1 for large text, in the resting and hover states. Disabled is exempt; selected `primary`, `error`, `info`, and `warning` are the known failures.
 - [ ] 🔁 **1.4.11 Non-text Contrast** — the focus indicator and any meaningful icon are each at least 3:1, and the pressed state stays identifiable. Disabled parts are exempt.
 - [ ] 🔁 **2.4.6 Headings and Labels** — every label describes its action ("Bold", not "B").
-- [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused toggle shows a visible indicator, including under `disableRipple` and `disableFocusRipple`.
+- [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused toggle shows a visible indicator. Under `disableRipple` and `disableFocusRipple`, the indicator comes from the `focusVisible` theme ring or from author styles.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — name, role, and state are correct for every variant, and state changes are announced.
 
 ## ToggleButtonGroup

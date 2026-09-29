@@ -4,8 +4,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 23    |
-| ⚠️ Partially Supports | 4     |
+| ✅ Supports           | 24    |
+| ⚠️ Partially Supports | 3     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 28    |
 | 🚩 Flagged            | 7/27  |
@@ -13,8 +13,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 ## Known gaps
 
 - ⚠️ **1.4.3 Contrast (Minimum).** `info` and `warning` buttons fall short of 4.5:1 in every variant.
-- ⚠️ **1.4.11 Non-text Contrast.** Focus-indicator, border, and icon contrast are untested; `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator, and `disableElevation` removes the `contained` one.
-- ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator; `contained` loses its indicator only when `disableElevation` is combined with them.
+- ⚠️ **1.4.11 Non-text Contrast.** Focus-indicator, border, and icon contrast are untested; `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator, and `disableElevation` removes the `contained` one, unless the theme enables `focusVisible`.
 - ⚠️ **4.1.3 Status Messages.** The `loading` state adds no live region, so the change may go unannounced.
 
 ## Success criteria
@@ -223,19 +222,20 @@ Every other `variant` × `color` combination clears `4.5:1`; the closest pass is
 
 #### 2.4.7 Focus Visible · AA
 
-`⚠️ Partially Supports` · `● Component`
+`✅ Supports` · `◐ Shared`
 
 - Keyboard focus shows the `.Mui-focusVisible` indicator (suppressed for mouse); `contained` adds a box-shadow on focus.
 - `disableRipple`/`disableFocusRipple` remove the ripple and `disableElevation` the `contained` box-shadow, so `text`/`outlined` lose the indicator with either ripple prop, and `contained` only when a ripple prop and `disableElevation` are both set. Covered by a Playwright test that compares the control focused and unfocused.
+- With `focusVisible: true` on the theme, keyboard focus draws an outline ring that does not depend on the ripple (see [Focus visible](https://mui.com/material-ui/customization/focus-visible/)). The indicator stays visible under `disableRipple` and `disableFocusRipple`. Removing the ripple without the ring is the author's choice. Covered by a Playwright test that compares the control focused and unfocused with the ring enabled and the ripple disabled.
 
 **Manual testing steps**
 
 1. Press <kbd>Tab</kbd> to move focus across `contained`, `outlined`, and `text` buttons.
 2. Confirm a clear focus indicator appears, and that it looks different from the hover style.
 3. Click a button with the mouse and confirm the indicator does not appear (it is keyboard-only).
-4. <kbd>Tab</kbd> to `text` and `outlined` buttons that set `disableRipple` or `disableFocusRipple`; for `contained`, test a button that combines one of those props with `disableElevation`.
+4. With `focusVisible: true` on the theme, <kbd>Tab</kbd> to `text` and `outlined` buttons that set `disableRipple` or `disableFocusRipple`; for `contained`, test a button that combines one of those props with `disableElevation`.
 
-**Pass:** every keyboard-focused button shows a visible indicator, including under `disableRipple`, `disableFocusRipple`, and `disableElevation`.
+**Pass:** every keyboard-focused button shows a visible indicator. Under `disableRipple`, `disableFocusRipple`, and `disableElevation`, the indicator comes from the `focusVisible` theme ring or from author styles.
 
 #### 3.3.2 Labels or Instructions · A
 
