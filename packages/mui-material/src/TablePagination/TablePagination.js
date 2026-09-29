@@ -103,9 +103,11 @@ const TablePaginationSelect = styled(Select, {
 
 const TablePaginationInputBase = styled(InputBase)(
   memoTheme(({ theme }) => ({
-    [`& .${tablePaginationClasses.select}:focus`]: {
-      backgroundColor: (theme.vars || theme).palette.action.focus,
-    },
+    ...(!theme.focusVisible && {
+      [`& .${tablePaginationClasses.select}:focus`]: {
+        backgroundColor: (theme.vars || theme).palette.action.focus,
+      },
+    }),
   })),
 );
 

@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { fireEvent, createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
+import { act, fireEvent, createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import TableFooter from '@mui/material/TableFooter';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
@@ -562,6 +562,50 @@ describe('<TablePagination />', () => {
         } else if (variant === 'filled') {
           expect(comboboxContainer).to.have.class(filledInputClasses.root);
         }
+      });
+    });
+  });
+
+  describe('theme: focusVisible', () => {
+    function setup(theme) {
+      render(
+        <ThemeProvider theme={theme}>
+          <table>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  count={1}
+                  page={0}
+                  onPageChange={noop}
+                  onRowsPerPageChange={noop}
+                  rowsPerPage={10}
+                />
+              </TableRow>
+            </TableFooter>
+          </table>
+        </ThemeProvider>,
+      );
+
+      return screen.getByRole('combobox');
+    }
+
+    it.skipIf(isJsdom())('keeps the focus tint on the select without the theme ring', () => {
+      const combobox = setup(createTheme());
+
+      act(() => combobox.focus());
+
+      expect(combobox).toHaveComputedStyle({ backgroundColor: 'rgba(0, 0, 0, 0.12)' });
+    });
+
+    it.skipIf(isJsdom())('drops the focus tint on the select with the theme ring', () => {
+      const combobox = setup(createTheme({ focusVisible: true }));
+
+      act(() => combobox.focus());
+
+      expect(combobox).toHaveComputedStyle({ backgroundColor: 'rgba(0, 0, 0, 0)' });
+      expect(combobox.parentElement).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
       });
     });
   });
