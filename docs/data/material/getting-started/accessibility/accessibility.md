@@ -12,14 +12,18 @@ This is a Voluntary Product Accessibility Template (VPAT®) style report: it sta
 
 Each component is rated criterion by criterion in its own report, kept next to the source code at `packages/mui-material/src/<Component>/accessibility.md`. Those reports carry the reasoning, the responsibility split, and reproducible manual test steps for every criterion. **The table below summarizes them; follow a component link for the detail.**
 
-| Field             | Value                                                                                          |
-| :---------------- | :--------------------------------------------------------------------------------------------- |
-| Product           | Material UI (`@mui/material`)                                                                  |
-| Product type      | React component library (software)                                                             |
-| Version assessed  | Results track the `master` branch; see [releases](https://github.com/mui/material-ui/releases) |
-| Vendor            | MUI                                                                                            |
-| Standards applied | WCAG 2.2 Level A and AA                                                                        |
-| Report type       | Self-assessment, published as source-controlled documentation                                  |
+<!-- scorecard-about:start -->
+
+| Field             | Value                                                         |
+| :---------------- | :------------------------------------------------------------ |
+| Product           | Material UI (`@mui/material`)                                 |
+| Product type      | React component library (software)                            |
+| Version assessed  | `@mui/material` v9.4.0                                        |
+| Vendor            | MUI                                                           |
+| Standards applied | WCAG 2.2 Level A and AA                                       |
+| Report type       | Self-assessment, published as source-controlled documentation |
+
+<!-- scorecard-about:end -->
 
 ## Conformance by component
 
@@ -36,21 +40,25 @@ Each row counts only the criteria that **apply** to that component; criteria tha
 | [Accordion](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Accordion/accessibility.md)                 |      11 |        8 |    19 |          19 |                     0 |    16/19 |         9 |
 | [AccordionSummary](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/AccordionSummary/accessibility.md)   |      13 |       11 |    24 |          23 |                     1 |    21/24 |        11 |
 | [Avatar](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Avatar/accessibility.md)                       |       5 |        6 |    11 |           9 |                     2 |     6/11 |         2 |
-| [Button](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Button/accessibility.md)                       |      15 |       12 |    27 |          23 |                     4 |    20/27 |        11 |
-| [Checkbox](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Checkbox/accessibility.md)                   |      14 |       11 |    25 |          23 |                     2 |    22/25 |        11 |
+| [Button](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Button/accessibility.md)                       |      15 |       12 |    27 |          24 |                     3 |    20/27 |        11 |
+| [Checkbox](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Checkbox/accessibility.md)                   |      14 |       11 |    25 |          24 |                     1 |    22/25 |        11 |
 | [LinearProgress](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/LinearProgress/accessibility.md)       |       6 |        5 |    11 |           8 |                     3 |     6/11 |         1 |
-| [Radio](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Radio/accessibility.md)                         |      14 |       11 |    25 |          23 |                     2 |    23/25 |        11 |
+| [Radio](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Radio/accessibility.md)                         |      14 |       11 |    25 |          24 |                     1 |    23/25 |        11 |
 | [RadioGroup](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/RadioGroup/accessibility.md)               |       6 |        1 |     7 |           7 |                     0 |      4/7 |         2 |
-| [Switch](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Switch/accessibility.md)                       |      14 |       11 |    25 |          23 |                     2 |    23/25 |        11 |
+| [Switch](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Switch/accessibility.md)                       |      14 |       11 |    25 |          24 |                     1 |    23/25 |        11 |
 | [TextField](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/TextField/accessibility.md)                 |      14 |       14 |    28 |          25 |                     3 |    24/28 |        12 |
-| [ToggleButton](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/ToggleButton/accessibility.md)           |      13 |       11 |    24 |          20 |                     4 |    22/24 |        11 |
+| [ToggleButton](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/ToggleButton/accessibility.md)           |      13 |       11 |    24 |          21 |                     3 |    22/24 |        11 |
 | [ToggleButtonGroup](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/ToggleButtonGroup/accessibility.md) |       2 |        2 |     4 |           4 |                     0 |      3/4 |         1 |
 
 <!-- scorecard:end -->
 
+<!-- scorecard-rollup:start -->
+
 **No component records a ❌ Does Not Support rating for any Level A or AA criterion.**
 
-Rolled up to the library level, where each criterion takes the worst rating any assessed component receives, 32 success criteria are exercised: **25 Supports, 7 Partially Supports, 0 Does Not Support.**
+Rolled up to the library level, where each criterion takes the worst rating any assessed component receives, 32 success criteria are exercised: **27 Supports, 5 Partially Supports, 0 Does Not Support.**
+
+<!-- scorecard-rollup:end -->
 
 The Level A and AA criteria absent from every row apply at the page or application level — [2.4.1 Bypass Blocks](https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks), [3.1.1 Language of Page](https://www.w3.org/WAI/WCAG22/Understanding/language-of-page), the [1.2.x Time-based Media](https://www.w3.org/TR/WCAG22/#time-based-media) set — and are the responsibility of the application.
 
@@ -71,35 +79,21 @@ An application built with Material UI is not automatically accessible. Material
 
 ## Known gaps
 
-Four issues account for almost every ⚠️ rating. Three are properties of the **default theme** rather than of the components' structure, so a theme resolves them today.
+Five issues account for every ⚠️ rating. Two of them can be fixed through the theme today.
 
-| Gap                                                                                            | Criteria      | Affected                                              | Workaround                                          |
-| :--------------------------------------------------------------------------------------------- | :------------ | :---------------------------------------------------- | :-------------------------------------------------- |
-| The keyboard focus indicator is the ripple, so `disableRipple`/`disableFocusRipple` removes it | 1.4.11, 2.4.7 | Button, Checkbox, Radio, Switch, Toggle Button        | Style `.Mui-focusVisible` in your theme — see below |
-| Some default palette colors fall short of contrast minimums                                    | 1.4.3, 1.4.11 | Avatar, Button, TextField, Toggle Button, and others  | Override the affected palette entries               |
-| Dynamic state changes are not announced                                                        | 4.1.3         | Button (`loading`), LinearProgress, TextField (error) | Render your own `aria-live` region alongside        |
-| Indefinite animation cannot be paused                                                          | 2.2.2         | LinearProgress (`indeterminate`, `query`, `buffer`)   | Show it only while an operation is in flight        |
+| Gap                                                                                                 | Criteria      | Affected                                                         | Workaround                                                 |
+| :-------------------------------------------------------------------------------------------------- | :------------ | :--------------------------------------------------------------- | :--------------------------------------------------------- |
+| By default, the keyboard focus indicator is the ripple or a background tint, with untested contrast | 1.4.11        | AccordionSummary, Button, Checkbox, Radio, Switch, Toggle Button | Enable `focusVisible` in your theme — see below            |
+| Some default palette colors fall short of contrast minimums                                         | 1.4.3, 1.4.11 | Avatar, Button, LinearProgress, Switch, TextField, Toggle Button | Override the affected palette entries                      |
+| The selected state of colored Toggle Buttons is conveyed almost entirely by hue                     | 1.4.1         | Toggle Button (`primary`, `error`, `info`, `success`)            | Add a non-color cue to the selected state, such as an icon |
+| Dynamic state changes are not announced                                                             | 4.1.3         | Button (`loading`), LinearProgress, TextField (error)            | Render your own `aria-live` region alongside               |
+| Indefinite animation cannot be paused                                                               | 2.2.2         | LinearProgress (`indeterminate`, `query`, `buffer`)              | Show it only while an operation is in flight               |
 
-If you disable the ripple, restore a focus indicator in your theme:
+The theme's `focusVisible` option draws an outline ring on keyboard focus that does not depend on the ripple, so it also stays visible under `disableRipple`. See [Focus visible](/material-ui/customization/focus-visible/) for the options:
 
 ```js
-const theme = createTheme({
-  components: {
-    MuiButtonBase: {
-      styleOverrides: {
-        root: {
-          '&.Mui-focusVisible': {
-            outline: '2px solid currentColor',
-            outlineOffset: 2,
-          },
-        },
-      },
-    },
-  },
-});
+const theme = createTheme({ focusVisible: true });
 ```
-
-One genuine defect sits outside those four: Checkbox's `indeterminate` state sets `aria-checked="mixed"` on a native checkbox whose `checked` property is `false` (4.1.2), which ARIA in HTML disallows. It is tracked for a fix.
 
 ## Scope and limitations
 
