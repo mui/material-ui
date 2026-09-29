@@ -32,9 +32,7 @@ const docsPagePath = path.join(
   'docs/data/material/getting-started/accessibility/accessibility.md',
 );
 const checklistPath = path.join(componentsDirectory, 'manual-testing.md');
-
-const START_MARKER = '<!-- scorecard:start -->';
-const END_MARKER = '<!-- scorecard:end -->';
+const packageJsonPath = path.join(rootDirectory, 'packages/mui-material/package.json');
 
 /**
  * Rows are `| <label> | <count> |`. The label carries the symbol, so match on
@@ -381,6 +379,40 @@ function renderManualChecklist(reports) {
 }
 
 /**
+ * The report metadata on the public conformance page. A conformance report is
+ * a statement about one release, so it names the package version. The version
+ * comes from package.json, so `release:version` regenerates it on each bump.
+ */
+function renderDocsAbout(version) {
+  return [
+    '| Field | Value |',
+    '| :---- | :---- |',
+    '| Product | Material UI (`@mui/material`) |',
+    '| Product type | React component library (software) |',
+    `| Version assessed | \`@mui/material\` v${version} |`,
+    '| Vendor | MUI |',
+    '| Standards applied | WCAG 2.2 Level A and AA |',
+    '| Report type | Self-assessment, published as source-controlled documentation |',
+  ].join('\n');
+}
+
+/**
+ * The library-level result on the public conformance page. It is generated so
+ * that `--check` catches it when a report changes a rating.
+ */
+function renderDocsRollup(totals) {
+  const headline =
+    totals.doesNotSupport === 0
+      ? '**No component records a ❌ Does Not Support rating for any Level A or AA criterion.**'
+      : `**${totals.doesNotSupport} criteria record a ❌ Does Not Support rating in at least one component.**`;
+  return [
+    headline,
+    '',
+    `Rolled up to the library level, where each criterion takes the worst rating any assessed component receives, ${totals.rated} success criteria are exercised: **${totals.supports} Supports, ${totals.partiallySupports} Partially Supports, ${totals.doesNotSupport} Does Not Support.**`,
+  ].join('\n');
+}
+
+/**
  * The summary table on the public conformance page. Detail lives in the
  * per-component reports, so this stays to counts plus a link.
  */
@@ -433,15 +465,18 @@ function findEvidenceViolations(reports) {
   return violations;
 }
 
-function replaceBlock(source, replacement) {
-  const start = source.indexOf(START_MARKER);
-  const end = source.indexOf(END_MARKER);
+/** Replaces the content between `<!-- <name>:start -->` and `<!-- <name>:end -->`. */
+function replaceBlock(source, replacement, filepath, name = 'scorecard') {
+  const startMarker = `<!-- ${name}:start -->`;
+  const endMarker = `<!-- ${name}:end -->`;
+  const start = source.indexOf(startMarker);
+  const end = source.indexOf(endMarker);
   if (start === -1 || end === -1) {
     throw new Error(
-      `Missing ${START_MARKER} / ${END_MARKER} markers in packages/mui-material/src/accessibility.md`,
+      `Missing ${startMarker} / ${endMarker} markers in ${path.relative(rootDirectory, filepath)}`,
     );
   }
-  return `${source.slice(0, start + START_MARKER.length)}\n\n${replacement}\n\n${source.slice(end)}`;
+  return `${source.slice(0, start + startMarker.length)}\n\n${replacement}\n\n${source.slice(end)}`;
 }
 
 async function run(argv) {
@@ -473,7 +508,7 @@ async function run(argv) {
 
   // All three outputs are committed, so they have to match what Prettier would
   // produce — otherwise `test_static` fails on a file nobody edited by hand.
-  const nextIndex = await format(replaceBlock(currentIndex, table), indexPath);
+  const nextIndex = await format(replaceBlock(currentIndex, table, indexPath), indexPath);
   const nextScorecard = await format(JSON.stringify(scorecard, null, 2), scorecardPath);
 
   // The public page is optional: the rollup tooling can land before it, and
@@ -486,10 +521,14 @@ async function run(argv) {
       throw error;
     }
   }
-  const nextDocsPage =
-    currentDocsPage === null
-      ? null
-      : await format(replaceBlock(currentDocsPage, renderDocsTable(reports)), docsPagePath);
+  let nextDocsPage = null;
+  if (currentDocsPage !== null) {
+    const { version } = JSON.parse(await fs.readFile(packageJsonPath, 'utf8'));
+    let docsPage = replaceBlock(currentDocsPage, renderDocsTable(reports), docsPagePath);
+    docsPage = replaceBlock(docsPage, renderDocsAbout(version), docsPagePath, 'scorecard-about');
+    docsPage = replaceBlock(docsPage, renderDocsRollup(totals), docsPagePath, 'scorecard-rollup');
+    nextDocsPage = await format(docsPage, docsPagePath);
+  }
 
   const nextChecklist = await format(renderManualChecklist(reports), checklistPath);
   let currentChecklist = null;
