@@ -373,6 +373,24 @@ describe('enhanceDensity', () => {
     expect(Object.keys(rootVars).some((name) => name.startsWith('---'))).to.equal(false);
   });
 
+  test('an rtl theme mirrors the var-based inline transforms itself', () => {
+    // The rtl stylis plugin flips numeric translate() literals only, so these
+    // carry the sign for the theme direction.
+    const rtl = enhanceDensity(createTheme({ direction: 'rtl' }));
+    const ltr = enhanceDensity(createTheme());
+
+    expect(variantStyle(rtl, 'MuiInputLabel', { variant: 'outlined' }).transform).to.equal(
+      'translate(calc(-1 * var(--_inlinePad)), var(--_restY)) scale(1)',
+    );
+    expect(variantStyle(ltr, 'MuiInputLabel', { variant: 'outlined' }).transform).to.equal(
+      'translate(calc(1 * var(--_inlinePad)), var(--_restY)) scale(1)',
+    );
+    const checked = (theme: ReturnType<typeof enhanceDensity>) =>
+      JSON.stringify((theme.components as any).MuiSwitch.styleOverrides.switchBase);
+    expect(checked(rtl)).to.include('translateX(calc(-1 * (var(--_width)');
+    expect(checked(ltr)).to.include('translateX(calc(1 * (var(--_width)');
+  });
+
   test('the mounted spacing rebuild still resolves sx steps', () => {
     // CssVarsProvider swaps `theme.spacing` for `theme.generateSpacing()` on
     // mount — mimic that swap and run the sx transform against it.

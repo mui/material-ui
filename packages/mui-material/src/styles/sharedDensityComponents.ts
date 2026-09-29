@@ -123,6 +123,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   const iconLarge = `calc(${iconSize} + 4px)`;
   const inputMediumPadBlock = `calc((${touchTarget} - 1lh) / 2)`;
   const inputSmallPadBlock = `calc((${touchTarget} - ${spacing('xxSmall')} - 1lh) / 2)`;
+  // The rtl stylis plugin only mirrors numeric translate() literals, so the
+  // var-based inline offsets carry their own sign.
+  const inlineSign = enhanced.direction === 'rtl' ? -1 : 1;
   const sharedCheckboxRadio = {
     padding: 0,
     width: touchTarget,
@@ -572,15 +575,21 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
       {
         props: { variant: 'filled' },
-        style: { transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)' },
+        style: {
+          transform: `translate(calc(${inlineSign} * var(--_inlinePad)), var(--_restY)) scale(1)`,
+        },
       },
       {
         props: { variant: 'filled', shrink: true },
-        style: { transform: 'translate(var(--_inlinePad), var(--_shrinkY)) scale(0.75)' },
+        style: {
+          transform: `translate(calc(${inlineSign} * var(--_inlinePad)), var(--_shrinkY)) scale(0.75)`,
+        },
       },
       {
         props: { variant: 'outlined' },
-        style: { transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)' },
+        style: {
+          transform: `translate(calc(${inlineSign} * var(--_inlinePad)), var(--_restY)) scale(1)`,
+        },
       },
       {
         props: { variant: 'outlined', shrink: true },
@@ -735,8 +744,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           [`& .${switchClasses.switchBase}`]: {
             padding: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
             [`&.${switchClasses.checked}`]: {
-              transform:
-                'translateX(calc(var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight))))',
+              transform: `translateX(calc(${inlineSign} * (var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight)))))`,
             },
           },
         },
@@ -755,8 +763,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       // (0 when touch <= height).
       left: 'calc((var(--_height) - var(--_touchSize)) / 2)',
       [`&.${switchClasses.checked}`]: {
-        transform:
-          'translateX(calc(var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight))))',
+        transform: `translateX(calc(${inlineSign} * (var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight)))))`,
       },
     },
     'switchBase',
