@@ -387,7 +387,7 @@ function renderDocsAbout(version) {
   return [
     '| Field | Value |',
     '| :---- | :---- |',
-    '| Product | Material UI (`@mui/material`) |',
+    '| Product | Material UI (`@mui/material`) |',
     '| Product type | React component library (software) |',
     `| Version assessed | \`@mui/material\` v${version} |`,
     '| Vendor | MUI |',
