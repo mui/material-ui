@@ -4,16 +4,15 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 23    |
-| ⚠️ Partially Supports | 2     |
+| ✅ Supports           | 24    |
+| ⚠️ Partially Supports | 1     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 30    |
 | 🚩 Flagged            | 2/25  |
 
 ## Known gaps
 
-- ⚠️ **1.4.11 Non-text Contrast.** The default dot and circle clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 (the `CustomizedRadios` unchecked circle is about 1.1:1 against the page).
-- ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the focus ripple, leaving none unless the author adds `.Mui-focusVisible` styling.
+- ⚠️ **1.4.11 Non-text Contrast.** The default dot and circle clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` (without the `focusVisible` theme ring) or custom icons can drop below 3:1 (the `CustomizedRadios` unchecked circle is about 1.1:1 against the page).
 
 ## Success criteria
 
@@ -192,17 +191,18 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.7 Focus Visible · AA
 
-`⚠️ Partially Supports` · `● Component`
+`✅ Supports` · `◐ Shared`
 
 - The focus ripple serves as focus visible indicator. Covered by a Playwright test that compares the control focused and unfocused.
 - `disableRipple` or `disableFocusRipple` removes the focus indicator (the focus ripple), relying on the author to add it with `.Mui-focusVisible` styles.
+- With `focusVisible: true` on the theme, keyboard focus draws an outline ring that does not depend on the ripple (see [Focus visible](https://mui.com/material-ui/customization/focus-visible/)). The indicator stays visible under `disableRipple` and `disableFocusRipple`. Removing the ripple without the ring is the author's choice.
 
 **Manual testing steps**
 
 1. Press <kbd>Tab</kbd> to a default `<Radio />` and confirm a visible focus indicator appears.
 2. Click with the mouse and confirm the indicator is keyboard-only.
 
-**Pass:** every keyboard-focused radio shows a visible indicator, including `disableRipple` via author-supplied styles.
+**Pass:** every keyboard-focused radio shows a visible indicator. Under `disableRipple`, the indicator comes from the `focusVisible` theme ring or from author styles.
 
 #### 4.1.2 Name, Role, Value · A
 

@@ -4,8 +4,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 23    |
-| ⚠️ Partially Supports | 2     |
+| ✅ Supports           | 24    |
+| ⚠️ Partially Supports | 1     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 30    |
 | 🚩 Flagged            | 3/25  |
@@ -13,7 +13,6 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 ## Known gaps
 
 - ⚠️ **1.4.11 Non-text Contrast.** The default checkmark icons clear 3:1 (`warning` is the tightest at 3.11:1). The keyboard focus indicator is untested. `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 — a faint custom unchecked box can be about 1.1:1 against the page.
-- ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple). None remains unless the author adds `.Mui-focusVisible` styling or enables the `theme.focusVisible` ring, which draws on the icon and does not depend on the ripple.
 
 ## Success criteria
 
@@ -191,18 +190,19 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.7 Focus Visible · AA
 
-`⚠️ Partially Supports` · `● Component`
+`✅ Supports` · `◐ Shared`
 
 - `ButtonBase` removes the user-agent outline (`outline: 0`). In the default configuration keyboard focus adds the `.Mui-focusVisible` class plus a centered focus ripple, so an indicator is shown. Covered by a Playwright test that compares the control focused and unfocused.
 - `disableRipple` or `disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styles (for example, a 2px outline).
+- With `focusVisible: true` on the theme, keyboard focus draws an outline ring that does not depend on the ripple (see [Focus visible](https://mui.com/material-ui/customization/focus-visible/)). The indicator stays visible under `disableRipple` and `disableFocusRipple`. Removing the ripple without the ring is the author's choice.
 
 **Manual testing steps**
 
 1. Press <kbd>Tab</kbd> to a default `<Checkbox />` and confirm a visible focus indicator appears.
-2. Press <kbd>Tab</kbd> to a `<Checkbox disableRipple />` (or `disableFocusRipple`) with no custom styles and confirm none appears.
+2. With `focusVisible: true` on the theme, press <kbd>Tab</kbd> to a `<Checkbox disableRipple />` (or `disableFocusRipple`) and confirm the ring appears on the icon.
 3. Click with the mouse and confirm the indicator is keyboard-only.
 
-**Pass:** every keyboard-focused checkbox shows a visible indicator, including `disableRipple` via author-supplied styles. Today a bare `disableRipple` checkbox shows none.
+**Pass:** every keyboard-focused checkbox shows a visible indicator. Under `disableRipple`, the indicator comes from the `focusVisible` theme ring or from author styles.
 
 #### 3.3.2 Labels or Instructions · A
 
