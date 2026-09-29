@@ -27,7 +27,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "dependencies": {
-    "@babel/runtime": "^8.0.0"
+    "@babel/runtime": "^8.0.5"
   },
   "peerDependencies": {
     "@mui/material": "workspace:^",
