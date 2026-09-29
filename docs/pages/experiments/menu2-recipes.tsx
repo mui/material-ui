@@ -119,18 +119,6 @@ const MenuTooltip = React.forwardRef<
   );
 });
 
-function DisabledTooltip(props: { title: string; children: React.ReactElement }) {
-  const { title, children } = props;
-
-  return (
-    <Tooltip {...horizontalTooltipProps} title={title} describeChild>
-      {/* Disabled menu items need a wrapper for pointer events. This means aria-describedby
-          is attached to the wrapper, not the disabled menuitem itself. */}
-      <span>{children}</span>
-    </Tooltip>
-  );
-}
-
 function Menu2Demo({ settings }: { settings: MenuSettings }) {
   const handleItemClick = React.useCallback((event: React.MouseEvent<HTMLElement>) => {
     // eslint-disable-next-line no-console
@@ -293,12 +281,12 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
       >
         <Menu2Item>Make a copy</Menu2Item>
       </MenuTooltip>
-      <DisabledTooltip title="Import is disabled while offline">
+      <MenuTooltip title="Import is disabled while offline">
         <Menu2Item disabled>Import from Drive</Menu2Item>
-      </DisabledTooltip>
-      <DisabledTooltip title="Sharing is unavailable in preview">
+      </MenuTooltip>
+      <MenuTooltip title="Sharing is unavailable in preview">
         <Menu2Item disabled>Share with people</Menu2Item>
-      </DisabledTooltip>
+      </MenuTooltip>
       <Menu2Separator />
 
       <Menu2Submenu
@@ -315,9 +303,9 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
           <MenuTooltip title="Display comments in the document">
             <Menu2CheckboxItem defaultChecked>Comments</Menu2CheckboxItem>
           </MenuTooltip>
-          <DisabledTooltip title="Page breaks are locked in published view">
+          <MenuTooltip title="Page breaks are locked in published view">
             <Menu2CheckboxItem disabled>Page breaks</Menu2CheckboxItem>
-          </DisabledTooltip>
+          </MenuTooltip>
         </Menu2Group>
 
         <Menu2Separator />
@@ -328,11 +316,11 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
             <MenuTooltip title="Use the available viewport width">
               <Menu2RadioItem value="fit">Fit</Menu2RadioItem>
             </MenuTooltip>
-            <DisabledTooltip title="Custom zoom is unavailable in preview">
+            <MenuTooltip title="Custom zoom is unavailable in preview">
               <Menu2RadioItem value="custom" disabled>
                 Custom
               </Menu2RadioItem>
-            </DisabledTooltip>
+            </MenuTooltip>
           </Menu2RadioGroup>
         </Menu2Group>
       </Menu2Submenu>
@@ -412,6 +400,7 @@ function Menu2ContextMenuRecipe() {
         lacinia tellus a libero volutpat maximus.
       </Typography>
       <Menu2
+        aria-label="Context actions"
         open={open}
         onOpenChange={handleOpenChange}
         anchor={anchor ?? undefined}
@@ -512,6 +501,10 @@ export default function Menu2Experiment() {
               Material UI Tooltip adds descriptions to menu items. Hover over or focus Make a copy
               to see an image and paragraphs with bold and italic text. Tooltip content has no
               links, buttons, or other controls.
+            </p>
+            <p>
+              Use the arrow keys to focus a disabled item and read its description. Disabled items
+              do not receive pointer events, so their tooltips open on keyboard focus only.
             </p>
             <Menu2WithTooltipsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
           </section>

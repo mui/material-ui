@@ -85,7 +85,7 @@ The classic `Menu` keeps its API. Classic and successor items share `MenuItemBas
 - **Dependency:** make `@base-ui/react` a direct dependency of `@mui/material`. Review version updates rather than auto-merge them. Test the upstream states used by the integration, including checked indicators, starting and ending transitions, and resolved placement.
 - **Theme state:** keep `Mui-*` classes and `ownerState` as the Material customization contract. All item parts resolve their root slot from the live Base UI state, so slot callbacks and theme variants receive the highlighted state and, where applicable, the checked, open, or closing state. Collapsed popup slot callbacks receive resolved public props, not live uncontrolled open state. Internal animation and placement styles can use Base UI attributes.
 - **API boundary:** explicitly pick the forwarded root, trigger, and positioner props. New upstream props require API and routing review. This is not complete type isolation: changes to an exposed upstream type still reach Material UI. Preserve Base UI's cancelable `onOpenChange(open, eventDetails)`; checkbox items and radio groups use `onChange(event, value, eventDetails)`.
-- **Tooling and tests:** use normal theme registration, API generation, and `describeConformance`. Test behavior differences and the integration boundary as well as the individual parts. All 13 public components have conformance suites. The collapsed containers use their portal wrappers as the root; interaction tests query the menu surface.
+- **Tooling and tests:** use normal theme registration, API generation, and `describeConformance`. Test behavior differences and the integration boundary as well as the individual parts. All 13 public components have conformance suites. The collapsed containers use their positioned elements as the root; interaction tests query the menu surface.
 
 ### API shape: collapsed popup, explicit submenu trigger
 
@@ -115,18 +115,19 @@ For the classic controlled pattern, omit `trigger` and use `open` and `anchor`. 
 
 The root theme key is `MuiMenu2`; the submenu uses `MuiMenu2Submenu`. Popup components stay internal, but their class hooks are exported.
 
-| Target                        | Top-level props                                    | Slot         |
-| :---------------------------- | :------------------------------------------------- | :----------- |
-| Portal wrapper                | `ref`, `className`, `style`, `sx`, HTML attributes | `root`       |
-| Positioned element            | Positioning props; carries `theme.zIndex.modal`    | `positioner` |
-| Paper surface (`role="menu"`) | `elevation`, event handlers                        | `paper`      |
-| Presentational list           | None                                               | `list`       |
-| Animation                     | `transitionDuration`                               | `transition` |
-| Optional root-menu backdrop   | None                                               | `backdrop`   |
+| Target                        | Top-level props                                                                  | Slot         |
+| :---------------------------- | :------------------------------------------------------------------------------- | :----------- |
+| Positioned element            | `ref`, `className`, `style`, `sx`, positioning props, other HTML attributes      | `root`       |
+| Paper surface (`role="menu"`) | `elevation`, event handlers, `aria-label`, `aria-labelledby`, `aria-describedby` | `paper`      |
+| Presentational list           | None                                                                             | `list`       |
+| Animation                     | `transitionDuration`                                                             | `transition` |
+| Optional root-menu backdrop   | None                                                                             | `backdrop`   |
 
-Use `slotProps.paper` for menu `aria-*` attributes and the surface ref. Each slot's ref targets its own element. A `styled(Menu2)` class attaches to the wrapper. Root slot `sx` takes precedence over top-level `sx` for conflicting properties.
+The portal stays internal; `container` and `keepMounted` control it. The root carries `theme.zIndex.modal`. A `styled(Menu2)` class attaches to this positioned element. Root slot `sx` takes precedence over top-level `sx` for conflicting properties. Each slot's ref targets its own element; use `slotProps.paper.ref` for the surface.
 
-Event handlers target the popup because Base UI renders the portal wrapper and its content as React siblings. Handlers attached only to the wrapper do not receive the popup's React events. Replacing a slot changes its rendered element, not the underlying Base UI provider.
+Top-level label and description attributes reach the menu surface. Matching `slotProps.paper` attributes take precedence. An explicit `aria-labelledby` takes precedence over `aria-label`; either replaces the inferred trigger name. Use `slotProps.paper` for other menu `aria-*` attributes.
+
+Top-level event handlers target the popup, including navigation keys that Base UI stops before they reach the positioned root. Handlers in `slotProps.root` observe only events that reach that element. Replacing a slot changes its rendered element, not the underlying Base UI provider.
 
 #### Benchmark results
 
@@ -186,7 +187,7 @@ Submenus, checkbox and radio items with indicators, labeled groups, a supplied t
 
 The experiment implements the API above, shared styles, theme registration, RTL integration, live item state, ref composition, and Grow transitions. Tests cover conformance and the main interaction paths, including controlled state, canceled changes, nested Escape, and menus without a trigger.
 
-The playground compares classic Menu and Menu2, focus indicators, transition choices, and reduced motion. These experiments do not replace public component demos or API docs. The API generator still skips the `Unstable_Menu2` modules until docs registration is complete.
+The playground compares classic Menu and Menu2, focus indicators, transition choices, and reduced motion. [Public demos](/material-ui/react-menu2/) and a [migration guide](/material-ui/migration/upgrade-to-menu-v2/) are now available. The API generator still skips the `Unstable_Menu2` modules; API registration and generation remain release work.
 
 Remaining release work is listed once in the rollout plan.
 
@@ -222,7 +223,7 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 
 3. ✅ **Other defaults:** retain Base UI behavior with the documented Material presentation choices.
 
-4. ✅ **SSR, client directive, and refs:** public modules have `'use client'`. The trigger can render on the server, but the portal popup is client-rendered, including with `defaultOpen` or `keepMounted`. Caller-rendered parts have polymorphic refs; collapsed roots use the portal wrapper.
+4. ✅ **SSR, client directive, and refs:** public modules have `'use client'`. The trigger can render on the server, but the portal popup is client-rendered, including with `defaultOpen` or `keepMounted`. Caller-rendered parts have polymorphic refs; collapsed roots use the positioned element.
 
 5. ✅ **Base UI API exposure:** explicitly pick supported root and positioning props. Detached triggers (`handle`, `triggerId`, `defaultTriggerId`, and `Menu.createHandle`) and horizontal `orientation` are outside this API. Upstream changes to exposed types still require review.
 
@@ -244,11 +245,8 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 1. **Review the proposal:** the benchmark and API experiment are ready for maintainer feedback.
 2. **Prepare an unstable release:** target a v9 minor release after review.
    - Require a Base UI release with two merged fixes: the [menu tree fix](https://github.com/mui/base-ui/pull/5645) and the [transition state fix for retained menus](https://github.com/mui/base-ui/pull/5738). Without the second fix, an open update can reach the popup before its starting state, which starts Grow twice in Firefox. Base UI 1.8.0 has neither fix. The local pnpm patch fixes both issues but does not reach applications that install `@mui/material`. Remove the patch after a release includes both fixes, and keep the regression tests.
-   - Register public demos, remove the Menu2 API-generator skip, then generate and review PropTypes and API docs. Public demos are separate work.
-   - Add migration guidance for imports, theme keys, trigger contracts, customization targets, and behavior differences.
-     Give these changes dedicated sections in the public migration guide, not just prop-table notes:
-     - **Pointer-open focus:** focus starts on the popup, not an item. Explain the difference from the classic Menu and the APG pattern, and the lack of a public initial-focus override.
-     - **Scroll locking:** `disableScrollLock` has no independent equivalent. Explain that `modal={false}` also permits outside interaction, and include the touch and hover exceptions described above.
+   - Complete API registration, remove the Menu2 API-generator skip, then generate and review PropTypes and API docs.
+   - Keep the public demos and migration guide aligned with the final API and behavior decisions.
    - Validate accessibility in open and nested menus. Record known inherited gaps rather than treating shared styles as proof of compliance.
    - Refresh bundle measurements and run release checks, including browser and visual regressions. Historical results do not validate the release revision.
 3. **Stabilize after feedback:** remove `Unstable_` when the API settles. Replacing the classic `Menu` requires a separate migration and release decision.
@@ -346,7 +344,7 @@ This example follows the system preference. The playground also shows the theme 
 
 | Classic Menu                                            | New equivalent                                     | Notes                                        |
 | :------------------------------------------------------ | :------------------------------------------------- | :------------------------------------------- |
-| `root`, `paper`, `list`, `transition`, `backdrop` slots | Same names, plus `positioner`                      | Backdrop is available only on the root menu. |
+| `root`, `paper`, `list`, `transition`, `backdrop` slots | Same names; `root` is the positioned element       | Backdrop is available only on the root menu. |
 | `elevation`                                             | Same prop, default 8                               | Forwarded to Paper.                          |
 | Paper viewport height limit                             | `min(calc(100vh - 96px), var(--available-height))` | Also respects available collision space.     |
 | `BackdropProps`                                         | `slotProps.backdrop`                               | Backdrop remains opt-in.                     |

@@ -146,27 +146,30 @@ With `slots.transition` set to `null`, the menu surface has the `data-starting-s
 
 ### 6. Update the items
 
-| Menu                                                               | Menu v2                                 | Notes                                                             |
-| :----------------------------------------------------------------- | :-------------------------------------- | :---------------------------------------------------------------- |
-| `dense`, `disableGutters`, `divider`, `disabled`                   | Same                                    | Unchanged.                                                        |
-| `disableRipple`                                                    | Same                                    | The item root is a `ButtonBase`, so items ripple as before.       |
-| `selected`                                                         | Same, but visual only                   | Use checkbox or radio items for real selection state.             |
-| `<Divider />` between items                                        | `Menu2Separator`                        | Controls its own margins.                                         |
-| `ListSubheader`                                                    | `Menu2Group` + `Menu2GroupLabel`        | Adds the correct ARIA relationship.                               |
-| `href` / `LinkComponent`                                           | `Menu2LinkItem`                         | Renders a real `<a role="menuitem">`.                             |
-| `role="menuitemcheckbox"` + `selected`                             | `Menu2CheckboxItem`                     | Reports changes through `onChange(event, checked, eventDetails)`. |
-| `role="menuitemradio"` + `selected`                                | `Menu2RadioGroup` + `Menu2RadioItem`    | Reports changes through `onChange(event, value, eventDetails)`.   |
-| `autoFocus` (item)                                                 | Removed                                 | The component controls the initial highlight.                     |
-| `focusVisibleClassName`, `onFocusVisible`, `action.focusVisible()` | `highlighted` class and data attributes | Style with CSS.                                                   |
-| `MenuList.disableListWrap`                                         | `loopFocus` (default `true`)            | The value is inverted.                                            |
-| `MenuList.dense`, `MenuList.disablePadding`                        | `slotProps.list`                        | The `list` slot is a `List`, so the props are unchanged.          |
-| `MenuList.autoFocus` / `autoFocusItem` / `variant`                 | Removed                                 | Internal or legacy.                                               |
+| Menu                                                               | Menu v2                              | Notes                                                                                                      |
+| :----------------------------------------------------------------- | :----------------------------------- | :--------------------------------------------------------------------------------------------------------- |
+| `dense`, `disableGutters`, `divider`                               | Same                                 | Unchanged.                                                                                                 |
+| `disabled`                                                         | Same on supported item parts         | Disabled items stay focusable. `Menu2LinkItem` does not support this prop.                                 |
+| `disableRipple`                                                    | Same                                 | The item root is a `ButtonBase`, so items ripple as before.                                                |
+| `selected`                                                         | Same, but visual only                | Use checkbox or radio items for real selection state.                                                      |
+| `<Divider />` between items                                        | `Menu2Separator`                     | Controls its own margins.                                                                                  |
+| `ListSubheader`                                                    | `Menu2Group` + `Menu2GroupLabel`     | Adds the correct ARIA relationship.                                                                        |
+| `href` / `LinkComponent`                                           | `Menu2LinkItem`                      | Renders a real `<a role="menuitem">`.                                                                      |
+| `role="menuitemcheckbox"` + `selected`                             | `Menu2CheckboxItem`                  | Reports changes through `onChange(event, checked, eventDetails)`.                                          |
+| `role="menuitemradio"` + `selected`                                | `Menu2RadioGroup` + `Menu2RadioItem` | Reports changes through `onChange(event, value, eventDetails)`.                                            |
+| `autoFocus` (item)                                                 | Removed                              | The component controls the initial highlight.                                                              |
+| `focusVisibleClassName`, `onFocusVisible`, `action.focusVisible()` | No dedicated equivalents             | Use state classes for styles. `highlighted` includes pointer navigation; it is not keyboard focus-visible. |
+| `MenuList.disableListWrap`                                         | `loopFocus` (default `true`)         | The value is inverted.                                                                                     |
+| `MenuList.dense`, `MenuList.disablePadding`                        | `slotProps.list`                     | The `list` slot is a `List`, so the props are unchanged.                                                   |
+| `MenuList.autoFocus` / `autoFocusItem` / `variant`                 | Removed                              | Internal or legacy.                                                                                        |
 
 Composed list primitives still work inside items, so `ListItemIcon`, `ListItemText`, and `Typography` carry over unchanged. `ListItemText inset` still aligns with the icon column.
 
+Checkbox items and radio groups pass a native event to `onChange`, not a React synthetic event. Read the checked state or value from the second argument. The event target can be a descendant of the item.
+
 ### 7. Update the theme keys
 
-Menu v2 registers two theme keys for the menu surfaces. `MuiMenu2` has the slots `root`, `backdrop`, `positioner`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `positioner`, `paper`, and `list`. The item parts have their own keys, such as `MuiMenu2Item`.
+Menu v2 registers two theme keys for the menu surfaces. `MuiMenu2` has the slots `root`, `backdrop`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `paper`, and `list`. The item parts have their own keys, such as `MuiMenu2Item`.
 
 The trigger has no theme key, because you supply the element. Theme its own component instead, or style the `.MuiMenu2Trigger-root` class.
 
@@ -191,17 +194,18 @@ The trigger has no theme key, because you supply the element. Theme its own comp
 
 Every element has its own class, such as `.MuiMenu2Item-root`, so `sx` and `styleOverrides` can reach each node.
 
-The slots are `root`, `backdrop`, `positioner`, `paper`, `list`, and `transition`. There's no `trigger` slot: `slotProps.trigger` accepts only `nativeButton`, `className`, and `ref`. `elevation` stays a top-level prop for the `paper` slot, with the default 8.
+The slots are `root`, `backdrop`, `paper`, `list`, and `transition`. There's no `trigger` slot: `slotProps.trigger` accepts only `nativeButton`, `className`, and `ref`. `elevation` stays a top-level prop for the `paper` slot, with the default 8.
 
-`className`, `style`, `sx`, and the other HTML attributes go to the root element, the same as before. Event handlers go to the menu surface.
+`ref`, `className`, `style`, and `sx` now target the positioned root element, not a full-screen Modal or the portal. Event handlers and top-level `aria-label`, `aria-labelledby`, and `aria-describedby` target the menu surface. Other HTML attributes go to the root. Move menu naming attributes from `slotProps.list` to the top level or `slotProps.paper`; the list is now presentational. Use `slotProps.paper.ref` for the menu surface.
 
 ### 8. Check the removed props
 
 | Removed                                                                                  | What to do instead                                                                                       |
 | :--------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------- |
 | `variant="selectedMenu"`, `autoFocus`, `disableAutoFocusItem`                            | Use checkbox or radio items to show a current value. The component controls the initial highlight.       |
-| `disableAutoFocus`, `disableEnforceFocus`, `disableEscapeKeyDown`                        | Use `modal`. These escape hatches reduce accessibility.                                                  |
-| `disableRestoreFocus`                                                                    | Use `finalFocus` to set an explicit focus target.                                                        |
+| `disableAutoFocus`, `disableEnforceFocus`                                                | No independent equivalents. `modal` controls outside interaction, not the initial focus policy.          |
+| `disableEscapeKeyDown`                                                                   | Cancel `onOpenChange` when `eventDetails.reason === 'escape-key'`.                                       |
+| `disableRestoreFocus`                                                                    | Use `finalFocus={false}` to disable focus restoration.                                                   |
 | `disableScrollLock`                                                                      | Use `modal={false}`, which also keeps the rest of the document interactive. There's no exact equivalent. |
 | `disablePortal`                                                                          | No equivalent. Menu v2 always renders in a portal. Use `container` to choose the portal container.       |
 | `hideBackdrop`                                                                           | No longer necessary. The backdrop is opt-in through the `backdrop` slot.                                 |
@@ -222,7 +226,17 @@ Most of these changes bring the menu in line with the [WAI-ARIA menu pattern](ht
 | Tab while open         | Closes, and focus returns to the trigger        | Closes, and focus moves to the next element                |
 | Submenus               | Not supported                                   | Open on hover after 100ms, and on click                    |
 
-Escape, scroll locking, and the default placement (below the trigger, start aligned) are unchanged.
+At the root level, Escape closes the menu. The default placement stays below the trigger, aligned to the start.
+
+### Scroll locking
+
+`modal` defaults to `true`, which locks page scrolling for a menu opened by a mouse or keyboard. Menus opened by hover are non-modal. On touch devices, outside taps are blocked, but page scrolling can stay available unless the popup spans nearly the full viewport width.
+
+There is no independent equivalent of `disableScrollLock`. Setting `modal={false}` also permits interaction outside the menu.
+
+### Retained menus in dialogs
+
+A Menu2 with `keepMounted` inside a kept-mounted Material Dialog can remain under `aria-hidden="true"` with the default portal container. The visible menu can then be hidden from assistive technology. Leave Menu2's `keepMounted` disabled in this configuration. [Base UI issue #5577](https://github.com/mui/base-ui/issues/5577) describes a related portal limitation, not this exact composition.
 
 ### The initial highlight
 

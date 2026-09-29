@@ -39,6 +39,7 @@ export default function ContextMenu2() {
         amet vulputate eget, porta semper ligula.
       </Typography>
       <Menu2
+        aria-label="Context actions"
         open={anchor !== null}
         onOpenChange={(open) => {
           if (!open) {

@@ -142,6 +142,8 @@ For a single choice in a set, put `Menu2RadioItem` components in a `Menu2RadioGr
 
 Both components report changes with `onChange(event, value, eventDetails)`. For an uncontrolled item or group, use `defaultChecked` or `defaultValue`. To replace the indicator, pass your own component to `slots.indicator`.
 
+The event is native. Read the checked state or value from the second argument, not `event.target`, which can be a descendant of the item.
+
 :::info
 Use radio items to show a current value. The `selected` prop still exists on `Menu2Item`, but it only changes the appearance.
 :::
@@ -165,6 +167,8 @@ The parts compose freely. This menu combines checkbox items with shortcut hints,
 {{"demo": "LinkItemsMenu2.js"}}
 
 A link item doesn't close the menu on click by default. Set `closeOnClick` to close the menu, for example with client-side routing.
+
+Unlike a classic `MenuItem` with `href`, `Menu2LinkItem` does not support `disabled`.
 
 ## Positioned menu
 
@@ -208,6 +212,7 @@ Pass `open` and `onOpenChange` to control the open state. The trigger still sets
 Omit `trigger` and pass `anchor` to position the menu against an element that you control, the same as `anchorEl` in the current Menu. The menu can't connect to that element, so you do the wiring:
 
 - Add `aria-haspopup="menu"`, `aria-expanded`, and `aria-controls` to the element. Set the matching `id` on the menu with `slotProps.paper`.
+- Give the menu an accessible name with `aria-label` or `aria-labelledby`.
 - Pass `finalFocus` to return focus to the element when the menu closes.
 
 The [context menu](#context-menu) uses this pattern.
@@ -232,19 +237,19 @@ A menu with no trigger has no element to return focus to when it closes. Always 
 
 ## Customization
 
-`className`, `style`, `sx`, and the other HTML attributes go to the root element, which wraps the menu in the portal. This is the same as the current Menu. Event handlers go to the menu surface. Use a descendant selector or `slotProps.paper` to style the surface:
+`ref`, `className`, `style`, and `sx` target the positioned root element, which carries `theme.zIndex.modal`. The portal stays internal. Event handlers and the label and description attributes `aria-label`, `aria-labelledby`, and `aria-describedby` go to the menu surface. Other HTML attributes go to the root. Use a descendant selector or `slotProps.paper` to style the surface:
 
 {{"demo": "CustomizedMenu2.js"}}
 
-The slots are `root`, `backdrop`, `positioner`, `paper`, `list`, and `transition`. `elevation` is a top-level prop for the `paper` slot. Use `slotProps.paper` for `aria-*` attributes on the element with `role="menu"`.
+The slots are `root`, `backdrop`, `paper`, `list`, and `transition`. `elevation` is a top-level prop for the `paper` slot. Use `slotProps.paper` for other `aria-*` attributes and the ref on the element with `role="menu"`. Matching paper slot attributes take precedence over top-level attributes. An explicit `aria-labelledby` takes precedence over `aria-label`; either replaces the inferred trigger name.
 
-The trigger isn't a slot, because you supply the element. Style it directly. It has the `.MuiMenu2Trigger-root` class, and the `.MuiMenu2Trigger-open` class while the menu is open. `slotProps.trigger` accepts only `nativeButton`, `className`, and `ref`.
+The trigger isn't a slot, because you supply the element. Style it directly. It has the `.MuiMenu2Trigger-root` class, and the global `.Mui-open` class while the menu is open. Scope state selectors to the component, such as `.MuiMenu2Trigger-root.Mui-open`. `slotProps.trigger` accepts only `nativeButton`, `className`, and `ref`.
 
 :::warning
 While a menu or a submenu is open, Base UI renders hidden `span` elements next to its trigger. They keep the tab order and the accessibility tree correct. CSS sibling selectors (`+`, `~`, `:last-child`) near a trigger can match these elements. Style each part directly instead. The focus guards among them have a `data-base-ui-focus-guard` attribute.
 :::
 
-The theme has two keys for the menu surfaces. `MuiMenu2` has the slots `root`, `backdrop`, `positioner`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `positioner`, `paper`, and `list`. Each item part has its own key, such as `MuiMenu2Item`:
+The theme has two keys for the menu surfaces. `MuiMenu2` has the slots `root`, `backdrop`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `paper`, and `list`. Each item part has its own key, such as `MuiMenu2Item`:
 
 ```js
 const theme = createTheme({
@@ -264,13 +269,17 @@ const theme = createTheme({
 });
 ```
 
-The item parts have state classes, such as `.MuiMenu2Item-highlighted`, `.MuiMenu2CheckboxItem-checked`, and `.MuiMenu2SubmenuTrigger-open`. Slot callbacks and theme `variants` receive the same state.
+The item parts have state classes, such as `.MuiMenu2Item-highlighted`, `.Mui-checked`, and `.Mui-open`. Scope global state classes to the component, for example `.MuiMenu2CheckboxItem-root.Mui-checked` and `.MuiMenu2SubmenuTrigger-root.Mui-open`. Slot callbacks and theme style callbacks receive the live item state.
 
 ### Transitions
 
 The menu uses the `Grow` transition, the same as the current Menu. With the default `transitionDuration="auto"`, the duration depends on the height of the menu. Pass a different transition component to `slots.transition`, and its props to `slotProps.transition`:
 
 {{"demo": "FadeMenu2.js"}}
+
+Grow, Fade, and Zoom are tested. A custom transition must forward its child's props and ref, animate that same popup element, and add no DOM wrapper. The animation must start in time for Base UI to detect it. Test other transitions before use.
+
+Use `onOpenChangeComplete(open)` for completion, not the transition's `onEntered` or `onExited`. Base UI controls mounting and can unmount the transition before its completion timer fires. The adapter controls `in`, `appear`, `mountOnEnter`, and `unmountOnExit`.
 
 Set `transitionDuration={0}` to remove the animation. To animate with CSS, set `slots.transition` to `null`. The menu surface has the `data-starting-style` attribute while it enters and the `data-ending-style` attribute while it leaves:
 
@@ -289,7 +298,7 @@ Set `transitionDuration={0}` to remove the animation. To animate with CSS, set `
 >
 ```
 
-`Grow` and the other Material UI transitions follow [`theme.motion.reducedMotion`](/material-ui/customization/transitions/#reduced-motion).
+`Grow` and the other Material UI transitions follow [`theme.motion.reducedMotion`](/material-ui/customization/transitions/#reduced-motion). CSS animations need their own reduced-motion handling.
 
 ### Backdrop
 
