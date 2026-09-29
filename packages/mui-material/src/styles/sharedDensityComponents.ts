@@ -1,5 +1,5 @@
 import deepmerge from '@mui/utils/deepmerge';
-import type { Breakpoint } from '..';
+import type { Breakpoint } from '@mui/system';
 import type { Theme } from './createTheme';
 import type { EnhanceableTheme } from './densityScale';
 import switchClasses from '../Switch/switchClasses';
