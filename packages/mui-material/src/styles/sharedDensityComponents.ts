@@ -589,7 +589,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     ],
   });
   addRootOverride(enhanced.components, 'MuiFormGroup', {
-    columnGap: spacing('large'),
+    columnGap: spacing('medium'),
   });
   addRootOverride(enhanced.components, 'MuiFormLabel', {
     lineHeight: enhanced.typography?.body1?.lineHeight,
@@ -673,27 +673,19 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     paddingBlock: 0,
     height: 'var(--_size)',
     minWidth: 'var(--_size)',
+    paddingInline: `calc((var(--_size) - ${iconSize} - 2px) / 2)`, // 2px is the border
     variants: [
       {
         props: { size: 'small' },
-        style: {
-          '--_size': smallBox,
-          paddingInline: `calc((var(--_size) - ${iconSmall}) / 2 - 1px)`,
-        },
+        style: { '--_size': smallBox },
       },
       {
         props: { size: 'medium' },
-        style: {
-          '--_size': touchTarget,
-          paddingInline: `calc((var(--_size) - ${iconSize}) / 2 - 1px)`,
-        },
+        style: { '--_size': touchTarget },
       },
       {
         props: { size: 'large' },
-        style: {
-          '--_size': largeBox,
-          paddingInline: `calc((var(--_size) - ${iconLarge}) / 2 - 1px)`,
-        },
+        style: { '--_size': largeBox },
       },
     ],
   });
