@@ -115,6 +115,7 @@ import { ToggleButtonGroupClassKey } from '../ToggleButtonGroup';
 import { ToolbarClassKey } from '../Toolbar';
 import { TooltipClassKey } from '../Tooltip';
 import { TypographyClassKey } from '../Typography';
+import { NumberFieldClassKey } from '../NumberField';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -218,6 +219,7 @@ export interface ComponentNameToClassKey {
   MuiPagination: PaginationClassKey;
   MuiPaginationItem: PaginationItemClassKey;
   MuiPaper: PaperClassKey;
+  MuiNumberField: NumberFieldClassKey;
   MuiPopover: PopoverClassKey;
   MuiPopper: PopperClassKey;
   MuiRadio: RadioClassKey;
