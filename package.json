@@ -118,7 +118,7 @@
     "concurrently": "10.0.5",
     "cpy-cli": "7.0.0",
     "cross-env": "10.1.0",
-    "dotenv": "17.4.2",
+    "dotenv": "18.0.4",
     "es-toolkit": "1.52.0",
     "eslint": "10.10.0",
     "eslint-plugin-consistent-default-export-name": "0.0.15",
