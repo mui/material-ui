@@ -46,6 +46,31 @@ const useExternalPropsFromInputBase = [
   'value',
 ];
 
+// The public menus validate the props passed to the private popup.
+const useExternalPropsFromMenu2Popup = [
+  'align',
+  'alignOffset',
+  'anchor',
+  'arrowPadding',
+  'classes',
+  'className',
+  'collisionAvoidance',
+  'collisionBoundary',
+  'collisionPadding',
+  'container',
+  'disableAnchorTracking',
+  'elevation',
+  'finalFocus',
+  'keepMounted',
+  'positionMethod',
+  'side',
+  'sideOffset',
+  'sticky',
+  'style',
+  'sx',
+  'transitionDuration',
+];
+
 /**
  * A map of components and their props that should be documented
  * but are not used directly in their implementation.
@@ -64,6 +89,8 @@ const useExternalDocumentation: Record<string, '*' | readonly string[]> = {
   FilledInput: useExternalPropsFromInputBase,
   IconButton: ['disableRipple'],
   Input: useExternalPropsFromInputBase,
+  Menu2: useExternalPropsFromMenu2Popup,
+  Menu2Submenu: useExternalPropsFromMenu2Popup,
   MenuItem: ['dense'],
   OutlinedInput: useExternalPropsFromInputBase,
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],

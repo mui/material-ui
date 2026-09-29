@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import HTMLElementType from '@mui/utils/HTMLElementType';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import useEventCallback from '@mui/utils/useEventCallback';
 import Menu2SubmenuPopup, { Menu2SubmenuPopupProps } from '../Unstable_Menu2/Menu2SubmenuPopup';
@@ -147,9 +148,133 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
+   * How to align the popup relative to the specified side.
+   * @default 'start'
+   */
+  align: PropTypes.oneOf(['center', 'end', 'start']),
+  /**
+   * Additional offset along the alignment axis in pixels.
+   * @default 0
+   */
+  alignOffset: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  /**
+   * An element to position the popup against.
+   *
+   * By default, the popup is positioned against the submenu trigger.
+   */
+  anchor: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    HTMLElementType,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
+  /**
+   * Minimum distance to maintain between the arrow and the edges of the popup.
+   * @default 5
+   */
+  arrowPadding: PropTypes.number,
+  /**
    * The submenu items.
    */
   children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
+   * CSS class applied to the root element, which positions the menu.
+   */
+  className: PropTypes.string,
+  /**
+   * Determines how to handle collisions when positioning the popup.
+   */
+  collisionAvoidance: PropTypes.oneOfType([
+    PropTypes.shape({
+      align: PropTypes.oneOf(['flip', 'none', 'shift']),
+      fallbackAxisSide: PropTypes.oneOf(['end', 'none', 'start']),
+      side: PropTypes.oneOf(['flip', 'none']),
+    }),
+    PropTypes.shape({
+      align: PropTypes.oneOf(['none', 'shift']),
+      fallbackAxisSide: PropTypes.oneOf(['end', 'none', 'start']),
+      side: PropTypes.oneOf(['none', 'shift']),
+    }),
+  ]),
+  /**
+   * An element or a rectangle that delimits the area that the popup is confined to.
+   * @default 'clipping-ancestors'
+   */
+  collisionBoundary: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['clipping-ancestors']),
+    HTMLElementType,
+    PropTypes.arrayOf(HTMLElementType),
+    PropTypes.shape({
+      height: PropTypes.number.isRequired,
+      width: PropTypes.number.isRequired,
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired,
+    }),
+  ]),
+  /**
+   * Additional space to maintain from the edge of the collision boundary.
+   * @default 5
+   */
+  collisionPadding: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({
+      bottom: PropTypes.number,
+      left: PropTypes.number,
+      right: PropTypes.number,
+      top: PropTypes.number,
+    }),
+  ]),
+  /**
+   * The container element to portal the popup into.
+   */
+  container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    HTMLElementType,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
+  /**
+   * Whether to disable the popup from tracking layout shifts of its positioning anchor.
+   * @default false
+   */
+  disableAnchorTracking: PropTypes.bool,
+  /**
+   * The elevation of the menu surface.
+   * @default 8
+   */
+  elevation: PropTypes.number,
+  /**
+   * Determines the element to focus when the menu is closed.
+   */
+  finalFocus: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: HTMLElementType,
+    }),
+    PropTypes.bool,
+  ]),
+  /**
+   * Whether to keep the portal mounted in the DOM while the popup is hidden.
+   * @default false
+   */
+  keepMounted: PropTypes.bool,
+  /**
+   * Determines which CSS `position` property to use.
+   * @default 'absolute'
+   */
+  positionMethod: PropTypes.oneOf(['absolute', 'fixed']),
+  /**
+   * Which side of the anchor element to align the popup against.
+   * @default 'inline-end'
+   */
+  side: PropTypes.oneOf(['bottom', 'inline-end', 'inline-start', 'left', 'right', 'top']),
+  /**
+   * Distance between the anchor and the popup in pixels.
+   * @default 0
+   */
+  sideOffset: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   /**
    * The props used for each slot inside.
    */
@@ -169,6 +294,39 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
+  /**
+   * Whether to maintain the popup in the viewport after the anchor element was scrolled out of view.
+   * @default false
+   */
+  sticky: PropTypes.bool,
+  /**
+   * Inline styles applied to the root element, which positions the menu.
+   */
+  style: PropTypes.object,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   * Applied to the root element. Use `slotProps.paper.sx` for the menu surface.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * The transition duration in milliseconds, or separate enter and exit durations.
+   * Set to 'auto' for height-dependent Grow timing, or 0 to disable the transition.
+   * Ignored when slots.transition is null.
+   * @default 'auto'
+   */
+  transitionDuration: PropTypes.oneOfType([
+    PropTypes.oneOf(['auto']),
+    PropTypes.number,
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
+  ]),
   /**
    * The `Menu2SubmenuTrigger` that opens the submenu, optionally wrapped in a `Tooltip`.
    *
