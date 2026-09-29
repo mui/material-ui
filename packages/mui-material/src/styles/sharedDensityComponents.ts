@@ -130,12 +130,13 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     '& svg': { fontSize: iconSize },
     // Pull-in follows the label placement — the control sits at the row's
     // start for `end`, at its end for `start`; top/bottom center it, so no
-    // pull applies there.
+    // pull applies there. Written as a variable the label root reads, so the
+    // :has() specificity never competes with a user's margin on the label.
     [`.${formControlLabelClasses.labelPlacementEnd}:has(&)`]: {
-      marginLeft: `calc((${touchTarget} - ${iconSize}) / -2)`,
+      '--_labelMarginLeft': `calc((${touchTarget} - ${iconSize}) / -2)`,
     },
     [`.${formControlLabelClasses.labelPlacementStart}:has(&)`]: {
-      marginRight: `calc((${touchTarget} - ${iconSize}) / -2)`,
+      '--_labelMarginRight': `calc((${touchTarget} - ${iconSize}) / -2)`,
     },
     variants: [
       {
@@ -145,10 +146,10 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           height: smallBox,
           '& svg': { fontSize: iconSmall },
           [`.${formControlLabelClasses.labelPlacementEnd}:has(&)`]: {
-            marginLeft: `calc((${smallBox} - ${iconSmall}) / -2)`,
+            '--_labelMarginLeft': `calc((${smallBox} - ${iconSmall}) / -2)`,
           },
           [`.${formControlLabelClasses.labelPlacementStart}:has(&)`]: {
-            marginRight: `calc((${smallBox} - ${iconSmall}) / -2)`,
+            '--_labelMarginRight': `calc((${smallBox} - ${iconSmall}) / -2)`,
           },
         },
       },
@@ -629,7 +630,10 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiFormControlLabel', { margin: 0 });
+  addRootOverride(enhanced.components, 'MuiFormControlLabel', {
+    marginLeft: 'var(--_labelMarginLeft, 0px)',
+    marginRight: 'var(--_labelMarginRight, 0px)',
+  });
   addRootOverride(enhanced.components, 'MuiCheckbox', sharedCheckboxRadio);
   addRootOverride(enhanced.components, 'MuiRadio', sharedCheckboxRadio);
   // The floor sits on the `ol` (the centering flex row), not the nav root.
@@ -702,11 +706,15 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     width: 'var(--_width)',
     height: 'var(--_height)',
     padding: 'var(--_pad)',
+    // The label pull-in is written as a variable and read here, so the
+    // descendant rule never competes with a user margin on the Switch.
+    marginLeft: 'var(--_switchMarginLeft, 0px)',
+    marginRight: 'var(--_switchMarginRight, 0px)',
     [`.${formControlLabelClasses.labelPlacementEnd} &`]: {
-      marginLeft: 'var(--_offset)',
+      '--_switchMarginLeft': 'var(--_offset)',
     },
     [`.${formControlLabelClasses.labelPlacementStart} &`]: {
-      marginRight: 'var(--_offset)',
+      '--_switchMarginRight': 'var(--_offset)',
     },
     variants: [
       {

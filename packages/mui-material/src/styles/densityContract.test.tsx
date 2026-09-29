@@ -4,6 +4,7 @@ import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import Switch from '@mui/material/Switch';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -606,5 +607,60 @@ describe.skipIf(isJsdom())('density contract', () => {
         });
       });
     });
+  });
+});
+
+describe.skipIf(isJsdom())('density and user overrides', () => {
+  const { render } = createRenderer();
+  const theme = THEMES.get('medium')!;
+  const label = () => document.querySelector('[data-testid="label"]') as HTMLElement;
+
+  test('a control pulls its label in through the label root', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <FormControlLabel data-testid="label" control={<Checkbox />} label="a" />
+      </ThemeProvider>,
+    );
+    expect(parseFloat(getComputedStyle(label()).marginLeft)).to.equal(
+      -(DEFAULT_SIZING_PX.touchTarget - DEFAULT_SIZING_PX.iconSize) / 2,
+    );
+  });
+
+  test('sx on the label wins over the pull-in', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <FormControlLabel data-testid="label" sx={{ ml: 0 }} control={<Checkbox />} label="a" />
+      </ThemeProvider>,
+    );
+    expect(getComputedStyle(label()).marginLeft).to.equal('0px');
+  });
+
+  test('a styleOverrides margin on the label wins over the pull-in', () => {
+    const custom = enhanceDensity(
+      createTheme({
+        components: { MuiFormControlLabel: { styleOverrides: { root: { marginLeft: 4 } } } },
+      }),
+    );
+    render(
+      <ThemeProvider theme={custom}>
+        <FormControlLabel data-testid="label" control={<Checkbox />} label="a" />
+      </ThemeProvider>,
+    );
+    expect(getComputedStyle(label()).marginLeft).to.equal('4px');
+  });
+
+  test('a Switch inside a label keeps its offset and a user margin still wins', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <FormControlLabel data-testid="plain" control={<Switch />} label="a" />
+        <FormControlLabel data-testid="with-sx" control={<Switch sx={{ ml: 0 }} />} label="b" />
+      </ThemeProvider>,
+    );
+    // `data-testid` on a Switch lands on its inner SwitchBase, so read the root
+    // through the label.
+    const root = (id: string) =>
+      document.querySelector(`[data-testid="${id}"] .MuiSwitch-root`) as HTMLElement;
+    expect(parseFloat(getComputedStyle(root('plain')).marginLeft)).to.be.lessThan(0);
+    expect(getComputedStyle(root('with-sx')).marginLeft).to.equal('0px');
   });
 });
