@@ -40,7 +40,6 @@ function Menu2Composition() {
       finalFocus
       slots={{
         root: 'div',
-        positioner: 'div',
         paper: 'div',
         list: 'div',
       }}
@@ -170,7 +169,6 @@ createTheme({
       styleOverrides: {
         root: {},
         backdrop: {},
-        positioner: {},
         paper: {},
         list: {},
       },
@@ -189,7 +187,6 @@ createTheme({
       variants: [{ props: { open: true, disabled: false }, style: {} }],
       styleOverrides: {
         root: {},
-        positioner: {},
         paper: {},
         list: {},
       },
@@ -377,12 +374,26 @@ createTheme({
 <Menu2
   trigger={<button type="button">Open</button>}
   slotProps={{
-    // @ts-expect-error The root slot is the portal element. There is no portal slot.
+    // @ts-expect-error The portal is internal. Use top-level container and keepMounted.
     portal: { className: 'portal' },
   }}
 >
   <Menu2Item>Item</Menu2Item>
 </Menu2>;
+
+<Menu2
+  slots={{
+    // @ts-expect-error The positioner is the root slot, not a separate slot.
+    positioner: 'div',
+  }}
+/>;
+
+<Menu2Submenu
+  slotProps={{
+    // @ts-expect-error Configure positioning through the root slot.
+    positioner: {},
+  }}
+/>;
 
 <Menu2 trigger={<button type="button">Open</button>}>
   <Menu2Submenu

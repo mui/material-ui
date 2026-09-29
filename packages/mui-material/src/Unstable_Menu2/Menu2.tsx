@@ -33,9 +33,9 @@ export interface Menu2SlotProps extends NonNullable<Menu2PopupProps['slotProps']
  * component. `Pick` names each forwarded prop, so a prop that a later Base UI
  * version adds reaches neither the type nor the popup DOM until Menu2 supports
  * it. The mapped type also lets the proptypes generator resolve the members.
- * HTML attributes are forwarded to the root element, the same as the classic
- * Menu, and event handlers attach to the popup, where the events originate.
- * Use `slotProps.paper` for `aria-*` attributes on the `role="menu"` element.
+ * HTML attributes are forwarded to the positioned root. The accessible name,
+ * description, and event handlers attach to the popup with `role="menu"`.
+ * Use `slotProps.paper` for other attributes on the popup.
  */
 export interface Menu2Props
   // Not picked: `handle` needs `Menu.createHandle`, which Menu2 does not
@@ -88,7 +88,7 @@ export interface Menu2Props
  */
 const Menu2 = React.forwardRef(function Menu2(
   props: Menu2Props,
-  // The public ref targets the root element, the portal wrapper. Use
+  // The public ref targets the positioned root element. Use
   // slotProps.paper.ref for the surface.
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
@@ -203,7 +203,6 @@ Menu2.propTypes /* remove-proptypes */ = {
     backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    positioner: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     trigger: PropTypes.oneOfType([
@@ -221,7 +220,6 @@ Menu2.propTypes /* remove-proptypes */ = {
     backdrop: PropTypes.elementType,
     list: PropTypes.elementType,
     paper: PropTypes.elementType,
-    positioner: PropTypes.elementType,
     root: PropTypes.elementType,
     transition: PropTypes.func,
   }),

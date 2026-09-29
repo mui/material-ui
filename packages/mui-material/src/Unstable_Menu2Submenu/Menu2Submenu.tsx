@@ -14,9 +14,9 @@ export interface Menu2SubmenuSlotProps extends NonNullable<Menu2SubmenuPopupProp
 /**
  * The submenu counterpart of `Menu2`, with the same shape: a prop-only root,
  * the trigger passed as a prop, and the children forming the popup.
- * HTML attributes are forwarded to the root element, the same as the classic
- * Menu, and event handlers attach to the popup, where the events originate.
- * Use `slotProps.paper` for `aria-*` attributes on the `role="menu"` element.
+ * HTML attributes are forwarded to the positioned root. The accessible name,
+ * description, and event handlers attach to the popup with `role="menu"`.
+ * Use `slotProps.paper` for other attributes on the popup.
  */
 export interface Menu2SubmenuProps
   // `Pick` names each prop the submenu forwards, the same way `Menu2` does.
@@ -157,7 +157,6 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
     backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    positioner: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
@@ -167,7 +166,6 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     list: PropTypes.elementType,
     paper: PropTypes.elementType,
-    positioner: PropTypes.elementType,
     root: PropTypes.elementType,
     transition: PropTypes.func,
   }),

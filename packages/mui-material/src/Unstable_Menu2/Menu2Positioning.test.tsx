@@ -22,7 +22,7 @@ describe.skipIf(isJsdom())('Menu2 animation origin', () => {
                 transitionDuration={300}
                 onOpenChangeComplete={completed}
                 slotProps={{
-                  positioner: { dir: direction },
+                  root: { dir: direction },
                   paper: { sx: { width: 200 } },
                 }}
                 trigger={

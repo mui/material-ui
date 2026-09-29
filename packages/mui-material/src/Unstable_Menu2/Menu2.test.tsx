@@ -39,16 +39,13 @@ describe('<Menu2 />', () => {
       classes: menu2PopupClasses,
       render,
       getRootElement: ({ baseElement }) => baseElement.querySelector(`.${menu2PopupClasses.root}`),
-      // The public root is the portal element that wraps the menu. Its host is
+      // The public root positions the menu. Its host is
       // configured through slots.root rather than a component prop.
       skip: ['componentProp'],
       refInstanceof: window.HTMLDivElement,
       muiName: 'MuiMenu2',
       testVariantProps: { align: 'center' },
       slots: {
-        positioner: {
-          expectedClassName: menu2PopupClasses.positioner,
-        },
         paper: {
           expectedClassName: menu2PopupClasses.paper,
         },
@@ -99,7 +96,7 @@ describe('<Menu2 />', () => {
     expect(root).to.have.class(menu2PopupClasses.root);
     expect(root).to.contain(menu);
     expect(root).not.to.equal(menu);
-    expect(menu.parentElement).to.have.class(menu2PopupClasses.positioner);
+    expect(menu.parentElement).to.equal(root);
 
     const list = menu.querySelector(`.${menu2PopupClasses.list}`);
     expect(list).not.to.equal(null);
@@ -689,7 +686,7 @@ describe('<Menu2 />', () => {
 
     // Base UI sets no z-index, so a fixed AppBar would paint over the menu.
     const positioner = (await screen.findByRole('menu')).parentElement!;
-    expect(positioner).to.have.class(menu2PopupClasses.positioner);
+    expect(positioner).to.have.class(menu2PopupClasses.root);
     expect(window.getComputedStyle(positioner).zIndex).to.equal(String(createTheme().zIndex.modal));
   });
 
@@ -958,14 +955,14 @@ describe('<Menu2 />', () => {
       <React.Fragment>
         <Menu2
           modal
-          slotProps={{ positioner: { 'data-testid': 'modal-positioner' } }}
+          slotProps={{ root: { 'data-testid': 'modal-positioner' } }}
           trigger={<Button disableRipple>Modal menu</Button>}
         >
           <Menu2Item>Profile</Menu2Item>
         </Menu2>
         <Menu2
           modal={false}
-          slotProps={{ positioner: { 'data-testid': 'non-modal-positioner' } }}
+          slotProps={{ root: { 'data-testid': 'non-modal-positioner' } }}
           trigger={<Button disableRipple>Non-modal menu</Button>}
         >
           <Menu2Item>Settings</Menu2Item>
@@ -1033,7 +1030,7 @@ describe('<Menu2 />', () => {
           side="bottom"
           align="start"
           sideOffset={4}
-          slotProps={{ positioner: { 'data-testid': 'positioner' } }}
+          slotProps={{ root: { 'data-testid': 'positioner' } }}
           trigger={<Button disableRipple>Options</Button>}
         >
           <Menu2Item>Profile</Menu2Item>

@@ -31,11 +31,11 @@ export interface Menu2PopupProps extends Omit<
    */
   children?: React.ReactNode;
   /**
-   * CSS class applied to the root element, which wraps the menu in the portal.
+   * CSS class applied to the root element, which positions the menu.
    */
   className?: Menu2PopupPublicProps['className'] | undefined;
   /**
-   * Inline styles applied to the root element, which wraps the menu in the portal.
+   * Inline styles applied to the root element, which positions the menu.
    */
   style?: Menu2PopupPublicProps['style'] | undefined;
   /**
@@ -150,7 +150,7 @@ interface Menu2PopupInternalProps extends Menu2PopupProps {
 
 export interface Menu2PopupSlots {
   /**
-   * The component used for the root element, which wraps the menu in the portal.
+   * The component used for the root element, which positions the menu.
    * @default 'div'
    */
   root?: React.ElementType | undefined;
@@ -159,11 +159,6 @@ export interface Menu2PopupSlots {
    * Only rendered when a backdrop is opted into.
    */
   backdrop?: React.ElementType | undefined;
-  /**
-   * The component used for the positioner.
-   * @default 'div'
-   */
-  positioner?: React.ElementType | undefined;
   /**
    * The component used for the menu surface. The popup renders as this element.
    * @default Paper
@@ -188,7 +183,6 @@ const useUtilityClasses = (ownerState: Menu2PopupOwnerState) => {
 
   const slots = {
     root: ['root'],
-    positioner: ['positioner'],
     paper: ['paper'],
     backdrop: ['backdrop'],
     list: ['list'],
@@ -197,16 +191,10 @@ const useUtilityClasses = (ownerState: Menu2PopupOwnerState) => {
   return composeClasses(slots, getMenu2PopupUtilityClass, classes);
 };
 
-const Menu2PopupRoot = styled('div', {
+const Menu2PopupRoot = styled(Menu2PositionerBase, {
   name: 'MuiMenu2',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})({});
-
-const Menu2PopupPositioner = styled(Menu2PositionerBase, {
-  name: 'MuiMenu2',
-  slot: 'Positioner',
-  overridesResolver: (props, styles) => styles.positioner,
 })({});
 
 const Menu2PopupPaper = styled(Menu2PaperBase, {
@@ -271,7 +259,6 @@ const Menu2Popup = React.forwardRef(function Menu2Popup(
       classes={classes}
       defaultSlots={{
         root: Menu2PopupRoot,
-        positioner: Menu2PopupPositioner,
         paper: Menu2PopupPaper,
         list: Menu2PopupList,
         backdrop: Menu2PopupBackdrop,

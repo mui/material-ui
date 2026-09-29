@@ -23,7 +23,7 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
             components: {
               MuiMenu2: {
                 styleOverrides: {
-                  positioner: { zIndex: 1401 },
+                  root: { zIndex: 1401 },
                   paper: ({ ownerState }) => ({
                     maxHeight: ownerState.align === 'center' ? 301 : 302,
                     overflowY: 'scroll',
@@ -33,7 +33,7 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
               },
               MuiMenu2Submenu: {
                 styleOverrides: {
-                  positioner: { zIndex: 1402 },
+                  root: { zIndex: 1402 },
                   paper: ({ ownerState }) => ({
                     maxHeight: ownerState.align === 'end' ? 201 : 202,
                     overflowY: 'scroll',
@@ -53,7 +53,7 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
                   align="center"
                   slots={{ transition: null }}
                   slotProps={{
-                    positioner: {
+                    root: {
                       'data-testid': 'parent-positioner',
                       sx: useSx ? { zIndex: 1501 } : undefined,
                     },
@@ -72,7 +72,7 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
                     trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
                     slots={{ transition: null }}
                     slotProps={{
-                      positioner: {
+                      root: {
                         'data-testid': 'child-positioner',
                         sx: useSx ? { zIndex: 1502 } : undefined,
                       },

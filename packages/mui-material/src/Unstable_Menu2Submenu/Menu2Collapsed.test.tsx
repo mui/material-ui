@@ -39,16 +39,13 @@ describe('<Menu2 /> collapsed API', () => {
           ),
         getRootElement: ({ baseElement }) =>
           baseElement.querySelector(`.${menu2SubmenuPopupClasses.root}`),
-        // The public root is the portal element that wraps the menu. Its host is
+        // The public root positions the menu. Its host is
         // configured through slots.root rather than a component prop.
         skip: ['componentProp'],
         refInstanceof: window.HTMLDivElement,
         muiName: 'MuiMenu2Submenu',
         testVariantProps: { align: 'center' },
         slots: {
-          positioner: {
-            expectedClassName: menu2SubmenuPopupClasses.positioner,
-          },
           paper: {
             expectedClassName: menu2SubmenuPopupClasses.paper,
           },
@@ -175,8 +172,10 @@ describe('<Menu2 /> collapsed API', () => {
               onOpenChange={setOpen}
               keepMounted
               slotProps={{
-                root: (state) => ({ 'data-open': String(state.open) }),
-                positioner: (state) => ({ 'data-loop-focus': String(state.loopFocus) }),
+                root: (state) => ({
+                  'data-owner-open': String(state.open),
+                  'data-loop-focus': String(state.loopFocus),
+                }),
                 paper: (state) => ({
                   'data-highlight-on-hover': String(state.highlightItemOnHover),
                   style: { transition: 'none' },
@@ -201,7 +200,7 @@ describe('<Menu2 /> collapsed API', () => {
         const popup = getPopup();
         const list = item.parentElement!;
         expect(getComputedStyle(root).paddingLeft).to.equal('17px');
-        expect(root).to.have.attribute('data-open', 'true');
+        expect(root).to.have.attribute('data-owner-open', 'true');
         expect(popup.parentElement).to.have.attribute('data-loop-focus', 'false');
         expect(popup).to.have.attribute('data-highlight-on-hover', 'false');
         expect(list).to.have.attribute('data-open', 'true');
@@ -212,7 +211,7 @@ describe('<Menu2 /> collapsed API', () => {
         await user.click(item);
 
         await waitFor(() => {
-          expect(root).to.have.attribute('data-open', 'false');
+          expect(root).to.have.attribute('data-owner-open', 'false');
           expect(list).to.have.attribute('data-open', 'false');
           expect(getComputedStyle(root).paddingLeft).to.equal('19px');
         });
@@ -320,6 +319,7 @@ describe('<Menu2 /> collapsed API', () => {
         const root = getRoot();
         expect(publicRef).toHaveBeenLastCalledWith(root);
         expect(slotRef.current).to.equal(root);
+        expect(root).to.equal(popup.parentElement);
         expect(paperRef.current).to.equal(popup);
         expect(root).not.to.equal(popup);
 
@@ -402,6 +402,7 @@ describe('<Menu2 /> collapsed API', () => {
         const popup = getPopup();
         expect(popup).to.have.attribute('id', 'actions-popup');
         expect(popup).to.have.attribute('aria-label', 'Actions');
+        expect(popup).toHaveAccessibleName('Actions');
         expect(popup).to.have.attribute('aria-describedby', 'actions-description');
       });
 
@@ -449,7 +450,7 @@ describe('<Menu2 /> collapsed API', () => {
 
           expect(document.activeElement).to.equal(lastItem);
           expect(onKeyDown).toHaveBeenCalledTimes(2);
-          // Handlers attach to the popup: the root is a React sibling of the menu.
+          // Popup handlers run before Base UI stops navigation-key propagation.
           expect(currentTargets).to.deep.equal([popup, popup]);
           expect(popup).not.to.have.attribute('loopfocus');
 
@@ -467,17 +468,13 @@ describe('<Menu2 /> collapsed API', () => {
     });
   });
 
-  // The type fixture advertises these slots but only typechecks them. They are
-  // context providers, so swapping them for a plain element used to break the
-  // tree at runtime; these render for real.
-  it('renders with the root and positioner slots swapped', async () => {
+  it('preserves positioning when the root slot is a host element', async () => {
     const { user } = render(
       <Menu2
         trigger={<Button disableRipple>Options</Button>}
-        slots={{ root: 'div', positioner: 'div' }}
+        slots={{ root: 'div' }}
         slotProps={{
           root: { 'data-testid': 'root' },
-          positioner: { 'data-testid': 'positioner' },
         }}
       >
         <Menu2Item>Profile</Menu2Item>
@@ -488,9 +485,8 @@ describe('<Menu2 /> collapsed API', () => {
 
     const menu = await screen.findByRole('menu');
     expect(menu).to.have.class(menu2PopupClasses.paper);
-    expect(screen.getByTestId('positioner')).to.contain(menu);
-    expect(screen.getByTestId('positioner')).to.have.class(menu2PopupClasses.positioner);
-    expect(screen.getByTestId('root')).to.contain(screen.getByTestId('positioner'));
+    expect(menu.parentElement).to.equal(screen.getByTestId('root'));
+    expect(screen.getByTestId('root').style.position).to.equal('absolute');
     expect(screen.getByTestId('root')).to.have.class(menu2PopupClasses.root);
     expect(screen.getByRole('menuitem', { name: 'Profile' })).not.to.equal(null);
   });
