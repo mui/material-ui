@@ -380,6 +380,7 @@ describe('ModalManager', () => {
       const body = document.body;
       const initialStyles = { html: html.style.cssText, body: body.style.cssText };
       html.style.overflowY = 'scroll';
+      html.setAttribute('data-base-ui-scroll-locked', '');
       body.style.overflow = 'hidden';
       const bodyModal = getDummyModal();
       modals.push(bodyModal);
@@ -392,6 +393,7 @@ describe('ModalManager', () => {
 
         html.style.cssText = initialStyles.html;
         body.style.cssText = initialStyles.body;
+        html.removeAttribute('data-base-ui-scroll-locked');
         await waitFor(() => expect(body.style.overflow).to.equal('hidden'));
         expect(html.style.overflowY).to.equal('');
 
@@ -399,6 +401,32 @@ describe('ModalManager', () => {
         expect(body.style.overflow).to.equal('');
         expect(html.style.overflowY).to.equal('');
       } finally {
+        manager.remove(bodyModal);
+        html.style.cssText = initialStyles.html;
+        body.style.cssText = initialStyles.body;
+        html.removeAttribute('data-base-ui-scroll-locked');
+      }
+    });
+
+    it('locks html when body only clips its own overflow', () => {
+      const html = document.documentElement;
+      const body = document.body;
+      const initialStyles = { html: html.style.cssText, body: body.style.cssText };
+      html.style.overflowY = 'scroll';
+      body.style.overflow = 'hidden';
+      const bodyModal = getDummyModal();
+      modals.push(bodyModal);
+
+      try {
+        manager.add(bodyModal, body);
+        manager.mount(bodyModal, {});
+        expect(html.style.overflow).to.equal('hidden');
+
+        manager.remove(bodyModal);
+        expect(html.style.overflowY).to.equal('scroll');
+        expect(body.style.overflow).to.equal('hidden');
+      } finally {
+        manager.remove(bodyModal);
         html.style.cssText = initialStyles.html;
         body.style.cssText = initialStyles.body;
       }

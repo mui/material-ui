@@ -64,6 +64,47 @@ describe('e2e', () => {
     await browser.close();
   });
 
+  describe('<Modal />', () => {
+    ['', 'hidden', 'clip'].forEach((bodyOverflow) => {
+      it(`blocks wheel scrolling when html scrolls and body overflow is ${JSON.stringify(bodyOverflow)}`, async () => {
+        await page.goto('about:blank');
+        await renderFixture('Modal/ViewportScrollLock');
+        await page.evaluate((overflow) => {
+          document.documentElement.style.overflow = 'scroll';
+          document.documentElement.style.scrollBehavior = 'auto';
+          document.body.style.overflow = overflow;
+        }, bodyOverflow);
+
+        const trigger = page.getByRole('button', { name: 'Open dialog' });
+        await trigger.hover();
+        // Verify native wheel input can scroll the viewport before opening the dialog.
+        await page.mouse.wheel(0, 500);
+        await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+
+        await trigger.click();
+        const closeButton = page.getByRole('button', { name: 'Close dialog' });
+        await expect(closeButton).toBeVisible();
+        await expect(page.locator('html')).toHaveCSS('overflow', 'hidden');
+        await closeButton.hover();
+        await page.mouse.wheel(0, 500);
+        await page.evaluate(
+          () =>
+            new Promise<void>((resolve) => {
+              requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+            }),
+        );
+        expect(await page.evaluate(() => window.scrollY)).toBe(0);
+
+        await closeButton.click();
+        await expect(page.getByRole('dialog')).toBeHidden();
+        await expect(page.locator('html')).toHaveCSS('overflow', 'scroll');
+        expect(await page.evaluate(() => document.body.style.overflow)).toBe(bodyOverflow);
+      });
+    });
+  });
+
   describe('<Menu2 />', () => {
     beforeEach(async () => {
       // Reload the fixture even when successive cases use the same URL and hash.

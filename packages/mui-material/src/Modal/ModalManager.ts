@@ -155,19 +155,24 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
 
     const containerDocument = ownerDocument(scrollContainer);
     const containerWindow = containerDocument.defaultView || window;
-    // Another overlay can lock either viewport element. Base UI's inset-scrollbar
-    // fallback locks body and gives html `overflow-y: scroll`.
+    // Observe both viewport elements because another overlay can change the scroller.
     const viewportElements = [containerDocument.documentElement, containerDocument.body];
     const lockCandidates = viewportElements.includes(scrollContainer)
       ? viewportElements
       : [scrollContainer];
     const isHidden = (overflow: string) => overflow === 'hidden' || overflow === 'clip';
     const isScrollLocked = () =>
-      lockCandidates.some((element) =>
-        [element.style, containerWindow.getComputedStyle(element)].every(
-          (styles) =>
-            isHidden(styles.overflow) || [styles.overflowX, styles.overflowY].every(isHidden),
-        ),
+      lockCandidates.some(
+        (element) =>
+          // Body clipping does not lock a scrolling html element. Base UI's marked
+          // inset-scrollbar fallback is different: it also limits body to the viewport.
+          (element !== containerDocument.body ||
+            scrollContainer !== containerDocument.documentElement ||
+            containerDocument.documentElement.hasAttribute('data-base-ui-scroll-locked')) &&
+          [element.style, containerWindow.getComputedStyle(element)].every(
+            (styles) =>
+              isHidden(styles.overflow) || [styles.overflowX, styles.overflowY].every(isHidden),
+          ),
       );
 
     // Wait for the other overlay to release its inline lock, then read the
