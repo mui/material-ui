@@ -1590,6 +1590,30 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
       expect(handleChange.args[0][1]).to.deep.equal([0, 0]);
     });
 
+    it('should bound dragging when the previous thumb is at 0', () => {
+      const handleChange = spy();
+      const { container } = render(
+        <Slider defaultValue={[0, 10]} min={-50} max={50} disableSwap onChange={handleChange} />,
+      );
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 60, clientY: 0 }]),
+      );
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 25, clientY: 0 }]),
+      );
+      expect(handleChange.args[0][1]).to.deep.equal([0, 0]);
+    });
+
     it('should bound the value when using the mouse', () => {
       const handleChange = spy();
       const { container } = render(
