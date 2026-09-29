@@ -311,6 +311,14 @@ const CONTROLS: Record<string, Spec> = {
     selector: '.MuiOutlinedInput-root',
     height: ramp,
   },
+  FilledInput: {
+    // Filled keeps room for the floating label; the box contract applies
+    // without one.
+    sizes: ['small', 'medium'],
+    render: (size) => <TextField variant="filled" hiddenLabel size={size} defaultValue="Ada" />,
+    selector: '.MuiFilledInput-root',
+    height: ramp,
+  },
   Select: {
     sizes: ['small', 'medium'],
     render: (size) => (

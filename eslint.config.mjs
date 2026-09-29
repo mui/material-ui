@@ -375,6 +375,17 @@ export default defineConfig(
     },
   },
   {
+    // Benchmark scripts: their whole output is a report printed to stdout, and the
+    // sequential awaits are deliberate — running the measurements concurrently
+    // would have them compete for CPU and skew the very numbers being taken.
+    files: ['test/benchmark/**/*.mjs'],
+    rules: {
+      'no-console': 'off',
+      'no-await-in-loop': 'off',
+      'import/prefer-default-export': 'off',
+    },
+  },
+  {
     files: ['docs/src/pages/premium-themes/onepirate/modules/form/RFTextField.js'],
     rules: {
       // Otherwise, running docs:typescript:formatted rearranges the imports and also removes the eslint-disable comment
