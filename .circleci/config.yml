@@ -34,7 +34,7 @@ default-job: &default-job
   working_directory: /tmp/material-ui
   executor:
     name: code-infra/mui-node
-    node-version: '22.23.2'
+    node-version: '22.23.3'
   resource_class: medium.gen2
 
 default-context: &default-context
@@ -153,7 +153,7 @@ jobs:
       - run:
           name: Upgrade Node.js for pnpm 11
           command: |
-            curl -fsSL https://nodejs.org/dist/v22.23.2/node-v22.23.2-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
+            curl -fsSL https://nodejs.org/dist/v22.23.3/node-v22.23.3-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
             node --version
       - code-infra/install-pnpm
       - run:

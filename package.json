@@ -153,6 +153,6 @@
   "packageManager": "pnpm@12.4.2",
   "engines": {
     "pnpm": "12.4.2",
-    "node": ">=22.23.2"
+    "node": ">=22.23.3"
   }
 }
