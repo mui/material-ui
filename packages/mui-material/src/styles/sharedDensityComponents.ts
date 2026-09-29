@@ -1074,8 +1074,6 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     padding: spacing('medium'),
     gap: spacing('small'),
   });
-  // Avatar→content spacing stays a one-sided margin: a root gap would also
-  // open space between the flex-1 content and the action (master has none).
   addRootOverride(enhanced.components, 'MuiCardHeader', { marginRight: 0 }, 'avatar');
   addRootOverride(
     enhanced.components,
