@@ -23,7 +23,7 @@
     "es-toolkit": "^1.52.0",
     "fast-glob": "^3.3.3",
     "prettier": "^3.9.8",
-    "react-docgen": "^8.0.3",
+    "react-docgen": "^8.0.4",
     "recast": "^0.24.0",
     "remark": "^15.0.1",
     "unist-util-visit": "^5.1.0"
