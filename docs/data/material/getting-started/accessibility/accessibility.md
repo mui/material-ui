@@ -16,7 +16,7 @@ Each component is rated criterion by criterion in its own report, kept next to t
 
 | Field             | Value                                                         |
 | :---------------- | :------------------------------------------------------------ |
-| Product           | Material UI (`@mui/material`)                                 |
+| Product           | Material UI (`@mui/material`)                                 |
 | Product type      | React component library (software)                            |
 | Version assessed  | `@mui/material` v9.4.0                                        |
 | Vendor            | MUI                                                           |
