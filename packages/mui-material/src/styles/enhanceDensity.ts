@@ -6,6 +6,7 @@ import {
   DensityScaleOverrides,
   DensitySizingKey,
   EnhanceableTheme,
+  ResolvedDensityScale,
 } from './densityScale';
 import applySharedDensity from './sharedDensityComponents';
 
@@ -19,18 +20,18 @@ import applySharedDensity from './sharedDensityComponents';
  * Neither is a spacing key: `theme.spacing()` does not resolve them.
  */
 declare module '@mui/material/styles' {
-  interface Theme extends Partial<Record<DensitySizingKey, string>> {}
+  interface Theme extends Partial<Record<DensitySizingKey, string>> {
+    unstable_densityScale?: ResolvedDensityScale | undefined;
+  }
 
   interface ThemeVars extends Partial<Record<DensitySizingKey, string>> {}
 }
 
 /**
- * The ONE shipped ladder in px + the sizing keys, flat — this is the resolved
- * table, not the override shape (`DensityScaleOverrides` nests the steps).
- * Internal —
- * barrel-exported as `private_defaultDensityScale` (the `private_*`
- * convention, like `private_createTypography`) so sibling enhancers (MUI X)
- * can merge user recipes over the canonical numbers for JS-gated derivations.
+ * The ONE shipped ladder in px + the sizing keys, flat. Barrel-exported as
+ * `private_defaultDensityScale` as the fallback for a theme that was never
+ * enhanced; an enhanced theme carries its resolved numbers, overrides
+ * included, on `theme.unstable_densityScale`.
  */
 export const defaultDensityScale: Record<DensityKey | DensitySizingKey, number> = {
   ...DEFAULT_STEP_PX,

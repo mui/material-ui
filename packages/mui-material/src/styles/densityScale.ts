@@ -35,6 +35,13 @@ export const SIZING_KEYS = Object.keys(DEFAULT_SIZING_PX) as DensitySizingKey[];
  * resolves them — while the sizing constants size a box and sit at the top
  * level. Values are px; anything left out keeps its default.
  */
+/** The scale a theme ended up with, in px numbers, for code that needs the
+ * values in JS (MUI X derives row heights from `touchTarget + small`). Written
+ * to `theme.unstable_densityScale` by `enhanceDensity`. */
+export type ResolvedDensityScale = Record<DensitySizingKey, number> & {
+  spacing: Record<DensityKey, number>;
+};
+
 export type DensityScaleOverrides = Partial<Record<DensitySizingKey, number>> & {
   spacing?: Partial<Record<DensityKey, number>> | undefined;
 };
@@ -91,7 +98,7 @@ export function applyDensity<T extends EnhanceableTheme>(
 ) {
   const theme = { ...themeInput } as T & {
     components: NonNullable<EnhanceableTheme['components']>;
-  } & Record<DensitySizingKey, string>;
+  } & Record<DensitySizingKey, string> & { unstable_densityScale: ResolvedDensityScale };
   theme.components = { ...themeInput.components };
 
   // The Spacing interface is overloaded (0-4 fixed args) — widen to the rest
@@ -196,6 +203,13 @@ export function applyDensity<T extends EnhanceableTheme>(
   SIZING_KEYS.forEach((key) => {
     theme[key] = sizingPx(key, scaleOverrides);
   });
+  theme.unstable_densityScale = {
+    spacing: Object.fromEntries(
+      DENSITY_KEYS.map((key) => [key, overrides.spacing?.[key] ?? DEFAULT_STEP_PX[key]]),
+    ) as Record<DensityKey, number>,
+    touchTarget: overrides.touchTarget ?? DEFAULT_SIZING_PX.touchTarget,
+    iconSize: overrides.iconSize ?? DEFAULT_SIZING_PX.iconSize,
+  };
 
   if (themeInput.vars) {
     const sizingVars = {} as Record<DensitySizingKey, string>;

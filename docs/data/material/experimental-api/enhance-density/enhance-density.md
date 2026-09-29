@@ -184,6 +184,8 @@ const theme = enhanceDensity(createTheme(), {
 
 The scale is a closed set of seven steps, plus the two sizings. The values must be numbers, which are interpreted as pixels. Anything left out keeps its default value.
 
+The numbers the theme ended up with are readable as `theme.unstable_densityScale` (`spacing`, `touchTarget`, `iconSize`), for code that derives sizes in JavaScript rather than CSS.
+
 :::warning
 The enhancer does not support adding new steps or removing existing ones. The seven steps and two sizings are fixed.
 :::

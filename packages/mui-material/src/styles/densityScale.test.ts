@@ -50,6 +50,24 @@ describe('densityScale', () => {
       expect(theme.spacing('iconSize')).to.equal('iconSize');
     });
 
+    test('the resolved scale is readable in px numbers, overrides included', () => {
+      expect(applyDensity(createTheme()).unstable_densityScale).to.deep.equal({
+        spacing: DEFAULT_STEP_PX,
+        touchTarget: 32,
+        iconSize: 16,
+      });
+      const dense = applyDensity(createTheme(), {
+        spacing: { small: 8, large: 20 },
+        touchTarget: 24,
+      });
+      expect(dense.unstable_densityScale.spacing.small).to.equal(8);
+      expect(dense.unstable_densityScale.spacing.large).to.equal(20);
+      expect(dense.unstable_densityScale.spacing.medium).to.equal(16);
+      expect(dense.unstable_densityScale.touchTarget).to.equal(24);
+      expect(dense.unstable_densityScale.iconSize).to.equal(16);
+      expect('unstable_densityScale' in createTheme()).to.equal(false);
+    });
+
     test('a sizing override moves the theme node with it', () => {
       const theme = applyDensity(createTheme(), { touchTarget: 24, iconSize: 12 });
 
