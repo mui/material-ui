@@ -140,12 +140,12 @@
     "serve": "14.2.6",
     "stylelint": "17.15.0",
     "supports-color": "11.0.0",
-    "tsx": "4.23.13",
+    "tsx": "4.23.15",
     "typescript": "npm:@typescript/typescript6@6.0.2",
     "vite": "^8.0.0",
     "vitest": "^5.0.0",
     "vitest-fail-on-console": "0.10.1",
-    "yargs": "18.1.0"
+    "yargs": "18.2.0"
   },
   "config": {
     "valeVersion": "3.22.0"

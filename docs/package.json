@@ -125,6 +125,6 @@
     "prettier": "3.9.8",
     "raw-loader": "4.0.2",
     "tailwindcss": "4.3.3",
-    "yargs": "18.1.0"
+    "yargs": "18.2.0"
   }
 }
