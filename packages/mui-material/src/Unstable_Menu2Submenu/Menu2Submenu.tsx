@@ -167,7 +167,7 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
     list: PropTypes.elementType,
     paper: PropTypes.elementType,
     root: PropTypes.elementType,
-    transition: PropTypes.func,
+    transition: PropTypes.elementType,
   }),
   /**
    * The `Menu2SubmenuTrigger` that opens the submenu, optionally wrapped in a `Tooltip`.

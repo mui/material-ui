@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { describe, it, expect, vi } from 'vitest';
 import { act, createRenderer, screen, waitFor, isJsdom } from '@mui/internal-test-utils';
 import Menu2 from './Menu2';
@@ -7,7 +8,33 @@ import Menu2Submenu from '../Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '../Unstable_Menu2SubmenuTrigger';
 import { createTheme, ThemeProvider } from '../styles';
 import Fade from '../Fade';
+import Grow from '../Grow';
 import Zoom from '../Zoom';
+
+describe('Menu2 transition slot validation', () => {
+  [
+    { Component: Menu2, name: 'Menu2' },
+    { Component: Menu2Submenu, name: 'Menu2Submenu' },
+  ].forEach(({ Component, name }) => {
+    function checkTransition(transition: unknown) {
+      PropTypes.resetWarningCache();
+      // React 19 does not check propTypes when a component renders.
+      PropTypes.checkPropTypes(Component.propTypes, { slots: { transition } }, 'prop', name);
+    }
+
+    it(`${name} accepts Material transitions and optional slot values`, () => {
+      [Grow, Fade, Zoom, null, undefined].forEach((transition) => {
+        expect(() => checkTransition(transition)).not.toErrorDev();
+      });
+    });
+
+    it(`${name} rejects values that are not component types`, () => {
+      [42, {}, <div />].forEach((transition) => {
+        expect(() => checkTransition(transition)).toErrorDev('Invalid prop `slots.transition`');
+      });
+    });
+  });
+});
 
 describe.skipIf(isJsdom())('Menu2 transitions', () => {
   const { render } = createRenderer();

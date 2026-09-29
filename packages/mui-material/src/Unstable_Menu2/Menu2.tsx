@@ -221,7 +221,7 @@ Menu2.propTypes /* remove-proptypes */ = {
     list: PropTypes.elementType,
     paper: PropTypes.elementType,
     root: PropTypes.elementType,
-    transition: PropTypes.func,
+    transition: PropTypes.elementType,
   }),
   /**
    * The element that opens the menu, for example a `Button`.
