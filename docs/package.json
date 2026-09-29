@@ -122,7 +122,7 @@
     "@types/stylis": "4.2.7",
     "cross-fetch": "4.1.0",
     "sharp": "0.35.4",
-    "prettier": "3.9.8",
+    "prettier": "3.9.9",
     "raw-loader": "4.0.2",
     "tailwindcss": "4.3.3",
     "yargs": "18.2.0"
