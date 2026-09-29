@@ -136,10 +136,10 @@ describe('e2e', () => {
         }
         /* eslint-enable no-await-in-loop */
 
-        const selected = page.getByRole('menuitem', { name: 'Selected' });
-        await selected.hover();
-        await expect(selected).toBeFocused();
-        await expect(selected).toHaveCSS('background-color', 'rgba(25, 118, 210, 0.12)');
+        const lastAction = page.getByRole('menuitem', { name: 'Last action' });
+        await lastAction.hover();
+        await expect(lastAction).toBeFocused();
+        await expect(lastAction).toHaveCSS('background-color', 'rgba(0, 0, 0, 0.04)');
         await Promise.all(
           items.map((item) => expect(item).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)')),
         );
@@ -174,31 +174,28 @@ describe('e2e', () => {
     });
 
     [false, true].forEach((focusVisible) => {
-      [false, true].forEach((selected) => {
-        [false, true].forEach((forcedColors) => {
-          it(`clears the submenu trigger tint during a pointer exit, focusVisible=${focusVisible}, selected=${selected}, forcedColors=${forcedColors}`, async () => {
-            await page.emulateMedia({ forcedColors: forcedColors ? 'active' : 'none' });
-            await renderFixture('Menu2/SubmenuPointerExit');
-            await page.getByRole('checkbox', { name: 'Focus ring' }).setChecked(focusVisible);
-            await page.getByRole('checkbox', { name: 'Selected trigger' }).setChecked(selected);
-            await page.getByRole('button', { name: 'Options' }).click();
-            const trigger = page.getByRole('menuitem', { name: 'More', exact: true });
-            const idleColors = await trigger.evaluate((element) => {
+      [false, true].forEach((forcedColors) => {
+        it(`clears the submenu trigger tint during a pointer exit, focusVisible=${focusVisible}, forcedColors=${forcedColors}`, async () => {
+          await page.emulateMedia({ forcedColors: forcedColors ? 'active' : 'none' });
+          await renderFixture('Menu2/SubmenuPointerExit');
+          await page.getByRole('checkbox', { name: 'Focus ring' }).setChecked(focusVisible);
+          await page.getByRole('button', { name: 'Options' }).click();
+          const trigger = page.getByRole('menuitem', { name: 'More', exact: true });
+          const idleColors = await trigger.evaluate((element) => {
+            const style = getComputedStyle(element);
+            return { color: style.color, backgroundColor: style.backgroundColor };
+          });
+          await trigger.hover();
+          await expect(trigger).toHaveClass(/Mui-open/);
+          // Move through Base UI's safe-travel pointer blocking without waiting for it to end.
+          await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover({ force: true });
+          await expect(trigger).toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
+          expect(
+            await trigger.evaluate((element) => {
               const style = getComputedStyle(element);
               return { color: style.color, backgroundColor: style.backgroundColor };
-            });
-            await trigger.hover();
-            await expect(trigger).toHaveClass(/Mui-open/);
-            // Move through Base UI's safe-travel pointer blocking without waiting for it to end.
-            await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover({ force: true });
-            await expect(trigger).toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
-            expect(
-              await trigger.evaluate((element) => {
-                const style = getComputedStyle(element);
-                return { color: style.color, backgroundColor: style.backgroundColor };
-              }),
-            ).toEqual(idleColors);
-          });
+            }),
+          ).toEqual(idleColors);
         });
       });
     });

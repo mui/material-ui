@@ -7,7 +7,6 @@ import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 
 export default function SubmenuPointerExit() {
-  const [selected, setSelected] = React.useState(false);
   const [focusVisible, setFocusVisible] = React.useState(false);
   const theme = React.useMemo(
     () => enhanceHighContrast(createTheme({ focusVisible })),
@@ -16,14 +15,6 @@ export default function SubmenuPointerExit() {
 
   return (
     <ThemeProvider theme={theme}>
-      <label>
-        <input
-          type="checkbox"
-          checked={selected}
-          onChange={(event) => setSelected(event.target.checked)}
-        />
-        Selected trigger
-      </label>
       <label>
         <input
           type="checkbox"
@@ -36,7 +27,7 @@ export default function SubmenuPointerExit() {
         <Menu2Item>Plain</Menu2Item>
         <Menu2Submenu
           transitionDuration={{ enter: 0, exit: 1000 }}
-          trigger={<Menu2SubmenuTrigger selected={selected}>More</Menu2SubmenuTrigger>}
+          trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
         >
           <Menu2Item>Nested</Menu2Item>
         </Menu2Submenu>

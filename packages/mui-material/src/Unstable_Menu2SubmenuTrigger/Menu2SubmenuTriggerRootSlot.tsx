@@ -33,15 +33,6 @@ function menu2SubmenuTriggerStyles(theme: Theme, stateClass: string) {
     [`&.${stateClass}${notFocused}`]: {
       backgroundColor: (theme.vars || theme).palette.action.hover,
     },
-    // A selected trigger that is open blends its own tint with the open tint.
-    [`&.${menu2SubmenuTriggerClasses.selected}.${stateClass}${notFocused}`]: {
-      backgroundColor: theme.alpha(
-        (theme.vars || theme).palette.primary.main,
-        `${(theme.vars || theme).palette.action.selectedOpacity} + ${
-          (theme.vars || theme).palette.action.hoverOpacity
-        }`,
-      ),
-    },
   };
 }
 

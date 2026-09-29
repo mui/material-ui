@@ -228,7 +228,6 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     disableRipple,
     divider = false,
     nativeButton: nativeButtonProp,
-    selected = false,
     slotProps,
     slots,
     sx,
@@ -239,7 +238,7 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
   const { dense } = childContext;
   const ownerState = {
     ...props,
-    ...getMenu2ItemOwnerState({ dense, disabled, disableGutters, divider, selected }),
+    ...getMenu2ItemOwnerState({ dense, disabled, disableGutters, divider }),
     classes: classesProp,
   };
   const classes = useMenu2ItemUtilityClasses<Menu2RadioItemClasses>(
@@ -344,11 +343,6 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
    * By default, this is inferred from the root slot and `component` prop.
    */
   nativeButton: PropTypes.bool,
-  /**
-   * If `true`, the component is selected.
-   * @default false
-   */
-  selected: PropTypes.bool,
   /**
    * The props used for each slot inside.
    */

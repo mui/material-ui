@@ -129,7 +129,6 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
     disableGutters = false,
     disableRipple,
     divider = false,
-    selected = false,
     slotProps,
     slots,
     sx,
@@ -145,7 +144,6 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
       disabled: false,
       disableGutters,
       divider,
-      selected,
     }),
     classes: classesProp,
   };
@@ -234,11 +232,6 @@ Menu2LinkItem.propTypes /* remove-proptypes */ = {
    * Overrides the text label to use when the item is matched during keyboard text navigation.
    */
   label: PropTypes.string,
-  /**
-   * If `true`, the component is selected.
-   * @default false
-   */
-  selected: PropTypes.bool,
   /**
    * The props used for each slot inside.
    */

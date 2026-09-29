@@ -595,9 +595,7 @@ describe('enhanceHighContrast', () => {
   });
 
   describe('Menu2 item overrides', () => {
-    const itemCases: Array<
-      [component: string, classes: { disabled: string; selected: string }, slot: string]
-    > = [
+    const itemCases: Array<[component: string, classes: { disabled: string }, slot: string]> = [
       ['MuiMenu2Item', menu2ItemClasses, 'root'],
       ['MuiMenu2LinkItem', menu2LinkItemClasses, 'root'],
       ['MuiMenu2CheckboxItem', menu2CheckboxItemClasses, 'root'],
@@ -624,28 +622,23 @@ describe('enhanceHighContrast', () => {
       },
     );
 
-    test.each(itemCases)('%s covers disabled and selected', (component, classes, slot) => {
-      const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = (theme.components as any)[component].styleOverrides[
-        slot
-      ] as Array<StyleOverride>;
-      const hcmOverride = rootOverrides[rootOverrides.length - 1];
+    test.each(itemCases)(
+      '%s covers disabled without selected styling',
+      (component, classes, slot) => {
+        const theme = enhanceHighContrast(createTheme());
+        const rootOverrides = (theme.components as any)[component].styleOverrides[
+          slot
+        ] as Array<StyleOverride>;
+        const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
-      expect(hcmOverride[`&.${classes.disabled}`]).to.deep.equal({
-        [HCM]: { color: 'GrayText', opacity: 1 },
-      });
-      expect(hcmOverride[`&.${classes.selected}`]).to.deep.equal({
-        [HCM]: {
-          forcedColorAdjust: 'none',
-          color: 'SelectedItemText',
-          backgroundColor: 'SelectedItem',
-        },
-      });
-      const selectedActiveKey = `&.${classes.selected}.${menuItemClasses.focusVisible}, &.${classes.selected}:hover`;
-      expect(hcmOverride[selectedActiveKey]).to.deep.equal({
-        [HCM]: { color: 'HighlightText', backgroundColor: 'Highlight' },
-      });
-    });
+        expect(hcmOverride[`&.${classes.disabled}`]).to.deep.equal({
+          [HCM]: { color: 'GrayText', opacity: 1 },
+        });
+        expect(
+          Object.keys(hcmOverride).some((selector) => selector.includes('Mui-selected')),
+        ).to.equal(false);
+      },
+    );
 
     test.each(itemCases)('%s uses custom tokens', (component, classes, slot) => {
       const theme = enhanceHighContrast(createTheme(), {
@@ -741,11 +734,7 @@ describe('enhanceHighContrast', () => {
         ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<string, StyleOverride>;
 
-      expect(
-        hcmOverride[
-          `&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.open}.${menu2SubmenuTriggerClasses.selected}`
-        ],
-      ).to.deep.equal({
+      expect(hcmOverride[`&.${menu2SubmenuTriggerClasses.open}`]).to.deep.equal({
         [HCM]: {
           forcedColorAdjust: 'none',
           color: 'HighlightText',
@@ -768,14 +757,13 @@ describe('enhanceHighContrast', () => {
       expect(closingVariant.props({ ownerState: { retainClosingTint: false } })).to.equal(false);
       expect(closingVariant.props({ ownerState: {} })).to.equal(false);
       expect(closingVariant.style).to.deep.equal({
-        [`&.${menu2SubmenuTriggerClasses.closing}, &.${menu2SubmenuTriggerClasses.closing}.${menu2SubmenuTriggerClasses.selected}`]:
-          {
-            [HCM]: {
-              forcedColorAdjust: 'none',
-              color: 'HighlightText',
-              backgroundColor: 'Highlight',
-            },
+        [`&.${menu2SubmenuTriggerClasses.closing}`]: {
+          [HCM]: {
+            forcedColorAdjust: 'none',
+            color: 'HighlightText',
+            backgroundColor: 'Highlight',
           },
+        },
       });
     });
 
@@ -806,17 +794,9 @@ describe('enhanceHighContrast', () => {
       };
       expect(closingVariant.style).to.deep.equal({
         [HCM]: activeColors,
-        [`&.${menu2SubmenuTriggerClasses.selected}`]: { [HCM]: activeColors },
       });
-      // A pointer exit does not retain the active tint, but selected and focused
+      // A pointer exit does not retain the active tint, but focused
       // triggers still need their system colors after the custom closing rule.
-      expect(hcmOverride[`&.${menu2SubmenuTriggerClasses.selected}`]).to.deep.equal({
-        [HCM]: {
-          forcedColorAdjust: 'none',
-          color: 'SelectedItemText',
-          backgroundColor: 'SelectedItem',
-        },
-      });
       expect(hcmOverride[`&.${menuItemClasses.focusVisible}, &:hover`]).to.deep.equal({
         [HCM]: { ...activeColors, outline: 'none' },
       });

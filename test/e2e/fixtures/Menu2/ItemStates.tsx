@@ -41,7 +41,7 @@ export default function ItemStates() {
             <Menu2Item>Leaf</Menu2Item>
           </Menu2Submenu>
         </Menu2Submenu>
-        <Menu2Item selected>Selected</Menu2Item>
+        <Menu2Item>Last action</Menu2Item>
       </Menu2>
     </ThemeProvider>
   );

@@ -17,9 +17,26 @@ export function menuItemOverridesResolver(
   ];
 }
 
-// Keep selected hover after selected focus to preserve the classic precedence.
 export function getMenuItemHighlightStyles(theme: Theme): CSSInterpolation {
   return {
+    ...(!theme.focusVisible && {
+      [`&.${menuItemClasses.focusVisible}`]: {
+        backgroundColor: (theme.vars || theme).palette.action.focus,
+      },
+    }),
+  };
+}
+
+// Selection belongs to the classic item, not the shared Menu2 presentation.
+// Keep selected hover after selected focus to preserve the classic precedence.
+export function getMenuItemSelectedStyles(theme: Theme): CSSInterpolation {
+  return {
+    [`&.${menuItemClasses.selected}`]: {
+      backgroundColor: theme.alpha(
+        (theme.vars || theme).palette.primary.main,
+        (theme.vars || theme).palette.action.selectedOpacity,
+      ),
+    },
     ...(!theme.focusVisible && {
       [`&.${menuItemClasses.selected}.${menuItemClasses.focusVisible}`]: {
         backgroundColor: theme.alpha(
@@ -43,10 +60,5 @@ export function getMenuItemHighlightStyles(theme: Theme): CSSInterpolation {
         ),
       },
     },
-    ...(!theme.focusVisible && {
-      [`&.${menuItemClasses.focusVisible}`]: {
-        backgroundColor: (theme.vars || theme).palette.action.focus,
-      },
-    }),
   };
 }

@@ -93,14 +93,10 @@ describe.skipIf(isJsdom())('MenuItem shared styled base', () => {
                   anchor={document.body}
                   slots={{ transition: null }}
                 >
-                  <Menu2Item selected className="Mui-focusVisible" data-testid="focus-only">
+                  <Menu2Item className="Mui-focusVisible" data-testid="focus-only">
                     Focus only
                   </Menu2Item>
-                  <Menu2Item
-                    selected
-                    className={menu2ItemClasses.highlighted}
-                    data-testid="highlighted"
-                  >
+                  <Menu2Item className={menu2ItemClasses.highlighted} data-testid="highlighted">
                     Highlighted
                   </Menu2Item>
                 </Menu2>
@@ -114,11 +110,70 @@ describe.skipIf(isJsdom())('MenuItem shared styled base', () => {
             highlightedColor,
           );
           expect(getComputedStyle(screen.getByTestId('focus-only')).backgroundColor).to.equal(
-            highlightedColor,
+            focusVisible ? 'rgba(0, 0, 0, 0)' : 'rgba(0, 0, 0, 0.12)',
           );
           expect(getComputedStyle(screen.getByTestId('highlighted')).backgroundColor).to.equal(
-            selectedColor,
+            'rgba(0, 0, 0, 0)',
           );
+        });
+
+        it(`keeps selected styling exclusive to classic items with focusVisible: ${focusVisible}`, () => {
+          render(
+            <StyledEngineProvider enableCssLayer={modularCssLayers}>
+              <ThemeProvider theme={createTheme({ modularCssLayers, focusVisible })}>
+                <MenuList>
+                  <MenuItem selected role="menuitemcheckbox" data-testid="classic">
+                    Classic
+                  </MenuItem>
+                </MenuList>
+                <Menu2
+                  defaultOpen
+                  modal={false}
+                  anchor={document.body}
+                  slots={{ transition: null }}
+                >
+                  <Menu2Item data-testid="item">Item</Menu2Item>
+                  <Menu2LinkItem href="#target" data-testid="link">
+                    Link
+                  </Menu2LinkItem>
+                  <Menu2CheckboxItem defaultChecked data-testid="checkbox">
+                    Checkbox
+                  </Menu2CheckboxItem>
+                  <Menu2RadioGroup defaultValue="one">
+                    <Menu2RadioItem value="one" data-testid="radio">
+                      Radio
+                    </Menu2RadioItem>
+                  </Menu2RadioGroup>
+                  <Menu2Submenu
+                    trigger={<Menu2SubmenuTrigger data-testid="submenu">More</Menu2SubmenuTrigger>}
+                  >
+                    <Menu2Item>Nested</Menu2Item>
+                  </Menu2Submenu>
+                </Menu2>
+              </ThemeProvider>
+            </StyledEngineProvider>,
+          );
+
+          const classic = screen.getByTestId('classic');
+          expect(classic).to.have.class('Mui-selected');
+          expect(classic).to.have.attribute('aria-checked', 'true');
+          expect(getComputedStyle(classic).backgroundColor).to.equal('rgba(25, 118, 210, 0.08)');
+          expect(screen.getByTestId('checkbox')).to.have.attribute('aria-checked', 'true');
+          expect(screen.getByTestId('radio')).to.have.attribute('aria-checked', 'true');
+
+          ['item', 'link', 'checkbox', 'radio', 'submenu'].forEach((id) => {
+            const element = screen.getByTestId(id);
+            expect(element).not.to.have.class('Mui-selected');
+            expect(getComputedStyle(element).backgroundColor).to.equal('rgba(0, 0, 0, 0)');
+
+            // A manually added global class must not activate classic-only CSS.
+            element.classList.add('Mui-selected');
+            expect(getComputedStyle(element).backgroundColor).to.equal('rgba(0, 0, 0, 0)');
+            element.classList.add('Mui-focusVisible');
+            expect(getComputedStyle(element).backgroundColor).to.equal(
+              focusVisible ? 'rgba(0, 0, 0, 0)' : 'rgba(0, 0, 0, 0.12)',
+            );
+          });
         });
       });
 

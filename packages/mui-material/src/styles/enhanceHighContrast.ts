@@ -98,10 +98,7 @@ function menu2ActiveOverrides(hcTokens: Required<HighContrastTokens>) {
 }
 
 // Menu2 uses the same focus and hover cues as the classic items.
-function menu2ItemOverrides(
-  classes: { disabled: string; selected: string },
-  hcTokens: Required<HighContrastTokens>,
-) {
+function menu2ItemOverrides(classes: { disabled: string }, hcTokens: Required<HighContrastTokens>) {
   return {
     [`&.${menuItemClasses.focusVisible}, &:hover`]: {
       [HCM]: {
@@ -109,19 +106,6 @@ function menu2ItemOverrides(
         color: hcTokens.activeText,
         backgroundColor: hcTokens.activeBackground,
         outline: 'none',
-      },
-    },
-    [`&.${classes.selected}`]: {
-      [HCM]: {
-        forcedColorAdjust: 'none',
-        color: hcTokens.selectedText,
-        backgroundColor: hcTokens.selectedBackground,
-      },
-    },
-    [`&.${classes.selected}.${menuItemClasses.focusVisible}, &.${classes.selected}:hover`]: {
-      [HCM]: {
-        color: hcTokens.activeText,
-        backgroundColor: hcTokens.activeBackground,
       },
     },
     // Base UI keeps disabled items focusable. Keep their disabled colors
@@ -521,28 +505,26 @@ export default function enhanceHighContrast<
         root: [
           c?.MuiMenu2SubmenuTrigger?.styleOverrides?.root,
           {
-            [`&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.open}.${menu2SubmenuTriggerClasses.selected}`]:
-              {
-                [HCM]: {
-                  forcedColorAdjust: 'none',
-                  color: hcTokens.activeText,
-                  backgroundColor: hcTokens.activeBackground,
-                },
+            [`&.${menu2SubmenuTriggerClasses.open}`]: {
+              [HCM]: {
+                forcedColorAdjust: 'none',
+                color: hcTokens.activeText,
+                backgroundColor: hcTokens.activeBackground,
               },
+            },
             ...menu2ItemOverrides(menu2SubmenuTriggerClasses, hcTokens),
             variants: [
               {
                 props: ({ ownerState }) =>
                   'retainClosingTint' in ownerState && ownerState.retainClosingTint === true,
                 style: {
-                  [`&.${menu2SubmenuTriggerClasses.closing}, &.${menu2SubmenuTriggerClasses.closing}.${menu2SubmenuTriggerClasses.selected}`]:
-                    {
-                      [HCM]: {
-                        forcedColorAdjust: 'none',
-                        color: hcTokens.activeText,
-                        backgroundColor: hcTokens.activeBackground,
-                      },
+                  [`&.${menu2SubmenuTriggerClasses.closing}`]: {
+                    [HCM]: {
+                      forcedColorAdjust: 'none',
+                      color: hcTokens.activeText,
+                      backgroundColor: hcTokens.activeBackground,
                     },
+                  },
                 },
               },
             ],
@@ -561,10 +543,7 @@ export default function enhanceHighContrast<
               {
                 props: ({ ownerState }) =>
                   'retainClosingTint' in ownerState && ownerState.retainClosingTint === true,
-                style: {
-                  ...menu2ActiveOverrides(hcTokens),
-                  [`&.${menu2SubmenuTriggerClasses.selected}`]: menu2ActiveOverrides(hcTokens),
-                },
+                style: menu2ActiveOverrides(hcTokens),
               },
             ],
           },

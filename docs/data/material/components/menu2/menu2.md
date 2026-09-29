@@ -126,7 +126,7 @@ Set `dense` on the `list` slot to make all the items compact. An item can also s
 
 {{"demo": "DenseMenu2.js"}}
 
-Items also accept `disableGutters`, `divider`, `selected`, and `disabled`, the same as the current `MenuItem`. Items show a ripple on click, the same as other Material UI buttons. Set `disableRipple` to remove it.
+Items also accept `disableGutters`, `divider`, and `disabled`, the same as the current `MenuItem`. Items show a ripple on click, the same as other Material UI buttons. Set `disableRipple` to remove it.
 
 ## Checkbox and radio items
 
@@ -145,7 +145,7 @@ Both components report changes with `onChange(event, value, eventDetails)`. For 
 The event is native. Read the checked state or value from the second argument, not `event.target`, which can be a descendant of the item.
 
 :::info
-Use radio items to show a current value. The `selected` prop still exists on `Menu2Item`, but it only changes the appearance.
+Menu2 items do not have a `selected` prop. Use checkbox or radio items for checked state.
 :::
 
 ## Composed menu

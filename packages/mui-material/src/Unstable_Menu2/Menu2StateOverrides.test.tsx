@@ -165,15 +165,13 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
       ? 'forced-color-adjust: none; '
       : '';
 
-    ['', `.${menu2SubmenuTriggerClasses.selected}`].forEach((selected) => {
-      const selector = `.${rootClassName}.${menu2SubmenuTriggerClasses.closing}${selected}`;
-      const closingRules = getRulesFor(rootClassName).filter((rule) => rule.selector === selector);
-      expect(closingRules.length).to.be.greaterThan(1);
-      expect(closingRules[closingRules.length - 1]).to.deep.equal({
-        selector,
-        media: '(forced-colors: active)',
-        declarations: `${forcedColorAdjust}color: highlighttext; background-color: highlight;`,
-      });
+    const selector = `.${rootClassName}.${menu2SubmenuTriggerClasses.closing}`;
+    const closingRules = getRulesFor(rootClassName).filter((rule) => rule.selector === selector);
+    expect(closingRules.length).to.be.greaterThan(1);
+    expect(closingRules[closingRules.length - 1]).to.deep.equal({
+      selector,
+      media: '(forced-colors: active)',
+      declarations: `${forcedColorAdjust}color: highlighttext; background-color: highlight;`,
     });
   });
 

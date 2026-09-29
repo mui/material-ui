@@ -46,7 +46,6 @@ describe.skipIf(isJsdom())('Menu2 submenu transitions', () => {
               trigger={
                 <Menu2SubmenuTrigger
                   openOnHover={false}
-                  selected={keepMounted}
                   classes={{ closing: 'custom-closing' }}
                   slotProps={{
                     root: (state) => ({

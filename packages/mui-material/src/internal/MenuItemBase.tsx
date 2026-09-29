@@ -50,12 +50,6 @@ const MenuItemBase = styled(ButtonBase, {
           backgroundColor: 'transparent',
         },
       },
-      [`&.${menuItemClasses.selected}`]: {
-        backgroundColor: theme.alpha(
-          (theme.vars || theme).palette.primary.main,
-          (theme.vars || theme).palette.action.selectedOpacity,
-        ),
-      },
       // Inset the ring: a scrolling Menu/MenuList clips an outset ring.
       ...(themeRing && applyInsetFocusVisible(1)),
       [`&.${menuItemClasses.disabled}`]: {

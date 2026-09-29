@@ -26,7 +26,6 @@ export interface Menu2ItemBaseOwnerState {
   disabled: boolean;
   divider: boolean;
   disableGutters: boolean;
-  selected: boolean;
 }
 
 export interface Menu2ItemVisualProps<
@@ -61,11 +60,6 @@ export interface Menu2ItemVisualProps<
    * @default false
    */
   divider?: boolean | undefined;
-  /**
-   * If `true`, the component is selected.
-   * @default false
-   */
-  selected?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -294,7 +288,6 @@ export function getMenu2ItemOwnerState(
     disabled: props.disabled ?? false,
     divider: props.divider ?? false,
     disableGutters: props.disableGutters ?? false,
-    selected: props.selected ?? false,
   };
 }
 
@@ -306,7 +299,7 @@ export function useMenu2ItemUtilityClasses<Classes extends object>(
   },
   getUtilityClass: (slot: string) => string,
 ) {
-  const { dense, disabled, divider, disableGutters, selected, checked, open, classes } = ownerState;
+  const { dense, disabled, divider, disableGutters, checked, open, classes } = ownerState;
   const slots = {
     root: [
       'root',
@@ -314,7 +307,6 @@ export function useMenu2ItemUtilityClasses<Classes extends object>(
       disabled && 'disabled',
       !disableGutters && 'gutters',
       divider && 'divider',
-      selected && 'selected',
       checked && 'checked',
       open && 'open',
     ],

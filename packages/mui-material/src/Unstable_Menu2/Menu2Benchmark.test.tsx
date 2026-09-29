@@ -43,15 +43,13 @@ function ClassicMenuHarness(props: { withSelected?: boolean; variant?: 'menu' | 
   );
 }
 
-function Menu2Harness(props: { withSelected?: boolean }) {
-  const { withSelected = false } = props;
-
+function Menu2Harness() {
   return (
     <div>
       <Menu2 trigger={<button type="button">Options</button>}>
         <Menu2Item>Alpha</Menu2Item>
         <Menu2Item disabled>Beta</Menu2Item>
-        <Menu2Item selected={withSelected}>Gamma</Menu2Item>
+        <Menu2Item>Gamma</Menu2Item>
       </Menu2>
       <p data-testid="sibling">sibling content</p>
     </div>
@@ -126,7 +124,7 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
     });
 
     it('Menu2 highlights nothing when opened by pointer', async () => {
-      const { user } = render(<Menu2Harness withSelected />);
+      const { user } = render(<Menu2Harness />);
       await user.click(openTrigger());
       await waitForOpen();
       // Focus settles on the popup itself, so Enter cannot activate an item the

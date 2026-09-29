@@ -59,11 +59,12 @@ function Menu2Composition() {
         <Menu2GroupLabel>Menu2Group</Menu2GroupLabel>
         <Menu2Item
           dense
-          selected
           nativeButton={false}
           slotProps={{
             root: (ownerState) => {
               expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+              // @ts-expect-error Visual selection is not part of the item state.
+              expectType<boolean, typeof ownerState.selected>(ownerState.selected);
               return {};
             },
           }}
@@ -75,6 +76,8 @@ function Menu2Composition() {
           slotProps={{
             root: (ownerState) => {
               expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+              // @ts-expect-error Visual selection is not part of the link item state.
+              expectType<boolean, typeof ownerState.selected>(ownerState.selected);
               return {};
             },
           }}
@@ -87,6 +90,8 @@ function Menu2Composition() {
             root: (ownerState) => {
               expectType<boolean, typeof ownerState.checked>(ownerState.checked);
               expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+              // @ts-expect-error Checkbox items use checked, not selected.
+              expectType<boolean, typeof ownerState.selected>(ownerState.selected);
               return {};
             },
             indicator: (ownerState) => {
@@ -118,6 +123,8 @@ function Menu2Composition() {
               root: (ownerState) => {
                 expectType<boolean, typeof ownerState.checked>(ownerState.checked);
                 expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+                // @ts-expect-error Radio items use checked, not selected.
+                expectType<boolean, typeof ownerState.selected>(ownerState.selected);
                 return {};
               },
               indicator: (ownerState) => {
@@ -194,7 +201,7 @@ createTheme({
     MuiMenu2SubmenuTrigger: {
       defaultProps: { openOnHover: false, dense: true, disableRipple: true },
       styleOverrides: { root: {}, highlighted: {} },
-      variants: [{ props: { selected: true }, style: {} }],
+      variants: [{ props: { divider: true }, style: {} }],
     },
     MuiMenu2Item: {
       defaultProps: {
@@ -206,7 +213,7 @@ createTheme({
       },
       variants: [
         {
-          props: { selected: true },
+          props: { divider: true },
           style: {},
         },
       ],
@@ -258,6 +265,8 @@ createTheme({
       expectType<boolean, typeof state.open>(state.open);
       expectType<boolean, typeof state.closing>(state.closing);
       expectType<boolean, typeof state.highlighted>(state.highlighted);
+      // @ts-expect-error Visual selection is not part of the submenu trigger state.
+      expectType<boolean, typeof state.selected>(state.selected);
       return { 'data-open': state.open };
     },
     indicator: (state) => {
@@ -277,6 +286,29 @@ createTheme({
   // @ts-expect-error Submenu triggers never close the parent on activation.
   closeOnClick
 />;
+
+// Menu2 uses checkbox and radio items to represent a checked value.
+// @ts-expect-error Menu2Item has no visual selected state.
+<Menu2Item selected />;
+// @ts-expect-error Menu2LinkItem has no visual selected state.
+<Menu2LinkItem selected />;
+// @ts-expect-error Menu2CheckboxItem uses checked, not selected.
+<Menu2CheckboxItem selected />;
+// @ts-expect-error Menu2RadioItem uses checked, not selected.
+<Menu2RadioItem value="one" selected />;
+// @ts-expect-error Menu2SubmenuTrigger has no visual selected state.
+<Menu2SubmenuTrigger selected />;
+
+// @ts-expect-error Menu2Item has no selected class.
+<Menu2Item classes={{ selected: 'selected' }} />;
+// @ts-expect-error Menu2LinkItem has no selected class.
+<Menu2LinkItem classes={{ selected: 'selected' }} />;
+// @ts-expect-error Menu2CheckboxItem has no selected class.
+<Menu2CheckboxItem classes={{ selected: 'selected' }} />;
+// @ts-expect-error Menu2RadioItem has no selected class.
+<Menu2RadioItem value="one" classes={{ selected: 'selected' }} />;
+// @ts-expect-error Menu2SubmenuTrigger has no selected class.
+<Menu2SubmenuTrigger classes={{ selected: 'selected' }} />;
 
 <Menu2
   transitionDuration={{ enter: 200, exit: 150 }}

@@ -294,9 +294,6 @@ function PlaygroundDemo({
       </Menu2Submenu>
       <Menu2Separator />
 
-      <Menu2Item {...itemProps} selected onClick={handleItemClick}>
-        Selected item (visual-only)
-      </Menu2Item>
       <Menu2LinkItem {...itemProps} href="https://mui.com/material-ui/react-menu/">
         Menu documentation
       </Menu2LinkItem>
@@ -356,12 +353,7 @@ function ClassicVersusSuccessorDemo({ settings }: { settings: PlaygroundSettings
         {...popupKnobProps}
       >
         {parityItems.map((item) => (
-          <Menu2Item
-            key={item.label}
-            {...itemProps}
-            selected={'selected' in item && item.selected}
-            disabled={'disabled' in item && item.disabled}
-          >
+          <Menu2Item key={item.label} {...itemProps} disabled={'disabled' in item && item.disabled}>
             {item.label}
           </Menu2Item>
         ))}
@@ -424,7 +416,6 @@ function FocusRingComparisonDemo({ settings }: { settings: PlaygroundSettings })
             <Menu2Item
               key={item.label}
               {...itemProps}
-              selected={'selected' in item && item.selected}
               disabled={'disabled' in item && item.disabled}
             >
               {item.label}
@@ -766,7 +757,7 @@ export default function MenuRfcExperiment() {
             <h3 id="playground">Kitchen sink</h3>
             <p>
               Nested submenus (three levels), groups with labels, checkbox and radio items, a
-              disabled item, a visual-only selected item, and a link item. All knobs apply.
+              disabled item, and a link item. All knobs apply.
             </p>
             <p>
               To check the forced-colors rules, emulate high contrast in the browser (in Chrome
@@ -804,9 +795,9 @@ export default function MenuRfcExperiment() {
             <h3 id="classic-parity">Classic vs successor</h3>
             <p>
               The same item set rendered by the classic Menu and the successor, for visual parity
-              checks (dense, dividers, selected, disabled, elevation knobs apply to both). Both
-              expose a top-level <code>elevation</code> prop; the successor forwards it to the Paper
-              slot.
+              checks (dense, dividers, disabled, and elevation knobs apply to both). Only the
+              classic Menu marks My account as selected. Both expose a top-level{' '}
+              <code>elevation</code> prop; the successor forwards it to the Paper slot.
             </p>
             <ThemeProvider theme={playgroundTheme}>
               <ClassicVersusSuccessorDemo settings={settings} />

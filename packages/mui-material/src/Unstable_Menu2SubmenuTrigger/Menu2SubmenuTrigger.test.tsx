@@ -268,14 +268,14 @@ describe('<Menu2SubmenuTrigger />', () => {
         MuiMenu2SubmenuTrigger: {
           defaultProps: { dense: true, disableRipple: true },
           styleOverrides: { root: { color: 'rgb(1, 2, 3)' } },
-          variants: [{ props: { selected: true }, style: { paddingLeft: 24 } }],
+          variants: [{ props: { divider: true }, style: { paddingLeft: 24 } }],
         },
       },
     });
     render(
       <ThemeProvider theme={theme}>
         <Menu2 defaultOpen modal={false} anchor={document.body}>
-          <Menu2Submenu trigger={<Menu2SubmenuTrigger selected>More</Menu2SubmenuTrigger>}>
+          <Menu2Submenu trigger={<Menu2SubmenuTrigger divider>More</Menu2SubmenuTrigger>}>
             <Menu2Item>Nested</Menu2Item>
           </Menu2Submenu>
         </Menu2>
@@ -283,6 +283,7 @@ describe('<Menu2SubmenuTrigger />', () => {
     );
     const trigger = screen.getByRole('menuitem', { name: 'More' });
     expect(trigger).to.have.class(classes.dense);
+    expect(trigger).to.have.class(classes.divider);
     expect(getComputedStyle(trigger).color).to.equal('rgb(1, 2, 3)');
     expect(getComputedStyle(trigger).paddingLeft).to.equal('24px');
   });

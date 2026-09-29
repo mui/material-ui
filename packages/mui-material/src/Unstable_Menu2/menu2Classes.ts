@@ -79,8 +79,6 @@ export interface Menu2ItemClasses {
   divider: string;
   /** Styles applied to the root element unless `disableGutters={true}`. */
   gutters: string;
-  /** State class applied to the root element if `selected={true}`. */
-  selected: string;
 }
 
 export type Menu2ItemClassKey = keyof Menu2ItemClasses;
@@ -96,7 +94,6 @@ export const menu2ItemClasses: Menu2ItemClasses = generateUtilityClasses('MuiMen
   'dense',
   'divider',
   'gutters',
-  'selected',
 ]);
 
 export interface Menu2LinkItemClasses extends Menu2ItemClasses {}
@@ -109,7 +106,7 @@ export function getMenu2LinkItemUtilityClass(slot: string): string {
 
 export const menu2LinkItemClasses: Menu2LinkItemClasses = generateUtilityClasses(
   'MuiMenu2LinkItem',
-  ['root', 'highlighted', 'disabled', 'dense', 'divider', 'gutters', 'selected'],
+  ['root', 'highlighted', 'disabled', 'dense', 'divider', 'gutters'],
 );
 
 export interface Menu2CheckboxItemClasses extends Menu2ItemClasses {
@@ -125,7 +122,7 @@ export function getMenu2CheckboxItemUtilityClass(slot: string): string {
 
 export const menu2CheckboxItemClasses: Menu2CheckboxItemClasses = generateUtilityClasses(
   'MuiMenu2CheckboxItem',
-  ['root', 'highlighted', 'disabled', 'dense', 'divider', 'gutters', 'selected', 'checked'],
+  ['root', 'highlighted', 'disabled', 'dense', 'divider', 'gutters', 'checked'],
 );
 
 export interface Menu2CheckboxItemIndicatorClasses {
@@ -184,7 +181,7 @@ export function getMenu2RadioItemUtilityClass(slot: string): string {
 
 export const menu2RadioItemClasses: Menu2RadioItemClasses = generateUtilityClasses(
   'MuiMenu2RadioItem',
-  ['root', 'highlighted', 'disabled', 'dense', 'divider', 'gutters', 'selected', 'checked'],
+  ['root', 'highlighted', 'disabled', 'dense', 'divider', 'gutters', 'checked'],
 );
 
 export interface Menu2RadioItemIndicatorClasses {
@@ -283,7 +280,6 @@ export const menu2SubmenuTriggerClasses: Menu2SubmenuTriggerClasses = generateUt
     'dense',
     'divider',
     'gutters',
-    'selected',
     'open',
     'closing',
     'indicator',

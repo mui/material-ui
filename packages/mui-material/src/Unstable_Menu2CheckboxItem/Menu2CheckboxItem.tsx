@@ -253,7 +253,6 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
     divider = false,
     nativeButton: nativeButtonProp,
     onChange,
-    selected = false,
     slotProps,
     slots,
     sx,
@@ -270,7 +269,6 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
       disabled,
       disableGutters,
       divider,
-      selected,
     }),
     classes: classesProp,
   };
@@ -401,11 +399,6 @@ Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
    * Event handler called when the checkbox item is ticked or unticked.
    */
   onChange: PropTypes.func,
-  /**
-   * If `true`, the component is selected.
-   * @default false
-   */
-  selected: PropTypes.bool,
   /**
    * The props used for each slot inside.
    */
