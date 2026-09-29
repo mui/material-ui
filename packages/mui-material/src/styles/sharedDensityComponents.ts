@@ -1163,12 +1163,14 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   });
   addRootOverride(enhanced.components, 'MuiLinearProgress', { height: 4 });
   addDefaultProps(enhanced.components, 'MuiCircularProgress', { size: touchTarget });
-  // Root box = the touch target (padding 0 also kills master's coarse-pointer
-  // padding; the thumb keeps its frozen 42px ::after hit target). Master sizes
-  // rail/track via height:inherit off the root, so their thickness is
-  // re-emitted explicitly from --_trackSize. markLabel offsets stay master.
+  // Root box = the touch target. Master sizes rail/track via height:inherit
+  // off the root, so their thickness is re-emitted explicitly from
+  // --_trackSize. markLabel offsets stay master.
   addRootOverride(enhanced.components, 'MuiSlider', {
     padding: 0,
+    // Master pads the root to 44px under a coarse pointer; the box already is
+    // the touch target, and the media block would otherwise land after this.
+    '@media (pointer: coarse)': { padding: 0 },
     '--_trackSize': `calc(${spacing('small')} / 4)`,
     variants: [
       { props: { orientation: 'horizontal' }, style: { height: touchTarget } },
@@ -1211,7 +1213,6 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiSlider',
     {
-      // The 42px ::after hit target stays frozen.
       width: spacing('medium'),
       height: spacing('medium'),
       variants: [
