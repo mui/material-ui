@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
+import * as ReactDOMServer from 'react-dom/server';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/material/styles';
 import { brandingLightTheme } from '../branding';
@@ -67,6 +68,23 @@ describe('DemoToolbar', () => {
     const expand = screen.getByRole('button', { name: 'Show source' });
     expect(document.activeElement).to.equal(expand);
     expect(expand.tabIndex).to.equal(0);
+  });
+
+  it('marks a single tab stop in the server markup', () => {
+    // Master baked `tabIndex` into the markup; querying visibility after mount
+    // forces a style flush per button on every demo.
+    const buttons =
+      ReactDOMServer.renderToStaticMarkup(
+        <UserLanguageProvider defaultUserLanguage="en">
+          <ThemeProvider theme={brandingLightTheme}>
+            <Toolbar />
+          </ThemeProvider>
+        </UserLanguageProvider>,
+      ).match(/<button[^>]*>/g) ?? [];
+    const tabStops = buttons.filter((button) => !button.includes('tabindex="-1"'));
+
+    expect(buttons.length).to.be.greaterThan(2);
+    expect(tabStops).to.have.length(1);
   });
 
   it('routes reset controls and preserves legacy analytics actions', async () => {
