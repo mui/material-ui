@@ -1116,13 +1116,6 @@ export const DENSITY_ANNOTATIONS: Record<
   },
   ToggleButton: (values) => {
     const box = HEIGHT_BY_SIZE[values.size as string];
-    // The inner term IS the icon size now: the padding centres the glyph's
-    // box inside the button, so each size pairs its box with its icon step.
-    const inner = {
-      small: '(iconSize - 2px)',
-      medium: 'iconSize',
-      large: '(iconSize + 4px)',
-    }[values.size as string];
     // First button only — the group's two buttons double every label.
     return [
       {
@@ -1136,7 +1129,7 @@ export const DENSITY_ANNOTATIONS: Record<
         on: '.MuiToggleButton-root:first-of-type',
         aspect: 'padding',
         axis: 'inline',
-        token: `(${box} - ${inner}) / 2 - 1px`,
+        token: `(${box} - iconSize - 2px) / 2`,
         label: 'ToggleButton',
         route: { gutter: 'bottom' },
       },
