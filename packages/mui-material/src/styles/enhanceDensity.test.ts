@@ -373,22 +373,23 @@ describe('enhanceDensity', () => {
     expect(Object.keys(rootVars).some((name) => name.startsWith('---'))).to.equal(false);
   });
 
-  test('an rtl theme mirrors the var-based inline transforms itself', () => {
-    // The rtl stylis plugin flips numeric translate() literals only, so these
-    // carry the sign for the theme direction.
+  test('an rtl theme mirrors the inline offsets at their source', () => {
+    // The rtl stylis plugin flips numeric translate() literals only, so the
+    // variables the transforms read carry the sign for the theme direction.
     const rtl = enhanceDensity(createTheme({ direction: 'rtl' }));
     const ltr = enhanceDensity(createTheme());
+    const inlinePad = (theme: ReturnType<typeof enhanceDensity>) =>
+      JSON.stringify((theme.components as any).MuiOutlinedInput.styleOverrides.root);
+    const travel = (theme: ReturnType<typeof enhanceDensity>) =>
+      JSON.stringify((theme.components as any).MuiSwitch.styleOverrides.root);
 
+    expect(inlinePad(rtl)).to.include('"--_inlinePad":"calc(-1 * 12px)"');
+    expect(inlinePad(ltr)).to.include('"--_inlinePad":"12px"');
+    expect(travel(rtl)).to.include('"--_thumbTravel":"calc(-1 * (var(--_width)');
+    expect(travel(ltr)).to.include('"--_thumbTravel":"calc(1 * (var(--_width)');
     expect(variantStyle(rtl, 'MuiInputLabel', { variant: 'outlined' }).transform).to.equal(
-      'translate(calc(-1 * var(--_inlinePad)), var(--_restY)) scale(1)',
+      'translate(var(--_inlinePad), var(--_restY)) scale(1)',
     );
-    expect(variantStyle(ltr, 'MuiInputLabel', { variant: 'outlined' }).transform).to.equal(
-      'translate(calc(1 * var(--_inlinePad)), var(--_restY)) scale(1)',
-    );
-    const checked = (theme: ReturnType<typeof enhanceDensity>) =>
-      JSON.stringify((theme.components as any).MuiSwitch.styleOverrides.switchBase);
-    expect(checked(rtl)).to.include('translateX(calc(-1 * (var(--_width)');
-    expect(checked(ltr)).to.include('translateX(calc(1 * (var(--_width)');
   });
 
   test('the mounted spacing rebuild still resolves sx steps', () => {

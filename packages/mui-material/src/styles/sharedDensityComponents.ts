@@ -126,6 +126,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // The rtl stylis plugin only mirrors numeric translate() literals, so the
   // var-based inline offsets carry their own sign.
   const inlineSign = enhanced.direction === 'rtl' ? -1 : 1;
+  const inlinePad = inlineSign === 1 ? spacing('small') : `calc(-1 * ${spacing('small')})`;
   const sharedCheckboxRadio = {
     padding: 0,
     width: touchTarget,
@@ -353,7 +354,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
       '--_restY': 'var(--_outlinedInputPadBlock)',
-      '--_inlinePad': spacing('small'),
+      '--_inlinePad': inlinePad,
     },
     variants: [
       {
@@ -454,7 +455,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     [`.${inputLabelClasses.root}:has(~ &)`]: {
       '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
       '--_shrinkY': '6px',
-      '--_inlinePad': spacing('small'),
+      '--_inlinePad': inlinePad,
     },
     variants: [
       {
@@ -576,19 +577,19 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { variant: 'filled' },
         style: {
-          transform: `translate(calc(${inlineSign} * var(--_inlinePad)), var(--_restY)) scale(1)`,
+          transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)',
         },
       },
       {
         props: { variant: 'filled', shrink: true },
         style: {
-          transform: `translate(calc(${inlineSign} * var(--_inlinePad)), var(--_shrinkY)) scale(0.75)`,
+          transform: 'translate(var(--_inlinePad), var(--_shrinkY)) scale(0.75)',
         },
       },
       {
         props: { variant: 'outlined' },
         style: {
-          transform: `translate(calc(${inlineSign} * var(--_inlinePad)), var(--_restY)) scale(1)`,
+          transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)',
         },
       },
       {
@@ -704,6 +705,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     '--_pad': `calc((var(--_height) - var(--_thumbHeight)/1.4285714286) / 2)`, // to maintain the original ratio
     '--_width': `calc(var(--_thumbHeight)*1.7 + var(--_pad)*2)`, // to maintain the original ratio
     '--_offset': 'calc(-1 * (var(--_height)/2 - var(--_thumbHeight)/2))',
+    '--_thumbTravel': `calc(${inlineSign} * (var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight))))`,
     width: 'var(--_width)',
     height: 'var(--_height)',
     padding: 'var(--_pad)',
@@ -744,7 +746,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           [`& .${switchClasses.switchBase}`]: {
             padding: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
             [`&.${switchClasses.checked}`]: {
-              transform: `translateX(calc(${inlineSign} * (var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight)))))`,
+              transform: 'translateX(var(--_thumbTravel))',
             },
           },
         },
@@ -763,7 +765,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       // (0 when touch <= height).
       left: 'calc((var(--_height) - var(--_touchSize)) / 2)',
       [`&.${switchClasses.checked}`]: {
-        transform: `translateX(calc(${inlineSign} * (var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight)))))`,
+        transform: 'translateX(var(--_thumbTravel))',
       },
     },
     'switchBase',
