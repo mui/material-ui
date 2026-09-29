@@ -240,7 +240,7 @@ export default function AllComponentsDemo() {
             <FormGroup row>
               {slots.length > 1 ? (
                 <FormControlLabel
-                  sx={{ mr: 1.5, '& .MuiFormControlLabel-label': { fontSize: 13 } }}
+                  sx={{ '& .MuiFormControlLabel-label': { fontSize: 13 } }}
                   control={
                     <Checkbox
                       size="small"
@@ -262,7 +262,7 @@ export default function AllComponentsDemo() {
               {slots.map((slot) => (
                 <FormControlLabel
                   key={slot}
-                  sx={{ mr: 1.5, '& .MuiFormControlLabel-label': { fontSize: 13 } }}
+                  sx={{ '& .MuiFormControlLabel-label': { fontSize: 13 } }}
                   control={
                     <Checkbox
                       size="small"
