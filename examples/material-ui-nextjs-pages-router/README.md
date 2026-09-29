@@ -30,6 +30,9 @@ or:
 
 **Note:** This example is set up to use the Next.js Pages Router.
 As of Next.js 13.4, the newer App Router pattern is stable.
+
+<!-- #target-branch-reference -->
+
 We recommend starting new projects with the [Material UI with Next.js (App Router) example](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs) unless you need (or prefer) the Pages Router.
 
 <!-- #host-reference -->

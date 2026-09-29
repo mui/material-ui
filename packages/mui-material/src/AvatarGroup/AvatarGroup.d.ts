@@ -22,11 +22,7 @@ export interface AvatarGroupSlots {
 export type AvatarGroupSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AvatarGroupSlots,
   {
-    surplus: SlotProps<
-      React.ElementType<React.ComponentPropsWithRef<typeof Avatar>>,
-      AvatarGroupComponentsPropsOverrides,
-      AvatarGroupOwnerState
-    >;
+    surplus: SlotProps<typeof Avatar, AvatarGroupComponentsPropsOverrides, AvatarGroupOwnerState>;
   }
 >;
 export interface AvatarGroupOwnProps extends AvatarGroupSlotsAndSlotProps {

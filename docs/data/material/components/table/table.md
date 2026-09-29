@@ -91,8 +91,25 @@ You should either provide an array of:
 ### Custom pagination actions
 
 The `ActionsComponent` prop of the `TablePagination` component allows the implementation of custom actions.
+A replacement action component is responsible for its own tooltips and focus management, unless it composes the built-in `TablePaginationActions` component.
 
 {{"demo": "CustomPaginationActionsTable.js", "bg": true}}
+
+#### Customizing individual action buttons
+
+To customize individual buttons while keeping the built-in `TablePaginationActions`, use `slots.actions` and `slotProps.actions` on `TablePagination`.
+The default buttons include tooltips.
+When replacing `firstButton`, `previousButton`, `nextButton`, or `lastButton` through `slots.actions`, the custom component receives a `title` prop and is responsible for rendering its own tooltip.
+
+When an update to pagination props or action slot props disables the focused action, `TablePaginationActions` moves focus to the next enabled action in DOM order, or searches backward if none follows.
+Actions with `tabIndex={-1}` are skipped.
+Focus stays where it is if no action is available or your application has already moved focus elsewhere.
+
+Custom button slots participate in focus restoration by forwarding the supplied `data-mui-pagination-action` prop to their focusable element.
+Forward the `disabled` prop to native buttons, or use `aria-disabled` for other elements.
+You don't need to forward a ref.
+Custom slots that omit the data attribute continue to work, but don't participate in focus restoration.
+If a custom slot disables itself through its own state without re-rendering `TablePaginationActions`, it must handle focus restoration itself.
 
 ## Sticky header
 

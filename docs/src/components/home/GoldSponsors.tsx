@@ -67,6 +67,11 @@ const BACKLINKs = [
     description: 'Global SMM Panel.',
     href: 'https://daosmm.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
+  {
+    name: 'InstantFamous',
+    description: 'Grow Your Social Network.',
+    href: 'https://instant-famous.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
 ];
 
 export default function GoldSponsors() {
