@@ -1,7 +1,11 @@
-import { private_defaultDensityScale as defaultScale } from '@mui/material/styles';
+import { createTheme, unstable_enhanceDensity as enhanceDensity } from '@mui/material/styles';
 import type { DensityScaleOverrides } from '@mui/material/styles';
 
-const { touchTarget, iconSize, ...defaultSteps } = defaultScale;
+const {
+  touchTarget,
+  iconSize,
+  spacing: defaultSteps,
+} = enhanceDensity(createTheme()).unstable_densityScale!;
 
 export interface DensityRecipe {
   id: string;

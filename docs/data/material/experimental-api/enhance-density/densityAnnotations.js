@@ -1,6 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { private_defaultDensityScale } from '@mui/material/styles';
+import {
+  createTheme,
+  unstable_enhanceDensity as enhanceDensity,
+} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
 // The default scale `enhanceDensity` ships, split into steps and sizing
@@ -9,8 +12,8 @@ import Box from '@mui/material/Box';
 const {
   touchTarget: defaultTouchTarget,
   iconSize: defaultIconTarget,
-  ...defaultSteps
-} = private_defaultDensityScale;
+  spacing: defaultSteps,
+} = enhanceDensity(createTheme()).unstable_densityScale;
 
 export const DENSITY_SCALE = defaultSteps;
 

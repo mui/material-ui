@@ -1,12 +1,8 @@
 import {
   applyDensity,
-  DEFAULT_SIZING_PX,
-  DEFAULT_STEP_PX,
-  DensityKey,
   DensityScaleOverrides,
   DensitySizingKey,
   EnhanceableTheme,
-  ResolvedDensityScale,
 } from './densityScale';
 import applySharedDensity from './sharedDensityComponents';
 
@@ -20,23 +16,10 @@ import applySharedDensity from './sharedDensityComponents';
  * Neither is a spacing key: `theme.spacing()` does not resolve them.
  */
 declare module '@mui/material/styles' {
-  interface Theme extends Partial<Record<DensitySizingKey, string>> {
-    unstable_densityScale?: ResolvedDensityScale | undefined;
-  }
+  interface Theme extends Partial<Record<DensitySizingKey, string>> {}
 
   interface ThemeVars extends Partial<Record<DensitySizingKey, string>> {}
 }
-
-/**
- * The ONE shipped ladder in px + the sizing keys, flat. Barrel-exported as
- * `private_defaultDensityScale` as the fallback for a theme that was never
- * enhanced; an enhanced theme carries its resolved numbers, overrides
- * included, on `theme.unstable_densityScale`.
- */
-export const defaultDensityScale: Record<DensityKey | DensitySizingKey, number> = {
-  ...DEFAULT_STEP_PX,
-  ...DEFAULT_SIZING_PX,
-};
 
 /**
  * Make every component density-aware on the one shipped scale (`scale`
