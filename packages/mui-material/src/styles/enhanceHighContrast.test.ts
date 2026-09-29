@@ -778,9 +778,68 @@ describe('enhanceHighContrast', () => {
           },
       });
     });
+
+    test('MuiMenu2SubmenuTrigger protects its state colors after a closing override', () => {
+      const custom = { color: '#111', backgroundColor: '#222' };
+      const theme = enhanceHighContrast(
+        createTheme({
+          components: { MuiMenu2SubmenuTrigger: { styleOverrides: { closing: custom } } },
+        }),
+        { activeText: 'Canvas', activeBackground: 'ButtonBorder' },
+      );
+      const closingOverrides = theme.components?.MuiMenu2SubmenuTrigger?.styleOverrides
+        ?.closing as Array<StyleOverride>;
+      expect(closingOverrides[0]).to.deep.equal(custom);
+      const hcmOverride = closingOverrides[closingOverrides.length - 1];
+      const [closingVariant] = hcmOverride.variants as Array<{
+        props: (props: { ownerState: Record<string, unknown> }) => boolean;
+        style: StyleOverride;
+      }>;
+
+      expect(closingVariant.props({ ownerState: { retainClosingTint: true } })).to.equal(true);
+      expect(closingVariant.props({ ownerState: { retainClosingTint: false } })).to.equal(false);
+      expect(closingVariant.props({ ownerState: {} })).to.equal(false);
+      const activeColors = {
+        forcedColorAdjust: 'none',
+        color: 'Canvas',
+        backgroundColor: 'ButtonBorder',
+      };
+      expect(closingVariant.style).to.deep.equal({
+        [HCM]: activeColors,
+        [`&.${menu2SubmenuTriggerClasses.selected}`]: { [HCM]: activeColors },
+      });
+      // A pointer exit does not retain the active tint, but selected and focused
+      // triggers still need their system colors after the custom closing rule.
+      expect(hcmOverride[`&.${menu2SubmenuTriggerClasses.selected}`]).to.deep.equal({
+        [HCM]: {
+          forcedColorAdjust: 'none',
+          color: 'SelectedItemText',
+          backgroundColor: 'SelectedItem',
+        },
+      });
+      expect(hcmOverride[`&.${menuItemClasses.focusVisible}, &:hover`]).to.deep.equal({
+        [HCM]: { ...activeColors, outline: 'none' },
+      });
+    });
   });
 
   describe('Menu2 indicator overrides', () => {
+    test.each(['MuiMenu2CheckboxItemIndicator', 'MuiMenu2RadioItemIndicator'] as const)(
+      '%s inherits the item colors after a highlighted override',
+      (component) => {
+        const custom = { color: '#111', backgroundColor: '#222' };
+        const theme = enhanceHighContrast(
+          createTheme({
+            components: { [component]: { styleOverrides: { highlighted: custom } } },
+          }),
+        );
+        expect(theme.components?.[component]?.styleOverrides?.highlighted).to.deep.equal([
+          custom,
+          { [HCM]: { color: 'inherit', backgroundColor: 'transparent' } },
+        ]);
+      },
+    );
+
     // The checkmark is a hole in the `CheckBox` icon, so it shows the item
     // background on its own and needs no override of its own.
     test('MuiMenu2CheckboxItemIndicator inherits the item color', () => {

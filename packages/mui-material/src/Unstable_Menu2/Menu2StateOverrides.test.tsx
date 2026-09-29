@@ -94,12 +94,55 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
     return rules;
   }
 
-  it('keeps the forced-colors active rule after a highlighted override', async () => {
+  highlightedCases.forEach(({ name, item }) => {
+    it(`keeps the ${name} forced-colors rule after a highlighted override`, async () => {
+      const theme = enhanceHighContrast(
+        createTheme({
+          components: {
+            [name]: {
+              styleOverrides: { highlighted: { color: '#111', backgroundColor: '#222' } },
+            },
+          },
+        }),
+      );
+      render(
+        <ThemeProvider theme={theme}>
+          <Menu2 defaultOpen modal={false} anchor={document.body}>
+            {item}
+          </Menu2>
+        </ThemeProvider>,
+      );
+      const target = await screen.findByTestId('target');
+      // The generated class name carries the styles; the utility class does not.
+      const rootClassName = Array.from(target.classList).find(
+        (className) => className !== `${name}-root` && className.endsWith(`${name}-root`),
+      )!;
+      const highlightedRules = getRulesFor(rootClassName).filter((rule) =>
+        rule.selector.endsWith(`.${name}-highlighted`),
+      );
+
+      // The last highlighted rule restores the system colors under forced colors.
+      // WebKit has no forced colors mode, so it drops `forced-color-adjust`.
+      const forcedColorAdjust = CSS.supports('forced-color-adjust', 'none')
+        ? 'forced-color-adjust: none; '
+        : '';
+      expect(highlightedRules.length).to.be.greaterThan(1);
+      expect(highlightedRules[highlightedRules.length - 1]).to.deep.equal({
+        selector: `.${rootClassName}.${name}-highlighted`,
+        media: '(forced-colors: active)',
+        declarations: name.endsWith('Indicator')
+          ? 'color: inherit; background-color: transparent;'
+          : `${forcedColorAdjust}color: highlighttext; background-color: highlight;`,
+      });
+    });
+  });
+
+  it('keeps the forced-colors active rule after a closing override', async () => {
     const theme = enhanceHighContrast(
       createTheme({
         components: {
-          MuiMenu2Item: {
-            styleOverrides: { highlighted: { color: '#111', backgroundColor: '#222' } },
+          MuiMenu2SubmenuTrigger: {
+            styleOverrides: { closing: { color: '#111', backgroundColor: '#222' } },
           },
         },
       }),
@@ -107,29 +150,30 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
     render(
       <ThemeProvider theme={theme}>
         <Menu2 defaultOpen modal={false} anchor={document.body}>
-          <Menu2Item>Target</Menu2Item>
+          <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
+            <Menu2Item>Nested</Menu2Item>
+          </Menu2Submenu>
         </Menu2>
       </ThemeProvider>,
     );
-    const item = await screen.findByRole('menuitem', { name: 'Target' });
-    // The generated class name carries the styles; the utility class does not.
-    const rootClassName = Array.from(item.classList).find(
-      (name) => name !== menu2ItemClasses.root && name.endsWith('MuiMenu2Item-root'),
+    const trigger = await screen.findByRole('menuitem', { name: 'More' });
+    const rootClassName = Array.from(trigger.classList).find(
+      (name) =>
+        name !== menu2SubmenuTriggerClasses.root && name.endsWith('MuiMenu2SubmenuTrigger-root'),
     )!;
-    const highlightedRules = getRulesFor(rootClassName).filter((rule) =>
-      rule.selector.endsWith(`.${menu2ItemClasses.highlighted}`),
-    );
-
-    // The last highlighted rule restores the system colors under forced colors.
-    // WebKit has no forced colors mode, so it drops `forced-color-adjust`.
     const forcedColorAdjust = CSS.supports('forced-color-adjust', 'none')
       ? 'forced-color-adjust: none; '
       : '';
-    expect(highlightedRules.length).to.be.greaterThan(1);
-    expect(highlightedRules[highlightedRules.length - 1]).to.deep.equal({
-      selector: `.${rootClassName}.${menu2ItemClasses.highlighted}`,
-      media: '(forced-colors: active)',
-      declarations: `${forcedColorAdjust}color: highlighttext; background-color: highlight;`,
+
+    ['', `.${menu2SubmenuTriggerClasses.selected}`].forEach((selected) => {
+      const selector = `.${rootClassName}.${menu2SubmenuTriggerClasses.closing}${selected}`;
+      const closingRules = getRulesFor(rootClassName).filter((rule) => rule.selector === selector);
+      expect(closingRules.length).to.be.greaterThan(1);
+      expect(closingRules[closingRules.length - 1]).to.deep.equal({
+        selector,
+        media: '(forced-colors: active)',
+        declarations: `${forcedColorAdjust}color: highlighttext; background-color: highlight;`,
+      });
     });
   });
 

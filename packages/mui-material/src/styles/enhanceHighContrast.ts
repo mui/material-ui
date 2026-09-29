@@ -85,9 +85,9 @@ const defaultHcTokens: Required<HighContrastTokens> = {
 
 const HCM = '@media (forced-colors: active)';
 
-// A `highlighted` override comes after the root rules in the cascade, so it
+// State overrides come after the root rules in the cascade, so they
 // could replace the system colors while `forcedColorAdjust: none` stays active.
-function menu2HighlightedOverrides(hcTokens: Required<HighContrastTokens>) {
+function menu2ActiveOverrides(hcTokens: Required<HighContrastTokens>) {
   return {
     [HCM]: {
       forcedColorAdjust: 'none',
@@ -469,10 +469,7 @@ export default function enhanceHighContrast<
           c?.MuiMenu2Item?.styleOverrides?.root,
           menu2ItemOverrides(menu2ItemClasses, hcTokens),
         ],
-        highlighted: [
-          c?.MuiMenu2Item?.styleOverrides?.highlighted,
-          menu2HighlightedOverrides(hcTokens),
-        ],
+        highlighted: [c?.MuiMenu2Item?.styleOverrides?.highlighted, menu2ActiveOverrides(hcTokens)],
       },
     },
     MuiMenu2LinkItem: {
@@ -485,7 +482,7 @@ export default function enhanceHighContrast<
         ],
         highlighted: [
           c?.MuiMenu2LinkItem?.styleOverrides?.highlighted,
-          menu2HighlightedOverrides(hcTokens),
+          menu2ActiveOverrides(hcTokens),
         ],
       },
     },
@@ -499,7 +496,7 @@ export default function enhanceHighContrast<
         ],
         highlighted: [
           c?.MuiMenu2CheckboxItem?.styleOverrides?.highlighted,
-          menu2HighlightedOverrides(hcTokens),
+          menu2ActiveOverrides(hcTokens),
         ],
       },
     },
@@ -513,7 +510,7 @@ export default function enhanceHighContrast<
         ],
         highlighted: [
           c?.MuiMenu2RadioItem?.styleOverrides?.highlighted,
-          menu2HighlightedOverrides(hcTokens),
+          menu2ActiveOverrides(hcTokens),
         ],
       },
     },
@@ -553,7 +550,24 @@ export default function enhanceHighContrast<
         ],
         highlighted: [
           c?.MuiMenu2SubmenuTrigger?.styleOverrides?.highlighted,
-          menu2HighlightedOverrides(hcTokens),
+          menu2ActiveOverrides(hcTokens),
+        ],
+        closing: [
+          c?.MuiMenu2SubmenuTrigger?.styleOverrides?.closing,
+          {
+            // After a pointer exit, keep only the normal item state colors.
+            ...menu2ItemOverrides(menu2SubmenuTriggerClasses, hcTokens),
+            variants: [
+              {
+                props: ({ ownerState }) =>
+                  'retainClosingTint' in ownerState && ownerState.retainClosingTint === true,
+                style: {
+                  ...menu2ActiveOverrides(hcTokens),
+                  [`&.${menu2SubmenuTriggerClasses.selected}`]: menu2ActiveOverrides(hcTokens),
+                },
+              },
+            ],
+          },
         ],
       },
     },
@@ -573,6 +587,10 @@ export default function enhanceHighContrast<
             },
           },
         ],
+        highlighted: [
+          c?.MuiMenu2CheckboxItemIndicator?.styleOverrides?.highlighted,
+          { [HCM]: { color: 'inherit', backgroundColor: 'transparent' } },
+        ],
       },
     },
     MuiMenu2RadioItemIndicator: {
@@ -590,6 +608,10 @@ export default function enhanceHighContrast<
               },
             },
           },
+        ],
+        highlighted: [
+          c?.MuiMenu2RadioItemIndicator?.styleOverrides?.highlighted,
+          { [HCM]: { color: 'inherit', backgroundColor: 'transparent' } },
         ],
       },
     },
