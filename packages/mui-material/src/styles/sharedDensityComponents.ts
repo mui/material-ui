@@ -587,6 +587,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
     ],
   });
+  addRootOverride(enhanced.components, 'MuiFormGroup', {
+    columnGap: spacing('large'),
+  });
   addRootOverride(enhanced.components, 'MuiFormLabel', {
     lineHeight: enhanced.typography?.body1?.lineHeight,
   });
