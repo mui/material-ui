@@ -124,6 +124,12 @@ function isFocusableToolbarButton(button: HTMLElement): boolean {
   return style.visibility !== 'hidden' && style.display !== 'none';
 }
 
+/**
+ * The initial stop is baked into the markup (`tabIndex={-1}` on every control
+ * but the first), so nothing runs on mount: `checkVisibility` forces a style
+ * flush per button, and a page hydrates dozens of toolbars. The visible set is
+ * only resolved once focus enters the toolbar.
+ */
 export function useToolbarKeyboard() {
   const theme = useTheme();
   const toolbarRef = React.useRef<HTMLDivElement>(null);
@@ -153,22 +159,6 @@ export function useToolbarKeyboard() {
       button.tabIndex = index === activeIndexRef.current ? 0 : -1;
     });
   }, [getFocusableButtons]);
-
-  React.useEffect(() => {
-    const container = toolbarRef.current;
-    if (!container) {
-      return undefined;
-    }
-    syncTabIndex();
-    const observer = new MutationObserver(syncTabIndex);
-    observer.observe(container, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['disabled', 'aria-hidden', 'style', 'hidden'],
-    });
-    return () => observer.disconnect();
-  }, [syncTabIndex]);
 
   const handleFocus = React.useCallback(
     (event: React.FocusEvent<HTMLDivElement>) => {
@@ -436,6 +426,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
       <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center' }}>
         {hasNonSystemDemos && (
           <ToolbarButton
+            tabIndex={-1}
             size="small"
             onClick={() => {
               const idx = variants.indexOf(selectedVariant);
@@ -454,6 +445,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
         ) : null}
 
         <ToolbarButton
+          tabIndex={-1}
           ref={toggleRef}
           onClick={onToggleExpand}
           aria-controls={demoSourceId}
@@ -470,6 +462,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
           <React.Fragment>
             <DemoTooltip title={t('stackblitz')} placement="bottom">
               <IconButton
+                tabIndex={-1}
                 onClick={onOpenStackBlitz}
                 sx={{ borderRadius: 1 }}
                 data-ga-event-category="demo"
@@ -484,6 +477,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
 
             <DemoTooltip title={t('codesandbox')} placement="bottom">
               <IconButton
+                tabIndex={-1}
                 onClick={onOpenCodeSandbox}
                 sx={{ borderRadius: 1 }}
                 data-ga-event-category="demo"
@@ -500,6 +494,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
 
         <DemoTooltip title={t('copySource')} placement="bottom">
           <IconButton
+            tabIndex={-1}
             onClick={handleCopySource}
             sx={{ borderRadius: 1 }}
             data-ga-event-category="demo"
@@ -512,6 +507,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
 
         <DemoTooltip title={t('resetFocus')} placement="bottom">
           <IconButton
+            tabIndex={-1}
             onClick={onResetFocus}
             sx={{ borderRadius: 1 }}
             data-ga-event-category="demo"
@@ -524,6 +520,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
 
         <DemoTooltip title={t('resetDemo')} placement="bottom">
           <IconButton
+            tabIndex={-1}
             onClick={onReset}
             sx={{ borderRadius: 1 }}
             data-ga-event-category="demo"
@@ -535,6 +532,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
         </DemoTooltip>
 
         <IconButton
+          tabIndex={-1}
           onClick={handleMoreClick}
           aria-label={t('seeMore')}
           aria-owns={moreMenuOpen ? 'demo-menu-more' : undefined}
