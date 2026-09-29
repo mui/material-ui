@@ -361,6 +361,18 @@ describe('enhanceDensity', () => {
     expect(Object.keys(slotProps).length).to.be.greaterThan(1);
   });
 
+  test('an empty cssVarPrefix names the variables without a dash', () => {
+    const theme = enhanceDensity(createTheme({ cssVariables: { cssVarPrefix: '' } }));
+    const sheets = theme.generateStyleSheets();
+    const rootVars = sheets[sheets.length - 1][':root'] as Record<string, string>;
+
+    expect(rootVars['--spacing-small']).to.equal('12px');
+    expect(rootVars['--touchTarget']).to.equal('32px');
+    expect(theme.spacing('small')).to.equal('var(--spacing-small, 12px)');
+    expect(theme.vars.touchTarget).to.equal('var(--touchTarget, 32px)');
+    expect(Object.keys(rootVars).some((name) => name.startsWith('---'))).to.equal(false);
+  });
+
   test('the mounted spacing rebuild still resolves sx steps', () => {
     // CssVarsProvider swaps `theme.spacing` for `theme.generateSpacing()` on
     // mount — mimic that swap and run the sx transform against it.
