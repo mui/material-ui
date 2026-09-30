@@ -124,26 +124,6 @@ axe-core: `image-alt` ✅
 
 **Pass:** <!-- 1.1.1:pass:start -->every informative avatar exposes a text alternative (`img` `alt` or an author-provided label); decorative and no-image avatars are silent. The component does its part; an informative avatar with no `alt` is an authoring failure.<!-- 1.1.1:pass:end -->
 
-#### 1.3.1 Info and Relationships · A
-
-`✅ Supports` · `◐ Shared`
-
-<!-- 1.3.1:start -->
-
-- The only relationship (image-to-name) is conveyed natively via `<img>` and `alt` text.
-- If an author builds meaning by composing the avatar with surrounding content (for example, a name and avatar in a list item), conveying that structure is the author's responsibility.
-- Confirmed by unit tests in [`./Avatar.test.js`](./Avatar.test.js).
-
-**Manual testing steps**
-
-1. Inspect an image avatar in the accessibility tree (in Chrome DevTools: Elements panel, Accessibility tab): confirm the `img` exposes `role="img"` with the `alt` as its name.
-2. Confirm a letter or icon avatar's root div is generic (no spurious role) and its decorative icon is `aria-hidden`.
-3. Confirm no grouping, heading, or list semantics are implied by the avatar alone that would need programmatic encoding.
-
-<!-- 1.3.1:end -->
-
-**Pass:** <!-- 1.3.1:pass:start -->the image-to-name relationship is programmatically available via native `img` and `alt`.<!-- 1.3.1:pass:end -->
-
 #### 1.4.1 Use of Color · A
 
 `🚩` · `✅ Supports` · `◐ Shared`
@@ -210,6 +190,28 @@ axe-core: `color-contrast` ❌
 <!-- 1.4.11:end -->
 
 **Pass:** <!-- 1.4.11:pass:start -->any icon that conveys meaning meets `3:1` against its background; the decorative container shape and `Person` placeholder are exempt, and the boundary stays visible in forced-colors mode.<!-- 1.4.11:pass:end -->
+
+### 🔁 Hybrid
+
+#### 1.3.1 Info and Relationships · A
+
+`✅ Supports` · `◐ Shared`
+
+<!-- 1.3.1:start -->
+
+- The only relationship (image-to-name) is conveyed natively via `<img>` and `alt` text.
+- If an author builds meaning by composing the avatar with surrounding content (for example, a name and avatar in a list item), conveying that structure is the author's responsibility.
+- Confirmed by unit tests in [`./Avatar.test.js`](./Avatar.test.js).
+
+**Manual testing steps**
+
+1. Inspect an image avatar in the accessibility tree (in Chrome DevTools: Elements panel, Accessibility tab): confirm the `img` exposes `role="img"` with the `alt` as its name.
+2. Confirm a letter or icon avatar's root div is generic (no spurious role) and its decorative icon is `aria-hidden`.
+3. Confirm no grouping, heading, or list semantics are implied by the avatar alone that would need programmatic encoding.
+
+<!-- 1.3.1:end -->
+
+**Pass:** <!-- 1.3.1:pass:start -->the image-to-name relationship is programmatically available via native `img` and `alt`.<!-- 1.3.1:pass:end -->
 
 ### ⚙️ Automated
 

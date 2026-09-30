@@ -28,9 +28,14 @@
     "2.4.7": {
       "conformance": "Supports",
       "responsibility": "Component",
-      "group": "Manual",
+      "group": "Hybrid",
       "flagged": false,
-      "evidence": [{ "type": "playwright", "ref": "test/regressions/index.test.js" }]
+      "evidence": [
+        {
+          "type": "playwright",
+          "ref": "test/regressions/index.test.js"
+        }
+      ]
     },
     "2.4.11": {
       "conformance": "Supports",
@@ -68,7 +73,10 @@
       "group": "Hybrid",
       "flagged": false,
       "evidence": [
-        { "type": "unit", "ref": "packages/mui-material/src/TextField/TextField.test.js" }
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/TextField/TextField.test.js"
+        }
       ]
     },
     "1.4.1": {
@@ -101,7 +109,10 @@
       "group": "Hybrid",
       "flagged": false,
       "evidence": [
-        { "type": "unit", "ref": "packages/mui-material/src/TextField/TextField.test.js" }
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/TextField/TextField.test.js"
+        }
       ]
     },
     "1.4.4": {
@@ -109,21 +120,36 @@
       "responsibility": "Shared",
       "group": "Automated",
       "flagged": false,
-      "evidence": [{ "type": "playwright", "ref": "test/regressions/index.test.js" }]
+      "evidence": [
+        {
+          "type": "playwright",
+          "ref": "test/regressions/index.test.js"
+        }
+      ]
     },
     "1.4.10": {
       "conformance": "Supports",
       "responsibility": "Shared",
       "group": "Automated",
       "flagged": false,
-      "evidence": [{ "type": "playwright", "ref": "test/regressions/index.test.js" }]
+      "evidence": [
+        {
+          "type": "playwright",
+          "ref": "test/regressions/index.test.js"
+        }
+      ]
     },
     "1.4.12": {
       "conformance": "Supports",
       "responsibility": "Shared",
       "group": "Automated",
       "flagged": false,
-      "evidence": [{ "type": "playwright", "ref": "test/regressions/index.test.js" }]
+      "evidence": [
+        {
+          "type": "playwright",
+          "ref": "test/regressions/index.test.js"
+        }
+      ]
     },
     "2.1.1": {
       "conformance": "Supports",
@@ -131,7 +157,10 @@
       "group": "Automated",
       "flagged": false,
       "evidence": [
-        { "type": "unit", "ref": "packages/mui-material/src/TextField/TextField.test.js" }
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/TextField/TextField.test.js"
+        }
       ]
     },
     "2.1.2": {
@@ -140,7 +169,10 @@
       "group": "Automated",
       "flagged": false,
       "evidence": [
-        { "type": "unit", "ref": "packages/mui-material/src/TextField/TextField.test.js" }
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/TextField/TextField.test.js"
+        }
       ]
     },
     "2.4.3": {
@@ -149,7 +181,10 @@
       "group": "Automated",
       "flagged": false,
       "evidence": [
-        { "type": "unit", "ref": "packages/mui-material/src/TextField/TextField.test.js" }
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/TextField/TextField.test.js"
+        }
       ]
     },
     "2.5.2": {
@@ -158,7 +193,10 @@
       "group": "Automated",
       "flagged": false,
       "evidence": [
-        { "type": "unit", "ref": "packages/mui-material/src/TextField/TextField.test.js" }
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/TextField/TextField.test.js"
+        }
       ]
     },
     "2.5.3": {
@@ -167,7 +205,10 @@
       "group": "Automated",
       "flagged": false,
       "evidence": [
-        { "type": "unit", "ref": "packages/mui-material/src/TextField/TextField.test.js" }
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/TextField/TextField.test.js"
+        }
       ]
     },
     "2.5.8": {
@@ -182,7 +223,10 @@
       "group": "Automated",
       "flagged": false,
       "evidence": [
-        { "type": "unit", "ref": "packages/mui-material/src/TextField/TextField.test.js" }
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/TextField/TextField.test.js"
+        }
       ]
     },
     "3.2.2": {
@@ -191,7 +235,10 @@
       "group": "Automated",
       "flagged": false,
       "evidence": [
-        { "type": "unit", "ref": "packages/mui-material/src/TextField/TextField.test.js" }
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/TextField/TextField.test.js"
+        }
       ]
     },
     "3.3.1": {
@@ -200,7 +247,10 @@
       "group": "Automated",
       "flagged": false,
       "evidence": [
-        { "type": "unit", "ref": "packages/mui-material/src/TextField/TextField.test.js" }
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/TextField/TextField.test.js"
+        }
       ]
     }
   },

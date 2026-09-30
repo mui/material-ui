@@ -39,6 +39,26 @@ No group-level gaps.
 
 ### 🔍 Manual
 
+#### 2.4.6 Headings and Labels · AA
+
+`🚩` · `✅ Supports` · `◐ Shared`
+
+<!-- 2.4.6:start -->
+
+- The group's label comes from the author's `aria-label`, the documented pattern ("text alignment" and "text formatting" in the demos).
+- Whether the wording describes the set of choices depends on author content, a vague group label ("Options") would fail.
+
+**Manual testing steps**
+
+1. Read each toggle group's `aria-label`.
+2. Confirm it describes the set of choices ("text alignment", not "Options").
+
+<!-- 2.4.6:end -->
+
+**Pass:** <!-- 2.4.6:pass:start -->every group label describes the set of toggles it contains.<!-- 2.4.6:pass:end -->
+
+### 🔁 Hybrid
+
 #### 1.3.1 Info and Relationships · A
 
 `✅ Supports` · `◐ Shared`
@@ -57,24 +77,6 @@ No group-level gaps.
 <!-- 1.3.1:end -->
 
 **Pass:** <!-- 1.3.1:pass:start -->the toggles are exposed as one group, named when the author supplies a label.<!-- 1.3.1:pass:end -->
-
-#### 2.4.6 Headings and Labels · AA
-
-`🚩` · `✅ Supports` · `◐ Shared`
-
-<!-- 2.4.6:start -->
-
-- The group's label comes from the author's `aria-label`, the documented pattern ("text alignment" and "text formatting" in the demos).
-- Whether the wording describes the set of choices depends on author content, a vague group label ("Options") would fail.
-
-**Manual testing steps**
-
-1. Read each toggle group's `aria-label`.
-2. Confirm it describes the set of choices ("text alignment", not "Options").
-
-<!-- 2.4.6:end -->
-
-**Pass:** <!-- 2.4.6:pass:start -->every group label describes the set of toggles it contains.<!-- 2.4.6:pass:end -->
 
 #### 4.1.2 Name, Role, Value · A
 

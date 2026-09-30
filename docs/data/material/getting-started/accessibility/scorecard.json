@@ -776,7 +776,7 @@
           "level": "A",
           "conformance": "Supports",
           "responsibility": "Shared",
-          "group": "Manual",
+          "group": "Hybrid",
           "flagged": false
         },
         {
@@ -2115,7 +2115,7 @@
           "level": "AA",
           "conformance": "Supports",
           "responsibility": "Component",
-          "group": "Manual",
+          "group": "Hybrid",
           "flagged": false
         },
         {
@@ -2596,7 +2596,7 @@
           "level": "A",
           "conformance": "Supports",
           "responsibility": "Shared",
-          "group": "Manual",
+          "group": "Hybrid",
           "flagged": false
         },
         {
@@ -2614,7 +2614,7 @@
           "level": "A",
           "conformance": "Supports",
           "responsibility": "Shared",
-          "group": "Manual",
+          "group": "Hybrid",
           "flagged": false
         },
         {

@@ -58,7 +58,7 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔍 **1.4.4 Resize Text** — initials and fallback text stay fully visible at 200% page zoom. The container scales with the page.
 - [ ] 🔍 **1.4.5 Images of Text** — avatar initials and fallback are real text; the component renders no image of text.
 - [ ] 🔍 **1.1.1 Non-text Content** — every informative avatar exposes a text alternative (`img` `alt` or an author-provided label); decorative and no-image avatars are silent. The component does its part; an informative avatar with no `alt` is an authoring failure.
-- [ ] 🔍 **1.3.1 Info and Relationships** — the image-to-name relationship is programmatically available via native `img` and `alt`.
+- [ ] 🔁 **1.3.1 Info and Relationships** — the image-to-name relationship is programmatically available via native `img` and `alt`.
 - [ ] 🔍 **1.4.1 Use of Color** — no information conveyed by the avatar is lost in grayscale; any color-coded meaning an author adds is paired with a non-color cue.
 - [ ] 🔍 **1.4.3 Contrast (Minimum)** — all letter and fallback text meets `4.5:1` (or `3:1` if it's sized to qualify as large text). The default gray letter avatar, the `deepOrange[500]` example, and arbitrary `stringToColor` backgrounds do not meet this without author color overrides.
 - [ ] 🔍 **1.4.11 Non-text Contrast** — any icon that conveys meaning meets `3:1` against its background; the decorative container shape and `Person` placeholder are exempt, and the boundary stays visible in forced-colors mode.
@@ -147,7 +147,7 @@ Run the rows matching what you touched, for the component you touched.
 9 checks · full procedures in [`TextField/accessibility.md`](./TextField/accessibility.md)
 
 - [ ] 🔍 **1.4.11 Non-text Contrast** — the resting boundary and the focus indicator are each `3:1` against adjacent colors. Today the resting `outlined` border is the known failure.
-- [ ] 🔍 **2.4.7 Focus Visible** — every keyboard-focused field shows a visible indicator.
+- [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused field shows a visible indicator.
 - [ ] 🔍 **4.1.3 Status Messages** — the error is announced without the user moving focus to it.
 - [ ] 🔁 **1.3.1 Info and Relationships** — label, description, required, and invalid relationships are programmatically determinable.
 - [ ] 🔁 **1.4.1 Use of Color** — the error state is conveyed by more than color (the `helperText` message), not the red alone.
@@ -173,6 +173,6 @@ Run the rows matching what you touched, for the component you touched.
 
 3 checks · full procedures in [`ToggleButtonGroup/accessibility.md`](./ToggleButtonGroup/accessibility.md)
 
-- [ ] 🔍 **1.3.1 Info and Relationships** — the toggles are exposed as one group, named when the author supplies a label.
+- [ ] 🔁 **1.3.1 Info and Relationships** — the toggles are exposed as one group, named when the author supplies a label.
 - [ ] 🔍 **2.4.6 Headings and Labels** — every group label describes the set of toggles it contains.
-- [ ] 🔍 **4.1.2 Name, Role, Value** — the group exposes its role and author-supplied name, and each toggle's pressed state and its changes are announced.
+- [ ] 🔁 **4.1.2 Name, Role, Value** — the group exposes its role and author-supplied name, and each toggle's pressed state and its changes are announced.

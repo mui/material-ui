@@ -102,24 +102,6 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Pass:** <!-- 1.4.11:pass:start -->the resting boundary and the focus indicator are each `3:1` against adjacent colors. Today the resting `outlined` border is the known failure.<!-- 1.4.11:pass:end -->
 
-#### 2.4.7 Focus Visible · AA
-
-`✅ Supports` · `● Component`
-
-<!-- 2.4.7:start -->
-
-- Keyboard focus thickens the `outlined` notched outline to a 2px `color.main` border and grows the `filled` underline to a 2px `color.main` line, a clear change from the resting state. Covered by a Playwright test that compares the control focused and unfocused.
-- Unlike the `ButtonBase` controls, no documented prop removes this indicator; an author would have to override the `.Mui-focused` styles to lose it.
-
-**Manual testing steps**
-
-1. Press <kbd>Tab</kbd> to move focus into an `outlined` field and a `filled` field.
-2. Confirm a clear focus indicator appears and looks different from the hover style.
-
-<!-- 2.4.7:end -->
-
-**Pass:** <!-- 2.4.7:pass:start -->every keyboard-focused field shows a visible indicator.<!-- 2.4.7:pass:end -->
-
 #### 2.4.11 Focus Not Obscured (Minimum) · AA
 
 `✅ Supports` · `○ Author`
@@ -192,6 +174,24 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 **Pass:** <!-- 4.1.3:pass:start -->the error is announced without the user moving focus to it.<!-- 4.1.3:pass:end -->
 
 ### 🔁 Hybrid
+
+#### 2.4.7 Focus Visible · AA
+
+`✅ Supports` · `● Component`
+
+<!-- 2.4.7:start -->
+
+- Keyboard focus thickens the `outlined` notched outline to a 2px `color.main` border and grows the `filled` underline to a 2px `color.main` line, a clear change from the resting state. Covered by a Playwright test that compares the control focused and unfocused.
+- Unlike the `ButtonBase` controls, no documented prop removes this indicator; an author would have to override the `.Mui-focused` styles to lose it.
+
+**Manual testing steps**
+
+1. Press <kbd>Tab</kbd> to move focus into an `outlined` field and a `filled` field.
+2. Confirm a clear focus indicator appears and looks different from the hover style.
+
+<!-- 2.4.7:end -->
+
+**Pass:** <!-- 2.4.7:pass:start -->every keyboard-focused field shows a visible indicator.<!-- 2.4.7:pass:end -->
 
 #### 1.3.1 Info and Relationships · A
 

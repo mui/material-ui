@@ -570,13 +570,23 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
     },
     { component: 'Button', route: '/docs-components-buttons/BasicButtons' },
     { component: 'Checkbox', route: '/docs-components-checkboxes/Checkboxes' },
-    { component: 'LinearProgress', route: '/docs-components-progress/LinearDeterminate' },
+    {
+      component: 'LinearProgress',
+      route: '/docs-components-progress/LinearDeterminate',
+      // The bar renders no text, so the report rates 1.4.4 and 1.4.12 not applicable.
+      skipCriteria: ['1.4.4', '1.4.12'],
+    },
     { component: 'Radio', route: '/docs-components-radio-buttons/RadioButtonsGroup' },
     { component: 'Switch', route: '/docs-components-switches/BasicSwitches' },
     { component: 'TextField', route: '/docs-components-text-fields/BasicTextFields' },
     { component: 'ToggleButton', route: '/docs-components-toggle-button/ToggleButtons' },
     // The same demo renders the group wrapper, which is rated separately.
-    { component: 'ToggleButtonGroup', route: '/docs-components-toggle-button/ToggleButtons' },
+    {
+      component: 'ToggleButtonGroup',
+      route: '/docs-components-toggle-button/ToggleButtons',
+      // The group inherits 1.4.4 and 1.4.12 from ToggleButton, which covers them.
+      skipCriteria: ['1.4.4', '1.4.12'],
+    },
   ];
 
   /**

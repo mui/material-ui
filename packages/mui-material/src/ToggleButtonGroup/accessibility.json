@@ -4,7 +4,7 @@
     "1.3.1": {
       "conformance": "Supports",
       "responsibility": "Shared",
-      "group": "Manual",
+      "group": "Hybrid",
       "flagged": false,
       "evidence": [
         {
@@ -22,7 +22,7 @@
     "4.1.2": {
       "conformance": "Supports",
       "responsibility": "Shared",
-      "group": "Manual",
+      "group": "Hybrid",
       "flagged": false,
       "evidence": [
         {
@@ -36,7 +36,12 @@
       "responsibility": "Shared",
       "group": "Automated",
       "flagged": false,
-      "evidence": [{ "type": "playwright", "ref": "test/regressions/index.test.js" }]
+      "evidence": [
+        {
+          "type": "playwright",
+          "ref": "test/regressions/index.test.js"
+        }
+      ]
     }
   },
   "inherited": {
