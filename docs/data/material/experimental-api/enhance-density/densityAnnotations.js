@@ -127,16 +127,27 @@ function useStageEffect(stageRef, selectors, read, deps) {
         schedule();
       }
     });
+    // Attribute records cover state changes (`Mui-expanded`, a Collapse's
+    // inline height) that never resize a measured element; only child-list
+    // records can bring new elements that need observing.
     const mutation = new MutationObserver((records) => {
-      if (
-        records.every((record) => record.target.closest?.('.MuiTouchRipple-root'))
-      ) {
+      const relevant = records.filter(
+        (record) => !record.target.closest?.('.MuiTouchRipple-root'),
+      );
+      if (relevant.length === 0) {
         return;
       }
-      observeAll();
+      if (relevant.some((record) => record.type === 'childList')) {
+        observeAll();
+      }
       schedule();
     });
-    mutation.observe(stage, { childList: true, subtree: true });
+    mutation.observe(stage, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class', 'style'],
+    });
     return () => {
       cancelled = true;
       cancelAnimationFrame(frame);
