@@ -72,7 +72,6 @@ const pages: MuiPage[] = [
         subheader: 'feedback',
         children: [
           { pathname: '/material-ui/react-alert' },
-          { pathname: '/material-ui/react-backdrop' },
           { pathname: '/material-ui/react-dialog' },
           { pathname: '/material-ui/react-progress' },
           { pathname: '/material-ui/react-skeleton' },
@@ -120,6 +119,7 @@ const pages: MuiPage[] = [
         pathname: '/material-ui/components/utils',
         subheader: 'utils',
         children: [
+          { pathname: '/material-ui/react-backdrop' },
           {
             pathname: '/material-ui/react-click-away-listener',
             title: 'Click-Away Listener',
