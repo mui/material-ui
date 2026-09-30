@@ -240,6 +240,14 @@ function resolveScrollPadding(value, scrollportSize) {
   return value.endsWith('%') ? (number / 100) * scrollportSize : number;
 }
 
+function getScrollerScale(renderedSize, layoutSize) {
+  const scale = renderedSize / layoutSize;
+  if (!Number.isFinite(scale) || scale <= 0 || Math.abs(renderedSize - layoutSize) < 1) {
+    return 1;
+  }
+  return scale;
+}
+
 // Dev-only: tracks per-`Tabs` instance (keyed by its ref) whether the invalid-value warning was
 // already logged, so it isn't repeated across the several effects that call `getTabsMeta`.
 // Only referenced from `process.env.NODE_ENV !== 'production'` blocks; the `@__PURE__` annotation
@@ -358,6 +366,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       tabsMeta = {
         clientWidth: tabsNode.clientWidth,
         clientHeight: tabsNode.clientHeight,
+        offsetWidth: tabsNode.offsetWidth,
+        offsetHeight: tabsNode.offsetHeight,
         scrollLeft: tabsNode.scrollLeft,
         scrollTop: tabsNode.scrollTop,
         scrollWidth: tabsNode.scrollWidth,
@@ -365,6 +375,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         bottom: rect.bottom,
         left: rect.left,
         right: rect.right,
+        width: rect.width,
+        height: rect.height,
       };
     }
 
@@ -424,25 +436,28 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     const { tabsMeta, tabMeta } = getTabsMeta();
     let startValue = 0;
     let startIndicator;
+    const scale = tabsMeta
+      ? getScrollerScale(tabsMeta[size], tabsMeta[vertical ? 'offsetHeight' : 'offsetWidth'])
+      : 1;
 
     if (vertical) {
       startIndicator = 'top';
       if (tabMeta && tabsMeta) {
-        startValue = tabMeta.top - tabsMeta.top + tabsMeta.scrollTop;
+        startValue = (tabMeta.top - tabsMeta.top) / scale + tabsMeta.scrollTop;
       }
     } else {
       startIndicator = isRtl ? 'right' : 'left';
       if (tabMeta && tabsMeta) {
         startValue =
           (isRtl ? -1 : 1) *
-          (tabMeta[startIndicator] - tabsMeta[startIndicator] + tabsMeta.scrollLeft);
+          ((tabMeta[startIndicator] - tabsMeta[startIndicator]) / scale + tabsMeta.scrollLeft);
       }
     }
 
     const newIndicatorStyle = {
       [startIndicator]: startValue,
       // May be wrong until the font is loaded.
-      [size]: tabMeta ? tabMeta[size] : 0,
+      [size]: tabMeta ? tabMeta[size] / scale : 0,
     };
 
     if (
