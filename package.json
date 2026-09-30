@@ -143,7 +143,7 @@
     "vitest": "^5.0.0",
     "vitest-fail-on-console": "0.10.1",
     "yargs": "18.2.0",
-    "@mui/internal-docs-infra": "0.12.1-canary.50"
+    "@mui/internal-docs-infra": "0.13.1-canary.2"
   },
   "config": {
     "valeVersion": "3.24.0"
