@@ -195,7 +195,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 - The focus ripple serves as focus visible indicator. Covered by a Playwright test that compares the control focused and unfocused.
 - `disableRipple` or `disableFocusRipple` removes the focus indicator (the focus ripple), relying on the author to add it with `.Mui-focusVisible` styles.
-- With `focusVisible: true` on the theme, keyboard focus draws an outline ring that does not depend on the ripple (see [Focus visible](https://mui.com/material-ui/customization/focus-visible/)). The indicator stays visible under `disableRipple` and `disableFocusRipple`. Removing the ripple without the ring is the author's choice.
+- With `focusVisible: true` on the theme, keyboard focus draws an outline ring that does not depend on the ripple (see [Focus visible](https://mui.com/material-ui/customization/focus-visible/)). The indicator stays visible under `disableRipple` and `disableFocusRipple`. Removing the ripple without the ring is the author's choice. Covered by a Playwright test that compares the control focused and unfocused with the ring enabled and the ripple disabled.
 
 **Manual testing steps**
 
