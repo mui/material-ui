@@ -1,0 +1,545 @@
+{
+  "intro": [
+    "This is the item-level report for the accordion header button. The root `<Accordion>` inherits these criteria; see [Accordion](../Accordion/accessibility.md)."
+  ],
+  "knownGaps": {
+    "items": [
+      "⚠️ **1.4.11 Non-text Contrast.** The keyboard-focus indicator is only a background tint (`action.focus`), about 1.3:1 against the adjacent `paper` surface, below the 3:1 minimum."
+    ]
+  },
+  "criteria": [
+    {
+      "number": "1.3.2",
+      "conformance": "Supports",
+      "responsibility": "Author",
+      "group": "Manual",
+      "flagged": false,
+      "evidence": [],
+      "notes": [
+        "The summary is one control whose slots render in DOM order: the content `span`, then the `expandIcon` wrapper; the decorative icon is `aria-hidden`, leaving the label as the exposed content.",
+        "Order carries meaning only across the surrounding controls, which the page layout sets."
+      ],
+      "steps": [
+        "In an accordion, read the summary content from left to right.",
+        "Compare it to the order announced by a screen reader."
+      ],
+      "pass": "the announced order matches the visual order."
+    },
+    {
+      "number": "1.3.3",
+      "conformance": "Supports",
+      "responsibility": "Author",
+      "group": "Manual",
+      "flagged": false,
+      "evidence": [],
+      "notes": [
+        "The summary is identified by its text label, not only by the position or shape of the `expandIcon`.",
+        "Surrounding instructions must not rely on the icon's direction alone (for example, \"open the section with the down arrow\")."
+      ],
+      "steps": [
+        "Find any product copy that tells users to expand a section.",
+        "Check that it names the section by its heading, not only by the chevron's shape or position."
+      ],
+      "pass": "no instruction depends on the icon alone."
+    },
+    {
+      "number": "1.4.1",
+      "conformance": "Supports",
+      "responsibility": "Shared",
+      "group": "Manual",
+      "flagged": true,
+      "evidence": [],
+      "notes": [
+        "The expanded state is conveyed by `aria-expanded` and the rotated `expandIcon`, not by color, and the label carries the meaning."
+      ],
+      "steps": [
+        "In a UI with accordions, turn on a grayscale view (Chrome DevTools: Rendering, Emulate vision deficiencies, Achromatopsia).",
+        "Expand and collapse a panel."
+      ],
+      "pass": "the open and closed states stay distinguishable without color."
+    },
+    {
+      "number": "1.4.5",
+      "conformance": "Supports",
+      "responsibility": "Author",
+      "group": "Manual",
+      "flagged": false,
+      "evidence": [],
+      "notes": ["The label is real text passed as children."],
+      "steps": ["Verify that the summary label is real text."],
+      "pass": "no summary renders its label as an image of text."
+    },
+    {
+      "number": "1.4.11",
+      "conformance": "Partially Supports",
+      "responsibility": "Component",
+      "group": "Manual",
+      "flagged": true,
+      "evidence": [],
+      "notes": [
+        "The keyboard-focus indicator is a background change to `action.focus` (`rgba(0, 0, 0, 0.12)`), about 1.3:1 against the adjacent `paper` surface, below the 3:1 minimum; `ButtonBase` sets `outline: 0`, so no outline backs it up.",
+        "The `expandIcon` uses `action.active` (`rgba(0, 0, 0, 0.54)`), about 4.6:1 on `paper`, which clears 3:1."
+      ],
+      "steps": [
+        "Press <kbd>Tab</kbd> to focus an accordion summary.",
+        "With a contrast checker, measure the focused background against the resting background, and the chevron against the surface behind it."
+      ],
+      "pass": "the focus indicator and the icon are each at least 3:1. The focus indicator is the known shortfall."
+    },
+    {
+      "number": "2.4.11",
+      "conformance": "Supports",
+      "responsibility": "Author",
+      "group": "Manual",
+      "flagged": false,
+      "evidence": [],
+      "notes": [
+        "The summary never hides itself; obscuring typically comes from sticky headers or overlays in the surrounding layout."
+      ],
+      "steps": [
+        "In a page with a sticky header, press <kbd>Tab</kbd> to a summary near it.",
+        "Scroll so the summary sits under the sticky element, then <kbd>Tab</kbd> to it again."
+      ],
+      "pass": "at least part of the focused summary stays visible, never entirely covered."
+    },
+    {
+      "number": "3.2.4",
+      "conformance": "Supports",
+      "responsibility": "Author",
+      "group": "Manual",
+      "flagged": false,
+      "evidence": [],
+      "notes": ["The component produces one stable accessible name per set of props."],
+      "steps": ["Compare accordions with same purpose across the product."],
+      "pass": "consistently uses the same text and icon."
+    },
+    {
+      "number": "1.1.1",
+      "conformance": "Supports",
+      "responsibility": "Shared",
+      "group": "Hybrid",
+      "flagged": false,
+      "evidence": [
+        {
+          "type": "axe",
+          "ref": "docs/data/material/components/accordion/accordion.a11y.json"
+        }
+      ],
+      "notes": [
+        "The `expandIcon` (an `SvgIcon`) defaults to `aria-hidden` and `focusable=\"false\"`, so it is decorative and the name comes from the summary children.",
+        "axe-core `button-name` and `aria-command-name` confirm a name is present across the demos; whether the name conveys the section's purpose needs an assistive-technology review."
+      ],
+      "steps": [
+        "With a screen reader running (NVDA with Chrome, or VoiceOver with Safari), <kbd>Tab</kbd> to accordion summaries that carry an `expandIcon` and confirm each announces the label, not the chevron."
+      ],
+      "pass": "every summary's announced name matches its section, and the chevron is silent."
+    },
+    {
+      "number": "1.3.1",
+      "conformance": "Supports",
+      "responsibility": "Shared",
+      "group": "Hybrid",
+      "flagged": false,
+      "evidence": [
+        {
+          "type": "axe",
+          "ref": "docs/data/material/components/accordion/accordion.a11y.json"
+        }
+      ],
+      "notes": [
+        "The summary exposes its `button` role and its `aria-expanded` state programmatically; the disclosure relationship to the panel is wired by the root `<Accordion>` (see [Accordion](../Accordion/accessibility.md)).",
+        "axe-core `aria-allowed-attr`, `aria-valid-attr`, and `aria-valid-attr-value` pass across the demos."
+      ],
+      "steps": [
+        "With a screen reader running, move to an accordion summary.",
+        "Confirm it announces a collapsed or expanded button."
+      ],
+      "pass": "role and state match the visual presentation."
+    },
+    {
+      "number": "1.4.3",
+      "conformance": "Supports",
+      "responsibility": "Component",
+      "group": "Hybrid",
+      "flagged": true,
+      "evidence": [
+        {
+          "type": "axe",
+          "ref": "docs/data/material/components/accordion/accordion.a11y.json"
+        }
+      ],
+      "notes": [
+        "The label uses `text.primary` (about 16:1) or `text.secondary` (about 5.7:1) on `paper`, both above 4.5:1; disabled summaries drop to `0.38` opacity and are exempt.",
+        "axe-core `color-contrast` passes where it can resolve the background and returns incomplete on some demos, where axe cannot read the summary background behind the divider `::before` pseudo-element; no demo records a failure, so a visual check is the remaining step."
+      ],
+      "steps": [
+        "With a contrast checker, measure each summary label, including any secondary `text.secondary` line, against its background.",
+        "Check any custom theme colors the product uses."
+      ],
+      "pass": "at least 4.5:1 for the label text. Disabled summaries are exempt."
+    },
+    {
+      "number": "2.4.6",
+      "conformance": "Supports",
+      "responsibility": "Shared",
+      "group": "Hybrid",
+      "flagged": false,
+      "evidence": [
+        {
+          "type": "axe",
+          "ref": "docs/data/material/components/accordion/accordion.a11y.json"
+        }
+      ],
+      "notes": [
+        "The accessible name serves as the summary's label; axe-core `button-name` confirms it is present.",
+        "Whether the label describes the section is an authoring concern."
+      ],
+      "steps": [
+        "Read each summary label out of context.",
+        "Ask whether it says what the section contains."
+      ],
+      "pass": "every label describes its section, not a vague \"Details\"."
+    },
+    {
+      "number": "2.4.7",
+      "conformance": "Supports",
+      "responsibility": "Component",
+      "group": "Hybrid",
+      "flagged": false,
+      "evidence": [
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/AccordionSummary/AccordionSummary.test.js"
+        },
+        {
+          "type": "playwright",
+          "ref": "test/regressions/index.test.js"
+        }
+      ],
+      "notes": [
+        "Keyboard focus applies the `.Mui-focusVisible` background (`action.focus`); mouse focus is suppressed, and `ButtonBase` removes the native outline, so this tint is the only indicator. Covered by a Playwright test that compares the control focused and unfocused.",
+        "Covered by a unit test in [`AccordionSummary.test.js`](./AccordionSummary.test.js) that confirms the focus-visible state fires; whether the tint is perceptible enough is the visual step (its contrast is the 1.4.11 shortfall)."
+      ],
+      "steps": [
+        "Press <kbd>Tab</kbd> to move focus across accordion summaries.",
+        "Confirm a focus indicator appears and differs from the resting style.",
+        "Click a summary with the mouse and confirm the indicator does not appear."
+      ],
+      "pass": "every keyboard-focused summary shows a visible indicator."
+    },
+    {
+      "number": "4.1.2",
+      "conformance": "Supports",
+      "responsibility": "Shared",
+      "group": "Hybrid",
+      "flagged": false,
+      "evidence": [
+        {
+          "type": "axe",
+          "ref": "docs/data/material/components/accordion/accordion.a11y.json"
+        }
+      ],
+      "notes": [
+        "The native summary is a `button`; with `nativeButton={false}` and a custom `component`, `ButtonBase` applies `role=\"button\"`. The name comes from the children and the state from `aria-expanded`.",
+        "axe-core `button-name`, `aria-command-name`, `aria-allowed-attr`, `aria-roles`, `nested-interactive`, and `duplicate-id-aria` pass; a unit test in [`AccordionSummary.test.js`](./AccordionSummary.test.js) confirms `aria-expanded` tracks the state. Whether the name is meaningful needs an assistive-technology review."
+      ],
+      "steps": [
+        "With a screen reader running, <kbd>Tab</kbd> to a native summary and a non-native (`nativeButton={false}`) summary.",
+        "Confirm each announces the name, the button role, and the collapsed or expanded state."
+      ],
+      "pass": "name, role, and state are correct for the native and non-native summaries."
+    },
+    {
+      "number": "1.4.4",
+      "conformance": "Supports",
+      "responsibility": "Shared",
+      "group": "Automated",
+      "flagged": false,
+      "evidence": [
+        {
+          "type": "playwright",
+          "ref": "test/regressions/index.test.js"
+        }
+      ],
+      "notes": [
+        "The label text is rem-based (`Typography`), and the 48px `min-height` is a floor that content grows past, not a fixed size, so the summary scales with browser zoom rather than clipping.",
+        "A fixed-pixel container in the surrounding layout could clip at 200%. Covered by a Playwright test at 200% text size."
+      ]
+    },
+    {
+      "number": "1.4.10",
+      "conformance": "Supports",
+      "responsibility": "Shared",
+      "group": "Automated",
+      "flagged": false,
+      "evidence": [
+        {
+          "type": "playwright",
+          "ref": "test/regressions/index.test.js"
+        }
+      ],
+      "notes": [
+        "The summary is full width and its label wraps, so it reflows on its own; horizontal overflow at 320 CSS pixels comes from the surrounding layout. Covered by a Playwright test at a 320px viewport."
+      ]
+    },
+    {
+      "number": "1.4.12",
+      "conformance": "Supports",
+      "responsibility": "Shared",
+      "group": "Automated",
+      "flagged": false,
+      "evidence": [
+        {
+          "type": "playwright",
+          "ref": "test/regressions/index.test.js"
+        },
+        {
+          "type": "axe",
+          "ref": "docs/data/material/components/accordion/accordion.a11y.json"
+        }
+      ],
+      "notes": [
+        "The label wraps and the summary height comes from `min-height` and padding, not a fixed height, so the WCAG text-spacing values grow the control without clipping.",
+        "axe-core `avoid-inline-spacing` passes, and a visual-regression screenshot guards the layout. Covered by a Playwright test applying the WCAG text-spacing overrides."
+      ]
+    },
+    {
+      "number": "2.1.1",
+      "conformance": "Supports",
+      "responsibility": "Component",
+      "group": "Automated",
+      "flagged": false,
+      "evidence": [
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/ButtonBase/ButtonBase.test.js"
+        },
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/AccordionSummary/AccordionSummary.test.js"
+        }
+      ],
+      "notes": [
+        "The native summary activates with <kbd>Enter</kbd> and <kbd>Space</kbd>; the non-native `role=\"button\"` gets the same handling from `ButtonBase`, and a disabled summary leaves the tab order.",
+        "Confirmed by interaction tests in [`../ButtonBase/ButtonBase.test.js`](../ButtonBase/ButtonBase.test.js)."
+      ]
+    },
+    {
+      "number": "2.1.2",
+      "conformance": "Supports",
+      "responsibility": "Component",
+      "group": "Automated",
+      "flagged": false,
+      "evidence": [
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/AccordionSummary/AccordionSummary.test.js"
+        }
+      ],
+      "notes": [
+        "The summary is a single focusable control that installs no focus-capturing loop; <kbd>Tab</kbd> moves in and out, and a disabled summary leaves the order.",
+        "Confirmed by a unit test in [`./AccordionSummary.test.js`](./AccordionSummary.test.js) (<kbd>Tab</kbd> is not intercepted, and focus moves away freely)."
+      ]
+    },
+    {
+      "number": "2.4.3",
+      "conformance": "Supports",
+      "responsibility": "Shared",
+      "group": "Automated",
+      "flagged": false,
+      "evidence": [
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/AccordionSummary/AccordionSummary.test.js"
+        }
+      ],
+      "notes": [
+        "The summary sits in natural DOM order with no positive `tabIndex`, so it is one correct focus stop; order across the cluster is covered in [Accordion](../Accordion/accessibility.md).",
+        "Confirmed by a unit test in [`./AccordionSummary.test.js`](./AccordionSummary.test.js) (default `tabIndex` is `0`; a disabled summary leaves the order)."
+      ]
+    },
+    {
+      "number": "2.5.2",
+      "conformance": "Supports",
+      "responsibility": "Component",
+      "group": "Automated",
+      "flagged": false,
+      "evidence": [
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/AccordionSummary/AccordionSummary.test.js"
+        }
+      ],
+      "notes": [
+        "Activation runs on `click`, fired on pointer-up over the target; `mousedown` alone does not toggle, so releasing off the target cancels.",
+        "Confirmed by a unit test in [`./AccordionSummary.test.js`](./AccordionSummary.test.js) (releasing off the target does not toggle; a full click does). Covered by unit tests."
+      ]
+    },
+    {
+      "number": "2.5.3",
+      "conformance": "Supports",
+      "responsibility": "Shared",
+      "group": "Automated",
+      "flagged": false,
+      "evidence": [
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/AccordionSummary/AccordionSummary.test.js"
+        }
+      ],
+      "notes": [
+        "The accessible name is the visible label: the children become the name, and an `SvgIcon` `expandIcon` defaults to `aria-hidden`; a custom icon node adds to the name unless the author hides it.",
+        "An `aria-label` that omits or reorders the visible words breaks this; compare the visible text to the computed name. Covered by unit tests."
+      ]
+    },
+    {
+      "number": "2.5.8",
+      "conformance": "Supports",
+      "responsibility": "Component",
+      "group": "Automated",
+      "flagged": false,
+      "evidence": [
+        {
+          "type": "axe",
+          "ref": "docs/data/material/components/accordion/accordion.a11y.json"
+        }
+      ],
+      "notes": [
+        "The summary is full width with a 48px `min-height` (64px when expanded), well above the 24 by 24 CSS pixel minimum. axe-core `target-size` confirms this across the demos in [`accordion.a11y.json`](../../../../docs/data/material/components/accordion/accordion.a11y.json).",
+        "Not covered: `sx` overrides that shrink a custom summary."
+      ]
+    },
+    {
+      "number": "3.2.1",
+      "conformance": "Supports",
+      "responsibility": "Component",
+      "group": "Automated",
+      "flagged": false,
+      "evidence": [
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/AccordionSummary/AccordionSummary.test.js"
+        }
+      ],
+      "notes": [
+        "Focusing the summary applies the focus-visible tint and runs `onFocus` callbacks only; there is no navigation or focus move, so focus alone changes no context.",
+        "Confirmed by a unit test in [`./AccordionSummary.test.js`](./AccordionSummary.test.js) (focusing the summary does not toggle it)."
+      ]
+    },
+    {
+      "number": "3.2.2",
+      "conformance": "Supports",
+      "responsibility": "Shared",
+      "group": "Automated",
+      "flagged": false,
+      "evidence": [
+        {
+          "type": "unit",
+          "ref": "packages/mui-material/src/AccordionSummary/AccordionSummary.test.js"
+        }
+      ],
+      "notes": [
+        "Activating the summary toggles the panel within the same page, which is not a change of context.",
+        "Whether an author's `onClick` couples activation to navigation is an author decision.",
+        "Confirmed by a unit test in [`./AccordionSummary.test.js`](./AccordionSummary.test.js) (the panel toggles only on explicit activation, never on its own)."
+      ]
+    }
+  ],
+  "notApplicable": [
+    {
+      "criteria": ["1.3.5"],
+      "text": "**1.3.5 Identify Input Purpose (AA).** Collects no user data."
+    },
+    {
+      "criteria": ["1.4.13"],
+      "text": "**1.4.13 Content on Hover or Focus (AA).** The panel opens on activation, not on hover or focus."
+    },
+    {
+      "criteria": ["2.1.4"],
+      "text": "**2.1.4 Character Key Shortcuts (A).** Implements no shortcut bound to a letter, punctuation, number, or symbol key; <kbd>Enter</kbd> and <kbd>Space</kbd> are standard activation, not character shortcuts."
+    },
+    {
+      "criteria": ["2.4.4"],
+      "text": "**2.4.4 Link Purpose (In Context) (A).** The summary is a button, not a link."
+    },
+    {
+      "criteria": ["2.5.7"],
+      "text": "**2.5.7 Dragging Movements (AA, new in 2.2).** No drag interactions."
+    },
+    {
+      "criteria": ["3.1.1", "3.1.2"],
+      "text": "**3.1.1 Language of Page (A), 3.1.2 Language of Parts (AA).** Authoring concern."
+    },
+    {
+      "criteria": ["3.2.3"],
+      "text": "**3.2.3 Consistent Navigation (AA).** Inapplicable in isolation."
+    },
+    {
+      "criteria": ["3.2.6"],
+      "text": "**3.2.6 Consistent Help (A, new in 2.2).** Provides no help mechanism."
+    },
+    {
+      "criteria": ["3.3.7"],
+      "text": "**3.3.7 Redundant Entry (A, new in 2.2).** Re-enters no data."
+    },
+    {
+      "criteria": ["3.3.8"],
+      "text": "**3.3.8 Accessible Authentication (Minimum) (AA, new in 2.2).** No authentication step."
+    },
+    {
+      "criteria": ["4.1.3"],
+      "text": "**4.1.3 Status Messages (AA).** Adds no status region; the state is carried by `aria-expanded` on the focused summary."
+    },
+    {
+      "criteria": ["1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5"],
+      "text": "**Time-based media (1.2.1 to 1.2.5).** No audio or video."
+    },
+    {
+      "criteria": ["1.4.2"],
+      "text": "**Audio Control (1.4.2).** Emits no audio."
+    },
+    {
+      "criteria": ["1.3.4"],
+      "text": "**Orientation (1.3.4).** Sets no orientation lock; a layout concern."
+    },
+    {
+      "criteria": ["2.4.1", "2.4.2", "2.4.5"],
+      "text": "**Bypass Blocks (2.4.1), Page Titled (2.4.2), Multiple Ways (2.4.5).** Page or site structure concerns."
+    },
+    {
+      "criteria": ["2.2.1", "2.2.2"],
+      "text": "**Timing Adjustable (2.2.1), Pause, Stop, Hide (2.2.2).** Sets no time limit and nothing moves on its own."
+    },
+    {
+      "criteria": ["2.3.1"],
+      "text": "**Three Flashes or Below Threshold (2.3.1).** Nothing flashes."
+    },
+    {
+      "criteria": ["2.5.1", "2.5.4"],
+      "text": "**Pointer Gestures (2.5.1), Motion Actuation (2.5.4).** Activates on a simple click; reads no device motion."
+    },
+    {
+      "criteria": ["3.3.1", "3.3.2", "3.3.3", "3.3.4"],
+      "text": "**Error Identification (3.3.1), Labels or Instructions (3.3.2), Error Suggestion (3.3.3), Error Prevention (3.3.4).** The summary collects and validates no input; these belong to the form or process."
+    }
+  ],
+  "levelAAA": {
+    "intro": ["The following SC are applicable but out of scope:"],
+    "items": [
+      "**2.3.3 Animation from Interactions.** The `expandIcon` rotation honors `prefers-reduced-motion` only when the theme sets `motion.reducedMotion` to `system` or `always`; the default is `never`. `🚩`",
+      "**2.4.13 Focus Appearance.** The focus tint is unlikely to meet the area and contrast thresholds. `🚩`",
+      "**2.5.5 Target Size (Enhanced), 44px.** The summary (48px tall) meets it; nested action buttons may not. `🚩`",
+      "**1.4.6 Contrast (Enhanced), 7:1.** `text.primary` clears 7:1, but `text.secondary` (about 5.7:1) does not. `🚩`",
+      "Also touched, in the same shape as their A and AA siblings: **1.3.6 Identify Purpose, 1.4.9 Images of Text (No Exception), 2.1.3 Keyboard (No Exception), 2.4.12 Focus Not Obscured (Enhanced)**."
+    ]
+  },
+  "scope": {
+    "items": [
+      "**Standard.** WCAG 2.2, Level A and AA.",
+      "**Component version.** `@mui/material` 9.1.2.",
+      "**Scope.** The AccordionSummary header button, rendered through its documented API inside an Accordion.",
+      "**Automated.** axe-core via Playwright test harness (results in [`accordion.a11y.json`](../../../../docs/data/material/components/accordion/accordion.a11y.json)), plus interaction tests in `AccordionSummary.test.js` and `ButtonBase.test.js`.",
+      "**Assistive-technology review.** Not yet performed. Flagged criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver."
+    ]
+  }
+}
