@@ -4,10 +4,12 @@ import {
   CONFORMANCE_SYMBOLS,
   GROUP_HEADINGS,
   RESPONSIBILITY_SYMBOLS,
-  WCAG_BY_NUMBER,
+  WCAG_CRITERIA,
 } from './wcag.mjs';
 
 const REPORT_BASE = 'https://github.com/mui/material-ui/blob/master/packages/mui-material/src';
+
+const fileName = (ref) => ref.split('/').pop();
 
 /** The count table at the top of each component report. */
 function renderCounts(counts, inheritedFrom) {
@@ -29,6 +31,23 @@ function renderCounts(counts, inheritedFrom) {
   ].join('\n');
 }
 
+/** The tests behind a criterion, listed per file so renaming a test does not change the report. */
+function renderEvidence({ evidence, axeRules }) {
+  const unit = evidence.filter((entry) => entry.type === 'unit');
+  const parts = [];
+  if (unit.length > 0) {
+    parts.push(`unit ${unit.map((entry) => `\`${fileName(entry.ref)}\``).join(', ')}`);
+  }
+  if (evidence.some((entry) => entry.type === 'playwright')) {
+    parts.push('Playwright');
+  }
+  if (axeRules.length > 0) {
+    const rules = axeRules.map(({ rule, status }) => `\`${rule}\` ${AXE_STATUS_SYMBOLS[status]}`);
+    parts.push(`axe-core ${rules.join(', ')}`);
+  }
+  return parts.length > 0 ? `Tested by: ${parts.join(' · ')}` : null;
+}
+
 function renderCriterion(criterion, slot) {
   const status = [
     ...(criterion.flagged ? ['🚩'] : []),
@@ -38,58 +57,82 @@ function renderCriterion(criterion, slot) {
     .map((token) => `\`${token}\``)
     .join(' · ');
 
-  const parts = [`#### ${criterion.number} ${criterion.name} · ${criterion.level}`, status];
-  if (criterion.axeRules.length > 0) {
-    const rules = criterion.axeRules.map(
-      ({ rule, status: result }) => `\`${rule}\` ${AXE_STATUS_SYMBOLS[result]}`,
-    );
-    parts.push(`axe-core: ${rules.join(', ')}`);
-  }
-  parts.push(slot(criterion.number));
-  if (criterion.group !== 'Automated' || slot.has(`${criterion.number}:pass`)) {
-    parts.push(`**Pass:** ${slot(`${criterion.number}:pass`, true)}`);
-  }
-  return parts.join('\n\n');
+  // An ⚙️ Automated criterion is described by its tests, so its notes are optional.
+  const notesRequired = criterion.group !== 'Automated';
+  const parts = [
+    `#### ${criterion.number} ${criterion.name} · ${criterion.level}`,
+    status,
+    renderEvidence(criterion),
+    notesRequired || slot.has(criterion.number) ? slot(criterion.number) : null,
+    slot.has(`${criterion.number}:pass`)
+      ? `**Pass:** ${slot(`${criterion.number}:pass`, true)}`
+      : null,
+  ];
+  return parts.filter(Boolean).join('\n\n');
 }
 
-/** A bullet per group of criteria: the generated name and level, then the reason. */
-function renderGroups(groups, slot) {
-  return groups
-    .map((group) => {
-      const numbers = [group].flat();
-      const label = numbers
-        .map((number) => {
-          const { name, level } = WCAG_BY_NUMBER.get(number) ?? { name: '?', level: '?' };
-          return `${number} ${name} (${level})`;
-        })
-        .join(', ');
-      return `- **${label}.** ${slot(numbers[0], true)}`;
-    })
+const label = ({ number, name, level }) => `${number} ${name} (${level})`;
+
+/** Own gaps take a one-line summary; inherited gaps link to the parent report. */
+function renderGaps({ criteria, inherited }, slot) {
+  const own = criteria
+    .filter((criterion) => criterion.conformance !== 'Supports')
+    .map(
+      (criterion) =>
+        `- ${CONFORMANCE_SYMBOLS[criterion.conformance]} **${criterion.number} ${criterion.name}.** ${slot(`${criterion.number}:gap`, true)}`,
+    );
+  const fromParent = (inherited?.gaps ?? []).map(
+    (criterion) =>
+      `- Inherits ${CONFORMANCE_SYMBOLS[criterion.conformance]} **${criterion.number} ${criterion.name}** from [${inherited.title}](../${inherited.component}/accessibility.md).`,
+  );
+  const lines = [...own, ...fromParent];
+  return lines.length > 0 ? lines.join('\n') : 'None.';
+}
+
+/**
+ * A bullet per reason. Criteria that share a default reason, or a region named
+ * for several criteria (`<!-- 3.3.1,3.3.3:start -->`), share a bullet.
+ */
+function renderNotApplicable(notApplicable, slot) {
+  const bullets = new Map();
+  for (const item of notApplicable) {
+    // A criterion that is not applicable only for this component needs its own reason.
+    const key = item.reasonKey ?? (item.isDefault ? `default:${item.reason}` : item.number);
+    if (!bullets.has(key)) {
+      bullets.set(key, {
+        labels: [],
+        text: key.startsWith('default:') ? item.reason : slot(key, true),
+      });
+    }
+    bullets.get(key).labels.push(label(item));
+  }
+  return [...bullets.values()]
+    .map(({ labels, text }) => `- **${labels.join(', ')}.** ${text}`)
     .join('\n');
 }
 
 /**
- * Renders `<Component>/accessibility.md`. The structure, names, ratings, and
- * counts come from the data file; the prose is kept from the region markers of
- * the current report. `used` collects the region names the report expects.
+ * Renders `<Component>/accessibility.md`. The structure, names, ratings,
+ * counts, and evidence come from the data; the prose is kept from the region
+ * markers of the current report. `used` collects the region names it renders.
  */
 export function renderReport(report, used = new Set()) {
-  const { component, data, criteria, counts, regions } = report;
+  const { component, title, criteria, counts, regions, inherited } = report;
   const slot = (name, inline) => {
     used.add(name);
     return region(name, regions.get(name), inline);
   };
   slot.has = (name) => Boolean(regions.get(name));
+  const optional = (name) => (slot.has(name) ? slot(name) : null);
 
   const parts = [
-    `<!-- Generated by \`pnpm a11y:scorecard\`. Ratings live in ${component}/accessibility.json. Write prose only between the :start and :end markers; everything else is regenerated. -->`,
-    `# ${data.title ?? component} accessibility conformance`,
+    `<!-- Generated by \`pnpm a11y:scorecard\` from ${component}/accessibility.json, the library defaults, and the tests. Write prose only between the :start and :end markers; everything else is regenerated. -->`,
+    `# ${title} accessibility conformance`,
     'Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility.md).',
-    slot('intro'),
-    renderCounts(counts, data.inherited?.from),
-    ...(data.inherited ? [slot('counts-note')] : []),
+    optional('intro'),
+    renderCounts(counts, inherited?.title),
     '## Known gaps',
-    slot('known-gaps'),
+    renderGaps(report, slot),
     '## Success criteria',
   ];
 
@@ -100,23 +143,46 @@ export function renderReport(report, used = new Set()) {
     }
   }
 
-  if (data.inherited) {
+  if (inherited) {
     parts.push(
-      `## Inherited from ${data.inherited.from}`,
-      slot('inherited'),
-      renderGroups(data.inherited.criteria, slot),
+      `## Inherited from ${inherited.title}`,
+      optional('inherited'),
+      inherited.criteria
+        .map((criterion) =>
+          [
+            `- **${label(criterion)}.**`,
+            slot.has(criterion.number) ? slot(criterion.number, true) : '',
+          ]
+            .join(' ')
+            .trim(),
+        )
+        .join('\n'),
     );
   }
   parts.push(
     '## Not applicable',
-    renderGroups(data.notApplicable, slot),
+    renderNotApplicable(report.notApplicable, slot),
     '## Level AAA',
     slot('level-aaa'),
     '## Scope and test environment',
     slot('scope'),
   );
 
-  return `${parts.join('\n\n')}\n`;
+  return `${parts.filter(Boolean).join('\n\n')}\n`;
+}
+
+/**
+ * The default not-applicable reasons in `packages/mui-material/src/accessibility.md`.
+ * The reason is prose, so it is kept from the region markers.
+ */
+export function renderDefaultReasons(defaults, used = new Set()) {
+  return WCAG_CRITERIA.filter(({ number }) => defaults.data.criteria[number]?.notApplicable)
+    .map((criterion) => {
+      const { number } = criterion;
+      used.add(number);
+      return `- **${label(criterion)}.** ${region(number, defaults.regions.get(number), true)}`;
+    })
+    .join('\n');
 }
 
 /**

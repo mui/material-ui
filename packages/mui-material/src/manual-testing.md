@@ -31,9 +31,9 @@ Run the rows matching what you touched, for the component you touched.
 
 6 checks · full procedures in [`Accordion/accessibility.md`](./Accordion/accessibility.md)
 
+- [ ] 🔁 **1.3.1 Info and Relationships** — the header is exposed as a heading and the panel as a region named by it.
 - [ ] 🔍 **1.3.2 Meaningful Sequence** — the header is announced before its panel content.
 - [ ] 🔍 **1.4.1 Use of Color** — the state stays distinguishable without color.
-- [ ] 🔁 **1.3.1 Info and Relationships** — the header is exposed as a heading and the panel as a region named by it.
 - [ ] 🔁 **1.4.3 Contrast (Minimum)** — at least 4.5:1 for the summary label and panel text. Disabled summaries are exempt.
 - [ ] 🔁 **2.4.6 Headings and Labels** — every heading describes its section.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — state, role, and the header-to-region name are all exposed.
@@ -42,11 +42,11 @@ Run the rows matching what you touched, for the component you touched.
 
 8 checks · full procedures in [`AccordionSummary/accessibility.md`](./AccordionSummary/accessibility.md)
 
-- [ ] 🔍 **1.4.1 Use of Color** — the open and closed states stay distinguishable without color.
-- [ ] 🔍 **1.4.11 Non-text Contrast** — the focus indicator and the icon are each at least 3:1. The focus indicator is the known shortfall.
 - [ ] 🔁 **1.1.1 Non-text Content** — every summary's announced name matches its section, and the chevron is silent.
 - [ ] 🔁 **1.3.1 Info and Relationships** — role and state match the visual presentation.
+- [ ] 🔍 **1.4.1 Use of Color** — the open and closed states stay distinguishable without color.
 - [ ] 🔁 **1.4.3 Contrast (Minimum)** — at least 4.5:1 for the label text. Disabled summaries are exempt.
+- [ ] 🔍 **1.4.11 Non-text Contrast** — the focus indicator and the icon are each at least 3:1. The focus indicator is the known shortfall.
 - [ ] 🔁 **2.4.6 Headings and Labels** — every label describes its section, not a vague "Details".
 - [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused summary shows a visible indicator.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — name, role, and state are correct for the native and non-native summaries.
@@ -55,19 +55,18 @@ Run the rows matching what you touched, for the component you touched.
 
 7 checks · full procedures in [`Avatar/accessibility.md`](./Avatar/accessibility.md)
 
-- [ ] 🔍 **1.4.4 Resize Text** — initials and fallback text stay fully visible at 200% page zoom. The container scales with the page.
-- [ ] 🔍 **1.4.5 Images of Text** — avatar initials and fallback are real text; the component renders no image of text.
 - [ ] 🔍 **1.1.1 Non-text Content** — every informative avatar exposes a text alternative (`img` `alt` or an author-provided label); decorative and no-image avatars are silent. The component does its part; an informative avatar with no `alt` is an authoring failure.
 - [ ] 🔁 **1.3.1 Info and Relationships** — the image-to-name relationship is programmatically available via native `img` and `alt`.
 - [ ] 🔍 **1.4.1 Use of Color** — no information conveyed by the avatar is lost in grayscale; any color-coded meaning an author adds is paired with a non-color cue.
 - [ ] 🔍 **1.4.3 Contrast (Minimum)** — all letter and fallback text meets `4.5:1` (or `3:1` if it's sized to qualify as large text). The default gray letter avatar, the `deepOrange[500]` example, and arbitrary `stringToColor` backgrounds do not meet this without author color overrides.
+- [ ] 🔍 **1.4.4 Resize Text** — initials and fallback text stay fully visible at 200% page zoom. The container scales with the page.
+- [ ] 🔍 **1.4.5 Images of Text** — avatar initials and fallback are real text; the component renders no image of text.
 - [ ] 🔍 **1.4.11 Non-text Contrast** — any icon that conveys meaning meets `3:1` against its background; the decorative container shape and `Person` placeholder are exempt, and the boundary stays visible in forced-colors mode.
 
 ## Button
 
 11 checks · full procedures in [`Button/accessibility.md`](./Button/accessibility.md)
 
-- [ ] 🔍 **4.1.3 Status Messages** — the change is announced without the user moving focus to it. It is not, because the component adds no live region; wrap the status in `role="status"` to fix it.
 - [ ] 🔁 **1.1.1 Non-text Content** — every button's announced name matches its purpose, and decorative icons are silent.
 - [ ] 🔁 **1.3.1 Info and Relationships** — role and state match the visual presentation for every variant.
 - [ ] 🔁 **1.4.1 Use of Color** — meaning/purpose of the Button can be understood without color.
@@ -78,6 +77,7 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused button shows a visible indicator. Under `disableRipple`, `disableFocusRipple`, and `disableElevation`, the indicator comes from the `focusVisible` theme ring or from author styles.
 - [ ] 🔁 **3.3.2 Labels or Instructions** — the label clearly tells the user what to upload, not just "Upload".
 - [ ] 🔁 **4.1.2 Name, Role, Value** — name, role, and state are correct for every variant, and state changes are announced.
+- [ ] 🔍 **4.1.3 Status Messages** — the change is announced without the user moving focus to it. It is not, because the component adds no live region; wrap the status in `role="status"` to fix it.
 
 ## Checkbox
 
@@ -97,14 +97,14 @@ Run the rows matching what you touched, for the component you touched.
 
 8 checks · full procedures in [`LinearProgress/accessibility.md`](./LinearProgress/accessibility.md)
 
+- [ ] 🔁 **1.3.1 Info and Relationships** — role and value match the variant.
 - [ ] 🔍 **1.4.1 Use of Color**
 - [ ] 🔍 **1.4.11 Non-text Contrast** — the fill-vs-track contrast is at least `3:1`. In light mode `primary`, `error`, `warning`, `info`, and `success` fail (only `secondary` passes); in dark mode only `error` fails.
 - [ ] 🔍 **2.2.2 Pause, Stop, Hide** — the user can pause, stop, or hide the motion, or it stops within five seconds. The component supplies no such control; a full-viewport (essential) loader, or a bar removed once loading finishes, is what keeps it conformant.
 - [ ] 🔍 **2.3.1 Three Flashes or Below Threshold** — no part flashes more than three times per second.
-- [ ] 🔍 **4.1.3 Status Messages** — the change is announced without the user moving focus to it. It is not by default; add a polite live region in the application to convey it.
-- [ ] 🔁 **1.3.1 Info and Relationships** — role and value match the variant.
 - [ ] 🔁 **2.4.6 Headings and Labels** — every name describes its operation.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — name, role, and value are correct for every variant.
+- [ ] 🔍 **4.1.3 Status Messages** — the change is announced without the user moving focus to it. It is not by default; add a polite live region in the application to convey it.
 
 ## Radio
 
@@ -123,8 +123,8 @@ Run the rows matching what you touched, for the component you touched.
 
 5 checks · full procedures in [`RadioGroup/accessibility.md`](./RadioGroup/accessibility.md)
 
-- [ ] 🔍 **1.4.1 Use of Color** — the selected option is distinguishable by the dot, and any error state is conveyed by more than color.
 - [ ] 🔁 **1.3.1 Info and Relationships** — the radios are exposed as one `radiogroup`, and the name and any description are set by the author.
+- [ ] 🔍 **1.4.1 Use of Color** — the selected option is distinguishable by the dot, and any error state is conveyed by more than color.
 - [ ] 🔁 **2.4.6 Headings and Labels** — every group label describes the question it asks.
 - [ ] 🔁 **3.3.2 Labels or Instructions** — every group has a visible label or instruction. A group with no visible label fails.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — the group exposes its `radiogroup` role, an author-supplied name, and the current selected value with change notification.
@@ -146,15 +146,15 @@ Run the rows matching what you touched, for the component you touched.
 
 9 checks · full procedures in [`TextField/accessibility.md`](./TextField/accessibility.md)
 
-- [ ] 🔍 **1.4.11 Non-text Contrast** — the resting boundary and the focus indicator are each `3:1` against adjacent colors. Today the resting `outlined` border is the known failure.
-- [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused field shows a visible indicator.
-- [ ] 🔍 **4.1.3 Status Messages** — the error is announced without the user moving focus to it.
 - [ ] 🔁 **1.3.1 Info and Relationships** — label, description, required, and invalid relationships are programmatically determinable.
 - [ ] 🔁 **1.4.1 Use of Color** — the error state is conveyed by more than color (the `helperText` message), not the red alone.
 - [ ] 🔁 **1.4.3 Contrast (Minimum)** — label, value, placeholder, and error text meet `4.5:1` (`3:1` for large text) against the actual background. The placeholder, focused `warning`, and filled-surface error text are the known failures.
+- [ ] 🔍 **1.4.11 Non-text Contrast** — the resting boundary and the focus indicator are each `3:1` against adjacent colors. Today the resting `outlined` border is the known failure.
 - [ ] 🔁 **2.4.6 Headings and Labels** — every provided label describes its field.
+- [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused field shows a visible indicator.
 - [ ] 🔁 **3.3.2 Labels or Instructions** — each field has a visible label or instruction. A placeholder-only or `aria-label`-only field fails.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — name, role, value, and the required and invalid states are programmatically determinable.
+- [ ] 🔍 **4.1.3 Status Messages** — the error is announced without the user moving focus to it.
 
 ## ToggleButton
 

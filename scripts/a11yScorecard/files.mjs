@@ -6,6 +6,7 @@ import * as prettier from 'prettier';
 export const rootDirectory = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 export const componentsDirectory = path.join(rootDirectory, 'packages/mui-material/src');
 export const indexPath = path.join(componentsDirectory, 'accessibility.md');
+export const defaultsPath = path.join(componentsDirectory, 'accessibility.json');
 export const checklistPath = path.join(componentsDirectory, 'manual-testing.md');
 export const scorecardPath = path.join(
   rootDirectory,
@@ -46,13 +47,23 @@ export async function format(source, filepath) {
   return prettier.format(source, { ...config, filepath });
 }
 
-const REGION = /<!-- (\S+):start -->([\s\S]*?)<!-- \1:end -->/g;
+const REGION_START = /<!-- (\S+):start -->/g;
 
-/** Every `<!-- <name>:start -->…<!-- <name>:end -->` region in a file, as `name → trimmed content`. */
-export function readRegions(source) {
-  return new Map(
-    [...(source ?? '').matchAll(REGION)].map(([, name, content]) => [name, content.trim()]),
-  );
+/**
+ * Every `<!-- <name>:start -->…<!-- <name>:end -->` region in a file, as
+ * `name → trimmed content`. Regions can nest inside a generated block.
+ */
+export function readRegions(source = '') {
+  const regions = new Map();
+  for (const match of (source ?? '').matchAll(REGION_START)) {
+    const [startMarker, name] = match;
+    const start = match.index + startMarker.length;
+    const end = source.indexOf(`<!-- ${name}:end -->`, start);
+    if (end !== -1) {
+      regions.set(name, source.slice(start, end).trim());
+    }
+  }
+  return regions;
 }
 
 /** Wraps hand-written content in region markers. `inline` keeps it on one line. */

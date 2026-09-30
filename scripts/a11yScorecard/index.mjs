@@ -2,10 +2,13 @@
 /**
  * Builds the accessibility conformance reports and the library-level scorecard.
  *
- * Each `packages/mui-material/src/<Component>/accessibility.json` rates the
- * component against WCAG 2.2 Level A and AA. The axe results come from the
- * committed `*.a11y.json` it names, and the prose from the region markers in
- * `<Component>/accessibility.md`. From them, this script writes:
+ * `packages/mui-material/src/accessibility.json` holds the library defaults for
+ * each WCAG 2.2 Level A and AA criterion, and each
+ * `packages/mui-material/src/<Component>/accessibility.json` holds only where a
+ * component differs. The evidence comes from the tests: the criteria named in
+ * test titles, the Playwright suites in `test/regressions/a11y/criteriaSuites.mjs`,
+ * and the committed `*.a11y.json` axe results. The prose comes from the region
+ * markers in the Markdown files. From them, this script writes:
  *
  * - `<Component>/accessibility.md`, the report, keeping its hand-written regions
  * - the `Reports` table in `packages/mui-material/src/accessibility.md`
@@ -29,18 +32,13 @@ import {
   replaceBlock,
   scorecardPath,
 } from './files.mjs';
-import readReports from './read.mjs';
-import validateReport from './validate.mjs';
-import {
-  countCriteria,
-  resolveCriteria,
-  rollUpCriteria,
-  summarize,
-  summarizeRollup,
-} from './rollup.mjs';
+import readReports, { readDefaults } from './read.mjs';
+import { validateDefaults, validateReport, validateSource } from './validate.mjs';
+import { resolveReports, rollUpCriteria, summarize, summarizeRollup } from './rollup.mjs';
 import {
   renderDocsAbout,
   renderDocsRollup,
+  renderDefaultReasons,
   renderDocsTable,
   renderIndexTable,
   renderManualChecklist,
@@ -54,24 +52,25 @@ async function run(argv) {
     throw new Error('No accessibility.json reports found under packages/mui-material/src');
   }
 
-  const violations = (
-    await Promise.all(sources.map((source) => validateReport(source, check)))
-  ).flat();
-  if (violations.length > 0) {
-    console.error('Accessibility report data is invalid:\n');
-    violations.forEach((violation) => console.error(`  ${violation}`));
-    process.exit(1);
-  }
+  const defaults = await readDefaults();
 
-  const reports = sources.map((source) => {
-    const criteria = resolveCriteria(source);
-    return {
-      ...source,
-      criteria,
-      counts: countCriteria(source.data, criteria),
-      summary: summarize(criteria),
-    };
-  });
+  const fail = (violations) => {
+    if (violations.length > 0) {
+      console.error('Accessibility report data is invalid:\n');
+      violations.forEach((violation) => console.error(`  ${violation}`));
+      process.exit(1);
+    }
+  };
+  fail([
+    ...validateDefaults(defaults, check),
+    ...(await Promise.all(sources.map((source) => validateSource(source, defaults)))).flat(),
+  ]);
+
+  const reports = resolveReports(sources, defaults).map((report) => ({
+    ...report,
+    summary: summarize(report.criteria),
+  }));
+  fail(reports.flatMap((report) => validateReport(report, check)));
   const criteria = rollUpCriteria(reports);
   const totals = summarizeRollup(criteria);
 
@@ -84,7 +83,13 @@ async function run(argv) {
     components: reports.map((report) => ({
       component: report.component,
       counts: report.counts,
-      gaps: report.regions.get('known-gaps') ?? '',
+      gaps: [
+        ...report.criteria.filter((criterion) => criterion.conformance !== 'Supports'),
+        ...(report.inherited?.gaps ?? []).map((criterion) => ({
+          ...criterion,
+          from: report.inherited.component,
+        })),
+      ].map(({ number, name, conformance, from }) => ({ number, name, conformance, from })),
       criteria: report.criteria.map(
         ({ number, name, level, conformance, responsibility, group, flagged }) => ({
           number,
@@ -108,8 +113,17 @@ async function run(argv) {
     })),
     {
       filepath: indexPath,
-      render: async () =>
-        replaceBlock(await fs.readFile(indexPath, 'utf8'), renderIndexTable(reports), indexPath),
+      render: async () => {
+        let page = await fs.readFile(indexPath, 'utf8');
+        page = replaceBlock(page, renderIndexTable(reports), indexPath);
+        page = replaceBlock(
+          page,
+          renderDefaultReasons(defaults),
+          indexPath,
+          'not-applicable-defaults',
+        );
+        return page;
+      },
     },
     { filepath: scorecardPath, render: () => JSON.stringify(scorecard, null, 2) },
     { filepath: checklistPath, render: () => renderManualChecklist(reports) },

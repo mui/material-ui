@@ -79,8 +79,5 @@ export const GROUP_HEADINGS = {
   Automated: '⚙️ Automated',
 };
 
-/** Evidence written in the data file. `axe` evidence is derived from the component's `*.a11y.json`. */
-export const EVIDENCE_TYPES = ['unit', 'playwright', 'review'];
-
 /** The axe-core tag for a criterion: `1.4.10` → `wcag1410`. */
 export const wcagTag = (number) => `wcag${number.replaceAll('.', '')}`;
