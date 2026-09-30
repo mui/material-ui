@@ -231,19 +231,13 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 
 7. ✅ **Explicit submenu trigger:** keep one behavioral owner per trigger and the popup wiring internal. The root decorates a supplied button; the submenu renders an explicit part. Accept this asymmetry. A Material Menubar remains separate work.
 
-### Open questions
-
-1. **TypeScript floor.** The shared theme types import the Menu2 part types, and those import `@base-ui/react/menu`. Base UI declarations use `const` type parameters, which need TypeScript 5.0. A file that only imports `createTheme` from the built package fails under TypeScript 4.9.5 with `skipLibCheck`, and passes under 5.0.4. Therefore the change reaches each `@mui/material` user, not only Menu2 users. The docs promise TypeScript 4.9, and CI does not test that version. Three options:
-   - **Raise the floor to 5.0.** This is a support change in a v9 minor version.
-   - **Keep the Menu2 theme types out of the shared `styles` files.** An opt-in augmentation import, as `@mui/lab/themeAugmentation` does, keeps 4.9 for users who do not import Menu2. Menu2 users still need 5.0.
-   - **Ask Base UI for declarations that TypeScript 4.9 can parse.** A Base UI release then gates Menu2.
-
-   The same choice applies to each later Base UI-backed component.
+8. ✅ **TypeScript minimum:** raise it to 5.0 in a separate change, as [Aaron's review recommends](https://github.com/mui/material-ui/pull/48823#issuecomment-5831514721). Shared theme types expose Base UI declarations with `const` type parameters, so even consumers that only import `createTheme` need TypeScript 5.0. The [draft PR](https://github.com/mui/material-ui/pull/49247) updates the support docs and adds a built-package check pinned to TypeScript 5.0.4. The direction is resolved; the change is not yet merged.
 
 ### Rollout plan
 
 1. **Review the proposal:** the benchmark and API experiment are ready for maintainer feedback.
 2. **Prepare an unstable release:** target a v9 minor release after review.
+   - Merge the [TypeScript 5.0 minimum update](https://github.com/mui/material-ui/pull/49247) before release.
    - Require a Base UI release with two merged fixes: the [menu tree fix](https://github.com/mui/base-ui/pull/5645) and the [transition state fix for retained menus](https://github.com/mui/base-ui/pull/5738). Without the second fix, an open update can reach the popup before its starting state, which starts Grow twice in Firefox. Base UI 1.8.0 has neither fix. The local pnpm patch fixes both issues but does not reach applications that install `@mui/material`. Remove the patch after a release includes both fixes, and keep the regression tests.
    - Complete API registration, remove the Menu2 API-generator skip, then generate and review PropTypes and API docs.
    - Keep the public demos and migration guide aligned with the final API and behavior decisions.
