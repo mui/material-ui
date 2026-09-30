@@ -28,7 +28,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.7",
+    "@babel/runtime": "^8.0.5",
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
@@ -49,7 +49,7 @@
     "@types/prop-types": "15.7.15",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "next": "16.3.5"
+    "next": "16.3.6"
   },
   "peerDependencies": {
     "@base-ui/react": "^1.8.0",
@@ -77,7 +77,7 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=22.23.3"
   },
   "exports": {
     "./*": "./src/*/index.ts",

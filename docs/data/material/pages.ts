@@ -17,6 +17,7 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/getting-started/learn' },
       { pathname: '/material-ui/getting-started/design-resources' },
       { pathname: '/material-ui/getting-started/faq', title: 'FAQs' },
+      { pathname: '/material-ui/getting-started/accessibility' },
       { pathname: '/material-ui/getting-started/supported-components' },
       { pathname: '/material-ui/getting-started/supported-platforms' },
       { pathname: '/material-ui/getting-started/support' },
@@ -72,7 +73,6 @@ const pages: MuiPage[] = [
         subheader: 'feedback',
         children: [
           { pathname: '/material-ui/react-alert' },
-          { pathname: '/material-ui/react-backdrop' },
           { pathname: '/material-ui/react-dialog' },
           { pathname: '/material-ui/react-progress' },
           { pathname: '/material-ui/react-skeleton' },
@@ -121,6 +121,7 @@ const pages: MuiPage[] = [
         pathname: '/material-ui/components/utils',
         subheader: 'utils',
         children: [
+          { pathname: '/material-ui/react-backdrop' },
           {
             pathname: '/material-ui/react-click-away-listener',
             title: 'Click-Away Listener',
