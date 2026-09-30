@@ -10,15 +10,14 @@ import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import MenuItemBase from '../internal/MenuItemBase';
+import RadioButtonIcon from '../Radio/RadioButtonIcon';
+import Menu2IndicatorBase, { Menu2IndicatorSlotProps } from '../Unstable_Menu2/Menu2IndicatorBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
-import Menu2RadioItemIndicator, {
-  Menu2RadioItemIndicatorProps,
-} from '../Unstable_Menu2RadioItemIndicator';
 import {
+  getMenu2RootRender,
   isMenu2RootNativeButton,
   Menu2RootSlotProps,
-  SlotProps,
 } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2ItemClassName,
@@ -34,6 +33,7 @@ import {
   getMenu2RadioItemUtilityClass,
   Menu2RadioItemClasses,
   menu2RadioItemClasses,
+  menu2RadioItemIndicatorClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2RadioItemOwnerState extends Menu2ItemBaseOwnerState {
@@ -57,12 +57,7 @@ export interface Menu2RadioItemSlots {
 }
 
 export interface Menu2RadioItemSlotProps extends Menu2RootSlotProps<Menu2RadioItemOwnerState> {
-  indicator?:
-    | SlotProps<
-        Partial<Menu2RadioItemIndicatorProps> & Record<string, any>,
-        Menu2RadioItemOwnerState
-      >
-    | undefined;
+  indicator?: Menu2IndicatorSlotProps<Menu2RadioItemOwnerState> | undefined;
 }
 
 export interface Menu2RadioItemOwnProps
@@ -135,31 +130,54 @@ const Menu2RadioItemRoot = styled(MenuItemBase, {
   memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
 );
 
+const Menu2RadioItemIndicator = styled(Menu2IndicatorBase, {
+  name: 'MuiMenu2RadioItem',
+  slot: 'Indicator',
+  overridesResolver: (props, styles) => styles.indicator,
+})<{ ownerState: Menu2RadioItemOwnerState }>({});
+
+// Use the Radio icon so the dot keeps its scale transition.
+const defaultCheckedIcon = <RadioButtonIcon checked fontSize="small" />;
+const defaultIcon = <RadioButtonIcon fontSize="small" />;
+
 interface Menu2RadioItemRootSlotProps extends Pick<
   Menu2RadioItemProps,
   'component' | 'disableRipple' | 'nativeButton' | 'slotProps' | 'slots' | 'sx'
 > {
   baseProps: HTMLProps;
-  ownerState: Menu2RadioItemOwnerState;
+  ownerState: Menu2RadioItemOwnerState & Pick<Menu2RadioItemProps, 'classes'>;
 }
 
 function Menu2RadioItemRootSlot(props: Menu2RadioItemRootSlotProps) {
   const { ownerState, slotProps, slots } = props;
-  const [IndicatorSlot, indicatorProps] = useSlot('indicator', {
+  const [IndicatorSlot, { keepMounted = true, ...indicatorProps }] = useSlot('indicator', {
     elementType: Menu2RadioItemIndicator,
     externalForwardedProps: { slots, slotProps },
     ownerState,
-    className: undefined,
-    // Reserve space even while the indicator is unchecked.
-    additionalProps: { keepMounted: true },
-    shouldForwardComponentProp: true,
+    className: clsx(
+      menu2RadioItemClasses.indicator,
+      menu2RadioItemIndicatorClasses.root,
+      ownerState.classes?.indicator,
+      ownerState.checked && menu2RadioItemIndicatorClasses.checked,
+      ownerState.disabled && menu2RadioItemIndicatorClasses.disabled,
+      ownerState.highlighted && menu2RadioItemIndicatorClasses.highlighted,
+    ),
   });
 
   return (
     <Menu2ItemRootSlot
       {...props}
       elementType={Menu2RadioItemRoot}
-      startIndicator={<IndicatorSlot {...indicatorProps} />}
+      startIndicator={
+        <BaseMenu.RadioItemIndicator
+          keepMounted={keepMounted}
+          render={getMenu2RootRender(IndicatorSlot, ownerState, {
+            ...indicatorProps,
+            children:
+              indicatorProps.children ?? (ownerState.checked ? defaultCheckedIcon : defaultIcon),
+          })}
+        />
+      }
     />
   );
 }

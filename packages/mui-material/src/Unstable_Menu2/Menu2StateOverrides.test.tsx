@@ -56,7 +56,9 @@ const highlightedCases = [
     ),
   },
   {
-    name: 'MuiMenu2CheckboxItemIndicator',
+    name: 'MuiMenu2CheckboxItem',
+    slot: 'indicator',
+    stateName: 'MuiMenu2CheckboxItemIndicator',
     item: (
       <Menu2CheckboxItem defaultChecked slotProps={{ indicator: { 'data-testid': 'target' } }}>
         Target
@@ -64,7 +66,9 @@ const highlightedCases = [
     ),
   },
   {
-    name: 'MuiMenu2RadioItemIndicator',
+    name: 'MuiMenu2RadioItem',
+    slot: 'indicator',
+    stateName: 'MuiMenu2RadioItemIndicator',
     item: (
       <Menu2RadioGroup defaultValue="target">
         <Menu2RadioItem value="target" slotProps={{ indicator: { 'data-testid': 'target' } }}>
@@ -86,7 +90,9 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
         if (rule instanceof CSSMediaRule) {
           walk(rule.cssRules, rule.conditionText);
         } else if (rule instanceof CSSStyleRule && rule.selectorText.includes(className)) {
-          rules.push({ selector: rule.selectorText, media, declarations: rule.style.cssText });
+          rule.selectorText.split(',').forEach((selector) => {
+            rules.push({ selector: selector.trim(), media, declarations: rule.style.cssText });
+          });
         }
       });
     };
@@ -94,13 +100,20 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
     return rules;
   }
 
-  highlightedCases.forEach(({ name, item }) => {
-    it(`keeps the ${name} forced-colors rule after a highlighted override`, async () => {
+  highlightedCases.forEach((entry) => {
+    const { name, item } = entry;
+    const slot = 'slot' in entry ? entry.slot : 'root';
+    const stateName = 'stateName' in entry ? entry.stateName : name;
+    const highlightedStyles = { color: '#111', backgroundColor: '#222' };
+    it(`keeps the ${name}.${slot} forced-colors rule after a highlighted override`, async () => {
       const theme = enhanceHighContrast(
         createTheme({
           components: {
             [name]: {
-              styleOverrides: { highlighted: { color: '#111', backgroundColor: '#222' } },
+              styleOverrides:
+                slot === 'indicator'
+                  ? { indicator: { [`&.${stateName}-highlighted`]: highlightedStyles } }
+                  : { highlighted: highlightedStyles },
             },
           },
         }),
@@ -115,10 +128,11 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
       const target = await screen.findByTestId('target');
       // The generated class name carries the styles; the utility class does not.
       const rootClassName = Array.from(target.classList).find(
-        (className) => className !== `${name}-root` && className.endsWith(`${name}-root`),
+        (className) => className !== `${name}-${slot}` && className.endsWith(`${name}-${slot}`),
       )!;
-      const highlightedRules = getRulesFor(rootClassName).filter((rule) =>
-        rule.selector.endsWith(`.${name}-highlighted`),
+      const highlightedSelector = `.${rootClassName}.${stateName}-highlighted`;
+      const highlightedRules = getRulesFor(rootClassName).filter(
+        (rule) => rule.selector === highlightedSelector,
       );
 
       // The last highlighted rule restores the system colors under forced colors.
@@ -128,12 +142,24 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
         : '';
       expect(highlightedRules.length).to.be.greaterThan(1);
       expect(highlightedRules[highlightedRules.length - 1]).to.deep.equal({
-        selector: `.${rootClassName}.${name}-highlighted`,
+        selector: highlightedSelector,
         media: '(forced-colors: active)',
-        declarations: name.endsWith('Indicator')
-          ? 'color: inherit; background-color: transparent;'
-          : `${forcedColorAdjust}color: highlighttext; background-color: highlight;`,
+        declarations:
+          slot === 'indicator'
+            ? 'color: inherit; background-color: transparent;'
+            : `${forcedColorAdjust}color: highlighttext; background-color: highlight;`,
       });
+      if (slot === 'indicator') {
+        const checkedSelector = `.${rootClassName}[data-checked].${stateName}-highlighted`;
+        const checkedRules = getRulesFor(rootClassName).filter(
+          (rule) => rule.selector === checkedSelector,
+        );
+        expect(checkedRules[checkedRules.length - 1]).to.deep.equal({
+          selector: checkedSelector,
+          media: '(forced-colors: active)',
+          declarations: 'color: inherit; background-color: transparent;',
+        });
+      }
     });
   });
 
@@ -189,8 +215,15 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
         );
       }
 
-      highlightedCases.forEach(({ name, item }) => {
-        it(`applies ${name}.highlighted only while the item is highlighted`, async () => {
+      highlightedCases.forEach((entry) => {
+        const { name, item } = entry;
+        const slot = 'slot' in entry ? entry.slot : 'root';
+        const stateName = 'stateName' in entry ? entry.stateName : name;
+        const highlightedStyles = {
+          '--menu2-highlighted-test': 'active',
+          backgroundColor: 'rgb(1, 2, 3)',
+        };
+        it(`applies ${name}.${slot} highlight styles only while the item is highlighted`, async () => {
           const { user, unmount } = renderWithTheme(
             <Menu2 transitionDuration={0} trigger={<button type="button">Options</button>}>
               <Menu2Item>Before</Menu2Item>
@@ -199,12 +232,10 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
             </Menu2>,
             {
               [name]: {
-                styleOverrides: {
-                  highlighted: {
-                    '--menu2-highlighted-test': 'active',
-                    backgroundColor: 'rgb(1, 2, 3)',
-                  },
-                },
+                styleOverrides:
+                  slot === 'indicator'
+                    ? { indicator: { [`&.${stateName}-highlighted`]: highlightedStyles } }
+                    : { highlighted: highlightedStyles },
               },
             },
           );
@@ -244,7 +275,7 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
 
       ['item', 'indicator'].forEach((kind) => {
         it(`lets a matching highlighted sx selector override the ${kind} theme`, async () => {
-          const name = kind === 'item' ? 'MuiMenu2Item' : 'MuiMenu2CheckboxItemIndicator';
+          const name = kind === 'item' ? 'MuiMenu2Item' : 'MuiMenu2CheckboxItem';
           const highlightedClass =
             kind === 'item'
               ? menu2ItemClasses.highlighted
@@ -265,7 +296,18 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
                 </Menu2CheckboxItem>
               )}
             </Menu2>,
-            { [name]: { styleOverrides: { highlighted: { backgroundColor: 'rgb(1, 2, 3)' } } } },
+            {
+              [name]: {
+                styleOverrides:
+                  kind === 'item'
+                    ? { highlighted: { backgroundColor: 'rgb(1, 2, 3)' } }
+                    : {
+                        indicator: {
+                          [`&.${highlightedClass}`]: { backgroundColor: 'rgb(1, 2, 3)' },
+                        },
+                      },
+              },
+            },
           );
 
           try {

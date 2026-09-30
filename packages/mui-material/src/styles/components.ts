@@ -491,13 +491,6 @@ export interface Components<Theme = unknown> {
         variants?: ComponentsVariants<Theme>['MuiMenu2CheckboxItem'] | undefined;
       }
     | undefined;
-  MuiMenu2CheckboxItemIndicator?:
-    | {
-        defaultProps?: ComponentsProps['MuiMenu2CheckboxItemIndicator'] | undefined;
-        styleOverrides?: ComponentsOverrides<Theme>['MuiMenu2CheckboxItemIndicator'] | undefined;
-        variants?: ComponentsVariants<Theme>['MuiMenu2CheckboxItemIndicator'] | undefined;
-      }
-    | undefined;
   MuiMenu2Group?:
     | {
         defaultProps?: ComponentsProps['MuiMenu2Group'] | undefined;
@@ -538,13 +531,6 @@ export interface Components<Theme = unknown> {
         defaultProps?: ComponentsProps['MuiMenu2RadioItem'] | undefined;
         styleOverrides?: ComponentsOverrides<Theme>['MuiMenu2RadioItem'] | undefined;
         variants?: ComponentsVariants<Theme>['MuiMenu2RadioItem'] | undefined;
-      }
-    | undefined;
-  MuiMenu2RadioItemIndicator?:
-    | {
-        defaultProps?: ComponentsProps['MuiMenu2RadioItemIndicator'] | undefined;
-        styleOverrides?: ComponentsOverrides<Theme>['MuiMenu2RadioItemIndicator'] | undefined;
-        variants?: ComponentsVariants<Theme>['MuiMenu2RadioItemIndicator'] | undefined;
       }
     | undefined;
   MuiMenu2Separator?:

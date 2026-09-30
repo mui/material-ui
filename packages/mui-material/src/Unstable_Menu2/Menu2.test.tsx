@@ -14,8 +14,8 @@ import Tooltip from '@mui/material/Tooltip';
 import Menu2, { menu2PopupClasses, menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem, {
   menu2CheckboxItemClasses,
+  menu2CheckboxItemIndicatorClasses,
 } from '@mui/material/Unstable_Menu2CheckboxItem';
-import { menu2CheckboxItemIndicatorClasses } from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
@@ -566,15 +566,28 @@ describe('<Menu2 />', () => {
         ).to.equal(true);
       }
       expect(matches(menu2SubmenuTriggerClasses.open)).to.equal(true);
-      expect(matches(menu2CheckboxItemIndicatorClasses.root)).to.equal(true);
+      const indicator = screen
+        .getByRole('menuitemcheckbox', { name: 'Bookmarks' })
+        .querySelector(`.${menu2CheckboxItemIndicatorClasses.root}`)!;
+      expect(indicator).not.to.equal(null);
+      // The item owns the indicator styles; the old indicator root class remains
+      // available as a styling hook but no longer names the generated CSS rule.
+      const indicatorStyleClass = Array.from(indicator.classList).find(
+        (className) =>
+          className !== menu2CheckboxItemClasses.indicator &&
+          className.endsWith('MuiMenu2CheckboxItem-indicator'),
+      )!;
+      expect(indicatorStyleClass).not.to.equal(undefined);
+      expect(matches(indicatorStyleClass)).to.equal(true);
       // The indicator's own `[data-checked]` colour is (0,2,0). The override has
       // to carry the same attribute, or a checked indicator keeps the MUI blue
       // in forced colors instead of the system colour.
       expect(
         menu2ForcedColorsRules.some(
           (text) =>
-            text.includes(menu2CheckboxItemIndicatorClasses.root) &&
-            text.includes('[data-checked]'),
+            text.includes(`.${indicatorStyleClass}[data-checked]`) &&
+            text.includes('color: inherit;') &&
+            text.includes('background-color: transparent;'),
         ),
       ).to.equal(true);
     },

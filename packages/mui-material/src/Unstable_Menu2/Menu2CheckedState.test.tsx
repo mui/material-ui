@@ -219,19 +219,11 @@ describe('Menu2 live checked ownerState', () => {
         const Indicator = React.forwardRef<
           HTMLElement,
           React.HTMLAttributes<HTMLElement> & {
-            component: React.ElementType;
-            keepMounted: boolean;
+            as?: React.ElementType;
             ownerState: { checked: boolean };
           }
-        >(function Indicator({ component: Component, keepMounted, ownerState, ...props }, ref) {
-          return (
-            <Component
-              {...props}
-              ref={ref}
-              data-checked={String(ownerState.checked)}
-              data-keep-mounted={String(keepMounted)}
-            />
-          );
+        >(function Indicator({ as: Component = 'span', ownerState, ...props }, ref) {
+          return <Component {...props} ref={ref} data-owner-checked={String(ownerState.checked)} />;
         });
         const itemProps = {
           slots: { indicator: Indicator },
@@ -263,12 +255,14 @@ describe('Menu2 live checked ownerState', () => {
         expect(indicator.tagName).to.equal('STRONG');
         expect(indicator).to.have.class('custom-indicator');
         expect(indicator.style.marginLeft).to.equal('7px');
-        expect(indicator).to.have.attribute('data-keep-mounted', 'true');
-        expect(indicator).to.have.attribute('data-checked', 'false');
+        expect(indicator).not.to.have.attribute('keepMounted');
+        expect(indicator).to.have.attribute('data-owner-checked', 'false');
+        expect(indicator).not.to.have.attribute('data-checked');
         expect(indicatorRef.current).to.equal(indicator);
 
         await user.click(screen.getByRole(role, { name: 'One' }));
-        expect(indicator).to.have.attribute('data-checked', 'true');
+        expect(indicator).to.have.attribute('data-owner-checked', 'true');
+        expect(indicator).to.have.attribute('data-checked');
         expect(indicatorRef.current).to.equal(indicator);
 
         unmount();

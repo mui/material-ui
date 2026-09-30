@@ -3,39 +3,12 @@ import * as React from 'react';
 import { createRenderer, fireEvent, isJsdom, screen } from '@mui/internal-test-utils';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
-import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
-import Menu2RadioItemIndicator, {
+import Menu2RadioItem, {
   menu2RadioItemIndicatorClasses as classes,
-} from '@mui/material/Unstable_Menu2RadioItemIndicator';
-import describeConformance from '../../test/describeConformance';
+} from '@mui/material/Unstable_Menu2RadioItem';
 
-// The item renders its own indicator; this suppresses it so the suite can
-// mount one directly.
-function NoIndicator() {
-  return null;
-}
-
-describe('<Menu2RadioItemIndicator />', () => {
+describe('Menu2RadioItem indicator slot', () => {
   const { render } = createRenderer();
-
-  describeConformance(<Menu2RadioItemIndicator keepMounted />, () => ({
-    classes,
-    render: (node) =>
-      render(
-        <Menu2 defaultOpen modal={false} anchor={document.body}>
-          <Menu2RadioGroup>
-            <Menu2RadioItem value="one" slots={{ indicator: NoIndicator }}>
-              {node}One
-            </Menu2RadioItem>
-          </Menu2RadioGroup>
-        </Menu2>,
-      ),
-    getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
-    refInstanceof: window.HTMLSpanElement,
-    testComponentPropWith: 'i',
-    muiName: 'MuiMenu2RadioItemIndicator',
-    testVariantProps: { 'data-variant': 'probe' },
-  }));
 
   // A real browser reports the transform as a matrix, jsdom as written.
   function getScale(element: Element) {

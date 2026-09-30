@@ -74,7 +74,7 @@ import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 ```
 
-The classic `Menu` keeps its API. Classic and successor items share `MenuItemBase` and the focus and hover styles. Menu2 popups and indicators also share styled bases. The bases have no theme key; each component keeps its own overrides. The experiment also adds a `defaultMuiPrevented` check to `useButtonBase`, so Base UI can own Enter and Space activation without ButtonBase activating the item again.
+The classic `Menu` keeps its API. Classic and successor items share `MenuItemBase` and the focus and hover styles. Menu2 popups and indicators also share styled bases. The bases have no theme key; each public component owns its slot overrides. The experiment also adds a `defaultMuiPrevented` check to `useButtonBase`, so Base UI can own Enter and Space activation without ButtonBase activating the item again.
 
 ### Rules for Base UI-backed components (Menu is the first)
 
@@ -85,11 +85,11 @@ The classic `Menu` keeps its API. Classic and successor items share `MenuItemBas
 - **Dependency:** make `@base-ui/react` a direct dependency of `@mui/material`. Review version updates rather than auto-merge them. Test the upstream states used by the integration, including checked indicators, starting and ending transitions, and resolved placement.
 - **Theme state:** keep `Mui-*` classes and `ownerState` as the Material customization contract. All item parts resolve their root slot from the live Base UI state, so slot callbacks and theme variants receive the highlighted state and, where applicable, the checked or open state. Exit-tint tracking stays internal. Collapsed popup slot callbacks receive resolved public props, not live uncontrolled open state. Internal animation and placement styles can use Base UI attributes.
 - **API boundary:** explicitly pick the forwarded root, trigger, and positioner props. New upstream props require API and routing review. This is not complete type isolation: changes to an exposed upstream type still reach Material UI. Preserve Base UI's cancelable `onOpenChange(open, eventDetails)`; checkbox items and radio groups use `onChange(event, value, eventDetails)`.
-- **Tooling and tests:** use normal theme registration, API generation, and `describeConformance`. Test behavior differences and the integration boundary as well as the individual parts. All 13 public components have conformance suites. The collapsed containers use their positioned elements as the root; interaction tests query the menu surface.
+- **Tooling and tests:** use normal theme registration, API generation, and `describeConformance`. Test behavior differences and the integration boundary as well as the individual parts. All 11 public components have conformance suites. The collapsed containers use their positioned elements as the root; interaction tests query the menu surface.
 
 ### API shape: collapsed popup, explicit submenu trigger
 
-`Menu2` and `Menu2Submenu` combine Portal, Positioner, Popup, Paper, and List. Items, links, checkbox and radio parts, groups, labels, separators, and the submenu trigger remain separate.
+`Menu2` and `Menu2Submenu` combine Portal, Positioner, Popup, Paper, and List. Items, links, checkbox items, radio groups and items, groups, labels, separators, and the submenu trigger remain separate. Checkbox and radio indicators are internal defaults, not separate public components.
 
 ```jsx
 <Menu2 trigger={<Button>Options</Button>} elevation={4}>
@@ -114,6 +114,8 @@ For the classic controlled pattern, omit `trigger` and use `open` and `anchor`. 
 #### Customization targets
 
 The root theme key is `MuiMenu2`; the submenu uses `MuiMenu2Submenu`. Popup components stay internal, but their class hooks are exported.
+
+Checkbox and radio items own their `indicator` slot. Use `slots.indicator`, `slotProps.indicator`, and the item's `styleOverrides.indicator` to customize it. Indicator class objects, utility helpers, and class types are exported from the owning item's subpath; the class names stay unchanged. Custom indicators receive these classes and the live checked, disabled, and highlighted state. They must forward props and their ref. The default indicators have no separate exports or theme keys.
 
 | Target                        | Top-level props                                                                  | Slot         |
 | :---------------------------- | :------------------------------------------------------------------------------- | :----------- |

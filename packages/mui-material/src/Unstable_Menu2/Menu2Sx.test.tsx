@@ -7,10 +7,8 @@ import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
-import Menu2CheckboxItemIndicator from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
-import Menu2RadioItemIndicator from '@mui/material/Unstable_Menu2RadioItemIndicator';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
@@ -22,10 +20,6 @@ interface StylingProps {
   sx?: SxProps<Theme>;
   slots?: { root: React.ElementType };
   slotProps?: { root: { sx: SxProps<Theme> } | (() => { sx: SxProps<Theme> }) };
-}
-
-function NoIndicator() {
-  return null;
 }
 
 const parts: Record<string, (props: StylingProps) => React.ReactNode> = {
@@ -56,20 +50,6 @@ const parts: Record<string, (props: StylingProps) => React.ReactNode> = {
   ),
   Menu2RadioGroup: (props) => <Menu2RadioGroup {...props} />,
   Menu2Separator: (props) => <Menu2Separator {...props} />,
-  Menu2CheckboxItemIndicator: (props) => (
-    <Menu2CheckboxItem defaultChecked slots={{ indicator: NoIndicator }}>
-      <Menu2CheckboxItemIndicator {...props} />
-      Checkbox
-    </Menu2CheckboxItem>
-  ),
-  Menu2RadioItemIndicator: (props) => (
-    <Menu2RadioGroup defaultValue="one">
-      <Menu2RadioItem value="one" slots={{ indicator: NoIndicator }}>
-        <Menu2RadioItemIndicator {...props} />
-        Radio
-      </Menu2RadioItem>
-    </Menu2RadioGroup>
-  ),
 };
 
 const CustomRoot = styled('div')({});

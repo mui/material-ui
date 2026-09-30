@@ -2,35 +2,12 @@ import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Menu2 from '@mui/material/Unstable_Menu2';
-import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
-import Menu2CheckboxItemIndicator, {
+import Menu2CheckboxItem, {
   menu2CheckboxItemIndicatorClasses as classes,
-} from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
-import describeConformance from '../../test/describeConformance';
+} from '@mui/material/Unstable_Menu2CheckboxItem';
 
-// The item renders its own indicator; this suppresses it so the suite can
-// mount one directly.
-function NoIndicator() {
-  return null;
-}
-
-describe('<Menu2CheckboxItemIndicator />', () => {
+describe('Menu2CheckboxItem indicator slot', () => {
   const { render } = createRenderer();
-
-  describeConformance(<Menu2CheckboxItemIndicator keepMounted />, () => ({
-    classes,
-    render: (node) =>
-      render(
-        <Menu2 defaultOpen modal={false} anchor={document.body}>
-          <Menu2CheckboxItem slots={{ indicator: NoIndicator }}>{node}Ruler</Menu2CheckboxItem>
-        </Menu2>,
-      ),
-    getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
-    refInstanceof: window.HTMLSpanElement,
-    testComponentPropWith: 'i',
-    muiName: 'MuiMenu2CheckboxItemIndicator',
-    testVariantProps: { 'data-variant': 'probe' },
-  }));
 
   function renderItem(
     indicatorProps: Record<string, any> = {},

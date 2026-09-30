@@ -110,6 +110,8 @@ export const menu2LinkItemClasses: Menu2LinkItemClasses = generateUtilityClasses
 );
 
 export interface Menu2CheckboxItemClasses extends Menu2ItemClasses {
+  /** Styles applied to the indicator element. */
+  indicator: string;
   /** State class applied to the root element if `checked={true}`. */
   checked: string;
 }
@@ -122,7 +124,7 @@ export function getMenu2CheckboxItemUtilityClass(slot: string): string {
 
 export const menu2CheckboxItemClasses: Menu2CheckboxItemClasses = generateUtilityClasses(
   'MuiMenu2CheckboxItem',
-  ['root', 'highlighted', 'disabled', 'dense', 'divider', 'gutters', 'checked'],
+  ['root', 'highlighted', 'disabled', 'dense', 'divider', 'gutters', 'checked', 'indicator'],
 );
 
 export interface Menu2CheckboxItemIndicatorClasses {
@@ -169,6 +171,8 @@ export const menu2RadioGroupClasses: Menu2RadioGroupClasses = generateUtilityCla
 );
 
 export interface Menu2RadioItemClasses extends Menu2ItemClasses {
+  /** Styles applied to the indicator element. */
+  indicator: string;
   /** State class applied to the root element if `checked={true}`. */
   checked: string;
 }
@@ -181,7 +185,7 @@ export function getMenu2RadioItemUtilityClass(slot: string): string {
 
 export const menu2RadioItemClasses: Menu2RadioItemClasses = generateUtilityClasses(
   'MuiMenu2RadioItem',
-  ['root', 'highlighted', 'disabled', 'dense', 'divider', 'gutters', 'checked'],
+  ['root', 'highlighted', 'disabled', 'dense', 'divider', 'gutters', 'checked', 'indicator'],
 );
 
 export interface Menu2RadioItemIndicatorClasses {

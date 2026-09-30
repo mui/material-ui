@@ -10,15 +10,15 @@ import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import MenuItemBase from '../internal/MenuItemBase';
+import CheckBoxIcon from '../internal/svg-icons/CheckBox';
+import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
+import Menu2IndicatorBase, { Menu2IndicatorSlotProps } from '../Unstable_Menu2/Menu2IndicatorBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
-import Menu2CheckboxItemIndicator, {
-  Menu2CheckboxItemIndicatorProps,
-} from '../Unstable_Menu2CheckboxItemIndicator';
 import {
+  getMenu2RootRender,
   isMenu2RootNativeButton,
   Menu2RootSlotProps,
-  SlotProps,
 } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2ItemClassName,
@@ -34,6 +34,7 @@ import {
   getMenu2CheckboxItemUtilityClass,
   Menu2CheckboxItemClasses,
   menu2CheckboxItemClasses,
+  menu2CheckboxItemIndicatorClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2CheckboxItemOwnerState extends Menu2ItemBaseOwnerState {
@@ -57,12 +58,7 @@ export interface Menu2CheckboxItemSlots {
 }
 
 export interface Menu2CheckboxItemSlotProps extends Menu2RootSlotProps<Menu2CheckboxItemOwnerState> {
-  indicator?:
-    | SlotProps<
-        Partial<Menu2CheckboxItemIndicatorProps> & Record<string, any>,
-        Menu2CheckboxItemOwnerState
-      >
-    | undefined;
+  indicator?: Menu2IndicatorSlotProps<Menu2CheckboxItemOwnerState> | undefined;
 }
 
 export interface Menu2CheckboxItemOwnProps
@@ -158,31 +154,54 @@ const Menu2CheckboxItemRoot = styled(MenuItemBase, {
   memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
 );
 
+const Menu2CheckboxItemIndicator = styled(Menu2IndicatorBase, {
+  name: 'MuiMenu2CheckboxItem',
+  slot: 'Indicator',
+  overridesResolver: (props, styles) => styles.indicator,
+})<{ ownerState: Menu2CheckboxItemOwnerState }>({});
+
+// Keep the icons in the 1.25rem box used by the menu row.
+const defaultCheckedIcon = <CheckBoxIcon fontSize="small" />;
+const defaultIcon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+
 interface Menu2CheckboxItemRootSlotProps extends Pick<
   Menu2CheckboxItemProps,
   'component' | 'disableRipple' | 'nativeButton' | 'slotProps' | 'slots' | 'sx'
 > {
   baseProps: HTMLProps;
-  ownerState: Menu2CheckboxItemOwnerState;
+  ownerState: Menu2CheckboxItemOwnerState & Pick<Menu2CheckboxItemProps, 'classes'>;
 }
 
 function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
   const { ownerState, slotProps, slots } = props;
-  const [IndicatorSlot, indicatorProps] = useSlot('indicator', {
+  const [IndicatorSlot, { keepMounted = true, ...indicatorProps }] = useSlot('indicator', {
     elementType: Menu2CheckboxItemIndicator,
     externalForwardedProps: { slots, slotProps },
     ownerState,
-    className: undefined,
-    // Reserve space even while the indicator is unchecked.
-    additionalProps: { keepMounted: true },
-    shouldForwardComponentProp: true,
+    className: clsx(
+      menu2CheckboxItemClasses.indicator,
+      menu2CheckboxItemIndicatorClasses.root,
+      ownerState.classes?.indicator,
+      ownerState.checked && menu2CheckboxItemIndicatorClasses.checked,
+      ownerState.disabled && menu2CheckboxItemIndicatorClasses.disabled,
+      ownerState.highlighted && menu2CheckboxItemIndicatorClasses.highlighted,
+    ),
   });
 
   return (
     <Menu2ItemRootSlot
       {...props}
       elementType={Menu2CheckboxItemRoot}
-      startIndicator={<IndicatorSlot {...indicatorProps} />}
+      startIndicator={
+        <BaseMenu.CheckboxItemIndicator
+          keepMounted={keepMounted}
+          render={getMenu2RootRender(IndicatorSlot, ownerState, {
+            ...indicatorProps,
+            children:
+              indicatorProps.children ?? (ownerState.checked ? defaultCheckedIcon : defaultIcon),
+          })}
+        />
+      }
     />
   );
 }

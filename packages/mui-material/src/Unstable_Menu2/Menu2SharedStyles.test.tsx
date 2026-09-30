@@ -124,17 +124,23 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
               source === 'default'
                 ? {}
                 : {
-                    MuiMenu2CheckboxItemIndicator: {
+                    MuiMenu2CheckboxItem: {
                       styleOverrides: {
-                        root: { minWidth: 40, '&[data-checked]': { color: 'rgb(1, 2, 3)' } },
+                        indicator: {
+                          minWidth: 40,
+                          '&[data-checked]': { color: 'rgb(1, 2, 3)' },
+                          variants: [{ props: { checked: true }, style: { minWidth: 41 } }],
+                        },
                       },
-                      variants: [{ props: { keepMounted: true }, style: { minWidth: 41 } }],
                     },
-                    MuiMenu2RadioItemIndicator: {
+                    MuiMenu2RadioItem: {
                       styleOverrides: {
-                        root: { minWidth: 44, '&[data-checked]': { color: 'rgb(4, 5, 6)' } },
+                        indicator: {
+                          minWidth: 44,
+                          '&[data-checked]': { color: 'rgb(4, 5, 6)' },
+                          variants: [{ props: { checked: true }, style: { minWidth: 45 } }],
+                        },
                       },
-                      variants: [{ props: { keepMounted: true }, style: { minWidth: 45 } }],
                     },
                   },
           });

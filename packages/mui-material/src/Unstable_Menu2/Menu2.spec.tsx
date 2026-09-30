@@ -1,21 +1,81 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
 import Menu2 from '@mui/material/Unstable_Menu2';
-import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
-import Menu2CheckboxItemIndicator from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
+import Menu2CheckboxItem, {
+  getMenu2CheckboxItemIndicatorUtilityClass,
+  menu2CheckboxItemIndicatorClasses,
+  Menu2CheckboxItemIndicatorClassKey,
+  Menu2CheckboxItemIndicatorClasses,
+  // @ts-expect-error The default indicator is private. Use the item's indicator slot.
+  Menu2CheckboxItemIndicator,
+} from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
-import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
-import Menu2RadioItemIndicator from '@mui/material/Unstable_Menu2RadioItemIndicator';
+import Menu2RadioItem, {
+  getMenu2RadioItemIndicatorUtilityClass,
+  menu2RadioItemIndicatorClasses,
+  Menu2RadioItemIndicatorClassKey,
+  Menu2RadioItemIndicatorClasses,
+  // @ts-expect-error The default indicator is private. Use the item's indicator slot.
+  Menu2RadioItemIndicator,
+} from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { createTheme } from '@mui/material/styles';
 // @ts-expect-error Menu2 is intentionally not exported from the root barrel for this POC.
 import { Menu2 as RootBarrelMenu2 } from '@mui/material';
+
+expectType<Menu2CheckboxItemIndicatorClasses, typeof menu2CheckboxItemIndicatorClasses>(
+  menu2CheckboxItemIndicatorClasses,
+);
+expectType<Menu2RadioItemIndicatorClasses, typeof menu2RadioItemIndicatorClasses>(
+  menu2RadioItemIndicatorClasses,
+);
+const checkboxIndicatorClassKey: Menu2CheckboxItemIndicatorClassKey = 'checked';
+const radioIndicatorClassKey: Menu2RadioItemIndicatorClassKey = 'checked';
+getMenu2CheckboxItemIndicatorUtilityClass(checkboxIndicatorClassKey);
+getMenu2RadioItemIndicatorUtilityClass(radioIndicatorClassKey);
+
+const indicatorHtmlProps: React.HTMLAttributes<HTMLSpanElement> = { title: 'Indicator' };
+<Menu2CheckboxItem slotProps={{ indicator: indicatorHtmlProps }} />;
+<Menu2RadioItem value="one" slotProps={{ indicator: indicatorHtmlProps }} />;
+<Menu2CheckboxItem slotProps={{ indicator: { 'data-testid': 'indicator' } }} />;
+<Menu2RadioItem value="one" slotProps={{ indicator: { 'data-testid': 'indicator' } }} />;
+
+createTheme({
+  components: {
+    // @ts-expect-error Indicator defaults and styles belong to MuiMenu2CheckboxItem.
+    MuiMenu2CheckboxItemIndicator: {},
+  },
+});
+createTheme({
+  components: {
+    // @ts-expect-error Indicator defaults and styles belong to MuiMenu2RadioItem.
+    MuiMenu2RadioItemIndicator: {},
+  },
+});
+
+<Menu2CheckboxItem
+  slotProps={{
+    indicator: {
+      // @ts-expect-error The indicator slot has no nested root slot API.
+      slots: { root: 'span' },
+    },
+  }}
+/>;
+<Menu2RadioItem
+  value="one"
+  slotProps={{
+    indicator: {
+      // @ts-expect-error The indicator slot has no nested root slot API.
+      slotProps: { root: { className: 'indicator' } },
+    },
+  }}
+/>;
 
 function Menu2Composition() {
   return (
@@ -96,7 +156,14 @@ function Menu2Composition() {
             },
             indicator: (ownerState) => {
               expectType<boolean, typeof ownerState.checked>(ownerState.checked);
-              return {};
+              expectType<boolean, typeof ownerState.disabled>(ownerState.disabled);
+              expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+              return {
+                component: 'i',
+                keepMounted: false,
+                sx: { color: 'primary.main' },
+                ref: (node) => expectType<HTMLSpanElement | null, typeof node>(node),
+              };
             },
           }}
           nativeButton={false}
@@ -129,7 +196,14 @@ function Menu2Composition() {
               },
               indicator: (ownerState) => {
                 expectType<boolean, typeof ownerState.checked>(ownerState.checked);
-                return {};
+                expectType<boolean, typeof ownerState.disabled>(ownerState.disabled);
+                expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+                return {
+                  component: 'i',
+                  keepMounted: false,
+                  sx: { color: 'primary.main' },
+                  ref: (node) => expectType<HTMLSpanElement | null, typeof node>(node),
+                };
               },
             }}
           >
@@ -221,7 +295,17 @@ createTheme({
       ],
     },
 
+    MuiMenu2CheckboxItem: {
+      defaultProps: {
+        slotProps: { indicator: { keepMounted: false, sx: { color: 'primary.main' } } },
+      },
+      styleOverrides: { indicator: { minWidth: 40 } },
+    },
     MuiMenu2RadioItem: {
+      defaultProps: {
+        slotProps: { indicator: { keepMounted: false, sx: { color: 'primary.main' } } },
+      },
+      styleOverrides: { indicator: { minWidth: 40 } },
       variants: [
         {
           props: { value: 'small' },
@@ -494,10 +578,13 @@ createTheme({
   >
     Link
   </Menu2LinkItem>
-  <Menu2CheckboxItem>
-    <Menu2CheckboxItemIndicator
-      ref={(node) => expectType<HTMLSpanElement | null, typeof node>(node)}
-    />
+  <Menu2CheckboxItem
+    slotProps={{
+      indicator: {
+        ref: (node) => expectType<HTMLSpanElement | null, typeof node>(node),
+      },
+    }}
+  >
     Checkbox
   </Menu2CheckboxItem>
   <Menu2Separator ref={(node) => expectType<HTMLDivElement | null, typeof node>(node)} />

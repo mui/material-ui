@@ -10,9 +10,11 @@ import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
 import menuItemClasses from '../MenuItem/menuItemClasses';
 import {
   menu2CheckboxItemClasses,
+  menu2CheckboxItemIndicatorClasses,
   menu2ItemClasses,
   menu2LinkItemClasses,
   menu2RadioItemClasses,
+  menu2RadioItemIndicatorClasses,
   menu2SubmenuTriggerClasses,
 } from '../Unstable_Menu2/menu2Classes';
 import nativeSelectClasses from '../NativeSelect/nativeSelectClasses';
@@ -123,6 +125,25 @@ function menu2ItemOverrides(classes: { disabled: string }, hcTokens: Required<Hi
         backgroundColor: hcTokens.canvas,
         outline: `1px solid ${hcTokens.buttonBorder}`,
       },
+    },
+  };
+}
+
+function menu2IndicatorOverrides(classes: { disabled: string; highlighted: string }) {
+  // Match the default checked rule and nested state overrides. The item supplies
+  // the system colors, including the disabled color, for its indicator to inherit.
+  const selector = [
+    '&',
+    '&[data-checked]',
+    `&.${classes.disabled}`,
+    `&[data-checked].${classes.disabled}`,
+    `&.${classes.highlighted}`,
+    `&[data-checked].${classes.highlighted}`,
+  ].join(', ');
+
+  return {
+    [HCM]: {
+      [selector]: { color: 'inherit', backgroundColor: 'transparent' },
     },
   };
 }
@@ -482,6 +503,10 @@ export default function enhanceHighContrast<
           c?.MuiMenu2CheckboxItem?.styleOverrides?.highlighted,
           menu2ActiveOverrides(hcTokens),
         ],
+        indicator: [
+          c?.MuiMenu2CheckboxItem?.styleOverrides?.indicator,
+          menu2IndicatorOverrides(menu2CheckboxItemIndicatorClasses),
+        ],
       },
     },
     MuiMenu2RadioItem: {
@@ -495,6 +520,10 @@ export default function enhanceHighContrast<
         highlighted: [
           c?.MuiMenu2RadioItem?.styleOverrides?.highlighted,
           menu2ActiveOverrides(hcTokens),
+        ],
+        indicator: [
+          c?.MuiMenu2RadioItem?.styleOverrides?.indicator,
+          menu2IndicatorOverrides(menu2RadioItemIndicatorClasses),
         ],
       },
     },
@@ -519,50 +548,6 @@ export default function enhanceHighContrast<
         highlighted: [
           c?.MuiMenu2SubmenuTrigger?.styleOverrides?.highlighted,
           menu2ActiveOverrides(hcTokens),
-        ],
-      },
-    },
-    MuiMenu2CheckboxItemIndicator: {
-      ...c?.MuiMenu2CheckboxItemIndicator,
-      styleOverrides: {
-        ...c?.MuiMenu2CheckboxItemIndicator?.styleOverrides,
-        root: [
-          c?.MuiMenu2CheckboxItemIndicator?.styleOverrides?.root,
-          {
-            // `&[data-checked]` matches the indicator's own checked rule, which
-            // would otherwise outrank this override on specificity.
-            [HCM]: {
-              '&, &[data-checked]': {
-                color: 'inherit',
-              },
-            },
-          },
-        ],
-        highlighted: [
-          c?.MuiMenu2CheckboxItemIndicator?.styleOverrides?.highlighted,
-          { [HCM]: { color: 'inherit', backgroundColor: 'transparent' } },
-        ],
-      },
-    },
-    MuiMenu2RadioItemIndicator: {
-      ...c?.MuiMenu2RadioItemIndicator,
-      styleOverrides: {
-        ...c?.MuiMenu2RadioItemIndicator?.styleOverrides,
-        root: [
-          c?.MuiMenu2RadioItemIndicator?.styleOverrides?.root,
-          {
-            // `&[data-checked]` matches the indicator's own checked rule, which
-            // would otherwise outrank this override on specificity.
-            [HCM]: {
-              '&, &[data-checked]': {
-                color: 'inherit',
-              },
-            },
-          },
-        ],
-        highlighted: [
-          c?.MuiMenu2RadioItemIndicator?.styleOverrides?.highlighted,
-          { [HCM]: { color: 'inherit', backgroundColor: 'transparent' } },
         ],
       },
     },

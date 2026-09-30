@@ -11,9 +11,11 @@ import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
 import menuItemClasses from '../MenuItem/menuItemClasses';
 import {
   menu2CheckboxItemClasses,
+  menu2CheckboxItemIndicatorClasses,
   menu2ItemClasses,
   menu2LinkItemClasses,
   menu2RadioItemClasses,
+  menu2RadioItemIndicatorClasses,
   menu2SubmenuTriggerClasses,
 } from '../Unstable_Menu2/menu2Classes';
 import nativeSelectClasses from '../NativeSelect/nativeSelectClasses';
@@ -797,48 +799,106 @@ describe('enhanceHighContrast', () => {
   });
 
   describe('Menu2 indicator overrides', () => {
-    test.each(['MuiMenu2CheckboxItemIndicator', 'MuiMenu2RadioItemIndicator'] as const)(
-      '%s inherits the item colors after a highlighted override',
-      (component) => {
-        const custom = { color: '#111', backgroundColor: '#222' };
-        const theme = enhanceHighContrast(
-          createTheme({
-            components: { [component]: { styleOverrides: { highlighted: custom } } },
-          }),
-        );
-        expect(theme.components?.[component]?.styleOverrides?.highlighted).to.deep.equal([
-          custom,
-          { [HCM]: { color: 'inherit', backgroundColor: 'transparent' } },
-        ]);
-      },
-    );
+    const indicatorCases = [
+      ['MuiMenu2CheckboxItem', menu2CheckboxItemIndicatorClasses],
+      ['MuiMenu2RadioItem', menu2RadioItemIndicatorClasses],
+    ] as const;
 
     // The checkmark is a hole in the `CheckBox` icon, so it shows the item
     // background on its own and needs no override of its own.
-    test('MuiMenu2CheckboxItemIndicator inherits the item color', () => {
+    test.each(indicatorCases)('%s indicators inherit their item colors', (component, classes) => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiMenu2CheckboxItemIndicator?.styleOverrides
-        ?.root as Array<StyleOverride>;
-      const hcmOverride = rootOverrides[rootOverrides.length - 1];
+      const indicatorOverrides = theme.components?.[component]?.styleOverrides
+        ?.indicator as Array<StyleOverride>;
+      const hcmOverride = indicatorOverrides[indicatorOverrides.length - 1][HCM] as StyleOverride;
+      const [selector] = Object.keys(hcmOverride);
 
-      // `&[data-checked]` must be present: the indicator's own checked rule is
-      // (0,2,0) and outranks a bare `color: inherit` at (0,1,0).
-      expect(hcmOverride[HCM]).to.deep.equal({
-        '&, &[data-checked]': { color: 'inherit' },
+      // Match the checked rule's (0,2,0) specificity, and (0,3,0) when a
+      // caller combines checked with highlighted or disabled in a slot override.
+      expect(selector.split(', ')).to.have.members([
+        '&',
+        '&[data-checked]',
+        `&.${classes.disabled}`,
+        `&[data-checked].${classes.disabled}`,
+        `&.${classes.highlighted}`,
+        `&[data-checked].${classes.highlighted}`,
+      ]);
+      expect(hcmOverride[selector]).to.deep.equal({
+        color: 'inherit',
+        backgroundColor: 'transparent',
       });
     });
 
-    test('MuiMenu2RadioItemIndicator inherits the item color', () => {
-      const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiMenu2RadioItemIndicator?.styleOverrides
-        ?.root as Array<StyleOverride>;
-      const hcmOverride = rootOverrides[rootOverrides.length - 1];
+    test.each(indicatorCases)(
+      '%s preserves slot defaults and nested state overrides before its system colors',
+      (component, classes) => {
+        const custom = {
+          color: '#111',
+          backgroundColor: '#222',
+          [`&.${classes.highlighted}`]: { color: '#333', backgroundColor: '#444' },
+          [`&.${classes.checked}.${classes.highlighted}`]: {
+            color: '#555',
+            backgroundColor: '#666',
+          },
+          [`&.${classes.disabled}`]: { color: '#777' },
+        };
+        const defaultProps = { slotProps: { indicator: { sx: { minWidth: 40 } } } };
+        const root = { margin: 2 };
+        const themeInput = createTheme({
+          components: {
+            [component]: { defaultProps, styleOverrides: { root, indicator: custom } },
+          },
+        });
+        const theme = enhanceHighContrast(themeInput);
+        const indicatorOverrides = theme.components?.[component]?.styleOverrides
+          ?.indicator as Array<StyleOverride>;
 
-      // `&[data-checked]` must be present: the indicator's own checked rule is
-      // (0,2,0) and outranks a bare `color: inherit` at (0,1,0).
-      expect(hcmOverride[HCM]).to.deep.equal({
-        '&, &[data-checked]': { color: 'inherit' },
-      });
+        expect(indicatorOverrides).to.have.length(2);
+        expect(indicatorOverrides[0]).to.deep.equal(custom);
+        expect(indicatorOverrides[1]).to.have.property(HCM);
+        expect(theme.components?.[component]?.defaultProps).to.deep.equal(defaultProps);
+        expect(theme.components?.[component]?.styleOverrides?.root).to.have.deep.property(
+          '0',
+          root,
+        );
+        expect(themeInput.components?.[component]?.styleOverrides?.indicator).to.deep.equal(custom);
+      },
+    );
+
+    test.each(indicatorCases)(
+      '%s indicators inherit custom system colors',
+      (component, classes) => {
+        const theme = enhanceHighContrast(createTheme(), {
+          disabled: 'ButtonText',
+          activeText: 'Canvas',
+          activeBackground: 'ButtonBorder',
+        });
+        const overrides = theme.components?.[component]?.styleOverrides;
+        const rootOverrides = overrides?.root as Array<StyleOverride>;
+        const highlightedOverrides = overrides?.highlighted as Array<StyleOverride>;
+        const indicatorOverrides = overrides?.indicator as Array<StyleOverride>;
+
+        expect(rootOverrides[rootOverrides.length - 1][`&.${classes.disabled}`]).to.deep.equal({
+          [HCM]: { color: 'ButtonText', opacity: 1 },
+        });
+        expect(highlightedOverrides[highlightedOverrides.length - 1]).to.deep.equal({
+          [HCM]: {
+            forcedColorAdjust: 'none',
+            color: 'Canvas',
+            backgroundColor: 'ButtonBorder',
+          },
+        });
+        expect(
+          Object.values(indicatorOverrides[indicatorOverrides.length - 1][HCM] as StyleOverride),
+        ).to.deep.equal([{ color: 'inherit', backgroundColor: 'transparent' }]);
+      },
+    );
+
+    test('does not add theme keys for private indicator components', () => {
+      const theme = enhanceHighContrast(createTheme());
+
+      expect(theme.components).not.to.have.property('MuiMenu2CheckboxItemIndicator');
+      expect(theme.components).not.to.have.property('MuiMenu2RadioItemIndicator');
     });
   });
 
@@ -1140,8 +1200,8 @@ describe('enhanceHighContrast', () => {
       ['MuiMenu2CheckboxItem', 'root'],
       ['MuiMenu2RadioItem', 'root'],
       ['MuiMenu2SubmenuTrigger', 'root'],
-      ['MuiMenu2CheckboxItemIndicator', 'root'],
-      ['MuiMenu2RadioItemIndicator', 'root'],
+      ['MuiMenu2CheckboxItem', 'indicator'],
+      ['MuiMenu2RadioItem', 'indicator'],
       ['MuiNativeSelect', 'icon'],
       ['MuiOutlinedInput', 'root'],
       ['MuiRadio', 'root'],

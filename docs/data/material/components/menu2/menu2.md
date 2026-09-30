@@ -140,7 +140,7 @@ For a single choice in a set, put `Menu2RadioItem` components in a `Menu2RadioGr
 
 {{"demo": "RadioMenu2.js"}}
 
-Both components report changes with `onChange(event, value, eventDetails)`. For an uncontrolled item or group, use `defaultChecked` or `defaultValue`. To replace the indicator, pass your own component to `slots.indicator`.
+Both components report changes with `onChange(event, value, eventDetails)`. For an uncontrolled item or group, use `defaultChecked` or `defaultValue`.
 
 The event is native. Read the checked state or value from the second argument, not `event.target`, which can be a descendant of the item.
 
@@ -265,11 +265,38 @@ const theme = createTheme({
         root: { fontWeight: 500 },
       },
     },
+    MuiMenu2CheckboxItem: {
+      styleOverrides: {
+        indicator: { minWidth: 32 },
+      },
+    },
   },
 });
 ```
 
 The item parts have state classes, such as `.MuiMenu2Item-highlighted`, `.Mui-checked`, and `.Mui-open`. Scope global state classes to the component, for example `.MuiMenu2CheckboxItem-root.Mui-checked` and `.MuiMenu2SubmenuTrigger-root.Mui-open`. Slot callbacks and theme style callbacks receive the live item state.
+
+### Checkbox and radio indicators
+
+Use `slotProps.indicator` to customize an indicator, or `slots.indicator` to replace it. Slot callbacks receive the live checked, disabled, and highlighted state. A custom indicator must forward the supplied props and ref to its element, including the `className` with the state classes.
+
+The default indicator components are internal. Their class objects are exported from the owning item:
+
+```jsx
+import Menu2CheckboxItem, {
+  menu2CheckboxItemIndicatorClasses,
+} from '@mui/material/Unstable_Menu2CheckboxItem';
+
+<Menu2CheckboxItem
+  sx={{
+    [`& .${menu2CheckboxItemIndicatorClasses.root}`]: { minWidth: 32 },
+  }}
+>
+  Show toolbar
+</Menu2CheckboxItem>;
+```
+
+For radio items, import `menu2RadioItemIndicatorClasses` from `Unstable_Menu2RadioItem`. Set theme defaults through the owning item's `defaultProps.slotProps.indicator` and styles through `styleOverrides.indicator`. Indicators have no separate theme keys.
 
 ### Transitions
 
