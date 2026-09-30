@@ -4831,6 +4831,53 @@ describe('<Autocomplete />', () => {
       expect(view.container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
     });
 
+    describe('prop: disableClearable', () => {
+      function renderDisableClearable(handleChange) {
+        return render(
+          <Autocomplete
+            disableClearable
+            options={['one', 'two']}
+            defaultValue="one"
+            onChange={handleChange}
+            renderValue={(value, getItemProps) => <Chip label={value} {...getItemProps()} />}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />,
+        );
+      }
+
+      it('should not delete using Backspace key with empty input text', () => {
+        const handleChange = spy();
+        const view = renderDisableClearable(handleChange);
+
+        fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Backspace' });
+
+        expect(handleChange.callCount).to.equal(0);
+        expect(view.container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+      });
+
+      it('should not delete using Delete key with empty input text', () => {
+        const handleChange = spy();
+        const view = renderDisableClearable(handleChange);
+
+        fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Delete' });
+
+        expect(handleChange.callCount).to.equal(0);
+        expect(view.container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+      });
+
+      it('should not delete using the delete icon of the rendered value', () => {
+        const handleChange = spy();
+        const view = renderDisableClearable(handleChange);
+
+        const deleteIcon = view.container.querySelector(`.${chipClasses.deleteIcon}`);
+        expect(deleteIcon).not.to.equal(null);
+        fireEvent.click(deleteIcon);
+
+        expect(handleChange.callCount).to.equal(0);
+        expect(view.container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+      });
+    });
+
     it('should delete using Delete key with empty input text', () => {
       const handleChange = spy();
       const view = render(
