@@ -142,6 +142,7 @@ function Menu2Composition() {
           slotProps={{
             root: (ownerState) => {
               expectType<boolean | undefined, typeof ownerState.open>(ownerState.open);
+              // @ts-expect-error Disabled state belongs to the explicit submenu trigger.
               expectType<boolean | undefined, typeof ownerState.disabled>(ownerState.disabled);
               return {};
             },
@@ -192,7 +193,7 @@ createTheme({
       defaultProps: {
         defaultOpen: false,
       },
-      variants: [{ props: { open: true, disabled: false }, style: {} }],
+      variants: [{ props: { open: true, closeParentOnEsc: false }, style: {} }],
       styleOverrides: {
         root: {},
         paper: {},
@@ -248,6 +249,12 @@ createTheme({
   ownerState={{ open: true }}
 />;
 
+<Menu2Submenu
+  // @ts-expect-error Set disabled on the explicit submenu trigger.
+  disabled
+/>;
+<Menu2SubmenuTrigger disabled />;
+
 <Menu2
   // @ts-expect-error Popover anchorOrigin is intentionally not supported.
   anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
@@ -277,7 +284,10 @@ createTheme({
   slotProps={{
     root: (state) => {
       expectType<boolean, typeof state.open>(state.open);
+      // @ts-expect-error Exit timing is internal to the submenu.
       expectType<boolean, typeof state.closing>(state.closing);
+      // @ts-expect-error Exit tint handling is internal to the submenu.
+      expectType<boolean, typeof state.retainClosingTint>(state.retainClosingTint);
       expectType<boolean, typeof state.highlighted>(state.highlighted);
       // @ts-expect-error Visual selection is not part of the submenu trigger state.
       expectType<boolean, typeof state.selected>(state.selected);
@@ -285,7 +295,10 @@ createTheme({
     },
     indicator: (state) => {
       expectType<boolean, typeof state.open>(state.open);
+      // @ts-expect-error Exit timing is internal to the submenu.
       expectType<boolean, typeof state.closing>(state.closing);
+      // @ts-expect-error Exit tint handling is internal to the submenu.
+      expectType<boolean, typeof state.retainClosingTint>(state.retainClosingTint);
       expectType<boolean, typeof state.highlighted>(state.highlighted);
       return {
         children: <span>Custom</span>,
@@ -323,6 +336,20 @@ createTheme({
 <Menu2RadioItem value="one" classes={{ selected: 'selected' }} />;
 // @ts-expect-error Menu2SubmenuTrigger has no selected class.
 <Menu2SubmenuTrigger classes={{ selected: 'selected' }} />;
+
+// @ts-expect-error Exit timing has no public class.
+<Menu2SubmenuTrigger classes={{ closing: 'closing' }} />;
+
+createTheme({
+  components: {
+    MuiMenu2SubmenuTrigger: {
+      styleOverrides: {
+        // @ts-expect-error Exit timing has no public style override.
+        closing: { backgroundColor: 'red' },
+      },
+    },
+  },
+});
 
 <Menu2
   transitionDuration={{ enter: 200, exit: 150 }}

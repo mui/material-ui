@@ -512,41 +512,13 @@ export default function enhanceHighContrast<
                 backgroundColor: hcTokens.activeBackground,
               },
             },
+            '&[data-mui-internal-retain-open-tint]': menu2ActiveOverrides(hcTokens),
             ...menu2ItemOverrides(menu2SubmenuTriggerClasses, hcTokens),
-            variants: [
-              {
-                props: ({ ownerState }) =>
-                  'retainClosingTint' in ownerState && ownerState.retainClosingTint === true,
-                style: {
-                  [`&.${menu2SubmenuTriggerClasses.closing}`]: {
-                    [HCM]: {
-                      forcedColorAdjust: 'none',
-                      color: hcTokens.activeText,
-                      backgroundColor: hcTokens.activeBackground,
-                    },
-                  },
-                },
-              },
-            ],
           },
         ],
         highlighted: [
           c?.MuiMenu2SubmenuTrigger?.styleOverrides?.highlighted,
           menu2ActiveOverrides(hcTokens),
-        ],
-        closing: [
-          c?.MuiMenu2SubmenuTrigger?.styleOverrides?.closing,
-          {
-            // After a pointer exit, keep only the normal item state colors.
-            ...menu2ItemOverrides(menu2SubmenuTriggerClasses, hcTokens),
-            variants: [
-              {
-                props: ({ ownerState }) =>
-                  'retainClosingTint' in ownerState && ownerState.retainClosingTint === true,
-                style: menu2ActiveOverrides(hcTokens),
-              },
-            ],
-          },
         ],
       },
     },

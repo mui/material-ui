@@ -1523,8 +1523,7 @@ describe('<Menu2 />', () => {
       const { user } = render(
         <Menu2 trigger={<Button disableRipple>Options</Button>}>
           <Menu2Submenu
-            disabled
-            trigger={<Menu2SubmenuTrigger>Add-ons unavailable</Menu2SubmenuTrigger>}
+            trigger={<Menu2SubmenuTrigger disabled>Add-ons unavailable</Menu2SubmenuTrigger>}
           >
             <Menu2Item>Marketplace</Menu2Item>
           </Menu2Submenu>

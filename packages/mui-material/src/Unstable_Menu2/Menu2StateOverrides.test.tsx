@@ -137,12 +137,12 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
     });
   });
 
-  it('keeps the forced-colors active rule after a closing override', async () => {
+  it('keeps the forced-colors exit tint after a root override', async () => {
     const theme = enhanceHighContrast(
       createTheme({
         components: {
           MuiMenu2SubmenuTrigger: {
-            styleOverrides: { closing: { color: '#111', backgroundColor: '#222' } },
+            styleOverrides: { root: { color: '#111', backgroundColor: '#222' } },
           },
         },
       }),
@@ -165,8 +165,10 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
       ? 'forced-color-adjust: none; '
       : '';
 
-    const selector = `.${rootClassName}.${menu2SubmenuTriggerClasses.closing}`;
-    const closingRules = getRulesFor(rootClassName).filter((rule) => rule.selector === selector);
+    const selector = `.${rootClassName}[data-mui-internal-retain-open-tint]`;
+    const closingRules = getRulesFor(rootClassName).filter((rule) =>
+      rule.selector.startsWith(selector),
+    );
     expect(closingRules.length).to.be.greaterThan(1);
     expect(closingRules[closingRules.length - 1]).to.deep.equal({
       selector,
@@ -280,8 +282,9 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
         });
       });
 
-      it('applies the closing override only during a keyboard exit', async () => {
+      it('keeps exit timing out of theme owner state', async () => {
         const completed = vi.fn();
+        const ownerStates: object[] = [];
         const { user, unmount } = renderWithTheme(
           <Menu2 transitionDuration={0} trigger={<button type="button">Options</button>}>
             <Menu2Submenu
@@ -295,7 +298,13 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
           {
             MuiMenu2SubmenuTrigger: {
               styleOverrides: {
-                closing: { '--menu2-closing-test': 'active', backgroundColor: 'rgb(1, 2, 3)' },
+                root: ({ ownerState }) => {
+                  ownerStates.push(ownerState);
+                  return {
+                    '--menu2-open-test':
+                      'open' in ownerState && ownerState.open ? 'open' : 'closed',
+                  };
+                },
               },
             },
           },
@@ -306,26 +315,31 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
           const trigger = await screen.findByRole('menuitem', { name: 'More' });
           await waitFor(() => expect(screen.getByRole('menu')).toHaveFocus());
           const marker = () =>
-            getComputedStyle(trigger).getPropertyValue('--menu2-closing-test').trim();
-          expect(marker()).to.equal('');
+            getComputedStyle(trigger).getPropertyValue('--menu2-open-test').trim();
+          expect(marker()).to.equal('closed');
 
           await user.keyboard('{ArrowDown}{ArrowRight}');
           await waitFor(() =>
             expect(screen.getByRole('menuitem', { name: 'Nested' })).toHaveFocus(),
           );
           await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(true));
-          expect(marker()).to.equal('');
+          expect(marker()).to.equal('open');
+          const popup = screen.getByRole('menuitem', { name: 'Nested' }).closest('[role="menu"]')!;
 
           completed.mockClear();
           await user.keyboard('{Escape}');
-          expect(trigger).to.have.class(menu2SubmenuTriggerClasses.closing);
-          expect(marker()).to.equal('active');
-          expect(getComputedStyle(trigger).backgroundColor).to.equal('rgb(1, 2, 3)');
+          expect(popup).to.have.attribute('data-ending-style');
+          expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.open);
+          expect(marker()).to.equal('closed');
+          expect(getComputedStyle(trigger).backgroundColor).not.to.equal('rgba(0, 0, 0, 0)');
 
           await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(false));
-          expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.closing);
-          expect(marker()).to.equal('');
-          expect(getComputedStyle(trigger).backgroundColor).not.to.equal('rgb(1, 2, 3)');
+          expect(marker()).to.equal('closed');
+          expect(ownerStates).not.to.have.length(0);
+          ownerStates.forEach((state) => {
+            expect(state).not.to.have.property('closing');
+            expect(state).not.to.have.property('retainClosingTint');
+          });
         } finally {
           unmount();
         }
@@ -364,7 +378,7 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
             override
               ? {
                   MuiMenu2SubmenuTrigger: {
-                    styleOverrides: { closing: { backgroundColor: 'rgb(1, 2, 3)' } },
+                    styleOverrides: { root: { '&&': { backgroundColor: 'rgb(1, 2, 3)' } } },
                   },
                 }
               : {},
@@ -381,18 +395,24 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
             await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(true));
             const openColor = getComputedStyle(trigger).backgroundColor;
             expect(openColor).not.to.equal('rgba(0, 0, 0, 0)');
+            const popup = screen
+              .getByRole('menuitem', { name: 'Nested' })
+              .closest('[role="menu"]')!;
 
             completed.mockClear();
             await user.keyboard('{F2}');
-            expect(trigger).to.have.class(menu2SubmenuTriggerClasses.closing);
+            expect(popup).to.have.attribute('data-ending-style');
+            expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.open);
             expect(trigger).not.to.have.class(menuItemClasses.focusVisible);
             expect(getComputedStyle(trigger).backgroundColor).to.equal(
               override ? 'rgb(1, 2, 3)' : openColor,
             );
 
             await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(false));
-            expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.closing);
-            expect(getComputedStyle(trigger).backgroundColor).to.equal('rgba(0, 0, 0, 0)');
+            expect(popup.isConnected).to.equal(false);
+            expect(getComputedStyle(trigger).backgroundColor).to.equal(
+              override ? 'rgb(1, 2, 3)' : 'rgba(0, 0, 0, 0)',
+            );
           } finally {
             unmount();
           }

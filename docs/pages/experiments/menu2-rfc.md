@@ -83,7 +83,7 @@ The classic `Menu` keeps its API. Classic and successor items share `MenuItemBas
 - **Style reuse:** share styled elements where practical; otherwise share style functions. Audit each consumer. Viewport-relative heights and item-adjacent divider rules do not transfer unchanged to Base UI's popup tree. New parts own their spacing; use `Menu2Separator` between items.
 - **Presentation:** retain `dense`, `disableGutters`, and `divider`. Omit the visual-only `selected` prop; checkbox and radio items express checked state. Base UI owns behavior; Material UI owns styles.
 - **Dependency:** make `@base-ui/react` a direct dependency of `@mui/material`. Review version updates rather than auto-merge them. Test the upstream states used by the integration, including checked indicators, starting and ending transitions, and resolved placement.
-- **Theme state:** keep `Mui-*` classes and `ownerState` as the Material customization contract. All item parts resolve their root slot from the live Base UI state, so slot callbacks and theme variants receive the highlighted state and, where applicable, the checked, open, or closing state. Collapsed popup slot callbacks receive resolved public props, not live uncontrolled open state. Internal animation and placement styles can use Base UI attributes.
+- **Theme state:** keep `Mui-*` classes and `ownerState` as the Material customization contract. All item parts resolve their root slot from the live Base UI state, so slot callbacks and theme variants receive the highlighted state and, where applicable, the checked or open state. Exit-tint tracking stays internal. Collapsed popup slot callbacks receive resolved public props, not live uncontrolled open state. Internal animation and placement styles can use Base UI attributes.
 - **API boundary:** explicitly pick the forwarded root, trigger, and positioner props. New upstream props require API and routing review. This is not complete type isolation: changes to an exposed upstream type still reach Material UI. Preserve Base UI's cancelable `onOpenChange(open, eventDetails)`; checkbox items and radio groups use `onChange(event, value, eventDetails)`.
 - **Tooling and tests:** use normal theme registration, API generation, and `describeConformance`. Test behavior differences and the integration boundary as well as the individual parts. All 13 public components have conformance suites. The collapsed containers use their positioned elements as the root; interaction tests query the menu surface.
 
@@ -104,7 +104,7 @@ The classic `Menu` keeps its API. Classic and successor items share `MenuItemBas
 The two `trigger` props have different contracts:
 
 - `Menu2` merges trigger behavior into the supplied element. A wrapper must forward props and its ref. Put `openOnHover`, `delay`, and `closeDelay` on `Menu2`. Its `slotProps.trigger` accepts only `nativeButton`, `className`, and `ref`.
-- `Menu2Submenu` renders an explicit `Menu2SubmenuTrigger` as supplied, optionally inside a `Tooltip`. Put `disabled`, `label`, and hover props on that trigger. There is no submenu trigger slot.
+- `Menu2Submenu` renders an explicit `Menu2SubmenuTrigger` as supplied, optionally inside a `Tooltip`. Put `disabled`, `label`, and hover props on that trigger. The submenu has no `disabled` prop or trigger slot.
 - Items and submenu triggers infer `nativeButton` from their root slot and `component`. The root menu cannot infer it from an arbitrary supplied element; use `slotProps.trigger.nativeButton` when needed.
 
 The explicit submenu trigger avoids registering one DOM node as both an item and a submenu trigger. It costs one public component and theme key, but gives the trigger one behavioral owner. An alternative would make a generic item switch its behavior according to context; this proposal keeps that distinction explicit.
@@ -162,7 +162,7 @@ Other behavior and caveats:
 - **Submenu indicator:** triggers include a trailing chevron that points left in RTL. Use `slotProps.indicator` to change its content or styles, or `slots.indicator` to replace or omit it.
 - **Placement:** a submenu overlaps its parent by 4 px and starts 8 px above the trigger to account for list padding. Collisions can change the resolved placement.
 - **Escape:** closes the innermost submenu and returns focus to its trigger. Set `closeParentOnEsc` on the submenu to request closure of the parent menus too.
-- **Open tint:** an open submenu trigger uses `action.hover`. Hover-driven closes clear this tint when exit starts. Other closes keep it through exit to prevent a gap before focus returns. The `closing` state remains separate from logical `open`.
+- **Open tint:** an open submenu trigger uses `action.hover`. Hover-driven closes clear this tint when exit starts. Other closes keep it through exit to prevent a gap before focus returns. Exit timing is internal; `open` still reflects Base UI's logical state.
 - **Focus outline after keyboard navigation:** with `theme.focusVisible`, the outline can follow the pointer after keyboard navigation. Base UI moves focus on hover, and the browser can preserve `:focus-visible`. We confirmed this in Chromium with real input. The classic Menu keeps focus and its outline on the keyboard-selected item. Accept this difference; no local focus override is planned.
 - **Focus guards:** Base UI inserts guards beside root and submenu triggers while menus are open. Adjacency and child-position selectors can therefore match different elements. The guards use fixed positioning, so they do not add flex or grid gaps by themselves. New parts own their spacing; a plain `Divider` still uses the classic adjacency rules. An upstream discussion of guard placement remains separate work.
 - **Height:** the popup uses the smaller of the viewport limit and Base UI's available height, with internal scrolling.
@@ -206,7 +206,7 @@ These choices are proposed for maintainer review.
 | Item descriptions  | Use Material UI Tooltip for supplementary text or images, without links, buttons, or other controls. Preview Card is outside the initial release.                                                  |
 | Context menu       | A separate component later. Virtual anchors support right-click placement today, but callers own labeling and focus return. A Base UI ContextMenu integration would also provide touch long-press. |
 | Behavior defaults  | Keep Base UI behavior unless an integration requirement needs a change. Material presentation adds start alignment, submenu offsets, Grow, and an opt-in backdrop.                                 |
-| Open tint on close | Read the popup's public ending state. Clear the trigger's closing state when exit ends or the popup unmounts; do not add a timer or wait for focus return.                                         |
+| Open tint on close | Track the popup's ending state internally. Clear the exit tint when exit ends or the popup unmounts; do not add a timer or wait for focus return.                                                  |
 | Forced colors      | `enhanceHighContrast` styles the item parts and indicators. Disabled cues take precedence over highlight styling.                                                                                  |
 
 ### Resolved review questions
@@ -227,7 +227,7 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 
 5. ✅ **Base UI API exposure:** explicitly pick supported root and positioning props. Detached triggers (`handle`, `triggerId`, `defaultTriggerId`, and `Menu.createHandle`) and horizontal `orientation` are outside this API. Upstream changes to exposed types still require review.
 
-6. ✅ **Open parent tint:** use `action.hover` while open. Keep it through exit except for hover-driven closes. Keep `Mui-open` separate from `MuiMenu2SubmenuTrigger-closing`. A new open-state color token would be a separate design choice.
+6. ✅ **Open parent tint:** use `action.hover` while open. Keep it through exit except for hover-driven closes. Keep `Mui-open` tied to the logical open state. Exit timing has no public class, style override key, or slot callback state. A new open-state color token would be a separate design choice.
 
 7. ✅ **Explicit submenu trigger:** keep one behavioral owner per trigger and the popup wiring internal. The root decorates a supplied button; the submenu renders an explicit part. Accept this asymmetry. A Material Menubar remains separate work.
 

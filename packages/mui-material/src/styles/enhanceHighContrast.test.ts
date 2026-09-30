@@ -743,63 +743,56 @@ describe('enhanceHighContrast', () => {
       });
     });
 
-    test('MuiMenu2SubmenuTrigger retains the closing tint only when requested', () => {
+    test('MuiMenu2SubmenuTrigger keeps the exit tint internal', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiMenu2SubmenuTrigger?.styleOverrides
-        ?.root as Array<StyleOverride>;
+      const styleOverrides = theme.components?.MuiMenu2SubmenuTrigger?.styleOverrides;
+      const rootOverrides = styleOverrides?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
-      const [closingVariant] = hcmOverride.variants as Array<{
-        props: (props: { ownerState: Record<string, unknown> }) => boolean;
-        style: StyleOverride;
-      }>;
 
-      expect(closingVariant.props({ ownerState: { retainClosingTint: true } })).to.equal(true);
-      expect(closingVariant.props({ ownerState: { retainClosingTint: false } })).to.equal(false);
-      expect(closingVariant.props({ ownerState: {} })).to.equal(false);
-      expect(closingVariant.style).to.deep.equal({
-        [`&.${menu2SubmenuTriggerClasses.closing}`]: {
-          [HCM]: {
-            forcedColorAdjust: 'none',
-            color: 'HighlightText',
-            backgroundColor: 'Highlight',
-          },
+      expect(styleOverrides).not.to.have.property('closing');
+      expect(hcmOverride).not.to.have.property('variants');
+      expect(hcmOverride['&[data-mui-internal-retain-open-tint]']).to.deep.equal({
+        [HCM]: {
+          forcedColorAdjust: 'none',
+          color: 'HighlightText',
+          backgroundColor: 'Highlight',
         },
       });
     });
 
-    test('MuiMenu2SubmenuTrigger protects its state colors after a closing override', () => {
+    test('MuiMenu2SubmenuTrigger protects its exit tint after a root override', () => {
       const custom = { color: '#111', backgroundColor: '#222' };
       const theme = enhanceHighContrast(
         createTheme({
-          components: { MuiMenu2SubmenuTrigger: { styleOverrides: { closing: custom } } },
+          components: { MuiMenu2SubmenuTrigger: { styleOverrides: { root: custom } } },
         }),
         { activeText: 'Canvas', activeBackground: 'ButtonBorder' },
       );
-      const closingOverrides = theme.components?.MuiMenu2SubmenuTrigger?.styleOverrides
-        ?.closing as Array<StyleOverride>;
-      expect(closingOverrides[0]).to.deep.equal(custom);
-      const hcmOverride = closingOverrides[closingOverrides.length - 1];
-      const [closingVariant] = hcmOverride.variants as Array<{
-        props: (props: { ownerState: Record<string, unknown> }) => boolean;
-        style: StyleOverride;
-      }>;
+      const rootOverrides = theme.components?.MuiMenu2SubmenuTrigger?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      expect(rootOverrides[0]).to.deep.equal(custom);
+      const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
-      expect(closingVariant.props({ ownerState: { retainClosingTint: true } })).to.equal(true);
-      expect(closingVariant.props({ ownerState: { retainClosingTint: false } })).to.equal(false);
-      expect(closingVariant.props({ ownerState: {} })).to.equal(false);
       const activeColors = {
         forcedColorAdjust: 'none',
         color: 'Canvas',
         backgroundColor: 'ButtonBorder',
       };
-      expect(closingVariant.style).to.deep.equal({
+      expect(hcmOverride['&[data-mui-internal-retain-open-tint]']).to.deep.equal({
+        [HCM]: activeColors,
+      });
+      expect(hcmOverride[`&.${menu2SubmenuTriggerClasses.open}`]).to.deep.equal({
         [HCM]: activeColors,
       });
       // A pointer exit does not retain the active tint, but focused
-      // triggers still need their system colors after the custom closing rule.
+      // triggers still need their system colors after the custom root rule.
       expect(hcmOverride[`&.${menuItemClasses.focusVisible}, &:hover`]).to.deep.equal({
         [HCM]: { ...activeColors, outline: 'none' },
       });
+      const keys = Object.keys(hcmOverride);
+      expect(keys.indexOf(`&.${menu2SubmenuTriggerClasses.disabled}`)).to.be.greaterThan(
+        keys.indexOf('&[data-mui-internal-retain-open-tint]'),
+      );
     });
   });
 

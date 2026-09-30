@@ -19,18 +19,14 @@ import type {
   Menu2SubmenuTriggerOwnerState,
 } from './Menu2SubmenuTrigger';
 
-export interface Menu2SubmenuTriggerStyleOwnerState extends Menu2SubmenuTriggerOwnerState {
-  retainClosingTint: boolean;
-}
-
-function menu2SubmenuTriggerStyles(theme: Theme, stateClass: string) {
+function menu2SubmenuTriggerStyles(theme: Theme, selector: string) {
   // Keyboard focus takes precedence over the open tint. With a focus ring,
   // the tint stays because it shows the open state, not focus.
   // Keep the focus guard at zero specificity so state style overrides can win.
   const notFocused = theme.focusVisible ? '' : `:where(:not(.${menuItemClasses.focusVisible}))`;
 
   return {
-    [`&.${stateClass}${notFocused}`]: {
+    [`&${selector}${notFocused}`]: {
       backgroundColor: (theme.vars || theme).palette.action.hover,
     },
   };
@@ -42,18 +38,12 @@ const Menu2SubmenuTriggerRoot = styled(MenuItemBase, {
   overridesResolver: (props, styles) => [
     menuItemOverridesResolver(props, styles),
     { [`&.${menu2SubmenuTriggerClasses.highlighted}`]: styles.highlighted },
-    { [`&.${menu2SubmenuTriggerClasses.closing}`]: styles.closing },
   ],
-})<{ ownerState: Menu2SubmenuTriggerStyleOwnerState }>(
+})<{ ownerState: Menu2SubmenuTriggerOwnerState }>(
   memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
   memoTheme(({ theme }) => ({
-    ...menu2SubmenuTriggerStyles(theme, menu2SubmenuTriggerClasses.open),
-    variants: [
-      {
-        props: { retainClosingTint: true },
-        style: menu2SubmenuTriggerStyles(theme, menu2SubmenuTriggerClasses.closing),
-      },
-    ],
+    ...menu2SubmenuTriggerStyles(theme, `.${menu2SubmenuTriggerClasses.open}`),
+    ...menu2SubmenuTriggerStyles(theme, '[data-mui-internal-retain-open-tint]'),
   })),
 );
 
@@ -73,8 +63,8 @@ function Menu2SubmenuTriggerRootSlot(
     Menu2SubmenuTriggerProps,
     'component' | 'disableRipple' | 'nativeButton' | 'slotProps' | 'slots' | 'sx'
   > & {
-    baseProps: HTMLProps;
-    ownerState: Menu2SubmenuTriggerStyleOwnerState & Pick<Menu2SubmenuTriggerProps, 'classes'>;
+    baseProps: HTMLProps & { 'data-mui-internal-retain-open-tint'?: string | undefined };
+    ownerState: Menu2SubmenuTriggerOwnerState & Pick<Menu2SubmenuTriggerProps, 'classes'>;
   },
 ) {
   const { ownerState, slotProps, slots } = props;

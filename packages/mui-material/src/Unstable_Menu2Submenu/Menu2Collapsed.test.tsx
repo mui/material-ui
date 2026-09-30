@@ -599,8 +599,9 @@ describe('<Menu2 /> collapsed API', () => {
       const nested = await screen.findByRole('menuitem', { name: 'Nested' });
       await waitForPopupFocus(nested);
       await act(async () => nested.focus());
+      const popup = nested.closest('[role="menu"]')!;
       await waitFor(() => {
-        expect(nested.closest('[role="menu"]')!.getAnimations()).to.have.length(0);
+        expect(popup.getAnimations()).to.have.length(0);
       });
       expect(trigger).to.have.class(menu2SubmenuTriggerClasses.open);
       expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.highlighted);
@@ -618,10 +619,10 @@ describe('<Menu2 /> collapsed API', () => {
       try {
         await user.keyboard('{Escape}');
         expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.open);
-        expect(trigger).to.have.class(menu2SubmenuTriggerClasses.closing);
+        expect(popup).to.have.attribute('data-ending-style');
         await waitFor(() => {
           expect(trigger).to.have.class(menu2SubmenuTriggerClasses.highlighted);
-          expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.closing);
+          expect(popup.isConnected).to.equal(false);
         });
       } finally {
         cancelAnimationFrame(frame);
@@ -660,6 +661,7 @@ describe('<Menu2 /> collapsed API', () => {
           await user.keyboard('{ArrowRight}');
         }
         const nested = await screen.findByRole('menuitem', { name: 'Nested' });
+        const popup = nested.closest('[role="menu"]')!;
         if (openMethod === 'keyboard') {
           await waitFor(() => expect(nested).toHaveFocus());
         }
@@ -670,7 +672,7 @@ describe('<Menu2 /> collapsed API', () => {
         const closingBackgrounds: string[] = [];
         let frame: number;
         const sample = () => {
-          if (trigger.classList.contains(menu2SubmenuTriggerClasses.closing)) {
+          if (popup.isConnected && popup.hasAttribute('data-ending-style')) {
             closingBackgrounds.push(window.getComputedStyle(trigger).backgroundColor);
           }
           frame = requestAnimationFrame(sample);
@@ -688,7 +690,7 @@ describe('<Menu2 /> collapsed API', () => {
           await waitFor(() => {
             expect(screen.queryByRole('menuitem', { name: 'Nested' })).to.equal(null);
             expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.open);
-            expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.closing);
+            expect(onOpenChangeComplete).toHaveBeenCalledWith(false);
           });
           expect(sibling).toHaveFocus();
           expect(window.getComputedStyle(trigger).backgroundColor).to.equal('rgba(0, 0, 0, 0)');

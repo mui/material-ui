@@ -28,7 +28,6 @@ export interface Menu2SubmenuProps
       | 'actionsRef'
       | 'closeParentOnEsc'
       | 'defaultOpen'
-      | 'disabled'
       | 'highlightItemOnHover'
       | 'loopFocus'
       | 'onOpenChange'
@@ -83,7 +82,6 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
     actionsRef,
     closeParentOnEsc,
     defaultOpen,
-    disabled,
     highlightItemOnHover,
     loopFocus,
     onOpenChange,
@@ -119,7 +117,6 @@ const Menu2Submenu = React.forwardRef(function Menu2Submenu(
       actionsRef={actionsRef}
       closeParentOnEsc={closeParentOnEsc}
       defaultOpen={defaultOpen}
-      disabled={disabled}
       highlightItemOnHover={highlightItemOnHover}
       loopFocus={loopFocus}
       onOpenChange={handleOpenChange}

@@ -39,7 +39,6 @@ export interface Menu2SubmenuTriggerSlots {
 
 export interface Menu2SubmenuTriggerOwnerState extends Menu2ItemBaseOwnerState {
   open: boolean;
-  closing: boolean;
   highlighted: boolean;
 }
 
@@ -171,8 +170,12 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
         ref={ref}
         render={(renderProps, state) => (
           <Menu2SubmenuTriggerRootSlot
-            baseProps={renderProps}
-            ownerState={{ ...ownerState, ...state, closing, retainClosingTint }}
+            baseProps={{
+              ...renderProps,
+              // Private styling marker; keep exit timing out of the public owner state.
+              'data-mui-internal-retain-open-tint': closing && retainClosingTint ? '' : undefined,
+            }}
+            ownerState={{ ...ownerState, ...state }}
             component={component}
             disableRipple={disableRipple}
             nativeButton={nativeButtonProp}
@@ -186,7 +189,6 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
             className,
             getMenu2ItemClassName(classes, ownerState, state),
             state.open && classes.open,
-            closing && classes.closing,
           )
         }
         disabled={disabled}

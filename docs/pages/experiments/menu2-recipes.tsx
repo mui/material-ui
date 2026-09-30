@@ -208,7 +208,6 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
       </Menu2Submenu>
 
       <Menu2Submenu
-        disabled
         trigger={
           <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover} disabled>
             Add-ons unavailable
