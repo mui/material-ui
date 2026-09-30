@@ -13,7 +13,7 @@
     "build:public:ci": "lerna run --no-private build --concurrency 8 --skip-nx-cache",
     "release:publish": "code-infra publish --github-release",
     "release:publish:dry-run": "code-infra publish --github-release --dry-run",
-    "release:version": "lerna version --no-changelog --no-push --no-git-tag-version --no-private --force-publish=@mui/core-downloads-tracker",
+    "release:version": "lerna version --no-changelog --no-push --no-git-tag-version --no-private --force-publish=@mui/core-downloads-tracker && pnpm a11y:scorecard",
     "release:build": "lerna run --concurrency 8 --no-private build --skip-nx-cache",
     "release:changelog": "node scripts/releaseChangelog.mjs",
     "release:pack": "tsx scripts/releasePack.mts",
