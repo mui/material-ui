@@ -54,11 +54,6 @@ overrides:
   '@pigment-css/unplugin': '0.0.31'
   '@pigment-css/nextjs-plugin': '0.0.31'
   '@pigment-css/vite-plugin': '0.0.31'
-  # Canary: the pkg.pr.new code-infra preview points its babel plugins at pkg.pr.new URLs,
-  # which blockExoticSubdeps rejects. The plugins are unchanged, so use the published canaries.
-  '@mui/internal-code-infra>@mui/internal-babel-plugin-display-name': '2.0.1-canary.0'
-  '@mui/internal-code-infra>@mui/internal-babel-plugin-minify-errors': '3.0.1-canary.0'
-  '@mui/internal-code-infra>@mui/internal-babel-plugin-resolve-imports': '3.0.1-canary.0'
 
 allowBuilds:
   '@vvago/vale': true
