@@ -26,6 +26,7 @@ import {
   docsPagePath,
   format,
   indexPath,
+  knownGapsPath,
   packageJsonPath,
   readOptional,
   relative,
@@ -33,7 +34,12 @@ import {
   scorecardPath,
 } from './files.mjs';
 import readReports, { readDefaults } from './read.mjs';
-import { validateDefaults, validateReport, validateSource } from './validate.mjs';
+import {
+  validateDefaults,
+  validateKnownGaps,
+  validateReport,
+  validateSource,
+} from './validate.mjs';
 import { resolveReports, rollUpCriteria, summarize, summarizeRollup } from './rollup.mjs';
 import {
   renderDocsAbout,
@@ -41,6 +47,7 @@ import {
   renderDefaultReasons,
   renderDocsTable,
   renderIndexTable,
+  renderKnownGaps,
   renderManualChecklist,
   renderReport,
 } from './render.mjs';
@@ -53,6 +60,7 @@ async function run(argv) {
   }
 
   const defaults = await readDefaults();
+  const knownGaps = JSON.parse(await fs.readFile(knownGapsPath, 'utf8'));
 
   const fail = (violations) => {
     if (violations.length > 0) {
@@ -74,6 +82,7 @@ async function run(argv) {
     summary: summarize(report.criteria),
   }));
   fail(reports.flatMap((report) => validateReport(report, check)));
+  fail(validateKnownGaps(knownGaps, reports));
   const criteria = rollUpCriteria(reports);
   const totals = summarizeRollup(criteria);
 
@@ -137,6 +146,7 @@ async function run(argv) {
         page = replaceBlock(page, renderDocsTable(reports), docsPagePath);
         page = replaceBlock(page, renderDocsAbout(version), docsPagePath, 'scorecard-about');
         page = replaceBlock(page, renderDocsRollup(totals), docsPagePath, 'scorecard-rollup');
+        page = replaceBlock(page, renderKnownGaps(knownGaps), docsPagePath, 'scorecard-gaps');
         return page;
       },
     },

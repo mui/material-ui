@@ -1,6 +1,6 @@
 import path from 'path';
 import { componentsDirectory, exists } from './files.mjs';
-import { renderDefaultReasons, renderReport } from './render.mjs';
+import { normalizeAffected, renderDefaultReasons, renderReport } from './render.mjs';
 import { RATING_KEYS } from './rollup.mjs';
 import {
   CONFORMANCE_SYMBOLS,
@@ -200,6 +200,78 @@ function checkCriterion(criterion, override, where, violations) {
   if (criterion.group === 'Manual' && tested) {
     violations.push(`${where}: rated Manual but a unit or Playwright test covers it`);
   }
+}
+
+const KNOWN_GAP_KEYS = {
+  gap: (value) => typeof value === 'string',
+  criteria: isStrings,
+  affected: Array.isArray,
+  workaround: (value) => typeof value === 'string',
+};
+
+/**
+ * `knownGaps.json` must explain every ⚠️ and ❌ rating, and must not name a
+ * component that has no such rating for the row's criteria.
+ */
+export function validateKnownGaps(knownGaps, reports) {
+  const violations = [];
+  if (!Array.isArray(knownGaps)) {
+    return ['knownGaps.json: must be an array'];
+  }
+
+  const failing = new Set();
+  for (const { component, criteria } of reports) {
+    for (const criterion of criteria) {
+      if (criterion.conformance !== 'Supports') {
+        failing.add(`${component} ${criterion.number}`);
+      }
+    }
+  }
+
+  const covered = new Set();
+  knownGaps.forEach((row, index) => {
+    const where = `knownGaps.json[${index}]`;
+    if (!isObject(row)) {
+      violations.push(`${where}: must be an object`);
+      return;
+    }
+    for (const [key, value] of Object.entries(row)) {
+      if (!KNOWN_GAP_KEYS[key]) {
+        violations.push(`${where}: unknown key "${key}"`);
+      } else if (!KNOWN_GAP_KEYS[key](value)) {
+        violations.push(`${where}: "${key}" has the wrong type`);
+      }
+    }
+    for (const key of Object.keys(KNOWN_GAP_KEYS)) {
+      if (row[key] === undefined) {
+        violations.push(`${where}: missing "${key}"`);
+      }
+    }
+    const criteria = isStrings(row.criteria) ? row.criteria : [];
+    criteria
+      .filter((number) => !WCAG_BY_NUMBER.has(number))
+      .forEach((number) =>
+        violations.push(`${where}: ${number} is not a WCAG 2.2 Level A or AA criterion`),
+      );
+
+    const affected = Array.isArray(row.affected) ? row.affected : [];
+    for (const entry of affected.map(normalizeAffected)) {
+      const matches = criteria.filter((number) => failing.has(`${entry.component} ${number}`));
+      if (matches.length === 0) {
+        violations.push(
+          `${where}: ${entry.component} has no ⚠️ or ❌ rating for ${criteria.join(', ')}`,
+        );
+      }
+      matches.forEach((number) => covered.add(`${entry.component} ${number}`));
+    }
+  });
+
+  for (const key of failing) {
+    if (!covered.has(key)) {
+      violations.push(`knownGaps.json: ${key} is rated ⚠️ or ❌ but no row lists it`);
+    }
+  }
+  return violations;
 }
 
 /**
