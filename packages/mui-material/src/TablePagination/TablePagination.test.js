@@ -27,6 +27,26 @@ const KeyboardDoubleArrowRightRoundedIcon = createSvgIcon(
   'KeyboardDoubleArrowRightRounded',
 );
 
+// Whether the browser reads `HTMLElement.focus({ focusVisible })`, which is what lets a test pick
+// the focus modality. WebKit ignores the option and decides for itself.
+function supportsFocusVisibleOption() {
+  if (typeof document === 'undefined') {
+    return false;
+  }
+  let read = false;
+  const node = document.createElement('div');
+  node.tabIndex = -1;
+  document.body.appendChild(node);
+  node.focus({
+    get focusVisible() {
+      read = true;
+      return false;
+    },
+  });
+  node.remove();
+  return read;
+}
+
 describe('<TablePagination />', () => {
   const noop = () => {};
   const { render } = createRenderer();
@@ -603,11 +623,24 @@ describe('<TablePagination />', () => {
       act(() => combobox.focus());
 
       expect(combobox).toHaveComputedStyle({ backgroundColor: 'rgba(0, 0, 0, 0)' });
-      expect(combobox.parentElement).toHaveComputedStyle({
-        outlineStyle: 'solid',
-        outlineWidth: '2px',
-      });
     });
+
+    // The select is a toolbar button rather than a form field, so it opts out of the `InputBase`
+    // ring (keyed on `.Mui-focused`, which pointer focus also sets) and rings on `:focus-visible`.
+    // WebKit ignores the `focusVisible` option, leaving the modality up to its own heuristic.
+    it.skipIf(isJsdom() || !supportsFocusVisibleOption())(
+      'rings the select on keyboard focus but not on pointer focus',
+      () => {
+        const combobox = setup(createTheme({ focusVisible: true }));
+
+        act(() => combobox.focus({ focusVisible: true }));
+        expect(combobox).toHaveComputedStyle({ outlineStyle: 'solid', outlineWidth: '2px' });
+
+        act(() => combobox.blur());
+        act(() => combobox.focus({ focusVisible: false }));
+        expect(combobox).toHaveComputedStyle({ outlineStyle: 'none' });
+      },
+    );
   });
 
   describe('prop: rowsPerPage', () => {

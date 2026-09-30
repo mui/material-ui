@@ -418,6 +418,24 @@ describe('<Select />', () => {
     expect(container.querySelector('input')).to.have.attribute('aria-hidden', 'true');
   });
 
+  it('focuses the trigger without the focus ring on mousedown', () => {
+    render(
+      <Select value="">
+        <MenuItem value="">none</MenuItem>
+        <MenuItem value={10}>Ten</MenuItem>
+      </Select>,
+    );
+
+    const trigger = screen.getByRole('combobox');
+    const focusSpy = spy(trigger, 'focus');
+
+    fireEvent.mouseDown(trigger);
+
+    // The handler hijacks the default focus behavior, so the browser can no longer attribute the
+    // focus to the pointer and would otherwise match `:focus-visible`.
+    expect(focusSpy.firstCall.args[0]).to.deep.equal({ focusVisible: false });
+  });
+
   it('should ignore onBlur when the menu opens', async () => {
     // mousedown calls focus while click opens moving the focus to an item
     // this means the trigger is blurred immediately

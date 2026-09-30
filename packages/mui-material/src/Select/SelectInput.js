@@ -332,7 +332,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     if (label) {
       const handler = () => {
         if (getSelection().isCollapsed) {
-          displayRef.current.focus();
+          displayRef.current.focus({ focusVisible: false });
         }
       };
       label.addEventListener('click', handler);
@@ -410,7 +410,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       return;
     }
 
-    displayRef.current.focus();
+    // Focusing from script would otherwise match `:focus-visible`, since the browser can no longer
+    // attribute the focus to the pointer it was just told to ignore.
+    displayRef.current.focus({ focusVisible: false });
 
     const doc = ownerDocument(event.currentTarget);
 
