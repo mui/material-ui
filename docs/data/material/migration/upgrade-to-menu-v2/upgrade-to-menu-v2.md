@@ -119,15 +119,15 @@ To control the open state, keep `trigger` and pass `open` and `onOpenChange`. Se
 +<Menu2 anchor={anchorEl} side="top" align="end">
 ```
 
-| Menu / Popover                                        | Menu v2                                                                               | Notes                                                       |
-| :---------------------------------------------------- | :------------------------------------------------------------------------------------ | :---------------------------------------------------------- |
-| `anchorEl`                                            | `anchor`                                                                              | Also accepts refs and virtual elements.                     |
-| `anchorOrigin` + `transformOrigin`                    | `side` + `align` + `sideOffset` + `alignOffset`                                       | Defaults are `side="bottom"` and `align="start"`.           |
-| `anchorReference="anchorPosition"` + `anchorPosition` | `anchor={virtualElement}`                                                             | See [Context menu](/material-ui/react-menu2/#context-menu). |
-| `anchorReference="none"`                              | `anchor={virtualElement}`                                                             | Give the virtual element the position that you want.        |
-| `marginThreshold` (default 16)                        | `collisionPadding` (default 5)                                                        | Same idea.                                                  |
-| `action.updatePosition()`                             | Automatic                                                                             | Use `disableAnchorTracking` to stop tracking layout shifts. |
-| —                                                     | `collisionBoundary`, `sticky`, `collisionAvoidance`, `positionMethod`, `arrowPadding` | New props.                                                  |
+| Menu / Popover                                        | Menu v2                                                               | Notes                                                       |
+| :---------------------------------------------------- | :-------------------------------------------------------------------- | :---------------------------------------------------------- |
+| `anchorEl`                                            | `anchor`                                                              | Also accepts refs and virtual elements.                     |
+| `anchorOrigin` + `transformOrigin`                    | `side` + `align` + `sideOffset` + `alignOffset`                       | Defaults are `side="bottom"` and `align="start"`.           |
+| `anchorReference="anchorPosition"` + `anchorPosition` | `anchor={virtualElement}`                                             | See [Context menu](/material-ui/react-menu2/#context-menu). |
+| `anchorReference="none"`                              | `anchor={virtualElement}`                                             | Give the virtual element the position that you want.        |
+| `marginThreshold` (default 16)                        | `collisionPadding` (default 5)                                        | Same idea.                                                  |
+| `action.updatePosition()`                             | Automatic                                                             | Use `disableAnchorTracking` to stop tracking layout shifts. |
+| —                                                     | `collisionBoundary`, `sticky`, `collisionAvoidance`, `positionMethod` | New props.                                                  |
 
 Use the logical `inline-start` and `inline-end` sides to get the correct direction in right-to-left text.
 

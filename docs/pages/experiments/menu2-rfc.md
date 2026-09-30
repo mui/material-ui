@@ -261,15 +261,15 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 <details>
 <summary>2. Positioning</summary>
 
-| Classic Menu / Popover                                | New equivalent                                                        | Notes                                                                                                       |
-| :---------------------------------------------------- | :-------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------- |
-| `anchorEl`                                            | `anchor`                                                              | Also accepts refs and virtual elements. Defaults to the supplied trigger.                                   |
-| `anchorOrigin` + `transformOrigin`                    | `side`, `align`, `sideOffset`, `alignOffset`                          | Placement model changes; animation origin follows resolved placement.                                       |
-| `anchorReference="anchorPosition"` + `anchorPosition` | Virtual `anchor`                                                      | Caller supplies its rectangle.                                                                              |
-| `marginThreshold` (16)                                | `collisionPadding` (5)                                                | Different defaults and collision model.                                                                     |
-| `anchorReference="none"`                              | No direct equivalent                                                  | Omitting `anchor` uses the trigger; it does not disable positioning.                                        |
-| `action.updatePosition()`                             | Automatic tracking                                                    | `disableAnchorTracking` stops anchor tracking; it is not an imperative update method.                       |
-| No direct equivalent                                  | `collisionBoundary`, `sticky`, `collisionAvoidance`, `positionMethod` | Additional positioning controls. `arrowPadding` is exposed but has no visible effect without an arrow part. |
+| Classic Menu / Popover                                | New equivalent                                                        | Notes                                                                                 |
+| :---------------------------------------------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------ |
+| `anchorEl`                                            | `anchor`                                                              | Also accepts refs and virtual elements. Defaults to the supplied trigger.             |
+| `anchorOrigin` + `transformOrigin`                    | `side`, `align`, `sideOffset`, `alignOffset`                          | Placement model changes; animation origin follows resolved placement.                 |
+| `anchorReference="anchorPosition"` + `anchorPosition` | Virtual `anchor`                                                      | Caller supplies its rectangle.                                                        |
+| `marginThreshold` (16)                                | `collisionPadding` (5)                                                | Different defaults and collision model.                                               |
+| `anchorReference="none"`                              | No direct equivalent                                                  | Omitting `anchor` uses the trigger; it does not disable positioning.                  |
+| `action.updatePosition()`                             | Automatic tracking                                                    | `disableAnchorTracking` stops anchor tracking; it is not an imperative update method. |
+| No direct equivalent                                  | `collisionBoundary`, `sticky`, `collisionAvoidance`, `positionMethod` | Additional positioning controls.                                                      |
 
 </details>
 

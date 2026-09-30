@@ -168,11 +168,6 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
     PropTypes.func,
   ]),
   /**
-   * Minimum distance to maintain between the arrow and the edges of the popup.
-   * @default 5
-   */
-  arrowPadding: PropTypes.number,
-  /**
    * The submenu items.
    */
   children: PropTypes.node,

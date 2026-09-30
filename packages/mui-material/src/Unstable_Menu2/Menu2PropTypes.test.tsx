@@ -9,7 +9,6 @@ const popupProps = [
   'align',
   'alignOffset',
   'anchor',
-  'arrowPadding',
   'classes',
   'className',
   'collisionAvoidance',
@@ -48,6 +47,7 @@ describe('Menu2 public popup prop validation', () => {
     describe(`${name}`, () => {
       it('declares the popup validators on the public component', () => {
         expect(Component.propTypes).to.include.all.keys(popupProps);
+        expect(Component.propTypes).not.to.have.property('arrowPadding');
       });
 
       it('validates the current slot and slot-prop names', () => {

@@ -146,7 +146,6 @@ export interface Menu2PopupPublicProps
       | 'alignOffset'
       | 'collisionBoundary'
       | 'collisionPadding'
-      | 'arrowPadding'
       | 'sticky'
       | 'disableAnchorTracking'
       | 'collisionAvoidance'
@@ -234,7 +233,6 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     alignOffset,
     collisionBoundary,
     collisionPadding,
-    arrowPadding,
     sticky,
     disableAnchorTracking,
     collisionAvoidance,
@@ -308,7 +306,6 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   setDefinedProp(positionerProps, 'alignOffset', alignOffset);
   setDefinedProp(positionerProps, 'collisionBoundary', collisionBoundary);
   setDefinedProp(positionerProps, 'collisionPadding', collisionPadding);
-  setDefinedProp(positionerProps, 'arrowPadding', arrowPadding);
   setDefinedProp(positionerProps, 'sticky', sticky);
   setDefinedProp(positionerProps, 'disableAnchorTracking', disableAnchorTracking);
   setDefinedProp(positionerProps, 'collisionAvoidance', collisionAvoidance);

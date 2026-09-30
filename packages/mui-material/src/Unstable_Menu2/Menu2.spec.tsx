@@ -138,6 +138,7 @@ function Menu2Composition() {
         </Menu2RadioGroup>
         <Menu2Separator />
         <Menu2Submenu
+          closeParentOnEsc
           slotProps={{
             root: (ownerState) => {
               expectType<boolean | undefined, typeof ownerState.open>(ownerState.open);
@@ -250,6 +251,19 @@ createTheme({
 <Menu2
   // @ts-expect-error Popover anchorOrigin is intentionally not supported.
   anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+/>;
+
+<Menu2
+  // @ts-expect-error Only submenus can close parent menus on Escape.
+  closeParentOnEsc
+/>;
+<Menu2
+  // @ts-expect-error The popup does not render an arrow.
+  arrowPadding={8}
+/>;
+<Menu2Submenu
+  // @ts-expect-error The submenu popup does not render an arrow.
+  arrowPadding={8}
 />;
 
 <Menu2Submenu

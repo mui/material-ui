@@ -51,7 +51,6 @@ const useExternalPropsFromMenu2Popup = [
   'align',
   'alignOffset',
   'anchor',
-  'arrowPadding',
   'classes',
   'className',
   'collisionAvoidance',

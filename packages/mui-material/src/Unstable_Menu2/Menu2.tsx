@@ -47,7 +47,6 @@ export interface Menu2Props
     Pick<
       BaseMenu.Root.Props,
       | 'actionsRef'
-      | 'closeParentOnEsc'
       | 'defaultOpen'
       | 'disabled'
       | 'highlightItemOnHover'
@@ -109,7 +108,6 @@ const Menu2 = React.forwardRef(function Menu2(
     // the popup.
     actionsRef,
     closeDelay,
-    closeParentOnEsc,
     defaultOpen,
     delay,
     disabled,
@@ -163,7 +161,6 @@ const Menu2 = React.forwardRef(function Menu2(
     <DirectionProvider direction={isRtl ? 'rtl' : 'ltr'}>
       <BaseMenu.Root
         actionsRef={actionsRef}
-        closeParentOnEsc={closeParentOnEsc}
         defaultOpen={defaultOpen}
         disabled={disabled}
         highlightItemOnHover={highlightItemOnHover}
@@ -213,11 +210,6 @@ Menu2.propTypes /* remove-proptypes */ = {
     PropTypes.object,
     PropTypes.func,
   ]),
-  /**
-   * Minimum distance to maintain between the arrow and the edges of the popup.
-   * @default 5
-   */
-  arrowPadding: PropTypes.number,
   /**
    * The menu items.
    */

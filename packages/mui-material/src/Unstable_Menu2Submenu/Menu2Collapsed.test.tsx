@@ -517,6 +517,68 @@ describe('<Menu2 /> collapsed API', () => {
     expect(submenuRef.current).to.contain(screen.getByRole('menuitem', { name: 'Nested' }));
   });
 
+  [undefined, false, true].forEach((closeParentOnEsc) => {
+    it.skipIf(isJsdom())(
+      `handles Escape with submenu closeParentOnEsc=${closeParentOnEsc}`,
+      async () => {
+        const onParentOpenChange = vi.fn();
+        const onSubmenuOpenChange = vi.fn();
+        const { user } = render(
+          <Menu2
+            defaultOpen
+            modal={false}
+            onOpenChange={onParentOpenChange}
+            trigger={<Button disableRipple>Options</Button>}
+          >
+            <Menu2Submenu
+              closeParentOnEsc={closeParentOnEsc}
+              onOpenChange={onSubmenuOpenChange}
+              trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
+            >
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2Submenu>
+          </Menu2>,
+        );
+        const parentTrigger = screen.getByRole('button', { name: 'Options' });
+        const submenuTrigger = screen.getByRole('menuitem', { name: 'More' });
+        const parentPopup = submenuTrigger.closest('[role="menu"]')!;
+        await waitForPopupFocus(submenuTrigger);
+        await act(async () => submenuTrigger.focus());
+        await user.keyboard('{ArrowRight}');
+        const nestedItem = await screen.findByRole('menuitem', { name: 'Nested' });
+        await waitForPopupFocus(nestedItem);
+        await act(async () => nestedItem.focus());
+        onSubmenuOpenChange.mockClear();
+
+        await user.keyboard('{Escape}');
+
+        expect(onSubmenuOpenChange).toHaveBeenCalledExactlyOnceWith(
+          false,
+          expect.objectContaining({ reason: 'escape-key' }),
+        );
+        await waitFor(() => {
+          expect(screen.queryByRole('menuitem', { name: 'Nested' })).to.equal(null);
+        });
+        if (closeParentOnEsc) {
+          expect(onParentOpenChange).toHaveBeenCalledExactlyOnceWith(
+            false,
+            expect.objectContaining({ reason: 'escape-key' }),
+          );
+          await waitFor(() => {
+            expect(screen.queryByRole('menu')).to.equal(null);
+            expect(document.activeElement).to.equal(parentTrigger);
+          });
+        } else {
+          expect(onParentOpenChange).not.toHaveBeenCalled();
+          expect(screen.getByRole('menu')).to.equal(parentPopup);
+          await waitFor(() => {
+            expect(document.activeElement).to.equal(submenuTrigger);
+          });
+        }
+      },
+    );
+  });
+
   it.skipIf(isJsdom())(
     'keeps the open tint on the submenu trigger until focus returns after Escape',
     async () => {

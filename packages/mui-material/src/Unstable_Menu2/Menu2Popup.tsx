@@ -78,11 +78,6 @@ export interface Menu2PopupProps extends Omit<
    */
   collisionPadding?: Menu2PopupPublicProps['collisionPadding'] | undefined;
   /**
-   * Minimum distance to maintain between the arrow and the edges of the popup.
-   * @default 5
-   */
-  arrowPadding?: Menu2PopupPublicProps['arrowPadding'] | undefined;
-  /**
    * Whether to maintain the popup in the viewport after the anchor element was scrolled out of view.
    * @default false
    */
