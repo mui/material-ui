@@ -49,7 +49,9 @@ function attachColorManipulators(theme) {
       if (obj.colorSpace) {
         return `oklch(from ${color} l c h / ${typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient})`;
       }
-      if (obj.vars) {
+      // Raw colors (for example, `theme.palette.*`) have no channel tokens,
+      // so they fall through to the JS manipulation like `lighten()` and `darken()`.
+      if (obj.vars && color.includes('var(')) {
         // To preserve the behavior of the CSS theme variables
         // In the future, this could be replaced by `color-mix` (when https://caniuse.com/?search=color-mix reaches 95%).
         return `rgba(${color.replace(/var\(--([^,\s)]+)(?:,[^)]+)?\)+/g, 'var(--$1Channel)')} / ${typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient})`;
