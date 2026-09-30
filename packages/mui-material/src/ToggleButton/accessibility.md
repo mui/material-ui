@@ -184,7 +184,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 - Keyboard focus shows the `.Mui-focusVisible` ripple (suppressed for mouse). The component sets no other focus style.
 - `disableRipple` removes every ripple and `disableFocusRipple` removes the focus ripple, so either prop leaves the toggle with no visible focus indicator (the `disableRipple` prop documents this).
 - Confirmed by a unit test in [`./ToggleButton.test.js`](./ToggleButton.test.js) (no focus ripple under `disableRipple`).
-- With `focusVisible: true` on the theme, keyboard focus draws an outline ring that does not depend on the ripple (see [Focus visible](https://mui.com/material-ui/customization/focus-visible/)). The indicator stays visible under `disableRipple` and `disableFocusRipple`. Removing the ripple without the ring is the author's choice.
+- With `focusVisible: true` on the theme, keyboard focus draws an outline ring that does not depend on the ripple (see [Focus visible](https://mui.com/material-ui/customization/focus-visible/)). The indicator stays visible under `disableRipple` and `disableFocusRipple`. Removing the ripple without the ring is the author's choice. Covered by a Playwright test that compares the control focused and unfocused with the ring enabled and the ripple disabled.
 
 **Manual testing steps**
 

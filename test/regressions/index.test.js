@@ -725,6 +725,10 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
  * The check is a pixel comparison rather than a computed-style diff because
  * MUI's focus indicator is usually the ripple — a child element that appears in
  * the DOM. Diffing styles on the control itself would miss it entirely.
+ *
+ * The `KeyboardRing` fixture repeats the check with `focusVisible: true` and
+ * the ripple disabled. There the outline ring is the only possible pixel
+ * change, so the themed variant asserts the ring itself.
  */
 function registerFocusVisibleSuites({ test, renderFixture, routes }) {
   const FOCUS_VISIBLE_TARGETS = [
@@ -765,6 +769,22 @@ function registerFocusVisibleSuites({ test, renderFixture, routes }) {
     },
   ];
 
+  // TextField is absent: it has no ring, and the demo suite above already
+  // covers its border-change indicator. Every Button variant is a target: the
+  // fixture suppresses the contained focus shadow, so each variant passes only
+  // through the ring.
+  const RING_ROUTE = '/regression-FocusVisible/KeyboardRing';
+  const FOCUS_RING_TARGETS = [
+    { component: 'AccordionSummary', route: RING_ROUTE, selector: '.MuiAccordionSummary-root' },
+    { component: 'Button (text)', route: RING_ROUTE, selector: '.MuiButton-text' },
+    { component: 'Button (outlined)', route: RING_ROUTE, selector: '.MuiButton-outlined' },
+    { component: 'Button (contained)', route: RING_ROUTE, selector: '.MuiButton-contained' },
+    { component: 'Checkbox', route: RING_ROUTE, selector: '.MuiCheckbox-root' },
+    { component: 'Radio', route: RING_ROUTE, selector: '.MuiRadio-root' },
+    { component: 'Switch', route: RING_ROUTE, selector: '.MuiSwitch-root' },
+    { component: 'ToggleButton', route: RING_ROUTE, selector: '.MuiToggleButton-root' },
+  ];
+
   /** An outline or ring can paint outside the control, so capture a padded box. */
   const PADDING = 8;
 
@@ -782,8 +802,8 @@ function registerFocusVisibleSuites({ test, renderFixture, routes }) {
   }
 
   /** Tab until the target (or something inside it) holds focus. */
-  async function tabTo(page, selector) {
-    for (let attempt = 0; attempt < 12; attempt += 1) {
+  async function tabTo(page, selector, maxTabs) {
+    for (let attempt = 0; attempt < maxTabs; attempt += 1) {
       // eslint-disable-next-line no-await-in-loop
       await page.keyboard.press('Tab');
       // eslint-disable-next-line no-await-in-loop
@@ -798,14 +818,12 @@ function registerFocusVisibleSuites({ test, renderFixture, routes }) {
     return false;
   }
 
-  FOCUS_VISIBLE_TARGETS.forEach(({ component, route, selector }) => {
+  function registerTarget({ component, route, selector }, title, maxTabs) {
     if (!routes.includes(route)) {
       return;
     }
 
-    test(`${component} 2.4.7 Focus Visible: keyboard focus changes how the control looks`, async ({
-      pooled,
-    }) => {
+    test(`${component} ${title}`, async ({ pooled }) => {
       const { page } = pooled;
       const testcase = await renderFixture(page, route);
       const handle = await testcase.$(selector);
@@ -814,7 +832,7 @@ function registerFocusVisibleSuites({ test, renderFixture, routes }) {
       }
 
       const unfocused = await shotAround(page, handle);
-      if (!(await tabTo(page, selector))) {
+      if (!(await tabTo(page, selector, maxTabs))) {
         throw new Error(`${component}: could not reach ${selector} with the Tab key`);
       }
       const focused = await shotAround(page, handle);
@@ -825,6 +843,21 @@ function registerFocusVisibleSuites({ test, renderFixture, routes }) {
         );
       }
     });
+  }
+
+  FOCUS_VISIBLE_TARGETS.forEach((target) => {
+    // Demo pages render tabbable elements this list does not know about, so
+    // the tab budget is a fixed allowance.
+    registerTarget(target, '2.4.7 Focus Visible: keyboard focus changes how the control looks', 12);
+  });
+  FOCUS_RING_TARGETS.forEach((target) => {
+    // Every tab stop in the KeyboardRing fixture is a target, so the target
+    // count bounds how far the target can sit from the start of the page.
+    registerTarget(
+      target,
+      '2.4.7 Focus Visible: keyboard focus paints the theme.focusVisible ring',
+      FOCUS_RING_TARGETS.length,
+    );
   });
 }
 

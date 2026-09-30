@@ -226,7 +226,7 @@ Every other `variant` × `color` combination clears `4.5:1`; the closest pass is
 
 - Keyboard focus shows the `.Mui-focusVisible` indicator (suppressed for mouse); `contained` adds a box-shadow on focus.
 - `disableRipple`/`disableFocusRipple` remove the ripple and `disableElevation` the `contained` box-shadow, so `text`/`outlined` lose the indicator with either ripple prop, and `contained` only when a ripple prop and `disableElevation` are both set. Covered by a Playwright test that compares the control focused and unfocused.
-- With `focusVisible: true` on the theme, keyboard focus draws an outline ring that does not depend on the ripple (see [Focus visible](https://mui.com/material-ui/customization/focus-visible/)). The indicator stays visible under `disableRipple` and `disableFocusRipple`. Removing the ripple without the ring is the author's choice.
+- With `focusVisible: true` on the theme, keyboard focus draws an outline ring that does not depend on the ripple (see [Focus visible](https://mui.com/material-ui/customization/focus-visible/)). The indicator stays visible under `disableRipple` and `disableFocusRipple`. Removing the ripple without the ring is the author's choice. Covered by a Playwright test that compares the control focused and unfocused with the ring enabled and the ripple disabled.
 
 **Manual testing steps**
 
