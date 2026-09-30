@@ -1,3 +1,4 @@
+import { axeRulesFor } from './axe.mjs';
 import { WCAG_BY_NUMBER, WCAG_CRITERIA } from './wcag.mjs';
 
 /** Worst-first: the library-level rating for a criterion is the worst any component scores. */
@@ -8,11 +9,29 @@ const CONFORMANCE_SEVERITY = [
   'Not Applicable',
 ];
 
-/** Adds the WCAG name and level to each rated criterion. */
-export function resolveCriteria(data) {
-  return data.criteria.map((criterion) => {
-    const { name, level } = WCAG_BY_NUMBER.get(criterion.number);
-    return { ...criterion, name, level };
+/** Criteria listed as a string or a group of strings, flattened. */
+export const flatGroups = (groups = []) => groups.flat();
+
+/**
+ * Adds to each rated criterion its WCAG name and level, the axe rules that test
+ * it, and the pass condition written in the Markdown report.
+ */
+export function resolveCriteria({ data, regions, axe }) {
+  return Object.entries(data.criteria).map(([number, criterion]) => {
+    const { name, level } = WCAG_BY_NUMBER.get(number);
+    const axeRules = axe ? axeRulesFor(number, axe) : [];
+    return {
+      number,
+      name,
+      level,
+      ...criterion,
+      axeRules,
+      evidence: [
+        ...(criterion.evidence ?? []),
+        ...(axeRules.length > 0 ? [{ type: 'axe', ref: data.axe }] : []),
+      ],
+      pass: regions.get(`${number}:pass`) || undefined,
+    };
   });
 }
 
@@ -23,7 +42,7 @@ export function resolveCriteria(data) {
 export function countCriteria(data, criteria) {
   const count = (conformance) =>
     criteria.filter((criterion) => criterion.conformance === conformance).length;
-  const inherited = new Set((data.inherited?.items ?? []).flatMap((item) => item.criteria));
+  const inherited = new Set(flatGroups(data.inherited?.criteria));
 
   const counts = {
     supports: count('Supports'),

@@ -288,9 +288,7 @@
         "flagged": 3,
         "rated": 19
       },
-      "gaps": [
-        "Inherits: ⚠️ **1.4.11 Non-text Contrast** (the summary focus indicator) from [AccordionSummary](../AccordionSummary/accessibility.md)."
-      ],
+      "gaps": "- Inherits: ⚠️ **1.4.11 Non-text Contrast** (the summary focus indicator) from [AccordionSummary](../AccordionSummary/accessibility.md).",
       "criteria": [
         {
           "number": "1.3.2",
@@ -485,9 +483,7 @@
         "flagged": 3,
         "rated": 24
       },
-      "gaps": [
-        "⚠️ **1.4.11 Non-text Contrast.** The keyboard-focus indicator is only a background tint (`action.focus`), about 1.3:1 against the adjacent `paper` surface, below the 3:1 minimum."
-      ],
+      "gaps": "- ⚠️ **1.4.11 Non-text Contrast.** The keyboard-focus indicator is only a background tint (`action.focus`), about 1.3:1 against the adjacent `paper` surface, below the 3:1 minimum.",
       "criteria": [
         {
           "number": "1.3.2",
@@ -727,10 +723,7 @@
         "flagged": 5,
         "rated": 11
       },
-      "gaps": [
-        "⚠️ **1.4.3 Contrast (Minimum).** Default letter and fallback avatars render white text on `grey[400]` (about 1.9:1), and the `deepOrange[500]` example is 3.16:1, both below 4.5:1; arbitrary `stringToColor` backgrounds are unguaranteed.",
-        "⚠️ **1.4.11 Non-text Contrast.** Meaningful icon-child avatars use the default white-on-`grey[400]` (1.9:1) or low-contrast author backgrounds (for example `green[500]` 2.78:1), below the 3:1 minimum for graphical objects."
-      ],
+      "gaps": "- ⚠️ **1.4.3 Contrast (Minimum).** Default letter and fallback avatars render white text on `grey[400]` (about 1.9:1), and the `deepOrange[500]` example is 3.16:1, both below 4.5:1; arbitrary `stringToColor` backgrounds are unguaranteed.\n- ⚠️ **1.4.11 Non-text Contrast.** Meaningful icon-child avatars use the default white-on-`grey[400]` (1.9:1) or low-contrast author backgrounds (for example `green[500]` 2.78:1), below the 3:1 minimum for graphical objects.",
       "criteria": [
         {
           "number": "1.3.2",
@@ -853,11 +846,7 @@
         "flagged": 7,
         "rated": 27
       },
-      "gaps": [
-        "⚠️ **1.4.3 Contrast (Minimum).** `info` and `warning` buttons fall short of 4.5:1 in every variant.",
-        "⚠️ **1.4.11 Non-text Contrast.** Focus-indicator, border, and icon contrast are untested; `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator, and `disableElevation` removes the `contained` one, unless the theme enables `focusVisible`.",
-        "⚠️ **4.1.3 Status Messages.** The `loading` state adds no live region, so the change may go unannounced."
-      ],
+      "gaps": "- ⚠️ **1.4.3 Contrast (Minimum).** `info` and `warning` buttons fall short of 4.5:1 in every variant.\n- ⚠️ **1.4.11 Non-text Contrast.** Focus-indicator, border, and icon contrast are untested; `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator, and `disableElevation` removes the `contained` one, unless the theme enables `focusVisible`.\n- ⚠️ **4.1.3 Status Messages.** The `loading` state adds no live region, so the change may go unannounced.",
       "criteria": [
         {
           "number": "1.3.2",
@@ -1124,9 +1113,7 @@
         "flagged": 3,
         "rated": 25
       },
-      "gaps": [
-        "⚠️ **1.4.11 Non-text Contrast.** The default checkmark icons clear 3:1 (`warning` is the tightest at 3.11:1). The keyboard focus indicator is untested. `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 — a faint custom unchecked box can be about 1.1:1 against the page."
-      ],
+      "gaps": "- ⚠️ **1.4.11 Non-text Contrast.** The default checkmark icons clear 3:1 (`warning` is the tightest at 3.11:1). The keyboard focus indicator is untested. `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 — a faint custom unchecked box can be about 1.1:1 against the page.",
       "criteria": [
         {
           "number": "1.3.2",
@@ -1375,11 +1362,7 @@
         "flagged": 5,
         "rated": 11
       },
-      "gaps": [
-        "⚠️ **1.4.11 Non-text Contrast.** The fill-vs-track boundary falls below `3:1` for most palette colors in light mode, including the default `primary` (about `2.7:1`); in dark mode only `error` (`2.77:1`) falls short.",
-        "⚠️ **2.2.2 Pause, Stop, Hide.** The `indeterminate`, `query`, and `buffer` variants animate indefinitely with no built-in pause, stop, or hide control.",
-        "⚠️ **4.1.3 Status Messages.** The `progressbar` role is not a live region, so `value` changes are not announced unless the surrounding application adds one."
-      ],
+      "gaps": "- ⚠️ **1.4.11 Non-text Contrast.** The fill-vs-track boundary falls below `3:1` for most palette colors in light mode, including the default `primary` (about `2.7:1`); in dark mode only `error` (`2.77:1`) falls short.\n- ⚠️ **2.2.2 Pause, Stop, Hide.** The `indeterminate`, `query`, and `buffer` variants animate indefinitely with no built-in pause, stop, or hide control.\n- ⚠️ **4.1.3 Status Messages.** The `progressbar` role is not a live region, so `value` changes are not announced unless the surrounding application adds one.",
       "criteria": [
         {
           "number": "1.4.1",
@@ -1502,9 +1485,7 @@
         "flagged": 2,
         "rated": 25
       },
-      "gaps": [
-        "⚠️ **1.4.11 Non-text Contrast.** The default dot and circle clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` (without the `focusVisible` theme ring) or custom icons can drop below 3:1 (the `CustomizedRadios` unchecked circle is about 1.1:1 against the page)."
-      ],
+      "gaps": "- ⚠️ **1.4.11 Non-text Contrast.** The default dot and circle clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` (without the `focusVisible` theme ring) or custom icons can drop below 3:1 (the `CustomizedRadios` unchecked circle is about 1.1:1 against the page).",
       "criteria": [
         {
           "number": "1.3.2",
@@ -1754,7 +1735,7 @@
         "flagged": 3,
         "rated": 7
       },
-      "gaps": [],
+      "gaps": "No group-level gaps. The inherited item-level gaps (1.4.11 Non-text Contrast, 2.4.7 Focus Visible) are covered in the [Radio report](../Radio/accessibility.md).",
       "criteria": [
         {
           "number": "1.4.1",
@@ -1841,9 +1822,7 @@
         "flagged": 2,
         "rated": 25
       },
-      "gaps": [
-        "⚠️ **1.4.11 Non-text Contrast.** In light mode the thumb and track stay under 3:1. The off-state white thumb is about 2.7:1 on the gray track, and the track is about 2.7:1 on the page. Each checked color measures 1.8:1 to 2.6:1 thumb-on-track. The focus indicator is untested, and `disableRipple` removes it unless the theme enables `focusVisible`."
-      ],
+      "gaps": "- ⚠️ **1.4.11 Non-text Contrast.** In light mode the thumb and track stay under 3:1. The off-state white thumb is about 2.7:1 on the gray track, and the track is about 2.7:1 on the page. Each checked color measures 1.8:1 to 2.6:1 thumb-on-track. The focus indicator is untested, and `disableRipple` removes it unless the theme enables `focusVisible`.",
       "criteria": [
         {
           "number": "1.3.2",
@@ -2092,11 +2071,7 @@
         "flagged": 4,
         "rated": 28
       },
-      "gaps": [
-        "⚠️ **1.4.3 Contrast (Minimum).** The placeholder (about 2.55:1), the focused `warning` label (3.11:1), and the focused color labels on the filled surface (`primary` 4.04:1) fall short of 4.5:1.",
-        "⚠️ **1.4.11 Non-text Contrast.** The default `outlined` resting border (`rgba(0, 0, 0, 0.23)`, about 1.74:1) is below 3:1; the `filled` underline (about 3.03:1) clears it only marginally.",
-        "⚠️ **4.1.3 Status Messages.** A dynamically shown error is associated to the input but is not a live region, so it may go unannounced when focus is elsewhere."
-      ],
+      "gaps": "- ⚠️ **1.4.3 Contrast (Minimum).** The placeholder (about 2.55:1), the focused `warning` label (3.11:1), and the focused color labels on the filled surface (`primary` 4.04:1) fall short of 4.5:1.\n- ⚠️ **1.4.11 Non-text Contrast.** The default `outlined` resting border (`rgba(0, 0, 0, 0.23)`, about 1.74:1) is below 3:1; the `filled` underline (about 3.03:1) clears it only marginally.\n- ⚠️ **4.1.3 Status Messages.** A dynamically shown error is associated to the input but is not a live region, so it may go unannounced when focus is elsewhere.",
       "criteria": [
         {
           "number": "1.3.2",
@@ -2372,11 +2347,7 @@
         "flagged": 2,
         "rated": 24
       },
-      "gaps": [
-        "⚠️ **1.4.1 Use of Color.** For the color variants (`primary`, `error`, `info`, `success`), the selected and unselected labels are near-identical in grayscale lightness, so the pressed state is conveyed almost entirely by hue.",
-        "⚠️ **1.4.3 Contrast (Minimum).** When selected, the `primary`, `error`, `info`, and `warning` labels (their `color.main` text over the tinted selected background) fall short of 4.5:1.",
-        "⚠️ **1.4.11 Non-text Contrast.** The focus indicator is the ripple; `disableRipple`/`disableFocusRipple` remove it, leaving no focus indicator unless the theme enables `focusVisible`. The selected-state fill is untested for 3:1."
-      ],
+      "gaps": "- ⚠️ **1.4.1 Use of Color.** For the color variants (`primary`, `error`, `info`, `success`), the selected and unselected labels are near-identical in grayscale lightness, so the pressed state is conveyed almost entirely by hue.\n- ⚠️ **1.4.3 Contrast (Minimum).** When selected, the `primary`, `error`, `info`, and `warning` labels (their `color.main` text over the tinted selected background) fall short of 4.5:1.\n- ⚠️ **1.4.11 Non-text Contrast.** The focus indicator is the ripple; `disableRipple`/`disableFocusRipple` remove it, leaving no focus indicator unless the theme enables `focusVisible`. The selected-state fill is untested for 3:1.",
       "criteria": [
         {
           "number": "1.3.2",
@@ -2617,7 +2588,7 @@
         "flagged": 1,
         "rated": 4
       },
-      "gaps": [],
+      "gaps": "No group-level gaps.",
       "criteria": [
         {
           "number": "1.3.1",

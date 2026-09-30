@@ -1,256 +1,98 @@
 {
-  "intro": [
-    "This doc covers the root `<Accordion>` together with `AccordionDetails` and `AccordionActions`, which are passive content containers. It inherits the header's item-level criteria from [AccordionSummary](../AccordionSummary/accessibility.md)."
-  ],
-  "knownGaps": {
-    "items": [
-      "Inherits: ⚠️ **1.4.11 Non-text Contrast** (the summary focus indicator) from [AccordionSummary](../AccordionSummary/accessibility.md)."
-    ]
-  },
-  "criteria": [
-    {
-      "number": "1.3.2",
+  "axe": "docs/data/material/components/accordion/accordion.a11y.json",
+  "criteria": {
+    "1.3.2": {
       "conformance": "Supports",
       "responsibility": "Shared",
       "group": "Manual",
-      "flagged": true,
-      "evidence": [],
-      "notes": [
-        "The header renders before its panel in DOM order, so the reading sequence matches the visual one; the panel content is author-supplied."
-      ],
-      "steps": ["With a screen reader running, expand an accordion and read it top to bottom."],
-      "pass": "the header is announced before its panel content."
+      "flagged": true
     },
-    {
-      "number": "1.3.3",
+    "1.3.3": {
       "conformance": "Supports",
       "responsibility": "Author",
       "group": "Manual",
-      "flagged": false,
-      "evidence": [],
-      "notes": [
-        "The accordion is operated by its header label, not by a sensory cue; surrounding instructions must not rely on the chevron's shape or position alone."
-      ],
-      "steps": [
-        "Find product copy that tells users to expand a section and check it names the section by its heading."
-      ],
-      "pass": "no instruction depends on shape, color, or position alone."
+      "flagged": false
     },
-    {
-      "number": "1.4.1",
+    "1.4.1": {
       "conformance": "Supports",
       "responsibility": "Shared",
       "group": "Manual",
-      "flagged": true,
-      "evidence": [],
-      "notes": [
-        "The open and closed states are shown by `aria-expanded` and the rotated chevron, not by color alone."
-      ],
-      "steps": [
-        "In a UI with accordions, turn on a grayscale view and expand or collapse a panel."
-      ],
-      "pass": "the state stays distinguishable without color."
+      "flagged": true
     },
-    {
-      "number": "1.4.5",
+    "1.4.5": {
       "conformance": "Supports",
       "responsibility": "Author",
       "group": "Manual",
-      "flagged": false,
-      "evidence": [],
-      "notes": ["The header and panel render real text."],
-      "steps": ["Confirm the header or panel text is real text and not an image."],
-      "pass": "no header or panel renders its text as an image."
+      "flagged": false
     },
-    {
-      "number": "2.4.11",
+    "2.4.11": {
       "conformance": "Supports",
       "responsibility": "Author",
       "group": "Manual",
-      "flagged": false,
-      "evidence": [],
-      "notes": [
-        "The accordion never hides its own focused header; full obscuring comes from sticky headers or overlays in the surrounding layout."
-      ],
-      "steps": [
-        "In a page with a sticky header, <kbd>Tab</kbd> to a header near it, scroll it under the sticky element, and <kbd>Tab</kbd> back."
-      ],
-      "pass": "at least part of the focused header stays visible."
+      "flagged": false
     },
-    {
-      "number": "3.2.4",
+    "3.2.4": {
       "conformance": "Supports",
       "responsibility": "Author",
       "group": "Manual",
-      "flagged": false,
-      "evidence": [],
-      "notes": [
-        "The component produces one stable name and structure per set of props; using the same header for the same purpose across pages is an authoring concern."
-      ],
-      "steps": ["Compare accordions with same purpose across the product."],
-      "pass": "consistently uses the same text and icon."
+      "flagged": false
     },
-    {
-      "number": "1.3.1",
+    "1.3.1": {
       "conformance": "Supports",
       "responsibility": "Shared",
       "group": "Hybrid",
-      "flagged": false,
-      "evidence": [
-        {
-          "type": "axe",
-          "ref": "docs/data/material/components/accordion/accordion.a11y.json"
-        }
-      ],
-      "notes": [
-        "The summary button is wrapped in an `<h3>` heading (the `heading` slot, overridable), and the panel takes `role=\"region\"` named by `aria-labelledby` from the summary's `id`, so the header-to-panel relationship is programmatic.",
-        "axe-core `aria-valid-attr-value`, `duplicate-id-aria`, and `aria-allowed-attr` pass across the demos; whether `<h3>` is the right level in the page outline is the author's responsibility."
-      ],
-      "steps": [
-        "In a page with an expanded accordion, inspect the accessibility tree.",
-        "Confirm the header is a heading and the expanded panel is a region named by that header."
-      ],
-      "pass": "the header is exposed as a heading and the panel as a region named by it."
+      "flagged": false
     },
-    {
-      "number": "1.4.3",
+    "1.4.3": {
       "conformance": "Supports",
       "responsibility": "Shared",
       "group": "Hybrid",
-      "flagged": true,
-      "evidence": [
-        {
-          "type": "axe",
-          "ref": "docs/data/material/components/accordion/accordion.a11y.json"
-        }
-      ],
-      "notes": [
-        "The summary label (`text.primary` or `text.secondary`) and the default panel content (`Typography`) sit on `paper` above 4.5:1; custom content colors and action-button themes are the author's.",
-        "axe-core `color-contrast` passes where it can resolve the background and returns incomplete on some demos, where axe cannot read the summary background behind the divider `::before` pseudo-element; no demo records a failure."
-      ],
-      "steps": [
-        "With a contrast checker, measure the summary label and the expanded panel text against their backgrounds.",
-        "Check any custom theme colors the product uses."
-      ],
-      "pass": "at least 4.5:1 for the summary label and panel text. Disabled summaries are exempt."
+      "flagged": true
     },
-    {
-      "number": "2.4.6",
+    "2.4.6": {
       "conformance": "Supports",
       "responsibility": "Shared",
       "group": "Hybrid",
-      "flagged": false,
-      "evidence": [
-        {
-          "type": "axe",
-          "ref": "docs/data/material/components/accordion/accordion.a11y.json"
-        }
-      ],
-      "notes": [
-        "Each accordion provides an `<h3>` heading whose text is the summary label; axe-core `button-name` confirms that label is present.",
-        "Whether the heading describes its section is an authoring concern."
-      ],
-      "steps": ["Read each accordion heading out of context and ask whether it names its section."],
-      "pass": "every heading describes its section."
+      "flagged": false
     },
-    {
-      "number": "4.1.2",
+    "4.1.2": {
       "conformance": "Supports",
       "responsibility": "Shared",
       "group": "Hybrid",
-      "flagged": false,
-      "evidence": [
-        {
-          "type": "axe",
-          "ref": "docs/data/material/components/accordion/accordion.a11y.json"
-        }
-      ],
-      "notes": [
-        "The summary's `aria-expanded` (set by the component) exposes the required open or closed state; the panel takes `role=\"region\"` named by `aria-labelledby`, and `aria-controls` links the header to it.",
-        "The region name depends on the author setting `id` and `aria-controls` on the summary, as every demo does; omitting them leaves the region unnamed. axe-core `aria-valid-attr-value` and `duplicate-id-aria` pass."
-      ],
-      "steps": [
-        "With a screen reader running, move to an accordion header and expand it.",
-        "Confirm the collapsed or expanded state is announced, and the expanded panel is reached as a named region."
-      ],
-      "pass": "state, role, and the header-to-region name are all exposed."
+      "flagged": false
     },
-    {
-      "number": "1.4.4",
+    "1.4.4": {
       "conformance": "Supports",
       "responsibility": "Shared",
       "group": "Automated",
       "flagged": false,
-      "evidence": [
-        {
-          "type": "playwright",
-          "ref": "test/regressions/index.test.js"
-        }
-      ],
-      "notes": [
-        "Header and panel text use rem and theme spacing, so the accordion scales with browser zoom; a fixed-pixel wrapper in the surrounding layout could clip at 200%. Covered by a Playwright test at 200% text size."
-      ]
+      "evidence": [{ "type": "playwright", "ref": "test/regressions/index.test.js" }]
     },
-    {
-      "number": "1.4.10",
+    "1.4.10": {
       "conformance": "Supports",
       "responsibility": "Shared",
       "group": "Automated",
       "flagged": false,
-      "evidence": [
-        {
-          "type": "playwright",
-          "ref": "test/regressions/index.test.js"
-        }
-      ],
-      "notes": [
-        "The accordion is full width and its text wraps, so it reflows on its own; horizontal overflow at 320 CSS pixels comes from the surrounding layout. Covered by a Playwright test at a 320px viewport."
-      ]
+      "evidence": [{ "type": "playwright", "ref": "test/regressions/index.test.js" }]
     },
-    {
-      "number": "1.4.12",
+    "1.4.12": {
       "conformance": "Supports",
       "responsibility": "Shared",
       "group": "Automated",
       "flagged": false,
-      "evidence": [
-        {
-          "type": "playwright",
-          "ref": "test/regressions/index.test.js"
-        },
-        {
-          "type": "axe",
-          "ref": "docs/data/material/components/accordion/accordion.a11y.json"
-        }
-      ],
-      "notes": [
-        "Header and panel heights come from padding, not fixed heights, so the WCAG text-spacing values grow the accordion without clipping.",
-        "axe-core `avoid-inline-spacing` passes, and a visual-regression screenshot guards the layout. Covered by a Playwright test applying the WCAG text-spacing overrides."
-      ]
+      "evidence": [{ "type": "playwright", "ref": "test/regressions/index.test.js" }]
     },
-    {
-      "number": "2.1.1",
+    "2.1.1": {
       "conformance": "Supports",
       "responsibility": "Component",
       "group": "Automated",
       "flagged": false,
       "evidence": [
-        {
-          "type": "unit",
-          "ref": "packages/mui-material/src/ButtonBase/ButtonBase.test.js"
-        },
-        {
-          "type": "unit",
-          "ref": "packages/mui-material/src/Accordion/Accordion.test.js"
-        }
-      ],
-      "notes": [
-        "The accordion expands and collapses through the summary's native activation (<kbd>Enter</kbd> and <kbd>Space</kbd>); the WAI-ARIA accordion pattern requires only that plus <kbd>Tab</kbd>, and does not define arrow-key navigation between headers.",
-        "Confirmed by interaction tests in [`../ButtonBase/ButtonBase.test.js`](../ButtonBase/ButtonBase.test.js) and an `onChange`-on-click test in [`Accordion.test.js`](./Accordion.test.js)."
+        { "type": "unit", "ref": "packages/mui-material/src/ButtonBase/ButtonBase.test.js" },
+        { "type": "unit", "ref": "packages/mui-material/src/Accordion/Accordion.test.js" }
       ]
     },
-    {
-      "number": "2.1.2",
+    "2.1.2": {
       "conformance": "Supports",
       "responsibility": "Component",
       "group": "Automated",
@@ -260,35 +102,19 @@
           "type": "unit",
           "ref": "packages/mui-material/src/AccordionSummary/AccordionSummary.test.js"
         },
-        {
-          "type": "unit",
-          "ref": "packages/mui-material/src/Accordion/Accordion.test.js"
-        }
-      ],
-      "notes": [
-        "Each header is a single focusable stop and the collapsed panel is removed from the tab order, so <kbd>Tab</kbd> moves through the cluster and out without a trap.",
-        "Confirmed by a unit test in [`../AccordionSummary/AccordionSummary.test.js`](../AccordionSummary/AccordionSummary.test.js) (<kbd>Tab</kbd> enters and leaves the header freely)."
+        { "type": "unit", "ref": "packages/mui-material/src/Accordion/Accordion.test.js" }
       ]
     },
-    {
-      "number": "2.4.3",
+    "2.4.3": {
       "conformance": "Supports",
       "responsibility": "Shared",
       "group": "Automated",
       "flagged": false,
       "evidence": [
-        {
-          "type": "unit",
-          "ref": "packages/mui-material/src/Accordion/Accordion.test.js"
-        }
-      ],
-      "notes": [
-        "The collapsed panel is set to `visibility: hidden` by `Collapse`, so its content and any AccordionActions buttons leave the tab order; an expanded panel sits in DOM order right after its header.",
-        "Confirmed by unit tests in [`./Accordion.test.js`](./Accordion.test.js) (a collapsed panel gets the `Collapse` hidden state) and [`../AccordionSummary/AccordionSummary.test.js`](../AccordionSummary/AccordionSummary.test.js) (the header is a single tab stop; a disabled header leaves the order)."
+        { "type": "unit", "ref": "packages/mui-material/src/Accordion/Accordion.test.js" }
       ]
     },
-    {
-      "number": "2.5.2",
+    "2.5.2": {
       "conformance": "Supports",
       "responsibility": "Component",
       "group": "Automated",
@@ -298,18 +124,10 @@
           "type": "unit",
           "ref": "packages/mui-material/src/AccordionSummary/AccordionSummary.test.js"
         },
-        {
-          "type": "unit",
-          "ref": "packages/mui-material/src/Accordion/Accordion.test.js"
-        }
-      ],
-      "notes": [
-        "The accordion toggles on `click`, fired on pointer-up; `mousedown` alone does not toggle.",
-        "Confirmed by a unit test in [`../AccordionSummary/AccordionSummary.test.js`](../AccordionSummary/AccordionSummary.test.js) (releasing off the target does not toggle; a full click does). Covered by unit tests."
+        { "type": "unit", "ref": "packages/mui-material/src/Accordion/Accordion.test.js" }
       ]
     },
-    {
-      "number": "3.2.1",
+    "3.2.1": {
       "conformance": "Supports",
       "responsibility": "Component",
       "group": "Automated",
@@ -319,18 +137,10 @@
           "type": "unit",
           "ref": "packages/mui-material/src/AccordionSummary/AccordionSummary.test.js"
         },
-        {
-          "type": "unit",
-          "ref": "packages/mui-material/src/Accordion/Accordion.test.js"
-        }
-      ],
-      "notes": [
-        "Focusing a header applies the focus-visible tint only; it triggers no expand, navigation, or focus move, so focus alone changes no context.",
-        "Confirmed by a unit test in [`../AccordionSummary/AccordionSummary.test.js`](../AccordionSummary/AccordionSummary.test.js) (focusing the header does not toggle it)."
+        { "type": "unit", "ref": "packages/mui-material/src/Accordion/Accordion.test.js" }
       ]
     },
-    {
-      "number": "3.2.2",
+    "3.2.2": {
       "conformance": "Supports",
       "responsibility": "Shared",
       "group": "Automated",
@@ -340,139 +150,33 @@
           "type": "unit",
           "ref": "packages/mui-material/src/AccordionSummary/AccordionSummary.test.js"
         },
-        {
-          "type": "unit",
-          "ref": "packages/mui-material/src/Accordion/Accordion.test.js"
-        }
-      ],
-      "notes": [
-        "Expanding or collapsing a panel changes content within the same page, which is not a change of context; coupling activation to navigation would be an author decision.",
-        "Confirmed by a unit test in [`../AccordionSummary/AccordionSummary.test.js`](../AccordionSummary/AccordionSummary.test.js) (the panel toggles only on explicit activation, never on its own)."
+        { "type": "unit", "ref": "packages/mui-material/src/Accordion/Accordion.test.js" }
       ]
     }
-  ],
+  },
   "inherited": {
     "from": "AccordionSummary",
-    "intro": [
-      "These item-level criteria are rated on the header button. See [AccordionSummary](../AccordionSummary/accessibility.md)."
-    ],
-    "items": [
-      {
-        "criteria": ["1.1.1"],
-        "text": "[1.1.1 Non-text Content](../AccordionSummary/accessibility.md)"
-      },
-      {
-        "criteria": ["1.4.11"],
-        "text": "[1.4.11 Non-text Contrast](../AccordionSummary/accessibility.md)"
-      },
-      {
-        "criteria": ["2.4.7"],
-        "text": "[2.4.7 Focus Visible](../AccordionSummary/accessibility.md)"
-      },
-      {
-        "criteria": ["2.5.3"],
-        "text": "[2.5.3 Label in Name](../AccordionSummary/accessibility.md)"
-      },
-      {
-        "criteria": ["2.5.8"],
-        "text": "[2.5.8 Target Size (Minimum)](../AccordionSummary/accessibility.md)"
-      }
-    ]
+    "criteria": ["1.1.1", "1.4.11", "2.4.7", "2.5.3", "2.5.8"]
   },
   "notApplicable": [
-    {
-      "criteria": ["1.3.5"],
-      "text": "**1.3.5 Identify Input Purpose (AA).** Collects no user data."
-    },
-    {
-      "criteria": ["1.4.13"],
-      "text": "**1.4.13 Content on Hover or Focus (AA).** The panel opens on activation, not on hover or focus."
-    },
-    {
-      "criteria": ["2.1.4"],
-      "text": "**2.1.4 Character Key Shortcuts (A).** Implements no shortcut bound to a letter, punctuation, number, or symbol key; <kbd>Enter</kbd> and <kbd>Space</kbd> are standard activation, not character shortcuts."
-    },
-    {
-      "criteria": ["2.4.4"],
-      "text": "**2.4.4 Link Purpose (In Context) (A).** The header is a button, not a link."
-    },
-    {
-      "criteria": ["2.5.7"],
-      "text": "**2.5.7 Dragging Movements (AA, new in 2.2).** No drag interactions."
-    },
-    {
-      "criteria": ["3.1.1", "3.1.2"],
-      "text": "**3.1.1 Language of Page (A), 3.1.2 Language of Parts (AA).** Authoring concern."
-    },
-    {
-      "criteria": ["3.2.3"],
-      "text": "**3.2.3 Consistent Navigation (AA).** Inapplicable in isolation."
-    },
-    {
-      "criteria": ["3.2.6"],
-      "text": "**3.2.6 Consistent Help (A, new in 2.2).** Provides no help mechanism."
-    },
-    {
-      "criteria": ["3.3.7"],
-      "text": "**3.3.7 Redundant Entry (A, new in 2.2).** Re-enters no data."
-    },
-    {
-      "criteria": ["3.3.8"],
-      "text": "**3.3.8 Accessible Authentication (Minimum) (AA, new in 2.2).** No authentication step."
-    },
-    {
-      "criteria": ["4.1.3"],
-      "text": "**4.1.3 Status Messages (AA).** Adds no status region; the state is carried by `aria-expanded` on the focused header."
-    },
-    {
-      "criteria": ["1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5"],
-      "text": "**Time-based media (1.2.1 to 1.2.5).** No audio or video."
-    },
-    {
-      "criteria": ["1.4.2"],
-      "text": "**Audio Control (1.4.2).** Emits no audio."
-    },
-    {
-      "criteria": ["1.3.4"],
-      "text": "**Orientation (1.3.4).** Sets no orientation lock; a layout concern."
-    },
-    {
-      "criteria": ["2.4.1", "2.4.2", "2.4.5"],
-      "text": "**Bypass Blocks (2.4.1), Page Titled (2.4.2), Multiple Ways (2.4.5).** Page or site structure concerns."
-    },
-    {
-      "criteria": ["2.2.1", "2.2.2"],
-      "text": "**Timing Adjustable (2.2.1), Pause, Stop, Hide (2.2.2).** Sets no time limit; the expand transition is user-triggered."
-    },
-    {
-      "criteria": ["2.3.1"],
-      "text": "**Three Flashes or Below Threshold (2.3.1).** Nothing flashes."
-    },
-    {
-      "criteria": ["2.5.1", "2.5.4"],
-      "text": "**Pointer Gestures (2.5.1), Motion Actuation (2.5.4).** Activates on a simple click; reads no device motion."
-    },
-    {
-      "criteria": ["3.3.1", "3.3.2", "3.3.3", "3.3.4"],
-      "text": "**Error Identification (3.3.1), Labels or Instructions (3.3.2), Error Suggestion (3.3.3), Error Prevention (3.3.4).** The accordion collects and validates no input; these belong to the form or process."
-    }
-  ],
-  "levelAAA": {
-    "items": [
-      "**2.3.3 Animation from Interactions.** The `Collapse` transition and chevron rotation honor `prefers-reduced-motion` only when the theme sets `motion.reducedMotion` to `system` or `always`; the default is `never`. `🚩`",
-      "**2.4.13 Focus Appearance.** The header focus tint is unlikely to meet the area and contrast thresholds. `🚩`",
-      "**2.5.5 Target Size (Enhanced), 44px.** The header (48px tall) meets it; nested action buttons may not. `🚩`",
-      "**1.4.6 Contrast (Enhanced), 7:1.** `text.primary` clears 7:1, but `text.secondary` (about 5.7:1) does not. `🚩`",
-      "Also touched, in the same shape as their A and AA siblings: **1.3.6 Identify Purpose, 1.4.9 Images of Text (No Exception), 2.1.3 Keyboard (No Exception), 2.4.12 Focus Not Obscured (Enhanced)**."
-    ]
-  },
-  "scope": {
-    "items": [
-      "**Standard.** WCAG 2.2, Level A and AA.",
-      "**Component version.** `@mui/material` 9.1.2.",
-      "**Scope.** The Accordion cluster rendered through its documented API: the root `<Accordion>`, plus the passive `AccordionDetails` (the panel's padding container) and `AccordionActions` (the optional action bar), both `<div>`s with no role or ARIA of their own. The interactive header `AccordionSummary` has its own [report](../AccordionSummary/accessibility.md) and is inherited here; author-supplied panel content and action buttons are the author's responsibility.",
-      "**Automated.** axe-core via Playwright test harness (results in [`accordion.a11y.json`](../../../../docs/data/material/components/accordion/accordion.a11y.json)), plus interaction tests in `Accordion.test.js`, `AccordionSummary.test.js`, and `ButtonBase.test.js`.",
-      "**Assistive-technology review.** Not yet performed. Flagged criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver."
-    ]
-  }
+    "1.3.5",
+    "1.4.13",
+    "2.1.4",
+    "2.4.4",
+    "2.5.7",
+    ["3.1.1", "3.1.2"],
+    "3.2.3",
+    "3.2.6",
+    "3.3.7",
+    "3.3.8",
+    "4.1.3",
+    ["1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5"],
+    "1.4.2",
+    "1.3.4",
+    ["2.4.1", "2.4.2", "2.4.5"],
+    ["2.2.1", "2.2.2"],
+    "2.3.1",
+    ["2.5.1", "2.5.4"],
+    ["3.3.1", "3.3.2", "3.3.3", "3.3.4"]
+  ]
 }

@@ -67,9 +67,12 @@ A report is a **claim**; a test is the **proof**. The two are kept apart on purp
 
 ### The claim
 
-Each `<Component>/accessibility.json` rates every applicable success criterion, and records how it is tested, who is responsible, and which test proves it. That file is written by hand, because most criteria need human judgment. It lists each WCAG 2.2 Level A and AA criterion exactly once: rated, inherited from another component, or not applicable.
+A claim has two parts, each in the format that suits it:
 
-The readable `<Component>/accessibility.md` report is generated from it. Do not edit the Markdown report.
+- **`<Component>/accessibility.json`** holds what the script computes with. For each applicable success criterion, it records the rating, how the criterion is tested, who is responsible, and which unit or Playwright test proves it. It also names the component's axe results file. It lists each WCAG 2.2 Level A and AA criterion exactly once: rated, inherited from another component, or not applicable.
+- **`<Component>/accessibility.md`** holds the prose: notes, manual testing steps, pass conditions, and the reasons a criterion does not apply. The script generates everything else in the report: headings, criterion names and levels, ratings, the count table, and the axe results. Write only between the `<!-- …:start -->` and `<!-- …:end -->` markers. The script keeps that text when it regenerates the report.
+
+To rate a new criterion, add it to the JSON file and run `pnpm a11y:scorecard`. The report gets an empty region for the notes, and `pnpm a11y:scorecard:check` fails until you fill it in.
 
 ### The proof
 
@@ -81,29 +84,31 @@ Three kinds of test, none of which writes anything into a report:
 | axe-core                | The docs demos, inside the Playwright loop               | The mechanical layer: ARIA, labels, text contrast, target size                             |
 | Playwright layout suite | `test/regressions/index.test.js`                         | What axe has no rule for: reflow at 320px, 200% text size, the WCAG text-spacing overrides |
 
-axe results are written to `docs/data/material/components/{slug}/{slug}.a11y.json` and committed, so a change that alters them fails CI. **Those files are a tripwire, not a data source** — nothing downstream reads them.
+axe results are written to `docs/data/material/components/{slug}/{slug}.a11y.json` and committed, so a change that alters them fails CI. The scorecard reads them too. The WCAG tags that axe-core ships with each rule (for example, `color-contrast` has `wcag143`) map each rule to its criteria, so the axe evidence for a criterion is derived, not listed by hand.
 
 ### The rollup
 
-`pnpm a11y:scorecard` reads every `<Component>/accessibility.json`, validates it, and regenerates these files:
+`pnpm a11y:scorecard` reads every `<Component>/accessibility.json`, its axe results, and the prose regions of its report, validates them, and regenerates these files:
 
-- each `<Component>/accessibility.md` report, including its count table
+- each `<Component>/accessibility.md` report, including its count table, but keeping its prose regions
 - the [Reports](#reports) table below
 - the [manual checklist](./manual-testing.md)
 - the summary table on the public [accessibility conformance page](../../../docs/data/material/getting-started/accessibility/accessibility.md), between its `scorecard` markers
 - `docs/data/material/getting-started/accessibility/scorecard.json`, the machine-readable rollup
 
-None of those numbers are typed by hand. Edit the JSON files and re-run the command.
+None of those numbers are typed by hand. Edit the JSON files or the prose regions, and re-run the command.
 
 ### What CI enforces
 
-| Job                | Check                                                                                                                                                                                                                 |
-| :----------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `test_unit`        | The unit tests pass.                                                                                                                                                                                                  |
-| `test_regressions` | axe and the layout suite pass, and the committed `*.a11y.json` still match.                                                                                                                                           |
-| `test_static`      | `pnpm a11y:scorecard:check` — the data files are valid, the generated files are current, and no criterion is rated ⚙️ Automated while still flagged `🚩` or without an `axe`, `unit`, or `playwright` evidence entry. |
+| Job                | Check                                                                                                                                                                                                                                                                                                     |
+| :----------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `test_unit`        | The unit tests pass.                                                                                                                                                                                                                                                                                      |
+| `test_regressions` | axe and the layout suite pass, and the committed `*.a11y.json` still match.                                                                                                                                                                                                                               |
+| `test_static`      | `pnpm a11y:scorecard:check` — the data files are valid, the generated files are current, every rated criterion has notes, no criterion is rated ✅ Supports while an axe rule for it fails, and no criterion is rated ⚙️ Automated while still flagged `🚩` or without axe, unit, or Playwright evidence. |
 
-That last check is the link between claim and proof. Each evidence entry names a file, and the check confirms that the file exists. It does not confirm that the named test genuinely proves the criterion. That judgment stays with the reviewer.
+That last check is the link between claim and proof. The axe evidence is derived from the committed results. Each unit or Playwright evidence entry names a file, and the check confirms that the file exists. It does not confirm that the named test genuinely proves the criterion. That judgment stays with the reviewer.
+
+The check also fails when a prose region in a report has no matching entry in the JSON file, for example after a criterion moves to Not applicable. Otherwise, the next run would drop that prose.
 
 ## Reports
 

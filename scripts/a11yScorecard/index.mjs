@@ -3,10 +3,11 @@
  * Builds the accessibility conformance reports and the library-level scorecard.
  *
  * Each `packages/mui-material/src/<Component>/accessibility.json` rates the
- * component against WCAG 2.2 Level A and AA. It is the only source. From it,
- * this script writes:
+ * component against WCAG 2.2 Level A and AA. The axe results come from the
+ * committed `*.a11y.json` it names, and the prose from the region markers in
+ * `<Component>/accessibility.md`. From them, this script writes:
  *
- * - `<Component>/accessibility.md`, the human-readable report
+ * - `<Component>/accessibility.md`, the report, keeping its hand-written regions
  * - the `Reports` table in `packages/mui-material/src/accessibility.md`
  * - `packages/mui-material/src/manual-testing.md`, the manual checklist
  * - the summary tables on the public conformance page
@@ -53,7 +54,9 @@ async function run(argv) {
     throw new Error('No accessibility.json reports found under packages/mui-material/src');
   }
 
-  const violations = (await Promise.all(sources.map(validateReport))).flat();
+  const violations = (
+    await Promise.all(sources.map((source) => validateReport(source, check)))
+  ).flat();
   if (violations.length > 0) {
     console.error('Accessibility report data is invalid:\n');
     violations.forEach((violation) => console.error(`  ${violation}`));
@@ -61,7 +64,7 @@ async function run(argv) {
   }
 
   const reports = sources.map((source) => {
-    const criteria = resolveCriteria(source.data);
+    const criteria = resolveCriteria(source);
     return {
       ...source,
       criteria,
@@ -81,7 +84,7 @@ async function run(argv) {
     components: reports.map((report) => ({
       component: report.component,
       counts: report.counts,
-      gaps: report.data.knownGaps.items,
+      gaps: report.regions.get('known-gaps') ?? '',
       criteria: report.criteria.map(
         ({ number, name, level, conformance, responsibility, group, flagged }) => ({
           number,

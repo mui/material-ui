@@ -1,9 +1,11 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { componentsDirectory, readOptional } from './files.mjs';
+import { componentsDirectory, readOptional, readRegions } from './files.mjs';
+import { readAxeResults } from './axe.mjs';
 
 /**
- * Reads every `packages/mui-material/src/<Component>/accessibility.json`.
+ * Reads every `packages/mui-material/src/<Component>/accessibility.json`, the
+ * hand-written regions of its `accessibility.md`, and its axe results.
  * A component without a data file has not been assessed yet.
  */
 export default async function readReports() {
@@ -24,11 +26,15 @@ export default async function readReports() {
         } catch (error) {
           throw new Error(`${entry.name}/accessibility.json is not valid JSON: ${error.message}`);
         }
+        const reportPath = path.join(componentsDirectory, entry.name, 'accessibility.md');
         return {
           component: entry.name,
           dataPath,
-          reportPath: path.join(componentsDirectory, entry.name, 'accessibility.md'),
+          reportPath,
           data,
+          regions: readRegions(await readOptional(reportPath)),
+          axe:
+            typeof data.axe === 'string' ? await readAxeResults(data.axe).catch(() => null) : null,
         };
       }),
   );

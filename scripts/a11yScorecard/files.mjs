@@ -46,6 +46,21 @@ export async function format(source, filepath) {
   return prettier.format(source, { ...config, filepath });
 }
 
+const REGION = /<!-- (\S+):start -->([\s\S]*?)<!-- \1:end -->/g;
+
+/** Every `<!-- <name>:start -->…<!-- <name>:end -->` region in a file, as `name → trimmed content`. */
+export function readRegions(source) {
+  return new Map(
+    [...(source ?? '').matchAll(REGION)].map(([, name, content]) => [name, content.trim()]),
+  );
+}
+
+/** Wraps hand-written content in region markers. `inline` keeps it on one line. */
+export function region(name, content, inline = false) {
+  const gap = inline ? '' : '\n\n';
+  return `<!-- ${name}:start -->${content ? `${gap}${content}${gap}` : gap}<!-- ${name}:end -->`;
+}
+
 /** Replaces the content between `<!-- <name>:start -->` and `<!-- <name>:end -->`. */
 export function replaceBlock(source, replacement, filepath, name = 'scorecard') {
   const startMarker = `<!-- ${name}:start -->`;
