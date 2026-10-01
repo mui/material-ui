@@ -1,5 +1,5 @@
+import { describe, it, expect, beforeEach } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import {
   createRenderer,
   screen,

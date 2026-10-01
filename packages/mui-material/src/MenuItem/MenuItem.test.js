@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen, supportsTouch } from '@mui/internal-test-utils';
 import MenuItem, { menuItemClasses as classes } from '@mui/material/MenuItem';

@@ -35,6 +35,35 @@ Object.keys(importRegressionFixtures).forEach((path) => {
   }
 }, []);
 
+// A11y-only fixtures, routed as `/a11y-{slug}/{Name}`. Each suite directory
+// is named after a docs slug (lowercase) so the reporter merges its results
+// into that slug's `{slug}.a11y.json` — see `parseRoute` in `demoMeta.ts`.
+// They live outside `./fixtures/` on purpose: a lowercase slug directory next
+// to a PascalCase screenshot suite (`rating/` next to `Rating/`) would fold
+// into one directory on case-insensitive file systems (macOS default).
+const importA11yFixtures = import.meta.glob(['./a11y/fixtures/**/*.{js,ts,tsx}'], {
+  import: 'default',
+  eager: true,
+});
+
+const a11yFixtures = [];
+
+Object.keys(importA11yFixtures).forEach((path) => {
+  const [suite, name] = path
+    .replace('./a11y/fixtures/', '')
+    .replace(/\.\w+$/, '')
+    .split('/');
+
+  if (path.startsWith('./')) {
+    a11yFixtures.push({
+      path,
+      suite: `a11y-${suite}`,
+      name,
+      Component: importA11yFixtures[path],
+    });
+  }
+}, []);
+
 // Also use some of the demos to avoid code duplication.
 //
 // Two exclusion layers:
@@ -97,7 +126,9 @@ const importDemos = import.meta.glob(
     '!docs/data/material/components/material-icons/SearchIcons.*', // Heavy icon grid
     '!docs/data/material/components/menus/**', // Needs interaction
     '!docs/data/material/components/popper/**', // Needs interaction
-    '!docs/data/material/components/progress/**', // Flaky
+    // `progress` is included so axe can run on the enrolled LinearProgress docs
+    // demos; its animated bars make screenshots flaky, so screenshots are
+    // disabled slug-wide in `SCREENSHOT_RULES` (a11y still runs on the demos).
     '!docs/data/material/components/speed-dial/**', // Needs interaction
     '!docs/data/material/components/textarea-autosize/**', // Superseded by a dedicated regression test
     '!docs/data/material/components/tooltips/**', // Needs interaction
@@ -202,6 +233,9 @@ Object.keys(importComposites).forEach((path) => {
   });
 }, []);
 
-const fixtures = regressionFixtures.concat(demoFixtures).concat(compositeFixtures);
+const fixtures = regressionFixtures
+  .concat(a11yFixtures)
+  .concat(demoFixtures)
+  .concat(compositeFixtures);
 
 export default fixtures;

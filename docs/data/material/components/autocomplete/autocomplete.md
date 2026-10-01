@@ -260,6 +260,9 @@ When `multiple={true}`, the user can select multiple values. These selected valu
 
 {{"demo": "Tags.js"}}
 
+To help screen reader users discover how to reach and remove selected items, add `aria-description` to the input and each removable `<Chip>`, as shown in the demo.
+These descriptions are application text, so translate them together with the rest of your interface.
+
 ### Fixed options
 
 In the event that you need to lock certain tags so that they can't be removed, you can set the chips disabled.
@@ -461,11 +464,6 @@ In the event you want the avoid autofill, you can try the following:
   ```
 
 Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/Turning_off_form_autocompletion) for more details.
-
-### iOS VoiceOver
-
-VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well.
-You can work around the issue with the `disablePortal` prop.
 
 ### ListboxComponent
 

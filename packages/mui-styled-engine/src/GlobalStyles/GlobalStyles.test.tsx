@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, expect, it } from 'vitest';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@emotion/react';
 import styled from '..';

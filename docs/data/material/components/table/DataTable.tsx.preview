@@ -5,6 +5,7 @@
     initialState={{ pagination: { paginationModel } }}
     pageSizeOptions={[5, 10]}
     checkboxSelection
+    slots={{ cell: renderRowHeaderCell }}
     sx={{ border: 0 }}
   />
 </Paper>

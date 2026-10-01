@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import * as CodeSandbox from './CodeSandbox';
 
 const testCase = `import * as React from 'react';

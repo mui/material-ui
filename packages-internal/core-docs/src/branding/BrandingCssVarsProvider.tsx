@@ -33,17 +33,17 @@ const themeOptions = {
   },
   typography: deepmerge(typography, {
     h1: {
-      ':where([data-mui-color-scheme="dark"]) &': {
+      '*:where([data-mui-color-scheme="dark"]) &': {
         color: 'var(--muidocs-palette-common-white)',
       },
     },
     h2: {
-      ':where([data-mui-color-scheme="dark"]) &': {
+      '*:where([data-mui-color-scheme="dark"]) &': {
         color: 'var(--muidocs-palette-grey-100)',
       },
     },
     h5: {
-      ':where([data-mui-color-scheme="dark"]) &': {
+      '*:where([data-mui-color-scheme="dark"]) &': {
         color: 'var(--muidocs-palette-primary-300)',
       },
     },

@@ -1,6 +1,6 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import clsx from 'clsx';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';

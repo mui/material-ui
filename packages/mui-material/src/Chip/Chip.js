@@ -196,7 +196,7 @@ const ChipRoot = styled('div', {
         },
         {
           props: { onDelete: true },
-          style: {
+          style: !theme.focusVisible && {
             [`&.${chipClasses.focusVisible}`]: {
               backgroundColor: theme.alpha(
                 (theme.vars || theme).palette.action.selected,
@@ -210,7 +210,7 @@ const ChipRoot = styled('div', {
           .map(([color]) => {
             return {
               props: { color, onDelete: true },
-              style: {
+              style: !theme.focusVisible && {
                 [`&.${chipClasses.focusVisible}`]: {
                   background: (theme.vars || theme).palette[color].dark,
                 },
@@ -229,12 +229,14 @@ const ChipRoot = styled('div', {
                 `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
               ),
             },
-            [`&.${chipClasses.focusVisible}`]: {
-              backgroundColor: theme.alpha(
-                (theme.vars || theme).palette.action.selected,
-                `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
-              ),
-            },
+            ...(!theme.focusVisible && {
+              [`&.${chipClasses.focusVisible}`]: {
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette.action.selected,
+                  `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+                ),
+              },
+            }),
             '&:active': {
               boxShadow: (theme.vars || theme).shadows[1],
             },
@@ -245,9 +247,14 @@ const ChipRoot = styled('div', {
           .map(([color]) => ({
             props: { color, clickable: true },
             style: {
-              [`&:hover, &.${chipClasses.focusVisible}`]: {
+              '&:hover': {
                 backgroundColor: (theme.vars || theme).palette[color].dark,
               },
+              ...(!theme.focusVisible && {
+                [`&.${chipClasses.focusVisible}`]: {
+                  backgroundColor: (theme.vars || theme).palette[color].dark,
+                },
+              }),
             },
           })),
         {
@@ -262,9 +269,11 @@ const ChipRoot = styled('div', {
             [`&.${chipClasses.clickable}:hover`]: {
               backgroundColor: (theme.vars || theme).palette.action.hover,
             },
-            [`&.${chipClasses.focusVisible}`]: {
-              backgroundColor: (theme.vars || theme).palette.action.focus,
-            },
+            ...(!theme.focusVisible && {
+              [`&.${chipClasses.focusVisible}`]: {
+                backgroundColor: (theme.vars || theme).palette.action.focus,
+              },
+            }),
             [`& .${chipClasses.avatar}`]: {
               marginLeft: 4,
             },
@@ -303,12 +312,14 @@ const ChipRoot = styled('div', {
                   (theme.vars || theme).palette.action.hoverOpacity,
                 ),
               },
-              [`&.${chipClasses.focusVisible}`]: {
-                backgroundColor: theme.alpha(
-                  (theme.vars || theme).palette[color].main,
-                  (theme.vars || theme).palette.action.focusOpacity,
-                ),
-              },
+              ...(!theme.focusVisible && {
+                [`&.${chipClasses.focusVisible}`]: {
+                  backgroundColor: theme.alpha(
+                    (theme.vars || theme).palette[color].main,
+                    (theme.vars || theme).palette.action.focusOpacity,
+                  ),
+                },
+              }),
               [`& .${chipClasses.deleteIcon}`]: {
                 color: theme.alpha((theme.vars || theme).palette[color].main, 0.7),
                 '&:hover, &:active': {

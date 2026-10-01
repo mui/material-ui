@@ -202,6 +202,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
       focusRipple: !disableFocusRipple,
       role: undefined,
       tabIndex: null,
+      internalDisabledThemeFocusVisible: true,
     },
   });
 

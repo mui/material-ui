@@ -1,3 +1,4 @@
+import { describe, it } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Typography from '@mui/material/Typography';
 import DialogContentText, {

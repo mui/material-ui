@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer } from '@mui/internal-test-utils';
 import Card, { cardClasses as classes } from '@mui/material/Card';
 import Paper from '@mui/material/Paper';

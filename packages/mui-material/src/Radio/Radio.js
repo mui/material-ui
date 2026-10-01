@@ -3,6 +3,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
+import { outsetFocusRing } from '../styles/focusVisible';
 import SwitchBase from '../internal/SwitchBase';
 import RadioButtonIcon from './RadioButtonIcon';
 import capitalize from '../utils/capitalize';
@@ -46,6 +48,13 @@ const RadioRoot = styled(SwitchBase, {
 })(
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
+    ...(theme.focusVisible && {
+      [`&.${buttonBaseClasses.focusVisible} svg:first-of-type`]: {
+        ...outsetFocusRing,
+        borderRadius: 99,
+        ...theme.focusVisible,
+      },
+    }),
     [`&.${radioClasses.disabled}`]: {
       color: (theme.vars || theme).palette.action.disabled,
     },

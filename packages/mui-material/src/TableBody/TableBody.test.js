@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import TableBody, { tableBodyClasses as classes } from '@mui/material/TableBody';
 import describeConformance from '../../test/describeConformance';

@@ -60,7 +60,7 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 
 ## Distance from anchor
 
-To adjust the distance between the tooltip and its anchor, you can use the `slotProps` prop to modify the [offset](https://popper.js.org/docs/v2/modifiers/offset/) of the popper.
+To adjust the distance between the tooltip and its anchor, you can use the `slotProps` prop to modify the [offset](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/modifiers/offset.md) of the popper.
 
 {{"demo": "TooltipOffset.js"}}
 
@@ -185,7 +185,7 @@ You can enable the tooltip to follow the cursor by setting `followCursor={true}`
 
 In the event you need to implement a custom placement, you can use the `anchorEl` prop:
 The value of the `anchorEl` prop can be a reference to a fake DOM element.
-You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+You need to create an object shaped like the [`VirtualElement`](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/virtual-elements.md).
 
 {{"demo": "AnchorElTooltips.js"}}
 

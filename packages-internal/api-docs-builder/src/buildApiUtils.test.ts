@@ -1,3 +1,4 @@
+import { describe, it } from 'vitest';
 import sinon from 'sinon';
 import { extractPackageFile } from './buildApiUtils';
 

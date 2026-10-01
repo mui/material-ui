@@ -33,7 +33,7 @@ export const StyledTableContainer = styled('div')(
     },
   }),
   ({ theme }) => ({
-    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+    [`*:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& table': {
         background: [
           `linear-gradient(to right, ${theme.palette.primaryDark[900]} 5%, transparent 80%) local`,

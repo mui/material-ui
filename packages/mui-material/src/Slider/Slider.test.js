@@ -1,11 +1,12 @@
+import { beforeEach, expect, it, describe } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
-import { expect } from 'chai';
 import {
   act,
   createRenderer,
   fireEvent,
+  focusVisible,
   screen,
   supportsTouch,
   isJsdom,
@@ -1578,6 +1579,41 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
       expect(document.activeElement).to.have.attribute('data-index', '1');
     });
 
+    it('should bound the value when the neighbour thumb is at 0', () => {
+      const handleChange = spy();
+
+      render(<Slider defaultValue={[-10, 0]} min={-50} disableSwap onChange={handleChange} />);
+
+      const [slider1] = screen.getAllByRole('slider');
+
+      fireEvent.change(slider1, { target: { value: '10' } });
+      expect(handleChange.args[0][1]).to.deep.equal([0, 0]);
+    });
+
+    it('should bound dragging when the previous thumb is at 0', () => {
+      const handleChange = spy();
+      const { container } = render(
+        <Slider defaultValue={[0, 10]} min={-50} max={50} disableSwap onChange={handleChange} />,
+      );
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 60, clientY: 0 }]),
+      );
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 25, clientY: 0 }]),
+      );
+      expect(handleChange.args[0][1]).to.deep.equal([0, 0]);
+    });
+
     it('should bound the value when using the mouse', () => {
       const handleChange = spy();
       const { container } = render(
@@ -1899,4 +1935,22 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
       expect(handleChange.callCount).to.be.greaterThan(changesAfterDown);
     },
   );
+
+  describe('theme.focusVisible', () => {
+    it.skipIf(isJsdom())('renders the curated ring on the thumb when set', () => {
+      const { container } = render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Slider defaultValue={30} />
+        </ThemeProvider>,
+      );
+      focusVisible(screen.getByRole('slider'));
+      const thumb = container.querySelector(`.${classes.thumb}`);
+      expect(thumb).to.have.class(classes.focusVisible);
+      expect(thumb).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+    });
+  });
 });

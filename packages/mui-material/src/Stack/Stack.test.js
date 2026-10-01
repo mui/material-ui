@@ -1,3 +1,4 @@
+import { describe } from 'vitest';
 import { createRenderer } from '@mui/internal-test-utils';
 import Stack, { stackClasses as classes } from '@mui/material/Stack';
 import describeConformance from '../../test/describeConformance';

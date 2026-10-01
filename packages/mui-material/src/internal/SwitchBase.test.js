@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, reactMajor, screen, fireEvent } from '@mui/internal-test-utils';
 import SwitchBase from './SwitchBase';
@@ -12,7 +12,13 @@ import * as ripple from '../../test/ripple';
 describe('<SwitchBase />', () => {
   const { render } = createRenderer();
 
-  function CustomRoot({ centerRipple, focusRipple, ownerState, ...props }) {
+  function CustomRoot({
+    centerRipple,
+    focusRipple,
+    ownerState,
+    internalDisabledThemeFocusVisible,
+    ...props
+  }) {
     return <div {...props} />;
   }
 

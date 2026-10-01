@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import ListItemButton, { listItemButtonClasses as classes } from '@mui/material/ListItemButton';
 import ButtonBase from '@mui/material/ButtonBase';

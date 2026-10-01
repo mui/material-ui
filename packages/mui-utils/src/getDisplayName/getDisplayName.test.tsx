@@ -1,6 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import getDisplayName from './getDisplayName';
 
 describe('utils/getDisplayName.js', () => {

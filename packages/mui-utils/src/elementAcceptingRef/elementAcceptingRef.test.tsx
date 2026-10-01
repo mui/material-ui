@@ -1,6 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
+import { describe, beforeEach, expect, it } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { createRenderer, waitFor, reactMajor } from '@mui/internal-test-utils';
 import elementAcceptingRef from './elementAcceptingRef';

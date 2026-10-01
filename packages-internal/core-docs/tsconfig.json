@@ -4,7 +4,7 @@
     "skipLibCheck": true,
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "types": ["react", "node", "csstype", "vitest/globals"]
+    "types": ["react", "node", "csstype"]
   },
   "include": ["./types.d.ts", "src/**/*", "test/**/*"]
 }

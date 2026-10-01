@@ -200,7 +200,7 @@
   {
     "name": "Nadja Kovacev",
     "title": "People Partner",
-    "about": "🧠 Psychology geek, 🏂 amateur snowboarder, and 𐃡 pottery enthusiast.",
+    "about": "I understand people and I build things from clay that hold water (sometimes)",
     "location": "Novi Sad, Serbia",
     "locationCountry": "rs",
     "github": "nadjakovacev",
@@ -307,7 +307,7 @@
   },
   {
     "name": "Silviu Alexandru Avram",
-    "title": "Software Engineer — Material UI",
+    "title": "Software Engineer — MUI (library)",
     "about": "Coding, Traveling and Experimenting Hobbies.",
     "location": "București, Romania",
     "locationCountry": "ro",
@@ -340,5 +340,14 @@
     "locationCountry": "gb",
     "github": "jjenzz",
     "twitter": "jjenzz"
+  },
+  {
+    "name": "Andy Hook",
+    "title": "Product Engineer — Base UI",
+    "about": "All things DIY and hiking the great outdoors ⛰️.",
+    "location": "Tredegar, UK",
+    "locationCountry": "gb",
+    "github": "andy-hook",
+    "twitter": "Andy_Hook"
   }
 ]
