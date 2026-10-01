@@ -268,6 +268,9 @@ Tested by: Playwright
 
 ## Scope and test environment
 
+- **Standard.** WCAG 2.2, Level A and AA.
+- **Component version.** `@mui/material` 9.4.0.
+
 <!-- scope:start -->
 
 - **Scope.** The Avatar component in isolation, rendered through its documented API. `AvatarGroup` is a separate component and is out of scope.

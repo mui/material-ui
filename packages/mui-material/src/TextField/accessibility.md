@@ -515,6 +515,9 @@ The following SC are applicable but out of scope:
 
 ## Scope and test environment
 
+- **Standard.** WCAG 2.2, Level A and AA.
+- **Component version.** `@mui/material` 9.4.0.
+
 <!-- scope:start -->
 
 - **Scope.** The TextField component in the `outlined` and `filled` variants, rendered through its documented API. The `select` mode (which renders a `Select`) and the `standard` variant are out of scope.

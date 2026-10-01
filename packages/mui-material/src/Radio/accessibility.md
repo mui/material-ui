@@ -464,6 +464,9 @@ Tested by: unit `Radio.test.js`
 
 ## Scope and test environment
 
+- **Standard.** WCAG 2.2, Level A and AA.
+- **Component version.** `@mui/material` 9.4.0.
+
 <!-- scope:start -->
 
 - **Scope.** The Radio component and its documented composition with `FormControlLabel`, `FormControl`/`FormLabel`, and `FormHelperText`, rendered through the documented API. Group-level coordination (the `radiogroup` role, arrow-key navigation, and the group's name) is rated in the [RadioGroup report](../RadioGroup/accessibility.md).

@@ -368,6 +368,9 @@ These item-level criteria are rated on the header button. See [AccordionSummary]
 
 ## Scope and test environment
 
+- **Standard.** WCAG 2.2, Level A and AA.
+- **Component version.** `@mui/material` 9.4.0.
+
 <!-- scope:start -->
 
 - **Scope.** The Accordion cluster rendered through its documented API: the root `<Accordion>`, plus the passive `AccordionDetails` (the panel's padding container) and `AccordionActions` (the optional action bar), both `<div>`s with no role or ARIA of their own. The interactive header `AccordionSummary` has its own [report](../AccordionSummary/accessibility.md) and is inherited here; author-supplied panel content and action buttons are the author's responsibility.

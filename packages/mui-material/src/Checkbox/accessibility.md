@@ -488,6 +488,9 @@ The following SC are applicable but out of scope:
 
 ## Scope and test environment
 
+- **Standard.** WCAG 2.2, Level A and AA.
+- **Component version.** `@mui/material` 9.4.0.
+
 <!-- scope:start -->
 
 - **Scope.** The Checkbox component and its documented composition with `FormControlLabel`, `FormControl`/`FormGroup`, `FormLabel`, and `FormHelperText`, rendered through the documented API.

@@ -171,6 +171,9 @@ The following SC are applicable but out of scope, and are item-level:
 
 ## Scope and test environment
 
+- **Standard.** WCAG 2.2, Level A and AA.
+- **Component version.** `@mui/material` 9.4.0.
+
 <!-- scope:start -->
 
 - **Scope.** The ToggleButtonGroup component coordinating two or more `ToggleButton` children, with an author-supplied `aria-label` for the group's name, rendered through the documented API. Each toggle's item-level conformance is inherited from the [Toggle Button report](../ToggleButton/accessibility.md).

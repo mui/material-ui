@@ -117,7 +117,7 @@ function renderNotApplicable(notApplicable, slot) {
  * markers of the current report. `used` collects the region names it renders.
  */
 export function renderReport(report, used = new Set()) {
-  const { component, title, criteria, counts, regions, inherited } = report;
+  const { component, title, criteria, counts, regions, inherited, version } = report;
   const slot = (name, inline) => {
     used.add(name);
     return region(name, regions.get(name), inline);
@@ -165,6 +165,10 @@ export function renderReport(report, used = new Set()) {
     '## Level AAA',
     slot('level-aaa'),
     '## Scope and test environment',
+    [
+      '- **Standard.** WCAG 2.2, Level A and AA.',
+      `- **Component version.** \`@mui/material\` ${version}.`,
+    ].join('\n'),
     slot('scope'),
   );
 

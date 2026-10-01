@@ -66,8 +66,11 @@ async function run(argv) {
     ...(await Promise.all(sources.map((source) => validateSource(source, defaults)))).flat(),
   ]);
 
+  // A conformance report is a statement about one release, so each report names the version.
+  const { version } = JSON.parse(await fs.readFile(packageJsonPath, 'utf8'));
   const reports = resolveReports(sources, defaults).map((report) => ({
     ...report,
+    version,
     summary: summarize(report.criteria),
   }));
   fail(reports.flatMap((report) => validateReport(report, check)));
@@ -130,7 +133,6 @@ async function run(argv) {
     {
       filepath: docsPagePath,
       render: async () => {
-        const { version } = JSON.parse(await fs.readFile(packageJsonPath, 'utf8'));
         let page = await fs.readFile(docsPagePath, 'utf8');
         page = replaceBlock(page, renderDocsTable(reports), docsPagePath);
         page = replaceBlock(page, renderDocsAbout(version), docsPagePath, 'scorecard-about');
