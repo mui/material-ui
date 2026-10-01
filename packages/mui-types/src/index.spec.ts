@@ -7,3 +7,8 @@ function expectTypeTypes() {
     expectType<MouseEvent, typeof event>(event);
   }
 }
+
+function overridableStringUnionTests() {
+  // @ts-expect-error Numeric values are not valid string-union members.
+  type InvalidUnion = OverridableStringUnion<'a' | 1>;
+}
