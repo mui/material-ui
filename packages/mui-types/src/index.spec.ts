@@ -1,4 +1,4 @@
-import { expectType , OverridableStringUnion} from '.';
+import { expectType, type OverridableStringUnion } from '.';
 
 function expectTypeTypes() {
   // it rejects assignability to `any`
