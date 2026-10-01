@@ -29,58 +29,8 @@ grow from it.
 
 ## Open roles
 
-We're currently looking for help in the following areas:
-
-### Engineering
-
-#### [Full-stack Engineer](/company/full-stack-engineer/)
-
-You will initiate the development of a bold new product vertical.
-We are looking for an experienced and ambitious full-stack engineer that is ready to work in an entrepreneurial environment.
-You are a [manager of one](https://signalvnoise.com/posts/1430-hire-managers-of-one), you are curious, enjoy taking risks, and learning.
-
-#### [React Engineer](/company/react-engineer/)
-
-You will support the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption of the free open-source tier (freemium/open-core business model).
-
-### Product
-
-#### [Technical Product Manager](/company/technical-product-manager/)
-
-You will define and maintain the product roadmap for the advanced components, identify opportunities, define specs, and work with engineers to execute on the features.
-Experience as an engineer is essential for this role, as you will also contribute to development work in the beginning.
-
-#### [Product Manager](/company/product-manager/)
-
-You will initiate the exploration of a bold new product vertical.
-We are looking for an experienced and ambitious product manager who is ready to work in an entrepreneurial environment.
-You are a [manager of one](https://signalvnoise.com/posts/1430-hire-managers-of-one), you are curious, enjoy taking risks, and learning.
-
-#### [Developer Advocate](/company/developer-advocate/)
-
-You will educate users on the latest features, craft high-quality examples and demos, engage with the community, write documentation, advocate for creating faster and more appealing UIs, and help to promote/market the advanced components.
-
-## Future roles
-
-In the future, we will need to fill the following positions.
-If you don't want to wait for the positions to be opened, you can jump ahead and submit an [open application](https://airtable.com/shr9JdBSiE6noobhc).
-
-### Engineering
-
-- No plans yet
-
-### Product
-
-- **Product Designer**. Design is critical to the success of our mission. We will be looking for skills that complement our lead designer. It could be a graphic designer or a UX expert for instance, depending on our exact needs.
-
-### Operations
-
-- **Head of talent**. Recruit an exceptional team and lay the foundations for a modern corporation.
-We will be looking for a self-starter who acts as a strategic designer, builder, and champion for our engineering-centric and customer-oriented culture. They will serve as part of the company’s leadership team, collaborating to continuously evolve our high-performance, high-engagement crew.
-
-### Customer Success
-
-- **Support Engineer**. Ensure that our users wildly succeed on their journey with Material-UI. You’ll directly work with users, customers, and potential customers to unblock them from using the products, triage and resolve issues, and use this direct feedback to drive direct improvements in Material-UI.
+This is an archived version of the Material-UI documentation.
+See the [current careers page](https://mui.com/careers/#open-roles) for the latest open roles.
 
 ## FAQs
 
