@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/c6471a4fe98cb2e52efe7397ff8362569f2ddada/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/342a1159c5c25a48c8ed853893146aa8701574a6/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
@@ -34,7 +34,7 @@ default-job: &default-job
   working_directory: /tmp/material-ui
   executor:
     name: code-infra/mui-node
-    node-version: '22.23.2'
+    node-version: '22.23.3'
   resource_class: medium.gen2
 
 default-context: &default-context
@@ -95,6 +95,12 @@ jobs:
       - code-infra/check-static-changes
       - code-infra/check-generated:
           command: pnpm proptypes
+      - run:
+          # Fails when a conformance report changes without its rollup being
+          # regenerated, and when a report rates a criterion ⚙️ Automated
+          # without citing the test or axe rule that proves it.
+          name: Accessibility scorecard up to date?
+          command: pnpm a11y:scorecard:check
       - code-infra/check-generated:
           command: pnpm docs:api
       - code-infra/extract-error-codes
@@ -147,7 +153,7 @@ jobs:
       - run:
           name: Upgrade Node.js for pnpm 11
           command: |
-            curl -fsSL https://nodejs.org/dist/v22.23.2/node-v22.23.2-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
+            curl -fsSL https://nodejs.org/dist/v22.23.3/node-v22.23.3-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
             node --version
       - code-infra/install-pnpm
       - run:
