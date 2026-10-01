@@ -321,6 +321,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
       slotProps={componentsProps}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
+      internalDisabledThemeFocusVisible={!disableUnderline}
       multiline={multiline}
       ref={ref}
       type={type}
