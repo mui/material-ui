@@ -28,7 +28,7 @@
   "themeDefaultProps": true,
   "muiName": "MuiTableContainer",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-material/src/TableContainer/TableContainer.js",
+  "filename": "/packages/mui-material/src/TableContainer/TableContainer.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-table/\">Table</a></li></ul>"
 }

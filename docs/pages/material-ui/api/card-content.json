@@ -28,7 +28,7 @@
   "themeDefaultProps": true,
   "muiName": "MuiCardContent",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-material/src/CardContent/CardContent.js",
+  "filename": "/packages/mui-material/src/CardContent/CardContent.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-card/\">Card</a></li></ul>"
 }
