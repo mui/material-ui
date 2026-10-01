@@ -285,25 +285,36 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     };
   }, [isMultiSchemes]);
 
-  // Handle when localStorage has changed
+  // Apply external changes without persisting them again, which would echo across tabs.
   React.useEffect(() => {
     if (isMultiSchemes) {
       const unsubscribeMode =
         modeStorage?.subscribe((value: Mode) => {
           if (!value || ['light', 'dark', 'system'].includes(value)) {
-            setMode((value as Mode) || defaultMode);
+            const newMode = value || defaultMode;
+            setState((currentState) =>
+              currentState.mode === newMode
+                ? currentState
+                : { ...currentState, mode: newMode, systemMode: getSystemMode(newMode) },
+            );
           }
         }) || noop;
       const unsubscribeLight =
         lightStorage?.subscribe((value: SupportedColorScheme) => {
           if (!value || joinedColorSchemes.match(value)) {
-            setColorScheme({ light: value as SupportedColorScheme | null });
+            setState((currentState) => ({
+              ...currentState,
+              lightColorScheme: value || defaultLightColorScheme,
+            }));
           }
         }) || noop;
       const unsubscribeDark =
         darkStorage?.subscribe((value: SupportedColorScheme) => {
           if (!value || joinedColorSchemes.match(value)) {
-            setColorScheme({ dark: value as SupportedColorScheme | null });
+            setState((currentState) => ({
+              ...currentState,
+              darkColorScheme: value || defaultDarkColorScheme,
+            }));
           }
         }) || noop;
       return () => {
@@ -314,10 +325,10 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     }
     return undefined;
   }, [
-    setColorScheme,
-    setMode,
     joinedColorSchemes,
     defaultMode,
+    defaultLightColorScheme,
+    defaultDarkColorScheme,
     storageWindow,
     isMultiSchemes,
     modeStorage,
