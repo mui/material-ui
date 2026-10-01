@@ -9,7 +9,7 @@ Install the package in your project directory with:
 <!-- #npm-tag-reference -->
 
 ```bash
-npm install @mui/system @emotion/react @emotion/styled
+npm install @mui/system@next @emotion/react @emotion/styled
 ```
 
 ## Documentation
