@@ -79,4 +79,5 @@ export const GROUP_HEADINGS = {
   Automated: '⚙️ Automated',
 };
 
-export const EVIDENCE_TYPES = ['axe', 'unit', 'playwright', 'review'];
+/** The axe-core tag for a criterion: `1.4.10` → `wcag1410`. */
+export const wcagTag = (number) => `wcag${number.replaceAll('.', '')}`;

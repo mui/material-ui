@@ -6,6 +6,7 @@ import * as prettier from 'prettier';
 export const rootDirectory = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 export const componentsDirectory = path.join(rootDirectory, 'packages/mui-material/src');
 export const indexPath = path.join(componentsDirectory, 'accessibility.md');
+export const defaultsPath = path.join(componentsDirectory, 'accessibility.json');
 export const checklistPath = path.join(componentsDirectory, 'manual-testing.md');
 export const scorecardPath = path.join(
   rootDirectory,
@@ -44,6 +45,31 @@ export async function exists(filepath) {
 export async function format(source, filepath) {
   const config = await prettier.resolveConfig(filepath);
   return prettier.format(source, { ...config, filepath });
+}
+
+const REGION_START = /<!-- (\S+):start -->/g;
+
+/**
+ * Every `<!-- <name>:start -->…<!-- <name>:end -->` region in a file, as
+ * `name → trimmed content`. Regions can nest inside a generated block.
+ */
+export function readRegions(source = '') {
+  const regions = new Map();
+  for (const match of (source ?? '').matchAll(REGION_START)) {
+    const [startMarker, name] = match;
+    const start = match.index + startMarker.length;
+    const end = source.indexOf(`<!-- ${name}:end -->`, start);
+    if (end !== -1) {
+      regions.set(name, source.slice(start, end).trim());
+    }
+  }
+  return regions;
+}
+
+/** Wraps hand-written content in region markers. `inline` keeps it on one line. */
+export function region(name, content, inline = false) {
+  const gap = inline ? '' : '\n\n';
+  return `<!-- ${name}:start -->${content ? `${gap}${content}${gap}` : gap}<!-- ${name}:end -->`;
 }
 
 /** Replaces the content between `<!-- <name>:start -->` and `<!-- <name>:end -->`. */
