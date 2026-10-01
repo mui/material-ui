@@ -152,6 +152,7 @@ describe('createTheme', () => {
 
   it('should work with `palette` and a custom `colorSchemes.dark`', () => {
     const theme = createTheme({
+      cssVariables: false,
       palette: {
         background: {
           default: '#f5f5f5',

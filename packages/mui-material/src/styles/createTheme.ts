@@ -34,6 +34,11 @@ type CssVarsConfigList =
   | 'nativeColor';
 
 export interface ThemeOptions extends CssVarsOptions, Omit<CssVarsThemeOptions, CssVarsConfigList> {
+  /**
+   * If `true` or an object, the theme generates CSS theme variables (`theme.vars`).
+   * Set it to `false` to create a theme without CSS theme variables.
+   * @default true
+   */
   cssVariables?: boolean | Pick<CssVarsThemeOptions, CssVarsConfigList> | undefined;
   palette?: PaletteOptions | undefined;
 }
@@ -70,7 +75,7 @@ export default function createTheme(
 ): Theme {
   const {
     palette,
-    cssVariables = false,
+    cssVariables = true,
     colorSchemes: initialColorSchemes = !palette ? { light: true } : undefined,
     defaultColorScheme: initialDefaultColorScheme = palette?.mode,
     ...other
