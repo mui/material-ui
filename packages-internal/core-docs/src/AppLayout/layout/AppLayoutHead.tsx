@@ -52,7 +52,6 @@ export function AppLayoutHead(props: AppLayoutHeadProps) {
       <meta property="og:ttl" content="604800" />
       {/* Algolia */}
       <meta name="docsearch:language" content={userLanguage} />
-      {/* #host-reference */}
       <meta name="docsearch:version" content="master" />
       {disableAlternateLocale
         ? null
@@ -60,7 +59,7 @@ export function AppLayoutHead(props: AppLayoutHeadProps) {
             <link
               key={userLanguage2}
               rel="alternate"
-              href={`https://mui.com${
+              href={`https://next.mui.com${
                 userLanguage2 === 'en' ? '' : `/${userLanguage2}`
               }${canonicalAs}`}
               hrefLang={userLanguage2}
