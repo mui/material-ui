@@ -2,11 +2,11 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { PaperProps } from '../Paper';
+import Paper, { PaperProps } from '../Paper';
 import { PopoverProps } from '../Popover';
-import { MenuListProps } from '../MenuList';
-import { ModalProps } from '../Modal';
-import { BackdropProps } from '../Backdrop';
+import MenuList from '../MenuList';
+import Modal from '../Modal';
+import Backdrop from '../Backdrop';
 import { TransitionProps } from '../transitions/types';
 import { MenuClasses } from './menuClasses';
 import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
@@ -56,17 +56,17 @@ export type MenuSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the root slot.
      * By default, the available props are based on the [Popover](https://mui.com/material-ui/api/popover/#props) component.
      */
-    root: SlotProps<React.ElementType<ModalProps>, MenuRootSlotPropsOverrides, MenuOwnerState>;
+    root: SlotProps<typeof Modal, MenuRootSlotPropsOverrides, MenuOwnerState>;
     /**
      * Props forwarded to the paper slot.
      * By default, the available props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.
      */
-    paper: SlotProps<React.ElementType<PaperProps>, MenuPaperSlotPropsOverrides, MenuOwnerState>;
+    paper: SlotProps<typeof Paper, MenuPaperSlotPropsOverrides, MenuOwnerState>;
     /**
      * Props forwarded to the list slot.
      * By default, the available props are based on the [MenuList](https://mui.com/material-ui/api/menu-list/#props) component.
      */
-    list: SlotProps<React.ElementType<MenuListProps>, MenuListSlotPropsOverrides, MenuOwnerState>;
+    list: SlotProps<typeof MenuList, MenuListSlotPropsOverrides, MenuOwnerState>;
     /**
      * Props forwarded to the transition slot.
      * By default, the available props are based on the [Grow](https://mui.com/material-ui/api/grow/#props) component.
@@ -82,7 +82,7 @@ export type MenuSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the available props are based on the [Backdrop](https://mui.com/material-ui/api/backdrop/#props) component.
      */
     backdrop: SlotProps<
-      React.ElementType<BackdropProps>,
+      typeof Backdrop,
       MenuBackdropSlotPropsOverrides,
       MenuOwnerState
     >;

@@ -5,7 +5,7 @@ import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { AvatarClasses } from './avatarClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import { SvgIconProps } from '../SvgIcon';
+import SvgIcon from '../SvgIcon';
 
 export interface AvatarSlots {
   /**
@@ -49,7 +49,7 @@ export type AvatarSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the available props are based on the [SvgIcon](https://mui.com/material-ui/api/svg-icon/#props) component.
      */
     fallback: SlotProps<
-      React.ElementType<SvgIconProps>,
+      typeof SvgIcon,
       AvatarFallbackSlotPropsOverrides,
       AvatarOwnProps
     >;

@@ -31,6 +31,11 @@ function DialogWithAlertRole() {
   return <Dialog open role="alertdialog" />;
 }
 
+<Dialog open slotProps={{ paper: { variant: 'outlined', className: 'x' } }} />;
+<Dialog open slotProps={{ paper: (ownerState) => ({ square: ownerState.fullScreen }) }} />;
+// @ts-expect-error
+<Dialog open slotProps={{ paper: { nonExistentProp: true } }} />;
+
 function Custom(props: DialogProps) {
   const { slotProps, ...other } = props;
   return (

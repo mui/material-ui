@@ -10,6 +10,10 @@ function CustomImg() {
 }
 <Avatar slotProps={{ img: { alt: '' } }} />;
 <Avatar slots={{ img: CustomImg }} />;
+<Avatar slotProps={{ fallback: { titleAccess: 'title', className: 'x' } }} />;
+<Avatar slotProps={{ fallback: (ownerState) => ({ className: ownerState.variant }) }} />;
+// @ts-expect-error
+<Avatar slotProps={{ fallback: { nonExistentProp: true } }} />;
 
 // Next.js Image component
 interface StaticImageData {

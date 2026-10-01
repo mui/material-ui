@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { StepIconProps } from '../StepIcon';
+import StepIcon from '../StepIcon';
 import { StepLabelClasses } from './stepLabelClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
@@ -40,7 +40,7 @@ export type StepLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the stepIcon slot.
      * By default, the available props are based on the div element.
      */
-    stepIcon: SlotProps<React.ElementType<StepIconProps>, {}, StepLabelOwnerState>;
+    stepIcon: SlotProps<typeof StepIcon, {}, StepLabelOwnerState>;
   }
 >;
 
