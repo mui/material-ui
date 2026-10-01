@@ -11,8 +11,8 @@ function ListHeader({ sx = [], children }) {
           width: 'auto',
           textDecoration: 'underline',
         },
-        // You cannot spread `sx` directly because `SxProps` (typeof sx) can be an array.
-        ...(Array.isArray(sx) ? sx : [sx]),
+        // `sx` can itself be an array, so flatten it before spreading.
+        ...[sx].flat(),
       ]}
     >
       <FormLabel sx={{ color: 'inherit' }}>{children}</FormLabel>

@@ -17,7 +17,7 @@ export interface GlobalStylesProps<Theme = SystemTheme> {
 function wrapGlobalLayer(styles: any) {
   const serialized = serializeStyles(styles) as { styles?: string | undefined };
   if (styles !== serialized && serialized.styles) {
-    if (!serialized.styles.match(/^@layer\s+[^{]*$/)) {
+    if (!serialized.styles.match(/^@layer\s[^{]*$/)) {
       // If the styles are not already wrapped in a layer, wrap them in a global layer.
       serialized.styles = `@layer global{${serialized.styles}}`;
     }
