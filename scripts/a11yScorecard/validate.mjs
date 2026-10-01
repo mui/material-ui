@@ -1,198 +1,274 @@
 import path from 'path';
-import { exists, rootDirectory } from './files.mjs';
+import { componentsDirectory, exists } from './files.mjs';
+import { renderDefaultReasons, renderReport } from './render.mjs';
+import { RATING_KEYS } from './rollup.mjs';
 import {
   CONFORMANCE_SYMBOLS,
-  EVIDENCE_TYPES,
   GROUP_HEADINGS,
   RESPONSIBILITY_SYMBOLS,
   WCAG_BY_NUMBER,
   WCAG_CRITERIA,
 } from './wcag.mjs';
 
+const ALLOWED = {
+  conformance: Object.keys(CONFORMANCE_SYMBOLS),
+  responsibility: Object.keys(RESPONSIBILITY_SYMBOLS),
+  group: Object.keys(GROUP_HEADINGS),
+  flagged: [true, false],
+};
+
+const isObject = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
+const isStrings = (value) =>
+  Array.isArray(value) && value.every((item) => typeof item === 'string' && item !== '');
+
+/** Checks the rating fields of one criterion entry. */
+function checkRating(entry, where, required, violations) {
+  if (!isObject(entry)) {
+    violations.push(`${where}: must be an object`);
+    return;
+  }
+  for (const key of Object.keys(entry)) {
+    if (!RATING_KEYS.includes(key) && !(required && key === 'notApplicable')) {
+      violations.push(`${where}: unknown key "${key}"`);
+    }
+  }
+  for (const key of RATING_KEYS) {
+    if (entry[key] === undefined) {
+      if (required) {
+        violations.push(`${where}: missing "${key}"`);
+      }
+    } else if (!ALLOWED[key].includes(entry[key])) {
+      violations.push(`${where}: "${key}" must be one of ${ALLOWED[key].join(', ')}`);
+    }
+  }
+}
+
 /**
- * The shape of `<Component>/accessibility.json`. Prose fields hold Markdown.
+ * The library defaults, `packages/mui-material/src/accessibility.json`:
+ * `{ criteria: { <number>: { conformance, responsibility, group, flagged, notApplicable? } } }`,
+ * one entry for each WCAG 2.2 Level A and AA criterion.
+ */
+export function validateDefaults(defaults, check) {
+  const violations = [];
+  const { criteria } = defaults.data;
+  if (!isObject(criteria)) {
+    return ['accessibility.json: "criteria" must be an object'];
+  }
+  for (const { number } of WCAG_CRITERIA) {
+    if (!criteria[number]) {
+      violations.push(`accessibility.json: ${number} has no default`);
+    }
+  }
+  for (const [number, entry] of Object.entries(criteria)) {
+    const where = `accessibility.json: ${number}`;
+    if (!WCAG_BY_NUMBER.has(number)) {
+      violations.push(`${where} is not a WCAG 2.2 Level A or AA criterion`);
+      continue;
+    }
+    checkRating(entry, where, true, violations);
+    if (entry.notApplicable !== undefined && entry.notApplicable !== true) {
+      violations.push(`${where}: "notApplicable" is either true or left out`);
+    }
+  }
+  if (violations.length > 0) {
+    return violations;
+  }
+
+  const used = new Set();
+  renderDefaultReasons(defaults, used);
+  for (const [name, content] of defaults.regions) {
+    if (content && WCAG_BY_NUMBER.has(name) && !used.has(name)) {
+      violations.push(
+        `accessibility.md: ${name} has a not-applicable reason but is applicable by default`,
+      );
+    }
+  }
+  if (check) {
+    for (const number of used) {
+      if (!defaults.regions.get(number)) {
+        violations.push(`accessibility.md: ${number} has no default not-applicable reason`);
+      }
+    }
+  }
+  return violations;
+}
+
+const COMPONENT_KEYS = {
+  title: (value) => typeof value === 'string',
+  axe: (value) => typeof value === 'string',
+  tests: isStrings,
+  inherits: (value) => typeof value === 'string',
+  criteria: isObject,
+  notApplicable: isStrings,
+};
+
+/**
+ * The shape of `<Component>/accessibility.json`, which holds only what differs
+ * from the library defaults:
  *
  * - `title` (optional): the display name, when it differs from the folder name.
- * - `intro`, `countsNote` (optional): paragraphs before and after the count table.
- * - `knownGaps`, `levelAAA`, `scope`: `{ intro?: string[], items: string[] }`.
- * - `criteria`: the rated criteria. See `CRITERION_KEYS`.
- * - `inherited` (optional): `{ from, intro?, items: [{ criteria, text }] }`.
- * - `notApplicable`: `[{ criteria, text }]`.
+ * - `axe` (optional): the committed `*.a11y.json` for the component's demos.
+ * - `tests` (optional): other components whose test files also test this one.
+ * - `inherits` (optional): the component whose ratings this one inherits.
+ * - `criteria`: `{ <number>: { conformance?, responsibility?, group?, flagged? } }`.
+ * - `notApplicable` (optional): criteria not applicable beyond the defaults.
  */
-const REPORT_KEYS = {
-  title: 'string',
-  intro: 'strings',
-  countsNote: 'strings',
-  knownGaps: 'listSection',
-  criteria: 'array',
-  inherited: 'object',
-  notApplicable: 'array',
-  levelAAA: 'listSection',
-  scope: 'listSection',
-};
-const REQUIRED_REPORT_KEYS = ['knownGaps', 'criteria', 'notApplicable', 'levelAAA', 'scope'];
-
-const CRITERION_KEYS = {
-  number: 'string',
-  conformance: 'string',
-  responsibility: 'string',
-  group: 'string',
-  flagged: 'boolean',
-  evidence: 'array',
-  notes: 'strings',
-  details: 'string',
-  steps: 'strings',
-  pass: 'string',
-};
-const REQUIRED_CRITERION_KEYS = [
-  'number',
-  'conformance',
-  'responsibility',
-  'group',
-  'flagged',
-  'evidence',
-  'notes',
-];
-
-const isStrings = (value) =>
-  Array.isArray(value) && value.every((item) => typeof item === 'string' && item.trim() !== '');
-
-function checkType(value, type) {
-  switch (type) {
-    case 'strings':
-      return isStrings(value);
-    case 'array':
-      return Array.isArray(value);
-    case 'object':
-      return value !== null && typeof value === 'object' && !Array.isArray(value);
-    case 'listSection':
-      return (
-        checkType(value, 'object') &&
-        isStrings(value.items) &&
-        (value.intro === undefined || isStrings(value.intro)) &&
-        Object.keys(value).every((key) => key === 'intro' || key === 'items')
-      );
-    default:
-      return typeof value === type;
-  }
-}
-
-/** Checks an object against a `{ key: type }` map. */
-function checkKeys(object, keys, required, where, violations) {
-  for (const key of required) {
-    if (object[key] === undefined) {
-      violations.push(`${where}: missing "${key}"`);
+export async function validateSource(source, defaults) {
+  const { component, data } = source;
+  const violations = [];
+  for (const [key, value] of Object.entries(data)) {
+    if (!COMPONENT_KEYS[key]) {
+      violations.push(`unknown key "${key}"`);
+    } else if (!COMPONENT_KEYS[key](value)) {
+      violations.push(`"${key}" has the wrong type`);
     }
   }
-  for (const [key, value] of Object.entries(object)) {
-    if (!keys[key]) {
-      violations.push(`${where}: unknown key "${key}"`);
-    } else if (!checkType(value, keys[key])) {
-      violations.push(`${where}: "${key}" must be ${keys[key]}`);
-    }
+  if (data.criteria === undefined) {
+    violations.push('missing "criteria"');
   }
-}
+  if (violations.length > 0) {
+    return violations.map((violation) => `${component}: ${violation}`);
+  }
 
-function checkCriteriaList(entries, where, violations) {
-  entries.forEach((entry, index) => {
-    const at = `${where}[${index}]`;
-    checkKeys(entry, { criteria: 'strings', text: 'string' }, ['criteria', 'text'], at, violations);
+  if (data.axe !== undefined && !source.axe) {
+    violations.push(`axe: "${data.axe}" does not exist`);
+  }
+  (data.tests ?? []).forEach((name, index) => {
+    if (!source.extraTests[index]) {
+      violations.push(`tests: ${name}/${name}.test.js does not exist`);
+    }
   });
+  if (data.inherits !== undefined) {
+    const parent = path.join(componentsDirectory, data.inherits, 'accessibility.json');
+    if (!(await exists(parent))) {
+      violations.push(`inherits: ${data.inherits} has no accessibility.json`);
+    }
+  }
+
+  const ownNotApplicable = new Set(data.notApplicable ?? []);
+  for (const [number, entry] of Object.entries(data.criteria)) {
+    const where = `criteria.${number}`;
+    const fallback = defaults.data.criteria[number];
+    if (!fallback) {
+      violations.push(`${where}: not a WCAG 2.2 Level A or AA criterion`);
+      continue;
+    }
+    checkRating(entry, where, false, violations);
+    for (const key of Object.keys(entry)) {
+      if (entry[key] === fallback[key]) {
+        violations.push(`${where}: "${key}" repeats the default`);
+      }
+    }
+    if (Object.keys(entry).length === 0 && !data.inherits && !fallback.notApplicable) {
+      violations.push(`${where}: an empty entry repeats the default`);
+    }
+    if (ownNotApplicable.has(number)) {
+      violations.push(`${number}: rated and listed as not applicable`);
+    }
+  }
+  for (const number of ownNotApplicable) {
+    if (!defaults.data.criteria[number]) {
+      violations.push(`notApplicable: ${number} is not a WCAG 2.2 Level A or AA criterion`);
+    } else if (defaults.data.criteria[number].notApplicable) {
+      violations.push(`notApplicable: ${number} is already not applicable by default`);
+    }
+  }
+  return violations.map((violation) => `${component}: ${violation}`);
 }
 
-/** Checks one criterion's fields and the evidence behind its rating. */
-async function checkCriterion(criterion, where, violations) {
-  checkKeys(criterion, CRITERION_KEYS, REQUIRED_CRITERION_KEYS, where, violations);
+/** Checks one resolved criterion against the evidence behind it. */
+function checkCriterion(criterion, override, where, violations) {
+  const tested = criterion.evidence.some((entry) => entry.type !== 'axe');
 
-  if (!CONFORMANCE_SYMBOLS[criterion.conformance]) {
-    violations.push(`${where}: unknown conformance "${criterion.conformance}"`);
-  }
-  if (!RESPONSIBILITY_SYMBOLS[criterion.responsibility]) {
-    violations.push(`${where}: unknown responsibility "${criterion.responsibility}"`);
-  }
-  if (!GROUP_HEADINGS[criterion.group]) {
-    violations.push(`${where}: unknown group "${criterion.group}"`);
-  }
-  if ((criterion.steps === undefined) !== (criterion.pass === undefined)) {
-    violations.push(`${where}: "steps" and "pass" go together`);
-  }
-
-  await Promise.all(
-    (criterion.evidence ?? []).map(async (entry, index) => {
-      const at = `${where}.evidence[${index}]`;
-      checkKeys(entry, { type: 'string', ref: 'string' }, ['type', 'ref'], at, violations);
-      if (!EVIDENCE_TYPES.includes(entry.type)) {
-        violations.push(`${at}: unknown type "${entry.type}"`);
-      } else if (entry.type !== 'review' && !(await exists(path.join(rootDirectory, entry.ref)))) {
-        violations.push(`${at}: "${entry.ref}" does not exist`);
+  if (override.conformance === 'Supports') {
+    for (const { rule, status } of criterion.axeRules) {
+      if (status === 'fail') {
+        violations.push(`${where}: rated Supports but axe rule "${rule}" fails`);
       }
-    }),
-  );
-
+    }
+  }
   // An ⚙️ Automated rating claims that something deterministic proves the
-  // criterion, so it must name that test, and it cannot also be flagged 🚩.
+  // criterion, so it must have that test, and it cannot also be flagged 🚩.
   if (criterion.group === 'Automated') {
     if (criterion.flagged) {
       violations.push(`${where}: rated Automated but still flagged 🚩`);
     }
-    if (!(criterion.evidence ?? []).some((entry) => entry.type !== 'review')) {
-      violations.push(`${where}: rated Automated but has no axe, unit, or Playwright evidence`);
+    if (criterion.evidence.length === 0) {
+      violations.push(`${where}: rated Automated but no unit, Playwright, or axe test covers it`);
     }
+  }
+  if (criterion.group === 'Manual' && tested) {
+    violations.push(`${where}: rated Manual but a unit or Playwright test covers it`);
   }
 }
 
 /**
- * A report accounts for each WCAG 2.2 Level A and AA criterion exactly once:
- * rated, inherited, or not applicable.
+ * Returns every problem in one resolved report, prefixed with the component
+ * name. With `check`, the prose the report needs must also be written.
  */
-function checkAccounting(data, violations) {
-  const seen = new Map();
-  const note = (number, where) => seen.set(number, [...(seen.get(number) ?? []), where]);
-
-  (data.criteria ?? []).forEach((criterion) => note(criterion.number, 'criteria'));
-  (data.inherited?.items ?? []).forEach((item) =>
-    item.criteria?.forEach((number) => note(number, 'inherited')),
-  );
-  (data.notApplicable ?? []).forEach((item) =>
-    item.criteria?.forEach((number) => note(number, 'notApplicable')),
-  );
-
-  for (const [number, places] of seen) {
-    if (!WCAG_BY_NUMBER.has(number)) {
-      violations.push(`${number} is not a WCAG 2.2 Level A or AA criterion`);
-    } else if (places.length > 1) {
-      violations.push(`${number} is listed more than once (${places.join(', ')})`);
-    }
-  }
-  for (const { number } of WCAG_CRITERIA) {
-    if (!seen.has(number)) {
-      violations.push(`${number} is not rated, inherited, or listed as not applicable`);
-    }
-  }
-}
-
-/** Returns every problem in one report's data, prefixed with the component name. */
-export default async function validateReport({ component, data }) {
+export function validateReport(report, check) {
+  const { component, data, regions } = report;
   const violations = [];
-  checkKeys(data, REPORT_KEYS, REQUIRED_REPORT_KEYS, 'report', violations);
 
-  await Promise.all(
-    (data.criteria ?? []).map((criterion, index) =>
-      checkCriterion(criterion, `criteria[${index}] (${criterion.number})`, violations),
-    ),
-  );
-  if (data.inherited) {
-    checkKeys(
-      data.inherited,
-      { from: 'string', intro: 'strings', items: 'array' },
-      ['from', 'items'],
-      'inherited',
+  for (const number of report.unaccounted) {
+    violations.push(`${number} is not rated, inherited, or not applicable`);
+  }
+  for (const scan of [report.ownTests, ...report.extraTests].filter(Boolean)) {
+    for (const { number, name } of scan.titles) {
+      const expected = WCAG_BY_NUMBER.get(number)?.name;
+      if (expected !== name) {
+        violations.push(
+          `${scan.ref}: test title "${number} ${name}" does not match WCAG "${number} ${expected ?? '(unknown)'}"`,
+        );
+      }
+    }
+  }
+  // A test of the component's own for a criterion it calls not applicable
+  // means one of the two is wrong.
+  const ownTested = new Set([
+    ...(report.ownTests?.titles ?? []).map(({ number }) => number),
+    ...report.playwright,
+  ]);
+  for (const { number } of report.notApplicable) {
+    if (ownTested.has(number)) {
+      violations.push(`${number}: not applicable, but the component's tests cover it`);
+    }
+  }
+  for (const criterion of report.criteria) {
+    checkCriterion(
+      criterion,
+      data.criteria[criterion.number] ?? {},
+      `criteria.${criterion.number}`,
       violations,
     );
-    checkCriteriaList(data.inherited.items ?? [], 'inherited.items', violations);
   }
-  checkCriteriaList(data.notApplicable ?? [], 'notApplicable', violations);
-  checkAccounting(data, violations);
+
+  // A region the report no longer renders would be dropped on the next run.
+  const used = new Set();
+  renderReport(report, used);
+  for (const [name, content] of regions) {
+    if (content && !used.has(name)) {
+      violations.push(`accessibility.md: region "${name}" has prose but nothing renders it`);
+    }
+  }
+  if (check) {
+    const required = [
+      ...report.criteria
+        .filter((criterion) => criterion.group !== 'Automated')
+        .map(({ number }) => [number, 'notes']),
+      ...report.criteria
+        .filter((criterion) => criterion.conformance !== 'Supports')
+        .map(({ number }) => [`${number}:gap`, 'a known-gap summary']),
+      ...report.notApplicable
+        .filter((item) => !item.isDefault)
+        .map(({ number, reasonKey }) => [reasonKey ?? number, 'a not-applicable reason']),
+    ];
+    for (const [name, what] of required) {
+      if (!regions.get(name)) {
+        violations.push(`accessibility.md: ${name.split(':')[0]} needs ${what}`);
+      }
+    }
+  }
 
   return violations.map((violation) => `${component}: ${violation}`);
 }
