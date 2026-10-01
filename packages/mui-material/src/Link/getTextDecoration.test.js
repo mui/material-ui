@@ -4,7 +4,7 @@ import getTextDecoration from './getTextDecoration';
 
 describe('getTextDecoration', () => {
   describe('without theme.vars', () => {
-    const theme = createTheme();
+    const theme = createTheme({ cssVariables: false });
 
     it('system color', () => {
       expect(getTextDecoration({ theme, ownerState: { color: 'primary.main' } })).to.equal(
@@ -44,6 +44,7 @@ describe('getTextDecoration', () => {
 
     it('work with a custom palette', () => {
       const customTheme = createTheme({
+        cssVariables: false,
         colorSchemes: {
           light: {
             palette: {

@@ -4,7 +4,7 @@
 
 ## Getting started
 
-To use CSS theme variables, create a theme with `cssVariables: true` and wrap your app with `ThemeProvider`.
+`createTheme()` generates CSS theme variables by default. To use them, wrap your app with `ThemeProvider`.
 
 After rendering, you'll see CSS variables in the `:root` stylesheet of your HTML document.
 By default, these variables are flattened and prefixed with `--mui`:
@@ -14,7 +14,7 @@ By default, these variables are flattened and prefixed with `--mui`:
 ```jsx JSX
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-const theme = createTheme({ cssVariables: true });
+const theme = createTheme();
 
 function App() {
   return <ThemeProvider theme={theme}>{/* ...your app */}</ThemeProvider>;
@@ -32,6 +32,12 @@ function App() {
 ```
 
 </codeblock>
+
+To create a theme without CSS theme variables, set `cssVariables` to `false`:
+
+```js
+const theme = createTheme({ cssVariables: false });
+```
 
 :::info
 If you're using the experimental `CssVarsProvider` API, replace it with `ThemeProvider`.
