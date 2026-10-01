@@ -1,7 +1,42 @@
-import Autocomplete from '@mui/material/Autocomplete';
+import * as React from 'react';
+import Autocomplete, {
+  type AutocompleteRenderInputParams,
+} from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
+const slotProps = {
+  chip: {
+    'aria-description': 'Press Backspace or Delete to remove',
+  },
+};
+
+function renderInput(params: AutocompleteRenderInputParams, valueLength: number) {
+  return (
+    <TextField
+      {...params}
+      label="limitTags"
+      placeholder="Favorites"
+      slotProps={{
+        ...params.slotProps,
+        htmlInput: {
+          ...params.slotProps.htmlInput,
+          'aria-description':
+            valueLength > 0
+              ? `${valueLength} selected. From the start of the input, press Left Arrow to focus the selected items`
+              : undefined,
+        },
+      }}
+    />
+  );
+}
+
 export default function LimitTags() {
+  const [value, setValue] = React.useState([
+    top100Films[13],
+    top100Films[12],
+    top100Films[11],
+  ]);
+
   return (
     <Autocomplete
       multiple
@@ -9,10 +44,10 @@ export default function LimitTags() {
       id="multiple-limit-tags"
       options={top100Films}
       getOptionLabel={(option) => option.title}
-      defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}
-      renderInput={(params) => (
-        <TextField {...params} label="limitTags" placeholder="Favorites" />
-      )}
+      value={value}
+      onChange={(event, newValue) => setValue(newValue)}
+      slotProps={slotProps}
+      renderInput={(params) => renderInput(params, value.length)}
       sx={{ width: '500px' }}
     />
   );

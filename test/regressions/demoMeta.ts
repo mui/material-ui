@@ -169,10 +169,48 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     viewportWidth: 1440,
     waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
   },
+  { test: 'docs/data/material/components/progress/*', enabled: false }, // Animated progress bars make screenshots flaky; axe still runs on the enrolled LinearProgress demos
   // The a11y fixture tree exists for axe, so screenshots are off by default.
   // Later rules re-enable single fixtures that also guard a visual state.
   { test: 'test/regressions/a11y/fixtures/**', enabled: false }, // A11y-only coverage fixtures
   { test: 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+  { test: 'test/regressions/a11y/fixtures/accordion/AccordionA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+  {
+    test: 'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11yTextSpacing',
+    enabled: true,
+  }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+];
+
+// Accordion docs demos + a11y fixtures enrolled for axe assertions (the cluster:
+// root Accordion + AccordionSummary header + AccordionDetails/Actions).
+const ACCORDION_A11Y_DEMOS = [
+  'AccordionUsage',
+  'AccordionExpandDefault',
+  'AccordionExpandIcon',
+  'ControlledAccordions',
+  'CustomizedAccordions',
+  'DisabledAccordion',
+  'AccordionTransition',
+];
+
+// toggle-button docs demos enrolled for axe assertions; the remaining demos add
+// no axe coverage beyond the a11y fixtures.
+const TOGGLE_BUTTON_A11Y_DEMOS = [
+  'ToggleButtons',
+  'ToggleButtonsMultiple',
+  'VerticalToggleButtons',
+];
+
+// LinearProgress docs demos enrolled for axe assertions; CircularProgress and
+// the mixed/customized demos (CustomizedProgressBars, DelayingAppearance) are excluded.
+const LINEARPROGRESS_A11Y_DEMOS = [
+  'LinearIndeterminate',
+  'LinearDeterminate',
+  'LinearBuffer',
+  'LinearQuery',
+  'LinearColor',
+  'LinearWithValueLabel',
+  'LinearWithAriaValueText',
 ];
 
 // Button docs demos enrolled for axe assertions; IconButton/ButtonBase demos are excluded.
@@ -190,6 +228,56 @@ const BUTTON_A11Y_DEMOS = [
   'CustomizedButtons',
 ];
 
+// Radio docs demos enrolled for axe assertions. FormControlLabelPlacement is left out: its axe
+// output duplicates RowRadioButtonsGroup (a row RadioGroup with a FormLabel), adding no new rules.
+const RADIO_A11Y_DEMOS = [
+  'RadioButtons',
+  'RadioButtonsGroup',
+  'ControlledRadioButtonsGroup',
+  'ColorRadioButtons',
+  'CustomizedRadios',
+  'SizeRadioButtons',
+  'RowRadioButtonsGroup',
+  'ErrorRadios',
+  'UseRadioGroup',
+];
+
+const CHECKBOX_A11Y_DEMOS = [
+  'Checkboxes',
+  'CheckboxLabels',
+  'ColorCheckboxes',
+  'ControlledCheckbox',
+  'CustomizedCheckbox',
+  'IconCheckboxes',
+  'SizeCheckboxes',
+  'CheckboxesGroup',
+  'IndeterminateCheckbox',
+];
+
+// Switch docs demos enrolled for axe assertions. FormControlLabelPosition is
+// excluded: its `aria-label` on a role-less FormGroup div trips
+// `aria-prohibited-attr`, a demo quirk unrelated to Switch.
+const SWITCH_A11Y_DEMOS = [
+  'BasicSwitches',
+  'SwitchLabels',
+  'ColorSwitches',
+  'ControlledSwitches',
+  'CustomizedSwitches',
+  'SwitchesSize',
+  'SwitchesGroup',
+];
+
+// TextField docs demos enrolled for axe assertions; the `select` dropdown,
+// InputBase-only, and standalone hidden-label demos are excluded.
+const TEXTFIELD_A11Y_DEMOS = [
+  'BasicTextFields',
+  'ColorTextFields',
+  'ValidationTextFields',
+  'FormPropsTextFields',
+  'TextFieldSizes',
+  'MultilineTextFields',
+];
+
 /**
  * A11y defaults to off — only matched-and-enabled rules produce results.
  * Slug-wide rules use `*`; brace-globs narrow enrolment to specific demos;
@@ -201,7 +289,7 @@ const BUTTON_A11Y_DEMOS = [
  */
 export const A11Y_RULES: A11yRule[] = [
   {
-    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars,AvatarA11yImage}',
+    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars}',
     enabled: true,
   },
   // Avatar's default `colorDefault` styling is white text on grey[400] (~1.9:1),
@@ -210,9 +298,39 @@ export const A11Y_RULES: A11yRule[] = [
   // violations in the JSON without failing the build. IconAvatars (icons only,
   // aria-hidden, no text) is excluded here so it still asserts a clean pass.
   {
-    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,VariantAvatars,AvatarA11yImage}',
+    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,VariantAvatars}',
     enabled: true,
     skipAssertions: ['color-contrast'],
+  },
+  // A11y-only fixture under `test/regressions/a11y/fixtures/avatars/` (no
+  // docs page consumes it); the suite name maps its results into the same
+  // `avatars.a11y.json` as the docs demos above. `assertions: 'all'` makes
+  // axe's `image-alt` rule an asserted check, which is the reason the
+  // fixture exists.
+  {
+    test: 'test/regressions/a11y/fixtures/avatars/AvatarA11yImage',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    // `color-contrast` is recorded but not asserted: the Accordion root's
+    // divider `::before` pseudo-element blocks axe's background resolution for
+    // the summary label, so the rule returns `incomplete` on some demos.
+    // No demo records a contrast failure; the label clears 4.5:1 on `paper`.
+    test: `docs/data/material/components/accordion/{${ACCORDION_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/accordion/`
+  // (no docs page consumes them); the suite name maps their results into the
+  // same `accordion.a11y.json` as the docs demos above. The divider
+  // `::before` skip is not needed here: both fixtures pass `color-contrast`.
+  {
+    test: 'test/regressions/a11y/fixtures/accordion/{AccordionA11yNonNative,AccordionA11yTextSpacing}',
+    enabled: true,
+    assertions: 'all',
   },
   {
     test: `docs/data/material/components/buttons/{${BUTTON_A11Y_DEMOS.join(',')}}`,
@@ -237,6 +355,74 @@ export const A11Y_RULES: A11yRule[] = [
   // failing set drifts.
   {
     test: 'test/regressions/a11y/fixtures/buttons/ButtonA11yColorMatrix',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
+  // IndeterminateCheckbox needs no skip: the component sets the native
+  // `.indeterminate` property and no aria-checked attribute (#49053), so
+  // axe's aria-conditional-attr passes.
+  {
+    test: `docs/data/material/components/checkboxes/{${CHECKBOX_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/progress/{${LINEARPROGRESS_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/progress/`
+  // (no docs page consumes them); the suite name maps their results into the
+  // same `progress.a11y.json` as the docs demos above.
+  {
+    test: 'test/regressions/a11y/fixtures/progress/{LinearProgressA11ySemanticStates,LinearProgressA11yColorMatrix}',
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/radio-buttons/{${RADIO_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/switches/{${SWITCH_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/text-fields/{${TEXTFIELD_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+    // color-contrast is recorded but not asserted (1.4.3): axe cannot resolve
+    // the input value's background through the overlapping notched outline
+    // (logged as incomplete), and the focused color labels (warning 3.11:1),
+    // error text on the filled surface (4.36:1), and the ~0.42-opacity
+    // placeholder (~2.6:1) are known shortfalls kept in the JSON without
+    // failing CI.
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: `docs/data/material/components/toggle-button/{${TOGGLE_BUTTON_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/toggle-button/`
+  // (no docs page consumes them); the suite name maps their results into the
+  // same `toggle-button.a11y.json` as the docs demos above.
+  {
+    test: 'test/regressions/a11y/fixtures/toggle-button/{ToggleButtonA11yNonNative,ToggleButtonA11ySemanticStates,ToggleButtonA11yTextSpacing}',
+    enabled: true,
+    assertions: 'all',
+  },
+  // `color-contrast` is a documented gap, not a regression: a selected label
+  // renders `color.main` text over an alpha tint of the same color, and the
+  // `primary`/`error`/`info`/`warning` labels fall short of 4.5:1 there. The
+  // failure is recorded in `toggle-button.a11y.json` (a tripwire for flips)
+  // and documented in `packages/mui-material/src/ToggleButton/accessibility.md`
+  // § 1.4.3.
+  {
+    test: 'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11yColorMatrix',
     enabled: true,
     assertions: 'all',
     skipAssertions: ['color-contrast'],

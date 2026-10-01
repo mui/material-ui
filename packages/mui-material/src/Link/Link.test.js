@@ -53,6 +53,52 @@ describe('<Link />', () => {
     ).not.to.throw();
   });
 
+  describe('underline color', () => {
+    it('using a named CSS color should not crash', () => {
+      expect(() =>
+        render(
+          <Link href="/" color="white" underline="always">
+            Test
+          </Link>,
+        ),
+      ).not.to.throw();
+    });
+
+    it.skipIf(isJsdom())('should apply transparency to a named CSS color', () => {
+      render(
+        <Link href="/" color="white" underline="always">
+          Test
+        </Link>,
+      );
+      const link = screen.getByRole('link');
+
+      expect(getComputedStyle(link).textDecorationColor).to.equal('color(srgb 1 1 1 / 0.4)');
+    });
+
+    it.skipIf(isJsdom())('should derive the underline color from the color prop', () => {
+      const theme = createTheme({
+        components: {
+          MuiLink: {
+            styleOverrides: {
+              root: {
+                color: '#ff5252',
+              },
+            },
+          },
+        },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Link href="/">Test</Link>
+        </ThemeProvider>,
+      );
+      const link = screen.getByRole('link');
+
+      expect(getComputedStyle(link).color).to.equal('rgb(255, 82, 82)');
+      expect(getComputedStyle(link).textDecorationColor).to.equal('rgba(25, 118, 210, 0.4)');
+    });
+  });
+
   describe('event callbacks', () => {
     it('should fire event callbacks', () => {
       const events = ['onBlur', 'onFocus'];

@@ -4,7 +4,10 @@ import * as fs from 'node:fs/promises';
 import { chromium } from '@playwright/test';
 import { describe, test as base, afterAll } from 'vitest';
 import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
+import { CSS_LAYOUT_SUITES, FOCUS_VISIBLE_TARGETS } from './a11y/criteriaSuites';
 import { A11Y_RULES, DEFAULT_VIEWPORT, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
+import { RECENT_SEARCHES, stubAlgoliaSearch, unstubAlgoliaSearch } from './algoliaSearchStub';
+import { favoriteSearchesKey, QUERY, recentSearchesKey } from './docsearchFixtureData';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const AXE_SCRIPT = path.resolve(currentDirectory, '../../node_modules/axe-core/axe.min.js');
@@ -14,7 +17,11 @@ async function main() {
   const screenshotDir = path.resolve(currentDirectory, './screenshots/chrome');
 
   const browser = await chromium.launch({
-    args: ['--font-render-hinting=none'],
+    args: [
+      '--font-render-hinting=none',
+      // Skia otherwise picks SIMD code paths per host CPU, which shifts glyph edges.
+      '--disable-skia-runtime-opts',
+    ],
     // otherwise the loaded google Roboto font isn't applied
     headless: false,
   });
@@ -300,6 +307,105 @@ async function main() {
       });
     });
 
+    describe.each(['SearchModal', 'SearchModalDark'])('AppSearch/%s', (fixture) => {
+      // The route belongs in the name so the `-t` filter documented in
+      // `AGENTS.md` reaches this test. Without it a scoped run refreshes only
+      // the closed-button capture the route loop generates, and leaves the
+      // three below stale.
+      test(`should render /regression-AppSearch/${fixture} correctly`, async ({ pooled }) => {
+        const { page } = pooled;
+        // Seed from here rather than from the fixture. The `pooled` fixture
+        // clears storage on acquisition, and navigating to a route the pooled
+        // page already rendered does not remount it, so a seed written on mount
+        // would be gone by the time the modal reads it.
+        await page.evaluate(
+          ([key, favoriteKey, hits]) => {
+            localStorage.setItem(key, JSON.stringify(hits));
+            localStorage.setItem(favoriteKey, '[]');
+          },
+          [recentSearchesKey, favoriteSearchesKey, RECENT_SEARCHES],
+        );
+        await renderFixture(page, `/regression-AppSearch/${fixture}`);
+        // The modal portals to `document.body`, so it lands outside the
+        // testcase element and has to be screenshotted on its own.
+        await page.getByRole('button', { name: /search/i }).click();
+        // The click leaves the pointer on the button. Move it to the top-right corner,
+        // outside the modal at both widths, so that no hover state gets into a capture.
+        await page.mouse.move(page.viewportSize().width - 1, 0);
+        const modal = await page.waitForSelector('.DocSearch-Modal');
+        // `useLazyCSS` fetches the DocSearch stylesheet and injects it as a
+        // `<style data-href>`. Without it the modal is unstyled.
+        await page.waitForFunction(() =>
+          Boolean(document.querySelector('style[data-href*="docsearch"]')),
+        );
+        // Neither of the waits above says anything about the two areas this
+        // screenshot is for. The stylesheet request starts when `AppSearch`
+        // mounts, well before the modal opens, so that wait can already be
+        // satisfied. The stored searches arrive through autocomplete's async
+        // source pipeline, and the custom start screen is portalled in from an
+        // effect. Wait for one sentinel from each.
+        await page.waitForSelector('.DocSearch-Modal .DocSearch-Hit');
+        await page.waitForSelector('.DocSearch-Modal .DocSearch-NewStartScreenItem');
+        // Rank `docsearch` below `mui`, the way the layer order that
+        // `BrandingCssVarsProvider` declares does in the docs. Without it the
+        // DocSearch stylesheet wins and none of the `AppSearch` overrides
+        // apply. It has to happen here rather than in the fixture: a layer's
+        // position is fixed by where it is first named, emotion prepends its
+        // tags above everything in `<head>`, and it keeps doing so as
+        // components mount — so the only stable point is once the modal has
+        // finished rendering.
+        //
+        // It only inserts `docsearch`: `mui` already ranks first here, because
+        // emotion prepends its tags above the bundle stylesheet and outranks the
+        // order `global.css` declares. Every other layer keeps its position.
+        try {
+          await page.evaluate(() => {
+            const style = document.createElement('style');
+            style.id = 'docsearch-layer-order';
+            style.textContent = '@layer docsearch, mui;';
+            document.head.prepend(style);
+          });
+          await takeScreenshot(page, {
+            testcase: modal,
+            route: `/regression-AppSearch/${fixture}Open`,
+          });
+
+          // The results screen carries the markup the start screen never shows:
+          // highlighted matches, breadcrumbs, and the tree connector between a
+          // section and its children.
+          await stubAlgoliaSearch(page);
+          await page.locator('.DocSearch-Input').fill(QUERY);
+          await page.waitForSelector('.DocSearch-Hit mark');
+          await takeScreenshot(page, {
+            testcase: modal,
+            route: `/regression-AppSearch/${fixture}Results`,
+          });
+
+          // Below 768px DocSearch lets the hit title and path wrap. Cropping to
+          // the modal does not reach that rule -- media queries read the
+          // viewport -- so the width has to change. 767px keeps the modal at
+          // the same width our `max-width` override gives it on desktop, which
+          // leaves the typography as the only thing that differs. The `pooled`
+          // fixture resets the viewport on acquisition, so this does not leak.
+          await page.setViewportSize({ width: 767, height: DEFAULT_VIEWPORT.height });
+          await page.waitForFunction(() => window.matchMedia('(max-width: 768px)').matches);
+          await takeScreenshot(page, {
+            testcase: modal,
+            route: `/regression-AppSearch/${fixture}ResultsNarrow`,
+          });
+        } finally {
+          // Pages are pooled and only the viewport and storage are reset between
+          // tests, so undo the rest ourselves. The layer declaration is inert for
+          // fixtures that put nothing in `docsearch`, but leaving it behind makes
+          // their layer order depend on which test ran first.
+          await unstubAlgoliaSearch(page);
+          await page.evaluate(() => {
+            document.getElementById('docsearch-layer-order')?.remove();
+          });
+        }
+      });
+    });
+
     describe('Autocomplete', () => {
       test('should not close immediately when textbox expands', async ({ pooled }) => {
         const { page } = pooled;
@@ -443,6 +549,7 @@ async function main() {
     });
 
     registerCssLayoutSuites({ test, renderFixture, routes });
+    registerFocusVisibleSuites({ test, renderFixture, routes });
   });
 }
 
@@ -452,31 +559,6 @@ async function main() {
  * introduced independently of the harness it runs on.
  */
 function registerCssLayoutSuites({ test, renderFixture, routes }) {
-  const CSS_LAYOUT_SUITES = [
-    { component: 'Accordion', route: '/docs-components-accordion/AccordionUsage' },
-    // The same demo renders the summary header, which is rated separately.
-    { component: 'AccordionSummary', route: '/docs-components-accordion/AccordionUsage' },
-    {
-      component: 'Avatar',
-      route: '/docs-components-avatars/LetterAvatars',
-      // 1.4.4 is asserted here as *text-only* resize, which the Avatar report
-      // explicitly treats as out of scope: its fixed 40px box scales under
-      // full-page zoom (the mechanism the criterion assumes) but not under
-      // text-only zoom, which the report calls an author concern. Left rated
-      // Manual rather than silently downgraded — see Avatar/accessibility.md.
-      skipCriteria: ['1.4.4'],
-    },
-    { component: 'Button', route: '/docs-components-buttons/BasicButtons' },
-    { component: 'Checkbox', route: '/docs-components-checkboxes/Checkboxes' },
-    { component: 'LinearProgress', route: '/docs-components-progress/LinearDeterminate' },
-    { component: 'Radio', route: '/docs-components-radio-buttons/RadioButtonsGroup' },
-    { component: 'Switch', route: '/docs-components-switches/BasicSwitches' },
-    { component: 'TextField', route: '/docs-components-text-fields/BasicTextFields' },
-    { component: 'ToggleButton', route: '/docs-components-toggle-button/ToggleButtons' },
-    // The same demo renders the group wrapper, which is rated separately.
-    { component: 'ToggleButtonGroup', route: '/docs-components-toggle-button/ToggleButtons' },
-  ];
-
   /**
    * Reports the document's horizontal overflow after applying `css`, plus any
    * element whose own content escapes its box. Both are the failure modes the
@@ -612,6 +694,112 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
         },
       );
     });
+  });
+}
+
+/**
+ * Registers 2.4.7 Focus Visible, which axe has no rule for and jsdom cannot
+ * answer: several components carry a `skipIf(isJsdom())` unit test for it that
+ * therefore never runs.
+ *
+ * The check is a pixel comparison rather than a computed-style diff because
+ * MUI's focus indicator is usually the ripple — a child element that appears in
+ * the DOM. Diffing styles on the control itself would miss it entirely.
+ *
+ * The `KeyboardRing` fixture repeats the check with `focusVisible: true` and
+ * the ripple disabled. There the outline ring is the only possible pixel
+ * change, so the themed variant asserts the ring itself.
+ */
+function registerFocusVisibleSuites({ test, renderFixture, routes }) {
+  // TextField is absent: it has no ring, and the demo suite above already
+  // covers its border-change indicator. Every Button variant is a target: the
+  // fixture suppresses the contained focus shadow, so each variant passes only
+  // through the ring.
+  const RING_ROUTE = '/regression-FocusVisible/KeyboardRing';
+  const FOCUS_RING_TARGETS = [
+    { component: 'AccordionSummary', route: RING_ROUTE, selector: '.MuiAccordionSummary-root' },
+    { component: 'Button (text)', route: RING_ROUTE, selector: '.MuiButton-text' },
+    { component: 'Button (outlined)', route: RING_ROUTE, selector: '.MuiButton-outlined' },
+    { component: 'Button (contained)', route: RING_ROUTE, selector: '.MuiButton-contained' },
+    { component: 'Checkbox', route: RING_ROUTE, selector: '.MuiCheckbox-root' },
+    { component: 'Radio', route: RING_ROUTE, selector: '.MuiRadio-root' },
+    { component: 'Switch', route: RING_ROUTE, selector: '.MuiSwitch-root' },
+    { component: 'ToggleButton', route: RING_ROUTE, selector: '.MuiToggleButton-root' },
+  ];
+
+  /** An outline or ring can paint outside the control, so capture a padded box. */
+  const PADDING = 8;
+
+  async function shotAround(page, handle) {
+    const box = await handle.boundingBox();
+    return page.screenshot({
+      animations: 'disabled',
+      clip: {
+        x: Math.max(0, box.x - PADDING),
+        y: Math.max(0, box.y - PADDING),
+        width: box.width + PADDING * 2,
+        height: box.height + PADDING * 2,
+      },
+    });
+  }
+
+  /** Tab until the target (or something inside it) holds focus. */
+  async function tabTo(page, selector, maxTabs) {
+    for (let attempt = 0; attempt < maxTabs; attempt += 1) {
+      // eslint-disable-next-line no-await-in-loop
+      await page.keyboard.press('Tab');
+      // eslint-disable-next-line no-await-in-loop
+      const reached = await page.evaluate(
+        (target) => document.activeElement?.closest(target) !== null,
+        selector,
+      );
+      if (reached) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function registerTarget({ component, route, selector }, title, maxTabs) {
+    if (!routes.includes(route)) {
+      return;
+    }
+
+    test(`${component} ${title}`, async ({ pooled }) => {
+      const { page } = pooled;
+      const testcase = await renderFixture(page, route);
+      const handle = await testcase.$(selector);
+      if (!handle) {
+        throw new Error(`${component}: no element matched ${selector} on ${route}`);
+      }
+
+      const unfocused = await shotAround(page, handle);
+      if (!(await tabTo(page, selector, maxTabs))) {
+        throw new Error(`${component}: could not reach ${selector} with the Tab key`);
+      }
+      const focused = await shotAround(page, handle);
+
+      if (unfocused.equals(focused)) {
+        throw new Error(
+          `${component} looks identical focused and unfocused — no visible focus indicator`,
+        );
+      }
+    });
+  }
+
+  FOCUS_VISIBLE_TARGETS.forEach((target) => {
+    // Demo pages render tabbable elements this list does not know about, so
+    // the tab budget is a fixed allowance.
+    registerTarget(target, '2.4.7 Focus Visible: keyboard focus changes how the control looks', 12);
+  });
+  FOCUS_RING_TARGETS.forEach((target) => {
+    // Every tab stop in the KeyboardRing fixture is a target, so the target
+    // count bounds how far the target can sit from the start of the page.
+    registerTarget(
+      target,
+      '2.4.7 Focus Visible: keyboard focus paints the theme.focusVisible ring',
+      FOCUS_RING_TARGETS.length,
+    );
   });
 }
 
