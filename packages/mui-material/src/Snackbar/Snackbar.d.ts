@@ -84,9 +84,7 @@ export interface SnackbarOrigin {
 export type SnackbarCloseReason = 'timeout' | 'clickaway' | 'escapeKeyDown';
 
 export interface SnackbarProps
-  extends
-    Omit<StandardProps<React.HTMLAttributes<HTMLDivElement>>, 'slots' | 'slotProps'>,
-    SnackbarSlotsAndSlotProps {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>>, SnackbarSlotsAndSlotProps {
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */

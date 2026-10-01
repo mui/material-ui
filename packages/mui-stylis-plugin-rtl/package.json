@@ -31,11 +31,11 @@
     "attw": "attw --pack ./build"
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.7",
+    "@babel/runtime": "^7.29.7 || ^8.0.5",
     "cssjanus": "^2.3.1"
   },
   "devDependencies": {
-    "@types/node": "20.19.43",
+    "@types/node": "22.20.4",
     "@types/stylis": "4.2.7",
     "stylis": "4.4.0"
   },
