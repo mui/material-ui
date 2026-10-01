@@ -235,6 +235,14 @@ jobs:
       - code-infra/install-deps:
           react-version: << parameters.react-version >>
       - run:
+          name: Host CPU
+          # Skia's raster output can depend on the host CPU features.
+          command: |
+            grep -m1 'model name' /proc/cpuinfo
+            grep -m1 '^flags' /proc/cpuinfo | grep -ow 'avx2\|avx512[a-z_0-9]*\|fma\|f16c' | sort -u | tr '\n' ' '
+            echo
+            nproc
+      - run:
           name: Run visual regression tests
           command: xvfb-run pnpm test:regressions
       - run:
