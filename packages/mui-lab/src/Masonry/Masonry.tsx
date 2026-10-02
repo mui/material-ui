@@ -110,7 +110,7 @@ export const getStyle = ({ ownerState, theme }: any) => {
   // Only applicable for Server-Side Rendering
   if (ownerState.isSSR) {
     const orderStyleSSR: any = {};
-    const defaultSpacing = parseToNumber(theme.spacing(ownerState.defaultSpacing));
+    const defaultSpacing = theme.spacing(ownerState.defaultSpacing);
     for (let i = 1; i <= ownerState.defaultColumns; i += 1) {
       orderStyleSSR[
         `&:nth-of-type(${ownerState.defaultColumns}n+${i % ownerState.defaultColumns})`
@@ -119,12 +119,12 @@ export const getStyle = ({ ownerState, theme }: any) => {
       };
     }
     stylesSSR.height = ownerState.defaultHeight;
-    stylesSSR.margin = -(defaultSpacing / 2);
+    stylesSSR.margin = `calc(0px - (${defaultSpacing} / 2))`;
     stylesSSR['& > *'] = {
       ...styles['& > *'],
       ...orderStyleSSR,
-      margin: defaultSpacing / 2,
-      width: `calc(${(100 / ownerState.defaultColumns).toFixed(2)}% - ${defaultSpacing}px)`,
+      margin: `calc(${defaultSpacing} / 2)`,
+      width: `calc(${(100 / ownerState.defaultColumns).toFixed(2)}% - ${defaultSpacing})`,
     };
 
     return {

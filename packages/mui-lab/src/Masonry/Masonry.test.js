@@ -8,9 +8,8 @@ import {
   isJsdom,
 } from '@mui/internal-test-utils';
 import { createTheme } from '@mui/material/styles';
-import defaultTheme from '@mui/material/styles/defaultTheme';
 import Masonry, { masonryClasses as classes } from '@mui/lab/Masonry';
-import { getStyle, parseToNumber } from './Masonry';
+import { getStyle } from './Masonry';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Masonry />', () => {
@@ -31,7 +30,8 @@ describe('<Masonry />', () => {
     }),
   );
 
-  const theme = createTheme({ spacing: 8 });
+  const themeSpacing = 8;
+  const theme = createTheme({ spacing: themeSpacing });
   const maxColumnHeight = 100;
 
   describe('render', () => {
@@ -48,8 +48,8 @@ describe('<Masonry />', () => {
         </div>,
       );
 
-      const containerMargin = `-${parseToNumber(theme.spacing(spacing)) / 2}px`;
-      const childMargin = `${parseToNumber(theme.spacing(spacing)) / 2}px`;
+      const containerMargin = `-${(themeSpacing * spacing) / 2}px`;
+      const childMargin = `${(themeSpacing * spacing) / 2}px`;
       expect(screen.getByTestId('container')).toHaveComputedStyle({
         width: `${width}px`,
         display: 'flex',
@@ -68,7 +68,7 @@ describe('<Masonry />', () => {
         marginRight: childMargin,
         marginBottom: childMargin,
         marginLeft: childMargin,
-        width: `${width / columns - parseToNumber(theme.spacing(spacing))}px`,
+        width: `${width / columns - themeSpacing * spacing}px`,
       });
     });
 
@@ -92,7 +92,7 @@ describe('<Masonry />', () => {
         secondItem.style.height = `${secondChildInitialHeight}px`;
         masonry.appendChild(secondItem);
 
-        const topAndBottomMargin = parseToNumber(defaultTheme.spacing(spacingProp)) * 2;
+        const topAndBottomMargin = themeSpacing * spacingProp * 2;
         expect(window.getComputedStyle(masonry).height).to.equal(
           `${firstChildHeight + secondChildInitialHeight + topAndBottomMargin}px`,
         );
@@ -273,16 +273,40 @@ describe('<Masonry />', () => {
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
-          margin: parseToNumber(theme.spacing(defaultSpacing)) / 2,
+          margin: `calc(${theme.spacing(defaultSpacing)} / 2)`,
           width: `calc(${(100 / defaultColumns).toFixed(2)}% - ${theme.spacing(defaultSpacing)})`,
           '&:nth-of-type(4n+1)': { order: 1 },
           '&:nth-of-type(4n+2)': { order: 2 },
           '&:nth-of-type(4n+3)': { order: 3 },
           '&:nth-of-type(4n+0)': { order: 4 },
         },
-        margin: -(parseToNumber(theme.spacing(defaultSpacing)) / 2),
+        margin: `calc(0px - (${theme.spacing(defaultSpacing)} / 2))`,
         height: defaultHeight,
       });
+    });
+
+    it('should use the spacing CSS variable with CSS theme variables', () => {
+      const cssVarsTheme = createTheme({ spacing: themeSpacing, cssVariables: true });
+      const defaultColumns = 4;
+      const defaultSpacing = 2;
+      const spacing = cssVarsTheme.spacing(defaultSpacing);
+      const styles = getStyle({
+        ownerState: {
+          defaultColumns,
+          defaultSpacing,
+          defaultHeight: 700,
+          isSSR: true,
+        },
+        theme: cssVarsTheme,
+      });
+
+      expect(spacing).to.include('var(--mui-spacing');
+      expect(JSON.stringify(styles)).not.to.include('NaN');
+      expect(styles.margin).to.equal(`calc(0px - (${spacing} / 2))`);
+      expect(styles['& > *'].margin).to.equal(`calc(${spacing} / 2)`);
+      expect(styles['& > *'].width).to.equal(
+        `calc(${(100 / defaultColumns).toFixed(2)}% - ${spacing})`,
+      );
     });
   });
 
