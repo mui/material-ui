@@ -1,0 +1,5 @@
+<Menu2 trigger={<Button>Dashboard</Button>}>
+  <Menu2Item>Profile</Menu2Item>
+  <Menu2Item>My account</Menu2Item>
+  <Menu2Item>Logout</Menu2Item>
+</Menu2>

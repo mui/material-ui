@@ -143,15 +143,54 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     if (container.parentNode instanceof DocumentFragment) {
       scrollContainer = ownerDocument(container).body;
     } else {
-      // Support html overflow-y: auto for scroll stability between pages
-      // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
+      // Lock html when it is the viewport's scroll container.
       const parent = container.parentElement;
       const containerWindow = ownerWindow(container);
       scrollContainer =
         parent?.nodeName === 'HTML' &&
-        containerWindow.getComputedStyle(parent).overflowY === 'scroll'
+        /auto|scroll|hidden|clip/.test(containerWindow.getComputedStyle(parent).overflowY)
           ? parent
           : container;
+    }
+
+    const containerDocument = ownerDocument(scrollContainer);
+    const containerWindow = containerDocument.defaultView || window;
+    // Observe both viewport elements because another overlay can change the scroller.
+    const viewportElements = [containerDocument.documentElement, containerDocument.body];
+    const lockCandidates = viewportElements.includes(scrollContainer)
+      ? viewportElements
+      : [scrollContainer];
+    const isHidden = (overflow: string) => overflow === 'hidden' || overflow === 'clip';
+    const isScrollLocked = () =>
+      lockCandidates.some(
+        (element) =>
+          // Body clipping does not lock a scrolling html element. Base UI's marked
+          // inset-scrollbar fallback is different: it also limits body to the viewport.
+          (element !== containerDocument.body ||
+            scrollContainer !== containerDocument.documentElement ||
+            containerDocument.documentElement.hasAttribute('data-base-ui-scroll-locked')) &&
+          [element.style, containerWindow.getComputedStyle(element)].every(
+            (styles) =>
+              isHidden(styles.overflow) || [styles.overflowX, styles.overflowY].every(isHidden),
+          ),
+      );
+
+    // Wait for the other overlay to release its inline lock, then read the
+    // restored styles before we apply ours.
+    if (isScrollLocked()) {
+      let restore: (() => void) | undefined;
+      const observer = new containerWindow.MutationObserver(() => {
+        if (!isScrollLocked()) {
+          observer.disconnect();
+          restore = handleContainer(containerInfo, props);
+        }
+      });
+      lockCandidates.forEach((element) => observer.observe(element, { attributes: true }));
+
+      return () => {
+        observer.disconnect();
+        restore?.();
+      };
     }
 
     if (isOverflowing(scrollContainer)) {
