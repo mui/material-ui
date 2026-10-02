@@ -53,9 +53,7 @@ export interface Menu2RadioGroupOwnProps {
   /**
    * Function called when the selected value changes.
    */
-  onChange?:
-    | ((event: Event, value: any, eventDetails: BaseMenu.RadioGroup.ChangeEventDetails) => void)
-    | undefined;
+  onValueChange?: BaseMenu.RadioGroup.Props['onValueChange'] | undefined;
   /**
    * The components used for each slot inside.
    */
@@ -136,7 +134,7 @@ const Menu2RadioGroup = React.forwardRef(function Menu2RadioGroup(
     className,
     classes: classesProp,
     component,
-    onChange,
+    onValueChange,
     slotProps,
     slots,
     sx,
@@ -149,12 +147,6 @@ const Menu2RadioGroup = React.forwardRef(function Menu2RadioGroup(
   };
   const classes = useUtilityClasses(ownerState);
   const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });
-  const handleValueChange = React.useCallback(
-    (newValue: any, eventDetails: BaseMenu.RadioGroup.ChangeEventDetails) => {
-      onChange?.(eventDetails.event, newValue, eventDetails);
-    },
-    [onChange],
-  );
 
   return (
     <BaseMenu.RadioGroup
@@ -165,7 +157,7 @@ const Menu2RadioGroup = React.forwardRef(function Menu2RadioGroup(
         ownerState,
       })}
       className={(state) => clsx(className, classes.root, state.disabled && classes.disabled)}
-      onValueChange={handleValueChange}
+      onValueChange={onValueChange}
       style={style}
       {...other}
     />
@@ -206,7 +198,7 @@ Menu2RadioGroup.propTypes /* remove-proptypes */ = {
   /**
    * Function called when the selected value changes.
    */
-  onChange: PropTypes.func,
+  onValueChange: PropTypes.func,
   /**
    * The props used for each slot inside.
    */

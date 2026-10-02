@@ -155,8 +155,8 @@ With `slots.transition` set to `null`, the menu surface has the `data-starting-s
 | `<Divider />` between items                                        | `Menu2Separator`                     | Controls its own margins.                                                                                  |
 | `ListSubheader`                                                    | `Menu2Group` + `Menu2GroupLabel`     | Adds the correct ARIA relationship.                                                                        |
 | `href` / `LinkComponent`                                           | `Menu2LinkItem`                      | Renders a real `<a role="menuitem">`.                                                                      |
-| `role="menuitemcheckbox"` + `selected`                             | `Menu2CheckboxItem`                  | Reports changes through `onChange(event, checked, eventDetails)`.                                          |
-| `role="menuitemradio"` + `selected`                                | `Menu2RadioGroup` + `Menu2RadioItem` | Reports changes through `onChange(event, value, eventDetails)`.                                            |
+| `role="menuitemcheckbox"` + `selected`                             | `Menu2CheckboxItem`                  | Reports changes through `onCheckedChange(checked, eventDetails)`.                                          |
+| `role="menuitemradio"` + `selected`                                | `Menu2RadioGroup` + `Menu2RadioItem` | Reports changes through `onValueChange(value, eventDetails)`.                                              |
 | `autoFocus` (item)                                                 | Removed                              | The component controls the initial highlight.                                                              |
 | `focusVisibleClassName`, `onFocusVisible`, `action.focusVisible()` | No dedicated equivalents             | Use state classes for styles. `highlighted` includes pointer navigation; it is not keyboard focus-visible. |
 | `MenuList.disableListWrap`                                         | `loopFocus` (default `true`)         | The value is inverted.                                                                                     |
@@ -165,7 +165,7 @@ With `slots.transition` set to `null`, the menu surface has the `data-starting-s
 
 Composed list primitives still work inside items, so `ListItemIcon`, `ListItemText`, and `Typography` carry over unchanged. `ListItemText inset` still aligns with the icon column.
 
-Checkbox items and radio groups pass a native event to `onChange`, not a React synthetic event. Read the checked state or value from the second argument. The event target can be a descendant of the item.
+Checkbox items and radio groups report the new checked state or value in the first callback argument. The event at `eventDetails.event` is native, not a React synthetic event. Its target can be a descendant of the item.
 
 ### 7. Update the theme keys
 

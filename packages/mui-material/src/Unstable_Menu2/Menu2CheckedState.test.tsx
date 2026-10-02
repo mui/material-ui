@@ -46,7 +46,7 @@ describe('Menu2 live checked ownerState', () => {
               {kind === 'checkbox' ? (
                 <Menu2CheckboxItem
                   {...(controlled ? { checked } : { defaultChecked: true })}
-                  onChange={(_event, next, details) => {
+                  onCheckedChange={(next, details) => {
                     if (cancel) {
                       details.cancel();
                     }
@@ -61,7 +61,7 @@ describe('Menu2 live checked ownerState', () => {
               ) : (
                 <Menu2RadioGroup
                   {...(controlled ? { value: checked ? 'one' : 'two' } : { defaultValue: 'one' })}
-                  onChange={(_event, next, details) => {
+                  onValueChange={(next, details) => {
                     if (cancel) {
                       details.cancel();
                     }
@@ -113,15 +113,25 @@ describe('Menu2 live checked ownerState', () => {
             expectState(target, false);
           }
         });
+
+        it(`does not style a canceled ${controlled ? 'controlled' : 'uncontrolled'} selection`, async () => {
+          const { user } = render(<Fixture controlled={controlled} cancel />);
+          const one = screen.getByRole(role, { name: 'One' });
+          const target = kind === 'checkbox' ? one : screen.getByRole(role, { name: 'Two' });
+
+          await user.click(target);
+          expectState(one, true);
+          if (kind === 'radio') {
+            expectState(target, false);
+          }
+        });
       });
 
-      ['cancel', 'reject'].forEach((mode) => {
-        it(`does not style a ${mode === 'cancel' ? 'canceled' : 'rejected controlled'} selection`, async () => {
-          const { user } = render(<Fixture controlled={mode === 'reject'} {...{ [mode]: true }} />);
-          const one = screen.getByRole(role, { name: 'One' });
-          await user.click(kind === 'checkbox' ? one : screen.getByRole(role, { name: 'Two' }));
-          expectState(one, true);
-        });
+      it('does not style a rejected controlled selection', async () => {
+        const { user } = render(<Fixture controlled reject />);
+        const one = screen.getByRole(role, { name: 'One' });
+        await user.click(kind === 'checkbox' ? one : screen.getByRole(role, { name: 'Two' }));
+        expectState(one, true);
       });
 
       it('reflects externally changed controlled selection', async () => {

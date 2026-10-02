@@ -4,6 +4,8 @@ import Menu2 from './Menu2';
 import Menu2Popup from './Menu2Popup';
 import Menu2SubmenuPopup from './Menu2SubmenuPopup';
 import Menu2Submenu from '../Unstable_Menu2Submenu';
+import Menu2CheckboxItem from '../Unstable_Menu2CheckboxItem';
+import Menu2RadioGroup from '../Unstable_Menu2RadioGroup';
 
 const popupProps = [
   'align',
@@ -27,6 +29,26 @@ const popupProps = [
   'sx',
   'transitionDuration',
 ];
+
+describe('Menu2 selection callback prop validation', () => {
+  [
+    { Component: Menu2CheckboxItem, name: 'Menu2CheckboxItem', prop: 'onCheckedChange' },
+    { Component: Menu2RadioGroup, name: 'Menu2RadioGroup', prop: 'onValueChange' },
+  ].forEach(({ Component, name, prop }) => {
+    it(`validates ${name}.${prop}`, () => {
+      expect(Component.propTypes).to.have.property(prop);
+      expect(Component.propTypes).not.to.have.property('onChange');
+
+      PropTypes.resetWarningCache();
+      expect(() =>
+        PropTypes.checkPropTypes(Component.propTypes, { [prop]: () => {} }, 'prop', name),
+      ).not.toErrorDev();
+      expect(() =>
+        PropTypes.checkPropTypes(Component.propTypes, { [prop]: 42 }, 'prop', name),
+      ).toErrorDev(`Invalid prop \`${prop}\` of type \`number\` supplied to \`${name}\``);
+    });
+  });
+});
 
 describe('Menu2 public popup prop validation', () => {
   it('does not define duplicate validators on the private popup components', () => {

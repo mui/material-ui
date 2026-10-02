@@ -24,11 +24,11 @@ describe.skipIf(isJsdom())('Menu2 with Tooltip', () => {
           </Menu2Item>
         </Tooltip>
         <Tooltip title="Locked in published view" describeChild enterDelay={0} leaveDelay={0}>
-          <Menu2CheckboxItem disabled onChange={handleChange}>
+          <Menu2CheckboxItem disabled onCheckedChange={handleChange}>
             Page breaks
           </Menu2CheckboxItem>
         </Tooltip>
-        <Menu2RadioGroup defaultValue="fit" onChange={handleChange}>
+        <Menu2RadioGroup defaultValue="fit" onValueChange={handleChange}>
           <Tooltip title="Unavailable in preview" describeChild enterDelay={0} leaveDelay={0}>
             <Menu2RadioItem disabled value="custom">
               Custom zoom

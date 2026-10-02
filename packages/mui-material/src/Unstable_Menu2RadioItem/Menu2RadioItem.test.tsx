@@ -30,10 +30,10 @@ describe('<Menu2RadioItem />', () => {
   // The item root is a ButtonBase. Base UI and ButtonBase both emulate keyboard
   // activation on a non-native root, which used to select the item twice.
   it('selects once per keyboard activation', async () => {
-    const onChange = spy();
+    const onValueChange = spy();
     const { user } = render(
       <Menu2 defaultOpen modal={false} anchor={document.body}>
-        <Menu2RadioGroup defaultValue="one" onChange={onChange}>
+        <Menu2RadioGroup defaultValue="one" onValueChange={onValueChange}>
           <Menu2RadioItem closeOnClick={false} value="two">
             Two
           </Menu2RadioItem>
@@ -47,10 +47,12 @@ describe('<Menu2RadioItem />', () => {
     });
 
     await user.keyboard('[Space]');
-    expect(onChange.callCount).to.equal(1);
+    expect(onValueChange.callCount).to.equal(1);
+    expect(onValueChange.lastCall.args[0]).to.equal('two');
     expect(item).to.have.attribute('aria-checked', 'true');
 
     await user.keyboard('[Enter]');
-    expect(onChange.callCount).to.equal(2);
+    expect(onValueChange.callCount).to.equal(2);
+    expect(onValueChange.lastCall.args[0]).to.equal('two');
   });
 });

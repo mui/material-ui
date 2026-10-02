@@ -140,9 +140,9 @@ For a single choice in a set, put `Menu2RadioItem` components in a `Menu2RadioGr
 
 {{"demo": "RadioMenu2.js"}}
 
-Both components report changes with `onChange(event, value, eventDetails)`. For an uncontrolled item or group, use `defaultChecked` or `defaultValue`.
+Checkbox items report changes with `onCheckedChange(checked, eventDetails)`. Radio groups use `onValueChange(value, eventDetails)`. For an uncontrolled item or group, use `defaultChecked` or `defaultValue`.
 
-The event is native. Read the checked state or value from the second argument, not `event.target`, which can be a descendant of the item.
+Read the new checked state or value from the first argument. The native event is available through `eventDetails.event`. Its target can be a descendant of the item.
 
 :::info
 Menu2 items do not have a `selected` prop. Use checkbox or radio items for checked state.

@@ -29,10 +29,10 @@ describe('<Menu2CheckboxItem />', () => {
   // The item root is a ButtonBase. Base UI and ButtonBase both emulate keyboard
   // activation on a non-native root, which used to toggle the item twice.
   it('toggles once per activation, with the keyboard and with the pointer', async () => {
-    const onChange = spy();
+    const onCheckedChange = spy();
     const { user } = render(
       <Menu2 defaultOpen modal={false} anchor={document.body}>
-        <Menu2CheckboxItem closeOnClick={false} onChange={onChange}>
+        <Menu2CheckboxItem closeOnClick={false} onCheckedChange={onCheckedChange}>
           Ruler
         </Menu2CheckboxItem>
       </Menu2>,
@@ -44,15 +44,18 @@ describe('<Menu2CheckboxItem />', () => {
     });
 
     await user.keyboard('[Space]');
-    expect(onChange.callCount).to.equal(1);
+    expect(onCheckedChange.callCount).to.equal(1);
+    expect(onCheckedChange.lastCall.args[0]).to.equal(true);
     expect(item).to.have.attribute('aria-checked', 'true');
 
     await user.keyboard('[Enter]');
-    expect(onChange.callCount).to.equal(2);
+    expect(onCheckedChange.callCount).to.equal(2);
+    expect(onCheckedChange.lastCall.args[0]).to.equal(false);
     expect(item).to.have.attribute('aria-checked', 'false');
 
     await user.click(item);
-    expect(onChange.callCount).to.equal(3);
+    expect(onCheckedChange.callCount).to.equal(3);
+    expect(onCheckedChange.lastCall.args[0]).to.equal(true);
     expect(item).to.have.attribute('aria-checked', 'true');
   });
 });

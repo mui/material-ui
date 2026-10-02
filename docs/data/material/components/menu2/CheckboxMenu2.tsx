@@ -10,19 +10,19 @@ export default function CheckboxMenu2() {
     grid: false,
   });
 
-  const toggle = (key: keyof typeof shown) => (event: Event, checked: boolean) => {
+  const toggle = (key: keyof typeof shown) => (checked: boolean) => {
     setShown((current) => ({ ...current, [key]: checked }));
   };
 
   return (
     <Menu2 trigger={<Button>View</Button>}>
-      <Menu2CheckboxItem checked={shown.ruler} onChange={toggle('ruler')}>
+      <Menu2CheckboxItem checked={shown.ruler} onCheckedChange={toggle('ruler')}>
         Ruler
       </Menu2CheckboxItem>
-      <Menu2CheckboxItem checked={shown.outline} onChange={toggle('outline')}>
+      <Menu2CheckboxItem checked={shown.outline} onCheckedChange={toggle('outline')}>
         Outline
       </Menu2CheckboxItem>
-      <Menu2CheckboxItem checked={shown.grid} onChange={toggle('grid')}>
+      <Menu2CheckboxItem checked={shown.grid} onCheckedChange={toggle('grid')}>
         Grid
       </Menu2CheckboxItem>
     </Menu2>

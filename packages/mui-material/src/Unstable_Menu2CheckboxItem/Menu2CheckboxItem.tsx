@@ -89,13 +89,7 @@ export interface Menu2CheckboxItemOwnProps
   /**
    * Event handler called when the checkbox item is ticked or unticked.
    */
-  onChange?:
-    | ((
-        event: Event,
-        checked: boolean,
-        eventDetails: BaseMenu.CheckboxItem.ChangeEventDetails,
-      ) => void)
-    | undefined;
+  onCheckedChange?: BaseMenu.CheckboxItem.Props['onCheckedChange'] | undefined;
   /**
    * Whether the component should ignore user interaction.
    * @default false
@@ -271,7 +265,7 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
     disableRipple,
     divider = false,
     nativeButton: nativeButtonProp,
-    onChange,
+    onCheckedChange,
     slotProps,
     slots,
     sx,
@@ -294,12 +288,6 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
   const classes = useMenu2ItemUtilityClasses<Menu2CheckboxItemClasses>(
     ownerState,
     getMenu2CheckboxItemUtilityClass,
-  );
-  const handleCheckedChange = React.useCallback(
-    (newChecked: boolean, eventDetails: BaseMenu.CheckboxItem.ChangeEventDetails) => {
-      onChange?.(eventDetails.event, newChecked, eventDetails);
-    },
-    [onChange],
   );
   const RootSlot = slots?.root ?? Menu2CheckboxItemRoot;
 
@@ -329,7 +317,7 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
         checked={checked}
         disabled={disabled}
         nativeButton={nativeButtonProp ?? isMenu2RootNativeButton(RootSlot, component)}
-        onCheckedChange={handleCheckedChange}
+        onCheckedChange={onCheckedChange}
         style={style}
         {...other}
       >
@@ -417,7 +405,7 @@ Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
   /**
    * Event handler called when the checkbox item is ticked or unticked.
    */
-  onChange: PropTypes.func,
+  onCheckedChange: PropTypes.func,
   /**
    * The props used for each slot inside.
    */

@@ -1060,23 +1060,21 @@ describe('<Menu2 />', () => {
   });
 
   it('supports checkbox and radio item state', async () => {
-    const handleCheckboxChange = spy((event: Event, checked: boolean, eventDetails: any) => {
-      expect(event).to.be.instanceOf(Event);
-      expect(checked).to.equal(true);
-      expect(eventDetails.reason).to.equal('item-press');
-    });
-    const handleRadioChange = spy((event: Event, value: string, eventDetails: any) => {
-      expect(event).to.be.instanceOf(Event);
-      expect(value).to.equal('large');
-      expect(eventDetails.reason).to.equal('item-press');
-    });
+    const handleCheckboxChange = spy();
+    const handleCheckboxClick = spy();
+    const handleRadioChange = spy();
+    const handleRadioClick = spy();
 
     const { user } = render(
       <Menu2 trigger={<Button disableRipple>Options</Button>}>
-        <Menu2CheckboxItem onChange={handleCheckboxChange}>Show hidden files</Menu2CheckboxItem>
-        <Menu2RadioGroup defaultValue="small" onChange={handleRadioChange}>
+        <Menu2CheckboxItem onCheckedChange={handleCheckboxChange} onClick={handleCheckboxClick}>
+          Show hidden files
+        </Menu2CheckboxItem>
+        <Menu2RadioGroup defaultValue="small" onValueChange={handleRadioChange}>
           <Menu2RadioItem value="small">Small</Menu2RadioItem>
-          <Menu2RadioItem value="large">Large</Menu2RadioItem>
+          <Menu2RadioItem value="large" onClick={handleRadioClick}>
+            Large
+          </Menu2RadioItem>
         </Menu2RadioGroup>
       </Menu2>,
     );
@@ -1091,6 +1089,12 @@ describe('<Menu2 />', () => {
     expect(checkbox).to.have.attribute('aria-checked', 'true');
     expect(checkbox).to.have.class(menu2CheckboxItemClasses.checked);
     expect(handleCheckboxChange.callCount).to.equal(1);
+    expect(handleCheckboxChange.firstCall.args).to.have.length(2);
+    const [checked, checkedEventDetails] = handleCheckboxChange.firstCall.args;
+    expect(checked).to.equal(true);
+    expect(checkedEventDetails.reason).to.equal('item-press');
+    expect(checkedEventDetails.event).to.be.instanceOf(Event);
+    expect(checkedEventDetails.event).to.equal(handleCheckboxClick.firstCall.args[0].nativeEvent);
 
     expect(screen.getByRole('menuitemradio', { name: /small/i })).to.have.attribute(
       'aria-checked',
@@ -1108,6 +1112,12 @@ describe('<Menu2 />', () => {
       'true',
     );
     expect(handleRadioChange.callCount).to.equal(1);
+    expect(handleRadioChange.firstCall.args).to.have.length(2);
+    const [value, valueEventDetails] = handleRadioChange.firstCall.args;
+    expect(value).to.equal('large');
+    expect(valueEventDetails.reason).to.equal('item-press');
+    expect(valueEventDetails.event).to.be.instanceOf(Event);
+    expect(valueEventDetails.event).to.equal(handleRadioClick.firstCall.args[0].nativeEvent);
   });
 
   it.skipIf(isJsdom())('gives the items a ripple, and disableRipple turns it off', async () => {

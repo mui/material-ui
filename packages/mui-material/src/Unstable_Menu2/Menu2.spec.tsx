@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
+import type { Menu as BaseMenu } from '@base-ui/react/menu';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem, {
   getMenu2CheckboxItemIndicatorUtilityClass,
@@ -167,9 +168,9 @@ function Menu2Composition() {
             },
           }}
           nativeButton={false}
-          onChange={(event, checked, eventDetails) => {
-            expectType<Event, typeof event>(event);
+          onCheckedChange={(checked, eventDetails) => {
             expectType<boolean, typeof checked>(checked);
+            expectType<BaseMenu.CheckboxItem.ChangeEventDetails, typeof eventDetails>(eventDetails);
             eventDetails.cancel();
           }}
         >
@@ -177,9 +178,9 @@ function Menu2Composition() {
         </Menu2CheckboxItem>
         <Menu2RadioGroup
           defaultValue="one"
-          onChange={(event, value, eventDetails) => {
-            expectType<Event, typeof event>(event);
+          onValueChange={(value, eventDetails) => {
             expectType<any, typeof value>(value);
+            expectType<BaseMenu.RadioGroup.ChangeEventDetails, typeof eventDetails>(eventDetails);
             eventDetails.cancel();
           }}
         >
@@ -238,6 +239,41 @@ function Menu2Composition() {
     </Menu2>
   );
 }
+
+function ControlledMenu2Items() {
+  const [checked, setChecked] = React.useState(false);
+  const [value, setValue] = React.useState('one');
+
+  return (
+    <Menu2>
+      <Menu2CheckboxItem checked={checked} onCheckedChange={setChecked} />
+      <Menu2RadioGroup value={value} onValueChange={setValue}>
+        <Menu2RadioItem value="one">One</Menu2RadioItem>
+      </Menu2RadioGroup>
+    </Menu2>
+  );
+}
+
+<Menu2CheckboxItem
+  // @ts-expect-error Use onCheckedChange(checked, eventDetails) for selection changes.
+  onChange={(_event: Event, _checked: boolean, _eventDetails: unknown) => {}}
+/>;
+<Menu2RadioGroup
+  // @ts-expect-error Use onValueChange(value, eventDetails) for selection changes.
+  onChange={(_event: Event, _value: string, _eventDetails: unknown) => {}}
+/>;
+
+// The root still accepts a DOM change handler.
+<Menu2CheckboxItem
+  onChange={(event) => {
+    expectType<React.ChangeEvent<HTMLDivElement>, typeof event>(event);
+  }}
+/>;
+<Menu2RadioGroup
+  onChange={(event) => {
+    expectType<React.ChangeEvent<HTMLDivElement>, typeof event>(event);
+  }}
+/>;
 
 createTheme({
   components: {

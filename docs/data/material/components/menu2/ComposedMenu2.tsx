@@ -33,17 +33,11 @@ export default function ComposedMenu2() {
       trigger={<Button>Format</Button>}
       slotProps={{ paper: { sx: { width: 260 } } }}
     >
-      <Menu2CheckboxItem
-        checked={bold}
-        onChange={(event, checked) => setBold(checked)}
-      >
+      <Menu2CheckboxItem checked={bold} onCheckedChange={setBold}>
         <ListItemText>Bold</ListItemText>
         <Shortcut>⌘B</Shortcut>
       </Menu2CheckboxItem>
-      <Menu2CheckboxItem
-        checked={italic}
-        onChange={(event, checked) => setItalic(checked)}
-      >
+      <Menu2CheckboxItem checked={italic} onCheckedChange={setItalic}>
         <ListItemText>Italic</ListItemText>
         <Shortcut>⌘I</Shortcut>
       </Menu2CheckboxItem>
@@ -58,10 +52,7 @@ export default function ComposedMenu2() {
           </Menu2SubmenuTrigger>
         }
       >
-        <Menu2RadioGroup
-          value={alignment}
-          onChange={(event, value) => setAlignment(value)}
-        >
+        <Menu2RadioGroup value={alignment} onValueChange={setAlignment}>
           <Menu2RadioItem value="left">Left</Menu2RadioItem>
           <Menu2RadioItem value="center">Center</Menu2RadioItem>
           <Menu2RadioItem value="right">Right</Menu2RadioItem>

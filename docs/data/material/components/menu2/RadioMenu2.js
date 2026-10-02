@@ -9,7 +9,7 @@ export default function RadioMenu2() {
 
   return (
     <Menu2 trigger={<Button>Zoom</Button>}>
-      <Menu2RadioGroup value={zoom} onChange={(event, value) => setZoom(value)}>
+      <Menu2RadioGroup value={zoom} onValueChange={setZoom}>
         <Menu2RadioItem value="50">50%</Menu2RadioItem>
         <Menu2RadioItem value="100">100%</Menu2RadioItem>
         <Menu2RadioItem value="200">200%</Menu2RadioItem>
