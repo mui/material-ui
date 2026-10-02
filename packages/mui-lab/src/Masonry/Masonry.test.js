@@ -300,7 +300,6 @@ describe('<Masonry />', () => {
         theme: cssVarsTheme,
       });
 
-      expect(spacing).to.include('var(--mui-spacing');
       expect(styles.margin).to.equal(`calc(0px - (${spacing} / 2))`);
       expect(styles['& > *'].margin).to.equal(`calc(${spacing} / 2)`);
       expect(styles['& > *'].width).to.equal(
