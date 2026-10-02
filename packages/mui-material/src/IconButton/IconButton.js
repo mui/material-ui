@@ -67,7 +67,7 @@ const IconButtonRoot = styled(ButtonBase, {
             (theme.vars || theme).palette.action.active,
             (theme.vars || theme).palette.action.hoverOpacity,
           ),
-          '&:hover': {
+          [`&:hover:not(.${iconButtonClasses.disabled})`]: {
             backgroundColor: 'var(--IconButton-hoverBg)',
             // Reset on touch devices, it doesn't add specificity
             '@media (hover: none)': {
@@ -174,6 +174,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color = 'default',
     disabled = false,
     disableFocusRipple = false,
+    focusableWhenDisabled = false,
     size = 'medium',
     id: idProp,
     loading = null,
@@ -209,6 +210,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       disabled={disabled || loading}
       ref={ref}
       {...other}
+      focusableWhenDisabled={focusableWhenDisabled === true}
       ownerState={ownerState}
     >
       {typeof loading === 'boolean' && (
@@ -302,6 +304,12 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default false
    */
   edge: PropTypes.oneOf(['end', 'start', false]),
+  /**
+   * When `true`, disabled buttons can be focused with the keyboard or programmatically while activation is prevented.
+   * Disabled buttons rendered as links remain non-focusable.
+   * @default false
+   */
+  focusableWhenDisabled: PropTypes.bool,
   /**
    * @ignore
    */

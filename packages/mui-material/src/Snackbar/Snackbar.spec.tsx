@@ -1,5 +1,5 @@
 import { mergeSlotProps } from '@mui/material/utils';
-import Snackbar, { SnackbarProps } from '@mui/material/Snackbar';
+import Snackbar, { SnackbarCloseEvent, SnackbarProps } from '@mui/material/Snackbar';
 import { expectType } from '@mui/types';
 
 // slotProps.transition should reject unknown props
@@ -7,6 +7,15 @@ import { expectType } from '@mui/types';
   slotProps={{
     // @ts-expect-error — unknown props should be rejected
     transition: { randomInvalidProp: 'test' },
+  }}
+/>;
+
+<Snackbar
+  onClose={(event, reason) => {
+    expectType<SnackbarCloseEvent, typeof event>(event);
+    if (reason === 'escapeKeyDown') {
+      event.defaultMuiPrevented = true;
+    }
   }}
 />;
 
