@@ -31,6 +31,7 @@ describe('<Masonry />', () => {
   );
 
   const theme = createTheme({ spacing: 8 });
+  const cssVarsTheme = createTheme({ spacing: 8, cssVariables: true });
   // The render tests use the default theme, whose spacing is 8px.
   const defaultThemeSpacing = 8;
   const maxColumnHeight = 100;
@@ -287,7 +288,6 @@ describe('<Masonry />', () => {
     });
 
     it('should use the spacing CSS variable with CSS theme variables', () => {
-      const cssVarsTheme = createTheme({ spacing: 8, cssVariables: true });
       const defaultColumns = 4;
       const defaultSpacing = 2;
       const spacing = cssVarsTheme.spacing(defaultSpacing);
@@ -301,6 +301,7 @@ describe('<Masonry />', () => {
         theme: cssVarsTheme,
       });
 
+      expect(spacing).to.include('var(--mui-spacing');
       expect(styles.margin).to.equal(`calc(0px - (${spacing} / 2))`);
       expect(styles['& > *'].margin).to.equal(`calc(${spacing} / 2)`);
       expect(styles['& > *'].width).to.equal(
@@ -416,16 +417,27 @@ describe('<Masonry />', () => {
     });
 
     it('should support zero spacing with CSS theme variables', () => {
-      const cssVarsTheme = createTheme({ cssVariables: true });
-      const ownerState = { columns: 4, spacing: 0, maxColumnHeight: 100 };
-
-      expect(() => getStyle({ ownerState, theme: cssVarsTheme })).not.to.throw();
-
+      const ownerState = { columns: 4, spacing: 0, maxColumnHeight };
       const styles = getStyle({ ownerState, theme: cssVarsTheme });
+
       expect(styles.margin).to.equal('calc(0px - (0px / 2))');
       expect(styles['& > *'].margin).to.equal('calc(0px / 2)');
       expect(styles['& > *'].width).to.equal('calc(25.00% - 0px)');
-      expect(styles.height).to.equal('calc(100px + 0px)');
+      expect(styles.height).to.equal(`calc(${maxColumnHeight}px + 0px)`);
+    });
+
+    it('should support responsive zero and unit-string spacing with CSS theme variables', () => {
+      const styles = getStyle({
+        ownerState: { columns: 4, spacing: { xs: 0, md: '16px' }, maxColumnHeight },
+        theme: cssVarsTheme,
+      });
+
+      expect(
+        styles[`@media (min-width:${cssVarsTheme.breakpoints.values.xs}px)`]['& > *'].width,
+      ).to.equal('calc(25.00% - 0px)');
+      expect(
+        styles[`@media (min-width:${cssVarsTheme.breakpoints.values.md}px)`]['& > *'].width,
+      ).to.equal('calc(25.00% - 16px)');
     });
   });
 
