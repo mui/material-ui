@@ -8,7 +8,6 @@ import {
   isJsdom,
 } from '@mui/internal-test-utils';
 import { createTheme } from '@mui/material/styles';
-import defaultTheme from '@mui/material/styles/defaultTheme';
 import Masonry, { masonryClasses as classes } from '@mui/lab/Masonry';
 import { getStyle, parseToNumber } from './Masonry';
 import describeConformance from '../../test/describeConformance';
@@ -31,7 +30,8 @@ describe('<Masonry />', () => {
     }),
   );
 
-  const theme = createTheme({ spacing: 8 });
+  // The render tests parse `theme.spacing()`, which needs a px value.
+  const theme = createTheme({ spacing: 8, cssVariables: false });
   const maxColumnHeight = 100;
 
   describe('render', () => {
@@ -92,7 +92,7 @@ describe('<Masonry />', () => {
         secondItem.style.height = `${secondChildInitialHeight}px`;
         masonry.appendChild(secondItem);
 
-        const topAndBottomMargin = parseToNumber(defaultTheme.spacing(spacingProp)) * 2;
+        const topAndBottomMargin = parseToNumber(theme.spacing(spacingProp)) * 2;
         expect(window.getComputedStyle(masonry).height).to.equal(
           `${firstChildHeight + secondChildInitialHeight + topAndBottomMargin}px`,
         );
