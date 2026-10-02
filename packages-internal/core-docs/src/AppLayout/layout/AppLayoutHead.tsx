@@ -59,6 +59,7 @@ export function AppLayoutHead(props: AppLayoutHeadProps) {
             <link
               key={userLanguage2}
               rel="alternate"
+              /* #host-reference */
               href={`https://next.mui.com${
                 userLanguage2 === 'en' ? '' : `/${userLanguage2}`
               }${canonicalAs}`}
