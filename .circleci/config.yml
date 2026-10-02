@@ -118,6 +118,20 @@ jobs:
       - run:
           name: Test module augmentation
           command: pnpm typescript:module-augmentation
+  test_types_large_gen2:
+    <<: *default-job
+    resource_class: large.gen2
+    steps:
+      - checkout
+      - code-infra/install-deps
+      - code-infra/check-generated:
+          command: pnpm docs:typescript:formatted
+      - run:
+          name: Tests TypeScript definitions
+          command: pnpm typescript:ci
+      - run:
+          name: Test module augmentation
+          command: pnpm typescript:module-augmentation
   test_types_next:
     <<: *default-job
     resource_class: xlarge.gen2
@@ -459,23 +473,9 @@ workflows:
     when:
       equal: [pipeline, << pipeline.parameters.workflow >>]
     jobs:
-      - test_unit:
-          <<: *default-context
-      - test_lint:
-          <<: *default-context
-      - test_static:
-          <<: *default-context
       - test_types:
           <<: *default-context
-      - test_browser:
-          <<: *default-context
-      - test_browser_legacy:
-          <<: *default-context
-      - test_regressions:
-          <<: *default-context
-      - test_e2e:
-          <<: *default-context
-      - test_bundle_size_monitor:
+      - test_types_large_gen2:
           <<: *default-context
   e2e-website:
     when:
