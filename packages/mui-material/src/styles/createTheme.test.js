@@ -1022,6 +1022,15 @@ describe('createTheme', () => {
       ).to.equal('rgba(var(--mui-palette-text-primaryChannel) / 0.5)');
     });
 
+    it('[CSS variables] `alpha()` should fall back to JS manipulation for raw colors', () => {
+      const theme = createTheme({ cssVariables: true });
+      expect(theme.alpha('#1976d2', 0.5)).to.equal(systemAlpha('#1976d2', 0.5));
+      expect(theme.alpha(theme.palette.primary.main, '0.3 + 0.2')).to.equal(
+        systemAlpha(theme.palette.primary.main, 0.5),
+      );
+      expect(theme.alpha('rgb(25, 118, 210)', 0.5)).to.equal('rgba(25, 118, 210, 0.5)');
+    });
+
     it('[color space with CSS variables] should use CSS for manipulating colors', () => {
       const theme = createTheme({
         cssVariables: {
