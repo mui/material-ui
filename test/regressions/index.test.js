@@ -4,6 +4,7 @@ import * as fs from 'node:fs/promises';
 import { chromium } from '@playwright/test';
 import { describe, test as base, afterAll } from 'vitest';
 import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
+import { CSS_LAYOUT_SUITES, FOCUS_VISIBLE_TARGETS } from './a11y/criteriaSuites';
 import { A11Y_RULES, DEFAULT_VIEWPORT, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 import { RECENT_SEARCHES, stubAlgoliaSearch, unstubAlgoliaSearch } from './algoliaSearchStub';
 import { favoriteSearchesKey, QUERY, recentSearchesKey } from './docsearchFixtureData';
@@ -16,7 +17,11 @@ async function main() {
   const screenshotDir = path.resolve(currentDirectory, './screenshots/chrome');
 
   const browser = await chromium.launch({
-    args: ['--font-render-hinting=none'],
+    args: [
+      '--font-render-hinting=none',
+      // Skia otherwise picks SIMD code paths per host CPU, which shifts glyph edges.
+      '--disable-skia-runtime-opts',
+    ],
     // otherwise the loaded google Roboto font isn't applied
     headless: false,
   });
@@ -554,31 +559,6 @@ async function main() {
  * introduced independently of the harness it runs on.
  */
 function registerCssLayoutSuites({ test, renderFixture, routes }) {
-  const CSS_LAYOUT_SUITES = [
-    { component: 'Accordion', route: '/docs-components-accordion/AccordionUsage' },
-    // The same demo renders the summary header, which is rated separately.
-    { component: 'AccordionSummary', route: '/docs-components-accordion/AccordionUsage' },
-    {
-      component: 'Avatar',
-      route: '/docs-components-avatars/LetterAvatars',
-      // 1.4.4 is asserted here as *text-only* resize, which the Avatar report
-      // explicitly treats as out of scope: its fixed 40px box scales under
-      // full-page zoom (the mechanism the criterion assumes) but not under
-      // text-only zoom, which the report calls an author concern. Left rated
-      // Manual rather than silently downgraded — see Avatar/accessibility.md.
-      skipCriteria: ['1.4.4'],
-    },
-    { component: 'Button', route: '/docs-components-buttons/BasicButtons' },
-    { component: 'Checkbox', route: '/docs-components-checkboxes/Checkboxes' },
-    { component: 'LinearProgress', route: '/docs-components-progress/LinearDeterminate' },
-    { component: 'Radio', route: '/docs-components-radio-buttons/RadioButtonsGroup' },
-    { component: 'Switch', route: '/docs-components-switches/BasicSwitches' },
-    { component: 'TextField', route: '/docs-components-text-fields/BasicTextFields' },
-    { component: 'ToggleButton', route: '/docs-components-toggle-button/ToggleButtons' },
-    // The same demo renders the group wrapper, which is rated separately.
-    { component: 'ToggleButtonGroup', route: '/docs-components-toggle-button/ToggleButtons' },
-  ];
-
   /**
    * Reports the document's horizontal overflow after applying `css`, plus any
    * element whose own content escapes its box. Both are the failure modes the
@@ -731,44 +711,6 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
  * change, so the themed variant asserts the ring itself.
  */
 function registerFocusVisibleSuites({ test, renderFixture, routes }) {
-  const FOCUS_VISIBLE_TARGETS = [
-    {
-      component: 'AccordionSummary',
-      route: '/docs-components-accordion/AccordionUsage',
-      selector: '.MuiAccordionSummary-root',
-    },
-    {
-      component: 'Button',
-      route: '/docs-components-buttons/BasicButtons',
-      selector: '.MuiButton-root',
-    },
-    {
-      component: 'Checkbox',
-      route: '/docs-components-checkboxes/Checkboxes',
-      selector: '.MuiCheckbox-root',
-    },
-    {
-      component: 'Radio',
-      route: '/docs-components-radio-buttons/RadioButtonsGroup',
-      selector: '.MuiRadio-root',
-    },
-    {
-      component: 'Switch',
-      route: '/docs-components-switches/BasicSwitches',
-      selector: '.MuiSwitch-root',
-    },
-    {
-      component: 'TextField',
-      route: '/docs-components-text-fields/BasicTextFields',
-      selector: '.MuiOutlinedInput-root',
-    },
-    {
-      component: 'ToggleButton',
-      route: '/docs-components-toggle-button/ToggleButtons',
-      selector: '.MuiToggleButton-root',
-    },
-  ];
-
   // TextField is absent: it has no ring, and the demo suite above already
   // covers its border-change indicator. Every Button variant is a target: the
   // fixture suppresses the contained focus shadow, so each variant passes only

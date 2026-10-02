@@ -236,14 +236,14 @@ importers:
         specifier: 1.1.1-canary.0
         version: 1.1.1-canary.0(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(rolldown@1.2.4)(terser@5.50.0)(tsx@4.23.15)(yaml@2.9.0)
       '@mui/internal-code-infra':
-        specifier: 0.1.1-canary.2
-        version: 0.1.1-canary.2(@next/eslint-plugin-next@16.3.6(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0)))(@types/node@22.20.4)(@typescript-eslint/eslint-plugin@8.68.0(@typescript-eslint/parser@8.70.0(@typescript/typescript6@6.0.2)(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.70.0(@typescript/typescript6@6.0.2)(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.28)(prettier@3.9.9)(stylelint@17.15.0(@typescript/typescript6@6.0.2)(supports-color@11.0.0))(supports-color@11.0.0)(vitest@5.0.0)
+        specifier: 0.1.1-canary.3
+        version: 0.1.1-canary.3(@next/eslint-plugin-next@16.3.6(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0)))(@types/node@22.20.4)(@typescript-eslint/eslint-plugin@8.68.0(@typescript-eslint/parser@8.70.0(@typescript/typescript6@6.0.2)(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.70.0(@typescript/typescript6@6.0.2)(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.28)(prettier@3.9.9)(stylelint@17.15.0(@typescript/typescript6@6.0.2)(supports-color@11.0.0))(supports-color@11.0.0)(vitest@5.0.0)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils/build
       '@mui/internal-netlify-cache':
-        specifier: 0.1.1-canary.0
-        version: 0.1.1-canary.0
+        specifier: 0.1.1-canary.1
+        version: 0.1.1-canary.1
       '@mui/internal-scripts':
         specifier: workspace:^
         version: link:packages-internal/scripts
@@ -837,7 +837,7 @@ importers:
   packages-internal/core-docs:
     dependencies:
       '@babel/runtime':
-        specifier: ^8.0.5
+        specifier: ^7.29.7 || ^8.0.5
         version: 8.0.5
       '@base-ui/react':
         specifier: ^1.8.0
@@ -862,7 +862,7 @@ importers:
         version: 9.3.0(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@emotion/server@11.11.0(@emotion/css@11.13.5(supports-color@11.0.0)))(@types/react@19.3.0)(next@16.3.6(@babel/core@8.0.6)(@playwright/test@1.63.0)(@types/node@22.20.4)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)
       '@mui/stylis-plugin-rtl':
         specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta
-        version: 9.3.0(stylis@4.2.0)
+        version: 9.4.0(stylis@4.2.0)
       '@mui/system':
         specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta
         version: 9.4.0(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@types/react@19.3.0)(react@19.3.0)
@@ -957,7 +957,7 @@ importers:
   packages-internal/markdown:
     dependencies:
       '@babel/runtime':
-        specifier: ^8.0.5
+        specifier: ^7.29.7 || ^8.0.5
         version: 8.0.5
       es-toolkit:
         specifier: ^1.52.0
@@ -1033,7 +1033,7 @@ importers:
         specifier: ^7.29.7
         version: 7.29.7(supports-color@11.0.0)
       '@babel/runtime':
-        specifier: ^8.0.5
+        specifier: ^7.29.7 || ^8.0.5
         version: 8.0.5
       '@babel/traverse':
         specifier: ^7.29.8
@@ -1099,7 +1099,7 @@ importers:
   packages/mui-icons-material:
     dependencies:
       '@babel/runtime':
-        specifier: ^8.0.5
+        specifier: ^7.29.7 || ^8.0.5
         version: 8.0.5
     devDependencies:
       '@mui/icons-material':
@@ -1146,7 +1146,7 @@ importers:
   packages/mui-lab:
     dependencies:
       '@babel/runtime':
-        specifier: ^8.0.5
+        specifier: ^7.29.7 || ^8.0.5
         version: 8.0.5
       '@emotion/react':
         specifier: ^11.5.0
@@ -1158,13 +1158,13 @@ importers:
         specifier: workspace:^
         version: link:../mui-material-pigment-css/build
       '@mui/system':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../mui-system/build
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
       '@mui/utils':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../mui-utils/build
       clsx:
         specifier: ^2.1.1
@@ -1202,7 +1202,7 @@ importers:
   packages/mui-material:
     dependencies:
       '@babel/runtime':
-        specifier: ^8.0.5
+        specifier: ^7.29.7 || ^8.0.5
         version: 8.0.5
       '@base-ui/react':
         specifier: ^1.8.0
@@ -1220,13 +1220,13 @@ importers:
         specifier: workspace:^
         version: link:../mui-material-pigment-css/build
       '@mui/system':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../mui-system/build
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
       '@mui/utils':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../mui-utils/build
       '@popperjs/core':
         specifier: ^2.11.8
@@ -1285,7 +1285,7 @@ importers:
   packages/mui-material-nextjs:
     dependencies:
       '@babel/runtime':
-        specifier: ^8.0.5
+        specifier: ^7.29.7 || ^8.0.5
         version: 8.0.5
     devDependencies:
       '@emotion/cache':
@@ -1311,7 +1311,7 @@ importers:
   packages/mui-material-pigment-css:
     dependencies:
       '@babel/runtime':
-        specifier: ^8.0.5
+        specifier: ^7.29.7 || ^8.0.5
         version: 8.0.5
       '@mui/system':
         specifier: workspace:*
@@ -1328,10 +1328,10 @@ importers:
   packages/mui-private-theming:
     dependencies:
       '@babel/runtime':
-        specifier: ^8.0.5
+        specifier: ^7.29.7 || ^8.0.5
         version: 8.0.5
       '@mui/utils':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../mui-utils/build
       prop-types:
         specifier: ^15.8.1
@@ -1354,7 +1354,7 @@ importers:
   packages/mui-styled-engine:
     dependencies:
       '@babel/runtime':
-        specifier: ^8.0.5
+        specifier: ^7.29.7 || ^8.0.5
         version: 8.0.5
       '@emotion/cache':
         specifier: ^11.14.0
@@ -1395,7 +1395,7 @@ importers:
   packages/mui-styled-engine-sc:
     dependencies:
       '@babel/runtime':
-        specifier: ^8.0.5
+        specifier: ^7.29.7 || ^8.0.5
         version: 8.0.5
       '@types/hoist-non-react-statics':
         specifier: ^3.3.7
@@ -1427,7 +1427,7 @@ importers:
   packages/mui-stylis-plugin-rtl:
     dependencies:
       '@babel/runtime':
-        specifier: ^8.0.5
+        specifier: ^7.29.7 || ^8.0.5
         version: 8.0.5
       cssjanus:
         specifier: ^2.3.1
@@ -1447,19 +1447,19 @@ importers:
   packages/mui-system:
     dependencies:
       '@babel/runtime':
-        specifier: ^8.0.5
+        specifier: ^7.29.7 || ^8.0.5
         version: 8.0.5
       '@mui/private-theming':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../mui-private-theming/build
       '@mui/styled-engine':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../mui-styled-engine/build
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
       '@mui/utils':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../mui-utils/build
       clsx:
         specifier: ^2.1.1
@@ -1503,7 +1503,7 @@ importers:
   packages/mui-types:
     dependencies:
       '@babel/runtime':
-        specifier: ^8.0.5
+        specifier: ^7.29.7 || ^8.0.5
         version: 8.0.5
     devDependencies:
       '@mui/types':
@@ -1517,7 +1517,7 @@ importers:
   packages/mui-utils:
     dependencies:
       '@babel/runtime':
-        specifier: ^8.0.5
+        specifier: ^7.29.7 || ^8.0.5
         version: 8.0.5
       '@mui/types':
         specifier: workspace:^
@@ -3962,8 +3962,8 @@ packages:
   '@mui/core-downloads-tracker@5.18.0':
     resolution: {integrity: sha512-jbhwoQ1AY200PSSOrNXmrFCaSDSJWP7qk6urkTmIirvRXDROkqe+QwcLlUiw/PrREwsIF/vm3/dAXvjlMHF0RA==}
 
-  '@mui/core-downloads-tracker@9.3.1':
-    resolution: {integrity: sha512-IAyAFNQbT7hysJ9HXphiOmWJF7G1OglzHanqCgvQgH9LA2ydxtmaTBDbcBqw6euZesyShiwvpvbnYO1GY1AyXQ==}
+  '@mui/core-downloads-tracker@9.4.0':
+    resolution: {integrity: sha512-d+gIYM1raJP87yrVQcVg+Q3vycVMArMkgu/TjJLi2vTvO9FHKWNRR1xs9nnN4eLpM9nGxxm02UMvc9BrmcUKvQ==}
 
   '@mui/internal-babel-plugin-display-name@2.0.1-canary.0':
     resolution: {integrity: sha512-BAt6ZSsjJ52hWE1zNZp6mWCdAwcg2WXKnE4Qg/GAi1bBykhdfSrnNDsISq4CZYWUwQHEcN+u/ofiObuPYTZhaw==}
@@ -3978,8 +3978,8 @@ packages:
     peerDependencies:
       '@babel/core': ^8.0.0
 
-  '@mui/internal-babel-plugin-resolve-imports@3.0.1-canary.0':
-    resolution: {integrity: sha512-cRzHcsdzrgRI0UmNHSkq4A+Z6LqnyXmWWu50kVd+WTQPFH/QivigkaEfvtojeeDhnNPOTNjxdnyqQuIElMPIwA==}
+  '@mui/internal-babel-plugin-resolve-imports@3.0.1-canary.1':
+    resolution: {integrity: sha512-fORciac3Y6MnLhGWU+8CcRUxMCy9jhQpLnvL7V98o/VazegIzwXZkkrYb24e+Ncxmm05+ZzyNWho4gpfG1AClQ==}
     engines: {node: '>=22.12.0'}
     peerDependencies:
       '@babel/core': ^8.0.0
@@ -3988,8 +3988,8 @@ packages:
     resolution: {integrity: sha512-jPAMqC6aBEnrFalmrZeGnGzk+QG9/PRr/8V8xXgEo07fyCMc4c+zrgj8SNyNww2oujo6d46ek0ZdaHldwrBV7Q==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.1.1-canary.2':
-    resolution: {integrity: sha512-8pFndrBhx6XVyTMV0YdKNYFEl5zYYyoikXx911Pd8H6KdhqOQUsAruSLio8VsMorZbB+weGSyPsQ/MHE86qBQw==}
+  '@mui/internal-code-infra@0.1.1-canary.3':
+    resolution: {integrity: sha512-9he+3GAI4yR9NjG4YUVtKfZ0kLFPRkD+0AzQbWWUO7JPM6n19j3+sr+Oa/ZTUGS7ZdIfbEdiV98R1TYJd9XDkQ==}
     hasBin: true
     peerDependencies:
       '@next/eslint-plugin-next': '*'
@@ -4000,8 +4000,8 @@ packages:
       typescript:
         optional: true
 
-  '@mui/internal-netlify-cache@0.1.1-canary.0':
-    resolution: {integrity: sha512-EFqzKoYjwE4zaygM0Bs+K2NcyJH4tB7GQKeHutrz+OgPixcLcfYkBmPqjIwbQ9n5awZwvFnFQbX2osqK1EK+Ng==}
+  '@mui/internal-netlify-cache@0.1.1-canary.1':
+    resolution: {integrity: sha512-gr79QpE9b2BA3Af/TmKoKPtNUmuDnh/ofClumg1R1mPcvpTEzQWkcoGU7fEZIiPzrgWuwb6emo5w0sx97youdQ==}
 
   '@mui/internal-test-utils@2.1.1-canary.0':
     resolution: {integrity: sha512-ZXPjpvD+q292EFc79NrfhrY2QuOoBtq9gWByY95/eYXavPXxUajjXIfzrtpJbqv9C1hTkmT8UEGxlAD6r/Dq/w==}
@@ -4148,8 +4148,8 @@ packages:
       '@emotion/styled':
         optional: true
 
-  '@mui/stylis-plugin-rtl@9.3.0':
-    resolution: {integrity: sha512-zxZiFFvfwRYVcnN5ysrlLiI7Nh3B4evJGPU5/U9MxBTHLKkRhpVYDkY3nU9cvczkLOPGOPwXjm7bf6PEGZdEZA==}
+  '@mui/stylis-plugin-rtl@9.4.0':
+    resolution: {integrity: sha512-dGdEdcWlMJ0KD8S4s28TvFI2XRov+DaBkeCPvhDvagCvm47UWGclRRndRvqwCG/ZMB4vGFubCNoYweNsfo28FQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       stylis: 4.x
@@ -14635,7 +14635,7 @@ snapshots:
 
   '@mui/core-downloads-tracker@5.18.0': {}
 
-  '@mui/core-downloads-tracker@9.3.1': {}
+  '@mui/core-downloads-tracker@9.4.0': {}
 
   '@mui/internal-babel-plugin-display-name@2.0.1-canary.0(@babel/core@8.0.6)(@babel/preset-react@8.0.1(@babel/core@8.0.6))':
     dependencies:
@@ -14648,7 +14648,7 @@ snapshots:
       '@babel/helper-module-imports': 8.0.0
       find-package-json: 1.2.0
 
-  '@mui/internal-babel-plugin-resolve-imports@3.0.1-canary.0(@babel/core@8.0.6)':
+  '@mui/internal-babel-plugin-resolve-imports@3.0.1-canary.1(@babel/core@8.0.6)':
     dependencies:
       '@babel/core': 8.0.6
       resolve: 1.22.12
@@ -14682,7 +14682,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@mui/internal-code-infra@0.1.1-canary.2(@next/eslint-plugin-next@16.3.6(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0)))(@types/node@22.20.4)(@typescript-eslint/eslint-plugin@8.68.0(@typescript-eslint/parser@8.70.0(@typescript/typescript6@6.0.2)(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.70.0(@typescript/typescript6@6.0.2)(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.28)(prettier@3.9.9)(stylelint@17.15.0(@typescript/typescript6@6.0.2)(supports-color@11.0.0))(supports-color@11.0.0)(vitest@5.0.0)':
+  '@mui/internal-code-infra@0.1.1-canary.3(@next/eslint-plugin-next@16.3.6(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0)))(@types/node@22.20.4)(@typescript-eslint/eslint-plugin@8.68.0(@typescript-eslint/parser@8.70.0(@typescript/typescript6@6.0.2)(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.70.0(@typescript/typescript6@6.0.2)(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.28)(prettier@3.9.9)(stylelint@17.15.0(@typescript/typescript6@6.0.2)(supports-color@11.0.0))(supports-color@11.0.0)(vitest@5.0.0)':
     dependencies:
       '@argos-ci/core': 6.8.4(@types/node@22.20.4)(supports-color@11.0.0)
       '@babel/cli': 8.0.5(@babel/core@8.0.6)
@@ -14701,7 +14701,7 @@ snapshots:
       '@inquirer/select': 5.2.5(@types/node@22.20.4)
       '@mui/internal-babel-plugin-display-name': 2.0.1-canary.0(@babel/core@8.0.6)(@babel/preset-react@8.0.1(@babel/core@8.0.6))
       '@mui/internal-babel-plugin-minify-errors': 3.0.1-canary.0(@babel/core@8.0.6)
-      '@mui/internal-babel-plugin-resolve-imports': 3.0.1-canary.0(@babel/core@8.0.6)
+      '@mui/internal-babel-plugin-resolve-imports': 3.0.1-canary.1(@babel/core@8.0.6)
       '@napi-rs/keyring': 2.0.0
       '@next/eslint-plugin-next': 16.3.6(eslint@10.11.0(jiti@2.7.0)(supports-color@11.0.0))
       '@octokit/auth-action': 6.0.3
@@ -14793,7 +14793,7 @@ snapshots:
       - supports-color
       - vitest
 
-  '@mui/internal-netlify-cache@0.1.1-canary.0': {}
+  '@mui/internal-netlify-cache@0.1.1-canary.1': {}
 
   '@mui/internal-test-utils@2.1.1-canary.0(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/react-dom@19.2.5(@types/react@19.3.0))(@types/react@19.3.0)(@vitest/utils@5.0.0)(chai@6.2.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.0(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.15)(yaml@2.9.0))(vitest@5.0.0)':
     dependencies:
@@ -14870,7 +14870,7 @@ snapshots:
   '@mui/material@9.0.0(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@mui/material-pigment-css@9.4.0(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@pigment-css/react@0.0.31(@types/react@19.3.0)(@typescript/typescript6@6.0.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0))(@types/react@19.3.0)(react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
       '@babel/runtime': 7.29.7
-      '@mui/core-downloads-tracker': 9.3.1
+      '@mui/core-downloads-tracker': 9.4.0
       '@mui/system': 9.4.0(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@types/react@19.3.0)(react@19.3.0)
       '@mui/types': 9.4.0(@types/react@19.3.0)
       '@mui/utils': 9.4.0(@types/react@19.3.0)(react@19.3.0)
@@ -14954,7 +14954,7 @@ snapshots:
       '@emotion/react': 11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0)
 
-  '@mui/stylis-plugin-rtl@9.3.0(stylis@4.2.0)':
+  '@mui/stylis-plugin-rtl@9.4.0(stylis@4.2.0)':
     dependencies:
       '@babel/runtime': 7.29.7
       cssjanus: 2.3.1

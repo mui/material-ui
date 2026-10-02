@@ -1123,7 +1123,7 @@ describe('<ButtonBase />', () => {
       });
     });
 
-    describe('keyboard accessibility for non interactive elements', () => {
+    describe('2.1.1 Keyboard: keyboard accessibility for non interactive elements', () => {
       // The MUI convention: a handler sets `defaultMuiPrevented` when an outer
       // layer already activates the element from the keyboard.
       it('does not synthesize a click when a handler sets defaultMuiPrevented', async () => {
