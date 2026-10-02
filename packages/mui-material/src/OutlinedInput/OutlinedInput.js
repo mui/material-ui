@@ -263,6 +263,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
       )}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
+      internalDisabledThemeFocusVisible
       multiline={multiline}
       ref={ref}
       type={type}
