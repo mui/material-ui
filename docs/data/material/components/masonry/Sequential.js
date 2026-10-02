@@ -24,7 +24,7 @@ export default function Sequential() {
         spacing={2}
         defaultHeight={450}
         defaultColumns={4}
-        defaultSpacing={1}
+        defaultSpacing={2}
         sequential
       >
         {heights.map((height, index) => (

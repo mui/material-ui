@@ -24,7 +24,7 @@ export default function SSRMasonry() {
         spacing={2}
         defaultHeight={450}
         defaultColumns={4}
-        defaultSpacing={1}
+        defaultSpacing={2}
       >
         {heights.map((height, index) => (
           <Item key={index} sx={{ height }}>
