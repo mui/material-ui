@@ -9,7 +9,7 @@ import {
 } from '@mui/internal-test-utils';
 import { createTheme } from '@mui/material/styles';
 import Masonry, { masonryClasses as classes } from '@mui/lab/Masonry';
-import { getStyle, parseToNumber } from './Masonry';
+import { getStyle } from './Masonry';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Masonry />', () => {
@@ -30,8 +30,9 @@ describe('<Masonry />', () => {
     }),
   );
 
-  // The render tests parse `theme.spacing()`, which needs a px value.
-  const theme = createTheme({ spacing: 8, cssVariables: false });
+  const theme = createTheme({ spacing: 8 });
+  // The render tests use the default theme, whose spacing is 8px.
+  const defaultThemeSpacing = 8;
   const maxColumnHeight = 100;
 
   describe('render', () => {
@@ -48,8 +49,8 @@ describe('<Masonry />', () => {
         </div>,
       );
 
-      const containerMargin = `-${parseToNumber(theme.spacing(spacing)) / 2}px`;
-      const childMargin = `${parseToNumber(theme.spacing(spacing)) / 2}px`;
+      const containerMargin = `-${(defaultThemeSpacing * spacing) / 2}px`;
+      const childMargin = `${(defaultThemeSpacing * spacing) / 2}px`;
       expect(screen.getByTestId('container')).toHaveComputedStyle({
         width: `${width}px`,
         display: 'flex',
@@ -68,7 +69,7 @@ describe('<Masonry />', () => {
         marginRight: childMargin,
         marginBottom: childMargin,
         marginLeft: childMargin,
-        width: `${width / columns - parseToNumber(theme.spacing(spacing))}px`,
+        width: `${width / columns - defaultThemeSpacing * spacing}px`,
       });
     });
 
@@ -92,7 +93,7 @@ describe('<Masonry />', () => {
         secondItem.style.height = `${secondChildInitialHeight}px`;
         masonry.appendChild(secondItem);
 
-        const topAndBottomMargin = parseToNumber(theme.spacing(spacingProp)) * 2;
+        const topAndBottomMargin = defaultThemeSpacing * spacingProp * 2;
         expect(window.getComputedStyle(masonry).height).to.equal(
           `${firstChildHeight + secondChildInitialHeight + topAndBottomMargin}px`,
         );
