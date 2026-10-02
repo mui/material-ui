@@ -17,7 +17,7 @@ import {
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
 } from './useSlider.types';
-import { EventHandlers } from '../utils/types';
+import type { EventHandlers } from '../utils/types';
 import areArraysEqual from '../utils/areArraysEqual';
 import contains from '../utils/contains';
 import getActiveElement from '../utils/getActiveElement';
