@@ -9,7 +9,9 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
+import OutlinedInput, { outlinedInputClasses } from '@mui/material/OutlinedInput';
+import SystemThemeProvider from '@mui/system/ThemeProvider';
+import { ThemeProvider, THEME_ID, createTheme, styled } from '@mui/material/styles';
 import { deepOrange, green, grey } from '@mui/material/colors';
 import createPalette from './createPalette';
 
@@ -994,10 +996,10 @@ describe('createTheme', () => {
     it('[CSS variables] `alpha()` should work with string and number coefficient', () => {
       const theme = createTheme({ cssVariables: true });
       expect(theme.alpha(theme.vars.palette.primary.main, 0.5)).to.equal(
-        'rgba(var(--mui-palette-primary-mainChannel) / 0.5)',
+        'rgba(var(--mui-palette-primary-mainChannel, 25 118 210) / 0.5)',
       );
       expect(theme.alpha(theme.vars.palette.primary.main, '0.5 + 0.3')).to.equal(
-        'rgba(var(--mui-palette-primary-mainChannel) / calc(0.5 + 0.3))',
+        'rgba(var(--mui-palette-primary-mainChannel, 25 118 210) / calc(0.5 + 0.3))',
       );
       expect(
         theme.alpha(
@@ -1005,12 +1007,21 @@ describe('createTheme', () => {
           `${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}`,
         ),
       ).to.equal(
-        'rgba(var(--mui-palette-primary-mainChannel) / calc(var(--mui-palette-action-selectedOpacity, 0.08) + var(--mui-palette-action-hoverOpacity, 0.04)))',
+        'rgba(var(--mui-palette-primary-mainChannel, 25 118 210) / calc(var(--mui-palette-action-selectedOpacity, 0.08) + var(--mui-palette-action-hoverOpacity, 0.04)))',
       );
     });
 
     it('[CSS variables] `alpha()` should work with fallbacks', () => {
       const theme = createTheme({ cssVariables: true });
+      expect(theme.alpha(theme.vars.palette.primary.main, 0.5)).to.equal(
+        'rgba(var(--mui-palette-primary-mainChannel, 25 118 210) / 0.5)',
+      );
+      expect(theme.alpha(theme.vars.palette.text.primary, 0.5)).to.equal(
+        'rgba(var(--mui-palette-text-primaryChannel, 0 0 0) / 0.5)',
+      );
+      expect(theme.alpha('var(--brand)', 0.5)).to.equal('rgba(var(--brandChannel) / 0.5)');
+      // Fallbacks that `colorChannel()` can't parse are dropped.
+      expect(theme.alpha('var(--x, currentColor)', 0.5)).to.equal('rgba(var(--xChannel) / 0.5)');
       expect(theme.alpha('var(--mui-palette-text-primary, rgba(0 0 0 / 0.87))', 0.5)).to.equal(
         'rgba(var(--mui-palette-text-primaryChannel) / 0.5)',
       );
@@ -1108,6 +1119,29 @@ describe('createTheme', () => {
         }),
       ).not.toWarnDev();
     });
+
+    it.skipIf(isJSDOM)(
+      '[CSS variables] `alpha()` colors should render without the CSS variables stylesheet',
+      () => {
+        // Provide the theme as is, like the default theme without a `ThemeProvider`.
+        // The CSS variables aren't defined, so the `var()` fallbacks are used.
+        const { container } = render(
+          <SystemThemeProvider themeId={THEME_ID} theme={createTheme({ cssVariables: true })}>
+            <OutlinedInput />
+          </SystemThemeProvider>,
+        );
+
+        expect(
+          getComputedStyle(document.documentElement).getPropertyValue(
+            '--mui-palette-common-onBackgroundChannel',
+          ),
+        ).to.equal('');
+        // `theme.alpha(theme.vars.palette.common.onBackground, 0.23)` instead of the text color
+        expect(
+          container.querySelector(`.${outlinedInputClasses.notchedOutline}`),
+        ).toHaveComputedStyle({ borderTopColor: 'rgba(0, 0, 0, 0.23)' });
+      },
+    );
   });
 
   // Skip WebKit and firefox because they have a slightly different value
