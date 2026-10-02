@@ -414,6 +414,19 @@ describe('<Masonry />', () => {
         },
       });
     });
+
+    it('should support zero spacing with CSS theme variables', () => {
+      const cssVarsTheme = createTheme({ cssVariables: true });
+      const ownerState = { columns: 4, spacing: 0, maxColumnHeight: 100 };
+
+      expect(() => getStyle({ ownerState, theme: cssVarsTheme })).not.to.throw();
+
+      const styles = getStyle({ ownerState, theme: cssVarsTheme });
+      expect(styles.margin).to.equal('calc(0px - (0px / 2))');
+      expect(styles['& > *'].margin).to.equal('calc(0px / 2)');
+      expect(styles['& > *'].width).to.equal('calc(25.00% - 0px)');
+      expect(styles.height).to.equal('calc(100px + 0px)');
+    });
   });
 
   describe('prop: sequential', () => {

@@ -3,8 +3,6 @@ import composeClasses from '@mui/utils/composeClasses';
 import * as ReactDOM from 'react-dom';
 import { styled, useThemeProps } from '@mui/material/styles';
 import {
-  createUnarySpacing,
-  getValue,
   handleBreakpoints,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@mui/system';
@@ -144,7 +142,6 @@ export const getStyle = ({ ownerState, theme }: any) => {
     breakpoints: theme.breakpoints.values,
   });
 
-  const transformer = createUnarySpacing(theme);
   const spacingStyleFromPropValue = (propValue: any) => {
     let spacing: any;
     // in case of string/number value
@@ -153,7 +150,7 @@ export const getStyle = ({ ownerState, theme }: any) => {
       typeof propValue === 'number'
     ) {
       const themeSpacingValue = Number(propValue);
-      spacing = getValue(transformer, themeSpacingValue);
+      spacing = theme.spacing(themeSpacingValue);
     } else {
       spacing = propValue;
     }
@@ -164,10 +161,7 @@ export const getStyle = ({ ownerState, theme }: any) => {
         margin: `calc(${spacing} / 2)`,
       },
       ...(ownerState.maxColumnHeight && {
-        height:
-          typeof spacing === 'number'
-            ? Math.ceil(ownerState.maxColumnHeight + parseToNumber(spacing as any))
-            : `calc(${ownerState.maxColumnHeight}px + ${spacing})`,
+        height: `calc(${ownerState.maxColumnHeight}px + ${spacing})`,
       }),
     };
   };
@@ -188,7 +182,7 @@ export const getStyle = ({ ownerState, theme }: any) => {
     const spacing =
       (typeof spacingValues === 'string' && !Number.isNaN(Number(spacingValues))) ||
       typeof spacingValues === 'number'
-        ? getValue(transformer, Number(spacingValues))
+        ? theme.spacing(Number(spacingValues))
         : '0px';
     return {
       '& > *': { width: `calc(${width} - ${spacing})` },
@@ -205,7 +199,7 @@ export const getStyle = ({ ownerState, theme }: any) => {
         if (breakpoint) {
           const themeSpacingValue = Number(propValue);
           const lastBreakpoint = Object.keys(columnValues).pop();
-          const spacing = getValue(transformer, themeSpacingValue);
+          const spacing = theme.spacing(themeSpacingValue);
           const column =
             typeof columnValues === 'object'
               ? columnValues[breakpoint] || columnValues[lastBreakpoint as string]
