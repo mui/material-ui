@@ -51,7 +51,7 @@ export type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K
  *
  * @internal
  */
-export type OverridableStringUnion<T extends string | number, U = {}> = GenerateStringUnion<
+export type OverridableStringUnion<T extends string | number, U = {}> = [keyof U] extends [never] ? T : GenerateStringUnion<
   Overwrite<Record<T, true>, U>
 >;
 
