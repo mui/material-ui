@@ -197,9 +197,12 @@ export const getStyle = ({ ownerState, theme }: any) => {
       styles,
       handleBreakpoints({ theme }, spacingValues, (propValue: any, breakpoint: any) => {
         if (breakpoint) {
-          const themeSpacingValue = Number(propValue);
           const lastBreakpoint = Object.keys(columnValues).pop();
-          const spacing = theme.spacing(themeSpacingValue);
+          const spacing =
+            (typeof propValue === 'string' && !Number.isNaN(Number(propValue))) ||
+            typeof propValue === 'number'
+              ? theme.spacing(Number(propValue))
+              : propValue;
           const column =
             typeof columnValues === 'object'
               ? columnValues[breakpoint] || columnValues[lastBreakpoint as string]
