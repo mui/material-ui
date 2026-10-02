@@ -50,6 +50,50 @@ describe('<Pagination />', () => {
     expect(handleChange.callCount).to.equal(1);
   });
 
+  it('keeps every page reachable without navigation buttons when they all fit', async () => {
+    const handleChange = spy();
+    const { user } = render(
+      <Pagination
+        count={3}
+        defaultPage={2}
+        boundaryCount={0}
+        siblingCount={0}
+        hidePrevButton
+        hideNextButton
+        onChange={handleChange}
+      />,
+    );
+
+    expect(screen.getAllByRole('button').map((button) => button.textContent)).to.deep.equal([
+      '1',
+      '2',
+      '3',
+    ]);
+    expect(screen.getByRole('button', { name: 'page 2' })).to.have.attribute(
+      'aria-current',
+      'page',
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Go to page 1' }));
+
+    expect(handleChange.lastCall.args[1]).to.equal(1);
+    expect(screen.getByRole('button', { name: 'page 1' })).to.have.attribute(
+      'aria-current',
+      'page',
+    );
+    expect(screen.getByRole('button', { name: 'page 1' })).toHaveFocus();
+
+    await user.click(screen.getByRole('button', { name: 'Go to page 3' }));
+
+    expect(handleChange.callCount).to.equal(2);
+    expect(handleChange.lastCall.args[1]).to.equal(3);
+    expect(screen.getByRole('button', { name: 'page 3' })).to.have.attribute(
+      'aria-current',
+      'page',
+    );
+    expect(screen.getByRole('button', { name: 'page 3' })).toHaveFocus();
+  });
+
   it('should not fire onChange when an ellipsis div is clicked', () => {
     const handleChange = spy();
     const { container } = render(<Pagination count={10} onChange={handleChange} page={1} />);
@@ -122,6 +166,64 @@ describe('<Pagination />', () => {
     render(<Pagination count={3} showLastButton={false} />);
 
     expect(screen.queryByRole('button', { name: /go to last page/i })).to.equal(null);
+  });
+
+  [false, true].forEach((controlled) => {
+    [
+      { type: 'next', initialPage: 2, pages: [3, 4] },
+      { type: 'next', initialPage: 9, pages: [10, 11] },
+      { type: 'previous', initialPage: 10, pages: [9, 8] },
+      { type: 'previous', initialPage: 3, pages: [2, 1] },
+    ].forEach(({ type, initialPage, pages }) => {
+      it(`keeps navigation focus across compact layouts from page ${initialPage} when ${controlled ? 'controlled' : 'uncontrolled'}`, async () => {
+        function TestCase() {
+          const [page, setPage] = React.useState(initialPage);
+
+          return (
+            <Pagination
+              count={11}
+              defaultPage={initialPage}
+              page={controlled ? page : undefined}
+              boundaryCount={0}
+              siblingCount={0}
+              showFirstButton
+              showLastButton
+              onChange={(_, newPage) => setPage(newPage)}
+            />
+          );
+        }
+
+        const { user } = render(<TestCase />);
+        const navigationTypes = ['first', 'previous', 'next', 'last'];
+        const navigationButtons = navigationTypes.map((navigationType) =>
+          screen.getByRole('button', { name: `Go to ${navigationType} page` }),
+        );
+        const navigationButton = screen.getByRole('button', { name: `Go to ${type} page` });
+
+        act(() => {
+          navigationButton.focus();
+        });
+
+        function expectNavigationToPage(targetPage) {
+          const selectedPage = screen.getByRole('button', { name: `page ${targetPage}` });
+          expect(selectedPage).to.have.attribute('aria-current', 'page');
+          expect(
+            targetPage === 1 || targetPage === 11 ? selectedPage : navigationButton,
+          ).toHaveFocus();
+          navigationTypes.forEach((navigationType, index) => {
+            expect(screen.getByRole('button', { name: `Go to ${navigationType} page` })).to.equal(
+              navigationButtons[index],
+            );
+          });
+        }
+
+        await user.keyboard('{Enter}');
+        expectNavigationToPage(pages[0]);
+
+        await user.keyboard('{Enter}');
+        expectNavigationToPage(pages[1]);
+      });
+    });
   });
 
   it('manages focus when buttons become disabled', async () => {
