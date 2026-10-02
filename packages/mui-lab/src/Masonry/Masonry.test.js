@@ -30,7 +30,7 @@ describe('<Masonry />', () => {
     }),
   );
 
-  const theme = createTheme({ spacing: 8 });
+  const theme = createTheme({ spacing: 8, cssVariables: false });
   const cssVarsTheme = createTheme({ spacing: 8, cssVariables: true });
   // The render tests use the default theme, whose spacing is 8px.
   const defaultThemeSpacing = 8;
