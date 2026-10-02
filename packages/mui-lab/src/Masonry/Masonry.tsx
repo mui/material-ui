@@ -110,7 +110,13 @@ export const getStyle = ({ ownerState, theme }: any) => {
   // Only applicable for Server-Side Rendering
   if (ownerState.isSSR) {
     const orderStyleSSR: any = {};
-    const defaultSpacing = theme.spacing(ownerState.defaultSpacing);
+    const { defaultSpacing: defaultSpacingProp } = ownerState;
+    // Treat a numeric string as a spacing factor, like the client-side styles.
+    const defaultSpacing = theme.spacing(
+      typeof defaultSpacingProp === 'string' && !Number.isNaN(Number(defaultSpacingProp))
+        ? Number(defaultSpacingProp)
+        : defaultSpacingProp,
+    );
     for (let i = 1; i <= ownerState.defaultColumns; i += 1) {
       orderStyleSSR[
         `&:nth-of-type(${ownerState.defaultColumns}n+${i % ownerState.defaultColumns})`

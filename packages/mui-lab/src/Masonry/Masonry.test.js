@@ -308,6 +308,18 @@ describe('<Masonry />', () => {
         `calc(${(100 / defaultColumns).toFixed(2)}% - ${spacing})`,
       );
     });
+
+    it('should treat a numeric string defaultSpacing as a spacing factor', () => {
+      const ownerState = {
+        defaultColumns: 4,
+        defaultHeight: 700,
+        isSSR: true,
+      };
+
+      expect(getStyle({ ownerState: { ...ownerState, defaultSpacing: '2' }, theme })).to.deep.equal(
+        getStyle({ ownerState: { ...ownerState, defaultSpacing: 2 }, theme }),
+      );
+    });
   });
 
   describe('prop: columns', () => {
