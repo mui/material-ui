@@ -841,7 +841,7 @@ function useAutocomplete(props) {
       newValue = Array.isArray(value) ? value.slice() : [];
 
       if (process.env.NODE_ENV !== 'production') {
-        if (origin === 'options') {
+        if (getOptionValueProp === undefined || origin === 'options') {
           const matches = newValue.filter((val) => isOptionEqualToValue(option, val));
 
           if (matches.length > 1) {

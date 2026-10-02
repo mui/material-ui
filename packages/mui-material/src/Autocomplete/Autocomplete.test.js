@@ -2645,6 +2645,26 @@ describe('<Autocomplete />', () => {
       );
     });
 
+    it('warns if isOptionEqualToValue matches multiple freeSolo values without getOptionValue', async () => {
+      const { user } = render(
+        <Autocomplete
+          multiple
+          freeSolo
+          options={[]}
+          defaultValue={['Foo', 'foo']}
+          isOptionEqualToValue={(option, value) => option.toLowerCase() === value.toLowerCase()}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      await user.type(screen.getByRole('combobox'), 'FOO');
+
+      await expect(() => user.keyboard('{Enter}')).toErrorDev(
+        'MUI: The `isOptionEqualToValue` method of Autocomplete does not handle the arguments correctly.\n' +
+          'The component expects a single value to match a given option but found 2 matches.',
+      );
+    });
+
     it('warn if groups options are not sorted', () => {
       const data = [
         { group: 1, value: 'A' },
