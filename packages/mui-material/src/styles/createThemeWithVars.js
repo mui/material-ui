@@ -190,6 +190,21 @@ export default function createThemeWithVars(options = {}, ...args) {
     attachColorScheme(colorSpace, colorSchemes, builtInDark, undefined, 'dark');
   }
 
+  // A `palette` passed as an extra argument, for example `createTheme(theme, { palette: { salmon } })`,
+  // goes to the default color scheme, like the `palette` option of `createTheme()`.
+  // It's merged before the color schemes are processed so that its colors get CSS variables.
+  const otherArgs = args.map((argument) => {
+    if (!argument?.palette) {
+      return argument;
+    }
+    const { palette, ...other } = argument;
+    colorSchemes[defaultColorScheme].palette = deepmerge(
+      colorSchemes[defaultColorScheme].palette,
+      palette,
+    );
+    return other;
+  });
+
   let theme = {
     defaultColorScheme,
     ...muiTheme,
@@ -963,7 +978,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     });
   });
 
-  theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
+  theme = otherArgs.reduce((acc, argument) => deepmerge(acc, argument), theme);
 
   // Default color is the palette var, not a hex: `focusVisible` is spread inline (skipped from var
   // generation, see `shouldSkipGeneratingVar`), so the var adapts per scheme at the CSS level — no
