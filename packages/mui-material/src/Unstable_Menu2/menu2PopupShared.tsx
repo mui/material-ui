@@ -86,11 +86,11 @@ export interface Menu2PopupSharedSlots {
    */
   root?: React.ElementType | undefined;
   /**
-   * The component used for the backdrop rendered beneath the menu.
-   * Only rendered by menus that provide a backdrop; it is transparent and
-   * click-through by default, matching the classic Menu's invisible backdrop.
+   * The component used for the optional backdrop beneath the menu.
+   * Providing this slot or `slotProps.backdrop` renders it.
+   * Set to `null` to omit it. The default backdrop is transparent and click-through.
    */
-  backdrop?: React.ElementType | undefined;
+  backdrop?: React.ElementType | null | undefined;
   /**
    * The component used for the menu surface. The popup renders as this element.
    * @default Paper
@@ -257,15 +257,20 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
       ?.muiSupportAuto
       ? undefined
       : transitionDuration;
-  // Opt-in: rendering a backdrop unconditionally would hand non-modal menus a
-  // full-screen layer, and modal menus already get Base UI's inert backdrop.
-  const BackdropSlot = slots?.backdrop ?? (slotProps?.backdrop ? defaultSlots.backdrop : undefined);
+  // Base UI owns modality and outside dismissal. Slot configuration enables
+  // this optional visual layer; null overrides that configuration.
+  const BackdropSlot =
+    slots?.backdrop === null
+      ? null
+      : (slots?.backdrop ?? (slotProps?.backdrop ? defaultSlots.backdrop : undefined));
   const PaperSlot = slots?.paper ?? defaultSlots.paper;
 
   const resolvedRootProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), {
     sx,
   });
-  const resolvedBackdropProps = resolveComponentProps(slotProps?.backdrop, ownerState);
+  const resolvedBackdropProps = BackdropSlot
+    ? resolveComponentProps(slotProps?.backdrop, ownerState)
+    : undefined;
   const resolvedPaperProps = resolveComponentProps(slotProps?.paper, ownerState);
   // Base UI merges className, style, and ref into the element that `render`
   // gives a part, so those go through the part. `sx` and the Paper props go on

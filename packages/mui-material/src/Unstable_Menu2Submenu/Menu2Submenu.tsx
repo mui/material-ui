@@ -271,7 +271,6 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    */
   slotProps: PropTypes.shape({
-    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),

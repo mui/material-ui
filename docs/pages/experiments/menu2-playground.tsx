@@ -37,7 +37,7 @@ import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
 type MenuProps = React.ComponentProps<typeof Menu2>;
-type PopupProps = MenuProps;
+type PopupProps = React.ComponentProps<typeof Menu2Submenu>;
 type PopupSide = NonNullable<PopupProps['side']>;
 type PopupAlign = NonNullable<PopupProps['align']>;
 
@@ -140,7 +140,7 @@ const cssAnimationSx: SxProps<Theme> = (currentTheme) => ({
 
 function usePopupKnobProps(settings: PlaygroundSettings) {
   return React.useMemo(
-    (): Partial<MenuProps> => ({
+    (): Partial<PopupProps> => ({
       // Top-level convenience prop (forwards to the Paper slot).
       elevation: settings.elevation,
       keepMounted: settings.keepMounted,
@@ -151,16 +151,13 @@ function usePopupKnobProps(settings: PlaygroundSettings) {
             : { grow: undefined, fade: Fade, zoom: Zoom }[settings.animation],
       },
       slotProps: {
-        ...(settings.backdrop === 'dimmed' && {
-          backdrop: { sx: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } },
-        }),
         paper: {
           dir: settings.rtl ? 'rtl' : 'ltr',
           ...(settings.animation === 'css' && { sx: cssAnimationSx }),
         },
       },
     }),
-    [settings.elevation, settings.animation, settings.backdrop, settings.keepMounted, settings.rtl],
+    [settings.elevation, settings.animation, settings.keepMounted, settings.rtl],
   );
 }
 
@@ -182,6 +179,7 @@ function PlaygroundDemo({
       indicator:
         settings.submenuIndicator === 'custom'
           ? {
+              // Custom indicator content controls its own direction.
               children: settings.rtl ? (
                 <ArrowBackRoundedIcon fontSize="small" />
               ) : (
@@ -225,6 +223,14 @@ function PlaygroundDemo({
       alignOffset={settings.alignOffset}
       keepMounted={settings.keepMounted}
       {...popupKnobProps}
+      slots={{
+        ...popupKnobProps.slots,
+        backdrop: settings.backdrop === 'none' ? null : undefined,
+      }}
+      slotProps={{
+        ...popupKnobProps.slotProps,
+        backdrop: { sx: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } },
+      }}
     >
       <Menu2Group>
         <Menu2GroupLabel>Actions</Menu2GroupLabel>
@@ -351,6 +357,14 @@ function ClassicVersusSuccessorDemo({ settings }: { settings: PlaygroundSettings
           </Button>
         }
         {...popupKnobProps}
+        slots={{
+          ...popupKnobProps.slots,
+          backdrop: settings.backdrop === 'none' ? null : undefined,
+        }}
+        slotProps={{
+          ...popupKnobProps.slotProps,
+          backdrop: { sx: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } },
+        }}
       >
         {parityItems.map((item) => (
           <Menu2Item key={item.label} {...itemProps} disabled={'disabled' in item && item.disabled}>
@@ -694,7 +708,7 @@ function SettingsPanel({
           </select>
         </label>
         <label style={{ display: 'block' }}>
-          backdrop{' '}
+          visual backdrop{' '}
           <select
             value={settings.backdrop}
             onChange={(event) => setSetting('backdrop', event.target.value as 'none' | 'dimmed')}

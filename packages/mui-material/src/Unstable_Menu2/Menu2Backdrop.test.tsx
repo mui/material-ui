@@ -6,8 +6,205 @@ import { createTheme, ThemeProvider } from '../styles';
 import Menu2, { Menu2Props } from './Menu2';
 import { menu2PopupClasses } from './menu2Classes';
 
+const CustomBackdrop = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & { ownerState?: Menu2Props }
+>(function CustomBackdrop({ ownerState, ...props }, ref) {
+  return <div {...props} ref={ref} data-testid="custom-backdrop" />;
+});
+
+describe('Menu2 backdrop opt-in', () => {
+  const { render } = createRenderer();
+
+  it('does not render a visual backdrop without slot configuration', () => {
+    const { baseElement } = render(
+      <Menu2 defaultOpen modal={false} anchor={document.body}>
+        <Menu2Item>Profile</Menu2Item>
+      </Menu2>,
+    );
+
+    expect(screen.getByRole('menu')).not.to.equal(null);
+    expect(baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)).to.equal(null);
+  });
+
+  it('does not resolve backdrop slot props when the slot is null', () => {
+    const backdropProps = vi.fn(() => ({ 'data-testid': 'configured-backdrop' }));
+    const { baseElement } = render(
+      <Menu2
+        defaultOpen
+        modal={false}
+        anchor={document.body}
+        slots={{ backdrop: null }}
+        slotProps={{ backdrop: backdropProps }}
+      >
+        <Menu2Item>Profile</Menu2Item>
+      </Menu2>,
+    );
+
+    expect(backdropProps).not.toHaveBeenCalled();
+    expect(baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)).to.equal(null);
+    expect(screen.queryByTestId('configured-backdrop')).to.equal(null);
+  });
+
+  const themeConfigurations: Array<{
+    name: string;
+    props: Pick<Menu2Props, 'slots' | 'slotProps'>;
+  }> = [
+    { name: 'custom slot', props: { slots: { backdrop: CustomBackdrop } } },
+    { name: 'slot props', props: { slotProps: { backdrop: { className: 'theme-backdrop' } } } },
+  ];
+
+  themeConfigurations.forEach(({ name, props }) => {
+    it(`can opt out of theme ${name} with a null slot`, async () => {
+      function Test() {
+        const [showBackdrop, setShowBackdrop] = React.useState(true);
+        return (
+          <ThemeProvider
+            theme={createTheme({
+              components: { MuiMenu2: { defaultProps: props } },
+            })}
+          >
+            <button type="button" onClick={() => setShowBackdrop(!showBackdrop)}>
+              Toggle backdrop
+            </button>
+            <Menu2
+              open
+              modal={false}
+              anchor={document.body}
+              slots={showBackdrop ? undefined : { backdrop: null }}
+            >
+              <Menu2Item>Profile</Menu2Item>
+            </Menu2>
+          </ThemeProvider>
+        );
+      }
+      const { baseElement, user } = render(<Test />);
+      const getBackdrop = () => baseElement.querySelector(`.${menu2PopupClasses.backdrop}`);
+
+      expect(getBackdrop()).not.to.equal(null);
+      if (name === 'slot props') {
+        expect(getBackdrop()).to.have.class('theme-backdrop');
+      }
+
+      await user.click(screen.getByRole('button', { name: 'Toggle backdrop' }));
+      expect(getBackdrop()).to.equal(null);
+      expect(screen.getByRole('menu')).not.to.equal(null);
+
+      await user.click(screen.getByRole('button', { name: 'Toggle backdrop' }));
+      expect(getBackdrop()).not.to.equal(null);
+    });
+  });
+
+  it('does not resolve theme slot props when a null slot overrides a theme component', () => {
+    const backdropProps = vi.fn(() => ({ className: 'theme-backdrop' }));
+    const { baseElement } = render(
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            MuiMenu2: {
+              defaultProps: {
+                slots: { backdrop: CustomBackdrop },
+                slotProps: { backdrop: backdropProps },
+              },
+            },
+          },
+        })}
+      >
+        <Menu2 defaultOpen modal={false} anchor={document.body} slots={{ backdrop: null }}>
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2>
+      </ThemeProvider>,
+    );
+
+    expect(backdropProps).not.toHaveBeenCalled();
+    expect(baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)).to.equal(null);
+    expect(screen.queryByTestId('custom-backdrop')).to.equal(null);
+  });
+
+  it('renders the default backdrop with empty slot props', () => {
+    const { baseElement } = render(
+      <Menu2 defaultOpen modal={false} anchor={document.body} slotProps={{ backdrop: {} }}>
+        <Menu2Item>Profile</Menu2Item>
+      </Menu2>,
+    );
+
+    const backdrop = baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)!;
+    expect(backdrop).not.to.equal(null);
+    expect(backdrop).to.have.attribute('role', 'presentation');
+    expect(backdrop).to.have.attribute('data-open');
+    expect(getComputedStyle(backdrop).pointerEvents).to.equal('none');
+    expect(getComputedStyle(backdrop).backgroundColor).to.equal('rgba(0, 0, 0, 0)');
+    expect(baseElement.querySelector('[backdrop]')).to.equal(null);
+  });
+
+  (
+    [
+      { name: 'default', component: undefined },
+      { name: 'host', component: 'div' },
+      { name: 'custom', component: CustomBackdrop },
+    ] as const
+  ).forEach(({ name, component }) => {
+    it(`applies refs, classes, and slot props to an enabled ${name} backdrop`, () => {
+      const backdropRef = React.createRef<HTMLDivElement>();
+      const { baseElement, unmount } = render(
+        <Menu2
+          defaultOpen
+          modal={false}
+          anchor={document.body}
+          slots={{ backdrop: component }}
+          slotProps={{
+            backdrop: (ownerState) => ({
+              ref: backdropRef,
+              className: 'custom-backdrop-class',
+              style: { backgroundColor: 'rgb(1, 2, 3)' },
+              'data-modal': ownerState.modal,
+            }),
+          }}
+        >
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2>,
+      );
+
+      const backdrop = baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)!;
+      expect(backdropRef.current).to.equal(backdrop);
+      expect(backdrop).to.have.class('custom-backdrop-class');
+      expect(backdrop).to.have.attribute('data-modal', 'false');
+      expect(backdrop).to.have.attribute('data-open');
+      expect(getComputedStyle(backdrop).backgroundColor).to.equal('rgb(1, 2, 3)');
+      expect(baseElement.querySelector('[backdrop]')).to.equal(null);
+      unmount();
+      expect(backdropRef.current).to.equal(null);
+    });
+  });
+});
+
 describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
   const { render } = createRenderer();
+
+  it('keeps the visual backdrop click-through when the menu opens on hover', async () => {
+    const { user } = render(
+      <Menu2
+        openOnHover
+        delay={0}
+        slotProps={{
+          backdrop: { 'data-testid': 'backdrop', sx: { backgroundColor: 'rgb(0, 0, 0)' } },
+        }}
+        trigger={<button type="button">Options</button>}
+      >
+        <Menu2Item>Profile</Menu2Item>
+      </Menu2>,
+    );
+
+    await user.hover(screen.getByRole('button', { name: 'Options' }));
+    await screen.findByRole('menu');
+
+    const backdrop = screen.getByTestId('backdrop');
+    expect(getComputedStyle(backdrop).backgroundColor).to.equal('rgb(0, 0, 0)');
+    expect(getComputedStyle(backdrop).pointerEvents).to.equal('none');
+
+    await user.keyboard('{Escape}');
+    await waitFor(() => expect(screen.queryByTestId('backdrop')).to.equal(null));
+  });
 
   ['default', 'host'].forEach((slot) => {
     it(`keeps the ${slot} backdrop in sync with a retained popup`, async () => {

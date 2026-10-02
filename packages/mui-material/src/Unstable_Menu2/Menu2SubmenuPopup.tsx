@@ -164,7 +164,10 @@ export interface Menu2SubmenuPopupSlots {
   list?: React.ElementType | undefined;
 }
 
-export interface Menu2SubmenuPopupSlotProps extends Menu2PopupSharedSlotProps<Menu2SubmenuPopupOwnerState> {}
+export interface Menu2SubmenuPopupSlotProps extends Omit<
+  Menu2PopupSharedSlotProps<Menu2SubmenuPopupOwnerState>,
+  'backdrop'
+> {}
 
 const useUtilityClasses = (ownerState: Menu2SubmenuPopupOwnerState) => {
   const { classes } = ownerState;

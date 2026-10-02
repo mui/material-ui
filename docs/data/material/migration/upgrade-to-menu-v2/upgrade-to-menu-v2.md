@@ -208,7 +208,7 @@ The slots are `root`, `backdrop`, `paper`, `list`, and `transition`. There's no 
 | `disableRestoreFocus`                                                                    | Use `finalFocus={false}` to disable focus restoration.                                                   |
 | `disableScrollLock`                                                                      | Use `modal={false}`, which also keeps the rest of the document interactive. There's no exact equivalent. |
 | `disablePortal`                                                                          | No equivalent. Menu v2 always renders in a portal. Use `container` to choose the portal container.       |
-| `hideBackdrop`                                                                           | No longer necessary. The backdrop is opt-in through the `backdrop` slot.                                 |
+| `hideBackdrop`                                                                           | Use `slots={{ backdrop: null }}` to omit the optional visual layer. This does not change modal behavior. |
 | `anchorOrigin`, `transformOrigin`, `anchorReference`, `anchorPosition`, `PopoverClasses` | Use the positioning props. Menu v2 doesn't use `Popover`.                                                |
 | `action.updatePosition()`                                                                | The position updates automatically. `actionsRef` provides `close()` and `unmount()`.                     |
 
@@ -222,11 +222,13 @@ Most of these changes bring the menu in line with the [WAI-ARIA menu pattern](ht
 | Opened with a keyboard | Highlights an item                              | Highlights the first item                                  |
 | Disabled items         | Skipped by the keyboard                         | Focusable, and announced as disabled                       |
 | Sibling content        | Hidden from screen readers with `aria-hidden`   | Stays in the accessibility tree                            |
-| Backdrop               | Always rendered                                 | Opt in through the `backdrop` slot                         |
+| Backdrop               | Rendered by default                             | Internal modal layer; optional visual backdrop slot        |
 | Tab while open         | Closes, and focus returns to the trigger        | Closes, and focus moves to the next element                |
 | Submenus               | Not supported                                   | Open on hover after 100ms, and on click                    |
 
 At the root level, Escape closes the menu. The default placement stays below the trigger, aligned to the start.
+
+Base UI supplies a transparent backdrop for modal interaction, except when the menu opens on hover. The separate visual backdrop is absent by default. Set `slots.backdrop` or `slotProps.backdrop` to render it. This optional layer is not hidden on hover.
 
 ### Scroll locking
 

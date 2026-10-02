@@ -624,8 +624,8 @@ describe('<Menu2 />', () => {
 
     const backdrop = await screen.findByTestId('backdrop');
     expect(backdrop).to.have.class(menu2PopupClasses.backdrop);
-    // Invisible and inert by default, like the classic Menu's backdrop;
-    // dismissal stays with Base UI's outside-press listener.
+    // The visual layer is transparent and click-through by default.
+    // Base UI handles outside interactions separately.
     const { backgroundColor, pointerEvents } = window.getComputedStyle(backdrop);
     expect(backgroundColor).to.equal('rgba(0, 0, 0, 0)');
     expect(pointerEvents).to.equal('none');

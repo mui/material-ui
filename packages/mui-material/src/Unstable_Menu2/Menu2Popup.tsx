@@ -148,10 +148,11 @@ export interface Menu2PopupSlots {
    */
   root?: React.ElementType | undefined;
   /**
-   * The component used for the backdrop rendered beneath the menu.
-   * Only rendered when a backdrop is opted into.
+   * The component used for the optional backdrop beneath the menu.
+   * Providing this slot or `slotProps.backdrop` renders it.
+   * Set to `null` to omit it, including when configured in the theme.
    */
-  backdrop?: React.ElementType | undefined;
+  backdrop?: React.ElementType | null | undefined;
   /**
    * The component used for the menu surface. The popup renders as this element.
    * @default Paper
@@ -207,10 +208,8 @@ const Menu2PopupBackdrop = styled('div', {
     // The classic backdrop sits in the Modal root at this level. The positioner
     // has the same value and comes later, so the menu stays above.
     zIndex: (theme.vars || theme).zIndex.modal,
-    // Invisible and inert by default, matching the classic Menu's backdrop.
-    // Dismissal is handled by Base UI's outside-press listener, so the backdrop
-    // does not need to capture clicks; set `pointerEvents` in `slotProps` to
-    // change that when dimming.
+    // Transparent and click-through. Base UI handles modal interaction and
+    // outside dismissal independently of this optional visual layer.
     backgroundColor: 'transparent',
     pointerEvents: 'none',
     WebkitTapHighlightColor: 'transparent',

@@ -110,7 +110,7 @@ A submenu opens on hover after a short delay, on click, and with the ArrowRight 
 >
 ```
 
-Set `openOnHover={false}` to open the submenu only on click and with the keyboard. To replace the arrow, pass your own component to `slots.indicator`.
+Set `openOnHover={false}` to open the submenu only on click and with the keyboard. Use `slotProps.indicator.children` to replace the arrow, or `slots.indicator` to replace its container. Custom content and components must handle their own RTL direction; Menu2 does not mirror them. Set `slots.indicator` to `null` to omit the indicator and its spacing. Keep another visible cue that the item opens a submenu.
 
 By default, Escape closes only the submenu. Pass `closeParentOnEsc` to `Menu2Submenu` to close the whole menu.
 
@@ -329,7 +329,9 @@ Set `transitionDuration={0}` to remove the animation. To animate with CSS, set `
 
 ### Backdrop
 
-There's no backdrop by default. An outside press closes the menu without one. To dim the page, opt in with the `backdrop` slot. The default backdrop is transparent and doesn't catch pointer events:
+Base UI uses an internal, transparent backdrop for modal menus. This layer is absent when a menu opens on hover or has `modal={false}`.
+
+The optional visual backdrop is separate and is not rendered by default. Set `slots.backdrop` or `slotProps.backdrop` to render it. Its default styles are transparent and do not capture pointer events. To dim the page:
 
 ```jsx
 <Menu2
@@ -337,6 +339,8 @@ There's no backdrop by default. An outside press closes the menu without one. To
   slotProps={{ backdrop: { sx: { bgcolor: 'rgba(0, 0, 0, 0.5)' } } }}
 >
 ```
+
+Set `slots={{ backdrop: null }}` to omit this layer, including when the theme supplies backdrop slot props. This does not change modal behavior. Base UI does not hide this optional layer when the menu opens on hover. Submenus have no backdrop slot.
 
 ## Accessibility
 

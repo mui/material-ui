@@ -48,7 +48,14 @@ describe('Menu2 public popup prop validation', () => {
       it('declares the popup validators on the public component', () => {
         expect(Component.propTypes).to.include.all.keys(popupProps);
         expect(Component.propTypes).not.to.have.property('arrowPadding');
+        expect(Component.propTypes).not.to.have.property('backdrop');
       });
+
+      if (Component === Menu2) {
+        it('accepts a null backdrop slot', () => {
+          expect(() => checkProps({ slots: { backdrop: null } })).not.toErrorDev();
+        });
+      }
 
       it('validates the current slot and slot-prop names', () => {
         const slots = ['root', 'paper', 'list', 'transition'];

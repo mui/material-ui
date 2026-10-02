@@ -32,9 +32,10 @@ export interface Menu2SubmenuTriggerSlots {
   root?: React.ElementType | undefined;
   /**
    * The component that renders the submenu indicator.
+   * Set to `null` to omit the indicator. Custom indicators are not mirrored in RTL.
    * @default 'span'
    */
-  indicator?: React.ElementType | undefined;
+  indicator?: React.ElementType | null | undefined;
 }
 
 export interface Menu2SubmenuTriggerOwnerState extends Menu2ItemBaseOwnerState {

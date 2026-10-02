@@ -9,8 +9,10 @@ import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger, {
   menu2SubmenuTriggerClasses as classes,
 } from '@mui/material/Unstable_Menu2SubmenuTrigger';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
+
+const CustomIndicator = styled('span')({});
 
 describe('<Menu2SubmenuTrigger />', () => {
   const { render } = createRenderer();
@@ -53,6 +55,62 @@ describe('<Menu2SubmenuTrigger />', () => {
   }));
 
   (['ltr', 'rtl'] as const).forEach((direction) => {
+    it(`uses the built-in arrow for ${direction}`, () => {
+      render(
+        <ThemeProvider theme={createTheme({ direction })}>
+          <Menu2 defaultOpen modal={false} anchor={document.body}>
+            <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2Submenu>
+          </Menu2>
+        </ThemeProvider>,
+      );
+
+      const indicator = screen
+        .getByRole('menuitem', { name: 'More' })
+        .querySelector(`.${classes.indicator}`)!;
+      expect(indicator.querySelectorAll('svg')).to.have.length(1);
+      expect(
+        indicator.querySelector(
+          `[data-testid="KeyboardArrow${direction === 'rtl' ? 'Left' : 'Right'}Icon"]`,
+        ),
+      ).not.to.equal(null);
+    });
+
+    [
+      { name: 'default', indicator: undefined },
+      { name: 'custom', indicator: CustomIndicator },
+    ].forEach(({ name, indicator }) => {
+      it(`does not mirror custom content in the ${name} indicator in ${direction}`, () => {
+        render(
+          <ThemeProvider theme={createTheme({ direction })}>
+            <Menu2 defaultOpen modal={false} anchor={document.body}>
+              <Menu2Submenu
+                trigger={
+                  <Menu2SubmenuTrigger
+                    slots={{ indicator }}
+                    slotProps={{ indicator: { children: <span>More →</span> } }}
+                  >
+                    More
+                  </Menu2SubmenuTrigger>
+                }
+              >
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2Submenu>
+            </Menu2>
+          </ThemeProvider>,
+        );
+
+        const target = screen
+          .getByRole('menuitem', { name: 'More' })
+          .querySelector(`.${classes.indicator}`)!;
+        expect(target).to.have.text('More →');
+        expect(target.querySelector('svg')).to.equal(null);
+        expect(['', 'none']).to.include(getComputedStyle(target).transform);
+        expect(['', 'none']).to.include(getComputedStyle(target.firstElementChild!).transform);
+      });
+    });
+
     it.skipIf(isJsdom())(`aligns the indicator at the trailing edge in ${direction}`, () => {
       render(
         <ThemeProvider theme={createTheme({ direction })}>
@@ -96,9 +154,6 @@ describe('<Menu2SubmenuTrigger />', () => {
   });
 
   it('can replace the icon or hide the indicator', () => {
-    function NoIndicator() {
-      return null;
-    }
     render(
       <Menu2 defaultOpen modal={false} anchor={document.body}>
         <Menu2Submenu
@@ -111,9 +166,7 @@ describe('<Menu2SubmenuTrigger />', () => {
           <Menu2Item>Nested</Menu2Item>
         </Menu2Submenu>
         <Menu2Submenu
-          trigger={
-            <Menu2SubmenuTrigger slots={{ indicator: NoIndicator }}>Hidden</Menu2SubmenuTrigger>
-          }
+          trigger={<Menu2SubmenuTrigger slots={{ indicator: null }}>Hidden</Menu2SubmenuTrigger>}
         >
           <Menu2Item>Nested</Menu2Item>
         </Menu2Submenu>
@@ -125,6 +178,124 @@ describe('<Menu2SubmenuTrigger />', () => {
     expect(
       screen.getByRole('menuitem', { name: 'Hidden' }).querySelector(`.${classes.indicator}`),
     ).to.equal(null);
+  });
+
+  it('can omit the indicator through theme defaults and restore it per trigger', () => {
+    const theme = createTheme({
+      components: { MuiMenu2SubmenuTrigger: { defaultProps: { slots: { indicator: null } } } },
+    });
+    render(
+      <ThemeProvider theme={theme}>
+        <Menu2 defaultOpen modal={false} anchor={document.body}>
+          <Menu2Submenu trigger={<Menu2SubmenuTrigger>Hidden</Menu2SubmenuTrigger>}>
+            <Menu2Item>Nested</Menu2Item>
+          </Menu2Submenu>
+          <Menu2Submenu
+            trigger={
+              <Menu2SubmenuTrigger slots={{ indicator: 'span' }}>Visible</Menu2SubmenuTrigger>
+            }
+          >
+            <Menu2Item>Nested</Menu2Item>
+          </Menu2Submenu>
+        </Menu2>
+      </ThemeProvider>,
+    );
+
+    expect(
+      screen.getByRole('menuitem', { name: 'Hidden' }).querySelector(`.${classes.indicator}`),
+    ).to.equal(null);
+    const visible = screen
+      .getByRole('menuitem', { name: 'Visible' })
+      .querySelector(`.${classes.indicator}`)!;
+    expect(visible).to.have.attribute('aria-hidden', 'true');
+    expect(visible.querySelector('[data-testid="KeyboardArrowRightIcon"]')).not.to.equal(null);
+  });
+
+  it('can remove and restore the indicator without changing the trigger or its refs', async () => {
+    const triggerRef = React.createRef<HTMLDivElement>();
+    const indicatorRef = React.createRef<HTMLSpanElement>();
+
+    function Test() {
+      const [hidden, setHidden] = React.useState(false);
+      return (
+        <Menu2
+          defaultOpen
+          modal={false}
+          transitionDuration={0}
+          trigger={<button type="button">Options</button>}
+        >
+          <Menu2Item closeOnClick={false} onClick={() => setHidden(!hidden)}>
+            Toggle indicator
+          </Menu2Item>
+          <Menu2Submenu
+            trigger={
+              <Menu2SubmenuTrigger
+                ref={triggerRef}
+                slots={{ indicator: hidden ? null : undefined }}
+                slotProps={{ indicator: { ref: indicatorRef } }}
+              >
+                More
+              </Menu2SubmenuTrigger>
+            }
+          >
+            <Menu2Item>Nested</Menu2Item>
+          </Menu2Submenu>
+        </Menu2>
+      );
+    }
+
+    const { user } = render(<Test />);
+    const trigger = screen.getByRole('menuitem', { name: 'More' });
+    expect(triggerRef.current).to.equal(trigger);
+    expect(indicatorRef.current).to.equal(trigger.querySelector(`.${classes.indicator}`));
+    expect(indicatorRef.current).not.to.equal(null);
+    await waitFor(() =>
+      expect(screen.getByRole('menu').contains(document.activeElement)).to.equal(true),
+    );
+
+    await user.click(screen.getByRole('menuitem', { name: 'Toggle indicator' }));
+    expect(triggerRef.current).to.equal(trigger);
+    expect(indicatorRef.current).to.equal(null);
+    expect(trigger.querySelector(`.${classes.indicator}`)).to.equal(null);
+
+    await user.click(screen.getByRole('menuitem', { name: 'Toggle indicator' }));
+    expect(triggerRef.current).to.equal(trigger);
+    expect(indicatorRef.current).not.to.equal(null);
+    expect(indicatorRef.current).to.equal(trigger.querySelector(`.${classes.indicator}`));
+  });
+
+  it('lets the caller set the custom indicator direction', () => {
+    render(
+      <ThemeProvider theme={createTheme({ direction: 'rtl' })}>
+        <Menu2 defaultOpen modal={false} anchor={document.body}>
+          <Menu2Submenu
+            trigger={
+              <Menu2SubmenuTrigger
+                slotProps={{
+                  indicator: {
+                    children: <span>→</span>,
+                    sx: (theme) => ({
+                      transform: theme.direction === 'rtl' ? 'scaleX(-1)' : 'none',
+                    }),
+                  },
+                }}
+              >
+                More
+              </Menu2SubmenuTrigger>
+            }
+          >
+            <Menu2Item>Nested</Menu2Item>
+          </Menu2Submenu>
+        </Menu2>
+      </ThemeProvider>,
+    );
+
+    const indicator = screen
+      .getByRole('menuitem', { name: 'More' })
+      .querySelector(`.${classes.indicator}`)!;
+    expect(['scaleX(-1)', 'matrix(-1, 0, 0, 1, 0, 0)']).to.include(
+      getComputedStyle(indicator).transform,
+    );
   });
 
   it.skipIf(isJsdom())(

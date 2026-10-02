@@ -243,6 +243,7 @@ createTheme({
   components: {
     MuiMenu2: {
       defaultProps: {
+        slots: { backdrop: null },
         modal: false,
         align: 'start',
       },
@@ -338,6 +339,33 @@ createTheme({
   disabled
 />;
 <Menu2SubmenuTrigger disabled />;
+
+<Menu2 slots={{ backdrop: null }} slotProps={{ backdrop: { sx: { opacity: 0.5 } } }} />;
+<Menu2
+  // @ts-expect-error Configure the backdrop through slots and slotProps.
+  backdrop
+/>;
+<Menu2Submenu
+  // @ts-expect-error There is no top-level backdrop prop.
+  backdrop
+/>;
+<Menu2Submenu
+  slots={{
+    // @ts-expect-error Only the root menu has a backdrop slot.
+    backdrop: 'div',
+  }}
+/>;
+<Menu2Submenu
+  slotProps={{
+    // @ts-expect-error Only the root menu has backdrop slot props.
+    backdrop: {},
+  }}
+/>;
+
+<Menu2SubmenuTrigger slots={{ indicator: null }}>More</Menu2SubmenuTrigger>;
+<Menu2Submenu trigger={<Menu2SubmenuTrigger slots={{ indicator: null }}>More</Menu2SubmenuTrigger>}>
+  <Menu2Item>Nested</Menu2Item>
+</Menu2Submenu>;
 
 <Menu2
   // @ts-expect-error Popover anchorOrigin is intentionally not supported.

@@ -161,7 +161,7 @@ Other behavior and caveats:
 
 - **Hover:** submenus open on hover by default, with a 100 ms delay and safe pointer travel. These defaults are configurable.
 - **Item styles:** CSS `:hover` uses `action.hover`; `Mui-focusVisible` uses `action.focus`, or the ring under `theme.focusVisible`. Base UI's `highlighted` state remains a customization hook, but does not set the default focus tint.
-- **Submenu indicator:** triggers include a trailing chevron that points left in RTL. Use `slotProps.indicator` to change its content or styles, or `slots.indicator` to replace or omit it.
+- **Submenu indicator:** the default chevron points left in RTL. Custom content and components control their own direction; they are not mirrored. Use `slotProps.indicator` to change content or styles, or `slots.indicator` to replace the container. Set `slots.indicator` to `null` to omit it and its spacing.
 - **Placement:** a submenu overlaps its parent by 4 px and starts 8 px above the trigger to account for list padding. Collisions can change the resolved placement.
 - **Escape:** closes the innermost submenu and returns focus to its trigger. Set `closeParentOnEsc` on the submenu to request closure of the parent menus too.
 - **Open tint:** an open submenu trigger uses `action.hover`. Hover-driven closes clear this tint when exit starts. Other closes keep it through exit to prevent a gap before focus returns. Exit timing is internal; `open` still reflects Base UI's logical state.
@@ -202,7 +202,7 @@ These choices are proposed for maintainer review.
 | Animation          | Grow by default. Base UI owns mounting and completion. Compatible transition components or CSS remain options. See the transition contract below.                                                  |
 | Ripple             | Keep ButtonBase as the item root, not a nested interactive child. Forward `disableRipple` only when supplied so theme defaults apply. Base UI owns Enter and Space activation.                     |
 | Elevation          | Keep the top-level prop, default 8, with a Paper slot override.                                                                                                                                    |
-| Backdrop           | Opt-in through the root menu's backdrop slot or slot props. The default styled backdrop is transparent and click-through; Base UI handles outside dismissal. Submenus expose no backdrop slot.     |
+| Backdrop           | Opt-in visual layer through root slots or slot props. `slots.backdrop: null` omits it. Default styles are transparent and click-through. No submenu backdrop.                                      |
 | Imperative actions | Keep Base UI's `actionsRef`, which exposes `close()` and `unmount()`. There is no `action.updatePosition()` equivalent.                                                                            |
 | Theme and refs     | Use the customization targets above. Caller-rendered parts use `OverridableComponent`; their refs and HTML props follow `component`. Collapsed roots use `HTMLDivElement` refs.                    |
 | Item descriptions  | Use Material UI Tooltip for supplementary text or images, without links, buttons, or other controls. Preview Card is outside the initial release.                                                  |
@@ -210,6 +210,8 @@ These choices are proposed for maintainer review.
 | Behavior defaults  | Keep Base UI behavior unless an integration requirement needs a change. Material presentation adds start alignment, submenu offsets, Grow, and an opt-in backdrop.                                 |
 | Open tint on close | Track the popup's ending state internally. Clear the exit tint when exit ends or the popup unmounts; do not add a timer or wait for focus return.                                                  |
 | Forced colors      | `enhanceHighContrast` styles the item parts and indicators. Disabled cues take precedence over highlight styling.                                                                                  |
+
+Base UI's internal backdrop handles modal interaction. It is absent for hover-opened menus and `modal={false}`. The optional visual backdrop is separate and is not hidden on hover. Setting its slot to `null` overrides theme defaults without changing modal behavior.
 
 ### Resolved review questions
 
@@ -286,7 +288,7 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 | `disableRestoreFocus`                     | `finalFocus={false}`                              | A ref or function can instead set the return target.                                                         |
 | `disableEscapeKeyDown`                    | Cancel an `onOpenChange` with reason `escape-key` | Only if the application requires it; this changes normal menu dismissal.                                     |
 | `disableScrollLock`                       | No independent equivalent                         | `modal={false}` also permits outside interaction. Touch and hover behavior differ; see the benchmark caveat. |
-| `hideBackdrop`                            | Opt-in backdrop                                   | There is no Material backdrop unless requested.                                                              |
+| `hideBackdrop`                            | `slots={{ backdrop: null }}`                      | Omits the optional visual layer, not Base UI's internal modal layer.                                         |
 | `disablePortal`                           | No equivalent                                     | The popup always uses a portal.                                                                              |
 | `keepMounted`, `container`                | Same props                                        | Client-side portal controls; they do not render the popup on the server.                                     |
 
@@ -343,7 +345,7 @@ This example follows the system preference. The playground also shows the theme 
 | `root`, `paper`, `list`, `transition`, `backdrop` slots | Same names; `root` is the positioned element       | Backdrop is available only on the root menu. |
 | `elevation`                                             | Same prop, default 8                               | Forwarded to Paper.                          |
 | Paper viewport height limit                             | `min(calc(100vh - 96px), var(--available-height))` | Also respects available collision space.     |
-| `BackdropProps`                                         | `slotProps.backdrop`                               | Backdrop remains opt-in.                     |
+| `BackdropProps`                                         | `slotProps.backdrop`                               | Renders the optional visual backdrop.        |
 | `PopoverClasses`                                        | No equivalent                                      | Menu2 does not render Popover.               |
 
 </details>

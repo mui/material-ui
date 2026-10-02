@@ -71,7 +71,10 @@ function Menu2SubmenuTriggerRootSlot(
   const isRtl = useRtl();
   const [IndicatorSlot, indicatorProps] = useSlot('indicator', {
     elementType: Menu2SubmenuTriggerIndicator,
-    externalForwardedProps: { slots, slotProps },
+    externalForwardedProps: {
+      slots: { indicator: slots?.indicator ?? undefined },
+      slotProps,
+    },
     ownerState,
     className: clsx(menu2SubmenuTriggerClasses.indicator, ownerState.classes?.indicator),
     additionalProps: {
@@ -88,7 +91,7 @@ function Menu2SubmenuTriggerRootSlot(
     <Menu2ItemRootSlot
       {...props}
       elementType={Menu2SubmenuTriggerRoot}
-      endIndicator={<IndicatorSlot {...indicatorProps} />}
+      endIndicator={slots?.indicator === null ? null : <IndicatorSlot {...indicatorProps} />}
     />
   );
 }
