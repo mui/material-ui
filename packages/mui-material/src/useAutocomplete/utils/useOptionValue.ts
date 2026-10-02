@@ -16,7 +16,7 @@ interface UseOptionValueParameters<Value, MappedValue> {
 }
 
 const defaultGetOptionValue = <Value>(option: Value) => option;
-const defaultGetOptionFromValue = <Value>(option: Value) => ({ option });
+const defaultResolveFromOptions = <Value>(option: Value) => ({ option });
 
 /**
  * Maps and matches Autocomplete values using cached option lookups and custom equality when supplied.
@@ -86,7 +86,7 @@ export default function useOptionValue<Value, MappedValue = never>({
   >(() => {
     if (!hasOptionValueMapping) {
       // Without value mapping, selected values are already options.
-      return defaultGetOptionFromValue;
+      return defaultResolveFromOptions;
     }
 
     if (isOptionEqualToValueProp) {
