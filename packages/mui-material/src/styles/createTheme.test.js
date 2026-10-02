@@ -174,6 +174,17 @@ describe('createTheme', () => {
     expect(theme.colorSchemes.dark.palette.background.default).to.equal('red');
   });
 
+  it('should add a palette color in a second call without CSS variables', () => {
+    let theme = createTheme({ cssVariables: false });
+    theme = createTheme(theme, {
+      palette: {
+        salmon: theme.palette.augmentColor({ color: { main: '#FF5733' }, name: 'salmon' }),
+      },
+    });
+    expect(theme.palette.salmon.main).to.equal('#FF5733');
+    expect('vars' in theme).to.equal(false);
+  });
+
   describe('CSS variables', () => {
     it('should have default light with media selector if no `palette` and colorSchemes.dark is provided', () => {
       const theme = createTheme({
@@ -258,6 +269,62 @@ describe('createTheme', () => {
       expect(theme.colorSchemes.dark.palette.Skeleton.bg).to.equal(
         'rgba(var(--mui-palette-text-primaryChannel, 255 255 255) / 0.13)',
       );
+    });
+
+    it('should generate variables for a palette color added in a second call', () => {
+      let theme = createTheme({ cssVariables: true });
+      // `cssVariables` isn't stored on the theme, so it's passed again
+      theme = createTheme(
+        { ...theme, cssVariables: true },
+        {
+          palette: {
+            salmon: theme.palette.augmentColor({ color: { main: '#FF5733' }, name: 'salmon' }),
+          },
+        },
+      );
+
+      expect(theme.palette.salmon.main).to.equal('#FF5733');
+      expect(theme.vars.palette.salmon.main).to.equal('var(--mui-palette-salmon-main, #FF5733)');
+      expect(theme.vars.palette.salmon.mainChannel).to.equal(
+        'var(--mui-palette-salmon-mainChannel, 255 87 51)',
+      );
+
+      const salmonSheets = theme
+        .generateStyleSheets()
+        .filter((sheet) => sheet[':root']?.['--mui-palette-salmon-main']);
+      // Declared once, with the variables of the default color scheme
+      expect(salmonSheets).to.have.length(1);
+      expect(salmonSheets[0][':root']).to.include({
+        colorScheme: 'light',
+        '--mui-palette-salmon-main': '#FF5733',
+        '--mui-palette-salmon-mainChannel': '255 87 51',
+      });
+
+      expect(() =>
+        render(
+          <ThemeProvider theme={theme}>
+            <Button color="salmon">Salmon</Button>
+          </ThemeProvider>,
+        ),
+      ).not.to.throw();
+    });
+
+    it('should add a palette color from a second call to the default color scheme', () => {
+      let theme = createTheme({ cssVariables: true, colorSchemes: { light: true, dark: true } });
+      theme = createTheme(
+        { ...theme, cssVariables: true },
+        {
+          palette: {
+            salmon: theme.palette.augmentColor({ color: { main: '#FF5733' }, name: 'salmon' }),
+          },
+        },
+      );
+
+      // Like the `palette` option, it goes to the default color scheme only
+      expect(theme.colorSchemes.light.palette.salmon.main).to.equal('#FF5733');
+      expect(theme.colorSchemes.dark.palette.salmon).to.equal(undefined);
+      expect(theme.palette.salmon.main).to.equal('#FF5733');
+      expect(theme.vars.palette.salmon.main).to.equal('var(--mui-palette-salmon-main, #FF5733)');
     });
 
     describe('spacing', () => {
