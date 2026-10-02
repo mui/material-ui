@@ -36,7 +36,7 @@ export default function useOptionValue<Value, MappedValue = never>({
 }: UseOptionValueParameters<Value, MappedValue>) {
   const getOptionValue = getOptionValueProp ?? defaultGetOptionValue;
   const hasOptionValueMapping = getOptionValueProp !== undefined;
-  const duplicatedErrorMessages = React.useMemo(() => new Set<string>(), []);
+  const reportedErrorMessages = React.useMemo(() => new Set<string>(), []);
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -46,9 +46,9 @@ export default function useOptionValue<Value, MappedValue = never>({
         options,
         freeSolo,
         getOptionValueProp,
-        duplicatedErrorMessages,
+        duplicatedErrorMessages: reportedErrorMessages,
       });
-    }, [options, freeSolo, getOptionValueProp, duplicatedErrorMessages]);
+    }, [options, freeSolo, getOptionValueProp, reportedErrorMessages]);
   }
 
   // Determines if an option is equal to a value, considering custom equality and free-solo scenarios.
@@ -191,7 +191,7 @@ export default function useOptionValue<Value, MappedValue = never>({
       if (process.env.NODE_ENV !== 'production') {
         if (hasOptionValueMapping) {
           // filterOptions can synthesize options that were not covered by options-prop validation.
-          validateOptionValue(optionValue, freeSolo, duplicatedErrorMessages);
+          validateOptionValue(optionValue, freeSolo, reportedErrorMessages);
         }
       }
 
@@ -213,7 +213,7 @@ export default function useOptionValue<Value, MappedValue = never>({
       isOptionSelected,
       isOptionEqualToValue,
       freeSolo,
-      duplicatedErrorMessages,
+      reportedErrorMessages,
     ],
   );
 
