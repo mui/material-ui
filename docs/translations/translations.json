@@ -177,6 +177,8 @@
     "/material-ui/migration": "Migration",
     "/material-ui/migration/upgrade-to-grid-v2": "Upgrade to Grid v2",
     "/material-ui/migration/pickers-migration": "Migration from @material-ui/pickers",
+    "Upgrade to v10": "Upgrade to v10",
+    "/material-ui/migration/upgrade-to-v10": "Upgrade to v10: getting started",
     "Upgrade to v9": "Upgrade to v9",
     "/material-ui/migration/upgrade-to-v9": "Upgrade to v9: getting started",
     "Upgrade to v7": "Upgrade to v7",

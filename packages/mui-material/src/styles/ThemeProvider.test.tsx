@@ -97,6 +97,7 @@ describe('ThemeProvider', () => {
 
     it('should be able to switch between modes', async () => {
       const theme = createTheme({
+        cssVariables: false,
         colorSchemes: { dark: true },
       });
       const { user } = render(
@@ -138,7 +139,11 @@ describe('ThemeProvider', () => {
           </button>
         );
       }
-      const theme = createTheme({ focusVisible: true, colorSchemes: { light: true, dark: true } });
+      const theme = createTheme({
+        cssVariables: false,
+        focusVisible: true,
+        colorSchemes: { light: true, dark: true },
+      });
       const { user } = render(
         <ThemeProvider theme={theme}>
           <Probe />
@@ -161,6 +166,7 @@ describe('ThemeProvider', () => {
         cssVariables: true,
       });
       const nestedTheme = createTheme({
+        cssVariables: false,
         palette: {
           // @ts-ignore
           ochre: {
