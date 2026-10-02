@@ -7,6 +7,7 @@ import {
   alpha as systemAlpha,
   lighten as systemLighten,
   darken as systemDarken,
+  colorChannel,
 } from '@mui/system/colorManipulator';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import createMixins from './createMixins';
@@ -42,6 +43,25 @@ const parseAddition = (str) => {
   return sum;
 };
 
+// Replaces the `var()` matches in `alpha()`: `var(--x, #1976d2)` -> `var(--xChannel, 25 118 210)`.
+// The fallback keeps the color valid when the CSS variables aren't defined (no `ThemeProvider`).
+// It's dropped when it isn't a color `colorChannel()` parses, for example `currentColor` or a nested `var()`,
+// or when it has more than one level of nested parentheses, since the regex doesn't capture it then.
+function toChannelVar(match, name, fallback) {
+  if (fallback) {
+    try {
+      const channel = colorChannel(fallback.trim());
+      // Space-separated syntax like `rgb(0 0 0)` doesn't throw but gives a single value.
+      if (channel.split(' ').length === 3) {
+        return `var(--${name}Channel, ${channel})`;
+      }
+    } catch {
+      // Not a supported color.
+    }
+  }
+  return `var(--${name}Channel)`;
+}
+
 function attachColorManipulators(theme) {
   Object.assign(theme, {
     alpha(color, coefficient) {
@@ -52,7 +72,7 @@ function attachColorManipulators(theme) {
       if (obj.vars) {
         // To preserve the behavior of the CSS theme variables
         // In the future, this could be replaced by `color-mix` (when https://caniuse.com/?search=color-mix reaches 95%).
-        return `rgba(${color.replace(/var\(--([^,\s)]+)(?:,[^)]+)?\)+/g, 'var(--$1Channel)')} / ${typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient})`;
+        return `rgba(${color.replace(/var\(--([^,\s)]+)(?:,((?:[^()]|\([^()]*\))+)\)|(?:,[^)]+)?\)+)/g, toChannelVar)} / ${typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient})`;
       }
       return systemAlpha(color, parseAddition(coefficient));
     },
