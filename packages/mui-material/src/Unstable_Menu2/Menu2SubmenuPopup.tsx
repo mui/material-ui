@@ -54,7 +54,7 @@ export interface Menu2SubmenuPopupProps extends Omit<
   side?: Menu2PopupPublicProps['side'] | undefined;
   /**
    * Distance between the anchor and the popup in pixels.
-   * @default 0
+   * @default -4
    */
   sideOffset?: Menu2PopupPublicProps['sideOffset'] | undefined;
   /**
@@ -64,7 +64,7 @@ export interface Menu2SubmenuPopupProps extends Omit<
   align?: Menu2PopupPublicProps['align'] | undefined;
   /**
    * Additional offset along the alignment axis in pixels.
-   * @default 0
+   * @default -8
    */
   alignOffset?: Menu2PopupPublicProps['alignOffset'] | undefined;
   /**

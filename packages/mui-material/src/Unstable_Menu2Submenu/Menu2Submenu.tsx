@@ -151,7 +151,7 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
   align: PropTypes.oneOf(['center', 'end', 'start']),
   /**
    * Additional offset along the alignment axis in pixels.
-   * @default 0
+   * @default -8
    */
   alignOffset: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   /**
@@ -264,7 +264,7 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
   side: PropTypes.oneOf(['bottom', 'inline-end', 'inline-start', 'left', 'right', 'top']),
   /**
    * Distance between the anchor and the popup in pixels.
-   * @default 0
+   * @default -4
    */
   sideOffset: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   /**
