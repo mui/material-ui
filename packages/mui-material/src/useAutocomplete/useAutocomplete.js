@@ -1113,7 +1113,7 @@ function useAutocomplete(props) {
               }, 0);
             }
           }
-          if (!multiple && renderValue && !readOnly && inputValue === '') {
+          if (!multiple && renderValue && !readOnly && !disableClearable && inputValue === '') {
             handleValue(event, null, 'removeOption', { option: value });
           }
           break;
@@ -1133,7 +1133,7 @@ function useAutocomplete(props) {
               option: value[index],
             });
           }
-          if (!multiple && renderValue && !readOnly && inputValue === '') {
+          if (!multiple && renderValue && !readOnly && !disableClearable && inputValue === '') {
             // Single-value rendering: Delete on empty input removes
             // the single rendered option, same "removeOption" reason as multiple.
             handleValue(event, null, 'removeOption', { option: value });
@@ -1300,6 +1300,9 @@ function useAutocomplete(props) {
   };
 
   const handleSingleItemDelete = (event) => {
+    if (disableClearable) {
+      return;
+    }
     handleValue(event, null, 'removeOption', {
       option: value,
     });
