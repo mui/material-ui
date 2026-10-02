@@ -22,7 +22,7 @@ export default function Sequential() {
       <Masonry
         columns={4}
         spacing={2}
-        defaultHeight={450}
+        defaultHeight={480}
         defaultColumns={4}
         defaultSpacing={2}
         sequential
