@@ -159,7 +159,6 @@ export interface AutocompleteSlots {
   popper: React.JSXElementConstructor<PopperProps & AutocompletePopperSlotPropsOverrides>;
 }
 
-// Forward the mapped value type to every slot's ownerState, matching the render callbacks.
 export type AutocompleteSlotsAndSlotProps<
   Value,
   Multiple extends boolean | undefined,
