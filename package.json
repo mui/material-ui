@@ -77,7 +77,7 @@
     "clean": "pnpm -r exec rm -rf build"
   },
   "dependencies": {
-    "@netlify/functions": "^6.0.0",
+    "@netlify/functions": "^6.0.2",
     "@slack/bolt": "^5.1.0",
     "execa": "^10.0.1"
   },
