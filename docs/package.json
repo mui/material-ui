@@ -121,7 +121,7 @@
     "@types/semver": "7.8.0",
     "@types/stylis": "4.2.7",
     "cross-fetch": "4.1.0",
-    "sharp": "0.35.4",
+    "sharp": "0.35.5",
     "prettier": "3.9.9",
     "raw-loader": "4.0.2",
     "tailwindcss": "4.3.3",
