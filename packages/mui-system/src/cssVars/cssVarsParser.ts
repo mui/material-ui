@@ -89,6 +89,39 @@ export const walkObjectDeep = <Value, T = Record<string, any>>(
   recurse(obj);
 };
 
+/**
+ * Emotion's CSS parser treats `//` as the start of a line comment and drops the rest of the block,
+ * so a bare URL in a theme value would remove every CSS variable after it.
+ * Escapes the first slash of `//` when it is outside quotes and parentheses, where it is safe.
+ */
+const escapeDoubleSlash = (value: string) => {
+  if (!value.includes('//')) {
+    return value;
+  }
+  let result = '';
+  let quote = '';
+  let depth = 0;
+  for (let index = 0; index < value.length; index += 1) {
+    const char = value[index];
+    if (quote) {
+      if (char === quote && value[index - 1] !== '\\') {
+        quote = '';
+      }
+    } else if (char === '"' || char === "'") {
+      quote = char;
+    } else if (char === '(') {
+      depth += 1;
+    } else if (char === ')' && depth > 0) {
+      depth -= 1;
+    } else if (char === '/' && value[index + 1] === '/' && depth === 0) {
+      result += '\\/';
+      continue;
+    }
+    result += char;
+  }
+  return result;
+};
+
 const getCssValue = (keys: string[], value: string | number) => {
   if (typeof value === 'number') {
     if (['lineHeight', 'fontWeight', 'opacity', 'zIndex'].some((prop) => keys.includes(prop))) {
@@ -102,7 +135,7 @@ const getCssValue = (keys: string[], value: string | number) => {
     }
     return `${value}px`;
   }
-  return value;
+  return escapeDoubleSlash(value);
 };
 
 /**

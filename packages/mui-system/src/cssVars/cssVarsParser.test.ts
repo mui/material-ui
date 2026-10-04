@@ -291,6 +291,29 @@ describe('cssVarsParser', () => {
     });
   });
 
+  describe('double slash', () => {
+    it('escapes `//` outside quotes and parentheses', () => {
+      const { css, varsWithDefaults } = cssVarsParser({
+        background: 'https://picsum.photos/200',
+        image: 'url(https://picsum.photos/200)',
+        quoted: '"https://picsum.photos/200"',
+        plain: 'sunset.jpg',
+      });
+      expect(css).to.deep.equal({
+        '--background': 'https:\\//picsum.photos/200',
+        '--image': 'url(https://picsum.photos/200)',
+        '--quoted': '"https://picsum.photos/200"',
+        '--plain': 'sunset.jpg',
+      });
+      expect(varsWithDefaults).to.deep.equal({
+        background: 'var(--background, https:\\//picsum.photos/200)',
+        image: 'var(--image, url(https://picsum.photos/200))',
+        quoted: 'var(--quoted, "https://picsum.photos/200")',
+        plain: 'var(--plain, sunset.jpg)',
+      });
+    });
+  });
+
   describe('vars', () => {
     it('create same structure and attach variables', () => {
       const { vars } = cssVarsParser({
