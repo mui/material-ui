@@ -77,7 +77,7 @@
     "clean": "pnpm -r exec rm -rf build"
   },
   "dependencies": {
-    "@netlify/functions": "^6.0.0",
+    "@netlify/functions": "^6.0.2",
     "@slack/bolt": "^5.1.0",
     "execa": "^10.0.1"
   },
@@ -96,7 +96,7 @@
     "@mui/internal-test-utils": "2.1.1-canary.0",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "16.3.6",
+    "@next/eslint-plugin-next": "16.3.8",
     "@octokit/rest": "22.0.1",
     "@pigment-css/react": "0.0.31",
     "@playwright/test": "1.63.0",
@@ -114,11 +114,11 @@
     "@vitest/eslint-plugin": "1.6.27",
     "axe-core": "4.13.0",
     "babel-plugin-module-resolver": "5.0.3",
-    "chalk": "6.0.0",
+    "chalk": "6.0.1",
     "concurrently": "10.0.5",
     "cpy-cli": "7.0.0",
     "cross-env": "10.1.0",
-    "dotenv": "18.0.4",
+    "dotenv": "18.0.5",
     "es-toolkit": "1.52.0",
     "eslint": "10.11.0",
     "eslint-plugin-consistent-default-export-name": "0.0.15",
@@ -148,11 +148,11 @@
     "yargs": "18.2.0"
   },
   "config": {
-    "valeVersion": "3.23.0"
+    "valeVersion": "3.24.0"
   },
-  "packageManager": "pnpm@12.6.0",
+  "packageManager": "pnpm@12.8.2",
   "engines": {
-    "pnpm": "12.6.0",
+    "pnpm": "12.8.2",
     "node": ">=22.23.3"
   }
 }
