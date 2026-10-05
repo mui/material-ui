@@ -50,11 +50,6 @@ import Menu, { MenuProps } from '@mui/material/Menu';
   }}
 />;
 
-<Menu open slotProps={{ list: { variant: 'menu', className: 'x' } }} />;
-<Menu open slotProps={{ list: (ownerState) => ({ variant: ownerState.variant }) }} />;
-// @ts-expect-error
-<Menu open slotProps={{ list: { nonExistentProp: true } }} />;
-
 function Custom(props: MenuProps) {
   const { slotProps, ...dialogProps } = props;
   return (

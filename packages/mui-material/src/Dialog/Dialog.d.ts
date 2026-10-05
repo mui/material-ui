@@ -1,21 +1,19 @@
 import * as React from 'react';
 import { SxProps, Breakpoint } from '@mui/system';
 import { Theme } from '../styles';
-import Modal from '../Modal';
 import { InternalStandardProps as StandardProps } from '../internal';
-import Backdrop  from '../Backdrop';
-import Paper,{PaperProps} from '../Paper';
+import { BackdropProps } from '../Backdrop';
+import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { TransitionProps } from '../transitions/types';
 import { DialogClasses } from './dialogClasses';
 import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
-import Fade from '../Fade';
 
 export interface DialogSlots {
   /**
    * The component that renders the transition.
    * [Follow this guide](/material-ui/transitions/#transition-slots) to learn more about the requirements for this component.
-   * @default Fade
+   * @default Collapse
    */
   transition?: React.ElementType | undefined;
   /**
@@ -50,13 +48,13 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the root slot.
      * By default, the available props are based on the [Modal](https://mui.com/material-ui/api/modal/#props) component.
      */
-    root: SlotProps<typeof Modal, DialogRootSlotPropsOverrides, DialogOwnerState>;
+    root: SlotProps<React.ElementType<ModalProps>, DialogRootSlotPropsOverrides, DialogOwnerState>;
     /**
      * Props forwarded to the backdrop slot.
      * By default, the available props are based on the [Backdrop](https://mui.com/material-ui/api/backdrop/#props) component.
      */
     backdrop: SlotProps<
-      typeof Backdrop,
+      React.ElementType<BackdropProps>,
       DialogBackdropSlotPropsOverrides,
       DialogOwnerState
     >;
@@ -70,7 +68,7 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the available props are based on the [Fade](https://mui.com/material-ui/api/fade/#props) component.
      */
     transition: SlotComponentProps<
-      typeof Fade,
+      React.ElementType<TransitionProps>,
       TransitionProps & DialogTransitionSlotPropsOverrides,
       DialogOwnerState
     >;
@@ -79,7 +77,7 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the available props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.
      */
     paper: SlotProps<
-      typeof Paper,
+      React.ElementType<PaperProps>,
       DialogPaperSlotPropsOverrides,
       DialogOwnerState
     >;

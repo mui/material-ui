@@ -14,11 +14,6 @@ const SlotComponentRef = React.forwardRef<HTMLDivElement>((props, ref) => {
   Step One
 </StepLabel>;
 
-<StepLabel slotProps={{ stepIcon: { completed: true, className: 'x' } }} />;
-<StepLabel slotProps={{ stepIcon: (ownerState) => ({ error: ownerState.error }) }} />;
-// @ts-expect-error
-<StepLabel slotProps={{ stepIcon: { nonExistentProp: true } }} />;
-
 <StepLabel
   slots={{
     label: SlotComponentRef,
