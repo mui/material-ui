@@ -7,6 +7,8 @@ import {
   alpha as systemAlpha,
   lighten as systemLighten,
   darken as systemDarken,
+  private_safeColorChannel as safeColorChannel,
+  hslToRgb,
 } from '@mui/system/colorManipulator';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import createMixins from './createMixins';
@@ -49,12 +51,16 @@ function attachColorManipulators(theme) {
       if (obj.colorSpace) {
         return `oklch(from ${color} l c h / ${typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient})`;
       }
-      // Raw colors (for example, `theme.palette.*`) have no channel tokens,
-      // so they fall through to the JS manipulation like `lighten()` and `darken()`.
-      if (obj.vars && color.includes('var(')) {
+      if (obj.vars) {
         // To preserve the behavior of the CSS theme variables
         // In the future, this could be replaced by `color-mix` (when https://caniuse.com/?search=color-mix reaches 95%).
-        return `rgba(${color.replace(/var\(--([^,\s)]+)(?:,[^)]+)?\)+/g, 'var(--$1Channel)')} / ${typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient})`;
+        // Raw colors (for example, `theme.palette.*`) have no channel tokens,
+        // so they are converted to channels the same way the theme generates `*Channel` tokens,
+        // which keeps a CSS coefficient (for example, `theme.vars.palette.action.hoverOpacity`) in `calc()`.
+        const channels = color.includes('var(')
+          ? color.replace(/var\(--([^,\s)]+)(?:,[^)]+)?\)+/g, 'var(--$1Channel)')
+          : safeColorChannel(color.startsWith('hsl') ? hslToRgb(color) : color);
+        return `rgba(${channels} / ${typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient})`;
       }
       return systemAlpha(color, parseAddition(coefficient));
     },

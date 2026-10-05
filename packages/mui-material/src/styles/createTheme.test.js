@@ -1022,13 +1022,24 @@ describe('createTheme', () => {
       ).to.equal('rgba(var(--mui-palette-text-primaryChannel) / 0.5)');
     });
 
-    it('[CSS variables] `alpha()` should fall back to JS manipulation for raw colors', () => {
+    it('[CSS variables] `alpha()` should convert raw colors to channels', () => {
       const theme = createTheme({ cssVariables: true });
-      expect(theme.alpha('#1976d2', 0.5)).to.equal(systemAlpha('#1976d2', 0.5));
+      expect(theme.alpha('#1976d2', 0.5)).to.equal('rgba(25 118 210 / 0.5)');
+      expect(theme.alpha('rgb(25, 118, 210)', 0.5)).to.equal('rgba(25 118 210 / 0.5)');
+      expect(theme.alpha('hsl(210, 79%, 46%)', 0.5)).to.equal('rgba(25 117 210 / 0.5)');
       expect(theme.alpha(theme.palette.primary.main, '0.3 + 0.2')).to.equal(
-        systemAlpha(theme.palette.primary.main, 0.5),
+        'rgba(25 118 210 / calc(0.3 + 0.2))',
       );
-      expect(theme.alpha('rgb(25, 118, 210)', 0.5)).to.equal('rgba(25, 118, 210, 0.5)');
+      expect(
+        theme.alpha(theme.palette.primary.main, theme.vars.palette.action.hoverOpacity),
+      ).to.equal('rgba(25 118 210 / calc(var(--mui-palette-action-hoverOpacity, 0.04)))');
+    });
+
+    it('[CSS variables] `alpha()` should keep raw channel strings', () => {
+      const theme = createTheme({ cssVariables: true });
+      expect(theme.alpha(theme.palette.primary.mainChannel, 0.4)).to.equal(
+        'rgba(25 118 210 / 0.4)',
+      );
     });
 
     it('[color space with CSS variables] should use CSS for manipulating colors', () => {
