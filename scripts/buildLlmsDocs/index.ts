@@ -461,7 +461,9 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
   const grep = argv.grep ? new RegExp(argv.grep) : null;
   const outputDir = argv.outputDir || path.join(process.cwd(), 'docs/public');
 
-  removeGeneratedFiles(path.join(outputDir, 'material-ui'));
+  if (!grep) {
+    removeGeneratedFiles(path.join(outputDir, 'material-ui'));
+  }
 
   // Load project settings from the specified path
   if (!argv.projectSettings) {
