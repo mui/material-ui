@@ -38,14 +38,14 @@ declare module '@mui/material/styles' {
   interface ComponentNameToClassKey {
     MuiMenu2: Menu2ClassKey;
     MuiMenu2Submenu: Menu2SubmenuClassKey;
-    MuiMenu2SubmenuTrigger: Menu2SubmenuTriggerClassKey;
-    MuiMenu2CheckboxItem: Menu2CheckboxItemClassKey;
+    MuiMenu2SubmenuTrigger: Exclude<Menu2SubmenuTriggerClassKey, 'highlighted'>;
+    MuiMenu2CheckboxItem: Exclude<Menu2CheckboxItemClassKey, 'highlighted'>;
     MuiMenu2Group: Menu2GroupClassKey;
     MuiMenu2GroupLabel: Menu2GroupLabelClassKey;
-    MuiMenu2Item: Menu2ItemClassKey;
-    MuiMenu2LinkItem: Menu2LinkItemClassKey;
+    MuiMenu2Item: Exclude<Menu2ItemClassKey, 'highlighted'>;
+    MuiMenu2LinkItem: Exclude<Menu2LinkItemClassKey, 'highlighted'>;
     MuiMenu2RadioGroup: Menu2RadioGroupClassKey;
-    MuiMenu2RadioItem: Menu2RadioItemClassKey;
+    MuiMenu2RadioItem: Exclude<Menu2RadioItemClassKey, 'highlighted'>;
     MuiMenu2Separator: Menu2SeparatorClassKey;
   }
 

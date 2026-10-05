@@ -20,11 +20,7 @@ import {
   useMenu2ItemListContext,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
-import {
-  getMenu2LinkItemUtilityClass,
-  Menu2LinkItemClasses,
-  menu2LinkItemClasses,
-} from '../Unstable_Menu2/menu2Classes';
+import { getMenu2LinkItemUtilityClass, Menu2LinkItemClasses } from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2LinkItemOwnerState extends Menu2ItemBaseOwnerState {
   /** Whether Base UI currently highlights the item. */
@@ -98,10 +94,7 @@ export type Menu2LinkItemProps<
 const Menu2LinkItemRoot = styled(MenuItemBase, {
   name: 'MuiMenu2LinkItem',
   slot: 'root',
-  overridesResolver: (props, styles) => [
-    menuItemOverridesResolver(props, styles),
-    { [`&.${menu2LinkItemClasses.highlighted}`]: styles.highlighted },
-  ],
+  overridesResolver: menuItemOverridesResolver,
 })<{ ownerState: Menu2LinkItemOwnerState }>(
   memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
 );

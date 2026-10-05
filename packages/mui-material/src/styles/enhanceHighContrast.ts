@@ -97,13 +97,11 @@ type Menu2HighContrastComponents = Partial<
     | 'MuiMenu2RadioItem'
     | 'MuiMenu2SubmenuTrigger',
     {
-      styleOverrides?: Partial<Record<'root' | 'highlighted' | 'indicator', unknown>> | undefined;
+      styleOverrides?: Partial<Record<'root' | 'indicator', unknown>> | undefined;
     }
   >
 >;
 
-// State overrides come after the root rules in the cascade, so they
-// could replace the system colors while `forcedColorAdjust: none` stays active.
 function menu2ActiveOverrides(hcTokens: Required<HighContrastTokens>) {
   return {
     [HCM]: {
@@ -115,8 +113,12 @@ function menu2ActiveOverrides(hcTokens: Required<HighContrastTokens>) {
 }
 
 // Menu2 uses the same focus and hover cues as the classic items.
-function menu2ItemOverrides(classes: { disabled: string }, hcTokens: Required<HighContrastTokens>) {
+function menu2ItemOverrides(
+  classes: { disabled: string; highlighted: string },
+  hcTokens: Required<HighContrastTokens>,
+) {
   return {
+    [`&.${classes.highlighted}`]: menu2ActiveOverrides(hcTokens),
     [`&.${menuItemClasses.focusVisible}, &:hover`]: {
       [HCM]: {
         forcedColorAdjust: 'none',
@@ -489,7 +491,6 @@ export default function enhanceHighContrast<
           c?.MuiMenu2Item?.styleOverrides?.root,
           menu2ItemOverrides(menu2ItemClasses, hcTokens),
         ],
-        highlighted: [c?.MuiMenu2Item?.styleOverrides?.highlighted, menu2ActiveOverrides(hcTokens)],
       },
     },
     MuiMenu2LinkItem: {
@@ -500,10 +501,6 @@ export default function enhanceHighContrast<
           c?.MuiMenu2LinkItem?.styleOverrides?.root,
           menu2ItemOverrides(menu2LinkItemClasses, hcTokens),
         ],
-        highlighted: [
-          c?.MuiMenu2LinkItem?.styleOverrides?.highlighted,
-          menu2ActiveOverrides(hcTokens),
-        ],
       },
     },
     MuiMenu2CheckboxItem: {
@@ -513,10 +510,6 @@ export default function enhanceHighContrast<
         root: [
           c?.MuiMenu2CheckboxItem?.styleOverrides?.root,
           menu2ItemOverrides(menu2CheckboxItemClasses, hcTokens),
-        ],
-        highlighted: [
-          c?.MuiMenu2CheckboxItem?.styleOverrides?.highlighted,
-          menu2ActiveOverrides(hcTokens),
         ],
         indicator: [
           c?.MuiMenu2CheckboxItem?.styleOverrides?.indicator,
@@ -532,10 +525,6 @@ export default function enhanceHighContrast<
           c?.MuiMenu2RadioItem?.styleOverrides?.root,
           menu2ItemOverrides(menu2RadioItemClasses, hcTokens),
         ],
-        highlighted: [
-          c?.MuiMenu2RadioItem?.styleOverrides?.highlighted,
-          menu2ActiveOverrides(hcTokens),
-        ],
         indicator: [
           c?.MuiMenu2RadioItem?.styleOverrides?.indicator,
           menu2IndicatorOverrides(menu2RadioItemIndicatorClasses),
@@ -549,20 +538,10 @@ export default function enhanceHighContrast<
         root: [
           c?.MuiMenu2SubmenuTrigger?.styleOverrides?.root,
           {
-            [`&.${menu2SubmenuTriggerClasses.open}`]: {
-              [HCM]: {
-                forcedColorAdjust: 'none',
-                color: hcTokens.activeText,
-                backgroundColor: hcTokens.activeBackground,
-              },
-            },
+            [`&.${menu2SubmenuTriggerClasses.open}`]: menu2ActiveOverrides(hcTokens),
             '&[data-mui-internal-retain-open-tint]': menu2ActiveOverrides(hcTokens),
             ...menu2ItemOverrides(menu2SubmenuTriggerClasses, hcTokens),
           },
-        ],
-        highlighted: [
-          c?.MuiMenu2SubmenuTrigger?.styleOverrides?.highlighted,
-          menu2ActiveOverrides(hcTokens),
         ],
       },
     },

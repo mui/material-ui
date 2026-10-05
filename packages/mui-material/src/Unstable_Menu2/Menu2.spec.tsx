@@ -12,7 +12,7 @@ import Menu2CheckboxItem, {
 } from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
-import Menu2Item from '@mui/material/Unstable_Menu2Item';
+import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
 import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem, {
@@ -25,7 +25,9 @@ import Menu2RadioItem, {
 } from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
-import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
+import Menu2SubmenuTrigger, {
+  menu2SubmenuTriggerClasses,
+} from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { createTheme } from '@mui/material/styles';
 // @ts-expect-error Menu2 is intentionally not exported from the root barrel for this POC.
 import { Menu2 as RootBarrelMenu2 } from '@mui/material';
@@ -313,7 +315,9 @@ createTheme({
     },
     MuiMenu2SubmenuTrigger: {
       defaultProps: { openOnHover: false, dense: true, disableRipple: true },
-      styleOverrides: { root: {}, highlighted: {} },
+      styleOverrides: {
+        root: { [`&.${menu2SubmenuTriggerClasses.highlighted}`]: { color: 'red' } },
+      },
       variants: [{ props: { divider: true }, style: {} }],
     },
     MuiMenu2Item: {
@@ -321,8 +325,7 @@ createTheme({
         dense: true,
       },
       styleOverrides: {
-        root: {},
-        highlighted: {},
+        root: { [`&.${menu2ItemClasses.highlighted}`]: { color: 'red' } },
       },
       variants: [
         {

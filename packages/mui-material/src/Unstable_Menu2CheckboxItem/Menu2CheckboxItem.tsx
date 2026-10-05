@@ -140,10 +140,7 @@ export type Menu2CheckboxItemProps<
 const Menu2CheckboxItemRoot = styled(MenuItemBase, {
   name: 'MuiMenu2CheckboxItem',
   slot: 'root',
-  overridesResolver: (props, styles) => [
-    menuItemOverridesResolver(props, styles),
-    { [`&.${menu2CheckboxItemClasses.highlighted}`]: styles.highlighted },
-  ],
+  overridesResolver: menuItemOverridesResolver,
 })<{ ownerState: Menu2CheckboxItemOwnerState }>(
   memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
 );

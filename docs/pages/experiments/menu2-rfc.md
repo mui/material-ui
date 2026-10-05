@@ -115,6 +115,8 @@ For the classic controlled pattern, omit `trigger` and use `open` and `anchor`. 
 
 The root theme key is `MuiMenu2`; the submenu uses `MuiMenu2Submenu`. Popup components stay internal, but their class hooks are exported.
 
+Use class selectors in `styleOverrides.root` for the highlighted state. Items retain the `dense`, `divider`, and `gutters` override keys from the classic MenuItem. The utility classes stay available; the classic MenuItem theme API is unchanged.
+
 Checkbox and radio items own their `indicator` slot. Use `slots.indicator`, `slotProps.indicator`, and the item's `styleOverrides.indicator` to customize it. Indicator class objects, utility helpers, and class types are exported from the owning item's subpath; the class names stay unchanged. Custom indicators receive these classes and the live checked, disabled, and highlighted state. They must forward props and their ref. The default indicators have no separate exports or theme keys.
 
 | Target                        | Top-level props                                                                  | Slot         |

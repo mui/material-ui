@@ -1,5 +1,12 @@
 import type {} from '@mui/material/Unstable_Menu2/themeAugmentation';
-import { createTheme, Components } from '@mui/material/styles';
+import { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
+import {
+  menu2CheckboxItemClasses,
+  menu2CheckboxItemIndicatorClasses,
+} from '@mui/material/Unstable_Menu2CheckboxItem';
+import { menu2RadioGroupClasses } from '@mui/material/Unstable_Menu2RadioGroup';
+import { menu2SubmenuTriggerClasses } from '@mui/material/Unstable_Menu2SubmenuTrigger';
+import { createTheme, Components, ComponentsOverrides } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface Theme {
@@ -45,15 +52,27 @@ createTheme({
     },
     MuiMenu2SubmenuTrigger: {
       defaultProps: { openOnHover: false },
-      styleOverrides: { root: {}, indicator: {} },
+      styleOverrides: {
+        root: { [`&.${menu2SubmenuTriggerClasses.open}`]: { color: 'red' } },
+        indicator: {},
+        dense: {},
+        divider: {},
+        gutters: {},
+      },
     },
     MuiMenu2Item: {
       defaultProps: { dense: true },
       styleOverrides: {
         root: ({ ownerState, theme }) => {
           ownerState.dense satisfies boolean | undefined;
-          return { padding: theme.spacing(ownerState.dense ? 1 : 2) };
+          return {
+            padding: theme.spacing(ownerState.dense ? 1 : 2),
+            [`&.${menu2ItemClasses.highlighted}`]: { color: theme.menu2TestColor },
+          };
         },
+        dense: { minHeight: 24 },
+        divider: ({ theme }) => ({ borderColor: theme.menu2TestColor }),
+        gutters: ({ theme }) => ({ paddingInline: theme.spacing(2) }),
       },
       variants: [{ props: { divider: true }, style: {} }],
     },
@@ -65,25 +84,51 @@ createTheme({
           eventDetails.cancel();
         },
       },
-      styleOverrides: { root: {}, indicator: {} },
+      styleOverrides: {
+        root: { [`&.${menu2CheckboxItemClasses.checked}`]: { color: 'red' } },
+        indicator: { [`&.${menu2CheckboxItemIndicatorClasses.checked}`]: { color: 'blue' } },
+        dense: {},
+        divider: {},
+        gutters: {},
+      },
       variants: [{ props: { checked: true }, style: {} }],
     },
     MuiMenu2RadioItem: {
       defaultProps: { value: 'one' },
-      styleOverrides: { root: {}, indicator: {} },
+      styleOverrides: { root: {}, indicator: {}, dense: {}, divider: {}, gutters: {} },
       variants: [{ props: { value: 'one' }, style: {} }],
     },
     MuiMenu2LinkItem: {
       defaultProps: { href: '/profile' },
-      styleOverrides: { root: {} },
+      styleOverrides: { root: {}, dense: {}, divider: {}, gutters: {} },
       variants: [{ props: { href: '/profile' }, style: {} }],
     },
     MuiMenu2Group: { defaultProps: { id: 'group' }, styleOverrides: { root: {} } },
     MuiMenu2GroupLabel: { defaultProps: { id: 'label' }, styleOverrides: { root: {} } },
-    MuiMenu2RadioGroup: { defaultProps: { value: 'one' }, styleOverrides: { root: {} } },
+    MuiMenu2RadioGroup: {
+      defaultProps: { value: 'one' },
+      styleOverrides: {
+        root: { [`&.${menu2RadioGroupClasses.disabled}`]: { opacity: 0.5 } },
+      },
+    },
     MuiMenu2Separator: { defaultProps: { className: 'separator' }, styleOverrides: { root: {} } },
   },
 });
+
+// @ts-expect-error Use the highlighted class selector in the root override.
+const highlightedOverride: ComponentsOverrides['MuiMenu2Item'] = { highlighted: {} };
+// @ts-expect-error Use the highlighted class selector in the root override.
+const highlightedLinkOverride: ComponentsOverrides['MuiMenu2LinkItem'] = { highlighted: {} };
+const highlightedCheckboxOverride: ComponentsOverrides['MuiMenu2CheckboxItem'] = {
+  // @ts-expect-error Use the highlighted class selector in the root override.
+  highlighted: {},
+};
+// @ts-expect-error Use the highlighted class selector in the root override.
+const highlightedRadioOverride: ComponentsOverrides['MuiMenu2RadioItem'] = { highlighted: {} };
+const highlightedSubmenuOverride: ComponentsOverrides['MuiMenu2SubmenuTrigger'] = {
+  // @ts-expect-error Use the highlighted class selector in the root override.
+  highlighted: {},
+};
 
 const customThemeComponents: Components<{ customToken: string }> = {
   MuiMenu2: {

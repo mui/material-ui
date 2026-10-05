@@ -35,10 +35,7 @@ function menu2SubmenuTriggerStyles(theme: Theme, selector: string) {
 const Menu2SubmenuTriggerRoot = styled(MenuItemBase, {
   name: 'MuiMenu2SubmenuTrigger',
   slot: 'root',
-  overridesResolver: (props, styles) => [
-    menuItemOverridesResolver(props, styles),
-    { [`&.${menu2SubmenuTriggerClasses.highlighted}`]: styles.highlighted },
-  ],
+  overridesResolver: menuItemOverridesResolver,
 })<{ ownerState: Menu2SubmenuTriggerOwnerState }>(
   memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
   memoTheme(({ theme }) => ({

@@ -262,6 +262,8 @@ This import adds no runtime code. The separate module keeps Base UI types out o
 The theme has two keys for the menu surfaces. `MuiMenu2` has the slots `root`, `backdrop`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `paper`, and `list`. Each item part has its own key, such as `MuiMenu2Item`:
 
 ```js
+import { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
+
 const theme = createTheme({
   components: {
     MuiMenu2: {
@@ -272,7 +274,11 @@ const theme = createTheme({
     },
     MuiMenu2Item: {
       styleOverrides: {
-        root: { fontWeight: 500 },
+        root: {
+          fontWeight: 500,
+          [`&.${menu2ItemClasses.highlighted}`]: { backgroundColor: 'lightblue' },
+        },
+        dense: { minHeight: 28 },
       },
     },
     MuiMenu2CheckboxItem: {
@@ -284,7 +290,7 @@ const theme = createTheme({
 });
 ```
 
-The item parts have state classes, such as `.MuiMenu2Item-highlighted`, `.Mui-checked`, and `.Mui-open`. Scope global state classes to the component, for example `.MuiMenu2CheckboxItem-root.Mui-checked` and `.MuiMenu2SubmenuTrigger-root.Mui-open`. Slot callbacks and theme style callbacks receive the live item state.
+Use class selectors inside a slot override for states such as `highlighted`, `checked`, `disabled`, and `open`. Items also support the `dense`, `divider`, and `gutters` override keys, as classic MenuItem does. Scope global state classes to the component, for example `.MuiMenu2CheckboxItem-root.Mui-checked` and `.MuiMenu2SubmenuTrigger-root.Mui-open`. Slot callbacks and theme style callbacks receive the live item state.
 
 ### Checkbox and radio indicators
 

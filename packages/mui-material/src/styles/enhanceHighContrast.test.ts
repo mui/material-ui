@@ -597,11 +597,14 @@ describe('enhanceHighContrast', () => {
   });
 
   describe('Menu2 item overrides', () => {
-    const itemCases: Array<[component: string, classes: { disabled: string }, slot: string]> = [
+    const itemCases: Array<
+      [component: string, classes: { disabled: string; highlighted: string }, slot: string]
+    > = [
       ['MuiMenu2Item', menu2ItemClasses, 'root'],
       ['MuiMenu2LinkItem', menu2LinkItemClasses, 'root'],
       ['MuiMenu2CheckboxItem', menu2CheckboxItemClasses, 'root'],
       ['MuiMenu2RadioItem', menu2RadioItemClasses, 'root'],
+      ['MuiMenu2SubmenuTrigger', menu2SubmenuTriggerClasses, 'root'],
     ];
 
     test.each(itemCases)(
@@ -700,35 +703,37 @@ describe('enhanceHighContrast', () => {
         expect(keys.indexOf(`&.${classes.disabled}`)).to.be.greaterThan(
           keys.indexOf(`&.${menuItemClasses.focusVisible}, &:hover`),
         );
+        expect(keys.indexOf(`&.${classes.disabled}`)).to.be.greaterThan(
+          keys.indexOf(`&.${classes.highlighted}`),
+        );
       },
     );
 
-    // A `highlighted` override comes after the root rules in the cascade.
-    test.each([
-      'MuiMenu2Item',
-      'MuiMenu2LinkItem',
-      'MuiMenu2CheckboxItem',
-      'MuiMenu2RadioItem',
-      'MuiMenu2SubmenuTrigger',
-    ])('%s keeps the active system colors after a highlighted override', (component) => {
-      const custom = { color: '#111', backgroundColor: '#222' };
-      const theme = enhanceHighContrast(
-        createTheme({ components: { [component]: { styleOverrides: { highlighted: custom } } } }),
-      );
-      const highlightedOverrides = (theme.components as any)[component].styleOverrides
-        .highlighted as Array<StyleOverride>;
+    test.each(itemCases)(
+      '%s keeps the active system colors after a root state override',
+      (component, classes) => {
+        const selector = `&.${classes.highlighted}`;
+        const custom = { [selector]: { color: '#111', backgroundColor: '#222' } };
+        const themeInput = createTheme({
+          components: { [component]: { styleOverrides: { root: custom } } },
+        });
+        const theme = enhanceHighContrast(themeInput);
+        const styleOverrides = (theme.components as any)[component].styleOverrides;
+        const rootOverrides = styleOverrides.root as Array<StyleOverride>;
 
-      expect(highlightedOverrides).to.deep.equal([
-        custom,
-        {
+        expect(styleOverrides).not.to.have.property('highlighted');
+        expect(rootOverrides).to.have.length(2);
+        expect(rootOverrides[0]).to.deep.equal(custom);
+        expect(rootOverrides[1][selector]).to.deep.equal({
           [HCM]: {
             forcedColorAdjust: 'none',
             color: 'HighlightText',
             backgroundColor: 'Highlight',
           },
-        },
-      ]);
-    });
+        });
+        expect((themeInput.components as any)[component].styleOverrides.root).to.deep.equal(custom);
+      },
+    );
 
     test('MuiMenu2SubmenuTrigger owns its open state', () => {
       const theme = enhanceHighContrast(createTheme());
@@ -800,8 +805,8 @@ describe('enhanceHighContrast', () => {
 
   describe('Menu2 indicator overrides', () => {
     const indicatorCases = [
-      ['MuiMenu2CheckboxItem', menu2CheckboxItemIndicatorClasses],
-      ['MuiMenu2RadioItem', menu2RadioItemIndicatorClasses],
+      ['MuiMenu2CheckboxItem', menu2CheckboxItemIndicatorClasses, menu2CheckboxItemClasses],
+      ['MuiMenu2RadioItem', menu2RadioItemIndicatorClasses, menu2RadioItemClasses],
     ] as const;
 
     // The checkmark is a hole in the `CheckBox` icon, so it shows the item
@@ -867,7 +872,7 @@ describe('enhanceHighContrast', () => {
 
     test.each(indicatorCases)(
       '%s indicators inherit custom system colors',
-      (component, classes) => {
+      (component, classes, itemClasses) => {
         const theme = enhanceHighContrast(createTheme(), {
           disabled: 'ButtonText',
           activeText: 'Canvas',
@@ -875,13 +880,14 @@ describe('enhanceHighContrast', () => {
         });
         const overrides = theme.components?.[component]?.styleOverrides;
         const rootOverrides = overrides?.root as Array<StyleOverride>;
-        const highlightedOverrides = overrides?.highlighted as Array<StyleOverride>;
         const indicatorOverrides = overrides?.indicator as Array<StyleOverride>;
 
         expect(rootOverrides[rootOverrides.length - 1][`&.${classes.disabled}`]).to.deep.equal({
           [HCM]: { color: 'ButtonText', opacity: 1 },
         });
-        expect(highlightedOverrides[highlightedOverrides.length - 1]).to.deep.equal({
+        expect(
+          rootOverrides[rootOverrides.length - 1][`&.${itemClasses.highlighted}`],
+        ).to.deep.equal({
           [HCM]: {
             forcedColorAdjust: 'none',
             color: 'Canvas',

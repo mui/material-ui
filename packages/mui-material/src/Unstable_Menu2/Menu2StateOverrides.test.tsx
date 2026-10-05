@@ -2,40 +2,57 @@ import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { StyledEngineProvider } from '@mui/styled-engine';
-import { createTheme, enhanceHighContrast, ThemeOptions, ThemeProvider } from '../styles';
+import { createTheme, enhanceHighContrast, Theme, ThemeOptions, ThemeProvider } from '../styles';
 import menuItemClasses from '../MenuItem/menuItemClasses';
 import Menu2CheckboxItem from '../Unstable_Menu2CheckboxItem';
-import Menu2Item from '../Unstable_Menu2Item';
+import Menu2Item, { Menu2ItemProps } from '../Unstable_Menu2Item';
 import Menu2LinkItem from '../Unstable_Menu2LinkItem';
 import Menu2RadioGroup from '../Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '../Unstable_Menu2RadioItem';
 import Menu2Submenu from '../Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger, { menu2SubmenuTriggerClasses } from '../Unstable_Menu2SubmenuTrigger';
 import Menu2 from './Menu2';
-import { menu2CheckboxItemIndicatorClasses, menu2ItemClasses } from './menu2Classes';
+import {
+  menu2CheckboxItemClasses,
+  menu2CheckboxItemIndicatorClasses,
+  menu2ItemClasses,
+  menu2LinkItemClasses,
+  menu2RadioItemClasses,
+} from './menu2Classes';
 
-const highlightedCases = [
+interface ItemTestProps extends Pick<
+  Menu2ItemProps,
+  'dense' | 'divider' | 'disableGutters' | 'sx'
+> {
+  'data-testid': string;
+}
+
+const itemCases = [
   {
     name: 'MuiMenu2Item',
-    item: <Menu2Item data-testid="target">Target</Menu2Item>,
+    classes: menu2ItemClasses,
+    renderItem: (props: ItemTestProps) => <Menu2Item {...props}>Target</Menu2Item>,
   },
   {
     name: 'MuiMenu2LinkItem',
-    item: (
-      <Menu2LinkItem data-testid="target" href="#target">
+    classes: menu2LinkItemClasses,
+    renderItem: (props: ItemTestProps) => (
+      <Menu2LinkItem {...props} href="#target">
         Target
       </Menu2LinkItem>
     ),
   },
   {
     name: 'MuiMenu2CheckboxItem',
-    item: <Menu2CheckboxItem data-testid="target">Target</Menu2CheckboxItem>,
+    classes: menu2CheckboxItemClasses,
+    renderItem: (props: ItemTestProps) => <Menu2CheckboxItem {...props}>Target</Menu2CheckboxItem>,
   },
   {
     name: 'MuiMenu2RadioItem',
-    item: (
+    classes: menu2RadioItemClasses,
+    renderItem: (props: ItemTestProps) => (
       <Menu2RadioGroup defaultValue="target">
-        <Menu2RadioItem data-testid="target" value="target">
+        <Menu2RadioItem {...props} value="target">
           Target
         </Menu2RadioItem>
       </Menu2RadioGroup>
@@ -43,10 +60,11 @@ const highlightedCases = [
   },
   {
     name: 'MuiMenu2SubmenuTrigger',
-    item: (
+    classes: menu2SubmenuTriggerClasses,
+    renderItem: (props: ItemTestProps) => (
       <Menu2Submenu
         trigger={
-          <Menu2SubmenuTrigger data-testid="target" openOnHover={false}>
+          <Menu2SubmenuTrigger {...props} openOnHover={false}>
             Target
           </Menu2SubmenuTrigger>
         }
@@ -55,6 +73,13 @@ const highlightedCases = [
       </Menu2Submenu>
     ),
   },
+] as const;
+
+const highlightedCases = [
+  ...itemCases.map(({ name, renderItem }) => ({
+    name,
+    item: renderItem({ 'data-testid': 'target' }),
+  })),
   {
     name: 'MuiMenu2CheckboxItem',
     slot: 'indicator',
@@ -110,10 +135,9 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
         createTheme({
           components: {
             [name]: {
-              styleOverrides:
-                slot === 'indicator'
-                  ? { indicator: { [`&.${stateName}-highlighted`]: highlightedStyles } }
-                  : { highlighted: highlightedStyles },
+              styleOverrides: {
+                [slot]: { [`&.${stateName}-highlighted`]: highlightedStyles },
+              },
             },
           },
         }),
@@ -232,10 +256,9 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
             </Menu2>,
             {
               [name]: {
-                styleOverrides:
-                  slot === 'indicator'
-                    ? { indicator: { [`&.${stateName}-highlighted`]: highlightedStyles } }
-                    : { highlighted: highlightedStyles },
+                styleOverrides: {
+                  [slot]: { [`&.${stateName}-highlighted`]: highlightedStyles },
+                },
               },
             },
           );
@@ -274,53 +297,149 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
       });
 
       ['item', 'indicator'].forEach((kind) => {
-        it(`lets a matching highlighted sx selector override the ${kind} theme`, async () => {
-          const name = kind === 'item' ? 'MuiMenu2Item' : 'MuiMenu2CheckboxItem';
-          const highlightedClass =
-            kind === 'item'
-              ? menu2ItemClasses.highlighted
-              : menu2CheckboxItemIndicatorClasses.highlighted;
-          const sx = { [`&.${highlightedClass}`]: { backgroundColor: 'rgb(4, 5, 6)' } };
-          const { user, unmount } = renderWithTheme(
-            <Menu2 transitionDuration={0} trigger={<button type="button">Options</button>}>
-              {kind === 'item' ? (
-                <Menu2Item data-testid="target" sx={sx}>
-                  Target
-                </Menu2Item>
-              ) : (
-                <Menu2CheckboxItem
-                  defaultChecked
-                  slotProps={{ indicator: { 'data-testid': 'target', sx } }}
-                >
-                  Target
-                </Menu2CheckboxItem>
-              )}
+        (['object', 'array', 'callback'] as const).forEach((overrideType) => {
+          it(`lets a matching highlighted sx selector override the ${kind} ${overrideType} theme`, async () => {
+            const name = kind === 'item' ? 'MuiMenu2Item' : 'MuiMenu2CheckboxItem';
+            const slot = kind === 'item' ? 'root' : 'indicator';
+            const highlightedClass =
+              kind === 'item'
+                ? menu2ItemClasses.highlighted
+                : menu2CheckboxItemIndicatorClasses.highlighted;
+            const sx = { [`&.${highlightedClass}`]: { backgroundColor: 'rgb(4, 5, 6)' } };
+            const highlightedStyles = {
+              [`&.${highlightedClass}`]: {
+                backgroundColor: 'rgb(1, 2, 3)',
+                '--menu2-highlighted-test': 'active',
+              },
+            };
+            const themeStyles = {
+              object: highlightedStyles,
+              array: [
+                { [`&.${highlightedClass}`]: { '--menu2-highlighted-test': 'overridden' } },
+                highlightedStyles,
+              ],
+              callback: ({ theme }: { theme: Theme }) => ({
+                ...highlightedStyles,
+                '--menu2-theme-mode': theme.palette.mode,
+              }),
+            };
+            const { user, unmount } = renderWithTheme(
+              <Menu2 transitionDuration={0} trigger={<button type="button">Options</button>}>
+                {kind === 'item' ? (
+                  <Menu2Item data-testid="target" sx={sx}>
+                    Target
+                  </Menu2Item>
+                ) : (
+                  <Menu2CheckboxItem
+                    defaultChecked
+                    slotProps={{ indicator: { 'data-testid': 'target', sx } }}
+                  >
+                    Target
+                  </Menu2CheckboxItem>
+                )}
+              </Menu2>,
+              {
+                [name]: {
+                  styleOverrides: { [slot]: themeStyles[overrideType] },
+                },
+              },
+            );
+
+            try {
+              await user.click(screen.getByRole('button', { name: 'Options' }));
+              const target = await screen.findByTestId('target');
+              await waitFor(() => expect(screen.getByRole('menu')).toHaveFocus());
+              expect(getComputedStyle(target).backgroundColor).not.to.equal('rgb(4, 5, 6)');
+              expect(
+                getComputedStyle(target).getPropertyValue('--menu2-highlighted-test'),
+              ).to.equal('');
+              if (overrideType === 'callback') {
+                expect(
+                  getComputedStyle(target).getPropertyValue('--menu2-theme-mode').trim(),
+                ).to.equal('light');
+              }
+              await user.keyboard('{ArrowDown}');
+              await waitFor(() => expect(target).to.have.attribute('data-highlighted'));
+              expect(getComputedStyle(target).backgroundColor).to.equal('rgb(4, 5, 6)');
+              expect(
+                getComputedStyle(target).getPropertyValue('--menu2-highlighted-test').trim(),
+              ).to.equal('active');
+            } finally {
+              unmount();
+            }
+          });
+        });
+      });
+
+      itemCases.forEach(({ name, classes, renderItem }) => {
+        it(`supports ${name} dense, divider, and gutters overrides`, async () => {
+          renderWithTheme(
+            <Menu2 defaultOpen modal={false} anchor={document.body} slots={{ transition: null }}>
+              {renderItem({ 'data-testid': 'default' })}
+              {renderItem({
+                'data-testid': 'states',
+                dense: true,
+                divider: true,
+                disableGutters: true,
+              })}
+              {renderItem({
+                'data-testid': 'sx',
+                dense: true,
+                divider: true,
+                sx: {
+                  paddingTop: '21px',
+                  marginTop: '22px',
+                  paddingLeft: '23px',
+                },
+              })}
             </Menu2>,
             {
               [name]: {
-                styleOverrides:
-                  kind === 'item'
-                    ? { highlighted: { backgroundColor: 'rgb(1, 2, 3)' } }
-                    : {
-                        indicator: {
-                          [`&.${highlightedClass}`]: { backgroundColor: 'rgb(1, 2, 3)' },
-                        },
-                      },
+                styleOverrides: {
+                  dense: { '--menu2-dense-test': 'active', paddingTop: '11px' },
+                  divider: {
+                    '--menu2-divider-test': 'active',
+                    marginTop: '12px',
+                  },
+                  gutters: {
+                    '--menu2-gutters-test': 'active',
+                    paddingLeft: '13px',
+                  },
+                },
               },
             },
           );
 
-          try {
-            await user.click(screen.getByRole('button', { name: 'Options' }));
-            const target = await screen.findByTestId('target');
-            await waitFor(() => expect(screen.getByRole('menu')).toHaveFocus());
-            expect(getComputedStyle(target).backgroundColor).not.to.equal('rgb(4, 5, 6)');
-            await user.keyboard('{ArrowDown}');
-            await waitFor(() => expect(target).to.have.attribute('data-highlighted'));
-            expect(getComputedStyle(target).backgroundColor).to.equal('rgb(4, 5, 6)');
-          } finally {
-            unmount();
-          }
+          const defaultItem = await screen.findByTestId('default');
+          const stateItem = screen.getByTestId('states');
+          const sxItem = screen.getByTestId('sx');
+          const defaultStyle = getComputedStyle(defaultItem);
+          const stateStyle = getComputedStyle(stateItem);
+          const sxStyle = getComputedStyle(sxItem);
+
+          expect(defaultItem).not.to.have.class(classes.dense);
+          expect(defaultItem).not.to.have.class(classes.divider);
+          expect(defaultItem).to.have.class(classes.gutters);
+          expect(defaultStyle.getPropertyValue('--menu2-dense-test')).to.equal('');
+          expect(defaultStyle.getPropertyValue('--menu2-divider-test')).to.equal('');
+          expect(defaultStyle.getPropertyValue('--menu2-gutters-test').trim()).to.equal('active');
+          expect(defaultStyle.paddingLeft).to.equal('13px');
+
+          expect(stateItem).to.have.class(classes.dense);
+          expect(stateItem).to.have.class(classes.divider);
+          expect(stateItem).not.to.have.class(classes.gutters);
+          expect(stateStyle.getPropertyValue('--menu2-dense-test').trim()).to.equal('active');
+          expect(stateStyle.getPropertyValue('--menu2-divider-test').trim()).to.equal('active');
+          expect(stateStyle.getPropertyValue('--menu2-gutters-test')).to.equal('');
+          expect(stateStyle.paddingTop).to.equal('11px');
+          expect(stateStyle.marginTop).to.equal('12px');
+
+          expect(sxItem).to.have.class(classes.dense);
+          expect(sxItem).to.have.class(classes.divider);
+          expect(sxItem).to.have.class(classes.gutters);
+          expect(sxStyle.paddingTop).to.equal('21px');
+          expect(sxStyle.marginTop).to.equal('22px');
+          expect(sxStyle.paddingLeft).to.equal('23px');
         });
       });
 

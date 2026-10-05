@@ -122,10 +122,7 @@ export type Menu2RadioItemProps<
 const Menu2RadioItemRoot = styled(MenuItemBase, {
   name: 'MuiMenu2RadioItem',
   slot: 'root',
-  overridesResolver: (props, styles) => [
-    menuItemOverridesResolver(props, styles),
-    { [`&.${menu2RadioItemClasses.highlighted}`]: styles.highlighted },
-  ],
+  overridesResolver: menuItemOverridesResolver,
 })<{ ownerState: Menu2RadioItemOwnerState }>(
   memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
 );
