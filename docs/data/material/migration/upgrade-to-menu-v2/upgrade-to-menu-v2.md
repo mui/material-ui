@@ -8,6 +8,8 @@ Menu v2 is an unstable component in Material UI v9. Import it from the `Unstabl
 
 The current Menu isn't deprecated and keeps working unchanged. You can adopt Menu v2 one menu at a time, and both components can be used in the same app.
 
+TypeScript apps that adopt Menu v2 require TypeScript 5.0 or later. Apps that use only existing Material UI components can continue to use TypeScript 4.9.
+
 ## Why you should upgrade
 
 Menu v2 provides the following improvements over Menu:
@@ -168,6 +170,14 @@ Composed list primitives still work inside items, so `ListItemIcon`, `ListItemTe
 Checkbox items and radio groups report the new checked state or value in the first callback argument. The event at `eventDetails.event` is native, not a React synthetic event. Its target can be a descendant of the item.
 
 ### 7. Update the theme keys
+
+In TypeScript, import the theme augmentation once in your app to type all `MuiMenu2*` theme keys:
+
+```ts
+import type {} from '@mui/material/Unstable_Menu2/themeAugmentation';
+```
+
+Component imports do not register these theme types. This type-only import adds no runtime code.
 
 Menu v2 registers two theme keys for the menu surfaces. `MuiMenu2` has the slots `root`, `backdrop`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `paper`, and `list`. The item parts have their own keys, such as `MuiMenu2Item`.
 

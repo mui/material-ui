@@ -87,6 +87,21 @@ const defaultHcTokens: Required<HighContrastTokens> = {
 
 const HCM = '@media (forced-colors: active)';
 
+// Only the style entries are needed here. Do not import Menu2's theme
+// augmentation: classic theme imports must not load Base UI types.
+type Menu2HighContrastComponents = Partial<
+  Record<
+    | 'MuiMenu2Item'
+    | 'MuiMenu2LinkItem'
+    | 'MuiMenu2CheckboxItem'
+    | 'MuiMenu2RadioItem'
+    | 'MuiMenu2SubmenuTrigger',
+    {
+      styleOverrides?: Partial<Record<'root' | 'highlighted' | 'indicator', unknown>> | undefined;
+    }
+  >
+>;
+
 // State overrides come after the root rules in the cascade, so they
 // could replace the system colors while `forcedColorAdjust: none` stays active.
 function menu2ActiveOverrides(hcTokens: Required<HighContrastTokens>) {
@@ -182,8 +197,8 @@ export default function enhanceHighContrast<
     canvas: tokens?.canvas ?? defaultHcTokens.canvas,
   };
   const theme = { ...themeInput };
-  const c = theme.components;
-  theme.components = {
+  const c: (Theme['components'] & Menu2HighContrastComponents) | undefined = theme.components;
+  const components: NonNullable<Theme['components']> & Menu2HighContrastComponents = {
     ...c,
     MuiAccordionSummary: {
       ...c?.MuiAccordionSummary,
@@ -768,5 +783,6 @@ export default function enhanceHighContrast<
       },
     },
   };
+  theme.components = components;
   return theme;
 }

@@ -117,6 +117,7 @@
     "./themeCssVarsAugmentation": "./src/themeCssVarsAugmentation/index.ts",
     "./transitions": "./src/transitions/index.ts",
     "./Unstable_Menu2": "./src/Unstable_Menu2/index.ts",
+    "./Unstable_Menu2/themeAugmentation": "./src/Unstable_Menu2/themeAugmentation.ts",
     "./Unstable_Menu2CheckboxItem": "./src/Unstable_Menu2CheckboxItem/index.ts",
     "./Unstable_Menu2Group": "./src/Unstable_Menu2Group/index.ts",
     "./Unstable_Menu2GroupLabel": "./src/Unstable_Menu2GroupLabel/index.ts",

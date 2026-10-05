@@ -8,6 +8,10 @@ import { mapAsync } from 'es-toolkit/array';
 import compile from './compile.ts';
 
 const root = path.resolve(import.meta.dirname, '../..');
+const classicMenuThemeConfig = path.join(
+  import.meta.dirname,
+  'material/menu2ClassicTheme.tsconfig.json',
+);
 
 export default async function main(args = process.argv.slice(2)) {
   const { values } = parseArgs({
@@ -32,7 +36,12 @@ export default async function main(args = process.argv.slice(2)) {
     configs,
     async (config) => {
       try {
-        await compile(config);
+        if (path.normalize(config) === classicMenuThemeConfig) {
+          // Classic imports must not acquire the opt-in Menu2 or Base UI types.
+          await compile(config, { forbiddenDeclarations: ['/@base-ui/', '/Unstable_Menu2'] });
+        } else {
+          await compile(config);
+        }
         // eslint-disable-next-line no-console -- test runner feedback
         console.log(`PASS ${path.relative(root, config)}`);
       } catch (error) {

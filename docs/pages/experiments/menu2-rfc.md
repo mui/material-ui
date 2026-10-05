@@ -25,7 +25,7 @@ We propose a Base UI-backed successor with Material visuals and full theme supp
 2. **Pointer support:** hover-open delays and safe diagonal travel from a trigger to its submenu.
 3. **Positioning:** flip at boundaries, track the anchor, and limit the popup to the available space.
 4. **Material presentation and customization:** shared styles, `sx`, utility classes, slots, and theme `defaultProps`/`styleOverrides`/`variants`. Caller-rendered parts also support `component`.
-5. **Low cost for existing users:** preserve the classic API and behavior, and keep Base UI out of bundles that do not use the successor. Measure the shared-style and barrel costs separately.
+5. **Low cost for existing users:** preserve the classic API, behavior, and TypeScript 4.9 support. Keep Base UI out of bundles and type imports that do not use the successor. Measure the shared-style and barrel costs separately.
 6. **Familiar API where possible:** document changed behavior and features with no direct replacement.
 7. **Related menu features:** checkbox and radio items, labeled groups, and hover-open. A dedicated context menu follows separately.
 8. **Maintained behavior:** reuse Base UI's focus, dismissal, and positioning logic.
@@ -85,7 +85,7 @@ The classic `Menu` keeps its API. Classic and successor items share `MenuItemBas
 - **Dependency:** make `@base-ui/react` a direct dependency of `@mui/material`. Review version updates rather than auto-merge them. Test the upstream states used by the integration, including checked indicators, starting and ending transitions, and resolved placement.
 - **Theme state:** keep `Mui-*` classes and `ownerState` as the Material customization contract. All item parts resolve their root slot from the live Base UI state, so slot callbacks and theme variants receive the highlighted state and, where applicable, the checked or open state. Exit-tint tracking stays internal. Collapsed popup slot callbacks receive resolved public props, not live uncontrolled open state. Internal animation and placement styles can use Base UI attributes.
 - **API boundary:** explicitly pick the forwarded root, trigger, and positioner props. New upstream props require API and routing review. This is not complete type isolation: changes to an exposed upstream type still reach Material UI. Keep Base UI's callback names and signatures: `onOpenChange(open, eventDetails)`, `onCheckedChange(checked, eventDetails)`, and `onValueChange(value, eventDetails)`.
-- **Tooling and tests:** use normal theme registration, API generation, and `describeConformance`. Test behavior differences and the integration boundary as well as the individual parts. All 11 public components have conformance suites. The collapsed containers use their positioned elements as the root; interaction tests query the menu surface.
+- **Tooling and tests:** use opt-in theme type registration, normal API generation, and `describeConformance`. Test behavior differences and the integration boundary as well as the individual parts. All 11 public components have conformance suites. The collapsed containers use their positioned elements as the root; interaction tests query the menu surface.
 
 ### API shape: collapsed popup, explicit submenu trigger
 
@@ -235,13 +235,19 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 
 7. ✅ **Explicit submenu trigger:** keep one behavioral owner per trigger and the popup wiring internal. The root decorates a supplied button; the submenu renders an explicit part. Accept this asymmetry. A Material Menubar remains separate work.
 
-8. ✅ **TypeScript minimum:** raise it to 5.0 in a separate change, as [Aaron's review recommends](https://github.com/mui/material-ui/pull/48823#issuecomment-5831514721). Shared theme types expose Base UI declarations with `const` type parameters, so even consumers that only import `createTheme` need TypeScript 5.0. The [draft PR](https://github.com/mui/material-ui/pull/49247) updates the support docs and adds a built-package check pinned to TypeScript 5.0.4. The direction is resolved; the change is not yet merged.
+8. ✅ **TypeScript minimum:** keep TypeScript 4.9 support for existing components and shared theme imports. Menu2 requires TypeScript 5.0 because its Base UI declarations use `const` type parameters. Keep Menu2 theme types in a separate module so this requirement does not reach apps that do not use Menu2. To type the `MuiMenu2*` theme keys, import the module once in the app:
+
+   ```ts
+   import type {} from '@mui/material/Unstable_Menu2/themeAugmentation';
+   ```
+
+   Component imports do not register these theme types. The import adds type support for all Menu2 parts without adding runtime code. A package-wide TypeScript minimum update is not required for this release.
 
 ### Rollout plan
 
 1. **Review the proposal:** the benchmark and API experiment are ready for maintainer feedback.
 2. **Prepare an unstable release:** target a v9 minor release after review.
-   - Merge the [TypeScript 5.0 minimum update](https://github.com/mui/material-ui/pull/49247) before release.
+   - Verify the built package with TypeScript 4.9 for existing components and shared theme imports, and TypeScript 5.0 for Menu2 and its opt-in theme types.
    - Require a Base UI release with two merged fixes: the [menu tree fix](https://github.com/mui/base-ui/pull/5645) and the [transition state fix for retained menus](https://github.com/mui/base-ui/pull/5738). Without the second fix, an open update can reach the popup before its starting state, which starts Grow twice in Firefox. Base UI 1.8.0 has neither fix. The local pnpm patch fixes both issues but does not reach applications that install `@mui/material`. Remove the patch after a release includes both fixes, and keep the regression tests.
    - Complete API registration, remove the Menu2 API-generator skip, then generate and review PropTypes and API docs.
    - Keep the public demos and migration guide aligned with the final API and behavior decisions.

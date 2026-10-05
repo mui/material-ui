@@ -37,6 +37,8 @@ import Menu2Item from '@mui/material/Unstable_Menu2Item';
 
 Each component is the default export of its own subpath.
 
+TypeScript apps that use Menu v2 require TypeScript 5.0 or later. Apps that use only existing Material UI components can continue to use TypeScript 4.9.
+
 ## Why a new menu component
 
 Submenus are [the most requested Menu feature since 2018](https://github.com/mui/material-ui/issues/11723), but the current Menu can't support them. Each open menu is a full `Modal`, and nested modals break the backdrop, the focus traps, the arrow keys, and the accessibility tree.
@@ -248,6 +250,14 @@ The trigger isn't a slot, because you supply the element. Style it directly. It 
 :::warning
 While a menu or a submenu is open, Base UI renders hidden `span` elements next to its trigger. They keep the tab order and the accessibility tree correct. CSS sibling selectors (`+`, `~`, `:last-child`) near a trigger can match these elements. Style each part directly instead. The focus guards among them have a `data-base-ui-focus-guard` attribute.
 :::
+
+In TypeScript, import the theme augmentation once in your app to type all `MuiMenu2*` theme keys. Component imports do not add these types:
+
+```ts
+import type {} from '@mui/material/Unstable_Menu2/themeAugmentation';
+```
+
+This import adds no runtime code. The separate module keeps Base UI types out of apps that do not use Menu v2.
 
 The theme has two keys for the menu surfaces. `MuiMenu2` has the slots `root`, `backdrop`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `paper`, and `list`. Each item part has its own key, such as `MuiMenu2Item`:
 
