@@ -86,6 +86,7 @@ export interface SerializedStyles {
 }
 
 export type CSSProperties = CSS.PropertiesFallback<number | string>;
+// CSS.PropertiesFallback already expands every property to 'T | T[]', so no extra mapping is needed; kept as a separate exported name for backwards compatibility.
 export type CSSPropertiesWithMultiValues = CSSProperties;
 
 // TODO v6 - check if we can drop the unknown, as it breaks the autocomplete
