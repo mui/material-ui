@@ -28,6 +28,10 @@ default-job: &default-job
       default: << pipeline.parameters.e2e-base-url >>
   environment: &default-environment
     BASE_BRANCH: v9.x # #target-branch-reference
+    # Pins the Argos baseline to this release line. CircleCI exposes no pull request base
+    # branch, so a build that starts before its pull request exists would otherwise fall
+    # back to the repository default branch and diff against the wrong major version.
+    ARGOS_REFERENCE_BRANCH: v9.x # #target-branch-reference
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     DANGER_DISABLE_TRANSPILATION: 'true'
