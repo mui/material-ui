@@ -18,7 +18,6 @@ async function main() {
 
   const browser = await chromium.launch({
     args: ['--font-render-hinting=none'],
-    // otherwise the loaded google Roboto font isn't applied
     headless: false,
   });
 
