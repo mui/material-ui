@@ -24,7 +24,6 @@ const Menu2IndicatorBase = styled('span', { slot: 'root' })(
   memoTheme(({ theme }) => ({
     display: 'inline-flex',
     alignItems: 'center',
-    justifyContent: 'center',
     // Match MenuItemBase's fixed ListItemIcon column and ListItemText inset.
     minWidth: 36,
     // Keep custom icons inside their column when the label needs more space.

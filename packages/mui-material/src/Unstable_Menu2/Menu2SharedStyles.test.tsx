@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import { StyledEngineProvider } from '@mui/styled-engine';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
@@ -124,6 +125,63 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
           });
           expect(getComputedStyle(screen.getByTestId('parent-backdrop')).outlineOffset).to.equal(
             '0px',
+          );
+        });
+      });
+
+      it('uses selection-control colors instead of decorative icon colors', () => {
+        const theme = createTheme({
+          modularCssLayers,
+          palette: {
+            text: { secondary: 'rgb(12, 34, 56)' },
+            action: { active: 'rgb(98, 76, 54)' },
+            primary: { main: 'rgb(65, 43, 21)' },
+          },
+        });
+        render(
+          <StyledEngineProvider enableCssLayer={modularCssLayers}>
+            <ThemeProvider theme={theme}>
+              <Menu2 defaultOpen modal={false} anchor={document.body} slots={{ transition: null }}>
+                <Menu2Item>
+                  <ListItemIcon data-testid="decorative-icon">
+                    <svg width={20} height={20} aria-hidden="true" />
+                  </ListItemIcon>
+                  Action
+                </Menu2Item>
+                {[true, false].map((checked) => (
+                  <Menu2CheckboxItem
+                    key={String(checked)}
+                    defaultChecked={checked}
+                    slotProps={{ indicator: { 'data-testid': `checkbox-${checked}` } }}
+                  >
+                    Checkbox
+                  </Menu2CheckboxItem>
+                ))}
+                <Menu2RadioGroup defaultValue="true">
+                  {[true, false].map((checked) => (
+                    <Menu2RadioItem
+                      key={String(checked)}
+                      value={String(checked)}
+                      slotProps={{ indicator: { 'data-testid': `radio-${checked}` } }}
+                    >
+                      Radio
+                    </Menu2RadioItem>
+                  ))}
+                </Menu2RadioGroup>
+              </Menu2>
+            </ThemeProvider>
+          </StyledEngineProvider>,
+        );
+
+        expect(getComputedStyle(screen.getByTestId('decorative-icon')).color).to.equal(
+          theme.palette.action.active,
+        );
+        ['checkbox', 'radio'].forEach((kind) => {
+          expect(getComputedStyle(screen.getByTestId(`${kind}-true`)).color).to.equal(
+            theme.palette.primary.main,
+          );
+          expect(getComputedStyle(screen.getByTestId(`${kind}-false`)).color).to.equal(
+            theme.palette.text.secondary,
           );
         });
       });

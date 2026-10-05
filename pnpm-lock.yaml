@@ -1609,6 +1609,9 @@ importers:
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
+      '@types/stylis':
+        specifier: 4.2.7
+        version: 4.2.7
       docs:
         specifier: workspace:^
         version: link:../docs
