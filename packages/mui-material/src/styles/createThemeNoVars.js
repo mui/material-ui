@@ -9,6 +9,7 @@ import {
   darken as systemDarken,
   private_safeColorChannel as safeColorChannel,
   hslToRgb,
+  decomposeColor,
 } from '@mui/system/colorManipulator';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import createMixins from './createMixins';
@@ -57,10 +58,16 @@ function attachColorManipulators(theme) {
         // Raw colors (for example, `theme.palette.*`) have no channel tokens,
         // so they are converted to channels the same way the theme generates `*Channel` tokens,
         // which keeps a CSS coefficient (for example, `theme.vars.palette.action.hoverOpacity`) in `calc()`.
+        const alphaValue = typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient;
+        // `color()` channels are not sRGB, so they must stay in their own color space.
+        if (color.startsWith('color(')) {
+          const { colorSpace, values } = decomposeColor(color);
+          return `color(${colorSpace} ${values.slice(0, 3).join(' ')} / ${alphaValue})`;
+        }
         const channels = color.includes('var(')
           ? color.replace(/var\(--([^,\s)]+)(?:,[^)]+)?\)+/g, 'var(--$1Channel)')
           : safeColorChannel(color.startsWith('hsl') ? hslToRgb(color) : color);
-        return `rgba(${channels} / ${typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient})`;
+        return `rgba(${channels} / ${alphaValue})`;
       }
       return systemAlpha(color, parseAddition(coefficient));
     },

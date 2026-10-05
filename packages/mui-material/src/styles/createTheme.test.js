@@ -1042,6 +1042,18 @@ describe('createTheme', () => {
       );
     });
 
+    it('[CSS variables] `alpha()` should keep `color()` inputs in their color space', () => {
+      const theme = createTheme({ cssVariables: true });
+      expect(theme.alpha('color(display-p3 0.1 0.4 0.8)', 0.5)).to.equal(
+        'color(display-p3 0.1 0.4 0.8 / 0.5)',
+      );
+      expect(
+        theme.alpha('color(display-p3 0.1 0.4 0.8)', theme.vars.palette.action.hoverOpacity),
+      ).to.equal(
+        'color(display-p3 0.1 0.4 0.8 / calc(var(--mui-palette-action-hoverOpacity, 0.04)))',
+      );
+    });
+
     it('[color space with CSS variables] should use CSS for manipulating colors', () => {
       const theme = createTheme({
         cssVariables: {
