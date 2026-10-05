@@ -201,8 +201,14 @@ describe('e2e', () => {
   describe('<Autocomplete/>', () => {
     describe('automatic inline completion', () => {
       async function renderInlineCompletion(mode?: string) {
+        // Reusing a URL with a fragment can leave the previous fixture mounted.
+        await page.goto('about:blank');
         await renderFixture(`Autocomplete/InlineCompletion${mode ? `?mode=${mode}` : ''}`);
-        await page.getByRole('combobox', { name: 'Country' }).click();
+        const input = page.getByRole('combobox', { name: 'Country' });
+        await expect(input).toHaveValue('');
+        await expect(page.getByTestId('logical-input')).toHaveText('');
+        await expect(page.getByTestId('selected-value')).toHaveText('');
+        await input.click({ timeout: 5000 });
       }
 
       async function expectInput(value: string, start: number, end: number) {
@@ -274,7 +280,7 @@ describe('e2e', () => {
         await page.keyboard.type('a');
         await expectInput('Andorra', 1, 7);
         await expect(page.getByTestId('logical-input')).toHaveText('a');
-        await page.getByRole('button', { name: 'Set controlled input' }).click();
+        await page.getByRole('button', { name: 'Set controlled input' }).click({ timeout: 5000 });
         await expect(page.getByRole('combobox')).toHaveValue('Belgium');
       });
 

@@ -11,6 +11,9 @@ export default function InlineCompletion() {
 
   return (
     <React.StrictMode>
+      <button type="button" onClick={() => setInputValue('Belgium')}>
+        Set controlled input
+      </button>
       <Autocomplete
         autoComplete
         autoHighlight
@@ -22,9 +25,6 @@ export default function InlineCompletion() {
         renderInput={(params) => <TextField {...params} label="Country" />}
         sx={{ width: 320 }}
       />
-      <button type="button" onClick={() => setInputValue('Belgium')}>
-        Set controlled input
-      </button>
       <output data-testid="logical-input">{inputValue}</output>
       <output data-testid="selected-value">{value}</output>
     </React.StrictMode>
