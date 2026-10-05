@@ -118,11 +118,11 @@ const TimelineDotRoot = styled('span', {
  *
  * Demos:
  *
- * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineDot API](https://mui.com/material-ui/api/timeline-dot/)
+ * - [TimelineDot API](https://next.mui.com/material-ui/api/timeline-dot/)
  */
 const TimelineDot = React.forwardRef(function TimelineDot(
   inProps: TimelineDotProps,

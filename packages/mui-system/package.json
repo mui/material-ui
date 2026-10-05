@@ -31,11 +31,11 @@
     "attw": "attw --pack ./build --entrypoints \".\" \"Box\" \"styled\" \"useTheme\""
   },
   "dependencies": {
-    "@babel/runtime": "^8.0.0",
-    "@mui/private-theming": "workspace:^",
-    "@mui/styled-engine": "workspace:^",
+    "@babel/runtime": "^7.29.7 || ^8.0.5",
+    "@mui/private-theming": "workspace:*",
+    "@mui/styled-engine": "workspace:*",
     "@mui/types": "workspace:^",
-    "@mui/utils": "workspace:^",
+    "@mui/utils": "workspace:*",
     "clsx": "^2.1.1",
     "csstype": "^3.2.3",
     "prop-types": "^15.8.1"
