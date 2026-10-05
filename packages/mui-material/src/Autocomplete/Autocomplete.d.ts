@@ -534,11 +534,11 @@ export default function Autocomplete<
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ * - [Autocomplete](https://next.mui.com/material-ui/react-autocomplete/)
  *
  * API:
  *
- * - [Autocomplete API](https://mui.com/material-ui/api/autocomplete/)
+ * - [Autocomplete API](https://next.mui.com/material-ui/api/autocomplete/)
  */
 export default function Autocomplete<
   Value,
