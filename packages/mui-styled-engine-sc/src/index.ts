@@ -150,9 +150,7 @@ export type { GlobalStylesProps } from './GlobalStyles';
 // CSS.PropertiesFallback are necessary so that we support spreading of the mixins. For example:
 // '@font-face'?: Fontface | Fontface[]
 export type CSSProperties = CSS.PropertiesFallback<number | string>;
-export type CSSPropertiesWithMultiValues = {
-  [K in keyof CSSProperties]: CSSProperties[K] | Array<Extract<CSSProperties[K], string>>;
-};
+export type CSSPropertiesWithMultiValues = CSSProperties;
 export type CSSPseudos = { [K in CSS.Pseudos]?: unknown | CSSObject };
 
 export interface CSSOthersObject {

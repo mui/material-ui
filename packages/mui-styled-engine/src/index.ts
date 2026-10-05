@@ -86,9 +86,7 @@ export interface SerializedStyles {
 }
 
 export type CSSProperties = CSS.PropertiesFallback<number | string>;
-export type CSSPropertiesWithMultiValues = {
-  [K in keyof CSSProperties]: CSSProperties[K] | ReadonlyArray<Extract<CSSProperties[K], string>>;
-};
+export type CSSPropertiesWithMultiValues = CSSProperties;
 
 // TODO v6 - check if we can drop the unknown, as it breaks the autocomplete
 // For more info on why it was added, see https://github.com/mui/material-ui/pull/26228
