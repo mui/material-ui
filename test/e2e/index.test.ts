@@ -199,6 +199,95 @@ describe('e2e', () => {
   });
 
   describe('<Autocomplete/>', () => {
+    describe('automatic inline completion', () => {
+      async function renderInlineCompletion(mode?: string) {
+        await renderFixture(`Autocomplete/InlineCompletion${mode ? `?mode=${mode}` : ''}`);
+        await page.getByRole('combobox', { name: 'Country' }).click();
+      }
+
+      async function expectInput(value: string, start: number, end: number) {
+        const input = page.getByRole('combobox', { name: 'Country' });
+        await expect(input, 'the highlighted option should appear inline').toHaveValue(value);
+        await expect
+          .poll(() =>
+            input.evaluate((element: HTMLInputElement) => [
+              element.selectionStart,
+              element.selectionEnd,
+            ]),
+          )
+          .toEqual([start, end]);
+      }
+
+      it('completes growing prefixes without committing the completion', async () => {
+        await renderInlineCompletion();
+        await expectInput('', 0, 0);
+        await page.keyboard.type('a');
+        await expectInput('Andorra', 1, 7);
+        await expect(page.getByTestId('logical-input')).toHaveText('a');
+        await expect(page.getByTestId('selected-value')).toHaveText('');
+        await page.keyboard.type('n');
+        await expectInput('Andorra', 2, 7);
+        await page.keyboard.type('d');
+        await expectInput('Andorra', 3, 7);
+        await page.keyboard.press('Enter');
+        await expectInput('Andorra', 7, 7);
+        await expect(page.getByTestId('selected-value')).toHaveText('Andorra');
+      });
+
+      it('deletes the selected suffix before deleting the typed prefix', async () => {
+        await renderInlineCompletion();
+        // Uppercase makes deleting the suffix leave the logical inputValue unchanged.
+        await page.keyboard.type('A');
+        await expectInput('Andorra', 1, 7);
+        await page.keyboard.press('Backspace');
+        await expectInput('A', 1, 1);
+        await page.keyboard.press('Backspace');
+        await expectInput('', 0, 0);
+        await page.keyboard.press('Backspace');
+        await expectInput('', 0, 0);
+        await page.keyboard.type('A');
+        await expectInput('Andorra', 1, 7);
+        await page.keyboard.press('Delete');
+        await expectInput('A', 1, 1);
+      });
+
+      it('replaces the selected suffix and preserves a middle edit', async () => {
+        await renderInlineCompletion();
+        await page.keyboard.type('a');
+        await expectInput('Andorra', 1, 7);
+        await page.keyboard.type('l');
+        await expectInput('Albania', 2, 7);
+        await page.keyboard.press('ControlOrMeta+A');
+        await page.keyboard.type('A');
+        await expectInput('A', 1, 1);
+        await page.keyboard.type('n');
+        await expectInput('Andorra', 2, 7);
+        await page.keyboard.press('ArrowLeft');
+        await page.keyboard.press('ArrowLeft');
+        await page.keyboard.type('x');
+        // AXndorra extended matches, but completing it would move an editing caret.
+        await expectInput('Axndorra', 2, 2);
+      });
+
+      it('keeps the controlled input separate from its displayed completion', async () => {
+        await renderInlineCompletion('controlled');
+        await page.keyboard.type('a');
+        await expectInput('Andorra', 1, 7);
+        await expect(page.getByTestId('logical-input')).toHaveText('a');
+        await page.getByRole('button', { name: 'Set controlled input' }).click();
+        await expect(page.getByRole('combobox')).toHaveValue('Belgium');
+      });
+
+      it('commits typed freeSolo text instead of the automatic completion', async () => {
+        await renderInlineCompletion('free-solo');
+        await page.keyboard.type('a');
+        await expectInput('Andorra', 1, 7);
+        await page.keyboard.press('Enter');
+        await expectInput('a', 1, 1);
+        await expect(page.getByTestId('selected-value')).toHaveText('a');
+      });
+    });
+
     it('[Material Autocomplete] should highlight correct option when initial navigation through options starts from mouse move', async () => {
       await renderFixture('Autocomplete/HoverMaterialAutocomplete');
 

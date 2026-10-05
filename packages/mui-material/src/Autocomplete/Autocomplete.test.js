@@ -8,6 +8,7 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
   isJsdom,
+  waitFor,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import Box from '@mui/system/Box';
@@ -2995,6 +2996,359 @@ describe('<Autocomplete />', () => {
       expect(document.activeElement.value).to.equal('one');
       expect(document.activeElement.selectionStart).to.equal(3);
       expect(document.activeElement.selectionEnd).to.equal(3);
+    });
+  });
+
+  describe('automatic inline completion', () => {
+    function renderAutocomplete(props = {}) {
+      return render(
+        <Autocomplete
+          autoComplete
+          autoHighlight
+          options={['Andorra', 'Albania', 'Belgium']}
+          renderInput={(params) => <TextField {...params} />}
+          {...props}
+        />,
+      );
+    }
+
+    async function flushCompletion() {
+      await act(async () => {
+        await new Promise((resolve) => {
+          setTimeout(resolve, 0);
+        });
+      });
+    }
+
+    async function expectCompletion(input, value, start) {
+      await waitFor(() => {
+        expect(input.value).to.equal(value);
+        expect(input.selectionStart).to.equal(start);
+        expect(input.selectionEnd).to.equal(value.length);
+      });
+    }
+
+    it('completes a growing prefix without changing the typed value or selecting an option', async () => {
+      const handleInputChange = spy();
+      const handleChange = spy();
+      const handleHighlightChange = spy();
+      const { user } = renderAutocomplete({
+        onInputChange: handleInputChange,
+        onChange: handleChange,
+        onHighlightChange: handleHighlightChange,
+      });
+      const input = screen.getByRole('combobox');
+
+      await user.type(input, 'a');
+      await expectCompletion(input, 'Andorra', 1);
+      expect(getActiveDescendant(input)).to.have.text('Andorra');
+      expect(handleInputChange.args.map((args) => args.slice(1))).to.deep.equal([['a', 'input']]);
+      expect(handleChange.callCount).to.equal(0);
+      expect(handleHighlightChange.callCount).to.equal(0);
+
+      await user.keyboard('n');
+      await expectCompletion(input, 'Andorra', 2);
+      expect(handleInputChange.lastCall.args.slice(1)).to.deep.equal(['An', 'input']);
+
+      await user.keyboard('d');
+      await expectCompletion(input, 'Andorra', 3);
+      await user.keyboard('{Enter}');
+      expect(handleChange.lastCall.args.slice(1)).to.deep.equal([
+        'Andorra',
+        'selectOption',
+        { option: 'Andorra' },
+      ]);
+      expect(input.selectionStart).to.equal(7);
+      expect(input.selectionEnd).to.equal(7);
+    });
+
+    it('allows deleting the selected suffix even when the typed value does not change', async () => {
+      const handleInputChange = spy();
+      const { user } = renderAutocomplete({ onInputChange: handleInputChange });
+      const input = screen.getByRole('combobox');
+
+      await user.type(input, 'A');
+      await expectCompletion(input, 'Andorra', 1);
+      await user.keyboard('{Backspace}');
+      await flushCompletion();
+      expect(input.value).to.equal('A');
+      expect(input.selectionStart).to.equal(1);
+      expect(input.selectionEnd).to.equal(1);
+      expect(handleInputChange.callCount).to.equal(1);
+
+      await user.keyboard('{Backspace}');
+      await flushCompletion();
+      expect(input.value).to.equal('');
+      expect(handleInputChange.lastCall.args.slice(1)).to.deep.equal(['', 'input']);
+    });
+
+    it('preserves freeSolo Enter semantics with a displayed automatic completion', async () => {
+      const handleChange = spy();
+      const { user } = renderAutocomplete({ freeSolo: true, onChange: handleChange });
+      const input = screen.getByRole('combobox');
+
+      await user.type(input, 'a');
+      await expectCompletion(input, 'Andorra', 1);
+      await user.keyboard('{Enter}');
+      expect(handleChange.lastCall.args.slice(1)).to.deep.equal([
+        'a',
+        'createOption',
+        { option: 'a' },
+      ]);
+      expect(input.value).to.equal('a');
+    });
+
+    [
+      { name: 'without autoComplete', props: { autoComplete: false }, text: 'a' },
+      { name: 'without autoHighlight', props: { autoHighlight: false }, text: 'a' },
+      { name: 'a substring', props: {}, text: 'ndo' },
+      { name: 'a nonmatching input', props: {}, text: 'xyz' },
+      { name: 'disabled options', props: { getOptionDisabled: () => true }, text: 'a' },
+      {
+        name: 'focusable disabled options',
+        props: { getOptionDisabled: () => true, disabledItemsFocusable: true },
+        text: 'a',
+      },
+    ].forEach(({ name, props, text }) => {
+      it(`does not complete ${name}`, async () => {
+        const { user } = renderAutocomplete(props);
+        const input = screen.getByRole('combobox');
+        await user.type(input, text);
+        await flushCompletion();
+        expect(input.value).to.equal(text);
+        expect(input.selectionStart).to.equal(text.length);
+        expect(input.selectionEnd).to.equal(text.length);
+      });
+    });
+
+    it('completes the first enabled option', async () => {
+      const { user } = renderAutocomplete({ getOptionDisabled: (option) => option === 'Andorra' });
+      const input = screen.getByRole('combobox');
+      await user.type(input, 'a');
+      await expectCompletion(input, 'Albania', 1);
+    });
+
+    it('does not complete a same-length replacement or a middle edit', async () => {
+      const { user } = renderAutocomplete();
+      const input = screen.getByRole('combobox');
+      await user.type(input, 'A');
+      await expectCompletion(input, 'Andorra', 1);
+      await user.keyboard('{Control>}a{/Control}');
+      await user.keyboard('B');
+      await flushCompletion();
+      expect(input.value).to.equal('B');
+      expect(input.selectionStart).to.equal(1);
+      expect(input.selectionEnd).to.equal(1);
+
+      await user.keyboard('e');
+      await expectCompletion(input, 'Belgium', 2);
+      await user.keyboard('{ArrowLeft}x');
+      await flushCompletion();
+      expect(input.value).to.equal('Bexlgium');
+      expect(input.selectionStart).to.equal(3);
+      expect(input.selectionEnd).to.equal(3);
+    });
+
+    it('completes a pasted growing prefix', async () => {
+      const { user } = renderAutocomplete();
+      const input = screen.getByRole('combobox');
+      await user.click(input);
+      await user.paste('And');
+      await expectCompletion(input, 'Andorra', 3);
+    });
+
+    it('does not overwrite keyboard or pointer highlights with pending completion', async () => {
+      const { user } = renderAutocomplete();
+      const input = screen.getByRole('combobox');
+      await user.click(input);
+      fireEvent.change(input, { target: { value: 'a' } });
+      fireEvent.keyDown(input, { key: 'ArrowDown' });
+      await flushCompletion();
+      expect(input.value).to.equal('Albania');
+
+      fireEvent.change(input, { target: { value: 'Al' } });
+      fireEvent.mouseMove(screen.getByRole('option', { name: 'Albania' }));
+      await flushCompletion();
+      expect(input.value).to.equal('Al');
+    });
+
+    it('does not overwrite caret movement after the input event', async () => {
+      const { user } = renderAutocomplete();
+      const input = screen.getByRole('combobox');
+      await user.click(input);
+      fireEvent.change(input, { target: { value: 'And' } });
+      input.setSelectionRange(1, 1);
+      await flushCompletion();
+      expect(input.value).to.equal('And');
+      expect(input.selectionStart).to.equal(1);
+      expect(input.selectionEnd).to.equal(1);
+    });
+
+    it('does not revive pending completion after a programmatic caret change', async () => {
+      const { user, setProps } = renderAutocomplete({ options: [] });
+      const input = screen.getByRole('combobox');
+      await user.type(input, 'a');
+      input.setSelectionRange(0, 0);
+      setProps({ options: ['Andorra'] });
+      await flushCompletion();
+      expect(input.value).to.equal('a');
+      expect(input.selectionStart).to.equal(0);
+      expect(input.selectionEnd).to.equal(0);
+
+      input.setSelectionRange(1, 1);
+      setProps({ options: ['Andorra'], 'data-testid': 'rerendered' });
+      await flushCompletion();
+      expect(input.value).to.equal('a');
+      expect(input.selectionStart).to.equal(1);
+      expect(input.selectionEnd).to.equal(1);
+    });
+
+    it('waits for asynchronous options without completing a removed option', async () => {
+      const { user, setProps } = renderAutocomplete({ options: [] });
+      const input = screen.getByRole('combobox');
+      await user.type(input, 'a');
+      expect(input.value).to.equal('a');
+      setProps({ options: ['Andorra', 'Albania'] });
+      await expectCompletion(input, 'Andorra', 1);
+
+      fireEvent.change(input, { target: { value: 'Al' } });
+      setProps({ options: ['Andorra'] });
+      await flushCompletion();
+      expect(input.value).to.equal('Al');
+    });
+
+    it('does not complete a reordered list before its highlight is synchronized', async () => {
+      const { user, setProps } = renderAutocomplete();
+      const input = screen.getByRole('combobox');
+      await user.click(input);
+      fireEvent.change(input, { target: { value: 'a' } });
+      setProps({ options: ['Albania', 'Andorra', 'Belgium'] });
+      await flushCompletion();
+      expect(input.value).to.equal('a');
+      expect(input.selectionStart).to.equal(1);
+      expect(input.selectionEnd).to.equal(1);
+    });
+
+    it('does not revive completion after repeated same-length option replacements', async () => {
+      const { user, setProps } = renderAutocomplete();
+      const input = screen.getByRole('combobox');
+      await user.click(input);
+      fireEvent.change(input, { target: { value: 'a' } });
+      setProps({ options: ['Argentina', 'Algeria'] });
+      setProps({ options: ['Austria', 'Australia'] });
+      await flushCompletion();
+      expect(input.value).to.equal('a');
+      setProps({ options: [] });
+      setProps({ options: ['Andorra', 'Albania'] });
+      await flushCompletion();
+      expect(input.value).to.equal('a');
+
+      fireEvent.change(input, { target: { value: 'an' } });
+      await expectCompletion(input, 'Andorra', 2);
+    });
+
+    it('uses a synchronized highlight after the matching option is removed', async () => {
+      const { user, setProps } = renderAutocomplete();
+      const input = screen.getByRole('combobox');
+      await user.click(input);
+      fireEvent.change(input, { target: { value: 'a' } });
+      setProps({ options: ['Albania'] });
+      await expectCompletion(input, 'Albania', 1);
+      expect(getActiveDescendant(input)).to.have.text('Albania');
+    });
+
+    it('keeps controlled inputValue separate from object option labels and mapped values', async () => {
+      const handleChange = spy();
+      function ControlledAutocomplete() {
+        const [inputValue, setInputValue] = React.useState('');
+        return (
+          <Autocomplete
+            autoComplete
+            autoHighlight
+            options={[{ id: 1, name: 'Andorra' }]}
+            getOptionLabel={(option) => option.name}
+            getOptionValue={(option) => option.id}
+            inputValue={inputValue}
+            onInputChange={(event, nextInputValue) => setInputValue(nextInputValue)}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        );
+      }
+      const { user } = render(<ControlledAutocomplete />);
+      const input = screen.getByRole('combobox');
+      await user.type(input, 'a');
+      await expectCompletion(input, 'Andorra', 1);
+      await user.keyboard('{Enter}');
+      expect(handleChange.lastCall.args.slice(1)).to.deep.equal([
+        1,
+        'selectOption',
+        { option: { id: 1, name: 'Andorra' } },
+      ]);
+    });
+
+    it('does not complete controlled resets', async () => {
+      const { setProps, user } = renderAutocomplete({ inputValue: '' });
+      const input = screen.getByRole('combobox');
+      await user.click(input);
+      fireEvent.change(input, { target: { value: 'a' } });
+      setProps({ inputValue: 'Belg' });
+      await flushCompletion();
+      expect(input.value).to.equal('Belg');
+      setProps({ inputValue: 'a' });
+      await flushCompletion();
+      expect(input.value).to.equal('a');
+      setProps({ inputValue: '' });
+      await flushCompletion();
+      expect(input.value).to.equal('');
+    });
+
+    it('preserves consumer composition handlers while suppressing completion', async () => {
+      const handleCompositionStart = spy();
+      const handleCompositionEnd = spy();
+      const { user } = renderAutocomplete({
+        renderInput: (params) => (
+          <TextField
+            {...params}
+            onCompositionStart={handleCompositionStart}
+            onCompositionEnd={handleCompositionEnd}
+          />
+        ),
+      });
+      const input = screen.getByRole('combobox');
+      await user.click(input);
+      fireEvent.compositionStart(input);
+      fireEvent.change(input, { target: { value: 'a' } });
+      await flushCompletion();
+      expect(input.value).to.equal('a');
+      fireEvent.compositionEnd(input);
+      await flushCompletion();
+      expect(input.value).to.equal('a');
+      expect(handleCompositionStart.callCount).to.equal(1);
+      expect(handleCompositionEnd.callCount).to.equal(1);
+    });
+
+    ['Escape', 'blur', 'composition', 'disabled', 'readOnly', 'unmount'].forEach((interruption) => {
+      it(`cancels pending completion on ${interruption}`, async () => {
+        const { user, setProps, unmount } = renderAutocomplete({ freeSolo: true });
+        const input = screen.getByRole('combobox');
+        await user.click(input);
+        fireEvent.change(input, { target: { value: 'a' } });
+        if (interruption === 'Escape') {
+          fireEvent.keyDown(input, { key: 'Escape' });
+        } else if (interruption === 'blur') {
+          fireEvent.blur(input);
+        } else if (interruption === 'composition') {
+          fireEvent.compositionStart(input);
+          fireEvent.input(input, { target: { value: 'an' }, isComposing: true });
+        } else if (interruption === 'unmount') {
+          unmount();
+        } else {
+          setProps({ [interruption]: true });
+        }
+        await flushCompletion();
+        expect(input.value).to.equal(interruption === 'composition' ? 'an' : 'a');
+      });
     });
   });
 
