@@ -3,8 +3,6 @@ import * as path from 'path';
 import * as url from 'url';
 import * as fs from 'fs';
 import * as semver from 'semver';
-// @ts-ignore
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
 import { NextConfig } from 'next';
 import { findPages } from './src/modules/utils/find';
@@ -104,22 +102,6 @@ export default withDocsInfra({
     config: Parameters<NonNullable<NextConfig['webpack']>>[0],
     options: Parameters<NonNullable<NextConfig['webpack']>>[1],
   ) => {
-    const plugins = config.plugins.slice();
-
-    if (process.env.DOCS_STATS_ENABLED && !options.isServer) {
-      plugins.push(
-        // For all options see https://github.com/th0r/webpack-bundle-analyzer#as-plugin
-        new BundleAnalyzerPlugin({
-          analyzerMode: 'static',
-          generateStatsFile: true,
-          analyzerPort: options.isServer ? 8888 : 8889,
-          reportTitle: `${options.isServer ? 'server' : 'client'} docs bundle`,
-          // Will be available at `.next/${statsFilename}`
-          statsFilename: `stats-${options.isServer ? 'server' : 'client'}.json`,
-        }),
-      );
-    }
-
     // If a module is an webpack "external" the webpack aliases configured are not used.
     // Next.js includes node_modules in webpack externals, some of those have dependencies
     // on the aliases we defined above.
@@ -177,7 +159,6 @@ export default withDocsInfra({
 
     return {
       ...config,
-      plugins,
       resolve: {
         ...config.resolve,
         alias: {
