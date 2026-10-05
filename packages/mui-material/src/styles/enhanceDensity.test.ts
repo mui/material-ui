@@ -287,7 +287,7 @@ describe('enhanceDensity', () => {
   test('applies the component emissions', () => {
     const theme = enhanceDensity(createTheme());
 
-    // one shallow probe — applySharedDensity ran and wrote styleOverrides
+    // one shallow probe — the component emission ran and wrote styleOverrides
     expect(theme.components?.MuiButton?.styleOverrides?.root).to.not.equal(undefined);
   });
 

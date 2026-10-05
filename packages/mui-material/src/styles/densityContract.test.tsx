@@ -52,7 +52,7 @@ import { DEFAULT_SIZING_PX, DEFAULT_STEP_PX, type DensityKey } from './densitySc
  * The density contract, measured in a real engine: every control's box is a
  * stated function of `touchTarget`, and every glyph of `iconSize`. The
  * expectations are arithmetic on the recipe's own numbers — never the
- * expressions `sharedDensityComponents` writes — so a hardcoded px passes at
+ * expressions `enhanceDensity` writes — so a hardcoded px passes at
  * one level and fails at the others.
  *
  * Only boxes are asserted here. Padding, margin and gap are design values that
