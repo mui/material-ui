@@ -17,11 +17,7 @@ async function main() {
   const screenshotDir = path.resolve(currentDirectory, './screenshots/chrome');
 
   const browser = await chromium.launch({
-    args: [
-      '--font-render-hinting=none',
-      // Skia otherwise picks SIMD code paths per host CPU, which shifts glyph edges.
-      '--disable-skia-runtime-opts',
-    ],
+    args: ['--font-render-hinting=none'],
     // otherwise the loaded google Roboto font isn't applied
     headless: false,
   });
