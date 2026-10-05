@@ -85,7 +85,7 @@ theme.spacing('-xSmall'); // '-8px'
 ```
 
 :::warning
-Put your own `styleOverrides` in the theme **before** calling `enhanceDensity`, so your overrides stay the winning layer. Composing them afterwards with `createTheme(enhancedTheme, { components: ... })` replaces each overridden slot wholesale (array values are not merged), silently dropping that slot's density emission.
+Add your own `styleOverrides` to the theme you pass into `enhanceDensity`. The enhancer keeps your overrides as the last layer, so they win over the density values. Adding them afterwards with `createTheme(enhancedTheme, { components: ... })` replaces each overridden slot wholesale (array values are not merged), silently dropping that slot's density emission.
 :::
 
 To use the scale in your theme component overrides, write a callback that receives the theme and calls `theme.spacing(<scale>)`:
