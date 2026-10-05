@@ -125,7 +125,7 @@ To control the open state, keep `trigger` and pass `open` and `onOpenChange`. Se
 | :---------------------------------------------------- | :-------------------------------------------------------------------- | :---------------------------------------------------------- |
 | `anchorEl`                                            | `anchor`                                                              | Also accepts refs and virtual elements.                     |
 | `anchorOrigin` + `transformOrigin`                    | `side` + `align` + `sideOffset` + `alignOffset`                       | Defaults are `side="bottom"` and `align="start"`.           |
-| `anchorReference="anchorPosition"` + `anchorPosition` | `anchor={virtualElement}`                                             | See [Context menu](/material-ui/react-menu2/#context-menu). |
+| `anchorReference="anchorPosition"` + `anchorPosition` | `anchor={virtualElement}`                                             | Give the virtual element the pointer coordinates.           |
 | `anchorReference="none"`                              | `anchor={virtualElement}`                                             | Give the virtual element the position that you want.        |
 | `marginThreshold` (default 16)                        | `collisionPadding` (default 5)                                        | Same idea.                                                  |
 | `action.updatePosition()`                             | Automatic                                                             | Use `disableAnchorTracking` to stop tracking layout shifts. |
@@ -274,4 +274,4 @@ The classic Menu limits its height to the viewport minus 96px. Menu v2 keeps thi
 
 Right-click menus use a virtual anchor. A menu with no trigger has no element to return focus to when it closes. Always pass `finalFocus` with the surface that the user invoked. Otherwise, focus can move to an unrelated element on the page.
 
-See the [Context menu demo](/material-ui/react-menu2/#context-menu) for the full pattern.
+See [Without a trigger](/material-ui/react-menu2/#without-a-trigger) for the labeling and focus requirements.

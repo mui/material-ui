@@ -215,9 +215,7 @@ Omit `trigger` and pass `anchor` to position the menu against an element that yo
 
 - Add `aria-haspopup="menu"`, `aria-expanded`, and `aria-controls` to the element. Set the matching `id` on the menu with `slotProps.paper`.
 - Give the menu an accessible name with `aria-label` or `aria-labelledby`.
-- Pass `finalFocus` to return focus to the element when the menu closes.
-
-The [context menu](#context-menu) uses this pattern.
+- Pass `finalFocus` to return focus to the element when the menu closes. Otherwise, focus can move to an unrelated element.
 
 ## Max height menu
 
@@ -226,16 +224,6 @@ The menu limits its height to the viewport and to the space available at the anc
 Type a letter while the menu is open to move to the matching item.
 
 {{"demo": "LongMenu2.js"}}
-
-## Context menu
-
-Pass a virtual anchor to place the menu at the pointer.
-
-{{"demo": "ContextMenu2.js"}}
-
-:::warning
-A menu with no trigger has no element to return focus to when it closes. Always pass `finalFocus` with the surface that the user invoked. Otherwise, focus can move to an unrelated element.
-:::
 
 ## Customization
 
