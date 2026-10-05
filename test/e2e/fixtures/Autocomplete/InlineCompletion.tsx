@@ -17,6 +17,7 @@ export default function InlineCompletion() {
       <Autocomplete
         autoComplete
         autoHighlight
+        clearOnBlur={mode === 'controlled' ? false : undefined}
         freeSolo={mode === 'free-solo'}
         inputValue={mode === 'controlled' ? inputValue : undefined}
         options={options}
