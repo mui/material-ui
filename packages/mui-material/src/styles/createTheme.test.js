@@ -1052,6 +1052,13 @@ describe('createTheme', () => {
       ).to.equal(
         'color(display-p3 0.1 0.4 0.8 / calc(var(--mui-palette-action-hoverOpacity, 0.04)))',
       );
+      expect(theme.alpha('color(xyz 0.1 0.2 0.3)', 0.5)).to.equal('color(xyz 0.1 0.2 0.3 / 0.5)');
+      expect(theme.alpha('color(display-p3 10% 40% 80%)', 0.5)).to.equal(
+        'color(display-p3 10% 40% 80% / 0.5)',
+      );
+      expect(theme.alpha('color(display-p3 0.1 0.4 0.8 / 0.9)', 0.5)).to.equal(
+        'color(display-p3 0.1 0.4 0.8 / 0.5)',
+      );
     });
 
     it('[color space with CSS variables] should use CSS for manipulating colors', () => {

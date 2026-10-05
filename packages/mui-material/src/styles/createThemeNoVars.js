@@ -9,7 +9,6 @@ import {
   darken as systemDarken,
   private_safeColorChannel as safeColorChannel,
   hslToRgb,
-  decomposeColor,
 } from '@mui/system/colorManipulator';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import createMixins from './createMixins';
@@ -59,10 +58,9 @@ function attachColorManipulators(theme) {
         // so they are converted to channels the same way the theme generates `*Channel` tokens,
         // which keeps a CSS coefficient (for example, `theme.vars.palette.action.hoverOpacity`) in `calc()`.
         const alphaValue = typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient;
-        // `color()` channels are not sRGB, so they must stay in their own color space.
+        // `color()` channels are not sRGB, so only the alpha is replaced to keep any color space and unit.
         if (color.startsWith('color(')) {
-          const { colorSpace, values } = decomposeColor(color);
-          return `color(${colorSpace} ${values.slice(0, 3).join(' ')} / ${alphaValue})`;
+          return color.replace(/\s*(?:\/[^)]*)?\)$/, ` / ${alphaValue})`);
         }
         const channels = color.includes('var(')
           ? color.replace(/var\(--([^,\s)]+)(?:,[^)]+)?\)+/g, 'var(--$1Channel)')
