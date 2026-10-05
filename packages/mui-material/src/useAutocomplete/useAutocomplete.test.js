@@ -98,6 +98,49 @@ describe('useAutocomplete', () => {
     });
 
     describe('option: limit', () => {
+      it('stops evaluating options once the result limit is reached', () => {
+        const filterOptions = createFilterOptions({ limit: 2 });
+        const getOptionLabel = spy((option) => option);
+        const options = ['dog', 'cat', 'cow', 'camel', 'crow'];
+
+        expect(filterOptions(options, { inputValue: 'c', getOptionLabel })).to.deep.equal([
+          'cat',
+          'cow',
+        ]);
+        expect(getOptionLabel.callCount).to.equal(3);
+      });
+
+      it('evaluates all options when there are fewer matches than the limit', () => {
+        const filterOptions = createFilterOptions({ limit: 3 });
+        const getOptionLabel = spy((option) => option);
+        const options = ['dog', 'cat', 'emu'];
+
+        expect(filterOptions(options, { inputValue: 'c', getOptionLabel })).to.deep.equal(['cat']);
+        expect(getOptionLabel.callCount).to.equal(options.length);
+      });
+
+      it('stops evaluating custom string labels once the result limit is reached', () => {
+        const stringify = spy((option) => option.name);
+        const filterOptions = createFilterOptions({ limit: 1, stringify });
+        const getOptionLabel = spy();
+        const options = [{ name: 'dog' }, { name: 'café' }, { name: 'camel' }];
+
+        expect(filterOptions(options, { inputValue: 'CAFE', getOptionLabel })).to.deep.equal([
+          options[1],
+        ]);
+        expect(stringify.callCount).to.equal(2);
+        expect(getOptionLabel.callCount).to.equal(0);
+      });
+
+      it.each([0, -1, 1.5, NaN, Infinity])('preserves slicing behavior for limit %s', (limit) => {
+        const filterOptions = createFilterOptions({ limit });
+        const options = ['cat', 'cow', 'camel'];
+
+        expect(
+          filterOptions(options, { inputValue: 'c', getOptionLabel: (option) => option }),
+        ).to.deep.equal(options.slice(0, limit));
+      });
+
       it('limits the number of suggested options to be shown', () => {
         const filterOptions = createFilterOptions({ limit: 2 });
 
