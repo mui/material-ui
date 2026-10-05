@@ -58,7 +58,7 @@ const theme = enhanceDensity(createTheme(), {
 
 ### Spacing scale
 
-Every component draws its spacing and sizing from one fixed set of steps, so nothing is sized on its own terms and values that should match do match:
+Every component draws its spacing and sizing from the same fixed set of steps, so the parts that should line up across components share the same values:
 
 | Step      | Value | Typical use                           |
 | :-------- | :---- | :------------------------------------ |
@@ -70,9 +70,9 @@ Every component draws its spacing and sizing from one fixed set of steps, so not
 | `xLarge`  | 32px  | Large control height                  |
 | `xxLarge` | 48px  | Large surfaces                        |
 
-These are absolute values rather than multiples of the theme's spacing unit—`small` is 12px whatever `spacing` is set to. To move them, pass a [custom scale](#customizing-the-scale).
+These are absolute values rather than multiples of the theme's spacing unit, so `small` is 12px whatever `spacing` is set to. To move them, pass a [custom scale](#customizing-the-scale).
 
-The scale rides the spacing API you already use—there's no new function to learn and no new theme node. [`theme.spacing()`](/material-ui/customization/spacing/) resolves step names alongside the numbers and raw CSS values it already accepts, and a leading dash negates a step:
+The scale rides the spacing API you already use. There's no new function to learn and no new theme node. [`theme.spacing()`](/material-ui/customization/spacing/) resolves step names alongside the numbers and raw CSS values it already accepts, and a leading dash negates a step:
 
 ```js
 const theme = enhanceDensity(createTheme());
@@ -85,7 +85,7 @@ theme.spacing('-xSmall'); // '-8px'
 ```
 
 :::warning
-Put your own `styleOverrides` in the theme **before** calling `enhanceDensity` — your overrides stay the winning layer. Composing them afterwards with `createTheme(enhancedTheme, { components: ... })` replaces each overridden slot wholesale (array values are not merged), silently dropping that slot's density emission.
+Put your own `styleOverrides` in the theme **before** calling `enhanceDensity`, so your overrides stay the winning layer. Composing them afterwards with `createTheme(enhancedTheme, { components: ... })` replaces each overridden slot wholesale (array values are not merged), silently dropping that slot's density emission.
 :::
 
 To use the scale in your theme component overrides, write a callback that receives the theme and calls `theme.spacing(<scale>)`:
@@ -123,7 +123,7 @@ dense.spacing('small'); // 'var(--mui-spacing-small, 8px)'
 
 The step variables are defined as plain px, not as multiples of `--mui-spacing`, so overriding the spacing unit from CSS moves `theme.spacing(2)` but leaves the named steps where they are.
 
-This means the scale can be read—and overridden—from plain CSS, including for one region of the page:
+This means the scale can be read, and overridden, from plain CSS, including for one region of the page:
 
 ```css
 .dense-region {
@@ -140,7 +140,7 @@ The two sizing constants also ship as variables:
 }
 ```
 
-Because they size a box rather than space one, they are not spacing keys—read them off the theme instead:
+Because they size a box rather than space one, they are not spacing keys. Read them off the theme instead:
 
 ```js
 const Control = styled('div')(({ theme }) => ({
@@ -156,7 +156,7 @@ On a CSS theme variables theme, `theme.vars` gives the variable reference, so th
 
 ## All components
 
-`enhanceDensity` applies to every component in the table below—components outside it are left untouched. Select a component in the demo below to see how its dimensions map to the spacing scale: the padding ring, the gap between children, and the height the control settles at, each measured off the rendered element and named back to the step that produced it.
+`enhanceDensity` applies to every component in the table below. Components outside it are left untouched. Select a component in the demo below to see how its dimensions map to the spacing scale: the padding ring, the gap between children, and the height the control settles at, each measured off the rendered element and named back to the step that produced it.
 
 {{"demo": "AllComponentsDemo.js"}}
 
@@ -192,7 +192,7 @@ The enhancer does not support adding new steps or removing existing ones. The se
 
 ## Density recipes
 
-This recipe demonstrates a design system that needs multiple densities to support various context of applications. The densities are defined as low/medium/high, each with its own set of spacing values and target sizes — everything else stays on the default theme.
+This recipe demonstrates a design system that needs multiple densities to support various context of applications. The densities are defined as low/medium/high, each with its own set of spacing values and target sizes. Everything else stays on the default theme.
 
 Use the density select at the top to see the differences between each density. To see the actual values of each density, click the "Show code" and find the `./densityRecipes.ts` file.
 
