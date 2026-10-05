@@ -43,7 +43,7 @@ export type PropInjector<InjectedProps, AdditionalProps = {}> = <
 export type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K> : never;
 
 /**
- * Generate a set of string literal types with the given default record `T` and
+ * Generate a set of string literal types from the default key union `T` and
  * override record `U`.
  *
  * If the property value was `true`, the property key will be added to the
@@ -51,7 +51,7 @@ export type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K
  *
  * @internal
  */
-export type OverridableStringUnion<T extends string | number, U = {}> = [keyof U] extends [never] ? T : GenerateStringUnion<
+export type OverridableStringUnion<T extends string , U = {}> = [keyof U] extends [never] ? T : GenerateStringUnion<
   Overwrite<Record<T, true>, U>
 >;
 

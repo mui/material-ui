@@ -40,7 +40,7 @@ const styles = theme => ({
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
+      '@mui/material': 'next',
       'prop-types': 'latest',
     });
   });
@@ -71,7 +71,7 @@ const suggestions = [
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
+      '@mui/material': 'next',
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
       'prop-types': 'latest',
@@ -101,8 +101,8 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
-      '@mui/lab': 'latest',
+      '@mui/material': 'next',
+      '@mui/lab': 'next',
     });
   });
 
@@ -129,8 +129,8 @@ import 'exceljs';
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
-      '@mui/lab': 'latest',
+      '@mui/material': 'next',
+      '@mui/lab': 'next',
       exceljs: 'latest',
     });
   });
@@ -149,7 +149,7 @@ import 'exceljs';
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
+      '@mui/material': 'next',
       typescript: 'latest',
     });
 
@@ -203,8 +203,8 @@ import {
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
-      '@mui/lab': 'latest',
+      '@mui/material': 'next',
+      '@mui/lab': 'next',
     });
   });
 
@@ -224,8 +224,8 @@ import lab from '@mui/lab';
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
-      '@mui/lab': 'latest',
+      '@mui/material': 'next',
+      '@mui/lab': 'next',
     });
   });
 
@@ -281,7 +281,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
+      '@mui/material': 'next',
       '@base-ui/react': 'latest',
       typescript: 'latest',
     });

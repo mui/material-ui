@@ -1,4 +1,4 @@
-import { expectType, OverridableStringUnion } from '.';
+import { expectType, type OverridableStringUnion } from '.';
 
 function expectTypeTypes() {
   // it rejects assignability to `any`
@@ -8,8 +8,11 @@ function expectTypeTypes() {
   }
 }
 
-const valueA: 'a'|'b' = 'a';
-type a = OverridableStringUnion<'a' | 1>;
+declare const base: OverridableStringUnion<'a' | 'b'>;
+expectType<'a' | 'b', typeof base>(base);
 
-type b = OverridableStringUnion<'a' | 'b', { c: true }>;
-type c = OverridableStringUnion<'a' | 'b', { c: false; d: true, b:false }>;
+declare const overridden: OverridableStringUnion<'a' | 'b', { b: false; c: true }>;
+expectType<'a' | 'c', typeof overridden>(overridden);
+
+// @ts-expect-error Numeric values are not valid string-union members.
+type InvalidUnion = OverridableStringUnion<'a' | 1>;
