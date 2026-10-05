@@ -139,7 +139,7 @@ export type Menu2CheckboxItemProps<
 
 const Menu2CheckboxItemRoot = styled(MenuItemBase, {
   name: 'MuiMenu2CheckboxItem',
-  slot: 'Root',
+  slot: 'root',
   overridesResolver: (props, styles) => [
     menuItemOverridesResolver(props, styles),
     { [`&.${menu2CheckboxItemClasses.highlighted}`]: styles.highlighted },
@@ -150,7 +150,7 @@ const Menu2CheckboxItemRoot = styled(MenuItemBase, {
 
 const Menu2CheckboxItemIndicator = styled(Menu2IndicatorBase, {
   name: 'MuiMenu2CheckboxItem',
-  slot: 'Indicator',
+  slot: 'indicator',
   overridesResolver: (props, styles) => styles.indicator,
 })<{ ownerState: Menu2CheckboxItemOwnerState }>({});
 

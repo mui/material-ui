@@ -6,13 +6,13 @@ import List from '../List';
 
 // A slot puts shared styles in the components CSS layer. No name is set:
 // the popup wrappers supply their own theme keys and override resolvers.
-export const Menu2PositionerBase = styled('div', { slot: 'Positioner' })(
+export const Menu2PositionerBase = styled('div', { slot: 'positioner' })(
   memoTheme(({ theme }) => ({
     zIndex: (theme.vars || theme).zIndex.modal,
   })),
 );
 
-export const Menu2PaperBase = styled(Paper, { slot: 'Paper' })({
+export const Menu2PaperBase = styled(Paper, { slot: 'paper' })({
   outline: 0,
   // Support momentum scrolling on iOS versions before 13.
   WebkitOverflowScrolling: 'touch',
@@ -24,7 +24,7 @@ export const Menu2PaperBase = styled(Paper, { slot: 'Paper' })({
   transformOrigin: 'var(--transform-origin)',
 });
 
-export const Menu2ListBase = styled(List, { slot: 'List' })({
+export const Menu2ListBase = styled(List, { slot: 'list' })({
   // The items, not the list, show focus.
   outline: 0,
 });

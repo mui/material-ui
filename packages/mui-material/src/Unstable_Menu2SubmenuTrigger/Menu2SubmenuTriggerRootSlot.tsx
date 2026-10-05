@@ -34,7 +34,7 @@ function menu2SubmenuTriggerStyles(theme: Theme, selector: string) {
 
 const Menu2SubmenuTriggerRoot = styled(MenuItemBase, {
   name: 'MuiMenu2SubmenuTrigger',
-  slot: 'Root',
+  slot: 'root',
   overridesResolver: (props, styles) => [
     menuItemOverridesResolver(props, styles),
     { [`&.${menu2SubmenuTriggerClasses.highlighted}`]: styles.highlighted },
@@ -49,7 +49,7 @@ const Menu2SubmenuTriggerRoot = styled(MenuItemBase, {
 
 const Menu2SubmenuTriggerIndicator = styled('span', {
   name: 'MuiMenu2SubmenuTrigger',
-  slot: 'Indicator',
+  slot: 'indicator',
 })({
   display: 'inline-flex',
   alignItems: 'center',

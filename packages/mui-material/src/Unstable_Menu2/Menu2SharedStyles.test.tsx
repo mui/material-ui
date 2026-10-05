@@ -17,7 +17,7 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
   [false, true].forEach((modularCssLayers) => {
     describe(`modularCssLayers: ${modularCssLayers}`, () => {
       [false, true].forEach((useSx) => {
-        it(`keeps popup theme keys separate and applies slot sx: ${useSx}`, async () => {
+        it(`keeps popup theme keys separate, limits variants to root, and applies slot sx: ${useSx}`, async () => {
           const theme = createTheme({
             modularCssLayers,
             components: {
@@ -30,6 +30,7 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
                   }),
                   list: { outline: '1px solid red' },
                 },
+                variants: [{ props: { align: 'center' }, style: { outlineOffset: 11 } }],
               },
               MuiMenu2Submenu: {
                 styleOverrides: {
@@ -40,6 +41,7 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
                   }),
                   list: { outline: '2px solid blue' },
                 },
+                variants: [{ props: { align: 'end' }, style: { outlineOffset: 12 } }],
               },
             },
           });
@@ -55,7 +57,7 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
                   slotProps={{
                     root: {
                       'data-testid': 'parent-positioner',
-                      sx: useSx ? { zIndex: 1501 } : undefined,
+                      sx: useSx ? { zIndex: 1501, outlineOffset: 21 } : undefined,
                     },
                     paper: {
                       'data-testid': 'parent-paper',
@@ -65,6 +67,7 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
                       'data-testid': 'parent-list',
                       sx: useSx ? { outlineWidth: '3px' } : undefined,
                     },
+                    backdrop: { 'data-testid': 'parent-backdrop' },
                   }}
                 >
                   <Menu2Submenu
@@ -74,7 +77,7 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
                     slotProps={{
                       root: {
                         'data-testid': 'child-positioner',
-                        sx: useSx ? { zIndex: 1502 } : undefined,
+                        sx: useSx ? { zIndex: 1502, outlineOffset: 22 } : undefined,
                       },
                       paper: {
                         'data-testid': 'child-paper',
@@ -103,16 +106,25 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
             expect(getComputedStyle(positioner).zIndex).to.equal(
               String((useSx ? 1501 : 1401) + index),
             );
+            expect(getComputedStyle(positioner).outlineOffset).to.equal(
+              `${(useSx ? 21 : 11) + index}px`,
+            );
             expect(getComputedStyle(paper).maxHeight).to.equal(
               `${(useSx ? 311 : 301) - index * 100}px`,
             );
             expect(getComputedStyle(paper).overflowY).to.equal(useSx ? 'hidden' : 'scroll');
             expect(getComputedStyle(list).outlineWidth).to.equal(`${(useSx ? 3 : 1) + index}px`);
+            [paper, list].forEach((element) => {
+              expect(getComputedStyle(element).outlineOffset).to.equal('0px');
+            });
             [positioner, paper, list].forEach((element) => {
               expect(element).not.to.have.attribute('ownerState');
               expect(element).not.to.have.attribute('sx');
             });
           });
+          expect(getComputedStyle(screen.getByTestId('parent-backdrop')).outlineOffset).to.equal(
+            '0px',
+          );
         });
       });
 

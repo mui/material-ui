@@ -81,7 +81,7 @@ const useUtilityClasses = (ownerState: Menu2GroupProps) => {
 
 const Menu2GroupRoot = styled('div', {
   name: 'MuiMenu2Group',
-  slot: 'Root',
+  slot: 'root',
   overridesResolver: (props, styles) => styles.root,
 })({}) as any;
 

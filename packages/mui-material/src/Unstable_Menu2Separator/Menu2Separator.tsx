@@ -86,7 +86,7 @@ const useUtilityClasses = (ownerState: Menu2SeparatorProps) => {
 
 const Menu2SeparatorRoot = styled(Divider, {
   name: 'MuiMenu2Separator',
-  slot: 'Root',
+  slot: 'root',
   overridesResolver: (props, styles) => styles.root,
 })(
   // Own the classic item/divider spacing instead of relying on the legacy

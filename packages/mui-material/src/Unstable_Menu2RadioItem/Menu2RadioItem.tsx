@@ -121,7 +121,7 @@ export type Menu2RadioItemProps<
 
 const Menu2RadioItemRoot = styled(MenuItemBase, {
   name: 'MuiMenu2RadioItem',
-  slot: 'Root',
+  slot: 'root',
   overridesResolver: (props, styles) => [
     menuItemOverridesResolver(props, styles),
     { [`&.${menu2RadioItemClasses.highlighted}`]: styles.highlighted },
@@ -132,7 +132,7 @@ const Menu2RadioItemRoot = styled(MenuItemBase, {
 
 const Menu2RadioItemIndicator = styled(Menu2IndicatorBase, {
   name: 'MuiMenu2RadioItem',
-  slot: 'Indicator',
+  slot: 'indicator',
   overridesResolver: (props, styles) => styles.indicator,
 })<{ ownerState: Menu2RadioItemOwnerState }>({});
 

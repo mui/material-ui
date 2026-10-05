@@ -97,7 +97,7 @@ export type Menu2LinkItemProps<
 
 const Menu2LinkItemRoot = styled(MenuItemBase, {
   name: 'MuiMenu2LinkItem',
-  slot: 'Root',
+  slot: 'root',
   overridesResolver: (props, styles) => [
     menuItemOverridesResolver(props, styles),
     { [`&.${menu2LinkItemClasses.highlighted}`]: styles.highlighted },

@@ -20,7 +20,7 @@ export type Menu2IndicatorSlotProps<OwnerState> = SlotProps<
 
 // The slot keeps these styles below theme overrides in the CSS layer order.
 // Each item supplies the theme overrides for its indicator slot.
-const Menu2IndicatorBase = styled('span', { slot: 'Root' })(
+const Menu2IndicatorBase = styled('span', { slot: 'root' })(
   memoTheme(({ theme }) => ({
     display: 'inline-flex',
     alignItems: 'center',
