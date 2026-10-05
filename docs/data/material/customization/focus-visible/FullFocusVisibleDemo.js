@@ -54,6 +54,11 @@ import Select from '@mui/material/Select';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import InputBase from '@mui/material/InputBase';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogActions from '@mui/material/DialogActions';
 import AddIcon from '@mui/icons-material/Add';
 import StarIcon from '@mui/icons-material/Star';
 import HomeIcon from '@mui/icons-material/Home';
@@ -157,6 +162,13 @@ export default function FullFocusVisibleDemo() {
   const [activeStep, setActiveStep] = React.useState(0);
   const handleStep = (step) => () => {
     setActiveStep(step);
+  };
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+  };
+  const handleDialogClose = () => {
+    setDialogOpen(false);
   };
   return (
     <ThemeProvider theme={theme}>
@@ -318,6 +330,28 @@ export default function FullFocusVisibleDemo() {
                 <StepButton onClick={handleStep(1)}>Two</StepButton>
               </Step>
             </Stepper>
+          </Row>
+          <Row label="Dialog">
+            <Button variant="outlined" onClick={handleDialogOpen}>
+              Open dialog
+            </Button>
+            <Dialog
+              open={dialogOpen}
+              onClose={handleDialogClose}
+              aria-labelledby="fv-dialog-title"
+              aria-describedby="fv-dialog-description"
+            >
+              <DialogTitle id="fv-dialog-title">Discard draft?</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="fv-dialog-description">
+                  Press Tab to move focus between the actions.
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleDialogClose}>Cancel</Button>
+                <Button onClick={handleDialogClose}>Discard</Button>
+              </DialogActions>
+            </Dialog>
           </Row>
         </Bucket>
 
