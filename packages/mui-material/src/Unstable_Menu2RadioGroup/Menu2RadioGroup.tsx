@@ -112,7 +112,6 @@ const useUtilityClasses = (ownerState: Menu2RadioGroupOwnerState) => {
 const Menu2RadioGroupRoot = styled('div', {
   name: 'MuiMenu2RadioGroup',
   slot: 'root',
-  overridesResolver: (props, styles) => styles.root,
 })({}) as any;
 
 /**

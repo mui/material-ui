@@ -130,7 +130,6 @@ const Menu2RadioItemRoot = styled(MenuItemBase, {
 const Menu2RadioItemIndicator = styled(Menu2IndicatorBase, {
   name: 'MuiMenu2RadioItem',
   slot: 'indicator',
-  overridesResolver: (props, styles) => styles.indicator,
 })<{ ownerState: Menu2RadioItemOwnerState }>({});
 
 // Use the Radio icon so the dot keeps its scale transition.

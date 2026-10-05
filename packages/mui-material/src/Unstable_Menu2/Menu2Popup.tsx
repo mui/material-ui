@@ -188,19 +188,16 @@ const useUtilityClasses = (ownerState: Menu2PopupOwnerState) => {
 const Menu2PopupRoot = styled(Menu2PositionerBase, {
   name: 'MuiMenu2',
   slot: 'root',
-  overridesResolver: (props, styles) => styles.root,
 })({});
 
 const Menu2PopupPaper = styled(Menu2PaperBase, {
   name: 'MuiMenu2',
   slot: 'paper',
-  overridesResolver: (props, styles) => styles.paper,
 })({});
 
 const Menu2PopupBackdrop = styled('div', {
   name: 'MuiMenu2',
   slot: 'backdrop',
-  overridesResolver: (props, styles) => styles.backdrop,
 })(
   memoTheme(({ theme }) => ({
     position: 'fixed',
@@ -219,7 +216,6 @@ const Menu2PopupBackdrop = styled('div', {
 const Menu2PopupList = styled(Menu2ListBase, {
   name: 'MuiMenu2',
   slot: 'list',
-  overridesResolver: (props, styles) => styles.list,
 })({});
 
 /**

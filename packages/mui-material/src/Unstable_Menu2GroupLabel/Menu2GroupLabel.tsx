@@ -86,7 +86,6 @@ const useUtilityClasses = (ownerState: Menu2GroupLabelProps) => {
 const Menu2GroupLabelRoot = styled(ListSubheader, {
   name: 'MuiMenu2GroupLabel',
   slot: 'root',
-  overridesResolver: (props, styles) => styles.root,
 })({}) as any;
 
 /**

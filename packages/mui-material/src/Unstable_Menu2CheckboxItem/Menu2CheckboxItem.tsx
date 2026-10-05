@@ -148,7 +148,6 @@ const Menu2CheckboxItemRoot = styled(MenuItemBase, {
 const Menu2CheckboxItemIndicator = styled(Menu2IndicatorBase, {
   name: 'MuiMenu2CheckboxItem',
   slot: 'indicator',
-  overridesResolver: (props, styles) => styles.indicator,
 })<{ ownerState: Menu2CheckboxItemOwnerState }>({});
 
 // Keep the icons in the 1.25rem box used by the menu row.

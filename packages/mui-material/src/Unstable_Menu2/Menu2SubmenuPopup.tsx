@@ -184,19 +184,16 @@ const useUtilityClasses = (ownerState: Menu2SubmenuPopupOwnerState) => {
 const Menu2SubmenuPopupRoot = styled(Menu2PositionerBase, {
   name: 'MuiMenu2Submenu',
   slot: 'root',
-  overridesResolver: (props, styles) => styles.root,
 })({});
 
 const Menu2SubmenuPopupPaper = styled(Menu2PaperBase, {
   name: 'MuiMenu2Submenu',
   slot: 'paper',
-  overridesResolver: (props, styles) => styles.paper,
 })({});
 
 const Menu2SubmenuPopupList = styled(Menu2ListBase, {
   name: 'MuiMenu2Submenu',
   slot: 'list',
-  overridesResolver: (props, styles) => styles.list,
 })({});
 
 /**
