@@ -96,6 +96,12 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     filled,
     focused,
     required,
+    /* eslint-disable react/prop-types */
+    // private props to let a parent render its own styled root, created with `styled(FormLabelRoot)`,
+    // so the styles of both are serialized together, with the parent's owner state
+    internalRoot: Root = FormLabelRoot,
+    internalOwnerState,
+    /* eslint-enable react/prop-types */
     ...other
   } = props;
 
@@ -118,9 +124,9 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <FormLabelRoot
+    <Root
       as={component}
-      ownerState={ownerState}
+      ownerState={internalOwnerState ? { ...ownerState, ...internalOwnerState } : ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
@@ -131,7 +137,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
           &thinsp;{'*'}
         </AsteriskComponent>
       )}
-    </FormLabelRoot>
+    </Root>
   );
 });
 
