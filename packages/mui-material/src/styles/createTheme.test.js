@@ -1013,17 +1013,28 @@ describe('createTheme', () => {
 
     it('[CSS variables] `alpha()` should work with fallbacks', () => {
       const theme = createTheme({ cssVariables: true });
-      expect(theme.alpha(theme.vars.palette.primary.main, 0.5)).to.equal(
-        'rgba(var(--mui-palette-primary-mainChannel, 25 118 210) / 0.5)',
+      const hslTheme = createTheme({
+        cssVariables: true,
+        palette: { primary: { main: 'hsl(210, 79%, 46%)' } },
+      });
+      expect(hslTheme.alpha(hslTheme.vars.palette.primary.main, 0.5)).to.equal(
+        `rgba(${hslTheme.vars.palette.primary.mainChannel} / 0.5)`,
       );
       expect(theme.alpha(theme.vars.palette.text.primary, 0.5)).to.equal(
         'rgba(var(--mui-palette-text-primaryChannel, 0 0 0) / 0.5)',
       );
       expect(theme.alpha('var(--brand)', 0.5)).to.equal('rgba(var(--brandChannel) / 0.5)');
+      // `color()` channels aren't sRGB, so the fallback is dropped.
+      expect(theme.alpha('var(--x, color(display-p3 0.1 0.46 0.82))', 0.5)).to.equal(
+        'rgba(var(--xChannel) / 0.5)',
+      );
       // Fallbacks that `colorChannel()` can't parse are dropped.
       expect(theme.alpha('var(--x, currentColor)', 0.5)).to.equal('rgba(var(--xChannel) / 0.5)');
       expect(theme.alpha('var(--mui-palette-text-primary, rgba(0 0 0 / 0.87))', 0.5)).to.equal(
         'rgba(var(--mui-palette-text-primaryChannel) / 0.5)',
+      );
+      expect(theme.alpha('var(--x, hsl(0 0% 0% / 0.87))', 0.5)).to.equal(
+        'rgba(var(--xChannel) / 0.5)',
       );
       expect(theme.alpha('var(--mui-palette-text-primary, var(--foo))', 0.5)).to.equal(
         'rgba(var(--mui-palette-text-primaryChannel) / 0.5)',

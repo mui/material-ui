@@ -45,16 +45,24 @@ const parseAddition = (str) => {
   return sum;
 };
 
+// `rgba()` takes rgb channels, so `hsl()` is converted like the theme's `*Channel` tokens.
+function toRgb(color) {
+  return color.startsWith('hsl') ? hslToRgb(color) : color;
+}
+
 // Replaces the `var()` matches in `alpha()`: `var(--x, #1976d2)` -> `var(--xChannel, 25 118 210)`.
 // The fallback keeps the color valid when the CSS variables aren't defined (no `ThemeProvider`).
 // It's dropped when it isn't a color `colorChannel()` parses, for example `currentColor` or a nested `var()`,
-// or when it has more than one level of nested parentheses, since the regex doesn't capture it then.
-function toChannelVar(match, name, fallback) {
-  if (fallback) {
+// or when it's a `color()`, whose channels aren't sRGB.
+// More than one level of nested parentheses isn't supported: the match ends at the first run of `)`,
+// so the rest of the fallback stays in the output.
+function toChannelVar(match, name, fallback = '') {
+  const color = fallback.trim();
+  if (color && !color.startsWith('color(')) {
     try {
-      const channel = colorChannel(fallback.trim());
-      // Space-separated syntax like `rgb(0 0 0)` doesn't throw but gives a single value.
-      if (channel.split(' ').length === 3) {
+      const channel = colorChannel(toRgb(color));
+      // Space-separated syntax like `rgb(0 0 0)` doesn't throw but gives a single value, or `NaN`s for `hsl()`.
+      if (channel.split(' ').length === 3 && !channel.includes('NaN')) {
         return `var(--${name}Channel, ${channel})`;
       }
     } catch {
@@ -87,7 +95,7 @@ function attachColorManipulators(theme) {
               /var\(--([^,\s)]+)(?:,((?:[^()]|\([^()]*\))+)\)|(?:,[^)]+)?\)+)/g,
               toChannelVar,
             )
-          : safeColorChannel(color.startsWith('hsl') ? hslToRgb(color) : color);
+          : safeColorChannel(toRgb(color));
         return `rgba(${channels} / ${alphaValue})`;
       }
       return systemAlpha(color, parseAddition(coefficient));
