@@ -13,6 +13,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
+import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
 import useId from '../utils/useId';
@@ -261,7 +262,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const theme = useTheme();
 
-  const [childNode, setChildNode] = React.useState();
+  // The trigger element. The popper only gets it as its anchor once it is needed, see below.
+  const childNodeRef = React.useRef(null);
+  const [anchorNode, setAnchorNode] = React.useState(null);
   const [arrowRef, setArrowRef] = React.useState(null);
   const ignoreNonTouchEvents = React.useRef(false);
   const openedByDisabledTriggerRef = React.useRef(false);
@@ -339,8 +342,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     // Remove the title ahead of time.
     // We don't want to wait for the next render commit.
     // We would risk displaying two tooltips at the same time (native + this one).
-    if (childNode) {
-      childNode.removeAttribute('title');
+    if (childNodeRef.current) {
+      childNodeRef.current.removeAttribute('title');
     }
 
     enterTimer.clear();
@@ -355,7 +358,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   };
 
   const handleTriggerMouseOver = (event) => {
-    if (childNode?.disabled && !isControlled) {
+    if (childNodeRef.current?.disabled && !isControlled) {
       // A disabled trigger can open the tooltip if it receives pointer events.
       // However, if the trigger became disabled while the tooltip was already open,
       // stray mouseover events must not cancel the pending close.
@@ -372,7 +375,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   };
 
   const handleInteractiveWrapperMouseOver = (event) => {
-    if (childNode?.disabled && !isControlled && !openedByDisabledTriggerRef.current) {
+    if (childNodeRef.current?.disabled && !isControlled && !openedByDisabledTriggerRef.current) {
       return;
     }
 
@@ -389,7 +392,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const [, setChildIsFocusVisible] = React.useState(false);
   const handleBlur = (event) => {
     // Needed for https://github.com/mui/material-ui/issues/45373
-    const target = event?.target ?? childNode;
+    const target = event?.target ?? childNodeRef.current;
     if (!target || target.disabled || !isFocusVisible(target)) {
       setChildIsFocusVisible(false);
 
@@ -411,8 +414,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     // Workaround for https://github.com/react/react/issues/7769
     // The autoFocus of React might trigger the event before the componentDidMount.
     // We need to account for this eventuality.
-    if (!childNode) {
-      setChildNode(event.currentTarget);
+    if (!childNodeRef.current) {
+      childNodeRef.current = event.currentTarget;
     }
 
     openedByDisabledTriggerRef.current = false;
@@ -490,7 +493,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     };
   }, [handleClose, open]);
 
-  const handleRef = useForkRef(getReactElementRef(children), setChildNode, ref);
+  const handleRef = useForkRef(getReactElementRef(children), childNodeRef, ref);
 
   // There is no point in displaying an empty tooltip.
   // So we exclude all falsy values, except 0, which is valid.
@@ -536,9 +539,16 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   if (process.env.NODE_ENV !== 'production') {
     childrenProps['data-mui-internal-clone-element'] = true;
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
+    const checkedChildNodeRef = React.useRef(null);
     // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     React.useEffect(() => {
+      const childNode = childNodeRef.current;
+      if (childNode === checkedChildNodeRef.current) {
+        return;
+      }
+      checkedChildNodeRef.current = childNode;
       if (childNode && !childNode.getAttribute('data-mui-internal-clone-element')) {
         console.error(
           [
@@ -547,7 +557,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
           ].join('\n'),
         );
       }
-    }, [childNode]);
+    });
   }
 
   const interactiveWrapperListeners = {};
@@ -662,47 +672,61 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ref: setArrowRef,
   });
 
+  // A closed Popper renders nothing, so the default popper is only rendered once it has an anchor:
+  // from the first time the tooltip opens, or right away when it stays mounted. A custom popper
+  // slot is always rendered.
+  const isDefaultPopper = PopperSlot === TooltipPopper;
+  const needsAnchor = open || popperSlotProps.keepMounted || !isDefaultPopper;
+  // `children` is a dependency because the trigger element can change with them.
+  useEnhancedEffect(() => {
+    if (needsAnchor && anchorNode !== childNodeRef.current) {
+      setAnchorNode(childNodeRef.current);
+    }
+  }, [anchorNode, childrenProp, needsAnchor]);
+
   return (
     <React.Fragment>
       {React.cloneElement(children, childrenProps)}
-      <PopperSlot
-        as={Popper}
-        placement={placement}
-        anchorEl={
-          followCursor
-            ? {
-                getBoundingClientRect: () => ({
-                  top: cursorPosition.y,
-                  left: cursorPosition.x,
-                  right: cursorPosition.x,
-                  bottom: cursorPosition.y,
-                  width: 0,
-                  height: 0,
-                }),
-              }
-            : childNode
-        }
-        popperRef={popperRef}
-        open={childNode ? open : false}
-        id={id}
-        transition
-        {...interactiveWrapperListeners}
-        {...popperSlotProps}
-        popperOptions={popperOptions}
-      >
-        {({ TransitionProps: TransitionPropsInner }) => (
-          <TransitionSlot
-            timeout={theme.transitions.duration.shorter}
-            {...TransitionPropsInner}
-            {...transitionSlotProps}
-          >
-            <TooltipSlot {...tooltipSlotProps}>
-              {title}
-              {arrow ? <ArrowSlot {...arrowSlotProps} /> : null}
-            </TooltipSlot>
-          </TransitionSlot>
-        )}
-      </PopperSlot>
+      {anchorNode || !isDefaultPopper ? (
+        <PopperSlot
+          as={Popper}
+          placement={placement}
+          anchorEl={
+            followCursor
+              ? {
+                  getBoundingClientRect: () => ({
+                    top: cursorPosition.y,
+                    left: cursorPosition.x,
+                    right: cursorPosition.x,
+                    bottom: cursorPosition.y,
+                    width: 0,
+                    height: 0,
+                  }),
+                }
+              : anchorNode
+          }
+          popperRef={popperRef}
+          open={anchorNode ? open : false}
+          id={id}
+          transition
+          {...interactiveWrapperListeners}
+          {...popperSlotProps}
+          popperOptions={popperOptions}
+        >
+          {({ TransitionProps: TransitionPropsInner }) => (
+            <TransitionSlot
+              timeout={theme.transitions.duration.shorter}
+              {...TransitionPropsInner}
+              {...transitionSlotProps}
+            >
+              <TooltipSlot {...tooltipSlotProps}>
+                {title}
+                {arrow ? <ArrowSlot {...arrowSlotProps} /> : null}
+              </TooltipSlot>
+            </TransitionSlot>
+          )}
+        </PopperSlot>
+      ) : null}
     </React.Fragment>
   );
 });
