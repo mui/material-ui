@@ -71,11 +71,11 @@ const CardActionsRoot = styled('div', {
  *
  * Demos:
  *
- * - [Card](https://mui.com/material-ui/react-card/)
+ * - [Card](https://next.mui.com/material-ui/react-card/)
  *
  * API:
  *
- * - [CardActions API](https://mui.com/material-ui/api/card-actions/)
+ * - [CardActions API](https://next.mui.com/material-ui/api/card-actions/)
  */
 const CardActions = React.forwardRef(function CardActions(
   inProps: CardActionsProps,

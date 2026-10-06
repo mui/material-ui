@@ -75,12 +75,12 @@ const ListItemIconRoot = styled('div', {
  *
  * Demos:
  *
- * - [Lists](https://mui.com/material-ui/react-list/)
- * - [Menubar](https://mui.com/material-ui/react-menubar/)
+ * - [Lists](https://next.mui.com/material-ui/react-list/)
+ * - [Menubar](https://next.mui.com/material-ui/react-menubar/)
  *
  * API:
  *
- * - [ListItemIcon API](https://mui.com/material-ui/api/list-item-icon/)
+ * - [ListItemIcon API](https://next.mui.com/material-ui/api/list-item-icon/)
  */
 const ListItemIcon = React.forwardRef(function ListItemIcon(
   inProps: ListItemIconProps,

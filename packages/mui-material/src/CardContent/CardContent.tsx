@@ -67,11 +67,11 @@ const CardContentRoot = styled('div', {
  *
  * Demos:
  *
- * - [Card](https://mui.com/material-ui/react-card/)
+ * - [Card](https://next.mui.com/material-ui/react-card/)
  *
  * API:
  *
- * - [CardContent API](https://mui.com/material-ui/api/card-content/)
+ * - [CardContent API](https://next.mui.com/material-ui/api/card-content/)
  */
 const CardContent = React.forwardRef(function CardContent(
   inProps: CardContentProps,

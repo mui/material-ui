@@ -56,7 +56,7 @@ export function SandboxDependencies(
       process.env.SOURCE_CODE_REPO !== 'https://github.com/mui/material-ui'
     ) {
       // #npm-tag-reference
-      return 'latest';
+      return 'next';
     }
     return `https://pkg.pr.new/mui/material-ui/@mui/${packageName}@${commitRef}`;
   }

@@ -69,11 +69,11 @@ const ListItemAvatarRoot = styled('div', {
  *
  * Demos:
  *
- * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Lists](https://next.mui.com/material-ui/react-list/)
  *
  * API:
  *
- * - [ListItemAvatar API](https://mui.com/material-ui/api/list-item-avatar/)
+ * - [ListItemAvatar API](https://next.mui.com/material-ui/api/list-item-avatar/)
  */
 const ListItemAvatar = React.forwardRef(function ListItemAvatar(
   inProps: ListItemAvatarProps,

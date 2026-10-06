@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import type { SxProps } from '@mui/system';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import { applyInsetFocusVisible } from '../styles/focusVisible';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDialogContentUtilityClass } from './dialogContentClasses';
 import dialogTitleClasses from '../DialogTitle/dialogTitleClasses';
@@ -60,6 +61,12 @@ const DialogContentRoot = styled('div', {
     WebkitOverflowScrolling: 'touch',
     overflowY: 'auto',
     padding: '20px 24px',
+    ...(theme.focusVisible && {
+      '&:focus-visible': {
+        ...applyInsetFocusVisible(1),
+        ...theme.focusVisible,
+      },
+    }),
     variants: [
       {
         props: ({ ownerState }: { ownerState: OwnerState }) => ownerState.dividers,
@@ -85,11 +92,11 @@ const DialogContentRoot = styled('div', {
  *
  * Demos:
  *
- * - [Dialog](https://mui.com/material-ui/react-dialog/)
+ * - [Dialog](https://next.mui.com/material-ui/react-dialog/)
  *
  * API:
  *
- * - [DialogContent API](https://mui.com/material-ui/api/dialog-content/)
+ * - [DialogContent API](https://next.mui.com/material-ui/api/dialog-content/)
  */
 const DialogContent = React.forwardRef(function DialogContent(
   inProps: DialogContentProps,

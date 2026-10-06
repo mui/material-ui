@@ -84,11 +84,11 @@ const ListItemSecondaryActionRoot = styled('div', {
  *
  * Demos:
  *
- * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Lists](https://next.mui.com/material-ui/react-list/)
  *
  * API:
  *
- * - [ListItemSecondaryAction API](https://mui.com/material-ui/api/list-item-secondary-action/)
+ * - [ListItemSecondaryAction API](https://next.mui.com/material-ui/api/list-item-secondary-action/)
  */
 const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryAction(
   inProps: ListItemSecondaryActionProps,

@@ -73,11 +73,11 @@ const defaultComponent = 'tbody';
  *
  * Demos:
  *
- * - [Table](https://mui.com/material-ui/react-table/)
+ * - [Table](https://next.mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TableBody API](https://mui.com/material-ui/api/table-body/)
+ * - [TableBody API](https://next.mui.com/material-ui/api/table-body/)
  */
 const TableBody = React.forwardRef(function TableBody(
   inProps: TableBodyProps,

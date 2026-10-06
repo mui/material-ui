@@ -71,11 +71,11 @@ const defaultComponent = 'tfoot';
  *
  * Demos:
  *
- * - [Table](https://mui.com/material-ui/react-table/)
+ * - [Table](https://next.mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TableFooter API](https://mui.com/material-ui/api/table-footer/)
+ * - [TableFooter API](https://next.mui.com/material-ui/api/table-footer/)
  */
 const TableFooter = React.forwardRef(function TableFooter(
   inProps: TableFooterProps,

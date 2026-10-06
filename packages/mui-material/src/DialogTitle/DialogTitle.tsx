@@ -68,12 +68,12 @@ const DialogTitleRoot = styled(Typography, {
  *
  * Demos:
  *
- * - [Dialog](https://mui.com/material-ui/react-dialog/)
+ * - [Dialog](https://next.mui.com/material-ui/react-dialog/)
  *
  * API:
  *
- * - [DialogTitle API](https://mui.com/material-ui/api/dialog-title/)
- * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
+ * - [DialogTitle API](https://next.mui.com/material-ui/api/dialog-title/)
+ * - inherits [Typography API](https://next.mui.com/material-ui/api/typography/)
  */
 const DialogTitle = React.forwardRef(function DialogTitle(
   inProps: DialogTitleProps,

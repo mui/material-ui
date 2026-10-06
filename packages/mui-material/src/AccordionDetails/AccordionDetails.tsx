@@ -52,11 +52,11 @@ const AccordionDetailsRoot = styled('div', {
  *
  * Demos:
  *
- * - [Accordion](https://mui.com/material-ui/react-accordion/)
+ * - [Accordion](https://next.mui.com/material-ui/react-accordion/)
  *
  * API:
  *
- * - [AccordionDetails API](https://mui.com/material-ui/api/accordion-details/)
+ * - [AccordionDetails API](https://next.mui.com/material-ui/api/accordion-details/)
  */
 const AccordionDetails = React.forwardRef(function AccordionDetails(
   inProps: AccordionDetailsProps,

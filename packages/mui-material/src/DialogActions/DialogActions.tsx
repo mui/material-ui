@@ -73,11 +73,11 @@ const DialogActionsRoot = styled('div', {
  *
  * Demos:
  *
- * - [Dialog](https://mui.com/material-ui/react-dialog/)
+ * - [Dialog](https://next.mui.com/material-ui/react-dialog/)
  *
  * API:
  *
- * - [DialogActions API](https://mui.com/material-ui/api/dialog-actions/)
+ * - [DialogActions API](https://next.mui.com/material-ui/api/dialog-actions/)
  */
 const DialogActions = React.forwardRef(function DialogActions(
   inProps: DialogActionsProps,

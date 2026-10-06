@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/342a1159c5c25a48c8ed853893146aa8701574a6/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/71a01dd6186f601475e5c9ad15a4c55cc782ca6f/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
@@ -240,13 +240,6 @@ jobs:
       - checkout
       - code-infra/install-deps:
           react-version: << parameters.react-version >>
-      - run:
-          name: Host CPU
-          command: |
-            grep -m1 'model name' /proc/cpuinfo
-            grep -m1 '^flags' /proc/cpuinfo | grep -ow 'avx2\|avx512[a-z_0-9]*\|fma\|f16c' | sort -u | tr '\n' ' '
-            echo
-            nproc
       - run:
           name: Run visual regression tests
           command: xvfb-run pnpm test:regressions

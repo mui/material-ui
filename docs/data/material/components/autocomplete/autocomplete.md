@@ -51,7 +51,9 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 However, you can use different structures by providing a `getOptionLabel` prop.
 
-If your options are objects, you must provide the `isOptionEqualToValue` prop to ensure correct selection and highlighting. By default, it uses strict equality to compare options with the current value.
+Without `getOptionValue`, the component uses strict equality to compare an option with the current value.
+If your options are objects and the value is not one of the exact option instances, provide the `isOptionEqualToValue` prop to customize the comparison.
+When `getOptionValue` is provided, its return value is used for the default comparison instead.
 
 :::warning
 If your options have duplicate labels, you must extract a unique key with the `getOptionKey` prop.
@@ -66,6 +68,60 @@ return <Autocomplete options={options} getOptionKey={(option) => option.id} />;
 ```
 
 :::
+
+### Object options with primitive values
+
+By default, `value`, `defaultValue`, and the value passed to `onChange` contain the selected option object.
+Use the `getOptionValue` prop when you want them to contain a primitive value instead, such as an ID.
+The prop must return a unique, non-null string, number, or boolean for every option.
+When `freeSolo` is enabled, it must return a number or boolean because strings are reserved for free-solo values.
+
+This requirement also applies to options created by `filterOptions`.
+Include the fields that `getOptionValue` reads in every generated option.
+
+Callbacks that operate on options, such as `getOptionLabel` and `renderOption`, continue to receive the original option object.
+The `details.option` passed to `onChange` also contains the original option.
+
+Keep `getOptionValue` and any custom `isOptionEqualToValue` callback stable between renders to reuse cached option lookups.
+Define them outside the component, as in the demo below, or use `React.useCallback` with all dependencies.
+Changing a callback that determines matching rebuilds its lookup so the results reflect the new behavior.
+
+{{"demo": "OptionValueMapping.js"}}
+
+#### Typed wrappers
+
+For typed wrappers, supply the mapped value type as the final generic argument of `AutocompleteProps` or `UseAutocompleteProps`.
+`Value` is the original option type, and `MappedValue` is the type returned by `getOptionValue`.
+This wrapper accepts film options and uses `number | null` for selected values.
+It makes `getOptionValue` required so callers must provide the mapping:
+
+```tsx
+import Autocomplete, { AutocompleteProps } from '@mui/material/Autocomplete';
+import { ChipTypeMap } from '@mui/material/Chip';
+
+interface Film {
+  id: number;
+  label: string;
+}
+
+interface FilmAutocompleteProps extends AutocompleteProps<
+  Film, // Value: the original option type
+  false, // Multiple
+  false, // DisableClearable
+  false, // FreeSolo
+  ChipTypeMap['defaultComponent'], // ChipComponent
+  number // MappedValue: the type returned by getOptionValue
+> {
+  getOptionValue: (option: Film) => number;
+}
+
+function FilmAutocomplete(props: FilmAutocompleteProps) {
+  return <Autocomplete {...props} />;
+}
+```
+
+For a wrapper around `useAutocomplete`, use `UseAutocompleteProps<Film, false, false, false, number>` and require `getOptionValue` in the same way.
+Omitting the final generic argument preserves the original option values.
 
 ### Playground
 

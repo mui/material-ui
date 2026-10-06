@@ -71,11 +71,11 @@ const defaultComponent = 'thead';
  *
  * Demos:
  *
- * - [Table](https://mui.com/material-ui/react-table/)
+ * - [Table](https://next.mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TableHead API](https://mui.com/material-ui/api/table-head/)
+ * - [TableHead API](https://next.mui.com/material-ui/api/table-head/)
  */
 const TableHead = React.forwardRef(function TableHead(
   inProps: TableHeadProps,
