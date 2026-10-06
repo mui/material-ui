@@ -9,7 +9,7 @@ import isHostComponent from '@mui/utils/isHostComponent';
 import TextareaAutosize from '../TextareaAutosize';
 import FormControlContext from '../FormControl/FormControlContext';
 import { useFormControlState } from '../FormControl/useFormControl';
-import { styled, globalCss } from '../zero-styled';
+import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
@@ -215,6 +215,12 @@ export const InputBaseInput = styled('input', {
         {
           props: ({ ownerState }) => !ownerState.disableInjectingGlobalStyles,
           style: {
+            // Keep keyframes non-empty for Emotion production builds. Animation properties are ignored
+            // inside keyframes, avoiding the visible display animation triggered by Chrome 117+.
+            [`@keyframes ${MUI_AUTO_FILL}`]: { from: { animationName: MUI_AUTO_FILL } },
+            [`@keyframes ${MUI_AUTO_FILL_CANCEL}`]: {
+              from: { animationName: MUI_AUTO_FILL_CANCEL },
+            },
             animationName: MUI_AUTO_FILL_CANCEL,
             animationDuration: '10ms',
             '&:-webkit-autofill': {
@@ -252,13 +258,6 @@ export const InputBaseInput = styled('input', {
     };
   }),
 );
-
-const InputGlobalStyles = globalCss({
-  // Keep keyframes non-empty for Emotion production builds. Animation properties are ignored
-  // inside keyframes, avoiding the visible display animation triggered by Chrome 117+.
-  [`@keyframes ${MUI_AUTO_FILL}`]: { from: { animationName: MUI_AUTO_FILL } },
-  [`@keyframes ${MUI_AUTO_FILL_CANCEL}`]: { from: { animationName: MUI_AUTO_FILL_CANCEL } },
-});
 
 /**
  * `InputBase` contains as few styles as possible.
@@ -560,80 +559,72 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   inputProps = { ...inputProps, ...slotProps.input };
 
   return (
-    <React.Fragment>
-      {!disableInjectingGlobalStyles && typeof InputGlobalStyles === 'function' && (
-        // For Emotion/Styled-components, InputGlobalStyles will be a function
-        // For Pigment CSS, this has no effect because the InputGlobalStyles will be null.
-        <InputGlobalStyles />
+    <Root
+      {...rootProps}
+      ref={ref}
+      onClick={handleClick}
+      {...other}
+      {...(!isHostComponent(Root) && {
+        ownerState: { ...ownerState, ...rootProps.ownerState },
+      })}
+      className={clsx(
+        classes.root,
+        {
+          // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
+          'MuiInputBase-readOnly': readOnly,
+        },
+        rootProps.className,
+        className,
       )}
-
-      <Root
-        {...rootProps}
-        ref={ref}
-        onClick={handleClick}
-        {...other}
-        {...(!isHostComponent(Root) && {
-          ownerState: { ...ownerState, ...rootProps.ownerState },
-        })}
-        className={clsx(
-          classes.root,
-          {
-            // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
-            'MuiInputBase-readOnly': readOnly,
-          },
-          rootProps.className,
-          className,
-        )}
-      >
-        {startAdornment}
-        <FormControlContext.Provider value={null}>
-          <Input
-            aria-invalid={fcs.error}
-            aria-describedby={ariaDescribedby}
-            aria-label={ariaLabel}
-            autoComplete={autoComplete}
-            autoFocus={autoFocus}
-            defaultValue={defaultValue}
-            disabled={fcs.disabled}
-            id={id}
-            onAnimationStart={handleAutoFill}
-            name={name}
-            placeholder={placeholder}
-            readOnly={readOnly}
-            required={fcs.required}
-            rows={rows}
-            value={value}
-            onKeyDown={onKeyDown}
-            onKeyUp={onKeyUp}
-            type={type}
-            {...inputProps}
-            {...(!isHostComponent(Input) && {
-              as: InputComponent,
-              ownerState: { ...ownerState, ...inputProps.ownerState },
-            })}
-            ref={handleInputRef}
-            className={clsx(
-              classes.input,
-              {
-                // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
-                'MuiInputBase-readOnly': readOnly,
-              },
-              inputProps.className,
-            )}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            onFocus={handleFocus}
-          />
-        </FormControlContext.Provider>
-        {endAdornment}
-        {renderSuffix
-          ? renderSuffix({
-              ...fcs,
-              startAdornment,
-            })
-          : null}
-      </Root>
-    </React.Fragment>
+    >
+      {startAdornment}
+      <FormControlContext.Provider value={null}>
+        <Input
+          aria-invalid={fcs.error}
+          aria-describedby={ariaDescribedby}
+          aria-label={ariaLabel}
+          autoComplete={autoComplete}
+          autoFocus={autoFocus}
+          defaultValue={defaultValue}
+          disabled={fcs.disabled}
+          id={id}
+          onAnimationStart={handleAutoFill}
+          name={name}
+          placeholder={placeholder}
+          readOnly={readOnly}
+          required={fcs.required}
+          rows={rows}
+          value={value}
+          onKeyDown={onKeyDown}
+          onKeyUp={onKeyUp}
+          type={type}
+          {...inputProps}
+          {...(!isHostComponent(Input) && {
+            as: InputComponent,
+            ownerState: { ...ownerState, ...inputProps.ownerState },
+          })}
+          ref={handleInputRef}
+          className={clsx(
+            classes.input,
+            {
+              // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
+              'MuiInputBase-readOnly': readOnly,
+            },
+            inputProps.className,
+          )}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          onFocus={handleFocus}
+        />
+      </FormControlContext.Provider>
+      {endAdornment}
+      {renderSuffix
+        ? renderSuffix({
+            ...fcs,
+            startAdornment,
+          })
+        : null}
+    </Root>
   );
 });
 
