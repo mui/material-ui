@@ -111,6 +111,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     internalNativeButton: internalNativeButtonProp,
     // private prop to let a parent (like SwitchBase) control its own focus visible style
     internalDisabledThemeFocusVisible = false,
+    // private props to let a parent render its own styled root, created with `styled(ButtonBaseRoot)`,
+    // so the styles of both are serialized together, with the parent's owner state
+    internalRoot: Root = ButtonBaseRoot,
+    internalOwnerState,
     /* eslint-enable react/prop-types */
     LinkComponent = 'a',
     nativeButton: nativeButtonProp,
@@ -254,10 +258,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <ButtonBaseRoot
+    <Root
       as={ComponentProp}
       className={clsx(classes.root, className)}
-      ownerState={ownerState}
+      ownerState={internalOwnerState ? { ...ownerState, ...internalOwnerState } : ownerState}
       onBlur={handlers.onBlur}
       onClick={onClick}
       onContextMenu={handlers.onContextMenu}
@@ -279,7 +283,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       {enableTouchRipple ? (
         <TouchRipple ref={handleRippleRef} center={centerRipple} {...TouchRippleProps} />
       ) : null}
-    </ButtonBaseRoot>
+    </Root>
   );
 });
 
