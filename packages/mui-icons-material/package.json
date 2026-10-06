@@ -47,7 +47,7 @@
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:^",
     "@types/react": "19.3.0",
-    "chalk": "6.0.0",
+    "chalk": "6.0.1",
     "cross-fetch": "4.1.0",
     "es-toolkit": "1.52.0",
     "fast-glob": "3.3.3",
