@@ -41,27 +41,16 @@ TypeScript apps that use Menu v2 require TypeScript 5.0 or later. Apps that use 
 
 ## Why a new menu component
 
-Submenus are [one of the most requested Menu features since 2018](https://github.com/mui/material-ui/issues/11723), but the current Menu can't support them. Each open menu is a full `Modal`, and nested modals break the backdrop, the focus traps, the arrow keys, and the accessibility tree.
+Submenus are [one of the most requested Menu features since 2018](https://github.com/mui/material-ui/issues/11723), but the current modal-based Menu can't support them. Menu v2 uses [Base UI](https://base-ui.com/react/components/menu) to provide more menu building blocks and improve keyboard and screen reader support:
 
-Menu v2 uses [Base UI](https://base-ui.com/react/components/menu) for this behavior. Material UI supplies the visuals, the theming, and the API.
+- **Nested menus** coordinate focus and keyboard navigation. Positioning follows the anchor and flips to avoid collisions.
+- **Checkbox and radio items**, labeled groups, and link items provide built-in roles and ARIA attributes.
+- **Disabled items stay focusable**, and content outside the menu remains available to screen readers.
+- **The trigger prop** handles anchor state and ARIA attributes. Opening with a pointer highlights no item; opening with the keyboard highlights the first item.
 
-- **Nothing extra to install.** Base UI is a dependency of `@mui/material`, the same as `@popperjs/core`. You don't import from it, and apps that don't import Menu v2 don't bundle it.
-- **No change to existing code.** The current Menu doesn't change and isn't deprecated. You can adopt Menu v2 one menu at a time.
-- **The same theming.** `sx`, `classes`, `slots`, `slotProps`, and the theme `defaultProps`, `styleOverrides`, and `variants` work with the `MuiMenu2*` keys.
+Material UI supplies the styles and theming. Base UI is included in `@mui/material`; no extra installation is needed, and apps that don't import Menu v2 don't bundle it.
 
-For the full reasoning and a step-by-step guide, see [Upgrade to Menu v2](/material-ui/migration/upgrade-to-menu-v2/).
-
-## Major changes
-
-Menu v2 adds submenus, checkbox and radio items, groups with labels, link items, typeahead on each level, and positioning that flips on collision and follows the anchor. The trigger is part of the component, so you don't manage anchor state or ARIA attributes.
-
-Three changes are important before you start:
-
-- **Opening with a pointer highlights no item**, so Enter can't activate an item that the user didn't choose. Opening with the keyboard highlights the first item. `variant="selectedMenu"` is removed. Use radio items to show a current value.
-- **`onClose` becomes `onOpenChange`**, and `side` and `align` replace `anchorOrigin` and `transformOrigin`.
-- **Disabled items stay focusable**, and the content next to the menu stays in the accessibility tree, as the [WAI-ARIA menu pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/) specifies.
-
-[Upgrade to Menu v2](/material-ui/migration/upgrade-to-menu-v2/) covers every prop mapping, the removed props, and all the behavior changes.
+See [Upgrade to Menu v2](/material-ui/migration/upgrade-to-menu-v2/) for the architecture, prop mappings, and behavior changes.
 
 ## Basic menu
 
