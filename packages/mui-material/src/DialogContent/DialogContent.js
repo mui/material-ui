@@ -36,8 +36,6 @@ const DialogContentRoot = styled('div', {
     overflowY: 'auto',
     padding: '20px 24px',
     ...(theme.focusVisible && {
-      // Browsers make a scrollable region keyboard-focusable, so it needs the ring.
-      // It insets: the Dialog paper scrolls and would clip an outset ring.
       '&:focus-visible': {
         ...applyInsetFocusVisible(1),
         ...theme.focusVisible,

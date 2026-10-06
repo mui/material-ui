@@ -72,6 +72,12 @@ const theme = createTheme({
 
 const noop = () => {};
 
+const dialogParagraphs = Array.from(
+  { length: 40 },
+  (_, index) =>
+    `Paragraph ${index + 1}. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.`,
+);
+
 function Row({ label, secondary, children }) {
   return (
     <React.Fragment>
@@ -338,18 +344,20 @@ export default function FullFocusVisibleDemo() {
             <Dialog
               open={dialogOpen}
               onClose={handleDialogClose}
+              scroll="paper"
               aria-labelledby="fv-dialog-title"
-              aria-describedby="fv-dialog-description"
             >
-              <DialogTitle id="fv-dialog-title">Discard draft?</DialogTitle>
-              <DialogContent>
-                <DialogContentText id="fv-dialog-description">
-                  Press Tab to move focus between the actions.
-                </DialogContentText>
+              <DialogTitle id="fv-dialog-title">Subscribe</DialogTitle>
+              <DialogContent dividers>
+                {dialogParagraphs.map((paragraph) => (
+                  <DialogContentText key={paragraph} sx={{ mb: 1 }}>
+                    {paragraph}
+                  </DialogContentText>
+                ))}
               </DialogContent>
               <DialogActions>
                 <Button onClick={handleDialogClose}>Cancel</Button>
-                <Button onClick={handleDialogClose}>Discard</Button>
+                <Button onClick={handleDialogClose}>Subscribe</Button>
               </DialogActions>
             </Dialog>
           </Row>
