@@ -325,8 +325,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     }
   }
 
-  const [mounted, setMounted] = React.useState(false);
   const [indicatorStyle, setIndicatorStyle] = React.useState(defaultIndicatorStyle);
+  const mounted = indicatorStyle !== defaultIndicatorStyle;
   const [displayStartScroll, setDisplayStartScroll] = React.useState(false);
   const [displayEndScroll, setDisplayEndScroll] = React.useState(false);
   const [updateScrollObserver, setUpdateScrollObserver] = React.useState(false);
@@ -730,11 +730,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
     return undefined;
   }, [scrollable, scrollButtons, updateScrollObserver, childrenProp?.length]);
-
-  React.useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMounted(true);
-  }, []);
 
   React.useEffect(() => {
     updateIndicatorState();
