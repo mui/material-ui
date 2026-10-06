@@ -232,21 +232,27 @@ describe('e2e', () => {
           await page.getByRole('checkbox', { name: 'Focus ring' }).setChecked(focusVisible);
           await page.getByRole('button', { name: 'Options' }).click();
           const trigger = page.getByRole('menuitem', { name: 'More', exact: true });
+          const popup = page.getByTestId('submenu-popup');
           const idleColors = await trigger.evaluate((element) => {
             const style = getComputedStyle(element);
             return { color: style.color, backgroundColor: style.backgroundColor };
           });
           await trigger.hover();
           await expect(trigger).toHaveClass(/Mui-open/);
+          await expect(popup).toBeVisible();
           // Move through Base UI's safe-travel pointer blocking without waiting for it to end.
-          await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover({ force: true });
-          await expect(trigger).toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
+          const sibling = page.getByRole('menuitem', { name: 'Plain', exact: true });
+          await sibling.hover({ force: true });
+          await expect(popup).toHaveAttribute('data-ending-style', '');
+          await expect(trigger).toHaveAttribute('aria-expanded', 'false');
           expect(
             await trigger.evaluate((element) => {
               const style = getComputedStyle(element);
               return { color: style.color, backgroundColor: style.backgroundColor };
             }),
           ).toEqual(idleColors);
+          await expect(popup).toBeAttached();
+          await expect(popup).not.toBeAttached();
         });
       });
     });
@@ -257,11 +263,13 @@ describe('e2e', () => {
         await renderFixture('Menu2/SubmenuPointerExit');
         await page.getByRole('button', { name: 'Options' }).click();
         const trigger = page.getByRole('menuitem', { name: 'More', exact: true });
+        const popup = page.getByTestId('submenu-popup');
         await trigger.hover();
         await expect(trigger).toHaveClass(/Mui-open/);
+        await expect(popup).toBeVisible();
         await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover({ force: true });
-        await expect(trigger).not.toHaveClass(/Mui-open/);
-        await expect(trigger).not.toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
+        await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+        await expect(popup).not.toBeAttached();
         await page.getByRole('menuitem', { name: 'Plain', exact: true }).hover();
         await page.keyboard.press('ArrowDown');
         await page.keyboard.press('ArrowRight');
@@ -270,10 +278,13 @@ describe('e2e', () => {
           (element) => getComputedStyle(element).backgroundColor,
         );
         await page.keyboard.press('Escape');
-        await expect(trigger).toHaveClass(/MuiMenu2SubmenuTrigger-closing/);
+        await expect(popup).toHaveAttribute('data-ending-style', '');
+        await expect(trigger).toHaveAttribute('aria-expanded', 'false');
         expect(await trigger.evaluate((element) => getComputedStyle(element).backgroundColor)).toBe(
           openColor,
         );
+        await expect(popup).toBeAttached();
+        await expect(popup).not.toBeAttached();
         await expect(trigger).toBeFocused();
       });
     });
