@@ -293,7 +293,15 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
     // 208 = the paper's 160 plus its own 24px margin either side. The modal
     // centres the paper, so any surplus here becomes dead space inside the
     // measured bounds and pushes the gutters off the card entirely.
-    render: () => (
+    controls: [
+      {
+        prop: 'DialogContent dividers',
+        type: 'select',
+        options: ['false', 'true'],
+        initial: 'false',
+      },
+    ],
+    render: (values) => (
       <Box sx={{ position: 'relative', width: 420, height: 208 }}>
         <Dialog
           open
@@ -317,7 +325,7 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
               <CloseIcon />
             </IconButton>
           </DialogTitle>
-          <DialogContent>
+          <DialogContent dividers={values['DialogContent dividers'] === 'true'}>
             <Typography variant="body2">
               Let apps use your location to find nearby places. You can turn this off
               anytime.

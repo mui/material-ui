@@ -456,7 +456,7 @@ export const DENSITY_ANNOTATIONS = {
       },
     ];
   },
-  Dialog: () => [
+  Dialog: (values) => [
     // `medium` on the left, `small` on the right — one claim per side, each
     // carrying the expression the preset authored for that band.
     {
@@ -486,12 +486,13 @@ export const DENSITY_ANNOTATIONS = {
       token: 'touchTarget',
       label: 'Close button',
     },
-    // Block padding is 0, so the inline pair is the only live one. The spine
-    // crosses at 0.97 — under the text, through the content's blank bottom.
+    // Without dividers the block padding is 0, so the inline pair is the only
+    // live one; with dividers `medium` pads every side. The spine crosses at
+    // 0.97 — under the text, through the content's blank bottom.
     {
       on: '.MuiDialogContent-root',
       aspect: 'padding',
-      axis: 'inline',
+      axis: values['DialogContent dividers'] === 'true' ? 'all' : 'inline',
       token: 'medium',
       label: 'Content',
       // The crossing stays under the text; the label rides up to the row's middle.

@@ -979,7 +979,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(
   addRootOverride(enhanced.components, 'MuiDialogContent', {
     variants: [
       { props: { dividers: false }, style: { padding: `0 ${spacing('medium')}` } },
-      { props: { dividers: true }, style: { padding: `0 ${spacing('medium')}` } },
+      { props: { dividers: true }, style: { padding: spacing('medium') } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiDialogActions', {
