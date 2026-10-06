@@ -344,12 +344,10 @@ export default function createStyled<Theme extends object = DefaultTheme>(
           if (!themeVariants) {
             return null;
           }
-          return processStyleVariants(
-            props,
-            serializeThemeVariants(themeVariants),
-            [],
-            props.theme.modularCssLayers ? 'theme' : undefined,
-          );
+          // With CSS layers, the serialized variant styles get wrapped in place, so they can't be shared.
+          return props.theme.modularCssLayers
+            ? processStyleVariants(props, themeVariants, [], 'theme')
+            : processStyleVariants(props, serializeThemeVariants(themeVariants), []);
         });
       }
 
