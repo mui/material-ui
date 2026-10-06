@@ -7,7 +7,46 @@ import setRef from '../setRef';
 import useEnhancedEffect from '../useEnhancedEffect';
 import useEventCallback from '../useEventCallback';
 import useForkRef from '../useForkRef';
+import useLazyRef from '../useLazyRef';
 import { useRovingTabIndexContext } from './RovingTabIndexContext';
+
+interface ActiveItemStore<Key> {
+  /**
+   * The active item id of the last commit.
+   */
+  activeItemId: Key | null;
+  /**
+   * Listeners by item id, called when that item gains or loses `tabIndex=0`.
+   */
+  listeners: Map<Key, Set<() => void>>;
+}
+
+// Keyed by the root's return value, which is also the value items receive through context.
+const activeItemStores = new WeakMap<object, ActiveItemStore<any>>();
+
+function createActiveItemStore<Key>(activeItemId?: Key | null): ActiveItemStore<Key> {
+  return { activeItemId: activeItemId ?? null, listeners: new Map() };
+}
+
+function subscribeToActiveItem<Key>(
+  store: ActiveItemStore<Key>,
+  itemId: Key,
+  listener: () => void,
+) {
+  let itemListeners = store.listeners.get(itemId);
+  if (!itemListeners) {
+    itemListeners = new Set();
+    store.listeners.set(itemId, itemListeners);
+  }
+  itemListeners.add(listener);
+
+  return () => {
+    itemListeners.delete(listener);
+    if (itemListeners.size === 0 && store.listeners.get(itemId) === itemListeners) {
+      store.listeners.delete(itemId);
+    }
+  };
+}
 
 export interface Item<Key = unknown> {
   /**
@@ -245,6 +284,24 @@ export function useRovingTabIndexRoot<Key = unknown>(
   const activeItemIdRef = React.useRef<Key | null>(resolvedActiveItemId);
   activeItemIdRef.current = resolvedActiveItemId;
 
+  const activeItemStore = useLazyRef(createActiveItemStore<Key>, resolvedActiveItemId).current;
+
+  useEnhancedEffect(() => {
+    const previousActiveItemId = activeItemStore.activeItemId;
+
+    if (previousActiveItemId === resolvedActiveItemId) {
+      return;
+    }
+
+    activeItemStore.activeItemId = resolvedActiveItemId;
+    if (previousActiveItemId !== null) {
+      activeItemStore.listeners.get(previousActiveItemId)?.forEach((listener) => listener());
+    }
+    if (resolvedActiveItemId !== null) {
+      activeItemStore.listeners.get(resolvedActiveItemId)?.forEach((listener) => listener());
+    }
+  }, [activeItemStore, resolvedActiveItemId]);
+
   const getActiveItem = React.useCallback(() => {
     const snapshot = getOrderedItems(itemMapRef.current);
     const resolvedItemId = resolveActiveItemId<Key>(
@@ -426,9 +483,13 @@ export function useRovingTabIndexRoot<Key = unknown>(
     [focusItem],
   );
 
-  return React.useMemo(
-    () => ({
-      activeItemId: resolvedActiveItemId,
+  // The identity doesn't change with the active item, so a new active item doesn't re-render every
+  // item through context. Items subscribe to their own active state in the store instead.
+  return React.useMemo(() => {
+    const rovingTabIndex = {
+      get activeItemId() {
+        return activeItemIdRef.current;
+      },
       focusNext,
       getActiveItem,
       getContainerProps,
@@ -437,26 +498,41 @@ export function useRovingTabIndexRoot<Key = unknown>(
       registerItem,
       setActiveItemId,
       unregisterItem,
-    }),
-    [
-      resolvedActiveItemId,
-      focusNext,
-      getActiveItem,
-      getContainerProps,
-      getItemMap,
-      isItemActive,
-      registerItem,
-      setActiveItemId,
-      unregisterItem,
-    ],
-  );
+    };
+    activeItemStores.set(rovingTabIndex, activeItemStore);
+    return rovingTabIndex;
+  }, [
+    activeItemStore,
+    focusNext,
+    getActiveItem,
+    getContainerProps,
+    getItemMap,
+    isItemActive,
+    registerItem,
+    setActiveItemId,
+    unregisterItem,
+  ]);
 }
 
 export function useRovingTabIndexItem<Key = unknown>(
   params: UseRovingTabIndexItemParams<Key>,
 ): UseRovingTabIndexItemReturnValue {
   const rootContext = useRovingTabIndexContext();
-  const { activeItemId, registerItem, unregisterItem } = rootContext;
+  const { registerItem, unregisterItem } = rootContext;
+  const activeItemStore = activeItemStores.get(rootContext);
+  const [isActive, setIsActive] = React.useState(() => activeItemStore?.activeItemId === params.id);
+
+  useEnhancedEffect(() => {
+    if (!activeItemStore) {
+      return undefined;
+    }
+    const update = () => {
+      setIsActive(activeItemStore.activeItemId === params.id);
+    };
+    // The active item may have changed between this item's render and its subscription.
+    update();
+    return subscribeToActiveItem(activeItemStore, params.id, update);
+  }, [activeItemStore, params.id]);
   const elementRef = React.useRef<HTMLElement | null>(null);
   const item = React.useMemo(
     () => ({
@@ -529,7 +605,8 @@ export function useRovingTabIndexItem<Key = unknown>(
 
   return {
     ref: mergedRef,
-    tabIndex: activeItemId === params.id ? 0 : -1,
+    // A context value that doesn't come from `useRovingTabIndexRoot` has no store.
+    tabIndex: (activeItemStore ? isActive : rootContext.activeItemId === params.id) ? 0 : -1,
   };
 }
 
