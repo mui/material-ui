@@ -1,7 +1,6 @@
 {
   "name": "docs",
   "private": true,
-  "license": "MIT",
   "scripts": {
     "build": "rimraf ./export && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=8192 next build --webpack && pnpm link-check",
     "build:turbopack": "rimraf ./export && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=8192 next build --turbopack",
@@ -95,8 +94,7 @@
     "semver": "^7.8.5",
     "styled-components": "^6.5.3",
     "stylis": "catalog:docs",
-    "use-count-up": "^3.0.1",
-    "webpack-bundle-analyzer": "^5.3.3"
+    "use-count-up": "^3.0.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "7.29.7",
