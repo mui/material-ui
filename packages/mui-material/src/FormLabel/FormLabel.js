@@ -98,7 +98,8 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     required,
     /* eslint-disable react/prop-types */
     // private props to let a parent render its own styled root, created with `styled(FormLabelRoot)`,
-    // so the styles of both are serialized together, with the parent's owner state
+    // so the styles of both are serialized together. The parent's owner state takes precedence over
+    // an `ownerState` prop it forwards, as with a styled wrapper.
     internalRoot: Root = FormLabelRoot,
     internalOwnerState,
     /* eslint-enable react/prop-types */
@@ -126,10 +127,11 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   return (
     <Root
       as={component}
-      ownerState={internalOwnerState ? { ...ownerState, ...internalOwnerState } : ownerState}
+      ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
+      {...(internalOwnerState && { ownerState: { ...ownerState, ...internalOwnerState } })}
     >
       {children}
       {fcs.required && (
