@@ -165,6 +165,7 @@ function Menu2RadioItemRootSlot(props: Menu2RadioItemRootSlotProps) {
   const { checkedIcon, icon, ownerState, slotProps, slots } = props;
   const [IndicatorSlot, { keepMounted = true, ...indicatorProps }] = useSlot('indicator', {
     elementType: Menu2RadioItemIndicator,
+    shouldForwardComponentProp: !slots?.indicator,
     externalForwardedProps: { slots, slotProps },
     ownerState,
     className: clsx(

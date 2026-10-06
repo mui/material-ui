@@ -183,6 +183,7 @@ function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
   const { checkedIcon, icon, ownerState, slotProps, slots } = props;
   const [IndicatorSlot, { keepMounted = true, ...indicatorProps }] = useSlot('indicator', {
     elementType: Menu2CheckboxItemIndicator,
+    shouldForwardComponentProp: !slots?.indicator,
     externalForwardedProps: { slots, slotProps },
     ownerState,
     className: clsx(

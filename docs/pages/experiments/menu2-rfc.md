@@ -74,7 +74,7 @@ import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 ```
 
-The classic `Menu` keeps its API. Classic and successor items share `MenuItemBase` and the focus and hover styles. Menu2 popups and indicators also share styled bases. The bases have no theme key; each public component owns its slot overrides. The experiment also adds a `defaultMuiPrevented` check to `useButtonBase`, so Base UI can own Enter and Space activation without ButtonBase activating the item again.
+The classic `Menu` keeps its API. Classic and successor items share `MenuItemBase` and the focus and hover styles. Menu2 popups and indicators also share styled bases. The bases have no theme key; each public component owns its slot overrides. Default checkbox and radio indicators use `ListItemIcon`, so icon-column selectors also apply to them. The experiment also adds a `defaultMuiPrevented` check to `useButtonBase`, so Base UI can own Enter and Space activation without ButtonBase activating the item again.
 
 ### Rules for Base UI-backed components (Menu is the first)
 

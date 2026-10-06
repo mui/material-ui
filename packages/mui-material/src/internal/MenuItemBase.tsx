@@ -69,7 +69,9 @@ const MenuItemBase = styled(ButtonBase, {
       [`& .${listItemTextClasses.inset}`]: {
         paddingLeft: 36,
       },
-      [`& .${listItemIconClasses.root}`]: {
+      // Selection indicators set their own column width so their slot overrides
+      // do not need to compete with this descendant selector.
+      [`& .${listItemIconClasses.root}:not(:where([data-mui-menu-indicator]))`]: {
         minWidth: 36,
       },
       variants: [

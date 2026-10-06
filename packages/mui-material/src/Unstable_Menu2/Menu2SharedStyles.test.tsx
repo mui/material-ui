@@ -186,6 +186,53 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
         });
       });
 
+      it('applies ListItemIcon theme colors according to the CSS layer order', () => {
+        const iconColor = 'rgb(123, 45, 67)';
+        const theme = createTheme({
+          modularCssLayers,
+          components: {
+            MuiListItemIcon: { styleOverrides: { root: { color: iconColor } } },
+          },
+        });
+        render(
+          <StyledEngineProvider enableCssLayer={modularCssLayers}>
+            <ThemeProvider theme={theme}>
+              <Menu2 defaultOpen modal={false} anchor={document.body} slots={{ transition: null }}>
+                {[true, false].map((checked) => (
+                  <Menu2CheckboxItem
+                    key={String(checked)}
+                    defaultChecked={checked}
+                    slotProps={{ indicator: { 'data-testid': `checkbox-${checked}` } }}
+                  >
+                    Checkbox
+                  </Menu2CheckboxItem>
+                ))}
+                <Menu2RadioGroup defaultValue="true">
+                  {[true, false].map((checked) => (
+                    <Menu2RadioItem
+                      key={String(checked)}
+                      value={String(checked)}
+                      slotProps={{ indicator: { 'data-testid': `radio-${checked}` } }}
+                    >
+                      Radio
+                    </Menu2RadioItem>
+                  ))}
+                </Menu2RadioGroup>
+              </Menu2>
+            </ThemeProvider>
+          </StyledEngineProvider>,
+        );
+
+        ['checkbox', 'radio'].forEach((kind) => {
+          expect(getComputedStyle(screen.getByTestId(`${kind}-true`)).color).to.equal(
+            modularCssLayers ? iconColor : 'rgb(25, 118, 210)',
+          );
+          expect(getComputedStyle(screen.getByTestId(`${kind}-false`)).color).to.equal(
+            modularCssLayers ? iconColor : 'rgba(0, 0, 0, 0.6)',
+          );
+        });
+      });
+
       (['default', 'theme', 'sx'] as const).forEach((source) => {
         it(`applies indicator styles from ${source}`, () => {
           const theme = createTheme({

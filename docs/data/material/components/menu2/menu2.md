@@ -297,6 +297,8 @@ Use class selectors inside a slot override for states such as `highlighted`, `ch
 
 Use `slotProps.indicator` to customize an indicator, or `slots.indicator` to replace it. Slot callbacks receive the live checked, disabled, and highlighted state. A custom indicator must forward the supplied props and ref to its element, including the `className` with the state classes.
 
+The default indicators use `ListItemIcon`, so `.MuiListItemIcon-root` selectors apply to both indicators and decorative icons. Each item still has its own theme key. With modular CSS layers, `MuiListItemIcon` theme overrides take precedence over the default indicator colors. Use the item's `styleOverrides.indicator` or `slotProps.indicator.sx` to set indicator-specific colors.
+
 The default indicator components are internal. Their class objects are exported from the owning item:
 
 ```jsx

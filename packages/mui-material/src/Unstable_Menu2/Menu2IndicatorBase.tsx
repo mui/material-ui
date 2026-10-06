@@ -1,4 +1,6 @@
 'use client';
+import * as React from 'react';
+import ListItemIcon, { ListItemIconProps } from '../ListItemIcon';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { SlotProps } from '../utils/types';
@@ -18,16 +20,26 @@ export type Menu2IndicatorSlotProps<OwnerState> = SlotProps<
   OwnerState
 >;
 
-// The slot keeps these styles below theme overrides in the CSS layer order.
+interface IndicatorProps extends ListItemIconProps {
+  component?: React.ElementType | undefined;
+}
+
+// Pass the element override through ListItemIcon, not through styled(), so its
+// classes and theme styles also apply when the indicator uses another element.
+const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>(function Indicator(
+  { component = 'span', ...props },
+  ref,
+) {
+  const iconProps = { ...props, as: component };
+  return <ListItemIcon {...iconProps} ref={ref} data-mui-menu-indicator="" />;
+});
+
 // Each item supplies the theme overrides for its indicator slot.
-const Menu2IndicatorBase = styled('span', { slot: 'root' })(
+const Menu2IndicatorBase = styled(Indicator, { slot: 'root' })(
   memoTheme(({ theme }) => ({
-    display: 'inline-flex',
     alignItems: 'center',
     // Match MenuItemBase's fixed ListItemIcon column and ListItemText inset.
     minWidth: 36,
-    // Keep custom icons inside their column when the label needs more space.
-    flexShrink: 0,
     // Match Checkbox and Radio colors, not the color of a decorative ListItemIcon.
     color: (theme.vars || theme).palette.text.secondary,
     '&[data-checked]': {

@@ -6,9 +6,10 @@ import { StyleSheetManager } from 'styled-components';
 import rtlPlugin from '@mui/stylis-plugin-rtl';
 import FormatPaintIcon from '@mui/icons-material/FormatPaint';
 import Box from '@mui/material/Box';
-import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemIcon, { listItemIconClasses } from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Menu2 from '@mui/material/Unstable_Menu2';
+import type {} from '@mui/material/Unstable_Menu2/themeAugmentation';
 import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
@@ -122,14 +123,93 @@ function MixedMenu({ direction, dense }: MixedMenuProps) {
   return menu;
 }
 
+const wideIconColumnStyles = { [`& .${listItemIconClasses.root}`]: { minWidth: 56 } };
+
+function WideIconColumnMenu({ direction }: Pick<MixedMenuProps, 'direction'>) {
+  const [anchor, setAnchor] = React.useState<HTMLDivElement | null>(null);
+  const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        direction,
+        components: {
+          MuiMenu2Item: { styleOverrides: { root: wideIconColumnStyles } },
+          MuiMenu2CheckboxItem: { styleOverrides: { root: wideIconColumnStyles } },
+          MuiMenu2RadioItem: { styleOverrides: { root: wideIconColumnStyles } },
+          MuiMenu2SubmenuTrigger: { styleOverrides: { root: wideIconColumnStyles } },
+        },
+      }),
+    [direction],
+  );
+
+  const menu = (
+    <ThemeProvider theme={theme}>
+      <Box ref={setContainer} dir={direction} sx={{ width: 240, height: 220 }}>
+        <Box ref={setAnchor} sx={{ mx: '8px', pt: '8px', width: 224, typography: 'caption' }}>
+          {direction.toUpperCase()} / 56 px icon column
+        </Box>
+        <Menu2
+          open={Boolean(anchor && container)}
+          anchor={anchor}
+          container={container}
+          modal={false}
+          sideOffset={8}
+          slots={{ transition: null }}
+          slotProps={{ paper: { sx: { width: 224 } } }}
+        >
+          <Menu2Item>
+            <ListItemIcon>
+              <FormatPaintIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>Paint format</ListItemText>
+          </Menu2Item>
+          <Menu2CheckboxItem defaultChecked>
+            <ListItemText>Show labels</ListItemText>
+          </Menu2CheckboxItem>
+          <Menu2RadioGroup defaultValue="list">
+            <Menu2RadioItem value="list">
+              <ListItemText>List view</ListItemText>
+            </Menu2RadioItem>
+          </Menu2RadioGroup>
+          <Menu2Submenu
+            trigger={
+              <Menu2SubmenuTrigger>
+                <ListItemIcon>
+                  <FormatPaintIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>More layouts</ListItemText>
+              </Menu2SubmenuTrigger>
+            }
+          >
+            <Menu2Item>Compact layout</Menu2Item>
+          </Menu2Submenu>
+        </Menu2>
+      </Box>
+    </ThemeProvider>
+  );
+
+  if (direction === 'rtl') {
+    return (
+      <StyleSheetManager stylisPlugins={[rtlPlugin]}>
+        <CacheProvider value={cacheRtl}>{menu}</CacheProvider>
+      </StyleSheetManager>
+    );
+  }
+
+  return menu;
+}
+
 export default function ItemAlignment() {
   return (
-    <Box sx={{ display: 'flex', width: 960 }}>
+    <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4, 240px)', width: 960 }}>
       {(['ltr', 'rtl'] as const).flatMap((direction) =>
         [false, true].map((dense) => (
           <MixedMenu key={`${direction}-${dense}`} direction={direction} dense={dense} />
         )),
       )}
+      {(['ltr', 'rtl'] as const).map((direction) => (
+        <WideIconColumnMenu key={`wide-${direction}`} direction={direction} />
+      ))}
     </Box>
   );
 }

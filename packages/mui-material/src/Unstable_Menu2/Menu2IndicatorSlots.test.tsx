@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { describe, expect, it } from 'vitest';
-import { createRenderer, screen, waitFor } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
+import { StyledEngineProvider } from '@mui/styled-engine';
 import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
+import ListItemIcon, { listItemIconClasses } from '@mui/material/ListItemIcon';
 import Menu2CheckboxItem, {
   getMenu2CheckboxItemIndicatorUtilityClass,
   menu2CheckboxItemClasses,
@@ -139,6 +141,9 @@ describe('Menu2 indicator slots', () => {
           const target = screen.getByTestId('indicator');
           expect(ref.current).to.equal(target);
           expect(target.tagName).to.equal(indicator === 'i' ? 'I' : 'SPAN');
+          if (slotName === 'default') {
+            expect(target).to.have.class(listItemIconClasses.root);
+          }
           [
             classes.root,
             classes.checked,
@@ -166,7 +171,70 @@ describe('Menu2 indicator slots', () => {
 
       it('supports a component override on the default slot', () => {
         renderItem({ indicatorProps: { component: 'i', 'data-testid': 'indicator' } });
-        expect(screen.getByTestId('indicator').tagName).to.equal('I');
+        const indicator = screen.getByTestId('indicator');
+        expect(indicator.tagName).to.equal('I');
+        expect(indicator).to.have.class(listItemIconClasses.root);
+      });
+
+      it('supports a component override on a custom styled slot', () => {
+        renderItem({
+          indicator: CustomIndicator,
+          indicatorProps: { component: 'i', 'data-testid': 'indicator' },
+        });
+        const indicator = screen.getByTestId('indicator');
+        expect(indicator.tagName).to.equal('I');
+        expect(indicator).not.to.have.attribute('component');
+        expect(indicator).not.to.have.attribute('data-mui-menu-indicator');
+      });
+
+      [false, true].forEach((modularCssLayers) => {
+        it.skipIf(isJsdom())(
+          `shares ListItemIcon styling (modularCssLayers: ${modularCssLayers})`,
+          () => {
+            const iconColumnStyles = { [`& .${listItemIconClasses.root}`]: { minWidth: 48 } };
+            const theme = createTheme({
+              modularCssLayers,
+              components: {
+                MuiListItemIcon: {
+                  styleOverrides: { root: { paddingRight: 11 } },
+                },
+                MuiMenu2Item: {
+                  styleOverrides: { root: iconColumnStyles },
+                },
+                [name]: {
+                  styleOverrides: { root: iconColumnStyles },
+                },
+              },
+            });
+            render(
+              <StyledEngineProvider enableCssLayer={modularCssLayers}>
+                <ThemeProvider theme={theme}>
+                  <Menu2
+                    defaultOpen
+                    modal={false}
+                    anchor={document.body}
+                    slots={{ transition: null }}
+                  >
+                    <Menu2Item>
+                      <ListItemIcon data-testid="decorative-icon">
+                        <svg width={20} height={20} aria-hidden="true" />
+                      </ListItemIcon>
+                      Action
+                    </Menu2Item>
+                    {createItem({ indicatorProps: { 'data-testid': 'indicator' } })}
+                  </Menu2>
+                </ThemeProvider>
+              </StyledEngineProvider>,
+            );
+
+            ['decorative-icon', 'indicator'].forEach((id) => {
+              const icon = screen.getByTestId(id);
+              expect(icon).to.have.class(listItemIconClasses.root);
+              expect(getComputedStyle(icon).minWidth).to.equal('48px');
+              expect(getComputedStyle(icon).paddingRight).to.equal('11px');
+            });
+          },
+        );
       });
 
       [false, true].forEach((overrideThemeIcons) => {
