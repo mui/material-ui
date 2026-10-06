@@ -119,7 +119,7 @@ describe('<Autocomplete />', () => {
       slots: {
         chip: {},
       },
-      only: ['slotPropsProp'],
+      only: ['slotPropsProp', 'slotPropsCallback'],
     }),
   );
 

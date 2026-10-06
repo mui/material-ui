@@ -6,6 +6,7 @@ import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import useForcedRerendering from '@mui/utils/useForcedRerendering';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
@@ -715,7 +716,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
               label={resolved === null ? '' : getOptionLabel(resolved.option)}
               size={size}
               {...customItemProps}
-              {...externalForwardedProps.slotProps.chip}
+              {...resolveComponentProps(externalForwardedProps.slotProps.chip, ownerState)}
             />
           );
         });
