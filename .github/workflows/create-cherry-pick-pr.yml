@@ -6,6 +6,16 @@ on:
       - 'v*.x'
       - 'master'
     types: ['closed']
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'The merged PR to cherry-pick'
+        required: true
+        type: string
+      target_branch:
+        description: 'The branch to cherry-pick onto (e.g. `v7.x`)'
+        required: true
+        type: string
 
 permissions: {}
 
@@ -16,3 +26,6 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+    with:
+      pr_number: ${{ inputs.pr_number }}
+      target_branch: ${{ inputs.target_branch }}
