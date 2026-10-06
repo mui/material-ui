@@ -8,16 +8,16 @@ import Typography from '@mui/material/Typography';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import Menu2 from '@mui/material/Unstable_Menu2';
-import Menu2Item from '@mui/material/Unstable_Menu2Item';
-import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
+import Menu from '@mui/material/Unstable_Menu2';
+import MenuItem from '@mui/material/Unstable_Menu2Item';
+import MenuSeparator from '@mui/material/Unstable_Menu2Separator';
 
 export default function AccountMenu2() {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
       <Typography sx={{ minWidth: 100 }}>Contact</Typography>
       <Typography sx={{ minWidth: 100 }}>Profile</Typography>
-      <Menu2
+      <Menu
         align="end"
         sideOffset={4}
         trigger={
@@ -35,32 +35,32 @@ export default function AccountMenu2() {
           },
         }}
       >
-        <Menu2Item>
+        <MenuItem>
           <Avatar /> Profile
-        </Menu2Item>
-        <Menu2Item>
+        </MenuItem>
+        <MenuItem>
           <Avatar /> My account
-        </Menu2Item>
-        <Menu2Separator />
-        <Menu2Item>
+        </MenuItem>
+        <MenuSeparator />
+        <MenuItem>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
           Add another account
-        </Menu2Item>
-        <Menu2Item>
+        </MenuItem>
+        <MenuItem>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
           Settings
-        </Menu2Item>
-        <Menu2Item>
+        </MenuItem>
+        <MenuItem>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
           Logout
-        </Menu2Item>
-      </Menu2>
+        </MenuItem>
+      </Menu>
     </Box>
   );
 }

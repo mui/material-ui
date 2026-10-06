@@ -3,8 +3,8 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import Menu2 from '@mui/material/Unstable_Menu2';
-import Menu2Item from '@mui/material/Unstable_Menu2Item';
+import Menu from '@mui/material/Unstable_Menu2';
+import MenuItem from '@mui/material/Unstable_Menu2Item';
 
 export default function ControlledMenu2() {
   const [open, setOpen] = React.useState(false);
@@ -12,7 +12,7 @@ export default function ControlledMenu2() {
 
   return (
     <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
-      <Menu2
+      <Menu
         open={open}
         onOpenChange={(nextOpen, eventDetails) => {
           setOpen(nextOpen);
@@ -24,10 +24,10 @@ export default function ControlledMenu2() {
           </IconButton>
         }
       >
-        <Menu2Item>Rename</Menu2Item>
-        <Menu2Item>Duplicate</Menu2Item>
-        <Menu2Item>Delete</Menu2Item>
-      </Menu2>
+        <MenuItem>Rename</MenuItem>
+        <MenuItem>Duplicate</MenuItem>
+        <MenuItem>Delete</MenuItem>
+      </Menu>
       <Typography variant="body2" sx={{ color: 'text.secondary' }}>
         {reason === null
           ? 'Open the menu, then close it.'

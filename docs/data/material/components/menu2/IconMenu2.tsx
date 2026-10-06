@@ -7,9 +7,9 @@ import Cloud from '@mui/icons-material/Cloud';
 import ContentCopy from '@mui/icons-material/ContentCopy';
 import ContentCut from '@mui/icons-material/ContentCut';
 import ContentPaste from '@mui/icons-material/ContentPaste';
-import Menu2 from '@mui/material/Unstable_Menu2';
-import Menu2Item from '@mui/material/Unstable_Menu2Item';
-import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
+import Menu from '@mui/material/Unstable_Menu2';
+import MenuItem from '@mui/material/Unstable_Menu2Item';
+import MenuSeparator from '@mui/material/Unstable_Menu2Separator';
 
 function Shortcut({ children }: { children: React.ReactNode }) {
   return (
@@ -21,38 +21,38 @@ function Shortcut({ children }: { children: React.ReactNode }) {
 
 export default function IconMenu2() {
   return (
-    <Menu2
+    <Menu
       trigger={<Button>Edit</Button>}
       slotProps={{ paper: { sx: { width: 320 } } }}
     >
-      <Menu2Item>
+      <MenuItem>
         <ListItemIcon>
           <ContentCut fontSize="small" />
         </ListItemIcon>
         <ListItemText>Cut</ListItemText>
         <Shortcut>⌘X</Shortcut>
-      </Menu2Item>
-      <Menu2Item>
+      </MenuItem>
+      <MenuItem>
         <ListItemIcon>
           <ContentCopy fontSize="small" />
         </ListItemIcon>
         <ListItemText>Copy</ListItemText>
         <Shortcut>⌘C</Shortcut>
-      </Menu2Item>
-      <Menu2Item>
+      </MenuItem>
+      <MenuItem>
         <ListItemIcon>
           <ContentPaste fontSize="small" />
         </ListItemIcon>
         <ListItemText>Paste</ListItemText>
         <Shortcut>⌘V</Shortcut>
-      </Menu2Item>
-      <Menu2Separator />
-      <Menu2Item>
+      </MenuItem>
+      <MenuSeparator />
+      <MenuItem>
         <ListItemIcon>
           <Cloud fontSize="small" />
         </ListItemIcon>
         <ListItemText>Web clipboard</ListItemText>
-      </Menu2Item>
-    </Menu2>
+      </MenuItem>
+    </Menu>
   );
 }

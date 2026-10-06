@@ -5,12 +5,12 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 import EditIcon from '@mui/icons-material/Edit';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import Menu2 from '@mui/material/Unstable_Menu2';
-import Menu2Item from '@mui/material/Unstable_Menu2Item';
-import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
+import Menu from '@mui/material/Unstable_Menu2';
+import MenuItem from '@mui/material/Unstable_Menu2Item';
+import MenuSeparator from '@mui/material/Unstable_Menu2Separator';
 
-const StyledMenu2 = styled((props) => (
-  <Menu2 elevation={0} align="end" sideOffset={8} {...props} />
+const StyledMenu = styled((props) => (
+  <Menu elevation={0} align="end" sideOffset={8} {...props} />
 ))(({ theme }) => ({
   '& .MuiPaper-root': {
     borderRadius: 6,
@@ -35,7 +35,7 @@ const StyledMenu2 = styled((props) => (
 
 export default function CustomizedMenu2() {
   return (
-    <StyledMenu2
+    <StyledMenu
       trigger={
         <Button
           variant="contained"
@@ -46,19 +46,19 @@ export default function CustomizedMenu2() {
         </Button>
       }
     >
-      <Menu2Item>
+      <MenuItem>
         <EditIcon />
         Edit
-      </Menu2Item>
-      <Menu2Item>
+      </MenuItem>
+      <MenuItem>
         <FileCopyIcon />
         Duplicate
-      </Menu2Item>
-      <Menu2Separator />
-      <Menu2Item>
+      </MenuItem>
+      <MenuSeparator />
+      <MenuItem>
         <ArchiveIcon />
         Archive
-      </Menu2Item>
-    </StyledMenu2>
+      </MenuItem>
+    </StyledMenu>
   );
 }

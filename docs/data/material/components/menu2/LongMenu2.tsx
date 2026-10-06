@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import Menu2 from '@mui/material/Unstable_Menu2';
-import Menu2Item from '@mui/material/Unstable_Menu2Item';
+import Menu from '@mui/material/Unstable_Menu2';
+import MenuItem from '@mui/material/Unstable_Menu2Item';
 
 const countries = [
   'Argentina',
@@ -40,7 +40,7 @@ const countries = [
 
 export default function LongMenu2() {
   return (
-    <Menu2
+    <Menu
       trigger={<Button>Country</Button>}
       slotProps={{
         paper: { sx: { maxHeight: 320, width: 240 } },
@@ -48,8 +48,8 @@ export default function LongMenu2() {
       }}
     >
       {countries.map((country) => (
-        <Menu2Item key={country}>{country}</Menu2Item>
+        <MenuItem key={country}>{country}</MenuItem>
       ))}
-    </Menu2>
+    </Menu>
   );
 }

@@ -1,4 +1,4 @@
-<Menu2
+<Menu
   trigger={<Button>Country</Button>}
   slotProps={{
     paper: { sx: { maxHeight: 320, width: 240 } },
@@ -6,6 +6,6 @@
   }}
 >
   {countries.map((country) => (
-    <Menu2Item key={country}>{country}</Menu2Item>
+    <MenuItem key={country}>{country}</MenuItem>
   ))}
-</Menu2>
+</Menu>

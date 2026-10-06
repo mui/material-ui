@@ -23,7 +23,7 @@ The [current Menu](/material-ui/react-menu/) doesn't change, and both components
 
 Menu v2 is a set of components that compose into a menu:
 
-- **Menu 2**: the trigger and the menu surface. One component configures both.
+- **Menu**: the trigger and the menu surface. One component configures both.
 - **Item**: an option for users to select.
 - **Link Item**: an item that navigates.
 - **Checkbox Item**, **Radio Group**, and **Radio Item**: items with a checked state.
@@ -31,11 +31,11 @@ Menu v2 is a set of components that compose into a menu:
 - **Group**, **Group Label**, and **Separator**: the structure in a menu.
 
 ```jsx
-import Menu2 from '@mui/material/Unstable_Menu2';
-import Menu2Item from '@mui/material/Unstable_Menu2Item';
+import Menu from '@mui/material/Unstable_Menu2';
+import MenuItem from '@mui/material/Unstable_Menu2Item';
 ```
 
-Each component is the default export of its own subpath.
+Each component is the default export of its own subpath. These examples use local names such as `Menu` and `MenuItem` for the components imported from `Unstable_Menu2` subpaths. The import paths, theme keys, and CSS classes keep their `Menu2` names.
 
 TypeScript apps that use Menu v2 require TypeScript 5.0 or later. Apps that use only existing Material UI components can continue to use TypeScript 4.9.
 
@@ -72,11 +72,11 @@ Pass the element that opens the menu to the `trigger` prop, and the items as chi
 Menu v2 merges the trigger behavior into the element, so the element keeps the component that you passed. There's no default trigger:
 
 ```jsx
-<Menu2 trigger={<Button>Dashboard</Button>}>
+<Menu trigger={<Button>Dashboard</Button>}>
 ```
 
 ```jsx
-<Menu2 trigger={<IconButton aria-label="More actions"><MoreVertIcon /></IconButton>}>
+<Menu trigger={<IconButton aria-label="More actions"><MoreVertIcon /></IconButton>}>
 ```
 
 Two rules apply to the trigger element:
@@ -94,27 +94,27 @@ The trigger can be a composed element, such as an `IconButton` in a `Tooltip`. `
 
 ## Submenu
 
-Nest a `Menu2Submenu` in the item list, and pass a `Menu2SubmenuTrigger` to its `trigger` prop. The children of the submenu are its items, the same shape as the root menu one level down.
+Nest a `MenuSubmenu` in the item list, and pass a `MenuSubmenuTrigger` to its `trigger` prop. The children of the submenu are its items, the same shape as the root menu one level down.
 
 {{"demo": "SubmenuMenu2.js"}}
 
 A submenu opens on hover after a short delay, on click, and with the ArrowRight key. In right-to-left text, ArrowLeft opens it. A submenu flips when it runs out of room, and submenus nest to any depth. Escape closes the innermost submenu and returns focus to its trigger.
 
-`Menu2SubmenuTrigger` renders the item row and an arrow indicator that follows the text direction. Set the hover behavior on the trigger:
+`MenuSubmenuTrigger` renders the item row and an arrow indicator that follows the text direction. Set the hover behavior on the trigger:
 
 ```jsx
-<Menu2Submenu
+<MenuSubmenu
   trigger={
-    <Menu2SubmenuTrigger delay={300} closeDelay={100}>
+    <MenuSubmenuTrigger delay={300} closeDelay={100}>
       Share
-    </Menu2SubmenuTrigger>
+    </MenuSubmenuTrigger>
   }
 >
 ```
 
-Set `openOnHover={false}` to open the submenu only on click and with the keyboard. Use `slotProps.indicator.children` to replace the arrow, or `slots.indicator` to replace its container. Custom content and components must handle their own RTL direction; Menu2 does not mirror them. Set `slots.indicator` to `null` to omit the indicator and its spacing. Keep another visible cue that the item opens a submenu.
+Set `openOnHover={false}` to open the submenu only on click and with the keyboard. Use `slotProps.indicator.children` to replace the arrow, or `slots.indicator` to replace its container. Custom content and components must handle their own RTL direction; Menu v2 does not mirror them. Set `slots.indicator` to `null` to omit the indicator and its spacing. Keep another visible cue that the item opens a submenu.
 
-By default, Escape closes only the submenu. Pass `closeParentOnEsc` to `Menu2Submenu` to close the whole menu.
+By default, Escape closes only the submenu. Pass `closeParentOnEsc` to `MenuSubmenu` to close the whole menu.
 
 ## Icon menu
 
@@ -132,13 +132,13 @@ Items also accept `disableGutters`, `divider`, and `disabled`, the same as the c
 
 ## Checkbox and radio items
 
-`Menu2CheckboxItem` renders `role="menuitemcheckbox"` with `aria-checked` and its own indicator. You don't add a separate indicator component.
+`MenuCheckboxItem` renders `role="menuitemcheckbox"` with `aria-checked` and its own indicator. You don't add a separate indicator component.
 
 A click on a checkbox item doesn't close the menu, so users can change several options in one visit.
 
 {{"demo": "CheckboxMenu2.js"}}
 
-For a single choice in a set, put `Menu2RadioItem` components in a `Menu2RadioGroup`:
+For a single choice in a set, put `MenuRadioItem` components in a `MenuRadioGroup`:
 
 {{"demo": "RadioMenu2.js"}}
 
@@ -169,7 +169,7 @@ Checkbox items report changes with `onCheckedChange(checked, eventDetails)`. Rad
 Read the new checked state or value from the first argument. The native event is available through `eventDetails.event`. Its target can be a descendant of the item.
 
 :::info
-Menu2 items do not have a `selected` prop. Use checkbox or radio items for checked state.
+Menu v2 items do not have a `selected` prop. Use checkbox or radio items for checked state.
 :::
 
 ## Composed menu
@@ -180,19 +180,19 @@ The parts compose freely. This menu combines checkbox items with shortcut hints,
 
 ## Grouped menu
 
-`Menu2Group` and `Menu2GroupLabel` label a set of related items. The group refers to its label with `aria-labelledby`. Use `Menu2Separator` between groups.
+`MenuGroup` and `MenuGroupLabel` label a set of related items. The group refers to its label with `aria-labelledby`. Use `MenuSeparator` between groups.
 
 {{"demo": "GroupedMenu2.js"}}
 
 ## Link items
 
-`Menu2LinkItem` renders a real anchor with `role="menuitem"`, so links behave like links. Middle click, right click, and keyboard activation all work.
+`MenuLinkItem` renders a real anchor with `role="menuitem"`, so links behave like links. Middle click, right click, and keyboard activation all work.
 
 {{"demo": "LinkItemsMenu2.js"}}
 
 A link item doesn't close the menu on click by default. Set `closeOnClick` to close the menu, for example with client-side routing.
 
-Unlike a classic `MenuItem` with `href`, `Menu2LinkItem` does not support `disabled`.
+Unlike a classic `MenuItem` with `href`, `MenuLinkItem` does not support `disabled`.
 
 ## Positioned menu
 
@@ -221,7 +221,7 @@ Pass `open` and `onOpenChange` to control the open state. The trigger still sets
 `onOpenChange` receives the reason for the change, such as `trigger-press`, `item-press`, `escape-key`, `outside-press`, or `focus-out`, and the native event. Call `eventDetails.cancel()` to prevent the change:
 
 ```jsx
-<Menu2
+<Menu
   trigger={<Button>Options</Button>}
   onOpenChange={(open, eventDetails) => {
     if (!open && eventDetails.reason === 'outside-press') {
@@ -309,17 +309,17 @@ Use `slotProps.indicator` to customize an indicator, or `slots.indicator` to rep
 The default indicator components are internal. Their class objects are exported from the owning item:
 
 ```jsx
-import Menu2CheckboxItem, {
+import MenuCheckboxItem, {
   menu2CheckboxItemIndicatorClasses,
 } from '@mui/material/Unstable_Menu2CheckboxItem';
 
-<Menu2CheckboxItem
+<MenuCheckboxItem
   sx={{
     [`& .${menu2CheckboxItemIndicatorClasses.root}`]: { minWidth: 32 },
   }}
 >
   Show toolbar
-</Menu2CheckboxItem>;
+</MenuCheckboxItem>;
 ```
 
 For radio items, import `menu2RadioItemIndicatorClasses` from `Unstable_Menu2RadioItem`. Set theme defaults through the owning item's `defaultProps.slotProps.indicator` and styles through `styleOverrides.indicator`. Indicators have no separate theme keys.
@@ -337,7 +337,7 @@ Use `onOpenChangeComplete(open)` for completion, not the transition's `onEntered
 Set `transitionDuration={0}` to remove the animation. To animate with CSS, set `slots.transition` to `null`. The menu surface has the `data-starting-style` attribute while it enters and the `data-ending-style` attribute while it leaves:
 
 ```jsx
-<Menu2
+<Menu
   trigger={<Button>Options</Button>}
   slots={{ transition: null }}
   slotProps={{
@@ -360,7 +360,7 @@ Base UI uses an internal, transparent backdrop for modal menus. This layer is a
 The optional visual backdrop is separate and is not rendered by default. Set `slots.backdrop` or `slotProps.backdrop` to render it. Its default styles are transparent and do not capture pointer events. To dim the page:
 
 ```jsx
-<Menu2
+<Menu
   trigger={<Button>Options</Button>}
   slotProps={{ backdrop: { sx: { bgcolor: 'rgba(0, 0, 0, 0.5)' } } }}
 >

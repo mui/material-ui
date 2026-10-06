@@ -45,9 +45,11 @@ Each part is the default export of its own subpath:
 ```diff
 -import Menu from '@mui/material/Menu';
 -import MenuItem from '@mui/material/MenuItem';
-+import Menu2 from '@mui/material/Unstable_Menu2';
-+import Menu2Item from '@mui/material/Unstable_Menu2Item';
++import Menu from '@mui/material/Unstable_Menu2';
++import MenuItem from '@mui/material/Unstable_Menu2Item';
 ```
+
+The examples use `Menu`, `MenuItem`, and similar local names for the Menu v2 components imported from the `Unstable_Menu2` subpaths.
 
 ### 2. Replace the anchor state with a trigger
 
@@ -75,9 +77,9 @@ The trigger is part of the component now, so the anchor state and the ARIA wirin
 ->
 -  <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
 -</Menu>
-+<Menu2 trigger={<Button>Dashboard</Button>}>
-+  <Menu2Item>Profile</Menu2Item>
-+</Menu2>
++<Menu trigger={<Button>Dashboard</Button>}>
++  <MenuItem>Profile</MenuItem>
++</Menu>
 ```
 
 Selecting an item closes the menu by default, so the `onClick={handleClose}` on every item is no longer necessary. Set `closeOnClick={false}` on an item to keep the menu open.
@@ -85,14 +87,14 @@ Selecting an item closes the menu by default, so the `onClick={handleClose}` on 
 `trigger` takes an element, and Menu v2 merges the trigger behavior into it, so you keep your own component:
 
 ```jsx
-<Menu2 trigger={<IconButton aria-label="More actions"><MoreVertIcon /></IconButton>}>
+<Menu trigger={<IconButton aria-label="More actions"><MoreVertIcon /></IconButton>}>
 ```
 
 There's no default trigger, so the element is always yours. Three things to watch:
 
 - A wrapper used as a trigger must forward props and ref to the element that it renders, the same as `Tooltip`. Menu v2 merges the behavior through props, so a component that drops them doesn't open the menu.
 - Set `slotProps.trigger.nativeButton` to `false` when the element doesn't render a native `<button>`.
-- A submenu opens from a `Menu2SubmenuTrigger`, not from a button. See [Submenu](/material-ui/react-menu2/#submenu).
+- A submenu opens from a `MenuSubmenuTrigger`, not from a button. See [Submenu](/material-ui/react-menu2/#submenu).
 
 To control the open state, keep `trigger` and pass `open` and `onOpenChange`. See [Controlled menu](/material-ui/react-menu2/#controlled-menu). To keep the `anchorEl` pattern, omit `trigger` and pass `anchor`. See [Without a trigger](/material-ui/react-menu2/#without-a-trigger).
 
@@ -100,7 +102,7 @@ To control the open state, keep `trigger` and pass `open` and `onOpenChange`. Se
 
 ```diff
 -<Menu open={open} onClose={handleClose}>
-+<Menu2 open={open} onOpenChange={handleOpenChange}>
++<Menu open={open} onOpenChange={handleOpenChange}>
 ```
 
 | Menu                               | Menu v2                            | Notes                                                                                                                                                                             |
@@ -118,7 +120,7 @@ To control the open state, keep `trigger` and pass `open` and `onOpenChange`. Se
 -  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 -  transformOrigin={{ vertical: 'bottom', horizontal: 'right' }}
 ->
-+<Menu2 anchor={anchorEl} side="top" align="end">
++<Menu anchor={anchorEl} side="top" align="end">
 ```
 
 | Menu / Popover                                        | Menu v2                                                               | Notes                                                       |
@@ -148,22 +150,22 @@ With `slots.transition` set to `null`, the menu surface has the `data-starting-s
 
 ### 6. Update the items
 
-| Menu                                                               | Menu v2                              | Notes                                                                                                      |
-| :----------------------------------------------------------------- | :----------------------------------- | :--------------------------------------------------------------------------------------------------------- |
-| `dense`, `disableGutters`, `divider`                               | Same                                 | Unchanged.                                                                                                 |
-| `disabled`                                                         | Same on supported item parts         | Disabled items stay focusable. `Menu2LinkItem` does not support this prop.                                 |
-| `disableRipple`                                                    | Same                                 | The item root is a `ButtonBase`, so items ripple as before.                                                |
-| `selected`                                                         | Removed                              | Use checkbox or radio items for checked state.                                                             |
-| `<Divider />` between items                                        | `Menu2Separator`                     | Controls its own margins.                                                                                  |
-| `ListSubheader`                                                    | `Menu2Group` + `Menu2GroupLabel`     | Adds the correct ARIA relationship.                                                                        |
-| `href` / `LinkComponent`                                           | `Menu2LinkItem`                      | Renders a real `<a role="menuitem">`.                                                                      |
-| `role="menuitemcheckbox"` + `selected`                             | `Menu2CheckboxItem`                  | Reports changes through `onCheckedChange(checked, eventDetails)`.                                          |
-| `role="menuitemradio"` + `selected`                                | `Menu2RadioGroup` + `Menu2RadioItem` | Reports changes through `onValueChange(value, eventDetails)`.                                              |
-| `autoFocus` (item)                                                 | Removed                              | The component controls the initial highlight.                                                              |
-| `focusVisibleClassName`, `onFocusVisible`, `action.focusVisible()` | No dedicated equivalents             | Use state classes for styles. `highlighted` includes pointer navigation; it is not keyboard focus-visible. |
-| `MenuList.disableListWrap`                                         | `loopFocus` (default `true`)         | The value is inverted.                                                                                     |
-| `MenuList.dense`, `MenuList.disablePadding`                        | `slotProps.list`                     | The `list` slot is a `List`, so the props are unchanged.                                                   |
-| `MenuList.autoFocus` / `autoFocusItem` / `variant`                 | Removed                              | Internal or legacy.                                                                                        |
+| Menu                                                               | Menu v2                            | Notes                                                                                                      |
+| :----------------------------------------------------------------- | :--------------------------------- | :--------------------------------------------------------------------------------------------------------- |
+| `dense`, `disableGutters`, `divider`                               | Same                               | Unchanged.                                                                                                 |
+| `disabled`                                                         | Same on supported item parts       | Disabled items stay focusable. `MenuLinkItem` does not support this prop.                                  |
+| `disableRipple`                                                    | Same                               | The item root is a `ButtonBase`, so items ripple as before.                                                |
+| `selected`                                                         | Removed                            | Use checkbox or radio items for checked state.                                                             |
+| `<Divider />` between items                                        | `MenuSeparator`                    | Controls its own margins.                                                                                  |
+| `ListSubheader`                                                    | `MenuGroup` + `MenuGroupLabel`     | Adds the correct ARIA relationship.                                                                        |
+| `href` / `LinkComponent`                                           | `MenuLinkItem`                     | Renders a real `<a role="menuitem">`.                                                                      |
+| `role="menuitemcheckbox"` + `selected`                             | `MenuCheckboxItem`                 | Reports changes through `onCheckedChange(checked, eventDetails)`.                                          |
+| `role="menuitemradio"` + `selected`                                | `MenuRadioGroup` + `MenuRadioItem` | Reports changes through `onValueChange(value, eventDetails)`.                                              |
+| `autoFocus` (item)                                                 | Removed                            | The component controls the initial highlight.                                                              |
+| `focusVisibleClassName`, `onFocusVisible`, `action.focusVisible()` | No dedicated equivalents           | Use state classes for styles. `highlighted` includes pointer navigation; it is not keyboard focus-visible. |
+| `MenuList.disableListWrap`                                         | `loopFocus` (default `true`)       | The value is inverted.                                                                                     |
+| `MenuList.dense`, `MenuList.disablePadding`                        | `slotProps.list`                   | The `list` slot is a `List`, so the props are unchanged.                                                   |
+| `MenuList.autoFocus` / `autoFocusItem` / `variant`                 | Removed                            | Internal or legacy.                                                                                        |
 
 Composed list primitives still work inside items, so `ListItemIcon`, `ListItemText`, and `Typography` carry over unchanged. `ListItemText inset` still aligns with the icon column.
 
@@ -248,7 +250,7 @@ There is no independent equivalent of `disableScrollLock`. Setting `modal={false
 
 ### Retained menus in dialogs
 
-A Menu2 with `keepMounted` inside a kept-mounted Material Dialog can remain under `aria-hidden="true"` with the default portal container. The visible menu can then be hidden from assistive technology. Leave Menu2's `keepMounted` disabled in this configuration. [Base UI issue #5577](https://github.com/mui/base-ui/issues/5577) describes a related portal limitation, not this exact composition.
+A Menu v2 with `keepMounted` inside a kept-mounted Material Dialog can remain under `aria-hidden="true"` with the default portal container. The visible menu can then be hidden from assistive technology. Leave `keepMounted` disabled on Menu v2 in this configuration. [Base UI issue #5577](https://github.com/mui/base-ui/issues/5577) describes a related portal limitation, not this exact composition.
 
 ### The initial highlight
 
@@ -260,7 +262,7 @@ This is a deliberate deviation from the APG, which says that focus moves to an i
 
 This is a lost feature rather than a changed one. It selected which item took focus when the menu opened and hid the focus ring at that first moment. The new foundation can't express either behavior.
 
-Radio items are the closest replacement, because they show the current value. They don't reproduce the behavior: a `Menu2RadioGroup` with a checked second item still opens with the first item highlighted.
+Radio items are the closest replacement, because they show the current value. They don't reproduce the behavior: a `MenuRadioGroup` with a checked second item still opens with the first item highlighted.
 
 ### Styling around triggers
 
