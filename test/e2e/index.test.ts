@@ -115,6 +115,57 @@ describe('e2e', () => {
       await page.emulateMedia({ forcedColors: 'none' });
     });
 
+    ['Above, end aligned', 'Beside'].forEach((triggerName) => {
+      it(`keeps the positioned demo triggers in place when opening and closing ${triggerName}`, async () => {
+        await renderFixture('Menu2/DocsLayout');
+        const demo = page.getByTestId('positioned-demo');
+        const getPositions = () =>
+          demo.evaluate((element) => {
+            const container = element.getBoundingClientRect();
+            return Array.from(element.querySelectorAll('button'), (button) => {
+              const trigger = button.getBoundingClientRect();
+              return { x: trigger.left - container.left, y: trigger.top - container.top };
+            });
+          });
+        const closedPositions = await getPositions();
+
+        await demo.getByRole('button', { name: triggerName }).click();
+        await expect(page.getByRole('menu')).toBeVisible();
+        await expect.poll(getPositions, { timeout: 2000 }).toEqual(closedPositions);
+
+        await page.keyboard.press('Escape');
+        await expect(page.getByRole('menu')).toBeHidden();
+        await expect.poll(getPositions, { timeout: 2000 }).toEqual(closedPositions);
+      });
+    });
+
+    it('keeps the controlled demo trigger and text gap in place when opening and closing', async () => {
+      await renderFixture('Menu2/DocsLayout');
+      const demo = page.getByTestId('controlled-demo');
+      const getLayout = () =>
+        demo.evaluate((element) => {
+          const container = element.getBoundingClientRect();
+          const trigger = element.querySelector('button')!.getBoundingClientRect();
+          const text = element.querySelector('p')!.getBoundingClientRect();
+          return {
+            x: trigger.left - container.left,
+            y: trigger.top - container.top,
+            gap: text.left - trigger.right,
+          };
+        });
+      const closedLayout = await getLayout();
+
+      await demo.getByRole('button', { name: 'More actions' }).click();
+      await expect(page.getByRole('menu')).toBeVisible();
+      await expect(demo.getByText('Opened with reason "trigger-press".')).toBeVisible();
+      await expect.poll(getLayout, { timeout: 2000 }).toEqual(closedLayout);
+
+      await page.keyboard.press('Escape');
+      await expect(page.getByRole('menu')).toBeHidden();
+      await expect(demo.getByText('Closed with reason "escape-key".')).toBeVisible();
+      await expect.poll(getLayout, { timeout: 2000 }).toEqual(closedLayout);
+    });
+
     [false, true].forEach((focusVisible) => {
       it(`separates pointer and keyboard styles, focusVisible=${focusVisible}`, async () => {
         await renderFixture('Menu2/ItemStates');

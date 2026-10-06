@@ -14,7 +14,7 @@ TypeScript apps that adopt Menu v2 require TypeScript 5.0 or later. Apps that us
 
 Menu v2 provides the following improvements over Menu:
 
-- **Submenus** at any nesting depth, with correct keyboard, hover, and ARIA behavior. This was [the most requested Menu feature since 2018](https://github.com/mui/material-ui/issues/11723), and the current Menu can't support it.
+- **Submenus** at any nesting depth, with correct keyboard, hover, and ARIA behavior. This was [one of the most requested Menu features since 2018](https://github.com/mui/material-ui/issues/11723), and the current Menu can't support it.
 - **Checkbox and radio items** with the correct roles, `aria-checked`, and built-in indicators.
 - **Groups with labels**, connected with `aria-labelledby`.
 - **A trigger prop** that sets `aria-haspopup`, `aria-expanded`, and `aria-controls`, so there's no anchor state to manage.
@@ -267,6 +267,8 @@ Radio items are the closest replacement, because they show the current value. Th
 ### Styling around triggers
 
 While a menu or a submenu is open, Base UI renders hidden `span` elements next to its trigger. They keep the tab order and the accessibility tree correct. CSS sibling selectors (`+`, `~`, `:last-child`) near a trigger can match these elements. Style each part directly instead. The focus guards among them have a `data-base-ui-focus-guard` attribute.
+
+For menus directly inside a `Stack`, set `useFlexGap` to use CSS gap instead of sibling margins. This prevents the trigger from moving when a focus guard is inserted before it.
 
 ### Menu height
 

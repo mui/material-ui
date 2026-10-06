@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/Unstable_Menu2Item';
 
 export default function PositionedMenu2() {
   return (
-    <Stack direction="row" spacing={2}>
+    <Stack direction="row" spacing={2} useFlexGap>
       <Menu
         trigger={<Button>Above, end aligned</Button>}
         side="top"

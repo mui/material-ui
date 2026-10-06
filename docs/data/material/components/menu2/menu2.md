@@ -41,7 +41,7 @@ TypeScript apps that use Menu v2 require TypeScript 5.0 or later. Apps that use 
 
 ## Why a new menu component
 
-Submenus are [the most requested Menu feature since 2018](https://github.com/mui/material-ui/issues/11723), but the current Menu can't support them. Each open menu is a full `Modal`, and nested modals break the backdrop, the focus traps, the arrow keys, and the accessibility tree.
+Submenus are [one of the most requested Menu features since 2018](https://github.com/mui/material-ui/issues/11723), but the current Menu can't support them. Each open menu is a full `Modal`, and nested modals break the backdrop, the focus traps, the arrow keys, and the accessibility tree.
 
 Menu v2 uses [Base UI](https://base-ui.com/react/components/menu) for this behavior. Material UI supplies the visuals, the theming, and the API.
 
@@ -259,6 +259,8 @@ The trigger isn't a slot, because you supply the element. Style it directly. It 
 
 :::warning
 While a menu or a submenu is open, Base UI renders hidden `span` elements next to its trigger. They keep the tab order and the accessibility tree correct. CSS sibling selectors (`+`, `~`, `:last-child`) near a trigger can match these elements. Style each part directly instead. The focus guards among them have a `data-base-ui-focus-guard` attribute.
+
+For menus directly inside a `Stack`, set `useFlexGap` to use CSS gap instead of sibling margins. This prevents the trigger from moving when a focus guard is inserted before it.
 :::
 
 In TypeScript, import the theme augmentation once in your app to type all `MuiMenu2*` theme keys. Component imports do not add these types:
