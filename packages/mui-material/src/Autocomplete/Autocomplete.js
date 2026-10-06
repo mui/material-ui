@@ -1,12 +1,12 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import useForcedRerendering from '@mui/utils/useForcedRerendering';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
-import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
@@ -693,6 +693,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     },
   });
 
+  const [ChipSlot, chipProps] = useSlot('chip', {
+    elementType: Chip,
+    externalForwardedProps,
+    ownerState,
+    shouldForwardComponentProp: true,
+  });
+
   let startAdornment;
 
   const getCustomizedItemProps = (params) => ({
@@ -711,12 +718,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           const resolved = getOptionFromValue(valueItem);
 
           return (
-            <Chip
+            <ChipSlot
               key={key}
               label={resolved === null ? '' : getOptionLabel(resolved.option)}
               size={size}
               {...customItemProps}
-              {...resolveComponentProps(externalForwardedProps.slotProps.chip, ownerState)}
+              {...chipProps}
+              className={clsx(customItemProps.className, chipProps.className)}
             />
           );
         });
@@ -1296,6 +1304,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    chip: PropTypes.elementType,
     clearIndicator: PropTypes.elementType,
     listbox: PropTypes.elementType,
     paper: PropTypes.elementType,

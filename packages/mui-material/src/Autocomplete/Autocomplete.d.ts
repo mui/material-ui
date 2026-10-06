@@ -128,6 +128,11 @@ export interface AutocompleteSlots {
    */
   root: React.ElementType;
   /**
+   * The component used to render the selected values when `multiple` is `true`.
+   * @default Chip
+   */
+  chip: React.JSXElementConstructor<ChipProps>;
+  /**
    * The component used to render the clear indicator element.
    * @default IconButton
    */
