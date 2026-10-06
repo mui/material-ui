@@ -33,10 +33,10 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.7",
-    "@mui/system": "workspace:^",
+    "@babel/runtime": "^7.29.7 || ^8.0.5",
+    "@mui/system": "workspace:*",
     "@mui/types": "workspace:^",
-    "@mui/utils": "workspace:^",
+    "@mui/utils": "workspace:*",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1"
   },

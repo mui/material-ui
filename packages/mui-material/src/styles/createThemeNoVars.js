@@ -7,6 +7,8 @@ import {
   alpha as systemAlpha,
   lighten as systemLighten,
   darken as systemDarken,
+  private_safeColorChannel as safeColorChannel,
+  hslToRgb,
 } from '@mui/system/colorManipulator';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import createMixins from './createMixins';
@@ -52,7 +54,18 @@ function attachColorManipulators(theme) {
       if (obj.vars) {
         // To preserve the behavior of the CSS theme variables
         // In the future, this could be replaced by `color-mix` (when https://caniuse.com/?search=color-mix reaches 95%).
-        return `rgba(${color.replace(/var\(--([^,\s)]+)(?:,[^)]+)?\)+/g, 'var(--$1Channel)')} / ${typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient})`;
+        // Raw colors (for example, `theme.palette.*`) have no channel tokens,
+        // so they are converted to channels the same way the theme generates `*Channel` tokens,
+        // which keeps a CSS coefficient (for example, `theme.vars.palette.action.hoverOpacity`) in `calc()`.
+        const alphaValue = typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient;
+        // `color()` channels are not sRGB, so only the alpha is replaced to keep any color space and unit.
+        if (color.startsWith('color(')) {
+          return color.replace(/\s*(?:\/[^)]*)?\)$/, ` / ${alphaValue})`);
+        }
+        const channels = color.includes('var(')
+          ? color.replace(/var\(--([^,\s)]+)(?:,[^)]+)?\)+/g, 'var(--$1Channel)')
+          : safeColorChannel(color.startsWith('hsl') ? hslToRgb(color) : color);
+        return `rgba(${channels} / ${alphaValue})`;
       }
       return systemAlpha(color, parseAddition(coefficient));
     },
@@ -96,7 +109,7 @@ function createThemeNoVars(options = {}, ...args) {
     throw /* minify-error */ new Error(
       'MUI: `vars` is a private field used for CSS variables support.\n' +
         // #host-reference
-        'Please use another name or follow the [docs](https://mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
+        'Please use another name or follow the [docs](https://next.mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
     );
   }
 

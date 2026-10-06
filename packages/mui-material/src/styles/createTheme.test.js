@@ -874,7 +874,7 @@ describe('createTheme', () => {
     } catch (error) {
       expect(error.message).to.equal(
         'MUI: `vars` is a private field used for CSS variables support.\n' +
-          'Please use another name or follow the [docs](https://mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
+          'Please use another name or follow the [docs](https://next.mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
       );
     }
   });
@@ -1020,6 +1020,45 @@ describe('createTheme', () => {
       expect(
         theme.alpha('var(--mui-palette-text-primary, var(--foo, hsl(0 0 0 / 100%)))', 0.5),
       ).to.equal('rgba(var(--mui-palette-text-primaryChannel) / 0.5)');
+    });
+
+    it('[CSS variables] `alpha()` should convert raw colors to channels', () => {
+      const theme = createTheme({ cssVariables: true });
+      expect(theme.alpha('#1976d2', 0.5)).to.equal('rgba(25 118 210 / 0.5)');
+      expect(theme.alpha('rgb(25, 118, 210)', 0.5)).to.equal('rgba(25 118 210 / 0.5)');
+      expect(theme.alpha('hsl(210, 79%, 46%)', 0.5)).to.equal('rgba(25 117 210 / 0.5)');
+      expect(theme.alpha(theme.palette.primary.main, '0.3 + 0.2')).to.equal(
+        'rgba(25 118 210 / calc(0.3 + 0.2))',
+      );
+      expect(
+        theme.alpha(theme.palette.primary.main, theme.vars.palette.action.hoverOpacity),
+      ).to.equal('rgba(25 118 210 / calc(var(--mui-palette-action-hoverOpacity, 0.04)))');
+    });
+
+    it('[CSS variables] `alpha()` should keep raw channel strings', () => {
+      const theme = createTheme({ cssVariables: true });
+      expect(theme.alpha(theme.palette.primary.mainChannel, 0.4)).to.equal(
+        'rgba(25 118 210 / 0.4)',
+      );
+    });
+
+    it('[CSS variables] `alpha()` should keep `color()` inputs in their color space', () => {
+      const theme = createTheme({ cssVariables: true });
+      expect(theme.alpha('color(display-p3 0.1 0.4 0.8)', 0.5)).to.equal(
+        'color(display-p3 0.1 0.4 0.8 / 0.5)',
+      );
+      expect(
+        theme.alpha('color(display-p3 0.1 0.4 0.8)', theme.vars.palette.action.hoverOpacity),
+      ).to.equal(
+        'color(display-p3 0.1 0.4 0.8 / calc(var(--mui-palette-action-hoverOpacity, 0.04)))',
+      );
+      expect(theme.alpha('color(xyz 0.1 0.2 0.3)', 0.5)).to.equal('color(xyz 0.1 0.2 0.3 / 0.5)');
+      expect(theme.alpha('color(display-p3 10% 40% 80%)', 0.5)).to.equal(
+        'color(display-p3 10% 40% 80% / 0.5)',
+      );
+      expect(theme.alpha('color(display-p3 0.1 0.4 0.8 / 0.9)', 0.5)).to.equal(
+        'color(display-p3 0.1 0.4 0.8 / 0.5)',
+      );
     });
 
     it('[color space with CSS variables] should use CSS for manipulating colors', () => {

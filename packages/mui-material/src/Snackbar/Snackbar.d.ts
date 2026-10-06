@@ -84,9 +84,7 @@ export interface SnackbarOrigin {
 export type SnackbarCloseReason = 'timeout' | 'clickaway' | 'escapeKeyDown';
 
 export interface SnackbarProps
-  extends
-    Omit<StandardProps<React.HTMLAttributes<HTMLDivElement>>, 'slots' | 'slotProps'>,
-    SnackbarSlotsAndSlotProps {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>>, SnackbarSlotsAndSlotProps {
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */
@@ -172,11 +170,11 @@ export interface SnackbarProps
  *
  * Demos:
  *
- * - [Snackbar](https://mui.com/material-ui/react-snackbar/)
+ * - [Snackbar](https://next.mui.com/material-ui/react-snackbar/)
  *
  * API:
  *
- * - [Snackbar API](https://mui.com/material-ui/api/snackbar/)
+ * - [Snackbar API](https://next.mui.com/material-ui/api/snackbar/)
  */
 export default function Snackbar(props: SnackbarProps): React.JSX.Element;
 
