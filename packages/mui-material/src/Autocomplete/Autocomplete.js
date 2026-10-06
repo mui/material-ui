@@ -1,7 +1,6 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
@@ -697,6 +696,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     elementType: Chip,
     externalForwardedProps,
     ownerState,
+    className: classes.tag,
     shouldForwardComponentProp: true,
   });
 
@@ -724,7 +724,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
               size={size}
               {...customItemProps}
               {...chipProps}
-              className={clsx(customItemProps.className, chipProps.className)}
             />
           );
         });
