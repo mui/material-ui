@@ -1,6 +1,9 @@
 {
   "name": "@mui/internal-api-docs-builder",
   "version": "1.0.5",
+  "author": "MUI Team",
+  "description": "Generates the API docs for MUI packages. This is an internal package not meant for general use.",
+  "license": "MIT",
   "scripts": {
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/internal-api-docs-builder\"",
     "typescript": "tsc -p tsconfig.json",

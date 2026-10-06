@@ -8,7 +8,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mui/material-ui.git",
-    "directory": "packages/core-downloads-tracker"
+    "directory": "packages/mui-core-downloads-tracker"
   },
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
