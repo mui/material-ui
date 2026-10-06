@@ -13,9 +13,16 @@ on:
         required: true
         type: string
       target_branch:
-        description: 'The branch to cherry-pick onto (e.g. `v7.x`)'
+        description: 'The branch to cherry-pick onto'
         required: true
-        type: string
+        type: choice
+        options:
+          - v9.x
+          - v8.x
+          - v7.x
+          - v6.x
+          - v5.x
+          - master
 
 permissions: {}
 
