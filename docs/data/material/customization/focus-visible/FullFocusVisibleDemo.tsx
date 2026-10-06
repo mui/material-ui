@@ -52,7 +52,6 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import InputBase from '@mui/material/InputBase';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -77,15 +76,7 @@ const dialogParagraphs = Array.from(
     `Paragraph ${index + 1}. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.`,
 );
 
-function Row({
-  label,
-  secondary,
-  children,
-}: {
-  label: string;
-  secondary?: string;
-  children: React.ReactNode;
-}) {
+function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <React.Fragment>
       <Typography variant="body2" sx={{ fontWeight: 600, alignSelf: 'center' }}>
