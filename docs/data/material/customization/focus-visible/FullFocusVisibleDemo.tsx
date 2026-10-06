@@ -53,6 +53,11 @@ import Select from '@mui/material/Select';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import InputBase from '@mui/material/InputBase';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogActions from '@mui/material/DialogActions';
 import AddIcon from '@mui/icons-material/Add';
 import StarIcon from '@mui/icons-material/Star';
 import HomeIcon from '@mui/icons-material/Home';
@@ -65,6 +70,12 @@ const theme = createTheme({
 });
 
 const noop = () => {};
+
+const dialogParagraphs = Array.from(
+  { length: 40 },
+  (_, index) =>
+    `Paragraph ${index + 1}. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.`,
+);
 
 function Row({
   label,
@@ -163,6 +174,13 @@ export default function FullFocusVisibleDemo() {
   const [activeStep, setActiveStep] = React.useState(0);
   const handleStep = (step: number) => () => {
     setActiveStep(step);
+  };
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+  };
+  const handleDialogClose = () => {
+    setDialogOpen(false);
   };
   return (
     <ThemeProvider theme={theme}>
@@ -324,6 +342,30 @@ export default function FullFocusVisibleDemo() {
                 <StepButton onClick={handleStep(1)}>Two</StepButton>
               </Step>
             </Stepper>
+          </Row>
+          <Row label="Dialog">
+            <Button variant="outlined" onClick={handleDialogOpen}>
+              Open dialog
+            </Button>
+            <Dialog
+              open={dialogOpen}
+              onClose={handleDialogClose}
+              scroll="paper"
+              aria-labelledby="fv-dialog-title"
+            >
+              <DialogTitle id="fv-dialog-title">Subscribe</DialogTitle>
+              <DialogContent dividers>
+                {dialogParagraphs.map((paragraph) => (
+                  <DialogContentText key={paragraph} sx={{ mb: 1 }}>
+                    {paragraph}
+                  </DialogContentText>
+                ))}
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleDialogClose}>Cancel</Button>
+                <Button onClick={handleDialogClose}>Subscribe</Button>
+              </DialogActions>
+            </Dialog>
           </Row>
         </Bucket>
 
