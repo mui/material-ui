@@ -177,14 +177,27 @@ function serializeWithCache(
   }
 
   if (node !== null && node.serialized !== undefined) {
-    return node.serialized;
+    return copySerialized(node.serialized);
   }
 
   const serialized = serializeStyles(resolved, emotionCache.registered, mergedProps);
   if (node !== null) {
-    node.serialized = serialized;
+    node.serialized = copySerialized(serialized);
   }
   return serialized;
+}
+
+/**
+ * Emotion creates new serialized styles on every render, and a cache's `insert` may change the
+ * object it receives (`StyledEngineProvider` wraps `styles` in a CSS layer). The cache keeps its
+ * own copy and hands out a new one every time.
+ */
+function copySerialized(serialized: SerializedStyles): SerializedStyles {
+  return {
+    name: serialized.name,
+    styles: serialized.styles,
+    next: serialized.next === undefined ? undefined : copySerialized(serialized.next),
+  };
 }
 
 export default function createEmotionStyled(tag: any, options?: any): (...args: any[]) => any {

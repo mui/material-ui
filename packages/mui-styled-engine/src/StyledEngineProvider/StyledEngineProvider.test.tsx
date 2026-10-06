@@ -1,7 +1,7 @@
-import { describe, beforeAll, afterAll, beforeEach, it, expect } from 'vitest';
+import { describe, beforeAll, afterAll, beforeEach, it, expect, onTestFinished } from 'vitest';
 import * as React from 'react';
 import { __unsafe_useEmotionCache } from '@emotion/react';
-import styled, { StyledEngineProvider, GlobalStyles } from '@mui/styled-engine';
+import styled, { StyledEngineProvider, GlobalStyles, css } from '@mui/styled-engine';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import { TEST_INTERNALS_DO_NOT_USE } from './StyledEngineProvider';
 
@@ -85,6 +85,43 @@ describe('[Emotion] StyledEngineProvider', () => {
       </StyledEngineProvider>,
     );
     expect(innerCache).to.equal(upperCache);
+  });
+
+  it('should not nest @layer when styles inserted earlier are composed into another component', () => {
+    const rules: string[] = [];
+    const previousInsert = TEST_INTERNALS_DO_NOT_USE.insert;
+    TEST_INTERNALS_DO_NOT_USE.insert = (insertedRule: string) => {
+      rules.push(insertedRule);
+    };
+    onTestFinished(() => {
+      TEST_INTERNALS_DO_NOT_USE.insert = previousInsert;
+    });
+    const Inner = styled('div')({ color: 'blue' });
+    function Wrapper(props: React.ComponentProps<'div'>) {
+      return <Inner {...props} />;
+    }
+    // Serialized up front, the way MUI's own styles are.
+    const Outer = styled('span')(css({ margin: 1 }));
+
+    // Inserts the styles of `Outer` as a string tag first, then reuses them through a component,
+    // whose styled element composes them.
+    render(
+      <StyledEngineProvider enableCssLayer>
+        <Outer />
+      </StyledEngineProvider>,
+    );
+    render(
+      <StyledEngineProvider enableCssLayer>
+        <Outer as={Wrapper} />
+      </StyledEngineProvider>,
+    );
+
+    expect(rules.filter((insertedRule) => insertedRule.lastIndexOf('@layer') > 0)).to.deep.equal(
+      [],
+    );
+    expect(
+      rules.some((insertedRule) => insertedRule.includes('{color:blue;margin:1px;}')),
+    ).to.equal(true);
   });
 });
 
