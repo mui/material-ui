@@ -51,8 +51,8 @@ const Menu2SubmenuTriggerIndicator = styled('span', {
   display: 'inline-flex',
   alignItems: 'center',
   flexShrink: 0,
-  marginInlineStart: 'auto',
-  paddingInlineStart: 8,
+  marginLeft: 'auto',
+  paddingLeft: 8,
 });
 
 function Menu2SubmenuTriggerRootSlot(

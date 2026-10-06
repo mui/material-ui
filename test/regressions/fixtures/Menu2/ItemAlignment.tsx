@@ -13,6 +13,8 @@ import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
+import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
+import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const cacheRtl = createCache({
@@ -49,7 +51,7 @@ function MixedMenu({ direction, dense }: MixedMenuProps) {
       <Box
         ref={setContainer}
         dir={direction}
-        sx={{ width: 240, height: 400, bgcolor: 'background.default', color: 'text.primary' }}
+        sx={{ width: 240, height: 440, bgcolor: 'background.default', color: 'text.primary' }}
       >
         <Box ref={setAnchor} sx={{ mx: '8px', pt: '8px', width: 224, typography: 'caption' }}>
           {direction.toUpperCase()} / {dense ? 'dense / dark' : 'regular / light'}
@@ -91,6 +93,9 @@ function MixedMenu({ direction, dense }: MixedMenuProps) {
           <Menu2Item>
             <ListItemText inset>Reset layout</ListItemText>
           </Menu2Item>
+          <Menu2Submenu trigger={<Menu2SubmenuTrigger>More layouts</Menu2SubmenuTrigger>}>
+            <Menu2Item>Compact layout</Menu2Item>
+          </Menu2Submenu>
           <Menu2CheckboxItem defaultChecked>
             <ListItemText slotProps={{ primary: { noWrap: true } }}>
               Keep this long menu label on one line

@@ -25,7 +25,7 @@ interface MenuItemBaseProps {
  * @ignore - internal component.
  */
 const MenuItemBase = styled(ButtonBase, {
-  slot: 'Root',
+  slot: 'root',
   shouldForwardProp: slotShouldForwardProp,
 })<MenuItemBaseProps>(
   memoTheme(({ theme }) => {

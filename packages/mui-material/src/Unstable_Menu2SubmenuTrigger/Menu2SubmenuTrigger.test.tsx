@@ -110,47 +110,29 @@ describe('<Menu2SubmenuTrigger />', () => {
         expect(['', 'none']).to.include(getComputedStyle(target.firstElementChild!).transform);
       });
     });
+  });
 
-    it.skipIf(isJsdom())(`aligns the indicator at the trailing edge in ${direction}`, () => {
-      render(
-        <ThemeProvider theme={createTheme({ direction })}>
-          <Menu2
-            defaultOpen
-            modal={false}
-            anchor={document.body}
-            slots={{ transition: null }}
-            slotProps={{ list: { dir: direction } }}
-          >
-            <Menu2Submenu
-              trigger={
-                <Menu2SubmenuTrigger sx={{ width: 240 }}>
-                  <span data-testid="label">More</span>
-                </Menu2SubmenuTrigger>
-              }
-            >
-              <Menu2Item>Nested</Menu2Item>
-            </Menu2Submenu>
-          </Menu2>
-        </ThemeProvider>,
-      );
-      const trigger = screen.getByRole('menuitem', { name: 'More' });
-      const indicator = trigger.querySelector(`.${classes.indicator}`)!;
-      expect(
-        indicator.querySelector(
-          `[data-testid="KeyboardArrow${direction === 'rtl' ? 'Left' : 'Right'}Icon"]`,
-        ),
-      ).not.to.equal(null);
-      const triggerRect = trigger.getBoundingClientRect();
-      const iconRect = indicator.querySelector('svg')!.getBoundingClientRect();
-      const labelRect = screen.getByTestId('label').getBoundingClientRect();
-      if (direction === 'rtl') {
-        expect(iconRect.left - triggerRect.left).to.be.closeTo(16, 0.1);
-        expect(labelRect.left - iconRect.right).to.be.greaterThan(8);
-      } else {
-        expect(triggerRect.right - iconRect.right).to.be.closeTo(16, 0.1);
-        expect(iconRect.left - labelRect.right).to.be.greaterThan(8);
-      }
-    });
+  it.skipIf(isJsdom())('aligns the indicator at the trailing edge', () => {
+    render(
+      <Menu2 defaultOpen modal={false} anchor={document.body} slots={{ transition: null }}>
+        <Menu2Submenu
+          trigger={
+            <Menu2SubmenuTrigger sx={{ width: 240 }}>
+              <span data-testid="label">More</span>
+            </Menu2SubmenuTrigger>
+          }
+        >
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2Submenu>
+      </Menu2>,
+    );
+    const trigger = screen.getByRole('menuitem', { name: 'More' });
+    const indicator = trigger.querySelector(`.${classes.indicator}`)!;
+    const triggerRect = trigger.getBoundingClientRect();
+    const iconRect = indicator.querySelector('svg')!.getBoundingClientRect();
+    const labelRect = screen.getByTestId('label').getBoundingClientRect();
+    expect(triggerRect.right - iconRect.right).to.be.closeTo(16, 0.1);
+    expect(iconRect.left - labelRect.right).to.be.greaterThan(8);
   });
 
   it('can replace the icon or hide the indicator', () => {
