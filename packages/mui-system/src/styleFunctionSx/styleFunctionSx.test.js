@@ -26,6 +26,24 @@ describe('styleFunctionSx', () => {
     });
   });
 
+  it('resolves numbers against each theme when two vars themes share one spacing function', () => {
+    const spacing = (arg) => (arg === 'small' ? '12px' : `${arg * 8}px`);
+    spacing.mui = true;
+    spacing.keys = new Set(['small']);
+    const base = createTheme({ spacing });
+    const first = { ...base, vars: { spacing: 'var(--first-spacing)' } };
+    const second = { ...base, vars: { spacing: 'var(--second-spacing)' } };
+
+    expect(styleFunctionSx({ theme: first, sx: { m: 2, p: 'small' } })).to.deep.equal({
+      margin: 'calc(2 * var(--first-spacing))',
+      padding: '12px',
+    });
+    expect(styleFunctionSx({ theme: second, sx: { m: 2, p: 'small' } })).to.deep.equal({
+      margin: 'calc(2 * var(--second-spacing))',
+      padding: '12px',
+    });
+  });
+
   const breakpointsValues = {
     xs: 0,
     sm: 600,
