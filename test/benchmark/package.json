@@ -6,7 +6,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "typescript": "tsc -p tsconfig.json",
-    "benchmark": "benchmark run"
+    "benchmark": "benchmark"
   },
   "dependencies": {
     "@emotion/react": "catalog:docs",
