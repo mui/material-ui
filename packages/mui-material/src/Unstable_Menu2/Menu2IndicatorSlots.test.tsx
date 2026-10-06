@@ -25,10 +25,13 @@ interface IndicatorState {
 
 interface ItemOptions {
   checked?: boolean;
+  checkedIcon?: React.ReactNode;
   disabled?: boolean;
+  icon?: React.ReactNode;
   indicator?: React.ElementType;
   indicatorClassName?: string;
   indicatorProps?: Menu2CheckboxItemSlotProps['indicator'];
+  otherRadioItem?: boolean;
 }
 
 const parts = [
@@ -41,7 +44,9 @@ const parts = [
     createItem: (options: ItemOptions) => (
       <Menu2CheckboxItem
         defaultChecked={options.checked}
+        checkedIcon={options.checkedIcon}
         disabled={options.disabled}
+        icon={options.icon}
         closeOnClick={false}
         classes={{ indicator: options.indicatorClassName }}
         slots={{ indicator: options.indicator }}
@@ -61,7 +66,9 @@ const parts = [
       <Menu2RadioGroup defaultValue={options.checked ? 'target' : undefined}>
         <Menu2RadioItem
           value="target"
+          checkedIcon={options.checkedIcon}
           disabled={options.disabled}
+          icon={options.icon}
           closeOnClick={false}
           classes={{ indicator: options.indicatorClassName }}
           slots={{ indicator: options.indicator }}
@@ -69,6 +76,11 @@ const parts = [
         >
           Target
         </Menu2RadioItem>
+        {options.otherRadioItem && (
+          <Menu2RadioItem value="other" closeOnClick={false}>
+            Other
+          </Menu2RadioItem>
+        )}
       </Menu2RadioGroup>
     ),
   },
@@ -111,6 +123,7 @@ describe('Menu2 indicator slots', () => {
           renderItem({
             indicator,
             checked: true,
+            checkedIcon: <span data-testid="checked-icon" />,
             disabled: true,
             indicatorClassName: 'item-indicator-class',
             indicatorProps: {
@@ -144,6 +157,7 @@ describe('Menu2 indicator slots', () => {
           expect(target).not.to.have.attribute('sx');
           expect(target).not.to.have.attribute('keepMounted');
           expect(target.querySelector('[data-testid="custom-child"]')).not.to.equal(null);
+          expect(screen.queryByTestId('checked-icon')).to.equal(null);
           if (indicator !== 'i') {
             expect(getComputedStyle(target).paddingLeft).to.equal('13px');
           }
@@ -153,6 +167,73 @@ describe('Menu2 indicator slots', () => {
       it('supports a component override on the default slot', () => {
         renderItem({ indicatorProps: { component: 'i', 'data-testid': 'indicator' } });
         expect(screen.getByTestId('indicator').tagName).to.equal('I');
+      });
+
+      [false, true].forEach((overrideThemeIcons) => {
+        it(`updates custom icons with item state (override theme: ${overrideThemeIcons})`, async () => {
+          const theme = createTheme({
+            components: {
+              [name]: {
+                defaultProps: {
+                  icon: <span data-testid="theme-icon" />,
+                  checkedIcon: <span data-testid="theme-checked-icon" />,
+                },
+              },
+            },
+          });
+          const { user } = render(
+            <ThemeProvider theme={theme}>
+              <Menu2 defaultOpen modal={false} anchor={document.body}>
+                {createItem({
+                  otherRadioItem: true,
+                  ...(overrideThemeIcons && {
+                    icon: <span data-testid="item-icon" />,
+                    checkedIcon: <span data-testid="item-checked-icon" />,
+                  }),
+                })}
+              </Menu2>
+            </ThemeProvider>,
+          );
+          const item = screen.getByRole(role, { name: 'Target' });
+          const iconPrefix = overrideThemeIcons ? 'item' : 'theme';
+          const inactiveIconPrefix = overrideThemeIcons ? 'theme' : 'item';
+          const expectIcon = (checked: boolean) => {
+            expect(item.querySelector(`[data-testid="${iconPrefix}-icon"]`) !== null).to.equal(
+              !checked,
+            );
+            expect(
+              item.querySelector(`[data-testid="${iconPrefix}-checked-icon"]`) !== null,
+            ).to.equal(checked);
+            expect(item.querySelector(`[data-testid="${inactiveIconPrefix}-icon"]`)).to.equal(null);
+            expect(
+              item.querySelector(`[data-testid="${inactiveIconPrefix}-checked-icon"]`),
+            ).to.equal(null);
+          };
+
+          expectIcon(false);
+          await user.click(item);
+          await waitFor(() => expect(item).to.have.attribute('aria-checked', 'true'));
+          expectIcon(true);
+          await user.click(
+            role === 'menuitemradio' ? screen.getByRole(role, { name: 'Other' }) : item,
+          );
+          await waitFor(() => expect(item).to.have.attribute('aria-checked', 'false'));
+          expectIcon(false);
+        });
+      });
+
+      it('allows null and false icons without using the default icons', async () => {
+        const { user } = renderItem({
+          icon: null,
+          checkedIcon: false,
+          indicatorProps: { 'data-testid': 'indicator' },
+        });
+        expect(screen.getByTestId('indicator').childNodes).to.have.length(0);
+
+        const item = screen.getByRole(role, { name: 'Target' });
+        await user.click(item);
+        await waitFor(() => expect(item).to.have.attribute('aria-checked', 'true'));
+        expect(screen.getByTestId('indicator').childNodes).to.have.length(0);
       });
 
       it('provides live checked, disabled, and highlighted state to the slot callback', async () => {

@@ -69,6 +69,16 @@ export interface Menu2RadioItemOwnProps
    */
   children?: React.ReactNode;
   /**
+   * The icon to display when the item is checked.
+   * @default <RadioButtonIcon checked fontSize="small" />
+   */
+  checkedIcon?: React.ReactNode;
+  /**
+   * The icon to display when the item is unchecked.
+   * @default <RadioButtonIcon fontSize="small" />
+   */
+  icon?: React.ReactNode;
+  /**
    * Value of the radio item.
    */
   value: any;
@@ -138,14 +148,21 @@ const defaultIcon = <RadioButtonIcon fontSize="small" />;
 
 interface Menu2RadioItemRootSlotProps extends Pick<
   Menu2RadioItemProps,
-  'component' | 'disableRipple' | 'nativeButton' | 'slotProps' | 'slots' | 'sx'
+  | 'checkedIcon'
+  | 'component'
+  | 'disableRipple'
+  | 'icon'
+  | 'nativeButton'
+  | 'slotProps'
+  | 'slots'
+  | 'sx'
 > {
   baseProps: HTMLProps;
   ownerState: Menu2RadioItemOwnerState & Pick<Menu2RadioItemProps, 'classes'>;
 }
 
 function Menu2RadioItemRootSlot(props: Menu2RadioItemRootSlotProps) {
-  const { ownerState, slotProps, slots } = props;
+  const { checkedIcon, icon, ownerState, slotProps, slots } = props;
   const [IndicatorSlot, { keepMounted = true, ...indicatorProps }] = useSlot('indicator', {
     elementType: Menu2RadioItemIndicator,
     externalForwardedProps: { slots, slotProps },
@@ -169,8 +186,7 @@ function Menu2RadioItemRootSlot(props: Menu2RadioItemRootSlotProps) {
           keepMounted={keepMounted}
           render={getMenu2RootRender(IndicatorSlot, ownerState, {
             ...indicatorProps,
-            children:
-              indicatorProps.children ?? (ownerState.checked ? defaultCheckedIcon : defaultIcon),
+            children: indicatorProps.children ?? (ownerState.checked ? checkedIcon : icon),
           })}
         />
       }
@@ -188,6 +204,11 @@ Menu2RadioItemRootSlot.propTypes /* remove-proptypes */ = {
    */
   baseProps: PropTypes.object.isRequired,
   /**
+   * The icon to display when the item is checked.
+   * @default <RadioButtonIcon checked fontSize="small" />
+   */
+  checkedIcon: PropTypes.node,
+  /**
    * The component used for the root node.
    */
   component: PropTypes.elementType,
@@ -196,6 +217,11 @@ Menu2RadioItemRootSlot.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableRipple: PropTypes.bool,
+  /**
+   * The icon to display when the item is unchecked.
+   * @default <RadioButtonIcon fontSize="small" />
+   */
+  icon: PropTypes.node,
   /**
    * @ignore
    */
@@ -233,6 +259,7 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
 
   const {
     children,
+    checkedIcon = defaultCheckedIcon,
     className,
     classes: classesProp,
     component,
@@ -241,6 +268,7 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     disableGutters = false,
     disableRipple,
     divider = false,
+    icon = defaultIcon,
     nativeButton: nativeButtonProp,
     slotProps,
     slots,
@@ -269,8 +297,10 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
           <Menu2RadioItemRootSlot
             baseProps={renderProps}
             ownerState={{ ...ownerState, ...state }}
+            checkedIcon={checkedIcon}
             component={component}
             disableRipple={disableRipple}
+            icon={icon}
             nativeButton={nativeButtonProp}
             slotProps={slotProps}
             slots={slots}
@@ -300,6 +330,11 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * The icon to display when the item is checked.
+   * @default <RadioButtonIcon checked fontSize="small" />
+   */
+  checkedIcon: PropTypes.node,
   /**
    * The content of the component.
    */
@@ -347,6 +382,11 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
    * @default false
    */
   divider: PropTypes.bool,
+  /**
+   * The icon to display when the item is unchecked.
+   * @default <RadioButtonIcon fontSize="small" />
+   */
+  icon: PropTypes.node,
   /**
    * Overrides the text label to use when the item is matched during keyboard text navigation.
    */

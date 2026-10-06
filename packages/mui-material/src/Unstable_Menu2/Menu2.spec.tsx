@@ -48,6 +48,14 @@ const indicatorHtmlProps: React.HTMLAttributes<HTMLSpanElement> = { title: 'Indi
 <Menu2RadioItem value="one" slotProps={{ indicator: indicatorHtmlProps }} />;
 <Menu2CheckboxItem slotProps={{ indicator: { 'data-testid': 'indicator' } }} />;
 <Menu2RadioItem value="one" slotProps={{ indicator: { 'data-testid': 'indicator' } }} />;
+<Menu2CheckboxItem icon={<span />} checkedIcon={<span />} />;
+<Menu2RadioItem value="one" icon={<span />} checkedIcon={<span />} />;
+<Menu2CheckboxItem icon={null} checkedIcon={false} />;
+<Menu2RadioItem value="one" icon={null} checkedIcon={false} />;
+// @ts-expect-error Icons must be React nodes, not component types.
+<Menu2CheckboxItem icon={() => <span />} />;
+// @ts-expect-error Icons must be React nodes, not component types.
+<Menu2RadioItem value="one" checkedIcon={() => <span />} />;
 
 createTheme({
   components: {

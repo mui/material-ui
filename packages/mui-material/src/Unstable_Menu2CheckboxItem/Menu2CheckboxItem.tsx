@@ -80,6 +80,16 @@ export interface Menu2CheckboxItemOwnProps
    */
   checked?: boolean | undefined;
   /**
+   * The icon to display when the item is checked.
+   * @default <CheckBoxIcon fontSize="small" />
+   */
+  checkedIcon?: React.ReactNode;
+  /**
+   * The icon to display when the item is unchecked.
+   * @default <CheckBoxOutlineBlankIcon fontSize="small" />
+   */
+  icon?: React.ReactNode;
+  /**
    * Whether the checkbox item is initially ticked.
    *
    * To render a controlled checkbox item, use the `checked` prop instead.
@@ -156,14 +166,21 @@ const defaultIcon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 
 interface Menu2CheckboxItemRootSlotProps extends Pick<
   Menu2CheckboxItemProps,
-  'component' | 'disableRipple' | 'nativeButton' | 'slotProps' | 'slots' | 'sx'
+  | 'checkedIcon'
+  | 'component'
+  | 'disableRipple'
+  | 'icon'
+  | 'nativeButton'
+  | 'slotProps'
+  | 'slots'
+  | 'sx'
 > {
   baseProps: HTMLProps;
   ownerState: Menu2CheckboxItemOwnerState & Pick<Menu2CheckboxItemProps, 'classes'>;
 }
 
 function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
-  const { ownerState, slotProps, slots } = props;
+  const { checkedIcon, icon, ownerState, slotProps, slots } = props;
   const [IndicatorSlot, { keepMounted = true, ...indicatorProps }] = useSlot('indicator', {
     elementType: Menu2CheckboxItemIndicator,
     externalForwardedProps: { slots, slotProps },
@@ -187,8 +204,7 @@ function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
           keepMounted={keepMounted}
           render={getMenu2RootRender(IndicatorSlot, ownerState, {
             ...indicatorProps,
-            children:
-              indicatorProps.children ?? (ownerState.checked ? defaultCheckedIcon : defaultIcon),
+            children: indicatorProps.children ?? (ownerState.checked ? checkedIcon : icon),
           })}
         />
       }
@@ -206,6 +222,11 @@ Menu2CheckboxItemRootSlot.propTypes /* remove-proptypes */ = {
    */
   baseProps: PropTypes.object.isRequired,
   /**
+   * The icon to display when the item is checked.
+   * @default <CheckBoxIcon fontSize="small" />
+   */
+  checkedIcon: PropTypes.node,
+  /**
    * The component used for the root node.
    */
   component: PropTypes.elementType,
@@ -214,6 +235,11 @@ Menu2CheckboxItemRootSlot.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableRipple: PropTypes.bool,
+  /**
+   * The icon to display when the item is unchecked.
+   * @default <CheckBoxOutlineBlankIcon fontSize="small" />
+   */
+  icon: PropTypes.node,
   /**
    * @ignore
    */
@@ -252,6 +278,7 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
   const {
     children,
     checked,
+    checkedIcon = defaultCheckedIcon,
     className,
     classes: classesProp,
     component,
@@ -260,6 +287,7 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
     disableGutters = false,
     disableRipple,
     divider = false,
+    icon = defaultIcon,
     nativeButton: nativeButtonProp,
     onCheckedChange,
     slotProps,
@@ -295,8 +323,10 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
           <Menu2CheckboxItemRootSlot
             baseProps={renderProps}
             ownerState={{ ...ownerState, ...state }}
+            checkedIcon={checkedIcon}
             component={component}
             disableRipple={disableRipple}
+            icon={icon}
             nativeButton={nativeButtonProp}
             slotProps={slotProps}
             slots={slots}
@@ -334,6 +364,11 @@ Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
    * To render an uncontrolled checkbox item, use the `defaultChecked` prop instead.
    */
   checked: PropTypes.bool,
+  /**
+   * The icon to display when the item is checked.
+   * @default <CheckBoxIcon fontSize="small" />
+   */
+  checkedIcon: PropTypes.node,
   /**
    * The content of the component.
    */
@@ -388,6 +423,11 @@ Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
    * @default false
    */
   divider: PropTypes.bool,
+  /**
+   * The icon to display when the item is unchecked.
+   * @default <CheckBoxOutlineBlankIcon fontSize="small" />
+   */
+  icon: PropTypes.node,
   /**
    * Overrides the text label to use when the item is matched during keyboard text navigation.
    */

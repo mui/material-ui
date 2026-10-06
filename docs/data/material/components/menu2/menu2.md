@@ -142,6 +142,28 @@ For a single choice in a set, put `Menu2RadioItem` components in a `Menu2RadioGr
 
 {{"demo": "RadioMenu2.js"}}
 
+Use `icon` and `checkedIcon` to change the unchecked and checked icons. Both item components accept these props. Set them on an item or in the theme's `defaultProps`:
+
+```tsx
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckIcon from '@mui/icons-material/Check';
+import { createTheme } from '@mui/material/styles';
+import type {} from '@mui/material/Unstable_Menu2/themeAugmentation';
+
+const theme = createTheme({
+  components: {
+    MuiMenu2CheckboxItem: {
+      defaultProps: {
+        icon: <CheckBoxOutlineBlankIcon fontSize="small" />,
+        checkedIcon: <CheckIcon fontSize="small" />,
+      },
+    },
+  },
+});
+```
+
+Use `MuiMenu2RadioItem.defaultProps` to set the radio item icons. Custom icons keep their own size. If `slotProps.indicator.children` is not `null` or `undefined`, it takes precedence over both icon props. Use a slot callback if the content must depend on the item's state.
+
 Checkbox items report changes with `onCheckedChange(checked, eventDetails)`. Radio groups use `onValueChange(value, eventDetails)`. For an uncontrolled item or group, use `defaultChecked` or `defaultValue`.
 
 Read the new checked state or value from the first argument. The native event is available through `eventDetails.event`. Its target can be a descendant of the item.
