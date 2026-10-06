@@ -1,13 +1,10 @@
 'use client';
 /* eslint-disable no-underscore-dangle */
-import emStyled, {
-  type CreateStyled,
-  type StyledComponent,
-  type StyledOptions,
-} from '@emotion/styled';
+import type { CreateStyled, StyledComponent, StyledOptions } from '@emotion/styled';
 import { serializeStyles as emSerializeStyles } from '@emotion/serialize';
 import type * as CSS from 'csstype';
 import { type PropsOf } from '@emotion/react';
+import emStyled from './createEmotionStyled';
 
 // Re-export the public type surface of `@emotion/styled`. Explicit names rather
 // than `export type *`: an `export *` (even type-only) is disallowed by the
