@@ -106,9 +106,12 @@ describe('<NativeSelect />', () => {
   it('should forward the ref of the input element', () => {
     const inputRef = React.createRef();
     const ref = React.createRef();
-    render(<NativeSelect {...defaultProps} ref={ref} input={<Input ref={inputRef} />} />);
+    const { container } = render(
+      <NativeSelect {...defaultProps} ref={ref} input={<Input ref={inputRef} />} />,
+    );
 
-    expect(inputRef.current).not.to.equal(null);
-    expect(inputRef.current).to.equal(ref.current);
+    const inputRoot = container.querySelector(`.${inputClasses.root}`);
+    expect(inputRef.current).to.equal(inputRoot);
+    expect(ref.current).to.equal(inputRoot);
   });
 });
