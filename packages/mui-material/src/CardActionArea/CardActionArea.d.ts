@@ -11,6 +11,9 @@ import {
 import { OverrideProps } from '../OverridableComponent';
 import { CardActionAreaClasses } from './cardActionAreaClasses';
 
+export interface CardActionAreaRootSlotPropsOverrides {}
+export interface CardActionAreaFocusHighlightSlotPropsOverrides {}
+
 export interface CardActionAreaSlots {
   /**
    * The component that renders the root.
@@ -31,12 +34,20 @@ export type CardActionAreaSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the root slot.
      * By default, the available props are based on the span element.
      */
-    root: SlotProps<React.ElementType<ButtonBaseProps>, {}, CardActionAreaOwnerState>;
+    root: SlotProps<
+      React.ElementType<ButtonBaseProps>,
+      CardActionAreaRootSlotPropsOverrides,
+      CardActionAreaOwnerState
+    >;
     /**
      * Props forwarded to the focusHighlight slot.
      * By default, the available props are based on the span element.
      */
-    focusHighlight: SlotProps<'span', {}, CardActionAreaOwnerState>;
+    focusHighlight: SlotProps<
+      'span',
+      CardActionAreaFocusHighlightSlotPropsOverrides,
+      CardActionAreaOwnerState
+    >;
   }
 >;
 
