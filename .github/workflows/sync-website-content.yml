@@ -45,7 +45,7 @@ jobs:
             echo 'SYNC_SUMMARY_EOF'
           } >> "$GITHUB_OUTPUT"
       - name: Sync careers
-        run: pnpm docs:sync-careers
+        run: pnpm --silent exec tsx ./docs/scripts/syncCareers.ts
       - name: Format synced content
         run: pnpm prettier
       - name: Create or update pull request
