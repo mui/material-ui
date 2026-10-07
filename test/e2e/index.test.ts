@@ -2,7 +2,7 @@ import { Page, Browser, chromium, expect } from '@playwright/test';
 import { describe, it, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
 import '@mui/internal-test-utils/initPlaywrightMatchers';
 
-const BASE_URL = 'http://localhost:5001';
+const BASE_URL = process.env.E2E_BASE_URL || 'http://localhost:5001';
 
 function sleep(duration: number): Promise<void> {
   return new Promise<void>((resolve) => {
