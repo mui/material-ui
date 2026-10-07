@@ -6,6 +6,8 @@ import Typography from '../Typography';
 import { FormControlLabelClasses } from './formControlLabelClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
+export interface FormControlLabelTypographySlotPropsOverrides {}
+
 export interface FormControlLabelSlots {
   /**
    * The component that renders the label.
@@ -18,7 +20,11 @@ export interface FormControlLabelSlots {
 export type FormControlLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
   FormControlLabelSlots,
   {
-    typography: SlotProps<typeof Typography, {}, FormControlLabelProps>;
+    typography: SlotProps<
+      typeof Typography,
+      FormControlLabelTypographySlotPropsOverrides,
+      FormControlLabelProps
+    >;
   }
 >;
 

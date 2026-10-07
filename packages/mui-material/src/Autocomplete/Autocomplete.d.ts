@@ -23,6 +23,11 @@ import { AutocompleteResolvedValue } from '../useAutocomplete/useAutocomplete';
 import { AutocompleteClasses } from './autocompleteClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
+export interface AutocompleteRootSlotPropsOverrides {}
+export interface AutocompleteChipSlotPropsOverrides {}
+export interface AutocompleteClearIndicatorSlotPropsOverrides {}
+export interface AutocompleteListboxSlotPropsOverrides {}
+export interface AutocompletePopupIndicatorSlotPropsOverrides {}
 export interface AutocompletePaperSlotPropsOverrides {}
 export interface AutocompletePopperSlotPropsOverrides {}
 export interface AutocompleteStatusSlotPropsOverrides {}
@@ -131,17 +136,23 @@ export interface AutocompleteSlots {
    * The component used to render the clear indicator element.
    * @default IconButton
    */
-  clearIndicator: React.JSXElementConstructor<IconButtonProps>;
+  clearIndicator: React.JSXElementConstructor<
+    IconButtonProps & AutocompleteClearIndicatorSlotPropsOverrides
+  >;
   /**
    * The component used to render the popup indicator element.
    * @default IconButton
    */
-  popupIndicator: React.JSXElementConstructor<IconButtonProps>;
+  popupIndicator: React.JSXElementConstructor<
+    IconButtonProps & AutocompletePopupIndicatorSlotPropsOverrides
+  >;
   /**
    * The component used to render the listbox.
    * @default 'ul'
    */
-  listbox: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
+  listbox: React.JSXElementConstructor<
+    React.HTMLAttributes<HTMLElement> & AutocompleteListboxSlotPropsOverrides
+  >;
   /**
    * The component used to render the status message container.
    * @default 'div'
@@ -171,7 +182,7 @@ export type AutocompleteSlotsAndSlotProps<
   {
     root: SlotProps<
       'div',
-      {},
+      AutocompleteRootSlotPropsOverrides,
       AutocompleteOwnerState<
         Value,
         Multiple,
@@ -183,7 +194,7 @@ export type AutocompleteSlotsAndSlotProps<
     >;
     chip: SlotProps<
       React.ElementType<Partial<ChipProps<ChipComponent>>>,
-      {},
+      AutocompleteChipSlotPropsOverrides,
       AutocompleteOwnerState<
         Value,
         Multiple,
@@ -195,7 +206,7 @@ export type AutocompleteSlotsAndSlotProps<
     >;
     clearIndicator: SlotProps<
       React.ElementType<Partial<IconButtonProps>>,
-      {},
+      AutocompleteClearIndicatorSlotPropsOverrides,
       AutocompleteOwnerState<
         Value,
         Multiple,
@@ -215,7 +226,7 @@ export type AutocompleteSlotsAndSlotProps<
           ref?: React.Ref<Element> | undefined;
         }
       >,
-      {},
+      AutocompleteListboxSlotPropsOverrides,
       AutocompleteOwnerState<
         Value,
         Multiple,
@@ -263,7 +274,7 @@ export type AutocompleteSlotsAndSlotProps<
     >;
     popupIndicator: SlotProps<
       React.ElementType<Partial<IconButtonProps>>,
-      {},
+      AutocompletePopupIndicatorSlotPropsOverrides,
       AutocompleteOwnerState<
         Value,
         Multiple,

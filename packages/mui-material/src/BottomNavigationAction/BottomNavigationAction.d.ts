@@ -11,6 +11,9 @@ import {
 import { OverrideProps } from '../OverridableComponent';
 import { BottomNavigationActionClasses } from './bottomNavigationActionClasses';
 
+export interface BottomNavigationActionRootSlotPropsOverrides {}
+export interface BottomNavigationActionLabelSlotPropsOverrides {}
+
 export interface BottomNavigationActionSlots {
   /**
    * The component that renders the root.
@@ -31,12 +34,20 @@ export type BottomNavigationActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the root slot.
      * By default, the available props are based on the ButtonBase element.
      */
-    root: SlotProps<React.ElementType<ButtonBaseProps>, {}, BottomNavigationActionOwnerState>;
+    root: SlotProps<
+      React.ElementType<ButtonBaseProps>,
+      BottomNavigationActionRootSlotPropsOverrides,
+      BottomNavigationActionOwnerState
+    >;
     /**
      * Props forwarded to the label slot.
      * By default, the available props are based on the span element.
      */
-    label: SlotProps<'span', {}, BottomNavigationActionOwnerState>;
+    label: SlotProps<
+      'span',
+      BottomNavigationActionLabelSlotPropsOverrides,
+      BottomNavigationActionOwnerState
+    >;
   }
 >;
 
