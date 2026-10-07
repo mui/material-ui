@@ -3,14 +3,31 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import Paper from '../Paper';
 import List from '../List';
+import { menu2PopupClasses, menu2SubmenuPopupClasses } from './menu2Classes';
 
 // A slot puts shared styles in the components CSS layer. No name is set:
 // the popup wrappers supply their own theme keys and override resolvers.
-export const Menu2PositionerBase = styled('div', { slot: 'positioner' })(
+export const Menu2RootBase = styled('div', { slot: 'root' })(
   memoTheme(({ theme }) => ({
+    // Keep Base UI's interaction backdrop and the popup in one stacking context.
+    // This layer has no full-screen box, so non-modal menus remain click-through.
+    // Keep it out of layout so it does not resize the anchor when content changes.
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
     zIndex: (theme.vars || theme).zIndex.modal,
+    // Base UI hides the positioner after its exit transition, but retains the
+    // portal with keepMounted. Hide this layer too, including its own styles.
+    [`&:has(> .${menu2PopupClasses.positioner}[hidden], > .${menu2SubmenuPopupClasses.positioner}[hidden])`]:
+      { display: 'none' },
   })),
 );
+
+export const Menu2PositionerBase = styled('div', { slot: 'positioner' })({
+  // The root controls page stacking. Keep the popup above its sibling backdrops.
+  zIndex: 1,
+});
 
 export const Menu2PaperBase = styled(Paper, { slot: 'paper' })({
   outline: 0,

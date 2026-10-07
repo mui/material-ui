@@ -181,7 +181,7 @@ import type {} from '@mui/material/Unstable_Menu2/themeAugmentation';
 
 Component imports do not register these theme types. This type-only import adds no runtime code.
 
-Menu v2 registers two theme keys for the menu surfaces. `MuiMenu2` has the slots `root`, `backdrop`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `paper`, and `list`. The item parts have their own keys, such as `MuiMenu2Item`.
+Menu v2 registers two theme keys for the menu surfaces. `MuiMenu2` has the slots `root`, `positioner`, `backdrop`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `positioner`, `paper`, and `list`. The item parts have their own keys, such as `MuiMenu2Item`.
 
 The trigger has no theme key, because you supply the element. Theme its own component instead, or style the `.MuiMenu2Trigger-root` class.
 
@@ -206,9 +206,11 @@ The trigger has no theme key, because you supply the element. Theme its own comp
 
 Every element has its own class, such as `.MuiMenu2Item-root`, so `sx` and `styleOverrides` can reach each node.
 
-The slots are `root`, `backdrop`, `paper`, `list`, and `transition`. There's no `trigger` slot: `slotProps.trigger` accepts only `nativeButton`, `className`, and `ref`. `elevation` stays a top-level prop for the `paper` slot, with the default 8.
+The slots are `root`, `positioner`, `backdrop`, `paper`, `list`, and `transition`. There's no `trigger` slot: `slotProps.trigger` accepts only `nativeButton`, `className`, and `ref`. `elevation` stays a top-level prop for the `paper` slot, with the default 8.
 
-`ref`, `className`, `style`, and `sx` now target the positioned root element, not a full-screen Modal or the portal. Event handlers and top-level `aria-label`, `aria-labelledby`, and `aria-describedby` target the menu surface. Other HTML attributes go to the root. Move menu naming attributes from `slotProps.list` to the top level or `slotProps.paper`; the list is now presentational. Use `slotProps.paper.ref` for the menu surface.
+`ref`, `className`, `style`, and `sx` target the portal's root element, not a full-screen Modal. The root sets the stacking level for both the menu and its modal interaction layer. Use `slotProps.positioner` for styles, placement attributes, and the ref on the positioned element. Top-level positioning props such as `side` and `align` still target that element.
+
+Event handlers and top-level `aria-label`, `aria-labelledby`, and `aria-describedby` target the menu surface. Other HTML attributes go to the root. Move menu naming attributes from `slotProps.list` to the top level or `slotProps.paper`; the list is now presentational. Use `slotProps.paper.ref` for the menu surface.
 
 ### 8. Check the removed props
 

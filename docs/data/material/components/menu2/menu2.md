@@ -240,11 +240,15 @@ Type a letter while the menu is open to move to the matching item.
 
 ## Customization
 
-`ref`, `className`, `style`, and `sx` target the positioned root element, which carries `theme.zIndex.modal`. The portal stays internal. Event handlers and the label and description attributes `aria-label`, `aria-labelledby`, and `aria-describedby` go to the menu surface. Other HTML attributes go to the root. Use a descendant selector or `slotProps.paper` to style the surface:
+`ref`, `className`, `style`, and `sx` target the portal's root element. It carries `theme.zIndex.modal` and keeps the menu and its modal interaction layer together above other content, including Dialog. Use `slotProps.positioner` to style or reference the element that positions the menu. Event handlers and the label and description attributes `aria-label`, `aria-labelledby`, and `aria-describedby` go to the menu surface. Other HTML attributes go to the root. Use a descendant selector or `slotProps.paper` to style the surface:
 
 {{"demo": "CustomizedMenu2.js"}}
 
-The slots are `root`, `backdrop`, `paper`, `list`, and `transition`. `elevation` is a top-level prop for the `paper` slot. Use `slotProps.paper` for other `aria-*` attributes and the ref on the element with `role="menu"`. Matching paper slot attributes take precedence over top-level attributes. An explicit `aria-labelledby` takes precedence over `aria-label`; either replaces the inferred trigger name.
+The slots are `root`, `positioner`, `backdrop`, `paper`, `list`, and `transition`. The `positioner` slot receives the positioning props and placement attributes, such as `data-side`. Keep using top-level props such as `side` and `align` to position the menu. `container` and `keepMounted` control the portal.
+
+With `keepMounted`, the default root hides when its positioner becomes hidden, after the exit transition. Replacing `slots.root` removes both its stacking and closed-state styles; the replacement must provide them. Submenus use the parent menu's stacking context by default. Set `zIndex` on the top-level menu's root to change the stacking level of the whole menu; a submenu's `zIndex` stays within that level.
+
+`elevation` is a top-level prop for the `paper` slot. Use `slotProps.paper` for other `aria-*` attributes and the ref on the element with `role="menu"`. Matching paper slot attributes take precedence over top-level attributes. An explicit `aria-labelledby` takes precedence over `aria-label`; either replaces the inferred trigger name.
 
 The trigger isn't a slot, because you supply the element. Style it directly. It has the `.MuiMenu2Trigger-root` class, and the global `.Mui-open` class while the menu is open. Scope state selectors to the component, such as `.MuiMenu2Trigger-root.Mui-open`. `slotProps.trigger` accepts only `nativeButton`, `className`, and `ref`.
 
@@ -262,7 +266,7 @@ import type {} from '@mui/material/Unstable_Menu2/themeAugmentation';
 
 This import adds no runtime code. The separate module keeps Base UI types out of apps that do not use Menu v2.
 
-The theme has two keys for the menu surfaces. `MuiMenu2` has the slots `root`, `backdrop`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `paper`, and `list`. Each item part has its own key, such as `MuiMenu2Item`:
+The theme has two keys for the menu surfaces. `MuiMenu2` has the slots `root`, `positioner`, `backdrop`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `positioner`, `paper`, and `list`. Each item part has its own key, such as `MuiMenu2Item`:
 
 ```js
 import { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
@@ -352,7 +356,7 @@ Set `transitionDuration={0}` to remove the animation. To animate with CSS, set `
 
 Base UI uses an internal, transparent backdrop for modal menus. This layer is absent when a menu opens on hover or has `modal={false}`.
 
-The optional visual backdrop is separate and is not rendered by default. Set `slots.backdrop` or `slotProps.backdrop` to render it. Its default styles are transparent and do not capture pointer events. To dim the page:
+The optional visual backdrop is separate and is not rendered by default. Set `slots.backdrop` or `slotProps.backdrop` to render it inside the root, behind the menu. Its default styles are transparent and do not capture pointer events. To dim the page:
 
 ```jsx
 <Menu

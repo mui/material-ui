@@ -2,8 +2,210 @@ import * as React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Dialog from '../Dialog';
+import { createTheme, ThemeProvider } from '../styles';
 import Menu2Item from '../Unstable_Menu2Item';
-import Menu2 from './Menu2';
+import Menu2Submenu from '../Unstable_Menu2Submenu';
+import Menu2SubmenuTrigger from '../Unstable_Menu2SubmenuTrigger';
+import Menu2, { Menu2Props } from './Menu2';
+
+describe.skipIf(isJsdom())('Menu2 inside a Material Dialog', () => {
+  const { render } = createRenderer();
+
+  function TestDialog({
+    modal,
+    menuProps,
+    onAction,
+    onDialogClose,
+  }: {
+    modal?: boolean;
+    menuProps?: Partial<Menu2Props>;
+    onAction: () => void;
+    onDialogClose: () => void;
+  }) {
+    const [open, setOpen] = React.useState(true);
+
+    return (
+      <Dialog
+        open={open}
+        transitionDuration={0}
+        onClose={() => {
+          onDialogClose();
+          setOpen(false);
+        }}
+      >
+        <div style={{ display: 'flex', gap: 32, padding: 24 }}>
+          <Menu2 modal={modal} trigger={<button type="button">Options</button>} {...menuProps}>
+            {menuProps?.children ?? <Menu2Item>Profile</Menu2Item>}
+          </Menu2>
+          <button type="button" onClick={onAction}>
+            Other action
+          </button>
+        </div>
+      </Dialog>
+    );
+  }
+
+  function getCenter(element: Element) {
+    const rect = element.getBoundingClientRect();
+    return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+  }
+
+  // Synthetic clicks do not perform hit testing. Use the actual topmost element
+  // at the click point so these tests also check the modal layer's stacking.
+  function getClickTarget({ x, y }: { x: number; y: number }) {
+    return document.elementFromPoint(x, y) as HTMLElement;
+  }
+
+  [
+    { name: 'default', zIndex: 1300 },
+    { name: 'raised', zIndex: 2600 },
+  ].forEach(({ name, zIndex }) => {
+    const theme = createTheme({
+      zIndex: { modal: zIndex },
+      motion: { reducedMotion: 'always' },
+    });
+
+    it(`blocks the first click on another dialog button with the ${name} modal z-index`, async () => {
+      const onAction = vi.fn();
+      const onDialogClose = vi.fn();
+      const { user } = render(
+        <ThemeProvider theme={theme}>
+          <TestDialog onAction={onAction} onDialogClose={onDialogClose} />
+        </ThemeProvider>,
+      );
+      const action = screen.getByRole('button', { name: 'Other action' });
+      const point = getCenter(action);
+
+      await user.click(screen.getByRole('button', { name: 'Options' }));
+      const menu = await screen.findByRole('menu');
+      const item = screen.getByRole('menuitem', { name: 'Profile' });
+      await waitFor(() => expect(menu.contains(getClickTarget(getCenter(item)))).to.equal(true));
+
+      await user.click(getClickTarget(point));
+      await waitFor(() => expect(menu.isConnected).to.equal(false));
+      expect(onAction).not.toHaveBeenCalled();
+      expect(onDialogClose).not.toHaveBeenCalled();
+      expect(screen.getByRole('dialog')).not.to.equal(null);
+
+      expect(getClickTarget(point)).to.equal(action);
+      await user.click(getClickTarget(point));
+      expect(onAction).toHaveBeenCalledTimes(1);
+      expect(onDialogClose).not.toHaveBeenCalled();
+    });
+
+    it(`blocks the first click outside the dialog with the ${name} modal z-index`, async () => {
+      const onDialogClose = vi.fn();
+      const { user } = render(
+        <ThemeProvider theme={theme}>
+          <TestDialog onAction={vi.fn()} onDialogClose={onDialogClose} />
+        </ThemeProvider>,
+      );
+
+      await user.click(screen.getByRole('button', { name: 'Options' }));
+      const menu = await screen.findByRole('menu');
+      const point = { x: 10, y: 10 };
+
+      await user.click(getClickTarget(point));
+      await waitFor(() => expect(menu.isConnected).to.equal(false));
+      expect(onDialogClose).not.toHaveBeenCalled();
+      expect(screen.getByRole('dialog')).not.to.equal(null);
+
+      await user.click(getClickTarget(point));
+      expect(onDialogClose).toHaveBeenCalledTimes(1);
+      await waitFor(() => expect(screen.queryByRole('dialog')).to.equal(null));
+    });
+  });
+
+  it('allows the first outside click to activate another dialog button when non-modal', async () => {
+    const onAction = vi.fn();
+    const onDialogClose = vi.fn();
+    const { user } = render(
+      <TestDialog modal={false} onAction={onAction} onDialogClose={onDialogClose} />,
+    );
+    const action = screen.getByRole('button', { name: 'Other action' });
+    const point = getCenter(action);
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+    const menu = await screen.findByRole('menu');
+    expect(getClickTarget(point)).to.equal(action);
+
+    await user.click(getClickTarget(point));
+    await waitFor(() => expect(menu.isConnected).to.equal(false));
+    expect(onAction).toHaveBeenCalledTimes(1);
+    expect(onDialogClose).not.toHaveBeenCalled();
+    expect(screen.getByRole('dialog')).not.to.equal(null);
+  });
+
+  it('allows the first outside click when opened on hover', async () => {
+    const onAction = vi.fn();
+    const onDialogClose = vi.fn();
+    const { user } = render(
+      <TestDialog
+        menuProps={{ openOnHover: true, delay: 0 }}
+        onAction={onAction}
+        onDialogClose={onDialogClose}
+      />,
+    );
+    const action = screen.getByRole('button', { name: 'Other action' });
+    const point = getCenter(action);
+
+    await user.hover(screen.getByRole('button', { name: 'Options' }));
+    const menu = await screen.findByRole('menu');
+    await user.hover(action);
+    await waitFor(() => expect(getClickTarget(point) === action).to.equal(true));
+
+    await user.click(getClickTarget(point));
+    await waitFor(() => expect(menu.isConnected).to.equal(false));
+    expect(onAction).toHaveBeenCalledTimes(1);
+    expect(onDialogClose).not.toHaveBeenCalled();
+  });
+
+  it('keeps the trigger clickable through the modal backdrop', async () => {
+    const onDialogClose = vi.fn();
+    const { user } = render(<TestDialog onAction={vi.fn()} onDialogClose={onDialogClose} />);
+    const trigger = screen.getByRole('button', { name: 'Options' });
+    const point = getCenter(trigger);
+
+    await user.click(trigger);
+    const menu = await screen.findByRole('menu');
+    expect(getClickTarget(point)).to.equal(trigger);
+
+    await user.click(getClickTarget(point));
+    await waitFor(() => expect(menu.isConnected).to.equal(false));
+    expect(onDialogClose).not.toHaveBeenCalled();
+  });
+
+  it('keeps submenu items clickable above the parent modal layer', async () => {
+    const onSelect = vi.fn();
+    const onDialogClose = vi.fn();
+    const { user } = render(
+      <TestDialog
+        onAction={vi.fn()}
+        onDialogClose={onDialogClose}
+        menuProps={{
+          children: (
+            <Menu2Submenu
+              trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
+            >
+              <Menu2Item onClick={onSelect}>Export</Menu2Item>
+            </Menu2Submenu>
+          ),
+        }}
+      />,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+    const menu = await screen.findByRole('menu');
+    await user.click(screen.getByRole('menuitem', { name: 'More' }));
+    const item = await screen.findByRole('menuitem', { name: 'Export' });
+    await waitFor(() => expect(item.contains(getClickTarget(getCenter(item)))).to.equal(true));
+
+    await user.click(getClickTarget(getCenter(item)));
+    await waitFor(() => expect(menu.isConnected).to.equal(false));
+    expect(onSelect).toHaveBeenCalledTimes(1);
+    expect(onDialogClose).not.toHaveBeenCalled();
+  });
+});
 
 describe.skipIf(isJsdom())('Menu2 and Material Modal scroll locking', () => {
   const { render } = createRenderer();

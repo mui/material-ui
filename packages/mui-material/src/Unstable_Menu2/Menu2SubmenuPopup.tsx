@@ -10,7 +10,12 @@ import {
   Menu2PopupSharedProps,
   Menu2PopupSharedSlotProps,
 } from './menu2PopupShared';
-import { Menu2ListBase, Menu2PaperBase, Menu2PositionerBase } from './Menu2PopupSlotBases';
+import {
+  Menu2ListBase,
+  Menu2PaperBase,
+  Menu2PositionerBase,
+  Menu2RootBase,
+} from './Menu2PopupSlotBases';
 import { getMenu2SubmenuPopupUtilityClass, Menu2SubmenuPopupClasses } from './menu2Classes';
 import Menu2SubmenuClosingContext from './Menu2SubmenuClosingContext';
 import type { Menu2SubmenuProps } from '../Unstable_Menu2Submenu/Menu2Submenu';
@@ -29,11 +34,11 @@ export interface Menu2SubmenuPopupProps extends Omit<
    */
   children?: React.ReactNode;
   /**
-   * CSS class applied to the root element, which positions the menu.
+   * CSS class applied to the root element, which contains the menu and its backdrops.
    */
   className?: Menu2PopupPublicProps['className'] | undefined;
   /**
-   * Inline styles applied to the root element, which positions the menu.
+   * Inline styles applied to the root element, which contains the menu and its backdrops.
    */
   style?: Menu2PopupPublicProps['style'] | undefined;
   /**
@@ -143,10 +148,15 @@ interface Menu2SubmenuPopupInternalProps extends Menu2SubmenuPopupProps {
 
 export interface Menu2SubmenuPopupSlots {
   /**
-   * The component used for the root element, which positions the menu.
+   * The component used for the root element, which contains the menu and its backdrops.
    * @default 'div'
    */
   root?: React.ElementType | undefined;
+  /**
+   * The component used to position the menu surface.
+   * @default 'div'
+   */
+  positioner?: React.ElementType | undefined;
   /**
    * The component used for the menu surface. The popup renders as this element.
    * @default Paper
@@ -174,6 +184,7 @@ const useUtilityClasses = (ownerState: Menu2SubmenuPopupOwnerState) => {
 
   const slots = {
     root: ['root'],
+    positioner: ['positioner'],
     paper: ['paper'],
     list: ['list'],
   };
@@ -181,9 +192,14 @@ const useUtilityClasses = (ownerState: Menu2SubmenuPopupOwnerState) => {
   return composeClasses(slots, getMenu2SubmenuPopupUtilityClass, classes);
 };
 
-const Menu2SubmenuPopupRoot = styled(Menu2PositionerBase, {
+const Menu2SubmenuPopupRoot = styled(Menu2RootBase, {
   name: 'MuiMenu2Submenu',
   slot: 'root',
+})({});
+
+const Menu2SubmenuPopupPositioner = styled(Menu2PositionerBase, {
+  name: 'MuiMenu2Submenu',
+  slot: 'positioner',
 })({});
 
 const Menu2SubmenuPopupPaper = styled(Menu2PaperBase, {
@@ -227,6 +243,7 @@ const Menu2SubmenuPopup = React.forwardRef(function Menu2SubmenuPopup(
       classes={classes}
       defaultSlots={{
         root: Menu2SubmenuPopupRoot,
+        positioner: Menu2SubmenuPopupPositioner,
         paper: Menu2SubmenuPopupPaper,
         list: Menu2SubmenuPopupList,
       }}

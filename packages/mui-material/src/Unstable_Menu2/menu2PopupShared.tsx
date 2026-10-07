@@ -81,10 +81,15 @@ export interface Menu2PopupSharedSlots {
    */
   transition?: React.JSXElementConstructor<any> | null | undefined;
   /**
-   * The component used for the root element, which positions the menu.
+   * The component used for the root element, which contains the menu and its backdrops.
    * @default 'div'
    */
   root?: React.ElementType | undefined;
+  /**
+   * The component used to position the menu surface.
+   * @default 'div'
+   */
+  positioner?: React.ElementType | undefined;
   /**
    * The component used for the optional backdrop beneath the menu.
    * Providing this slot or `slotProps.backdrop` renders it.
@@ -119,7 +124,11 @@ export interface Menu2PopupSharedSlotProps<OwnerState> {
         OwnerState
       >
     | undefined;
-  root?: SlotProps<ExternalSlotProps<BaseMenu.Positioner.Props> & WithSx, OwnerState> | undefined;
+  root?:
+    | SlotProps<ExternalSlotProps<React.ComponentPropsWithRef<'div'>> & WithSx, OwnerState>
+    | undefined;
+  positioner?:
+    SlotProps<ExternalSlotProps<BaseMenu.Positioner.Props> & WithSx, OwnerState> | undefined;
   backdrop?: SlotProps<ExternalSlotProps<BaseMenu.Backdrop.Props>, OwnerState> | undefined;
   paper?: SlotProps<ExternalSlotProps<PaperProps>, OwnerState> | undefined;
   list?: SlotProps<ExternalSlotProps<ListProps>, OwnerState> | undefined;
@@ -193,13 +202,15 @@ export interface Menu2PopupSharedProps<OwnerState>
   extends
     Omit<BaseMenu.Popup.Props, 'children' | 'className' | 'render' | 'style' | 'finalFocus'>,
     Menu2PopupPublicProps {
-  classes?: Partial<Record<'root' | 'backdrop' | 'paper' | 'list', string>> | undefined;
+  classes?:
+    Partial<Record<'root' | 'positioner' | 'backdrop' | 'paper' | 'list', string>> | undefined;
   ownerState: OwnerState;
   onClosingChange?: ((closing: boolean) => void) | undefined;
   slots?: Menu2PopupSharedSlots | undefined;
   slotProps?: Menu2PopupSharedSlotProps<OwnerState> | undefined;
   defaultSlots: {
     root: React.ElementType;
+    positioner: React.ElementType;
     paper: React.ElementType;
     list: React.ElementType;
     backdrop?: React.ElementType | undefined;
@@ -246,9 +257,10 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     ...other
   } = props;
 
-  // Keep the Base parts for their context and behavior. The root slot changes
-  // the positioner's element through `render`; the portal remains internal.
+  // Keep the Base parts for their context and behavior. The root styles the
+  // portal's shared stacking layer; the positioner controls placement inside it.
   const RootSlot = slots?.root ?? defaultSlots.root;
+  const PositionerSlot = slots?.positioner ?? defaultSlots.positioner;
   const TransitionSlot = slots?.transition === undefined ? Grow : slots.transition;
   const transitionProps = resolveComponentProps(slotProps?.transition, ownerState);
   const transitionTimeout =
@@ -268,6 +280,7 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   const resolvedRootProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), {
     sx,
   });
+  const resolvedPositionerProps = resolveComponentProps(slotProps?.positioner, ownerState);
   const resolvedBackdropProps = BackdropSlot
     ? resolveComponentProps(slotProps?.backdrop, ownerState)
     : undefined;
@@ -289,6 +302,11 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     sx: rootSlotSx,
     ...rootSlotOtherProps
   } = resolvedRootProps ?? {};
+  const {
+    className: positionerSlotClassName,
+    sx: positionerSlotSx,
+    ...positionerSlotOtherProps
+  } = resolvedPositionerProps ?? {};
   const { sx: backdropSlotSx, ...backdropSlotOtherProps } = resolvedBackdropProps ?? {};
   const {
     className: paperSlotClassName,
@@ -324,6 +342,15 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
       )}
     />
   );
+  const positionerRender = (
+    <PositionerSlot
+      {...getSlotProps(
+        PositionerSlot,
+        appendOwnerState(PositionerSlot, { sx: positionerSlotSx }, ownerState),
+        sxHostOmittedProps,
+      )}
+    />
+  );
   const paperProps = getSlotProps(
     PaperSlot,
     appendOwnerState(
@@ -352,7 +379,16 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   const listSlotProps = getSlotProps(ListSlot, mergedListProps, listHostOmittedProps);
 
   return (
-    <BaseMenu.Portal container={container} keepMounted={keepMounted}>
+    <BaseMenu.Portal
+      {...rootAttributes}
+      {...rootSlotOtherProps}
+      container={container}
+      keepMounted={keepMounted}
+      ref={handleRootRef}
+      render={rootRender}
+      className={clsx(classes?.root, className, rootSlotClassName)}
+      style={rootStyle}
+    >
       {BackdropSlot ? (
         <BaseMenu.Backdrop
           {...backdropSlotOtherProps}
@@ -370,12 +406,9 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
       ) : null}
       <BaseMenu.Positioner
         {...positionerProps}
-        {...rootAttributes}
-        {...rootSlotOtherProps}
-        ref={handleRootRef}
-        render={rootRender}
-        className={clsx(classes?.root, className, rootSlotClassName)}
-        style={rootStyle}
+        {...positionerSlotOtherProps}
+        render={positionerRender}
+        className={clsx(classes?.positioner, positionerSlotClassName)}
       >
         <BaseMenu.Popup
           finalFocus={finalFocus}

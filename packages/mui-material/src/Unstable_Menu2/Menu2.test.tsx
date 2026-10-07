@@ -39,13 +39,16 @@ describe('<Menu2 />', () => {
       classes: menu2PopupClasses,
       render,
       getRootElement: ({ baseElement }) => baseElement.querySelector(`.${menu2PopupClasses.root}`),
-      // The public root positions the menu. Its host is
+      // The public root contains all popup layers. Its host is
       // configured through slots.root rather than a component prop.
       skip: ['componentProp'],
       refInstanceof: window.HTMLDivElement,
       muiName: 'MuiMenu2',
       testVariantProps: { align: 'center' },
       slots: {
+        positioner: {
+          expectedClassName: menu2PopupClasses.positioner,
+        },
         paper: {
           expectedClassName: menu2PopupClasses.paper,
         },
@@ -73,7 +76,11 @@ describe('<Menu2 />', () => {
   it('opens from the trigger and keeps Menu.Popup as the semantic menu root', async () => {
     const { user } = render(
       <Menu2
-        slotProps={{ root: { 'data-testid': 'root' }, paper: { 'data-testid': 'paper' } }}
+        slotProps={{
+          root: { 'data-testid': 'root' },
+          positioner: { 'data-testid': 'positioner' },
+          paper: { 'data-testid': 'paper' },
+        }}
         trigger={<Button disableRipple>Options</Button>}
       >
         <Menu2Item>Profile</Menu2Item>
@@ -96,7 +103,10 @@ describe('<Menu2 />', () => {
     expect(root).to.have.class(menu2PopupClasses.root);
     expect(root).to.contain(menu);
     expect(root).not.to.equal(menu);
-    expect(menu.parentElement).to.equal(root);
+    const positioner = screen.getByTestId('positioner');
+    expect(positioner).to.have.class(menu2PopupClasses.positioner);
+    expect(menu.parentElement).to.equal(positioner);
+    expect(positioner.parentElement).to.equal(root);
 
     const list = menu.querySelector(`.${menu2PopupClasses.list}`);
     expect(list).not.to.equal(null);
@@ -665,6 +675,7 @@ describe('<Menu2 />', () => {
         />
         <div style={{ paddingTop: 96 }}>
           <Menu2
+            modal={false}
             slotProps={{ backdrop: { 'data-testid': 'backdrop', sx: { pointerEvents: 'auto' } } }}
             trigger={<Button disableRipple>Options</Button>}
           >
@@ -688,7 +699,7 @@ describe('<Menu2 />', () => {
     ).to.equal(true);
   });
 
-  it.skipIf(isJsdom())('stacks the positioner at theme.zIndex.modal', async () => {
+  it.skipIf(isJsdom())('stacks the shared root at theme.zIndex.modal', async () => {
     const { user } = render(
       <Menu2 trigger={<Button disableRipple>Options</Button>}>
         <Menu2Item>Profile</Menu2Item>
@@ -699,8 +710,11 @@ describe('<Menu2 />', () => {
 
     // Base UI sets no z-index, so a fixed AppBar would paint over the menu.
     const positioner = (await screen.findByRole('menu')).parentElement!;
-    expect(positioner).to.have.class(menu2PopupClasses.root);
-    expect(window.getComputedStyle(positioner).zIndex).to.equal(String(createTheme().zIndex.modal));
+    const root = positioner.parentElement!;
+    expect(positioner).to.have.class(menu2PopupClasses.positioner);
+    expect(root).to.have.class(menu2PopupClasses.root);
+    expect(window.getComputedStyle(root).zIndex).to.equal(String(createTheme().zIndex.modal));
+    expect(root).to.contain(positioner.previousElementSibling);
   });
 
   it.skipIf(isJsdom())('constrains the popup surface to the collision-aware height', async () => {
@@ -968,14 +982,14 @@ describe('<Menu2 />', () => {
       <React.Fragment>
         <Menu2
           modal
-          slotProps={{ root: { 'data-testid': 'modal-positioner' } }}
+          slotProps={{ positioner: { 'data-testid': 'modal-positioner' } }}
           trigger={<Button disableRipple>Modal menu</Button>}
         >
           <Menu2Item>Profile</Menu2Item>
         </Menu2>
         <Menu2
           modal={false}
-          slotProps={{ root: { 'data-testid': 'non-modal-positioner' } }}
+          slotProps={{ positioner: { 'data-testid': 'non-modal-positioner' } }}
           trigger={<Button disableRipple>Non-modal menu</Button>}
         >
           <Menu2Item>Settings</Menu2Item>
@@ -1043,7 +1057,7 @@ describe('<Menu2 />', () => {
           side="bottom"
           align="start"
           sideOffset={4}
-          slotProps={{ root: { 'data-testid': 'positioner' } }}
+          slotProps={{ positioner: { 'data-testid': 'positioner' } }}
           trigger={<Button disableRipple>Options</Button>}
         >
           <Menu2Item>Profile</Menu2Item>

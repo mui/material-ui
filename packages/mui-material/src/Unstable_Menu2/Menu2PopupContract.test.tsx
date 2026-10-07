@@ -21,6 +21,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
             {submenu ? (
               <Menu2
                 modal={false}
+                sx={{ zIndex: 2000 }}
                 transitionDuration={0}
                 trigger={<button type="button">Options</button>}
               >
@@ -65,6 +66,121 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
         const item = await screen.findByRole('menuitem', { name: 'Alpha' });
         return item.closest<HTMLDivElement>('[role="menu"]')!;
       }
+
+      it('applies positioner slot props without moving them onto the root', async () => {
+        const { user } = render(
+          <TestMenu
+            align="end"
+            slots={{ positioner: 'div' }}
+            slotProps={{
+              root: { 'data-testid': 'root' },
+              positioner: { align: 'start', 'data-testid': 'positioner' },
+            }}
+          />,
+        );
+        const popup = await openMenu(user);
+        const root = screen.getByTestId('root');
+        const positioner = screen.getByTestId('positioner');
+        expect(popup.parentElement).to.equal(positioner);
+        expect(positioner.parentElement).to.equal(root);
+        expect(positioner).to.have.attribute('data-align', 'start');
+        expect(positioner.style.position).to.equal('absolute');
+        expect(positioner.style.transform).not.to.equal('');
+        expect(positioner).not.to.have.attribute('ownerState');
+        expect(root).not.to.have.attribute('data-align');
+        expect(root).not.to.have.attribute('data-side');
+      });
+
+      it('hides a retained root only after its popup exit transition', async () => {
+        const completed = vi.fn();
+        function RetainedMenu() {
+          const [open, setOpen] = React.useState(false);
+          return (
+            <TestMenu
+              open={open}
+              onOpenChange={setOpen}
+              onOpenChangeComplete={completed}
+              keepMounted
+              transitionDuration={{ enter: 0, exit: 200 }}
+              sx={{ position: 'fixed', inset: 0, padding: 1, backgroundColor: 'rgb(1, 2, 3)' }}
+              slotProps={{ root: { 'data-testid': 'retained-root' } }}
+            >
+              <Menu2Item closeOnClick={false} onClick={() => setOpen(false)}>
+                Alpha
+              </Menu2Item>
+            </TestMenu>
+          );
+        }
+        const { user } = render(<RetainedMenu />);
+        if (submenu) {
+          await user.click(screen.getByRole('button', { name: 'Options' }));
+          await screen.findByRole('menuitem', { name: 'More' });
+        }
+        const root = await screen.findByTestId('retained-root');
+        const getOutsideTarget = () =>
+          document.elementFromPoint(window.innerWidth - 8, window.innerHeight - 8);
+        expect(getComputedStyle(root).display).to.equal('none');
+        expect(root).not.toBeVisible();
+        expect(getOutsideTarget()).not.to.equal(root);
+
+        await user.click(
+          submenu
+            ? screen.getByRole('menuitem', { name: 'More' })
+            : screen.getByRole('button', { name: 'Options' }),
+        );
+        const item = await screen.findByRole('menuitem', { name: 'Alpha' });
+        const popup = item.closest('[role="menu"]')!;
+        await waitFor(() => expect(completed).toHaveBeenCalledWith(true));
+        expect(root).toBeVisible();
+        expect(getComputedStyle(root).backgroundColor).to.equal('rgb(1, 2, 3)');
+        expect(getOutsideTarget()).to.equal(root);
+        completed.mockClear();
+
+        await user.click(item);
+        expect(popup).to.have.attribute('data-ending-style');
+        expect(root).toBeVisible();
+        expect(getOutsideTarget()).to.equal(root);
+        expect(completed).not.toHaveBeenCalled();
+
+        await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(false));
+        expect(root.isConnected).to.equal(true);
+        expect(popup.isConnected).to.equal(true);
+        expect(getComputedStyle(root).display).to.equal('none');
+        expect(root).not.toBeVisible();
+        expect(getOutsideTarget()).not.to.equal(root);
+      });
+
+      it('preserves placement inside a positioned portal container', async () => {
+        const containerRef = React.createRef<HTMLDivElement>();
+        const { user } = render(
+          <div
+            ref={containerRef}
+            style={{ position: 'relative', marginTop: 64, marginLeft: 80, width: 400, height: 300 }}
+          >
+            <TestMenu
+              container={containerRef}
+              side="bottom"
+              align="start"
+              alignOffset={0}
+              sideOffset={8}
+            />
+          </div>,
+        );
+        const popup = await openMenu(user);
+        const positioner = popup.parentElement!;
+        const root = positioner.parentElement!;
+        const trigger = submenu
+          ? screen.getByRole('menuitem', { name: 'More' })
+          : screen.getByRole('button', { name: 'Options' });
+
+        expect(root.parentElement).to.equal(containerRef.current);
+        await waitFor(() => {
+          const anchorRect = trigger.getBoundingClientRect();
+          const positionerRect = positioner.getBoundingClientRect();
+          expect(positionerRect.left).to.be.closeTo(anchorRect.left, 1);
+          expect(positionerRect.top).to.be.closeTo(anchorRect.bottom + 8, 1);
+        });
+      });
 
       const namingCases: {
         title: string;
@@ -231,11 +347,47 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
         const overlay = screen.getByTestId('overlay');
         overlay.style.pointerEvents = 'auto';
         const item = screen.getByRole('menuitem', { name: 'Alpha' }).getBoundingClientRect();
-        expect(getComputedStyle(popup.parentElement!).zIndex).to.equal('2000');
+        expect(getComputedStyle(popup.parentElement!.parentElement!).zIndex).to.equal('2000');
         expect(
           popup.contains(document.elementFromPoint(item.left + 8, item.top + item.height / 2)),
         ).to.equal(true);
       });
     });
+  });
+
+  it('uses the public root z-index for the modal click blocker', async () => {
+    const { user } = render(
+      <React.Fragment>
+        <div
+          data-testid="overlay"
+          style={{ position: 'fixed', inset: 0, zIndex: 1500, pointerEvents: 'none' }}
+        />
+        <Menu2
+          sx={{ zIndex: 2000 }}
+          slots={{ backdrop: null, transition: null }}
+          slotProps={{ root: { 'data-testid': 'root' } }}
+          trigger={<button type="button">Options</button>}
+        >
+          <Menu2Item>Alpha</Menu2Item>
+        </Menu2>
+      </React.Fragment>,
+    );
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+    const popup = await screen.findByRole('menu');
+    const root = screen.getByTestId('root');
+    const positioner = popup.parentElement!;
+    const blocker = positioner.previousElementSibling!;
+    screen.getByTestId('overlay').style.pointerEvents = 'auto';
+
+    expect(blocker).to.have.attribute('role', 'presentation');
+    expect(blocker.parentElement).to.equal(root);
+    expect(getComputedStyle(root).zIndex).to.equal('2000');
+    expect(document.elementFromPoint(window.innerWidth - 8, window.innerHeight - 8)).to.equal(
+      blocker,
+    );
+    const item = screen.getByRole('menuitem', { name: 'Alpha' }).getBoundingClientRect();
+    expect(
+      popup.contains(document.elementFromPoint(item.left + 8, item.top + item.height / 2)),
+    ).to.equal(true);
   });
 });

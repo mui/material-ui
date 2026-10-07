@@ -111,6 +111,7 @@ function Menu2Composition() {
       finalFocus
       slots={{
         root: 'div',
+        positioner: 'div',
         paper: 'div',
         list: 'div',
       }}
@@ -120,6 +121,10 @@ function Menu2Composition() {
           expectType<boolean | undefined, typeof ownerState.modal>(ownerState.modal);
           expectType<boolean | undefined, typeof ownerState.loopFocus>(ownerState.loopFocus);
           return {};
+        },
+        positioner: (ownerState) => {
+          expectType<boolean | undefined, typeof ownerState.open>(ownerState.open);
+          return { side: 'bottom', align: 'start', ref: React.createRef<HTMLDivElement>() };
         },
         trigger: { nativeButton: true, className: 'trigger' },
         paper: { elevation: 4 },
@@ -298,6 +303,7 @@ createTheme({
       // has no slot here.
       styleOverrides: {
         root: {},
+        positioner: {},
         backdrop: {},
         paper: {},
         list: {},
@@ -317,6 +323,7 @@ createTheme({
       variants: [{ props: { open: true, closeParentOnEsc: false }, style: {} }],
       styleOverrides: {
         root: {},
+        positioner: {},
         paper: {},
         list: {},
       },
@@ -615,15 +622,26 @@ createTheme({
 
 <Menu2
   slots={{
-    // @ts-expect-error The positioner is the root slot, not a separate slot.
     positioner: 'div',
+  }}
+  slotProps={{
+    root: { ref: React.createRef<HTMLDivElement>(), sx: { zIndex: 1600 } },
+    positioner: { side: 'bottom', sideOffset: 8, sx: { outline: '1px solid' } },
   }}
 />;
 
 <Menu2Submenu
   slotProps={{
-    // @ts-expect-error Configure positioning through the root slot.
-    positioner: {},
+    positioner: { align: 'start', ref: React.createRef<HTMLDivElement>() },
+  }}
+/>;
+
+<Menu2
+  slotProps={{
+    positioner: {
+      // @ts-expect-error Base UI render prop is intentionally not supported.
+      render: <div />,
+    },
   }}
 />;
 

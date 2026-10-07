@@ -80,7 +80,7 @@ describe('Menu2 public popup prop validation', () => {
       }
 
       it('validates the current slot and slot-prop names', () => {
-        const slots = ['root', 'paper', 'list', 'transition'];
+        const slots = ['root', 'positioner', 'paper', 'list', 'transition'];
         if (Component === Menu2) {
           slots.push('backdrop');
         }
@@ -96,7 +96,7 @@ describe('Menu2 public popup prop validation', () => {
 
       it('does not retain validators for removed slot names', () => {
         // shape ignores unknown keys. Old validators would reject these values.
-        const removedSlots = { popup: 42, portal: 42, positioner: 42 };
+        const removedSlots = { popup: 42, portal: 42 };
         expect(() => checkProps({ slots: removedSlots, slotProps: removedSlots })).not.toErrorDev();
       });
 

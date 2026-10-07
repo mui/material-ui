@@ -684,10 +684,9 @@ export default function Menu2Experiment() {
               </li>
             </ol>
             <p>
-              Known Menu2 issue: an outside click can also activate Other button or close the
-              dialog. Repeat the same steps with Classic Menu to compare the results. The event
-              details remain visible after each dialog closes. These examples have no workaround for
-              that behavior.
+              Repeat the same steps with Classic Menu to compare the results. In both examples, the
+              first outside click should close only the menu. The event details remain visible after
+              each dialog closes.
             </p>
             <Box
               sx={{
@@ -705,7 +704,7 @@ export default function Menu2Experiment() {
             <p>Right-click the text to open a cursor-positioned Menu2 popup.</p>
             <Menu2ContextMenuRecipe />
           </section>
-          <a href="https://base-ui.com/react/components/menu">Base UI Menu API</a>
+          <a href="https://base-ui.com/react/components/menu">Base UI Menu API</a>
         </Stack>
       </Container>
     </ThemeProvider>

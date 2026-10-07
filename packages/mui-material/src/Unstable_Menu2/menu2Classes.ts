@@ -23,8 +23,10 @@ export const menu2TriggerClasses: Menu2TriggerClasses = generateUtilityClasses('
 ]);
 
 export interface Menu2PopupClasses {
-  /** Styles applied to the root element, which positions the menu. */
+  /** Styles applied to the root element, which contains the menu and its backdrops. */
   root: string;
+  /** Styles applied to the element that positions the menu surface. */
+  positioner: string;
   /** Styles applied to the backdrop element. */
   backdrop: string;
   /** Styles applied to the Paper element, the menu surface. */
@@ -41,14 +43,17 @@ export function getMenu2PopupUtilityClass(slot: string): string {
 
 export const menu2PopupClasses: Menu2PopupClasses = generateUtilityClasses('MuiMenu2Popup', [
   'root',
+  'positioner',
   'backdrop',
   'paper',
   'list',
 ]);
 
 export interface Menu2SubmenuPopupClasses {
-  /** Styles applied to the root element, which positions the menu. */
+  /** Styles applied to the root element, which contains the menu. */
   root: string;
+  /** Styles applied to the element that positions the menu surface. */
+  positioner: string;
   /** Styles applied to the Paper element, the menu surface. */
   paper: string;
   /** Styles applied to the Material List element. */
@@ -63,7 +68,7 @@ export function getMenu2SubmenuPopupUtilityClass(slot: string): string {
 
 export const menu2SubmenuPopupClasses: Menu2SubmenuPopupClasses = generateUtilityClasses(
   'MuiMenu2SubmenuPopup',
-  ['root', 'paper', 'list'],
+  ['root', 'positioner', 'paper', 'list'],
 );
 
 export interface Menu2ItemClasses {
@@ -283,7 +288,7 @@ export const menu2SubmenuTriggerClasses: Menu2SubmenuTriggerClasses = generateUt
  * are rendered internally, so their overrides live here rather than under their
  * own component keys.
  */
-export type Menu2ClassKey = 'root' | 'backdrop' | 'paper' | 'list';
+export type Menu2ClassKey = 'root' | 'positioner' | 'backdrop' | 'paper' | 'list';
 
 /** Theme `styleOverrides` slots for the collapsed `Menu2Submenu`. */
-export type Menu2SubmenuClassKey = 'root' | 'paper' | 'list';
+export type Menu2SubmenuClassKey = 'root' | 'positioner' | 'paper' | 'list';

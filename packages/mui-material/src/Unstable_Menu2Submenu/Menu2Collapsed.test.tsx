@@ -39,13 +39,16 @@ describe('<Menu2 /> collapsed API', () => {
           ),
         getRootElement: ({ baseElement }) =>
           baseElement.querySelector(`.${menu2SubmenuPopupClasses.root}`),
-        // The public root positions the menu. Its host is
+        // The public root contains all popup layers. Its host is
         // configured through slots.root rather than a component prop.
         skip: ['componentProp'],
         refInstanceof: window.HTMLDivElement,
         muiName: 'MuiMenu2Submenu',
         testVariantProps: { align: 'center' },
         slots: {
+          positioner: {
+            expectedClassName: menu2SubmenuPopupClasses.positioner,
+          },
           paper: {
             expectedClassName: menu2SubmenuPopupClasses.paper,
           },
@@ -201,7 +204,7 @@ describe('<Menu2 /> collapsed API', () => {
         const list = item.parentElement!;
         expect(getComputedStyle(root).paddingLeft).to.equal('17px');
         expect(root).to.have.attribute('data-owner-open', 'true');
-        expect(popup.parentElement).to.have.attribute('data-loop-focus', 'false');
+        expect(root).to.have.attribute('data-loop-focus', 'false');
         expect(popup).to.have.attribute('data-highlight-on-hover', 'false');
         expect(list).to.have.attribute('data-open', 'true');
         expect(root).not.to.have.attribute('open');
@@ -239,11 +242,16 @@ describe('<Menu2 /> collapsed API', () => {
         expect(getComputedStyle(popup).paddingBottom).not.to.equal('7px');
       });
 
-      it('merges the root, paper, and list slot props with the top-level props', async () => {
+      it('merges the root slot props and keeps the other slot props separate', async () => {
         const { user } = render(
           <TestMenu
             className="custom-root"
-            classes={{ root: 'root-class', paper: 'paper-class', list: 'list-class' }}
+            classes={{
+              root: 'root-class',
+              positioner: 'positioner-class',
+              paper: 'paper-class',
+              list: 'list-class',
+            }}
             style={{ paddingLeft: '3px' }}
             sx={[{ paddingBottom: '7px' }, (theme) => ({ paddingTop: theme.spacing(1) })]}
             slotProps={{
@@ -251,6 +259,11 @@ describe('<Menu2 /> collapsed API', () => {
                 className: 'root-slot',
                 style: { paddingRight: '5px' },
                 sx: [{ paddingBottom: '9px' }],
+              },
+              positioner: {
+                className: 'positioner-slot',
+                sx: { paddingTop: '5px' },
+                'data-testid': 'positioner',
               },
               paper: {
                 className: 'paper-slot',
@@ -269,12 +282,17 @@ describe('<Menu2 /> collapsed API', () => {
 
         await openSubmenu(user);
         const root = getRoot();
+        const positioner = screen.getByTestId('positioner');
         const paper = screen.getByTestId('paper');
         const list = screen.getByTestId('list');
         expect(paper).to.equal(getPopup());
         expect(root).to.have.class('custom-root');
         expect(root).to.have.class('root-class');
         expect(root).to.have.class('root-slot');
+        expect(positioner).to.have.class('positioner-class');
+        expect(positioner).to.have.class('positioner-slot');
+        expect(positioner.parentElement).to.equal(root);
+        expect(paper.parentElement).to.equal(positioner);
         expect(paper).to.have.class('paper-class');
         expect(paper).to.have.class('paper-slot');
         expect(list).to.have.class('list-class');
@@ -283,6 +301,7 @@ describe('<Menu2 /> collapsed API', () => {
         expect(root.style.paddingRight).to.equal('5px');
         expect(getComputedStyle(root).paddingTop).to.equal('8px');
         expect(getComputedStyle(root).paddingBottom).to.equal('9px');
+        expect(getComputedStyle(positioner).paddingTop).to.equal('5px');
         expect(paper.style.paddingRight).to.equal('4px');
         expect(paper.style.paddingLeft).to.equal('');
         expect(getComputedStyle(paper).paddingTop).to.equal('11px');
@@ -303,14 +322,19 @@ describe('<Menu2 /> collapsed API', () => {
         expect(slotRef.current).to.equal(null);
       });
 
-      it('composes public and slot refs on the root, and keeps the paper ref separate', async () => {
+      it('composes public and root refs, and keeps the positioner and paper refs separate', async () => {
         const publicRef = vi.fn();
         const slotRef = React.createRef<HTMLDivElement>();
+        const positionerRef = React.createRef<HTMLDivElement>();
         const paperRef = React.createRef<HTMLDivElement>();
         const { user, unmount } = render(
           <TestMenu
             ref={publicRef}
-            slotProps={{ root: { ref: slotRef }, paper: { ref: paperRef } }}
+            slotProps={{
+              root: { ref: slotRef },
+              positioner: { ref: positionerRef },
+              paper: { ref: paperRef },
+            }}
           />,
         );
 
@@ -319,13 +343,15 @@ describe('<Menu2 /> collapsed API', () => {
         const root = getRoot();
         expect(publicRef).toHaveBeenLastCalledWith(root);
         expect(slotRef.current).to.equal(root);
-        expect(root).to.equal(popup.parentElement);
+        expect(root).to.equal(popup.parentElement!.parentElement);
+        expect(positionerRef.current).to.equal(popup.parentElement);
         expect(paperRef.current).to.equal(popup);
         expect(root).not.to.equal(popup);
 
         unmount();
         expect(publicRef).toHaveBeenLastCalledWith(null);
         expect(slotRef.current).to.equal(null);
+        expect(positionerRef.current).to.equal(null);
         expect(paperRef.current).to.equal(null);
       });
 
@@ -485,8 +511,8 @@ describe('<Menu2 /> collapsed API', () => {
 
     const menu = await screen.findByRole('menu');
     expect(menu).to.have.class(menu2PopupClasses.paper);
-    expect(menu.parentElement).to.equal(screen.getByTestId('root'));
-    expect(screen.getByTestId('root').style.position).to.equal('absolute');
+    expect(menu.parentElement!.parentElement).to.equal(screen.getByTestId('root'));
+    expect(menu.parentElement!.style.position).to.equal('absolute');
     expect(screen.getByTestId('root')).to.have.class(menu2PopupClasses.root);
     expect(screen.getByRole('menuitem', { name: 'Profile' })).not.to.equal(null);
   });

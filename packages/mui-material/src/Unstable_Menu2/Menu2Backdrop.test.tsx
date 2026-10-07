@@ -236,7 +236,9 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
                 style: {
                   position: 'fixed',
                   inset: 0,
-                  zIndex: 1300,
+                  // Layers use local indices inside the shared root. The
+                  // positioner follows this backdrop at the same index.
+                  zIndex: 1,
                   backgroundColor: 'rgba(0, 0, 0, 0.5)',
                   pointerEvents: 'auto',
                 },

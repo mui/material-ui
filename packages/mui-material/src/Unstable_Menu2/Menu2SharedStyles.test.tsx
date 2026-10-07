@@ -25,6 +25,7 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
               MuiMenu2: {
                 styleOverrides: {
                   root: { zIndex: 1401 },
+                  positioner: { paddingLeft: 1 },
                   paper: ({ ownerState }) => ({
                     maxHeight: ownerState.align === 'center' ? 301 : 302,
                     overflowY: 'scroll',
@@ -36,6 +37,7 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
               MuiMenu2Submenu: {
                 styleOverrides: {
                   root: { zIndex: 1402 },
+                  positioner: { paddingLeft: 2 },
                   paper: ({ ownerState }) => ({
                     maxHeight: ownerState.align === 'end' ? 201 : 202,
                     overflowY: 'scroll',
@@ -57,8 +59,12 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
                   slots={{ transition: null }}
                   slotProps={{
                     root: {
-                      'data-testid': 'parent-positioner',
+                      'data-testid': 'parent-root',
                       sx: useSx ? { zIndex: 1501, outlineOffset: 21 } : undefined,
+                    },
+                    positioner: {
+                      'data-testid': 'parent-positioner',
+                      sx: useSx ? { paddingLeft: '3px' } : undefined,
                     },
                     paper: {
                       'data-testid': 'parent-paper',
@@ -77,8 +83,12 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
                     slots={{ transition: null }}
                     slotProps={{
                       root: {
-                        'data-testid': 'child-positioner',
+                        'data-testid': 'child-root',
                         sx: useSx ? { zIndex: 1502, outlineOffset: 22 } : undefined,
+                      },
+                      positioner: {
+                        'data-testid': 'child-positioner',
+                        sx: useSx ? { paddingLeft: '4px' } : undefined,
                       },
                       paper: {
                         'data-testid': 'child-paper',
@@ -101,24 +111,24 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
           await screen.findByRole('menuitem', { name: 'Nested' });
 
           ['parent', 'child'].forEach((prefix, index) => {
+            const root = screen.getByTestId(`${prefix}-root`);
             const positioner = screen.getByTestId(`${prefix}-positioner`);
             const paper = screen.getByTestId(`${prefix}-paper`);
             const list = screen.getByTestId(`${prefix}-list`);
-            expect(getComputedStyle(positioner).zIndex).to.equal(
-              String((useSx ? 1501 : 1401) + index),
-            );
-            expect(getComputedStyle(positioner).outlineOffset).to.equal(
-              `${(useSx ? 21 : 11) + index}px`,
+            expect(getComputedStyle(root).zIndex).to.equal(String((useSx ? 1501 : 1401) + index));
+            expect(getComputedStyle(root).outlineOffset).to.equal(`${(useSx ? 21 : 11) + index}px`);
+            expect(getComputedStyle(positioner).paddingLeft).to.equal(
+              `${(useSx ? 3 : 1) + index}px`,
             );
             expect(getComputedStyle(paper).maxHeight).to.equal(
               `${(useSx ? 311 : 301) - index * 100}px`,
             );
             expect(getComputedStyle(paper).overflowY).to.equal(useSx ? 'hidden' : 'scroll');
             expect(getComputedStyle(list).outlineWidth).to.equal(`${(useSx ? 3 : 1) + index}px`);
-            [paper, list].forEach((element) => {
+            [positioner, paper, list].forEach((element) => {
               expect(getComputedStyle(element).outlineOffset).to.equal('0px');
             });
-            [positioner, paper, list].forEach((element) => {
+            [root, positioner, paper, list].forEach((element) => {
               expect(element).not.to.have.attribute('ownerState');
               expect(element).not.to.have.attribute('sx');
             });

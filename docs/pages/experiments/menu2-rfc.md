@@ -85,7 +85,7 @@ The classic `Menu` keeps its API. Classic and successor items share `MenuItemBas
 - **Dependency:** make `@base-ui/react` a direct dependency of `@mui/material`. Review version updates rather than auto-merge them. Test the upstream states used by the integration, including checked indicators, starting and ending transitions, and resolved placement.
 - **Theme state:** keep `Mui-*` classes and `ownerState` as the Material customization contract. All item parts resolve their root slot from the live Base UI state, so slot callbacks and theme variants receive the highlighted state and, where applicable, the checked or open state. Exit-tint tracking stays internal. Collapsed popup slot callbacks receive resolved public props, not live uncontrolled open state. Internal animation and placement styles can use Base UI attributes.
 - **API boundary:** explicitly pick the forwarded root, trigger, and positioner props. New upstream props require API and routing review. This is not complete type isolation: changes to an exposed upstream type still reach Material UI. Keep Base UI's callback names and signatures: `onOpenChange(open, eventDetails)`, `onCheckedChange(checked, eventDetails)`, and `onValueChange(value, eventDetails)`.
-- **Tooling and tests:** use opt-in theme type registration, normal API generation, and `describeConformance`. Test behavior differences and the integration boundary as well as the individual parts. All 11 public components have conformance suites. The collapsed containers use their positioned elements as the root; interaction tests query the menu surface.
+- **Tooling and tests:** use opt-in theme type registration, normal API generation, and `describeConformance`. Test behavior differences and the integration boundary as well as the individual parts. All 11 public components have conformance suites. The collapsed containers use their portal elements as the root; interaction tests query the menu surface.
 
 ### API shape: collapsed popup, explicit submenu trigger
 
@@ -121,17 +121,20 @@ Checkbox and radio items own their `indicator` slot. Set `icon` and `checkedIcon
 
 | Target                        | Top-level props                                                                  | Slot         |
 | :---------------------------- | :------------------------------------------------------------------------------- | :----------- |
-| Positioned element            | `ref`, `className`, `style`, `sx`, positioning props, other HTML attributes      | `root`       |
+| Shared stacking layer         | `ref`, `className`, `style`, `sx`, other HTML attributes                         | `root`       |
+| Positioned element            | Positioning props                                                                | `positioner` |
 | Paper surface (`role="menu"`) | `elevation`, event handlers, `aria-label`, `aria-labelledby`, `aria-describedby` | `paper`      |
 | Presentational list           | None                                                                             | `list`       |
 | Animation                     | `transitionDuration`                                                             | `transition` |
 | Optional root-menu backdrop   | None                                                                             | `backdrop`   |
 
-The portal stays internal; `container` and `keepMounted` control it. The root carries `theme.zIndex.modal`. A `styled(Menu2)` class attaches to this positioned element. Root slot `sx` takes precedence over top-level `sx` for conflicting properties. Each slot's ref targets its own element; use `slotProps.paper.ref` for the surface.
+The portal element is the root; `container` and `keepMounted` control it. It carries `theme.zIndex.modal` and contains both the positioner and Base UI's modal interaction layer. This keeps the click blocker above Dialog when the menu is inside it. The optional visual backdrop also stays inside this stacking layer, behind the menu. Submenus use the parent menu's stacking context by default, so their `zIndex` cannot change the whole menu's stacking level. A `styled(Menu2)` class attaches to the root. Root slot `sx` takes precedence over top-level `sx` for conflicting properties.
+
+Each slot's ref targets its own element. Use `slotProps.positioner` for positioning props, styles, and the positioned element's ref; placement attributes such as `data-side` are on that element. Top-level positioning props remain supported. Use `slotProps.paper.ref` for the surface. With `keepMounted`, the default root hides when its direct positioner becomes hidden, after the exit transition. Replacing `slots.root` removes both its stacking and closed-state styles, so the replacement must supply them. The positioner is a slot, not a separate public component.
 
 Top-level label and description attributes reach the menu surface. Matching `slotProps.paper` attributes take precedence. An explicit `aria-labelledby` takes precedence over `aria-label`; either replaces the inferred trigger name. Use `slotProps.paper` for other menu `aria-*` attributes.
 
-Top-level event handlers target the popup, including navigation keys that Base UI stops before they reach the positioned root. Handlers in `slotProps.root` observe only events that reach that element. Replacing a slot changes its rendered element, not the underlying Base UI provider.
+Top-level event handlers target the popup, including navigation keys that Base UI stops before they reach the root. Handlers in `slotProps.root` observe only events that reach that element. Replacing a slot changes its rendered element, not the underlying Base UI provider.
 
 #### Benchmark results
 
@@ -229,7 +232,7 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 
 3. ✅ **Other defaults:** retain Base UI behavior with the documented Material presentation choices.
 
-4. ✅ **SSR, client directive, and refs:** public modules have `'use client'`. The trigger can render on the server, but the portal popup is client-rendered, including with `defaultOpen` or `keepMounted`. Caller-rendered parts have polymorphic refs; collapsed roots use the positioned element.
+4. ✅ **SSR, client directive, and refs:** public modules have `'use client'`. The trigger can render on the server, but the portal popup is client-rendered, including with `defaultOpen` or `keepMounted`. Caller-rendered parts have polymorphic refs; collapsed roots use the portal element. The `positioner` and `paper` slot refs give access to the positioned element and menu surface.
 
 5. ✅ **Base UI API exposure:** explicitly pick supported root and positioning props. Detached triggers (`handle`, `triggerId`, `defaultTriggerId`, and `Menu.createHandle`) and horizontal `orientation` are outside this API. Upstream changes to exposed types still require review.
 
@@ -350,7 +353,8 @@ This example follows the system preference. The playground also shows the theme 
 
 | Classic Menu                                            | New equivalent                                     | Notes                                        |
 | :------------------------------------------------------ | :------------------------------------------------- | :------------------------------------------- |
-| `root`, `paper`, `list`, `transition`, `backdrop` slots | Same names; `root` is the positioned element       | Backdrop is available only on the root menu. |
+| `root`, `paper`, `list`, `transition`, `backdrop` slots | Same names; `root` is the shared stacking layer    | Backdrop is available only on the root menu. |
+| No direct equivalent                                    | `positioner` slot                                  | Positioning styles, attributes, and ref.     |
 | `elevation`                                             | Same prop, default 8                               | Forwarded to Paper.                          |
 | Paper viewport height limit                             | `min(calc(100vh - 96px), var(--available-height))` | Also respects available collision space.     |
 | `BackdropProps`                                         | `slotProps.backdrop`                               | Renders the optional visual backdrop.        |

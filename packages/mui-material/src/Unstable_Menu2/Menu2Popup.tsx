@@ -3,7 +3,6 @@ import * as React from 'react';
 import composeClasses from '@mui/utils/composeClasses';
 import { SxProps } from '@mui/system';
 import { styled } from '../zero-styled';
-import memoTheme from '../utils/memoTheme';
 import { Theme } from '../styles';
 import {
   Menu2PopupBase,
@@ -11,7 +10,12 @@ import {
   Menu2PopupSharedProps,
   Menu2PopupSharedSlotProps,
 } from './menu2PopupShared';
-import { Menu2ListBase, Menu2PaperBase, Menu2PositionerBase } from './Menu2PopupSlotBases';
+import {
+  Menu2ListBase,
+  Menu2PaperBase,
+  Menu2PositionerBase,
+  Menu2RootBase,
+} from './Menu2PopupSlotBases';
 import { getMenu2PopupUtilityClass, Menu2PopupClasses } from './menu2Classes';
 import type { Menu2Props } from './Menu2';
 
@@ -29,11 +33,11 @@ export interface Menu2PopupProps extends Omit<
    */
   children?: React.ReactNode;
   /**
-   * CSS class applied to the root element, which positions the menu.
+   * CSS class applied to the root element, which contains the menu and its backdrops.
    */
   className?: Menu2PopupPublicProps['className'] | undefined;
   /**
-   * Inline styles applied to the root element, which positions the menu.
+   * Inline styles applied to the root element, which contains the menu and its backdrops.
    */
   style?: Menu2PopupPublicProps['style'] | undefined;
   /**
@@ -143,10 +147,15 @@ interface Menu2PopupInternalProps extends Menu2PopupProps {
 
 export interface Menu2PopupSlots {
   /**
-   * The component used for the root element, which positions the menu.
+   * The component used for the root element, which contains the menu and its backdrops.
    * @default 'div'
    */
   root?: React.ElementType | undefined;
+  /**
+   * The component used to position the menu surface.
+   * @default 'div'
+   */
+  positioner?: React.ElementType | undefined;
   /**
    * The component used for the optional backdrop beneath the menu.
    * Providing this slot or `slotProps.backdrop` renders it.
@@ -177,6 +186,7 @@ const useUtilityClasses = (ownerState: Menu2PopupOwnerState) => {
 
   const slots = {
     root: ['root'],
+    positioner: ['positioner'],
     paper: ['paper'],
     backdrop: ['backdrop'],
     list: ['list'],
@@ -185,9 +195,14 @@ const useUtilityClasses = (ownerState: Menu2PopupOwnerState) => {
   return composeClasses(slots, getMenu2PopupUtilityClass, classes);
 };
 
-const Menu2PopupRoot = styled(Menu2PositionerBase, {
+const Menu2PopupRoot = styled(Menu2RootBase, {
   name: 'MuiMenu2',
   slot: 'root',
+})({});
+
+const Menu2PopupPositioner = styled(Menu2PositionerBase, {
+  name: 'MuiMenu2',
+  slot: 'positioner',
 })({});
 
 const Menu2PopupPaper = styled(Menu2PaperBase, {
@@ -198,20 +213,17 @@ const Menu2PopupPaper = styled(Menu2PaperBase, {
 const Menu2PopupBackdrop = styled('div', {
   name: 'MuiMenu2',
   slot: 'backdrop',
-})(
-  memoTheme(({ theme }) => ({
-    position: 'fixed',
-    inset: 0,
-    // The classic backdrop sits in the Modal root at this level. The positioner
-    // has the same value and comes later, so the menu stays above.
-    zIndex: (theme.vars || theme).zIndex.modal,
-    // Transparent and click-through. Base UI handles modal interaction and
-    // outside dismissal independently of this optional visual layer.
-    backgroundColor: 'transparent',
-    pointerEvents: 'none',
-    WebkitTapHighlightColor: 'transparent',
-  })),
-) as any;
+})({
+  position: 'fixed',
+  inset: 0,
+  // The root controls page stacking. The positioner sits above this layer.
+  zIndex: 0,
+  // Transparent and click-through. Base UI handles modal interaction and
+  // outside dismissal independently of this optional visual layer.
+  backgroundColor: 'transparent',
+  pointerEvents: 'none',
+  WebkitTapHighlightColor: 'transparent',
+}) as any;
 
 const Menu2PopupList = styled(Menu2ListBase, {
   name: 'MuiMenu2',
@@ -247,6 +259,7 @@ const Menu2Popup = React.forwardRef(function Menu2Popup(
       classes={classes}
       defaultSlots={{
         root: Menu2PopupRoot,
+        positioner: Menu2PopupPositioner,
         paper: Menu2PopupPaper,
         list: Menu2PopupList,
         backdrop: Menu2PopupBackdrop,
