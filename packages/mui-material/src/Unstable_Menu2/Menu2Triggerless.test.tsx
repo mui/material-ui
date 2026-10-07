@@ -169,50 +169,66 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
 
   (['click', 'hover'] as const).forEach((method) => {
     it(`closes a sibling submenu without closing its parent on ${method}`, async () => {
+      const anchorRef = React.createRef<HTMLDivElement>();
       const changed = vi.fn();
       const firstChanged = vi.fn();
-      const { user } = render(
-        <Menu2 defaultOpen modal={false} anchor={document.body} onOpenChange={changed}>
-          <Menu2Submenu
-            onOpenChange={firstChanged}
-            trigger={
-              <Menu2SubmenuTrigger openOnHover={method === 'hover'} delay={0}>
-                First
-              </Menu2SubmenuTrigger>
-            }
+      const completed = vi.fn();
+      const { user, unmount } = render(
+        <div style={{ padding: 100 }}>
+          <div ref={anchorRef} style={{ width: 100, height: 32 }} />
+          <Menu2
+            defaultOpen
+            modal={false}
+            anchor={anchorRef}
+            onOpenChange={changed}
+            onOpenChangeComplete={completed}
           >
-            <Menu2Item>First item</Menu2Item>
-          </Menu2Submenu>
-          <Menu2Submenu
-            trigger={
-              <Menu2SubmenuTrigger openOnHover={method === 'hover'} delay={0}>
-                Second
-              </Menu2SubmenuTrigger>
-            }
-          >
-            <Menu2Item>Second item</Menu2Item>
-          </Menu2Submenu>
-        </Menu2>,
+            <Menu2Submenu
+              onOpenChange={firstChanged}
+              trigger={
+                <Menu2SubmenuTrigger openOnHover={method === 'hover'} delay={0}>
+                  First
+                </Menu2SubmenuTrigger>
+              }
+            >
+              <Menu2Item>First item</Menu2Item>
+            </Menu2Submenu>
+            <Menu2Submenu
+              trigger={
+                <Menu2SubmenuTrigger openOnHover={method === 'hover'} delay={0}>
+                  Second
+                </Menu2SubmenuTrigger>
+              }
+            >
+              <Menu2Item>Second item</Menu2Item>
+            </Menu2Submenu>
+          </Menu2>
+        </div>,
       );
-      const first = await focusTrigger('First');
-      const second = screen.getByRole('menuitem', { name: 'Second' });
-      await user[method](first);
-      await screen.findByRole('menuitem', { name: 'First item' });
-      firstChanged.mockClear();
-      await user[method](second);
-      await screen.findByRole('menuitem', { name: 'Second item' });
-      await waitFor(() =>
-        expect(screen.queryByRole('menuitem', { name: 'First item' })).to.equal(null),
-      );
-      expect(firstChanged).toHaveBeenCalledTimes(1);
-      expect(firstChanged.mock.calls[0][0]).to.equal(false);
-      // Hover can close the first popup when the pointer leaves its trigger,
-      // before the second popup sends its sibling-open event.
-      expect(firstChanged.mock.calls[0][1].reason).to.be.oneOf(
-        method === 'hover' ? ['trigger-hover', 'sibling-open'] : ['sibling-open'],
-      );
-      expect(changed).not.toHaveBeenCalled();
-      expect(first.closest('[role="menu"]')).to.have.attribute('data-open');
+      try {
+        await waitFor(() => expect(completed).toHaveBeenCalledWith(true));
+        const first = await focusTrigger('First');
+        const second = screen.getByRole('menuitem', { name: 'Second' });
+        await user[method](first);
+        await screen.findByRole('menuitem', { name: 'First item' });
+        firstChanged.mockClear();
+        await user[method](second);
+        await screen.findByRole('menuitem', { name: 'Second item' });
+        await waitFor(() =>
+          expect(screen.queryByRole('menuitem', { name: 'First item' })).to.equal(null),
+        );
+        expect(firstChanged).toHaveBeenCalledTimes(1);
+        expect(firstChanged.mock.calls[0][0]).to.equal(false);
+        // Hover can close the first popup when the pointer leaves its trigger,
+        // before the second popup sends its sibling-open event.
+        expect(firstChanged.mock.calls[0][1].reason).to.be.oneOf(
+          method === 'hover' ? ['trigger-hover', 'sibling-open'] : ['sibling-open'],
+        );
+        expect(changed).not.toHaveBeenCalled();
+        expect(first.closest('[role="menu"]')).to.have.attribute('data-open');
+      } finally {
+        unmount();
+      }
     });
   });
 

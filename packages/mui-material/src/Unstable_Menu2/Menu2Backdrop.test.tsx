@@ -182,8 +182,10 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
   const { render } = createRenderer();
 
   it('keeps the visual backdrop click-through when the menu opens on hover', async () => {
-    const { user } = render(
+    const changed = vi.fn();
+    const { user, unmount } = render(
       <Menu2
+        onOpenChange={changed}
         openOnHover
         delay={0}
         slotProps={{
@@ -195,15 +197,26 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
       </Menu2>,
     );
 
-    await user.hover(screen.getByRole('button', { name: 'Options' }));
-    await screen.findByRole('menu');
+    try {
+      await user.hover(screen.getByRole('button', { name: 'Options' }));
+      const popup = await screen.findByRole('menu');
+      await waitFor(() => expect(popup).toHaveFocus());
 
-    const backdrop = screen.getByTestId('backdrop');
-    expect(getComputedStyle(backdrop).backgroundColor).to.equal('rgb(0, 0, 0)');
-    expect(getComputedStyle(backdrop).pointerEvents).to.equal('none');
+      const backdrop = screen.getByTestId('backdrop');
+      expect(getComputedStyle(backdrop).backgroundColor).to.equal('rgb(0, 0, 0)');
+      expect(getComputedStyle(backdrop).pointerEvents).to.equal('none');
 
-    await user.keyboard('{Escape}');
-    await waitFor(() => expect(screen.queryByTestId('backdrop')).to.equal(null));
+      changed.mockClear();
+      await user.keyboard('{Escape}');
+      expect(changed).toHaveBeenCalledExactlyOnceWith(
+        false,
+        expect.objectContaining({ reason: 'escape-key' }),
+      );
+      await waitFor(() => expect(screen.queryByTestId('backdrop')).to.equal(null));
+      expect(screen.queryByRole('menu')).to.equal(null);
+    } finally {
+      unmount();
+    }
   });
 
   ['default', 'host'].forEach((slot) => {
