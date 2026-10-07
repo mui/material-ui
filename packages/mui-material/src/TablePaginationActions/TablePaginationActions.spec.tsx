@@ -9,7 +9,11 @@ import TablePaginationActions from '@mui/material/TablePaginationActions';
   rowsPerPage={10}
   showFirstButton
   showLastButton
-  classes={{ root: 'custom-root' }}
+  classes={{
+    root: 'custom-root',
+    // @ts-expect-error — unknown class keys should be rejected
+    notAClass: 'x',
+  }}
   className="custom-actions"
   ref={React.createRef<HTMLDivElement>()}
   sx={(theme) => ({ color: theme.palette.primary.main })}

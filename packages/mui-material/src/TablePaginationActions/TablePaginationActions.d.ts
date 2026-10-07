@@ -30,6 +30,7 @@ export interface TablePaginationActionsProps extends StandardProps<
   getItemAriaLabel: (type: 'first' | 'last' | 'next' | 'previous') => string;
   onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
   page: number;
+  ref?: React.Ref<HTMLDivElement> | undefined;
   rowsPerPage: number;
   showFirstButton: boolean;
   showLastButton: boolean;
