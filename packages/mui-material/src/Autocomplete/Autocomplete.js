@@ -692,6 +692,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     },
   });
 
+  const [ChipSlot, chipProps] = useSlot('chip', {
+    elementType: Chip,
+    externalForwardedProps,
+    ownerState,
+    className: classes.tag,
+    shouldForwardComponentProp: true,
+  });
+
   let startAdornment;
 
   const getCustomizedItemProps = (params) => ({
@@ -710,12 +718,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           const resolved = getOptionFromValue(valueItem);
 
           return (
-            <Chip
+            <ChipSlot
               key={key}
               label={resolved === null ? '' : getOptionLabel(resolved.option)}
               size={size}
               {...customItemProps}
-              {...externalForwardedProps.slotProps.chip}
+              {...chipProps}
             />
           );
         });
@@ -1295,6 +1303,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    chip: PropTypes.elementType,
     clearIndicator: PropTypes.elementType,
     listbox: PropTypes.elementType,
     paper: PropTypes.elementType,
