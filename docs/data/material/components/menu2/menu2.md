@@ -189,6 +189,8 @@ Unlike a classic `MenuItem` with `href`, `MenuLinkItem` does not support `disabl
 
 Use the logical `inline-start` and `inline-end` sides to get the correct direction in right-to-left text.
 
+Open the non-modal menu, then change the values for a live preview. Press Escape or use the trigger to close it. Offsets are in pixels and can be negative.
+
 {{"demo": "PositionedMenu2.js"}}
 
 The menu flips when it collides with the edge of its container, and it follows its anchor on scroll and resize. Set `disableAnchorTracking` to stop tracking layout shifts of the anchor.

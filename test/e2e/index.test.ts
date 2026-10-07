@@ -115,8 +115,15 @@ describe('e2e', () => {
       await page.emulateMedia({ forcedColors: 'none' });
     });
 
-    ['Above, end aligned', 'Beside'].forEach((triggerName) => {
-      it(`keeps the positioned demo triggers in place when opening and closing ${triggerName}`, async () => {
+    [
+      { side: 'top', align: 'end' },
+      { side: 'bottom', align: 'center' },
+      { side: 'left', align: 'start' },
+      { side: 'right', align: 'end' },
+      { side: 'inline-start', align: 'center' },
+      { side: 'inline-end', align: 'start' },
+    ].forEach(({ side, align }) => {
+      it(`updates the open positioning preview to ${side} without moving the trigger`, async () => {
         await renderFixture('Menu2/DocsLayout');
         const demo = page.getByTestId('positioned-demo');
         const getPositions = () =>
@@ -129,14 +136,59 @@ describe('e2e', () => {
           });
         const closedPositions = await getPositions();
 
-        await demo.getByRole('button', { name: triggerName }).click();
+        await demo.getByRole('button', { name: 'Open menu' }).click();
         await expect(page.getByRole('menu')).toBeVisible();
+        const sideControl = demo.getByRole('combobox', { name: 'side', exact: true });
+        await sideControl.press('Home');
+        await sideControl.selectOption(side);
+        await demo.getByRole('combobox', { name: 'align', exact: true }).selectOption(align);
+        await expect(sideControl).toBeFocused();
+        await expect(page.getByRole('menu')).toBeVisible();
+        await expect(page.getByRole('menu')).toHaveAttribute('data-side', side);
+        await expect(page.getByRole('menu')).toHaveAttribute('data-align', align);
         await expect.poll(getPositions, { timeout: 2000 }).toEqual(closedPositions);
 
         await page.keyboard.press('Escape');
         await expect(page.getByRole('menu')).toBeHidden();
         await expect.poll(getPositions, { timeout: 2000 }).toEqual(closedPositions);
       });
+    });
+
+    it('updates the open positioning preview offsets with pointer and keyboard input', async () => {
+      await renderFixture('Menu2/DocsLayout');
+      const demo = page.getByTestId('positioned-demo');
+      const trigger = demo.getByRole('button', { name: 'Open menu' });
+      await trigger.click();
+      const menu = page.getByRole('menu');
+      await expect(menu).toBeVisible();
+      await demo.getByText('sideOffset: 8 px', { exact: true }).click();
+      await expect(menu).toBeVisible();
+      const sideOffset = demo.getByRole('slider', { name: /^sideOffset:/ });
+      const alignOffset = demo.getByRole('slider', { name: /^alignOffset:/ });
+      await sideOffset.press('ArrowRight');
+      await sideOffset.press('ArrowRight');
+      await alignOffset.press('ArrowLeft');
+      await alignOffset.press('ArrowLeft');
+      await alignOffset.press('ArrowLeft');
+      await expect(sideOffset).toHaveValue('16');
+      await expect(alignOffset).toHaveValue('-12');
+
+      await expect(alignOffset).toBeFocused();
+      await expect(menu).toBeVisible();
+      await expect(menu).toHaveAttribute('data-side', 'bottom');
+      await expect
+        .poll(async () => {
+          const triggerBox = (await trigger.boundingBox())!;
+          const menuBox = (await menu.boundingBox())!;
+          return {
+            side: Math.round(menuBox.y - triggerBox.y - triggerBox.height),
+            align: Math.round(menuBox.x - triggerBox.x),
+          };
+        })
+        .toEqual({ side: 16, align: -12 });
+
+      await trigger.click();
+      await expect(menu).toBeHidden();
     });
 
     it('keeps the controlled demo trigger and text gap in place when opening and closing', async () => {
