@@ -14,7 +14,7 @@
     "release:publish": "code-infra publish --github-release --tag next",
     "release:publish:dry-run": "code-infra publish --github-release --tag next --dry-run",
     "release:version": "lerna version --no-changelog --no-push --no-git-tag-version --no-private --force-publish=@mui/core-downloads-tracker && pnpm a11y:scorecard",
-    "release:build": "lerna run --concurrency 8 --no-private build --skip-nx-cache",
+    "release:build": "pnpm docs:llms:build && cross-env MUI_PUBLISH_DOCS=1 lerna run --concurrency 8 --no-private build --skip-nx-cache",
     "release:changelog": "node scripts/releaseChangelog.mjs",
     "release:pack": "tsx scripts/releasePack.mts",
     "a11y:scorecard": "node scripts/a11yScorecard/index.mjs",
@@ -27,7 +27,6 @@
     "docs:deploy": "pnpm --filter docs run deploy",
     "docs:dev": "pnpm --filter docs dev",
     "docs:icons": "pnpm --filter docs icons",
-    "docs:size-why": "cross-env DOCS_STATS_ENABLED=true pnpm docs:build",
     "docs:start": "pnpm --filter docs start",
     "docs:create-playground": "pnpm --filter docs create-playground",
     "docs:link-check": "pnpm --filter docs link-check",
@@ -77,7 +76,7 @@
     "clean": "pnpm -r exec rm -rf build"
   },
   "dependencies": {
-    "@netlify/functions": "^6.0.0",
+    "@netlify/functions": "^6.0.2",
     "@slack/bolt": "^5.1.0",
     "execa": "^10.0.1"
   },
@@ -87,16 +86,16 @@
     "@babel/node": "8.0.6",
     "@babel/plugin-transform-react-constant-elements": "8.0.5",
     "@eslint/compat": "2.1.1",
-    "@mui/internal-babel-plugin-minify-errors": "3.0.1-canary.0",
-    "@mui/internal-bundle-size-checker": "1.1.1-canary.0",
-    "@mui/internal-code-infra": "0.1.1-canary.3",
+    "@mui/internal-babel-plugin-minify-errors": "3.0.1-canary.1",
+    "@mui/internal-bundle-size-checker": "1.1.1-canary.1",
+    "@mui/internal-code-infra": "0.1.1-canary.6",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.1.1-canary.1",
     "@mui/internal-scripts": "workspace:^",
-    "@mui/internal-test-utils": "2.1.1-canary.0",
+    "@mui/internal-test-utils": "2.1.1-canary.2",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "16.3.6",
+    "@next/eslint-plugin-next": "16.3.8",
     "@octokit/rest": "22.0.1",
     "@pigment-css/react": "0.0.31",
     "@playwright/test": "1.63.0",
@@ -114,11 +113,11 @@
     "@vitest/eslint-plugin": "1.6.27",
     "axe-core": "4.13.0",
     "babel-plugin-module-resolver": "5.0.3",
-    "chalk": "6.0.0",
+    "chalk": "6.0.1",
     "concurrently": "10.0.5",
     "cpy-cli": "7.0.0",
     "cross-env": "10.1.0",
-    "dotenv": "18.0.4",
+    "dotenv": "18.0.5",
     "es-toolkit": "1.52.0",
     "eslint": "10.11.0",
     "eslint-plugin-consistent-default-export-name": "0.0.15",
@@ -148,11 +147,11 @@
     "yargs": "18.2.0"
   },
   "config": {
-    "valeVersion": "3.23.0"
+    "valeVersion": "3.24.0"
   },
-  "packageManager": "pnpm@12.6.0",
+  "packageManager": "pnpm@12.8.2",
   "engines": {
-    "pnpm": "12.6.0",
+    "pnpm": "12.8.2",
     "node": ">=22.23.3"
   }
 }
