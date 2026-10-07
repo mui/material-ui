@@ -81,6 +81,31 @@ The trigger can be a composed element, such as an `IconButton` in a `Tooltip`. `
 
 {{"demo": "AccountMenu2.js"}}
 
+## Open a dialog
+
+Keep the Dialog outside the menu so that it stays mounted when the menu closes. Open it from the item's `onClick` handler.
+
+Menu v2 and Material UI Dialog restore focus at different times. Dialog can save a menu item as its return target before the menu closes. That item is then removed or hidden, so focus does not return to the trigger when Dialog closes.
+
+To work around this limitation, keep a ref on the menu trigger and set `disableRestoreFocus` on Dialog. Focus the trigger from **Dialog's** `slotProps.transition.onExited` callback:
+
+```jsx
+<Dialog
+  open={dialogOpen}
+  onClose={() => setDialogOpen(false)}
+  disableRestoreFocus
+  slotProps={{
+    transition: {
+      onExited: () => triggerRef.current?.focus({ preventScroll: true }),
+    },
+  }}
+>
+  {/* Dialog content */}
+</Dialog>
+```
+
+Keep the trigger mounted and enabled until the dialog closes. This workaround sets the Dialog return target; it does not change Menu v2's focus behavior. The [live recipe](/experiments/menu2-recipes/#menu2-open-dialog) includes a classic Menu comparison and a control to disable the workaround.
+
 ## Submenu
 
 Nest a `MenuSubmenu` in the item list, and pass a `MenuSubmenuTrigger` to its `trigger` prop. The children of the submenu are its items, the same shape as the root menu one level down.

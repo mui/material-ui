@@ -477,6 +477,150 @@ function MenuInDialogRecipe({ menuType }: { menuType: 'classic' | 'menu2' }) {
   );
 }
 
+function MenuOpensDialogRecipe({
+  menuType,
+  restoreFocus,
+}: {
+  menuType: 'classic' | 'menu2';
+  restoreFocus: boolean;
+}) {
+  const titleId = React.useId();
+  const triggerId = `${titleId}-trigger`;
+  const menuId = `${titleId}-menu`;
+  const triggerRef = React.useRef<HTMLButtonElement>(null);
+  const focusCheckFrame = React.useRef<number | null>(null);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+  const [focusResult, setFocusResult] = React.useState('not checked');
+  const isClassic = menuType === 'classic';
+  const label = isClassic ? 'Classic Menu' : 'Menu2';
+  const useExplicitReturnTarget = !isClassic && restoreFocus;
+
+  React.useEffect(() => {
+    return () => {
+      if (focusCheckFrame.current !== null) {
+        cancelAnimationFrame(focusCheckFrame.current);
+      }
+    };
+  }, []);
+
+  const openDialog = () => {
+    setFocusResult('not checked');
+    setAnchorEl(null);
+    setDialogOpen(true);
+  };
+
+  const handleDialogExited = () => {
+    if (useExplicitReturnTarget) {
+      triggerRef.current?.focus({ preventScroll: true });
+    }
+
+    // Read after Dialog unmounts. This frame only reports focus; it does not move it.
+    focusCheckFrame.current = requestAnimationFrame(() => {
+      const activeElement = document.activeElement;
+      if (activeElement === triggerRef.current) {
+        setFocusResult('menu trigger');
+      } else if (activeElement === document.body) {
+        setFocusResult('page body');
+      } else {
+        setFocusResult('another element');
+      }
+    });
+  };
+
+  return (
+    <Stack spacing={2} useFlexGap sx={{ alignItems: 'flex-start', minWidth: 0 }}>
+      <Typography component="h4" variant="h6">
+        {label}
+      </Typography>
+      {isClassic ? (
+        <React.Fragment>
+          <Button
+            ref={triggerRef}
+            id={triggerId}
+            variant="outlined"
+            aria-haspopup="menu"
+            aria-expanded={Boolean(anchorEl)}
+            aria-controls={anchorEl ? menuId : undefined}
+            onClick={(event) => setAnchorEl(event.currentTarget)}
+          >
+            Classic Menu actions
+          </Button>
+          <ClassicMenu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={() => setAnchorEl(null)}
+            slotProps={{ list: { id: menuId, 'aria-labelledby': triggerId } }}
+          >
+            <ClassicMenuItem aria-haspopup="dialog" onClick={openDialog}>
+              Edit settings
+            </ClassicMenuItem>
+          </ClassicMenu>
+        </React.Fragment>
+      ) : (
+        <Menu2
+          trigger={
+            <Button ref={triggerRef} variant="outlined">
+              Menu2 actions
+            </Button>
+          }
+        >
+          <Menu2Item aria-haspopup="dialog" onClick={openDialog}>
+            Edit settings
+          </Menu2Item>
+        </Menu2>
+      )}
+      <Typography variant="body2">Focus after Dialog closes: {focusResult}</Typography>
+      <Dialog
+        open={dialogOpen}
+        onClose={() => setDialogOpen(false)}
+        aria-labelledby={titleId}
+        disableRestoreFocus={useExplicitReturnTarget}
+        slotProps={{ transition: { onExited: handleDialogExited } }}
+      >
+        <DialogTitle id={titleId}>{label}: Edit settings</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Close this dialog. Then check the focus result below the menu trigger.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={() => setDialogOpen(false)}>
+            Close dialog
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Stack>
+  );
+}
+
+function MenuDialogFocusRecipe() {
+  const [restoreFocus, setRestoreFocus] = React.useState(true);
+
+  return (
+    <Stack spacing={2} useFlexGap>
+      <label>
+        <input
+          type="checkbox"
+          checked={restoreFocus}
+          onChange={(event) => setRestoreFocus(event.target.checked)}
+        />{' '}
+        Set the Dialog return target for Menu2
+      </label>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, minmax(0, 1fr))' },
+          gap: 3,
+        }}
+      >
+        <MenuOpensDialogRecipe menuType="classic" restoreFocus={false} />
+        <MenuOpensDialogRecipe menuType="menu2" restoreFocus={restoreFocus} />
+      </Box>
+    </Stack>
+  );
+}
+
 function Menu2ContextMenuRecipe() {
   const [anchor, setAnchor] = React.useState<ReturnType<typeof createVirtualAnchor> | null>(null);
   const open = anchor !== null;
@@ -698,6 +842,38 @@ export default function Menu2Experiment() {
               <MenuInDialogRecipe menuType="classic" />
               <MenuInDialogRecipe menuType="menu2" />
             </Box>
+          </section>
+          <section>
+            <h3 id="menu2-open-dialog">Open a Dialog from a menu</h3>
+            <p>
+              Open either menu, select Edit settings, and wait for the menu to close. Then close the
+              dialog. You can also use Enter to open the menu and select its item, then Escape to
+              close the dialog. The focus result should read <code>menu trigger</code>.
+            </p>
+            <p>
+              Known limitation: Menu2 uses Base UI to manage focus. Base UI checks whether to return
+              focus after the menu finishes closing. By default, it does not return focus if focus
+              is already in Dialog. Dialog can therefore save a menu item as its return target. That
+              item is then removed or hidden.
+            </p>
+            <p>
+              Classic Menu restores focus when it starts closing. In this example, that lets Dialog
+              save the menu trigger as its return target. The <code>finalFocus</code> prop on Menu2
+              changes the return target, not when focus returns.
+            </p>
+            <p>
+              The Menu2 example sets a return target on Dialog. It uses{' '}
+              <code>disableRestoreFocus</code> and focuses the menu trigger from the{' '}
+              <code>slotProps.transition.onExited</code> callback on Dialog. Keep the trigger
+              mounted and enabled until the dialog closes.
+            </p>
+            <p>
+              Clear the checkbox to test Menu2 without this workaround. Dialog then tries to return
+              focus to the closed menu item, and focus moves to the page body. Classic Menu does not
+              use the workaround here; its callback only reports the result. The controls at the top
+              of this page do not change this comparison, except for the focus ring setting.
+            </p>
+            <MenuDialogFocusRecipe />
           </section>
           <section>
             <h3 id="menu2-context-menu-recipe">Menu2 as ContextMenu recipe</h3>
