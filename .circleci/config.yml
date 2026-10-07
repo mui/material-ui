@@ -202,6 +202,45 @@ jobs:
           command: pnpm test:browser --no-isolate --no-file-parallelism
       - store_test_results:
           path: test-results
+  test_benchmark:
+    <<: *default-job
+    # 2 vCPUs starve V8's background compilers, which makes the same code's speed vary from sample to
+    # sample; see the @mui/internal-benchmark README.
+    resource_class: medium+.gen2
+    executor:
+      name: code-infra/mui-node-browser
+      playwright-img-version: v1.63.0-noble
+    steps:
+      - checkout
+      - code-infra/install-deps
+      - run:
+          name: Build packages
+          command: pnpm release:build
+      - run:
+          name: Resolve the baseline commit
+          command: |
+            set -e
+            BASE_SHA=$(pnpm code-infra baseline --base-branch master)
+            echo "Baseline commit: $BASE_SHA"
+            echo "$BASE_SHA" > .benchmark-baseline-sha
+      - restore_cache:
+          name: Restore the packed-baseline cache
+          keys:
+            - benchmark-cache-v1-{{ checksum ".benchmark-baseline-sha" }}
+      - run:
+          name: Run the benchmarks
+          no_output_timeout: 30m
+          environment:
+            BENCHMARK_UPLOAD: 'true'
+            # TEMPORARY: the dashboard preview of mui/mui-public#1898, since production does not read
+            # version 2 benchmark reports yet. Remove before merging.
+            CI_REPORT_API_URL: https://code-infra-dashboard-pr-1898.onrender.com
+          command: pnpm test:benchmark --baseline "$(cat .benchmark-baseline-sha)"
+      - save_cache:
+          name: Save the packed-baseline cache
+          key: benchmark-cache-v1-{{ checksum ".benchmark-baseline-sha" }}
+          paths:
+            - test/benchmark/.benchmark/packed
   test_e2e:
     <<: *default-job
     resource_class: medium
@@ -461,6 +500,8 @@ workflows:
       - test_types:
           <<: *default-context
       - test_browser:
+          <<: *default-context
+      - test_benchmark:
           <<: *default-context
       - test_browser_legacy:
           <<: *default-context
