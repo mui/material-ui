@@ -33,7 +33,7 @@ import {
   replaceBlock,
   scorecardPath,
 } from './files.mjs';
-import readReports, { readDefaults } from './read.mjs';
+import readReports, { readDefaults, readJson } from './read.mjs';
 import {
   validateDefaults,
   validateKnownGaps,
@@ -60,7 +60,7 @@ async function run(argv) {
   }
 
   const defaults = await readDefaults();
-  const knownGaps = JSON.parse(await fs.readFile(knownGapsPath, 'utf8'));
+  const knownGaps = await readJson(knownGapsPath);
 
   const fail = (violations) => {
     if (violations.length > 0) {
@@ -81,8 +81,10 @@ async function run(argv) {
     version,
     summary: summarize(report.criteria),
   }));
-  fail(reports.flatMap((report) => validateReport(report, check)));
-  fail(validateKnownGaps(knownGaps, reports));
+  fail([
+    ...reports.flatMap((report) => validateReport(report, check)),
+    ...validateKnownGaps(knownGaps, reports, check),
+  ]);
   const criteria = rollUpCriteria(reports);
   const totals = summarizeRollup(criteria);
 

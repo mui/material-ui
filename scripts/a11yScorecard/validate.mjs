@@ -202,18 +202,30 @@ function checkCriterion(criterion, override, where, violations) {
   }
 }
 
+const isAffected = (value) =>
+  Array.isArray(value) &&
+  value.every(
+    (entry) =>
+      (typeof entry === 'string' && entry !== '') ||
+      (isObject(entry) &&
+        typeof entry.component === 'string' &&
+        (entry.note === undefined || typeof entry.note === 'string') &&
+        Object.keys(entry).every((key) => key === 'component' || key === 'note')),
+  );
+
 const KNOWN_GAP_KEYS = {
   gap: (value) => typeof value === 'string',
   criteria: isStrings,
-  affected: Array.isArray,
+  affected: isAffected,
   workaround: (value) => typeof value === 'string',
 };
 
 /**
- * `knownGaps.json` must explain every ⚠️ and ❌ rating, and must not name a
- * component that has no such rating for the row's criteria.
+ * Returns every problem in `knownGaps.json`. Both modes check the shape of the
+ * rows. With `check`, the rows must also explain every ⚠️ and ❌ rating, and
+ * must not name a component that has no such rating for the row's criteria.
  */
-export function validateKnownGaps(knownGaps, reports) {
+export function validateKnownGaps(knownGaps, reports, check) {
   const violations = [];
   if (!Array.isArray(knownGaps)) {
     return ['knownGaps.json: must be an array'];
@@ -254,10 +266,10 @@ export function validateKnownGaps(knownGaps, reports) {
         violations.push(`${where}: ${number} is not a WCAG 2.2 Level A or AA criterion`),
       );
 
-    const affected = Array.isArray(row.affected) ? row.affected : [];
+    const affected = isAffected(row.affected) ? row.affected : [];
     for (const entry of affected.map(normalizeAffected)) {
       const matches = criteria.filter((number) => failing.has(`${entry.component} ${number}`));
-      if (matches.length === 0) {
+      if (check && matches.length === 0) {
         violations.push(
           `${where}: ${entry.component} has no ⚠️ or ❌ rating for ${criteria.join(', ')}`,
         );
@@ -267,7 +279,7 @@ export function validateKnownGaps(knownGaps, reports) {
   });
 
   for (const key of failing) {
-    if (!covered.has(key)) {
+    if (check && !covered.has(key)) {
       violations.push(`knownGaps.json: ${key} is rated ⚠️ or ❌ but no row lists it`);
     }
   }

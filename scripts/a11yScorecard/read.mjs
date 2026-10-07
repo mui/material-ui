@@ -10,7 +10,7 @@ import {
 } from './files.mjs';
 import { readAxeResults } from './axe.mjs';
 
-async function readJson(filepath) {
+export async function readJson(filepath) {
   const source = await readOptional(filepath);
   if (source === null) {
     return null;
