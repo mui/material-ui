@@ -158,6 +158,19 @@ const theme = createTheme();
           },
         },
       },
+      MuiTouchRipple: {
+        defaultProps: {
+          center: true,
+        },
+        styleOverrides: {
+          root: {
+            color: 'red',
+          },
+          ripple: {
+            opacity: 0.5,
+          },
+        },
+      },
       MuiGrid: {
         styleOverrides: {
           root: {
