@@ -123,7 +123,9 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertS
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
-  color?: OverridableStringUnion<AlertColor, AlertPropsColorOverrides> | undefined;
+  color?:
+    | OverridableStringUnion<AlertColor | 'primary' | 'secondary', AlertPropsColorOverrides>
+    | undefined;
   /**
    * The severity of the alert. This defines the color and icon used.
    * @default 'success'

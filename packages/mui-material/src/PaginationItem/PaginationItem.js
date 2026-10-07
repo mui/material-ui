@@ -435,7 +435,7 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    * @default 'standard'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary', 'standard']),
+    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning', 'standard']),
     PropTypes.string,
   ]),
   /**

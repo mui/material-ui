@@ -36,3 +36,5 @@ createTheme({
     },
   }}
 />;
+
+<Alert color="primary" />;

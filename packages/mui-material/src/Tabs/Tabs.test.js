@@ -2137,4 +2137,22 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       expect(screen.getByTestId('end-scroll-button-icon')).to.have.class('bar');
     });
   });
+
+  it.skipIf(isJSDOM)('should support custom palette colors for indicatorColor', () => {
+    const theme = createTheme({
+      palette: { custom: { main: 'rgb(0, 128, 0)' } },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Tabs value={0} indicatorColor="custom">
+          <Tab />
+        </Tabs>
+      </ThemeProvider>,
+    );
+
+    expect(container.querySelector(`.${classes.indicator}`)).toHaveComputedStyle({
+      backgroundColor: 'rgb(0, 128, 0)',
+    });
+  });
 });

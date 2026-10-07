@@ -94,7 +94,7 @@ export interface PaginationItemOwnProps extends PaginationItemSlotsAndSlotProps 
    */
   color?:
     | OverridableStringUnion<
-        'standard' | 'primary' | 'secondary',
+        'standard' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
         PaginationItemPropsColorOverrides
       >
     | undefined;

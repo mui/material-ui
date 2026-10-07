@@ -9,6 +9,7 @@ import { useRtl } from '@mui/system/RtlProvider';
 import useSlotProps from '@mui/utils/useSlotProps';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import debounce from '../utils/debounce';
 import animate from '../internal/animate';
@@ -191,22 +192,14 @@ const TabsIndicator = styled('span', {
     width: '100%',
     ...getTransitionStyles(theme),
     variants: [
-      {
-        props: {
-          indicatorColor: 'primary',
-        },
-        style: {
-          backgroundColor: (theme.vars || theme).palette.primary.main,
-        },
-      },
-      {
-        props: {
-          indicatorColor: 'secondary',
-        },
-        style: {
-          backgroundColor: (theme.vars || theme).palette.secondary.main,
-        },
-      },
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter())
+        .map(([color]) => ({
+          props: { indicatorColor: color },
+          style: {
+            backgroundColor: (theme.vars || theme).palette[color].main,
+          },
+        })),
       {
         props: ({ ownerState }) => ownerState.vertical,
         style: {
@@ -973,7 +966,7 @@ Tabs.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   indicatorColor: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
