@@ -136,17 +136,23 @@ export interface AutocompleteSlots {
    * The component used to render the clear indicator element.
    * @default IconButton
    */
-  clearIndicator: React.JSXElementConstructor<IconButtonProps>;
+  clearIndicator: React.JSXElementConstructor<
+    IconButtonProps & AutocompleteClearIndicatorSlotPropsOverrides
+  >;
   /**
    * The component used to render the popup indicator element.
    * @default IconButton
    */
-  popupIndicator: React.JSXElementConstructor<IconButtonProps>;
+  popupIndicator: React.JSXElementConstructor<
+    IconButtonProps & AutocompletePopupIndicatorSlotPropsOverrides
+  >;
   /**
    * The component used to render the listbox.
    * @default 'ul'
    */
-  listbox: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
+  listbox: React.JSXElementConstructor<
+    React.HTMLAttributes<HTMLElement> & AutocompleteListboxSlotPropsOverrides
+  >;
   /**
    * The component used to render the status message container.
    * @default 'div'
