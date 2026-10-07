@@ -4,6 +4,13 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import ClassicMenu from '@mui/material/Menu';
+import ClassicMenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
 import Tooltip, { type TooltipProps } from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
@@ -327,6 +334,149 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
   );
 }
 
+function MenuInDialogRecipe({ menuType }: { menuType: 'classic' | 'menu2' }) {
+  const titleId = React.useId();
+  const triggerId = `${titleId}-trigger`;
+  const menuId = `${titleId}-menu`;
+  const isClassic = menuType === 'classic';
+  const label = isClassic ? 'Classic Menu' : 'Menu2';
+  const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+  const [menuEvent, setMenuEvent] = React.useState('none');
+  const [dialogEvent, setDialogEvent] = React.useState('none');
+  const [selectedAction, setSelectedAction] = React.useState('none');
+  const [buttonClicks, setButtonClicks] = React.useState(0);
+
+  const handleDialogClose = (reason: string) => {
+    setDialogEvent(reason);
+    setAnchorEl(null);
+    setOpen(false);
+  };
+
+  const handleSelect = (action: string) => {
+    setSelectedAction(action);
+    if (isClassic) {
+      // Classic Menu requires the caller to close it after item selection.
+      setAnchorEl(null);
+      setMenuEvent('closed (item click handler)');
+    }
+  };
+
+  const status = (
+    <Box sx={{ typography: 'body2' }}>
+      <div>
+        Last menu event: <code>{menuEvent}</code>
+      </div>
+      <div>
+        Last dialog close: <code>{dialogEvent}</code>
+      </div>
+      <div>Selected action: {selectedAction}</div>
+      <div>Other button clicks: {buttonClicks}</div>
+    </Box>
+  );
+
+  return (
+    <Stack spacing={2} useFlexGap sx={{ alignItems: 'flex-start', minWidth: 0 }}>
+      <Typography component="h4" variant="h6">
+        {label}
+      </Typography>
+      <Button
+        variant="outlined"
+        onClick={() => {
+          setMenuEvent('none');
+          setDialogEvent('none');
+          setSelectedAction('none');
+          setButtonClicks(0);
+          setAnchorEl(null);
+          setOpen(true);
+        }}
+      >
+        Open {label} dialog
+      </Button>
+      {status}
+      <Dialog
+        open={open}
+        aria-labelledby={titleId}
+        fullWidth
+        maxWidth="sm"
+        onClose={(_event, reason) => handleDialogClose(reason)}
+      >
+        <DialogTitle id={titleId}>{label}: Document settings</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Open Actions, then select an item, press Escape, or click outside the menu. Check the
+            event details below. The other button counts clicks that reach the dialog.
+          </DialogContentText>
+          <Stack spacing={2} useFlexGap sx={{ mt: 2 }}>
+            <Stack direction="row" spacing={2} useFlexGap sx={{ flexWrap: 'wrap' }}>
+              {isClassic ? (
+                <React.Fragment>
+                  <Button
+                    id={triggerId}
+                    variant="contained"
+                    aria-haspopup="menu"
+                    aria-expanded={Boolean(anchorEl)}
+                    aria-controls={anchorEl ? menuId : undefined}
+                    onClick={(event) => {
+                      setAnchorEl(event.currentTarget);
+                      setMenuEvent('open (trigger)');
+                    }}
+                  >
+                    Actions
+                  </Button>
+                  <ClassicMenu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={(_event, reason) => {
+                      setAnchorEl(null);
+                      setMenuEvent(`closed (${reason})`);
+                    }}
+                    slotProps={{ list: { id: menuId, 'aria-labelledby': triggerId } }}
+                  >
+                    <ClassicMenuItem onClick={() => handleSelect('Rename document')}>
+                      Rename document
+                    </ClassicMenuItem>
+                    <ClassicMenuItem onClick={() => handleSelect('Duplicate document')}>
+                      Duplicate document
+                    </ClassicMenuItem>
+                  </ClassicMenu>
+                </React.Fragment>
+              ) : (
+                <Menu2
+                  trigger={<Button variant="contained">Actions</Button>}
+                  onOpenChange={(nextOpen, details) => {
+                    setMenuEvent(`${nextOpen ? 'open' : 'closed'} (${details.reason})`);
+                  }}
+                >
+                  <Menu2Item onClick={() => handleSelect('Rename document')}>
+                    Rename document
+                  </Menu2Item>
+                  <Menu2Item onClick={() => handleSelect('Duplicate document')}>
+                    Duplicate document
+                  </Menu2Item>
+                  <Menu2Submenu trigger={<Menu2SubmenuTrigger>Export</Menu2SubmenuTrigger>}>
+                    <Menu2Item onClick={() => handleSelect('Export as PDF')}>
+                      Export as PDF
+                    </Menu2Item>
+                    <Menu2Item onClick={() => handleSelect('Export as text')}>
+                      Export as text
+                    </Menu2Item>
+                  </Menu2Submenu>
+                </Menu2>
+              )}
+              <Button onClick={() => setButtonClicks((count) => count + 1)}>Other button</Button>
+            </Stack>
+            {status}
+          </Stack>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleDialogClose('close-button')}>Close dialog</Button>
+        </DialogActions>
+      </Dialog>
+    </Stack>
+  );
+}
+
 function Menu2ContextMenuRecipe() {
   const [anchor, setAnchor] = React.useState<ReturnType<typeof createVirtualAnchor> | null>(null);
   const open = anchor !== null;
@@ -443,7 +593,10 @@ export default function Menu2Experiment() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Head title="Menu2 recipes" description="Menu2 integrations with Tooltip and context menus" />
+      <Head
+        title="Menu2 recipes"
+        description="Menu2 integrations with Dialog, Tooltip, and context menus"
+      />
       <Container maxWidth="md" sx={{ pt: 4 }}>
         <Stack spacing={4}>
           <Typography component="h2" variant="h4">
@@ -506,6 +659,46 @@ export default function Menu2Experiment() {
               do not receive pointer events, so their tooltips open on keyboard focus only.
             </p>
             <Menu2WithTooltipsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
+          </section>
+          <section>
+            <h3 id="menu2-in-dialog">Classic Menu and Menu2 inside Dialog</h3>
+            <p>
+              Compare the default menu behavior inside a Material UI Dialog. Each example has its
+              own dialog and event details. Only the focus ring control above applies to these
+              examples.
+            </p>
+            <ol>
+              <li>Open the dialog and select an item from Actions. The dialog should stay open.</li>
+              <li>
+                Open Actions with the keyboard. Press Escape to close the menu and return focus to
+                Actions. Menu2 also has an Export submenu. With Export open, Escape should close the
+                submenu first.
+              </li>
+              <li>
+                With Actions open, click Other button. The first click should close only the menu. A
+                second click should increase the count.
+              </li>
+              <li>
+                Open Actions again and click the dimmed area outside the dialog. The first click
+                should close only the menu. A second click should close the dialog.
+              </li>
+            </ol>
+            <p>
+              Known Menu2 issue: an outside click can also activate Other button or close the
+              dialog. Repeat the same steps with Classic Menu to compare the results. The event
+              details remain visible after each dialog closes. These examples have no workaround for
+              that behavior.
+            </p>
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, minmax(0, 1fr))' },
+                gap: 3,
+              }}
+            >
+              <MenuInDialogRecipe menuType="classic" />
+              <MenuInDialogRecipe menuType="menu2" />
+            </Box>
           </section>
           <section>
             <h3 id="menu2-context-menu-recipe">Menu2 as ContextMenu recipe</h3>
