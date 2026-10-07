@@ -377,7 +377,7 @@ function MenuInDialogRecipe({ menuType }: { menuType: 'classic' | 'menu2' }) {
 
   return (
     <Stack spacing={2} useFlexGap sx={{ alignItems: 'flex-start', minWidth: 0 }}>
-      <Typography component="h4" variant="h6">
+      <Typography component="h3" variant="h6">
         {label}
       </Typography>
       <Button
@@ -530,7 +530,7 @@ function MenuOpensDialogRecipe({
 
   return (
     <Stack spacing={2} useFlexGap sx={{ alignItems: 'flex-start', minWidth: 0 }}>
-      <Typography component="h4" variant="h6">
+      <Typography component="h3" variant="h6">
         {label}
       </Typography>
       {isClassic ? (
@@ -743,7 +743,7 @@ export default function Menu2Experiment() {
       />
       <Container maxWidth="md" sx={{ pt: 4 }}>
         <Stack spacing={4}>
-          <Typography component="h2" variant="h4">
+          <Typography component="h1" variant="h4">
             Menu2 recipes
           </Typography>
           <Typography>
@@ -787,12 +787,12 @@ export default function Menu2Experiment() {
             </label>
           </fieldset>
           <section>
-            <h3 id="menu2-fully-featured">Fully featured menu</h3>
+            <h2 id="menu2-fully-featured">Fully featured menu</h2>
             <p>Fully-featured menu with submenus, links, radio groups, and checkbox items.</p>
             <Menu2Demo settings={settings} />
           </section>
           <section>
-            <h3 id="menu2-tooltips">Menu2 + Tooltip</h3>
+            <h2 id="menu2-tooltips">Menu2 + Tooltip</h2>
             <p>
               Material UI Tooltip adds descriptions to menu items. Hover over or focus Make a copy
               to see an image and paragraphs with bold and italic text. Tooltip content has no
@@ -805,7 +805,7 @@ export default function Menu2Experiment() {
             <Menu2WithTooltipsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
           </section>
           <section>
-            <h3 id="menu2-in-dialog">Classic Menu and Menu2 inside Dialog</h3>
+            <h2 id="menu2-in-dialog">Classic Menu and Menu2 inside Dialog</h2>
             <p>
               Compare the default menu behavior inside a Material UI Dialog. Each example has its
               own dialog and event details. Only the focus ring control above applies to these
@@ -844,7 +844,7 @@ export default function Menu2Experiment() {
             </Box>
           </section>
           <section>
-            <h3 id="menu2-open-dialog">Open a Dialog from a menu</h3>
+            <h2 id="menu2-open-dialog">Open a Dialog from a menu</h2>
             <p>
               Open either menu, select Edit settings, and wait for the menu to close. Then close the
               dialog. You can also use Enter to open the menu and select its item, then Escape to
@@ -876,7 +876,7 @@ export default function Menu2Experiment() {
             <MenuDialogFocusRecipe />
           </section>
           <section>
-            <h3 id="menu2-context-menu-recipe">Menu2 as ContextMenu recipe</h3>
+            <h2 id="menu2-context-menu-recipe">Menu2 as ContextMenu recipe</h2>
             <p>Right-click the text to open a cursor-positioned Menu2 popup.</p>
             <Menu2ContextMenuRecipe />
           </section>

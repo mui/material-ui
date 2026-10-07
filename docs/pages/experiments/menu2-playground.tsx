@@ -387,7 +387,7 @@ function FocusRingComparisonDemo({ settings }: { settings: PlaygroundSettings })
   return (
     <Stack direction="row" spacing={4} sx={{ alignItems: 'flex-start' }}>
       <div>
-        <Typography variant="subtitle2" gutterBottom>
+        <Typography component="h3" variant="subtitle2" gutterBottom>
           Classic Menu + MenuItem
         </Typography>
         <Button
@@ -416,7 +416,7 @@ function FocusRingComparisonDemo({ settings }: { settings: PlaygroundSettings })
         </ClassicMenu>
       </div>
       <div>
-        <Typography variant="subtitle2" gutterBottom>
+        <Typography component="h3" variant="subtitle2" gutterBottom>
           Menu2 + Menu2Item
         </Typography>
         <Menu2
@@ -746,7 +746,7 @@ export default function MenuRfcExperiment() {
       />
       <Container maxWidth="md" sx={{ pt: 4, pb: 8 }}>
         <Stack spacing={4}>
-          <Typography component="h2" variant="h4">
+          <Typography component="h1" variant="h4">
             Menu2 playground
           </Typography>
           <Typography>
@@ -768,7 +768,7 @@ export default function MenuRfcExperiment() {
           </Typography>
 
           <section>
-            <h3 id="playground">Kitchen sink</h3>
+            <h2 id="playground">Kitchen sink</h2>
             <p>
               Nested submenus (three levels), groups with labels, checkbox and radio items, a
               disabled item, and a link item. All knobs apply.
@@ -806,7 +806,7 @@ export default function MenuRfcExperiment() {
           </section>
 
           <section>
-            <h3 id="classic-parity">Classic vs successor</h3>
+            <h2 id="classic-parity">Classic vs successor</h2>
             <p>
               The same item set rendered by the classic Menu and the successor, for visual parity
               checks (dense, dividers, disabled, and elevation knobs apply to both). Only the
@@ -819,7 +819,7 @@ export default function MenuRfcExperiment() {
           </section>
 
           <section>
-            <h3 id="focus-ring-comparison">Focus indicator: classic vs successor</h3>
+            <h2 id="focus-ring-comparison">Focus indicator: classic vs successor</h2>
             <p>
               Both sides are real menus that open from a trigger, and both use the same theme. Turn
               on the <code>focusVisible theme</code> knob to show the ring. That knob also sets{' '}
@@ -842,7 +842,7 @@ export default function MenuRfcExperiment() {
           </section>
 
           <section>
-            <h3 id="controlled-anchor">Classic-style controlled usage</h3>
+            <h2 id="controlled-anchor">Classic-style controlled usage</h2>
             <p>
               An external button controls this menu through <code>open</code>, <code>anchor</code>,
               and <code>onOpenChange</code>. The root has no <code>trigger</code> prop.
@@ -861,7 +861,7 @@ export default function MenuRfcExperiment() {
           </section>
 
           <section>
-            <h3 id="typeahead">Typeahead and scrolling</h3>
+            <h2 id="typeahead">Typeahead and scrolling</h2>
             <p>
               Open the menu and type to jump between items (for example type &quot;sw&quot;). The
               popup constrains height via <code>slotProps.paper</code>.
