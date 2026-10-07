@@ -62,6 +62,13 @@ jobs:
             exit 0
           fi
 
+          TITLE='[website] Sync website content'
+          BODY_FILE="$RUNNER_TEMP/website-content-pr-body.md"
+          cat > "$BODY_FILE" <<'BODY'
+          Automated sync of the About page team members from the [mui-about API](https://frontend-public.mui.com/api/mui-about), and the careers listing and full role pages from the [careers API](https://frontend-public.mui.com/api/mui-careers).
+          BODY
+          printf '\n%s\n' "$SYNC_SUMMARY" >> "$BODY_FILE"
+
           # `cherry-pick-*` is exempt from branch creation restrictions and required
           # status checks. `docs-*` is only exempt from the former.
           BRANCH=cherry-pick-sync-website-content
@@ -69,25 +76,20 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git switch -C "$BRANCH"
           git commit \
-            --message '[website] Sync website content' \
-            --message 'Sync About page team members and careers listings and role descriptions from the shared website APIs.'
+            --message "$TITLE" \
+            --message "$(cat "$BODY_FILE")"
           REMOTE_SHA="$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)"
           git push --force-with-lease="refs/heads/$BRANCH:$REMOTE_SHA" origin "$BRANCH"
 
-          cat > "$RUNNER_TEMP/website-content-pr-body.md" <<'BODY'
-          Automated sync of the About page team members from the [mui-about API](https://frontend-public.mui.com/api/mui-about), and the careers listing and full role pages from the [careers API](https://frontend-public.mui.com/api/mui-careers).
-          BODY
-          printf '\n%s\n' "$SYNC_SUMMARY" >> "$RUNNER_TEMP/website-content-pr-body.md"
-
           PR_NUMBER="$(gh pr list --base master --head "$BRANCH" --state open --json number --jq '.[0].number')"
           if [ -n "$PR_NUMBER" ]; then
-            gh pr edit "$PR_NUMBER" --title '[website] Sync website content' --body-file "$RUNNER_TEMP/website-content-pr-body.md"
+            gh pr edit "$PR_NUMBER" --title "$TITLE" --body-file "$BODY_FILE"
           else
             gh pr create \
               --base master \
               --head "$BRANCH" \
-              --title '[website] Sync website content' \
-              --body-file "$RUNNER_TEMP/website-content-pr-body.md" \
+              --title "$TITLE" \
+              --body-file "$BODY_FILE" \
               --label website
             PR_NUMBER="$(gh pr list --base master --head "$BRANCH" --state open --json number --jq '.[0].number')"
           fi
