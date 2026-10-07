@@ -42,19 +42,27 @@ export function createFilterOptions(config = {}) {
       input = stripDiacritics(input);
     }
 
-    const filteredOptions = !input
-      ? options
-      : options.filter((option) => {
-          let candidate = (stringify || getOptionLabel)(option);
-          if (ignoreCase) {
-            candidate = candidate.toLowerCase();
-          }
-          if (ignoreAccents) {
-            candidate = stripDiacritics(candidate);
-          }
+    const filteredOptions = !input ? options : [];
+    if (input) {
+      const maxResults = Number.isInteger(limit) && limit > 0 ? limit : Infinity;
+      options.some((option) => {
+        let candidate = (stringify || getOptionLabel)(option);
+        if (ignoreCase) {
+          candidate = candidate.toLowerCase();
+        }
+        if (ignoreAccents) {
+          candidate = stripDiacritics(candidate);
+        }
 
-          return matchFrom === 'start' ? candidate.startsWith(input) : candidate.includes(input);
-        });
+        const matches =
+          matchFrom === 'start' ? candidate.startsWith(input) : candidate.includes(input);
+        if (matches) {
+          filteredOptions.push(option);
+        }
+
+        return filteredOptions.length >= maxResults;
+      });
+    }
 
     return typeof limit === 'number' ? filteredOptions.slice(0, limit) : filteredOptions;
   };
