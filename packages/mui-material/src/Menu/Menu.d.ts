@@ -126,7 +126,11 @@ export interface MenuProps
    * @param {object} event The event source of the callback.
    * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`.
    */
-  onClose?: PopoverProps['onClose'] | undefined;
+  onClose?:
+    | {
+        bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown' | 'tabKeyDown'): void;
+      }['bivarianceHack']
+    | undefined;
   /**
    * If `true`, the component is shown.
    */
