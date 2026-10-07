@@ -21,6 +21,11 @@ import useAutocomplete, {
 import { AutocompleteClasses } from './autocompleteClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
+export interface AutocompleteRootSlotPropsOverrides {}
+export interface AutocompleteChipSlotPropsOverrides {}
+export interface AutocompleteClearIndicatorSlotPropsOverrides {}
+export interface AutocompleteListboxSlotPropsOverrides {}
+export interface AutocompletePopupIndicatorSlotPropsOverrides {}
 export interface AutocompletePaperSlotPropsOverrides {}
 export interface AutocompletePopperSlotPropsOverrides {}
 export interface AutocompleteStatusSlotPropsOverrides {}
@@ -165,17 +170,17 @@ export type AutocompleteSlotsAndSlotProps<
   {
     root: SlotProps<
       'div',
-      {},
+      AutocompleteRootSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
     chip: SlotProps<
       React.ElementType<Partial<ChipProps<ChipComponent>>>,
-      {},
+      AutocompleteChipSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
     clearIndicator: SlotProps<
       React.ElementType<Partial<IconButtonProps>>,
-      {},
+      AutocompleteClearIndicatorSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
     /**
@@ -188,7 +193,7 @@ export type AutocompleteSlotsAndSlotProps<
           ref?: React.Ref<Element> | undefined;
         }
       >,
-      {},
+      AutocompleteListboxSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
     status: SlotProps<
@@ -208,7 +213,7 @@ export type AutocompleteSlotsAndSlotProps<
     >;
     popupIndicator: SlotProps<
       React.ElementType<Partial<IconButtonProps>>,
-      {},
+      AutocompletePopupIndicatorSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
   }
