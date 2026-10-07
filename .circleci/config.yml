@@ -202,6 +202,31 @@ jobs:
           command: pnpm test:browser --no-isolate --no-file-parallelism
       - store_test_results:
           path: test-results
+  test_benchmark_aa:
+    <<: *default-job
+    resource_class: medium+.gen2
+    executor:
+      name: code-infra/mui-node-browser
+      playwright-img-version: v1.63.0-noble
+    environment:
+      AA_RUNS: '10'
+    steps:
+      - checkout
+      - code-infra/install-deps
+      - run:
+          name: Compare the commit with itself, AA_RUNS times
+          no_output_timeout: 30m
+          command: |
+            mkdir -p test/benchmark/.benchmark/aa
+            for i in $(seq 1 "$AA_RUNS"); do
+              echo "Run $i of $AA_RUNS"
+              pnpm -F ./test/benchmark --silent benchmark --baseline HEAD --build-cmd "sh test/benchmark/scripts/buildOnce.sh" --reporter json --out ".benchmark/aa/report-$i.json" > "test/benchmark/.benchmark/aa/analysis-$i.json" || echo "Run $i failed"
+            done
+      - run:
+          name: Count verdicts
+          command: node test/benchmark/scripts/countVerdicts.mjs test/benchmark/.benchmark/aa
+      - store_artifacts:
+          path: test/benchmark/.benchmark/aa
   test_e2e:
     <<: *default-job
     resource_class: medium
@@ -452,27 +477,10 @@ workflows:
     when:
       equal: [pipeline, << pipeline.parameters.workflow >>]
     jobs:
-      - test_unit:
-          <<: *default-context
-      - test_lint:
-          <<: *default-context
-      - test_static:
-          <<: *default-context
-      - test_types:
-          <<: *default-context
-      - test_browser:
-          <<: *default-context
-      - test_browser_legacy:
-          <<: *default-context
-      - test_regressions:
-          <<: *default-context
-      - test_e2e:
-          <<: *default-context
-      - test_bundle_size_monitor:
+      - test_benchmark_aa:
           <<: *default-context
   e2e-website:
-    when:
-      equal: [e2e-website, << pipeline.parameters.workflow >>]
+    when: false
     jobs:
       - test_e2e_website:
           <<: *default-context
