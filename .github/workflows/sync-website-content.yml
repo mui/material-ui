@@ -84,7 +84,6 @@ jobs:
             gh pr edit "$PR_NUMBER" --title '[website] Sync website content' --body-file "$RUNNER_TEMP/website-content-pr-body.md"
           else
             gh pr create \
-              --draft \
               --base master \
               --head "$BRANCH" \
               --title '[website] Sync website content' \
