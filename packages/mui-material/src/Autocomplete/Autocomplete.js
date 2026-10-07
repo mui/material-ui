@@ -623,6 +623,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     externalForwardedProps,
     ownerState,
     className: classes.paper,
+    additionalProps: {
+      elevation: 8,
+    },
   });
 
   const [StatusSlot, statusProps] = useSlot('status', {
