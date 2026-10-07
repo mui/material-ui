@@ -4,10 +4,15 @@ import { IconButtonProps } from '../IconButton/IconButton';
 import { SvgIconProps } from '../SvgIcon';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { Theme } from '../styles';
+import { TablePaginationActionsClasses } from './tablePaginationActionsClasses';
 
 export interface TablePaginationActionsProps extends StandardProps<
   React.HTMLAttributes<HTMLDivElement>
 > {
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<TablePaginationActionsClasses> | undefined;
   count: number;
   /**
    * If `true`, the component is disabled.

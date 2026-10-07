@@ -16,7 +16,7 @@
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     }
   },
-  "classDescriptions": {},
+  "classDescriptions": { "root": { "description": "Styles applied to the root element." } },
   "slotDescriptions": {
     "firstButton": "The component that renders the first button.",
     "firstButtonIcon": "The component that renders the first button icon.",

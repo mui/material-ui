@@ -70,7 +70,14 @@
       "class": null
     }
   ],
-  "classes": [],
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiTablePaginationActions-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTablePaginationActions",
