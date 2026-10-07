@@ -14,26 +14,6 @@ interface CareerJob {
 
 const defaultDocsDirectory = fileURLToPath(new URL('..', import.meta.url));
 
-function isCareerJob(value: unknown): value is CareerJob {
-  if (!value || typeof value !== 'object') {
-    return false;
-  }
-  const job = value as Record<string, unknown>;
-  return (
-    typeof job.id === 'string' &&
-    /^[a-zA-Z0-9-]+$/.test(job.id) &&
-    typeof job.title === 'string' &&
-    job.title.trim().length > 0 &&
-    typeof job.category === 'string' &&
-    job.category.trim().length > 0 &&
-    typeof job.description === 'string' &&
-    (job.summary === undefined || job.summary === null || typeof job.summary === 'string') &&
-    typeof job.applicationUrl === 'string' &&
-    URL.canParse(job.applicationUrl) &&
-    new URL(job.applicationUrl).protocol === 'https:'
-  );
-}
-
 export default async function syncCareers(
   apiUrl = process.env.MUI_CAREERS_API_URL || 'https://frontend-public.mui.com/api/mui-careers',
   docsDirectory = defaultDocsDirectory,
@@ -43,20 +23,7 @@ export default async function syncCareers(
     throw new Error(`Failed to fetch careers: ${response.status} ${response.statusText}`);
   }
 
-  const payload: unknown = await response.json();
-  if (
-    !payload ||
-    typeof payload !== 'object' ||
-    !('data' in payload) ||
-    !Array.isArray(payload.data) ||
-    !payload.data.every(isCareerJob)
-  ) {
-    throw new Error('Invalid careers response. Expected a data array of complete job postings.');
-  }
-  const jobs: CareerJob[] = payload.data;
-  if (new Set(jobs.map((job) => job.id)).size !== jobs.length) {
-    throw new Error('Invalid careers response. Job IDs must be unique.');
-  }
+  const { data: jobs }: { data: CareerJob[] } = await response.json();
   jobs.sort((a, b) => a.category.localeCompare(b.category) || a.title.localeCompare(b.title));
 
   const dataDirectory = path.join(docsDirectory, 'data/careers');
