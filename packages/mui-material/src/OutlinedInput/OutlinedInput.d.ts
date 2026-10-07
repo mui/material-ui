@@ -6,6 +6,8 @@ import { InternalStandardProps as StandardProps } from '../internal';
 import { InputBaseProps } from '../InputBase';
 import { OutlinedInputClasses } from './outlinedInputClasses';
 
+export interface OutlinedInputNotchedOutlineSlotPropsOverrides {}
+
 interface OutlinedInputSlots {
   /**
    * The component that renders the notchedOutline slot.
@@ -17,7 +19,11 @@ interface OutlinedInputSlots {
 type OutlinedInputSlotsAndSlotProps = CreateSlotsAndSlotProps<
   OutlinedInputSlots,
   {
-    notchedOutline: SlotProps<'fieldset', {}, OutlinedInputOwnerState>;
+    notchedOutline: SlotProps<
+      'fieldset',
+      OutlinedInputNotchedOutlineSlotPropsOverrides,
+      OutlinedInputOwnerState
+    >;
   }
 > & {
   slots?: InputBaseProps['slots'] | undefined;
