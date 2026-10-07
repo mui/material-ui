@@ -26,10 +26,15 @@ function round(value) {
 }
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disableInteractive, arrow, touch, placement } = ownerState;
+  const { classes, disableInteractive, arrow, touch, placement, open } = ownerState;
 
   const slots = {
-    popper: ['popper', !disableInteractive && 'popperInteractive', arrow && 'popperArrow'],
+    popper: [
+      'popper',
+      !disableInteractive && 'popperInteractive',
+      arrow && 'popperArrow',
+      !open && 'popperClose',
+    ],
     tooltip: [
       'tooltip',
       arrow && 'tooltipArrow',
@@ -61,7 +66,7 @@ const TooltipPopper = styled(Popper, {
     pointerEvents: 'none',
     variants: [
       {
-        props: ({ ownerState, open }) => open && !ownerState.disableInteractive,
+        props: ({ ownerState }) => ownerState.open && !ownerState.disableInteractive,
         style: {
           pointerEvents: 'auto',
         },
@@ -612,6 +617,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ...props,
     arrow,
     disableInteractive,
+    open,
     placement,
     touch: ignoreNonTouchEvents.current,
   };

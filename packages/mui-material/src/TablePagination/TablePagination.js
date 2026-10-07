@@ -39,10 +39,10 @@ const TablePaginationRoot = styled(TableCell, {
 const TablePaginationToolbar = styled(Toolbar, {
   name: 'MuiTablePagination',
   slot: 'Toolbar',
-  overridesResolver: (props, styles) => ({
-    [`& .${tablePaginationClasses.actions}`]: styles.actions,
-    ...styles.toolbar,
-  }),
+  overridesResolver: (props, styles) => [
+    { [`& .${tablePaginationClasses.actions}`]: styles.actions },
+    styles.toolbar,
+  ],
 })(
   memoTheme(({ theme }) => ({
     minHeight: 52,
@@ -81,12 +81,14 @@ const TablePaginationSelectLabel = styled('p', {
 const TablePaginationSelect = styled(Select, {
   name: 'MuiTablePagination',
   slot: 'Select',
-  overridesResolver: (props, styles) => ({
-    [`& .${tablePaginationClasses.selectIcon}`]: styles.selectIcon,
-    [`& .${tablePaginationClasses.select}`]: styles.select,
-    ...styles.input,
-    ...styles.selectRoot,
-  }),
+  overridesResolver: (props, styles) => [
+    {
+      [`& .${tablePaginationClasses.selectIcon}`]: styles.selectIcon,
+      [`& .${tablePaginationClasses.select}`]: styles.select,
+    },
+    styles.input,
+    styles.selectRoot,
+  ],
 })({
   color: 'inherit',
   fontSize: 'inherit',
