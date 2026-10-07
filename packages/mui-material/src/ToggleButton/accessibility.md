@@ -4,8 +4,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 20    |
-| ⚠️ Partially Supports | 4     |
+| ✅ Supports           | 21    |
+| ⚠️ Partially Supports | 3     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 31    |
 | 🚩 Flagged            | 2/24  |
@@ -14,8 +14,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 - ⚠️ **1.4.1 Use of Color.** For the color variants (`primary`, `error`, `info`, `success`), the selected and unselected labels are near-identical in grayscale lightness, so the pressed state is conveyed almost entirely by hue.
 - ⚠️ **1.4.3 Contrast (Minimum).** When selected, the `primary`, `error`, `info`, and `warning` labels (their `color.main` text over the tinted selected background) fall short of 4.5:1.
-- ⚠️ **1.4.11 Non-text Contrast.** The focus indicator is the ripple; `disableRipple`/`disableFocusRipple` remove it, leaving no focus indicator. The selected-state fill is untested for 3:1.
-- ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` remove the only keyboard focus indicator; the Toggle Button has no box-shadow fallback.
+- ⚠️ **1.4.11 Non-text Contrast.** The focus indicator is the ripple; `disableRipple`/`disableFocusRipple` remove it, leaving no focus indicator unless the theme enables `focusVisible`. The selected-state fill is untested for 3:1.
 
 ## Success criteria
 
@@ -180,20 +179,21 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.7 Focus Visible · AA
 
-`⚠️ Partially Supports` · `● Component`
+`✅ Supports` · `◐ Shared`
 
 - Keyboard focus shows the `.Mui-focusVisible` ripple (suppressed for mouse). The component sets no other focus style.
 - `disableRipple` removes every ripple and `disableFocusRipple` removes the focus ripple, so either prop leaves the toggle with no visible focus indicator (the `disableRipple` prop documents this).
 - Confirmed by a unit test in [`./ToggleButton.test.js`](./ToggleButton.test.js) (no focus ripple under `disableRipple`).
+- With `focusVisible: true` on the theme, keyboard focus draws an outline ring that does not depend on the ripple (see [Focus visible](https://mui.com/material-ui/customization/focus-visible/)). The indicator stays visible under `disableRipple` and `disableFocusRipple`. Removing the ripple without the ring is the author's choice.
 
 **Manual testing steps**
 
 1. Press <kbd>Tab</kbd> to move focus across toggle buttons (standalone and within a `ToggleButtonGroup`).
 2. Confirm a clear focus indicator appears, and that it looks different from the selected style.
 3. Click a toggle with the mouse and confirm the indicator does not appear (it is keyboard-only).
-4. Set `disableRipple` or `disableFocusRipple` on a toggle (no demo ships these) and <kbd>Tab</kbd> to it.
+4. With `focusVisible: true` on the theme, set `disableRipple` or `disableFocusRipple` on a toggle (no demo ships these) and <kbd>Tab</kbd> to it.
 
-**Pass:** every keyboard-focused toggle shows a visible indicator, including under `disableRipple` and `disableFocusRipple`.
+**Pass:** every keyboard-focused toggle shows a visible indicator. Under `disableRipple` and `disableFocusRipple`, the indicator comes from the `focusVisible` theme ring or from author styles.
 
 #### 4.1.2 Name, Role, Value · A
 

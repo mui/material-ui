@@ -3,10 +3,10 @@
   "componentCount": 12,
   "totals": {
     "rated": 32,
-    "supports": 26,
-    "partiallySupports": 6,
+    "supports": 27,
+    "partiallySupports": 5,
     "doesNotSupport": 0,
-    "flagged": 14
+    "flagged": 13
   },
   "criteria": [
     {
@@ -175,9 +175,9 @@
       "number": "2.4.7",
       "name": "Focus Visible",
       "level": "AA",
-      "conformance": "Partially Supports",
-      "flagged": true,
-      "affected": ["Button", "Checkbox", "Radio", "Switch", "ToggleButton"]
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
     },
     {
       "number": "2.4.11",
@@ -482,7 +482,7 @@
         "partiallySupports": 1,
         "doesNotSupport": 0,
         "notApplicable": 31,
-        "flagged": 4,
+        "flagged": 3,
         "rated": 24
       },
       "gaps": [
@@ -595,7 +595,7 @@
           "conformance": "Supports",
           "responsibility": "Component",
           "group": "Hybrid",
-          "flagged": true
+          "flagged": false
         },
         {
           "number": "4.1.2",
@@ -713,7 +713,7 @@
         "supports": 23,
         "partiallySupports": 1,
         "doesNotSupport": 0,
-        "verified": 20,
+        "verified": 21,
         "automated": 11
       }
     },
@@ -846,17 +846,16 @@
     {
       "component": "Button",
       "counts": {
-        "supports": 23,
-        "partiallySupports": 4,
+        "supports": 24,
+        "partiallySupports": 3,
         "doesNotSupport": 0,
         "notApplicable": 28,
-        "flagged": 8,
+        "flagged": 7,
         "rated": 27
       },
       "gaps": [
         "⚠️ **1.4.3 Contrast (Minimum).** `info` and `warning` buttons fall short of 4.5:1 in every variant.",
-        "⚠️ **1.4.11 Non-text Contrast.** Focus-indicator, border, and icon contrast are untested; `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator, and `disableElevation` removes the `contained` one.",
-        "⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator; `contained` loses its indicator only when `disableElevation` is combined with them.",
+        "⚠️ **1.4.11 Non-text Contrast.** Focus-indicator, border, and icon contrast are untested; `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator, and `disableElevation` removes the `contained` one, unless the theme enables `focusVisible`.",
         "⚠️ **4.1.3 Status Messages.** The `loading` state adds no live region, so the change may go unannounced."
       ],
       "criteria": [
@@ -981,10 +980,10 @@
           "number": "2.4.7",
           "name": "Focus Visible",
           "level": "AA",
-          "conformance": "Partially Supports",
-          "responsibility": "Component",
+          "conformance": "Supports",
+          "responsibility": "Shared",
           "group": "Hybrid",
-          "flagged": true
+          "flagged": false
         },
         {
           "number": "3.3.2",
@@ -1108,26 +1107,25 @@
         "rated": 27,
         "levelA": 15,
         "levelAA": 12,
-        "supports": 23,
-        "partiallySupports": 4,
+        "supports": 24,
+        "partiallySupports": 3,
         "doesNotSupport": 0,
-        "verified": 19,
+        "verified": 20,
         "automated": 11
       }
     },
     {
       "component": "Checkbox",
       "counts": {
-        "supports": 23,
-        "partiallySupports": 2,
+        "supports": 24,
+        "partiallySupports": 1,
         "doesNotSupport": 0,
         "notApplicable": 30,
-        "flagged": 4,
+        "flagged": 3,
         "rated": 25
       },
       "gaps": [
-        "⚠️ **1.4.11 Non-text Contrast.** The default checkmark icons clear 3:1 (`warning` is the tightest at 3.11:1). The keyboard focus indicator is untested. `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 — a faint custom unchecked box can be about 1.1:1 against the page.",
-        "⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple). None remains unless the author adds `.Mui-focusVisible` styling or enables the `theme.focusVisible` ring, which draws on the icon and does not depend on the ripple."
+        "⚠️ **1.4.11 Non-text Contrast.** The default checkmark icons clear 3:1 (`warning` is the tightest at 3.11:1). The keyboard focus indicator is untested. `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 — a faint custom unchecked box can be about 1.1:1 against the page."
       ],
       "criteria": [
         {
@@ -1233,10 +1231,10 @@
           "number": "2.4.7",
           "name": "Focus Visible",
           "level": "AA",
-          "conformance": "Partially Supports",
-          "responsibility": "Component",
+          "conformance": "Supports",
+          "responsibility": "Shared",
           "group": "Hybrid",
-          "flagged": true
+          "flagged": false
         },
         {
           "number": "3.3.2",
@@ -1360,10 +1358,10 @@
         "rated": 25,
         "levelA": 14,
         "levelAA": 11,
-        "supports": 23,
-        "partiallySupports": 2,
+        "supports": 24,
+        "partiallySupports": 1,
         "doesNotSupport": 0,
-        "verified": 21,
+        "verified": 22,
         "automated": 11
       }
     },
@@ -1497,16 +1495,15 @@
     {
       "component": "Radio",
       "counts": {
-        "supports": 23,
-        "partiallySupports": 2,
+        "supports": 24,
+        "partiallySupports": 1,
         "doesNotSupport": 0,
         "notApplicable": 30,
-        "flagged": 3,
+        "flagged": 2,
         "rated": 25
       },
       "gaps": [
-        "⚠️ **1.4.11 Non-text Contrast.** The default dot and circle clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 (the `CustomizedRadios` unchecked circle is about 1.1:1 against the page).",
-        "⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the focus ripple, leaving none unless the author adds `.Mui-focusVisible` styling."
+        "⚠️ **1.4.11 Non-text Contrast.** The default dot and circle clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` (without the `focusVisible` theme ring) or custom icons can drop below 3:1 (the `CustomizedRadios` unchecked circle is about 1.1:1 against the page)."
       ],
       "criteria": [
         {
@@ -1621,10 +1618,10 @@
           "number": "2.4.7",
           "name": "Focus Visible",
           "level": "AA",
-          "conformance": "Partially Supports",
-          "responsibility": "Component",
+          "conformance": "Supports",
+          "responsibility": "Shared",
           "group": "Hybrid",
-          "flagged": true
+          "flagged": false
         },
         {
           "number": "4.1.2",
@@ -1739,10 +1736,10 @@
         "rated": 25,
         "levelA": 14,
         "levelAA": 11,
-        "supports": 23,
-        "partiallySupports": 2,
+        "supports": 24,
+        "partiallySupports": 1,
         "doesNotSupport": 0,
-        "verified": 22,
+        "verified": 23,
         "automated": 11
       }
     },
@@ -1837,16 +1834,15 @@
     {
       "component": "Switch",
       "counts": {
-        "supports": 23,
-        "partiallySupports": 2,
+        "supports": 24,
+        "partiallySupports": 1,
         "doesNotSupport": 0,
         "notApplicable": 30,
-        "flagged": 3,
+        "flagged": 2,
         "rated": 25
       },
       "gaps": [
-        "⚠️ **1.4.11 Non-text Contrast.** In light mode the thumb and track stay under 3:1. The off-state white thumb is about 2.7:1 on the gray track, and the track is about 2.7:1 on the page. Each checked color measures 1.8:1 to 2.6:1 thumb-on-track. The focus indicator is untested, and `disableRipple` removes it.",
-        "⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styling."
+        "⚠️ **1.4.11 Non-text Contrast.** In light mode the thumb and track stay under 3:1. The off-state white thumb is about 2.7:1 on the gray track, and the track is about 2.7:1 on the page. Each checked color measures 1.8:1 to 2.6:1 thumb-on-track. The focus indicator is untested, and `disableRipple` removes it unless the theme enables `focusVisible`."
       ],
       "criteria": [
         {
@@ -1961,10 +1957,10 @@
           "number": "2.4.7",
           "name": "Focus Visible",
           "level": "AA",
-          "conformance": "Partially Supports",
-          "responsibility": "Component",
+          "conformance": "Supports",
+          "responsibility": "Shared",
           "group": "Hybrid",
-          "flagged": true
+          "flagged": false
         },
         {
           "number": "4.1.2",
@@ -2079,10 +2075,10 @@
         "rated": 25,
         "levelA": 14,
         "levelAA": 11,
-        "supports": 23,
-        "partiallySupports": 2,
+        "supports": 24,
+        "partiallySupports": 1,
         "doesNotSupport": 0,
-        "verified": 22,
+        "verified": 23,
         "automated": 11
       }
     },
@@ -2093,7 +2089,7 @@
         "partiallySupports": 3,
         "doesNotSupport": 0,
         "notApplicable": 27,
-        "flagged": 5,
+        "flagged": 4,
         "rated": 28
       },
       "gaps": [
@@ -2145,7 +2141,7 @@
           "conformance": "Supports",
           "responsibility": "Component",
           "group": "Manual",
-          "flagged": true
+          "flagged": false
         },
         {
           "number": "2.4.11",
@@ -2362,15 +2358,15 @@
         "supports": 25,
         "partiallySupports": 3,
         "doesNotSupport": 0,
-        "verified": 23,
+        "verified": 24,
         "automated": 12
       }
     },
     {
       "component": "ToggleButton",
       "counts": {
-        "supports": 20,
-        "partiallySupports": 4,
+        "supports": 21,
+        "partiallySupports": 3,
         "doesNotSupport": 0,
         "notApplicable": 31,
         "flagged": 2,
@@ -2379,8 +2375,7 @@
       "gaps": [
         "⚠️ **1.4.1 Use of Color.** For the color variants (`primary`, `error`, `info`, `success`), the selected and unselected labels are near-identical in grayscale lightness, so the pressed state is conveyed almost entirely by hue.",
         "⚠️ **1.4.3 Contrast (Minimum).** When selected, the `primary`, `error`, `info`, and `warning` labels (their `color.main` text over the tinted selected background) fall short of 4.5:1.",
-        "⚠️ **1.4.11 Non-text Contrast.** The focus indicator is the ripple; `disableRipple`/`disableFocusRipple` remove it, leaving no focus indicator. The selected-state fill is untested for 3:1.",
-        "⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` remove the only keyboard focus indicator; the Toggle Button has no box-shadow fallback."
+        "⚠️ **1.4.11 Non-text Contrast.** The focus indicator is the ripple; `disableRipple`/`disableFocusRipple` remove it, leaving no focus indicator unless the theme enables `focusVisible`. The selected-state fill is untested for 3:1."
       ],
       "criteria": [
         {
@@ -2486,8 +2481,8 @@
           "number": "2.4.7",
           "name": "Focus Visible",
           "level": "AA",
-          "conformance": "Partially Supports",
-          "responsibility": "Component",
+          "conformance": "Supports",
+          "responsibility": "Shared",
           "group": "Hybrid",
           "flagged": false
         },
@@ -2604,8 +2599,8 @@
         "rated": 24,
         "levelA": 13,
         "levelAA": 11,
-        "supports": 20,
-        "partiallySupports": 4,
+        "supports": 21,
+        "partiallySupports": 3,
         "doesNotSupport": 0,
         "verified": 22,
         "automated": 11

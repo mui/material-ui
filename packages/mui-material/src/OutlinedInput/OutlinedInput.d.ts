@@ -25,9 +25,7 @@ type OutlinedInputSlotsAndSlotProps = CreateSlotsAndSlotProps<
 };
 
 export interface OutlinedInputProps
-  extends
-    Omit<StandardProps<InputBaseProps>, 'slots' | 'slotProps'>,
-    OutlinedInputSlotsAndSlotProps {
+  extends StandardProps<InputBaseProps, 'slots' | 'slotProps'>, OutlinedInputSlotsAndSlotProps {
   /**
    * Override or extend the styles applied to the component.
    */
