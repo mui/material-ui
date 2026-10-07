@@ -28,7 +28,6 @@
 /r/discord /material-ui/getting-started/support/ 302
 
 # Careers pages migrated to Ashby job IDs.
-# Force redirects because the handwritten pages still exist.
 /careers/accessibility-engineer/ /careers/roles/ebc6db2a-fda9-431e-b45a-692377ef74aa/ 301!
 /careers/account-executive/ /careers/roles/a0078669-159a-416e-9412-e0ea65e1664d/ 301!
 /careers/account-manager/ /careers/roles/04091577-abf8-4654-bc15-929755de0170/ 301!
