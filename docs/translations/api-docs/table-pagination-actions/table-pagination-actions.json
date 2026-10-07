@@ -11,6 +11,9 @@
           "description": "The link or button type to format (&#39;first&#39; | &#39;last&#39; | &#39;next&#39; | &#39;previous&#39;)."
         }
       }
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     }
   },
   "classDescriptions": {},

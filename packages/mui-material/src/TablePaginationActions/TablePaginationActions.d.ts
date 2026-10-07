@@ -1,13 +1,13 @@
 import * as React from 'react';
+import { SxProps } from '@mui/system';
 import { IconButtonProps } from '../IconButton/IconButton';
 import { SvgIconProps } from '../SvgIcon';
+import { InternalStandardProps as StandardProps } from '../internal';
+import { Theme } from '../styles';
 
-export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: {} | undefined;
-  className?: string | undefined;
+export interface TablePaginationActionsProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>
+> {
   count: number;
   /**
    * If `true`, the component is disabled.
@@ -41,6 +41,10 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
       }
     | undefined;
   slots?: TablePaginationActionsSlots | undefined;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface TablePaginationActionsSlots {
