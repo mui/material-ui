@@ -68,7 +68,9 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git switch -C "$BRANCH"
-          git commit --message '[website] Sync team members and careers'
+          git commit \
+            --message '[website] Sync website content' \
+            --message 'Sync About page team members and careers listings and role descriptions from the shared website APIs.'
           REMOTE_SHA="$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)"
           git push --force-with-lease="refs/heads/$BRANCH:$REMOTE_SHA" origin "$BRANCH"
 
@@ -79,13 +81,13 @@ jobs:
 
           PR_NUMBER="$(gh pr list --base master --head "$BRANCH" --state open --json number --jq '.[0].number')"
           if [ -n "$PR_NUMBER" ]; then
-            gh pr edit "$PR_NUMBER" --body-file "$RUNNER_TEMP/website-content-pr-body.md"
+            gh pr edit "$PR_NUMBER" --title '[website] Sync website content' --body-file "$RUNNER_TEMP/website-content-pr-body.md"
           else
             gh pr create \
               --draft \
               --base master \
               --head "$BRANCH" \
-              --title '[website] Sync team members and careers' \
+              --title '[website] Sync website content' \
               --body-file "$RUNNER_TEMP/website-content-pr-body.md" \
               --label website
             PR_NUMBER="$(gh pr list --base master --head "$BRANCH" --state open --json number --jq '.[0].number')"
