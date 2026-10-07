@@ -163,7 +163,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   // The event handlers are created once and read the values of the last committed render.
   const latestRef = React.useRef(null);
-  const handlers = useLazyRef(() => createEventHandlers(latestRef, setFocusVisible)).current;
+  const handlers = useLazyRef(() =>
+    createEventHandlers(latestRef, setFocusVisible, ripple),
+  ).current;
 
   const { getButtonProps, rootRef: buttonRef } = useButtonBase({
     nativeButton,
@@ -219,7 +221,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     onTouchEnd,
     onTouchMove,
     onTouchStart,
-    ripple,
     suppressFocusVisible,
   };
   // Events can fire before the first layout effect, for example when focus moves during commit.
@@ -289,17 +290,18 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   );
 });
 
-function createEventHandlers(latestRef, setFocusVisible) {
-  function createRippleHandler(rippleAction, eventCallbackName) {
+function createEventHandlers(latestRef, setFocusVisible, ripple) {
+  function createRippleHandler(rippleAction, eventCallbackName, beforeEventCallback) {
     return (event) => {
       const latest = latestRef.current;
+      beforeEventCallback?.(event, latest);
       const eventCallback = latest[eventCallbackName];
       if (eventCallback) {
         eventCallback(event);
       }
 
       if (!latest.disableTouchRipple) {
-        latest.ripple[rippleAction](event);
+        ripple[rippleAction](event);
       }
 
       return true;
@@ -308,7 +310,7 @@ function createEventHandlers(latestRef, setFocusVisible) {
 
   return {
     onBeforeKeyDown(event) {
-      const { focusRipple, focusVisible, ripple } = latestRef.current;
+      const { focusRipple, focusVisible } = latestRef.current;
       // Check if key is already down to avoid repeats being counted as multiple activations
       if (focusRipple && !event.repeat && focusVisible && event.key === ' ') {
         ripple.stop(event, () => {
@@ -317,7 +319,7 @@ function createEventHandlers(latestRef, setFocusVisible) {
       }
     },
     onBeforeKeyUp(event) {
-      const { focusRipple, focusVisible, ripple } = latestRef.current;
+      const { focusRipple, focusVisible } = latestRef.current;
       // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
       // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
       if (focusRipple && event.key === ' ' && focusVisible && !event.defaultPrevented) {
@@ -330,24 +332,16 @@ function createEventHandlers(latestRef, setFocusVisible) {
     onContextMenu: createRippleHandler('stop', 'onContextMenu'),
     onDragLeave: createRippleHandler('stop', 'onDragLeave'),
     onMouseUp: createRippleHandler('stop', 'onMouseUp'),
-    onMouseLeave(event) {
-      const { disableTouchRipple, focusVisible, onMouseLeave, ripple } = latestRef.current;
-      if (focusVisible) {
+    onMouseLeave: createRippleHandler('stop', 'onMouseLeave', (event, latest) => {
+      if (latest.focusVisible) {
         event.preventDefault();
       }
-      if (onMouseLeave) {
-        onMouseLeave(event);
-      }
-      if (!disableTouchRipple) {
-        ripple.stop(event);
-      }
-      return true;
-    },
+    }),
     onTouchStart: createRippleHandler('start', 'onTouchStart'),
     onTouchEnd: createRippleHandler('stop', 'onTouchEnd'),
     onTouchMove: createRippleHandler('stop', 'onTouchMove'),
     onBlur(event) {
-      const { onBlur, ripple } = latestRef.current;
+      const { onBlur } = latestRef.current;
       if (!isFocusVisible(event.target)) {
         setFocusVisible(false);
       }

@@ -7,8 +7,7 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import useControlled from '../utils/useControlled';
 import useFormControl from '../FormControl/useFormControl';
-import ButtonBase from '../ButtonBase';
-import { ButtonBaseRoot } from '../ButtonBase/ButtonBase';
+import ButtonBase, { ButtonBaseRoot } from '../ButtonBase/ButtonBase';
 import { getSwitchBaseUtilityClass } from './switchBaseClasses';
 import useSlot from '../utils/useSlot';
 
@@ -104,8 +103,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     slots = {},
     slotProps = {},
     /* eslint-disable react/prop-types */
-    // private props to let a parent render its own styled root, created with `styled(SwitchBaseRoot)`,
-    // so the styles of both are serialized together, with the parent's owner state
+    // private props for a parent's `styled(SwitchBaseRoot)` root and owner state, see ButtonBase
     internalRoot = SwitchBaseRoot,
     internalOwnerState,
     /* eslint-enable react/prop-types */

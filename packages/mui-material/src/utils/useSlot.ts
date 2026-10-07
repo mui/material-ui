@@ -155,7 +155,7 @@ export default function useSlot<
   }
   props.ref = ref;
   if (elementType !== undefined && !isHostComponent(elementType)) {
-    props.ownerState = { ...props.ownerState, ...ownerState };
+    props.ownerState = props.ownerState ? { ...props.ownerState, ...ownerState } : ownerState;
   }
 
   return [elementType, props] as [

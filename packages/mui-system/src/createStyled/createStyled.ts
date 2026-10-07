@@ -130,7 +130,17 @@ function serializeThemeStyle(style: any) {
  */
 function serializeResolvedOverrides(resolved: any, styleOverrides: Record<string, any>): any {
   if (Array.isArray(resolved)) {
-    return resolved.map((style) => serializeResolvedOverrides(style, styleOverrides));
+    let result = resolved;
+    for (let i = 0; i < resolved.length; i += 1) {
+      const style = serializeResolvedOverrides(resolved[i], styleOverrides);
+      if (style !== resolved[i]) {
+        if (result === resolved) {
+          result = resolved.slice();
+        }
+        result[i] = style;
+      }
+    }
+    return result;
   }
   if (isPlainObject(resolved)) {
     for (const slotKey in styleOverrides) {
