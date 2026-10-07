@@ -6,6 +6,8 @@ import { TypographyProps } from '../Typography';
 import { ListItemTextClasses } from './listItemTextClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
+export interface ListItemTextRootSlotPropsOverrides {}
+
 export interface ListItemTextSlots {
   /**
    * The component that renders the root slot.
@@ -34,7 +36,7 @@ export type ListItemTextSlotsAndSlotProps<
      * Props forwarded to the root slot.
      * By default, the available props are based on `div` element.
      */
-    root: SlotProps<'div', {}, ListItemTextOwnerState>;
+    root: SlotProps<'div', ListItemTextRootSlotPropsOverrides, ListItemTextOwnerState>;
     /**
      * Props forwarded to the primary slot (as long as disableTypography is not `true`)
      * By default, the available props are based on the [Typography](https://mui.com/material-ui/api/typography/#props) component

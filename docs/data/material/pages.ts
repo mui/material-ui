@@ -317,6 +317,16 @@ const pages: MuiPage[] = [
         title: 'Migration from @material-ui/pickers',
       },
       {
+        pathname: '/material-ui/migration/v10',
+        subheader: 'Upgrade to v10',
+        children: [
+          {
+            pathname: '/material-ui/migration/upgrade-to-v10',
+            title: 'Upgrade to v10: getting started',
+          },
+        ],
+      },
+      {
         pathname: '/material-ui/migration/v9',
         subheader: 'Upgrade to v9',
         children: [

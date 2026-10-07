@@ -85,3 +85,8 @@ function Custom2(props: SnackbarProps) {
     />
   );
 }
+
+const snackbarCloseEvent: Parameters<NonNullable<SnackbarProps['onClose']>>[0] = null;
+
+function handleSnackbarClose(event: React.SyntheticEvent | Event, reason?: string) {}
+<Snackbar open onClose={handleSnackbarClose} />;

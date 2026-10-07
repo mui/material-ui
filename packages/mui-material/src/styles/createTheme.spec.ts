@@ -158,6 +158,16 @@ const theme = createTheme();
           },
         },
       },
+      MuiTabScrollButton: {
+        defaultProps: {
+          disableRipple: true,
+        },
+        styleOverrides: {
+          vertical: {
+            height: 32,
+          },
+        },
+      },
       MuiTouchRipple: {
         defaultProps: {
           center: true,
