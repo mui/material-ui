@@ -21,7 +21,6 @@
   "dependencies": {
     "envinfo": "^7.21.0"
   },
-  "devDependencies": {},
   "publishConfig": {
     "access": "public",
     "directory": "build"

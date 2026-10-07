@@ -3,6 +3,7 @@
   "version": "3.0.12",
   "author": "MUI Team",
   "description": "MUI markdown parser. This is an internal package not meant for general use.",
+  "license": "MIT",
   "main": "./index.mjs",
   "browser": "./index.mjs",
   "types": "./index.d.mts",
@@ -31,7 +32,6 @@
     "marked": "^18.0.13",
     "prismjs": "^1.30.0"
   },
-  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   }
