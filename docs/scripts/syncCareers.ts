@@ -13,6 +13,7 @@ interface CareerJob {
 }
 
 const defaultDocsDirectory = fileURLToPath(new URL('..', import.meta.url));
+const categoryOrder = ['engineering', 'sales', 'people', 'marketing', 'operations'];
 
 export default async function syncCareers(
   apiUrl = process.env.MUI_CAREERS_API_URL || 'https://frontend-public.mui.com/api/mui-careers',
@@ -24,7 +25,16 @@ export default async function syncCareers(
   }
 
   const { data: jobs }: { data: CareerJob[] } = await response.json();
-  jobs.sort((a, b) => a.category.localeCompare(b.category) || a.title.localeCompare(b.title));
+  jobs.sort((a, b) => {
+    const aIndex = categoryOrder.indexOf(a.category.toLowerCase());
+    const bIndex = categoryOrder.indexOf(b.category.toLowerCase());
+    return (
+      (aIndex === -1 ? categoryOrder.length : aIndex) -
+        (bIndex === -1 ? categoryOrder.length : bIndex) ||
+      a.category.localeCompare(b.category) ||
+      a.title.localeCompare(b.title)
+    );
+  });
 
   const roles = jobs.map((job) => ({
     id: job.id,
