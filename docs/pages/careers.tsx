@@ -22,23 +22,18 @@ import { AppHeaderBanner, AppLayoutHead as Head } from '@mui/internal-core-docs/
 interface CareerRole {
   id: string;
   title: string;
-  category: string;
+  url: string;
   summary: string;
 }
 
 // Synced from the careers API with `pnpm docs:sync-careers`.
-const roles: CareerRole[] = rolesData;
-const rolesByCategory = new Map<string, CareerRole[]>();
-for (const role of roles) {
-  const category = rolesByCategory.get(role.category) ?? [];
-  category.push(role);
-  rolesByCategory.set(role.category, category);
-}
-const openRolesData = Array.from(rolesByCategory, ([title, categoryRoles]) => ({
-  title,
-  roles: categoryRoles,
-}));
-const openRolesCount = roles.length;
+const {
+  count: openRolesCount,
+  categories: openRolesData,
+}: {
+  count: number;
+  categories: { title: string; roles: CareerRole[] }[];
+} = rolesData;
 
 export default function Careers() {
   return (
@@ -92,25 +87,23 @@ export default function Careers() {
             <React.Fragment>
               <Divider sx={{ borderStyle: 'dashed', my: { xs: 2, sm: 6 } }} />
               <Stack spacing={2} divider={<Divider />}>
-                {openRolesData
-                  .filter((category) => category.roles.length > 0)
-                  .map((category) => {
-                    return (
-                      <React.Fragment key={category.title}>
-                        <Typography component="h3" variant="h5" sx={{ fontWeight: 'semiBold' }}>
-                          {category.title}
-                        </Typography>
-                        {category.roles.map((role) => (
-                          <RoleEntry
-                            key={role.id}
-                            title={role.title}
-                            description={role.summary}
-                            url={`/careers/roles/${role.id}/`}
-                          />
-                        ))}
-                      </React.Fragment>
-                    );
-                  })}
+                {openRolesData.map((category) => {
+                  return (
+                    <React.Fragment key={category.title}>
+                      <Typography component="h3" variant="h5" sx={{ fontWeight: 'semiBold' }}>
+                        {category.title}
+                      </Typography>
+                      {category.roles.map((role) => (
+                        <RoleEntry
+                          key={role.id}
+                          title={role.title}
+                          description={role.summary}
+                          url={role.url}
+                        />
+                      ))}
+                    </React.Fragment>
+                  );
+                })}
               </Stack>
             </React.Fragment>
           ) : null}
