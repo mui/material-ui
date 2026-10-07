@@ -119,9 +119,30 @@ describe('<Autocomplete />', () => {
       slots: {
         chip: {},
       },
-      only: ['slotPropsProp'],
+      only: ['slotPropsProp', 'slotPropsCallback'],
     }),
   );
+
+  it('should render the chips with slots.chip and merge the className', () => {
+    function CustomChip(props) {
+      return <Chip data-testid="custom-chip" {...props} />;
+    }
+
+    render(
+      <Autocomplete
+        multiple
+        defaultValue={['one']}
+        options={['one', 'two']}
+        slots={{ chip: CustomChip }}
+        slotProps={{ chip: { className: 'custom' } }}
+        renderInput={(params) => <TextField {...params} />}
+      />,
+    );
+
+    const chip = screen.getByTestId('custom-chip');
+    expect(chip).to.have.class(classes.tag);
+    expect(chip).to.have.class('custom');
+  });
 
   it('should be customizable in the theme', () => {
     const theme = createTheme({
