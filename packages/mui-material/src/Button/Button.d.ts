@@ -124,10 +124,7 @@ export interface ExtendButtonTypeMap<TypeMap extends OverridableTypeMap> {
   defaultComponent: TypeMap['defaultComponent'];
 }
 
-export type ExtendButton<TypeMap extends OverridableTypeMap> = ((
-  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<TypeMap>, 'a'>,
-) => React.JSX.Element) &
-  OverridableComponent<ExtendButtonBaseTypeMap<TypeMap>>;
+export type ExtendButton<TypeMap extends OverridableTypeMap> = ExtendButtonBase<TypeMap>;
 
 /**
  *
