@@ -1,6 +1,9 @@
 {
   "name": "@mui/internal-api-docs-builder",
   "version": "1.0.5",
+  "author": "MUI Team",
+  "description": "Generates the API docs for MUI packages. This is an internal package not meant for general use.",
+  "license": "MIT",
   "scripts": {
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/internal-api-docs-builder\"",
     "typescript": "tsc -p tsconfig.json",
@@ -22,8 +25,8 @@
     "doctrine": "^3.0.0",
     "es-toolkit": "^1.52.0",
     "fast-glob": "^3.3.3",
-    "prettier": "^3.9.8",
-    "react-docgen": "^8.0.3",
+    "prettier": "^3.9.9",
+    "react-docgen": "^8.0.4",
     "recast": "^0.24.0",
     "remark": "^15.0.1",
     "unist-util-visit": "^5.1.0"
@@ -45,6 +48,6 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=22.23.2"
+    "node": ">=22.23.3"
   }
 }
