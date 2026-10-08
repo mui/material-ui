@@ -5,7 +5,7 @@ import { createTheme } from '@mui/material/styles';
 
 declare module '@mui/material/Tabs' {
   interface TabsPropsIndicatorColorOverrides {
-    tertiary: true;
+    success: true;
   }
   interface TabsPropsVariantOverrides {
     halfWidth: true;
@@ -18,7 +18,7 @@ const theme = createTheme({
     MuiTabs: {
       variants: [
         {
-          props: { indicatorColor: 'tertiary' },
+          props: { indicatorColor: 'success' },
           style: {
             backgroundColor: '#e70000',
           },
@@ -34,7 +34,7 @@ const theme = createTheme({
   },
 });
 
-<Tabs indicatorColor="tertiary">
+<Tabs indicatorColor="success">
   <Tab label="Item One" />
   <Tab label="Item Two" />
 </Tabs>;
@@ -45,7 +45,7 @@ const theme = createTheme({
 </Tabs>;
 
 // @ts-expect-error unknown indicatorColor
-<Tabs indicatorColor="neutral">
+<Tabs indicatorColor="error">
   <Tab label="Item One" />
   <Tab label="Item Two" />
 </Tabs>;

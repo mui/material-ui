@@ -966,7 +966,7 @@ Tabs.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   indicatorColor: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.oneOf(['primary', 'secondary']),
     PropTypes.string,
   ]),
   /**

@@ -124,5 +124,3 @@ const CustomComponent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HT
     },
   }}
 />;
-
-<Tabs value={0} indicatorColor="success" />;

@@ -34,10 +34,7 @@ export interface PaginationProps
    * @default 'standard'
    */
   color?:
-    | OverridableStringUnion<
-        'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'standard',
-        PaginationPropsColorOverrides
-      >
+    | OverridableStringUnion<'primary' | 'secondary' | 'standard', PaginationPropsColorOverrides>
     | undefined;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
