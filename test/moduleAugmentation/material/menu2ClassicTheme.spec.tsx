@@ -5,6 +5,7 @@ import {
   ComponentNameToClassKey,
   Components,
   ComponentsPropsList,
+  ComponentsOwnerStateList,
 } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -32,6 +33,9 @@ const hasMenu2Components: Extract<keyof Components, `MuiMenu2${string}`> extends
   ? false
   : true = false;
 const hasMenu2Props: Extract<keyof ComponentsPropsList, `MuiMenu2${string}`> extends never
+  ? false
+  : true = false;
+const hasMenu2OwnerState: Extract<keyof ComponentsOwnerStateList, `MuiMenu2${string}`> extends never
   ? false
   : true = false;
 const hasMenu2Classes: Extract<keyof ComponentNameToClassKey, `MuiMenu2${string}`> extends never

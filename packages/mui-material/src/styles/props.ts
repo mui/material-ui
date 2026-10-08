@@ -122,6 +122,9 @@ export type ComponentsProps = {
   [Name in keyof ComponentsPropsList]?: Partial<ComponentsPropsList[Name]>;
 };
 
+// Add resolved state here for theme customization without changing defaultProps.
+export interface ComponentsOwnerStateList extends ComponentsPropsList {}
+
 export interface ComponentsPropsList {
   MuiAlert: AlertProps;
   MuiAlertTitle: AlertTitleProps;

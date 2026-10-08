@@ -3,18 +3,28 @@ import type { Menu2Props } from './Menu2';
 import type {
   Menu2CheckboxItemProps,
   Menu2CheckboxItemClassKey,
+  Menu2CheckboxItemOwnerState,
 } from '../Unstable_Menu2CheckboxItem';
 import type { Menu2GroupProps, Menu2GroupClassKey } from '../Unstable_Menu2Group';
 import type { Menu2GroupLabelProps, Menu2GroupLabelClassKey } from '../Unstable_Menu2GroupLabel';
-import type { Menu2ItemProps, Menu2ItemClassKey } from '../Unstable_Menu2Item';
-import type { Menu2LinkItemProps, Menu2LinkItemClassKey } from '../Unstable_Menu2LinkItem';
+import type { Menu2ItemProps, Menu2ItemClassKey, Menu2ItemOwnerState } from '../Unstable_Menu2Item';
+import type {
+  Menu2LinkItemProps,
+  Menu2LinkItemClassKey,
+  Menu2LinkItemOwnerState,
+} from '../Unstable_Menu2LinkItem';
 import type { Menu2RadioGroupProps, Menu2RadioGroupClassKey } from '../Unstable_Menu2RadioGroup';
-import type { Menu2RadioItemProps, Menu2RadioItemClassKey } from '../Unstable_Menu2RadioItem';
+import type {
+  Menu2RadioItemProps,
+  Menu2RadioItemClassKey,
+  Menu2RadioItemOwnerState,
+} from '../Unstable_Menu2RadioItem';
 import type { Menu2SeparatorProps, Menu2SeparatorClassKey } from '../Unstable_Menu2Separator';
 import type { Menu2SubmenuProps } from '../Unstable_Menu2Submenu';
 import type {
   Menu2SubmenuTriggerProps,
   Menu2SubmenuTriggerClassKey,
+  Menu2SubmenuTriggerOwnerState,
 } from '../Unstable_Menu2SubmenuTrigger';
 import type { Menu2ClassKey, Menu2SubmenuClassKey } from './menu2Classes';
 
@@ -33,6 +43,14 @@ declare module '@mui/material/styles' {
     MuiMenu2Separator: Menu2SeparatorProps;
     MuiMenu2Submenu: Menu2SubmenuProps;
     MuiMenu2SubmenuTrigger: Menu2SubmenuTriggerProps;
+  }
+
+  interface ComponentsOwnerStateList {
+    MuiMenu2CheckboxItem: Menu2CheckboxItemProps & Menu2CheckboxItemOwnerState;
+    MuiMenu2Item: Menu2ItemProps & Menu2ItemOwnerState;
+    MuiMenu2LinkItem: Menu2LinkItemProps & Menu2LinkItemOwnerState;
+    MuiMenu2RadioItem: Menu2RadioItemProps & Menu2RadioItemOwnerState;
+    MuiMenu2SubmenuTrigger: Menu2SubmenuTriggerProps & Menu2SubmenuTriggerOwnerState;
   }
 
   interface ComponentNameToClassKey {

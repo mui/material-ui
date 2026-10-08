@@ -394,6 +394,26 @@ createTheme({
 />;
 <Menu2SubmenuTrigger disabled />;
 
+// Live state is available to theme customization, not as controlled item props.
+// @ts-expect-error Highlighted state is controlled by Base UI.
+<Menu2Item highlighted />;
+// @ts-expect-error Highlighted state is controlled by Base UI.
+<Menu2LinkItem highlighted />;
+// @ts-expect-error Highlighted state is controlled by Base UI.
+<Menu2CheckboxItem highlighted />;
+// @ts-expect-error Highlighted state is controlled by Base UI.
+<Menu2RadioItem value="one" highlighted />;
+// @ts-expect-error Radio checked state is controlled by its group.
+<Menu2RadioItem value="one" checked />;
+// @ts-expect-error Highlighted state is controlled by Base UI.
+<Menu2SubmenuTrigger highlighted />;
+// @ts-expect-error The submenu, not its trigger, controls the open state.
+<Menu2SubmenuTrigger open />;
+<Menu2CheckboxItem
+  checked
+  onCheckedChange={(checked) => expectType<boolean, typeof checked>(checked)}
+/>;
+
 <Menu2 slots={{ backdrop: null }} slotProps={{ backdrop: { sx: { opacity: 0.5 } } }} />;
 <Menu2
   // @ts-expect-error Configure the backdrop through slots and slotProps.
