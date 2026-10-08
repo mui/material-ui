@@ -48,6 +48,9 @@ docs/public/static/blog/feed/*
 screenshots/
 packed
 test-results/
+# `benchmark` CLI output and generated pages
+.benchmark/
+test/benchmark/src/__bench__/
 .env
 .claude/worktrees/
 
