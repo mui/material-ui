@@ -13,6 +13,8 @@ import MenuItem from '@mui/material/Unstable_Menu2Item';
 import MenuSeparator from '@mui/material/Unstable_Menu2Separator';
 
 export default function AccountMenu2() {
+  const triggerId = React.useId();
+
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
       <Typography sx={{ minWidth: 100 }}>Contact</Typography>
@@ -22,7 +24,7 @@ export default function AccountMenu2() {
         sideOffset={4}
         trigger={
           <Tooltip title="Account settings">
-            <IconButton size="small" sx={{ ml: 2 }}>
+            <IconButton id={triggerId} size="small" sx={{ ml: 2 }}>
               <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
             </IconButton>
           </Tooltip>

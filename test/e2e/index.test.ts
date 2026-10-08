@@ -115,6 +115,45 @@ describe('e2e', () => {
       await page.emulateMedia({ forcedColors: 'none' });
     });
 
+    ['pointer', 'keyboard'].forEach((input) => {
+      it(`keeps the Account menu named when opened with ${input} input`, async () => {
+        await renderFixture('Menu2/AccountMenu');
+
+        const trigger = page.getByRole('button', { name: 'Account settings' });
+        if (input === 'pointer') {
+          await trigger.hover();
+        } else {
+          await page.keyboard.press('Tab');
+          await expect(trigger).toBeFocused();
+        }
+        await expect(page.getByRole('tooltip')).toBeVisible();
+        expect(await page.getByRole('tooltip').getAttribute('id')).not.toBe(
+          await trigger.getAttribute('id'),
+        );
+
+        if (input === 'pointer') {
+          await trigger.click();
+        } else {
+          await page.keyboard.press('Enter');
+        }
+
+        const menu = page.getByRole('menu');
+        await expect(menu).toHaveAccessibleName('Account settings');
+        const triggerId = await trigger.getAttribute('id');
+        expect(triggerId).toBeTruthy();
+        await expect(menu).toHaveAttribute('aria-labelledby', triggerId!);
+        await expect(trigger).toHaveAttribute('aria-controls', (await menu.getAttribute('id'))!);
+
+        await page.mouse.move(0, 0);
+        await expect(page.getByRole('tooltip')).toBeHidden();
+        await expect(menu).toHaveAccessibleName('Account settings');
+
+        await page.keyboard.press('Escape');
+        await expect(menu).toBeHidden();
+        await expect(trigger).toBeFocused();
+      });
+    });
+
     [
       { side: 'top', align: 'end' },
       { side: 'bottom', align: 'center' },

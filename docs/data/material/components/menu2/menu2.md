@@ -79,6 +79,8 @@ Selecting an item closes the menu. Set `closeOnClick={false}` on an item to keep
 
 The trigger can be a composed element, such as an `IconButton` in a `Tooltip`. `align="end"` aligns the menu with the end of the trigger.
 
+Give the `IconButton` a unique `id` so the menu can use it as its accessible label. Tooltip uses its own `id` prop for the tooltip, not the button.
+
 {{"demo": "AccountMenu2.js"}}
 
 ## Open a dialog
