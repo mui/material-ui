@@ -919,11 +919,16 @@ describe('<Menu2 /> collapsed API', () => {
   });
 
   it.skipIf(isJsdom())('keeps the submenu open during pointer transit', async () => {
+    const closeDelay = 150;
+    const onOpenChange = vi.fn();
+    const onOpenChangeComplete = vi.fn();
     const { user } = render(
       <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
         <Menu2Submenu
+          onOpenChange={onOpenChange}
+          onOpenChangeComplete={onOpenChangeComplete}
           trigger={
-            <Menu2SubmenuTrigger delay={0} closeDelay={150}>
+            <Menu2SubmenuTrigger delay={0} closeDelay={closeDelay}>
               More
             </Menu2SubmenuTrigger>
           }
@@ -936,9 +941,11 @@ describe('<Menu2 /> collapsed API', () => {
     const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
     await user.hover(submenuTrigger);
     const nestedItem = await screen.findByRole('menuitem', { name: 'Nested' });
-    const submenuPositioner = nestedItem.closest<HTMLElement>('[data-nested]')!;
+    const popup = nestedItem.closest('[role="menu"]')!;
+    await waitFor(() => expect(onOpenChangeComplete).toHaveBeenCalledWith(true));
+    onOpenChange.mockClear();
     const triggerRect = submenuTrigger.getBoundingClientRect();
-    const submenuRect = submenuPositioner.getBoundingClientRect();
+    const popupRect = popup.getBoundingClientRect();
 
     // Base UI temporarily blocks pointer events outside the trigger and popup
     // while its safe polygon is active, so dispatch the real transit events
@@ -948,30 +955,48 @@ describe('<Menu2 /> collapsed API', () => {
       clientX: triggerRect.right,
       clientY: triggerRect.top + triggerRect.height / 2,
     });
-    fireEvent.mouseMove(submenuPositioner, {
-      clientX: submenuRect.left + 1,
-      clientY: submenuRect.top + 1,
+    fireEvent.mouseMove(popup, {
+      clientX: popupRect.left + 1,
+      clientY: popupRect.top + 1,
     });
-    fireEvent.mouseEnter(submenuPositioner, {
+    fireEvent.mouseEnter(popup, {
       relatedTarget: submenuTrigger,
-      clientX: submenuRect.left + 1,
-      clientY: submenuRect.top + 1,
+      clientX: popupRect.left + 1,
+      clientY: popupRect.top + 1,
     });
 
     await act(async () => {
       await new Promise<void>((resolve) => {
-        setTimeout(resolve, 250);
+        setTimeout(resolve, closeDelay + 100);
       });
     });
-    expect(screen.getByRole('menuitem', { name: 'Nested' })).not.to.equal(null);
+    expect(onOpenChange).not.toHaveBeenCalled();
+    expect(submenuTrigger).to.have.attribute('aria-expanded', 'true');
+    expect(popup.isConnected).to.equal(true);
+    expect(popup).to.have.attribute('data-open');
+    expect(popup).not.to.have.attribute('data-ending-style');
   });
 
-  it.skipIf(isJsdom())('respects the hover close delay when moving to another item', async () => {
+  it.skipIf(isJsdom())('respects the hover close delay without pointer focus changes', async () => {
+    const closeDelay = 150;
+    let closedAt: number | undefined;
+    const onOpenChange = vi.fn((open: boolean) => {
+      if (!open && closedAt === undefined) {
+        closedAt = performance.now();
+      }
+    });
+    const onOpenChangeComplete = vi.fn();
     const { user } = render(
-      <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
+      <Menu2
+        defaultOpen
+        highlightItemOnHover={false}
+        trigger={<button type="button">Options</button>}
+      >
         <Menu2Submenu
+          onOpenChange={onOpenChange}
+          onOpenChangeComplete={onOpenChangeComplete}
           trigger={
-            <Menu2SubmenuTrigger delay={0} closeDelay={150}>
+            <Menu2SubmenuTrigger delay={0} closeDelay={closeDelay}>
               More
             </Menu2SubmenuTrigger>
           }
@@ -984,22 +1009,31 @@ describe('<Menu2 /> collapsed API', () => {
 
     const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
     await user.hover(submenuTrigger);
-    await screen.findByRole('menuitem', { name: 'Nested' });
+    const nestedItem = await screen.findByRole('menuitem', { name: 'Nested' });
+    const popup = nestedItem.closest('[role="menu"]')!;
+    await waitFor(() => expect(onOpenChangeComplete).toHaveBeenCalledWith(true));
+    onOpenChange.mockClear();
 
-    // The safe polygon blocks user-event from targeting a sibling while the
-    // submenu is open. Base UI receives the same item-hover signal from the
-    // item's mousemove handler.
+    // Disable pointer focus changes to isolate the hover timer. A direct synthetic
+    // sibling hover can otherwise close through focus-out before the delay expires.
+    // Dispatch directly because the safe polygon blocks pointer events on siblings.
     const otherItem = screen.getByRole('menuitem', { name: 'Other' });
+    const hoveredAt = performance.now();
     fireEvent.mouseOver(otherItem);
-    fireEvent.mouseMove(otherItem);
+    fireEvent.mouseMove(otherItem, { movementX: 1, movementY: 0 });
 
-    expect(screen.getByRole('menuitem', { name: 'Nested' })).not.to.equal(null);
-    await waitFor(
-      () => {
-        expect(screen.queryByRole('menuitem', { name: 'Nested' })).to.equal(null);
-      },
-      { timeout: 1000 },
+    expect(onOpenChange).not.toHaveBeenCalled();
+    expect(submenuTrigger).to.have.attribute('aria-expanded', 'true');
+    expect(popup).to.have.attribute('data-open');
+    expect(popup).not.to.have.attribute('data-ending-style');
+    await waitFor(() => expect(submenuTrigger).to.have.attribute('aria-expanded', 'false'));
+    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(
+      false,
+      expect.objectContaining({ reason: 'sibling-open' }),
     );
+    // Measure logical closure, not Grow's exit. Allow for browser timer rounding.
+    expect(closedAt! - hoveredAt).to.be.at.least(closeDelay - 5);
+    await waitFor(() => expect(popup.isConnected).to.equal(false));
   });
 
   // The explicit trigger owns its behavior. Its wrapper need not forward props
