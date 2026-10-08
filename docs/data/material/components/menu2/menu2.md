@@ -140,7 +140,7 @@ Compose the same list primitives that you use with the current Menu: `ListItemIc
 
 ## Dense menu
 
-Set `dense` on the `list` slot to make all the items compact. An item can also set its own `dense` prop.
+Set `dense` on the `list` slot to make all the items compact. Submenus inherit the density of their parent list. Set `slotProps.list.dense` on a submenu to override it, including `false` for regular spacing. An item can also set its own `dense` prop.
 
 {{"demo": "DenseMenu2.js"}}
 

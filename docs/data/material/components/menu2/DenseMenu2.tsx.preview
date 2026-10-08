@@ -4,5 +4,10 @@
   <MenuItem>Double</MenuItem>
   <MenuSeparator />
   <MenuItem>Custom: 1.2</MenuItem>
-  <MenuItem>Add space before paragraph</MenuItem>
+  <MenuSubmenu
+    trigger={<MenuSubmenuTrigger>Paragraph spacing</MenuSubmenuTrigger>}
+  >
+    <MenuItem>Add space before paragraph</MenuItem>
+    <MenuItem>Add space after paragraph</MenuItem>
+  </MenuSubmenu>
 </Menu>

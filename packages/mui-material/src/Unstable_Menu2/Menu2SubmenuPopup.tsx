@@ -1,7 +1,9 @@
 'use client';
 import * as React from 'react';
 import composeClasses from '@mui/utils/composeClasses';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import { SxProps } from '@mui/system';
+import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import { Theme } from '../styles';
 import {
@@ -226,6 +228,7 @@ const Menu2SubmenuPopup = React.forwardRef(function Menu2SubmenuPopup(
   // forwarding its behavior props to the popup DOM.
   const { ownerState: ownerStateProp, ...props } = inProps;
   const { onClosingChange } = React.useContext(Menu2SubmenuClosingContext);
+  const parentListContext = React.useContext(ListContext);
 
   const ownerState: Menu2SubmenuPopupOwnerState = {
     side: 'inline-end',
@@ -233,11 +236,19 @@ const Menu2SubmenuPopup = React.forwardRef(function Menu2SubmenuPopup(
     ...ownerStateProp,
   };
   const classes = useUtilityClasses(ownerState);
+  const listProps = resolveComponentProps(props.slotProps?.list, ownerState);
 
   return (
     <Menu2PopupBase
       ref={ref}
       {...props}
+      slotProps={{
+        ...props.slotProps,
+        list: {
+          ...listProps,
+          dense: listProps?.dense ?? parentListContext.dense,
+        },
+      }}
       ownerState={ownerState}
       onClosingChange={onClosingChange}
       classes={classes}
