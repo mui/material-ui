@@ -84,7 +84,7 @@ async function main(argv) {
   }
 
   /** @type {string | undefined} */
-  let progressPhase;
+  let currentPhase;
   const commitsItems = (
     await fetchCommitsBetweenRefs({
       lastRelease: previousRelease,
@@ -95,15 +95,15 @@ async function main(argv) {
         : undefined,
       onProgress: process.stderr.isTTY
         ? ({ phase, count, total }) => {
-            if (progressPhase !== undefined && progressPhase !== phase) {
+            if (currentPhase !== undefined && currentPhase !== phase) {
               process.stderr.write('\n');
             }
-            progressPhase = phase;
+            currentPhase = phase;
             process.stderr.write(`\r${phase} ${count}/${total}`);
           }
         : undefined,
     }).finally(() => {
-      if (progressPhase !== undefined) {
+      if (currentPhase !== undefined) {
         process.stderr.write('\n');
       }
     })
