@@ -37,7 +37,7 @@ export const traverseBreakpoints = <T = unknown>(
 
     keys.forEach((key) => {
       if (breakpoints.keys.includes(key as Breakpoint)) {
-        // @ts-ignore already checked that responsive is an object
+        // @ts-expect-error: The object check does not narrow the generic responsive value to a string-indexed record.
         const breakpointValue: T = responsive[key];
         if (breakpointValue !== undefined) {
           iterator((responsiveStyles, style) => {

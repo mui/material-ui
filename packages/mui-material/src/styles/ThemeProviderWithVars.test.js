@@ -304,7 +304,6 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     it('should not contain `variants` in theme.vars', () => {
       function Consumer() {
         const theme = useTheme();
-        // @ts-expect-error
         return <div>{theme.vars.variants ? 'variants' : ''}</div>;
       }
 
@@ -320,7 +319,6 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     it('should not contain `focus` in theme.vars', () => {
       function Consumer() {
         const theme = useTheme();
-        // @ts-expect-error
         return <div>{theme.vars.focus ? 'focus' : ''}</div>;
       }
 

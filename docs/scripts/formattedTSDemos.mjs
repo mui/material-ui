@@ -124,8 +124,10 @@ async function transpileFile(tsxPath, project) {
     const prettierFormat = async (jsSource) =>
       prettier.format(jsSource, { ...prettierConfig, filepath: jsPath });
 
-    const codeWithoutTsIgnoreComments = codeWithPropTypes.replace(/^\s*\/\/ @ts-ignore.*$/gm, '');
-    const prettified = await prettierFormat(codeWithoutTsIgnoreComments);
+    const codeWithoutTsDirectives = codeWithPropTypes
+      .replace(/^\s*\/\/ @ts-(?:ignore|expect-error)\b.*$/gm, '')
+      .replace(/^\s*\{\/\* @ts-(?:ignore|expect-error)\b.*?\*\/\}\s*$/gm, '');
+    const prettified = await prettierFormat(codeWithoutTsDirectives);
     const formatted = fixBabelGeneratorIssues(prettified);
     const correctedLineEndings = fixLineEndings(source, formatted);
 

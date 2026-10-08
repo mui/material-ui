@@ -40,14 +40,14 @@ const AccordionComponentTest = () => {
         }}
       />
 
-      {/* @ts-expect-error */}
+      {/* @ts-expect-error: Anchor elements do not support incorrectAttribute. */}
       <Accordion {...requiredProps} component="a" incorrectAttribute="url" />
-      {/* @ts-expect-error */}
+      {/* @ts-expect-error: The div root does not support href. */}
       <Accordion {...requiredProps} component="div" href="url" />
       <Accordion {...requiredProps} component={CustomComponent} prop1="1" prop2={12} />
-      {/* @ts-expect-error */}
+      {/* @ts-expect-error: CustomComponent requires prop2. */}
       <Accordion {...requiredProps} component={CustomComponent} prop1="1" />
-      {/* @ts-expect-error */}
+      {/* @ts-expect-error: CustomComponent requires a numeric prop2. */}
       <Accordion {...requiredProps} component={CustomComponent} prop1="1" prop2="12" />
     </div>
   );
