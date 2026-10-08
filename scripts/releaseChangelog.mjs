@@ -67,13 +67,7 @@ const prLinkRegEx = /\(#[0-9]+\)$/;
  * @returns {string[]}
  */
 function getAllContributors(commits) {
-  const authors = Array.from(
-    new Set(
-      commits
-        .map(getCommitAuthor)
-        .filter((author) => !!author),
-    ),
-  );
+  const authors = Array.from(new Set(commits.map(getCommitAuthor).filter((author) => !!author)));
 
   return authors.sort((a, b) => a.localeCompare(b)).map((author) => `@${author}`);
 }
