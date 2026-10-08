@@ -86,7 +86,7 @@ Keep `getOptionValue` and any custom `isOptionEqualToValue` callback stable betw
 Define them outside the component, as in the demo below, or use `React.useCallback` with all dependencies.
 Changing a callback that determines matching rebuilds its lookup so the results reflect the new behavior.
 
-{{"demo": "OptionValueMapping.js"}}
+{{"component": "file://./demos/option-value-mapping/index.ts"}}
 
 #### Typed wrappers
 
