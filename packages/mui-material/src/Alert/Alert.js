@@ -295,7 +295,7 @@ Alert.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.oneOf(['error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
