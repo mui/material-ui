@@ -6,7 +6,7 @@
 
 _Oct 8, 2026_
 
-A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 28 contributors who made this release possible. Here are some highlights ✨:
 
 - ⚙️ Support [values other than raw options](https://mui.com/material-ui/react-autocomplete/#object-options-with-primitive-values) for Autocomplete via the `getOptionValue` prop.
 
@@ -16,7 +16,11 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - Export private focus-visible utilities (#49139) @siriwatknp
 - Fix `onClose` types for Menu, Snackbar, and SwipeableDrawer (#49351) @Janpot
 - Fix slot handling in Autocomplete chips, TextField `inputLabel`, and NativeSelect `input` (#49354) @Janpot
+- Fix theme `defaultProps` and missing exports (#49342) @Janpot
+- Remove unnecessary `Omit` types (#49338) @sai6855
+- [autocomplete] Lazily derive the initial input value (#49192) @OskarEichler
 - [autocomplete] Prevent crash when changing `groupBy` (#49150) @silviuaavram
+- [autocomplete] Stop filtering once the result limit is reached (#49312) @valkiara
 - [autocomplete] Support values other than raw options (#49313) @silviuaavram
 - [avatargroup] Improve TypeScript performance when using `slotProps` (#49213) (#49215) @sai6855
 - [bottomnavigationaction] Document the `selected` prop (#49190) (#49196) @sai6855
@@ -27,17 +31,28 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [checkbox] Set the native indeterminate state on the input (#49053) @lazerg
 - [dialogcontent] Render the `theme.focusVisible` ring on the scrollable content (#49319) @siriwatknp
 - [inputbase] Fix `slotProps.input` event handlers and ref being ignored (#49341) @Janpot
+- [link] Remove unwanted `Omit` type (#49339) @sai6855
 - [link] Revert to `color-mix` when underline color is not accepted (#49077) @silviuaavram
+- [modal] Prevent `aria-hidden` from being applied to non-portal modals (#49195) @ZeeshanTamboli
 - [select] Fix flaky opening mouseup timing (#49024) @michelengelen
 - [skeleton] Fix the background fallback with CSS theme variables (#49367) @aarongarciah
+- [slider] Fix `disableSwap` when a neighboring thumb is at 0 (#49246) @kwy404
+- [snackbar][speeddial] Remove unnecessary `Omit` in props definitions (#49272) @sai6855
+- [speeddial] Fix horizontal persistent tooltip placement (#49238) @Cunninger
 - [speeddial] Support action slot object refs (#49056) @OskarEichler
 - [table] Improve accessibility for the pagination buttons (#49112) @silviuaavram
 - [tablepaginationactions] Align common types with other components (#49348) @sai6855
+- [tabs] Derive mounted state from the indicator style instead of setting it in an effect (#49326) @ZeeshanTamboli
 - [tabs] Fix selected tab not scrolling into view when scroll buttons appear in auto mode (#48489) @starboyvarun
 - [tabs] Respect `scroll-padding` when scrolling the selected tab into view (#49039) @crispinc-omnea
 - [textfield] Add theme CSS variable for autofill `box-shadow` (#47472) @ludij
+- [theme] Fix `theme.alpha()` for raw colors with CSS variables (#49320) @siriwatknp
 - [theme] Fix theming outliers in Paper, BreadcrumbCollapsed, TablePagination, and Tooltip (#49356) @Janpot
 - [theme] Keep CSS variable fallbacks in `theme.alpha()` (#49368) @aarongarciah
+
+### `@mui/icons-material@9.5.0`
+
+- Center the WarningRounded icon within its `viewBox` (#49203) @itd-mb
 
 ### `@mui/system@9.5.0`
 
@@ -47,7 +62,12 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 
 ### `@mui/utils@9.5.0`
 
+- Document the deprecated `slotState` parameter and add `resolveComponentProps` tests (#49240) @usamabhatti1998
 - Improve `mergeSlotProps` performance (#48002) @mj12albert
+
+### `@mui/types@9.5.0`
+
+- Remove invalid `number` type from supported `OverridableStringUnion` type arguments (#49307) @sai6855
 
 ### `@mui/lab@9.0.0-beta.10`
 
@@ -70,8 +90,11 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - Fix the dead Popper.js documentation links (#49081) @lazerg
 - Fix the LLM generated docs paths (#49076) @silviuaavram
 - Improve accessibility for checkbox lists (#49111) @silviuaavram
+- Warn about untrusted values in the `sx` prop (#49212) @Janpot
 - [autocomplete] Add removal and navigation ARIA descriptions to Chip examples (#49086) @silviuaavram
 - [drawer] Add accessible names to close buttons (#49161) @sai6855
+- [material-icons] Add `frame` synonym for the Portrait icon (#49211) @Janpot
+- [material-icons] Improve icon search performance (#49206) @oliviertassinari
 - [numberfield] Document the `format` prop for units and currency (#49160) @Denimworld12
 - [snackbar] Demonstrate Escape handling inside a dialog (#49352) @minwookshin
 - [system] Avoid `any` when spreading the `sx` prop (#49083) @LeusMaximus
@@ -84,10 +107,14 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [code-infra] Convert @mui/lab to TypeScript (#49140) @Janpot
 - [code-infra] Convert @mui/material internal svg-icons to TypeScript (#49143) @Janpot
 - [code-infra] Convert remaining @mui/system .js+.d.ts pairs to TypeScript (part 2) (#48699) @Janpot
+- [code-infra] Fix `package.json` metadata (#49325) @Janpot
+- [code-infra] Migrate to Babel 8 (#49216) @brijeshb42
 - [code-infra] Pin the Argos baseline to v9.x (#49316) @Janpot
 - [code-infra] Pin the only-allow version in the preinstall hook (#49114) @Janpot
 - [code-infra] Run TypeScript 7 alongside the TS6 JS API (#49075) @brijeshb42
+- [code-infra] Ship documentation Markdown inside the @mui/material package (#49314) @Janpot
 - [code-infra] Update #target-branch-reference for v9.x branch (#49191) @silviuaavram
+- [code-infra] Widen @babel/runtime range and stop emitting empty class fields (#49276) @brijeshb42
 - [core] Remove the leftover canary release script (#49163) @Janpot
 - [core] Replace @mui/internal-waterfall with es-toolkit (#49155) @Janpot
 - [docs-infra] Generate the accessibility Known gaps table (#49355) @michelengelen
@@ -96,6 +123,8 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs-infra] Migrate deploy-succeeded to event-triggered function (#49158) @brijeshb42
 - [docs-infra] Pin StackBlitz demo vite to v7 and plugin-react to v5 (#49151) @Janpot
 - [docs-infra] Rate-limit the documentation feedback endpoint (#49115) @Janpot
+- [docs-infra] Retire the docs service worker (#49202) @Janpot
+- [docs-infra] Update the deploy script to fetch from the v9.x branch (#49371) @mnajdova
 - [docs-infra] Validate docs feedback content before posting to Slack (#49088) @Janpot
 - [material] Convert colors to TypeScript (#49180) @Janpot
 - [material] Convert utils and six barrels to TypeScript (#49185) @Janpot
@@ -119,7 +148,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [test][textfield] Add axe tests and WCAG conformance report (#48923) @michelengelen
 - [test][togglebutton] Add axe tests and WCAG conformance reports (#48921) @michelengelen
 
-All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @brijeshb42, @crispinc-omnea, @Denimworld12, @dizhurnikita, @Janpot, @lazerg, @LeusMaximus, @ludij, @LukasTy, @mateuseap, @michelengelen, @minwookshin, @mj12albert, @OskarEichler, @sai6855, @silviuaavram, @siriwatknp, @starboyvarun, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @brijeshb42, @crispinc-omnea, @Cunninger, @Denimworld12, @dizhurnikita, @itd-mb, @Janpot, @kwy404, @lazerg, @LeusMaximus, @ludij, @LukasTy, @mateuseap, @michelengelen, @minwookshin, @mj12albert, @mnajdova, @oliviertassinari, @OskarEichler, @sai6855, @silviuaavram, @siriwatknp, @starboyvarun, @usamabhatti1998, @valkiara, @ZeeshanTamboli
 
 ## 9.4.0
 
