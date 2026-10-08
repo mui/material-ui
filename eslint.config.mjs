@@ -188,6 +188,16 @@ export default defineConfig(
       ],
     },
   },
+  {
+    // TypeScript's project service omits generated JavaScript beside its TypeScript source.
+    files: ['docs/**/*.{js,jsx}'],
+    languageOptions: {
+      parserOptions: {
+        projectService: false,
+        project: ['./docs/tsconfig.eslint.json'],
+      },
+    },
+  },
   // Moved from docs/data/material/components/.eslintrc.js
   {
     files: [`docs/data/material/components/**/*${EXTENSION_TS}`],
