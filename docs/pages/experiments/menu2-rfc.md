@@ -291,17 +291,16 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 <details>
 <summary>3. Focus and modality</summary>
 
-| Classic Menu                              | New equivalent                                    | Notes                                                                                                        |
-| :---------------------------------------- | :------------------------------------------------ | :----------------------------------------------------------------------------------------------------------- |
-| `autoFocus`, `disableAutoFocusItem`       | Base UI initial focus                             | No direct override. Keyboard and pointer open differ.                                                        |
-| `variant="selectedMenu"`                  | No direct equivalent                              | Checkbox and radio items express checked state, not initial focus.                                           |
-| `disableAutoFocus`, `disableEnforceFocus` | No direct equivalent                              | `modal` controls outside interaction, not each classic focus option independently.                           |
-| `disableRestoreFocus`                     | `finalFocus={false}`                              | A ref or function can instead set the return target.                                                         |
-| `disableEscapeKeyDown`                    | Cancel an `onOpenChange` with reason `escape-key` | Only if the application requires it; this changes normal menu dismissal.                                     |
-| `disableScrollLock`                       | No independent equivalent                         | `modal={false}` also permits outside interaction. Touch and hover behavior differ; see the benchmark caveat. |
-| `hideBackdrop`                            | `slots={{ backdrop: null }}`                      | Omits the optional visual layer, not Base UI's internal modal layer.                                         |
-| `disablePortal`                           | No equivalent                                     | The popup always uses a portal.                                                                              |
-| `keepMounted`, `container`                | Same props                                        | Client-side portal controls; they do not render the popup on the server.                                     |
+| Classic Menu                              | New equivalent               | Notes                                                                                                        |
+| :---------------------------------------- | :--------------------------- | :----------------------------------------------------------------------------------------------------------- |
+| `autoFocus`, `disableAutoFocusItem`       | Base UI initial focus        | No direct override. Keyboard and pointer open differ.                                                        |
+| `variant="selectedMenu"`                  | No direct equivalent         | Checkbox and radio items express checked state, not initial focus.                                           |
+| `disableAutoFocus`, `disableEnforceFocus` | No direct equivalent         | `modal` controls outside interaction, not each classic focus option independently.                           |
+| `disableRestoreFocus`                     | `finalFocus={false}`         | A ref or function can instead set the return target.                                                         |
+| `disableScrollLock`                       | No independent equivalent    | `modal={false}` also permits outside interaction. Touch and hover behavior differ; see the benchmark caveat. |
+| `hideBackdrop`                            | `slots={{ backdrop: null }}` | Omits the optional visual layer, not Base UI's internal modal layer.                                         |
+| `disablePortal`                           | No equivalent                | The popup always uses a portal.                                                                              |
+| `keepMounted`, `container`                | Same props                   | Client-side portal controls; they do not render the popup on the server.                                     |
 
 </details>
 

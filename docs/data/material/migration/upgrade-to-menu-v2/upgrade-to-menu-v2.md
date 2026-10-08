@@ -220,7 +220,6 @@ Event handlers and top-level `aria-label`, `aria-labelledby`, and `aria-describe
 | :--------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------- |
 | `variant="selectedMenu"`, `autoFocus`, `disableAutoFocusItem`                            | Use checkbox or radio items to show a current value. The component controls the initial highlight.       |
 | `disableAutoFocus`, `disableEnforceFocus`                                                | No independent equivalents. `modal` controls outside interaction, not the initial focus policy.          |
-| `disableEscapeKeyDown`                                                                   | Cancel `onOpenChange` when `eventDetails.reason === 'escape-key'`.                                       |
 | `disableRestoreFocus`                                                                    | Use `finalFocus={false}` to disable focus restoration.                                                   |
 | `disableScrollLock`                                                                      | Use `modal={false}`, which also keeps the rest of the document interactive. There's no exact equivalent. |
 | `disablePortal`                                                                          | No equivalent. Menu v2 always renders in a portal. Use `container` to choose the portal container.       |
