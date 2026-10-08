@@ -24,6 +24,7 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   );
 });
 
+// eslint-disable-next-line @typescript-eslint/no-deprecated -- Retain generated propTypes for React 18 compatibility.
 TextMaskCustom.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,

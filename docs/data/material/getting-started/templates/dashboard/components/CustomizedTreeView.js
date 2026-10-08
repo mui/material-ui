@@ -168,6 +168,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(props, ref) {
   );
 });
 
+// eslint-disable-next-line @typescript-eslint/no-deprecated -- Retain generated propTypes for React 18 compatibility.
 CustomTreeItem.propTypes = {
   /**
    * The content of the component.

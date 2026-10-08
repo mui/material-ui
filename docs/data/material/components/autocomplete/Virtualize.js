@@ -125,6 +125,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   );
 });
 
+// eslint-disable-next-line @typescript-eslint/no-deprecated -- Retain generated propTypes for React 18 compatibility.
 ListboxComponent.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,

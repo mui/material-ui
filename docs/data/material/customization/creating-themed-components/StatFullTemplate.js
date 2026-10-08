@@ -64,6 +64,7 @@ const Stat = React.forwardRef(function Stat(inProps, ref) {
   );
 });
 
+// eslint-disable-next-line @typescript-eslint/no-deprecated -- Retain generated propTypes for React 18 compatibility.
 Stat.propTypes = {
   unit: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,

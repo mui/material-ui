@@ -12,6 +12,7 @@ const LinkBehavior = React.forwardRef((props, ref) => {
   return <RouterLink data-testid="custom-link" ref={ref} to={href} {...other} />;
 });
 
+// eslint-disable-next-line @typescript-eslint/no-deprecated -- Retain generated propTypes for React 18 compatibility.
 LinkBehavior.propTypes = {
   href: PropTypes.oneOfType([
     PropTypes.shape({

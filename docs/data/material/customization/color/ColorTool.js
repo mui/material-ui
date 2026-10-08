@@ -76,6 +76,7 @@ const TooltipRadio = React.forwardRef(function TooltipRadio(props, ref) {
   );
 });
 
+// eslint-disable-next-line @typescript-eslint/no-deprecated -- Retain prop validation for React 18 readers of this JavaScript-only demo.
 TooltipRadio.propTypes = {
   // possibly opaque identifier
   'aria-label': PropTypes.oneOfType([PropTypes.string, PropTypes.object]),

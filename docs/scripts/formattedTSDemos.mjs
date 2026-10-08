@@ -98,7 +98,21 @@ async function transpileFile(tsxPath, project) {
         ],
       ]);
     }
-    const { code } = await babel.transformAsync(source, transformOptions);
+    const { code, ast } = await babel.transformAsync(source, { ...transformOptions, ast: true });
+    const forwardRefComponents = new Set();
+    babel.traverse(ast, {
+      VariableDeclarator({ node }) {
+        if (
+          babel.types.isIdentifier(node.id) &&
+          babel.types.isCallExpression(node.init) &&
+          babel.types.isMemberExpression(node.init.callee) &&
+          babel.types.isIdentifier(node.init.callee.object, { name: 'React' }) &&
+          babel.types.isIdentifier(node.init.callee.property, { name: 'forwardRef' })
+        ) {
+          forwardRefComponents.add(node.id.name);
+        }
+      },
+    });
 
     if (/import \w* from 'prop-types'/.test(code)) {
       throw new Error('TypeScript demo contains prop-types, please remove them');
@@ -124,7 +138,16 @@ async function transpileFile(tsxPath, project) {
     const prettierFormat = async (jsSource) =>
       prettier.format(jsSource, { ...prettierConfig, filepath: jsPath });
 
-    const codeWithoutTsDirectives = codeWithPropTypes
+    // React 19 marks forwardRef component propTypes as deprecated, but JavaScript demos
+    // retain these checks for readers running React 18.
+    const codeWithCompatibilityComments = codeWithPropTypes.replace(
+      /^([ \t]*)(\w+)\.propTypes =/gm,
+      (assignment, indent, component) =>
+        forwardRefComponents.has(component)
+          ? `${indent}// eslint-disable-next-line @typescript-eslint/no-deprecated -- Retain generated propTypes for React 18 compatibility.\n${assignment}`
+          : assignment,
+    );
+    const codeWithoutTsDirectives = codeWithCompatibilityComments
       .replace(/^\s*\/\/ @ts-(?:ignore|expect-error)\b.*$/gm, '')
       .replace(/^\s*\{\/\* @ts-(?:ignore|expect-error)\b.*?\*\/\}\s*$/gm, '');
     const prettified = await prettierFormat(codeWithoutTsDirectives);
