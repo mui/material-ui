@@ -18,7 +18,7 @@ Each component is rated criterion by criterion in its own report, kept next to t
 | :---------------- | :------------------------------------------------------------ |
 | Product           | Material UI (`@mui/material`)                                 |
 | Product type      | React component library (software)                            |
-| Version assessed  | `@mui/material` v9.4.0                                        |
+| Version assessed  | `@mui/material` v9.5.0                                        |
 | Vendor            | MUI                                                           |
 | Standards applied | WCAG 2.2 Level A and AA                                       |
 | Report type       | Self-assessment, published as source-controlled documentation |
