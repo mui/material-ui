@@ -173,7 +173,7 @@ export default defineConfig(
   // Docs start
   {
     files: [`docs/**/*${EXTENSION_TS}`],
-    extends: createDocsConfig(),
+    extends: createDocsConfig({ baseDirectory: dirname }),
     rules: {
       '@next/next/no-img-element': 'off',
       'no-restricted-imports': [

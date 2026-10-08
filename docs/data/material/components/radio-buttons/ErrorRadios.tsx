@@ -19,7 +19,7 @@ export default function ErrorRadios() {
     setHelperText('Choose wisely');
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (value === 'best') {
