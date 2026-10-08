@@ -18,6 +18,7 @@ function getFilmValue(film: Film) {
 }
 
 export default function OptionValueMapping() {
+  // @focus-start @padding 1
   const [value, setValue] = React.useState<number | null>(2);
 
   return (
@@ -37,4 +38,5 @@ export default function OptionValueMapping() {
       />
     </div>
   );
+  // @focus-end
 }

@@ -103,7 +103,7 @@ If you're using a [Floating Action Button](/material-ui/react-floating-action-bu
 When a Snackbar is open inside a [Dialog](/material-ui/react-dialog/), handle the `escapeKeyDown` reason in the Dialog's `onClose` callback to close the Snackbar first.
 Once the Snackbar is closed, the next press of <kbd class="key">Escape</kbd> closes the Dialog.
 
-{{"demo": "DialogSnackbar.js"}}
+{{"component": "file://./demos/dialog-snackbar/index.ts"}}
 
 ### Consecutive Snackbars
 

@@ -6,8 +6,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Snackbar from '@mui/material/Snackbar';
+import type { SnackbarCloseReason } from '@mui/material/Snackbar';
 
 export default function DialogSnackbar() {
+  // @focus-start @padding 1
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
@@ -16,7 +18,10 @@ export default function DialogSnackbar() {
     setSnackbarOpen(false);
   };
 
-  const handleSnackbarClose = (_event, reason) => {
+  const handleSnackbarClose = (
+    _event: React.SyntheticEvent | Event,
+    reason: SnackbarCloseReason,
+  ) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -57,4 +62,5 @@ export default function DialogSnackbar() {
       </Dialog>
     </React.Fragment>
   );
+  // @focus-end
 }
