@@ -247,6 +247,19 @@ describe('createTheme', () => {
       expect(theme.palette.primary.main).to.equal('#4caf50');
     });
 
+    it('should include the `text.primaryChannel` value in the Skeleton background fallback', () => {
+      const theme = createTheme({
+        cssVariables: true,
+        colorSchemes: { light: true, dark: true },
+      });
+      expect(theme.vars.palette.Skeleton.bg).to.equal(
+        'var(--mui-palette-Skeleton-bg, rgba(var(--mui-palette-text-primaryChannel, 0 0 0) / 0.11))',
+      );
+      expect(theme.colorSchemes.dark.palette.Skeleton.bg).to.equal(
+        'rgba(var(--mui-palette-text-primaryChannel, 255 255 255) / 0.13)',
+      );
+    });
+
     describe('spacing', () => {
       it('should provide the default spacing', () => {
         const theme = createTheme({ cssVariables: true });
