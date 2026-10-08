@@ -55,7 +55,8 @@ const MenuItemBase = styled(ButtonBase, {
       [`&.${menuItemClasses.disabled}`]: {
         opacity: (theme.vars || theme).palette.action.disabledOpacity,
       },
-      [`& + .${dividerClasses.root}`]: {
+      // Menu2Separator owns its vertical margins, including theme and sx overrides.
+      [`& + .${dividerClasses.root}:not(:where([data-mui-menu-separator]))`]: {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
       },

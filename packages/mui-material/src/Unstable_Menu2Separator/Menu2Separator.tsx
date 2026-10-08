@@ -135,6 +135,7 @@ const Menu2Separator = React.forwardRef(function Menu2Separator(
   return (
     <BaseSeparator
       ref={ref}
+      data-mui-menu-separator=""
       orientation={orientation}
       render={getMenu2RootRender(slots?.root ?? Menu2SeparatorRoot, ownerState, {
         ...rootSlotProps,
