@@ -29,14 +29,13 @@ describe('<Menu2RadioItem />', () => {
 
   // The item root is a ButtonBase. Base UI and ButtonBase both emulate keyboard
   // activation on a non-native root, which used to select the item twice.
-  it('selects once per keyboard activation', async () => {
+  it('selects once per activation and keeps the menu open by default', async () => {
     const onValueChange = spy();
+    const onOpenChange = spy();
     const { user } = render(
-      <Menu2 defaultOpen modal={false} anchor={document.body}>
+      <Menu2 defaultOpen modal={false} anchor={document.body} onOpenChange={onOpenChange}>
         <Menu2RadioGroup defaultValue="one" onValueChange={onValueChange}>
-          <Menu2RadioItem closeOnClick={false} value="two">
-            Two
-          </Menu2RadioItem>
+          <Menu2RadioItem value="two">Two</Menu2RadioItem>
         </Menu2RadioGroup>
       </Menu2>,
     );
@@ -50,9 +49,18 @@ describe('<Menu2RadioItem />', () => {
     expect(onValueChange.callCount).to.equal(1);
     expect(onValueChange.lastCall.args[0]).to.equal('two');
     expect(item).to.have.attribute('aria-checked', 'true');
+    expect(onOpenChange.callCount).to.equal(0);
 
     await user.keyboard('[Enter]');
     expect(onValueChange.callCount).to.equal(2);
     expect(onValueChange.lastCall.args[0]).to.equal('two');
+    expect(onOpenChange.callCount).to.equal(0);
+
+    await user.click(item);
+    expect(onValueChange.callCount).to.equal(3);
+    expect(onValueChange.lastCall.args[0]).to.equal('two');
+    expect(item).to.have.attribute('aria-checked', 'true');
+    expect(onOpenChange.callCount).to.equal(0);
+    expect(screen.getByRole('menu')).not.to.equal(null);
   });
 });

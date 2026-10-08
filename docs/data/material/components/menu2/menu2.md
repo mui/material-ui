@@ -73,7 +73,9 @@ Two rules apply to the trigger element:
 - **A wrapper must forward props and ref** to the element that it renders, the same as [Tooltip](/material-ui/react-tooltip/). Menu v2 merges the trigger behavior through props, so a component that drops them doesn't open the menu. In development, Menu v2 logs an error when the trigger doesn't receive the ref.
 - **Set `slotProps.trigger.nativeButton` to `false`** when the element doesn't render a native `<button>`, so the keyboard behavior stays correct.
 
-Selecting an item closes the menu. Set `closeOnClick={false}` on an item to keep the menu open.
+Selecting a `MenuItem` closes the menu by default. Set `closeOnClick={false}` on a `MenuItem` to keep the menu open.
+
+`MenuCheckboxItem`, `MenuRadioItem`, and `MenuLinkItem` keep the menu open by default. Set `closeOnClick` on these items to close the menu after selection.
 
 ## Account menu
 

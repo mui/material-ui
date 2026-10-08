@@ -82,7 +82,9 @@ The trigger is part of the component now, so the anchor state and the ARIA wirin
 +</Menu>
 ```
 
-Selecting an item closes the menu by default, so the `onClick={handleClose}` on every item is no longer necessary. Set `closeOnClick={false}` on an item to keep the menu open.
+Selecting a `MenuItem` closes the menu by default, so its `onClick={handleClose}` is no longer necessary. Set `closeOnClick={false}` on a `MenuItem` to keep the menu open.
+
+`MenuCheckboxItem`, `MenuRadioItem`, and `MenuLinkItem` keep the menu open by default. Set `closeOnClick` on these items to close the menu after selection.
 
 `trigger` takes an element, and Menu v2 merges the trigger behavior into it, so you keep your own component:
 
