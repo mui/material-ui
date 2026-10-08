@@ -6,13 +6,13 @@
     "build:turbopack": "rimraf ./export && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=8192 next build --turbopack",
     "build:clean": "rimraf .next && pnpm build",
     "dev": "next dev --turbopack",
+    "docs-infra": "docs-infra",
+    "validate": "docs-infra validate --command 'pnpm validate'",
     "deploy": "git fetch upstream master && git push -f material-ui-docs FETCH_HEAD:next",
     "icons": "rimraf --glob public/static/icons/* && node ./scripts/buildIcons.js",
     "start": "serve ./export",
     "create-playground": "cpy --cwd=scripts playground.template.tsx ../pages/playground/ --rename=index.tsx",
     "typescript": "tsc -p tsconfig.json && tsc -p scripts/tsconfig.json",
-    "typescript:transpile": "echo 'Use `pnpm docs:typescript:formatted'` instead && exit 1",
-    "typescript:transpile:dev": "echo 'Use `pnpm docs:typescript'` instead && exit 1",
     "link-check": "tsx ./scripts/reportBrokenLinks.mts"
   },
   "dependencies": {
@@ -24,8 +24,9 @@
     "@emotion/react": "catalog:docs",
     "@emotion/server": "catalog:docs",
     "@emotion/styled": "catalog:docs",
-    "@mui/internal-core-docs": "workspace:^",
     "@mui/icons-material": "workspace:^",
+    "@mui/internal-core-docs": "workspace:^",
+    "@mui/internal-docs-infra": "catalog:docs",
     "@mui/internal-markdown": "workspace:^",
     "@mui/lab": "workspace:*",
     "@mui/material": "workspace:^",
@@ -123,6 +124,7 @@
     "prettier": "3.9.9",
     "raw-loader": "4.0.2",
     "tailwindcss": "4.3.3",
+    "typescript": "npm:@typescript/typescript6@6.0.2",
     "yargs": "18.2.0"
   }
 }
