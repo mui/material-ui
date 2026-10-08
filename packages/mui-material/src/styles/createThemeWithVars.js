@@ -222,6 +222,12 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.common, 'onBackground', '#fff');
     }
 
+    // Generate `text.primaryChannel` before the component tokens:
+    // `palette.Skeleton.bg` uses it as its CSS variable fallback.
+    if (!nativeColor) {
+      setColorChannel(palette.text, 'primary');
+    }
+
     function colorMix(method, color, coefficient) {
       if (colorSpace) {
         let mixer;
