@@ -16,7 +16,7 @@
     "react-dom": "19.3.0"
   },
   "devDependencies": {
-    "@mui/internal-benchmark": "https://pkg.pr.new/mui/mui-public/@mui/internal-benchmark@1bc5445",
+    "@mui/internal-benchmark": "https://pkg.pr.new/mui/mui-public/@mui/internal-benchmark@5b3253d",
     "@playwright/test": "1.63.0",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
