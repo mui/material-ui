@@ -1176,39 +1176,41 @@ describe('<Menu2 />', () => {
     expect(screen.getByRole('menu')).not.to.equal(null);
   });
 
-  it.skipIf(isJsdom())('reports focus-out when tabbing away from a non-modal menu', async () => {
-    const handleOpenChange = spy();
-    const { user } = render(
-      <React.Fragment>
-        <Menu2
-          modal={false}
-          onOpenChange={handleOpenChange}
-          trigger={<Button disableRipple>Options</Button>}
-        >
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2>
-        <button type="button">After</button>
-      </React.Fragment>,
-    );
+  [true, false].forEach((modal) => {
+    it.skipIf(isJsdom())(`reports focus-out when tabbing away with modal=${modal}`, async () => {
+      const handleOpenChange = spy();
+      const { user } = render(
+        <React.Fragment>
+          <Menu2
+            modal={modal}
+            onOpenChange={handleOpenChange}
+            trigger={<Button disableRipple>Options</Button>}
+          >
+            <Menu2Item>Profile</Menu2Item>
+          </Menu2>
+          <button type="button">After</button>
+        </React.Fragment>,
+      );
 
-    await user.click(screen.getByRole('button', { name: 'Options' }));
-    const item = await screen.findByRole('menuitem', { name: 'Profile' });
-    await waitFor(() => {
-      expect(item.closest('[role="menu"]')!.contains(document.activeElement)).to.equal(true);
+      await user.click(screen.getByRole('button', { name: 'Options' }));
+      const item = await screen.findByRole('menuitem', { name: 'Profile' });
+      await waitFor(() => {
+        expect(item.closest('[role="menu"]')!.contains(document.activeElement)).to.equal(true);
+      });
+      handleOpenChange.resetHistory();
+
+      await user.tab();
+
+      await waitFor(() => {
+        expect(screen.queryByRole('menu')).to.equal(null);
+      });
+      expect(handleOpenChange.callCount).to.equal(1);
+      expect(handleOpenChange.args[0][0]).to.equal(false);
+      expect(handleOpenChange.args[0][1].reason).to.equal('focus-out');
+      expect(handleOpenChange.args[0][1].event).to.be.instanceOf(FocusEvent);
+      expect(handleOpenChange.args[0][1].event).not.to.have.property('nativeEvent');
+      expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
     });
-    handleOpenChange.resetHistory();
-
-    await user.tab();
-
-    await waitFor(() => {
-      expect(screen.queryByRole('menu')).to.equal(null);
-    });
-    expect(handleOpenChange.callCount).to.equal(1);
-    expect(handleOpenChange.args[0][0]).to.equal(false);
-    expect(handleOpenChange.args[0][1].reason).to.equal('focus-out');
-    expect(handleOpenChange.args[0][1].event).to.be.instanceOf(FocusEvent);
-    expect(handleOpenChange.args[0][1].event).not.to.have.property('nativeEvent');
-    expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
   });
 
   it('supports touch trigger interactions', async () => {

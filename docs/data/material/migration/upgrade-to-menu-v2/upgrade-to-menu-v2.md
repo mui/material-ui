@@ -107,10 +107,23 @@ To control the open state, keep `trigger` and pass `open` and `onOpenChange`. Se
 +<Menu open={open} onOpenChange={handleOpenChange}>
 ```
 
-| Menu                               | Menu v2                            | Notes                                                                                                                                                                             |
-| :--------------------------------- | :--------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `open` (required, controlled only) | `open` + `defaultOpen`             | Uncontrolled mode is now possible.                                                                                                                                                |
-| `onClose(event, reason)`           | `onOpenChange(open, eventDetails)` | Fires for opening and closing. Reasons include `trigger-press`, `item-press`, `escape-key`, `outside-press`, and `focus-out`. Call `eventDetails.cancel()` to prevent the change. |
+| Menu                               | Menu v2                            | Notes                                                                              |
+| :--------------------------------- | :--------------------------------- | :--------------------------------------------------------------------------------- |
+| `open` (required, controlled only) | `open` + `defaultOpen`             | Uncontrolled mode is now possible.                                                 |
+| `onClose(event, reason)`           | `onOpenChange(open, eventDetails)` | Fires for opening and closing. Call `eventDetails.cancel()` to prevent the change. |
+
+Update any checks of the close reason:
+
+| Menu `onClose` reason                                  | Menu v2 `eventDetails.reason` |
+| :----------------------------------------------------- | :---------------------------- |
+| `escapeKeyDown`                                        | `escape-key`                  |
+| `backdropClick`                                        | `outside-press`               |
+| `tabKeyDown`                                           | `focus-out`                   |
+| No reason; an item's `onClick` handler closed the menu | `item-press`                  |
+
+Unlike `onClose`, `onOpenChange` also reports opening. The `trigger-press` reason can report either opening or closing. Check the `open` argument before you run close-only logic.
+
+Tab dismissal reports `focus-out` because focus leaves the menu. Other focus changes can report this reason too. Its `eventDetails.event` is a native `FocusEvent`, not a keyboard event.
 
 ### 4. Update the positioning props
 
