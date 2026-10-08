@@ -125,6 +125,14 @@ async function main(argv) {
   });
   const changes = commitsItems.map((commitsItem) => {
     let shortMessage = commitsItem.message.split('\n')[0];
+    const isCherryPickByBot =
+      commitsItem.labels.includes('cherry-pick') &&
+      commitsItem.author &&
+      isBot(commitsItem.author.login);
+
+    if (isCherryPickByBot) {
+      shortMessage = shortMessage.replace(/\s+\(@[\w-]+\)(?=\s+\(#[0-9]+\)$)/, '');
+    }
 
     // If the commit message doesn't have an associated PR, add the commit sha for reference.
     if (!prLinkRegEx.test(shortMessage)) {
