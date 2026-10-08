@@ -890,4 +890,32 @@ describe('<TablePagination />', () => {
 
     expect(combobox.parentElement).not.to.have.attribute('variant');
   });
+
+  it.skipIf(isJsdom())('should apply toolbar styleOverrides that use variants', () => {
+    const theme = createTheme({
+      components: {
+        MuiTablePagination: {
+          styleOverrides: {
+            toolbar: { color: 'rgb(255, 0, 0)', variants: [] },
+          },
+        },
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <table>
+          <tbody>
+            <tr>
+              <TablePagination count={1} onPageChange={noop} page={0} rowsPerPage={10} />
+            </tr>
+          </tbody>
+        </table>
+      </ThemeProvider>,
+    );
+
+    expect(container.querySelector(`.${classes.toolbar}`)).toHaveComputedStyle({
+      color: 'rgb(255, 0, 0)',
+    });
+  });
 });

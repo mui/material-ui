@@ -6,6 +6,8 @@ import Typography from '../Typography';
 import { FormControlLabelClasses } from './formControlLabelClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
+export interface FormControlLabelTypographySlotPropsOverrides {}
+
 export interface FormControlLabelSlots {
   /**
    * The component that renders the label.
@@ -18,7 +20,11 @@ export interface FormControlLabelSlots {
 export type FormControlLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
   FormControlLabelSlots,
   {
-    typography: SlotProps<typeof Typography, {}, FormControlLabelProps>;
+    typography: SlotProps<
+      typeof Typography,
+      FormControlLabelTypographySlotPropsOverrides,
+      FormControlLabelProps
+    >;
   }
 >;
 
@@ -46,10 +52,6 @@ export interface FormControlLabelProps
    * If `true`, the label is rendered as it is passed without an additional typography node.
    */
   disableTypography?: boolean | undefined;
-  /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef?: React.Ref<any> | undefined;
   /**
    * A text or an element to be used in an enclosing label element.
    */

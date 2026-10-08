@@ -329,6 +329,7 @@
     }
   },
   "slotDescriptions": {
+    "chip": "The component used to render the selected values when <code>multiple</code> is <code>true</code>.",
     "clearIndicator": "The component used to render the clear indicator element.",
     "listbox": "The component used to render the listbox.",
     "paper": "The component used to render the body of the popup.",

@@ -20,6 +20,7 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import Grow from '@mui/material/Grow';
 import InputAdornment from '@mui/material/InputAdornment';
+import { paperClasses } from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import Tooltip from '@mui/material/Tooltip';
 import describeConformance from '../../test/describeConformance';
@@ -119,9 +120,30 @@ describe('<Autocomplete />', () => {
       slots: {
         chip: {},
       },
-      only: ['slotPropsProp'],
+      only: ['slotPropsProp', 'slotPropsCallback'],
     }),
   );
+
+  it('should render the chips with slots.chip and merge the className', () => {
+    function CustomChip(props) {
+      return <Chip data-testid="custom-chip" {...props} />;
+    }
+
+    render(
+      <Autocomplete
+        multiple
+        defaultValue={['one']}
+        options={['one', 'two']}
+        slots={{ chip: CustomChip }}
+        slotProps={{ chip: { className: 'custom' } }}
+        renderInput={(params) => <TextField {...params} />}
+      />,
+    );
+
+    const chip = screen.getByTestId('custom-chip');
+    expect(chip).to.have.class(classes.tag);
+    expect(chip).to.have.class('custom');
+  });
 
   it('should be customizable in the theme', () => {
     const theme = createTheme({
@@ -144,6 +166,18 @@ describe('<Autocomplete />', () => {
     expect(document.querySelector(`.${classes.paper}`)).to.toHaveComputedStyle({
       mixBlendMode: 'darken',
     });
+  });
+
+  it('should have an elevation of 8 by default that can be overridden', () => {
+    const { setProps } = render(
+      <Autocomplete options={[]} open renderInput={(params) => <TextField {...params} />} />,
+    );
+
+    expect(document.querySelector(`.${classes.paper}`)).to.have.class(paperClasses.elevation8);
+
+    setProps({ slotProps: { paper: { elevation: 16 } } });
+
+    expect(document.querySelector(`.${classes.paper}`)).to.have.class(paperClasses.elevation16);
   });
 
   it('should not throw error when accessing ownerState in styleOverrides', () => {
