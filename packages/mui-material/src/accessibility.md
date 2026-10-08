@@ -148,6 +148,7 @@ Three kinds of test, none of which writes anything into a report. The scorecard 
 - the [Reports](#reports) table below, and the [not applicable by default](#not-applicable-by-default) list above
 - the [manual checklist](./manual-testing.md)
 - the summary table on the public [accessibility conformance page](../../../docs/data/material/getting-started/accessibility/accessibility.md), between its `scorecard` markers
+- the Known gaps table on the same page, from the gap and workaround text in `knownGaps.json`. Each ⚠️ or ❌ rating must have a row, and each row must match a rating.
 - `docs/data/material/getting-started/accessibility/scorecard.json`, the machine-readable rollup
 
 None of those numbers are typed by hand. Edit the JSON files or the prose regions, and re-run the command.
