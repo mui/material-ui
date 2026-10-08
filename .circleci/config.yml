@@ -80,10 +80,11 @@ jobs:
 
   test_lint:
     <<: *default-job
+    resource_class: large.gen2
     environment:
       <<: *default-environment
-      # Typed documentation linting needs more than Node's default 2 GB heap.
-      NODE_OPTIONS: --max-old-space-size=4096
+      # Typed documentation linting exceeds the default container's memory.
+      NODE_OPTIONS: --max-old-space-size=6144
     steps:
       - checkout
       - code-infra/install-deps
