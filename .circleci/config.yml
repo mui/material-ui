@@ -80,6 +80,10 @@ jobs:
 
   test_lint:
     <<: *default-job
+    environment:
+      <<: *default-environment
+      # Typed documentation linting needs more than Node's default 2 GB heap.
+      NODE_OPTIONS: --max-old-space-size=4096
     steps:
       - checkout
       - code-infra/install-deps
