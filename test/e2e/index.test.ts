@@ -115,6 +115,48 @@ describe('e2e', () => {
       await page.emulateMedia({ forcedColors: 'none' });
     });
 
+    [240, 600].forEach((viewportHeight) => {
+      it(`keeps the long-menu demo within a ${viewportHeight}px viewport and scrolls to the last item`, async () => {
+        const previousViewport = page.viewportSize()!;
+        try {
+          await page.setViewportSize({ width: 800, height: viewportHeight });
+          await renderFixture('Menu2/LongMenu');
+
+          const trigger = page.getByRole('button', { name: 'Country' });
+          await page.keyboard.press('Tab');
+          await expect(trigger).toBeFocused();
+          await page.keyboard.press('ArrowDown');
+
+          const menu = page.getByRole('menu');
+          await expect(menu).toBeVisible();
+          await expect(page.getByRole('menuitem', { name: 'Argentina' })).toBeFocused();
+          await expect(menu).toHaveCSS('transform', 'none');
+          const bounds = (await menu.boundingBox())!;
+          expect(bounds.y).toBeGreaterThanOrEqual(0);
+          expect(bounds.y + bounds.height).toBeLessThanOrEqual(viewportHeight);
+          expect(bounds.height).toBeLessThanOrEqual(320);
+          if (viewportHeight === 600) {
+            expect(bounds.height).toBe(320);
+          }
+          expect(
+            await menu.evaluate((element) => element.scrollHeight > element.clientHeight),
+          ).toBe(true);
+
+          await page.keyboard.press('End');
+          const lastItem = page.getByRole('menuitem', { name: 'United Kingdom' });
+          await expect(lastItem).toBeFocused();
+          await expect(lastItem).toBeInViewport({ ratio: 1 });
+          await expect.poll(() => menu.evaluate((element) => element.scrollTop)).toBeGreaterThan(0);
+
+          await page.keyboard.press('Escape');
+          await expect(menu).toBeHidden();
+          await expect(trigger).toBeFocused();
+        } finally {
+          await page.setViewportSize(previousViewport);
+        }
+      });
+    });
+
     ['pointer', 'keyboard'].forEach((input) => {
       it(`keeps the Account menu named when opened with ${input} input`, async () => {
         await renderFixture('Menu2/AccountMenu');

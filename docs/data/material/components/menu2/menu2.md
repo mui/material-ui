@@ -259,7 +259,7 @@ Omit `trigger` and pass `anchor` to position the menu against an element that yo
 
 ## Max height menu
 
-The menu limits its height to the viewport and to the space available at the anchor, and scrolls its content. Set a smaller limit on the `paper` slot.
+The menu limits its height to the viewport and to the space available at the anchor, and scrolls its content. To set a smaller limit on the `paper` slot, use `min(320px, var(--available-height))`. This keeps the menu within the available space on short screens.
 
 Type a letter while the menu is open to move to the matching item.
 

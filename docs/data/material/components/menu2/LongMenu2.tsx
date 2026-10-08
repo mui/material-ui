@@ -43,7 +43,9 @@ export default function LongMenu2() {
     <Menu
       trigger={<Button>Country</Button>}
       slotProps={{
-        paper: { sx: { maxHeight: 320, width: 240 } },
+        paper: {
+          sx: { maxHeight: 'min(320px, var(--available-height))', width: 240 },
+        },
         list: { dense: true },
       }}
     >
