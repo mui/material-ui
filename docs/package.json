@@ -1,6 +1,7 @@
 {
   "name": "docs",
   "private": true,
+  "//": "#target-branch-reference: scripts.deploy",
   "scripts": {
     "build": "rimraf ./export && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=8192 next build --webpack && pnpm link-check",
     "build:turbopack": "rimraf ./export && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=8192 next build --turbopack",
