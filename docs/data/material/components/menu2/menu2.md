@@ -116,7 +116,9 @@ Nest a `MenuSubmenu` in the item list, and pass a `MenuSubmenuTrigger` to its `t
 
 {{"demo": "SubmenuMenu2.js"}}
 
-A submenu opens on hover after a short delay, on click, and with the ArrowRight key. In right-to-left text, ArrowLeft opens it. A submenu flips when it runs out of room, and submenus nest to any depth. Escape closes the innermost submenu and returns focus to its trigger.
+By default, a submenu opens when the mouse stays over its trigger for 100 ms. A mouse click does not bypass this delay. Touch taps, Enter, Space, and ArrowRight also open it. In right-to-left text, use ArrowLeft instead of ArrowRight.
+
+A submenu flips when it runs out of room, and submenus nest to any depth. Escape closes the innermost submenu and returns focus to its trigger.
 
 `MenuSubmenuTrigger` renders the item row and an arrow indicator that follows the text direction. Set the hover behavior on the trigger:
 
@@ -130,7 +132,9 @@ A submenu opens on hover after a short delay, on click, and with the ArrowRight 
 >
 ```
 
-Set `openOnHover={false}` to open the submenu only on click and with the keyboard. Use `slotProps.indicator.children` to replace the arrow, or `slots.indicator` to replace its container. Custom content and components must handle their own RTL direction; Menu v2 does not mirror them. Set `slots.indicator` to `null` to omit the indicator and its spacing. Keep another visible cue that the item opens a submenu.
+Set `openOnHover={false}` to disable hover opening and open with a mouse click instead. Touch and keyboard activation remain available.
+
+Use `slotProps.indicator.children` to replace the arrow, or `slots.indicator` to replace its container. Custom content and components must handle their own RTL direction; Menu v2 does not mirror them. Set `slots.indicator` to `null` to omit the indicator and its spacing. Keep another visible cue that the item opens a submenu.
 
 By default, Escape closes only the submenu. Pass `closeParentOnEsc` to `MenuSubmenu` to close the whole menu.
 

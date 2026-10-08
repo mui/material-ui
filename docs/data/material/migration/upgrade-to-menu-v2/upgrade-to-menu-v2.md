@@ -232,17 +232,19 @@ Event handlers and top-level `aria-label`, `aria-labelledby`, and `aria-describe
 
 Most of these changes bring the menu in line with the [WAI-ARIA menu pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/), so they're intentional and won't be reverted.
 
-| Behavior               | Menu                                            | Menu v2                                                    |
-| :--------------------- | :---------------------------------------------- | :--------------------------------------------------------- |
-| Opened with a pointer  | Highlights the selected item, or the first item | Highlights nothing, so Enter can't fire an unintended item |
-| Opened with a keyboard | Highlights an item                              | Highlights the first item                                  |
-| Disabled items         | Skipped by the keyboard                         | Focusable, and announced as disabled                       |
-| Sibling content        | Hidden from screen readers with `aria-hidden`   | Stays in the accessibility tree                            |
-| Backdrop               | Rendered by default                             | Internal modal layer; optional visual backdrop slot        |
-| Tab while open         | Closes, and focus returns to the trigger        | Closes, and focus moves to the next element                |
-| Submenus               | Not supported                                   | Open on hover after 100ms, and on click                    |
+| Behavior               | Menu                                            | Menu v2                                                             |
+| :--------------------- | :---------------------------------------------- | :------------------------------------------------------------------ |
+| Opened with a pointer  | Highlights the selected item, or the first item | Highlights nothing, so Enter can't fire an unintended item          |
+| Opened with a keyboard | Highlights an item                              | Highlights the first item                                           |
+| Disabled items         | Skipped by the keyboard                         | Focusable, and announced as disabled                                |
+| Sibling content        | Hidden from screen readers with `aria-hidden`   | Stays in the accessibility tree                                     |
+| Backdrop               | Rendered by default                             | Internal modal layer; optional visual backdrop slot                 |
+| Tab while open         | Closes, and focus returns to the trigger        | Closes, and focus moves to the next element                         |
+| Submenus               | Not supported                                   | Open on mouse hover after 100 ms, touch tap, or keyboard activation |
 
 At the root level, Escape closes the menu. The default placement stays below the trigger, aligned to the start.
+
+A mouse click on a submenu trigger does not bypass the hover delay. Set `openOnHover={false}` on `MenuSubmenuTrigger` to disable hover opening and open with a mouse click instead. Touch taps and keyboard activation remain available. See [Submenu](/material-ui/react-menu2/#submenu).
 
 Base UI supplies a transparent backdrop for modal interaction, except when the menu opens on hover. The separate visual backdrop is absent by default. Set `slots.backdrop` or `slotProps.backdrop` to render it. This optional layer is not hidden on hover.
 

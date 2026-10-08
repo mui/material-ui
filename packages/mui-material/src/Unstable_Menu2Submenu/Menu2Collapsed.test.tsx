@@ -864,16 +864,59 @@ describe('<Menu2 /> collapsed API', () => {
     }
   });
 
-  it.skipIf(isJsdom())('respects the hover open delay and keeps the element handler', async () => {
-    const onMouseEnter = spy();
+  (['hover', 'click'] as const).forEach((activation) => {
+    it.skipIf(isJsdom())(`respects the hover open delay on mouse ${activation}`, async () => {
+      const delay = 200;
+      let hoveredAt: number | undefined;
+      let openedAt: number | undefined;
+      const onMouseEnter = vi.fn(() => {
+        hoveredAt ??= performance.now();
+      });
+      const onOpenChange = vi.fn((open: boolean) => {
+        if (open) {
+          openedAt = performance.now();
+        }
+      });
+      const { user } = render(
+        <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
+          <Menu2Submenu
+            onOpenChange={onOpenChange}
+            trigger={
+              <Menu2SubmenuTrigger delay={delay} onMouseEnter={onMouseEnter}>
+                More
+              </Menu2SubmenuTrigger>
+            }
+          >
+            <Menu2Item>Nested</Menu2Item>
+          </Menu2Submenu>
+        </Menu2>,
+      );
+
+      const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
+      await waitForPopupFocus(submenuTrigger);
+      await user[activation](submenuTrigger);
+
+      await waitFor(() => expect(submenuTrigger).to.have.attribute('aria-expanded', 'true'), {
+        timeout: 2000,
+      });
+      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(
+        true,
+        expect.objectContaining({ reason: 'trigger-hover' }),
+      );
+      // Measure logical opening, not Grow's animation or the popup mount.
+      expect(openedAt! - hoveredAt!).to.be.at.least(delay - 5);
+      expect(onMouseEnter).toHaveBeenCalled();
+      expect(await screen.findByRole('menuitem', { name: 'Nested' })).not.to.equal(null);
+    });
+  });
+
+  it.skipIf(isJsdom())('opens on touch when hover opening is enabled', async () => {
+    const onOpenChange = vi.fn();
     const { user } = render(
       <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
         <Menu2Submenu
-          trigger={
-            <Menu2SubmenuTrigger delay={200} onMouseEnter={onMouseEnter}>
-              More
-            </Menu2SubmenuTrigger>
-          }
+          onOpenChange={onOpenChange}
+          trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
         >
           <Menu2Item>Nested</Menu2Item>
         </Menu2Submenu>
@@ -881,17 +924,14 @@ describe('<Menu2 /> collapsed API', () => {
     );
 
     const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
-    await user.hover(submenuTrigger);
+    await waitForPopupFocus(submenuTrigger);
+    await user.pointer({ keys: '[TouchA]', target: submenuTrigger });
 
-    expect(screen.queryByRole('menuitem', { name: 'Nested' })).to.equal(null);
-    await waitFor(
-      () => {
-        expect(screen.queryByRole('menuitem', { name: 'Nested' })).not.to.equal(null);
-      },
-      { timeout: 2000 },
+    expect(await screen.findByRole('menuitem', { name: 'Nested' })).not.to.equal(null);
+    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(
+      true,
+      expect.objectContaining({ reason: 'trigger-press' }),
     );
-    // Base UI composes with the element's own handler rather than replacing it.
-    expect(onMouseEnter.callCount).to.be.greaterThan(0);
   });
 
   it.skipIf(isJsdom())('does not open on hover when openOnHover is false', async () => {
@@ -1336,9 +1376,13 @@ describe('<Menu2 /> collapsed API', () => {
   ['[Space]', '[Enter]'].forEach((key) => {
     it(`fires the submenu trigger once per ${key} press`, async () => {
       const onClick = spy();
+      const onOpenChange = vi.fn();
       const { user } = render(
         <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
-          <Menu2Submenu trigger={<Menu2SubmenuTrigger onClick={onClick}>More</Menu2SubmenuTrigger>}>
+          <Menu2Submenu
+            onOpenChange={onOpenChange}
+            trigger={<Menu2SubmenuTrigger onClick={onClick}>More</Menu2SubmenuTrigger>}
+          >
             <Menu2Item>Nested</Menu2Item>
           </Menu2Submenu>
         </Menu2>,
@@ -1351,6 +1395,10 @@ describe('<Menu2 /> collapsed API', () => {
 
       await user.keyboard(key);
       expect(onClick.callCount).to.equal(1);
+      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(
+        true,
+        expect.objectContaining({ reason: 'trigger-press' }),
+      );
     });
   });
 
