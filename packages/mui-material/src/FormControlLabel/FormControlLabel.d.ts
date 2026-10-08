@@ -53,10 +53,6 @@ export interface FormControlLabelProps
    */
   disableTypography?: boolean | undefined;
   /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef?: React.Ref<any> | undefined;
-  /**
    * A text or an element to be used in an enclosing label element.
    */
   label: React.ReactNode;
