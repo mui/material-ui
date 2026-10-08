@@ -85,8 +85,10 @@ async function main(argv) {
 
   /** @type {string | undefined} */
   let currentPhase;
-  const commitsItems = (
-    await fetchCommitsBetweenRefs({
+  /** @type {import('@mui/internal-code-infra/changelog').FetchedCommitDetails[]} */
+  let fetchedCommits;
+  try {
+    fetchedCommits = await fetchCommitsBetweenRefs({
       lastRelease: previousRelease,
       release,
       repo: 'material-ui',
@@ -102,12 +104,15 @@ async function main(argv) {
             process.stderr.write(`\r${phase} ${count}/${total}`);
           }
         : undefined,
-    }).finally(() => {
-      if (currentPhase !== undefined) {
-        process.stderr.write('\n');
-      }
-    })
-  ).filter((commit) => !isBot(commit.author.login) && !commit.message.startsWith('[website]'));
+    });
+  } finally {
+    if (currentPhase !== undefined) {
+      process.stderr.write('\n');
+    }
+  }
+  const commitsItems = fetchedCommits.filter(
+    (commit) => !isBot(commit.author.login) && !commit.message.startsWith('[website]'),
+  );
 
   const contributorHandles = getAllContributors(commitsItems);
 
