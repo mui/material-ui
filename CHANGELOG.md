@@ -16,7 +16,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - Export private focus-visible utilities (#49139) @siriwatknp
 - Fix `onClose` types for Menu, Snackbar, and SwipeableDrawer (#49351) @Janpot
 - Fix slot handling in Autocomplete chips, TextField `inputLabel`, and NativeSelect `input` (#49354) @Janpot
-- [autocomplete] Prevent crash when changing `groupMode` (#49150) @silviuaavram
+- [autocomplete] Prevent crash when changing `groupBy` (#49150) @silviuaavram
 - [autocomplete] Support values other than raw options (#49313) @silviuaavram
 - [avatargroup] Improve TypeScript performance when using `slotProps` (#49213) (#49215) @sai6855
 - [bottomnavigationaction] Document the `selected` prop (#49190) (#49196) @sai6855
