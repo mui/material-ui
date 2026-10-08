@@ -46,7 +46,7 @@ Submenus are [one of the most requested Menu features since 2018](https://github
 - **Nested menus** coordinate focus and keyboard navigation. Positioning follows the anchor and flips to avoid collisions.
 - **Checkbox and radio items**, labeled groups, and link items provide built-in roles and ARIA attributes.
 - **Disabled items stay focusable**, and content outside the menu remains available to screen readers.
-- **The trigger prop** handles anchor state and ARIA attributes. Opening with a pointer highlights no item; opening with the keyboard highlights the first item.
+- **The trigger prop** handles anchor state and ARIA attributes. Opening with a pointer highlights no item. Enter, Space, and ArrowDown highlight the first enabled item; ArrowUp highlights the last enabled item.
 
 Material UI supplies the styles and theming. Base UI is included in `@mui/material`; no extra installation is needed, and apps that don't import Menu v2 don't bundle it.
 

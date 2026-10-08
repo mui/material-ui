@@ -114,13 +114,36 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
       expect(screen.getByRole('menuitem', { name: 'Gamma' })).toHaveFocus();
     });
 
-    it('Menu2 highlights the first item when opened from the keyboard', async () => {
-      const { user } = render(<Menu2Harness />);
-      openTrigger().focus();
-      await user.keyboard('{ArrowDown}');
-      await waitForOpen();
-      // Matches the WAI-ARIA menu button pattern, and matches classic's intent.
-      await waitFor(() => expect(screen.getByRole('menuitem', { name: 'Alpha' })).toHaveFocus());
+    ['Enter', 'Space', 'ArrowDown', 'ArrowUp'].forEach((key) => {
+      it(`Menu2 skips disabled items on ${key} opening but keeps them focusable`, async () => {
+        const { user } = render(
+          <Menu2 trigger={<button type="button">Options</button>}>
+            <Menu2Item disabled>Unavailable first</Menu2Item>
+            <Menu2Item>Alpha</Menu2Item>
+            <Menu2Item>Gamma</Menu2Item>
+            <Menu2Item disabled>Unavailable last</Menu2Item>
+          </Menu2>,
+        );
+        openTrigger().focus();
+        await user.keyboard(`[${key}]`);
+        await waitForOpen();
+
+        const opensAtEnd = key === 'ArrowUp';
+        await waitFor(() =>
+          expect(
+            screen.getByRole('menuitem', { name: opensAtEnd ? 'Gamma' : 'Alpha' }),
+          ).toHaveFocus(),
+        );
+
+        await user.keyboard(opensAtEnd ? '{ArrowDown}' : '{ArrowUp}');
+        await waitFor(() =>
+          expect(
+            screen.getByRole('menuitem', {
+              name: opensAtEnd ? 'Unavailable last' : 'Unavailable first',
+            }),
+          ).toHaveFocus(),
+        );
+      });
     });
 
     it('Menu2 highlights nothing when opened by pointer', async () => {
@@ -143,10 +166,13 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
       expect(screen.getByRole('menuitem', { name: 'Gamma' })).toHaveFocus();
     });
 
-    it('the successor highlights the first item, not the checked one', async () => {
+    it('the successor highlights the first enabled item on ArrowDown, not the checked one', async () => {
       const { user } = render(
         <Menu2 trigger={<button type="button">Options</button>}>
           <Menu2RadioGroup defaultValue="200">
+            <Menu2RadioItem disabled value="50">
+              50%
+            </Menu2RadioItem>
             <Menu2RadioItem value="100">100%</Menu2RadioItem>
             <Menu2RadioItem value="200">200%</Menu2RadioItem>
           </Menu2RadioGroup>
@@ -157,7 +183,7 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
       await waitForOpen();
 
       // Radio items are the accessible way to express "current value", but Base UI
-      // still starts navigation at the first item: there is no public API to open
+      // still starts navigation at the first enabled item: there is no public API to open
       // with the checked item highlighted. This is the capability that
       // `variant="selectedMenu"` provided and that the successor cannot reproduce.
       await waitFor(() =>

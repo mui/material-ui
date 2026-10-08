@@ -231,15 +231,15 @@ Event handlers and top-level `aria-label`, `aria-labelledby`, and `aria-describe
 
 Most of these changes bring the menu in line with the [WAI-ARIA menu pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/), so they're intentional and won't be reverted.
 
-| Behavior               | Menu                                            | Menu v2                                                             |
-| :--------------------- | :---------------------------------------------- | :------------------------------------------------------------------ |
-| Opened with a pointer  | Highlights the selected item, or the first item | Highlights nothing, so Enter can't fire an unintended item          |
-| Opened with a keyboard | Highlights an item                              | Highlights the first item                                           |
-| Disabled items         | Skipped by the keyboard                         | Focusable, and announced as disabled                                |
-| Sibling content        | Hidden from screen readers with `aria-hidden`   | Stays in the accessibility tree                                     |
-| Backdrop               | Rendered by default                             | Internal modal layer; optional visual backdrop slot                 |
-| Tab while open         | Closes, and focus returns to the trigger        | Closes, and focus moves to the next element                         |
-| Submenus               | Not supported                                   | Open on mouse hover after 100 ms, touch tap, or keyboard activation |
+| Behavior               | Menu                                            | Menu v2                                                                     |
+| :--------------------- | :---------------------------------------------- | :-------------------------------------------------------------------------- |
+| Opened with a pointer  | Highlights the selected item, or the first item | Highlights nothing, so Enter can't fire an unintended item                  |
+| Opened with a keyboard | Highlights an item                              | Highlights the first enabled item; ArrowUp highlights the last enabled item |
+| Disabled items         | Skipped by the keyboard                         | Focusable, and announced as disabled                                        |
+| Sibling content        | Hidden from screen readers with `aria-hidden`   | Stays in the accessibility tree                                             |
+| Backdrop               | Rendered by default                             | Internal modal layer; optional visual backdrop slot                         |
+| Tab while open         | Closes, and focus returns to the trigger        | Closes, and focus moves to the next element                                 |
+| Submenus               | Not supported                                   | Open on mouse hover after 100 ms, touch tap, or keyboard activation         |
 
 At the root level, Escape closes the menu. The default placement stays below the trigger, aligned to the start.
 
@@ -267,7 +267,7 @@ This is a deliberate deviation from the APG, which says that focus moves to an i
 
 This is a lost feature rather than a changed one. It selected which item took focus when the menu opened and hid the focus ring at that first moment. The new foundation can't express either behavior.
 
-Radio items are the closest replacement, because they show the current value. They don't reproduce the behavior: a `MenuRadioGroup` with a checked second item still opens with the first item highlighted.
+Radio items are the closest replacement, because they show the current value. They don't control the initial highlight: Enter, Space, and ArrowDown highlight the first enabled item, even if another item is checked.
 
 ### Styling around triggers
 

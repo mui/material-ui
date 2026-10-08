@@ -140,18 +140,18 @@ Top-level event handlers target the popup, including navigation keys that Base 
 
 `Menu2Benchmark.test.tsx` compares the classic Menu and successor in a browser. These results describe the tested desktop configuration, not every device or assistive technology.
 
-| Dimension              | Classic `Menu`                      | Successor                                    |
-| :--------------------- | :---------------------------------- | :------------------------------------------- |
-| Open from trigger      | Caller connects the button          | Supplied trigger supports click and keyboard |
-| Initial keyboard focus | Depends on caller's open handling   | First item for the tested open action        |
-| Initial pointer focus  | Selected item, or first item        | Popup; no highlighted item                   |
-| Disabled items         | Skipped by keyboard navigation      | Focusable, but not activatable               |
-| Escape                 | Closes and restores trigger focus   | Same at the root; submenus close one level   |
-| Tab                    | Closes and returns focus to trigger | Closes and moves focus to the next element   |
-| Body scrolling         | Locked                              | Locked                                       |
-| Material backdrop      | Rendered                            | Opt-in                                       |
-| Sibling `aria-hidden`  | Applied                             | Not applied                                  |
-| Default placement      | Below trigger, aligned to start     | Same                                         |
+| Dimension              | Classic `Menu`                      | Successor                                          |
+| :--------------------- | :---------------------------------- | :------------------------------------------------- |
+| Open from trigger      | Caller connects the button          | Supplied trigger supports click and keyboard       |
+| Initial keyboard focus | Depends on caller's open handling   | First enabled item; last enabled item with ArrowUp |
+| Initial pointer focus  | Selected item, or first item        | Popup; no highlighted item                         |
+| Disabled items         | Skipped by keyboard navigation      | Focusable, but not activatable                     |
+| Escape                 | Closes and restores trigger focus   | Same at the root; submenus close one level         |
+| Tab                    | Closes and returns focus to trigger | Closes and moves focus to the next element         |
+| Body scrolling         | Locked                              | Locked                                             |
+| Material backdrop      | Rendered                            | Opt-in                                             |
+| Sibling `aria-hidden`  | Applied                             | Not applied                                        |
+| Default placement      | Below trigger, aligned to start     | Same                                               |
 
 Keep these differences and document them:
 
