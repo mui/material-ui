@@ -5,6 +5,7 @@ import {
   fetchCommitsBetweenRefs,
   findLatestTaggedVersion,
 } from '@mui/internal-code-infra/changelog';
+import { getRateLimitRetryTime } from '@mui/internal-code-infra/github';
 import yargs from 'yargs';
 
 /**
@@ -82,6 +83,8 @@ async function main(argv) {
     );
   }
 
+  /** @type {string | undefined} */
+  let progressPhase;
   const commitsItems = (
     await fetchCommitsBetweenRefs({
       lastRelease: previousRelease,
@@ -90,6 +93,19 @@ async function main(argv) {
       octokit: process.env.GITHUB_TOKEN
         ? new Octokit({ auth: process.env.GITHUB_TOKEN })
         : undefined,
+      onProgress: process.stderr.isTTY
+        ? ({ phase, count, total }) => {
+            if (progressPhase !== undefined && progressPhase !== phase) {
+              process.stderr.write('\n');
+            }
+            progressPhase = phase;
+            process.stderr.write(`\r${phase} ${count}/${total}`);
+          }
+        : undefined,
+    }).finally(() => {
+      if (progressPhase !== undefined) {
+        process.stderr.write('\n');
+      }
     })
   ).filter((commit) => !isBot(commit.author.login) && !commit.message.startsWith('[website]'));
 
@@ -165,6 +181,23 @@ yargs(process.argv.slice(2))
           type: 'string',
         }),
     handler: main,
+  })
+  .fail((message, error, cli) => {
+    if (!error) {
+      cli.showHelp();
+      console.error(`\n${message}`);
+    } else {
+      const retryAt = getRateLimitRetryTime(error);
+      if (retryAt) {
+        const minutes = Math.ceil((retryAt.getTime() - Date.now()) / 60_000);
+        console.error(
+          `GitHub API rate limit exceeded. Try again after ${retryAt.toLocaleTimeString()} (in about ${minutes} minute${minutes === 1 ? '' : 's'}).`,
+        );
+      } else {
+        console.error(error);
+      }
+    }
+    process.exit(1);
   })
   .help()
   .strict(true)
