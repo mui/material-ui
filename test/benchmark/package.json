@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "description": "Render performance benchmarks for MUI packages, run with the `benchmark` CLI from @mui/internal-benchmark",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typescript": "tsc -p tsconfig.json",
+    "benchmark": "benchmark"
+  },
+  "dependencies": {
+    "@emotion/react": "catalog:docs",
+    "@emotion/styled": "catalog:docs",
+    "@mui/material": "workspace:*",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@mui/internal-benchmark": "https://pkg.pr.new/mui/mui-public/@mui/internal-benchmark@5b3253d",
+    "@playwright/test": "1.63.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "vite": "^8.0.0"
+  }
+}

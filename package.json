@@ -53,6 +53,7 @@
     "test:coverage": "pnpm test:unit run --coverage",
     "vitest": "vitest",
     "test:coverage:html": "pnpm test:unit run --coverage --coverage.reporter html",
+    "test:benchmark": "pnpm -F ./test/benchmark benchmark",
     "test:e2e": "pnpm -F ./test/e2e start",
     "test:e2e:dev": "pnpm -F ./test/e2e dev",
     "test:e2e-website": "playwright test test/e2e-website --config test/e2e-website/playwright.config.ts",
