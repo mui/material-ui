@@ -86,7 +86,7 @@ describe('<TouchRipple />', () => {
     render,
     refInstanceof: Object,
     muiName: 'MuiTouchRipple',
-    skip: ['componentProp', 'refForwarding', 'themeStyleOverrides', 'themeVariants'],
+    skip: ['componentProp', 'refForwarding', 'themeVariants'],
   }));
 
   describe('prop: center', () => {
