@@ -105,6 +105,8 @@ describe('<Menu2Item />', () => {
       expect(onOpenChange.callCount).to.equal(1);
       expect(onOpenChange.args[0][0]).to.equal(false);
       expect(onOpenChange.args[0][1].reason).to.equal('item-press');
+      expect(onOpenChange.args[0][1].event).to.be.instanceOf(Event);
+      expect(onOpenChange.args[0][1].event).to.equal(onClick.args[0][0].nativeEvent);
     });
   });
 });

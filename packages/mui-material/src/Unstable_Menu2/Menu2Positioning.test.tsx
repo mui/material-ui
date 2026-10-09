@@ -64,7 +64,7 @@ describe.skipIf(isJsdom())('Menu2 animation origin', () => {
             flip ? anchorRect.top - positionerRect.bottom : positionerRect.top - anchorRect.bottom,
           ).to.be.closeTo(8, 1);
 
-          // Base UI 1.8 uses the aligned popup edge when there is no arrow or collision shift.
+          // Base UI uses the aligned popup edge when there is no arrow or collision shift.
           const expectedX = alignsLeft ? 0 : positionerRect.width;
           const expectedY = (flip ? anchorRect.top : anchorRect.bottom) - positionerRect.top;
           const expectOrigin = () => {

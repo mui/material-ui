@@ -17,10 +17,11 @@ interface Menu2A11yFixtureProps {
 }
 
 export function Menu2A11yFixture({ nested = false }: Menu2A11yFixtureProps) {
-  const container = React.useRef<HTMLDivElement>(null);
+  // An initially open portal must wait until its container is attached.
+  const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
 
   return (
-    <div ref={container} style={{ width: 700, height: 600 }}>
+    <div ref={setContainer} style={{ width: 700, height: 600 }}>
       <Menu2
         defaultOpen
         container={container}

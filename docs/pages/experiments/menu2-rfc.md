@@ -180,6 +180,7 @@ Other behavior and caveats:
 
 ### Known issues
 
+- **Portal-container refs on mount:** with `defaultOpen` or `keepMounted`, Base UI 1.9.0 can read a container ref before its element is attached. The portal then uses `document.body` instead of the requested container. Use a callback ref with state and pass the resolved element as `container`; an initial `null` makes the portal wait. The accessibility fixtures use this pattern. A general ref-resolution fix belongs upstream; no local runtime patch is included.
 - **Retained menus in dialogs:** a Menu2 with `keepMounted` inside a kept-mounted Material Dialog can remain under `aria-hidden="true"` when it uses the default portal container. The menu is visible, but can be hidden from assistive technology. Leave Menu2's `keepMounted` disabled in this configuration. Automatic integration is deferred. [Base UI issue #5577](https://github.com/mui/base-ui/issues/5577) describes a related portal limitation, but not this exact composition: Material's modal manager hides the retained Menu2 portal.
 
 ### Compatibility
@@ -197,6 +198,8 @@ Submenus, checkbox and radio items with indicators, labeled groups, a supplied t
 ### Where the experiment stands
 
 The experiment implements the API above, shared styles, theme registration, RTL integration, live item state, ref composition, and Grow transitions. Tests cover conformance and the main interaction paths, including controlled state, canceled changes, nested Escape, and menus without a trigger.
+
+Menu2 requires Base UI 1.9.0 or later. Version 1.9.0 includes the [menu tree fix](https://github.com/mui/base-ui/pull/5645) and the [transition state fix for retained menus](https://github.com/mui/base-ui/pull/5738). No local patch is needed. The regression tests remain in place.
 
 The playground compares classic Menu and Menu2, focus indicators, transition choices, and reduced motion. [Public demos](/material-ui/react-menu2/) and a [migration guide](/material-ui/migration/upgrade-to-menu-v2/) are now available. The API generator still skips the `Unstable_Menu2` modules; API registration and generation remain release work.
 
@@ -257,7 +260,6 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 1. **Review the proposal:** the benchmark and API experiment are ready for maintainer feedback.
 2. **Prepare an unstable release:** target a v9 minor release after review.
    - Verify the built package with TypeScript 4.9 for existing components and shared theme imports, and TypeScript 5.0 for Menu2 and its opt-in theme types.
-   - Require a Base UI release with two merged fixes: the [menu tree fix](https://github.com/mui/base-ui/pull/5645) and the [transition state fix for retained menus](https://github.com/mui/base-ui/pull/5738). Without the second fix, an open update can reach the popup before its starting state, which starts Grow twice in Firefox. Base UI 1.8.0 has neither fix. The local pnpm patch fixes both issues but does not reach applications that install `@mui/material`. Remove the patch after a release includes both fixes, and keep the regression tests.
    - Complete API registration, remove the Menu2 API-generator skip, then generate and review PropTypes and API docs.
    - Keep the public demos and migration guide aligned with the final API and behavior decisions.
    - Validate accessibility in open and nested menus. Record known inherited gaps rather than treating shared styles as proof of compliance.
@@ -393,10 +395,10 @@ This example follows the system preference. The playground also shows the theme 
 
 ### Bundle cost
 
-Measured at `baef34b637`, against the merge base `1d829b8c9d9`, with the same installed dependencies and build tools.
+These historical measurements compare `baef34b637` with the merge base `1d829b8c9d9`, using the same installed dependencies and build tools.
 Both revisions use production ESM builds, Vite 8.3.0, and gzip level 9.
 React, React DOM, `@emotion/react`, and `@emotion/styled` are external.
-The Menu2 measurements include Base UI 1.8.0 with the local patch.
+The Menu2 measurements include Base UI 1.8.0 with the former local patch. They do not cover Base UI 1.9.0.
 These are import bundles, not complete applications. Sizes use decimal kB.
 
 Each menu case includes Button. The classic case adds Menu and MenuItem; the Menu2 case adds Menu2 and Menu2Item.
@@ -419,7 +421,7 @@ Adding Menu2 alongside classic Menu costs **45.285 kB gzip** in this fixture.
 Adding submenu support to the Menu2 case costs a further **2.340 kB gzip**.
 Application results depend on the components and dependencies already in use.
 
-Run `pnpm -r --filter @mui/material... build`, then `pnpm exec node test/bundle-size/menu2.mjs` to repeat the current measurements.
+Run `pnpm -r --filter @mui/material... build`, then `pnpm exec node test/bundle-size/menu2.mjs` to repeat the comparison.
 The script also accepts a path to a baseline Material package build. Use the same installed dependencies for that build.
 It checks the retained module graph and fails if classic imports include Base UI or Floating UI code, or if the selected Material build is not used.
 Two runs of each revision produced identical results. Repeat the check on the release revision.

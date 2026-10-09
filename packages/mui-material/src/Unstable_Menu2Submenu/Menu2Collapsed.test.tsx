@@ -925,12 +925,14 @@ describe('<Menu2 /> collapsed API', () => {
     });
   });
 
-  it.skipIf(isJsdom())('opens on touch when hover opening is enabled', async () => {
+  it.skipIf(isJsdom())('toggles on repeated touch when hover opening is enabled', async () => {
     const onOpenChange = vi.fn();
+    const onOpenChangeComplete = vi.fn();
     const { user } = render(
       <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
         <Menu2Submenu
           onOpenChange={onOpenChange}
+          onOpenChangeComplete={onOpenChangeComplete}
           trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
         >
           <Menu2Item>Nested</Menu2Item>
@@ -939,14 +941,27 @@ describe('<Menu2 /> collapsed API', () => {
     );
 
     const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
+    const parentPopup = submenuTrigger.closest('[role="menu"]')!;
     await waitForPopupFocus(submenuTrigger);
     await user.pointer({ keys: '[TouchA]', target: submenuTrigger });
 
     expect(await screen.findByRole('menuitem', { name: 'Nested' })).not.to.equal(null);
+    await waitFor(() => expect(onOpenChangeComplete).toHaveBeenCalledWith(true));
     expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(
       true,
       expect.objectContaining({ reason: 'trigger-press' }),
     );
+    onOpenChange.mockClear();
+
+    await user.pointer({ keys: '[TouchA]', target: submenuTrigger });
+
+    await waitFor(() => expect(screen.queryByRole('menuitem', { name: 'Nested' })).to.equal(null));
+    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(
+      false,
+      expect.objectContaining({ reason: 'trigger-press' }),
+    );
+    expect(submenuTrigger).to.have.attribute('aria-expanded', 'false');
+    expect(screen.getByRole('menu')).to.equal(parentPopup);
   });
 
   it.skipIf(isJsdom())('does not open on hover when openOnHover is false', async () => {
