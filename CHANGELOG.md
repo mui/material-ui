@@ -1,5 +1,158 @@
 # [Versions](https://mui.com/material-ui/getting-started/versions/)
 
+## 9.5.0
+
+<!-- generated comparing v9.4.0..v9.x -->
+
+_Oct 9, 2026_
+
+A big thanks to the 28 contributors who made this release possible. Here are some highlights ✨:
+
+- ⚙️ Support [values other than raw options](https://mui.com/material-ui/react-autocomplete/#object-options-with-primitive-values) for Autocomplete via the `getOptionValue` prop.
+
+### `@mui/material@9.5.0`
+
+- Add missing override interfaces for `slotProps` (#49345) @sai6855
+- Export private focus-visible utilities (#49139) @siriwatknp
+- Fix `onClose` types for Menu, Snackbar, and SwipeableDrawer (#49351) @Janpot
+- Fix slot handling in Autocomplete chips, TextField `inputLabel`, and NativeSelect `input` (#49354) @Janpot
+- Fix theme `defaultProps` and missing exports (#49342) @Janpot
+- Remove unnecessary `Omit` types (#49338) @sai6855
+- [autocomplete] Lazily derive the initial input value (#49192) @OskarEichler
+- [autocomplete] Prevent crash when changing `groupBy` (#49150) @silviuaavram
+- [autocomplete] Stop filtering once the result limit is reached (#49312) @valkiara
+- [autocomplete] Support values other than raw options (#49313) @silviuaavram
+- [avatargroup] Improve TypeScript performance when using `slotProps` (#49213) (#49215) @sai6855
+- [bottomnavigationaction] Document the `selected` prop (#49190) (#49196) @sai6855
+- [breadcrumbs] Build separators in one pass (#49058) @OskarEichler
+- [button] Fix loading-position style leaking to non-loading buttons (#49182) @siriwatknp
+- [button] Simplify `ExtendButton` type (#49366) @sai6855
+- [buttonbase] Fix LazyRipple retaining event objects when ripples are disabled (#49000) @dizhurnikita
+- [checkbox] Set the native indeterminate state on the input (#49053) @lazerg
+- [dialogcontent] Render the `theme.focusVisible` ring on the scrollable content (#49319) @siriwatknp
+- [inputbase] Fix `slotProps.input` event handlers and ref being ignored (#49341) @Janpot
+- [link] Remove unwanted `Omit` type (#49339) @sai6855
+- [link] Revert to `color-mix` when underline color is not accepted (#49077) @silviuaavram
+- [modal] Prevent `aria-hidden` from being applied to non-portal modals (#49195) @ZeeshanTamboli
+- [select] Fix flaky opening mouseup timing (#49024) @michelengelen
+- [skeleton] Fix the background fallback with CSS theme variables (#49367) @aarongarciah
+- [slider] Fix `disableSwap` when a neighboring thumb is at 0 (#49246) @kwy404
+- [snackbar][speeddial] Remove unnecessary `Omit` in props definitions (#49272) @sai6855
+- [speeddial] Fix horizontal persistent tooltip placement (#49238) @Cunninger
+- [speeddial] Support action slot object refs (#49056) @OskarEichler
+- [table] Improve accessibility for the pagination buttons (#49112) @silviuaavram
+- [tablepaginationactions] Align common types with other components (#49348) @sai6855
+- [tabs] Derive mounted state from the indicator style instead of setting it in an effect (#49326) @ZeeshanTamboli
+- [tabs] Fix selected tab not scrolling into view when scroll buttons appear in auto mode (#48489) @starboyvarun
+- [tabs] Respect `scroll-padding` when scrolling the selected tab into view (#49039) @crispinc-omnea
+- [textfield] Add theme CSS variable for autofill `box-shadow` (#47472) @ludij
+- [theme] Fix `theme.alpha()` for raw colors with CSS variables (#49320) @siriwatknp
+- [theme] Fix theming outliers in Paper, BreadcrumbCollapsed, TablePagination, and Tooltip (#49356) @Janpot
+- [theme] Keep CSS variable fallbacks in `theme.alpha()` (#49368) @aarongarciah
+
+### `@mui/icons-material@9.5.0`
+
+- Center the WarningRounded icon within its `viewBox` (#49203) @itd-mb
+
+### `@mui/system@9.5.0`
+
+- Remove duplicated `filterProps` mapping in `getThemeValue` (#48640) @sai6855
+- Resolve InitColorSchemeScript `%s` placeholder at build time (#49113) @Janpot
+- Serialize InitColorSchemeScript configuration values (#49091) @Janpot
+
+### `@mui/utils@9.5.0`
+
+- Document the deprecated `slotState` parameter and add `resolveComponentProps` tests (#49240) @usamabhatti1998
+- Improve `mergeSlotProps` performance (#48002) @mj12albert
+
+### `@mui/types@9.5.0`
+
+- Remove invalid `number` type from supported `OverridableStringUnion` type arguments (#49307) @sai6855
+
+### `@mui/lab@9.0.0-beta.10`
+
+- [masonry] Fix styles with CSS theme variables (#49330) @aarongarciah
+- [timelineitem] Keep the spacer selector at one class of specificity (#49028) @Janpot
+
+### `@mui/codemod@9.5.0`
+
+- Upgrade required Node.js version in the `engines` field (#49070) @ZeeshanTamboli
+- [formcontrollabel] Stop migrating `ActionsComponent` and remove `inputRef` (#49358) @Janpot
+
+### Docs
+
+- Add the accessibility conformance report page (#49267) @michelengelen
+- Add v10 as the next version (#49293) @silviuaavram
+- Allow reopening cookie preferences from a URL hash (#49124) @brijeshb42
+- Clarify how to restore icon `data-testid` attributes in the v7 migration guide (#49109) @alexfauquette
+- Fix @mui/lab version in v7.3.6 changelog (#49145) @mateuseap
+- Fix Next.js font optimization docs to preserve typography letter-spacing (#48488) @starboyvarun
+- Fix the dead Popper.js documentation links (#49081) @lazerg
+- Fix the LLM generated docs paths (#49076) @silviuaavram
+- Improve accessibility for checkbox lists (#49111) @silviuaavram
+- Warn about untrusted values in the `sx` prop (#49212) @Janpot
+- [autocomplete] Add removal and navigation ARIA descriptions to Chip examples (#49086) @silviuaavram
+- [drawer] Add accessible names to close buttons (#49161) @sai6855
+- [material-icons] Add `frame` synonym for the Portrait icon (#49211) @Janpot
+- [material-icons] Improve icon search performance (#49206) @oliviertassinari
+- [numberfield] Document the `format` prop for units and currency (#49160) @Denimworld12
+- [snackbar] Demonstrate Escape handling inside a dialog (#49352) @minwookshin
+- [system] Avoid `any` when spreading the `sx` prop (#49083) @LeusMaximus
+
+### Core
+
+- [ci] Add Claude PR review via mui-public reusable workflow (#49037) @Janpot
+- [code-infra] Compare the nightly React runs with the stable Argos build (#49123) @LukasTy
+- [code-infra] Consume shared commands from code-infra orb (#49082) @brijeshb42
+- [code-infra] Convert @mui/lab to TypeScript (#49140) @Janpot
+- [code-infra] Convert @mui/material internal svg-icons to TypeScript (#49143) @Janpot
+- [code-infra] Convert remaining @mui/system .js+.d.ts pairs to TypeScript (part 2) (#48699) @Janpot
+- [code-infra] Fix `package.json` metadata (#49325) @Janpot
+- [code-infra] Include cherry-picks in the changelog (#49377) @brijeshb42
+- [code-infra] Migrate to Babel 8 (#49216) @brijeshb42
+- [code-infra] Pin the Argos baseline to v9.x (#49316) @Janpot
+- [code-infra] Pin the only-allow version in the preinstall hook (#49114) @Janpot
+- [code-infra] Run TypeScript 7 alongside the TS6 JS API (#49075) @brijeshb42
+- [code-infra] Ship documentation Markdown inside the @mui/material package (#49314) @Janpot
+- [code-infra] Show progress and rate limit retry time in `release:changelog` (#49379) @Janpot
+- [code-infra] Update #target-branch-reference for v9.x branch (#49191) @silviuaavram
+- [code-infra] Widen @babel/runtime range and stop emitting empty class fields (#49276) @brijeshb42
+- [core] Remove the leftover canary release script (#49163) @Janpot
+- [core] Replace @mui/internal-waterfall with es-toolkit (#49155) @Janpot
+- [core] Update release publish tags from `next` to `latest` (#49381) @mnajdova
+- [docs-infra] Generate the accessibility Known gaps table (#49355) @michelengelen
+- [docs-infra] Harden the OG image edge function (#49116) @Janpot
+- [docs-infra] Make core-docs agnostic of styled-components (#49138) @Janpot
+- [docs-infra] Migrate deploy-succeeded to event-triggered function (#49158) @brijeshb42
+- [docs-infra] Pin StackBlitz demo vite to v7 and plugin-react to v5 (#49151) @Janpot
+- [docs-infra] Rate-limit the documentation feedback endpoint (#49115) @Janpot
+- [docs-infra] Retire the docs service worker (#49202) @Janpot
+- [docs-infra] Update the deploy script to fetch from the v9.x branch (#49371) @mnajdova
+- [docs-infra] Validate docs feedback content before posting to Slack (#49088) @Janpot
+- [material] Convert colors to TypeScript (#49180) @Janpot
+- [material] Convert utils and six barrels to TypeScript (#49185) @Janpot
+- [test] Add a palette contrast contract for the accessibility reports (#49049) @michelengelen
+- [test] Add a visual regression fixture for the DocSearch modal (#49002) @LukasTy
+- [test] Automate WCAG 2.4.7 Focus Visible checks (#49268) @michelengelen
+- [test] Fix flaky DocSearch modal screenshots (#49122) @LukasTy
+- [test] Fix Vitest imports (#49184) @silviuaavram
+- [test] Load the regression fonts from npm instead of Google Fonts (#49357) @Janpot
+- [test] Run module augmentation tests against built declarations (#49142) @LukasTy
+- [test][accordion] Add axe tests and WCAG conformance reports (#48924) @michelengelen
+- [test][avatar] Add axe tests and WCAG conformance report (#48917) @michelengelen
+- [test][avatar] Move the accessibility fixture to the fixture tree (#49087) @michelengelen
+- [test][button] Add axe test coverage and WCAG conformance report (#48916) @michelengelen
+- [test][checkbox] Add axe tests and WCAG conformance report (#48918) @michelengelen
+- [test][docs-infra] Reduce timing dependencies in the cookie consent test (#49154) @LukasTy
+- [test][linearprogress] Add axe tests and WCAG conformance report (#48922) @michelengelen
+- [test][pagination] Add tests for zero boundary and sibling counts (#49118) @Janpot
+- [test][radio] Add axe tests and WCAG conformance reports (#48920) @michelengelen
+- [test][switch] Add axe tests and WCAG conformance report (#48919) @michelengelen
+- [test][textfield] Add axe tests and WCAG conformance report (#48923) @michelengelen
+- [test][togglebutton] Add axe tests and WCAG conformance reports (#48921) @michelengelen
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @brijeshb42, @crispinc-omnea, @Cunninger, @Denimworld12, @dizhurnikita, @itd-mb, @Janpot, @kwy404, @lazerg, @LeusMaximus, @ludij, @LukasTy, @mateuseap, @michelengelen, @minwookshin, @mj12albert, @mnajdova, @oliviertassinari, @OskarEichler, @sai6855, @silviuaavram, @siriwatknp, @starboyvarun, @usamabhatti1998, @valkiara, @ZeeshanTamboli
+
 ## 9.4.0
 
 <!-- generated comparing v9.3.1..master -->

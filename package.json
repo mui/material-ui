@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "9.4.0",
+  "version": "9.5.0",
   "private": true,
   "//": "#target-branch-reference: scripts.prettier",
   "scripts": {
