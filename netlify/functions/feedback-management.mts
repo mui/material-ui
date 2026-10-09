@@ -222,7 +222,7 @@ export const handler: Handler = async (event, context, callback) => {
       });
     } else {
       const awsHandler = await awsLambdaReceiver.start();
-      // @ts-ignore
+      // @ts-expect-error: The Slack receiver uses AWS Lambda event types rather than Netlify handler types.
       return awsHandler(event, context, callback);
     }
   } catch (error) {

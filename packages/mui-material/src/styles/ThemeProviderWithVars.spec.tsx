@@ -22,7 +22,7 @@ const customTheme = extendTheme({
           darkColor: '',
           defaultBg: '',
         },
-        // @ts-expect-error
+        // @ts-expect-error: Palette mode accepts light or dark, not an empty string.
         mode: '',
         getContrastText: () => '',
         tonalOffset: 1,

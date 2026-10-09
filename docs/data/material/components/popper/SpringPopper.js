@@ -28,6 +28,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
   );
 });
 
+// eslint-disable-next-line @typescript-eslint/no-deprecated -- Retain generated propTypes for React 18 compatibility.
 Fade.propTypes = {
   children: PropTypes.element,
   in: PropTypes.bool,

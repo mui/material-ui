@@ -116,7 +116,7 @@ export default withDocsInfra({
       const nextExternals = config.externals.at(-1);
 
       config.externals = [
-        // @ts-ignore
+        // @ts-expect-error: The webpack externals hook does not infer the callback parameter types.
         (ctx, callback) => {
           const { request } = ctx;
           const hasDependencyOnRepoPackages = [
@@ -135,7 +135,7 @@ export default withDocsInfra({
       ];
     }
 
-    // @ts-ignore
+    // @ts-expect-error: Next webpack configuration leaves module rules untyped.
     config.module.rules.forEach((rule) => {
       rule.resourceQuery = { not: [/raw/] };
     });
@@ -168,7 +168,6 @@ export default withDocsInfra({
         extensions: [
           '.mjs',
           '.tsx',
-          // @ts-ignore
           ...config.resolve.extensions.filter(
             (extension: string) => extension !== '.tsx' && extension !== '.mjs',
           ),
@@ -264,14 +263,13 @@ export default withDocsInfra({
   distDir: 'export',
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
-  // @ts-ignore
   exportPathMap: () => {
     const pages = findPages();
     const map = {};
 
-    // @ts-ignore
+    // @ts-expect-error: This recursive page-map helper has no parameter type annotation.
     function traverse(pages2) {
-      // @ts-ignore
+      // @ts-expect-error: The untyped page-map input does not infer the page callback parameter.
       pages2.forEach((page) => {
         // The experiments pages are only meant for experiments, they shouldn't leak to production.
         if (
@@ -284,7 +282,7 @@ export default withDocsInfra({
           // map api-docs to api
           // i: /api-docs/* > /api/* (old structure)
           // ii: /*/api-docs/* > /*/api/* (for new structure)
-          // @ts-ignore
+          // @ts-expect-error: The inferred empty map has no string index signature.
           map[page.pathname.replace(/^(\/[^/]+)?\/api-docs\/(.*)/, '$1/api/$2')] = {
             page: page.pathname,
           };

@@ -149,6 +149,7 @@ const VirtualListbox = React.forwardRef(
   },
 );
 
+// eslint-disable-next-line @typescript-eslint/no-deprecated -- Retain generated propTypes for React 18 compatibility.
 VirtualListbox.propTypes = {
   children: PropTypes.node,
   /**

@@ -394,7 +394,7 @@ export const shape = {
   borderRadius: 8,
 };
 
-// @ts-ignore
+// @ts-expect-error: Spreading the sliced default shadows loses the fixed 25-entry tuple length.
 const defaultShadows: Shadows = [
   'none',
   'var(--template-palette-baseShadow)',

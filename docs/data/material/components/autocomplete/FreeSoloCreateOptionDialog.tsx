@@ -27,7 +27,7 @@ export default function FreeSoloCreateOptionDialog() {
     year: '',
   });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     setValue({
       title: dialogValue.title,

@@ -12,7 +12,7 @@ function genericValueTest() {
     event: React.ChangeEvent<{ name?: string; value: string }>,
   ) {}
   <Select<number>
-    // @ts-expect-error
+    // @ts-expect-error: A numeric Select cannot use a change handler restricted to string values.
     onChange={handleChangeWithDifferentTypeFromSelect}
   />;
 
@@ -29,7 +29,7 @@ function genericValueTest() {
       function testNumber(value: number) {}
 
       testString(event.target.value);
-      // @ts-expect-error
+      // @ts-expect-error: This Select infers string values, which testNumber rejects.
       testNumber(event.target.value);
     }}
     value="1"

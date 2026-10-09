@@ -40,7 +40,7 @@ export default function MultipleSelectNative() {
           multiple
           native
           value={personName}
-          // @ts-ignore Typings are not considering `native`
+          // @ts-expect-error: Native selects emit ChangeEvent<HTMLSelectElement>, which Select onChange does not distinguish.
           onChange={handleChangeMultiple}
           label="Native"
           inputProps={{

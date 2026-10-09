@@ -4,7 +4,8 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 import { SxProps } from '@mui/system';
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment -- The peer is resolvable only after its build.
+// @ts-ignore: material-pigment-css links to its build directory, which is absent in a fresh checkout.
 import Grid from '@mui/material-pigment-css/Grid';
 import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
@@ -238,7 +239,7 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
   wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
 } as any;
 
-// @ts-ignore internal logic for nested grid
+// @ts-expect-error: The overridable component type does not declare the internal muiName marker.
 PigmentGrid.muiName = 'Grid';
 
 export default PigmentGrid;

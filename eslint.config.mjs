@@ -99,7 +99,6 @@ export default defineConfig(
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/no-shadow': 'off',
       'react/sort-prop-types': 'off', // 228
-      '@typescript-eslint/ban-ts-comment': 'off', // 117
       '@typescript-eslint/no-require-imports': 'off', // 133
       'react/jsx-filename-extension': 'off',
       // Modern browsers imply rel="noopener" for target="_blank", so no rel is required.
@@ -187,6 +186,16 @@ export default defineConfig(
           patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
         },
       ],
+    },
+  },
+  {
+    // TypeScript's project service omits generated JavaScript beside its TypeScript source.
+    files: ['docs/**/*.{js,jsx}'],
+    languageOptions: {
+      parserOptions: {
+        projectService: false,
+        project: ['./docs/tsconfig.eslint.json'],
+      },
     },
   },
   // Moved from docs/data/material/components/.eslintrc.js

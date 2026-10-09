@@ -64,6 +64,7 @@ const CustomList = React.forwardRef(function CustomList(props, ref) {
   );
 });
 
+// eslint-disable-next-line @typescript-eslint/no-deprecated -- Retain generated propTypes for React 18 compatibility.
 CustomList.propTypes = {
   'aria-label': PropTypes.string.isRequired,
   handleToggle: PropTypes.func.isRequired,

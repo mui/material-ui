@@ -87,7 +87,6 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
     slotProps = {},
     slots = {},
     TransitionProps,
-    // @ts-ignore internal logic
     ownerState: ownerStateProp, // prevent from spreading to DOM, it can come from the parent component e.g. Select.
     ...other
   } = props;

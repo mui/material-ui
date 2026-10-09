@@ -15,6 +15,7 @@ const createComponent = (defaultComponent) => {
     return <Root as={component} ref={ref} {...other} />;
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Keep React 18 prop validation in this compatibility benchmark.
   MyComponent.propTypes = {
     component: PropTypes.elementType,
   };
