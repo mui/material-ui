@@ -196,17 +196,14 @@ const useUtilityClasses = (ownerState: Menu2PopupOwnerState) => {
 };
 
 const Menu2PopupRoot = styled(Menu2RootBase, {
-  name: 'MuiMenu2',
   slot: 'root',
 })({});
 
 const Menu2PopupPositioner = styled(Menu2PositionerBase, {
-  name: 'MuiMenu2',
   slot: 'positioner',
 })({});
 
 const Menu2PopupPaper = styled(Menu2PaperBase, {
-  name: 'MuiMenu2',
   slot: 'paper',
 })({});
 
@@ -226,7 +223,6 @@ const Menu2PopupBackdrop = styled('div', {
 }) as any;
 
 const Menu2PopupList = styled(Menu2ListBase, {
-  name: 'MuiMenu2',
   slot: 'list',
 })({});
 

@@ -8,12 +8,11 @@ import type { HTMLProps } from '@base-ui/react/types';
 import useSlot from '../utils/useSlot';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
-import memoTheme from '../utils/memoTheme';
-import MenuItemBase from '../internal/MenuItemBase';
+import Menu2ItemBase from '../internal/Menu2ItemBase';
 import RadioButtonIcon from '../Radio/RadioButtonIcon';
 import Menu2IndicatorBase, { Menu2IndicatorSlotProps } from '../Unstable_Menu2/Menu2IndicatorBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
+import { menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import {
   getMenu2RootRender,
   isMenu2RootNativeButton,
@@ -129,13 +128,11 @@ export type Menu2RadioItemProps<
   component?: React.ElementType | undefined;
 };
 
-const Menu2RadioItemRoot = styled(MenuItemBase, {
+const Menu2RadioItemRoot = styled(Menu2ItemBase, {
   name: 'MuiMenu2RadioItem',
   slot: 'root',
   overridesResolver: menuItemOverridesResolver,
-})<{ ownerState: Menu2RadioItemOwnerState }>(
-  memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
-);
+})<{ ownerState: Menu2RadioItemOwnerState }>({});
 
 const Menu2RadioItemIndicator = styled(Menu2IndicatorBase, {
   name: 'MuiMenu2RadioItem',

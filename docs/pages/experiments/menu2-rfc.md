@@ -74,7 +74,7 @@ import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 ```
 
-The classic `Menu` keeps its API. Classic and successor items share `MenuItemBase` and the focus and hover styles. Menu2 popups and indicators also share styled bases. The bases have no theme key; each public component owns its slot overrides. Default checkbox and radio indicators use `ListItemIcon`, so icon-column selectors also apply to them. The experiment also adds a `defaultMuiPrevented` check to `useButtonBase`, so Base UI can own Enter and Space activation without ButtonBase activating the item again.
+The classic `Menu` keeps its API. Classic and successor items share `MenuItemBase` and the focus and hover styles. Menu2 popups and indicators also share styled bases. The Menu2 surface and item theme styles apply before the more specific component styles. Default checkbox and radio indicators use `ListItemIcon`, so icon-column selectors also apply to them. The experiment also adds a `defaultMuiPrevented` check to `useButtonBase`, so Base UI can own Enter and Space activation without ButtonBase activating the item again.
 
 ### Rules for Base UI-backed components (Menu is the first)
 
@@ -114,6 +114,8 @@ For the classic controlled pattern, omit `trigger` and use `open` and `anchor`. 
 #### Customization targets
 
 The root theme key is `MuiMenu2`; the submenu uses `MuiMenu2Submenu`. Popup components stay internal, but their class hooks are exported.
+
+Submenus inherit `MuiMenu2` styles for their matching slots. All item roots inherit `MuiMenu2Item` styles. Shared overrides and variants apply first, then the component-specific theme styles, with `sx` last. CSS specificity still applies. Callbacks use the rendered component's state. Utility classes remain component-specific, and `defaultProps` do not pass between theme keys.
 
 Use class selectors in `styleOverrides.root` for the highlighted state. Items retain the `dense`, `divider`, and `gutters` override keys from the classic MenuItem. The utility classes stay available; the classic MenuItem theme API is unchanged.
 

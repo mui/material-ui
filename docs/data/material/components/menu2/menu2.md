@@ -302,8 +302,6 @@ This import adds no runtime code. The separate module keeps Base UI types out o
 The theme has two keys for the menu surfaces. `MuiMenu2` has the slots `root`, `positioner`, `backdrop`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `positioner`, `paper`, and `list`. Each item part has its own key, such as `MuiMenu2Item`:
 
 ```js
-import { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
-
 const theme = createTheme({
   components: {
     MuiMenu2: {
@@ -316,7 +314,12 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           fontWeight: 500,
-          [`&.${menu2ItemClasses.highlighted}`]: { backgroundColor: 'lightblue' },
+          variants: [
+            {
+              props: ({ highlighted }) => highlighted,
+              style: { backgroundColor: 'lightblue' },
+            },
+          ],
         },
         dense: { minHeight: 28 },
       },
@@ -329,6 +332,10 @@ const theme = createTheme({
   },
 });
 ```
+
+`MuiMenu2.styleOverrides` also applies to the matching submenu slots. `MuiMenu2Item.styleOverrides` applies to all item roots, including link, checkbox, and radio items and submenu triggers. Their `dense`, `divider`, and `gutters` overrides also apply when the state matches. Theme variants are shared too; menu variants apply only to the `root` slot.
+
+The component-specific styles apply after these shared styles, with `sx` last. CSS specificity still applies. Callbacks receive the state of the rendered component, so the example highlights all item types. Utility classes remain specific to each component. `defaultProps` are not shared between theme keys.
 
 Use class selectors inside a slot override for states such as `highlighted`, `checked`, `disabled`, and `open`. Items also support the `dense`, `divider`, and `gutters` override keys, as classic MenuItem does. Scope global state classes to the component, for example `.MuiMenu2CheckboxItem-root.Mui-checked` and `.MuiMenu2SubmenuTrigger-root.Mui-open`. Slot callbacks and theme style callbacks receive the live item state.
 

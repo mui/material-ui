@@ -5,10 +5,8 @@ import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
-import memoTheme from '../utils/memoTheme';
-import MenuItemBase from '../internal/MenuItemBase';
+import Menu2ItemBase from '../internal/Menu2ItemBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import {
   getMenu2ItemOwnerState,
   Menu2ItemBaseOwnerState,
@@ -92,13 +90,8 @@ export type Menu2ItemProps<
   component?: React.ElementType | undefined;
 };
 
-const Menu2ItemRoot = styled(MenuItemBase, {
-  name: 'MuiMenu2Item',
-  slot: 'root',
-  overridesResolver: menuItemOverridesResolver,
-})<{ ownerState: Menu2ItemOwnerState }>(
-  memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
-);
+// Keep sx on the final styled component, after the shared theme styles.
+const Menu2ItemRoot = styled(Menu2ItemBase, { slot: 'root' })({});
 
 /**
  *

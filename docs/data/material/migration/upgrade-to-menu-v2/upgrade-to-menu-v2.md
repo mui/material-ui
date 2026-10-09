@@ -223,6 +223,8 @@ Component imports do not register these theme types. This type-only import adds 
 
 Menu v2 registers two theme keys for the menu surfaces. `MuiMenu2` has the slots `root`, `positioner`, `backdrop`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `positioner`, `paper`, and `list`. The item parts have their own keys, such as `MuiMenu2Item`.
 
+`MuiMenu2` styles also apply to the matching submenu slots. `MuiMenu2Item` styles apply to all item roots. Component-specific overrides apply after the shared styles. This includes theme variants, but not `defaultProps`. Utility classes remain component-specific.
+
 The CSS classes use the same component names as the theme keys:
 
 | Menu class       | Menu v2 class     | Submenu class            |

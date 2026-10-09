@@ -5,9 +5,9 @@ import Paper from '../Paper';
 import List from '../List';
 import { menu2Classes, menu2SubmenuClasses } from './menu2Classes';
 
-// A slot puts shared styles in the components CSS layer. No name is set:
-// the popup wrappers supply their own theme keys and override resolvers.
-export const Menu2RootBase = styled('div', { slot: 'root' })(
+// Common Menu2 theme styles precede the submenu-specific styles.
+// The final popup wrappers resolve sx after both theme layers.
+export const Menu2RootBase = styled('div', { name: 'MuiMenu2', slot: 'root' })(
   memoTheme(({ theme }) => ({
     // Keep Base UI's interaction backdrop and the popup in one stacking context.
     // This layer has no full-screen box, so non-modal menus remain click-through.
@@ -24,12 +24,12 @@ export const Menu2RootBase = styled('div', { slot: 'root' })(
   })),
 );
 
-export const Menu2PositionerBase = styled('div', { slot: 'positioner' })({
+export const Menu2PositionerBase = styled('div', { name: 'MuiMenu2', slot: 'positioner' })({
   // The root controls page stacking. Keep the popup above its sibling backdrops.
   zIndex: 1,
 });
 
-export const Menu2PaperBase = styled(Paper, { slot: 'paper' })({
+export const Menu2PaperBase = styled(Paper, { name: 'MuiMenu2', slot: 'paper' })({
   outline: 0,
   // Support momentum scrolling on iOS versions before 13.
   WebkitOverflowScrolling: 'touch',
@@ -41,7 +41,7 @@ export const Menu2PaperBase = styled(Paper, { slot: 'paper' })({
   transformOrigin: 'var(--transform-origin)',
 });
 
-export const Menu2ListBase = styled(List, { slot: 'list' })({
+export const Menu2ListBase = styled(List, { name: 'MuiMenu2', slot: 'list' })({
   // The items, not the list, show focus.
   outline: 0,
 });

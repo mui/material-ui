@@ -5,10 +5,9 @@ import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
-import memoTheme from '../utils/memoTheme';
-import MenuItemBase from '../internal/MenuItemBase';
+import Menu2ItemBase from '../internal/Menu2ItemBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
+import { menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2ItemOwnerState,
@@ -91,13 +90,11 @@ export type Menu2LinkItemProps<
   component?: React.ElementType | undefined;
 };
 
-const Menu2LinkItemRoot = styled(MenuItemBase, {
+const Menu2LinkItemRoot = styled(Menu2ItemBase, {
   name: 'MuiMenu2LinkItem',
   slot: 'root',
   overridesResolver: menuItemOverridesResolver,
-})<{ ownerState: Menu2LinkItemOwnerState }>(
-  memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
-);
+})<{ ownerState: Menu2LinkItemOwnerState }>({});
 
 /**
  *

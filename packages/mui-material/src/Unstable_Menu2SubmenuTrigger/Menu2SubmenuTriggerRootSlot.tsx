@@ -32,8 +32,9 @@ function menu2SubmenuTriggerStyles(theme: Theme, selector: string) {
   };
 }
 
-const Menu2SubmenuTriggerRoot = styled(MenuItemBase, {
-  name: 'MuiMenu2SubmenuTrigger',
+// Put the open tint before the common item overrides, as with the other defaults.
+const Menu2SubmenuTriggerBase = styled(MenuItemBase, {
+  name: 'MuiMenu2Item',
   slot: 'root',
   overridesResolver: menuItemOverridesResolver,
 })<{ ownerState: Menu2SubmenuTriggerOwnerState }>(
@@ -43,6 +44,12 @@ const Menu2SubmenuTriggerRoot = styled(MenuItemBase, {
     ...menu2SubmenuTriggerStyles(theme, '[data-mui-internal-retain-open-tint]'),
   })),
 );
+
+const Menu2SubmenuTriggerRoot = styled(Menu2SubmenuTriggerBase, {
+  name: 'MuiMenu2SubmenuTrigger',
+  slot: 'root',
+  overridesResolver: menuItemOverridesResolver,
+})({});
 
 const Menu2SubmenuTriggerIndicator = styled('span', {
   name: 'MuiMenu2SubmenuTrigger',

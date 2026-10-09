@@ -18,7 +18,7 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
   [false, true].forEach((modularCssLayers) => {
     describe(`modularCssLayers: ${modularCssLayers}`, () => {
       [false, true].forEach((useSx) => {
-        it(`keeps popup theme keys separate, limits variants to root, and applies slot sx: ${useSx}`, async () => {
+        it(`applies specific popup styles, limits variants to root, and applies slot sx: ${useSx}`, async () => {
           const theme = createTheme({
             modularCssLayers,
             components: {
