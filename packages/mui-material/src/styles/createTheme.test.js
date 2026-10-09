@@ -154,6 +154,7 @@ describe('createTheme', () => {
 
   it('should work with `palette` and a custom `colorSchemes.dark`', () => {
     const theme = createTheme({
+      cssVariables: false,
       palette: {
         background: {
           default: '#f5f5f5',
@@ -175,6 +176,11 @@ describe('createTheme', () => {
   });
 
   describe('CSS variables', () => {
+    it('should enable CSS theme variables by default', () => {
+      expect(createTheme().vars).not.to.equal(undefined);
+      expect(createTheme({ cssVariables: false }).vars).to.equal(undefined);
+    });
+
     it('should have default light with media selector if no `palette` and colorSchemes.dark is provided', () => {
       const theme = createTheme({
         cssVariables: true,
@@ -986,8 +992,8 @@ describe('createTheme', () => {
       expect(typeof theme.darken).to.equal('function');
     });
 
-    it('[default] should use system color manipulators', () => {
-      const theme = createTheme();
+    it('[without CSS variables] should use system color manipulators', () => {
+      const theme = createTheme({ cssVariables: false });
       expect(theme.alpha(theme.palette.primary.main, 0.5)).to.equal(
         systemAlpha(theme.palette.primary.main, 0.5),
       );
@@ -999,8 +1005,8 @@ describe('createTheme', () => {
       );
     });
 
-    it('[default] `alpha()` should work with coefficient as string', () => {
-      const theme = createTheme();
+    it('[without CSS variables] `alpha()` should work with coefficient as string', () => {
+      const theme = createTheme({ cssVariables: false });
       expect(theme.alpha(theme.palette.primary.main, '0.3+0.2')).to.equal(
         systemAlpha(theme.palette.primary.main, 0.5),
       );

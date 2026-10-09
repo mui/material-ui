@@ -127,12 +127,10 @@ You can extend the outer theme by providing a function:
 
 ## CSS theme variables
 
-To generate CSS variables from the theme, set `cssVariables` to `true` in the theme configuration and pass it to the `ThemeProvider`:
+By default, `createTheme()` generates CSS variables from the theme. Pass the theme to the `ThemeProvider`:
 
 ```jsx
-const theme = createTheme({
-  cssVariables: true,
-});
+const theme = createTheme();
 
 function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
@@ -154,6 +152,8 @@ All components under the `ThemeProvider` will use those CSS theme variables inst
 - color: #1976d2;
 + color: var(--mui-palette-primary-main);
 ```
+
+To create a theme without CSS theme variables, set `cssVariables` to `false`.
 
 To learn more about this feature, see the [CSS theme variables guide](/material-ui/customization/css-theme-variables/overview/).
 
