@@ -10,6 +10,14 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
+  movePropIntoSlotProps(j, {
+    root,
+    packageName: options.packageName,
+    componentName: 'SpeedDial',
+    propName: 'FabProps',
+    slotName: 'fab',
+  });
+
   movePropIntoSlots(j, {
     root,
     packageName: options.packageName,

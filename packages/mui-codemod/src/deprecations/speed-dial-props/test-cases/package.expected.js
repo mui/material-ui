@@ -37,3 +37,29 @@ import { SpeedDial as MySpeedDial } from '@org/ui/material';
   }} />;
 // should skip non MUI components
 <NonMuiSpeedDial TransitionComponent={CustomTransition} TransitionProps={CustomTransitionProps} />;
+
+<SpeedDial slotProps={{
+  fab: CustomFabProps
+}} />;
+<MySpeedDial slotProps={{
+  fab: CustomFabProps
+}} />;
+<SpeedDial
+  slotProps={{
+    transition: CustomTransitionProps,
+    fab: CustomFabProps
+  }} />;
+<SpeedDial
+  slotProps={{ fab: {
+    ...CustomFabProps,
+    ...{ size: 'small' }
+  } }} />;
+<NonMuiSpeedDial FabProps={CustomFabProps} />;
+<SpeedDial
+  slotProps={{ fab: ownerState => ({
+    ...CustomFabProps,
+
+    ...(ownerState => ({
+      color: ownerState.open ? 'secondary' : 'primary'
+    }))(ownerState)
+  }) }} />;

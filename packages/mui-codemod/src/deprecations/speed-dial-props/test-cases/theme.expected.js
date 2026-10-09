@@ -41,3 +41,43 @@ fn({
     },
   },
 });
+
+fn({
+  MuiSpeedDial: {
+    defaultProps: {
+      slotProps: {
+        fab: CustomFabProps
+      },
+    },
+  },
+});
+
+fn({
+  MuiSpeedDial: {
+    defaultProps: {
+      slotProps: {
+        transition: CustomTransitionProps,
+        fab: {
+          ...CustomFabProps,
+          ...{ size: 'small' }
+        },
+      }
+    },
+  },
+});
+
+fn({
+  MuiSpeedDial: {
+    defaultProps: {
+      slotProps: {
+        fab: ownerState => ({
+          ...CustomFabProps,
+
+          ...(ownerState => ({
+            color: ownerState.open ? 'secondary' : 'primary'
+          }))(ownerState)
+        }),
+      }
+    },
+  },
+});

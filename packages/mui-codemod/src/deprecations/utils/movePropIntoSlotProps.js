@@ -3,6 +3,24 @@ import findComponentDefaultProps from '../../util/findComponentDefaultProps';
 import assignObject from '../../util/assignObject';
 import appendAttribute from '../../util/appendAttribute';
 
+function mergeSlotProps(j, removedValue, existingSlot) {
+  if (
+    existingSlot.type === 'ArrowFunctionExpression' ||
+    existingSlot.type === 'FunctionExpression'
+  ) {
+    const ownerState = j.identifier('ownerState');
+    return j.arrowFunctionExpression(
+      [ownerState],
+      j.objectExpression([
+        j.spreadElement(removedValue),
+        j.spreadElement(j.callExpression(existingSlot, [ownerState])),
+      ]),
+    );
+  }
+
+  return j.objectExpression([j.spreadElement(removedValue), j.spreadElement(existingSlot)]);
+}
+
 function moveJsxPropIntoSlotProps(j, element, propName, slotName, slotPropName) {
   const propIndex = element.openingElement.attributes.findIndex(
     (attr) => attr.type === 'JSXAttribute' && attr.name.name === propName,
@@ -47,10 +65,7 @@ function moveJsxPropIntoSlotProps(j, element, propName, slotName, slotPropName) 
               ]);
             }
           } else {
-            slots.properties[slotIndex].value = j.objectExpression([
-              j.spreadElement(removedValue),
-              j.spreadElement(existingSlot),
-            ]);
+            slots.properties[slotIndex].value = mergeSlotProps(j, removedValue, existingSlot);
           }
         }
       }
@@ -110,10 +125,11 @@ function moveDefaultPropsPropIntoslotProps(
               ]);
             }
           } else {
-            property.value.properties[slotIndex].value = j.objectExpression([
-              j.spreadElement(removedValue),
-              j.spreadElement(existingSlot),
-            ]);
+            property.value.properties[slotIndex].value = mergeSlotProps(
+              j,
+              removedValue,
+              existingSlot,
+            );
           }
         }
       }
