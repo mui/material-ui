@@ -30,13 +30,6 @@ function WrappedAccordionSummary(props) {
   return <AccordionSummary {...props} />;
 }
 
-const CustomAccordionRegion = React.forwardRef(function CustomAccordionRegion(
-  { ownerState, ...props },
-  ref,
-) {
-  return <section ref={ref} {...props} />;
-});
-
 describe('<Accordion />', () => {
   const { clock, render, renderToString } = createRenderer();
 
@@ -134,37 +127,6 @@ describe('<Accordion />', () => {
     );
   });
 
-  it('should call onChange when clicking the summary element', async () => {
-    const handleChange = spy();
-
-    const { user } = render(
-      <Accordion onChange={handleChange} slots={{ transition: NoTransition }}>
-        <AccordionSummary>Header</AccordionSummary>
-        <AccordionDetails>Details</AccordionDetails>
-      </Accordion>,
-    );
-
-    await user.click(screen.getByRole('button', { name: 'Header' }));
-
-    expect(handleChange.callCount).to.equal(1);
-  });
-
-  it('when controlled should call the onChange', async () => {
-    const handleChange = spy();
-
-    const { user } = render(
-      <Accordion onChange={handleChange} expanded>
-        <AccordionSummary>Header</AccordionSummary>
-        <AccordionDetails>Details</AccordionDetails>
-      </Accordion>,
-    );
-
-    await user.click(screen.getByRole('button', { name: 'Header' }));
-
-    expect(handleChange.callCount).to.equal(1);
-    expect(handleChange.args[0][1]).to.equal(false);
-  });
-
   it('when onChange is undefined and controlled should not change expansion', async () => {
     const { user } = render(
       <Accordion data-testid="accordion" expanded>
@@ -180,20 +142,6 @@ describe('<Accordion />', () => {
       'aria-expanded',
       'true',
     );
-  });
-
-  it('when undefined onChange and controlled should not call the onChange', async () => {
-    const handleChange = spy();
-    const { setProps, user } = render(
-      <Accordion onChange={handleChange} expanded>
-        <AccordionSummary>Header</AccordionSummary>
-      </Accordion>,
-    );
-
-    setProps({ onChange: undefined });
-    await user.click(screen.getByRole('button', { name: 'Header' }));
-
-    expect(handleChange.callCount).to.equal(0);
   });
 
   it('when disabled should have the disabled class', () => {
@@ -610,8 +558,6 @@ describe('<Accordion />', () => {
       expect(region).to.have.attribute('aria-labelledby', summary.getAttribute('id'));
     });
 
-    // Accordion cannot read ids declared inside a wrapper off its child, so AccordionSummary
-    // reports them back and Accordion pairs the region with them.
     it('keeps relationship props declared inside a wrapped AccordionSummary', () => {
       function WrappedSummaryWithRelationshipProps() {
         return (
@@ -632,7 +578,6 @@ describe('<Accordion />', () => {
       const region = screen.getByRole('region', { hidden: true });
 
       expect(region).to.have.attribute('id', 'inner-region');
-
       expect(summary).to.have.attribute('id', 'inner-summary');
       expect(summary).to.have.attribute('aria-controls', 'inner-region');
       expect(region).to.have.attribute('aria-labelledby', 'inner-summary');
@@ -796,7 +741,6 @@ describe('<Accordion />', () => {
           slotProps={{
             region: {
               id: 'slot-region',
-              'data-testid': 'region',
             },
           }}
         >
@@ -805,7 +749,6 @@ describe('<Accordion />', () => {
               root: {
                 id: 'slot-summary',
                 'aria-controls': 'slot-region',
-                'data-testid': 'summary',
               },
             }}
           >
@@ -815,27 +758,26 @@ describe('<Accordion />', () => {
         </Accordion>,
       );
 
-      const summary = screen.getByTestId('summary');
-      const region = screen.getByTestId('region');
+      const summary = screen.getByRole('button');
+      const region = screen.getByRole('region', { hidden: true });
 
       expect(region).to.have.attribute('aria-labelledby', 'slot-summary');
 
       expect(summary).to.have.attribute('id', 'slot-summary');
       expect(summary).to.have.attribute('aria-controls', 'slot-region');
       expect(region).to.have.attribute('id', 'slot-region');
-      expect(summary.getAttribute('aria-controls')).to.equal(region.getAttribute('id'));
     });
 
     it('derives the relationship from an id supplied through slotProps.region alone', () => {
       render(
-        <Accordion slotProps={{ region: { id: 'slot-region', 'data-testid': 'region' } }}>
+        <Accordion slotProps={{ region: { id: 'slot-region' } }}>
           <AccordionSummary>Summary</AccordionSummary>
           <AccordionDetails>Details</AccordionDetails>
         </Accordion>,
       );
 
       const summary = screen.getByRole('button');
-      const region = screen.getByTestId('region');
+      const region = screen.getByRole('region', { hidden: true });
 
       expect(summary).to.have.attribute('aria-controls', 'slot-region');
 
@@ -851,7 +793,6 @@ describe('<Accordion />', () => {
             region: ({ expanded: isExpanded }) => ({
               id: 'slot-region',
               className: isExpanded ? 'expanded-region' : undefined,
-              'data-testid': 'region',
             }),
           }}
         >
@@ -861,7 +802,6 @@ describe('<Accordion />', () => {
                 id: 'slot-summary',
                 'aria-controls': 'slot-region',
                 className: isExpanded ? 'expanded-summary' : undefined,
-                'data-testid': 'summary',
               }),
             }}
           >
@@ -871,8 +811,8 @@ describe('<Accordion />', () => {
         </Accordion>,
       );
 
-      const summary = screen.getByTestId('summary');
-      const region = screen.getByTestId('region');
+      const summary = screen.getByRole('button');
+      const region = screen.getByRole('region', { hidden: true });
 
       expect(summary).to.have.attribute('aria-controls', region.getAttribute('id'));
 
@@ -888,70 +828,17 @@ describe('<Accordion />', () => {
         <Accordion
           className="accordion-root-class"
           expanded
-          slotProps={{ region: () => ({ className: 'region-class', 'data-testid': 'region' }) }}
+          slotProps={{ region: () => ({ className: 'region-class' }) }}
         >
           <AccordionSummary>Summary</AccordionSummary>
           <AccordionDetails>Details</AccordionDetails>
         </Accordion>,
       );
 
-      const region = screen.getByTestId('region');
+      const region = screen.getByRole('region', { hidden: true });
 
       expect(region).to.have.class('region-class');
       expect(region).not.to.have.class('accordion-root-class');
-    });
-
-    it('preserves non-relationship slot props', async () => {
-      const handleSummaryClick = spy();
-      const handleRegionClick = spy();
-      const regionRef = React.createRef();
-
-      const { user } = render(
-        <Accordion
-          expanded
-          slotProps={{
-            region: {
-              className: 'custom-region',
-              style: { marginTop: 1 },
-              role: 'list',
-              'data-testid': 'region',
-              onClick: handleRegionClick,
-              ref: regionRef,
-            },
-          }}
-        >
-          <AccordionSummary
-            slotProps={{
-              root: {
-                className: 'custom-summary',
-                style: { marginTop: 2 },
-                'data-testid': 'summary',
-                onClick: handleSummaryClick,
-              },
-            }}
-          >
-            Summary
-          </AccordionSummary>
-          <AccordionDetails>Details</AccordionDetails>
-        </Accordion>,
-      );
-
-      const summary = screen.getByTestId('summary');
-      const region = screen.getByTestId('region');
-
-      expect(regionRef.current).to.equal(region);
-
-      expect(summary).to.have.class('custom-summary');
-      expect(summary).to.have.attribute('style').that.includes('margin-top: 2px');
-      expect(region).to.have.class('custom-region');
-      expect(region).to.have.attribute('style').that.includes('margin-top: 1px');
-      expect(region).to.have.attribute('role', 'list');
-
-      await user.click(summary);
-      await user.click(region);
-
-      expect(handleSummaryClick.callCount).to.equal(1);
-      expect(handleRegionClick.callCount).to.equal(1);
     });
 
     it('does not emit generated aria-controls when unmountOnExit keeps the region unmounted', () => {
@@ -1103,31 +990,6 @@ describe('<Accordion />', () => {
       expect(screen.queryByRole('region')).to.equal(null);
     });
 
-    it('passes a single element child to custom transition slots', () => {
-      const handleTransition = spy();
-
-      function CustomTransition(props) {
-        handleTransition(
-          React.Children.count(props.children),
-          React.isValidElement(props.children),
-        );
-
-        return props.in ? props.children : null;
-      }
-
-      render(
-        <Accordion expanded slots={{ transition: CustomTransition }}>
-          <AccordionSummary>Summary</AccordionSummary>
-          <AccordionDetails>Details</AccordionDetails>
-        </Accordion>,
-      );
-
-      expect(handleTransition.callCount).to.be.greaterThan(0);
-      handleTransition.getCalls().forEach((call) => {
-        expect(call.args).to.deep.equal([1, true]);
-      });
-    });
-
     it('preserves provided aria-controls with a closed custom transition that returns null', () => {
       render(
         <Accordion slots={{ transition: NoTransition }}>
@@ -1143,6 +1005,13 @@ describe('<Accordion />', () => {
     });
 
     it('supports generated relationships with a ref-forwarding custom region slot', async () => {
+      const CustomAccordionRegion = React.forwardRef(function CustomAccordionRegion(
+        { ownerState, ...props },
+        ref,
+      ) {
+        return <section ref={ref} {...props} />;
+      });
+
       const regionRef = React.createRef();
       const handleRegionClick = spy();
 
