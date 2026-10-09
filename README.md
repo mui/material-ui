@@ -79,8 +79,6 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   &nbsp;
   <a href="https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Views4You</a>
   &nbsp;
-  <a href="https://daosmm.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">DaoSMM</a>
-  &nbsp;
   <a href="https://instant-famous.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Instant Famous</a>
   &nbsp;
 </p>
