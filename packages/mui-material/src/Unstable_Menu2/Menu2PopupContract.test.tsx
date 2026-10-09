@@ -5,6 +5,20 @@ import Menu2 from './Menu2';
 import Menu2Item from '../Unstable_Menu2Item';
 import Menu2Submenu, { Menu2SubmenuProps } from '../Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '../Unstable_Menu2SubmenuTrigger';
+import Paper, { PaperProps } from '../Paper';
+
+const CustomPositioner = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & { ownerState?: object }
+>(function CustomPositioner({ ownerState, ...props }, ref) {
+  return <div {...props} ref={ref} />;
+});
+
+const CustomPaper = React.forwardRef<HTMLDivElement, PaperProps & { ownerState?: object }>(
+  function CustomPaper({ ownerState, ...props }, ref) {
+    return <Paper {...props} ref={ref} />;
+  },
+);
 
 describe.skipIf(isJsdom())('Menu2 popup contract', () => {
   const { render } = createRenderer();
@@ -67,28 +81,58 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
         return item.closest<HTMLDivElement>('[role="menu"]')!;
       }
 
-      it('applies positioner slot props without moving them onto the root', async () => {
-        const { user } = render(
-          <TestMenu
-            align="end"
-            slots={{ positioner: 'div' }}
-            slotProps={{
-              root: { 'data-testid': 'root' },
-              positioner: { align: 'start', 'data-testid': 'positioner' },
-            }}
-          />,
-        );
-        const popup = await openMenu(user);
-        const root = screen.getByTestId('root');
-        const positioner = screen.getByTestId('positioner');
-        expect(popup.parentElement).to.equal(positioner);
-        expect(positioner.parentElement).to.equal(root);
-        expect(positioner).to.have.attribute('data-align', 'start');
-        expect(positioner.style.position).to.equal('absolute');
-        expect(positioner.style.transform).not.to.equal('');
-        expect(positioner).not.to.have.attribute('ownerState');
-        expect(root).not.to.have.attribute('data-align');
-        expect(root).not.to.have.attribute('data-side');
+      ['host', 'custom'].forEach((slot) => {
+        it(`forwards placement, slot props, and refs to ${slot} paper and positioner slots`, async () => {
+          const paperRef = React.createRef<HTMLDivElement>();
+          const positionerRef = React.createRef<HTMLDivElement>();
+          const { user } = render(
+            <TestMenu
+              align="end"
+              slots={{
+                positioner: slot === 'host' ? 'div' : CustomPositioner,
+                paper: slot === 'host' ? 'div' : CustomPaper,
+              }}
+              slotProps={{
+                root: { 'data-testid': 'root' },
+                positioner: {
+                  align: 'start',
+                  'data-testid': 'positioner',
+                  'data-custom': 'positioner',
+                  className: 'custom-positioner',
+                  ref: positionerRef,
+                },
+                paper: { 'data-custom': 'paper', className: 'custom-paper', ref: paperRef },
+                list: { 'data-testid': 'list' },
+              }}
+            />,
+          );
+          const popup = await openMenu(user);
+          const root = screen.getByTestId('root');
+          const positioner = screen.getByTestId('positioner');
+          expect(popup.parentElement).to.equal(positioner);
+          expect(positioner.parentElement).to.equal(root);
+          expect(paperRef.current).to.equal(popup);
+          expect(positionerRef.current).to.equal(positioner);
+          expect(popup).to.have.class('custom-paper');
+          expect(positioner).to.have.class('custom-positioner');
+          expect(popup).to.have.attribute('data-custom', 'paper');
+          expect(positioner).to.have.attribute('data-custom', 'positioner');
+          expect(positioner).to.have.attribute('data-side');
+          expect(popup.getAttribute('data-side')).to.equal(positioner.getAttribute('data-side'));
+          [popup, positioner].forEach((element) => {
+            expect(element).to.have.attribute('data-align', 'start');
+            expect(element).to.have.attribute('data-open', '');
+            expect(element).not.to.have.attribute('data-closed');
+            expect(element).not.to.have.attribute('ownerState');
+          });
+          expect(positioner.style.position).to.equal('absolute');
+          expect(positioner.style.transform).not.to.equal('');
+          [root, screen.getByTestId('list')].forEach((element) => {
+            ['data-align', 'data-side', 'data-open', 'data-closed'].forEach((attribute) => {
+              expect(element).not.to.have.attribute(attribute);
+            });
+          });
+        });
       });
 
       it('hides a retained root only after its popup exit transition', async () => {
@@ -103,7 +147,11 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
               keepMounted
               transitionDuration={{ enter: 0, exit: 200 }}
               sx={{ position: 'fixed', inset: 0, padding: 1, backgroundColor: 'rgb(1, 2, 3)' }}
-              slotProps={{ root: { 'data-testid': 'retained-root' } }}
+              slotProps={{
+                root: { 'data-testid': 'retained-root' },
+                paper: { 'data-testid': 'retained-paper' },
+                list: { 'data-testid': 'retained-list' },
+              }}
             >
               <Menu2Item closeOnClick={false} onClick={() => setOpen(false)}>
                 Alpha
@@ -117,8 +165,23 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
           await screen.findByRole('menuitem', { name: 'More' });
         }
         const root = await screen.findByTestId('retained-root');
+        const popup = screen.getByTestId('retained-paper');
+        const positioner = popup.parentElement!;
+        const list = screen.getByTestId('retained-list');
+        function expectOpenState(open: boolean) {
+          [popup, positioner].forEach((element) => {
+            expect(element).to.have.attribute(open ? 'data-open' : 'data-closed', '');
+            expect(element).not.to.have.attribute(open ? 'data-closed' : 'data-open');
+          });
+          [root, list].forEach((element) => {
+            ['data-open', 'data-closed', 'data-starting-style', 'data-ending-style'].forEach(
+              (attribute) => expect(element).not.to.have.attribute(attribute),
+            );
+          });
+        }
         const getOutsideTarget = () =>
           document.elementFromPoint(window.innerWidth - 8, window.innerHeight - 8);
+        expectOpenState(false);
         expect(getComputedStyle(root).display).to.equal('none');
         expect(root).not.toBeVisible();
         expect(getOutsideTarget()).not.to.equal(root);
@@ -129,25 +192,45 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
             : screen.getByRole('button', { name: 'Options' }),
         );
         const item = await screen.findByRole('menuitem', { name: 'Alpha' });
-        const popup = item.closest('[role="menu"]')!;
+        expect(item.closest('[role="menu"]')).to.equal(popup);
         await waitFor(() => expect(completed).toHaveBeenCalledWith(true));
+        expectOpenState(true);
+        expect(popup.getAttribute('data-side')).to.equal(positioner.getAttribute('data-side'));
+        expect(popup.getAttribute('data-align')).to.equal(positioner.getAttribute('data-align'));
+        expect(popup).not.to.have.attribute('data-starting-style');
         expect(root).toBeVisible();
         expect(getComputedStyle(root).backgroundColor).to.equal('rgb(1, 2, 3)');
         expect(getOutsideTarget()).to.equal(root);
         completed.mockClear();
 
         await user.click(item);
+        expectOpenState(false);
         expect(popup).to.have.attribute('data-ending-style');
+        expect(positioner).not.to.have.attribute('data-ending-style');
         expect(root).toBeVisible();
         expect(getOutsideTarget()).to.equal(root);
         expect(completed).not.toHaveBeenCalled();
 
         await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(false));
+        expectOpenState(false);
+        expect(popup).not.to.have.attribute('data-ending-style');
         expect(root.isConnected).to.equal(true);
         expect(popup.isConnected).to.equal(true);
         expect(getComputedStyle(root).display).to.equal('none');
         expect(root).not.toBeVisible();
         expect(getOutsideTarget()).not.to.equal(root);
+
+        completed.mockClear();
+        await user.click(
+          submenu
+            ? screen.getByRole('menuitem', { name: 'More' })
+            : screen.getByRole('button', { name: 'Options' }),
+        );
+        await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(true));
+        expect(screen.getByTestId('retained-paper')).to.equal(popup);
+        expectOpenState(true);
+        expect(popup).not.to.have.attribute('data-ending-style');
+        expect(root).toBeVisible();
       });
 
       it('preserves placement inside a positioned portal container', async () => {

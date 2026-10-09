@@ -119,6 +119,8 @@ Submenus inherit `MuiMenu2` styles for their matching slots. All item roots inhe
 
 Use class selectors in `styleOverrides.root` for the highlighted state. Items retain the `dense`, `divider`, and `gutters` override keys from the classic MenuItem. The utility classes stay available; the classic MenuItem theme API is unchanged.
 
+The [documented state data attributes](/material-ui/react-menu2/#state-data-attributes) are also public styling hooks. Keep the Base UI names, including `data-popup-open` on triggers and `data-open` on popup surfaces. Undocumented attributes and internal `data-mui-*` markers are not part of this contract.
+
 Checkbox and radio items own their `indicator` slot. Set `icon` and `checkedIcon` on an item or in its theme `defaultProps` to change the icons. Use `slots.indicator`, `slotProps.indicator`, and the item's `styleOverrides.indicator` to customize the container. If `slotProps.indicator.children` is not `null` or `undefined`, it takes precedence over the icon props. Indicator class objects, utility helpers, and class types are exported from the owning item's subpath; the class names stay unchanged. Custom indicators receive these classes and the live checked, disabled, and highlighted state. They must forward props and their ref. The default indicators have no separate exports or theme keys.
 
 | Target                        | Top-level props                                                                  | Slot         |

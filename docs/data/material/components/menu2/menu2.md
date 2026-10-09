@@ -114,6 +114,8 @@ Keep the trigger mounted and enabled until the dialog closes. This workaround se
 
 Nest a `MenuSubmenu` in the item list, and pass a `MenuSubmenuTrigger` to its `trigger` prop. The children of the submenu are its items, the same shape as the root menu one level down.
 
+Use `MenuSubmenuTrigger`, including inside a wrapper. Regular, link, checkbox, and radio items do not open a submenu.
+
 {{"demo": "SubmenuMenu2.js"}}
 
 By default, a submenu opens when the mouse stays over its trigger for 100 ms. A mouse click does not bypass this delay. Touch taps, Enter, Space, and ArrowRight also open it. In right-to-left text, use ArrowLeft instead of ArrowRight.
@@ -339,6 +341,35 @@ The component-specific styles apply after these shared styles, with `sx` last. C
 
 Use class selectors inside a slot override for states such as `highlighted`, `checked`, `disabled`, and `open`. Items also support the `dense`, `divider`, and `gutters` override keys, as classic MenuItem does. Scope global state classes to the component, for example `.MuiMenu2CheckboxItem-root.Mui-checked` and `.MuiMenu2SubmenuTrigger-root.Mui-open`. Slot callbacks and theme style callbacks receive the live item state.
 
+### State data attributes
+
+Menu v2 also provides these `data-*` attributes for styling. They keep the Base UI names and work with CSS selectors and Tailwind CSS:
+
+| Element                                                     | Attributes                                                                                        |
+| :---------------------------------------------------------- | :------------------------------------------------------------------------------------------------ |
+| Root menu trigger                                           | `data-popup-open`, `data-pressed`, `data-disabled`                                                |
+| `MenuItem` root                                             | `data-highlighted`, `data-disabled`                                                               |
+| `MenuLinkItem` root                                         | `data-highlighted`                                                                                |
+| `MenuCheckboxItem` and `MenuRadioItem` roots and indicators | `data-highlighted`, `data-disabled`, `data-checked`, `data-unchecked`                             |
+| `MenuSubmenuTrigger` root                                   | `data-popup-open`, `data-highlighted`, `data-disabled`                                            |
+| `paper` slot                                                | `data-open`, `data-closed`, `data-side`, `data-align`, `data-starting-style`, `data-ending-style` |
+| `positioner` slot                                           | `data-open`, `data-closed`, `data-side`, `data-align`                                             |
+| Optional `backdrop` slot                                    | `data-open`, `data-closed`, `data-starting-style`, `data-ending-style`                            |
+
+State attributes have an empty value when active and are absent otherwise. Use `[data-checked]`, not `[data-checked="true"]`. Checked items and their indicators have either `data-checked` or `data-unchecked`. The placement attributes `data-side` and `data-align` contain the resolved values after collision handling.
+
+Triggers use `data-popup-open`, not `data-open`. On the root trigger, `data-pressed` also follows the menu's open state, and `data-disabled` follows the Menu's `disabled` prop. `data-highlighted` follows Base UI navigation, including pointer movement and focus on disabled items. It is not equivalent to keyboard focus-visible; use `.Mui-focusVisible` for that state.
+
+These attributes belong to the elements in the table, not every ancestor. The menu's `root` and `list` slots and the submenu's arrow indicator have no automatic state attributes. Custom slots must forward the supplied props and ref. Other generated attributes, including internal `data-mui-*` markers, are not part of this styling contract.
+
+For example, after the [Tailwind CSS v4 setup](/material-ui/integrations/tailwindcss/tailwindcss-v4/), style a checked item with a presence variant:
+
+```jsx
+<MenuCheckboxItem className="data-[checked]:font-semibold">
+  Show toolbar
+</MenuCheckboxItem>
+```
+
 ### Checkbox and radio indicators
 
 Use `slotProps.indicator` to customize an indicator, or `slots.indicator` to replace it. Slot callbacks receive the live checked, disabled, and highlighted state. A custom indicator must forward the supplied props and ref to its element, including the `className` with the state classes.
@@ -373,7 +404,7 @@ Grow, Fade, and Zoom are tested. A custom transition must forward its child's pr
 
 Use `onOpenChangeComplete(open)` for completion, not the transition's `onEntered` or `onExited`. Base UI controls mounting and can unmount the transition before its completion timer fires. The adapter controls `in`, `appear`, `mountOnEnter`, and `unmountOnExit`.
 
-Set `transitionDuration={0}` to remove the animation. To animate with CSS, set `slots.transition` to `null`. The menu surface has the `data-starting-style` attribute while it enters and the `data-ending-style` attribute while it leaves:
+Set `transitionDuration={0}` to remove the animation. To animate with CSS, set `slots.transition` to `null`. The menu surface has `data-starting-style` for its initial entering style, then removes it to start the enter transition. It has `data-ending-style` while it leaves:
 
 ```jsx
 <Menu
@@ -391,6 +422,8 @@ Set `transitionDuration={0}` to remove the animation. To animate with CSS, set `
 ```
 
 `Grow` and the other Material UI transitions follow [`theme.motion.reducedMotion`](/material-ui/customization/transitions/#reduced-motion). CSS animations need their own reduced-motion handling.
+
+`data-closed` marks the logical closed state, not the end of the exit transition. With `keepMounted`, the paper and positioner keep `data-closed` while hidden after the transition. Without it, they unmount.
 
 ### Backdrop
 
