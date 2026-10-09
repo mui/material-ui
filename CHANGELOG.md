@@ -4,7 +4,7 @@
 
 <!-- generated comparing v9.4.0..v9.x -->
 
-_Oct 8, 2026_
+_Oct 9, 2026_
 
 A big thanks to the 28 contributors who made this release possible. Here are some highlights ✨:
 
@@ -119,6 +119,7 @@ A big thanks to the 28 contributors who made this release possible. Here are som
 - [code-infra] Widen @babel/runtime range and stop emitting empty class fields (#49276) @brijeshb42
 - [core] Remove the leftover canary release script (#49163) @Janpot
 - [core] Replace @mui/internal-waterfall with es-toolkit (#49155) @Janpot
+- [core] Update release publish tags from `next` to `latest` (#49381) @mnajdova
 - [docs-infra] Generate the accessibility Known gaps table (#49355) @michelengelen
 - [docs-infra] Harden the OG image edge function (#49116) @Janpot
 - [docs-infra] Make core-docs agnostic of styled-components (#49138) @Janpot
