@@ -353,8 +353,8 @@ importers:
         specifier: 22.7.6
         version: 22.7.6(debug@4.4.3(supports-color@7.2.0))
       pkg-pr-new:
-        specifier: 0.0.88
-        version: 0.0.88
+        specifier: 0.0.90
+        version: 0.0.90
       playwright:
         specifier: 1.63.0
         version: 1.63.0
@@ -10410,8 +10410,8 @@ packages:
     resolution: {integrity: sha512-NPE8TDbzl/3YQYY7CSS228s3g2ollTFnc+Qi3tqmqJp9Vg2ovUpixcJEo2HJScN2Ez+kEaal6y70c0ehqJBJeA==}
     engines: {node: '>=10'}
 
-  pkg-pr-new@0.0.88:
-    resolution: {integrity: sha512-Xc6PMJ2gher0WZP+rtjefFk26hIb7V1PTLL30bmy1Z2vsRmSvqiss7Ag1XUdyplTGYzIlFNJp4L3vMNmK44N6g==}
+  pkg-pr-new@0.0.90:
+    resolution: {integrity: sha512-koirj8hzOS1t86OHIunQL/ezeimuCegmtcoNJTGqaFbjWSUbM5U+uKfFqu5Q2kxC/odCAZknaf2tFmfLsbchiw==}
     hasBin: true
 
   pkg-up@3.1.0:
@@ -22295,7 +22295,7 @@ snapshots:
     dependencies:
       find-up: 5.0.0
 
-  pkg-pr-new@0.0.88: {}
+  pkg-pr-new@0.0.90: {}
 
   pkg-up@3.1.0:
     dependencies:
