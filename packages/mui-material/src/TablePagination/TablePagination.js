@@ -103,12 +103,21 @@ const TablePaginationSelect = styled(Select, {
   },
 });
 
+// The select reads as a toolbar button rather than a form field — it carries no underline or
+// outline — so its ring stays keyboard-only, matching the page buttons beside it. `InputBase` keys
+// its own ring on `.Mui-focused`, which fires on pointer focus too, hence the opt-out.
 const TablePaginationInputBase = styled(InputBase)(
-  memoTheme(({ theme }) => ({
-    [`& .${tablePaginationClasses.select}:focus`]: {
-      backgroundColor: (theme.vars || theme).palette.action.focus,
-    },
-  })),
+  memoTheme(({ theme }) =>
+    theme.focusVisible
+      ? {
+          [`& .${tablePaginationClasses.select}:focus-visible`]: theme.focusVisible,
+        }
+      : {
+          [`& .${tablePaginationClasses.select}:focus`]: {
+            backgroundColor: (theme.vars || theme).palette.action.focus,
+          },
+        },
+  ),
 );
 
 const TablePaginationMenuItem = styled(MenuItem, {
@@ -276,7 +285,9 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
         {rowsPerPageOptions.length > 1 && (
           <SelectSlot
             variant="standard"
-            {...(!selectProps.variant && { input: <TablePaginationInputBase /> })}
+            {...(!selectProps.variant && {
+              input: <TablePaginationInputBase internalDisabledThemeFocusVisible />,
+            })}
             value={rowsPerPage}
             onChange={onRowsPerPageChange}
             id={selectId}
