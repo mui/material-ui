@@ -219,6 +219,8 @@ const TooltipArrow = styled('span', {
 let hystersisOpen = false;
 const hystersisTimer = new Timeout();
 let cursorPosition = { x: 0, y: 0 };
+// Trigger elements already warned about, so a ref attached again warns once.
+const warnedChildNodes = process.env.NODE_ENV !== 'production' ? new WeakSet() : null;
 
 export function testReset() {
   hystersisOpen = false;
@@ -275,6 +277,20 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     childNodeRef.current = node;
     if (anchorNeededRef.current) {
       setAnchorNode(node);
+    }
+    if (
+      process.env.NODE_ENV !== 'production' &&
+      node &&
+      !node.getAttribute('data-mui-internal-clone-element') &&
+      !warnedChildNodes.has(node)
+    ) {
+      warnedChildNodes.add(node);
+      console.error(
+        [
+          'MUI: The `children` component of the Tooltip is not forwarding its props correctly.',
+          'Please make sure that props are spread on the same element that the ref is applied to.',
+        ].join('\n'),
+      );
     }
   }, []);
   const [arrowRef, setArrowRef] = React.useState(null);
@@ -550,26 +566,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   if (process.env.NODE_ENV !== 'production') {
     childrenProps['data-mui-internal-clone-element'] = true;
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
-    const checkedChildNodeRef = React.useRef(null);
-    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
-    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
-    React.useEffect(() => {
-      const childNode = childNodeRef.current;
-      if (childNode === checkedChildNodeRef.current) {
-        return;
-      }
-      checkedChildNodeRef.current = childNode;
-      if (childNode && !childNode.getAttribute('data-mui-internal-clone-element')) {
-        console.error(
-          [
-            'MUI: The `children` component of the Tooltip is not forwarding its props correctly.',
-            'Please make sure that props are spread on the same element that the ref is applied to.',
-          ].join('\n'),
-        );
-      }
-    });
   }
 
   const interactiveWrapperListeners = {};
