@@ -19,6 +19,25 @@ function isBot(login) {
 }
 
 /**
+ * @param {import('@mui/internal-code-infra/changelog').FetchedCommitDetails} commit
+ * @returns {string | null}
+ */
+function getCommitAuthor(commit) {
+  if (!commit.author) {
+    return null;
+  }
+
+  if (commit.labels.includes('cherry-pick') && isBot(commit.author.login)) {
+    const originalAuthorMatch = commit.prTitle.match(/\(@([\w-]+)\)$/);
+    if (originalAuthorMatch) {
+      return originalAuthorMatch[1];
+    }
+  }
+
+  return commit.author.login;
+}
+
+/**
  * @param {string} commitMessage
  * @returns {string} The tags in lowercases, ordered ascending and comma separated
  */
@@ -49,15 +68,7 @@ const prLinkRegEx = /\(#[0-9]+\)$/;
  * @returns {string[]}
  */
 function getAllContributors(commits) {
-  const authors = Array.from(
-    new Set(
-      commits
-        .filter((commit) => !!commit.author?.login)
-        .map((commit) => {
-          return commit.author.login;
-        }),
-    ),
-  );
+  const authors = Array.from(new Set(commits.map(getCommitAuthor).filter((author) => !!author)));
 
   return authors.sort((a, b) => a.localeCompare(b)).map((author) => `@${author}`);
 }
@@ -133,13 +144,22 @@ async function main(argv) {
   });
   const changes = commitsItems.map((commitsItem) => {
     let shortMessage = commitsItem.message.split('\n')[0];
+    const isCherryPickByBot =
+      commitsItem.labels.includes('cherry-pick') &&
+      commitsItem.author &&
+      isBot(commitsItem.author.login);
+
+    if (isCherryPickByBot) {
+      shortMessage = shortMessage.replace(/\s+\(@[\w-]+\)(?=\s+\(#[0-9]+\)$)/, '');
+    }
 
     // If the commit message doesn't have an associated PR, add the commit sha for reference.
     if (!prLinkRegEx.test(shortMessage)) {
       shortMessage += ` (${commitsItem.sha.substring(0, 7)})`;
     }
 
-    return `- ${shortMessage} @${commitsItem.author.login}`;
+    const author = getCommitAuthor(commitsItem);
+    return `- ${shortMessage} ${author ? `@${author}` : "TODO INSERT AUTHOR'S USERNAME"}`;
   });
   const generationDate = new Date().toLocaleDateString('en-US', {
     month: 'short',
