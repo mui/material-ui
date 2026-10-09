@@ -68,6 +68,12 @@ If you are on mobile, you can open the demo in CodeSandbox ("edit" icon) and swi
 
 {{"demo": "SwipeableEdgeDrawer.js", "iframe": true, "disableLiveEdit": true, "height": 400, "maxWidth": 300}}
 
+Set `allowSwipeInChildren` so that the visible edge stays interactive.
+Without it, the swipe area covers the edge, so buttons and other controls placed there can't be clicked.
+With it, those elements respond to clicks and a swipe can still start from them.
+Pass a callback instead of `true` to choose which elements can start a swipe, for example to leave a slider's drag to the slider.
+On iOS, also set `disableDiscovery`: Safari doesn't fire click events on the children if the drawer changes the DOM when the touch starts.
+
 ### Keep mounted
 
 The Modal used internally by the Swipeable Drawer has the `keepMounted` prop set by default.
