@@ -69,8 +69,6 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
 <p>
   <a href="https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Goread.io</a>
   &nbsp;
-  <a href="https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Buzzoid</a>
-  &nbsp;
   <a href="https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Twicsy</a>
   &nbsp;
   <a href="https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Poprey</a>
