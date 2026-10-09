@@ -150,6 +150,7 @@ const Menu2 = React.forwardRef(function Menu2(
         className={(state) =>
           clsx(
             menu2TriggerClasses.root,
+            state.disabled && menu2TriggerClasses.disabled,
             state.open && menu2TriggerClasses.open,
             resolvedTriggerProps?.className,
           )

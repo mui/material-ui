@@ -1071,14 +1071,46 @@ describe('<Menu2 />', () => {
   });
 
   it('does not open when the root is disabled', async () => {
-    render(
-      <Menu2 disabled trigger={<Button disableRipple>Options</Button>}>
+    const { user } = render(
+      <Menu2 disabled trigger={<button type="button">Options</button>}>
         <Menu2Item>Profile</Menu2Item>
       </Menu2>,
     );
 
-    expect(screen.getByRole('button', { name: 'Options' })).to.have.attribute('disabled');
+    const trigger = screen.getByRole('button', { name: 'Options' });
+    expect(trigger).to.have.attribute('disabled');
+    expect(trigger).to.have.attribute('data-disabled', '');
+    expect(trigger).to.have.class(menu2TriggerClasses.disabled);
+    await user.click(trigger);
     expect(screen.queryByRole('menu')).to.equal(null);
+  });
+
+  it('updates the trigger disabled class when the menu is enabled', async () => {
+    function TestMenu() {
+      const [disabled, setDisabled] = React.useState(true);
+      return (
+        <React.Fragment>
+          <button type="button" onClick={() => setDisabled(false)}>
+            Enable menu
+          </button>
+          <Menu2 disabled={disabled} trigger={<button type="button">Options</button>}>
+            <Menu2Item>Profile</Menu2Item>
+          </Menu2>
+        </React.Fragment>
+      );
+    }
+
+    const { user } = render(<TestMenu />);
+    const trigger = screen.getByRole('button', { name: 'Options' });
+    expect(trigger).to.have.class(menu2TriggerClasses.disabled);
+
+    await user.click(screen.getByRole('button', { name: 'Enable menu' }));
+    expect(trigger).not.to.have.class(menu2TriggerClasses.disabled);
+    expect(trigger).not.to.have.attribute('data-disabled');
+    expect(trigger).not.to.have.attribute('disabled');
+
+    await user.click(trigger);
+    expect(await screen.findByRole('menu')).not.to.equal(null);
   });
 
   it('supports defaultOpen', () => {
