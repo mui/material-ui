@@ -92,7 +92,7 @@ export async function buildApi(
     // eslint-disable-next-line no-await-in-loop
     const projectBuilds = await buildSingleProject(setting, buildTypeScriptProject, grep);
 
-    // @ts-ignore ignore hooks builds for now
+    // @ts-expect-error: Project builds may include hook metadata, while allBuilds currently stores component metadata.
     allBuilds = [...allBuilds, ...projectBuilds];
   }
 

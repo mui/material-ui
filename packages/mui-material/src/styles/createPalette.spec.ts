@@ -12,7 +12,7 @@ import { createTheme, Theme } from '@mui/material/styles';
   palette.augmentColor({ color, lightShade: 400, mainShade: 200, darkShade: 600 });
   palette.augmentColor({ color, lightShade: 400, mainShade: 600 });
   palette.augmentColor(option);
-  // @ts-expect-error
+  // @ts-expect-error: augmentColor accepts one options object, not a second shade argument.
   palette.augmentColor(option, 400);
 }
 

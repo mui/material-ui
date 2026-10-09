@@ -738,7 +738,7 @@ export function getThemedComponents(): ThemeOptions {
         },
         variants: [
           {
-            // @ts-ignore internal repo module augmentation issue
+            // @ts-expect-error: The branding theme defines the code variant without global Button variant augmentation.
             props: { variant: 'code' },
             style: ({ theme }) => [
               {
@@ -790,7 +790,7 @@ export function getThemedComponents(): ThemeOptions {
             ],
           },
           {
-            // @ts-ignore internal repo module augmentation issue
+            // @ts-expect-error: The branding theme defines codeOutlined without global Button variant augmentation.
             props: { variant: 'codeOutlined' },
             style: ({ theme }) => [
               {
@@ -850,7 +850,7 @@ export function getThemedComponents(): ThemeOptions {
             ],
           },
           {
-            // @ts-ignore internal repo module augmentation issue
+            // @ts-expect-error: The branding theme defines the link variant without global Button variant augmentation.
             props: { variant: 'link' },
             style: ({ theme }) => ({
               marginBottom: 1,
@@ -1182,7 +1182,7 @@ export function getThemedComponents(): ThemeOptions {
               }),
             }),
             // for labelling product in the search
-            // @ts-ignore internal repo module augmentation issue
+            // @ts-expect-error: The branding theme defines light without global Chip variant augmentation.
             ...(variant === 'light' && {
               ...(color === 'default' && {
                 color: (theme.vars || theme).palette.primary[700],

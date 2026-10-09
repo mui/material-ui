@@ -87,7 +87,6 @@ export default function createContainer<Theme extends RequiredThemeStructure = D
         ...(!ownerState.disableGutters && {
           paddingLeft: theme.spacing(2),
           paddingRight: theme.spacing(2),
-          // @ts-ignore module augmentation fails if custom breakpoints are used
           [theme.breakpoints.up('sm')]: {
             paddingLeft: theme.spacing(3),
             paddingRight: theme.spacing(3),
@@ -101,7 +100,7 @@ export default function createContainer<Theme extends RequiredThemeStructure = D
         const value = theme.breakpoints.values[breakpoint as Breakpoint];
 
         if (value !== 0) {
-          // @ts-ignore
+          // @ts-expect-error: Object.keys yields string keys, and the accumulator has no string index signature.
           acc[theme.breakpoints.up(breakpoint)] = {
             maxWidth: `${value}${theme.breakpoints.unit}`,
           };
@@ -109,20 +108,14 @@ export default function createContainer<Theme extends RequiredThemeStructure = D
         return acc;
       }, {}),
     ({ theme, ownerState }: StyleFnProps<Theme>) => ({
-      // @ts-ignore module augmentation fails if custom breakpoints are used
       ...(ownerState.maxWidth === 'xs' && {
-        // @ts-ignore module augmentation fails if custom breakpoints are used
         [theme.breakpoints.up('xs')]: {
-          // @ts-ignore module augmentation fails if custom breakpoints are used
           maxWidth: Math.max(theme.breakpoints.values.xs, 444),
         },
       }),
       ...(ownerState.maxWidth &&
-        // @ts-ignore module augmentation fails if custom breakpoints are used
         ownerState.maxWidth !== 'xs' && {
-          // @ts-ignore module augmentation fails if custom breakpoints are used
           [theme.breakpoints.up(ownerState.maxWidth)]: {
-            // @ts-ignore module augmentation fails if custom breakpoints are used
             maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`,
           },
         }),
@@ -150,14 +143,12 @@ export default function createContainer<Theme extends RequiredThemeStructure = D
       maxWidth,
     };
 
-    // @ts-ignore module augmentation fails if custom breakpoints are used
     const classes = useUtilityClasses(ownerState, componentName);
 
     return (
-      // @ts-ignore theme is injected by the styled util
       <ContainerRoot
         as={component}
-        // @ts-ignore module augmentation fails if custom breakpoints are used
+        // @ts-expect-error: The styled root does not declare its internal ownerState prop.
         ownerState={ownerState}
         className={clsx(classes.root, className)}
         ref={ref}

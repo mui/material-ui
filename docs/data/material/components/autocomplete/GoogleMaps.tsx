@@ -134,7 +134,7 @@ export default function GoogleMaps() {
     if (!document.querySelector('#google-maps')) {
       const GOOGLE_NAMESPACE = '_google_callback';
       const globalContext =
-        // @ts-ignore
+        // @ts-expect-error: Google Maps stores its callback registry on a custom window property.
         window[GOOGLE_NAMESPACE] || (window[GOOGLE_NAMESPACE] = {});
       globalContext[callbackId] = () => {
         setLoaded(true);

@@ -99,7 +99,6 @@ export default defineConfig(
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/no-shadow': 'off',
       'react/sort-prop-types': 'off', // 228
-      '@typescript-eslint/ban-ts-comment': 'off', // 117
       '@typescript-eslint/no-require-imports': 'off', // 133
       'react/jsx-filename-extension': 'off',
       // Modern browsers imply rel="noopener" for target="_blank", so no rel is required.
