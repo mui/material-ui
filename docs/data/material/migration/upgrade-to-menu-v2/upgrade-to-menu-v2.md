@@ -203,6 +203,7 @@ With `slots.transition` set to `null`, the menu surface has the `data-starting-s
 | `autoFocus` (item)                                                 | Removed                            | The component controls the initial highlight.                                                              |
 | `focusVisibleClassName`, `onFocusVisible`, `action.focusVisible()` | No dedicated equivalents           | Use state classes for styles. `highlighted` includes pointer navigation; it is not keyboard focus-visible. |
 | `MenuList.disableListWrap`                                         | `loopFocus` (default `true`)       | The value is inverted.                                                                                     |
+| `MenuList.disabledItemsFocusable`                                  | No equivalent                      | Disabled items stay focusable with arrow keys, but cannot be activated.                                    |
 | `MenuList.dense`, `MenuList.disablePadding`                        | `slotProps.list`                   | The `list` slot is a `List`, so the props are unchanged.                                                   |
 | `MenuList.autoFocus` / `autoFocusItem` / `variant`                 | Removed                            | Internal or legacy.                                                                                        |
 
@@ -272,7 +273,7 @@ Most of these changes bring the menu in line with the [WAI-ARIA menu pattern](ht
 | :--------------------- | :---------------------------------------------- | :-------------------------------------------------------------------------- |
 | Opened with a pointer  | Highlights the selected item, or the first item | Highlights nothing, so Enter can't fire an unintended item                  |
 | Opened with a keyboard | Highlights an item                              | Highlights the first enabled item; ArrowUp highlights the last enabled item |
-| Disabled items         | Skipped by the keyboard                         | Focusable, and announced as disabled                                        |
+| Disabled items         | Skipped by the keyboard by default              | Focusable, and announced as disabled                                        |
 | Sibling content        | Hidden from screen readers with `aria-hidden`   | Stays in the accessibility tree                                             |
 | Backdrop               | Rendered by default                             | Internal modal layer; optional visual backdrop slot                         |
 | Tab while open         | Closes, and focus returns to the trigger        | Closes, and focus moves to the next element                                 |
