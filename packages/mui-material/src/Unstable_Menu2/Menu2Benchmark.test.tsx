@@ -1,12 +1,21 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
-import Menu from '@mui/material/Menu';
+import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+interface ClassicMenuHarnessProps extends Pick<
+  MenuProps,
+  'anchorOrigin' | 'transformOrigin' | 'variant' | 'dir'
+> {
+  withSelected?: boolean;
+  triggerHeight?: number;
+}
 
 /**
  * Behavior benchmark: the classic `Menu` against the Base UI-backed successor,
@@ -19,13 +28,17 @@ import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
  * focus-visible and ripple state updates -- which this benchmark does not
  * measure -- stay out of the measurements.
  */
-function ClassicMenuHarness(props: { withSelected?: boolean; variant?: 'menu' | 'selectedMenu' }) {
-  const { withSelected = false, variant } = props;
+function ClassicMenuHarness(props: ClassicMenuHarnessProps) {
+  const { withSelected = false, triggerHeight, ...menuProps } = props;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   return (
     <div>
-      <button type="button" onClick={(event) => setAnchorEl(event.currentTarget)}>
+      <button
+        type="button"
+        style={{ height: triggerHeight }}
+        onClick={(event) => setAnchorEl(event.currentTarget)}
+      >
         Options
       </button>
       <p data-testid="sibling">sibling content</p>
@@ -33,7 +46,7 @@ function ClassicMenuHarness(props: { withSelected?: boolean; variant?: 'menu' | 
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={() => setAnchorEl(null)}
-        variant={variant}
+        {...menuProps}
       >
         <MenuItem>Alpha</MenuItem>
         <MenuItem disabled>Beta</MenuItem>
@@ -60,14 +73,14 @@ const menuEl = () => document.querySelector('[role="menu"]');
 const openTrigger = () => screen.getByRole('button', { name: 'Options' });
 const waitForOpen = () => waitFor(() => expect(menuEl()).not.to.equal(null));
 
-// The successor animates its surface by default, so geometry has to be read
+// Both menus animate their surface by default, so geometry has to be read
 // after the open transition settles. Awaiting `getAnimations()` alone is not
 // enough: a CSS transition is absent from that list until it actually starts,
 // so the call can return an empty list and let a mid-transition rect through,
 // which reads as a small offset rather than an obvious failure.
 async function waitForSettled() {
   await waitForOpen();
-  const popup = menuEl()!;
+  const popup = menuEl()!.closest('.MuiPaper-root')!;
   if (typeof popup.getAnimations === 'function') {
     await act(async () => {
       await Promise.all(
@@ -319,6 +332,63 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
   });
 
   describe('placement', () => {
+    (['ltr', 'rtl'] as const).forEach((direction) => {
+      [36, 64].forEach((triggerHeight) => {
+        it(`matches classic top-left origins in ${direction} with a ${triggerHeight}px trigger`, async () => {
+          const theme = createTheme({ direction });
+          const origin = { vertical: 'top', horizontal: 'left' } as const;
+          const layout = { marginLeft: 200, marginTop: 200 };
+          const { user: classicUser, unmount: unmountClassic } = render(
+            <ThemeProvider theme={theme}>
+              <div style={layout}>
+                <ClassicMenuHarness
+                  dir={direction}
+                  triggerHeight={triggerHeight}
+                  anchorOrigin={origin}
+                  transformOrigin={origin}
+                />
+              </div>
+            </ThemeProvider>,
+          );
+          const classicAnchor = openTrigger().getBoundingClientRect();
+          await classicUser.click(openTrigger());
+          await waitForSettled();
+          const classicSurface = document.querySelector('.MuiPaper-root')!.getBoundingClientRect();
+          expect(classicSurface.left).to.be.closeTo(classicAnchor.left, 1);
+          expect(classicSurface.top).to.be.closeTo(classicAnchor.top, 1);
+          unmountClassic();
+
+          const { user } = render(
+            <ThemeProvider theme={theme}>
+              <div style={layout}>
+                <Menu2
+                  dir={direction}
+                  trigger={
+                    <button type="button" style={{ height: triggerHeight }}>
+                      Options
+                    </button>
+                  }
+                  side="bottom"
+                  align={direction === 'rtl' ? 'end' : 'start'}
+                  sideOffset={({ anchor }) => -anchor.height}
+                >
+                  <Menu2Item>Alpha</Menu2Item>
+                  <Menu2Item disabled>Beta</Menu2Item>
+                  <Menu2Item>Gamma</Menu2Item>
+                </Menu2>
+              </div>
+            </ThemeProvider>,
+          );
+          const anchor = openTrigger().getBoundingClientRect();
+          await user.click(openTrigger());
+          await waitForSettled();
+          const surface = menuEl()!.getBoundingClientRect();
+          expect(surface.left).to.be.closeTo(anchor.left, 1);
+          expect(surface.top).to.be.closeTo(anchor.top, 1);
+        });
+      });
+    });
+
     it('both put the surface flush under the trigger, left aligned', async () => {
       // Classic defaults to anchorOrigin bottom/left; the successor defaults to
       // side="bottom" align="start". Keep the trigger away from the viewport

@@ -144,17 +144,35 @@ Tab dismissal reports `focus-out` because focus leaves the menu. Other focus cha
 +<Menu anchor={anchorEl} side="top" align="end">
 ```
 
-| Menu / Popover                                        | Menu v2                                                               | Notes                                                       |
-| :---------------------------------------------------- | :-------------------------------------------------------------------- | :---------------------------------------------------------- |
-| `anchorEl`                                            | `anchor`                                                              | Also accepts refs and virtual elements.                     |
-| `anchorOrigin` + `transformOrigin`                    | `side` + `align` + `sideOffset` + `alignOffset`                       | Defaults are `side="bottom"` and `align="start"`.           |
-| `anchorReference="anchorPosition"` + `anchorPosition` | `anchor={virtualElement}`                                             | Give the virtual element the pointer coordinates.           |
-| `anchorReference="none"`                              | `anchor={virtualElement}`                                             | Give the virtual element the position that you want.        |
-| `marginThreshold` (default 16)                        | `collisionPadding` (default 5)                                        | Same idea.                                                  |
-| `action.updatePosition()`                             | Automatic                                                             | Use `disableAnchorTracking` to stop tracking layout shifts. |
-| —                                                     | `collisionBoundary`, `sticky`, `collisionAvoidance`, `positionMethod` | New props.                                                  |
+| Menu / Popover                                        | Menu v2                                                               | Notes                                                                    |
+| :---------------------------------------------------- | :-------------------------------------------------------------------- | :----------------------------------------------------------------------- |
+| `anchorEl`                                            | `anchor`                                                              | Also accepts refs and virtual elements.                                  |
+| `anchorOrigin` + `transformOrigin`                    | `side` + `align` + `sideOffset` + `alignOffset`                       | Defaults are `side="bottom"` and `align="start"`.                        |
+| Both origins at `top` / `left`                        | `side="bottom"`, `align="start"`, negative `sideOffset`               | See [Place the menu over its trigger](#place-the-menu-over-its-trigger). |
+| `anchorReference="anchorPosition"` + `anchorPosition` | `anchor={virtualElement}`                                             | Give the virtual element the pointer coordinates.                        |
+| `anchorReference="none"`                              | `anchor={virtualElement}`                                             | Give the virtual element the position that you want.                     |
+| `marginThreshold` (default 16)                        | `collisionPadding` (default 5)                                        | Same idea.                                                               |
+| `action.updatePosition()`                             | Automatic                                                             | Use `disableAnchorTracking` to stop tracking layout shifts.              |
+| —                                                     | `collisionBoundary`, `sticky`, `collisionAvoidance`, `positionMethod` | New props.                                                               |
 
 Use the logical `inline-start` and `inline-end` sides to get the correct direction in right-to-left text.
+
+#### Place the menu over its trigger
+
+The classic [Positioned menu](/material-ui/react-menu/#positioned-menu) demo sets both origins to `top` / `left`, so the menu covers its trigger. Use the anchor height to move Menu v2 up by the same distance:
+
+```jsx
+<Menu
+  trigger={<Button>Options</Button>}
+  side="bottom"
+  align="start"
+  sideOffset={({ anchor }) => -anchor.height}
+>
+  <MenuItem>Profile</MenuItem>
+</Menu>
+```
+
+This matches the resting position in left-to-right text, not the animation origin. Use `align="end"` in right-to-left text to keep physical left alignment. Collision handling can still move the popup near viewport edges.
 
 ### 5. Check the transition
 
