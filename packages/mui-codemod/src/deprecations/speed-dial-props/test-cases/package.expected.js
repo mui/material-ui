@@ -56,12 +56,12 @@ import { SpeedDial as MySpeedDial } from '@org/ui/material';
   } }} />;
 <NonMuiSpeedDial FabProps={CustomFabProps} />;
 <SpeedDial
-  slotProps={{ fab: ownerState => ({
+  slotProps={{ fab: ownerState1 => ({
     ...CustomFabProps,
 
     ...(ownerState => ({
       color: ownerState.open ? 'secondary' : 'primary'
-    }))(ownerState)
+    }))(ownerState1)
   }) }} />;
 
 const ownerState = CustomFabProps;
@@ -69,6 +69,7 @@ const namedFabProps = (state) => ({ title: state.open ? 'open' : 'closed' });
 <SpeedDial
   slotProps={{ fab: ownerState1 => {
     const slotProps = namedFabProps;
+
     return {
       ...ownerState,
       ...(typeof slotProps === "function" ? slotProps(ownerState1) : slotProps)
@@ -77,6 +78,7 @@ const namedFabProps = (state) => ({ title: state.open ? 'open' : 'closed' });
 <SpeedDial
   slotProps={{ fab: ownerState1 => ({
     ...CustomFabProps,
+
     ...(state => ({
       title: ownerState.title
     }))(ownerState1)

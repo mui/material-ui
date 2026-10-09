@@ -70,12 +70,12 @@ fn({
   MuiSpeedDial: {
     defaultProps: {
       slotProps: {
-        fab: ownerState => ({
+        fab: ownerState1 => ({
           ...CustomFabProps,
 
           ...(ownerState => ({
             color: ownerState.open ? 'secondary' : 'primary'
-          }))(ownerState)
+          }))(ownerState1)
         }),
       }
     },
@@ -89,6 +89,7 @@ fn({
     defaultProps: {
       slotProps: { fab: ownerState1 => {
         const slotProps = namedFabProps;
+
         return {
           ...ownerState,
           ...(typeof slotProps === "function" ? slotProps(ownerState1) : slotProps)

@@ -16,6 +16,7 @@ export default function transformer(file, api, options) {
     componentName: 'SpeedDial',
     propName: 'FabProps',
     slotName: 'fab',
+    resolveUnknownSlotProps: true,
   });
 
   movePropIntoSlots(j, {

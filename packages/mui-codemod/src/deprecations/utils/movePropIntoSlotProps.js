@@ -3,12 +3,38 @@ import findComponentDefaultProps from '../../util/findComponentDefaultProps';
 import assignObject from '../../util/assignObject';
 import appendAttribute from '../../util/appendAttribute';
 
-function mergeSlotProps(j, removedValue, existingSlot) {
-  if (
-    existingSlot.type === 'ArrowFunctionExpression' ||
-    existingSlot.type === 'FunctionExpression'
-  ) {
-    const ownerState = j.identifier('ownerState');
+function mergeSlotProps(j, removedValue, existingSlot, resolveUnknownSlotProps) {
+  const isCallback =
+    existingSlot.type === 'ArrowFunctionExpression' || existingSlot.type === 'FunctionExpression';
+
+  if (!isCallback && (!resolveUnknownSlotProps || existingSlot.type === 'ObjectExpression')) {
+    return j.objectExpression([j.spreadElement(removedValue), j.spreadElement(existingSlot)]);
+  }
+
+  const usedNames = new Set(
+    j([removedValue, existingSlot])
+      .find(j.Identifier)
+      .nodes()
+      .map((node) => node.name),
+  );
+  [removedValue, existingSlot].forEach((node) => {
+    if (node.type === 'Identifier') {
+      usedNames.add(node.name);
+    }
+  });
+  const createIdentifier = (baseName) => {
+    let name = baseName;
+    let index = 1;
+    while (usedNames.has(name)) {
+      name = `${baseName}${index}`;
+      index += 1;
+    }
+    usedNames.add(name);
+    return j.identifier(name);
+  };
+
+  const ownerState = createIdentifier('ownerState');
+  if (isCallback) {
     return j.arrowFunctionExpression(
       [ownerState],
       j.objectExpression([
@@ -18,10 +44,39 @@ function mergeSlotProps(j, removedValue, existingSlot) {
     );
   }
 
-  return j.objectExpression([j.spreadElement(removedValue), j.spreadElement(existingSlot)]);
+  const slotProps = createIdentifier('slotProps');
+  return j.arrowFunctionExpression(
+    [ownerState],
+    j.blockStatement([
+      j.variableDeclaration('const', [j.variableDeclarator(slotProps, existingSlot)]),
+      j.returnStatement(
+        j.objectExpression([
+          j.spreadElement(removedValue),
+          j.spreadElement(
+            j.conditionalExpression(
+              j.binaryExpression(
+                '===',
+                j.unaryExpression('typeof', slotProps),
+                j.literal('function'),
+              ),
+              j.callExpression(slotProps, [ownerState]),
+              slotProps,
+            ),
+          ),
+        ]),
+      ),
+    ]),
+  );
 }
 
-function moveJsxPropIntoSlotProps(j, element, propName, slotName, slotPropName) {
+function moveJsxPropIntoSlotProps(
+  j,
+  element,
+  propName,
+  slotName,
+  slotPropName,
+  resolveUnknownSlotProps,
+) {
   const propIndex = element.openingElement.attributes.findIndex(
     (attr) => attr.type === 'JSXAttribute' && attr.name.name === propName,
   );
@@ -65,7 +120,12 @@ function moveJsxPropIntoSlotProps(j, element, propName, slotName, slotPropName) 
               ]);
             }
           } else {
-            slots.properties[slotIndex].value = mergeSlotProps(j, removedValue, existingSlot);
+            slots.properties[slotIndex].value = mergeSlotProps(
+              j,
+              removedValue,
+              existingSlot,
+              resolveUnknownSlotProps,
+            );
           }
         }
       }
@@ -92,6 +152,7 @@ function moveDefaultPropsPropIntoslotProps(
   propName,
   slotName,
   slotPropName,
+  resolveUnknownSlotProps,
 ) {
   defaultPropsPathCollection.find(j.ObjectProperty, { key: { name: propName } }).forEach((path) => {
     const removedValue = path.value.value;
@@ -129,6 +190,7 @@ function moveDefaultPropsPropIntoslotProps(
               j,
               removedValue,
               existingSlot,
+              resolveUnknownSlotProps,
             );
           }
         }
@@ -157,18 +219,26 @@ function moveDefaultPropsPropIntoslotProps(
  * Moves prop into slotProps.
  * If the slotProps prop exists, it will merge the prop into the slotProps.
  * If there are duplicated values, the values will be spread.
+ * Set `resolveUnknownSlotProps` to resolve existing slot prop values that may be callbacks.
  *
  * @param {import('jscodeshift')} j
- * @param {{ root: import('jscodeshift').Collection; componentName: string, propName: string, slotName: string, slotPropName?: string }} options
+ * @param {{ root: import('jscodeshift').Collection; componentName: string, propName: string, slotName: string, slotPropName?: string, resolveUnknownSlotProps?: boolean }} options
  *
  * @example <Component TransitionProps={value} /> => <Component slotProps={{ transition: value }} />
  * @example <Component tooltipClasses={classes} /> => <Component slotProps={{ tooltip: { classes: classes } }} />
  */
 export default function movePropIntoSlotProps(j, options) {
-  const { propName, slotName, slotPropName } = options;
+  const { propName, slotName, slotPropName, resolveUnknownSlotProps = false } = options;
 
   findComponentJSX(j, options, (elementPath) => {
-    moveJsxPropIntoSlotProps(j, elementPath.node, propName, slotName, slotPropName);
+    moveJsxPropIntoSlotProps(
+      j,
+      elementPath.node,
+      propName,
+      slotName,
+      slotPropName,
+      resolveUnknownSlotProps,
+    );
   });
 
   const defaultPropsPathCollection = findComponentDefaultProps(j, options);
@@ -179,5 +249,6 @@ export default function movePropIntoSlotProps(j, options) {
     propName,
     slotName,
     slotPropName,
+    resolveUnknownSlotProps,
   );
 }
