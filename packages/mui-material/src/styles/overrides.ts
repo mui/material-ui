@@ -98,6 +98,7 @@ import { StepperClasskey } from '../Stepper';
 import { SvgIconClassKey } from '../SvgIcon';
 import { SwitchClassKey } from '../Switch';
 import { TabClassKey } from '../Tab';
+import { TabScrollButtonClassKey } from '../TabScrollButton';
 import { TableBodyClassKey } from '../TableBody';
 import { TableCellClassKey } from '../TableCell';
 import { TableClassKey } from '../Table';
@@ -244,6 +245,7 @@ export interface ComponentNameToClassKey {
   MuiSvgIcon: SvgIconClassKey;
   MuiSwitch: SwitchClassKey;
   MuiTab: TabClassKey;
+  MuiTabScrollButton: TabScrollButtonClassKey;
   MuiTable: TableClassKey;
   MuiTableBody: TableBodyClassKey;
   MuiTableCell: TableCellClassKey;
