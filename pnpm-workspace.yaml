@@ -41,10 +41,6 @@ catalogs:
     '@emotion/styled': '^11.14.1'
 
 overrides:
-  # Preview packages reference unpublished sibling versions; use their published releases.
-  '@mui/internal-code-infra>@mui/internal-babel-plugin-display-name': 2.0.1-canary.1
-  '@mui/internal-code-infra>@mui/internal-babel-plugin-minify-errors': 3.0.1-canary.1
-  '@mui/internal-code-infra>@mui/internal-babel-plugin-resolve-imports': 3.0.1-canary.2
   # Both were bundled twice in the docs build
   'docs>stylis': '4.2.0'
   'docs>react-is': '19.3.0'
