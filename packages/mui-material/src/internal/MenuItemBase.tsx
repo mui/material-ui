@@ -15,7 +15,7 @@ interface MenuItemBaseOwnerState {
   disableGutters: boolean;
 }
 
-interface MenuItemBaseProps {
+export interface MenuItemBaseProps {
   ownerState?: MenuItemBaseOwnerState | undefined;
 }
 
