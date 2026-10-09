@@ -108,11 +108,13 @@ A big thanks to the 28 contributors who made this release possible. Here are som
 - [code-infra] Convert @mui/material internal svg-icons to TypeScript (#49143) @Janpot
 - [code-infra] Convert remaining @mui/system .js+.d.ts pairs to TypeScript (part 2) (#48699) @Janpot
 - [code-infra] Fix `package.json` metadata (#49325) @Janpot
+- [code-infra] Include cherry-picks in the changelog (#49377) @brijeshb42
 - [code-infra] Migrate to Babel 8 (#49216) @brijeshb42
 - [code-infra] Pin the Argos baseline to v9.x (#49316) @Janpot
 - [code-infra] Pin the only-allow version in the preinstall hook (#49114) @Janpot
 - [code-infra] Run TypeScript 7 alongside the TS6 JS API (#49075) @brijeshb42
 - [code-infra] Ship documentation Markdown inside the @mui/material package (#49314) @Janpot
+- [code-infra] Show progress and rate limit retry time in `release:changelog` (#49379) @Janpot
 - [code-infra] Update #target-branch-reference for v9.x branch (#49191) @silviuaavram
 - [code-infra] Widen @babel/runtime range and stop emitting empty class fields (#49276) @brijeshb42
 - [core] Remove the leftover canary release script (#49163) @Janpot
