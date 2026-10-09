@@ -75,6 +75,18 @@ describe('module augmentation runner', () => {
     expect(compile).not.toHaveBeenCalled();
   });
 
+  it('keeps Menu2 and Base UI out of the classic theme fixture', async () => {
+    const config = path.join(import.meta.dirname, 'material/menu2ClassicTheme.tsconfig.json');
+    glob.mockResolvedValue([config]);
+    compile.mockResolvedValue(undefined);
+
+    await main([]);
+
+    expect(compile).toHaveBeenCalledWith(config, {
+      forbiddenDeclarations: ['/@base-ui/', '/Unstable_Menu2'],
+    });
+  });
+
   it.each(['0', '-1', '1.5', 'NaN', 'Infinity'])(
     'rejects invalid concurrency before starting compilers: %s',
     async (concurrency) => {

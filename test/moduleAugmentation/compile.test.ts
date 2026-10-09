@@ -51,6 +51,17 @@ describe('module augmentation compiler', () => {
       /^fixture\.tsx\(1,1\): error TS2345: Invalid breakpoint\.$/,
     );
   });
+
+  it('checks the configured forbidden declarations', async () => {
+    execute.mockResolvedValue({
+      stdout: `${declaration}\n${path.resolve('node_modules/@base-ui/utils/store.d.ts')}`,
+      stderr: '',
+    });
+
+    await expect(
+      compile('fixture.tsconfig.json', { forbiddenDeclarations: ['/@base-ui/'] }),
+    ).rejects.toThrow('Consumer test loaded a forbidden declaration:');
+  });
 });
 
 describe.each([
@@ -99,5 +110,19 @@ describe.each([
     'packages/mui-material/build/Grid/Grid.tsx',
   ])('rejects library source: %s', (file) => {
     expect(() => compile(file)).to.throw('Consumer test loaded library source:');
+  });
+
+  it.each([
+    'node_modules/@base-ui/react/menu/root/MenuRoot.d.ts',
+    'node_modules/@base-ui/utils/store.d.ts',
+    'packages/mui-material/build/Unstable_Menu2/Menu2.d.mts',
+    'packages/mui-material/build/Unstable_Menu2/themeAugmentation.d.mts',
+  ])('rejects a forbidden declaration: %s', (file) => {
+    expect(() =>
+      assertBuiltDeclarations(paths.join(root, file), paths.join(root, 'packages'), [
+        '/@base-ui/',
+        '/Unstable_Menu2',
+      ]),
+    ).to.throw('Consumer test loaded a forbidden declaration:');
   });
 });

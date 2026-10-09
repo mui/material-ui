@@ -1,0 +1,15 @@
+<Menu trigger={<Button>Insert</Button>}>
+  <MenuGroup>
+    <MenuGroupLabel>Media</MenuGroupLabel>
+    <MenuItem>Image</MenuItem>
+    <MenuItem>Video</MenuItem>
+    <MenuItem>Audio</MenuItem>
+  </MenuGroup>
+  <MenuSeparator />
+  <MenuGroup>
+    <MenuGroupLabel>Layout</MenuGroupLabel>
+    <MenuItem>Table</MenuItem>
+    <MenuItem>Column break</MenuItem>
+    <MenuItem>Page break</MenuItem>
+  </MenuGroup>
+</Menu>

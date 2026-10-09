@@ -1,0 +1,471 @@
+'use client';
+import * as React from 'react';
+import { OverridableComponent, OverrideProps } from '@mui/types';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import { Menu as BaseMenu } from '@base-ui/react/menu';
+import type { HTMLProps } from '@base-ui/react/types';
+import useSlot from '../utils/useSlot';
+import ListContext from '../List/ListContext';
+import { styled } from '../zero-styled';
+import Menu2ItemBase from '../internal/Menu2ItemBase';
+import CheckBoxIcon from '../internal/svg-icons/CheckBox';
+import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
+import Menu2IndicatorBase, { Menu2IndicatorSlotProps } from '../Unstable_Menu2/Menu2IndicatorBase';
+import { useDefaultProps } from '../DefaultPropsProvider';
+import { menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
+import {
+  getMenu2RootRender,
+  isMenu2RootNativeButton,
+  Menu2RootSlotProps,
+} from '../Unstable_Menu2/menu2Utils';
+import {
+  getMenu2ItemClassName,
+  getMenu2ItemOwnerState,
+  Menu2ItemBaseOwnerState,
+  Menu2ItemBaseProps,
+  Menu2ItemRootSlot,
+  Menu2ItemVisualProps,
+  useMenu2ItemListContext,
+  useMenu2ItemUtilityClasses,
+} from '../Unstable_Menu2/menu2ItemShared';
+import {
+  getMenu2CheckboxItemUtilityClass,
+  Menu2CheckboxItemClasses,
+  menu2CheckboxItemClasses,
+  menu2CheckboxItemIndicatorClasses,
+} from '../Unstable_Menu2/menu2Classes';
+
+export interface Menu2CheckboxItemOwnerState extends Menu2ItemBaseOwnerState {
+  /** Whether the item is currently checked, including uncontrolled selection. */
+  checked: boolean;
+  /** Whether Base UI currently highlights the item. */
+  highlighted: boolean;
+}
+
+export interface Menu2CheckboxItemSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType | undefined;
+  /**
+   * The component that renders the check indicator.
+   * @default Menu2CheckboxItemIndicator
+   */
+  indicator?: React.ElementType | undefined;
+}
+
+export interface Menu2CheckboxItemSlotProps extends Menu2RootSlotProps<Menu2CheckboxItemOwnerState> {
+  indicator?: Menu2IndicatorSlotProps<Menu2CheckboxItemOwnerState> | undefined;
+}
+
+export interface Menu2CheckboxItemOwnProps
+  extends
+    Menu2ItemBaseProps,
+    Menu2ItemVisualProps<
+      Menu2CheckboxItemClasses,
+      Menu2CheckboxItemSlots,
+      Menu2CheckboxItemSlotProps
+    > {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Whether the checkbox item is currently ticked.
+   *
+   * To render an uncontrolled checkbox item, use the `defaultChecked` prop instead.
+   */
+  checked?: boolean | undefined;
+  /**
+   * The icon to display when the item is checked.
+   * @default <CheckBoxIcon fontSize="small" />
+   */
+  checkedIcon?: React.ReactNode;
+  /**
+   * The icon to display when the item is unchecked.
+   * @default <CheckBoxOutlineBlankIcon fontSize="small" />
+   */
+  icon?: React.ReactNode;
+  /**
+   * Whether the checkbox item is initially ticked.
+   *
+   * To render a controlled checkbox item, use the `checked` prop instead.
+   * @default false
+   */
+  defaultChecked?: boolean | undefined;
+  /**
+   * Event handler called when the checkbox item is ticked or unticked.
+   */
+  onCheckedChange?: BaseMenu.CheckboxItem.Props['onCheckedChange'] | undefined;
+  /**
+   * Whether the component should ignore user interaction.
+   * @default false
+   */
+  disabled?: boolean | undefined;
+  /**
+   * Overrides the text label to use when the item is matched during keyboard text navigation.
+   */
+  label?: string | undefined;
+  /**
+   * Whether to close the menu when the item is clicked.
+   * @default false
+   */
+  closeOnClick?: boolean | undefined;
+  /**
+   * CSS class applied to the element.
+   */
+  className?: string | undefined;
+  /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple?: boolean | undefined;
+  /**
+   * Styles applied to the root element.
+   */
+  style?: React.CSSProperties | undefined;
+}
+
+export interface Menu2CheckboxItemTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & Menu2CheckboxItemOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type Menu2CheckboxItemProps<
+  RootComponent extends React.ElementType = Menu2CheckboxItemTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<Menu2CheckboxItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  /**
+   * The component used for the root node.
+   */
+  component?: React.ElementType | undefined;
+};
+
+const Menu2CheckboxItemRoot = styled(Menu2ItemBase, {
+  name: 'MuiMenu2CheckboxItem',
+  slot: 'root',
+  overridesResolver: menuItemOverridesResolver,
+})<{ ownerState: Menu2CheckboxItemOwnerState }>({});
+
+const Menu2CheckboxItemIndicator = styled(Menu2IndicatorBase, {
+  name: 'MuiMenu2CheckboxItem',
+  slot: 'indicator',
+})<{ ownerState: Menu2CheckboxItemOwnerState }>({});
+
+// Keep the icons in the 1.25rem box used by the menu row.
+const defaultCheckedIcon = <CheckBoxIcon fontSize="small" />;
+const defaultIcon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+
+interface Menu2CheckboxItemRootSlotProps extends Pick<
+  Menu2CheckboxItemProps,
+  | 'checkedIcon'
+  | 'component'
+  | 'disableRipple'
+  | 'icon'
+  | 'nativeButton'
+  | 'slotProps'
+  | 'slots'
+  | 'sx'
+> {
+  baseProps: HTMLProps;
+  ownerState: Menu2CheckboxItemOwnerState & Pick<Menu2CheckboxItemProps, 'classes'>;
+}
+
+function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
+  const { checkedIcon, icon, ownerState, slotProps, slots } = props;
+  const [IndicatorSlot, { keepMounted = true, ...indicatorProps }] = useSlot('indicator', {
+    elementType: Menu2CheckboxItemIndicator,
+    shouldForwardComponentProp: !slots?.indicator,
+    externalForwardedProps: { slots, slotProps },
+    ownerState,
+    className: clsx(
+      menu2CheckboxItemClasses.indicator,
+      menu2CheckboxItemIndicatorClasses.root,
+      ownerState.classes?.indicator,
+      ownerState.checked && menu2CheckboxItemIndicatorClasses.checked,
+      ownerState.disabled && menu2CheckboxItemIndicatorClasses.disabled,
+      ownerState.highlighted && menu2CheckboxItemIndicatorClasses.highlighted,
+    ),
+  });
+
+  return (
+    <Menu2ItemRootSlot
+      {...props}
+      elementType={Menu2CheckboxItemRoot}
+      startIndicator={
+        <BaseMenu.CheckboxItemIndicator
+          keepMounted={keepMounted}
+          render={getMenu2RootRender(IndicatorSlot, ownerState, {
+            ...indicatorProps,
+            children: indicatorProps.children ?? (ownerState.checked ? checkedIcon : icon),
+          })}
+        />
+      }
+    />
+  );
+}
+
+Menu2CheckboxItemRootSlot.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * @ignore
+   */
+  baseProps: PropTypes.object.isRequired,
+  /**
+   * The icon to display when the item is checked.
+   * @default <CheckBoxIcon fontSize="small" />
+   */
+  checkedIcon: PropTypes.node,
+  /**
+   * The component used for the root node.
+   */
+  component: PropTypes.elementType,
+  /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple: PropTypes.bool,
+  /**
+   * The icon to display when the item is unchecked.
+   * @default <CheckBoxOutlineBlankIcon fontSize="small" />
+   */
+  icon: PropTypes.node,
+  /**
+   * @ignore
+   */
+  ownerState: PropTypes.object.isRequired,
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps: PropTypes.shape({
+    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   */
+  slots: PropTypes.shape({
+    indicator: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+} as any;
+
+/**
+ *
+ * Demos:
+ *
+ * - [Menu](https://mui.com/material-ui/react-menu/)
+ */
+const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
+  inProps: Menu2CheckboxItemProps,
+  ref: React.ForwardedRef<HTMLElement>,
+) {
+  const props = useDefaultProps({
+    props: inProps,
+    name: 'MuiMenu2CheckboxItem',
+  });
+
+  const {
+    children,
+    checked,
+    checkedIcon = defaultCheckedIcon,
+    className,
+    classes: classesProp,
+    component,
+    dense: denseProp = false,
+    disabled = false,
+    disableGutters = false,
+    disableRipple,
+    divider = false,
+    icon = defaultIcon,
+    nativeButton: nativeButtonProp,
+    onCheckedChange,
+    slotProps,
+    slots,
+    sx,
+    style,
+    ...other
+  } = props;
+  const childContext = useMenu2ItemListContext(denseProp, disableGutters);
+  const { dense } = childContext;
+  const ownerState = {
+    ...props,
+    ...getMenu2ItemOwnerState({
+      checked,
+      dense,
+      disabled,
+      disableGutters,
+      divider,
+    }),
+    classes: classesProp,
+  };
+  const classes = useMenu2ItemUtilityClasses<Menu2CheckboxItemClasses>(
+    ownerState,
+    getMenu2CheckboxItemUtilityClass,
+  );
+  const RootSlot = slots?.root ?? Menu2CheckboxItemRoot;
+
+  return (
+    <ListContext.Provider value={childContext}>
+      <BaseMenu.CheckboxItem
+        ref={ref}
+        render={(renderProps, state) => (
+          <Menu2CheckboxItemRootSlot
+            baseProps={renderProps}
+            ownerState={{ ...ownerState, ...state }}
+            checkedIcon={checkedIcon}
+            component={component}
+            disableRipple={disableRipple}
+            icon={icon}
+            nativeButton={nativeButtonProp}
+            slotProps={slotProps}
+            slots={slots}
+            sx={sx}
+          />
+        )}
+        className={(state) =>
+          clsx(
+            className,
+            getMenu2ItemClassName(classes, ownerState, state),
+            state.checked && classes.checked,
+          )
+        }
+        checked={checked}
+        disabled={disabled}
+        nativeButton={nativeButtonProp ?? isMenu2RootNativeButton(RootSlot, component)}
+        onCheckedChange={onCheckedChange}
+        style={style}
+        {...other}
+      >
+        {children}
+      </BaseMenu.CheckboxItem>
+    </ListContext.Provider>
+  );
+}) as OverridableComponent<Menu2CheckboxItemTypeMap>;
+
+Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * Whether the checkbox item is currently ticked.
+   *
+   * To render an uncontrolled checkbox item, use the `defaultChecked` prop instead.
+   */
+  checked: PropTypes.bool,
+  /**
+   * The icon to display when the item is checked.
+   * @default <CheckBoxIcon fontSize="small" />
+   */
+  checkedIcon: PropTypes.node,
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
+   * CSS class applied to the element.
+   */
+  className: PropTypes.string,
+  /**
+   * Whether to close the menu when the item is clicked.
+   * @default false
+   */
+  closeOnClick: PropTypes.bool,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
+   * Whether the checkbox item is initially ticked.
+   *
+   * To render a controlled checkbox item, use the `checked` prop instead.
+   * @default false
+   */
+  defaultChecked: PropTypes.bool,
+  /**
+   * If `true`, compact vertical padding designed for keyboard and mouse input is used.
+   * @default false
+   */
+  dense: PropTypes.bool,
+  /**
+   * Whether the component should ignore user interaction.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the left and right padding is removed.
+   * @default false
+   */
+  disableGutters: PropTypes.bool,
+  /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple: PropTypes.bool,
+  /**
+   * If `true`, a 1px light border is added to the bottom of the menu item.
+   * @default false
+   */
+  divider: PropTypes.bool,
+  /**
+   * The icon to display when the item is unchecked.
+   * @default <CheckBoxOutlineBlankIcon fontSize="small" />
+   */
+  icon: PropTypes.node,
+  /**
+   * Overrides the text label to use when the item is matched during keyboard text navigation.
+   */
+  label: PropTypes.string,
+  /**
+   * Whether the component is rendered as a native button.
+   *
+   * By default, this is inferred from the root slot and `component` prop.
+   */
+  nativeButton: PropTypes.bool,
+  /**
+   * Event handler called when the checkbox item is ticked or unticked.
+   */
+  onCheckedChange: PropTypes.func,
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps: PropTypes.shape({
+    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   */
+  slots: PropTypes.shape({
+    indicator: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+  /**
+   * Styles applied to the root element.
+   */
+  style: PropTypes.object,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+} as any;
+
+export default Menu2CheckboxItem;

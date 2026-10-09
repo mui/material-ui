@@ -1,0 +1,5 @@
+<Menu trigger={<Button>Dashboard</Button>} slots={{ transition: Fade }}>
+  <MenuItem>Profile</MenuItem>
+  <MenuItem>My account</MenuItem>
+  <MenuItem>Logout</MenuItem>
+</Menu>

@@ -1,0 +1,16 @@
+<Menu trigger={<Button>File</Button>}>
+  <MenuItem>New file</MenuItem>
+  <MenuItem>Open recent</MenuItem>
+  <MenuSeparator />
+  <MenuSubmenu trigger={<MenuSubmenuTrigger>Share</MenuSubmenuTrigger>}>
+    <MenuItem>Invite people</MenuItem>
+    <MenuItem>Copy link</MenuItem>
+    <MenuSubmenu trigger={<MenuSubmenuTrigger>Export as</MenuSubmenuTrigger>}>
+      <MenuItem>PDF document</MenuItem>
+      <MenuItem>EPUB publication</MenuItem>
+      <MenuItem>Markdown</MenuItem>
+    </MenuSubmenu>
+  </MenuSubmenu>
+  <MenuSeparator />
+  <MenuItem>Print</MenuItem>
+</Menu>
