@@ -64,9 +64,6 @@
     "access": "public",
     "directory": "build"
   },
-  "engines": {
-    "node": ">=14.0.0"
-  },
   "exports": {
     "./v13-pagesRouter": "./src/v13-pagesRouter/index.ts",
     "./*": "./src/*/index.ts"
