@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/428843a303d23c4c904fc740058e33e1a8b95c85/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/38b6bb18de4a0e8d090b0476bb69580a3c5bfc6c/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
@@ -27,13 +27,14 @@ default-job: &default-job
       type: string
       default: << pipeline.parameters.e2e-base-url >>
   environment: &default-environment
+    BASE_BRANCH: master # #target-branch-reference
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     DANGER_DISABLE_TRANSPILATION: 'true'
   working_directory: /tmp/material-ui
   executor:
     name: code-infra/mui-node
-    node-version: '22.23.2'
+    node-version: '22.23.3'
   resource_class: medium.gen2
 
 default-context: &default-context
@@ -94,6 +95,12 @@ jobs:
       - code-infra/check-static-changes
       - code-infra/check-generated:
           command: pnpm proptypes
+      - run:
+          # Fails when a conformance report changes without its rollup being
+          # regenerated, and when a report rates a criterion ⚙️ Automated
+          # without citing the test or axe rule that proves it.
+          name: Accessibility scorecard up to date?
+          command: pnpm a11y:scorecard:check
       - code-infra/check-generated:
           command: pnpm docs:api
       - code-infra/extract-error-codes
@@ -122,6 +129,9 @@ jobs:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
       - run:
+          name: Test module augmentation
+          command: pnpm typescript:module-augmentation
+      - run:
           name: Build declaration files
           command: |
             pnpm lerna run --scope "@mui/*" build
@@ -143,7 +153,7 @@ jobs:
       - run:
           name: Upgrade Node.js for pnpm 11
           command: |
-            curl -fsSL https://nodejs.org/dist/v22.23.2/node-v22.23.2-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
+            curl -fsSL https://nodejs.org/dist/v22.23.3/node-v22.23.3-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
             node --version
       - code-infra/install-pnpm
       - run:
@@ -172,7 +182,7 @@ jobs:
     resource_class: medium+.gen2
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     steps:
       - checkout
       - code-infra/install-deps:
@@ -197,7 +207,7 @@ jobs:
     resource_class: medium
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     steps:
       - checkout
       - code-infra/install-deps:
@@ -211,7 +221,7 @@ jobs:
     resource_class: medium
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     steps:
       - checkout
       - code-infra/install-deps
@@ -225,7 +235,7 @@ jobs:
     resource_class: medium+
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     steps:
       - checkout
       - code-infra/install-deps:
@@ -239,6 +249,20 @@ jobs:
           # pnpm-workspace.yaml (overrides) and may touch pnpm-lock.yaml. Exclude those so
           # this check still verifies the a11y results without tripping on the pinned deps.
           command: git add -A -- . ':(exclude)pnpm-*.yaml' && git diff --exit-code --staged
+      - when:
+          condition:
+            not:
+              equal: [stable, << parameters.react-version >>]
+          steps:
+            - run:
+                name: Configure the Argos upload for a non-stable React run
+                # Argos never uses a subset build as a baseline or reports its skipped screenshots.
+                # A branch other than master stops the auto-approval, so React changes fail.
+                # The reference commit compares the build with the stable run of the same commit.
+                command: |
+                  echo 'export ARGOS_SUBSET=true' >> "$BASH_ENV"
+                  echo 'export ARGOS_BRANCH="$CIRCLE_JOB"' >> "$BASH_ENV"
+                  echo 'export ARGOS_REFERENCE_COMMIT="$CIRCLE_SHA1"' >> "$BASH_ENV"
       - code-infra/argos-push
   test_bundling_prepare:
     <<: *default-job
@@ -286,7 +310,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     steps:
       - checkout:
@@ -302,7 +326,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     steps:
       - checkout:
@@ -318,7 +342,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
       - checkout:
@@ -334,7 +358,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     steps:
       - checkout:
@@ -350,7 +374,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     steps:
       - checkout:
@@ -365,7 +389,7 @@ jobs:
   test_bundling_esbuild:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.62.1-noble
+      - image: mcr.microsoft.com/playwright:v1.63.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     steps:
       - checkout:
@@ -381,7 +405,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.62.1-noble
+      playwright-img-version: v1.63.0-noble
       environment:
         GATSBY_CPU_COUNT: '3'
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/

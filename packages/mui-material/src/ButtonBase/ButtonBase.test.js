@@ -1123,7 +1123,7 @@ describe('<ButtonBase />', () => {
       });
     });
 
-    describe('keyboard accessibility for non interactive elements', () => {
+    describe('2.1.1 Keyboard: keyboard accessibility for non interactive elements', () => {
       it('does not call onClick when a spacebar is pressed on the element but prevents the default', async () => {
         const onKeyDown = spy();
         const onClickSpy = spy();
@@ -1493,7 +1493,6 @@ describe('<ButtonBase />', () => {
 
       expect(() => {
         PropTypes.checkPropTypes(
-          // @ts-expect-error ExtendButtonBase<ButtonBaseTypeMap<{}, "button">> does not contain the property 'propTypes'.
           ButtonBase.propTypes,
           { classes: {}, component: Component },
           'prop',
