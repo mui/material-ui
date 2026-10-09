@@ -4,7 +4,7 @@ import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-uti
 import Menu2Item from '../Unstable_Menu2Item';
 import { createTheme, ThemeProvider } from '../styles';
 import Menu2, { Menu2Props } from './Menu2';
-import { menu2PopupClasses } from './menu2Classes';
+import { menu2Classes } from './menu2Classes';
 
 const CustomBackdrop = React.forwardRef<
   HTMLDivElement,
@@ -24,7 +24,7 @@ describe('Menu2 backdrop opt-in', () => {
     );
 
     expect(screen.getByRole('menu')).not.to.equal(null);
-    expect(baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)).to.equal(null);
+    expect(baseElement.querySelector(`.${menu2Classes.backdrop}`)).to.equal(null);
   });
 
   it('does not resolve backdrop slot props when the slot is null', () => {
@@ -42,7 +42,7 @@ describe('Menu2 backdrop opt-in', () => {
     );
 
     expect(backdropProps).not.toHaveBeenCalled();
-    expect(baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)).to.equal(null);
+    expect(baseElement.querySelector(`.${menu2Classes.backdrop}`)).to.equal(null);
     expect(screen.queryByTestId('configured-backdrop')).to.equal(null);
   });
 
@@ -79,7 +79,7 @@ describe('Menu2 backdrop opt-in', () => {
         );
       }
       const { baseElement, user } = render(<Test />);
-      const getBackdrop = () => baseElement.querySelector(`.${menu2PopupClasses.backdrop}`);
+      const getBackdrop = () => baseElement.querySelector(`.${menu2Classes.backdrop}`);
 
       expect(getBackdrop()).not.to.equal(null);
       if (name === 'slot props') {
@@ -117,7 +117,7 @@ describe('Menu2 backdrop opt-in', () => {
     );
 
     expect(backdropProps).not.toHaveBeenCalled();
-    expect(baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)).to.equal(null);
+    expect(baseElement.querySelector(`.${menu2Classes.backdrop}`)).to.equal(null);
     expect(screen.queryByTestId('custom-backdrop')).to.equal(null);
   });
 
@@ -128,7 +128,7 @@ describe('Menu2 backdrop opt-in', () => {
       </Menu2>,
     );
 
-    const backdrop = baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)!;
+    const backdrop = baseElement.querySelector(`.${menu2Classes.backdrop}`)!;
     expect(backdrop).not.to.equal(null);
     expect(backdrop).to.have.attribute('role', 'presentation');
     expect(backdrop).to.have.attribute('data-open');
@@ -165,7 +165,7 @@ describe('Menu2 backdrop opt-in', () => {
         </Menu2>,
       );
 
-      const backdrop = baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)!;
+      const backdrop = baseElement.querySelector(`.${menu2Classes.backdrop}`)!;
       expect(backdropRef.current).to.equal(backdrop);
       expect(backdrop).to.have.class('custom-backdrop-class');
       expect(backdrop).to.have.attribute('data-modal', 'false');
@@ -376,7 +376,7 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
     try {
       const backdrop = screen.getByTestId('backdrop');
       expect(backdropRef.current).to.equal(backdrop);
-      expect(backdrop).to.have.class(menu2PopupClasses.backdrop);
+      expect(backdrop).to.have.class(menu2Classes.backdrop);
       expect(backdrop).to.have.class('custom-backdrop');
       expect(backdrop).to.have.class('slot-backdrop');
       expect(backdrop).to.have.attribute('data-label', 'top');

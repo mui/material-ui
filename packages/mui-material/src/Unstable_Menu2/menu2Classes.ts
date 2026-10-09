@@ -22,7 +22,7 @@ export const menu2TriggerClasses: Menu2TriggerClasses = generateUtilityClasses('
   'open',
 ]);
 
-export interface Menu2PopupClasses {
+export interface Menu2Classes {
   /** Styles applied to the root element, which contains the menu and its backdrops. */
   root: string;
   /** Styles applied to the element that positions the menu surface. */
@@ -35,13 +35,13 @@ export interface Menu2PopupClasses {
   list: string;
 }
 
-export type Menu2PopupClassKey = keyof Menu2PopupClasses;
+export type Menu2ClassKey = keyof Menu2Classes;
 
-export function getMenu2PopupUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiMenu2Popup', slot);
+export function getMenu2UtilityClass(slot: string): string {
+  return generateUtilityClass('MuiMenu2', slot);
 }
 
-export const menu2PopupClasses: Menu2PopupClasses = generateUtilityClasses('MuiMenu2Popup', [
+export const menu2Classes: Menu2Classes = generateUtilityClasses('MuiMenu2', [
   'root',
   'positioner',
   'backdrop',
@@ -49,7 +49,7 @@ export const menu2PopupClasses: Menu2PopupClasses = generateUtilityClasses('MuiM
   'list',
 ]);
 
-export interface Menu2SubmenuPopupClasses {
+export interface Menu2SubmenuClasses {
   /** Styles applied to the root element, which contains the menu. */
   root: string;
   /** Styles applied to the element that positions the menu surface. */
@@ -60,16 +60,18 @@ export interface Menu2SubmenuPopupClasses {
   list: string;
 }
 
-export type Menu2SubmenuPopupClassKey = keyof Menu2SubmenuPopupClasses;
+export type Menu2SubmenuClassKey = keyof Menu2SubmenuClasses;
 
-export function getMenu2SubmenuPopupUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiMenu2SubmenuPopup', slot);
+export function getMenu2SubmenuUtilityClass(slot: string): string {
+  return generateUtilityClass('MuiMenu2Submenu', slot);
 }
 
-export const menu2SubmenuPopupClasses: Menu2SubmenuPopupClasses = generateUtilityClasses(
-  'MuiMenu2SubmenuPopup',
-  ['root', 'positioner', 'paper', 'list'],
-);
+export const menu2SubmenuClasses: Menu2SubmenuClasses = generateUtilityClasses('MuiMenu2Submenu', [
+  'root',
+  'positioner',
+  'paper',
+  'list',
+]);
 
 export interface Menu2ItemClasses {
   /** Styles applied to the root element. */
@@ -282,13 +284,3 @@ export const menu2SubmenuTriggerClasses: Menu2SubmenuTriggerClasses = generateUt
   'MuiMenu2SubmenuTrigger',
   ['root', 'highlighted', 'disabled', 'dense', 'divider', 'gutters', 'open', 'indicator'],
 );
-
-/**
- * Theme `styleOverrides` slots for the collapsed `Menu2`. The trigger and popup
- * are rendered internally, so their overrides live here rather than under their
- * own component keys.
- */
-export type Menu2ClassKey = 'root' | 'positioner' | 'backdrop' | 'paper' | 'list';
-
-/** Theme `styleOverrides` slots for the collapsed `Menu2Submenu`. */
-export type Menu2SubmenuClassKey = 'root' | 'positioner' | 'paper' | 'list';

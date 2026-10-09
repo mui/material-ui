@@ -4,11 +4,12 @@ import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Menu2, { menu2PopupClasses, menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
+import Menu2, { menu2Classes, menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
 import { resetMenu2WarningFlags } from '@mui/material/Unstable_Menu2/menu2Utils';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
 import Menu2Submenu, {
-  menu2SubmenuPopupClasses,
+  getMenu2SubmenuUtilityClass,
+  menu2SubmenuClasses,
   menu2SubmenuTriggerClasses,
 } from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
@@ -18,6 +19,20 @@ import describeConformance from '../../test/describeConformance';
 // one explicit behavioral component for the submenu trigger.
 describe('<Menu2 /> collapsed API', () => {
   const { render } = createRenderer();
+
+  it('exports submenu utility classes under the public component name', () => {
+    const expectedClasses = {
+      root: 'MuiMenu2Submenu-root',
+      positioner: 'MuiMenu2Submenu-positioner',
+      paper: 'MuiMenu2Submenu-paper',
+      list: 'MuiMenu2Submenu-list',
+    };
+
+    expect(menu2SubmenuClasses).to.deep.equal(expectedClasses);
+    Object.entries(expectedClasses).forEach(([slot, className]) => {
+      expect(getMenu2SubmenuUtilityClass(slot)).to.equal(className);
+    });
+  });
 
   // Base UI submenus need layout to open, which jsdom does not provide, so the
   // nested popup never mounts there; run this suite in the browser project.
@@ -30,7 +45,7 @@ describe('<Menu2 /> collapsed API', () => {
         <Menu2Item>Nested</Menu2Item>
       </Menu2Submenu>,
       () => ({
-        classes: menu2SubmenuPopupClasses,
+        classes: menu2SubmenuClasses,
         render: (node) =>
           render(
             <Menu2 defaultOpen modal={false} anchor={document.body}>
@@ -38,7 +53,7 @@ describe('<Menu2 /> collapsed API', () => {
             </Menu2>,
           ),
         getRootElement: ({ baseElement }) =>
-          baseElement.querySelector(`.${menu2SubmenuPopupClasses.root}`),
+          baseElement.querySelector(`.${menu2SubmenuClasses.root}`),
         // The public root contains all popup layers. Its host is
         // configured through slots.root rather than a component prop.
         skip: ['componentProp'],
@@ -47,13 +62,13 @@ describe('<Menu2 /> collapsed API', () => {
         testVariantProps: { align: 'center' },
         slots: {
           positioner: {
-            expectedClassName: menu2SubmenuPopupClasses.positioner,
+            expectedClassName: menu2SubmenuClasses.positioner,
           },
           paper: {
-            expectedClassName: menu2SubmenuPopupClasses.paper,
+            expectedClassName: menu2SubmenuClasses.paper,
           },
           list: {
-            expectedClassName: menu2SubmenuPopupClasses.list,
+            expectedClassName: menu2SubmenuClasses.list,
           },
         },
       }),
@@ -89,7 +104,7 @@ describe('<Menu2 /> collapsed API', () => {
     await user.click(trigger);
 
     const menu = await screen.findByRole('menu');
-    expect(menu).to.have.class(menu2PopupClasses.paper);
+    expect(menu).to.have.class(menu2Classes.paper);
     expect(screen.getByRole('menuitem', { name: 'Profile' })).to.have.class(menu2ItemClasses.root);
   });
 
@@ -150,7 +165,7 @@ describe('<Menu2 /> collapsed API', () => {
 
       function getRoot() {
         const rootClass =
-          componentName === 'Menu2Submenu' ? menu2SubmenuPopupClasses.root : menu2PopupClasses.root;
+          componentName === 'Menu2Submenu' ? menu2SubmenuClasses.root : menu2Classes.root;
         return getPopup().closest<HTMLDivElement>(`.${rootClass}`)!;
       }
 
@@ -510,10 +525,10 @@ describe('<Menu2 /> collapsed API', () => {
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
     const menu = await screen.findByRole('menu');
-    expect(menu).to.have.class(menu2PopupClasses.paper);
+    expect(menu).to.have.class(menu2Classes.paper);
     expect(menu.parentElement!.parentElement).to.equal(screen.getByTestId('root'));
     expect(menu.parentElement!.style.position).to.equal('absolute');
-    expect(screen.getByTestId('root')).to.have.class(menu2PopupClasses.root);
+    expect(screen.getByTestId('root')).to.have.class(menu2Classes.root);
     expect(screen.getByRole('menuitem', { name: 'Profile' })).not.to.equal(null);
   });
 
@@ -531,7 +546,7 @@ describe('<Menu2 /> collapsed API', () => {
     await user.click(screen.getByRole('button', { name: 'Options' }));
     const menu = await screen.findByRole('menu');
     // The classic Menu ref targets the wrapper, not the surface.
-    expect(menuRef.current).to.have.class(menu2PopupClasses.root);
+    expect(menuRef.current).to.have.class(menu2Classes.root);
     expect(menuRef.current).to.contain(menu);
     expect(menuRef.current).not.to.equal(menu);
 
@@ -539,7 +554,7 @@ describe('<Menu2 /> collapsed API', () => {
     await waitFor(() => {
       expect(submenuRef.current).not.to.equal(null);
     });
-    expect(submenuRef.current).to.have.class(menu2SubmenuPopupClasses.root);
+    expect(submenuRef.current).to.have.class(menu2SubmenuClasses.root);
     expect(submenuRef.current).to.contain(screen.getByRole('menuitem', { name: 'Nested' }));
   });
 
@@ -812,7 +827,7 @@ describe('<Menu2 /> collapsed API', () => {
     await user.click(trigger);
     const menu = await screen.findByRole('menu');
     expect(window.getComputedStyle(screen.getByTestId('paper')).paddingTop).to.equal('9px');
-    const list = menu.querySelector(`.${menu2PopupClasses.list}`)!;
+    const list = menu.querySelector(`.${menu2Classes.list}`)!;
     expect(window.getComputedStyle(list).paddingBottom).to.equal('7px');
 
     const submenuTrigger = screen.getByRole('menuitem', { name: 'More' });

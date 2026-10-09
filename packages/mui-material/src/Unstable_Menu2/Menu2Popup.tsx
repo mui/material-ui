@@ -16,7 +16,7 @@ import {
   Menu2PositionerBase,
   Menu2RootBase,
 } from './Menu2PopupSlotBases';
-import { getMenu2PopupUtilityClass, Menu2PopupClasses } from './menu2Classes';
+import { getMenu2UtilityClass, Menu2Classes } from './menu2Classes';
 import type { Menu2Props } from './Menu2';
 
 export interface Menu2PopupProps extends Omit<
@@ -123,7 +123,7 @@ export interface Menu2PopupProps extends Omit<
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<Menu2PopupClasses> | undefined;
+  classes?: Partial<Menu2Classes> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    * Applied to the root element. Use `slotProps.paper.sx` for the menu surface.
@@ -192,7 +192,7 @@ const useUtilityClasses = (ownerState: Menu2PopupOwnerState) => {
     list: ['list'],
   };
 
-  return composeClasses(slots, getMenu2PopupUtilityClass, classes);
+  return composeClasses(slots, getMenu2UtilityClass, classes);
 };
 
 const Menu2PopupRoot = styled(Menu2RootBase, {

@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
 import type { Menu as BaseMenu } from '@base-ui/react/menu';
-import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2, {
+  getMenu2UtilityClass,
+  menu2Classes,
+  Menu2ClassKey,
+  Menu2Classes,
+} from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem, {
   getMenu2CheckboxItemIndicatorUtilityClass,
   menu2CheckboxItemIndicatorClasses,
@@ -24,13 +29,25 @@ import Menu2RadioItem, {
   Menu2RadioItemIndicator,
 } from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
-import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
+import Menu2Submenu, {
+  getMenu2SubmenuUtilityClass,
+  menu2SubmenuClasses,
+  Menu2SubmenuClassKey,
+  Menu2SubmenuClasses,
+} from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger, {
   menu2SubmenuTriggerClasses,
 } from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { createTheme } from '@mui/material/styles';
 // @ts-expect-error Menu2 is intentionally not exported from the root barrel for this POC.
 import { Menu2 as RootBarrelMenu2 } from '@mui/material';
+
+expectType<Menu2Classes, typeof menu2Classes>(menu2Classes);
+expectType<Menu2SubmenuClasses, typeof menu2SubmenuClasses>(menu2SubmenuClasses);
+const menuClassKey: Menu2ClassKey = 'backdrop';
+const submenuClassKey: Menu2SubmenuClassKey = 'paper';
+getMenu2UtilityClass(menuClassKey);
+getMenu2SubmenuUtilityClass(submenuClassKey);
 
 expectType<Menu2CheckboxItemIndicatorClasses, typeof menu2CheckboxItemIndicatorClasses>(
   menu2CheckboxItemIndicatorClasses,

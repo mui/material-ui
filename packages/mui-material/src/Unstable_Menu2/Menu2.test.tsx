@@ -11,7 +11,11 @@ import ClassicMenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import { paperClasses } from '@mui/material/Paper';
 import Tooltip from '@mui/material/Tooltip';
-import Menu2, { menu2PopupClasses, menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
+import Menu2, {
+  getMenu2UtilityClass,
+  menu2Classes,
+  menu2TriggerClasses,
+} from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem, {
   menu2CheckboxItemClasses,
   menu2CheckboxItemIndicatorClasses,
@@ -31,14 +35,29 @@ import describeConformance from '../../test/describeConformance';
 describe('<Menu2 />', () => {
   const { render } = createRenderer();
 
+  it('exports utility classes under the public component name', () => {
+    const expectedClasses = {
+      root: 'MuiMenu2-root',
+      positioner: 'MuiMenu2-positioner',
+      backdrop: 'MuiMenu2-backdrop',
+      paper: 'MuiMenu2-paper',
+      list: 'MuiMenu2-list',
+    };
+
+    expect(menu2Classes).to.deep.equal(expectedClasses);
+    Object.entries(expectedClasses).forEach(([slot, className]) => {
+      expect(getMenu2UtilityClass(slot)).to.equal(className);
+    });
+  });
+
   describeConformance(
     <Menu2 defaultOpen modal={false} anchor={document.body}>
       <Menu2Item>Item</Menu2Item>
     </Menu2>,
     () => ({
-      classes: menu2PopupClasses,
+      classes: menu2Classes,
       render,
-      getRootElement: ({ baseElement }) => baseElement.querySelector(`.${menu2PopupClasses.root}`),
+      getRootElement: ({ baseElement }) => baseElement.querySelector(`.${menu2Classes.root}`),
       // The public root contains all popup layers. Its host is
       // configured through slots.root rather than a component prop.
       skip: ['componentProp'],
@@ -47,13 +66,13 @@ describe('<Menu2 />', () => {
       testVariantProps: { align: 'center' },
       slots: {
         positioner: {
-          expectedClassName: menu2PopupClasses.positioner,
+          expectedClassName: menu2Classes.positioner,
         },
         paper: {
-          expectedClassName: menu2PopupClasses.paper,
+          expectedClassName: menu2Classes.paper,
         },
         list: {
-          expectedClassName: menu2PopupClasses.list,
+          expectedClassName: menu2Classes.list,
         },
       },
     }),
@@ -96,19 +115,19 @@ describe('<Menu2 />', () => {
     const menu = await screen.findByRole('menu', { name: 'Options' });
     expect(trigger).to.have.attribute('aria-controls', menu.id);
     expect(menu).to.have.attribute('aria-labelledby', trigger.id);
-    expect(menu).to.have.class(menu2PopupClasses.paper);
+    expect(menu).to.have.class(menu2Classes.paper);
     expect(menu).to.have.class(paperClasses.root);
     expect(screen.getByTestId('paper')).to.equal(menu);
     const root = screen.getByTestId('root');
-    expect(root).to.have.class(menu2PopupClasses.root);
+    expect(root).to.have.class(menu2Classes.root);
     expect(root).to.contain(menu);
     expect(root).not.to.equal(menu);
     const positioner = screen.getByTestId('positioner');
-    expect(positioner).to.have.class(menu2PopupClasses.positioner);
+    expect(positioner).to.have.class(menu2Classes.positioner);
     expect(menu.parentElement).to.equal(positioner);
     expect(positioner.parentElement).to.equal(root);
 
-    const list = menu.querySelector(`.${menu2PopupClasses.list}`);
+    const list = menu.querySelector(`.${menu2Classes.list}`);
     expect(list).not.to.equal(null);
     expect(list!.tagName).to.equal('DIV');
     expect(list!).to.have.class(listClasses.padding);
@@ -361,7 +380,7 @@ describe('<Menu2 />', () => {
     expect(listRef.current).to.equal(list);
     expect(list).to.have.attribute('data-align', 'end');
     expect(list).to.have.class('custom-list');
-    expect(list).to.have.class(menu2PopupClasses.list);
+    expect(list).to.have.class(menu2Classes.list);
     expect(list).to.have.class(listClasses.root);
     expect(list).to.have.class(listClasses.dense);
     expect(list).not.to.have.class(listClasses.padding);
@@ -681,7 +700,7 @@ describe('<Menu2 />', () => {
     expect(list.tagName).to.equal('UL');
     expect(listRef.current).to.equal(list);
     expect(list).to.have.attribute('data-align', 'end');
-    expect(list).to.have.class(menu2PopupClasses.list);
+    expect(list).to.have.class(menu2Classes.list);
     expect(list).to.have.attribute('data-component', 'ul');
     expect(list).to.have.class(listClasses.padding);
   });
@@ -770,7 +789,7 @@ describe('<Menu2 />', () => {
     await user.click(screen.getByRole('button', { name: 'Options' }));
     const popup = await screen.findByRole('menu');
 
-    expect(popup).to.have.class(menu2PopupClasses.paper);
+    expect(popup).to.have.class(menu2Classes.paper);
     await waitFor(() => expect(popup.getAnimations().length).to.be.greaterThan(0));
     expect(window.getComputedStyle(popup).transitionProperty).to.contain('opacity');
     expect(window.getComputedStyle(popup).transitionProperty).to.contain('transform');
@@ -882,7 +901,7 @@ describe('<Menu2 />', () => {
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
     const backdrop = await screen.findByTestId('backdrop');
-    expect(backdrop).to.have.class(menu2PopupClasses.backdrop);
+    expect(backdrop).to.have.class(menu2Classes.backdrop);
     // The visual layer is transparent and click-through by default.
     // Base UI handles outside interactions separately.
     const { backgroundColor, pointerEvents } = window.getComputedStyle(backdrop);
@@ -960,8 +979,8 @@ describe('<Menu2 />', () => {
     // Base UI sets no z-index, so a fixed AppBar would paint over the menu.
     const positioner = (await screen.findByRole('menu')).parentElement!;
     const root = positioner.parentElement!;
-    expect(positioner).to.have.class(menu2PopupClasses.positioner);
-    expect(root).to.have.class(menu2PopupClasses.root);
+    expect(positioner).to.have.class(menu2Classes.positioner);
+    expect(root).to.have.class(menu2Classes.root);
     expect(window.getComputedStyle(root).zIndex).to.equal(String(createTheme().zIndex.modal));
     expect(root).to.contain(positioner.previousElementSibling);
   });

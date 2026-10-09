@@ -223,6 +223,16 @@ Component imports do not register these theme types. This type-only import adds 
 
 Menu v2 registers two theme keys for the menu surfaces. `MuiMenu2` has the slots `root`, `positioner`, `backdrop`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `positioner`, `paper`, and `list`. The item parts have their own keys, such as `MuiMenu2Item`.
 
+The CSS classes use the same component names as the theme keys:
+
+| Menu class       | Menu v2 class     | Submenu class            |
+| :--------------- | :---------------- | :----------------------- |
+| `.MuiMenu-root`  | `.MuiMenu2-root`  | `.MuiMenu2Submenu-root`  |
+| `.MuiMenu-paper` | `.MuiMenu2-paper` | `.MuiMenu2Submenu-paper` |
+| `.MuiMenu-list`  | `.MuiMenu2-list`  | `.MuiMenu2Submenu-list`  |
+
+For example, change an `& .MuiMenu-list` selector to `& .MuiMenu2-list`. The `menu2Classes` and `menu2SubmenuClasses` exports provide these class names from `@mui/material/Unstable_Menu2` and `@mui/material/Unstable_Menu2Submenu`.
+
 The trigger has no theme key, because you supply the element. Theme its own component instead, or style the `.MuiMenu2Trigger-root` class.
 
 ```diff
