@@ -33,11 +33,6 @@ const BACKLINKs = [
     href: 'https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
-    name: 'Twicsy',
-    description: 'Instant delivery Instagram followers.',
-    href: 'https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
     name: 'Poprey',
     description: 'Buy Instagram likes with crypto.',
     href: 'https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
