@@ -73,11 +73,11 @@ If you're using it as a purely stylistic element, we recommend setting `aria-hid
 <Divider aria-hidden="true" />
 ```
 
-If you're using the Divider to wrap other elements, such as text or chips, we recommend changing its rendered element to a plain `<div>` using the `component` prop, and setting `role="presentation"`.
+If you're using the Divider to wrap other elements, such as text or chips, we recommend changing its rendered element to a plain `<div>` using the `component` prop, and setting `role="none"`.
 This ensures that it's not announced by screen readers while still preserving the semantics of the elements inside it.
 
 ```js
-<Divider component="div" role="presentation">
+<Divider component="div" role="none">
   <Typography>Text element</Typography>
 </Divider>
 ```

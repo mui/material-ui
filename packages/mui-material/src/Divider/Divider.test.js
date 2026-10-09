@@ -171,7 +171,7 @@ describe('<Divider />', () => {
     });
 
     it('overrides the computed role with the provided one', () => {
-      // presentation is the only valid aria role
+      // none is the only valid aria role
       render(<Divider role="none" data-testid="divider" />);
       expect(screen.queryByRole('separator')).to.equal(null);
       expect(screen.getByTestId('divider')).to.have.attribute('role', 'none');
