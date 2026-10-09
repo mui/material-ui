@@ -7,6 +7,7 @@ import useEventCallback from '@mui/utils/useEventCallback';
 import useControlled from '@mui/utils/useControlled';
 import useId from '@mui/utils/useId';
 import usePreviousProps from '@mui/utils/usePreviousProps';
+import useTimeout from '@mui/utils/useTimeout';
 import useOptionValue from './utils/useOptionValue';
 
 function areArraysSame({ array1, array2, parser = (value) => value }) {
@@ -186,6 +187,13 @@ function useAutocomplete(props) {
   const ignoreFocus = React.useRef(false);
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
+  const inputValueToCompleteRef = React.useRef(null);
+  const isComposingRef = React.useRef(false);
+  const completionTimeout = useTimeout();
+  const cancelInputCompletion = () => {
+    inputValueToCompleteRef.current = null;
+    completionTimeout.clear();
+  };
   // Preserve user edits when an async option resolves, including edits back to an empty input.
   const inputValueEditedRef = React.useRef(false);
   const listboxRef = React.useRef(null);
@@ -237,6 +245,8 @@ function useAutocomplete(props) {
 
   const resetInputValue = React.useCallback(
     (event, newValue, reason) => {
+      inputValueToCompleteRef.current = null;
+      completionTimeout.clear();
       // Retain the current `inputValue` when no new option is selected and `clearOnBlur` is false.
       // In `multiple` mode, `newValue` is the next value array, so only length growth counts as a selection.
       const hasNewSelection = multiple ? value.length < newValue.length : newValue !== null;
@@ -276,6 +286,7 @@ function useAutocomplete(props) {
       getOptionFromValue,
       value,
       renderValue,
+      completionTimeout,
     ],
   );
 
@@ -771,6 +782,69 @@ function useAutocomplete(props) {
     }
   }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen, disableCloseOnSelect]);
 
+  const completeInput = useEventCallback(() => {
+    const input = inputRef.current;
+    if (
+      !autoComplete ||
+      !autoHighlight ||
+      !popupOpen ||
+      !focused ||
+      disabledProp ||
+      readOnly ||
+      isComposingRef.current ||
+      highlightReasonRef.current !== null ||
+      inputValueToCompleteRef.current !== inputValue ||
+      !input ||
+      input.value !== inputValue ||
+      input.selectionStart !== inputValue.length ||
+      input.selectionEnd !== inputValue.length
+    ) {
+      inputValueToCompleteRef.current = null;
+      return;
+    }
+
+    const option = filteredOptions[highlightedIndexRef.current];
+    if (option === undefined || (getOptionDisabled && getOptionDisabled(option))) {
+      return;
+    }
+
+    // Options can change before their highlight is synchronized. Only complete an
+    // option that is still highlighted in the listbox, including custom listboxes.
+    const optionElement = listboxRef.current?.querySelector(
+      `[data-option-index="${highlightedIndexRef.current}"]`,
+    );
+    if (!optionElement?.classList.contains(`${unstable_classNamePrefix}-focused`)) {
+      inputValueToCompleteRef.current = null;
+      return;
+    }
+
+    const optionLabel = getOptionLabel(option);
+    if (optionLabel.toLowerCase().startsWith(inputValue.toLowerCase())) {
+      input.value = optionLabel;
+      input.setSelectionRange(inputValue.length, optionLabel.length);
+      inputValueToCompleteRef.current = null;
+    }
+  });
+
+  React.useEffect(() => {
+    // React restores the controlled input after its change event. Complete it afterwards,
+    // keeping the typed inputValue (and change callbacks) separate from the displayed suffix.
+    if (
+      !autoComplete ||
+      !autoHighlight ||
+      !popupOpen ||
+      !focused ||
+      disabledProp ||
+      readOnly ||
+      inputValueToCompleteRef.current !== inputValue
+    ) {
+      inputValueToCompleteRef.current = null;
+    } else {
+      completionTimeout.start(0, completeInput);
+    }
+    return completionTimeout.clear;
+  });
+
   // Listen for browser window blur to detect when the user switches tabs or windows.
   // This helps prevent the popup from reopening automatically when the window regains focus.
   React.useEffect(() => {
@@ -804,6 +878,7 @@ function useAutocomplete(props) {
   };
 
   const handleClose = (event, reason) => {
+    cancelInputCompletion();
     if (!open) {
       return;
     }
@@ -970,6 +1045,7 @@ function useAutocomplete(props) {
   };
 
   const handleClear = (event) => {
+    cancelInputCompletion();
     inputValueEditedRef.current = true;
     setInputValueState('');
 
@@ -981,6 +1057,7 @@ function useAutocomplete(props) {
   };
 
   const handleKeyDown = (other) => (event) => {
+    cancelInputCompletion();
     if (other.onKeyDown) {
       other.onKeyDown(event);
     }
@@ -1233,6 +1310,7 @@ function useAutocomplete(props) {
   };
 
   const handleBlur = (event) => {
+    cancelInputCompletion();
     // Ignore the event when using the scrollbar with IE 11
     if (unstable_isActiveElementInListbox(listboxRef)) {
       inputRef.current.focus();
@@ -1268,6 +1346,21 @@ function useAutocomplete(props) {
     const newValue = event.target.value;
     const valueChanged = inputValue !== newValue;
 
+    cancelInputCompletion();
+    if (
+      autoComplete &&
+      autoHighlight &&
+      !isComposingRef.current &&
+      !event.nativeEvent.isComposing &&
+      !event.nativeEvent.inputType?.startsWith('delete') &&
+      newValue.length > inputValue.length &&
+      newValue.toLowerCase().startsWith(inputValue.toLowerCase()) &&
+      event.target.selectionStart === newValue.length &&
+      event.target.selectionEnd === newValue.length
+    ) {
+      inputValueToCompleteRef.current = newValue;
+    }
+
     if (valueChanged) {
       inputValueEditedRef.current = true;
       setInputValueState(newValue);
@@ -1296,6 +1389,7 @@ function useAutocomplete(props) {
   };
 
   const handleOptionMouseMove = (event) => {
+    cancelInputCompletion();
     const index = Number(event.currentTarget.getAttribute('data-option-index'));
     if (highlightedIndexRef.current !== index) {
       setHighlightedIndex({
@@ -1339,6 +1433,7 @@ function useAutocomplete(props) {
   };
 
   const handleOptionTouchStart = (event) => {
+    cancelInputCompletion();
     touchScrolledRef.current = false;
     setHighlightedIndex({
       event,
@@ -1349,6 +1444,7 @@ function useAutocomplete(props) {
   };
 
   const handleOptionClick = (event) => {
+    cancelInputCompletion();
     const index = Number(event.currentTarget.getAttribute('data-option-index'));
     selectNewValue(event, filteredOptions[index], 'selectOption');
 
@@ -1412,6 +1508,7 @@ function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = (event) => {
+    cancelInputCompletion();
     if (
       !disabledProp &&
       (inputValue === '' || !open) &&
@@ -1481,6 +1578,13 @@ function useAutocomplete(props) {
       onBlur: handleBlur,
       onFocus: handleFocus,
       onChange: handleInputChange,
+      onCompositionStart: () => {
+        isComposingRef.current = true;
+        cancelInputCompletion();
+      },
+      onCompositionEnd: () => {
+        isComposingRef.current = false;
+      },
       onMouseDown: handleInputMouseDown,
       // if open then this is handled imperatively so don't let react override
       // only have an opinion about this when closed

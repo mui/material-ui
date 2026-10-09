@@ -9,6 +9,7 @@ import {
   reactMajor,
   isJsdom,
   flushEffects,
+  waitFor,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import useAutocomplete, { createFilterOptions } from '@mui/material/useAutocomplete';
@@ -61,6 +62,61 @@ describe('useAutocomplete', () => {
     // If the DOM nodes are not preserved VO will not read the first option again since it thinks it didn't change.
     expect(fooOptionAsFirst).to.equal(fooOptionAsSecond);
     expect(barOptionAsFirst).to.equal(barOptionAsSecond);
+  });
+
+  describe('automatic inline completion', () => {
+    function Test({ renderOption = true }) {
+      const { getRootProps, getInputProps, getListboxProps, getOptionProps, groupedOptions } =
+        useAutocomplete({
+          autoComplete: true,
+          autoHighlight: true,
+          options: ['Andorra'],
+          unstable_classNamePrefix: 'Custom',
+        });
+
+      return (
+        <div {...getRootProps()}>
+          <input {...getInputProps()} />
+          <div {...getListboxProps()}>
+            {renderOption &&
+              groupedOptions.map((option, index) => {
+                const { key, ...optionProps } = getOptionProps({ option, index });
+                return (
+                  <div key={key} {...optionProps}>
+                    {option}
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      );
+    }
+
+    it('uses the configured highlight class in a custom listbox', async () => {
+      const { user } = render(<Test />);
+      const input = screen.getByRole('combobox');
+      await user.type(input, 'a');
+      await waitFor(() => {
+        expect(input.value).to.equal('Andorra');
+        expect(input.selectionStart).to.equal(1);
+        expect(input.selectionEnd).to.equal(7);
+      });
+      expect(screen.getByRole('option')).to.have.class('Custom-focused');
+    });
+
+    it('does not complete an option that is not rendered', async () => {
+      const { user } = render(<Test renderOption={false} />);
+      const input = screen.getByRole('combobox');
+      await user.type(input, 'a');
+      await act(async () => {
+        await new Promise((resolve) => {
+          setTimeout(resolve, 0);
+        });
+      });
+      expect(input.value).to.equal('a');
+      expect(input.selectionStart).to.equal(1);
+      expect(input.selectionEnd).to.equal(1);
+    });
   });
 
   describe('createFilterOptions', () => {
