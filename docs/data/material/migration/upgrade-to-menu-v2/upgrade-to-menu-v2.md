@@ -38,6 +38,12 @@ Menu v2 uses [Base UI](https://base-ui.com/react/components/menu) instead, whic
 
 ## How to upgrade
 
+### Static menu lists
+
+For an always-visible `MenuList` inside `Paper`, keep `@mui/material/MenuList` and `@mui/material/MenuItem`. Menu v2 has no standalone list component. This also applies to the static list in [Menu List composition](/material-ui/react-menu/#composition-with-menu-list).
+
+To change a static list into a popup, replace its `Paper` and `MenuList` wrapper with Menu v2 and add a `trigger`. Then migrate the items as described below. Omitting `trigger` does not make Menu v2 a static list; it still renders a positioned popup in a portal.
+
 ### 1. Update the imports
 
 Each part is the default export of its own subpath:
