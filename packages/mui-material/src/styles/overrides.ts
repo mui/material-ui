@@ -1,4 +1,4 @@
-import { CSSObject, CSSInterpolation, Interpolation } from '@mui/system';
+import type { CSSObject, CSSInterpolation, Interpolation } from '@mui/system';
 import { PopperClassKey } from '../Popper';
 import { ComponentsPropsList } from './props';
 import { AccordionActionsClassKey } from '../AccordionActions';
@@ -109,6 +109,7 @@ import { TablePaginationActionsClassKey } from '../TablePaginationActions';
 import { TableRowClassKey } from '../TableRow';
 import { TableSortLabelClassKey } from '../TableSortLabel';
 import { TabsClassKey } from '../Tabs';
+import { TabScrollButtonClassKey } from '../TabScrollButton';
 import { TextFieldClassKey } from '../TextField';
 import { ToggleButtonClassKey } from '../ToggleButton';
 import { ToggleButtonGroupClassKey } from '../ToggleButtonGroup';
@@ -254,6 +255,7 @@ export interface ComponentNameToClassKey {
   MuiTableRow: TableRowClassKey;
   MuiTableSortLabel: TableSortLabelClassKey;
   MuiTabs: TabsClassKey;
+  MuiTabScrollButton: TabScrollButtonClassKey;
   MuiTextField: TextFieldClassKey;
   MuiToggleButton: ToggleButtonClassKey;
   MuiToggleButtonGroup: ToggleButtonGroupClassKey;

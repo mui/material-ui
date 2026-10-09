@@ -30,13 +30,13 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: '22.23.2'
+          node-version: '22.23.3'
           # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
           cache: 'pnpm'
       - run: pnpm install
       - run: pnpm release:build
       - name: Publish packages to pkg.pr.new
-        uses: mui/mui-public/.github/actions/ci-publish@76d89a69f5f9e5107201f1ab81284c6907804972 # master
+        uses: mui/mui-public/.github/actions/ci-publish@73b01ccc61d2096ec1bac12c735482f8d056c917 # master
 
   # Tests dev-only scripts across all supported dev environments
   test-dev:
@@ -60,7 +60,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: '22.23.2'
+          node-version: '22.23.3'
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
       - name: Cache Next.js build
@@ -116,9 +116,9 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Prepare for publishing
-        uses: mui/mui-public/.github/actions/publish-prepare@76d89a69f5f9e5107201f1ab81284c6907804972 # master
+        uses: mui/mui-public/.github/actions/publish-prepare@73b01ccc61d2096ec1bac12c735482f8d056c917 # master
         with:
-          node-version: '22.23.2'
+          node-version: '22.23.3'
       - name: Dry run npm publishing
         env:
           IS_PUBLISH_TEST: 'true'

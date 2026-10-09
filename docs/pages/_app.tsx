@@ -127,7 +127,7 @@ function buildProductVersions(
       return vNum >= MIN_VERSION;
     })
     .map((v) => {
-      if (v.url === 'https://mui.com') {
+      if (v.url === 'https://next.mui.com') {
         return { text: currentVersion, current: true };
       }
       const productPath = getVersionedProductPath(v.version, productId);
@@ -318,7 +318,6 @@ export default function MyApp(props: AppProps) {
       {...props}
       Component={Component}
       pageProps={pageProps}
-      serviceWorkerPath="/sw.js"
       adConfig={GA_AD_CONFIG}
       activePage={activePage}
       activePageParents={activePageParents}
