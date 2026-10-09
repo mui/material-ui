@@ -73,7 +73,7 @@ async function main(version) {
         packageVersion = tagMapping.replace(`${version}: `, '');
       }
 
-      packageJson.resolutions[reactPackageName] = packageVersion;
+      packageJson.pnpm.overrides[reactPackageName] = packageVersion;
     }),
   );
 
@@ -89,7 +89,8 @@ async function main(version) {
           `Version ${majorVersion} does not have version defined for the ${packageName}`,
         );
       }
-      packageJson.resolutions[packageName] = additionalVersionsMappings[majorVersion][packageName];
+      packageJson.pnpm.overrides[packageName] =
+        additionalVersionsMappings[majorVersion][packageName];
     });
   }
 
