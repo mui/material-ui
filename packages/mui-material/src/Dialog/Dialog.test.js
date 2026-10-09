@@ -254,10 +254,10 @@ describe('<Dialog />', () => {
   });
 
   describe('backdrop', () => {
-    it('does have `role` `presentation`', () => {
+    it('does have `role` `none`', () => {
       render(<Dialog open>foo</Dialog>);
 
-      expect(findBackdrop()).to.have.attribute('role', 'presentation');
+      expect(findBackdrop()).to.have.attribute('role', 'none');
     });
 
     it('calls onClose when clicked', () => {
