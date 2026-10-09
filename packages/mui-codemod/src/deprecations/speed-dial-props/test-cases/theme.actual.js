@@ -62,3 +62,14 @@ fn({
     },
   },
 });
+
+const ownerState = CustomFabProps;
+const namedFabProps = (state) => ({ title: state.open ? 'open' : 'closed' });
+fn({
+  MuiSpeedDial: {
+    defaultProps: {
+      FabProps: ownerState,
+      slotProps: { fab: namedFabProps },
+    },
+  },
+});
