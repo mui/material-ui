@@ -5,6 +5,7 @@ import {
   fetchCommitsBetweenRefs,
   findLatestTaggedVersion,
 } from '@mui/internal-code-infra/changelog';
+import { getRateLimitRetryTime } from '@mui/internal-code-infra/github';
 import yargs from 'yargs';
 
 /**
@@ -82,16 +83,38 @@ async function main(argv) {
     );
   }
 
-  const commitsItems = (
-    await fetchCommitsBetweenRefs({
+  /** @type {string | undefined} */
+  let currentPhase;
+  /** @type {import('@mui/internal-code-infra/changelog').FetchedCommitDetails[]} */
+  let fetchedCommits;
+  try {
+    fetchedCommits = await fetchCommitsBetweenRefs({
       lastRelease: previousRelease,
       release,
       repo: 'material-ui',
       octokit: process.env.GITHUB_TOKEN
         ? new Octokit({ auth: process.env.GITHUB_TOKEN })
         : undefined,
-    })
-  ).filter((commit) => !isBot(commit.author.login) && !commit.message.startsWith('[website]'));
+      onProgress: process.stderr.isTTY
+        ? ({ phase, count, total }) => {
+            if (currentPhase !== undefined && currentPhase !== phase) {
+              process.stderr.write('\n');
+            }
+            currentPhase = phase;
+            process.stderr.write(`\r${phase} ${count}/${total}`);
+          }
+        : undefined,
+    });
+  } finally {
+    if (currentPhase !== undefined) {
+      process.stderr.write('\n');
+    }
+  }
+  const commitsItems = fetchedCommits.filter(
+    (commit) =>
+      (!commit.author || !isBot(commit.author.login) || commit.labels.includes('cherry-pick')) &&
+      !commit.message.startsWith('[website]'),
+  );
 
   const contributorHandles = getAllContributors(commitsItems);
 
@@ -165,6 +188,23 @@ yargs(process.argv.slice(2))
           type: 'string',
         }),
     handler: main,
+  })
+  .fail((message, error, cli) => {
+    if (!error) {
+      cli.showHelp();
+      console.error(`\n${message}`);
+    } else {
+      const retryAt = getRateLimitRetryTime(error);
+      if (retryAt) {
+        const minutes = Math.ceil((retryAt.getTime() - Date.now()) / 60_000);
+        console.error(
+          `GitHub API rate limit exceeded. Try again after ${retryAt.toLocaleTimeString()} (in about ${minutes} minute${minutes === 1 ? '' : 's'}).`,
+        );
+      } else {
+        console.error(error);
+      }
+    }
+    process.exit(1);
   })
   .help()
   .strict(true)
