@@ -36,7 +36,7 @@
     "@types/babel__traverse": "7.28.0",
     "@types/doctrine": "0.0.9",
     "@types/mdast": "4.0.4",
-    "@types/node": "22.20.4",
+    "@types/node": "22.20.5",
     "@types/sinon": "22.0.0",
     "sinon": "22.1.0"
   },
