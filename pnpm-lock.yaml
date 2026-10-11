@@ -168,8 +168,8 @@ catalogs:
       specifier: ^1.8.0
       version: 1.8.0
     '@docsearch/react':
-      specifier: ^4.7.0
-      version: 4.7.0
+      specifier: ^4.7.1
+      version: 4.7.1
     '@emotion/cache':
       specifier: ^11.14.0
       version: 11.14.0
@@ -417,7 +417,7 @@ importers:
         version: 1.8.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@docsearch/react':
         specifier: catalog:docs
-        version: 4.7.0(@algolia/client-search@5.56.0)(@types/react@19.3.0)(algoliasearch@5.56.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(search-insights@2.17.3)
+        version: 4.7.1(@algolia/client-search@5.56.0)(@types/react@19.3.0)(algoliasearch@5.56.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(search-insights@2.17.3)
       '@emotion/cache':
         specifier: catalog:docs
         version: 11.14.0
@@ -838,7 +838,7 @@ importers:
         version: 1.8.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@docsearch/react':
         specifier: catalog:docs
-        version: 4.7.0(@algolia/client-search@5.56.0)(@types/react@19.3.0)(algoliasearch@5.56.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(search-insights@2.17.3)
+        version: 4.7.1(@algolia/client-search@5.56.0)(@types/react@19.3.0)(algoliasearch@5.56.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(search-insights@2.17.3)
       '@emotion/cache':
         specifier: catalog:docs
         version: 11.14.0
@@ -3101,8 +3101,8 @@ packages:
     peerDependencies:
       postcss-selector-parser: ^7.1.1
 
-  '@docsearch/core@4.7.0':
-    resolution: {integrity: sha512-p/9xVKmPDj3FPvMfPf5naVO3Ej8SCbcUugGvx1+8GgkuBNbqxqN2Irx3WLBv8VY0jH7XpRwKWdlmjXLZsmTLsg==}
+  '@docsearch/core@4.7.1':
+    resolution: {integrity: sha512-uzIFuu2Wsf3+/ZdLGDl6MhpjCZQ5DTMBGe1u/2DdQV+GlHEerOcthWZAoptCsNtjk+DX4Tbx3HmEgJE7RuMQhw==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 20.0.0'
       react: '>= 16.8.0 < 20.0.0'
@@ -3115,11 +3115,11 @@ packages:
       react-dom:
         optional: true
 
-  '@docsearch/css@4.7.0':
-    resolution: {integrity: sha512-Sk5xkdRFeE7PeWjG9l4AfTwdvMfr9wHiwNNCpHXT4v4SNyNMKdHGvEILc31BgaVFGDDNbv5u/a73tofRiwbEZw==}
+  '@docsearch/css@4.7.1':
+    resolution: {integrity: sha512-AsMPnbNmVLDNjhtgfq4ZRskNvWR8vuK6riEegHp3kjBFtxbmTWPzZ5s1FJ04SGr2D0ZXglueUNISsV2sDgV6Jw==}
 
-  '@docsearch/react@4.7.0':
-    resolution: {integrity: sha512-x6oedjJ8O8/pIDBsMo5Orca3/6cQCz616/CwthVe68l43mqnj2lrJ9kFQITBqy8hMsS3nWeBWFoVO5dJ1DCFKA==}
+  '@docsearch/react@4.7.1':
+    resolution: {integrity: sha512-MhRNQp+Ew+i/xc/+ydDgSQmu6/lEH+Og8F0d1qpXWV/kKNw8OhFfDnLNJlNLiqZQhU1GaEv37G4wxipKw+HdNA==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 20.0.0'
       react: '>= 16.8.0 < 20.0.0'
@@ -13898,19 +13898,19 @@ snapshots:
     dependencies:
       postcss-selector-parser: 7.1.5
 
-  '@docsearch/core@4.7.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@docsearch/core@4.7.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     optionalDependencies:
       '@types/react': 19.3.0
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
 
-  '@docsearch/css@4.7.0': {}
+  '@docsearch/css@4.7.1': {}
 
-  '@docsearch/react@4.7.0(@algolia/client-search@5.56.0)(@types/react@19.3.0)(algoliasearch@5.56.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(search-insights@2.17.3)':
+  '@docsearch/react@4.7.1(@algolia/client-search@5.56.0)(@types/react@19.3.0)(algoliasearch@5.56.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(search-insights@2.17.3)':
     dependencies:
       '@algolia/autocomplete-core': 1.19.2(@algolia/client-search@5.56.0)(algoliasearch@5.56.0)(search-insights@2.17.3)
-      '@docsearch/core': 4.7.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@docsearch/css': 4.7.0
+      '@docsearch/core': 4.7.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@docsearch/css': 4.7.1
     optionalDependencies:
       '@types/react': 19.3.0
       react: 19.3.0
