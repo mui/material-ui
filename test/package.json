@@ -5,7 +5,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@babel/runtime": "8.0.5",
+    "@babel/runtime": "8.0.7",
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
     "@fontsource/inter": "5.3.0",
