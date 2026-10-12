@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "9.4.0",
+  "version": "10.0.0-alpha.0",
   "private": true,
   "//": "#target-branch-reference: scripts.prettier",
   "scripts": {
@@ -78,7 +78,7 @@
   "dependencies": {
     "@netlify/functions": "^6.0.2",
     "@slack/bolt": "^5.1.0",
-    "execa": "^10.0.1"
+    "execa": "^10.1.0"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",
@@ -124,7 +124,7 @@
     "fast-glob": "3.3.3",
     "git-url-parse": "16.1.0",
     "globby": "16.2.4",
-    "jsdom": "30.1.1",
+    "jsdom": "30.1.2",
     "lerna": "10.0.1",
     "minimatch": "10.2.6",
     "nx": "22.7.6",

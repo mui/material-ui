@@ -73,6 +73,7 @@ function SwipeableEdgeDrawer(props) {
         onOpen={toggleDrawer(true)}
         swipeAreaWidth={drawerBleeding}
         disableSwipeToOpen={false}
+        allowSwipeInChildren
         keepMounted
       >
         <StyledBox
