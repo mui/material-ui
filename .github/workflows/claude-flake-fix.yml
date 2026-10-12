@@ -28,8 +28,9 @@ jobs:
       contents: write # push the fix branch (publish job)
       pull-requests: write # open the draft PR (publish job)
       issues: write # rolling tracking issue (publish job)
-    uses: mui/mui-public/.github/workflows/claude-flake-fix.yml@73b01ccc61d2096ec1bac12c735482f8d056c917 # master
+    uses: mui/mui-public/.github/workflows/claude-flake-fix.yml@3f04cad43e75e5a943ebd2a73cc0edf9ea156c7f # mui/mui-public#1939 (test)
     with:
       report-only: ${{ inputs.report-only || false }}
+      dry-run: true
       model: ${{ inputs.model }} # blank falls through to mui-public's central default
       debug: true # always surface the agent's full output in the run log
