@@ -30,6 +30,10 @@ export interface Menu2GroupLabelSlotProps extends Menu2RootSlotProps<Menu2GroupL
 
 export interface Menu2GroupLabelOwnProps {
   /**
+   * The content of the label.
+   */
+  children?: React.ReactNode;
+  /**
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<Menu2GroupLabelClasses> | undefined;
@@ -92,7 +96,11 @@ const Menu2GroupLabelRoot = styled(ListSubheader, {
  *
  * Demos:
  *
- * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Menu v2](https://next.mui.com/material-ui/react-menu2/)
+ *
+ * API:
+ *
+ * - [Menu2GroupLabel API](https://next.mui.com/material-ui/api/menu-2-group-label/)
  */
 const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
   inProps: Menu2GroupLabelProps,
@@ -144,7 +152,7 @@ Menu2GroupLabel.propTypes /* remove-proptypes */ = {
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * @ignore
+   * The content of the label.
    */
   children: PropTypes.node,
   /**

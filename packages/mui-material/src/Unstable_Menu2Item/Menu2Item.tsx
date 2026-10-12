@@ -97,7 +97,11 @@ const Menu2ItemRoot = styled(Menu2ItemBase, { slot: 'root' })({});
  *
  * Demos:
  *
- * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Menu v2](https://next.mui.com/material-ui/react-menu2/)
+ *
+ * API:
+ *
+ * - [Menu2Item API](https://next.mui.com/material-ui/api/menu-2-item/)
  */
 const Menu2Item = React.forwardRef(function Menu2Item(
   inProps: Menu2ItemProps,

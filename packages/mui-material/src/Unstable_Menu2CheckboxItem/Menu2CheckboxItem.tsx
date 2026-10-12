@@ -97,6 +97,8 @@ export interface Menu2CheckboxItemOwnProps
   defaultChecked?: boolean | undefined;
   /**
    * Event handler called when the checkbox item is ticked or unticked.
+   * @param {boolean} checked The new checked state.
+   * @param {object} eventDetails The reason for the change and the native event.
    */
   onCheckedChange?: BaseMenu.CheckboxItem.Props['onCheckedChange'] | undefined;
   /**
@@ -262,7 +264,11 @@ Menu2CheckboxItemRootSlot.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Menu v2](https://next.mui.com/material-ui/react-menu2/)
+ *
+ * API:
+ *
+ * - [Menu2CheckboxItem API](https://next.mui.com/material-ui/api/menu-2-checkbox-item/)
  */
 const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
   inProps: Menu2CheckboxItemProps,
@@ -438,6 +444,8 @@ Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
   nativeButton: PropTypes.bool,
   /**
    * Event handler called when the checkbox item is ticked or unticked.
+   * @param {boolean} checked The new checked state.
+   * @param {object} eventDetails The reason for the change and the native event.
    */
   onCheckedChange: PropTypes.func,
   /**

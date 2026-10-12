@@ -30,8 +30,6 @@ export interface Menu2SubmenuProps
       | 'defaultOpen'
       | 'highlightItemOnHover'
       | 'loopFocus'
-      | 'onOpenChange'
-      | 'onOpenChangeComplete'
       | 'open'
     >,
     Omit<Menu2SubmenuPopupProps, 'children' | 'slots' | 'slotProps'> {
@@ -39,6 +37,17 @@ export interface Menu2SubmenuProps
    * The submenu items.
    */
   children?: React.ReactNode;
+  /**
+   * Event handler called when the submenu is opened or closed.
+   * @param {boolean} open The new open state.
+   * @param {object} eventDetails The reason for the change and the native event.
+   */
+  onOpenChange?: BaseMenu.SubmenuRoot.Props['onOpenChange'] | undefined;
+  /**
+   * Event handler called after the opening or closing animation completes.
+   * @param {boolean} open Whether the submenu is open.
+   */
+  onOpenChangeComplete?: BaseMenu.SubmenuRoot.Props['onOpenChangeComplete'] | undefined;
   /**
    * The `Menu2SubmenuTrigger` that opens the submenu, optionally wrapped in a `Tooltip`.
    *
@@ -62,7 +71,11 @@ const pointerLeaveReasons = new Set<string>(['trigger-hover', 'sibling-open']);
  *
  * Demos:
  *
- * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Menu v2](https://next.mui.com/material-ui/react-menu2/)
+ *
+ * API:
+ *
+ * - [Menu2Submenu API](https://next.mui.com/material-ui/api/menu-2-submenu/)
  */
 const Menu2Submenu = React.forwardRef(function Menu2Submenu(
   props: Menu2SubmenuProps,
@@ -145,6 +158,19 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
+   * A ref to imperative actions.
+   * - `unmount`: Ends the closing phase of the menu after an externally controlled closing animation finishes.
+   *   Call `preventUnmountOnClose()` in `onOpenChange` first, otherwise the menu completes closing on its own.
+   *   Whether it leaves the DOM is decided by `keepMounted` on the portal.
+   * - `close`: Closes the menu imperatively when called.
+   */
+  actionsRef: PropTypes.shape({
+    current: PropTypes.shape({
+      close: PropTypes.func.isRequired,
+      unmount: PropTypes.func.isRequired,
+    }),
+  }),
+  /**
    * How to align the popup relative to the specified side.
    * @default 'start'
    */
@@ -176,6 +202,12 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
    * CSS class applied to the root element, which contains the menu and its backdrops.
    */
   className: PropTypes.string,
+  /**
+   * When in a submenu, determines whether pressing the Escape key
+   * closes the entire menu, or only the current child menu.
+   * @default false
+   */
+  closeParentOnEsc: PropTypes.bool,
   /**
    * Determines how to handle collisions when positioning the popup.
    */
@@ -228,6 +260,13 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
     PropTypes.func,
   ]),
   /**
+   * Whether the menu is initially open.
+   *
+   * To render a controlled menu, use the `open` prop instead.
+   * @default false
+   */
+  defaultOpen: PropTypes.bool,
+  /**
    * Whether to disable the popup from tracking layout shifts of its positioning anchor.
    * @default false
    */
@@ -248,10 +287,37 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
     PropTypes.bool,
   ]),
   /**
+   * Whether moving the pointer over items should highlight them.
+   * Disabling this prop allows CSS `:hover` to be differentiated from the `:focus` (`data-highlighted`) state.
+   * @default true
+   */
+  highlightItemOnHover: PropTypes.bool,
+  /**
    * Whether to keep the portal mounted in the DOM while the popup is hidden.
    * @default false
    */
   keepMounted: PropTypes.bool,
+  /**
+   * Whether to loop keyboard focus back to the first item
+   * when the end of the list is reached while using the arrow keys.
+   * @default true
+   */
+  loopFocus: PropTypes.bool,
+  /**
+   * Event handler called when the submenu is opened or closed.
+   * @param {boolean} open The new open state.
+   * @param {object} eventDetails The reason for the change and the native event.
+   */
+  onOpenChange: PropTypes.func,
+  /**
+   * Event handler called after the opening or closing animation completes.
+   * @param {boolean} open Whether the submenu is open.
+   */
+  onOpenChangeComplete: PropTypes.func,
+  /**
+   * Whether the menu is currently open.
+   */
+  open: PropTypes.bool,
   /**
    * Determines which CSS `position` property to use.
    * @default 'absolute'

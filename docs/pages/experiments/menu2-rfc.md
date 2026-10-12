@@ -201,7 +201,7 @@ The experiment implements the API above, shared styles, theme registration, RTL 
 
 Menu2 requires Base UI 1.9.0 or later. Version 1.9.0 includes the [menu tree fix](https://github.com/mui/base-ui/pull/5645) and the [transition state fix for retained menus](https://github.com/mui/base-ui/pull/5738). No local patch is needed. The regression tests remain in place.
 
-The playground compares classic Menu and Menu2, focus indicators, transition choices, and reduced motion. [Public demos](/material-ui/react-menu2/) and a [migration guide](/material-ui/migration/upgrade-to-menu-v2/) are now available. The API generator still skips the `Unstable_Menu2` modules; API registration and generation remain release work.
+The playground compares classic Menu and Menu2, focus indicators, transition choices, and reduced motion. [Public demos](/material-ui/react-menu2/), [generated API docs](/material-ui/api/menu-2/), and a [migration guide](/material-ui/migration/upgrade-to-menu-v2/) are available. The API generator covers all 11 public components and excludes the private defaults.
 
 Remaining release work is listed once in the rollout plan.
 
@@ -260,7 +260,7 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 1. **Review the proposal:** the benchmark and API experiment are ready for maintainer feedback.
 2. **Prepare an unstable release:** target a v9 minor release after review.
    - Verify the built package with TypeScript 4.9 for existing components and shared theme imports, and TypeScript 5.0 for Menu2 and its opt-in theme types.
-   - Complete API registration, remove the Menu2 API-generator skip, then generate and review PropTypes and API docs.
+   - Keep generated PropTypes and API docs aligned with the public components.
    - Keep the public demos and migration guide aligned with the final API and behavior decisions.
    - Validate accessibility in open and nested menus. Record known inherited gaps rather than treating shared styles as proof of compliance.
    - Refresh bundle measurements and run release checks, including browser and visual regressions. Historical results do not validate the release revision.

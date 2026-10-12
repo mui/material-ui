@@ -52,6 +52,8 @@ export interface Menu2RadioGroupOwnProps {
   defaultValue?: any;
   /**
    * Function called when the selected value changes.
+   * @param {any} value The new value.
+   * @param {object} eventDetails The reason for the change and the native event.
    */
   onValueChange?: BaseMenu.RadioGroup.Props['onValueChange'] | undefined;
   /**
@@ -118,7 +120,11 @@ const Menu2RadioGroupRoot = styled('div', {
  *
  * Demos:
  *
- * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Menu v2](https://next.mui.com/material-ui/react-menu2/)
+ *
+ * API:
+ *
+ * - [Menu2RadioGroup API](https://next.mui.com/material-ui/api/menu-2-radio-group/)
  */
 const Menu2RadioGroup = React.forwardRef(function Menu2RadioGroup(
   inProps: Menu2RadioGroupProps,
@@ -196,6 +202,8 @@ Menu2RadioGroup.propTypes /* remove-proptypes */ = {
   disabled: PropTypes.bool,
   /**
    * Function called when the selected value changes.
+   * @param {any} value The new value.
+   * @param {object} eventDetails The reason for the change and the native event.
    */
   onValueChange: PropTypes.func,
   /**

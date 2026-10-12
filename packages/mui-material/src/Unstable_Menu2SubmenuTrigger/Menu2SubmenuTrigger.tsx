@@ -124,7 +124,11 @@ export type Menu2SubmenuTriggerProps<
  *
  * Demos:
  *
- * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Menu v2](https://next.mui.com/material-ui/react-menu2/)
+ *
+ * API:
+ *
+ * - [Menu2SubmenuTrigger API](https://next.mui.com/material-ui/api/menu-2-submenu-trigger/)
  */
 const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
   inProps: Menu2SubmenuTriggerProps,

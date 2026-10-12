@@ -102,7 +102,11 @@ const Menu2SeparatorRoot = styled(Divider, {
  *
  * Demos:
  *
- * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Menu v2](https://next.mui.com/material-ui/react-menu2/)
+ *
+ * API:
+ *
+ * - [Menu2Separator API](https://next.mui.com/material-ui/api/menu-2-separator/)
  */
 const Menu2Separator = React.forwardRef(function Menu2Separator(
   inProps: Menu2SeparatorProps,

@@ -52,8 +52,6 @@ export interface Menu2Props
       | 'highlightItemOnHover'
       | 'loopFocus'
       | 'modal'
-      | 'onOpenChange'
-      | 'onOpenChangeComplete'
       | 'open'
     >,
     Pick<BaseMenu.Trigger.Props, 'closeDelay' | 'delay' | 'openOnHover'>,
@@ -62,6 +60,17 @@ export interface Menu2Props
    * The menu items.
    */
   children?: React.ReactNode;
+  /**
+   * Event handler called when the menu is opened or closed.
+   * @param {boolean} open The new open state.
+   * @param {object} eventDetails The reason for the change and the native event.
+   */
+  onOpenChange?: BaseMenu.Root.Props['onOpenChange'] | undefined;
+  /**
+   * Event handler called after the opening or closing animation completes.
+   * @param {boolean} open Whether the menu is open.
+   */
+  onOpenChangeComplete?: BaseMenu.Root.Props['onOpenChangeComplete'] | undefined;
   /**
    * The element that opens the menu, for example a `Button`.
    *
@@ -84,7 +93,11 @@ export interface Menu2Props
  *
  * Demos:
  *
- * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Menu v2](https://next.mui.com/material-ui/react-menu2/)
+ *
+ * API:
+ *
+ * - [Menu2 API](https://next.mui.com/material-ui/api/menu-2/)
  */
 const Menu2 = React.forwardRef(function Menu2(
   props: Menu2Props,
@@ -192,6 +205,19 @@ Menu2.propTypes /* remove-proptypes */ = {
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
+   * A ref to imperative actions.
+   * - `unmount`: Ends the closing phase of the menu after an externally controlled closing animation finishes.
+   *   Call `preventUnmountOnClose()` in `onOpenChange` first, otherwise the menu completes closing on its own.
+   *   Whether it leaves the DOM is decided by `keepMounted` on the portal.
+   * - `close`: Closes the menu imperatively when called.
+   */
+  actionsRef: PropTypes.shape({
+    current: PropTypes.shape({
+      close: PropTypes.func.isRequired,
+      unmount: PropTypes.func.isRequired,
+    }),
+  }),
+  /**
    * How to align the popup relative to the specified side.
    * @default 'start'
    */
@@ -223,6 +249,14 @@ Menu2.propTypes /* remove-proptypes */ = {
    * CSS class applied to the root element, which contains the menu and its backdrops.
    */
   className: PropTypes.string,
+  /**
+   * How long to wait before closing the menu that was opened on hover.
+   * Specified in milliseconds.
+   *
+   * Requires the `openOnHover` prop.
+   * @default 0
+   */
+  closeDelay: PropTypes.number,
   /**
    * Determines how to handle collisions when positioning the popup.
    */
@@ -275,10 +309,29 @@ Menu2.propTypes /* remove-proptypes */ = {
     PropTypes.func,
   ]),
   /**
+   * Whether the menu is initially open.
+   *
+   * To render a controlled menu, use the `open` prop instead.
+   * @default false
+   */
+  defaultOpen: PropTypes.bool,
+  /**
+   * How long to wait before the menu may be opened on hover. Specified in milliseconds.
+   *
+   * Requires the `openOnHover` prop.
+   * @default 100
+   */
+  delay: PropTypes.number,
+  /**
    * Whether to disable the popup from tracking layout shifts of its positioning anchor.
    * @default false
    */
   disableAnchorTracking: PropTypes.bool,
+  /**
+   * Whether the component should ignore user interaction.
+   * @default false
+   */
+  disabled: PropTypes.bool,
   /**
    * The elevation of the menu surface.
    * @default 8
@@ -295,10 +348,52 @@ Menu2.propTypes /* remove-proptypes */ = {
     PropTypes.bool,
   ]),
   /**
+   * Whether moving the pointer over items should highlight them.
+   * Disabling this prop allows CSS `:hover` to be differentiated from the `:focus` (`data-highlighted`) state.
+   * @default true
+   */
+  highlightItemOnHover: PropTypes.bool,
+  /**
    * Whether to keep the portal mounted in the DOM while the popup is hidden.
    * @default false
    */
   keepMounted: PropTypes.bool,
+  /**
+   * Whether to loop keyboard focus back to the first item
+   * when the end of the list is reached while using the arrow keys.
+   * @default true
+   */
+  loopFocus: PropTypes.bool,
+  /**
+   * Determines if the menu enters a modal state when open.
+   * - `true`: user interaction is limited to the menu: document page scroll is locked and pointer interactions on outside elements are disabled.
+   * - `false`: user interaction with the rest of the document is allowed.
+   *
+   * On touch devices, a `true` modal blocks outside taps but leaves the page scrollable unless the popup spans nearly the full viewport width, matching native iOS behavior.
+   *
+   * Nested menus ignore this prop, and menus opened by hover are never modal.
+   * @default true
+   */
+  modal: PropTypes.bool,
+  /**
+   * Event handler called when the menu is opened or closed.
+   * @param {boolean} open The new open state.
+   * @param {object} eventDetails The reason for the change and the native event.
+   */
+  onOpenChange: PropTypes.func,
+  /**
+   * Event handler called after the opening or closing animation completes.
+   * @param {boolean} open Whether the menu is open.
+   */
+  onOpenChangeComplete: PropTypes.func,
+  /**
+   * Whether the menu is currently open.
+   */
+  open: PropTypes.bool,
+  /**
+   * Whether the menu should also open when the trigger is hovered.
+   */
+  openOnHover: PropTypes.bool,
   /**
    * Determines which CSS `position` property to use.
    * @default 'absolute'

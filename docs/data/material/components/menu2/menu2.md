@@ -1,6 +1,7 @@
 ---
 productId: material-ui
 title: React Menu v2 component
+components: Menu2, Menu2Item, Menu2LinkItem, Menu2CheckboxItem, Menu2RadioGroup, Menu2RadioItem, Menu2Submenu, Menu2SubmenuTrigger, Menu2Group, Menu2GroupLabel, Menu2Separator
 githubLabel: 'scope: menu'
 materialDesign: https://m2.material.io/components/menus
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/

@@ -7,6 +7,9 @@ import { menu2Classes, menu2SubmenuClasses } from './menu2Classes';
 
 // Common Menu2 theme styles precede the submenu-specific styles.
 // The final popup wrappers resolve sx after both theme layers.
+/**
+ * @ignore - internal component.
+ */
 export const Menu2RootBase = styled('div', { name: 'MuiMenu2', slot: 'root' })(
   memoTheme(({ theme }) => ({
     // Keep Base UI's interaction backdrop and the popup in one stacking context.

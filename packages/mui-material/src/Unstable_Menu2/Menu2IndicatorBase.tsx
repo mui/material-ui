@@ -35,6 +35,9 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>(function Indi
 });
 
 // Each item supplies the theme overrides for its indicator slot.
+/**
+ * @ignore - internal component.
+ */
 const Menu2IndicatorBase = styled(Indicator, { slot: 'root' })(
   memoTheme(({ theme }) => ({
     alignItems: 'center',

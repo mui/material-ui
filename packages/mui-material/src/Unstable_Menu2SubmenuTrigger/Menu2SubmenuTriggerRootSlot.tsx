@@ -62,6 +62,9 @@ const Menu2SubmenuTriggerIndicator = styled('span', {
   paddingLeft: 8,
 });
 
+/**
+ * @ignore - internal component.
+ */
 function Menu2SubmenuTriggerRootSlot(
   props: Pick<
     Menu2SubmenuTriggerProps,

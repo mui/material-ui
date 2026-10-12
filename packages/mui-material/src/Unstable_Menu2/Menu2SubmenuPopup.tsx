@@ -215,10 +215,7 @@ const Menu2SubmenuPopupList = styled(Menu2ListBase, {
 })({});
 
 /**
- *
- * Demos:
- *
- * - [Menu](https://mui.com/material-ui/react-menu/)
+ * @ignore - internal component.
  */
 const Menu2SubmenuPopup = React.forwardRef(function Menu2SubmenuPopup(
   inProps: Menu2SubmenuPopupInternalProps,

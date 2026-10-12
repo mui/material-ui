@@ -244,7 +244,11 @@ Menu2RadioItemRootSlot.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Menu v2](https://next.mui.com/material-ui/react-menu2/)
+ *
+ * API:
+ *
+ * - [Menu2RadioItem API](https://next.mui.com/material-ui/api/menu-2-radio-item/)
  */
 const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
   inProps: Menu2RadioItemProps,

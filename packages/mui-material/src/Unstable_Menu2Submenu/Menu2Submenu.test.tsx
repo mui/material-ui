@@ -17,7 +17,7 @@ import describeConformance from '../../test/describeConformance';
 
 // The collapsed surfaces: trigger as a prop and children as the popup, with
 // one explicit behavioral component for the submenu trigger.
-describe('<Menu2 /> collapsed API', () => {
+describe('<Menu2Submenu />', () => {
   const { render } = createRenderer();
 
   it('exports submenu utility classes under the public component name', () => {

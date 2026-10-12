@@ -26,6 +26,10 @@ export interface Menu2GroupSlotProps extends Menu2RootSlotProps<Menu2GroupProps>
 
 export interface Menu2GroupOwnProps {
   /**
+   * The content of the group.
+   */
+  children?: React.ReactNode;
+  /**
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<Menu2GroupClasses> | undefined;
@@ -88,7 +92,11 @@ const Menu2GroupRoot = styled('div', {
  *
  * Demos:
  *
- * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Menu v2](https://next.mui.com/material-ui/react-menu2/)
+ *
+ * API:
+ *
+ * - [Menu2Group API](https://next.mui.com/material-ui/api/menu-2-group/)
  */
 const Menu2Group = React.forwardRef(function Menu2Group(
   inProps: Menu2GroupProps,
@@ -137,7 +145,7 @@ Menu2Group.propTypes /* remove-proptypes */ = {
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * @ignore
+   * The content of the group.
    */
   children: PropTypes.node,
   /**
