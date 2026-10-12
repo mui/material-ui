@@ -29,6 +29,7 @@ const cases = [
   { name: 'button-barrel', parts: ['Button'], barrel: true },
   { name: 'classic-menu', parts: classic },
   { name: 'classic-menu-barrel', parts: classic, barrel: true },
+  { name: 'classic-menu-high-contrast', parts: classic, highContrast: true },
   ...(hasMenu2
     ? [
         { name: 'menu2', parts: menu2 },
@@ -40,11 +41,15 @@ const cases = [
 ];
 
 const results = {};
-for (const { name, parts, barrel } of cases) {
+for (const { name, parts, barrel, highContrast } of cases) {
   const entry = '\0menu2-bundle-entry';
-  const code = barrel
+  const componentImports = barrel
     ? `import { ${parts.join(', ')} } from '@mui/material';`
     : parts.map((part) => `import ${part} from '@mui/material/${part}';`).join('\n');
+  const code = highContrast
+    ? `${componentImports}\nimport { enhanceHighContrast } from '@mui/material/styles';`
+    : componentImports;
+  const liveImports = highContrast ? [...parts, 'enhanceHighContrast'] : parts;
   // eslint-disable-next-line no-await-in-loop -- Build one scenario at a time to limit memory use.
   const output = await build({
     configFile: false,
@@ -85,7 +90,7 @@ for (const { name, parts, barrel } of cases) {
         },
         load(id) {
           // Keep every selected component live, as in the package size checker.
-          return id === entry ? `${code}\nconsole.log(${parts.join(', ')});` : null;
+          return id === entry ? `${code}\nconsole.log(${liveImports.join(', ')});` : null;
         },
       },
     ],

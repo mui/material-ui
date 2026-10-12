@@ -180,6 +180,7 @@ Other behavior and caveats:
 
 ### Known issues
 
+- **Closing menus:** in Base UI 1.9.0, focus can stay on an item until its exit animation ends. Pressing Escape, then Enter during exit, can still activate that item. This affects Grow and CSS transitions, with or without `keepMounted`. Pointer blocking does not remove the closing menu from the accessibility tree. Track [Base UI issue #5519](https://github.com/mui/base-ui/issues/5519) and [draft PR #5537](https://github.com/mui/base-ui/pull/5537), which combines earlier focus return with native `inert`. Do not add `inert` alone: it can leave focus on the document body.
 - **Portal-container refs on mount:** with `defaultOpen` or `keepMounted`, Base UI 1.9.0 can read a container ref before its element is attached. The portal then uses `document.body` instead of the requested container. Use a callback ref with state and pass the resolved element as `container`; an initial `null` makes the portal wait. The accessibility fixtures use this pattern. A general ref-resolution fix belongs upstream; no local runtime patch is included.
 - **Retained menus in dialogs:** a Menu2 with `keepMounted` inside a kept-mounted Material Dialog can remain under `aria-hidden="true"` when it uses the default portal container. The menu is visible, but can be hidden from assistive technology. Leave Menu2's `keepMounted` disabled in this configuration. Automatic integration is deferred. [Base UI issue #5577](https://github.com/mui/base-ui/issues/5577) describes a related portal limitation, but not this exact composition: Material's modal manager hides the retained Menu2 portal.
 
@@ -235,7 +236,7 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 
    The default light-theme focus tint has approximately 1.3:1 contrast against white. Sharing it with the classic item does not resolve the [non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html) gap. A library-wide state-style review remains separate work. Under `theme.focusVisible`, the item uses the classic inset ring instead of the focus tint; the inset avoids clipping in a scrolling popup. Shared styles do not imply identical keyboard-to-pointer behavior; see the caveat above.
 
-   Dedicated axe fixtures check open and nested menus. Base UI 1.8.0 [fixes the portal owner role](https://github.com/mui/base-ui/pull/5058); `aria-required-children` now passes without an exception. The `menus.a11y.json` report still marks focus guards and trigger references for review. These two checks have fixture-specific assertion exceptions; interaction tests verify the reference IDs. Screen-reader checks and a closing-state audit remain required.
+   Dedicated axe fixtures check open and nested menus. Base UI 1.8.0 [fixes the portal owner role](https://github.com/mui/base-ui/pull/5058); `aria-required-children` now passes without an exception. The `menus.a11y.json` report still marks focus guards and trigger references for review. These two checks have fixture-specific assertion exceptions; interaction tests verify the reference IDs. The closing-state audit found the upstream gap listed under [known issues](#known-issues). Recheck it after the upstream fix. Manual screen-reader checks remain required.
 
 3. ✅ **Other defaults:** retain Base UI behavior with the documented Material presentation choices.
 
@@ -395,30 +396,36 @@ This example follows the system preference. The playground also shows the theme 
 
 ### Bundle cost
 
-These historical measurements compare `baef34b637` with the merge base `1d829b8c9d9`, using the same installed dependencies and build tools.
-Both revisions use production ESM builds, Vite 8.3.0, and gzip level 9.
+These measurements compare `8643ea5738` with the merge base `eb1a12c3e5`, using the same installed dependencies and build tools.
+Both revisions use production ESM builds, Vite 8.3.2, and gzip level 9.
 React, React DOM, `@emotion/react`, and `@emotion/styled` are external.
-The Menu2 measurements include Base UI 1.8.0 with the former local patch. They do not cover Base UI 1.9.0.
+The Menu2 measurements include Base UI 1.9.0 without a local patch.
 These are import bundles, not complete applications. Sizes use decimal kB.
 
 Each menu case includes Button. The classic case adds Menu and MenuItem; the Menu2 case adds Menu2 and Menu2Item.
 The submenu case also adds Menu2Submenu and Menu2SubmenuTrigger.
+The high-contrast case adds `enhanceHighContrast` from `@mui/material/styles` to the classic imports.
 
 | Imports                             | Minified kB | Gzip kB |
 | :---------------------------------- | ----------: | ------: |
-| Classic Menu, merge base            |     125.864 |  40.204 |
-| Classic Menu, this PR               |     126.411 |  40.442 |
-| Menu2                               |     232.977 |  76.450 |
-| Menu2 with submenu                  |     241.466 |  78.790 |
-| Classic Menu and Menu2              |     261.846 |  85.727 |
-| Classic Menu and Menu2 with submenu |     270.326 |  88.130 |
+| Classic Menu, merge base            |     126.498 |  40.480 |
+| Classic Menu, this PR               |     127.774 |  40.937 |
+| Classic + high contrast, merge base |     135.743 |  42.368 |
+| Classic + high contrast, this PR    |     139.759 |  43.313 |
+| Menu2                               |     239.054 |  78.502 |
+| Menu2 with submenu                  |     247.809 |  80.960 |
+| Classic Menu and Menu2              |     269.450 |  88.130 |
+| Classic Menu and Menu2 with submenu |     278.173 |  90.639 |
 
-The classic subpath case grows by **238 B gzip**. Named barrel imports grow by **243 B gzip**.
-Neither retains Base UI or Floating UI modules. Button-only imports grow by 14 B gzip through either import path.
-This supports the low-cost goal for existing users, but Menu2 is not a size reduction:
-it costs **36.008 kB gzip** more than the classic case.
-Adding Menu2 alongside classic Menu costs **45.285 kB gzip** in this fixture.
-Adding submenu support to the Menu2 case costs a further **2.340 kB gzip**.
+The classic subpath case grows by **457 B gzip**. Named barrel imports grow by **470 B gzip**.
+Button-only imports grow by **14 B gzip** through either import path.
+With `enhanceHighContrast`, the classic case grows by **945 B gzip**, including the helper's new Menu2 styles.
+None of these classic-only cases retains Base UI or Floating UI modules.
+These are total PR costs for the measured imports, not only the cost of shared styles or a guarantee for every classic component.
+
+Menu2 is not a size reduction: it costs **37.565 kB gzip** more than the classic case.
+Adding Menu2 alongside classic Menu costs **47.193 kB gzip** in this fixture.
+Adding submenu support to the Menu2 case costs a further **2.458 kB gzip**.
 Application results depend on the components and dependencies already in use.
 
 Run `pnpm -r --filter @mui/material... build`, then `pnpm exec node test/bundle-size/menu2.mjs` to repeat the comparison.
