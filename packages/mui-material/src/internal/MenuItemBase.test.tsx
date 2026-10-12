@@ -177,7 +177,7 @@ describe.skipIf(isJsdom())('MenuItem shared styled base', () => {
         });
       });
 
-      it('inherits ButtonBase overrides and keeps item theme keys, variants, and sx separate', () => {
+      it('inherits ButtonBase overrides and shares Menu2 styles without changing classic items', () => {
         const theme = createTheme({
           modularCssLayers,
           components: {
@@ -225,7 +225,7 @@ describe.skipIf(isJsdom())('MenuItem shared styled base', () => {
           ['classic', '22px', '2px'],
           ['item', '32px', '3px'],
           ['sx', '42px', '4px'],
-          ['link', '4px', '1px'],
+          ['link', '32px', '3px'],
         ];
         expected.forEach(([id, paddingTop, borderBottomWidth]) => {
           const styles = getComputedStyle(screen.getByTestId(id));
