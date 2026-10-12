@@ -1,48 +1,65 @@
 # Upgrade to Menu v2
 
-<p class="description">This guide explains how and why to migrate from the Menu component to Menu v2.</p>
+<p class="description">Move a menu from the Menu component to Menu v2: what to change, what behaves differently, and why.</p>
 
 ## Menu v2 status
 
-Menu v2 is an unstable component in Material UI v9. Import it from the `Unstable_Menu2` subpaths. Its API can change in a minor release.
+Menu v2 is an unstable component in Material UI v9.
+Import it from the `Unstable_Menu2` subpaths.
+Its API can change in a minor release.
 
-The current Menu isn't deprecated and keeps working unchanged. You can adopt Menu v2 one menu at a time, and both components can be used in the same app.
+The current Menu isn't deprecated and keeps working unchanged.
+You can adopt Menu v2 one menu at a time and use both components in the same app.
 
-TypeScript apps that adopt Menu v2 require TypeScript 5.0 or later. Apps that use only existing Material UI components can continue to use TypeScript 4.9.
+:::warning
+TypeScript apps that adopt Menu v2 require TypeScript 5.0 or later.
+Apps that use only existing Material UI components can continue to use TypeScript 4.9.
+:::
 
 ## Why you should upgrade
 
 Menu v2 provides the following improvements over Menu:
 
-- **Submenus** at any nesting depth, with correct keyboard, hover, and ARIA behavior. This was [one of the most requested Menu features since 2018](https://github.com/mui/material-ui/issues/11723), and the current Menu can't support it.
+- **Submenus** at any nesting depth, with correct keyboard, hover, and ARIA behavior.
+  This was [one of the most requested Menu features since 2018](https://github.com/mui/material-ui/issues/11723), and the current Menu can't support it.
 - **Checkbox and radio items** with the correct roles, `aria-checked`, and built-in indicators.
 - **Groups with labels**, connected with `aria-labelledby`.
 - **A trigger prop** that sets `aria-haspopup`, `aria-expanded`, and `aria-controls`, so there's no anchor state to manage.
 - **Collision-aware positioning** that flips and follows the anchor automatically.
-- **Accessibility fixes** that the current Menu can't make without breaking existing behavior. See [Behavior changes](#behavior-changes).
+- **Accessibility fixes** that the current Menu can't make without breaking existing behavior.
+  See [Behavior changes](#behavior-changes).
 
 ### Why it's a new component
 
 Every open Menu is a full `Modal` (`Menu` → `Popover` → `Modal`), and nesting one modal inside another breaks in six places:
 
-1. **Backdrop.** Each menu renders a full-screen backdrop that captures clicks. A submenu's backdrop covers its parent, so clicking the parent closes the child.
+1. **Backdrop.** Each menu renders a full-screen backdrop that captures clicks.
+   A submenu's backdrop covers its parent, so clicking the parent closes the child.
 2. **`aria-hidden`.** `ModalManager` applies it to everything except the topmost modal, so an open submenu hides its parent from screen readers.
 3. **Keys.** ArrowRight and ArrowLeft do nothing in a vertical list, and there's no hook to open a submenu.
 4. **Focus.** Each modal has its own focus trap, and the traps don't coordinate when a submenu closes.
 5. **Collision.** `Popover` doesn't flip, so a submenu near the edge of the screen is clipped.
 6. **State.** Each `MenuList` keeps its own keyboard state, and nested lists share none of it.
 
-Fixing this in place means rewriting `Menu`, `MenuList`, `MenuItem`, `Popover`, `Modal`, `ModalManager`, and `FocusTrap`, and replacing two models that `Dialog` and every `Popover` depend on: backdrop dismissal and per-modal focus traps. Three attempts along those lines were abandoned ([#14700](https://github.com/mui/material-ui/pull/14700), [#20591](https://github.com/mui/material-ui/pull/20591), [#37570](https://github.com/mui/material-ui/pull/37570)).
+Fixing this in place means rewriting `Menu`, `MenuList`, `MenuItem`, `Popover`, `Modal`, `ModalManager`, and `FocusTrap`.
+It also means replacing two models that `Dialog` and every `Popover` depend on: backdrop dismissal and per-modal focus traps.
+Three attempts along those lines were abandoned ([#14700](https://github.com/mui/material-ui/pull/14700), [#20591](https://github.com/mui/material-ui/pull/20591), [#37570](https://github.com/mui/material-ui/pull/37570)).
 
-Menu v2 uses [Base UI](https://base-ui.com/react/components/menu) instead, which already solves the behavior. Base UI is a dependency of `@mui/material`, the same as `@popperjs/core`. You don't install or import it, and apps that don't import Menu v2 don't bundle it.
+Menu v2 uses [Base UI](https://base-ui.com/react/components/menu) instead, which already solves the behavior.
+Base UI is a dependency of `@mui/material`, the same as `@popperjs/core`.
+You don't install or import it, and apps that don't import Menu v2 don't bundle it.
 
 ## How to upgrade
 
 ### Static menu lists
 
-For an always-visible `MenuList` inside `Paper`, keep `@mui/material/MenuList` and `@mui/material/MenuItem`. Menu v2 has no standalone list component. This also applies to the static list in [Menu List composition](/material-ui/react-menu/#composition-with-menu-list).
+For an always-visible `MenuList` inside `Paper`, keep `@mui/material/MenuList` and `@mui/material/MenuItem`.
+Menu v2 has no standalone list component.
+This also applies to the static list in [Menu List composition](/material-ui/react-menu/#composition-with-menu-list).
 
-To change a static list into a popup, replace its `Paper` and `MenuList` wrapper with Menu v2 and add a `trigger`. Then migrate the items as described below. Omitting `trigger` does not make Menu v2 a static list; it still renders a positioned popup in a portal.
+To change a static list into a popup, replace its `Paper` and `MenuList` wrapper with Menu v2 and add a `trigger`.
+Then migrate the items as described below.
+Omitting `trigger` does not make Menu v2 a static list; it still renders a positioned popup in a portal.
 
 ### 1. Update the imports
 
@@ -88,9 +105,11 @@ The trigger is part of the component now, so the anchor state and the ARIA wirin
 +</Menu>
 ```
 
-Selecting a `MenuItem` closes the menu by default, so its `onClick={handleClose}` is no longer necessary. Set `closeOnClick={false}` on a `MenuItem` to keep the menu open.
+Selecting a `MenuItem` closes the menu by default, so its `onClick={handleClose}` is no longer necessary.
+Set `closeOnClick={false}` on a `MenuItem` to keep the menu open.
 
-`MenuCheckboxItem`, `MenuRadioItem`, and `MenuLinkItem` keep the menu open by default. Set `closeOnClick` on these items to close the menu after selection.
+`MenuCheckboxItem`, `MenuRadioItem`, and `MenuLinkItem` keep the menu open by default.
+Set `closeOnClick` on these items to close the menu after selection.
 
 `trigger` takes an element, and Menu v2 merges the trigger behavior into it, so you keep your own component:
 
@@ -98,15 +117,23 @@ Selecting a `MenuItem` closes the menu by default, so its `onClick={handleClose}
 <Menu trigger={<IconButton aria-label="More actions"><MoreVertIcon /></IconButton>}>
 ```
 
-There's no default trigger, so the element is always yours. Three things to watch:
+There's no default trigger, so the element is always yours.
+Three things to watch:
 
-- A wrapper used as a trigger must forward props and ref to the element that it renders, the same as `Tooltip`. Menu v2 merges the behavior through props, so a component that drops them doesn't open the menu.
+- Forward props and ref from a wrapper component to the element it renders, the same as with `Tooltip`.
+  Menu v2 merges the behavior through props, so a component that drops them doesn't open the menu.
 - Set `slotProps.trigger.nativeButton` to `false` when the element doesn't render a native `<button>`.
-- A submenu opens from a `MenuSubmenuTrigger`, not from a button. See [Submenu](/material-ui/react-menu2/#submenu).
+- Use `MenuSubmenuTrigger` to open a submenu, not a button.
+  See [Submenu](/material-ui/react-menu2/#submenu).
 
-To control the open state, keep `trigger` and pass `open` and `onOpenChange`. See [Controlled menu](/material-ui/react-menu2/#controlled-menu). To keep the `anchorEl` pattern, omit `trigger` and pass `anchor`. See [Without a trigger](/material-ui/react-menu2/#without-a-trigger).
+To control the open state, keep `trigger` and pass `open` and `onOpenChange`.
+See [Controlled menu](/material-ui/react-menu2/#controlled-menu).
+To keep the `anchorEl` pattern, omit `trigger` and pass `anchor`.
+See [Without a trigger](/material-ui/react-menu2/#without-a-trigger).
 
 ### 3. Update the open and close props
+
+`onOpenChange` replaces `onClose`, and `open` becomes optional:
 
 ```diff
 -<Menu open={open} onClose={handleClose}>
@@ -127,9 +154,12 @@ Update any checks of the close reason:
 | `tabKeyDown`                                           | `focus-out`                   |
 | No reason; an item's `onClick` handler closed the menu | `item-press`                  |
 
-Unlike `onClose`, `onOpenChange` also reports opening. The `trigger-press` reason can report either opening or closing. Check the `open` argument before you run close-only logic.
+The `trigger-press` reason can report either opening or closing.
+Check the `open` argument before you run close-only logic.
 
-Tab dismissal reports `focus-out` because focus leaves the menu. Other focus changes can report this reason too. Its `eventDetails.event` is a native `FocusEvent`, not a keyboard event.
+Tab dismissal reports `focus-out` because focus leaves the menu.
+Other focus changes can report this reason too.
+Its `eventDetails.event` is a native `FocusEvent`, not a keyboard event.
 
 ### 4. Update the positioning props
 
@@ -144,22 +174,24 @@ Tab dismissal reports `focus-out` because focus leaves the menu. Other focus cha
 +<Menu anchor={anchorEl} side="top" align="end">
 ```
 
-| Menu / Popover                                        | Menu v2                                                               | Notes                                                       |
-| :---------------------------------------------------- | :-------------------------------------------------------------------- | :---------------------------------------------------------- |
-| `anchorEl`                                            | `anchor`                                                              | Also accepts refs and virtual elements.                     |
-| `anchorOrigin` + `transformOrigin`                    | `side` + `align` + `sideOffset` + `alignOffset`                       | Defaults are `side="bottom"` and `align="start"`.           |
-| Both origins at `top` / `left`                        | `side="bottom"`, `align="start"`, negative `sideOffset`               | See "Place the menu over its trigger" below.                |
-| `anchorReference="anchorPosition"` + `anchorPosition` | `anchor={virtualElement}`                                             | Give the virtual element the pointer coordinates.           |
-| `anchorReference="none"`                              | `anchor={virtualElement}`                                             | Give the virtual element the position that you want.        |
-| `marginThreshold` (default 16)                        | `collisionPadding` (default 5)                                        | Same idea.                                                  |
-| `action.updatePosition()`                             | Automatic                                                             | Use `disableAnchorTracking` to stop tracking layout shifts. |
-| —                                                     | `collisionBoundary`, `sticky`, `collisionAvoidance`, `positionMethod` | New props.                                                  |
+| Menu / Popover                                        | Menu v2                                                               | Notes                                                                                                        |
+| :---------------------------------------------------- | :-------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
+| `anchorEl`                                            | `anchor`                                                              | Also accepts refs and virtual elements.                                                                      |
+| `anchorOrigin` + `transformOrigin`                    | `side` + `align` + `sideOffset` + `alignOffset`                       | Defaults are `side="bottom"` and `align="start"`.                                                            |
+| Both origins at `top` / `left`                        | `side="bottom"`, `align="start"`, negative `sideOffset`               | See "Place the menu over its trigger" below.                                                                 |
+| `anchorReference="anchorPosition"` + `anchorPosition` | `anchor={virtualElement}`                                             | Give the virtual element the pointer coordinates.                                                            |
+| `anchorReference="none"`                              | `anchor={virtualElement}`                                             | Give the virtual element the position that you want.                                                         |
+| `marginThreshold` (default 16)                        | `collisionPadding` (default 5)                                        | Same idea.                                                                                                   |
+| `action.updatePosition()`                             | Automatic                                                             | Use `disableAnchorTracking` to stop tracking layout shifts. `actionsRef` provides `close()` and `unmount()`. |
+| `PopoverClasses`                                      | Removed                                                               | Menu v2 doesn't use `Popover`.                                                                               |
+| —                                                     | `collisionBoundary`, `sticky`, `collisionAvoidance`, `positionMethod` | New props.                                                                                                   |
 
 Use the logical `inline-start` and `inline-end` sides to get the correct direction in right-to-left text.
 
 #### Place the menu over its trigger
 
-The classic [Positioned menu](/material-ui/react-menu/#positioned-menu) demo sets both origins to `top` / `left`, so the menu covers its trigger. Use the anchor height to move Menu v2 up by the same distance:
+The classic [Positioned menu](/material-ui/react-menu/#positioned-menu) demo sets both origins to `top` / `left`, so the menu covers its trigger.
+Use the anchor height to move Menu v2 up by the same distance:
 
 ```jsx
 <Menu
@@ -172,7 +204,9 @@ The classic [Positioned menu](/material-ui/react-menu/#positioned-menu) demo set
 </Menu>
 ```
 
-This matches the resting position in left-to-right text, not the animation origin. Use `align="end"` in right-to-left text to keep physical left alignment. Collision handling can still move the popup near viewport edges.
+This matches the resting position in left-to-right text, not the animation origin.
+Use `align="end"` in right-to-left text to keep physical left alignment.
+Collision handling can still move the popup near viewport edges.
 
 ### 5. Check the transition
 
@@ -185,9 +219,12 @@ Menu v2 keeps `Grow` as the default transition, with the same height-dependent `
 | `transitionDuration` (default `'auto'`)       | `transitionDuration` (default `'auto'`) | Unchanged.                                                                               |
 | `slotProps.transition.onEntered` / `onExited` | `onOpenChangeComplete(open)`            | Fires after the animation, with `true` after the menu opens and `false` after it closes. |
 
-With `slots.transition` set to `null`, the menu surface has the `data-starting-style` and `data-ending-style` attributes for CSS animations. See [Transitions](/material-ui/react-menu2/#transitions).
+With `slots.transition` set to `null`, the menu surface has the `data-starting-style` and `data-ending-style` attributes for CSS animations.
+See [Transitions](/material-ui/react-menu2/#transitions).
 
 ### 6. Update the items
+
+Separators, groups, links, and checked items become dedicated parts:
 
 | Menu                                                               | Menu v2                            | Notes                                                                                                      |
 | :----------------------------------------------------------------- | :--------------------------------- | :--------------------------------------------------------------------------------------------------------- |
@@ -200,16 +237,19 @@ With `slots.transition` set to `null`, the menu surface has the `data-starting-s
 | `href` / `LinkComponent`                                           | `MenuLinkItem`                     | Renders a real `<a role="menuitem">`.                                                                      |
 | `role="menuitemcheckbox"` + `selected`                             | `MenuCheckboxItem`                 | Reports changes through `onCheckedChange(checked, eventDetails)`.                                          |
 | `role="menuitemradio"` + `selected`                                | `MenuRadioGroup` + `MenuRadioItem` | Reports changes through `onValueChange(value, eventDetails)`.                                              |
-| `autoFocus` (item)                                                 | Removed                            | The component controls the initial highlight.                                                              |
 | `focusVisibleClassName`, `onFocusVisible`, `action.focusVisible()` | No dedicated equivalents           | Use state classes for styles. `highlighted` includes pointer navigation; it is not keyboard focus-visible. |
 | `MenuList.disableListWrap`                                         | `loopFocus` (default `true`)       | The value is inverted.                                                                                     |
 | `MenuList.disabledItemsFocusable`                                  | No equivalent                      | Disabled items stay focusable with arrow keys, but cannot be activated.                                    |
 | `MenuList.dense`, `MenuList.disablePadding`                        | `slotProps.list`                   | The `list` slot is a `List`, so the props are unchanged.                                                   |
-| `MenuList.autoFocus` / `autoFocusItem` / `variant`                 | Removed                            | Internal or legacy.                                                                                        |
 
-Composed list primitives still work inside items, so `ListItemIcon`, `ListItemText`, and `Typography` carry over unchanged. `ListItemText inset` still aligns with the icon column.
+The item and `MenuList` focus props are listed under [Check the removed props](#8-check-the-removed-props).
 
-Checkbox items and radio groups report the new checked state or value in the first callback argument. The event at `eventDetails.event` is native, not a React synthetic event. Its target can be a descendant of the item.
+Composed list primitives still work inside items, so `ListItemIcon`, `ListItemText`, and `Typography` carry over unchanged.
+`ListItemText inset` still aligns with the icon column.
+
+Checkbox items and radio groups report the new checked state or value in the first callback argument.
+The event at `eventDetails.event` is native, not a React synthetic event.
+Its target can be a descendant of the item.
 
 ### 7. Update the theme keys
 
@@ -219,11 +259,19 @@ In TypeScript, import the theme augmentation once in your app to type all `MuiMe
 import type {} from '@mui/material/Unstable_Menu2/themeAugmentation';
 ```
 
-Component imports do not register these theme types. This type-only import adds no runtime code.
+Component imports do not register these theme types.
+This type-only import adds no runtime code.
 
-Menu v2 registers two theme keys for the menu surfaces. `MuiMenu2` has the slots `root`, `positioner`, `backdrop`, `paper`, and `list`. `MuiMenu2Submenu` has `root`, `positioner`, `paper`, and `list`. The item parts have their own keys, such as `MuiMenu2Item`.
+Menu v2 registers two theme keys for the menu surfaces.
+`MuiMenu2` has the slots `root`, `positioner`, `backdrop`, `paper`, and `list`.
+`MuiMenu2Submenu` has `root`, `positioner`, `paper`, and `list`.
+The item parts have their own keys, such as `MuiMenu2Item`.
 
-`MuiMenu2` styles also apply to the matching submenu slots. `MuiMenu2Item` styles apply to all item roots. Component-specific overrides apply after the shared styles. This includes theme variants, but not `defaultProps`. Utility classes remain component-specific.
+`MuiMenu2` styles also apply to the matching submenu slots.
+`MuiMenu2Item` styles apply to all item roots.
+Component-specific overrides apply after the shared styles.
+This includes theme variants, but not `defaultProps`.
+Utility classes remain component-specific.
 
 The CSS classes use the same component names as the theme keys:
 
@@ -233,9 +281,11 @@ The CSS classes use the same component names as the theme keys:
 | `.MuiMenu-paper` | `.MuiMenu2-paper` | `.MuiMenu2Submenu-paper` |
 | `.MuiMenu-list`  | `.MuiMenu2-list`  | `.MuiMenu2Submenu-list`  |
 
-For example, change an `& .MuiMenu-list` selector to `& .MuiMenu2-list`. The `menu2Classes` and `menu2SubmenuClasses` exports provide these class names from `@mui/material/Unstable_Menu2` and `@mui/material/Unstable_Menu2Submenu`.
+For example, change an `& .MuiMenu-list` selector to `& .MuiMenu2-list`.
+The `menu2Classes` and `menu2SubmenuClasses` exports provide these class names from `@mui/material/Unstable_Menu2` and `@mui/material/Unstable_Menu2Submenu`.
 
-The trigger has no theme key, because you supply the element. Theme its own component instead, or style the `.MuiMenu2Trigger-root` class.
+The trigger has no theme key, because you supply the element.
+Theme its own component instead, or style the `.MuiMenu2Trigger-root` class.
 
 ```diff
  const theme = createTheme({
@@ -258,28 +308,39 @@ The trigger has no theme key, because you supply the element. Theme its own comp
 
 Every element has its own class, such as `.MuiMenu2Item-root`, so `sx` and `styleOverrides` can reach each node.
 
-The slots are `root`, `positioner`, `backdrop`, `paper`, `list`, and `transition`. There's no `trigger` slot: `slotProps.trigger` accepts only `nativeButton`, `className`, and `ref`. `elevation` stays a top-level prop for the `paper` slot, with the default 8.
+Use `slots` and `slotProps` to customize these elements and the `transition` slot.
+There's no `trigger` slot: `slotProps.trigger` accepts only `nativeButton`, `className`, and `ref`.
+`elevation` stays a top-level prop for the `paper` slot, with the default 8.
 
-`ref`, `className`, `style`, and `sx` target the portal's root element, not a full-screen Modal. The root sets the stacking level for both the menu and its modal interaction layer. Use `slotProps.positioner` for styles, placement attributes, and the ref on the positioned element. Top-level positioning props such as `side` and `align` still target that element.
+`ref`, `className`, `style`, and `sx` target the portal's root element, not a full-screen Modal.
+The root sets the stacking level for both the menu and its modal interaction layer.
+Use `slotProps.positioner` for styles, placement attributes, and the ref on the positioned element.
+Top-level positioning props such as `side` and `align` still target that element.
 
-Event handlers and top-level `aria-label`, `aria-labelledby`, and `aria-describedby` target the menu surface. Other HTML attributes go to the root. Move menu naming attributes from `slotProps.list` to the top level or `slotProps.paper`; the list is now presentational. Use `slotProps.paper.ref` for the menu surface.
+Event handlers and top-level `aria-label`, `aria-labelledby`, and `aria-describedby` target the menu surface.
+Other HTML attributes go to the root.
+Use `slotProps.paper.ref` for the menu surface.
+
+:::warning
+Move menu naming attributes from `slotProps.list` to the top level or `slotProps.paper`.
+The list is now presentational.
+:::
 
 ### 8. Check the removed props
 
 | Removed                                                                                  | What to do instead                                                                                       |
 | :--------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------- |
 | `variant="selectedMenu"`, `autoFocus`, `disableAutoFocusItem`                            | Use checkbox or radio items to show a current value. The component controls the initial highlight.       |
+| `MenuItem.autoFocus`, `MenuList.autoFocus`, `MenuList.autoFocusItem`, `MenuList.variant` | The component controls the initial highlight.                                                            |
 | `disableAutoFocus`, `disableEnforceFocus`                                                | No independent equivalents. `modal` controls outside interaction, not the initial focus policy.          |
 | `disableRestoreFocus`                                                                    | Use `finalFocus={false}` to disable focus restoration.                                                   |
 | `disableScrollLock`                                                                      | Use `modal={false}`, which also keeps the rest of the document interactive. There's no exact equivalent. |
 | `disablePortal`                                                                          | No equivalent. Menu v2 always renders in a portal. Use `container` to choose the portal container.       |
 | `hideBackdrop`                                                                           | Use `slots={{ backdrop: null }}` to omit the optional visual layer. This does not change modal behavior. |
-| `anchorOrigin`, `transformOrigin`, `anchorReference`, `anchorPosition`, `PopoverClasses` | Use the positioning props. Menu v2 doesn't use `Popover`.                                                |
-| `action.updatePosition()`                                                                | The position updates automatically. `actionsRef` provides `close()` and `unmount()`.                     |
 
 ## Behavior changes
 
-Most of these changes bring the menu in line with the [WAI-ARIA menu pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/), so they're intentional and won't be reverted.
+These changes are intentional and mostly bring the menu in line with the [WAI-ARIA menu pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
 
 | Behavior               | Menu                                            | Menu v2                                                                     |
 | :--------------------- | :---------------------------------------------- | :-------------------------------------------------------------------------- |
@@ -289,48 +350,81 @@ Most of these changes bring the menu in line with the [WAI-ARIA menu pattern](ht
 | Sibling content        | Hidden from screen readers with `aria-hidden`   | Stays in the accessibility tree                                             |
 | Backdrop               | Rendered by default                             | Internal modal layer; optional visual backdrop slot                         |
 | Tab while open         | Closes, and focus returns to the trigger        | Closes, and focus moves to the next element                                 |
+| Escape at the root     | Closes                                          | Closes                                                                      |
+| Default placement      | Below the trigger, aligned to the start         | Below the trigger, aligned to the start                                     |
 | Submenus               | Not supported                                   | Open on mouse hover after 100 ms, touch tap, or keyboard activation         |
 
-At the root level, Escape closes the menu. The default placement stays below the trigger, aligned to the start.
+A mouse click on a submenu trigger does not bypass the hover delay.
+Set `openOnHover={false}` on `MenuSubmenuTrigger` to disable hover opening and open with a mouse click instead.
+Touch taps and keyboard activation remain available.
+See [Submenu](/material-ui/react-menu2/#submenu).
 
-A mouse click on a submenu trigger does not bypass the hover delay. Set `openOnHover={false}` on `MenuSubmenuTrigger` to disable hover opening and open with a mouse click instead. Touch taps and keyboard activation remain available. See [Submenu](/material-ui/react-menu2/#submenu).
+### Backdrop
 
-Base UI supplies a transparent backdrop for modal interaction, except when the menu opens on hover. The separate visual backdrop is absent by default. Set `slots.backdrop` or `slotProps.backdrop` to render it. This optional layer is not hidden on hover.
+Base UI supplies a transparent backdrop for modal interaction, except when the menu opens on hover.
+The separate visual backdrop is absent by default.
+Set `slots.backdrop` or `slotProps.backdrop` to render it.
+This optional layer is not hidden on hover.
 
 ### Scroll locking
 
-`modal` defaults to `true`, which locks page scrolling for a menu opened by a mouse or keyboard. Menus opened by hover are non-modal. On touch devices, outside taps are blocked, but page scrolling can stay available unless the popup spans nearly the full viewport width.
-
-There is no independent equivalent of `disableScrollLock`. Setting `modal={false}` also permits interaction outside the menu.
+`modal` defaults to `true`, which locks page scrolling for a menu opened by a mouse or keyboard.
+Menus opened by hover are non-modal.
+On touch devices, the menu blocks outside taps, but page scrolling can stay available unless the popup spans nearly the full viewport width.
 
 ### Retained menus in dialogs
 
-A Menu v2 with `keepMounted` inside a kept-mounted Material Dialog can remain under `aria-hidden="true"` with the default portal container. The visible menu can then be hidden from assistive technology. Leave `keepMounted` disabled on Menu v2 in this configuration. [Base UI issue #5577](https://github.com/mui/base-ui/issues/5577) describes a related portal limitation, not this exact composition.
+A Menu v2 with `keepMounted` inside a kept-mounted Material UI Dialog can remain under `aria-hidden="true"` with the default portal container.
+The visible menu can then be hidden from assistive technology.
+[Base UI issue #5577](https://github.com/mui/base-ui/issues/5577) describes a related portal limitation, not this exact composition.
+
+:::warning
+Leave `keepMounted` disabled on a Menu v2 inside a kept-mounted Dialog.
+:::
 
 ### The initial highlight
 
-This is the change that users are most likely to notice. When the user opens a menu with a pointer, Menu v2 highlights nothing, so pressing Enter can't activate an item that the user didn't choose. Native desktop menus behave this way.
+This is the change your users are most likely to notice.
+When they open a menu with a pointer, Menu v2 highlights nothing, so pressing Enter can't activate an item they didn't choose.
+Native desktop menus behave this way.
 
-This is a deliberate deviation from the APG, which says that focus moves to an item when the menu opens, with no exception for pointer opens. There's no prop to restore the classic behavior: `Menu.Root` in Base UI has no initial-highlight prop and `Menu.Popup` has no `initialFocus`, [by design](https://github.com/mui/base-ui/issues/2143).
+This is a deliberate deviation from the ARIA Authoring Practices Guide (APG), which says that focus moves to an item when the menu opens, with no exception for pointer opens.
+There's no prop to restore the classic behavior: `Menu.Root` in Base UI has no initial-highlight prop and `Menu.Popup` has no `initialFocus`.
+See the [Base UI discussion on initial focus](https://github.com/mui/base-ui/issues/2143) for the reasoning.
 
-### `variant="selectedMenu"` is gone
+### The selectedMenu variant is gone
 
-This is a lost feature rather than a changed one. It selected which item took focus when the menu opened and hid the focus ring at that first moment. The new foundation can't express either behavior.
+This is a lost feature rather than a changed one.
+`variant="selectedMenu"` selected which item took focus when the menu opened and hid the focus ring at that first moment.
+The new foundation can't express either behavior.
 
-Radio items are the closest replacement, because they show the current value. They don't control the initial highlight: Enter, Space, and ArrowDown highlight the first enabled item, even if another item is checked.
+Radio items are the closest replacement, because they show the current value.
+They don't control the initial highlight: Enter, Space, and ArrowDown highlight the first enabled item, even if another item is checked.
 
 ### Styling around triggers
 
-While a menu or a submenu is open, Base UI renders hidden `span` elements next to its trigger. They keep the tab order and the accessibility tree correct. CSS sibling selectors (`+`, `~`, `:last-child`) near a trigger can match these elements. Style each part directly instead. The focus guards among them have a `data-base-ui-focus-guard` attribute.
+While a menu or a submenu is open, Base UI renders hidden `span` elements next to its trigger.
+They keep the tab order and the accessibility tree correct.
+The focus guards among them have a `data-base-ui-focus-guard` attribute.
 
-For menus directly inside a `Stack`, set `useFlexGap` to use CSS gap instead of sibling margins. This prevents the trigger from moving when a focus guard is inserted before it.
+:::warning
+CSS sibling selectors (`+`, `~`, `:last-child`) near a trigger can match these hidden elements.
+Style each part directly instead.
+:::
+
+For menus directly inside a `Stack`, set `useFlexGap` to use CSS gap instead of sibling margins.
+This prevents the trigger from moving when a focus guard is inserted before it.
 
 ### Menu height
 
-The classic Menu limits its height to the viewport minus 96px. Menu v2 keeps this limit, and also limits the height to the space available at the anchor, so the value reacts to collisions.
+The classic Menu limits its height to the viewport minus 96px.
+Menu v2 keeps this limit, and also limits the height to the space available at the anchor, so the value reacts to collisions.
 
 ## Context menus
 
-Right-click menus use a virtual anchor. A menu with no trigger has no element to return focus to when it closes. Always pass `finalFocus` with the surface that the user invoked. Otherwise, focus can move to an unrelated element on the page.
+Right-click menus use a virtual anchor.
+A menu with no trigger has no element to return focus to when it closes.
+Always pass `finalFocus` with the surface that the user invoked.
+Otherwise, focus can move to an unrelated element on the page.
 
 See [Without a trigger](/material-ui/react-menu2/#without-a-trigger) for the labeling and focus requirements.

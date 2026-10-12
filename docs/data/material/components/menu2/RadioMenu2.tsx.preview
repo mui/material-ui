@@ -1,8 +1,0 @@
-<Menu trigger={<Button>Zoom</Button>}>
-  <MenuRadioGroup value={zoom} onValueChange={setZoom}>
-    <MenuRadioItem value="50">50%</MenuRadioItem>
-    <MenuRadioItem value="100">100%</MenuRadioItem>
-    <MenuRadioItem value="200">200%</MenuRadioItem>
-    <MenuRadioItem value="fit">Fit to window</MenuRadioItem>
-  </MenuRadioGroup>
-</Menu>
