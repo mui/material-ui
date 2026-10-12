@@ -10,7 +10,7 @@ function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 
 export default function CollapsedBreadcrumbs() {
   return (
-    <div role="presentation" onClick={handleClick}>
+    <div role="none" onClick={handleClick}>
       <Breadcrumbs maxItems={2} aria-label="breadcrumb">
         <Link underline="hover" color="inherit" href="#">
           Home

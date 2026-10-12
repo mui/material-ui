@@ -412,7 +412,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     additionalProps: {
-      role: 'presentation',
+      role: 'none',
     },
     getSlotProps: (handlers) => ({
       ...handlers,

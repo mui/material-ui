@@ -184,7 +184,7 @@ describe('<SpeedDial />', () => {
           </SpeedDial>,
         );
 
-        expect(screen.getByRole('presentation')).to.have.class(classes[className]);
+        expect(screen.getByRole('none')).to.have.class(classes[className]);
       });
     });
 

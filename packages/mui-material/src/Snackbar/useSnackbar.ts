@@ -137,7 +137,7 @@ function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnV
     return {
       // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
       // See https://github.com/mui/material-ui/issues/29080
-      role: 'presentation',
+      role: 'none',
       ...externalProps,
       ...externalEventHandlers,
       onBlur: createHandleBlur(externalEventHandlers),
