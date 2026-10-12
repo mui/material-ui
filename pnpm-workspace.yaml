@@ -45,7 +45,7 @@ overrides:
   'docs>stylis': '4.2.0'
   'docs>react-is': '19.3.0'
   # Migrated from package.json "resolutions" (pnpm 11 ignores that field).
-  caniuse-lite: '^1.0.30001814'
+  caniuse-lite: '^1.0.30001815'
   '@types/node': '22.20.4'
   cross-fetch: '^4.1.0'
   '@pigment-css/react': '0.0.31'
