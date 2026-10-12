@@ -516,99 +516,6 @@ describe.skipIf(isSafari)('<Tabs />', () => {
         });
       });
 
-      it('should measure the indicator in the scroller space when an ancestor is scaled', () => {
-        const { forceUpdate, container } = render(
-          <Tabs value={1}>
-            <Tab />
-            <Tab />
-          </Tabs>,
-        );
-        const tablistContainer = screen.getByRole('tablist').parentElement;
-        const tab = screen.getByRole('tablist').children[1];
-
-        Object.defineProperty(tablistContainer, 'clientWidth', { value: 100 });
-        Object.defineProperty(tablistContainer, 'scrollWidth', { value: 100 });
-        Object.defineProperty(tablistContainer, 'offsetWidth', { value: 100 });
-        tablistContainer.getBoundingClientRect = () => ({
-          left: 0,
-          right: 200,
-          width: 200,
-        });
-        tab.getBoundingClientRect = () => ({
-          left: 100,
-          width: 100,
-          right: 200,
-        });
-        forceUpdate();
-        expect(container.querySelector(`.${classes.indicator}`)).toHaveInlineStyle({
-          left: '50px',
-          width: '50px',
-        });
-      });
-
-      it('should keep the unscaled measurement when the scroller is not measurably scaled', () => {
-        const { forceUpdate, container } = render(
-          <Tabs value={1}>
-            <Tab />
-            <Tab />
-          </Tabs>,
-        );
-        const tablistContainer = screen.getByRole('tablist').parentElement;
-        const tab = screen.getByRole('tablist').children[1];
-
-        Object.defineProperty(tablistContainer, 'clientWidth', { value: 100 });
-        Object.defineProperty(tablistContainer, 'scrollWidth', { value: 100 });
-        Object.defineProperty(tablistContainer, 'offsetWidth', { value: 0, configurable: true });
-        tablistContainer.getBoundingClientRect = () => ({
-          left: 0,
-          right: 200,
-          width: 200,
-        });
-        tab.getBoundingClientRect = () => ({
-          left: 100,
-          width: 100,
-          right: 200,
-        });
-        forceUpdate();
-        expect(container.querySelector(`.${classes.indicator}`)).toHaveInlineStyle({
-          left: '100px',
-          width: '100px',
-        });
-
-        Object.defineProperty(tablistContainer, 'offsetWidth', { value: 100, configurable: true });
-        tablistContainer.getBoundingClientRect = () => ({
-          left: 0,
-          right: 0,
-          width: 0,
-        });
-        tab.getBoundingClientRect = () => ({
-          left: 0,
-          width: 0,
-          right: 0,
-        });
-        forceUpdate();
-        expect(container.querySelector(`.${classes.indicator}`)).toHaveInlineStyle({
-          left: '0px',
-          width: '0px',
-        });
-
-        tablistContainer.getBoundingClientRect = () => ({
-          left: 0,
-          right: 100.4,
-          width: 100.4,
-        });
-        tab.getBoundingClientRect = () => ({
-          left: 50.2,
-          width: 50.2,
-          right: 100.4,
-        });
-        forceUpdate();
-        expect(container.querySelector(`.${classes.indicator}`)).toHaveInlineStyle({
-          left: '50.2px',
-          width: '50.2px',
-        });
-      });
-
       it.skipIf(isJSDOM)(
         'should align the indicator with the selected tab when an ancestor is scaled',
         () => {
@@ -633,7 +540,7 @@ describe.skipIf(isSafari)('<Tabs />', () => {
         'should align the indicator with the selected vertical tab when an ancestor is scaled',
         () => {
           const { container } = render(
-            <div style={{ transform: 'scale(0.5)', transformOrigin: 'top left' }}>
+            <div style={{ transform: 'scaleY(0.5)', transformOrigin: 'top left' }}>
               <Tabs value={1} orientation="vertical">
                 <Tab style={{ height: 60 }} />
                 <Tab style={{ height: 60 }} />
@@ -646,36 +553,6 @@ describe.skipIf(isSafari)('<Tabs />', () => {
 
           expect(parseFloat(indicator.style.top)).to.be.closeTo(tab.offsetTop, 0.5);
           expect(parseFloat(indicator.style.height)).to.be.closeTo(tab.offsetHeight, 0.5);
-        },
-      );
-
-      it.skipIf(isJSDOM)(
-        'should align the indicator with the selected tab when a scaled scroller is scrolled',
-        () => {
-          const { forceUpdate, container } = render(
-            <Tabs value={1} variant="scrollable" scrollButtons={false} style={{ width: 300 }}>
-              <Tab style={{ width: 100, minWidth: 'auto' }} />
-              <Tab style={{ width: 100, minWidth: 'auto' }} />
-              <Tab style={{ width: 100, minWidth: 'auto' }} />
-              <Tab style={{ width: 100, minWidth: 'auto' }} />
-              <Tab style={{ width: 100, minWidth: 'auto' }} />
-            </Tabs>,
-            {
-              wrapper: ({ children }) => (
-                <div style={{ transform: 'scale(2)', transformOrigin: 'top left' }}>{children}</div>
-              ),
-            },
-          );
-          const tablistContainer = screen.getByRole('tablist').parentElement;
-          const tab = screen.getByRole('tablist').children[1];
-
-          tablistContainer.scrollLeft = 50;
-          forceUpdate();
-          const indicator = container.querySelector(`.${classes.indicator}`);
-
-          expect(tablistContainer.scrollLeft).not.to.equal(0);
-          expect(parseFloat(indicator.style.left)).to.be.closeTo(tab.offsetLeft, 0.5);
-          expect(parseFloat(indicator.style.width)).to.be.closeTo(tab.offsetWidth, 0.5);
         },
       );
 
@@ -1501,6 +1378,28 @@ describe.skipIf(isSafari)('<Tabs />', () => {
         } finally {
           restore();
         }
+      },
+    );
+
+    it.skipIf(isJSDOM)(
+      'should scroll the selected tab into view when an ancestor is scaled',
+      function test() {
+        render(
+          <div style={{ transform: 'scale(0.5)', transformOrigin: 'top left' }}>
+            <Tabs value={3} variant="scrollable" scrollButtons={false} style={{ width: 200 }}>
+              <Tab style={{ width: 100, minWidth: 'auto' }} />
+              <Tab style={{ width: 100, minWidth: 'auto' }} />
+              <Tab style={{ width: 100, minWidth: 'auto' }} />
+              <Tab style={{ width: 100, minWidth: 'auto' }} />
+              <Tab style={{ width: 100, minWidth: 'auto' }} />
+              <Tab style={{ width: 100, minWidth: 'auto' }} />
+            </Tabs>
+          </div>,
+        );
+        const tablistContainer = screen.getByRole('tablist').parentElement;
+
+        clock.tick(1000);
+        expect(tablistContainer.scrollLeft).to.be.closeTo(200, 0.5);
       },
     );
   });

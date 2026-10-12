@@ -241,11 +241,10 @@ function resolveScrollPadding(value, scrollportSize) {
 }
 
 function getScrollerScale(renderedSize, layoutSize) {
-  const scale = renderedSize / layoutSize;
-  if (!Number.isFinite(scale) || scale <= 0 || Math.abs(renderedSize - layoutSize) < 1) {
+  if (!renderedSize || Math.abs(renderedSize - layoutSize) < 1) {
     return 1;
   }
-  return scale;
+  return renderedSize / layoutSize;
 }
 
 // Dev-only: tracks per-`Tabs` instance (keyed by its ref) whether the invalid-value warning was
@@ -289,6 +288,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const start = vertical ? 'top' : 'left';
   const end = vertical ? 'bottom' : 'right';
   const clientSize = vertical ? 'clientHeight' : 'clientWidth';
+  const offsetSize = vertical ? 'offsetHeight' : 'offsetWidth';
   const size = vertical ? 'height' : 'width';
 
   const ownerState = {
@@ -367,8 +367,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       tabsMeta = {
         clientWidth: tabsNode.clientWidth,
         clientHeight: tabsNode.clientHeight,
-        offsetWidth: tabsNode.offsetWidth,
-        offsetHeight: tabsNode.offsetHeight,
         scrollLeft: tabsNode.scrollLeft,
         scrollTop: tabsNode.scrollTop,
         scrollWidth: tabsNode.scrollWidth,
@@ -376,8 +374,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         bottom: rect.bottom,
         left: rect.left,
         right: rect.right,
-        width: rect.width,
-        height: rect.height,
+        scale: getScrollerScale(rect[size], tabsNode[offsetSize]),
       };
     }
 
@@ -437,9 +434,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     const { tabsMeta, tabMeta } = getTabsMeta();
     let startValue = 0;
     let startIndicator;
-    const scale = tabsMeta
-      ? getScrollerScale(tabsMeta[size], tabsMeta[vertical ? 'offsetHeight' : 'offsetWidth'])
-      : 1;
+    const scale = tabsMeta?.scale ?? 1;
 
     if (vertical) {
       startIndicator = 'top';
@@ -620,9 +615,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     );
 
     // The edges the tab has to sit between: the scrollport shrunk by its scroll-padding.
-    const scrollportStart = tabsMeta[start] + scrollPaddingStart;
-    const scrollportEnd = tabsMeta[end] - scrollPaddingEnd;
-    const startAlignedScroll = tabsMeta[scrollStart] + (tabMeta[start] - scrollportStart);
+    const { scale } = tabsMeta;
+    const scrollportStart = tabsMeta[start] + scrollPaddingStart * scale;
+    const scrollportEnd = tabsMeta[end] - scrollPaddingEnd * scale;
+    const startAlignedScroll = tabsMeta[scrollStart] + (tabMeta[start] - scrollportStart) / scale;
 
     if (tabMeta[start] < scrollportStart) {
       // start edge is out of view, or covered by the scroll-padding
@@ -636,7 +632,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         scroll(startAlignedScroll, { animation });
       } else {
         // end edge is out of view, or covered by the scroll-padding
-        scroll(tabsMeta[scrollStart] + (tabMeta[end] - scrollportEnd), { animation });
+        scroll(tabsMeta[scrollStart] + (tabMeta[end] - scrollportEnd) / scale, { animation });
       }
     }
   });
