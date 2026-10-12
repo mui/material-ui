@@ -34,7 +34,7 @@
   "themeDefaultProps": true,
   "muiName": "MuiListItemSecondaryAction",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-material/src/ListItemSecondaryAction/ListItemSecondaryAction.js",
+  "filename": "/packages/mui-material/src/ListItemSecondaryAction/ListItemSecondaryAction.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>"
 }
