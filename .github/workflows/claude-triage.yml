@@ -25,9 +25,8 @@ jobs:
       pull-requests: write
       issues: write
       id-token: write
-    uses: mui/mui-public/.github/workflows/claude-triage.yml@70dbc68ffe5307efd8afb657dba69069fd1d3aa6 # issue author and member replies across triage states
+    uses: mui/mui-public/.github/workflows/claude-triage.yml@84e3f5033fa47f62937c3b36900a18a73e64e76a # shared triage comment label defaults
     with:
       issue-number: ${{ github.event.issue.number }}
       mode: triage
       comment-id: ${{ github.event_name == 'issue_comment' && github.event.comment.id || 0 }}
-      triage-comment-labels: '["ai: needs-triage", "ai: triaged"]'
