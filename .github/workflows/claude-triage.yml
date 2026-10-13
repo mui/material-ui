@@ -14,7 +14,8 @@ jobs:
       !github.event.issue.pull_request &&
       ((github.event_name == 'issues' && github.event.label.name == 'ai: needs-triage') ||
        (github.event_name == 'issue_comment' && github.event.comment.user.type == 'User' &&
-        contains(github.event.issue.labels.*.name, 'ai: needs-triage') &&
+        (contains(github.event.issue.labels.*.name, 'ai: needs-triage') ||
+         contains(github.event.issue.labels.*.name, 'ai: triaged')) &&
         (github.event.comment.user.login == github.event.issue.user.login ||
          contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.comment.author_association))))
     # Maximum grant required by the reusable workflow; its model-running job uses read-only GitHub access.
@@ -24,9 +25,9 @@ jobs:
       pull-requests: write
       issues: write
       id-token: write
-    uses: mui/mui-public/.github/workflows/claude-triage.yml@2b595ad8dfd4bd3f5f6801644544ea17f1ac69ec # issue author and member replies
+    uses: mui/mui-public/.github/workflows/claude-triage.yml@70dbc68ffe5307efd8afb657dba69069fd1d3aa6 # issue author and member replies across triage states
     with:
       issue-number: ${{ github.event.issue.number }}
       mode: triage
       comment-id: ${{ github.event_name == 'issue_comment' && github.event.comment.id || 0 }}
-      triage-comment-label: 'ai: needs-triage'
+      triage-comment-labels: '["ai: needs-triage", "ai: triaged"]'
