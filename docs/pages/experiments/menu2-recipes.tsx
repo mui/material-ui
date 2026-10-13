@@ -9,12 +9,15 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 import ClassicMenu from '@mui/material/Menu';
 import ClassicMenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
 import Tooltip, { type TooltipProps } from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 // The Unstable_ subpaths use default exports, so the local bindings drop the
 // prefix and the JSX mirrors the future stable names.
@@ -621,6 +624,144 @@ function MenuDialogFocusRecipe() {
   );
 }
 
+function MenuIconWidthExample({
+  menuType,
+  parentOverride,
+}: {
+  menuType: 'classic' | 'menu2';
+  parentOverride: boolean;
+}) {
+  const id = React.useId();
+  const triggerId = `${id}-trigger`;
+  const menuId = `${id}-menu`;
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+  const [measurement, setMeasurement] = React.useState('Open the menu to measure.');
+  const iconRef = React.useRef<HTMLDivElement>(null);
+  const isClassic = menuType === 'classic';
+  const label = isClassic ? 'Classic Menu' : 'Menu2';
+  const itemSx = parentOverride ? { '& .MuiListItemIcon-root': { minWidth: 'auto' } } : undefined;
+
+  const measureIcon = () => {
+    const icon = iconRef.current;
+    if (icon) {
+      const style = getComputedStyle(icon);
+      setMeasurement(`${style.width} wide; min-width: ${style.minWidth}`);
+    }
+  };
+
+  const content = (
+    <React.Fragment>
+      <ListItemText>GitHub repository</ListItemText>
+      <ListItemIcon
+        ref={iconRef}
+        sx={{
+          minWidth: 'auto',
+          outline: '1px dashed',
+          outlineColor: 'primary.main',
+          bgcolor: 'action.hover',
+        }}
+      >
+        <OpenInNewIcon fontSize="small" />
+      </ListItemIcon>
+    </React.Fragment>
+  );
+
+  return (
+    <Stack spacing={2} useFlexGap>
+      <Typography component="h3" variant="h6">
+        {label}
+      </Typography>
+      <Typography variant="body2">Last measurement: {measurement}</Typography>
+      {isClassic ? (
+        <React.Fragment>
+          <Button
+            id={triggerId}
+            variant="outlined"
+            aria-haspopup="menu"
+            aria-expanded={anchorEl ? 'true' : undefined}
+            aria-controls={anchorEl ? menuId : undefined}
+            onClick={(event) => setAnchorEl(event.currentTarget)}
+          >
+            Open Classic Menu
+          </Button>
+          <ClassicMenu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={() => setAnchorEl(null)}
+            slotProps={{
+              list: { id: menuId, 'aria-labelledby': triggerId },
+              paper: { sx: { width: 280 } },
+              transition: { onEntered: measureIcon },
+            }}
+          >
+            <ClassicMenuItem
+              component="a"
+              href="https://github.com/mui/material-ui"
+              target="_blank"
+              rel="noopener"
+              sx={itemSx}
+            >
+              {content}
+            </ClassicMenuItem>
+          </ClassicMenu>
+        </React.Fragment>
+      ) : (
+        <Menu2
+          trigger={<Button variant="outlined">Open Menu2</Button>}
+          slotProps={{ paper: { sx: { width: 280 } } }}
+          onOpenChangeComplete={(open) => {
+            if (open) {
+              measureIcon();
+            }
+          }}
+        >
+          <Menu2LinkItem
+            href="https://github.com/mui/material-ui"
+            target="_blank"
+            rel="noopener"
+            sx={itemSx}
+          >
+            {content}
+          </Menu2LinkItem>
+        </Menu2>
+      )}
+    </Stack>
+  );
+}
+
+function MenuIconWidthRecipe() {
+  const [parentOverride, setParentOverride] = React.useState(false);
+
+  return (
+    <Stack spacing={2}>
+      <label>
+        <input
+          type="checkbox"
+          checked={parentOverride}
+          onChange={(event) => setParentOverride(event.target.checked)}
+        />{' '}
+        Add the width override to both menu items
+      </label>
+      <Box component="pre" sx={{ m: 0, overflow: 'auto' }}>
+        {parentOverride
+          ? "Menu item: sx={{ '& .MuiListItemIcon-root': { minWidth: 'auto' } }}"
+          : "ListItemIcon: sx={{ minWidth: 'auto' }}"}
+      </Box>
+      <Box
+        key={String(parentOverride)}
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, minmax(0, 1fr))' },
+          gap: 3,
+        }}
+      >
+        <MenuIconWidthExample menuType="classic" parentOverride={parentOverride} />
+        <MenuIconWidthExample menuType="menu2" parentOverride={parentOverride} />
+      </Box>
+    </Stack>
+  );
+}
+
 function Menu2ContextMenuRecipe() {
   const [anchor, setAnchor] = React.useState<ReturnType<typeof createVirtualAnchor> | null>(null);
   const open = anchor !== null;
@@ -803,6 +944,29 @@ export default function Menu2Experiment() {
               do not receive pointer events, so their tooltips open on keyboard focus only.
             </p>
             <Menu2WithTooltipsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
+          </section>
+          <section>
+            <h2 id="menu2-icon-width">Classic Menu and Menu2 icon width</h2>
+            <p>
+              Both examples use the same trailing <code>ListItemIcon</code> with{' '}
+              <code>sx={"{{ minWidth: 'auto' }}"}</code>. The dashed outline shows the icon box, and
+              each example reports its width after the menu opens.
+            </p>
+            <ol>
+              <li>
+                Open each menu, read the width, then press Escape to close it. With only the icon
+                override, both should report 36px.
+              </li>
+              <li>
+                Select the checkbox and open each menu again. The parent selector should remove the
+                extra space, leaving the 20px icon width.
+              </li>
+            </ol>
+            <p>
+              This comparison uses the page theme without modular CSS layers. The controls at the
+              top do not change it, except for the focus ring setting.
+            </p>
+            <MenuIconWidthRecipe />
           </section>
           <section>
             <h2 id="menu2-in-dialog">Classic Menu and Menu2 inside Dialog</h2>

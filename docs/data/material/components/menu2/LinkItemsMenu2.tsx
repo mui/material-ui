@@ -19,9 +19,10 @@ export default function LinkItemsMenu2() {
         href="https://github.com/mui/material-ui"
         target="_blank"
         rel="noopener"
+        sx={{ '& .MuiListItemIcon-root': { minWidth: 'auto' } }}
       >
         <ListItemText>GitHub repository</ListItemText>
-        <ListItemIcon sx={{ minWidth: 'auto' }}>
+        <ListItemIcon>
           <OpenInNew fontSize="small" />
         </ListItemIcon>
       </MenuLinkItem>
