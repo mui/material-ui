@@ -127,6 +127,17 @@ export default defineConfig({
   };
 }
 
+interface MaterialTemplate {
+  title: string;
+  files: Record<string, string>;
+  dependencies: Record<string, string>;
+  devDependencies: Record<string, string>;
+  replaceContent(
+    updater: (content: string | Record<string, any>, filePath: string) => string,
+  ): MaterialTemplate;
+  openStackBlitz: (initialFile?: string) => void;
+}
+
 /**
  * Create a Material Template for StackBlitz using the SDK and Vite.
  */
@@ -135,7 +146,7 @@ function createMaterialTemplate(templateData: {
   files: Record<string, string>;
   githubLocation: string;
   codeVariant: CodeVariant;
-}) {
+}): MaterialTemplate {
   const ext = getFileExtension(templateData.codeVariant);
   const { title, githubLocation: description } = templateData;
   const raw = Object.entries(templateData.files ?? {}).reduce(
