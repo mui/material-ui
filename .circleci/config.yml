@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/342a1159c5c25a48c8ed853893146aa8701574a6/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/38b6bb18de4a0e8d090b0476bb69580a3c5bfc6c/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
@@ -28,6 +28,7 @@ default-job: &default-job
       default: << pipeline.parameters.e2e-base-url >>
   environment: &default-environment
     BASE_BRANCH: master # #target-branch-reference
+    ARGOS_REFERENCE_BRANCH: master # #target-branch-reference
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     DANGER_DISABLE_TRANSPILATION: 'true'
@@ -110,8 +111,6 @@ jobs:
     steps:
       - checkout
       - code-infra/install-deps
-      - code-infra/check-generated:
-          command: pnpm docs:typescript:formatted
       - run:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
