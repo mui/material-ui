@@ -8,7 +8,6 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
   isJsdom,
-  waitFor,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import Box from '@mui/system/Box';
@@ -2983,17 +2982,13 @@ describe('<Autocomplete />', () => {
 
       await user.type(textbox, 'o');
 
-      await waitFor(() => {
-        expect(textbox.value).to.equal('one');
-      });
+      expect(textbox.value).to.equal('one');
       expect(textbox.selectionStart).to.equal(1);
       expect(textbox.selectionEnd).to.equal(3);
 
       await user.keyboard('n');
 
-      await waitFor(() => {
-        expect(textbox.value).to.equal('one');
-      });
+      expect(textbox.value).to.equal('one');
       expect(textbox.selectionStart).to.equal(2);
       expect(textbox.selectionEnd).to.equal(3);
     });
@@ -3010,19 +3005,12 @@ describe('<Autocomplete />', () => {
       const textbox = screen.getByRole('combobox');
 
       await user.type(textbox, 'on');
-      await waitFor(() => {
-        expect(textbox.value).to.equal('one');
-      });
+      expect(textbox.value).to.equal('one');
 
       await user.keyboard('{Backspace}');
       expect(textbox.value).to.equal('on');
 
       await user.keyboard('{Backspace}');
-      await act(async () => {
-        await new Promise((resolve) => {
-          setTimeout(resolve);
-        });
-      });
       expect(textbox.value).to.equal('o');
     });
 
