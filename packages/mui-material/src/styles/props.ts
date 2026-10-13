@@ -117,6 +117,7 @@ import { ToolbarProps } from '../Toolbar';
 import { TooltipProps } from '../Tooltip';
 import { TypographyProps } from '../Typography';
 import { PopperProps } from '../Popper';
+import { NumberFieldProps } from '../NumberField';
 
 export type ComponentsProps = {
   [Name in keyof ComponentsPropsList]?: Partial<ComponentsPropsList[Name]>;
@@ -209,6 +210,7 @@ export interface ComponentsPropsList {
   MuiSlider: SliderProps;
   MuiSnackbar: SnackbarProps;
   MuiSnackbarContent: SnackbarContentProps;
+  MuiNumberField: NumberFieldProps;
   MuiSpeedDial: SpeedDialProps;
   MuiSpeedDialAction: SpeedDialActionProps;
   MuiSpeedDialIcon: SpeedDialIconProps;
