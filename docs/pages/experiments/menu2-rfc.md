@@ -210,19 +210,19 @@ Remaining release work is listed once in the rollout plan.
 
 These choices are proposed for maintainer review.
 
-| Topic              | Decision and limit                                                                                                                                                                                 |
-| :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Animation          | Grow by default. Base UI owns mounting and completion. Compatible transition components or CSS remain options. See the transition contract below.                                                  |
-| Ripple             | Keep ButtonBase as the item root, not a nested interactive child. Forward `disableRipple` only when supplied so theme defaults apply. Base UI owns Enter and Space activation.                     |
-| Elevation          | Keep the top-level prop, default 8, with a Paper slot override.                                                                                                                                    |
-| Backdrop           | Opt-in visual layer through root slots or slot props. `slots.backdrop: null` omits it. Default styles are transparent and click-through. No submenu backdrop.                                      |
-| Imperative actions | Keep Base UI's `actionsRef`, which exposes `close()` and `unmount()`. There is no `action.updatePosition()` equivalent.                                                                            |
-| Theme and refs     | Use the customization targets above. Caller-rendered parts use `OverridableComponent`; their refs and HTML props follow `component`. Collapsed roots use `HTMLDivElement` refs.                    |
-| Item descriptions  | Use Material UI Tooltip for supplementary text or images, without links, buttons, or other controls. Preview Card is outside the initial release.                                                  |
-| Context menu       | A separate component later. Virtual anchors support right-click placement today, but callers own labeling and focus return. A Base UI ContextMenu integration would also provide touch long-press. |
-| Behavior defaults  | Keep Base UI behavior unless an integration requirement needs a change. Material presentation adds start alignment, submenu offsets, Grow, and an opt-in backdrop.                                 |
-| Open tint on close | Track the popup's ending state internally. Clear the exit tint when exit ends or the popup unmounts; do not add a timer or wait for focus return.                                                  |
-| Forced colors      | `enhanceHighContrast` styles the item parts and indicators. Disabled cues take precedence over highlight styling.                                                                                  |
+| Topic              | Decision and limit                                                                                                                                                              |
+| :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Animation          | Grow by default. Base UI owns mounting and completion. Compatible transition components or CSS remain options. See the transition contract below.                               |
+| Ripple             | Keep ButtonBase as the item root, not a nested interactive child. Forward `disableRipple` only when supplied so theme defaults apply. Base UI owns Enter and Space activation.  |
+| Elevation          | Keep the top-level prop, default 8, with a Paper slot override.                                                                                                                 |
+| Backdrop           | Opt-in visual layer through root slots or slot props. `slots.backdrop: null` omits it. Default styles are transparent and click-through. No submenu backdrop.                   |
+| Imperative actions | Keep Base UI's `actionsRef`, which exposes `close()` and `unmount()`. There is no `action.updatePosition()` equivalent.                                                         |
+| Theme and refs     | Use the customization targets above. Caller-rendered parts use `OverridableComponent`; their refs and HTML props follow `component`. Collapsed roots use `HTMLDivElement` refs. |
+| Item descriptions  | Use Material UI Tooltip for supplementary text or images, without links, buttons, or other controls. Preview Card is outside the initial release.                               |
+| Context menu       | A separate component later, with the correct accessibility behavior and touch long-press. Menu2 doesn't support context menus, and the docs and recipes don't show them.        |
+| Behavior defaults  | Keep Base UI behavior unless an integration requirement needs a change. Material presentation adds start alignment, submenu offsets, Grow, and an opt-in backdrop.              |
+| Open tint on close | Track the popup's ending state internally. Clear the exit tint when exit ends or the popup unmounts; do not add a timer or wait for focus return.                               |
+| Forced colors      | `enhanceHighContrast` styles the item parts and indicators. Disabled cues take precedence over highlight styling.                                                               |
 
 Base UI's internal backdrop handles modal interaction. It is absent for hover-opened menus and `modal={false}`. The optional visual backdrop is separate and is not hidden on hover. Setting its slot to `null` overrides theme defaults without changing modal behavior.
 
@@ -230,7 +230,7 @@ Base UI's internal backdrop handles modal interaction. It is absent for hover-o
 
 Keep the numbering for existing review references. "Resolved" means chosen in this proposal, not release-complete.
 
-1. ✅ **Context menu:** a separate component. Virtual-anchor recipes remain available.
+1. ✅ **Context menu:** a separate component. Menu2 doesn't support context menus, and the docs and recipes don't show them.
 
 2. ✅ **Accessibility ownership:** Base UI supplies semantics and interaction; Material UI remains responsible for the composed result, styles, and public customization.
 

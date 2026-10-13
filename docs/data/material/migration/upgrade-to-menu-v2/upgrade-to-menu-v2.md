@@ -61,6 +61,12 @@ To change a static list into a popup, replace its `Paper` and `MenuList` wrapper
 Then migrate the items as described below.
 Omitting `trigger` does not make Menu v2 a static list; it still renders a positioned popup in a portal.
 
+### Context menus
+
+Menu v2 doesn't support context menus.
+A separate component will cover them with the correct accessibility behavior.
+Until then, keep using Menu for context menus, as in the [Context menu](/material-ui/react-menu/#context-menu) demo.
+
 ### 1. Update the imports
 
 Each part is the default export of its own subpath:
@@ -179,7 +185,7 @@ Its `eventDetails.event` is a native `FocusEvent`, not a keyboard event.
 | `anchorEl`                                            | `anchor`                                                              | Also accepts refs and virtual elements.                                                                      |
 | `anchorOrigin` + `transformOrigin`                    | `side` + `align` + `sideOffset` + `alignOffset`                       | Defaults are `side="bottom"` and `align="start"`.                                                            |
 | Both origins at `top` / `left`                        | `side="bottom"`, `align="start"`, negative `sideOffset`               | See "Place the menu over its trigger" below.                                                                 |
-| `anchorReference="anchorPosition"` + `anchorPosition` | `anchor={virtualElement}`                                             | Give the virtual element the pointer coordinates.                                                            |
+| `anchorReference="anchorPosition"` + `anchorPosition` | `anchor={virtualElement}`                                             | Give the virtual element the position that you want. For context menus, see [Context menus](#context-menus). |
 | `anchorReference="none"`                              | `anchor={virtualElement}`                                             | Give the virtual element the position that you want.                                                         |
 | `marginThreshold` (default 16)                        | `collisionPadding` (default 5)                                        | Same idea.                                                                                                   |
 | `action.updatePosition()`                             | Automatic                                                             | Use `disableAnchorTracking` to stop tracking layout shifts. `actionsRef` provides `close()` and `unmount()`. |
@@ -419,12 +425,3 @@ This prevents the trigger from moving when a focus guard is inserted before it.
 
 The classic Menu limits its height to the viewport minus 96px.
 Menu v2 keeps this limit, and also limits the height to the space available at the anchor, so the value reacts to collisions.
-
-## Context menus
-
-Right-click menus use a virtual anchor.
-A menu with no trigger has no element to return focus to when it closes.
-Always pass `finalFocus` with the surface that the user invoked.
-Otherwise, focus can move to an unrelated element on the page.
-
-See [Without a trigger](/material-ui/react-menu2/#without-a-trigger) for the labeling and focus requirements.

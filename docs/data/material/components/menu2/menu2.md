@@ -246,6 +246,10 @@ The menu can't connect to that element, so you do the wiring:
 - Give the menu an accessible name with `aria-label` or `aria-labelledby`.
 - Pass `finalFocus` to return focus to the element when the menu closes. Otherwise, focus can move to an unrelated element.
 
+:::info
+Menu v2 doesn't support context menus.
+:::
+
 ## Max height menu
 
 The menu limits its height to the viewport and to the space available at the anchor, and scrolls its content.

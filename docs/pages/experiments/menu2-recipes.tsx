@@ -48,19 +48,6 @@ const defaultSettings: MenuSettings = {
   focusVisible: false,
 };
 
-function createVirtualAnchor(mouseX: number, mouseY: number) {
-  return {
-    getBoundingClientRect() {
-      return DOMRect.fromRect({
-        x: mouseX,
-        y: mouseY,
-        width: 0,
-        height: 0,
-      });
-    },
-  };
-}
-
 const horizontalTooltipProps = {
   placement: 'right',
   slotProps: {
@@ -762,94 +749,6 @@ function MenuIconWidthRecipe() {
   );
 }
 
-function Menu2ContextMenuRecipe() {
-  const [anchor, setAnchor] = React.useState<ReturnType<typeof createVirtualAnchor> | null>(null);
-  const open = anchor !== null;
-  const contextAreaRef = React.useRef<HTMLDivElement | null>(null);
-
-  const handleContextMenu = (event: React.MouseEvent) => {
-    event.preventDefault();
-
-    setAnchor(
-      anchor === null
-        ? createVirtualAnchor(event.clientX + 2, event.clientY - 6)
-        : // Keep the old Material recipe behavior: a repeated contextmenu event while
-          // open closes the menu instead of relocating it through the backdrop.
-          null,
-    );
-
-    // Preserve selected text after opening the context menu in Safari and Firefox.
-    const selection = document.getSelection();
-    if (selection && selection.rangeCount > 0) {
-      const range = selection.getRangeAt(0);
-
-      setTimeout(() => {
-        selection.addRange(range);
-      });
-    }
-  };
-
-  const handleClose = () => {
-    setAnchor(null);
-  };
-
-  const handleOpenChange: React.ComponentProps<typeof Menu2>['onOpenChange'] = (
-    nextOpen,
-    eventDetails,
-  ) => {
-    if (nextOpen) {
-      return;
-    }
-
-    if (
-      eventDetails.reason === 'item-press' ||
-      eventDetails.reason === 'outside-press' ||
-      eventDetails.reason === 'escape-key'
-    ) {
-      handleClose();
-      return;
-    }
-
-    eventDetails.cancel();
-  };
-
-  return (
-    // tabIndex={-1} makes the invoked surface a valid focus-restore target. A
-    // detached menu has no trigger to return focus to, and Base UI's fallback
-    // is its internal "previously focused element" record, which can point at
-    // an unrelated menu trigger from an earlier interaction.
-    <div
-      ref={contextAreaRef}
-      tabIndex={-1}
-      onContextMenu={handleContextMenu}
-      style={{ cursor: 'context-menu' }}
-    >
-      <Typography>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum purus, bibendum sit
-        amet vulputate eget, porta semper ligula. Donec bibendum vulputate erat, ac fringilla mi
-        finibus nec. Donec ac dolor sed dolor porttitor blandit vel vel purus. Fusce vel malesuada
-        ligula. Nam quis vehicula ante, eu finibus est. Proin ullamcorper fermentum orci, quis
-        finibus massa. Nunc lobortis, massa ut rutrum ultrices, metus metus finibus ex, sit amet
-        facilisis neque enim sed neque. Quisque accumsan metus vel maximus consequat. Suspendisse
-        lacinia tellus a libero volutpat maximus.
-      </Typography>
-      <Menu2
-        aria-label="Context actions"
-        open={open}
-        onOpenChange={handleOpenChange}
-        anchor={anchor ?? undefined}
-        positionMethod="fixed"
-        finalFocus={contextAreaRef}
-      >
-        <Menu2Item onClick={handleClose}>Copy</Menu2Item>
-        <Menu2Item onClick={handleClose}>Print</Menu2Item>
-        <Menu2Item onClick={handleClose}>Highlight</Menu2Item>
-        <Menu2Item onClick={handleClose}>Email</Menu2Item>
-      </Menu2>
-    </div>
-  );
-}
-
 export default function Menu2Experiment() {
   const [settings, setSettings] = React.useState<MenuSettings>(defaultSettings);
 
@@ -878,10 +777,7 @@ export default function Menu2Experiment() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Head
-        title="Menu2 recipes"
-        description="Menu2 integrations with Dialog, Tooltip, and context menus"
-      />
+      <Head title="Menu2 recipes" description="Menu2 integrations with Dialog and Tooltip" />
       <Container maxWidth="md" sx={{ pt: 4 }}>
         <Stack spacing={4}>
           <Typography component="h1" variant="h4">
@@ -1038,11 +934,6 @@ export default function Menu2Experiment() {
               of this page do not change this comparison, except for the focus ring setting.
             </p>
             <MenuDialogFocusRecipe />
-          </section>
-          <section>
-            <h2 id="menu2-context-menu-recipe">Menu2 as ContextMenu recipe</h2>
-            <p>Right-click the text to open a cursor-positioned Menu2 popup.</p>
-            <Menu2ContextMenuRecipe />
           </section>
           <a href="https://base-ui.com/react/components/menu">Base UI Menu API</a>
         </Stack>

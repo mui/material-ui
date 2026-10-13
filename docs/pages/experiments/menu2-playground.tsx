@@ -754,7 +754,7 @@ export default function MenuRfcExperiment() {
             <NextLink href="/experiments/menu2-rfc/">Menu2 RFC draft</NextLink>. Every knob maps to
             a prop or an RFC open question. See also{' '}
             <NextLink href="/experiments/menu2-recipes/">Menu2 recipes</NextLink> for Tooltip and
-            ContextMenu integrations.
+            Dialog integrations.
           </Typography>
 
           <SettingsPanel settings={settings} onChange={setSettings} />
