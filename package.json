@@ -87,6 +87,7 @@
     "@mui/internal-babel-plugin-minify-errors": "3.0.1-canary.1",
     "@mui/internal-bundle-size-checker": "1.1.1-canary.2",
     "@mui/internal-code-infra": "0.1.1-canary.10",
+    "@mui/internal-docs-infra": "0.13.1-canary.2",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.1.1-canary.1",
     "@mui/internal-scripts": "workspace:^",
@@ -142,8 +143,7 @@
     "vite": "^8.0.0",
     "vitest": "^5.0.0",
     "vitest-fail-on-console": "0.10.1",
-    "yargs": "18.2.0",
-    "@mui/internal-docs-infra": "0.13.1-canary.2"
+    "yargs": "18.2.0"
   },
   "config": {
     "valeVersion": "3.24.0"
