@@ -1,6 +1,6 @@
 import * as React from 'react';
-import ControlledMenu2 from 'docs/data/material/components/menu2/ControlledMenu2';
-import PositionedMenu2 from 'docs/data/material/components/menu2/PositionedMenu2';
+import ControlledMenu2 from 'docs/data/material/components/menu2/demos/controlled/ControlledMenu2';
+import PositionedMenu2 from 'docs/data/material/components/menu2/demos/positioned/PositionedMenu2';
 
 export default function DocsLayout() {
   return (

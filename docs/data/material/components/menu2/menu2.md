@@ -61,7 +61,7 @@ See [Upgrade to Menu v2](/material-ui/migration/upgrade-to-menu-v2/) for the arc
 
 Pass the element that opens the menu to the `trigger` prop, and the items as children.
 
-{{"demo": "BasicMenu2.js"}}
+{{"component": "file://./demos/basic/index.ts"}}
 
 Selecting a `MenuItem` closes the menu by default.
 Set `closeOnClick={false}` to keep it open.
@@ -80,7 +80,7 @@ The trigger can be a composed element, such as an `IconButton` in a `Tooltip`.
 Give the `IconButton` a unique `id` so the menu can use it as its accessible label.
 Tooltip uses its own `id` prop for the tooltip, not the button.
 
-{{"demo": "AccountMenu2.js"}}
+{{"component": "file://./demos/account/index.ts"}}
 
 ## Open a dialog
 
@@ -120,7 +120,7 @@ Nest a `MenuSubmenu` in the item list, and pass a `MenuSubmenuTrigger` to its `t
 Its children are the submenu items.
 The trigger can be wrapped in another component, but regular, link, checkbox, and radio items do not open a submenu.
 
-{{"demo": "SubmenuMenu2.js"}}
+{{"component": "file://./demos/submenu/index.ts"}}
 
 By default, a submenu opens on mouse hover after 100 ms; a click does not bypass this delay.
 Set `openOnHover={false}` on `MenuSubmenuTrigger` to open with a mouse click instead.
@@ -136,7 +136,7 @@ Pass `closeParentOnEsc` to `MenuSubmenu` to close the whole menu.
 
 Compose the same list primitives that you use with the current Menu: `ListItemIcon`, `ListItemText`, and `Typography` for a shortcut hint.
 
-{{"demo": "IconMenu2.js"}}
+{{"component": "file://./demos/icon/index.ts"}}
 
 ## Dense menu
 
@@ -145,7 +145,7 @@ Submenus inherit their parent list's density.
 Set `slotProps.list.dense` on a submenu to override it, including `false` for regular spacing.
 An item can also set its own `dense` prop.
 
-{{"demo": "DenseMenu2.js"}}
+{{"component": "file://./demos/dense/index.ts"}}
 
 ## Checkbox and radio items
 
@@ -153,7 +153,7 @@ An item can also set its own `dense` prop.
 For a single choice in a set, put `MenuRadioItem` components in a `MenuRadioGroup`.
 Both keep the menu open by default so users can change several options.
 
-{{"demo": "CheckboxRadioMenu2.js"}}
+{{"component": "file://./demos/checkbox-radio/index.ts"}}
 
 Read the new value from the first callback argument: `onCheckedChange(checked, eventDetails)` or `onValueChange(value, eventDetails)`.
 For an uncontrolled item or group, use `defaultChecked` or `defaultValue`.
@@ -168,7 +168,7 @@ Use checkbox or radio items for checked state.
 
 The parts compose freely: checkbox items with shortcut hints, a submenu with a radio group, icon items, and a disabled item.
 
-{{"demo": "ComposedMenu2.js"}}
+{{"component": "file://./demos/composed/index.ts"}}
 
 ## Grouped menu
 
@@ -176,13 +176,13 @@ The parts compose freely: checkbox items with shortcut hints, a submenu with a r
 The group refers to its label with `aria-labelledby`.
 Use `MenuSeparator` between groups.
 
-{{"demo": "GroupedMenu2.js"}}
+{{"component": "file://./demos/grouped/index.ts"}}
 
 ## Link items
 
 `MenuLinkItem` renders a real anchor with `role="menuitem"`, so middle-click, right-click, and keyboard activation behave like a link.
 
-{{"demo": "LinkItemsMenu2.js"}}
+{{"component": "file://./demos/link-items/index.ts"}}
 
 A link item doesn't close the menu on click by default.
 Set `closeOnClick` to close it, for example with client-side routing.
@@ -201,7 +201,7 @@ Use the logical `inline-start` and `inline-end` sides to get the correct directi
 Open the non-modal menu, then change the values for a live preview.
 Press Escape or use the trigger to close it.
 
-{{"demo": "PositionedMenu2.js"}}
+{{"component": "file://./demos/positioned/index.ts"}}
 
 The menu flips when it collides with the edge of its container, and it follows its anchor on scroll and resize.
 
@@ -209,7 +209,7 @@ The menu flips when it collides with the edge of its container, and it follows i
 
 Set `openOnHover` to open the menu when the pointer rests on the trigger.
 
-{{"demo": "HoverMenu2.js"}}
+{{"component": "file://./demos/hover/index.ts"}}
 
 A menu that opens on hover isn't modal, so the rest of the page stays interactive.
 
@@ -218,7 +218,7 @@ A menu that opens on hover isn't modal, so the rest of the page stays interactiv
 Pass `open` and `onOpenChange` to control the open state.
 The trigger still sets the ARIA attributes and receives focus when the menu closes.
 
-{{"demo": "ControlledMenu2.js"}}
+{{"component": "file://./demos/controlled/index.ts"}}
 
 ### Keep the menu open
 
@@ -251,7 +251,7 @@ The menu can't connect to that element, so you do the wiring:
 The menu limits its height to the viewport and to the space available at the anchor, and scrolls its content.
 To set a smaller limit on the `paper` slot, use `min(320px, var(--available-height))` to keep it within short screens.
 
-{{"demo": "LongMenu2.js"}}
+{{"component": "file://./demos/long/index.ts"}}
 
 ## Customization
 
@@ -275,7 +275,7 @@ With `keepMounted`, the default root hides after the exit transition, when its p
 
 This demo wraps Menu in `styled()` to set defaults and styles the surface and items through their class selectors:
 
-{{"demo": "CustomizedMenu2.js"}}
+{{"component": "file://./demos/customized/index.ts"}}
 
 ### Trigger
 
@@ -343,7 +343,7 @@ For example, after the [Tailwind CSS v4 setup](/material-ui/integrations/tailwi
 Use `icon` and `checkedIcon` on `MenuCheckboxItem` and `MenuRadioItem` to change the unchecked and checked icons.
 Custom icons keep their own size.
 
-{{"demo": "IndicatorIconsMenu2.js"}}
+{{"component": "file://./demos/indicator-icons/index.ts"}}
 
 Use `slotProps.indicator` to customize the indicator container, or `slots.indicator` to replace it.
 If `slotProps.indicator.children` is neither `null` nor `undefined`, it takes precedence over the icon props.
@@ -361,7 +361,7 @@ The menu uses the `Grow` transition, the same as the current Menu.
 With the default `transitionDuration="auto"`, the duration depends on the height of the menu.
 Pass a different transition component to `slots.transition`, and its props to `slotProps.transition`:
 
-{{"demo": "FadeMenu2.js"}}
+{{"component": "file://./demos/fade/index.ts"}}
 
 Grow, Fade, and Zoom work with Menu v2.
 A custom transition must forward its child's props and ref, animate that same popup element, and add no DOM wrapper.

@@ -1,9 +1,0 @@
-<Menu
-  openOnHover
-  closeDelay={150}
-  trigger={<Button endIcon={<KeyboardArrowDownIcon />}>Products</Button>}
->
-  <MenuItem>Material UI</MenuItem>
-  <MenuItem>Base UI</MenuItem>
-  <MenuItem>MUI X</MenuItem>
-</Menu>
