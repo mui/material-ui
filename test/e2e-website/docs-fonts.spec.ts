@@ -1,4 +1,7 @@
-import { test, expect } from '@playwright/test';
+import { test as base, expect } from '@playwright/test';
+import { TestFixture } from './playwright.config';
+
+const test = base.extend<TestFixture>({});
 
 for (const javaScriptEnabled of [false, true]) {
   test.describe(`Docs fonts (${javaScriptEnabled ? 'hydrated' : 'server-rendered'})`, () => {
@@ -30,6 +33,23 @@ for (const javaScriptEnabled of [false, true]) {
       const heading = page.getByRole('heading', { name: 'Installation', exact: true });
       await expect(heading).toHaveCSS('font-weight', '600');
       await expect(heading).toHaveCSS('font-family', /General Sans/);
+
+      // The declared font-family does not prove that the font face loads.
+      // The dev server injects font CSS with JavaScript, so check only when hydrated.
+      if (javaScriptEnabled) {
+        await expect
+          .poll(() =>
+            page.evaluate(() =>
+              Array.from(document.fonts).some(
+                (font) =>
+                  font.family.replace(/"/g, '') === 'General Sans' &&
+                  font.weight === '600' &&
+                  font.status === 'loaded',
+              ),
+            ),
+          )
+          .toBe(true);
+      }
     });
   });
 }
