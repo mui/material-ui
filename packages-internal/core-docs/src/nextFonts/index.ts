@@ -16,6 +16,7 @@ export const roboto = Roboto({
 
 export const generalSans = localFont({
   declarations: [{ prop: 'font-family', value: 'General Sans' }],
+  variable: '--font-general-sans',
   src: [{ path: './fonts/GeneralSans-Semibold.woff2', weight: '600', style: 'normal' }],
 });
 
@@ -61,4 +62,8 @@ export const fonts = [
   roboto,
 ];
 
-export const fontClasses = fonts.map((font) => font.className).join(' ');
+// The single-weight General Sans class sets font-weight: 600. Use its variable
+// class to register and preload the font without changing the body font weight.
+export const fontClasses = fonts
+  .map((font) => (font === generalSans ? generalSans.variable : font.className))
+  .join(' ');
