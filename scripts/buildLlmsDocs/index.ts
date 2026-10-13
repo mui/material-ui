@@ -106,6 +106,7 @@ type CommandOptions = {
   grep?: string;
   outputDir?: string;
   projectSettings?: string;
+  includeExtraFiles?: boolean;
 };
 
 /**
@@ -289,7 +290,10 @@ function findNonComponentMarkdownFiles(
 /**
  * Process a single component
  */
-function processComponent(component: ComponentDocInfo): string | null {
+async function processComponent(
+  component: ComponentDocInfo,
+  options: { includeExtraFiles?: boolean } = {},
+): Promise<string | null> {
   // Processing component: ${component.name}
 
   // Skip if no markdown file found
@@ -299,7 +303,7 @@ function processComponent(component: ComponentDocInfo): string | null {
   }
 
   // Process the markdown file with demo replacement
-  let processedMarkdown = processMarkdownFile(component.markdownPath);
+  let processedMarkdown = await processMarkdownFile(component.markdownPath, options);
 
   // Read the frontmatter to get all components listed in this markdown file
   const markdownContent = fs.readFileSync(component.markdownPath, 'utf-8');
@@ -457,6 +461,7 @@ function removeGeneratedFiles(dir: string): void {
 async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<void> {
   const grep = argv.grep ? new RegExp(argv.grep) : null;
   const outputDir = argv.outputDir || path.join(process.cwd(), 'docs/public');
+  const demoOptions = { includeExtraFiles: argv.includeExtraFiles ?? false };
 
   removeGeneratedFiles(path.join(outputDir, 'material-ui'));
 
@@ -491,7 +496,8 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
   // Process each component
   let processedCount = 0;
   for (const component of components) {
-    const processedMarkdown = processComponent(component);
+    // eslint-disable-next-line no-await-in-loop
+    const processedMarkdown = await processComponent(component, demoOptions);
 
     if (!processedMarkdown) {
       continue;
@@ -542,7 +548,8 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
     // Processing non-component file: ${path.relative(process.cwd(), file.markdownPath)}
 
     // Process the markdown file with demo replacement
-    const processedMarkdown = processMarkdownFile(file.markdownPath);
+    // eslint-disable-next-line no-await-in-loop
+    const processedMarkdown = await processMarkdownFile(file.markdownPath, demoOptions);
 
     const outputPath = path.join(outputDir, file.outputPath);
 
@@ -664,6 +671,12 @@ yargs()
             'Path to the project settings module that exports ProjectSettings interface.',
           type: 'string',
           demandOption: true,
+        })
+        .option('includeExtraFiles', {
+          description:
+            "Include each demo's extra files (helpers) alongside its entry file, each labelled with a filename comment. Disabled by default.",
+          type: 'boolean',
+          default: false,
         });
     },
     handler: buildLlmsDocs,

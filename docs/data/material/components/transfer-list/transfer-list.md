@@ -20,13 +20,13 @@ The demos below are built with [Menu List](/material-ui/react-menu/#composition-
 
 For completeness, this example includes buttons for "move all", but not every transfer list needs these.
 
-{{"demo": "TransferList.js", "bg": true}}
+{{"component": "file://./demos/transfer-list/index.ts", "bg": true}}
 
 ## Enhanced transfer list
 
 This example exchanges the "move all" buttons for a "select all / select none" checkbox and adds a counter.
 
-{{"demo": "SelectAllTransferList.js", "bg": true}}
+{{"component": "file://./demos/select-all/index.ts", "bg": true}}
 
 ## Limitations
 
