@@ -281,7 +281,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     fullWidth = false,
     id,
     inputComponent = 'input',
-    inputProps: inputPropsProp = {},
+    inputProps: inputPropsBase,
     inputRef: inputRefProp,
     /* eslint-disable react/prop-types */
     internalDisabledThemeFocusVisible = false,
@@ -310,6 +310,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     ...other
   } = props;
 
+  const inputPropsProp = { ...inputPropsBase, ...slotProps.input };
   const value = inputPropsProp.value != null ? inputPropsProp.value : valueProp;
   const { current: isControlled } = React.useRef(value != null);
 
@@ -556,7 +557,6 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   const rootProps = slotProps.root || {};
 
   const Input = slots.input || InputBaseInput;
-  inputProps = { ...inputProps, ...slotProps.input };
 
   return (
     <Root

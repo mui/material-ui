@@ -99,12 +99,7 @@ interface PopoverVirtualElement {
 }
 
 export interface PopoverProps
-  extends
-    StandardProps<
-      Omit<ModalProps, 'slots' | 'slotProps' | 'BackdropProps' | 'BackdropComponent'>,
-      'children'
-    >,
-    PopoverSlotsAndSlotProps {
+  extends StandardProps<ModalProps, 'slots' | 'slotProps' | 'children'>, PopoverSlotsAndSlotProps {
   /**
    * A ref for imperative actions.
    * It currently only supports updatePosition() action.

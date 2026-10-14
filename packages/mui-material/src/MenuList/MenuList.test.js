@@ -26,7 +26,8 @@ describe('<MenuList />', () => {
     classes: {},
     inheritComponent: List,
     refInstanceof: window.HTMLUListElement,
-    skip: ['componentProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
+    muiName: 'MuiMenuList',
+    skip: ['componentProp', 'themeStyleOverrides', 'themeVariants'],
   }));
 
   it('should render a list with role menu and tabIndex -1', () => {

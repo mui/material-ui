@@ -109,6 +109,7 @@ import { TableSortLabelProps } from '../TableSortLabel';
 import { TableFooterProps } from '../TableFooter';
 import { TabProps } from '../Tab';
 import { TabsProps } from '../Tabs';
+import { TabScrollButtonProps } from '../TabScrollButton';
 import { TextFieldProps } from '../TextField';
 import { ToggleButtonProps } from '../ToggleButton';
 import { ToggleButtonGroupProps } from '../ToggleButtonGroup';
@@ -234,6 +235,7 @@ export interface ComponentsPropsList {
   MuiTableRow: TableRowProps;
   MuiTableSortLabel: TableSortLabelProps;
   MuiTabs: TabsProps;
+  MuiTabScrollButton: TabScrollButtonProps;
   MuiTextField: TextFieldProps;
   MuiToggleButton: ToggleButtonProps;
   MuiToggleButtonGroup: ToggleButtonGroupProps;
