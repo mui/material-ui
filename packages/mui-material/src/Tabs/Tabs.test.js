@@ -1398,7 +1398,6 @@ describe.skipIf(isSafari)('<Tabs />', () => {
         );
         const tablistContainer = screen.getByRole('tablist').parentElement;
 
-        clock.tick(1000);
         expect(tablistContainer.scrollLeft).to.be.closeTo(200, 0.5);
       },
     );
