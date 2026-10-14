@@ -4,7 +4,7 @@ import { Html, Head, Main, NextScript } from 'next/document';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import MuiInitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import { getMetaThemeColor } from '../branding';
-import { fontVariables } from '../nextFonts';
+import { fontClasses } from '../nextFonts';
 
 export type DocumentProps = {
   canonicalAsServer: string;
@@ -91,7 +91,7 @@ export function Document({ canonicalAsServer, userLanguage, analytics, children 
           }}
         />
       </Head>
-      <body className={fontVariables}>
+      <body className={fontClasses}>
         <MuiInitColorSchemeScript defaultMode="system" />
         {children}
         <Main />

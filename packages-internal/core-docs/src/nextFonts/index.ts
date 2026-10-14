@@ -66,6 +66,6 @@ export const fonts = [
 ];
 
 // `className` also sets font-weight for single-file loaders, so body only gets the variables.
-export const fontVariables = [ibmPlexSans, generalSans, inter, roboto]
+export const fontClasses = [ibmPlexSans, generalSans, inter, roboto]
   .map((font) => font.variable)
   .join(' ');
