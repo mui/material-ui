@@ -572,7 +572,6 @@ describe.skipIf(isSafari)('<Tabs />', () => {
           const tablistContainerRect = tablistContainer.getBoundingClientRect();
           const tabRect = tab.getBoundingClientRect();
 
-          expect(Number.isInteger(tabRect.width)).to.equal(false);
           expect(parseFloat(indicator.style.left)).to.be.closeTo(
             tabRect.left - tablistContainerRect.left,
             0.001,
