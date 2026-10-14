@@ -61,4 +61,9 @@ export const fonts = [
   roboto,
 ];
 
-export const fontClasses = fonts.map((font) => font.className).join(' ');
+// The single-weight General Sans class sets font-weight: 600 on body. The import
+// still registers and preloads the font, so the class is not necessary.
+export const fontClasses = fonts
+  .filter((font) => font !== generalSans)
+  .map((font) => font.className)
+  .join(' ');
