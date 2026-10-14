@@ -2,12 +2,14 @@ import { Inter, Roboto } from 'next/font/google';
 import localFont from 'next/font/local';
 
 export const inter = Inter({
+  variable: '--font-inter',
   weight: ['300', '400', '500', '600', '700'],
   subsets: ['latin'],
   preload: false,
 });
 
 export const roboto = Roboto({
+  variable: '--font-roboto',
   weight: ['300', '400', '500', '700'],
   style: ['normal', 'italic'],
   subsets: ['latin'],
@@ -15,6 +17,7 @@ export const roboto = Roboto({
 });
 
 export const generalSans = localFont({
+  variable: '--font-general-sans',
   declarations: [{ prop: 'font-family', value: 'General Sans' }],
   src: [{ path: './fonts/GeneralSans-Semibold.woff2', weight: '600', style: 'normal' }],
 });
@@ -36,6 +39,7 @@ const generalSansDeferred = localFont({
 // "⌘K" badge; each preloaded file delays LCP on slow links (~0.3s per 55kB
 // on Lighthouse mobile), so those two stay deferred.
 export const ibmPlexSans = localFont({
+  variable: '--font-ibm-plex-sans',
   declarations: [{ prop: 'font-family', value: 'IBM Plex Sans' }],
   src: [
     { path: './fonts/IBMPlexSans-Regular.woff2', weight: '400', style: 'normal' },
@@ -61,9 +65,7 @@ export const fonts = [
   roboto,
 ];
 
-// The single-weight General Sans class sets font-weight: 600 on body. The import
-// still registers and preloads the font, so the class is not necessary.
-export const fontClasses = fonts
-  .filter((font) => font !== generalSans)
-  .map((font) => font.className)
+// `className` also sets font-weight for single-file loaders, so body only gets the variables.
+export const fontVariables = [ibmPlexSans, generalSans, inter, roboto]
+  .map((font) => font.variable)
   .join(' ');
