@@ -1693,8 +1693,8 @@ importers:
         version: 19.3.0(react@19.3.0)
     devDependencies:
       '@mui/internal-benchmark':
-        specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-benchmark@1c1cb8c
-        version: https://pkg.pr.new/mui/mui-public/@mui/internal-benchmark@1c1cb8c(@playwright/test@1.63.0)(@vitest/browser-playwright@5.0.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.15)(yaml@2.9.1))(vitest@5.0.0)
+        specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-benchmark@d5b3a2d
+        version: https://pkg.pr.new/mui/mui-public/@mui/internal-benchmark@d5b3a2d(@playwright/test@1.63.0)(@vitest/browser-playwright@5.0.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.15)(yaml@2.9.1))(vitest@5.0.0)
       '@playwright/test':
         specifier: 1.63.0
         version: 1.63.0
@@ -4081,8 +4081,8 @@ packages:
     peerDependencies:
       '@babel/core': ^8.0.0
 
-  '@mui/internal-benchmark@https://pkg.pr.new/mui/mui-public/@mui/internal-benchmark@1c1cb8c':
-    resolution: {integrity: sha512-0SZEVsWwNXN1HwS5sB2JtYw0P6dCfa6vyH9EOiFkvDP4t7qu/6VehVtt2b4AUQ2gtBHz242Od6GrfvuoQ9vgHw==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-benchmark@1c1cb8c}
+  '@mui/internal-benchmark@https://pkg.pr.new/mui/mui-public/@mui/internal-benchmark@d5b3a2d':
+    resolution: {integrity: sha512-X3OGYPadUN4XWoAjXwHieQ4a6AQqIIF/ChYuLcywMi3MrApBb0tuJSw7/Un+AMLi5i4QRb1BwB03QKgh2Nd9UA==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-benchmark@d5b3a2d}
     version: 0.1.0
     hasBin: true
     peerDependencies:
@@ -4093,8 +4093,6 @@ packages:
       vite: ^7.0.0 || ^8.0.0
       vitest: '>=4.1'
     peerDependenciesMeta:
-      '@playwright/test':
-        optional: true
       vite:
         optional: true
 
@@ -14895,9 +14893,10 @@ snapshots:
       '@babel/core': 8.0.7
       resolve: 1.22.12
 
-  '@mui/internal-benchmark@https://pkg.pr.new/mui/mui-public/@mui/internal-benchmark@1c1cb8c(@playwright/test@1.63.0)(@vitest/browser-playwright@5.0.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.15)(yaml@2.9.1))(vitest@5.0.0)':
+  '@mui/internal-benchmark@https://pkg.pr.new/mui/mui-public/@mui/internal-benchmark@d5b3a2d(@playwright/test@1.63.0)(@vitest/browser-playwright@5.0.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.15)(yaml@2.9.1))(vitest@5.0.0)':
     dependencies:
       '@babel/runtime': 8.0.7
+      '@playwright/test': 1.63.0
       '@pnpm/find-workspace-dir': 1000.1.5
       '@vitejs/plugin-react': 6.1.2(babel-plugin-react-compiler@1.0.0)(vite@8.3.2(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.15)(yaml@2.9.1))
       '@vitest/browser-playwright': 5.0.0(playwright@1.63.0)(vite@8.3.2(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.15)(yaml@2.9.1))(vitest@5.0.0)
@@ -14908,12 +14907,12 @@ snapshots:
       globby: 16.2.4
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
+      sirv: 3.0.2
       vitest: 5.0.0(@types/node@22.20.5)(@vitest/browser-playwright@5.0.0)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(happy-dom@20.11.2)(jsdom@30.1.2)(vite@8.3.2(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.15)(yaml@2.9.1))
       yaml: 2.9.1
       yargs: 18.2.0
       zod: 4.6.5
     optionalDependencies:
-      '@playwright/test': 1.63.0
       vite: 8.3.2(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.15)(yaml@2.9.1)
     transitivePeerDependencies:
       - '@rolldown/plugin-babel'
