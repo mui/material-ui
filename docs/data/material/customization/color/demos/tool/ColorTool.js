@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { rgbToHex, useTheme } from '@mui/material/styles';
 import * as colors from '@mui/material/colors';
 import Box from '@mui/material/Box';
@@ -75,13 +74,6 @@ const TooltipRadio = React.forwardRef(function TooltipRadio(props, ref) {
     />
   );
 });
-
-TooltipRadio.propTypes = {
-  // possibly opaque identifier
-  'aria-label': PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  'aria-labelledby': PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  inputProps: PropTypes.object,
-};
 
 function ColorTool() {
   const theme = useTheme();
