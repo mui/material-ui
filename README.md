@@ -69,10 +69,6 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
 <p>
   <a href="https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Goread.io</a>
   &nbsp;
-  <a href="https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Buzzoid</a>
-  &nbsp;
-  <a href="https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Twicsy</a>
-  &nbsp;
   <a href="https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Poprey</a>
   &nbsp;
   <a href="https://www.socialwick.com/instagram/followers/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">SocialWick</a>
@@ -81,9 +77,9 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   &nbsp;
   <a href="https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Views4You</a>
   &nbsp;
-  <a href="https://daosmm.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">DaoSMM</a>
-  &nbsp;
   <a href="https://instant-famous.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Instant Famous</a>
+  &nbsp;
+  <a href="https://tokboostly.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">TokBoostly</a>
   &nbsp;
 </p>
 
