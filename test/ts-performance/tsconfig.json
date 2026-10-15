@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    // rely on workspace linking
+    "paths": {},
+    "target": "es2017",
+    "lib": ["es2017", "dom"],
+    "jsx": "react",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "strict": true,
+    "noEmit": true,
+    "noErrorTruncation": true,
+    "skipLibCheck": true,
+    "types": []
+  },
+  "include": []
+}
