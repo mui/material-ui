@@ -41,7 +41,7 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     rootRef,
   } = parameters;
 
-  // @ts-ignore internal logic
+  // @ts-expect-error: The modal refs are assigned after render; the initial ref object is empty.
   const modal = React.useRef<{ modalRef: HTMLDivElement; mount: HTMLElement }>({});
   const mountNodeRef = React.useRef<HTMLElement>(null);
   const lastMountNodeRef = React.useRef<HTMLElement>(null);

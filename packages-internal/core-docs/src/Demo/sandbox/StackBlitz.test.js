@@ -66,14 +66,14 @@ describe('StackBlitz', () => {
   },
   "dependencies": {
     "react": "latest",
-    "@mui/material": "next",
+    "@mui/material": "latest",
     "react-dom": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^5",
-    "vite": "^7"
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest"
   }
 }`,
         'src/Demo.jsx': `import * as React from 'react';
@@ -115,14 +115,14 @@ export default defineConfig({
       dependencies: {
         react: 'latest',
         // #npm-tag-reference
-        '@mui/material': 'next',
+        '@mui/material': 'latest',
         'react-dom': 'latest',
         '@emotion/react': 'latest',
         '@emotion/styled': 'latest',
       },
       devDependencies: {
-        '@vitejs/plugin-react': '^5',
-        vite: '^7',
+        '@vitejs/plugin-react': 'latest',
+        vite: 'latest',
       },
     });
   });
@@ -176,15 +176,15 @@ export default defineConfig({
   },
   "dependencies": {
     "react": "latest",
-    "@mui/material": "next",
+    "@mui/material": "latest",
     "react-dom": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "typescript": "latest"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^5",
-    "vite": "^7",
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest"
   }
@@ -260,7 +260,7 @@ export default defineConfig({
       dependencies: {
         react: 'latest',
         // #npm-tag-reference
-        '@mui/material': 'next',
+        '@mui/material': 'latest',
         'react-dom': 'latest',
         '@emotion/react': 'latest',
         '@emotion/styled': 'latest',
@@ -269,8 +269,8 @@ export default defineConfig({
       devDependencies: {
         '@types/react': 'latest',
         '@types/react-dom': 'latest',
-        '@vitejs/plugin-react': '^5',
-        vite: '^7',
+        '@vitejs/plugin-react': 'latest',
+        vite: 'latest',
       },
     });
   });

@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "9.4.0",
+  "version": "10.0.0-alpha.0",
   "private": true,
   "//": "#target-branch-reference: scripts.prettier",
   "scripts": {
@@ -30,9 +30,7 @@
     "docs:start": "pnpm --filter docs start",
     "docs:create-playground": "pnpm --filter docs create-playground",
     "docs:link-check": "pnpm --filter docs link-check",
-    "docs:typescript": "pnpm docs:typescript:formatted --watch",
     "docs:typescript:check": "pnpm --filter docs typescript",
-    "docs:typescript:formatted": "tsx ./docs/scripts/formattedTSDemos.mjs",
     "docs:sync-team": "tsx ./docs/scripts/syncTeamMembers.ts && pnpm prettier",
     "docs:mdicons:synonyms": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js,.mjs\" ./docs/scripts/updateIconSynonyms && pnpm prettier",
     "extract-error-codes": "code-infra extract-error-codes --errorCodesPath docs/public/static/error-codes.json --skip @mui/core-downloads-tracker @mui/envinfo @mui/internal-core-docs @mui/codemod @mui/icons-material",
@@ -78,24 +76,25 @@
   "dependencies": {
     "@netlify/functions": "^6.0.2",
     "@slack/bolt": "^5.1.0",
-    "execa": "^10.0.1"
+    "execa": "^10.1.0"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",
-    "@babel/core": "8.0.6",
+    "@babel/core": "8.0.7",
     "@babel/node": "8.0.6",
     "@babel/plugin-transform-react-constant-elements": "8.0.5",
     "@eslint/compat": "2.1.1",
     "@mui/internal-babel-plugin-minify-errors": "3.0.1-canary.1",
-    "@mui/internal-bundle-size-checker": "1.1.1-canary.1",
-    "@mui/internal-code-infra": "0.1.1-canary.6",
+    "@mui/internal-bundle-size-checker": "1.1.1-canary.2",
+    "@mui/internal-code-infra": "0.1.1-canary.10",
+    "@mui/internal-docs-infra": "0.13.1-canary.13",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.1.1-canary.1",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "2.1.1-canary.2",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "16.3.8",
+    "@next/eslint-plugin-next": "16.4.0",
     "@octokit/rest": "22.0.1",
     "@pigment-css/react": "0.0.31",
     "@playwright/test": "1.63.0",
@@ -103,7 +102,7 @@
     "@types/babel__core": "7.20.5",
     "@types/babel__register": "7.17.3",
     "@types/ip": "1.1.3",
-    "@types/node": "22.20.4",
+    "@types/node": "22.20.5",
     "@types/react": "19.3.0",
     "@types/yargs": "17.0.35",
     "@typescript/native": "npm:typescript@7.0.2",
@@ -119,12 +118,12 @@
     "cross-env": "10.1.0",
     "dotenv": "18.0.5",
     "es-toolkit": "1.52.0",
-    "eslint": "10.11.0",
+    "eslint": "10.12.0",
     "eslint-plugin-consistent-default-export-name": "0.0.15",
     "fast-glob": "3.3.3",
     "git-url-parse": "16.1.0",
     "globby": "16.2.4",
-    "jsdom": "30.1.1",
+    "jsdom": "30.1.2",
     "lerna": "10.0.1",
     "minimatch": "10.2.6",
     "nx": "22.7.6",
@@ -137,7 +136,7 @@
     "react-dom": "19.3.0",
     "rimraf": "6.1.3",
     "serve": "14.2.6",
-    "stylelint": "17.15.0",
+    "stylelint": "17.16.0",
     "supports-color": "11.0.0",
     "tsx": "4.23.15",
     "typescript": "npm:@typescript/typescript6@6.0.2",
@@ -149,9 +148,9 @@
   "config": {
     "valeVersion": "3.24.0"
   },
-  "packageManager": "pnpm@12.8.2",
+  "packageManager": "pnpm@12.11.2",
   "engines": {
-    "pnpm": "12.8.2",
+    "pnpm": "12.11.2",
     "node": ">=22.23.3"
   }
 }
