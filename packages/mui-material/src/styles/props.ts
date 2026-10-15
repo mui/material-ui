@@ -82,6 +82,7 @@ import type {
   Menu2SubmenuTriggerProps,
   Menu2SubmenuTriggerOwnerState,
 } from '../Unstable_Menu2SubmenuTrigger';
+import type { Menu2TriggerProps } from '../Unstable_Menu2Trigger';
 import { MobileStepperProps } from '../MobileStepper';
 import { ModalProps } from '../Modal';
 import { NativeSelectProps } from '../NativeSelect';
@@ -226,6 +227,7 @@ export interface ComponentsPropsList {
   MuiMenu2Separator: Menu2SeparatorProps;
   MuiMenu2Submenu: Menu2SubmenuProps;
   MuiMenu2SubmenuTrigger: Menu2SubmenuTriggerProps;
+  MuiMenu2Trigger: Menu2TriggerProps;
   MuiMenuItem: MenuItemProps;
   MuiMenuList: MenuListProps;
   MuiMobileStepper: MobileStepperProps;

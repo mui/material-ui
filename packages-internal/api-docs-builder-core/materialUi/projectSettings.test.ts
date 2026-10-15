@@ -6,6 +6,7 @@ import { getMaterialUiComponentInfo } from './getMaterialUiComponentInfo';
 describe('Material UI API project settings', () => {
   it.each([
     'Menu2',
+    'Menu2Trigger',
     'Menu2CheckboxItem',
     'Menu2Group',
     'Menu2GroupLabel',

@@ -10,6 +10,7 @@ const theme = createTheme({
     },
     MuiMenu2Submenu: { defaultProps: { closeParentOnEsc: true } },
     MuiMenu2SubmenuTrigger: { defaultProps: { openOnHover: false } },
+    MuiMenu2Trigger: { defaultProps: { openOnHover: true, delay: 200 } },
     MuiMenu2Item: { defaultProps: { dense: true } },
     MuiMenu2CheckboxItem: { defaultProps: { defaultChecked: true } },
     MuiMenu2RadioItem: { defaultProps: { value: 'one' } },

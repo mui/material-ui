@@ -1,11 +1,16 @@
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
-import Menu2 from './Menu2';
+import Menu2, { Menu2Props } from './Menu2';
+import { Menu2PopupSharedSlotProps } from './menu2PopupShared';
 import Menu2Item from '../Unstable_Menu2Item';
 import Menu2Submenu, { Menu2SubmenuProps } from '../Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '../Unstable_Menu2SubmenuTrigger';
 import Paper, { PaperProps } from '../Paper';
+
+interface TestMenuProps extends Omit<Menu2SubmenuProps, 'slotProps'> {
+  slotProps?: Menu2PopupSharedSlotProps<Menu2Props | Menu2SubmenuProps>;
+}
 
 const CustomPositioner = React.forwardRef<
   HTMLDivElement,
@@ -25,7 +30,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
 
   [false, true].forEach((submenu) => {
     describe(`Menu2${submenu ? 'Submenu' : ''}`, () => {
-      function TestMenu({ children = <Menu2Item>Alpha</Menu2Item>, ...props }: Menu2SubmenuProps) {
+      function TestMenu({ children = <Menu2Item>Alpha</Menu2Item>, ...props }: TestMenuProps) {
         return (
           <React.Fragment>
             <span id="menu-label">Available actions</span>
@@ -267,7 +272,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
 
       const namingCases: {
         title: string;
-        props: Menu2SubmenuProps;
+        props: TestMenuProps;
         name: string;
         labelledby?: string;
       }[] = [

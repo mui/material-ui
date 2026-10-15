@@ -125,6 +125,7 @@
     "./Unstable_Menu2Separator": "./src/Unstable_Menu2Separator/index.ts",
     "./Unstable_Menu2Submenu": "./src/Unstable_Menu2Submenu/index.ts",
     "./Unstable_Menu2SubmenuTrigger": "./src/Unstable_Menu2SubmenuTrigger/index.ts",
+    "./Unstable_Menu2Trigger": "./src/Unstable_Menu2Trigger/index.ts",
     "./Unstable_TrapFocus": "./src/Unstable_TrapFocus/index.ts",
     "./useLazyRipple": "./src/useLazyRipple/index.ts",
     "./useMediaQuery": "./src/useMediaQuery/index.ts",

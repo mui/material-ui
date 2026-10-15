@@ -20,7 +20,7 @@
         "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
       }
     },
-    "children": { "type": { "name": "node" } },
+    "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "className": { "type": { "name": "string" } },
     "closeDelay": { "type": { "name": "number" }, "default": "0" },
@@ -51,6 +51,7 @@
       }
     },
     "defaultOpen": { "type": { "name": "bool" }, "default": "false" },
+    "defaultTriggerId": { "type": { "name": "string" } },
     "delay": { "type": { "name": "number" }, "default": "100" },
     "disableAnchorTracking": { "type": { "name": "bool" }, "default": "false" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
@@ -61,6 +62,7 @@
         "description": "func<br>&#124;&nbsp;{ current?: HTML element }<br>&#124;&nbsp;bool"
       }
     },
+    "handle": { "type": { "name": "object" } },
     "highlightItemOnHover": { "type": { "name": "bool" }, "default": "true" },
     "keepMounted": { "type": { "name": "bool" }, "default": "false" },
     "loopFocus": { "type": { "name": "bool" }, "default": "true" },
@@ -121,7 +123,8 @@
       },
       "default": "'auto'"
     },
-    "trigger": { "type": { "name": "element" } }
+    "trigger": { "type": { "name": "element" } },
+    "triggerId": { "type": { "name": "string" } }
   },
   "name": "Menu2",
   "imports": ["import Menu from '@mui/material/Unstable_Menu2';"],

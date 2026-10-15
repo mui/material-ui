@@ -276,8 +276,8 @@ The CSS classes use the same component names as the theme keys:
 For example, change an `& .MuiMenu-list` selector to `& .MuiMenu2-list`.
 The `menu2Classes` and `menu2SubmenuClasses` exports provide these class names from `@mui/material/Unstable_Menu2` and `@mui/material/Unstable_Menu2Submenu`.
 
-The trigger has no theme key, because you supply the element.
-Theme its own component instead, or style the `.MuiMenu2Trigger-root` class.
+The supplied trigger element owns its styles.
+Theme its component, or style the `.MuiMenu2Trigger-root` class.
 
 ```diff
  const theme = createTheme({

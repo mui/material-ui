@@ -82,6 +82,7 @@ export default [
   { pathname: '/material-ui/api/menu-2-separator' },
   { pathname: '/material-ui/api/menu-2-submenu' },
   { pathname: '/material-ui/api/menu-2-submenu-trigger' },
+  { pathname: '/material-ui/api/menu-2-trigger' },
   { pathname: '/material-ui/api/menu-item' },
   { pathname: '/material-ui/api/menu-list' },
   { pathname: '/material-ui/api/mobile-stepper' },

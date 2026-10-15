@@ -9,7 +9,9 @@
     "anchor": {
       "description": "An element to position the popup against.<br>By default, the popup is positioned against the trigger."
     },
-    "children": { "description": "The menu items." },
+    "children": {
+      "description": "The menu items, or a function that receives the active trigger&#39;s payload."
+    },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "className": {
       "description": "CSS class applied to the root element, which contains the menu and its backdrops."
@@ -30,6 +32,9 @@
     "defaultOpen": {
       "description": "Whether the menu is initially open.<br>To render a controlled menu, use the <code>open</code> prop instead."
     },
+    "defaultTriggerId": {
+      "description": "ID of the trigger that the menu is associated with. This is useful in conjunction with the <code>defaultOpen</code> prop to create an initially open menu."
+    },
     "delay": {
       "description": "How long to wait before the menu may be opened on hover. Specified in milliseconds.<br>Requires the <code>openOnHover</code> prop."
     },
@@ -39,6 +44,9 @@
     "disabled": { "description": "Whether the component should ignore user interaction." },
     "elevation": { "description": "The elevation of the menu surface." },
     "finalFocus": { "description": "Determines the element to focus when the menu is closed." },
+    "handle": {
+      "description": "A handle to associate the menu with a trigger. If specified, allows external triggers to control the menu&#39;s open state."
+    },
     "highlightItemOnHover": {
       "description": "Whether moving the pointer over items should highlight them. Disabling this prop allows CSS <code>:hover</code> to be differentiated from the <code>:focus</code> (<code>data-highlighted</code>) state."
     },
@@ -90,6 +98,9 @@
     },
     "trigger": {
       "description": "The element that opens the menu, for example a <code>Button</code>.<br>The trigger behavior merges into this element, so it keeps the component that you passed. Omit it and drive the menu with <code>open</code> and <code>anchor</code> instead, which is the classic controlled pattern."
+    },
+    "triggerId": {
+      "description": "ID of the trigger that the menu is associated with. This is useful in conjunction with the <code>open</code> prop to create a controlled menu. There&#39;s no need to specify this prop when the menu is uncontrolled (that is, when the <code>open</code> prop is not set)."
     }
   },
   "classDescriptions": {},

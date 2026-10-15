@@ -19,8 +19,8 @@ import {
 import { getMenu2UtilityClass, Menu2Classes } from './menu2Classes';
 import type { Menu2Props } from './Menu2';
 
-export interface Menu2PopupProps extends Omit<
-  Menu2PopupSharedProps<Menu2PopupOwnerState>,
+export interface Menu2PopupProps<Payload = unknown> extends Omit<
+  Menu2PopupSharedProps<Menu2PopupOwnerState<Payload>>,
   | 'classes'
   | 'defaultPositionerProps'
   | 'defaultSlots'
@@ -132,17 +132,17 @@ export interface Menu2PopupProps extends Omit<
   /**
    * The props used for each slot inside.
    */
-  slotProps?: Menu2PopupSlotProps | undefined;
+  slotProps?: Menu2PopupSlotProps<Payload> | undefined;
   /**
    * The components used for each slot inside.
    */
   slots?: Menu2PopupSlots | undefined;
 }
 
-export interface Menu2PopupOwnerState extends Menu2Props {}
+export interface Menu2PopupOwnerState<Payload = unknown> extends Menu2Props<Payload> {}
 
-interface Menu2PopupInternalProps extends Menu2PopupProps {
-  ownerState: Menu2PopupOwnerState;
+interface Menu2PopupInternalProps<Payload = unknown> extends Menu2PopupProps<Payload> {
+  ownerState: Menu2PopupOwnerState<Payload>;
 }
 
 export interface Menu2PopupSlots {
@@ -179,9 +179,11 @@ export interface Menu2PopupSlots {
   list?: React.ElementType | undefined;
 }
 
-export interface Menu2PopupSlotProps extends Menu2PopupSharedSlotProps<Menu2PopupOwnerState> {}
+export interface Menu2PopupSlotProps<Payload = unknown> extends Menu2PopupSharedSlotProps<
+  Menu2PopupOwnerState<Payload>
+> {}
 
-const useUtilityClasses = (ownerState: Menu2PopupOwnerState) => {
+const useUtilityClasses = (ownerState: Pick<Menu2PopupOwnerState, 'classes'>) => {
   const { classes } = ownerState;
 
   const slots = {
@@ -229,15 +231,15 @@ const Menu2PopupList = styled(Menu2ListBase, {
 /**
  * @ignore - internal component.
  */
-const Menu2Popup = React.forwardRef(function Menu2Popup(
-  inProps: Menu2PopupInternalProps,
+const Menu2Popup = React.forwardRef(function Menu2Popup<Payload>(
+  inProps: Menu2PopupInternalProps<Payload>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   // Keep the collapsed component's resolved props for styling, without
   // forwarding its behavior props to the popup DOM.
   const { ownerState: ownerStateProp, ...props } = inProps;
 
-  const ownerState: Menu2PopupOwnerState = {
+  const ownerState: Menu2PopupOwnerState<Payload> = {
     side: 'bottom',
     align: 'start',
     ...ownerStateProp,
@@ -265,4 +267,6 @@ const Menu2Popup = React.forwardRef(function Menu2Popup(
   );
 });
 
-export default Menu2Popup;
+export default Menu2Popup as <Payload = unknown>(
+  props: Menu2PopupInternalProps<Payload> & React.RefAttributes<HTMLDivElement>,
+) => React.JSX.Element;

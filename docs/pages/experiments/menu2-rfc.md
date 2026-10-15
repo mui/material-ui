@@ -85,7 +85,7 @@ The classic `Menu` keeps its API. Classic and successor items share `MenuItemBas
 - **Dependency:** make `@base-ui/react` a direct dependency of `@mui/material`. Review version updates rather than auto-merge them. Test the upstream states used by the integration, including checked indicators, starting and ending transitions, and resolved placement.
 - **Theme state:** keep `Mui-*` classes and `ownerState` as the Material customization contract. All item parts resolve their root slot from the live Base UI state, so slot callbacks and theme variants receive the highlighted state and, where applicable, the checked or open state. Exit-tint tracking stays internal. Collapsed popup slot callbacks receive resolved public props, not live uncontrolled open state. Internal animation and placement styles can use Base UI attributes.
 - **API boundary:** explicitly pick the forwarded root, trigger, and positioner props. New upstream props require API and routing review. This is not complete type isolation: changes to an exposed upstream type still reach Material UI. Keep Base UI's callback names and signatures: `onOpenChange(open, eventDetails)`, `onCheckedChange(checked, eventDetails)`, and `onValueChange(value, eventDetails)`.
-- **Tooling and tests:** use normal theme type registration, API generation, and `describeConformance`. Test behavior differences and the integration boundary as well as the individual parts. All 11 public components have conformance suites. The collapsed containers use their portal elements as the root; interaction tests query the menu surface.
+- **Tooling and tests:** use normal theme type registration, API generation, and `describeConformance`. Test behavior differences and the integration boundary as well as the individual parts. Each public component has a conformance suite. The collapsed containers use their portal elements as the root; interaction tests query the menu surface.
 
 ### API shape: collapsed popup, explicit submenu trigger
 
@@ -110,6 +110,30 @@ The two `trigger` props have different contracts:
 The explicit submenu trigger avoids registering one DOM node as both an item and a submenu trigger. It costs one public component and theme key, but gives the trigger one behavioral owner. An alternative would make a generic item switch its behavior according to context; this proposal keeps that distinction explicit.
 
 For the classic controlled pattern, omit `trigger` and use `open` and `anchor`. The caller then owns the external button's ARIA attributes and the menu's accessible label. Set an explicit `finalFocus` target when the opening context must receive focus on close. See the [controlled-anchor example](/experiments/menu2-playground/#controlled-anchor).
+
+#### Detached triggers (experiment)
+
+The [detached-trigger recipe](/experiments/menu2-recipes/#detached-triggers) shares one menu between several project buttons.
+Create a stable typed handle with `React.useState(() => createHandle<Project>())`, importing `createHandle` from `@mui/material/Unstable_Menu2`.
+Pass the same `handle` to `Menu2` and each `Menu2Trigger`, imported from `@mui/material/Unstable_Menu2Trigger`.
+The trigger takes one child element, such as a Button, and merges behavior into it without adding a wrapper element.
+The child must forward props and its ref; fragments are not supported.
+`MuiMenu2Trigger` supports theme `defaultProps` only; put `sx`, style overrides, and variants on the child component.
+Keep the existing `trigger={<Button />}` shorthand for inline triggers, and do not put a `Menu2Trigger` inside that prop.
+
+Each detached trigger owns its `payload`, `id`, `nativeButton`, `openOnHover`, `delay`, and `closeDelay` props.
+Hover props on `Menu2` still apply only to its inline trigger.
+`Menu2` accepts a children function, `({ payload }) => ReactNode`, with `payload` typed as `Project | undefined`.
+Use `triggerId` with controlled `open`, or `defaultTriggerId` with `defaultOpen`, to identify the associated trigger when needed.
+The API keeps Base UI's names and behavior; `modal={false}` permits direct switching between detached triggers.
+With a `handle`, Menu2 adds a position transition between triggers and keeps Grow for opening and closing.
+Use `slotProps.positioner.sx` to change the movement styles.
+Both transitions follow `theme.motion.reducedMotion`; the recipe starts with `system` and lets you test each setting.
+This remains an experiment, not a change to the submenu API or the classic controlled-anchor pattern.
+
+Known limitation: before the first trigger switch, scrolling an ancestor or changing the layout or viewport can make the menu briefly trail its trigger.
+Base UI applies `data-instant` after a trigger switch completes; later scroll and resize updates are immediate.
+This limitation also affected the recipe-level CSS.
 
 #### Customization targets
 
@@ -202,7 +226,8 @@ The experiment implements the API above, shared styles, theme registration, RTL 
 
 Menu2 requires Base UI 1.9.0 or later. Version 1.9.0 includes the [menu tree fix](https://github.com/mui/base-ui/pull/5645) and the [transition state fix for retained menus](https://github.com/mui/base-ui/pull/5738). No local patch is needed. The regression tests remain in place.
 
-The playground compares classic Menu and Menu2, focus indicators, transition choices, and reduced motion. [Public demos](/material-ui/react-menu2/), [generated API docs](/material-ui/api/menu-2/), and a [migration guide](/material-ui/migration/upgrade-to-menu-v2/) are available. The API generator covers all 11 public components and excludes the private defaults.
+The playground compares classic Menu and Menu2, focus indicators, transition choices, and reduced motion. [Public demos](/material-ui/react-menu2/), [generated API docs](/material-ui/api/menu-2/), and a [migration guide](/material-ui/migration/upgrade-to-menu-v2/) are available. The API generator covers the public components and excludes the private defaults.
+Detached triggers remain a recipe experiment for internal review, with generated API references but no public-guide coverage.
 
 Remaining release work is listed once in the rollout plan.
 
@@ -242,7 +267,7 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 
 4. ✅ **SSR, client directive, and refs:** public modules have `'use client'`. The trigger can render on the server, but the portal popup is client-rendered, including with `defaultOpen` or `keepMounted`. Caller-rendered parts have polymorphic refs; collapsed roots use the portal element. The `positioner` and `paper` slot refs give access to the positioned element and menu surface.
 
-5. ✅ **Base UI API exposure:** explicitly pick supported root and positioning props. Detached triggers (`handle`, `triggerId`, `defaultTriggerId`, and `Menu.createHandle`) and horizontal `orientation` are outside this API. Upstream changes to exposed types still require review.
+5. ✅ **Base UI API exposure:** explicitly pick supported root and positioning props. The detached-trigger experiment adds `handle`, `triggerId`, `defaultTriggerId`, and the `createHandle` export without renaming Base UI props. Horizontal `orientation` remains outside this API. Upstream changes to exposed types still require review.
 
 6. ✅ **Open parent tint:** use `action.hover` while open. Keep it through exit except for hover-driven closes. Keep `Mui-open` tied to the logical open state. Exit timing has no public class, style override key, or slot callback state. A new open-state color token would be a separate design choice.
 

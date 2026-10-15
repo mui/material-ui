@@ -4,16 +4,22 @@ import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Menu2, { menu2Classes, menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
+import Menu2, { Menu2Props, menu2Classes, menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
 import { resetMenu2WarningFlags } from '@mui/material/Unstable_Menu2/menu2Utils';
+import { Menu2PopupSharedSlotProps } from '@mui/material/Unstable_Menu2/menu2PopupShared';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
 import Menu2Submenu, {
   getMenu2SubmenuUtilityClass,
   menu2SubmenuClasses,
   menu2SubmenuTriggerClasses,
+  Menu2SubmenuProps,
 } from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import describeConformance from '../../test/describeConformance';
+
+interface TestMenuProps extends Omit<Menu2SubmenuProps, 'slotProps'> {
+  slotProps?: Menu2PopupSharedSlotProps<Menu2Props | Menu2SubmenuProps>;
+}
 
 // The collapsed surfaces: trigger as a prop and children as the popup, with
 // one explicit behavioral component for the submenu trigger.
@@ -119,7 +125,7 @@ describe('<Menu2Submenu />', () => {
             </React.Fragment>
           ),
           ...props
-        }: React.ComponentPropsWithoutRef<typeof Menu2Submenu>,
+        }: TestMenuProps,
         ref: React.ForwardedRef<HTMLDivElement>,
       ) {
         if (componentName === 'Menu2Submenu') {

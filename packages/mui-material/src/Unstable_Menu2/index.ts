@@ -3,7 +3,8 @@
 // Base UI's menu declarations use Intl.LocalesArgument.
 export { default } from './Menu2';
 export * from './Menu2';
-// The trigger stays internal, but its style hooks are public.
+export { createHandle } from './createHandle';
+export type { Menu2Handle } from './createHandle';
 export {
   menu2TriggerClasses,
   getMenu2TriggerUtilityClass,

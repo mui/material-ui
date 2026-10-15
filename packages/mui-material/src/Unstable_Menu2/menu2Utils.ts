@@ -17,6 +17,7 @@ export function warnMenu2FragmentTrigger(
   trigger: React.ReactNode,
   componentName: string,
   triggerExample: string,
+  propName = 'trigger',
 ) {
   // A fragment is an element, so the type does not catch it. Base UI cannot
   // merge the trigger behavior into a fragment, and the trigger renders as
@@ -31,21 +32,29 @@ export function warnMenu2FragmentTrigger(
 
   warnedFragmentTrigger.add(componentName);
   console.error(
-    `MUI: The \`trigger\` prop of \`${componentName}\` cannot be a fragment. ` +
+    `MUI: The \`${propName}\` prop of \`${componentName}\` cannot be a fragment. ` +
       `Pass a single element, for example a \`${triggerExample}\`.`,
   );
 }
 
-export function warnMenu2TriggerRef(trigger: React.ReactNode, componentName: string) {
+export function warnMenu2TriggerRef(
+  trigger: React.ReactNode,
+  componentName: string,
+  propName = 'trigger',
+) {
   // A wrapper that does not forward the ref also swallows the trigger behavior,
   // and nothing else reports it.
-  if (trigger == null || warnedTriggerRef.has(componentName)) {
+  if (
+    trigger == null ||
+    (trigger as React.ReactElement).type === React.Fragment ||
+    warnedTriggerRef.has(componentName)
+  ) {
     return;
   }
 
   warnedTriggerRef.add(componentName);
   console.error(
-    `MUI: The \`trigger\` element of \`${componentName}\` did not receive a ref. ` +
+    `MUI: The \`${propName}\` element of \`${componentName}\` did not receive a ref. ` +
       'A component used as the trigger must forward its props and its ref to ' +
       'the element that it renders, the way Tooltip does. Without them the ' +
       'menu behavior does not reach the element.',

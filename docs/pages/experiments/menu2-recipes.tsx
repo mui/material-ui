@@ -18,10 +18,10 @@ import Tooltip, { type TooltipProps } from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useTheme, type Theme } from '@mui/material/styles';
 // The Unstable_ subpaths use default exports, so the local bindings drop the
 // prefix and the JSX mirrors the future stable names.
-import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2, { createHandle } from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
@@ -32,6 +32,7 @@ import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
 interface MenuSettings {
@@ -749,6 +750,120 @@ function MenuIconWidthRecipe() {
   );
 }
 
+interface Project {
+  id: string;
+  name: string;
+}
+
+const projects: Project[] = [
+  { id: 'website', name: 'Marketing website' },
+  { id: 'dashboard', name: 'Customer dashboard' },
+  { id: 'mobile', name: 'Mobile app' },
+];
+
+function DetachedTriggersRecipe() {
+  const id = React.useId();
+  const outerTheme = useTheme();
+  const [handle] = React.useState(() => createHandle<Project>());
+  const [modal, setModal] = React.useState(false);
+  const [reducedMotion, setReducedMotion] =
+    React.useState<Theme['motion']['reducedMotion']>('system');
+  const [lastAction, setLastAction] = React.useState('No action selected.');
+  const theme = React.useMemo(
+    () => ({ ...outerTheme, motion: { ...outerTheme.motion, reducedMotion } }),
+    [outerTheme, reducedMotion],
+  );
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Stack spacing={2} useFlexGap>
+        <label>
+          <input
+            type="checkbox"
+            checked={modal}
+            onChange={(event) => setModal(event.target.checked)}
+          />{' '}
+          Modal menu
+        </label>
+        <label>
+          Reduced motion{' '}
+          <select
+            value={reducedMotion}
+            onChange={(event) =>
+              setReducedMotion(event.target.value as Theme['motion']['reducedMotion'])
+            }
+          >
+            <option value="system">system</option>
+            <option value="always">always</option>
+            <option value="never">never</option>
+          </select>
+        </label>
+        <Stack spacing={1} useFlexGap>
+          {projects.map((project) => (
+            <Stack
+              key={project.id}
+              direction="row"
+              spacing={2}
+              useFlexGap
+              sx={{ alignItems: 'center', justifyContent: 'space-between' }}
+            >
+              <Typography>{project.name}</Typography>
+              <Menu2Trigger id={`${id}-${project.id}`} handle={handle} payload={project}>
+                <Button variant="outlined" aria-label={`Actions for ${project.name}`}>
+                  Actions
+                </Button>
+              </Menu2Trigger>
+            </Stack>
+          ))}
+        </Stack>
+        <Menu2 handle={handle} modal={modal} side="inline-start" sideOffset={8}>
+          {({ payload }) =>
+            payload ? (
+              <Menu2Group>
+                <Menu2GroupLabel>{payload.name}</Menu2GroupLabel>
+                <Menu2Item onClick={() => setLastAction(`Open: ${payload.name} (${payload.id})`)}>
+                  Open project
+                </Menu2Item>
+                <Menu2Item
+                  onClick={() => setLastAction(`Archive: ${payload.name} (${payload.id})`)}
+                >
+                  Archive project
+                </Menu2Item>
+              </Menu2Group>
+            ) : null
+          }
+        </Menu2>
+        <Typography role="status" variant="body2">
+          Last action: {lastAction}
+        </Typography>
+        <details>
+          <summary>Detached trigger code</summary>
+          <Box component="pre" sx={{ overflow: 'auto' }}>
+            {`import Menu2, { createHandle } from '@mui/material/Unstable_Menu2';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+
+const [handle] = React.useState(() => createHandle<Project>());
+
+// Repeat the trigger for each project; keep one menu mounted.
+<Menu2Trigger handle={handle} payload={project}>
+  <Button>Actions</Button>
+</Menu2Trigger>
+
+// The surrounding theme sets motion.reducedMotion to 'system'.
+<Menu2 handle={handle} modal={false} side="inline-start" sideOffset={8}>
+  {({ payload }) => payload ? (
+    <Menu2Item onClick={() => setLastAction(payload.name)}>
+      Open {payload.name}
+    </Menu2Item>
+  ) : null}
+</Menu2>`}
+          </Box>
+        </details>
+      </Stack>
+    </ThemeProvider>
+  );
+}
+
 export default function Menu2Experiment() {
   const [settings, setSettings] = React.useState<MenuSettings>(defaultSettings);
 
@@ -777,7 +892,10 @@ export default function Menu2Experiment() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Head title="Menu2 recipes" description="Menu2 integrations with Dialog and Tooltip" />
+      <Head
+        title="Menu2 recipes"
+        description="Menu2 integrations with detached triggers, Dialog, and Tooltip"
+      />
       <Container maxWidth="md" sx={{ pt: 4 }}>
         <Stack spacing={4}>
           <Typography component="h1" variant="h4">
@@ -827,6 +945,45 @@ export default function Menu2Experiment() {
             <h2 id="menu2-fully-featured">Fully featured menu</h2>
             <p>Fully-featured menu with submenus, links, radio groups, and checkbox items.</p>
             <Menu2Demo settings={settings} />
+          </section>
+          <section>
+            <h2 id="detached-triggers">Detached triggers</h2>
+            <p>
+              Three project buttons share one menu through a typed <code>handle</code>. Each trigger
+              passes its project as <code>payload</code>; selecting an action reports that project
+              below. <code>Menu2Trigger</code> merges behavior into its one child without adding a
+              wrapper element. The existing <code>trigger</code> prop remains available for a menu
+              with an inline trigger.
+            </p>
+            <ol>
+              <li>
+                With Modal menu cleared, open one row and click another row&apos;s Actions button to
+                switch the menu&apos;s anchor and project without closing it first.
+              </li>
+              <li>
+                Enable Modal menu and repeat: outside interaction is blocked, so close the menu
+                before opening another row.
+              </li>
+              <li>
+                Tab to Actions and press ArrowDown or Enter. Navigate with the arrow keys, select an
+                action with Enter, or press Escape to return focus to that row&apos;s trigger.
+              </li>
+            </ol>
+            <p>
+              Menu2 moves between detached triggers by default and uses Grow to open and close. Use{' '}
+              <code>slotProps.positioner.sx</code> to change the movement styles. This experiment
+              has its own modal control; only the page&apos;s focus ring setting affects it. Reduced
+              motion controls both transitions: <code>system</code> follows the operating-system
+              preference, <code>always</code> removes the transitions, and <code>never</code> keeps
+              them. Set <code>openOnHover</code>, <code>delay</code>, and <code>closeDelay</code> on
+              each detached trigger when needed, not on the shared menu.
+            </p>
+            <p>
+              Known limitation: before the first trigger switch, scrolling an ancestor or changing
+              the layout or viewport can make the menu briefly trail its trigger. After a trigger
+              switch completes, scroll and resize updates are immediate.
+            </p>
+            <DetachedTriggersRecipe />
           </section>
           <section>
             <h2 id="menu2-tooltips">Menu2 + Tooltip</h2>

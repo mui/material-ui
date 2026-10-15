@@ -6,6 +6,8 @@ import Menu2SubmenuPopup from './Menu2SubmenuPopup';
 import Menu2Submenu from '../Unstable_Menu2Submenu';
 import Menu2CheckboxItem from '../Unstable_Menu2CheckboxItem';
 import Menu2RadioGroup from '../Unstable_Menu2RadioGroup';
+import Menu2Trigger from '../Unstable_Menu2Trigger';
+import { createHandle } from './createHandle';
 
 const popupProps = [
   'align',
@@ -51,6 +53,28 @@ describe('Menu2 selection callback prop validation', () => {
 });
 
 describe('Menu2 public popup prop validation', () => {
+  it('accepts opaque handles and payload children without validating Base UI internals', () => {
+    const handle = createHandle<{ id: number }>();
+    const children = ['One', 'Two'];
+
+    PropTypes.resetWarningCache();
+    [children, () => children].forEach((content) => {
+      expect(() =>
+        PropTypes.checkPropTypes(Menu2.propTypes, { handle, children: content }, 'prop', 'Menu2'),
+      ).not.toErrorDev();
+    });
+    expect(() =>
+      PropTypes.checkPropTypes(
+        { handle: Menu2Trigger.propTypes!.handle },
+        { handle },
+        'prop',
+        'Menu2Trigger',
+      ),
+    ).not.toErrorDev();
+    expect(Menu2.propTypes!.handle).to.equal(PropTypes.object);
+    expect(Menu2Trigger.propTypes!.handle).to.equal(PropTypes.object);
+  });
+
   it('does not define duplicate validators on the private popup components', () => {
     expect(Menu2Popup).not.to.have.property('propTypes');
     expect(Menu2SubmenuPopup).not.to.have.property('propTypes');

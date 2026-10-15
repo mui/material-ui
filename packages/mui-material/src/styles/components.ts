@@ -540,6 +540,11 @@ export interface Components<Theme = unknown> {
         variants?: ComponentsVariants<Theme>['MuiMenu2SubmenuTrigger'] | undefined;
       }
     | undefined;
+  MuiMenu2Trigger?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenu2Trigger'] | undefined;
+      }
+    | undefined;
   MuiMenuItem?:
     | {
         defaultProps?: ComponentsProps['MuiMenuItem'] | undefined;
