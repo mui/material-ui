@@ -108,6 +108,65 @@ function processStyle(props: any, style: any, layerName?: any): any {
   return layerName ? shallowLayer(serializeStyles(resolvedStyle), layerName) : resolvedStyle;
 }
 
+// Theme style objects serialized once, so every render passes the styled engine the same
+// serialized styles. Keyed by the theme's own objects, which are never mutated.
+const serializedThemeStyles = new WeakMap<object, any>();
+
+function serializeThemeStyle(style: any) {
+  if (!isPlainObject(style) || style.variants) {
+    return style;
+  }
+  let serialized = serializedThemeStyles.get(style);
+  if (serialized === undefined) {
+    serialized = serializeStyles(style);
+    serializedThemeStyles.set(style, serialized);
+  }
+  return serialized;
+}
+
+/**
+ * Serializes the theme's own style override objects in the output of an `overridesResolver`.
+ * Objects the resolver created itself are left as they are.
+ */
+function serializeResolvedOverrides(resolved: any, styleOverrides: Record<string, any>): any {
+  if (Array.isArray(resolved)) {
+    let result = resolved;
+    for (let i = 0; i < resolved.length; i += 1) {
+      const style = serializeResolvedOverrides(resolved[i], styleOverrides);
+      if (style !== resolved[i]) {
+        if (result === resolved) {
+          result = resolved.slice();
+        }
+        result[i] = style;
+      }
+    }
+    return result;
+  }
+  if (isPlainObject(resolved)) {
+    for (const slotKey in styleOverrides) {
+      if (styleOverrides[slotKey] === resolved) {
+        return serializeThemeStyle(resolved);
+      }
+    }
+  }
+  return resolved;
+}
+
+const serializedThemeVariants = new WeakMap<object, any[]>();
+
+function serializeThemeVariants(variants: any[]) {
+  let serialized = serializedThemeVariants.get(variants);
+  if (serialized === undefined) {
+    serialized = variants.map((variant) =>
+      typeof variant.style === 'function'
+        ? variant
+        : { ...variant, style: serializeThemeStyle(variant.style) },
+    );
+    serializedThemeVariants.set(variants, serialized);
+  }
+  return serialized;
+}
+
 function processStyleVariants(
   props: any,
   variants: any,
@@ -281,7 +340,10 @@ export default function createStyled<Theme extends object = DefaultTheme>(
             );
           }
 
-          return overridesResolver(props, resolvedStyleOverrides);
+          return serializeResolvedOverrides(
+            overridesResolver(props, resolvedStyleOverrides),
+            styleOverrides,
+          );
         });
       }
 
@@ -292,12 +354,10 @@ export default function createStyled<Theme extends object = DefaultTheme>(
           if (!themeVariants) {
             return null;
           }
-          return processStyleVariants(
-            props,
-            themeVariants,
-            [],
-            props.theme.modularCssLayers ? 'theme' : undefined,
-          );
+          // With CSS layers, the serialized variant styles get wrapped in place, so they can't be shared.
+          return props.theme.modularCssLayers
+            ? processStyleVariants(props, themeVariants, [], 'theme')
+            : processStyleVariants(props, serializeThemeVariants(themeVariants), []);
         });
       }
 
