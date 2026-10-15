@@ -180,9 +180,8 @@ const systemFont = [
 // The variables come from `next/font` and add its metric-matched fallback faces.
 // They are only set on the docs `<body>`, hence the `var()` fallbacks. The
 // `--muidocs-font-*` theme variables resolve on `:root`, so they don't get the
-// fallback faces. The family
-// name goes first because Turbopack sets the variables to a different family name
-// (https://github.com/vercel/next.js/issues/88894).
+// fallback faces. The family name goes first because Turbopack sets the variables
+// to a different family name (https://github.com/vercel/next.js/issues/88894).
 const fontFamilyIbmPlexSans = [
   '"IBM Plex Sans"',
   'var(--font-ibm-plex-sans, "IBM Plex Sans")',
