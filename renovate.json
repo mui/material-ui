@@ -102,6 +102,12 @@
       "matchPackageNames": ["mcr.microsoft.com/playwright"],
       "matchCurrentVersion": "v1.49.1-noble",
       "enabled": false
+    },
+    {
+      "description": "Keep the consumer test on the latest stable release of TypeScript 5.",
+      "matchFileNames": ["test/typescriptMinimum/package.json"],
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": ">=5.0.0 <6.0.0"
     }
   ]
 }
