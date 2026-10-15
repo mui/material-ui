@@ -416,4 +416,15 @@ export default defineConfig(
       'vitest/prefer-importing-vitest-globals': 'off',
     },
   },
+  {
+    // Typed deprecation linting exhausts the CI heap on the docs project.
+    languageOptions: {
+      parserOptions: {
+        projectService: false,
+      },
+    },
+    rules: {
+      '@typescript-eslint/no-deprecated': 'off',
+    },
+  },
 );
