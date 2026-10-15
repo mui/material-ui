@@ -118,7 +118,7 @@ export default async function create(
           inline: ['@mui/internal-test-utils'],
         },
       },
-      environment: jsdom ? 'jsdom' : 'node',
+      environment: jsdom ? 'warpdom' : 'node',
 
       fakeTimers: {
         // We use performance.now in the codebase
