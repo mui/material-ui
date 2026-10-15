@@ -146,7 +146,7 @@ export default function GoogleMaps() {
     let active = true;
     const GOOGLE_NAMESPACE = '_google_callback';
     const globalContext =
-      // @ts-ignore
+      // @ts-expect-error: Google Maps stores its callback registry on a custom window property.
       window[GOOGLE_NAMESPACE] || (window[GOOGLE_NAMESPACE] = {});
     // Register (or re-register) the callback so it points at this mounted
     // instance. The `active` guard turns a late callback (after unmount, e.g.
