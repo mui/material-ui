@@ -73,9 +73,6 @@
     "access": "public",
     "directory": "build"
   },
-  "engines": {
-    "node": ">=14.0.0"
-  },
   "exports": {
     ".": "./src/index.ts",
     "./RtlProvider": "./src/RtlProvider/index.tsx",
