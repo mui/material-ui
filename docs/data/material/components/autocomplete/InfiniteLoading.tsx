@@ -37,7 +37,7 @@ interface VirtualListboxProps extends React.HTMLAttributes<HTMLUListElement> {
   /** Changes when the search context changes so the listbox can reset to the first row. */
   resetScrollKey: string;
   /** Exposes the virtualizer to the parent so keyboard navigation can scroll highlighted rows into view. */
-  virtualizerRef: React.MutableRefObject<ListboxVirtualizer | null>;
+  virtualizerRef: React.RefObject<ListboxVirtualizer | null>;
 }
 
 /**
