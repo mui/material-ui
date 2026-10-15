@@ -1,4 +1,3 @@
-import type {} from '@mui/material/Unstable_Menu2/themeAugmentation';
 import * as React from 'react';
 import { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
 import {

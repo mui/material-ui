@@ -9,7 +9,6 @@ import Box from '@mui/material/Box';
 import ListItemIcon, { listItemIconClasses } from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Menu2 from '@mui/material/Unstable_Menu2';
-import type {} from '@mui/material/Unstable_Menu2/themeAugmentation';
 import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';

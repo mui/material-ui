@@ -58,8 +58,6 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
       // Allow any import depth with any internal packages
       '!@mui/internal-*/**',
       '!@mui/internal-core-docs/**',
-      // Menu2 theme types are an explicit, type-only public entry point.
-      '!@mui/material/Unstable_Menu2/themeAugmentation',
     ],
     message: OneLevelImportMessage,
   },

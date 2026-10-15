@@ -428,23 +428,6 @@ This does not change modal behavior.
 Base UI does not hide this optional layer when the menu opens on hover.
 Submenus have no backdrop slot.
 
-## TypeScript
-
-:::warning
-TypeScript apps that use Menu v2 require TypeScript 5.0 or later.
-Apps that use only existing Material UI components can continue to use TypeScript 4.9.
-:::
-
-Import the theme augmentation once in your app to type all `MuiMenu2*` theme keys.
-Component imports do not add these types:
-
-```ts
-import type {} from '@mui/material/Unstable_Menu2/themeAugmentation';
-```
-
-This import adds no runtime code.
-The separate module keeps Base UI types out of apps that do not use Menu v2.
-
 ## Accessibility
 
 Menu v2 follows the [WAI-ARIA menu button pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/).
