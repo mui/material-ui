@@ -324,7 +324,7 @@ function checkType({
   }
 
   if (project.checker.isArrayType(type)) {
-    // @ts-ignore
+    // @ts-expect-error: TypeChecker implements getElementTypeOfArrayType but does not expose it in its public types.
     const arrayType: ts.Type = project.checker.getElementTypeOfArrayType(type);
 
     return createArrayType({
