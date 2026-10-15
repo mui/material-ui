@@ -7,7 +7,6 @@
 <!-- #target-branch-reference -->
 
 Material UI supports TypeScript 5 and later.
-Only the latest minor and patch release of each supported major version is supported.
 
 Have a look at the [Vite.js with TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-ts) example.
 

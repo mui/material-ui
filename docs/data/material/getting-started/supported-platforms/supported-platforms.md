@@ -38,7 +38,6 @@ Have a look at the older [versions](https://mui.com/material-ui/getting-started/
 ## TypeScript
 
 Material UI supports TypeScript 5 and later.
-Only the latest minor and patch release of each supported major version is supported.
 
 ## webpack
 
