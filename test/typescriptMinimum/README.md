@@ -9,7 +9,7 @@ Run these commands from the repository root:
 
 ```bash
 pnpm release:build
-pnpm -F @mui-internal/test-typescript-minimum test
+pnpm -F @mui/internal-test-typescript-minimum test
 ```
 
 Renovate keeps the TypeScript version pinned to the latest stable minor and patch release within major version 5.
