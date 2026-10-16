@@ -33,7 +33,9 @@ function getNewValue(
   min: number,
   max: number,
 ): number {
-  return direction === 1 ? Math.min(currentValue + step, max) : Math.max(currentValue - step, min);
+  const precision = Math.max(getDecimalPrecision(currentValue), getDecimalPrecision(step));
+  const newValue = Number((currentValue + direction * step).toFixed(precision));
+  return direction === 1 ? Math.min(newValue, max) : Math.max(newValue, min);
 }
 
 function asc(a: number, b: number) {
