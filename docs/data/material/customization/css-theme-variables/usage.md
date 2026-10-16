@@ -222,17 +222,27 @@ For **TypeScript**, you need to augment the [palette interfaces](#palette-interf
 
 ## TypeScript
 
-The theme variables type is not enabled by default. You need to import the module augmentation to enable the typings:
+The theme is typed with CSS theme variables by default, so `theme.vars` and the palette channel tokens are available without extra setup:
 
 ```ts
-// The import can be in any file that is included in your `tsconfig.json`
-import type {} from '@mui/material/themeCssVarsAugmentation';
 import { styled } from '@mui/material/styles';
 
 const StyledComponent = styled('button')(({ theme }) => ({
   // ✅ typed-safe
   color: theme.vars.palette.primary.main,
+  backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`,
 }));
+```
+
+If you create the theme with `cssVariables: false`, augment the `CssThemeVariables` interface to remove the CSS theme variables from the types:
+
+```ts
+// The declaration can be in any file that is included in your `tsconfig.json`
+declare module '@mui/material/styles' {
+  interface CssThemeVariables {
+    enabled: false;
+  }
+}
 ```
 
 ### Palette interfaces

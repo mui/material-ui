@@ -19,6 +19,18 @@ To keep the previous behavior, set `cssVariables` to `false`:
  });
 ```
 
+The theme types follow the same default: `theme.vars` is always defined, the palette includes channel tokens such as `theme.palette.primary.mainChannel`, and the `ThemeProvider` accepts props such as `colorSchemeNode` and `disableNestedContext`.
+The `@mui/material/themeCssVarsAugmentation` import is no longer needed and can be removed.
+If you set `cssVariables: false`, remove these from the types with module augmentation:
+
+```ts
+declare module '@mui/material/styles' {
+  interface CssThemeVariables {
+    enabled: false;
+  }
+}
+```
+
 If your theme defines both light and dark color schemes:
 
 - The color scheme follows the `prefers-color-scheme` media query by default, so `setMode()` from `useColorScheme()` has no effect.

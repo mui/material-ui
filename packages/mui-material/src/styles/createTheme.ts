@@ -20,10 +20,10 @@ import createThemeNoVars, {
 export type { Theme, CssThemeVariables, FocusVisible } from './createThemeNoVars';
 
 type CssVarsOptions = CssThemeVariables extends {
-  enabled: true;
+  enabled: false;
 }
-  ? ColorSystemOptions
-  : {};
+  ? {}
+  : ColorSystemOptions;
 
 type CssVarsConfigList =
   | 'colorSchemeSelector'
