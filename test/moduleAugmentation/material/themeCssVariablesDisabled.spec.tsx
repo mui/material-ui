@@ -10,8 +10,7 @@ declare module '@mui/material/styles' {
 
 const theme = createTheme({ cssVariables: false });
 
-// `theme.vars` is optional
-// @ts-expect-error
+// @ts-expect-error `theme.vars` is optional
 const vars: string = theme.vars.palette.primary.main;
 // @ts-expect-error `mainChannel` is not generated
 const channel: string = theme.palette.primary.mainChannel;
