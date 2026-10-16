@@ -1,5 +1,4 @@
 {
-  "name": "@mui-internal/tests",
   "private": true,
   "scripts": {
     "typescript": "tsc -p tsconfig.json"
@@ -30,9 +29,9 @@
     "react-dom": "19.3.0",
     "react-is": "19.3.0",
     "react-router": "8.4.0",
-    "react-window": "2.3.3",
+    "react-window": "2.3.4",
     "sinon": "22.1.0",
-    "styled-components": "6.5.3",
+    "styled-components": "6.6.0",
     "stylis": "4.4.0",
     "tailwindcss": "4.3.3",
     "yargs": "18.2.0"
