@@ -3003,6 +3003,51 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: autoComplete', () => {
+    it('should add a completion string for the auto highlighted option while typing', async () => {
+      const { user } = render(
+        <Autocomplete
+          autoComplete
+          autoHighlight
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      await user.type(textbox, 'o');
+
+      expect(textbox.value).to.equal('one');
+      expect(textbox.selectionStart).to.equal(1);
+      expect(textbox.selectionEnd).to.equal(3);
+
+      await user.keyboard('n');
+
+      expect(textbox.value).to.equal('one');
+      expect(textbox.selectionStart).to.equal(2);
+      expect(textbox.selectionEnd).to.equal(3);
+    });
+
+    it('should not add a completion string when deleting', async () => {
+      const { user } = render(
+        <Autocomplete
+          autoComplete
+          autoHighlight
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      await user.type(textbox, 'on');
+      expect(textbox.value).to.equal('one');
+
+      await user.keyboard('{Backspace}');
+      expect(textbox.value).to.equal('on');
+
+      await user.keyboard('{Backspace}');
+      expect(textbox.value).to.equal('o');
+    });
+
     it('add a completion string', () => {
       render(
         <Autocomplete

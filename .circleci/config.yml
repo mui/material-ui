@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/38b6bb18de4a0e8d090b0476bb69580a3c5bfc6c/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/0a555da875ab03199afe8f28dbb4c723f853a52d/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
@@ -28,6 +28,7 @@ default-job: &default-job
       default: << pipeline.parameters.e2e-base-url >>
   environment: &default-environment
     BASE_BRANCH: master # #target-branch-reference
+    ARGOS_REFERENCE_BRANCH: master # #target-branch-reference
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     DANGER_DISABLE_TRANSPILATION: 'true'
@@ -110,14 +111,23 @@ jobs:
     steps:
       - checkout
       - code-infra/install-deps
-      - code-infra/check-generated:
-          command: pnpm docs:typescript:formatted
       - run:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
       - run:
           name: Test module augmentation
           command: pnpm typescript:module-augmentation
+  test_types_minimum:
+    <<: *default-job
+    steps:
+      - checkout
+      - code-infra/install-deps
+      - run:
+          name: Build @mui packages
+          command: pnpm release:build
+      - run:
+          name: Test minimum TypeScript version
+          command: pnpm -F ./test/typescriptMinimum test
   test_types_next:
     <<: *default-job
     resource_class: xlarge.gen2
@@ -441,7 +451,7 @@ jobs:
           command: node scripts/testBuiltTypes.mjs
       - run:
           name: test exported typescript
-          command: pnpm --filter @mui-internal/test-module-resolution typescript:all
+          command: pnpm --filter ./test/moduleResolution typescript:all
       - store_artifacts:
           name: Persist size snapshot as pipeline artifact
           path: size-snapshot.json
@@ -571,8 +581,8 @@ workflows:
   #         react-version: ^17.0.0
   #         name: test_e2e-react@17
 
-  # Manually-triggered counterpart of nightly-cron — runs the full canary
-  # suite (react@18, react@next, typescript@next) on the current PR branch.
+  # Manually-triggered counterpart of nightly-cron — runs the compatibility
+  # suite (react@18, react@next, typescript@next, minimum TypeScript) on the current PR branch.
   nightly:
     when:
       equal: [nightly, << pipeline.parameters.workflow >>]
@@ -609,6 +619,8 @@ workflows:
           <<: *default-context
           react-version: next
           name: test_e2e-react@next
+      - test_types_minimum:
+          <<: *default-context
       - test_types_next:
           <<: *default-context
           typescript-version: next
@@ -672,6 +684,8 @@ workflows:
           filters:
             branches:
               ignore: v5.x
+      - test_types_minimum:
+          <<: *default-context
       - test_types_next:
           <<: *default-context
           typescript-version: next
