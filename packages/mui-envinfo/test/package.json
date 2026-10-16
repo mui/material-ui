@@ -1,5 +1,4 @@
 {
-  "name": "envinfo-test-project",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",

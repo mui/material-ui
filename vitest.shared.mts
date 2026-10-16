@@ -88,7 +88,9 @@ export default async function create(
   const pkgJson = path.resolve(file, '../package.json');
   const pkg = await fs.readFile(pkgJson, 'utf8').then((content) => JSON.parse(content));
 
-  const name = `${testEnv}:${pkg.name}`;
+  const packageName =
+    pkg.name ?? path.relative(MONOREPO_ROOT, path.dirname(pkgJson)).split(path.sep).join('/');
+  const name = `${testEnv}:${packageName}`;
 
   const ignore = await fs.readFile(path.resolve(MONOREPO_ROOT, './.gitignore'), 'utf8');
   const excludes = ignore

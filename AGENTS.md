@@ -103,7 +103,7 @@ This is a monorepo managed by Lerna with Nx for caching. Key packages:
 - `@mui/styled-engine` - CSS-in-JS abstraction (Emotion by default)
 
 Internal packages use `@mui/internal-*`; repo-only packages declare `"private": true`.
-Repo-only test workspaces omit package names; reference them with pnpm path filters.
+Private workspaces without workspace dependents omit package names; reference them by path.
 
 ## Code Conventions
 
