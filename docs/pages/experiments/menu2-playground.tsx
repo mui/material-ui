@@ -140,23 +140,24 @@ const cssAnimationSx: SxProps<Theme> = (currentTheme) => ({
 
 function usePopupKnobProps(settings: PlaygroundSettings) {
   return React.useMemo(
-    (): Partial<PopupProps> => ({
-      // Top-level convenience prop (forwards to the Paper slot).
-      elevation: settings.elevation,
-      keepMounted: settings.keepMounted,
-      slots: {
-        transition:
-          settings.animation === 'css' || settings.animation === 'off'
-            ? null
-            : { grow: undefined, fade: Fade, zoom: Zoom }[settings.animation],
-      },
-      slotProps: {
-        paper: {
-          dir: settings.rtl ? 'rtl' : 'ltr',
-          ...(settings.animation === 'css' && { sx: cssAnimationSx }),
+    () =>
+      ({
+        // Top-level convenience prop (forwards to the Paper slot).
+        elevation: settings.elevation,
+        keepMounted: settings.keepMounted,
+        slots: {
+          transition:
+            settings.animation === 'css' || settings.animation === 'off'
+              ? null
+              : { grow: undefined, fade: Fade, zoom: Zoom }[settings.animation],
         },
-      },
-    }),
+        slotProps: {
+          paper: {
+            dir: settings.rtl ? 'rtl' : 'ltr',
+            ...(settings.animation === 'css' && { sx: cssAnimationSx }),
+          },
+        },
+      }) satisfies Partial<MenuProps> & Partial<PopupProps>,
     [settings.elevation, settings.animation, settings.keepMounted, settings.rtl],
   );
 }
@@ -221,7 +222,6 @@ function PlaygroundDemo({
       align={settings.align}
       sideOffset={settings.sideOffset}
       alignOffset={settings.alignOffset}
-      keepMounted={settings.keepMounted}
       {...popupKnobProps}
       slots={{
         ...popupKnobProps.slots,
