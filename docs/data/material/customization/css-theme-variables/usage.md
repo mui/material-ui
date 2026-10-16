@@ -115,13 +115,13 @@ This `vars` object mirrors the structure of a serializable theme, with each valu
 
 ## Color channel tokens
 
-Enabling `cssVariables` automatically generates channel tokens which are used to create translucent colors.
+CSS theme variables include channel tokens which are used to create translucent colors.
 These tokens consist of color space channels without the alpha component, separated by spaces.
 
 The colors are suffixed with `Channel`—for example:
 
 ```js
-const theme = createTheme({ cssVariables: true });
+const theme = createTheme();
 
 console.log(theme.palette.primary.mainChannel); // '25 118 210'
 // This token is generated from `theme.colorSchemes.light.palette.primary.main`.
@@ -131,7 +131,6 @@ You can use the channel tokens to create a translucent color like this:
 
 ```js
 const theme = createTheme({
-  cssVariables: true,
   components: {
     MuiChip: {
       styleOverrides: {
@@ -167,7 +166,6 @@ You can add other key-value pairs to the theme input which will be generated as 
 
 ```js
 const theme = createTheme({
-  cssVariables: true,
   colorSchemes: {
     light: {
       palette: {
