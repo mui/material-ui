@@ -127,7 +127,7 @@ jobs:
           command: pnpm release:build
       - run:
           name: Test minimum TypeScript version
-          command: pnpm -F @mui/internal-test-typescript-minimum test
+          command: pnpm -F ./test/typescriptMinimum test
   test_types_next:
     <<: *default-job
     resource_class: xlarge.gen2
@@ -451,7 +451,7 @@ jobs:
           command: node scripts/testBuiltTypes.mjs
       - run:
           name: test exported typescript
-          command: pnpm --filter @mui/internal-test-module-resolution typescript:all
+          command: pnpm --filter ./test/moduleResolution typescript:all
       - store_artifacts:
           name: Persist size snapshot as pipeline artifact
           path: size-snapshot.json

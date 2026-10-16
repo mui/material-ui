@@ -1,5 +1,4 @@
 {
-  "name": "@mui/internal-tests",
   "private": true,
   "scripts": {
     "typescript": "tsc -p tsconfig.json"
