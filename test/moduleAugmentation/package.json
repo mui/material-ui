@@ -1,9 +1,8 @@
 {
-  "name": "@mui-internal/test-module-augmentation",
   "private": true,
   "type": "module",
   "scripts": {
-    "typescript:module-augmentation": "pnpm --filter \"@mui-internal/test-module-augmentation...\" -r run build && node testModuleAugmentation.ts"
+    "typescript:module-augmentation": "pnpm --workspace-root --filter \"./test/moduleAugmentation...\" -r run build && node testModuleAugmentation.ts"
   },
   "devDependencies": {
     "@emotion/react": "11.14.0",
