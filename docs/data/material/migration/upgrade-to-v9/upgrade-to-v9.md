@@ -316,32 +316,6 @@ Selecting a `Tab` will update the focus and `tabindex` as before.
 
 When specifying `<TextField select />` to render a `<Select>`, the underlying `<InputLabel>` renders a `<div>` instead of a native `<label>` element. This does not affect `<InputLabel>` on its own.
 
-### Theme
-
-`MuiTouchRipple` has been removed from the theme `components` types (`ComponentsProps`, `ComponentsOverrides`, and `ComponentsVariants`).
-TouchRipple has been an internal component since v5 and never consumed theme overrides or default props, so the types were misleading.
-
-If you were using `MuiTouchRipple` in your theme, remove it and use global CSS with the `MuiTouchRipple-*` class names instead:
-
-```diff
- const theme = createTheme({
-   components: {
--    MuiTouchRipple: {
--      styleOverrides: {
--        root: { color: 'red' },
--      },
--    },
-+    MuiButtonBase: {
-+      styleOverrides: {
-+        root: {
-+          '& .MuiTouchRipple-root': { color: 'red' },
-+        },
-+      },
-+    },
-   },
- });
-```
-
 ### jsdom support
 
 The behavior of the components in test environments has been improved to be more reliable.
