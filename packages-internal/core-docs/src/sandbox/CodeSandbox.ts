@@ -110,19 +110,32 @@ function createReactApp(demoData: DemoData, csbConfig?: SandboxConfig) {
   };
 }
 
+type MaterialTemplateFiles = Record<string, { content: string | Record<string, any> }>;
+
+interface MaterialTemplate {
+  title: string;
+  files: MaterialTemplateFiles;
+  dependencies: Record<string, string>;
+  devDependencies: Record<string, string>;
+  replaceContent(
+    updater: (content: string | Record<string, any>, filePath: string) => string,
+  ): MaterialTemplate;
+  openSandbox: (initialFile?: string) => void;
+}
+
 function createMaterialTemplate(templateData: {
   title: string;
   files: Record<string, string>;
   githubLocation: string;
   codeVariant: CodeVariant;
-}) {
+}): MaterialTemplate {
   const ext = getFileExtension(templateData.codeVariant);
   const { title, githubLocation: description } = templateData;
 
   // document.querySelector returns 'Element | null' but createRoot expects 'Element | DocumentFragment'.
   const type = templateData.codeVariant === 'TS' ? '!' : '';
 
-  const files: Record<string, { content: string | Record<string, any> }> = {
+  const files: MaterialTemplateFiles = {
     'public/index.html': {
       content: CRA.getHtml({
         title: templateData.title,
