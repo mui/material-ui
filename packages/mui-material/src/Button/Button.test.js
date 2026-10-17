@@ -1200,4 +1200,35 @@ describe('<Button />', () => {
       });
     });
   });
+
+  describe('prop: slotProps', () => {
+    it('forwards slotProps to the root and the icon slots', () => {
+      render(
+        <Button
+          startIcon={<span />}
+          slotProps={{
+            root: { 'data-root': 'yes' },
+            startIcon: { className: 'my-start-icon' },
+          }}
+        >
+          Hello
+        </Button>,
+      );
+      const button = screen.getByRole('button');
+      expect(button).to.have.attribute('data-root', 'yes');
+      expect(button.querySelector('.my-start-icon')).not.to.equal(null);
+    });
+
+    it('accepts a slotProps callback receiving ownerState', () => {
+      render(
+        <Button
+          variant="outlined"
+          slotProps={{ root: (ownerState) => ({ 'data-variant': ownerState.variant }) }}
+        >
+          Hello
+        </Button>,
+      );
+      expect(screen.getByRole('button')).to.have.attribute('data-variant', 'outlined');
+    });
+  });
 });
