@@ -64,4 +64,11 @@ describe('<NotchedOutline />', () => {
       });
     },
   );
+
+  it.skipIf(isJsdom())('should not leave a gap in the outline without a label', () => {
+    const { container } = render(
+      <NotchedOutline notched={false} style={{ letterSpacing: '0.00938em' }} />,
+    );
+    expect(container.querySelector('legend').getBoundingClientRect().width).to.equal(0);
+  });
 });
