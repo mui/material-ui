@@ -20,6 +20,7 @@ function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnV
   } = parameters;
 
   const timerAutoHide = useTimeout();
+  const pauseReasons = React.useRef(new Set<'focus' | 'hover' | 'window'>());
 
   React.useEffect(() => {
     if (!open) {
@@ -50,7 +51,7 @@ function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnV
   });
 
   const setAutoHideTimer = useEventCallback((autoHideDurationParam: number | null) => {
-    if (!onClose || autoHideDurationParam == null) {
+    if (!open || !onClose || autoHideDurationParam == null || pauseReasons.current.size > 0) {
       return;
     }
 
@@ -62,6 +63,8 @@ function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnV
   React.useEffect(() => {
     if (open) {
       setAutoHideTimer(autoHideDuration);
+    } else {
+      pauseReasons.current.clear();
     }
 
     return timerAutoHide.clear;
@@ -73,54 +76,68 @@ function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnV
 
   // Pause the timer when the user is interacting with the Snackbar
   // or when the user hide the window.
-  const handlePause = timerAutoHide.clear;
+  const handlePause = useEventCallback((reason: 'focus' | 'hover' | 'window') => {
+    if (open) {
+      pauseReasons.current.add(reason);
+      timerAutoHide.clear();
+    }
+  });
 
   // Restart the timer when the user is no longer interacting with the Snackbar
   // or when the window is shown back.
-  const handleResume = React.useCallback(() => {
+  const handleResume = useEventCallback((reason: 'focus' | 'hover' | 'window') => {
+    pauseReasons.current.delete(reason);
     if (autoHideDuration != null) {
       setAutoHideTimer(resumeHideDuration != null ? resumeHideDuration : autoHideDuration * 0.5);
     }
-  }, [autoHideDuration, resumeHideDuration, setAutoHideTimer]);
+  });
 
   const createHandleBlur =
     (otherHandlers: EventHandlers) => (event: React.FocusEvent<HTMLDivElement, Element>) => {
       const onBlurCallback = otherHandlers.onBlur;
       onBlurCallback?.(event);
-      handleResume();
+      if (!event.currentTarget.contains(event.relatedTarget)) {
+        handleResume('focus');
+      }
     };
 
   const createHandleFocus =
     (otherHandlers: EventHandlers) => (event: React.FocusEvent<HTMLDivElement, Element>) => {
       const onFocusCallback = otherHandlers.onFocus;
       onFocusCallback?.(event);
-      handlePause();
+      handlePause('focus');
     };
 
   const createMouseEnter =
     (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       const onMouseEnterCallback = otherHandlers.onMouseEnter;
       onMouseEnterCallback?.(event);
-      handlePause();
+      handlePause('hover');
     };
 
   const createMouseLeave =
     (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       const onMouseLeaveCallback = otherHandlers.onMouseLeave;
       onMouseLeaveCallback?.(event);
-      handleResume();
+      handleResume('hover');
     };
 
   React.useEffect(() => {
     // TODO: window global should be refactored here
     if (!disableWindowBlurListener && open) {
-      window.addEventListener('focus', handleResume);
-      window.addEventListener('blur', handlePause);
+      const handleWindowFocus = () => handleResume('window');
+      const handleWindowBlur = () => handlePause('window');
+      window.addEventListener('focus', handleWindowFocus);
+      window.addEventListener('blur', handleWindowBlur);
 
       return () => {
-        window.removeEventListener('focus', handleResume);
-        window.removeEventListener('blur', handlePause);
+        window.removeEventListener('focus', handleWindowFocus);
+        window.removeEventListener('blur', handleWindowBlur);
       };
+    }
+
+    if (disableWindowBlurListener && open && pauseReasons.current.has('window')) {
+      handleResume('window');
     }
 
     return undefined;

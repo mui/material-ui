@@ -478,6 +478,149 @@ describe('<Snackbar />', () => {
     });
   });
 
+  describe('overlapping auto-hide pauses', () => {
+    async function interact(action) {
+      let settled = false;
+      const interaction = action();
+      interaction.then(
+        () => {
+          settled = true;
+        },
+        () => {
+          settled = true;
+        },
+      );
+      while (!settled) {
+        // user-event schedules successive delays; advance them without running the auto-hide timer.
+        // eslint-disable-next-line no-await-in-loop
+        await clock.tickAsync(1);
+      }
+      await interaction;
+    }
+
+    function renderSnackbar(props = {}) {
+      const onClose = spy();
+      const view = render(
+        <Snackbar
+          open
+          onClose={onClose}
+          autoHideDuration={4000}
+          resumeHideDuration={2000}
+          disableWindowBlurListener
+          message="message"
+          action={
+            <React.Fragment>
+              <button>Undo</button>
+              <button>Dismiss</button>
+            </React.Fragment>
+          }
+          {...props}
+        />,
+      );
+      return { ...view, onClose };
+    }
+
+    it('keeps the timer paused after mouse leave while an action is focused', async () => {
+      const { user, onClose } = renderSnackbar();
+      const button = screen.getByRole('button', { name: 'Undo' });
+      await interact(() => user.click(button));
+      await interact(() => user.unhover(button));
+      clock.tick(5000);
+      expect(button).toHaveFocus();
+      expect(onClose.callCount).to.equal(0);
+
+      await interact(() => user.tab({ shift: true }));
+      clock.tick(1990);
+      expect(onClose.callCount).to.equal(0);
+      clock.tick(10);
+      expect(onClose.args).to.deep.equal([[null, 'timeout']]);
+    });
+
+    it('keeps the timer paused after blur while the pointer is over the Snackbar', async () => {
+      const { user, onClose } = renderSnackbar();
+      const button = screen.getByRole('button', { name: 'Dismiss' });
+      await interact(() => user.click(button));
+      await interact(() => user.tab());
+      clock.tick(5000);
+      expect(onClose.callCount).to.equal(0);
+
+      await interact(() => user.unhover(button));
+      clock.tick(1990);
+      expect(onClose.callCount).to.equal(0);
+      clock.tick(10);
+      expect(onClose.args).to.deep.equal([[null, 'timeout']]);
+    });
+
+    it('keeps the timer paused when focus moves between actions', async () => {
+      const onBlur = spy();
+      const { user, onClose } = renderSnackbar({ onBlur });
+      await interact(() => user.tab());
+      await interact(() => user.tab());
+      expect(screen.getByRole('button', { name: 'Dismiss' })).toHaveFocus();
+      expect(onBlur.callCount).to.equal(1);
+      clock.tick(5000);
+      expect(onClose.callCount).to.equal(0);
+    });
+
+    it('keeps the timer paused on window refocus while an action is focused', async () => {
+      const { user, onClose } = renderSnackbar({ disableWindowBlurListener: false });
+      await interact(() => user.tab());
+      fireEvent.blur(window);
+      fireEvent.focus(window);
+      clock.tick(5000);
+      expect(screen.getByRole('button', { name: 'Undo' })).toHaveFocus();
+      expect(onClose.callCount).to.equal(0);
+    });
+
+    it('keeps the timer paused on mouse leave while the window is blurred', async () => {
+      const { user, onClose } = renderSnackbar({ disableWindowBlurListener: false });
+      const button = screen.getByRole('button', { name: 'Undo' });
+      await interact(() => user.hover(button));
+      fireEvent.blur(window);
+      await interact(() => user.unhover(button));
+      clock.tick(5000);
+      expect(onClose.callCount).to.equal(0);
+
+      fireEvent.focus(window);
+      clock.tick(2000);
+      expect(onClose.args).to.deep.equal([[null, 'timeout']]);
+    });
+
+    it('does not restart the timer when its duration changes during focus', async () => {
+      const { user, onClose, setProps } = renderSnackbar();
+      await interact(() => user.tab());
+      setProps({ autoHideDuration: 1000 });
+      clock.tick(5000);
+      expect(onClose.callCount).to.equal(0);
+    });
+
+    it('clears pause reasons when closing and reopening', async () => {
+      const { user, onClose, setProps } = renderSnackbar();
+      const button = screen.getByRole('button', { name: 'Undo' });
+      await interact(() => user.hover(button));
+      setProps({ open: false });
+      await interact(() => user.unhover(button));
+      clock.tick(5000);
+      expect(onClose.callCount).to.equal(0);
+
+      setProps({ open: true });
+      clock.tick(3999);
+      expect(onClose.callCount).to.equal(0);
+      clock.tick(1);
+      expect(onClose.args).to.deep.equal([[null, 'timeout']]);
+    });
+
+    it('resumes a window pause when the blur listener is disabled', () => {
+      const { onClose, setProps } = renderSnackbar({ disableWindowBlurListener: false });
+      fireEvent.blur(window);
+      setProps({ disableWindowBlurListener: true });
+      clock.tick(1999);
+      expect(onClose.callCount).to.equal(0);
+      clock.tick(1);
+      expect(onClose.args).to.deep.equal([[null, 'timeout']]);
+    });
+  });
+
   describe('prop: disableWindowBlurListener', () => {
     it('should pause auto hide when not disabled and window lost focus', () => {
       const handleClose = spy();
