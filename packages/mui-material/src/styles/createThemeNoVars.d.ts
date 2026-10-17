@@ -25,12 +25,13 @@ import {
 } from './createThemeFoundation';
 
 /**
- * To disable custom properties, use module augmentation
+ * The theme is typed with CSS theme variables (`theme.vars`, palette channel tokens, etc.) by default.
+ * If you create the theme with `cssVariables: false`, use module augmentation to remove them from the types:
  *
  * @example
  * declare module '@mui/material/styles' {
  *   interface CssThemeVariables {
- *     enabled: true;
+ *     enabled: false;
  *   }
  * }
  */
@@ -44,10 +45,10 @@ export interface CssThemeVariables {}
 export type FocusVisible = React.CSSProperties;
 
 type CssVarsOptions = CssThemeVariables extends {
-  enabled: true;
+  enabled: false;
 }
-  ? ColorSystemOptions
-  : {};
+  ? {}
+  : ColorSystemOptions;
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
   mixins?: MixinsOptions | undefined;
@@ -69,7 +70,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
 export interface BaseTheme extends SystemTheme {
   mixins: Mixins;
   motion: Motion;
-  palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
+  palette: Palette & (CssThemeVariables extends { enabled: false } ? {} : CssVarsPalette);
   shadows: Shadows;
   shape: Shape;
   transitions: Transitions;
@@ -83,8 +84,9 @@ export interface BaseTheme extends SystemTheme {
 // shut off automatic exporting for the `BaseTheme` above
 export {};
 
-type CssVarsProperties = CssThemeVariables extends { enabled: true }
-  ? Pick<
+type CssVarsProperties = CssThemeVariables extends { enabled: false }
+  ? Partial<Pick<CssVarsTheme, 'vars'>>
+  : Pick<
       CssVarsTheme,
       | 'colorSchemes'
       | 'colorSchemeSelector'
@@ -98,8 +100,7 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
       | 'generateSpacing'
       | 'shouldSkipGeneratingVar'
       | 'vars'
-    >
-  : Partial<Pick<CssVarsTheme, 'vars'>>;
+    >;
 
 /**
  * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
