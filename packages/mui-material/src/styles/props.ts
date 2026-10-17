@@ -65,6 +65,24 @@ import { ListSubheaderProps } from '../ListSubheader';
 import { MenuItemProps } from '../MenuItem';
 import { MenuListProps } from '../MenuList';
 import { MenuProps } from '../Menu';
+import type { Menu2Props } from '../Unstable_Menu2';
+import type {
+  Menu2CheckboxItemProps,
+  Menu2CheckboxItemOwnerState,
+} from '../Unstable_Menu2CheckboxItem';
+import type { Menu2GroupProps } from '../Unstable_Menu2Group';
+import type { Menu2GroupLabelProps } from '../Unstable_Menu2GroupLabel';
+import type { Menu2ItemProps, Menu2ItemOwnerState } from '../Unstable_Menu2Item';
+import type { Menu2LinkItemProps, Menu2LinkItemOwnerState } from '../Unstable_Menu2LinkItem';
+import type { Menu2RadioGroupProps } from '../Unstable_Menu2RadioGroup';
+import type { Menu2RadioItemProps, Menu2RadioItemOwnerState } from '../Unstable_Menu2RadioItem';
+import type { Menu2SeparatorProps } from '../Unstable_Menu2Separator';
+import type { Menu2SubmenuProps } from '../Unstable_Menu2Submenu';
+import type {
+  Menu2SubmenuTriggerProps,
+  Menu2SubmenuTriggerOwnerState,
+} from '../Unstable_Menu2SubmenuTrigger';
+import type { Menu2TriggerProps } from '../Unstable_Menu2Trigger';
 import { MobileStepperProps } from '../MobileStepper';
 import { ModalProps } from '../Modal';
 import { NativeSelectProps } from '../NativeSelect';
@@ -121,6 +139,15 @@ import { PopperProps } from '../Popper';
 export type ComponentsProps = {
   [Name in keyof ComponentsPropsList]?: Partial<ComponentsPropsList[Name]>;
 };
+
+// Add resolved state here for theme customization without changing defaultProps.
+export interface ComponentsOwnerStateList extends ComponentsPropsList {
+  MuiMenu2CheckboxItem: Menu2CheckboxItemProps & Menu2CheckboxItemOwnerState;
+  MuiMenu2Item: Menu2ItemProps & Menu2ItemOwnerState;
+  MuiMenu2LinkItem: Menu2LinkItemProps & Menu2LinkItemOwnerState;
+  MuiMenu2RadioItem: Menu2RadioItemProps & Menu2RadioItemOwnerState;
+  MuiMenu2SubmenuTrigger: Menu2SubmenuTriggerProps & Menu2SubmenuTriggerOwnerState;
+}
 
 export interface ComponentsPropsList {
   MuiAlert: AlertProps;
@@ -189,6 +216,18 @@ export interface ComponentsPropsList {
   MuiListItemText: ListItemTextProps;
   MuiListSubheader: ListSubheaderProps;
   MuiMenu: MenuProps;
+  MuiMenu2: Menu2Props;
+  MuiMenu2CheckboxItem: Menu2CheckboxItemProps;
+  MuiMenu2Group: Menu2GroupProps;
+  MuiMenu2GroupLabel: Menu2GroupLabelProps;
+  MuiMenu2Item: Menu2ItemProps;
+  MuiMenu2LinkItem: Menu2LinkItemProps;
+  MuiMenu2RadioGroup: Menu2RadioGroupProps;
+  MuiMenu2RadioItem: Menu2RadioItemProps;
+  MuiMenu2Separator: Menu2SeparatorProps;
+  MuiMenu2Submenu: Menu2SubmenuProps;
+  MuiMenu2SubmenuTrigger: Menu2SubmenuTriggerProps;
+  MuiMenu2Trigger: Menu2TriggerProps;
   MuiMenuItem: MenuItemProps;
   MuiMenuList: MenuListProps;
   MuiMobileStepper: MobileStepperProps;

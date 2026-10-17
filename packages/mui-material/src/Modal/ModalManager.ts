@@ -29,6 +29,24 @@ function getPaddingRight(element: Element): number {
   return parseFloat(ownerWindow(element).getComputedStyle(element).paddingRight) || 0;
 }
 
+function getOverflowValues(element: HTMLElement): string[] {
+  const { overflow, overflowX, overflowY } = ownerWindow(element).getComputedStyle(element);
+  return [overflow, overflowX, overflowY];
+}
+
+function getScrollContainer(container: HTMLElement): HTMLElement {
+  if (container.parentNode instanceof DocumentFragment) {
+    return ownerDocument(container).body;
+  }
+
+  const parent = container.parentElement;
+  // Clipped html can contain an independently scrolling body.
+  return parent?.nodeName === 'HTML' &&
+    getOverflowValues(parent).some((overflow) => /auto|scroll/.test(overflow))
+    ? parent
+    : container;
+}
+
 function isAriaHiddenForbiddenOnElement(element: Element): boolean {
   // The forbidden HTML tags are the ones from ARIA specification that
   // can be children of body and can't have aria-hidden attribute.
@@ -126,7 +144,11 @@ function syncAriaHidden(containerInfo: Container): void {
   containerInfo.hiddenSet = next;
 }
 
-function handleContainer(containerInfo: Container, props: ManagedModalProps) {
+function handleContainer(
+  containerInfo: Container,
+  props: ManagedModalProps,
+  ownedScrollContainer?: HTMLElement,
+) {
   const restoreStyle: Array<{
     /**
      * CSS property name (HYPHEN CASE) to be modified.
@@ -136,22 +158,65 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     value: string;
   }> = [];
   const container = containerInfo.container;
+  const restore = () => {
+    restoreStyle.forEach(({ value, el, property }) => {
+      if (value) {
+        el.style.setProperty(property, value);
+      } else {
+        el.style.removeProperty(property);
+      }
+    });
+  };
 
   if (!props.disableScrollLock) {
-    let scrollContainer: HTMLElement;
+    const scrollContainer = getScrollContainer(container);
+    const containerDocument = ownerDocument(scrollContainer);
+    const containerWindow = containerDocument.defaultView || window;
+    // Observe both viewport elements because another overlay can change the scroller.
+    const viewportElements = [containerDocument.documentElement, containerDocument.body];
+    const lockCandidates = viewportElements.includes(scrollContainer)
+      ? viewportElements.filter((element) => element !== ownedScrollContainer)
+      : [scrollContainer];
+    const isHidden = (overflow: string) => overflow === 'hidden' || overflow === 'clip';
+    const isScrollLocked = () => {
+      // Recheck the target after another overlay restores its overflow styles.
+      const currentScrollContainer = getScrollContainer(container);
+      const bodyScrollsIndependently =
+        currentScrollContainer === containerDocument.body &&
+        getOverflowValues(containerDocument.body).some((overflow) => /auto|scroll/.test(overflow));
 
-    if (container.parentNode instanceof DocumentFragment) {
-      scrollContainer = ownerDocument(container).body;
-    } else {
-      // Support html overflow-y: auto for scroll stability between pages
-      // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
-      const parent = container.parentElement;
-      const containerWindow = ownerWindow(container);
-      scrollContainer =
-        parent?.nodeName === 'HTML' &&
-        containerWindow.getComputedStyle(parent).overflowY === 'scroll'
-          ? parent
-          : container;
+      return lockCandidates.some(
+        (element) =>
+          // Body clipping does not lock a scrolling html element. Base UI's marked
+          // inset-scrollbar fallback is different: it also limits body to the viewport.
+          (element !== containerDocument.body ||
+            currentScrollContainer !== containerDocument.documentElement ||
+            containerDocument.documentElement.hasAttribute('data-base-ui-scroll-locked')) &&
+          // Html clipping does not lock a separate body scroll container.
+          (element !== containerDocument.documentElement || !bodyScrollsIndependently) &&
+          [element.style, containerWindow.getComputedStyle(element)].every(
+            (styles) =>
+              isHidden(styles.overflow) || [styles.overflowX, styles.overflowY].every(isHidden),
+          ),
+      );
+    };
+
+    // Wait for the other overlay to release its inline lock, then read the
+    // restored styles before we apply ours.
+    if (isScrollLocked()) {
+      let restoreLock: (() => void) | undefined;
+      const observer = new containerWindow.MutationObserver(() => {
+        if (!isScrollLocked()) {
+          observer.disconnect();
+          restoreLock = handleContainer(containerInfo, props, ownedScrollContainer);
+        }
+      });
+      lockCandidates.forEach((element) => observer.observe(element, { attributes: true }));
+
+      return () => {
+        observer.disconnect();
+        restoreLock?.();
+      };
     }
 
     if (isOverflowing(scrollContainer)) {
@@ -199,17 +264,29 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     );
 
     scrollContainer.style.overflow = 'hidden';
-  }
 
-  const restore = () => {
-    restoreStyle.forEach(({ value, el, property }) => {
-      if (value) {
-        el.style.setProperty(property, value);
-      } else {
-        el.style.removeProperty(property);
-      }
-    });
-  };
+    if (
+      scrollContainer === containerDocument.body &&
+      getOverflowValues(containerDocument.documentElement).some(isHidden)
+    ) {
+      // Body and html can scroll independently. Keep our body lock if another
+      // overlay releases html, and take over the restored viewport lock too.
+      let restoreViewport: (() => void) | undefined;
+      const observer = new containerWindow.MutationObserver(() => {
+        if (getScrollContainer(container) === containerDocument.documentElement) {
+          observer.disconnect();
+          restoreViewport = handleContainer(containerInfo, props, scrollContainer);
+        }
+      });
+      observer.observe(containerDocument.documentElement, { attributes: true });
+
+      return () => {
+        observer.disconnect();
+        restoreViewport?.();
+        restore();
+      };
+    }
+  }
 
   return restore;
 }

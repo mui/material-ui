@@ -5,6 +5,27 @@ import sinon from 'sinon';
 import { getMaterialUiComponentInfo } from './getMaterialUiComponentInfo';
 
 describe('getMaterialUiComponentInfo', () => {
+  it.each([
+    ['internal/MenuItemBase.tsx', true],
+    ['internal/Menu2ItemBase.tsx', true],
+    ['Unstable_Menu2/Menu2IndicatorBase.tsx', true],
+    ['Unstable_Menu2/Menu2Popup.tsx', true],
+    ['Unstable_Menu2/Menu2PopupSlotBases.tsx', true],
+    ['Unstable_Menu2/Menu2SubmenuPopup.tsx', true],
+    ['Unstable_Menu2SubmenuTrigger/Menu2SubmenuTriggerRootSlot.tsx', true],
+    ['Unstable_Menu2/Menu2.tsx', false],
+    ['Unstable_Menu2SubmenuTrigger/Menu2SubmenuTrigger.tsx', false],
+    ['Popper/BasePopper.tsx', true],
+    ['MenuItem/MenuItem.js', false],
+    ['Menu/Menu.js', false],
+  ] as const)('sets shouldSkip for %s to %s', (filename, shouldSkip) => {
+    const componentInfo = getMaterialUiComponentInfo(
+      path.join(process.cwd(), 'packages/mui-material/src', filename),
+    );
+
+    expect(componentInfo.readFile().shouldSkip).to.equal(shouldSkip);
+  });
+
   it('return correct info for material component file', () => {
     const componentInfo = getMaterialUiComponentInfo(
       path.join(process.cwd(), `/packages/mui-material/src/Button/Button.js`),

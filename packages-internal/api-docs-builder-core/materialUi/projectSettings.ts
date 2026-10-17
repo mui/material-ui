@@ -9,6 +9,9 @@ const generateClassName = (componentName: string, slot: string, globalStatePrefi
     // SwipeableDrawer uses Drawer classes without modifying them
     return generateUtilityClass('MuiDrawer', slot, globalStatePrefix);
   }
+  if (componentName === 'MuiPigmentContainer') {
+    return generateUtilityClass('MuiContainer', slot, globalStatePrefix);
+  }
 
   return generateUtilityClass(componentName, slot, globalStatePrefix);
 };
@@ -21,12 +24,7 @@ export const projectSettings: ProjectSettings = {
     {
       name: 'material',
       rootPath: path.join(process.cwd(), 'packages/mui-material'),
-      entryPointPath: [
-        'src/index.d.ts',
-        'src/PigmentStack/PigmentStack.tsx',
-        'src/PigmentContainer/PigmentContainer.tsx',
-        'src/PigmentGrid/PigmentGrid.tsx',
-      ],
+      entryPointPath: 'src/index.d.ts',
     },
     {
       name: 'lab',
