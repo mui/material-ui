@@ -1,5 +1,6 @@
 import { Breakpoints } from '../createBreakpoints/createBreakpoints';
 import { Spacing } from '../createTheme/createSpacing';
+import { getValue } from '../spacing';
 import { ResponsiveStyleValue } from '../styleFunctionSx';
 import { GridDirection, GridOwnerState } from './GridProps';
 import { traverseBreakpoints } from './traverseBreakpoints';
@@ -110,7 +111,7 @@ export const generateGridRowSpacingStyles = ({ theme, ownerState }: Props) => {
     theme.breakpoints,
     ownerState.rowSpacing,
     (appendStyle, value) => {
-      const spacing = typeof value === 'string' ? value : theme.spacing?.(value);
+      const spacing = theme.spacing ? getValue(theme.spacing as any, value) : value;
       appendStyle(styles, {
         [getSelfSpacingVar('row')]: spacing,
         '> *': {
@@ -131,7 +132,7 @@ export const generateGridColumnSpacingStyles = ({ theme, ownerState }: Props) =>
     theme.breakpoints,
     ownerState.columnSpacing,
     (appendStyle, value) => {
-      const spacing = typeof value === 'string' ? value : theme.spacing?.(value);
+      const spacing = theme.spacing ? getValue(theme.spacing as any, value) : value;
       appendStyle(styles, {
         [getSelfSpacingVar('column')]: spacing,
         '> *': {

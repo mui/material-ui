@@ -15,7 +15,11 @@ import {
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import {
+  ThemeProvider,
+  createTheme,
+  unstable_enhanceDensity as enhanceDensity,
+} from '@mui/material/styles';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
 
@@ -85,7 +89,8 @@ function expectRtlRightPlacementStyles() {
 
   expect(popper).to.have.attribute('data-popper-placement', 'right');
   expect(tooltip).toHaveComputedStyle({ direction: 'rtl' });
-  expect(hasInjectedStyle('margin-inline-start: 14px')).to.equal(true);
+  expect(hasInjectedStyle('margin-inline-start: var(--_spacing)')).to.equal(true);
+  expect(hasInjectedStyle('--_spacing: 14px')).to.equal(true);
   expect(hasInjectedStyle('inset-inline-start: 0')).to.equal(true);
   expectArrowOnInlineEnd(tooltip, arrow);
 }
@@ -571,6 +576,26 @@ describe('<Tooltip />', () => {
   });
 
   describe('touch screen', () => {
+    it('keeps the touch offset under enhanceDensity', () => {
+      const theme = enhanceDensity(createTheme());
+      render(
+        <ThemeProvider theme={theme}>
+          <Tooltip enterTouchDelay={700} enterDelay={100} title="Hello World">
+            <button type="submit">Hello World</button>
+          </Tooltip>
+        </ThemeProvider>,
+      );
+      fireEvent.touchStart(screen.getByRole('button'));
+      clock.tick(700 + 100);
+
+      const tooltip = screen.getByRole('tooltip').querySelector(`.${classes.tooltip}`);
+      expect(tooltip).to.have.class(classes.touch);
+      expect(hasInjectedStyle('--_spacing: 24px')).to.equal(true);
+      if (!isJsdom()) {
+        expect(getComputedStyle(tooltip).getPropertyValue('--_spacing').trim()).to.equal('24px');
+      }
+    });
+
     it('should not respond to quick events', () => {
       render(
         <Tooltip title="Hello World">
