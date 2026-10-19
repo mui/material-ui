@@ -1,10 +1,11 @@
-import createPalette, { PaletteOptions } from './createPalette';
+import createPalette from './createPalette';
+import type { PaletteOptions } from './createPalette';
 import {
   resolveFocusVisible,
   mergeFocusVisibleInput,
   isResolvedFocusVisible,
 } from './focusVisible';
-import { ColorSystemOptions } from './createThemeFoundation';
+import type { ColorSystemOptions } from './createThemeFoundation';
 import createThemeWithVars, {
   CssVarsThemeOptions,
   ColorSystem,
@@ -100,7 +101,6 @@ export default function createTheme(
         if (colorSchemesInput[defaultColorSchemeInput] !== true) {
           paletteOptions = colorSchemesInput[defaultColorSchemeInput].palette;
         } else if (defaultColorSchemeInput === 'dark') {
-          // @ts-ignore to prevent the module augmentation test from failing
           paletteOptions = { mode: 'dark' };
         }
       }

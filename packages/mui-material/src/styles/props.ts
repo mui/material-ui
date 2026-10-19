@@ -110,6 +110,7 @@ import { TableFooterProps } from '../TableFooter';
 import { TabProps } from '../Tab';
 import { TabScrollButtonProps } from '../TabScrollButton';
 import { TabsProps } from '../Tabs';
+import { TabScrollButtonProps } from '../TabScrollButton';
 import { TextFieldProps } from '../TextField';
 import { ToggleButtonProps } from '../ToggleButton';
 import { ToggleButtonGroupProps } from '../ToggleButtonGroup';
@@ -126,7 +127,8 @@ export interface ComponentsPropsList {
   MuiAlert: AlertProps;
   MuiAlertTitle: AlertTitleProps;
   MuiAppBar: AppBarProps;
-  MuiAutocomplete: AutocompleteProps<any, any, any, any>;
+  // Theme defaults can configure either option values or mapped IDs.
+  MuiAutocomplete: AutocompleteProps<any, any, any, any, any, any>;
   MuiAvatar: AvatarProps;
   MuiAvatarGroup: AvatarGroupProps;
   MuiBackdrop: BackdropProps;
@@ -235,6 +237,7 @@ export interface ComponentsPropsList {
   MuiTableRow: TableRowProps;
   MuiTableSortLabel: TableSortLabelProps;
   MuiTabs: TabsProps;
+  MuiTabScrollButton: TabScrollButtonProps;
   MuiTextField: TextFieldProps;
   MuiToggleButton: ToggleButtonProps;
   MuiToggleButtonGroup: ToggleButtonGroupProps;

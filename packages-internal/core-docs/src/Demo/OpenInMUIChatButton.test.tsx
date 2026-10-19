@@ -85,7 +85,7 @@ describe.skipIf(!isJsdom())('OpenInMUIChatButton', () => {
     await user.click(chatButton);
     expect(chatButton).to.have.property('disabled', true);
 
-    act(() => chatButton.blur());
+    act(() => document.documentElement.focus());
     expect(document.activeElement).not.to.equal(chatButton);
 
     await act(async () => deferred.resolve());
@@ -103,7 +103,9 @@ describe.skipIf(!isJsdom())('OpenInMUIChatButton', () => {
     await user.click(chatButton);
     expect(chatButton).to.have.property('disabled', true);
 
-    act(() => chatButton.blur());
+    act(() => document.documentElement.focus());
+    expect(document.activeElement).not.to.equal(chatButton);
+
     await act(async () => deferred.reject(new Error('Unable to open MUI Chat')));
 
     expect(chatButton).to.have.property('disabled', false);

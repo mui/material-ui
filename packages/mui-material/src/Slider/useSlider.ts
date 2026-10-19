@@ -354,7 +354,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     if (range) {
       // Bound the new value to the thumb's neighbours.
       if (disableSwap) {
-        newValue = clamp(newValue, values[index - 1] || -Infinity, values[index + 1] || Infinity);
+        newValue = clamp(newValue, values[index - 1] ?? -Infinity, values[index + 1] ?? Infinity);
       }
 
       const previousValue = newValue;
@@ -545,8 +545,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       if (disableSwap) {
         newValue = clamp(
           newValue,
-          values[activeIndex - 1] || -Infinity,
-          values[activeIndex + 1] || Infinity,
+          values[activeIndex - 1] ?? -Infinity,
+          values[activeIndex + 1] ?? Infinity,
         );
       }
 
