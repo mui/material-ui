@@ -110,12 +110,23 @@ function createReactApp(demoData: DemoData, csbConfig?: SandboxConfig) {
   };
 }
 
+interface MaterialTemplate {
+  title: string;
+  files: Record<string, { content: string | Record<string, any> }>;
+  dependencies: Record<string, string>;
+  devDependencies: Record<string, string>;
+  replaceContent(
+    updater: (content: string | Record<string, any>, filePath: string) => string,
+  ): MaterialTemplate;
+  openSandbox: (initialFile?: string) => void;
+}
+
 function createMaterialTemplate(templateData: {
   title: string;
   files: Record<string, string>;
   githubLocation: string;
   codeVariant: CodeVariant;
-}) {
+}): MaterialTemplate {
   const ext = getFileExtension(templateData.codeVariant);
   const { title, githubLocation: description } = templateData;
 
