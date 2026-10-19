@@ -235,10 +235,10 @@ importers:
         version: 1.1.1-canary.4(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(rolldown@1.2.12)(terser@5.50.0)(tsx@4.23.15)(yaml@2.9.0)
       '@mui/internal-code-infra':
         specifier: 0.1.1-canary.17
-        version: 0.1.1-canary.17(@next/eslint-plugin-next@16.4.2(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0)))(@octokit/core@7.0.7)(@types/node@22.20.5)(@typescript-eslint/eslint-plugin@8.71.1(@typescript-eslint/parser@8.71.1(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.71.1(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.30)(prettier@3.9.9)(stylelint@17.16.0(@typescript/typescript6@6.0.2)(supports-color@11.0.0))(supports-color@11.0.0)(vitest@5.0.0)
+        version: 0.1.1-canary.17(@next/eslint-plugin-next@16.4.2(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0)))(@octokit/core@7.0.7)(@types/node@22.20.5)(@typescript-eslint/eslint-plugin@8.71.1(@typescript-eslint/parser@8.71.1(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.71.1(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.30)(prettier@3.9.10)(stylelint@17.16.0(@typescript/typescript6@6.0.2)(supports-color@11.0.0))(supports-color@11.0.0)(vitest@5.0.0)
       '@mui/internal-docs-infra':
         specifier: 0.13.1-canary.17
-        version: 0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)
+        version: 0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.10)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils/build
@@ -363,11 +363,11 @@ importers:
         specifier: 1.63.0
         version: 1.63.0
       prettier:
-        specifier: 3.9.9
-        version: 3.9.9
+        specifier: 3.9.10
+        version: 3.9.10
       pretty-quick:
         specifier: 4.2.2
-        version: 4.2.2(prettier@3.9.9)
+        version: 4.2.2(prettier@3.9.10)
       process:
         specifier: 0.11.10
         version: 0.11.10
@@ -442,7 +442,7 @@ importers:
         version: link:../packages-internal/core-docs/build
       '@mui/internal-docs-infra':
         specifier: 0.13.1-canary.17
-        version: 0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)
+        version: 0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.10)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../packages-internal/markdown
@@ -718,8 +718,8 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0(encoding@0.1.13)
       prettier:
-        specifier: 3.9.9
-        version: 3.9.9
+        specifier: 3.9.10
+        version: 3.9.10
       raw-loader:
         specifier: 4.0.2
         version: 4.0.2(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.30)(uglify-js@3.19.3))
@@ -769,8 +769,8 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       prettier:
-        specifier: ^3.9.9
-        version: 3.9.9
+        specifier: ^3.9.10
+        version: 3.9.10
       react-docgen:
         specifier: ^8.0.4
         version: 8.0.4(supports-color@11.0.0)
@@ -860,7 +860,7 @@ importers:
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0)
       '@mui/internal-docs-infra':
         specifier: 0.13.1-canary.17
-        version: 0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)
+        version: 0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.10)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../markdown
@@ -998,7 +998,7 @@ importers:
         version: 7.29.8
       '@mui/internal-docs-infra':
         specifier: 0.13.1-canary.17
-        version: 0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)
+        version: 0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.10)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:../docs-utils/build
@@ -1034,8 +1034,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3
       prettier:
-        specifier: 3.9.9
-        version: 3.9.9
+        specifier: 3.9.10
+        version: 3.9.10
       rimraf:
         specifier: 6.1.3
         version: 6.1.3
@@ -10490,8 +10490,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier@3.9.9:
-    resolution: {integrity: sha512-Z/CJHIkdujO/OtN7nXUii0Rf3VT5SRuhjBA82Xvu2XhBUgX3nhP67T0LHceBdQLex7OOFGTox+Q5Yg8Jk2Qivg==}
+  prettier@3.9.10:
+    resolution: {integrity: sha512-skGHTH1Yb9QvaTC4hWnRTzEYtCpApF0UMBPz+t/0ZPzP8ihefo/btKd+QA7pUE0fEwA1SbS/NmhyEcstdXOIdA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -14970,7 +14970,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@mui/internal-code-infra@0.1.1-canary.17(@next/eslint-plugin-next@16.4.2(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0)))(@octokit/core@7.0.7)(@types/node@22.20.5)(@typescript-eslint/eslint-plugin@8.71.1(@typescript-eslint/parser@8.71.1(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.71.1(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.30)(prettier@3.9.9)(stylelint@17.16.0(@typescript/typescript6@6.0.2)(supports-color@11.0.0))(supports-color@11.0.0)(vitest@5.0.0)':
+  '@mui/internal-code-infra@0.1.1-canary.17(@next/eslint-plugin-next@16.4.2(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0)))(@octokit/core@7.0.7)(@types/node@22.20.5)(@typescript-eslint/eslint-plugin@8.71.1(@typescript-eslint/parser@8.71.1(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.71.1(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.30)(prettier@3.9.10)(stylelint@17.16.0(@typescript/typescript6@6.0.2)(supports-color@11.0.0))(supports-color@11.0.0)(vitest@5.0.0)':
     dependencies:
       '@argos-ci/core': 6.8.7(@types/node@22.20.5)(supports-color@11.0.0)
       '@babel/cli': 8.0.6(@babel/core@8.0.7)
@@ -15036,7 +15036,7 @@ snapshots:
       node-html-parser: 9.0.4
       open: 11.0.4
       postcss-styled-syntax: 0.7.3(postcss@8.5.30)
-      prettier: 3.9.9
+      prettier: 3.9.10
       regexp.escape: 2.0.1
       rehype-slug: 6.0.0
       rehype-stringify: 10.0.1
@@ -15086,7 +15086,7 @@ snapshots:
       - supports-color
       - vitest
 
-  '@mui/internal-docs-infra@0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)':
+  '@mui/internal-docs-infra@0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.10)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)':
     dependencies:
       '@babel/runtime': 8.0.7
       '@csstools/postcss-light-dark-function': 3.0.7(postcss@8.5.30)
@@ -15135,11 +15135,11 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.3.0
       next: 16.4.2(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      prettier: 3.9.9
+      prettier: 3.9.10
     transitivePeerDependencies:
       - supports-color
 
-  '@mui/internal-docs-infra@0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)':
+  '@mui/internal-docs-infra@0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.10)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)':
     dependencies:
       '@babel/runtime': 8.0.7
       '@csstools/postcss-light-dark-function': 3.0.7(postcss@8.5.30)
@@ -15188,7 +15188,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.3.0
       next: 16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      prettier: 3.9.9
+      prettier: 3.9.10
     transitivePeerDependencies:
       - supports-color
 
@@ -22510,7 +22510,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier@3.9.9: {}
+  prettier@3.9.10: {}
 
   pretty-format@27.5.1:
     dependencies:
@@ -22524,14 +22524,14 @@ snapshots:
     dependencies:
       parse-ms: 4.0.0
 
-  pretty-quick@4.2.2(prettier@3.9.9):
+  pretty-quick@4.2.2(prettier@3.9.10):
     dependencies:
       '@pkgr/core': 0.2.10
       ignore: 7.0.6
       mri: 1.2.0
       picocolors: 1.1.1
       picomatch: 4.0.7
-      prettier: 3.9.9
+      prettier: 3.9.10
       tinyexec: 0.3.2
       tslib: 2.8.1
 
