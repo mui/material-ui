@@ -184,7 +184,7 @@ describe('densityScale', () => {
       // `theme.generateThemeVars()` (createCssVarsProvider). Without wrapping
       // the generator too, both constants vanish from `theme.vars` at render.
       const theme = applyDensity(createTheme({ cssVariables: true }));
-      const rebuilt = theme.generateThemeVars!();
+      const rebuilt = theme.generateThemeVars!() as NonNullable<typeof theme.vars>;
 
       expect(rebuilt.touchTarget).to.equal('var(--mui-touchTarget, 32px)');
       expect(rebuilt.iconSize).to.equal('var(--mui-iconSize, 16px)');

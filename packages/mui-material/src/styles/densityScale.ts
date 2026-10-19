@@ -70,11 +70,6 @@ function densitySizing(
   return theme.vars ? `var(${cssVarName(theme, key)}, ${px})` : px;
 }
 
-// Type-level only: without `enhanceDensity` the strings pass through verbatim.
-declare module '@mui/system' {
-  interface SpacingKeyOverrides extends Record<DensityKey | `-${DensityKey}`, true> {}
-}
-
 /** A real `createTheme()` result. The CSS-vars machinery is `Partial`-picked
  * because `CssVarsProperties` hides it behind the `CssThemeVariables` flag
  * while a `cssVariables: true` theme still carries it at runtime. */
@@ -86,6 +81,11 @@ export type EnhanceableTheme = Theme &
     >
   >;
 
+export type DensityEnhancedTheme<T extends EnhanceableTheme> = T & {
+  components: NonNullable<EnhanceableTheme['components']>;
+  vars?: Partial<Record<DensitySizingKey, string>> | undefined;
+} & Record<DensitySizingKey, string>;
+
 /**
  * PRIVATE density core behind `enhanceDensity`: the keyed `theme.spacing`
  * wrapper + the `--<prefix>-spacing-*` step emission. No `theme.density` node.
@@ -96,9 +96,9 @@ export function applyDensity<T extends EnhanceableTheme>(
    * (MUI X derives virtualized heights off the same ladder). */
   scaleOverrides?: DensityScaleOverrides,
 ) {
-  const theme = { ...themeInput } as T & {
-    components: NonNullable<EnhanceableTheme['components']>;
-  } & Record<DensitySizingKey, string> & { unstable_densityScale: ResolvedDensityScale };
+  const theme = { ...themeInput } as DensityEnhancedTheme<T> & {
+    unstable_densityScale: ResolvedDensityScale;
+  };
   theme.components = { ...themeInput.components };
 
   // The Spacing interface is overloaded (0-4 fixed args) — widen to the rest

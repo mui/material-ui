@@ -3,8 +3,8 @@ import type { Breakpoint } from '@mui/system';
 import type { Theme } from './createTheme';
 import {
   applyDensity,
+  DensityEnhancedTheme,
   DensityScaleOverrides,
-  DensitySizingKey,
   EnhanceableTheme,
 } from './densityScale';
 import switchClasses from '../Switch/switchClasses';
@@ -26,21 +26,6 @@ import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import listItemIconClasses from '../ListItemIcon/listItemIconClasses';
 import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
 import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
-
-/**
- * The two sizing constants are readable off the theme, so a component can size
- * a box the way the enhancer does: `(theme.vars || theme).touchTarget` gives the
- * variable reference on a CSS-variables theme and the length itself otherwise.
- *
- * Declared here rather than on the core theme types because density is opt-in —
- * both are `undefined` until `enhanceDensity` runs, which is what `?` says.
- * Neither is a spacing key: `theme.spacing()` does not resolve them.
- */
-declare module '@mui/material/styles' {
-  interface Theme extends Partial<Record<DensitySizingKey, string>> {}
-
-  interface ThemeVars extends Partial<Record<DensitySizingKey, string>> {}
-}
 
 type ThemeComponents = NonNullable<Theme['components']>;
 
@@ -129,12 +114,7 @@ export default function enhanceDensity<T extends EnhanceableTheme>(
  * variation comes purely from the resolved scale values (`applyDensity`),
  * never from remapping.
  */
-function emitComponentDensity<T extends EnhanceableTheme>(
-  enhanced: T & { components: NonNullable<EnhanceableTheme['components']> } & Record<
-      DensitySizingKey,
-      string
-    >,
-): void {
+function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhancedTheme<T>): void {
   // Sizing constants on the same terms as the steps: the var ref on a vars
   // theme, the literal px otherwise. Neither is a spacing key.
   const touchTarget = enhanced.vars?.touchTarget ?? enhanced.touchTarget;
