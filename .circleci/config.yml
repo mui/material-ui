@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/0a555da875ab03199afe8f28dbb4c723f853a52d/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/afa705d3e675d687aaa77f6a3448cd87ea6f5711/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
@@ -127,7 +127,7 @@ jobs:
           command: pnpm release:build
       - run:
           name: Test minimum TypeScript version
-          command: pnpm -F @mui-internal/test-typescript-minimum test
+          command: pnpm -F ./test/typescriptMinimum test
   test_types_next:
     <<: *default-job
     resource_class: xlarge.gen2
@@ -451,7 +451,7 @@ jobs:
           command: node scripts/testBuiltTypes.mjs
       - run:
           name: test exported typescript
-          command: pnpm --filter @mui-internal/test-module-resolution typescript:all
+          command: pnpm --filter ./test/moduleResolution typescript:all
       - store_artifacts:
           name: Persist size snapshot as pipeline artifact
           path: size-snapshot.json
