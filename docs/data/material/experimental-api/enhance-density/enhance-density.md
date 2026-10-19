@@ -44,8 +44,12 @@ The enhancer also modernizes components like Button that use the margin-based sp
 
 The enhancer lets you set 2 sizing variables:
 
-- `touchTarget`: applied to every interactive control to create consistent sizing across the library.
-- `iconSize`: applied to the `SvgIcon` component.
+- `touchTarget` (default 32px): the height of a medium interactive control, applied across the library so controls of the same size share the same box. By default, small controls are 28px and large controls are 44px.
+- `iconSize` (default 16px): the size of a medium icon, applied to `SvgIcon` and to the icons inside IconButton, Checkbox, Radio, Chip, and the Select caret. By default, small icons are 14px and large icons are 20px.
+
+:::info
+Without the enhancer, a medium icon is 24px. With the default `iconSize`, icons render at 16px.
+:::
 
 ```ts
 const theme = enhanceDensity(createTheme(), {
@@ -66,9 +70,11 @@ Every component draws its spacing and sizing from the same fixed set of steps, s
 | `xSmall`  | 8px   | Compact padding, small control insets |
 | `small`   | 12px  | Default inline padding                |
 | `medium`  | 16px  | Container padding                     |
-| `large`   | 24px  | Section spacing, small control height |
-| `xLarge`  | 32px  | Large control height                  |
+| `large`   | 24px  | Large inline padding, dialog margin   |
+| `xLarge`  | 32px  | Wide insets                           |
 | `xxLarge` | 48px  | Large surfaces                        |
+
+Control heights do not come from these steps: they come from `touchTarget`, described above.
 
 These are absolute values rather than multiples of the theme's spacing unit, so `small` is 12px whatever `spacing` is set to. To move them, pass a [custom scale](#customizing-the-scale).
 
@@ -154,9 +160,19 @@ On a CSS theme variables theme, `theme.vars` gives the variable reference, so th
 `theme.spacing()` does not resolve `touchTarget` or `iconSize`, and both are `undefined` until `enhanceDensity` has been applied.
 :::
 
+### TypeScript
+
+The theme returned by `enhanceDensity` is typed with `touchTarget` and `iconSize`. To have them on the `Theme` type everywhere, for example in `styled` and `sx` callbacks, and to get the step names as `theme.spacing()` suggestions, import the density types once in your app:
+
+```ts
+import type {} from '@mui/material/themeDensityAugmentation';
+```
+
+These types are opt-in so that projects without the enhancer keep their own `Theme` augmentations and spacing types unchanged.
+
 ## All components
 
-`enhanceDensity` applies to every component in the table below. Components outside it are left untouched. Select a component in the demo below to see how its dimensions map to the spacing scale: the padding ring, the gap between children, and the height the control settles at, each measured off the rendered element and named back to the step that produced it.
+`enhanceDensity` applies to every component listed in the demo below. Components outside it are left untouched. Select a component to see how its dimensions map to the spacing scale: the padding ring, the gap between children, and the height the control settles at, each measured off the rendered element and named back to the step that produced it.
 
 {{"demo": "AllComponentsDemo.js"}}
 
