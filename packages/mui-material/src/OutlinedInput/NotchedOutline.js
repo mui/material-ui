@@ -39,6 +39,7 @@ const NotchedOutlineLegend = styled('legend', {
         style: {
           padding: 0,
           lineHeight: '11px', // sync with `height` in `legend` styles
+          maxWidth: 0,
           ...getTransitionStyles(theme, 'width', {
             duration: 150,
             easing: theme.transitions.easing.easeOut,
