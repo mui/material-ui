@@ -190,7 +190,7 @@ overrides:
   '@mui/internal-docs-infra': 0.13.1-canary.17
   docs>stylis: 4.2.0
   docs>react-is: 19.3.0
-  caniuse-lite: ^1.0.30001815
+  caniuse-lite: ^1.0.30001816
   '@types/node': 22.20.5
   cross-fetch: ^4.1.0
   '@pigment-css/react': 0.0.31
@@ -209,8 +209,8 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0(@types/express@5.0.6)(supports-color@11.0.0)(undici@7.29.0)
       execa:
-        specifier: ^10.1.0
-        version: 10.1.0
+        specifier: ^10.1.1
+        version: 10.1.1
     devDependencies:
       '@arethetypeswrong/cli':
         specifier: 0.18.5
@@ -235,10 +235,10 @@ importers:
         version: 1.1.1-canary.4(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(rolldown@1.2.12)(terser@5.50.0)(tsx@4.23.15)(yaml@2.9.0)
       '@mui/internal-code-infra':
         specifier: 0.1.1-canary.17
-        version: 0.1.1-canary.17(@next/eslint-plugin-next@16.4.0(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0)))(@octokit/core@7.0.7)(@types/node@22.20.5)(@typescript-eslint/eslint-plugin@8.71.1(@typescript-eslint/parser@8.71.1(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.71.1(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.29)(prettier@3.9.9)(stylelint@17.16.0(@typescript/typescript6@6.0.2)(supports-color@11.0.0))(supports-color@11.0.0)(vitest@5.0.0)
+        version: 0.1.1-canary.17(@next/eslint-plugin-next@16.4.2(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0)))(@octokit/core@7.0.7)(@types/node@22.20.5)(@typescript-eslint/eslint-plugin@8.71.1(@typescript-eslint/parser@8.71.1(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.71.1(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.30)(prettier@3.9.10)(stylelint@17.16.0(@typescript/typescript6@6.0.2)(supports-color@11.0.0))(supports-color@11.0.0)(vitest@5.0.0)
       '@mui/internal-docs-infra':
         specifier: 0.13.1-canary.17
-        version: 0.13.1-canary.17(@types/react@19.3.0)(next@16.4.0(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)
+        version: 0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.10)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils/build
@@ -258,8 +258,8 @@ importers:
         specifier: workspace:^
         version: link:packages/mui-utils/build
       '@next/eslint-plugin-next':
-        specifier: 16.4.0
-        version: 16.4.0(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))
+        specifier: 16.4.2
+        version: 16.4.2(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))
       '@octokit/rest':
         specifier: 22.0.1
         version: 22.0.1
@@ -324,8 +324,8 @@ importers:
         specifier: 10.1.0
         version: 10.1.0
       dotenv:
-        specifier: 18.0.7
-        version: 18.0.7
+        specifier: 18.0.8
+        version: 18.0.8
       es-toolkit:
         specifier: 1.52.0
         version: 1.52.0
@@ -363,11 +363,11 @@ importers:
         specifier: 1.63.0
         version: 1.63.0
       prettier:
-        specifier: 3.9.9
-        version: 3.9.9
+        specifier: 3.9.10
+        version: 3.9.10
       pretty-quick:
         specifier: 4.2.2
-        version: 4.2.2(prettier@3.9.9)
+        version: 4.2.2(prettier@3.9.10)
       process:
         specifier: 0.11.10
         version: 0.11.10
@@ -442,7 +442,7 @@ importers:
         version: link:../packages-internal/core-docs/build
       '@mui/internal-docs-infra':
         specifier: 0.13.1-canary.17
-        version: 0.13.1-canary.17(@types/react@19.3.0)(next@16.4.0(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)
+        version: 0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.10)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../packages-internal/markdown
@@ -507,11 +507,11 @@ importers:
         specifier: ^4.3.3
         version: 4.3.3
       '@tanstack/react-query':
-        specifier: ^5.104.1
-        version: 5.104.1(react@19.3.0)
+        specifier: ^5.104.3
+        version: 5.104.3(react@19.3.0)
       '@tanstack/react-virtual':
-        specifier: ^3.14.13
-        version: 3.14.13(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: ^3.14.20
+        version: 3.14.20(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       autosuggest-highlight:
         specifier: ^3.3.4
         version: 3.3.4
@@ -573,8 +573,8 @@ importers:
         specifier: ^7.2.0
         version: 7.2.0
       next:
-        specifier: 16.4.0
-        version: 16.4.0(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: 16.4.2
+        version: 16.4.2(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       notistack:
         specifier: 3.0.2
         version: 3.0.2(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -582,11 +582,11 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0
       postcss:
-        specifier: ^8.5.29
-        version: 8.5.29
+        specifier: ^8.5.30
+        version: 8.5.30
       postcss-import:
-        specifier: ^17.0.0
-        version: 17.0.0(postcss@8.5.29)
+        specifier: ^17.0.1
+        version: 17.0.1(postcss@8.5.30)
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -630,10 +630,10 @@ importers:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react-virtuoso:
-        specifier: ^4.18.16
-        version: 4.18.16(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: ^4.18.19
+        version: 4.18.19(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react-window:
-        specifier: ^2.3.3
+        specifier: ^2.3.4
         version: 2.3.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       rimraf:
         specifier: ^6.1.3
@@ -642,7 +642,7 @@ importers:
         specifier: ^7.8.5
         version: 7.8.5
       styled-components:
-        specifier: ^6.5.3
+        specifier: ^6.6.0
         version: 6.6.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       stylis:
         specifier: 4.2.0
@@ -718,11 +718,11 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0(encoding@0.1.13)
       prettier:
-        specifier: 3.9.9
-        version: 3.9.9
+        specifier: 3.9.10
+        version: 3.9.10
       raw-loader:
         specifier: 4.0.2
-        version: 4.0.2(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)(uglify-js@3.19.3))
+        version: 4.0.2(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.30)(uglify-js@3.19.3))
       sharp:
         specifier: 0.35.5
         version: 0.35.5(@types/node@22.20.5)
@@ -769,8 +769,8 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       prettier:
-        specifier: ^3.9.9
-        version: 3.9.9
+        specifier: ^3.9.10
+        version: 3.9.10
       react-docgen:
         specifier: ^8.0.4
         version: 8.0.4(supports-color@11.0.0)
@@ -860,13 +860,13 @@ importers:
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0)
       '@mui/internal-docs-infra':
         specifier: 0.13.1-canary.17
-        version: 0.13.1-canary.17(@types/react@19.3.0)(next@16.4.0(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)
+        version: 0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.10)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../markdown
       '@mui/material-nextjs':
         specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta || ^10.0.0-alpha
-        version: 9.3.0(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@emotion/server@11.11.0(@emotion/css@11.13.5(supports-color@11.0.0)))(@types/react@19.3.0)(next@16.4.0(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)
+        version: 9.3.0(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@emotion/server@11.11.0(@emotion/css@11.13.5(supports-color@11.0.0)))(@types/react@19.3.0)(next@16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)
       '@mui/stylis-plugin-rtl':
         specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta || ^10.0.0-alpha
         version: 10.0.0-alpha.0(stylis@4.2.0)
@@ -947,8 +947,8 @@ importers:
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
       next:
-        specifier: 16.4.0
-        version: 16.4.0(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: 16.4.2
+        version: 16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       typescript:
         specifier: npm:@typescript/typescript6@6.0.2
         version: '@typescript/typescript6@6.0.2'
@@ -973,8 +973,8 @@ importers:
         specifier: ^1.52.0
         version: 1.52.0
       marked:
-        specifier: ^18.1.0
-        version: 18.1.0
+        specifier: ^18.1.1
+        version: 18.1.1
       prismjs:
         specifier: ^1.30.0
         version: 1.30.0
@@ -998,7 +998,7 @@ importers:
         version: 7.29.8
       '@mui/internal-docs-infra':
         specifier: 0.13.1-canary.17
-        version: 0.13.1-canary.17(@types/react@19.3.0)(next@16.4.0(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)
+        version: 0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.10)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:../docs-utils/build
@@ -1034,8 +1034,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3
       prettier:
-        specifier: 3.9.9
-        version: 3.9.9
+        specifier: 3.9.10
+        version: 3.9.10
       rimraf:
         specifier: 6.1.3
         version: 6.1.3
@@ -1064,11 +1064,11 @@ importers:
         specifier: ^1.0.11
         version: 1.0.11(jscodeshift@17.4.0(@babel/preset-env@7.29.7(@babel/core@7.29.7(supports-color@11.0.0))(supports-color@11.0.0))(supports-color@11.0.0))(supports-color@11.0.0)
       postcss:
-        specifier: ^8.5.29
-        version: 8.5.29
+        specifier: ^8.5.30
+        version: 8.5.30
       postcss-cli:
         specifier: ^12.0.0
-        version: 12.0.0(jiti@2.7.0)(postcss@8.5.29)(tsx@4.23.15)(yaml@2.9.1)
+        version: 12.0.0(jiti@2.7.0)(postcss@8.5.30)(tsx@4.23.15)(yaml@2.9.1)
       yargs:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1314,8 +1314,8 @@ importers:
         specifier: 19.3.0
         version: 19.3.0
       next:
-        specifier: 16.4.0
-        version: 16.4.0(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: 16.4.2
+        version: 16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react:
         specifier: 19.3.0
         version: 19.3.0
@@ -4830,60 +4830,60 @@ packages:
     resolution: {integrity: sha512-PVvY1EEN9i2Er0LQoiyNG7i/BnwnttLuZqIkBnhL2Jrcj3P5N/NcGkv1i20MJ2ngNGSPQcT7tagDmF3V6BsdWg==}
     engines: {node: '>=22.12.0'}
 
-  '@next/env@16.4.0':
-    resolution: {integrity: sha512-pyLlT5oafGlX8X7xjgGNXz5dNIDSxREm+qD6i9VLSZiZFopA/XWl8NM/KPmLx/8EG/++c49iid3gNWSQW1+2dQ==}
+  '@next/env@16.4.2':
+    resolution: {integrity: sha512-nTUTFH7G5/J/fmpkjVLegOkqyKOP0CEsJcMsyO4UCYeN1su+YMW/MfaSErnJskL7XM+UDK6aTvslxsRCyya/sA==}
 
-  '@next/eslint-plugin-next@16.4.0':
-    resolution: {integrity: sha512-ffeflB/dL8RrvWejQximw01pOpKHN692Y3FjDB82DCd0YVvXvBD6vY7mcZp27yvSVFVM6wA73xVodEKF4spizA==}
+  '@next/eslint-plugin-next@16.4.2':
+    resolution: {integrity: sha512-gCTWlw0e+Y6kajpFyKKgA195jUJCRhlzJE0lV7ufe8a+ghIsANWZ0/FiJwg6DuOG1+OvRbcZDcFBoRh3mNJx0g==}
 
-  '@next/swc-darwin-arm64@16.4.0':
-    resolution: {integrity: sha512-yyZ+9MgViAKLLb5l1gPBGjRwnq3teNLb5Zx6JEw8LzNSTjlsnp+baUHFxTgl7PpjCmKf48VQfyipG1eBflb48Q==}
+  '@next/swc-darwin-arm64@16.4.2':
+    resolution: {integrity: sha512-ONkhFvZNFWlsEHOM/81AtxdyuJP2KRYKYR0JxPwvcu1AuPMMMgcL+wW2luldJvMtZwKtUxoSkCychW5wIeoYSw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@next/swc-darwin-x64@16.4.0':
-    resolution: {integrity: sha512-RePEEejEj1Auf5s9qEcG0JbcDP3ceNUS/ofNX8AhxzgIjTVlZIHMatlp16YplcSMpsVo/ZMQHJTjbMYJznjGUg==}
+  '@next/swc-darwin-x64@16.4.2':
+    resolution: {integrity: sha512-luPCMbOsCoaF+kXJEUjmjmOZg1lC3BflhmUu+ZmW4tBu2vW/4AXak8JBFvePizGkxVmNiAw/r9ra+6UviCWtWQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
 
-  '@next/swc-linux-arm64-gnu@16.4.0':
-    resolution: {integrity: sha512-HhsyCqd+NpmvDDVY/LqkAN24f+QVvXh3ie+PfcwKinWL2Mu826JymQxJXGjAIfmJ4VlHjp4Pe/nZtXtUoEMAqw==}
+  '@next/swc-linux-arm64-gnu@16.4.2':
+    resolution: {integrity: sha512-xhwFTAncJyaCNy5KqKKuKaIIdCy1/1ZV1s5S1G0hhT7wGMkDTlfJ6aQbfRFnIG/s3/kDrxQ8aycVe+c5QnP8ow==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@next/swc-linux-arm64-musl@16.4.0':
-    resolution: {integrity: sha512-sN9Pf+Zh+RpZAOmbR7d8KAA8T61CVhawtbEJ2Bk6QrRzx6Z/6haaF4UiwBzytM96GRRRWZh9/WALIEO3npMamA==}
+  '@next/swc-linux-arm64-musl@16.4.2':
+    resolution: {integrity: sha512-T1PNmfbPcxr5ndtWUL/3wQtLXsz808lq6sc2GrNT5k2oquF7UyqZddHSuAewHVsWsGXe6nsl9HoN1YNriVjuSg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@next/swc-linux-x64-gnu@16.4.0':
-    resolution: {integrity: sha512-D5M5xLWQVd1CvR+L7BickM1weRfmM41x3L1NWcnKY/oyJJqr1qwaCgmu3dMAhLBOMdZwSuDCRV6DJRRpiUkbDQ==}
+  '@next/swc-linux-x64-gnu@16.4.2':
+    resolution: {integrity: sha512-N9cDUOCGtkJG5PNKDFZUF3xXndrJJcpLp121uAGjIGvO/U2p9tfdNOM9htj7+5f72l0m8rMw/cvYacUJBQoudg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@next/swc-linux-x64-musl@16.4.0':
-    resolution: {integrity: sha512-8d5WLS6a9YalqpOgXdlbvonFu+sIgjA+CO6tGzetrpPVcUL56foa7B7664h41rAlbLi5fJwK4vWji3zf4QDy+w==}
+  '@next/swc-linux-x64-musl@16.4.2':
+    resolution: {integrity: sha512-yY2uh1YhX6ufuYy2FCbw1dqblbhI57GLYAJfCkqD9auTv6pLrH67Uccjc3QMKBeCYAG6lkgu08ExmX1bbjejjQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@next/swc-win32-arm64-msvc@16.4.0':
-    resolution: {integrity: sha512-sQuOIiW3snb48UwrBcDMvFA/u03qtw2LeuSIxFIQ9AJuW9UG/4Ddsfo+eV73PnZwBhyncMtsKVh7PrzMol2/fA==}
+  '@next/swc-win32-arm64-msvc@16.4.2':
+    resolution: {integrity: sha512-j/ArWRIHpMMB6wYLMhr2puTguBt70lNU/Cmjl9p6dTDE8DGknYJMP9PdwPk2dqpCNL/KIX9yfngDvIesxJPmsg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@next/swc-win32-x64-msvc@16.4.0':
-    resolution: {integrity: sha512-6/33lCuxpdHUy27RegyGM/5uTpF7YZd3UR4D0gpkOA/tWY5YR7msbQjqPgCZmSmxrrTLGCXYA4A8vT2H5DPGTQ==}
+  '@next/swc-win32-x64-msvc@16.4.2':
+    resolution: {integrity: sha512-AA4edyWHDko3NCSo0x6GomsdgFb0oR1J3MXU1b5xt6FRFg4AucrMPW3S0hCe/9onU0O1BbpGQBsqo1r0Gneu1g==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -5676,22 +5676,22 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7 || ^8
 
-  '@tanstack/query-core@5.104.1':
-    resolution: {integrity: sha512-TiRghcrGkUTE+M4JBxvpPSpBhxvIzQairw+cksrHYGr+2uwC77yW1SY9nYxnYRYOppvucf8rEg6b5byoz4rTpw==}
+  '@tanstack/query-core@5.104.3':
+    resolution: {integrity: sha512-DZY9TuJAOgU3UyHUhXb4CcTYEHNZszlwkPg4VViIwTxOKzLprPUU+rbaPZQd3srqkGOtpaDdKpW972UV/LKlcg==}
 
-  '@tanstack/react-query@5.104.1':
-    resolution: {integrity: sha512-Zz70EgjahNI7aCz8BZxM3vUGU44ycxEAzMuCUjLeA7SVhhOkg3ZgPjPJPvHjs6Rmky/dtmnu1WzjGHNHmhCoZQ==}
+  '@tanstack/react-query@5.104.3':
+    resolution: {integrity: sha512-5Ts1ImwJKqoJgPkLxl9WrPQy1JEoEmti3MaaODCfBamHUGFk57IFrc+AIksPq+BAm10EsroX56qm398Z42LG7w==}
     peerDependencies:
       react: ^18 || ^19
 
-  '@tanstack/react-virtual@3.14.13':
-    resolution: {integrity: sha512-JbDTAwtzZ99aOeCrAfW5EsE5KSq5RWh6Af2dtFwyLIIk48Ja7vm6n4axu/43T3vfjFnEGJalxJ1wyYjSQD6bSg==}
+  '@tanstack/react-virtual@3.14.20':
+    resolution: {integrity: sha512-9hbhFlc0lznjXmWYDB/KEl7PJxEPz0Qnj2FzJFse98miGvXtx7jzjE5jlasmtczmZ6TxXsyI4v7PuyGQm2q1nQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
-  '@tanstack/virtual-core@3.17.11':
-    resolution: {integrity: sha512-+ILjvtHup6Y2hzQ6YzwMgX1Q+oQpxEGOXCEsCNaPoIP0VxMbizIBTmYTDtkerkIQS8/CbP1BRuyt8V/8BCsy1g==}
+  '@tanstack/virtual-core@3.19.5':
+    resolution: {integrity: sha512-X/wq6DtSK/XClznMM+I4JE63yyIwmyPk4Ts83bD0VKaIbwHNdRsO5QipCPX+3OovqYyr0puQNpbmp8+SPhspNg==}
 
   '@testing-library/dom@10.4.2':
     resolution: {integrity: sha512-yzr2S9HyAIdhz2/6qHgbs665Q7PKVcDF05vsOlHPxG1mo36gKVesdYVeDLnXgfjJ03CrKRk08knc6+E/9m8v2Q==}
@@ -6864,8 +6864,8 @@ packages:
   camelize@1.0.1:
     resolution: {integrity: sha512-dU+Tx2fsypxTgtLoE36npi3UqcjSSMNYfkqgmoEhtZrraP5VWq0K7FkWVTYa8eMPtnU/G2txVsfdCJTn9uzpuQ==}
 
-  caniuse-lite@1.0.30001815:
-    resolution: {integrity: sha512-uDybUEyfgbyJJ93J1vikTylBX31AkdVYeVPeffMQpf8XN7hSfr0oZOn4VFOIMNvtU5+rHvC5Udg2TgtJKHm23Q==}
+  caniuse-lite@1.0.30001816:
+    resolution: {integrity: sha512-+8Yx7BXCoqk6IF8yTicjfUR6D/ldJzdlsodlEOiOSPmhK844WIgk67/zIQaGAOxNkZyyvBlrRFnLvqKIoqbAFw==}
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -7541,8 +7541,8 @@ packages:
     resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
     engines: {node: '>=12'}
 
-  dotenv@18.0.7:
-    resolution: {integrity: sha512-QEvMEF8ca3GNZJJnAbOgxpj5ULhBvnMcURp+XKrtvqFNPgjBvYoswQ0Jl2cO7JzCjxZjJhr9ZuIEhlrRxMft/Q==}
+  dotenv@18.0.8:
+    resolution: {integrity: sha512-2KDeoFoK/zRtcnbunCDlLG5VWVMcyqeQc6iK65o231nfNAcuGrKoqUQfJFUtBI+QlShk5HKIHxwebBtUl3rEfA==}
     engines: {node: '>=12'}
     hasBin: true
 
@@ -7949,8 +7949,8 @@ packages:
     resolution: {integrity: sha512-adbxcyWV46qiHyvSp50TKt05tB4tK3HcmF7/nxfAdhnox83seTDbwnaqKO4sXRy7roHAIFqJP/Rw/AuEbX61LA==}
     engines: {node: '>=6'}
 
-  execa@10.1.0:
-    resolution: {integrity: sha512-5HT/600HqXEtmkb9mK/PkTWw+bQSCzPnWiZ4/87wD3Hi0wFzCapOuNT9p4M08PDd+KLHdHvFhKjOWmNx/npRNQ==}
+  execa@10.1.1:
+    resolution: {integrity: sha512-yJAC9ulsE6fU0K6wzJBIH+wI+KAtMeu6Ck8rs23OVzvEhqXjGADdI6K+YNIDAjcQQ6AwXTD96cKExJo6xFJXyg==}
     engines: {node: '>=22'}
 
   execa@5.0.0:
@@ -9411,8 +9411,8 @@ packages:
     peerDependencies:
       marked: '>=1 <16'
 
-  marked@18.1.0:
-    resolution: {integrity: sha512-PamYXWWWg2nboG3oX5Ffzpy3EFZROqZJK9hSlMmUnekp7TxPs5DcT95vwd46m73/exfKCRVMtgXoPMI4FEJL6w==}
+  marked@18.1.1:
+    resolution: {integrity: sha512-zEGgrtUG8crk+TrMacJSVABU4DYDDkS8uqgU3ohrn/2fW9C2AEfUrO3m6IhpIpQpl7YcVpiXXC9cSMWDANT3dg==}
     engines: {node: '>= 20'}
     hasBin: true
 
@@ -9836,8 +9836,8 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  next@16.4.0:
-    resolution: {integrity: sha512-N2C+9q89Z/oLrsepSRS4jRMtwmUZAoZuAHU0e9T6+sAB5DdhADmrnOW+zjYijlrYFmVfmQhGVGy9eMFoB7UgKg==}
+  next@16.4.2:
+    resolution: {integrity: sha512-r+oBJojfefUjOiWkBhXgLS+igxX/7BWyK59uHnyOyplMSLtBZ+QLP3okrdYTbrfrbrmNTVWLBPaHDX9KRaIt3w==}
     engines: {node: '>=20.9.0'}
     hasBin: true
     peerDependencies:
@@ -10397,8 +10397,8 @@ packages:
     peerDependencies:
       postcss: ^8.0.0
 
-  postcss-import@17.0.0:
-    resolution: {integrity: sha512-qzVMJhcq39KweT7Fp0HcjE5YxL5yI854Q3CtufxDuZKO9HLQUp2rptB9+U0MIj3pT1ZEVXoqnpeC1mSkfYuz4Q==}
+  postcss-import@17.0.1:
+    resolution: {integrity: sha512-lthLZRa+sMc/xo+lG7TMUvOviwP9ngR0VULnvfXTyOE3JIc0mFrbjcubI6Jx52X+B3IKt9yfp6wwVWE768JezA==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       postcss: ^8.0.0
@@ -10474,8 +10474,8 @@ packages:
     resolution: {integrity: sha512-g50586zr4bZmwFiTlflMu8E0bDTb5I5gertgwAKmsdUlTQIhZtunzUlD1WSzwcVWPoAVpsrA6vlfCD7oXvRwgg==}
     engines: {node: ^10 || ^12 || >=14}
 
-  postcss@8.5.29:
-    resolution: {integrity: sha512-49cGhUbXj8Qenv0iTMxA1cFBzxXoctpC9Ujd77t1WcbJIr6nF/eI7g/8MgxrYldFRuAXvja7xQRwavoW7kgrxQ==}
+  postcss@8.5.30:
+    resolution: {integrity: sha512-zkd+e9S1AQHhmaBKye9zlFHWjOwVgqXl1q3ECYy8561K7qxR2cREf/STLskulBFd78k6AOFeA+ff1TtEzk9bAA==}
     engines: {node: ^10 || ^12 || >=14}
 
   powershell-utils@0.1.0:
@@ -10490,8 +10490,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier@3.9.9:
-    resolution: {integrity: sha512-Z/CJHIkdujO/OtN7nXUii0Rf3VT5SRuhjBA82Xvu2XhBUgX3nhP67T0LHceBdQLex7OOFGTox+Q5Yg8Jk2Qivg==}
+  prettier@3.9.10:
+    resolution: {integrity: sha512-skGHTH1Yb9QvaTC4hWnRTzEYtCpApF0UMBPz+t/0ZPzP8ihefo/btKd+QA7pUE0fEwA1SbS/NmhyEcstdXOIdA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -10748,8 +10748,8 @@ packages:
       react: '>=16.6.0'
       react-dom: '>=16.6.0'
 
-  react-virtuoso@4.18.16:
-    resolution: {integrity: sha512-BumVOhd0mNKlBkqeHojlLP8IRlJ2oYU7haU92GvBSlSzcdlWUAxIu1gphKm5gLQm07gMzmoQRXdVQeiG4TKSeQ==}
+  react-virtuoso@4.18.19:
+    resolution: {integrity: sha512-dewyZisA5IiQTldh7eHM5KpI+qxi0nKRVYi2iM01XmPkNa5tjvVUKJKAIc6ted1hAK1/NFlXuhXpVYqGHHdcdQ==}
     peerDependencies:
       react: '>=16 || >=17 || >= 18 || >= 19'
       react-dom: '>=16 || >=17 || >= 18 || >=19'
@@ -14124,34 +14124,34 @@ snapshots:
       '@csstools/css-parser-algorithms': 4.0.2(@csstools/css-tokenizer@4.0.2)
       '@csstools/css-tokenizer': 4.0.2
 
-  '@csstools/postcss-light-dark-function@3.0.7(postcss@8.5.29)':
+  '@csstools/postcss-light-dark-function@3.0.7(postcss@8.5.30)':
     dependencies:
       '@csstools/css-parser-algorithms': 4.0.2(@csstools/css-tokenizer@4.0.2)
       '@csstools/css-tokenizer': 4.0.2
-      '@csstools/postcss-progressive-custom-properties': 5.1.4(postcss@8.5.29)
-      '@csstools/utilities': 3.0.0(postcss@8.5.29)
-      postcss: 8.5.29
+      '@csstools/postcss-progressive-custom-properties': 5.1.4(postcss@8.5.30)
+      '@csstools/utilities': 3.0.0(postcss@8.5.30)
+      postcss: 8.5.30
 
-  '@csstools/postcss-progressive-custom-properties@5.1.4(postcss@8.5.29)':
+  '@csstools/postcss-progressive-custom-properties@5.1.4(postcss@8.5.30)':
     dependencies:
-      postcss: 8.5.29
+      postcss: 8.5.30
       postcss-value-parser: 4.2.0
 
-  '@csstools/postcss-relative-color-syntax@4.0.15(postcss@8.5.29)':
+  '@csstools/postcss-relative-color-syntax@4.0.15(postcss@8.5.30)':
     dependencies:
       '@csstools/css-color-parser': 4.2.6(@csstools/css-parser-algorithms@4.0.2(@csstools/css-tokenizer@4.0.2))(@csstools/css-tokenizer@4.0.2)
       '@csstools/css-parser-algorithms': 4.0.2(@csstools/css-tokenizer@4.0.2)
       '@csstools/css-tokenizer': 4.0.2
-      '@csstools/postcss-progressive-custom-properties': 5.1.4(postcss@8.5.29)
-      '@csstools/utilities': 3.0.0(postcss@8.5.29)
-      postcss: 8.5.29
+      '@csstools/postcss-progressive-custom-properties': 5.1.4(postcss@8.5.30)
+      '@csstools/utilities': 3.0.0(postcss@8.5.30)
+      postcss: 8.5.30
 
-  '@csstools/postcss-stepped-value-functions@5.0.9(postcss@8.5.29)':
+  '@csstools/postcss-stepped-value-functions@5.0.9(postcss@8.5.30)':
     dependencies:
       '@csstools/css-calc': 3.4.3(@csstools/css-parser-algorithms@4.0.2(@csstools/css-tokenizer@4.0.2))(@csstools/css-tokenizer@4.0.2)
       '@csstools/css-parser-algorithms': 4.0.2(@csstools/css-tokenizer@4.0.2)
       '@csstools/css-tokenizer': 4.0.2
-      postcss: 8.5.29
+      postcss: 8.5.30
 
   '@csstools/selector-resolve-nested@4.0.1(postcss-selector-parser@7.1.5)':
     dependencies:
@@ -14161,9 +14161,9 @@ snapshots:
     dependencies:
       postcss-selector-parser: 7.1.5
 
-  '@csstools/utilities@3.0.0(postcss@8.5.29)':
+  '@csstools/utilities@3.0.0(postcss@8.5.30)':
     dependencies:
-      postcss: 8.5.29
+      postcss: 8.5.30
 
   '@dmsnell/diff-match-patch@1.1.0': {}
 
@@ -14946,7 +14946,7 @@ snapshots:
       '@octokit/rest': 22.0.1
       chalk: 6.0.1
       env-ci: 11.2.0
-      execa: 10.1.0
+      execa: 10.1.1
       git-url-parse: 16.1.0
       micromatch: 4.0.8
       piscina: 5.3.2
@@ -14970,7 +14970,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@mui/internal-code-infra@0.1.1-canary.17(@next/eslint-plugin-next@16.4.0(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0)))(@octokit/core@7.0.7)(@types/node@22.20.5)(@typescript-eslint/eslint-plugin@8.71.1(@typescript-eslint/parser@8.71.1(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.71.1(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.29)(prettier@3.9.9)(stylelint@17.16.0(@typescript/typescript6@6.0.2)(supports-color@11.0.0))(supports-color@11.0.0)(vitest@5.0.0)':
+  '@mui/internal-code-infra@0.1.1-canary.17(@next/eslint-plugin-next@16.4.2(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0)))(@octokit/core@7.0.7)(@types/node@22.20.5)(@typescript-eslint/eslint-plugin@8.71.1(@typescript-eslint/parser@8.71.1(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.71.1(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.30)(prettier@3.9.10)(stylelint@17.16.0(@typescript/typescript6@6.0.2)(supports-color@11.0.0))(supports-color@11.0.0)(vitest@5.0.0)':
     dependencies:
       '@argos-ci/core': 6.8.7(@types/node@22.20.5)(supports-color@11.0.0)
       '@babel/cli': 8.0.6(@babel/core@8.0.7)
@@ -14992,7 +14992,7 @@ snapshots:
       '@mui/internal-babel-plugin-minify-errors': 3.0.1-canary.2(@babel/core@8.0.7)
       '@mui/internal-babel-plugin-resolve-imports': 3.0.1-canary.3(@babel/core@8.0.7)
       '@napi-rs/keyring': 2.1.0
-      '@next/eslint-plugin-next': 16.4.0(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))
+      '@next/eslint-plugin-next': 16.4.2(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))
       '@octokit/auth-action': 6.0.3
       '@octokit/oauth-methods': 6.0.5
       '@octokit/plugin-retry': 8.1.1(@octokit/core@7.0.7)
@@ -15027,7 +15027,7 @@ snapshots:
       eslint-plugin-react-compiler: 19.1.0-rc.2(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0)
       eslint-plugin-react-hooks: 7.1.1(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0)
       eslint-plugin-testing-library: 7.16.2(@typescript/typescript6@6.0.2)(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0)
-      execa: 10.1.0
+      execa: 10.1.1
       git-url-parse: 16.1.0
       globals: 17.13.0
       globby: 16.2.4
@@ -15035,8 +15035,8 @@ snapshots:
       minimatch: 10.2.6
       node-html-parser: 9.0.4
       open: 11.0.4
-      postcss-styled-syntax: 0.7.3(postcss@8.5.29)
-      prettier: 3.9.9
+      postcss-styled-syntax: 0.7.3(postcss@8.5.30)
+      prettier: 3.9.10
       regexp.escape: 2.0.1
       rehype-slug: 6.0.0
       rehype-stringify: 10.0.1
@@ -15086,34 +15086,34 @@ snapshots:
       - supports-color
       - vitest
 
-  '@mui/internal-docs-infra@0.13.1-canary.17(@types/react@19.3.0)(next@16.4.0(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)':
+  '@mui/internal-docs-infra@0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.10)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)':
     dependencies:
       '@babel/runtime': 8.0.7
-      '@csstools/postcss-light-dark-function': 3.0.7(postcss@8.5.29)
-      '@csstools/postcss-relative-color-syntax': 4.0.15(postcss@8.5.29)
-      '@csstools/postcss-stepped-value-functions': 5.0.9(postcss@8.5.29)
+      '@csstools/postcss-light-dark-function': 3.0.7(postcss@8.5.30)
+      '@csstools/postcss-relative-color-syntax': 4.0.15(postcss@8.5.30)
+      '@csstools/postcss-stepped-value-functions': 5.0.9(postcss@8.5.30)
       '@orama/orama': 3.1.18
       '@orama/plugin-qps': 3.1.18
       '@orama/stemmers': 3.1.18
       '@wooorm/starry-night': 3.11.0
-      autoprefixer: 10.6.1(postcss@8.5.29)
+      autoprefixer: 10.6.1(postcss@8.5.30)
       chalk: 6.0.1
       es-toolkit: 1.52.0
       fflate: 0.8.3
       hast-util-to-jsx-runtime: 2.3.6(supports-color@11.0.0)
       hast-util-to-text: 4.0.2
-      icss-utils: 5.1.0(postcss@8.5.29)
+      icss-utils: 5.1.0(postcss@8.5.30)
       import-meta-resolve: 4.2.0
       jiti: 2.7.0
       jsondiffpatch: 0.7.6
       kebab-case: 2.0.2
       lz-string: 1.5.0
       path-module: 0.1.2
-      postcss: 8.5.29
-      postcss-modules-extract-imports: 3.1.0(postcss@8.5.29)
-      postcss-modules-local-by-default: 4.2.0(postcss@8.5.29)
-      postcss-modules-scope: 3.2.1(postcss@8.5.29)
-      postcss-modules-values: 4.0.0(postcss@8.5.29)
+      postcss: 8.5.30
+      postcss-modules-extract-imports: 3.1.0(postcss@8.5.30)
+      postcss-modules-local-by-default: 4.2.0(postcss@8.5.30)
+      postcss-modules-scope: 3.2.1(postcss@8.5.30)
+      postcss-modules-values: 4.0.0(postcss@8.5.30)
       proper-lockfile: 4.1.2
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
@@ -15134,39 +15134,39 @@ snapshots:
       zx: 8.8.5
     optionalDependencies:
       '@types/react': 19.3.0
-      next: 16.4.0(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      prettier: 3.9.9
+      next: 16.4.2(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      prettier: 3.9.10
     transitivePeerDependencies:
       - supports-color
 
-  '@mui/internal-docs-infra@0.13.1-canary.17(@types/react@19.3.0)(next@16.4.0(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)':
+  '@mui/internal-docs-infra@0.13.1-canary.17(@types/react@19.3.0)(next@16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prettier@3.9.10)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@11.0.0)':
     dependencies:
       '@babel/runtime': 8.0.7
-      '@csstools/postcss-light-dark-function': 3.0.7(postcss@8.5.29)
-      '@csstools/postcss-relative-color-syntax': 4.0.15(postcss@8.5.29)
-      '@csstools/postcss-stepped-value-functions': 5.0.9(postcss@8.5.29)
+      '@csstools/postcss-light-dark-function': 3.0.7(postcss@8.5.30)
+      '@csstools/postcss-relative-color-syntax': 4.0.15(postcss@8.5.30)
+      '@csstools/postcss-stepped-value-functions': 5.0.9(postcss@8.5.30)
       '@orama/orama': 3.1.18
       '@orama/plugin-qps': 3.1.18
       '@orama/stemmers': 3.1.18
       '@wooorm/starry-night': 3.11.0
-      autoprefixer: 10.6.1(postcss@8.5.29)
+      autoprefixer: 10.6.1(postcss@8.5.30)
       chalk: 6.0.1
       es-toolkit: 1.52.0
       fflate: 0.8.3
       hast-util-to-jsx-runtime: 2.3.6(supports-color@11.0.0)
       hast-util-to-text: 4.0.2
-      icss-utils: 5.1.0(postcss@8.5.29)
+      icss-utils: 5.1.0(postcss@8.5.30)
       import-meta-resolve: 4.2.0
       jiti: 2.7.0
       jsondiffpatch: 0.7.6
       kebab-case: 2.0.2
       lz-string: 1.5.0
       path-module: 0.1.2
-      postcss: 8.5.29
-      postcss-modules-extract-imports: 3.1.0(postcss@8.5.29)
-      postcss-modules-local-by-default: 4.2.0(postcss@8.5.29)
-      postcss-modules-scope: 3.2.1(postcss@8.5.29)
-      postcss-modules-values: 4.0.0(postcss@8.5.29)
+      postcss: 8.5.30
+      postcss-modules-extract-imports: 3.1.0(postcss@8.5.30)
+      postcss-modules-local-by-default: 4.2.0(postcss@8.5.30)
+      postcss-modules-scope: 3.2.1(postcss@8.5.30)
+      postcss-modules-values: 4.0.0(postcss@8.5.30)
       proper-lockfile: 4.1.2
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
@@ -15187,8 +15187,8 @@ snapshots:
       zx: 8.8.5
     optionalDependencies:
       '@types/react': 19.3.0
-      next: 16.4.0(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      prettier: 3.9.9
+      next: 16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      prettier: 3.9.10
     transitivePeerDependencies:
       - supports-color
 
@@ -15222,11 +15222,11 @@ snapshots:
       - vite
       - vitest
 
-  '@mui/material-nextjs@9.3.0(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@emotion/server@11.11.0(@emotion/css@11.13.5(supports-color@11.0.0)))(@types/react@19.3.0)(next@16.4.0(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)':
+  '@mui/material-nextjs@9.3.0(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0))(@emotion/server@11.11.0(@emotion/css@11.13.5(supports-color@11.0.0)))(@types/react@19.3.0)(next@16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)':
     dependencies:
       '@babel/runtime': 7.29.7
       '@emotion/react': 11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@11.0.0)
-      next: 16.4.0(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      next: 16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react: 19.3.0
     optionalDependencies:
       '@emotion/cache': 11.14.0
@@ -15902,37 +15902,37 @@ snapshots:
 
   '@netlify/types@3.2.0': {}
 
-  '@next/env@16.4.0': {}
+  '@next/env@16.4.2': {}
 
-  '@next/eslint-plugin-next@16.4.0(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))':
+  '@next/eslint-plugin-next@16.4.2(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))':
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@10.12.0(jiti@2.7.0)(supports-color@11.0.0))
       fast-glob: 3.3.1
     transitivePeerDependencies:
       - eslint
 
-  '@next/swc-darwin-arm64@16.4.0':
+  '@next/swc-darwin-arm64@16.4.2':
     optional: true
 
-  '@next/swc-darwin-x64@16.4.0':
+  '@next/swc-darwin-x64@16.4.2':
     optional: true
 
-  '@next/swc-linux-arm64-gnu@16.4.0':
+  '@next/swc-linux-arm64-gnu@16.4.2':
     optional: true
 
-  '@next/swc-linux-arm64-musl@16.4.0':
+  '@next/swc-linux-arm64-musl@16.4.2':
     optional: true
 
-  '@next/swc-linux-x64-gnu@16.4.0':
+  '@next/swc-linux-x64-gnu@16.4.2':
     optional: true
 
-  '@next/swc-linux-x64-musl@16.4.0':
+  '@next/swc-linux-x64-musl@16.4.2':
     optional: true
 
-  '@next/swc-win32-arm64-msvc@16.4.0':
+  '@next/swc-win32-arm64-msvc@16.4.2':
     optional: true
 
-  '@next/swc-win32-x64-msvc@16.4.0':
+  '@next/swc-win32-x64-msvc@16.4.2':
     optional: true
 
   '@nodelib/fs.scandir@2.1.5':
@@ -16750,7 +16750,7 @@ snapshots:
       '@alloc/quick-lru': 5.2.0
       '@tailwindcss/node': 4.3.3
       '@tailwindcss/oxide': 4.3.3
-      postcss: 8.5.29
+      postcss: 8.5.30
       tailwindcss: 4.3.3
 
   '@tailwindcss/vite@4.3.3(vite@8.3.4(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.15)(yaml@2.9.0))':
@@ -16760,20 +16760,20 @@ snapshots:
       tailwindcss: 4.3.3
       vite: 8.3.4(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.23.15)(yaml@2.9.0)
 
-  '@tanstack/query-core@5.104.1': {}
+  '@tanstack/query-core@5.104.3': {}
 
-  '@tanstack/react-query@5.104.1(react@19.3.0)':
+  '@tanstack/react-query@5.104.3(react@19.3.0)':
     dependencies:
-      '@tanstack/query-core': 5.104.1
+      '@tanstack/query-core': 5.104.3
       react: 19.3.0
 
-  '@tanstack/react-virtual@3.14.13(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tanstack/react-virtual@3.14.20(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
-      '@tanstack/virtual-core': 3.17.11
+      '@tanstack/virtual-core': 3.19.5
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
 
-  '@tanstack/virtual-core@3.17.11': {}
+  '@tanstack/virtual-core@3.19.5': {}
 
   '@testing-library/dom@10.4.2':
     dependencies:
@@ -17760,13 +17760,13 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  autoprefixer@10.6.1(postcss@8.5.29):
+  autoprefixer@10.6.1(postcss@8.5.30):
     dependencies:
       browserslist: 4.29.3
-      caniuse-lite: 1.0.30001815
+      caniuse-lite: 1.0.30001816
       fraction.js: 5.3.4
       picocolors: 1.1.1
-      postcss: 8.5.29
+      postcss: 8.5.30
       postcss-value-parser: 4.2.0
 
   autosuggest-highlight@3.3.4:
@@ -17968,7 +17968,7 @@ snapshots:
   browserslist@4.29.3:
     dependencies:
       baseline-browser-mapping: 2.11.28
-      caniuse-lite: 1.0.30001815
+      caniuse-lite: 1.0.30001816
       electron-to-chromium: 1.5.452
       node-releases: 2.0.58
       update-browserslist-db: 1.3.4(browserslist@4.29.3)
@@ -18058,7 +18058,7 @@ snapshots:
 
   camelize@1.0.1: {}
 
-  caniuse-lite@1.0.30001815: {}
+  caniuse-lite@1.0.30001816: {}
 
   ccount@2.0.1: {}
 
@@ -18698,7 +18698,7 @@ snapshots:
 
   dotenv@16.4.7: {}
 
-  dotenv@18.0.7: {}
+  dotenv@18.0.8: {}
 
   dunder-proto@1.0.1:
     dependencies:
@@ -19273,7 +19273,7 @@ snapshots:
       signal-exit: 3.0.7
       strip-eof: 1.0.0
 
-  execa@10.1.0:
+  execa@10.1.1:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
       figures: 6.1.0
@@ -19954,9 +19954,9 @@ snapshots:
     dependencies:
       safer-buffer: 2.1.2
 
-  icss-utils@5.1.0(postcss@8.5.29):
+  icss-utils@5.1.0(postcss@8.5.30):
     dependencies:
-      postcss: 8.5.29
+      postcss: 8.5.30
 
   ieee754@1.2.1: {}
 
@@ -20873,7 +20873,7 @@ snapshots:
       node-emoji: 2.2.0
       supports-hyperlinks: 3.2.0
 
-  marked@18.1.0: {}
+  marked@18.1.1: {}
 
   marked@9.1.6: {}
 
@@ -21415,18 +21415,18 @@ snapshots:
 
   minimist@1.2.8: {}
 
-  minimizer-webpack-plugin@5.6.1(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)(uglify-js@3.19.3)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)(uglify-js@3.19.3)):
+  minimizer-webpack-plugin@5.6.1(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.30)(uglify-js@3.19.3)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.30)(uglify-js@3.19.3)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.50.0
-      webpack: 5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)(uglify-js@3.19.3)
+      webpack: 5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.30)(uglify-js@3.19.3)
     optionalDependencies:
       csso: 5.0.5
       esbuild: 0.28.2
       lightningcss: 1.33.0
-      postcss: 8.5.29
+      postcss: 8.5.30
       uglify-js: 3.19.3
 
   minipass-collect@2.0.1:
@@ -21516,25 +21516,25 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next@16.4.0(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+  next@16.4.2(@babel/core@7.29.7(supports-color@11.0.0))(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
     dependencies:
-      '@next/env': 16.4.0
+      '@next/env': 16.4.2
       '@swc/helpers': 0.5.23
       baseline-browser-mapping: 2.11.28
-      caniuse-lite: 1.0.30001815
+      caniuse-lite: 1.0.30001816
       postcss: 8.5.23
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
       styled-jsx: 5.1.6(@babel/core@7.29.7(supports-color@11.0.0))(babel-plugin-macros@3.1.0)(react@19.3.0)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 16.4.0
-      '@next/swc-darwin-x64': 16.4.0
-      '@next/swc-linux-arm64-gnu': 16.4.0
-      '@next/swc-linux-arm64-musl': 16.4.0
-      '@next/swc-linux-x64-gnu': 16.4.0
-      '@next/swc-linux-x64-musl': 16.4.0
-      '@next/swc-win32-arm64-msvc': 16.4.0
-      '@next/swc-win32-x64-msvc': 16.4.0
+      '@next/swc-darwin-arm64': 16.4.2
+      '@next/swc-darwin-x64': 16.4.2
+      '@next/swc-linux-arm64-gnu': 16.4.2
+      '@next/swc-linux-arm64-musl': 16.4.2
+      '@next/swc-linux-x64-gnu': 16.4.2
+      '@next/swc-linux-x64-musl': 16.4.2
+      '@next/swc-win32-arm64-msvc': 16.4.2
+      '@next/swc-win32-x64-msvc': 16.4.2
       '@playwright/test': 1.63.0
       babel-plugin-react-compiler: 1.0.0
       sharp: 0.35.5(@types/node@22.20.5)
@@ -21543,25 +21543,25 @@ snapshots:
       - '@types/node'
       - babel-plugin-macros
 
-  next@16.4.0(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+  next@16.4.2(@babel/core@8.0.7)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
     dependencies:
-      '@next/env': 16.4.0
+      '@next/env': 16.4.2
       '@swc/helpers': 0.5.23
       baseline-browser-mapping: 2.11.28
-      caniuse-lite: 1.0.30001815
+      caniuse-lite: 1.0.30001816
       postcss: 8.5.23
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
       styled-jsx: 5.1.6(@babel/core@8.0.7)(babel-plugin-macros@3.1.0)(react@19.3.0)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 16.4.0
-      '@next/swc-darwin-x64': 16.4.0
-      '@next/swc-linux-arm64-gnu': 16.4.0
-      '@next/swc-linux-arm64-musl': 16.4.0
-      '@next/swc-linux-x64-gnu': 16.4.0
-      '@next/swc-linux-x64-musl': 16.4.0
-      '@next/swc-win32-arm64-msvc': 16.4.0
-      '@next/swc-win32-x64-msvc': 16.4.0
+      '@next/swc-darwin-arm64': 16.4.2
+      '@next/swc-darwin-x64': 16.4.2
+      '@next/swc-linux-arm64-gnu': 16.4.2
+      '@next/swc-linux-arm64-musl': 16.4.2
+      '@next/swc-linux-x64-gnu': 16.4.2
+      '@next/swc-linux-x64-musl': 16.4.2
+      '@next/swc-win32-arm64-msvc': 16.4.2
+      '@next/swc-win32-x64-msvc': 16.4.2
       '@playwright/test': 1.63.0
       babel-plugin-react-compiler: 1.0.0
       sharp: 0.35.5(@types/node@22.20.5)
@@ -22415,14 +22415,14 @@ snapshots:
 
   possible-typed-array-names@1.1.0: {}
 
-  postcss-cli@12.0.0(jiti@2.7.0)(postcss@8.5.29)(tsx@4.23.15)(yaml@2.9.1):
+  postcss-cli@12.0.0(jiti@2.7.0)(postcss@8.5.30)(tsx@4.23.15)(yaml@2.9.1):
     dependencies:
       chokidar: 5.0.0
       dependency-graph: 1.0.0
       picocolors: 1.1.1
-      postcss: 8.5.29
-      postcss-load-config: 6.0.1(jiti@2.7.0)(postcss@8.5.29)(tsx@4.23.15)(yaml@2.9.1)
-      postcss-reporter: 7.1.0(postcss@8.5.29)
+      postcss: 8.5.30
+      postcss-load-config: 6.0.1(jiti@2.7.0)(postcss@8.5.30)(tsx@4.23.15)(yaml@2.9.1)
+      postcss-reporter: 7.1.0(postcss@8.5.30)
       pretty-hrtime: 1.0.3
       read-cache: 1.0.0
       slash: 5.1.0
@@ -22433,61 +22433,61 @@ snapshots:
       - tsx
       - yaml
 
-  postcss-import@17.0.0(postcss@8.5.29):
+  postcss-import@17.0.1(postcss@8.5.30):
     dependencies:
-      postcss: 8.5.29
+      postcss: 8.5.30
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.13
 
-  postcss-load-config@6.0.1(jiti@2.7.0)(postcss@8.5.29)(tsx@4.23.15)(yaml@2.9.1):
+  postcss-load-config@6.0.1(jiti@2.7.0)(postcss@8.5.30)(tsx@4.23.15)(yaml@2.9.1):
     dependencies:
       lilconfig: 3.1.3
     optionalDependencies:
       jiti: 2.7.0
-      postcss: 8.5.29
+      postcss: 8.5.30
       tsx: 4.23.15
       yaml: 2.9.1
 
-  postcss-modules-extract-imports@3.1.0(postcss@8.5.29):
+  postcss-modules-extract-imports@3.1.0(postcss@8.5.30):
     dependencies:
-      postcss: 8.5.29
+      postcss: 8.5.30
 
-  postcss-modules-local-by-default@4.2.0(postcss@8.5.29):
+  postcss-modules-local-by-default@4.2.0(postcss@8.5.30):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.29)
-      postcss: 8.5.29
+      icss-utils: 5.1.0(postcss@8.5.30)
+      postcss: 8.5.30
       postcss-selector-parser: 7.1.5
       postcss-value-parser: 4.2.0
 
-  postcss-modules-scope@3.2.1(postcss@8.5.29):
+  postcss-modules-scope@3.2.1(postcss@8.5.30):
     dependencies:
-      postcss: 8.5.29
+      postcss: 8.5.30
       postcss-selector-parser: 7.1.5
 
-  postcss-modules-values@4.0.0(postcss@8.5.29):
+  postcss-modules-values@4.0.0(postcss@8.5.30):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.29)
-      postcss: 8.5.29
+      icss-utils: 5.1.0(postcss@8.5.30)
+      postcss: 8.5.30
 
-  postcss-reporter@7.1.0(postcss@8.5.29):
+  postcss-reporter@7.1.0(postcss@8.5.30):
     dependencies:
       picocolors: 1.1.1
-      postcss: 8.5.29
+      postcss: 8.5.30
       thenby: 1.4.1
 
-  postcss-safe-parser@7.0.1(postcss@8.5.29):
+  postcss-safe-parser@7.0.1(postcss@8.5.30):
     dependencies:
-      postcss: 8.5.29
+      postcss: 8.5.30
 
   postcss-selector-parser@7.1.5:
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
-  postcss-styled-syntax@0.7.3(postcss@8.5.29):
+  postcss-styled-syntax@0.7.3(postcss@8.5.30):
     dependencies:
-      postcss: 8.5.29
+      postcss: 8.5.30
       typescript: 6.0.3
 
   postcss-value-parser@4.2.0: {}
@@ -22498,7 +22498,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.2
 
-  postcss@8.5.29:
+  postcss@8.5.30:
     dependencies:
       nanoid: 3.3.20
       picocolors: 1.1.1
@@ -22510,7 +22510,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier@3.9.9: {}
+  prettier@3.9.10: {}
 
   pretty-format@27.5.1:
     dependencies:
@@ -22524,14 +22524,14 @@ snapshots:
     dependencies:
       parse-ms: 4.0.0
 
-  pretty-quick@4.2.2(prettier@3.9.9):
+  pretty-quick@4.2.2(prettier@3.9.10):
     dependencies:
       '@pkgr/core': 0.2.10
       ignore: 7.0.6
       mri: 1.2.0
       picocolors: 1.1.1
       picomatch: 4.0.7
-      prettier: 3.9.9
+      prettier: 3.9.10
       tinyexec: 0.3.2
       tslib: 2.8.1
 
@@ -22643,11 +22643,11 @@ snapshots:
       iconv-lite: 0.7.3
       unpipe: 1.0.0
 
-  raw-loader@4.0.2(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)(uglify-js@3.19.3)):
+  raw-loader@4.0.2(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.30)(uglify-js@3.19.3)):
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
-      webpack: 5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)(uglify-js@3.19.3)
+      webpack: 5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.30)(uglify-js@3.19.3)
 
   rc@1.2.8:
     dependencies:
@@ -22772,7 +22772,7 @@ snapshots:
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
 
-  react-virtuoso@4.18.16(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+  react-virtuoso@4.18.19(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
     dependencies:
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
@@ -23799,8 +23799,8 @@ snapshots:
       micromatch: 4.0.8
       normalize-path: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.5.29
-      postcss-safe-parser: 7.0.1(postcss@8.5.29)
+      postcss: 8.5.30
+      postcss-safe-parser: 7.0.1(postcss@8.5.30)
       postcss-selector-parser: 7.1.5
       postcss-value-parser: 4.2.0
       string-width: 8.2.2
@@ -24407,7 +24407,7 @@ snapshots:
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.7
-      postcss: 8.5.29
+      postcss: 8.5.30
       rolldown: 1.2.12
       tinyglobby: 0.2.17
     optionalDependencies:
@@ -24482,7 +24482,7 @@ snapshots:
 
   webpack-sources@3.5.1: {}
 
-  webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)(uglify-js@3.19.3):
+  webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.30)(uglify-js@3.19.3):
     dependencies:
       '@types/estree': 1.0.9
       '@types/json-schema': 7.0.15
@@ -24498,7 +24498,7 @@ snapshots:
       events: 3.3.0
       graceful-fs: 4.2.11
       mime-db: 1.54.0
-      minimizer-webpack-plugin: 5.6.1(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)(uglify-js@3.19.3)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)(uglify-js@3.19.3))
+      minimizer-webpack-plugin: 5.6.1(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.30)(uglify-js@3.19.3)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.30)(uglify-js@3.19.3))
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.3
