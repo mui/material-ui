@@ -367,6 +367,45 @@ describe('<Tooltip />', () => {
     });
   });
 
+  describe.skipIf(isJsdom())('prop: slots.arrow', () => {
+    const CustomArrow = React.forwardRef(function CustomArrow({ ownerState, ...other }, ref) {
+      return <span ref={ref} {...other} />;
+    });
+
+    async function renderWithCustomArrow(placement) {
+      render(
+        <AwayFromRealPointer>
+          <Tooltip
+            arrow
+            open
+            placement={placement}
+            title="Hello World"
+            slots={{ arrow: CustomArrow }}
+            slotProps={{ popper: fixedRightPlacementPopperProps }}
+          >
+            <button type="submit">Anchor</button>
+          </Tooltip>
+        </AwayFromRealPointer>,
+      );
+      await flushEffects();
+      const { arrow } = getTooltipParts();
+      const arrowStyle = getComputedStyle(arrow);
+      return { arrowStyle, em: parseFloat(arrowStyle.fontSize) };
+    }
+
+    it('keeps the default arrow offset on top placement', async () => {
+      const { arrowStyle, em } = await renderWithCustomArrow('top');
+      expect(parseFloat(arrowStyle.marginBottom)).to.be.closeTo(-0.71 * em, 0.05);
+    });
+
+    it('keeps the default arrow box on left placement', async () => {
+      const { arrowStyle, em } = await renderWithCustomArrow('left');
+      expect(parseFloat(arrowStyle.height)).to.be.closeTo(em, 0.05);
+      expect(parseFloat(arrowStyle.width)).to.be.closeTo(0.71 * em, 0.05);
+      expect(parseFloat(arrowStyle.marginRight)).to.be.closeTo(-0.71 * em, 0.05);
+    });
+  });
+
   it('should respond to external events', () => {
     const transitionTimeout = 10;
     const enterDelay = 100;

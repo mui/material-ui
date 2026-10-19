@@ -75,32 +75,32 @@ const TooltipPopper = styled(Popper, {
         style: {
           [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
             top: 0,
-            marginTop: 'calc(-0.71 * var(--_arrowSize))',
+            marginTop: 'calc(-0.71 * var(--_arrowSize, 1em))',
             '&::before': {
               transformOrigin: '0 100%',
             },
           },
           [`&[data-popper-placement*="top"] .${tooltipClasses.arrow}`]: {
             bottom: 0,
-            marginBottom: 'calc(-0.71 * var(--_arrowSize))',
+            marginBottom: 'calc(-0.71 * var(--_arrowSize, 1em))',
             '&::before': {
               transformOrigin: '100% 0',
             },
           },
           [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-            height: 'var(--_arrowSize)',
-            width: 'calc(0.71 * var(--_arrowSize))',
+            height: 'var(--_arrowSize, 1em)',
+            width: 'calc(0.71 * var(--_arrowSize, 1em))',
             insetInlineStart: 0,
-            marginInlineStart: 'calc(-0.71 * var(--_arrowSize))',
+            marginInlineStart: 'calc(-0.71 * var(--_arrowSize, 1em))',
             '&::before': {
               transformOrigin: '100% 100%',
             },
           },
           [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-            height: 'var(--_arrowSize)',
-            width: 'calc(0.71 * var(--_arrowSize))',
+            height: 'var(--_arrowSize, 1em)',
+            width: 'calc(0.71 * var(--_arrowSize, 1em))',
             insetInlineEnd: 0,
-            marginInlineEnd: 'calc(-0.71 * var(--_arrowSize))',
+            marginInlineEnd: 'calc(-0.71 * var(--_arrowSize, 1em))',
             '&::before': {
               transformOrigin: '0 0',
             },
