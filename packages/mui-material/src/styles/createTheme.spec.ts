@@ -353,3 +353,13 @@ const theme = createTheme();
     focusVisible: 'solid',
   });
 }
+
+// `theme.vars.zIndex`, `theme.vars.opacity` and the action opacities are typed as CSS variable strings
+{
+  const varsTheme = createTheme({ cssVariables: true });
+  const zIndexVar: string = varsTheme.vars.zIndex.appBar;
+  const opacityVar: string = varsTheme.vars.opacity.inputPlaceholder;
+  const hoverOpacityVar: string = varsTheme.vars.palette.action.hoverOpacity;
+  // Non-opacity action colors are unchanged
+  const activeColor: string = varsTheme.vars.palette.action.active;
+}
