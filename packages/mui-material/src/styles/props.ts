@@ -108,7 +108,6 @@ import { TableRowProps } from '../TableRow';
 import { TableSortLabelProps } from '../TableSortLabel';
 import { TableFooterProps } from '../TableFooter';
 import { TabProps } from '../Tab';
-import { TabScrollButtonProps } from '../TabScrollButton';
 import { TabsProps } from '../Tabs';
 import { TabScrollButtonProps } from '../TabScrollButton';
 import { TextFieldProps } from '../TextField';
@@ -225,7 +224,6 @@ export interface ComponentsPropsList {
   MuiSwipeableDrawer: SwipeableDrawerProps;
   MuiSwitch: SwitchProps;
   MuiTab: TabProps;
-  MuiTabScrollButton: TabScrollButtonProps;
   MuiTable: TableProps;
   MuiTableBody: TableBodyProps;
   MuiTableCell: TableCellProps;
