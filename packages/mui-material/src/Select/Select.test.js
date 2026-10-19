@@ -2774,6 +2774,41 @@ describe('<Select />', () => {
     });
   });
 
+  it('should not apply MuiNativeSelect theme variants', () => {
+    const theme = createTheme({
+      components: {
+        MuiNativeSelect: {
+          variants: [
+            {
+              props: {
+                variant: 'outlined',
+              },
+              style: {
+                textTransform: 'uppercase',
+              },
+            },
+          ],
+        },
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Select variant="outlined" value="first">
+          <MenuItem value="first" />
+          <MenuItem value="second" />
+        </Select>
+      </ThemeProvider>,
+    );
+
+    expect(container.querySelector(`.${classes.select}`)).not.toHaveComputedStyle({
+      textTransform: 'uppercase',
+    });
+    expect(container.querySelector(`.${classes.icon}`)).not.toHaveComputedStyle({
+      textTransform: 'uppercase',
+    });
+  });
+
   describe('prop: input', () => {
     it('merges `ref` of `Select` and `input`', () => {
       const Input = React.forwardRef(function Input(props, ref) {

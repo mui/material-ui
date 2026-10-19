@@ -18,7 +18,7 @@ export interface NativeSelectClasses {
   disabled: string;
   /** Styles applied to the icon component. */
   icon: string;
-  /** Styles applied to the icon component if the popup is open. */
+  /** This class is never applied, a native select doesn't expose whether its popup is open. */
   iconOpen: string;
   /** Styles applied to the icon component if `variant="filled"`. */
   iconFilled: string;

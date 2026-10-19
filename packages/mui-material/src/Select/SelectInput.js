@@ -9,8 +9,9 @@ import refType from '@mui/utils/refType';
 import useTimeout from '@mui/utils/useTimeout';
 import ownerDocument from '../utils/ownerDocument';
 import Menu from '../Menu/Menu';
-import { StyledSelectSelect, StyledSelectIcon } from '../NativeSelect/NativeSelectInput';
 import { isFilled } from '../InputBase/utils';
+import inputBaseClasses from '../InputBase/inputBaseClasses';
+import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import { styled } from '../zero-styled';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -72,7 +73,7 @@ function isMouseEventInsideElement(event, element) {
   );
 }
 
-const SelectSelect = styled(StyledSelectSelect, {
+const SelectSelect = styled('div', {
   name: 'MuiSelect',
   slot: 'Select',
   overridesResolver: (props, styles) => {
@@ -85,7 +86,29 @@ const SelectSelect = styled(StyledSelectSelect, {
       { [`&.${selectClasses.multiple}`]: styles.multiple },
     ];
   },
-})({
+})(({ theme }) => ({
+  // When interacting quickly, the text can end up selected.
+  // Native select can't be selected either.
+  userSelect: 'none',
+  // Reset
+  borderRadius: 0,
+  cursor: 'pointer',
+  '&:focus': {
+    // Reset Chrome style
+    borderRadius: 0,
+  },
+  [`&.${selectClasses.disabled}`]: {
+    cursor: 'default',
+  },
+  [`& ~ .${inputAdornmentClasses.root}`]: {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    right: 'calc(var(--_caret, 24px) + (var(--_endAdornment, 28px) - 1.5rem)/2)', // 1.5rem is the default icon size
+  },
+  [`.${inputBaseClasses.root}:has(> &)`]: {
+    '--_endAdornment': '0px',
+  },
   // Win specificity over the input base
   [`&.${selectClasses.select}`]: {
     height: 'auto', // Resets for multiple select with chips
@@ -94,16 +117,108 @@ const SelectSelect = styled(StyledSelectSelect, {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
   },
-});
+  variants: [
+    {
+      props: ({ ownerState }) =>
+        ownerState.variant !== 'filled' && ownerState.variant !== 'outlined',
+      style: {
+        [`.${inputBaseClasses.root}:has(> &)`]: {
+          '--_caret': '24px',
+        },
+        [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
+          '--_endAdornment': '28px',
+        },
+        // Bump specificity to allow extending custom inputs
+        '&&&': {
+          paddingRight: 'calc(var(--_caret, 24px) + var(--_endAdornment, 0px))',
+          minWidth: 16, // So it doesn't collapse.
+        },
+      },
+    },
+    {
+      props: {
+        variant: 'filled',
+      },
+      style: {
+        [`.${inputBaseClasses.root}:has(> &)`]: {
+          '--_caret': '32px',
+        },
+        [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
+          '--_endAdornment': '28px',
+        },
+        '&&&': {
+          paddingRight: 'calc(var(--_caret, 32px) + var(--_endAdornment, 0px))',
+        },
+      },
+    },
+    {
+      props: {
+        variant: 'outlined',
+      },
+      style: {
+        [`.${inputBaseClasses.root}:has(> &)`]: {
+          '--_caret': '32px',
+        },
+        [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
+          '--_endAdornment': '28px',
+        },
+        borderRadius: (theme.vars || theme).shape.borderRadius,
+        '&:focus': {
+          borderRadius: (theme.vars || theme).shape.borderRadius, // Reset the reset for Chrome style
+        },
+        '&&&': {
+          paddingRight: 'calc(var(--_caret, 32px) + var(--_endAdornment, 0px))',
+        },
+      },
+    },
+  ],
+}));
 
-const SelectIcon = styled(StyledSelectIcon, {
+const SelectIcon = styled('svg', {
   name: 'MuiSelect',
   slot: 'Icon',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
     return [styles.icon, ownerState.open && styles.iconOpen];
   },
-})({});
+})(({ theme }) => ({
+  // We use a position absolute over a flexbox in order to forward the pointer events
+  // to the input and to support wrapping tags..
+  position: 'absolute',
+  right: 0,
+  // Center vertically, height is 1em
+  top: 'calc(50% - .5em)',
+  // Don't block pointer events on the select under the icon.
+  pointerEvents: 'none',
+  color: (theme.vars || theme).palette.action.active,
+  [`&.${selectClasses.disabled}`]: {
+    color: (theme.vars || theme).palette.action.disabled,
+  },
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.open,
+      style: {
+        transform: 'rotate(180deg)',
+      },
+    },
+    {
+      props: {
+        variant: 'filled',
+      },
+      style: {
+        right: 7,
+      },
+    },
+    {
+      props: {
+        variant: 'outlined',
+      },
+      style: {
+        right: 7,
+      },
+    },
+  ],
+}));
 
 const SelectNativeInput = styled('input', {
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'classes',
@@ -838,7 +953,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   return (
     <React.Fragment>
       <SelectSelect
-        as="div"
         ref={handleDisplayRef}
         tabIndex={tabIndex}
         role="combobox"

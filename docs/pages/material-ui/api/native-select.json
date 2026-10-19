@@ -70,7 +70,7 @@
     {
       "key": "iconOpen",
       "className": "MuiNativeSelect-iconOpen",
-      "description": "Styles applied to the icon component if the popup is open.",
+      "description": "This class is never applied, a native select doesn't expose whether its popup is open.",
       "isGlobal": false
     },
     {
