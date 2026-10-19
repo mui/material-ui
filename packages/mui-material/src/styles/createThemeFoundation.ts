@@ -296,6 +296,9 @@ export interface ColorSystem {
   overlays: Overlays;
 }
 
+type ActionOpacityKey =
+  'hoverOpacity' | 'selectedOpacity' | 'disabledOpacity' | 'focusOpacity' | 'activatedOpacity';
+
 // should not include keys defined in `shouldSkipGeneratingVar` and have value typeof function
 export interface ThemeVars {
   font: ExtractTypographyTokens<TypographyVariants>;
@@ -307,13 +310,18 @@ export interface ThemeVars {
     | 'tonalOffset'
     | 'getContrastText'
     | 'augmentColor'
-  >;
-  opacity: Opacity;
+    | 'action'
+  > & {
+    action: Omit<ColorSystem['palette']['action'], ActionOpacityKey> & {
+      [K in ActionOpacityKey]: string;
+    };
+  };
+  opacity: { [K in keyof Opacity]: string };
   overlays: Overlays;
   shadows: Shadows;
   shape: Shape;
   spacing: string;
-  zIndex: ZIndex;
+  zIndex: { [K in keyof ZIndex]: string };
 }
 
 type Split<T, K extends keyof T = keyof T> = K extends string | number
