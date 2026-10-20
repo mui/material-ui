@@ -312,6 +312,12 @@ describe('<CircularProgress />', () => {
 
         expect(screen.getByRole('progressbar')).not.to.have.attribute('aria-valuenow');
       });
+
+      it('takes an author-supplied accessible name', () => {
+        render(<CircularProgress aria-label="Loading data" />);
+
+        expect(screen.getByRole('progressbar', { name: 'Loading data' })).not.to.equal(null);
+      });
     });
   });
 });
