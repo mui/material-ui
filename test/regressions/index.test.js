@@ -17,11 +17,7 @@ async function main() {
   const screenshotDir = path.resolve(currentDirectory, './screenshots/chrome');
 
   const browser = await chromium.launch({
-    args: [
-      '--font-render-hinting=none',
-      // Skia otherwise picks SIMD code paths per host CPU, which shifts glyph edges.
-      '--disable-skia-runtime-opts',
-    ],
+    args: ['--font-render-hinting=none'],
     // New headless mode of the full Chromium build, so that only Playwright sends input.
     // Under xvfb, a headed browser also gets mouse moves from the X server pointer.
     channel: 'chromium',

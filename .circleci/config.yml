@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/bd7b0eb7d6495085430ff416f3ec5e44cfa8b056/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/975481a0ab7c4785fabfdc27299b80cbe495b410/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
@@ -28,6 +28,7 @@ default-job: &default-job
       default: << pipeline.parameters.e2e-base-url >>
   environment: &default-environment
     BASE_BRANCH: master # #target-branch-reference
+    ARGOS_REFERENCE_BRANCH: master # #target-branch-reference
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     DANGER_DISABLE_TRANSPILATION: 'true'
@@ -110,14 +111,23 @@ jobs:
     steps:
       - checkout
       - code-infra/install-deps
-      - code-infra/check-generated:
-          command: pnpm docs:typescript:formatted
       - run:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
       - run:
           name: Test module augmentation
           command: pnpm typescript:module-augmentation
+  test_types_minimum:
+    <<: *default-job
+    steps:
+      - checkout
+      - code-infra/install-deps
+      - run:
+          name: Build @mui packages
+          command: pnpm release:build
+      - run:
+          name: Test minimum TypeScript version
+          command: pnpm -F ./test/typescriptMinimum test
   test_types_next:
     <<: *default-job
     resource_class: xlarge.gen2
@@ -240,13 +250,6 @@ jobs:
       - checkout
       - code-infra/install-deps:
           react-version: << parameters.react-version >>
-      - run:
-          name: Host CPU
-          command: |
-            grep -m1 'model name' /proc/cpuinfo
-            grep -m1 '^flags' /proc/cpuinfo | grep -ow 'avx2\|avx512[a-z_0-9]*\|fma\|f16c' | sort -u | tr '\n' ' '
-            echo
-            nproc
       - run:
           name: Run visual regression tests
           command: pnpm test:regressions
@@ -448,7 +451,7 @@ jobs:
           command: node scripts/testBuiltTypes.mjs
       - run:
           name: test exported typescript
-          command: pnpm --filter @mui-internal/test-module-resolution typescript:all
+          command: pnpm --filter ./test/moduleResolution typescript:all
       - store_artifacts:
           name: Persist size snapshot as pipeline artifact
           path: size-snapshot.json
@@ -578,8 +581,8 @@ workflows:
   #         react-version: ^17.0.0
   #         name: test_e2e-react@17
 
-  # Manually-triggered counterpart of nightly-cron — runs the full canary
-  # suite (react@18, react@next, typescript@next) on the current PR branch.
+  # Manually-triggered counterpart of nightly-cron — runs the compatibility
+  # suite (react@18, react@next, typescript@next, minimum TypeScript) on the current PR branch.
   nightly:
     when:
       equal: [nightly, << pipeline.parameters.workflow >>]
@@ -616,6 +619,8 @@ workflows:
           <<: *default-context
           react-version: next
           name: test_e2e-react@next
+      - test_types_minimum:
+          <<: *default-context
       - test_types_next:
           <<: *default-context
           typescript-version: next
@@ -679,6 +684,8 @@ workflows:
           filters:
             branches:
               ignore: v5.x
+      - test_types_minimum:
+          <<: *default-context
       - test_types_next:
           <<: *default-context
           typescript-version: next

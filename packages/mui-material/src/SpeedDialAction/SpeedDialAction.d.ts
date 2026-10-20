@@ -79,7 +79,7 @@ export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface SpeedDialActionProps
   extends
-    Omit<StandardProps<Partial<TooltipProps>, 'children'>, 'slotProps' | 'slots'>,
+    StandardProps<Partial<TooltipProps>, 'children' | 'slots' | 'slotProps'>,
     SpeedDialActionSlotsAndSlotProps {
   /**
    * Override or extend the styles applied to the component.

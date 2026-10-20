@@ -373,7 +373,7 @@ export function AppNavDrawerItem(props: AppNavDrawerItemProps) {
         component={subheader ? DeadLink : Link}
         depth={depth}
         hasIcon={hasIcon}
-        // @ts-ignore The actual component is DeadLink or Link, both of which support href
+        // @ts-expect-error: The actual DeadLink or Link component accepts href, unlike the inferred root element.
         href={href}
         prefetch={false}
         subheader={subheader}
