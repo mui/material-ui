@@ -82,14 +82,14 @@ function smokeBenchmark(
   );
 }
 
-smokeBenchmark('Accordion', 20, (index) => (
+smokeBenchmark('Accordion', 40, (index) => (
   <Accordion key={index}>
     <AccordionSummary>Section {index}</AccordionSummary>
     <AccordionDetails>Details {index}</AccordionDetails>
   </Accordion>
 ));
 
-smokeBenchmark('Alert', 30, (index) => (
+smokeBenchmark('Alert', 100, (index) => (
   <Alert key={index} severity={index % 2 === 0 ? 'info' : 'warning'}>
     Message {index}
   </Alert>
@@ -103,17 +103,17 @@ smokeBenchmark('Autocomplete', 20, (index) => (
   />
 ));
 
-smokeBenchmark('Avatar', 50, (index) => (
+smokeBenchmark('Avatar', 500, (index) => (
   <Avatar key={index}>{String.fromCharCode(65 + (index % 26))}</Avatar>
 ));
 
-smokeBenchmark('Badge', 50, (index) => (
+smokeBenchmark('Badge', 200, (index) => (
   <Badge key={index} badgeContent={index} color="primary">
     <span>Inbox</span>
   </Badge>
 ));
 
-smokeBenchmark('Breadcrumbs', 30, (index) => (
+smokeBenchmark('Breadcrumbs', 100, (index) => (
   <Breadcrumbs key={index}>
     <Link href="#home">Home</Link>
     <Link href="#section">Section</Link>
@@ -121,13 +121,13 @@ smokeBenchmark('Breadcrumbs', 30, (index) => (
   </Breadcrumbs>
 ));
 
-smokeBenchmark('Button', 50, (index) => (
+smokeBenchmark('Button', 200, (index) => (
   <Button key={index} variant={index % 2 === 0 ? 'contained' : 'outlined'}>
     Button {index}
   </Button>
 ));
 
-smokeBenchmark('ButtonGroup', 20, (index) => (
+smokeBenchmark('ButtonGroup', 60, (index) => (
   <ButtonGroup key={index}>
     <Button>One</Button>
     <Button>Two</Button>
@@ -135,7 +135,7 @@ smokeBenchmark('ButtonGroup', 20, (index) => (
   </ButtonGroup>
 ));
 
-smokeBenchmark('Card', 30, (index) => (
+smokeBenchmark('Card', 100, (index) => (
   <Card key={index}>
     <CardContent>
       <Typography variant="h6">Card {index}</Typography>
@@ -147,39 +147,39 @@ smokeBenchmark('Card', 30, (index) => (
   </Card>
 ));
 
-smokeBenchmark('Checkbox', 50, (index) => (
+smokeBenchmark('Checkbox', 60, (index) => (
   <FormControlLabel key={index} control={<Checkbox />} label={`Option ${index}`} />
 ));
 
-smokeBenchmark('Chip', 50, (index) => <Chip key={index} label={`Chip ${index}`} />);
+smokeBenchmark('Chip', 250, (index) => <Chip key={index} label={`Chip ${index}`} />);
 
-smokeBenchmark('CircularProgress', 30, (index) => <CircularProgress key={index} />);
+smokeBenchmark('CircularProgress', 200, (index) => <CircularProgress key={index} />);
 
-smokeBenchmark('Divider', 50, (index) => <Divider key={index} />);
+smokeBenchmark('Divider', 800, (index) => <Divider key={index} />);
 
-smokeBenchmark('Fab', 30, (index) => (
+smokeBenchmark('Fab', 200, (index) => (
   <Fab key={index} aria-label={`Add ${index}`} size="small">
     +
   </Fab>
 ));
 
-smokeBenchmark('IconButton', 50, (index) => (
+smokeBenchmark('IconButton', 250, (index) => (
   <IconButton key={index} aria-label={`Action ${index}`}>
     {index % 10}
   </IconButton>
 ));
 
-smokeBenchmark('LinearProgress', 30, (index) => (
+smokeBenchmark('LinearProgress', 300, (index) => (
   <LinearProgress key={index} variant="determinate" value={index % 100} />
 ));
 
-smokeBenchmark('Link', 50, (index) => (
+smokeBenchmark('Link', 400, (index) => (
   <Link key={index} href={`#link-${index}`}>
     Link {index}
   </Link>
 ));
 
-smokeBenchmark('List', 10, (index) => (
+smokeBenchmark('List', 20, (index) => (
   <List key={index}>
     {OPTIONS.map((option) => (
       <ListItem key={option} disablePadding>
@@ -191,7 +191,7 @@ smokeBenchmark('List', 10, (index) => (
   </List>
 ));
 
-smokeBenchmark('MenuList', 10, (index) => (
+smokeBenchmark('MenuList', 20, (index) => (
   <MenuList key={index}>
     {OPTIONS.map((option) => (
       <MenuItem key={option}>{option}</MenuItem>
@@ -201,7 +201,7 @@ smokeBenchmark('MenuList', 10, (index) => (
 
 smokeBenchmark('Pagination', 20, (index) => <Pagination key={index} count={10} />);
 
-smokeBenchmark('Paper', 50, (index) => (
+smokeBenchmark('Paper', 500, (index) => (
   <Paper key={index} elevation={index % 4}>
     Paper {index}
   </Paper>
@@ -215,7 +215,7 @@ smokeBenchmark('Radio', 20, (index) => (
   </RadioGroup>
 ));
 
-smokeBenchmark('Rating', 30, (index) => <Rating key={index} defaultValue={index % 6} />);
+smokeBenchmark('Rating', 40, (index) => <Rating key={index} defaultValue={index % 6} />);
 
 smokeBenchmark('Select', 20, (index) => (
   <Select key={index} defaultValue={OPTIONS[0]}>
@@ -227,9 +227,9 @@ smokeBenchmark('Select', 20, (index) => (
   </Select>
 ));
 
-smokeBenchmark('Slider', 30, (index) => <Slider key={index} defaultValue={index % 100} />);
+smokeBenchmark('Slider', 80, (index) => <Slider key={index} defaultValue={index % 100} />);
 
-smokeBenchmark('Stepper', 20, (index) => (
+smokeBenchmark('Stepper', 40, (index) => (
   <Stepper key={index} activeStep={index % STEPS.length}>
     {STEPS.map((step) => (
       <Step key={step}>
@@ -239,9 +239,9 @@ smokeBenchmark('Stepper', 20, (index) => (
   </Stepper>
 ));
 
-smokeBenchmark('Switch', 50, (index) => <Switch key={index} defaultChecked={index % 2 === 0} />);
+smokeBenchmark('Switch', 100, (index) => <Switch key={index} defaultChecked={index % 2 === 0} />);
 
-smokeBenchmark('Tabs', 20, (index) => (
+smokeBenchmark('Tabs', 30, (index) => (
   <Tabs key={index} value={index % 3}>
     <Tab label="Overview" />
     <Tab label="Details" />
@@ -249,9 +249,9 @@ smokeBenchmark('Tabs', 20, (index) => (
   </Tabs>
 ));
 
-smokeBenchmark('TextField', 30, (index) => <TextField key={index} label={`Field ${index}`} />);
+smokeBenchmark('TextField', 60, (index) => <TextField key={index} label={`Field ${index}`} />);
 
-smokeBenchmark('ToggleButtonGroup', 20, (index) => (
+smokeBenchmark('ToggleButtonGroup', 40, (index) => (
   <ToggleButtonGroup key={index} value={OPTIONS[index % 3]} exclusive>
     {OPTIONS.slice(0, 3).map((option) => (
       <ToggleButton key={option} value={option}>
@@ -263,7 +263,7 @@ smokeBenchmark('ToggleButtonGroup', 20, (index) => (
 
 smokeBenchmark(
   'Tooltip',
-  50,
+  70,
   (index) => (
     <Tooltip key={index} title={`Action ${index}`}>
       <IconButton aria-label={`Action ${index}`}>{index % 10}</IconButton>
@@ -272,7 +272,7 @@ smokeBenchmark(
   INERT_TO_POINTER,
 );
 
-smokeBenchmark('Typography', 50, (index) => (
+smokeBenchmark('Typography', 800, (index) => (
   <Typography key={index} variant={index % 2 === 0 ? 'body1' : 'h6'}>
     Text {index}
   </Typography>
