@@ -100,7 +100,6 @@ export default defineConfig(
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/no-shadow': 'off',
       'react/sort-prop-types': 'off', // 228
-      '@typescript-eslint/ban-ts-comment': 'off', // 117
       '@typescript-eslint/no-require-imports': 'off', // 133
       'react/jsx-filename-extension': 'off',
       // Modern browsers imply rel="noopener" for target="_blank", so no rel is required.
@@ -415,6 +414,17 @@ export default defineConfig(
     files: [`test/e2e/**/*${EXTENSION_TS}`],
     rules: {
       'vitest/prefer-importing-vitest-globals': 'off',
+    },
+  },
+  {
+    // Typed deprecation linting exhausts the CI heap on the docs project.
+    languageOptions: {
+      parserOptions: {
+        projectService: false,
+      },
+    },
+    rules: {
+      '@typescript-eslint/no-deprecated': 'off',
     },
   },
 );
