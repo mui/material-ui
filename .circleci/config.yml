@@ -245,10 +245,6 @@ jobs:
           name: Upload the benchmark report
           # Also after a failed run, so the comment says what happened.
           when: always
-          environment:
-            # TEMPORARY: the dashboard preview of mui/mui-public#1898, since production does not read
-            # version 2 benchmark reports yet. Remove before merging.
-            CI_REPORT_API_URL: https://code-infra-dashboard-pr-1898.onrender.com
           command: pnpm test:benchmark upload
       - save_cache:
           name: Save the packed-baseline cache
