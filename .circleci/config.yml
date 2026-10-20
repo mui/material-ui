@@ -242,12 +242,12 @@ jobs:
           no_output_timeout: 30m
           # Only the smoke benchmarks, to keep a pull request's check short; the other benchmark files
           # are left to manual runs.
-          # TEMPORARY: A/A runs against HEAD~1, which has the same library code; not uploaded.
-          command: pnpm test:benchmark smoke --baseline "$(git rev-parse HEAD~1)"
-      # TEMPORARY: kept to analyze the A/A runs.
-      - store_artifacts:
-          path: test/benchmark/.benchmark/results/report.json
-          destination: benchmark-report.json
+          command: pnpm test:benchmark smoke --baseline "$(cat .benchmark-baseline-sha)"
+      - run:
+          name: Upload the benchmark report
+          # Also after a failed run, so the comment says what happened.
+          when: always
+          command: pnpm test:benchmark upload
       - save_cache:
           name: Save the packed-baseline cache
           key: benchmark-cache-v1-{{ checksum ".benchmark-baseline-sha" }}
