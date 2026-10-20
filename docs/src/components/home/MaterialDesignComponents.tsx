@@ -5,7 +5,8 @@ import {
   ThemeOptions,
   alpha,
   extendTheme,
-  CssVarsProvider,
+  createTheme,
+  ThemeProvider,
 } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
 import Alert from '@mui/material/Alert';
@@ -117,6 +118,8 @@ const Grid = styled('div')(({ theme }) => [
   }),
 ]);
 
+const fallbackTheme = createTheme({ cssVariables: true });
+
 function Demo({
   name,
   children,
@@ -172,13 +175,13 @@ function Demo({
         className="mui-default-theme"
         sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
       >
-        <CssVarsProvider theme={props.theme}>
+        <ThemeProvider theme={props.theme ?? fallbackTheme}>
           {React.cloneElement(children, {
             ...(control && {
               [control.prop]: propValue,
             }),
           })}
-        </CssVarsProvider>
+        </ThemeProvider>
       </Box>
       <Typography variant="body2" sx={{ fontWeight: 'semiBold' }}>
         {name}

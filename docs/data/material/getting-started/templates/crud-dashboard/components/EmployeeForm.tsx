@@ -57,7 +57,7 @@ export default function EmployeeForm(props: EmployeeFormProps) {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const handleSubmit = React.useCallback(
-    async (event: React.FormEvent<HTMLFormElement>) => {
+    async (event: React.SubmitEvent<HTMLFormElement>) => {
       event.preventDefault();
 
       setIsSubmitting(true);

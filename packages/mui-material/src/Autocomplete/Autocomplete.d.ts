@@ -579,8 +579,10 @@ export default function Autocomplete<
     (FreeSolo extends unknown
       ? {
           freeSolo?: FreeSolo | undefined;
+          // Keep undefined so erased props (React.ComponentProps) re-infer both prop modes.
           getOptionValue?:
-            ((option: Value) => MappedValue & AutocompleteMappedValue<FreeSolo>) | undefined;
+            | ((option: Value) => MappedValue & (AutocompleteMappedValue<FreeSolo> | undefined))
+            | undefined;
         }
       : never),
 ): React.JSX.Element;

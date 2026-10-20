@@ -37,10 +37,6 @@
         "status": "pass",
         "tags": ["wcag2a"]
       },
-      "avoid-inline-spacing": {
-        "status": "pass",
-        "tags": ["wcag21aa"]
-      },
       "nested-interactive": {
         "status": "pass",
         "tags": ["wcag2a"]
@@ -217,10 +213,6 @@
         "status": "pass",
         "tags": ["wcag2a"]
       },
-      "avoid-inline-spacing": {
-        "status": "pass",
-        "tags": ["wcag21aa"]
-      },
       "nested-interactive": {
         "status": "pass",
         "tags": ["wcag2a"]
@@ -264,10 +256,6 @@
       "aria-valid-attr-value": {
         "status": "pass",
         "tags": ["wcag2a"]
-      },
-      "avoid-inline-spacing": {
-        "status": "pass",
-        "tags": ["wcag21aa"]
       },
       "color-contrast": {
         "status": "pass",
@@ -416,10 +404,6 @@
       "aria-valid-attr-value": {
         "status": "pass",
         "tags": ["wcag2a"]
-      },
-      "avoid-inline-spacing": {
-        "status": "pass",
-        "tags": ["wcag21aa"]
       },
       "color-contrast": {
         "status": "pass",
