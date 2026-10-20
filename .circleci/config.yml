@@ -240,7 +240,9 @@ jobs:
       - run:
           name: Run the benchmarks
           no_output_timeout: 30m
-          command: pnpm test:benchmark --baseline "$(cat .benchmark-baseline-sha)"
+          # Only the smoke benchmarks, to keep a pull request's check short; the other benchmark files
+          # are left to manual runs.
+          command: pnpm test:benchmark smoke --baseline "$(cat .benchmark-baseline-sha)"
       - run:
           name: Upload the benchmark report
           # Also after a failed run, so the comment says what happened.
