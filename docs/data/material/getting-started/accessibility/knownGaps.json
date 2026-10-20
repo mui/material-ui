@@ -8,7 +8,15 @@
   {
     "gap": "Some default palette colors fall short of contrast minimums",
     "criteria": ["1.4.3", "1.4.11"],
-    "affected": ["Avatar", "Button", "LinearProgress", "Switch", "TextField", "ToggleButton"],
+    "affected": [
+      "Avatar",
+      "Button",
+      { "component": "CircularProgress", "note": "`warning` with `enableTrackSlot`" },
+      "LinearProgress",
+      "Switch",
+      "TextField",
+      "ToggleButton"
+    ],
     "workaround": "Override the affected palette entries"
   },
   {
@@ -22,8 +30,8 @@
     "criteria": ["4.1.3"],
     "affected": [
       { "component": "Button", "note": "`loading`" },
-      "LinearProgress",
       "CircularProgress",
+      "LinearProgress",
       { "component": "TextField", "note": "error" }
     ],
     "workaround": "Render your own `aria-live` region alongside"
@@ -32,20 +40,9 @@
     "gap": "Indefinite animation cannot be paused",
     "criteria": ["2.2.2"],
     "affected": [
-      { "component": "LinearProgress", "note": "`indeterminate`, `query`, `buffer`" },
-      { "component": "CircularProgress", "note": "`indeterminate`" }
+      { "component": "CircularProgress", "note": "`indeterminate`" },
+      { "component": "LinearProgress", "note": "`indeterminate`, `query`, `buffer`" }
     ],
     "workaround": "Show it only while an operation is in flight"
-  },
-  {
-    "gap": "A warning arc against the optional track falls short of 3:1 in light mode",
-    "criteria": ["1.4.11"],
-    "affected": [
-      {
-        "component": "CircularProgress",
-        "note": "`color=\"warning\"` with `enableTrackSlot`"
-      }
-    ],
-    "workaround": "Leave the track off, or darken `palette.warning.main`"
   }
 ]
