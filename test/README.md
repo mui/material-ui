@@ -251,7 +251,6 @@ Possible values for `version`:
 - an older version, for example `^17.0.0`
 
 The command pins `react`, `react-dom`, `react-is`, and `scheduler` (plus `@testing-library/react` for React 17) in the `overrides` field of `pnpm-workspace.yaml`, then runs `pnpm dedupe`.
-It skips versions published within the `minimumReleaseAge` window set in `pnpm-workspace.yaml`, so it may pick an older match, and it fails if no match is old enough.
 
 To go back to the React version from the lockfile, revert those changes and reinstall:
 
