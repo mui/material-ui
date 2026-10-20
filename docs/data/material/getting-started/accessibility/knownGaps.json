@@ -23,6 +23,7 @@
     "affected": [
       { "component": "Button", "note": "`loading`" },
       "LinearProgress",
+      "CircularProgress",
       { "component": "TextField", "note": "error" }
     ],
     "workaround": "Render your own `aria-live` region alongside"
@@ -30,7 +31,21 @@
   {
     "gap": "Indefinite animation cannot be paused",
     "criteria": ["2.2.2"],
-    "affected": [{ "component": "LinearProgress", "note": "`indeterminate`, `query`, `buffer`" }],
+    "affected": [
+      { "component": "LinearProgress", "note": "`indeterminate`, `query`, `buffer`" },
+      { "component": "CircularProgress", "note": "`indeterminate`" }
+    ],
     "workaround": "Show it only while an operation is in flight"
+  },
+  {
+    "gap": "A warning arc against the optional track falls short of 3:1 in light mode",
+    "criteria": ["1.4.11"],
+    "affected": [
+      {
+        "component": "CircularProgress",
+        "note": "`color=\"warning\"` with `enableTrackSlot`"
+      }
+    ],
+    "workaround": "Leave the track off, or darken `palette.warning.main`"
   }
 ]
