@@ -7,7 +7,7 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import useControlled from '../utils/useControlled';
 import useFormControl from '../FormControl/useFormControl';
-import ButtonBase, { ButtonBaseRoot } from '../ButtonBase/ButtonBase';
+import ButtonBase from '../ButtonBase';
 import { getSwitchBaseUtilityClass } from './switchBaseClasses';
 import useSlot from '../utils/useSlot';
 
@@ -22,7 +22,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getSwitchBaseUtilityClass, classes);
 };
 
-export const SwitchBaseRoot = styled(ButtonBaseRoot, {
+const SwitchBaseRoot = styled(ButtonBase, {
   name: 'MuiSwitchBase',
 })({
   padding: 9,
@@ -102,11 +102,6 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     value,
     slots = {},
     slotProps = {},
-    /* eslint-disable react/prop-types */
-    // private props for a parent's `styled(SwitchBaseRoot)` root and owner state, see ButtonBase
-    internalRoot = SwitchBaseRoot,
-    internalOwnerState,
-    /* eslint-enable react/prop-types */
     ...other
   } = props;
   const { nativeButton, ...buttonBaseProps } = other;
@@ -182,7 +177,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
 
   const [RootSlot, rootSlotProps] = useSlot('root', {
     ref,
-    elementType: ButtonBase,
+    elementType: SwitchBaseRoot,
     className: classes.root,
     shouldForwardComponentProp: true,
     externalForwardedProps: {
@@ -238,29 +233,11 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     },
   });
 
-  const content = (
-    <React.Fragment>
+  return (
+    <RootSlot {...rootSlotProps}>
       <InputSlot {...inputSlotProps} />
       {checked ? checkedIcon : icon}
-    </React.Fragment>
-  );
-
-  if (RootSlot !== ButtonBase) {
-    return <RootSlot {...rootSlotProps}>{content}</RootSlot>;
-  }
-
-  const { ownerState: rootOwnerState, ...rootProps } = rootSlotProps;
-
-  return (
-    <ButtonBase
-      {...rootProps}
-      internalRoot={internalRoot}
-      internalOwnerState={
-        internalOwnerState ? { ...rootOwnerState, ...internalOwnerState } : rootOwnerState
-      }
-    >
-      {content}
-    </ButtonBase>
+    </RootSlot>
   );
 });
 

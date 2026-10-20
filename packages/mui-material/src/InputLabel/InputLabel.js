@@ -5,7 +5,6 @@ import composeClasses from '@mui/utils/composeClasses';
 import clsx from 'clsx';
 import { useFormControlState } from '../FormControl/useFormControl';
 import FormLabel, { formLabelClasses } from '../FormLabel';
-import { FormLabelRoot } from '../FormLabel/FormLabel';
 import capitalize from '../utils/capitalize';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
@@ -36,8 +35,8 @@ const useUtilityClasses = (ownerState) => {
   };
 };
 
-const InputLabelRoot = styled(FormLabelRoot, {
-  shouldForwardProp: rootShouldForwardProp,
+const InputLabelRoot = styled(FormLabel, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiInputLabel',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -209,13 +208,12 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <FormLabel
-      internalRoot={InputLabelRoot}
-      internalOwnerState={ownerState}
+    <InputLabelRoot
       data-shrink={shrink}
       ref={ref}
       className={clsx(classes.root, className)}
       {...other}
+      ownerState={ownerState}
       classes={classes}
     />
   );

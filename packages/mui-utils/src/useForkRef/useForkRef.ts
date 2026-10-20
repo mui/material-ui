@@ -21,39 +21,40 @@ export default function useForkRef<Instance>(
 ): React.RefCallback<Instance> | null {
   const cleanupRef = React.useRef<() => void>(undefined);
 
+  const refEffect = React.useCallback((instance: Instance) => {
+    const cleanups = refs.map((ref) => {
+      if (ref == null) {
+        return null;
+      }
+
+      if (typeof ref === 'function') {
+        const refCallback = ref;
+        const refCleanup: void | (() => void) = refCallback(instance);
+        return typeof refCleanup === 'function'
+          ? refCleanup
+          : () => {
+              refCallback(null);
+            };
+      }
+
+      ref.current = instance;
+      return () => {
+        ref.current = null;
+      };
+    });
+
+    return () => {
+      cleanups.forEach((refCleanup) => refCleanup?.());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps, react-hooks/use-memo
+  }, refs);
+
   return React.useMemo(() => {
     if (refs.every((ref) => ref == null)) {
       return null;
     }
 
-    const refEffect = (instance: Instance) => {
-      const cleanups = refs.map((ref) => {
-        if (ref == null) {
-          return null;
-        }
-
-        if (typeof ref === 'function') {
-          const refCallback = ref;
-          const refCleanup: void | (() => void) = refCallback(instance);
-          return typeof refCleanup === 'function'
-            ? refCleanup
-            : () => {
-                refCallback(null);
-              };
-        }
-
-        ref.current = instance;
-        return () => {
-          ref.current = null;
-        };
-      });
-
-      return () => {
-        cleanups.forEach((refCleanup) => refCleanup?.());
-      };
-    };
-
-    return (value: Instance | null) => {
+    return (value) => {
       if (cleanupRef.current) {
         cleanupRef.current();
         cleanupRef.current = undefined;

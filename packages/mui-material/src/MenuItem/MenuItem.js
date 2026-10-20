@@ -9,7 +9,7 @@ import memoTheme from '../utils/memoTheme';
 import { applyInsetFocusVisible } from '../styles/focusVisible';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ListContext from '../List/ListContext';
-import ButtonBase, { ButtonBaseRoot } from '../ButtonBase/ButtonBase';
+import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import focusWithVisible from '../utils/focusWithVisible';
 import useForkRef from '../utils/useForkRef';
@@ -54,8 +54,8 @@ const useUtilityClasses = (ownerState) => {
   };
 };
 
-const MenuItemRoot = styled(ButtonBaseRoot, {
-  shouldForwardProp: rootShouldForwardProp,
+const MenuItemRoot = styled(ButtonBase, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiMenuItem',
   slot: 'Root',
   overridesResolver,
@@ -260,9 +260,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
 
   return (
     <ListContext.Provider value={childContext}>
-      <ButtonBase
-        internalRoot={MenuItemRoot}
-        internalOwnerState={ownerState}
+      <MenuItemRoot
         ref={handleRef}
         role={role}
         aria-checked={ariaChecked}
@@ -274,6 +272,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         className={clsx(classes.root, className)}
         {...other}
+        ownerState={ownerState}
         classes={forwardedClasses}
       />
     </ListContext.Provider>
