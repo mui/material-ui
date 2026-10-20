@@ -21,6 +21,8 @@ async function main() {
     // New headless mode of the full Chromium build, so that only Playwright sends input.
     // Under xvfb, a headed browser also gets mouse moves from the X server pointer.
     channel: 'chromium',
+    // Keep the scrollbars that Playwright hides in headless mode. They are part of the captures.
+    ignoreDefaultArgs: ['--hide-scrollbars'],
   });
 
   /**
