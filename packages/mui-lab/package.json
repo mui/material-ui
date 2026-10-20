@@ -46,8 +46,8 @@
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "@types/sinon": "22.0.0",
-    "react": "19.3.0",
-    "react-dom": "19.3.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "sinon": "22.1.0"
   },
   "peerDependencies": {
