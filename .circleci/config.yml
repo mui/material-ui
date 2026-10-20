@@ -249,7 +249,7 @@ jobs:
             nproc
       - run:
           name: Run visual regression tests
-          command: xvfb-run pnpm test:regressions
+          command: pnpm test:regressions
       - run:
           name: A11y results committed?
           # The react@17/18/next jobs pin React via `package-overrides`, which rewrites
