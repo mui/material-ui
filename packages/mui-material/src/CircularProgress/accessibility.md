@@ -64,7 +64,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 <!-- 1.4.11:start -->
 
-- The arc is a `currentColor` stroke of `palette[color].main` (or `text.primary` for `color="inherit"`). By default there is no track, so the adjacent color is the page. With `enableTrackSlot`, a second circle paints the same color at `action.activatedOpacity` (`0.12` in light mode, `0.24` in dark mode) and is `aria-hidden`.
+- The arc is a `currentColor` stroke. For a named `color`, the root sets that color to `palette[color].main`; `color="inherit"` sets none. By default there is no track, so the adjacent color is the page. With `enableTrackSlot`, a second circle paints the same color at `action.activatedOpacity` (`0.12` in light mode, `0.24` in dark mode) and is `aria-hidden`.
 - Measured from the default theme, arc against page (`#fff` light, `#121212` dark):
 
 | Color       | Light vs page | Light vs track | Dark vs page | Dark vs track |
@@ -76,7 +76,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | `info`      |        3.86:1 |         3.33:1 |       8.13:1 |        5.30:1 |
 | `success`   |        5.13:1 |         4.36:1 |       7.92:1 |        5.11:1 |
 
-- `color="inherit"` follows `text.primary`: about `16.1:1` on white in light mode and `18.7:1` on `#121212` in dark mode.
+- `color="inherit"` strokes with the parent's CSS `color`, so its contrast depends on where it's used and is the author's responsibility.
 - No axe rule checks graphical-object contrast. The 1.4.11 text exception does not apply: a value label in the demos is author-supplied `Typography`, not part of the component.
 
 **Manual testing steps**
@@ -87,7 +87,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 <!-- 1.4.11:end -->
 
-**Pass:** <!-- 1.4.11:pass:start -->the arc is at least `3:1` against the page, and against the track when `enableTrackSlot` is set. Every default color clears the page. Light-mode `warning` against the track is the known failure, about `2.72:1`.<!-- 1.4.11:pass:end -->
+**Pass:** <!-- 1.4.11:pass:start -->the arc is at least `3:1` against the page, and against the track when `enableTrackSlot` is set. Every default palette color clears the page. Light-mode `warning` against the track is the known failure, about `2.72:1`.<!-- 1.4.11:pass:end -->
 
 #### 2.2.2 Pause, Stop, Hide · A
 
