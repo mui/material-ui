@@ -132,9 +132,7 @@ interface MaterialTemplate {
   files: Record<string, string>;
   dependencies: Record<string, string>;
   devDependencies: Record<string, string>;
-  replaceContent(
-    updater: (content: string | Record<string, any>, filePath: string) => string,
-  ): MaterialTemplate;
+  replaceContent(updater: (content: string, filePath: string) => string): MaterialTemplate;
   openStackBlitz: (initialFile?: string) => void;
 }
 
@@ -199,7 +197,7 @@ ReactDOM.createRoot(document.getElementById('root')${templateData.codeVariant ==
     files,
     dependencies,
     devDependencies,
-    replaceContent(updater: (content: string | Record<string, any>, filePath: string) => string) {
+    replaceContent(updater: (content: string, filePath: string) => string) {
       Object.keys(files).forEach((filePath) => {
         files[filePath] = updater(files[filePath], filePath);
       });
