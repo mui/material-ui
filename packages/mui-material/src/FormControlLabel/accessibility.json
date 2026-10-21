@@ -1,0 +1,18 @@
+{
+  "axe": "docs/data/material/components/form-control-label/form-control-label.a11y.json",
+  "criteria": {
+    "2.5.8": { "responsibility": "Shared" }
+  },
+  "notApplicable": [
+    "1.4.11",
+    "2.1.1",
+    "2.1.2",
+    "2.4.3",
+    "2.4.7",
+    "2.4.11",
+    "2.5.2",
+    "3.2.1",
+    "3.2.2",
+    "3.2.4"
+  ]
+}
