@@ -158,17 +158,14 @@ jobs:
     steps:
       - checkout
       # The legacy Playwright image (pinned for older browser engines) ships Node 22.12,
-      # which is below pnpm 11.5's minimum of Node 22.13. Install a newer Node into
-      # /usr/local (ahead of the image's /usr/bin on PATH) without changing the browsers.
+      # which fails the root package.json#engines.node check under engineStrict. Install the
+      # repo's Node into /usr/local (ahead of the image's /usr/bin on PATH) without changing
+      # the browsers.
       - run:
-          name: Upgrade Node.js for pnpm 11
+          name: Upgrade Node.js to match engines.node
           command: |
             curl -fsSL https://nodejs.org/dist/v22.23.3/node-v22.23.3-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
             node --version
-      - code-infra/install-pnpm
-      - run:
-          name: Configure pnpm engine-strict
-          command: pnpm config set --location project engine-strict false
       - code-infra/install-deps:
           react-version: << parameters.react-version >>
           playwright-version: '1.49.1'
