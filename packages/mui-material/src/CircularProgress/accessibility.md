@@ -276,7 +276,7 @@ Tested by: Playwright
 ## Scope and test environment
 
 - **Standard.** WCAG 2.2, Level A and AA.
-- **Component version.** `@mui/material` 10.0.0-alpha.0.
+- **Component version.** `@mui/material` 9.5.0.
 
 <!-- scope:start -->
 
