@@ -36,6 +36,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Pagination from '@mui/material/Pagination';
@@ -406,35 +407,44 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
     ),
   },
   Menu: {
-    controls: [{ prop: 'dense', type: 'switch', initial: false }],
+    controls: [
+      { prop: 'dense', type: 'switch', initial: false },
+      { prop: 'inset', type: 'switch', initial: true },
+    ],
     // A rendered `MenuList` rather than an open `Menu`: no portal to measure
     // through, and the items get the same `ListContext` the popup would give
     // them. `ListItemText` — not a bare string — so the gap has a child to
-    // start from.
-    render: (values) => (
-      <Paper sx={{ width: 220 }}>
-        <MenuList dense={values.dense === true}>
-          <MenuItem>
-            <ListItemIcon>
-              <ContentCopyIcon />
-            </ListItemIcon>
-            <ListItemText>Copy</ListItemText>
-          </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <ContentPasteIcon />
-            </ListItemIcon>
-            <ListItemText>Paste</ListItemText>
-          </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <ContentCutIcon />
-            </ListItemIcon>
-            <ListItemText>Cut</ListItemText>
-          </MenuItem>
-        </MenuList>
-      </Paper>
-    ),
+    // start from. With `inset`, the text-only rows and the divider line up
+    // with the text of the icon rows.
+    render: (values) => {
+      const inset = values.inset === true;
+      return (
+        <Paper sx={{ width: 260 }}>
+          <MenuList dense={values.dense === true}>
+            {[
+              { label: 'Copy', icon: <ContentCopyIcon />, shortcut: '⌘C' },
+              { label: 'Paste', icon: <ContentPasteIcon />, shortcut: '⌘V' },
+              { label: 'Cut', icon: <ContentCutIcon />, shortcut: '⌘X' },
+            ].map((item) => (
+              <MenuItem key={item.label}>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText>{item.label}</ListItemText>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  {item.shortcut}
+                </Typography>
+              </MenuItem>
+            ))}
+            <Divider variant={inset ? 'inset' : 'fullWidth'} component="li" />
+            <MenuItem>
+              <ListItemText inset={inset}>Paste as plain text</ListItemText>
+            </MenuItem>
+            <MenuItem>
+              <ListItemText inset={inset}>Paste with formatting</ListItemText>
+            </MenuItem>
+          </MenuList>
+        </Paper>
+      );
+    },
   },
   Pagination: {
     controls: [

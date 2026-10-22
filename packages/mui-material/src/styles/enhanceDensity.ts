@@ -27,6 +27,8 @@ import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
 import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
 import dialogTitleClasses from '../DialogTitle/dialogTitleClasses';
 import cardContentClasses from '../CardContent/cardContentClasses';
+import dividerClasses from '../Divider/dividerClasses';
+import listItemTextClasses from '../ListItemText/listItemTextClasses';
 
 type ThemeComponents = NonNullable<Theme['components']>;
 
@@ -142,7 +144,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   // The rtl stylis plugin only mirrors numeric translate() literals, so the
   // var-based inline offsets carry their own sign.
   const dirSign = enhanced.direction === 'rtl' ? -1 : 1;
-  const { pxToRem } = enhanced.typography;
+  const { pxToRem, body2 } = enhanced.typography;
   const sharedCheckboxRadio = {
     padding: 0,
     width: touchTarget,
@@ -308,9 +310,24 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
           gap: spacing('xSmall'),
           minHeight: smallBox,
           [`& .${listItemIconClasses.root} svg`]: { fontSize: '0.8lh' },
+          [`& .${listItemTextClasses.inset}`]: {
+            paddingLeft: `calc(0.8lh + ${spacing('xSmall')})`,
+          },
+          [`& + .${dividerClasses.inset}`]: {
+            fontFamily: body2.fontFamily,
+            fontSize: body2.fontSize,
+            lineHeight: body2.lineHeight,
+            marginLeft: `calc(0.8lh + 2*${spacing('xSmall')})`,
+          },
         },
       },
     ],
+    [`& + .${dividerClasses.inset}`]: {
+      marginLeft: `calc(${iconSize} + 2*${spacing('xSmall')})`,
+    },
+    [`& .${listItemTextClasses.inset}`]: {
+      paddingLeft: `calc(${iconSize} + ${spacing('xSmall')})`,
+    },
     [`& .${listItemIconClasses.root}`]: { minWidth: 0 },
   });
 

@@ -585,6 +585,8 @@ export const DENSITY_ANNOTATIONS = {
   },
   Menu: (values) => {
     const dense = values.dense === true;
+    const inset = values.inset === true;
+    const iconSlot = dense ? '0.8lh' : 'iconSize';
     return [
       // A literal 8px, not the `xSmall` step that shares its value. The spine
       // drops at 0.85 — right of the gap label sharing the top.
@@ -630,10 +632,32 @@ export const DENSITY_ANNOTATIONS = {
       ...(dense
         ? [
             {
-              on: '.MuiMenuItem-root:nth-of-type(2) .MuiListItemIcon-root svg',
+              on: '.MuiMenuItem-root:nth-of-type(1) .MuiListItemIcon-root svg',
               aspect: 'icon',
               token: '0.8lh',
               label: 'Item icon',
+            },
+          ]
+        : []),
+      // The inset rows and the inset divider skip the icon column: the icon
+      // plus the item's gap, and the divider also clears the item's padding.
+      ...(inset
+        ? [
+            {
+              on: '.MuiListItemText-inset',
+              aspect: 'padding',
+              side: 'left',
+              token: `${iconSlot} + xSmall`,
+              label: 'Inset text',
+              route: { gutter: 'left' },
+            },
+            {
+              on: '.MuiDivider-inset',
+              aspect: 'margin',
+              side: 'left',
+              token: `${iconSlot} + 2 × xSmall`,
+              label: 'Inset divider',
+              route: { gutter: 'left' },
             },
           ]
         : []),

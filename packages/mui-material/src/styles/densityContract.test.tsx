@@ -22,6 +22,9 @@ import FilledInput from '@mui/material/FilledInput';
 import FormControl from '@mui/material/FormControl';
 import Alert from '@mui/material/Alert';
 import Pagination from '@mui/material/Pagination';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Divider from '@mui/material/Divider';
 import TableFooter from '@mui/material/TableFooter';
 import InputLabel from '@mui/material/InputLabel';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -52,6 +55,7 @@ import StepLabel from '@mui/material/StepLabel';
 import LinearProgress from '@mui/material/LinearProgress';
 import Slider from '@mui/material/Slider';
 import AddIcon from '@mui/icons-material/Add';
+import Check from '@mui/icons-material/Check';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import enhanceDensity from './enhanceDensity';
 import { DEFAULT_SIZING_PX, DEFAULT_STEP_PX, type DensityKey } from './densityScale';
@@ -773,6 +777,50 @@ describe.skipIf(isJsdom())('density without the matching input', () => {
     expect(
       parseFloat(getComputedStyle(inEnhanced('.MuiCardActions-root')).paddingTop),
     ).to.be.greaterThan(0);
+  });
+});
+
+describe.skipIf(isJsdom())('menu inset rows', () => {
+  const { render } = createRenderer();
+  const themes: [string, ReturnType<typeof enhanceDensity>][] = [
+    ...DENSITIES.map((density): [string, ReturnType<typeof enhanceDensity>] => [
+      density.id,
+      THEMES.get(density.id)!,
+    ]),
+    ...(['1.5', '22px', 'normal'] as const).map(
+      (lineHeight): [string, ReturnType<typeof enhanceDensity>] => [
+        `body2 lineHeight ${lineHeight}`,
+        enhanceDensity(createTheme({ typography: { body2: { lineHeight } } })),
+      ],
+    ),
+  ];
+
+  themes.forEach(([name, theme]) => {
+    [false, true].forEach((dense) => {
+      test(`${name}${dense ? ' dense' : ''}: inset text and inset divider line up with the icon row text`, () => {
+        render(
+          <ThemeProvider theme={theme}>
+            <MenuList dense={dense} sx={{ fontFamily: 'serif', fontSize: 16, lineHeight: 1.5 }}>
+              <MenuItem data-testid="inset">
+                <ListItemText inset>Single</ListItemText>
+              </MenuItem>
+              <MenuItem data-testid="icon">
+                <ListItemIcon>
+                  <Check />
+                </ListItemIcon>
+                <ListItemText>Custom</ListItemText>
+              </MenuItem>
+              <Divider variant="inset" component="li" />
+            </MenuList>
+          </ThemeProvider>,
+        );
+        const left = (selector: string) =>
+          (document.querySelector(selector) as HTMLElement).getBoundingClientRect().left;
+        const iconText = left('[data-testid="icon"] .MuiListItemText-root');
+        expect(left('[data-testid="inset"] .MuiTypography-root')).to.be.closeTo(iconText, 0.5);
+        expect(left('.MuiDivider-root')).to.be.closeTo(iconText, 0.5);
+      });
+    });
   });
 });
 
