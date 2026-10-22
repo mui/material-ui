@@ -454,7 +454,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   // Support autofill.
   const handleChange = (event) => {
-    const child = childrenArray.find((childItem) => childItem.props.value === event.target.value);
+    const child = childrenArray.find((childItem) =>
+      areEqualValues(event.target.value, childItem.props.value),
+    );
 
     if (child === undefined) {
       return;
@@ -499,7 +501,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     if (multiple) {
       newValue = Array.isArray(value) ? value.slice() : [];
-      const itemIndex = value.indexOf(child.props.value);
+      const itemIndex = value.findIndex((v) => areEqualValues(v, child.props.value));
       if (itemIndex === -1) {
         newValue.push(child.props.value);
       } else {
