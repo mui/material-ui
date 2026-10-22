@@ -587,6 +587,18 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
       expect(slider).to.have.attribute('aria-valuenow', '0.3');
     });
 
+    it('should step from 0 with a decimal step when using the keyboard', () => {
+      render(<Slider defaultValue={0} min={0} max={1} step={0.1} />);
+      const slider = screen.getByRole('slider');
+
+      act(() => {
+        slider.focus();
+      });
+
+      fireEvent.keyDown(slider, { key: 'ArrowRight' });
+      expect(slider).to.have.attribute('aria-valuenow', '0.1');
+    });
+
     it('should not fail to round value to step precision when step is very small', () => {
       const { container } = render(
         <Slider defaultValue={0.00000002} min={0} max={0.0000001} step={0.00000001} />,
