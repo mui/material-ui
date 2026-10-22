@@ -233,3 +233,51 @@ const LiteralFilteredNumberIndexed = styled(NumberAndSymbolIndexedComponent, {
 
 // @ts-expect-error a literal predicate must preserve number index types
 <LiteralFilteredNumberIndexed label="valid" {...{ 0: 123 }} />;
+
+type UnionProps = { kind: 'text'; value: string } | { kind: 'count'; count: number };
+
+function UnionComponent(props: UnionProps) {
+  return <span>{props.kind === 'text' ? props.value : props.count}</span>;
+}
+
+const StringFilteredUnion = styled(UnionComponent, {
+  shouldForwardProp: (prop): prop is string => typeof prop === 'string',
+})({});
+
+<StringFilteredUnion kind="text" value="valid" />;
+<StringFilteredUnion kind="count" count={1} />;
+
+// @ts-expect-error a broad predicate must preserve required union members
+<StringFilteredUnion kind="text" />;
+
+// @ts-expect-error a broad predicate must preserve the discriminant
+<StringFilteredUnion kind="text" count={1} />;
+
+// @ts-expect-error a broad predicate must preserve member prop types
+<StringFilteredUnion kind="count" count="invalid" />;
+
+const PropertyKeyFilteredUnion = styled(UnionComponent, {
+  shouldForwardProp: (prop): prop is PropertyKey => typeof prop !== 'symbol',
+})({});
+
+<PropertyKeyFilteredUnion kind="text" value="valid" />;
+<PropertyKeyFilteredUnion kind="count" count={1} />;
+
+// @ts-expect-error a PropertyKey predicate must preserve required union members
+<PropertyKeyFilteredUnion kind="count" />;
+
+const LiteralFilteredUnion = styled(UnionComponent, {
+  shouldForwardProp: (prop): prop is 'kind' | 'value' | 'count' | 'localOnly' => prop !== 'theme',
+})<{ localOnly?: boolean }>({});
+
+<LiteralFilteredUnion kind="text" value="valid" localOnly />;
+<LiteralFilteredUnion kind="count" count={1} localOnly />;
+
+// @ts-expect-error a literal predicate must preserve required union members
+<LiteralFilteredUnion kind="text" localOnly />;
+
+// @ts-expect-error a literal predicate must preserve the discriminant
+<LiteralFilteredUnion kind="count" value="invalid" />;
+
+// @ts-expect-error a literal predicate must preserve additional prop types
+<LiteralFilteredUnion kind="text" value="valid" localOnly="invalid" />;

@@ -177,6 +177,12 @@ export type Interpolation<Props> =
 
 export declare function shouldForwardProp(propName: PropertyKey): boolean;
 
+type PickForwardedProps<Props, ForwardedProps extends PropertyKey> = Props extends unknown
+  ? Pick<Props, Extract<ForwardedProps, keyof Props>> & {
+      [Key in keyof Props as Key extends ForwardedProps ? Key : never]: Props[Key];
+    }
+  : never;
+
 /** Same as StyledOptions but shouldForwardProp must be a type guard */
 export interface FilteringStyledOptions<Props, ForwardedProps extends PropertyKey = keyof Props> {
   label?: string | undefined;
@@ -262,9 +268,7 @@ export interface CreateMUIStyled<
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> & MuiStyledOptions,
   ): CreateStyledComponent<
-    Pick<PropsOf<C>, Extract<ForwardedProps, keyof PropsOf<C>>> & {
-      [Key in keyof PropsOf<C> as Key extends ForwardedProps ? Key : never]: PropsOf<C>[Key];
-    } & MUIStyledCommonProps,
+    PickForwardedProps<PropsOf<C>, ForwardedProps> & MUIStyledCommonProps,
     {},
     {},
     Theme
