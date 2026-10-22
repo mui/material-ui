@@ -97,6 +97,26 @@ describe('<Fab />', () => {
     expect(button).to.have.class(classes.sizeMedium);
   });
 
+  // JSDOM does no layout, so the overflow this guards against is only visible
+  // in a real browser.
+  it.skipIf(isJsdom())('keeps a wrapping label inside the extended button', () => {
+    render(
+      <div style={{ width: 120 }}>
+        <Fab variant="extended">
+          <span data-testid="label">Create new deployment</span>
+        </Fab>
+      </div>,
+    );
+
+    const fab = screen.getByRole('button').getBoundingClientRect();
+    const label = screen.getByTestId('label').getBoundingClientRect();
+
+    // The button grew past its one-line height, so the label wrapped.
+    expect(fab.height).to.be.greaterThan(48);
+    expect(label.top).to.be.at.least(fab.top);
+    expect(label.bottom).to.be.at.most(fab.bottom);
+  });
+
   it('should have a ripple', async () => {
     const { container } = render(<Fab>Fab</Fab>);
     await ripple.startTouch(screen.getByRole('button'));
