@@ -122,4 +122,6 @@ jobs:
       - name: Dry run npm publishing
         env:
           IS_PUBLISH_TEST: 'true'
-        run: pnpm code-infra publish --ci --dry-run
+        # code-infra checks the versions against this dist-tag. Use `next` while master
+        # publishes prereleases, and remove `--tag next` after the stable release.
+        run: pnpm code-infra publish --ci --dry-run --tag next
