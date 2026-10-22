@@ -79,7 +79,7 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=22.23.3"
+    "node": ">=22.23.4"
   },
   "exports": {
     "./*": "./src/*/index.ts",

@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/975481a0ab7c4785fabfdc27299b80cbe495b410/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/330df7dd55e2b6eba65a5ded46be738478138608/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
@@ -35,7 +35,7 @@ default-job: &default-job
   working_directory: /tmp/material-ui
   executor:
     name: code-infra/mui-node
-    node-version: '22.23.3'
+    node-version: '22.23.4'
   resource_class: medium.gen2
 
 default-context: &default-context
@@ -158,17 +158,14 @@ jobs:
     steps:
       - checkout
       # The legacy Playwright image (pinned for older browser engines) ships Node 22.12,
-      # which is below pnpm 11.5's minimum of Node 22.13. Install a newer Node into
-      # /usr/local (ahead of the image's /usr/bin on PATH) without changing the browsers.
+      # which fails the root package.json#engines.node check under engineStrict. Install the
+      # repo's Node into /usr/local (ahead of the image's /usr/bin on PATH) without changing
+      # the browsers.
       - run:
-          name: Upgrade Node.js for pnpm 11
+          name: Upgrade Node.js to match engines.node
           command: |
-            curl -fsSL https://nodejs.org/dist/v22.23.3/node-v22.23.3-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
+            curl -fsSL https://nodejs.org/dist/v22.23.4/node-v22.23.4-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
             node --version
-      - code-infra/install-pnpm
-      - run:
-          name: Configure pnpm engine-strict
-          command: pnpm config set --location project engine-strict false
       - code-infra/install-deps:
           react-version: << parameters.react-version >>
           playwright-version: '1.49.1'
@@ -293,7 +290,7 @@ jobs:
           react-version: << parameters.react-version >>
       - run:
           name: Run visual regression tests
-          command: xvfb-run pnpm test:regressions
+          command: pnpm test:regressions
       - run:
           name: A11y results committed?
           # The react@17/18/next jobs pin React via `package-overrides`, which rewrites

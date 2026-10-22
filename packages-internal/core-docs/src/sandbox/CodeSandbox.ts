@@ -110,12 +110,26 @@ function createReactApp(demoData: DemoData, csbConfig?: SandboxConfig) {
   };
 }
 
+type ContentUpdater = (
+  content: string | Record<string, any>,
+  filePath: string,
+) => string | Record<string, any>;
+
+interface MaterialTemplate {
+  title: string;
+  files: Record<string, { content: string | Record<string, any> }>;
+  dependencies: Record<string, string>;
+  devDependencies: Record<string, string>;
+  replaceContent(updater: ContentUpdater): MaterialTemplate;
+  openSandbox: (initialFile?: string) => void;
+}
+
 function createMaterialTemplate(templateData: {
   title: string;
   files: Record<string, string>;
   githubLocation: string;
   codeVariant: CodeVariant;
-}) {
+}): MaterialTemplate {
   const ext = getFileExtension(templateData.codeVariant);
   const { title, githubLocation: description } = templateData;
 
@@ -191,7 +205,7 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
     files,
     dependencies,
     devDependencies,
-    replaceContent(updater: (content: string | Record<string, any>, filePath: string) => string) {
+    replaceContent(updater: ContentUpdater) {
       Object.keys(files).forEach((filePath) => {
         files[filePath].content = updater(files[filePath].content, filePath);
       });
