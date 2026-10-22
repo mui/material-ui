@@ -28,6 +28,7 @@ export * from './isIS';
 export * from './itIT';
 export * from './jaJP';
 export * from './khKH';
+export * from './kmKH';
 export * from './koKR';
 export * from './kuCKB';
 export * from './kuLatn';
