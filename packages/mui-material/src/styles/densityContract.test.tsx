@@ -724,6 +724,40 @@ describe.skipIf(isJsdom())('density without the matching input', () => {
     expect(titled.paddingTop).to.equal('0px');
   });
 
+  test('wrapped TableCell and AccordionSummary content keeps an xxSmall inset', () => {
+    const longText = 'A value long enough to wrap onto several lines in a narrow column';
+    const { enhanced: inEnhanced } = renderBoth(
+      <React.Fragment>
+        <Table>
+          <TableBody>
+            <TableRow>
+              <TableCell sx={{ width: 120 }}>
+                <span data-testid="cell-text">{longText}</span>
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+        <Accordion sx={{ width: 200 }}>
+          <AccordionSummary>
+            <span data-testid="summary-text">{longText}</span>
+          </AccordionSummary>
+        </Accordion>
+      </React.Fragment>,
+    );
+    const inset = (outer: string, inner: string) => {
+      const outerBox = inEnhanced(outer).getBoundingClientRect();
+      const innerBox = inEnhanced(inner).getBoundingClientRect();
+      return [innerBox.top - outerBox.top, outerBox.bottom - innerBox.bottom];
+    };
+    const xxSmall = DEFAULT_STEP_PX.xxSmall;
+    inset('.MuiTableCell-root', '[data-testid="cell-text"]').forEach((side) => {
+      expect(side).to.be.at.least(xxSmall);
+    });
+    inset('.MuiAccordionSummary-root', '[data-testid="summary-text"]').forEach((side) => {
+      expect(side).to.be.at.least(xxSmall);
+    });
+  });
+
   test('CardActions keeps top padding below a CardMedia', () => {
     const { enhanced: inEnhanced } = renderBoth(
       <Card>

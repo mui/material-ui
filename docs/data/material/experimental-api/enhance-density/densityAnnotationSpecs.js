@@ -38,6 +38,14 @@ export const DENSITY_ANNOTATIONS = {
       label: 'Summary content',
     },
     {
+      on: '.MuiAccordionSummary-content',
+      aspect: 'margin',
+      axis: 'block',
+      token: 'xxSmall',
+      label: 'Summary content',
+      route: { gutter: 'left' },
+    },
+    {
       on: '.MuiAccordionDetails-root',
       aspect: 'padding',
       axis: 'inline',
@@ -957,6 +965,14 @@ export const DENSITY_ANNOTATIONS = {
         token: small ? 'xSmall' : 'small',
         label: 'Cell',
         route: { gutter: 'bottom' },
+      },
+      {
+        on: 'tbody .MuiTableCell-root:nth-child(2)',
+        aspect: 'padding',
+        axis: 'block',
+        token: 'xxSmall',
+        label: 'Cell',
+        route: { gutter: 'bottom', shift: 130 },
       },
       // `0 0 0 4px` — only the left band is live, so the token lands on it alone.
       {

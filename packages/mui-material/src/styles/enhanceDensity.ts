@@ -212,13 +212,13 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     enhanced.components,
     'MuiAccordionSummary',
     {
-      marginBlock: '0px',
+      marginBlock: spacing('xxSmall'),
       alignItems: 'center',
       gap: spacing('xSmall'),
       variants: [
         {
           props: { disableGutters: false },
-          style: { [`&.${accordionSummaryClasses.expanded}`]: { marginBlock: '0px' } },
+          style: { [`&.${accordionSummaryClasses.expanded}`]: { marginBlock: spacing('xxSmall') } },
         },
       ],
     },
@@ -1259,7 +1259,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   );
 
   addRootOverride(enhanced.components, 'MuiTableCell', {
-    paddingBlock: 0,
+    paddingBlock: spacing('xxSmall'), // smallest gutter for multiple lines of content
     variants: [
       {
         props: { size: 'medium' },
