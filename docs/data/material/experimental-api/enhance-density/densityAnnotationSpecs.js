@@ -944,9 +944,10 @@ export const DENSITY_ANNOTATIONS = {
         on: `${cell}:last-child`,
         aspect: 'touch-target',
         // Clear of the checkbox column and of the checkbox's own dimension.
-        token: small ? 'large + xxSmall' : 'xLarge + xSmall',
+        token: small ? 'touchTarget + xxSmall' : 'touchTarget + 2 × xxSmall',
         label: 'Cell',
         route: { gutter: 'right' },
+        wrap: true,
       },
       // One body cell carries the padding story.
       {
@@ -965,6 +966,15 @@ export const DENSITY_ANNOTATIONS = {
         token: '4px',
         label: 'Checkbox cell',
         route: { gutter: 'top' },
+      },
+      // The column is as wide as the row is tall, so the checkbox sits in a square.
+      {
+        on: 'tbody .MuiTableCell-paddingCheckbox',
+        aspect: 'touch-target',
+        axis: 'inline',
+        token: small ? 'touchTarget + xxSmall' : 'touchTarget + 2 × xxSmall',
+        label: 'Checkbox cell',
+        route: { gutter: 'bottom', shift: -90 },
       },
       {
         on: 'tbody .MuiCheckbox-root',

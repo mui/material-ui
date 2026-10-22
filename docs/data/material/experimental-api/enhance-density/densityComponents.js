@@ -618,7 +618,7 @@ export const DENSITY_COMPONENTS = {
     render: (values) => {
       const size = values.size;
       return (
-        <Table size={size} sx={{ width: 300 }}>
+        <Table size={size} sx={{ width: 240 }}>
           <TableHead>
             <TableRow>
               <TableCell padding="checkbox">

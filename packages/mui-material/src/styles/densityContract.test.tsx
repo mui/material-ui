@@ -400,8 +400,8 @@ const CONTROLS: Record<string, Spec> = {
     selector: '.MuiTableCell-root',
     height: (density, size) =>
       size === 'small'
-        ? density.step.large + density.step.xxSmall
-        : density.step.xLarge + density.step.xSmall,
+        ? density.touchTarget + density.step.xxSmall
+        : density.touchTarget + 2 * density.step.xxSmall,
   },
   TablePagination: {
     render: () => (

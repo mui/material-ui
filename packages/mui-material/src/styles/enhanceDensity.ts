@@ -127,6 +127,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   // `touchTarget` override carries all three sizes instead of only the middle
   // one. Both land on today's px at the default 32.
   const tableRowHeight = `calc(${touchTarget} + 2*${spacing('xxSmall')})`; // 40px
+  const tableRowHeightDense = `calc(${touchTarget} + ${spacing('xxSmall')})`; // 36px
   const tinyBox = `calc(${touchTarget} - ${spacing('xSmall')})`; // 24px
   const smallBox = `calc(${touchTarget} - ${spacing('xxSmall')})`; // 28px
   const largeBox = `calc(${touchTarget} + ${spacing('small')})`; // 44px
@@ -1099,7 +1100,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
   addRootOverride(enhanced.components, 'MuiCardActions', {
     padding: spacing('medium'),
-    [`.${cardContentClasses.root} + &`]: { paddingTop: 0 },
+    paddingTop: `var(--_padTop, ${spacing('medium')})`,
+    [`.${cardContentClasses.root} + &`]: { '--_padTop': 0 }, // use private variable so `sx` overrides still work
     variants: [
       {
         props: { disableSpacing: false },
@@ -1256,20 +1258,9 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     'thumb',
   );
 
-  // td height acts as a min-height (cells grow with wrapped content). The
-  // checkbox re-assert nests &.paddingCheckbox: master's small-size rule pads
-  // it at 2-class specificity, so a plain variant (1 class) loses there.
   addRootOverride(enhanced.components, 'MuiTableCell', {
     paddingBlock: 0,
     variants: [
-      {
-        props: {
-          padding: 'checkbox',
-        },
-        style: {
-          width: tableRowHeight,
-        },
-      },
       {
         props: { size: 'medium' },
         style: {
@@ -1280,9 +1271,21 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         props: { size: 'small' },
         style: {
-          height: tableRowHeight,
+          height: tableRowHeightDense,
           paddingInline: spacing('xSmall'),
-          [`&.${tableCellClasses.paddingCheckbox}`]: { padding: '0 0 0 4px' }, // the small size uses class-specific padding
+          [`&.${tableCellClasses.paddingCheckbox}`]: {
+            width: tableRowHeightDense,
+            padding: '0 0 0 4px',
+          },
+        },
+      },
+      {
+        props: {
+          padding: 'checkbox',
+        },
+        style: {
+          width: tableRowHeight,
+          padding: '0 0 0 4px',
         },
       },
       { props: { variant: 'footer' }, style: { ...enhanced.typography?.subtitle2 } },

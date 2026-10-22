@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { describe, test, expect, vi } from 'vitest';
 import { createRenderer, ignoreActWarnings, isJsdom } from '@mui/internal-test-utils';
+import CssBaseline from '@mui/material/CssBaseline';
 import AllComponentsDemo from 'docs/data/material/experimental-api/enhance-density/AllComponentsDemo';
 import {
   DENSITY_SCALE,
@@ -197,7 +198,12 @@ describe.skipIf(isJsdom())('density annotation parity', () => {
   Object.keys(DENSITY_COMPONENTS).forEach((family) => {
     test(`${family} tokens equal the values they label`, async () => {
       ignoreActWarnings();
-      render(<AllComponentsDemo />);
+      render(
+        <React.Fragment>
+          <CssBaseline />
+          <AllComponentsDemo />
+        </React.Fragment>,
+      );
       await selectFamily(family);
 
       const mismatches: string[] = [];
