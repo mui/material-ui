@@ -139,7 +139,7 @@ Three kinds of test, none of which writes anything into a report. The scorecard 
 
 - **Unit tests** count as evidence for a criterion when a test title starts with its number and WCAG name, such as `'2.1.1 Keyboard: …'` or `describe('4.1.2 Name, Role, Value')`. A title that names a criterion with the wrong name fails the check.
 - **Playwright suites** are listed per component in `criteriaSuites.mjs`, which the regression tests also read.
-- **axe results** are written to `docs/data/material/components/{slug}/{slug}.a11y.json` and committed, so a change that alters them fails CI. When two components share that file, `axeDemos` selects which demos count for each one. The WCAG tags that axe-core ships with each rule (for example, `color-contrast` has `wcag143`) map each rule to its criteria. A failing rule rates its criterion ⚠️ Partially Supports unless the component's JSON file sets another rating.
+- **axe results** are written to `docs/data/material/components/{slug}/{slug}.a11y.json` and committed, so a change that alters them fails CI. When two components share that file, `axeDemos` selects which demos count for each one. If every component reading a file sets `axeDemos`, each demo in it must match at least one of them. The WCAG tags that axe-core ships with each rule (for example, `color-contrast` has `wcag143`) map each rule to its criteria. A failing rule rates its criterion ⚠️ Partially Supports unless the component's JSON file sets another rating.
 
 ### The rollup
 

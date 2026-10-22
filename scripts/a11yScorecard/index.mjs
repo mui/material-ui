@@ -64,14 +64,11 @@ async function unclaimedSharedDemos(sources) {
     byFile.set(source.data.axe, group);
   });
 
-  // A component without `axeDemos` reads every demo, so nothing in that file is unclaimed.
-  const shared = [...byFile.entries()].filter(([, group]) => {
-    if (group.length < 2) {
-      return false;
-    }
-    return group.every((source) => Array.isArray(source.data.axeDemos));
-  });
-  const namesByFile = await Promise.all(shared.map(async ([ref]) => [ref, await demoNames(ref)]));
+  // A component without `axeDemos` reads every demo, so none of that file's demos go unclaimed.
+  const claimed = [...byFile.entries()].filter(([, group]) =>
+    group.every((source) => Array.isArray(source.data.axeDemos)),
+  );
+  const namesByFile = await Promise.all(claimed.map(async ([ref]) => [ref, await demoNames(ref)]));
   const violations = [];
   namesByFile.forEach(([ref, names]) => {
     const group = byFile.get(ref);
