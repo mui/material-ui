@@ -444,7 +444,7 @@ export interface ThemedBaseStyledInterface<
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> & MuiStyledOptions,
   ): CreateStyledComponent<
-    {
+    Pick<PropsOf<C>, Extract<ForwardedProps, keyof PropsOf<C>>> & {
       [Key in keyof PropsOf<C> as Key extends ForwardedProps ? Key : never]: PropsOf<C>[Key];
     } & MUIStyledCommonProps,
     {},

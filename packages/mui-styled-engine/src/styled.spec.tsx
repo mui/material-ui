@@ -132,3 +132,37 @@ const PropertyKeyFilteredNumberAndSymbolIndexed = styled(NumberAndSymbolIndexedC
 
 // @ts-expect-error a PropertyKey predicate must preserve symbol index types
 <PropertyKeyFilteredNumberAndSymbolIndexed label="valid" {...{ [Symbol.iterator]: 'invalid' }} />;
+
+function DictionaryComponent(props: Record<string, unknown>) {
+  return <span>{String(props.extra)}</span>;
+}
+
+const LiteralFilteredDictionary = styled(DictionaryComponent, {
+  shouldForwardProp: (prop): prop is 'extra' => prop === 'extra',
+})({});
+
+<LiteralFilteredDictionary extra="value" />;
+
+// @ts-expect-error a literal predicate must not forward other indexed keys
+<LiteralFilteredDictionary extra="value" other="value" />;
+
+const LiteralFilteredIndexed = styled(IndexedComponent, {
+  shouldForwardProp: (prop): prop is 'label' | 'extra' => prop === 'label' || prop === 'extra',
+})({});
+
+<LiteralFilteredIndexed label="valid" extra="value" />;
+
+// @ts-expect-error a literal predicate must preserve required known props
+<LiteralFilteredIndexed extra="value" />;
+
+// @ts-expect-error a literal predicate must preserve known prop types
+<LiteralFilteredIndexed label={123} extra="value" />;
+
+const LiteralFilteredNumberIndexed = styled(NumberAndSymbolIndexedComponent, {
+  shouldForwardProp: (prop): prop is 'label' | 0 => prop === 'label' || prop === 0,
+})({});
+
+<LiteralFilteredNumberIndexed label="valid" {...{ 0: 'value' }} />;
+
+// @ts-expect-error a literal predicate must preserve number index types
+<LiteralFilteredNumberIndexed label="valid" {...{ 0: 123 }} />;
