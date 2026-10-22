@@ -367,11 +367,12 @@ export const DENSITY_ANNOTATIONS: Record<
       label: 'Content',
       route: { gutter: 'right', line: 'diagonal' },
     },
-    // `padding: medium` with `paddingTop: 0` — only the bottom band is live.
+    // `paddingTop: 0`: the content above already spaces the actions, so only
+    // the bottom band is named.
     {
       on: '.MuiCardActions-root',
       aspect: 'padding',
-      axis: 'block',
+      side: 'bottom',
       token: 'medium',
       label: 'Actions',
     },

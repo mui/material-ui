@@ -16,6 +16,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
 import Checkbox from '@mui/material/Checkbox';
 import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -236,11 +237,21 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
               <MoreVertIcon />
             </IconButton>
           }
-          title="Ratatouille"
-          subheader="September 14"
+          title="Shrimp and Chorizo Paella"
+          subheader="September 14, 2016"
+        />
+        <CardMedia
+          component="img"
+          height="140"
+          image="/static/images/cards/paella.jpg"
+          alt="Paella dish"
         />
         <CardContent>
-          <Typography variant="body2">Set aside for 10 minutes.</Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            This impressive paella is a perfect party dish and a fun meal to cook
+            together with your guests. Add 1 cup of frozen peas along with the
+            mussels, if you like.
+          </Typography>
         </CardContent>
         <CardActions>
           <Button size="small">Share</Button>

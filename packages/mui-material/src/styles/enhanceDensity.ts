@@ -26,6 +26,7 @@ import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import listItemIconClasses from '../ListItemIcon/listItemIconClasses';
 import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
 import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
+import cardContentClasses from '../CardContent/cardContentClasses';
 
 type ThemeComponents = NonNullable<Theme['components']>;
 
@@ -1098,6 +1099,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
   addRootOverride(enhanced.components, 'MuiCardActions', {
     padding: spacing('medium'),
+    [`.${cardContentClasses.root} + &`]: { paddingTop: 0 },
     variants: [
       {
         props: { disableSpacing: false },
