@@ -18,6 +18,7 @@ import MenuList from '@mui/material/MenuList';
 import ListItemButton from '@mui/material/ListItemButton';
 import TextField from '@mui/material/TextField';
 import InputBase from '@mui/material/InputBase';
+import FilledInput from '@mui/material/FilledInput';
 import Select from '@mui/material/Select';
 import Toolbar from '@mui/material/Toolbar';
 import Tab from '@mui/material/Tab';
@@ -320,6 +321,12 @@ const CONTROLS: Record<string, Spec> = {
     selector: '.MuiFilledInput-root',
     height: ramp,
   },
+  StandaloneFilledInput: {
+    sizes: ['small', 'medium'],
+    render: (size) => <FilledInput hiddenLabel size={size} defaultValue="Ada" />,
+    selector: '.MuiFilledInput-root',
+    height: ramp,
+  },
   Select: {
     sizes: ['small', 'medium'],
     render: (size) => (
@@ -605,6 +612,27 @@ describe.skipIf(isJsdom())('density contract', () => {
             expect(sideOf(spec.selector, spec.axis)).to.equal(spec.height(density, size));
           });
         });
+      });
+    });
+  });
+});
+
+describe.skipIf(isJsdom())('filled input label room', () => {
+  const { render } = createRenderer();
+
+  DENSITIES.forEach((density) => {
+    (['small', 'medium'] as const).forEach((size) => {
+      test(`${density.id} ${size}: a standalone FilledInput matches a labeled TextField`, () => {
+        render(
+          <ThemeProvider theme={THEMES.get(density.id)!}>
+            <FilledInput size={size} defaultValue="Ada" />
+            <TextField variant="filled" size={size} label="Label" defaultValue="Ada" />
+          </ThemeProvider>,
+        );
+        const [standalone, field] = document.querySelectorAll('.MuiFilledInput-root');
+        expect(standalone.getBoundingClientRect().height).to.equal(
+          field.getBoundingClientRect().height,
+        );
       });
     });
   });

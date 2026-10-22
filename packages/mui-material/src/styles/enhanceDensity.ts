@@ -134,6 +134,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   const iconLarge = `calc(${iconSize} + 4px)`;
   const inputMediumPadBlock = `calc((${touchTarget} - 1lh) / 2)`;
   const inputSmallPadBlock = `calc((${touchTarget} - ${spacing('xxSmall')} - 1lh) / 2)`;
+  const filledInputMediumPadTop = `calc(${spacing('medium')} + (${touchTarget} - 1lh) / 2)`;
+  const filledInputSmallPadTop = `calc(${spacing('medium')} + (${touchTarget} - 1lh) / 4)`;
   // The rtl stylis plugin only mirrors numeric translate() literals, so the
   // var-based inline offsets carry their own sign.
   const dirSign = enhanced.direction === 'rtl' ? -1 : 1;
@@ -429,10 +431,17 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     enhanced.components,
     'MuiFilledInput',
     {
-      paddingTop: `var(--_filledInputPadTop, ${spacing('large')})`,
-      paddingBottom: `var(--_filledInputPadBottom, ${spacing('xxSmall')})`,
+      paddingTop: `var(--_filledInputPadTop, ${filledInputMediumPadTop})`,
+      paddingBottom: `var(--_filledInputPadBottom, ${inputMediumPadBlock})`,
       paddingInline: spacing('small'),
       variants: [
+        {
+          props: { size: 'small' },
+          style: {
+            paddingTop: `var(--_filledInputPadTop, ${filledInputSmallPadTop})`,
+            paddingBottom: `var(--_filledInputPadBottom, ${inputSmallPadBlock})`,
+          },
+        },
         {
           props: { hiddenLabel: true },
           style: { paddingBlock: inputMediumPadBlock },
@@ -459,7 +468,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   );
   addRootOverride(enhanced.components, 'MuiFilledInput', {
     [`.${formControlClasses.root}:has(> &)`]: {
-      '--_filledInputPadTop': `calc(${spacing('medium')} + (${touchTarget} - 1lh) / 2)`, // medium represent the label
+      '--_filledInputPadTop': filledInputMediumPadTop,
       '--_filledInputPadBottom': inputMediumPadBlock,
     },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
@@ -472,7 +481,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         props: { size: 'small' },
         style: {
           [`.${formControlClasses.root}:has(> &)`]: {
-            '--_filledInputPadTop': `calc(${spacing('medium')} + (${touchTarget} - 1lh) / 4)`, // medium represent the label
+            '--_filledInputPadTop': filledInputSmallPadTop,
             '--_filledInputPadBottom': inputSmallPadBlock,
           },
           [`.${inputLabelClasses.root}:has(~ &)`]: {
@@ -484,7 +493,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         props: { multiline: true },
         style: {
-          paddingTop: `var(--_filledInputPadTop, calc(${spacing('medium')} + (${touchTarget} - 1lh) / 2))`, // medium represent the label
+          paddingTop: `var(--_filledInputPadTop, ${filledInputMediumPadTop})`,
           paddingBottom: `var(--_filledInputPadBottom, ${inputMediumPadBlock})`,
           paddingInline: spacing('small'),
         },
@@ -492,7 +501,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         props: { multiline: true, size: 'small' },
         style: {
-          paddingTop: `var(--_filledInputPadTop, calc(${spacing('medium')} + (${touchTarget} - 1lh) / 4))`, // medium represent the label
+          paddingTop: `var(--_filledInputPadTop, ${filledInputSmallPadTop})`,
           paddingBottom: `var(--_filledInputPadBottom, ${inputSmallPadBlock})`,
         },
       },
