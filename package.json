@@ -3,7 +3,6 @@
   "private": true,
   "//": "#target-branch-reference: scripts.prettier",
   "scripts": {
-    "preinstall": "npx only-allow@1.2.2 pnpm",
     "proptypes": "tsx ./scripts/generateProptypes.ts",
     "deduplicate": "pnpm dedupe",
     "build": "lerna run build --ignore docs",
