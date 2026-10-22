@@ -25,6 +25,7 @@ import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import listItemIconClasses from '../ListItemIcon/listItemIconClasses';
 import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
 import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
+import dialogTitleClasses from '../DialogTitle/dialogTitleClasses';
 import cardContentClasses from '../CardContent/cardContentClasses';
 
 type ThemeComponents = NonNullable<Theme['components']>;
@@ -141,6 +142,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   // The rtl stylis plugin only mirrors numeric translate() literals, so the
   // var-based inline offsets carry their own sign.
   const dirSign = enhanced.direction === 'rtl' ? -1 : 1;
+  const { pxToRem } = enhanced.typography;
   const sharedCheckboxRadio = {
     padding: 0,
     width: touchTarget,
@@ -977,7 +979,13 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   // Two variants = one knob per dividers state (true overrides master's 16 24).
   addRootOverride(enhanced.components, 'MuiDialogContent', {
     variants: [
-      { props: { dividers: false }, style: { padding: spacing('medium') } },
+      {
+        props: { dividers: false },
+        style: {
+          padding: spacing('medium'),
+          [`.${dialogTitleClasses.root} + &`]: { paddingTop: 0 },
+        },
+      },
       { props: { dividers: true }, style: { padding: spacing('medium') } },
     ],
   });
@@ -1134,6 +1142,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
         '--_endAdornment': iconSize,
       },
+      '&&&': { paddingRight: 'calc(var(--_caret) + var(--_endAdornment, 0px))' },
     },
     'select',
   );
@@ -1307,8 +1316,11 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     // Everything rides the ROOT slot: the toolbar/select overridesResolvers
     // SPREAD the theme styleOverride, so an array-form slot silently drops;
     // root-class nesting outranks the slot rules.
+    '&:last-child': { padding: 0 },
     [`& .${tablePaginationClasses.toolbar}`]: {
       minHeight: hugeBox,
+      paddingRight: 2,
+      [smUp]: { paddingRight: 2 },
     },
     [`& .${tablePaginationClasses.select}`]: enhanced.typography?.body2 ?? {},
   });
@@ -1373,6 +1385,18 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ],
   });
   addRootOverride(enhanced.components, 'MuiPagination', { gap: spacing('xSmall') }, 'ul');
+  addRootOverride(
+    enhanced.components,
+    'MuiPaginationItem',
+    {
+      fontSize: pxToRem(20),
+      variants: [
+        { props: { size: 'small' }, style: { fontSize: pxToRem(18) } },
+        { props: { size: 'large' }, style: { fontSize: pxToRem(22) } },
+      ],
+    },
+    'icon',
+  );
   addRootOverride(enhanced.components, 'MuiPaginationItem', {
     margin: 0,
     padding: 0,
@@ -1454,6 +1478,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
           '--_paddingInline': spacing('small'),
           gap: spacing('xSmall'),
           [`& .${chipClasses.icon}`]: { fontSize: iconSize },
+          [`& .${chipClasses.avatar}`]: { fontSize: pxToRem(12) },
+          [`& .${chipClasses.deleteIcon}`]: { fontSize: 22 },
         },
       },
       {
@@ -1464,6 +1490,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
           gap: spacing('xxSmall'),
           ...enhanced.typography?.body2,
           [`& .${chipClasses.icon}`]: { fontSize: iconSmall },
+          [`& .${chipClasses.avatar}`]: { fontSize: pxToRem(10) },
+          [`& .${chipClasses.deleteIcon}`]: { fontSize: 16 },
         },
       },
     ],

@@ -21,6 +21,8 @@ import InputBase from '@mui/material/InputBase';
 import FilledInput from '@mui/material/FilledInput';
 import FormControl from '@mui/material/FormControl';
 import Alert from '@mui/material/Alert';
+import Pagination from '@mui/material/Pagination';
+import TableFooter from '@mui/material/TableFooter';
 import InputLabel from '@mui/material/InputLabel';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -771,6 +773,100 @@ describe.skipIf(isJsdom())('density without the matching input', () => {
     expect(
       parseFloat(getComputedStyle(inEnhanced('.MuiCardActions-root')).paddingTop),
     ).to.be.greaterThan(0);
+  });
+});
+
+describe.skipIf(isJsdom())('density with modularCssLayers', () => {
+  const { render } = createRenderer();
+  const unlayered = THEMES.get('medium')!;
+  const layered = enhanceDensity(createTheme({ modularCssLayers: true }));
+
+  const cases: Record<string, { node: React.ReactNode; selector: string; property: string }[]> = {
+    'Select caret padding': [
+      {
+        node: (
+          <Select value="a" sx={{ width: 160 }}>
+            <MenuItem value="a">A long selected option</MenuItem>
+          </Select>
+        ),
+        selector: '.MuiSelect-select',
+        property: 'padding-right',
+      },
+    ],
+    'DialogContent under a DialogTitle': [
+      {
+        node: (
+          <div>
+            <DialogTitle>Title</DialogTitle>
+            <DialogContent>Body</DialogContent>
+          </div>
+        ),
+        selector: '.MuiDialogContent-root',
+        property: 'padding-top',
+      },
+    ],
+    'Chip avatar and delete icon': (['small', 'medium'] as const).flatMap((size) => [
+      {
+        node: <Chip size={size} avatar={<Avatar>M</Avatar>} label="Chip" onDelete={() => {}} />,
+        selector: '.MuiChip-avatar',
+        property: 'font-size',
+      },
+      {
+        node: <Chip size={size} label="Chip" onDelete={() => {}} />,
+        selector: '.MuiChip-deleteIcon',
+        property: 'font-size',
+      },
+    ]),
+    'TablePagination cell and toolbar padding': ['padding-right', 'padding-left'].flatMap(
+      (property) =>
+        ['.MuiTablePagination-root', '.MuiTablePagination-toolbar'].map((selector) => ({
+          node: (
+            <Table>
+              <TableFooter>
+                <TableRow>
+                  <TablePagination
+                    count={100}
+                    page={0}
+                    rowsPerPage={10}
+                    onPageChange={() => {}}
+                    onRowsPerPageChange={() => {}}
+                  />
+                </TableRow>
+              </TableFooter>
+            </Table>
+          ),
+          selector,
+          property,
+        })),
+    ),
+    'Pagination icon': (['small', 'medium', 'large'] as const).map((size) => ({
+      node: <Pagination size={size} count={3} />,
+      selector: '.MuiPaginationItem-icon',
+      property: 'font-size',
+    })),
+  };
+
+  Object.entries(cases).forEach(([title, list]) => {
+    test(`${title} renders the same with and without layers`, () => {
+      list.forEach(({ node, selector, property }) => {
+        const { unmount } = render(
+          <React.Fragment>
+            <div data-testid="unlayered">
+              <ThemeProvider theme={unlayered}>{node}</ThemeProvider>
+            </div>
+            <div data-testid="layered">
+              <ThemeProvider theme={layered}>{node}</ThemeProvider>
+            </div>
+          </React.Fragment>,
+        );
+        const read = (id: string) =>
+          getComputedStyle(
+            document.querySelector(`[data-testid="${id}"] ${selector}`) as HTMLElement,
+          ).getPropertyValue(property);
+        expect(read('layered'), `${selector} ${property}`).to.equal(read('unlayered'));
+        unmount();
+      });
+    });
   });
 });
 
