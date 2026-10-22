@@ -19,6 +19,13 @@ import ListItemButton from '@mui/material/ListItemButton';
 import TextField from '@mui/material/TextField';
 import InputBase from '@mui/material/InputBase';
 import FilledInput from '@mui/material/FilledInput';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardActions from '@mui/material/CardActions';
 import Select from '@mui/material/Select';
 import Toolbar from '@mui/material/Toolbar';
 import Tab from '@mui/material/Tab';
@@ -635,6 +642,100 @@ describe.skipIf(isJsdom())('filled input label room', () => {
         );
       });
     });
+  });
+});
+
+describe.skipIf(isJsdom())('density without the matching input', () => {
+  const { render } = createRenderer();
+  const plain = createTheme();
+  const enhanced = THEMES.get('medium')!;
+
+  function renderBoth(node: React.ReactNode) {
+    render(
+      <React.Fragment>
+        <div data-testid="plain">
+          <ThemeProvider theme={plain}>{node}</ThemeProvider>
+        </div>
+        <div data-testid="enhanced">
+          <ThemeProvider theme={enhanced}>{node}</ThemeProvider>
+        </div>
+      </React.Fragment>,
+    );
+    const pick = (id: string, selector: string) =>
+      document.querySelector(`[data-testid="${id}"] ${selector}`) as HTMLElement;
+    return {
+      plain: (selector: string) => pick('plain', selector),
+      enhanced: (selector: string) => pick('enhanced', selector),
+    };
+  }
+
+  (['standard', 'filled', 'outlined'] as const).forEach((variant) => {
+    (['small', 'medium'] as const).forEach((size) => {
+      (variant === 'filled' ? [false, true] : [false]).forEach((shrink) => {
+        test(`a ${variant} ${size}${shrink ? ' shrunk' : ''} label keeps master's position when the input does not set it`, () => {
+          const { plain: inPlain, enhanced: inEnhanced } = renderBoth(
+            <FormControl variant={variant} size={size}>
+              <InputLabel shrink={shrink}>Label</InputLabel>
+              <InputBase />
+            </FormControl>,
+          );
+          expect(getComputedStyle(inEnhanced('label')).transform).to.equal(
+            getComputedStyle(inPlain('label')).transform,
+          );
+        });
+      });
+    });
+  });
+
+  test('helper text with inline elements flows as text', () => {
+    const { plain: inPlain, enhanced: inEnhanced } = renderBoth(
+      <TextField
+        sx={{ width: 220 }}
+        helperText={
+          <React.Fragment>
+            Use <strong>letters only</strong> and read the <a href="#rules">naming rules</a> before
+            you continue.
+          </React.Fragment>
+        }
+      />,
+    );
+    const linkWidth = (el: HTMLElement) => el.getBoundingClientRect().width;
+    expect(linkWidth(inEnhanced('.MuiFormHelperText-root a'))).to.equal(
+      linkWidth(inPlain('.MuiFormHelperText-root a')),
+    );
+  });
+
+  test('DialogContent keeps block padding without a title, and none under one', () => {
+    const { enhanced: inEnhanced } = renderBoth(
+      <React.Fragment>
+        <div data-testid="alone">
+          <DialogContent>Body</DialogContent>
+        </div>
+        <div data-testid="titled">
+          <DialogTitle>Title</DialogTitle>
+          <DialogContent>Body</DialogContent>
+        </div>
+      </React.Fragment>,
+    );
+    const alone = getComputedStyle(inEnhanced('[data-testid="alone"] .MuiDialogContent-root'));
+    const titled = getComputedStyle(inEnhanced('[data-testid="titled"] .MuiDialogContent-root'));
+    expect(parseFloat(alone.paddingTop)).to.be.greaterThan(0);
+    expect(parseFloat(alone.paddingBottom)).to.be.greaterThan(0);
+    expect(titled.paddingTop).to.equal('0px');
+  });
+
+  test('CardActions keeps top padding below a CardMedia', () => {
+    const { enhanced: inEnhanced } = renderBoth(
+      <Card>
+        <CardMedia sx={{ height: 40 }} />
+        <CardActions>
+          <Button>Share</Button>
+        </CardActions>
+      </Card>,
+    );
+    expect(
+      parseFloat(getComputedStyle(inEnhanced('.MuiCardActions-root')).paddingTop),
+    ).to.be.greaterThan(0);
   });
 });
 

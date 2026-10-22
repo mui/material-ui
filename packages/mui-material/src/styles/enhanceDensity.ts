@@ -125,6 +125,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   // Sized components step off the interactive box rather than the ladder, so a
   // `touchTarget` override carries all three sizes instead of only the middle
   // one. Both land on today's px at the default 32.
+  const tableRowHeight = `calc(${touchTarget} + 2*${spacing('xxSmall')})`; // 40px
   const tinyBox = `calc(${touchTarget} - ${spacing('xSmall')})`; // 24px
   const smallBox = `calc(${touchTarget} - ${spacing('xxSmall')})`; // 28px
   const largeBox = `calc(${touchTarget} + ${spacing('small')})`; // 44px
@@ -580,11 +581,12 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     },
     'input',
   );
-  // Label Y rides --_restY/--_shrinkY consumed BARE (a missing writer must
-  // break visibly); each shrink state must re-assert or the rest rules here,
-  // landing after master's shrink, would leak the rest transform.
+  // Each shrink state must re-assert or the rest rules here, landing after
+  // master's shrink, would leak the rest transform.
   addRootOverride(enhanced.components, 'MuiInputLabel', {
     variants: [
+      { props: { variant: 'standard' }, style: { '--_restY': '20px' } },
+      { props: { variant: 'standard', size: 'small' }, style: { '--_restY': '17px' } },
       {
         props: ({ ownerState }) => !!ownerState.formControl,
         style: { transform: 'translate(0, var(--_restY)) scale(1)' },
@@ -596,8 +598,15 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         props: { variant: 'filled' },
         style: {
+          '--_inlinePad': `${dirSign * 12}px`,
+          '--_restY': '16px',
+          '--_shrinkY': '7px',
           transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)',
         },
+      },
+      {
+        props: { variant: 'filled', size: 'small' },
+        style: { '--_restY': '13px', '--_shrinkY': '4px' },
       },
       {
         props: { variant: 'filled', shrink: true },
@@ -608,9 +617,12 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         props: { variant: 'outlined' },
         style: {
+          '--_inlinePad': `${dirSign * 14}px`,
+          '--_restY': '16px',
           transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)',
         },
       },
+      { props: { variant: 'outlined', size: 'small' }, style: { '--_restY': '9px' } },
       {
         props: { variant: 'outlined', shrink: true },
         style: { transform: 'translate(14px, -0.375lh) scale(0.75)' }, // 0.375 = 50% * 0.75 scale factor
@@ -624,10 +636,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     lineHeight: enhanced.typography?.body1?.lineHeight,
   });
   addRootOverride(enhanced.components, 'MuiFormHelperText', {
-    display: 'inline-flex',
-    alignItems: 'center',
     marginTop: spacing('xSmall'),
-    gap: 4,
     variants: [
       {
         props: { contained: true },
@@ -967,7 +976,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   // Two variants = one knob per dividers state (true overrides master's 16 24).
   addRootOverride(enhanced.components, 'MuiDialogContent', {
     variants: [
-      { props: { dividers: false }, style: { padding: `0 ${spacing('medium')}` } },
+      { props: { dividers: false }, style: { padding: spacing('medium') } },
       { props: { dividers: true }, style: { padding: spacing('medium') } },
     ],
   });
@@ -1089,7 +1098,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
   addRootOverride(enhanced.components, 'MuiCardActions', {
     padding: spacing('medium'),
-    paddingTop: 0,
     variants: [
       {
         props: { disableSpacing: false },
@@ -1251,20 +1259,28 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   // it at 2-class specificity, so a plain variant (1 class) loses there.
   addRootOverride(enhanced.components, 'MuiTableCell', {
     paddingBlock: 0,
-    [`&.${tableCellClasses.paddingCheckbox}`]: { padding: '0 0 0 4px' },
     variants: [
+      {
+        props: {
+          padding: 'checkbox',
+        },
+        style: {
+          width: tableRowHeight,
+        },
+      },
       {
         props: { size: 'medium' },
         style: {
-          height: `calc(${spacing('xLarge')} + ${spacing('xSmall')})`,
+          height: tableRowHeight,
           paddingInline: spacing('small'),
         },
       },
       {
         props: { size: 'small' },
         style: {
-          height: `calc(${spacing('large')} + ${spacing('xxSmall')})`,
+          height: tableRowHeight,
           paddingInline: spacing('xSmall'),
+          [`&.${tableCellClasses.paddingCheckbox}`]: { padding: '0 0 0 4px' }, // the small size uses class-specific padding
         },
       },
       { props: { variant: 'footer' }, style: { ...enhanced.typography?.subtitle2 } },
