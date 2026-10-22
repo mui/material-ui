@@ -550,6 +550,34 @@ describe('<Chip />', () => {
     });
 
     describe('prop: onDelete', () => {
+      [false, true].forEach((disabled) => {
+        ['Backspace', 'Delete'].forEach((key) => {
+          it(`${disabled ? 'does not delete a disabled' : 'deletes an enabled'} chip with ${key}`, async () => {
+            function DeletableChip() {
+              const [deleted, setDeleted] = React.useState(false);
+
+              return deleted ? null : (
+                <Chip
+                  label="Deletable chip"
+                  disabled={disabled}
+                  onDelete={() => setDeleted(true)}
+                />
+              );
+            }
+
+            const { user } = render(<DeletableChip />);
+            const chip = screen.getByRole('button');
+
+            act(() => {
+              chip.focus();
+            });
+            await user.keyboard(`{${key}}`);
+
+            expect(screen.queryByRole('button')).to.equal(disabled ? chip : null);
+          });
+        });
+      });
+
       ['Backspace', 'Delete'].forEach((key) => {
         it(`should call onDelete '${key}' is released`, () => {
           const handleDelete = spy();
