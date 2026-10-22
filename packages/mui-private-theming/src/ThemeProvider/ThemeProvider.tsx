@@ -27,7 +27,7 @@ function mergeOuterLocalTheme(outerTheme: any, localTheme: any) {
       }
     }
 
-    return mergedTheme;
+    return mergedTheme == null ? mergedTheme : { ...mergedTheme };
   }
 
   return { ...outerTheme, ...localTheme };
