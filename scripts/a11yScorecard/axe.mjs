@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import axe from 'axe-core';
+import { minimatch } from 'minimatch';
 import { rootDirectory } from './files.mjs';
 import { wcagTag } from './wcag.mjs';
 
@@ -11,24 +12,32 @@ const STATUS_SEVERITY = ['fail', 'incomplete', 'pass'];
 
 export const AXE_STATUS_SYMBOLS = { pass: '✅', incomplete: '❔', fail: '❌' };
 
-/** `*` is the only wildcard, and the pattern is anchored. Other characters are literals. */
-function demoPattern(pattern) {
-  const source = pattern.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*');
-  return new RegExp(`^${source}$`);
-}
-
 /** Whether a demo name matches one `axeDemos` pattern (`Circular*`, or an exact name). */
 export function demoMatches(name, pattern) {
-  return demoPattern(pattern).test(name);
+  return minimatch(name, pattern);
+}
+
+/**
+ * Demo names none of `patternLists` claim. Each list is one component's `axeDemos`.
+ * A component without the field is not in the lists: it reads the whole file.
+ */
+export function unclaimedDemoNames(names, patternLists) {
+  const patterns = patternLists.flat();
+  return names.filter((name) => !patterns.some((pattern) => demoMatches(name, pattern)));
 }
 
 async function readAxeFile(ref) {
   return JSON.parse(await fs.readFile(path.join(rootDirectory, ref), 'utf8'));
 }
 
+/** Demo names recorded in a committed `*.a11y.json`. */
+export async function demoNames(ref) {
+  return Object.keys(await readAxeFile(ref));
+}
+
 /** Patterns in `patterns` that name no demo in `ref`. */
 export async function unmatchedAxeDemos(ref, patterns) {
-  const names = Object.keys(await readAxeFile(ref));
+  const names = await demoNames(ref);
   return patterns.filter((pattern) => !names.some((name) => demoMatches(name, pattern)));
 }
 
@@ -42,7 +51,7 @@ export async function readAxeResults(ref, patterns) {
   const demos = await readAxeFile(ref);
   const entries = Array.isArray(patterns)
     ? Object.entries(demos).filter(([name]) =>
-        patterns.some((pattern) => typeof pattern === 'string' && demoMatches(name, pattern)),
+        patterns.some((pattern) => demoMatches(name, pattern)),
       )
     : Object.entries(demos);
   const statuses = new Map();
