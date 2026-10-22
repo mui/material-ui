@@ -163,11 +163,11 @@ export const DENSITY_ANNOTATIONS: Record<
         label: 'Input root',
         route: { gutter: 'right' },
       },
-      // A medium IconButton box (no size prop) — a width, read against the top.
+      // The end buttons step down to the small box — a width, read against the top.
       {
         on: '.MuiAutocomplete-popupIndicator',
         aspect: 'touch-target',
-        token: 'touchTarget',
+        token: 'touchTarget - xxSmall',
         label: 'Popup indicator',
         route: { gutter: 'top' },
       },

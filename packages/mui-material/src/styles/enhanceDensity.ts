@@ -850,7 +850,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     },
     [`&:has(.${inputBaseClasses.sizeSmall})`]: {
       '--_autocompleteInputRootPadBlock': '0px',
-      '--_autocompleteInputPadBlock': spacing('xxSmall'),
+      '--_autocompleteInputPadBlock': inputSmallPadBlock,
     },
     [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
       paddingBlock: `var(--_autocompleteInputRootPadBlock)`,
@@ -867,14 +867,26 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     [`& .${filledInputClasses.root} .${filledInputClasses.input}, & .${filledInputClasses.root}.${inputBaseClasses.sizeSmall} .${filledInputClasses.input}`]:
       { paddingBlock: 'var(--_filledInputPadBottom)' },
     [`&.${autocompleteClasses.hasPopupIcon} .${autocompleteClasses.inputRoot}, &.${autocompleteClasses.hasClearIcon} .${autocompleteClasses.inputRoot}`]:
-      { paddingRight: `calc(${touchTarget} + 2px + var(--_endOffset, 0px))` },
+      { paddingRight: `calc(${smallBox} + 2px + var(--_endOffset, 0px))` },
     [`&.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon} .${autocompleteClasses.inputRoot}`]:
-      { paddingRight: `calc(2 * ${touchTarget} + var(--_endOffset, 0px))` },
+      { paddingRight: `calc(2 * ${smallBox} + var(--_endOffset, 0px))` },
     [`& .${outlinedInputClasses.root}, & .${filledInputClasses.root}`]: { '--_endOffset': '9px' },
     [`& .${inputClasses.root}`]: { paddingBottom: 0 },
     [`& .${inputClasses.root} .${inputClasses.input}, & .${inputClasses.root}.${inputBaseClasses.sizeSmall} .${inputClasses.input}`]:
       { paddingBlock: 'var(--_inputPadBlock)' },
   });
+  addRootOverride(
+    enhanced.components,
+    'MuiAutocomplete',
+    { width: smallBox, height: smallBox },
+    'clearIndicator',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiAutocomplete',
+    { width: smallBox, height: smallBox },
+    'popupIndicator',
+  );
   addRootOverride(
     enhanced.components,
     'MuiAutocomplete',

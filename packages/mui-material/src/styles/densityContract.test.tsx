@@ -783,8 +783,7 @@ describe.skipIf(isJsdom())('density without the matching input', () => {
 describe.skipIf(isJsdom())('Autocomplete matches TextField', () => {
   const { render } = createRenderer();
   const cases = [
-    { variant: 'outlined' as const, size: 'medium' as const },
-    ...(['filled', 'standard'] as const).flatMap((variant) =>
+    ...(['outlined', 'filled', 'standard'] as const).flatMap((variant) =>
       (['small', 'medium'] as const).map((size) => ({ variant, size })),
     ),
   ];
