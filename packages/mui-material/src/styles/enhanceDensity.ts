@@ -19,6 +19,8 @@ import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
 import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import inputBaseClasses from '../InputBase/inputBaseClasses';
+import filledInputClasses from '../FilledInput/filledInputClasses';
+import inputClasses from '../Input/inputClasses';
 import formControlClasses from '../FormControl/formControlClasses';
 import formControlLabelClasses from '../FormControlLabel/formControlLabelClasses';
 import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
@@ -857,6 +859,21 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         paddingBlock: `var(--_autocompleteInputPadBlock)`,
       },
+    [`& .${filledInputClasses.root}, & .${filledInputClasses.root}.${inputBaseClasses.sizeSmall}`]:
+      {
+        paddingTop: 'calc(var(--_filledInputPadTop) - var(--_filledInputPadBottom))',
+        paddingBottom: 0,
+      },
+    [`& .${filledInputClasses.root} .${filledInputClasses.input}, & .${filledInputClasses.root}.${inputBaseClasses.sizeSmall} .${filledInputClasses.input}`]:
+      { paddingBlock: 'var(--_filledInputPadBottom)' },
+    [`&.${autocompleteClasses.hasPopupIcon} .${autocompleteClasses.inputRoot}, &.${autocompleteClasses.hasClearIcon} .${autocompleteClasses.inputRoot}`]:
+      { paddingRight: `calc(${touchTarget} + 2px + var(--_endOffset, 0px))` },
+    [`&.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon} .${autocompleteClasses.inputRoot}`]:
+      { paddingRight: `calc(2 * ${touchTarget} + var(--_endOffset, 0px))` },
+    [`& .${outlinedInputClasses.root}, & .${filledInputClasses.root}`]: { '--_endOffset': '9px' },
+    [`& .${inputClasses.root}`]: { paddingBottom: 0 },
+    [`& .${inputClasses.root} .${inputClasses.input}, & .${inputClasses.root}.${inputBaseClasses.sizeSmall} .${inputClasses.input}`]:
+      { paddingBlock: 'var(--_inputPadBlock)' },
   });
   addRootOverride(
     enhanced.components,

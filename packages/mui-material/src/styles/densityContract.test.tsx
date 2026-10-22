@@ -780,6 +780,74 @@ describe.skipIf(isJsdom())('density without the matching input', () => {
   });
 });
 
+describe.skipIf(isJsdom())('Autocomplete matches TextField', () => {
+  const { render } = createRenderer();
+  const cases = [
+    { variant: 'outlined' as const, size: 'medium' as const },
+    ...(['filled', 'standard'] as const).flatMap((variant) =>
+      (['small', 'medium'] as const).map((size) => ({ variant, size })),
+    ),
+  ];
+
+  DENSITIES.forEach((density) => {
+    cases.forEach(({ variant, size }) => {
+      test(`${density.id} ${variant} ${size}: same height`, () => {
+        render(
+          <ThemeProvider theme={THEMES.get(density.id)!}>
+            <div data-testid="autocomplete">
+              <Autocomplete
+                options={['One', 'Two']}
+                size={size}
+                defaultValue="One"
+                renderInput={(params) => <TextField {...params} variant={variant} label="Label" />}
+              />
+            </div>
+            <div data-testid="textfield">
+              <TextField variant={variant} size={size} label="Label" defaultValue="One" />
+            </div>
+          </ThemeProvider>,
+        );
+        const height = (id: string) =>
+          (
+            document.querySelector(`[data-testid="${id}"] .MuiInputBase-root`) as HTMLElement
+          ).getBoundingClientRect().height;
+        expect(height('autocomplete')).to.be.closeTo(height('textfield'), 0.5);
+      });
+    });
+  });
+});
+
+describe.skipIf(isJsdom())('Autocomplete end buttons', () => {
+  const { render } = createRenderer();
+
+  DENSITIES.forEach((density) => {
+    (['outlined', 'filled', 'standard'] as const).forEach((variant) => {
+      [false, true].forEach((disableClearable) => {
+        test(`${density.id} ${variant}${disableClearable ? ' popup only' : ''}: text stops before the buttons`, () => {
+          render(
+            <ThemeProvider theme={THEMES.get(density.id)!}>
+              <Autocomplete
+                sx={{ width: 300 }}
+                options={['A long option value that fills the field']}
+                defaultValue="A long option value that fills the field"
+                disableClearable={disableClearable}
+                renderInput={(params) => <TextField {...params} variant={variant} label="Label" />}
+              />
+            </ThemeProvider>,
+          );
+          const input = document.querySelector('.MuiAutocomplete-input') as HTMLElement;
+          const textEnd =
+            input.getBoundingClientRect().right - parseFloat(getComputedStyle(input).paddingRight);
+          const buttons = (
+            document.querySelector('.MuiAutocomplete-endAdornment') as HTMLElement
+          ).getBoundingClientRect();
+          expect(textEnd).to.be.at.most(buttons.left + 0.5);
+        });
+      });
+    });
+  });
+});
+
 describe.skipIf(isJsdom())('menu inset rows', () => {
   const { render } = createRenderer();
   const themes: [string, ReturnType<typeof enhanceDensity>][] = [
