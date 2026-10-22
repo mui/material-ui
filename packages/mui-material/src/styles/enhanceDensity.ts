@@ -15,7 +15,6 @@ import stepLabelClasses from '../StepLabel/stepLabelClasses';
 import tablePaginationClasses from '../TablePagination/tablePaginationClasses';
 import tableCellClasses from '../TableCell/tableCellClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
-import alertClasses from '../Alert/alertClasses';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
 import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
@@ -1143,17 +1142,19 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     paddingBlock: spacing('xSmall'),
     paddingInline: spacing('small'),
     gap: spacing('xSmall'),
-    [`& .${alertClasses.icon}`]: {
-      marginRight: 0,
-      paddingBlock: 6,
-      fontSize: '1.1lh',
-    },
-    [`& .${alertClasses.action}`]: {
-      padding: 0,
-      marginRight: 0,
-      alignSelf: 'center',
-    },
   });
+  addRootOverride(
+    enhanced.components,
+    'MuiAlert',
+    { marginRight: 0, paddingBlock: 6, fontSize: '1.1lh' },
+    'icon',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiAlert',
+    { padding: 0, marginRight: 0, alignSelf: 'center' },
+    'action',
+  );
   addDefaultProps(enhanced.components, 'MuiAlert', {
     slotProps: { closeButton: { size: 'medium' } },
   });

@@ -20,6 +20,7 @@ import TextField from '@mui/material/TextField';
 import InputBase from '@mui/material/InputBase';
 import FilledInput from '@mui/material/FilledInput';
 import FormControl from '@mui/material/FormControl';
+import Alert from '@mui/material/Alert';
 import InputLabel from '@mui/material/InputLabel';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -777,6 +778,27 @@ describe.skipIf(isJsdom())('density and user overrides', () => {
   const { render } = createRenderer();
   const theme = THEMES.get('medium')!;
   const label = () => document.querySelector('[data-testid="label"]') as HTMLElement;
+
+  test('Alert icon and action styleOverrides win over density', () => {
+    const overridden = enhanceDensity(
+      createTheme({
+        components: {
+          MuiAlert: {
+            styleOverrides: { icon: { paddingTop: 20 }, action: { paddingTop: 20 } },
+          },
+        },
+      }),
+    );
+    render(
+      <ThemeProvider theme={overridden}>
+        <Alert onClose={() => {}}>Message</Alert>
+      </ThemeProvider>,
+    );
+    const paddingTop = (selector: string) =>
+      getComputedStyle(document.querySelector(selector) as HTMLElement).paddingTop;
+    expect(paddingTop('.MuiAlert-icon')).to.equal('20px');
+    expect(paddingTop('.MuiAlert-action')).to.equal('20px');
+  });
 
   test('a control pulls its label in through the label root', () => {
     render(
