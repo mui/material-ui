@@ -851,8 +851,8 @@ export default function MenuRfcExperiment() {
               external button.
             </p>
             <p>
-              Without the Base UI tree fix, opening More closes the root with reason{' '}
-              <code>sibling-open</code>. The local dependency patch fixes this case.
+              Base UI 1.9.0 includes the tree fix that prevents opening More from closing the root
+              with reason <code>sibling-open</code>. No local dependency patch is needed.
             </p>
             <ControlledAnchorDemo />
           </section>
