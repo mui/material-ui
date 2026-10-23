@@ -22,13 +22,14 @@ interface TabStopStore<Key> {
    */
   hasItems: boolean;
   /**
-   * Listeners by item id, called when that item may have gained or lost the tab stop.
+   * Called on every change. Each item compares its own tab stop, so only the items whose tab stop
+   * changed re-render.
    */
-  listeners: Map<Key, Set<() => void>>;
+  listeners: Set<() => void>;
 }
 
 function createTabStopStore<Key>(): TabStopStore<Key> {
-  return { activeItemId: null, hasItems: false, listeners: new Map() };
+  return { activeItemId: null, hasItems: false, listeners: new Set() };
 }
 
 export interface Item<Key = unknown> {
@@ -168,11 +169,11 @@ export interface UseRovingTabIndexReturnValue<Key = unknown> {
    */
   setActiveItemId: (itemId: Key | null) => void;
   /**
-   * Calls `listener` after a commit in which `isItemTabStop` may have changed for the supplied item
-   * id. Items use it to re-render on their own, since this object doesn't change with the active
-   * item. Returns the unsubscribe function.
+   * Calls `listener` after a commit in which `isItemTabStop` may have changed for any item.
+   * Items use it to re-render on their own, since this object doesn't change with the active item.
+   * Returns the unsubscribe function.
    */
-  subscribeToTabStop: (itemId: Key, listener: () => void) => () => void;
+  subscribeToTabStop: (listener: () => void) => () => void;
   /**
    * Removes an item from the roving registry.
    */
@@ -284,23 +285,11 @@ export function useRovingTabIndexRoot<Key = unknown>(
   const hasItems = orderedItems.length > 0;
 
   useEnhancedEffect(() => {
-    const { activeItemId: previousActiveItemId, hasItems: hadItems, listeners } = tabStopStore;
-
-    if (previousActiveItemId === resolvedActiveItemId && hadItems === hasItems) {
-      return;
+    if (tabStopStore.activeItemId !== resolvedActiveItemId || tabStopStore.hasItems !== hasItems) {
+      tabStopStore.activeItemId = resolvedActiveItemId;
+      tabStopStore.hasItems = hasItems;
+      tabStopStore.listeners.forEach((listener) => listener());
     }
-
-    tabStopStore.activeItemId = resolvedActiveItemId;
-    tabStopStore.hasItems = hasItems;
-    // While no item has registered, the selected items hold the tab stop instead, so any item can
-    // change when the first one registers or the last one leaves.
-    const affectedListeners =
-      hadItems === hasItems
-        ? [listeners.get(previousActiveItemId!), listeners.get(resolvedActiveItemId!)]
-        : Array.from(listeners.values());
-    affectedListeners.forEach((itemListeners) => {
-      itemListeners?.forEach((listener) => listener());
-    });
   }, [hasItems, resolvedActiveItemId, tabStopStore]);
 
   const isItemTabStop = React.useCallback(
@@ -310,20 +299,10 @@ export function useRovingTabIndexRoot<Key = unknown>(
   );
 
   const subscribeToTabStop = React.useCallback(
-    (itemId: Key, listener: () => void) => {
-      const { listeners } = tabStopStore;
-      let itemListeners = listeners.get(itemId);
-      if (!itemListeners) {
-        itemListeners = new Set();
-        listeners.set(itemId, itemListeners);
-      }
-      itemListeners.add(listener);
-
+    (listener: () => void) => {
+      tabStopStore.listeners.add(listener);
       return () => {
-        itemListeners.delete(listener);
-        if (itemListeners.size === 0) {
-          listeners.delete(itemId);
-        }
+        tabStopStore.listeners.delete(listener);
       };
     },
     [tabStopStore],
@@ -549,15 +528,11 @@ export function useRovingTabIndexItem<Key = unknown>(
   const { isItemTabStop, registerItem, subscribeToTabStop, unregisterItem } =
     useRovingTabIndexContext();
   const selected = params.selected ?? false;
-  const subscribe = React.useCallback(
-    (listener: () => void) => subscribeToTabStop(params.id, listener),
-    [params.id, subscribeToTabStop],
-  );
   const getIsTabStop = React.useCallback(
     () => isItemTabStop(params.id, selected),
     [isItemTabStop, params.id, selected],
   );
-  const isTabStop = React.useSyncExternalStore(subscribe, getIsTabStop, getIsTabStop);
+  const isTabStop = React.useSyncExternalStore(subscribeToTabStop, getIsTabStop, getIsTabStop);
   const elementRef = React.useRef<HTMLElement | null>(null);
   const item = React.useMemo(
     () => ({
