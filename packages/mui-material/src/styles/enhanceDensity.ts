@@ -820,31 +820,23 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   );
   addRootOverride(enhanced.components, 'MuiSwitch', { borderRadius: 'var(--_height)' }, 'track');
   addRootOverride(enhanced.components, 'MuiAutocomplete', {
-    '--_autocompleteInputRootPadBlock': '3px',
-    '--_autocompleteInputPadBlock': `max(0px, (${touchTarget} - 1lh) / 2 - var(--_autocompleteInputRootPadBlock))`,
     [`& .${autocompleteClasses.inputRoot}`]: { gap: 0 },
     [`& .${outlinedInputClasses.root}`]: {
-      paddingBlock: `var(--_autocompleteInputRootPadBlock)`,
+      '--_outlinedRootPadBlock': '3px',
+      paddingBlock: 'var(--_outlinedRootPadBlock)',
       paddingLeft: '8px',
     },
     [`& .${outlinedInputClasses.root} .${autocompleteClasses.input}`]: {
-      paddingBlock: `var(--_autocompleteInputPadBlock)`,
+      paddingBlock: 'max(0px, var(--_outlinedInputPadBlock) - var(--_outlinedRootPadBlock))',
       paddingLeft: '6px',
     },
-    [`& .${formControlClasses.root}:has(> .${outlinedInputClasses.root})`]: {
-      '--_outlinedInputPadBlock':
-        'calc(var(--_autocompleteInputRootPadBlock) + var(--_autocompleteInputPadBlock))',
-    },
-    [`&:has(.${inputBaseClasses.sizeSmall})`]: {
-      '--_autocompleteInputRootPadBlock': '0px',
-      '--_autocompleteInputPadBlock': inputSmallPadBlock,
-    },
     [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-      paddingBlock: `var(--_autocompleteInputRootPadBlock)`,
+      '--_outlinedRootPadBlock': '0px',
+      paddingBlock: 'var(--_outlinedRootPadBlock)',
     },
     [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall} .${autocompleteClasses.input}`]:
       {
-        paddingBlock: `var(--_autocompleteInputPadBlock)`,
+        paddingBlock: 'max(0px, var(--_outlinedInputPadBlock) - var(--_outlinedRootPadBlock))',
       },
     [`& .${filledInputClasses.root}`]: {
       paddingLeft: `calc(${spacing('small')} - 4px)`,
