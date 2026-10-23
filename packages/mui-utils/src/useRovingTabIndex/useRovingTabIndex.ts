@@ -1,5 +1,7 @@
 'use client';
 import * as React from 'react';
+// React 17 has no `useSyncExternalStore`. On React 18 and later the shim is React's own.
+import { useSyncExternalStore } from 'use-sync-external-store/shim';
 import fastObjectShallowCompare from '../fastObjectShallowCompare';
 import getActiveElement from '../getActiveElement';
 import ownerDocument from '../ownerDocument';
@@ -532,7 +534,7 @@ export function useRovingTabIndexItem<Key = unknown>(
     () => isItemTabStop(params.id, selected),
     [isItemTabStop, params.id, selected],
   );
-  const isTabStop = React.useSyncExternalStore(subscribeToTabStop, getIsTabStop, getIsTabStop);
+  const isTabStop = useSyncExternalStore(subscribeToTabStop, getIsTabStop, getIsTabStop);
   const elementRef = React.useRef<HTMLElement | null>(null);
   const item = React.useMemo(
     () => ({
