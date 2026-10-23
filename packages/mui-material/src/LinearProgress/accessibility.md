@@ -186,7 +186,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `✅ Supports` · `◐ Shared`
 
-Tested by: unit `LinearProgress.test.js` · axe-core `aria-allowed-attr` ✅, `aria-conditional-attr` ✅, `aria-deprecated-role` ✅, `aria-prohibited-attr` ✅, `aria-required-attr` ✅, `aria-roles` ✅, `aria-valid-attr` ✅, `aria-valid-attr-value` ✅, `duplicate-id-aria` ✅, `nested-interactive` ✅
+Tested by: unit `LinearProgress.test.js` · axe-core `aria-allowed-attr` ✅, `aria-conditional-attr` ✅, `aria-deprecated-role` ✅, `aria-hidden-focus` ✅, `aria-prohibited-attr` ✅, `aria-required-attr` ✅, `aria-roles` ✅, `aria-valid-attr` ✅, `aria-valid-attr-value` ✅, `duplicate-id-aria` ✅, `nested-interactive` ✅
 
 <!-- 4.1.2:start -->
 

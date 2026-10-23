@@ -257,6 +257,12 @@ for (const WrappedAutocomplete of [UncastStyledAutocomplete, UncastMemoAutocompl
 }
 React.createElement(Autocomplete, rawWrapperProps);
 
+// Erased props, such as Storybook args, must spread back into Autocomplete.
+function ErasedPropsAutocomplete(props: React.ComponentProps<typeof Autocomplete>) {
+  return <Autocomplete {...props} />;
+}
+<ErasedPropsAutocomplete {...rawWrapperProps} />;
+
 // Contextual callback types must survive wrapping in both prop modes.
 for (const wrapperProps of [
   rawWrapperProps,
