@@ -1620,11 +1620,14 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
         positions.push([thumb.style.left, track.style.width]);
       };
       document.addEventListener('touchmove', handleTouchMove);
-      fireEvent.touchMove(
-        document.body,
-        createTouches([{ identifier: 1, clientX: 42, clientY: 0 }]),
-      );
-      document.removeEventListener('touchmove', handleTouchMove);
+      try {
+        fireEvent.touchMove(
+          document.body,
+          createTouches([{ identifier: 1, clientX: 42, clientY: 0 }]),
+        );
+      } finally {
+        document.removeEventListener('touchmove', handleTouchMove);
+      }
 
       expect(positions).to.deep.equal([['42%', '42%']]);
     });
@@ -1658,8 +1661,11 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
           positions.push(thumb.style.left);
         };
         document.addEventListener('pointermove', handlePointerMove);
-        fireEvent.pointerMove(document.body, { buttons: 1, clientX: 42, pointerId: 1 });
-        document.removeEventListener('pointermove', handlePointerMove);
+        try {
+          fireEvent.pointerMove(document.body, { buttons: 1, clientX: 42, pointerId: 1 });
+        } finally {
+          document.removeEventListener('pointermove', handlePointerMove);
+        }
 
         expect(positions).to.deep.equal(['42%']);
       },
