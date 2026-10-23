@@ -225,11 +225,6 @@ import { useFormControl } from '@mui/material/FormControl';
 
 {{"component": "file://./demos/use-form-control/index.ts"}}
 
-## Performance
-
-The auto-fill keyframes are injected with the input styles, so mounting a large number of Text Field components at once doesn't inject a style sheet per input.
-The [`disableInjectingGlobalStyles`](/material-ui/api/input-base/#input-base-prop-disableInjectingGlobalStyles) prop, which worked around that cost, is deprecated: you can remove it from `MuiInputBase`, along with the `GlobalStyles` for the auto-fill keyframes it required.
-
 ## Limitations
 
 ### Shrink
