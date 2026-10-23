@@ -291,10 +291,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 });
 
 function createEventHandlers(latestRef, setFocusVisible, ripple) {
-  function createRippleHandler(rippleAction, eventCallbackName, beforeEventCallback) {
+  function createRippleHandler(rippleAction, eventCallbackName) {
     return (event) => {
       const latest = latestRef.current;
-      beforeEventCallback?.(event, latest);
       const eventCallback = latest[eventCallbackName];
       if (eventCallback) {
         eventCallback(event);
@@ -303,10 +302,9 @@ function createEventHandlers(latestRef, setFocusVisible, ripple) {
       if (!latest.disableTouchRipple) {
         ripple[rippleAction](event);
       }
-
-      return true;
     };
   }
+  const handleMouseLeave = createRippleHandler('stop', 'onMouseLeave');
 
   return {
     onBeforeKeyDown(event) {
@@ -332,11 +330,12 @@ function createEventHandlers(latestRef, setFocusVisible, ripple) {
     onContextMenu: createRippleHandler('stop', 'onContextMenu'),
     onDragLeave: createRippleHandler('stop', 'onDragLeave'),
     onMouseUp: createRippleHandler('stop', 'onMouseUp'),
-    onMouseLeave: createRippleHandler('stop', 'onMouseLeave', (event, latest) => {
-      if (latest.focusVisible) {
+    onMouseLeave(event) {
+      if (latestRef.current.focusVisible) {
         event.preventDefault();
       }
-    }),
+      handleMouseLeave(event);
+    },
     onTouchStart: createRippleHandler('start', 'onTouchStart'),
     onTouchEnd: createRippleHandler('stop', 'onTouchEnd'),
     onTouchMove: createRippleHandler('stop', 'onTouchMove'),
@@ -349,7 +348,6 @@ function createEventHandlers(latestRef, setFocusVisible, ripple) {
         onBlur(event);
       }
       ripple.stop(event);
-      return true;
     },
     onFocus(event) {
       const { buttonRef, onFocus, onFocusVisible, suppressFocusVisible } = latestRef.current;
