@@ -580,10 +580,16 @@ describe('<Menu /> integration', () => {
     const menuitems = screen.getAllByRole('menuitem');
     expect(menuitems[0]).toHaveFocus();
 
-    fireEvent.keyDown(menuitems[0], { key: 'ArrowDown' });
+    // eslint-disable-next-line testing-library/no-unnecessary-act -- moving focus stops the ripple of the item it leaves, which settles after the event
+    await act(async () => {
+      fireEvent.keyDown(menuitems[0], { key: 'ArrowDown' });
+    });
     expect(menuitems[1]).toHaveFocus();
 
-    fireEvent.keyDown(menuitems[1], { key: 'ArrowDown' });
+    // eslint-disable-next-line testing-library/no-unnecessary-act -- same as above
+    await act(async () => {
+      fireEvent.keyDown(menuitems[1], { key: 'ArrowDown' });
+    });
     expect(menuitems[2]).toHaveFocus();
 
     expect(screen.getByRole('separator')).not.to.have.attribute('tabIndex');
