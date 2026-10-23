@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import ownerDocument from '@mui/utils/ownerDocument';
 import useControlled from '@mui/utils/useControlled';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
@@ -593,17 +594,22 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       return;
     }
 
-    focusThumb(sliderRef, newFingerValue.activeIndex, setActive, false);
-    lastUsedThumbIndexRef.current = newFingerValue.activeIndex;
-    setValueState(newFingerValue.newValue);
+    // React defers updates from continuous events like pointermove to a later task,
+    // so the browser paints the frame with the thumb still at its previous position.
+    // Flush them synchronously to move the thumb in the same frame as the pointer.
+    ReactDOM.flushSync(() => {
+      focusThumb(sliderRef, newFingerValue.activeIndex, setActive, false);
+      lastUsedThumbIndexRef.current = newFingerValue.activeIndex;
+      setValueState(newFingerValue.newValue);
 
-    if (!dragging && moveCountRef.current > INTENTIONAL_DRAG_COUNT_THRESHOLD) {
-      setDragging(true);
-    }
+      if (!dragging && moveCountRef.current > INTENTIONAL_DRAG_COUNT_THRESHOLD) {
+        setDragging(true);
+      }
 
-    if (onChange && !areValuesEqual(newFingerValue.newValue, valueDerived)) {
-      handleChange(nativeEvent, newFingerValue.newValue, newFingerValue.activeIndex);
-    }
+      if (onChange && !areValuesEqual(newFingerValue.newValue, valueDerived)) {
+        handleChange(nativeEvent, newFingerValue.newValue, newFingerValue.activeIndex);
+      }
+    });
   });
 
   const handleTouchEnd = useEventCallback((nativeEvent: TouchEvent | PointerEvent) => {
