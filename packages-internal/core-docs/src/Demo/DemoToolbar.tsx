@@ -21,9 +21,9 @@ import { useSetCodeVariant } from '../codeVariant';
 import { useTranslate } from '../i18n';
 import { OpenInMUIChatButton } from './OpenInMUIChatButton';
 import { useDemoContext } from '../DemoContext';
-import * as codeSandbox from './sandbox/CodeSandbox';
-import * as stackBlitz from './sandbox/StackBlitz';
-import type { DemoData as SandboxDemoData } from './sandbox/types';
+import * as codeSandbox from '../sandbox/CodeSandbox';
+import * as stackBlitz from '../sandbox/StackBlitz';
+import type { DemoData as SandboxDemoData } from '../sandbox/types';
 import type { DemoToolbarProps } from './Demo';
 
 const Root = styled('div')(({ theme }) => [
