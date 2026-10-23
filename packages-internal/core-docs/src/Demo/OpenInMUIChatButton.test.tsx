@@ -83,7 +83,7 @@ describe.skipIf(!isJsdom())('OpenInMUIChatButton', () => {
     const chatButton = screen.getByRole('button', { name: 'Edit in Chat' });
 
     await user.click(chatButton);
-    expect(chatButton).to.have.property('disabled', true);
+    expect(chatButton).to.have.attribute('aria-disabled', 'true');
 
     act(() => document.documentElement.focus());
     expect(document.activeElement).not.to.equal(chatButton);
@@ -101,7 +101,7 @@ describe.skipIf(!isJsdom())('OpenInMUIChatButton', () => {
     const chatButton = screen.getByRole('button', { name: 'Edit in Chat' });
 
     await user.click(chatButton);
-    expect(chatButton).to.have.property('disabled', true);
+    expect(chatButton).to.have.attribute('aria-disabled', 'true');
 
     act(() => document.documentElement.focus());
     expect(document.activeElement).not.to.equal(chatButton);
