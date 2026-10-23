@@ -133,7 +133,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   // one. Both land on today's px at the default 32.
   const tableRowHeight = `calc(${touchTarget} + 2*${spacing('xxSmall')})`; // 40px
   const tableRowHeightDense = `calc(${touchTarget} + ${spacing('xxSmall')})`; // 36px
-  const tinyBox = `calc(${touchTarget} - ${spacing('xSmall')})`; // 24px
+  const tinyBox = `calc(${touchTarget} - ${spacing('small')})`; // 20px
+  const miniBox = `calc(${touchTarget} - ${spacing('xSmall')})`; // 24px
   const smallBox = `calc(${touchTarget} - ${spacing('xxSmall')})`; // 28px
   const largeBox = `calc(${touchTarget} + ${spacing('small')})`; // 44px
   const hugeBox = `calc(${touchTarget} + ${spacing('medium')})`; // 48px
@@ -819,12 +820,10 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     'thumb',
   );
   addRootOverride(enhanced.components, 'MuiSwitch', { borderRadius: 'var(--_height)' }, 'track');
-  const tagHeight = `calc(${touchTarget} - ${spacing('xSmall')})`;
-  const tagSmallHeight = `calc(${touchTarget} - ${spacing('small')})`;
   addRootOverride(enhanced.components, 'MuiAutocomplete', {
-    [`& .${autocompleteClasses.inputRoot}`]: { gap: '2px', '--_tagHeight': tagHeight },
+    [`& .${autocompleteClasses.inputRoot}`]: { gap: '2px', '--_tagHeight': miniBox },
     [`& .${autocompleteClasses.inputRoot}.${inputBaseClasses.sizeSmall}`]: {
-      '--_tagHeight': tagSmallHeight,
+      '--_tagHeight': tinyBox,
     },
     [`& .${outlinedInputClasses.root}`]: { paddingLeft: '8px' },
     [`& .${outlinedInputClasses.root}, & .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]:
@@ -890,9 +889,9 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     'MuiAutocomplete',
     {
       margin: 0,
-      '--_height': tagHeight,
+      '--_height': miniBox,
       [`&.${autocompleteClasses.tagSizeSmall}`]: {
-        '--_height': tagSmallHeight,
+        '--_height': tinyBox,
       },
     },
     'tag',
@@ -1479,8 +1478,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         {
           props: { variant: 'standard' },
           style: {
-            height: tinyBox,
-            minWidth: tinyBox,
+            height: miniBox,
+            minWidth: miniBox,
             paddingInline: spacing('xSmall'),
           },
         },
