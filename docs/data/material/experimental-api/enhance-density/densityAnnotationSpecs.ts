@@ -163,6 +163,16 @@ export const DENSITY_ANNOTATIONS: Record<
         label: 'Input root',
         route: { gutter: 'right' },
       },
+      // The root keeps the room around the tag row; the input is one tag tall,
+      // so a single row lands on the touch target with or without chips.
+      {
+        on: '.MuiOutlinedInput-root',
+        aspect: 'padding',
+        axis: 'block',
+        token: 'xSmall / 2',
+        label: 'Input root',
+        route: { gutter: 'top', shift: -140 },
+      },
       // The end buttons step down to the small box — a width, read against the top.
       {
         on: '.MuiAutocomplete-popupIndicator',
@@ -178,18 +188,27 @@ export const DENSITY_ANNOTATIONS: Record<
           on: '.MuiAutocomplete-tag',
           aspect: 'touch-target',
           token: 'touchTarget - xSmall',
-          text: "Chip size='small'",
+          text: 'Tag',
           label: 'Tag',
         },
-        // `margin: 1px` on every side — one ring, led from the top band.
+        // Chips have no margin; a fixed 2px gap spaces them and their rows.
         {
-          on: '.MuiAutocomplete-tag',
-          aspect: 'margin',
-          axis: 'all',
+          on: '.MuiAutocomplete-inputRoot',
+          aspect: 'gap',
+          token: '2px',
           label: 'Tag',
           route: { gutter: 'top' },
         },
       );
+    } else {
+      annotations.push({
+        on: '.MuiAutocomplete-input',
+        aspect: 'touch-target',
+        axis: 'block',
+        token: 'touchTarget - xSmall',
+        label: 'Input',
+        route: { gutter: 'left' },
+      });
     }
     return annotations;
   },

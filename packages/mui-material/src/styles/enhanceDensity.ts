@@ -819,46 +819,46 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     'thumb',
   );
   addRootOverride(enhanced.components, 'MuiSwitch', { borderRadius: 'var(--_height)' }, 'track');
+  const tagHeight = `calc(${touchTarget} - ${spacing('xSmall')})`;
+  const tagSmallHeight = `calc(${touchTarget} - ${spacing('small')})`;
   addRootOverride(enhanced.components, 'MuiAutocomplete', {
-    [`& .${autocompleteClasses.inputRoot}`]: { gap: 0 },
-    [`& .${outlinedInputClasses.root}`]: {
-      '--_outlinedRootPadBlock': '3px',
-      paddingBlock: 'var(--_outlinedRootPadBlock)',
-      paddingLeft: '8px',
+    [`& .${autocompleteClasses.inputRoot}`]: { gap: '2px', '--_tagHeight': tagHeight },
+    [`& .${autocompleteClasses.inputRoot}.${inputBaseClasses.sizeSmall}`]: {
+      '--_tagHeight': tagSmallHeight,
     },
-    [`& .${outlinedInputClasses.root} .${autocompleteClasses.input}`]: {
-      paddingBlock: 'max(0px, var(--_outlinedInputPadBlock) - var(--_outlinedRootPadBlock))',
-      paddingLeft: '6px',
-    },
-    [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-      '--_outlinedRootPadBlock': '0px',
-      paddingBlock: 'var(--_outlinedRootPadBlock)',
-    },
-    [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall} .${autocompleteClasses.input}`]:
-      {
-        paddingBlock: 'max(0px, var(--_outlinedInputPadBlock) - var(--_outlinedRootPadBlock))',
-      },
+    [`& .${outlinedInputClasses.root}`]: { paddingLeft: '8px' },
+    [`& .${outlinedInputClasses.root}, & .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]:
+      { paddingBlock: 'calc(var(--_outlinedInputPadBlock) + (1lh - var(--_tagHeight)) / 2)' },
+    [`& .${outlinedInputClasses.root} .${autocompleteClasses.input}`]: { paddingLeft: '6px' },
     [`& .${filledInputClasses.root}`]: {
       paddingLeft: `calc(${spacing('small')} - 4px)`,
     },
     [`& .${filledInputClasses.root}:not(.${inputBaseClasses.hiddenLabel})`]: {
-      paddingTop: 'calc(var(--_filledInputPadTop) - var(--_filledInputPadBottom))',
-      paddingBottom: 0,
+      paddingTop: 'calc(var(--_filledInputPadTop) + (1lh - var(--_tagHeight)) / 2)',
+      paddingBottom: 'calc(var(--_filledInputPadBottom) + (1lh - var(--_tagHeight)) / 2)',
     },
-    [`& .${filledInputClasses.root} .${filledInputClasses.input}, & .${filledInputClasses.root}.${inputBaseClasses.sizeSmall} .${filledInputClasses.input}`]:
-      { paddingBlock: 'var(--_filledInputPadBottom)' },
+    [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}`]: {
+      paddingBlock: `calc(${inputMediumPadBlock} + (1lh - var(--_tagHeight)) / 2)`,
+    },
+    [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}.${inputBaseClasses.sizeSmall}`]:
+      {
+        paddingBlock: `calc(${inputSmallPadBlock} + (1lh - var(--_tagHeight)) / 2)`,
+      },
+    [`& .${inputClasses.root}`]: {
+      paddingBlock: 'calc(var(--_inputPadBlock) + (1lh - var(--_tagHeight)) / 2)',
+    },
+    [`& .${autocompleteClasses.inputRoot} .${autocompleteClasses.input}.${inputBaseClasses.input}`]:
+      {
+        paddingBlock: 0,
+        height: 'var(--_tagHeight)',
+      },
+    [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}.${inputBaseClasses.sizeSmall} .${autocompleteClasses.input}`]:
+      { paddingBlock: 0 },
     [`&.${autocompleteClasses.hasPopupIcon} .${autocompleteClasses.inputRoot}, &.${autocompleteClasses.hasClearIcon} .${autocompleteClasses.inputRoot}`]:
       { paddingRight: `calc(${smallBox} + 2px + var(--_endOffset, 0px))` },
     [`&.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon} .${autocompleteClasses.inputRoot}`]:
       { paddingRight: `calc(2 * ${smallBox} + var(--_endOffset, 0px))` },
     [`& .${outlinedInputClasses.root}, & .${filledInputClasses.root}`]: { '--_endOffset': '9px' },
-    [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel} .${autocompleteClasses.input}`]:
-      { paddingBlock: inputMediumPadBlock },
-    [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}.${inputBaseClasses.sizeSmall} .${autocompleteClasses.input}`]:
-      { paddingBlock: inputSmallPadBlock },
-    [`& .${inputClasses.root}`]: { paddingBottom: 0 },
-    [`& .${inputClasses.root} .${inputClasses.input}, & .${inputClasses.root}.${inputBaseClasses.sizeSmall} .${inputClasses.input}`]:
-      { paddingBlock: 'var(--_inputPadBlock)' },
   });
   addRootOverride(
     enhanced.components,
@@ -889,10 +889,10 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     enhanced.components,
     'MuiAutocomplete',
     {
-      margin: '1px',
-      '--_height': `calc(${touchTarget} - ${spacing('xSmall')})`,
+      margin: 0,
+      '--_height': tagHeight,
       [`&.${autocompleteClasses.tagSizeSmall}`]: {
-        '--_height': `calc(${touchTarget} - ${spacing('small')})`,
+        '--_height': tagSmallHeight,
       },
     },
     'tag',

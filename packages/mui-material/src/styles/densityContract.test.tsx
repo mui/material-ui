@@ -891,7 +891,7 @@ describe.skipIf(isJsdom())('Autocomplete chips', () => {
 
   (['outlined', 'filled', 'standard'] as const).forEach((variant) => {
     (['small', 'medium'] as const).forEach((size) => {
-      test(`${variant} ${size}: chips are spaced by their own margin only`, () => {
+      test(`${variant} ${size}: chips are spaced by a 2px gap, not margins`, () => {
         render(
           <ThemeProvider theme={THEMES.get('medium')!}>
             <Autocomplete
@@ -905,9 +905,72 @@ describe.skipIf(isJsdom())('Autocomplete chips', () => {
           </ThemeProvider>,
         );
         const root = document.querySelector('.MuiAutocomplete-inputRoot') as HTMLElement;
-        expect(getComputedStyle(root).columnGap).to.equal('0px');
+        expect(getComputedStyle(root).columnGap).to.equal('2px');
+        expect(getComputedStyle(root).rowGap).to.equal('2px');
+        expect(
+          getComputedStyle(document.querySelector('.MuiAutocomplete-tag') as HTMLElement).margin,
+        ).to.equal('0px');
       });
     });
+  });
+});
+
+describe.skipIf(isJsdom())('Autocomplete chip rows', () => {
+  const { render } = createRenderer();
+  const options = ['Apple', 'Banana', 'Cherry', 'Dragon fruit', 'Elderberry', 'Fig'];
+  const field = (
+    variant: 'outlined' | 'filled' | 'standard',
+    size: 'small' | 'medium',
+    value: string[],
+    width = 400,
+  ) => (
+    <Autocomplete
+      multiple
+      sx={{ width }}
+      size={size}
+      options={options}
+      defaultValue={value}
+      renderInput={(params) => <TextField {...params} variant={variant} label="Label" />}
+    />
+  );
+  const rootBox = () =>
+    (document.querySelector('.MuiAutocomplete-inputRoot') as HTMLElement).getBoundingClientRect();
+
+  DENSITIES.forEach((density) => {
+    (['outlined', 'filled', 'standard'] as const).forEach((variant) =>
+      (['small', 'medium'] as const).forEach((size) => {
+        test(`${density.id} ${variant} ${size}: selecting a value does not change the height`, () => {
+          const theme = THEMES.get(density.id)!;
+          const { unmount } = render(
+            <ThemeProvider theme={theme}>{field(variant, size, [])}</ThemeProvider>,
+          );
+          const empty = rootBox().height;
+          unmount();
+          render(<ThemeProvider theme={theme}>{field(variant, size, ['Apple'])}</ThemeProvider>);
+          expect(rootBox().height).to.equal(empty);
+        });
+
+        test(`${density.id} ${variant} ${size}: wrapped chip rows keep room at the top and bottom`, () => {
+          render(
+            <ThemeProvider theme={THEMES.get(density.id)!}>
+              {field(variant, size, options, 220)}
+            </ThemeProvider>,
+          );
+          const root = rootBox();
+          const items = Array.from(
+            document.querySelectorAll('.MuiAutocomplete-tag, .MuiAutocomplete-input'),
+          ).map((item) => item.getBoundingClientRect());
+          const top = Math.min(...items.map((item) => item.top)) - root.top;
+          const bottom = root.bottom - Math.max(...items.map((item) => item.bottom));
+          expect(bottom).to.be.greaterThan(1);
+          if (variant === 'filled') {
+            expect(top).to.be.greaterThan(bottom);
+          } else {
+            expect(top).to.be.closeTo(bottom, 0.5);
+          }
+        });
+      }),
+    );
   });
 });
 
