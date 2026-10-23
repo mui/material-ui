@@ -39,8 +39,8 @@
   "devDependencies": {
     "@types/prop-types": "15.7.15",
     "@types/react": "19.3.0",
-    "react": "19.3.0",
-    "styled-components": "6.5.3"
+    "react": "19.3.1",
+    "styled-components": "6.6.0"
   },
   "peerDependencies": {
     "styled-components": "^6.0.0"

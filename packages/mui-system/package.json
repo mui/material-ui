@@ -47,9 +47,9 @@
     "@types/prop-types": "15.7.15",
     "@types/react": "19.3.0",
     "@types/sinon": "22.0.0",
-    "react": "19.3.0",
+    "react": "19.3.1",
     "sinon": "22.1.0",
-    "styled-components": "6.5.3"
+    "styled-components": "6.6.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
