@@ -239,15 +239,15 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     variants: [
       {
         props: { size: 'small' },
-        style: { height: smallBox, paddingInline: spacing('small') },
+        style: { minHeight: smallBox, paddingInline: spacing('small') },
       },
       {
         props: { size: 'medium' },
-        style: { height: touchTarget, paddingInline: spacing('medium') },
+        style: { minHeight: touchTarget, paddingInline: spacing('medium') },
       },
       {
         props: { size: 'large' },
-        style: { height: largeBox, paddingInline: spacing('large') },
+        style: { minHeight: largeBox, paddingInline: spacing('large') },
       },
     ],
   });
@@ -267,14 +267,14 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     padding: 0,
     fontSize: iconSize,
     variants: [
-      { props: { size: 'small' }, style: { width: smallBox, height: smallBox } },
+      { props: { size: 'small' }, style: { minWidth: smallBox, minHeight: smallBox } },
       {
         props: { size: 'medium' },
-        style: { width: touchTarget, height: touchTarget },
+        style: { minWidth: touchTarget, minHeight: touchTarget },
       },
       {
         props: { size: 'large' },
-        style: { width: largeBox, height: largeBox },
+        style: { minWidth: largeBox, minHeight: largeBox },
       },
       { props: { edge: 'start' }, style: { marginLeft: `calc(${touchTarget} / -4)` } },
       { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -4)` } },
@@ -731,7 +731,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   addRootOverride(enhanced.components, 'MuiToggleButton', {
     ...enhanced.typography?.button,
     paddingBlock: 0,
-    height: 'var(--_size)',
+    minHeight: 'var(--_size)',
     minWidth: 'var(--_size)',
     paddingInline: `calc((var(--_size) - ${iconSize} - 2px) / 2)`, // 2px is the border
     variants: [
@@ -878,13 +878,13 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   addRootOverride(
     enhanced.components,
     'MuiAutocomplete',
-    { width: smallBox, height: smallBox },
+    { minWidth: smallBox, minHeight: smallBox },
     'clearIndicator',
   );
   addRootOverride(
     enhanced.components,
     'MuiAutocomplete',
-    { width: smallBox, height: smallBox },
+    { minWidth: smallBox, minHeight: smallBox },
     'popupIndicator',
   );
   addRootOverride(

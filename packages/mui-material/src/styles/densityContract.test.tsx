@@ -22,6 +22,9 @@ import FilledInput from '@mui/material/FilledInput';
 import FormControl from '@mui/material/FormControl';
 import Alert from '@mui/material/Alert';
 import Pagination from '@mui/material/Pagination';
+import SearchIcon from '@mui/icons-material/Search';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
@@ -842,6 +845,79 @@ describe.skipIf(isJsdom())('Autocomplete end buttons', () => {
           ).getBoundingClientRect();
           expect(textEnd).to.be.at.most(buttons.left + 0.5);
         });
+      });
+    });
+  });
+});
+
+describe.skipIf(isJsdom())('button boxes give way to content', () => {
+  const { render } = createRenderer();
+  const box = (selector: string) =>
+    (document.querySelector(selector) as HTMLElement).getBoundingClientRect();
+
+  DENSITIES.forEach((density) => {
+    describe(density.id, () => {
+      const theme = THEMES.get(density.id)!;
+
+      test('a wrapped Button label grows the button', () => {
+        render(
+          <ThemeProvider theme={theme}>
+            <Button variant="contained" sx={{ width: 100 }}>
+              Save and continue to checkout
+            </Button>
+          </ThemeProvider>,
+        );
+        const button = document.querySelector('.MuiButton-root') as HTMLElement;
+        expect(button.scrollHeight).to.be.at.most(button.clientHeight);
+        expect(box('.MuiButton-root').height).to.be.greaterThan(density.touchTarget);
+      });
+
+      test('sx block padding grows the Button', () => {
+        render(
+          <ThemeProvider theme={theme}>
+            <Button variant="contained" sx={{ py: '20px' }}>
+              Save
+            </Button>
+          </ThemeProvider>,
+        );
+        expect(box('.MuiButton-root').height).to.be.greaterThan(density.touchTarget);
+      });
+
+      test('an IconButton keeps its box with width: min-content', () => {
+        render(
+          <ThemeProvider theme={theme}>
+            <IconButton sx={{ width: 'min-content' }}>
+              <SearchIcon />
+            </IconButton>
+          </ThemeProvider>,
+        );
+        expect(box('.MuiIconButton-root').width).to.equal(density.touchTarget);
+      });
+
+      test('a small Button inside a ButtonGroup matches the group height', () => {
+        render(
+          <ThemeProvider theme={theme}>
+            <ButtonGroup variant="contained">
+              <Button data-testid="main">Merge</Button>
+              <Button size="small" data-testid="arrow">
+                <ArrowDropDownIcon />
+              </Button>
+            </ButtonGroup>
+          </ThemeProvider>,
+        );
+        expect(box('[data-testid="arrow"]').height).to.equal(box('[data-testid="main"]').height);
+      });
+
+      test('a wrapped ToggleButton label grows the button', () => {
+        render(
+          <ThemeProvider theme={theme}>
+            <ToggleButtonGroup value="a" orientation="vertical" sx={{ width: 100 }}>
+              <ToggleButton value="a">Monthly subscription plan</ToggleButton>
+            </ToggleButtonGroup>
+          </ThemeProvider>,
+        );
+        const button = document.querySelector('.MuiToggleButton-root') as HTMLElement;
+        expect(button.scrollHeight).to.be.at.most(button.clientHeight);
       });
     });
   });

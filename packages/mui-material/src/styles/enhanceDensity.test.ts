@@ -81,7 +81,7 @@ describe('enhanceDensity', () => {
     // ramp's job is to follow `touchTarget`, and pinning the px here would only
     // re-break whenever the steps either side of it are retuned.
     const theme = enhanceDensity(createTheme(), { touchTarget: 44 });
-    const height = (component: string, size: string) => sizeStyle(theme, component, size).height;
+    const height = (component: string, size: string) => sizeStyle(theme, component, size).minHeight;
 
     // medium IS the box; small and large are built out of it rather than out of
     // a literal, and they land either side of it
@@ -92,7 +92,9 @@ describe('enhanceDensity', () => {
     expect(height('MuiButton', 'large')).to.not.equal(height('MuiButton', 'medium'));
 
     // and every sized family rides that one ramp
-    expect(sizeStyle(theme, 'MuiIconButton', 'small').width).to.equal(height('MuiButton', 'small'));
+    expect(sizeStyle(theme, 'MuiIconButton', 'small').minWidth).to.equal(
+      height('MuiButton', 'small'),
+    );
     expect(sizeStyle(theme, 'MuiToggleButton', 'large')['--_size']).to.equal(
       height('MuiButton', 'large'),
     );
