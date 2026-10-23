@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import useTimeout from '@mui/utils/useTimeout';
 import clamp from '@mui/utils/clamp';
+import setRef from '@mui/utils/setRef';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -227,9 +228,8 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   const createHandleSpeedDialActionButtonRef = (dialActionIndex, fabSlotOrigButtonRef) => {
     return (buttonRef) => {
       actions.current[dialActionIndex + 1] = buttonRef;
-      if (fabSlotOrigButtonRef) {
-        fabSlotOrigButtonRef(buttonRef);
-      }
+
+      setRef(fabSlotOrigButtonRef, buttonRef);
     };
   };
 

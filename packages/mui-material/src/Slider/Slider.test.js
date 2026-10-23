@@ -566,6 +566,39 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
       expect(slider).to.have.attribute('aria-valuenow', '0.4');
     });
 
+    it('should round value to step precision when using the keyboard', () => {
+      render(<Slider defaultValue={0.2} min={0} max={1} step={0.1} shiftStep={0.2} />);
+      const slider = screen.getByRole('slider');
+
+      act(() => {
+        slider.focus();
+      });
+
+      fireEvent.keyDown(slider, { key: 'ArrowRight' });
+      expect(slider).to.have.attribute('aria-valuenow', '0.3');
+
+      fireEvent.keyDown(slider, { key: 'ArrowLeft' });
+      expect(slider).to.have.attribute('aria-valuenow', '0.2');
+
+      fireEvent.keyDown(slider, { key: 'ArrowLeft' });
+      expect(slider).to.have.attribute('aria-valuenow', '0.1');
+
+      fireEvent.keyDown(slider, { key: 'PageUp' });
+      expect(slider).to.have.attribute('aria-valuenow', '0.3');
+    });
+
+    it('should step from 0 with a decimal step when using the keyboard', () => {
+      render(<Slider defaultValue={0} min={0} max={1} step={0.1} />);
+      const slider = screen.getByRole('slider');
+
+      act(() => {
+        slider.focus();
+      });
+
+      fireEvent.keyDown(slider, { key: 'ArrowRight' });
+      expect(slider).to.have.attribute('aria-valuenow', '0.1');
+    });
+
     it('should not fail to round value to step precision when step is very small', () => {
       const { container } = render(
         <Slider defaultValue={0.00000002} min={0} max={0.0000001} step={0.00000001} />,
@@ -1577,6 +1610,41 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
       fireEvent.change(slider2, { target: { value: '19' } });
       expect(handleChange.args[0][1]).to.deep.equal([20, 20]);
       expect(document.activeElement).to.have.attribute('data-index', '1');
+    });
+
+    it('should bound the value when the neighbour thumb is at 0', () => {
+      const handleChange = spy();
+
+      render(<Slider defaultValue={[-10, 0]} min={-50} disableSwap onChange={handleChange} />);
+
+      const [slider1] = screen.getAllByRole('slider');
+
+      fireEvent.change(slider1, { target: { value: '10' } });
+      expect(handleChange.args[0][1]).to.deep.equal([0, 0]);
+    });
+
+    it('should bound dragging when the previous thumb is at 0', () => {
+      const handleChange = spy();
+      const { container } = render(
+        <Slider defaultValue={[0, 10]} min={-50} max={50} disableSwap onChange={handleChange} />,
+      );
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 60, clientY: 0 }]),
+      );
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 25, clientY: 0 }]),
+      );
+      expect(handleChange.args[0][1]).to.deep.equal([0, 0]);
     });
 
     it('should bound the value when using the mouse', () => {

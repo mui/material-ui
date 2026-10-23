@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { describe, it, expect } from 'vitest';
 import { spy } from 'sinon';
 import {
@@ -10,7 +11,7 @@ import {
 } from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import SpeedDial, { speedDialClasses as classes } from '@mui/material/SpeedDial';
-import SpeedDialAction from '@mui/material/SpeedDialAction';
+import SpeedDialAction, { speedDialActionClasses } from '@mui/material/SpeedDialAction';
 import { tooltipClasses } from '@mui/material/Tooltip';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
@@ -72,6 +73,21 @@ describe('<SpeedDial />', () => {
 
     expect(screen.getByRole('menu').children).to.have.lengthOf(2);
     expect(screen.getAllByRole('menuitem')).to.have.lengthOf(2);
+  });
+
+  it('should preserve object refs passed to action fab slots', () => {
+    const actionRef = React.createRef();
+
+    render(
+      <SpeedDial {...defaultProps}>
+        <SpeedDialAction
+          icon={icon}
+          slotProps={{ fab: { ref: actionRef }, tooltip: { title: 'Action' } }}
+        />
+      </SpeedDial>,
+    );
+
+    expect(actionRef.current).to.equal(screen.getByRole('menuitem'));
   });
 
   it('should pass the open prop to its children', () => {
@@ -190,6 +206,21 @@ describe('<SpeedDial />', () => {
         fireEvent.mouseOver(actions[0]);
         clock.runAll();
         expect(screen.getByRole('tooltip').firstChild).to.have.class(tooltipClasses[className]);
+      });
+
+      it(`should place the persistent tooltip in the correct position when direction=${direction}`, () => {
+        const { container } = render(
+          <SpeedDial {...defaultProps} direction={direction}>
+            <SpeedDialAction
+              icon={icon}
+              slotProps={{ tooltip: { open: true, title: 'action1' } }}
+            />
+          </SpeedDial>,
+        );
+
+        expect(container.querySelector(`.${speedDialActionClasses.staticTooltip}`)).to.have.class(
+          speedDialActionClasses[className],
+        );
       });
     });
   });

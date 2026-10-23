@@ -33,7 +33,9 @@ function getNewValue(
   min: number,
   max: number,
 ): number {
-  return direction === 1 ? Math.min(currentValue + step, max) : Math.max(currentValue - step, min);
+  const precision = Math.max(getDecimalPrecision(currentValue), getDecimalPrecision(step));
+  const newValue = Number((currentValue + direction * step).toFixed(precision));
+  return direction === 1 ? Math.min(newValue, max) : Math.max(newValue, min);
 }
 
 function asc(a: number, b: number) {
@@ -108,7 +110,8 @@ function percentToValue(percent: number, min: number, max: number) {
 function getDecimalPrecision(num: number) {
   // This handles the case when num is very small (0.00000001), js will turn this into 1e-8.
   // When num is bigger than 1 or less than -1 it won't get converted to this notation so it's fine.
-  if (Math.abs(num) < 1) {
+  // 0 is excluded because its exponential notation (0e+0) has no negative exponent.
+  if (num !== 0 && Math.abs(num) < 1) {
     const parts = num.toExponential().split('e-');
     const matissaDecimalPart = parts[0].split('.')[1];
     return (matissaDecimalPart ? matissaDecimalPart.length : 0) + parseInt(parts[1], 10);
@@ -354,7 +357,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     if (range) {
       // Bound the new value to the thumb's neighbours.
       if (disableSwap) {
-        newValue = clamp(newValue, values[index - 1] || -Infinity, values[index + 1] || Infinity);
+        newValue = clamp(newValue, values[index - 1] ?? -Infinity, values[index + 1] ?? Infinity);
       }
 
       const previousValue = newValue;
@@ -545,8 +548,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       if (disableSwap) {
         newValue = clamp(
           newValue,
-          values[activeIndex - 1] || -Infinity,
-          values[activeIndex + 1] || Infinity,
+          values[activeIndex - 1] ?? -Infinity,
+          values[activeIndex + 1] ?? Infinity,
         );
       }
 
