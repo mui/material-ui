@@ -162,8 +162,8 @@ const Pagination = React.forwardRef(function Pagination(inProps, ref) {
       {...other}
     >
       <PaginationUl className={classes.ul} ownerState={ownerState}>
-        {items.map((item, index) => (
-          <li key={index}>
+        {items.map((item) => (
+          <li key={item.type === 'page' ? item.page : item.type}>
             {renderItem({
               ...item,
               color,
