@@ -421,37 +421,38 @@ This example follows the system preference. The playground also shows the theme 
 
 ### Bundle cost
 
-These measurements compare `8fa036a69b` with the merge base `ddb473f678`, using the same installed dependencies and build tools.
-They predate the detached-trigger removal and the explicit composition API. Repeat the audit before release.
-Both revisions use production ESM builds, Node.js 24.16.0, Vite 8.3.2, and gzip level 9.
+These measurements compare `2d07df256a` with the merge base `f0a678be0b`, using the same installed dependencies and build tools.
+They include the explicit Root/Trigger/Popup API and exclude the removed Material detached-trigger API.
+Both revisions use production ESM builds, Node.js 24.16.0, Vite 8.3.4, and gzip level 9.
 React, React DOM, `@emotion/react`, and `@emotion/styled` are external.
 The Menu2 measurements include Base UI 1.9.0 without a local patch.
 These are import bundles, not complete applications. Sizes use decimal kB.
 
-Each menu case includes Button. The classic case adds Menu and MenuItem; the Menu2 case adds Menu2 and Menu2Item.
-The submenu case also adds Menu2Submenu and Menu2SubmenuTrigger.
+Each menu case includes Button. The classic case adds Menu and MenuItem; the Menu2 case adds Menu2, Menu2Trigger, Menu2Popup, and Menu2Item.
+The submenu case also adds Menu2Submenu, Menu2SubmenuTrigger, and Menu2SubmenuPopup.
 The high-contrast case adds `enhanceHighContrast` from `@mui/material/styles` to the classic imports.
+The table uses component subpath imports. The Menu2 imports use the `Unstable_` prefix.
 
 | Imports                             | Minified kB | Gzip kB |
 | :---------------------------------- | ----------: | ------: |
-| Classic Menu, merge base            |     126.498 |  40.480 |
-| Classic Menu, this PR               |     127.774 |  40.937 |
-| Classic + high contrast, merge base |     135.743 |  42.368 |
-| Classic + high contrast, this PR    |     139.759 |  43.313 |
-| Menu2                               |     239.472 |  78.605 |
-| Menu2 with submenu                  |     248.227 |  81.065 |
-| Classic Menu and Menu2              |     269.868 |  88.245 |
-| Classic Menu and Menu2 with submenu |     278.591 |  90.758 |
+| Classic Menu, merge base            |     126.497 |  40.481 |
+| Classic Menu, this PR               |     127.773 |  40.937 |
+| Classic + high contrast, merge base |     135.742 |  42.369 |
+| Classic + high contrast, this PR    |     139.770 |  43.318 |
+| Menu2                               |     238.824 |  78.404 |
+| Menu2 with submenu                  |     247.538 |  80.812 |
+| Classic Menu and Menu2              |     269.223 |  87.999 |
+| Classic Menu and Menu2 with submenu |     277.930 |  90.487 |
 
-The classic subpath case grows by **457 B gzip**. Named barrel imports grow by **470 B gzip**.
+The classic subpath case grows by **456 B gzip**. Named barrel imports grow by **470 B gzip**.
 Button-only imports grow by **14 B gzip** through either import path.
-With `enhanceHighContrast`, the classic case grows by **945 B gzip**, including the helper's new Menu2 styles.
+With `enhanceHighContrast`, the classic case grows by **949 B gzip**, including the new Menu2 styles in the helper.
 None of these classic-only cases retains Base UI or Floating UI modules.
 These are total PR costs for the measured imports, not only the cost of shared styles or a guarantee for every classic component.
 
-Menu2 is not a size reduction: it costs **37.668 kB gzip** more than the classic case.
-Adding Menu2 alongside classic Menu costs **47.308 kB gzip** in this fixture.
-Adding submenu support to the Menu2 case costs a further **2.460 kB gzip**.
+Menu2 is not a size reduction: it costs **37.467 kB gzip** more than the classic case.
+Adding Menu2 alongside classic Menu costs **47.062 kB gzip** in this fixture.
+Adding submenu support to the Menu2 case costs a further **2.408 kB gzip**.
 Application results depend on the components and dependencies already in use.
 
 Run `pnpm -r --filter @mui/material... build`, then `pnpm exec node test/bundle-size/menu2.mjs` to repeat the comparison.
