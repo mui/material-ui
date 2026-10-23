@@ -10,8 +10,25 @@ import useForkRef from '../useForkRef';
 import useLazyRef from '../useLazyRef';
 import { useRovingTabIndexContext } from './RovingTabIndexContext';
 
-function createListenerMap<Key>() {
-  return new Map<Key, Set<() => void>>();
+/**
+ * The tab stop as of the last commit, which items render from. A render that doesn't commit
+ * can't reach it.
+ */
+interface TabStopStore<Key> {
+  activeItemId: Key | null;
+  /**
+   * Whether any item had registered. Until one has, selected items are the tab stops, so that the
+   * server markup and the first client render are keyboard-accessible.
+   */
+  hasItems: boolean;
+  /**
+   * Listeners by item id, called when that item may have gained or lost the tab stop.
+   */
+  listeners: Map<Key, Set<() => void>>;
+}
+
+function createTabStopStore<Key>(): TabStopStore<Key> {
+  return { activeItemId: null, hasItems: false, listeners: new Map() };
 }
 
 export interface Item<Key = unknown> {
@@ -90,7 +107,9 @@ export interface UseRovingTabIndexParams<Key = unknown> {
 
 export interface UseRovingTabIndexReturnValue<Key = unknown> {
   /**
-   * The item id that currently owns `tabIndex=0` for this render.
+   * The item id that owns `tabIndex=0` as of the root's latest render.
+   * This object doesn't change with it, so a component reading it during render only sees a new
+   * value when it re-renders for another reason, as the component calling the root hook does.
    */
   activeItemId: Key | null;
   /**
@@ -136,6 +155,11 @@ export interface UseRovingTabIndexReturnValue<Key = unknown> {
    */
   isItemActive: (itemId: Key) => boolean;
   /**
+   * Reports whether an item owned `tabIndex=0` as of the last commit: the active item once items
+   * have registered, and the selected items before.
+   */
+  isItemTabStop: (itemId: Key, selected: boolean) => boolean;
+  /**
    * Registers or updates an item in the roving registry.
    */
   registerItem: (item: Item<Key>) => void;
@@ -144,11 +168,11 @@ export interface UseRovingTabIndexReturnValue<Key = unknown> {
    */
   setActiveItemId: (itemId: Key | null) => void;
   /**
-   * Calls `listener` after a commit in which the supplied item id gains or loses `tabIndex=0`.
-   * Items use it to re-render on their own, since this object doesn't change with the active item.
-   * Returns the unsubscribe function.
+   * Calls `listener` after a commit in which `isItemTabStop` may have changed for the supplied item
+   * id. Items use it to re-render on their own, since this object doesn't change with the active
+   * item. Returns the unsubscribe function.
    */
-  subscribeToActiveItem: (itemId: Key, listener: () => void) => () => void;
+  subscribeToTabStop: (itemId: Key, listener: () => void) => () => void;
   /**
    * Removes an item from the roving registry.
    */
@@ -253,31 +277,41 @@ export function useRovingTabIndexRoot<Key = unknown>(
     getDefaultActiveItemId,
   );
 
-  // Set during render, so the items rendering below this root read the new active item.
   const activeItemIdRef = React.useRef<Key | null>(resolvedActiveItemId);
   activeItemIdRef.current = resolvedActiveItemId;
 
-  const listeners = useLazyRef(createListenerMap<Key>).current;
-  const committedActiveItemIdRef = React.useRef(resolvedActiveItemId);
+  const tabStopStore = useLazyRef(createTabStopStore<Key>).current;
+  const hasItems = orderedItems.length > 0;
 
-  // Items that didn't re-render with this root find out from their listener.
   useEnhancedEffect(() => {
-    const previousActiveItemId = committedActiveItemIdRef.current;
+    const { activeItemId: previousActiveItemId, hasItems: hadItems, listeners } = tabStopStore;
 
-    if (previousActiveItemId === resolvedActiveItemId) {
+    if (previousActiveItemId === resolvedActiveItemId && hadItems === hasItems) {
       return;
     }
 
-    committedActiveItemIdRef.current = resolvedActiveItemId;
-    const notify = (itemId: Key | null) => {
-      listeners.get(itemId!)?.forEach((listener) => listener());
-    };
-    notify(previousActiveItemId);
-    notify(resolvedActiveItemId);
-  }, [listeners, resolvedActiveItemId]);
+    tabStopStore.activeItemId = resolvedActiveItemId;
+    tabStopStore.hasItems = hasItems;
+    // While no item has registered, the selected items hold the tab stop instead, so any item can
+    // change when the first one registers or the last one leaves.
+    const affectedListeners =
+      hadItems === hasItems
+        ? [listeners.get(previousActiveItemId!), listeners.get(resolvedActiveItemId!)]
+        : Array.from(listeners.values());
+    affectedListeners.forEach((itemListeners) => {
+      itemListeners?.forEach((listener) => listener());
+    });
+  }, [hasItems, resolvedActiveItemId, tabStopStore]);
 
-  const subscribeToActiveItem = React.useCallback(
+  const isItemTabStop = React.useCallback(
+    (itemId: Key, selected: boolean) =>
+      tabStopStore.hasItems ? tabStopStore.activeItemId === itemId : selected,
+    [tabStopStore],
+  );
+
+  const subscribeToTabStop = React.useCallback(
     (itemId: Key, listener: () => void) => {
+      const { listeners } = tabStopStore;
       let itemListeners = listeners.get(itemId);
       if (!itemListeners) {
         itemListeners = new Set();
@@ -292,7 +326,7 @@ export function useRovingTabIndexRoot<Key = unknown>(
         }
       };
     },
-    [listeners],
+    [tabStopStore],
   );
 
   const getActiveItem = React.useCallback(() => {
@@ -488,9 +522,10 @@ export function useRovingTabIndexRoot<Key = unknown>(
       getContainerProps,
       getItemMap,
       isItemActive,
+      isItemTabStop,
       registerItem,
       setActiveItemId,
-      subscribeToActiveItem,
+      subscribeToTabStop,
       unregisterItem,
     }),
     [
@@ -499,9 +534,10 @@ export function useRovingTabIndexRoot<Key = unknown>(
       getContainerProps,
       getItemMap,
       isItemActive,
+      isItemTabStop,
       registerItem,
       setActiveItemId,
-      subscribeToActiveItem,
+      subscribeToTabStop,
       unregisterItem,
     ],
   );
@@ -510,25 +546,18 @@ export function useRovingTabIndexRoot<Key = unknown>(
 export function useRovingTabIndexItem<Key = unknown>(
   params: UseRovingTabIndexItemParams<Key>,
 ): UseRovingTabIndexItemReturnValue {
-  const { isItemActive, registerItem, subscribeToActiveItem, unregisterItem } =
+  const { isItemTabStop, registerItem, subscribeToTabStop, unregisterItem } =
     useRovingTabIndexContext();
-  const isActive = isItemActive(params.id);
-  const renderedIsActiveRef = React.useRef(isActive);
-  renderedIsActiveRef.current = isActive;
-  const [, forceRender] = React.useReducer((count: number) => count + 1, 0);
-
-  useEnhancedEffect(() => {
-    // Re-renders only when this item's tab stop differs from what it last rendered, as an item
-    // that re-rendered with the root already has it.
-    const update = () => {
-      if (isItemActive(params.id) !== renderedIsActiveRef.current) {
-        forceRender();
-      }
-    };
-    // The active item may have changed between this item's render and its subscription.
-    update();
-    return subscribeToActiveItem(params.id, update);
-  }, [isItemActive, params.id, subscribeToActiveItem]);
+  const selected = params.selected ?? false;
+  const subscribe = React.useCallback(
+    (listener: () => void) => subscribeToTabStop(params.id, listener),
+    [params.id, subscribeToTabStop],
+  );
+  const getIsTabStop = React.useCallback(
+    () => isItemTabStop(params.id, selected),
+    [isItemTabStop, params.id, selected],
+  );
+  const isTabStop = React.useSyncExternalStore(subscribe, getIsTabStop, getIsTabStop);
   const elementRef = React.useRef<HTMLElement | null>(null);
   const item = React.useMemo(
     () => ({
@@ -601,7 +630,7 @@ export function useRovingTabIndexItem<Key = unknown>(
 
   return {
     ref: mergedRef,
-    tabIndex: isActive ? 0 : -1,
+    tabIndex: isTabStop ? 0 : -1,
   };
 }
 
