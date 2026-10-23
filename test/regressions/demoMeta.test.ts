@@ -51,6 +51,7 @@ describe('getConfig', () => {
     for (const [name, popup] of [
       ['Menu2A11yOpen', 'root-menu'],
       ['Menu2A11yNested', 'nested-menu'],
+      ['Menu2A11yNonModal', 'non-modal-menu'],
     ]) {
       const path = `test/regressions/a11y/fixtures/menus/${name}`;
       expect(getConfig(A11Y_RULES, path)).to.deep.equal({

@@ -2,12 +2,10 @@ import * as React from 'react';
 import { expectType } from '@mui/types';
 import type { Menu as BaseMenu } from '@base-ui/react/menu';
 import Menu2, {
-  createHandle,
   getMenu2UtilityClass,
   menu2Classes,
   Menu2ClassKey,
   Menu2Classes,
-  Menu2Handle,
   Menu2Props,
 } from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem, {
@@ -598,87 +596,44 @@ createTheme({
   }}
 />;
 
-interface MenuPayload {
-  id: number;
-  label: string;
-}
-
-const menuHandle = createHandle<MenuPayload>();
-expectType<Menu2Handle<MenuPayload>, typeof menuHandle>(menuHandle);
-expectType<NonNullable<BaseMenu.Root.Props<MenuPayload>['handle']>, typeof menuHandle>(menuHandle);
-
 <Menu2
-  handle={menuHandle}
   open
-  triggerId="detached"
+  trigger={<button type="button">Open</button>}
   ref={(node) => expectType<HTMLDivElement | null, typeof node>(node)}
   slotProps={{
     root: (ownerState) => {
-      expectType<Menu2Handle<MenuPayload> | undefined, typeof ownerState.handle>(ownerState.handle);
+      expectType<boolean | undefined, typeof ownerState.open>(ownerState.open);
       return {};
     },
     trigger: (ownerState) => {
-      expectType<Menu2Handle<MenuPayload> | undefined, typeof ownerState.handle>(ownerState.handle);
+      expectType<boolean | undefined, typeof ownerState.open>(ownerState.open);
       return {};
     },
   }}
 >
-  {({ payload }) => {
-    expectType<MenuPayload | undefined, typeof payload>(payload);
-    return <Menu2Item>{payload?.label}</Menu2Item>;
-  }}
+  <Menu2Item>Profile</Menu2Item>
 </Menu2>;
 
-<Menu2 handle={menuHandle} defaultOpen defaultTriggerId="detached">
-  <Menu2Item>Static content</Menu2Item>
-</Menu2>;
-
-<Menu2 handle={menuHandle} triggerId={null} defaultTriggerId={null} />;
-<Menu2 handle={undefined} triggerId={undefined} defaultTriggerId={undefined} />;
-
-<Menu2<MenuPayload> trigger={<button type="button">Open</button>}>
-  {({ payload }) => {
-    expectType<MenuPayload | undefined, typeof payload>(payload);
-    return payload?.label;
-  }}
-</Menu2>;
-
-const detachedMenuProps: Menu2Props<MenuPayload> = {
-  handle: menuHandle,
-  children: ({ payload }) => {
-    expectType<MenuPayload | undefined, typeof payload>(payload);
-    return payload?.label;
+const controlledMenuProps: Menu2Props = {
+  open: true,
+  anchor: React.createRef<HTMLButtonElement>(),
+  finalFocus: React.createRef<HTMLButtonElement>(),
+  children: <Menu2Item>Profile</Menu2Item>,
+  onOpenChange: (open, eventDetails) => {
+    expectType<boolean, typeof open>(open);
+    expectType<BaseMenu.Root.ChangeEventDetails, typeof eventDetails>(eventDetails);
   },
 };
-<Menu2 {...detachedMenuProps} />;
+<Menu2 {...controlledMenuProps} />;
 
-<Menu2 handle={createHandle()}>
-  {({ payload }) => {
-    expectType<unknown, typeof payload>(payload);
-    return <Menu2Item>Unknown payload</Menu2Item>;
-  }}
-</Menu2>;
-
-<Menu2 handle={menuHandle}>
-  {({ payload }) => {
-    // @ts-expect-error A trigger can omit its payload.
-    expectType<MenuPayload, typeof payload>(payload);
-    return null;
-  }}
-</Menu2>;
-
-// @ts-expect-error The callback payload must match the handle payload.
-<Menu2 handle={menuHandle}>{({ payload }: { payload: string | undefined }) => payload}</Menu2>;
-
-// @ts-expect-error The callback must allow a trigger without a payload.
-<Menu2 handle={menuHandle}>{({ payload }: { payload: MenuPayload }) => payload.label}</Menu2>;
-
-// @ts-expect-error Trigger IDs are strings, not numbers.
-<Menu2 handle={menuHandle} triggerId={1} />;
-// @ts-expect-error Default trigger IDs are strings, not numbers.
-<Menu2 handle={menuHandle} defaultTriggerId={1} />;
-// @ts-expect-error The handle factory is a named export, not a component method.
-Menu2.createHandle<MenuPayload>();
+// @ts-expect-error Detached triggers are not part of the Menu2 API.
+<Menu2 handle={{}} />;
+// @ts-expect-error Detached trigger IDs are not part of the Menu2 API.
+<Menu2 triggerId="profile" />;
+// @ts-expect-error Detached trigger IDs are not part of the Menu2 API.
+<Menu2 defaultTriggerId="profile" />;
+// @ts-expect-error Menu2 children are nodes, not a payload callback.
+<Menu2>{() => <Menu2Item>Profile</Menu2Item>}</Menu2>;
 
 // One element per prop: TypeScript reports one excess prop per element.
 <Menu2

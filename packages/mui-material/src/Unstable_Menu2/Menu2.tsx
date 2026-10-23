@@ -21,10 +21,8 @@ export interface Menu2TriggerSlotProps extends Pick<BaseMenu.Trigger.Props, 'nat
   ref?: React.Ref<HTMLElement> | undefined;
 }
 
-export interface Menu2SlotProps<Payload = unknown> extends NonNullable<
-  Menu2PopupProps<Payload>['slotProps']
-> {
-  trigger?: SlotProps<Menu2TriggerSlotProps, Menu2Props<Payload>> | undefined;
+export interface Menu2SlotProps extends NonNullable<Menu2PopupProps['slotProps']> {
+  trigger?: SlotProps<Menu2TriggerSlotProps, Menu2Props> | undefined;
 }
 
 /**
@@ -38,29 +36,26 @@ export interface Menu2SlotProps<Payload = unknown> extends NonNullable<
  * description, and event handlers attach to the popup with `role="menu"`.
  * Use `slotProps.paper` for other attributes on the popup.
  */
-export interface Menu2Props<Payload = unknown>
+export interface Menu2Props
   // Horizontal menus are not supported. The trigger element owns its
   // remaining props.
   extends
     Pick<
-      BaseMenu.Root.Props<Payload>,
+      BaseMenu.Root.Props,
       | 'actionsRef'
       | 'defaultOpen'
-      | 'defaultTriggerId'
       | 'disabled'
-      | 'handle'
       | 'highlightItemOnHover'
       | 'loopFocus'
       | 'modal'
       | 'open'
-      | 'triggerId'
     >,
     Pick<BaseMenu.Trigger.Props, 'closeDelay' | 'delay' | 'openOnHover'>,
-    Omit<Menu2PopupProps<Payload>, 'children' | 'slots' | 'slotProps'> {
+    Omit<Menu2PopupProps, 'children' | 'slots' | 'slotProps'> {
   /**
-   * The menu items, or a function that receives the active trigger's payload.
+   * The menu items.
    */
-  children?: BaseMenu.Root.Props<Payload>['children'] | undefined;
+  children?: React.ReactNode;
   /**
    * Event handler called when the menu is opened or closed.
    * @param {boolean} open The new open state.
@@ -87,16 +82,7 @@ export interface Menu2Props<Payload = unknown>
   /**
    * The props used for each slot inside.
    */
-  slotProps?: Menu2SlotProps<Payload> | undefined;
-}
-
-interface Menu2Component extends Pick<
-  React.ForwardRefExoticComponent<Menu2Props & React.RefAttributes<HTMLDivElement>>,
-  'propTypes' | 'displayName'
-> {
-  <Payload = unknown>(
-    props: Menu2Props<Payload> & React.RefAttributes<HTMLDivElement>,
-  ): React.JSX.Element;
+  slotProps?: Menu2SlotProps | undefined;
 }
 
 /**
@@ -109,8 +95,8 @@ interface Menu2Component extends Pick<
  *
  * - [Menu2 API](https://next.mui.com/material-ui/api/menu-2/)
  */
-const Menu2 = React.forwardRef(function Menu2<Payload>(
-  props: Menu2Props<Payload>,
+const Menu2 = React.forwardRef(function Menu2(
+  props: Menu2Props,
   // The public ref targets the stacking root. Use slotProps.positioner.ref for
   // the positioned element or slotProps.paper.ref for the surface.
   ref: React.ForwardedRef<HTMLDivElement>,
@@ -132,10 +118,8 @@ const Menu2 = React.forwardRef(function Menu2<Payload>(
     actionsRef,
     closeDelay,
     defaultOpen,
-    defaultTriggerId,
     delay,
     disabled,
-    handle,
     highlightItemOnHover,
     loopFocus,
     modal,
@@ -143,7 +127,6 @@ const Menu2 = React.forwardRef(function Menu2<Payload>(
     onOpenChangeComplete,
     open,
     openOnHover,
-    triggerId,
     ...popupProps
   } = themedProps;
 
@@ -167,35 +150,28 @@ const Menu2 = React.forwardRef(function Menu2<Payload>(
       <BaseMenu.Root
         actionsRef={actionsRef}
         defaultOpen={defaultOpen}
-        defaultTriggerId={defaultTriggerId}
         disabled={disabled}
-        handle={handle}
         highlightItemOnHover={highlightItemOnHover}
         loopFocus={loopFocus}
         modal={modal}
         onOpenChange={onOpenChange}
         onOpenChangeComplete={onOpenChangeComplete}
         open={open}
-        triggerId={triggerId}
       >
-        {(state) => (
-          <React.Fragment>
-            {triggerNode}
-            <Menu2Popup
-              {...popupProps}
-              ref={ref}
-              ownerState={themedProps}
-              slotProps={popupSlotProps}
-              slots={slots}
-            >
-              {typeof children === 'function' ? children(state) : children}
-            </Menu2Popup>
-          </React.Fragment>
-        )}
+        {triggerNode}
+        <Menu2Popup
+          {...popupProps}
+          ref={ref}
+          ownerState={themedProps}
+          slotProps={popupSlotProps}
+          slots={slots}
+        >
+          {children}
+        </Menu2Popup>
       </BaseMenu.Root>
     </DirectionProvider>
   );
-}) as Menu2Component;
+});
 
 Menu2.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -236,12 +212,9 @@ Menu2.propTypes /* remove-proptypes */ = {
     PropTypes.func,
   ]),
   /**
-   * The menu items, or a function that receives the active trigger's payload.
+   * The menu items.
    */
-  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.node,
-    PropTypes.func,
-  ]),
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    */
@@ -317,11 +290,6 @@ Menu2.propTypes /* remove-proptypes */ = {
    */
   defaultOpen: PropTypes.bool,
   /**
-   * ID of the trigger that the menu is associated with.
-   * This is useful in conjunction with the `defaultOpen` prop to create an initially open menu.
-   */
-  defaultTriggerId: PropTypes.string,
-  /**
    * How long to wait before the menu may be opened on hover. Specified in milliseconds.
    *
    * Requires the `openOnHover` prop.
@@ -353,11 +321,6 @@ Menu2.propTypes /* remove-proptypes */ = {
     }),
     PropTypes.bool,
   ]),
-  /**
-   * A handle to associate the menu with a trigger.
-   * If specified, allows external triggers to control the menu's open state.
-   */
-  handle: PropTypes /* @typescript-to-proptypes-ignore */.object,
   /**
    * Whether moving the pointer over items should highlight them.
    * Disabling this prop allows CSS `:hover` to be differentiated from the `:focus` (`data-highlighted`) state.
@@ -490,12 +453,6 @@ Menu2.propTypes /* remove-proptypes */ = {
    * instead, which is the classic controlled pattern.
    */
   trigger: PropTypes.element,
-  /**
-   * ID of the trigger that the menu is associated with.
-   * This is useful in conjunction with the `open` prop to create a controlled menu.
-   * There's no need to specify this prop when the menu is uncontrolled (that is, when the `open` prop is not set).
-   */
-  triggerId: PropTypes.string,
 } as any;
 
 export default Menu2;

@@ -3,8 +3,6 @@
 // Base UI's menu declarations use Intl.LocalesArgument.
 export { default } from './Menu2';
 export * from './Menu2';
-export { createHandle } from './createHandle';
-export type { Menu2Handle } from './createHandle';
 export {
   menu2TriggerClasses,
   getMenu2TriggerUtilityClass,

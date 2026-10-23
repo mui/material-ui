@@ -1,27 +1,14 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
 import Button from '@mui/material/Button';
-import { createHandle, Menu2Handle } from '@mui/material/Unstable_Menu2';
 import Menu2Trigger, { Menu2TriggerProps } from '@mui/material/Unstable_Menu2Trigger';
 import { createTheme } from '@mui/material/styles';
 import {
   // @ts-expect-error Menu2Trigger is not exported from the root barrel for this POC.
   Menu2Trigger as RootBarrelMenu2Trigger,
-  // @ts-expect-error The Menu2 handle factory is not exported from the root barrel.
-  createHandle as rootBarrelCreateHandle,
 } from '@mui/material';
 
-interface TriggerPayload {
-  id: number;
-  label: string;
-}
-
-const handle = createHandle<TriggerPayload>();
-expectType<Menu2Handle<TriggerPayload>, typeof handle>(handle);
-
 <Menu2Trigger
-  handle={handle}
-  payload={{ id: 1, label: 'Profile' }}
   id="profile-trigger"
   className="profile-trigger"
   title="Profile actions"
@@ -39,29 +26,15 @@ expectType<Menu2Handle<TriggerPayload>, typeof handle>(handle);
   </Button>
 </Menu2Trigger>;
 
-<Menu2Trigger handle={handle}>
-  <button type="button">No payload</button>
-</Menu2Trigger>;
-
-<Menu2Trigger handle={handle} payload={undefined}>
-  <button type="button">Undefined payload</button>
-</Menu2Trigger>;
-
-<Menu2Trigger<TriggerPayload> payload={{ id: 1, label: 'Profile' }}>
-  <button type="button">Explicit payload type</button>
-</Menu2Trigger>;
-
-<Menu2Trigger payload={{ id: 1, label: 'Profile' }}>
-  <button type="button">Inferred payload without a handle</button>
+<Menu2Trigger>
+  <button type="button">Profile</button>
 </Menu2Trigger>;
 
 <Menu2Trigger nativeButton={false} ref={React.createRef<HTMLAnchorElement>()}>
   <a href="/profile">Profile</a>
 </Menu2Trigger>;
 
-const triggerProps: Menu2TriggerProps<TriggerPayload> = {
-  handle,
-  payload: { id: 1, label: 'Profile' },
+const triggerProps: Menu2TriggerProps = {
   children: <button type="button">Profile</button>,
   onClick: (event) => {
     expectType<EventTarget & HTMLElement, typeof event.currentTarget>(event.currentTarget);
@@ -103,19 +76,17 @@ createTheme({
 });
 
 <Menu2Trigger
-  handle={handle}
-  // @ts-expect-error Payload must match the handle type.
-  payload="profile"
+  // @ts-expect-error Detached triggers are not part of the Menu2 API.
+  handle={{}}
 >
-  <button type="button">Wrong payload type</button>
+  <button type="button">Profile</button>
 </Menu2Trigger>;
 
 <Menu2Trigger
-  handle={handle}
-  // @ts-expect-error The handle payload requires a label.
-  payload={{ id: 1 }}
+  // @ts-expect-error Trigger payloads are not part of the Menu2 API.
+  payload={{ id: 1, label: 'Profile' }}
 >
-  <button type="button">Incomplete payload</button>
+  <button type="button">Profile</button>
 </Menu2Trigger>;
 
 // @ts-expect-error A trigger wraps one element.

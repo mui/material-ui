@@ -1,9 +1,11 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import * as React from 'react';
+import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import Menu2, { createHandle, menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
+import { menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
+import Menu2Popup from '@mui/material/Unstable_Menu2/Menu2Popup';
 import { resetMenu2WarningFlags } from '@mui/material/Unstable_Menu2/menu2Utils';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
@@ -17,13 +19,13 @@ describe('<Menu2Trigger />', () => {
   });
 
   describeConformance(
-    <Menu2Trigger handle={createHandle()}>
+    <Menu2Trigger>
       <button type="button">Actions</button>
     </Menu2Trigger>,
     () => ({
       classes: menu2TriggerClasses,
       inheritComponent: 'button',
-      render,
+      render: (node) => render(node, { wrapper: BaseMenu.Root }),
       refInstanceof: window.HTMLButtonElement,
       muiName: 'MuiMenu2Trigger',
       // This behavioral wrapper styles its child through className, not a
@@ -37,12 +39,13 @@ describe('<Menu2Trigger />', () => {
 
     try {
       const { setProps } = render(
-        <Menu2Trigger handle={createHandle()}>
+        <Menu2Trigger>
           <React.Fragment>
             <button type="button">First</button>
             <button type="button">Second</button>
           </React.Fragment>
         </Menu2Trigger>,
+        { wrapper: BaseMenu.Root },
       );
       setProps({ 'aria-label': 'Updated actions' });
 
@@ -66,9 +69,10 @@ describe('<Menu2Trigger />', () => {
 
     try {
       const { setProps } = render(
-        <Menu2Trigger handle={createHandle()}>
+        <Menu2Trigger>
           <RefDroppingChild>Actions</RefDroppingChild>
         </Menu2Trigger>,
+        { wrapper: BaseMenu.Root },
       );
       setProps({ 'aria-label': 'Updated actions' });
 
@@ -83,16 +87,14 @@ describe('<Menu2Trigger />', () => {
   });
 
   it('forwards props and merges child refs and handlers without a wrapping element', async () => {
-    const handle = createHandle();
     const childRef = React.createRef<HTMLButtonElement>();
     const triggerRef = React.createRef<HTMLElement>();
     const childClick = vi.fn();
     const triggerClick = vi.fn();
     const { user, unmount } = render(
-      <React.Fragment>
+      <BaseMenu.Root>
         <div data-testid="container">
           <Menu2Trigger
-            handle={handle}
             ref={triggerRef}
             className="trigger-class"
             data-testid="trigger"
@@ -104,10 +106,10 @@ describe('<Menu2Trigger />', () => {
             </Button>
           </Menu2Trigger>
         </div>
-        <Menu2 handle={handle} transitionDuration={0}>
+        <Menu2Popup ownerState={{}} transitionDuration={0}>
           <Menu2Item>Item</Menu2Item>
-        </Menu2>
-      </React.Fragment>,
+        </Menu2Popup>
+      </BaseMenu.Root>,
     );
     const button = screen.getByRole('button', { name: 'Actions' });
     const container = screen.getByTestId('container');
@@ -134,18 +136,17 @@ describe('<Menu2Trigger />', () => {
   });
 
   it('forwards Tooltip props and its ref to the child', async () => {
-    const handle = createHandle();
     const { user } = render(
-      <React.Fragment>
+      <BaseMenu.Root>
         <Tooltip title="Document actions" describeChild enterDelay={0} leaveDelay={0}>
-          <Menu2Trigger handle={handle}>
+          <Menu2Trigger>
             <Button disableRipple>Actions</Button>
           </Menu2Trigger>
         </Tooltip>
-        <Menu2 handle={handle} transitionDuration={0}>
+        <Menu2Popup ownerState={{}} transitionDuration={0}>
           <Menu2Item>Rename</Menu2Item>
-        </Menu2>
-      </React.Fragment>,
+        </Menu2Popup>
+      </BaseMenu.Root>,
     );
     const button = screen.getByRole('button', { name: 'Actions' });
 
@@ -162,18 +163,17 @@ describe('<Menu2Trigger />', () => {
   });
 
   it('supports a non-native button child', async () => {
-    const handle = createHandle();
     const { user } = render(
-      <React.Fragment>
-        <Menu2Trigger handle={handle} nativeButton={false}>
+      <BaseMenu.Root>
+        <Menu2Trigger nativeButton={false}>
           <span role="button" tabIndex={0}>
             Actions
           </span>
         </Menu2Trigger>
-        <Menu2 handle={handle} transitionDuration={0}>
+        <Menu2Popup ownerState={{}} transitionDuration={0}>
           <Menu2Item>Item</Menu2Item>
-        </Menu2>
-      </React.Fragment>,
+        </Menu2Popup>
+      </BaseMenu.Root>,
     );
     const button = screen.getByRole('button', { name: 'Actions' });
 
@@ -188,21 +188,17 @@ describe('<Menu2Trigger />', () => {
     );
   });
 
-  it('disables an individual trigger without disabling other triggers for the same menu', async () => {
-    const handle = createHandle();
+  it('does not open the menu from a disabled trigger', async () => {
     const changed = vi.fn();
     const { user } = render(
-      <React.Fragment>
-        <Menu2Trigger handle={handle} disabled>
+      <BaseMenu.Root onOpenChange={changed}>
+        <Menu2Trigger disabled>
           <button type="button">Disabled</button>
         </Menu2Trigger>
-        <Menu2Trigger handle={handle}>
-          <Button disableRipple>Enabled</Button>
-        </Menu2Trigger>
-        <Menu2 handle={handle} transitionDuration={0} onOpenChange={changed}>
+        <Menu2Popup ownerState={{}} transitionDuration={0}>
           <Menu2Item>Item</Menu2Item>
-        </Menu2>
-      </React.Fragment>,
+        </Menu2Popup>
+      </BaseMenu.Root>,
     );
     const disabled = screen.getByRole('button', { name: 'Disabled' });
 
@@ -211,13 +207,9 @@ describe('<Menu2Trigger />', () => {
     await user.click(disabled);
     expect(changed).not.toHaveBeenCalled();
     expect(screen.queryByRole('menu')).to.equal(null);
-    await user.click(screen.getByRole('button', { name: 'Enabled' }));
-
-    expect(await screen.findByRole('menu', { name: 'Enabled' })).not.to.equal(null);
   });
 
-  it('inherits and updates the disabled state from the menu through the handle', async () => {
-    const handle = createHandle();
+  it('inherits and updates the disabled state from the menu', async () => {
     function Test() {
       const [disabled, setDisabled] = React.useState(true);
       return (
@@ -225,12 +217,14 @@ describe('<Menu2Trigger />', () => {
           <button type="button" onClick={() => setDisabled(false)}>
             Enable menu
           </button>
-          <Menu2Trigger handle={handle}>
-            <button type="button">Actions</button>
-          </Menu2Trigger>
-          <Menu2 handle={handle} disabled={disabled} transitionDuration={0}>
-            <Menu2Item>Item</Menu2Item>
-          </Menu2>
+          <BaseMenu.Root disabled={disabled}>
+            <Menu2Trigger>
+              <button type="button">Actions</button>
+            </Menu2Trigger>
+            <Menu2Popup ownerState={{}} transitionDuration={0}>
+              <Menu2Item>Item</Menu2Item>
+            </Menu2Popup>
+          </BaseMenu.Root>
         </React.Fragment>
       );
     }
@@ -249,32 +243,30 @@ describe('<Menu2Trigger />', () => {
     expect(await screen.findByRole('menu', { name: 'Actions' })).not.to.equal(null);
   });
 
-  it.skipIf(isJsdom())('uses the hover configuration of each detached trigger', async () => {
-    const handle = createHandle();
-    const { user } = render(
-      <React.Fragment>
-        <Menu2Trigger handle={handle} openOnHover={false} delay={0}>
-          <Button disableRipple>Click only</Button>
-        </Menu2Trigger>
-        <Menu2Trigger handle={handle} openOnHover delay={0} closeDelay={0}>
-          <Button disableRipple>Hover</Button>
-        </Menu2Trigger>
-        <Menu2 handle={handle} transitionDuration={0}>
-          <Menu2Item>Item</Menu2Item>
-        </Menu2>
-      </React.Fragment>,
-    );
-    const clickOnly = screen.getByRole('button', { name: 'Click only' });
-    const hover = screen.getByRole('button', { name: 'Hover' });
+  [false, true].forEach((openOnHover) => {
+    it.skipIf(isJsdom())(`respects openOnHover=${openOnHover}`, async () => {
+      const { user } = render(
+        <BaseMenu.Root>
+          <Menu2Trigger openOnHover={openOnHover} delay={0} closeDelay={0}>
+            <Button disableRipple>Actions</Button>
+          </Menu2Trigger>
+          <Menu2Popup ownerState={{}} transitionDuration={0}>
+            <Menu2Item>Item</Menu2Item>
+          </Menu2Popup>
+        </BaseMenu.Root>,
+      );
+      const trigger = screen.getByRole('button', { name: 'Actions' });
 
-    await user.hover(clickOnly);
-    expect(screen.queryByRole('menu')).to.equal(null);
-    await user.unhover(clickOnly);
-    await user.hover(hover);
+      await user.hover(trigger);
 
-    expect(await screen.findByRole('menu', { name: 'Hover' })).not.to.equal(null);
-    expect(hover).to.have.class(menu2TriggerClasses.open);
-    expect(clickOnly).not.to.have.class(menu2TriggerClasses.open);
-    await user.unhover(hover);
+      if (openOnHover) {
+        expect(await screen.findByRole('menu', { name: 'Actions' })).not.to.equal(null);
+        expect(trigger).to.have.class(menu2TriggerClasses.open);
+      } else {
+        expect(screen.queryByRole('menu')).to.equal(null);
+        expect(trigger).not.to.have.class(menu2TriggerClasses.open);
+      }
+      await user.unhover(trigger);
+    });
   });
 });

@@ -12,14 +12,12 @@
       "description": "How long to wait before the menu may be opened on hover. Specified in milliseconds.<br>Requires the <code>openOnHover</code> prop."
     },
     "disabled": { "description": "Whether the component should ignore user interaction." },
-    "handle": { "description": "A handle to associate the trigger with a menu." },
     "nativeButton": {
       "description": "Whether the child renders a native <code>&lt;button&gt;</code> element. Set to <code>false</code> when the child renders a different element."
     },
     "openOnHover": {
       "description": "Whether the menu should also open when the trigger is hovered."
-    },
-    "payload": { "description": "A payload to pass to the menu when it is opened." }
+    }
   },
   "classDescriptions": {}
 }

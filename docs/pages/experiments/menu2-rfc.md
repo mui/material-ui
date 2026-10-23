@@ -63,7 +63,11 @@ This reduces new behavior code, but does not remove integration work. We must te
 
 ## Proposed solution
 
-Build on the [proof of concept](https://github.com/mui/material-ui/pull/48663) and [companion experiment](https://github.com/mui/material-ui/pull/48823). Keep the popup wiring internal and expose `Menu2SubmenuTrigger` as a separate component.
+Build on the [proof of concept](https://github.com/mui/material-ui/pull/48663) and [companion experiment](https://github.com/mui/material-ui/pull/48823).
+
+The team chose explicit root, trigger, and popup components, following the [Joy UI experiment](https://github.com/mui/joy-ui/tree/master/packages/react/src/components/menu).
+That API change is the next implementation step. The sections below still describe the current collapsed API.
+Detached triggers are outside the initial release; their API and recipe have been removed.
 
 ### Positioning (decided)
 
@@ -110,30 +114,10 @@ The two `trigger` props have different contracts:
 The explicit submenu trigger avoids registering one DOM node as both an item and a submenu trigger. It costs one public component and theme key, but gives the trigger one behavioral owner. An alternative would make a generic item switch its behavior according to context; this proposal keeps that distinction explicit.
 
 For the classic controlled pattern, omit `trigger` and use `open` and `anchor`. The caller then owns the external button's ARIA attributes and the menu's accessible label. Set an explicit `finalFocus` target when the opening context must receive focus on close. See the [controlled-anchor example](/experiments/menu2-playground/#controlled-anchor).
-
-#### Detached triggers (experiment)
-
-The [detached-trigger recipe](/experiments/menu2-recipes/#detached-triggers) shares one menu between several project buttons.
-Create a stable typed handle with `React.useState(() => createHandle<Project>())`, importing `createHandle` from `@mui/material/Unstable_Menu2`.
-Pass the same `handle` to `Menu2` and each `Menu2Trigger`, imported from `@mui/material/Unstable_Menu2Trigger`.
-The trigger takes one child element, such as a Button, and merges behavior into it without adding a wrapper element.
-The child must forward props and its ref; fragments are not supported.
-`MuiMenu2Trigger` supports theme `defaultProps` only; put `sx`, style overrides, and variants on the child component.
-Keep the existing `trigger={<Button />}` shorthand for inline triggers, and do not put a `Menu2Trigger` inside that prop.
-
-Each detached trigger owns its `payload`, `id`, `nativeButton`, `openOnHover`, `delay`, and `closeDelay` props.
-Hover props on `Menu2` still apply only to its inline trigger.
-`Menu2` accepts a children function, `({ payload }) => ReactNode`, with `payload` typed as `Project | undefined`.
-Use `triggerId` with controlled `open`, or `defaultTriggerId` with `defaultOpen`, to identify the associated trigger when needed.
-The API keeps Base UI's names and behavior; `modal={false}` permits direct switching between detached triggers.
-With a `handle`, Menu2 adds a position transition between triggers and keeps Grow for opening and closing.
-Use `slotProps.positioner.sx` to change the movement styles.
-Both transitions follow `theme.motion.reducedMotion`; the recipe starts with `system` and lets you test each setting.
-This remains an experiment, not a change to the submenu API or the classic controlled-anchor pattern.
-
-Known limitation: before the first trigger switch, scrolling an ancestor or changing the layout or viewport can make the menu briefly trail its trigger.
-Base UI applies `data-instant` after a trigger switch completes; later scroll and resize updates are immediate.
-This limitation also affected the recipe-level CSS.
+`finalFocus` controls focus on close, not keyboard opening or initial item focus.
+With only an external button's `onClick` handler, Enter opens onto the menu container; ArrowDown and ArrowUp do not open the menu.
+A registered trigger supplies these handlers and focuses the first enabled item on Enter, Space, or ArrowDown, and the last on ArrowUp.
+The current `trigger` prop supplies that registration without a detached handle.
 
 #### Customization targets
 
@@ -227,7 +211,7 @@ The experiment implements the API above, shared styles, theme registration, RTL 
 Menu2 requires Base UI 1.9.0 or later. Version 1.9.0 includes the [menu tree fix](https://github.com/mui/base-ui/pull/5645) and the [transition state fix for retained menus](https://github.com/mui/base-ui/pull/5738). No local patch is needed. The regression tests remain in place.
 
 The playground compares classic Menu and Menu2, focus indicators, transition choices, and reduced motion. [Public demos](/material-ui/react-menu2/), [generated API docs](/material-ui/api/menu-2/), and a [migration guide](/material-ui/migration/upgrade-to-menu-v2/) are available. The API generator covers the public components and excludes the private defaults.
-Detached triggers remain a recipe experiment for internal review, with generated API references but no public-guide coverage.
+Detached-trigger support has been removed. The trigger adapter remains for the planned explicit composition API.
 
 Remaining release work is listed once in the rollout plan.
 
@@ -261,17 +245,23 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 
    The default light-theme focus tint has approximately 1.3:1 contrast against white. Sharing it with the classic item does not resolve the [non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html) gap. A library-wide state-style review remains separate work. Under `theme.focusVisible`, the item uses the classic inset ring instead of the focus tint; the inset avoids clipping in a scrolling popup. Shared styles do not imply identical keyboard-to-pointer behavior; see the caveat above.
 
-   Dedicated axe fixtures check open and nested menus. Base UI 1.8.0 [fixes the portal owner role](https://github.com/mui/base-ui/pull/5058); `aria-required-children` now passes without an exception. The `menus.a11y.json` report still marks focus guards and trigger references for review. These two checks have fixture-specific assertion exceptions; interaction tests verify the reference IDs. The closing-state audit found the upstream gap listed under [known issues](#known-issues). Recheck it after the upstream fix. Manual screen-reader checks remain required.
+   Dedicated axe fixtures check open, nested, and non-modal menus. Base UI 1.8.0 [fixes the portal owner role](https://github.com/mui/base-ui/pull/5058); `aria-required-children` now passes without an exception. The `menus.a11y.json` report retains the focus-guard and trigger-reference results. These fixtures have assertion exceptions for `aria-hidden-focus` and `aria-valid-attr-value`. Interaction tests check keyboard opening, Tab navigation, reference IDs, and the trigger's label and expanded state. The closing-state audit found the upstream gap listed under [known issues](#known-issues). Recheck it after the upstream fix.
+
+   Repeat manual screen-reader checks after the composition API changes. Use NVDA with Firefox, and VoiceOver with Safari. Record the browser and screen-reader versions, then check:
+
+   - The trigger announces its name, menu-button role, and expanded state.
+   - Enter, Space, ArrowDown, and ArrowUp announce the expected first or last item.
+   - Escape returns focus to the trigger. Tab and Shift+Tab leave the items without stopping on a hidden focus guard.
 
 3. ✅ **Other defaults:** retain Base UI behavior with the documented Material presentation choices.
 
 4. ✅ **SSR, client directive, and refs:** public modules have `'use client'`. The trigger can render on the server, but the portal popup is client-rendered, including with `defaultOpen` or `keepMounted`. Caller-rendered parts have polymorphic refs; collapsed roots use the portal element. The `positioner` and `paper` slot refs give access to the positioned element and menu surface.
 
-5. ✅ **Base UI API exposure:** explicitly pick supported root and positioning props. The detached-trigger experiment adds `handle`, `triggerId`, `defaultTriggerId`, and the `createHandle` export without renaming Base UI props. Horizontal `orientation` remains outside this API. Upstream changes to exposed types still require review.
+5. ✅ **Base UI API exposure:** explicitly pick supported root, trigger, and positioning props. Detached-trigger APIs and horizontal `orientation` remain outside this API. Upstream changes to exposed types still require review.
 
 6. ✅ **Open parent tint:** use `action.hover` while open. Keep it through exit except for hover-driven closes. Keep `Mui-open` tied to the logical open state. Exit timing has no public class, style override key, or slot callback state. A new open-state color token would be a separate design choice.
 
-7. ✅ **Explicit submenu trigger:** keep one behavioral owner per trigger and the popup wiring internal. The root decorates a supplied button; the submenu renders an explicit part. Accept this asymmetry. A Material Menubar remains separate work.
+7. ✅ **Explicit composition:** keep one behavioral owner per trigger. The next API change exposes root, trigger, and popup components for both menus and submenus. Keep the trigger's single-child API and use Base UI's `render` internally. A Material Menubar remains separate work.
 
 8. ✅ **TypeScript minimum:** Material UI supports TypeScript 5 and later ([#49323](https://github.com/mui/material-ui/pull/49323)). This supports the `const` type parameters in Base UI declarations. Include all `MuiMenu2*` theme types in the standard Material UI theme types; no extra import is needed.
 
@@ -279,6 +269,7 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 
 1. **Review the proposal:** the benchmark and API experiment are ready for maintainer feedback.
 2. **Prepare an unstable release:** target a v9 minor release after review.
+   - Implement the explicit root, trigger, and popup API. Keep detached triggers outside this release.
    - Verify the built package with the supported TypeScript versions, including Menu2 and its theme types.
    - Keep generated PropTypes and API docs aligned with the public components.
    - Keep the public demos and migration guide aligned with the final API and behavior decisions.
@@ -416,6 +407,7 @@ This example follows the system preference. The playground also shows the theme 
 ### Bundle cost
 
 These measurements compare `8fa036a69b` with the merge base `ddb473f678`, using the same installed dependencies and build tools.
+They predate the detached-trigger removal. Repeat the audit after the composition API changes.
 Both revisions use production ESM builds, Node.js 24.16.0, Vite 8.3.2, and gzip level 9.
 React, React DOM, `@emotion/react`, and `@emotion/styled` are external.
 The Menu2 measurements include Base UI 1.9.0 without a local patch.
@@ -423,7 +415,6 @@ These are import bundles, not complete applications. Sizes use decimal kB.
 
 Each menu case includes Button. The classic case adds Menu and MenuItem; the Menu2 case adds Menu2 and Menu2Item.
 The submenu case also adds Menu2Submenu and Menu2SubmenuTrigger.
-The detached-trigger case adds Menu2Trigger and the named `createHandle` export from `@mui/material/Unstable_Menu2`.
 The high-contrast case adds `enhanceHighContrast` from `@mui/material/styles` to the classic imports.
 
 | Imports                             | Minified kB | Gzip kB |
@@ -433,7 +424,6 @@ The high-contrast case adds `enhanceHighContrast` from `@mui/material/styles` to
 | Classic + high contrast, merge base |     135.743 |  42.368 |
 | Classic + high contrast, this PR    |     139.759 |  43.313 |
 | Menu2                               |     239.472 |  78.605 |
-| Menu2 with detached triggers        |     241.082 |  79.081 |
 | Menu2 with submenu                  |     248.227 |  81.065 |
 | Classic Menu and Menu2              |     269.868 |  88.245 |
 | Classic Menu and Menu2 with submenu |     278.591 |  90.758 |
@@ -447,12 +437,9 @@ These are total PR costs for the measured imports, not only the cost of shared s
 Menu2 is not a size reduction: it costs **37.668 kB gzip** more than the classic case.
 Adding Menu2 alongside classic Menu costs **47.308 kB gzip** in this fixture.
 Adding submenu support to the Menu2 case costs a further **2.460 kB gzip**.
-The detached-trigger case costs **476 B gzip** more than basic Menu2.
-Menu2 already uses Menu2Trigger internally; the detached case also retains `createHandle`, which the basic case removes.
 Application results depend on the components and dependencies already in use.
 
 Run `pnpm -r --filter @mui/material... build`, then `pnpm exec node test/bundle-size/menu2.mjs` to repeat the comparison.
 The script also accepts a path to a baseline Material package build. Use the same installed dependencies for that build.
 It checks the retained module graph and fails if classic imports include Base UI or Floating UI code, or if the selected Material build is not used.
-The detached-trigger case also checks that the trigger implementation and handle factory remain in the bundle.
 Two runs of each revision produced identical results. Repeat the check on the release revision.

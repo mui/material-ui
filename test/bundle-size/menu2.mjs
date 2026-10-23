@@ -21,7 +21,6 @@ const materialPackage = JSON.parse(
 // Keep framework and styling peers out, as in the package size checker.
 const externals = ['react', 'react-dom', '@emotion/react', '@emotion/styled'];
 const hasMenu2 = './Unstable_Menu2' in materialPackage.exports;
-const hasDetachedTriggers = hasMenu2 && './Unstable_Menu2Trigger' in materialPackage.exports;
 const classic = ['Button', 'Menu', 'MenuItem'];
 const menu2 = ['Button', 'Unstable_Menu2', 'Unstable_Menu2Item'];
 const submenu = [...menu2, 'Unstable_Menu2Submenu', 'Unstable_Menu2SubmenuTrigger'];
@@ -39,19 +38,10 @@ const cases = [
         { name: 'classic-and-menu2-submenu', parts: [...new Set([...classic, ...submenu])] },
       ]
     : []),
-  ...(hasDetachedTriggers
-    ? [
-        {
-          name: 'menu2-detached-triggers',
-          parts: [...menu2, 'Unstable_Menu2Trigger'],
-          detached: true,
-        },
-      ]
-    : []),
 ];
 
 const results = {};
-for (const { name, parts, barrel, highContrast, detached } of cases) {
+for (const { name, parts, barrel, highContrast } of cases) {
   const entry = '\0menu2-bundle-entry';
   const componentImports = barrel
     ? `import { ${parts.join(', ')} } from '@mui/material';`
@@ -59,15 +49,10 @@ for (const { name, parts, barrel, highContrast, detached } of cases) {
   const code = [
     componentImports,
     highContrast && "import { enhanceHighContrast } from '@mui/material/styles';",
-    detached && "import { createHandle } from '@mui/material/Unstable_Menu2';",
   ]
     .filter(Boolean)
     .join('\n');
-  const liveImports = [
-    ...parts,
-    ...(highContrast ? ['enhanceHighContrast'] : []),
-    ...(detached ? ['createHandle'] : []),
-  ];
+  const liveImports = [...parts, ...(highContrast ? ['enhanceHighContrast'] : [])];
   // eslint-disable-next-line no-await-in-loop -- Build one scenario at a time to limit memory use.
   const output = await build({
     configFile: false,
@@ -138,15 +123,6 @@ for (const { name, parts, barrel, highContrast, detached } of cases) {
   const expectsBase = name.includes('menu2');
   if (expectsBase !== baseModules.length > 0) {
     throw new Error(`Unexpected Base UI module graph for ${name}`);
-  }
-  if (detached) {
-    const requiredModules = [
-      `${materialBuild}/Unstable_Menu2Trigger/Menu2Trigger.mjs`,
-      `${materialBuild}/Unstable_Menu2/createHandle.mjs`,
-    ];
-    if (requiredModules.some((id) => !materialModules.includes(id))) {
-      throw new Error('Expected the detached trigger and handle factory to remain in the bundle');
-    }
   }
   results[name] = {
     parsed: chunks.reduce((sum, chunk) => sum + Buffer.byteLength(chunk.code), 0),

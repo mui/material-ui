@@ -1,7 +1,6 @@
 'use client';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import { getTransitionStyles } from '../transitions/utils';
 import Paper from '../Paper';
 import List from '../List';
 import { menu2Classes, menu2SubmenuClasses } from './menu2Classes';
@@ -28,23 +27,10 @@ export const Menu2RootBase = styled('div', { name: 'MuiMenu2', slot: 'root' })(
   })),
 );
 
-export const Menu2PositionerBase = styled('div', { name: 'MuiMenu2', slot: 'positioner' })(
-  memoTheme(({ theme }) => ({
-    // The root controls page stacking. Keep the popup above its sibling backdrops.
-    zIndex: 1,
-    variants: [
-      {
-        // Submenus and ordinary menus have no handle. Keep their placement instant.
-        props: ({ ownerState }: { ownerState?: { handle?: unknown } | undefined }) =>
-          ownerState?.handle != null,
-        style: {
-          ...getTransitionStyles(theme, ['transform', 'top', 'right', 'bottom', 'left']),
-          '&[data-instant]': { transition: 'none' },
-        },
-      },
-    ],
-  })),
-);
+export const Menu2PositionerBase = styled('div', { name: 'MuiMenu2', slot: 'positioner' })({
+  // The root controls page stacking. Keep the popup above its sibling backdrops.
+  zIndex: 1,
+});
 
 export const Menu2PaperBase = styled(Paper, { name: 'MuiMenu2', slot: 'paper' })({
   outline: 0,

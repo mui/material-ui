@@ -9,13 +9,10 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import { menu2TriggerClasses } from '../Unstable_Menu2/menu2Classes';
 import { warnMenu2FragmentTrigger, warnMenu2TriggerRef } from '../Unstable_Menu2/menu2Utils';
 
-export interface Menu2TriggerProps<Payload = unknown>
+export interface Menu2TriggerProps
   extends
     Omit<React.HTMLAttributes<HTMLElement>, 'children'>,
-    Pick<
-      BaseMenu.Trigger.Props<Payload>,
-      'handle' | 'payload' | 'disabled' | 'openOnHover' | 'delay' | 'closeDelay'
-    > {
+    Pick<BaseMenu.Trigger.Props, 'disabled' | 'openOnHover' | 'delay' | 'closeDelay'> {
   /**
    * The element that opens the menu. It must forward its props and ref.
    * Set visual props, such as `sx` and `variant`, on this element.
@@ -29,15 +26,6 @@ export interface Menu2TriggerProps<Payload = unknown>
   nativeButton?: BaseMenu.Trigger.Props['nativeButton'] | undefined;
 }
 
-interface Menu2TriggerComponent extends Pick<
-  React.ForwardRefExoticComponent<Menu2TriggerProps & React.RefAttributes<HTMLElement>>,
-  'propTypes' | 'displayName'
-> {
-  <Payload = unknown>(
-    props: Menu2TriggerProps<Payload> & React.RefAttributes<HTMLElement>,
-  ): React.JSX.Element;
-}
-
 /**
  *
  * Demos:
@@ -48,8 +36,8 @@ interface Menu2TriggerComponent extends Pick<
  *
  * - [Menu2Trigger API](https://next.mui.com/material-ui/api/menu-2-trigger/)
  */
-const Menu2Trigger = React.forwardRef(function Menu2Trigger<Payload>(
-  inProps: Menu2TriggerProps<Payload>,
+const Menu2Trigger = React.forwardRef(function Menu2Trigger(
+  inProps: Menu2TriggerProps,
   ref: React.ForwardedRef<HTMLElement>,
 ) {
   const { children, className, ...props } = useDefaultProps({
@@ -83,7 +71,7 @@ const Menu2Trigger = React.forwardRef(function Menu2Trigger<Payload>(
       }
     />
   );
-}) as Menu2TriggerComponent;
+});
 
 Menu2Trigger.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -116,10 +104,6 @@ Menu2Trigger.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
-   * A handle to associate the trigger with a menu.
-   */
-  handle: PropTypes /* @typescript-to-proptypes-ignore */.object,
-  /**
    * Whether the child renders a native `<button>` element.
    * Set to `false` when the child renders a different element.
    * @default true
@@ -129,10 +113,6 @@ Menu2Trigger.propTypes /* remove-proptypes */ = {
    * Whether the menu should also open when the trigger is hovered.
    */
   openOnHover: PropTypes.bool,
-  /**
-   * A payload to pass to the menu when it is opened.
-   */
-  payload: PropTypes.any,
 } as any;
 
 export default Menu2Trigger;

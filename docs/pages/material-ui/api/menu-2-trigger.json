@@ -4,10 +4,8 @@
     "closeDelay": { "type": { "name": "number" }, "default": "0" },
     "delay": { "type": { "name": "number" }, "default": "100" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "handle": { "type": { "name": "object" } },
     "nativeButton": { "type": { "name": "bool" }, "default": "true" },
-    "openOnHover": { "type": { "name": "bool" } },
-    "payload": { "type": { "name": "any" } }
+    "openOnHover": { "type": { "name": "bool" } }
   },
   "name": "Menu2Trigger",
   "imports": ["import MenuTrigger from '@mui/material/Unstable_Menu2Trigger';"],

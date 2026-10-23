@@ -184,6 +184,11 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     enabled: false,
     waitForSelector: '[data-testid="nested-menu"][data-open]',
   },
+  {
+    test: 'test/regressions/a11y/fixtures/menus/Menu2A11yNonModal',
+    enabled: false,
+    waitForSelector: '[data-testid="non-modal-menu"][data-open]',
+  },
   { test: 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
   { test: 'test/regressions/a11y/fixtures/accordion/AccordionA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
   {
@@ -324,6 +329,14 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
     // The same review checks apply. Base UI 1.8 gives the owner span an allowed group role.
+    skipAssertions: ['aria-hidden-focus', 'aria-valid-attr-value'],
+  },
+  {
+    test: 'test/regressions/a11y/fixtures/menus/Menu2A11yNonModal',
+    enabled: true,
+    assertions: 'all',
+    // Base UI's focus guards fail aria-hidden-focus; axe also requires review of aria-controls.
+    // Keyboard interaction tests check focus movement and the referenced popup IDs.
     skipAssertions: ['aria-hidden-focus', 'aria-valid-attr-value'],
   },
   {
