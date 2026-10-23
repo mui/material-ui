@@ -57,14 +57,11 @@ type ThemeComponentSlot<Name extends ThemeComponentName> = Extract<
  * user's layer between the two emissions. **Mutates `components` in place** —
  * pass a `components` object the caller owns.
  */
-function addRootOverride<
-  Name extends ThemeComponentName,
-  Slot extends ThemeComponentSlot<Name> = Extract<ThemeComponentSlot<Name>, 'root'>,
->(
+function addStyleOverride<Name extends ThemeComponentName, Slot extends ThemeComponentSlot<Name>>(
   components: ThemeComponents,
   name: Name,
+  slot: Slot,
   overrides: NonNullable<StyleOverridesOf<Name>[Slot]>,
-  slot: Slot = 'root' as Slot,
 ): void {
   const component = components[name] as Record<string, any> | undefined;
   const existing = component?.styleOverrides?.[slot];
@@ -85,7 +82,7 @@ type DefaultPropsOf<Name extends ThemeComponentName> =
 /**
  * Attach theme `defaultProps`, the consuming theme's own defaults winning — for
  * values CSS cannot reach (those that feed component JS). **Mutates
- * `components` in place** — same contract as `addRootOverride`.
+ * `components` in place** — same contract as `addStyleOverride`.
  */
 function addDefaultProps<Name extends ThemeComponentName>(
   components: ThemeComponents,
@@ -191,18 +188,13 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   };
-  addRootOverride(
-    enhanced.components,
-    'MuiChip',
-    {
-      margin: 0,
-      width: 'var(--_childSize)',
-      height: 'var(--_childSize)',
-      marginRight: 'var(--_offset)',
-    },
-    'deleteIcon',
-  );
-  addRootOverride(enhanced.components, 'MuiAccordionSummary', {
+  addStyleOverride(enhanced.components, 'MuiChip', 'deleteIcon', {
+    margin: 0,
+    width: 'var(--_childSize)',
+    height: 'var(--_childSize)',
+    marginRight: 'var(--_offset)',
+  });
+  addStyleOverride(enhanced.components, 'MuiAccordionSummary', 'root', {
     minHeight: touchTarget,
     padding: `0 ${spacing('xSmall')}`,
     variants: [
@@ -215,26 +207,21 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiAccordionSummary',
-    {
-      marginBlock: spacing('xxSmall'),
-      alignItems: 'center',
-      gap: spacing('xSmall'),
-      variants: [
-        {
-          props: { disableGutters: false },
-          style: { [`&.${accordionSummaryClasses.expanded}`]: { marginBlock: spacing('xxSmall') } },
-        },
-      ],
-    },
-    'content',
-  );
-  addRootOverride(enhanced.components, 'MuiAccordionDetails', {
+  addStyleOverride(enhanced.components, 'MuiAccordionSummary', 'content', {
+    marginBlock: spacing('xxSmall'),
+    alignItems: 'center',
+    gap: spacing('xSmall'),
+    variants: [
+      {
+        props: { disableGutters: false },
+        style: { [`&.${accordionSummaryClasses.expanded}`]: { marginBlock: spacing('xxSmall') } },
+      },
+    ],
+  });
+  addStyleOverride(enhanced.components, 'MuiAccordionDetails', 'root', {
     padding: `${spacing('xxSmall')} ${spacing('small')} ${spacing('small')}`,
   });
-  addRootOverride(enhanced.components, 'MuiButton', {
+  addStyleOverride(enhanced.components, 'MuiButton', 'root', {
     ...enhanced.typography?.button,
     paddingBlock: 0,
     gap: spacing('xSmall'),
@@ -253,19 +240,15 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiButton',
-    { margin: 0, '& > *:nth-of-type(1)': { fontSize: '0.8lh' } }, // '& > *:nth-of-type(1)' is the same as Button's implementation
-    'startIcon',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiButton',
-    { margin: 0, '& > *:nth-of-type(1)': { fontSize: '0.8lh' } }, // '& > *:nth-of-type(1)' is the same as Button's implementation
-    'endIcon',
-  );
-  addRootOverride(enhanced.components, 'MuiIconButton', {
+  addStyleOverride(enhanced.components, 'MuiButton', 'startIcon', {
+    margin: 0,
+    '& > *:nth-of-type(1)': { fontSize: '0.8lh' },
+  });
+  addStyleOverride(enhanced.components, 'MuiButton', 'endIcon', {
+    margin: 0,
+    '& > *:nth-of-type(1)': { fontSize: '0.8lh' },
+  });
+  addStyleOverride(enhanced.components, 'MuiIconButton', 'root', {
     padding: 0,
     fontSize: iconSize,
     variants: [
@@ -282,11 +265,11 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -4)` } },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiButtonGroup', {
+  addStyleOverride(enhanced.components, 'MuiButtonGroup', 'root', {
     [`& .${buttonGroupClasses.grouped}`]: { minWidth: touchTarget },
   });
 
-  addRootOverride(enhanced.components, 'MuiSvgIcon', {
+  addStyleOverride(enhanced.components, 'MuiSvgIcon', 'root', {
     variants: [
       { props: { fontSize: 'small' }, style: { fontSize: iconSmall } },
       { props: { fontSize: 'medium' }, style: { fontSize: iconSize } },
@@ -296,7 +279,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   // Mirrors MenuItem's own sm-up reset, which hardcodes the same key. Cast so
   // the file still compiles against an augmented BreakpointOverrides.
   const smUp = enhanced.breakpoints.up('sm' as Breakpoint);
-  addRootOverride(enhanced.components, 'MuiMenuItem', {
+  addStyleOverride(enhanced.components, 'MuiMenuItem', 'root', {
     paddingBlock: spacing('xxSmall'),
     variants: [
       {
@@ -335,22 +318,17 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     [`& .${listItemIconClasses.root}`]: { minWidth: 0 },
   });
 
-  addRootOverride(
-    enhanced.components,
-    'MuiTooltip',
-    {
-      ...enhanced.typography?.caption,
-      lineHeight: 16 / 12,
-      padding: `${spacing('xSmall')} ${spacing('small')}`,
-      // Touch keeps its own 24px clearance; an unconditional value would land
-      // after the component's touch variant and override it.
-      variants: [{ props: ({ ownerState }) => !ownerState.touch, style: { '--_spacing': '4px' } }],
-    },
-    'tooltip',
-  );
+  addStyleOverride(enhanced.components, 'MuiTooltip', 'tooltip', {
+    ...enhanced.typography?.caption,
+    lineHeight: 16 / 12,
+    padding: `${spacing('xSmall')} ${spacing('small')}`,
+    // Touch keeps its own 24px clearance; an unconditional value would land
+    // after the component's touch variant and override it.
+    variants: [{ props: ({ ownerState }) => !ownerState.touch, style: { '--_spacing': '4px' } }],
+  });
   // Fixed arrow size due to fixed spacing between tooltip and target
-  addRootOverride(enhanced.components, 'MuiTooltip', { '--_arrowSize': '10px' }, 'arrow');
-  addRootOverride(enhanced.components, 'MuiInputBase', {
+  addStyleOverride(enhanced.components, 'MuiTooltip', 'arrow', { '--_arrowSize': '10px' });
+  addStyleOverride(enhanced.components, 'MuiInputBase', 'root', {
     lineHeight: enhanced.typography?.body1?.lineHeight,
     // The medium gap sits on the root: outside a FormControl the ownerState
     // has no `size`, so a `size: 'medium'` variant never matches and a
@@ -367,25 +345,20 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiInputBase',
-    {
-      height: 'auto',
-      paddingBlock: inputMediumPadBlock,
-      variants: [
-        { props: { size: 'small' }, style: { paddingBlock: inputSmallPadBlock } },
-        {
-          props: { multiline: true },
-          style: { paddingBlock: 0 },
-        },
-      ],
-    },
-    'input',
-  );
+  addStyleOverride(enhanced.components, 'MuiInputBase', 'input', {
+    height: 'auto',
+    paddingBlock: inputMediumPadBlock,
+    variants: [
+      { props: { size: 'small' }, style: { paddingBlock: inputSmallPadBlock } },
+      {
+        props: { multiline: true },
+        style: { paddingBlock: 0 },
+      },
+    ],
+  });
   // --_outlinedInputPadBlock broadcasts to the FormControl via :has(); the
   // label consumes it as --_restY. Re-assert chain mirrors master.
-  addRootOverride(enhanced.components, 'MuiOutlinedInput', {
+  addStyleOverride(enhanced.components, 'MuiOutlinedInput', 'root', {
     [`.${formControlClasses.root}:has(> &)`]: {
       '--_outlinedInputPadBlock': inputMediumPadBlock,
     },
@@ -416,64 +389,54 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiOutlinedInput',
-    {
-      paddingBlock: `var(--_outlinedInputPadBlock, ${inputMediumPadBlock})`,
-      variants: [
-        {
-          props: { size: 'small' },
-          style: { paddingBlock: `var(--_outlinedInputPadBlock, ${inputSmallPadBlock})` },
+  addStyleOverride(enhanced.components, 'MuiOutlinedInput', 'input', {
+    paddingBlock: `var(--_outlinedInputPadBlock, ${inputMediumPadBlock})`,
+    variants: [
+      {
+        props: { size: 'small' },
+        style: { paddingBlock: `var(--_outlinedInputPadBlock, ${inputSmallPadBlock})` },
+      },
+      {
+        props: { multiline: true },
+        style: { paddingBlock: 0 },
+      },
+    ],
+  });
+  addStyleOverride(enhanced.components, 'MuiFilledInput', 'input', {
+    paddingTop: `var(--_filledInputPadTop, ${filledInputMediumPadTop})`,
+    paddingBottom: `var(--_filledInputPadBottom, ${inputMediumPadBlock})`,
+    paddingInline: spacing('small'),
+    variants: [
+      {
+        props: { size: 'small' },
+        style: {
+          paddingTop: `var(--_filledInputPadTop, ${filledInputSmallPadTop})`,
+          paddingBottom: `var(--_filledInputPadBottom, ${inputSmallPadBlock})`,
         },
-        {
-          props: { multiline: true },
-          style: { paddingBlock: 0 },
-        },
-      ],
-    },
-    'input',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiFilledInput',
-    {
-      paddingTop: `var(--_filledInputPadTop, ${filledInputMediumPadTop})`,
-      paddingBottom: `var(--_filledInputPadBottom, ${inputMediumPadBlock})`,
-      paddingInline: spacing('small'),
-      variants: [
-        {
-          props: { size: 'small' },
-          style: {
-            paddingTop: `var(--_filledInputPadTop, ${filledInputSmallPadTop})`,
-            paddingBottom: `var(--_filledInputPadBottom, ${inputSmallPadBlock})`,
-          },
-        },
-        {
-          props: { hiddenLabel: true },
-          style: { paddingBlock: inputMediumPadBlock },
-        },
-        {
-          props: { hiddenLabel: true, size: 'small' },
-          style: { paddingBlock: inputSmallPadBlock },
-        },
-        {
-          props: { multiline: true },
-          style: { paddingBlock: 0, paddingInline: 0 },
-        },
-        {
-          props: ({ ownerState }) => !!ownerState.startAdornment,
-          style: { paddingLeft: 0 },
-        },
-        {
-          props: ({ ownerState }) => !!ownerState.endAdornment,
-          style: { paddingRight: 0 },
-        },
-      ],
-    },
-    'input',
-  );
-  addRootOverride(enhanced.components, 'MuiFilledInput', {
+      },
+      {
+        props: { hiddenLabel: true },
+        style: { paddingBlock: inputMediumPadBlock },
+      },
+      {
+        props: { hiddenLabel: true, size: 'small' },
+        style: { paddingBlock: inputSmallPadBlock },
+      },
+      {
+        props: { multiline: true },
+        style: { paddingBlock: 0, paddingInline: 0 },
+      },
+      {
+        props: ({ ownerState }) => !!ownerState.startAdornment,
+        style: { paddingLeft: 0 },
+      },
+      {
+        props: ({ ownerState }) => !!ownerState.endAdornment,
+        style: { paddingRight: 0 },
+      },
+    ],
+  });
+  addStyleOverride(enhanced.components, 'MuiFilledInput', 'root', {
     [`.${formControlClasses.root}:has(> &)`]: {
       '--_filledInputPadTop': filledInputMediumPadTop,
       '--_filledInputPadBottom': inputMediumPadBlock,
@@ -530,7 +493,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiInput', {
+  addStyleOverride(enhanced.components, 'MuiInput', 'root', {
     [`.${formControlClasses.root}:has(> &)`]: {
       '--_inputPadBlock': inputMediumPadBlock,
       '--_inputMarginTop': spacing('small'),
@@ -567,29 +530,24 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiInput',
-    {
-      paddingBlock: `var(--_inputPadBlock, ${inputMediumPadBlock})`,
-      variants: [
-        {
-          props: { size: 'small' },
-          style: {
-            paddingBlock: `var(--_inputPadBlock, ${inputSmallPadBlock})`,
-          },
+  addStyleOverride(enhanced.components, 'MuiInput', 'input', {
+    paddingBlock: `var(--_inputPadBlock, ${inputMediumPadBlock})`,
+    variants: [
+      {
+        props: { size: 'small' },
+        style: {
+          paddingBlock: `var(--_inputPadBlock, ${inputSmallPadBlock})`,
         },
-        {
-          props: { multiline: true },
-          style: { paddingBlock: 0 },
-        },
-      ],
-    },
-    'input',
-  );
+      },
+      {
+        props: { multiline: true },
+        style: { paddingBlock: 0 },
+      },
+    ],
+  });
   // Each shrink state must re-assert or the rest rules here, landing after
   // master's shrink, would leak the rest transform.
-  addRootOverride(enhanced.components, 'MuiInputLabel', {
+  addStyleOverride(enhanced.components, 'MuiInputLabel', 'root', {
     variants: [
       { props: { variant: 'standard' }, style: { '--_restY': '20px' } },
       { props: { variant: 'standard', size: 'small' }, style: { '--_restY': '17px' } },
@@ -641,13 +599,13 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiFormGroup', {
+  addStyleOverride(enhanced.components, 'MuiFormGroup', 'root', {
     columnGap: spacing('medium'),
   });
-  addRootOverride(enhanced.components, 'MuiFormLabel', {
+  addStyleOverride(enhanced.components, 'MuiFormLabel', 'root', {
     lineHeight: enhanced.typography?.body1?.lineHeight,
   });
-  addRootOverride(enhanced.components, 'MuiFormHelperText', {
+  addStyleOverride(enhanced.components, 'MuiFormHelperText', 'root', {
     marginTop: spacing('xSmall'),
     variants: [
       {
@@ -660,7 +618,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiInputAdornment', {
+  addStyleOverride(enhanced.components, 'MuiInputAdornment', 'root', {
     variants: [
       { props: { position: 'start' }, style: { margin: 0 } },
       { props: { position: 'end' }, style: { margin: 0 } },
@@ -680,45 +638,35 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiFormControlLabel', {
+  addStyleOverride(enhanced.components, 'MuiFormControlLabel', 'root', {
     marginLeft: 'var(--_labelMarginLeft, 0px)',
     marginRight: 'var(--_labelMarginRight, 0px)',
   });
-  addRootOverride(enhanced.components, 'MuiCheckbox', sharedCheckboxRadio);
-  addRootOverride(enhanced.components, 'MuiRadio', sharedCheckboxRadio);
+  addStyleOverride(enhanced.components, 'MuiCheckbox', 'root', sharedCheckboxRadio);
+  addStyleOverride(enhanced.components, 'MuiRadio', 'root', sharedCheckboxRadio);
   // The floor sits on the `ol` (the centering flex row), not the nav root.
-  addRootOverride(
-    enhanced.components,
-    'MuiBreadcrumbs',
-    {
-      gap: spacing('xSmall'),
-      '& a': {
-        display: 'inline-flex',
-        lineHeight: touchTarget,
-        paddingInline: spacing('xSmall'),
-      },
-      [`& li>.${buttonBaseClasses.root}`]: {
-        // BreadcrumbCollapsed
-        paddingInline: spacing('xSmall'),
-        height: touchTarget,
-        margin: 0,
-        '& svg': { width: '1em', height: '1em' },
-      },
+  addStyleOverride(enhanced.components, 'MuiBreadcrumbs', 'ol', {
+    gap: spacing('xSmall'),
+    '& a': {
+      display: 'inline-flex',
+      lineHeight: touchTarget,
+      paddingInline: spacing('xSmall'),
     },
-    'ol',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiBreadcrumbs',
-    {
-      '&:not(:has(a))': {
-        paddingInline: spacing('xSmall'),
-      },
+    [`& li>.${buttonBaseClasses.root}`]: {
+      // BreadcrumbCollapsed
+      paddingInline: spacing('xSmall'),
+      height: touchTarget,
+      margin: 0,
+      '& svg': { width: '1em', height: '1em' },
     },
-    'li',
-  );
-  addRootOverride(enhanced.components, 'MuiBreadcrumbs', { marginInline: 0 }, 'separator'); // use gap on `ol` instead
-  addRootOverride(enhanced.components, 'MuiToggleButton', {
+  });
+  addStyleOverride(enhanced.components, 'MuiBreadcrumbs', 'li', {
+    '&:not(:has(a))': {
+      paddingInline: spacing('xSmall'),
+    },
+  });
+  addStyleOverride(enhanced.components, 'MuiBreadcrumbs', 'separator', { marginInline: 0 }); // use gap on `ol` instead
+  addStyleOverride(enhanced.components, 'MuiToggleButton', 'root', {
     ...enhanced.typography?.button,
     paddingBlock: 0,
     minHeight: 'var(--_size)',
@@ -739,7 +687,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiSwitch', {
+  addStyleOverride(enhanced.components, 'MuiSwitch', 'root', {
     // Var declarations sit on size variants so a knob edit rebuilds
     // size-scoped; consumers are base.
     '--_pad': `calc((var(--_height) - var(--_thumbHeight)/1.4285714286) / 2)`, // to maintain the original ratio
@@ -794,33 +742,23 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       { props: { edge: 'end' }, style: { marginRight: 'var(--_offset)' } },
     ],
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiSwitch',
-    {
-      top: 'calc((var(--_height) - var(--_touchSize)) / 2)',
-      padding: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
-      // Touch target taller than the root: re-anchor on the track's end caps
-      // (0 when touch <= height).
-      left: 'calc((var(--_height) - var(--_touchSize)) / 2)',
-      [`&.${switchClasses.checked}`]: {
-        transform: `translateX(calc(${dirSign} * (var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight)))))`,
-      },
+  addStyleOverride(enhanced.components, 'MuiSwitch', 'switchBase', {
+    top: 'calc((var(--_height) - var(--_touchSize)) / 2)',
+    padding: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
+    // Touch target taller than the root: re-anchor on the track's end caps
+    // (0 when touch <= height).
+    left: 'calc((var(--_height) - var(--_touchSize)) / 2)',
+    [`&.${switchClasses.checked}`]: {
+      transform: `translateX(calc(${dirSign} * (var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight)))))`,
     },
-    'switchBase',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiSwitch',
-    {
-      width: 'var(--_thumbWidth)',
-      height: 'var(--_thumbHeight)',
-      borderRadius: 'var(--_touchSize)',
-    },
-    'thumb',
-  );
-  addRootOverride(enhanced.components, 'MuiSwitch', { borderRadius: 'var(--_height)' }, 'track');
-  addRootOverride(enhanced.components, 'MuiAutocomplete', {
+  });
+  addStyleOverride(enhanced.components, 'MuiSwitch', 'thumb', {
+    width: 'var(--_thumbWidth)',
+    height: 'var(--_thumbHeight)',
+    borderRadius: 'var(--_touchSize)',
+  });
+  addStyleOverride(enhanced.components, 'MuiSwitch', 'track', { borderRadius: 'var(--_height)' });
+  addStyleOverride(enhanced.components, 'MuiAutocomplete', 'root', {
     [`& .${autocompleteClasses.inputRoot}`]: { gap: '2px', '--_tagHeight': miniBox },
     [`& .${autocompleteClasses.inputRoot}.${inputBaseClasses.sizeSmall}`]: {
       '--_tagHeight': tinyBox,
@@ -859,45 +797,31 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       { paddingRight: `calc(2 * ${smallBox} + var(--_endOffset, 0px))` },
     [`& .${outlinedInputClasses.root}, & .${filledInputClasses.root}`]: { '--_endOffset': '9px' },
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiAutocomplete',
-    { minWidth: smallBox, minHeight: smallBox },
-    'clearIndicator',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiAutocomplete',
-    { minWidth: smallBox, minHeight: smallBox },
-    'popupIndicator',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiAutocomplete',
-    {
-      // The option list renders in a Popper — emit on the listbox slot.
-      [`& .${autocompleteClasses.option}`]: {
-        minHeight: touchTarget,
-        paddingBlock: spacing('xxSmall'),
-        paddingInline: spacing('xSmall'),
-      },
+  addStyleOverride(enhanced.components, 'MuiAutocomplete', 'clearIndicator', {
+    minWidth: smallBox,
+    minHeight: smallBox,
+  });
+  addStyleOverride(enhanced.components, 'MuiAutocomplete', 'popupIndicator', {
+    minWidth: smallBox,
+    minHeight: smallBox,
+  });
+  addStyleOverride(enhanced.components, 'MuiAutocomplete', 'listbox', {
+    // The option list renders in a Popper — emit on the listbox slot.
+    [`& .${autocompleteClasses.option}`]: {
+      minHeight: touchTarget,
+      paddingBlock: spacing('xxSmall'),
+      paddingInline: spacing('xSmall'),
     },
-    'listbox',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiAutocomplete',
-    {
-      margin: 0,
-      '--_height': miniBox,
-      [`&.${autocompleteClasses.tagSizeSmall}`]: {
-        '--_height': tinyBox,
-      },
+  });
+  addStyleOverride(enhanced.components, 'MuiAutocomplete', 'tag', {
+    margin: 0,
+    '--_height': miniBox,
+    [`&.${autocompleteClasses.tagSizeSmall}`]: {
+      '--_height': tinyBox,
     },
-    'tag',
-  );
+  });
   // hasConnector:false = the first step; end nodes sit flush with the edge.
-  addRootOverride(enhanced.components, 'MuiStep', {
+  addStyleOverride(enhanced.components, 'MuiStep', 'root', {
     variants: [
       {
         props: { orientation: 'horizontal', alternativeLabel: false, hasConnector: false },
@@ -909,46 +833,36 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiStepLabel', {
+  addStyleOverride(enhanced.components, 'MuiStepLabel', 'root', {
     variants: [{ props: { orientation: 'vertical' }, style: { paddingBlock: '0px' } }],
   });
   // Master sets the alternativeLabel gap at 2-class specificity — the nested
   // selector must be re-emitted to win. Horizontal-only: master already zeroes
   // vertical, an unscoped emission would stomp that reset.
-  addRootOverride(
-    enhanced.components,
-    'MuiStepLabel',
-    {
-      variants: [
-        {
-          props: { orientation: 'horizontal', alternativeLabel: true },
-          style: { [`&.${stepLabelClasses.alternativeLabel}`]: { marginTop: '0px' } },
-        },
-      ],
-    },
-    'label',
-  );
+  addStyleOverride(enhanced.components, 'MuiStepLabel', 'label', {
+    variants: [
+      {
+        props: { orientation: 'horizontal', alternativeLabel: true },
+        style: { [`&.${stepLabelClasses.alternativeLabel}`]: { marginTop: '0px' } },
+      },
+    ],
+  });
   // Icon→label spacing falls out of centering the circle in the touch box.
-  addRootOverride(
-    enhanced.components,
-    'MuiStepLabel',
-    {
-      padding: '0px',
-      justifyContent: 'center',
-      minWidth: touchTarget,
-      minHeight: touchTarget,
-      alignItems: 'center',
-    },
-    'iconContainer',
-  );
+  addStyleOverride(enhanced.components, 'MuiStepLabel', 'iconContainer', {
+    padding: '0px',
+    justifyContent: 'center',
+    minWidth: touchTarget,
+    minHeight: touchTarget,
+    alignItems: 'center',
+  });
   // Circle must land on MuiStepIcon root: an SvgIcon sizes off its OWN
   // fontSize (w/h = 1em) — a parent iconContainer fontSize can't reach it.
-  addRootOverride(enhanced.components, 'MuiStepIcon', {
+  addStyleOverride(enhanced.components, 'MuiStepIcon', 'root', {
     fontSize: `calc(${touchTarget} - ${spacing('small')} + 2px)`,
   });
-  addRootOverride(enhanced.components, 'MuiStepIcon', { fontSize: 14 }, 'text');
+  addStyleOverride(enhanced.components, 'MuiStepIcon', 'text', { fontSize: 14 });
   // Vertical-alt keeps master's marginLeft:auto — only marginRight moves.
-  addRootOverride(enhanced.components, 'MuiStepConnector', {
+  addStyleOverride(enhanced.components, 'MuiStepConnector', 'root', {
     variants: [
       {
         props: { orientation: 'horizontal', alternativeLabel: true },
@@ -964,15 +878,12 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiStepConnector',
-    { variants: [{ props: { orientation: 'vertical' }, style: { minHeight: spacing('medium') } }] },
-    'line',
-  );
+  addStyleOverride(enhanced.components, 'MuiStepConnector', 'line', {
+    variants: [{ props: { orientation: 'vertical' }, style: { minHeight: spacing('medium') } }],
+  });
   // margin = half box lands the border on the icon center; margin + padding
   // = the full box aligns content text with the label.
-  addRootOverride(enhanced.components, 'MuiStepContent', {
+  addStyleOverride(enhanced.components, 'MuiStepContent', 'root', {
     variants: [
       {
         props: { alternativeLabel: false },
@@ -990,27 +901,22 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiSnackbarContent', {
+  addStyleOverride(enhanced.components, 'MuiSnackbarContent', 'root', {
     padding: `8px ${spacing('medium')}`,
     gap: spacing('small'),
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiSnackbarContent',
-    { paddingBlock: spacing('xSmall') },
-    'message',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiSnackbarContent',
-    { paddingLeft: 0, marginRight: spacing('-xSmall') },
-    'action',
-  );
-  addRootOverride(enhanced.components, 'MuiDialogTitle', {
+  addStyleOverride(enhanced.components, 'MuiSnackbarContent', 'message', {
+    paddingBlock: spacing('xSmall'),
+  });
+  addStyleOverride(enhanced.components, 'MuiSnackbarContent', 'action', {
+    paddingLeft: 0,
+    marginRight: spacing('-xSmall'),
+  });
+  addStyleOverride(enhanced.components, 'MuiDialogTitle', 'root', {
     padding: `${spacing('small')} ${spacing('small')} ${spacing('small')} ${spacing('medium')}`,
   });
   // Two variants = one knob per dividers state (true overrides master's 16 24).
-  addRootOverride(enhanced.components, 'MuiDialogContent', {
+  addStyleOverride(enhanced.components, 'MuiDialogContent', 'root', {
     variants: [
       {
         props: { dividers: false },
@@ -1022,7 +928,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       { props: { dividers: true }, style: { padding: spacing('medium') } },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiDialogActions', {
+  addStyleOverride(enhanced.components, 'MuiDialogActions', 'root', {
     padding: spacing('medium'),
     variants: [
       {
@@ -1031,13 +937,10 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiDialog',
-    { '--_dialogMargin': spacing('large') },
-    'paper',
-  );
-  addRootOverride(enhanced.components, 'MuiList', {
+  addStyleOverride(enhanced.components, 'MuiDialog', 'paper', {
+    '--_dialogMargin': spacing('large'),
+  });
+  addStyleOverride(enhanced.components, 'MuiList', 'root', {
     variants: [
       // A subheader keeps master's `paddingTop: 0` — density only pads below.
       {
@@ -1050,24 +953,18 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiListSubheader', {
+  addStyleOverride(enhanced.components, 'MuiListSubheader', 'root', {
     fontSize: enhanced.typography?.body2?.fontSize,
     lineHeight: touchTarget,
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiListSubheader',
-    { paddingInline: spacing('small') },
-    'gutters', // cannot use variants due to legacy overridesResolver
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiListSubheader',
-    { paddingLeft: `calc(${spacing('small')} + ${iconSize} + ${spacing('xSmall')})` },
-    'inset', // cannot use variants due to legacy overridesResolver
-  );
+  addStyleOverride(enhanced.components, 'MuiListSubheader', 'gutters', {
+    paddingInline: spacing('small'),
+  });
+  addStyleOverride(enhanced.components, 'MuiListSubheader', 'inset', {
+    paddingLeft: `calc(${spacing('small')} + ${iconSize} + ${spacing('xSmall')})`,
+  });
   // No sm-up re-assert: ListItemButton has no master minHeight media reset.
-  addRootOverride(enhanced.components, 'MuiListItemButton', {
+  addStyleOverride(enhanced.components, 'MuiListItemButton', 'root', {
     gap: spacing('xSmall'),
     paddingBlock: spacing('xxSmall'),
     variants: [
@@ -1087,9 +984,9 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ],
   });
   // minWidth 0 kills master's 56px column floors — the row gap owns spacing.
-  addRootOverride(enhanced.components, 'MuiListItemIcon', { minWidth: 0 });
-  addRootOverride(enhanced.components, 'MuiListItemAvatar', { minWidth: 0 });
-  addRootOverride(enhanced.components, 'MuiListItemText', {
+  addStyleOverride(enhanced.components, 'MuiListItemIcon', 'root', { minWidth: 0 });
+  addStyleOverride(enhanced.components, 'MuiListItemAvatar', 'root', { minWidth: 0 });
+  addStyleOverride(enhanced.components, 'MuiListItemText', 'root', {
     margin: 0,
     variants: [
       {
@@ -1099,7 +996,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ],
   });
   // disablePadding:false scoping keeps rows owned by a ListItemButton unpadded.
-  addRootOverride(enhanced.components, 'MuiListItem', {
+  addStyleOverride(enhanced.components, 'MuiListItem', 'root', {
     gap: spacing('xSmall'),
     variants: [
       {
@@ -1130,15 +1027,15 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiListItemSecondaryAction', {
+  addStyleOverride(enhanced.components, 'MuiListItemSecondaryAction', 'root', {
     // Gutters only — master zeroes `right` under `disableGutters`.
     variants: [{ props: { disableGutters: false }, style: { right: spacing('small') } }],
   });
-  addRootOverride(enhanced.components, 'MuiCardContent', {
+  addStyleOverride(enhanced.components, 'MuiCardContent', 'root', {
     padding: spacing('medium'),
     '&:last-child': { paddingBottom: spacing('medium') },
   });
-  addRootOverride(enhanced.components, 'MuiCardActions', {
+  addStyleOverride(enhanced.components, 'MuiCardActions', 'root', {
     padding: spacing('medium'),
     paddingTop: `var(--_padTop, ${spacing('medium')})`,
     [`.${cardContentClasses.root} + &`]: { '--_padTop': 0 }, // use private variable so `sx` overrides still work
@@ -1149,59 +1046,47 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiCardHeader', {
+  addStyleOverride(enhanced.components, 'MuiCardHeader', 'root', {
     padding: spacing('medium'),
     gap: spacing('small'),
   });
-  addRootOverride(enhanced.components, 'MuiCardHeader', { marginRight: 0 }, 'avatar');
-  addRootOverride(
-    enhanced.components,
-    'MuiCardHeader',
-    {
-      marginBlock: spacing('-xxSmall'),
-      marginRight: spacing('-xSmall'),
+  addStyleOverride(enhanced.components, 'MuiCardHeader', 'avatar', { marginRight: 0 });
+  addStyleOverride(enhanced.components, 'MuiCardHeader', 'action', {
+    marginBlock: spacing('-xxSmall'),
+    marginRight: spacing('-xSmall'),
+  });
+  addStyleOverride(enhanced.components, 'MuiSelect', 'select', {
+    minHeight: 'auto',
+    // master writes per-variant --_caret/--_endAdornment on these same :has hooks
+    [`.${inputBaseClasses.root}:has(> &)`]: {
+      '--_caret': `calc(${iconSize} + ${spacing('small')})`,
     },
-    'action',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiSelect',
-    {
-      minHeight: 'auto',
-      // master writes per-variant --_caret/--_endAdornment on these same :has hooks
-      [`.${inputBaseClasses.root}:has(> &)`]: {
-        '--_caret': `calc(${iconSize} + ${spacing('small')})`,
-      },
-      [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
-        '--_endAdornment': iconSize,
-      },
-      '&&&': { paddingRight: 'calc(var(--_caret) + var(--_endAdornment, 0px))' },
+    [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
+      '--_endAdornment': iconSize,
     },
-    'select',
-  );
-  addRootOverride(enhanced.components, 'MuiSelect', { right: spacing('xSmall') }, 'icon');
-  addRootOverride(enhanced.components, 'MuiAlert', {
+    '&&&': { paddingRight: 'calc(var(--_caret) + var(--_endAdornment, 0px))' },
+  });
+  addStyleOverride(enhanced.components, 'MuiSelect', 'icon', { right: spacing('xSmall') });
+  addStyleOverride(enhanced.components, 'MuiAlert', 'root', {
     paddingBlock: spacing('xSmall'),
     paddingInline: spacing('small'),
     gap: spacing('xSmall'),
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiAlert',
-    { marginRight: 0, paddingBlock: 6, fontSize: '1.1lh' },
-    'icon',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiAlert',
-    { padding: 0, marginRight: 0, alignSelf: 'center' },
-    'action',
-  );
+  addStyleOverride(enhanced.components, 'MuiAlert', 'icon', {
+    marginRight: 0,
+    paddingBlock: 6,
+    fontSize: '1.1lh',
+  });
+  addStyleOverride(enhanced.components, 'MuiAlert', 'action', {
+    padding: 0,
+    marginRight: 0,
+    alignSelf: 'center',
+  });
   addDefaultProps(enhanced.components, 'MuiAlert', {
     slotProps: { closeButton: { size: 'medium' } },
   });
-  addRootOverride(enhanced.components, 'MuiAlert', { paddingBlock: 7 }, 'message');
-  addRootOverride(enhanced.components, 'MuiTab', {
+  addStyleOverride(enhanced.components, 'MuiAlert', 'message', { paddingBlock: 7 });
+  addStyleOverride(enhanced.components, 'MuiTab', 'root', {
     minHeight: touchTarget,
     lineHeight: enhanced.typography?.button?.lineHeight,
     paddingBlock: 0,
@@ -1221,8 +1106,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiTabs', { minHeight: touchTarget });
-  addRootOverride(enhanced.components, 'MuiTabScrollButton', {
+  addStyleOverride(enhanced.components, 'MuiTabs', 'root', { minHeight: touchTarget });
+  addStyleOverride(enhanced.components, 'MuiTabScrollButton', 'root', {
     variants: [
       { props: { orientation: 'horizontal' }, style: { width: touchTarget } },
       { props: { orientation: 'vertical' }, style: { height: touchTarget } },
@@ -1230,18 +1115,18 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
   // AvatarGroup overlap is untouchable: an inline --AvatarGroup-spacing style
   // from the spacing prop (px numbers only) outranks any styleOverride.
-  addRootOverride(enhanced.components, 'MuiAvatar', {
+  addStyleOverride(enhanced.components, 'MuiAvatar', 'root', {
     '--_size': touchTarget,
     width: 'var(--_size)',
     height: 'var(--_size)',
     fontSize: 'calc(var(--_size) / 2)',
   });
-  addRootOverride(enhanced.components, 'MuiLinearProgress', { height: 4 });
+  addStyleOverride(enhanced.components, 'MuiLinearProgress', 'root', { height: 4 });
   addDefaultProps(enhanced.components, 'MuiCircularProgress', { size: touchTarget });
   // Root box = the touch target. Master sizes rail/track via height:inherit
   // off the root, so their thickness is re-emitted explicitly from
   // --_trackSize. markLabel offsets stay master.
-  addRootOverride(enhanced.components, 'MuiSlider', {
+  addStyleOverride(enhanced.components, 'MuiSlider', 'root', {
     padding: 0,
     // Master pads the root to 44px under a coarse pointer; the box already is
     // the touch target, and the media block would otherwise land after this.
@@ -1253,55 +1138,35 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       { props: { size: 'small' }, style: { '--_trackSize': `calc(${spacing('xSmall')} / 4)` } },
     ],
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiSlider',
-    {
-      padding: `${spacing('xxSmall')} ${spacing('xSmall')}`,
-    },
-    'valueLabel',
-  );
-  addRootOverride(
-    enhanced.components,
-    'MuiSlider',
-    {
-      // Horizontal only: vertical labels position off an inline `bottom` and
-      // an unconditional `top` would over-constrain them.
-      variants: [{ props: { orientation: 'horizontal' }, style: { top: touchTarget } }],
-    },
-    'markLabel',
-  );
+  addStyleOverride(enhanced.components, 'MuiSlider', 'valueLabel', {
+    padding: `${spacing('xxSmall')} ${spacing('xSmall')}`,
+  });
+  addStyleOverride(enhanced.components, 'MuiSlider', 'markLabel', {
+    // Horizontal only: vertical labels position off an inline `bottom` and
+    // an unconditional `top` would over-constrain them.
+    variants: [{ props: { orientation: 'horizontal' }, style: { top: touchTarget } }],
+  });
   for (const slot of ['rail', 'track'] as const) {
-    addRootOverride(
-      enhanced.components,
-      'MuiSlider',
-      {
-        variants: [
-          { props: { orientation: 'horizontal' }, style: { height: 'var(--_trackSize)' } },
-          { props: { orientation: 'vertical' }, style: { width: 'var(--_trackSize)' } },
-        ],
-      },
-      slot,
-    );
-  }
-  addRootOverride(
-    enhanced.components,
-    'MuiSlider',
-    {
-      width: spacing('medium'),
-      height: spacing('medium'),
+    addStyleOverride(enhanced.components, 'MuiSlider', slot, {
       variants: [
-        { props: { size: 'small' }, style: { width: spacing('small'), height: spacing('small') } },
+        { props: { orientation: 'horizontal' }, style: { height: 'var(--_trackSize)' } },
+        { props: { orientation: 'vertical' }, style: { width: 'var(--_trackSize)' } },
       ],
-      '&::after': {
-        width: touchTarget,
-        height: touchTarget,
-      },
+    });
+  }
+  addStyleOverride(enhanced.components, 'MuiSlider', 'thumb', {
+    width: spacing('medium'),
+    height: spacing('medium'),
+    variants: [
+      { props: { size: 'small' }, style: { width: spacing('small'), height: spacing('small') } },
+    ],
+    '&::after': {
+      width: touchTarget,
+      height: touchTarget,
     },
-    'thumb',
-  );
+  });
 
-  addRootOverride(enhanced.components, 'MuiTableCell', {
+  addStyleOverride(enhanced.components, 'MuiTableCell', 'root', {
     paddingBlock: spacing('xxSmall'), // smallest gutter for multiple lines of content
     variants: [
       {
@@ -1335,17 +1200,12 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       { props: { padding: 'none' }, style: { padding: 0 } },
     ],
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiTableSortLabel',
-    {
-      // One marginInline leaf: the arrow flips sides in right-aligned columns.
-      fontSize: `calc(${iconSize} + 2px)`,
-      marginInline: spacing('xxSmall'),
-    },
-    'icon',
-  );
-  addRootOverride(enhanced.components, 'MuiTablePagination', {
+  addStyleOverride(enhanced.components, 'MuiTableSortLabel', 'icon', {
+    // One marginInline leaf: the arrow flips sides in right-aligned columns.
+    fontSize: `calc(${iconSize} + 2px)`,
+    marginInline: spacing('xxSmall'),
+  });
+  addStyleOverride(enhanced.components, 'MuiTablePagination', 'root', {
     // Everything rides the ROOT slot: the toolbar/select overridesResolvers
     // SPREAD the theme styleOverride, so an array-form slot silently drops;
     // root-class nesting outranks the slot rules.
@@ -1361,7 +1221,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   // touches component styleOverrides and defaultProps (RFC scope). Apps using
   // the mixin spacer pattern with density should offset off the toolbar
   // itself.
-  addRootOverride(enhanced.components, 'MuiToolbar', {
+  addStyleOverride(enhanced.components, 'MuiToolbar', 'root', {
     variants: [
       {
         props: { disableGutters: false },
@@ -1391,7 +1251,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ],
   });
   // Circular-scoped: the extended variant stays frozen at master.
-  addRootOverride(enhanced.components, 'MuiFab', {
+  addStyleOverride(enhanced.components, 'MuiFab', 'root', {
     minHeight: 0,
     variants: [
       {
@@ -1417,20 +1277,15 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiPagination', { gap: spacing('xSmall') }, 'ul');
-  addRootOverride(
-    enhanced.components,
-    'MuiPaginationItem',
-    {
-      fontSize: pxToRem(20),
-      variants: [
-        { props: { size: 'small' }, style: { fontSize: pxToRem(18) } },
-        { props: { size: 'large' }, style: { fontSize: pxToRem(22) } },
-      ],
-    },
-    'icon',
-  );
-  addRootOverride(enhanced.components, 'MuiPaginationItem', {
+  addStyleOverride(enhanced.components, 'MuiPagination', 'ul', { gap: spacing('xSmall') });
+  addStyleOverride(enhanced.components, 'MuiPaginationItem', 'icon', {
+    fontSize: pxToRem(20),
+    variants: [
+      { props: { size: 'small' }, style: { fontSize: pxToRem(18) } },
+      { props: { size: 'large' }, style: { fontSize: pxToRem(22) } },
+    ],
+  });
+  addStyleOverride(enhanced.components, 'MuiPaginationItem', 'root', {
     margin: 0,
     padding: 0,
     variants: [
@@ -1455,10 +1310,10 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiBottomNavigation', {
+  addStyleOverride(enhanced.components, 'MuiBottomNavigation', 'root', {
     height: spacing('xxLarge'),
   });
-  addRootOverride(enhanced.components, 'MuiBottomNavigationAction', {
+  addStyleOverride(enhanced.components, 'MuiBottomNavigationAction', 'root', {
     gap: spacing('xxSmall'),
     paddingInline: spacing('small'),
     variants: [
@@ -1469,34 +1324,29 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiBadge',
-    {
-      borderRadius: 99,
-      variants: [
-        {
-          props: { variant: 'standard' },
-          style: {
-            height: miniBox,
-            minWidth: miniBox,
-            paddingInline: spacing('xSmall'),
-          },
+  addStyleOverride(enhanced.components, 'MuiBadge', 'badge', {
+    borderRadius: 99,
+    variants: [
+      {
+        props: { variant: 'standard' },
+        style: {
+          height: miniBox,
+          minWidth: miniBox,
+          paddingInline: spacing('xSmall'),
         },
-        {
-          props: { variant: 'dot' },
-          style: {
-            height: spacing('small'),
-            minWidth: spacing('small'),
-          },
+      },
+      {
+        props: { variant: 'dot' },
+        style: {
+          height: spacing('small'),
+          minWidth: spacing('small'),
         },
-      ],
-    },
-    'badge',
-  );
+      },
+    ],
+  });
   // Child-margin clears sit at slot level: slot rules render after master's
   // size re-asserts and win by order at equal specificity.
-  addRootOverride(enhanced.components, 'MuiChip', {
+  addStyleOverride(enhanced.components, 'MuiChip', 'root', {
     '--_childSize': `calc(var(--_height) - ${spacing('xSmall')})`,
     '--_offset': `calc(var(--_height)/2 - var(--_childSize)/2 - var(--_paddingInline))`,
     height: 'var(--_height)', // use private variable to be controlled by Autocomplete
@@ -1529,17 +1379,12 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiChip', { paddingInline: 0 }, 'label');
-  addRootOverride(
-    enhanced.components,
-    'MuiChip',
-    {
-      margin: 0,
-      width: 'var(--_childSize)',
-      height: 'var(--_childSize)',
-      marginLeft: 'var(--_offset)',
-    },
-    'avatar',
-  );
-  addRootOverride(enhanced.components, 'MuiChip', { margin: 0 }, 'icon');
+  addStyleOverride(enhanced.components, 'MuiChip', 'label', { paddingInline: 0 });
+  addStyleOverride(enhanced.components, 'MuiChip', 'avatar', {
+    margin: 0,
+    width: 'var(--_childSize)',
+    height: 'var(--_childSize)',
+    marginLeft: 'var(--_offset)',
+  });
+  addStyleOverride(enhanced.components, 'MuiChip', 'icon', { margin: 0 });
 }
