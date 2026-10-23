@@ -99,11 +99,11 @@ const TimelineItemRoot = styled('li', {
  *
  * Demos:
  *
- * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineItem API](https://mui.com/material-ui/api/timeline-item/)
+ * - [TimelineItem API](https://next.mui.com/material-ui/api/timeline-item/)
  */
 const TimelineItem = React.forwardRef(function TimelineItem(
   inProps: TimelineItemProps,

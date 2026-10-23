@@ -48,14 +48,13 @@ const extractInfoFromEnum = async (
 
     const type = project.checker.getDeclaredTypeOfSymbol(enumSymbol!);
 
-    // @ts-ignore
+    // @ts-expect-error: Enum union members are exposed on UnionType, not the base Type interface.
     const typeDeclaration = type?.types ?? [type];
     if (!typeDeclaration) {
       return [];
     }
     const properties: Record<string, ParsedProperty> = {};
 
-    // @ts-ignore
     await Promise.all(
       typeDeclaration.map(async (t: any) => {
         const propertySymbol = t.symbol;

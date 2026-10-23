@@ -168,6 +168,17 @@ describe('<Pagination />', () => {
     expect(screen.queryByRole('button', { name: /go to last page/i })).to.equal(null);
   });
 
+  it('keeps focus on the selected page when the visible page range changes', async () => {
+    const { user } = render(<Pagination count={11} defaultPage={4} />);
+    const pageFive = screen.getByRole('button', { name: 'Go to page 5' });
+
+    await user.click(pageFive);
+
+    const selectedPage = screen.getByRole('button', { name: 'page 5' });
+    expect(selectedPage).toHaveFocus();
+    expect(selectedPage).to.equal(pageFive);
+  });
+
   [false, true].forEach((controlled) => {
     [
       { type: 'next', initialPage: 2, pages: [3, 4] },
