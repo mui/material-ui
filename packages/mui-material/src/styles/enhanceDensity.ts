@@ -859,11 +859,10 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         paddingBlock: `var(--_autocompleteInputPadBlock)`,
       },
-    [`& .${filledInputClasses.root}, & .${filledInputClasses.root}.${inputBaseClasses.sizeSmall}`]:
-      {
-        paddingTop: 'calc(var(--_filledInputPadTop) - var(--_filledInputPadBottom))',
-        paddingBottom: 0,
-      },
+    [`& .${filledInputClasses.root}:not(.${inputBaseClasses.hiddenLabel})`]: {
+      paddingTop: 'calc(var(--_filledInputPadTop) - var(--_filledInputPadBottom))',
+      paddingBottom: 0,
+    },
     [`& .${filledInputClasses.root} .${filledInputClasses.input}, & .${filledInputClasses.root}.${inputBaseClasses.sizeSmall} .${filledInputClasses.input}`]:
       { paddingBlock: 'var(--_filledInputPadBottom)' },
     [`&.${autocompleteClasses.hasPopupIcon} .${autocompleteClasses.inputRoot}, &.${autocompleteClasses.hasClearIcon} .${autocompleteClasses.inputRoot}`]:
@@ -871,6 +870,10 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     [`&.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon} .${autocompleteClasses.inputRoot}`]:
       { paddingRight: `calc(2 * ${smallBox} + var(--_endOffset, 0px))` },
     [`& .${outlinedInputClasses.root}, & .${filledInputClasses.root}`]: { '--_endOffset': '9px' },
+    [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel} .${autocompleteClasses.input}`]:
+      { paddingBlock: inputMediumPadBlock },
+    [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}.${inputBaseClasses.sizeSmall} .${autocompleteClasses.input}`]:
+      { paddingBlock: inputSmallPadBlock },
     [`& .${inputClasses.root}`]: { paddingBottom: 0 },
     [`& .${inputClasses.root} .${inputClasses.input}, & .${inputClasses.root}.${inputBaseClasses.sizeSmall} .${inputClasses.input}`]:
       { paddingBlock: 'var(--_inputPadBlock)' },

@@ -787,13 +787,18 @@ describe.skipIf(isJsdom())('Autocomplete matches TextField', () => {
   const { render } = createRenderer();
   const cases = [
     ...(['outlined', 'filled', 'standard'] as const).flatMap((variant) =>
-      (['small', 'medium'] as const).map((size) => ({ variant, size })),
+      (['small', 'medium'] as const).map((size) => ({ variant, size, hiddenLabel: false })),
     ),
+    ...(['small', 'medium'] as const).map((size) => ({
+      variant: 'filled' as const,
+      size,
+      hiddenLabel: true,
+    })),
   ];
 
   DENSITIES.forEach((density) => {
-    cases.forEach(({ variant, size }) => {
-      test(`${density.id} ${variant} ${size}: same height`, () => {
+    cases.forEach(({ variant, size, hiddenLabel }) => {
+      test(`${density.id} ${variant} ${size}${hiddenLabel ? ' hiddenLabel' : ''}: same height`, () => {
         render(
           <ThemeProvider theme={THEMES.get(density.id)!}>
             <div data-testid="autocomplete">
@@ -801,11 +806,24 @@ describe.skipIf(isJsdom())('Autocomplete matches TextField', () => {
                 options={['One', 'Two']}
                 size={size}
                 defaultValue="One"
-                renderInput={(params) => <TextField {...params} variant={variant} label="Label" />}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant={variant}
+                    label={hiddenLabel ? undefined : 'Label'}
+                    hiddenLabel={hiddenLabel}
+                  />
+                )}
               />
             </div>
             <div data-testid="textfield">
-              <TextField variant={variant} size={size} label="Label" defaultValue="One" />
+              <TextField
+                variant={variant}
+                size={size}
+                label={hiddenLabel ? undefined : 'Label'}
+                hiddenLabel={hiddenLabel}
+                defaultValue="One"
+              />
             </div>
           </ThemeProvider>,
         );
