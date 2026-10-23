@@ -22,8 +22,19 @@ const materialPackage = JSON.parse(
 const externals = ['react', 'react-dom', '@emotion/react', '@emotion/styled'];
 const hasMenu2 = './Unstable_Menu2' in materialPackage.exports;
 const classic = ['Button', 'Menu', 'MenuItem'];
-const menu2 = ['Button', 'Unstable_Menu2', 'Unstable_Menu2Item'];
-const submenu = [...menu2, 'Unstable_Menu2Submenu', 'Unstable_Menu2SubmenuTrigger'];
+const menu2 = [
+  'Button',
+  'Unstable_Menu2',
+  'Unstable_Menu2Trigger',
+  'Unstable_Menu2Popup',
+  'Unstable_Menu2Item',
+];
+const submenu = [
+  ...menu2,
+  'Unstable_Menu2Submenu',
+  'Unstable_Menu2SubmenuTrigger',
+  'Unstable_Menu2SubmenuPopup',
+];
 const cases = [
   { name: 'button', parts: ['Button'] },
   { name: 'button-barrel', parts: ['Button'], barrel: true },

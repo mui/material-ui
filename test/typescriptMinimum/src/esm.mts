@@ -1,10 +1,12 @@
 import * as React from 'react';
 import Menu2, { Menu2Props } from '@mui/material/Unstable_Menu2';
+import Menu2Popup, { Menu2PopupProps } from '@mui/material/Unstable_Menu2Popup';
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 import Menu2Trigger, { Menu2TriggerProps } from '@mui/material/Unstable_Menu2Trigger';
 
 export { Button, Menu } from '@mui/material';
 export { createTheme } from '@mui/material/styles';
-export { Menu2, Menu2Trigger };
+export { Menu2, Menu2Trigger, Menu2Popup, Menu2SubmenuPopup };
 
 export const triggerProps: Menu2TriggerProps = {
   disabled: false,
@@ -24,6 +26,10 @@ export const invalidTriggerProps: Menu2TriggerProps = {
 
 export const menuProps: Menu2Props = {
   open: true,
+  children: React.createElement(Menu2Popup, null, 'Profile'),
+};
+
+export const popupProps: Menu2PopupProps = {
   anchor: React.createRef<HTMLButtonElement>(),
   finalFocus: React.createRef<HTMLButtonElement>(),
   children: 'Profile',

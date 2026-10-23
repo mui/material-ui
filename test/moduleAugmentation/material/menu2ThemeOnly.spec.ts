@@ -5,10 +5,13 @@ const theme = createTheme({
   components: {
     MuiMenu2: {
       defaultProps: { modal: false },
-      styleOverrides: { paper: { minWidth: 200 } },
+    },
+    MuiMenu2Popup: {
+      styleOverrides: { root: { minWidth: 200 } },
       variants: [{ props: { align: 'start' }, style: { minWidth: 160 } }],
     },
     MuiMenu2Submenu: { defaultProps: { closeParentOnEsc: true } },
+    MuiMenu2SubmenuPopup: { styleOverrides: { root: { minWidth: 160 } } },
     MuiMenu2SubmenuTrigger: { defaultProps: { openOnHover: false } },
     MuiMenu2Trigger: { defaultProps: { openOnHover: true, delay: 200 } },
     MuiMenu2Item: { defaultProps: { dense: true } },
@@ -23,6 +26,8 @@ const theme = createTheme({
 });
 
 theme.components?.MuiMenu2?.defaultProps?.modal satisfies boolean | undefined;
+theme.components?.MuiMenu2Popup?.defaultProps?.align satisfies
+  'start' | 'center' | 'end' | undefined;
 theme.components?.MuiMenu2Item?.defaultProps?.dense satisfies boolean | undefined;
 
 createTheme({

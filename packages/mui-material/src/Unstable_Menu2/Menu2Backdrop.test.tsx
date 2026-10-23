@@ -1,14 +1,15 @@
+import Menu2Popup, { Menu2PopupProps, menu2PopupClasses } from '@mui/material/Unstable_Menu2Popup';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Menu2Item from '../Unstable_Menu2Item';
 import { createTheme, ThemeProvider } from '../styles';
-import Menu2, { Menu2Props } from './Menu2';
-import { menu2Classes } from './menu2Classes';
+import Menu2 from './Menu2';
 
 const CustomBackdrop = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & { ownerState?: Menu2Props }
+  React.HTMLAttributes<HTMLDivElement> & { ownerState?: Menu2PopupProps }
 >(function CustomBackdrop({ ownerState, ...props }, ref) {
   return <div {...props} ref={ref} data-testid="custom-backdrop" />;
 });
@@ -18,37 +19,39 @@ describe('Menu2 backdrop opt-in', () => {
 
   it('does not render a visual backdrop without slot configuration', () => {
     const { baseElement } = render(
-      <Menu2 defaultOpen modal={false} anchor={document.body}>
-        <Menu2Item>Profile</Menu2Item>
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Popup anchor={document.body}>
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
 
     expect(screen.getByRole('menu')).not.to.equal(null);
-    expect(baseElement.querySelector(`.${menu2Classes.backdrop}`)).to.equal(null);
+    expect(baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)).to.equal(null);
   });
 
   it('does not resolve backdrop slot props when the slot is null', () => {
     const backdropProps = vi.fn(() => ({ 'data-testid': 'configured-backdrop' }));
     const { baseElement } = render(
-      <Menu2
-        defaultOpen
-        modal={false}
-        anchor={document.body}
-        slots={{ backdrop: null }}
-        slotProps={{ backdrop: backdropProps }}
-      >
-        <Menu2Item>Profile</Menu2Item>
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Popup
+          anchor={document.body}
+          slots={{ backdrop: null }}
+          slotProps={{ backdrop: backdropProps }}
+        >
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
 
     expect(backdropProps).not.toHaveBeenCalled();
-    expect(baseElement.querySelector(`.${menu2Classes.backdrop}`)).to.equal(null);
+    expect(baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)).to.equal(null);
     expect(screen.queryByTestId('configured-backdrop')).to.equal(null);
   });
 
   const themeConfigurations: Array<{
     name: string;
-    props: Pick<Menu2Props, 'slots' | 'slotProps'>;
+    props: Pick<Menu2PopupProps, 'slots' | 'slotProps'>;
   }> = [
     { name: 'custom slot', props: { slots: { backdrop: CustomBackdrop } } },
     { name: 'slot props', props: { slotProps: { backdrop: { className: 'theme-backdrop' } } } },
@@ -61,25 +64,25 @@ describe('Menu2 backdrop opt-in', () => {
         return (
           <ThemeProvider
             theme={createTheme({
-              components: { MuiMenu2: { defaultProps: props } },
+              components: { MuiMenu2Popup: { defaultProps: props } },
             })}
           >
             <button type="button" onClick={() => setShowBackdrop(!showBackdrop)}>
               Toggle backdrop
             </button>
-            <Menu2
-              open
-              modal={false}
-              anchor={document.body}
-              slots={showBackdrop ? undefined : { backdrop: null }}
-            >
-              <Menu2Item>Profile</Menu2Item>
+            <Menu2 open modal={false}>
+              <Menu2Popup
+                anchor={document.body}
+                slots={showBackdrop ? undefined : { backdrop: null }}
+              >
+                <Menu2Item>Profile</Menu2Item>
+              </Menu2Popup>
             </Menu2>
           </ThemeProvider>
         );
       }
       const { baseElement, user } = render(<Test />);
-      const getBackdrop = () => baseElement.querySelector(`.${menu2Classes.backdrop}`);
+      const getBackdrop = () => baseElement.querySelector(`.${menu2PopupClasses.backdrop}`);
 
       expect(getBackdrop()).not.to.equal(null);
       if (name === 'slot props') {
@@ -101,7 +104,7 @@ describe('Menu2 backdrop opt-in', () => {
       <ThemeProvider
         theme={createTheme({
           components: {
-            MuiMenu2: {
+            MuiMenu2Popup: {
               defaultProps: {
                 slots: { backdrop: CustomBackdrop },
                 slotProps: { backdrop: backdropProps },
@@ -110,25 +113,29 @@ describe('Menu2 backdrop opt-in', () => {
           },
         })}
       >
-        <Menu2 defaultOpen modal={false} anchor={document.body} slots={{ backdrop: null }}>
-          <Menu2Item>Profile</Menu2Item>
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body} slots={{ backdrop: null }}>
+            <Menu2Item>Profile</Menu2Item>
+          </Menu2Popup>
         </Menu2>
       </ThemeProvider>,
     );
 
     expect(backdropProps).not.toHaveBeenCalled();
-    expect(baseElement.querySelector(`.${menu2Classes.backdrop}`)).to.equal(null);
+    expect(baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)).to.equal(null);
     expect(screen.queryByTestId('custom-backdrop')).to.equal(null);
   });
 
   it('renders the default backdrop with empty slot props', () => {
     const { baseElement } = render(
-      <Menu2 defaultOpen modal={false} anchor={document.body} slotProps={{ backdrop: {} }}>
-        <Menu2Item>Profile</Menu2Item>
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Popup anchor={document.body} slotProps={{ backdrop: {} }}>
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
 
-    const backdrop = baseElement.querySelector(`.${menu2Classes.backdrop}`)!;
+    const backdrop = baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)!;
     expect(backdrop).not.to.equal(null);
     expect(backdrop).to.have.attribute('role', 'presentation');
     expect(backdrop).to.have.attribute('data-open');
@@ -147,28 +154,28 @@ describe('Menu2 backdrop opt-in', () => {
     it(`applies refs, classes, and slot props to an enabled ${name} backdrop`, () => {
       const backdropRef = React.createRef<HTMLDivElement>();
       const { baseElement, unmount } = render(
-        <Menu2
-          defaultOpen
-          modal={false}
-          anchor={document.body}
-          slots={{ backdrop: component }}
-          slotProps={{
-            backdrop: (ownerState) => ({
-              ref: backdropRef,
-              className: 'custom-backdrop-class',
-              style: { backgroundColor: 'rgb(1, 2, 3)' },
-              'data-modal': ownerState.modal,
-            }),
-          }}
-        >
-          <Menu2Item>Profile</Menu2Item>
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup
+            anchor={document.body}
+            slots={{ backdrop: component }}
+            slotProps={{
+              backdrop: (ownerState) => ({
+                ref: backdropRef,
+                className: 'custom-backdrop-class',
+                style: { backgroundColor: 'rgb(1, 2, 3)' },
+                'data-side': ownerState.side,
+              }),
+            }}
+          >
+            <Menu2Item>Profile</Menu2Item>
+          </Menu2Popup>
         </Menu2>,
       );
 
-      const backdrop = baseElement.querySelector(`.${menu2Classes.backdrop}`)!;
+      const backdrop = baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)!;
       expect(backdropRef.current).to.equal(backdrop);
       expect(backdrop).to.have.class('custom-backdrop-class');
-      expect(backdrop).to.have.attribute('data-modal', 'false');
+      expect(backdrop).to.have.attribute('data-side', 'bottom');
       expect(backdrop).to.have.attribute('data-open');
       expect(getComputedStyle(backdrop).backgroundColor).to.equal('rgb(1, 2, 3)');
       expect(baseElement.querySelector('[backdrop]')).to.equal(null);
@@ -184,16 +191,17 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
   it('keeps the visual backdrop click-through when the menu opens on hover', async () => {
     const changed = vi.fn();
     const { user, unmount } = render(
-      <Menu2
-        onOpenChange={changed}
-        openOnHover
-        delay={0}
-        slotProps={{
-          backdrop: { 'data-testid': 'backdrop', sx: { backgroundColor: 'rgb(0, 0, 0)' } },
-        }}
-        trigger={<button type="button">Options</button>}
-      >
-        <Menu2Item>Profile</Menu2Item>
+      <Menu2 onOpenChange={changed}>
+        <Menu2Trigger openOnHover delay={0}>
+          <button type="button">Options</button>
+        </Menu2Trigger>
+        <Menu2Popup
+          slotProps={{
+            backdrop: { 'data-testid': 'backdrop', sx: { backgroundColor: 'rgb(0, 0, 0)' } },
+          }}
+        >
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -224,29 +232,32 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
       const completed = vi.fn();
       const { user, unmount } = render(
         <div style={{ paddingTop: 96 }}>
-          <Menu2
-            keepMounted
-            onOpenChangeComplete={completed}
-            transitionDuration={{ enter: 0, exit: 300 }}
-            slots={slot === 'host' ? { backdrop: 'div' } : undefined}
-            slotProps={{
-              backdrop: {
-                'data-testid': 'backdrop',
-                sx: { opacity: 0.5 },
-                style: {
-                  position: 'fixed',
-                  inset: 0,
-                  // Layers use local indices inside the shared root. The
-                  // positioner follows this backdrop at the same index.
-                  zIndex: 1,
-                  backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                  pointerEvents: 'auto',
+          <Menu2 onOpenChangeComplete={completed}>
+            <Menu2Trigger>
+              <button type="button">Options</button>
+            </Menu2Trigger>
+            <Menu2Popup
+              keepMounted
+              transitionDuration={{ enter: 0, exit: 300 }}
+              slots={slot === 'host' ? { backdrop: 'div' } : undefined}
+              slotProps={{
+                backdrop: {
+                  'data-testid': 'backdrop',
+                  sx: { opacity: 0.5 },
+                  style: {
+                    position: 'fixed',
+                    inset: 0,
+                    // Layers use local indices inside the shared root. The
+                    // positioner follows this backdrop at the same index.
+                    zIndex: 1,
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    pointerEvents: 'auto',
+                  },
                 },
-              },
-            }}
-            trigger={<button type="button">Options</button>}
-          >
-            <Menu2Item>Profile</Menu2Item>
+              }}
+            >
+              <Menu2Item>Profile</Menu2Item>
+            </Menu2Popup>
           </Menu2>
         </div>,
       );
@@ -302,17 +313,19 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
       <ThemeProvider
         theme={createTheme({
           components: {
-            MuiMenu2: {
+            MuiMenu2Popup: {
               styleOverrides: { backdrop: { backgroundColor: 'rgb(12, 34, 56)' } },
             },
           },
         })}
       >
-        <Menu2
-          slotProps={{ backdrop: { 'data-testid': 'backdrop', sx: { opacity: 0.5 } } }}
-          trigger={<button type="button">Options</button>}
-        >
-          <Menu2Item>Profile</Menu2Item>
+        <Menu2>
+          <Menu2Trigger>
+            <button type="button">Options</button>
+          </Menu2Trigger>
+          <Menu2Popup slotProps={{ backdrop: { 'data-testid': 'backdrop', sx: { opacity: 0.5 } } }}>
+            <Menu2Item>Profile</Menu2Item>
+          </Menu2Popup>
         </Menu2>
       </ThemeProvider>,
     );
@@ -332,12 +345,12 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
 
   it('forwards slot props and state to a custom backdrop component', async () => {
     interface CustomBackdropProps extends React.HTMLAttributes<HTMLDivElement> {
-      ownerState?: Menu2Props;
+      ownerState?: Menu2PopupProps;
       label?: string;
     }
 
     const backdropRef = React.createRef<HTMLDivElement>();
-    let receivedOwnerState: Menu2Props | undefined;
+    let receivedOwnerState: Menu2PopupProps | undefined;
     const CustomBackdrop = React.forwardRef<HTMLDivElement, CustomBackdropProps>(
       function CustomBackdrop({ ownerState, className, label, ...props }, ref) {
         receivedOwnerState = ownerState;
@@ -353,30 +366,33 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
       },
     );
     const { user, unmount } = render(
-      <Menu2
-        defaultOpen
-        keepMounted
-        side="top"
-        slots={{ backdrop: CustomBackdrop }}
-        slotProps={{
-          backdrop: (ownerState) => ({
-            'data-testid': 'backdrop',
-            ref: backdropRef,
-            className: 'slot-backdrop',
-            style: { backgroundColor: 'rgb(1, 2, 3)' },
-            label: ownerState.side,
-          }),
-        }}
-        trigger={<button type="button">Options</button>}
-      >
-        <Menu2Item>Profile</Menu2Item>
+      <Menu2 defaultOpen>
+        <Menu2Trigger>
+          <button type="button">Options</button>
+        </Menu2Trigger>
+        <Menu2Popup
+          keepMounted
+          side="top"
+          slots={{ backdrop: CustomBackdrop }}
+          slotProps={{
+            backdrop: (ownerState) => ({
+              'data-testid': 'backdrop',
+              ref: backdropRef,
+              className: 'slot-backdrop',
+              style: { backgroundColor: 'rgb(1, 2, 3)' },
+              label: ownerState.side,
+            }),
+          }}
+        >
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
 
     try {
       const backdrop = screen.getByTestId('backdrop');
       expect(backdropRef.current).to.equal(backdrop);
-      expect(backdrop).to.have.class(menu2Classes.backdrop);
+      expect(backdrop).to.have.class(menu2PopupClasses.backdrop);
       expect(backdrop).to.have.class('custom-backdrop');
       expect(backdrop).to.have.class('slot-backdrop');
       expect(backdrop).to.have.attribute('data-label', 'top');

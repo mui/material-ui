@@ -1,3 +1,5 @@
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import * as React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
@@ -15,17 +17,8 @@ describe.skipIf(isJsdom())('Menu2 animation origin', () => {
           const completed = vi.fn();
           const { user } = render(
             <ThemeProvider theme={createTheme({ direction })}>
-              <Menu2
-                align={align}
-                side="bottom"
-                sideOffset={8}
-                transitionDuration={300}
-                onOpenChangeComplete={completed}
-                slotProps={{
-                  root: { dir: direction },
-                  paper: { sx: { width: 200 } },
-                }}
-                trigger={
+              <Menu2 onOpenChangeComplete={completed}>
+                <Menu2Trigger>
                   <button
                     type="button"
                     style={{
@@ -38,10 +31,17 @@ describe.skipIf(isJsdom())('Menu2 animation origin', () => {
                   >
                     Options
                   </button>
-                }
-              >
-                <Menu2Item>Item</Menu2Item>
-                <Menu2Item>Another item</Menu2Item>
+                </Menu2Trigger>
+                <Menu2Popup
+                  align={align}
+                  side="bottom"
+                  sideOffset={8}
+                  transitionDuration={300}
+                  slotProps={{ portal: { dir: direction }, root: { sx: { width: 200 } } }}
+                >
+                  <Menu2Item>Item</Menu2Item>
+                  <Menu2Item>Another item</Menu2Item>
+                </Menu2Popup>
               </Menu2>
             </ThemeProvider>,
           );

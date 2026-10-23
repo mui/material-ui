@@ -21,17 +21,25 @@ createTheme({
   menu2TestColor: 'red',
   components: {
     MuiMenu2: {
-      defaultProps: { modal: false, align: 'start', slots: { backdrop: null } },
+      defaultProps: { modal: false },
+    },
+    MuiMenu2Popup: {
+      defaultProps: { align: 'start', slots: { backdrop: null } },
       styleOverrides: {
         root: ({ ownerState, theme }) => {
+          ownerState.align satisfies 'start' | 'center' | 'end' | undefined;
+          // @ts-expect-error Popup owner state retains the prop types.
+          ownerState.align satisfies number;
+          // @ts-expect-error Open state belongs to the renderless root.
           ownerState.open satisfies boolean | undefined;
-          // @ts-expect-error Menu2 owner state retains the prop types.
-          ownerState.open satisfies string;
+          // @ts-expect-error Modal behavior belongs to the renderless root.
+          ownerState.modal satisfies boolean | undefined;
           theme.menu2TestColor satisfies string;
           return { color: theme.menu2TestColor };
         },
         backdrop: {},
-        paper: {},
+        portal: {},
+        positioner: {},
         list: {},
       },
       variants: [
@@ -39,7 +47,7 @@ createTheme({
         {
           props: ({ ownerState }) => {
             ownerState.align satisfies 'start' | 'center' | 'end' | undefined;
-            return ownerState.open === true;
+            return ownerState.align === 'start';
           },
           style: {},
         },
@@ -47,8 +55,23 @@ createTheme({
     },
     MuiMenu2Submenu: {
       defaultProps: { closeParentOnEsc: true },
-      styleOverrides: { root: {}, paper: {}, list: {} },
-      variants: [{ props: { open: true }, style: {} }],
+    },
+    MuiMenu2SubmenuPopup: {
+      defaultProps: { side: 'inline-end' },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          ownerState.align satisfies 'start' | 'center' | 'end' | undefined;
+          // @ts-expect-error Open state belongs to the renderless root.
+          ownerState.open satisfies boolean | undefined;
+          // @ts-expect-error Modal behavior is not a submenu popup prop.
+          ownerState.modal satisfies boolean | undefined;
+          return {};
+        },
+        portal: {},
+        positioner: {},
+        list: {},
+      },
+      variants: [{ props: { align: 'start' }, style: {} }],
     },
     MuiMenu2SubmenuTrigger: {
       defaultProps: { openOnHover: false },
@@ -245,9 +268,9 @@ const highlightedSubmenuOverride: ComponentsOverrides['MuiMenu2SubmenuTrigger'] 
 };
 
 const customThemeComponents: Components<{ customToken: string }> = {
-  MuiMenu2: {
+  MuiMenu2Popup: {
     styleOverrides: { root: ({ theme }) => ({ color: theme.customToken }) },
-    variants: [{ props: { open: true }, style: ({ theme }) => ({ color: theme.customToken }) }],
+    variants: [{ props: { align: 'start' }, style: ({ theme }) => ({ color: theme.customToken }) }],
   },
   MuiMenu2RadioItem: {
     styleOverrides: {
@@ -275,18 +298,18 @@ const customThemeComponents: Components<{ customToken: string }> = {
 
 createTheme({
   components: {
-    MuiMenu2: {
+    MuiMenu2Popup: {
       defaultProps: {
-        // @ts-expect-error Invalid Menu2 prop value.
+        // @ts-expect-error Invalid popup prop value.
         align: 'invalid',
       },
       styleOverrides: {
-        // @ts-expect-error Unknown Menu2 style slot.
+        // @ts-expect-error Unknown popup style slot.
         invalid: {},
       },
       variants: [
         {
-          // @ts-expect-error Variant props must retain the Menu2 prop types.
+          // @ts-expect-error Variant props must retain the popup prop types.
           props: { align: 'invalid' },
           style: {},
         },
@@ -336,6 +359,23 @@ createTheme({
     },
   },
 });
+
+const menuRootOverrides: Components['MuiMenu2'] = {
+  // @ts-expect-error Renderless roots have no style slots.
+  styleOverrides: { root: {} },
+};
+const menuRootVariants: Components['MuiMenu2'] = {
+  // @ts-expect-error Renderless roots have no visual variants.
+  variants: [{ props: { open: true }, style: {} }],
+};
+const submenuRootOverrides: Components['MuiMenu2Submenu'] = {
+  // @ts-expect-error Renderless roots have no style slots.
+  styleOverrides: { root: {} },
+};
+const submenuRootVariants: Components['MuiMenu2Submenu'] = {
+  // @ts-expect-error Renderless roots have no visual variants.
+  variants: [{ props: { open: true }, style: {} }],
+};
 
 createTheme({
   components: {

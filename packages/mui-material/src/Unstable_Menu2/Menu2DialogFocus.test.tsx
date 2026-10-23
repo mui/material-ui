@@ -1,3 +1,5 @@
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+import Menu2Popup, { Menu2PopupProps } from '@mui/material/Unstable_Menu2Popup';
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
@@ -5,7 +7,7 @@ import Dialog from '../Dialog';
 import Menu from '../Menu';
 import MenuItem from '../MenuItem';
 import Menu2Item from '../Unstable_Menu2Item';
-import Menu2, { Menu2Props } from './Menu2';
+import Menu2 from './Menu2';
 
 describe.skipIf(isJsdom())('Menu2 opening a Material Dialog', () => {
   const { render } = createRenderer();
@@ -26,7 +28,7 @@ describe.skipIf(isJsdom())('Menu2 opening a Material Dialog', () => {
       dialogTransitionDuration,
     }: {
       name: string;
-      props: Partial<Menu2Props>;
+      props: Partial<Menu2PopupProps>;
       dialogTransitionDuration?: number;
     }) => {
       [false, true].forEach((autoFocus) => {
@@ -40,16 +42,15 @@ describe.skipIf(isJsdom())('Menu2 opening a Material Dialog', () => {
 
             return (
               <React.Fragment>
-                <Menu2
-                  {...props}
-                  onOpenChangeComplete={menuCompleted}
-                  trigger={
+                <Menu2 onOpenChangeComplete={menuCompleted}>
+                  <Menu2Trigger>
                     <button type="button" ref={triggerRef}>
                       Options
                     </button>
-                  }
-                >
-                  <Menu2Item onClick={() => setDialogOpen(true)}>Open dialog</Menu2Item>
+                  </Menu2Trigger>
+                  <Menu2Popup {...props}>
+                    <Menu2Item onClick={() => setDialogOpen(true)}>Open dialog</Menu2Item>
+                  </Menu2Popup>
                 </Menu2>
                 <Dialog
                   open={dialogOpen}

@@ -46,7 +46,7 @@ const useExternalPropsFromInputBase = [
   'value',
 ];
 
-// The public menus validate the props passed to the private popup.
+// The public popups validate props passed to the shared popup implementation.
 const useExternalPropsFromMenu2Popup = [
   'align',
   'alignOffset',
@@ -89,21 +89,17 @@ const useExternalDocumentation: Record<string, '*' | readonly string[]> = {
   IconButton: ['disableRipple'],
   Input: useExternalPropsFromInputBase,
   Menu2: [
-    ...useExternalPropsFromMenu2Popup,
     'actionsRef',
-    'closeDelay',
     'defaultOpen',
-    'delay',
     'disabled',
     'highlightItemOnHover',
     'loopFocus',
     'modal',
     'open',
-    'openOnHover',
   ],
+  Menu2Popup: useExternalPropsFromMenu2Popup,
   Menu2Trigger: ['closeDelay', 'delay', 'disabled', 'nativeButton', 'openOnHover'],
   Menu2Submenu: [
-    ...useExternalPropsFromMenu2Popup,
     'actionsRef',
     'closeParentOnEsc',
     'defaultOpen',
@@ -111,6 +107,7 @@ const useExternalDocumentation: Record<string, '*' | readonly string[]> = {
     'loopFocus',
     'open',
   ],
+  Menu2SubmenuPopup: useExternalPropsFromMenu2Popup,
   MenuItem: ['dense'],
   OutlinedInput: useExternalPropsFromInputBase,
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],

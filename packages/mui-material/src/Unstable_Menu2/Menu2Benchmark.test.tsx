@@ -1,3 +1,5 @@
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
@@ -59,10 +61,15 @@ function ClassicMenuHarness(props: ClassicMenuHarnessProps) {
 function Menu2Harness() {
   return (
     <div>
-      <Menu2 trigger={<button type="button">Options</button>}>
-        <Menu2Item>Alpha</Menu2Item>
-        <Menu2Item disabled>Beta</Menu2Item>
-        <Menu2Item>Gamma</Menu2Item>
+      <Menu2>
+        <Menu2Trigger>
+          <button type="button">Options</button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Item>Alpha</Menu2Item>
+          <Menu2Item disabled>Beta</Menu2Item>
+          <Menu2Item>Gamma</Menu2Item>
+        </Menu2Popup>
       </Menu2>
       <p data-testid="sibling">sibling content</p>
     </div>
@@ -130,11 +137,16 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
     ['Enter', 'Space', 'ArrowDown', 'ArrowUp'].forEach((key) => {
       it(`Menu2 skips disabled items on ${key} opening but keeps them focusable`, async () => {
         const { user } = render(
-          <Menu2 trigger={<button type="button">Options</button>}>
-            <Menu2Item disabled>Unavailable first</Menu2Item>
-            <Menu2Item>Alpha</Menu2Item>
-            <Menu2Item>Gamma</Menu2Item>
-            <Menu2Item disabled>Unavailable last</Menu2Item>
+          <Menu2>
+            <Menu2Trigger>
+              <button type="button">Options</button>
+            </Menu2Trigger>
+            <Menu2Popup>
+              <Menu2Item disabled>Unavailable first</Menu2Item>
+              <Menu2Item>Alpha</Menu2Item>
+              <Menu2Item>Gamma</Menu2Item>
+              <Menu2Item disabled>Unavailable last</Menu2Item>
+            </Menu2Popup>
           </Menu2>,
         );
         openTrigger().focus();
@@ -181,14 +193,19 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
 
     it('the successor highlights the first enabled item on ArrowDown, not the checked one', async () => {
       const { user } = render(
-        <Menu2 trigger={<button type="button">Options</button>}>
-          <Menu2RadioGroup defaultValue="200">
-            <Menu2RadioItem disabled value="50">
-              50%
-            </Menu2RadioItem>
-            <Menu2RadioItem value="100">100%</Menu2RadioItem>
-            <Menu2RadioItem value="200">200%</Menu2RadioItem>
-          </Menu2RadioGroup>
+        <Menu2>
+          <Menu2Trigger>
+            <button type="button">Options</button>
+          </Menu2Trigger>
+          <Menu2Popup>
+            <Menu2RadioGroup defaultValue="200">
+              <Menu2RadioItem disabled value="50">
+                50%
+              </Menu2RadioItem>
+              <Menu2RadioItem value="100">100%</Menu2RadioItem>
+              <Menu2RadioItem value="200">200%</Menu2RadioItem>
+            </Menu2RadioGroup>
+          </Menu2Popup>
         </Menu2>,
       );
       openTrigger().focus();
@@ -361,20 +378,22 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
           const { user } = render(
             <ThemeProvider theme={theme}>
               <div style={layout}>
-                <Menu2
-                  dir={direction}
-                  trigger={
+                <Menu2>
+                  <Menu2Trigger>
                     <button type="button" style={{ height: triggerHeight }}>
                       Options
                     </button>
-                  }
-                  side="bottom"
-                  align={direction === 'rtl' ? 'end' : 'start'}
-                  sideOffset={({ anchor }) => -anchor.height}
-                >
-                  <Menu2Item>Alpha</Menu2Item>
-                  <Menu2Item disabled>Beta</Menu2Item>
-                  <Menu2Item>Gamma</Menu2Item>
+                  </Menu2Trigger>
+                  <Menu2Popup
+                    dir={direction}
+                    side="bottom"
+                    align={direction === 'rtl' ? 'end' : 'start'}
+                    sideOffset={({ anchor }) => -anchor.height}
+                  >
+                    <Menu2Item>Alpha</Menu2Item>
+                    <Menu2Item disabled>Beta</Menu2Item>
+                    <Menu2Item>Gamma</Menu2Item>
+                  </Menu2Popup>
                 </Menu2>
               </div>
             </ThemeProvider>,

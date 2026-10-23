@@ -1,3 +1,4 @@
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
@@ -15,8 +16,8 @@ describe('<Menu2CheckboxItem />', () => {
     classes,
     render: (node) =>
       render(
-        <Menu2 defaultOpen modal={false} anchor={document.body}>
-          {node}
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body}>{node}</Menu2Popup>
         </Menu2>,
       ),
     getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
@@ -32,8 +33,10 @@ describe('<Menu2CheckboxItem />', () => {
     const onCheckedChange = spy();
     const onOpenChange = spy();
     const { user } = render(
-      <Menu2 defaultOpen modal={false} anchor={document.body} onOpenChange={onOpenChange}>
-        <Menu2CheckboxItem onCheckedChange={onCheckedChange}>Ruler</Menu2CheckboxItem>
+      <Menu2 defaultOpen modal={false} onOpenChange={onOpenChange}>
+        <Menu2Popup anchor={document.body}>
+          <Menu2CheckboxItem onCheckedChange={onCheckedChange}>Ruler</Menu2CheckboxItem>
+        </Menu2Popup>
       </Menu2>,
     );
 

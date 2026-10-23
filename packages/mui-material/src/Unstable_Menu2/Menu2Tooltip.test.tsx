@@ -1,3 +1,5 @@
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import { describe, it, expect, vi } from 'vitest';
 import * as React from 'react';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
@@ -16,26 +18,31 @@ describe.skipIf(isJsdom())('Menu2 with Tooltip', () => {
     const handleClick = vi.fn();
     const handleChange = vi.fn();
     const { user } = render(
-      <Menu2 trigger={<Button>Options</Button>}>
-        <Menu2Item>Before</Menu2Item>
-        <Tooltip title="Unavailable while offline" describeChild enterDelay={0} leaveDelay={0}>
-          <Menu2Item disabled onClick={handleClick}>
-            Import
-          </Menu2Item>
-        </Tooltip>
-        <Tooltip title="Locked in published view" describeChild enterDelay={0} leaveDelay={0}>
-          <Menu2CheckboxItem disabled onCheckedChange={handleChange}>
-            Page breaks
-          </Menu2CheckboxItem>
-        </Tooltip>
-        <Menu2RadioGroup defaultValue="fit" onValueChange={handleChange}>
-          <Tooltip title="Unavailable in preview" describeChild enterDelay={0} leaveDelay={0}>
-            <Menu2RadioItem disabled value="custom">
-              Custom zoom
-            </Menu2RadioItem>
+      <Menu2>
+        <Menu2Trigger>
+          <Button>Options</Button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Item>Before</Menu2Item>
+          <Tooltip title="Unavailable while offline" describeChild enterDelay={0} leaveDelay={0}>
+            <Menu2Item disabled onClick={handleClick}>
+              Import
+            </Menu2Item>
           </Tooltip>
-        </Menu2RadioGroup>
-        <Menu2Item>After</Menu2Item>
+          <Tooltip title="Locked in published view" describeChild enterDelay={0} leaveDelay={0}>
+            <Menu2CheckboxItem disabled onCheckedChange={handleChange}>
+              Page breaks
+            </Menu2CheckboxItem>
+          </Tooltip>
+          <Menu2RadioGroup defaultValue="fit" onValueChange={handleChange}>
+            <Tooltip title="Unavailable in preview" describeChild enterDelay={0} leaveDelay={0}>
+              <Menu2RadioItem disabled value="custom">
+                Custom zoom
+              </Menu2RadioItem>
+            </Tooltip>
+          </Menu2RadioGroup>
+          <Menu2Item>After</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
 

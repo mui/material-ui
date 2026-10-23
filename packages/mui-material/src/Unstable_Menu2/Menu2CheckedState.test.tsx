@@ -1,3 +1,4 @@
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
@@ -33,51 +34,51 @@ describe('Menu2 live checked ownerState', () => {
         const [checked, setChecked] = React.useState(true);
         return (
           <ThemeProvider theme={theme}>
-            <Menu2
-              defaultOpen
-              modal={false}
-              anchor={document.body}
-              onKeyDown={(event) => {
-                if (event.key === 'F2') {
-                  setChecked((current) => !current);
-                }
-              }}
-            >
-              {kind === 'checkbox' ? (
-                <Menu2CheckboxItem
-                  {...(controlled ? { checked } : { defaultChecked: true })}
-                  onCheckedChange={(next, details) => {
-                    if (cancel) {
-                      details.cancel();
-                    }
-                    if (controlled && !cancel && !reject) {
-                      setChecked(next);
-                    }
-                  }}
-                  slotProps={slotProps}
-                >
-                  One
-                </Menu2CheckboxItem>
-              ) : (
-                <Menu2RadioGroup
-                  {...(controlled ? { value: checked ? 'one' : 'two' } : { defaultValue: 'one' })}
-                  onValueChange={(next, details) => {
-                    if (cancel) {
-                      details.cancel();
-                    }
-                    if (controlled && !cancel && !reject) {
-                      setChecked(next === 'one');
-                    }
-                  }}
-                >
-                  <Menu2RadioItem value="one" slotProps={slotProps}>
+            <Menu2 defaultOpen modal={false}>
+              <Menu2Popup
+                anchor={document.body}
+                onKeyDown={(event) => {
+                  if (event.key === 'F2') {
+                    setChecked((current) => !current);
+                  }
+                }}
+              >
+                {kind === 'checkbox' ? (
+                  <Menu2CheckboxItem
+                    {...(controlled ? { checked } : { defaultChecked: true })}
+                    onCheckedChange={(next, details) => {
+                      if (cancel) {
+                        details.cancel();
+                      }
+                      if (controlled && !cancel && !reject) {
+                        setChecked(next);
+                      }
+                    }}
+                    slotProps={slotProps}
+                  >
                     One
-                  </Menu2RadioItem>
-                  <Menu2RadioItem value="two" slotProps={slotProps}>
-                    Two
-                  </Menu2RadioItem>
-                </Menu2RadioGroup>
-              )}
+                  </Menu2CheckboxItem>
+                ) : (
+                  <Menu2RadioGroup
+                    {...(controlled ? { value: checked ? 'one' : 'two' } : { defaultValue: 'one' })}
+                    onValueChange={(next, details) => {
+                      if (cancel) {
+                        details.cancel();
+                      }
+                      if (controlled && !cancel && !reject) {
+                        setChecked(next === 'one');
+                      }
+                    }}
+                  >
+                    <Menu2RadioItem value="one" slotProps={slotProps}>
+                      One
+                    </Menu2RadioItem>
+                    <Menu2RadioItem value="two" slotProps={slotProps}>
+                      Two
+                    </Menu2RadioItem>
+                  </Menu2RadioGroup>
+                )}
+              </Menu2Popup>
             </Menu2>
           </ThemeProvider>
         );
@@ -152,23 +153,25 @@ describe('Menu2 live checked ownerState', () => {
         const onSlotClick = vi.fn();
         const rootProps = { ref: slotRef, onClick: onSlotClick };
         const { user, unmount } = render(
-          <Menu2 defaultOpen modal={false} anchor={document.body}>
-            {kind === 'checkbox' ? (
-              <Menu2CheckboxItem ref={itemRef} onClick={onClick} slotProps={{ root: rootProps }}>
-                One
-              </Menu2CheckboxItem>
-            ) : (
-              <Menu2RadioGroup>
-                <Menu2RadioItem
-                  value="one"
-                  ref={itemRef}
-                  onClick={onClick}
-                  slotProps={{ root: rootProps }}
-                >
+          <Menu2 defaultOpen modal={false}>
+            <Menu2Popup anchor={document.body}>
+              {kind === 'checkbox' ? (
+                <Menu2CheckboxItem ref={itemRef} onClick={onClick} slotProps={{ root: rootProps }}>
                   One
-                </Menu2RadioItem>
-              </Menu2RadioGroup>
-            )}
+                </Menu2CheckboxItem>
+              ) : (
+                <Menu2RadioGroup>
+                  <Menu2RadioItem
+                    value="one"
+                    ref={itemRef}
+                    onClick={onClick}
+                    slotProps={{ root: rootProps }}
+                  >
+                    One
+                  </Menu2RadioItem>
+                </Menu2RadioGroup>
+              )}
+            </Menu2Popup>
           </Menu2>,
         );
         const item = screen.getByRole(role, { name: 'One' });
@@ -204,16 +207,18 @@ describe('Menu2 live checked ownerState', () => {
             },
           };
           const { user } = render(
-            <Menu2 defaultOpen modal={false} anchor={document.body}>
-              {kind === 'checkbox' ? (
-                <Menu2CheckboxItem {...itemProps}>One</Menu2CheckboxItem>
-              ) : (
-                <Menu2RadioGroup>
-                  <Menu2RadioItem value="one" {...itemProps}>
-                    One
-                  </Menu2RadioItem>
-                </Menu2RadioGroup>
-              )}
+            <Menu2 defaultOpen modal={false}>
+              <Menu2Popup anchor={document.body}>
+                {kind === 'checkbox' ? (
+                  <Menu2CheckboxItem {...itemProps}>One</Menu2CheckboxItem>
+                ) : (
+                  <Menu2RadioGroup>
+                    <Menu2RadioItem value="one" {...itemProps}>
+                      One
+                    </Menu2RadioItem>
+                  </Menu2RadioGroup>
+                )}
+              </Menu2Popup>
             </Menu2>,
           );
 
@@ -248,16 +253,18 @@ describe('Menu2 live checked ownerState', () => {
           },
         };
         const { user, unmount } = render(
-          <Menu2 defaultOpen modal={false} anchor={document.body}>
-            {kind === 'checkbox' ? (
-              <Menu2CheckboxItem {...itemProps}>One</Menu2CheckboxItem>
-            ) : (
-              <Menu2RadioGroup>
-                <Menu2RadioItem value="one" {...itemProps}>
-                  One
-                </Menu2RadioItem>
-              </Menu2RadioGroup>
-            )}
+          <Menu2 defaultOpen modal={false}>
+            <Menu2Popup anchor={document.body}>
+              {kind === 'checkbox' ? (
+                <Menu2CheckboxItem {...itemProps}>One</Menu2CheckboxItem>
+              ) : (
+                <Menu2RadioGroup>
+                  <Menu2RadioItem value="one" {...itemProps}>
+                    One
+                  </Menu2RadioItem>
+                </Menu2RadioGroup>
+              )}
+            </Menu2Popup>
           </Menu2>,
         );
 

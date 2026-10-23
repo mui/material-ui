@@ -1,3 +1,6 @@
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 import * as React from 'react';
 import { describe, expect, it } from 'vitest';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
@@ -23,8 +26,13 @@ describe('Menu2 state data attributes', () => {
     'updates the root trigger attributes when the menu opens and closes',
     async () => {
       const { user } = render(
-        <Menu2 transitionDuration={0} trigger={<button type="button">Options</button>}>
-          <Menu2Item>Action</Menu2Item>
+        <Menu2>
+          <Menu2Trigger>
+            <button type="button">Options</button>
+          </Menu2Trigger>
+          <Menu2Popup transitionDuration={0}>
+            <Menu2Item>Action</Menu2Item>
+          </Menu2Popup>
         </Menu2>,
       );
       const trigger = screen.getByRole('button', { name: 'Options' });
@@ -47,13 +55,18 @@ describe('Menu2 state data attributes', () => {
     'updates the submenu trigger without changing the root trigger state',
     async () => {
       const { user } = render(
-        <Menu2 transitionDuration={0} trigger={<button type="button">Options</button>}>
-          <Menu2Submenu
-            transitionDuration={0}
-            trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-          >
-            <Menu2Item>Nested action</Menu2Item>
-          </Menu2Submenu>
+        <Menu2>
+          <Menu2Trigger>
+            <button type="button">Options</button>
+          </Menu2Trigger>
+          <Menu2Popup transitionDuration={0}>
+            <Menu2Submenu>
+              <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup transitionDuration={0}>
+                <Menu2Item>Nested action</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
         </Menu2>,
       );
       const rootTrigger = screen.getByRole('button', { name: 'Options' });
@@ -77,10 +90,12 @@ describe('Menu2 state data attributes', () => {
 
   it('updates checked attributes on the checkbox item and its default indicator', async () => {
     const { user } = render(
-      <Menu2 defaultOpen modal={false} anchor={document.body}>
-        <Menu2CheckboxItem slotProps={{ indicator: { 'data-testid': 'indicator' } }}>
-          Ruler
-        </Menu2CheckboxItem>
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Popup anchor={document.body}>
+          <Menu2CheckboxItem slotProps={{ indicator: { 'data-testid': 'indicator' } }}>
+            Ruler
+          </Menu2CheckboxItem>
+        </Menu2Popup>
       </Menu2>,
     );
     const item = screen.getByRole('menuitemcheckbox', { name: 'Ruler' });
@@ -97,15 +112,23 @@ describe('Menu2 state data attributes', () => {
 
   it('moves checked attributes between radio items and their default indicators', async () => {
     const { user } = render(
-      <Menu2 defaultOpen modal={false} anchor={document.body}>
-        <Menu2RadioGroup defaultValue="one">
-          <Menu2RadioItem value="one" slotProps={{ indicator: { 'data-testid': 'one-indicator' } }}>
-            One
-          </Menu2RadioItem>
-          <Menu2RadioItem value="two" slotProps={{ indicator: { 'data-testid': 'two-indicator' } }}>
-            Two
-          </Menu2RadioItem>
-        </Menu2RadioGroup>
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Popup anchor={document.body}>
+          <Menu2RadioGroup defaultValue="one">
+            <Menu2RadioItem
+              value="one"
+              slotProps={{ indicator: { 'data-testid': 'one-indicator' } }}
+            >
+              One
+            </Menu2RadioItem>
+            <Menu2RadioItem
+              value="two"
+              slotProps={{ indicator: { 'data-testid': 'two-indicator' } }}
+            >
+              Two
+            </Menu2RadioItem>
+          </Menu2RadioGroup>
+        </Menu2Popup>
       </Menu2>,
     );
     const one = screen.getByRole('menuitemradio', { name: 'One' });
@@ -129,26 +152,28 @@ describe('Menu2 state data attributes', () => {
       const [disabled, setDisabled] = React.useState(true);
 
       return (
-        <Menu2 defaultOpen modal={false} anchor={document.body}>
-          <Menu2Item closeOnClick={false} onClick={() => setDisabled(false)}>
-            Enable items
-          </Menu2Item>
-          <Menu2Item disabled={disabled}>Action</Menu2Item>
-          <Menu2CheckboxItem
-            disabled={disabled}
-            slotProps={{ indicator: { 'data-testid': 'checkbox-indicator' } }}
-          >
-            Ruler
-          </Menu2CheckboxItem>
-          <Menu2RadioGroup>
-            <Menu2RadioItem
-              value="one"
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body}>
+            <Menu2Item closeOnClick={false} onClick={() => setDisabled(false)}>
+              Enable items
+            </Menu2Item>
+            <Menu2Item disabled={disabled}>Action</Menu2Item>
+            <Menu2CheckboxItem
               disabled={disabled}
-              slotProps={{ indicator: { 'data-testid': 'radio-indicator' } }}
+              slotProps={{ indicator: { 'data-testid': 'checkbox-indicator' } }}
             >
-              One
-            </Menu2RadioItem>
-          </Menu2RadioGroup>
+              Ruler
+            </Menu2CheckboxItem>
+            <Menu2RadioGroup>
+              <Menu2RadioItem
+                value="one"
+                disabled={disabled}
+                slotProps={{ indicator: { 'data-testid': 'radio-indicator' } }}
+              >
+                One
+              </Menu2RadioItem>
+            </Menu2RadioGroup>
+          </Menu2Popup>
         </Menu2>
       );
     }
@@ -174,19 +199,20 @@ describe('Menu2 state data attributes', () => {
       const [disabled, setDisabled] = React.useState(true);
 
       return (
-        <Menu2 defaultOpen modal={false} anchor={document.body}>
-          <Menu2Item closeOnClick={false} onClick={() => setDisabled(false)}>
-            Enable submenu
-          </Menu2Item>
-          <Menu2Submenu
-            trigger={
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body}>
+            <Menu2Item closeOnClick={false} onClick={() => setDisabled(false)}>
+              Enable submenu
+            </Menu2Item>
+            <Menu2Submenu>
               <Menu2SubmenuTrigger disabled={disabled} openOnHover={false}>
                 More
               </Menu2SubmenuTrigger>
-            }
-          >
-            <Menu2Item>Nested action</Menu2Item>
-          </Menu2Submenu>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Nested action</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
         </Menu2>
       );
     }

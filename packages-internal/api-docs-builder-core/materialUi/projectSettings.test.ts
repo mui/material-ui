@@ -7,6 +7,7 @@ describe('Material UI API project settings', () => {
   it.each([
     'Menu2',
     'Menu2Trigger',
+    'Menu2Popup',
     'Menu2CheckboxItem',
     'Menu2Group',
     'Menu2GroupLabel',
@@ -17,6 +18,7 @@ describe('Material UI API project settings', () => {
     'Menu2Separator',
     'Menu2Submenu',
     'Menu2SubmenuTrigger',
+    'Menu2SubmenuPopup',
   ])('documents the public %s API without a separate entrypoint', (name) => {
     const entryPoint = `src/Unstable_${name}/${name}.tsx`;
     const filename = path.join(process.cwd(), 'packages/mui-material', entryPoint);

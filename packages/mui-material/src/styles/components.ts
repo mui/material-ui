@@ -466,8 +466,13 @@ export interface Components<Theme = unknown> {
   MuiMenu2?:
     | {
         defaultProps?: ComponentsProps['MuiMenu2'] | undefined;
-        styleOverrides?: ComponentsOverrides<Theme>['MuiMenu2'] | undefined;
-        variants?: ComponentsVariants<Theme>['MuiMenu2'] | undefined;
+      }
+    | undefined;
+  MuiMenu2Popup?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenu2Popup'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenu2Popup'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenu2Popup'] | undefined;
       }
     | undefined;
   MuiMenu2CheckboxItem?:
@@ -529,8 +534,13 @@ export interface Components<Theme = unknown> {
   MuiMenu2Submenu?:
     | {
         defaultProps?: ComponentsProps['MuiMenu2Submenu'] | undefined;
-        styleOverrides?: ComponentsOverrides<Theme>['MuiMenu2Submenu'] | undefined;
-        variants?: ComponentsVariants<Theme>['MuiMenu2Submenu'] | undefined;
+      }
+    | undefined;
+  MuiMenu2SubmenuPopup?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenu2SubmenuPopup'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenu2SubmenuPopup'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenu2SubmenuPopup'] | undefined;
       }
     | undefined;
   MuiMenu2SubmenuTrigger?:

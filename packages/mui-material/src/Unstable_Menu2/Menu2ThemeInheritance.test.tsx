@@ -1,3 +1,6 @@
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import * as React from 'react';
 import { describe, expect, it } from 'vitest';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
@@ -45,14 +48,13 @@ const itemCases = [
   {
     name: 'MuiMenu2SubmenuTrigger',
     renderItem: (props: ItemTestProps) => (
-      <Menu2Submenu
-        trigger={
-          <Menu2SubmenuTrigger {...props} openOnHover={false}>
-            Target
-          </Menu2SubmenuTrigger>
-        }
-      >
-        <Menu2Item>Nested</Menu2Item>
+      <Menu2Submenu>
+        <Menu2SubmenuTrigger {...props} openOnHover={false}>
+          Target
+        </Menu2SubmenuTrigger>
+        <Menu2SubmenuPopup>
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2SubmenuPopup>
       </Menu2Submenu>
     ),
   },
@@ -78,57 +80,55 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
           const useSpecific = source !== 'common';
           const useSx = source === 'sx';
           const { user } = renderWithTheme(
-            <Menu2
-              defaultOpen
-              modal={false}
-              anchor={document.body}
-              align="center"
-              slots={{ transition: null }}
-            >
-              <Menu2Submenu
-                align="end"
-                trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-                slots={{ transition: null }}
-                slotProps={{
-                  root: {
-                    'data-testid': 'root',
-                    sx: useSx ? { zIndex: 1501, outlineOffset: 21 } : undefined,
-                  },
-                  positioner: {
-                    'data-testid': 'positioner',
-                    sx: useSx ? { paddingLeft: '3px' } : undefined,
-                  },
-                  paper: {
-                    'data-testid': 'paper',
-                    sx: useSx ? { maxHeight: 303 } : undefined,
-                  },
-                  list: {
-                    'data-testid': 'list',
-                    sx: useSx ? { outlineWidth: '3px' } : undefined,
-                  },
-                }}
-              >
-                <Menu2Item>Nested</Menu2Item>
-              </Menu2Submenu>
+            <Menu2 defaultOpen modal={false}>
+              <Menu2Popup anchor={document.body} align="center" slots={{ transition: null }}>
+                <Menu2Submenu>
+                  <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+                  <Menu2SubmenuPopup
+                    align="end"
+                    slots={{ transition: null }}
+                    slotProps={{
+                      portal: {
+                        'data-testid': 'root',
+                        sx: useSx ? { zIndex: 1501 } : undefined,
+                      },
+                      positioner: {
+                        'data-testid': 'positioner',
+                        sx: useSx ? { paddingLeft: '3px' } : undefined,
+                      },
+                      root: {
+                        'data-testid': 'paper',
+                        sx: useSx ? { maxHeight: 303, outlineOffset: 21 } : undefined,
+                      },
+                      list: {
+                        'data-testid': 'list',
+                        sx: useSx ? { outlineWidth: '3px' } : undefined,
+                      },
+                    }}
+                  >
+                    <Menu2Item>Nested</Menu2Item>
+                  </Menu2SubmenuPopup>
+                </Menu2Submenu>
+              </Menu2Popup>
             </Menu2>,
             {
-              MuiMenu2: {
+              MuiMenu2Popup: {
                 styleOverrides: {
-                  root: { zIndex: 1401 },
+                  portal: { zIndex: 1401 },
                   positioner: { paddingLeft: 1 },
-                  paper: ({ ownerState }) => ({
+                  root: ({ ownerState }) => ({
                     maxHeight: ownerState.align === 'end' ? 301 : 300,
                   }),
                   list: { outline: '1px solid red' },
                 },
                 variants: [{ props: { align: 'end' }, style: { outlineOffset: 11 } }],
               },
-              MuiMenu2Submenu: useSpecific
+              MuiMenu2SubmenuPopup: useSpecific
                 ? {
                     styleOverrides: {
-                      root: { zIndex: 1402, outlineOffset: 12 },
+                      portal: { zIndex: 1402 },
                       positioner: { paddingLeft: 2 },
-                      paper: { maxHeight: 302 },
+                      root: { maxHeight: 302, outlineOffset: 12 },
                       list: { outlineWidth: 2 },
                     },
                   }
@@ -147,13 +147,13 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
           expect(getComputedStyle(root).zIndex).to.equal(
             String(useSx ? 1501 : 1400 + expectedIndex),
           );
-          expect(getComputedStyle(root).outlineOffset).to.equal(
+          expect(getComputedStyle(paper).outlineOffset).to.equal(
             `${useSx ? 21 : 10 + expectedIndex}px`,
           );
           expect(getComputedStyle(positioner).paddingLeft).to.equal(`${expectedIndex}px`);
           expect(getComputedStyle(paper).maxHeight).to.equal(`${300 + expectedIndex}px`);
           expect(getComputedStyle(list).outlineWidth).to.equal(`${expectedIndex}px`);
-          [positioner, paper, list].forEach((element) => {
+          [root, positioner, list].forEach((element) => {
             expect(getComputedStyle(element).outlineOffset).to.equal('0px');
           });
         });
@@ -162,10 +162,15 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
       itemCases.forEach(({ name, renderItem }) => {
         it(`updates common highlighted overrides and variants during keyboard navigation in ${name}`, async () => {
           const { user } = renderWithTheme(
-            <Menu2 trigger={<button type="button">Options</button>} slots={{ transition: null }}>
-              <Menu2Item>Before</Menu2Item>
-              {renderItem({ 'data-testid': 'target' })}
-              <Menu2Item>After</Menu2Item>
+            <Menu2>
+              <Menu2Trigger>
+                <button type="button">Options</button>
+              </Menu2Trigger>
+              <Menu2Popup slots={{ transition: null }}>
+                <Menu2Item>Before</Menu2Item>
+                {renderItem({ 'data-testid': 'target' })}
+                <Menu2Item>After</Menu2Item>
+              </Menu2Popup>
             </Menu2>,
             {
               MuiMenu2Item: {
@@ -214,10 +219,12 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
 
         it(`applies common item overrides and variants to ${name}`, async () => {
           renderWithTheme(
-            <Menu2 defaultOpen modal={false} anchor={document.body} slots={{ transition: null }}>
-              {renderItem({ 'data-testid': 'default' })}
-              {renderItem({ 'data-testid': 'states', dense: true, divider: true })}
-              {renderItem({ 'data-testid': 'no-gutters', disableGutters: true })}
+            <Menu2 defaultOpen modal={false}>
+              <Menu2Popup anchor={document.body} slots={{ transition: null }}>
+                {renderItem({ 'data-testid': 'default' })}
+                {renderItem({ 'data-testid': 'states', dense: true, divider: true })}
+                {renderItem({ 'data-testid': 'no-gutters', disableGutters: true })}
+              </Menu2Popup>
             </Menu2>,
             {
               MuiMenu2Item: {
@@ -250,20 +257,22 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
 
         it(`applies ${name} overrides after common item styles, with sx last`, async () => {
           renderWithTheme(
-            <Menu2 defaultOpen modal={false} anchor={document.body} slots={{ transition: null }}>
-              {renderItem({ 'data-testid': 'specific', dense: true, divider: true })}
-              {renderItem({
-                'data-testid': 'sx',
-                dense: true,
-                divider: true,
-                sx: {
-                  paddingBottom: '31px',
-                  paddingTop: '32px',
-                  marginTop: '33px',
-                  paddingLeft: '34px',
-                  marginBottom: '35px',
-                },
-              })}
+            <Menu2 defaultOpen modal={false}>
+              <Menu2Popup anchor={document.body} slots={{ transition: null }}>
+                {renderItem({ 'data-testid': 'specific', dense: true, divider: true })}
+                {renderItem({
+                  'data-testid': 'sx',
+                  dense: true,
+                  divider: true,
+                  sx: {
+                    paddingBottom: '31px',
+                    paddingTop: '32px',
+                    marginTop: '33px',
+                    paddingLeft: '34px',
+                    marginBottom: '35px',
+                  },
+                })}
+              </Menu2Popup>
             </Menu2>,
             {
               MuiMenu2Item: {
@@ -300,13 +309,15 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
 
       it('applies a common open-state override after the submenu trigger open tint', async () => {
         const { user } = renderWithTheme(
-          <Menu2 defaultOpen modal={false} anchor={document.body} slots={{ transition: null }}>
-            <Menu2Submenu
-              trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-              slots={{ transition: null }}
-            >
-              <Menu2Item>Nested</Menu2Item>
-            </Menu2Submenu>
+          <Menu2 defaultOpen modal={false}>
+            <Menu2Popup anchor={document.body} slots={{ transition: null }}>
+              <Menu2Submenu>
+                <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+                <Menu2SubmenuPopup slots={{ transition: null }}>
+                  <Menu2Item>Nested</Menu2Item>
+                </Menu2SubmenuPopup>
+              </Menu2Submenu>
+            </Menu2Popup>
           </Menu2>,
           {
             MuiMenu2Item: {
@@ -325,10 +336,12 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
 
       it('retains sx on the common Menu2Item after other item types extend its styled base', async () => {
         renderWithTheme(
-          <Menu2 defaultOpen modal={false} anchor={document.body} slots={{ transition: null }}>
-            <Menu2Item dense data-testid="item" sx={{ paddingTop: '21px' }}>
-              Action
-            </Menu2Item>
+          <Menu2 defaultOpen modal={false}>
+            <Menu2Popup anchor={document.body} slots={{ transition: null }}>
+              <Menu2Item dense data-testid="item" sx={{ paddingTop: '21px' }}>
+                Action
+              </Menu2Item>
+            </Menu2Popup>
           </Menu2>,
           {
             MuiMenu2Item: {
@@ -343,11 +356,13 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
 
       it('does not inherit MuiMenu2Item default props in other item components', async () => {
         renderWithTheme(
-          <Menu2 defaultOpen modal={false} anchor={document.body} slots={{ transition: null }}>
-            <Menu2Item data-testid="item">Action</Menu2Item>
-            {itemCases.map(({ name, renderItem }) => (
-              <React.Fragment key={name}>{renderItem({ 'data-testid': name })}</React.Fragment>
-            ))}
+          <Menu2 defaultOpen modal={false}>
+            <Menu2Popup anchor={document.body} slots={{ transition: null }}>
+              <Menu2Item data-testid="item">Action</Menu2Item>
+              {itemCases.map(({ name, renderItem }) => (
+                <React.Fragment key={name}>{renderItem({ 'data-testid': name })}</React.Fragment>
+              ))}
+            </Menu2Popup>
           </Menu2>,
           {
             MuiMenu2Item: { defaultProps: { dense: true, divider: true, disableGutters: true } },
@@ -366,24 +381,26 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
         });
       });
 
-      it('does not inherit MuiMenu2 default props in submenus', async () => {
+      it('does not inherit MuiMenu2Popup default props in submenu popups', async () => {
         const { user } = renderWithTheme(
-          <Menu2
-            defaultOpen
-            modal={false}
-            anchor={document.body}
-            slots={{ transition: null }}
-            slotProps={{ paper: { 'data-testid': 'parent-paper' } }}
-          >
-            <Menu2Submenu
-              trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
+          <Menu2 defaultOpen modal={false}>
+            <Menu2Popup
+              anchor={document.body}
               slots={{ transition: null }}
-              slotProps={{ paper: { 'data-testid': 'child-paper' } }}
+              slotProps={{ root: { 'data-testid': 'parent-paper' } }}
             >
-              <Menu2Item>Nested</Menu2Item>
-            </Menu2Submenu>
+              <Menu2Submenu>
+                <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+                <Menu2SubmenuPopup
+                  slots={{ transition: null }}
+                  slotProps={{ root: { 'data-testid': 'child-paper' } }}
+                >
+                  <Menu2Item>Nested</Menu2Item>
+                </Menu2SubmenuPopup>
+              </Menu2Submenu>
+            </Menu2Popup>
           </Menu2>,
-          { MuiMenu2: { defaultProps: { elevation: 2 } } },
+          { MuiMenu2Popup: { defaultProps: { elevation: 2 } } },
         );
 
         expect(screen.getByTestId('parent-paper')).to.have.class('MuiPaper-elevation2');

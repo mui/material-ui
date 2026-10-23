@@ -1,15 +1,21 @@
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
-import Menu2, { Menu2Props } from './Menu2';
+import Menu2Trigger from '../Unstable_Menu2Trigger';
+import Menu2SubmenuPopup, { Menu2SubmenuPopupProps } from '../Unstable_Menu2SubmenuPopup';
+import Menu2Popup, { Menu2PopupProps } from '../Unstable_Menu2Popup';
+import Menu2 from './Menu2';
 import { Menu2PopupSharedSlotProps } from './menu2PopupShared';
 import Menu2Item from '../Unstable_Menu2Item';
 import Menu2Submenu, { Menu2SubmenuProps } from '../Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '../Unstable_Menu2SubmenuTrigger';
 import Paper, { PaperProps } from '../Paper';
 
-interface TestMenuProps extends Omit<Menu2SubmenuProps, 'slotProps'> {
-  slotProps?: Menu2PopupSharedSlotProps<Menu2Props | Menu2SubmenuProps>;
+interface TestMenuProps
+  extends
+    Omit<Menu2SubmenuPopupProps, 'slotProps'>,
+    Pick<Menu2SubmenuProps, 'open' | 'onOpenChange' | 'onOpenChangeComplete'> {
+  slotProps?: Menu2PopupSharedSlotProps<Menu2PopupProps | Menu2SubmenuPopupProps>;
 }
 
 const CustomPositioner = React.forwardRef<
@@ -30,7 +36,16 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
 
   [false, true].forEach((submenu) => {
     describe(`Menu2${submenu ? 'Submenu' : ''}`, () => {
-      function TestMenu({ children = <Menu2Item>Alpha</Menu2Item>, ...props }: TestMenuProps) {
+      const TestMenu = React.forwardRef<HTMLDivElement, TestMenuProps>(function TestMenu(
+        {
+          children = <Menu2Item>Alpha</Menu2Item>,
+          open,
+          onOpenChange,
+          onOpenChangeComplete,
+          ...props
+        },
+        ref,
+      ) {
         return (
           <React.Fragment>
             <span id="menu-label">Available actions</span>
@@ -38,33 +53,41 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
             <span id="menu-description">Choose an action</span>
             <span id="slot-description">Choose a slot action</span>
             {submenu ? (
-              <Menu2
-                modal={false}
-                sx={{ zIndex: 2000 }}
-                transitionDuration={0}
-                trigger={<button type="button">Options</button>}
-              >
-                <Menu2Submenu
-                  transitionDuration={0}
-                  {...props}
-                  trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-                >
-                  {children}
-                </Menu2Submenu>
+              <Menu2 modal={false}>
+                <Menu2Trigger>
+                  <button type="button">Options</button>
+                </Menu2Trigger>
+                <Menu2Popup slotProps={{ portal: { sx: { zIndex: 2000 } } }} transitionDuration={0}>
+                  <Menu2Submenu
+                    open={open}
+                    onOpenChange={onOpenChange}
+                    onOpenChangeComplete={onOpenChangeComplete}
+                  >
+                    <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+                    <Menu2SubmenuPopup ref={ref} transitionDuration={0} {...props}>
+                      {children}
+                    </Menu2SubmenuPopup>
+                  </Menu2Submenu>
+                </Menu2Popup>
               </Menu2>
             ) : (
               <Menu2
                 modal={false}
-                transitionDuration={0}
-                {...props}
-                trigger={<button type="button">Options</button>}
+                open={open}
+                onOpenChange={onOpenChange}
+                onOpenChangeComplete={onOpenChangeComplete}
               >
-                {children}
+                <Menu2Trigger>
+                  <button type="button">Options</button>
+                </Menu2Trigger>
+                <Menu2Popup ref={ref} transitionDuration={0} {...props}>
+                  {children}
+                </Menu2Popup>
               </Menu2>
             )}
           </React.Fragment>
         );
-      }
+      });
 
       async function openMenu(user: ReturnType<typeof render>['user'], keyboard = false) {
         await user.click(screen.getByRole('button', { name: 'Options' }));
@@ -86,8 +109,41 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
         return item.closest<HTMLDivElement>('[role="menu"]')!;
       }
 
+      [false, true].forEach((slotOverride) => {
+        it(`registers the surface ID with its trigger, root override=${slotOverride}`, async () => {
+          const popupRef = React.createRef<HTMLDivElement>();
+          const slotRef = React.createRef<HTMLDivElement>();
+          const { user } = render(
+            <TestMenu
+              ref={popupRef}
+              id="menu-surface"
+              title="Available actions"
+              className="public-popup"
+              style={{ paddingLeft: 3 }}
+              sx={{ paddingRight: '7px' }}
+              slotProps={{ root: { ref: slotRef, ...(slotOverride && { id: 'slot-surface' }) } }}
+            />,
+          );
+          const popup = await openMenu(user);
+          const trigger = submenu
+            ? screen.getByRole('menuitem', { name: 'More' })
+            : screen.getByRole('button', { name: 'Options' });
+
+          expect(popupRef.current).to.equal(popup);
+          expect(slotRef.current).to.equal(popup);
+          expect(popup).to.have.attribute('id', slotOverride ? 'slot-surface' : 'menu-surface');
+          expect(trigger).to.have.attribute('aria-controls', popup.id);
+          expect(popup).to.have.attribute('title', 'Available actions');
+          expect(popup).to.have.class('public-popup');
+          expect(popup.style.paddingLeft).to.equal('3px');
+          expect(getComputedStyle(popup).paddingRight).to.equal('7px');
+          expect(popup.parentElement).not.to.have.attribute('title');
+          expect(popup.parentElement!.parentElement).not.to.have.attribute('title');
+        });
+      });
+
       ['host', 'custom'].forEach((slot) => {
-        it(`forwards placement, slot props, and refs to ${slot} paper and positioner slots`, async () => {
+        it(`forwards placement, slot props, and refs to ${slot} root and positioner slots`, async () => {
           const paperRef = React.createRef<HTMLDivElement>();
           const positionerRef = React.createRef<HTMLDivElement>();
           const { user } = render(
@@ -95,10 +151,10 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
               align="end"
               slots={{
                 positioner: slot === 'host' ? 'div' : CustomPositioner,
-                paper: slot === 'host' ? 'div' : CustomPaper,
+                root: slot === 'host' ? 'div' : CustomPaper,
               }}
               slotProps={{
-                root: { 'data-testid': 'root' },
+                portal: { 'data-testid': 'root' },
                 positioner: {
                   align: 'start',
                   'data-testid': 'positioner',
@@ -106,7 +162,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
                   className: 'custom-positioner',
                   ref: positionerRef,
                 },
-                paper: { 'data-custom': 'paper', className: 'custom-paper', ref: paperRef },
+                root: { 'data-custom': 'paper', className: 'custom-paper', ref: paperRef },
                 list: { 'data-testid': 'list' },
               }}
             />,
@@ -140,7 +196,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
         });
       });
 
-      it('hides a retained root only after its popup exit transition', async () => {
+      it('hides a retained portal only after its popup exit transition', async () => {
         const completed = vi.fn();
         function RetainedMenu() {
           const [open, setOpen] = React.useState(false);
@@ -151,10 +207,12 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
               onOpenChangeComplete={completed}
               keepMounted
               transitionDuration={{ enter: 0, exit: 200 }}
-              sx={{ position: 'fixed', inset: 0, padding: 1, backgroundColor: 'rgb(1, 2, 3)' }}
               slotProps={{
-                root: { 'data-testid': 'retained-root' },
-                paper: { 'data-testid': 'retained-paper' },
+                portal: {
+                  'data-testid': 'retained-root',
+                  sx: { position: 'fixed', inset: 0, padding: 1, backgroundColor: 'rgb(1, 2, 3)' },
+                },
+                root: { 'data-testid': 'retained-paper' },
                 list: { 'data-testid': 'retained-list' },
               }}
             >
@@ -208,13 +266,37 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
         expect(getOutsideTarget()).to.equal(root);
         completed.mockClear();
 
-        await user.click(item);
-        expectOpenState(false);
-        expect(popup).to.have.attribute('data-ending-style');
-        expect(positioner).not.to.have.attribute('data-ending-style');
-        expect(root).toBeVisible();
-        expect(getOutsideTarget()).to.equal(root);
-        expect(completed).not.toHaveBeenCalled();
+        // Browser clicks can return after a short exit transition completes.
+        // Capture the intermediate state when Base UI starts the exit.
+        const exitStates: object[] = [];
+        const observer = new MutationObserver(() => {
+          if (popup.hasAttribute('data-ending-style')) {
+            exitStates.push({
+              popupClosed: popup.hasAttribute('data-closed'),
+              positionerClosed: positioner.hasAttribute('data-closed'),
+              positionerEnding: positioner.hasAttribute('data-ending-style'),
+              portalVisible: getComputedStyle(root).display !== 'none',
+              outsideTargetIsPortal: getOutsideTarget() === root,
+              completedCalls: completed.mock.calls.length,
+            });
+          }
+        });
+        observer.observe(popup, { attributes: true, attributeFilter: ['data-ending-style'] });
+        try {
+          await user.click(item);
+          expect(exitStates).to.deep.equal([
+            {
+              popupClosed: true,
+              positionerClosed: true,
+              positionerEnding: false,
+              portalVisible: true,
+              outsideTargetIsPortal: true,
+              completedCalls: 0,
+            },
+          ]);
+        } finally {
+          observer.disconnect();
+        }
 
         await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(false));
         expectOpenState(false);
@@ -282,8 +364,8 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
           name: 'Actions',
         },
         {
-          title: 'paper label replaces the inferred trigger label',
-          props: { slotProps: { paper: { 'aria-label': 'Actions' } } },
+          title: 'root label replaces the inferred trigger label',
+          props: { slotProps: { root: { 'aria-label': 'Actions' } } },
           name: 'Actions',
         },
         {
@@ -293,8 +375,8 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
           labelledby: 'menu-label',
         },
         {
-          title: 'paper labelledby replaces the inferred trigger label',
-          props: { slotProps: { paper: { 'aria-labelledby': 'menu-label' } } },
+          title: 'root labelledby replaces the inferred trigger label',
+          props: { slotProps: { root: { 'aria-labelledby': 'menu-label' } } },
           name: 'Available actions',
           labelledby: 'menu-label',
         },
@@ -302,24 +384,24 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
           title: 'explicit labelledby takes precedence over an explicit label',
           props: {
             'aria-labelledby': 'menu-label',
-            slotProps: { paper: { 'aria-label': 'Actions' } },
+            slotProps: { root: { 'aria-label': 'Actions' } },
           },
           name: 'Available actions',
           labelledby: 'menu-label',
         },
         {
-          title: 'paper label takes precedence over the top-level label',
+          title: 'root label takes precedence over the top-level label',
           props: {
             'aria-label': 'Actions',
-            slotProps: { paper: { 'aria-label': 'Slot actions' } },
+            slotProps: { root: { 'aria-label': 'Slot actions' } },
           },
           name: 'Slot actions',
         },
         {
-          title: 'paper labelledby takes precedence over the top-level labelledby',
+          title: 'root labelledby takes precedence over the top-level labelledby',
           props: {
             'aria-labelledby': 'menu-label',
-            slotProps: { paper: { 'aria-labelledby': 'slot-label' } },
+            slotProps: { root: { 'aria-labelledby': 'slot-label' } },
           },
           name: 'Slot actions',
           labelledby: 'slot-label',
@@ -343,7 +425,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
             <TestMenu
               aria-describedby="menu-description"
               slotProps={{
-                paper: paperOverride ? { 'aria-describedby': 'slot-description' } : undefined,
+                root: paperOverride ? { 'aria-describedby': 'slot-description' } : undefined,
               }}
             />,
           );
@@ -377,7 +459,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
 
       it('preserves keyboard callbacks and cancellation of navigation and dismissal', async () => {
         const currentTargets: EventTarget[] = [];
-        const onKeyDown = vi.fn<NonNullable<Menu2SubmenuProps['onKeyDown']>>((event) => {
+        const onKeyDown = vi.fn<NonNullable<Menu2SubmenuPopupProps['onKeyDown']>>((event) => {
           currentTargets.push(event.currentTarget);
           if (event.key === 'ArrowDown') {
             event.preventBaseUIHandler();
@@ -419,14 +501,38 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
         );
       });
 
-      it('uses the public root z-index for hit testing', async () => {
+      it('lets a root slot handler cancel Base UI keyboard navigation', async () => {
+        const onKeyDown = vi.fn<NonNullable<Menu2PopupProps['onKeyDown']>>((event) => {
+          if (event.key === 'ArrowDown') {
+            event.preventBaseUIHandler();
+          }
+        });
+        const { user } = render(
+          <TestMenu slotProps={{ root: { onKeyDown } }}>
+            <Menu2Item>Alpha</Menu2Item>
+            <Menu2Item>Beta</Menu2Item>
+          </TestMenu>,
+        );
+        const popup = await openMenu(user, true);
+        const alpha = screen.getByRole('menuitem', { name: 'Alpha' });
+        await waitFor(() => expect(popup.contains(document.activeElement)).to.equal(true));
+        await act(async () => alpha.focus());
+        onKeyDown.mockClear();
+
+        await user.keyboard('{ArrowDown}');
+
+        expect(onKeyDown).toHaveBeenCalledOnce();
+        expect(document.activeElement).to.equal(alpha);
+      });
+
+      it('uses the portal slot z-index for hit testing', async () => {
         const { user } = render(
           <React.Fragment>
             <div
               data-testid="overlay"
               style={{ position: 'fixed', inset: 0, zIndex: 1500, pointerEvents: 'none' }}
             />
-            <TestMenu sx={{ zIndex: 2000 }}>
+            <TestMenu slotProps={{ portal: { sx: { zIndex: 2000 } } }}>
               <Menu2Item>Alpha</Menu2Item>
             </TestMenu>
           </React.Fragment>,
@@ -443,20 +549,23 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
     });
   });
 
-  it('uses the public root z-index for the modal click blocker', async () => {
+  it('uses the portal slot z-index for the modal click blocker', async () => {
     const { user } = render(
       <React.Fragment>
         <div
           data-testid="overlay"
           style={{ position: 'fixed', inset: 0, zIndex: 1500, pointerEvents: 'none' }}
         />
-        <Menu2
-          sx={{ zIndex: 2000 }}
-          slots={{ backdrop: null, transition: null }}
-          slotProps={{ root: { 'data-testid': 'root' } }}
-          trigger={<button type="button">Options</button>}
-        >
-          <Menu2Item>Alpha</Menu2Item>
+        <Menu2>
+          <Menu2Trigger>
+            <button type="button">Options</button>
+          </Menu2Trigger>
+          <Menu2Popup
+            slots={{ backdrop: null, transition: null }}
+            slotProps={{ portal: { 'data-testid': 'root', sx: { zIndex: 2000 } } }}
+          >
+            <Menu2Item>Alpha</Menu2Item>
+          </Menu2Popup>
         </Menu2>
       </React.Fragment>,
     );

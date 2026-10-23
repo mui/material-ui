@@ -1,3 +1,4 @@
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import { describe } from 'vitest';
 import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
@@ -15,8 +16,10 @@ describe('<Menu2GroupLabel />', () => {
     classes,
     render: (node) =>
       render(
-        <Menu2 defaultOpen modal={false} anchor={document.body}>
-          <Menu2Group>{node}</Menu2Group>
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body}>
+            <Menu2Group>{node}</Menu2Group>
+          </Menu2Popup>
         </Menu2>,
       ),
     getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),

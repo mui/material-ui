@@ -5,14 +5,18 @@ import Slider from '@mui/material/Slider';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import Menu, { Menu2Props as MenuProps } from '@mui/material/Unstable_Menu2';
+import Menu from '@mui/material/Unstable_Menu2';
+import MenuPopup, {
+  Menu2PopupProps as PopupProps,
+} from '@mui/material/Unstable_Menu2Popup';
+import MenuTrigger from '@mui/material/Unstable_Menu2Trigger';
 import MenuItem from '@mui/material/Unstable_Menu2Item';
 
 export default function PositionedMenu2() {
   // @focus-start @padding 1
   const id = React.useId();
-  const [side, setSide] = React.useState<MenuProps['side']>('bottom');
-  const [align, setAlign] = React.useState<MenuProps['align']>('start');
+  const [side, setSide] = React.useState<PopupProps['side']>('bottom');
+  const [align, setAlign] = React.useState<PopupProps['align']>('start');
   const [sideOffset, setSideOffset] = React.useState(8);
   const [alignOffset, setAlignOffset] = React.useState(0);
 
@@ -24,7 +28,7 @@ export default function PositionedMenu2() {
           fullWidth
           label="side"
           value={side}
-          onChange={(event) => setSide(event.target.value as MenuProps['side'])}
+          onChange={(event) => setSide(event.target.value as PopupProps['side'])}
           slotProps={{ select: { native: true } }}
         >
           {['top', 'bottom', 'left', 'right', 'inline-start', 'inline-end'].map(
@@ -40,7 +44,7 @@ export default function PositionedMenu2() {
           fullWidth
           label="align"
           value={align}
-          onChange={(event) => setAlign(event.target.value as MenuProps['align'])}
+          onChange={(event) => setAlign(event.target.value as PopupProps['align'])}
           slotProps={{ select: { native: true } }}
         >
           {['start', 'center', 'end'].map((value) => (
@@ -89,7 +93,6 @@ export default function PositionedMenu2() {
         }}
       >
         <Menu
-          trigger={<Button variant="outlined">Open menu</Button>}
           modal={false}
           onOpenChange={(open, eventDetails) => {
             if (
@@ -101,15 +104,21 @@ export default function PositionedMenu2() {
               eventDetails.cancel();
             }
           }}
-          side={side}
-          align={align}
-          sideOffset={sideOffset}
-          alignOffset={alignOffset}
-          slotProps={{ paper: { sx: { minWidth: 180 } } }}
         >
-          <MenuItem>Profile</MenuItem>
-          <MenuItem>My account</MenuItem>
-          <MenuItem>Logout</MenuItem>
+          <MenuTrigger>
+            <Button variant="outlined">Open menu</Button>
+          </MenuTrigger>
+          <MenuPopup
+            side={side}
+            align={align}
+            sideOffset={sideOffset}
+            alignOffset={alignOffset}
+            sx={{ minWidth: 180 }}
+          >
+            <MenuItem>Profile</MenuItem>
+            <MenuItem>My account</MenuItem>
+            <MenuItem>Logout</MenuItem>
+          </MenuPopup>
         </Menu>
       </Box>
     </Stack>

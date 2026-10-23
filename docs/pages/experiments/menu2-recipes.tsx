@@ -22,6 +22,9 @@ import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 // The Unstable_ subpaths use default exports, so the local bindings drop the
 // prefix and the JSX mirrors the future stable names.
 import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
@@ -123,96 +126,90 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
   }, []);
 
   return (
-    <Menu2
-      modal={settings.modal}
-      disabled={settings.disabled}
-      trigger={
+    <Menu2 modal={settings.modal} disabled={settings.disabled}>
+      <Menu2Trigger>
         <Button variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
           File
         </Button>
-      }
-      sideOffset={8}
-    >
-      <Menu2Item onClick={handleItemClick}>New document</Menu2Item>
-      <Menu2Item onClick={handleItemClick}>Open…</Menu2Item>
-      <Menu2LinkItem href="/docs/templates">Template gallery</Menu2LinkItem>
-      <Menu2LinkItem href="/docs/recent">Recent documents</Menu2LinkItem>
-      <Menu2LinkItem href="/help/docs">Docs help center</Menu2LinkItem>
-      <Menu2Item onClick={handleItemClick}>Make a copy</Menu2Item>
-      <Menu2Separator />
-      <Menu2Item closeOnClick={false} onClick={handleItemClick}>
-        Rename document
-      </Menu2Item>
-      <Menu2Item disabled onClick={handleItemClick}>
-        Offline editing unavailable
-      </Menu2Item>
-      <Menu2Separator />
+      </Menu2Trigger>
+      <Menu2Popup sideOffset={8}>
+        <Menu2Item onClick={handleItemClick}>New document</Menu2Item>
+        <Menu2Item onClick={handleItemClick}>Open…</Menu2Item>
+        <Menu2LinkItem href="/docs/templates">Template gallery</Menu2LinkItem>
+        <Menu2LinkItem href="/docs/recent">Recent documents</Menu2LinkItem>
+        <Menu2LinkItem href="/help/docs">Docs help center</Menu2LinkItem>
+        <Menu2Item onClick={handleItemClick}>Make a copy</Menu2Item>
+        <Menu2Separator />
+        <Menu2Item closeOnClick={false} onClick={handleItemClick}>
+          Rename document
+        </Menu2Item>
+        <Menu2Item disabled onClick={handleItemClick}>
+          Offline editing unavailable
+        </Menu2Item>
+        <Menu2Separator />
 
-      <Menu2Submenu
-        trigger={
+        <Menu2Submenu>
           <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
             View options
           </Menu2SubmenuTrigger>
-        }
-      >
-        <Menu2Group>
-          <Menu2GroupLabel>Document display</Menu2GroupLabel>
-          <Menu2RadioGroup defaultValue="100">
-            <Menu2RadioItem value="100">100%</Menu2RadioItem>
-            <Menu2RadioItem value="fit">Fit</Menu2RadioItem>
-            <Menu2RadioItem value="page-width">Page width</Menu2RadioItem>
-            <Menu2RadioItem value="custom" disabled>
-              Custom zoom unavailable
-            </Menu2RadioItem>
-          </Menu2RadioGroup>
-        </Menu2Group>
+          <Menu2SubmenuPopup>
+            <Menu2Group>
+              <Menu2GroupLabel>Document display</Menu2GroupLabel>
+              <Menu2RadioGroup defaultValue="100">
+                <Menu2RadioItem value="100">100%</Menu2RadioItem>
+                <Menu2RadioItem value="fit">Fit</Menu2RadioItem>
+                <Menu2RadioItem value="page-width">Page width</Menu2RadioItem>
+                <Menu2RadioItem value="custom" disabled>
+                  Custom zoom unavailable
+                </Menu2RadioItem>
+              </Menu2RadioGroup>
+            </Menu2Group>
 
-        <Menu2Separator />
+            <Menu2Separator />
 
-        <Menu2Group>
-          <Menu2GroupLabel>Show</Menu2GroupLabel>
-          <Menu2CheckboxItem defaultChecked>Ruler</Menu2CheckboxItem>
-          <Menu2CheckboxItem defaultChecked>Document outline</Menu2CheckboxItem>
-          <Menu2CheckboxItem>Line numbers</Menu2CheckboxItem>
-          <Menu2CheckboxItem disabled>Page breaks unavailable</Menu2CheckboxItem>
-        </Menu2Group>
+            <Menu2Group>
+              <Menu2GroupLabel>Show</Menu2GroupLabel>
+              <Menu2CheckboxItem defaultChecked>Ruler</Menu2CheckboxItem>
+              <Menu2CheckboxItem defaultChecked>Document outline</Menu2CheckboxItem>
+              <Menu2CheckboxItem>Line numbers</Menu2CheckboxItem>
+              <Menu2CheckboxItem disabled>Page breaks unavailable</Menu2CheckboxItem>
+            </Menu2Group>
 
-        <Menu2Separator />
+            <Menu2Separator />
 
-        <Menu2Submenu
-          trigger={
-            <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
-              More tools
-            </Menu2SubmenuTrigger>
-          }
-        >
-          <Menu2Item onClick={handleItemClick}>Word count</Menu2Item>
-          <Menu2Item onClick={handleItemClick}>Dictionary</Menu2Item>
-          <Menu2Item onClick={handleItemClick}>Accessibility settings</Menu2Item>
+            <Menu2Submenu>
+              <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
+                More tools
+              </Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup>
+                <Menu2Item onClick={handleItemClick}>Word count</Menu2Item>
+                <Menu2Item onClick={handleItemClick}>Dictionary</Menu2Item>
+                <Menu2Item onClick={handleItemClick}>Accessibility settings</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2SubmenuPopup>
         </Menu2Submenu>
-      </Menu2Submenu>
 
-      <Menu2Submenu
-        trigger={
+        <Menu2Submenu>
           <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
             Download
           </Menu2SubmenuTrigger>
-        }
-      >
-        <Menu2Item>Microsoft Word (.docx)</Menu2Item>
-        <Menu2Item>PDF document (.pdf)</Menu2Item>
-        <Menu2Item>Plain text (.txt)</Menu2Item>
-      </Menu2Submenu>
+          <Menu2SubmenuPopup>
+            <Menu2Item>Microsoft Word (.docx)</Menu2Item>
+            <Menu2Item>PDF document (.pdf)</Menu2Item>
+            <Menu2Item>Plain text (.txt)</Menu2Item>
+          </Menu2SubmenuPopup>
+        </Menu2Submenu>
 
-      <Menu2Submenu
-        trigger={
+        <Menu2Submenu>
           <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover} disabled>
             Add-ons unavailable
           </Menu2SubmenuTrigger>
-        }
-      >
-        <Menu2Item>Marketplace</Menu2Item>
-      </Menu2Submenu>
+          <Menu2SubmenuPopup>
+            <Menu2Item>Marketplace</Menu2Item>
+          </Menu2SubmenuPopup>
+        </Menu2Submenu>
+      </Menu2Popup>
     </Menu2>
   );
 }
@@ -241,85 +238,84 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
   );
 
   return (
-    <Menu2
-      trigger={
+    <Menu2>
+      <Menu2Trigger>
         <Button variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
           Tools
         </Button>
-      }
-      sideOffset={8}
-    >
-      <MenuTooltip title="Create a blank document">
-        <Menu2Item>New document</Menu2Item>
-      </MenuTooltip>
-      <MenuTooltip title="Open recently edited documents">
-        <Menu2Item>Open recent</Menu2Item>
-      </MenuTooltip>
-      <MenuTooltip
-        title={
-          <React.Fragment>
-            <Box
-              component="img"
-              src="/static/images/menu2/document-copy.svg"
-              alt=""
-              width={240}
-              height={112}
-              sx={{ display: 'block', maxWidth: '100%', height: 'auto', mb: 1, borderRadius: 1 }}
-            />
-            <Typography component="p" variant="inherit" sx={{ mb: 1 }}>
-              Create a <strong>separate copy</strong> in your Drive.
-            </Typography>
-            <Typography component="p" variant="inherit">
-              Your edits <em>do not change</em> the original document.
-            </Typography>
-          </React.Fragment>
-        }
-      >
-        <Menu2Item>Make a copy</Menu2Item>
-      </MenuTooltip>
-      <MenuTooltip title="Import is disabled while offline">
-        <Menu2Item disabled>Import from Drive</Menu2Item>
-      </MenuTooltip>
-      <MenuTooltip title="Sharing is unavailable in preview">
-        <Menu2Item disabled>Share with people</Menu2Item>
-      </MenuTooltip>
-      <Menu2Separator />
+      </Menu2Trigger>
+      <Menu2Popup sideOffset={8}>
+        <MenuTooltip title="Create a blank document">
+          <Menu2Item>New document</Menu2Item>
+        </MenuTooltip>
+        <MenuTooltip title="Open recently edited documents">
+          <Menu2Item>Open recent</Menu2Item>
+        </MenuTooltip>
+        <MenuTooltip
+          title={
+            <React.Fragment>
+              <Box
+                component="img"
+                src="/static/images/menu2/document-copy.svg"
+                alt=""
+                width={240}
+                height={112}
+                sx={{ display: 'block', maxWidth: '100%', height: 'auto', mb: 1, borderRadius: 1 }}
+              />
+              <Typography component="p" variant="inherit" sx={{ mb: 1 }}>
+                Create a <strong>separate copy</strong> in your Drive.
+              </Typography>
+              <Typography component="p" variant="inherit">
+                Your edits <em>do not change</em> the original document.
+              </Typography>
+            </React.Fragment>
+          }
+        >
+          <Menu2Item>Make a copy</Menu2Item>
+        </MenuTooltip>
+        <MenuTooltip title="Import is disabled while offline">
+          <Menu2Item disabled>Import from Drive</Menu2Item>
+        </MenuTooltip>
+        <MenuTooltip title="Sharing is unavailable in preview">
+          <Menu2Item disabled>Share with people</Menu2Item>
+        </MenuTooltip>
+        <Menu2Separator />
 
-      <Menu2Submenu
-        trigger={
+        <Menu2Submenu>
           <MenuTooltip title="Open view settings" tooltipProps={submenuTriggerTooltipProps}>
             <Menu2SubmenuTrigger openOnHover={submenusOpenOnHover}>
               View options
             </Menu2SubmenuTrigger>
           </MenuTooltip>
-        }
-      >
-        <Menu2Group>
-          <Menu2GroupLabel>Show</Menu2GroupLabel>
-          <MenuTooltip title="Display comments in the document">
-            <Menu2CheckboxItem defaultChecked>Comments</Menu2CheckboxItem>
-          </MenuTooltip>
-          <MenuTooltip title="Page breaks are locked in published view">
-            <Menu2CheckboxItem disabled>Page breaks</Menu2CheckboxItem>
-          </MenuTooltip>
-        </Menu2Group>
+          <Menu2SubmenuPopup>
+            <Menu2Group>
+              <Menu2GroupLabel>Show</Menu2GroupLabel>
+              <MenuTooltip title="Display comments in the document">
+                <Menu2CheckboxItem defaultChecked>Comments</Menu2CheckboxItem>
+              </MenuTooltip>
+              <MenuTooltip title="Page breaks are locked in published view">
+                <Menu2CheckboxItem disabled>Page breaks</Menu2CheckboxItem>
+              </MenuTooltip>
+            </Menu2Group>
 
-        <Menu2Separator />
+            <Menu2Separator />
 
-        <Menu2Group>
-          <Menu2GroupLabel>Zoom</Menu2GroupLabel>
-          <Menu2RadioGroup defaultValue="fit">
-            <MenuTooltip title="Use the available viewport width">
-              <Menu2RadioItem value="fit">Fit</Menu2RadioItem>
-            </MenuTooltip>
-            <MenuTooltip title="Custom zoom is unavailable in preview">
-              <Menu2RadioItem value="custom" disabled>
-                Custom
-              </Menu2RadioItem>
-            </MenuTooltip>
-          </Menu2RadioGroup>
-        </Menu2Group>
-      </Menu2Submenu>
+            <Menu2Group>
+              <Menu2GroupLabel>Zoom</Menu2GroupLabel>
+              <Menu2RadioGroup defaultValue="fit">
+                <MenuTooltip title="Use the available viewport width">
+                  <Menu2RadioItem value="fit">Fit</Menu2RadioItem>
+                </MenuTooltip>
+                <MenuTooltip title="Custom zoom is unavailable in preview">
+                  <Menu2RadioItem value="custom" disabled>
+                    Custom
+                  </Menu2RadioItem>
+                </MenuTooltip>
+              </Menu2RadioGroup>
+            </Menu2Group>
+          </Menu2SubmenuPopup>
+        </Menu2Submenu>
+      </Menu2Popup>
     </Menu2>
   );
 }
@@ -433,25 +429,32 @@ function MenuInDialogRecipe({ menuType }: { menuType: 'classic' | 'menu2' }) {
                 </React.Fragment>
               ) : (
                 <Menu2
-                  trigger={<Button variant="contained">Actions</Button>}
                   onOpenChange={(nextOpen, details) => {
                     setMenuEvent(`${nextOpen ? 'open' : 'closed'} (${details.reason})`);
                   }}
                 >
-                  <Menu2Item onClick={() => handleSelect('Rename document')}>
-                    Rename document
-                  </Menu2Item>
-                  <Menu2Item onClick={() => handleSelect('Duplicate document')}>
-                    Duplicate document
-                  </Menu2Item>
-                  <Menu2Submenu trigger={<Menu2SubmenuTrigger>Export</Menu2SubmenuTrigger>}>
-                    <Menu2Item onClick={() => handleSelect('Export as PDF')}>
-                      Export as PDF
+                  <Menu2Trigger>
+                    <Button variant="contained">Actions</Button>
+                  </Menu2Trigger>
+                  <Menu2Popup>
+                    <Menu2Item onClick={() => handleSelect('Rename document')}>
+                      Rename document
                     </Menu2Item>
-                    <Menu2Item onClick={() => handleSelect('Export as text')}>
-                      Export as text
+                    <Menu2Item onClick={() => handleSelect('Duplicate document')}>
+                      Duplicate document
                     </Menu2Item>
-                  </Menu2Submenu>
+                    <Menu2Submenu>
+                      <Menu2SubmenuTrigger>Export</Menu2SubmenuTrigger>
+                      <Menu2SubmenuPopup>
+                        <Menu2Item onClick={() => handleSelect('Export as PDF')}>
+                          Export as PDF
+                        </Menu2Item>
+                        <Menu2Item onClick={() => handleSelect('Export as text')}>
+                          Export as text
+                        </Menu2Item>
+                      </Menu2SubmenuPopup>
+                    </Menu2Submenu>
+                  </Menu2Popup>
                 </Menu2>
               )}
               <Button onClick={() => setButtonClicks((count) => count + 1)}>Other button</Button>
@@ -548,16 +551,17 @@ function MenuOpensDialogRecipe({
           </ClassicMenu>
         </React.Fragment>
       ) : (
-        <Menu2
-          trigger={
+        <Menu2>
+          <Menu2Trigger>
             <Button ref={triggerRef} variant="outlined">
               Menu2 actions
             </Button>
-          }
-        >
-          <Menu2Item aria-haspopup="dialog" onClick={openDialog}>
-            Edit settings
-          </Menu2Item>
+          </Menu2Trigger>
+          <Menu2Popup>
+            <Menu2Item aria-haspopup="dialog" onClick={openDialog}>
+              Edit settings
+            </Menu2Item>
+          </Menu2Popup>
         </Menu2>
       )}
       <Typography variant="body2">Focus after Dialog closes: {focusResult}</Typography>
@@ -694,22 +698,25 @@ function MenuIconWidthExample({
         </React.Fragment>
       ) : (
         <Menu2
-          trigger={<Button variant="outlined">Open Menu2</Button>}
-          slotProps={{ paper: { sx: { width: 280 } } }}
           onOpenChangeComplete={(open) => {
             if (open) {
               measureIcon();
             }
           }}
         >
-          <Menu2LinkItem
-            href="https://github.com/mui/material-ui"
-            target="_blank"
-            rel="noopener"
-            sx={itemSx}
-          >
-            {content}
-          </Menu2LinkItem>
+          <Menu2Trigger>
+            <Button variant="outlined">Open Menu2</Button>
+          </Menu2Trigger>
+          <Menu2Popup sx={{ width: 280 }}>
+            <Menu2LinkItem
+              href="https://github.com/mui/material-ui"
+              target="_blank"
+              rel="noopener"
+              sx={itemSx}
+            >
+              {content}
+            </Menu2LinkItem>
+          </Menu2Popup>
         </Menu2>
       )}
     </Stack>
@@ -918,8 +925,8 @@ export default function Menu2Experiment() {
             </p>
             <p>
               Classic Menu restores focus when it starts closing. In this example, that lets Dialog
-              save the menu trigger as its return target. The <code>finalFocus</code> prop on Menu2
-              changes the return target, not when focus returns.
+              save the menu trigger as its return target. The <code>finalFocus</code> prop on
+              Menu2Popup changes the return target, not when focus returns.
             </p>
             <p>
               The Menu2 example sets a return target on Dialog. It uses{' '}

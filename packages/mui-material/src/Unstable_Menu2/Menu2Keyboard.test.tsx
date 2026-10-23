@@ -1,8 +1,10 @@
+import Menu2Trigger, { menu2TriggerClasses } from '@mui/material/Unstable_Menu2Trigger';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
-import Menu2, { menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
+import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 
 describe('Menu2 keyboard accessibility', () => {
@@ -11,11 +13,16 @@ describe('Menu2 keyboard accessibility', () => {
   ['{ArrowDown}', '{ArrowUp}', '{Enter}', ' '].forEach((key) => {
     it(`opens with ${key === ' ' ? 'Space' : key} and returns focus to the trigger`, async () => {
       const { user } = render(
-        <Menu2 trigger={<Button disableRipple>Actions</Button>} transitionDuration={0}>
-          <Menu2Item disabled>Unavailable first action</Menu2Item>
-          <Menu2Item>Profile</Menu2Item>
-          <Menu2Item>Settings</Menu2Item>
-          <Menu2Item disabled>Unavailable last action</Menu2Item>
+        <Menu2>
+          <Menu2Trigger>
+            <Button disableRipple>Actions</Button>
+          </Menu2Trigger>
+          <Menu2Popup transitionDuration={0}>
+            <Menu2Item disabled>Unavailable first action</Menu2Item>
+            <Menu2Item>Profile</Menu2Item>
+            <Menu2Item>Settings</Menu2Item>
+            <Menu2Item disabled>Unavailable last action</Menu2Item>
+          </Menu2Popup>
         </Menu2>,
       );
       const trigger = screen.getByRole('button', { name: 'Actions' });
@@ -54,12 +61,13 @@ describe('Menu2 keyboard accessibility', () => {
         const { user } = render(
           <React.Fragment>
             <Button disableRipple>Before</Button>
-            <Menu2
-              trigger={<Button disableRipple>Actions</Button>}
-              modal={false}
-              transitionDuration={0}
-            >
-              <Menu2Item>Profile</Menu2Item>
+            <Menu2 modal={false}>
+              <Menu2Trigger>
+                <Button disableRipple>Actions</Button>
+              </Menu2Trigger>
+              <Menu2Popup transitionDuration={0}>
+                <Menu2Item>Profile</Menu2Item>
+              </Menu2Popup>
             </Menu2>
             <Button disableRipple>After</Button>
           </React.Fragment>,

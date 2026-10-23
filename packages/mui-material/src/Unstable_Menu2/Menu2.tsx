@@ -1,59 +1,28 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import HTMLElementType from '@mui/utils/HTMLElementType';
-import resolveComponentProps from '@mui/utils/resolveComponentProps';
+import exactProp from '@mui/utils/exactProp';
 import { useRtl } from '@mui/system/RtlProvider';
 import { DirectionProvider } from '@base-ui/react/direction-provider';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
-import Menu2Popup, { Menu2PopupProps } from './Menu2Popup';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import Menu2Trigger from '../Unstable_Menu2Trigger';
-import { SlotProps } from './menu2Utils';
-
-export interface Menu2Slots extends NonNullable<Menu2PopupProps['slots']> {}
-
-// The trigger element owns its own props. The slot carries only what the
-// merged trigger behavior needs: the native-button hint, plus the class name
-// and the ref that the merge composes.
-export interface Menu2TriggerSlotProps extends Pick<BaseMenu.Trigger.Props, 'nativeButton'> {
-  className?: string | undefined;
-  ref?: React.Ref<HTMLElement> | undefined;
-}
-
-export interface Menu2SlotProps extends NonNullable<Menu2PopupProps['slotProps']> {
-  trigger?: SlotProps<Menu2TriggerSlotProps, Menu2Props> | undefined;
-}
 
 /**
- * Picks the Base UI `Menu.Root` props that it forwards (open/close control,
- * modality, `actionsRef`, keyboard behavior), the `Menu.Trigger` hover props,
- * plus the popup's positioning and appearance props, so one menu is one
- * component. `Pick` names each forwarded prop, so a prop that a later Base UI
- * version adds reaches neither the type nor the popup DOM until Menu2 supports
- * it. The mapped type also lets the proptypes generator resolve the members.
- * HTML attributes are forwarded to the stacking root. The accessible name,
- * description, and event handlers attach to the popup with `role="menu"`.
- * Use `slotProps.paper` for other attributes on the popup.
+ * Controls a menu without rendering an element.
+ * Place `Menu2Trigger` and `Menu2Popup` inside this component.
  */
-export interface Menu2Props
-  // Horizontal menus are not supported. The trigger element owns its
-  // remaining props.
-  extends
-    Pick<
-      BaseMenu.Root.Props,
-      | 'actionsRef'
-      | 'defaultOpen'
-      | 'disabled'
-      | 'highlightItemOnHover'
-      | 'loopFocus'
-      | 'modal'
-      | 'open'
-    >,
-    Pick<BaseMenu.Trigger.Props, 'closeDelay' | 'delay' | 'openOnHover'>,
-    Omit<Menu2PopupProps, 'children' | 'slots' | 'slotProps'> {
+export interface Menu2Props extends Pick<
+  BaseMenu.Root.Props,
+  | 'actionsRef'
+  | 'defaultOpen'
+  | 'disabled'
+  | 'highlightItemOnHover'
+  | 'loopFocus'
+  | 'modal'
+  | 'open'
+> {
   /**
-   * The menu items.
+   * The menu trigger and popup.
    */
   children?: React.ReactNode;
   /**
@@ -67,25 +36,11 @@ export interface Menu2Props
    * @param {boolean} open Whether the menu is open.
    */
   onOpenChangeComplete?: BaseMenu.Root.Props['onOpenChangeComplete'] | undefined;
-  /**
-   * The element that opens the menu, for example a `Button`.
-   *
-   * The trigger behavior merges into this element, so it keeps the component
-   * that you passed. Omit it and drive the menu with `open` and `anchor`
-   * instead, which is the classic controlled pattern.
-   */
-  trigger?: React.ReactElement | undefined;
-  /**
-   * The components used for each slot inside.
-   */
-  slots?: Menu2Slots | undefined;
-  /**
-   * The props used for each slot inside.
-   */
-  slotProps?: Menu2SlotProps | undefined;
 }
 
 /**
+ * Controls a menu without rendering a DOM element.
+ * Use `MuiMenu2.defaultProps` to set behavior defaults in the theme.
  *
  * Demos:
  *
@@ -95,30 +50,12 @@ export interface Menu2Props
  *
  * - [Menu2 API](https://next.mui.com/material-ui/api/menu-2/)
  */
-const Menu2 = React.forwardRef(function Menu2(
-  props: Menu2Props,
-  // The public ref targets the stacking root. Use slotProps.positioner.ref for
-  // the positioned element or slotProps.paper.ref for the surface.
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
-  const themedProps = useDefaultProps({
-    props,
-    name: 'MuiMenu2',
-  });
-  const isRtl = useRtl();
-
+function Menu2(inProps: Menu2Props) {
+  const props = useDefaultProps({ props: inProps, name: 'MuiMenu2' });
   const {
     children,
-    trigger,
-    slots,
-    slotProps,
-    // Only behavior props belong on the renderless root and the trigger. All
-    // remaining props, including DOM attributes and event handlers, belong on
-    // the popup.
     actionsRef,
-    closeDelay,
     defaultOpen,
-    delay,
     disabled,
     highlightItemOnHover,
     loopFocus,
@@ -126,24 +63,8 @@ const Menu2 = React.forwardRef(function Menu2(
     onOpenChange,
     onOpenChangeComplete,
     open,
-    openOnHover,
-    ...popupProps
-  } = themedProps;
-
-  const { trigger: triggerSlotProps, ...popupSlotProps } = slotProps ?? {};
-  const resolvedTriggerProps = resolveComponentProps(triggerSlotProps, themedProps);
-
-  const triggerNode =
-    trigger == null ? null : (
-      <Menu2Trigger
-        openOnHover={openOnHover}
-        delay={delay}
-        closeDelay={closeDelay}
-        {...resolvedTriggerProps}
-      >
-        {trigger}
-      </Menu2Trigger>
-    );
+  } = props;
+  const isRtl = useRtl();
 
   return (
     <DirectionProvider direction={isRtl ? 'rtl' : 'ltr'}>
@@ -158,20 +79,11 @@ const Menu2 = React.forwardRef(function Menu2(
         onOpenChangeComplete={onOpenChangeComplete}
         open={open}
       >
-        {triggerNode}
-        <Menu2Popup
-          {...popupProps}
-          ref={ref}
-          ownerState={themedProps}
-          slotProps={popupSlotProps}
-          slots={slots}
-        >
-          {children}
-        </Menu2Popup>
+        {children}
       </BaseMenu.Root>
     </DirectionProvider>
   );
-});
+}
 
 Menu2.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -192,96 +104,9 @@ Menu2.propTypes /* remove-proptypes */ = {
     }),
   }),
   /**
-   * How to align the popup relative to the specified side.
-   * @default 'start'
-   */
-  align: PropTypes.oneOf(['center', 'end', 'start']),
-  /**
-   * Additional offset along the alignment axis in pixels.
-   * @default 0
-   */
-  alignOffset: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  /**
-   * An element to position the popup against.
-   *
-   * By default, the popup is positioned against the trigger.
-   */
-  anchor: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    HTMLElementType,
-    PropTypes.object,
-    PropTypes.func,
-  ]),
-  /**
-   * The menu items.
+   * The menu trigger and popup.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
-   * CSS class applied to the root element, which contains the menu and its backdrops.
-   */
-  className: PropTypes.string,
-  /**
-   * How long to wait before closing the menu that was opened on hover.
-   * Specified in milliseconds.
-   *
-   * Requires the `openOnHover` prop.
-   * @default 0
-   */
-  closeDelay: PropTypes.number,
-  /**
-   * Determines how to handle collisions when positioning the popup.
-   */
-  collisionAvoidance: PropTypes.oneOfType([
-    PropTypes.shape({
-      align: PropTypes.oneOf(['flip', 'none', 'shift']),
-      fallbackAxisSide: PropTypes.oneOf(['end', 'none', 'start']),
-      side: PropTypes.oneOf(['flip', 'none']),
-    }),
-    PropTypes.shape({
-      align: PropTypes.oneOf(['none', 'shift']),
-      fallbackAxisSide: PropTypes.oneOf(['end', 'none', 'start']),
-      side: PropTypes.oneOf(['none', 'shift']),
-    }),
-  ]),
-  /**
-   * An element or a rectangle that delimits the area that the popup is confined to.
-   * @default 'clipping-ancestors'
-   */
-  collisionBoundary: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['clipping-ancestors']),
-    HTMLElementType,
-    PropTypes.arrayOf(HTMLElementType),
-    PropTypes.shape({
-      height: PropTypes.number.isRequired,
-      width: PropTypes.number.isRequired,
-      x: PropTypes.number.isRequired,
-      y: PropTypes.number.isRequired,
-    }),
-  ]),
-  /**
-   * Additional space to maintain from the edge of the collision boundary.
-   * @default 5
-   */
-  collisionPadding: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.shape({
-      bottom: PropTypes.number,
-      left: PropTypes.number,
-      right: PropTypes.number,
-      top: PropTypes.number,
-    }),
-  ]),
-  /**
-   * The container element to portal the popup into.
-   */
-  container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    HTMLElementType,
-    PropTypes.object,
-    PropTypes.func,
-  ]),
   /**
    * Whether the menu is initially open.
    *
@@ -290,48 +115,16 @@ Menu2.propTypes /* remove-proptypes */ = {
    */
   defaultOpen: PropTypes.bool,
   /**
-   * How long to wait before the menu may be opened on hover. Specified in milliseconds.
-   *
-   * Requires the `openOnHover` prop.
-   * @default 100
-   */
-  delay: PropTypes.number,
-  /**
-   * Whether to disable the popup from tracking layout shifts of its positioning anchor.
-   * @default false
-   */
-  disableAnchorTracking: PropTypes.bool,
-  /**
    * Whether the component should ignore user interaction.
    * @default false
    */
   disabled: PropTypes.bool,
-  /**
-   * The elevation of the menu surface.
-   * @default 8
-   */
-  elevation: PropTypes.number,
-  /**
-   * Determines the element to focus when the menu is closed.
-   */
-  finalFocus: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: HTMLElementType,
-    }),
-    PropTypes.bool,
-  ]),
   /**
    * Whether moving the pointer over items should highlight them.
    * Disabling this prop allows CSS `:hover` to be differentiated from the `:focus` (`data-highlighted`) state.
    * @default true
    */
   highlightItemOnHover: PropTypes.bool,
-  /**
-   * Whether to keep the portal mounted in the DOM while the popup is hidden.
-   * @default false
-   */
-  keepMounted: PropTypes.bool,
   /**
    * Whether to loop keyboard focus back to the first item
    * when the end of the list is reached while using the arrow keys.
@@ -364,95 +157,11 @@ Menu2.propTypes /* remove-proptypes */ = {
    * Whether the menu is currently open.
    */
   open: PropTypes.bool,
-  /**
-   * Whether the menu should also open when the trigger is hovered.
-   */
-  openOnHover: PropTypes.bool,
-  /**
-   * Determines which CSS `position` property to use.
-   * @default 'absolute'
-   */
-  positionMethod: PropTypes.oneOf(['absolute', 'fixed']),
-  /**
-   * Which side of the anchor element to align the popup against.
-   * @default 'bottom'
-   */
-  side: PropTypes.oneOf(['bottom', 'inline-end', 'inline-start', 'left', 'right', 'top']),
-  /**
-   * Distance between the anchor and the popup in pixels.
-   * @default 0
-   */
-  sideOffset: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  /**
-   * The props used for each slot inside.
-   */
-  slotProps: PropTypes.shape({
-    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    positioner: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    trigger: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        className: PropTypes.string,
-        nativeButton: PropTypes.bool,
-      }),
-    ]),
-  }),
-  /**
-   * The components used for each slot inside.
-   */
-  slots: PropTypes.shape({
-    backdrop: PropTypes.elementType,
-    list: PropTypes.elementType,
-    paper: PropTypes.elementType,
-    positioner: PropTypes.elementType,
-    root: PropTypes.elementType,
-    transition: PropTypes.elementType,
-  }),
-  /**
-   * Whether to maintain the popup in the viewport after the anchor element was scrolled out of view.
-   * @default false
-   */
-  sticky: PropTypes.bool,
-  /**
-   * Inline styles applied to the root element, which contains the menu and its backdrops.
-   */
-  style: PropTypes.object,
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   * Applied to the root element. Use `slotProps.paper.sx` for the menu surface.
-   */
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
-  /**
-   * The transition duration in milliseconds, or separate enter and exit durations.
-   * Set to 'auto' for height-dependent Grow timing, or 0 to disable the transition.
-   * Ignored when slots.transition is null.
-   * @default 'auto'
-   */
-  transitionDuration: PropTypes.oneOfType([
-    PropTypes.oneOf(['auto']),
-    PropTypes.number,
-    PropTypes.shape({
-      appear: PropTypes.number,
-      enter: PropTypes.number,
-      exit: PropTypes.number,
-    }),
-  ]),
-  /**
-   * The element that opens the menu, for example a `Button`.
-   *
-   * The trigger behavior merges into this element, so it keeps the component
-   * that you passed. Omit it and drive the menu with `open` and `anchor`
-   * instead, which is the classic controlled pattern.
-   */
-  trigger: PropTypes.element,
 } as any;
+
+if (process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line
+  (Menu2 as any)['propTypes' + ''] = exactProp(Menu2.propTypes);
+}
 
 export default Menu2;

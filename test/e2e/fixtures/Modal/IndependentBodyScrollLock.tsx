@@ -1,3 +1,5 @@
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
 import Menu2 from '@mui/material/Unstable_Menu2';
@@ -11,8 +13,13 @@ export default function IndependentBodyScrollLock() {
       <button type="button" onClick={() => setOpen(true)}>
         Open dialog
       </button>
-      <Menu2 trigger={<button type="button">Open menu</button>} transitionDuration={0}>
-        <Menu2Item onClick={() => setOpen(true)}>Open dialog from menu</Menu2Item>
+      <Menu2>
+        <Menu2Trigger>
+          <button type="button">Open menu</button>
+        </Menu2Trigger>
+        <Menu2Popup transitionDuration={0}>
+          <Menu2Item onClick={() => setOpen(true)}>Open dialog from menu</Menu2Item>
+        </Menu2Popup>
       </Menu2>
       <Dialog open={open} transitionDuration={0} aria-label="Scroll lock dialog">
         <button type="button" onClick={() => setOpen(false)}>

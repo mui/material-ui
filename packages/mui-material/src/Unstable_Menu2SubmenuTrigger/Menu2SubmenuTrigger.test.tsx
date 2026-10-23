@@ -1,3 +1,6 @@
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import { describe, it, expect, vi } from 'vitest';
 import * as React from 'react';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
@@ -19,10 +22,15 @@ describe('<Menu2SubmenuTrigger />', () => {
 
   it('renders a decorative submenu indicator by default', () => {
     render(
-      <Menu2 defaultOpen modal={false} anchor={document.body}>
-        <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Popup anchor={document.body}>
+          <Menu2Submenu>
+            <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
       </Menu2>,
     );
     const trigger = screen.getByRole('menuitem', { name: 'More' });
@@ -36,10 +44,15 @@ describe('<Menu2SubmenuTrigger />', () => {
     classes,
     render: (node) =>
       render(
-        <Menu2 defaultOpen modal={false} anchor={document.body}>
-          <Menu2Submenu trigger={node}>
-            <Menu2Item>Nested</Menu2Item>
-          </Menu2Submenu>
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body}>
+            <Menu2Submenu>
+              {node}
+              <Menu2SubmenuPopup>
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
         </Menu2>,
       ),
     getRootElement: ({ baseElement }) =>
@@ -58,10 +71,15 @@ describe('<Menu2SubmenuTrigger />', () => {
     it(`uses the built-in arrow for ${direction}`, () => {
       render(
         <ThemeProvider theme={createTheme({ direction })}>
-          <Menu2 defaultOpen modal={false} anchor={document.body}>
-            <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
-              <Menu2Item>Nested</Menu2Item>
-            </Menu2Submenu>
+          <Menu2 defaultOpen modal={false}>
+            <Menu2Popup anchor={document.body}>
+              <Menu2Submenu>
+                <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+                <Menu2SubmenuPopup>
+                  <Menu2Item>Nested</Menu2Item>
+                </Menu2SubmenuPopup>
+              </Menu2Submenu>
+            </Menu2Popup>
           </Menu2>
         </ThemeProvider>,
       );
@@ -84,19 +102,20 @@ describe('<Menu2SubmenuTrigger />', () => {
       it(`does not mirror custom content in the ${name} indicator in ${direction}`, () => {
         render(
           <ThemeProvider theme={createTheme({ direction })}>
-            <Menu2 defaultOpen modal={false} anchor={document.body}>
-              <Menu2Submenu
-                trigger={
+            <Menu2 defaultOpen modal={false}>
+              <Menu2Popup anchor={document.body}>
+                <Menu2Submenu>
                   <Menu2SubmenuTrigger
                     slots={{ indicator }}
                     slotProps={{ indicator: { children: <span>More →</span> } }}
                   >
                     More
                   </Menu2SubmenuTrigger>
-                }
-              >
-                <Menu2Item>Nested</Menu2Item>
-              </Menu2Submenu>
+                  <Menu2SubmenuPopup>
+                    <Menu2Item>Nested</Menu2Item>
+                  </Menu2SubmenuPopup>
+                </Menu2Submenu>
+              </Menu2Popup>
             </Menu2>
           </ThemeProvider>,
         );
@@ -114,16 +133,17 @@ describe('<Menu2SubmenuTrigger />', () => {
 
   it.skipIf(isJsdom())('aligns the indicator at the trailing edge', () => {
     render(
-      <Menu2 defaultOpen modal={false} anchor={document.body} slots={{ transition: null }}>
-        <Menu2Submenu
-          trigger={
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Popup anchor={document.body} slots={{ transition: null }}>
+          <Menu2Submenu>
             <Menu2SubmenuTrigger sx={{ width: 240 }}>
               <span data-testid="label">More</span>
             </Menu2SubmenuTrigger>
-          }
-        >
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
       </Menu2>,
     );
     const trigger = screen.getByRole('menuitem', { name: 'More' });
@@ -137,21 +157,23 @@ describe('<Menu2SubmenuTrigger />', () => {
 
   it('can replace the icon or hide the indicator', () => {
     render(
-      <Menu2 defaultOpen modal={false} anchor={document.body}>
-        <Menu2Submenu
-          trigger={
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Popup anchor={document.body}>
+          <Menu2Submenu>
             <Menu2SubmenuTrigger slotProps={{ indicator: { children: <span>+</span> } }}>
               Custom
             </Menu2SubmenuTrigger>
-          }
-        >
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
-        <Menu2Submenu
-          trigger={<Menu2SubmenuTrigger slots={{ indicator: null }}>Hidden</Menu2SubmenuTrigger>}
-        >
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+          <Menu2Submenu>
+            <Menu2SubmenuTrigger slots={{ indicator: null }}>Hidden</Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
       </Menu2>,
     );
     const custom = screen.getByRole('menuitem', { name: 'Custom' });
@@ -168,17 +190,21 @@ describe('<Menu2SubmenuTrigger />', () => {
     });
     render(
       <ThemeProvider theme={theme}>
-        <Menu2 defaultOpen modal={false} anchor={document.body}>
-          <Menu2Submenu trigger={<Menu2SubmenuTrigger>Hidden</Menu2SubmenuTrigger>}>
-            <Menu2Item>Nested</Menu2Item>
-          </Menu2Submenu>
-          <Menu2Submenu
-            trigger={
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body}>
+            <Menu2Submenu>
+              <Menu2SubmenuTrigger>Hidden</Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+            <Menu2Submenu>
               <Menu2SubmenuTrigger slots={{ indicator: 'span' }}>Visible</Menu2SubmenuTrigger>
-            }
-          >
-            <Menu2Item>Nested</Menu2Item>
-          </Menu2Submenu>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
         </Menu2>
       </ThemeProvider>,
     );
@@ -200,17 +226,15 @@ describe('<Menu2SubmenuTrigger />', () => {
     function Test() {
       const [hidden, setHidden] = React.useState(false);
       return (
-        <Menu2
-          defaultOpen
-          modal={false}
-          transitionDuration={0}
-          trigger={<button type="button">Options</button>}
-        >
-          <Menu2Item closeOnClick={false} onClick={() => setHidden(!hidden)}>
-            Toggle indicator
-          </Menu2Item>
-          <Menu2Submenu
-            trigger={
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Trigger>
+            <button type="button">Options</button>
+          </Menu2Trigger>
+          <Menu2Popup transitionDuration={0}>
+            <Menu2Item closeOnClick={false} onClick={() => setHidden(!hidden)}>
+              Toggle indicator
+            </Menu2Item>
+            <Menu2Submenu>
               <Menu2SubmenuTrigger
                 ref={triggerRef}
                 slots={{ indicator: hidden ? null : undefined }}
@@ -218,10 +242,11 @@ describe('<Menu2SubmenuTrigger />', () => {
               >
                 More
               </Menu2SubmenuTrigger>
-            }
-          >
-            <Menu2Item>Nested</Menu2Item>
-          </Menu2Submenu>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
         </Menu2>
       );
     }
@@ -249,9 +274,9 @@ describe('<Menu2SubmenuTrigger />', () => {
   it('lets the caller set the custom indicator direction', () => {
     render(
       <ThemeProvider theme={createTheme({ direction: 'rtl' })}>
-        <Menu2 defaultOpen modal={false} anchor={document.body}>
-          <Menu2Submenu
-            trigger={
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body}>
+            <Menu2Submenu>
               <Menu2SubmenuTrigger
                 slotProps={{
                   indicator: {
@@ -264,10 +289,11 @@ describe('<Menu2SubmenuTrigger />', () => {
               >
                 More
               </Menu2SubmenuTrigger>
-            }
-          >
-            <Menu2Item>Nested</Menu2Item>
-          </Menu2Submenu>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
         </Menu2>
       </ThemeProvider>,
     );
@@ -284,18 +310,22 @@ describe('<Menu2SubmenuTrigger />', () => {
     'preserves Tooltip-wrapped label overrides and a single keyboard position',
     async () => {
       const { user } = render(
-        <Menu2 trigger={<Button>Open</Button>}>
-          <Menu2Item>Alpha</Menu2Item>
-          <Menu2Submenu
-            trigger={
+        <Menu2>
+          <Menu2Trigger>
+            <Button>Open</Button>
+          </Menu2Trigger>
+          <Menu2Popup>
+            <Menu2Item>Alpha</Menu2Item>
+            <Menu2Submenu>
               <Tooltip title="Open more actions" describeChild>
                 <Menu2SubmenuTrigger label="Zebra">More</Menu2SubmenuTrigger>
               </Tooltip>
-            }
-          >
-            <Menu2Item>Nested</Menu2Item>
-          </Menu2Submenu>
-          <Menu2Item>Omega</Menu2Item>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+            <Menu2Item>Omega</Menu2Item>
+          </Menu2Popup>
         </Menu2>,
       );
       await act(async () => screen.getByRole('button', { name: 'Open' }).focus());
@@ -326,18 +356,21 @@ describe('<Menu2SubmenuTrigger />', () => {
     async () => {
       const onOpenChange = vi.fn();
       const { user } = render(
-        <Menu2 trigger={<Button>Open</Button>}>
-          <Menu2Submenu
-            onOpenChange={onOpenChange}
-            trigger={
+        <Menu2>
+          <Menu2Trigger>
+            <Button>Open</Button>
+          </Menu2Trigger>
+          <Menu2Popup>
+            <Menu2Submenu onOpenChange={onOpenChange}>
               <Tooltip title="Unavailable" describeChild>
                 <Menu2SubmenuTrigger disabled>More</Menu2SubmenuTrigger>
               </Tooltip>
-            }
-          >
-            <Menu2Item>Nested</Menu2Item>
-          </Menu2Submenu>
-          <Menu2Item>After</Menu2Item>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+            <Menu2Item>After</Menu2Item>
+          </Menu2Popup>
         </Menu2>,
       );
       await act(async () => screen.getByRole('button', { name: 'Open' }).focus());
@@ -367,9 +400,12 @@ describe('<Menu2SubmenuTrigger />', () => {
     const onSlotClick = vi.fn();
     // A page-sized anchor leaves no space for the popup and can cause resize loops.
     const { user } = render(
-      <Menu2 defaultOpen modal={false} trigger={<button type="button">Options</button>}>
-        <Menu2Submenu
-          trigger={
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Trigger>
+          <button type="button">Options</button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Submenu>
             <Menu2SubmenuTrigger
               openOnHover={false}
               ref={forwardedRef}
@@ -390,10 +426,11 @@ describe('<Menu2SubmenuTrigger />', () => {
             >
               More
             </Menu2SubmenuTrigger>
-          }
-        >
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
       </Menu2>,
     );
     const trigger = screen.getByRole('menuitem', { name: 'More' });
@@ -427,10 +464,15 @@ describe('<Menu2SubmenuTrigger />', () => {
     });
     render(
       <ThemeProvider theme={theme}>
-        <Menu2 defaultOpen modal={false} anchor={document.body}>
-          <Menu2Submenu trigger={<Menu2SubmenuTrigger divider>More</Menu2SubmenuTrigger>}>
-            <Menu2Item>Nested</Menu2Item>
-          </Menu2Submenu>
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body}>
+            <Menu2Submenu>
+              <Menu2SubmenuTrigger divider>More</Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
         </Menu2>
       </ThemeProvider>,
     );

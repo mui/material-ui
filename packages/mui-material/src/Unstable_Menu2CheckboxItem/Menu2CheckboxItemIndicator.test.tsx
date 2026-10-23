@@ -1,3 +1,4 @@
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { createRenderer, screen } from '@mui/internal-test-utils';
@@ -14,13 +15,15 @@ describe('Menu2CheckboxItem indicator slot', () => {
     itemProps: Record<string, any> = {},
   ) {
     return render(
-      <Menu2 defaultOpen modal={false} anchor={document.body}>
-        <Menu2CheckboxItem
-          {...itemProps}
-          slotProps={{ indicator: { 'data-testid': 'indicator', ...indicatorProps } }}
-        >
-          Ruler
-        </Menu2CheckboxItem>
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Popup anchor={document.body}>
+          <Menu2CheckboxItem
+            {...itemProps}
+            slotProps={{ indicator: { 'data-testid': 'indicator', ...indicatorProps } }}
+          >
+            Ruler
+          </Menu2CheckboxItem>
+        </Menu2Popup>
       </Menu2>,
     );
   }

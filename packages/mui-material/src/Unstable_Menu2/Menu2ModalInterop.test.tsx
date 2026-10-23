@@ -1,3 +1,6 @@
+import Menu2Trigger, { Menu2TriggerProps } from '@mui/material/Unstable_Menu2Trigger';
+import Menu2Popup, { Menu2PopupProps } from '@mui/material/Unstable_Menu2Popup';
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 import * as React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
@@ -6,7 +9,7 @@ import { createTheme, ThemeProvider } from '../styles';
 import Menu2Item from '../Unstable_Menu2Item';
 import Menu2Submenu from '../Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '../Unstable_Menu2SubmenuTrigger';
-import Menu2, { Menu2Props } from './Menu2';
+import Menu2 from './Menu2';
 
 describe.skipIf(isJsdom())('Menu2 inside a Material Dialog', () => {
   const { render } = createRenderer();
@@ -14,11 +17,13 @@ describe.skipIf(isJsdom())('Menu2 inside a Material Dialog', () => {
   function TestDialog({
     modal,
     menuProps,
+    triggerProps,
     onAction,
     onDialogClose,
   }: {
     modal?: boolean;
-    menuProps?: Partial<Menu2Props>;
+    menuProps?: Partial<Menu2PopupProps>;
+    triggerProps?: Pick<Menu2TriggerProps, 'openOnHover' | 'delay'>;
     onAction: () => void;
     onDialogClose: () => void;
   }) {
@@ -34,8 +39,13 @@ describe.skipIf(isJsdom())('Menu2 inside a Material Dialog', () => {
         }}
       >
         <div style={{ display: 'flex', gap: 32, padding: 24 }}>
-          <Menu2 modal={modal} trigger={<button type="button">Options</button>} {...menuProps}>
-            {menuProps?.children ?? <Menu2Item>Profile</Menu2Item>}
+          <Menu2 modal={modal}>
+            <Menu2Trigger {...triggerProps}>
+              <button type="button">Options</button>
+            </Menu2Trigger>
+            <Menu2Popup {...menuProps}>
+              {menuProps?.children ?? <Menu2Item>Profile</Menu2Item>}
+            </Menu2Popup>
           </Menu2>
           <button type="button" onClick={onAction}>
             Other action
@@ -141,7 +151,7 @@ describe.skipIf(isJsdom())('Menu2 inside a Material Dialog', () => {
     const onDialogClose = vi.fn();
     const { user } = render(
       <TestDialog
-        menuProps={{ openOnHover: true, delay: 0 }}
+        triggerProps={{ openOnHover: true, delay: 0 }}
         onAction={onAction}
         onDialogClose={onDialogClose}
       />,
@@ -184,10 +194,11 @@ describe.skipIf(isJsdom())('Menu2 inside a Material Dialog', () => {
         onDialogClose={onDialogClose}
         menuProps={{
           children: (
-            <Menu2Submenu
-              trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-            >
-              <Menu2Item onClick={onSelect}>Export</Menu2Item>
+            <Menu2Submenu>
+              <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup>
+                <Menu2Item onClick={onSelect}>Export</Menu2Item>
+              </Menu2SubmenuPopup>
             </Menu2Submenu>
           ),
         }}
@@ -242,8 +253,13 @@ describe.skipIf(isJsdom())('Menu2 and Material Modal scroll locking', () => {
 
         return (
           <div style={{ minHeight: '200vh' }}>
-            <Menu2 trigger={<button type="button">Options</button>}>
-              <Menu2Item onClick={() => setDialogOpen(true)}>Open dialog</Menu2Item>
+            <Menu2>
+              <Menu2Trigger>
+                <button type="button">Options</button>
+              </Menu2Trigger>
+              <Menu2Popup>
+                <Menu2Item onClick={() => setDialogOpen(true)}>Open dialog</Menu2Item>
+              </Menu2Popup>
             </Menu2>
             <Dialog open={dialogOpen} transitionDuration={0}>
               <button type="button" onClick={() => setDialogOpen(false)}>
@@ -305,8 +321,13 @@ describe.skipIf(isJsdom())('Menu2 and Material Modal scroll locking', () => {
 
       return (
         <div style={{ minHeight: '200vh' }}>
-          <Menu2 trigger={<button type="button">Options</button>}>
-            <Menu2Item onClick={() => setDialogOpen(true)}>Open dialog</Menu2Item>
+          <Menu2>
+            <Menu2Trigger>
+              <button type="button">Options</button>
+            </Menu2Trigger>
+            <Menu2Popup>
+              <Menu2Item onClick={() => setDialogOpen(true)}>Open dialog</Menu2Item>
+            </Menu2Popup>
           </Menu2>
           <Dialog open={dialogOpen} transitionDuration={0}>
             <button type="button" onClick={() => setDialogOpen(false)}>
@@ -350,8 +371,13 @@ describe.skipIf(isJsdom())('Menu2 and Material Modal scroll locking', () => {
 
       return (
         <Dialog open={dialogOpen} transitionDuration={0}>
-          <Menu2 trigger={<button type="button">Options</button>}>
-            <Menu2Item>Profile</Menu2Item>
+          <Menu2>
+            <Menu2Trigger>
+              <button type="button">Options</button>
+            </Menu2Trigger>
+            <Menu2Popup>
+              <Menu2Item>Profile</Menu2Item>
+            </Menu2Popup>
           </Menu2>
           <button type="button" onClick={() => setDialogOpen(false)}>
             Close dialog

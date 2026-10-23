@@ -1,3 +1,6 @@
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { describe, it, expect, vi } from 'vitest';
@@ -13,8 +16,8 @@ import Zoom from '../Zoom';
 
 describe('Menu2 transition slot validation', () => {
   [
-    { Component: Menu2, name: 'Menu2' },
-    { Component: Menu2Submenu, name: 'Menu2Submenu' },
+    { Component: Menu2Popup, name: 'Menu2Popup' },
+    { Component: Menu2SubmenuPopup, name: 'Menu2SubmenuPopup' },
   ].forEach(({ Component, name }) => {
     function checkTransition(transition: unknown) {
       PropTypes.resetWarningCache();
@@ -45,13 +48,13 @@ describe.skipIf(isJsdom())('Menu2 transitions', () => {
     it(`honors configured timing and slot overrides (${index})`, async () => {
       const completed = vi.fn();
       const { user } = render(
-        <Menu2
-          transitionDuration={duration}
-          slotProps={slotProps}
-          onOpenChangeComplete={completed}
-          trigger={<button type="button">Options</button>}
-        >
-          <Menu2Item>Item</Menu2Item>
+        <Menu2 onOpenChangeComplete={completed}>
+          <Menu2Trigger>
+            <button type="button">Options</button>
+          </Menu2Trigger>
+          <Menu2Popup transitionDuration={duration} slotProps={slotProps}>
+            <Menu2Item>Item</Menu2Item>
+          </Menu2Popup>
         </Menu2>,
       );
       await user.click(screen.getByRole('button', { name: 'Options' }));
@@ -72,18 +75,21 @@ describe.skipIf(isJsdom())('Menu2 transitions', () => {
       const exiting = vi.fn();
       const completed = vi.fn();
       const { user } = render(
-        <Menu2
-          slots={{ transition: TransitionSlot }}
-          onOpenChangeComplete={completed}
-          slotProps={{
-            transition: (ownerState) => {
-              expect(ownerState.slots?.transition).to.equal(TransitionSlot);
-              return { onEntering: entering, onExiting: exiting };
-            },
-          }}
-          trigger={<button type="button">Options</button>}
-        >
-          <Menu2Item>Item</Menu2Item>
+        <Menu2 onOpenChangeComplete={completed}>
+          <Menu2Trigger>
+            <button type="button">Options</button>
+          </Menu2Trigger>
+          <Menu2Popup
+            slots={{ transition: TransitionSlot }}
+            slotProps={{
+              transition: (ownerState) => {
+                expect(ownerState.slots?.transition).to.equal(TransitionSlot);
+                return { onEntering: entering, onExiting: exiting };
+              },
+            }}
+          >
+            <Menu2Item>Item</Menu2Item>
+          </Menu2Popup>
         </Menu2>,
       );
       await user.click(screen.getByRole('button', { name: 'Options' }));
@@ -103,20 +109,23 @@ describe.skipIf(isJsdom())('Menu2 transitions', () => {
   it('supports CSS-only enter and exit without a transition component', async () => {
     const completed = vi.fn();
     const { user } = render(
-      <Menu2
-        slots={{ transition: null }}
-        onOpenChangeComplete={completed}
-        slotProps={{
-          paper: {
-            sx: {
-              transition: 'opacity 300ms linear',
-              '&[data-starting-style], &[data-ending-style]': { opacity: 0 },
+      <Menu2 onOpenChangeComplete={completed}>
+        <Menu2Trigger>
+          <button type="button">Options</button>
+        </Menu2Trigger>
+        <Menu2Popup
+          slots={{ transition: null }}
+          slotProps={{
+            root: {
+              sx: {
+                transition: 'opacity 300ms linear',
+                '&[data-starting-style], &[data-ending-style]': { opacity: 0 },
+              },
             },
-          },
-        }}
-        trigger={<button type="button">Options</button>}
-      >
-        <Menu2Item>Item</Menu2Item>
+          }}
+        >
+          <Menu2Item>Item</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
     await user.click(screen.getByRole('button', { name: 'Options' }));
@@ -135,12 +144,13 @@ describe.skipIf(isJsdom())('Menu2 transitions', () => {
   it('disables Grow with transitionDuration=0', async () => {
     const completed = vi.fn();
     const { user } = render(
-      <Menu2
-        transitionDuration={0}
-        onOpenChangeComplete={completed}
-        trigger={<button type="button">Options</button>}
-      >
-        <Menu2Item>Item</Menu2Item>
+      <Menu2 onOpenChangeComplete={completed}>
+        <Menu2Trigger>
+          <button type="button">Options</button>
+        </Menu2Trigger>
+        <Menu2Popup transitionDuration={0}>
+          <Menu2Item>Item</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
     await user.click(screen.getByRole('button', { name: 'Options' }));
@@ -157,14 +167,13 @@ describe.skipIf(isJsdom())('Menu2 transitions', () => {
       const entering = vi.fn();
       const completed = vi.fn();
       const { user } = render(
-        <Menu2
-          defaultOpen
-          keepMounted={keepMounted}
-          onOpenChangeComplete={completed}
-          slotProps={{ transition: { onEnter: entering } }}
-          trigger={<button type="button">Options</button>}
-        >
-          <Menu2Item>Item</Menu2Item>
+        <Menu2 defaultOpen onOpenChangeComplete={completed}>
+          <Menu2Trigger>
+            <button type="button">Options</button>
+          </Menu2Trigger>
+          <Menu2Popup keepMounted={keepMounted} slotProps={{ transition: { onEnter: entering } }}>
+            <Menu2Item>Item</Menu2Item>
+          </Menu2Popup>
         </Menu2>,
       );
 
@@ -204,13 +213,13 @@ describe.skipIf(isJsdom())('Menu2 transitions', () => {
       const completed = vi.fn();
       const entering = vi.fn();
       const { user } = render(
-        <Menu2
-          keepMounted={keepMounted}
-          slotProps={{ transition: { onEnter: entering } }}
-          onOpenChangeComplete={completed}
-          trigger={<button type="button">Options</button>}
-        >
-          <Menu2Item>Item</Menu2Item>
+        <Menu2 onOpenChangeComplete={completed}>
+          <Menu2Trigger>
+            <button type="button">Options</button>
+          </Menu2Trigger>
+          <Menu2Popup keepMounted={keepMounted} slotProps={{ transition: { onEnter: entering } }}>
+            <Menu2Item>Item</Menu2Item>
+          </Menu2Popup>
         </Menu2>,
       );
       await user.click(screen.getByRole('button', { name: 'Options' }));
@@ -240,13 +249,13 @@ describe.skipIf(isJsdom())('Menu2 transitions', () => {
       const [open, setOpen] = React.useState(false);
       updateOpen = setOpen;
       return (
-        <Menu2
-          open={open}
-          onOpenChange={setOpen}
-          onOpenChangeComplete={completed}
-          trigger={<button type="button">Options</button>}
-        >
-          <Menu2Item>Item</Menu2Item>
+        <Menu2 open={open} onOpenChange={setOpen} onOpenChangeComplete={completed}>
+          <Menu2Trigger>
+            <button type="button">Options</button>
+          </Menu2Trigger>
+          <Menu2Popup>
+            <Menu2Item>Item</Menu2Item>
+          </Menu2Popup>
         </Menu2>
       );
     }
@@ -271,8 +280,13 @@ describe.skipIf(isJsdom())('Menu2 transitions', () => {
     const completed = vi.fn();
     const { user } = render(
       <ThemeProvider theme={createTheme({ motion: { reducedMotion: 'always' } })}>
-        <Menu2 onOpenChangeComplete={completed} trigger={<button type="button">Options</button>}>
-          <Menu2Item>Item</Menu2Item>
+        <Menu2 onOpenChangeComplete={completed}>
+          <Menu2Trigger>
+            <button type="button">Options</button>
+          </Menu2Trigger>
+          <Menu2Popup>
+            <Menu2Item>Item</Menu2Item>
+          </Menu2Popup>
         </Menu2>
       </ThemeProvider>,
     );
@@ -292,11 +306,13 @@ describe.skipIf(isJsdom())('Menu2 transitions', () => {
 
   it('does not let a plain sx transition override disable the Grow transition', async () => {
     const { user } = render(
-      <Menu2
-        slotProps={{ paper: { sx: { transition: 'none' } } }}
-        trigger={<button type="button">Options</button>}
-      >
-        <Menu2Item>Item</Menu2Item>
+      <Menu2>
+        <Menu2Trigger>
+          <button type="button">Options</button>
+        </Menu2Trigger>
+        <Menu2Popup slotProps={{ root: { sx: { transition: 'none' } } }}>
+          <Menu2Item>Item</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
     await user.click(screen.getByRole('button', { name: 'Options' }));
@@ -312,17 +328,20 @@ describe.skipIf(isJsdom())('Menu2 transitions', () => {
         <Menu2
           defaultOpen
           modal={false}
-          anchor={document.body}
           onOpenChange={(open, details) => changes.push({ root: open, reason: details.reason })}
         >
-          <Menu2Submenu
-            onOpenChange={(open, details) =>
-              changes.push({ submenu: open, reason: details.reason })
-            }
-            trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-          >
-            <Menu2Item>Nested</Menu2Item>
-          </Menu2Submenu>
+          <Menu2Popup anchor={document.body}>
+            <Menu2Submenu
+              onOpenChange={(open, details) =>
+                changes.push({ submenu: open, reason: details.reason })
+              }
+            >
+              <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
         </Menu2>
       </ThemeProvider>,
     );

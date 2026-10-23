@@ -4,6 +4,8 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Unstable_Menu2';
+import MenuPopup from '@mui/material/Unstable_Menu2Popup';
+import MenuTrigger from '@mui/material/Unstable_Menu2Trigger';
 import MenuItem from '@mui/material/Unstable_Menu2Item';
 
 export default function ControlledMenu2() {
@@ -19,15 +21,17 @@ export default function ControlledMenu2() {
           setOpen(nextOpen);
           setReason(eventDetails.reason);
         }}
-        trigger={
+      >
+        <MenuTrigger>
           <IconButton aria-label="More actions">
             <MoreVertIcon />
           </IconButton>
-        }
-      >
-        <MenuItem>Rename</MenuItem>
-        <MenuItem>Duplicate</MenuItem>
-        <MenuItem>Delete</MenuItem>
+        </MenuTrigger>
+        <MenuPopup>
+          <MenuItem>Rename</MenuItem>
+          <MenuItem>Duplicate</MenuItem>
+          <MenuItem>Delete</MenuItem>
+        </MenuPopup>
       </Menu>
       <Typography variant="body2" sx={{ color: 'text.secondary' }}>
         {reason === null

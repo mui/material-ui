@@ -1,3 +1,4 @@
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { createRenderer, fireEvent, isJsdom, screen } from '@mui/internal-test-utils';
@@ -18,21 +19,23 @@ describe('Menu2RadioItem indicator slot', () => {
 
   function renderGroup(indicatorProps: Record<string, any> = {}) {
     return render(
-      <Menu2 defaultOpen modal={false} anchor={document.body}>
-        <Menu2RadioGroup defaultValue="one">
-          <Menu2RadioItem
-            value="one"
-            slotProps={{ indicator: { 'data-testid': 'checked', ...indicatorProps } }}
-          >
-            One
-          </Menu2RadioItem>
-          <Menu2RadioItem
-            value="two"
-            slotProps={{ indicator: { 'data-testid': 'unchecked', ...indicatorProps } }}
-          >
-            Two
-          </Menu2RadioItem>
-        </Menu2RadioGroup>
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Popup anchor={document.body}>
+          <Menu2RadioGroup defaultValue="one">
+            <Menu2RadioItem
+              value="one"
+              slotProps={{ indicator: { 'data-testid': 'checked', ...indicatorProps } }}
+            >
+              One
+            </Menu2RadioItem>
+            <Menu2RadioItem
+              value="two"
+              slotProps={{ indicator: { 'data-testid': 'unchecked', ...indicatorProps } }}
+            >
+              Two
+            </Menu2RadioItem>
+          </Menu2RadioGroup>
+        </Menu2Popup>
       </Menu2>,
     );
   }

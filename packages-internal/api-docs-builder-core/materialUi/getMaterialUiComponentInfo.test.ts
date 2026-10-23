@@ -6,14 +6,32 @@ import { getMaterialUiComponentInfo } from './getMaterialUiComponentInfo';
 
 describe('getMaterialUiComponentInfo', () => {
   it.each([
+    { name: 'Menu2', api: 'menu-2', spread: false },
+    { name: 'Menu2Submenu', api: 'menu-2-submenu', spread: false },
+    { name: 'Menu2Popup', api: 'menu-2-popup', spread: true },
+    { name: 'Menu2SubmenuPopup', api: 'menu-2-submenu-popup', spread: true },
+  ])('documents the $name HTML prop contract', ({ name, api, spread }) => {
+    const componentInfo = getMaterialUiComponentInfo(
+      path.join(process.cwd(), 'packages/mui-material/src', `Unstable_${name}`, `${name}.tsx`),
+    );
+    const metadata = JSON.parse(
+      fs.readFileSync(path.join(componentInfo.apiPagesDirectory, `${api}.json`), 'utf8'),
+    );
+
+    expect(componentInfo.readFile().spread).to.equal(spread);
+    expect(metadata.spread).to.equal(spread);
+    expect(metadata.forwardsRefTo).to.equal(spread ? 'HTMLDivElement' : undefined);
+  });
+
+  it.each([
     ['internal/MenuItemBase.tsx', true],
     ['internal/Menu2ItemBase.tsx', true],
     ['Unstable_Menu2/Menu2IndicatorBase.tsx', true],
-    ['Unstable_Menu2/Menu2Popup.tsx', true],
     ['Unstable_Menu2/Menu2PopupSlotBases.tsx', true],
-    ['Unstable_Menu2/Menu2SubmenuPopup.tsx', true],
     ['Unstable_Menu2SubmenuTrigger/Menu2SubmenuTriggerRootSlot.tsx', true],
     ['Unstable_Menu2/Menu2.tsx', false],
+    ['Unstable_Menu2Popup/Menu2Popup.tsx', false],
+    ['Unstable_Menu2SubmenuPopup/Menu2SubmenuPopup.tsx', false],
     ['Unstable_Menu2SubmenuTrigger/Menu2SubmenuTrigger.tsx', false],
     ['Popper/BasePopper.tsx', true],
     ['MenuItem/MenuItem.js', false],

@@ -1,3 +1,4 @@
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
@@ -16,8 +17,10 @@ describe('<Menu2RadioItem />', () => {
     classes,
     render: (node) =>
       render(
-        <Menu2 defaultOpen modal={false} anchor={document.body}>
-          <Menu2RadioGroup>{node}</Menu2RadioGroup>
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body}>
+            <Menu2RadioGroup>{node}</Menu2RadioGroup>
+          </Menu2Popup>
         </Menu2>,
       ),
     getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
@@ -33,10 +36,12 @@ describe('<Menu2RadioItem />', () => {
     const onValueChange = spy();
     const onOpenChange = spy();
     const { user } = render(
-      <Menu2 defaultOpen modal={false} anchor={document.body} onOpenChange={onOpenChange}>
-        <Menu2RadioGroup defaultValue="one" onValueChange={onValueChange}>
-          <Menu2RadioItem value="two">Two</Menu2RadioItem>
-        </Menu2RadioGroup>
+      <Menu2 defaultOpen modal={false} onOpenChange={onOpenChange}>
+        <Menu2Popup anchor={document.body}>
+          <Menu2RadioGroup defaultValue="one" onValueChange={onValueChange}>
+            <Menu2RadioItem value="two">Two</Menu2RadioItem>
+          </Menu2RadioGroup>
+        </Menu2Popup>
       </Menu2>,
     );
 

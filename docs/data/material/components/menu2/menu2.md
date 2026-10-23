@@ -1,7 +1,7 @@
 ---
 productId: material-ui
 title: React Menu v2 component
-components: Menu2, Menu2Trigger, Menu2Item, Menu2LinkItem, Menu2CheckboxItem, Menu2RadioGroup, Menu2RadioItem, Menu2Submenu, Menu2SubmenuTrigger, Menu2Group, Menu2GroupLabel, Menu2Separator
+components: Menu2, Menu2Trigger, Menu2Popup, Menu2Item, Menu2LinkItem, Menu2CheckboxItem, Menu2RadioGroup, Menu2RadioItem, Menu2Submenu, Menu2SubmenuTrigger, Menu2SubmenuPopup, Menu2Group, Menu2GroupLabel, Menu2Separator
 githubLabel: 'scope: menu'
 materialDesign: https://m2.material.io/components/menus
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
@@ -26,15 +26,19 @@ The [current Menu](/material-ui/react-menu/) doesn't change, and you can use bot
 
 Menu v2 is a set of components that compose into a menu:
 
-- **Menu**: the trigger and the menu surface. One component configures both.
+- **Menu**: the open state and behavior. It renders no element.
+- **Trigger**: connects the element that opens the menu.
+- **Popup**: the positioned menu surface and its transition.
 - **Item**: an option for users to select.
 - **Link Item**: an item that navigates.
 - **Checkbox Item**, **Radio Group**, and **Radio Item**: items with a checked state.
-- **Submenu** and **Submenu Trigger**: a nested menu and the item that opens it.
+- **Submenu**, **Submenu Trigger**, and **Submenu Popup**: the same parts for a nested menu.
 - **Group**, **Group Label**, and **Separator**: the structure in a menu.
 
 ```jsx
 import Menu from '@mui/material/Unstable_Menu2';
+import MenuTrigger from '@mui/material/Unstable_Menu2Trigger';
+import MenuPopup from '@mui/material/Unstable_Menu2Popup';
 import MenuItem from '@mui/material/Unstable_Menu2Item';
 ```
 
@@ -50,7 +54,7 @@ Menu v2 uses [Base UI](https://base-ui.com/react/components/menu) to provide mo
 - **Nested menus** coordinate focus and keyboard navigation. Positioning follows the anchor and flips to avoid collisions.
 - **Checkbox and radio items**, labeled groups, and link items provide built-in roles and ARIA attributes.
 - **Disabled items stay focusable**, and content outside the menu remains available to screen readers.
-- **The trigger prop** handles anchor state and ARIA attributes. Opening with a pointer highlights no item. Enter, Space, and ArrowDown highlight the first enabled item; ArrowUp highlights the last enabled item.
+- **The trigger component** handles anchor state and ARIA attributes. Opening with a pointer highlights no item. Enter, Space, and ArrowDown highlight the first enabled item; ArrowUp highlights the last enabled item.
 
 Material UI supplies the styles and theming.
 Base UI is included in `@mui/material`; no extra installation is needed, and apps that don't import Menu v2 don't bundle it.
@@ -59,7 +63,8 @@ See [Upgrade to Menu v2](/material-ui/migration/upgrade-to-menu-v2/) for the arc
 
 ## Basic menu
 
-Pass the element that opens the menu to the `trigger` prop, and the items as children.
+Put `MenuTrigger` and `MenuPopup` inside `Menu`.
+Give `MenuTrigger` one element, and put the items inside `MenuPopup`.
 
 {{"component": "file://./demos/basic/index.ts"}}
 
@@ -69,13 +74,13 @@ Checkbox, radio, and link items stay open by default; set `closeOnClick` to clos
 
 :::warning
 A custom trigger component must forward props and ref to its element, the same as [Tooltip](/material-ui/react-tooltip/), or the menu doesn't open.
-Set `slotProps.trigger.nativeButton` to `false` when it doesn't render a native `<button>`.
+Set `nativeButton={false}` on `MenuTrigger` when its child doesn't render a native `<button>`.
 :::
 
 ## Account menu
 
 The trigger can be a composed element, such as an `IconButton` in a `Tooltip`.
-`align="end"` aligns the menu with the end of the trigger.
+`align="end"` on `MenuPopup` aligns the menu with the end of the trigger.
 
 Give the `IconButton` a unique `id` so the menu can use it as its accessible label.
 Tooltip uses its own `id` prop for the tooltip, not the button.
@@ -116,8 +121,8 @@ The [live recipe](/experiments/menu2-recipes/#menu2-open-dialog) includes a clas
 
 ## Submenu
 
-Nest a `MenuSubmenu` in the item list, and pass a `MenuSubmenuTrigger` to its `trigger` prop.
-Its children are the submenu items.
+Nest a `MenuSubmenu` in the item list.
+Put `MenuSubmenuTrigger` and `MenuSubmenuPopup` inside it, with the items inside the popup.
 The trigger can be wrapped in another component, but regular, link, checkbox, and radio items do not open a submenu.
 
 {{"component": "file://./demos/submenu/index.ts"}}
@@ -140,9 +145,9 @@ Compose the same list primitives that you use with the current Menu: `ListItemIc
 
 ## Dense menu
 
-Set `dense` on the `list` slot to make all the items compact.
+Set `dense` on the popup's `list` slot to make all the items compact.
 Submenus inherit their parent list's density.
-Set `slotProps.list.dense` on a submenu to override it, including `false` for regular spacing.
+Set `slotProps.list.dense` on `MenuSubmenuPopup` to override it, including `false` for regular spacing.
 An item can also set its own `dense` prop.
 
 {{"component": "file://./demos/dense/index.ts"}}
@@ -193,7 +198,7 @@ Unlike a classic `MenuItem` with `href`, `MenuLinkItem` does not support `disabl
 
 ## Positioned menu
 
-`side` and `align` place the menu relative to its anchor, and `sideOffset` and `alignOffset` move it.
+The `MenuPopup` props `side` and `align` place the menu relative to its anchor, and `sideOffset` and `alignOffset` move it.
 The defaults are `side="bottom"` and `align="start"`.
 
 Use the logical `inline-start` and `inline-end` sides to get the correct direction in right-to-left text.
@@ -207,7 +212,7 @@ The menu flips when it collides with the edge of its container, and it follows i
 
 ## Open on hover
 
-Set `openOnHover` to open the menu when the pointer rests on the trigger.
+Set `openOnHover` on `MenuTrigger` to open the menu when the pointer rests on the trigger.
 
 {{"component": "file://./demos/hover/index.ts"}}
 
@@ -215,7 +220,7 @@ A menu that opens on hover isn't modal, so the rest of the page stays interactiv
 
 ## Controlled menu
 
-Pass `open` and `onOpenChange` to control the open state.
+Pass `open` and `onOpenChange` to `Menu` to control the open state.
 The trigger still sets the ARIA attributes and receives focus when the menu closes.
 
 {{"component": "file://./demos/controlled/index.ts"}}
@@ -228,23 +233,27 @@ This works for controlled and uncontrolled menus:
 
 ```jsx
 <Menu
-  trigger={<Button>Options</Button>}
   onOpenChange={(open, eventDetails) => {
     if (!open && eventDetails.reason === 'outside-press') {
       eventDetails.cancel();
     }
   }}
 >
+  <MenuTrigger>
+    <Button>Options</Button>
+  </MenuTrigger>
+  <MenuPopup>{/* Menu items */}</MenuPopup>
+</Menu>
 ```
 
 ### Without a trigger
 
-Omit `trigger` and pass `anchor` to position the menu against an element that you control, the same as `anchorEl` in the current Menu.
+Omit `MenuTrigger` and pass `anchor` to `MenuPopup` to position it against an element that you control, the same as `anchorEl` in the current Menu.
 The menu can't connect to that element, so you do the wiring:
 
-- Add `aria-haspopup="menu"`, `aria-expanded`, and `aria-controls` to the element. Set the matching `id` on the menu with `slotProps.paper`.
-- Give the menu an accessible name with `aria-label` or `aria-labelledby`.
-- Pass `finalFocus` to return focus to the element when the menu closes. Otherwise, focus can move to an unrelated element.
+- Add `aria-haspopup="menu"`, `aria-expanded`, and `aria-controls` to the element. Set the matching `id` on `MenuPopup`.
+- Give `MenuPopup` an accessible name with `aria-label` or `aria-labelledby`.
+- Pass `finalFocus` to `MenuPopup` to return focus to the element when the menu closes. Otherwise, focus can move to an unrelated element.
 
 :::info
 Menu v2 doesn't support context menus.
@@ -253,39 +262,39 @@ Menu v2 doesn't support context menus.
 ## Max height menu
 
 The menu limits its height to the viewport and to the space available at the anchor, and scrolls its content.
-To set a smaller limit on the `paper` slot, use `min(320px, var(--available-height))` to keep it within short screens.
+To set a smaller limit with the `sx` prop on `MenuPopup`, use `min(320px, var(--available-height))` to keep it within short screens.
 
 {{"component": "file://./demos/long/index.ts"}}
 
 ## Customization
 
-Style the menu with `sx`, slots, or the `MuiMenu2*` theme keys.
-See the [theme components](/material-ui/customization/theme-components/) guide for `defaultProps` and `styleOverrides`, and the [API reference](/material-ui/api/menu-2/) for the slots and CSS classes.
+Style the popup and items with `sx`, slots, or the `MuiMenu2*` theme keys.
+See the [theme components](/material-ui/customization/theme-components/) guide for `defaultProps` and `styleOverrides`, and the [popup API reference](/material-ui/api/menu-2-popup/) for the slots and CSS classes.
 
 ### Slots
 
-`ref`, `className`, `style`, and `sx` target the portal's root element, not the positioned element.
-Use `slotProps.positioner` for the positioned element and `slotProps.paper` for the menu surface.
-Top-level event handlers and `aria-label`, `aria-labelledby`, and `aria-describedby` also target the surface; other HTML attributes go to the root.
-Keep using top-level props such as `side` and `align` for positioning.
+`Menu` and `MenuSubmenu` render no element and have no slots, DOM ref, or `sx` prop.
+On `MenuPopup` and `MenuSubmenuPopup`, `ref`, `className`, `style`, `sx`, event handlers, and HTML attributes target the menu surface, which is the `root` slot.
+Use `slotProps.positioner` for the positioned element and `slotProps.portal` for the stacking layer.
+Set positioning props such as `side` and `align` on the popup.
 
-The root carries `theme.zIndex.modal` and keeps the menu and its modal interaction layer above other content, including Dialog.
-Submenus stay within the root menu's stacking context, so change the top-level root's `zIndex` to change the whole menu's stacking level.
+The portal carries `theme.zIndex.modal` and keeps the menu and its modal interaction layer above other content, including Dialog.
+Submenus stay within the root menu's stacking context, so set `slotProps.portal.sx.zIndex` on `MenuPopup` to change the stacking level of the whole menu.
 
 :::warning
-A replacement `slots.root` must provide its own stacking and closed-state styles.
-With `keepMounted`, the default root hides after the exit transition, when its positioner becomes hidden.
+A replacement `slots.portal` must provide its own stacking and closed-state styles.
+With `keepMounted`, the default portal hides after the exit transition, when its positioner becomes hidden.
 :::
 
-This demo wraps Menu in `styled()` to set defaults and styles the surface and items through their class selectors:
+This demo wraps `MenuPopup` in `styled()` to set defaults, style the surface directly, and style items through their class selectors:
 
 {{"component": "file://./demos/customized/index.ts"}}
 
 ### Trigger
 
-The trigger isn't a slot, because you supply the element.
-Style it directly, or use a scoped state selector such as `.MuiMenu2Trigger-root.Mui-open`.
-`slotProps.trigger` accepts only `nativeButton`, `className`, and `ref`.
+`MenuTrigger` merges its behavior into the element you supply as its child.
+Style that element directly, or use a scoped state selector such as `.MuiMenu2Trigger-root.Mui-open`.
+Trigger props, event handlers, and the ref belong on `MenuTrigger` or its child, not on `Menu`.
 
 :::warning
 While a menu or submenu is open, Base UI renders hidden `span` elements next to its trigger for focus and accessibility.
@@ -296,7 +305,7 @@ The focus guards have a `data-base-ui-focus-guard` attribute.
 
 ### Shared theme styles
 
-`MuiMenu2.styleOverrides` also applies to matching submenu slots.
+`MuiMenu2Popup.styleOverrides` also applies to matching submenu popup slots.
 `MuiMenu2Item.styleOverrides` applies to all item roots, including link, checkbox, and radio items and submenu triggers.
 The `dense`, `divider`, and `gutters` overrides apply when the corresponding state matches.
 Theme variants are shared too; menu variants apply only to the `root` slot.
@@ -318,7 +327,7 @@ Menu v2 also provides these Base UI `data-*` attributes for CSS selectors and T
 | `MenuLinkItem` root                                         | `data-highlighted`                                                                                |
 | `MenuCheckboxItem` and `MenuRadioItem` roots and indicators | `data-highlighted`, `data-disabled`, `data-checked`, `data-unchecked`                             |
 | `MenuSubmenuTrigger` root                                   | `data-popup-open`, `data-highlighted`, `data-disabled`                                            |
-| `paper` slot                                                | `data-open`, `data-closed`, `data-side`, `data-align`, `data-starting-style`, `data-ending-style` |
+| Popup `root` slot                                           | `data-open`, `data-closed`, `data-side`, `data-align`, `data-starting-style`, `data-ending-style` |
 | `positioner` slot                                           | `data-open`, `data-closed`, `data-side`, `data-align`                                             |
 | Optional `backdrop` slot                                    | `data-open`, `data-closed`, `data-starting-style`, `data-ending-style`                            |
 
@@ -330,7 +339,7 @@ Triggers use `data-popup-open`, not `data-open`.
 On the root trigger, `data-pressed` follows the open state and `data-disabled` follows Menu's `disabled` prop.
 `data-highlighted` follows pointer and keyboard navigation, including focus on disabled items; use `.Mui-focusVisible` for keyboard focus-visible styles.
 
-The menu's `root` and `list` slots and the submenu arrow have no automatic state attributes.
+The popup's `portal` and `list` slots and the submenu arrow have no automatic state attributes.
 Custom slots must forward the supplied props and ref.
 Internal `data-mui-*` markers are not part of this styling contract.
 
@@ -361,9 +370,9 @@ The internal indicator components are not exported, but their owning items expor
 
 ### Transitions
 
-The menu uses the `Grow` transition, the same as the current Menu.
+`MenuPopup` uses the `Grow` transition, the same as the current Menu.
 With the default `transitionDuration="auto"`, the duration depends on the height of the menu.
-Pass a different transition component to `slots.transition`, and its props to `slotProps.transition`:
+Pass a different transition component to the popup's `slots.transition`, and its props to `slotProps.transition`:
 
 {{"component": "file://./demos/fade/index.ts"}}
 
@@ -375,7 +384,7 @@ Test other transitions before use.
 The adapter controls `in`, `appear`, `mountOnEnter`, and `unmountOnExit`.
 
 :::warning
-Use `onOpenChangeComplete(open)` for completion, not the transition's `onEntered` or `onExited`.
+Use `onOpenChangeComplete(open)` on `Menu` for completion, not the transition's `onEntered` or `onExited`.
 Base UI controls mounting and can unmount the transition before its completion timer fires.
 :::
 
@@ -385,11 +394,10 @@ The menu surface has `data-starting-style` for its initial style, then removes i
 It has `data-ending-style` while it leaves:
 
 ```jsx
-<Menu
-  trigger={<Button>Options</Button>}
+<MenuPopup
   slots={{ transition: null }}
   slotProps={{
-    paper: {
+    root: {
       sx: {
         transition: 'opacity 150ms',
         '&[data-starting-style], &[data-ending-style]': { opacity: 0 },
@@ -397,6 +405,8 @@ It has `data-ending-style` while it leaves:
     },
   }}
 >
+  {/* Menu items */}
+</MenuPopup>
 ```
 
 `Grow` and the other Material UI transitions follow [`theme.motion.reducedMotion`](/material-ui/customization/transitions/#reduced-motion).
@@ -412,15 +422,14 @@ Base UI uses an internal, transparent backdrop for modal menus.
 This layer is absent when a menu opens on hover or has `modal={false}`.
 
 The optional visual backdrop is separate and is not rendered by default.
-Set `slots.backdrop` or `slotProps.backdrop` to render it inside the root, behind the menu.
+Set `slots.backdrop` or `slotProps.backdrop` on `MenuPopup` to render it inside the portal, behind the menu.
 Its default styles are transparent and do not capture pointer events.
 To dim the page:
 
 ```jsx
-<Menu
-  trigger={<Button>Options</Button>}
-  slotProps={{ backdrop: { sx: { bgcolor: 'rgba(0, 0, 0, 0.5)' } } }}
->
+<MenuPopup slotProps={{ backdrop: { sx: { bgcolor: 'rgba(0, 0, 0, 0.5)' } } }}>
+  {/* Menu items */}
+</MenuPopup>
 ```
 
 Set `slots={{ backdrop: null }}` to omit this layer, including when the theme supplies backdrop slot props.
@@ -440,10 +449,10 @@ It handles the trigger, the roles, the keyboard behavior, focus management, and 
 - Escape closes one level at a time and returns focus to the trigger of that level.
 
 The menu takes its accessible name from the trigger.
-`aria-label` or `aria-labelledby` on `Menu` replaces it, and an explicit `aria-labelledby` takes precedence over `aria-label`.
-Matching attributes on `slotProps.paper` take precedence over the top-level ones.
+`aria-label` or `aria-labelledby` on `MenuPopup` replaces it, and an explicit `aria-labelledby` takes precedence over `aria-label`.
+Matching attributes on `slotProps.root` take precedence over the top-level ones.
 
 Two things stay your responsibility:
 
-- **Label an icon-only trigger.** Pass `aria-label` to the element that you supply as `trigger`.
+- **Label an icon-only trigger.** Pass `aria-label` to `MenuTrigger` or its child.
 - **Keep custom item content readable.** Icons, secondary text, and shortcut hints in an item need sufficient contrast.

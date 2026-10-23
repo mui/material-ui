@@ -1,7 +1,11 @@
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { StyledEngineProvider } from '@mui/styled-engine';
+import { menu2SubmenuTriggerClasses } from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { createTheme, enhanceHighContrast, Theme, ThemeOptions, ThemeProvider } from '../styles';
 import menuItemClasses from '../MenuItem/menuItemClasses';
 import Menu2CheckboxItem from '../Unstable_Menu2CheckboxItem';
@@ -10,7 +14,7 @@ import Menu2LinkItem from '../Unstable_Menu2LinkItem';
 import Menu2RadioGroup from '../Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '../Unstable_Menu2RadioItem';
 import Menu2Submenu from '../Unstable_Menu2Submenu';
-import Menu2SubmenuTrigger, { menu2SubmenuTriggerClasses } from '../Unstable_Menu2SubmenuTrigger';
+import Menu2SubmenuTrigger from '../Unstable_Menu2SubmenuTrigger';
 import Menu2 from './Menu2';
 import {
   menu2CheckboxItemClasses,
@@ -62,14 +66,13 @@ const itemCases = [
     name: 'MuiMenu2SubmenuTrigger',
     classes: menu2SubmenuTriggerClasses,
     renderItem: (props: ItemTestProps) => (
-      <Menu2Submenu
-        trigger={
-          <Menu2SubmenuTrigger {...props} openOnHover={false}>
-            Target
-          </Menu2SubmenuTrigger>
-        }
-      >
-        <Menu2Item>Nested</Menu2Item>
+      <Menu2Submenu>
+        <Menu2SubmenuTrigger {...props} openOnHover={false}>
+          Target
+        </Menu2SubmenuTrigger>
+        <Menu2SubmenuPopup>
+          <Menu2Item>Nested</Menu2Item>
+        </Menu2SubmenuPopup>
       </Menu2Submenu>
     ),
   },
@@ -144,8 +147,8 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
       );
       render(
         <ThemeProvider theme={theme}>
-          <Menu2 defaultOpen modal={false} anchor={document.body}>
-            {item}
+          <Menu2 defaultOpen modal={false}>
+            <Menu2Popup anchor={document.body}>{item}</Menu2Popup>
           </Menu2>
         </ThemeProvider>,
       );
@@ -199,10 +202,15 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
     );
     render(
       <ThemeProvider theme={theme}>
-        <Menu2 defaultOpen modal={false} anchor={document.body}>
-          <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
-            <Menu2Item>Nested</Menu2Item>
-          </Menu2Submenu>
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body}>
+            <Menu2Submenu>
+              <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
         </Menu2>
       </ThemeProvider>,
     );
@@ -249,10 +257,15 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
         };
         it(`applies ${name}.${slot} highlight styles only while the item is highlighted`, async () => {
           const { user, unmount } = renderWithTheme(
-            <Menu2 transitionDuration={0} trigger={<button type="button">Options</button>}>
-              <Menu2Item>Before</Menu2Item>
-              {item}
-              <Menu2Item>After</Menu2Item>
+            <Menu2>
+              <Menu2Trigger>
+                <button type="button">Options</button>
+              </Menu2Trigger>
+              <Menu2Popup transitionDuration={0}>
+                <Menu2Item>Before</Menu2Item>
+                {item}
+                <Menu2Item>After</Menu2Item>
+              </Menu2Popup>
             </Menu2>,
             {
               [name]: {
@@ -324,19 +337,24 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
               }),
             };
             const { user, unmount } = renderWithTheme(
-              <Menu2 transitionDuration={0} trigger={<button type="button">Options</button>}>
-                {kind === 'item' ? (
-                  <Menu2Item data-testid="target" sx={sx}>
-                    Target
-                  </Menu2Item>
-                ) : (
-                  <Menu2CheckboxItem
-                    defaultChecked
-                    slotProps={{ indicator: { 'data-testid': 'target', sx } }}
-                  >
-                    Target
-                  </Menu2CheckboxItem>
-                )}
+              <Menu2>
+                <Menu2Trigger>
+                  <button type="button">Options</button>
+                </Menu2Trigger>
+                <Menu2Popup transitionDuration={0}>
+                  {kind === 'item' ? (
+                    <Menu2Item data-testid="target" sx={sx}>
+                      Target
+                    </Menu2Item>
+                  ) : (
+                    <Menu2CheckboxItem
+                      defaultChecked
+                      slotProps={{ indicator: { 'data-testid': 'target', sx } }}
+                    >
+                      Target
+                    </Menu2CheckboxItem>
+                  )}
+                </Menu2Popup>
               </Menu2>,
               {
                 [name]: {
@@ -374,24 +392,26 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
       itemCases.forEach(({ name, classes, renderItem }) => {
         it(`supports ${name} dense, divider, and gutters overrides`, async () => {
           renderWithTheme(
-            <Menu2 defaultOpen modal={false} anchor={document.body} slots={{ transition: null }}>
-              {renderItem({ 'data-testid': 'default' })}
-              {renderItem({
-                'data-testid': 'states',
-                dense: true,
-                divider: true,
-                disableGutters: true,
-              })}
-              {renderItem({
-                'data-testid': 'sx',
-                dense: true,
-                divider: true,
-                sx: {
-                  paddingTop: '21px',
-                  marginTop: '22px',
-                  paddingLeft: '23px',
-                },
-              })}
+            <Menu2 defaultOpen modal={false}>
+              <Menu2Popup anchor={document.body} slots={{ transition: null }}>
+                {renderItem({ 'data-testid': 'default' })}
+                {renderItem({
+                  'data-testid': 'states',
+                  dense: true,
+                  divider: true,
+                  disableGutters: true,
+                })}
+                {renderItem({
+                  'data-testid': 'sx',
+                  dense: true,
+                  divider: true,
+                  sx: {
+                    paddingTop: '21px',
+                    marginTop: '22px',
+                    paddingLeft: '23px',
+                  },
+                })}
+              </Menu2Popup>
             </Menu2>,
             {
               [name]: {
@@ -447,14 +467,18 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
         const completed = vi.fn();
         const ownerStates: object[] = [];
         const { user, unmount } = renderWithTheme(
-          <Menu2 transitionDuration={0} trigger={<button type="button">Options</button>}>
-            <Menu2Submenu
-              onOpenChangeComplete={completed}
-              transitionDuration={{ enter: 0, exit: 300 }}
-              trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-            >
-              <Menu2Item>Nested</Menu2Item>
-            </Menu2Submenu>
+          <Menu2>
+            <Menu2Trigger>
+              <button type="button">Options</button>
+            </Menu2Trigger>
+            <Menu2Popup transitionDuration={0}>
+              <Menu2Submenu onOpenChangeComplete={completed}>
+                <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+                <Menu2SubmenuPopup transitionDuration={{ enter: 0, exit: 300 }}>
+                  <Menu2Item>Nested</Menu2Item>
+                </Menu2SubmenuPopup>
+              </Menu2Submenu>
+            </Menu2Popup>
           </Menu2>,
           {
             MuiMenu2SubmenuTrigger: {
@@ -512,25 +536,29 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
           function Demo() {
             const [open, setOpen] = React.useState(false);
             return (
-              <Menu2 transitionDuration={0} trigger={<button type="button">Options</button>}>
-                <Menu2Submenu
-                  open={open}
-                  onOpenChange={setOpen}
-                  onOpenChangeComplete={completed}
-                  finalFocus={false}
-                  transitionDuration={{ enter: 0, exit: 300 }}
-                  trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-                >
-                  <Menu2Item
-                    onKeyDown={(event) => {
-                      if (event.key === 'F2') {
-                        setOpen(false);
-                      }
-                    }}
-                  >
-                    Nested
-                  </Menu2Item>
-                </Menu2Submenu>
+              <Menu2>
+                <Menu2Trigger>
+                  <button type="button">Options</button>
+                </Menu2Trigger>
+                <Menu2Popup transitionDuration={0}>
+                  <Menu2Submenu open={open} onOpenChange={setOpen} onOpenChangeComplete={completed}>
+                    <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+                    <Menu2SubmenuPopup
+                      finalFocus={false}
+                      transitionDuration={{ enter: 0, exit: 300 }}
+                    >
+                      <Menu2Item
+                        onKeyDown={(event) => {
+                          if (event.key === 'F2') {
+                            setOpen(false);
+                          }
+                        }}
+                      >
+                        Nested
+                      </Menu2Item>
+                    </Menu2SubmenuPopup>
+                  </Menu2Submenu>
+                </Menu2Popup>
               </Menu2>
             );
           }

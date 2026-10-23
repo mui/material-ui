@@ -10,17 +10,25 @@ const theme = createTheme({
     MuiButton: { defaultProps: { variant: 'contained' } },
     MuiMenu: { defaultProps: { keepMounted: true } },
     MuiMenu2: {
-      defaultProps: { modal: false, align: 'start' },
+      defaultProps: { modal: false },
+    },
+    MuiMenu2Popup: {
+      defaultProps: { align: 'start' },
       styleOverrides: {
-        paper: ({ ownerState, theme: componentTheme }) => {
-          ownerState.open satisfies boolean | undefined;
+        root: ({ ownerState, theme: componentTheme }) => {
+          ownerState.elevation satisfies number | undefined;
           // @ts-expect-error Owner state must retain the declared prop types.
-          ownerState.open satisfies string;
+          ownerState.elevation satisfies string;
           return { minWidth: componentTheme.spacing(20) };
         },
         positioner: { transition: 'none' },
       },
       variants: [{ props: { align: 'start' }, style: { color: 'navy' } }],
+    },
+    MuiMenu2Submenu: { defaultProps: { loopFocus: true } },
+    MuiMenu2SubmenuPopup: {
+      defaultProps: { side: 'inline-end' },
+      styleOverrides: { root: { minWidth: 180 } },
     },
     MuiMenu2Item: {
       defaultProps: { dense: true },

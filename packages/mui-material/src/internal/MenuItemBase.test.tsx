@@ -1,3 +1,5 @@
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import * as React from 'react';
 import { describe, expect, it } from 'vitest';
 import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
@@ -30,35 +32,31 @@ describe.skipIf(isJsdom())('MenuItem shared styled base', () => {
                     Classic
                   </MenuItem>
                 </MenuList>
-                <Menu2
-                  defaultOpen
-                  modal={false}
-                  anchor={document.body}
-                  slots={{ transition: null }}
-                >
-                  <Menu2Item {...itemProps} data-testid="item">
-                    Item
-                  </Menu2Item>
-                  <Menu2LinkItem {...itemProps} href="#target" data-testid="link">
-                    Link
-                  </Menu2LinkItem>
-                  <Menu2CheckboxItem {...itemProps} data-testid="checkbox">
-                    Checkbox
-                  </Menu2CheckboxItem>
-                  <Menu2RadioGroup>
-                    <Menu2RadioItem {...itemProps} value="one" data-testid="radio">
-                      Radio
-                    </Menu2RadioItem>
-                  </Menu2RadioGroup>
-                  <Menu2Submenu
-                    trigger={
+                <Menu2 defaultOpen modal={false}>
+                  <Menu2Popup anchor={document.body} slots={{ transition: null }}>
+                    <Menu2Item {...itemProps} data-testid="item">
+                      Item
+                    </Menu2Item>
+                    <Menu2LinkItem {...itemProps} href="#target" data-testid="link">
+                      Link
+                    </Menu2LinkItem>
+                    <Menu2CheckboxItem {...itemProps} data-testid="checkbox">
+                      Checkbox
+                    </Menu2CheckboxItem>
+                    <Menu2RadioGroup>
+                      <Menu2RadioItem {...itemProps} value="one" data-testid="radio">
+                        Radio
+                      </Menu2RadioItem>
+                    </Menu2RadioGroup>
+                    <Menu2Submenu>
                       <Menu2SubmenuTrigger {...itemProps} data-testid="submenu">
                         More
                       </Menu2SubmenuTrigger>
-                    }
-                  >
-                    <Menu2Item>Nested</Menu2Item>
-                  </Menu2Submenu>
+                      <Menu2SubmenuPopup>
+                        <Menu2Item>Nested</Menu2Item>
+                      </Menu2SubmenuPopup>
+                    </Menu2Submenu>
+                  </Menu2Popup>
                 </Menu2>
               </ThemeProvider>
             </StyledEngineProvider>,
@@ -87,18 +85,15 @@ describe.skipIf(isJsdom())('MenuItem shared styled base', () => {
                     Classic
                   </MenuItem>
                 </MenuList>
-                <Menu2
-                  defaultOpen
-                  modal={false}
-                  anchor={document.body}
-                  slots={{ transition: null }}
-                >
-                  <Menu2Item className="Mui-focusVisible" data-testid="focus-only">
-                    Focus only
-                  </Menu2Item>
-                  <Menu2Item className={menu2ItemClasses.highlighted} data-testid="highlighted">
-                    Highlighted
-                  </Menu2Item>
+                <Menu2 defaultOpen modal={false}>
+                  <Menu2Popup anchor={document.body} slots={{ transition: null }}>
+                    <Menu2Item className="Mui-focusVisible" data-testid="focus-only">
+                      Focus only
+                    </Menu2Item>
+                    <Menu2Item className={menu2ItemClasses.highlighted} data-testid="highlighted">
+                      Highlighted
+                    </Menu2Item>
+                  </Menu2Popup>
                 </Menu2>
               </ThemeProvider>
             </StyledEngineProvider>,
@@ -126,29 +121,27 @@ describe.skipIf(isJsdom())('MenuItem shared styled base', () => {
                     Classic
                   </MenuItem>
                 </MenuList>
-                <Menu2
-                  defaultOpen
-                  modal={false}
-                  anchor={document.body}
-                  slots={{ transition: null }}
-                >
-                  <Menu2Item data-testid="item">Item</Menu2Item>
-                  <Menu2LinkItem href="#target" data-testid="link">
-                    Link
-                  </Menu2LinkItem>
-                  <Menu2CheckboxItem defaultChecked data-testid="checkbox">
-                    Checkbox
-                  </Menu2CheckboxItem>
-                  <Menu2RadioGroup defaultValue="one">
-                    <Menu2RadioItem value="one" data-testid="radio">
-                      Radio
-                    </Menu2RadioItem>
-                  </Menu2RadioGroup>
-                  <Menu2Submenu
-                    trigger={<Menu2SubmenuTrigger data-testid="submenu">More</Menu2SubmenuTrigger>}
-                  >
-                    <Menu2Item>Nested</Menu2Item>
-                  </Menu2Submenu>
+                <Menu2 defaultOpen modal={false}>
+                  <Menu2Popup anchor={document.body} slots={{ transition: null }}>
+                    <Menu2Item data-testid="item">Item</Menu2Item>
+                    <Menu2LinkItem href="#target" data-testid="link">
+                      Link
+                    </Menu2LinkItem>
+                    <Menu2CheckboxItem defaultChecked data-testid="checkbox">
+                      Checkbox
+                    </Menu2CheckboxItem>
+                    <Menu2RadioGroup defaultValue="one">
+                      <Menu2RadioItem value="one" data-testid="radio">
+                        Radio
+                      </Menu2RadioItem>
+                    </Menu2RadioGroup>
+                    <Menu2Submenu>
+                      <Menu2SubmenuTrigger data-testid="submenu">More</Menu2SubmenuTrigger>
+                      <Menu2SubmenuPopup>
+                        <Menu2Item>Nested</Menu2Item>
+                      </Menu2SubmenuPopup>
+                    </Menu2Submenu>
+                  </Menu2Popup>
                 </Menu2>
               </ThemeProvider>
             </StyledEngineProvider>,
@@ -202,21 +195,23 @@ describe.skipIf(isJsdom())('MenuItem shared styled base', () => {
                   Classic
                 </MenuItem>
               </MenuList>
-              <Menu2 defaultOpen modal={false} anchor={document.body} slots={{ transition: null }}>
-                <Menu2Item dense divider data-testid="item">
-                  Item
-                </Menu2Item>
-                <Menu2Item
-                  dense
-                  divider
-                  sx={{ paddingTop: '42px', borderBottomWidth: 4 }}
-                  data-testid="sx"
-                >
-                  Sx
-                </Menu2Item>
-                <Menu2LinkItem dense divider data-testid="link">
-                  Link
-                </Menu2LinkItem>
+              <Menu2 defaultOpen modal={false}>
+                <Menu2Popup anchor={document.body} slots={{ transition: null }}>
+                  <Menu2Item dense divider data-testid="item">
+                    Item
+                  </Menu2Item>
+                  <Menu2Item
+                    dense
+                    divider
+                    sx={{ paddingTop: '42px', borderBottomWidth: 4 }}
+                    data-testid="sx"
+                  >
+                    Sx
+                  </Menu2Item>
+                  <Menu2LinkItem dense divider data-testid="link">
+                    Link
+                  </Menu2LinkItem>
+                </Menu2Popup>
               </Menu2>
             </ThemeProvider>
           </StyledEngineProvider>,

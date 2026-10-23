@@ -4,11 +4,10 @@ import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import { menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
-import Menu2Popup from '@mui/material/Unstable_Menu2/Menu2Popup';
+import Menu2Trigger, { menu2TriggerClasses } from '@mui/material/Unstable_Menu2Trigger';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import { resetMenu2WarningFlags } from '@mui/material/Unstable_Menu2/menu2Utils';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
-import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Menu2Trigger />', () => {
@@ -106,7 +105,7 @@ describe('<Menu2Trigger />', () => {
             </Button>
           </Menu2Trigger>
         </div>
-        <Menu2Popup ownerState={{}} transitionDuration={0}>
+        <Menu2Popup transitionDuration={0}>
           <Menu2Item>Item</Menu2Item>
         </Menu2Popup>
       </BaseMenu.Root>,
@@ -143,7 +142,7 @@ describe('<Menu2Trigger />', () => {
             <Button disableRipple>Actions</Button>
           </Menu2Trigger>
         </Tooltip>
-        <Menu2Popup ownerState={{}} transitionDuration={0}>
+        <Menu2Popup transitionDuration={0}>
           <Menu2Item>Rename</Menu2Item>
         </Menu2Popup>
       </BaseMenu.Root>,
@@ -170,7 +169,7 @@ describe('<Menu2Trigger />', () => {
             Actions
           </span>
         </Menu2Trigger>
-        <Menu2Popup ownerState={{}} transitionDuration={0}>
+        <Menu2Popup transitionDuration={0}>
           <Menu2Item>Item</Menu2Item>
         </Menu2Popup>
       </BaseMenu.Root>,
@@ -195,7 +194,7 @@ describe('<Menu2Trigger />', () => {
         <Menu2Trigger disabled>
           <button type="button">Disabled</button>
         </Menu2Trigger>
-        <Menu2Popup ownerState={{}} transitionDuration={0}>
+        <Menu2Popup transitionDuration={0}>
           <Menu2Item>Item</Menu2Item>
         </Menu2Popup>
       </BaseMenu.Root>,
@@ -221,7 +220,7 @@ describe('<Menu2Trigger />', () => {
             <Menu2Trigger>
               <button type="button">Actions</button>
             </Menu2Trigger>
-            <Menu2Popup ownerState={{}} transitionDuration={0}>
+            <Menu2Popup transitionDuration={0}>
               <Menu2Item>Item</Menu2Item>
             </Menu2Popup>
           </BaseMenu.Root>
@@ -250,7 +249,7 @@ describe('<Menu2Trigger />', () => {
           <Menu2Trigger openOnHover={openOnHover} delay={0} closeDelay={0}>
             <Button disableRipple>Actions</Button>
           </Menu2Trigger>
-          <Menu2Popup ownerState={{}} transitionDuration={0}>
+          <Menu2Popup transitionDuration={0}>
             <Menu2Item>Item</Menu2Item>
           </Menu2Popup>
         </BaseMenu.Root>,

@@ -1,3 +1,6 @@
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import * as React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
@@ -35,17 +38,19 @@ describe.skipIf(isJsdom())('Menu2 submenu transitions', () => {
       function Demo() {
         const [open, setOpen] = React.useState(false);
         return (
-          <Menu2 defaultOpen modal={false} trigger={<button type="button">Options</button>}>
-            <Menu2Submenu
-              open={open}
-              keepMounted={keepMounted}
-              finalFocus={false}
-              onOpenChange={(nextOpen, details) => {
-                onOpenChange(nextOpen, details);
-                setOpen(nextOpen);
-              }}
-              onOpenChangeComplete={onOpenChangeComplete}
-              trigger={
+          <Menu2 defaultOpen modal={false}>
+            <Menu2Trigger>
+              <button type="button">Options</button>
+            </Menu2Trigger>
+            <Menu2Popup>
+              <Menu2Submenu
+                open={open}
+                onOpenChange={(nextOpen, details) => {
+                  onOpenChange(nextOpen, details);
+                  setOpen(nextOpen);
+                }}
+                onOpenChangeComplete={onOpenChangeComplete}
+              >
                 <Menu2SubmenuTrigger
                   openOnHover={false}
                   slotProps={{
@@ -61,18 +66,19 @@ describe.skipIf(isJsdom())('Menu2 submenu transitions', () => {
                 >
                   More
                 </Menu2SubmenuTrigger>
-              }
-            >
-              <Menu2Item
-                onKeyDown={(event) => {
-                  if (event.key === 'F2') {
-                    setOpen(false);
-                  }
-                }}
-              >
-                Nested
-              </Menu2Item>
-            </Menu2Submenu>
+                <Menu2SubmenuPopup keepMounted={keepMounted} finalFocus={false}>
+                  <Menu2Item
+                    onKeyDown={(event) => {
+                      if (event.key === 'F2') {
+                        setOpen(false);
+                      }
+                    }}
+                  >
+                    Nested
+                  </Menu2Item>
+                </Menu2SubmenuPopup>
+              </Menu2Submenu>
+            </Menu2Popup>
           </Menu2>
         );
       }
@@ -119,21 +125,28 @@ describe.skipIf(isJsdom())('Menu2 submenu transitions', () => {
       function Demo() {
         const [open, setOpen] = React.useState(false);
         return (
-          <Menu2 defaultOpen modal={false} trigger={<button type="button">Options</button>}>
-            <Menu2Submenu
-              open={mode === 'reject controlled' ? open : undefined}
-              onOpenChange={(nextOpen, details) => {
-                onOpenChange(nextOpen, details);
-                if (nextOpen) {
-                  setOpen(true);
-                } else if (mode === 'cancel') {
-                  details.cancel();
-                }
-              }}
-              trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-            >
-              <Menu2Item>Nested</Menu2Item>
-            </Menu2Submenu>
+          <Menu2 defaultOpen modal={false}>
+            <Menu2Trigger>
+              <button type="button">Options</button>
+            </Menu2Trigger>
+            <Menu2Popup>
+              <Menu2Submenu
+                open={mode === 'reject controlled' ? open : undefined}
+                onOpenChange={(nextOpen, details) => {
+                  onOpenChange(nextOpen, details);
+                  if (nextOpen) {
+                    setOpen(true);
+                  } else if (mode === 'cancel') {
+                    details.cancel();
+                  }
+                }}
+              >
+                <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+                <Menu2SubmenuPopup>
+                  <Menu2Item>Nested</Menu2Item>
+                </Menu2SubmenuPopup>
+              </Menu2Submenu>
+            </Menu2Popup>
           </Menu2>
         );
       }
@@ -154,27 +167,33 @@ describe.skipIf(isJsdom())('Menu2 submenu transitions', () => {
     function Demo() {
       const [open, setOpen] = React.useState(false);
       return (
-        <Menu2 defaultOpen modal={false} trigger={<button type="button">Options</button>}>
-          <Menu2Submenu
-            open={open}
-            finalFocus={false}
-            onOpenChange={setOpen}
-            onOpenChangeComplete={onOpenChangeComplete}
-            trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-          >
-            <Menu2Item
-              onKeyDown={(event) => {
-                if (event.key === 'F2') {
-                  setOpen(false);
-                }
-                if (event.key === 'F3') {
-                  setOpen(true);
-                }
-              }}
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Trigger>
+            <button type="button">Options</button>
+          </Menu2Trigger>
+          <Menu2Popup>
+            <Menu2Submenu
+              open={open}
+              onOpenChange={setOpen}
+              onOpenChangeComplete={onOpenChangeComplete}
             >
-              Nested
-            </Menu2Item>
-          </Menu2Submenu>
+              <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup finalFocus={false}>
+                <Menu2Item
+                  onKeyDown={(event) => {
+                    if (event.key === 'F2') {
+                      setOpen(false);
+                    }
+                    if (event.key === 'F3') {
+                      setOpen(true);
+                    }
+                  }}
+                >
+                  Nested
+                </Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
         </Menu2>
       );
     }
@@ -203,21 +222,25 @@ describe.skipIf(isJsdom())('Menu2 submenu transitions', () => {
     const onFocus = vi.fn();
     const onOpenChangeComplete = vi.fn();
     const { user } = render(
-      <Menu2 defaultOpen modal={false} trigger={<button type="button">Options</button>}>
-        <Menu2Submenu
-          keepMounted
-          onOpenChangeComplete={onOpenChangeComplete}
-          slots={{ transition: null }}
-          slotProps={{ paper: { sx: { '&, &[data-ending-style]': { transition: 'none' } } } }}
-          trigger={
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Trigger>
+          <button type="button">Options</button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Submenu onOpenChangeComplete={onOpenChangeComplete}>
             <Menu2SubmenuTrigger openOnHover={false} onFocus={onFocus}>
               More
             </Menu2SubmenuTrigger>
-          }
-        >
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
-        <Menu2Item>Sibling</Menu2Item>
+            <Menu2SubmenuPopup
+              keepMounted
+              slots={{ transition: null }}
+              slotProps={{ root: { sx: { '&, &[data-ending-style]': { transition: 'none' } } } }}
+            >
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+          <Menu2Item>Sibling</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
     const { trigger } = await openSubmenu(user);
@@ -239,15 +262,24 @@ describe.skipIf(isJsdom())('Menu2 submenu transitions', () => {
 
   it('keeps the exit transition local to the submenu that closes', async () => {
     const { user } = render(
-      <Menu2 defaultOpen modal={false} trigger={<button type="button">Options</button>}>
-        <Menu2Submenu trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}>
-          <Menu2Item>Nested</Menu2Item>
-          <Menu2Submenu
-            trigger={<Menu2SubmenuTrigger openOnHover={false}>Inner</Menu2SubmenuTrigger>}
-          >
-            <Menu2Item>Deep</Menu2Item>
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Trigger>
+          <button type="button">Options</button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Submenu>
+            <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Nested</Menu2Item>
+              <Menu2Submenu>
+                <Menu2SubmenuTrigger openOnHover={false}>Inner</Menu2SubmenuTrigger>
+                <Menu2SubmenuPopup>
+                  <Menu2Item>Deep</Menu2Item>
+                </Menu2SubmenuPopup>
+              </Menu2Submenu>
+            </Menu2SubmenuPopup>
           </Menu2Submenu>
-        </Menu2Submenu>
+        </Menu2Popup>
       </Menu2>,
     );
     const { trigger, popup } = await openSubmenu(user);

@@ -1,3 +1,6 @@
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -24,24 +27,30 @@ export default function ItemStates() {
         />
         Focus ring
       </label>
-      <Menu2 trigger={<Button>Options</Button>} slots={{ transition: null }}>
-        <Menu2Item>Plain</Menu2Item>
-        <Menu2LinkItem href="#target">Link</Menu2LinkItem>
-        <Menu2CheckboxItem>Checkbox</Menu2CheckboxItem>
-        <Menu2RadioGroup>
-          <Menu2RadioItem value="one">Radio</Menu2RadioItem>
-        </Menu2RadioGroup>
-        <Menu2Submenu
-          slots={{ transition: null }}
-          trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
-        >
-          <Menu2Submenu
-            trigger={<Menu2SubmenuTrigger openOnHover={false}>More tools</Menu2SubmenuTrigger>}
-          >
-            <Menu2Item>Leaf</Menu2Item>
+      <Menu2>
+        <Menu2Trigger>
+          <Button>Options</Button>
+        </Menu2Trigger>
+        <Menu2Popup slots={{ transition: null }}>
+          <Menu2Item>Plain</Menu2Item>
+          <Menu2LinkItem href="#target">Link</Menu2LinkItem>
+          <Menu2CheckboxItem>Checkbox</Menu2CheckboxItem>
+          <Menu2RadioGroup>
+            <Menu2RadioItem value="one">Radio</Menu2RadioItem>
+          </Menu2RadioGroup>
+          <Menu2Submenu>
+            <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup slots={{ transition: null }}>
+              <Menu2Submenu>
+                <Menu2SubmenuTrigger openOnHover={false}>More tools</Menu2SubmenuTrigger>
+                <Menu2SubmenuPopup>
+                  <Menu2Item>Leaf</Menu2Item>
+                </Menu2SubmenuPopup>
+              </Menu2Submenu>
+            </Menu2SubmenuPopup>
           </Menu2Submenu>
-        </Menu2Submenu>
-        <Menu2Item>Last action</Menu2Item>
+          <Menu2Item>Last action</Menu2Item>
+        </Menu2Popup>
       </Menu2>
     </ThemeProvider>
   );

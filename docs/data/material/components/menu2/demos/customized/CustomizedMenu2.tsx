@@ -5,19 +5,21 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 import EditIcon from '@mui/icons-material/Edit';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import Menu, { Menu2Props as MenuProps } from '@mui/material/Unstable_Menu2';
+import Menu from '@mui/material/Unstable_Menu2';
+import MenuTrigger from '@mui/material/Unstable_Menu2Trigger';
+import MenuPopup, {
+  Menu2PopupProps as PopupProps,
+} from '@mui/material/Unstable_Menu2Popup';
 import MenuItem from '@mui/material/Unstable_Menu2Item';
 import MenuSeparator from '@mui/material/Unstable_Menu2Separator';
 
-const StyledMenu = styled((props: MenuProps) => (
-  <Menu elevation={0} align="end" sideOffset={8} {...props} />
+const StyledPopup = styled((props: PopupProps) => (
+  <MenuPopup elevation={0} align="end" sideOffset={8} {...props} />
 ))(({ theme }) => ({
-  '& .MuiPaper-root': {
-    borderRadius: 6,
-    minWidth: 180,
-    border: `1px solid ${theme.palette.divider}`,
-    boxShadow: theme.shadows[3],
-  },
+  borderRadius: 6,
+  minWidth: 180,
+  border: `1px solid ${theme.palette.divider}`,
+  boxShadow: theme.shadows[3],
   '& .MuiMenu2Item-root': {
     '& .MuiSvgIcon-root': {
       fontSize: 18,
@@ -36,8 +38,8 @@ const StyledMenu = styled((props: MenuProps) => (
 export default function CustomizedMenu2() {
   return (
     // @focus-start @padding 2
-    <StyledMenu
-      trigger={
+    <Menu>
+      <MenuTrigger>
         <Button
           variant="contained"
           disableElevation
@@ -45,22 +47,23 @@ export default function CustomizedMenu2() {
         >
           Options
         </Button>
-      }
-    >
-      <MenuItem>
-        <EditIcon />
-        Edit
-      </MenuItem>
-      <MenuItem>
-        <FileCopyIcon />
-        Duplicate
-      </MenuItem>
-      <MenuSeparator />
-      <MenuItem>
-        <ArchiveIcon />
-        Archive
-      </MenuItem>
-    </StyledMenu>
+      </MenuTrigger>
+      <StyledPopup>
+        <MenuItem>
+          <EditIcon />
+          Edit
+        </MenuItem>
+        <MenuItem>
+          <FileCopyIcon />
+          Duplicate
+        </MenuItem>
+        <MenuSeparator />
+        <MenuItem>
+          <ArchiveIcon />
+          Archive
+        </MenuItem>
+      </StyledPopup>
+    </Menu>
     // @focus-end
   );
 }

@@ -24,6 +24,9 @@ import {
 // The Unstable_ subpaths use default exports, so the local bindings drop the
 // prefix and the JSX mirrors the future stable names.
 import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
@@ -37,7 +40,7 @@ import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
 type MenuProps = React.ComponentProps<typeof Menu2>;
-type PopupProps = React.ComponentProps<typeof Menu2Submenu>;
+type PopupProps = React.ComponentProps<typeof Menu2Popup>;
 type PopupSide = NonNullable<PopupProps['side']>;
 type PopupAlign = NonNullable<PopupProps['align']>;
 
@@ -142,7 +145,7 @@ function usePopupKnobProps(settings: PlaygroundSettings) {
   return React.useMemo(
     () =>
       ({
-        // Top-level convenience prop (forwards to the Paper slot).
+        // The popup root is the Paper surface.
         elevation: settings.elevation,
         keepMounted: settings.keepMounted,
         slots: {
@@ -151,13 +154,9 @@ function usePopupKnobProps(settings: PlaygroundSettings) {
               ? null
               : { grow: undefined, fade: Fade, zoom: Zoom }[settings.animation],
         },
-        slotProps: {
-          paper: {
-            dir: settings.rtl ? 'rtl' : 'ltr',
-            ...(settings.animation === 'css' && { sx: cssAnimationSx }),
-          },
-        },
-      }) satisfies Partial<MenuProps> & Partial<PopupProps>,
+        dir: settings.rtl ? 'rtl' : 'ltr',
+        ...(settings.animation === 'css' && { sx: cssAnimationSx }),
+      }) satisfies Partial<PopupProps>,
     [settings.elevation, settings.animation, settings.keepMounted, settings.rtl],
   );
 }
@@ -212,97 +211,89 @@ function PlaygroundDemo({
       highlightItemOnHover={settings.highlightItemOnHover}
       onOpenChange={handleOpenChange}
       onOpenChangeComplete={handleOpenChangeComplete}
-      trigger={
+    >
+      <Menu2Trigger openOnHover={settings.triggerOpenOnHover}>
         <Button variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
           Project
         </Button>
-      }
-      openOnHover={settings.triggerOpenOnHover}
-      side={settings.side}
-      align={settings.align}
-      sideOffset={settings.sideOffset}
-      alignOffset={settings.alignOffset}
-      {...popupKnobProps}
-      slots={{
-        ...popupKnobProps.slots,
-        backdrop: settings.backdrop === 'none' ? null : undefined,
-      }}
-      slotProps={{
-        ...popupKnobProps.slotProps,
-        backdrop: { sx: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } },
-      }}
-    >
-      <Menu2Group>
-        <Menu2GroupLabel>Actions</Menu2GroupLabel>
-        <Menu2Item {...itemProps} onClick={handleItemClick}>
-          New file
-        </Menu2Item>
-        <Menu2Item {...itemProps} onClick={handleItemClick}>
-          Duplicate
-        </Menu2Item>
-        <Menu2Item {...itemProps} disabled onClick={handleItemClick}>
-          Archive (disabled)
-        </Menu2Item>
-      </Menu2Group>
-      <Menu2Separator />
+      </Menu2Trigger>
+      <Menu2Popup
+        side={settings.side}
+        align={settings.align}
+        sideOffset={settings.sideOffset}
+        alignOffset={settings.alignOffset}
+        {...popupKnobProps}
+        slots={{
+          ...popupKnobProps.slots,
+          backdrop: settings.backdrop === 'none' ? null : undefined,
+        }}
+        slotProps={{
+          backdrop: { sx: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } },
+        }}
+      >
+        <Menu2Group>
+          <Menu2GroupLabel>Actions</Menu2GroupLabel>
+          <Menu2Item {...itemProps} onClick={handleItemClick}>
+            New file
+          </Menu2Item>
+          <Menu2Item {...itemProps} onClick={handleItemClick}>
+            Duplicate
+          </Menu2Item>
+          <Menu2Item {...itemProps} disabled onClick={handleItemClick}>
+            Archive (disabled)
+          </Menu2Item>
+        </Menu2Group>
+        <Menu2Separator />
 
-      <Menu2Submenu
-        closeParentOnEsc={settings.closeParentOnEsc}
-        trigger={
+        <Menu2Submenu closeParentOnEsc={settings.closeParentOnEsc}>
           <Menu2SubmenuTrigger {...submenuTriggerProps} {...itemProps}>
             Share
           </Menu2SubmenuTrigger>
-        }
-        {...submenuPopupProps}
-      >
-        <Menu2Item {...itemProps} onClick={handleItemClick}>
-          Email
-        </Menu2Item>
-        <Menu2Item {...itemProps} onClick={handleItemClick}>
-          Copy link
-        </Menu2Item>
-        <Menu2Submenu
-          closeParentOnEsc={settings.closeParentOnEsc}
-          trigger={
-            <Menu2SubmenuTrigger {...submenuTriggerProps} {...itemProps}>
-              Export as
-            </Menu2SubmenuTrigger>
-          }
-          {...submenuPopupProps}
-        >
-          <Menu2RadioGroup defaultValue="pdf">
-            <Menu2RadioItem {...itemProps} value="pdf">
-              PDF document
-            </Menu2RadioItem>
-            <Menu2RadioItem {...itemProps} value="epub">
-              EPUB publication
-            </Menu2RadioItem>
-            <Menu2RadioItem {...itemProps} value="markdown">
-              Markdown
-            </Menu2RadioItem>
-          </Menu2RadioGroup>
+          <Menu2SubmenuPopup {...submenuPopupProps}>
+            <Menu2Item {...itemProps} onClick={handleItemClick}>
+              Email
+            </Menu2Item>
+            <Menu2Item {...itemProps} onClick={handleItemClick}>
+              Copy link
+            </Menu2Item>
+            <Menu2Submenu closeParentOnEsc={settings.closeParentOnEsc}>
+              <Menu2SubmenuTrigger {...submenuTriggerProps} {...itemProps}>
+                Export as
+              </Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup {...submenuPopupProps}>
+                <Menu2RadioGroup defaultValue="pdf">
+                  <Menu2RadioItem {...itemProps} value="pdf">
+                    PDF document
+                  </Menu2RadioItem>
+                  <Menu2RadioItem {...itemProps} value="epub">
+                    EPUB publication
+                  </Menu2RadioItem>
+                  <Menu2RadioItem {...itemProps} value="markdown">
+                    Markdown
+                  </Menu2RadioItem>
+                </Menu2RadioGroup>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2SubmenuPopup>
         </Menu2Submenu>
-      </Menu2Submenu>
 
-      <Menu2Submenu
-        closeParentOnEsc={settings.closeParentOnEsc}
-        trigger={
+        <Menu2Submenu closeParentOnEsc={settings.closeParentOnEsc}>
           <Menu2SubmenuTrigger {...submenuTriggerProps} {...itemProps}>
             View
           </Menu2SubmenuTrigger>
-        }
-        {...submenuPopupProps}
-      >
-        <Menu2CheckboxItem {...itemProps} defaultChecked>
-          Show ruler
-        </Menu2CheckboxItem>
-        <Menu2CheckboxItem {...itemProps}>Show outline</Menu2CheckboxItem>
-      </Menu2Submenu>
-      <Menu2Separator />
+          <Menu2SubmenuPopup {...submenuPopupProps}>
+            <Menu2CheckboxItem {...itemProps} defaultChecked>
+              Show ruler
+            </Menu2CheckboxItem>
+            <Menu2CheckboxItem {...itemProps}>Show outline</Menu2CheckboxItem>
+          </Menu2SubmenuPopup>
+        </Menu2Submenu>
+        <Menu2Separator />
 
-      <Menu2LinkItem {...itemProps} href="https://mui.com/material-ui/react-menu/">
-        Menu documentation
-      </Menu2LinkItem>
+        <Menu2LinkItem {...itemProps} href="https://mui.com/material-ui/react-menu/">
+          Menu documentation
+        </Menu2LinkItem>
+      </Menu2Popup>
     </Menu2>
   );
 }
@@ -350,27 +341,32 @@ function ClassicVersusSuccessorDemo({ settings }: { settings: PlaygroundSettings
           ))}
         </ClassicMenu>
       </div>
-      <Menu2
-        trigger={
+      <Menu2>
+        <Menu2Trigger>
           <Button variant="outlined" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
             Successor
           </Button>
-        }
-        {...popupKnobProps}
-        slots={{
-          ...popupKnobProps.slots,
-          backdrop: settings.backdrop === 'none' ? null : undefined,
-        }}
-        slotProps={{
-          ...popupKnobProps.slotProps,
-          backdrop: { sx: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } },
-        }}
-      >
-        {parityItems.map((item) => (
-          <Menu2Item key={item.label} {...itemProps} disabled={'disabled' in item && item.disabled}>
-            {item.label}
-          </Menu2Item>
-        ))}
+        </Menu2Trigger>
+        <Menu2Popup
+          {...popupKnobProps}
+          slots={{
+            ...popupKnobProps.slots,
+            backdrop: settings.backdrop === 'none' ? null : undefined,
+          }}
+          slotProps={{
+            backdrop: { sx: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } },
+          }}
+        >
+          {parityItems.map((item) => (
+            <Menu2Item
+              key={item.label}
+              {...itemProps}
+              disabled={'disabled' in item && item.disabled}
+            >
+              {item.label}
+            </Menu2Item>
+          ))}
+        </Menu2Popup>
       </Menu2>
     </Stack>
   );
@@ -419,22 +415,21 @@ function FocusRingComparisonDemo({ settings }: { settings: PlaygroundSettings })
         <Typography component="h3" variant="subtitle2" gutterBottom>
           Menu2 + Menu2Item
         </Typography>
-        <Menu2
-          modal={false}
-          open={open}
-          onOpenChange={(nextOpen) => setOpen(nextOpen)}
-          trigger={<Button variant="outlined">Open the successor menu</Button>}
-          sideOffset={4}
-        >
-          {parityItems.map((item) => (
-            <Menu2Item
-              key={item.label}
-              {...itemProps}
-              disabled={'disabled' in item && item.disabled}
-            >
-              {item.label}
-            </Menu2Item>
-          ))}
+        <Menu2 modal={false} open={open} onOpenChange={(nextOpen) => setOpen(nextOpen)}>
+          <Menu2Trigger>
+            <Button variant="outlined">Open the successor menu</Button>
+          </Menu2Trigger>
+          <Menu2Popup sideOffset={4}>
+            {parityItems.map((item) => (
+              <Menu2Item
+                key={item.label}
+                {...itemProps}
+                disabled={'disabled' in item && item.disabled}
+              >
+                {item.label}
+              </Menu2Item>
+            ))}
+          </Menu2Popup>
         </Menu2>
       </div>
     </Stack>
@@ -474,25 +469,28 @@ function ControlledAnchorDemo() {
       >
         Open (controlled)
       </Button>
-      <Menu2
-        open={open}
-        onOpenChange={handleOpenChange}
-        anchor={anchorEl ?? undefined}
-        sideOffset={4}
-        slotProps={{ paper: { id: menuId, 'aria-labelledby': buttonId } }}
-      >
-        <Menu2Item>Profile</Menu2Item>
-        <Menu2Item>My account</Menu2Item>
-        <Menu2Submenu
-          onOpenChange={(nextOpen, details) =>
-            setSubmenuEvent(`${nextOpen ? 'open' : 'closed'} (${details.reason})`)
-          }
-          trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
+      <Menu2 open={open} onOpenChange={handleOpenChange}>
+        <Menu2Popup
+          anchor={anchorEl ?? undefined}
+          sideOffset={4}
+          id={menuId}
+          aria-labelledby={buttonId}
         >
-          <Menu2Item>Settings</Menu2Item>
-          <Menu2Item>Help</Menu2Item>
-        </Menu2Submenu>
-        <Menu2Item>Logout</Menu2Item>
+          <Menu2Item>Profile</Menu2Item>
+          <Menu2Item>My account</Menu2Item>
+          <Menu2Submenu
+            onOpenChange={(nextOpen, details) =>
+              setSubmenuEvent(`${nextOpen ? 'open' : 'closed'} (${details.reason})`)
+            }
+          >
+            <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Settings</Menu2Item>
+              <Menu2Item>Help</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+          <Menu2Item>Logout</Menu2Item>
+        </Menu2Popup>
       </Menu2>
       <p>
         Last root event: <code>{rootEvent}</code>
@@ -540,20 +538,19 @@ const typeaheadEntries = [
 
 function TypeaheadScrollDemo() {
   return (
-    <Menu2
-      trigger={
+    <Menu2>
+      <Menu2Trigger>
         <Button variant="outlined" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
           Country
         </Button>
-      }
-      slotProps={{ paper: { sx: { maxHeight: 320 } } }}
-      sideOffset={4}
-    >
-      {typeaheadEntries.map((entry) => (
-        <Menu2Item key={entry} dense>
-          {entry}
-        </Menu2Item>
-      ))}
+      </Menu2Trigger>
+      <Menu2Popup sx={{ maxHeight: 320 }} sideOffset={4}>
+        {typeaheadEntries.map((entry) => (
+          <Menu2Item key={entry} dense>
+            {entry}
+          </Menu2Item>
+        ))}
+      </Menu2Popup>
     </Menu2>
   );
 }
@@ -762,9 +759,9 @@ export default function MenuRfcExperiment() {
             Grow is the default transition. Fade and Zoom use <code>slots.transition</code>. The CSS
             example sets <code>slots.transition</code> to <code>null</code> and styles the
             popup&apos;s <code>data-starting-style</code> and <code>data-ending-style</code>
-            attributes through <code>slotProps.paper.sx</code>. None disables the transition
-            component without adding CSS. The reduced-motion setting applies to both the Material
-            transitions and this CSS example.
+            attributes through <code>Menu2Popup sx</code>. None disables the transition component
+            without adding CSS. The reduced-motion setting applies to both the Material transitions
+            and this CSS example.
           </Typography>
 
           <section>
@@ -864,7 +861,7 @@ export default function MenuRfcExperiment() {
             <h2 id="typeahead">Typeahead and scrolling</h2>
             <p>
               Open the menu and type to jump between items (for example type &quot;sw&quot;). The
-              popup constrains height via <code>slotProps.paper</code>.
+              popup constrains height via <code>Menu2Popup sx</code>.
             </p>
             <TypeaheadScrollDemo />
           </section>

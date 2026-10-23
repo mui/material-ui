@@ -66,6 +66,8 @@ import { MenuItemProps } from '../MenuItem';
 import { MenuListProps } from '../MenuList';
 import { MenuProps } from '../Menu';
 import type { Menu2Props } from '../Unstable_Menu2';
+import type { Menu2PopupProps } from '../Unstable_Menu2Popup';
+import type { Menu2SubmenuPopupProps } from '../Unstable_Menu2SubmenuPopup';
 import type {
   Menu2CheckboxItemProps,
   Menu2CheckboxItemOwnerState,
@@ -217,6 +219,8 @@ export interface ComponentsPropsList {
   MuiListSubheader: ListSubheaderProps;
   MuiMenu: MenuProps;
   MuiMenu2: Menu2Props;
+  MuiMenu2Popup: Menu2PopupProps;
+  MuiMenu2SubmenuPopup: Menu2SubmenuPopupProps;
   MuiMenu2CheckboxItem: Menu2CheckboxItemProps;
   MuiMenu2Group: Menu2GroupProps;
   MuiMenu2GroupLabel: Menu2GroupLabelProps;

@@ -1,3 +1,5 @@
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import * as React from 'react';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
@@ -56,56 +58,62 @@ function MixedMenu({ direction, dense }: MixedMenuProps) {
         <Box ref={setAnchor} sx={{ mx: '8px', pt: '8px', width: 224, typography: 'caption' }}>
           {direction.toUpperCase()} / {dense ? 'dense / dark' : 'regular / light'}
         </Box>
-        <Menu2
-          open={Boolean(anchor && container)}
-          anchor={anchor}
-          container={container}
-          modal={false}
-          sideOffset={8}
-          slots={{ transition: null }}
-          slotProps={{ paper: { sx: { width: 224 } }, list: { dense } }}
-        >
-          <Menu2Item>
-            <ListItemIcon>
-              <FormatPaintIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>Paint format</ListItemText>
-          </Menu2Item>
-          <Menu2CheckboxItem defaultChecked>
-            <ListItemText>Show labels</ListItemText>
-          </Menu2CheckboxItem>
-          <Menu2CheckboxItem>
-            <ListItemText>Show guide lines</ListItemText>
-          </Menu2CheckboxItem>
-          <Menu2RadioGroup defaultValue="list">
-            <Menu2RadioItem value="list">
-              <ListItemText>List view</ListItemText>
-            </Menu2RadioItem>
-            <Menu2RadioItem value="grid">
-              <ListItemText>Grid view</ListItemText>
-            </Menu2RadioItem>
-            <Menu2RadioItem value="wide" slotProps={{ indicator: { children: wideIndicator } }}>
+        <Menu2 open={Boolean(anchor && container)} modal={false}>
+          <Menu2Popup
+            anchor={anchor}
+            container={container}
+            sideOffset={8}
+            slots={{ transition: null }}
+            slotProps={{ root: { sx: { width: 224 } }, list: { dense } }}
+          >
+            <Menu2Item>
+              <ListItemIcon>
+                <FormatPaintIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText>Paint format</ListItemText>
+            </Menu2Item>
+            <Menu2CheckboxItem defaultChecked>
+              <ListItemText>Show labels</ListItemText>
+            </Menu2CheckboxItem>
+            <Menu2CheckboxItem>
+              <ListItemText>Show guide lines</ListItemText>
+            </Menu2CheckboxItem>
+            <Menu2RadioGroup defaultValue="list">
+              <Menu2RadioItem value="list">
+                <ListItemText>List view</ListItemText>
+              </Menu2RadioItem>
+              <Menu2RadioItem value="grid">
+                <ListItemText>Grid view</ListItemText>
+              </Menu2RadioItem>
+              <Menu2RadioItem value="wide" slotProps={{ indicator: { children: wideIndicator } }}>
+                <ListItemText slotProps={{ primary: { noWrap: true } }}>
+                  Keep this wide radio indicator at its full size
+                </ListItemText>
+              </Menu2RadioItem>
+            </Menu2RadioGroup>
+            <Menu2Item>
+              <ListItemText inset>Reset layout</ListItemText>
+            </Menu2Item>
+            <Menu2Submenu>
+              <Menu2SubmenuTrigger>More layouts</Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Compact layout</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+            <Menu2CheckboxItem defaultChecked>
               <ListItemText slotProps={{ primary: { noWrap: true } }}>
-                Keep this wide radio indicator at its full size
+                Keep this long menu label on one line
               </ListItemText>
-            </Menu2RadioItem>
-          </Menu2RadioGroup>
-          <Menu2Item>
-            <ListItemText inset>Reset layout</ListItemText>
-          </Menu2Item>
-          <Menu2Submenu trigger={<Menu2SubmenuTrigger>More layouts</Menu2SubmenuTrigger>}>
-            <Menu2Item>Compact layout</Menu2Item>
-          </Menu2Submenu>
-          <Menu2CheckboxItem defaultChecked>
-            <ListItemText slotProps={{ primary: { noWrap: true } }}>
-              Keep this long menu label on one line
-            </ListItemText>
-          </Menu2CheckboxItem>
-          <Menu2CheckboxItem defaultChecked slotProps={{ indicator: { children: wideIndicator } }}>
-            <ListItemText slotProps={{ primary: { noWrap: true } }}>
-              Keep this wide custom indicator at its full size
-            </ListItemText>
-          </Menu2CheckboxItem>
+            </Menu2CheckboxItem>
+            <Menu2CheckboxItem
+              defaultChecked
+              slotProps={{ indicator: { children: wideIndicator } }}
+            >
+              <ListItemText slotProps={{ primary: { noWrap: true } }}>
+                Keep this wide custom indicator at its full size
+              </ListItemText>
+            </Menu2CheckboxItem>
+          </Menu2Popup>
         </Menu2>
       </Box>
     </ThemeProvider>
@@ -147,41 +155,40 @@ function WideIconColumnMenu({ direction }: Pick<MixedMenuProps, 'direction'>) {
         <Box ref={setAnchor} sx={{ mx: '8px', pt: '8px', width: 224, typography: 'caption' }}>
           {direction.toUpperCase()} / 56 px icon column
         </Box>
-        <Menu2
-          open={Boolean(anchor && container)}
-          anchor={anchor}
-          container={container}
-          modal={false}
-          sideOffset={8}
-          slots={{ transition: null }}
-          slotProps={{ paper: { sx: { width: 224 } } }}
-        >
-          <Menu2Item>
-            <ListItemIcon>
-              <FormatPaintIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>Paint format</ListItemText>
-          </Menu2Item>
-          <Menu2CheckboxItem defaultChecked>
-            <ListItemText>Show labels</ListItemText>
-          </Menu2CheckboxItem>
-          <Menu2RadioGroup defaultValue="list">
-            <Menu2RadioItem value="list">
-              <ListItemText>List view</ListItemText>
-            </Menu2RadioItem>
-          </Menu2RadioGroup>
-          <Menu2Submenu
-            trigger={
+        <Menu2 open={Boolean(anchor && container)} modal={false}>
+          <Menu2Popup
+            anchor={anchor}
+            container={container}
+            sideOffset={8}
+            slots={{ transition: null }}
+            slotProps={{ root: { sx: { width: 224 } } }}
+          >
+            <Menu2Item>
+              <ListItemIcon>
+                <FormatPaintIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText>Paint format</ListItemText>
+            </Menu2Item>
+            <Menu2CheckboxItem defaultChecked>
+              <ListItemText>Show labels</ListItemText>
+            </Menu2CheckboxItem>
+            <Menu2RadioGroup defaultValue="list">
+              <Menu2RadioItem value="list">
+                <ListItemText>List view</ListItemText>
+              </Menu2RadioItem>
+            </Menu2RadioGroup>
+            <Menu2Submenu>
               <Menu2SubmenuTrigger>
                 <ListItemIcon>
                   <FormatPaintIcon fontSize="small" />
                 </ListItemIcon>
                 <ListItemText>More layouts</ListItemText>
               </Menu2SubmenuTrigger>
-            }
-          >
-            <Menu2Item>Compact layout</Menu2Item>
-          </Menu2Submenu>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Compact layout</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
         </Menu2>
       </Box>
     </ThemeProvider>

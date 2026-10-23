@@ -1,3 +1,5 @@
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import * as React from 'react';
 import { describe, expect, it } from 'vitest';
 import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
@@ -22,11 +24,11 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
           const theme = createTheme({
             modularCssLayers,
             components: {
-              MuiMenu2: {
+              MuiMenu2Popup: {
                 styleOverrides: {
-                  root: { zIndex: 1401 },
+                  portal: { zIndex: 1401 },
                   positioner: { paddingLeft: 1 },
-                  paper: ({ ownerState }) => ({
+                  root: ({ ownerState }) => ({
                     maxHeight: ownerState.align === 'center' ? 301 : 302,
                     overflowY: 'scroll',
                   }),
@@ -34,11 +36,11 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
                 },
                 variants: [{ props: { align: 'center' }, style: { outlineOffset: 11 } }],
               },
-              MuiMenu2Submenu: {
+              MuiMenu2SubmenuPopup: {
                 styleOverrides: {
-                  root: { zIndex: 1402 },
+                  portal: { zIndex: 1402 },
                   positioner: { paddingLeft: 2 },
-                  paper: ({ ownerState }) => ({
+                  root: ({ ownerState }) => ({
                     maxHeight: ownerState.align === 'end' ? 201 : 202,
                     overflowY: 'scroll',
                   }),
@@ -51,57 +53,63 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
           const { user } = render(
             <StyledEngineProvider enableCssLayer={modularCssLayers}>
               <ThemeProvider theme={theme}>
-                <Menu2
-                  defaultOpen
-                  modal={false}
-                  anchor={document.body}
-                  align="center"
-                  slots={{ transition: null }}
-                  slotProps={{
-                    root: {
-                      'data-testid': 'parent-root',
-                      sx: useSx ? { zIndex: 1501, outlineOffset: 21 } : undefined,
-                    },
-                    positioner: {
-                      'data-testid': 'parent-positioner',
-                      sx: useSx ? { paddingLeft: '3px' } : undefined,
-                    },
-                    paper: {
-                      'data-testid': 'parent-paper',
-                      sx: useSx ? { maxHeight: 311, overflowY: 'hidden' } : undefined,
-                    },
-                    list: {
-                      'data-testid': 'parent-list',
-                      sx: useSx ? { outlineWidth: '3px' } : undefined,
-                    },
-                    backdrop: { 'data-testid': 'parent-backdrop' },
-                  }}
-                >
-                  <Menu2Submenu
-                    align="end"
-                    trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
+                <Menu2 defaultOpen modal={false}>
+                  <Menu2Popup
+                    anchor={document.body}
+                    align="center"
                     slots={{ transition: null }}
                     slotProps={{
-                      root: {
-                        'data-testid': 'child-root',
-                        sx: useSx ? { zIndex: 1502, outlineOffset: 22 } : undefined,
+                      portal: {
+                        'data-testid': 'parent-root',
+                        sx: useSx ? { zIndex: 1501 } : undefined,
                       },
                       positioner: {
-                        'data-testid': 'child-positioner',
-                        sx: useSx ? { paddingLeft: '4px' } : undefined,
+                        'data-testid': 'parent-positioner',
+                        sx: useSx ? { paddingLeft: '3px' } : undefined,
                       },
-                      paper: {
-                        'data-testid': 'child-paper',
-                        sx: useSx ? { maxHeight: 211, overflowY: 'hidden' } : undefined,
+                      root: {
+                        'data-testid': 'parent-paper',
+                        sx: useSx
+                          ? { maxHeight: 311, overflowY: 'hidden', outlineOffset: 21 }
+                          : undefined,
                       },
                       list: {
-                        'data-testid': 'child-list',
-                        sx: useSx ? { outlineWidth: '4px' } : undefined,
+                        'data-testid': 'parent-list',
+                        sx: useSx ? { outlineWidth: '3px' } : undefined,
                       },
+                      backdrop: { 'data-testid': 'parent-backdrop' },
                     }}
                   >
-                    <Menu2Item>Nested</Menu2Item>
-                  </Menu2Submenu>
+                    <Menu2Submenu>
+                      <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+                      <Menu2SubmenuPopup
+                        align="end"
+                        slots={{ transition: null }}
+                        slotProps={{
+                          portal: {
+                            'data-testid': 'child-root',
+                            sx: useSx ? { zIndex: 1502 } : undefined,
+                          },
+                          positioner: {
+                            'data-testid': 'child-positioner',
+                            sx: useSx ? { paddingLeft: '4px' } : undefined,
+                          },
+                          root: {
+                            'data-testid': 'child-paper',
+                            sx: useSx
+                              ? { maxHeight: 211, overflowY: 'hidden', outlineOffset: 22 }
+                              : undefined,
+                          },
+                          list: {
+                            'data-testid': 'child-list',
+                            sx: useSx ? { outlineWidth: '4px' } : undefined,
+                          },
+                        }}
+                      >
+                        <Menu2Item>Nested</Menu2Item>
+                      </Menu2SubmenuPopup>
+                    </Menu2Submenu>
+                  </Menu2Popup>
                 </Menu2>
               </ThemeProvider>
             </StyledEngineProvider>,
@@ -116,7 +124,9 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
             const paper = screen.getByTestId(`${prefix}-paper`);
             const list = screen.getByTestId(`${prefix}-list`);
             expect(getComputedStyle(root).zIndex).to.equal(String((useSx ? 1501 : 1401) + index));
-            expect(getComputedStyle(root).outlineOffset).to.equal(`${(useSx ? 21 : 11) + index}px`);
+            expect(getComputedStyle(paper).outlineOffset).to.equal(
+              `${(useSx ? 21 : 11) + index}px`,
+            );
             expect(getComputedStyle(positioner).paddingLeft).to.equal(
               `${(useSx ? 3 : 1) + index}px`,
             );
@@ -125,7 +135,7 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
             );
             expect(getComputedStyle(paper).overflowY).to.equal(useSx ? 'hidden' : 'scroll');
             expect(getComputedStyle(list).outlineWidth).to.equal(`${(useSx ? 3 : 1) + index}px`);
-            [positioner, paper, list].forEach((element) => {
+            [root, positioner, list].forEach((element) => {
               expect(getComputedStyle(element).outlineOffset).to.equal('0px');
             });
             [root, positioner, paper, list].forEach((element) => {
@@ -151,33 +161,35 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
         render(
           <StyledEngineProvider enableCssLayer={modularCssLayers}>
             <ThemeProvider theme={theme}>
-              <Menu2 defaultOpen modal={false} anchor={document.body} slots={{ transition: null }}>
-                <Menu2Item>
-                  <ListItemIcon data-testid="decorative-icon">
-                    <svg width={20} height={20} aria-hidden="true" />
-                  </ListItemIcon>
-                  Action
-                </Menu2Item>
-                {[true, false].map((checked) => (
-                  <Menu2CheckboxItem
-                    key={String(checked)}
-                    defaultChecked={checked}
-                    slotProps={{ indicator: { 'data-testid': `checkbox-${checked}` } }}
-                  >
-                    Checkbox
-                  </Menu2CheckboxItem>
-                ))}
-                <Menu2RadioGroup defaultValue="true">
+              <Menu2 defaultOpen modal={false}>
+                <Menu2Popup anchor={document.body} slots={{ transition: null }}>
+                  <Menu2Item>
+                    <ListItemIcon data-testid="decorative-icon">
+                      <svg width={20} height={20} aria-hidden="true" />
+                    </ListItemIcon>
+                    Action
+                  </Menu2Item>
                   {[true, false].map((checked) => (
-                    <Menu2RadioItem
+                    <Menu2CheckboxItem
                       key={String(checked)}
-                      value={String(checked)}
-                      slotProps={{ indicator: { 'data-testid': `radio-${checked}` } }}
+                      defaultChecked={checked}
+                      slotProps={{ indicator: { 'data-testid': `checkbox-${checked}` } }}
                     >
-                      Radio
-                    </Menu2RadioItem>
+                      Checkbox
+                    </Menu2CheckboxItem>
                   ))}
-                </Menu2RadioGroup>
+                  <Menu2RadioGroup defaultValue="true">
+                    {[true, false].map((checked) => (
+                      <Menu2RadioItem
+                        key={String(checked)}
+                        value={String(checked)}
+                        slotProps={{ indicator: { 'data-testid': `radio-${checked}` } }}
+                      >
+                        Radio
+                      </Menu2RadioItem>
+                    ))}
+                  </Menu2RadioGroup>
+                </Menu2Popup>
               </Menu2>
             </ThemeProvider>
           </StyledEngineProvider>,
@@ -207,27 +219,29 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
         render(
           <StyledEngineProvider enableCssLayer={modularCssLayers}>
             <ThemeProvider theme={theme}>
-              <Menu2 defaultOpen modal={false} anchor={document.body} slots={{ transition: null }}>
-                {[true, false].map((checked) => (
-                  <Menu2CheckboxItem
-                    key={String(checked)}
-                    defaultChecked={checked}
-                    slotProps={{ indicator: { 'data-testid': `checkbox-${checked}` } }}
-                  >
-                    Checkbox
-                  </Menu2CheckboxItem>
-                ))}
-                <Menu2RadioGroup defaultValue="true">
+              <Menu2 defaultOpen modal={false}>
+                <Menu2Popup anchor={document.body} slots={{ transition: null }}>
                   {[true, false].map((checked) => (
-                    <Menu2RadioItem
+                    <Menu2CheckboxItem
                       key={String(checked)}
-                      value={String(checked)}
-                      slotProps={{ indicator: { 'data-testid': `radio-${checked}` } }}
+                      defaultChecked={checked}
+                      slotProps={{ indicator: { 'data-testid': `checkbox-${checked}` } }}
                     >
-                      Radio
-                    </Menu2RadioItem>
+                      Checkbox
+                    </Menu2CheckboxItem>
                   ))}
-                </Menu2RadioGroup>
+                  <Menu2RadioGroup defaultValue="true">
+                    {[true, false].map((checked) => (
+                      <Menu2RadioItem
+                        key={String(checked)}
+                        value={String(checked)}
+                        slotProps={{ indicator: { 'data-testid': `radio-${checked}` } }}
+                      >
+                        Radio
+                      </Menu2RadioItem>
+                    ))}
+                  </Menu2RadioGroup>
+                </Menu2Popup>
               </Menu2>
             </ThemeProvider>
           </StyledEngineProvider>,
@@ -278,26 +292,23 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
           render(
             <StyledEngineProvider enableCssLayer={modularCssLayers}>
               <ThemeProvider theme={theme}>
-                <Menu2
-                  defaultOpen
-                  modal={false}
-                  anchor={document.body}
-                  slots={{ transition: null }}
-                >
-                  <Menu2CheckboxItem
-                    defaultChecked
-                    slotProps={{ indicator: { 'data-testid': 'checkbox', sx: indicatorSx } }}
-                  >
-                    Checkbox
-                  </Menu2CheckboxItem>
-                  <Menu2RadioGroup defaultValue="one">
-                    <Menu2RadioItem
-                      value="one"
-                      slotProps={{ indicator: { 'data-testid': 'radio', sx: indicatorSx } }}
+                <Menu2 defaultOpen modal={false}>
+                  <Menu2Popup anchor={document.body} slots={{ transition: null }}>
+                    <Menu2CheckboxItem
+                      defaultChecked
+                      slotProps={{ indicator: { 'data-testid': 'checkbox', sx: indicatorSx } }}
                     >
-                      Radio
-                    </Menu2RadioItem>
-                  </Menu2RadioGroup>
+                      Checkbox
+                    </Menu2CheckboxItem>
+                    <Menu2RadioGroup defaultValue="one">
+                      <Menu2RadioItem
+                        value="one"
+                        slotProps={{ indicator: { 'data-testid': 'radio', sx: indicatorSx } }}
+                      >
+                        Radio
+                      </Menu2RadioItem>
+                    </Menu2RadioGroup>
+                  </Menu2Popup>
                 </Menu2>
               </ThemeProvider>
             </StyledEngineProvider>,

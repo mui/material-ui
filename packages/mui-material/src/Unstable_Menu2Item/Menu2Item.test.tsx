@@ -1,3 +1,4 @@
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
@@ -13,8 +14,8 @@ describe('<Menu2Item />', () => {
     classes,
     render: (node) =>
       render(
-        <Menu2 defaultOpen modal={false} anchor={document.body}>
-          {node}
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body}>{node}</Menu2Popup>
         </Menu2>,
       ),
     getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
@@ -37,8 +38,10 @@ describe('<Menu2Item />', () => {
     });
 
     render(
-      <Menu2 defaultOpen modal={false} anchor={document.body}>
-        <Menu2Item slots={{ root: CustomRoot }}>Item</Menu2Item>
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Popup anchor={document.body}>
+          <Menu2Item slots={{ root: CustomRoot }}>Item</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -53,10 +56,12 @@ describe('<Menu2Item />', () => {
   it('fires once per activation without closing when closeOnClick is false', async () => {
     const onClick = spy();
     const { user } = render(
-      <Menu2 defaultOpen modal={false} anchor={document.body}>
-        <Menu2Item closeOnClick={false} onClick={onClick}>
-          Item
-        </Menu2Item>
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Popup anchor={document.body}>
+          <Menu2Item closeOnClick={false} onClick={onClick}>
+            Item
+          </Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -81,8 +86,10 @@ describe('<Menu2Item />', () => {
       const onClick = spy();
       const onOpenChange = spy();
       const { user } = render(
-        <Menu2 defaultOpen modal={false} anchor={document.body} onOpenChange={onOpenChange}>
-          <Menu2Item onClick={onClick}>Item</Menu2Item>
+        <Menu2 defaultOpen modal={false} onOpenChange={onOpenChange}>
+          <Menu2Popup anchor={document.body}>
+            <Menu2Item onClick={onClick}>Item</Menu2Item>
+          </Menu2Popup>
         </Menu2>,
       );
 

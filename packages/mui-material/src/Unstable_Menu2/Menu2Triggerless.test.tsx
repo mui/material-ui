@@ -1,3 +1,6 @@
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
@@ -36,25 +39,22 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
               <Menu2
                 defaultOpen
                 modal={false}
-                anchor={document.body}
-                keepMounted={keepMounted}
-                slots={slots}
                 onOpenChange={changed}
                 onOpenChangeComplete={completed}
               >
-                <Menu2Submenu
-                  keepMounted={keepMounted}
-                  slots={slots}
-                  trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-                >
-                  <Menu2Submenu
-                    keepMounted={keepMounted}
-                    slots={slots}
-                    trigger={<Menu2SubmenuTrigger openOnHover={false}>Deeper</Menu2SubmenuTrigger>}
-                  >
-                    <Menu2Item>Leaf</Menu2Item>
+                <Menu2Popup anchor={document.body} keepMounted={keepMounted} slots={slots}>
+                  <Menu2Submenu>
+                    <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+                    <Menu2SubmenuPopup keepMounted={keepMounted} slots={slots}>
+                      <Menu2Submenu>
+                        <Menu2SubmenuTrigger openOnHover={false}>Deeper</Menu2SubmenuTrigger>
+                        <Menu2SubmenuPopup keepMounted={keepMounted} slots={slots}>
+                          <Menu2Item>Leaf</Menu2Item>
+                        </Menu2SubmenuPopup>
+                      </Menu2Submenu>
+                    </Menu2SubmenuPopup>
                   </Menu2Submenu>
-                </Menu2Submenu>
+                </Menu2Popup>
               </Menu2>
             </ThemeProvider>,
           );
@@ -115,9 +115,6 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
             </button>
             <Menu2
               open={Boolean(anchor)}
-              anchor={anchor}
-              keepMounted={keepMounted}
-              slotProps={{ paper: { id: menuId, 'aria-labelledby': buttonId } }}
               onOpenChange={(open, details) => {
                 changes(open, details.reason);
                 if (!open) {
@@ -125,11 +122,18 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
                 }
               }}
             >
-              <Menu2Submenu
-                trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
+              <Menu2Popup
+                anchor={anchor}
+                keepMounted={keepMounted}
+                slotProps={{ root: { id: menuId, 'aria-labelledby': buttonId } }}
               >
-                <Menu2Item>Nested</Menu2Item>
-              </Menu2Submenu>
+                <Menu2Submenu>
+                  <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+                  <Menu2SubmenuPopup>
+                    <Menu2Item>Nested</Menu2Item>
+                  </Menu2SubmenuPopup>
+                </Menu2Submenu>
+              </Menu2Popup>
             </Menu2>
           </React.Fragment>
         );
@@ -176,32 +180,25 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
       const { user, unmount } = render(
         <div style={{ padding: 100 }}>
           <div ref={anchorRef} style={{ width: 100, height: 32 }} />
-          <Menu2
-            defaultOpen
-            modal={false}
-            anchor={anchorRef}
-            onOpenChange={changed}
-            onOpenChangeComplete={completed}
-          >
-            <Menu2Submenu
-              onOpenChange={firstChanged}
-              trigger={
+          <Menu2 defaultOpen modal={false} onOpenChange={changed} onOpenChangeComplete={completed}>
+            <Menu2Popup anchor={anchorRef}>
+              <Menu2Submenu onOpenChange={firstChanged}>
                 <Menu2SubmenuTrigger openOnHover={method === 'hover'} delay={0}>
                   First
                 </Menu2SubmenuTrigger>
-              }
-            >
-              <Menu2Item>First item</Menu2Item>
-            </Menu2Submenu>
-            <Menu2Submenu
-              trigger={
+                <Menu2SubmenuPopup>
+                  <Menu2Item>First item</Menu2Item>
+                </Menu2SubmenuPopup>
+              </Menu2Submenu>
+              <Menu2Submenu>
                 <Menu2SubmenuTrigger openOnHover={method === 'hover'} delay={0}>
                   Second
                 </Menu2SubmenuTrigger>
-              }
-            >
-              <Menu2Item>Second item</Menu2Item>
-            </Menu2Submenu>
+                <Menu2SubmenuPopup>
+                  <Menu2Item>Second item</Menu2Item>
+                </Menu2SubmenuPopup>
+              </Menu2Submenu>
+            </Menu2Popup>
           </Menu2>
         </div>,
       );
@@ -236,14 +233,15 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
     const changed = vi.fn();
     const completed = vi.fn();
     render(
-      <Menu2 defaultOpen modal={false} anchor={document.body} onOpenChange={changed}>
-        <Menu2Submenu
-          defaultOpen
-          onOpenChangeComplete={completed}
-          trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-        >
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
+      <Menu2 defaultOpen modal={false} onOpenChange={changed}>
+        <Menu2Popup anchor={document.body}>
+          <Menu2Submenu defaultOpen onOpenChangeComplete={completed}>
+            <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
       </Menu2>,
     );
     await screen.findByRole('menuitem', { name: 'Nested' });
@@ -257,15 +255,14 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
     function Demo() {
       const [hasTrigger, setHasTrigger] = React.useState(false);
       return (
-        <Menu2
-          defaultOpen
-          modal={false}
-          anchor={document.body}
-          onOpenChange={changed}
-          trigger={hasTrigger ? <button type="button">Options</button> : undefined}
-        >
-          <Menu2Submenu
-            trigger={
+        <Menu2 defaultOpen modal={false} onOpenChange={changed}>
+          {hasTrigger && (
+            <Menu2Trigger>
+              <button type="button">Options</button>
+            </Menu2Trigger>
+          )}
+          <Menu2Popup anchor={document.body}>
+            <Menu2Submenu>
               <Menu2SubmenuTrigger
                 openOnHover={false}
                 onKeyDown={(event) => {
@@ -276,10 +273,11 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
               >
                 More
               </Menu2SubmenuTrigger>
-            }
-          >
-            <Menu2Item>Nested</Menu2Item>
-          </Menu2Submenu>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
         </Menu2>
       );
     }

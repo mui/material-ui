@@ -1,84 +1,50 @@
+import Menu2SubmenuPopup, {
+  Menu2SubmenuPopupProps,
+  menu2SubmenuPopupClasses,
+} from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2Popup, { Menu2PopupProps, menu2PopupClasses } from '@mui/material/Unstable_Menu2Popup';
+import Menu2Trigger, { menu2TriggerClasses } from '@mui/material/Unstable_Menu2Trigger';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Menu2, { Menu2Props, menu2Classes, menu2TriggerClasses } from '@mui/material/Unstable_Menu2';
+import Menu2 from '@mui/material/Unstable_Menu2';
 import { resetMenu2WarningFlags } from '@mui/material/Unstable_Menu2/menu2Utils';
 import { Menu2PopupSharedSlotProps } from '@mui/material/Unstable_Menu2/menu2PopupShared';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
-import Menu2Submenu, {
-  getMenu2SubmenuUtilityClass,
-  menu2SubmenuClasses,
+import Menu2Submenu, { Menu2SubmenuProps } from '@mui/material/Unstable_Menu2Submenu';
+import Menu2SubmenuTrigger, {
   menu2SubmenuTriggerClasses,
-  Menu2SubmenuProps,
-} from '@mui/material/Unstable_Menu2Submenu';
-import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
-import describeConformance from '../../test/describeConformance';
+} from '@mui/material/Unstable_Menu2SubmenuTrigger';
 
-interface TestMenuProps extends Omit<Menu2SubmenuProps, 'slotProps'> {
-  slotProps?: Menu2PopupSharedSlotProps<Menu2Props | Menu2SubmenuProps>;
+interface TestMenuProps
+  extends
+    Pick<Menu2SubmenuProps, 'open' | 'onOpenChange' | 'loopFocus' | 'highlightItemOnHover'>,
+    Omit<Menu2SubmenuPopupProps, 'slotProps'> {
+  slotProps?: Menu2PopupSharedSlotProps<Menu2PopupProps | Menu2SubmenuPopupProps>;
 }
 
-// The collapsed surfaces: trigger as a prop and children as the popup, with
-// one explicit behavioral component for the submenu trigger.
 describe('<Menu2Submenu />', () => {
   const { render } = createRenderer();
 
-  it('exports submenu utility classes under the public component name', () => {
-    const expectedClasses = {
-      root: 'MuiMenu2Submenu-root',
-      positioner: 'MuiMenu2Submenu-positioner',
-      paper: 'MuiMenu2Submenu-paper',
-      list: 'MuiMenu2Submenu-list',
-    };
-
-    expect(menu2SubmenuClasses).to.deep.equal(expectedClasses);
-    Object.entries(expectedClasses).forEach(([slot, className]) => {
-      expect(getMenu2SubmenuUtilityClass(slot)).to.equal(className);
-    });
-  });
-
-  // Base UI submenus need layout to open, which jsdom does not provide, so the
-  // nested popup never mounts there; run this suite in the browser project.
-  describe.skipIf(isJsdom())('<Menu2Submenu /> conformance', () => {
-    describeConformance(
-      <Menu2Submenu
-        defaultOpen
-        trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-      >
-        <Menu2Item>Nested</Menu2Item>
-      </Menu2Submenu>,
-      () => ({
-        classes: menu2SubmenuClasses,
-        render: (node) =>
-          render(
-            <Menu2 defaultOpen modal={false} anchor={document.body}>
-              {node}
-            </Menu2>,
-          ),
-        getRootElement: ({ baseElement }) =>
-          baseElement.querySelector(`.${menu2SubmenuClasses.root}`),
-        // The public root contains all popup layers. Its host is
-        // configured through slots.root rather than a component prop.
-        skip: ['componentProp'],
-        refInstanceof: window.HTMLDivElement,
-        muiName: 'MuiMenu2Submenu',
-        testVariantProps: { align: 'center' },
-        slots: {
-          positioner: {
-            expectedClassName: menu2SubmenuClasses.positioner,
-          },
-          paper: {
-            expectedClassName: menu2SubmenuClasses.paper,
-          },
-          list: {
-            expectedClassName: menu2SubmenuClasses.list,
-          },
-        },
-      }),
+  it('does not render a DOM wrapper or an implicit submenu popup', () => {
+    render(
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Popup anchor={document.body}>
+          <div data-testid="wrapper">
+            <Menu2Submenu>
+              <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+            </Menu2Submenu>
+          </div>
+        </Menu2Popup>
+      </Menu2>,
     );
+    const wrapper = screen.getByTestId('wrapper');
+    expect(wrapper.firstElementChild).to.equal(screen.getByRole('menuitem', { name: 'More' }));
+    expect(wrapper.children).to.have.length(1);
+    expect(screen.getAllByRole('menu')).to.have.length(1);
   });
 
   beforeEach(() => {
@@ -96,8 +62,13 @@ describe('<Menu2Submenu />', () => {
 
   it('renders the trigger element as-is and opens the menu', async () => {
     const { user } = render(
-      <Menu2 trigger={<Button disableRipple>Options</Button>}>
-        <Menu2Item>Profile</Menu2Item>
+      <Menu2>
+        <Menu2Trigger>
+          <Button disableRipple>Options</Button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -110,7 +81,7 @@ describe('<Menu2Submenu />', () => {
     await user.click(trigger);
 
     const menu = await screen.findByRole('menu');
-    expect(menu).to.have.class(menu2Classes.paper);
+    expect(menu).to.have.class(menu2PopupClasses.root);
     expect(screen.getByRole('menuitem', { name: 'Profile' })).to.have.class(menu2ItemClasses.root);
   });
 
@@ -124,27 +95,49 @@ describe('<Menu2Submenu />', () => {
               <Menu2Item>Beta</Menu2Item>
             </React.Fragment>
           ),
+          open,
+          onOpenChange,
+          loopFocus,
+          highlightItemOnHover,
           ...props
         }: TestMenuProps,
         ref: React.ForwardedRef<HTMLDivElement>,
       ) {
         if (componentName === 'Menu2Submenu') {
           return (
-            <Menu2 defaultOpen modal={false} trigger={<Button disableRipple>Options</Button>}>
-              <Menu2Submenu
-                {...props}
-                ref={ref}
-                trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-              >
-                {children}
-              </Menu2Submenu>
+            <Menu2 defaultOpen modal={false}>
+              <Menu2Trigger>
+                <Button disableRipple>Options</Button>
+              </Menu2Trigger>
+              <Menu2Popup>
+                <Menu2Submenu
+                  open={open}
+                  onOpenChange={onOpenChange}
+                  loopFocus={loopFocus}
+                  highlightItemOnHover={highlightItemOnHover}
+                >
+                  <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+                  <Menu2SubmenuPopup {...props} ref={ref}>
+                    {children}
+                  </Menu2SubmenuPopup>
+                </Menu2Submenu>
+              </Menu2Popup>
             </Menu2>
           );
         }
 
         return (
-          <Menu2 defaultOpen modal={false} anchor={document.body} {...props} ref={ref}>
-            {children}
+          <Menu2
+            defaultOpen
+            modal={false}
+            open={open}
+            onOpenChange={onOpenChange}
+            loopFocus={loopFocus}
+            highlightItemOnHover={highlightItemOnHover}
+          >
+            <Menu2Popup anchor={document.body} {...props} ref={ref}>
+              {children}
+            </Menu2Popup>
           </Menu2>
         );
       });
@@ -171,18 +164,19 @@ describe('<Menu2Submenu />', () => {
 
       function getRoot() {
         const rootClass =
-          componentName === 'Menu2Submenu' ? menu2SubmenuClasses.root : menu2Classes.root;
+          componentName === 'Menu2Submenu'
+            ? menu2SubmenuPopupClasses.portal
+            : menu2PopupClasses.portal;
         return getPopup().closest<HTMLDivElement>(`.${rootClass}`)!;
       }
 
-      it('preserves behavior props in popup ownerState for theme variants and slot callbacks', async () => {
+      it('uses popup props for variants and slot callbacks without copying root behavior props', async () => {
         const theme = createTheme({
           components: {
-            [componentName === 'Menu2' ? 'MuiMenu2' : 'MuiMenu2Submenu']: {
-              defaultProps: { loopFocus: false, highlightItemOnHover: false },
+            [componentName === 'Menu2' ? 'MuiMenu2Popup' : 'MuiMenu2SubmenuPopup']: {
               variants: [
-                { props: { open: true, loopFocus: false }, style: { paddingLeft: '17px' } },
-                { props: { open: false }, style: { paddingLeft: '19px' } },
+                { props: { align: 'end' }, style: { paddingLeft: '17px' } },
+                { props: { align: 'start' }, style: { paddingLeft: '19px' } },
               ],
             },
           },
@@ -194,17 +188,21 @@ describe('<Menu2Submenu />', () => {
             <TestMenu
               open={open}
               onOpenChange={setOpen}
+              align={open ? 'end' : 'start'}
+              loopFocus={false}
+              highlightItemOnHover={false}
               keepMounted
               slotProps={{
-                root: (state) => ({
-                  'data-owner-open': String(state.open),
-                  'data-loop-focus': String(state.loopFocus),
+                portal: (state) => ({
+                  'data-align-prop': state.align,
                 }),
-                paper: (state) => ({
-                  'data-highlight-on-hover': String(state.highlightItemOnHover),
+                root: (state) => ({
+                  'data-has-root-behavior': String(
+                    'open' in state || 'loopFocus' in state || 'highlightItemOnHover' in state,
+                  ),
                   style: { transition: 'none' },
                 }),
-                list: (state) => ({ 'data-open': String(state.open) }),
+                list: (state) => ({ 'data-align-prop': state.align }),
               }}
             >
               <Menu2Item closeOnClick={false} onClick={() => setOpen(false)}>
@@ -223,11 +221,10 @@ describe('<Menu2Submenu />', () => {
         const root = getRoot();
         const popup = getPopup();
         const list = item.parentElement!;
-        expect(getComputedStyle(root).paddingLeft).to.equal('17px');
-        expect(root).to.have.attribute('data-owner-open', 'true');
-        expect(root).to.have.attribute('data-loop-focus', 'false');
-        expect(popup).to.have.attribute('data-highlight-on-hover', 'false');
-        expect(list).to.have.attribute('data-open', 'true');
+        expect(getComputedStyle(popup).paddingLeft).to.equal('17px');
+        expect(root).to.have.attribute('data-align-prop', 'end');
+        expect(popup).to.have.attribute('data-has-root-behavior', 'false');
+        expect(list).to.have.attribute('data-align-prop', 'end');
         expect(root).not.to.have.attribute('open');
         expect(root).not.to.have.attribute('loopFocus');
         expect(popup).not.to.have.attribute('open');
@@ -235,13 +232,13 @@ describe('<Menu2Submenu />', () => {
         await user.click(item);
 
         await waitFor(() => {
-          expect(root).to.have.attribute('data-owner-open', 'false');
-          expect(list).to.have.attribute('data-open', 'false');
-          expect(getComputedStyle(root).paddingLeft).to.equal('19px');
+          expect(root).to.have.attribute('data-align-prop', 'start');
+          expect(list).to.have.attribute('data-align-prop', 'start');
+          expect(getComputedStyle(popup).paddingLeft).to.equal('19px');
         });
       });
 
-      it('applies className, style, and sx to the root, and keeps the surface separate', async () => {
+      it('applies className, style, and sx to the semantic popup, not the portal', async () => {
         const { user } = render(
           <TestMenu
             className="custom-root"
@@ -253,14 +250,14 @@ describe('<Menu2Submenu />', () => {
         await openSubmenu(user);
         const popup = getPopup();
         const root = getRoot();
-        expect(root).to.have.class('custom-root');
+        expect(root).not.to.have.class('custom-root');
         expect(root).to.contain(popup);
-        expect(popup).not.to.have.class('custom-root');
+        expect(popup).to.have.class('custom-root');
         expect(popup).to.have.class('MuiPaper-root');
-        expect(root.style.paddingTop).to.equal('3px');
-        expect(popup.style.paddingTop).to.equal('');
-        expect(getComputedStyle(root).paddingBottom).to.equal('7px');
-        expect(getComputedStyle(popup).paddingBottom).not.to.equal('7px');
+        expect(root.style.paddingTop).to.equal('');
+        expect(popup.style.paddingTop).to.equal('3px');
+        expect(getComputedStyle(root).paddingBottom).not.to.equal('7px');
+        expect(getComputedStyle(popup).paddingBottom).to.equal('7px');
       });
 
       it('merges the root slot props and keeps the other slot props separate', async () => {
@@ -268,15 +265,15 @@ describe('<Menu2Submenu />', () => {
           <TestMenu
             className="custom-root"
             classes={{
-              root: 'root-class',
+              portal: 'root-class',
               positioner: 'positioner-class',
-              paper: 'paper-class',
+              root: 'paper-class',
               list: 'list-class',
             }}
             style={{ paddingLeft: '3px' }}
             sx={[{ paddingBottom: '7px' }, (theme) => ({ paddingTop: theme.spacing(1) })]}
             slotProps={{
-              root: {
+              portal: {
                 className: 'root-slot',
                 style: { paddingRight: '5px' },
                 sx: [{ paddingBottom: '9px' }],
@@ -286,7 +283,7 @@ describe('<Menu2Submenu />', () => {
                 sx: { paddingTop: '5px' },
                 'data-testid': 'positioner',
               },
-              paper: {
+              root: {
                 className: 'paper-slot',
                 style: { paddingRight: '4px' },
                 sx: { paddingTop: '11px' },
@@ -307,7 +304,7 @@ describe('<Menu2Submenu />', () => {
         const paper = screen.getByTestId('paper');
         const list = screen.getByTestId('list');
         expect(paper).to.equal(getPopup());
-        expect(root).to.have.class('custom-root');
+        expect(paper).to.have.class('custom-root');
         expect(root).to.have.class('root-class');
         expect(root).to.have.class('root-slot');
         expect(positioner).to.have.class('positioner-class');
@@ -318,21 +315,22 @@ describe('<Menu2Submenu />', () => {
         expect(paper).to.have.class('paper-slot');
         expect(list).to.have.class('list-class');
         expect(list).to.have.class('list-slot');
-        expect(root.style.paddingLeft).to.equal('3px');
+        expect(root.style.paddingLeft).to.equal('');
         expect(root.style.paddingRight).to.equal('5px');
-        expect(getComputedStyle(root).paddingTop).to.equal('8px');
+        expect(parseFloat(getComputedStyle(root).paddingTop)).to.equal(0);
         expect(getComputedStyle(root).paddingBottom).to.equal('9px');
         expect(getComputedStyle(positioner).paddingTop).to.equal('5px');
         expect(paper.style.paddingRight).to.equal('4px');
-        expect(paper.style.paddingLeft).to.equal('');
+        expect(paper.style.paddingLeft).to.equal('3px');
+        expect(getComputedStyle(paper).paddingBottom).to.equal('7px');
         expect(getComputedStyle(paper).paddingTop).to.equal('11px');
         expect(getComputedStyle(list).paddingTop).to.equal('13px');
       });
 
-      it('forwards a root slot ref without a public ref, including a custom root slot', async () => {
+      it('forwards a portal slot ref without a public ref, including a custom portal slot', async () => {
         const slotRef = React.createRef<HTMLDivElement>();
         const { user, unmount } = render(
-          <TestMenu slots={{ root: 'div' }} slotProps={{ root: () => ({ ref: slotRef }) }} />,
+          <TestMenu slots={{ portal: 'div' }} slotProps={{ portal: () => ({ ref: slotRef }) }} />,
         );
 
         await openSubmenu(user);
@@ -343,7 +341,7 @@ describe('<Menu2Submenu />', () => {
         expect(slotRef.current).to.equal(null);
       });
 
-      it('composes public and root refs, and keeps the positioner and paper refs separate', async () => {
+      it('composes public and surface refs, and keeps the positioner and portal refs separate', async () => {
         const publicRef = vi.fn();
         const slotRef = React.createRef<HTMLDivElement>();
         const positionerRef = React.createRef<HTMLDivElement>();
@@ -352,9 +350,9 @@ describe('<Menu2Submenu />', () => {
           <TestMenu
             ref={publicRef}
             slotProps={{
-              root: { ref: slotRef },
+              portal: { ref: slotRef },
               positioner: { ref: positionerRef },
-              paper: { ref: paperRef },
+              root: { ref: paperRef },
             }}
           />,
         );
@@ -362,7 +360,7 @@ describe('<Menu2Submenu />', () => {
         await openSubmenu(user);
         const popup = getPopup();
         const root = getRoot();
-        expect(publicRef).toHaveBeenLastCalledWith(root);
+        expect(publicRef).toHaveBeenLastCalledWith(popup);
         expect(slotRef.current).to.equal(root);
         expect(root).to.equal(popup.parentElement!.parentElement);
         expect(positionerRef.current).to.equal(popup.parentElement);
@@ -400,42 +398,42 @@ describe('<Menu2Submenu />', () => {
         await openSubmenu(user);
         const popup = getPopup();
         const root = getRoot();
-        expect(firstRef.current).to.equal(root);
-        expect(firstSlotRef).toHaveBeenLastCalledWith(root);
+        expect(firstRef.current).to.equal(popup);
+        expect(firstSlotRef).toHaveBeenLastCalledWith(popup);
 
         await user.click(screen.getByRole('menuitem', { name: 'Alpha' }));
         expect(getPopup()).to.equal(popup);
         expect(getRoot()).to.equal(root);
         expect(firstRef.current).to.equal(null);
         expect(firstSlotRef).toHaveBeenLastCalledWith(null);
-        expect(nextRef.current).to.equal(root);
-        expect(nextSlotRef).toHaveBeenLastCalledWith(root);
+        expect(nextRef.current).to.equal(popup);
+        expect(nextSlotRef).toHaveBeenLastCalledWith(popup);
 
         unmount();
         expect(nextRef.current).to.equal(null);
         expect(nextSlotRef).toHaveBeenLastCalledWith(null);
       });
 
-      it('forwards HTML attributes to the root, as the classic Menu does', async () => {
+      it('forwards HTML attributes to the semantic popup', async () => {
         const { user } = render(
           <TestMenu id="actions-menu" data-testid="actions-root" title="Action menu" />,
         );
 
         await openSubmenu(user);
-        const root = getRoot();
+        const root = getPopup();
         expect(root).to.equal(screen.getByTestId('actions-root'));
         expect(root).to.have.attribute('id', 'actions-menu');
         expect(root).to.have.attribute('title', 'Action menu');
-        expect(getPopup()).not.to.have.attribute('title');
+        expect(getRoot()).not.to.have.attribute('title');
       });
 
-      it('reaches the semantic popup through the paper slot', async () => {
+      it('reaches the semantic popup through the root slot', async () => {
         const { user } = render(
           <React.Fragment>
             <span id="actions-description">Available actions</span>
             <TestMenu
               slotProps={{
-                paper: {
+                root: {
                   id: 'actions-popup',
                   'aria-label': 'Actions',
                   'aria-describedby': 'actions-description',
@@ -469,7 +467,7 @@ describe('<Menu2Submenu />', () => {
         );
 
         await openSubmenu(user);
-        const root = getRoot();
+        const root = getPopup();
         expect(root).to.have.attribute('id', 'slot-id');
         expect(root).to.have.attribute('aria-label', 'Slot label');
         expect(root).to.have.attribute('title', 'Forwarded title');
@@ -515,52 +513,57 @@ describe('<Menu2Submenu />', () => {
     });
   });
 
-  it('preserves positioning when the root slot is a host element', async () => {
+  it('preserves positioning when the portal slot is a host element', async () => {
     const { user } = render(
-      <Menu2
-        trigger={<Button disableRipple>Options</Button>}
-        slots={{ root: 'div' }}
-        slotProps={{
-          root: { 'data-testid': 'root' },
-        }}
-      >
-        <Menu2Item>Profile</Menu2Item>
+      <Menu2>
+        <Menu2Trigger>
+          <Button disableRipple>Options</Button>
+        </Menu2Trigger>
+        <Menu2Popup slots={{ portal: 'div' }} slotProps={{ portal: { 'data-testid': 'root' } }}>
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
     const menu = await screen.findByRole('menu');
-    expect(menu).to.have.class(menu2Classes.paper);
+    expect(menu).to.have.class(menu2PopupClasses.root);
     expect(menu.parentElement!.parentElement).to.equal(screen.getByTestId('root'));
     expect(menu.parentElement!.style.position).to.equal('absolute');
-    expect(screen.getByTestId('root')).to.have.class(menu2Classes.root);
+    expect(screen.getByTestId('root')).to.have.class(menu2PopupClasses.portal);
     expect(screen.getByRole('menuitem', { name: 'Profile' })).not.to.equal(null);
   });
 
-  it('forwards a ref to the root element that wraps the menu', async () => {
+  it('forwards popup refs to the semantic menu surfaces', async () => {
     const menuRef = React.createRef<HTMLDivElement>();
     const submenuRef = React.createRef<HTMLDivElement>();
     const { user } = render(
-      <Menu2 ref={menuRef} trigger={<Button disableRipple>Options</Button>}>
-        <Menu2Submenu ref={submenuRef} trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
+      <Menu2>
+        <Menu2Trigger>
+          <Button disableRipple>Options</Button>
+        </Menu2Trigger>
+        <Menu2Popup ref={menuRef}>
+          <Menu2Submenu>
+            <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup ref={submenuRef}>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
       </Menu2>,
     );
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
     const menu = await screen.findByRole('menu');
-    // The classic Menu ref targets the wrapper, not the surface.
-    expect(menuRef.current).to.have.class(menu2Classes.root);
-    expect(menuRef.current).to.contain(menu);
-    expect(menuRef.current).not.to.equal(menu);
+    expect(menuRef.current).to.have.class(menu2PopupClasses.root);
+    expect(menuRef.current).to.equal(menu);
 
     await user.click(screen.getByRole('menuitem', { name: 'More' }));
     await waitFor(() => {
       expect(submenuRef.current).not.to.equal(null);
     });
-    expect(submenuRef.current).to.have.class(menu2SubmenuClasses.root);
+    expect(submenuRef.current).to.have.class(menu2SubmenuPopupClasses.root);
     expect(submenuRef.current).to.contain(screen.getByRole('menuitem', { name: 'Nested' }));
   });
 
@@ -571,19 +574,18 @@ describe('<Menu2Submenu />', () => {
         const onParentOpenChange = vi.fn();
         const onSubmenuOpenChange = vi.fn();
         const { user } = render(
-          <Menu2
-            defaultOpen
-            modal={false}
-            onOpenChange={onParentOpenChange}
-            trigger={<Button disableRipple>Options</Button>}
-          >
-            <Menu2Submenu
-              closeParentOnEsc={closeParentOnEsc}
-              onOpenChange={onSubmenuOpenChange}
-              trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-            >
-              <Menu2Item>Nested</Menu2Item>
-            </Menu2Submenu>
+          <Menu2 defaultOpen modal={false} onOpenChange={onParentOpenChange}>
+            <Menu2Trigger>
+              <Button disableRipple>Options</Button>
+            </Menu2Trigger>
+            <Menu2Popup>
+              <Menu2Submenu closeParentOnEsc={closeParentOnEsc} onOpenChange={onSubmenuOpenChange}>
+                <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+                <Menu2SubmenuPopup>
+                  <Menu2Item>Nested</Menu2Item>
+                </Menu2SubmenuPopup>
+              </Menu2Submenu>
+            </Menu2Popup>
           </Menu2>,
         );
         const parentTrigger = screen.getByRole('button', { name: 'Options' });
@@ -630,13 +632,19 @@ describe('<Menu2Submenu />', () => {
     'keeps the open tint on the submenu trigger until focus returns after Escape',
     async () => {
       const { user } = render(
-        <Menu2 defaultOpen modal={false} trigger={<Button disableRipple>Options</Button>}>
-          <Menu2Item>One</Menu2Item>
-          <Menu2Submenu
-            trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-          >
-            <Menu2Item>Nested</Menu2Item>
-          </Menu2Submenu>
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Trigger>
+            <Button disableRipple>Options</Button>
+          </Menu2Trigger>
+          <Menu2Popup>
+            <Menu2Item>One</Menu2Item>
+            <Menu2Submenu>
+              <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
         </Menu2>,
       );
       const trigger = await screen.findByRole('menuitem', { name: 'More' });
@@ -689,14 +697,19 @@ describe('<Menu2Submenu />', () => {
       async () => {
         const onOpenChangeComplete = vi.fn();
         const { user } = render(
-          <Menu2 defaultOpen modal={false} trigger={<Button disableRipple>Options</Button>}>
-            <Menu2Item>One</Menu2Item>
-            <Menu2Submenu
-              onOpenChangeComplete={onOpenChangeComplete}
-              trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
-            >
-              <Menu2Item>Nested</Menu2Item>
-            </Menu2Submenu>
+          <Menu2 defaultOpen modal={false}>
+            <Menu2Trigger>
+              <Button disableRipple>Options</Button>
+            </Menu2Trigger>
+            <Menu2Popup>
+              <Menu2Item>One</Menu2Item>
+              <Menu2Submenu onOpenChangeComplete={onOpenChangeComplete}>
+                <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+                <Menu2SubmenuPopup>
+                  <Menu2Item>Nested</Menu2Item>
+                </Menu2SubmenuPopup>
+              </Menu2Submenu>
+            </Menu2Popup>
           </Menu2>,
         );
         const trigger = await screen.findByRole('menuitem', { name: 'More' });
@@ -753,32 +766,34 @@ describe('<Menu2Submenu />', () => {
     );
   });
 
-  ['object', 'callback'].forEach((slotPropsType) => {
-    it(`composes trigger element and slot refs with ${slotPropsType} slot props without warning`, async () => {
+  ['object', 'callback'].forEach((refType) => {
+    it(`composes trigger child and ${refType} adapter refs without warning`, async () => {
       const elementRef = React.createRef<HTMLButtonElement>();
       const slotRef = vi.fn();
+      const adapterRef = React.createRef<HTMLButtonElement>();
       const error = vi.spyOn(console, 'error').mockImplementation(() => {});
 
       try {
-        const triggerProps = { ref: slotRef };
         const { user, unmount } = render(
-          <Menu2
-            trigger={
+          <Menu2>
+            <Menu2Trigger ref={refType === 'callback' ? slotRef : adapterRef}>
               <Button ref={elementRef} disableRipple>
                 Options
               </Button>
-            }
-            slotProps={{
-              trigger: slotPropsType === 'callback' ? () => triggerProps : triggerProps,
-            }}
-          >
-            <Menu2Item>Profile</Menu2Item>
+            </Menu2Trigger>
+            <Menu2Popup>
+              <Menu2Item>Profile</Menu2Item>
+            </Menu2Popup>
           </Menu2>,
         );
 
         const trigger = screen.getByRole('button', { name: 'Options' });
         expect(elementRef.current).to.equal(trigger);
-        expect(slotRef).toHaveBeenLastCalledWith(trigger);
+        if (refType === 'callback') {
+          expect(slotRef).toHaveBeenLastCalledWith(trigger);
+        } else {
+          expect(adapterRef.current).to.equal(trigger);
+        }
         expect(error).not.toHaveBeenCalled();
 
         await user.click(trigger);
@@ -786,7 +801,11 @@ describe('<Menu2Submenu />', () => {
 
         unmount();
         expect(elementRef.current).to.equal(null);
-        expect(slotRef).toHaveBeenLastCalledWith(null);
+        if (refType === 'callback') {
+          expect(slotRef).toHaveBeenLastCalledWith(null);
+        } else {
+          expect(adapterRef.current).to.equal(null);
+        }
         expect(error).not.toHaveBeenCalled();
       } finally {
         error.mockRestore();
@@ -799,31 +818,33 @@ describe('<Menu2Submenu />', () => {
   it('applies styleOverrides from the collapsed theme slots', async () => {
     const theme = createTheme({
       components: {
-        MuiMenu2: {
+        MuiMenu2Popup: {
           styleOverrides: {
-            paper: { paddingTop: '9px' },
+            root: { paddingTop: '9px' },
             list: { paddingBottom: '7px' },
           },
         },
-        MuiMenu2Submenu: {
+        MuiMenu2SubmenuPopup: {
           styleOverrides: {
-            paper: { paddingTop: '11px' },
+            root: { paddingTop: '11px' },
           },
         },
       },
     });
     const { user } = render(
       <ThemeProvider theme={theme}>
-        <Menu2
-          trigger={<Button disableRipple>Options</Button>}
-          slotProps={{ paper: { 'data-testid': 'paper' } }}
-        >
-          <Menu2Submenu
-            trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
-            slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}
-          >
-            <Menu2Item>Nested</Menu2Item>
-          </Menu2Submenu>
+        <Menu2>
+          <Menu2Trigger>
+            <Button disableRipple>Options</Button>
+          </Menu2Trigger>
+          <Menu2Popup slotProps={{ root: { 'data-testid': 'paper' } }}>
+            <Menu2Submenu>
+              <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup slotProps={{ root: { 'data-testid': 'submenu-paper' } }}>
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
         </Menu2>
       </ThemeProvider>,
     );
@@ -833,7 +854,7 @@ describe('<Menu2Submenu />', () => {
     await user.click(trigger);
     const menu = await screen.findByRole('menu');
     expect(window.getComputedStyle(screen.getByTestId('paper')).paddingTop).to.equal('9px');
-    const list = menu.querySelector(`.${menu2Classes.list}`)!;
+    const list = menu.querySelector(`.${menu2PopupClasses.list}`)!;
     expect(window.getComputedStyle(list).paddingBottom).to.equal('7px');
 
     const submenuTrigger = screen.getByRole('menuitem', { name: 'More' });
@@ -852,8 +873,16 @@ describe('<Menu2Submenu />', () => {
 
     try {
       render(
-        <Menu2 trigger={<React.Fragment>Options</React.Fragment>}>
-          <Menu2Item>Profile</Menu2Item>
+        <Menu2>
+          <Menu2Trigger>
+            <React.Fragment>
+              <span>Options</span>
+              <span>More</span>
+            </React.Fragment>
+          </Menu2Trigger>
+          <Menu2Popup>
+            <Menu2Item>Profile</Menu2Item>
+          </Menu2Popup>
         </Menu2>,
       );
 
@@ -868,14 +897,26 @@ describe('<Menu2Submenu />', () => {
   it('warns once, however many times the bad trigger renders', () => {
     const error = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-    try {
-      const { setProps } = render(
-        <Menu2 trigger={<React.Fragment>Options</React.Fragment>}>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2>,
+    function Demo({ label }: { label: string }) {
+      return (
+        <Menu2>
+          <Menu2Trigger>
+            <React.Fragment>
+              <span>{label}</span>
+              <span>More</span>
+            </React.Fragment>
+          </Menu2Trigger>
+          <Menu2Popup>
+            <Menu2Item>Profile</Menu2Item>
+          </Menu2Popup>
+        </Menu2>
       );
-      setProps({ 'aria-label': 'first' });
-      setProps({ 'aria-label': 'second' });
+    }
+
+    try {
+      const { setProps } = render(<Demo label="Options" />);
+      setProps({ label: 'First' });
+      setProps({ label: 'Second' });
 
       expect(
         error.mock.calls.filter(([message]) => String(message).includes('cannot be a fragment')),
@@ -899,17 +940,20 @@ describe('<Menu2Submenu />', () => {
         }
       });
       const { user } = render(
-        <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
-          <Menu2Submenu
-            onOpenChange={onOpenChange}
-            trigger={
+        <Menu2 defaultOpen>
+          <Menu2Trigger>
+            <button type="button">Options</button>
+          </Menu2Trigger>
+          <Menu2Popup>
+            <Menu2Submenu onOpenChange={onOpenChange}>
               <Menu2SubmenuTrigger delay={delay} onMouseEnter={onMouseEnter}>
                 More
               </Menu2SubmenuTrigger>
-            }
-          >
-            <Menu2Item>Nested</Menu2Item>
-          </Menu2Submenu>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
         </Menu2>,
       );
 
@@ -935,14 +979,18 @@ describe('<Menu2Submenu />', () => {
     const onOpenChange = vi.fn();
     const onOpenChangeComplete = vi.fn();
     const { user } = render(
-      <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
-        <Menu2Submenu
-          onOpenChange={onOpenChange}
-          onOpenChangeComplete={onOpenChangeComplete}
-          trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
-        >
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
+      <Menu2 defaultOpen>
+        <Menu2Trigger>
+          <button type="button">Options</button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Submenu onOpenChange={onOpenChange} onOpenChangeComplete={onOpenChangeComplete}>
+            <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -972,16 +1020,20 @@ describe('<Menu2Submenu />', () => {
 
   it.skipIf(isJsdom())('does not open on hover when openOnHover is false', async () => {
     const { user } = render(
-      <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
-        <Menu2Submenu
-          trigger={
+      <Menu2 defaultOpen>
+        <Menu2Trigger>
+          <button type="button">Options</button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Submenu>
             <Menu2SubmenuTrigger delay={0} openOnHover={false}>
               More
             </Menu2SubmenuTrigger>
-          }
-        >
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -999,18 +1051,20 @@ describe('<Menu2Submenu />', () => {
     const onOpenChange = vi.fn();
     const onOpenChangeComplete = vi.fn();
     const { user } = render(
-      <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
-        <Menu2Submenu
-          onOpenChange={onOpenChange}
-          onOpenChangeComplete={onOpenChangeComplete}
-          trigger={
+      <Menu2 defaultOpen>
+        <Menu2Trigger>
+          <button type="button">Options</button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Submenu onOpenChange={onOpenChange} onOpenChangeComplete={onOpenChangeComplete}>
             <Menu2SubmenuTrigger delay={0} closeDelay={closeDelay}>
               More
             </Menu2SubmenuTrigger>
-          }
-        >
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -1063,23 +1117,21 @@ describe('<Menu2Submenu />', () => {
     });
     const onOpenChangeComplete = vi.fn();
     const { user } = render(
-      <Menu2
-        defaultOpen
-        highlightItemOnHover={false}
-        trigger={<button type="button">Options</button>}
-      >
-        <Menu2Submenu
-          onOpenChange={onOpenChange}
-          onOpenChangeComplete={onOpenChangeComplete}
-          trigger={
+      <Menu2 defaultOpen highlightItemOnHover={false}>
+        <Menu2Trigger>
+          <button type="button">Options</button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Submenu onOpenChange={onOpenChange} onOpenChangeComplete={onOpenChangeComplete}>
             <Menu2SubmenuTrigger delay={0} closeDelay={closeDelay}>
               More
             </Menu2SubmenuTrigger>
-          }
-        >
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
-        <Menu2Item closeOnClick={false}>Other</Menu2Item>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+          <Menu2Item closeOnClick={false}>Other</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -1120,16 +1172,20 @@ describe('<Menu2Submenu />', () => {
     }
 
     const { user } = render(
-      <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
-        <Menu2Submenu
-          trigger={
+      <Menu2 defaultOpen>
+        <Menu2Trigger>
+          <button type="button">Options</button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Submenu>
             <Wrapper>
               <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
             </Wrapper>
-          }
-        >
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -1149,15 +1205,15 @@ describe('<Menu2Submenu />', () => {
 
     try {
       render(
-        <Menu2
-          defaultOpen
-          trigger={
+        <Menu2 defaultOpen>
+          <Menu2Trigger>
             <SwallowingWrapper>
               <button type="button">Options</button>
             </SwallowingWrapper>
-          }
-        >
-          <Menu2Item>Profile</Menu2Item>
+          </Menu2Trigger>
+          <Menu2Popup>
+            <Menu2Item>Profile</Menu2Item>
+          </Menu2Popup>
         </Menu2>,
       );
 
@@ -1172,11 +1228,19 @@ describe('<Menu2Submenu />', () => {
   // Submenu triggers and plain items use the same keyboard focus styles.
   it.skipIf(isJsdom())('highlights the submenu trigger like a plain item', async () => {
     const { user } = render(
-      <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
-        <Menu2Item>Plain</Menu2Item>
-        <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
+      <Menu2 defaultOpen>
+        <Menu2Trigger>
+          <button type="button">Options</button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Item>Plain</Menu2Item>
+          <Menu2Submenu>
+            <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -1218,17 +1282,18 @@ describe('<Menu2Submenu />', () => {
     // `defaultOpen` avoids clicking the trigger Button, whose ripple animates
     // past the end of the test and trips the act() check.
     const { user } = render(
-      <Menu2
-        defaultOpen
-        trigger={<Button disableRipple>Options</Button>}
-        slotProps={{ paper: { 'data-testid': 'paper' } }}
-      >
-        <Menu2Submenu
-          trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
-          slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}
-        >
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
+      <Menu2 defaultOpen>
+        <Menu2Trigger>
+          <Button disableRipple>Options</Button>
+        </Menu2Trigger>
+        <Menu2Popup slotProps={{ root: { 'data-testid': 'paper' } }}>
+          <Menu2Submenu>
+            <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup slotProps={{ root: { 'data-testid': 'submenu-paper' } }}>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -1257,13 +1322,18 @@ describe('<Menu2Submenu />', () => {
     const { user } = render(
       <ThemeProvider theme={theme}>
         <div dir="rtl" style={{ padding: '96px 400px' }}>
-          <Menu2 defaultOpen trigger={<Button disableRipple>Options</Button>}>
-            <Menu2Submenu
-              trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}
-              slotProps={{ paper: { 'data-testid': 'submenu-paper' } }}
-            >
-              <Menu2Item>Nested</Menu2Item>
-            </Menu2Submenu>
+          <Menu2 defaultOpen>
+            <Menu2Trigger>
+              <Button disableRipple>Options</Button>
+            </Menu2Trigger>
+            <Menu2Popup>
+              <Menu2Submenu>
+                <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+                <Menu2SubmenuPopup slotProps={{ root: { 'data-testid': 'submenu-paper' } }}>
+                  <Menu2Item>Nested</Menu2Item>
+                </Menu2SubmenuPopup>
+              </Menu2Submenu>
+            </Menu2Popup>
           </Menu2>
         </div>
       </ThemeProvider>,
@@ -1286,10 +1356,18 @@ describe('<Menu2Submenu />', () => {
   // becomes the trigger itself.
   it('renders the caller element as the trigger at both levels', async () => {
     const { user } = render(
-      <Menu2 trigger={<Button disableRipple>Options</Button>}>
-        <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
+      <Menu2>
+        <Menu2Trigger>
+          <Button disableRipple>Options</Button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Submenu>
+            <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -1315,8 +1393,13 @@ describe('<Menu2Submenu />', () => {
 
   it('falls back to the default trigger for a non-element', async () => {
     const { user } = render(
-      <Menu2 trigger={<Button disableRipple>Options</Button>}>
-        <Menu2Item>Profile</Menu2Item>
+      <Menu2>
+        <Menu2Trigger>
+          <Button disableRipple>Options</Button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -1330,8 +1413,13 @@ describe('<Menu2Submenu />', () => {
 
   it('marks the trigger open while the menu is open', async () => {
     const { user } = render(
-      <Menu2 trigger={<Button disableRipple>Options</Button>}>
-        <Menu2Item>Profile</Menu2Item>
+      <Menu2>
+        <Menu2Trigger>
+          <Button disableRipple>Options</Button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -1346,13 +1434,13 @@ describe('<Menu2Submenu />', () => {
 
   it('accepts the hoisted popup props', async () => {
     const { user } = render(
-      <Menu2
-        trigger={<Button disableRipple>Options</Button>}
-        side="top"
-        elevation={16}
-        slotProps={{ paper: { 'data-testid': 'paper' } }}
-      >
-        <Menu2Item>Profile</Menu2Item>
+      <Menu2>
+        <Menu2Trigger>
+          <Button disableRipple>Options</Button>
+        </Menu2Trigger>
+        <Menu2Popup side="top" elevation={16} slotProps={{ root: { 'data-testid': 'paper' } }}>
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -1369,8 +1457,10 @@ describe('<Menu2Submenu />', () => {
           <button type="button" onClick={(event) => setAnchorEl(event.currentTarget)}>
             Open
           </button>
-          <Menu2 open={Boolean(anchorEl)} anchor={anchorEl} onOpenChange={() => setAnchorEl(null)}>
-            <Menu2Item>Profile</Menu2Item>
+          <Menu2 open={Boolean(anchorEl)} onOpenChange={() => setAnchorEl(null)}>
+            <Menu2Popup anchor={anchorEl}>
+              <Menu2Item>Profile</Menu2Item>
+            </Menu2Popup>
           </Menu2>
         </React.Fragment>
       );
@@ -1386,11 +1476,19 @@ describe('<Menu2Submenu />', () => {
   // The nested popup needs real layout to mount.
   it.skipIf(isJsdom())('uses the same shape for submenus', async () => {
     const { user } = render(
-      <Menu2 trigger={<Button disableRipple>Options</Button>}>
-        <Menu2Item>Cut</Menu2Item>
-        <Menu2Submenu trigger={<Menu2SubmenuTrigger>View</Menu2SubmenuTrigger>}>
-          <Menu2Item>Zoom in</Menu2Item>
-        </Menu2Submenu>
+      <Menu2>
+        <Menu2Trigger>
+          <Button disableRipple>Options</Button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Item>Cut</Menu2Item>
+          <Menu2Submenu>
+            <Menu2SubmenuTrigger>View</Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Zoom in</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -1414,13 +1512,18 @@ describe('<Menu2Submenu />', () => {
       const onClick = spy();
       const onOpenChange = vi.fn();
       const { user } = render(
-        <Menu2 defaultOpen trigger={<button type="button">Options</button>}>
-          <Menu2Submenu
-            onOpenChange={onOpenChange}
-            trigger={<Menu2SubmenuTrigger onClick={onClick}>More</Menu2SubmenuTrigger>}
-          >
-            <Menu2Item>Nested</Menu2Item>
-          </Menu2Submenu>
+        <Menu2 defaultOpen>
+          <Menu2Trigger>
+            <button type="button">Options</button>
+          </Menu2Trigger>
+          <Menu2Popup>
+            <Menu2Submenu onOpenChange={onOpenChange}>
+              <Menu2SubmenuTrigger onClick={onClick}>More</Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Nested</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
         </Menu2>,
       );
 
@@ -1445,11 +1548,16 @@ describe('<Menu2Submenu />', () => {
       async () => {
         const { user } = render(
           <ThemeProvider theme={createTheme({ focusVisible })}>
-            <Menu2 defaultOpen modal={false} anchor={document.body}>
-              <Menu2Item>Plain</Menu2Item>
-              <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
-                <Menu2Item>Nested</Menu2Item>
-              </Menu2Submenu>
+            <Menu2 defaultOpen modal={false}>
+              <Menu2Popup anchor={document.body}>
+                <Menu2Item>Plain</Menu2Item>
+                <Menu2Submenu>
+                  <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+                  <Menu2SubmenuPopup>
+                    <Menu2Item>Nested</Menu2Item>
+                  </Menu2SubmenuPopup>
+                </Menu2Submenu>
+              </Menu2Popup>
             </Menu2>
           </ThemeProvider>,
         );
@@ -1477,11 +1585,19 @@ describe('<Menu2Submenu />', () => {
   // open parent stays visible without reading as the focused item.
   it.skipIf(isJsdom())('tints an open trigger below the highlight', async () => {
     const { user } = render(
-      <Menu2 defaultOpen modal={false} trigger={<button type="button">Options</button>}>
-        <Menu2Item>Plain</Menu2Item>
-        <Menu2Submenu trigger={<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>}>
-          <Menu2Item>Nested</Menu2Item>
-        </Menu2Submenu>
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Trigger>
+          <button type="button">Options</button>
+        </Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Item>Plain</Menu2Item>
+          <Menu2Submenu>
+            <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -1514,13 +1630,24 @@ describe('<Menu2Submenu />', () => {
   // The menu keeps a real trigger. Anchored to the body it has nothing to give
   // the focus back to, and it closes itself about 200ms after a submenu opens.
   const nestedChain = (
-    <Menu2 defaultOpen modal={false} trigger={<Button disableRipple>Options</Button>}>
-      {/* Each trigger is index 0 of its own list, so the indices collide. */}
-      <Menu2Submenu trigger={<Menu2SubmenuTrigger>View options</Menu2SubmenuTrigger>}>
-        <Menu2Submenu trigger={<Menu2SubmenuTrigger>More tools</Menu2SubmenuTrigger>}>
-          <Menu2Item>Leaf</Menu2Item>
+    <Menu2 defaultOpen modal={false}>
+      <Menu2Trigger>
+        <Button disableRipple>Options</Button>
+      </Menu2Trigger>
+      <Menu2Popup>
+        {/* Each trigger is index 0 of its own list, so the indices collide. */}
+        <Menu2Submenu>
+          <Menu2SubmenuTrigger>View options</Menu2SubmenuTrigger>
+          <Menu2SubmenuPopup>
+            <Menu2Submenu>
+              <Menu2SubmenuTrigger>More tools</Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Leaf</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2SubmenuPopup>
         </Menu2Submenu>
-      </Menu2Submenu>
+      </Menu2Popup>
     </Menu2>
   );
 

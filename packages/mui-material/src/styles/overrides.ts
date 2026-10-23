@@ -65,7 +65,8 @@ import { ListItemSecondaryActionClassKey } from '../ListItemSecondaryAction';
 import { ListItemTextClassKey } from '../ListItemText';
 import { ListSubheaderClassKey } from '../ListSubheader';
 import { MenuClassKey } from '../Menu';
-import type { Menu2ClassKey, Menu2SubmenuClassKey } from '../Unstable_Menu2/menu2Classes';
+import type { Menu2PopupClassKey } from '../Unstable_Menu2Popup';
+import type { Menu2SubmenuPopupClassKey } from '../Unstable_Menu2SubmenuPopup';
 import type { Menu2CheckboxItemClassKey } from '../Unstable_Menu2CheckboxItem';
 import type { Menu2GroupClassKey } from '../Unstable_Menu2Group';
 import type { Menu2GroupLabelClassKey } from '../Unstable_Menu2GroupLabel';
@@ -219,7 +220,7 @@ export interface ComponentNameToClassKey {
   MuiListItemText: ListItemTextClassKey;
   MuiListSubheader: ListSubheaderClassKey;
   MuiMenu: MenuClassKey;
-  MuiMenu2: Menu2ClassKey;
+  MuiMenu2Popup: Menu2PopupClassKey;
   MuiMenu2CheckboxItem: Exclude<Menu2CheckboxItemClassKey, 'highlighted'>;
   MuiMenu2Group: Menu2GroupClassKey;
   MuiMenu2GroupLabel: Menu2GroupLabelClassKey;
@@ -228,7 +229,7 @@ export interface ComponentNameToClassKey {
   MuiMenu2RadioGroup: Menu2RadioGroupClassKey;
   MuiMenu2RadioItem: Exclude<Menu2RadioItemClassKey, 'highlighted'>;
   MuiMenu2Separator: Menu2SeparatorClassKey;
-  MuiMenu2Submenu: Menu2SubmenuClassKey;
+  MuiMenu2SubmenuPopup: Menu2SubmenuPopupClassKey;
   MuiMenu2SubmenuTrigger: Exclude<Menu2SubmenuTriggerClassKey, 'highlighted'>;
   MuiMenuItem: MenuItemClassKey;
   MuiMenuList: MenuListClassKey;

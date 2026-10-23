@@ -3,14 +3,14 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import Paper from '../Paper';
 import List from '../List';
-import { menu2Classes, menu2SubmenuClasses } from './menu2Classes';
+import { menu2PopupClasses, menu2SubmenuPopupClasses } from './menu2Classes';
 
 // Common Menu2 theme styles precede the submenu-specific styles.
 // The final popup wrappers resolve sx after both theme layers.
 /**
  * @ignore - internal component.
  */
-export const Menu2RootBase = styled('div', { name: 'MuiMenu2', slot: 'root' })(
+export const Menu2PortalBase = styled('div', { name: 'MuiMenu2Popup', slot: 'portal' })(
   memoTheme(({ theme }) => ({
     // Keep Base UI's interaction backdrop and the popup in one stacking context.
     // This layer has no full-screen box, so non-modal menus remain click-through.
@@ -22,17 +22,17 @@ export const Menu2RootBase = styled('div', { name: 'MuiMenu2', slot: 'root' })(
     zIndex: (theme.vars || theme).zIndex.modal,
     // Base UI hides the positioner after its exit transition, but retains the
     // portal with keepMounted. Hide this layer too, including its own styles.
-    [`&:has(> .${menu2Classes.positioner}[hidden], > .${menu2SubmenuClasses.positioner}[hidden])`]:
+    [`&:has(> .${menu2PopupClasses.positioner}[hidden], > .${menu2SubmenuPopupClasses.positioner}[hidden])`]:
       { display: 'none' },
   })),
 );
 
-export const Menu2PositionerBase = styled('div', { name: 'MuiMenu2', slot: 'positioner' })({
-  // The root controls page stacking. Keep the popup above its sibling backdrops.
+export const Menu2PositionerBase = styled('div', { name: 'MuiMenu2Popup', slot: 'positioner' })({
+  // The portal controls page stacking. Keep the popup above its sibling backdrops.
   zIndex: 1,
 });
 
-export const Menu2PaperBase = styled(Paper, { name: 'MuiMenu2', slot: 'paper' })({
+export const Menu2RootBase = styled(Paper, { name: 'MuiMenu2Popup', slot: 'root' })({
   outline: 0,
   // Support momentum scrolling on iOS versions before 13.
   WebkitOverflowScrolling: 'touch',
@@ -44,7 +44,7 @@ export const Menu2PaperBase = styled(Paper, { name: 'MuiMenu2', slot: 'paper' })
   transformOrigin: 'var(--transform-origin)',
 });
 
-export const Menu2ListBase = styled(List, { name: 'MuiMenu2', slot: 'list' })({
+export const Menu2ListBase = styled(List, { name: 'MuiMenu2Popup', slot: 'list' })({
   // The items, not the list, show focus.
   outline: 0,
 });

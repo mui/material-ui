@@ -8,6 +8,7 @@ import useForkRef from '@mui/utils/useForkRef';
 import appendOwnerState from '@mui/utils/appendOwnerState';
 import isHostComponent from '@mui/utils/isHostComponent';
 import { SxProps } from '@mui/system';
+import { useRtl } from '@mui/system/RtlProvider';
 import mergeSlotProps from '../utils/mergeSlotProps';
 import useSlot from '../utils/useSlot';
 import { Theme } from '../styles';
@@ -22,9 +23,6 @@ type ExternalSlotProps<Props> = Omit<Partial<Props>, 'className' | 'render' | 's
   render?: never | undefined;
   style?: React.CSSProperties | undefined;
 } & Record<string, any>;
-
-// React event handler props are the `on` + capital letter keys.
-const isEventHandlerKey = (key: string) => /^on[A-Z]/.test(key);
 
 function setDefinedProp(props: Record<string, any>, key: string, value: unknown) {
   if (value !== undefined) {
@@ -81,10 +79,10 @@ export interface Menu2PopupSharedSlots {
    */
   transition?: React.JSXElementConstructor<any> | null | undefined;
   /**
-   * The component used for the root element, which contains the menu and its backdrops.
+   * The component used for the portal element, which contains the menu and its backdrops.
    * @default 'div'
    */
-  root?: React.ElementType | undefined;
+  portal?: React.ElementType | undefined;
   /**
    * The component used to position the menu surface.
    * @default 'div'
@@ -100,7 +98,7 @@ export interface Menu2PopupSharedSlots {
    * The component used for the menu surface. The popup renders as this element.
    * @default Paper
    */
-  paper?: React.ElementType | undefined;
+  root?: React.ElementType | undefined;
   /**
    * The component used for the presentational list wrapper.
    * @default List
@@ -124,13 +122,13 @@ export interface Menu2PopupSharedSlotProps<OwnerState> {
         OwnerState
       >
     | undefined;
-  root?:
+  portal?:
     | SlotProps<ExternalSlotProps<React.ComponentPropsWithRef<'div'>> & WithSx, OwnerState>
     | undefined;
   positioner?:
     SlotProps<ExternalSlotProps<BaseMenu.Positioner.Props> & WithSx, OwnerState> | undefined;
   backdrop?: SlotProps<ExternalSlotProps<BaseMenu.Backdrop.Props>, OwnerState> | undefined;
-  paper?: SlotProps<ExternalSlotProps<PaperProps>, OwnerState> | undefined;
+  root?: SlotProps<ExternalSlotProps<PaperProps>, OwnerState> | undefined;
   list?: SlotProps<ExternalSlotProps<ListProps>, OwnerState> | undefined;
 }
 
@@ -203,15 +201,15 @@ export interface Menu2PopupSharedProps<OwnerState>
     Omit<BaseMenu.Popup.Props, 'children' | 'className' | 'render' | 'style' | 'finalFocus'>,
     Menu2PopupPublicProps {
   classes?:
-    Partial<Record<'root' | 'positioner' | 'backdrop' | 'paper' | 'list', string>> | undefined;
+    Partial<Record<'root' | 'portal' | 'positioner' | 'backdrop' | 'list', string>> | undefined;
   ownerState: OwnerState;
   onClosingChange?: ((closing: boolean) => void) | undefined;
   slots?: Menu2PopupSharedSlots | undefined;
   slotProps?: Menu2PopupSharedSlotProps<OwnerState> | undefined;
   defaultSlots: {
     root: React.ElementType;
+    portal: React.ElementType;
     positioner: React.ElementType;
-    paper: React.ElementType;
     list: React.ElementType;
     backdrop?: React.ElementType | undefined;
   };
@@ -223,6 +221,7 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   props: Menu2PopupSharedProps<OwnerState>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
+  const isRtl = useRtl();
   const {
     children,
     className,
@@ -251,15 +250,13 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     elevation,
     transitionDuration = 'auto',
     style,
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledby,
-    'aria-describedby': ariaDescribedby,
     ...other
   } = props;
 
-  // Keep the Base parts for their context and behavior. The root styles the
+  // Keep the Base parts for their context and behavior. The portal styles the
   // portal's shared stacking layer; the positioner controls placement inside it.
   const RootSlot = slots?.root ?? defaultSlots.root;
+  const PortalSlot = slots?.portal ?? defaultSlots.portal;
   const PositionerSlot = slots?.positioner ?? defaultSlots.positioner;
   const TransitionSlot = slots?.transition === undefined ? Grow : slots.transition;
   const transitionProps = resolveComponentProps(slotProps?.transition, ownerState);
@@ -275,26 +272,18 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     slots?.backdrop === null
       ? null
       : (slots?.backdrop ?? (slotProps?.backdrop ? defaultSlots.backdrop : undefined));
-  const PaperSlot = slots?.paper ?? defaultSlots.paper;
-
   const resolvedRootProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), {
     sx,
   });
+  const resolvedPortalProps = resolveComponentProps(slotProps?.portal, ownerState);
   const resolvedPositionerProps = resolveComponentProps(slotProps?.positioner, ownerState);
   const resolvedBackdropProps = BackdropSlot
     ? resolveComponentProps(slotProps?.backdrop, ownerState)
     : undefined;
-  const resolvedPaperProps = resolveComponentProps(slotProps?.paper, ownerState);
   // Base UI merges className, style, and ref into the element that `render`
   // gives a part, so those go through the part. `sx` and the Paper props go on
-  // the element. HTML attributes go to the root, except the menu's accessible
-  // name and description. Handlers attach to the popup so that they run before
-  // Base UI handles navigation keys and stops their propagation.
-  const rootAttributes: Record<string, any> = {};
-  const popupHandlers: Record<string, any> = {};
-  Object.keys(other).forEach((key) => {
-    (isEventHandlerKey(key) ? popupHandlers : rootAttributes)[key] = (other as any)[key];
-  });
+  // the element. All HTML attributes and handlers target the popup surface.
+  // Handlers run before Base UI handles navigation keys and stops propagation.
   const {
     className: rootSlotClassName,
     ref: rootSlotRef,
@@ -303,17 +292,16 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     ...rootSlotOtherProps
   } = resolvedRootProps ?? {};
   const {
+    className: portalSlotClassName,
+    sx: portalSlotSx,
+    ...portalSlotOtherProps
+  } = resolvedPortalProps ?? {};
+  const {
     className: positionerSlotClassName,
     sx: positionerSlotSx,
     ...positionerSlotOtherProps
   } = resolvedPositionerProps ?? {};
   const { sx: backdropSlotSx, ...backdropSlotOtherProps } = resolvedBackdropProps ?? {};
-  const {
-    className: paperSlotClassName,
-    ref: paperSlotRef,
-    sx: paperSlotSx,
-    ...paperSlotOtherProps
-  } = resolvedPaperProps ?? {};
   const handleRootRef = useForkRef(ref, rootSlotRef);
   const rootStyle =
     style === undefined && rootSlotStyle === undefined ? undefined : { ...style, ...rootSlotStyle };
@@ -333,11 +321,11 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   setDefinedProp(positionerProps, 'disableAnchorTracking', disableAnchorTracking);
   setDefinedProp(positionerProps, 'collisionAvoidance', collisionAvoidance);
 
-  const rootRender = (
-    <RootSlot
+  const portalRender = (
+    <PortalSlot
       {...getSlotProps(
-        RootSlot,
-        appendOwnerState(RootSlot, { sx: rootSlotSx }, ownerState),
+        PortalSlot,
+        appendOwnerState(PortalSlot, { sx: portalSlotSx }, ownerState),
         sxHostOmittedProps,
       )}
     />
@@ -351,20 +339,14 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
       )}
     />
   );
-  const paperProps = getSlotProps(
-    PaperSlot,
-    appendOwnerState(
-      PaperSlot,
-      {
-        elevation: elevation ?? 8,
-        'aria-label': ariaLabel,
-        'aria-labelledby': ariaLabelledby,
-        'aria-describedby': ariaDescribedby,
-        ...paperSlotOtherProps,
-        sx: paperSlotSx,
-      },
-      ownerState,
-    ),
+  const rootProps = getSlotProps(
+    RootSlot,
+    appendOwnerState(RootSlot, { sx: rootSlotSx }, ownerState),
+    paperHostOmittedProps,
+  );
+  const popupProps = getSlotProps(
+    RootSlot,
+    mergeProps({ elevation: elevation ?? 8 }, other, rootSlotOtherProps),
     paperHostOmittedProps,
   );
   const [ListSlot, mergedListProps] = useSlot('list', {
@@ -380,14 +362,11 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
 
   return (
     <BaseMenu.Portal
-      {...rootAttributes}
-      {...rootSlotOtherProps}
+      {...portalSlotOtherProps}
       container={container}
       keepMounted={keepMounted}
-      ref={handleRootRef}
-      render={rootRender}
-      className={clsx(classes?.root, className, rootSlotClassName)}
-      style={rootStyle}
+      render={portalRender}
+      className={clsx(classes?.portal, portalSlotClassName)}
     >
       {BackdropSlot ? (
         <BaseMenu.Backdrop
@@ -405,6 +384,8 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
         />
       ) : null}
       <BaseMenu.Positioner
+        // Floating UI reads DOM direction separately from Base UI's context.
+        dir={isRtl ? 'rtl' : 'ltr'}
         {...positionerProps}
         {...positionerSlotOtherProps}
         render={positionerRender}
@@ -412,18 +393,18 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
       >
         <BaseMenu.Popup
           finalFocus={finalFocus}
-          {...popupHandlers}
-          ref={paperSlotRef}
+          {...popupProps}
+          ref={handleRootRef}
           render={(renderProps, state) => {
             // Let Base UI apply its initial transition:none before Grow starts.
             // The opening popup must remain focusable while Grow is still exited.
-            const mergedPaperProps = mergeProps(renderProps, paperProps);
+            const mergedRootProps = mergeProps(renderProps, rootProps);
             // A supplied name takes precedence over Base UI's trigger label.
             // Keep an explicit labelledby when both naming attributes are set.
-            mergedPaperProps['aria-labelledby'] =
-              paperProps['aria-labelledby'] ??
-              (paperProps['aria-label'] !== undefined ? undefined : renderProps['aria-labelledby']);
-            const paper = <PaperSlot {...mergedPaperProps} />;
+            mergedRootProps['aria-labelledby'] =
+              popupProps['aria-labelledby'] ??
+              (popupProps['aria-label'] !== undefined ? undefined : renderProps['aria-labelledby']);
+            const root = <RootSlot {...mergedRootProps} />;
             const surface = TransitionSlot ? (
               <TransitionSlot
                 timeout={transitionTimeout}
@@ -437,10 +418,10 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
                   ...(state.open && { visibility: 'visible' }),
                 }}
               >
-                {paper}
+                {root}
               </TransitionSlot>
             ) : (
-              paper
+              root
             );
             return onClosingChange ? (
               <Menu2SubmenuClosingState
@@ -453,7 +434,8 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
               surface
             );
           }}
-          className={clsx(classes?.paper, paperSlotClassName)}
+          className={clsx(classes?.root, className, rootSlotClassName)}
+          style={rootStyle}
         >
           <ListSlot {...listSlotProps}>{children}</ListSlot>
         </BaseMenu.Popup>

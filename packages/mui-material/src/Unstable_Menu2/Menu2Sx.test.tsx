@@ -1,3 +1,5 @@
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import * as React from 'react';
 import { describe, expect, it } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
@@ -34,8 +36,11 @@ const parts: Record<string, (props: StylingProps) => React.ReactNode> = {
     </Menu2RadioGroup>
   ),
   Menu2SubmenuTrigger: (props) => (
-    <Menu2Submenu trigger={<Menu2SubmenuTrigger {...props}>More</Menu2SubmenuTrigger>}>
-      <Menu2Item>Nested</Menu2Item>
+    <Menu2Submenu>
+      <Menu2SubmenuTrigger {...props}>More</Menu2SubmenuTrigger>
+      <Menu2SubmenuPopup>
+        <Menu2Item>Nested</Menu2Item>
+      </Menu2SubmenuPopup>
     </Menu2Submenu>
   ),
   Menu2Group: (props) => (
@@ -63,8 +68,10 @@ describe('Menu2 root slot sx', () => {
       function renderPart(props: Omit<StylingProps, 'data-testid'>) {
         render(
           <ThemeProvider theme={theme}>
-            <Menu2 defaultOpen modal={false} anchor={document.body}>
-              {createPart({ ...props, 'data-testid': 'target' })}
+            <Menu2 defaultOpen modal={false}>
+              <Menu2Popup anchor={document.body}>
+                {createPart({ ...props, 'data-testid': 'target' })}
+              </Menu2Popup>
             </Menu2>
           </ThemeProvider>,
         );

@@ -22,56 +22,54 @@ export const menu2TriggerClasses: Menu2TriggerClasses = generateUtilityClasses('
   'open',
 ]);
 
-export interface Menu2Classes {
-  /** Styles applied to the root element, which contains the menu and its backdrops. */
+export interface Menu2PopupClasses {
+  /** Styles applied to the Paper element, the menu surface. */
   root: string;
+  /** Styles applied to the portal element, which contains the menu and its backdrops. */
+  portal: string;
   /** Styles applied to the element that positions the menu surface. */
   positioner: string;
   /** Styles applied to the backdrop element. */
   backdrop: string;
-  /** Styles applied to the Paper element, the menu surface. */
-  paper: string;
   /** Styles applied to the Material List element. */
   list: string;
 }
 
-export type Menu2ClassKey = keyof Menu2Classes;
+export type Menu2PopupClassKey = keyof Menu2PopupClasses;
 
-export function getMenu2UtilityClass(slot: string): string {
-  return generateUtilityClass('MuiMenu2', slot);
+export function getMenu2PopupUtilityClass(slot: string): string {
+  return generateUtilityClass('MuiMenu2Popup', slot);
 }
 
-export const menu2Classes: Menu2Classes = generateUtilityClasses('MuiMenu2', [
+export const menu2PopupClasses: Menu2PopupClasses = generateUtilityClasses('MuiMenu2Popup', [
   'root',
+  'portal',
   'positioner',
   'backdrop',
-  'paper',
   'list',
 ]);
 
-export interface Menu2SubmenuClasses {
-  /** Styles applied to the root element, which contains the menu. */
+export interface Menu2SubmenuPopupClasses {
+  /** Styles applied to the Paper element, the menu surface. */
   root: string;
+  /** Styles applied to the portal element, which contains the menu. */
+  portal: string;
   /** Styles applied to the element that positions the menu surface. */
   positioner: string;
-  /** Styles applied to the Paper element, the menu surface. */
-  paper: string;
   /** Styles applied to the Material List element. */
   list: string;
 }
 
-export type Menu2SubmenuClassKey = keyof Menu2SubmenuClasses;
+export type Menu2SubmenuPopupClassKey = keyof Menu2SubmenuPopupClasses;
 
-export function getMenu2SubmenuUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiMenu2Submenu', slot);
+export function getMenu2SubmenuPopupUtilityClass(slot: string): string {
+  return generateUtilityClass('MuiMenu2SubmenuPopup', slot);
 }
 
-export const menu2SubmenuClasses: Menu2SubmenuClasses = generateUtilityClasses('MuiMenu2Submenu', [
-  'root',
-  'positioner',
-  'paper',
-  'list',
-]);
+export const menu2SubmenuPopupClasses: Menu2SubmenuPopupClasses = generateUtilityClasses(
+  'MuiMenu2SubmenuPopup',
+  ['root', 'portal', 'positioner', 'list'],
+);
 
 export interface Menu2ItemClasses {
   /** Styles applied to the root element. */

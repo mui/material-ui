@@ -7,6 +7,9 @@ import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatClearIcon from '@mui/icons-material/FormatClear';
 import FormatPaintIcon from '@mui/icons-material/FormatPaint';
 import Menu from '@mui/material/Unstable_Menu2';
+import MenuPopup from '@mui/material/Unstable_Menu2Popup';
+import MenuTrigger from '@mui/material/Unstable_Menu2Trigger';
+import MenuSubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 import MenuCheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
 import MenuItem from '@mui/material/Unstable_Menu2Item';
 import MenuRadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
@@ -30,50 +33,51 @@ export default function ComposedMenu2() {
   const [alignment, setAlignment] = React.useState('left');
 
   return (
-    <Menu
-      trigger={<Button>Format</Button>}
-      slotProps={{ paper: { sx: { width: 260 } } }}
-    >
-      <MenuCheckboxItem checked={bold} onCheckedChange={setBold}>
-        <ListItemText>Bold</ListItemText>
-        <Shortcut>⌘B</Shortcut>
-      </MenuCheckboxItem>
-      <MenuCheckboxItem checked={italic} onCheckedChange={setItalic}>
-        <ListItemText>Italic</ListItemText>
-        <Shortcut>⌘I</Shortcut>
-      </MenuCheckboxItem>
-      <MenuSeparator />
-      <MenuSubmenu
-        trigger={
+    <Menu>
+      <MenuTrigger>
+        <Button>Format</Button>
+      </MenuTrigger>
+      <MenuPopup sx={{ width: 260 }}>
+        <MenuCheckboxItem checked={bold} onCheckedChange={setBold}>
+          <ListItemText>Bold</ListItemText>
+          <Shortcut>⌘B</Shortcut>
+        </MenuCheckboxItem>
+        <MenuCheckboxItem checked={italic} onCheckedChange={setItalic}>
+          <ListItemText>Italic</ListItemText>
+          <Shortcut>⌘I</Shortcut>
+        </MenuCheckboxItem>
+        <MenuSeparator />
+        <MenuSubmenu>
           <MenuSubmenuTrigger>
             <ListItemIcon>
               <FormatAlignLeftIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText>Align</ListItemText>
           </MenuSubmenuTrigger>
-        }
-      >
-        <MenuRadioGroup value={alignment} onValueChange={setAlignment}>
-          <MenuRadioItem value="left">Left</MenuRadioItem>
-          <MenuRadioItem value="center">Center</MenuRadioItem>
-          <MenuRadioItem value="right">Right</MenuRadioItem>
-          <MenuRadioItem value="justify">Justify</MenuRadioItem>
-        </MenuRadioGroup>
-      </MenuSubmenu>
-      <MenuSeparator />
-      <MenuItem>
-        <ListItemIcon>
-          <FormatClearIcon fontSize="small" />
-        </ListItemIcon>
-        <ListItemText>Clear formatting</ListItemText>
-        <Shortcut>⌘\</Shortcut>
-      </MenuItem>
-      <MenuItem disabled>
-        <ListItemIcon>
-          <FormatPaintIcon fontSize="small" />
-        </ListItemIcon>
-        <ListItemText>Paste format</ListItemText>
-      </MenuItem>
+          <MenuSubmenuPopup>
+            <MenuRadioGroup value={alignment} onValueChange={setAlignment}>
+              <MenuRadioItem value="left">Left</MenuRadioItem>
+              <MenuRadioItem value="center">Center</MenuRadioItem>
+              <MenuRadioItem value="right">Right</MenuRadioItem>
+              <MenuRadioItem value="justify">Justify</MenuRadioItem>
+            </MenuRadioGroup>
+          </MenuSubmenuPopup>
+        </MenuSubmenu>
+        <MenuSeparator />
+        <MenuItem>
+          <ListItemIcon>
+            <FormatClearIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Clear formatting</ListItemText>
+          <Shortcut>⌘\</Shortcut>
+        </MenuItem>
+        <MenuItem disabled>
+          <ListItemIcon>
+            <FormatPaintIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Paste format</ListItemText>
+        </MenuItem>
+      </MenuPopup>
     </Menu>
   );
   // @focus-end

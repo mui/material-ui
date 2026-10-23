@@ -1,3 +1,5 @@
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import * as React from 'react';
 import { describe, expect, it } from 'vitest';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
@@ -97,8 +99,8 @@ describe('Menu2 indicator slots', () => {
     describe(`${name}`, () => {
       function renderItem(options: ItemOptions = {}) {
         return render(
-          <Menu2 defaultOpen modal={false} anchor={document.body}>
-            {createItem(options)}
+          <Menu2 defaultOpen modal={false}>
+            <Menu2Popup anchor={document.body}>{createItem(options)}</Menu2Popup>
           </Menu2>,
         );
       }
@@ -209,19 +211,16 @@ describe('Menu2 indicator slots', () => {
             render(
               <StyledEngineProvider enableCssLayer={modularCssLayers}>
                 <ThemeProvider theme={theme}>
-                  <Menu2
-                    defaultOpen
-                    modal={false}
-                    anchor={document.body}
-                    slots={{ transition: null }}
-                  >
-                    <Menu2Item>
-                      <ListItemIcon data-testid="decorative-icon">
-                        <svg width={20} height={20} aria-hidden="true" />
-                      </ListItemIcon>
-                      Action
-                    </Menu2Item>
-                    {createItem({ indicatorProps: { 'data-testid': 'indicator' } })}
+                  <Menu2 defaultOpen modal={false}>
+                    <Menu2Popup anchor={document.body} slots={{ transition: null }}>
+                      <Menu2Item>
+                        <ListItemIcon data-testid="decorative-icon">
+                          <svg width={20} height={20} aria-hidden="true" />
+                        </ListItemIcon>
+                        Action
+                      </Menu2Item>
+                      {createItem({ indicatorProps: { 'data-testid': 'indicator' } })}
+                    </Menu2Popup>
                   </Menu2>
                 </ThemeProvider>
               </StyledEngineProvider>,
@@ -251,14 +250,16 @@ describe('Menu2 indicator slots', () => {
           });
           const { user } = render(
             <ThemeProvider theme={theme}>
-              <Menu2 defaultOpen modal={false} anchor={document.body}>
-                {createItem({
-                  otherRadioItem: true,
-                  ...(overrideThemeIcons && {
-                    icon: <span data-testid="item-icon" />,
-                    checkedIcon: <span data-testid="item-checked-icon" />,
-                  }),
-                })}
+              <Menu2 defaultOpen modal={false}>
+                <Menu2Popup anchor={document.body}>
+                  {createItem({
+                    otherRadioItem: true,
+                    ...(overrideThemeIcons && {
+                      icon: <span data-testid="item-icon" />,
+                      checkedIcon: <span data-testid="item-checked-icon" />,
+                    }),
+                  })}
+                </Menu2Popup>
               </Menu2>
             </ThemeProvider>,
           );
@@ -307,16 +308,21 @@ describe('Menu2 indicator slots', () => {
       it('provides live checked, disabled, and highlighted state to the slot callback', async () => {
         const states: IndicatorState[] = [];
         const { user } = render(
-          <Menu2 transitionDuration={0} trigger={<button type="button">Options</button>}>
-            <Menu2Item>Before</Menu2Item>
-            {createItem({
-              indicator: CustomIndicator,
-              indicatorProps: (state) => {
-                states.push(state);
-                return { 'data-testid': 'indicator' };
-              },
-            })}
-            <Menu2Item>After</Menu2Item>
+          <Menu2>
+            <Menu2Trigger>
+              <button type="button">Options</button>
+            </Menu2Trigger>
+            <Menu2Popup transitionDuration={0}>
+              <Menu2Item>Before</Menu2Item>
+              {createItem({
+                indicator: CustomIndicator,
+                indicatorProps: (state) => {
+                  states.push(state);
+                  return { 'data-testid': 'indicator' };
+                },
+              })}
+              <Menu2Item>After</Menu2Item>
+            </Menu2Popup>
           </Menu2>,
         );
 
@@ -390,8 +396,8 @@ describe('Menu2 indicator slots', () => {
         });
         render(
           <ThemeProvider theme={theme}>
-            <Menu2 defaultOpen modal={false} anchor={document.body}>
-              {createItem({ disabled: true })}
+            <Menu2 defaultOpen modal={false}>
+              <Menu2Popup anchor={document.body}>{createItem({ disabled: true })}</Menu2Popup>
             </Menu2>
           </ThemeProvider>,
         );

@@ -5,6 +5,8 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Menu from '@mui/material/Unstable_Menu2';
+import MenuPopup from '@mui/material/Unstable_Menu2Popup';
+import MenuTrigger from '@mui/material/Unstable_Menu2Trigger';
 import MenuCheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
 import MenuRadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import MenuRadioItem from '@mui/material/Unstable_Menu2RadioItem';
@@ -17,40 +19,45 @@ export default function IndicatorIconsMenu2() {
   const [sort, setSort] = React.useState('name');
 
   return (
-    <Menu trigger={<Button>Options</Button>}>
-      <MenuCheckboxItem
-        checked={favorite}
-        onCheckedChange={setFavorite}
-        icon={<StarBorderIcon fontSize="small" />}
-        checkedIcon={<StarIcon fontSize="small" />}
-      >
-        Favorite
-      </MenuCheckboxItem>
-      <MenuCheckboxItem
-        checked={pinned}
-        onCheckedChange={setPinned}
-        icon={<StarBorderIcon fontSize="small" />}
-        checkedIcon={<StarIcon fontSize="small" />}
-      >
-        Pinned
-      </MenuCheckboxItem>
-      <MenuSeparator />
-      <MenuRadioGroup value={sort} onValueChange={setSort}>
-        <MenuRadioItem
-          value="name"
-          icon={<RadioButtonUncheckedIcon fontSize="small" />}
-          checkedIcon={<CheckCircleIcon fontSize="small" />}
+    <Menu>
+      <MenuTrigger>
+        <Button>Options</Button>
+      </MenuTrigger>
+      <MenuPopup>
+        <MenuCheckboxItem
+          checked={favorite}
+          onCheckedChange={setFavorite}
+          icon={<StarBorderIcon fontSize="small" />}
+          checkedIcon={<StarIcon fontSize="small" />}
         >
-          Sort by name
-        </MenuRadioItem>
-        <MenuRadioItem
-          value="date"
-          icon={<RadioButtonUncheckedIcon fontSize="small" />}
-          checkedIcon={<CheckCircleIcon fontSize="small" />}
+          Favorite
+        </MenuCheckboxItem>
+        <MenuCheckboxItem
+          checked={pinned}
+          onCheckedChange={setPinned}
+          icon={<StarBorderIcon fontSize="small" />}
+          checkedIcon={<StarIcon fontSize="small" />}
         >
-          Sort by date
-        </MenuRadioItem>
-      </MenuRadioGroup>
+          Pinned
+        </MenuCheckboxItem>
+        <MenuSeparator />
+        <MenuRadioGroup value={sort} onValueChange={setSort}>
+          <MenuRadioItem
+            value="name"
+            icon={<RadioButtonUncheckedIcon fontSize="small" />}
+            checkedIcon={<CheckCircleIcon fontSize="small" />}
+          >
+            Sort by name
+          </MenuRadioItem>
+          <MenuRadioItem
+            value="date"
+            icon={<RadioButtonUncheckedIcon fontSize="small" />}
+            checkedIcon={<CheckCircleIcon fontSize="small" />}
+          >
+            Sort by date
+          </MenuRadioItem>
+        </MenuRadioGroup>
+      </MenuPopup>
     </Menu>
   );
   // @focus-end

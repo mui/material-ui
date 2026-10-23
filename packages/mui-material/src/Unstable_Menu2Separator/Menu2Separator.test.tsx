@@ -1,3 +1,6 @@
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 import { describe, expect, it } from 'vitest';
 import * as React from 'react';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
@@ -23,8 +26,8 @@ describe('<Menu2Separator />', () => {
     classes,
     render: (node) =>
       render(
-        <Menu2 defaultOpen modal={false} anchor={document.body}>
-          {node}
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body}>{node}</Menu2Popup>
         </Menu2>,
       ),
     getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
@@ -70,16 +73,22 @@ describe('<Menu2Separator />', () => {
           const { user } = render(
             <StyledEngineProvider enableCssLayer={modularCssLayers}>
               <ThemeProvider theme={theme}>
-                <Menu2 defaultOpen modal={false} trigger={<button type="button">Options</button>}>
-                  <Menu2Item>Item</Menu2Item>
-                  <Menu2Separator {...props} />
-                  <Menu2Submenu
-                    trigger={<Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>}
-                  >
-                    <Menu2Item>Nested item</Menu2Item>
-                  </Menu2Submenu>
-                  <Menu2Separator {...props} />
-                  <Menu2Item>After</Menu2Item>
+                <Menu2 defaultOpen modal={false}>
+                  <Menu2Trigger>
+                    <button type="button">Options</button>
+                  </Menu2Trigger>
+                  <Menu2Popup>
+                    <Menu2Item>Item</Menu2Item>
+                    <Menu2Separator {...props} />
+                    <Menu2Submenu>
+                      <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+                      <Menu2SubmenuPopup>
+                        <Menu2Item>Nested item</Menu2Item>
+                      </Menu2SubmenuPopup>
+                    </Menu2Submenu>
+                    <Menu2Separator {...props} />
+                    <Menu2Item>After</Menu2Item>
+                  </Menu2Popup>
                 </Menu2>
                 <MenuList>
                   <MenuItem>Classic item</MenuItem>
@@ -111,9 +120,11 @@ describe('<Menu2Separator />', () => {
         render(
           <StyledEngineProvider enableCssLayer={modularCssLayers}>
             <ThemeProvider theme={createTheme({ modularCssLayers })}>
-              <Menu2 defaultOpen modal={false} anchor={document.body}>
-                <Menu2Item>Item</Menu2Item>
-                <Menu2Separator slots={{ root: CustomRoot }} />
+              <Menu2 defaultOpen modal={false}>
+                <Menu2Popup anchor={document.body}>
+                  <Menu2Item>Item</Menu2Item>
+                  <Menu2Separator slots={{ root: CustomRoot }} />
+                </Menu2Popup>
               </Menu2>
             </ThemeProvider>
           </StyledEngineProvider>,
@@ -135,14 +146,16 @@ describe('<Menu2Separator />', () => {
                 <MenuItem>Classic item before inset</MenuItem>
                 <Divider variant="inset" data-testid="classic-inset" />
               </MenuList>
-              <Menu2 defaultOpen modal={false} anchor={document.body}>
-                <Menu2Item>Item</Menu2Item>
-                <Divider />
-                <Menu2Item>Item before inset</Menu2Item>
-                <Menu2Separator
-                  slotProps={{ root: { variant: 'inset' } }}
-                  data-testid="menu2-inset"
-                />
+              <Menu2 defaultOpen modal={false}>
+                <Menu2Popup anchor={document.body}>
+                  <Menu2Item>Item</Menu2Item>
+                  <Divider />
+                  <Menu2Item>Item before inset</Menu2Item>
+                  <Menu2Separator
+                    slotProps={{ root: { variant: 'inset' } }}
+                    data-testid="menu2-inset"
+                  />
+                </Menu2Popup>
               </Menu2>
             </ThemeProvider>
           </StyledEngineProvider>,

@@ -1,3 +1,4 @@
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
@@ -15,8 +16,8 @@ describe('<Menu2LinkItem />', () => {
     classes,
     render: (node) =>
       render(
-        <Menu2 defaultOpen modal={false} anchor={document.body}>
-          {node}
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body}>{node}</Menu2Popup>
         </Menu2>,
       ),
     getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
@@ -30,10 +31,12 @@ describe('<Menu2LinkItem />', () => {
   it('fires once per keyboard activation without an href', async () => {
     const onClick = spy();
     const { user } = render(
-      <Menu2 defaultOpen modal={false} anchor={document.body}>
-        <Menu2LinkItem closeOnClick={false} onClick={onClick}>
-          Profile
-        </Menu2LinkItem>
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Popup anchor={document.body}>
+          <Menu2LinkItem closeOnClick={false} onClick={onClick}>
+            Profile
+          </Menu2LinkItem>
+        </Menu2Popup>
       </Menu2>,
     );
 
@@ -58,10 +61,12 @@ describe('<Menu2LinkItem />', () => {
       });
       const onOpenChange = spy();
       const { user } = render(
-        <Menu2 defaultOpen modal={false} anchor={document.body} onOpenChange={onOpenChange}>
-          <Menu2LinkItem href="/profile" onClick={onClick}>
-            Profile
-          </Menu2LinkItem>
+        <Menu2 defaultOpen modal={false} onOpenChange={onOpenChange}>
+          <Menu2Popup anchor={document.body}>
+            <Menu2LinkItem href="/profile" onClick={onClick}>
+              Profile
+            </Menu2LinkItem>
+          </Menu2Popup>
         </Menu2>,
       );
 
@@ -91,10 +96,12 @@ describe('<Menu2LinkItem />', () => {
     });
     const onOpenChange = spy();
     const { user } = render(
-      <Menu2 defaultOpen modal={false} anchor={document.body} onOpenChange={onOpenChange}>
-        <Menu2LinkItem href="/profile" closeOnClick onClick={onClick}>
-          Profile
-        </Menu2LinkItem>
+      <Menu2 defaultOpen modal={false} onOpenChange={onOpenChange}>
+        <Menu2Popup anchor={document.body}>
+          <Menu2LinkItem href="/profile" closeOnClick onClick={onClick}>
+            Profile
+          </Menu2LinkItem>
+        </Menu2Popup>
       </Menu2>,
     );
 

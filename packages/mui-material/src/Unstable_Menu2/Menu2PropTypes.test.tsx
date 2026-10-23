@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { describe, expect, it } from 'vitest';
 import Menu2 from './Menu2';
-import Menu2Popup from './Menu2Popup';
-import Menu2SubmenuPopup from './Menu2SubmenuPopup';
+import Menu2Popup from '../Unstable_Menu2Popup';
+import Menu2SubmenuPopup from '../Unstable_Menu2SubmenuPopup';
 import Menu2Submenu from '../Unstable_Menu2Submenu';
 import Menu2CheckboxItem from '../Unstable_Menu2CheckboxItem';
 import Menu2RadioGroup from '../Unstable_Menu2RadioGroup';
@@ -52,6 +52,41 @@ describe('Menu2 selection callback prop validation', () => {
 });
 
 describe('Menu2 public popup prop validation', () => {
+  [
+    { Component: Menu2, name: 'Menu2' },
+    { Component: Menu2Submenu, name: 'Menu2Submenu' },
+  ].forEach(({ Component, name }) => {
+    it(`accepts valid ${name} behavior props`, () => {
+      PropTypes.resetWarningCache();
+      expect(() =>
+        PropTypes.checkPropTypes(
+          Component.propTypes,
+          {
+            open: true,
+            defaultOpen: false,
+            loopFocus: false,
+            highlightItemOnHover: false,
+            onOpenChange: () => {},
+            onOpenChangeComplete: () => {},
+            children: 'Menu content',
+            ...(name === 'Menu2' ? { modal: false, disabled: false } : { closeParentOnEsc: true }),
+          },
+          'prop',
+          name,
+        ),
+      ).not.toErrorDev();
+    });
+
+    it(`rejects unknown props on renderless ${name}`, () => {
+      ['id', 'className', 'sx', 'anchor', 'slots', 'trigger', 'handle'].forEach((prop) => {
+        PropTypes.resetWarningCache();
+        expect(() =>
+          PropTypes.checkPropTypes(Component.propTypes, { [prop]: 'unsupported' }, 'prop', name),
+        ).toErrorDev(`The following props are not supported: \`${prop}\`. Please remove them.`);
+      });
+    });
+  });
+
   it('does not declare detached-trigger props', () => {
     ['handle', 'triggerId', 'defaultTriggerId'].forEach((prop) => {
       expect(Menu2.propTypes).not.to.have.property(prop);
@@ -61,14 +96,17 @@ describe('Menu2 public popup prop validation', () => {
     });
   });
 
-  it('does not define duplicate validators on the private popup components', () => {
-    expect(Menu2Popup).not.to.have.property('propTypes');
-    expect(Menu2SubmenuPopup).not.to.have.property('propTypes');
+  it('keeps popup and trigger validators off the renderless roots', () => {
+    [Menu2, Menu2Submenu].forEach((Component) => {
+      [...popupProps, 'trigger', 'slots', 'slotProps'].forEach((prop) => {
+        expect(Component.propTypes).not.to.have.property(prop);
+      });
+    });
   });
 
   [
-    { Component: Menu2, name: 'Menu2' },
-    { Component: Menu2Submenu, name: 'Menu2Submenu' },
+    { Component: Menu2Popup, name: 'Menu2Popup' },
+    { Component: Menu2SubmenuPopup, name: 'Menu2SubmenuPopup' },
   ].forEach(({ Component, name }) => {
     function checkProps(props: Record<string, unknown>) {
       PropTypes.resetWarningCache();
@@ -83,15 +121,15 @@ describe('Menu2 public popup prop validation', () => {
         expect(Component.propTypes).not.to.have.property('backdrop');
       });
 
-      if (Component === Menu2) {
+      if (Component === Menu2Popup) {
         it('accepts a null backdrop slot', () => {
           expect(() => checkProps({ slots: { backdrop: null } })).not.toErrorDev();
         });
       }
 
       it('validates the current slot and slot-prop names', () => {
-        const slots = ['root', 'positioner', 'paper', 'list', 'transition'];
-        if (Component === Menu2) {
+        const slots = ['root', 'portal', 'positioner', 'list', 'transition'];
+        if (Component === Menu2Popup) {
           slots.push('backdrop');
         }
         slots.forEach((slot) => {
@@ -106,7 +144,7 @@ describe('Menu2 public popup prop validation', () => {
 
       it('does not retain validators for removed slot names', () => {
         // shape ignores unknown keys. Old validators would reject these values.
-        const removedSlots = { popup: 42, portal: 42 };
+        const removedSlots = { popup: 42, paper: 42, trigger: 42 };
         expect(() => checkProps({ slots: removedSlots, slotProps: removedSlots })).not.toErrorDev();
       });
 
