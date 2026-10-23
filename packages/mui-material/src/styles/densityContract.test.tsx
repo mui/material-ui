@@ -837,6 +837,80 @@ describe.skipIf(isJsdom())('Autocomplete matches TextField', () => {
   });
 });
 
+describe.skipIf(isJsdom())('floating label lines up with the value', () => {
+  const { render } = createRenderer();
+  const textStart = (element: HTMLElement) =>
+    element.getBoundingClientRect().left + parseFloat(getComputedStyle(element).paddingLeft);
+  const labelStart = () => {
+    const range = document.createRange();
+    range.selectNodeContents(document.querySelector('.MuiInputLabel-root')!.firstChild!);
+    return range.getBoundingClientRect().left;
+  };
+  const controls = {
+    TextField: (variant: any, size: any) => (
+      <TextField variant={variant} size={size} label="Label" defaultValue="Value" />
+    ),
+    Select: (variant: any, size: any) => (
+      <TextField select variant={variant} size={size} label="Label" defaultValue="a">
+        <MenuItem value="a">Value</MenuItem>
+      </TextField>
+    ),
+    Autocomplete: (variant: any, size: any) => (
+      <Autocomplete
+        size={size}
+        options={['Value']}
+        defaultValue="Value"
+        renderInput={(params) => <TextField {...params} variant={variant} label="Label" />}
+      />
+    ),
+  };
+
+  DENSITIES.forEach((density) => {
+    Object.entries(controls).forEach(([name, control]) => {
+      (['outlined', 'filled', 'standard'] as const).forEach((variant) => {
+        (['small', 'medium'] as const).forEach((size) => {
+          test(`${density.id} ${name} ${variant} ${size}`, () => {
+            render(
+              <ThemeProvider theme={THEMES.get(density.id)!}>
+                {control(variant, size)}
+              </ThemeProvider>,
+            );
+            const value = document.querySelector(
+              'input:not([aria-hidden]), .MuiSelect-select',
+            ) as HTMLElement;
+            expect(textStart(value)).to.be.closeTo(labelStart(), 0.5);
+          });
+        });
+      });
+    });
+  });
+});
+
+describe.skipIf(isJsdom())('Autocomplete chips', () => {
+  const { render } = createRenderer();
+
+  (['outlined', 'filled', 'standard'] as const).forEach((variant) => {
+    (['small', 'medium'] as const).forEach((size) => {
+      test(`${variant} ${size}: chips are spaced by their own margin only`, () => {
+        render(
+          <ThemeProvider theme={THEMES.get('medium')!}>
+            <Autocomplete
+              multiple
+              sx={{ width: 400 }}
+              size={size}
+              options={['Apple', 'Banana']}
+              defaultValue={['Apple', 'Banana']}
+              renderInput={(params) => <TextField {...params} variant={variant} label="Label" />}
+            />
+          </ThemeProvider>,
+        );
+        const root = document.querySelector('.MuiAutocomplete-inputRoot') as HTMLElement;
+        expect(getComputedStyle(root).columnGap).to.equal('0px');
+      });
+    });
+  });
+});
+
 describe.skipIf(isJsdom())('Autocomplete end buttons', () => {
   const { render } = createRenderer();
 

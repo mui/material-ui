@@ -385,8 +385,8 @@ describe('enhanceDensity', () => {
     const travel = (theme: ReturnType<typeof enhanceDensity>) =>
       JSON.stringify((theme.components as any).MuiSwitch.styleOverrides.switchBase);
 
-    expect(inlinePad(rtl)).to.include('"--_inlinePad":"calc(-1 * 12px)"');
-    expect(inlinePad(ltr)).to.include('"--_inlinePad":"12px"');
+    expect(inlinePad(rtl)).to.include('"--_inlinePad":"-14px"');
+    expect(inlinePad(ltr)).to.include('"--_inlinePad":"14px"');
     expect(travel(rtl)).to.include('translateX(calc(-1 * (var(--_width)');
     expect(travel(ltr)).to.include('translateX(calc(1 * (var(--_width)');
     expect(variantStyle(rtl, 'MuiInputLabel', { variant: 'outlined' }).transform).to.equal(
