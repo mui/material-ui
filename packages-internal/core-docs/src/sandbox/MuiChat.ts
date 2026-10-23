@@ -1,4 +1,4 @@
-import type { SandboxConfig } from '../../DemoContext/DemoContext';
+import type { SandboxConfig } from '../DemoContext/DemoContext';
 import type { DemoData } from './types';
 import { SandboxDependencies } from './Dependencies';
 import { flattenRelativeImports } from './FlattenRelativeImports';
