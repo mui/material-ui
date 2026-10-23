@@ -5,7 +5,6 @@ import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { StyledEngineProvider } from '@mui/styled-engine';
-import { menu2SubmenuTriggerClasses } from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { createTheme, enhanceHighContrast, Theme, ThemeOptions, ThemeProvider } from '../styles';
 import menuItemClasses from '../MenuItem/menuItemClasses';
 import Menu2CheckboxItem from '../Unstable_Menu2CheckboxItem';
@@ -14,7 +13,7 @@ import Menu2LinkItem from '../Unstable_Menu2LinkItem';
 import Menu2RadioGroup from '../Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '../Unstable_Menu2RadioItem';
 import Menu2Submenu from '../Unstable_Menu2Submenu';
-import Menu2SubmenuTrigger from '../Unstable_Menu2SubmenuTrigger';
+import Menu2SubmenuTrigger, { menu2SubmenuTriggerClasses } from '../Unstable_Menu2SubmenuTrigger';
 import Menu2 from './Menu2';
 import {
   menu2CheckboxItemClasses,
