@@ -1,6 +1,6 @@
 {
   "standard": "WCAG 2.2 Level A and AA",
-  "componentCount": 13,
+  "componentCount": 14,
   "totals": {
     "rated": 32,
     "supports": 27,
@@ -1536,6 +1536,129 @@
         "doesNotSupport": 0,
         "verified": 6,
         "automated": 1
+      }
+    },
+    {
+      "component": "FormGroup",
+      "counts": {
+        "supports": 11,
+        "partiallySupports": 0,
+        "doesNotSupport": 0,
+        "notApplicable": 44,
+        "flagged": 4,
+        "rated": 11
+      },
+      "gaps": [],
+      "criteria": [
+        {
+          "number": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.3.2",
+          "name": "Meaningful Sequence",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.3.3",
+          "name": "Sensory Characteristics",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.4.1",
+          "name": "Use of Color",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "1.4.4",
+          "name": "Resize Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.10",
+          "name": "Reflow",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.12",
+          "name": "Text Spacing",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.4.3",
+          "name": "Focus Order",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.4.6",
+          "name": "Headings and Labels",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "3.3.2",
+          "name": "Labels or Instructions",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "4.1.2",
+          "name": "Name, Role, Value",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": false
+        }
+      ],
+      "summary": {
+        "rated": 11,
+        "levelA": 7,
+        "levelAA": 4,
+        "supports": 11,
+        "partiallySupports": 0,
+        "doesNotSupport": 0,
+        "verified": 7,
+        "automated": 4
       }
     },
     {
