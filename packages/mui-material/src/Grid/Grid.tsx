@@ -8,7 +8,7 @@ import { Theme, styled, Breakpoint } from '../styles';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import useTheme from '../styles/useTheme';
 
-type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
+type ResponsiveStyleValue<T> = T | ReadonlyArray<T | null> | { [key in Breakpoint]?: T | null };
 
 export type GridDirection = 'row' | 'row-reverse';
 
