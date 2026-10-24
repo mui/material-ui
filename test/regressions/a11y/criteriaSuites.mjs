@@ -22,6 +22,8 @@ export const CSS_LAYOUT_SUITES = [
   },
   { component: 'Button', route: '/docs-components-buttons/BasicButtons' },
   { component: 'Checkbox', route: '/docs-components-checkboxes/Checkboxes' },
+  // The badge count is the only documented text inside an IconButton.
+  { component: 'IconButton', route: '/docs-components-buttons/IconButtonWithBadge' },
   {
     component: 'CircularProgress',
     route: '/docs-components-progress/CircularDeterminate',
@@ -63,6 +65,11 @@ export const FOCUS_VISIBLE_TARGETS = [
     component: 'Checkbox',
     route: '/docs-components-checkboxes/Checkboxes',
     selector: '.MuiCheckbox-root',
+  },
+  {
+    component: 'IconButton',
+    route: '/docs-components-buttons/IconButtons',
+    selector: '.MuiIconButton-root',
   },
   {
     component: 'Radio',
