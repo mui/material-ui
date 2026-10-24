@@ -106,6 +106,17 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — name, role, and value are correct for every variant, and the track is silent.
 - [ ] 🔍 **4.1.3 Status Messages** — the change is announced without the user moving focus to it. It is not by default; add a polite live region in the application to convey it.
 
+## FormGroup
+
+6 checks · full procedures in [`FormGroup/accessibility.md`](./FormGroup/accessibility.md)
+
+- [ ] 🔁 **1.3.1 Info and Relationships** — the screen reader announces the group name once when focus enters the group. Without a `fieldset` or a role, the group has no name, and the author must add one.
+- [ ] 🔍 **1.3.2 Meaningful Sequence** — the reading order matches the visual order.
+- [ ] 🔍 **1.4.1 Use of Color** — the message text names the error without color, for example "Error: select at least one delivery day."
+- [ ] 🔍 **2.4.6 Headings and Labels** — each group name tells the purpose of the set, for example "Toppings".
+- [ ] 🔁 **3.3.2 Labels or Instructions** — each group that asks one question has a visible label and clear instructions.
+- [ ] 🔁 **4.1.2 Name, Role, Value** — the screen reader announces the group and its name, then the control with its name and state.
+
 ## LinearProgress
 
 8 checks · full procedures in [`LinearProgress/accessibility.md`](./LinearProgress/accessibility.md)
