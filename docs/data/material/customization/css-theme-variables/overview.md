@@ -32,11 +32,11 @@ In addition with these variables, you can inject a theme into your app's stylesh
 
 For server-side applications, there are some trade-offs to consider:
 
-|                                                              | Compare to the default method | Reason                                                                                                         |
-| :----------------------------------------------------------- | :---------------------------- | :------------------------------------------------------------------------------------------------------------- |
-| HTML size                                                    | Bigger                        | CSS variables are generated for both light and dark mode at build time.                                        |
-| [First Contentful Paint (FCP)](https://web.dev/articles/fcp) | Longer                        | Since the HTML size is bigger, the time to download the HTML before showing the content is a bit longer.       |
-| [Time to Interactive (TTI)](https://web.dev/articles/tti)    | Shorter (for dark mode)       | Stylesheets are not regenerated between light and dark mode, a lot less time is spent running JavaScript code. |
+|                                                              | Compared to `cssVariables: false` | Reason                                                                                                         |
+| :----------------------------------------------------------- | :-------------------------------- | :------------------------------------------------------------------------------------------------------------- |
+| HTML size                                                    | Bigger                            | CSS variables are generated for both light and dark mode at build time.                                        |
+| [First Contentful Paint (FCP)](https://web.dev/articles/fcp) | Longer                            | Since the HTML size is bigger, the time to download the HTML before showing the content is a bit longer.       |
+| [Time to Interactive (TTI)](https://web.dev/articles/tti)    | Shorter (for dark mode)           | Stylesheets are not regenerated between light and dark mode, a lot less time is spent running JavaScript code. |
 
 :::warning
 The comparison described in the table above may not be applicable to large and complex applications since there are so many factors that can impact performance metrics.

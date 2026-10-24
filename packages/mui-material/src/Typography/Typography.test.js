@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import Typography, { typographyClasses as classes } from '@mui/material/Typography';
 import describeConformance from '../../test/describeConformance';
 
@@ -102,7 +102,7 @@ describe('<Typography />', () => {
     });
   });
 
-  it('applies system properties via the sx prop', () => {
+  it.skipIf(isJsdom())('applies system properties via the sx prop', () => {
     const { container } = render(<Typography sx={{ mt: 2, marginRight: 5, mb: 2 }} />);
 
     expect(container.firstChild).toHaveComputedStyle({

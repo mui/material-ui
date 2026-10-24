@@ -243,7 +243,6 @@ Here's an example of how to add a Sync-generated theme to your codebase:
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
-  cssVariables: true,
   shape: {
     borderRadiusRound: 999,
   },
