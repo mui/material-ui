@@ -109,6 +109,12 @@ Read this section before citing the report.
 - **Component coverage is partial.** 13 components are assessed. Widely used components including Select, Autocomplete, Dialog, Menu, Table, Tabs, Slider, Tooltip, Snackbar, and Drawer are **not yet assessed**, and this report says nothing about them.
 - **No assistive-technology testing.** No screen-reader passes have been performed. Criteria that depend on how a specific assistive technology behaves are assessed from the exposed accessibility tree, not from observed behavior.
 - **Level AAA is out of scope**, as it is for a standard VPAT.
+- **Layout and utility components are out of scope.** They add no roles, states, or interaction of their own, so the report rates the components that use them. You own the semantics of the content that you put in them.
+  - Box, Stack, Grid, and Container lay out their children in a `div` that has no role.
+  - The transitions (Fade, Grow, Slide, Zoom, and Collapse) animate their child and hide it when it exits. Collapse does not hide content that stays visible through `collapsedSize`, and it adds wrapper `div` elements that have no role.
+  - CssBaseline and GlobalStyles add global styles. ScopedCssBaseline adds styles to a `div` that has no role.
+  - Portal and NoSsr change where or when their children render.
+  - ClickAwayListener detects clicks outside its child.
 - **Components are rated in isolation**, as rendered with default props and the default theme. Customization, composition, and your surrounding page can change the result.
 - **Evidence strength varies.** See the Verified column above; the shortfall is assessed from the source but not yet re-verified.
 - **This is a self-assessment**, not audited by an independent third party.
