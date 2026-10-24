@@ -1,10 +1,13 @@
 import { describe, it, expect } from 'vitest';
+import * as React from 'react';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Link, { linkClasses as classes } from '@mui/material/Link';
 import Typography, { typographyClasses } from '@mui/material/Typography';
 import describeConformance from '../../test/describeConformance';
+import { contrastRatio, WCAG_MINIMUM_RATIO } from '../../test/contrast';
+import { FAILING_PALETTE_COLORS, PALETTE_CONTRAST_COLORS } from '../../test/contrastContract';
 
 function focusVisible(element) {
   act(() => {
@@ -173,6 +176,192 @@ describe('<Link />', () => {
         outlineStyle: 'solid',
         outlineWidth: '2px',
         outlineOffset: '2px',
+      });
+    });
+  });
+
+  describe('WCAG 2.2 conformance', () => {
+    it('1.4.3 Contrast (Minimum): only the documented palette colors fall short of 4.5:1', () => {
+      const theme = createTheme();
+      render(
+        <React.Fragment>
+          {PALETTE_CONTRAST_COLORS.map((color) => (
+            <Link key={color} href="#" color={color}>
+              {color}
+            </Link>
+          ))}
+        </React.Fragment>,
+      );
+
+      // The link text is `main` on the paper background.
+      const failing = PALETTE_CONTRAST_COLORS.filter((color) => {
+        const { color: textColor } = window.getComputedStyle(
+          screen.getByRole('link', { name: color }),
+        );
+        return (
+          contrastRatio(textColor, theme.palette.background.paper) < WCAG_MINIMUM_RATIO.normalText
+        );
+      });
+      expect(failing).to.deep.equal([...FAILING_PALETTE_COLORS]);
+    });
+
+    // JSDOM doesn't expand the text-decoration shorthand
+    it.skipIf(isJsdom())(
+      '1.4.1 Use of Color: the default link is underlined, so it does not rely on color',
+      () => {
+        render(<Link href="#">Settings</Link>);
+
+        expect(window.getComputedStyle(screen.getByRole('link')).textDecorationLine).to.equal(
+          'underline',
+        );
+      },
+    );
+
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(isJsdom())(
+      '2.4.7 Focus Visible: a button link shows the browser outline on keyboard focus',
+      () => {
+        render(<Link component="button">Show more</Link>);
+        const button = screen.getByRole('button');
+
+        expect(button).toHaveComputedStyle({ outlineStyle: 'none' });
+        focusVisible(button);
+        expect(button).to.have.class(classes.focusVisible);
+        expect(button).toHaveComputedStyle({ outlineStyle: 'auto' });
+      },
+    );
+
+    describe('2.1.1 Keyboard', () => {
+      it('activates an href link with Enter', async () => {
+        const handleClick = spy((event) => event.preventDefault());
+        const { user } = render(
+          <Link href="#target" onClick={handleClick}>
+            Settings
+          </Link>,
+        );
+
+        await user.tab();
+        await user.keyboard('{Enter}');
+        expect(handleClick.callCount).to.equal(1);
+      });
+
+      it('activates a button link with Enter and Space', async () => {
+        const handleClick = spy();
+        const { user } = render(
+          <Link component="button" onClick={handleClick}>
+            Show more
+          </Link>,
+        );
+
+        await user.tab();
+        await user.keyboard('{Enter}');
+        await user.keyboard(' ');
+        expect(handleClick.callCount).to.equal(2);
+      });
+    });
+
+    it('2.1.2 No Keyboard Trap: keyboard focus can enter and leave the link', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <button type="button">Before</button>
+          <Link href="#">Middle</Link>
+          <button type="button">After</button>
+        </React.Fragment>,
+      );
+
+      await user.tab();
+      await user.tab();
+      expect(screen.getByRole('link', { name: 'Middle' })).toHaveFocus();
+
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+
+      await user.tab({ shift: true });
+      await user.tab({ shift: true });
+      expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
+    });
+
+    describe('2.4.3 Focus Order', () => {
+      it('is a single tab stop in DOM order', async () => {
+        const { user } = render(
+          <React.Fragment>
+            <Link href="#one">One</Link>
+            <Link href="#two">Two</Link>
+          </React.Fragment>,
+        );
+
+        await user.tab();
+        expect(screen.getByRole('link', { name: 'One' })).toHaveFocus();
+        await user.tab();
+        expect(screen.getByRole('link', { name: 'Two' })).toHaveFocus();
+      });
+
+      it('is not a tab stop without href, like a native anchor', async () => {
+        const { user } = render(
+          <React.Fragment>
+            <Link>No destination</Link>
+            <button type="button">After</button>
+          </React.Fragment>,
+        );
+
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+      });
+    });
+
+    it('2.5.2 Pointer Cancellation: activates on click, but not when released off the target', async () => {
+      const handleClick = spy((event) => event.preventDefault());
+      const { user } = render(
+        <React.Fragment>
+          <Link href="#target" onClick={handleClick}>
+            Settings
+          </Link>
+          <div data-testid="outside" />
+        </React.Fragment>,
+      );
+      const link = screen.getByRole('link', { name: 'Settings' });
+
+      await user.pointer([
+        { keys: '[MouseLeft>]', target: link },
+        { target: screen.getByTestId('outside') },
+        { keys: '[/MouseLeft]' },
+      ]);
+      expect(handleClick.callCount).to.equal(0);
+
+      await user.click(link);
+      expect(handleClick.callCount).to.equal(1);
+    });
+
+    it('2.5.3 Label in Name: the accessible name is the visible text', () => {
+      render(<Link href="#">Account settings</Link>);
+
+      expect(screen.getByRole('link')).toHaveAccessibleName('Account settings');
+    });
+
+    it('3.2.1 On Focus: moving keyboard focus to the link does not activate it', async () => {
+      const handleClick = spy();
+      const { user } = render(
+        <Link href="#" onClick={handleClick}>
+          Settings
+        </Link>,
+      );
+
+      await user.tab();
+      expect(screen.getByRole('link')).toHaveFocus();
+      expect(handleClick.callCount).to.equal(0);
+    });
+
+    describe('4.1.2 Name, Role, Value', () => {
+      it('has the link role with href', () => {
+        render(<Link href="/settings">Settings</Link>);
+
+        expect(screen.getByRole('link', { name: 'Settings' })).to.have.tagName('a');
+      });
+
+      it('has the button role with component="button"', () => {
+        render(<Link component="button">Show more</Link>);
+
+        expect(screen.getByRole('button', { name: 'Show more' })).to.have.tagName('button');
       });
     });
   });
