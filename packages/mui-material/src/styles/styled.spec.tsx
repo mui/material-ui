@@ -1,6 +1,7 @@
 /* eslint-disable mui/material-ui-no-empty-box */
 import * as React from 'react';
 import MuiPaper from '@mui/material/Paper';
+import Chip, { ChipProps } from '@mui/material/Chip';
 import { styled, css, ThemeProvider, createTheme } from '@mui/material/styles';
 
 const Box = styled('div')(({ theme }) => ({
@@ -278,3 +279,14 @@ const PickerPopperPaper = styled(MuiPaper, {
     },
   ],
 });
+
+interface FilteredChipProps extends Omit<ChipProps, 'color'> {
+  color?: ChipProps['color'] | 'peace';
+}
+
+const FilteredChip = styled(Chip, {
+  shouldForwardProp: (propName: string): propName is keyof Omit<ChipProps, 'color'> =>
+    propName !== 'color',
+})<FilteredChipProps>({});
+
+<FilteredChip color="peace" label="Custom chip" />;
