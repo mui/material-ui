@@ -1,5 +1,22 @@
 {
   "axe": "docs/data/material/components/buttons/buttons.a11y.json",
+  "axeDemos": [
+    "BasicButtons",
+    "ButtonA11yColorMatrix",
+    "ButtonA11yNonNative",
+    "ButtonA11ySemanticStates",
+    "ButtonA11yTextSpacing",
+    "ButtonSizes",
+    "ColorButtons",
+    "ContainedButtons",
+    "CustomizedButtons",
+    "DisableElevation",
+    "IconLabelButtons",
+    "InputFileUpload",
+    "LoadingButtons",
+    "OutlinedButtons",
+    "TextButtons"
+  ],
   "tests": ["ButtonBase"],
   "criteria": {
     "1.3.2": { "flagged": true },
