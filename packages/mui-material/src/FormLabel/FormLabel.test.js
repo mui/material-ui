@@ -4,9 +4,13 @@ import PropTypes from 'prop-types';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import FormLabel, { formLabelClasses as classes } from '@mui/material/FormLabel';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
-import { hexToRgb } from '@mui/material/styles';
+import Checkbox from '@mui/material/Checkbox';
+import Input from '@mui/material/Input';
+import { createTheme, hexToRgb } from '@mui/material/styles';
 import defaultTheme from '../styles/defaultTheme';
 import describeConformance from '../../test/describeConformance';
+import { contrastRatio, WCAG_MINIMUM_RATIO } from '../../test/contrast';
+import { FAILING_PALETTE_COLORS, PALETTE_CONTRAST_COLORS } from '../../test/contrastContract';
 
 describe('<FormLabel />', () => {
   const { render } = createRenderer();
@@ -185,6 +189,95 @@ describe('<FormLabel />', () => {
       expect(container.querySelector(`.${classes.colorSecondary}`)).to.have.class(classes.disabled);
       expect(screen.getByTestId('FormLabel')).toHaveComputedStyle({
         color: defaultTheme.palette.text.disabled,
+      });
+    });
+  });
+
+  describe('WCAG 2.2 conformance', () => {
+    describe('1.3.1 Info and Relationships', () => {
+      it('names a fieldset group when rendered as its legend', () => {
+        render(
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Notification method</FormLabel>
+            <input type="radio" name="method" aria-label="Email" />
+          </FormControl>,
+        );
+
+        expect(screen.getByRole('group')).toHaveAccessibleName('Notification method');
+      });
+
+      it('names a field through htmlFor', () => {
+        render(
+          <React.Fragment>
+            <FormLabel htmlFor="full-name">Full name</FormLabel>
+            <input id="full-name" />
+          </React.Fragment>,
+        );
+
+        expect(screen.getByRole('textbox')).toHaveAccessibleName('Full name');
+      });
+    });
+
+    it('1.4.3 Contrast (Minimum): focused labels fall short of 4.5:1 only in the documented palette colors', () => {
+      const theme = createTheme();
+      render(
+        <React.Fragment>
+          {PALETTE_CONTRAST_COLORS.map((color) => (
+            <FormLabel key={color} color={color} focused>
+              {color}
+            </FormLabel>
+          ))}
+        </React.Fragment>,
+      );
+
+      // A focused label is `main` on the page background.
+      const failing = PALETTE_CONTRAST_COLORS.filter((color) => {
+        const { color: textColor } = window.getComputedStyle(screen.getByText(color));
+        return (
+          contrastRatio(textColor, theme.palette.background.default) < WCAG_MINIMUM_RATIO.normalText
+        );
+      });
+      expect(failing).to.deep.equal([...FAILING_PALETTE_COLORS]);
+    });
+
+    it('2.5.3 Label in Name: the accessible name of the field is the visible label', () => {
+      const { container } = render(
+        <FormControl required>
+          <FormLabel htmlFor="email">Email address</FormLabel>
+          <input id="email" />
+        </FormControl>,
+      );
+
+      // The hidden asterisk adds nothing to the name.
+      expect(container.querySelector(`.${classes.asterisk}`)).to.have.attribute(
+        'aria-hidden',
+        'true',
+      );
+      expect(screen.getByRole('textbox')).toHaveAccessibleName('Email address');
+    });
+
+    describe('3.3.2 Labels or Instructions', () => {
+      it('passes the required state to an Input inside the FormControl', () => {
+        render(
+          <FormControl required>
+            <FormLabel htmlFor="name">Full name</FormLabel>
+            <Input id="name" />
+          </FormControl>,
+        );
+
+        expect(screen.getByRole('textbox')).to.have.attribute('required');
+      });
+
+      it('does not pass the required state to a Checkbox (documented gap)', () => {
+        render(
+          <FormControl component="fieldset" required>
+            <FormLabel component="legend">Terms</FormLabel>
+            <Checkbox slotProps={{ input: { 'aria-label': 'Accept' } }} />
+          </FormControl>,
+        );
+
+        // When this fails, the gap is fixed: update FormLabel/accessibility.md and knownGaps.json.
+        expect(screen.getByRole('checkbox')).not.to.have.attribute('required');
       });
     });
   });
