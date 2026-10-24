@@ -31,6 +31,7 @@
     "affected": [
       { "component": "Button", "note": "`loading`" },
       "CircularProgress",
+      { "component": "FormHelperText", "note": "error" },
       "LinearProgress",
       { "component": "TextField", "note": "error" }
     ],

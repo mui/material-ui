@@ -1,8 +1,12 @@
 import { describe, it, expect } from 'vitest';
+import * as React from 'react';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import FormHelperText, { formHelperTextClasses as classes } from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
+import { createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
+import { contrastRatio, WCAG_MINIMUM_RATIO } from '../../test/contrast';
 
 describe('<FormHelperText />', () => {
   const { render } = createRenderer();
@@ -84,6 +88,77 @@ describe('<FormHelperText />', () => {
         setProps({ size: 'small' });
         expect(screen.getByText(/Foo/)).to.have.class(classes.sizeSmall);
       });
+    });
+  });
+
+  describe('WCAG 2.2 conformance', () => {
+    describe('1.3.1 Info and Relationships', () => {
+      it('is the description of a TextField input', () => {
+        render(<TextField label="Username" helperText="Use 3 to 20 letters or numbers." />);
+
+        expect(screen.getByRole('textbox')).toHaveAccessibleDescription(
+          'Use 3 to 20 letters or numbers.',
+        );
+      });
+
+      it('describes a standalone input only when the author connects it', () => {
+        render(
+          <FormControl>
+            <input aria-label="Promo code" />
+            <FormHelperText id="promo-help">Promo codes are not case sensitive.</FormHelperText>
+          </FormControl>,
+        );
+        // FormControl does not connect the helper text on its own.
+        expect(screen.getByRole('textbox')).toHaveAccessibleDescription('');
+      });
+
+      it('describes a standalone input that the author connects with aria-describedby', () => {
+        render(
+          <FormControl>
+            <input aria-label="Promo code" aria-describedby="promo-help" />
+            <FormHelperText id="promo-help">Promo codes are not case sensitive.</FormHelperText>
+          </FormControl>,
+        );
+
+        expect(screen.getByRole('textbox')).toHaveAccessibleDescription(
+          'Promo codes are not case sensitive.',
+        );
+      });
+    });
+
+    it('1.4.3 Contrast (Minimum): resting and error text reach 4.5:1 on the page background', () => {
+      const theme = createTheme();
+      render(
+        <React.Fragment>
+          <FormHelperText>Resting</FormHelperText>
+          <FormHelperText error>Error</FormHelperText>
+        </React.Fragment>,
+      );
+
+      ['Resting', 'Error'].forEach((text) => {
+        const { color } = window.getComputedStyle(screen.getByText(text));
+        expect(contrastRatio(color, theme.palette.background.default)).to.be.at.least(
+          WCAG_MINIMUM_RATIO.normalText,
+          text,
+        );
+      });
+    });
+
+    it('3.3.1 Error Identification: describes the invalid input in words', () => {
+      render(<TextField label="Email address" error helperText="Enter a valid email address." />);
+
+      const input = screen.getByRole('textbox');
+      expect(input).to.have.attribute('aria-invalid', 'true');
+      expect(input).toHaveAccessibleDescription('Enter a valid email address.');
+    });
+
+    it('4.1.3 Status Messages: adds no live region, so a new error is not announced (documented gap)', () => {
+      render(<FormHelperText error>Enter a valid email address.</FormHelperText>);
+
+      const helperText = screen.getByText('Enter a valid email address.');
+      // When this fails, the gap may be fixed: update FormHelperText/accessibility.md.
+      expect(helperText).not.to.have.attribute('aria-live');
+      expect(helperText).not.to.have.attribute('role');
     });
   });
 });
