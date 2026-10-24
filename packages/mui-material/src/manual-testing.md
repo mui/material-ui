@@ -18,14 +18,14 @@ the component (○ Author).
 
 Run the rows matching what you touched, for the component you touched.
 
-| If your change touches…              | Re-check                                                                                                                        |
-| :----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| Styling, theme, or palette           | 1.4.1 Use of Color; 1.4.3 Contrast (Minimum); 1.4.4 Resize Text; 1.4.5 Images of Text; 1.4.11 Non-text Contrast                 |
-| DOM structure, roles, or ARIA        | 1.1.1 Non-text Content; 1.3.1 Info and Relationships; 1.3.2 Meaningful Sequence; 4.1.2 Name, Role, Value; 4.1.3 Status Messages |
-| Keyboard, focus, or pointer handling | 2.4.4 Link Purpose (In Context); 2.4.6 Headings and Labels; 2.4.7 Focus Visible                                                 |
-| Labels, errors, or validation        | 3.3.2 Labels or Instructions                                                                                                    |
-| Motion or timing                     | 2.2.2 Pause, Stop, Hide                                                                                                         |
-| Other                                | 2.3.1 Three Flashes or Below Threshold                                                                                          |
+| If your change touches…              | Re-check                                                                                                                                            |
+| :----------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Styling, theme, or palette           | 1.4.1 Use of Color; 1.4.3 Contrast (Minimum); 1.4.4 Resize Text; 1.4.5 Images of Text; 1.4.10 Reflow; 1.4.11 Non-text Contrast; 1.4.12 Text Spacing |
+| DOM structure, roles, or ARIA        | 1.1.1 Non-text Content; 1.3.1 Info and Relationships; 1.3.2 Meaningful Sequence; 4.1.2 Name, Role, Value; 4.1.3 Status Messages                     |
+| Keyboard, focus, or pointer handling | 2.4.4 Link Purpose (In Context); 2.4.6 Headings and Labels; 2.4.7 Focus Visible                                                                     |
+| Labels, errors, or validation        | 3.3.2 Labels or Instructions                                                                                                                        |
+| Motion or timing                     | 2.2.2 Pause, Stop, Hide                                                                                                                             |
+| Other                                | 2.3.1 Three Flashes or Below Threshold                                                                                                              |
 
 ## Accordion
 
@@ -105,6 +105,23 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **2.4.6 Headings and Labels** — every name describes its operation.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — name, role, and value are correct for every variant, and the track is silent.
 - [ ] 🔍 **4.1.3 Status Messages** — the change is announced without the user moving focus to it. It is not by default; add a polite live region in the application to convey it.
+
+## Fab
+
+12 checks · full procedures in [`Fab/accessibility.md`](./Fab/accessibility.md)
+
+- [ ] 🔁 **1.1.1 Non-text Content** — the icon-only Fab announces its `aria-label`, the extended Fab announces its visible text, and the icon is silent.
+- [ ] 🔁 **1.3.1 Info and Relationships** — the screen reader announces "button", "link", the disabled state, and the pressed state where they apply.
+- [ ] 🔁 **1.4.1 Use of Color** — the purpose of each Fab stays clear without color.
+- [ ] 🔁 **1.4.3 Contrast (Minimum)** — the label is at least `4.5:1` in the resting, hover, focused, and pressed states. `info` and `warning` fail at rest, and each palette color fails on the ripple.
+- [ ] 🔁 **1.4.4 Resize Text** — the full label stays readable inside the Fab. A label that wraps fails with the default styles.
+- [ ] 🔁 **1.4.10 Reflow** — the full label stays inside the Fab. A label that wraps fails with the default styles.
+- [ ] 🔁 **1.4.11 Non-text Contrast** — the icon and the focus indicator are at least `3:1`. Disabled Fabs are exempt. The default focus ripple fails. The `focusVisible` theme ring fixes it on a light page. On a colored or dark page, measure the ring.
+- [ ] 🔁 **1.4.12 Text Spacing** — the full label stays inside the Fab. A label that wraps fails with the default styles.
+- [ ] 🔁 **2.4.4 Link Purpose (In Context)** — a user can tell where each link goes.
+- [ ] 🔁 **2.4.6 Headings and Labels** — each name tells the action, for example "Compose message", not "Add icon".
+- [ ] 🔁 **2.4.7 Focus Visible** — each Fab shows a visible indicator on keyboard focus. With `disableRipple` and the default theme, no indicator shows, and the author must add one. The `focusVisible` theme ring fixes it.
+- [ ] 🔁 **4.1.2 Name, Role, Value** — the name, role, and state are correct for each kind. The disabled one announces "disabled", and the `href` one "link".
 
 ## LinearProgress
 
