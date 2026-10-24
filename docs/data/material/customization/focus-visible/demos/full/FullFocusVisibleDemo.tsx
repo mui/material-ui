@@ -41,6 +41,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
+import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import BottomNavigation from '@mui/material/BottomNavigation';
@@ -387,6 +391,19 @@ export default function FullFocusVisibleDemo() {
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
             </MenuList>
+          </Row>
+          {/* The successor renders in a popup, so it needs a trigger. Open it
+              and compare the indicator with the MenuItem row above. */}
+          <Row label="Menu2Item">
+            <Menu2>
+              <Menu2Trigger>
+                <Button variant="outlined">Open menu</Button>
+              </Menu2Trigger>
+              <Menu2Popup>
+                <Menu2Item>Profile</Menu2Item>
+                <Menu2Item>Settings</Menu2Item>
+              </Menu2Popup>
+            </Menu2>
           </Row>
           <Row label="ListItemButton">
             <List>

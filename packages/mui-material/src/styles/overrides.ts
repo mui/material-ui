@@ -1,6 +1,6 @@
 import type { CSSObject, CSSInterpolation, Interpolation } from '@mui/system';
 import { PopperClassKey } from '../Popper';
-import { ComponentsPropsList } from './props';
+import { ComponentsPropsList, ComponentsOwnerStateList } from './props';
 import { AccordionActionsClassKey } from '../AccordionActions';
 import { AccordionClassKey } from '../Accordion';
 import { AccordionDetailsClassKey } from '../AccordionDetails';
@@ -65,6 +65,17 @@ import { ListItemSecondaryActionClassKey } from '../ListItemSecondaryAction';
 import { ListItemTextClassKey } from '../ListItemText';
 import { ListSubheaderClassKey } from '../ListSubheader';
 import { MenuClassKey } from '../Menu';
+import type { Menu2PopupClassKey } from '../Unstable_Menu2Popup';
+import type { Menu2SubmenuPopupClassKey } from '../Unstable_Menu2SubmenuPopup';
+import type { Menu2CheckboxItemClassKey } from '../Unstable_Menu2CheckboxItem';
+import type { Menu2GroupClassKey } from '../Unstable_Menu2Group';
+import type { Menu2GroupLabelClassKey } from '../Unstable_Menu2GroupLabel';
+import type { Menu2ItemClassKey } from '../Unstable_Menu2Item';
+import type { Menu2LinkItemClassKey } from '../Unstable_Menu2LinkItem';
+import type { Menu2RadioGroupClassKey } from '../Unstable_Menu2RadioGroup';
+import type { Menu2RadioItemClassKey } from '../Unstable_Menu2RadioItem';
+import type { Menu2SeparatorClassKey } from '../Unstable_Menu2Separator';
+import type { Menu2SubmenuTriggerClassKey } from '../Unstable_Menu2SubmenuTrigger';
 import { MenuItemClassKey } from '../MenuItem';
 import { MenuListClassKey } from '../MenuList';
 import { MobileStepperClassKey } from '../MobileStepper';
@@ -124,12 +135,11 @@ export type OverridesStyleRules<
 > = Record<
   ClassKey,
   Interpolation<
-    // Record<string, unknown> is for other props that the slot receive internally
-    // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
+    // Other internal slot props and owner-state fields can vary by component.
     (ComponentName extends keyof ComponentsPropsList
       ? ComponentsPropsList[ComponentName] &
           Record<string, unknown> & {
-            ownerState: ComponentsPropsList[ComponentName] & Record<string, unknown>;
+            ownerState: ComponentsOwnerStateList[ComponentName] & Record<string, unknown>;
           }
       : {}) & {
       theme: Theme;
@@ -210,6 +220,17 @@ export interface ComponentNameToClassKey {
   MuiListItemText: ListItemTextClassKey;
   MuiListSubheader: ListSubheaderClassKey;
   MuiMenu: MenuClassKey;
+  MuiMenu2Popup: Menu2PopupClassKey;
+  MuiMenu2CheckboxItem: Exclude<Menu2CheckboxItemClassKey, 'highlighted'>;
+  MuiMenu2Group: Menu2GroupClassKey;
+  MuiMenu2GroupLabel: Menu2GroupLabelClassKey;
+  MuiMenu2Item: Exclude<Menu2ItemClassKey, 'highlighted'>;
+  MuiMenu2LinkItem: Exclude<Menu2LinkItemClassKey, 'highlighted'>;
+  MuiMenu2RadioGroup: Menu2RadioGroupClassKey;
+  MuiMenu2RadioItem: Exclude<Menu2RadioItemClassKey, 'highlighted'>;
+  MuiMenu2Separator: Menu2SeparatorClassKey;
+  MuiMenu2SubmenuPopup: Menu2SubmenuPopupClassKey;
+  MuiMenu2SubmenuTrigger: Exclude<Menu2SubmenuTriggerClassKey, 'highlighted'>;
   MuiMenuItem: MenuItemClassKey;
   MuiMenuList: MenuListClassKey;
   MuiMobileStepper: MobileStepperClassKey;

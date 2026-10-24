@@ -1,0 +1,20 @@
+{
+  "props": {
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "closeDelay": { "type": { "name": "number" }, "default": "0" },
+    "delay": { "type": { "name": "number" }, "default": "100" },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "nativeButton": { "type": { "name": "bool" }, "default": "true" },
+    "openOnHover": { "type": { "name": "bool" } }
+  },
+  "name": "Menu2Trigger",
+  "imports": ["import MenuTrigger from '@mui/material/Unstable_Menu2Trigger';"],
+  "classes": [],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiMenu2Trigger",
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-material/src/Unstable_Menu2Trigger/Menu2Trigger.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menu2/\">Menu v2</a></li></ul>"
+}
