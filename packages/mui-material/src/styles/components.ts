@@ -824,6 +824,12 @@ export interface Components<Theme = unknown> {
         variants?: ComponentsVariants<Theme>['MuiTooltip'] | undefined;
       }
     | undefined;
+  MuiTouchRipple?:
+    | {
+        defaultProps?: ComponentsProps['MuiTouchRipple'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiTouchRipple'] | undefined;
+      }
+    | undefined;
   MuiTypography?:
     | {
         defaultProps?: ComponentsProps['MuiTypography'] | undefined;
