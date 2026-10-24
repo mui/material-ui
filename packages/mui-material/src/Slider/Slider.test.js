@@ -1928,6 +1928,46 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
     );
   });
 
+  it('should not pass a stale value to onChangeCommitted after the value changed externally', () => {
+    const handleChange = spy();
+    const handleChangeCommitted = spy();
+    const { container, setProps } = render(
+      <Slider onChange={handleChange} onChangeCommitted={handleChangeCommitted} value={0} />,
+    );
+    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      width: 100,
+      height: 10,
+      bottom: 10,
+      left: 0,
+    }));
+    const slider = screen.getByRole('slider');
+
+    fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1, clientX: 30 }]));
+    fireEvent.touchEnd(document.body, createTouches([{ identifier: 1, clientX: 30 }]));
+    expect(handleChangeCommitted.args[0][1]).to.equal(30);
+    setProps({ value: 30 });
+    setProps({ value: 0 });
+
+    fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 2, clientX: 0 }]));
+    fireEvent.touchEnd(document.body, createTouches([{ identifier: 2, clientX: 0 }]));
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChangeCommitted.callCount).to.equal(2);
+    expect(handleChangeCommitted.args[1][1]).to.equal(0);
+
+    act(() => {
+      slider.focus();
+    });
+    fireEvent.keyDown(slider, { key: 'ArrowRight' });
+    expect(handleChangeCommitted.args[2][1]).to.equal(1);
+    setProps({ value: 1 });
+    setProps({ value: 0 });
+
+    fireEvent.keyDown(slider, { key: 'Home' });
+    expect(handleChange.callCount).to.equal(2);
+    expect(handleChangeCommitted.callCount).to.equal(4);
+    expect(handleChangeCommitted.args[3][1]).to.equal(0);
+  });
+
   it.skipIf(isJsdom())('should not crash when unmounted during a pointer drag (#26754)', () => {
     const { container, unmount } = render(<Slider defaultValue={50} />);
     stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
