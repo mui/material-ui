@@ -29,6 +29,10 @@ export const CSS_LAYOUT_SUITES = [
     skipCriteria: ['1.4.4', '1.4.12'],
   },
   {
+    component: 'Fab',
+    route: '/docs-components-floating-action-button/FloatingActionButtonExtendedSize',
+  },
+  {
     component: 'LinearProgress',
     route: '/docs-components-progress/LinearDeterminate',
     // The bar renders no text, so the report rates 1.4.4 and 1.4.12 not applicable.
@@ -63,6 +67,11 @@ export const FOCUS_VISIBLE_TARGETS = [
     component: 'Checkbox',
     route: '/docs-components-checkboxes/Checkboxes',
     selector: '.MuiCheckbox-root',
+  },
+  {
+    component: 'Fab',
+    route: '/docs-components-floating-action-button/FloatingActionButtons',
+    selector: '.MuiFab-root',
   },
   {
     component: 'Radio',
