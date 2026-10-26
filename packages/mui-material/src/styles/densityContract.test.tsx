@@ -1804,3 +1804,9 @@ describe.skipIf(isJsdom())('user child-slot overrides win', () => {
     expect(fontSize('[data-size="small"] .MuiChip-deleteIcon')).to.equal('16px');
   });
 });
+
+describe('themes without a body2 variant', () => {
+  test('enhanceDensity accepts a theme that disables body2', () => {
+    expect(() => enhanceDensity(createTheme({ typography: { body2: undefined } }))).not.to.throw();
+  });
+});

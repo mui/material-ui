@@ -338,9 +338,9 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
             paddingLeft: `calc(0.8lh + ${spacing('xSmall')})`,
           },
           [`& + .${dividerClasses.inset}`]: {
-            fontFamily: body2.fontFamily,
-            fontSize: body2.fontSize,
-            lineHeight: body2.lineHeight,
+            fontFamily: body2?.fontFamily,
+            fontSize: body2?.fontSize,
+            lineHeight: body2?.lineHeight,
             marginLeft: `calc(0.8lh + 2*${spacing('xSmall')})`,
           },
         },
