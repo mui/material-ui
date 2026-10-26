@@ -29,11 +29,15 @@ interface CareerRole {
 // Synced from the careers API with `pnpm docs:sync-careers`.
 const {
   count: openRolesCount,
-  categories: openRolesData,
+  roles: openRolesData,
+  futureRoles: futureRolesData,
 }: {
   count: number;
-  categories: { title: string; roles: CareerRole[] }[];
+  roles: { title: string; roles: CareerRole[] }[];
+  futureRoles: { title: string; roles: CareerRole[] }[];
 } = rolesData;
+
+const futureRoles = futureRolesData.flatMap((category) => category.roles);
 
 export default function Careers() {
   return (
@@ -80,7 +84,7 @@ export default function Careers() {
             description={
               openRolesCount > 0
                 ? 'We are actively hiring for the following roles:'
-                : `We don't have any open roles at the moment. Consider applying to the Next roles below.`
+                : `We don't have any open roles at the moment.`
             }
           />
           {openRolesCount > 0 ? (
@@ -109,28 +113,42 @@ export default function Careers() {
           ) : null}
         </Section>
         <Divider />
-        {/* Next roles */}
-        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
-          <Section bg="transparent" cozy>
-            <SectionHeadline
-              title={
-                <Typography variant="h2" id="next-roles" gutterBottom>
-                  Next roles
-                </Typography>
-              }
-              description={
-                <React.Fragment>
-                  You&apos;re welcome to apply for future consideration. You can apply to{' '}
-                  <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
-                    the dream job
-                  </Link>{' '}
-                  and tell us more about what you bring to the table.
-                </React.Fragment>
-              }
-            />
-          </Section>
-        </Box>
-        <Divider />
+        {futureRoles.length > 0 ? (
+          <React.Fragment>
+            <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
+              <Section bg="transparent" cozy>
+                <SectionHeadline
+                  title={
+                    <Typography variant="h2" id="future-roles" gutterBottom>
+                      Future roles
+                    </Typography>
+                  }
+                  description={
+                    <React.Fragment>
+                      You&apos;re welcome to apply for future consideration. You can apply to{' '}
+                      <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
+                        the dream job
+                      </Link>{' '}
+                      and tell us more about what you bring to the table.
+                    </React.Fragment>
+                  }
+                />
+                <Divider sx={{ borderStyle: 'dashed', my: { xs: 2, sm: 6 } }} />
+                <Stack spacing={2} divider={<Divider />}>
+                  {futureRoles.map((role) => (
+                    <RoleEntry
+                      key={role.id}
+                      title={role.title}
+                      description={role.summary}
+                      url={role.url}
+                    />
+                  ))}
+                </Stack>
+              </Section>
+            </Box>
+            <Divider />
+          </React.Fragment>
+        ) : null}
         <CareersFaq />
       </main>
       <Divider />

@@ -11,7 +11,7 @@ interface CareerJob {
   applicationUrl: string;
 }
 
-const categories: { roles: CareerJob[] }[] = rolesData.categories;
+const categories: { roles: CareerJob[] }[] = [...rolesData.roles, ...rolesData.futureRoles];
 const jobs = categories.flatMap((category) => category.roles);
 
 export function getStaticPaths() {

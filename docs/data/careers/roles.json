@@ -1,6 +1,6 @@
 {
   "count": 2,
-  "categories": [
+  "roles": [
     {
       "title": "Operations",
       "roles": [
@@ -22,5 +22,6 @@
         }
       ]
     }
-  ]
+  ],
+  "futureRoles": []
 }

@@ -6,6 +6,7 @@ import { format } from 'prettier';
 interface CareerJob {
   id: string;
   title: string;
+  isFutureRole: boolean;
   category: string;
   description: string;
   summary?: string | null;
@@ -45,20 +46,23 @@ export default async function syncCareers(
     url: `/careers/roles/${job.id}/`,
   }));
   const rolesByCategory = new Map<string, typeof roles>();
+  const futureRolesByCategory = new Map<string, typeof roles>();
   jobs.forEach((job, index) => {
-    const category = rolesByCategory.get(job.category) ?? [];
+    const categories = job.isFutureRole ? futureRolesByCategory : rolesByCategory;
+    const category = categories.get(job.category) ?? [];
     category.push(roles[index]);
-    rolesByCategory.set(job.category, category);
+    categories.set(job.category, category);
   });
+
+  const serializeCategories = (categories: Map<string, typeof roles>) =>
+    Array.from(categories, ([title, categoryRoles]) => ({ title, roles: categoryRoles }));
 
   const dataDirectory = path.join(docsDirectory, 'data/careers');
   const content = await format(
     JSON.stringify({
-      count: roles.length,
-      categories: Array.from(rolesByCategory, ([title, categoryRoles]) => ({
-        title,
-        roles: categoryRoles,
-      })),
+      count: jobs.filter((job) => !job.isFutureRole).length,
+      roles: serializeCategories(rolesByCategory),
+      futureRoles: serializeCategories(futureRolesByCategory),
     }),
     { parser: 'json' },
   );
