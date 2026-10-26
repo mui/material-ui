@@ -1891,3 +1891,32 @@ describe.skipIf(isJsdom())('Select end padding', () => {
     });
   });
 });
+
+describe.skipIf(isJsdom())('table rows without CssBaseline', () => {
+  const { render } = createRenderer();
+  DENSITIES.forEach((density) => {
+    (['small', 'medium'] as const).forEach((size) => {
+      test(`${density.id} ${size}: the rendered row is the row height`, () => {
+        render(
+          <ThemeProvider theme={THEMES.get(density.id)!}>
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableCell size={size}>Cell</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </ThemeProvider>,
+        );
+        const rowHeight =
+          size === 'small'
+            ? density.touchTarget + density.step.xxSmall
+            : density.touchTarget + 2 * density.step.xxSmall;
+        const rendered = document
+          .querySelector('.MuiTableRow-root')!
+          .getBoundingClientRect().height;
+        expect(Math.abs(rendered - rowHeight)).to.be.at.most(1);
+      });
+    });
+  });
+});

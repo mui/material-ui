@@ -1231,6 +1231,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
 
   addStyleOverride(enhanced.components, 'MuiTableCell', 'root', {
+    boxSizing: 'border-box',
     paddingBlock: spacing('xxSmall'), // smallest gutter for multiple lines of content
     variants: [
       {
