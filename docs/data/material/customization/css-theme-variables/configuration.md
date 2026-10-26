@@ -279,8 +279,8 @@ In the example below, all the components inside the `div` will always be dark:
 
 ## Nested and multiple theme providers
 
-The first `ThemeProvider` writes the CSS theme variables to `:root`, so they apply to the whole page.
-Any other provider writes the same variables on an element that wraps its children, so they only apply there.
+A `ThemeProvider` writes the CSS theme variables to `:root`, so they apply to the whole page.
+A nested or `scoped` provider writes them on an element that wraps its children instead, so they only apply there.
 
 ### Nested providers
 
@@ -329,7 +329,7 @@ To put the class on your own element instead of the `div`, for example inside a 
 
 ### Sibling providers
 
-A `ThemeProvider` that isn't nested in another one also writes to `:root`, so two of them overwrite each other.
+Two `ThemeProvider`s that aren't nested in each other both write to `:root` and overwrite each other, which logs a warning in development.
 Add the `scoped` prop to the one that should only apply to its children, like an embedded widget:
 
 ```jsx
@@ -342,7 +342,7 @@ Add the `scoped` prop to the one that should only apply to its children, like an
 ```
 
 A scoped provider writes all of its variables on its element, and has its own light or dark mode.
-When `scoped` is a string, it's added to the class name and to the storage keys of the mode, for example `mui-mode-widget`.
+When `scoped` is a string, it's added to the class name and to the storage keys of the mode and color scheme, for example `mui-mode-widget`.
 
 :::info
 A CSS variable that you override on `:root` doesn't reach the elements under a scoped provider that sets it, because the closest declaration wins.

@@ -689,14 +689,14 @@ export default function createCssVarsProvider<
      */
     noSsr: PropTypes.bool,
     /**
+     * If `true`, the CSS theme variables are set on an element that wraps the children instead of `:root`.
+     */
+    scoped: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    /**
      * The storage manager to be used for storing the mode and color scheme
      * @default using `window.localStorage`
      */
     storageManager: PropTypes.func,
-    /**
-     * If `true`, the CSS theme variables are set on an element that wraps the children instead of `:root`.
-     */
-    scoped: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     /**
      * The window that attaches the 'storage' event listener.
      * @default window
