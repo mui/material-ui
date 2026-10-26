@@ -1646,6 +1646,33 @@ describe.skipIf(isJsdom())('user child-slot overrides win', () => {
     });
   });
 
+  test('ButtonGroup grouped', () => {
+    const user = enhanceDensity(
+      createTheme({
+        components: { MuiButtonGroup: { styleOverrides: { grouped: { minWidth: 100 } } } },
+      }),
+    );
+    render(
+      <React.Fragment>
+        <ThemeProvider theme={user}>
+          <ButtonGroup data-testid="user">
+            <Button>a</Button>
+          </ButtonGroup>
+        </ThemeProvider>
+        <ThemeProvider theme={THEMES.get('medium')!}>
+          <ButtonGroup data-testid="density">
+            <Button>a</Button>
+          </ButtonGroup>
+        </ThemeProvider>
+      </React.Fragment>,
+    );
+    const minWidth = (id: string) =>
+      getComputedStyle(document.querySelector(`[data-testid="${id}"] .MuiButtonGroup-grouped`)!)
+        .minWidth;
+    expect(minWidth('user')).to.equal('100px');
+    expect(minWidth('density')).to.equal(`${DEFAULT_SIZING_PX.touchTarget}px`);
+  });
+
   test('Chip children keep the density sizes without user overrides', () => {
     render(chips(THEMES.get('medium')!));
     const { iconSize } = DEFAULT_SIZING_PX;

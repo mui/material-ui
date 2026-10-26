@@ -27,7 +27,6 @@ import formControlLabelClasses from '../FormControlLabel/formControlLabelClasses
 import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import listItemIconClasses from '../ListItemIcon/listItemIconClasses';
 import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
-import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
 import dialogTitleClasses from '../DialogTitle/dialogTitleClasses';
 import cardContentClasses from '../CardContent/cardContentClasses';
 import dividerClasses from '../Divider/dividerClasses';
@@ -305,9 +304,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -4)` } },
     ],
   });
-  addStyleOverride(enhanced.components, 'MuiButtonGroup', 'root', {
-    [`& .${buttonGroupClasses.grouped}`]: { minWidth: touchTarget },
-  });
+  addStyleOverride(enhanced.components, 'MuiButtonGroup', 'grouped', { minWidth: touchTarget });
 
   addStyleOverride(enhanced.components, 'MuiSvgIcon', 'root', {
     variants: [
