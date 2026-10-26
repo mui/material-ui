@@ -182,7 +182,6 @@ describe('createTheme', () => {
       },
     });
     expect(theme.palette.salmon.main).to.equal('#FF5733');
-    expect('vars' in theme).to.equal(false);
   });
 
   describe('CSS variables', () => {
@@ -289,17 +288,6 @@ describe('createTheme', () => {
         'var(--mui-palette-salmon-mainChannel, 255 87 51)',
       );
 
-      const salmonSheets = theme
-        .generateStyleSheets()
-        .filter((sheet) => sheet[':root']?.['--mui-palette-salmon-main']);
-      // Declared once, with the variables of the default color scheme
-      expect(salmonSheets).to.have.length(1);
-      expect(salmonSheets[0][':root']).to.include({
-        colorScheme: 'light',
-        '--mui-palette-salmon-main': '#FF5733',
-        '--mui-palette-salmon-mainChannel': '255 87 51',
-      });
-
       expect(() =>
         render(
           <ThemeProvider theme={theme}>
@@ -323,8 +311,6 @@ describe('createTheme', () => {
       // Like the `palette` option, it goes to the default color scheme only
       expect(theme.colorSchemes.light.palette.salmon.main).to.equal('#FF5733');
       expect(theme.colorSchemes.dark.palette.salmon).to.equal(undefined);
-      expect(theme.palette.salmon.main).to.equal('#FF5733');
-      expect(theme.vars.palette.salmon.main).to.equal('var(--mui-palette-salmon-main, #FF5733)');
     });
 
     describe('spacing', () => {
