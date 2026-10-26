@@ -357,6 +357,7 @@ const theme = createTheme();
 // theme.applyOffsetFocusVisible
 {
   const offsetTheme = createTheme({ focusVisible: true });
+  offsetTheme.applyOffsetFocusVisible();
   offsetTheme.applyOffsetFocusVisible(1);
   offsetTheme.applyOffsetFocusVisible(-3);
   createTheme({ cssVariables: true }).applyOffsetFocusVisible(-1);

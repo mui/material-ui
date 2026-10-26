@@ -561,6 +561,25 @@ describe('createTheme', () => {
         });
       });
 
+      it('defaults to the theme ring', () => {
+        const theme = createTheme({ focusVisible: true });
+        expect(theme.applyOffsetFocusVisible()).to.deep.equal(theme.applyOffsetFocusVisible(1));
+      });
+
+      it.skipIf(isJSDOM)('scales a custom outlineOffset', () => {
+        const theme = createTheme({ focusVisible: { outlineOffset: 4 } });
+        render(
+          <ThemeProvider theme={theme}>
+            <Box data-testid="default" sx={[theme.focusVisible, theme.applyOffsetFocusVisible()]} />
+            <Box data-testid="inset" sx={[theme.focusVisible, theme.applyOffsetFocusVisible(-1)]} />
+            <Box data-testid="double" sx={[theme.focusVisible, theme.applyOffsetFocusVisible(2)]} />
+          </ThemeProvider>,
+        );
+        expect(screen.getByTestId('default')).toHaveComputedStyle({ outlineOffset: '4px' });
+        expect(screen.getByTestId('inset')).toHaveComputedStyle({ outlineOffset: '-4px' });
+        expect(screen.getByTestId('double')).toHaveComputedStyle({ outlineOffset: '8px' });
+      });
+
       it('survives recomposing a theme', () => {
         const theme = createTheme(createTheme({ focusVisible: true }), {
           palette: { mode: 'dark' },

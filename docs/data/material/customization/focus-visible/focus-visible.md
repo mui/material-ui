@@ -106,7 +106,7 @@ Use `theme.applyOffsetFocusVisible()` to move the indicator of a component outsi
 - A positive value draws the indicator outside the component.
 - A negative value draws it inside the component.
 
-The value is a multiple of the indicator's `outlineOffset`, not a pixel value. `1` is the default indicator, and `-1` mirrors it inward.
+The value is a multiple of the indicator's `outlineOffset`, not a pixel value. It defaults to `1`, the same as the default indicator, and `-1` mirrors it inward. A custom `outlineOffset` scales the same way: with `focusVisible: { outlineOffset: 4 }`, `-1` draws the indicator 4px inside the edge.
 
 For example, `MenuItem` draws the indicator inside because a scrolling menu would clip it. If the menu leaves room around its items, move the indicator outside:
 
@@ -116,7 +116,7 @@ createTheme({
   components: {
     MuiMenuItem: {
       styleOverrides: {
-        root: ({ theme }) => theme.applyOffsetFocusVisible(1),
+        root: ({ theme }) => theme.applyOffsetFocusVisible(),
       },
     },
   },

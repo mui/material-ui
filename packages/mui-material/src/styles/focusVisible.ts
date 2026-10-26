@@ -8,7 +8,7 @@ const focusVisibleShadowVar = '--_focusVisible-shadow';
 const offsetValue = `var(${focusVisibleOffsetVar}, 1)`;
 const behaviorValue = `var(${focusVisibleBehaviorVar}, )`;
 
-export function applyOffsetFocusVisible(offset: number) {
+export function applyOffsetFocusVisible(offset: number = 1) {
   return {
     [focusVisibleOffsetVar]: offset,
     // `initial` reverts the var to guaranteed-invalid so `var(--_focusVisible-behavior, )` falls back to empty — there is no explicit `outset` keyword.
