@@ -108,21 +108,6 @@ Use `theme.applyOffsetFocusVisible()` to move the indicator of a component outsi
 
 The value is a multiplier, not a pixel value. It defaults to `1`, the indicator's default position. `-1` mirrors it inward, and `2` doubles its distance from the edge.
 
-For example, `MenuItem` draws the indicator inside because a scrolling menu would clip it. If the menu leaves room around its items, move the indicator outside:
-
-```js
-createTheme({
-  focusVisible: true,
-  components: {
-    MuiMenuItem: {
-      styleOverrides: {
-        root: ({ theme }) => theme.applyOffsetFocusVisible(),
-      },
-    },
-  },
-});
-```
-
 {{"component": "file://./demos/offset/index.ts"}}
 
 :::warning
