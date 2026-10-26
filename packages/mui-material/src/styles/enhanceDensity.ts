@@ -9,6 +9,7 @@ import {
   EnhanceableTheme,
 } from './densityScale';
 import switchClasses from '../Switch/switchClasses';
+import breadcrumbsClasses from '../Breadcrumbs/breadcrumbsClasses';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import chipClasses from '../Chip/chipClasses';
 import tabClasses from '../Tab/tabClasses';
@@ -691,12 +692,11 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   // The floor sits on the `ol` (the centering flex row), not the nav root.
   addStyleOverride(enhanced.components, 'MuiBreadcrumbs', 'ol', {
     gap: spacing('xSmall'),
-    '& a': {
+    '*:where(&) :where(a)': {
       display: 'inline-flex',
-      lineHeight: touchTarget,
       paddingInline: spacing('xSmall'),
     },
-    [`& li>.${buttonBaseClasses.root}`]: {
+    [`& li:not(.${breadcrumbsClasses.li})>.${buttonBaseClasses.root}`]: {
       // BreadcrumbCollapsed
       paddingInline: spacing('xSmall'),
       height: touchTarget,
@@ -705,6 +705,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     },
   });
   addStyleOverride(enhanced.components, 'MuiBreadcrumbs', 'li', {
+    '&:has(a)': { lineHeight: touchTarget },
     '&:not(:has(a))': {
       paddingInline: spacing('xSmall'),
     },

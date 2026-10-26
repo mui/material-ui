@@ -51,6 +51,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import SvgIcon from '@mui/material/SvgIcon';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 import Autocomplete from '@mui/material/Autocomplete';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -1528,5 +1530,78 @@ describe.skipIf(isJsdom())('button loading indicator', () => {
       const spinner = document.querySelector('.MuiButton-loadingIndicator')!;
       expect(Math.abs(centerX(spinner) - iconCenter)).to.be.lessThan(1);
     });
+  });
+});
+
+describe.skipIf(isJsdom())('breadcrumb crumbs keep their own styles', () => {
+  const { render } = createRenderer();
+  const css = (id: string) =>
+    getComputedStyle(document.querySelector(`[data-testid="${id}"]`) as HTMLElement);
+
+  [false, true].forEach((modularCssLayers) => {
+    test(`sx and MuiLink styleOverrides on a crumb link win${modularCssLayers ? ' with layers' : ''}`, () => {
+      const theme = enhanceDensity(
+        createTheme({
+          modularCssLayers,
+          components: { MuiLink: { styleOverrides: { root: { paddingInline: 3 } } } },
+        }),
+      );
+      render(
+        <ThemeProvider theme={theme}>
+          <Link href="#" sx={{ display: 'none' }}>
+            A link rendered before the breadcrumbs
+          </Link>
+          <Breadcrumbs>
+            <Link href="#" data-testid="hidden" sx={{ display: 'none' }}>
+              Hidden
+            </Link>
+            <Link href="#" data-testid="sx" sx={{ px: 0, lineHeight: '10px' }}>
+              Sx
+            </Link>
+            <Link href="#" data-testid="theme">
+              Theme
+            </Link>
+            <Typography>Current</Typography>
+          </Breadcrumbs>
+        </ThemeProvider>,
+      );
+      expect(css('hidden').display).to.equal('none');
+      expect(css('sx').paddingLeft).to.equal('0px');
+      expect(css('sx').lineHeight).to.equal('10px');
+      expect(css('theme').paddingLeft).to.equal('3px');
+    });
+  });
+
+  test('a plain crumb link sits on the touch target', () => {
+    render(
+      <ThemeProvider theme={THEMES.get('medium')!}>
+        <Breadcrumbs>
+          <Link href="#" data-testid="link">
+            Home
+          </Link>
+          <Typography>Current</Typography>
+        </Breadcrumbs>
+      </ThemeProvider>,
+    );
+    expect(css('link').display).to.equal('inline-flex');
+    expect(document.querySelector('[data-testid="link"]')!.getBoundingClientRect().height).to.equal(
+      DEFAULT_SIZING_PX.touchTarget,
+    );
+  });
+
+  test('the collapsed button is on the touch target and a Chip crumb keeps its size', () => {
+    render(
+      <ThemeProvider theme={THEMES.get('medium')!}>
+        <Chip size="small" label="ref" onDelete={() => {}} data-testid="standalone" />
+        <Breadcrumbs maxItems={2}>
+          <Chip size="small" label="a" onDelete={() => {}} data-testid="crumb" />
+          <Chip size="small" label="b" onDelete={() => {}} />
+          <Chip size="small" label="c" onDelete={() => {}} />
+        </Breadcrumbs>
+      </ThemeProvider>,
+    );
+    const collapsed = document.querySelector('[aria-label="Show path"]')!;
+    expect(collapsed.getBoundingClientRect().height).to.equal(DEFAULT_SIZING_PX.touchTarget);
+    expect(css('crumb').height).to.equal(css('standalone').height);
   });
 });
