@@ -225,28 +225,66 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ...enhanced.typography?.button,
     paddingBlock: 0,
     gap: spacing('xSmall'),
+    paddingInline: 'var(--_padInline)',
+    '--_padInline': spacing('medium'),
     variants: [
       {
         props: { size: 'small' },
-        style: { minHeight: smallBox, paddingInline: spacing('small') },
+        style: { minHeight: smallBox, '--_padInline': spacing('small') },
       },
       {
         props: { size: 'medium' },
-        style: { minHeight: touchTarget, paddingInline: spacing('medium') },
+        style: { minHeight: touchTarget },
       },
       {
         props: { size: 'large' },
-        style: { minHeight: largeBox, paddingInline: spacing('large') },
+        style: { minHeight: largeBox, '--_padInline': spacing('large') },
       },
     ],
   });
+  // In fullWidth the spinner stays in the flow, so the icon gives back the
+  // spinner (fixed at 16px by Button) plus one gap.
   addStyleOverride(enhanced.components, 'MuiButton', 'startIcon', {
     margin: 0,
     '& > *:nth-of-type(1)': { fontSize: '0.8lh' },
+    variants: [
+      {
+        props: { loading: true, loadingPosition: 'start', fullWidth: true },
+        style: { marginRight: `calc(-16px - ${spacing('xSmall')})` },
+      },
+    ],
   });
   addStyleOverride(enhanced.components, 'MuiButton', 'endIcon', {
     margin: 0,
     '& > *:nth-of-type(1)': { fontSize: '0.8lh' },
+    variants: [
+      {
+        props: { loading: true, loadingPosition: 'end', fullWidth: true },
+        style: { marginLeft: `calc(-16px - ${spacing('xSmall')})` },
+      },
+    ],
+  });
+  // The icon is 0.8lh wide, so its center is 0.4lh from its edge. Button fixes
+  // its spinner at 16px, so the spinner's center is 8px from its own edge.
+  addStyleOverride(enhanced.components, 'MuiButton', 'loadingIndicator', {
+    variants: [
+      {
+        props: { loadingPosition: 'start' },
+        style: { left: 'calc(var(--_padInline) + 0.4lh - 8px)' },
+      },
+      {
+        props: { loadingPosition: 'end' },
+        style: { right: 'calc(var(--_padInline) + 0.4lh - 8px)' },
+      },
+      {
+        props: { loadingPosition: 'start', fullWidth: true },
+        style: { left: 'calc(8px - 0.4lh)' },
+      },
+      {
+        props: { loadingPosition: 'end', fullWidth: true },
+        style: { right: 'calc(8px - 0.4lh)' },
+      },
+    ],
   });
   addStyleOverride(enhanced.components, 'MuiIconButton', 'root', {
     padding: 0,

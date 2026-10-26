@@ -1472,3 +1472,61 @@ describe.skipIf(isJsdom())('a size added by the app renders like medium', () => 
     expect(box('[data-testid="added"]')).to.deep.equal(box('[data-testid="medium"]'));
   });
 });
+
+describe.skipIf(isJsdom())('button loading indicator', () => {
+  const { render } = createRenderer();
+  const centerX = (el: Element) => {
+    const rect = el.getBoundingClientRect();
+    return rect.left + rect.width / 2;
+  };
+
+  (['text', 'outlined', 'contained'] as const).forEach((variant) => {
+    (['small', 'medium', 'large'] as const).forEach((size) => {
+      (['start', 'end'] as const).forEach((position) => {
+        test(`${variant} ${size} ${position}: the spinner replaces the icon`, () => {
+          render(
+            <ThemeProvider theme={THEMES.get('medium')!}>
+              <Button
+                variant={variant}
+                size={size}
+                loading
+                loadingPosition={position}
+                {...{ [`${position}Icon`]: <AddIcon /> }}
+              >
+                Save
+              </Button>
+            </ThemeProvider>,
+          );
+          const spinner = document.querySelector('.MuiButton-loadingIndicator')!;
+          const icon = document.querySelector(`.MuiButton-${position}Icon`)!;
+          expect(Math.abs(centerX(spinner) - centerX(icon))).to.be.lessThan(1);
+        });
+      });
+    });
+  });
+
+  (['start', 'end'] as const).forEach((position) => {
+    test(`fullWidth ${position}: the label stays put and the spinner takes the icon's place`, () => {
+      const node = (loading: boolean) => (
+        <ThemeProvider theme={THEMES.get('medium')!}>
+          <Button
+            fullWidth
+            loading={loading}
+            loadingPosition={position}
+            {...{ [`${position}Icon`]: <AddIcon /> }}
+          >
+            <span data-testid="label">Save</span>
+          </Button>
+        </ThemeProvider>
+      );
+      const { setProps } = render(node(false));
+      const label = () => document.querySelector('[data-testid="label"]')!;
+      const before = label().getBoundingClientRect().left;
+      const iconCenter = centerX(document.querySelector(`.MuiButton-${position}Icon`)!);
+      setProps({ children: node(true).props.children });
+      expect(label().getBoundingClientRect().left).to.be.closeTo(before, 0.5);
+      const spinner = document.querySelector('.MuiButton-loadingIndicator')!;
+      expect(Math.abs(centerX(spinner) - iconCenter)).to.be.lessThan(1);
+    });
+  });
+});
