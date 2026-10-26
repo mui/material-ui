@@ -133,6 +133,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
 
   const generateStyleSheets = () => {
     const stylesheets: Array<Record<string, any>> = [];
+    const colorScheme = theme.defaultColorScheme || 'light';
     function insertStyleSheet(key: string | object, css: Record<string, string | number>) {
       if (Object.keys(css).length) {
         stylesheets.push(typeof key === 'string' ? { [key]: { ...css } } : key);
@@ -140,8 +141,28 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     }
     insertStyleSheet(getSelector(undefined, { ...rootCss }), rootCss);
 
-    // default color scheme has to come before other color schemes
-    generateCssVarsByColorScheme().colorSchemes.forEach(([key, finalCss]) => {
+    const { [colorScheme]: defaultSchemeVal, ...other } = colorSchemesMap;
+
+    if (defaultSchemeVal) {
+      // default color scheme has to come before other color schemes
+      const { css } = defaultSchemeVal;
+      const cssColorSheme = colorSchemes[colorScheme]?.palette?.mode;
+      const finalCss =
+        !disableCssColorScheme && cssColorSheme
+          ? { colorScheme: cssColorSheme, ...css }
+          : { ...css };
+      insertStyleSheet(
+        getSelector(colorScheme as keyof T['colorSchemes'], { ...finalCss }),
+        finalCss,
+      );
+    }
+
+    Object.entries(other).forEach(([key, { css }]) => {
+      const cssColorSheme = colorSchemes[key]?.palette?.mode;
+      const finalCss =
+        !disableCssColorScheme && cssColorSheme
+          ? { colorScheme: cssColorSheme, ...css }
+          : { ...css };
       insertStyleSheet(getSelector(key as keyof T['colorSchemes'], { ...finalCss }), finalCss);
     });
 

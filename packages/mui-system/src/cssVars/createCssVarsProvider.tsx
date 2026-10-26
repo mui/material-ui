@@ -18,7 +18,6 @@ import ThemeScopeContext from './ThemeScopeContext';
 import {
   createScopedStyleSheets,
   getColorSchemeProps,
-  getColorSchemeRule,
   type CssVarsByColorScheme,
 } from './scopeCssVars';
 
@@ -402,7 +401,18 @@ export default function createCssVarsProvider<
         colorSchemeSelector &&
         colorSchemeSelector !== 'media'
       ) {
-        const rule = getColorSchemeRule(colorSchemeSelector)!;
+        const selector = colorSchemeSelector;
+        let rule = colorSchemeSelector;
+        if (selector === 'class') {
+          rule = `.%s`;
+        }
+        if (selector === 'data') {
+          rule = `[data-%s]`;
+        }
+        if (selector?.startsWith('data-') && !selector.includes('%s')) {
+          // 'data-mui-color-scheme' -> '[data-mui-color-scheme="%s"]'
+          rule = `[${selector}="%s"]`;
+        }
         if (rule.startsWith('.')) {
           colorSchemeNode.classList.remove(
             ...allColorSchemes.map((scheme) => rule.substring(1).replace('%s', scheme)),

@@ -9,7 +9,7 @@ export interface CssVarsByColorScheme {
  * Turns `theme.colorSchemeSelector` into a rule with a `%s` placeholder for the color scheme,
  * or `'media'`. Returns `undefined` when there's no selector.
  */
-export function getColorSchemeRule(selector: string | undefined) {
+function getColorSchemeRule(selector: string | undefined) {
   if (selector === 'class') {
     return '.%s';
   }
