@@ -113,26 +113,30 @@ export default function Careers() {
           ) : null}
         </Section>
         <Divider />
-        {futureRoles.length > 0 ? (
-          <React.Fragment>
-            <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
-              <Section bg="transparent" cozy>
-                <SectionHeadline
-                  title={
-                    <Typography variant="h2" id="future-roles" gutterBottom>
-                      Future roles
-                    </Typography>
-                  }
-                  description={
-                    <React.Fragment>
-                      You&apos;re welcome to apply for future consideration. You can apply to{' '}
-                      <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
-                        the dream job
-                      </Link>{' '}
-                      and tell us more about what you bring to the table.
-                    </React.Fragment>
-                  }
-                />
+        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
+          <Section bg="transparent" cozy>
+            <SectionHeadline
+              title={
+                <Typography
+                  variant="h2"
+                  id={futureRoles.length > 0 ? 'future-roles' : 'next-roles'}
+                  gutterBottom
+                >
+                  {futureRoles.length > 0 ? 'Future roles' : 'Next roles'}
+                </Typography>
+              }
+              description={
+                <React.Fragment>
+                  You&apos;re welcome to apply for future consideration. You can apply to{' '}
+                  <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
+                    the dream job
+                  </Link>{' '}
+                  and tell us more about what you bring to the table.
+                </React.Fragment>
+              }
+            />
+            {futureRoles.length > 0 ? (
+              <React.Fragment>
                 <Divider sx={{ borderStyle: 'dashed', my: { xs: 2, sm: 6 } }} />
                 <Stack spacing={2} divider={<Divider />}>
                   {futureRoles.map((role) => (
@@ -144,11 +148,11 @@ export default function Careers() {
                     />
                   ))}
                 </Stack>
-              </Section>
-            </Box>
-            <Divider />
-          </React.Fragment>
-        ) : null}
+              </React.Fragment>
+            ) : null}
+          </Section>
+        </Box>
+        <Divider />
         <CareersFaq />
       </main>
       <Divider />
