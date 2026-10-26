@@ -313,6 +313,17 @@ describe('createTheme', () => {
       expect(theme.colorSchemes.dark.palette.salmon).to.equal(undefined);
     });
 
+    it('should generate the channels of palette colors replaced in a second call', () => {
+      let theme = createTheme({ cssVariables: true });
+      theme = createTheme(
+        { ...theme, cssVariables: true },
+        { palette: { primary: { main: '#ff0000' }, divider: '#00ff00' } },
+      );
+
+      expect(theme.palette.primary.mainChannel).to.equal('255 0 0');
+      expect(theme.palette.dividerChannel).to.equal('0 255 0');
+    });
+
     describe('spacing', () => {
       it('should provide the default spacing', () => {
         const theme = createTheme({ cssVariables: true });

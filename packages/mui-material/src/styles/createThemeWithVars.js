@@ -61,6 +61,16 @@ function setColorChannel(obj, key) {
   }
 }
 
+// Removes the channel tokens of the colors that `input` replaces, unless `input` provides them,
+// so that they're generated again for the new colors.
+function removeReplacedChannels(obj, input) {
+  Object.keys(input).forEach((key) => {
+    if (!(`${key}Channel` in input)) {
+      delete obj[`${key}Channel`];
+    }
+  });
+}
+
 function getSpacingVal(spacingInput) {
   if (typeof spacingInput === 'number') {
     return `${spacingInput}px`;
@@ -198,10 +208,15 @@ export default function createThemeWithVars(options = {}, ...args) {
       return argument;
     }
     const { palette, ...other } = argument;
-    colorSchemes[defaultColorScheme].palette = deepmerge(
-      colorSchemes[defaultColorScheme].palette,
-      palette,
-    );
+    const schemePalette = deepmerge(colorSchemes[defaultColorScheme].palette, palette);
+    // The options can be a previous theme, whose palette has the channels of the colors replaced here.
+    removeReplacedChannels(schemePalette, palette);
+    Object.keys(palette).forEach((color) => {
+      if (palette[color] && typeof palette[color] === 'object') {
+        removeReplacedChannels(schemePalette[color], palette[color]);
+      }
+    });
+    colorSchemes[defaultColorScheme].palette = schemePalette;
     return other;
   });
 
