@@ -49,6 +49,7 @@
     "test:coverage": "pnpm test:unit run --coverage",
     "vitest": "vitest",
     "test:coverage:html": "pnpm test:unit run --coverage --coverage.reporter html",
+    "test:benchmark": "pnpm -F ./test/benchmark benchmark",
     "test:e2e": "pnpm -F ./test/e2e start",
     "test:e2e:dev": "pnpm -F ./test/e2e dev",
     "test:e2e-website": "playwright test test/e2e-website --config test/e2e-website/playwright.config.ts",
@@ -83,12 +84,12 @@
     "@eslint/compat": "2.1.1",
     "@mui/internal-babel-plugin-minify-errors": "3.0.1-canary.2",
     "@mui/internal-bundle-size-checker": "1.1.1-canary.5",
-    "@mui/internal-code-infra": "0.1.1-canary.20",
+    "@mui/internal-code-infra": "0.1.1-canary.22",
     "@mui/internal-docs-infra": "0.13.1-canary.19",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.1.1-canary.2",
     "@mui/internal-scripts": "workspace:^",
-    "@mui/internal-test-utils": "2.1.1-canary.4",
+    "@mui/internal-test-utils": "2.1.1-canary.5",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
     "@next/eslint-plugin-next": "16.4.2",
@@ -120,7 +121,7 @@
     "fast-glob": "3.3.3",
     "git-url-parse": "16.1.0",
     "globby": "16.2.4",
-    "jsdom": "30.1.2",
+    "jsdom": "30.1.3",
     "lerna": "10.1.1",
     "minimatch": "10.2.6",
     "nx": "23.2.1",
@@ -143,7 +144,7 @@
     "yargs": "18.2.0"
   },
   "config": {
-    "valeVersion": "3.24.0"
+    "valeVersion": "3.25.1"
   },
   "packageManager": "pnpm@12.14.0",
   "engines": {
