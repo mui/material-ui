@@ -45,10 +45,10 @@ The enhancer also modernizes components like Button that use the margin-based sp
 The enhancer lets you set 2 sizing variables:
 
 - `touchTarget` (default 32px): the height of a medium interactive control, applied across the library so controls of the same size share the same box. By default, small controls are 28px and large controls are 44px.
-- `iconSize` (default 16px): the size of a medium icon, applied to `SvgIcon` and to the icons inside IconButton, Checkbox, Radio, Chip, and the Select caret. By default, small icons are 14px and large icons are 20px.
+- `iconSize` (default 16px): the size of a medium icon, applied to `SvgIcon` and to the icons inside IconButton, Checkbox, Radio, Chip (except its delete icon), and the Select caret. By default, small icons are 14px and large icons are 20px.
 
 :::info
-Without the enhancer, a medium icon is 24px. With the default `iconSize`, icons render at 16px.
+Without the enhancer, a medium icon is 24px. With the default `iconSize`, the icons listed above render at 16px. These icons keep their own sizes: the Button start and end icons, the Alert icon, StepIcon, the Pagination arrows, and the Chip delete icon.
 :::
 
 ```ts
@@ -74,7 +74,7 @@ Every component draws its spacing and sizing from the same fixed set of steps, s
 | `xLarge`  | 32px  | Wide insets                           |
 | `xxLarge` | 48px  | Large surfaces                        |
 
-Control heights do not come from these steps: they come from `touchTarget`, described above.
+A medium control's height is `touchTarget`, described above. The other heights add a step to it or remove one: a small control is `touchTarget` minus `xxSmall`, a large control is `touchTarget` plus `small`, a small table row is `touchTarget` plus `xxSmall`, and a medium table row is `touchTarget` plus two `xxSmall`.
 
 These are absolute values rather than multiples of the theme's spacing unit, so `small` is 12px whatever `spacing` is set to. To move them, pass a [custom scale](#customizing-the-scale).
 
@@ -172,7 +172,7 @@ These types are opt-in so that projects without the enhancer keep their own `The
 
 ## All components
 
-`enhanceDensity` applies to every component listed in the demo below. Components outside it are left untouched. Select a component to see how its dimensions map to the spacing scale: the padding ring, the gap between children, and the height the control settles at, each measured off the rendered element and named back to the step that produced it.
+`enhanceDensity` applies to every component listed in the demo below, and also to ButtonGroup, ListSubheader, ListItemAvatar, ListItemSecondaryAction, and TablePagination. Other components are left untouched. Select a component to see how its dimensions map to the spacing scale: the padding ring, the gap between children, and the height the control settles at, each measured off the rendered element and named back to the step that produced it.
 
 {{"demo": "AllComponentsDemo.js"}}
 
