@@ -234,14 +234,9 @@ interface Container {
  * Used by the Modal to ensure proper styling of containers.
  */
 export class ModalManager {
-  private containers: Container[];
+  private containers: Container[] = [];
 
-  private modals: Modal[];
-
-  constructor() {
-    this.modals = [];
-    this.containers = [];
-  }
+  private modals: Modal[] = [];
 
   add(modal: Modal, container: HTMLElement): number {
     let modalIndex = this.modals.indexOf(modal);

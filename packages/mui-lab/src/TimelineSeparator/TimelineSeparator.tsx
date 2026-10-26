@@ -52,11 +52,11 @@ const TimelineSeparatorRoot = styled('div', {
  *
  * Demos:
  *
- * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineSeparator API](https://mui.com/material-ui/api/timeline-separator/)
+ * - [TimelineSeparator API](https://next.mui.com/material-ui/api/timeline-separator/)
  */
 const TimelineSeparator = React.forwardRef(function TimelineSeparator(
   inProps: TimelineSeparatorProps,

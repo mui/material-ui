@@ -57,11 +57,11 @@ const TabPanelRoot = styled('div', {
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/material-ui/react-tabs/)
+ * - [Tabs](https://next.mui.com/material-ui/react-tabs/)
  *
  * API:
  *
- * - [TabPanel API](https://mui.com/material-ui/api/tab-panel/)
+ * - [TabPanel API](https://next.mui.com/material-ui/api/tab-panel/)
  */
 const TabPanel = React.forwardRef(function TabPanel(
   inProps: TabPanelProps,

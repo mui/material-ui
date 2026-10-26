@@ -65,12 +65,12 @@ const TimelineContentRoot = styled(Typography, {
  *
  * Demos:
  *
- * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineContent API](https://mui.com/material-ui/api/timeline-content/)
- * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
+ * - [TimelineContent API](https://next.mui.com/material-ui/api/timeline-content/)
+ * - inherits [Typography API](https://next.mui.com/material-ui/api/typography/)
  */
 const TimelineContent = React.forwardRef(function TimelineContent(
   inProps: TimelineContentProps,

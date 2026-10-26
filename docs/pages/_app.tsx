@@ -127,7 +127,7 @@ function buildProductVersions(
       return vNum >= MIN_VERSION;
     })
     .map((v) => {
-      if (v.url === 'https://mui.com') {
+      if (v.url === 'https://next.mui.com') {
         return { text: currentVersion, current: true };
       }
       const productPath = getVersionedProductPath(v.version, productId);

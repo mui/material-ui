@@ -6,7 +6,7 @@ import {
   GridRenderEditCellParams,
 } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
-import { CssVarsProvider } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -21,6 +21,8 @@ import ProgressBar from 'docs/src/components/x-grid/ProgressBar';
 import EditProgress from 'docs/src/components/x-grid/EditProgress';
 import Status from 'docs/src/components/x-grid/Status';
 import EditStatus from 'docs/src/components/x-grid/EditStatus';
+
+const defaultTheme = createTheme({ cssVariables: true });
 
 const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-theming" pro />;
 
@@ -141,7 +143,7 @@ export default function XTheming() {
               />
             </Paper>
           ) : (
-            <CssVarsProvider>
+            <ThemeProvider theme={defaultTheme}>
               <Paper
                 elevation={0}
                 sx={[
@@ -173,7 +175,7 @@ export default function XTheming() {
                   density="compact"
                 />
               </Paper>
-            </CssVarsProvider>
+            </ThemeProvider>
           )}
         </Grid>
       </Grid>
