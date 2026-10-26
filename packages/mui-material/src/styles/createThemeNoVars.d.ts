@@ -112,6 +112,19 @@ export interface Theme extends BaseTheme, CssVarsProperties {
   alpha: (color: string, value: number | string) => string;
   lighten: (color: string, coefficient: number | string) => string;
   darken: (color: string, coefficient: number | string) => string;
+  /**
+   * Moves the `theme.focusVisible` ring relative to the element's edge.
+   *
+   * - Positive = outset: the ring is drawn outside the element.
+   * - Negative = inset: the ring is drawn inside the element.
+   *
+   * @param offset Multiples of the ring's `outlineOffset`, not pixels. `1` is the default ring, `-1` mirrors it inward.
+   * @example
+   * styleOverrides: {
+   *   root: ({ theme }) => ({ ...theme.applyOffsetFocusVisible(1) }),
+   * }
+   */
+  applyOffsetFocusVisible: (offset: number) => CSSObject;
 }
 
 /**

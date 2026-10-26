@@ -354,6 +354,27 @@ const theme = createTheme();
   });
 }
 
+// theme.applyOffsetFocusVisible
+{
+  const offsetTheme = createTheme({ focusVisible: true });
+  offsetTheme.applyOffsetFocusVisible(1);
+  offsetTheme.applyOffsetFocusVisible(-3);
+  createTheme({ cssVariables: true }).applyOffsetFocusVisible(-1);
+
+  createTheme({
+    components: {
+      MuiMenuItem: {
+        styleOverrides: {
+          root: ({ theme: t }) => t.applyOffsetFocusVisible(1),
+        },
+      },
+    },
+  });
+
+  // @ts-expect-error the offset is a multiplier number, not a CSS length
+  offsetTheme.applyOffsetFocusVisible('2px');
+}
+
 // `theme.vars.zIndex`, `theme.vars.opacity` and the action opacities are typed as CSS variable strings
 {
   const varsTheme = createTheme({ cssVariables: true });

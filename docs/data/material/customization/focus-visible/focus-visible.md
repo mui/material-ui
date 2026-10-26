@@ -99,6 +99,36 @@ createTheme({
 Hide the outline with `outlineColor: 'transparent'`, not `outline: 'none'`. In [forced-colors mode](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) the browser strips the box-shadow and forces the outline to a system color, so a transparent outline reappears as the indicator. `outline: 'none'` removes it, leaving no keyboard focus indicator at all.
 :::
 
+### Moving the indicator outside or inside
+
+Use `theme.applyOffsetFocusVisible()` to move the indicator of a component outside or inside its edge:
+
+- A positive value draws the indicator outside the component.
+- A negative value draws it inside the component.
+
+The value is a multiple of the indicator's `outlineOffset`, not a pixel value. `1` is the default indicator, and `-1` mirrors it inward.
+
+For example, `MenuItem` draws the indicator inside because a scrolling menu would clip it. If the menu leaves room around its items, move the indicator outside:
+
+```js
+createTheme({
+  focusVisible: true,
+  components: {
+    MuiMenuItem: {
+      styleOverrides: {
+        root: ({ theme }) => theme.applyOffsetFocusVisible(1),
+      },
+    },
+  },
+});
+```
+
+{{"component": "file://./demos/offset/index.ts"}}
+
+:::warning
+Only move the indicator outside when the container leaves enough room for it. Otherwise, the container clips the indicator or the indicator overlaps neighboring elements.
+:::
+
 ## Full focus visible demo
 
 The complete set of components that render the focus indicator when `focusVisible` is enabled. Use the keyboard (<kbd>Tab</kbd> and arrow keys) to move focus and reveal the ring.
