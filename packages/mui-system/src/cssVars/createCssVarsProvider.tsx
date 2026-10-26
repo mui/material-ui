@@ -238,6 +238,47 @@ export default function createCssVarsProvider<
   const defaultComponents = {};
   const scopeStyle = { display: 'contents' };
 
+  // The scoped stylesheets only depend on the themes, so they're created once per pair of themes
+  // instead of once per provider.
+  type ScopedStyleSheets = ReturnType<typeof createScopedStyleSheets>;
+  const scopedStyleSheetsCache: WeakMap<
+    () => CssVarsByColorScheme,
+    WeakMap<object, Map<string, ScopedStyleSheets>>
+  > = new WeakMap();
+  const noUpper = {};
+  function getScopedStyleSheets(
+    generate: () => CssVarsByColorScheme,
+    upperGenerate: (() => CssVarsByColorScheme) | undefined,
+    colorSchemeSelector: string | undefined,
+    prefix: string,
+    name: string | undefined,
+  ) {
+    let byUpper = scopedStyleSheetsCache.get(generate);
+    if (!byUpper) {
+      byUpper = new WeakMap();
+      scopedStyleSheetsCache.set(generate, byUpper);
+    }
+    let byOptions = byUpper.get(upperGenerate ?? noUpper);
+    if (!byOptions) {
+      byOptions = new Map();
+      byUpper.set(upperGenerate ?? noUpper, byOptions);
+    }
+    const key = `${colorSchemeSelector}|${prefix}|${name}`;
+    if (!byOptions.has(key)) {
+      byOptions.set(
+        key,
+        createScopedStyleSheets({
+          css: generate(),
+          upper: upperGenerate?.(),
+          colorSchemeSelector,
+          prefix,
+          name,
+        }),
+      );
+    }
+    return byOptions.get(key) as ScopedStyleSheets;
+  }
+
   // Stylesheets of the mounted providers that write to `:root`, to warn when they overwrite each other.
   const rootStyleSheets: Map<string, string[]> = new Map();
   let warnedMultipleRoots = false;
@@ -522,22 +563,23 @@ export default function createCssVarsProvider<
         if (!upperGenerateCssVarsByColorScheme) {
           return null;
         }
-        return createScopedStyleSheets({
-          css: generateCssVarsByColorScheme(),
-          upper: upperGenerateCssVarsByColorScheme(),
-          // It follows the outer color scheme.
-          colorSchemeSelector: upperColorSchemeSelector,
-          prefix: cssVarPrefix,
-          name: scopeName,
-        });
+        // It follows the outer color scheme.
+        return getScopedStyleSheets(
+          generateCssVarsByColorScheme,
+          upperGenerateCssVarsByColorScheme,
+          upperColorSchemeSelector,
+          cssVarPrefix,
+          scopeName,
+        );
       }
       if (scoped) {
-        return createScopedStyleSheets({
-          css: generateCssVarsByColorScheme(),
+        return getScopedStyleSheets(
+          generateCssVarsByColorScheme,
+          undefined,
           colorSchemeSelector,
-          prefix: cssVarPrefix,
-          name: scopeName,
-        });
+          cssVarPrefix,
+          scopeName,
+        );
       }
       return null;
     }, [
