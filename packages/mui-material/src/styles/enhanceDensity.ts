@@ -1248,16 +1248,16 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     marginInline: spacing('xxSmall'),
   });
   addStyleOverride(enhanced.components, 'MuiTablePagination', 'root', {
-    // Everything rides the ROOT slot: the toolbar/select overridesResolvers
-    // SPREAD the theme styleOverride, so an array-form slot silently drops;
-    // root-class nesting outranks the slot rules.
     '&:last-child': { padding: 0 },
-    [`& .${tablePaginationClasses.toolbar}`]: {
-      minHeight: hugeBox,
-      paddingRight: 2,
-      [smUp]: { paddingRight: 2 },
-    },
     [`& .${tablePaginationClasses.select}`]: enhanced.typography?.body2 ?? {},
+  });
+  addStyleOverride(enhanced.components, 'MuiTablePagination', 'toolbar', {
+    minHeight: hugeBox,
+    paddingRight: 2,
+    [`${enhanced.breakpoints.up('xs' as Breakpoint)} and (orientation: landscape)`]: {
+      minHeight: hugeBox,
+    },
+    [smUp]: { minHeight: hugeBox, paddingRight: 2 },
   });
   // `theme.mixins.toolbar` is deliberately NOT synced: the enhancement only
   // touches component styleOverrides and defaultProps (RFC scope). Apps using

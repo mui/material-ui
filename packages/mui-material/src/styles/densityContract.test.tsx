@@ -1673,6 +1673,67 @@ describe.skipIf(isJsdom())('user child-slot overrides win', () => {
     expect(minWidth('density')).to.equal(`${DEFAULT_SIZING_PX.touchTarget}px`);
   });
 
+  const pagination = (theme: ReturnType<typeof createTheme>, id: string) => (
+    <ThemeProvider theme={theme}>
+      <Table data-testid={id}>
+        <TableFooter>
+          <TableRow>
+            <TablePagination
+              count={100}
+              page={0}
+              rowsPerPage={10}
+              onPageChange={() => {}}
+              onRowsPerPageChange={() => {}}
+            />
+          </TableRow>
+        </TableFooter>
+      </Table>
+    </ThemeProvider>
+  );
+  const paginationUser: Parameters<typeof createTheme>[0] = {
+    components: {
+      MuiTablePagination: {
+        styleOverrides: { toolbar: { minHeight: 64 }, select: { fontSize: 20 } },
+      },
+    },
+  };
+  [
+    ['narrow portrait', 500, 900],
+    ['wide', 1280, 800],
+  ].forEach(([label, width, height]) => {
+    test(`TablePagination toolbar and select on a ${label} screen win wherever they win on master`, async () => {
+      const { page } = await import('vitest/browser' as string);
+      const { innerWidth, innerHeight } = window;
+      await page.viewport(width, height);
+      try {
+        render(
+          <React.Fragment>
+            {pagination(createTheme(paginationUser), 'master')}
+            {pagination(enhanceDensity(createTheme(paginationUser)), 'enhanced')}
+            {pagination(THEMES.get('medium')!, 'density')}
+          </React.Fragment>,
+        );
+        const css = (id: string, slot: string) =>
+          getComputedStyle(
+            document.querySelector(`[data-testid="${id}"] .MuiTablePagination-${slot}`)!,
+          );
+        expect(css('enhanced', 'toolbar').minHeight === '64px').to.equal(
+          css('master', 'toolbar').minHeight === '64px',
+        );
+        expect(css('enhanced', 'select').fontSize === '20px').to.equal(
+          css('master', 'select').fontSize === '20px',
+        );
+        expect(
+          document
+            .querySelector('[data-testid="density"] .MuiTablePagination-toolbar')!
+            .getBoundingClientRect().height,
+        ).to.equal(DEFAULT_SIZING_PX.touchTarget + DEFAULT_STEP_PX.medium);
+      } finally {
+        await page.viewport(innerWidth, innerHeight);
+      }
+    });
+  });
+
   test('Chip children keep the density sizes without user overrides', () => {
     render(chips(THEMES.get('medium')!));
     const { iconSize } = DEFAULT_SIZING_PX;
