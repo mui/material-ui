@@ -1376,3 +1376,46 @@ describe.skipIf(isJsdom())('tooltip arrow clearance', () => {
     });
   });
 });
+
+describe.skipIf(isJsdom())('slider mark labels', () => {
+  const { render } = createRenderer();
+  const setCoarse = async (enabled: boolean) => {
+    const { cdp } = await import('vitest/browser' as string);
+    await cdp().send('Emulation.setTouchEmulationEnabled', { enabled, maxTouchPoints: 1 });
+  };
+
+  (['horizontal', 'vertical'] as const).forEach((orientation) => {
+    test(`${orientation}: labels start at the edge of the box on fine and coarse pointers`, async () => {
+      render(
+        <ThemeProvider theme={THEMES.get('medium')!}>
+          <div style={{ height: 200 }}>
+            <Slider
+              orientation={orientation}
+              marks={[
+                { value: 0, label: '0' },
+                { value: 100, label: '100' },
+              ]}
+            />
+          </div>
+        </ThemeProvider>,
+      );
+      const measure = () => {
+        const root = document.querySelector('.MuiSlider-root')!.getBoundingClientRect();
+        const label = document.querySelector('.MuiSlider-markLabel')!.getBoundingClientRect();
+        return orientation === 'horizontal'
+          ? { box: root.height, label: label.top - root.top }
+          : { box: root.width, label: label.left - root.left };
+      };
+      const fine = measure();
+      await setCoarse(true);
+      try {
+        expect(matchMedia('(pointer: coarse)').matches).to.equal(true);
+        const coarse = measure();
+        expect(fine.label).to.equal(fine.box);
+        expect(coarse.label).to.equal(coarse.box);
+      } finally {
+        await setCoarse(false);
+      }
+    });
+  });
+});

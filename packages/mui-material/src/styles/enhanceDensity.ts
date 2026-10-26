@@ -1148,9 +1148,18 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     padding: `${spacing('xxSmall')} ${spacing('xSmall')}`,
   });
   addStyleOverride(enhanced.components, 'MuiSlider', 'markLabel', {
-    // Horizontal only: vertical labels position off an inline `bottom` and
+    // Vertical labels position off an inline `bottom`, so they take `left`;
     // an unconditional `top` would over-constrain them.
-    variants: [{ props: { orientation: 'horizontal' }, style: { top: touchTarget } }],
+    variants: [
+      {
+        props: { orientation: 'horizontal' },
+        style: { top: touchTarget, '@media (pointer: coarse)': { top: touchTarget } },
+      },
+      {
+        props: { orientation: 'vertical' },
+        style: { left: touchTarget, '@media (pointer: coarse)': { left: touchTarget } },
+      },
+    ],
   });
   for (const slot of ['rail', 'track'] as const) {
     addStyleOverride(enhanced.components, 'MuiSlider', slot, {
