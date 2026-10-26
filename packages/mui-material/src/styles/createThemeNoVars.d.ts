@@ -118,7 +118,7 @@ export interface Theme extends BaseTheme, CssVarsProperties {
    * - Positive = outset: the ring is drawn outside the element.
    * - Negative = inset: the ring is drawn inside the element.
    *
-   * @param offset Multiples of the ring's `outlineOffset` (including a custom one from `createTheme({ focusVisible })`), not pixels. `1` is the default ring, `-1` mirrors it inward.
+   * @param offset A multiplier, not pixels. `1` is the ring's default position, `-1` mirrors it inward, and `2` doubles its distance from the edge.
    * @default 1
    * @example
    * styleOverrides: {
