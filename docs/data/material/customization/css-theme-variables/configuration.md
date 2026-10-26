@@ -277,6 +277,78 @@ In the example below, all the components inside the `div` will always be dark:
 
 </codeblock>
 
+## Nested and multiple theme providers
+
+The first `ThemeProvider` writes the CSS theme variables to `:root`, so they apply to the whole page.
+Any other provider writes the same variables on an element that wraps its children, so they only apply there.
+
+### Nested providers
+
+A nested `ThemeProvider` whose variables differ from the outer theme wraps its children in a `div` with `display: contents` and a generated class.
+The class only sets the variables that differ, and it follows the outer light or dark mode:
+
+```jsx
+<ThemeProvider theme={appTheme}>
+  <Button>Uses appTheme</Button>
+  <ThemeProvider theme={promoTheme}>
+    <Button>Uses promoTheme</Button>
+  </ThemeProvider>
+</ThemeProvider>
+```
+
+```css
+:root {
+  --mui-palette-primary-main: #1976d2;
+}
+.mui-theme-1x2y3z {
+  --mui-palette-primary-main: #9c27b0;
+}
+```
+
+A nested provider with the same variables, for example one that only changes `components` defaults, renders no element.
+
+Dialogs, menus, popovers, tooltips, and other components that render in a portal apply the class to their own root, so they use the nested theme too.
+For elements that other libraries portal, use the `useThemeScope()` hook to get the class:
+
+```jsx
+import { useThemeScope } from '@mui/material/styles';
+
+function Toast() {
+  const themeScope = useThemeScope();
+  return ReactDOM.createPortal(<div {...themeScope}>…</div>, document.body);
+}
+```
+
+To put the class on your own element instead of the `div`, for example inside a table or a list, where a `div` isn't valid HTML, use the `component` prop:
+
+```jsx
+<ThemeProvider theme={promoTheme} component="tbody" className="promo">
+  {rows}
+</ThemeProvider>
+```
+
+### Sibling providers
+
+A `ThemeProvider` that isn't nested in another one also writes to `:root`, so two of them overwrite each other.
+Add the `scoped` prop to the one that should only apply to its children, like an embedded widget:
+
+```jsx
+<ThemeProvider theme={appTheme}>
+  <App />
+</ThemeProvider>
+<ThemeProvider theme={widgetTheme} scoped="widget">
+  <Widget />
+</ThemeProvider>
+```
+
+A scoped provider writes all of its variables on its element, and has its own light or dark mode.
+When `scoped` is a string, it's added to the class name and to the storage keys of the mode, for example `mui-mode-widget`.
+
+:::info
+A CSS variable that you override on `:root` doesn't reach the elements under a scoped provider that sets it, because the closest declaration wins.
+Override it on the scoped element instead, for example with the `className` prop.
+:::
+
 ## Disabling CSS color scheme
 
 By default, `createTheme()` attaches a [CSS `color-scheme` property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme) based on the palette mode.
