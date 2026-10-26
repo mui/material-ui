@@ -1119,7 +1119,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
       '--_endAdornment': iconSize,
     },
-    '&&&': { paddingRight: 'calc(var(--_caret) + var(--_endAdornment, 0px))' },
+    '&&': { paddingRight: 'calc(var(--_caret) + var(--_endAdornment, 0px))' },
   });
   addStyleOverride(enhanced.components, 'MuiSelect', 'icon', { right: spacing('xSmall') });
   addStyleOverride(enhanced.components, 'MuiAlert', 'root', {

@@ -36,6 +36,7 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import Select from '@mui/material/Select';
+import InputAdornment from '@mui/material/InputAdornment';
 import Toolbar from '@mui/material/Toolbar';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
@@ -1808,5 +1809,85 @@ describe.skipIf(isJsdom())('user child-slot overrides win', () => {
 describe('themes without a body2 variant', () => {
   test('enhanceDensity accepts a theme that disables body2', () => {
     expect(() => enhanceDensity(createTheme({ typography: { body2: undefined } }))).not.to.throw();
+  });
+});
+
+describe.skipIf(isJsdom())('Select end padding', () => {
+  const { render } = createRenderer();
+  const selectUser: Parameters<typeof createTheme>[0] = {
+    components: { MuiSelect: { styleOverrides: { select: { '&&': { paddingRight: 80 } } } } },
+  };
+  const selects = (theme: ReturnType<typeof createTheme>, id: string) => (
+    <ThemeProvider theme={theme}>
+      <div data-testid={id}>
+        {(['outlined', 'filled', 'standard'] as const).map((variant) =>
+          [false, true].map((adornment) => (
+            <Select
+              key={`${variant}${adornment}`}
+              data-case={`${variant}${adornment ? '-adornment' : ''}`}
+              variant={variant}
+              value="a"
+              endAdornment={adornment ? <InputAdornment position="end">x</InputAdornment> : null}
+            >
+              <MenuItem value="a">a</MenuItem>
+            </Select>
+          )),
+        )}
+      </div>
+    </ThemeProvider>
+  );
+  const paddingRight = (id: string, name: string) =>
+    getComputedStyle(
+      document.querySelector(`[data-testid="${id}"] [data-case="${name}"] .MuiSelect-select`)!,
+    ).paddingRight;
+  const cases = ['outlined', 'filled', 'standard'].flatMap((variant) => [
+    variant,
+    `${variant}-adornment`,
+  ]);
+
+  [false, true].forEach((modularCssLayers) => {
+    test(`a user paddingRight override wins wherever it wins on master${modularCssLayers ? ' with layers' : ''}`, () => {
+      const user = { ...selectUser, modularCssLayers };
+      render(
+        <React.Fragment>
+          {selects(createTheme(user), 'master')}
+          {selects(enhanceDensity(createTheme(user)), 'enhanced')}
+        </React.Fragment>,
+      );
+      const userWins = (id: string) =>
+        Object.fromEntries(cases.map((name) => [name, paddingRight(id, name) === '80px']));
+      expect(userWins('enhanced')).to.deep.equal(userWins('master'));
+    });
+  });
+
+  test('the value stops before the caret with layers', () => {
+    render(selects(enhanceDensity(createTheme({ modularCssLayers: true })), 'density'));
+    const { iconSize } = DEFAULT_SIZING_PX;
+    expect(
+      Object.fromEntries(cases.map((name) => [name, paddingRight('density', name)])),
+    ).to.deep.equal(
+      Object.fromEntries(
+        cases.map((name) => [
+          name,
+          `${iconSize + DEFAULT_STEP_PX.small + (name.endsWith('-adornment') ? iconSize : 0)}px`,
+        ]),
+      ),
+    );
+  });
+
+  DENSITIES.forEach((density) => {
+    test(`${density.id}: the value stops before the caret and the end adornment`, () => {
+      render(selects(THEMES.get(density.id)!, 'density'));
+      expect(
+        Object.fromEntries(cases.map((name) => [name, paddingRight('density', name)])),
+      ).to.deep.equal(
+        Object.fromEntries(
+          cases.map((name) => [
+            name,
+            `${density.iconSize + density.step.small + (name.endsWith('-adornment') ? density.iconSize : 0)}px`,
+          ]),
+        ),
+      );
+    });
   });
 });
