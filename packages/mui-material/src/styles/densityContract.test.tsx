@@ -1605,3 +1605,55 @@ describe.skipIf(isJsdom())('breadcrumb crumbs keep their own styles', () => {
     expect(css('crumb').height).to.equal(css('standalone').height);
   });
 });
+
+describe.skipIf(isJsdom())('user child-slot overrides win', () => {
+  const { render } = createRenderer();
+  const fontSize = (selector: string) =>
+    getComputedStyle(document.querySelector(selector) as HTMLElement).fontSize;
+  const chips = (theme: ReturnType<typeof createTheme>) => (
+    <ThemeProvider theme={theme}>
+      {(['small', 'medium'] as const).map((size) => (
+        <React.Fragment key={size}>
+          <Chip size={size} data-size={size} icon={<AddIcon />} label="a" onDelete={() => {}} />
+          <Chip size={size} data-size={size} avatar={<Avatar>A</Avatar>} label="b" />
+        </React.Fragment>
+      ))}
+    </ThemeProvider>
+  );
+
+  test('Chip icon, avatar and deleteIcon', () => {
+    render(
+      chips(
+        enhanceDensity(
+          createTheme({
+            components: {
+              MuiChip: {
+                styleOverrides: {
+                  icon: { fontSize: 30 },
+                  avatar: { fontSize: 31 },
+                  deleteIcon: { fontSize: 32 },
+                },
+              },
+            },
+          }),
+        ),
+      ),
+    );
+    ['small', 'medium'].forEach((size) => {
+      expect(fontSize(`[data-size="${size}"] .MuiChip-icon`)).to.equal('30px');
+      expect(fontSize(`[data-size="${size}"] .MuiChip-avatar`)).to.equal('31px');
+      expect(fontSize(`[data-size="${size}"] .MuiChip-deleteIcon`)).to.equal('32px');
+    });
+  });
+
+  test('Chip children keep the density sizes without user overrides', () => {
+    render(chips(THEMES.get('medium')!));
+    const { iconSize } = DEFAULT_SIZING_PX;
+    expect(fontSize('[data-size="medium"] .MuiChip-icon')).to.equal(`${iconSize}px`);
+    expect(fontSize('[data-size="small"] .MuiChip-icon')).to.equal(`${iconSize - 2}px`);
+    expect(fontSize('[data-size="medium"] .MuiChip-avatar')).to.equal('12px');
+    expect(fontSize('[data-size="small"] .MuiChip-avatar')).to.equal('10px');
+    expect(fontSize('[data-size="medium"] .MuiChip-deleteIcon')).to.equal('22px');
+    expect(fontSize('[data-size="small"] .MuiChip-deleteIcon')).to.equal('16px');
+  });
+});

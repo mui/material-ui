@@ -11,7 +11,6 @@ import {
 import switchClasses from '../Switch/switchClasses';
 import breadcrumbsClasses from '../Breadcrumbs/breadcrumbsClasses';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
-import chipClasses from '../Chip/chipClasses';
 import tabClasses from '../Tab/tabClasses';
 import stepLabelClasses from '../StepLabel/stepLabelClasses';
 import tablePaginationClasses from '../TablePagination/tablePaginationClasses';
@@ -194,6 +193,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     width: 'var(--_childSize)',
     height: 'var(--_childSize)',
     marginRight: 'var(--_offset)',
+    fontSize: 22,
+    variants: [{ props: { size: 'small' }, style: { fontSize: 16 } }],
   });
   addStyleOverride(enhanced.components, 'MuiAccordionSummary', 'root', {
     minHeight: touchTarget,
@@ -1400,9 +1401,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     '--_height': touchTarget,
     '--_paddingInline': spacing('small'),
     gap: spacing('xSmall'),
-    [`& .${chipClasses.icon}`]: { fontSize: iconSize },
-    [`& .${chipClasses.avatar}`]: { fontSize: pxToRem(12) },
-    [`& .${chipClasses.deleteIcon}`]: { fontSize: 22 },
     variants: [
       {
         props: { size: 'small' },
@@ -1411,9 +1409,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
           '--_paddingInline': spacing('xSmall'),
           gap: spacing('xxSmall'),
           ...enhanced.typography?.body2,
-          [`& .${chipClasses.icon}`]: { fontSize: iconSmall },
-          [`& .${chipClasses.avatar}`]: { fontSize: pxToRem(10) },
-          [`& .${chipClasses.deleteIcon}`]: { fontSize: 16 },
         },
       },
     ],
@@ -1424,6 +1419,12 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     width: 'var(--_childSize)',
     height: 'var(--_childSize)',
     marginLeft: 'var(--_offset)',
+    fontSize: pxToRem(12),
+    variants: [{ props: { size: 'small' }, style: { fontSize: pxToRem(10) } }],
   });
-  addStyleOverride(enhanced.components, 'MuiChip', 'icon', { margin: 0 });
+  addStyleOverride(enhanced.components, 'MuiChip', 'icon', {
+    margin: 0,
+    fontSize: iconSize,
+    variants: [{ props: { size: 'small' }, style: { fontSize: iconSmall } }],
+  });
 }
