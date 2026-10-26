@@ -301,7 +301,18 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   React.useEffect(() => stopTouchInteraction, [stopTouchInteraction]);
 
+  // A controlled owner's opening render can still be pending when a leave
+  // event arrives. The last committed `open` alone cannot tell us whether a
+  // matching close notification is needed.
+  const openingRequested = React.useRef(false);
+  React.useEffect(() => {
+    if (open) {
+      openingRequested.current = false;
+    }
+  }, [open]);
+
   const handleOpen = (event) => {
+    openingRequested.current = !open;
     hystersisTimer.clear();
     hystersisOpen = true;
 
@@ -326,7 +337,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       });
       setOpenState(false);
 
-      if (onClose && open) {
+      const shouldNotifyClose = open || openingRequested.current;
+      openingRequested.current = false;
+      if (onClose && shouldNotifyClose) {
         onClose(event);
       }
 
