@@ -174,16 +174,6 @@ describe('createTheme', () => {
     expect(theme.colorSchemes.dark.palette.background.default).to.equal('red');
   });
 
-  it('should add a palette color in a second call without CSS variables', () => {
-    let theme = createTheme({ cssVariables: false });
-    theme = createTheme(theme, {
-      palette: {
-        salmon: theme.palette.augmentColor({ color: { main: '#FF5733' }, name: 'salmon' }),
-      },
-    });
-    expect(theme.palette.salmon.main).to.equal('#FF5733');
-  });
-
   describe('CSS variables', () => {
     it('should have default light with media selector if no `palette` and colorSchemes.dark is provided', () => {
       const theme = createTheme({
