@@ -674,6 +674,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   addStyleOverride(enhanced.components, 'MuiBreadcrumbs', 'separator', { marginInline: 0 }); // use gap on `ol` instead
   addStyleOverride(enhanced.components, 'MuiToggleButton', 'root', {
     ...enhanced.typography?.button,
+    '--_size': touchTarget,
     paddingBlock: 0,
     minHeight: 'var(--_size)',
     minWidth: 'var(--_size)',
@@ -684,18 +685,16 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         style: { '--_size': smallBox },
       },
       {
-        props: { size: 'medium' },
-        style: { '--_size': touchTarget },
-      },
-      {
         props: { size: 'large' },
         style: { '--_size': largeBox },
       },
     ],
   });
   addStyleOverride(enhanced.components, 'MuiSwitch', 'root', {
-    // Var declarations sit on size variants so a knob edit rebuilds
-    // size-scoped; consumers are base.
+    '--_height': touchTarget,
+    '--_touchSize': touchTarget,
+    '--_thumbHeight': spacing('medium'),
+    '--_thumbWidth': spacing('medium'),
     '--_pad': `calc((var(--_height) - var(--_thumbHeight)/1.4285714286) / 2)`, // to maintain the original ratio
     '--_width': `calc(var(--_thumbHeight)*1.7 + var(--_pad)*2)`, // to maintain the original ratio
     '--_offset': 'calc(-1 * (var(--_height)/2 - var(--_thumbHeight)/2))',
@@ -713,15 +712,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       '--_switchMarginRight': 'var(--_offset)',
     },
     variants: [
-      {
-        props: { size: 'medium' },
-        style: {
-          '--_height': touchTarget,
-          '--_touchSize': touchTarget,
-          '--_thumbHeight': spacing('medium'),
-          '--_thumbWidth': spacing('medium'),
-        },
-      },
       {
         props: { size: 'small' },
         style: {
@@ -1368,18 +1358,13 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     paddingInline: 'var(--_paddingInline)',
     borderRadius: 'var(--_height)', // pill shape
     ...enhanced.typography?.body1,
+    '--_height': touchTarget,
+    '--_paddingInline': spacing('small'),
+    gap: spacing('xSmall'),
+    [`& .${chipClasses.icon}`]: { fontSize: iconSize },
+    [`& .${chipClasses.avatar}`]: { fontSize: pxToRem(12) },
+    [`& .${chipClasses.deleteIcon}`]: { fontSize: 22 },
     variants: [
-      {
-        props: { size: 'medium' },
-        style: {
-          '--_height': touchTarget,
-          '--_paddingInline': spacing('small'),
-          gap: spacing('xSmall'),
-          [`& .${chipClasses.icon}`]: { fontSize: iconSize },
-          [`& .${chipClasses.avatar}`]: { fontSize: pxToRem(12) },
-          [`& .${chipClasses.deleteIcon}`]: { fontSize: 22 },
-        },
-      },
       {
         props: { size: 'small' },
         style: {

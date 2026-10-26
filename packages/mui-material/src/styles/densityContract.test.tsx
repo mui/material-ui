@@ -1419,3 +1419,56 @@ describe.skipIf(isJsdom())('slider mark labels', () => {
     });
   });
 });
+
+describe.skipIf(isJsdom())('a size added by the app renders like medium', () => {
+  const { render } = createRenderer();
+  const added = 'xlarge' as any;
+  const box = (selector: string) => {
+    const el = document.querySelector(selector) as HTMLElement;
+    const { width, height } = el.getBoundingClientRect();
+    const css = getComputedStyle(el);
+    return { width, height, radius: css.borderTopLeftRadius, padding: css.padding };
+  };
+
+  test('Switch', () => {
+    render(
+      <ThemeProvider theme={THEMES.get('medium')!}>
+        <div data-testid="medium">
+          <Switch size="medium" />
+        </div>
+        <div data-testid="added">
+          <Switch size={added} />
+        </div>
+      </ThemeProvider>,
+    );
+    ['root', 'switchBase', 'thumb', 'track'].forEach((slot) => {
+      expect(box(`[data-testid="added"] .MuiSwitch-${slot}`)).to.deep.equal(
+        box(`[data-testid="medium"] .MuiSwitch-${slot}`),
+      );
+    });
+  });
+
+  test('ToggleButton', () => {
+    render(
+      <ThemeProvider theme={THEMES.get('medium')!}>
+        <ToggleButton value="a" size="medium" data-testid="medium">
+          <AddIcon />
+        </ToggleButton>
+        <ToggleButton value="a" size={added} data-testid="added">
+          <AddIcon />
+        </ToggleButton>
+      </ThemeProvider>,
+    );
+    expect(box('[data-testid="added"]')).to.deep.equal(box('[data-testid="medium"]'));
+  });
+
+  test('Chip', () => {
+    render(
+      <ThemeProvider theme={THEMES.get('medium')!}>
+        <Chip size="medium" label="Chip" onDelete={() => {}} data-testid="medium" />
+        <Chip size={added} label="Chip" onDelete={() => {}} data-testid="added" />
+      </ThemeProvider>,
+    );
+    expect(box('[data-testid="added"]')).to.deep.equal(box('[data-testid="medium"]'));
+  });
+});
