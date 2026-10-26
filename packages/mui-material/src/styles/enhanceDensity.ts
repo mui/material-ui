@@ -792,31 +792,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
   addStyleOverride(enhanced.components, 'MuiSwitch', 'track', { borderRadius: 'var(--_height)' });
   addStyleOverride(enhanced.components, 'MuiAutocomplete', 'root', {
-    [`& .${autocompleteClasses.inputRoot}`]: { gap: '2px', '--_tagHeight': miniBox },
-    [`& .${autocompleteClasses.inputRoot}.${inputBaseClasses.sizeSmall}`]: {
-      '--_tagHeight': tinyBox,
-    },
-    [`& .${outlinedInputClasses.root}`]: { paddingLeft: '8px' },
-    [`& .${outlinedInputClasses.root}, & .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]:
-      { paddingBlock: 'calc(var(--_outlinedInputPadBlock) + (1lh - var(--_tagHeight)) / 2)' },
     [`& .${outlinedInputClasses.root} .${autocompleteClasses.input}`]: { paddingLeft: '6px' },
-    [`& .${filledInputClasses.root}`]: {
-      paddingLeft: `calc(${spacing('small')} - 4px)`,
-    },
-    [`& .${filledInputClasses.root}:not(.${inputBaseClasses.hiddenLabel})`]: {
-      paddingTop: 'calc(var(--_filledInputPadTop) + (1lh - var(--_tagHeight)) / 2)',
-      paddingBottom: 'calc(var(--_filledInputPadBottom) + (1lh - var(--_tagHeight)) / 2)',
-    },
-    [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}`]: {
-      paddingBlock: `calc(${inputMediumPadBlock} + (1lh - var(--_tagHeight)) / 2)`,
-    },
-    [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}.${inputBaseClasses.sizeSmall}`]:
-      {
-        paddingBlock: `calc(${inputSmallPadBlock} + (1lh - var(--_tagHeight)) / 2)`,
-      },
-    [`& .${inputClasses.root}`]: {
-      paddingBlock: 'calc(var(--_inputPadBlock) + (1lh - var(--_tagHeight)) / 2)',
-    },
     [`& .${autocompleteClasses.inputRoot} .${autocompleteClasses.input}.${inputBaseClasses.input}`]:
       {
         paddingBlock: 0,
@@ -829,6 +805,52 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     [`&.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon} .${autocompleteClasses.inputRoot}`]:
       { paddingRight: `calc(2 * ${smallBox} + var(--_endOffset, 0px))` },
     [`& .${outlinedInputClasses.root}, & .${filledInputClasses.root}`]: { '--_endOffset': '9px' },
+  });
+  const rowPad = (pad: string) => `calc(${pad} + (1lh - var(--_tagHeight)) / 2)`;
+  const filledLabelled = `:where(.${filledInputClasses.root}:not(.${inputBaseClasses.hiddenLabel}))`;
+  addStyleOverride(enhanced.components, 'MuiAutocomplete', 'inputRoot', {
+    gap: '2px',
+    '--_tagHeight': miniBox,
+    paddingTop: rowPad('var(--_fieldPadTop)'),
+    paddingBottom: rowPad('var(--_fieldPadBottom)'),
+    paddingLeft: 'var(--_fieldPadLeft)',
+    [`&:where(.${outlinedInputClasses.root})`]: {
+      '--_fieldPadTop': 'var(--_outlinedInputPadBlock)',
+      '--_fieldPadBottom': 'var(--_outlinedInputPadBlock)',
+      '--_fieldPadLeft': '8px',
+    },
+    [`&${filledLabelled}`]: {
+      '--_fieldPadTop': 'var(--_filledInputPadTop)',
+      '--_fieldPadBottom': 'var(--_filledInputPadBottom)',
+    },
+    [`&:where(.${filledInputClasses.root})`]: {
+      '--_fieldPadLeft': `calc(${spacing('small')} - 4px)`,
+    },
+    [`&:where(.${filledInputClasses.root}.${inputBaseClasses.hiddenLabel})`]: {
+      '--_fieldPadTop': inputMediumPadBlock,
+      '--_fieldPadBottom': inputMediumPadBlock,
+    },
+    [`&:where(.${inputClasses.root})`]: {
+      '--_fieldPadTop': 'var(--_inputPadBlock)',
+      '--_fieldPadBottom': 'var(--_inputPadBlock)',
+      '--_fieldPadLeft': '0px',
+    },
+    [`&.${inputBaseClasses.sizeSmall}`]: {
+      '--_tagHeight': tinyBox,
+      [`&:where(.${filledInputClasses.root}.${inputBaseClasses.hiddenLabel})`]: {
+        '--_fieldPadTop': inputSmallPadBlock,
+        '--_fieldPadBottom': inputSmallPadBlock,
+      },
+      [`&:where(.${outlinedInputClasses.root})`]: {
+        paddingTop: rowPad('var(--_fieldPadTop)'),
+        paddingBottom: rowPad('var(--_fieldPadBottom)'),
+      },
+      [`&${filledLabelled}`]: { paddingBottom: rowPad('var(--_fieldPadBottom)') },
+    },
+    [`&.${inputBaseClasses.hiddenLabel}:where(.${filledInputClasses.root})`]: {
+      paddingTop: rowPad('var(--_fieldPadTop)'),
+      paddingBottom: rowPad('var(--_fieldPadBottom)'),
+    },
   });
   addStyleOverride(enhanced.components, 'MuiAutocomplete', 'clearIndicator', {
     minWidth: smallBox,

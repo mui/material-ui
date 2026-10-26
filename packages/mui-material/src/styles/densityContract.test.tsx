@@ -1734,6 +1734,65 @@ describe.skipIf(isJsdom())('user child-slot overrides win', () => {
     });
   });
 
+  const inputRootUser: Parameters<typeof createTheme>[0] = {
+    components: {
+      MuiAutocomplete: {
+        styleOverrides: {
+          inputRoot: { gap: 10, paddingLeft: 20, paddingTop: 21, paddingBottom: 22 },
+        },
+      },
+    },
+  };
+  (['outlined', 'filled', 'standard'] as const).forEach((variant) => {
+    (['small', 'medium'] as const).forEach((size) => {
+      [false, true].forEach((hiddenLabel) => {
+        if (hiddenLabel && variant !== 'filled') {
+          return;
+        }
+        test(`Autocomplete inputRoot ${variant} ${size}${hiddenLabel ? ' hiddenLabel' : ''} wins wherever it wins on master`, () => {
+          const autocomplete = (theme: ReturnType<typeof createTheme>, id: string) => (
+            <ThemeProvider theme={theme}>
+              <div data-testid={id}>
+                <Autocomplete
+                  multiple
+                  size={size}
+                  options={['a', 'b']}
+                  defaultValue={['a']}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      variant={variant}
+                      hiddenLabel={hiddenLabel}
+                      label={hiddenLabel ? undefined : 'L'}
+                    />
+                  )}
+                />
+              </div>
+            </ThemeProvider>
+          );
+          render(
+            <React.Fragment>
+              {autocomplete(createTheme(inputRootUser), 'master')}
+              {autocomplete(enhanceDensity(createTheme(inputRootUser)), 'enhanced')}
+            </React.Fragment>,
+          );
+          const read = (id: string) => {
+            const css = getComputedStyle(
+              document.querySelector(`[data-testid="${id}"] .MuiAutocomplete-inputRoot`)!,
+            );
+            return {
+              gap: css.columnGap === '10px',
+              paddingLeft: css.paddingLeft === '20px',
+              paddingTop: css.paddingTop === '21px',
+              paddingBottom: css.paddingBottom === '22px',
+            };
+          };
+          expect(read('enhanced')).to.deep.equal(read('master'));
+        });
+      });
+    });
+  });
+
   test('Chip children keep the density sizes without user overrides', () => {
     render(chips(THEMES.get('medium')!));
     const { iconSize } = DEFAULT_SIZING_PX;
