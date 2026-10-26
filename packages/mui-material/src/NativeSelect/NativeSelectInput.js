@@ -22,7 +22,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getNativeSelectUtilityClasses, classes);
 };
 
-const StyledSelectSelect = styled('select', {
+export const StyledSelectSelect = styled('select', {
   name: 'MuiNativeSelect',
 })(({ theme }) => ({
   // Reset
@@ -130,7 +130,7 @@ const NativeSelectSelect = styled(StyledSelectSelect, {
   },
 })({});
 
-const StyledSelectIcon = styled('svg', {
+export const StyledSelectIcon = styled('svg', {
   name: 'MuiNativeSelect',
 })(({ theme }) => ({
   // We use a position absolute over a flexbox in order to forward the pointer events

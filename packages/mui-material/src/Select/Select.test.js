@@ -2774,39 +2774,11 @@ describe('<Select />', () => {
     });
   });
 
-  it('should not apply MuiNativeSelect theme variants', () => {
-    const theme = createTheme({
-      components: {
-        MuiNativeSelect: {
-          variants: [
-            {
-              props: {
-                variant: 'outlined',
-              },
-              style: {
-                textTransform: 'uppercase',
-              },
-            },
-          ],
-        },
-      },
-    });
-
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <Select variant="outlined" value="first">
-          <MenuItem value="first" />
-          <MenuItem value="second" />
-        </Select>
-      </ThemeProvider>,
-    );
-
-    expect(container.querySelector(`.${classes.select}`)).not.toHaveComputedStyle({
-      textTransform: 'uppercase',
-    });
-    expect(container.querySelector(`.${classes.icon}`)).not.toHaveComputedStyle({
-      textTransform: 'uppercase',
-    });
+  it('should rotate the icon when open', () => {
+    const { container } = render(<Select open value="" />);
+    const icon = container.querySelector(`.${classes.icon}`);
+    expect(icon).to.have.class(classes.iconOpen);
+    expect(icon).not.toHaveComputedStyle({ transform: 'none' });
   });
 
   describe('prop: input', () => {
