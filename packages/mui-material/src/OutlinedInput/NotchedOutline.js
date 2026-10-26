@@ -39,7 +39,8 @@ const NotchedOutlineLegend = styled('legend', {
         style: {
           padding: 0,
           lineHeight: '11px', // sync with `height` in `legend` styles
-          // "maxWidth" needed for Firefox browser issue: https://github.com/mui/material-ui/issues/37216.
+          // Firefox applies letter-spacing to a trailing zero-width space,
+          // which notches the outline: https://github.com/mui/material-ui/issues/37216
           maxWidth: 0,
           ...getTransitionStyles(theme, 'width', {
             duration: 150,
