@@ -1261,7 +1261,7 @@ export const DENSITY_ANNOTATIONS: Record<
             on: '.MuiTooltip-tooltip',
             aspect: 'margin' as const,
             axis: 'block' as const,
-            token: '4px',
+            token: '4px + 10px / 2',
             label: 'Tooltip',
           },
         ]
@@ -1287,7 +1287,7 @@ export const DENSITY_ANNOTATIONS: Record<
             on: '.MuiTooltip-tooltip',
             aspect: 'margin' as const,
             side: 'left' as const,
-            token: '4px',
+            token: '4px + 10px / 2',
             label: 'Tooltip',
             route: { gutter: 'bottom' as const, shift: -70 },
           },

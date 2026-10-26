@@ -324,7 +324,13 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     padding: `${spacing('xSmall')} ${spacing('small')}`,
     // Touch keeps its own 24px clearance; an unconditional value would land
     // after the component's touch variant and override it.
-    variants: [{ props: ({ ownerState }) => !ownerState.touch, style: { '--_spacing': '4px' } }],
+    variants: [
+      { props: ({ ownerState }) => !ownerState.touch, style: { '--_spacing': '4px' } },
+      {
+        props: ({ ownerState }) => !!ownerState.arrow && !ownerState.touch,
+        style: { '--_spacing': 'calc(4px + 10px / 2)' },
+      },
+    ],
   });
   // Fixed arrow size due to fixed spacing between tooltip and target
   addStyleOverride(enhanced.components, 'MuiTooltip', 'arrow', { '--_arrowSize': '10px' });

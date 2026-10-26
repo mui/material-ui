@@ -57,6 +57,7 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import LinearProgress from '@mui/material/LinearProgress';
 import Slider from '@mui/material/Slider';
+import Tooltip from '@mui/material/Tooltip';
 import AddIcon from '@mui/icons-material/Add';
 import Check from '@mui/icons-material/Check';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -1328,5 +1329,50 @@ describe.skipIf(isJsdom())('density and user overrides', () => {
       document.querySelector(`[data-testid="${id}"] .MuiSwitch-root`) as HTMLElement;
     expect(parseFloat(getComputedStyle(root('plain')).marginLeft)).to.be.lessThan(0);
     expect(getComputedStyle(root('with-sx')).marginLeft).to.equal('0px');
+  });
+});
+
+describe.skipIf(isJsdom())('tooltip arrow clearance', () => {
+  const { render } = createRenderer();
+
+  (['top', 'bottom', 'left', 'right'] as const).forEach((placement) => {
+    test(`${placement}: the arrow tip keeps the bubble's gap to the anchor`, async () => {
+      render(
+        <ThemeProvider theme={THEMES.get('medium')!}>
+          <div style={{ padding: 150 }}>
+            <Tooltip open placement={placement} title="Copy">
+              <Button data-testid="bubble">Copy</Button>
+            </Tooltip>
+            <Tooltip arrow open placement={placement} title="Copy">
+              <Button data-testid="arrow">Copy</Button>
+            </Tooltip>
+          </div>
+        </ThemeProvider>,
+      );
+      await new Promise((resolve) => {
+        setTimeout(resolve, 100);
+      });
+      const gap = (anchorId: string, tip: Element) => {
+        const anchor = document
+          .querySelector(`[data-testid="${anchorId}"]`)!
+          .getBoundingClientRect();
+        const rect = tip.getBoundingClientRect();
+        return {
+          top: anchor.top - rect.bottom,
+          bottom: rect.top - anchor.bottom,
+          left: anchor.left - rect.right,
+          right: rect.left - anchor.right,
+        }[placement];
+      };
+      const [bubble] = document.querySelectorAll(
+        '.MuiTooltip-tooltip:not(.MuiTooltip-tooltipArrow)',
+      );
+      const arrow = document.querySelector('.MuiTooltip-arrow')!;
+      const { width, height } = arrow.getBoundingClientRect();
+      const vertical = placement === 'top' || placement === 'bottom';
+      const [depth, breadth] = vertical ? [height, width] : [width, height];
+      const paintedTipInset = depth - breadth / 2;
+      expect(gap('arrow', arrow) + paintedTipInset).to.be.closeTo(gap('bubble', bubble), 1);
+    });
   });
 });
