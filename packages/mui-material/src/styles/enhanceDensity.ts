@@ -477,11 +477,11 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
       {
         props: { multiline: true, hiddenLabel: true },
-        style: { paddingTop: 16, paddingBottom: 17 },
+        style: { paddingBlock: inputMediumPadBlock },
       },
       {
         props: { multiline: true, hiddenLabel: true, size: 'small' },
-        style: { paddingTop: 8, paddingBottom: 9 },
+        style: { paddingBlock: inputSmallPadBlock },
       },
       {
         props: ({ ownerState }) => !!ownerState.startAdornment,

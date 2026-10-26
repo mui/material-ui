@@ -651,6 +651,19 @@ describe.skipIf(isJsdom())('filled input label room', () => {
           field.getBoundingClientRect().height,
         );
       });
+
+      test(`${density.id} ${size}: a one-row hiddenLabel multiline matches the single-line field`, () => {
+        render(
+          <ThemeProvider theme={THEMES.get(density.id)!}>
+            <TextField variant="filled" hiddenLabel size={size} defaultValue="Ada" />
+            <TextField variant="filled" hiddenLabel multiline size={size} defaultValue="Ada" />
+          </ThemeProvider>,
+        );
+        const [single, multiline] = document.querySelectorAll('.MuiFilledInput-root');
+        expect(multiline.getBoundingClientRect().height).to.equal(
+          single.getBoundingClientRect().height,
+        );
+      });
     });
   });
 });
