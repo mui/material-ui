@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
+import { useThemeScope } from '@mui/system/cssVars';
 import FocusTrap from '../Unstable_TrapFocus';
 import Portal from '../Portal';
 import { styled } from '../zero-styled';
@@ -147,17 +148,22 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const externalForwardedProps = { slots, slotProps };
 
+  // The modal is portaled out of a scoped ThemeProvider's element, so it applies the scope itself.
+  const { className: themeScopeClassName, ...themeScopeAttributes } = useThemeScope();
+
   const [RootSlot, rootProps] = useSlot('root', {
     ref,
     elementType: ModalRoot,
     externalForwardedProps: {
       ...externalForwardedProps,
+      ...themeScopeAttributes,
       ...other,
       component,
     },
     getSlotProps: getRootProps,
     ownerState,
     className: clsx(
+      themeScopeClassName,
       className,
       classes?.root,
       !ownerState.open && ownerState.exited && classes?.hidden,

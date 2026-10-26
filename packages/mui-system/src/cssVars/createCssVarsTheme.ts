@@ -25,6 +25,7 @@ function createCssVarsTheme<T extends Theme, ThemeVars extends Record<string, an
   output.vars = result.vars;
   output.generateThemeVars = result.generateThemeVars;
   output.generateStyleSheets = result.generateStyleSheets;
+  output.generateCssVarsByColorScheme = result.generateCssVarsByColorScheme;
   output.colorSchemeSelector = colorSchemeSelector;
   output.getColorSchemeSelector = createGetColorSchemeSelector(colorSchemeSelector);
   output.internal_cache = {};

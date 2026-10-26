@@ -421,6 +421,15 @@ export interface CssVarsTheme extends ColorSystem {
   getColorSchemeSelector: (colorScheme: SupportedColorScheme) => string;
   generateThemeVars: () => ThemeVars;
   generateStyleSheets: () => Array<Record<string, any>>;
+  /**
+   * @internal Used by ThemeProvider to scope the CSS theme variables of nested themes.
+   */
+  generateCssVarsByColorScheme?:
+    | (() => {
+        root: Record<string, string | number>;
+        colorSchemes: Array<[string, Record<string, string | number>]>;
+      })
+    | undefined;
   generateSpacing: () => SystemTheme['spacing'];
 
   // Default theme tokens

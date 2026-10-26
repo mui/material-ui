@@ -1,6 +1,13 @@
 import deepmerge from '@mui/utils/deepmerge';
 import cssVarsParser from './cssVarsParser';
 
+// use double underscore to indicate that these are private variables
+const CONTRAST_VARS = {
+  '--__l-threshold': '0.7',
+  '--__l': 'clamp(0, (l / var(--__l-threshold) - 1) * -infinity, 1)',
+  '--__a': 'clamp(0.87, (l / var(--__l-threshold) - 1) * -infinity, 1)', // 0.87 is the default alpha value for black text.
+};
+
 export interface DefaultCssVarsTheme {
   colorSchemes?: Record<string, any> | undefined;
   defaultColorScheme?: string | undefined;
@@ -98,9 +105,34 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     return vars;
   };
 
+  /**
+   * Returns the CSS declarations of the theme before they are assigned to selectors:
+   * the ones shared by all color schemes, and the ones of each color scheme, default first.
+   */
+  const generateCssVarsByColorScheme = () => {
+    const colorScheme = theme.defaultColorScheme || 'light';
+    const schemes: Array<[string, Record<string, string | number>]> = [];
+    const { [colorScheme]: defaultSchemeVal, ...other } = colorSchemesMap;
+    const entries = defaultSchemeVal
+      ? [[colorScheme, defaultSchemeVal] as const, ...Object.entries(other)]
+      : Object.entries(other);
+    entries.forEach(([key, { css }]) => {
+      const cssColorSheme = colorSchemes[key]?.palette?.mode;
+      schemes.push([
+        key,
+        !disableCssColorScheme && cssColorSheme
+          ? { colorScheme: cssColorSheme, ...css }
+          : { ...css },
+      ]);
+    });
+    return {
+      root: enableContrastVars ? { ...rootCss, ...CONTRAST_VARS } : { ...rootCss },
+      colorSchemes: schemes,
+    };
+  };
+
   const generateStyleSheets = () => {
     const stylesheets: Array<Record<string, any>> = [];
-    const colorScheme = theme.defaultColorScheme || 'light';
     function insertStyleSheet(key: string | object, css: Record<string, string | number>) {
       if (Object.keys(css).length) {
         stylesheets.push(typeof key === 'string' ? { [key]: { ...css } } : key);
@@ -108,40 +140,13 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     }
     insertStyleSheet(getSelector(undefined, { ...rootCss }), rootCss);
 
-    const { [colorScheme]: defaultSchemeVal, ...other } = colorSchemesMap;
-
-    if (defaultSchemeVal) {
-      // default color scheme has to come before other color schemes
-      const { css } = defaultSchemeVal;
-      const cssColorSheme = colorSchemes[colorScheme]?.palette?.mode;
-      const finalCss =
-        !disableCssColorScheme && cssColorSheme
-          ? { colorScheme: cssColorSheme, ...css }
-          : { ...css };
-      insertStyleSheet(
-        getSelector(colorScheme as keyof T['colorSchemes'], { ...finalCss }),
-        finalCss,
-      );
-    }
-
-    Object.entries(other).forEach(([key, { css }]) => {
-      const cssColorSheme = colorSchemes[key]?.palette?.mode;
-      const finalCss =
-        !disableCssColorScheme && cssColorSheme
-          ? { colorScheme: cssColorSheme, ...css }
-          : { ...css };
+    // default color scheme has to come before other color schemes
+    generateCssVarsByColorScheme().colorSchemes.forEach(([key, finalCss]) => {
       insertStyleSheet(getSelector(key as keyof T['colorSchemes'], { ...finalCss }), finalCss);
     });
 
     if (enableContrastVars) {
-      stylesheets.push({
-        ':root': {
-          // use double underscore to indicate that these are private variables
-          '--__l-threshold': '0.7',
-          '--__l': 'clamp(0, (l / var(--__l-threshold) - 1) * -infinity, 1)',
-          '--__a': 'clamp(0.87, (l / var(--__l-threshold) - 1) * -infinity, 1)', // 0.87 is the default alpha value for black text.
-        },
-      });
+      stylesheets.push({ ':root': { ...CONTRAST_VARS } });
     }
 
     return stylesheets;
@@ -151,6 +156,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     vars: themeVars,
     generateThemeVars,
     generateStyleSheets,
+    generateCssVarsByColorScheme,
   };
 }
 

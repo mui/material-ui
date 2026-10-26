@@ -32,6 +32,24 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true 
        * @default false
        */
       forceThemeRerender?: boolean | undefined;
+      /**
+       * If `true`, the CSS theme variables are set on an element that wraps the children instead of `:root`,
+       * so they don't affect the rest of the page. Use it for a provider that isn't nested in another one,
+       * like an embedded widget. Nested providers are scoped automatically when their variables differ.
+       *
+       * A string is used as a readable part of the class name, and to suffix the storage keys.
+       * @default false
+       */
+      scoped?: boolean | string | undefined;
+      /**
+       * The element that wraps the children of a scoped provider.
+       * By default, a `div` with `display: contents`.
+       */
+      component?: React.ElementType | undefined;
+      /**
+       * The class name of the element that wraps the children of a scoped provider.
+       */
+      className?: string | undefined;
     }
   : {};
 

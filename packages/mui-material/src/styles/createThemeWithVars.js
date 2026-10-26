@@ -1010,13 +1010,15 @@ export default function createThemeWithVars(options = {}, ...args) {
     getSelector: defaultGetSelector(theme),
     enableContrastVars: nativeColor,
   };
-  const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars(theme, parserConfig);
+  const { vars, generateThemeVars, generateStyleSheets, generateCssVarsByColorScheme } =
+    prepareCssVars(theme, parserConfig);
   theme.vars = vars;
   Object.entries(theme.colorSchemes[theme.defaultColorScheme]).forEach(([key, value]) => {
     theme[key] = value;
   });
   theme.generateThemeVars = generateThemeVars;
   theme.generateStyleSheets = generateStyleSheets;
+  theme.generateCssVarsByColorScheme = generateCssVarsByColorScheme;
   theme.generateSpacing = function generateSpacing() {
     return createSpacing(input.spacing, createUnarySpacing(this));
   };
