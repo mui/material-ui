@@ -1395,8 +1395,10 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         props: { variant: 'standard' },
         style: {
-          height: miniBox,
-          minWidth: miniBox,
+          height: 'auto',
+          lineHeight: 4 / 3, // text block 16px
+          minWidth: `calc(1lh + 2*${spacing('xxSmall')})`,
+          paddingBlock: spacing('xxSmall'),
           paddingInline: spacing('xSmall'),
         },
       },

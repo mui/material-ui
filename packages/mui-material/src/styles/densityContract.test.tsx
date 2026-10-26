@@ -285,7 +285,7 @@ const CONTROLS: Record<string, Spec> = {
     ),
     selector: '.MuiBadge-badge',
     height: (density, variant) =>
-      variant === 'dot' ? density.step.small : density.touchTarget - density.step.xSmall,
+      variant === 'dot' ? density.step.small : 16 + 2 * density.step.xxSmall,
   },
   Fab: {
     // Circular only — the extended variant is width-led, not a box.
@@ -1917,6 +1917,24 @@ describe.skipIf(isJsdom())('table rows without CssBaseline', () => {
           .getBoundingClientRect().height;
         expect(Math.abs(rendered - rowHeight)).to.be.at.most(1);
       });
+    });
+  });
+});
+
+describe.skipIf(isJsdom())('badge size', () => {
+  const { render } = createRenderer();
+  [24, 32, 44].forEach((touchTarget) => {
+    test(`touchTarget ${touchTarget}: the badge follows its text, not the touch target`, () => {
+      render(
+        <ThemeProvider theme={enhanceDensity(createTheme(), { touchTarget })}>
+          <Badge badgeContent={4} color="primary">
+            <SvgIcon />
+          </Badge>
+        </ThemeProvider>,
+      );
+      const { width, height } = document.querySelector('.MuiBadge-badge')!.getBoundingClientRect();
+      const size = 16 + 2 * DEFAULT_STEP_PX.xxSmall;
+      expect({ width, height }).to.deep.equal({ width: size, height: size });
     });
   });
 });
