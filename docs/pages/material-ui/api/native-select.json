@@ -68,12 +68,6 @@
       "isGlobal": false
     },
     {
-      "key": "iconOpen",
-      "className": "MuiNativeSelect-iconOpen",
-      "description": "This class is never applied, a native select doesn't expose whether its popup is open.",
-      "isGlobal": false
-    },
-    {
       "key": "iconOutlined",
       "className": "MuiNativeSelect-iconOutlined",
       "description": "Styles applied to the icon component if `variant=\"outlined\"`.",

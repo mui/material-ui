@@ -18,8 +18,6 @@ export interface NativeSelectClasses {
   disabled: string;
   /** Styles applied to the icon component. */
   icon: string;
-  /** This class is never applied, a native select doesn't expose whether its popup is open. */
-  iconOpen: string;
   /** Styles applied to the icon component if `variant="filled"`. */
   iconFilled: string;
   /** Styles applied to the icon component if `variant="outlined"`. */
@@ -47,7 +45,6 @@ const nativeSelectClasses: NativeSelectClasses = generateUtilityClasses('MuiNati
   'standard',
   'disabled',
   'icon',
-  'iconOpen',
   'iconFilled',
   'iconOutlined',
   'iconStandard',

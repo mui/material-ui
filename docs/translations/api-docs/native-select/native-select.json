@@ -47,9 +47,6 @@
       "nodeName": "the icon component",
       "conditions": "<code>variant=\"filled\"</code>"
     },
-    "iconOpen": {
-      "description": "This class is never applied, a native select doesn&#39;t expose whether its popup is open."
-    },
     "iconOutlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon component",
