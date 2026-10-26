@@ -668,6 +668,32 @@ describe.skipIf(isJsdom())('filled input label room', () => {
   });
 });
 
+describe.skipIf(isJsdom())('input types share the text box', () => {
+  const { render } = createRenderer();
+  const types = ['date', 'time', 'datetime-local', 'month', 'week', 'color'];
+
+  (['outlined', 'filled', 'standard'] as const).forEach((variant) => {
+    (['small', 'medium'] as const).forEach((size) => {
+      test(`${variant} ${size}`, () => {
+        render(
+          <ThemeProvider theme={THEMES.get('medium')!}>
+            {['text', ...types].map((type) => (
+              <TextField key={type} data-type={type} variant={variant} size={size} type={type} />
+            ))}
+          </ThemeProvider>,
+        );
+        const height = (type: string) =>
+          document
+            .querySelector(`[data-type="${type}"] .MuiInputBase-root`)!
+            .getBoundingClientRect().height;
+        expect(types.map((type) => `${type} ${height(type)}`)).to.deep.equal(
+          types.map((type) => `${type} ${height('text')}`),
+        );
+      });
+    });
+  });
+});
+
 describe.skipIf(isJsdom())('density without the matching input', () => {
   const { render } = createRenderer();
   const plain = createTheme();

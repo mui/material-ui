@@ -346,9 +346,9 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ],
   });
   addStyleOverride(enhanced.components, 'MuiInputBase', 'input', {
-    height: 'auto',
     paddingBlock: inputMediumPadBlock,
     variants: [
+      { props: { multiline: false }, style: { height: '1lh' } },
       { props: { size: 'small' }, style: { paddingBlock: inputSmallPadBlock } },
       {
         props: { multiline: true },
