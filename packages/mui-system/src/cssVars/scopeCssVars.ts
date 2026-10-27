@@ -124,7 +124,9 @@ export function createScopedStyleSheets(options: {
     return null;
   }
 
-  const className = `${prefix ? `${prefix}-` : ''}theme-${name ? `${name}-` : ''}${hash(
+  // The name is only there to make the class readable, so characters that aren't valid in a class are replaced.
+  const safeName = name?.replace(/[^a-zA-Z0-9_-]/g, '-');
+  const className = `${prefix ? `${prefix}-` : ''}theme-${safeName ? `${safeName}-` : ''}${hash(
     JSON.stringify([root, schemes, rule, !!upper]),
   )}`;
   const scope = `.${className}`;

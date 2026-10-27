@@ -302,7 +302,7 @@ export default function createCssVarsProvider<
       noSsr,
     } = props;
     const hasMounted = React.useRef(false);
-    const upperTheme = muiUseTheme() as any;
+    const upperTheme = muiUseTheme();
     const ctx = React.useContext(ColorSchemeContext);
     const upperScope = React.useContext(ThemeScopeContext);
     const nested = !!ctx && !disableNestedContext;
@@ -361,7 +361,9 @@ export default function createCssVarsProvider<
       modeStorageKey,
       colorSchemeStorageKey,
       defaultMode,
-      storageManager,
+      // An unnamed scoped provider would share the storage keys of the page's provider, so it doesn't store its mode.
+      storageManager:
+        isScopedRoot && !scopeName && props.storageManager === undefined ? null : storageManager,
       storageWindow,
       noSsr,
     });
@@ -546,14 +548,14 @@ export default function createCssVarsProvider<
 
     const canGenerateStyleSheet =
       !disableStyleSheetGeneration && restThemeProp.cssVariables !== false;
-    const samePrefixAsUpper = nested && upperTheme?.cssVarPrefix === cssVarPrefix;
+    const samePrefixAsUpper = nested && (upperTheme as any)?.cssVarPrefix === cssVarPrefix;
 
     // 6. Scope the CSS theme variables that can't go to `:root` to the provider's element.
     const generateCssVarsByColorScheme: (() => CssVarsByColorScheme) | undefined =
       restThemeProp.generateCssVarsByColorScheme;
     const upperGenerateCssVarsByColorScheme: (() => CssVarsByColorScheme) | undefined =
-      samePrefixAsUpper ? upperTheme.generateCssVarsByColorScheme : undefined;
-    const upperColorSchemeSelector = nested ? upperTheme?.colorSchemeSelector : undefined;
+      samePrefixAsUpper ? (upperTheme as any).generateCssVarsByColorScheme : undefined;
+    const upperColorSchemeSelector = nested ? (upperTheme as any)?.colorSchemeSelector : undefined;
     const scope = React.useMemo(() => {
       if (!canGenerateStyleSheet || !generateCssVarsByColorScheme) {
         return null;
@@ -595,10 +597,14 @@ export default function createCssVarsProvider<
     ]);
 
     const scopeClassName = scope?.className;
-    const { className: colorSchemeClassName, ...colorSchemeAttributes } = isScopedRoot
-      ? getColorSchemeProps(colorSchemeSelector, colorScheme)
-      : ({} as Record<string, string>);
-    const colorSchemeAttributesKey = JSON.stringify(colorSchemeAttributes);
+    const colorSchemeProps = React.useMemo(
+      () =>
+        isScopedRoot
+          ? getColorSchemeProps(colorSchemeSelector, colorScheme)
+          : ({} as Record<string, string>),
+      [isScopedRoot, colorSchemeSelector, colorScheme],
+    );
+    const { className: colorSchemeClassName, ...colorSchemeAttributes } = colorSchemeProps;
     const scopeProps = React.useMemo(() => {
       if (!scopeClassName) {
         return undefined;
@@ -606,12 +612,20 @@ export default function createCssVarsProvider<
       // Portaled elements aren't under the outer scopes' elements either, so they get them too.
       return {
         ...(nested ? upperScope : undefined),
-        ...JSON.parse(colorSchemeAttributesKey),
+        ...colorSchemeProps,
         className: clsx(nested && upperScope?.className, scopeClassName, colorSchemeClassName),
       };
-    }, [scopeClassName, colorSchemeClassName, colorSchemeAttributesKey, nested, upperScope]);
+    }, [scopeClassName, colorSchemeClassName, colorSchemeProps, nested, upperScope]);
 
-    const shouldGenerateStyleSheet = canGenerateStyleSheet && !samePrefixAsUpper && !isScopedRoot;
+    let shouldGenerateStyleSheet = true;
+    if (
+      disableStyleSheetGeneration ||
+      restThemeProp.cssVariables === false ||
+      (nested && (upperTheme as any)?.cssVarPrefix === cssVarPrefix) ||
+      isScopedRoot
+    ) {
+      shouldGenerateStyleSheet = false;
+    }
 
     if (process.env.NODE_ENV !== 'production') {
       // eslint-disable-next-line react-hooks/rules-of-hooks

@@ -307,6 +307,10 @@ The class only sets the variables that differ, and it follows the outer light or
 
 A nested provider with the same variables, for example one that only changes `components` defaults, renders no element.
 
+The wrapper is an extra element, so `> *` and `~` selectors, and the spacing of a `Stack`, don't reach through it.
+Since it only renders when the variables differ, switching a nested provider between a theme with the same variables and one with different variables also remounts its children.
+The `component` prop below avoids both: it always renders the element you choose.
+
 Dialogs, menus, popovers, tooltips, and other components that render in a portal apply the class to their own root, so they use the nested theme too.
 For elements that other libraries portal, use the `useThemeScope()` hook to get the class:
 
@@ -319,7 +323,8 @@ function Toast() {
 }
 ```
 
-To put the class on your own element instead of the `div`, for example inside a table or a list, where a `div` isn't valid HTML, use the `component` prop:
+To put the class on your own element instead of the `div`, for example inside a table or a list, where a `div` isn't valid HTML, use the `component` prop.
+It renders whether the variables differ or not:
 
 ```jsx
 <ThemeProvider theme={promoTheme} component="tbody" className="promo">
@@ -333,16 +338,19 @@ Two `ThemeProvider`s that aren't nested in each other both write to `:root` and 
 Add the `scoped` prop to the one that should only apply to its children, like an embedded widget:
 
 ```jsx
-<ThemeProvider theme={appTheme}>
-  <App />
-</ThemeProvider>
-<ThemeProvider theme={widgetTheme} scoped="widget">
-  <Widget />
-</ThemeProvider>
+<React.Fragment>
+  <ThemeProvider theme={appTheme}>
+    <App />
+  </ThemeProvider>
+  <ThemeProvider theme={widgetTheme} scoped="widget">
+    <Widget />
+  </ThemeProvider>
+</React.Fragment>
 ```
 
 A scoped provider writes all of its variables on its element, and has its own light or dark mode.
-When `scoped` is a string, it's added to the class name and to the storage keys of the mode and color scheme, for example `mui-mode-widget`.
+To remember that mode across visits, give it a name: when `scoped` is a string, it's added to the class name and to the storage keys of the mode and color scheme, for example `mui-mode-widget`.
+Without a name, the mode isn't stored, so it doesn't overwrite the mode of the page's provider.
 
 :::info
 A CSS variable that you override on `:root` doesn't reach the elements under a scoped provider that sets it, because the closest declaration wins.

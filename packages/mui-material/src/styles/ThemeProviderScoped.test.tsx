@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, afterEach } from 'vitest';
 import * as React from 'react';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
@@ -15,6 +15,10 @@ const redTheme = createTheme({ cssVariables: true, palette: { primary: { main: '
 
 describe('ThemeProvider with scoped CSS theme variables', () => {
   const { render } = createRenderer();
+
+  afterEach(() => {
+    document.documentElement.classList.remove('light', 'dark');
+  });
 
   describe('nested', () => {
     it('wraps the children in a scoped element when the variables differ', () => {
@@ -135,7 +139,6 @@ describe('ThemeProvider with scoped CSS theme variables', () => {
       );
       expect(document.documentElement.classList.contains('dark')).to.equal(true);
       expect(getVar(screen.getByTestId('inner'), '--mui-palette-primary-main')).to.equal('#00ff00');
-      document.documentElement.classList.remove('dark');
     });
   });
 
@@ -162,6 +165,20 @@ describe('ThemeProvider with scoped CSS theme variables', () => {
         '#ff0000',
       );
       expect(getComputedStyle(screen.getByTestId('widget')).colorScheme).to.equal('dark');
+    });
+
+    it('does not store the mode of an unnamed scoped provider', () => {
+      const theme = createTheme({
+        cssVariables: { colorSchemeSelector: 'class' },
+        colorSchemes: { light: true, dark: true },
+      });
+      window.localStorage.removeItem('mui-mode');
+      render(
+        <ThemeProvider theme={theme} scoped defaultMode="dark">
+          <div />
+        </ThemeProvider>,
+      );
+      expect(window.localStorage.getItem('mui-mode')).to.equal(null);
     });
 
     it('uses the name in the class name', () => {
