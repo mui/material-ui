@@ -75,25 +75,25 @@ function useFrame() {
   return React.useContext(FrameContext)!;
 }
 
-let frameCount = 0;
-
 function Frame(props: { children: React.ReactNode; onReady: (frame: FrameValue) => void }) {
   const { children, onReady } = props;
   const ref = React.useRef<HTMLIFrameElement>(null);
   const [frame, setFrame] = React.useState<(FrameValue & { cache: EmotionCache }) | null>(null);
   const [height, setHeight] = React.useState(80);
+  // Emotion keys only allow lowercase letters and hyphens, so the id's other characters become letters.
+  const id = React.useId();
+  const cacheKey = `frame-${id.toLowerCase().replace(/[^a-z]/g, (char) => String.fromCharCode(97 + (char.charCodeAt(0) % 26)))}`;
 
   React.useEffect(() => {
     const iframe = ref.current!;
     let observer: ResizeObserver | undefined;
     const init = () => {
       const doc = iframe.contentDocument!;
-      frameCount += 1;
       const value = {
         document: doc,
         window: iframe.contentWindow!,
         cache: createCache({
-          key: `frame${String.fromCharCode(96 + (frameCount % 26 || 26))}`,
+          key: cacheKey,
           container: doc.head,
         }),
       };
@@ -112,7 +112,7 @@ function Frame(props: { children: React.ReactNode; onReady: (frame: FrameValue) 
       iframe.removeEventListener('load', init);
       observer?.disconnect();
     };
-  }, [onReady]);
+  }, [onReady, cacheKey]);
 
   return (
     <React.Fragment>
@@ -306,10 +306,14 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '3. Root + scoped sibling',
-    description: 'The scoped provider sets all its variables on its child, and has its own mode.',
+    title: '3. Root + scoped siblings',
+    description:
+      'A scoped provider sets all its variables on its child, and has its own mode. With a data attribute selector, the color scheme attribute goes on the child too.',
     code: `<ThemeProvider theme={appTheme}><App /></ThemeProvider>
 <ThemeProvider theme={widgetTheme} scoped>
+  <div><Widget /></div>
+</ThemeProvider>
+<ThemeProvider theme={widgetDataTheme} scoped defaultMode="dark">
   <div><Widget /></div>
 </ThemeProvider>`,
     render: () => (
@@ -326,43 +330,17 @@ const scenarios: Scenario[] = [
             <Swatch label="widget" />
           </div>
         </ScopedRoot>
+        <ScopedRoot theme={widgetDataTheme} defaultMode="dark">
+          <div data-inspect="data selector widget child">
+            <ModeToggle label="widget mode" />
+            <Swatch label="widget" />
+          </div>
+        </ScopedRoot>
       </React.Fragment>
     ),
   },
   {
-    title: '4. Scoped sibling with a data attribute selector',
-    description: 'The color scheme attribute goes on the child too.',
-    code: `<ThemeProvider theme={widgetDataTheme} scoped defaultMode="dark">
-  <div><Widget /></div>
-</ThemeProvider>`,
-    render: () => (
-      <ScopedRoot theme={widgetDataTheme} defaultMode="dark">
-        <div data-inspect="widget child">
-          <Swatch label="widget" />
-        </div>
-      </ScopedRoot>
-    ),
-  },
-  {
-    title: '5. Nested, same variables',
-    description: 'Only component defaults change: the child is left untouched.',
-    code: `<ThemeProvider theme={appTheme}>
-  <ThemeProvider theme={sameVarsTheme}>
-    <div><Button /></div>
-  </ThemeProvider>
-</ThemeProvider>`,
-    render: () => (
-      <Root theme={appTheme}>
-        <ThemeProvider theme={sameVarsTheme}>
-          <div data-inspect="nested child">
-            <Swatch label="nested" />
-          </div>
-        </ThemeProvider>
-      </Root>
-    ),
-  },
-  {
-    title: '6. Nested, different variables',
+    title: '4. Nested, different variables',
     description:
       'The child gets a class that only sets the variables that differ. It follows the outer mode.',
     code: `<ThemeProvider theme={appTheme}>
@@ -386,7 +364,7 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '7. Nested, children that are not a single element',
+    title: '5. Nested, children that are not a single element',
     description:
       'Several children, a Fragment, text and an array: the rule is generated, but no element gets the class, and an error is logged in development.',
     code: `<ThemeProvider theme={promoTheme}><Button /><Button /></ThemeProvider>
@@ -413,7 +391,7 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '8. Nested, custom component child',
+    title: '6. Nested, custom component child',
     description:
       'A component that renders the className it receives gets the theme. One that drops it silently keeps the outer theme.',
     code: `<ThemeProvider theme={promoTheme}>
@@ -440,7 +418,7 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '9. Directly nested providers and a function theme',
+    title: '7. Directly nested providers and a function theme',
     description:
       'A provider whose child is another provider passes its class on: the middle theme (primary) and the inner one (secondary) both apply.',
     code: `<ThemeProvider theme={promoTheme}>
@@ -478,7 +456,7 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '10. Portals',
+    title: '8. Portals',
     description:
       'Dialog, Menu and Tooltip apply the scope to their own root, in a nested provider and in a scoped sibling. useThemeScope() does it for other portals.',
     code: `<ThemeProvider theme={appTheme}>
@@ -508,7 +486,7 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '11. Forced single-scheme nested section',
+    title: '9. Forced single-scheme nested section',
     description: 'A nested theme with only a dark scheme stays dark whatever the outer mode is.',
     code: `<ThemeProvider theme={appTheme}>
   <ThemeProvider theme={forcedDarkTheme}>
@@ -529,9 +507,9 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '12. Switching between same and different variables',
+    title: '10. Nested, same variables, then different ones',
     description:
-      'Click the counter, then switch the nested theme: the count is kept, so nothing remounts.',
+      'With sameVarsTheme (only component defaults change), the child is left untouched. Click the counter, then switch to promoTheme: the child gets the class and keeps its count, so nothing remounts.',
     code: `<ThemeProvider theme={appTheme}>
   <ThemeProvider theme={different ? promoTheme : sameVarsTheme}>
     <div><Counter /></div>
@@ -571,8 +549,8 @@ function inspect(doc: Document) {
   const view = doc.defaultView!;
   const values = (element: Element) => {
     const style = view.getComputedStyle(element);
-    const primary = style.getPropertyValue('--mui-palette-primary-main').trim() || '—';
-    return `primary ${primary}, color-scheme ${style.colorScheme}`;
+    const read = (name: string) => style.getPropertyValue(name).trim() || '—';
+    return `primary ${read('--mui-palette-primary-main')}, secondary ${read('--mui-palette-secondary-main')}, color-scheme ${style.colorScheme}`;
   };
   const scope = (element: Element) => {
     const classes = Array.from(element.classList)
@@ -692,40 +670,7 @@ function ScenarioCard({ scenario }: { scenario: Scenario }) {
   );
 }
 
-// Captures the MUI warnings and errors of the whole page, since the scenarios share one JS context.
-// It patches the console when the module loads, so it also catches what the first render logs.
-const consoleMessages: string[] = [];
-const consoleListeners = new Set<() => void>();
-if (typeof window !== 'undefined') {
-  (['warn', 'error'] as const).forEach((level) => {
-    // eslint-disable-next-line no-console
-    const original = console[level];
-    // eslint-disable-next-line no-console
-    console[level] = (...args: unknown[]) => {
-      const text = `${level}: ${String(args[0])}`;
-      if (String(args[0]).startsWith('MUI:') && !consoleMessages.includes(text)) {
-        consoleMessages.push(text);
-        consoleListeners.forEach((listener) => listener());
-      }
-      original(...args);
-    };
-  });
-}
-
-function useConsoleMessages() {
-  React.useSyncExternalStore(
-    (listener) => {
-      consoleListeners.add(listener);
-      return () => consoleListeners.delete(listener);
-    },
-    () => consoleMessages.length,
-    () => 0,
-  );
-  return consoleMessages;
-}
-
 export default function ThemeProviderScoping() {
-  const messages = useConsoleMessages();
   return (
     <React.Fragment>
       <Head title="ThemeProvider scoping playground" description="" />
@@ -735,19 +680,10 @@ export default function ThemeProviderScoping() {
         </Typography>
         <Typography variant="body2" sx={{ mb: 2 }}>
           Temporary page for #49581. Each scenario renders in its own iframe. The right column shows
-          what ended up there: the scope classes and attributes, the computed primary color and
-          color scheme, and the scoped CSS rules (palette and color scheme declarations only). The
-          scenarios share one JS context, so the root provider warning shows up even though each
-          iframe has its own <code>:root</code>.
+          what ended up there: the scope classes and attributes, the computed primary and secondary
+          colors and color scheme, and the scoped CSS rules (palette and color scheme declarations
+          only). Open the browser console for the development warnings and errors.
         </Typography>
-        <Box
-          component="pre"
-          sx={{ p: 1, fontSize: 12, bgcolor: 'grey.100', borderRadius: 1, whiteSpace: 'pre-wrap' }}
-        >
-          {messages.length
-            ? `MUI console messages (whole page):\n${messages.join('\n\n')}`
-            : 'No MUI console messages yet.'}
-        </Box>
         <Stack spacing={3} sx={{ mt: 2 }}>
           {scenarios.map((scenario) => (
             <ScenarioCard key={scenario.title} scenario={scenario} />
