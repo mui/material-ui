@@ -40,11 +40,10 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true 
        * so they don't affect the rest of the page. Use it for a provider that isn't nested in another one,
        * like an embedded widget. Nested providers are scoped automatically when their variables differ.
        * Either way, the provider needs a single child element that renders the `className` it receives.
-       *
-       * A string is used as a readable part of the class name, and to suffix the storage keys.
+       * Its mode is only stored when `modeStorageKey` or `colorSchemeStorageKey` is set.
        * @default false
        */
-      scoped?: boolean | string | undefined;
+      scoped?: boolean | undefined;
     }
   : {};
 

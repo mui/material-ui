@@ -332,7 +332,7 @@ const scenarios: Scenario[] = [
     description:
       'The scoped provider sets all its variables on its child, and has its own mode (toggle both).',
     code: `<ThemeProvider theme={appTheme}><App /></ThemeProvider>
-<ThemeProvider theme={widgetTheme} scoped="widget">
+<ThemeProvider theme={widgetTheme} scoped>
   <div><Widget /></div>
 </ThemeProvider>`,
     height: 220,
@@ -344,7 +344,7 @@ const scenarios: Scenario[] = [
             <Swatch label="app" />
           </div>
         </Root>
-        <ScopedRoot theme={widgetTheme} scoped="widget">
+        <ScopedRoot theme={widgetTheme} scoped>
           <div data-inspect="widget child">
             <ModeToggle label="widget mode" />
             <Swatch label="widget" />

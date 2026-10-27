@@ -345,7 +345,7 @@ Add the `scoped` prop to the one that should only apply to its child, like an em
   <ThemeProvider theme={appTheme}>
     <App />
   </ThemeProvider>
-  <ThemeProvider theme={widgetTheme} scoped="widget">
+  <ThemeProvider theme={widgetTheme} scoped>
     <div>
       <Widget />
     </div>
@@ -355,8 +355,8 @@ Add the `scoped` prop to the one that should only apply to its child, like an em
 
 A scoped provider sets all of its variables on its child element, and has its own light or dark mode.
 If the theme's `colorSchemeSelector` uses a data attribute, the child also needs to render the `data-*` props it receives.
-To remember that mode across visits, give it a name: when `scoped` is a string, it's added to the class name and to the storage keys of the mode and color scheme, for example `mui-mode-widget`.
-Without a name, the mode isn't stored, so it doesn't overwrite the mode of the page's provider.
+Its mode isn't stored, so it doesn't overwrite the mode of the page's provider.
+To remember it across visits, pass your own `modeStorageKey` and `colorSchemeStorageKey`.
 
 :::info
 A CSS variable that you override on `:root` doesn't reach the elements under a scoped provider that sets it, because the closest declaration wins.

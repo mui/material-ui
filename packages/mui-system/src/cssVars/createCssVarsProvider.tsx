@@ -125,11 +125,10 @@ export interface CreateCssVarsProviderResult<
          * so they don't affect the rest of the page. Use it for a provider that isn't nested in another one,
          * like an embedded widget. Nested providers are scoped automatically when their variables differ.
          * Either way, the provider needs a single child element that renders the `className` it receives.
-         *
-         * A string is used as a readable part of the class name, and to suffix the storage keys.
+         * Its mode is only stored when `modeStorageKey` or `colorSchemeStorageKey` is set.
          * @default false
          */
-        scoped?: boolean | string | undefined;
+        scoped?: boolean | undefined;
       }
     >,
   ) => React.JSX.Element;
@@ -243,7 +242,6 @@ export default function createCssVarsProvider<
     upperGenerate: (() => CssVarsByColorScheme) | undefined,
     colorSchemeSelector: string | undefined,
     prefix: string,
-    name: string | undefined,
   ) {
     let byUpper = scopedStyleSheetsCache.get(generate);
     if (!byUpper) {
@@ -255,7 +253,7 @@ export default function createCssVarsProvider<
       byOptions = new Map();
       byUpper.set(upperGenerate ?? noUpper, byOptions);
     }
-    const key = `${colorSchemeSelector}|${prefix}|${name}`;
+    const key = `${colorSchemeSelector}|${prefix}`;
     if (!byOptions.has(key)) {
       byOptions.set(
         key,
@@ -264,7 +262,6 @@ export default function createCssVarsProvider<
           upper: upperGenerate?.(),
           colorSchemeSelector,
           prefix,
-          name,
         }),
       );
     }
@@ -280,6 +277,8 @@ export default function createCssVarsProvider<
       children,
       theme: themeProp,
       scoped = false,
+      modeStorageKey = defaultModeStorageKey,
+      colorSchemeStorageKey = defaultColorSchemeStorageKey,
       disableTransitionOnChange = designSystemTransitionOnChange,
       storageManager,
       storageWindow = typeof window === 'undefined' ? undefined : window,
@@ -296,14 +295,8 @@ export default function createCssVarsProvider<
     const ctx = React.useContext(ColorSchemeContext);
     const upperScope = React.useContext(ThemeScopeContext);
     const nested = !!ctx && !disableNestedContext;
-    const scopeName = typeof scoped === 'string' ? scoped : undefined;
     // A scoped provider that isn't nested manages its own color scheme on its element.
-    const isScopedRoot = !nested && !!scoped;
-    const storageKeySuffix = isScopedRoot && scopeName ? `-${scopeName}` : '';
-    const {
-      modeStorageKey = `${defaultModeStorageKey}${storageKeySuffix}`,
-      colorSchemeStorageKey = `${defaultColorSchemeStorageKey}${storageKeySuffix}`,
-    } = props;
+    const isScopedRoot = !nested && scoped;
 
     const initialTheme = React.useMemo(() => {
       if (themeProp) {
@@ -351,9 +344,14 @@ export default function createCssVarsProvider<
       modeStorageKey,
       colorSchemeStorageKey,
       defaultMode,
-      // An unnamed scoped provider would share the storage keys of the page's provider, so it doesn't store its mode.
+      // With the default storage keys, a scoped provider would overwrite the mode of the page's provider.
       storageManager:
-        isScopedRoot && !scopeName && props.storageManager === undefined ? null : storageManager,
+        isScopedRoot &&
+        props.storageManager === undefined &&
+        props.modeStorageKey === undefined &&
+        props.colorSchemeStorageKey === undefined
+          ? null
+          : storageManager,
       storageWindow,
       noSsr,
     });
@@ -561,7 +559,6 @@ export default function createCssVarsProvider<
           upperGenerateCssVarsByColorScheme,
           upperColorSchemeSelector,
           cssVarPrefix,
-          scopeName,
         );
       }
       if (scoped) {
@@ -570,7 +567,6 @@ export default function createCssVarsProvider<
           undefined,
           colorSchemeSelector,
           cssVarPrefix,
-          scopeName,
         );
       }
       return null;
@@ -583,7 +579,6 @@ export default function createCssVarsProvider<
       cssVarPrefix,
       nested,
       scoped,
-      scopeName,
     ]);
 
     const scopeClassName = scope?.className;
@@ -756,7 +751,7 @@ export default function createCssVarsProvider<
     /**
      * If `true`, the CSS theme variables are set on its child element instead of `:root`.
      */
-    scoped: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    scoped: PropTypes.bool,
     /**
      * The storage manager to be used for storing the mode and color scheme
      * @default using `window.localStorage`

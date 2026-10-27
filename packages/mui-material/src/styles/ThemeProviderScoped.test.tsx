@@ -282,7 +282,7 @@ describe('ThemeProvider with scoped CSS theme variables', () => {
       expect(getComputedStyle(screen.getByTestId('widget')).colorScheme).to.equal('dark');
     });
 
-    it('only uses the storage for a named scoped provider', () => {
+    it('only uses the storage for a scoped provider with storage keys', () => {
       const theme = createTheme({
         cssVariables: { colorSchemeSelector: 'class' },
         colorSchemes: { light: true, dark: true },
@@ -304,24 +304,19 @@ describe('ThemeProvider with scoped CSS theme variables', () => {
           <ThemeProvider theme={theme} scoped storageWindow={storageWindow}>
             <div />
           </ThemeProvider>
-          <ThemeProvider theme={theme} scoped="widget" storageWindow={storageWindow}>
+          <ThemeProvider
+            theme={theme}
+            scoped
+            modeStorageKey="widget-mode"
+            colorSchemeStorageKey="widget-color-scheme"
+            storageWindow={storageWindow}
+          >
             <div />
           </ThemeProvider>
         </React.Fragment>,
       );
       expect(readKeys.length).to.be.greaterThan(0);
-      expect(readKeys.every((key) => key.endsWith('-widget') || key.includes('-widget-'))).to.equal(
-        true,
-      );
-    });
-
-    it('uses the name in the class name', () => {
-      render(
-        <ThemeProvider theme={redTheme} scoped="widget">
-          <div data-testid="widget" />
-        </ThemeProvider>,
-      );
-      expect(screen.getByTestId('widget').className).to.match(/^mui-theme-widget-[a-z0-9]+$/);
+      expect(readKeys.every((key) => key.startsWith('widget-'))).to.equal(true);
     });
 
     it('adds the color scheme attribute to the child', () => {

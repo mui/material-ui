@@ -91,9 +91,8 @@ export function createScopedStyleSheets(options: {
   upper?: CssVarsByColorScheme | undefined;
   colorSchemeSelector: string | undefined;
   prefix: string;
-  name?: string | undefined;
 }) {
-  const { css, upper, colorSchemeSelector, prefix, name } = options;
+  const { css, upper, colorSchemeSelector, prefix } = options;
   const rule = getColorSchemeRule(colorSchemeSelector);
   const [defaultScheme, ...otherSchemes] = css.colorSchemes;
   const upperSchemes = upper ? Object.fromEntries(upper.colorSchemes) : {};
@@ -127,9 +126,7 @@ export function createScopedStyleSheets(options: {
     return null;
   }
 
-  // The name is only there to make the class readable, so characters that aren't valid in a class are replaced.
-  const safeName = name?.replace(/[^a-zA-Z0-9_-]/g, '-');
-  const className = `${prefix ? `${prefix}-` : ''}theme-${safeName ? `${safeName}-` : ''}${hash(
+  const className = `${prefix ? `${prefix}-` : ''}theme-${hash(
     JSON.stringify([root, schemes, rule, !!upper]),
   )}`;
   const scope = `.${className}`;

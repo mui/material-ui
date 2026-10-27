@@ -87,23 +87,11 @@ describe('createScopedStyleSheets', () => {
       css: upper,
       colorSchemeSelector: 'data-mui-color-scheme',
       prefix: 'mui',
-      name: 'widget',
     })!;
     const scope = `.${result.className}`;
-    expect(result.className).to.match(/^mui-theme-widget-[a-z0-9]+$/);
     expect(result.styles[2]).to.deep.equal({
       [`${scope}[data-mui-color-scheme="dark"]`]: upper.colorSchemes[1][1],
     });
-  });
-
-  it('replaces the characters of the name that are not valid in a class', () => {
-    const result = createScopedStyleSheets({
-      css: upper,
-      colorSchemeSelector: 'class',
-      prefix: 'mui',
-      name: 'my widget.v2',
-    })!;
-    expect(result.className).to.match(/^mui-theme-my-widget-v2-[a-z0-9]+$/);
   });
 
   it('gives the same class name to the same declarations', () => {
