@@ -94,10 +94,9 @@ export const round2 = (value: number) => Math.round(value * 100) / 100;
 export const byName = <T,>(names: readonly string[], read: (name: string) => T) =>
   Object.fromEntries(names.map((name) => [name, read(name)]));
 
-/** One case per combination of the axes, named by its values joined with spaces. */
-export const grid = (
-  axes: readonly (readonly string[])[],
-  make: (...values: any[]) => React.ReactNode,
+export const grid = <const Axes extends readonly (readonly string[])[]>(
+  axes: Axes,
+  make: (...values: { [K in keyof Axes]: Axes[K][number] }) => React.ReactNode,
 ): Record<string, React.ReactNode> =>
   Object.fromEntries(
     axes
@@ -105,10 +104,9 @@ export const grid = (
         (rows, axis) => rows.flatMap((row) => axis.map((value) => [...row, value])),
         [[]],
       )
-      .map((values) => [values.join(' '), make(...values)]),
+      .map((values) => [values.join(' '), make(...(values as any))]),
   );
 
-/** 0 when `diff` is within `tolerance`, the rounded diff otherwise. */
 export const drift = (diff: number, tolerance = 0.5) =>
   Math.abs(diff) <= tolerance ? 0 : round2(diff);
 
@@ -141,7 +139,6 @@ export const withUser = (options: Parameters<typeof createTheme>[0]) => ({
   enhanced: enhanceDensity(createTheme(options)),
 });
 
-/** Every text field setup: variant x size, plus filled without a label. */
 export const FIELDS = [
   ...Object.keys(grid([VARIANTS, SIZES], () => null)),
   ...SIZES.map((size) => `filled ${size} hiddenLabel`),
@@ -184,7 +181,6 @@ export const USER_COMPONENTS = {
 
 type OverrideCheck = { node: React.ReactNode; reads: Record<string, [string, string, string]> };
 
-/** Each case renders one component and reads the properties USER_COMPONENTS sets on it. */
 export const OVERRIDE_CHECKS: Record<string, OverrideCheck> = {
   Alert: {
     node: <Alert onClose={() => {}}>Message</Alert>,
@@ -298,7 +294,20 @@ export const OVERRIDE_CHECKS: Record<string, OverrideCheck> = {
   },
 };
 
-/** For each check, whether the user value is the rendered one under `theme`. */
+export const MASTER_LOSES_WITHOUT_LAYERS: Record<string, string[]> = {
+  'Autocomplete filled medium hiddenLabel': ['paddingTop', 'paddingBottom'],
+  'Autocomplete filled small': ['paddingBottom'],
+  'Autocomplete filled small hiddenLabel': ['paddingTop', 'paddingBottom'],
+  'Autocomplete outlined small': ['paddingLeft', 'paddingTop', 'paddingBottom'],
+};
+
+export const winsExcept = (losses: Record<string, string[]>) =>
+  byName(Object.keys(OVERRIDE_CHECKS), (name) =>
+    Object.fromEntries(
+      Object.keys(OVERRIDE_CHECKS[name].reads).map((slot) => [slot, !losses[name]?.includes(slot)]),
+    ),
+  );
+
 export const userWins = (theme: string) =>
   byName(Object.keys(OVERRIDE_CHECKS), (name) =>
     Object.fromEntries(

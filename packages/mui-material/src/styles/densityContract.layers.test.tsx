@@ -28,6 +28,7 @@ import {
   overrideCases,
   sideBySide,
   userWins,
+  winsExcept,
   withUser,
 } from '../../test/densityContract';
 
@@ -129,6 +130,7 @@ describe.skipIf(isJsdom())('density contract with modularCssLayers', () => {
         overrideCases(),
       ),
     );
+    expect(userWins('master')).to.deep.equal(winsExcept({}));
     expect(userWins('enhanced')).to.deep.equal(userWins('master'));
   });
 

@@ -68,6 +68,7 @@ describe('enhanceDensity', () => {
       (path) => path.endsWith('/--_inlinePad') || ltr[path].startsWith('translateX('),
     );
 
+    expect(inlineOffsets).not.to.have.length(0);
     expect(inlineOffsets.filter((path) => !differing.includes(path))).to.deep.equal([]);
     expect(differing.filter((path) => !isSignFlip(ltr[path] ?? '', rtl[path] ?? ''))).to.deep.equal(
       [],

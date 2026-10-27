@@ -128,20 +128,21 @@ function mismatchesOf(claims: Claim[], items: AnnotateItem[]) {
       mismatches.push(`${claim.on} ${claim.aspect}: nothing drawn`);
       return;
     }
-    if (claim.token === undefined) {
+    const { token } = claim;
+    if (token === undefined) {
       return;
     }
-    const shown = claim.text ?? claim.token;
+    const shown = claim.text ?? token;
     drawn.forEach(({ label, source }) => {
       if (!label.startsWith(shown)) {
         mismatches.push(`${claim.on} ${claim.aspect}: label "${label}" omits "${shown}"`);
         return;
       }
       try {
-        const expected = evaluateToken(claim.token!, source.lineHeight);
+        const expected = evaluateToken(token, source.lineHeight);
         if (Math.abs(expected - source.value) > TOLERANCE) {
           mismatches.push(
-            `${claim.on} ${claim.aspect}: "${claim.token}" measures ${source.value}px but evaluates to ${expected}px`,
+            `${claim.on} ${claim.aspect}: "${token}" measures ${source.value}px but evaluates to ${expected}px`,
           );
         }
       } catch (error) {

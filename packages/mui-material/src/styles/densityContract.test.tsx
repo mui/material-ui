@@ -71,6 +71,7 @@ import { DEFAULT_SIZING_PX, DEFAULT_STEP_PX } from './densityScale';
 import {
   DENSITIES,
   FIELDS,
+  MASTER_LOSES_WITHOUT_LAYERS,
   MEDIUM,
   SIZES,
   THEMES,
@@ -93,6 +94,7 @@ import {
   sideBySide,
   textBox,
   userWins,
+  winsExcept,
   withUser,
   type Density,
 } from '../../test/densityContract';
@@ -772,9 +774,9 @@ describe.skipIf(isJsdom())('density contract', () => {
     });
 
     test('a label keeps master position when the input does not set it', () => {
-      const fields = grid([[...VARIANTS, 'filled shrunk'], SIZES], (variant, size) => (
-        <FormControl variant={variant.split(' ')[0]} size={size}>
-          <InputLabel shrink={variant === 'filled shrunk' || undefined}>Label</InputLabel>
+      const fields = grid([[...VARIANTS, 'shrunk'], SIZES], (kind, size) => (
+        <FormControl variant={kind === 'shrunk' ? 'filled' : kind} size={size}>
+          <InputLabel shrink={kind === 'shrunk' || undefined}>Label</InputLabel>
           <InputBase />
         </FormControl>
       ));
@@ -1345,6 +1347,7 @@ describe.skipIf(isJsdom())('density contract', () => {
   describe('user overrides win wherever they win on master', () => {
     test('slot styleOverrides', () => {
       render(sideBySide(withUser({ components: USER_COMPONENTS as any }), overrideCases()));
+      expect(userWins('master')).to.deep.equal(winsExcept(MASTER_LOSES_WITHOUT_LAYERS));
       expect(userWins('enhanced')).to.deep.equal(userWins('master'));
     });
 
