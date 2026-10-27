@@ -103,11 +103,12 @@ const FabRoot = styled(ButtonBase, {
         props: { variant: 'extended' },
         style: {
           borderRadius: 48 / 2,
-          // Vertical padding rather than a fixed height, so a label that wraps
-          // stays inside the button instead of overflowing it.
+          // Vertical padding and a content-sized height rather than a fixed
+          // height, so a label that wraps stays inside the button. `fit-content`
+          // rather than `auto` keeps a flex or grid parent from stretching it.
           padding: '8px 16px',
           width: 'auto',
-          height: 'auto',
+          height: 'fit-content',
           minWidth: 48,
           minHeight: 48,
         },
@@ -116,7 +117,7 @@ const FabRoot = styled(ButtonBase, {
         props: { variant: 'extended', size: 'small' },
         style: {
           width: 'auto',
-          padding: '4px 8px',
+          padding: '2px 8px',
           borderRadius: 34 / 2,
           minWidth: 34,
           minHeight: 34,

@@ -97,6 +97,39 @@ describe('<Fab />', () => {
     expect(button).to.have.class(classes.sizeMedium);
   });
 
+  // JSDOM does no layout, so the one-line heights are only measurable in a real
+  // browser. The content is 1.75em tall whatever the font family, so these are
+  // the minimums rather than anything font-dependent.
+  it.skipIf(isJsdom())('keeps the one-line height of each extended size', () => {
+    render(
+      <React.Fragment>
+        <Fab variant="extended" data-testid="large">
+          Save
+        </Fab>
+        <Fab variant="extended" size="medium" data-testid="medium">
+          Save
+        </Fab>
+        <Fab variant="extended" size="small" data-testid="small">
+          Save
+        </Fab>
+      </React.Fragment>,
+    );
+
+    expect(screen.getByTestId('large').getBoundingClientRect().height).to.equal(48);
+    expect(screen.getByTestId('medium').getBoundingClientRect().height).to.equal(40);
+    expect(screen.getByTestId('small').getBoundingClientRect().height).to.equal(34);
+  });
+
+  it.skipIf(isJsdom())('does not stretch to fill a flex parent', () => {
+    render(
+      <div style={{ display: 'flex', height: 160 }}>
+        <Fab variant="extended">Save</Fab>
+      </div>,
+    );
+
+    expect(screen.getByRole('button').getBoundingClientRect().height).to.equal(48);
+  });
+
   // JSDOM does no layout, so the overflow this guards against is only visible
   // in a real browser.
   it.skipIf(isJsdom())('keeps a wrapping label inside the extended button', () => {
