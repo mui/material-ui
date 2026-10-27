@@ -15,10 +15,10 @@ When its variables differ from the outer theme, it sets them with a class on its
 
 ```diff
  <ThemeProvider theme={promoTheme}>
--  <CssBaseline />
+-  <Header />
 -  <Section />
 +  <div>
-+    <CssBaseline />
++    <Header />
 +    <Section />
 +  </div>
  </ThemeProvider>

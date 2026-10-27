@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import clsx from 'clsx';
 import { DefaultTheme } from '@mui/system';
 import { StorageManager } from '@mui/system/cssVars';
 import ThemeProviderNoVars from './ThemeProviderNoVars';
@@ -36,6 +37,7 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true 
        * If `true`, the CSS theme variables are set on its child element instead of `:root`,
        * so they don't affect the rest of the page. Use it for a provider that isn't nested in another one,
        * like an embedded widget. Nested providers are scoped automatically when their variables differ.
+       * Either way, the provider needs a single child element that renders the `className` it receives.
        *
        * A string is used as a readable part of the class name, and to suffix the storage keys.
        * @default false
@@ -112,7 +114,26 @@ export default function ThemeProvider<Theme = DefaultTheme>({
   }, [theme]);
 
   if (noVarsTheme) {
-    return <ThemeProviderNoVars theme={noVarsTheme} {...props} />;
+    // It doesn't scope its own theme, but passes on the scope that an outer provider gave it to its child.
+    const forwardedClassName = (props as { className?: string | undefined }).className;
+    let { children } = props;
+    if (forwardedClassName && React.isValidElement(children) && children.type !== React.Fragment) {
+      const child = children as React.ReactElement<{ className?: string | undefined }>;
+      const forwarded: Record<string, unknown> = {
+        className: clsx(child.props.className, forwardedClassName),
+      };
+      Object.keys(props).forEach((key) => {
+        if (key.startsWith('data-')) {
+          forwarded[key] = (props as Record<string, unknown>)[key];
+        }
+      });
+      children = React.cloneElement(child, forwarded);
+    }
+    return (
+      <ThemeProviderNoVars theme={noVarsTheme} {...props}>
+        {children}
+      </ThemeProviderNoVars>
+    );
   }
   return <CssVarsProvider theme={theme as unknown as CssVarsTheme} {...props} />;
 }

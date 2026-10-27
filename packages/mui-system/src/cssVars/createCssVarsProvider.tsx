@@ -123,6 +123,7 @@ export interface CreateCssVarsProviderResult<
          * If `true`, the CSS theme variables are set on its child element instead of `:root`,
          * so they don't affect the rest of the page. Use it for a provider that isn't nested in another one,
          * like an embedded widget. Nested providers are scoped automatically when their variables differ.
+         * Either way, the provider needs a single child element that renders the `className` it receives.
          *
          * A string is used as a readable part of the class name, and to suffix the storage keys.
          * @default false
@@ -421,7 +422,7 @@ export default function createCssVarsProvider<
 
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
-    // A scoped root renders it on its own element instead.
+    // A scoped root sets it on its child instead.
     const colorSchemeSelector = restThemeProp.colorSchemeSelector;
     const ownsColorSchemeNode = !isScopedRoot || props.colorSchemeNode !== undefined;
     useEnhancedEffect(() => {
@@ -538,7 +539,7 @@ export default function createCssVarsProvider<
       !disableStyleSheetGeneration && restThemeProp.cssVariables !== false;
     const samePrefixAsUpper = nested && (upperTheme as any)?.cssVarPrefix === cssVarPrefix;
 
-    // 6. Scope the CSS theme variables that can't go to `:root` to the provider's element.
+    // 6. Scope the CSS theme variables that can't go to `:root` to the provider's child.
     const generateCssVarsByColorScheme: (() => CssVarsByColorScheme) | undefined =
       restThemeProp.generateCssVarsByColorScheme;
     const upperGenerateCssVarsByColorScheme: (() => CssVarsByColorScheme) | undefined =
@@ -646,13 +647,31 @@ export default function createCssVarsProvider<
     }
 
     // The scope class goes on the single child, so the provider never renders an element of its own.
+    // When the child is itself a ThemeProvider, it receives the outer scope and passes it on to its own child.
+    const forwardedClassName: string | undefined = props.className;
+    const needsChildScope = !!(scopeClassName || forwardedClassName);
+    const hasChildren = children != null && typeof children !== 'boolean';
     const canCloneChild = React.isValidElement(children) && children.type !== React.Fragment;
     let scopedChildren = children;
-    if (scopeClassName && canCloneChild) {
+    if (needsChildScope && canCloneChild) {
       const child = children as React.ReactElement<{ className?: string | undefined }>;
+      const forwardedAttributes: Record<string, string> = {};
+      if (forwardedClassName) {
+        Object.keys(props).forEach((key) => {
+          if (key.startsWith('data-')) {
+            forwardedAttributes[key] = props[key];
+          }
+        });
+      }
       scopedChildren = React.cloneElement(child, {
+        ...forwardedAttributes,
         ...colorSchemeAttributes,
-        className: clsx(child.props.className, scopeClassName, colorSchemeClassName),
+        className: clsx(
+          child.props.className,
+          forwardedClassName,
+          scopeClassName,
+          colorSchemeClassName,
+        ),
       });
     }
 
@@ -661,7 +680,7 @@ export default function createCssVarsProvider<
       const warnedChildren = React.useRef(false);
       // eslint-disable-next-line react-hooks/rules-of-hooks
       React.useEffect(() => {
-        if (scopeClassName && !canCloneChild && !warnedChildren.current) {
+        if (needsChildScope && hasChildren && !canCloneChild && !warnedChildren.current) {
           warnedChildren.current = true;
           console.error(
             [
@@ -670,7 +689,7 @@ export default function createCssVarsProvider<
             ].join('\n'),
           );
         }
-      }, [scopeClassName, canCloneChild]);
+      }, [needsChildScope, hasChildren, canCloneChild]);
     }
 
     // The tree is the same whether the theme needs a scope or not, so switching themes keeps the children's state.

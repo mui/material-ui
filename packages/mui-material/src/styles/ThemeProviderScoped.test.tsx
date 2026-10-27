@@ -77,6 +77,48 @@ describe('ThemeProvider with scoped CSS theme variables', () => {
       expect(screen.getByTestId('first').className).to.equal('');
     });
 
+    it('does not log an error when there are no children', () => {
+      render(
+        <ThemeProvider theme={blueTheme}>
+          <ThemeProvider theme={redTheme}>{false}</ThemeProvider>
+          <ThemeProvider theme={redTheme}>{null}</ThemeProvider>
+        </ThemeProvider>,
+      );
+    });
+
+    it.skipIf(isJsdom())('passes the scope of a provider whose child is another provider', () => {
+      const greenSecondaryTheme = createTheme({
+        cssVariables: true,
+        palette: { primary: { main: '#ff0000' }, secondary: { main: '#00ff00' } },
+      });
+      render(
+        <ThemeProvider theme={blueTheme}>
+          <ThemeProvider theme={redTheme}>
+            <ThemeProvider theme={greenSecondaryTheme}>
+              <div data-testid="inner" />
+            </ThemeProvider>
+          </ThemeProvider>
+        </ThemeProvider>,
+      );
+      expect(getVar(screen.getByTestId('inner'), '--mui-palette-primary-main')).to.equal('#ff0000');
+      expect(getVar(screen.getByTestId('inner'), '--mui-palette-secondary-main')).to.equal(
+        '#00ff00',
+      );
+    });
+
+    it('passes the scope through a provider with a function theme', () => {
+      render(
+        <ThemeProvider theme={blueTheme}>
+          <ThemeProvider theme={redTheme}>
+            <ThemeProvider theme={(outer: object) => ({ ...outer })}>
+              <div data-testid="inner" />
+            </ThemeProvider>
+          </ThemeProvider>
+        </ThemeProvider>,
+      );
+      expect(screen.getByTestId('inner').className).to.match(/^mui-theme-[a-z0-9]+$/);
+    });
+
     it('logs an error when the child is a Fragment', () => {
       expect(() =>
         render(

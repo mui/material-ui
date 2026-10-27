@@ -313,6 +313,14 @@ The class only sets the variables that differ, and it follows the outer light or
 
 The provider doesn't render any element of its own, so the child has to be a single element that renders the `className` it receives.
 With several children, a Fragment, or text, the variables aren't applied and an error is logged in development: wrap the children in one element, for example a `div`.
+If the child is your own component, pass `className` on to its root element:
+
+```jsx
+function Section({ className, children }) {
+  return <section className={className}>{children}</section>;
+}
+```
+
 A nested provider whose theme has the same variables, for example one that only changes `components` defaults, accepts any children.
 
 Dialogs, menus, popovers, tooltips, and other components that render in a portal apply the class to their own root, so they use the nested theme too.
@@ -346,6 +354,7 @@ Add the `scoped` prop to the one that should only apply to its child, like an em
 ```
 
 A scoped provider sets all of its variables on its child element, and has its own light or dark mode.
+If the theme's `colorSchemeSelector` uses a data attribute, the child also needs to render the `data-*` props it receives.
 To remember that mode across visits, give it a name: when `scoped` is a string, it's added to the class name and to the storage keys of the mode and color scheme, for example `mui-mode-widget`.
 Without a name, the mode isn't stored, so it doesn't overwrite the mode of the page's provider.
 
