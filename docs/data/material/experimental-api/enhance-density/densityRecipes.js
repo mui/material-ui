@@ -26,6 +26,12 @@ const densityRecipes = [
       touchTarget: 44,
       iconSize: 24,
     },
+    typography: {
+      body1: { fontSize: '1rem', lineHeight: '22px' },
+      body2: { fontSize: '0.9375rem', lineHeight: '20px' },
+      caption: { fontSize: '0.875rem', lineHeight: '20px' },
+      button: { fontSize: '1rem', lineHeight: '22px' },
+    },
   },
   {
     id: 'medium',
@@ -47,6 +53,12 @@ const densityRecipes = [
         xxLarge: 32,
       },
       touchTarget: 24,
+    },
+    typography: {
+      body1: { fontSize: '0.75rem', lineHeight: '16px' },
+      body2: { fontSize: '0.6875rem', lineHeight: '14px' },
+      caption: { fontSize: '0.6875rem', lineHeight: '14px' },
+      button: { fontSize: '0.75rem', lineHeight: '16px' },
     },
   },
 ];

@@ -1,5 +1,5 @@
 import { createTheme, unstable_enhanceDensity as enhanceDensity } from '@mui/material/styles';
-import type { DensityScaleOverrides } from '@mui/material/styles';
+import type { DensityScaleOverrides, TypographyVariantsOptions } from '@mui/material/styles';
 
 const {
   touchTarget,
@@ -11,6 +11,7 @@ export interface DensityRecipe {
   id: string;
   label: string;
   scale: DensityScaleOverrides;
+  typography?: TypographyVariantsOptions;
 }
 
 const densityRecipes: DensityRecipe[] = [
@@ -29,6 +30,12 @@ const densityRecipes: DensityRecipe[] = [
       },
       touchTarget: 44,
       iconSize: 24,
+    },
+    typography: {
+      body1: { fontSize: '1rem', lineHeight: '22px' },
+      body2: { fontSize: '0.9375rem', lineHeight: '20px' },
+      caption: { fontSize: '0.875rem', lineHeight: '20px' },
+      button: { fontSize: '1rem', lineHeight: '22px' },
     },
   },
   {
@@ -51,6 +58,12 @@ const densityRecipes: DensityRecipe[] = [
         xxLarge: 32,
       },
       touchTarget: 24,
+    },
+    typography: {
+      body1: { fontSize: '0.75rem', lineHeight: '16px' },
+      body2: { fontSize: '0.6875rem', lineHeight: '14px' },
+      caption: { fontSize: '0.6875rem', lineHeight: '14px' },
+      button: { fontSize: '0.75rem', lineHeight: '16px' },
     },
   },
 ];

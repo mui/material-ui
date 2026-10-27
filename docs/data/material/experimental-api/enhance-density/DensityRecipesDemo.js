@@ -60,7 +60,11 @@ export default function DensityRecipesDemo() {
   const theme = React.useMemo(
     () =>
       enhanceDensity(
-        createTheme({ colorSchemes, focusVisible: true }),
+        createTheme({
+          colorSchemes,
+          focusVisible: true,
+          typography: recipe.typography,
+        }),
         recipe.scale,
       ),
     [recipe],

@@ -183,20 +183,32 @@ To override the defaults, pass a second argument to `enhanceDensity`.
 Below is an example of a full scale overrides for a very dense application:
 
 ```js
-const theme = enhanceDensity(createTheme(), {
-  spacing: {
-    xxSmall: 2,
-    xSmall: 4,
-    small: 8,
-    medium: 12,
-    large: 16,
-    xLarge: 24,
-    xxLarge: 32,
+const theme = enhanceDensity(
+  createTheme({
+    typography: {
+      body1: { fontSize: '0.75rem', lineHeight: '16px' },
+      body2: { fontSize: '0.6875rem', lineHeight: '14px' },
+      caption: { fontSize: '0.6875rem', lineHeight: '14px' },
+      button: { fontSize: '0.75rem', lineHeight: '16px' },
+    },
+  }),
+  {
+    spacing: {
+      xxSmall: 2,
+      xSmall: 4,
+      small: 8,
+      medium: 12,
+      large: 16,
+      xLarge: 24,
+      xxLarge: 32,
+    },
+    touchTarget: 24,
+    iconSize: 14,
   },
-  touchTarget: 24,
-  iconSize: 14,
-});
+);
 ```
+
+A control's height must fit one line of its text plus padding. With the default type ramp, one body1 line is 24px, so a 24px `touchTarget` leaves no room for padding. When you lower `touchTarget`, lower the type ramp with it, as in the example above.
 
 The scale is a closed set of seven steps, plus the two sizings. The values must be numbers, which are interpreted as pixels. Anything left out keeps its default value.
 
