@@ -194,12 +194,19 @@ export default function AppTheme({ children }: { children: ReactNode }) {
 ```
 
 ```tsx title="pages/_app.tsx"
+import {
+  AppCacheProvider,
+  createEmotionCache,
+} from '@mui/material-nextjs/v15-pagesRouter';
 import AppTheme from '../src/theme';
+
+// Used on the client. On the server, `props` carries the cache created in `_document`.
+const clientCache = createEmotionCache({ enableCssLayer: true });
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
   return (
-    <AppCacheProvider {...props}>
+    <AppCacheProvider emotionCache={clientCache} {...props}>
       <AppTheme>
         <Component {...pageProps} />
       </AppTheme>
@@ -210,13 +217,13 @@ export default function MyApp(props: AppProps) {
 
 ```tsx title="pages/_document.tsx"
 import {
-  createCache,
+  createEmotionCache,
   documentGetInitialProps,
 } from '@mui/material-nextjs/v15-pagesRouter';
 
 MyDocument.getInitialProps = async (ctx: DocumentContext) => {
   const finalProps = await documentGetInitialProps(ctx, {
-    emotionCache: createCache({ enableCssLayer: true }),
+    emotionCache: createEmotionCache({ enableCssLayer: true }),
   });
   return finalProps;
 };
